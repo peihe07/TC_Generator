@@ -93,7 +93,7 @@ export function GenerateWindow() {
       const event = data as GenerateStreamEvent;
       setStats(event.stats);
 
-      if (event.type === "row.completed") {
+      if (event.type === "row.completed" || event.type === "row.failed") {
         updateRow(event.row.id, event.row);
       }
 

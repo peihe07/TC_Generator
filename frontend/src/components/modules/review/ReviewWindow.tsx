@@ -7,8 +7,15 @@ import {
   RiCloseCircleLine,
   RiEdit2Line,
   RiFlagLine,
+  RiRefreshLine,
 } from "@remixicon/react";
 
+import type { GenerateStreamEvent } from "@/src/lib/api-contract";
+import {
+  useBackendBaseUrl,
+  useTriggerGenerate,
+} from "@/src/hooks/usePythonAPI";
+import { useSSE } from "@/src/hooks/useSSE";
 import type { TcRow, ValidationIssue, ValidationSeverity } from "@/src/lib/types";
 import { useJobStore } from "@/src/store/useJobStore";
 
@@ -79,16 +86,55 @@ function ValidationBadge({ issues }: { issues: ValidationIssue[] | undefined }) 
 }
 
 export function ReviewWindow() {
+  const jobId = useJobStore((state) => state.jobId);
   const tcRows = useJobStore((state) => state.tcRows);
+  const config = useJobStore((state) => state.config);
   const updateRow = useJobStore((state) => state.updateRow);
+  const setJobId = useJobStore((state) => state.setJobId);
+  const setStats = useJobStore((state) => state.setStats);
+  const appendLog = useJobStore((state) => state.appendLog);
+  const backendBaseUrl = useBackendBaseUrl();
+  const triggerGenerate = useTriggerGenerate();
   const [selectedRowId, setSelectedRowId] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<"all" | TcRow["reviewStatus"]>("all");
   const [validationFilter, setValidationFilter] = useState<"all" | ValidationSeverity>("all");
   const [isEditing, setIsEditing] = useState(false);
+  const [isRegenerating, setIsRegenerating] = useState(false);
+  const [activeStreamUrl, setActiveStreamUrl] = useState<string | null>(null);
   const [draftFields, setDraftFields] = useState({
     preConditions: "",
     testProcedure: "",
     expectedResult: "",
+  });
+
+  useSSE({
+    enabled: Boolean(activeStreamUrl),
+    url: activeStreamUrl,
+    onMessage: (data) => {
+      if (typeof data === "string") {
+        return;
+      }
+
+      const event = data as GenerateStreamEvent;
+      setStats(event.stats);
+
+      if (event.type === "row.completed" || event.type === "row.failed") {
+        updateRow(event.row.id, event.row);
+      }
+
+      if (event.type === "job.started") {
+        setIsRegenerating(true);
+      }
+
+      if (event.type === "job.completed") {
+        setIsRegenerating(false);
+        setActiveStreamUrl(null);
+      }
+    },
+    onError: () => {
+      setIsRegenerating(false);
+      setActiveStreamUrl(null);
+    },
   });
 
   const sortedRows = useMemo(() => {
@@ -141,6 +187,55 @@ export function ReviewWindow() {
         updateRow(row.id, { reviewStatus: "accepted" });
       }
     });
+  };
+
+  const regenerateRows = async (rows: TcRow[]) => {
+    if (!rows.length) {
+      return;
+    }
+
+    if (!(backendBaseUrl && jobId)) {
+      appendLog({
+        level: "error",
+        message: "Backend URL is not configured. Re-generation requires the Python API.",
+      });
+      return;
+    }
+
+    rows.forEach((row) =>
+      updateRow(row.id, {
+        reviewStatus: "pending",
+        status: "draft",
+        generated: undefined,
+        validation: [],
+      }),
+    );
+
+    try {
+      const response = await triggerGenerate.mutateAsync({
+        jobId,
+        rows,
+        config,
+      });
+      setJobId(response.jobId);
+      setStats({
+        total: response.totalRows,
+        processed: 0,
+        currentCost: 0,
+      });
+      setIsRegenerating(true);
+      setActiveStreamUrl(response.streamUrl);
+      appendLog({
+        level: "info",
+        message: `Queued re-generation for ${response.totalRows} rejected row(s).`,
+      });
+    } catch {
+      setIsRegenerating(false);
+      appendLog({
+        level: "error",
+        message: "Failed to queue re-generation for rejected rows.",
+      });
+    }
   };
 
   const saveEdits = () => {
@@ -220,6 +315,14 @@ export function ReviewWindow() {
         <button type="button" onClick={acceptAllPassing}>
           <RiCheckboxCircleLine size={14} />
           Accept all passing
+        </button>
+        <button
+          type="button"
+          onClick={() => void regenerateRows(tcRows.filter((row) => row.reviewStatus === "rejected"))}
+          disabled={!tcRows.some((row) => row.reviewStatus === "rejected") || isRegenerating}
+        >
+          <RiRefreshLine size={14} />
+          {isRegenerating ? "Re-generating..." : "Regenerate rejected"}
         </button>
       </div>
 
@@ -358,6 +461,14 @@ export function ReviewWindow() {
                 >
                   <RiFlagLine size={14} />
                   Flag
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void regenerateRows([selectedRow])}
+                  disabled={isRegenerating}
+                >
+                  <RiRefreshLine size={14} />
+                  Retry
                 </button>
                 <button
                   type="button"
