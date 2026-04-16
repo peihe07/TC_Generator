@@ -1,4 +1,4 @@
-import { proxyStream } from "../../../_lib/backend";
+import { proxyStream } from "../../_lib/backend";
 
 export const runtime = "nodejs";
 

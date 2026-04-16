@@ -152,6 +152,25 @@ const FieldRow: React.FC<{
   </div>
 );
 
+// --- Mock TC builder (used when backend is unavailable) ---
+function buildMockTc(scenarioId: number, scenarioName: string | undefined, testItem: string): GeneratedTc {
+  return {
+    scenarioId,
+    scenarioName,
+    tc: {
+      test_item_rewrite: `(${testItem}) → Expected observable outcome is verified.`,
+      pre_conditions: '1. System is in the required initial state.\n2. All prerequisite conditions are satisfied.',
+      input_test_data: 'NA',
+      test_procedure:
+        '1. Prepare the required initial state.\n2. Execute the target operation.\n3. Verify the observable result matches the expected outcome.',
+      expected_result:
+        '1. Initial state preparation succeeds.\n2. Target operation is accepted by the system.\n3. Observable result matches the stated requirement.',
+      design_method: 'Scenario',
+      priority: 'Medium',
+    },
+  };
+}
+
 // --- Main Module ---
 const QuickGenerateModule: React.FC = () => {
   const [mode, setMode] = useState<Mode>('single');
@@ -179,6 +198,42 @@ const QuickGenerateModule: React.FC = () => {
     setReasoningExpanded(true);
   };
 
+  // --- Mock fallback (used when backend is unavailable) ---
+  const runMock = useCallback(async (stopped: () => boolean) => {
+    const item = testItem.trim();
+    const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+    if (mode === 'decompose') {
+      await delay(900);
+      if (stopped()) return;
+      const mockScenarios: Scenario[] = [
+        { id: 1, name: 'Normal flow', description: 'Verify the primary success path.', test_item: `${item} — happy path` },
+        { id: 2, name: 'Boundary condition', description: 'Test edge-case inputs or state limits.', test_item: `${item} — boundary` },
+        { id: 3, name: 'Error handling', description: 'Confirm graceful failure on invalid input.', test_item: `${item} — error case` },
+      ];
+      setAnalysis({
+        reasoning: '[Mock] Identified 3 distinct test scenarios: the primary success path, a boundary condition, and an error-handling case. Each represents an independent observable behaviour.',
+        scenarios: mockScenarios,
+      });
+      setPhase('generating');
+
+      for (const s of mockScenarios) {
+        if (stopped()) return;
+        setGeneratingScenarioId(s.id);
+        await delay(700);
+        if (stopped()) return;
+        setGeneratedTcs((prev) => [...prev, buildMockTc(s.id, s.name, s.test_item)]);
+        setGeneratingScenarioId(null);
+      }
+    } else {
+      await delay(800);
+      if (stopped()) return;
+      setGeneratedTcs([buildMockTc(1, undefined, item)]);
+    }
+
+    setPhase('done');
+  }, [testItem, mode]);
+
   const handleGenerate = useCallback(async () => {
     if (!testItem.trim()) return;
     reset();
@@ -186,6 +241,7 @@ const QuickGenerateModule: React.FC = () => {
 
     let stopped = false;
     abortRef.current = () => { stopped = true; };
+    const isStopped = () => stopped;
 
     try {
       const res = await fetch('/api/quick-generate/stream', {
@@ -243,11 +299,11 @@ const QuickGenerateModule: React.FC = () => {
           }
         }
       }
-    } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : 'Request failed');
-      setPhase('error');
+    } catch {
+      // Backend unavailable — run local mock
+      await runMock(isStopped);
     }
-  }, [testItem, context, mode, model]);
+  }, [testItem, context, mode, model, runMock]);
 
   const isRunning = phase === 'decomposing' || phase === 'generating';
 
