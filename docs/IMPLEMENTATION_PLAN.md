@@ -371,6 +371,7 @@ Export -> write accepted + edited rows to xlsx
 
 - [x] `lib/types.ts` — Job, TcRow, Config TypeScript types
 - [x] `lib/constants.ts` — shared constants
+- [x] `lib/api-contract.ts` — frontend/backend DTO contract
 - [x] `store/useJobStore.ts` — Zustand job state
 - [x] `store/useWindowStore.ts` — window lifecycle state
 - [x] `hooks/usePythonAPI.ts` — backend health / mutation hooks
@@ -381,10 +382,22 @@ Export -> write accepted + edited rows to xlsx
 - [x] File upload slots for raw workbook + supplementary spec
 - [x] Browse-based file input with Remix Icon styling
 - [x] Local Excel preview (first 5 rows)
+- [x] Backend parse integration via `/api/parse` when API base URL is configured
 - [x] Summary card with row count / batch / budget
 - [x] File type validation (.xlsx, .xlsm, .pdf, .docx)
 - [ ] SYS1 dedicated upload slot
 - [ ] [Next] button (window-first flow currently replaces page-to-page navigation)
+
+#### Backend API Contract & Parse
+
+- [x] `docs/API_CONTRACT.md` — health, parse, and generate/stream contract
+- [x] `src/api_server.py` — FastAPI server scaffold
+- [x] `GET /api/health`
+- [x] `POST /api/parse`
+- [x] `POST /api/generate`
+- [x] SSE generate endpoint
+- [x] `POST /api/export`
+- [x] `GET /api/export/download/{jobId}`
 
 #### Page 2 — Configure
 
@@ -408,6 +421,8 @@ Export -> write accepted + edited rows to xlsx
 - [x] Start / Stop controls for local mock run
 - [x] Running mock cost display
 - [x] Backend health status via `/api/health`
+- [x] Backend generation bootstrap via `/api/generate`
+- [x] SSE row/stats updates via `/api/generate/stream`
 - [ ] Pause / Resume / Cancel against real backend
 - [ ] Error collection for failed TCs from backend
 - [ ] Auto-transition dialog on completion
@@ -433,8 +448,9 @@ Export -> write accepted + edited rows to xlsx
 - [x] Column include/exclude checkboxes
 - [x] Framework sheet toggle
 - [x] Mock download packaging flow
+- [x] Backend export bootstrap via `/api/export`
 - [ ] Export by Test Set
-- [ ] Real download link for generated xlsx
+- [x] Real download link for generated xlsx
 
 **Done criteria:** All 5 pages render with Win95 style, navigation flow works end-to-end.
 
