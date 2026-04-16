@@ -15,6 +15,7 @@ interface JobStore {
   setTcRows: (rows: TcRow[]) => void;
   updateTcRow: (id: string, updates: Partial<TcRow>) => void;
   deleteTcRows: (ids: string[]) => void;
+  renumberTcRows: () => void;
   setPendingRegenerated: (id: string, data: TcRow['pendingRegenerated']) => void;
   applyRegenerated: (id: string, fields: ('steps' | 'expectedResults' | 'preConditions')[]) => void;
   clearPendingRegenerated: (id: string) => void;
@@ -42,6 +43,13 @@ const DEFAULT_STATS: JobStats = {
   cost: 0,
 };
 
+function renumberRows(rows: TcRow[]): TcRow[] {
+  return rows.map((row, index) => ({
+    ...row,
+    id: `TC-${String(index + 1).padStart(3, '0')}`,
+  }));
+}
+
 export const useJobStore = create<JobStore>((set) => ({
   jobMetadata: null,
   tcRows: [],
@@ -64,6 +72,10 @@ export const useJobStore = create<JobStore>((set) => ({
     tcRows: state.tcRows.filter((row) => !ids.includes(row.id)),
   })),
 
+  renumberTcRows: () => set((state) => ({
+    tcRows: renumberRows(state.tcRows),
+  })),
+
   setPendingRegenerated: (id, data) => set((state) => ({
     tcRows: state.tcRows.map((row) =>
       row.id === id ? { ...row, pendingRegenerated: data } : row
@@ -71,14 +83,14 @@ export const useJobStore = create<JobStore>((set) => ({
   })),
 
   applyRegenerated: (id, fields) => set((state) => ({
-    tcRows: state.tcRows.map((row) => {
+    tcRows: renumberRows(state.tcRows.map((row) => {
       if (row.id !== id || !row.pendingRegenerated) return row;
       const updates: Partial<TcRow> = {};
       if (fields.includes('steps')) updates.steps = row.pendingRegenerated.steps;
       if (fields.includes('expectedResults')) updates.expectedResults = row.pendingRegenerated.expectedResults;
       if (fields.includes('preConditions')) updates.preConditions = row.pendingRegenerated.preConditions;
       return { ...row, ...updates, pendingRegenerated: undefined, status: 'reviewing' };
-    }),
+    })),
   })),
 
   clearPendingRegenerated: (id) => set((state) => ({
@@ -111,3 +123,8 @@ export const useJobStore = create<JobStore>((set) => ({
     isRegenerating: false,
   }),
 }));
+
+// Expose store synchronously in non-production for Playwright E2E tests
+if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+  (window as unknown as Record<string, unknown>).__tcJobStore = useJobStore;
+}

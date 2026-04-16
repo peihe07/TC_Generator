@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useJobStore } from '../../../store/useJobStore';
 import { useWindowStore } from '../../../store/useWindowStore';
 import { TcRow } from '../../../lib/types';
@@ -119,18 +119,19 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
 const ReviewModule: React.FC = () => {
   const {
     tcRows, jobMetadata,
-    updateTcRow, deleteTcRows,
+    updateTcRow, deleteTcRows, renumberTcRows,
     setPendingRegenerated, applyRegenerated, clearPendingRegenerated,
     isRegenerating, setRegenerating, config, appendLog,
   } = useJobStore();
   const { openWindow } = useWindowStore();
 
-  const [expandedRow, setExpandedRow] = useState<string | null>('TC-003');
+  const [expandedRow, setExpandedRow] = useState<string | null>(null);
   const [editingId, setEditingRowId] = useState<string | null>(null);
   const [editValues, setEditValues] = useState<{ steps: string; expected: string; preConditions: string }>({
     steps: '', expected: '', preConditions: '',
   });
   const [filter, setFilter] = useState('all');
+  const [testSetFilter, setTestSetFilter] = useState('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   const selectedRow = tcRows.find((r) => r.id === expandedRow);
@@ -161,8 +162,10 @@ const ReviewModule: React.FC = () => {
   const handleDelete = (id: string) => {
     if (!confirm('Delete this test case?')) return;
     deleteTcRows([id]);
-    if (expandedRow === id) setExpandedRow(null);
-    setSelectedIds((prev) => { const next = new Set(prev); next.delete(id); return next; });
+    renumberTcRows();
+    setExpandedRow(null);
+    setEditingRowId(null);
+    setSelectedIds(new Set());
   };
 
   const toggleSelectRow = (id: string) => {
@@ -225,7 +228,13 @@ const ReviewModule: React.FC = () => {
     }
   }, [selectedIds, jobMetadata, setRegenerating, updateTcRow, setPendingRegenerated, tcRows, config, appendLog]);
 
+  const testSetOptions = useMemo(
+    () => [...new Set(tcRows.map((row) => row.testSet).filter(Boolean))].sort(),
+    [tcRows],
+  );
+
   const filteredRows = tcRows.filter((r) => {
+    if (testSetFilter !== 'all' && r.testSet !== testSetFilter) return false;
     if (filter === 'flagged') return r.status === 'flagged';
     if (filter === 'pending') return r.status === 'pending';
     if (filter === 'regen') return !!r.pendingRegenerated;
@@ -248,6 +257,21 @@ const ReviewModule: React.FC = () => {
                 <option value="flagged">Flagged Only</option>
                 <option value="pending">Pending Review</option>
                 <option value="regen">Awaiting Apply</option>
+              </select>
+            </div>
+            <div className="field-row">
+              <label htmlFor="test-set-filter" className="text-xs font-bold">Test Set:</label>
+              <select
+                id="test-set-filter"
+                value={testSetFilter}
+                onChange={(e) => setTestSetFilter(e.target.value)}
+              >
+                <option value="all">All Sets</option>
+                {testSetOptions.map((testSet) => (
+                  <option key={testSet} value={testSet}>
+                    {testSet}
+                  </option>
+                ))}
               </select>
             </div>
             <span className="text-xs text-gray-600 font-sans">
@@ -381,7 +405,13 @@ const ReviewModule: React.FC = () => {
                         {row.pendingRegenerated ? (
                           <RegenDiff
                             row={row}
-                            onApply={(fields) => applyRegenerated(row.id, fields)}
+                            onApply={(fields) => {
+                              applyRegenerated(row.id, fields);
+                              renumberTcRows();
+                              setExpandedRow(null);
+                              setEditingRowId(null);
+                              setSelectedIds(new Set());
+                            }}
                             onDiscard={() => clearPendingRegenerated(row.id)}
                           />
                         ) : (

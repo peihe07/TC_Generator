@@ -72,6 +72,7 @@ const GenerateModule: React.FC = () => {
         onComplete: (message) => {
           setProcessing(false);
           appendLog(createJobLog('success', message));
+          openWindow('review', 'TC Generator - Review Results');
         },
         onError: (message) => {
           setProcessing(false);
