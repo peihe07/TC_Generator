@@ -1,41 +1,32 @@
 # API Contract
 
-Current frontend/backend integration contract for the TC Generator desktop.
+Current integration contract for the TC Generator desktop.
 
-Base URL:
+There are two layers:
 
-- Development: `NEXT_PUBLIC_PYTHON_API_BASE`
-- Example: `http://127.0.0.1:8000`
+- Browser-facing same-origin routes under `frontend/app/api/*`
+- Python backend routes under `src/api_server.py`
 
-## `GET /api/health`
+The browser should call the Next.js routes. Those routes proxy to the Python backend using `PYTHON_API_BASE`.
 
-Purpose:
+## Environment
 
-- Lightweight reachability probe for the desktop shell.
+- Preferred frontend proxy env var: `PYTHON_API_BASE`
+- Fallback env var: `NEXT_PUBLIC_PYTHON_API_BASE`
+- Example backend target: `http://127.0.0.1:8000`
 
-Response:
+## Browser-Facing Routes
 
-```json
-{
-  "status": "ok",
-  "service": "tc-generator-api"
-}
-```
+### `POST /api/parse`
 
-## `POST /api/parse`
-
-Purpose:
-
-- Parse the uploaded TC workbook.
-- Return structured metadata and normalized rows for frontend state hydration.
-- Create a job payload shape compatible with the review/generation workflow.
+Proxy to Python `POST /api/parse`.
 
 Request:
 
-- Content type: `multipart/form-data`
-- Fields:
-  - `raw_file`: required `.xlsx` / `.xlsm`
-  - `spec_file`: optional supplementary file, currently metadata only
+- `multipart/form-data`
+- `raw_file`: required `.xlsx` / `.xlsm`
+- `reference_file`: optional reference workbook `.xlsx` / `.xlsm`
+- `spec_file`: optional supplementary file
 
 Response:
 
@@ -45,11 +36,12 @@ Response:
   "project": "newR1L",
   "testGroup": "DeviceManager",
   "rowCount": 12,
-  "previewHeaders": ["req_id", "test_item", "priority"],
+  "previewHeaders": ["req_id", "test_item", "test_set", "priority"],
   "previewRows": [
     {
       "req_id": "SWE1-HMI-DM-001-01",
       "test_item": "PDM01 original text",
+      "test_set": "",
       "priority": ""
     }
   ],
@@ -67,37 +59,21 @@ Response:
       "generated": null,
       "validation": []
     }
-  ],
-  "columnFillStatus": {
-    "D": 12,
-    "F": 0,
-    "G": 0
-  },
-  "files": {
-    "rawFileName": "SomeProject_SWQT_DeviceManager_20260408.xlsx",
-    "specFileName": "spec.docx",
-    "specFormat": "docx"
-  }
+  ]
 }
 ```
 
-Notes:
+### `POST /api/group`
 
-- `previewRows` is capped to the first 5 rows.
-- `rows` contains normalized frontend-ready row objects.
-- `specFormat` may be `pdf`, `docx`, `xlsx`, or `null`.
-- If `raw_file` is missing or has an unsupported extension, the endpoint returns `400`.
-
-## `POST /api/generate`
+Proxy to Python `POST /api/group`.
 
 Purpose:
 
-- Create a generation job from the normalized frontend rows.
-- Return a stable `jobId` and stream URL for the desktop control room.
+- Build Configure page grouping preview from current rows
+- Reuse existing `testSet` values when present
+- Otherwise derive fallback grouping labels for preview and apply-back
 
 Request:
-
-- Content type: `application/json`
 
 ```json
 {
@@ -107,13 +83,86 @@ Request:
       "id": "row-10",
       "reqId": "SWE1-HMI-DM-001-01",
       "testItem": "PDM01 original text",
-      "originalRequirement": "PDM01 original text",
-      "testSet": "",
-      "priority": ""
+      "testSet": ""
+    }
+  ]
+}
+```
+
+Response:
+
+```json
+{
+  "jobId": "parse-20260416-123456",
+  "groups": [
+    {
+      "testSet": "PDM01",
+      "count": 1,
+      "reqIds": ["SWE1-HMI-DM-001-01"]
+    }
+  ],
+  "assignments": [
+    {
+      "id": "row-10",
+      "reqId": "SWE1-HMI-DM-001-01",
+      "testSet": "PDM01",
+      "source": "derived"
+    }
+  ]
+}
+```
+
+### `POST /api/match`
+
+Proxy to Python `POST /api/match`.
+
+Purpose:
+
+- Build Configure page exact-match preview
+- Uses the optional reference workbook only when it is compatible with the expected `Basic Report` structure
+
+Response:
+
+```json
+{
+  "jobId": "parse-20260416-123456",
+  "summary": {
+    "total": 1,
+    "exact": 1,
+    "unmatched": 0,
+    "hasReferenceWorkbook": true
+  },
+  "matches": [
+    {
+      "id": "row-10",
+      "reqId": "SWE1-HMI-DM-001-01",
+      "testItem": "PDM01 original text",
+      "specReference": "SPEC_REF_PDM01",
+      "matchType": "exact"
+    }
+  ]
+}
+```
+
+### `POST /api/generate`
+
+Proxy to Python `POST /api/generate`.
+
+Request:
+
+```json
+{
+  "jobId": "parse-20260416-123456",
+  "rows": [
+    {
+      "id": "row-10",
+      "reqId": "SWE1-HMI-DM-001-01",
+      "testItem": "PDM01 original text",
+      "testSet": ""
     }
   ],
   "config": {
-    "model": "claude-sonnet-4-6",
+    "model": "claude-3-5-sonnet",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false
@@ -128,22 +177,15 @@ Response:
   "jobId": "parse-20260416-123456",
   "status": "queued",
   "totalRows": 12,
-  "streamUrl": "http://127.0.0.1:8000/api/generate/stream?jobId=parse-20260416-123456"
+  "streamUrl": "/api/generate/stream?jobId=parse-20260416-123456"
 }
 ```
 
-Notes:
+### `GET /api/generate/stream?jobId=...`
 
-- `rows` must not be empty.
-- This endpoint only creates the job; progress is delivered via SSE.
+Proxy to Python `GET /api/generate/stream?jobId=...`.
 
-## `GET /api/generate/stream?jobId=...`
-
-Purpose:
-
-- Stream generation progress back to the desktop using Server-Sent Events.
-
-Event payloads:
+SSE event examples:
 
 ```json
 {
@@ -164,54 +206,49 @@ Event payloads:
   "jobId": "parse-20260416-123456",
   "row": {
     "id": "row-10",
-    "reqId": "SWE1-HMI-DM-001-01",
     "status": "ready",
     "reviewStatus": "pending",
     "generated": {
-      "testItemRewrite": "(PDM01 original text → Observable outcome confirmed)",
+      "testItemRewrite": "(PDM01 original text -> Observable outcome confirmed)",
       "preConditions": "1. Vehicle profile loaded\n2. Required subsystem available",
       "testProcedure": "1. ...",
       "expectedResult": "1. ...",
-      "designMethod": "功能測試 (Functional based ; no specific technique)",
+      "designMethod": "Functional",
       "priority": "High"
-    },
-    "validation": [
-      {
-        "id": "validation-pass",
-        "severity": "passing",
-        "field": "expected_result",
-        "message": "Generated row passed the current programmatic validation checks."
-      }
-    ]
+    }
   },
   "stats": {
     "total": 12,
     "processed": 1,
     "currentCost": 0.0085
-  },
-  "message": "Processed 1/12 rows for SWE1-HMI-DM-001-01."
+  }
 }
 ```
+
+### `POST /api/jobs/[jobId]/regenerate/stream`
+
+Proxy to Python `POST /api/jobs/{jobId}/regenerate/stream`.
+
+Request:
 
 ```json
 {
-  "type": "job.completed",
-  "jobId": "parse-20260416-123456",
-  "stats": {
-    "total": 12,
-    "processed": 12,
-    "currentCost": 0.102
-  },
-  "message": "Backend generation complete. Review and export windows are ready."
+  "rowIds": ["row-10"],
+  "rows": [],
+  "config": {
+    "model": "claude-3-5-sonnet",
+    "batchSize": 5,
+    "budget": 2,
+    "strictValidation": false
+  }
 }
 ```
 
-## `POST /api/export`
+Response is SSE.
 
-Purpose:
+### `POST /api/export`
 
-- Convert reviewed frontend rows back into an `.xlsx` artifact.
-- Reuse the original uploaded workbook as the export base.
+Proxy to Python `POST /api/export`.
 
 Request:
 
@@ -221,25 +258,19 @@ Request:
   "scope": "accepted",
   "outputMode": "new-file",
   "includeFrameworkSheet": true,
-  "selectedColumns": [
-    "TC ID",
-    "Requirement ID",
-    "Test Item Rewrite",
-    "Expected Result"
-  ],
+  "selectedColumns": ["TC ID", "Test Procedure", "Expected Result"],
   "rows": [
     {
       "id": "row-10",
       "rowNum": 10,
       "reqId": "SWE1-HMI-DM-001-01",
-      "testItem": "PDM01 original text",
       "reviewStatus": "accepted",
       "generated": {
-        "testItemRewrite": "(PDM01 original text → Observable outcome confirmed)",
-        "preConditions": "1. Vehicle profile loaded\n2. Required subsystem available",
+        "testItemRewrite": "(...)",
+        "preConditions": "1. ...",
         "testProcedure": "1. ...",
         "expectedResult": "1. ...",
-        "designMethod": "功能測試 (Functional based ; no specific technique)",
+        "designMethod": "Functional",
         "priority": "High"
       }
     }
@@ -255,24 +286,37 @@ Response:
   "status": "ready",
   "exportedRows": 1,
   "fileName": "SomeProject_SWQT_DeviceManager_20260408_generated.xlsx",
-  "downloadUrl": "http://127.0.0.1:8000/api/export/download/parse-20260416-123456",
-  "selectedColumns": [
-    "TC ID",
-    "Requirement ID",
-    "Test Item Rewrite",
-    "Expected Result"
-  ]
+  "downloadUrl": "/api/export/download/parse-20260416-123456",
+  "selectedColumns": ["TC ID", "Test Procedure", "Expected Result"]
 }
 ```
 
-Notes:
+### `GET /api/export/download/[jobId]`
 
-- `jobId` must refer to a previously parsed workbook so the backend can reuse the original file.
-- `scope` is applied on the backend using each row's `reviewStatus`.
-- `selectedColumns` is currently preserved in metadata for the UI; workbook writing still follows the writer module's supported generated columns.
+Proxy to Python `GET /api/export/download/{jobId}`.
 
-## `GET /api/export/download/{jobId}`
+Returns workbook bytes with:
 
-Purpose:
+- `content-disposition: attachment`
+- `content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
 
-- Download the generated workbook after a successful export request.
+## Python Backend Routes
+
+Implemented in `src/api_server.py`:
+
+- `GET /api/health`
+- `POST /api/parse`
+- `POST /api/group`
+- `POST /api/match`
+- `POST /api/generate`
+- `GET /api/generate/stream`
+- `POST /api/jobs/{jobId}/regenerate/stream`
+- `POST /api/export`
+- `GET /api/export/download/{jobId}`
+
+## Notes
+
+- The active frontend no longer calls the Python backend directly from browser modules.
+- `jobAdapter.ts` should be treated as the frontend integration boundary.
+- Parse, group, match, and export have automated coverage.
+- Generate and regenerate route wiring works, but real success still depends on a valid `ANTHROPIC_API_KEY`.

@@ -782,8 +782,8 @@ tc-generator/
 
 ### 14.1 Overview
 
-Local Next.js dashboard (localhost) for managing the TC generation workflow.
-Tech stack: Next.js + Tailwind + shadcn/ui. Backend: Python scripts called via Next.js API routes.
+Local Next.js desktop app (localhost) for managing the TC generation workflow.
+Tech stack: Next.js + Tailwind + 98.css + Zustand. Backend: Python FastAPI exposed through Next.js API proxy routes.
 
 ### 14.2 Pages & Flow
 
@@ -1000,4 +1000,3 @@ Store as spec_index.json for this job
 3. If only Slot B is provided without Slot C, Col N can be filled but AI generation relies only on the Test Item text (less context, potentially lower quality).
 4. If both are provided, the tool merges them into a rich index that supports both traceability and high-quality generation.
 5. The chunking strategy ensures that only the relevant spec segment (matched by PDM code) is injected into each TC's generation prompt, keeping token usage minimal regardless of total spec size.
-
