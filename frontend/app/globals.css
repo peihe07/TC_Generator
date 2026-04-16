@@ -1,0 +1,25 @@
+@import "98.css/style.css";
+@import "tailwindcss";
+@import "../styles/win95.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  cursor: default;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}

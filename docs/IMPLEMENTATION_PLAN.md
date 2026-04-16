@@ -326,58 +326,102 @@ Export -> write accepted + edited rows to xlsx
 
 ### Phase 11: Next.js Frontend (RULES.md §14)
 
-> 5-page dashboard UI.
+> 5-page dashboard UI. Windows 95/98 style with 98.css + Remix Icon.
+> Full spec: `docs/FRONTEND_PLAN.md`
 
-**Files:** `app/src/app/` pages and components
+**Files:** `frontend/` directory
 
-#### Page 1 — Upload (入口)
+#### Setup (partially done)
+
+- [x] Next.js 16 + TypeScript created in `frontend/`
+- [x] 98.css installed (`0.1.21`)
+- [x] `@remixicon/react` installed (`4.9.0`)
+- [x] Tailwind CSS v4 installed
+- [x] Page route directories created: `upload/`, `configure/`, `generate/`, `review/`, `export/`
+- [x] `styles/win95.css` created with desktop, taskbar, window, dialog styles
+- [x] `public/icons/` directory created
+- [ ] `app/layout.tsx` — still default Next.js template, needs 98.css + teal desktop bg
+- [ ] `app/page.tsx` — still default Next.js template, needs Win95 desktop with TC Generator icon
+
+#### Shared Components — Desktop
+
+- [ ] `components/desktop/Desktop.tsx` — teal background + icon grid
+- [ ] `components/desktop/DesktopIcon.tsx` — double-click to open app
+- [ ] `components/desktop/Taskbar.tsx` — Start button + page tabs + clock
+- [ ] `components/desktop/StartMenu.tsx` — navigation menu
+
+#### Shared Components — Window
+
+- [ ] `components/window/AppWindow.tsx` — 98.css window frame + title bar
+- [ ] `components/window/TitleBar.tsx` — title text + min/max/close buttons
+- [ ] `components/window/StatusBar.tsx` — window bottom status info
+
+#### Shared Components — Retro UI
+
+- [ ] `components/retro/RetroButton.tsx`
+- [ ] `components/retro/RetroProgress.tsx`
+- [ ] `components/retro/RetroTable.tsx`
+- [ ] `components/retro/RetroTabs.tsx`
+- [ ] `components/retro/RetroTreeView.tsx`
+- [ ] `components/retro/RetroDialog.tsx`
+- [ ] `components/retro/RetroSelect.tsx`
+- [ ] `components/retro/RetroCheckbox.tsx`
+
+#### Lib & Hooks
+
+- [ ] `lib/types.ts` — Job, TcRow, Config TypeScript types
+- [ ] `lib/constants.ts` — shared constants
+- [ ] `hooks/useJob.ts` — job state context
+- [ ] `hooks/usePython.ts` — call Python backend via API routes
+
+#### Page 1 — Upload
 
 - [ ] Three file upload slots (TC xlsx / SYS1 xlsx / Spec doc)
-- [ ] Drag-and-drop file input
+- [ ] Drag-and-drop file input with Remix Icon
 - [ ] Auto-detect metadata after upload (project name, test group, row count, fill status)
-- [ ] Display summary card with detected metadata
+- [ ] Summary card with detected metadata
 - [ ] File type validation (.xlsx, .pdf, .docx)
+- [ ] [Next] button (disabled until Slot A uploaded)
 
-#### Page 2 — Configure (設定)
+#### Page 2 — Configure
 
-- [ ] Test Set grouping preview table
+- [ ] Test Set grouping preview (RetroTreeView)
 - [ ] Drag-and-drop to reassign TCs between groups
-- [ ] Rename / merge / split groups
-- [ ] Spec matching preview (Layer 1 matches + Layer 2 candidates)
+- [ ] Spec matching preview table (Layer 1 green / Layer 2 yellow)
 - [ ] Manual override for spec matching
-- [ ] Generation scope checkboxes (which columns to generate)
-- [ ] Model selection dropdown (Sonnet / Haiku)
+- [ ] Generation scope checkboxes per column
+- [ ] Model selection (Sonnet / Haiku)
 - [ ] Batch size selector (1 / 5 / 10)
 - [ ] Save configuration as job JSON
 
-#### Page 3 — Generate (生成)
+#### Page 3 — Generate
 
-- [ ] Progress bar (X / N TCs completed)
-- [ ] Live log (Req ID, Test Item snippet, status per TC)
+- [ ] Progress bar (RetroProgress, X / N TCs)
+- [ ] Live log textarea (monospace, auto-scroll)
 - [ ] Pause / Resume / Cancel controls
-- [ ] Running cost display (tokens × price)
+- [ ] Running cost display (tokens + USD)
 - [ ] Error collection for failed TCs
+- [ ] Auto-transition dialog on completion
 
-#### Page 4 — Review (審閱)
+#### Page 4 — Review
 
-- [ ] Table view with expandable rows
-- [ ] Side-by-side: original vs generated content
-- [ ] Diff highlighting
-- [ ] Per-row actions: Accept (✓) / Edit (✏️) / Reject (✗) / Flag (⚑)
+- [ ] Table view with expandable rows (RetroTable)
+- [ ] Side-by-side original vs generated diff
+- [ ] Per-row actions: Accept / Edit / Reject / Flag (Remix Icons)
 - [ ] Inline editing for generated fields
-- [ ] Validation sidebar (red/yellow/green per TC)
+- [ ] Validation sidebar (red/yellow/green per check)
 - [ ] Filters: validation status, Test Set, review status
 - [ ] Bulk actions: accept all passing, regenerate rejected, export accepted
 
-#### Page 5 — Export (匯出)
+#### Page 5 — Export
 
-- [ ] Export scope selector (all / accepted only / by Test Set)
-- [ ] Output format choice (overwrite original vs new file)
+- [ ] Export scope selector (all / accepted / by Test Set)
+- [ ] Output format choice (new file vs overwrite)
 - [ ] Column include/exclude checkboxes
 - [ ] Framework sheet toggle
 - [ ] Download link for generated xlsx
 
-**Done criteria:** All 5 pages render correctly, navigation flow works.
+**Done criteria:** All 5 pages render with Win95 style, navigation flow works end-to-end.
 
 ---
 
@@ -465,5 +509,5 @@ Phase 1  (Skeleton)
 | 9. Writer | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 10. CLI | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 10.5. Job State Manager | ✅ Done | 2026-04-16 | 2026-04-16 |
-| 11. Frontend | ⬜ Not started | | |
+| 11. Frontend | 🔄 In progress | 2026-04-16 | |
 | 12. Integration | ⬜ Not started | | |

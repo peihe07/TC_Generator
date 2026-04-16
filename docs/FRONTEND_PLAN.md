@@ -1,310 +1,173 @@
-# TC Generator — Frontend Plan
+# TC Generator — Frontend Plan (Optimized Architecture)
 
 ## Tech Stack
 
 | Category | Choice | Why |
 | --- | --- | --- |
-| Framework | Next.js 15 (App Router) + TypeScript | SSR, file-based routing |
-| Retro UI | 98.css | Pure CSS, zero JS dependency, Win95/98 look |
-| Layout | Tailwind CSS | Utility-first layout, grid, spacing |
-| Icons | Remix Icon (`@remixicon/react`) | https://remixicon.com/ |
-| State | React Context + JSON job file | No database needed |
+| Framework | Next.js 15 (App Router) + TypeScript | Modern SSR/CSR hybrid, high performance |
+| Retro UI | 98.css + Radix UI Primitives | 98.css for look, Radix for robust logic (A11y/State) |
+| State Management | **Zustand** | High performance, selective re-rendering, multi-store support |
+| Data Fetching | **TanStack Query (React Query)** | Efficient caching, loading states, and SSE handling |
+| Layout | Tailwind CSS v4 | Utility-first for fine-grained Win98 positioning |
+| Icons | Remix Icon (`@remixicon/react`) | Comprehensive and consistent icon set |
 
 ---
 
-## Design Concept
+## Design Concept: The "Virtual Desktop" OS
+
+Instead of a traditional multi-page website, the app functions as a **Single Page Application (SPA) Desktop Environment**.
 
 ### Visual Style: Windows 95/98
-
-- **Desktop background**: Classic teal (`#008080`) fullscreen
-- **Pages as Windows**: Each page renders inside a draggable 98.css `window` frame
-- **Taskbar**: Bottom bar with Start button, page tabs, clock
-- **3D elements**: Raised buttons, sunken inputs, beveled borders
-- **Font**: `"Pixelated MS Sans Serif"`, fallback to system monospace
-- **Dialogs**: Classic modal dialogs for errors and confirmations
-- **No emoji anywhere** — use Remix Icon for all iconography
-
-### Color Palette
-
-| Element | Color | Hex |
-| --- | --- | --- |
-| Desktop background | Teal | `#008080` |
-| Title bar (active) | Navy blue gradient | `#000080` to `#1084D0` |
-| Title bar (inactive) | Gray | `#808080` |
-| Window background | Light gray | `#C0C0C0` |
-| Button face | Light gray | `#C0C0C0` |
-| Text | Black | `#000000` |
-| Selected text bg | Navy | `#000080` |
-| Selected text fg | White | `#FFFFFF` |
+- **Desktop**: Fullscreen teal (`#008080`) at `/`.
+- **Dynamic Windows**: Functional modules (Upload, Review, etc.) open as draggable/resizable `AppWindow` components.
+- **Taskbar**: Bottom bar for managing active windows, Start menu, and system clock.
+- **Component Logic**: Use Radix UI (Tabs, Dialogs, Selects) wrapped in 98.css styles to ensure keyboard accessibility and stable UI logic.
 
 ---
 
-## Directory Structure
+## Optimized Directory Structure
 
-```
+```text
 frontend/
-├── public/
-│   └── icons/                     # Desktop shortcut icons
 ├── src/
-│   ├── app/
-│   │   ├── layout.tsx             # Root layout: 98.css + Tailwind + desktop bg
-│   │   ├── page.tsx               # Desktop with app shortcut icon
-│   │   ├── upload/page.tsx        # Upload page
-│   │   ├── configure/page.tsx     # Configure page
-│   │   ├── generate/page.tsx      # Generate page
-│   │   ├── review/page.tsx        # Review page
-│   │   ├── export/page.tsx        # Export page
-│   │   └── api/                   # API routes (call Python backend)
-│   │       ├── parse/route.ts
-│   │       ├── group/route.ts
-│   │       ├── match/route.ts
-│   │       ├── generate/route.ts
-│   │       ├── validate/route.ts
-│   │       └── export/route.ts
-│   ├── components/
-│   │   ├── desktop/
-│   │   │   ├── Desktop.tsx        # Teal background + icon grid
-│   │   │   ├── DesktopIcon.tsx    # Double-click to open app
-│   │   │   ├── Taskbar.tsx        # Bottom bar: Start + tabs + clock
-│   │   │   └── StartMenu.tsx      # Navigation menu
-│   │   ├── window/
-│   │   │   ├── AppWindow.tsx      # 98.css window frame + title bar
-│   │   │   ├── TitleBar.tsx       # Title text + minimize/maximize/close
-│   │   │   └── StatusBar.tsx      # Window bottom status info
-│   │   ├── retro/
-│   │   │   ├── RetroButton.tsx    # 98.css button
-│   │   │   ├── RetroProgress.tsx  # Segmented progress bar
-│   │   │   ├── RetroTable.tsx     # Sunken-border table
-│   │   │   ├── RetroTabs.tsx      # 98.css tab control
-│   │   │   ├── RetroTreeView.tsx  # Tree view for Test Set groups
-│   │   │   ├── RetroDialog.tsx    # Modal dialog (error/confirm)
-│   │   │   ├── RetroSelect.tsx    # Dropdown select
-│   │   │   └── RetroCheckbox.tsx  # Checkbox with label
-│   │   ├── upload/
-│   │   │   ├── FileUploadSlot.tsx # Drag-and-drop file slot
-│   │   │   └── MetadataCard.tsx   # Detected file metadata display
-│   │   ├── review/
-│   │   │   ├── TcRow.tsx          # Expandable TC row (original vs generated)
-│   │   │   ├── DiffView.tsx       # Side-by-side diff highlight
-│   │   │   ├── ValidationPanel.tsx# Sidebar: red/yellow/green per check
-│   │   │   └── BulkActions.tsx    # Accept all / Reject / Export buttons
-│   │   └── generate/
-│   │       ├── GenerateLog.tsx    # Live log textarea
-│   │       └── CostDisplay.tsx    # Running token + cost counter
+│   ├── store/                     # Zustand Stores
+│   │   ├── useJobStore.ts         # TC Data, Config, Stats
+│   │   └── useWindowStore.ts      # Active windows, Z-index, focus management
 │   ├── hooks/
-│   │   ├── useJob.ts              # Job state context
-│   │   └── usePython.ts           # Call Python backend via API routes
-│   ├── lib/
-│   │   ├── types.ts               # TypeScript types (Job, Row, Config, etc.)
-│   │   └── constants.ts           # Shared constants
+│   │   ├── usePythonAPI.ts        # TanStack Query wrappers for FastAPI calls
+│   │   └── useSSE.ts              # Server-Sent Events for real-time generation logs
+│   ├── components/
+│   │   ├── system/                # OS-level components
+│   │   │   ├── WindowManager.tsx  # Renders active windows from store
+│   │   │   ├── AppWindow.tsx      # Draggable 98.css frame + Radix Dialog logic
+│   │   │   ├── Taskbar.tsx        # Start button + Window tabs + Clock
+│   │   │   └── Desktop.tsx        # Teal BG + Icon Grid
+│   │   ├── ui/                    # Primitive 98.css components (Radix-powered)
+│   │   │   ├── Button.tsx
+│   │   │   ├── Tabs.tsx           # Radix Tabs + 98.css
+│   │   │   ├── Dialog.tsx         # Radix Dialog + 98.css
+│   │   │   └── TreeView.tsx
+│   │   └── modules/               # Feature-specific window content
+│   │       ├── upload/            # File upload logic
+│   │       ├── configure/         # Spec matching & settings
+│   │       ├── generate/          # Progress & live logs
+│   │       ├── review/            # Diff viewer & validation sidebar
+│   │       └── export/            # Download & options
+│   ├── services/                  # API client (Axios/Fetch)
+│   ├── lib/                       # Utils (diff-logic, constants, types)
 │   └── styles/
-│       └── win95.css              # Custom overrides on top of 98.css
-├── package.json
-├── tsconfig.json
-├── tailwind.config.ts
-└── next.config.ts
+│       └── win95.css              # Custom 98.css overrides & Tailwind layers
+└── package.json
 ```
 
 ---
 
-## Pages Detail
+## Detailed State Specifications (Zustand)
 
-### Page 1: Upload
+### 1. `useWindowStore` (The OS Kernel)
+Handles the lifecycle of windows on the desktop.
 
-**Window title**: TC Generator - Upload Files
-**Title bar icon**: `ri-folder-upload-line`
+**State:**
+- `windows: Map<WindowID, WindowState>`
+  - `id`: Unique identifier (e.g., 'upload', 'review-1')
+  - `title`: Window title string
+  - `isOpen`: boolean
+  - `isMinimized`: boolean
+  - `zIndex`: number
+  - `position`: `{ x, y }`
+- `focusedWindowId: WindowID | null`
 
-**Content**:
-- Three file upload slots styled as sunken fieldsets:
-  - Slot A: TC Specification xlsx (required) — `ri-file-excel-2-line`
-  - Slot B: SYS1 Spec xlsx (optional) — `ri-file-search-line`
-  - Slot C: Spec document PDF/DOCX/XLSX (optional) — `ri-file-text-line`
-- Each slot: drag-and-drop area with dashed border, click to browse
-- After upload: metadata summary in a sunken group box:
-  - Project name, Test Group, row count, column fill status
-  - Slot C: detected format + preview snippet
-- Bottom: [Next >>] button (disabled until Slot A uploaded)
+**Actions:**
+- `openWindow(id, config)`: Creates or restores a window.
+- `closeWindow(id)`: Removes window from state.
+- `focusWindow(id)`: Brings window to front (increments Z-index).
+- `minimizeWindow(id)`: Hides window but keeps it in taskbar.
+- `updatePosition(id, pos)`: For draggability.
 
-### Page 2: Configure
+### 2. `useJobStore` (The Data Layer)
+Stores the actual business data being processed.
 
-**Window title**: TC Generator - Configure
-**Title bar icon**: `ri-settings-3-line`
+**State:**
+- `jobId: string | null`
+- `files: { raw: File | null, parsed: boolean }`
+- `tcRows: TcRow[]` (The core data array)
+- `config: { model: string, batchSize: number, budget: number }`
+- `logs: { timestamp: string, level: 'info'|'error', message: string }[]`
+- `stats: { total: number, processed: number, currentCost: number }`
 
-**Content** (tabbed interface):
-- **Tab 1: Test Set Grouping**
-  - Tree view showing AI-suggested groups
-  - Drag-and-drop to reassign TCs between groups
-  - Right-click context menu: rename / merge / split
-- **Tab 2: Spec Matching**
-  - Table: Req ID | Test Item | Matched Spec | Match Type
-  - Layer 1 (exact) shown in green, Layer 2 (AI) in yellow
-  - Click to manually override match
-- **Tab 3: Options**
-  - Generation scope: checkboxes per column (I rewrite, J, K, L, M, N, P, Q)
-  - Model: radio buttons (Sonnet / Haiku)
-  - Batch size: dropdown (1 / 5 / 10)
-  - Budget limit: text input with USD label
-- Bottom: [<< Back] [Start Generate >>]
-
-### Page 3: Generate
-
-**Window title**: TC Generator - Generate
-**Title bar icon**: `ri-play-circle-line`
-
-**Content**:
-- Top: progress bar (segmented Win95 style) + "X / N TCs"
-- Center: log textarea (monospace, sunken border, auto-scroll)
-  - Each line: `[OK] newR1L-DMR-001` or `[FAIL] newR1L-DMR-005: parse error`
-- Right panel: cost display group box
-  - Input tokens / Output tokens
-  - Running cost in USD
-  - Budget remaining bar
-- Bottom: [Pause] [Resume] [Cancel] buttons
-- When done: auto-transition dialog "Generation complete. Review results?"
-
-### Page 4: Review
-
-**Window title**: TC Generator - Review
-**Title bar icon**: `ri-file-list-3-line`
-
-**Content**:
-- Toolbar: filter dropdowns (validation status / Test Set / review status)
-- Main table (sunken border, alternating row colors):
-  - Columns: TC ID | Req ID | Status | Actions
-  - Click row to expand: original vs generated side-by-side
-  - Diff highlighting (green = added, red = removed)
-- Per-row action buttons:
-  - Accept: `ri-check-line` (green)
-  - Edit: `ri-edit-line` (blue) — opens inline editor
-  - Reject: `ri-close-line` (red) — mark for regeneration
-  - Flag: `ri-flag-line` (orange) — needs human attention
-- Right sidebar: Validation panel
-  - Red items: critical violations
-  - Yellow items: warnings
-  - Green: all passed
-  - Icon per severity: `ri-error-warning-line` / `ri-alert-line` / `ri-checkbox-circle-line`
-- Bottom toolbar: [Accept All Passing] [Regenerate Rejected] [Export Accepted >>]
-
-### Page 5: Export
-
-**Window title**: TC Generator - Export
-**Title bar icon**: `ri-download-2-line`
-
-**Content** (group boxes):
-- **Export Scope** (radio buttons):
-  - All generated
-  - Accepted only
-  - By Test Set (checkboxes per set)
-- **Output Format** (radio buttons):
-  - Create new file (`{input}_generated.xlsx`)
-  - Overwrite original
-- **Include Columns** (checkboxes):
-  - TC ID, Test Group, Test Set, Test Item rewrite, Pre-Conditions, etc.
-- **Framework Sheet** (checkbox):
-  - Populate Test Case Framework sheet
-- Bottom: [<< Back to Review] [Export] button
-- After export: download dialog with file link + summary stats
+**Actions:**
+- `setRows(rows)`: Update entire dataset.
+- `updateRow(id, updates)`: Surgical update for single TC (after review).
+- `appendLog(log)`: For real-time generation feed.
+- `resetJob()`: Clear everything.
 
 ---
 
-## Navigation Flow
+## Technical Implementations
 
-```
-Desktop (teal background)
-  |
-  +-- Double-click "TC Generator" icon
-  |
-  +-- Taskbar appears at bottom
-  |     |
-  |     +-- [Start] button --> Start menu (all pages listed)
-  |     +-- [Upload] [Configure] [Generate] [Review] [Export] tabs
-  |     +-- Clock display (right side)
-  |
-  +-- Window opens with current page content
-        |
-        Upload --> Configure --> Generate --> Review --> Export
-        [Next>>]  [Start>>]    [auto]      [Export>>]  [Download]
+### A. WindowManager & AppWindow Logic
+The `WindowManager` will map over the `windows` store and render `AppWindow` components.
+- **Draggability**: Use `react-draggable` on the title bar element.
+- **Focus**: `onClick` anywhere in the window triggers `focusWindow(id)`.
+- **Radix Integration**: `AppWindow` acts as a `Radix.Dialog.Content` if it's modal, or just a portal-rendered div for non-modal windows.
+
+### B. Radix UI + 98.css Wrapper (Example: Tabs)
+```tsx
+// Wrap Radix Tabs with 98.css classes
+<Tabs.Root className="tabs">
+  <Tabs.List aria-label="Settings">
+    <Tabs.Trigger className="tabs-tab" value="tab1">Grouping</Tabs.Trigger>
+    <Tabs.Trigger className="tabs-tab" value="tab2">Matching</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content className="window-body" value="tab1">
+    {/* Content */}
+  </Tabs.Content>
+</Tabs.Root>
 ```
 
----
-
-## Shared Components Behavior
-
-### AppWindow
-
-- 98.css `window` class with custom title bar
-- Title bar: icon (Remix) + title text + [ _ ] [ [] ] [ X ] buttons
-- Minimize: collapse to taskbar
-- Maximize: fill desktop area (exclude taskbar)
-- Close: return to desktop / confirm dialog if unsaved
-- Draggable by title bar (optional, for desktop feel)
-- Content area scrollable with 98.css sunken border
-
-### Taskbar
-
-- Fixed bottom, 98.css raised border
-- Left: Start button with `ri-windows-line` icon
-- Center: one tab per open page (active = pressed state)
-- Right: clock + `ri-time-line` icon
-
-### RetroDialog
-
-- Modal overlay (semi-transparent black)
-- 98.css window style, centered
-- Icon variants:
-  - Error: `ri-error-warning-fill` (red)
-  - Warning: `ri-alert-fill` (yellow)
-  - Info: `ri-information-fill` (blue)
-  - Success: `ri-checkbox-circle-fill` (green)
-- Buttons: [OK] / [OK] [Cancel] / [Yes] [No] [Cancel]
+### C. SSE (Server-Sent Events) Handling
+- **Endpoint**: `/api/generate/stream?jobId=xxx`
+- **Frontend**: A custom hook `useSSE` that:
+  1. Opens `EventSource`.
+  2. On `message`: updates `useJobStore` stats and appends to `logs`.
+  3. On `complete`: triggers a system notification/dialog.
+  4. Handles reconnection and error states gracefully.
 
 ---
 
-## State Management
+## Module-Specific Detailed Specs
 
-Single React Context (`JobContext`) holding the job JSON:
+### 1. Upload Module
+- **Validation**: Client-side check for `.xlsx` / `.pdf` headers.
+- **Preview**: Show the first 5 rows of the uploaded Excel in a 98.css table before committing to the full parse.
 
-```typescript
-interface Job {
-  jobId: string;
-  project: string;
-  testGroup: string;
-  files: { tcXlsx: File | null; sys1Xlsx: File | null; specDoc: File | null };
-  config: { model: string; batchSize: number; budget: number; columns: string[] };
-  framework: Record<string, string[]>;
-  specIndex: Record<string, SpecEntry>;
-  rows: TcRow[];
-  stats: { total: number; generated: number; accepted: number; rejected: number; flagged: number };
-  currentPage: "upload" | "configure" | "generate" | "review" | "export";
-}
-```
+### 2. Review Module (The "Diff Viewer")
+- **Side-by-Side**: Left (Original Requirement) vs Right (Generated TC).
+- **Highlighting**: Use a simple character-level diffing library to wrap changes in `<ins>` (green) and `<del>` (red) tags within the 98.css text area.
+- **Batch Actions**: "Select All Passing" -> updates `status` in `useJobStore` for all rows with 0 critical errors.
 
-No database. Job state persisted to `localStorage` for session recovery.
+### 3. Export Module
+- **Configurable Output**: Checkboxes for which columns to include in the final Excel.
+- **Progressive Download**: Backend generates the file, frontend receives a signed URL to trigger the native browser download.
 
 ---
 
-## API Routes (Next.js -> Python Backend)
-
-| Route | Method | Python Script | Purpose |
-| --- | --- | --- | --- |
-| `/api/parse` | POST | `parser.py` | Parse uploaded xlsx, return metadata + rows |
-| `/api/group` | POST | `grouper.py` | AI cluster Test Items into Test Sets |
-| `/api/match` | POST | `spec_matcher.py` | Match spec references (Layer 1 + 2) |
-| `/api/generate` | POST | `generator.py` | Generate TCs, stream progress via SSE |
-| `/api/validate` | POST | `validator.py` | Validate generated rows |
-| `/api/export` | POST | `writer.py` | Write xlsx, return download URL |
-
-All routes call Python via `child_process.exec` or HTTP to a local Flask/FastAPI server.
+## UI/UX Rules
+- **Double-Click**: Required for desktop icons to open apps.
+- **Active State**: Only the `focusedWindow` has the high-contrast navy blue title bar; others are gray.
+- **Cursor**: Use the classic `wait` (hourglass) cursor during API calls.
+- **Sound (Optional)**: Play classic Win95 `.wav` sounds for errors or completion (if enabled).
 
 ---
 
-## Implementation Order
+## Implementation Priority (Phase 1)
 
-1. Project setup: `create-next-app` + 98.css + Tailwind + Remix Icon
-2. Shared components: Desktop, AppWindow, Taskbar, RetroButton, RetroDialog
-3. Upload page (most independent, validates file handling)
-4. Configure page (tabs + tree view + table)
-5. Generate page (progress bar + SSE log)
-6. Review page (most complex: table + diff + validation sidebar)
-7. Export page (simplest UI)
-8. API routes integration (Phase 12)
+1.  **Project Foundation**:
+    - Install `zustand`, `@tanstack/react-query`, `@radix-ui/react-*`, `react-draggable`.
+    - Setup `useWindowStore` and the root `WindowManager`.
+2.  **The Shell**:
+    - Build `Desktop`, `Taskbar` (with Clock), and `StartMenu`.
+    - Create the base `AppWindow` with minimize/close logic.
+3.  **Data Flow**:
+    - Build `useJobStore`.
+    - Implement the **Upload** window as the first test case for data persistence.
