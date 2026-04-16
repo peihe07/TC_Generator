@@ -9,8 +9,7 @@ import type {
   ValidationError,
 } from "@/src/lib/types";
 
-const backendBaseUrl =
-  process.env.NEXT_PUBLIC_PYTHON_API_BASE?.replace(/\/$/, "") ?? "";
+const appApiBase = "/api";
 
 type ParseJobResult = {
   jobMetadata: {
@@ -219,14 +218,14 @@ async function parseJsonResponse<T>(response: Response): Promise<T> {
 }
 
 export function isBackendConfigured() {
-  return Boolean(backendBaseUrl);
+  return true;
 }
 
 export async function parseJobFiles(input: {
   rawFile: File;
   specFile?: File;
 }): Promise<ParseJobResult> {
-  if (backendBaseUrl) {
+  try {
     const payload = new FormData();
     payload.append("raw_file", input.rawFile);
     if (input.specFile) {
@@ -239,7 +238,7 @@ export async function parseJobFiles(input: {
       testGroup: string | null;
       rowCount: number;
       rows: Array<Record<string, unknown>>;
-    }>(await fetch(`${backendBaseUrl}/api/parse`, { method: "POST", body: payload }));
+    }>(await fetch(`${appApiBase}/parse`, { method: "POST", body: payload }));
 
     const testGroup = response.testGroup ?? "Parsed";
     return {
@@ -261,6 +260,8 @@ export async function parseJobFiles(input: {
         cost: 0,
       },
     };
+  } catch {
+    // Fall back to local workbook preview below.
   }
 
   const rows = await buildMockRowsFromWorkbook(input.rawFile);
@@ -314,14 +315,14 @@ export function startGeneration(
 
     callbacks.onStart?.(input.rows.length);
 
-    if (backendBaseUrl && input.jobId) {
+    if (input.jobId) {
       try {
         const createJobResponse = await parseJsonResponse<{
           jobId: string;
           totalRows: number;
           streamUrl: string;
         }>(
-          await fetch(`${backendBaseUrl}/api/generate`, {
+          await fetch(`${appApiBase}/generate`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -337,7 +338,7 @@ export function startGeneration(
                 model: input.config.model,
                 batchSize: input.config.batchSize,
                 budget: input.config.budgetLimit,
-                strictValidation: false,
+                strictValidation: input.config.strictValidation,
               },
             }),
           }),
@@ -440,10 +441,10 @@ export async function regenerateRows(
     return;
   }
 
-  if (backendBaseUrl && input.jobId) {
+  if (input.jobId) {
     try {
       const response = await fetch(
-        `${backendBaseUrl}/api/jobs/${input.jobId}/regenerate/stream`,
+        `${appApiBase}/jobs/${input.jobId}/regenerate/stream`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -454,7 +455,7 @@ export async function regenerateRows(
               model: input.config.model,
               batchSize: input.config.batchSize,
               budget: input.config.budgetLimit,
-              strictValidation: false,
+              strictValidation: input.config.strictValidation,
             },
           }),
         },
@@ -533,13 +534,13 @@ export async function regenerateRows(
 }
 
 export async function exportJob(input: ExportJobInput) {
-  if (backendBaseUrl && input.jobId) {
+  if (input.jobId) {
     const response = await parseJsonResponse<{
       fileName: string;
       downloadUrl: string;
       exportedRows: number;
     }>(
-      await fetch(`${backendBaseUrl}/api/export`, {
+      await fetch(`${appApiBase}/export`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

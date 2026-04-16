@@ -15,6 +15,11 @@ import {
 const ConfigureModule: React.FC = () => {
   const { tcRows, config, updateConfig, stats } = useJobStore();
   const { openWindow } = useWindowStore();
+  const estimatedCalls = tcRows.length ? Math.ceil(tcRows.length / Math.max(config.batchSize, 1)) : 0;
+  const estimatedBudget = Math.min(
+    config.budgetLimit,
+    Number((tcRows.length * (config.model === 'claude-3-haiku' ? 0.008 : 0.02)).toFixed(2)),
+  );
 
   const handleStartGenerate = () => {
     openWindow('generate', 'TC Generator - Generating...');
@@ -117,13 +122,35 @@ const ConfigureModule: React.FC = () => {
 
               <fieldset>
                 <legend>Generation Limits</legend>
-                <div className="field-row-stacked">
-                  <label htmlFor="budget">Max Budget (USD): ${config.budgetLimit}</label>
-                  <input 
-                    id="budget" type="range" min="1" max="50" 
-                    value={config.budgetLimit} 
-                    onChange={(e) => updateConfig({ budgetLimit: parseInt(e.target.value) })}
-                  />
+                <div className="flex flex-col gap-4">
+                  <div className="field-row-stacked">
+                    <label htmlFor="batch-size">Batch Size: {config.batchSize}</label>
+                    <input
+                      id="batch-size"
+                      type="range"
+                      min="1"
+                      max="10"
+                      value={config.batchSize}
+                      onChange={(e) => updateConfig({ batchSize: parseInt(e.target.value) })}
+                    />
+                  </div>
+                  <div className="field-row-stacked">
+                    <label htmlFor="budget">Max Budget (USD): ${config.budgetLimit}</label>
+                    <input
+                      id="budget" type="range" min="1" max="50"
+                      value={config.budgetLimit}
+                      onChange={(e) => updateConfig({ budgetLimit: parseInt(e.target.value) })}
+                    />
+                  </div>
+                  <div className="field-row">
+                    <input
+                      type="checkbox"
+                      id="strict-validation"
+                      checked={config.strictValidation}
+                      onChange={(e) => updateConfig({ strictValidation: e.target.checked })}
+                    />
+                    <label htmlFor="strict-validation">Strict Validation</label>
+                  </div>
                 </div>
               </fieldset>
 
@@ -158,7 +185,9 @@ const ConfigureModule: React.FC = () => {
           <RiArrowLeftLine className="size-4" /> Back
         </button>
         <div className="text-xs text-gray-500">
-          Estimated tokens: ~45k | Estimated Cost: <span className="text-black font-bold font-mono">$0.15</span>
+          Est. calls: <span className="text-black font-bold font-mono">{estimatedCalls}</span>
+          {' '}| Est. cost ceiling: <span className="text-black font-bold font-mono">${estimatedBudget.toFixed(2)}</span>
+          {' '}| Validation: <span className="text-black font-bold">{config.strictValidation ? 'strict' : 'warn only'}</span>
         </div>
         <button className="flex items-center gap-1 font-bold default" onClick={handleStartGenerate}>
           Start Generate <RiPlayFill className="size-4 text-green-700" />

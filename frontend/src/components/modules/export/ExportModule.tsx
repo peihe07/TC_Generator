@@ -14,7 +14,7 @@ import {
 } from '@remixicon/react';
 
 const ExportModule: React.FC = () => {
-  const { tcRows, jobMetadata, appendLog, resetJob } = useJobStore();
+  const { tcRows, jobMetadata, appendLog, resetJob, config } = useJobStore();
   const { openWindow } = useWindowStore();
   const [isExporting, setIsExporting] = useState(false);
   const [exportComplete, setExportComplete] = useState(false);
@@ -22,6 +22,14 @@ const ExportModule: React.FC = () => {
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
   const acceptedCount = tcRows.filter((r) => r.status === 'accepted').length;
+  const selectedColumns = [
+    'TC ID',
+    'Test Set',
+    ...(config.targetColumns.includes('preConditions') ? ['Pre-Conditions'] : []),
+    ...(config.targetColumns.includes('steps') ? ['Test Procedure'] : []),
+    ...(config.targetColumns.includes('expectedResults') ? ['Expected Result'] : []),
+    'Priority',
+  ];
 
   const handleExport = async () => {
     setIsExporting(true);
@@ -32,7 +40,7 @@ const ExportModule: React.FC = () => {
         scope,
         outputMode: 'new-file',
         includeFrameworkSheet: true,
-        selectedColumns: ['TC ID', 'Test Set', 'Test Procedure', 'Expected Result', 'Priority'],
+        selectedColumns,
       });
 
       setDownloadUrl(result.downloadUrl);

@@ -30,6 +30,7 @@ const DEFAULT_CONFIG: GenerationConfig = {
   model: 'claude-3-5-sonnet',
   batchSize: 5,
   budgetLimit: 10,
+  strictValidation: false,
   targetColumns: ['preConditions', 'steps', 'expectedResults'],
 };
 

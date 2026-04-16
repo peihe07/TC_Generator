@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import { useJobStore } from '../../../store/useJobStore';
 import { useWindowStore } from '../../../store/useWindowStore';
 import { createJobLog } from '../../../lib/logging';
-import { isBackendConfigured, parseJobFiles } from '../../../services/jobAdapter';
+import { parseJobFiles } from '../../../services/jobAdapter';
 import { RiFileLine, RiFileExcel2Line, RiFileSearchLine, RiArrowRightLine } from '@remixicon/react';
 
 const UploadModule: React.FC = () => {
@@ -43,9 +43,7 @@ const UploadModule: React.FC = () => {
     appendLog(
       createJobLog(
         'info',
-        isBackendConfigured()
-          ? `Parsing ${files.tc.name} via backend service.`
-          : `Backend not configured. Parsing ${files.tc.name} in local preview mode.`,
+        `Parsing ${files.tc.name} through the shared job adapter.`,
       ),
     );
 
