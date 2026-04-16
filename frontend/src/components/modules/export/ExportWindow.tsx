@@ -8,6 +8,10 @@ import {
   RiFolderZipLine,
 } from "@remixicon/react";
 
+import {
+  useBackendBaseUrl,
+  useTriggerExport,
+} from "@/src/hooks/usePythonAPI";
 import { useJobStore } from "@/src/store/useJobStore";
 
 const columnOptions = [
@@ -27,8 +31,12 @@ type ExportScope = "all" | "accepted" | "flagged";
 type OutputMode = "new-file" | "overwrite";
 
 export function ExportWindow() {
+  const jobId = useJobStore((state) => state.jobId);
   const tcRows = useJobStore((state) => state.tcRows);
   const logs = useJobStore((state) => state.logs);
+  const appendLog = useJobStore((state) => state.appendLog);
+  const backendBaseUrl = useBackendBaseUrl();
+  const triggerExport = useTriggerExport();
   const [scope, setScope] = useState<ExportScope>("accepted");
   const [outputMode, setOutputMode] = useState<OutputMode>("new-file");
   const [includeFrameworkSheet, setIncludeFrameworkSheet] = useState(true);
@@ -40,6 +48,7 @@ export function ExportWindow() {
     "Validation Summary",
   ]);
   const [downloadReady, setDownloadReady] = useState(false);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
   const scopedRows = useMemo(() => {
     if (scope === "all") {
@@ -57,6 +66,46 @@ export function ExportWindow() {
         ? current.filter((item) => item !== column)
         : [...current, column],
     );
+  };
+
+  const prepareExport = async () => {
+    if (!scopedRows.length) {
+      return;
+    }
+
+    if (backendBaseUrl && jobId) {
+      try {
+        const response = await triggerExport.mutateAsync({
+          jobId,
+          scope,
+          outputMode,
+          includeFrameworkSheet,
+          selectedColumns,
+          rows: tcRows,
+        });
+        setDownloadReady(true);
+        setDownloadUrl(response.downloadUrl);
+        appendLog({
+          level: "info",
+          message: `Export package ready: ${response.fileName} (${response.exportedRows} row(s)).`,
+        });
+        return;
+      } catch {
+        appendLog({
+          level: "error",
+          message: "Backend export failed. Falling back to local preview-only package state.",
+        });
+      }
+    }
+
+    setDownloadReady(true);
+    setDownloadUrl(null);
+  };
+
+  const downloadWorkbook = () => {
+    if (downloadUrl) {
+      window.open(downloadUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -182,13 +231,13 @@ export function ExportWindow() {
         <div className="export-actions">
           <button
             type="button"
-            onClick={() => setDownloadReady(true)}
+            onClick={() => void prepareExport()}
             disabled={!scopedRows.length}
           >
             <RiFolderZipLine size={14} />
             Prepare package
           </button>
-          <button type="button" disabled={!downloadReady}>
+          <button type="button" onClick={downloadWorkbook} disabled={!downloadReady}>
             <RiDownload2Line size={14} />
             Download workbook
           </button>
@@ -199,7 +248,9 @@ export function ExportWindow() {
             <>
               <RiCheckboxCircleLine size={16} />
               <span>
-                Package prepared. Backend wiring can later replace this button with a signed download URL.
+                {downloadUrl
+                  ? "Package prepared. Download is now backed by the Python API."
+                  : "Package prepared locally. Connect the backend to receive a real workbook download."}
               </span>
             </>
           ) : (

@@ -7,7 +7,7 @@ import { useJobStore } from "@/src/store/useJobStore";
 type UseSSEOptions = {
   enabled: boolean;
   url: string | null;
-  onMessage?: (data: string) => void;
+  onMessage?: (data: string | Record<string, unknown>) => void;
   onError?: () => void;
 };
 
@@ -22,10 +22,23 @@ export function useSSE({ enabled, url, onMessage, onError }: UseSSEOptions) {
     const source = new EventSource(url);
 
     source.onmessage = (event) => {
-      onMessage?.(event.data);
+      let payload: string | Record<string, unknown> = event.data;
+      let logMessage = event.data;
+
+      try {
+        const parsed = JSON.parse(event.data) as Record<string, unknown>;
+        payload = parsed;
+        if (typeof parsed.message === "string") {
+          logMessage = parsed.message;
+        }
+      } catch {
+        payload = event.data;
+      }
+
+      onMessage?.(payload);
       appendLog({
         level: "info",
-        message: event.data,
+        message: logMessage,
       });
     };
 

@@ -8,7 +8,12 @@ import {
   RiStopMiniFill,
 } from "@remixicon/react";
 
-import { useBackendBaseUrl, useHealthcheck } from "@/src/hooks/usePythonAPI";
+import type { GenerateStreamEvent } from "@/src/lib/api-contract";
+import {
+  useBackendBaseUrl,
+  useHealthcheck,
+  useTriggerGenerate,
+} from "@/src/hooks/usePythonAPI";
 import { useSSE } from "@/src/hooks/useSSE";
 import { useJobStore } from "@/src/store/useJobStore";
 import type { TcRow, ValidationIssue } from "@/src/lib/types";
@@ -67,16 +72,43 @@ export function GenerateWindow() {
   const appendLog = useJobStore((state) => state.appendLog);
   const health = useHealthcheck();
   const backendBaseUrl = useBackendBaseUrl();
+  const triggerGenerate = useTriggerGenerate();
   const [isMockRunning, setIsMockRunning] = useState(false);
+  const [activeStreamUrl, setActiveStreamUrl] = useState<string | null>(null);
   const mockTimer = useRef<number | null>(null);
 
   useSSE({
-    enabled: Boolean(backendBaseUrl && jobId),
-    url: backendBaseUrl && jobId ? `${backendBaseUrl}/api/generate/stream?jobId=${jobId}` : null,
+    enabled: Boolean(activeStreamUrl),
+    url: activeStreamUrl,
     onMessage: (data) => {
-      if (data.toLowerCase().includes("complete")) {
-        setStats({ processed: stats.total });
+      if (typeof data === "string") {
+        if (data.toLowerCase().includes("complete")) {
+          setStats({ processed: stats.total });
+          setIsMockRunning(false);
+          setActiveStreamUrl(null);
+        }
+        return;
       }
+
+      const event = data as GenerateStreamEvent;
+      setStats(event.stats);
+
+      if (event.type === "row.completed") {
+        updateRow(event.row.id, event.row);
+      }
+
+      if (event.type === "job.started") {
+        setIsMockRunning(true);
+      }
+
+      if (event.type === "job.completed") {
+        setIsMockRunning(false);
+        setActiveStreamUrl(null);
+      }
+    },
+    onError: () => {
+      setIsMockRunning(false);
+      setActiveStreamUrl(null);
     },
   });
 
@@ -88,9 +120,37 @@ export function GenerateWindow() {
     };
   }, []);
 
-  const startMockRun = () => {
+  const startMockRun = async () => {
     if (!tcRows.length || isMockRunning) {
       return;
+    }
+
+    if (backendBaseUrl && health.isSuccess) {
+      try {
+        const response = await triggerGenerate.mutateAsync({
+          jobId,
+          rows: tcRows,
+          config,
+        });
+        setJobId(response.jobId);
+        setStats({
+          total: response.totalRows,
+          processed: 0,
+          currentCost: 0,
+        });
+        setIsMockRunning(true);
+        setActiveStreamUrl(response.streamUrl);
+        appendLog({
+          level: "info",
+          message: `Backend generation queued for ${response.totalRows} row(s).`,
+        });
+        return;
+      } catch {
+        appendLog({
+          level: "error",
+          message: "Backend generation request failed. Falling back to local mock run.",
+        });
+      }
     }
 
     setIsMockRunning(true);
@@ -132,6 +192,7 @@ export function GenerateWindow() {
   };
 
   const stopMockRun = () => {
+    setActiveStreamUrl(null);
     if (mockTimer.current) {
       window.clearInterval(mockTimer.current);
     }
@@ -185,9 +246,9 @@ export function GenerateWindow() {
         <div className="sunken-panel">
           <h3>Run Controls</h3>
           <div className="button-row">
-            <button type="button" onClick={startMockRun} disabled={!tcRows.length || isMockRunning}>
+            <button type="button" onClick={() => void startMockRun()} disabled={!tcRows.length || isMockRunning}>
               <RiPlayMiniFill size={14} />
-              Start mock run
+              {backendBaseUrl && health.isSuccess ? "Start backend run" : "Start mock run"}
             </button>
             <button type="button" onClick={stopMockRun} disabled={!isMockRunning}>
               <RiStopMiniFill size={14} />
@@ -217,7 +278,7 @@ export function GenerateWindow() {
                 <strong>Stream target</strong>
                 <p>
                   {jobId && backendBaseUrl
-                    ? `${backendBaseUrl}/api/generate/stream?jobId=${jobId}`
+                    ? activeStreamUrl ?? `${backendBaseUrl}/api/generate/stream?jobId=${jobId}`
                     : "No active SSE stream. Mock runs still update the desktop logs."}
                 </p>
               </div>

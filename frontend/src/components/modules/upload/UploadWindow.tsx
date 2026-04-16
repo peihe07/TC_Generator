@@ -4,6 +4,7 @@ import { ChangeEvent, useRef, useState, useTransition } from "react";
 import * as XLSX from "xlsx";
 import { RiDeleteBinLine, RiUploadCloud2Line } from "@remixicon/react";
 
+import { useBackendBaseUrl, useTriggerParse } from "@/src/hooks/usePythonAPI";
 import type { TcPreviewRow } from "@/src/lib/types";
 import { useJobStore } from "@/src/store/useJobStore";
 
@@ -52,6 +53,7 @@ function readWorkbookPreview(file: File): Promise<{
 export function UploadWindow() {
   const rawFile = useJobStore((state) => state.files.raw);
   const specFile = useJobStore((state) => state.files.spec);
+  const setJobId = useJobStore((state) => state.setJobId);
   const previewHeaders = useJobStore((state) => state.previewHeaders);
   const previewRows = useJobStore((state) => state.previewRows);
   const logs = useJobStore((state) => state.logs);
@@ -63,6 +65,8 @@ export function UploadWindow() {
   const updateConfig = useJobStore((state) => state.updateConfig);
   const appendLog = useJobStore((state) => state.appendLog);
   const resetJob = useJobStore((state) => state.resetJob);
+  const backendBaseUrl = useBackendBaseUrl();
+  const triggerParse = useTriggerParse();
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
   const rawInputRef = useRef<HTMLInputElement | null>(null);
@@ -83,11 +87,32 @@ export function UploadWindow() {
     setFiles({ raw: file, parsed: false });
     appendLog({
       level: "info",
-      message: `Loaded ${file.name}. Parsing the first five rows locally for preview.`,
+      message: backendBaseUrl
+        ? `Loaded ${file.name}. Sending workbook to backend parse endpoint.`
+        : `Loaded ${file.name}. Parsing the first five rows locally for preview.`,
     });
 
     startTransition(async () => {
       try {
+        if (backendBaseUrl) {
+          const payload = new FormData();
+          payload.append("raw_file", file);
+          if (specFile) {
+            payload.append("spec_file", specFile);
+          }
+
+          const response = await triggerParse.mutateAsync(payload);
+          setJobId(response.jobId);
+          setPreview(response.previewHeaders, response.previewRows);
+          setRows(response.rows);
+          setFiles({ raw: file, parsed: true });
+          appendLog({
+            level: "info",
+            message: `Backend parse complete: ${response.rowCount} rows, project ${response.project ?? "N/A"}, group ${response.testGroup ?? "N/A"}.`,
+          });
+          return;
+        }
+
         const preview = await readWorkbookPreview(file);
         setPreview(preview.headers, preview.rows);
         setFiles({ raw: file, parsed: true });
@@ -121,7 +146,9 @@ export function UploadWindow() {
         );
         appendLog({
           level: "error",
-          message: "Workbook preview failed. Check whether the selected file is a valid Excel document.",
+          message: backendBaseUrl
+            ? "Backend parse failed. Check API availability and workbook validity."
+            : "Workbook preview failed. Check whether the selected file is a valid Excel document.",
         });
       }
     });

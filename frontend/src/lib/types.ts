@@ -42,6 +42,7 @@ export type TcPreviewRow = Record<string, string | number | null>;
 
 export type TcRow = {
   id: string;
+  rowNum?: number;
   reqId: string;
   testItem: string;
   originalRequirement?: string;
