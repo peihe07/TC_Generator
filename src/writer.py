@@ -45,6 +45,7 @@ def write_generated_results(
     input_path: str,
     generated_rows: list[dict],
     output_path: str,
+    selected_fields: set[str] | None = None,
 ) -> None:
     """
     Write generated TC results back to xlsx.
@@ -60,6 +61,8 @@ def write_generated_results(
 
         # Write standard generated columns (overwrite)
         for field, col_idx in WRITE_COLUMNS.items():
+            if selected_fields is not None and field not in selected_fields:
+                continue
             if field not in row_data:
                 continue
 
@@ -74,7 +77,7 @@ def write_generated_results(
 
         # Col I (Test Item): append rewrite, preserve original
         rewrite = row_data.get("test_item_rewrite")
-        if rewrite:
+        if rewrite and (selected_fields is None or "test_item_rewrite" in selected_fields):
             cell_i = ws.cell(row=row_num, column=9)
             cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
             cell_i.alignment = WRAP_TEXT_ALIGNMENT

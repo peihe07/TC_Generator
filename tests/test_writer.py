@@ -215,6 +215,23 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=8).value is None
         assert ws.cell(row=10, column=14).value is None
 
+    def test_respects_selected_fields_when_writing(self, input_xlsx, generated_rows, tmp_path):
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(
+            input_xlsx,
+            generated_rows,
+            output,
+            selected_fields={"expected_result", "priority"},
+        )
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert ws.cell(row=10, column=6).value is None  # TC ID untouched
+        assert ws.cell(row=10, column=9).value == "PDM01.1) Original text here."  # no rewrite appended
+        assert ws.cell(row=10, column=10).value is None  # Pre-Conditions untouched
+        assert ws.cell(row=10, column=13).value == "1. Settings shown.\n2. DM icon displayed."
+        assert ws.cell(row=10, column=16).value == "Medium"
+
 
 class TestWriteFrameworkSheet:
     def test_writes_data(self, input_xlsx, framework_data, tmp_path):

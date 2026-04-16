@@ -12,8 +12,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
+from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_batch, generate_single_tc
+from id_generator import generate_group_abbreviation, generate_tc_ids
 from parser import parse_tc_xlsx
-from spec_parser import detect_format
+from spec_matcher import match_spec_references
+from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
 from validator import validate_row
 from writer import build_output_path, write_framework_sheet, write_generated_results
 
@@ -29,6 +32,35 @@ app.add_middleware(
 
 ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 JOB_REGISTRY: dict[str, dict] = {}
+RULES_SECTIONS = """
+## Test Item Rewrite
+- One behavior per TC, must match requirement intent
+- Format: (Condition/Trigger → Observable Outcome)
+
+## Pre-Conditions
+- State or environment ONLY, never actions
+- Minimum necessary state, numbered list or NA
+
+## Input Test Data
+- Explicit deterministic values, or NA
+
+## Test Procedure
+- Setup steps → Transition steps → Final Step (verification)
+- Each step: executable action + purpose
+- Final step must include action + verification target
+
+## Expected Result
+- 1:1 mapping with procedure steps
+- Observable, judgeable, no vague language
+
+## Design Method
+- Use decision waterfall: Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
+
+## Priority
+- High: safety, core functionality, data loss risk
+- Medium: standard feature, user-facing behavior
+- Low: UI cosmetic, edge cases
+""".strip()
 
 
 class GenerateConfig(BaseModel):
@@ -40,10 +72,13 @@ class GenerateConfig(BaseModel):
 
 class GenerateRow(BaseModel):
     id: str
+    rowNum: int | None = None
+    tcId: str | None = None
     reqId: str
     testItem: str
     originalRequirement: str | None = None
     testSet: str | None = None
+    specReference: str | None = None
     priority: str | None = None
 
 
@@ -60,6 +95,19 @@ class ExportRequest(BaseModel):
     includeFrameworkSheet: bool = True
     selectedColumns: list[str] = Field(default_factory=list)
     rows: list[dict]
+
+
+EXPORT_COLUMN_TO_FIELD = {
+    "TC ID": "tc_id",
+    "Test Set": "test_set",
+    "Test Item Rewrite": "test_item_rewrite",
+    "Pre-Conditions": "pre_conditions",
+    "Test Procedure": "test_procedure",
+    "Expected Result": "expected_result",
+    "Priority": "priority",
+    "Spec Reference": "spec_reference",
+    "Design Method": "design_method",
+}
 
 
 def _build_job_id() -> str:
@@ -82,10 +130,12 @@ def _normalize_row(row: dict) -> dict:
     return {
         "id": f"row-{row['row_num']}",
         "rowNum": row["row_num"],
+        "tcId": row.get("tc_id", ""),
         "reqId": row.get("req_id", ""),
         "testItem": row.get("test_item", ""),
         "originalRequirement": row.get("test_item", ""),
         "testSet": row.get("test_set", ""),
+        "specReference": row.get("spec_reference"),
         "priority": row.get("priority", ""),
         "status": "draft",
         "reviewStatus": "pending",
@@ -122,11 +172,12 @@ def _map_export_rows(rows: list[dict], scope: str, test_group: str | None) -> li
                 "test_set": row.get("testSet"),
                 "test_item_rewrite": generated.get("testItemRewrite", ""),
                 "pre_conditions": generated.get("preConditions", ""),
+                "input_test_data": generated.get("inputTestData", ""),
                 "test_procedure": generated.get("testProcedure", ""),
                 "expected_result": generated.get("expectedResult", ""),
                 "priority": generated.get("priority", ""),
                 "design_method": generated.get("designMethod", ""),
-                "spec_reference": generated.get("specReference"),
+                "spec_reference": row.get("specReference") or generated.get("specReference"),
             }
         )
 
@@ -151,34 +202,116 @@ def _build_framework_rows(rows: list[dict], test_group: str | None) -> list[dict
     return framework_rows
 
 
-def _mock_generated_fields(row: dict) -> dict:
-    req_id = row.get("reqId", "")
-    label = row.get("testItem") or req_id or "Requirement"
-    warning_mode = req_id.endswith("2") or req_id.endswith("4")
-
-    generated = {
-        "test_item": f"{row.get('originalRequirement') or row.get('testItem', '')}\n\n({label} → Observable outcome confirmed)",
-        "pre_conditions": (
-            "1. Vehicle profile loaded\n2. Open setup screen"
-            if warning_mode
-            else "1. Vehicle profile loaded\n2. Required subsystem available"
-        ),
-        "test_procedure": (
-            "1. Open the source screen and prepare the feature.\n"
-            "2. Trigger the target behavior and verify the visible outcome."
-        ),
-        "expected_result": (
-            "1. The setup screen is ready for the operator.\n"
-            "2. The requested behavior is shown with the correct visible outcome."
-        ),
-        "design_method": (
-            "Functional smoke review"
-            if warning_mode
-            else "功能測試 (Functional based ; no specific technique)"
-        ),
-        "priority": "Medium" if warning_mode else (row.get("priority") or "High"),
+def _selected_export_fields(selected_columns: list[str]) -> set[str] | None:
+    mapped = {
+        EXPORT_COLUMN_TO_FIELD[column]
+        for column in selected_columns
+        if column in EXPORT_COLUMN_TO_FIELD
     }
-    return generated
+    return mapped or None
+
+
+def _extract_existing_sequence_numbers(rows: list[dict]) -> list[int]:
+    sequences = []
+    for row in rows:
+        tc_id = row.get("tc_id") or row.get("tcId")
+        if not tc_id:
+            continue
+        parts = tc_id.rsplit("-", 1)
+        if len(parts) == 2 and parts[1].isdigit():
+            sequences.append(int(parts[1]))
+    return sequences
+
+
+def _estimate_cost(row_count: int, model: str, batch_size: int) -> float:
+    avg_input = 1500
+    avg_output = 800
+    calls = (row_count + batch_size - 1) // batch_size
+    del calls
+    return calculate_cost(avg_input * row_count, avg_output * row_count, model)
+
+
+def _would_exceed_budget(current_cost: float, batch_size: int, model: str, budget: float) -> bool:
+    estimated_batch_cost = _estimate_cost(batch_size, model, batch_size)
+    return current_cost + estimated_batch_cost > budget
+
+
+def _build_spec_index_for_job(job: dict) -> dict:
+    spec_bytes = job.get("specBytes")
+    spec_filename = job.get("specFileName")
+    spec_format = job.get("specFormat")
+    if not spec_bytes or not spec_filename or not spec_format:
+        return {}
+
+    parsers = {"pdf": parse_pdf, "docx": parse_docx, "xlsx": parse_xlsx}
+    parser = parsers.get(spec_format)
+    if parser is None:
+        return {}
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        spec_path = os.path.join(tmp_dir, spec_filename)
+        with open(spec_path, "wb") as spec_file:
+            spec_file.write(spec_bytes)
+        return parser(spec_path)
+
+
+def _prepare_generation_rows(job: dict) -> list[dict]:
+    parsed_rows = job.get("parsedData", {}).get("rows", [])
+    parsed_by_row_num = {row["row_num"]: row for row in parsed_rows}
+    parsed_by_req_id = {row.get("req_id"): row for row in parsed_rows}
+
+    prepared_rows = []
+    for raw_row in job["rows"]:
+        base_row = None
+        if raw_row.get("rowNum") is not None:
+            base_row = parsed_by_row_num.get(raw_row["rowNum"])
+        if base_row is None and raw_row.get("reqId"):
+            base_row = parsed_by_req_id.get(raw_row["reqId"])
+        base_row = base_row or {}
+
+        prepared_rows.append(
+            {
+                "id": raw_row["id"],
+                "row_num": raw_row.get("rowNum") or base_row.get("row_num") or 0,
+                "tc_id": raw_row.get("tcId") or base_row.get("tc_id", ""),
+                "req_id": raw_row.get("reqId") or base_row.get("req_id", ""),
+                "test_item": raw_row.get("testItem") or base_row.get("test_item", ""),
+                "original_requirement": raw_row.get("originalRequirement")
+                or base_row.get("test_item", ""),
+                "test_set": raw_row.get("testSet")
+                if raw_row.get("testSet") is not None
+                else base_row.get("test_set", ""),
+                "spec_reference": raw_row.get("specReference")
+                if raw_row.get("specReference") is not None
+                else base_row.get("spec_reference"),
+                "priority": raw_row.get("priority")
+                if raw_row.get("priority") is not None
+                else base_row.get("priority", ""),
+            }
+        )
+
+    spec_index = _build_spec_index_for_job(job)
+    if spec_index:
+        matched_rows = match_spec_references(prepared_rows, spec_index)
+        for prepared_row, matched_row in zip(prepared_rows, matched_rows):
+            prepared_row["spec_reference"] = matched_row.get("spec_reference")
+
+    existing_sequences = _extract_existing_sequence_numbers(parsed_rows) + _extract_existing_sequence_numbers(prepared_rows)
+    missing_rows = [row for row in prepared_rows if not row.get("tc_id")]
+    if missing_rows:
+        project = job.get("parsedData", {}).get("project") or "project"
+        test_group = job.get("parsedData", {}).get("test_group") or "TC"
+        start = max(existing_sequences) + 1 if existing_sequences else 1
+        tc_ids = generate_tc_ids(
+            project,
+            generate_group_abbreviation(test_group),
+            len(missing_rows),
+            start=start,
+        )
+        for row, tc_id in zip(missing_rows, tc_ids):
+            row["tc_id"] = tc_id
+
+    return prepared_rows
 
 
 def _normalize_validation_issues(results: dict) -> list[dict]:
@@ -208,30 +341,72 @@ def _normalize_validation_issues(results: dict) -> list[dict]:
     return issues
 
 
-def _build_stream_row(row: dict) -> dict:
-    generated = _mock_generated_fields(row)
+def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
     validation = _normalize_validation_issues(
         validate_row(
             {
-                "tc_id": "mock-TCG-001",
-                **generated,
+                "tc_id": row["tc_id"],
+                "test_item": f"{row['original_requirement']}\n\n{tc['test_item_rewrite']}",
+                "pre_conditions": tc["pre_conditions"],
+                "test_procedure": tc["test_procedure"],
+                "expected_result": tc["expected_result"],
+                "design_method": tc["design_method"],
+                "priority": tc["priority"],
             }
         )
     )
-    status = "error" if any(issue["severity"] == "warning" for issue in validation) else "ready"
-    return {
-        **row,
-        "status": status,
-        "reviewStatus": "pending",
-        "generated": {
-            "testItemRewrite": generated["test_item"].split("\n\n", 1)[1] if "\n\n" in generated["test_item"] else generated["test_item"],
-            "preConditions": generated["pre_conditions"],
-            "testProcedure": generated["test_procedure"],
-            "expectedResult": generated["expected_result"],
-            "designMethod": generated["design_method"],
-            "priority": generated["priority"],
+    has_warnings = any(issue["severity"] == "warning" for issue in validation)
+    return (
+        {
+            "id": row["id"],
+            "rowNum": row["row_num"],
+            "tcId": row["tc_id"],
+            "reqId": row["req_id"],
+            "testItem": row["test_item"],
+            "originalRequirement": row["original_requirement"],
+            "testSet": row.get("test_set", ""),
+            "specReference": row.get("spec_reference"),
+            "priority": tc["priority"],
+            "status": "error" if has_warnings else "ready",
+            "reviewStatus": "pending",
+            "generated": {
+                "testItemRewrite": tc["test_item_rewrite"],
+                "preConditions": tc["pre_conditions"],
+                "inputTestData": tc["input_test_data"],
+                "testProcedure": tc["test_procedure"],
+                "expectedResult": tc["expected_result"],
+                "designMethod": tc["design_method"],
+                "priority": tc["priority"],
+                "specReference": row.get("spec_reference"),
+            },
+            "validation": validation,
         },
-        "validation": validation,
+        has_warnings,
+    )
+
+
+def _build_failed_stream_row(row: dict, message: str) -> dict:
+    return {
+        "id": row["id"],
+        "rowNum": row["row_num"],
+        "tcId": row.get("tc_id", ""),
+        "reqId": row.get("req_id", ""),
+        "testItem": row.get("test_item", ""),
+        "originalRequirement": row.get("original_requirement", ""),
+        "testSet": row.get("test_set", ""),
+        "specReference": row.get("spec_reference"),
+        "priority": row.get("priority", ""),
+        "status": "error",
+        "reviewStatus": "pending",
+        "generated": None,
+        "validation": [
+            {
+                "id": f"runtime-{row.get('id', 'row')}",
+                "severity": "warning",
+                "field": "runtime",
+                "message": message,
+            }
+        ],
     }
 
 
@@ -263,6 +438,7 @@ async def parse_workbook(
 
     preview_headers, preview_rows = _build_preview(parsed_data)
     spec_format = detect_format(spec_file.filename) if spec_file and spec_file.filename else None
+    spec_bytes = await spec_file.read() if spec_file else None
     job_id = _build_job_id()
     JOB_REGISTRY[job_id] = {
         "jobId": job_id,
@@ -271,6 +447,7 @@ async def parse_workbook(
         "parsedData": parsed_data,
         "specFileName": spec_file.filename if spec_file else None,
         "specFormat": spec_format,
+        "specBytes": spec_bytes,
         "status": "parsed",
     }
 
@@ -326,8 +503,15 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         raise HTTPException(status_code=404, detail="job not found")
 
     async def event_generator():
-        rows = job["rows"]
+        rows = _prepare_generation_rows(job)
         total = len(rows)
+        config = job.get("config", {})
+        context = {
+            "project": job.get("parsedData", {}).get("project"),
+            "test_group": job.get("parsedData", {}).get("test_group"),
+            "test_set": "N/A",
+        }
+        spec_index = _build_spec_index_for_job(job)
         job["status"] = "running"
         yield _sse_event(
             {
@@ -340,25 +524,86 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
 
         processed = 0
         current_cost = 0.0
-        for row in rows:
-            processed += 1
-            current_cost = round(processed * 0.0085, 4)
-            updated_row = _build_stream_row(row)
-            yield _sse_event(
-                {
-                    "type": "row.completed",
-                    "jobId": jobId,
-                    "row": updated_row,
-                    "stats": {
-                        "total": total,
-                        "processed": processed,
-                        "currentCost": current_cost,
-                    },
-                    "message": (
-                        f"Processed {processed}/{total} rows for {row.get('reqId') or row.get('id')}."
-                    ),
-                }
-            )
+        batch_size = config.get("batchSize", 1)
+        model = config.get("model", DEFAULT_MODEL)
+        strict_validation = config.get("strictValidation", False)
+        budget = config.get("budget", 0)
+
+        for i in range(0, total, batch_size):
+            batch = rows[i:i + batch_size]
+
+            if budget and _would_exceed_budget(current_cost, len(batch), model, budget):
+                for row in batch:
+                    processed += 1
+                    yield _sse_event(
+                        {
+                            "type": "row.failed",
+                            "jobId": jobId,
+                            "row": _build_failed_stream_row(
+                                row,
+                                f"Skipped because the next batch would exceed the configured budget of ${budget:.2f}.",
+                            ),
+                            "stats": {
+                                "total": total,
+                                "processed": processed,
+                                "currentCost": round(current_cost, 4),
+                            },
+                            "message": f"Skipped {row.get('req_id')} due to budget limit.",
+                        }
+                    )
+                continue
+
+            try:
+                if len(batch) == 1:
+                    context["test_set"] = batch[0].get("test_set", "N/A")
+                    result = generate_single_tc(batch[0], context, spec_index, RULES_SECTIONS, model)
+                    tc_data_list = [result.tc_data]
+                else:
+                    result = generate_batch(batch, context, spec_index, RULES_SECTIONS, model)
+                    tc_data_list = result.tc_data
+
+                current_cost += result.cost
+                for row, tc in zip(batch, tc_data_list):
+                    processed += 1
+                    updated_row, has_warnings = _build_stream_row(row, tc)
+                    event_type = "row.failed" if strict_validation and has_warnings else "row.completed"
+                    if event_type == "row.failed":
+                        updated_row["generated"] = None
+                    yield _sse_event(
+                        {
+                            "type": event_type,
+                            "jobId": jobId,
+                            "row": updated_row,
+                            "stats": {
+                                "total": total,
+                                "processed": processed,
+                                "currentCost": round(current_cost, 4),
+                            },
+                            "message": (
+                                f"Processed {processed}/{total} rows for {row.get('req_id') or row.get('id')}."
+                            ),
+                        }
+                    )
+            except GenerationError as exc:
+                for row in batch:
+                    processed += 1
+                    yield _sse_event(
+                        {
+                            "type": "row.failed",
+                            "jobId": jobId,
+                            "row": _build_failed_stream_row(
+                                row,
+                                f"Generation failed: {exc}",
+                            ),
+                            "stats": {
+                                "total": total,
+                                "processed": processed,
+                                "currentCost": round(current_cost, 4),
+                            },
+                            "message": f"Generation failed for {row.get('req_id') or row.get('id')}.",
+                        }
+                    )
+
             await asyncio.sleep(0.15)
 
         job["status"] = "completed"
@@ -393,13 +638,19 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         raise HTTPException(status_code=400, detail="no exportable rows for the selected scope")
 
     export_path = _build_export_path(job["rawFileName"], payload.outputMode)
+    selected_fields = _selected_export_fields(payload.selectedColumns)
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         source_path = os.path.join(tmp_dir, job["rawFileName"])
         with open(source_path, "wb") as source_file:
             source_file.write(job["rawBytes"])
 
-        write_generated_results(source_path, export_rows, export_path)
+        write_generated_results(
+            source_path,
+            export_rows,
+            export_path,
+            selected_fields=selected_fields,
+        )
 
     if payload.includeFrameworkSheet:
         write_framework_sheet(
