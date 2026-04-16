@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_batch, generate_single_tc, generate_quick_tc, decompose_requirement
 from id_generator import generate_group_abbreviation, generate_tc_ids
 from parser import parse_tc_xlsx
-from spec_matcher import match_spec_references
+from spec_matcher import build_spec_index, extract_pdm_codes, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
 from validator import validate_row
 from writer import build_output_path, write_framework_sheet, write_generated_results
@@ -101,6 +101,16 @@ class RegenerateRequest(BaseModel):
     rowIds: list[str]
     config: GenerateConfig | None = None
     rows: list[dict]
+
+
+class GroupPreviewRequest(BaseModel):
+    jobId: str
+    rows: list[GenerateRow]
+
+
+class MatchPreviewRequest(BaseModel):
+    jobId: str
+    rows: list[GenerateRow]
 
 
 class QuickGenerateRequest(BaseModel):
@@ -268,6 +278,92 @@ def _build_spec_index_for_job(job: dict) -> dict:
         return parser(spec_path)
 
 
+def _build_reference_match_index_for_job(job: dict) -> dict:
+    reference_bytes = job.get("referenceWorkbookBytes")
+    reference_filename = job.get("referenceWorkbookName")
+    if not reference_bytes or not reference_filename:
+        return {}
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        reference_path = os.path.join(tmp_dir, reference_filename)
+        with open(reference_path, "wb") as reference_file:
+            reference_file.write(reference_bytes)
+        try:
+            return build_spec_index(reference_path)
+        except Exception:
+            return {}
+
+
+def _derive_test_set_name(row: dict) -> str:
+    existing = str(row.get("test_set") or row.get("testSet") or "").strip()
+    if existing:
+        return existing
+
+    codes = extract_pdm_codes(str(row.get("test_item") or row.get("testItem") or ""))
+    if codes:
+        return codes[0]
+
+    req_id = str(row.get("req_id") or row.get("reqId") or "").strip()
+    req_parts = [part for part in req_id.split("-") if part]
+    if len(req_parts) >= 2:
+        return f"REQ-{req_parts[-2]}"
+
+    return "Unassigned"
+
+
+def _build_group_preview(rows: list[dict]) -> tuple[list[dict], dict[str, list[str]]]:
+    assignments = []
+    framework: dict[str, list[str]] = {}
+
+    for row in rows:
+        test_set = _derive_test_set_name(row)
+        req_id = str(row.get("req_id") or row.get("reqId") or "")
+        assignments.append(
+            {
+                "id": row.get("id"),
+                "reqId": req_id,
+                "testSet": test_set,
+                "source": "existing" if str(row.get("test_set") or row.get("testSet") or "").strip() else "derived",
+            }
+        )
+        framework.setdefault(test_set, []).append(req_id)
+
+    groups = [
+        {
+            "testSet": test_set,
+            "count": len(req_ids),
+            "reqIds": req_ids,
+        }
+        for test_set, req_ids in framework.items()
+    ]
+    groups.sort(key=lambda group: (-group["count"], group["testSet"]))
+    return groups, framework
+
+
+def _prepare_match_preview_rows(rows: list[GenerateRow], job: dict) -> list[dict]:
+    prepared_rows = []
+    parsed_rows = job.get("parsedData", {}).get("rows", [])
+    parsed_by_row_num = {row["row_num"]: row for row in parsed_rows}
+    parsed_by_req_id = {row.get("req_id"): row for row in parsed_rows}
+
+    for raw_row in rows:
+        dump = raw_row.model_dump()
+        base_row = None
+        if dump.get("rowNum") is not None:
+            base_row = parsed_by_row_num.get(dump["rowNum"])
+        if base_row is None and dump.get("reqId"):
+            base_row = parsed_by_req_id.get(dump["reqId"])
+        base_row = base_row or {}
+        prepared_rows.append(
+            {
+                "id": dump["id"],
+                "req_id": dump.get("reqId") or base_row.get("req_id", ""),
+                "test_item": dump.get("testItem") or base_row.get("test_item", ""),
+            }
+        )
+    return prepared_rows
+
+
 def _prepare_generation_rows(job: dict) -> list[dict]:
     parsed_rows = job.get("parsedData", {}).get("rows", [])
     parsed_by_row_num = {row["row_num"]: row for row in parsed_rows}
@@ -303,9 +399,9 @@ def _prepare_generation_rows(job: dict) -> list[dict]:
             }
         )
 
-    spec_index = _build_spec_index_for_job(job)
-    if spec_index:
-        matched_rows = match_spec_references(prepared_rows, spec_index)
+    reference_index = _build_reference_match_index_for_job(job)
+    if reference_index:
+        matched_rows = match_spec_references(prepared_rows, reference_index)
         for prepared_row, matched_row in zip(prepared_rows, matched_rows):
             prepared_row["spec_reference"] = matched_row.get("spec_reference")
 
@@ -539,6 +635,8 @@ def healthcheck() -> dict:
 @app.post("/api/parse")
 async def parse_workbook(
     raw_file: UploadFile = File(...),
+    reference_file: UploadFile | None = File(default=None),
+    sys1_file: UploadFile | None = File(default=None),
     spec_file: UploadFile | None = File(default=None),
 ) -> dict:
     _, raw_ext = os.path.splitext(raw_file.filename or "")
@@ -554,7 +652,12 @@ async def parse_workbook(
         parsed_data = parse_tc_xlsx(temp_path)
 
     preview_headers, preview_rows = _build_preview(parsed_data)
+    effective_reference_file = reference_file or sys1_file
+    reference_ext = os.path.splitext(effective_reference_file.filename or "")[1].lower() if effective_reference_file and effective_reference_file.filename else ""
+    if effective_reference_file and reference_ext not in ALLOWED_RAW_EXTENSIONS:
+        raise HTTPException(status_code=400, detail="reference_file must be .xlsx or .xlsm")
     spec_format = detect_format(spec_file.filename) if spec_file and spec_file.filename else None
+    reference_bytes = await effective_reference_file.read() if effective_reference_file else None
     spec_bytes = await spec_file.read() if spec_file else None
     job_id = _build_job_id()
     JOB_REGISTRY[job_id] = {
@@ -562,6 +665,8 @@ async def parse_workbook(
         "rawFileName": raw_file.filename,
         "rawBytes": raw_bytes,
         "parsedData": parsed_data,
+        "referenceWorkbookName": effective_reference_file.filename if effective_reference_file else None,
+        "referenceWorkbookBytes": reference_bytes,
         "specFileName": spec_file.filename if spec_file else None,
         "specFormat": spec_format,
         "specBytes": spec_bytes,
@@ -579,9 +684,73 @@ async def parse_workbook(
         "columnFillStatus": parsed_data["column_fill_status"],
         "files": {
             "rawFileName": raw_file.filename,
+            "referenceWorkbookName": effective_reference_file.filename if effective_reference_file else None,
             "specFileName": spec_file.filename if spec_file else None,
             "specFormat": spec_format,
         },
+    }
+
+
+@app.post("/api/group")
+async def preview_grouping(payload: GroupPreviewRequest) -> dict:
+    job = JOB_REGISTRY.get(payload.jobId)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+
+    groups, framework = _build_group_preview([row.model_dump() for row in payload.rows])
+    return {
+        "jobId": payload.jobId,
+        "groups": groups,
+        "framework": framework,
+        "assignments": [
+            assignment
+            for group in groups
+            for assignment in [
+                {
+                    "id": row.id,
+                    "reqId": row.reqId,
+                    "testSet": group["testSet"],
+                    "source": "existing" if (row.testSet or "").strip() else "derived",
+                }
+                for row in payload.rows
+                if _derive_test_set_name(row.model_dump()) == group["testSet"]
+            ]
+        ],
+    }
+
+
+@app.post("/api/match")
+async def preview_spec_matching(payload: MatchPreviewRequest) -> dict:
+    job = JOB_REGISTRY.get(payload.jobId)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+
+    reference_index = _build_reference_match_index_for_job(job)
+    prepared_rows = _prepare_match_preview_rows(payload.rows, job)
+    matched_rows = match_spec_references(prepared_rows, reference_index) if reference_index else [
+        {**row, "spec_reference": None, "match_type": "unmatched"} for row in prepared_rows
+    ]
+
+    exact_count = sum(1 for row in matched_rows if row.get("match_type") == "exact")
+    unmatched_count = len(matched_rows) - exact_count
+    return {
+        "jobId": payload.jobId,
+        "summary": {
+            "total": len(matched_rows),
+            "exact": exact_count,
+            "unmatched": unmatched_count,
+            "hasReferenceWorkbook": bool(reference_index),
+        },
+        "matches": [
+            {
+                "id": row.get("id"),
+                "reqId": row.get("req_id"),
+                "testItem": row.get("test_item"),
+                "specReference": row.get("spec_reference"),
+                "matchType": row.get("match_type"),
+            }
+            for row in matched_rows
+        ],
     }
 
 

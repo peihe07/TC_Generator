@@ -28,6 +28,28 @@ def _build_workbook_bytes() -> bytes:
     return stream.getvalue()
 
 
+def _build_reference_workbook_bytes() -> bytes:
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Basic Report"
+    ws.cell(row=1, column=1, value="NRL ID")
+    ws.cell(row=1, column=3, value="Outline")
+    ws.cell(row=1, column=4, value="Description")
+    ws.cell(row=1, column=5, value="Source ID")
+    ws.cell(row=2, column=1, value="NRL-001")
+    ws.cell(row=2, column=3, value="Device Manager")
+    ws.cell(row=2, column=4, value="PDM01 behavior description")
+    ws.cell(row=2, column=5, value="SPEC_REF_PDM01")
+    ws.cell(row=3, column=1, value="NRL-002")
+    ws.cell(row=3, column=3, value="Device Manager")
+    ws.cell(row=3, column=4, value="PDM02 behavior description")
+    ws.cell(row=3, column=5, value="SPEC_REF_PDM02")
+
+    stream = BytesIO()
+    wb.save(stream)
+    return stream.getvalue()
+
+
 client = TestClient(app)
 
 
@@ -54,6 +76,25 @@ def test_parse_workbook():
     assert payload["previewHeaders"] == ["req_id", "test_item", "test_set", "priority"]
     assert payload["rows"][0]["reqId"] == "SWE1-HMI-DM-001-01"
     assert payload["rows"][0]["tcId"] == ""
+
+
+def test_parse_workbook_accepts_reference_workbook():
+    files = {
+        "raw_file": (
+            "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+            _build_workbook_bytes(),
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        ),
+        "reference_file": (
+            "ReferenceWorkbook.xlsx",
+            _build_reference_workbook_bytes(),
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        ),
+    }
+    response = client.post("/api/parse", files=files)
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["files"]["referenceWorkbookName"] == "ReferenceWorkbook.xlsx"
 
 
 def test_parse_rejects_invalid_extension():
@@ -334,3 +375,62 @@ def test_export_respects_selected_columns():
         "2. The requested behavior is shown with the correct visible outcome."
     )
     assert ws.cell(row=10, column=16).value == "High"
+
+
+def test_group_preview_returns_assignments():
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    payload = parse_response.json()
+
+    response = client.post(
+        "/api/group",
+        json={
+            "jobId": payload["jobId"],
+            "rows": payload["rows"],
+        },
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["groups"]
+    assert body["assignments"]
+    assert body["assignments"][0]["testSet"]
+
+
+def test_match_preview_uses_reference_workbook():
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            ),
+            "reference_file": (
+                "ReferenceWorkbook.xlsx",
+                _build_reference_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            ),
+        },
+    )
+    payload = parse_response.json()
+
+    response = client.post(
+        "/api/match",
+        json={
+            "jobId": payload["jobId"],
+            "rows": payload["rows"],
+        },
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["summary"]["hasReferenceWorkbook"] is True
+    assert body["summary"]["exact"] == 2
+    assert body["matches"][0]["specReference"] == "SPEC_REF_PDM01"

@@ -58,6 +58,36 @@ type ExportJobInput = {
   selectedColumns: string[];
 };
 
+type GroupPreview = {
+  groups: Array<{
+    testSet: string;
+    count: number;
+    reqIds: string[];
+  }>;
+  assignments: Array<{
+    id: string;
+    reqId: string;
+    testSet: string;
+    source: "existing" | "derived";
+  }>;
+};
+
+type MatchPreview = {
+  summary: {
+    total: number;
+    exact: number;
+    unmatched: number;
+    hasReferenceWorkbook: boolean;
+  };
+  matches: Array<{
+    id: string;
+    reqId: string;
+    testItem: string;
+    specReference: string | null;
+    matchType: "exact" | "unmatched";
+  }>;
+};
+
 function getStringCell(
   row: Record<string, unknown>,
   candidates: string[],
@@ -223,11 +253,15 @@ export function isBackendConfigured() {
 
 export async function parseJobFiles(input: {
   rawFile: File;
+  referenceWorkbookFile?: File;
   specFile?: File;
 }): Promise<ParseJobResult> {
   try {
     const payload = new FormData();
     payload.append("raw_file", input.rawFile);
+    if (input.referenceWorkbookFile) {
+      payload.append("reference_file", input.referenceWorkbookFile);
+    }
     if (input.specFile) {
       payload.append("spec_file", input.specFile);
     }
@@ -281,6 +315,56 @@ export async function parseJobFiles(input: {
       cost: 0,
     },
   };
+}
+
+export async function fetchGroupingPreview(input: {
+  jobId: string | null;
+  rows: TcRow[];
+}): Promise<GroupPreview> {
+  if (!input.jobId) {
+    throw new Error("A parsed job is required before grouping preview can run.");
+  }
+
+  return parseJsonResponse<GroupPreview>(
+    await fetch(`${appApiBase}/group`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jobId: input.jobId,
+        rows: input.rows.map((row) => ({
+          id: row.id,
+          reqId: row.reqId,
+          testItem: row.testItem,
+          testSet: row.testSet,
+        })),
+      }),
+    }),
+  );
+}
+
+export async function fetchMatchPreview(input: {
+  jobId: string | null;
+  rows: TcRow[];
+}): Promise<MatchPreview> {
+  if (!input.jobId) {
+    throw new Error("A parsed job is required before spec matching preview can run.");
+  }
+
+  return parseJsonResponse<MatchPreview>(
+    await fetch(`${appApiBase}/match`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jobId: input.jobId,
+        rows: input.rows.map((row) => ({
+          id: row.id,
+          reqId: row.reqId,
+          testItem: row.testItem,
+          testSet: row.testSet,
+        })),
+      }),
+    }),
+  );
 }
 
 export function startGeneration(

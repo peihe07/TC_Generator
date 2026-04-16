@@ -11,12 +11,12 @@ const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
   const { openWindow } = useWindowStore();
   const [isParsing, setIsParsing] = useState(false);
-  const [files, setFiles] = useState<{ tc?: File; sys1?: File; spec?: File }>({});
+  const [files, setFiles] = useState<{ tc?: File; referenceWorkbook?: File; spec?: File }>({});
   const tcInputRef = useRef<HTMLInputElement | null>(null);
-  const sys1InputRef = useRef<HTMLInputElement | null>(null);
+  const referenceWorkbookInputRef = useRef<HTMLInputElement | null>(null);
   const specInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleFileDrop = (e: React.DragEvent, type: 'tc' | 'sys1' | 'spec') => {
+  const handleFileDrop = (e: React.DragEvent, type: 'tc' | 'referenceWorkbook' | 'spec') => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
     if (file) {
@@ -26,7 +26,7 @@ const UploadModule: React.FC = () => {
 
   const handleFileSelect = (
     event: React.ChangeEvent<HTMLInputElement>,
-    type: 'tc' | 'sys1' | 'spec',
+    type: 'tc' | 'referenceWorkbook' | 'spec',
   ) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -50,6 +50,7 @@ const UploadModule: React.FC = () => {
     try {
       const result = await parseJobFiles({
         rawFile: files.tc,
+        referenceWorkbookFile: files.referenceWorkbook,
         specFile: files.spec,
       });
 
@@ -104,24 +105,24 @@ const UploadModule: React.FC = () => {
 
         <div className="grid grid-cols-2 gap-4">
           <fieldset className="p-4 border-2 border-sunken">
-            <legend className="px-2 font-bold text-sm">SYS1 Spec (Optional)</legend>
+            <legend className="px-2 font-bold text-sm">Reference Workbook (Optional)</legend>
             <div
               className="h-20 border-2 border-dashed flex flex-col items-center justify-center gap-1 cursor-pointer bg-gray-50 border-gray-400"
-              onClick={() => sys1InputRef.current?.click()}
-              onDrop={(e) => handleFileDrop(e, 'sys1')}
+              onClick={() => referenceWorkbookInputRef.current?.click()}
+              onDrop={(e) => handleFileDrop(e, 'referenceWorkbook')}
               onDragOver={(e) => e.preventDefault()}
             >
               <RiFileSearchLine className="size-6 text-gray-400" />
               <span className="text-xs font-sans truncate px-2 w-full text-center">
-                {files.sys1 ? files.sys1.name : 'Drop SYS1 Excel'}
+                {files.referenceWorkbook ? files.referenceWorkbook.name : 'Drop Reference Excel'}
               </span>
             </div>
             <input
-              ref={sys1InputRef}
+              ref={referenceWorkbookInputRef}
               hidden
               type="file"
               accept=".xlsx,.xlsm"
-              onChange={(event) => handleFileSelect(event, 'sys1')}
+              onChange={(event) => handleFileSelect(event, 'referenceWorkbook')}
             />
           </fieldset>
 
