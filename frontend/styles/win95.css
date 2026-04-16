@@ -231,6 +231,14 @@ body {
   flex: 1;
 }
 
+.review-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 280px;
+  gap: 10px;
+  min-height: 0;
+  flex: 1;
+}
+
 .sunken-panel {
   border: inset 2px;
   border-color: #808080 #ffffff #ffffff #808080;
@@ -369,6 +377,195 @@ body {
   background: white;
 }
 
+.review-toolbar {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.review-toolbar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.review-list-panel,
+.review-main-panel,
+.review-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.review-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: auto;
+  margin-top: 8px;
+}
+
+.review-row-card {
+  text-align: left;
+  border: inset 2px;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 8px;
+  background: #d9d9d9;
+}
+
+.review-row-card.selected {
+  background: #d2e3ff;
+}
+
+.review-row-card p {
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+.review-row-head,
+.review-row-foot,
+.review-action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.review-row-foot {
+  color: #333;
+  text-transform: capitalize;
+}
+
+.review-badge {
+  border: inset 2px;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 2px 6px;
+  text-transform: lowercase;
+}
+
+.review-badge.critical {
+  background: #ffd6d6;
+  color: #7a0000;
+}
+
+.review-badge.warning {
+  background: #fff0bf;
+  color: #665100;
+}
+
+.review-badge.passing {
+  background: #d5f3dc;
+  color: #215c2f;
+}
+
+.review-main-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 0;
+  flex: 1;
+}
+
+.diff-column,
+.review-generated-fields {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.diff-box {
+  border: inset 2px;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 10px;
+  min-height: 180px;
+  background: white;
+  overflow: auto;
+  line-height: 1.5;
+}
+
+.diff-box ins {
+  background: #d6f5d6;
+  text-decoration: none;
+}
+
+.diff-box del {
+  background: #ffd6d6;
+  text-decoration: line-through;
+}
+
+.review-generated-fields dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px 10px;
+}
+
+.review-generated-fields dt {
+  font-weight: 700;
+}
+
+.review-generated-fields dd {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.review-action-row {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+
+.edit-field-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-field-stack label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edit-field-stack textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.validation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: auto;
+}
+
+.validation-item {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
+  align-items: start;
+  border: inset 2px;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 8px;
+}
+
+.validation-item p {
+  margin: 4px 0 0;
+}
+
+.validation-item.critical {
+  background: #ffdede;
+}
+
+.validation-item.warning {
+  background: #fff3ce;
+}
+
+.validation-item.passing {
+  background: #dbf4df;
+}
+
 .preview-table {
   width: 100%;
   border-collapse: collapse;
@@ -463,6 +660,50 @@ body {
   animation: win-spin 1.15s linear infinite;
 }
 
+.radio-stack,
+.checkbox-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.subheading {
+  margin-top: 18px;
+}
+
+.export-toggle {
+  margin-top: 16px;
+}
+
+.export-column {
+  justify-content: flex-start;
+}
+
+.export-preview ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.export-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.export-actions,
+.export-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.export-summary {
+  flex: 1;
+  min-width: 0;
+}
+
 .is-busy {
   cursor: wait;
 }
@@ -478,8 +719,15 @@ body {
 
 @media (max-width: 1100px) {
   .window-columns,
-  .accent-panel {
+  .accent-panel,
+  .review-layout,
+  .review-main-grid {
     grid-template-columns: 1fr;
+  }
+
+  .export-footer {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .app-window {
