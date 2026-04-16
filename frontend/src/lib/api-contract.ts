@@ -46,7 +46,7 @@ export type GenerateStreamEvent =
       message: string;
     }
   | {
-      type: "row.completed";
+      type: "row.completed" | "row.failed";
       jobId: string;
       row: TcRow;
       stats: {

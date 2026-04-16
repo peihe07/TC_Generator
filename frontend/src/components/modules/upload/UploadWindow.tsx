@@ -127,6 +127,7 @@ export function UploadWindow() {
         setRows(
           preview.rows.map((row, index) => ({
             id: `preview-${index + 1}`,
+            rowNum: index + 1,
             reqId: String(row[reqKey] ?? `ROW-${index + 1}`),
             testItem: String(row[itemKey] ?? ""),
             originalRequirement: String(row[itemKey] ?? ""),

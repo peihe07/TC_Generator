@@ -43,20 +43,24 @@ export type TcPreviewRow = Record<string, string | number | null>;
 export type TcRow = {
   id: string;
   rowNum?: number;
+  tcId?: string;
   reqId: string;
   testItem: string;
   originalRequirement?: string;
   testSet?: string;
+  specReference?: string;
   priority?: string;
   status?: "draft" | "ready" | "error";
   reviewStatus?: "pending" | "accepted" | "rejected" | "flagged";
   generated?: {
     testItemRewrite: string;
     preConditions: string;
+    inputTestData?: string;
     testProcedure: string;
     expectedResult: string;
     designMethod: string;
     priority: string;
+    specReference?: string;
   };
   validation?: ValidationIssue[];
 };
