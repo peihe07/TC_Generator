@@ -67,6 +67,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--rows", help="Comma-separated row numbers or req IDs for regenerate mode")
     p.add_argument("--dry-run", action="store_true", help="Show estimated cost without calling API")
     p.add_argument("--budget", type=float, default=5.0, help="Max budget in USD (default: 5.0)")
+    p.add_argument(
+        "--strict-validation",
+        action="store_true",
+        help="Treat validation warnings as failures and skip writing invalid rows",
+    )
     return p.parse_args(argv)
 
 
@@ -100,6 +105,8 @@ def _build_spec_index(sys1_path: str | None, spec_path: str | None) -> dict:
 
     if spec_path:
         fmt = detect_format(spec_path)
+        if fmt is None:
+            raise ValueError(f"Unsupported spec format: {spec_path}")
         print(f"  Parsing spec document ({fmt}): {spec_path}")
         parsers = {"pdf": parse_pdf, "docx": parse_docx, "xlsx": parse_xlsx}
         if fmt in parsers:
@@ -117,6 +124,29 @@ def _estimate_cost(row_count: int, model: str, batch_size: int) -> float:
     total_input = avg_input * row_count
     total_output = avg_output * row_count
     return calculate_cost(total_input, total_output, model)
+
+
+def _would_exceed_budget(current_cost: float, batch_size: int, model: str, budget: float) -> bool:
+    """Conservatively check whether the next batch would exceed the remaining budget."""
+    estimated_batch_cost = _estimate_cost(batch_size, model, batch_size)
+    return current_cost + estimated_batch_cost > budget
+
+
+def _extract_existing_sequence_numbers(rows: list[dict]) -> list[int]:
+    """Extract valid numeric suffixes from existing TC IDs."""
+    sequences = []
+    for row in rows:
+        tc_id = row.get("tc_id")
+        if not tc_id:
+            continue
+
+        parts = tc_id.rsplit("-", 1)
+        if len(parts) != 2 or not parts[1].isdigit():
+            continue
+
+        sequences.append(int(parts[1]))
+
+    return sequences
 
 
 def run(args: argparse.Namespace) -> int:
@@ -162,11 +192,10 @@ def run(args: argparse.Namespace) -> int:
     print("\n[5/7] Generating TC IDs...")
     group_abbr = generate_group_abbreviation(tc_data["test_group"] or "TC")
     # Find max existing sequence for incremental mode
-    existing_ids = [r.get("tc_id", "") for r in tc_data["rows"] if r.get("tc_id")]
+    existing_sequences = _extract_existing_sequence_numbers(tc_data["rows"])
     start = 1
-    if existing_ids:
-        max_seq = max(int(tid.rsplit("-", 1)[1]) for tid in existing_ids if tid.rsplit("-", 1)[1].isdigit())
-        start = max_seq + 1
+    if existing_sequences:
+        start = max(existing_sequences) + 1
     tc_ids = generate_tc_ids(tc_data["project"], group_abbr, len(rows), start=start)
     for row, tc_id in zip(rows, tc_ids):
         row["tc_id"] = tc_id
@@ -223,6 +252,13 @@ def run(args: argparse.Namespace) -> int:
             print(f"\n  ⚠ Budget limit reached (${total_cost:.4f} >= ${args.budget:.2f}). Stopping.")
             failed_rows.extend(batch)
             continue
+        if _would_exceed_budget(total_cost, len(batch), args.model, args.budget):
+            print(
+                f"\n  ⚠ Skipping batch: estimated cost would exceed budget "
+                f"(${total_cost:.4f} + batch > ${args.budget:.2f})."
+            )
+            failed_rows.extend(batch)
+            continue
 
         try:
             if len(batch) == 1:
@@ -269,6 +305,9 @@ def run(args: argparse.Namespace) -> int:
                     print(f"    ⚠ {row['tc_id']}: {len(issues)} validation warning(s)")
                     for issue in issues:
                         print(f"      - [{issue.check}] {issue.message}")
+                    if args.strict_validation:
+                        failed_rows.append(row)
+                        continue
                 else:
                     print(f"    ✓ {row['tc_id']}")
 

@@ -90,6 +90,7 @@ def build_batch_prompt(
         items.append(
             f"### TC {i + 1}\n"
             f"- Req ID: {row['req_id']}\n"
+            f"- Test Set: {row.get('test_set', context.get('test_set', 'N/A'))}\n"
             f"- Test Item: {row['test_item']}\n"
             f"- Spec: {spec_context}"
         )

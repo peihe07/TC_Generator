@@ -23,6 +23,15 @@ WRITE_COLUMNS = {
 }
 
 WRAP_TEXT_ALIGNMENT = Alignment(wrap_text=True, vertical="top")
+CLEARABLE_FIELDS = {"test_set", "spec_reference"}
+
+
+def _merge_test_item_text(existing_text: str | None, rewrite: str) -> str:
+    """Preserve the original test item text while replacing any older rewrite."""
+    original = existing_text or ""
+    if "\n\n" in original:
+        original = original.split("\n\n", 1)[0]
+    return f"{original}\n\n{rewrite}"
 
 
 def build_output_path(input_path: str, output_dir: str | None = None) -> str:
@@ -51,18 +60,23 @@ def write_generated_results(
 
         # Write standard generated columns (overwrite)
         for field, col_idx in WRITE_COLUMNS.items():
+            if field not in row_data:
+                continue
+
             value = row_data.get(field)
+            cell = ws.cell(row=row_num, column=col_idx)
             if value is not None:
-                cell = ws.cell(row=row_num, column=col_idx)
                 cell.value = value
+                cell.alignment = WRAP_TEXT_ALIGNMENT
+            elif field in CLEARABLE_FIELDS:
+                cell.value = None
                 cell.alignment = WRAP_TEXT_ALIGNMENT
 
         # Col I (Test Item): append rewrite, preserve original
         rewrite = row_data.get("test_item_rewrite")
         if rewrite:
             cell_i = ws.cell(row=row_num, column=9)
-            original = cell_i.value or ""
-            cell_i.value = f"{original}\n\n{rewrite}"
+            cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
             cell_i.alignment = WRAP_TEXT_ALIGNMENT
 
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)

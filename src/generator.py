@@ -59,7 +59,7 @@ def parse_tc_response(raw: str) -> dict:
     return data
 
 
-def parse_batch_response(raw: str) -> list[dict]:
+def parse_batch_response(raw: str, expected_count: int | None = None) -> list[dict]:
     """Parse batch TC JSON array response. Raises GenerationError on failure."""
     text = _strip_fences(raw)
     try:
@@ -75,6 +75,11 @@ def parse_batch_response(raw: str) -> list[dict]:
         missing = [k for k in REQUIRED_OUTPUT_KEYS if k not in item]
         if missing:
             raise GenerationError(f"TC[{i}] missing required keys: {missing}")
+
+    if expected_count is not None and len(data) != expected_count:
+        raise GenerationError(
+            f"Batch response count mismatch: expected {expected_count}, got {len(data)}"
+        )
 
     return data
 
@@ -162,7 +167,7 @@ def generate_batch(
         raise GenerationError(f"API call failed: {e}") from e
 
     raw_text = response.content[0].text
-    tc_data = parse_batch_response(raw_text)
+    tc_data = parse_batch_response(raw_text, expected_count=len(rows))
     cost = calculate_cost(
         response.usage.input_tokens,
         response.usage.output_tokens,

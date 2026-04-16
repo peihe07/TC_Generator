@@ -72,12 +72,10 @@ def parse_tc_xlsx(filepath: str) -> dict:
 
     if TC_SHEET_NAME in wb.sheetnames:
         ws_tc = wb[TC_SHEET_NAME]
-        row_num = DATA_START_ROW
-
-        while True:
+        for row_num in range(DATA_START_ROW, ws_tc.max_row + 1):
             req_id = ws_tc.cell(row=row_num, column=COL_MAP["D"]).value
             if not req_id:
-                break
+                continue
 
             row_data = {"row_num": row_num}
             for col_letter, field_name in READ_COLUMNS.items():
@@ -87,7 +85,6 @@ def parse_tc_xlsx(filepath: str) -> dict:
                     column_fill_status[col_letter] += 1
 
             rows.append(row_data)
-            row_num += 1
 
     wb.close()
 
