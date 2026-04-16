@@ -262,6 +262,68 @@ tc-generator/
 
 ---
 
+### Phase 10.5: Job State Manager (Backend Enhancement)
+
+> Manage per-row review state, support inline edit + re-validate + single TC regenerate.
+
+**Files:** `src/job_manager.py`, `tests/test_job_manager.py`
+
+**Problem:** Current backend is a one-shot pipeline (generate all -> write all). The Review page needs:
+1. Track each row's status: `pending` / `accepted` / `edited` / `rejected` / `flagged`
+2. Allow editing generated fields and re-validating without re-calling API
+3. Regenerate only rejected rows (single TC or batch)
+4. Export only accepted/edited rows
+5. Persist job state to JSON for session recovery
+
+**Job JSON structure (per row):**
+
+```json
+{
+  "row_num": 10,
+  "req_id": "SWE1-HMI-DM-001-01",
+  "tc_id": "newR1L-DMR-001",
+  "original": { "test_item": "...", "test_procedure": "...", "expected_result": "..." },
+  "generated": { "test_item_rewrite": "...", "pre_conditions": "...", ... },
+  "edited": null,
+  "validation": { "status": "pass", "issues": [] },
+  "review_status": "pending",
+  "generation_history": [
+    { "timestamp": "...", "model": "...", "cost": 0.003, "source": "ai" }
+  ]
+}
+```
+
+**Steps:**
+
+- [ ] Write tests for job manager (TDD RED)
+- [ ] `create_job()` — initialize job JSON from parsed xlsx data
+- [ ] `save_job()` / `load_job()` — persist to / read from JSON file
+- [ ] `update_row_status()` — change review_status (pending/accepted/edited/rejected/flagged)
+- [ ] `edit_row()` — store user edits in `edited` field, re-run validator, update validation
+- [ ] `get_rows_by_status()` — filter rows by review_status
+- [ ] `get_exportable_rows()` — return accepted + edited rows with final content
+- [ ] `get_job_stats()` — count per status
+- [ ] All tests pass (TDD GREEN)
+- [ ] Refactor if needed
+
+**Review workflow supported:**
+
+```
+Generate -> all rows status = "pending"
+  |
+  User reviews each row:
+  |  Accept  -> status = "accepted" (use generated content)
+  |  Edit    -> store edits in "edited" field -> re-validate -> status = "edited"
+  |  Reject  -> status = "rejected" -> regenerate -> status = "pending" (new cycle)
+  |  Flag    -> status = "flagged" (skip for now)
+  |
+Export -> write accepted + edited rows to xlsx
+```
+
+**Done criteria:** Job state round-trips through JSON. Edit triggers re-validation. Export filters by status.
+
+---
+
 ### Phase 11: Next.js Frontend (RULES.md §14)
 
 > 5-page dashboard UI.
@@ -382,6 +444,7 @@ Phase 1  (Skeleton)
 | 8. Validator | Medium | 1 src + 1 test |
 | 9. Writer | Medium | 1 src + 1 test |
 | 10. CLI | Low | 1 src |
+| 10.5. Job State Manager | Medium | 1 src + 1 test |
 | 11. Frontend | **High** | ~15 files |
 | 12. Integration | Medium | ~5 API routes |
 
@@ -401,5 +464,6 @@ Phase 1  (Skeleton)
 | 8. Validator | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 9. Writer | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 10. CLI | ✅ Done | 2026-04-16 | 2026-04-16 |
+| 10.5. Job State Manager | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 11. Frontend | ⬜ Not started | | |
 | 12. Integration | ⬜ Not started | | |
