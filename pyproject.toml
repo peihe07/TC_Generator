@@ -1,0 +1,26 @@
+[project]
+name = "tc-generator"
+version = "0.1.0"
+description = "Automated test case generation tool for ASPICE SWE.6"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic",
+    "openpyxl",
+    "pdfplumber",
+    "python-docx",
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
