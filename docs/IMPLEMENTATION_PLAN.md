@@ -433,12 +433,17 @@ Export -> write accepted + edited rows to xlsx
 - [x] Row list with validation badges
 - [x] Side-by-side original vs generated diff
 - [x] Per-row actions: Accept / Reject / Flag
-- [x] Inline editing for generated fields
+- [x] Inline editing for generated fields (Pre-Conditions, Steps, Expected)
 - [x] Validation sidebar (red/yellow/green per check)
-- [x] Filters: validation status, review status
+- [x] Filters: validation status, review status, awaiting apply
 - [x] Bulk action: accept all passing
+- [x] Per-row delete (hard delete, no undo)
+- [x] Multi-select checkbox + floating action bar
+- [x] Batch regenerate selected rows (SSE stream, sequential order)
+- [x] Field-level diff apply (Pre-Conditions / Steps / Expected each selectable)
+- [x] Backend: `POST /api/jobs/{jobId}/regenerate/stream` endpoint
 - [ ] Filter by Test Set
-- [ ] Regenerate rejected / export accepted actions
+- [ ] Renumber TC IDs after delete/regenerate
 
 #### Page 5 — Export
 
