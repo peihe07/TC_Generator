@@ -345,15 +345,15 @@ Export -> write accepted + edited rows to xlsx
 
 #### Shared Components — Desktop
 
-- [ ] `components/desktop/Desktop.tsx` — teal background + icon grid
-- [ ] `components/desktop/DesktopIcon.tsx` — double-click to open app
-- [ ] `components/desktop/Taskbar.tsx` — Start button + page tabs + clock
+- [x] `components/system/Desktop.tsx` — teal background + icon grid
+- [x] Desktop icons open windows via double-click
+- [x] `components/system/Taskbar.tsx` — Start button + window tabs + clock
 - [ ] `components/desktop/StartMenu.tsx` — navigation menu
 
 #### Shared Components — Window
 
-- [ ] `components/window/AppWindow.tsx` — 98.css window frame + title bar
-- [ ] `components/window/TitleBar.tsx` — title text + min/max/close buttons
+- [x] `components/system/AppWindow.tsx` — 98.css window frame + title bar
+- [x] Title bar controls — focus / minimize / close
 - [ ] `components/window/StatusBar.tsx` — window bottom status info
 
 #### Shared Components — Retro UI
@@ -369,57 +369,72 @@ Export -> write accepted + edited rows to xlsx
 
 #### Lib & Hooks
 
-- [ ] `lib/types.ts` — Job, TcRow, Config TypeScript types
-- [ ] `lib/constants.ts` — shared constants
-- [ ] `hooks/useJob.ts` — job state context
-- [ ] `hooks/usePython.ts` — call Python backend via API routes
+- [x] `lib/types.ts` — Job, TcRow, Config TypeScript types
+- [x] `lib/constants.ts` — shared constants
+- [x] `store/useJobStore.ts` — Zustand job state
+- [x] `store/useWindowStore.ts` — window lifecycle state
+- [x] `hooks/usePythonAPI.ts` — backend health / mutation hooks
+- [x] `hooks/useSSE.ts` — SSE hookup scaffold
 
 #### Page 1 — Upload
 
-- [ ] Three file upload slots (TC xlsx / SYS1 xlsx / Spec doc)
-- [ ] Drag-and-drop file input with Remix Icon
-- [ ] Auto-detect metadata after upload (project name, test group, row count, fill status)
-- [ ] Summary card with detected metadata
-- [ ] File type validation (.xlsx, .pdf, .docx)
-- [ ] [Next] button (disabled until Slot A uploaded)
+- [x] File upload slots for raw workbook + supplementary spec
+- [x] Browse-based file input with Remix Icon styling
+- [x] Local Excel preview (first 5 rows)
+- [x] Summary card with row count / batch / budget
+- [x] File type validation (.xlsx, .xlsm, .pdf, .docx)
+- [ ] SYS1 dedicated upload slot
+- [ ] [Next] button (window-first flow currently replaces page-to-page navigation)
 
 #### Page 2 — Configure
 
+- [x] Configure window scaffold
+- [x] Model selection (Sonnet / Haiku)
+- [x] Batch size selector
+- [x] Budget control
+- [x] Strict validation toggle
 - [ ] Test Set grouping preview (RetroTreeView)
 - [ ] Drag-and-drop to reassign TCs between groups
 - [ ] Spec matching preview table (Layer 1 green / Layer 2 yellow)
 - [ ] Manual override for spec matching
 - [ ] Generation scope checkboxes per column
-- [ ] Model selection (Sonnet / Haiku)
-- [ ] Batch size selector (1 / 5 / 10)
 - [ ] Save configuration as job JSON
 
 #### Page 3 — Generate
 
-- [ ] Progress bar (RetroProgress, X / N TCs)
-- [ ] Live log textarea (monospace, auto-scroll)
-- [ ] Pause / Resume / Cancel controls
-- [ ] Running cost display (tokens + USD)
-- [ ] Error collection for failed TCs
+- [x] Generate window scaffold
+- [x] Mock progress monitoring (X / N rows)
+- [x] Live log console (auto-growing desktop log)
+- [x] Start / Stop controls for local mock run
+- [x] Running mock cost display
+- [x] Backend health status via `/api/health`
+- [ ] Pause / Resume / Cancel against real backend
+- [ ] Error collection for failed TCs from backend
 - [ ] Auto-transition dialog on completion
 
 #### Page 4 — Review
 
-- [ ] Table view with expandable rows (RetroTable)
-- [ ] Side-by-side original vs generated diff
-- [ ] Per-row actions: Accept / Edit / Reject / Flag (Remix Icons)
-- [ ] Inline editing for generated fields
-- [ ] Validation sidebar (red/yellow/green per check)
-- [ ] Filters: validation status, Test Set, review status
-- [ ] Bulk actions: accept all passing, regenerate rejected, export accepted
+- [x] Review window scaffold
+- [x] Row list with validation badges
+- [x] Side-by-side original vs generated diff
+- [x] Per-row actions: Accept / Reject / Flag
+- [x] Inline editing for generated fields
+- [x] Validation sidebar (red/yellow/green per check)
+- [x] Filters: validation status, review status
+- [x] Bulk action: accept all passing
+- [ ] Filter by Test Set
+- [ ] Regenerate rejected / export accepted actions
 
 #### Page 5 — Export
 
-- [ ] Export scope selector (all / accepted / by Test Set)
-- [ ] Output format choice (new file vs overwrite)
-- [ ] Column include/exclude checkboxes
-- [ ] Framework sheet toggle
-- [ ] Download link for generated xlsx
+- [x] Export window scaffold
+- [x] Export scope selector (all / accepted / flagged)
+- [x] Output format choice (new file vs overwrite)
+- [x] Column include/exclude checkboxes
+- [x] Framework sheet toggle
+- [x] Mock download packaging flow
+- [ ] Export by Test Set
+- [ ] Real download link for generated xlsx
 
 **Done criteria:** All 5 pages render with Win95 style, navigation flow works end-to-end.
 
