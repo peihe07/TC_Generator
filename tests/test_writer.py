@@ -176,6 +176,45 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=row, column=16).value == "Medium"  # Priority (P)
         assert "功能測試" in ws.cell(row=row, column=17).value  # Design Method (Q)
 
+    def test_replaces_existing_rewrite_instead_of_appending_again(self, input_xlsx, generated_rows, tmp_path):
+        first_output = str(tmp_path / "first.xlsx")
+        second_output = str(tmp_path / "second.xlsx")
+
+        write_generated_results(input_xlsx, generated_rows, first_output)
+        write_generated_results(first_output, generated_rows, second_output)
+
+        wb = load_workbook(second_output)
+        ws = wb["Test Case Specification&Result"]
+        cell_value = ws.cell(row=10, column=9).value
+        assert cell_value.count("(User adds DM → DM icon displayed)") == 1
+
+    def test_clears_stale_optional_fields(self, input_xlsx, tmp_path):
+        output = str(tmp_path / "output.xlsx")
+        rows = [{
+            "row_num": 10,
+            "tc_id": "newR1L-DMR-001",
+            "test_group": "DeviceManager",
+            "test_set": "Access & Entry",
+            "test_item_rewrite": "(User adds DM → DM icon displayed)",
+            "pre_conditions": "NA",
+            "input_test_data": "NA",
+            "test_procedure": "1. Open settings.\n2. Verify the result.",
+            "expected_result": "1. Settings shown.\n2. Result verified.",
+            "spec_reference": "Spec_1",
+            "priority": "Medium",
+            "design_method": "功能測試 (Functional based ; no specific technique)",
+        }]
+        write_generated_results(input_xlsx, rows, output)
+
+        rows[0]["test_set"] = None
+        rows[0]["spec_reference"] = None
+        write_generated_results(output, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert ws.cell(row=10, column=8).value is None
+        assert ws.cell(row=10, column=14).value is None
+
 
 class TestWriteFrameworkSheet:
     def test_writes_data(self, input_xlsx, framework_data, tmp_path):

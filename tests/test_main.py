@@ -1,6 +1,8 @@
 """Tests for CLI entry point."""
 import pytest
 from openpyxl import Workbook
+from unittest.mock import patch
+from openpyxl import load_workbook
 
 from main import parse_args, _filter_rows, _estimate_cost, run
 
@@ -51,6 +53,10 @@ class TestParseArgs:
         assert args.mode == "incremental"
         assert args.dry_run is True
         assert args.budget == 2.5
+
+    def test_strict_validation_flag(self):
+        args = parse_args(["--input", "test.xlsx", "--strict-validation"])
+        assert args.strict_validation is True
 
 
 class TestFilterRows:
@@ -109,3 +115,130 @@ class TestDryRun:
         ])
         exit_code = run(args)
         assert exit_code == 0
+
+
+class TestRunGeneration:
+    @patch("main.generate_single_tc")
+    def test_invalid_existing_tc_ids_do_not_crash(self, mock_generate_single_tc, sample_xlsx, tmp_path):
+        wb = Workbook()
+        # placeholder to silence linter-style expectations in some environments
+        del wb
+
+        from openpyxl import load_workbook
+
+        loaded = load_workbook(sample_xlsx)
+        ws = loaded["Test Case Specification&Result"]
+        ws.cell(row=10, column=6, value="bad-id")
+        loaded.save(sample_xlsx)
+        loaded.close()
+
+        mock_generate_single_tc.return_value.tc_data = {
+            "test_item_rewrite": "(Condition → Outcome)",
+            "pre_conditions": "NA",
+            "input_test_data": "NA",
+            "test_procedure": "1. Perform setup.\n2. Verify the result.",
+            "expected_result": "1. Setup completes.\n2. Result is verified.",
+            "design_method": "功能測試 (Functional based ; no specific technique)",
+            "priority": "Medium",
+            "split_flag": False,
+            "split_reason": "",
+        }
+        mock_generate_single_tc.return_value.input_tokens = 10
+        mock_generate_single_tc.return_value.output_tokens = 20
+        mock_generate_single_tc.return_value.cost = 0.001
+
+        args = parse_args([
+            "--input", sample_xlsx,
+            "--output-dir", str(tmp_path / "out"),
+            "--mode", "incremental",
+        ])
+        exit_code = run(args)
+        assert exit_code == 0
+
+    @patch("main.generate_batch")
+    def test_budget_limit_blocks_batch_before_api_call(self, mock_generate_batch, sample_xlsx, tmp_path):
+        args = parse_args([
+            "--input", sample_xlsx,
+            "--output-dir", str(tmp_path / "out"),
+            "--budget", "0.0001",
+            "--batch-size", "2",
+        ])
+
+        exit_code = run(args)
+
+        assert exit_code == 1
+        mock_generate_batch.assert_not_called()
+
+    def test_unsupported_spec_format_fails_fast(self, sample_xlsx, tmp_path):
+        spec_path = tmp_path / "unsupported.txt"
+        spec_path.write_text("not supported")
+
+        args = parse_args([
+            "--input", sample_xlsx,
+            "--spec", str(spec_path),
+            "--dry-run",
+        ])
+
+        with pytest.raises(ValueError, match="Unsupported spec format"):
+            run(args)
+
+    @patch("main.generate_single_tc")
+    def test_strict_validation_fails_invalid_rows(self, mock_generate_single_tc, sample_xlsx, tmp_path):
+        mock_generate_single_tc.return_value.tc_data = {
+            "test_item_rewrite": "(Condition → Outcome)",
+            "pre_conditions": "1. Open settings menu",
+            "input_test_data": "NA",
+            "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
+            "expected_result": "1. Setup completes.\n2. Works as expected.",
+            "design_method": "invalid method",
+            "priority": "Critical",
+            "split_flag": False,
+            "split_reason": "",
+        }
+        mock_generate_single_tc.return_value.input_tokens = 10
+        mock_generate_single_tc.return_value.output_tokens = 20
+        mock_generate_single_tc.return_value.cost = 0.001
+
+        args = parse_args([
+            "--input", sample_xlsx,
+            "--output-dir", str(tmp_path / "out"),
+            "--mode", "incremental",
+            "--batch-size", "1",
+            "--strict-validation",
+        ])
+
+        exit_code = run(args)
+
+        assert exit_code == 1
+        output_path = tmp_path / "out" / "Test_SWQT_DeviceManager_20260408_generated.xlsx"
+        assert not output_path.exists()
+
+    @patch("main.generate_single_tc")
+    def test_non_strict_validation_keeps_warning_behavior(self, mock_generate_single_tc, sample_xlsx, tmp_path):
+        mock_generate_single_tc.return_value.tc_data = {
+            "test_item_rewrite": "(Condition → Outcome)",
+            "pre_conditions": "1. Open settings menu",
+            "input_test_data": "NA",
+            "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
+            "expected_result": "1. Setup completes.\n2. Works as expected.",
+            "design_method": "invalid method",
+            "priority": "Critical",
+            "split_flag": False,
+            "split_reason": "",
+        }
+        mock_generate_single_tc.return_value.input_tokens = 10
+        mock_generate_single_tc.return_value.output_tokens = 20
+        mock_generate_single_tc.return_value.cost = 0.001
+
+        args = parse_args([
+            "--input", sample_xlsx,
+            "--output-dir", str(tmp_path / "out"),
+            "--mode", "incremental",
+            "--batch-size", "1",
+        ])
+
+        exit_code = run(args)
+
+        assert exit_code == 0
+        output_path = tmp_path / "out" / "Test_SWQT_DeviceManager_20260408_generated.xlsx"
+        assert output_path.exists()

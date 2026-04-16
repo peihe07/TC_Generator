@@ -136,3 +136,23 @@ class TestParseTcXlsx:
     def test_file_not_found(self):
         with pytest.raises(FileNotFoundError):
             parse_tc_xlsx("/nonexistent/file.xlsx")
+
+    def test_skips_blank_rows_and_continues(self, tmp_path):
+        filepath = tmp_path / "SomeProject_SWQT_DeviceManager_20260408.xlsx"
+        wb = Workbook()
+        ws_pd = wb.active
+        ws_pd.title = "Product Document"
+        ws_pd.cell(row=3, column=2, value="newR1L")
+
+        ws_tc = wb.create_sheet("Test Case Specification&Result")
+        ws_tc.cell(row=9, column=4, value="Requirement or Design ID")
+        ws_tc.cell(row=9, column=9, value="Test Item")
+        ws_tc.cell(row=10, column=4, value="SWE1-HMI-DM-001-01")
+        ws_tc.cell(row=10, column=9, value="First row")
+        ws_tc.cell(row=12, column=4, value="SWE1-HMI-DM-002-01")
+        ws_tc.cell(row=12, column=9, value="Second row after blank line")
+        wb.save(filepath)
+
+        result = parse_tc_xlsx(str(filepath))
+        assert result["row_count"] == 2
+        assert [row["row_num"] for row in result["rows"]] == [10, 12]

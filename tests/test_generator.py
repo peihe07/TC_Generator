@@ -71,6 +71,11 @@ class TestParseBatchResponse:
         with pytest.raises(GenerationError):
             parse_batch_response("broken")
 
+    def test_count_mismatch_raises(self):
+        batch = [VALID_TC_JSON]
+        with pytest.raises(GenerationError, match="count mismatch"):
+            parse_batch_response(json.dumps(batch), expected_count=2)
+
 
 class TestCalculateCost:
     def test_sonnet_cost(self):

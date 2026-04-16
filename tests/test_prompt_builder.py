@@ -102,3 +102,12 @@ class TestBuildBatchPrompt:
         rows = [{"req_id": "R001", "test_item": "test"}]
         prompt = build_batch_prompt(rows, sample_context, {}, rules_text)
         assert "array" in prompt.lower() or "Array" in prompt
+
+    def test_includes_per_row_test_set(self, sample_context, rules_text):
+        rows = [
+            {"req_id": "R001", "test_item": "test A", "test_set": "Access & Entry"},
+            {"req_id": "R002", "test_item": "test B", "test_set": "Device List"},
+        ]
+        prompt = build_batch_prompt(rows, sample_context, {}, rules_text)
+        assert "- Test Set: Access & Entry" in prompt
+        assert "- Test Set: Device List" in prompt
