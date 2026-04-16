@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
-from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_batch, generate_single_tc
+from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_batch, generate_single_tc, generate_quick_tc, decompose_requirement
 from id_generator import generate_group_abbreviation, generate_tc_ids
 from parser import parse_tc_xlsx
 from spec_matcher import match_spec_references
@@ -94,7 +94,20 @@ class ExportRequest(BaseModel):
     outputMode: str
     includeFrameworkSheet: bool = True
     selectedColumns: list[str] = Field(default_factory=list)
+    rows: list[dict] = Field(default_factory=list)
+
+
+class RegenerateRequest(BaseModel):
+    rowIds: list[str]
+    config: GenerateConfig | None = None
     rows: list[dict]
+
+
+class QuickGenerateRequest(BaseModel):
+    testItem: str
+    context: str | None = None
+    mode: str = "single"  # "single" | "with_context" | "decompose"
+    model: str = DEFAULT_MODEL
 
 
 EXPORT_COLUMN_TO_FIELD = {
@@ -414,6 +427,110 @@ def _sse_event(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
 
+@app.post("/api/quick-generate/stream")
+async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingResponse:
+    """Ad-hoc TC generation from manual input. Supports single, with_context, and decompose modes."""
+
+    async def event_generator():
+        model = payload.model
+        current_cost = 0.0
+
+        yield _sse_event({"type": "job.started", "mode": payload.mode})
+
+        if payload.mode == "decompose":
+            # Step 1: decompose requirement into scenarios
+            try:
+                decompose_result = decompose_requirement(payload.testItem, RULES_SECTIONS, model)
+            except GenerationError as exc:
+                yield _sse_event({"type": "job.failed", "message": str(exc)})
+                return
+
+            current_cost += decompose_result.cost
+            yield _sse_event(
+                {
+                    "type": "decompose.analysis",
+                    "reasoning": decompose_result.reasoning,
+                    "scenarios": decompose_result.scenarios,
+                    "stats": {"total": len(decompose_result.scenarios), "currentCost": round(current_cost, 4)},
+                }
+            )
+
+            # Step 2: generate TC for each scenario sequentially
+            total = len(decompose_result.scenarios)
+            for i, scenario in enumerate(decompose_result.scenarios):
+                yield _sse_event(
+                    {
+                        "type": "tc.generating",
+                        "scenarioId": scenario["id"],
+                        "scenarioName": scenario.get("name", ""),
+                        "stats": {"total": total, "processed": i, "currentCost": round(current_cost, 4)},
+                    }
+                )
+                try:
+                    result = generate_quick_tc(
+                        test_item=scenario.get("test_item", scenario.get("description", "")),
+                        context=f"Scenario: {scenario.get('name', '')}\n{payload.testItem}",
+                        rules_text=RULES_SECTIONS,
+                        model=model,
+                    )
+                    current_cost += result.cost
+                    yield _sse_event(
+                        {
+                            "type": "tc.completed",
+                            "scenarioId": scenario["id"],
+                            "scenarioName": scenario.get("name", ""),
+                            "tc": result.tc_data,
+                            "stats": {"total": total, "processed": i + 1, "currentCost": round(current_cost, 4)},
+                        }
+                    )
+                except GenerationError as exc:
+                    yield _sse_event(
+                        {
+                            "type": "tc.failed",
+                            "scenarioId": scenario["id"],
+                            "message": str(exc),
+                            "stats": {"total": total, "processed": i + 1, "currentCost": round(current_cost, 4)},
+                        }
+                    )
+                await asyncio.sleep(0.05)
+
+        else:
+            # single or with_context: one TC directly
+            context_text = payload.context if payload.mode == "with_context" else None
+            try:
+                result = generate_quick_tc(
+                    test_item=payload.testItem,
+                    context=context_text,
+                    rules_text=RULES_SECTIONS,
+                    model=model,
+                )
+                current_cost += result.cost
+                yield _sse_event(
+                    {
+                        "type": "tc.completed",
+                        "scenarioId": 1,
+                        "tc": result.tc_data,
+                        "stats": {"total": 1, "processed": 1, "currentCost": round(current_cost, 4)},
+                    }
+                )
+            except GenerationError as exc:
+                yield _sse_event({"type": "job.failed", "message": str(exc)})
+                return
+
+        yield _sse_event(
+            {
+                "type": "job.completed",
+                "stats": {"currentCost": round(current_cost, 4)},
+            }
+        )
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
 @app.get("/api/health")
 def healthcheck() -> dict:
     return {"status": "ok", "service": "tc-generator-api"}
@@ -621,6 +738,96 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         )
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+
+@app.post("/api/jobs/{job_id}/regenerate/stream")
+async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> StreamingResponse:
+    """Re-generate specific rows and stream results back as SSE."""
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+
+    async def event_generator():
+        all_rows = _prepare_generation_rows(job)
+        id_set = set(payload.rowIds)
+        id_order = {rid: i for i, rid in enumerate(payload.rowIds)}
+        rows_to_regen = sorted(
+            [r for r in all_rows if r["id"] in id_set],
+            key=lambda r: id_order.get(r["id"], 999),
+        )
+
+        cfg = payload.config.model_dump() if payload.config else job.get("config", {})
+        context = {
+            "project": job.get("parsedData", {}).get("project"),
+            "test_group": job.get("parsedData", {}).get("test_group"),
+            "test_set": "N/A",
+        }
+        spec_index = _build_spec_index_for_job(job)
+        total = len(rows_to_regen)
+        model = cfg.get("model", DEFAULT_MODEL)
+        batch_size = cfg.get("batchSize", 1)
+        processed = 0
+        current_cost = 0.0
+
+        yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total})
+
+        for i in range(0, total, batch_size):
+            batch = rows_to_regen[i : i + batch_size]
+            try:
+                if len(batch) == 1:
+                    context["test_set"] = batch[0].get("test_set", "N/A")
+                    result = generate_single_tc(batch[0], context, spec_index, RULES_SECTIONS, model)
+                    tc_data_list = [result.tc_data]
+                else:
+                    result = generate_batch(batch, context, spec_index, RULES_SECTIONS, model)
+                    tc_data_list = result.tc_data
+
+                current_cost += result.cost
+                for row, tc in zip(batch, tc_data_list):
+                    processed += 1
+                    updated_row, _ = _build_stream_row(row, tc)
+                    yield _sse_event(
+                        {
+                            "type": "row.regenerated",
+                            "jobId": job_id,
+                            "row": updated_row,
+                            "stats": {
+                                "total": total,
+                                "processed": processed,
+                                "currentCost": round(current_cost, 4),
+                            },
+                        }
+                    )
+            except GenerationError as exc:
+                for row in batch:
+                    processed += 1
+                    yield _sse_event(
+                        {
+                            "type": "row.regen_failed",
+                            "jobId": job_id,
+                            "row": _build_failed_stream_row(row, str(exc)),
+                            "stats": {
+                                "total": total,
+                                "processed": processed,
+                                "currentCost": round(current_cost, 4),
+                            },
+                        }
+                    )
+            await asyncio.sleep(0.05)
+
+        yield _sse_event(
+            {
+                "type": "regen.completed",
+                "jobId": job_id,
+                "stats": {"total": total, "processed": processed, "currentCost": round(current_cost, 4)},
+            }
+        )
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
 
 
 @app.post("/api/export")

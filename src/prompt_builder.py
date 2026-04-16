@@ -77,6 +77,54 @@ def build_user_prompt(
 Return JSON with keys: {output_keys}"""
 
 
+def build_quick_generate_prompt(
+    test_item: str,
+    context: str | None,
+    rules_text: str,
+) -> str:
+    """Build prompt for quick (ad-hoc) single TC generation."""
+    output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
+    context_section = f"\n## Additional Context\n{context}" if context else ""
+    return f"""## Task
+Generate a single test case for the following test item. Follow all rules strictly.
+
+## Test Item
+{test_item}{context_section}
+
+## Rules
+{rules_text}
+
+## Output
+Return JSON with keys: {output_keys}"""
+
+
+def build_decompose_prompt(requirement: str, rules_text: str) -> str:
+    """Build prompt to decompose a requirement into distinct test scenarios."""
+    return f"""## Task
+Analyze the following software requirement and decompose it into distinct, independent test scenarios.
+Each scenario should cover a different aspect, condition, or behaviour path.
+
+## Requirement
+{requirement}
+
+## Rules (for context, these will guide TC generation after decomposition)
+{rules_text}
+
+## Output
+Return ONLY valid JSON (no markdown fences) with this exact structure:
+{{
+  "reasoning": "<explain how you identified the scenarios and why>",
+  "scenarios": [
+    {{
+      "id": 1,
+      "name": "<short scenario name>",
+      "description": "<one-sentence description of what this scenario tests>",
+      "test_item": "<rewritten test item statement for this specific scenario>"
+    }}
+  ]
+}}"""
+
+
 def build_batch_prompt(
     rows: list[dict],
     context: dict,
