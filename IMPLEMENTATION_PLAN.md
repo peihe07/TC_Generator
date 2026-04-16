@@ -395,11 +395,11 @@ Phase 1  (Skeleton)
 | 2. Parser | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 3. ID Generator | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 4. Spec Matcher | ✅ Done | 2026-04-16 | 2026-04-16 |
-| 5. Spec Doc Parser | ⬜ Not started | | |
-| 6. Grouper | ⬜ Not started | | |
-| 7. Prompt + Generator | ⬜ Not started | | |
-| 8. Validator | ⬜ Not started | | |
-| 9. Writer | ⬜ Not started | | |
+| 5. Spec Doc Parser | ✅ Done | 2026-04-16 | 2026-04-16 |
+| 6. Grouper | ✅ Done | 2026-04-16 | 2026-04-16 |
+| 7. Prompt + Generator | ✅ Done | 2026-04-16 | 2026-04-16 |
+| 8. Validator | ✅ Done | 2026-04-16 | 2026-04-16 |
+| 9. Writer | ✅ Done | 2026-04-16 | 2026-04-16 |
 | 10. CLI | ⬜ Not started | | |
 | 11. Frontend | ⬜ Not started | | |
 | 12. Integration | ⬜ Not started | | |
