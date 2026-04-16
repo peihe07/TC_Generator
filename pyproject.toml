@@ -5,14 +5,18 @@ description = "Automated test case generation tool for ASPICE SWE.6"
 requires-python = ">=3.10"
 dependencies = [
     "anthropic",
+    "fastapi",
     "openpyxl",
     "pdfplumber",
+    "python-multipart",
     "python-docx",
     "python-dotenv",
+    "uvicorn",
 ]
 
 [project.optional-dependencies]
 dev = [
+    "httpx",
     "pytest",
     "pytest-cov",
 ]
