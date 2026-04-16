@@ -1,33 +1,59 @@
-"use client";
+'use client';
 
-import { ConfigureWindow } from "@/src/components/modules/configure/ConfigureWindow";
-import { ExportWindow } from "@/src/components/modules/export/ExportWindow";
-import { GenerateWindow } from "@/src/components/modules/generate/GenerateWindow";
-import { ReviewWindow } from "@/src/components/modules/review/ReviewWindow";
-import { UploadWindow } from "@/src/components/modules/upload/UploadWindow";
-import { AppWindow } from "@/src/components/system/AppWindow";
-import { useWindowStore } from "@/src/store/useWindowStore";
+import React from 'react';
+import { useWindowStore, WindowID } from '../../store/useWindowStore';
+import AppWindow from './AppWindow';
+import UploadModule from '../modules/upload/UploadModule';
+import ConfigureModule from '../modules/configure/ConfigureModule';
+import GenerateModule from '../modules/generate/GenerateModule';
+import ReviewModule from '../modules/review/ReviewModule';
+import ExportModule from '../modules/export/ExportModule';
+import QuickGenerateModule from '../modules/quickGenerate/QuickGenerateModule';
+import {
+  RiFolderUploadLine,
+  RiSettings3Line,
+  RiPlayCircleLine,
+  RiFileList3Line,
+  RiDownload2Line,
+  RiFlashlightLine,
+} from '@remixicon/react';
 
-export function WindowManager() {
-  const windows = useWindowStore((state) => state.windows);
+const ICON_MAP: Record<WindowID, React.ReactNode> = {
+  upload: <RiFolderUploadLine className="size-4" />,
+  configure: <RiSettings3Line className="size-4" />,
+  generate: <RiPlayCircleLine className="size-4" />,
+  review: <RiFileList3Line className="size-4" />,
+  export: <RiDownload2Line className="size-4" />,
+  quickGenerate: <RiFlashlightLine className="size-4" />,
+};
+
+const CONTENT_MAP: Record<WindowID, React.ReactNode> = {
+  upload: <UploadModule />,
+  configure: <ConfigureModule />,
+  generate: <GenerateModule />,
+  review: <ReviewModule />,
+  export: <ExportModule />,
+  quickGenerate: <QuickGenerateModule />,
+};
+
+const WindowManager: React.FC = () => {
+  const { windows } = useWindowStore();
+  const windowIds = Object.keys(windows) as WindowID[];
 
   return (
     <>
-      <AppWindow windowState={windows.upload}>
-        <UploadWindow />
-      </AppWindow>
-      <AppWindow windowState={windows.configure}>
-        <ConfigureWindow />
-      </AppWindow>
-      <AppWindow windowState={windows.generate}>
-        <GenerateWindow />
-      </AppWindow>
-      <AppWindow windowState={windows.review}>
-        <ReviewWindow />
-      </AppWindow>
-      <AppWindow windowState={windows.export}>
-        <ExportWindow />
-      </AppWindow>
+      {windowIds.map((id) => {
+        const win = windows[id];
+        if (!win.isOpen) return null;
+
+        return (
+          <AppWindow key={id} id={id} icon={ICON_MAP[id]}>
+            {CONTENT_MAP[id]}
+          </AppWindow>
+        );
+      })}
     </>
   );
-}
+};
+
+export default WindowManager;

@@ -1,102 +1,121 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
+import React, { ReactNode, useRef } from 'react';
+import Draggable from 'react-draggable';
+import { ResizableBox } from 'react-resizable';
 import {
-  RiCheckboxBlankLine,
   RiCloseLine,
   RiSubtractLine,
-} from "@remixicon/react";
+  RiCheckboxIndeterminateLine,
+  RiSquareLine,
+  RiFileCopyLine
+} from '@remixicon/react';
+import { useWindowStore, WindowID } from '../../store/useWindowStore';
+import 'react-resizable/css/styles.css';
 
-import type { WindowId, WindowState } from "@/src/lib/types";
-import { useWindowStore } from "@/src/store/useWindowStore";
+interface AppWindowProps {
+  id: WindowID;
+  children: ReactNode;
+  icon?: ReactNode;
+}
 
-type AppWindowProps = {
-  windowState: WindowState;
-  children: React.ReactNode;
-};
+const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
+  const { windows, focusedWindowId, focusWindow, closeWindow, minimizeWindow, maximizeWindow, updatePosition, updateSize } = useWindowStore();
+  const windowData = windows[id];
+  const nodeRef = useRef(null);
 
-export function AppWindow({ windowState, children }: AppWindowProps) {
-  const focusWindow = useWindowStore((state) => state.focusWindow);
-  const minimizeWindow = useWindowStore((state) => state.minimizeWindow);
-  const closeWindow = useWindowStore((state) => state.closeWindow);
-  const updatePosition = useWindowStore((state) => state.updatePosition);
-  const focusedWindowId = useWindowStore((state) => state.focusedWindowId);
-  const dragState = useRef<{
-    id: WindowId;
-    offsetX: number;
-    offsetY: number;
-  } | null>(null);
+  if (!windowData || !windowData.isOpen || windowData.isMinimized) return null;
 
-  if (!windowState.isOpen || windowState.isMinimized) {
-    return null;
-  }
+  const isFocused = focusedWindowId === id;
+  const isMaximized = windowData.isMaximized;
 
-  return (
-    <section
-      className="window app-window"
-      style={{
-        width: windowState.size.width,
-        height: windowState.size.height,
-        left: windowState.position.x,
-        top: windowState.position.y,
-        zIndex: windowState.zIndex,
-      }}
-      onMouseDown={() => focusWindow(windowState.id)}
-    >
-      <div
-        className={`title-bar ${windowState.id === focusedWindowId ? "is-focused" : "is-muted"}`}
-        onMouseDown={(event) => {
-          focusWindow(windowState.id);
-          dragState.current = {
-            id: windowState.id,
-            offsetX: event.clientX - windowState.position.x,
-            offsetY: event.clientY - windowState.position.y,
-          };
+  const onDragStop = (_e: any, data: { x: number; y: number }) => {
+    updatePosition(id, { x: data.x, y: data.y });
+  };
 
-          const onMove = (moveEvent: MouseEvent) => {
-            if (!dragState.current) {
-              return;
-            }
+  const onResizeStop = (_e: any, data: { size: { width: number; height: number } }) => {
+    updateSize(id, { width: data.size.width, height: data.size.height });
+  };
 
-            updatePosition(windowState.id, {
-              x: Math.max(8, moveEvent.clientX - dragState.current.offsetX),
-              y: Math.max(8, moveEvent.clientY - dragState.current.offsetY),
-            });
-          };
-
-          const onUp = () => {
-            dragState.current = null;
-            globalThis.window.removeEventListener("mousemove", onMove);
-            globalThis.window.removeEventListener("mouseup", onUp);
-          };
-
-          globalThis.window.addEventListener("mousemove", onMove);
-          globalThis.window.addEventListener("mouseup", onUp);
-        }}
-      >
-        <div className="title-bar-text">{windowState.title}</div>
+  const windowContent = (
+    <div className={`window flex flex-col h-full ${isMaximized ? 'border-0' : ''}`}>
+      {/* Title Bar */}
+      <div className={`title-bar ${isFocused ? '' : 'inactive'}`} onDoubleClick={() => maximizeWindow(id)}>
+        <div className="title-bar-text flex items-center gap-2">
+          {icon && <span className="flex items-center">{icon}</span>}
+          {windowData.title}
+        </div>
         <div className="title-bar-controls">
           <button
-            aria-label={`Minimize ${windowState.title}`}
-            onClick={() => minimizeWindow(windowState.id)}
+            aria-label="Minimize"
+            onClick={(e) => { e.stopPropagation(); minimizeWindow(id); }}
           >
-            <RiSubtractLine size={12} />
+            <RiSubtractLine className="size-3.5 stroke-[2.5]" />
           </button>
           <button
-            aria-label={`Focus ${windowState.title}`}
-            onClick={() => focusWindow(windowState.id)}
+            aria-label="Maximize"
+            onClick={(e) => { e.stopPropagation(); maximizeWindow(id); }}
           >
-            <RiCheckboxBlankLine size={12} />
+            {isMaximized ? <RiFileCopyLine className="size-3 stroke-[2.5]" /> : <RiSquareLine className="size-3.5 stroke-[2.5]" />}
           </button>
           <button
-            aria-label={`Close ${windowState.title}`}
-            onClick={() => closeWindow(windowState.id)}
+            aria-label="Close"
+            onClick={(e) => { e.stopPropagation(); closeWindow(id); }}
           >
-            <RiCloseLine size={12} />
+            <RiCloseLine className="size-3.5 stroke-[2.5]" />
           </button>
         </div>
       </div>
-      <div className="window-body window-body-shell">{children}</div>
-    </section>
+
+      {/* Window Body */}
+      <div className="window-body flex-1 flex flex-col m-1 overflow-hidden">
+        <div className="flex-1 overflow-auto bg-white p-4 border-2 border-sunken shadow-inner">
+          {children}
+        </div>
+      </div>
+    </div>
   );
-}
+
+  if (isMaximized) {
+    return (
+      <div
+        className="fixed top-0 left-0 right-0 bottom-10 bg-gray-300"
+        style={{ zIndex: windowData.zIndex }}
+        onClick={() => focusWindow(id)}
+      >
+        {windowContent}
+      </div>
+    );
+  }
+
+  return (
+    <Draggable
+      nodeRef={nodeRef}
+      handle=".title-bar"
+      defaultPosition={windowData.position}
+      onStop={onDragStop}
+      onStart={() => focusWindow(id)}
+      bounds="parent"
+    >
+      <div
+        ref={nodeRef}
+        className="absolute top-0 left-0"
+        style={{ zIndex: windowData.zIndex }}
+        onClick={() => focusWindow(id)}
+      >
+        <ResizableBox
+          width={windowData.size.width}
+          height={windowData.size.height}
+          minConstraints={[300, 200]}
+          maxConstraints={[1600, 1200]}
+          onResizeStop={onResizeStop}
+          handle={<span className="react-resizable-handle" />}
+        >
+          {windowContent}
+        </ResizableBox>
+      </div>
+    </Draggable>
+  );
+};
+
+export default AppWindow;

@@ -1,0 +1,101 @@
+/* frontend/src/styles/win95.css */
+
+:root {
+  --font-base-size: 16px;
+  --win95-teal: #008080;
+  --win95-gray: #c0c0c0;
+  --win95-navy: #000080;
+  --win95-blue-light: #1084d0;
+}
+
+/* 全域字體優化 */
+body, button, input, textarea, select, table {
+  font-family: "MS Sans Serif", "Pixelated MS Sans Serif", Arial, sans-serif !important;
+  font-size: var(--font-base-size) !important;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  text-rendering: optimizeLegibility;
+}
+
+/* 提高按鈕可讀性與點擊面積 */
+button {
+  min-height: 32px;
+  padding: 4px 12px !important;
+  cursor: pointer;
+}
+
+/* 小型圖示按鈕優化 (用於表格動作) */
+button.btn-icon {
+  min-height: 22px !important;
+  height: 22px !important;
+  width: 22px !important;
+  min-width: 22px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* 確保表格儲存格內的對齊 */
+td.cell-center {
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+/* 視窗標題列優化 */
+.title-bar {
+  padding: 4px 6px !important;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-bar-text {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.title-bar-controls button {
+  min-height: 20px;
+  min-width: 20px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 強化 OX 符號的可視性 (針對 SVG 圖示) */
+.icon-bold {
+  stroke-width: 2.5px;
+}
+
+.btn-accept {
+  color: #006400 !important; /* 深綠色 */
+}
+
+.btn-reject {
+  color: #8b0000 !important; /* 深紅色 */
+}
+
+/* 視窗縮放熱區 */
+.react-resizable-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  background: linear-gradient(135deg, transparent 50%, #808080 50%, #808080 60%, transparent 60%, transparent 70%, #808080 70%);
+}
+
+/* 桌面背景 */
+.desktop-bg {
+  background-color: var(--win95-teal);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}

@@ -1,94 +1,65 @@
-export type WindowId =
-  | "upload"
-  | "configure"
-  | "generate"
-  | "review"
-  | "export";
+export type TcStatus =
+  | "pending"
+  | "generating"
+  | "success"
+  | "fail"
+  | "reviewing"
+  | "accepted"
+  | "rejected"
+  | "flagged";
 
-export type WindowPosition = {
-  x: number;
-  y: number;
-};
+export interface PendingRegeneratedFields {
+  steps: string;
+  expectedResults: string;
+  preConditions: string;
+}
 
-export type WindowSize = {
-  width: number;
-  height: number;
-};
-
-export type WindowDefinition = {
-  id: WindowId;
-  title: string;
-  description: string;
-  icon: string;
-  position: WindowPosition;
-  size: WindowSize;
-};
-
-export type WindowState = WindowDefinition & {
-  isOpen: boolean;
-  isMinimized: boolean;
-  zIndex: number;
-};
-
-export type LogLevel = "info" | "error";
-
-export type JobLog = {
-  timestamp: string;
-  level: LogLevel;
-  message: string;
-};
-
-export type TcPreviewRow = Record<string, string | number | null>;
-
-export type TcRow = {
+export interface TcRow {
   id: string;
-  rowNum?: number;
-  tcId?: string;
   reqId: string;
+  testGroup: string;
+  testSet: string;
   testItem: string;
-  originalRequirement?: string;
-  testSet?: string;
-  specReference?: string;
-  priority?: string;
-  status?: "draft" | "ready" | "error";
-  reviewStatus?: "pending" | "accepted" | "rejected" | "flagged";
-  generated?: {
-    testItemRewrite: string;
-    preConditions: string;
-    inputTestData?: string;
-    testProcedure: string;
-    expectedResult: string;
-    designMethod: string;
-    priority: string;
-    specReference?: string;
-  };
-  validation?: ValidationIssue[];
-};
+  preConditions: string;
+  steps: string;
+  expectedResults: string;
+  status: TcStatus;
+  validationErrors?: ValidationError[];
+  originalData?: Partial<TcRow>;
+  pendingRegenerated?: PendingRegeneratedFields;
+}
 
-export type ValidationSeverity = "critical" | "warning" | "passing";
-
-export type ValidationIssue = {
-  id: string;
-  severity: ValidationSeverity;
-  field: string;
+export interface ValidationError {
+  severity: "error" | "warning" | "info";
   message: string;
-};
+  column?: string;
+}
 
-export type JobFiles = {
-  raw: File | null;
-  spec: File | null;
-  parsed: boolean;
-};
+export interface JobMetadata {
+  jobId: string;
+  projectName: string;
+  createdAt: string;
+  totalRows: number;
+}
 
-export type JobConfig = {
-  model: string;
+export interface GenerationConfig {
+  model: "claude-3-5-sonnet" | "claude-3-haiku";
   batchSize: number;
-  budget: number;
+  budgetLimit: number;
   strictValidation: boolean;
-};
+  targetColumns: string[];
+}
 
-export type JobStats = {
+export interface JobLog {
+  timestamp: string;
+  level: "info" | "warn" | "error" | "success";
+  message: string;
+}
+
+export interface JobStats {
   total: number;
   processed: number;
-  currentCost: number;
-};
+  success: number;
+  fail: number;
+  cost: number; // USD
+}

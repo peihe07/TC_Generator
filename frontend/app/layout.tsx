@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import "98.css"; // 直接引入確保載入
 import "./globals.css";
-
-import { Providers } from "@/src/components/system/Providers";
+import "../src/styles/win95.css";
 
 export const metadata: Metadata = {
-  title: "TC Generator Desktop",
-  description: "Windows-style desktop shell for ASPICE SWE.6 test case generation.",
+  title: "TC Generator - Windows 95 Edition",
+  description: "AI-powered Test Case Generator",
 };
 
 export default function RootLayout({
@@ -14,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full">
-        <Providers>{children}</Providers>
+    <html lang="en">
+      <body className="antialiased overflow-hidden bg-black">
+        {children}
       </body>
     </html>
   );

@@ -1,112 +1,112 @@
-"use client";
+import { create } from 'zustand';
 
-import { create } from "zustand";
+export type WindowID = 'upload' | 'configure' | 'generate' | 'review' | 'export' | 'quickGenerate';
 
-import { WINDOW_DEFINITIONS } from "@/src/lib/constants";
-import type { WindowId, WindowPosition, WindowState } from "@/src/lib/types";
+interface WindowState {
+  id: WindowID;
+  title: string;
+  isOpen: boolean;
+  isMinimized: boolean;
+  isMaximized: boolean;
+  zIndex: number;
+  position: { x: number; y: number };
+  size: { width: number; height: number };
+}
 
-type WindowStore = {
-  windows: Record<WindowId, WindowState>;
-  focusedWindowId: WindowId | null;
-  nextZIndex: number;
-  openWindow: (id: WindowId) => void;
-  closeWindow: (id: WindowId) => void;
-  focusWindow: (id: WindowId) => void;
-  minimizeWindow: (id: WindowId) => void;
-  toggleWindow: (id: WindowId) => void;
-  updatePosition: (id: WindowId, position: WindowPosition) => void;
+interface WindowStore {
+  windows: Record<WindowID, WindowState>;
+  focusedWindowId: WindowID | null;
+  maxZIndex: number;
+
+  openWindow: (id: WindowID, title: string, defaultSize?: { width: number; height: number }) => void;
+  closeWindow: (id: WindowID) => void;
+  minimizeWindow: (id: WindowID) => void;
+  maximizeWindow: (id: WindowID) => void;
+  focusWindow: (id: WindowID) => void;
+  updatePosition: (id: WindowID, pos: { x: number; y: number }) => void;
+  updateSize: (id: WindowID, size: { width: number; height: number }) => void;
+}
+
+const DEFAULT_WINDOWS: Record<WindowID, WindowState> = {
+  upload: { id: 'upload', title: 'Upload Files', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 50, y: 50 }, size: { width: 500, height: 400 } },
+  configure: { id: 'configure', title: 'Configuration', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 80, y: 80 }, size: { width: 600, height: 500 } },
+  generate: { id: 'generate', title: 'Generation Progress', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 150, y: 100 }, size: { width: 600, height: 480 } },
+  review: { id: 'review', title: 'Review Results', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 100, y: 50 }, size: { width: 900, height: 650 } },
+  export: { id: 'export', title: 'Export', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 200, y: 150 }, size: { width: 500, height: 450 } },
+  quickGenerate: { id: 'quickGenerate', title: 'Quick TC Generator', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 120, y: 80 }, size: { width: 860, height: 620 } },
 };
 
-const initialWindows = Object.fromEntries(
-  Object.entries(WINDOW_DEFINITIONS).map(([id, definition], index) => [
-    id,
-    {
-      ...definition,
-      isOpen: id === "upload",
-      isMinimized: false,
-      zIndex: id === "upload" ? 10 : index + 1,
-    },
-  ]),
-) as Record<WindowId, WindowState>;
+export const useWindowStore = create<WindowStore>((set) => ({
+  windows: DEFAULT_WINDOWS,
+  focusedWindowId: 'export',
+  maxZIndex: 100,
 
-export const useWindowStore = create<WindowStore>((set, get) => ({
-  windows: initialWindows,
-  focusedWindowId: "upload",
-  nextZIndex: 20,
-  openWindow: (id) =>
-    set((state) => ({
+  openWindow: (id, title, defaultSize) => set((state) => {
+    const newMaxZ = state.maxZIndex + 1;
+    return {
       windows: {
         ...state.windows,
         [id]: {
           ...state.windows[id],
+          title,
           isOpen: true,
           isMinimized: false,
-          zIndex: state.nextZIndex,
+          zIndex: newMaxZ,
+          ...(defaultSize ? { size: defaultSize } : {}),
         },
       },
       focusedWindowId: id,
-      nextZIndex: state.nextZIndex + 1,
-    })),
-  closeWindow: (id) =>
-    set((state) => ({
-      windows: {
-        ...state.windows,
-        [id]: {
-          ...state.windows[id],
-          isOpen: false,
-          isMinimized: false,
-        },
-      },
-      focusedWindowId: state.focusedWindowId === id ? null : state.focusedWindowId,
-    })),
-  focusWindow: (id) => {
-    const { windows } = get();
-    if (!windows[id].isOpen) {
-      get().openWindow(id);
-      return;
-    }
+      maxZIndex: newMaxZ,
+    };
+  }),
 
-    set((state) => ({
+  closeWindow: (id) => set((state) => ({
+    windows: {
+      ...state.windows,
+      [id]: { ...state.windows[id], isOpen: false },
+    },
+    focusedWindowId: state.focusedWindowId === id ? null : state.focusedWindowId,
+  })),
+
+  minimizeWindow: (id) => set((state) => ({
+    windows: {
+      ...state.windows,
+      [id]: { ...state.windows[id], isMinimized: true },
+    },
+    focusedWindowId: state.focusedWindowId === id ? null : state.focusedWindowId,
+  })),
+
+  maximizeWindow: (id) => set((state) => ({
+    windows: {
+      ...state.windows,
+      [id]: { ...state.windows[id], isMaximized: !state.windows[id].isMaximized },
+    },
+    focusedWindowId: id,
+  })),
+
+  focusWindow: (id) => set((state) => {
+    const newMaxZ = state.maxZIndex + 1;
+    return {
       windows: {
         ...state.windows,
-        [id]: {
-          ...state.windows[id],
-          isMinimized: false,
-          zIndex: state.nextZIndex,
-        },
+        [id]: { ...state.windows[id], zIndex: newMaxZ, isMinimized: false },
       },
       focusedWindowId: id,
-      nextZIndex: state.nextZIndex + 1,
-    }));
-  },
-  minimizeWindow: (id) =>
-    set((state) => ({
-      windows: {
-        ...state.windows,
-        [id]: {
-          ...state.windows[id],
-          isMinimized: true,
-        },
-      },
-      focusedWindowId: state.focusedWindowId === id ? null : state.focusedWindowId,
-    })),
-  toggleWindow: (id) => {
-    const windowState = get().windows[id];
-    if (!windowState.isOpen || windowState.isMinimized) {
-      get().focusWindow(id);
-      return;
-    }
+      maxZIndex: newMaxZ,
+    };
+  }),
 
-    get().minimizeWindow(id);
-  },
-  updatePosition: (id, position) =>
-    set((state) => ({
-      windows: {
-        ...state.windows,
-        [id]: {
-          ...state.windows[id],
-          position,
-        },
-      },
-    })),
+  updatePosition: (id, pos) => set((state) => ({
+    windows: {
+      ...state.windows,
+      [id]: { ...state.windows[id], position: pos },
+    },
+  })),
+
+  updateSize: (id, size) => set((state) => ({
+    windows: {
+      ...state.windows,
+      [id]: { ...state.windows[id], size },
+    },
+  })),
 }));
