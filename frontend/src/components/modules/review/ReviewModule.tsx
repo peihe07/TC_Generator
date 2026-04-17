@@ -643,6 +643,9 @@ const ReviewModule: React.FC = () => {
                                       <StackedReadField label="Input Test Data" value={row.inputTestData} muted />
                                       <StackedReadField label="Test Procedure" value={row.steps} />
                                       <StackedReadField label="Expected Result" value={row.expectedResults} />
+                                      {row.specReference && (
+                                        <StackedReadField label="Spec Reference" value={row.specReference} muted />
+                                      )}
                                     </div>
                                   )}
                                 </div>

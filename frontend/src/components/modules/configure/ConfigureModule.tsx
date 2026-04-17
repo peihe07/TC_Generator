@@ -29,6 +29,7 @@ type MatchPreviewState = {
   summary: {
     total: number;
     exact: number;
+    fuzzy: number;
     unmatched: number;
     hasReferenceWorkbook: boolean;
   };
@@ -37,7 +38,8 @@ type MatchPreviewState = {
     reqId: string;
     testItem: string;
     specReference: string | null;
-    matchType: 'exact' | 'unmatched';
+    matchType: 'exact' | 'fuzzy' | 'unmatched';
+    matchScore?: number | null;
   }>;
 };
 
@@ -330,7 +332,7 @@ const ConfigureModule: React.FC = () => {
                 {matchPreview && (
                   <div className="status-bar-field p-1 mb-2">
                     {matchPreview.summary.hasReferenceWorkbook
-                      ? `Reference workbook loaded. ${matchPreview.summary.exact} exact match(es), ${matchPreview.summary.unmatched} unmatched.`
+                      ? `Reference workbook loaded. ${matchPreview.summary.exact} exact, ${matchPreview.summary.fuzzy} fuzzy (token similarity), ${matchPreview.summary.unmatched} unmatched.`
                       : 'No compatible reference workbook loaded.'}
                   </div>
                 )}
@@ -351,8 +353,16 @@ const ConfigureModule: React.FC = () => {
                           <td className="p-1 border-r font-mono">{row.reqId}</td>
                           <td className="p-1 border-r" style={{ maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.testItem}</td>
                           <td className="p-1 border-r font-mono">{row.specReference || '—'}</td>
-                          <td className="p-1 font-bold" style={{ color: row.matchType === 'exact' ? '#006400' : '#808080' }}>
-                            {row.matchType === 'exact' ? 'Exact' : 'Unmatched'}
+                          <td className="p-1 font-bold" style={{
+                            color: row.matchType === 'exact' ? '#006400'
+                              : row.matchType === 'fuzzy' ? '#7d4e00'
+                              : '#808080',
+                          }}>
+                            {row.matchType === 'exact'
+                              ? 'Exact'
+                              : row.matchType === 'fuzzy'
+                                ? `Fuzzy ${row.matchScore != null ? `(${(row.matchScore * 100).toFixed(0)}%)` : ''}`
+                                : 'Unmatched'}
                           </td>
                         </tr>
                       ))

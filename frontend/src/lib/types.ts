@@ -21,6 +21,7 @@ export interface TcRow {
   testGroup: string;
   testSet: string;
   testItem: string;
+  specReference?: string | null;
   preConditions: string;
   inputTestData: string;
   steps: string;

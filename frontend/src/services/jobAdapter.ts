@@ -81,6 +81,7 @@ type MatchPreview = {
   summary: {
     total: number;
     exact: number;
+    fuzzy: number;
     unmatched: number;
     hasReferenceWorkbook: boolean;
   };
@@ -89,7 +90,8 @@ type MatchPreview = {
     reqId: string;
     testItem: string;
     specReference: string | null;
-    matchType: "exact" | "unmatched";
+    matchType: "exact" | "fuzzy" | "unmatched";
+    matchScore?: number | null;
   }>;
 };
 
@@ -145,6 +147,7 @@ function mapApiRowToTcRow(
     testGroup,
     testSet: String(row.testSet ?? ""),
     testItem: String(row.testItem ?? ""),
+    specReference: (row.specReference ?? generated?.specReference ?? null) as string | null,
     preConditions: String(generated?.preConditions ?? ""),
     inputTestData: String(generated?.inputTestData ?? ""),
     steps: String(generated?.testProcedure ?? ""),
