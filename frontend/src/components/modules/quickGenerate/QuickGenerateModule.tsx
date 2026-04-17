@@ -68,73 +68,78 @@ const MODE_CONFIG: { id: Mode; label: string; icon: React.ReactNode; desc: strin
   },
 ];
 
+// 與 .status-badge 的 Win95 系統色風格一致（飽和 + sunken inset）
 const PRIORITY_STYLE: Record<string, React.CSSProperties> = {
-  High:   { background: '#f8d7da', color: '#8b0000' },
-  Medium: { background: '#fff3cd', color: '#7d4e00' },
-  Low:    { background: '#e2e3e5', color: '#383d41' },
+  High:   { background: '#c00000', color: '#ffffff' },
+  Medium: { background: '#e0a000', color: '#000000' },
+  Low:    { background: '#909090', color: '#ffffff' },
+};
+const PRIORITY_BASE: React.CSSProperties = {
+  border: '2px solid',
+  borderColor: '#606060 #f0f0f0 #f0f0f0 #606060',
+  boxShadow: 'inset 1px 1px 0 rgba(0,0,0,0.25)',
+  fontWeight: 'bold',
+  padding: '1px 6px',
+  fontSize: 10,
+  letterSpacing: 0.5,
+  textTransform: 'uppercase',
 };
 
 // --- Sub-components ---
 
-const COLUMN_HEADERS: { key: keyof GeneratedTc['tc']; label: string; pre?: boolean; highlight?: boolean; muted?: boolean }[] = [
+const COLUMN_HEADERS: { key: keyof GeneratedTc['tc']; label: string; muted?: boolean }[] = [
   { key: 'test_item_rewrite', label: 'Test Item' },
-  { key: 'pre_conditions', label: 'Pre-Conditions', pre: true },
+  { key: 'pre_conditions', label: 'Pre-Conditions' },
   { key: 'input_test_data', label: 'Input Test Data', muted: true },
-  { key: 'test_procedure', label: 'Test Procedure', pre: true },
-  { key: 'expected_result', label: 'Expected Result', pre: true, highlight: true },
+  { key: 'test_procedure', label: 'Test Procedure' },
+  { key: 'expected_result', label: 'Expected Result' },
 ];
 
 const TcCard: React.FC<{ tc: GeneratedTc; index: number }> = ({ tc, index }) => {
-  const priorityStyle = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#e2e3e5', color: '#383d41' };
+  const priorityColor = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#909090', color: '#ffffff' };
   return (
-    <div style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080', background: '#ffffff' }}>
-      {/* Title bar */}
-      <div
-        className="flex items-center gap-2 px-2 py-1"
-        style={{ background: '#000080', color: '#ffffff' }}
-      >
-        <span className="text-xs font-bold flex-1">
+    <div className="flex flex-col">
+      <div className="title-bar-mini">
+        <RiFlashlightLine className="size-3" />
+        <span className="flex-1">
           TC {index + 1}{tc.scenarioName ? ` — ${tc.scenarioName}` : ''}
         </span>
-        <span className="text-[10px] px-2 font-bold uppercase" style={priorityStyle}>
-          {tc.tc.priority}
-        </span>
-        <span className="text-[10px] opacity-70 ml-1">{tc.tc.design_method}</span>
+        <span style={{ ...PRIORITY_BASE, ...priorityColor }}>{tc.tc.priority}</span>
+        <span className="text-[10px] opacity-75 ml-2">{tc.tc.design_method}</span>
       </div>
-
-      {/* Stacked fields */}
-      <div className="flex flex-col">
-        {COLUMN_HEADERS.map((c) => {
-          const raw = tc.tc[c.key] as string;
-          return (
-            <div key={c.key} style={{ borderTop: '1px solid #e0e0e0' }}>
-              <div
-                className="px-2 py-1 font-bold uppercase"
-                style={{
-                  background: '#e8e8e8',
-                  borderBottom: '1px solid #d0d0d0',
-                  fontSize: 10,
-                  color: '#444',
-                  letterSpacing: 0.5,
-                }}
-              >
-                {c.label}
+      <div className="paper-card">
+        <div className="flex flex-col">
+          {COLUMN_HEADERS.map((c) => {
+            const raw = tc.tc[c.key] as string;
+            return (
+              <div key={c.key} style={{ borderTop: '1px solid #e0e0e0' }}>
+                <div
+                  className="px-2 py-1 font-bold uppercase"
+                  style={{
+                    background: '#e8e8e8',
+                    borderBottom: '1px solid #d0d0d0',
+                    fontSize: 10,
+                    color: '#444',
+                    letterSpacing: 0.5,
+                  }}
+                >
+                  {c.label}
+                </div>
+                <div
+                  className="selectable px-3 py-2 text-xs whitespace-pre-wrap"
+                  style={{
+                    color: c.muted ? '#808080' : '#000000',
+                    fontStyle: c.muted ? 'italic' : 'normal',
+                    wordBreak: 'break-word',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {raw || '—'}
+                </div>
               </div>
-              <div
-                className={`px-3 py-2 text-xs ${c.pre ? 'whitespace-pre-wrap' : ''}`}
-                style={{
-                  color: c.highlight ? '#006400' : c.muted ? '#808080' : '#000000',
-                  fontStyle: c.muted ? 'italic' : 'normal',
-                  fontWeight: c.highlight ? 'bold' : 'normal',
-                  wordBreak: 'break-word',
-                  lineHeight: 1.5,
-                }}
-              >
-                {raw || '—'}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -438,13 +443,23 @@ const QuickGenerateModule: React.FC = () => {
             </button>
           )}
           {(phase === 'done' || phase === 'error') && (
-            <button
-              className="px-3 py-2 text-sm flex items-center gap-1"
-              onClick={reset}
-              title="Clear results"
-            >
-              <RiRefreshLine className="size-4" />
-            </button>
+            <>
+              <button
+                className="px-3 py-2 text-sm flex items-center gap-1 font-bold"
+                onClick={handleGenerate}
+                disabled={!testItem.trim()}
+                title="Regenerate with same input"
+              >
+                <RiRefreshLine className="size-4" /> Regenerate
+              </button>
+              <button
+                className="px-3 py-2 text-sm flex items-center gap-1"
+                onClick={reset}
+                title="Clear results"
+              >
+                <RiCloseFill className="size-4" />
+              </button>
+            </>
           )}
         </div>
 
