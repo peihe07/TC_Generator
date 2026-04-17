@@ -11,12 +11,12 @@ The project has two working surfaces:
 
 - Python `>=3.10`
 - Node.js `>=20`
-- A valid `ANTHROPIC_API_KEY` for real AI generation
+- A valid `OPENAI_API_KEY` for real AI generation
 
 Example:
 
 ```bash
-export ANTHROPIC_API_KEY=your_key_here
+export OPENAI_API_KEY=sk-proj-xxxxxxxxxxxx
 ```
 
 You can also place the key in a local `.env` file because the Python entry points load dotenv.
@@ -91,7 +91,7 @@ python src/main.py \
   --spec path/to/spec.docx \
   --framework path/to/framework.json \
   --output-dir output \
-  --model claude-haiku-4-5-20251001 \
+  --model gpt-4.1 \
   --batch-size 5
 ```
 
@@ -102,7 +102,7 @@ python src/main.py \
 - `--spec`: optional supplementary spec document; supported formats are `.pdf`, `.docx`, `.xlsx`
 - `--framework`: optional confirmed `framework.json` for assigning `Test Set`
 - `--output-dir`: output directory; default is `output`
-- `--model`: Anthropic model name; default is `claude-haiku-4-5-20251001`
+- `--model`: OpenAI model name; default is `gpt-4.1` (others: `gpt-5`, `gpt-4.1-mini`, `gpt-4o-mini`)
 - `--batch-size`: number of TCs per API call; default is `5`
 - `--mode`: one of `full`, `incremental`, `regenerate`
 - `--rows`: comma-separated row numbers or requirement IDs for `regenerate` mode
@@ -124,7 +124,7 @@ python src/main.py \
 - The test group is derived from the input filename pattern `*_SWQT_{TestGroup}_YYYYMMDD.xlsx`.
 - If the workbook contains blank rows between valid data rows, parsing continues and later rows are still processed.
 - Parse and export are verified end-to-end through the desktop and proxy routes.
-- Real generation still depends on a valid Anthropic credential at runtime.
+- Real generation still depends on a valid OpenAI credential at runtime.
 
 ## Related Docs
 

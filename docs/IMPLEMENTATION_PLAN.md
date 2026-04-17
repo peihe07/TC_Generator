@@ -139,7 +139,7 @@ Quick Generate appears in the desktop and should be documented and validated con
 
 ## Recommended Execution Order
 
-1. Real API validation with a working Anthropic credential
+1. Real API validation with a working OpenAI credential
 2. Validate group / match preview behavior on real files
 3. Session persistence and Configure refinements
 4. Optional persistence and larger UX refinements
@@ -150,7 +150,7 @@ Quick Generate appears in the desktop and should be documented and validated con
 
 | Risk | Level | Current mitigation |
 |------|-------|--------------------|
-| Anthropic credential missing or invalid | High | Proxy and stream paths tested separately; real generation blocked until valid key is available |
+| OpenAI credential missing or invalid | High | Proxy and stream paths tested separately; real generation blocked until valid key is available |
 | Generated JSON or field quality drift | High | Validator already in place; real-run verification still required |
 | Export mismatch between frontend review state and backend writer | Medium | Export proxy path already smoke-tested with accepted rows |
 | Frontend state drift across modules | Medium | Shared Zustand stores + adapter now act as the single integration boundary |

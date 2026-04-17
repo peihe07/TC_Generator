@@ -214,7 +214,7 @@ def generate_single_tc(
     model: str = DEFAULT_MODEL,
 ) -> GenerationResult:
     """
-    Generate a single TC by calling Claude API.
+    Generate a single TC by calling the chat completion API.
 
     Raises GenerationError on API or parse failure.
     """

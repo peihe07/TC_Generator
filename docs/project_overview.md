@@ -112,7 +112,7 @@ TC_Generator/
 - Configure 的 grouping / matching preview 已接到 backend
 - Export proxy 與 workbook download 可用
 - Generate / regenerate 的 proxy 與 stream 路徑可用
-- 真正 AI 生成仍依賴有效的 `ANTHROPIC_API_KEY`
+- 真正 AI 生成仍依賴有效的 `OPENAI_API_KEY`
 
 ## 後端現況
 
@@ -124,7 +124,7 @@ TC_Generator/
 - `id_generator.py`：TC ID 生成
 - `grouper.py`：Test Set grouping
 - `prompt_builder.py`：prompt 組裝
-- `generator.py`：Anthropic 呼叫與回應處理
+- `generator.py`：OpenAI 呼叫與回應處理
 - `validator.py`：程式化驗證
 - `writer.py`：Excel 回寫
 - `job_manager.py`：review/export 狀態管理
