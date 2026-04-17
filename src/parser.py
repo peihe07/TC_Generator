@@ -30,14 +30,30 @@ READ_COLUMNS = {
 
 HEADER_ROW = 9
 DATA_START_ROW = 10
+# 真實檔案中 sheet 名稱可能帶中文副標（如 "Product Document 記錄封面頁"），
+# 因此用 prefix 比對。
 TC_SHEET_NAME = "Test Case Specification&Result"
-PRODUCT_SHEET_NAME = "Product Document"
+PRODUCT_SHEET_PREFIX = "Product Document"
+
+
+def _find_sheet(wb, prefix: str) -> str | None:
+    """找出第一個名稱以 prefix 開頭的 sheet（case-insensitive、容忍前後空白）。"""
+    p = prefix.strip().lower()
+    for name in wb.sheetnames:
+        if name.strip().lower().startswith(p):
+            return name
+    return None
 
 
 def parse_test_group_from_filename(filename: str) -> str | None:
-    """Extract Test Group from filename pattern: ..._SWQT_{TestGroup}_{date}.xlsx"""
+    """
+    Extract Test Group from filename pattern: ..._SWQT_{TestGroup}_{YYYYMMDD}...xlsx
+
+    容忍日期後出現額外字串（如 `-1`、`拷貝`、`(copy)`），只要 `_SWQT_<group>_<8位日期>`
+    這段完整出現就能抽出 group。
+    """
     basename = os.path.basename(filename)
-    match = re.search(r"_SWQT_([^_]+)_\d{8}\.xlsx$", basename)
+    match = re.search(r"_SWQT_([^_]+)_\d{8}", basename)
     return match.group(1) if match else None
 
 
@@ -57,10 +73,11 @@ def parse_tc_xlsx(filepath: str) -> dict:
 
     wb = load_workbook(filepath, read_only=True, data_only=True)
 
-    # Extract project name from Product Document sheet
+    # Extract project name from Product Document sheet — 容忍中英雙語副標
     project = None
-    if PRODUCT_SHEET_NAME in wb.sheetnames:
-        ws_pd = wb[PRODUCT_SHEET_NAME]
+    product_sheet = _find_sheet(wb, PRODUCT_SHEET_PREFIX)
+    if product_sheet:
+        ws_pd = wb[product_sheet]
         project = ws_pd.cell(row=3, column=2).value
 
     # Extract test group from filename
