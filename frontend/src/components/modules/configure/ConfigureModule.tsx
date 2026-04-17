@@ -61,7 +61,13 @@ const ConfigureModule: React.FC = () => {
   const estimatedCalls = tcRows.length ? Math.ceil(tcRows.length / Math.max(config.batchSize, 1)) : 0;
   const estimatedBudget = Math.min(
     config.budgetLimit,
-    Number((tcRows.length * (config.model === 'claude-haiku-4-5-20251001' ? 0.008 : 0.02)).toFixed(2)),
+    Number((tcRows.length * (
+      config.model === 'gpt-5' ? 0.03 :
+      config.model === 'gpt-4.1' ? 0.015 :
+      config.model === 'gpt-4.1-mini' ? 0.004 :
+      config.model === 'gpt-4o' ? 0.02 :
+      config.model === 'gpt-4o-mini' ? 0.002 : 0.01
+    )).toFixed(2)),
   );
 
   const exactMatchRatio = useMemo(() => {
@@ -293,18 +299,32 @@ const ConfigureModule: React.FC = () => {
                 <fieldset>
                   <legend>AI Model</legend>
                   <div className="field-row">
-                    <input type="radio" id="m1" name="model"
-                      checked={config.model === 'claude-sonnet-4-6'}
-                      onChange={() => updateConfig({ model: 'claude-sonnet-4-6' })}
+                    <input type="radio" id="m-gpt5" name="model"
+                      checked={config.model === 'gpt-5'}
+                      onChange={() => updateConfig({ model: 'gpt-5' })}
                     />
-                    <label htmlFor="m1">Claude Sonnet 4.6 (High Accuracy)</label>
+                    <label htmlFor="m-gpt5">GPT-5 (Top Quality)</label>
                   </div>
                   <div className="field-row">
-                    <input type="radio" id="m2" name="model"
-                      checked={config.model === 'claude-haiku-4-5-20251001'}
-                      onChange={() => updateConfig({ model: 'claude-haiku-4-5-20251001' })}
+                    <input type="radio" id="m-gpt41" name="model"
+                      checked={config.model === 'gpt-4.1'}
+                      onChange={() => updateConfig({ model: 'gpt-4.1' })}
                     />
-                    <label htmlFor="m2">Claude Haiku 4.5 (Fast & Cheap)</label>
+                    <label htmlFor="m-gpt41">GPT-4.1 (Quality, Stable)</label>
+                  </div>
+                  <div className="field-row">
+                    <input type="radio" id="m-gpt41m" name="model"
+                      checked={config.model === 'gpt-4.1-mini'}
+                      onChange={() => updateConfig({ model: 'gpt-4.1-mini' })}
+                    />
+                    <label htmlFor="m-gpt41m">GPT-4.1 mini (Balanced)</label>
+                  </div>
+                  <div className="field-row">
+                    <input type="radio" id="m-gpt4om" name="model"
+                      checked={config.model === 'gpt-4o-mini'}
+                      onChange={() => updateConfig({ model: 'gpt-4o-mini' })}
+                    />
+                    <label htmlFor="m-gpt4om">GPT-4o mini (Cheapest)</label>
                   </div>
                 </fieldset>
 

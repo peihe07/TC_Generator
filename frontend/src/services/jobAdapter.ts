@@ -39,6 +39,8 @@ type GenerateCallbacks = {
     cost: number;
     inputTokens: number;
     outputTokens: number;
+    cacheCreationTokens: number;
+    cacheReadTokens: number;
   }) => void;
   onComplete?: (message: string) => void;
   onError?: (message: string) => void;
@@ -447,6 +449,8 @@ export function startGeneration(
               cost: Number(stats.currentCost ?? 0),
               inputTokens: Number(stats.inputTokens ?? 0),
               outputTokens: Number(stats.outputTokens ?? 0),
+              cacheCreationTokens: Number(stats.cacheCreationTokens ?? 0),
+              cacheReadTokens: Number(stats.cacheReadTokens ?? 0),
             });
           }
 
@@ -505,6 +509,8 @@ export function startGeneration(
         cost,
         inputTokens: 0,
         outputTokens: 0,
+        cacheCreationTokens: 0,
+        cacheReadTokens: 0,
       });
 
       if (processed >= input.rows.length) {

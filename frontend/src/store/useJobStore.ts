@@ -28,7 +28,7 @@ interface JobStore {
 }
 
 const DEFAULT_CONFIG: GenerationConfig = {
-  model: 'claude-sonnet-4-6',
+  model: 'gpt-4.1',
   batchSize: 5,
   budgetLimit: 10,
   strictValidation: false,
@@ -43,6 +43,8 @@ const DEFAULT_STATS: JobStats = {
   cost: 0,
   inputTokens: 0,
   outputTokens: 0,
+  cacheCreationTokens: 0,
+  cacheReadTokens: 0,
 };
 
 function renumberRows(rows: TcRow[]): TcRow[] {

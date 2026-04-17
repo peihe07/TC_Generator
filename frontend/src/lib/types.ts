@@ -43,7 +43,7 @@ export interface JobMetadata {
 }
 
 export interface GenerationConfig {
-  model: "claude-sonnet-4-6" | "claude-haiku-4-5-20251001";
+  model: "gpt-5" | "gpt-5-mini" | "gpt-4.1" | "gpt-4.1-mini" | "gpt-4o" | "gpt-4o-mini";
   batchSize: number;
   budgetLimit: number;
   strictValidation: boolean;
@@ -64,4 +64,6 @@ export interface JobStats {
   cost: number;       // USD
   inputTokens: number;
   outputTokens: number;
+  cacheCreationTokens: number;
+  cacheReadTokens: number;
 }

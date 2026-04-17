@@ -4,14 +4,18 @@ import React from 'react';
 import { useJobStore } from '../../store/useJobStore';
 
 const MODEL_PRICING: Record<string, { input: number; output: number; label: string }> = {
-  'claude-sonnet-4-6':          { input: 3.0,  output: 15.0, label: 'Sonnet 4.6' },
-  'claude-haiku-4-5-20251001':  { input: 0.80, output: 4.0,  label: 'Haiku 4.5'  },
+  'gpt-5':        { input: 5.00, output: 15.00, label: 'GPT-5' },
+  'gpt-5-mini':   { input: 0.25, output: 2.00,  label: 'GPT-5 mini' },
+  'gpt-4.1':      { input: 2.00, output: 8.00,  label: 'GPT-4.1' },
+  'gpt-4.1-mini': { input: 0.40, output: 1.60,  label: 'GPT-4.1 mini' },
+  'gpt-4o':       { input: 2.50, output: 10.00, label: 'GPT-4o' },
+  'gpt-4o-mini':  { input: 0.15, output: 0.60,  label: 'GPT-4o mini' },
 };
 
 const CostMeter: React.FC = () => {
   const { stats, config, jobMetadata } = useJobStore();
 
-  const pricing = MODEL_PRICING[config.model] ?? MODEL_PRICING['claude-sonnet-4-6'];
+  const pricing = MODEL_PRICING[config.model] ?? MODEL_PRICING['gpt-4.1'];
   const inputCost  = (stats.inputTokens  / 1_000_000) * pricing.input;
   const outputCost = (stats.outputTokens / 1_000_000) * pricing.output;
   const totalCost  = stats.cost > 0 ? stats.cost : inputCost + outputCost;
@@ -71,6 +75,30 @@ const CostMeter: React.FC = () => {
             value={stats.outputTokens > 0 ? `${stats.outputTokens.toLocaleString()} tok` : '—'}
             sub={stats.outputTokens > 0 ? `$${outputCost.toFixed(5)}` : undefined}
           />
+          {(stats.cacheCreationTokens > 0 || stats.cacheReadTokens > 0) && (
+            <>
+              <Row
+                label="Cache W"
+                value={`${stats.cacheCreationTokens.toLocaleString()} tok`}
+                sub={`@1.25x`}
+              />
+              <Row
+                label="Cache R"
+                value={`${stats.cacheReadTokens.toLocaleString()} tok`}
+                sub={`@0.10x`}
+              />
+              {(() => {
+                const totalIn = stats.inputTokens + stats.cacheCreationTokens + stats.cacheReadTokens;
+                const hitRate = totalIn > 0 ? (stats.cacheReadTokens / totalIn) * 100 : 0;
+                return (
+                  <Row
+                    label="Hit rate"
+                    value={`${hitRate.toFixed(1)}%`}
+                  />
+                );
+              })()}
+            </>
+          )}
         </div>
 
         {/* Total cost */}
@@ -130,7 +158,7 @@ const CostMeter: React.FC = () => {
               borderTop: '1px solid #808080',
               marginTop: 2,
               paddingTop: 2,
-              fontSize: 9,
+              fontSize: 11,
               color: '#666',
               fontFamily: 'monospace',
               overflow: 'hidden',
@@ -148,8 +176,8 @@ const CostMeter: React.FC = () => {
 
 const Row: React.FC<{ label: string; value: string; sub?: string }> = ({ label, value, sub }) => (
   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-    <span style={{ fontSize: 10, color: '#444', flexShrink: 0 }}>{label}</span>
-    <span style={{ fontFamily: 'monospace', fontSize: 10, fontWeight: 'bold', textAlign: 'right' }}>
+    <span style={{ fontSize: 13, color: '#444', flexShrink: 0 }}>{label}</span>
+    <span style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 'bold', textAlign: 'right' }}>
       {value}
       {sub && <span style={{ fontWeight: 'normal', color: '#666', marginLeft: 4 }}>{sub}</span>}
     </span>

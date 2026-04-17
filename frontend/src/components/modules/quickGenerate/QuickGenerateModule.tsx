@@ -8,7 +8,6 @@ import {
   RiArrowRightLine,
   RiCheckFill,
   RiCloseFill,
-  RiClipboardLine,
   RiRefreshLine,
   RiLightbulbLine,
   RiArrowDownSLine,
@@ -76,93 +75,96 @@ const PRIORITY_STYLE: Record<string, React.CSSProperties> = {
 
 // --- Sub-components ---
 
-const TcCard: React.FC<{ tc: GeneratedTc; index: number }> = ({ tc, index }) => {
-  const [expanded, setExpanded] = useState(true);
-  const [copied, setCopied] = useState(false);
+const COLUMN_HEADERS: { key: keyof GeneratedTc['tc']; label: string; pre?: boolean; highlight?: boolean; muted?: boolean }[] = [
+  { key: 'test_item_rewrite', label: 'Test Item' },
+  { key: 'pre_conditions', label: 'Pre-Conditions', pre: true },
+  { key: 'input_test_data', label: 'Input Test Data', muted: true },
+  { key: 'test_procedure', label: 'Test Procedure', pre: true },
+  { key: 'expected_result', label: 'Expected Result', pre: true, highlight: true },
+];
 
-  const copyToClipboard = () => {
-    const text = [
-      `[TC ${index + 1}] ${tc.scenarioName ?? ''}`,
-      `Test Item: ${tc.tc.test_item_rewrite}`,
-      `Pre-Conditions: ${tc.tc.pre_conditions}`,
-      `Input Test Data: ${tc.tc.input_test_data}`,
-      `Test Procedure:\n${tc.tc.test_procedure}`,
-      `Expected Result:\n${tc.tc.expected_result}`,
-      `Design Method: ${tc.tc.design_method}`,
-      `Priority: ${tc.tc.priority}`,
-    ].join('\n\n');
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  };
-
-  const priorityStyle = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#e2e3e5', color: '#383d41' };
-
-  return (
-    <div style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080' }}>
-      {/* Title bar */}
-      <div
-        className="flex items-center gap-2 px-2 py-1 cursor-pointer select-none"
-        style={{ background: '#000080', color: '#ffffff' }}
-        onClick={() => setExpanded((v) => !v)}
-      >
-        {expanded ? <RiArrowUpSLine className="size-3 shrink-0" /> : <RiArrowDownSLine className="size-3 shrink-0" />}
-        <span className="text-xs font-bold flex-1">
-          TC {index + 1}{tc.scenarioName ? ` — ${tc.scenarioName}` : ''}
-        </span>
-        <span className="text-[10px] px-2 font-bold uppercase" style={priorityStyle}>
-          {tc.tc.priority}
-        </span>
-        <span className="text-[10px] opacity-70 ml-1">{tc.tc.design_method}</span>
-        <button
-          className="ml-2 text-xs px-2 flex items-center gap-1"
-          style={{ background: '#c0c0c0', color: '#000000', minHeight: 18, height: 18 }}
-          onClick={(e) => { e.stopPropagation(); copyToClipboard(); }}
-          title="Copy to clipboard"
-        >
-          {copied ? <RiCheckFill className="size-3" style={{ color: '#006400' }} /> : <RiClipboardLine className="size-3" />}
-          {copied ? 'Copied' : 'Copy'}
-        </button>
-      </div>
-
-      {/* Body */}
-      {expanded && (
-        <div style={{ background: '#ffffff' }}>
-          <FieldRow label="Test Item" value={tc.tc.test_item_rewrite} />
-          <FieldRow label="Pre-Conditions" value={tc.tc.pre_conditions} />
-          <FieldRow label="Input Test Data" value={tc.tc.input_test_data} muted />
-          <FieldRow label="Test Procedure" value={tc.tc.test_procedure} pre />
-          <FieldRow label="Expected Result" value={tc.tc.expected_result} pre highlight />
-        </div>
-      )}
-    </div>
-  );
-};
-
-const FieldRow: React.FC<{
-  label: string;
-  value: string;
-  pre?: boolean;
-  highlight?: boolean;
-  muted?: boolean;
-}> = ({ label, value, pre, highlight, muted }) => (
-  <div className="grid grid-cols-[130px_1fr] text-xs" style={{ borderTop: '1px solid #e0e0e0' }}>
-    <div
-      className="px-2 py-1 font-bold uppercase"
-      style={{ background: '#e8e8e8', borderRight: '1px solid #c0c0c0', fontSize: 10, color: '#444' }}
-    >
-      {label}
-    </div>
-    <div
-      className={`px-2 py-1 ${pre ? 'whitespace-pre-wrap' : ''}`}
+const TcTable: React.FC<{ tcs: GeneratedTc[] }> = ({ tcs }) => (
+  <div
+    style={{
+      border: '2px solid',
+      borderColor: '#808080 #ffffff #ffffff #808080',
+      background: '#ffffff',
+      overflow: 'auto',
+    }}
+  >
+    <table
+      className="text-xs"
       style={{
-        color: highlight ? '#006400' : muted ? '#808080' : '#000000',
-        fontStyle: muted ? 'italic' : 'normal',
-        fontWeight: highlight ? 'bold' : 'normal',
+        width: '100%',
+        borderCollapse: 'collapse',
+        tableLayout: 'fixed',
       }}
     >
-      {value || '—'}
-    </div>
+      <colgroup>
+        <col style={{ width: 40 }} />
+        {COLUMN_HEADERS.map((c) => (
+          <col key={c.key} />
+        ))}
+        <col style={{ width: 70 }} />
+      </colgroup>
+      <thead>
+        <tr style={{ background: '#000080', color: '#ffffff' }}>
+          <th className="px-2 py-1 text-left font-bold" style={{ borderRight: '1px solid #c0c0c0' }}>#</th>
+          {COLUMN_HEADERS.map((c) => (
+            <th
+              key={c.key}
+              className="px-2 py-1 text-left font-bold uppercase"
+              style={{ borderRight: '1px solid #c0c0c0', fontSize: 10 }}
+            >
+              {c.label}
+            </th>
+          ))}
+          <th className="px-2 py-1 text-left font-bold" style={{ fontSize: 10 }}>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        {tcs.map((tc, i) => {
+          const priorityStyle = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#e2e3e5', color: '#383d41' };
+          return (
+            <tr
+              key={`${tc.scenarioId}-${i}`}
+              style={{ borderTop: '1px solid #e0e0e0', verticalAlign: 'top' }}
+            >
+              <td
+                className="px-2 py-1 font-bold"
+                style={{ background: '#e8e8e8', borderRight: '1px solid #c0c0c0' }}
+                title={tc.scenarioName ?? ''}
+              >
+                {i + 1}
+              </td>
+              {COLUMN_HEADERS.map((c) => {
+                const raw = tc.tc[c.key] as string;
+                return (
+                  <td
+                    key={c.key}
+                    className={`px-2 py-1 align-top ${c.pre ? 'whitespace-pre-wrap' : ''}`}
+                    style={{
+                      borderRight: '1px solid #e0e0e0',
+                      color: c.highlight ? '#006400' : c.muted ? '#808080' : '#000000',
+                      fontStyle: c.muted ? 'italic' : 'normal',
+                      fontWeight: c.highlight ? 'bold' : 'normal',
+                      wordBreak: 'break-word',
+                    }}
+                  >
+                    {raw || '—'}
+                  </td>
+                );
+              })}
+              <td className="px-2 py-1 align-top">
+                <span className="text-[10px] px-2 font-bold uppercase" style={priorityStyle}>
+                  {tc.tc.priority}
+                </span>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   </div>
 );
 
@@ -190,7 +192,7 @@ const QuickGenerateModule: React.FC = () => {
   const [mode, setMode] = useState<Mode>('single');
   const [testItem, setTestItem] = useState('');
   const [context, setContext] = useState('');
-  const [model, setModel] = useState('claude-sonnet-4-6');
+  const [model, setModel] = useState('gpt-4.1');
 
   const [phase, setPhase] = useState<JobPhase>('idle');
   const [analysis, setAnalysis] = useState<DecomposeAnalysis | null>(null);
@@ -394,8 +396,10 @@ const QuickGenerateModule: React.FC = () => {
             onChange={(e) => setModel(e.target.value)}
             disabled={isRunning}
           >
-            <option value="claude-sonnet-4-6">Sonnet 4.6</option>
-            <option value="claude-haiku-4-5-20251001">Haiku 4.5</option>
+            <option value="gpt-5">GPT-5</option>
+            <option value="gpt-4.1">GPT-4.1</option>
+            <option value="gpt-4.1-mini">GPT-4.1 mini</option>
+            <option value="gpt-4o-mini">GPT-4o mini</option>
           </select>
         </div>
 
@@ -451,7 +455,7 @@ const QuickGenerateModule: React.FC = () => {
 
         {/* Error */}
         {phase === 'error' && (
-          <div className="p-2 text-xs flex items-start gap-2 status-bar-field" style={{ color: '#8b0000' }}>
+          <div className="selectable p-2 text-xs flex items-start gap-2 status-bar-field" style={{ color: '#8b0000' }}>
             <RiCloseFill className="size-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
@@ -513,10 +517,8 @@ const QuickGenerateModule: React.FC = () => {
             </div>
           )}
 
-          {/* TC cards */}
-          {generatedTcs.map((tc, i) => (
-            <TcCard key={`${tc.scenarioId}-${i}`} tc={tc} index={i} />
-          ))}
+          {/* TC table */}
+          {generatedTcs.length > 0 && <TcTable tcs={generatedTcs} />}
 
           {/* Generating next TC indicator */}
           {isRunning && generatingScenarioId !== null && (
