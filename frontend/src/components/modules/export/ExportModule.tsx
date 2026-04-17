@@ -26,6 +26,7 @@ const ExportModule: React.FC = () => {
     'TC ID',
     'Test Set',
     ...(config.targetColumns.includes('preConditions') ? ['Pre-Conditions'] : []),
+    ...(config.targetColumns.includes('inputTestData') ? ['Input Test Data'] : []),
     ...(config.targetColumns.includes('steps') ? ['Test Procedure'] : []),
     ...(config.targetColumns.includes('expectedResults') ? ['Expected Result'] : []),
     'Priority',

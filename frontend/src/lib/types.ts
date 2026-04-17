@@ -12,6 +12,7 @@ export interface PendingRegeneratedFields {
   steps: string;
   expectedResults: string;
   preConditions: string;
+  inputTestData: string;
 }
 
 export interface TcRow {
@@ -21,6 +22,7 @@ export interface TcRow {
   testSet: string;
   testItem: string;
   preConditions: string;
+  inputTestData: string;
   steps: string;
   expectedResults: string;
   status: TcStatus;

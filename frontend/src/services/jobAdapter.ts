@@ -8,6 +8,7 @@ import type {
   TcRow,
   ValidationError,
 } from "@/src/lib/types";
+import { useJobHistoryStore } from "@/src/store/useJobHistoryStore";
 
 const appApiBase = "/api";
 
@@ -145,6 +146,7 @@ function mapApiRowToTcRow(
     testSet: String(row.testSet ?? ""),
     testItem: String(row.testItem ?? ""),
     preConditions: String(generated?.preConditions ?? ""),
+    inputTestData: String(generated?.inputTestData ?? ""),
     steps: String(generated?.testProcedure ?? ""),
     expectedResults: String(generated?.expectedResult ?? ""),
     status,
@@ -188,6 +190,7 @@ function buildMockRowsFromWorkbook(file: File): Promise<TcRow[]> {
             testSet: getStringCell(row, ["test_set", "Test Set"], "Unassigned"),
             testItem,
             preConditions: "",
+            inputTestData: "",
             steps: "",
             expectedResults: "",
             status: "pending",
@@ -205,6 +208,7 @@ function buildMockRowsFromWorkbook(file: File): Promise<TcRow[]> {
                   testSet: "Unassigned",
                   testItem: "Workbook loaded locally. No structured rows detected.",
                   preConditions: "",
+                  inputTestData: "",
                   steps: "",
                   expectedResults: "",
                   status: "pending",
@@ -227,6 +231,7 @@ function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
     preConditions: hasWarning
       ? "1. Feature state prepared\n2. Operator logged in"
       : "1. Required feature enabled\n2. System idle",
+    inputTestData: "NA",
     steps:
       "1. Prepare the source state.\n2. Trigger the target behavior.\n3. Verify the visible outcome.",
     expectedResults:
@@ -383,6 +388,37 @@ export function startGeneration(
   let source: EventSource | null = null;
   let mockTimer: ReturnType<typeof setInterval> | null = null;
 
+  // 追蹤 job 最新 stats 供 job.completed 時一次寫入歷史
+  const startedAt = Date.now();
+  const latestStats = {
+    total: input.rows.length,
+    processed: 0,
+    cost: 0,
+    inputTokens: 0,
+    outputTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+  };
+  let completedJobId: string | null = null;
+
+  const recordHistory = () => {
+    if (!completedJobId) return;
+    useJobHistoryStore.getState().appendRecord({
+      id: completedJobId,
+      kind: 'generate',
+      model: input.config.model,
+      startedAt,
+      finishedAt: Date.now(),
+      rowsTotal: latestStats.total,
+      rowsProcessed: latestStats.processed,
+      cost: latestStats.cost,
+      inputTokens: latestStats.inputTokens,
+      outputTokens: latestStats.outputTokens,
+      cacheReadTokens: latestStats.cacheReadTokens,
+      cacheCreationTokens: latestStats.cacheCreationTokens,
+    });
+  };
+
   const stop = () => {
     stopped = true;
     if (source) {
@@ -441,18 +477,27 @@ export function startGeneration(
           const data = JSON.parse(event.data) as Record<string, unknown>;
           const stats = data.stats as Record<string, number> | undefined;
           if (stats) {
+            latestStats.total = Number(stats.total ?? input.rows.length);
+            latestStats.processed = Number(stats.processed ?? 0);
+            latestStats.cost = Number(stats.currentCost ?? 0);
+            latestStats.inputTokens = Number(stats.inputTokens ?? 0);
+            latestStats.outputTokens = Number(stats.outputTokens ?? 0);
+            latestStats.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+            latestStats.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
             callbacks.onProgress?.({
-              total: Number(stats.total ?? input.rows.length),
-              processed: Number(stats.processed ?? 0),
-              success: Number(stats.processed ?? 0),
+              total: latestStats.total,
+              processed: latestStats.processed,
+              success: latestStats.processed,
               fail: 0,
-              cost: Number(stats.currentCost ?? 0),
-              inputTokens: Number(stats.inputTokens ?? 0),
-              outputTokens: Number(stats.outputTokens ?? 0),
-              cacheCreationTokens: Number(stats.cacheCreationTokens ?? 0),
-              cacheReadTokens: Number(stats.cacheReadTokens ?? 0),
+              cost: latestStats.cost,
+              inputTokens: latestStats.inputTokens,
+              outputTokens: latestStats.outputTokens,
+              cacheCreationTokens: latestStats.cacheCreationTokens,
+              cacheReadTokens: latestStats.cacheReadTokens,
             });
           }
+
+          if (typeof data.jobId === 'string') completedJobId = data.jobId;
 
           if ((data.type === "row.completed" || data.type === "row.failed") && data.row) {
             const row = mapApiRowToTcRow(
@@ -463,6 +508,7 @@ export function startGeneration(
           }
 
           if (data.type === "job.completed") {
+            recordHistory();
             callbacks.onComplete?.(String(data.message ?? "Generation complete."));
             stop();
           }
@@ -538,6 +584,13 @@ export async function regenerateRows(
   }
 
   if (input.jobId) {
+    const startedAt = Date.now();
+    const latest = {
+      total: input.rowIds.length, processed: 0, cost: 0,
+      inputTokens: 0, outputTokens: 0,
+      cacheCreationTokens: 0, cacheReadTokens: 0,
+    };
+
     try {
       const response = await fetch(
         `${appApiBase}/jobs/${input.jobId}/regenerate/stream`,
@@ -582,12 +635,24 @@ export async function regenerateRows(
           }
 
           const event = JSON.parse(line) as Record<string, unknown>;
+          const stats = event.stats as Record<string, number> | undefined;
+          if (stats) {
+            latest.total = Number(stats.total ?? latest.total);
+            latest.processed = Number(stats.processed ?? latest.processed);
+            latest.cost = Number(stats.currentCost ?? latest.cost);
+            latest.inputTokens = Number(stats.inputTokens ?? latest.inputTokens);
+            latest.outputTokens = Number(stats.outputTokens ?? latest.outputTokens);
+            latest.cacheCreationTokens = Number(stats.cacheCreationTokens ?? latest.cacheCreationTokens);
+            latest.cacheReadTokens = Number(stats.cacheReadTokens ?? latest.cacheReadTokens);
+          }
+
           if (event.type === "row.regenerated" && event.row) {
             const row = event.row as Record<string, unknown>;
             const generated =
               (row.generated as Record<string, unknown> | undefined) ?? {};
             callbacks.onRow?.(String(row.id), {
               preConditions: String(generated.preConditions ?? ""),
+              inputTestData: String(generated.inputTestData ?? ""),
               steps: String(generated.testProcedure ?? ""),
               expectedResults: String(generated.expectedResult ?? ""),
             });
@@ -602,6 +667,22 @@ export async function regenerateRows(
           }
         }
       }
+
+      // 寫入 history
+      useJobHistoryStore.getState().appendRecord({
+        id: `regen-${Date.now().toString(36)}`,
+        kind: 'regenerate',
+        model: input.config.model,
+        startedAt,
+        finishedAt: Date.now(),
+        rowsTotal: latest.total,
+        rowsProcessed: latest.processed,
+        cost: latest.cost,
+        inputTokens: latest.inputTokens,
+        outputTokens: latest.outputTokens,
+        cacheReadTokens: latest.cacheReadTokens,
+        cacheCreationTokens: latest.cacheCreationTokens,
+      });
 
       callbacks.onComplete?.();
       return;
@@ -618,6 +699,7 @@ export async function regenerateRows(
 
     callbacks.onRow?.(rowId, {
       preConditions: row.preConditions || "1. Local preview environment ready",
+      inputTestData: row.inputTestData || "NA",
       steps: `${row.steps || "1. Prepare the feature"}\n2. Re-run the targeted behavior`,
       expectedResults:
         row.expectedResults || "Visible output remains consistent after regeneration.",

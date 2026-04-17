@@ -17,7 +17,7 @@ interface JobStore {
   deleteTcRows: (ids: string[]) => void;
   renumberTcRows: () => void;
   setPendingRegenerated: (id: string, data: TcRow['pendingRegenerated']) => void;
-  applyRegenerated: (id: string, fields: ('steps' | 'expectedResults' | 'preConditions')[]) => void;
+  applyRegenerated: (id: string, fields: ('steps' | 'expectedResults' | 'preConditions' | 'inputTestData')[]) => void;
   clearPendingRegenerated: (id: string) => void;
   updateConfig: (updates: Partial<GenerationConfig>) => void;
   appendLog: (log: JobLog) => void;
@@ -32,7 +32,7 @@ const DEFAULT_CONFIG: GenerationConfig = {
   batchSize: 5,
   budgetLimit: 10,
   strictValidation: false,
-  targetColumns: ['preConditions', 'steps', 'expectedResults'],
+  targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
 };
 
 const DEFAULT_STATS: JobStats = {
@@ -93,6 +93,7 @@ export const useJobStore = create<JobStore>((set) => ({
       if (fields.includes('steps')) updates.steps = row.pendingRegenerated.steps;
       if (fields.includes('expectedResults')) updates.expectedResults = row.pendingRegenerated.expectedResults;
       if (fields.includes('preConditions')) updates.preConditions = row.pendingRegenerated.preConditions;
+      if (fields.includes('inputTestData')) updates.inputTestData = row.pendingRegenerated.inputTestData;
       return { ...row, ...updates, pendingRegenerated: undefined, status: 'reviewing' };
     })),
   })),

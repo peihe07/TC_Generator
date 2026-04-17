@@ -358,18 +358,23 @@ const ConfigureModule: React.FC = () => {
                 <fieldset>
                   <legend>Target Columns</legend>
                   <div className="flex flex-col gap-1">
-                    {['preConditions', 'steps', 'expectedResults'].map((col) => (
-                      <div key={col} className="field-row">
-                        <input type="checkbox" id={col}
-                          checked={config.targetColumns.includes(col)}
+                    {[
+                      { key: 'preConditions', label: 'Pre-Conditions' },
+                      { key: 'inputTestData', label: 'Input Test Data' },
+                      { key: 'steps', label: 'Test Procedure' },
+                      { key: 'expectedResults', label: 'Expected Result' },
+                    ].map(({ key, label }) => (
+                      <div key={key} className="field-row">
+                        <input type="checkbox" id={key}
+                          checked={config.targetColumns.includes(key)}
                           onChange={(e) => {
                             const cols = e.target.checked
-                              ? [...config.targetColumns, col]
-                              : config.targetColumns.filter((c) => c !== col);
+                              ? [...config.targetColumns, key]
+                              : config.targetColumns.filter((c) => c !== key);
                             updateConfig({ targetColumns: cols });
                           }}
                         />
-                        <label htmlFor={col}>{col.charAt(0).toUpperCase() + col.slice(1)}</label>
+                        <label htmlFor={key}>{label}</label>
                       </div>
                     ))}
                   </div>
