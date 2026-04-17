@@ -34,17 +34,30 @@ def build_batch_system_prompt() -> str:
     return _SYSTEM_BASE_BATCH
 
 
+_HARD_CONSTRAINTS = """
+## HARD CONSTRAINTS (非協商、違反視為失敗)
+
+1. **test_item_rewrite MUST be filled** — 依原始 requirement 用 `(Condition/Trigger → Observable Outcome)` 格式改寫；不可留空、不可照抄原文。
+2. **test_procedure 與 expected_result 項目數必須 1:1** — 每個 procedure step 對應剛好一個 expected result，順序一致。不可 3 steps 對 5 results、不可 11 steps 對 4 results。若你內心盤算步驟數是 N，expected result 也**必須**是 N 項。
+3. **pre_conditions 只寫狀態**（state / environment），不可包含動作（"click", "enter", "send" 之類動詞屬於 procedure，不屬於 pre-conditions）。
+4. **design_method 必須是以下 9 個之一**：Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional。
+5. **priority 必須是 High / Medium / Low / NA 之一**。
+6. 回傳時所有欄位 key 使用 snake_case（test_item_rewrite, pre_conditions, input_test_data, test_procedure, expected_result, design_method, priority, split_flag, split_reason）。
+"""
+
+
 def build_system_blocks(rules_text: str, batch: bool = False) -> str:
     """
     建構 system prompt（OpenAI chat completions 格式為單一字串）。
     規則放在 prefix，OpenAI 會自動對 ≥1024 tokens 重複前綴提供 50% cache 折扣。
+    Hard constraints 放在最後（recency bias），強化關鍵不變量。
     """
     base = _SYSTEM_BASE_BATCH if batch else _SYSTEM_BASE
     if not rules_text:
-        return base
+        return f"{_HARD_CONSTRAINTS}\n\n---\n\n{base}"
     return (
         f"## ASPICE SWE.6 Rules (authoritative — follow strictly)\n\n{rules_text}\n\n"
-        f"---\n\n{base}"
+        f"{_HARD_CONSTRAINTS}\n\n---\n\n{base}"
     )
 
 
@@ -89,7 +102,9 @@ def build_user_prompt(
 {spec_context}{rules_section}
 
 ## Output
-Return JSON with keys: {output_keys}"""
+Return JSON with keys: {output_keys}
+
+REMINDER: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
 
 
 def build_quick_generate_prompt(
@@ -108,7 +123,9 @@ Generate a single test case for the following test item. Follow all rules strict
 {test_item}{context_section}{rules_section}
 
 ## Output
-Return JSON with keys: {output_keys}"""
+Return JSON with keys: {output_keys}
+
+REMINDER: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
 
 
 def build_decompose_prompt(requirement: str, rules_text: str) -> str:
@@ -169,4 +186,6 @@ def build_batch_prompt(
 {batch_text}{rules_section}
 
 ## Output
-Return a JSON Array with one object per TC. Each object has keys: {output_keys}"""
+Return a JSON Array with one object per TC. Each object has keys: {output_keys}
+
+REMINDER for every TC: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
