@@ -24,27 +24,144 @@ import {
   RiRefreshLine,
   RiCheckboxLine,
   RiCheckboxBlankLine,
+  RiFileTextLine,
+  RiEditBoxLine,
 } from '@remixicon/react';
 
+// --- Word-level diff (LCS) used by RegenDiff ---
+type DiffToken = { type: 'same' | 'add' | 'del'; text: string };
+
+function tokenize(text: string): string[] {
+  // 以空白/換行/標點為分隔並保留分隔符，讓差異可 word-level 呈現
+  return text.split(/(\s+|[,.;:!?()\[\]])/).filter((t) => t !== '');
+}
+
+function diffTokens(oldText: string, newText: string): { left: DiffToken[]; right: DiffToken[] } {
+  const a = tokenize(oldText);
+  const b = tokenize(newText);
+  const m = a.length, n = b.length;
+  // LCS table
+  const dp: number[][] = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = m - 1; i >= 0; i--) {
+    for (let j = n - 1; j >= 0; j--) {
+      dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    }
+  }
+  const left: DiffToken[] = [];
+  const right: DiffToken[] = [];
+  let i = 0, j = 0;
+  while (i < m && j < n) {
+    if (a[i] === b[j]) {
+      left.push({ type: 'same', text: a[i] });
+      right.push({ type: 'same', text: b[j] });
+      i++; j++;
+    } else if (dp[i + 1][j] >= dp[i][j + 1]) {
+      left.push({ type: 'del', text: a[i] });
+      i++;
+    } else {
+      right.push({ type: 'add', text: b[j] });
+      j++;
+    }
+  }
+  while (i < m) left.push({ type: 'del', text: a[i++] });
+  while (j < n) right.push({ type: 'add', text: b[j++] });
+  return { left, right };
+}
+
+const DiffText: React.FC<{ tokens: DiffToken[] }> = ({ tokens }) => (
+  <span className="whitespace-pre-wrap">
+    {tokens.map((t, i) =>
+      t.type === 'same'
+        ? <span key={i}>{t.text}</span>
+        : t.type === 'add'
+          ? <span key={i} className="diff-add">{t.text}</span>
+          : <span key={i} className="diff-del">{t.text}</span>
+    )}
+  </span>
+);
+
+// --- Stacked field (Excel-column style) used in expanded detail ---
+const StackedReadField: React.FC<{
+  label: string;
+  value: string;
+  muted?: boolean;
+}> = ({ label, value, muted }) => (
+  <div style={{ borderTop: '1px solid #e0e0e0' }}>
+    <div
+      className="px-2 py-1 font-bold uppercase"
+      style={{
+        background: '#e8e8e8',
+        borderBottom: '1px solid #d0d0d0',
+        fontSize: 10,
+        color: '#444',
+        letterSpacing: 0.5,
+      }}
+    >
+      {label}
+    </div>
+    <div
+      className="selectable px-3 py-2 text-xs whitespace-pre-wrap"
+      style={{
+        color: muted ? '#808080' : '#000000',
+        wordBreak: 'break-word',
+        lineHeight: 1.5,
+      }}
+    >
+      {value || '—'}
+    </div>
+  </div>
+);
+
+const StackedEditField: React.FC<{
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  minHeight?: number;
+}> = ({ label, value, onChange, minHeight = 50 }) => (
+  <div style={{ borderTop: '1px solid #fdba74' }} className="memo-edit">
+    <div
+      className="px-2 py-1 font-bold uppercase"
+      style={{
+        background: '#fed7aa',
+        borderBottom: '1px solid #fdba74',
+        fontSize: 10,
+        color: '#7c2d12',
+        letterSpacing: 0.5,
+      }}
+    >
+      {label}
+    </div>
+    <textarea
+      className="w-full px-3 py-2 text-xs"
+      style={{ minHeight, resize: 'vertical', lineHeight: 1.5 }}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  </div>
+);
+
 // --- Field-level diff comparison for a regenerated row ---
+type DiffFieldKey = 'preConditions' | 'inputTestData' | 'steps' | 'expectedResults';
+
 interface RegenDiffProps {
   row: TcRow;
-  onApply: (fields: ('steps' | 'expectedResults' | 'preConditions')[]) => void;
+  onApply: (fields: DiffFieldKey[]) => void;
   onDiscard: () => void;
 }
 
-const DIFF_FIELDS: { key: 'preConditions' | 'steps' | 'expectedResults'; label: string }[] = [
+const DIFF_FIELDS: { key: DiffFieldKey; label: string }[] = [
   { key: 'preConditions', label: 'Pre-Conditions' },
-  { key: 'steps', label: 'Steps' },
-  { key: 'expectedResults', label: 'Expected Results' },
+  { key: 'inputTestData', label: 'Input Test Data' },
+  { key: 'steps', label: 'Test Procedure' },
+  { key: 'expectedResults', label: 'Expected Result' },
 ];
 
 const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
-  const [selected, setSelected] = useState<Set<'steps' | 'expectedResults' | 'preConditions'>>(
-    new Set(['steps', 'expectedResults', 'preConditions'])
+  const [selected, setSelected] = useState<Set<DiffFieldKey>>(
+    new Set(['preConditions', 'inputTestData', 'steps', 'expectedResults'])
   );
 
-  const toggle = (field: 'steps' | 'expectedResults' | 'preConditions') => {
+  const toggle = (field: DiffFieldKey) => {
     setSelected((prev) => {
       const next = new Set(prev);
       next.has(field) ? next.delete(field) : next.add(field);
@@ -53,60 +170,82 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
   };
 
   return (
-    <div className="border-2 border-orange-400 bg-orange-50 p-3 mt-2">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-bold text-orange-800 uppercase">New Version Ready — Select fields to apply</span>
-        <div className="flex gap-1">
-          <button
-            className="text-xs px-2 py-0.5 text-gray-700"
-            onClick={onDiscard}
-          >
-            <RiArrowGoBackLine className="size-3 inline mr-1" />Discard
-          </button>
-          <button
-            className="text-xs px-3 py-0.5 font-bold default"
-            onClick={() => onApply([...selected])}
-            disabled={selected.size === 0}
-          >
-            <RiCheckFill className="size-3 inline mr-1" />Apply Selected
-          </button>
-        </div>
+    <div className="paper-card p-3 mt-2" style={{ borderColor: '#fb923c #fb923c #fb923c #fb923c' }}>
+      <div className="title-bar-mini edit -mx-3 -mt-3 mb-3" style={{ padding: '4px 10px' }}>
+        <RiRefreshLine className="size-3" />
+        <span className="flex-1">New Version Ready — Select fields to apply</span>
+        <button
+          className="text-xs"
+          style={{ minHeight: 20, padding: '1px 8px' }}
+          onClick={onDiscard}
+        >
+          <RiArrowGoBackLine className="size-3 inline mr-1" />Discard
+        </button>
+        <button
+          className="text-xs font-bold default"
+          style={{ minHeight: 20, padding: '1px 10px' }}
+          onClick={() => onApply([...selected])}
+          disabled={selected.size === 0}
+        >
+          <RiCheckFill className="size-3 inline mr-1" />Apply Selected
+        </button>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         {DIFF_FIELDS.map(({ key, label }) => {
           const oldVal = row[key] || '';
           const newVal = row.pendingRegenerated?.[key] || '';
           const changed = oldVal !== newVal;
           const isSelected = selected.has(key);
+          const { left, right } = changed ? diffTokens(oldVal, newVal) : { left: [], right: [] };
 
           return (
-            <div key={key} className={`border ${isSelected ? 'border-orange-300 bg-white' : 'border-gray-200 bg-gray-50 opacity-60'}`}>
+            <div
+              key={key}
+              style={{
+                border: '2px solid',
+                borderColor: isSelected
+                  ? '#808080 #ffffff #ffffff #808080'
+                  : '#c0c0c0 #e0e0e0 #e0e0e0 #c0c0c0',
+                background: '#ffffff',
+                opacity: isSelected ? 1 : 0.55,
+              }}
+            >
               <div
-                className="flex items-center gap-2 px-2 py-1 bg-gray-100 border-b border-gray-200 cursor-pointer select-none"
+                className="flex items-center gap-2 px-2 py-1 cursor-pointer"
+                style={{ background: '#e8e8e8', borderBottom: '1px solid #c0c0c0' }}
                 onClick={() => toggle(key)}
               >
                 {isSelected
                   ? <RiCheckboxLine className="size-4 text-orange-600 shrink-0" />
                   : <RiCheckboxBlankLine className="size-4 text-gray-400 shrink-0" />}
                 <span className="text-[10px] font-bold uppercase text-gray-700">{label}</span>
-                {changed && (
-                  <span className="ml-auto text-[9px] px-1 py-0.5 bg-orange-200 text-orange-800 font-bold uppercase">Changed</span>
-                )}
-                {!changed && (
-                  <span className="ml-auto text-[9px] px-1 py-0.5 bg-gray-200 text-gray-500 uppercase">Unchanged</span>
+                {changed ? (
+                  <span className="ml-auto text-[9px] px-1 font-bold uppercase" style={{ background: '#fed7aa', color: '#7c2d12', border: '1px solid #fb923c' }}>Changed</span>
+                ) : (
+                  <span className="ml-auto text-[9px] px-1 uppercase" style={{ background: '#e0e0e0', color: '#606060', border: '1px solid #c0c0c0' }}>Unchanged</span>
                 )}
               </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-200">
-                <div className="p-2">
-                  <div className="text-[9px] font-bold text-gray-400 uppercase mb-1">Current</div>
-                  <div className="text-[11px] whitespace-pre-wrap text-gray-700 leading-relaxed">{oldVal || '—'}</div>
+              {changed ? (
+                <div className="grid grid-cols-2" style={{ borderTop: '1px solid #e0e0e0' }}>
+                  <div className="p-2 text-[11px] leading-relaxed selectable" style={{ borderRight: '1px solid #e0e0e0', background: '#faf6f4' }}>
+                    <div className="text-[9px] font-bold uppercase mb-1" style={{ color: '#991b1b' }}>
+                      <RiFileTextLine className="size-3 inline mr-1" />Current (strikethrough = removed)
+                    </div>
+                    <DiffText tokens={left} />
+                  </div>
+                  <div className="p-2 text-[11px] leading-relaxed selectable" style={{ background: '#f4faf4' }}>
+                    <div className="text-[9px] font-bold uppercase mb-1" style={{ color: '#166534' }}>
+                      <RiEditBoxLine className="size-3 inline mr-1" />New (highlighted = added)
+                    </div>
+                    <DiffText tokens={right} />
+                  </div>
                 </div>
-                <div className="p-2 bg-green-50">
-                  <div className="text-[9px] font-bold text-green-600 uppercase mb-1">New</div>
-                  <div className="text-[11px] whitespace-pre-wrap text-green-900 leading-relaxed">{newVal || '—'}</div>
+              ) : (
+                <div className="p-2 text-[11px] text-gray-600 selectable whitespace-pre-wrap" style={{ borderTop: '1px solid #e0e0e0' }}>
+                  {oldVal || '—'}
                 </div>
-              </div>
+              )}
             </div>
           );
         })}
@@ -125,16 +264,45 @@ const ReviewModule: React.FC = () => {
   } = useJobStore();
   const { openWindow } = useWindowStore();
 
-  const [expandedRow, setExpandedRow] = useState<string | null>(null);
+  // 允許同時展開多列
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+  const [activeRowId, setActiveRowId] = useState<string | null>(null);
   const [editingId, setEditingRowId] = useState<string | null>(null);
-  const [editValues, setEditValues] = useState<{ steps: string; expected: string; preConditions: string }>({
-    steps: '', expected: '', preConditions: '',
+  const [editValues, setEditValues] = useState<{ steps: string; expected: string; preConditions: string; inputTestData: string }>({
+    steps: '', expected: '', preConditions: '', inputTestData: '',
   });
   const [filter, setFilter] = useState('all');
   const [testSetFilter, setTestSetFilter] = useState('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
-  const selectedRow = tcRows.find((r) => r.id === expandedRow);
+  // Validation panel 顯示最後一個被展開/聚焦的列
+  const selectedRow = tcRows.find((r) => r.id === activeRowId) ?? null;
+
+  const toggleExpand = (id: string) => {
+    setExpandedRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+        if (activeRowId === id) {
+          setActiveRowId(next.size > 0 ? [...next][next.size - 1] : null);
+        }
+      } else {
+        next.add(id);
+        setActiveRowId(id);
+      }
+      return next;
+    });
+  };
+
+  const collapseOne = (id: string) => {
+    setExpandedRows((prev) => {
+      if (!prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+    if (activeRowId === id) setActiveRowId(null);
+  };
 
   const handleStatusChange = (id: string, status: TcRow['status']) => {
     updateTcRow(id, { status });
@@ -142,7 +310,13 @@ const ReviewModule: React.FC = () => {
 
   const startEditing = (row: TcRow) => {
     setEditingRowId(row.id);
-    setEditValues({ steps: row.steps, expected: row.expectedResults, preConditions: row.preConditions });
+    setActiveRowId(row.id);
+    setEditValues({
+      steps: row.steps,
+      expected: row.expectedResults,
+      preConditions: row.preConditions,
+      inputTestData: row.inputTestData ?? '',
+    });
   };
 
   const saveEdit = (id: string) => {
@@ -150,6 +324,7 @@ const ReviewModule: React.FC = () => {
       steps: editValues.steps,
       expectedResults: editValues.expected,
       preConditions: editValues.preConditions,
+      inputTestData: editValues.inputTestData,
       status: 'accepted',
     });
     setEditingRowId(null);
@@ -163,8 +338,8 @@ const ReviewModule: React.FC = () => {
     if (!confirm('Delete this test case?')) return;
     deleteTcRows([id]);
     renumberTcRows();
-    setExpandedRow(null);
-    setEditingRowId(null);
+    collapseOne(id);
+    if (editingId === id) setEditingRowId(null);
     setSelectedIds(new Set());
   };
 
@@ -186,7 +361,6 @@ const ReviewModule: React.FC = () => {
     }
   };
 
-  // 批次操作：套用狀態到所有選取列
   const handleBulkStatus = (status: TcRow['status']) => {
     if (selectedIds.size === 0) return;
     selectedIds.forEach((id) => updateTcRow(id, { status }));
@@ -194,7 +368,6 @@ const ReviewModule: React.FC = () => {
     setSelectedIds(new Set());
   };
 
-  // 批次刪除
   const handleBulkDelete = () => {
     if (selectedIds.size === 0) return;
     if (!confirm(`Delete ${selectedIds.size} selected test case(s)?`)) return;
@@ -202,7 +375,8 @@ const ReviewModule: React.FC = () => {
     deleteTcRows(ids);
     renumberTcRows();
     appendLog(createJobLog('info', `Deleted ${ids.length} row(s).`));
-    setExpandedRow(null);
+    setExpandedRows((prev) => { const next = new Set(prev); ids.forEach((i) => next.delete(i)); return next; });
+    if (ids.includes(activeRowId ?? '')) setActiveRowId(null);
     setEditingRowId(null);
     setSelectedIds(new Set());
   };
@@ -296,7 +470,7 @@ const ReviewModule: React.FC = () => {
               </select>
             </div>
             <span className="text-xs text-gray-600 ">
-              Total: {tcRows.length} | Accepted: {tcRows.filter((r) => r.status === 'accepted').length}
+              Total: {tcRows.length} | Accepted: {tcRows.filter((r) => r.status === 'accepted').length} | Expanded: {expandedRows.size}
             </span>
           </div>
         </div>
@@ -304,245 +478,216 @@ const ReviewModule: React.FC = () => {
         {/* Table */}
         <div className="flex-1 overflow-auto border-2 border-sunken bg-white">
           <table className="w-full text-sm border-collapse">
-            <thead className="sticky top-0 bg-gray-200 shadow-sm z-10">
-              <tr className="border-b border-gray-400">
-                <th className="w-8 px-2 py-2 text-center">
+            <thead className="sticky top-0 z-10">
+              <tr>
+                <th className="win95-th center" style={{ width: 32 }}>
                   <button
                     className="flex items-center justify-center w-full"
                     title={allVisibleSelected ? 'Deselect all' : 'Select all'}
                     onClick={toggleSelectAll}
+                    style={{ minHeight: 18, padding: 0, background: 'transparent', border: 'none', boxShadow: 'none' }}
                   >
                     {allVisibleSelected
                       ? <RiCheckboxLine className="size-4 text-blue-700" />
-                      : <RiCheckboxBlankLine className="size-4 text-gray-500" />}
+                      : <RiCheckboxBlankLine className="size-4 text-gray-700" />}
                   </button>
                 </th>
-                <th className="w-6"></th>
-                <th className="text-left px-3 py-2 border-r">TC ID</th>
-                <th className="text-left px-3 py-2 border-r">Req ID</th>
-                <th className="text-left px-3 py-2 border-r">Status</th>
-                <th className="text-center px-3 py-2 w-28">Actions</th>
+                <th className="win95-th center" style={{ width: 24 }}></th>
+                <th className="win95-th">TC ID</th>
+                <th className="win95-th">Req ID</th>
+                <th className="win95-th">Status</th>
+                <th className="win95-th center" style={{ width: 112 }}>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {filteredRows.map((row) => (
-                <React.Fragment key={row.id}>
-                  <tr
-                    className={`border-b cursor-pointer win95-row
-                      ${expandedRow === row.id || selectedIds.has(row.id) ? 'selected' : ''}
-                      ${row.status === 'flagged' && expandedRow !== row.id && !selectedIds.has(row.id) ? 'bg-orange-50' : ''}
-                      ${row.pendingRegenerated && expandedRow !== row.id && !selectedIds.has(row.id) ? 'bg-yellow-50' : ''}
-                    `}
-                  >
-                    {/* Checkbox */}
-                    <td className="text-center px-2 py-2" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        className="flex items-center justify-center w-full"
-                        onClick={() => toggleSelectRow(row.id)}
-                      >
-                        {selectedIds.has(row.id)
-                          ? <RiCheckboxLine className="size-4 text-blue-700" />
-                          : <RiCheckboxBlankLine className="size-4 text-gray-400" />}
-                      </button>
-                    </td>
-
-                    {/* Expand toggle */}
-                    <td
-                      className="text-center py-2"
-                      onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
+              {filteredRows.map((row) => {
+                const isExpanded = expandedRows.has(row.id);
+                const isSelected = selectedIds.has(row.id);
+                const isActive = activeRowId === row.id;
+                const isEditing = editingId === row.id;
+                return (
+                  <React.Fragment key={row.id}>
+                    <tr
+                      className={`border-b cursor-pointer win95-row
+                        ${isActive || isSelected ? 'selected' : ''}
+                        ${row.status === 'flagged' && !isActive && !isSelected ? 'bg-orange-50' : ''}
+                        ${row.pendingRegenerated && !isActive && !isSelected ? 'bg-yellow-50' : ''}
+                      `}
                     >
-                      {expandedRow === row.id
-                        ? <RiArrowUpSLine className="size-4" />
-                        : <RiArrowDownSLine className="size-4" />}
-                    </td>
-
-                    <td
-                      className="px-3 py-2 border-r font-mono text-xs"
-                      onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
-                    >
-                      <span className="flex items-center gap-1">
-                        {row.status === 'flagged' && <RiFlagFill className="size-3 text-orange-600" />}
-                        {row.pendingRegenerated && <RiRefreshLine className="size-3 text-yellow-600" />}
-                        {row.id}
-                      </span>
-                    </td>
-                    <td
-                      className="px-3 py-2 border-r font-mono text-xs"
-                      onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
-                    >
-                      {row.reqId}
-                    </td>
-                    <td
-                      className="px-3 py-2 border-r"
-                      onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
-                    >
-                      <span className={`status-badge ${
-                        row.pendingRegenerated ? 'reviewing' :
-                        row.status === 'generating' ? 'generating' :
-                        row.status
-                      } ${row.status === 'generating' ? 'animate-pulse' : ''}`}>
-                        {row.pendingRegenerated ? 'awaiting apply' : row.status}
-                      </span>
-                    </td>
-
-                    {/* Actions */}
-                    <td className="p-0 border-r cell-center" onClick={(e) => e.stopPropagation()}>
-                      <div className="flex justify-center items-center gap-1 h-full min-h-[32px]">
+                      <td className="text-center px-2 py-2" onClick={(e) => e.stopPropagation()}>
                         <button
-                          className="btn-icon btn-accept"
-                          title="Accept"
-                          onClick={() => handleStatusChange(row.id, 'accepted')}
+                          className="flex items-center justify-center w-full"
+                          onClick={() => toggleSelectRow(row.id)}
+                          style={{ minHeight: 18, padding: 0, background: 'transparent', border: 'none', boxShadow: 'none' }}
                         >
-                          <RiCheckFill className="size-4" />
+                          {isSelected
+                            ? <RiCheckboxLine className="size-4 text-blue-700" />
+                            : <RiCheckboxBlankLine className="size-4 text-gray-400" />}
                         </button>
-                        <button
-                          className="btn-icon btn-reject"
-                          title="Reject"
-                          onClick={() => handleStatusChange(row.id, 'rejected')}
-                        >
-                          <RiCloseFill className="size-4" />
-                        </button>
-                        <button
-                          className="btn-icon"
-                          title="Delete"
-                          style={{ color: '#7f1d1d' }}
-                          onClick={() => handleDelete(row.id)}
-                        >
-                          <RiDeleteBinLine className="size-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
 
-                  {/* Expanded detail */}
-                  {expandedRow === row.id && (
-                    <tr>
-                      <td
-                        colSpan={6}
-                        className="p-3 border-b-2 border-gray-400"
-                        style={{
-                          background: '#f5f5f5',
-                          boxShadow: 'inset 2px 2px 0 #d0d0d0, inset -1px -1px 0 #ffffff',
-                        }}
-                      >
-                        {/* Regen diff takes priority when pending */}
-                        {row.pendingRegenerated ? (
-                          <RegenDiff
-                            row={row}
-                            onApply={(fields) => {
-                              applyRegenerated(row.id, fields);
-                              renumberTcRows();
-                              setExpandedRow(null);
-                              setEditingRowId(null);
-                              setSelectedIds(new Set());
-                            }}
-                            onDiscard={() => clearPendingRegenerated(row.id)}
-                          />
-                        ) : (
-                          <div className="grid grid-cols-5 gap-3">
-                            {/* Left: Original (40%) */}
-                            <div className="col-span-2 flex flex-col gap-1">
-                              <span className="text-xs font-bold text-gray-500 uppercase">Original Requirement</span>
-                              <div className="p-3 bg-white border-2 border-sunken min-h-[140px] text-xs leading-relaxed overflow-auto whitespace-pre-wrap break-words">
-                                {row.testItem}
-                              </div>
-                            </div>
+                      <td className="text-center py-2" onClick={() => toggleExpand(row.id)}>
+                        {isExpanded
+                          ? <RiArrowUpSLine className="size-4" />
+                          : <RiArrowDownSLine className="size-4" />}
+                      </td>
 
-                            {/* Right: Generated / Editable (60%) */}
-                            <div className="col-span-3 flex flex-col gap-1">
-                              <span className="text-xs font-bold text-blue-600 uppercase flex justify-between">
-                                <span>Generated Test Case</span>
-                                {editingId === row.id && (
-                                  <span className="text-orange-600 text-[10px]">EDIT MODE</span>
-                                )}
-                              </span>
-                              <div className={`p-3 bg-white border-2 min-h-[140px] text-xs leading-relaxed flex flex-col ${
-                                editingId === row.id ? 'border-orange-400 ring-1 ring-orange-200' : 'border-blue-400'
-                              }`}>
-                                {editingId === row.id ? (
-                                  <>
-                                    <label className="font-bold text-[10px] mb-1">PRE-CONDITIONS:</label>
-                                    <textarea
-                                      className="mb-2 p-1 text-xs  min-h-[40px]"
-                                      value={editValues.preConditions}
-                                      onChange={(e) => setEditValues({ ...editValues, preConditions: e.target.value })}
-                                    />
-                                    <label className="font-bold text-[10px] mb-1">STEPS:</label>
-                                    <textarea
-                                      className="flex-1 mb-2 p-1 text-xs  min-h-[60px]"
-                                      value={editValues.steps}
-                                      onChange={(e) => setEditValues({ ...editValues, steps: e.target.value })}
-                                    />
-                                    <label className="font-bold text-[10px] mb-1">EXPECTED RESULTS:</label>
-                                    <textarea
-                                      className="p-1 text-xs "
-                                      value={editValues.expected}
-                                      onChange={(e) => setEditValues({ ...editValues, expected: e.target.value })}
-                                    />
-                                  </>
-                                ) : (
-                                  <>
-                                    <div className="font-bold mb-1">Pre-Conditions:</div>
-                                    <div className="whitespace-pre-wrap mb-2 text-gray-600">{row.preConditions}</div>
-                                    <div className="font-bold mb-1">Steps:</div>
-                                    <div className="whitespace-pre-wrap flex-1">{row.steps}</div>
-                                    <div className="font-bold mt-2 mb-1">Expected:</div>
-                                    <div className="text-green-800 font-bold">{row.expectedResults}</div>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                      <td className="px-3 py-2 border-r font-mono text-xs" onClick={() => toggleExpand(row.id)}>
+                        <span className="flex items-center gap-1">
+                          {row.status === 'flagged' && <RiFlagFill className="size-3 text-orange-600" />}
+                          {row.pendingRegenerated && <RiRefreshLine className="size-3 text-yellow-600" />}
+                          {row.id}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2 border-r font-mono text-xs" onClick={() => toggleExpand(row.id)}>
+                        {row.reqId}
+                      </td>
+                      <td className="px-3 py-2 border-r" onClick={() => toggleExpand(row.id)}>
+                        <span className={`status-badge ${
+                          row.pendingRegenerated ? 'reviewing' :
+                          row.status === 'generating' ? 'generating' :
+                          row.status
+                        } ${row.status === 'generating' ? 'animate-pulse' : ''}`}>
+                          {row.pendingRegenerated ? 'awaiting apply' : row.status}
+                        </span>
+                      </td>
 
-                        {/* Detail action buttons (not shown in regen diff mode) */}
-                        {!row.pendingRegenerated && (
-                          <div className="mt-3 flex justify-end gap-2">
-                            {editingId === row.id ? (
-                              <>
-                                <button
-                                  className="flex items-center gap-1 text-xs px-3 py-1"
-                                  onClick={() => setEditingRowId(null)}
-                                >
-                                  <RiArrowGoBackLine className="size-3" /> Cancel
-                                </button>
-                                <button
-                                  className="flex items-center gap-1 text-xs px-3 py-1 font-bold default"
-                                  onClick={() => saveEdit(row.id)}
-                                >
-                                  <RiSaveLine className="size-3" /> Save Changes
-                                </button>
-                              </>
-                            ) : (
-                              <>
-                                <button
-                                  className="flex items-center gap-1 text-xs px-3 py-1"
-                                  onClick={() => startEditing(row)}
-                                >
-                                  <RiEditLine className="size-3" /> Manual Edit
-                                </button>
-                                <button
-                                  className={`flex items-center gap-1 text-xs px-3 py-1 ${
-                                    row.status === 'flagged'
-                                      ? 'bg-orange-100 text-orange-900 font-bold border-orange-400'
-                                      : 'text-orange-700'
-                                  }`}
-                                  onClick={() => toggleFlag(row.id, row.status)}
-                                >
-                                  {row.status === 'flagged'
-                                    ? <RiFlagFill className="size-3" />
-                                    : <RiFlagLine className="size-3" />}
-                                  {row.status === 'flagged' ? 'Unflag' : 'Flag for Human'}
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        )}
+                      <td className="p-0 border-r cell-center" onClick={(e) => e.stopPropagation()}>
+                        <div className="flex justify-center items-center gap-1 h-full min-h-[32px]">
+                          <button className="btn-icon btn-accept" title="Accept" onClick={() => handleStatusChange(row.id, 'accepted')}>
+                            <RiCheckFill className="size-4" />
+                          </button>
+                          <button className="btn-icon btn-reject" title="Reject" onClick={() => handleStatusChange(row.id, 'rejected')}>
+                            <RiCloseFill className="size-4" />
+                          </button>
+                          <button className="btn-icon" title="Delete" style={{ color: '#7f1d1d' }} onClick={() => handleDelete(row.id)}>
+                            <RiDeleteBinLine className="size-4" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
-                  )}
-                </React.Fragment>
-              ))}
+
+                    {isExpanded && (
+                      <tr>
+                        <td
+                          colSpan={6}
+                          className="p-4"
+                          style={{
+                            background: '#9a9a9a',
+                            boxShadow: 'inset 2px 2px 0 #606060, inset -2px -2px 0 #d0d0d0',
+                            borderBottom: '2px solid #404040',
+                          }}
+                          onClick={() => setActiveRowId(row.id)}
+                        >
+                          {row.pendingRegenerated ? (
+                            <RegenDiff
+                              row={row}
+                              onApply={(fields) => {
+                                applyRegenerated(row.id, fields);
+                                renumberTcRows();
+                                collapseOne(row.id);
+                                setEditingRowId(null);
+                                setSelectedIds(new Set());
+                              }}
+                              onDiscard={() => clearPendingRegenerated(row.id)}
+                            />
+                          ) : (
+                            <div className="grid grid-cols-5 gap-3">
+                              {/* Left: Original (40%) */}
+                              <div className="col-span-2 flex flex-col">
+                                <div className="title-bar-mini">
+                                  <RiFileTextLine className="size-3" />
+                                  <span className="flex-1">Original Requirement</span>
+                                </div>
+                                <div className="paper-card flex-1 p-3 text-xs leading-relaxed overflow-auto whitespace-pre-wrap break-words selectable" style={{ minHeight: 140 }}>
+                                  {row.testItem}
+                                </div>
+                              </div>
+
+                              {/* Right: Generated / Editable (60%) */}
+                              <div className="col-span-3 flex flex-col">
+                                <div className={`title-bar-mini ${isEditing ? 'edit' : ''}`}>
+                                  <RiEditBoxLine className="size-3" />
+                                  <span className="flex-1">
+                                    {isEditing ? 'Generated Test Case — EDIT MODE' : 'Generated Test Case'}
+                                  </span>
+                                </div>
+                                <div className={`paper-card ${isEditing ? 'edit-mode' : ''}`}>
+                                  {isEditing ? (
+                                    <div className="flex flex-col">
+                                      <StackedEditField
+                                        label="Pre-Conditions"
+                                        value={editValues.preConditions}
+                                        onChange={(v) => setEditValues({ ...editValues, preConditions: v })}
+                                      />
+                                      <StackedEditField
+                                        label="Input Test Data"
+                                        value={editValues.inputTestData}
+                                        onChange={(v) => setEditValues({ ...editValues, inputTestData: v })}
+                                      />
+                                      <StackedEditField
+                                        label="Test Procedure"
+                                        value={editValues.steps}
+                                        onChange={(v) => setEditValues({ ...editValues, steps: v })}
+                                        minHeight={80}
+                                      />
+                                      <StackedEditField
+                                        label="Expected Result"
+                                        value={editValues.expected}
+                                        onChange={(v) => setEditValues({ ...editValues, expected: v })}
+                                      />
+                                    </div>
+                                  ) : (
+                                    <div className="flex flex-col">
+                                      <StackedReadField label="Pre-Conditions" value={row.preConditions} />
+                                      <StackedReadField label="Input Test Data" value={row.inputTestData} muted />
+                                      <StackedReadField label="Test Procedure" value={row.steps} />
+                                      <StackedReadField label="Expected Result" value={row.expectedResults} />
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {!row.pendingRegenerated && (
+                            <div className="mt-3 flex justify-end gap-2">
+                              {isEditing ? (
+                                <>
+                                  <button className="flex items-center gap-1 text-xs px-3 py-1" onClick={() => setEditingRowId(null)}>
+                                    <RiArrowGoBackLine className="size-3" /> Cancel
+                                  </button>
+                                  <button className="flex items-center gap-1 text-xs px-3 py-1 font-bold default" onClick={() => saveEdit(row.id)}>
+                                    <RiSaveLine className="size-3" /> Save Changes
+                                  </button>
+                                </>
+                              ) : (
+                                <>
+                                  <button className="flex items-center gap-1 text-xs px-3 py-1" onClick={() => startEditing(row)}>
+                                    <RiEditLine className="size-3" /> Manual Edit
+                                  </button>
+                                  <button
+                                    className={`flex items-center gap-1 text-xs px-3 py-1 ${
+                                      row.status === 'flagged' ? 'font-bold' : ''
+                                    }`}
+                                    style={row.status === 'flagged' ? { background: '#e0a000', color: '#000000' } : { color: '#7c2d12' }}
+                                    onClick={() => toggleFlag(row.id, row.status)}
+                                  >
+                                    {row.status === 'flagged'
+                                      ? <RiFlagFill className="size-3" />
+                                      : <RiFlagLine className="size-3" />}
+                                    {row.status === 'flagged' ? 'Unflag' : 'Flag for Human'}
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          )}
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -552,95 +697,85 @@ const ReviewModule: React.FC = () => {
       <div className="w-64 flex flex-col gap-2">
         <fieldset className="flex-1 flex flex-col overflow-hidden">
           <legend className="font-bold text-sm">Validation Results</legend>
-          <div className="flex-1 overflow-auto p-2 flex flex-col gap-3">
-            {selectedRow?.validationErrors && selectedRow.validationErrors.length > 0 ? (
+          <div className="flex-1 overflow-auto p-2 flex flex-col gap-2">
+            {!selectedRow ? (
+              <div className="sys-log-entry" style={{ color: '#606060' }}>
+                <span className="sys-log-tag info">INFO</span>
+                Expand a row to view validation.
+              </div>
+            ) : selectedRow.validationErrors && selectedRow.validationErrors.length > 0 ? (
               selectedRow.validationErrors.map((err, i) => (
-                <div
-                  key={i}
-                  className={`flex items-start gap-2 p-2 border ${
-                    err.severity === 'error'
-                      ? 'bg-red-50 border-red-200'
-                      : 'bg-yellow-50 border-yellow-200'
-                  }`}
-                >
-                  {err.severity === 'error'
-                    ? <RiErrorWarningFill className="size-5 text-red-600 shrink-0" />
-                    : <RiAlertFill className="size-5 text-yellow-600 shrink-0" />}
-                  <div>
-                    <div className={`text-xs font-bold ${err.severity === 'error' ? 'text-red-800' : 'text-yellow-800'}`}>
-                      {err.severity === 'error' ? 'Logic Conflict' : 'Quality Warning'}
-                    </div>
-                    <div className={`text-[10px] ${err.severity === 'error' ? 'text-red-700' : 'text-yellow-700'}`}>
-                      {err.message}
+                <div key={i} className="sys-log-entry selectable">
+                  <div className="flex items-start gap-2">
+                    {err.severity === 'error'
+                      ? <RiErrorWarningFill className="size-4 shrink-0 mt-0.5" style={{ color: '#c00000' }} />
+                      : <RiAlertFill className="size-4 shrink-0 mt-0.5" style={{ color: '#e0a000' }} />}
+                    <div className="flex-1 min-w-0">
+                      <div>
+                        <span className={`sys-log-tag ${err.severity === 'error' ? 'critical' : 'warn'}`}>
+                          {err.severity === 'error' ? 'CRITICAL' : 'WARNING'}
+                        </span>
+                        <span className="font-bold text-[11px]">
+                          {err.severity === 'error' ? 'Logic Conflict' : 'Quality Warning'}
+                        </span>
+                      </div>
+                      <div className="text-[11px] mt-1" style={{ color: '#303030' }}>
+                        {err.message}
+                      </div>
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <div className="flex items-start gap-2 p-2 bg-green-50 border border-green-200">
-                <RiCheckboxCircleFill className="size-5 text-green-600 shrink-0" />
-                <div>
-                  <div className="text-xs font-bold text-green-800">Checks Passed</div>
-                  <div className="text-[10px] text-green-700">This test case meets all AI quality standards.</div>
+              <div className="sys-log-entry selectable">
+                <div className="flex items-start gap-2">
+                  <RiCheckboxCircleFill className="size-4 shrink-0 mt-0.5" style={{ color: '#00a000' }} />
+                  <div className="flex-1">
+                    <div>
+                      <span className="sys-log-tag info">PASS</span>
+                      <span className="font-bold text-[11px]">All Checks Passed</span>
+                    </div>
+                    <div className="text-[11px] mt-1" style={{ color: '#303030' }}>
+                      This test case meets all AI quality standards.
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
         </fieldset>
 
-        <button
-          className="w-full py-3 flex items-center justify-center gap-2 font-bold default"
-          onClick={() => openWindow('export', 'TC Generator - Export')}
-        >
+        <button className="w-full py-3 flex items-center justify-center gap-2 font-bold default" onClick={() => openWindow('export', 'TC Generator - Export')}>
           <RiDownload2Line className="size-5" /> Export All
         </button>
       </div>
 
-      {/* Floating action bar — shown when rows are selected */}
+      {/* Floating toolbox — shown when rows are selected */}
       {selectedIds.size > 0 && (
         <div
-          className="absolute bottom-4 left-1/2 z-20 flex items-center gap-2 px-3 py-2"
-          style={{
-            transform: 'translateX(-50%)',
-            minWidth: 340,
-            background: '#c0c0c0',
-            border: '2px solid',
-            borderColor: '#ffffff #808080 #808080 #ffffff',
-            boxShadow: '2px 2px 0 #000',
-            justifyContent: 'space-between',
-          }}
+          className="win95-toolbox absolute bottom-4 left-1/2 z-20"
+          style={{ transform: 'translateX(-50%)', padding: '6px 4px' }}
         >
-          <span className="font-bold" style={{ fontSize: 11 }}>
-            {selectedIds.size} row{selectedIds.size > 1 ? 's' : ''} selected
-          </span>
-          <div className="flex gap-1">
+          <div className="win95-toolbox-handle" />
+          <div className="win95-toolbox-group">
+            <span className="font-bold" style={{ fontSize: 11, padding: '0 4px' }}>
+              {selectedIds.size} row{selectedIds.size > 1 ? 's' : ''} selected
+            </span>
             <button onClick={() => setSelectedIds(new Set())}>Clear</button>
-            <button
-              className="flex items-center gap-1"
-              title="Accept selected"
-              onClick={() => handleBulkStatus('accepted')}
-            >
+          </div>
+          <div className="win95-toolbox-group">
+            <button className="flex items-center gap-1" title="Accept selected" onClick={() => handleBulkStatus('accepted')}>
               <RiCheckFill className="size-3 text-green-700" /> Accept
             </button>
-            <button
-              className="flex items-center gap-1"
-              title="Reject selected"
-              onClick={() => handleBulkStatus('rejected')}
-            >
+            <button className="flex items-center gap-1" title="Reject selected" onClick={() => handleBulkStatus('rejected')}>
               <RiCloseFill className="size-3 text-red-700" /> Reject
             </button>
-            <button
-              className="flex items-center gap-1"
-              title="Delete selected"
-              onClick={handleBulkDelete}
-            >
+          </div>
+          <div className="win95-toolbox-group">
+            <button className="flex items-center gap-1" title="Delete selected" onClick={handleBulkDelete}>
               <RiDeleteBinLine className="size-3" /> Delete
             </button>
-            <button
-              className="font-bold flex items-center gap-1"
-              onClick={handleRegenerate}
-              disabled={isRegenerating}
-            >
+            <button className="font-bold flex items-center gap-1" onClick={handleRegenerate} disabled={isRegenerating}>
               <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
               {isRegenerating ? 'Regenerating...' : `Regenerate`}
             </button>
