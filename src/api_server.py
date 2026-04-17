@@ -831,6 +831,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         }
         spec_index = _build_spec_index_for_job(job)
         job["status"] = "running"
+        JOB_REGISTRY[jobId] = job  # 回寫 SQLite，避免修改只停留在反序列化副本
         yield _sse_event(
             {
                 "type": "job.started",
@@ -937,6 +938,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             await asyncio.sleep(0.15)
 
         job["status"] = "completed"
+        JOB_REGISTRY[jobId] = job  # 回寫 SQLite
         yield _sse_event(
             {
                 "type": "job.completed",
@@ -985,8 +987,23 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         batch_size = cfg.get("batchSize", 1)
         processed = 0
         current_cost = 0.0
+        total_in = 0
+        total_out = 0
+        total_cache_create = 0
+        total_cache_read = 0
 
         yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total})
+
+        def _stats() -> dict:
+            return {
+                "total": total,
+                "processed": processed,
+                "currentCost": round(current_cost, 4),
+                "inputTokens": total_in,
+                "outputTokens": total_out,
+                "cacheCreationTokens": total_cache_create,
+                "cacheReadTokens": total_cache_read,
+            }
 
         for i in range(0, total, batch_size):
             batch = rows_to_regen[i : i + batch_size]
@@ -1000,6 +1017,10 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                     tc_data_list = result.tc_data
 
                 current_cost += result.cost
+                total_in += result.input_tokens
+                total_out += result.output_tokens
+                total_cache_create += getattr(result, "cache_creation_tokens", 0)
+                total_cache_read += getattr(result, "cache_read_tokens", 0)
                 for row, tc in zip(batch, tc_data_list):
                     processed += 1
                     updated_row, _ = _build_stream_row(row, tc)
@@ -1008,11 +1029,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             "type": "row.regenerated",
                             "jobId": job_id,
                             "row": updated_row,
-                            "stats": {
-                                "total": total,
-                                "processed": processed,
-                                "currentCost": round(current_cost, 4),
-                            },
+                            "stats": _stats(),
                         }
                     )
             except GenerationError as exc:
@@ -1023,11 +1040,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             "type": "row.regen_failed",
                             "jobId": job_id,
                             "row": _build_failed_stream_row(row, str(exc)),
-                            "stats": {
-                                "total": total,
-                                "processed": processed,
-                                "currentCost": round(current_cost, 4),
-                            },
+                            "stats": _stats(),
                         }
                     )
             await asyncio.sleep(0.05)
@@ -1036,7 +1049,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
             {
                 "type": "regen.completed",
                 "jobId": job_id,
-                "stats": {"total": total, "processed": processed, "currentCost": round(current_cost, 4)},
+                "stats": _stats(),
             }
         )
 
@@ -1084,6 +1097,7 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         )
 
     job["exportPath"] = export_path
+    JOB_REGISTRY[payload.jobId] = job  # 回寫 SQLite，否則下載時讀不到 exportPath
     download_url = str(request.url_for("download_export", jobId=payload.jobId))
     return {
         "jobId": payload.jobId,
