@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useRef } from 'react';
+import { useJobHistoryStore } from '../../../store/useJobHistoryStore';
 import {
   RiFlashlightLine,
   RiListCheck2,
@@ -83,88 +84,67 @@ const COLUMN_HEADERS: { key: keyof GeneratedTc['tc']; label: string; pre?: boole
   { key: 'expected_result', label: 'Expected Result', pre: true, highlight: true },
 ];
 
-const TcTable: React.FC<{ tcs: GeneratedTc[] }> = ({ tcs }) => (
-  <div
-    style={{
-      border: '2px solid',
-      borderColor: '#808080 #ffffff #ffffff #808080',
-      background: '#ffffff',
-      overflow: 'auto',
-    }}
-  >
-    <table
-      className="text-xs"
-      style={{
-        width: '100%',
-        borderCollapse: 'collapse',
-        tableLayout: 'fixed',
-      }}
-    >
-      <colgroup>
-        <col style={{ width: 40 }} />
-        {COLUMN_HEADERS.map((c) => (
-          <col key={c.key} />
-        ))}
-        <col style={{ width: 70 }} />
-      </colgroup>
-      <thead>
-        <tr style={{ background: '#000080', color: '#ffffff' }}>
-          <th className="px-2 py-1 text-left font-bold" style={{ borderRight: '1px solid #c0c0c0' }}>#</th>
-          {COLUMN_HEADERS.map((c) => (
-            <th
-              key={c.key}
-              className="px-2 py-1 text-left font-bold uppercase"
-              style={{ borderRight: '1px solid #c0c0c0', fontSize: 10 }}
-            >
-              {c.label}
-            </th>
-          ))}
-          <th className="px-2 py-1 text-left font-bold" style={{ fontSize: 10 }}>Priority</th>
-        </tr>
-      </thead>
-      <tbody>
-        {tcs.map((tc, i) => {
-          const priorityStyle = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#e2e3e5', color: '#383d41' };
+const TcCard: React.FC<{ tc: GeneratedTc; index: number }> = ({ tc, index }) => {
+  const priorityStyle = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#e2e3e5', color: '#383d41' };
+  return (
+    <div style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080', background: '#ffffff' }}>
+      {/* Title bar */}
+      <div
+        className="flex items-center gap-2 px-2 py-1"
+        style={{ background: '#000080', color: '#ffffff' }}
+      >
+        <span className="text-xs font-bold flex-1">
+          TC {index + 1}{tc.scenarioName ? ` — ${tc.scenarioName}` : ''}
+        </span>
+        <span className="text-[10px] px-2 font-bold uppercase" style={priorityStyle}>
+          {tc.tc.priority}
+        </span>
+        <span className="text-[10px] opacity-70 ml-1">{tc.tc.design_method}</span>
+      </div>
+
+      {/* Stacked fields */}
+      <div className="flex flex-col">
+        {COLUMN_HEADERS.map((c) => {
+          const raw = tc.tc[c.key] as string;
           return (
-            <tr
-              key={`${tc.scenarioId}-${i}`}
-              style={{ borderTop: '1px solid #e0e0e0', verticalAlign: 'top' }}
-            >
-              <td
-                className="px-2 py-1 font-bold"
-                style={{ background: '#e8e8e8', borderRight: '1px solid #c0c0c0' }}
-                title={tc.scenarioName ?? ''}
+            <div key={c.key} style={{ borderTop: '1px solid #e0e0e0' }}>
+              <div
+                className="px-2 py-1 font-bold uppercase"
+                style={{
+                  background: '#e8e8e8',
+                  borderBottom: '1px solid #d0d0d0',
+                  fontSize: 10,
+                  color: '#444',
+                  letterSpacing: 0.5,
+                }}
               >
-                {i + 1}
-              </td>
-              {COLUMN_HEADERS.map((c) => {
-                const raw = tc.tc[c.key] as string;
-                return (
-                  <td
-                    key={c.key}
-                    className={`px-2 py-1 align-top ${c.pre ? 'whitespace-pre-wrap' : ''}`}
-                    style={{
-                      borderRight: '1px solid #e0e0e0',
-                      color: c.highlight ? '#006400' : c.muted ? '#808080' : '#000000',
-                      fontStyle: c.muted ? 'italic' : 'normal',
-                      fontWeight: c.highlight ? 'bold' : 'normal',
-                      wordBreak: 'break-word',
-                    }}
-                  >
-                    {raw || '—'}
-                  </td>
-                );
-              })}
-              <td className="px-2 py-1 align-top">
-                <span className="text-[10px] px-2 font-bold uppercase" style={priorityStyle}>
-                  {tc.tc.priority}
-                </span>
-              </td>
-            </tr>
+                {c.label}
+              </div>
+              <div
+                className={`px-3 py-2 text-xs ${c.pre ? 'whitespace-pre-wrap' : ''}`}
+                style={{
+                  color: c.highlight ? '#006400' : c.muted ? '#808080' : '#000000',
+                  fontStyle: c.muted ? 'italic' : 'normal',
+                  fontWeight: c.highlight ? 'bold' : 'normal',
+                  wordBreak: 'break-word',
+                  lineHeight: 1.5,
+                }}
+              >
+                {raw || '—'}
+              </div>
+            </div>
           );
         })}
-      </tbody>
-    </table>
+      </div>
+    </div>
+  );
+};
+
+const TcList: React.FC<{ tcs: GeneratedTc[] }> = ({ tcs }) => (
+  <div className="flex flex-col gap-3">
+    {tcs.map((tc, i) => (
+      <TcCard key={`${tc.scenarioId}-${i}`} tc={tc} index={i} />
+    ))}
   </div>
 );
 
@@ -259,6 +239,14 @@ const QuickGenerateModule: React.FC = () => {
     abortRef.current = () => { stopped = true; };
     const isStopped = () => stopped;
 
+    // 追蹤最新 stats，在 job.completed 時寫入 history
+    const startedAt = Date.now();
+    const latest = {
+      total: 0, processed: 0, cost: 0,
+      inputTokens: 0, outputTokens: 0,
+      cacheCreationTokens: 0, cacheReadTokens: 0,
+    };
+
     try {
       const res = await fetch('/api/quick-generate/stream', {
         method: 'POST',
@@ -291,6 +279,17 @@ const QuickGenerateModule: React.FC = () => {
           try {
             const event = JSON.parse(line);
 
+            // 同步擷取 stats 供 history 使用
+            if (event.stats) {
+              if (event.stats.total !== undefined) latest.total = Number(event.stats.total);
+              if (event.stats.processed !== undefined) latest.processed = Number(event.stats.processed);
+              if (event.stats.currentCost !== undefined) latest.cost = Number(event.stats.currentCost);
+              if (event.stats.inputTokens !== undefined) latest.inputTokens = Number(event.stats.inputTokens);
+              if (event.stats.outputTokens !== undefined) latest.outputTokens = Number(event.stats.outputTokens);
+              if (event.stats.cacheCreationTokens !== undefined) latest.cacheCreationTokens = Number(event.stats.cacheCreationTokens);
+              if (event.stats.cacheReadTokens !== undefined) latest.cacheReadTokens = Number(event.stats.cacheReadTokens);
+            }
+
             if (event.type === 'decompose.analysis') {
               setAnalysis({ reasoning: event.reasoning, scenarios: event.scenarios });
               setPhase('generating');
@@ -306,6 +305,22 @@ const QuickGenerateModule: React.FC = () => {
             } else if (event.type === 'job.completed') {
               if (event.stats?.currentCost) setCost(event.stats.currentCost);
               setPhase('done');
+              // 寫入 history
+              useJobHistoryStore.getState().appendRecord({
+                id: `quick-${Date.now().toString(36)}`,
+                kind: 'quick',
+                model,
+                startedAt,
+                finishedAt: Date.now(),
+                rowsTotal: Math.max(latest.total, 1),
+                rowsProcessed: Math.max(latest.processed, 1),
+                cost: latest.cost,
+                inputTokens: latest.inputTokens,
+                outputTokens: latest.outputTokens,
+                cacheReadTokens: latest.cacheReadTokens,
+                cacheCreationTokens: latest.cacheCreationTokens,
+                note: mode,
+              });
             } else if (event.type === 'job.failed') {
               setErrorMsg(event.message ?? 'Unknown error');
               setPhase('error');
@@ -517,8 +532,8 @@ const QuickGenerateModule: React.FC = () => {
             </div>
           )}
 
-          {/* TC table */}
-          {generatedTcs.length > 0 && <TcTable tcs={generatedTcs} />}
+          {/* TC stacked cards */}
+          {generatedTcs.length > 0 && <TcList tcs={generatedTcs} />}
 
           {/* Generating next TC indicator */}
           {isRunning && generatingScenarioId !== null && (
