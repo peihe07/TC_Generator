@@ -29,6 +29,7 @@ interface JobHistoryStore {
 
 const LS_KEY = 'tc-generator-job-history';
 const MAX_RECORDS = 500;
+const MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000; // 保留 90 天
 
 function persist(records: JobRecord[]) {
   try {
@@ -46,14 +47,23 @@ export const useJobHistoryStore = create<JobHistoryStore>((set, get) => ({
     if (typeof window === 'undefined') return;
     try {
       const raw = localStorage.getItem(LS_KEY);
-      set({ records: raw ? JSON.parse(raw) : [], loaded: true });
+      const parsed: JobRecord[] = raw ? JSON.parse(raw) : [];
+      // 開啟時執行 TTL 過濾，清掉超過 MAX_AGE_MS 的舊紀錄
+      const cutoff = Date.now() - MAX_AGE_MS;
+      const kept = parsed.filter((r) => (r.finishedAt ?? r.startedAt ?? 0) >= cutoff);
+      if (kept.length !== parsed.length) persist(kept);
+      set({ records: kept, loaded: true });
     } catch {
       set({ records: [], loaded: true });
     }
   },
 
   appendRecord: (record) => {
-    const next = [record, ...get().records].slice(0, MAX_RECORDS);
+    // 保留最新 MAX_RECORDS 筆，同時汰換 MAX_AGE_MS 之外的舊紀錄
+    const cutoff = Date.now() - MAX_AGE_MS;
+    const next = [record, ...get().records]
+      .filter((r) => (r.finishedAt ?? r.startedAt ?? 0) >= cutoff)
+      .slice(0, MAX_RECORDS);
     persist(next);
     set({ records: next });
   },

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { TcRow, GenerationConfig, JobLog, JobStats, JobMetadata } from '../lib/types';
 
 interface JobStore {
@@ -54,7 +55,7 @@ function renumberRows(rows: TcRow[]): TcRow[] {
   }));
 }
 
-export const useJobStore = create<JobStore>((set) => ({
+export const useJobStore = create<JobStore>()(persist((set) => ({
   jobMetadata: null,
   tcRows: [],
   config: DEFAULT_CONFIG,
@@ -127,6 +128,17 @@ export const useJobStore = create<JobStore>((set) => ({
     isProcessing: false,
     isRegenerating: false,
   }),
+}), {
+  name: 'tc-job-session',
+  storage: createJSONStorage(() => localStorage),
+  // 只持久化資料型欄位；瞬態旗標與 logs 不跨 session 保留
+  partialize: (state) => ({
+    jobMetadata: state.jobMetadata,
+    tcRows: state.tcRows,
+    config: state.config,
+    stats: state.stats,
+  }),
+  version: 1,
 }));
 
 // Expose store synchronously in non-production for Playwright E2E tests
