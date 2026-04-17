@@ -34,6 +34,17 @@ MODEL_PRICING = {
 DEFAULT_MODEL = "gpt-4.1"
 MAX_RETRIES = 2
 
+# 當同一 model 重試後仍違反 1:1 時，升級到下列 model 再試一次。
+# 值為 None 代表已是最高層級、不再升級。
+MODEL_ESCALATION = {
+    "gpt-4o-mini":  "gpt-4o",
+    "gpt-4.1-mini": "gpt-4.1",
+    "gpt-5-mini":   "gpt-5",
+    "gpt-4o":       "gpt-4.1",
+    "gpt-4.1":      "gpt-5",
+    "gpt-5":        None,
+}
+
 
 class GenerationError(Exception):
     """Raised when TC generation fails."""
@@ -86,6 +97,20 @@ def _normalize_tc_dict(data: dict) -> dict:
         elif val is None:
             data[key] = ""
     return data
+
+
+def _count_steps(text: str) -> int:
+    """計算編號項目數量（同 validator 的邏輯）。"""
+    if not text:
+        return 0
+    return len(re.findall(r"^\s*\d+[.)、]\s", text, re.MULTILINE))
+
+
+def _violates_count_rule(tc: dict) -> bool:
+    """檢查單一 TC 是否違反 1:1 規則（procedure 與 expected_result 項數需一致）。"""
+    proc = _count_steps(tc.get("test_procedure", ""))
+    er = _count_steps(tc.get("expected_result", ""))
+    return proc > 0 and er > 0 and proc != er
 
 
 def parse_tc_response(raw: str) -> dict:
@@ -225,7 +250,58 @@ def generate_single_tc(
     raw_text = response.choices[0].message.content or ""
     tc_data = parse_tc_response(raw_text)
     t = _usage_tokens(response.usage)
-    cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
+    used_model = model
+
+    # 1:1 count 違規 → 重試一次（同 model），附上具體提示
+    if _violates_count_rule(tc_data):
+        proc_n = _count_steps(tc_data.get("test_procedure", ""))
+        er_n = _count_steps(tc_data.get("expected_result", ""))
+        retry_prompt = (
+            user_prompt
+            + f"\n\nPREVIOUS ATTEMPT FAILED the 1:1 rule: test_procedure had {proc_n} items but "
+              f"expected_result had {er_n} items. Regenerate with EXACTLY the same number of "
+              "numbered items in test_procedure and expected_result."
+        )
+        retry = _chat(system, retry_prompt, model, max_tokens=2000)
+        retry_text = retry.choices[0].message.content or ""
+        retry_data = parse_tc_response(retry_text)
+        rt = _usage_tokens(retry.usage)
+        t = {
+            "input": t["input"] + rt["input"],
+            "output": t["output"] + rt["output"],
+            "cache_creation": t["cache_creation"] + rt["cache_creation"],
+            "cache_read": t["cache_read"] + rt["cache_read"],
+        }
+        tc_data = retry_data
+
+        # 同 model retry 仍違規 → 升級 model 再試一次
+        if _violates_count_rule(tc_data):
+            escalated = MODEL_ESCALATION.get(model)
+            if escalated:
+                esc_prompt = (
+                    user_prompt
+                    + "\n\nPreviously tried twice with the same model and still produced "
+                      "mismatched counts. Pay extra attention to the 1:1 rule. "
+                      "Generate test_procedure and expected_result with EQUAL numbered items."
+                )
+                esc = _chat(system, esc_prompt, escalated, max_tokens=2000)
+                esc_text = esc.choices[0].message.content or ""
+                esc_data = parse_tc_response(esc_text)
+                et = _usage_tokens(esc.usage)
+                # 分兩段計費：舊 model + escalated model
+                base_cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
+                esc_cost = calculate_cost(et["input"], et["output"], escalated, et["cache_creation"], et["cache_read"])
+                return GenerationResult(
+                    tc_data=esc_data,
+                    input_tokens=t["input"] + et["input"],
+                    output_tokens=t["output"] + et["output"],
+                    cache_creation_tokens=t["cache_creation"] + et["cache_creation"],
+                    cache_read_tokens=t["cache_read"] + et["cache_read"],
+                    cost=base_cost + esc_cost,
+                    model=escalated,
+                )
+
+    cost = calculate_cost(t["input"], t["output"], used_model, t["cache_creation"], t["cache_read"])
 
     return GenerationResult(
         tc_data=tc_data,
@@ -234,7 +310,7 @@ def generate_single_tc(
         cache_creation_tokens=t["cache_creation"],
         cache_read_tokens=t["cache_read"],
         cost=cost,
-        model=model,
+        model=used_model,
     )
 
 
