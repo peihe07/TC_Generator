@@ -1,11 +1,32 @@
 'use client';
 
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import { useWindowStore, WindowID } from '../../store/useWindowStore';
 import 'react-resizable/css/styles.css';
 import { TASKBAR_HEIGHT } from './layout';
+
+// 至少保留多少像素的標題列必須可見，避免視窗被拖到完全看不見
+const MIN_VISIBLE = 80;
+const TITLE_BAR_H = 28;
+
+function clampPosition(
+  pos: { x: number; y: number },
+  size: { width: number; height: number },
+): { x: number; y: number } {
+  if (typeof window === 'undefined') return pos;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight - TASKBAR_HEIGHT;
+  const maxX = vw - MIN_VISIBLE;
+  const maxY = vh - TITLE_BAR_H;
+  const minX = -(size.width - MIN_VISIBLE);
+  const minY = 0;
+  return {
+    x: Math.min(Math.max(pos.x, minX), maxX),
+    y: Math.min(Math.max(pos.y, minY), maxY),
+  };
+}
 
 interface AppWindowProps {
   id: WindowID;
@@ -18,13 +39,27 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
   const windowData = windows[id];
   const nodeRef = useRef(null);
 
+  // 視窗開啟時與瀏覽器尺寸變動時，將位置夾回可視範圍（避免拖出畫面外無法拉回）
+  useEffect(() => {
+    if (!windowData || !windowData.isOpen || windowData.isMaximized) return;
+    const ensureVisible = () => {
+      const clamped = clampPosition(windowData.position, windowData.size);
+      if (clamped.x !== windowData.position.x || clamped.y !== windowData.position.y) {
+        updatePosition(id, clamped);
+      }
+    };
+    ensureVisible();
+    window.addEventListener('resize', ensureVisible);
+    return () => window.removeEventListener('resize', ensureVisible);
+  }, [id, windowData?.isOpen, windowData?.isMaximized, windowData?.position.x, windowData?.position.y, windowData?.size.width, windowData?.size.height, updatePosition]);
+
   if (!windowData || !windowData.isOpen || windowData.isMinimized) return null;
 
   const isFocused = focusedWindowId === id;
   const isMaximized = windowData.isMaximized;
 
   const onDragStop = (_e: any, data: { x: number; y: number }) => {
-    updatePosition(id, { x: data.x, y: data.y });
+    updatePosition(id, clampPosition({ x: data.x, y: data.y }, windowData.size));
   };
 
   const onResizeStop = (_e: any, data: { size: { width: number; height: number } }) => {
@@ -47,7 +82,27 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
       </div>
 
       {/* Window Body */}
-      <div className="window-body flex-1 flex flex-col m-1 overflow-hidden">
+      <div
+        className="window-body flex-1 flex flex-col m-1 overflow-hidden"
+        onCopy={(e) => {
+          const t = e.target as HTMLElement;
+          const tag = t?.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || t?.closest?.('.selectable')) return;
+          e.preventDefault();
+        }}
+        onCut={(e) => {
+          const t = e.target as HTMLElement;
+          const tag = t?.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || t?.closest?.('.selectable')) return;
+          e.preventDefault();
+        }}
+        onContextMenu={(e) => {
+          const t = e.target as HTMLElement;
+          const tag = t?.tagName;
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || t?.closest?.('.selectable')) return;
+          e.preventDefault();
+        }}
+      >
         <div className={`flex-1 overflow-auto bg-white border-2 border-sunken shadow-inner ${(id === 'diagrams' || id === 'rules') ? 'p-0' : 'p-4'}`}>
           {children}
         </div>
@@ -71,10 +126,9 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
     <Draggable
       nodeRef={nodeRef}
       handle=".title-bar"
-      defaultPosition={windowData.position}
+      position={windowData.position}
       onStop={onDragStop}
       onStart={() => focusWindow(id)}
-      bounds="parent"
     >
       <div
         ref={nodeRef}

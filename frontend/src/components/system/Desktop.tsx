@@ -145,7 +145,7 @@ const Desktop: React.FC = () => {
   // Track dragged distance to distinguish click vs drag
   const dragMovedRef = useRef<Record<string, boolean>>({});
   // nodeRefs for react-draggable (avoids findDOMNode warning)
-  const nodeRefs = useRef<Partial<Record<WindowID, React.RefObject<HTMLDivElement>>>>({});
+  const nodeRefs = useRef<Partial<Record<WindowID, React.RefObject<HTMLDivElement | null>>>>({});
   DESKTOP_ICONS.forEach(({ id }) => {
     if (!nodeRefs.current[id]) {
       nodeRefs.current[id] = React.createRef<HTMLDivElement>();
