@@ -3,6 +3,7 @@ from io import BytesIO
 from types import SimpleNamespace
 from unittest.mock import patch
 
+import json
 from fastapi.testclient import TestClient
 from openpyxl import Workbook, load_workbook
 
@@ -434,3 +435,171 @@ def test_match_preview_uses_reference_workbook():
     assert body["summary"]["hasReferenceWorkbook"] is True
     assert body["summary"]["exact"] == 2
     assert body["matches"][0]["specReference"] == "SPEC_REF_PDM01"
+
+
+# ── Quick Generate Stream ─────────────────────────────────────────────────────
+
+VALID_TC_JSON = {
+    "test_item_rewrite": "(Button pressed → LED turns on)",
+    "pre_conditions": "1. System is powered.",
+    "input_test_data": "NA",
+    "test_procedure": "1. Press button.\n2. Observe LED.",
+    "expected_result": "1. LED turns on.",
+    "design_method": "Functional",
+    "priority": "Medium",
+    "split_flag": False,
+    "split_reason": "",
+}
+
+VALID_DECOMPOSE_RESPONSE = {
+    "reasoning": "Two distinct scenarios: normal and boundary.",
+    "scenarios": [
+        {"id": 1, "name": "Normal", "description": "Primary path.", "test_item": "Button pressed → LED on"},
+        {"id": 2, "name": "Boundary", "description": "Edge case.", "test_item": "Button held → LED blink"},
+    ],
+}
+
+
+def _parse_sse(content: bytes) -> list[dict]:
+    """Parse SSE response body into a list of event dicts."""
+    events = []
+    for line in content.decode().split("\n"):
+        line = line.strip()
+        if line.startswith("data: "):
+            try:
+                events.append(json.loads(line[len("data: "):]))
+            except json.JSONDecodeError:
+                pass
+    return events
+
+
+@patch("api_server.generate_quick_tc")
+def test_quick_generate_single_mode(mock_gen):
+    from generator import GenerationResult
+    mock_gen.return_value = GenerationResult(
+        tc_data=VALID_TC_JSON,
+        input_tokens=300,
+        output_tokens=150,
+        cost=0.003,
+        model="claude-sonnet-4-6",
+    )
+
+    response = client.post(
+        "/api/quick-generate/stream",
+        json={"testItem": "Button pressed → LED on", "context": None, "mode": "single", "model": "claude-sonnet-4-6"},
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    types = [e["type"] for e in events]
+    assert "job.started" in types
+    assert "tc.completed" in types
+    assert "job.completed" in types
+
+    tc_event = next(e for e in events if e["type"] == "tc.completed")
+    assert tc_event["tc"]["priority"] == "Medium"
+    assert tc_event["scenarioId"] == 1
+
+
+@patch("api_server.generate_quick_tc")
+def test_quick_generate_with_context_mode(mock_gen):
+    from generator import GenerationResult
+    mock_gen.return_value = GenerationResult(
+        tc_data=VALID_TC_JSON,
+        input_tokens=400,
+        output_tokens=200,
+        cost=0.004,
+        model="claude-sonnet-4-6",
+    )
+
+    response = client.post(
+        "/api/quick-generate/stream",
+        json={
+            "testItem": "Button pressed → LED on",
+            "context": "System must be powered",
+            "mode": "with_context",
+            "model": "claude-sonnet-4-6",
+        },
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    # generate_quick_tc should receive context
+    call_kwargs = mock_gen.call_args[1]
+    assert call_kwargs["context"] == "System must be powered"
+    types = [e["type"] for e in events]
+    assert "tc.completed" in types
+    assert "job.completed" in types
+
+
+@patch("api_server.generate_quick_tc")
+def test_quick_generate_single_mode_api_error(mock_gen):
+    from generator import GenerationError
+    mock_gen.side_effect = GenerationError("API timeout")
+
+    response = client.post(
+        "/api/quick-generate/stream",
+        json={"testItem": "some item", "context": None, "mode": "single", "model": "claude-sonnet-4-6"},
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    types = [e["type"] for e in events]
+    assert "job.failed" in types
+    failed = next(e for e in events if e["type"] == "job.failed")
+    assert "API timeout" in failed["message"]
+
+
+@patch("api_server.generate_quick_tc")
+@patch("api_server.decompose_requirement")
+def test_quick_generate_decompose_mode(mock_decompose, mock_gen):
+    from generator import DecomposeResult, GenerationResult
+    mock_decompose.return_value = DecomposeResult(
+        reasoning=VALID_DECOMPOSE_RESPONSE["reasoning"],
+        scenarios=VALID_DECOMPOSE_RESPONSE["scenarios"],
+        input_tokens=500,
+        output_tokens=250,
+        cost=0.005,
+    )
+    mock_gen.return_value = GenerationResult(
+        tc_data=VALID_TC_JSON,
+        input_tokens=300,
+        output_tokens=150,
+        cost=0.003,
+        model="claude-sonnet-4-6",
+    )
+
+    response = client.post(
+        "/api/quick-generate/stream",
+        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "claude-sonnet-4-6"},
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    types = [e["type"] for e in events]
+
+    assert "job.started" in types
+    assert "decompose.analysis" in types
+    assert "tc.generating" in types
+    assert "tc.completed" in types
+    assert "job.completed" in types
+
+    # Two scenarios → two tc.completed events
+    tc_done = [e for e in events if e["type"] == "tc.completed"]
+    assert len(tc_done) == 2
+
+    analysis = next(e for e in events if e["type"] == "decompose.analysis")
+    assert len(analysis["scenarios"]) == 2
+
+
+@patch("api_server.decompose_requirement")
+def test_quick_generate_decompose_mode_decompose_error(mock_decompose):
+    from generator import GenerationError
+    mock_decompose.side_effect = GenerationError("Decompose failed")
+
+    response = client.post(
+        "/api/quick-generate/stream",
+        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "claude-sonnet-4-6"},
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    types = [e["type"] for e in events]
+    assert "job.failed" in types
+    failed = next(e for e in events if e["type"] == "job.failed")
+    assert "Decompose failed" in failed["message"]

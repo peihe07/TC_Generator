@@ -11,9 +11,12 @@ from generator import (
     parse_batch_response,
     calculate_cost,
     GenerationResult,
+    DecomposeResult,
     GenerationError,
     generate_single_tc,
     generate_batch,
+    generate_quick_tc,
+    decompose_requirement,
 )
 
 
@@ -166,3 +169,169 @@ class TestGenerateBatch:
         assert isinstance(result, GenerationResult)
         assert len(result.tc_data) == 2
         assert result.input_tokens == 1000
+
+
+class TestGenerateQuickTc:
+    @patch("generator.anthropic")
+    def test_single_success(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text=json.dumps(VALID_TC_JSON))]
+        mock_msg.usage.input_tokens = 400
+        mock_msg.usage.output_tokens = 200
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        result = generate_quick_tc(
+            test_item="Button pressed → LED turns on",
+            context=None,
+            rules_text="rules",
+        )
+        assert isinstance(result, GenerationResult)
+        assert result.tc_data["priority"] == "Medium"
+        assert result.input_tokens == 400
+        assert result.output_tokens == 200
+
+    @patch("generator.anthropic")
+    def test_with_context_passes_context_to_prompt(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text=json.dumps(VALID_TC_JSON))]
+        mock_msg.usage.input_tokens = 600
+        mock_msg.usage.output_tokens = 300
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        result = generate_quick_tc(
+            test_item="Button pressed → LED turns on",
+            context="System must be powered on",
+            rules_text="rules",
+        )
+        # Verify the prompt that was built contains the context
+        call_kwargs = mock_client.messages.create.call_args[1]
+        assert "System must be powered on" in call_kwargs["messages"][0]["content"]
+        assert isinstance(result, GenerationResult)
+
+    @patch("generator.anthropic")
+    def test_api_error_raises(self, mock_anthropic):
+        mock_client = MagicMock()
+        mock_client.messages.create.side_effect = Exception("timeout")
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        with pytest.raises(GenerationError, match="API"):
+            generate_quick_tc(
+                test_item="some test item",
+                context=None,
+                rules_text="rules",
+            )
+
+    @patch("generator.anthropic")
+    def test_invalid_json_response_raises(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text="not json at all")]
+        mock_msg.usage.input_tokens = 100
+        mock_msg.usage.output_tokens = 50
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        with pytest.raises(GenerationError, match="parse"):
+            generate_quick_tc(
+                test_item="some test item",
+                context=None,
+                rules_text="rules",
+            )
+
+
+class TestDecomposeRequirement:
+    VALID_DECOMPOSE_RESPONSE = {
+        "reasoning": "The requirement has 3 distinct paths: normal, boundary, and error.",
+        "scenarios": [
+            {"id": 1, "name": "Normal flow", "description": "Primary success path.", "test_item": "Button → LED on"},
+            {"id": 2, "name": "Boundary", "description": "Edge case input.", "test_item": "Button held → LED blink"},
+        ],
+    }
+
+    @patch("generator.anthropic")
+    def test_success(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text=json.dumps(self.VALID_DECOMPOSE_RESPONSE))]
+        mock_msg.usage.input_tokens = 700
+        mock_msg.usage.output_tokens = 400
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        result = decompose_requirement(
+            requirement="When button is pressed, LED turns on. Boundary and error cases apply.",
+            rules_text="rules",
+        )
+        assert isinstance(result, DecomposeResult)
+        assert result.reasoning == self.VALID_DECOMPOSE_RESPONSE["reasoning"]
+        assert len(result.scenarios) == 2
+        assert result.scenarios[0]["name"] == "Normal flow"
+        assert result.input_tokens == 700
+        assert result.output_tokens == 400
+
+    @patch("generator.anthropic")
+    def test_success_with_fenced_json(self, mock_anthropic):
+        raw = f"```json\n{json.dumps(self.VALID_DECOMPOSE_RESPONSE)}\n```"
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text=raw)]
+        mock_msg.usage.input_tokens = 700
+        mock_msg.usage.output_tokens = 400
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        result = decompose_requirement(requirement="req", rules_text="rules")
+        assert len(result.scenarios) == 2
+
+    @patch("generator.anthropic")
+    def test_api_error_raises(self, mock_anthropic):
+        mock_client = MagicMock()
+        mock_client.messages.create.side_effect = Exception("network error")
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        with pytest.raises(GenerationError, match="API"):
+            decompose_requirement(requirement="req", rules_text="rules")
+
+    @patch("generator.anthropic")
+    def test_invalid_json_raises(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text="definitely not json")]
+        mock_msg.usage.input_tokens = 100
+        mock_msg.usage.output_tokens = 50
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        with pytest.raises(GenerationError, match="parse"):
+            decompose_requirement(requirement="req", rules_text="rules")
+
+    @patch("generator.anthropic")
+    def test_missing_scenarios_key_raises(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text=json.dumps({"reasoning": "ok"}))]
+        mock_msg.usage.input_tokens = 100
+        mock_msg.usage.output_tokens = 50
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        with pytest.raises(GenerationError, match="scenarios"):
+            decompose_requirement(requirement="req", rules_text="rules")
+
+    @patch("generator.anthropic")
+    def test_cost_calculation(self, mock_anthropic):
+        mock_msg = MagicMock()
+        mock_msg.content = [MagicMock(text=json.dumps(self.VALID_DECOMPOSE_RESPONSE))]
+        mock_msg.usage.input_tokens = 1_000_000
+        mock_msg.usage.output_tokens = 1_000_000
+        mock_client = MagicMock()
+        mock_client.messages.create.return_value = mock_msg
+        mock_anthropic.Anthropic.return_value = mock_client
+
+        result = decompose_requirement(requirement="req", rules_text="rules", model="claude-sonnet-4-6")
+        # Sonnet: $3 input + $15 output = $18 total for 1M each
+        assert abs(result.cost - 18.0) < 0.001
