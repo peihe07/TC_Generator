@@ -113,6 +113,35 @@ def _violates_count_rule(tc: dict) -> bool:
     return proc > 0 and er > 0 and proc != er
 
 
+def _hard_issues(tc: dict) -> list[str]:
+    """
+    只回傳「硬性、確定可修正」的違規（觸發 retry/escalation）。
+    其他軟性違規（措辭模糊、動詞分類等）讓 validator warnings 在 UI 顯示即可，
+    避免每筆 TC 都 retry 造成成本暴增。
+
+    硬性檢查：
+    - design_method 不在允許清單也不含關鍵字
+    - priority 不是 High/Medium/Low/NA
+    - test_item_rewrite 空白
+    """
+    from validator import validate_design_method, validate_priority
+
+    issues: list[str] = []
+
+    dm = validate_design_method(tc.get("design_method", ""))
+    if not dm.passed:
+        issues.append(f"- design_method: {dm.message}")
+
+    pri = validate_priority(tc.get("priority", ""))
+    if not pri.passed:
+        issues.append(f"- priority: {pri.message}")
+
+    if not (tc.get("test_item_rewrite") or "").strip():
+        issues.append("- test_item_rewrite: must not be empty; rewrite the requirement as (Condition → Outcome)")
+
+    return issues
+
+
 def parse_tc_response(raw: str) -> dict:
     """Parse single TC JSON response. Raises GenerationError on failure."""
     text = _strip_fences(raw)
@@ -252,15 +281,21 @@ def generate_single_tc(
     t = _usage_tokens(response.usage)
     used_model = model
 
-    # 1:1 count 違規 → 重試一次（同 model），附上具體提示
-    if _violates_count_rule(tc_data):
-        proc_n = _count_steps(tc_data.get("test_procedure", ""))
-        er_n = _count_steps(tc_data.get("expected_result", ""))
+    def _has_issues(tc: dict) -> list[str]:
+        """彙整觸發 retry 的硬性違規：1:1 計數 + hard validator 檢查。"""
+        issues = []
+        if _violates_count_rule(tc):
+            p, e = _count_steps(tc.get("test_procedure", "")), _count_steps(tc.get("expected_result", ""))
+            issues.append(f"- 1:1 rule: test_procedure has {p} items but expected_result has {e} items")
+        issues.extend(_hard_issues(tc))
+        return issues
+
+    issues = _has_issues(tc_data)
+    if issues:
         retry_prompt = (
             user_prompt
-            + f"\n\nPREVIOUS ATTEMPT FAILED the 1:1 rule: test_procedure had {proc_n} items but "
-              f"expected_result had {er_n} items. Regenerate with EXACTLY the same number of "
-              "numbered items in test_procedure and expected_result."
+            + "\n\nPREVIOUS ATTEMPT FAILED these checks. Regenerate to fix them:\n"
+            + "\n".join(issues)
         )
         retry = _chat(system, retry_prompt, model, max_tokens=2000)
         retry_text = retry.choices[0].message.content or ""
@@ -275,20 +310,20 @@ def generate_single_tc(
         tc_data = retry_data
 
         # 同 model retry 仍違規 → 升級 model 再試一次
-        if _violates_count_rule(tc_data):
+        remaining = _has_issues(tc_data)
+        if remaining:
             escalated = MODEL_ESCALATION.get(model)
             if escalated:
                 esc_prompt = (
                     user_prompt
-                    + "\n\nPreviously tried twice with the same model and still produced "
-                      "mismatched counts. Pay extra attention to the 1:1 rule. "
-                      "Generate test_procedure and expected_result with EQUAL numbered items."
+                    + "\n\nPreviously tried twice with the same model and still failed:\n"
+                    + "\n".join(remaining)
+                    + "\n\nBe extra careful; correct every item above."
                 )
                 esc = _chat(system, esc_prompt, escalated, max_tokens=2000)
                 esc_text = esc.choices[0].message.content or ""
                 esc_data = parse_tc_response(esc_text)
                 et = _usage_tokens(esc.usage)
-                # 分兩段計費：舊 model + escalated model
                 base_cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
                 esc_cost = calculate_cost(et["input"], et["output"], escalated, et["cache_creation"], et["cache_read"])
                 return GenerationResult(

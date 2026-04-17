@@ -233,12 +233,25 @@ def validate_tc_ids_sequence(ids: list[str]) -> ValidationResult:
 
 # --- §8.6 Design Method ---
 
+# LLM 常回傳短版英文（如 "State Transition"），這些關鍵字皆視為合法
+DESIGN_METHOD_KEYWORDS = [
+    "functional", "state transition", "decision table", "equivalence",
+    "boundary", "combinatorial", "pairwise", "scenario", "use case",
+    "negative", "invalid", "fault injection",
+]
+
+
 def validate_design_method(method: str) -> ValidationResult:
-    """Validate design method against allowed values."""
+    """Validate design method against allowed values (接受完整字串或英文關鍵字)。"""
     check = "design_method"
-    if method not in VALID_DESIGN_METHODS:
-        return ValidationResult(False, check, f"Invalid design method: '{method}'.")
-    return ValidationResult(True, check)
+    if not method:
+        return ValidationResult(False, check, "Design method is empty.")
+    if method in VALID_DESIGN_METHODS:
+        return ValidationResult(True, check)
+    low = method.lower()
+    if any(kw in low for kw in DESIGN_METHOD_KEYWORDS):
+        return ValidationResult(True, check)
+    return ValidationResult(False, check, f"Invalid design method: '{method}'.")
 
 
 # --- §8.7 Priority ---

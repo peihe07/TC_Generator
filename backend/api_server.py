@@ -39,6 +39,17 @@ ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 # SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
 JOB_REGISTRY = SqliteJobStore(default_db_path())
 
+# Startup housekeeping：啟動時清掉超過 JOBS_MAX_AGE_DAYS（預設 30 天）的舊 job
+# 並壓縮檔案。環境變數 `TC_JOBS_MAX_AGE_DAYS` 可覆寫（設 0 停用）。
+try:
+    _max_age_days = int(os.environ.get("TC_JOBS_MAX_AGE_DAYS", "30"))
+    if _max_age_days > 0:
+        _removed = JOB_REGISTRY.purge_older_than(_max_age_days * 86400)
+        if _removed:
+            JOB_REGISTRY.vacuum()
+except (ValueError, Exception):
+    pass
+
 # 內建精簡規則：當 docs/ 規則檔案不存在時的 fallback
 _FALLBACK_RULES = """
 ## Test Item Rewrite
@@ -764,12 +775,14 @@ async def preview_spec_matching(payload: MatchPreviewRequest) -> dict:
     ]
 
     exact_count = sum(1 for row in matched_rows if row.get("match_type") == "exact")
-    unmatched_count = len(matched_rows) - exact_count
+    fuzzy_count = sum(1 for row in matched_rows if row.get("match_type") == "fuzzy")
+    unmatched_count = len(matched_rows) - exact_count - fuzzy_count
     return {
         "jobId": payload.jobId,
         "summary": {
             "total": len(matched_rows),
             "exact": exact_count,
+            "fuzzy": fuzzy_count,
             "unmatched": unmatched_count,
             "hasReferenceWorkbook": bool(reference_index),
         },
@@ -780,6 +793,7 @@ async def preview_spec_matching(payload: MatchPreviewRequest) -> dict:
                 "testItem": row.get("test_item"),
                 "specReference": row.get("spec_reference"),
                 "matchType": row.get("match_type"),
+                "matchScore": row.get("match_score"),
             }
             for row in matched_rows
         ],

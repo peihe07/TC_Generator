@@ -70,6 +70,22 @@ class SqliteJobStore:
         with self._lock:
             return [r[0] for r in self._conn.execute("SELECT id FROM jobs ORDER BY updated_at DESC")]
 
+    def vacuum(self) -> None:
+        """壓縮 DB 檔案大小。對小型工作集極快，頻繁的 job churn 後可用。"""
+        with self._lock:
+            self._conn.execute("VACUUM")
+            self._conn.commit()
+
+    def purge_older_than(self, max_age_seconds: int) -> int:
+        """刪除超過 max_age_seconds 的 job 紀錄；回傳刪除筆數。"""
+        with self._lock:
+            cur = self._conn.execute(
+                "DELETE FROM jobs WHERE updated_at < strftime('%s','now') - ?",
+                (max_age_seconds,),
+            )
+            self._conn.commit()
+            return cur.rowcount or 0
+
     # ---- internals ----
     def _fetch(self, key: str) -> bytes | None:
         with self._lock:
