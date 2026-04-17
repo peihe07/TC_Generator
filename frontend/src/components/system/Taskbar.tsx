@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { useWindowStore, WindowID } from '../../store/useWindowStore';
 import { TASKBAR_HEIGHT } from './layout';
 import WorkspaceMenu from './WorkspaceMenu';
+import JobHistoryMenu from './JobHistoryMenu';
 
 const START_MENU_ITEMS: { label: string; icon: string; id: WindowID | null }[] = [
   { label: 'Upload',     icon: '📁', id: 'upload' },
@@ -185,6 +186,12 @@ const Taskbar: React.FC = () => {
 
         {/* Workspace manager */}
         <WorkspaceMenu />
+
+        {/* Separator */}
+        <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
+
+        {/* Job history */}
+        <JobHistoryMenu />
 
         {/* Separator */}
         <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
