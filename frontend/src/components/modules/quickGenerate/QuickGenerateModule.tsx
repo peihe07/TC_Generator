@@ -68,10 +68,10 @@ const MODE_CONFIG: { id: Mode; label: string; icon: React.ReactNode; desc: strin
   },
 ];
 
-const PRIORITY_COLOR: Record<string, string> = {
-  High: 'bg-red-100 text-red-800',
-  Medium: 'bg-yellow-100 text-yellow-800',
-  Low: 'bg-gray-100 text-gray-600',
+const PRIORITY_STYLE: Record<string, React.CSSProperties> = {
+  High:   { background: '#f8d7da', color: '#8b0000' },
+  Medium: { background: '#fff3cd', color: '#7d4e00' },
+  Low:    { background: '#e2e3e5', color: '#383d41' },
 };
 
 // --- Sub-components ---
@@ -96,35 +96,39 @@ const TcCard: React.FC<{ tc: GeneratedTc; index: number }> = ({ tc, index }) => 
     setTimeout(() => setCopied(false), 1800);
   };
 
+  const priorityStyle = PRIORITY_STYLE[tc.tc.priority] ?? { background: '#e2e3e5', color: '#383d41' };
+
   return (
-    <div className="border border-gray-300 bg-white shadow-sm">
-      {/* Card Header */}
+    <div style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080' }}>
+      {/* Title bar */}
       <div
-        className="flex items-center gap-2 px-3 py-2 bg-gray-100 border-b border-gray-300 cursor-pointer select-none"
+        className="flex items-center gap-2 px-2 py-1 cursor-pointer select-none"
+        style={{ background: '#000080', color: '#ffffff' }}
         onClick={() => setExpanded((v) => !v)}
       >
-        {expanded ? <RiArrowUpSLine className="size-4 shrink-0" /> : <RiArrowDownSLine className="size-4 shrink-0" />}
-        <span className="text-xs font-bold text-gray-800 flex-1">
+        {expanded ? <RiArrowUpSLine className="size-3 shrink-0" /> : <RiArrowDownSLine className="size-3 shrink-0" />}
+        <span className="text-xs font-bold flex-1">
           TC {index + 1}{tc.scenarioName ? ` — ${tc.scenarioName}` : ''}
         </span>
-        <span className={`text-[10px] px-2 py-0.5 font-bold uppercase ${PRIORITY_COLOR[tc.tc.priority] ?? 'bg-gray-100 text-gray-600'}`}>
+        <span className="text-[10px] px-2 font-bold uppercase" style={priorityStyle}>
           {tc.tc.priority}
         </span>
-        <span className="text-[10px] text-gray-500 ml-1">{tc.tc.design_method}</span>
+        <span className="text-[10px] opacity-70 ml-1">{tc.tc.design_method}</span>
         <button
-          className="ml-2 text-xs px-2 py-0.5 border border-gray-300 bg-white hover:bg-gray-50 flex items-center gap-1"
+          className="ml-2 text-xs px-2 flex items-center gap-1"
+          style={{ background: '#c0c0c0', color: '#000000', minHeight: 18, height: 18 }}
           onClick={(e) => { e.stopPropagation(); copyToClipboard(); }}
           title="Copy to clipboard"
         >
-          {copied ? <RiCheckFill className="size-3 text-green-600" /> : <RiClipboardLine className="size-3" />}
+          {copied ? <RiCheckFill className="size-3" style={{ color: '#006400' }} /> : <RiClipboardLine className="size-3" />}
           {copied ? 'Copied' : 'Copy'}
         </button>
       </div>
 
-      {/* Card Body */}
+      {/* Body */}
       {expanded && (
-        <div className="divide-y divide-gray-100">
-          <FieldRow label="Test Item Rewrite" value={tc.tc.test_item_rewrite} />
+        <div style={{ background: '#ffffff' }}>
+          <FieldRow label="Test Item" value={tc.tc.test_item_rewrite} />
           <FieldRow label="Pre-Conditions" value={tc.tc.pre_conditions} />
           <FieldRow label="Input Test Data" value={tc.tc.input_test_data} muted />
           <FieldRow label="Test Procedure" value={tc.tc.test_procedure} pre />
@@ -142,11 +146,21 @@ const FieldRow: React.FC<{
   highlight?: boolean;
   muted?: boolean;
 }> = ({ label, value, pre, highlight, muted }) => (
-  <div className="grid grid-cols-[140px_1fr] text-xs">
-    <div className="px-3 py-2 font-bold text-gray-500 bg-gray-50 border-r border-gray-100 uppercase text-[10px] leading-relaxed">
+  <div className="grid grid-cols-[130px_1fr] text-xs" style={{ borderTop: '1px solid #e0e0e0' }}>
+    <div
+      className="px-2 py-1 font-bold uppercase"
+      style={{ background: '#e8e8e8', borderRight: '1px solid #c0c0c0', fontSize: 10, color: '#444' }}
+    >
       {label}
     </div>
-    <div className={`px-3 py-2 leading-relaxed ${pre ? 'whitespace-pre-wrap' : ''} ${highlight ? 'text-green-800 font-semibold' : ''} ${muted ? 'text-gray-400 italic' : ''}`}>
+    <div
+      className={`px-2 py-1 ${pre ? 'whitespace-pre-wrap' : ''}`}
+      style={{
+        color: highlight ? '#006400' : muted ? '#808080' : '#000000',
+        fontStyle: muted ? 'italic' : 'normal',
+        fontWeight: highlight ? 'bold' : 'normal',
+      }}
+    >
       {value || '—'}
     </div>
   </div>
@@ -318,9 +332,8 @@ const QuickGenerateModule: React.FC = () => {
             {MODE_CONFIG.map((m) => (
               <label
                 key={m.id}
-                className={`flex items-start gap-2 p-2 cursor-pointer border ${
-                  mode === m.id ? 'border-blue-400 bg-blue-50' : 'border-transparent hover:bg-gray-50'
-                }`}
+                className="flex items-start gap-2 p-1 cursor-pointer"
+                style={mode === m.id ? { background: '#000080', color: '#ffffff' } : {}}
               >
                 <input
                   type="radio"
@@ -334,7 +347,7 @@ const QuickGenerateModule: React.FC = () => {
                   <div className="flex items-center gap-1 text-xs font-bold">
                     {m.icon} {m.label}
                   </div>
-                  <div className="text-[10px] text-gray-500">{m.desc}</div>
+                  <div className="text-[10px]" style={{ color: mode === m.id ? 'rgba(255,255,255,0.7)' : '#808080' }}>{m.desc}</div>
                 </div>
               </label>
             ))}
@@ -347,7 +360,7 @@ const QuickGenerateModule: React.FC = () => {
             {mode === 'decompose' ? 'Requirement Description' : 'Test Item'}
           </legend>
           <textarea
-            className="flex-1 p-2 text-xs font-sans resize-none min-h-[100px] border border-gray-300 focus:border-blue-400 focus:outline-none"
+            className="flex-1 p-2 text-xs resize-none min-h-[100px] border-2 border-sunken"
             placeholder={
               mode === 'decompose'
                 ? 'Paste full requirement text. AI will identify distinct test scenarios...'
@@ -364,7 +377,7 @@ const QuickGenerateModule: React.FC = () => {
           <fieldset className="flex flex-col">
             <legend className="font-bold text-sm">Additional Criteria / Context</legend>
             <textarea
-              className="p-2 text-xs font-sans resize-none min-h-[80px] border border-gray-300 focus:border-blue-400 focus:outline-none"
+              className="p-2 text-xs resize-none min-h-[80px] border-2 border-sunken"
               placeholder="System constraints, related requirements, environment details..."
               value={context}
               onChange={(e) => setContext(e.target.value)}
@@ -390,7 +403,7 @@ const QuickGenerateModule: React.FC = () => {
         <div className="flex gap-2">
           {isRunning ? (
             <button
-              className="flex-1 py-2 flex items-center justify-center gap-2 text-sm font-bold border-2 border-red-400 text-red-700"
+              className="flex-1 flex items-center justify-center gap-2 font-bold"
               onClick={() => { abortRef.current?.(); setPhase('idle'); }}
             >
               <RiCloseFill className="size-4" /> Stop
@@ -438,50 +451,51 @@ const QuickGenerateModule: React.FC = () => {
 
         {/* Error */}
         {phase === 'error' && (
-          <div className="p-3 bg-red-50 border border-red-300 text-xs text-red-800 flex items-start gap-2">
-            <RiCloseFill className="size-4 shrink-0 text-red-600" />
+          <div className="p-2 text-xs flex items-start gap-2 status-bar-field" style={{ color: '#8b0000' }}>
+            <RiCloseFill className="size-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
         )}
 
         {/* Scrollable results area */}
-        <div className="flex-1 overflow-auto flex flex-col gap-3">
+        <div className="flex-1 overflow-auto flex flex-col gap-2">
           {/* Decompose analysis block */}
           {analysis && (
-            <div className="border border-blue-200 bg-blue-50">
+            <div style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080' }}>
               <div
-                className="flex items-center gap-2 px-3 py-2 cursor-pointer select-none"
+                className="flex items-center gap-2 px-2 py-1 cursor-pointer select-none"
+                style={{ background: '#000080', color: '#ffffff' }}
                 onClick={() => setReasoningExpanded((v) => !v)}
               >
-                <RiLightbulbLine className="size-4 text-blue-600 shrink-0" />
-                <span className="text-xs font-bold text-blue-800 flex-1">
+                <RiLightbulbLine className="size-3 shrink-0" />
+                <span className="text-xs font-bold flex-1">
                   AI Analysis — {analysis.scenarios.length} scenario{analysis.scenarios.length !== 1 ? 's' : ''} identified
                 </span>
-                {reasoningExpanded ? <RiArrowUpSLine className="size-4 text-blue-500" /> : <RiArrowDownSLine className="size-4 text-blue-500" />}
+                {reasoningExpanded ? <RiArrowUpSLine className="size-3" /> : <RiArrowDownSLine className="size-3" />}
               </div>
               {reasoningExpanded && (
-                <div className="px-3 pb-3 flex flex-col gap-2">
-                  <p className="text-xs text-blue-700 leading-relaxed">{analysis.reasoning}</p>
-                  <div className="flex flex-col gap-1">
+                <div className="p-2 flex flex-col gap-1" style={{ background: '#ffffff' }}>
+                  <p className="text-xs leading-relaxed" style={{ color: '#444' }}>{analysis.reasoning}</p>
+                  <div className="flex flex-col gap-1 mt-1">
                     {analysis.scenarios.map((s) => {
                       const isGenerating = generatingScenarioId === s.id;
                       const isDone = generatedTcs.some((t) => t.scenarioId === s.id);
                       return (
                         <div
                           key={s.id}
-                          className={`flex items-center gap-2 px-2 py-1 text-xs border ${
-                            isDone ? 'bg-green-50 border-green-200' :
-                            isGenerating ? 'bg-yellow-50 border-yellow-300' :
-                            'bg-white border-gray-200'
-                          }`}
+                          className="flex items-center gap-2 px-2 py-1 text-xs"
+                          style={{
+                            background: isDone ? '#d4edda' : isGenerating ? '#fff3cd' : '#f0f0f0',
+                            border: '1px solid #c0c0c0',
+                          }}
                         >
                           {isDone
-                            ? <RiCheckFill className="size-3 text-green-600 shrink-0" />
+                            ? <RiCheckFill className="size-3 shrink-0" style={{ color: '#006400' }} />
                             : isGenerating
-                              ? <RiLoader4Line className="size-3 text-yellow-600 shrink-0 animate-spin" />
-                              : <RiArrowRightLine className="size-3 text-gray-400 shrink-0" />}
+                              ? <RiLoader4Line className="size-3 shrink-0 animate-spin" />
+                              : <RiArrowRightLine className="size-3 shrink-0" style={{ color: '#808080' }} />}
                           <span className="font-bold text-[11px]">#{s.id} {s.name}</span>
-                          <span className="text-gray-500 text-[10px]">{s.description}</span>
+                          <span className="text-[10px]" style={{ color: '#666' }}>{s.description}</span>
                         </div>
                       );
                     })}
@@ -493,7 +507,7 @@ const QuickGenerateModule: React.FC = () => {
 
           {/* Generating spinner (single/with_context) */}
           {isRunning && generatedTcs.length === 0 && !analysis && (
-            <div className="flex items-center gap-2 p-3 bg-yellow-50 border border-yellow-200 text-xs text-yellow-800">
+            <div className="flex items-center gap-2 p-2 text-xs status-bar-field">
               <RiLoader4Line className="size-4 animate-spin shrink-0" />
               {phase === 'decomposing' ? 'Analysing requirement...' : 'Generating test case...'}
             </div>
@@ -506,7 +520,7 @@ const QuickGenerateModule: React.FC = () => {
 
           {/* Generating next TC indicator */}
           {isRunning && generatingScenarioId !== null && (
-            <div className="flex items-center gap-2 p-3 bg-yellow-50 border border-yellow-300 text-xs text-yellow-800">
+            <div className="flex items-center gap-2 p-2 text-xs status-bar-field">
               <RiLoader4Line className="size-4 animate-spin shrink-0" />
               Generating TC for scenario #{generatingScenarioId}...
             </div>
@@ -514,7 +528,7 @@ const QuickGenerateModule: React.FC = () => {
 
           {/* Done summary */}
           {phase === 'done' && generatedTcs.length > 0 && (
-            <div className="flex items-center gap-2 p-2 bg-green-50 border border-green-200 text-xs text-green-800">
+            <div className="flex items-center gap-2 p-2 text-xs status-bar-field" style={{ color: '#006400' }}>
               <RiCheckFill className="size-4 shrink-0" />
               {generatedTcs.length} TC{generatedTcs.length !== 1 ? 's' : ''} generated successfully.
             </div>

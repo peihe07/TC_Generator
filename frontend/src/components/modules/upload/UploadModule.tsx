@@ -82,17 +82,16 @@ const UploadModule: React.FC = () => {
         <fieldset className="p-4 border-2 border-sunken">
           <legend className="px-2 font-bold">TC Specification (.xlsx)</legend>
           <div
-            className={`h-24 border-2 border-dashed flex flex-col items-center justify-center gap-2 cursor-pointer transition-colors ${
-              files.tc ? 'bg-green-50 border-green-500' : 'bg-gray-50 border-gray-400'
-            }`}
+            className={`dropzone-sunken h-32 ${files.tc ? 'bg-white' : ''}`}
             onClick={() => tcInputRef.current?.click()}
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => handleFileDrop(e, 'tc')}
           >
-            <RiFileExcel2Line className={`size-8 ${files.tc ? 'text-green-600' : 'text-gray-400'}`} />
-            <span className="text-sm font-sans">
+            <RiFileExcel2Line className="size-10 text-gray-600" />
+            <span className="text-xs">
               {files.tc ? files.tc.name : 'Drag & Drop TC Spec Excel here'}
             </span>
+            {files.tc && <span className="text-[10px] text-gray-500">[READY]</span>}
           </div>
           <input
             ref={tcInputRef}
@@ -105,15 +104,15 @@ const UploadModule: React.FC = () => {
 
         <div className="grid grid-cols-2 gap-4">
           <fieldset className="p-4 border-2 border-sunken">
-            <legend className="px-2 font-bold text-sm">Reference Workbook (Optional)</legend>
+            <legend className="px-2 font-bold">Reference Workbook (Optional)</legend>
             <div
-              className="h-20 border-2 border-dashed flex flex-col items-center justify-center gap-1 cursor-pointer bg-gray-50 border-gray-400"
+              className="dropzone-sunken h-20"
               onClick={() => referenceWorkbookInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'referenceWorkbook')}
               onDragOver={(e) => e.preventDefault()}
             >
-              <RiFileSearchLine className="size-6 text-gray-400" />
-              <span className="text-xs font-sans truncate px-2 w-full text-center">
+              <RiFileSearchLine className="size-6 text-gray-500" />
+              <span className="text-[10px] truncate px-2 w-full text-center">
                 {files.referenceWorkbook ? files.referenceWorkbook.name : 'Drop Reference Excel'}
               </span>
             </div>
@@ -127,15 +126,15 @@ const UploadModule: React.FC = () => {
           </fieldset>
 
           <fieldset className="p-4 border-2 border-sunken">
-            <legend className="px-2 font-bold text-sm">Reference PDF/DOCX</legend>
+            <legend className="px-2 font-bold">Reference PDF/DOCX</legend>
             <div
-              className="h-20 border-2 border-dashed flex flex-col items-center justify-center gap-1 cursor-pointer bg-gray-50 border-gray-400"
+              className="dropzone-sunken h-20"
               onClick={() => specInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'spec')}
               onDragOver={(e) => e.preventDefault()}
             >
-              <RiFileLine className="size-6 text-gray-400" />
-              <span className="text-xs font-sans truncate px-2 w-full text-center">
+              <RiFileLine className="size-6 text-gray-500" />
+              <span className="text-[10px] truncate px-2 w-full text-center">
                 {files.spec ? files.spec.name : 'Drop Reference Doc'}
               </span>
             </div>
@@ -150,8 +149,8 @@ const UploadModule: React.FC = () => {
         </div>
 
         {files.tc && (
-          <div className="status-bar-field p-2 bg-gray-100 text-sm font-sans flex items-center gap-2">
-            <span className="text-green-700 font-bold">[READY]</span>
+          <div className="status-bar-field p-2 text-xs flex items-center gap-2">
+            <span className="font-bold">[READY]</span>
             Workbook staged. Parse the job to populate the shared desktop state.
           </div>
         )}

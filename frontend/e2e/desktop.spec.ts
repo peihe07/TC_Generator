@@ -13,8 +13,8 @@ test.describe('Desktop shell', () => {
       await expect(page.getByText(label, { exact: true })).toBeVisible();
     }
 
-    // Taskbar at bottom (rendered as <footer>)
-    await expect(page.locator('footer').first()).toBeVisible();
+    // Taskbar at bottom
+    await expect(page.getByRole('contentinfo')).toBeVisible();
   });
 
   test('double-click icon opens window', async ({ page }) => {

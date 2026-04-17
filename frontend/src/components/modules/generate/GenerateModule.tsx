@@ -94,7 +94,7 @@ const GenerateModule: React.FC = () => {
       <fieldset className="p-4 border-2 border-sunken">
         <legend className="px-2 font-bold">Progress: {progress}%</legend>
         <div className="flex flex-col gap-2">
-          <div className="flex justify-between text-xs font-sans mb-1">
+          <div className="flex justify-between text-xsmb-1">
             <span>Processing {stats.processed} / {stats.total || tcRows.length} TCs</span>
             <span>Elapsed: {String(Math.floor(elapsedSeconds / 60)).padStart(2, '0')}:{String(elapsedSeconds % 60).padStart(2, '0')}</span>
           </div>
@@ -109,11 +109,16 @@ const GenerateModule: React.FC = () => {
       <div className="flex-1 flex gap-4 min-h-0">
         <div className="flex-1 flex flex-col gap-1">
           <label className="text-sm font-bold">Generation Log:</label>
-          <div className="flex-1 bg-black text-green-500 font-mono text-xs p-2 border-2 border-sunken overflow-auto leading-relaxed">
+          <div className="flex-1 bg-white font-mono text-xs p-2 border-2 border-sunken overflow-auto leading-relaxed">
             {logs.map((log, i) => (
               <div key={i} className="flex gap-2">
-                <span className="text-gray-500">[{log.timestamp}]</span>
-                <span className={log.level === 'error' ? 'text-red-500' : log.level === 'success' ? 'text-blue-400' : ''}>
+                <span style={{ color: '#808080' }}>[{log.timestamp}]</span>
+                <span style={{
+                  color: log.level === 'error' ? '#8b0000'
+                       : log.level === 'success' ? '#006400'
+                       : log.level === 'warn' ? '#7d4e00'
+                       : '#000000'
+                }}>
                   {log.message}
                 </span>
               </div>

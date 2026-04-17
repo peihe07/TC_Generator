@@ -249,7 +249,7 @@ const ReviewModule: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Toolbar */}
         <div className="flex justify-between items-center mb-2 bg-gray-200 p-1 border border-sunken">
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-2 items-center">
             <div className="field-row">
               <label htmlFor="filter" className="text-xs font-bold">Show:</label>
               <select id="filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
@@ -274,7 +274,7 @@ const ReviewModule: React.FC = () => {
                 ))}
               </select>
             </div>
-            <span className="text-xs text-gray-600 font-sans">
+            <span className="text-xs text-gray-600 ">
               Total: {tcRows.length} | Accepted: {tcRows.filter((r) => r.status === 'accepted').length}
             </span>
           </div>
@@ -307,11 +307,10 @@ const ReviewModule: React.FC = () => {
               {filteredRows.map((row) => (
                 <React.Fragment key={row.id}>
                   <tr
-                    className={`border-b hover:bg-blue-50 cursor-pointer
-                      ${expandedRow === row.id ? 'bg-blue-100' : ''}
-                      ${row.status === 'flagged' ? 'bg-orange-50' : ''}
-                      ${row.pendingRegenerated ? 'bg-yellow-50' : ''}
-                      ${selectedIds.has(row.id) ? 'outline outline-1 outline-blue-400' : ''}
+                    className={`border-b cursor-pointer win95-row
+                      ${expandedRow === row.id || selectedIds.has(row.id) ? 'selected' : ''}
+                      ${row.status === 'flagged' && expandedRow !== row.id && !selectedIds.has(row.id) ? 'bg-orange-50' : ''}
+                      ${row.pendingRegenerated && expandedRow !== row.id && !selectedIds.has(row.id) ? 'bg-yellow-50' : ''}
                     `}
                   >
                     {/* Checkbox */}
@@ -356,14 +355,11 @@ const ReviewModule: React.FC = () => {
                       className="p-2 border-r"
                       onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
                     >
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] uppercase font-bold ${
-                        row.status === 'accepted' ? 'bg-green-100 text-green-800' :
-                        row.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                        row.status === 'flagged' ? 'bg-orange-100 text-orange-800' :
-                        row.status === 'generating' ? 'bg-blue-100 text-blue-800 animate-pulse' :
-                        row.pendingRegenerated ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-gray-100 text-gray-700'
-                      }`}>
+                      <span className={`status-badge ${
+                        row.pendingRegenerated ? 'reviewing' :
+                        row.status === 'generating' ? 'generating' :
+                        row.status
+                      } ${row.status === 'generating' ? 'animate-pulse' : ''}`}>
                         {row.pendingRegenerated ? 'awaiting apply' : row.status}
                       </span>
                     </td>
@@ -400,7 +396,7 @@ const ReviewModule: React.FC = () => {
                   {/* Expanded detail */}
                   {expandedRow === row.id && (
                     <tr>
-                      <td colSpan={6} className="bg-gray-50 p-4 border-b-2 border-gray-300 shadow-inner">
+                      <td colSpan={6} className="bg-gray-50 p-2 border-b-2 border-gray-300 shadow-inner">
                         {/* Regen diff takes priority when pending */}
                         {row.pendingRegenerated ? (
                           <RegenDiff
@@ -415,7 +411,7 @@ const ReviewModule: React.FC = () => {
                             onDiscard={() => clearPendingRegenerated(row.id)}
                           />
                         ) : (
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-2 gap-2">
                             {/* Left: Original */}
                             <div className="flex flex-col gap-1">
                               <span className="text-xs font-bold text-gray-500 uppercase">Original Requirement</span>
@@ -439,19 +435,19 @@ const ReviewModule: React.FC = () => {
                                   <>
                                     <label className="font-bold text-[10px] mb-1">PRE-CONDITIONS:</label>
                                     <textarea
-                                      className="mb-2 p-1 text-xs font-sans min-h-[40px]"
+                                      className="mb-2 p-1 text-xs  min-h-[40px]"
                                       value={editValues.preConditions}
                                       onChange={(e) => setEditValues({ ...editValues, preConditions: e.target.value })}
                                     />
                                     <label className="font-bold text-[10px] mb-1">STEPS:</label>
                                     <textarea
-                                      className="flex-1 mb-2 p-1 text-xs font-sans min-h-[60px]"
+                                      className="flex-1 mb-2 p-1 text-xs  min-h-[60px]"
                                       value={editValues.steps}
                                       onChange={(e) => setEditValues({ ...editValues, steps: e.target.value })}
                                     />
                                     <label className="font-bold text-[10px] mb-1">EXPECTED RESULTS:</label>
                                     <textarea
-                                      className="p-1 text-xs font-sans"
+                                      className="p-1 text-xs "
                                       value={editValues.expected}
                                       onChange={(e) => setEditValues({ ...editValues, expected: e.target.value })}
                                     />
@@ -574,23 +570,31 @@ const ReviewModule: React.FC = () => {
 
       {/* Floating action bar — shown when rows are selected */}
       {selectedIds.size > 0 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3 px-4 py-2 bg-gray-900 text-white shadow-lg border border-gray-600 min-w-[360px] justify-between">
-          <span className="text-xs font-bold text-gray-300">
+        <div
+          className="absolute bottom-4 left-1/2 z-20 flex items-center gap-2 px-3 py-2"
+          style={{
+            transform: 'translateX(-50%)',
+            minWidth: 340,
+            background: '#c0c0c0',
+            border: '2px solid',
+            borderColor: '#ffffff #808080 #808080 #ffffff',
+            boxShadow: '2px 2px 0 #000',
+            justifyContent: 'space-between',
+          }}
+        >
+          <span className="font-bold" style={{ fontSize: 11 }}>
             {selectedIds.size} row{selectedIds.size > 1 ? 's' : ''} selected
           </span>
-          <div className="flex gap-2">
-            <button
-              className="text-xs px-3 py-1 text-gray-400 hover:text-white"
-              onClick={() => setSelectedIds(new Set())}
-            >
+          <div className="flex gap-1">
+            <button onClick={() => setSelectedIds(new Set())}>
               Clear
             </button>
             <button
-              className="text-xs px-4 py-1 bg-blue-600 hover:bg-blue-500 font-bold flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="font-bold flex items-center gap-1"
               onClick={handleRegenerate}
               disabled={isRegenerating}
             >
-              <RiRefreshLine className={`size-4 ${isRegenerating ? 'animate-spin' : ''}`} />
+              <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
               {isRegenerating ? 'Regenerating...' : `Regenerate ${selectedIds.size} Selected`}
             </button>
           </div>

@@ -122,7 +122,7 @@ const ExportModule: React.FC = () => {
               </div>
             </fieldset>
 
-            <div className="status-bar-field p-3 bg-blue-50 text-blue-800 text-xs leading-relaxed border-2 border-sunken">
+            <div className="status-bar-field p-3 text-xs leading-relaxed border-2 border-sunken">
               <RiSettings4Line className="size-4 inline mr-2 mb-1" />
               Final file will be named: <span className="font-bold font-mono">{jobMetadata?.projectName || 'results'}_generated.xlsx</span>
             </div>
@@ -147,12 +147,23 @@ const ExportModule: React.FC = () => {
         </>
       ) : (
         <div className="flex-1 flex flex-col items-center justify-center gap-6 py-8 text-center">
-          <div className="p-4 rounded-full bg-green-100 border-2 border-green-500">
-            <RiCheckDoubleLine className="size-16 text-green-600" />
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              background: '#c0c0c0',
+              border: '2px solid',
+              borderColor: '#ffffff #808080 #808080 #ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <RiCheckDoubleLine size={36} style={{ color: '#006400' }} />
           </div>
           <div>
             <h2 className="text-xl font-bold mb-2">Export Successful!</h2>
-            <p className="text-sm text-gray-600">Your test cases have been processed and are ready for download.</p>
+            <p className="text-xs text-gray-600">Your test cases have been processed and are ready for download.</p>
           </div>
 
           <div className="flex flex-col gap-3 w-64">
