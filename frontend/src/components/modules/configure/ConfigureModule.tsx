@@ -200,7 +200,7 @@ const ConfigureModule: React.FC = () => {
                   </div>
                 )}
 
-                <table className="w-full border-collapse">
+                <table className="w-full border-collapse mb-3">
                   <thead>
                     <tr>
                       <th className="text-left p-1 border-r">Test Set</th>
@@ -226,6 +226,81 @@ const ConfigureModule: React.FC = () => {
                     )}
                   </tbody>
                 </table>
+
+                {/* Per-row manual override — write directly to tcRows */}
+                {tcRows.length > 0 && (
+                  <>
+                    <div className="flex items-center justify-between mb-1 mt-3">
+                      <p className="font-bold text-xs uppercase" style={{ color: '#444' }}>
+                        Manual Override — edit any row's test set directly
+                      </p>
+                      <span className="text-[10px]" style={{ color: '#666' }}>
+                        Changes are saved immediately. Use the datalist for existing sets or type a new one.
+                      </span>
+                    </div>
+                    <datalist id="existing-test-sets">
+                      {[...new Set(tcRows.map((r) => r.testSet).filter(Boolean))].map((ts) => (
+                        <option key={ts} value={ts} />
+                      ))}
+                      {groupPreview?.groups.map((g) => (
+                        <option key={`grp-${g.testSet}`} value={g.testSet} />
+                      ))}
+                    </datalist>
+                    <div
+                      style={{
+                        maxHeight: 260,
+                        overflowY: 'auto',
+                        border: '2px solid',
+                        borderColor: '#808080 #ffffff #ffffff #808080',
+                        background: '#fff',
+                      }}
+                    >
+                      <table className="w-full border-collapse text-xs">
+                        <thead className="sticky top-0" style={{ background: '#e8e8e8', zIndex: 1 }}>
+                          <tr>
+                            <th className="text-left p-1 border-r" style={{ width: 120 }}>Req ID</th>
+                            <th className="text-left p-1 border-r">Test Item</th>
+                            <th className="text-left p-1" style={{ width: 160 }}>Test Set</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {tcRows.map((row) => (
+                            <tr key={row.id} className="border-b">
+                              <td className="p-1 border-r font-mono">{row.reqId}</td>
+                              <td
+                                className="p-1 border-r"
+                                style={{
+                                  maxWidth: 0,
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                }}
+                                title={row.testItem}
+                              >
+                                {row.testItem}
+                              </td>
+                              <td className="p-0">
+                                <input
+                                  type="text"
+                                  list="existing-test-sets"
+                                  value={row.testSet}
+                                  onChange={(e) => {
+                                    const v = e.target.value;
+                                    setTcRows(
+                                      tcRows.map((r) => (r.id === row.id ? { ...r, testSet: v } : r)),
+                                    );
+                                  }}
+                                  onBlur={() => { setGroupPreview(null); }}
+                                  style={{ width: '100%', border: 'none', padding: '2px 4px', fontSize: 11 }}
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                )}
               </>
             )}
 
