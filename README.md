@@ -91,7 +91,7 @@ python src/main.py \
   --spec path/to/spec.docx \
   --framework path/to/framework.json \
   --output-dir output \
-  --model claude-sonnet-4-6 \
+  --model claude-haiku-4-5-20251001 \
   --batch-size 5
 ```
 
@@ -102,7 +102,7 @@ python src/main.py \
 - `--spec`: optional supplementary spec document; supported formats are `.pdf`, `.docx`, `.xlsx`
 - `--framework`: optional confirmed `framework.json` for assigning `Test Set`
 - `--output-dir`: output directory; default is `output`
-- `--model`: Anthropic model name; default is `claude-sonnet-4-6`
+- `--model`: Anthropic model name; default is `claude-haiku-4-5-20251001`
 - `--batch-size`: number of TCs per API call; default is `5`
 - `--mode`: one of `full`, `incremental`, `regenerate`
 - `--rows`: comma-separated row numbers or requirement IDs for `regenerate` mode

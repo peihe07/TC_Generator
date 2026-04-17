@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Desktop shell', () => {
-  test('loads Win95 desktop with 6 icons', async ({ page }) => {
+  test('loads Win95 desktop with all icons', async ({ page }) => {
     await page.goto('/');
     // Teal desktop background
     const desktop = page.locator('.desktop-bg');
     await expect(desktop).toBeVisible();
 
-    // All 6 icons visible
-    const icons = ['Upload', 'Configure', 'Generate', 'Review', 'Export', 'Quick TC'];
+    // 8 desktop icons visible
+    const icons = ['Upload', 'Configure', 'Generate', 'Review', 'Export', 'Quick TC', 'Diagrams', 'TC Rules'];
     for (const label of icons) {
       await expect(page.getByText(label, { exact: true })).toBeVisible();
     }
