@@ -810,6 +810,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
 
         processed = 0
         current_cost = 0.0
+        total_input_tokens = 0
+        total_output_tokens = 0
         batch_size = config.get("batchSize", 1)
         model = config.get("model", DEFAULT_MODEL)
         strict_validation = config.get("strictValidation", False)
@@ -849,6 +851,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                     tc_data_list = result.tc_data
 
                 current_cost += result.cost
+                total_input_tokens += result.input_tokens
+                total_output_tokens += result.output_tokens
                 for row, tc in zip(batch, tc_data_list):
                     processed += 1
                     updated_row, has_warnings = _build_stream_row(row, tc)
@@ -864,6 +868,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                                 "total": total,
                                 "processed": processed,
                                 "currentCost": round(current_cost, 4),
+                                "inputTokens": total_input_tokens,
+                                "outputTokens": total_output_tokens,
                             },
                             "message": (
                                 f"Processed {processed}/{total} rows for {row.get('req_id') or row.get('id')}."
@@ -901,6 +907,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                     "total": total,
                     "processed": total,
                     "currentCost": current_cost,
+                    "inputTokens": total_input_tokens,
+                    "outputTokens": total_output_tokens,
                 },
                 "message": "Backend generation complete. Review and export windows are ready.",
             }

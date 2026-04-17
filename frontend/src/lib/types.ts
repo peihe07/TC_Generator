@@ -43,7 +43,7 @@ export interface JobMetadata {
 }
 
 export interface GenerationConfig {
-  model: "claude-3-5-sonnet" | "claude-3-haiku";
+  model: "claude-sonnet-4-6" | "claude-haiku-4-5-20251001";
   batchSize: number;
   budgetLimit: number;
   strictValidation: boolean;
@@ -61,5 +61,7 @@ export interface JobStats {
   processed: number;
   success: number;
   fail: number;
-  cost: number; // USD
+  cost: number;       // USD
+  inputTokens: number;
+  outputTokens: number;
 }
