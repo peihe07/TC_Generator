@@ -162,7 +162,7 @@ Request:
     }
   ],
   "config": {
-    "model": "claude-3-5-sonnet",
+    "model": "gpt-4.1",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false
@@ -211,6 +211,7 @@ SSE event examples:
     "generated": {
       "testItemRewrite": "(PDM01 original text -> Observable outcome confirmed)",
       "preConditions": "1. Vehicle profile loaded\n2. Required subsystem available",
+      "inputTestData": "NA",
       "testProcedure": "1. ...",
       "expectedResult": "1. ...",
       "designMethod": "Functional",
@@ -236,7 +237,7 @@ Request:
   "rowIds": ["row-10"],
   "rows": [],
   "config": {
-    "model": "claude-3-5-sonnet",
+    "model": "gpt-4.1",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false
@@ -258,7 +259,7 @@ Request:
   "scope": "accepted",
   "outputMode": "new-file",
   "includeFrameworkSheet": true,
-  "selectedColumns": ["TC ID", "Test Procedure", "Expected Result"],
+  "selectedColumns": ["TC ID", "Pre-Conditions", "Input Test Data", "Test Procedure", "Expected Result"],
   "rows": [
     {
       "id": "row-10",
@@ -268,6 +269,7 @@ Request:
       "generated": {
         "testItemRewrite": "(...)",
         "preConditions": "1. ...",
+        "inputTestData": "NA",
         "testProcedure": "1. ...",
         "expectedResult": "1. ...",
         "designMethod": "Functional",
@@ -313,7 +315,7 @@ Request:
   "testItem": "Button pressed → LED turns on",
   "context": "System must be powered on",
   "mode": "single",
-  "model": "claude-sonnet-4-6"
+  "model": "gpt-4.1"
 }
 ```
 
@@ -397,4 +399,4 @@ Implemented in `src/api_server.py`:
 - The active frontend no longer calls the Python backend directly from browser modules.
 - `jobAdapter.ts` should be treated as the frontend integration boundary.
 - Parse, group, match, and export have automated coverage.
-- Generate and regenerate route wiring works, but real success still depends on a valid `ANTHROPIC_API_KEY`.
+- Generate and regenerate route wiring works, but real success still depends on a valid `OPENAI_API_KEY`.

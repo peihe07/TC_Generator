@@ -498,7 +498,7 @@ Accept a list of Row numbers or Req IDs. Regenerate only those rows (overwrite p
 
 ## 12. Prompt Template (for AI generation steps)
 
-When calling Claude API for test case generation, the prompt should include:
+When calling the LLM API for test case generation, the prompt should include:
 
 ```
 You are an ASPICE SWE.6 test case writer.
@@ -530,85 +530,69 @@ Return JSON:
 }
 ```
 
-### 12.2 API Integration (Phase 2)
+### 12.2 API Integration
 
-**API:** Anthropic Messages API (`https://api.anthropic.com/v1/messages`)
+**API:** OpenAI Chat Completions API (`https://api.openai.com/v1/chat/completions`). The openai Python SDK reads `OPENAI_API_KEY` automatically.
 
 **Recommended models:**
 
 | Use Case | Model | Model String | Why |
 |----------|-------|-------------|-----|
-| TC generation (default) | Claude Sonnet 4.6 | `claude-sonnet-4-6` | Better reasoning for requirement analysis, step design, and edge case handling |
-| Spec semantic matching | Claude Sonnet 4.6 | `claude-sonnet-4-6` | Consistent model across pipeline, better accuracy on ambiguous matches |
-| Fallback (budget mode) | Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | For re-runs, simple regenerations, or when cost is a concern |
+| TC generation (default) | GPT-4.1 | `gpt-4.1` | Stable, strong JSON / rule compliance, widely available in Tier 1 |
+| Top quality | GPT-5 | `gpt-5` | Newest; better reasoning on ambiguous specs — requires higher tier on some accounts |
+| Balanced / batch | GPT-4.1 mini | `gpt-4.1-mini` | ~5x cheaper than GPT-4.1 with acceptable quality |
+| Cheapest / preview | GPT-4o mini | `gpt-4o-mini` | For local dev or re-runs where cost dominates |
+
+Prompt caching is **automatic** on OpenAI for any prompt prefix ≥1024 tokens — no manual `cache_control` markers. Cached input tokens are billed at 50% and reported via `response.usage.prompt_tokens_details.cached_tokens`.
 
 **API call structure:**
 
 ```python
-import anthropic
+from openai import OpenAI
 import json
 
-client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
+client = OpenAI()  # reads OPENAI_API_KEY from env
 
-def generate_test_case(req_id, test_item, spec_context, rules_text, model="claude-sonnet-4-6"):
-    response = client.messages.create(
+def generate_test_case(req_id, test_item, spec_context, rules_text, model="gpt-4.1"):
+    system_prompt = (
+        f"## ASPICE SWE.6 Rules (authoritative)\n\n{rules_text}\n\n---\n\n"
+        "You are an ASPICE SWE.6 test case writer. Return ONLY valid JSON, no markdown fences."
+    )
+    response = client.chat.completions.create(
         model=model,
-        max_tokens=2000,
-        system="You are an ASPICE SWE.6 test case writer. Return ONLY valid JSON, no markdown fences.",
-        messages=[{
-            "role": "user",
-            "content": f"""## Context
+        max_completion_tokens=2000,
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"""## Context
 - Requirement ID: {req_id}
 - Original Test Item: {test_item}
 
 ## Spec Context
 {spec_context}
 
-## Rules
-{rules_text}
-
 ## Output
 Return JSON with keys: test_item_rewrite, pre_conditions, input_test_data,
-test_procedure, expected_result, design_method, priority, split_flag, split_reason"""
-        }]
+test_procedure, expected_result, design_method, priority, split_flag, split_reason"""},
+        ],
     )
-    return json.loads(response.content[0].text)
+    return json.loads(response.choices[0].message.content)
 ```
 
-**Batch processing (reduce cost by sharing rules context):**
-
-```python
-def generate_batch(rows, spec_index, rules_text, model, batch_size=5):
-    for i in range(0, len(rows), batch_size):
-        batch = rows[i:i+batch_size]
-        batch_prompt = "\n\n---\n\n".join([
-            f"### TC {r['row_num']}\n- Req ID: {r['req_id']}\n- Test Item: {r['test_item']}\n- Spec: {spec_index.get(r['pdm_code'], 'N/A')}"
-            for r in batch
-        ])
-        response = client.messages.create(
-            model=model,
-            max_tokens=2000 * batch_size,
-            system="You are an ASPICE SWE.6 test case writer. Return a JSON array, one object per TC. No markdown fences.",
-            messages=[{"role": "user", "content": f"{batch_prompt}\n\n## Rules\n{rules_text}"}]
-        )
-        results = json.loads(response.content[0].text)
-        yield from zip(batch, results)
-```
+**Batch processing** — `response_format=json_object` forces an object, so we wrap the array in `{"tcs": [...]}` and unwrap on parse. Rules are kept identical across calls so the system prefix is served from cache on every batch after the first.
 
 ### 12.3 API Key Management
 
-**Step 1 — Get API key:**
+**Step 1 — Get API key:** https://platform.openai.com/api-keys → Create new key → copy `sk-proj-...`.
 
-Go to Anthropic Console → `https://console.anthropic.com/settings/keys` → Create key → Copy.
-
-**Step 2 — Create `.env` file in project root:**
+**Step 2 — `.env` in project root:**
 
 ```bash
 # tc-generator/.env
-ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxx
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxx
 ```
 
-**Step 3 — Ensure `.env` is in `.gitignore`:**
+**Step 3 — ensure `.env` is ignored:**
 
 ```bash
 # tc-generator/.gitignore
@@ -616,122 +600,83 @@ ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxx
 .env.local
 *.env
 output/*.xlsx
+output/*.db
 node_modules/
 __pycache__/
 ```
 
-**Step 4 — Load in Python backend:**
+**Step 4 — load in Python backend:**
 
 ```python
 # src/generator.py
 from dotenv import load_dotenv
 load_dotenv()
 
-import anthropic
-client = anthropic.Anthropic()  # auto-reads ANTHROPIC_API_KEY from env
+from openai import OpenAI
+client = OpenAI()  # auto-reads OPENAI_API_KEY from env
 ```
 
-**Step 5 — Load in Next.js API routes (if calling from server-side):**
+**Step 5 — frontend proxy routes** (Next.js app router, server-side only):
 
 ```typescript
-// app/api/generate/route.ts
-// Next.js auto-loads .env.local
-const apiKey = process.env.ANTHROPIC_API_KEY;
+// frontend/app/api/generate/route.ts
+const backend = process.env.PYTHON_API_BASE;  // http://localhost:8000
+// proxies to the Python backend; browser never sees OPENAI_API_KEY
 ```
 
 **Dependencies:**
 
 ```bash
 # Python backend
-pip install anthropic python-dotenv openpyxl pdfplumber python-docx
-
-# Next.js frontend
-npm install @anthropic-ai/sdk
+pip install 'openai>=1.50' python-dotenv openpyxl pdfplumber python-docx fastapi uvicorn
 ```
 
 ### 12.4 Architecture — Frontend ↔ Backend ↔ API
 
-**Recommended: Python backend calls API (Option A)**
-
 ```
 Browser (Next.js client)
     ↓ fetch /api/generate
-Next.js API route (server)
-    ↓ spawn / HTTP call
-Python generator.py (reads .env)
-    ↓ anthropic SDK
-Anthropic API
-    ↓ response
-Python → parse JSON → return to Next.js → return to browser
+Next.js API route (server, thin proxy)
+    ↓ HTTP
+FastAPI backend (reads .env, holds OPENAI_API_KEY)
+    ↓ openai SDK
+OpenAI API
+    ↓ response → SSE events → Next.js → browser
 ```
 
-API key stays in Python `.env`, never touches the frontend.
-Next.js API route acts as a thin proxy that triggers the Python script.
-
-**Implementation:**
-
-```typescript
-// app/api/generate/route.ts
-import { exec } from "child_process";
-import { promisify } from "util";
-const execAsync = promisify(exec);
-
-export async function POST(req: Request) {
-  const { jobFile } = await req.json();
-  const { stdout, stderr } = await execAsync(
-    `python3 ../src/generator.py --job ${jobFile}`
-  );
-  return Response.json(JSON.parse(stdout));
-}
-```
-
-**Alternative: Next.js calls API directly (Option B)**
-
-Simpler setup, but mixes concerns. API key in `.env.local`, used only in server-side routes.
-
-```typescript
-// app/api/generate/route.ts
-import Anthropic from "@anthropic-ai/sdk";
-
-const client = new Anthropic(); // reads ANTHROPIC_API_KEY from env
-
-export async function POST(req: Request) {
-  const { reqId, testItem, specContext, rules } = await req.json();
-  const response = await client.messages.create({
-    model: "claude-sonnet-4-6",
-    max_tokens: 2000,
-    system: "You are an ASPICE SWE.6 test case writer. Return ONLY valid JSON.",
-    messages: [{ role: "user", content: `...` }],
-  });
-  return Response.json(JSON.parse(response.content[0].text));
-}
-```
+Key stays in the Python backend's `.env`; the frontend only sees the relative URL. Jobs are persisted to SQLite (`output/jobs.db`) via `SqliteJobStore` so they survive a backend restart.
 
 ### 12.5 Cost Control & Safeguards
 
-1. **Budget cap per job:** Configure max token budget (e.g. 500,000). Pause and prompt user if approaching limit.
+1. **Budget cap per job:** configurable max-spend. Backend halts the batch loop before a call that would exceed the budget.
 
-2. **Dry run mode:** Show estimated cost on Generate page before execution. Require user confirmation.
+2. **Dry run mode:** Configure page estimates cost based on row count × per-model coefficient.
 
-3. **Token tracking:** Log input/output tokens per API call from `response.usage`. Display running total on Generate page.
+3. **Token tracking:** input, output, cache-creation (0 on OpenAI), and cache-read tokens are summed per job and streamed to the frontend's CostMeter.
 
 ```python
 usage = response.usage
-total_input_tokens += usage.input_tokens
-total_output_tokens += usage.output_tokens
-cost = (usage.input_tokens / 1_000_000 * input_price) + (usage.output_tokens / 1_000_000 * output_price)
+prompt = usage.prompt_tokens
+output = usage.completion_tokens
+cached = (usage.prompt_tokens_details.cached_tokens or 0)
+uncached = prompt - cached
+cost = uncached * in_rate + cached * in_rate * 0.5 + output * out_rate
 ```
 
-4. **Pricing reference (verify at https://docs.anthropic.com/en/docs/about-claude/models):**
+4. **Pricing reference** (USD per million tokens; verify at https://openai.com/api/pricing):
 
-| Model | Input | Output |
-|-------|-------|--------|
-| Haiku 4.5 | $0.80 / MTok | $4.00 / MTok |
-| Sonnet 4.6 | $3.00 / MTok | $15.00 / MTok |
+| Model | Input | Output | Cached input |
+|-------|-------|--------|--------------|
+| gpt-4o-mini  | $0.15 | $0.60  | $0.075 |
+| gpt-4.1-mini | $0.40 | $1.60  | $0.20  |
+| gpt-4o       | $2.50 | $10.00 | $1.25  |
+| gpt-4.1      | $2.00 | $8.00  | $1.00  |
+| gpt-5-mini   | $0.25 | $2.00  | $0.125 |
+| gpt-5        | $5.00 | $15.00 | $2.50  |
 
-5. **Retry budget:** Max 2 retries per TC. After 2 failures → flag for manual handling, don't burn more tokens.
+5. **Retry budget:** max 2 retries per TC; after 2 failures flag for manual handling.
 
-6. **Rate limiting:** Anthropic API has rate limits per minute. Add `time.sleep(0.5)` between calls, or use batch mode to reduce call count.
+6. **Rate limiting:** OpenAI limits TPM / RPM per tier. Batch mode (≥1 TC per call) is the primary mitigation; add `asyncio.sleep(0.15)` between batches.
 
 ---
 
@@ -819,7 +764,7 @@ Sections:
 - Test Set grouping preview: show AI-suggested groups, allow drag-and-drop to reassign TCs between groups, allow rename/merge/split groups
 - Spec matching preview: show Layer 1 (PDM code) matches and Layer 2 (AI) candidates, allow manual override
 - Generation scope: select which columns to generate (checkboxes for each: Test Item rewrite, Pre-Conditions, Procedure, Expected Result, Priority, Design Method, Spec Reference)
-- Model selection: Sonnet (default) vs Haiku (budget/re-run) 
+- Model selection: GPT-4.1 (default) vs GPT-4.1 mini (budget/re-run) 
 - Batch size: 1 / 5 / 10 TCs per API call
 
 Save configuration as a job file for reproducibility.
@@ -893,7 +838,7 @@ Configure page
          ↓
 Generate page
     ├── prompt_builder.py → assembled prompts
-    ├── generator.py → Claude API calls → raw responses
+    ├── generator.py → OpenAI API calls → raw responses
     └── validator.py → validation results
          ↓
 Review page
