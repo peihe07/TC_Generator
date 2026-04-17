@@ -5,7 +5,7 @@ Current integration contract for the TC Generator desktop.
 There are two layers:
 
 - Browser-facing same-origin routes under `frontend/app/api/*`
-- Python backend routes under `src/api_server.py`
+- Python backend routes under `backend/api_server.py`
 
 The browser should call the Next.js routes. Those routes proxy to the Python backend using `PYTHON_API_BASE`.
 
@@ -381,7 +381,7 @@ On error:
 
 ## Python Backend Routes
 
-Implemented in `src/api_server.py`:
+Implemented in `backend/api_server.py`:
 
 - `GET /api/health`
 - `POST /api/parse`

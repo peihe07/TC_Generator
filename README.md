@@ -79,13 +79,13 @@ Notes:
 Dry run:
 
 ```bash
-python src/main.py --input path/to/SomeProject_SWQT_DeviceManager_20260408.xlsx --dry-run
+python backend/main.py --input path/to/SomeProject_SWQT_DeviceManager_20260408.xlsx --dry-run
 ```
 
 Generate output:
 
 ```bash
-python src/main.py \
+python backend/main.py \
   --input path/to/SomeProject_SWQT_DeviceManager_20260408.xlsx \
   --sys1 path/to/SYS1.xlsx \
   --spec path/to/spec.docx \

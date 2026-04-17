@@ -608,7 +608,7 @@ __pycache__/
 **Step 4 — load in Python backend:**
 
 ```python
-# src/generator.py
+# backend/generator.py
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -690,7 +690,7 @@ tc-generator/
 │   └── {test_group}_framework.json # Test Set mapping per CFTS
 ├── spec-index/
 │   └── {test_group}_spec.json      # Parsed SYS1 spec index (§2.4)
-├── src/
+├── backend/
 │   ├── parser.py                   # Excel reader (§10)
 │   ├── spec_matcher.py             # Spec reference matching (§2.4)
 │   ├── grouper.py                  # Test Set clustering (§2.3)

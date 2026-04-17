@@ -23,7 +23,25 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["backend"]
+
+[tool.setuptools]
+package-dir = {"" = "backend"}
+py-modules = [
+    "api_server",
+    "generator",
+    "grouper",
+    "id_generator",
+    "job_manager",
+    "job_store",
+    "main",
+    "parser",
+    "prompt_builder",
+    "spec_matcher",
+    "spec_parser",
+    "validator",
+    "writer",
+]
 
 [build-system]
 requires = ["setuptools>=68.0"]

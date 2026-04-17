@@ -52,7 +52,7 @@ graph TB
 
 ```text
 TC_Generator/
-├── src/
+├── backend/
 │   ├── api_server.py
 │   ├── parser.py
 │   ├── spec_matcher.py

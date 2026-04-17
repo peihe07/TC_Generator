@@ -2,7 +2,7 @@
 # Start TC Generator — backend (FastAPI) + frontend (Next.js)
 
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BACKEND_DIR="$ROOT_DIR/src"
+BACKEND_DIR="$ROOT_DIR/backend"
 FRONTEND_DIR="$ROOT_DIR/frontend"
 ENV_FILE="$ROOT_DIR/.env"
 FRONTEND_ENV="$FRONTEND_DIR/.env.local"
@@ -19,7 +19,7 @@ error()   { echo -e "${RED}[TC]${NC} $1"; }
 # --- Check .env ---
 if [ ! -f "$ENV_FILE" ]; then
   warn ".env not found. AI generation will be unavailable."
-  warn "Create $ENV_FILE with: ANTHROPIC_API_KEY=sk-ant-api03-..."
+  warn "Create $ENV_FILE with: OPENAI_API_KEY=sk-proj-..."
 else
   info ".env found."
 fi
@@ -41,7 +41,7 @@ source "$ROOT_DIR/.venv/bin/activate"
 # --- Start backend ---
 info "Starting backend on port $BACKEND_PORT..."
 cd "$ROOT_DIR"
-uvicorn src.api_server:app --reload --port "$BACKEND_PORT" &
+uvicorn api_server:app --reload --app-dir "$BACKEND_DIR" --port "$BACKEND_PORT" &
 BACKEND_PID=$!
 
 # --- Start frontend ---

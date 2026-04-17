@@ -76,7 +76,8 @@ Current frontend validation:
 
 Known environment dependency:
 
-- Real generation still requires a valid `ANTHROPIC_API_KEY`
+- Real generation requires a valid `OPENAI_API_KEY` (GPT-4.1 / GPT-5 family).
+- SQLite job registry at `output/jobs.db` (path overridable via `TC_JOBS_DB`).
 
 ---
 
@@ -93,56 +94,75 @@ Known environment dependency:
 - Single-page desktop shell complete
 - Centralized store + adapter architecture established
 - Same-origin proxy architecture established
-- Configure grouping preview wired to backend
-- Configure exact matching preview wired to backend
-- Parse and export smoke-tested end-to-end
+- Configure grouping + exact matching previews wired to backend
+- Parse → generate → regenerate → export verified on real user workbooks
+
+### Provider & Prompt Milestone
+
+- Anthropic → OpenAI migration complete (openai SDK, JSON mode, auto prompt caching)
+- ASPICE SWE.6 rules auto-loaded from `docs/*.md` into system prompt
+- Hard constraints footer appended so the 1:1 mapping and `test_item_rewrite`
+  rules are enforced with recency bias
+- Single-call retry in `generate_single_tc` when Proc ≠ ER counts
+
+### Runtime Milestone
+
+- SQLite-backed `JOB_REGISTRY` (`SqliteJobStore`) — jobs survive restart
+- In-memory mutations explicitly written back via `JOB_REGISTRY[id] = job`
+- SSE stats stream now emits cache-read / cache-creation tokens for UI
+- Parser tolerates bilingual sheet titles and filename suffixes
+  (`拷貝`, `-1`, etc.)
+
+### Frontend UX Milestone
+
+- CostMeter shows Model / Input / Output / Cache W / Cache R / Hit-rate
+- Workspace Manager in taskbar (save / rename / load / delete /
+  JSON import / JSON export; persisted in `localStorage`)
+- Job History menu in taskbar (lifetime cumulative cost, per-job record,
+  persisted in `localStorage`)
+- Review: batch Accept / Reject / Delete / Regenerate; word-level diff
+  on pending regeneration; selectable + copy-safe read fields
+- Desktop icons draggable with position persistence; windows auto-clamp
+  back into viewport on mount and resize
 
 ---
 
 ## Open Work
 
-### Priority 1 — Real API Validation
+### Priority 1 — Configure Refinements
 
-These are the highest-value remaining tasks because they validate the full system, not just local fallback behavior.
-
-- [ ] Set a valid `ANTHROPIC_API_KEY` in the runtime environment
-- [ ] Run full desktop flow with real generation:
-  - Upload
-  - Configure
-  - Generate
-  - Review
-  - Export
-- [ ] Re-run selective regenerate with real API output
-- [ ] Capture any generator/prompt/validation mismatches found in real runs
-
-### Priority 2 — Session Stability And Real-Run UX
-
-- [ ] Optional `persist` middleware for long-running sessions
-- [ ] Validate Configure previews against real user workbooks, not only fixtures
-- [ ] Decide whether spec references should also be stored in frontend row state
-
-### Priority 3 — Configure Page Refinements
-
-- [ ] Allow manual override of grouped `testSet` assignments
+- [ ] Allow manual override of grouped `testSet` per row
 - [ ] Decide final grouping strategy for rows without explicit `testSet`
-- [ ] Add richer match diagnostics when the reference workbook is incompatible
+- [ ] Add richer match diagnostics when a reference workbook is incompatible
+- [ ] Surface Spec Reference in the read-only review fields (backend already carries it)
 
-### Priority 4 — Quick Generate Documentation And Validation
+### Priority 2 — Generator Quality Hardening
 
-Quick Generate appears in the desktop and should be documented and validated consistently.
+- [ ] Auto-escalate model on second count-mismatch (e.g. `gpt-4.1-mini` → `gpt-4.1`)
+- [ ] Retry on validator-reported `expected_result` / `design_method` / `priority` violations, not only count mismatch
+- [ ] Consider JSON Schema response_format to guard structure more strongly
 
-- [ ] Confirm current backend/frontend implementation status for Quick Generate
-- [ ] Add or refresh docs for its request/response flow
-- [ ] Add smoke validation if it remains an active feature
+### Priority 3 — Session & Data Durability
+
+- [ ] Optional `persist` middleware on `useJobStore` for long-running review sessions
+- [ ] Periodically compact / vacuum `output/jobs.db`
+- [ ] Auto-rotate `Job History` older than N days or exceeding size budget
+
+### Priority 4 — Test Coverage
+
+- [ ] Regression E2E for SQLite persistence (restart mid-flow, resume)
+- [ ] Regression E2E for Workspace JSON round-trip
+- [ ] Stress test on a 44-row real workbook (`docs/temp/DeviceManager/...`)
+      — baseline cost and 1:1 compliance recorded
 
 ---
 
 ## Recommended Execution Order
 
-1. Real API validation with a working OpenAI credential
-2. Validate group / match preview behavior on real files
-3. Session persistence and Configure refinements
-4. Optional persistence and larger UX refinements
+1. Configure manual `testSet` override (highest-value UX gap)
+2. Auto-escalate model on persistent count mismatch
+3. Coverage gaps in E2E (workspace / sqlite / stress)
+4. Session persistence + data rotation
 
 ---
 
@@ -150,16 +170,22 @@ Quick Generate appears in the desktop and should be documented and validated con
 
 | Risk | Level | Current mitigation |
 |------|-------|--------------------|
-| OpenAI credential missing or invalid | High | Proxy and stream paths tested separately; real generation blocked until valid key is available |
-| Generated JSON or field quality drift | High | Validator already in place; real-run verification still required |
-| Export mismatch between frontend review state and backend writer | Medium | Export proxy path already smoke-tested with accepted rows |
-| Frontend state drift across modules | Medium | Shared Zustand stores + adapter now act as the single integration boundary |
-| Long review sessions losing state | Medium | `persist` middleware deferred but identified |
+| OpenAI credential or billing tier unavailable | High | Build Tier 1 ≥ $5 required; verified via direct SDK call |
+| 1:1 count rule violated by weaker model (GPT-4.1-mini) | Medium | Hard-constraints footer + one retry; validator surfaces residual cases; user can regen with stronger model |
+| Generated JSON / field quality drift | Medium | Validator + normalizer + retry; Review module shows word-level diff on regen |
+| Export mismatch between frontend review state and backend writer | Low | Export proxy smoke-tested; SQLite now round-trips export path |
+| Long review sessions losing in-memory state | Low | Workspace manager + Job history persist to localStorage |
+| Desktop icon / window position lost on refresh | Low | `desktop-icon-positions` localStorage + controlled window clamp |
 
 ---
 
 ## Notes
 
-- Earlier sections from the original implementation checklist were removed because they described greenfield scaffolding work that is already complete.
-- Outdated references to `shadcn/ui`, `*Window.tsx`, `usePythonAPI.ts`, and direct browser-to-Python calls have been removed from the current plan.
-- This file should only describe active architecture and real remaining work.
+- Rules documentation (`docs/RULES.md`, `docs/API_CONTRACT.md`) and architecture
+  diagrams (`docs/TC_Generator_Architecture_Diagrams.html`,
+  `frontend/public/diagrams.html`) are synchronized with the OpenAI + SQLite
+  architecture as of this revision.
+- `docs/temp/` holds real user workbooks used for validation; excluded via
+  `.gitignore`.
+- `_HARD_CONSTRAINTS` in `backend/prompt_builder.py` is the authoritative summary of
+  invariants LLM output must satisfy; keep it in sync when Rules change.
