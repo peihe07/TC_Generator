@@ -1,22 +1,23 @@
-"""Tests for generator module (RULES.md §12).
+"""Tests for generator module.
 
-AI calls are mocked to avoid actual API usage in tests.
+OpenAI calls are mocked to avoid actual API usage in tests.
 """
 import json
-import pytest
 from unittest.mock import MagicMock, patch
 
+import pytest
+
 from generator import (
-    parse_tc_response,
-    parse_batch_response,
-    calculate_cost,
-    GenerationResult,
     DecomposeResult,
     GenerationError,
-    generate_single_tc,
+    GenerationResult,
+    calculate_cost,
+    decompose_requirement,
     generate_batch,
     generate_quick_tc,
-    decompose_requirement,
+    generate_single_tc,
+    parse_batch_response,
+    parse_tc_response,
 )
 
 
@@ -31,6 +32,17 @@ VALID_TC_JSON = {
     "split_flag": False,
     "split_reason": "",
 }
+
+
+def make_chat_response(payload, *, prompt_tokens=0, completion_tokens=0, cached_tokens=0):
+    response = MagicMock()
+    response.choices = [MagicMock(message=MagicMock(content=json.dumps(payload)))]
+    response.usage = MagicMock(
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        prompt_tokens_details=MagicMock(cached_tokens=cached_tokens),
+    )
+    return response
 
 
 class TestParseTcResponse:
@@ -81,59 +93,62 @@ class TestParseBatchResponse:
 
 
 class TestCalculateCost:
-    def test_sonnet_cost(self):
+    def test_gpt41_cost(self):
         cost = calculate_cost(
             input_tokens=1000,
             output_tokens=500,
-            model="claude-sonnet-4-6",
+            model="gpt-4.1",
         )
-        # Sonnet: $3/MTok input, $15/MTok output
-        expected = (1000 / 1_000_000 * 3.0) + (500 / 1_000_000 * 15.0)
+        expected = (1000 / 1_000_000 * 2.0) + (500 / 1_000_000 * 8.0)
         assert abs(cost - expected) < 0.0001
 
-    def test_haiku_cost(self):
+    def test_gpt41mini_cost(self):
         cost = calculate_cost(
             input_tokens=1000,
             output_tokens=500,
-            model="claude-haiku-4-5-20251001",
+            model="gpt-4.1-mini",
         )
-        # Haiku: $0.80/MTok input, $4/MTok output
-        expected = (1000 / 1_000_000 * 0.80) + (500 / 1_000_000 * 4.0)
+        expected = (1000 / 1_000_000 * 0.40) + (500 / 1_000_000 * 1.60)
         assert abs(cost - expected) < 0.0001
 
     def test_zero_tokens(self):
-        assert calculate_cost(0, 0, "claude-sonnet-4-6") == 0.0
+        assert calculate_cost(0, 0, "gpt-4.1") == 0.0
+
+    def test_cached_tokens_discount(self):
+        cost = calculate_cost(
+            input_tokens=1000,
+            output_tokens=0,
+            model="gpt-4.1",
+            cache_read_tokens=400,
+        )
+        expected = ((600 / 1_000_000) * 2.0) + ((400 / 1_000_000) * 2.0 * 0.5)
+        assert abs(cost - expected) < 0.0001
 
 
 class TestGenerateSingleTc:
-    @patch("generator.anthropic")
-    def test_success(self, mock_anthropic):
-        # Mock API response
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps(VALID_TC_JSON))]
-        mock_msg.usage.input_tokens = 500
-        mock_msg.usage.output_tokens = 300
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_success(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            VALID_TC_JSON,
+            prompt_tokens=500,
+            completion_tokens=300,
+        )
 
         result = generate_single_tc(
             row={"req_id": "R001", "test_item": "PDM01 test"},
             context={"project": "p", "test_group": "G", "test_set": "S"},
             spec_index={},
             rules_text="rules",
-            model="claude-sonnet-4-6",
+            model="gpt-4.1",
         )
         assert isinstance(result, GenerationResult)
         assert result.tc_data["priority"] == "Medium"
         assert result.input_tokens == 500
         assert result.output_tokens == 300
 
-    @patch("generator.anthropic")
-    def test_api_error_raises(self, mock_anthropic):
-        mock_client = MagicMock()
-        mock_client.messages.create.side_effect = Exception("API timeout")
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_api_error_raises(self, mock_chat):
+        mock_chat.side_effect = GenerationError("API call failed: API timeout")
 
         with pytest.raises(GenerationError, match="API"):
             generate_single_tc(
@@ -145,16 +160,13 @@ class TestGenerateSingleTc:
 
 
 class TestGenerateBatch:
-    @patch("generator.anthropic")
-    def test_batch_success(self, mock_anthropic):
-        batch_response = [VALID_TC_JSON, VALID_TC_JSON]
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps(batch_response))]
-        mock_msg.usage.input_tokens = 1000
-        mock_msg.usage.output_tokens = 800
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_batch_success(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            {"tcs": [VALID_TC_JSON, VALID_TC_JSON]},
+            prompt_tokens=1000,
+            completion_tokens=800,
+        )
 
         rows = [
             {"req_id": "R001", "test_item": "PDM01 test A"},
@@ -172,15 +184,13 @@ class TestGenerateBatch:
 
 
 class TestGenerateQuickTc:
-    @patch("generator.anthropic")
-    def test_single_success(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps(VALID_TC_JSON))]
-        mock_msg.usage.input_tokens = 400
-        mock_msg.usage.output_tokens = 200
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_single_success(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            VALID_TC_JSON,
+            prompt_tokens=400,
+            completion_tokens=200,
+        )
 
         result = generate_quick_tc(
             test_item="Button pressed → LED turns on",
@@ -192,31 +202,25 @@ class TestGenerateQuickTc:
         assert result.input_tokens == 400
         assert result.output_tokens == 200
 
-    @patch("generator.anthropic")
-    def test_with_context_passes_context_to_prompt(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps(VALID_TC_JSON))]
-        mock_msg.usage.input_tokens = 600
-        mock_msg.usage.output_tokens = 300
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_with_context_passes_context_to_prompt(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            VALID_TC_JSON,
+            prompt_tokens=600,
+            completion_tokens=300,
+        )
 
         result = generate_quick_tc(
             test_item="Button pressed → LED turns on",
             context="System must be powered on",
             rules_text="rules",
         )
-        # Verify the prompt that was built contains the context
-        call_kwargs = mock_client.messages.create.call_args[1]
-        assert "System must be powered on" in call_kwargs["messages"][0]["content"]
+        assert "System must be powered on" in mock_chat.call_args.args[1]
         assert isinstance(result, GenerationResult)
 
-    @patch("generator.anthropic")
-    def test_api_error_raises(self, mock_anthropic):
-        mock_client = MagicMock()
-        mock_client.messages.create.side_effect = Exception("timeout")
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_api_error_raises(self, mock_chat):
+        mock_chat.side_effect = GenerationError("API call failed: timeout")
 
         with pytest.raises(GenerationError, match="API"):
             generate_quick_tc(
@@ -225,15 +229,16 @@ class TestGenerateQuickTc:
                 rules_text="rules",
             )
 
-    @patch("generator.anthropic")
-    def test_invalid_json_response_raises(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text="not json at all")]
-        mock_msg.usage.input_tokens = 100
-        mock_msg.usage.output_tokens = 50
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_invalid_json_response_raises(self, mock_chat):
+        response = MagicMock()
+        response.choices = [MagicMock(message=MagicMock(content="not json at all"))]
+        response.usage = MagicMock(
+            prompt_tokens=100,
+            completion_tokens=50,
+            prompt_tokens_details=MagicMock(cached_tokens=0),
+        )
+        mock_chat.return_value = response
 
         with pytest.raises(GenerationError, match="parse"):
             generate_quick_tc(
@@ -252,15 +257,13 @@ class TestDecomposeRequirement:
         ],
     }
 
-    @patch("generator.anthropic")
-    def test_success(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps(self.VALID_DECOMPOSE_RESPONSE))]
-        mock_msg.usage.input_tokens = 700
-        mock_msg.usage.output_tokens = 400
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_success(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            self.VALID_DECOMPOSE_RESPONSE,
+            prompt_tokens=700,
+            completion_tokens=400,
+        )
 
         result = decompose_requirement(
             requirement="When button is pressed, LED turns on. Boundary and error cases apply.",
@@ -273,65 +276,60 @@ class TestDecomposeRequirement:
         assert result.input_tokens == 700
         assert result.output_tokens == 400
 
-    @patch("generator.anthropic")
-    def test_success_with_fenced_json(self, mock_anthropic):
+    @patch("generator._chat")
+    def test_success_with_fenced_json(self, mock_chat):
         raw = f"```json\n{json.dumps(self.VALID_DECOMPOSE_RESPONSE)}\n```"
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=raw)]
-        mock_msg.usage.input_tokens = 700
-        mock_msg.usage.output_tokens = 400
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+        response = MagicMock()
+        response.choices = [MagicMock(message=MagicMock(content=raw))]
+        response.usage = MagicMock(
+            prompt_tokens=700,
+            completion_tokens=400,
+            prompt_tokens_details=MagicMock(cached_tokens=0),
+        )
+        mock_chat.return_value = response
 
         result = decompose_requirement(requirement="req", rules_text="rules")
         assert len(result.scenarios) == 2
 
-    @patch("generator.anthropic")
-    def test_api_error_raises(self, mock_anthropic):
-        mock_client = MagicMock()
-        mock_client.messages.create.side_effect = Exception("network error")
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_api_error_raises(self, mock_chat):
+        mock_chat.side_effect = GenerationError("API call failed: network error")
 
         with pytest.raises(GenerationError, match="API"):
             decompose_requirement(requirement="req", rules_text="rules")
 
-    @patch("generator.anthropic")
-    def test_invalid_json_raises(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text="definitely not json")]
-        mock_msg.usage.input_tokens = 100
-        mock_msg.usage.output_tokens = 50
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_invalid_json_raises(self, mock_chat):
+        response = MagicMock()
+        response.choices = [MagicMock(message=MagicMock(content="definitely not json"))]
+        response.usage = MagicMock(
+            prompt_tokens=100,
+            completion_tokens=50,
+            prompt_tokens_details=MagicMock(cached_tokens=0),
+        )
+        mock_chat.return_value = response
 
         with pytest.raises(GenerationError, match="parse"):
             decompose_requirement(requirement="req", rules_text="rules")
 
-    @patch("generator.anthropic")
-    def test_missing_scenarios_key_raises(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps({"reasoning": "ok"}))]
-        mock_msg.usage.input_tokens = 100
-        mock_msg.usage.output_tokens = 50
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_missing_scenarios_key_raises(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            {"reasoning": "ok"},
+            prompt_tokens=100,
+            completion_tokens=50,
+        )
 
         with pytest.raises(GenerationError, match="scenarios"):
             decompose_requirement(requirement="req", rules_text="rules")
 
-    @patch("generator.anthropic")
-    def test_cost_calculation(self, mock_anthropic):
-        mock_msg = MagicMock()
-        mock_msg.content = [MagicMock(text=json.dumps(self.VALID_DECOMPOSE_RESPONSE))]
-        mock_msg.usage.input_tokens = 1_000_000
-        mock_msg.usage.output_tokens = 1_000_000
-        mock_client = MagicMock()
-        mock_client.messages.create.return_value = mock_msg
-        mock_anthropic.Anthropic.return_value = mock_client
+    @patch("generator._chat")
+    def test_cost_calculation(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            self.VALID_DECOMPOSE_RESPONSE,
+            prompt_tokens=1_000_000,
+            completion_tokens=1_000_000,
+        )
 
-        result = decompose_requirement(requirement="req", rules_text="rules", model="claude-sonnet-4-6")
-        # Sonnet: $3 input + $15 output = $18 total for 1M each
-        assert abs(result.cost - 18.0) < 0.001
+        result = decompose_requirement(requirement="req", rules_text="rules", model="gpt-4.1")
+        assert abs(result.cost - 10.0) < 0.001

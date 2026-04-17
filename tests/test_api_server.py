@@ -122,7 +122,7 @@ def test_create_generate_job():
                 }
             ],
             "config": {
-                "model": "claude-sonnet-4-6",
+                "model": "gpt-4.1",
                 "batchSize": 5,
                 "budget": 2,
                 "strictValidation": False,
@@ -187,7 +187,7 @@ def test_stream_generate_job(mock_generate_batch):
             "jobId": payload["jobId"],
             "rows": payload["rows"],
             "config": {
-                "model": "claude-sonnet-4-6",
+                "model": "gpt-4.1",
                 "batchSize": 2,
                 "budget": 2,
                 "strictValidation": False,
@@ -241,7 +241,7 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
             "jobId": payload["jobId"],
             "rows": [payload["rows"][0]],
             "config": {
-                "model": "claude-sonnet-4-6",
+                "model": "gpt-4.1",
                 "batchSize": 1,
                 "budget": 2,
                 "strictValidation": True,
@@ -481,12 +481,12 @@ def test_quick_generate_single_mode(mock_gen):
         input_tokens=300,
         output_tokens=150,
         cost=0.003,
-        model="claude-sonnet-4-6",
+        model="gpt-4.1",
     )
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "Button pressed → LED on", "context": None, "mode": "single", "model": "claude-sonnet-4-6"},
+        json={"testItem": "Button pressed → LED on", "context": None, "mode": "single", "model": "gpt-4.1"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
@@ -508,7 +508,7 @@ def test_quick_generate_with_context_mode(mock_gen):
         input_tokens=400,
         output_tokens=200,
         cost=0.004,
-        model="claude-sonnet-4-6",
+        model="gpt-4.1",
     )
 
     response = client.post(
@@ -517,7 +517,7 @@ def test_quick_generate_with_context_mode(mock_gen):
             "testItem": "Button pressed → LED on",
             "context": "System must be powered",
             "mode": "with_context",
-            "model": "claude-sonnet-4-6",
+            "model": "gpt-4.1",
         },
     )
     assert response.status_code == 200
@@ -537,7 +537,7 @@ def test_quick_generate_single_mode_api_error(mock_gen):
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "some item", "context": None, "mode": "single", "model": "claude-sonnet-4-6"},
+        json={"testItem": "some item", "context": None, "mode": "single", "model": "gpt-4.1"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
@@ -563,12 +563,12 @@ def test_quick_generate_decompose_mode(mock_decompose, mock_gen):
         input_tokens=300,
         output_tokens=150,
         cost=0.003,
-        model="claude-sonnet-4-6",
+        model="gpt-4.1",
     )
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "claude-sonnet-4-6"},
+        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "gpt-4.1"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
@@ -595,7 +595,7 @@ def test_quick_generate_decompose_mode_decompose_error(mock_decompose):
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "claude-sonnet-4-6"},
+        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "gpt-4.1"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)

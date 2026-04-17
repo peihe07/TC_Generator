@@ -42,7 +42,7 @@ class TestParseArgs:
             "--input", "in.xlsx",
             "--sys1", "sys1.xlsx",
             "--spec", "spec.pdf",
-            "--model", "claude-haiku-4-5-20251001",
+            "--model", "gpt-4.1-mini",
             "--batch-size", "10",
             "--mode", "incremental",
             "--dry-run",
@@ -97,13 +97,13 @@ class TestFilterRows:
 
 class TestEstimateCost:
     def test_nonzero(self):
-        cost = _estimate_cost(10, "claude-sonnet-4-6", 5)
+        cost = _estimate_cost(10, "gpt-4.1", 5)
         assert cost > 0
 
-    def test_haiku_cheaper(self):
-        sonnet = _estimate_cost(10, "claude-sonnet-4-6", 5)
-        haiku = _estimate_cost(10, "claude-haiku-4-5-20251001", 5)
-        assert haiku < sonnet
+    def test_mini_cheaper(self):
+        standard = _estimate_cost(10, "gpt-4.1", 5)
+        mini = _estimate_cost(10, "gpt-4.1-mini", 5)
+        assert mini < standard
 
 
 class TestDryRun:
