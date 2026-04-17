@@ -131,29 +131,28 @@ Known environment dependency:
 
 ### Priority 1 — Configure Refinements
 
-- [ ] Allow manual override of grouped `testSet` per row
-- [ ] Decide final grouping strategy for rows without explicit `testSet`
+- [x] Allow manual override of grouped `testSet` per row — inline editable table in Configure/Grouping tab
+- [x] Grouping fallback strategy for rows without explicit `testSet`: existing → PDM code → REQ prefix → `Unassigned` (already in `_derive_test_set_name`)
 - [ ] Add richer match diagnostics when a reference workbook is incompatible
-- [ ] Surface Spec Reference in the read-only review fields (backend already carries it)
+- [x] Surface Spec Reference in Review read-only fields (`TcRow.specReference` + `StackedReadField` row; auto-hidden when empty)
 
 ### Priority 2 — Generator Quality Hardening
 
-- [ ] Auto-escalate model on second count-mismatch (e.g. `gpt-4.1-mini` → `gpt-4.1`)
-- [ ] Retry on validator-reported `expected_result` / `design_method` / `priority` violations, not only count mismatch
+- [x] Auto-escalate model on second count-mismatch (e.g. `gpt-4.1-mini` → `gpt-4.1` → `gpt-5`). `MODEL_ESCALATION` table in `backend/generator.py`.
+- [x] Retry on hard validator violations (`design_method` / `priority` invalid, empty `test_item_rewrite`). Soft warnings still surface in UI but don't trigger retry (cost control).
 - [ ] Consider JSON Schema response_format to guard structure more strongly
 
 ### Priority 3 — Session & Data Durability
 
-- [ ] Optional `persist` middleware on `useJobStore` for long-running review sessions
-- [ ] Periodically compact / vacuum `output/jobs.db`
-- [ ] Auto-rotate `Job History` older than N days or exceeding size budget
+- [x] `useJobStore` wrapped in zustand `persist` middleware (key `tc-job-session`; only `jobMetadata / tcRows / config / stats` persisted)
+- [x] SQLite `purge_older_than` + `vacuum` on backend startup (default 30 days; `TC_JOBS_MAX_AGE_DAYS` env var)
+- [x] Job History TTL (90 days) + `MAX_RECORDS` cap; enforced on load and on every append
 
 ### Priority 4 — Test Coverage
 
-- [ ] Regression E2E for SQLite persistence (restart mid-flow, resume)
-- [ ] Regression E2E for Workspace JSON round-trip
-- [ ] Stress test on a 44-row real workbook (`docs/temp/DeviceManager/...`)
-      — baseline cost and 1:1 compliance recorded
+- [x] SqliteJobStore regression tests (`tests/test_job_store.py` — round-trip, bytes payload, cross-instance persistence, mutation writeback semantics)
+- [x] Playwright Workspace JSON round-trip (`frontend/e2e/workspace.spec.ts` — save → export → new → import → load)
+- [x] 44-row stress test on real workbook — baseline recorded: $0.125 / 251s / cache hit 90.9% / 1:1 violations 1/44 (2.3%) with GPT-4.1-mini + retry + escalation
 
 ---
 
