@@ -92,16 +92,19 @@ const GenerateModule: React.FC = () => {
   return (
     <div className="flex flex-col h-full gap-4">
       <fieldset className="p-4 border-2 border-sunken">
-        <legend className="px-2 font-bold">Progress: {progress}%</legend>
+        <legend className="px-2 font-bold">Progress</legend>
         <div className="flex flex-col gap-2">
-          <div className="flex justify-between text-xsmb-1">
+          <div className="flex justify-between text-xs mb-1">
             <span>Processing {stats.processed} / {stats.total || tcRows.length} TCs</span>
             <span>Elapsed: {String(Math.floor(elapsedSeconds / 60)).padStart(2, '0')}:{String(elapsedSeconds % 60).padStart(2, '0')}</span>
           </div>
-          <div className="h-6 border-2 border-sunken bg-gray-200 p-0.5 flex gap-0.5 overflow-hidden">
-            {Array.from({ length: Math.floor(progress / 2.5) }).map((_, i) => (
-              <div key={i} className="w-2 h-full bg-blue-900 shadow-[inset_-1px_-1px_0_rgba(0,0,0,0.5)]" />
-            ))}
+          <div className="progress-bar-wrap">
+            <div className="progress-fill">
+              {Array.from({ length: Math.floor(progress / 2.5) }).map((_, i) => (
+                <span key={i} />
+              ))}
+            </div>
+            <div className="progress-label">{progress}%</div>
           </div>
         </div>
       </fieldset>
@@ -109,7 +112,7 @@ const GenerateModule: React.FC = () => {
       <div className="flex-1 flex gap-4 min-h-0">
         <div className="flex-1 flex flex-col gap-1">
           <label className="text-sm font-bold">Generation Log:</label>
-          <div className="flex-1 bg-white font-mono text-xs p-2 border-2 border-sunken overflow-auto leading-relaxed">
+          <div className="selectable flex-1 bg-white font-mono text-xs p-2 border-2 border-sunken overflow-auto leading-relaxed">
             {logs.map((log, i) => (
               <div key={i} className="flex gap-2">
                 <span style={{ color: '#808080' }}>[{log.timestamp}]</span>
@@ -130,20 +133,20 @@ const GenerateModule: React.FC = () => {
         <div className="w-48 flex flex-col gap-4">
           <fieldset className="flex-1">
             <legend className="text-sm font-bold">Session Stats</legend>
-            <div className="flex flex-col gap-4 p-1">
-              <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2 p-1">
+              <div className="stat-sunken">
                 <span className="text-xs text-gray-600 flex items-center gap-1">
                   <RiPlayListAddLine className="size-3" /> Processed
                 </span>
                 <span className="text-lg font-bold font-mono">{stats.processed}</span>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="stat-sunken">
                 <span className="text-xs text-gray-600 flex items-center gap-1">
                   <RiMoneyDollarCircleLine className="size-3" /> Current Cost
                 </span>
                 <span className="text-lg font-bold font-mono text-red-700">${stats.cost.toFixed(4)}</span>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="stat-sunken">
                 <span className="text-xs text-gray-600 flex items-center gap-1">
                   <RiTimeLine className="size-3" /> Elapsed
                 </span>

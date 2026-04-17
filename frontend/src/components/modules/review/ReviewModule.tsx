@@ -186,6 +186,27 @@ const ReviewModule: React.FC = () => {
     }
   };
 
+  // 批次操作：套用狀態到所有選取列
+  const handleBulkStatus = (status: TcRow['status']) => {
+    if (selectedIds.size === 0) return;
+    selectedIds.forEach((id) => updateTcRow(id, { status }));
+    appendLog(createJobLog('info', `Marked ${selectedIds.size} row(s) as ${status}.`));
+    setSelectedIds(new Set());
+  };
+
+  // 批次刪除
+  const handleBulkDelete = () => {
+    if (selectedIds.size === 0) return;
+    if (!confirm(`Delete ${selectedIds.size} selected test case(s)?`)) return;
+    const ids = [...selectedIds];
+    deleteTcRows(ids);
+    renumberTcRows();
+    appendLog(createJobLog('info', `Deleted ${ids.length} row(s).`));
+    setExpandedRow(null);
+    setEditingRowId(null);
+    setSelectedIds(new Set());
+  };
+
   const handleRegenerate = useCallback(async () => {
     if (selectedIds.size === 0) return;
     setRegenerating(true);
@@ -285,7 +306,7 @@ const ReviewModule: React.FC = () => {
           <table className="w-full text-sm border-collapse">
             <thead className="sticky top-0 bg-gray-200 shadow-sm z-10">
               <tr className="border-b border-gray-400">
-                <th className="w-8 p-1 text-center">
+                <th className="w-8 px-2 py-2 text-center">
                   <button
                     className="flex items-center justify-center w-full"
                     title={allVisibleSelected ? 'Deselect all' : 'Select all'}
@@ -297,10 +318,10 @@ const ReviewModule: React.FC = () => {
                   </button>
                 </th>
                 <th className="w-6"></th>
-                <th className="text-left p-2 border-r">TC ID</th>
-                <th className="text-left p-2 border-r">Req ID</th>
-                <th className="text-left p-2 border-r">Status</th>
-                <th className="text-center p-2 w-28">Actions</th>
+                <th className="text-left px-3 py-2 border-r">TC ID</th>
+                <th className="text-left px-3 py-2 border-r">Req ID</th>
+                <th className="text-left px-3 py-2 border-r">Status</th>
+                <th className="text-center px-3 py-2 w-28">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -314,7 +335,7 @@ const ReviewModule: React.FC = () => {
                     `}
                   >
                     {/* Checkbox */}
-                    <td className="text-center p-1" onClick={(e) => e.stopPropagation()}>
+                    <td className="text-center px-2 py-2" onClick={(e) => e.stopPropagation()}>
                       <button
                         className="flex items-center justify-center w-full"
                         onClick={() => toggleSelectRow(row.id)}
@@ -327,7 +348,7 @@ const ReviewModule: React.FC = () => {
 
                     {/* Expand toggle */}
                     <td
-                      className="text-center"
+                      className="text-center py-2"
                       onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
                     >
                       {expandedRow === row.id
@@ -336,7 +357,7 @@ const ReviewModule: React.FC = () => {
                     </td>
 
                     <td
-                      className="p-2 border-r font-mono text-xs"
+                      className="px-3 py-2 border-r font-mono text-xs"
                       onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
                     >
                       <span className="flex items-center gap-1">
@@ -346,13 +367,13 @@ const ReviewModule: React.FC = () => {
                       </span>
                     </td>
                     <td
-                      className="p-2 border-r font-mono text-xs"
+                      className="px-3 py-2 border-r font-mono text-xs"
                       onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
                     >
                       {row.reqId}
                     </td>
                     <td
-                      className="p-2 border-r"
+                      className="px-3 py-2 border-r"
                       onClick={() => setExpandedRow(expandedRow === row.id ? null : row.id)}
                     >
                       <span className={`status-badge ${
@@ -396,7 +417,14 @@ const ReviewModule: React.FC = () => {
                   {/* Expanded detail */}
                   {expandedRow === row.id && (
                     <tr>
-                      <td colSpan={6} className="bg-gray-50 p-2 border-b-2 border-gray-300 shadow-inner">
+                      <td
+                        colSpan={6}
+                        className="p-3 border-b-2 border-gray-400"
+                        style={{
+                          background: '#f5f5f5',
+                          boxShadow: 'inset 2px 2px 0 #d0d0d0, inset -1px -1px 0 #ffffff',
+                        }}
+                      >
                         {/* Regen diff takes priority when pending */}
                         {row.pendingRegenerated ? (
                           <RegenDiff
@@ -411,25 +439,25 @@ const ReviewModule: React.FC = () => {
                             onDiscard={() => clearPendingRegenerated(row.id)}
                           />
                         ) : (
-                          <div className="grid grid-cols-2 gap-2">
-                            {/* Left: Original */}
-                            <div className="flex flex-col gap-1">
+                          <div className="grid grid-cols-5 gap-3">
+                            {/* Left: Original (40%) */}
+                            <div className="col-span-2 flex flex-col gap-1">
                               <span className="text-xs font-bold text-gray-500 uppercase">Original Requirement</span>
-                              <div className="p-3 bg-white border border-gray-300 min-h-[120px] text-xs leading-relaxed overflow-auto">
+                              <div className="p-3 bg-white border-2 border-sunken min-h-[140px] text-xs leading-relaxed overflow-auto whitespace-pre-wrap break-words">
                                 {row.testItem}
                               </div>
                             </div>
 
-                            {/* Right: Generated / Editable */}
-                            <div className="flex flex-col gap-1">
+                            {/* Right: Generated / Editable (60%) */}
+                            <div className="col-span-3 flex flex-col gap-1">
                               <span className="text-xs font-bold text-blue-600 uppercase flex justify-between">
                                 <span>Generated Test Case</span>
                                 {editingId === row.id && (
                                   <span className="text-orange-600 text-[10px]">EDIT MODE</span>
                                 )}
                               </span>
-                              <div className={`p-3 bg-white border min-h-[120px] text-xs leading-relaxed flex flex-col ${
-                                editingId === row.id ? 'border-orange-400 ring-1 ring-orange-200' : 'border-blue-300'
+                              <div className={`p-3 bg-white border-2 min-h-[140px] text-xs leading-relaxed flex flex-col ${
+                                editingId === row.id ? 'border-orange-400 ring-1 ring-orange-200' : 'border-blue-400'
                               }`}>
                                 {editingId === row.id ? (
                                   <>
@@ -586,8 +614,27 @@ const ReviewModule: React.FC = () => {
             {selectedIds.size} row{selectedIds.size > 1 ? 's' : ''} selected
           </span>
           <div className="flex gap-1">
-            <button onClick={() => setSelectedIds(new Set())}>
-              Clear
+            <button onClick={() => setSelectedIds(new Set())}>Clear</button>
+            <button
+              className="flex items-center gap-1"
+              title="Accept selected"
+              onClick={() => handleBulkStatus('accepted')}
+            >
+              <RiCheckFill className="size-3 text-green-700" /> Accept
+            </button>
+            <button
+              className="flex items-center gap-1"
+              title="Reject selected"
+              onClick={() => handleBulkStatus('rejected')}
+            >
+              <RiCloseFill className="size-3 text-red-700" /> Reject
+            </button>
+            <button
+              className="flex items-center gap-1"
+              title="Delete selected"
+              onClick={handleBulkDelete}
+            >
+              <RiDeleteBinLine className="size-3" /> Delete
             </button>
             <button
               className="font-bold flex items-center gap-1"
@@ -595,7 +642,7 @@ const ReviewModule: React.FC = () => {
               disabled={isRegenerating}
             >
               <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
-              {isRegenerating ? 'Regenerating...' : `Regenerate ${selectedIds.size} Selected`}
+              {isRegenerating ? 'Regenerating...' : `Regenerate`}
             </button>
           </div>
         </div>

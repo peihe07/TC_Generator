@@ -12,16 +12,28 @@ const UploadModule: React.FC = () => {
   const { openWindow } = useWindowStore();
   const [isParsing, setIsParsing] = useState(false);
   const [files, setFiles] = useState<{ tc?: File; referenceWorkbook?: File; spec?: File }>({});
+  const [draggingZone, setDraggingZone] = useState<'tc' | 'referenceWorkbook' | 'spec' | null>(null);
   const tcInputRef = useRef<HTMLInputElement | null>(null);
   const referenceWorkbookInputRef = useRef<HTMLInputElement | null>(null);
   const specInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileDrop = (e: React.DragEvent, type: 'tc' | 'referenceWorkbook' | 'spec') => {
     e.preventDefault();
+    setDraggingZone(null);
     const file = e.dataTransfer.files[0];
     if (file) {
       setFiles((prev) => ({ ...prev, [type]: file }));
     }
+  };
+
+  const handleDragEnter = (e: React.DragEvent, type: 'tc' | 'referenceWorkbook' | 'spec') => {
+    e.preventDefault();
+    setDraggingZone(type);
+  };
+  const handleDragLeave = (e: React.DragEvent, type: 'tc' | 'referenceWorkbook' | 'spec') => {
+    e.preventDefault();
+    // 只有當離開的目標即為 dropzone 本體時才重設，避免子元素觸發誤判
+    if (e.currentTarget === e.target) setDraggingZone((z) => (z === type ? null : z));
   };
 
   const handleFileSelect = (
@@ -82,9 +94,11 @@ const UploadModule: React.FC = () => {
         <fieldset className="p-4 border-2 border-sunken">
           <legend className="px-2 font-bold">TC Specification (.xlsx)</legend>
           <div
-            className={`dropzone-sunken h-32 ${files.tc ? 'bg-white' : ''}`}
+            className={`dropzone-sunken h-32 ${draggingZone === 'tc' ? 'dragging' : ''} ${files.tc ? 'bg-white' : ''}`}
             onClick={() => tcInputRef.current?.click()}
             onDragOver={(e) => e.preventDefault()}
+            onDragEnter={(e) => handleDragEnter(e, 'tc')}
+            onDragLeave={(e) => handleDragLeave(e, 'tc')}
             onDrop={(e) => handleFileDrop(e, 'tc')}
           >
             <RiFileExcel2Line className="size-10 text-gray-600" />
@@ -106,10 +120,12 @@ const UploadModule: React.FC = () => {
           <fieldset className="p-4 border-2 border-sunken">
             <legend className="px-2 font-bold">Reference Workbook (Optional)</legend>
             <div
-              className="dropzone-sunken h-20"
+              className={`dropzone-sunken h-20 ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''}`}
               onClick={() => referenceWorkbookInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'referenceWorkbook')}
               onDragOver={(e) => e.preventDefault()}
+              onDragEnter={(e) => handleDragEnter(e, 'referenceWorkbook')}
+              onDragLeave={(e) => handleDragLeave(e, 'referenceWorkbook')}
             >
               <RiFileSearchLine className="size-6 text-gray-500" />
               <span className="text-[10px] truncate px-2 w-full text-center">
@@ -128,10 +144,12 @@ const UploadModule: React.FC = () => {
           <fieldset className="p-4 border-2 border-sunken">
             <legend className="px-2 font-bold">Reference PDF/DOCX</legend>
             <div
-              className="dropzone-sunken h-20"
+              className={`dropzone-sunken h-20 ${draggingZone === 'spec' ? 'dragging' : ''}`}
               onClick={() => specInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'spec')}
               onDragOver={(e) => e.preventDefault()}
+              onDragEnter={(e) => handleDragEnter(e, 'spec')}
+              onDragLeave={(e) => handleDragLeave(e, 'spec')}
             >
               <RiFileLine className="size-6 text-gray-500" />
               <span className="text-[10px] truncate px-2 w-full text-center">
