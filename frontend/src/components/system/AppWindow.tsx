@@ -3,15 +3,9 @@
 import React, { ReactNode, useRef } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
-import {
-  RiCloseLine,
-  RiSubtractLine,
-  RiCheckboxIndeterminateLine,
-  RiSquareLine,
-  RiFileCopyLine
-} from '@remixicon/react';
 import { useWindowStore, WindowID } from '../../store/useWindowStore';
 import 'react-resizable/css/styles.css';
+import { TASKBAR_HEIGHT } from './layout';
 
 interface AppWindowProps {
   id: WindowID;
@@ -46,30 +40,15 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
           {windowData.title}
         </div>
         <div className="title-bar-controls">
-          <button
-            aria-label="Minimize"
-            onClick={(e) => { e.stopPropagation(); minimizeWindow(id); }}
-          >
-            <RiSubtractLine className="size-3.5 stroke-[2.5]" />
-          </button>
-          <button
-            aria-label="Maximize"
-            onClick={(e) => { e.stopPropagation(); maximizeWindow(id); }}
-          >
-            {isMaximized ? <RiFileCopyLine className="size-3 stroke-[2.5]" /> : <RiSquareLine className="size-3.5 stroke-[2.5]" />}
-          </button>
-          <button
-            aria-label="Close"
-            onClick={(e) => { e.stopPropagation(); closeWindow(id); }}
-          >
-            <RiCloseLine className="size-3.5 stroke-[2.5]" />
-          </button>
+          <button aria-label="Minimize" onClick={(e) => { e.stopPropagation(); minimizeWindow(id); }} />
+          <button aria-label="Maximize" onClick={(e) => { e.stopPropagation(); maximizeWindow(id); }} />
+          <button aria-label="Close"    onClick={(e) => { e.stopPropagation(); closeWindow(id); }} />
         </div>
       </div>
 
       {/* Window Body */}
       <div className="window-body flex-1 flex flex-col m-1 overflow-hidden">
-        <div className="flex-1 overflow-auto bg-white p-4 border-2 border-sunken shadow-inner">
+        <div className={`flex-1 overflow-auto bg-white border-2 border-sunken shadow-inner ${(id === 'diagrams' || id === 'rules') ? 'p-0' : 'p-4'}`}>
           {children}
         </div>
       </div>
@@ -79,8 +58,8 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
   if (isMaximized) {
     return (
       <div
-        className="fixed top-0 left-0 right-0 bottom-10 bg-gray-300"
-        style={{ zIndex: windowData.zIndex }}
+        className="fixed top-0 left-0 right-0 bg-gray-300"
+        style={{ zIndex: windowData.zIndex, bottom: TASKBAR_HEIGHT }}
         onClick={() => focusWindow(id)}
       >
         {windowContent}

@@ -9,6 +9,8 @@ import GenerateModule from '../modules/generate/GenerateModule';
 import ReviewModule from '../modules/review/ReviewModule';
 import ExportModule from '../modules/export/ExportModule';
 import QuickGenerateModule from '../modules/quickGenerate/QuickGenerateModule';
+import DiagramsModule from '../modules/diagrams/DiagramsModule';
+import RulesModule from '../modules/rules/RulesModule';
 import {
   RiFolderUploadLine,
   RiSettings3Line,
@@ -16,6 +18,8 @@ import {
   RiFileList3Line,
   RiDownload2Line,
   RiFlashlightLine,
+  RiFlowChart,
+  RiBookOpenLine,
 } from '@remixicon/react';
 
 const ICON_MAP: Record<WindowID, React.ReactNode> = {
@@ -25,6 +29,8 @@ const ICON_MAP: Record<WindowID, React.ReactNode> = {
   review: <RiFileList3Line className="size-4" />,
   export: <RiDownload2Line className="size-4" />,
   quickGenerate: <RiFlashlightLine className="size-4" />,
+  diagrams: <RiFlowChart className="size-4" />,
+  rules: <RiBookOpenLine className="size-4" />,
 };
 
 const CONTENT_MAP: Record<WindowID, React.ReactNode> = {
@@ -34,6 +40,8 @@ const CONTENT_MAP: Record<WindowID, React.ReactNode> = {
   review: <ReviewModule />,
   export: <ExportModule />,
   quickGenerate: <QuickGenerateModule />,
+  diagrams: <DiagramsModule />,
+  rules: <RulesModule />,
 };
 
 const WindowManager: React.FC = () => {

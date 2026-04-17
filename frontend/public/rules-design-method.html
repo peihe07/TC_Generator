@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TC Design Method Rules</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  body { font-family: "Pixelated MS Sans Serif","MS Sans Serif",Arial,sans-serif; font-size:13px; max-width:860px; margin:0 auto; padding:24px 32px; background:#fff; color:#1a1a1a; line-height:1.6; }
+  h1 { font-size:18px; font-weight:bold; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:16px; }
+  h2 { font-size:15px; font-weight:bold; margin-top:24px; margin-bottom:8px; border-left:4px solid #000080; padding-left:8px; }
+  h3 { font-size:13px; font-weight:bold; margin-top:16px; margin-bottom:4px; }
+  h4 { font-size:13px; font-weight:bold; margin-top:12px; color:#444; }
+  pre { background:#f0f0f0; border:1px solid #c0c0c0; padding:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
+  code { background:#f0f0f0; padding:1px 4px; font-size:11px; }
+  blockquote { border-left:3px solid #808080; margin-left:0; padding-left:12px; color:#555; }
+  hr { border:none; border-top:1px solid #808080; margin:16px 0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:12px; }
+  th,td { border:1px solid #c0c0c0; padding:4px 8px; text-align:left; }
+  th { background:#c0c0c0; font-weight:bold; }
+  ul,ol { padding-left:20px; margin:4px 0; }
+  li { margin:2px 0; }
+  strong { font-weight:bold; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">TC Design Method Rules</h1>
+</header>
+<h1 id="test-case-design-method-判斷規則">Test Case Design Method
+判斷規則</h1>
+<h2 id="文件目的">1. 文件目的</h2>
+<p>本文件用於說明在建立測試案例時，如何選擇合適的 <strong>Test Case
+Design Method（測試設計方法）</strong>。</p>
+<hr />
+<h1 id="test-design-methods">2. Test Design Methods</h1>
+<p>本文件定義以下九種測試設計方法：</p>
+<ol type="1">
+<li>Functional based<br />
+</li>
+<li>State Transition Testing<br />
+</li>
+<li>Decision Table Testing<br />
+</li>
+<li>Equivalence Partitioning<br />
+</li>
+<li>Boundary Value Analysis<br />
+</li>
+<li>Combinatorial Testing<br />
+</li>
+<li>Scenario / Use Case Testing<br />
+</li>
+<li>Negative / Invalid Testing<br />
+</li>
+<li>Fault Injection Lite</li>
+</ol>
+<hr />
+<h1 id="functional-based">3. Functional Based</h1>
+<h2 id="定義">定義</h2>
+<p>Functional based 測試用於驗證系統功能是否符合需求規格。</p>
+<p>此方法不依賴特定測試設計技術，通常用於基本功能驗證。</p>
+<hr />
+<h2 id="使用時機">使用時機</h2>
+<p>適用於以下情況：</p>
+<ul>
+<li>驗證某功能是否存在</li>
+<li>驗證功能是否可以正常操作</li>
+<li>驗證畫面元素是否正確顯示</li>
+<li>驗證系統是否可以進入某功能</li>
+</ul>
+<hr />
+<h2 id="特徵">特徵</h2>
+<p>通常具有以下特性：</p>
+<ul>
+<li>單一功能驗證</li>
+<li>不涉及條件邏輯</li>
+<li>不涉及輸入範圍</li>
+<li>不涉及狀態轉換</li>
+<li>不涉及參數組合</li>
+</ul>
+<hr />
+<h2 id="example">Example</h2>
+<pre><code>Verify the system can open the settings page. 
+驗證系統可以正常開啟設定頁面
+Verify the icon is displayed on the main screen.
+驗證主畫面上圖示可以正常顯示</code></pre>
+<hr />
+<h1 id="state-transition-testing">4. State Transition Testing</h1>
+<h2 id="定義-1">定義</h2>
+<p>State Transition Testing
+用於驗證系統在不同狀態之間轉換時是否符合預期行為。</p>
+<hr />
+<h2 id="使用時機-1">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>系統具有明確狀態</li>
+<li>不同狀態下系統行為不同</li>
+<li>特定事件會觸發狀態改變</li>
+</ul>
+<hr />
+<h2 id="特徵-1">特徵</h2>
+<p>常見情境包含：</p>
+<ul>
+<li>狀態 A 轉換為狀態 B</li>
+<li>事件觸發狀態改變</li>
+<li>不同狀態下系統行為不同</li>
+</ul>
+<hr />
+<h2 id="example-1">Example</h2>
+<pre><code>Verify the system changes to active state after login.
+驗證使用者登入後系統狀態由未登入轉換為已登入
+Verify the system returns to idle state after timeout.
+驗證系統在逾時後由活動狀態轉為待機狀態</code></pre>
+<hr />
+<h1 id="decision-table-testing">5. Decision Table Testing</h1>
+<h2 id="定義-2">定義</h2>
+<p>Decision Table Testing 用於測試多個條件組合與其對應結果。</p>
+<p>當系統行為依賴多個條件時，適合使用此方法。</p>
+<hr />
+<h2 id="使用時機-2">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>多條件判斷邏輯</li>
+<li>設定開關影響系統行為</li>
+<li>權限或規則控制</li>
+</ul>
+<hr />
+<h2 id="特徵-2">特徵</h2>
+<p>典型情況包含：</p>
+<ul>
+<li>多個輸入條件</li>
+<li>每種條件組合對應不同結果</li>
+</ul>
+<hr />
+<h2 id="example-2">Example</h2>
+<pre><code>If the feature is enabled, the system should display the notification.
+當功能設定為啟用時，系統應顯示通知
+If the feature is enabled, the system should display the notification.
+當功能設定為停用時，系統不應顯示通知</code></pre>
+<hr />
+<h1 id="equivalence-partitioning">6. Equivalence Partitioning</h1>
+<h2 id="定義-3">定義</h2>
+<p>Equivalence Partitioning
+將輸入資料分成多個區間，每個區間中的輸入預期具有相同系統行為。</p>
+<p>只需測試每個區間中的代表值即可。</p>
+<hr />
+<h2 id="使用時機-3">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>輸入資料範圍</li>
+<li>資料類型</li>
+<li>有效與無效輸入分類</li>
+</ul>
+<hr />
+<h2 id="特徵-3">特徵</h2>
+<p>常見分類：</p>
+<ul>
+<li>有效輸入</li>
+<li>無效輸入</li>
+<li>不同資料類型</li>
+</ul>
+<hr />
+<h2 id="example-3">Example</h2>
+<pre><code>Verify the system accepts valid email addresses.
+驗證系統接受有效格式的電子郵件地址
+Verify the system rejects invalid email formats.
+驗證系統拒絕不符合格式的電子郵件地址</code></pre>
+<hr />
+<h1 id="boundary-value-analysis">7. Boundary Value Analysis</h1>
+<h2 id="定義-4">定義</h2>
+<p>Boundary Value Analysis 用於測試輸入範圍的邊界值。</p>
+<p>系統錯誤通常容易出現在邊界附近。</p>
+<hr />
+<h2 id="使用時機-4">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>數值範圍</li>
+<li>字串長度限制</li>
+<li>數量上限或下限</li>
+</ul>
+<hr />
+<h2 id="特徵-4">特徵</h2>
+<p>常見測試值包括：</p>
+<ul>
+<li>最小值</li>
+<li>最大值</li>
+<li>邊界附近數值</li>
+</ul>
+<hr />
+<h2 id="example-4">Example</h2>
+<pre><code>Verify the system accepts input length of 1 character.
+驗證系統可以接受最小長度的輸入
+Verify the system rejects input length exceeding the maximum limit.
+驗證系統拒絕超過最大長度的輸入</code></pre>
+<hr />
+<h1 id="combinatorial-testing">8. Combinatorial Testing</h1>
+<h2 id="定義-5">定義</h2>
+<p>Combinatorial Testing 用於測試多個輸入參數之間的組合關係。</p>
+<hr />
+<h2 id="使用時機-5">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>多個參數同時影響系統行為</li>
+<li>不同設定組合</li>
+<li>不同配置組合</li>
+</ul>
+<hr />
+<h2 id="特徵-5">特徵</h2>
+<p>常見情況：</p>
+<ul>
+<li>多個變數同時存在</li>
+<li>不同變數組合導致不同結果</li>
+</ul>
+<hr />
+<h2 id="example-5">Example</h2>
+<pre><code>Verify the system behavior under different language and region settings.
+驗證不同語言與地區設定組合下系統的顯示行為
+Verify the system behavior with different user role and permission combinations.
+驗證不同使用者角色與權限組合下系統的存取行為</code></pre>
+<hr />
+<h1 id="scenario-use-case-testing">9. Scenario / Use Case Testing</h1>
+<h2 id="定義-6">定義</h2>
+<p>Scenario Testing 用於驗證使用者在實際操作流程中的系統行為。</p>
+<hr />
+<h2 id="使用時機-6">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>使用者操作流程</li>
+<li>多步驟功能流程</li>
+<li>端對端操作</li>
+</ul>
+<hr />
+<h2 id="特徵-6">特徵</h2>
+<p>通常包含：</p>
+<ul>
+<li>多個操作步驟</li>
+<li>使用者互動流程</li>
+</ul>
+<hr />
+<h2 id="example-6">Example</h2>
+<pre><code>User logs in, opens the dashboard, and downloads a report.
+使用者登入系統後進入主畫面並下載報表
+User creates a new account and completes the registration process.
+使用者建立新帳號並完成註冊流程</code></pre>
+<hr />
+<h1 id="negative-invalid-testing">10. Negative / Invalid Testing</h1>
+<h2 id="定義-7">定義</h2>
+<p>Negative Testing 用於驗證系統在錯誤或不合法情況下的處理能力。</p>
+<hr />
+<h2 id="使用時機-7">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>無效輸入</li>
+<li>不合法操作</li>
+<li>缺少必要條件</li>
+</ul>
+<hr />
+<h2 id="特徵-7">特徵</h2>
+<p>常見情境：</p>
+<ul>
+<li>輸入錯誤資料</li>
+<li>執行不允許操作</li>
+</ul>
+<hr />
+<h2 id="example-7">Example</h2>
+<pre><code>Verify the system rejects login with incorrect password.
+驗證使用錯誤密碼登入時系統會拒絕登入
+Verify the system prevents access without authentication.
+驗證未登入狀態下無法存取受保護頁面</code></pre>
+<hr />
+<h1 id="fault-injection-lite">11. Fault Injection Lite</h1>
+<h2 id="定義-8">定義</h2>
+<p>Fault Injection
+用於模擬系統或環境異常，以驗證系統穩定性與錯誤處理能力。</p>
+<hr />
+<h2 id="使用時機-8">使用時機</h2>
+<p>適用於：</p>
+<ul>
+<li>外部系統失效</li>
+<li>環境異常</li>
+<li>系統依賴失效</li>
+</ul>
+<hr />
+<h2 id="特徵-8">特徵</h2>
+<p>常見情況：</p>
+<ul>
+<li>連線中斷</li>
+<li>設備移除</li>
+<li>系統服務不可用</li>
+</ul>
+<hr />
+<h2 id="example-8">Example</h2>
+<pre><code>Verify the system handles device disconnection during operation.
+驗證設備在運行過程中被移除時系統的反應
+Verify the system behavior when network connection is lost.
+驗證網路連線中斷時系統的處理行為</code></pre>
+<hr />
+<h1 id="快速判斷流程">12. 快速判斷流程</h1>
+<p>可依以下順序選擇測試設計方法：</p>
+<ol type="1">
+<li><p>是否為錯誤輸入或不合法操作<br />
+→ Negative / Invalid Testing</p></li>
+<li><p>是否模擬系統或環境故障<br />
+→ Fault Injection Lite</p></li>
+<li><p>是否涉及系統狀態改變<br />
+→ State Transition Testing</p></li>
+<li><p>是否依賴多條件判斷<br />
+→ Decision Table Testing</p></li>
+<li><p>是否測試輸入區間<br />
+→ Equivalence Partitioning</p></li>
+<li><p>是否測試邊界值<br />
+→ Boundary Value Analysis</p></li>
+<li><p>是否涉及多參數組合<br />
+→ Combinatorial Testing</p></li>
+<li><p>是否驗證完整操作流程<br />
+→ Scenario / Use Case Testing</p></li>
+<li><p>若以上皆不符合<br />
+→ Functional based</p></li>
+</ol>
+</body>
+</html>

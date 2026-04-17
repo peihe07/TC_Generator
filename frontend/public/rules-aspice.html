@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ASPICE SWE.6 TC Writing Rules</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+  body { font-family: "Pixelated MS Sans Serif","MS Sans Serif",Arial,sans-serif; font-size:13px; max-width:860px; margin:0 auto; padding:24px 32px; background:#fff; color:#1a1a1a; line-height:1.6; }
+  h1 { font-size:18px; font-weight:bold; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:16px; }
+  h2 { font-size:15px; font-weight:bold; margin-top:24px; margin-bottom:8px; border-left:4px solid #000080; padding-left:8px; }
+  h3 { font-size:13px; font-weight:bold; margin-top:16px; margin-bottom:4px; }
+  h4 { font-size:13px; font-weight:bold; margin-top:12px; color:#444; }
+  pre { background:#f0f0f0; border:1px solid #c0c0c0; padding:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
+  code { background:#f0f0f0; padding:1px 4px; font-size:11px; }
+  blockquote { border-left:3px solid #808080; margin-left:0; padding-left:12px; color:#555; }
+  hr { border:none; border-top:1px solid #808080; margin:16px 0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:12px; }
+  th,td { border:1px solid #c0c0c0; padding:4px 8px; text-align:left; }
+  th { background:#c0c0c0; font-weight:bold; }
+  ul,ol { padding-left:20px; margin:4px 0; }
+  li { margin:2px 0; }
+  strong { font-weight:bold; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">ASPICE SWE.6 TC Writing Rules</h1>
+</header>
+<h2 id="aspice-swe.6-test-case-撰寫規則"># ASPICE SWE.6 Test Case
+撰寫規則</h2>
+<p>Test Case 必須符合 ASPICE SWE.6 核心要求：</p>
+<ul>
+<li><strong>Deterministic</strong> 確定性 — 結果不可有模糊空間</li>
+<li><strong>Reproducible</strong> 可重現 — 任何人執行結果相同</li>
+<li><strong>Auditable</strong> 可稽核 — 可作為識證證據</li>
+<li><strong>Traceable</strong> 可追溯 — 每個 TC 對應到需求</li>
+<li><strong>Free from False Pass</strong> — 無假通過風險</li>
+</ul>
+<hr />
+<h2 id="test-item-測試項目設計">1. Test Item — 測試項目設計</h2>
+<h3 id="必須對齊需求意圖">1.1 必須對齊需求意圖</h3>
+<p>Test Item 定義「這條 Test Case 要驗證什麼」。每個 Test Item
+必須對應一個 Requirement behavior 或一個 Requirement
+scenario，不可自行發揮或偏離需求。</p>
+<h4 id="mistake-7-測項設計與需求swra-皆無關">❌ Mistake #7 —
+測項設計與需求/SWRA 皆無關</h4>
+<p><strong>Requirement：</strong> &gt; Camera Mode: The HU shall have
+the option to enable or disable the engineering configuration. If
+disabled, the HU shall revert to default parameters.</p>
+<p><strong>錯誤的 Test Procedure：</strong></p>
+<pre><code>1. Launch EngMode.
+2. Select Camera Mode.
+3. Change any settings on the Camera Mode screen.
+4. Launch RVC.</code></pre>
+<blockquote>
+<p>問題：測項僅測試 Camera Mode 畫面操作與 RVC 啟動，與需求意圖
+(enable/disable → revert to default) 毫無關係。</p>
+</blockquote>
+<h4 id="正確的-test-procedure">✅ 正確的 Test Procedure：</h4>
+<pre><code>1. Launch EngMode.
+2. Set Engineering Configuration to Enable.
+3. Change at least one camera-related parameter.
+4. Check the changed parameter is applied.
+5. Re-launch EngMode and Set Engineering Configuration to Disable.
+6. Check the parameter reverts to default on the HU.</code></pre>
+<blockquote>
+<p>→ 完整驗證 enable → change → disable → revert to default 流程。</p>
+</blockquote>
+<hr />
+<h4 id="mistake-72-未驗證需求關鍵行為">❌ Mistake #7(2) —
+未驗證需求關鍵行為</h4>
+<p><strong>Requirement：</strong> &gt; The HU shall create the ‘All Call
+Logs’ list by analyzing the time stamps of the Outgoing, Incoming and
+Missed Call log entries.</p>
+<p><strong>錯誤的 Test Procedure：</strong></p>
+<pre><code>1. Initiate call log download via Bluetooth pairing, wait for synchronization.
+2. Observe the order of entries in the All Call Logs list.</code></pre>
+<blockquote>
+<p>問題：未驗證 Outgoing/Incoming/Missed
+三種類型是否正確合併顯示，也缺乏可驗證 timestamp
+排序正確性的測試步驟設計。</p>
+</blockquote>
+<hr />
+<h3 id="requirement-swra-衝突處理">1.1.1 Requirement ↔︎ SWRA
+衝突處理</h3>
+<p>當 SWRA 與 Requirement Description 內容矛盾時： 1.
+<strong>Requirement takes precedence.</strong>（以需求為主） 2.
+<strong>Align with RD for clarification.</strong>（進一步與 RD
+釐清）</p>
+<p>Test Case 設計必須以 Requirement 為準，不可依據與需求矛盾的 SWRA
+設計驗證邏輯。</p>
+<hr />
+<h3 id="同一需求下的多個-tc-必須標示情境">1.2 同一需求下的多個 TC
+必須標示情境</h3>
+<p>Design Rule #1：同一 Requirement 下的多個 Test Case，每個 Test Item
+必須明確標示其 test scenario 或 validation focus。否則無法區分各 TC
+測什麼。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;MaxCount-AddressBookEntries&gt; \| 5000 \| records</code></td>
+<td><code>(Initial Sync = 5,000)</code></td>
+</tr>
+<tr>
+<td>（未標示各 TC 情境，無法區分）</td>
+<td><code>(Initial Sync &gt; 5,000)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Add New Contact After HU Reaches 5,000)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Delete Contact After HU Reaches 5,000)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Add Contact After Deletion to Return to 5,000)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Add Duplicate Contact Below Capacity)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="需求關鍵字分析-focus-on-keywords">1.3 需求關鍵字分析 (Focus on
+Keywords)</h3>
+<p>設計 TC 前必須先分析 Requirement
+中的關鍵字，確保每個關鍵概念皆有對應的驗證。</p>
+<p><strong>Reviewer 實例（藍字修改）— Outgoing Call Log
+關鍵字拆解：</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>關鍵字</th>
+<th>意義</th>
+<th>對應 Test Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>maximum</td>
+<td>上限值</td>
+<td>TC1: Initial Sync = 60</td>
+</tr>
+<tr>
+<td>per BT device</td>
+<td>每個裝置獨立計算</td>
+<td>TC5: Per BT Device – Independent Limit</td>
+</tr>
+<tr>
+<td>stop downloading</td>
+<td>達到上限後停止</td>
+<td>TC3: Stop Download（需 Log capture 確認）</td>
+</tr>
+<tr>
+<td>first set … in whatever order received</td>
+<td>保留最先接收的順序</td>
+<td>TC4: Received Order Preserved</td>
+</tr>
+<tr>
+<td>（補充）</td>
+<td>小於上限的基本情境</td>
+<td>TC6: Initial Sync &lt; 60</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="每個支援項目必須個別驗證">1.4 每個支援項目必須個別驗證</h3>
+<p><strong>Mistake #4：</strong>
+當需求明確列出多個支援項目（格式、類型、裝置等），將多種格式混合在同一
+TC 驗證會產生 False Pass 風險。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-Condition: USB device is connected (Prepare the Video format
+contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
+<td>每種格式各自一個 TC：</td>
+</tr>
+<tr>
+<td>→ 無法確定單一格式的相容性問題</td>
+<td><code>(Upload supported video file type: .mp4)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Upload supported video file type: .avi)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Upload supported video file type: .mpg)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Upload supported video file type: .wmv)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Upload supported video file type: .3gp)</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>(Upload supported video file type: .mkv)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="思考深度reviewer-的延伸情境思考">1.5 思考深度：Reviewer
+的延伸情境思考</h3>
+<p><strong>Reviewer 實例（藍字註記）— Caller ID 情境拆解：</strong></p>
+<blockquote>
+<p>需求要顯示 Caller ID，但要懂得思考以下情境： - Unknown number →
+顯示電話號碼 - Contact exists → 顯示聯絡人名稱 - Name vs Number priority
+→ 優先顯示什麼？ - Unknown / Private / Withheld number → 如何顯示？ -
+電話簿沒同步前顯示號碼、同步後顯示名字 → 也是一種優先度確認方式</p>
+</blockquote>
+<hr />
+<h2 id="pre-condition-先前條件">2. Pre-Condition — 先前條件</h2>
+<h3 id="定義與判斷原則">2.1 定義與判斷原則</h3>
+<p>Pre-condition 是測試開始前必須存在的「<strong>狀態
+(State)</strong>」或「<strong>環境
+(Environment)</strong>」，而不是測試者在執行期間要做的「<strong>動作
+(Action)</strong>」。只包含最小必要狀態。</p>
+<h4 id="合法的-pre-condition-類型">✅ 合法的 Pre-Condition 類型</h4>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>類型</th>
+<th>判斷基準</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部環境</td>
+<td>DUT 本身無法控制，需由測試設備/環境提供</td>
+<td><code>GPS signal is available.</code></td>
+</tr>
+<tr>
+<td>硬體與週邊</td>
+<td>需要特定實體裝置、配件或傳輸協定支援</td>
+<td><code>A PBAP-supported device is available.</code></td>
+</tr>
+<tr>
+<td>功能初始狀態</td>
+<td>為了測試 B 功能，必須先讓 A 功能處於開啟狀態</td>
+<td><code>Bluetooth is enabled.</code></td>
+</tr>
+<tr>
+<td>系統版本與模式</td>
+<td>需要特定版本/模式才能執行測試</td>
+<td><code>Dev / Pre-Prod build only.</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="不可放入-pre-condition-的內容">❌ 不可放入 Pre-Condition
+的內容</h4>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>排除類型</th>
+<th>說明</th>
+<th>錯誤範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系統基本狀態</td>
+<td>理所當然的系統預設，不需列出</td>
+<td><code>The HU is powered on.</code></td>
+</tr>
+<tr>
+<td>待驗證功能</td>
+<td>屬於要驗證的功能，不該當作已成立的前提</td>
+<td><code>Dealer Mode is accessible.</code></td>
+</tr>
+<tr>
+<td>操作動作</td>
+<td>插入裝置等動作應放在 Step</td>
+<td><code>USB or SD Card is inserted and ready.</code></td>
+</tr>
+<tr>
+<td>Step 控制的狀態</td>
+<td>由測試步驟建立或控制的狀態</td>
+<td><code>The device is not connected to the HU.</code></td>
+</tr>
+<tr>
+<td>不必要的重複資訊</td>
+<td>系統預設狀態的重複描述</td>
+<td><code>HU is powered on and Bluetooth is enabled.</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="reviewer-實例最小狀態原則">Reviewer 實例：最小狀態原則</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 原始寫法（過多不必要資訊）</th>
+<th>✅ 修正後（僅保留必要狀態）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. A PBAP-supported device is available.</td>
+<td>1. A PBAP-supported device is available.</td>
+</tr>
+<tr>
+<td>2. The device has 5,000 phonebook entries registered.</td>
+<td></td>
+</tr>
+<tr>
+<td>3. HU is powered on and Bluetooth is enabled. ← 系統預設</td>
+<td></td>
+</tr>
+<tr>
+<td>4. The device is not connected to the HU. ← Step 控制</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="test-procedure-steps-測試步驟">3. Test Procedure (Steps) —
+測試步驟</h2>
+<h3 id="原則-a每個-step-必須有明確目的">3.1 原則 A：每個 Step
+必須有明確目的</h3>
+<p>每一步都要讓測試者在操作時心中有明確的預期結果。</p>
+<p>判斷標準：讀完這一步後，測試者是否能立刻回答「這一步是為了什麼？」</p>
+<h4 id="mistake-5-step-缺乏明確目的">❌ Mistake #5 — Step
+缺乏明確目的</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Press H/K [Screen off] button.</code></td>
+<td><code>Press H/K [Screen Off] button to turn off the screen.</code></td>
+</tr>
+<tr>
+<td>→ 目的不明：關螢幕？還是別的？</td>
+<td>→ 目的明確</td>
+</tr>
+<tr>
+<td><code>Press and Hold the top right and bottom left corners of the screen for five seconds.</code></td>
+<td><code>Press and hold the top-right and bottom-left corners of the screen for 5 seconds to enter Dealer Mode.</code></td>
+</tr>
+<tr>
+<td>→ 目的不明：進入什麼模式？</td>
+<td>→ 目的明確</td>
+</tr>
+<tr>
+<td><code>Tap "X"</code></td>
+<td><code>Tap "X" to exit Dealer Mode.</code></td>
+</tr>
+<tr>
+<td>→ 目的不明：關閉什麼？退出哪裡？</td>
+<td>→ 目的明確</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reviewer 實例 — Microphone Softkey
+目的釐清（紅字）：</strong></p>
+<blockquote>
+<p>「你沒有單純測試按 softkey 去控制 mute/unmute」 「按 microphone
+邏輯上應該是 mute/unmute，但你寫的像按了去觸發 VR」 「VRS
+不應該需要按什麼去觸發，就像 Siri enable 後需要再按什麼去觸發嗎？」</p>
+<p>→ 每個 Step 的目的必須明確，避免測試者對操作意圖產生混淆。</p>
+</blockquote>
+<hr />
+<h3 id="原則-bfinal-step-必須觸發驗證目標">3.2 原則 B：Final Step
+必須觸發驗證目標</h3>
+<p>最後一個 Step 必須直接觸發本 TC
+的測試重點。如果最後一步只是導航或開啟畫面，而未觸發需要驗證的行為，則測試重點不明確。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Select "Showroom Demo Video" on App Drawer page.</code></td>
+<td><code>Select "Showroom Demo Video" and start playback of the uploaded .mp4 video.</code></td>
+</tr>
+<tr>
+<td>→ 僅開啟頁面，未觸發播放行為</td>
+<td>→ 明確觸發「播放已上傳影片」</td>
+</tr>
+<tr>
+<td>→ 測試者不知道要驗證什麼</td>
+<td>→ 測試者立刻知道要驗證的是影片播放</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="step-其他規則">3.3 Step 其他規則</h3>
+<ul>
+<li>Step 必須是可執行動作（user operation / test tool operation / system
+trigger）</li>
+<li>Step <strong>不可包含 Verify / Confirm</strong> — 驗證描述應出現在
+Expected Result</li>
+<li>重複操作必須定義明確次數或停止條件</li>
+</ul>
+<hr />
+<h3 id="比較情境必須先建立基準狀態-baseline">3.4
+比較情境必須先建立基準狀態 (Baseline)</h3>
+<p><strong>Mistake #2：</strong>
+當驗證目標涉及「變化前後的比較」時，必須在操作前先建立基準狀態。缺少基準確認，無法證明「remains
+at 5,000」。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Add one new contact on the device.</td>
+<td>1. Pair the PBAP-supported device with the HU.</td>
+</tr>
+<tr>
+<td>2. Re-trigger phonebook synchronization.</td>
+<td>2. <strong>Check the HU phonebook contains exactly 5,000
+entries.</strong> ← 建立基準</td>
+</tr>
+<tr>
+<td>3. Open the Phonebook screen on the HU.</td>
+<td>3. Add one new contact on the device.</td>
+</tr>
+<tr>
+<td>→ 未先確認 HU 已有 5,000 筆</td>
+<td>4. Trigger phonebook synchronization/update.</td>
+</tr>
+<tr>
+<td>→ 無法證明「remains at 5,000」</td>
+<td>5. Wait until synchronization is completed.</td>
+</tr>
+<tr>
+<td></td>
+<td>6. Open the Phonebook screen on the HU.</td>
+</tr>
+<tr>
+<td></td>
+<td>7. Search for the newly added contact.</td>
+</tr>
+<tr>
+<td></td>
+<td>→ 動作前確認 + 動作後確認 = 有對比</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reviewer 原始檔案內嵌註記：</strong> &gt;
+「寫更新情境要有動作前確認 + 動作後確認 才有對比」</p>
+<hr />
+<h2 id="expected-result-預期結果">4. Expected Result — 預期結果</h2>
+<h3 id="必須是可觀察的結果">4.1 必須是可觀察的結果</h3>
+<p>Expected Result 必須能透過以下方式驗證：</p>
+<ul>
+<li>UI display（介面顯示）</li>
+<li>system state change（系統狀態變化）</li>
+<li>measurable behavior（可量測行為）</li>
+<li>external observable response（外部可觀察回應）</li>
+</ul>
+<p>不可使用模糊描述。</p>
+<hr />
+<h3 id="必須完整覆蓋驗證目標">4.2 必須完整覆蓋驗證目標</h3>
+<p><strong>Mistake #6：</strong> Expected Result
+僅確認上傳成功，未驗證播放是否正常，這樣不算完整覆蓋 Test Item
+的驗證目標。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Showroom Demo Video from USB has been uploaded on Showroom Demo
+Video page.</td>
+<td>The uploaded .mp4 video is displayed and playback starts
+successfully.</td>
+</tr>
+<tr>
+<td>→ 僅確認上傳成功，未驗證播放</td>
+<td>→ 同時驗證上傳結果與播放功能</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="step-n-expected-result-n-一對一">4.3 Step N ↔︎ Expected Result N
+一對一</h3>
+<p>每個 Step 對應一個 Expected Result，順序必須一致。不可一個 Step
+對應多個 ER，也不可多個 Step 對應同一 ER。</p>
+<p><strong>Reviewer 實例 — All Call Logs Interleaved
+Types（紅字修正）：</strong></p>
+<pre><code>Step 1: Pair the PBAP-supported device with the HU.
+ER 1:   The device is successfully paired and connected.
+
+Step 2: Trigger call log synchronization.
+ER 2:   Call log synchronization is triggered successfully.
+
+Step 3: Wait until synchronization is completed.
+ER 3:   Call log synchronization completes successfully.
+
+Step 4: Open the All Call Logs screen on the HU.
+ER 4:   The All Call Logs screen opens successfully.
+
+Step 5: Check the top 6 entries order in the All Call Logs list.
+ER 5:   Missed(T6)→Outgoing(T5)→Incoming(T4)→Missed(T3)→Incoming(T2)→Outgoing(T1)
+        → 依 timestamp 排序，與 call type 無關</code></pre>
+<hr />
+<h3 id="不可重述需求原文">4.4 不可重述需求原文</h3>
+<p>Expected Result 必須描述 observable
+outcome，不可簡單複製貼上需求規格文字。必須是具體可觀察的描述，例如 UI
+上顯示什麼、數字是多少、狀態變成什麼。</p>
+<hr />
+<h2 id="完整範例reviewer-修正後的-test-case">5. 完整範例：Reviewer
+修正後的 Test Case</h2>
+<h3 id="addressbook-add-contact-after-deletion-to-return-to-5000">5.1
+AddressBook — Add Contact After Deletion to Return to 5,000</h3>
+<pre><code>Test Item:
+  &lt;MaxCount-AddressBookEntries&gt; | 5000 | records
+  (Add Contact After Deletion to Return to 5,000)
+
+Pre-Condition:
+  1. A PBAP-supported device is available.
+  2. HU phonebook entry count is 4,999 after a deletion update.
+
+Test Procedure:
+  1. Pair the PBAP-supported device with the HU via Bluetooth.
+  2. Check the HU phonebook contains exactly 4,999 entries.    ← Baseline
+  3. Add Contact_ReAdd on the device.
+  4. Trigger phonebook synchronization/update.
+  5. Wait until phonebook synchronization/update is completed.
+  6. Open the Phonebook screen on the HU.
+  7. Search for Contact_ReAdd.                                 ← Final Step 觸發驗證
+
+Expected Result:
+  1. The device is successfully paired and connected to the HU.
+  2. HU phonebook displays exactly 4,999 entries.
+  3. Contact_ReAdd is successfully created on the device.
+  4. Phonebook synchronization/update starts successfully.
+  5. Phonebook synchronization/update completes successfully.
+  6. The HU phonebook entry count becomes exactly 5,000.
+  7. Contact_ReAdd is found in the HU phonebook.</code></pre>
+<h3 id="caller-id-同步前後顯示變化">5.2 Caller ID —
+同步前後顯示變化</h3>
+<pre><code>Test Item:
+  Caller ID display priority
+  (Name vs Number after phonebook sync)
+
+Test Procedure:
+  1. Pair a mobile phone with the HU.
+  2. Ensure the phone number exists in the phonebook with a contact name.
+  3. Receive an incoming call before phonebook synchronization is completed.
+  4. Check the Caller ID displayed on the Radio screen after synchronization.
+
+Expected Result:
+  1. The phone is paired successfully.
+  2. The phone number exists in the phonebook.
+  3. The incoming call is received.
+  4. The display updates from phone number to contact name after synchronization.</code></pre>
+<blockquote>
+<p>Reviewer
+思路：「電話簿沒同步前顯示號碼，同步後顯示名字，也是一種優先度確認方式」</p>
+</blockquote>
+<h3 id="dealermode-upload-supported-video-file-type-.mp4">5.3 DealerMode
+— Upload Supported Video File Type (.mp4)</h3>
+<blockquote>
+<p>此範例同時展示：Step Purpose（3.1）、Final Step
+驗證目標（3.2）、個別格式驗證（1.4）</p>
+</blockquote>
+<pre><code>Test Item:
+  Dealer Mode shall only allow video file types to be uploaded.
+  Reference CFTS018 for the allowed video file types.
+  (Upload supported video file type: .mp4)
+
+Pre-Condition:
+  1. Dev / Pre-Prod build only.
+
+Test Procedure:
+  1. Press H/K [Screen Off] button to turn off the screen.
+  2. Press and hold the top-right and bottom-left corners of the screen
+     for 5 seconds to enter Dealer Mode.
+  3. Select &quot;Showroom Demo Mode information&quot;.
+  4. Select &quot;File Browser&quot;.
+  5. Insert a USB storage device containing a .mp4 video file.
+  6. Select &quot;Upload Showroom Demo Video from USB&quot;.
+  7. Select the .mp4 video file and confirm upload.
+  8. Tap &quot;X&quot; to exit Dealer Mode.
+  9. Open App Drawer.
+  10. Select &quot;Showroom Demo Video&quot; and start playback
+      of the uploaded .mp4 video.                        ← Final Step 觸發驗證
+
+Expected Result:
+  1. The screen is turned off.
+  2. Dealer Mode is entered successfully.
+  3. Showroom Demo Mode information page is displayed.
+  4. File Browser page is displayed.
+  5. The USB storage device is detected by the system.
+  6. The upload option for Showroom Demo Video is available and selectable.
+  7. The selected .mp4 video file is accepted for upload.
+  8. Dealer Mode is exited and the previous screen is displayed.
+  9. App Drawer page is displayed.
+  10. The uploaded .mp4 video is displayed and playback starts successfully.</code></pre>
+<blockquote>
+<p>注意：每種支援格式（.avi, .mpg, .wmv, .3gp, .mkv）各需一個獨立 TC，僅
+Test Item 情境標示和 Step 5/7/10 的檔案格式不同。</p>
+</blockquote>
+<hr />
+<h2 id="自檢清單12-項必檢錯誤">6. 自檢清單：12 項必檢錯誤</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>錯誤類型</th>
+<th>✔</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pre-Condition 包含操作或驗證目標</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pre-Condition 包含系統預設狀態或不必要資訊</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>3</td>
+<td>一個 TC 驗證多個獨立情境</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Final Step 未觸發驗證行為</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Test Steps 缺乏明確目的</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Expected Result 模糊或不可觀察</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Expected Result 未完整覆蓋驗證目標</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Test Item 未明確定義驗證目標</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>9</td>
+<td>TC 與 Requirement / SWRA 意圖不符</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>10</td>
+<td>多種支援項目未個別驗證 (False Pass 風險)</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>11</td>
+<td>同一 Req 下多個 TC 未區分各自 scenario</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>12</td>
+<td>涉及比較的測試未先建立 Baseline</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
