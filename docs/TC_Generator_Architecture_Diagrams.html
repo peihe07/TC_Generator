@@ -42,7 +42,7 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background: var(--bg);
     color: var(--text);
-    max-width: 800px;
+    max-width: 820px;
     margin: 0 auto;
     padding: 40px 24px;
     line-height: 1.6;
@@ -50,16 +50,8 @@
   h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
   .subtitle { font-size: 14px; color: var(--text2); margin-bottom: 48px; }
   .diagram-section { margin-bottom: 56px; }
-  .diagram-section h2 {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  .diagram-section p {
-    font-size: 14px;
-    color: var(--text2);
-    margin-bottom: 16px;
-  }
+  .diagram-section h2 { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  .diagram-section p { font-size: 14px; color: var(--text2); margin-bottom: 16px; }
   .diagram-card {
     background: var(--bg2);
     border: 1px solid var(--border);
@@ -68,37 +60,37 @@
     overflow-x: auto;
   }
   svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  .t { font-size: 14px; fill: var(--text); }
-  .ts { font-size: 12px; fill: var(--text2); }
-  .th { font-size: 14px; fill: var(--text); font-weight: 500; }
-  .arr { stroke: var(--text2); stroke-width: 1.5; }
-  .leader { stroke: var(--text2); stroke-width: 0.5; stroke-dasharray: 4 3; }
+  .t  { font-size: 13px; fill: var(--text); }
+  .ts { font-size: 11px; fill: var(--text2); }
+  .th { font-size: 13px; fill: var(--text); font-weight: 600; }
+  .arr   { stroke: var(--text2); stroke-width: 1.5; fill: none; }
+  .arr-d { stroke: var(--text2); stroke-width: 1; fill: none; stroke-dasharray: 4 3; }
 
   .box rect { fill: var(--bg2); stroke: var(--border); }
-  .c-blue rect { fill: var(--blue-50); stroke: var(--blue-600); }
-  .c-blue .th { fill: var(--blue-800); }
-  .c-blue .ts { fill: var(--blue-600); }
-  .c-teal rect { fill: var(--teal-50); stroke: var(--teal-600); }
-  .c-teal .th { fill: var(--teal-800); }
-  .c-teal .ts { fill: var(--teal-600); }
-  .c-purple rect { fill: var(--purple-50); stroke: var(--purple-600); }
-  .c-purple .th { fill: var(--purple-800); }
-  .c-purple .ts { fill: var(--purple-600); }
-  .c-coral rect { fill: var(--coral-50); stroke: var(--coral-600); }
-  .c-coral .th { fill: var(--coral-800); }
-  .c-coral .ts { fill: var(--coral-600); }
-  .c-amber rect { fill: var(--amber-50); stroke: var(--amber-600); }
-  .c-amber .th { fill: var(--amber-800); }
-  .c-amber .ts { fill: var(--amber-600); }
-  .c-green rect { fill: var(--green-50); stroke: var(--green-600); }
-  .c-green .th { fill: var(--green-800); }
-  .c-green .ts { fill: var(--green-600); }
-  .c-red rect { fill: var(--red-50); stroke: var(--red-600); }
-  .c-red .th { fill: var(--red-800); }
-  .c-red .ts { fill: var(--red-600); }
-  .c-gray rect { fill: var(--gray-50); stroke: var(--gray-600); }
-  .c-gray .th { fill: var(--gray-800); }
-  .c-gray .ts { fill: var(--gray-600); }
+  .c-blue   rect { fill: var(--blue-50);   stroke: var(--blue-600);   stroke-width: 1; }
+  .c-blue   .th  { fill: var(--blue-800); }
+  .c-blue   .ts  { fill: var(--blue-600); }
+  .c-teal   rect { fill: var(--teal-50);   stroke: var(--teal-600);   stroke-width: 1; }
+  .c-teal   .th  { fill: var(--teal-800); }
+  .c-teal   .ts  { fill: var(--teal-600); }
+  .c-purple rect { fill: var(--purple-50); stroke: var(--purple-600); stroke-width: 1; }
+  .c-purple .th  { fill: var(--purple-800); }
+  .c-purple .ts  { fill: var(--purple-600); }
+  .c-coral  rect { fill: var(--coral-50);  stroke: var(--coral-600);  stroke-width: 1; }
+  .c-coral  .th  { fill: var(--coral-800); }
+  .c-coral  .ts  { fill: var(--coral-600); }
+  .c-amber  rect { fill: var(--amber-50);  stroke: var(--amber-600);  stroke-width: 1; }
+  .c-amber  .th  { fill: var(--amber-800); }
+  .c-amber  .ts  { fill: var(--amber-600); }
+  .c-green  rect { fill: var(--green-50);  stroke: var(--green-600);  stroke-width: 1; }
+  .c-green  .th  { fill: var(--green-800); }
+  .c-green  .ts  { fill: var(--green-600); }
+  .c-red    rect { fill: var(--red-50);    stroke: var(--red-600);    stroke-width: 1; }
+  .c-red    .th  { fill: var(--red-800); }
+  .c-red    .ts  { fill: var(--red-600); }
+  .c-gray   rect { fill: var(--gray-50);   stroke: var(--gray-600);   stroke-width: 1; }
+  .c-gray   .th  { fill: var(--gray-800); }
+  .c-gray   .ts  { fill: var(--gray-600); }
 
   @media print {
     body { max-width: 100%; padding: 20px; }
@@ -110,400 +102,665 @@
 <body>
 
 <h1>TC Auto-Generation Tool — Architecture Diagrams</h1>
-<p class="subtitle">Generated from RULES.md planning session — April 2026</p>
+<p class="subtitle">Regenerated from codebase — April 2026</p>
 
-<!-- DIAGRAM 1: Overall Architecture -->
+<!-- ====================================================
+     DIAGRAM 1: System Architecture Overview
+     ==================================================== -->
 <div class="diagram-section">
-<h2>1. Overall generation pipeline</h2>
-<p>Six-step flow from CFTS spec input through parsing, scenario matching, AI generation, validation, and Excel output.</p>
+<h2>1. System architecture overview</h2>
+<p>Three-tier system: React Win95 desktop frontend, FastAPI backend, and Claude API via Anthropic SDK.</p>
 <div class="diagram-card">
-<svg width="100%" viewBox="0 0 680 820">
+<svg width="100%" viewBox="0 0 760 560">
 <defs>
-  <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
     <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </marker>
 </defs>
 
+<!-- FRONTEND block -->
 <g class="c-blue">
-  <rect x="220" y="30" width="240" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="48" text-anchor="middle" dominant-baseline="central">Input: CFTS spec</text>
-  <text class="ts" x="340" y="68" text-anchor="middle" dominant-baseline="central">.xlsx requirement file</text>
+  <rect x="20" y="20" width="320" height="360" rx="12"/>
+  <text class="th" x="180" y="46" text-anchor="middle" dominant-baseline="central">Frontend (React + Vite)</text>
 </g>
-<line x1="340" y1="86" x2="340" y2="120" class="arr" marker-end="url(#a1)"/>
 
-<g class="c-gray">
-  <rect x="200" y="120" width="280" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="138" text-anchor="middle" dominant-baseline="central">1. Spec parser</text>
-  <text class="ts" x="340" y="158" text-anchor="middle" dominant-baseline="central">Parse Excel → structured data</text>
-</g>
-<line x1="340" y1="176" x2="340" y2="210" class="arr" marker-end="url(#a1)"/>
-
-<g class="c-teal">
-  <rect x="180" y="210" width="320" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="228" text-anchor="middle" dominant-baseline="central">2. Scenario matcher</text>
-  <text class="ts" x="340" y="248" text-anchor="middle" dominant-baseline="central">Match pattern library → apply scenarios</text>
-</g>
-<g class="c-teal">
-  <rect x="40" y="270" width="120" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="100" y="288" text-anchor="middle" dominant-baseline="central">Pattern</text>
-  <text class="ts" x="100" y="308" text-anchor="middle" dominant-baseline="central">library</text>
-</g>
-<line x1="160" y1="298" x2="178" y2="258" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#a1)" fill="none"/>
-<line x1="340" y1="266" x2="340" y2="300" class="arr" marker-end="url(#a1)"/>
-
-<g class="c-purple">
-  <rect x="180" y="300" width="320" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="318" text-anchor="middle" dominant-baseline="central">3. AI scenario supplement</text>
-  <text class="ts" x="340" y="338" text-anchor="middle" dominant-baseline="central">API call for special logic (optional)</text>
-</g>
-<text class="ts" x="520" y="330" fill="#534AB7">← API cost (optional)</text>
-<line x1="340" y1="356" x2="340" y2="390" class="arr" marker-end="url(#a1)"/>
-
-<g class="c-purple">
-  <rect x="180" y="390" width="320" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="408" text-anchor="middle" dominant-baseline="central">4. Test case generator</text>
-  <text class="ts" x="340" y="428" text-anchor="middle" dominant-baseline="central">scenario + rules → full test case</text>
-</g>
-<g class="c-coral">
-  <rect x="520" y="370" width="120" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="580" y="388" text-anchor="middle" dominant-baseline="central">RULES</text>
-  <text class="ts" x="580" y="408" text-anchor="middle" dominant-baseline="central">.md / .json</text>
-</g>
-<line x1="520" y1="398" x2="502" y2="418" stroke="#993C1D" stroke-width="0.5" marker-end="url(#a1)" fill="none"/>
-<line x1="340" y1="446" x2="340" y2="480" class="arr" marker-end="url(#a1)"/>
-
-<g class="c-coral">
-  <rect x="200" y="480" width="280" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="498" text-anchor="middle" dominant-baseline="central">5. Validator</text>
-  <text class="ts" x="340" y="518" text-anchor="middle" dominant-baseline="central">Format + rule checks (code only)</text>
-</g>
-<path d="M480 508 Q540 508 540 440 Q540 418 502 418" stroke="#993C1D" stroke-width="0.5" fill="none" marker-end="url(#a1)"/>
-<text class="ts" x="558" y="468" fill="#993C1D">Fail</text>
-<text class="ts" x="558" y="482" fill="#993C1D">→ retry</text>
-<line x1="340" y1="536" x2="340" y2="570" class="arr" marker-end="url(#a1)"/>
-
-<g class="c-gray">
-  <rect x="200" y="570" width="280" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="588" text-anchor="middle" dominant-baseline="central">6. Excel formatter</text>
-  <text class="ts" x="340" y="608" text-anchor="middle" dominant-baseline="central">Write to .xlsx columns</text>
-</g>
-<line x1="340" y1="626" x2="340" y2="660" class="arr" marker-end="url(#a1)"/>
-
+<!-- Desktop layer -->
 <g class="c-blue">
-  <rect x="220" y="660" width="240" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="678" text-anchor="middle" dominant-baseline="central">Output: test cases</text>
-  <text class="ts" x="340" y="698" text-anchor="middle" dominant-baseline="central">.xlsx completed test cases</text>
+  <rect x="40" y="60" width="280" height="50" rx="8"/>
+  <text class="th" x="180" y="78" text-anchor="middle" dominant-baseline="central">Desktop + Taskbar</text>
+  <text class="ts" x="180" y="96" text-anchor="middle" dominant-baseline="central">Win95 shell — icon grid, start menu, clock</text>
 </g>
 
-<rect x="40" y="740" width="12" height="12" rx="2" fill="var(--teal-50)" stroke="var(--teal-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="751">One-time build (claude.ai)</text>
-<rect x="240" y="740" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)" stroke-width="0.5"/>
-<text class="ts" x="258" y="751">Requires API (optional)</text>
-<rect x="430" y="740" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)" stroke-width="0.5"/>
-<text class="ts" x="448" y="751">Rule validation (code only)</text>
-<rect x="40" y="765" width="12" height="12" rx="2" fill="var(--gray-50)" stroke="var(--gray-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="776">Data processing (code only)</text>
-<rect x="240" y="765" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)" stroke-width="0.5"/>
-<text class="ts" x="258" y="776">Input / Output</text>
-</svg>
-</div>
-</div>
-
-<!-- DIAGRAM 2: Column Mapping -->
-<div class="diagram-section">
-<h2>2. Column mapping — what gets read, generated, and preserved</h2>
-<p>Complete mapping of all Excel columns with rule source references.</p>
-<div class="diagram-card">
-<svg width="100%" viewBox="0 0 680 940">
-<defs>
-  <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-</defs>
-
-<text class="th" x="340" y="28" text-anchor="middle">Complete column mapping</text>
-
-<text class="th" x="40" y="60">Input (read-only)</text>
-<line x1="40" y1="68" x2="640" y2="68" stroke="var(--border)" stroke-width="0.5"/>
+<!-- WindowManager -->
 <g class="c-blue">
-  <rect x="40" y="78" width="190" height="40" rx="8" stroke-width="0.5"/>
-  <text class="th" x="135" y="98" text-anchor="middle" dominant-baseline="central">Col D — Req ID</text>
+  <rect x="40" y="122" width="280" height="36" rx="8"/>
+  <text class="th" x="180" y="140" text-anchor="middle" dominant-baseline="central">WindowManager  (useWindowStore)</text>
 </g>
+
+<!-- AppWindow -->
 <g class="c-blue">
-  <rect x="250" y="78" width="390" height="40" rx="8" stroke-width="0.5"/>
-  <text class="th" x="445" y="98" text-anchor="middle" dominant-baseline="central">Col I — Test Item (RD original)</text>
+  <rect x="40" y="170" width="280" height="36" rx="8"/>
+  <text class="th" x="180" y="188" text-anchor="middle" dominant-baseline="central">AppWindow  (drag / resize / z-index)</text>
 </g>
 
-<text class="th" x="40" y="150">Generated — preserve + append</text>
-<line x1="40" y1="158" x2="640" y2="158" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-teal">
-  <rect x="40" y="168" width="600" height="64" rx="8" stroke-width="0.5"/>
-  <text class="th" x="50" y="188" dominant-baseline="central">Col I — Test Item</text>
-  <text class="ts" x="50" y="208" dominant-baseline="central">Original RD text + blank line + ([Condition/Trigger] → [Observable Outcome])</text>
-</g>
-<text class="ts" x="560" y="188" fill="var(--teal-600)">AI Inst §6.1</text>
+<!-- 7 modules -->
+<text class="ts" x="40" y="220" dominant-baseline="central">Modules (each runs in an AppWindow):</text>
+<g class="c-teal"><rect x="40" y="232" width="84" height="28" rx="6"/>
+  <text class="ts" x="82" y="246" text-anchor="middle" dominant-baseline="central">Upload</text></g>
+<g class="c-teal"><rect x="132" y="232" width="84" height="28" rx="6"/>
+  <text class="ts" x="174" y="246" text-anchor="middle" dominant-baseline="central">Configure</text></g>
+<g class="c-teal"><rect x="224" y="232" width="84" height="28" rx="6"/>
+  <text class="ts" x="266" y="246" text-anchor="middle" dominant-baseline="central">Generate</text></g>
+<g class="c-teal"><rect x="40" y="268" width="84" height="28" rx="6"/>
+  <text class="ts" x="82" y="282" text-anchor="middle" dominant-baseline="central">Review</text></g>
+<g class="c-teal"><rect x="132" y="268" width="84" height="28" rx="6"/>
+  <text class="ts" x="174" y="282" text-anchor="middle" dominant-baseline="central">Export</text></g>
+<g class="c-teal"><rect x="224" y="268" width="84" height="28" rx="6"/>
+  <text class="ts" x="266" y="282" text-anchor="middle" dominant-baseline="central">QuickGen</text></g>
+<g class="c-teal"><rect x="40" y="304" width="84" height="28" rx="6"/>
+  <text class="ts" x="82" y="318" text-anchor="middle" dominant-baseline="central">Diagrams</text></g>
 
-<text class="th" x="40" y="265">Generated — overwrite</text>
-<line x1="40" y1="273" x2="640" y2="273" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-purple">
-  <rect x="40" y="283" width="290" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="185" y="300" text-anchor="middle" dominant-baseline="central">Col J — Pre-Conditions</text>
-  <text class="ts" x="185" y="318" text-anchor="middle" dominant-baseline="central">State/env only, not actions</text>
-</g>
-<text class="ts" x="240" y="342" fill="var(--purple-600)">AI Inst §6.2</text>
-<g class="c-purple">
-  <rect x="350" y="283" width="290" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="495" y="300" text-anchor="middle" dominant-baseline="central">Col K — Input Test Data</text>
-  <text class="ts" x="495" y="318" text-anchor="middle" dominant-baseline="central">Explicit trigger or NA</text>
-</g>
-<text class="ts" x="545" y="342" fill="var(--purple-600)">AI Inst §6.3</text>
-<g class="c-coral">
-  <rect x="40" y="355" width="600" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="50" y="372" dominant-baseline="central">Col L — Test Procedure</text>
-  <text class="ts" x="50" y="390" dominant-baseline="central">Setup → Transition → Final Step, each executable + purpose</text>
-</g>
-<text class="ts" x="530" y="372" fill="var(--coral-600)">AI Inst §7.1–7.7</text>
-<g class="c-coral">
-  <rect x="40" y="420" width="600" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="50" y="437" dominant-baseline="central">Col M — Expected Result</text>
-  <text class="ts" x="50" y="455" dominant-baseline="central">1:1 mapping to Procedure, observable, judgeable, complete</text>
-</g>
-<text class="ts" x="530" y="437" fill="var(--coral-600)">AI Inst §8</text>
+<!-- Stores -->
+<g class="c-purple"><rect x="40" y="342" width="130" height="28" rx="6"/>
+  <text class="ts" x="105" y="356" text-anchor="middle" dominant-baseline="central">useJobStore (Zustand)</text></g>
+<g class="c-purple"><rect x="180" y="342" width="140" height="28" rx="6"/>
+  <text class="ts" x="250" y="356" text-anchor="middle" dominant-baseline="central">useWindowStore (Zustand)</text></g>
 
-<text class="th" x="40" y="505">Generated — new fill (currently empty)</text>
-<line x1="40" y1="513" x2="640" y2="513" stroke="var(--border)" stroke-width="0.5"/>
+<!-- CostMeter -->
 <g class="c-amber">
-  <rect x="40" y="523" width="190" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="135" y="540" text-anchor="middle" dominant-baseline="central">Col P — Priority</text>
-  <text class="ts" x="135" y="558" text-anchor="middle" dominant-baseline="central">High / Med / Low / NA</text>
-</g>
-<g class="c-amber">
-  <rect x="245" y="523" width="190" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="540" text-anchor="middle" dominant-baseline="central">Col Q — Design Method</text>
-  <text class="ts" x="340" y="558" text-anchor="middle" dominant-baseline="central">9 methods, waterfall</text>
-</g>
-<g class="c-amber">
-  <rect x="450" y="523" width="190" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="545" y="540" text-anchor="middle" dominant-baseline="central">Col N — Spec Ref</text>
-  <text class="ts" x="545" y="558" text-anchor="middle" dominant-baseline="central">PDM code match</text>
+  <rect x="40" y="380" width="120" height="28" rx="6"/>
+  <text class="ts" x="100" y="394" text-anchor="middle" dominant-baseline="central">CostMeter widget</text>
 </g>
 
-<text class="th" x="40" y="620">Untouched (preserve)</text>
-<line x1="40" y1="628" x2="640" y2="628" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-gray">
-  <rect x="40" y="638" width="105" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="92" y="656" text-anchor="middle" dominant-baseline="central">Col B No.#</text>
-</g>
-<g class="c-gray">
-  <rect x="155" y="638" width="115" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="212" y="656" text-anchor="middle" dominant-baseline="central">Col C Polarion</text>
-</g>
-<g class="c-gray">
-  <rect x="280" y="638" width="115" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="337" y="656" text-anchor="middle" dominant-baseline="central">Col E–H IDs</text>
-</g>
-<g class="c-gray">
-  <rect x="405" y="638" width="115" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="462" y="656" text-anchor="middle" dominant-baseline="central">Col O Ref</text>
-</g>
-<g class="c-gray">
-  <rect x="530" y="638" width="110" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="585" y="656" text-anchor="middle" dominant-baseline="central">Col R–AG</text>
-</g>
-
-<line x1="40" y1="700" x2="640" y2="700" stroke="var(--border)" stroke-width="0.5"/>
-<rect x="40" y="715" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="726">Read input</text>
-<rect x="150" y="715" width="12" height="12" rx="2" fill="var(--teal-50)" stroke="var(--teal-600)" stroke-width="0.5"/>
-<text class="ts" x="168" y="726">Preserve + append</text>
-<rect x="280" y="715" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)" stroke-width="0.5"/>
-<text class="ts" x="298" y="726">Generate overwrite</text>
-<rect x="420" y="715" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)" stroke-width="0.5"/>
-<text class="ts" x="438" y="726">Generate (steps)</text>
-<rect x="40" y="740" width="12" height="12" rx="2" fill="var(--amber-50)" stroke="var(--amber-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="751">New fill (needs rules)</text>
-<rect x="210" y="740" width="12" height="12" rx="2" fill="var(--gray-50)" stroke="var(--gray-600)" stroke-width="0.5"/>
-<text class="ts" x="228" y="751">Untouched</text>
-
-<text class="th" x="40" y="790">Rule sources</text>
-<line x1="40" y1="798" x2="640" y2="798" stroke="var(--border)" stroke-width="0.5"/>
-<text class="ts" x="50" y="820">AI Instruction §6–8 → Test Item / Pre-Cond / Input / Procedure / Expected Result</text>
-<text class="ts" x="50" y="840">AI Instruction §7.5 → Final Step verification rules</text>
-<text class="ts" x="50" y="860">AI Instruction §9 → False Pass / False Fail prevention</text>
-<text class="ts" x="50" y="880">Design Method §12 → Col Q waterfall (9 methods)</text>
-<text class="ts" x="50" y="900">SYS1 Spec §2.4 → Col N Specification Reference matching</text>
-<text class="ts" x="50" y="920">Writing Rules → Test Item rewrite format</text>
-</svg>
-</div>
-</div>
-
-<!-- DIAGRAM 3: UI Flow -->
-<div class="diagram-section">
-<h2>3. UI page flow — Upload → Configure → Generate → Review → Export</h2>
-<p>Five-page dashboard for managing the TC generation workflow.</p>
-<div class="diagram-card">
-<svg width="100%" viewBox="0 0 680 1060">
-<defs>
-  <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-</defs>
-
-<!-- PAGE 1: UPLOAD -->
-<g class="c-blue">
-  <rect x="40" y="30" width="600" height="160" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="55" dominant-baseline="central">1. Upload</text>
-</g>
-<g class="c-teal">
-  <rect x="60" y="72" width="170" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="145" y="90" text-anchor="middle" dominant-baseline="central">TC xlsx</text>
-  <text class="ts" x="145" y="108" text-anchor="middle" dominant-baseline="central">Test cases (required)</text>
-</g>
-<g class="c-teal">
-  <rect x="250" y="72" width="170" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="335" y="90" text-anchor="middle" dominant-baseline="central">SYS1 xlsx</text>
-  <text class="ts" x="335" y="108" text-anchor="middle" dominant-baseline="central">Spec reqs (optional)</text>
-</g>
-<g class="c-teal">
-  <rect x="440" y="72" width="170" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="525" y="90" text-anchor="middle" dominant-baseline="central">Spec doc</text>
-  <text class="ts" x="525" y="108" text-anchor="middle" dominant-baseline="central">pdf / docx / xlsx</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="138" width="560" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="340" y="156" text-anchor="middle" dominant-baseline="central">Auto-detect: Project / Test Group / Row count / Column fill status / File type</text>
-</g>
-
-<line x1="340" y1="190" x2="340" y2="220" class="arr" marker-end="url(#a3)"/>
-
-<!-- PAGE 2: CONFIGURE -->
-<g class="c-purple">
-  <rect x="40" y="220" width="600" height="170" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="245" dominant-baseline="central">2. Configure</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="260" width="180" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="150" y="278" text-anchor="middle" dominant-baseline="central">Test Set grouping</text>
-  <text class="ts" x="150" y="296" text-anchor="middle" dominant-baseline="central">Drag-and-drop</text>
-</g>
-<g class="c-gray">
-  <rect x="250" y="260" width="180" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="278" text-anchor="middle" dominant-baseline="central">Spec match preview</text>
-  <text class="ts" x="340" y="296" text-anchor="middle" dominant-baseline="central">PDM match + override</text>
-</g>
-<g class="c-gray">
-  <rect x="440" y="260" width="180" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="530" y="278" text-anchor="middle" dominant-baseline="central">Generation scope</text>
-  <text class="ts" x="530" y="296" text-anchor="middle" dominant-baseline="central">Columns + model</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="325" width="560" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="343" text-anchor="middle" dominant-baseline="central">Parameters</text>
-  <text class="ts" x="340" y="361" text-anchor="middle" dominant-baseline="central">Model: Haiku / Sonnet | Batch: 1/5/10 | Columns: I J K L M N P Q</text>
-</g>
-
-<line x1="340" y1="390" x2="340" y2="420" class="arr" marker-end="url(#a3)"/>
-
-<!-- PAGE 3: GENERATE -->
+<!-- BACKEND block -->
 <g class="c-coral">
-  <rect x="40" y="420" width="600" height="120" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="445" dominant-baseline="central">3. Generate</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="460" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="195" y="478" text-anchor="middle" dominant-baseline="central">Progress bar + live log + token stats</text>
-</g>
-<g class="c-gray">
-  <rect x="350" y="460" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="485" y="478" text-anchor="middle" dominant-baseline="central">Pause / Resume / Cancel / Retry</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="505" width="560" height="24" rx="4" stroke-width="0.5"/>
-  <text class="ts" x="340" y="517" text-anchor="middle" dominant-baseline="central">65/81 TCs — ~$0.14 — ETA 2 min</text>
+  <rect x="360" y="20" width="220" height="360" rx="12"/>
+  <text class="th" x="470" y="46" text-anchor="middle" dominant-baseline="central">Backend (FastAPI)</text>
 </g>
 
-<line x1="340" y1="540" x2="340" y2="570" class="arr" marker-end="url(#a3)"/>
+<g class="c-coral"><rect x="380" y="60" width="180" height="36" rx="8"/>
+  <text class="th" x="470" y="78" text-anchor="middle" dominant-baseline="central">api_server.py</text></g>
 
-<!-- PAGE 4: REVIEW -->
-<g class="c-amber">
-  <rect x="40" y="570" width="600" height="210" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="595" dominant-baseline="central">4. Review</text>
+<text class="ts" x="380" y="114" dominant-baseline="central">Endpoints:</text>
+
+<g class="c-gray"><rect x="380" y="124" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="137" text-anchor="middle" dominant-baseline="central">POST /api/parse</text></g>
+<g class="c-gray"><rect x="380" y="158" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="171" text-anchor="middle" dominant-baseline="central">POST /api/generate</text></g>
+<g class="c-gray"><rect x="380" y="192" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="205" text-anchor="middle" dominant-baseline="central">GET  /api/generate/stream (SSE)</text></g>
+<g class="c-gray"><rect x="380" y="226" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="239" text-anchor="middle" dominant-baseline="central">POST /api/quick-generate/stream</text></g>
+<g class="c-gray"><rect x="380" y="260" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="273" text-anchor="middle" dominant-baseline="central">POST /api/group  /api/match</text></g>
+<g class="c-gray"><rect x="380" y="294" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="307" text-anchor="middle" dominant-baseline="central">POST /api/jobs/{id}/regenerate</text></g>
+<g class="c-gray"><rect x="380" y="328" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="341" text-anchor="middle" dominant-baseline="central">POST /api/export  GET /download</text></g>
+
+<g class="c-gray"><rect x="380" y="362" width="180" height="26" rx="5"/>
+  <text class="ts" x="470" y="375" text-anchor="middle" dominant-baseline="central">JOB_REGISTRY (in-memory)</text></g>
+
+<!-- Claude API block -->
+<g class="c-purple">
+  <rect x="600" y="20" width="140" height="120" rx="12"/>
+  <text class="th" x="670" y="48" text-anchor="middle" dominant-baseline="central">Claude API</text>
+  <text class="ts" x="670" y="72" text-anchor="middle" dominant-baseline="central">Anthropic SDK</text>
+  <text class="ts" x="670" y="92" text-anchor="middle" dominant-baseline="central">claude-sonnet-4-6</text>
+  <text class="ts" x="670" y="112" text-anchor="middle" dominant-baseline="central">claude-haiku-4-5</text>
 </g>
-<g class="c-gray">
-  <rect x="60" y="610" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="th" x="195" y="628" text-anchor="middle" dominant-baseline="central">Original (left)</text>
-</g>
-<g class="c-gray">
-  <rect x="350" y="610" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="th" x="485" y="628" text-anchor="middle" dominant-baseline="central">Generated (right)</text>
-</g>
+
+<!-- Services box -->
 <g class="c-green">
-  <rect x="60" y="658" width="80" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="100" y="673" text-anchor="middle" dominant-baseline="central">Accept</text>
+  <rect x="600" y="160" width="140" height="100" rx="12"/>
+  <text class="th" x="670" y="182" text-anchor="middle" dominant-baseline="central">Services</text>
+  <text class="ts" x="670" y="204" text-anchor="middle" dominant-baseline="central">apiClient.ts</text>
+  <text class="ts" x="670" y="222" text-anchor="middle" dominant-baseline="central">jobAdapter.ts</text>
+  <text class="ts" x="670" y="240" text-anchor="middle" dominant-baseline="central">(mock fallback)</text>
 </g>
+
+<!-- Arrows: Frontend <-> Services -->
+<line x1="340" y1="240" x2="598" y2="210" class="arr" marker-end="url(#arr1)" stroke="var(--green-600)"/>
+<line x1="598" y1="220" x2="340" y2="260" class="arr" marker-end="url(#arr1)" stroke="var(--green-600)"/>
+
+<!-- Services <-> Backend -->
+<line x1="600" y1="205" x2="582" y2="205" class="arr" marker-end="url(#arr1)" stroke="var(--coral-600)"/>
+<line x1="582" y1="215" x2="600" y2="215" class="arr" marker-end="url(#arr1)" stroke="var(--coral-600)"/>
+
+<!-- Backend <-> Claude API -->
+<line x1="580" y1="80" x2="598" y2="80" class="arr" marker-end="url(#arr1)" stroke="var(--purple-600)"/>
+<line x1="598" y1="90" x2="580" y2="90" class="arr" marker-end="url(#arr1)" stroke="var(--purple-600)"/>
+
+<!-- Labels on arrows -->
+<text class="ts" x="408" y="197" fill="var(--green-600)">HTTP / SSE</text>
+<text class="ts" x="590" y="144" fill="var(--purple-600)">streaming</text>
+
+<!-- Legend -->
+<line x1="20" y1="480" x2="740" y2="480" stroke="var(--border)" stroke-width="0.5"/>
+<rect x="20" y="496" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)"/>
+<text class="ts" x="38" y="503" dominant-baseline="central">Frontend (React)</text>
+<rect x="160" y="496" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)"/>
+<text class="ts" x="178" y="503" dominant-baseline="central">Backend (FastAPI)</text>
+<rect x="310" y="496" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)"/>
+<text class="ts" x="328" y="503" dominant-baseline="central">External API</text>
+<rect x="440" y="496" width="12" height="12" rx="2" fill="var(--green-50)" stroke="var(--green-600)"/>
+<text class="ts" x="458" y="503" dominant-baseline="central">Services layer</text>
+<rect x="20" y="520" width="12" height="12" rx="2" fill="var(--teal-50)" stroke="var(--teal-600)"/>
+<text class="ts" x="38" y="527" dominant-baseline="central">UI Modules</text>
+<rect x="160" y="520" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)"/>
+<text class="ts" x="178" y="527" dominant-baseline="central">Zustand stores</text>
+<rect x="310" y="520" width="12" height="12" rx="2" fill="var(--amber-50)" stroke="var(--amber-600)"/>
+<text class="ts" x="328" y="527" dominant-baseline="central">Widget</text>
+</svg>
+</div>
+</div>
+
+<!-- ====================================================
+     DIAGRAM 2: User Workflow (module-by-module)
+     ==================================================== -->
+<div class="diagram-section">
+<h2>2. User workflow — window-by-window flow</h2>
+<p>Seven windows in the Win95 desktop. Each window is independently openable; the numbered path is the primary workflow.</p>
+<div class="diagram-card">
+<svg width="100%" viewBox="0 0 760 920">
+<defs>
+  <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- UPLOAD -->
 <g class="c-blue">
-  <rect x="150" y="658" width="70" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="185" y="673" text-anchor="middle" dominant-baseline="central">Edit</text>
+  <rect x="40" y="30" width="680" height="130" rx="12"/>
+  <text class="th" x="380" y="55" text-anchor="middle" dominant-baseline="central">1. Upload Window</text>
 </g>
+<g class="c-teal">
+  <rect x="60" y="70" width="200" height="50" rx="8"/>
+  <text class="th" x="160" y="88" text-anchor="middle" dominant-baseline="central">TC Workbook (required)</text>
+  <text class="ts" x="160" y="106" text-anchor="middle" dominant-baseline="central">.xlsx / .xlsm</text>
+</g>
+<g class="c-teal">
+  <rect x="276" y="70" width="200" height="50" rx="8"/>
+  <text class="th" x="376" y="88" text-anchor="middle" dominant-baseline="central">Reference Workbook</text>
+  <text class="ts" x="376" y="106" text-anchor="middle" dominant-baseline="central">.xlsx (optional)</text>
+</g>
+<g class="c-teal">
+  <rect x="492" y="70" width="208" height="50" rx="8"/>
+  <text class="th" x="596" y="88" text-anchor="middle" dominant-baseline="central">Spec Document</text>
+  <text class="ts" x="596" y="106" text-anchor="middle" dominant-baseline="central">PDF / DOCX (optional)</text>
+</g>
+<g class="c-gray">
+  <rect x="60" y="130" width="660" height="20" rx="5"/>
+  <text class="ts" x="390" y="140" text-anchor="middle" dominant-baseline="central">POST /api/parse → jobId, project name, row count, column fill status, row preview</text>
+</g>
+
+<line x1="380" y1="160" x2="380" y2="190" class="arr" marker-end="url(#arr2)" stroke="var(--blue-600)"/>
+
+<!-- CONFIGURE -->
+<g class="c-purple">
+  <rect x="40" y="190" width="680" height="150" rx="12"/>
+  <text class="th" x="380" y="215" text-anchor="middle" dominant-baseline="central">2. Configure Window</text>
+</g>
+<g class="c-gray">
+  <rect x="60" y="228" width="204" height="70" rx="8"/>
+  <text class="th" x="162" y="248" text-anchor="middle" dominant-baseline="central">Grouping tab</text>
+  <text class="ts" x="162" y="268" text-anchor="middle" dominant-baseline="central">Test Set auto-assign</text>
+  <text class="ts" x="162" y="284" text-anchor="middle" dominant-baseline="central">POST /api/group</text>
+</g>
+<g class="c-gray">
+  <rect x="276" y="228" width="204" height="70" rx="8"/>
+  <text class="th" x="378" y="248" text-anchor="middle" dominant-baseline="central">Spec Matching tab</text>
+  <text class="ts" x="378" y="268" text-anchor="middle" dominant-baseline="central">Reference workbook match</text>
+  <text class="ts" x="378" y="284" text-anchor="middle" dominant-baseline="central">POST /api/match</text>
+</g>
+<g class="c-gray">
+  <rect x="492" y="228" width="208" height="70" rx="8"/>
+  <text class="th" x="596" y="248" text-anchor="middle" dominant-baseline="central">Options tab</text>
+  <text class="ts" x="596" y="268" text-anchor="middle" dominant-baseline="central">Model / Batch / Budget</text>
+  <text class="ts" x="596" y="284" text-anchor="middle" dominant-baseline="central">Strict validation toggle</text>
+</g>
+<g class="c-gray">
+  <rect x="60" y="308" width="660" height="22" rx="5"/>
+  <text class="ts" x="390" y="319" text-anchor="middle" dominant-baseline="central">Saved to useJobStore.config — GenerationConfig {model, batchSize, budgetLimit, strictValidation, targetColumns}</text>
+</g>
+
+<line x1="380" y1="340" x2="380" y2="370" class="arr" marker-end="url(#arr2)" stroke="var(--purple-600)"/>
+
+<!-- GENERATE -->
+<g class="c-coral">
+  <rect x="40" y="370" width="680" height="140" rx="12"/>
+  <text class="th" x="380" y="395" text-anchor="middle" dominant-baseline="central">3. Generate Window</text>
+</g>
+<g class="c-gray">
+  <rect x="60" y="408" width="300" height="60" rx="8"/>
+  <text class="th" x="210" y="428" text-anchor="middle" dominant-baseline="central">Progress + live log</text>
+  <text class="ts" x="210" y="448" text-anchor="middle" dominant-baseline="central">processed / total, elapsed time</text>
+  <text class="ts" x="210" y="464" text-anchor="middle" dominant-baseline="central">color-coded log entries</text>
+</g>
+<g class="c-gray">
+  <rect x="376" y="408" width="324" height="60" rx="8"/>
+  <text class="th" x="538" y="428" text-anchor="middle" dominant-baseline="central">SSE stream (EventSource)</text>
+  <text class="ts" x="538" y="448" text-anchor="middle" dominant-baseline="central">GET /api/generate/stream?jobId=</text>
+  <text class="ts" x="538" y="464" text-anchor="middle" dominant-baseline="central">events: job.started / row.completed / job.completed</text>
+</g>
+<g class="c-amber">
+  <rect x="60" y="478" width="660" height="22" rx="5"/>
+  <text class="ts" x="390" y="489" text-anchor="middle" dominant-baseline="central">CostMeter (always visible): model, input/output tokens, USD cost, budget progress bar</text>
+</g>
+
+<line x1="380" y1="510" x2="380" y2="540" class="arr" marker-end="url(#arr2)" stroke="var(--coral-600)"/>
+
+<!-- REVIEW -->
+<g class="c-amber">
+  <rect x="40" y="540" width="680" height="180" rx="12"/>
+  <text class="th" x="380" y="565" text-anchor="middle" dominant-baseline="central">4. Review Window</text>
+</g>
+<g class="c-gray">
+  <rect x="60" y="578" width="300" height="70" rx="8"/>
+  <text class="th" x="210" y="598" text-anchor="middle" dominant-baseline="central">Filter bar</text>
+  <text class="ts" x="210" y="616" text-anchor="middle" dominant-baseline="central">by status: pending/success/fail/accepted</text>
+  <text class="ts" x="210" y="632" text-anchor="middle" dominant-baseline="central">by test set (dropdown)</text>
+</g>
+<g class="c-gray">
+  <rect x="376" y="578" width="324" height="70" rx="8"/>
+  <text class="th" x="538" y="598" text-anchor="middle" dominant-baseline="central">Row actions</text>
+  <text class="ts" x="538" y="616" text-anchor="middle" dominant-baseline="central">Accept / Reject / Flag / Delete</text>
+  <text class="ts" x="538" y="632" text-anchor="middle" dominant-baseline="central">Inline edit (steps / expected / preConditions)</text>
+</g>
+<g class="c-teal">
+  <rect x="60" y="658" width="300" height="50" rx="8"/>
+  <text class="th" x="210" y="676" text-anchor="middle" dominant-baseline="central">Regenerate selected rows</text>
+  <text class="ts" x="210" y="694" text-anchor="middle" dominant-baseline="central">POST /api/jobs/{id}/regenerate/stream → diff UI</text>
+</g>
+<g class="c-gray">
+  <rect x="376" y="658" width="324" height="50" rx="8"/>
+  <text class="th" x="538" y="676" text-anchor="middle" dominant-baseline="central">Renumber TCs</text>
+  <text class="ts" x="538" y="694" text-anchor="middle" dominant-baseline="central">after delete — sequential IDs</text>
+</g>
+
+<line x1="380" y1="720" x2="380" y2="750" class="arr" marker-end="url(#arr2)" stroke="var(--amber-600)"/>
+
+<!-- EXPORT -->
+<g class="c-green">
+  <rect x="40" y="750" width="680" height="110" rx="12"/>
+  <text class="th" x="380" y="775" text-anchor="middle" dominant-baseline="central">5. Export Window</text>
+</g>
+<g class="c-gray">
+  <rect x="60" y="790" width="200" height="56" rx="8"/>
+  <text class="th" x="160" y="810" text-anchor="middle" dominant-baseline="central">Scope</text>
+  <text class="ts" x="160" y="830" text-anchor="middle" dominant-baseline="central">All rows / Accepted only</text>
+</g>
+<g class="c-gray">
+  <rect x="276" y="790" width="200" height="56" rx="8"/>
+  <text class="th" x="376" y="810" text-anchor="middle" dominant-baseline="central">Column selection</text>
+  <text class="ts" x="376" y="830" text-anchor="middle" dominant-baseline="central">Steps, Expected, Metadata</text>
+</g>
+<g class="c-gray">
+  <rect x="492" y="790" width="208" height="56" rx="8"/>
+  <text class="th" x="596" y="810" text-anchor="middle" dominant-baseline="central">POST /api/export</text>
+  <text class="ts" x="596" y="830" text-anchor="middle" dominant-baseline="central">GET /api/export/download/{jobId}</text>
+</g>
+
+<!-- Side path: QuickGenerate -->
+<g class="c-gray">
+  <rect x="40" y="878" width="200" height="32" rx="8"/>
+  <text class="ts" x="140" y="894" text-anchor="middle" dominant-baseline="central">Quick Generate Window</text>
+</g>
+<text class="ts" x="256" y="894" dominant-baseline="central">— independent, no jobId required</text>
+<text class="ts" x="256" y="910" dominant-baseline="central">POST /api/quick-generate/stream  (modes: single / with_context / decompose)</text>
+
+<g class="c-gray">
+  <rect x="560" y="878" width="160" height="32" rx="8"/>
+  <text class="ts" x="640" y="894" text-anchor="middle" dominant-baseline="central">Diagrams Window</text>
+</g>
+<text class="ts" x="560" y="910" text-anchor="end" dominant-baseline="central">iframe → /diagrams.html</text>
+</svg>
+</div>
+</div>
+
+<!-- ====================================================
+     DIAGRAM 3: SSE Streaming & API Data Flow
+     ==================================================== -->
+<div class="diagram-section">
+<h2>3. SSE streaming and API data flow</h2>
+<p>All long-running operations use Server-Sent Events. jobAdapter.ts orchestrates calls and exposes typed callbacks.</p>
+<div class="diagram-card">
+<svg width="100%" viewBox="0 0 760 600">
+<defs>
+  <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Column headers -->
+<text class="th" x="110" y="20" text-anchor="middle">UI Module</text>
+<text class="th" x="310" y="20" text-anchor="middle">jobAdapter.ts</text>
+<text class="th" x="510" y="20" text-anchor="middle">FastAPI backend</text>
+<text class="th" x="680" y="20" text-anchor="middle">Claude API</text>
+
+<line x1="20" y1="30" x2="740" y2="30" stroke="var(--border)" stroke-width="0.5"/>
+<line x1="210" y1="30" x2="210" y2="590" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+<line x1="420" y1="30" x2="420" y2="590" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+<line x1="600" y1="30" x2="600" y2="590" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4 3"/>
+
+<!-- ---- PARSE FLOW ---- -->
+<text class="th" x="20" y="58" dominant-baseline="central" fill="var(--blue-600)">Parse</text>
+<g class="c-blue"><rect x="30" y="68" width="160" height="28" rx="6"/>
+  <text class="ts" x="110" y="82" text-anchor="middle" dominant-baseline="central">parseJobFiles(files)</text></g>
+<line x1="192" y1="82" x2="220" y2="82" class="arr" marker-end="url(#arr3)" stroke="var(--blue-600)"/>
+<g class="c-blue"><rect x="222" y="68" width="178" height="28" rx="6"/>
+  <text class="ts" x="311" y="82" text-anchor="middle" dominant-baseline="central">POST /api/parse (multipart)</text></g>
+<line x1="402" y1="82" x2="430" y2="82" class="arr" marker-end="url(#arr3)" stroke="var(--blue-600)"/>
+<g class="c-gray"><rect x="430" y="68" width="158" height="28" rx="6"/>
+  <text class="ts" x="509" y="82" text-anchor="middle" dominant-baseline="central">parse xlsx → JOB_REGISTRY</text></g>
+<line x1="400" y1="100" x2="190" y2="100" class="arr" marker-end="url(#arr3)" stroke="var(--teal-600)"/>
+<text class="ts" x="270" y="116" text-anchor="middle" fill="var(--teal-600)">ParseJobResult {jobId, rows, stats}</text>
+
+<!-- ---- GENERATE FLOW ---- -->
+<text class="th" x="20" y="146" dominant-baseline="central" fill="var(--coral-600)">Generate</text>
+<g class="c-coral"><rect x="30" y="156" width="160" height="28" rx="6"/>
+  <text class="ts" x="110" y="170" text-anchor="middle" dominant-baseline="central">startGeneration(input, cbs)</text></g>
+<line x1="192" y1="162" x2="220" y2="162" class="arr" marker-end="url(#arr3)" stroke="var(--coral-600)"/>
+<g class="c-coral"><rect x="222" y="156" width="178" height="28" rx="6"/>
+  <text class="ts" x="311" y="170" text-anchor="middle" dominant-baseline="central">POST /api/generate</text></g>
+<line x1="402" y1="162" x2="430" y2="162" class="arr" marker-end="url(#arr3)" stroke="var(--coral-600)"/>
+<g class="c-gray"><rect x="430" y="156" width="158" height="28" rx="6"/>
+  <text class="ts" x="509" y="170" text-anchor="middle" dominant-baseline="central">queue job → 200 OK</text></g>
+
+<g class="c-coral"><rect x="30" y="196" width="160" height="28" rx="6"/>
+  <text class="ts" x="110" y="210" text-anchor="middle" dominant-baseline="central">EventSource (SSE)</text></g>
+<line x1="192" y1="210" x2="220" y2="210" class="arr" marker-end="url(#arr3)" stroke="var(--coral-600)"/>
+<g class="c-coral"><rect x="222" y="196" width="178" height="28" rx="6"/>
+  <text class="ts" x="311" y="210" text-anchor="middle" dominant-baseline="central">GET /api/generate/stream</text></g>
+<line x1="402" y1="210" x2="430" y2="210" class="arr" marker-end="url(#arr3)" stroke="var(--coral-600)"/>
+<g class="c-gray"><rect x="430" y="196" width="158" height="28" rx="6"/>
+  <text class="ts" x="509" y="210" text-anchor="middle" dominant-baseline="central">process batches</text></g>
+<line x1="590" y1="210" x2="610" y2="210" class="arr" marker-end="url(#arr3)" stroke="var(--purple-600)"/>
+<g class="c-purple"><rect x="612" y="196" width="128" height="28" rx="6"/>
+  <text class="ts" x="676" y="210" text-anchor="middle" dominant-baseline="central">claude-sonnet/haiku</text></g>
+
+<text class="ts" x="20" y="248" fill="var(--coral-600)">SSE events:</text>
+<g class="c-gray"><rect x="30" y="256" width="740" height="22" rx="4"/>
+  <text class="ts" x="400" y="267" text-anchor="middle" dominant-baseline="central">job.started(total)  →  row.completed(row, stats)  →  row.failed(rowId, msg)  →  job.completed(msg)</text></g>
+<text class="ts" x="30" y="294" fill="var(--purple-600)">Callbacks (UI):  onStart / onRow / onProgress / onComplete / onError   |   Returns {stop()} to cancel</text>
+
+<!-- ---- REGEN FLOW ---- -->
+<text class="th" x="20" y="324" dominant-baseline="central" fill="var(--teal-600)">Regen</text>
+<g class="c-teal"><rect x="30" y="334" width="160" height="28" rx="6"/>
+  <text class="ts" x="110" y="348" text-anchor="middle" dominant-baseline="central">regenerateRows(input, cbs)</text></g>
+<line x1="192" y1="348" x2="220" y2="348" class="arr" marker-end="url(#arr3)" stroke="var(--teal-600)"/>
+<g class="c-teal"><rect x="222" y="334" width="178" height="28" rx="6"/>
+  <text class="ts" x="311" y="348" text-anchor="middle" dominant-baseline="central">POST /api/jobs/{id}/regen/stream</text></g>
+<line x1="402" y1="348" x2="430" y2="348" class="arr" marker-end="url(#arr3)" stroke="var(--teal-600)"/>
+<g class="c-gray"><rect x="430" y="334" width="158" height="28" rx="6"/>
+  <text class="ts" x="509" y="348" text-anchor="middle" dominant-baseline="central">SSE per row</text></g>
+<text class="ts" x="20" y="378" fill="var(--teal-600)">SSE events:</text>
+<g class="c-gray"><rect x="30" y="386" width="740" height="22" rx="4"/>
+  <text class="ts" x="400" y="397" text-anchor="middle" dominant-baseline="central">regen.started  →  row.regenerated(rowId, pendingFields)  →  row.regen_failed  →  regen.completed</text></g>
+<text class="ts" x="30" y="424" fill="var(--teal-600)">UI shows diff overlay (orange) → user selects fields to apply or discard (setPendingRegenerated / applyRegenerated)</text>
+
+<!-- ---- QUICK GEN FLOW ---- -->
+<text class="th" x="20" y="454" dominant-baseline="central" fill="var(--purple-600)">QuickGen</text>
+<g class="c-purple"><rect x="30" y="464" width="160" height="28" rx="6"/>
+  <text class="ts" x="110" y="478" text-anchor="middle" dominant-baseline="central">QuickGenerateModule</text></g>
+<line x1="192" y1="478" x2="220" y2="478" class="arr" marker-end="url(#arr3)" stroke="var(--purple-600)"/>
+<g class="c-purple"><rect x="222" y="464" width="178" height="28" rx="6"/>
+  <text class="ts" x="311" y="478" text-anchor="middle" dominant-baseline="central">POST /api/quick-generate/stream</text></g>
+<line x1="402" y1="478" x2="430" y2="478" class="arr" marker-end="url(#arr3)" stroke="var(--purple-600)"/>
+<g class="c-gray"><rect x="430" y="464" width="158" height="28" rx="6"/>
+  <text class="ts" x="509" y="478" text-anchor="middle" dominant-baseline="central">SSE, no jobId</text></g>
+<text class="ts" x="20" y="516" fill="var(--purple-600)">Modes: single (1 TC)  /  with_context (TC + context)  /  decompose (analysis → N scenarios → N TCs)</text>
+
+<!-- ---- MOCK FALLBACK ---- -->
+<g class="c-amber"><rect x="30" y="540" width="370" height="48" rx="8"/>
+  <text class="th" x="215" y="558" text-anchor="middle" dominant-baseline="central">Mock fallback (jobAdapter.ts)</text>
+  <text class="ts" x="215" y="576" text-anchor="middle" dominant-baseline="central">If backend unreachable: parse via browser XLSX lib, generate fake TCs at 700ms/row</text></g>
+</svg>
+</div>
+</div>
+
+<!-- ====================================================
+     DIAGRAM 4: TcRow State Machine
+     ==================================================== -->
+<div class="diagram-section">
+<h2>4. TcRow status state machine</h2>
+<p>Each row in useJobStore.tcRows follows this lifecycle. Actions in Review Window drive transitions.</p>
+<div class="diagram-card">
+<svg width="100%" viewBox="0 0 760 400">
+<defs>
+  <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- States -->
+<g class="c-gray">
+  <rect x="320" y="20" width="120" height="44" rx="10"/>
+  <text class="th" x="380" y="38" text-anchor="middle" dominant-baseline="central">pending</text>
+  <text class="ts" x="380" y="56" text-anchor="middle" dominant-baseline="central">after parse</text>
+</g>
+
+<line x1="380" y1="64" x2="380" y2="100" class="arr" marker-end="url(#arr4)" stroke="var(--coral-600)"/>
+<text class="ts" x="390" y="88" fill="var(--coral-600)">start gen</text>
+
+<g class="c-coral">
+  <rect x="320" y="100" width="120" height="44" rx="10"/>
+  <text class="th" x="380" y="118" text-anchor="middle" dominant-baseline="central">generating</text>
+  <text class="ts" x="380" y="136" text-anchor="middle" dominant-baseline="central">SSE in progress</text>
+</g>
+
+<!-- success branch -->
+<line x1="320" y1="130" x2="180" y2="170" class="arr" marker-end="url(#arr4)" stroke="var(--green-600)"/>
+<text class="ts" x="200" y="152" fill="var(--green-600)">row.completed</text>
+
+<g class="c-green">
+  <rect x="100" y="170" width="120" height="44" rx="10"/>
+  <text class="th" x="160" y="188" text-anchor="middle" dominant-baseline="central">success</text>
+  <text class="ts" x="160" y="206" text-anchor="middle" dominant-baseline="central">generated OK</text>
+</g>
+
+<!-- fail branch -->
+<line x1="440" y1="130" x2="560" y2="170" class="arr" marker-end="url(#arr4)" stroke="var(--red-600)"/>
+<text class="ts" x="480" y="152" fill="var(--red-600)">row.failed</text>
+
 <g class="c-red">
-  <rect x="230" y="658" width="80" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="270" y="673" text-anchor="middle" dominant-baseline="central">Reject</text>
+  <rect x="500" y="170" width="120" height="44" rx="10"/>
+  <text class="th" x="560" y="188" text-anchor="middle" dominant-baseline="central">fail</text>
+  <text class="ts" x="560" y="206" text-anchor="middle" dominant-baseline="central">generation error</text>
 </g>
+
+<!-- success → reviewing -->
+<line x1="160" y1="214" x2="160" y2="270" class="arr" marker-end="url(#arr4)" stroke="var(--amber-600)"/>
+<text class="ts" x="170" y="250" fill="var(--amber-600)">open review</text>
+
 <g class="c-amber">
-  <rect x="320" y="658" width="70" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="355" y="673" text-anchor="middle" dominant-baseline="central">Flag</text>
+  <rect x="100" y="270" width="120" height="44" rx="10"/>
+  <text class="th" x="160" y="288" text-anchor="middle" dominant-baseline="central">reviewing</text>
+  <text class="ts" x="160" y="306" text-anchor="middle" dominant-baseline="central">under inspection</text>
 </g>
-<g class="c-gray">
-  <rect x="420" y="658" width="200" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="520" y="673" text-anchor="middle" dominant-baseline="central">Validator: 62 pass 14 warn 5 fail</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="700" width="560" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="340" y="715" text-anchor="middle" dominant-baseline="central">Filter: validation | Test Set | review status — Bulk: accept all / regen rejected</text>
-</g>
-<path d="M640 700 Q660 700 660 540 Q660 480 642 480" stroke="var(--coral-600)" stroke-width="0.5" fill="none" marker-end="url(#a3)"/>
-<text class="ts" x="608" y="600" fill="var(--coral-600)">Regen</text>
 
-<line x1="340" y1="780" x2="340" y2="810" class="arr" marker-end="url(#a3)"/>
-
-<!-- PAGE 5: EXPORT -->
+<!-- reviewing → accepted / rejected / flagged -->
+<line x1="160" y1="314" x2="80" y2="360" class="arr" marker-end="url(#arr4)" stroke="var(--green-600)"/>
 <g class="c-green">
-  <rect x="40" y="810" width="600" height="130" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="835" dominant-baseline="central">5. Export</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="852" width="170" height="40" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="145" y="865" text-anchor="middle" dominant-baseline="central">Export scope</text>
-  <text class="ts" x="145" y="880" text-anchor="middle" dominant-baseline="central">All / accepted only</text>
-</g>
-<g class="c-gray">
-  <rect x="250" y="852" width="170" height="40" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="335" y="865" text-anchor="middle" dominant-baseline="central">Output mode</text>
-  <text class="ts" x="335" y="880" text-anchor="middle" dominant-baseline="central">Overwrite / new file</text>
-</g>
-<g class="c-gray">
-  <rect x="440" y="852" width="170" height="40" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="525" y="865" text-anchor="middle" dominant-baseline="central">Options</text>
-  <text class="ts" x="525" y="880" text-anchor="middle" dominant-baseline="central">Fill Framework sheet</text>
-</g>
-<g class="c-blue">
-  <rect x="220" y="905" width="240" height="24" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="340" y="917" text-anchor="middle" dominant-baseline="central">Download: DeviceManager_generated.xlsx</text>
+  <rect x="20" y="356" width="100" height="36" rx="8"/>
+  <text class="ts" x="70" y="374" text-anchor="middle" dominant-baseline="central">accepted</text>
 </g>
 
-<line x1="40" y1="960" x2="640" y2="960" stroke="var(--border)" stroke-width="0.5"/>
-<rect x="40" y="975" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="986">Upload</text>
-<rect x="120" y="975" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)" stroke-width="0.5"/>
-<text class="ts" x="138" y="986">Configure</text>
-<rect x="220" y="975" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)" stroke-width="0.5"/>
-<text class="ts" x="238" y="986">Generate</text>
-<rect x="320" y="975" width="12" height="12" rx="2" fill="var(--amber-50)" stroke="var(--amber-600)" stroke-width="0.5"/>
-<text class="ts" x="338" y="986">Review</text>
-<rect x="410" y="975" width="12" height="12" rx="2" fill="var(--green-50)" stroke="var(--green-600)" stroke-width="0.5"/>
-<text class="ts" x="428" y="986">Export</text>
-<text class="ts" x="40" y="1010">Phase 1: No API — use Claude Code manually, paste into Review</text>
-<text class="ts" x="40" y="1030">Phase 2: Connect Claude API for full automation</text>
+<line x1="200" y1="314" x2="200" y2="356" class="arr" marker-end="url(#arr4)" stroke="var(--red-600)"/>
+<g class="c-red">
+  <rect x="148" y="356" width="100" height="36" rx="8"/>
+  <text class="ts" x="198" y="374" text-anchor="middle" dominant-baseline="central">rejected</text>
+</g>
+
+<line x1="220" y1="314" x2="300" y2="356" class="arr" marker-end="url(#arr4)" stroke="var(--amber-600)"/>
+<g class="c-amber">
+  <rect x="258" y="356" width="100" height="36" rx="8"/>
+  <text class="ts" x="308" y="374" text-anchor="middle" dominant-baseline="central">flagged</text>
+</g>
+
+<!-- fail / rejected → regenerate → generating -->
+<path d="M560 214 Q560 240 500 254 Q440 268 440 144" class="arr" marker-end="url(#arr4)" stroke="var(--teal-600)" stroke-dasharray="5 3"/>
+<text class="ts" x="490" y="244" fill="var(--teal-600)">regenerate</text>
+<path d="M198 356 Q198 340 300 310 Q380 284 380 146" class="arr" marker-end="url(#arr4)" stroke="var(--teal-600)" stroke-dasharray="5 3"/>
+
+<!-- Export note -->
+<g class="c-blue">
+  <rect x="500" y="356" width="240" height="36" rx="8"/>
+  <text class="ts" x="620" y="374" text-anchor="middle" dominant-baseline="central">accepted rows → Export (/api/export)</text>
+</g>
+<line x1="140" y1="374" x2="498" y2="374" class="arr" marker-end="url(#arr4)" stroke="var(--blue-600)" stroke-dasharray="4 3"/>
+
+<!-- Legend -->
+<line x1="20" y1="310" x2="80" y2="310" stroke="var(--teal-600)" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text class="ts" x="88" y="316" dominant-baseline="central">regenerate (SSE)</text>
+<line x1="20" y1="328" x2="80" y2="328" stroke="var(--blue-600)" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text class="ts" x="88" y="334" dominant-baseline="central">export path</text>
+</svg>
+</div>
+</div>
+
+<!-- ====================================================
+     DIAGRAM 5: Store & Types Reference
+     ==================================================== -->
+<div class="diagram-section">
+<h2>5. Store state and key types</h2>
+<p>useJobStore (Zustand) is the central data bus. All modules read from and write to it.</p>
+<div class="diagram-card">
+<svg width="100%" viewBox="0 0 760 560">
+<defs>
+  <marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- useJobStore -->
+<g class="c-purple">
+  <rect x="220" y="20" width="330" height="300" rx="12"/>
+  <text class="th" x="385" y="44" text-anchor="middle" dominant-baseline="central">useJobStore (Zustand)</text>
+</g>
+
+<text class="ts" x="240" y="72" dominant-baseline="central" font-weight="600">State:</text>
+<g class="c-gray"><rect x="240" y="82" width="140" height="24" rx="5"/>
+  <text class="ts" x="310" y="94" text-anchor="middle" dominant-baseline="central">jobMetadata: JobMetadata</text></g>
+<g class="c-gray"><rect x="392" y="82" width="140" height="24" rx="5"/>
+  <text class="ts" x="462" y="94" text-anchor="middle" dominant-baseline="central">tcRows: TcRow[]</text></g>
+<g class="c-gray"><rect x="240" y="114" width="140" height="24" rx="5"/>
+  <text class="ts" x="310" y="126" text-anchor="middle" dominant-baseline="central">config: GenerationConfig</text></g>
+<g class="c-gray"><rect x="392" y="114" width="140" height="24" rx="5"/>
+  <text class="ts" x="462" y="126" text-anchor="middle" dominant-baseline="central">stats: JobStats</text></g>
+<g class="c-gray"><rect x="240" y="146" width="140" height="24" rx="5"/>
+  <text class="ts" x="310" y="158" text-anchor="middle" dominant-baseline="central">logs: JobLog[]  (max 1000)</text></g>
+<g class="c-gray"><rect x="392" y="146" width="140" height="24" rx="5"/>
+  <text class="ts" x="462" y="158" text-anchor="middle" dominant-baseline="central">isProcessing: boolean</text></g>
+<g class="c-gray"><rect x="392" y="178" width="140" height="24" rx="5"/>
+  <text class="ts" x="462" y="190" text-anchor="middle" dominant-baseline="central">isRegenerating: boolean</text></g>
+
+<text class="ts" x="240" y="222" dominant-baseline="central" font-weight="600">Key actions:</text>
+<text class="ts" x="240" y="242" dominant-baseline="central">setJobMetadata  ·  setTcRows  ·  updateTcRow  ·  deleteTcRows  ·  renumberTcRows</text>
+<text class="ts" x="240" y="260" dominant-baseline="central">setPendingRegenerated  ·  applyRegenerated  ·  clearPendingRegenerated</text>
+<text class="ts" x="240" y="278" dominant-baseline="central">updateConfig  ·  appendLog  ·  updateStats  ·  resetJob</text>
+
+<!-- useWindowStore -->
+<g class="c-blue">
+  <rect x="560" y="20" width="188" height="240" rx="12"/>
+  <text class="th" x="654" y="44" text-anchor="middle" dominant-baseline="central">useWindowStore</text>
+</g>
+<text class="ts" x="574" y="70" dominant-baseline="central" font-weight="600">Window types:</text>
+<text class="ts" x="574" y="90" dominant-baseline="central">upload</text>
+<text class="ts" x="574" y="108" dominant-baseline="central">configure</text>
+<text class="ts" x="574" y="126" dominant-baseline="central">generate</text>
+<text class="ts" x="574" y="144" dominant-baseline="central">review</text>
+<text class="ts" x="574" y="162" dominant-baseline="central">export</text>
+<text class="ts" x="574" y="180" dominant-baseline="central">quickGenerate</text>
+<text class="ts" x="574" y="198" dominant-baseline="central">diagrams</text>
+<text class="ts" x="574" y="222" dominant-baseline="central" font-weight="600">Per-window state:</text>
+<text class="ts" x="574" y="242" dominant-baseline="central">position · size · zIndex</text>
+<text class="ts" x="574" y="258" dominant-baseline="central">isOpen · isMinimized · isMaximized</text>
+
+<!-- Type boxes -->
+<g class="c-teal">
+  <rect x="20" y="20" width="190" height="110" rx="12"/>
+  <text class="th" x="115" y="42" text-anchor="middle" dominant-baseline="central">TcRow</text>
+</g>
+<text class="ts" x="34" y="62" dominant-baseline="central">id, reqId, testGroup, testSet</text>
+<text class="ts" x="34" y="80" dominant-baseline="central">testItem, preConditions</text>
+<text class="ts" x="34" y="98" dominant-baseline="central">steps, expectedResults</text>
+<text class="ts" x="34" y="116" dominant-baseline="central">status: TcStatus</text>
+
+<g class="c-teal">
+  <rect x="20" y="148" width="190" height="80" rx="12"/>
+  <text class="th" x="115" y="168" text-anchor="middle" dominant-baseline="central">GenerationConfig</text>
+</g>
+<text class="ts" x="34" y="188" dominant-baseline="central">model (sonnet-4-6 / haiku-4-5)</text>
+<text class="ts" x="34" y="206" dominant-baseline="central">batchSize · budgetLimit</text>
+<text class="ts" x="34" y="222" dominant-baseline="central">strictValidation · targetColumns</text>
+
+<g class="c-coral">
+  <rect x="20" y="248" width="190" height="80" rx="12"/>
+  <text class="th" x="115" y="268" text-anchor="middle" dominant-baseline="central">JobStats</text>
+</g>
+<text class="ts" x="34" y="288" dominant-baseline="central">total · processed · success · fail</text>
+<text class="ts" x="34" y="306" dominant-baseline="central">cost (USD) · inputTokens</text>
+<text class="ts" x="34" y="322" dominant-baseline="central">outputTokens</text>
+
+<g class="c-amber">
+  <rect x="20" y="348" width="190" height="64" rx="12"/>
+  <text class="th" x="115" y="368" text-anchor="middle" dominant-baseline="central">ValidationError</text>
+</g>
+<text class="ts" x="34" y="388" dominant-baseline="central">severity: error / warning / info</text>
+<text class="ts" x="34" y="406" dominant-baseline="central">message · column?</text>
+
+<!-- Arrows from types to store -->
+<line x1="210" y1="75" x2="218" y2="95" class="arr" marker-end="url(#arr5)" stroke="var(--teal-600)"/>
+<line x1="210" y1="188" x2="218" y2="130" class="arr" marker-end="url(#arr5)" stroke="var(--teal-600)"/>
+<line x1="210" y1="288" x2="218" y2="148" class="arr" marker-end="url(#arr5)" stroke="var(--coral-600)"/>
+
+<!-- CostMeter reads -->
+<g class="c-amber">
+  <rect x="560" y="280" width="188" height="80" rx="12"/>
+  <text class="th" x="654" y="300" text-anchor="middle" dominant-baseline="central">CostMeter widget</text>
+</g>
+<text class="ts" x="574" y="322" dominant-baseline="central">reads stats.cost</text>
+<text class="ts" x="574" y="340" dominant-baseline="central">reads stats.inputTokens</text>
+<text class="ts" x="574" y="358" dominant-baseline="central">reads config.model</text>
+<line x1="548" y1="165" x2="548" y2="318" class="arr-d" marker-end="url(#arr5)" stroke="var(--amber-600)"/>
+<line x1="548" y1="318" x2="558" y2="318" class="arr" marker-end="url(#arr5)" stroke="var(--amber-600)"/>
+
+<!-- JobLog -->
+<g class="c-gray">
+  <rect x="220" y="340" width="330" height="60" rx="12"/>
+  <text class="th" x="385" y="360" text-anchor="middle" dominant-baseline="central">JobLog</text>
+  <text class="ts" x="385" y="380" text-anchor="middle" dominant-baseline="central">timestamp · level (error/warn/success/info) · message</text>
+  <text class="ts" x="385" y="396" text-anchor="middle" dominant-baseline="central">appended by Generate + Review modules, capped at 1000 entries</text>
+</g>
+
+<!-- PendingRegenerated -->
+<g class="c-teal">
+  <rect x="220" y="420" width="330" height="60" rx="12"/>
+  <text class="th" x="385" y="440" text-anchor="middle" dominant-baseline="central">PendingRegeneratedFields</text>
+  <text class="ts" x="385" y="460" text-anchor="middle" dominant-baseline="central">per-row: {steps?, expectedResults?, preConditions?}</text>
+  <text class="ts" x="385" y="476" text-anchor="middle" dominant-baseline="central">diff shown in Review → user apply / discard per field</text>
+</g>
+
+<!-- layout.ts -->
+<g class="c-gray">
+  <rect x="560" y="380" width="188" height="50" rx="12"/>
+  <text class="th" x="654" y="400" text-anchor="middle" dominant-baseline="central">layout.ts</text>
+  <text class="ts" x="654" y="418" text-anchor="middle" dominant-baseline="central">TASKBAR_HEIGHT = 28px</text>
+</g>
+
+<!-- Legend -->
+<line x1="20" y1="500" x2="740" y2="500" stroke="var(--border)" stroke-width="0.5"/>
+<rect x="20" y="516" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)"/>
+<text class="ts" x="38" y="523" dominant-baseline="central">Zustand store</text>
+<rect x="160" y="516" width="12" height="12" rx="2" fill="var(--teal-50)" stroke="var(--teal-600)"/>
+<text class="ts" x="178" y="523" dominant-baseline="central">Row / config types</text>
+<rect x="320" y="516" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)"/>
+<text class="ts" x="338" y="523" dominant-baseline="central">Stats type</text>
+<rect x="460" y="516" width="12" height="12" rx="2" fill="var(--amber-50)" stroke="var(--amber-600)"/>
+<text class="ts" x="478" y="523" dominant-baseline="central">Widget / validation</text>
+<rect x="600" y="516" width="12" height="12" rx="2" fill="var(--gray-50)" stroke="var(--gray-600)"/>
+<text class="ts" x="618" y="523" dominant-baseline="central">Log / constants</text>
 </svg>
 </div>
 </div>

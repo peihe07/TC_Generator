@@ -300,6 +300,83 @@ Returns workbook bytes with:
 - `content-disposition: attachment`
 - `content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
 
+### `POST /api/quick-generate/stream`
+
+Proxy to Python `POST /api/quick-generate/stream`.
+
+Ad-hoc TC generation from manual input. No job context or uploaded workbook required.
+
+Request:
+
+```json
+{
+  "testItem": "Button pressed → LED turns on",
+  "context": "System must be powered on",
+  "mode": "single",
+  "model": "claude-sonnet-4-6"
+}
+```
+
+- `mode`: one of `single`, `with_context`, `decompose`
+- `context`: optional, only used when `mode` is `with_context`
+
+SSE event sequence for `single` / `with_context`:
+
+```
+job.started → tc.completed → job.completed
+```
+
+SSE event sequence for `decompose`:
+
+```
+job.started → decompose.analysis → tc.generating → tc.completed (×N) → job.completed
+```
+
+Example events:
+
+```json
+{ "type": "job.started", "mode": "single" }
+```
+
+```json
+{
+  "type": "decompose.analysis",
+  "reasoning": "Two distinct paths identified...",
+  "scenarios": [
+    { "id": 1, "name": "Normal flow", "description": "...", "test_item": "..." }
+  ],
+  "stats": { "total": 1, "currentCost": 0.0012 }
+}
+```
+
+```json
+{
+  "type": "tc.completed",
+  "scenarioId": 1,
+  "scenarioName": "Normal flow",
+  "tc": {
+    "test_item_rewrite": "(Button pressed → LED turns on)",
+    "pre_conditions": "1. System is powered.",
+    "input_test_data": "NA",
+    "test_procedure": "1. Press button.\n2. Observe LED.",
+    "expected_result": "1. LED turns on.",
+    "design_method": "Functional",
+    "priority": "Medium"
+  },
+  "stats": { "total": 1, "processed": 1, "currentCost": 0.003 }
+}
+```
+
+```json
+{ "type": "job.completed", "stats": { "currentCost": 0.003 } }
+```
+
+On error:
+
+```json
+{ "type": "job.failed", "message": "API call failed: ..." }
+```
+
 ## Python Backend Routes
 
 Implemented in `src/api_server.py`:
@@ -313,6 +390,7 @@ Implemented in `src/api_server.py`:
 - `POST /api/jobs/{jobId}/regenerate/stream`
 - `POST /api/export`
 - `GET /api/export/download/{jobId}`
+- `POST /api/quick-generate/stream`
 
 ## Notes
 
