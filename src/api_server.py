@@ -6,19 +6,24 @@ import json
 import os
 import tempfile
 from datetime import datetime
+from pathlib import Path
 
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
 from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_batch, generate_single_tc, generate_quick_tc, decompose_requirement
 from id_generator import generate_group_abbreviation, generate_tc_ids
+from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
 from spec_matcher import build_spec_index, extract_pdm_codes, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
 from validator import validate_row
 from writer import build_output_path, write_framework_sheet, write_generated_results
+
+load_dotenv()
 
 app = FastAPI(title="tc-generator-api")
 
@@ -31,8 +36,11 @@ app.add_middleware(
 )
 
 ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
-JOB_REGISTRY: dict[str, dict] = {}
-RULES_SECTIONS = """
+# SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
+JOB_REGISTRY = SqliteJobStore(default_db_path())
+
+# 內建精簡規則：當 docs/ 規則檔案不存在時的 fallback
+_FALLBACK_RULES = """
 ## Test Item Rewrite
 - One behavior per TC, must match requirement intent
 - Format: (Condition/Trigger → Observable Outcome)
@@ -61,6 +69,30 @@ RULES_SECTIONS = """
 - Medium: standard feature, user-facing behavior
 - Low: UI cosmetic, edge cases
 """.strip()
+
+# 規則文件路徑（專案根目錄下 docs/）
+_DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
+_RULE_FILES = [
+    _DOCS_DIR / "ASPICE_SWE6_Test_Case_Writing_Rules.md",
+    _DOCS_DIR / "Test Case Design Method 判斷規則.md",
+]
+
+
+def _load_rules() -> str:
+    """讀取 docs/ 下的規則 markdown 並串接；若全部缺失則退回精簡 fallback。"""
+    sections: list[str] = []
+    for path in _RULE_FILES:
+        if path.is_file():
+            try:
+                text = path.read_text(encoding="utf-8").strip()
+                if text:
+                    sections.append(f"# {path.stem}\n\n{text}")
+            except OSError:
+                continue
+    return "\n\n---\n\n".join(sections) if sections else _FALLBACK_RULES
+
+
+RULES_SECTIONS = _load_rules()
 
 
 class GenerateConfig(BaseModel):
@@ -812,6 +844,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         current_cost = 0.0
         total_input_tokens = 0
         total_output_tokens = 0
+        total_cache_creation_tokens = 0
+        total_cache_read_tokens = 0
         batch_size = config.get("batchSize", 1)
         model = config.get("model", DEFAULT_MODEL)
         strict_validation = config.get("strictValidation", False)
@@ -853,6 +887,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 current_cost += result.cost
                 total_input_tokens += result.input_tokens
                 total_output_tokens += result.output_tokens
+                total_cache_creation_tokens += getattr(result, "cache_creation_tokens", 0)
+                total_cache_read_tokens += getattr(result, "cache_read_tokens", 0)
                 for row, tc in zip(batch, tc_data_list):
                     processed += 1
                     updated_row, has_warnings = _build_stream_row(row, tc)
@@ -870,6 +906,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                                 "currentCost": round(current_cost, 4),
                                 "inputTokens": total_input_tokens,
                                 "outputTokens": total_output_tokens,
+                                "cacheCreationTokens": total_cache_creation_tokens,
+                                "cacheReadTokens": total_cache_read_tokens,
                             },
                             "message": (
                                 f"Processed {processed}/{total} rows for {row.get('req_id') or row.get('id')}."
@@ -909,6 +947,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                     "currentCost": current_cost,
                     "inputTokens": total_input_tokens,
                     "outputTokens": total_output_tokens,
+                    "cacheCreationTokens": total_cache_creation_tokens,
+                    "cacheReadTokens": total_cache_read_tokens,
                 },
                 "message": "Backend generation complete. Review and export windows are ready.",
             }

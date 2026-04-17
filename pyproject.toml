@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Automated test case generation tool for ASPICE SWE.6"
 requires-python = ">=3.10"
 dependencies = [
-    "anthropic",
+    "openai>=1.50",
     "fastapi",
     "openpyxl",
     "pdfplumber",
