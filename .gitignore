@@ -33,3 +33,9 @@ Thumbs.db
 
 # Playwright MCP scratch
 .playwright-mcp/
+
+# Claude Code scratch
+.claude/
+
+# Local sample data / fixtures (do not commit)
+docs/temp/
