@@ -99,11 +99,7 @@ const GenerateModule: React.FC = () => {
             <span>Elapsed: {String(Math.floor(elapsedSeconds / 60)).padStart(2, '0')}:{String(elapsedSeconds % 60).padStart(2, '0')}</span>
           </div>
           <div className="progress-bar-wrap">
-            <div className="progress-fill">
-              {Array.from({ length: Math.floor(progress / 2.5) }).map((_, i) => (
-                <span key={i} />
-              ))}
-            </div>
+            <div className="progress-fill" style={{ width: `${progress}%` }} />
             <div className="progress-label">{progress}%</div>
           </div>
         </div>
