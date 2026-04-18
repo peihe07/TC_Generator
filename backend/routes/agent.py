@@ -25,7 +25,7 @@ from typing import Any, Callable
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from agent_dispatcher import DispatchContext, LLMFn, run_agent_turn
 from agent_session_store import SqliteAgentSessionStore
@@ -34,8 +34,14 @@ from trace_store import SqliteTraceStore
 
 class AgentChatRequest(BaseModel):
     session_id: str | None = None
-    message: str = Field(min_length=1)
+    message: str = Field(default="")
     approved_call_ids: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def _require_message_or_approved(self) -> "AgentChatRequest":
+        if not self.message and not self.approved_call_ids:
+            raise ValueError("message must be non-empty unless approved_call_ids is provided")
+        return self
 
 
 # ---------------------------------------------------------------------------
@@ -69,15 +75,21 @@ def build_agent_router(
             rules_text=rules_text_getter(),
             approved_call_ids=set(payload.approved_call_ids),
             auto_approve=False,
+            confirm_resume=bool(payload.approved_call_ids),
         )
 
         def _sse(event_type: str, data: dict) -> str:
             return f"event: {event_type}\ndata: {json.dumps(data, ensure_ascii=False, default=str)}\n\n"
 
         def event_generator():
+            # confirm resume：empty message + approved_call_ids → 通知 LLM 繼續執行
+            effective_message = payload.message
+            if not effective_message and payload.approved_call_ids:
+                effective_message = "已確認，請繼續執行剛才要求的操作。"
+
             try:
                 events, new_history = run_agent_turn(
-                    user_message=payload.message,
+                    user_message=effective_message,
                     history=session.history,
                     ctx=ctx,
                     llm_fn=llm_fn,

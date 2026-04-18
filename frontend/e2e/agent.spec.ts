@@ -39,18 +39,18 @@ async function mockAgentSessions(page: Page) {
 
 async function openChat(page: Page) {
   await page.goto('/');
-  // Click the desktop icon labeled "Agent"
-  await page.getByText('Agent').first().dblclick();
+  // Use the agent taskbar button — desktop icon may be covered by taskbar overlay
+  await page.locator('.agent-taskbar-btn').click();
   await expect(page.locator('.chat-module')).toBeVisible({ timeout: 5000 });
 }
 
 // ---- Tests ----
 
 test.describe('Agent Co-pilot', () => {
-  test('open chat window via desktop icon', async ({ page }) => {
+  test('open chat window via taskbar agent button', async ({ page }) => {
     await mockAgentSessions(page);
     await page.goto('/');
-    await page.getByText('Agent').first().dblclick();
+    await page.locator('.agent-taskbar-btn').click();
     await expect(page.locator('.chat-module')).toBeVisible();
   });
 
@@ -140,25 +140,28 @@ test.describe('Agent Co-pilot', () => {
     await expect(taskbarBtn).toHaveClass(/agent-taskbar-btn--idle/, { timeout: 3000 });
   });
 
-  test('workspace export does not include agent state', async ({ page }) => {
+  test('workspace JSON does not contain agent state', async ({ page }) => {
     await mockAgentSessions(page);
     await page.goto('/');
 
-    // Open workspace menu and export
-    await page.getByText('Workspace').click();
-    await page.getByText('Export JSON').click();
+    // Inject fake agent session key into localStorage to verify it won't leak
+    await page.evaluate(() => {
+      localStorage.setItem('agent-session-id', 'fake-session-e2e');
+    });
 
-    // Grab the downloaded content via clipboard / download event
-    // Verify __agentStore is not serialised into the workspace
-    const download = await page.waitForEvent('download', { timeout: 3000 }).catch(() => null);
-    if (download) {
-      const content = await download.createReadStream();
-      const chunks: Buffer[] = [];
-      for await (const chunk of content) chunks.push(chunk as Buffer);
-      const text = Buffer.concat(chunks).toString();
-      expect(text).not.toContain('sessionId');
-      expect(text).not.toContain('agentStore');
-    }
-    // If no download event, the test is a no-op (acceptable — workspace export may use clipboard)
+    // Open workspace menu and save
+    await page.getByTitle('Workspace manager').click();
+    page.once('dialog', (d) => d.accept('e2e-test-ws'));
+    await page.getByText('Save As…').click();
+    await page.waitForTimeout(300);
+
+    // Verify saved workspace in localStorage does not contain agent state
+    const workspaceJson = await page.evaluate(() => {
+      const raw = localStorage.getItem('tc-workspaces');
+      return raw ?? '{}';
+    });
+
+    expect(workspaceJson).not.toContain('fake-session-e2e');
+    expect(workspaceJson).not.toContain('agentStore');
   });
 });

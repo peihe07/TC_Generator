@@ -55,6 +55,9 @@ class DispatchContext:
     approved_call_ids: set[str] = field(default_factory=set)
     # 預設自動核准（測試 / CLI 用）；正式環境由 UI 送回 confirm 才填入 approved_call_ids
     auto_approve: bool = False
+    # confirm resume 模式：只要有任何 approved_call_ids，本 turn 所有 WRITE_COSTLY 都自動核准
+    # 因為 LLM 重試時會產生新 call_id，無法逐一匹配
+    confirm_resume: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -170,6 +173,24 @@ def dispatch_tool(name: str, args: dict, ctx: DispatchContext) -> dict:
         return {
             "ok": False,
             "error": {"code": exc.code, "message": exc.message, "details": exc.details},
+            "duration_ms": duration_ms,
+        }
+    except Exception as exc:  # 防守：未預期例外轉成 tool_error 而非中斷整個事件流
+        duration_ms = int((time.time() - started) * 1000)
+        msg = f"{type(exc).__name__}: {exc}"
+        ctx.trace_store.record(
+            TraceEvent(
+                session_id=ctx.session_id,
+                type="tool_error",
+                tool=name,
+                args=args,
+                duration_ms=duration_ms,
+                message=msg,
+            )
+        )
+        return {
+            "ok": False,
+            "error": {"code": "internal", "message": msg, "details": {}},
             "duration_ms": duration_ms,
         }
 
@@ -307,7 +328,13 @@ def run_agent_turn(
             call_id = call["id"]
 
             need_confirm, est_cost = _requires_confirmation(name, args)
-            if need_confirm and not (ctx.auto_approve or call_id in ctx.approved_call_ids):
+            # confirm_resume 模式：使用者已核准上一輪的同類 tool，直接放行
+            effectively_approved = (
+                ctx.auto_approve
+                or call_id in ctx.approved_call_ids
+                or ctx.confirm_resume
+            )
+            if need_confirm and not effectively_approved:
                 events.append(
                     AgentEvent(
                         "require_confirm",

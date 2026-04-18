@@ -95,7 +95,7 @@ def build_user_prompt(
 - Test Set: {context.get('test_set', 'N/A')}
 
 ## Requirement
-- Requirement ID: {row['req_id']}
+- Requirement ID: {row.get('req_id') or row.get('reqId') or ''}
 - Original Test Item: {row['test_item']}
 
 ## Spec Context
@@ -168,7 +168,7 @@ def build_batch_prompt(
         spec_context = _get_spec_context(row, spec_index)
         items.append(
             f"### TC {i + 1}\n"
-            f"- Req ID: {row['req_id']}\n"
+            f"- Req ID: {row.get('req_id') or row.get('reqId') or ''}\n"
             f"- Test Set: {row.get('test_set', context.get('test_set', 'N/A'))}\n"
             f"- Test Item: {row['test_item']}\n"
             f"- Spec: {spec_context}"
