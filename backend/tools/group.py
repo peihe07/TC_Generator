@@ -8,6 +8,7 @@ from __future__ import annotations
 from spec_matcher import extract_pdm_codes
 
 from .registry import SafetyLevel, ToolSpec, register_tool
+from .schemas import GROUP_TESTS_SCHEMA
 
 
 def _norm(value) -> str:
@@ -90,10 +91,8 @@ register_tool(
     ToolSpec(
         name="group_tests",
         func=group_tests_tool,
-        description=(
-            "Derive Test Set assignments from rows using existing value, PDM code, "
-            "or REQ ID prefix fallback. Returns groups, framework map, and per-row assignments."
-        ),
+        description=GROUP_TESTS_SCHEMA["description"],
         safety=SafetyLevel.READ_ONLY,
+        input_schema=GROUP_TESTS_SCHEMA,
     )
 )

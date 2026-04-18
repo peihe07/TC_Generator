@@ -17,6 +17,10 @@ from .group import group_tests_tool
 from .match import match_spec_tool
 from .validate import validate_tc_tool
 from .write import write_excel_tool
+from .generate import estimate_batch_cost, generate_tc_tool
+from .inspect import inspect_workbook_tool
+from .jobs import estimate_cost_tool, get_job_validation_tool, list_jobs_tool
+from .schemas import ALL_SCHEMAS, get_schema, openai_tool_definitions
 
 __all__ = [
     "ToolError",
@@ -30,4 +34,13 @@ __all__ = [
     "match_spec_tool",
     "validate_tc_tool",
     "write_excel_tool",
+    "generate_tc_tool",
+    "estimate_batch_cost",
+    "inspect_workbook_tool",
+    "list_jobs_tool",
+    "estimate_cost_tool",
+    "get_job_validation_tool",
+    "ALL_SCHEMAS",
+    "get_schema",
+    "openai_tool_definitions",
 ]

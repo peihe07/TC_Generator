@@ -10,6 +10,7 @@ from writer import write_framework_sheet, write_generated_results
 
 from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
+from .schemas import WRITE_EXCEL_SCHEMA
 
 
 def write_excel_tool(
@@ -65,10 +66,8 @@ register_tool(
     ToolSpec(
         name="write_excel",
         func=write_excel_tool,
-        description=(
-            "Write generated TC rows back to an .xlsx file, using the original workbook "
-            "as template. Optionally populate the Test Case Framework sheet."
-        ),
-        safety=SafetyLevel.DESTRUCTIVE,  # 會寫入 / 覆寫檔案
+        description=WRITE_EXCEL_SCHEMA["description"],
+        safety=SafetyLevel.DESTRUCTIVE,
+        input_schema=WRITE_EXCEL_SCHEMA,
     )
 )

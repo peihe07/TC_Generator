@@ -16,6 +16,7 @@ from spec_parser import detect_format
 
 from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
+from .schemas import PARSE_WORKBOOK_SCHEMA
 
 ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 
@@ -165,10 +166,8 @@ register_tool(
     ToolSpec(
         name="parse_workbook",
         func=parse_workbook_tool,
-        description=(
-            "Parse an ASPICE SWE.6 TC workbook (.xlsx/.xlsm) into structured rows. "
-            "Registers a job and returns jobId for downstream tools."
-        ),
+        description=PARSE_WORKBOOK_SCHEMA["description"],
         safety=SafetyLevel.WRITE_SAFE,
+        input_schema=PARSE_WORKBOOK_SCHEMA,
     )
 )

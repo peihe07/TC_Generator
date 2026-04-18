@@ -11,6 +11,7 @@ from spec_matcher import build_spec_index, match_spec_references
 
 from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
+from .schemas import MATCH_SPEC_SCHEMA
 
 
 def match_spec_tool(
@@ -79,10 +80,8 @@ register_tool(
     ToolSpec(
         name="match_spec",
         func=match_spec_tool,
-        description=(
-            "Match each Test Item against a SYS1 reference workbook using PDM exact match "
-            "(Layer 1) + token Jaccard fallback (Layer 1.5). Returns summary counts and per-row matches."
-        ),
+        description=MATCH_SPEC_SCHEMA["description"],
         safety=SafetyLevel.READ_ONLY,
+        input_schema=MATCH_SPEC_SCHEMA,
     )
 )

@@ -8,6 +8,7 @@ from __future__ import annotations
 from validator import validate_row
 
 from .registry import SafetyLevel, ToolSpec, register_tool
+from .schemas import VALIDATE_TC_SCHEMA
 
 
 def _normalize_issues(results: dict) -> list[dict]:
@@ -58,10 +59,8 @@ register_tool(
     ToolSpec(
         name="validate_tc",
         func=validate_tc_tool,
-        description=(
-            "Run programmatic ASPICE SWE.6 validation on a single generated TC. "
-            "Returns per-check issues and a hasWarnings flag."
-        ),
+        description=VALIDATE_TC_SCHEMA["description"],
         safety=SafetyLevel.READ_ONLY,
+        input_schema=VALIDATE_TC_SCHEMA,
     )
 )

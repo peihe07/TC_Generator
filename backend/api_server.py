@@ -14,20 +14,24 @@ from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
-from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_batch, generate_single_tc, generate_quick_tc, decompose_requirement
+from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_quick_tc, decompose_requirement
 from id_generator import generate_group_abbreviation, generate_tc_ids
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
 from spec_matcher import build_spec_index, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
+from agent_session_store import SqliteAgentSessionStore, default_session_db_path
+from routes.agent import build_agent_router
 from tools import (
     ToolError,
+    generate_tc_tool,
     group_tests_tool,
     match_spec_tool,
     parse_workbook_tool,
     validate_tc_tool,
     write_excel_tool,
 )
+from trace_store import SqliteTraceStore, default_trace_db_path
 from writer import build_output_path
 
 
@@ -56,6 +60,9 @@ ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 MAX_UPLOAD_BYTES = int(os.environ.get("TC_MAX_UPLOAD_MB", "50")) * 1024 * 1024
 # SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
 JOB_REGISTRY = SqliteJobStore(default_db_path())
+# Agent 副駕相關：trace + session 各自 SQLite，process-wide singleton
+TRACE_STORE = SqliteTraceStore(default_trace_db_path())
+AGENT_SESSION_STORE = SqliteAgentSessionStore(default_session_db_path())
 
 # Startup housekeeping：啟動時清掉超過 JOBS_MAX_AGE_DAYS（預設 30 天）的舊 job
 # 並壓縮檔案。環境變數 `TC_JOBS_MAX_AGE_DAYS` 可覆寫（設 0 停用）。
@@ -122,6 +129,17 @@ def _load_rules() -> str:
 
 
 RULES_SECTIONS = _load_rules()
+
+
+# Agent 副駕 router — 依賴注入 (job_store / trace / session / rules)
+app.include_router(
+    build_agent_router(
+        job_store=JOB_REGISTRY,
+        trace_store=TRACE_STORE,
+        session_store=AGENT_SESSION_STORE,
+        rules_text_getter=lambda: RULES_SECTIONS,
+    )
+)
 
 
 class GenerateConfig(BaseModel):
@@ -782,19 +800,20 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 continue
 
             try:
-                if len(batch) == 1:
-                    context["test_set"] = batch[0].get("test_set", "N/A")
-                    result = generate_single_tc(batch[0], context, spec_index, RULES_SECTIONS, model)
-                    tc_data_list = [result.tc_data]
-                else:
-                    result = generate_batch(batch, context, spec_index, RULES_SECTIONS, model)
-                    tc_data_list = result.tc_data
+                batch_result = generate_tc_tool(
+                    rows=batch,
+                    context=context,
+                    spec_index=spec_index,
+                    rules_text=RULES_SECTIONS,
+                    model=model,
+                )
+                tc_data_list = batch_result["tcData"]
 
-                current_cost += result.cost
-                total_input_tokens += result.input_tokens
-                total_output_tokens += result.output_tokens
-                total_cache_creation_tokens += getattr(result, "cache_creation_tokens", 0)
-                total_cache_read_tokens += getattr(result, "cache_read_tokens", 0)
+                current_cost += batch_result["cost"]
+                total_input_tokens += batch_result["inputTokens"]
+                total_output_tokens += batch_result["outputTokens"]
+                total_cache_creation_tokens += batch_result["cacheCreationTokens"]
+                total_cache_read_tokens += batch_result["cacheReadTokens"]
                 for row, tc in zip(batch, tc_data_list):
                     processed += 1
                     updated_row, has_warnings = _build_stream_row(row, tc)
@@ -820,7 +839,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             ),
                         }
                     )
-            except GenerationError as exc:
+            except ToolError as exc:
                 for row in batch:
                     processed += 1
                     yield _sse_event(
@@ -829,7 +848,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             "jobId": jobId,
                             "row": _build_failed_stream_row(
                                 row,
-                                f"Generation failed: {exc}",
+                                f"Generation failed: {exc.message}",
                             ),
                             "stats": {
                                 "total": total,
@@ -913,19 +932,20 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         for i in range(0, total, batch_size):
             batch = rows_to_regen[i : i + batch_size]
             try:
-                if len(batch) == 1:
-                    context["test_set"] = batch[0].get("test_set", "N/A")
-                    result = generate_single_tc(batch[0], context, spec_index, RULES_SECTIONS, model)
-                    tc_data_list = [result.tc_data]
-                else:
-                    result = generate_batch(batch, context, spec_index, RULES_SECTIONS, model)
-                    tc_data_list = result.tc_data
+                batch_result = generate_tc_tool(
+                    rows=batch,
+                    context=context,
+                    spec_index=spec_index,
+                    rules_text=RULES_SECTIONS,
+                    model=model,
+                )
+                tc_data_list = batch_result["tcData"]
 
-                current_cost += result.cost
-                total_in += result.input_tokens
-                total_out += result.output_tokens
-                total_cache_create += getattr(result, "cache_creation_tokens", 0)
-                total_cache_read += getattr(result, "cache_read_tokens", 0)
+                current_cost += batch_result["cost"]
+                total_in += batch_result["inputTokens"]
+                total_out += batch_result["outputTokens"]
+                total_cache_create += batch_result["cacheCreationTokens"]
+                total_cache_read += batch_result["cacheReadTokens"]
                 for row, tc in zip(batch, tc_data_list):
                     processed += 1
                     updated_row, _ = _build_stream_row(row, tc)
@@ -937,14 +957,14 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             "stats": _stats(),
                         }
                     )
-            except GenerationError as exc:
+            except ToolError as exc:
                 for row in batch:
                     processed += 1
                     yield _sse_event(
                         {
                             "type": "row.regen_failed",
                             "jobId": job_id,
-                            "row": _build_failed_stream_row(row, str(exc)),
+                            "row": _build_failed_stream_row(row, exc.message),
                             "stats": _stats(),
                         }
                     )
