@@ -1,8 +1,8 @@
 # TC Generator — Roadmap
 
-版本：v1.0
+版本：v1.2
 日期：2026-04-18
-狀態：**下一步規劃（尚未開工）**
+狀態：**Phase 0 + Phase 1 已完成，Phase 2（Frontend ChatModule）待開工**
 
 目前已完成的內容請看 [STATUS.md](STATUS.md)。
 
@@ -36,13 +36,16 @@
 | 項目 | 狀態 |
 |---|---|
 | Backend 核心模組 | `parser / spec_matcher / grouper / prompt_builder / generator / validator / writer / job_manager / job_store` 共 9 個 |
-| FastAPI endpoints | 8 個：health / parse / group / match / generate / generate-stream / regenerate-stream / export / download |
-| Backend 測試 | 225 pass（pytest） |
+| Backend tool layer | `backend/tools/` 10 個 tool + JSON schemas（Phase 0 + Phase 1 完成） |
+| Agent 副駕 | `agent_dispatcher.py` / `trace_store.py` / `agent_session_store.py` / `routes/agent.py` / `tools/replay.py`（Phase 1 完成） |
+| FastAPI endpoints | 8 REST + agent chat + session CRUD + trace export（全部走 tool 層） |
+| Backend 測試 | 360 pass（pytest，含 94 個 agent/tool 新增測試） |
 | Frontend 架構 | Next.js desktop，active modules 為 `*Module.tsx`；`jobAdapter.ts` 為單一 adapter |
 | Frontend 測試 | TypeScript typecheck 通過；workspace round-trip E2E 通過 |
 | 真實基準 | 44 rows / $0.125 / cache hit 90.9% / spec match rate 100% |
 
-**結論**：基礎穩固，可以直接疊加 Agent 層，不需要先做大規模 refactor。
+**結論**：Phase 0 + Phase 1 完成後 backend 已全面就緒，`POST /api/agent/chat`
+能跑 5 個 golden scenario。Phase 2 專注在把 ChatModule 接上這條 SSE。
 
 ---
 
@@ -432,22 +435,38 @@ onClick={() => {
 
 ## 6. 分階段實作計畫
 
-### Phase 0 — Tool Layer 抽取（2–3 天）
+### Phase 0 — Tool Layer 抽取（已完成 ✓）
 
 **目標**：把現有 FastAPI route 裡的業務邏輯抽出到 `backend/tools/`，route 變薄。
 
-| 任務 | 驗收 |
-|---|---|
-| 建 `backend/tools/` 資料夾與 `registry.py` 骨架 | import 成功、pytest 仍 225 pass |
-| 抽 `parse_workbook_tool` | `test_api_server::test_parse` 仍 pass；新增 `test_tool_parse` |
-| 抽 `match_spec_tool` / `group_tests_tool` | 同上 |
-| 抽 `generate_tc_tool` / `regenerate_tc_tool` | 同上，含 SSE stream 行為維持 |
-| 抽 `validate_tc_tool` / `write_excel_tool` | 同上 |
-| 新增 `ToolError` 例外與 HTTP 對應表 | 現有 API 回應 status code 不變 |
+| 任務 | 狀態 | 備註 |
+|---|---|---|
+| 建 `backend/tools/` + `registry.py` + `ToolError` | ✓ | `SafetyLevel` 4 級；7 種錯誤代碼 → HTTP |
+| 抽 `parse_workbook_tool` | ✓ | WRITE_SAFE |
+| 抽 `group_tests_tool` / `match_spec_tool` | ✓ | READ_ONLY；`group` 含 PDM/REQ fallback，`match` 含 Layer1.5 fuzzy |
+| 抽 `validate_tc_tool` / `write_excel_tool` | ✓ | READ_ONLY / DESTRUCTIVE |
+| 抽 `generate_tc_tool` | ✓ | WRITE_COSTLY；SSE orchestration 留 route |
 
-**不做的事**：不改 API shape、不改前端。這個 Phase 結束時 GUI 使用者完全無感。
+**結果**：pytest 225 → 266，API 行為零變化。
 
-### Phase 1 — Agent Endpoint（3–4 天）
+### Phase 1 — Agent Endpoint（已完成 ✓）
+
+| 任務 | 狀態 | 備註 |
+|---|---|---|
+| `tools/schemas.py` — 10 個 OpenAI function-calling schema | ✓ | `ALL_SCHEMAS` + `openai_tool_definitions()` |
+| `trace_store.py` — SqliteTraceStore + TraceEvent + sha256 result_hash | ✓ | append-only，支援 export_jsonl / purge / delete |
+| `agent_dispatcher.py` — LLM loop + dispatch + budget gate | ✓ | `LLMStep` 抽象、`_INJECT_*` 自動注入、`auto_approve` 測試旗標 |
+| `agent_session_store.py` — SQLite 對話 history | ✓ | `create/get/update/list_recent/delete/purge` |
+| `routes/agent.py` — SSE endpoint + session REST | ✓ | `POST /chat`, `GET/DELETE /sessions/{id}`, `/sessions/{id}/trace` |
+| `tools/replay.py` — `python -m tools.replay SID` | ✓ | 跳過 WRITE_COSTLY / DESTRUCTIVE，mismatch 回 exit 1 |
+| System prompt v1 | ✓ | 6 條 hard rules + 繁中回覆指示 + tool notes |
+| 4 個 READ_ONLY 查詢 tool | ✓ | inspect_workbook / list_jobs / estimate_cost / get_job_validation |
+| 5 個 golden scenario 整合測試 | ✓ | parse / pipeline / list+regen / cross-job validation / estimate |
+
+**結果**：pytest 266 → 360（+94），`POST /api/agent/chat` 上線，`replay` CLI 可產稽核 JSONL。
+
+<details>
+<summary>原本規劃的任務表（供比對）</summary>
 
 | 任務 | 驗收 |
 |---|---|
@@ -465,6 +484,8 @@ onClick={() => {
 3. 「上週那個 job 補 REQ-045」→ list_jobs → regenerate_tc
 4. 「跨 job 查 match rate」→ list_jobs → 迴圈 get_job_validation
 5. 「estimate 這個檔多少錢」→ inspect_workbook → estimate_cost
+
+</details>
 
 ### Phase 2 — Frontend ChatModule（4–5 天）
 
@@ -689,15 +710,10 @@ frontend/app/api/*                       # 既有 proxy route 不動
 
 ---
 
-## 13. 下一步決策點
+## 13. 決策紀錄
 
-在開始 Phase 0 前，需要先確認以下三件事：
+Phase 0 開工前確認、目前執行中：
 
-1. **LLM 供應商**：沿用 OpenAI function calling，還是引入 Anthropic？
-   - 建議：Phase 1 先用 OpenAI（專案已經在用），Phase 4 再評估 Anthropic 的長 context 優勢。
-2. **資料夾重構**：是否要建 `backend/core/` 子目錄？
-   - 建議：不要。現行扁平結構 + 新增 `backend/tools/` 衝擊最小。
-3. **Trace 寫入粒度**：每個 event 都寫，還是只寫 tool call？
-   - 建議：tool call + LLM response 都寫。LLM chunk 不寫（太雜）。
-
-確認後，Phase 0 第一天就可以開工。
+1. **LLM 供應商**：沿用 OpenAI function calling。Phase 4 再評估 Anthropic 長 context 優勢。
+2. **資料夾結構**：保留 `backend/` 扁平結構，只新增 `backend/tools/`（已落地）。
+3. **Trace 寫入粒度**：tool call + LLM 完整 response 都寫；LLM chunk 不寫（太雜）。

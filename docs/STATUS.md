@@ -4,6 +4,15 @@
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
 
+> **Phase 0 + Phase 1 已完成**：
+> - Phase 0：`backend/tools/` 下建立 10 個 pure-function tool，所有 FastAPI
+>   route 走 tool 層，API 行為零變化。
+> - Phase 1：`agent_dispatcher.py` + `trace_store.py` + `agent_session_store.py`
+>   + `routes/agent.py` SSE endpoint，加上 JSON schema / replay CLI / 5 個
+>   golden scenario 整合測試。
+>
+> 下一步進 Phase 2（Frontend ChatModule）。
+
 ---
 
 ## 專案簡介
@@ -75,8 +84,29 @@ TC_Generator/
 │   ├── writer.py                    # Excel 回寫
 │   ├── job_manager.py               # review/export 狀態管理
 │   ├── job_store.py                 # SqliteJobStore，job 持久化到 output/jobs.db
+│   ├── trace_store.py               # SqliteTraceStore（agent 決策歷程，sha256 hash）
+│   ├── agent_session_store.py       # SqliteAgentSessionStore（對話 history）
+│   ├── agent_dispatcher.py          # LLM loop + tool 分發 + budget gate
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   └── agent.py                 # /api/agent/chat SSE + session REST
+│   ├── tools/                       # Phase 0 tool layer（純函式 + registry）
+│   │   ├── __init__.py              # 匯出 ToolError / SafetyLevel / 各 tool
+│   │   ├── errors.py                # ToolError + HTTP status 對照
+│   │   ├── registry.py              # ToolSpec / SafetyLevel / register_tool
+│   │   ├── schemas.py               # OpenAI function-calling JSON schemas
+│   │   ├── _budget.py               # needs_confirmation() 門檻
+│   │   ├── parse.py                 # parse_workbook_tool      (WRITE_SAFE)
+│   │   ├── group.py                 # group_tests_tool         (READ_ONLY)
+│   │   ├── match.py                 # match_spec_tool          (READ_ONLY)
+│   │   ├── validate.py              # validate_tc_tool         (READ_ONLY)
+│   │   ├── write.py                 # write_excel_tool         (DESTRUCTIVE)
+│   │   ├── generate.py              # generate_tc_tool         (WRITE_COSTLY)
+│   │   ├── inspect.py               # inspect_workbook_tool    (READ_ONLY)
+│   │   ├── jobs.py                  # list_jobs / estimate_cost / get_job_validation
+│   │   └── replay.py                # trace replay CLI
 │   └── main.py                      # CLI 入口
-├── tests/                           # pytest（225 pass）
+├── tests/                           # pytest（360 pass）
 ├── frontend/
 │   ├── app/
 │   │   ├── page.tsx / layout.tsx
@@ -120,6 +150,19 @@ TC_Generator/
 ### Backend
 
 - 核心 9 模組全部實作並通過測試（parser / spec_matcher / spec_parser / grouper / prompt_builder / generator / validator / writer / job_manager）
+- **Phase 0 tool layer**：`backend/tools/` 封裝所有業務動作為 pure function；
+  FastAPI route 變薄，僅處理 HTTP 邊界與 `ToolError → HTTPException` 翻譯；
+  tool 同時可被 Agent dispatcher 直接呼叫
+- **Phase 1 agent 層**：
+  - `agent_dispatcher.py`：LLM loop + tool 分發 + budget gate
+    （DESTRUCTIVE 永遠確認、WRITE_COSTLY 依估算成本超 $0.50 觸發確認）
+  - `trace_store.py`：每個 tool call / llm_response 寫入 SQLite；`result_hash`
+    採 sha256 canonical JSON，供 replay CLI 比對
+  - `agent_session_store.py`：SQLite session table，支援 resume / cleanup
+  - `routes/agent.py`：`/api/agent/chat` SSE + session CRUD + trace export
+  - `tools/replay.py`：`python -m tools.replay SID` 稽核重放
+  - 10 個 tool + 10 個 OpenAI function-calling JSON schema
+  - System prompt v1（英文規則，明確要 LLM 用繁體中文回覆）
 - SqliteJobStore：job 跨重啟持久化；啟動自動 `purge_older_than` + `vacuum`（預設 30 天，`TC_JOBS_MAX_AGE_DAYS` 覆寫）
 - Parser 容忍中英雙語 sheet 標題與檔名後綴（`拷貝`、`-1` 等）
 - Spec matcher 命中率從 54.5% 提升到 100%（Layer 1 + Layer 1.5 fuzzy Jaccard）
@@ -154,7 +197,9 @@ TC_Generator/
 
 ### 測試覆蓋
 
-- `pytest -q`：225 pass
+- `pytest -q`：360 pass（225 原始 + 41 Phase 0 tool layer + 94 Phase 1 agent）
+  - schemas: 13 / trace_store: 12 / dispatcher: 16 / session_store: 9 /
+    route_agent: 9 / replay: 9 / inspect+jobs: 17 / golden scenarios: 5
 - `npx tsc --noEmit`：0 error
 - Playwright E2E：Workspace JSON round-trip（save → export → new → import → load）
 - API smoke：parse / group / match / generate / regenerate / export / download 端到端
