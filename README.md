@@ -56,7 +56,7 @@ npx tsc --noEmit
 1. Start the Python API:
 
 ```bash
-uvicorn api_server:app --app-dir src --host 127.0.0.1 --port 8000
+uvicorn api_server:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
 2. Start the Next.js frontend:
@@ -126,9 +126,17 @@ python backend/main.py \
 - Parse and export are verified end-to-end through the desktop and proxy routes.
 - Real generation still depends on a valid OpenAI credential at runtime.
 
-## Related Docs
+## Documentation
 
-- [docs/RULES.md](/Users/peihe/Work_Projects/TC_Generator/docs/RULES.md)
-- [docs/IMPLEMENTATION_PLAN.md](/Users/peihe/Work_Projects/TC_Generator/docs/IMPLEMENTATION_PLAN.md)
-- [docs/API_CONTRACT.md](/Users/peihe/Work_Projects/TC_Generator/docs/API_CONTRACT.md)
-- [docs/project_overview.md](/Users/peihe/Work_Projects/TC_Generator/docs/project_overview.md)
+Two entry points — pick based on what you need:
+
+- **[docs/STATUS.md](docs/STATUS.md)** — what's been built, current architecture, test baselines
+- **[docs/ROADMAP.md](docs/ROADMAP.md)** — what's planned next (Agent副駕模式 integration)
+
+Reference docs:
+
+- [docs/API_CONTRACT.md](docs/API_CONTRACT.md) — browser ↔ backend API specs
+- [docs/RULES.md](docs/RULES.md) — TC auto-generation tool rules (column mapping, ID format, validation)
+- [docs/ASPICE_SWE6_Test_Case_Writing_Rules.md](docs/ASPICE_SWE6_Test_Case_Writing_Rules.md) — ASPICE SWE.6 compliance rules (auto-loaded into LLM prompt)
+- [docs/Test Case Design Method 判斷規則.md](docs/Test%20Case%20Design%20Method%20判斷規則.md) — Design method selection rules (auto-loaded into LLM prompt)
+- [docs/TC_Generator_Architecture_Diagrams.html](docs/TC_Generator_Architecture_Diagrams.html) — visual architecture reference

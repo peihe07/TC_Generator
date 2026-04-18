@@ -108,21 +108,29 @@ Automatically match each Test Item to its source requirement in the SYS1 spec Ex
 | D | Description | `PDM01.) The user can access...` |
 | E | Source ID | `Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_2.2` |
 
-**Matching strategy — two layers:**
+**Matching strategy — three layers (current implementation stops at 1.5):**
 
 **Layer 1: PDM code exact match (programmatic, no AI)**
 
 1. Parse SYS1 descriptions to extract PDM codes: `PDM01`, `PDM05.2`, `PDMS01`, `MPDM1`, `TD1.7`, `DNDS2`, `PDEE01`, `APAC0.1`, etc.
-2. Build index: `{ "PDM01": { nrl_id, outline, source_id, description }, ... }`
+2. Build `SpecIndex` (dict subclass): `{ "PDM01": entry }`, plus `.entries: list[entry]` for Layer 1.5.
 3. Parse each Test Item (Col I) to extract PDM codes using regex: `/\b(PDM\d+\.?\d*|PDMS\d+\.?\d*|MPDM\d+\.?\d*|TD\d+\.?\d*|DNDS\d+\.?\d*|PDEE\d+\.?\d*|APAC\d+\.?\d*|PSR\d+\.?\d*)\b/`
-4. Match → fill Col N with Source ID value
+4. Match → fill Col N with Source ID value; `match_type = "exact"`.
 
-**Layer 2: Semantic match (AI, only for unmatched rows)**
+**Layer 1.5: Token Jaccard fallback (programmatic, no AI — implemented)**
 
 For Test Items without a PDM code or where Layer 1 returns no match:
-1. Send the Test Item text + full SYS1 requirement list to AI
-2. AI returns the top 1-3 matching NRL IDs with confidence scores
-3. Flag as "AI-matched" for human review
+
+1. Tokenize the Test Item: lower-case, keep 3+ char alphanumeric tokens, drop stop-words.
+2. Compute Jaccard similarity against every SYS1 description.
+3. If the best score ≥ `FUZZY_THRESHOLD` (default `0.15`), take that entry; set `match_type = "fuzzy"` and attach `match_score` (rounded to 3 decimals).
+4. Otherwise mark `match_type = "unmatched"`.
+
+On the DeviceManager real workbook this lifted match rate from **54.5% → 100%** (24 exact + 20 fuzzy).
+
+**Layer 2: Semantic match (AI — deferred)**
+
+Only relevant if Layer 1.5 leaves too many unmatched rows or produces false positives. Would send the Test Item + full SYS1 requirement list to the LLM and surface confidence-scored candidates for human review. Not implemented yet; revisit once real-world data shows Layer 1.5 is insufficient.
 
 **Output format for Col N:**
 `Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_{outline_number}`
