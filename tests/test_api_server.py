@@ -137,7 +137,7 @@ def test_create_generate_job():
     assert "/api/generate/stream?jobId=parse-20260416-123456" in payload["streamUrl"]
 
 
-@patch("api_server.generate_batch")
+@patch("tools.generate.generate_batch")
 def test_stream_generate_job(mock_generate_batch):
     parse_response = client.post(
         "/api/parse",
@@ -204,7 +204,7 @@ def test_stream_generate_job(mock_generate_batch):
     assert '"tcId": "newR1L-DMR-001"' in response.text
 
 
-@patch("api_server.generate_single_tc")
+@patch("tools.generate.generate_single_tc")
 def test_stream_generate_job_marks_strict_validation_failures(mock_generate_single_tc):
     parse_response = client.post(
         "/api/parse",
