@@ -48,7 +48,7 @@ Frontend typecheck:
 
 ```bash
 cd frontend
-npx tsc --noEmit
+npm run typecheck
 ```
 
 ## Run The Desktop App

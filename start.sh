@@ -26,7 +26,7 @@ fi
 
 # --- Write frontend .env.local if missing ---
 if [ ! -f "$FRONTEND_ENV" ]; then
-  echo "NEXT_PUBLIC_PYTHON_API_BASE=http://localhost:${BACKEND_PORT}" > "$FRONTEND_ENV"
+  echo "PYTHON_API_BASE=http://localhost:${BACKEND_PORT}" > "$FRONTEND_ENV"
   info "Created $FRONTEND_ENV"
 fi
 
@@ -41,13 +41,13 @@ source "$ROOT_DIR/.venv/bin/activate"
 # --- Start backend ---
 info "Starting backend on port $BACKEND_PORT..."
 cd "$ROOT_DIR"
-uvicorn api_server:app --reload --app-dir "$BACKEND_DIR" --port "$BACKEND_PORT" &
+uvicorn api_server:app --app-dir "$BACKEND_DIR" --host 127.0.0.1 --port "$BACKEND_PORT" &
 BACKEND_PID=$!
 
 # --- Start frontend ---
 info "Starting frontend on port $FRONTEND_PORT..."
 cd "$FRONTEND_DIR"
-npm run dev -- --port "$FRONTEND_PORT" &
+npm run dev -- --hostname 127.0.0.1 --port "$FRONTEND_PORT" &
 FRONTEND_PID=$!
 
 info "---"

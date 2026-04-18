@@ -1,7 +1,5 @@
 const backendBaseUrl =
-  process.env.PYTHON_API_BASE?.replace(/\/$/, "") ??
-  process.env.NEXT_PUBLIC_PYTHON_API_BASE?.replace(/\/$/, "") ??
-  "";
+  process.env.PYTHON_API_BASE?.replace(/\/$/, "") ?? "";
 
 export function getBackendBaseUrl() {
   if (!backendBaseUrl) {

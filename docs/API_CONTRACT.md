@@ -11,8 +11,7 @@ The browser should call the Next.js routes. Those routes proxy to the Python bac
 
 ## Environment
 
-- Preferred frontend proxy env var: `PYTHON_API_BASE`
-- Fallback env var: `NEXT_PUBLIC_PYTHON_API_BASE`
+- Frontend proxy env var: `PYTHON_API_BASE`
 - Example backend target: `http://127.0.0.1:8000`
 
 ## Browser-Facing Routes
