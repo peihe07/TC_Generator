@@ -83,6 +83,16 @@ const ICONS: Record<WindowID, React.ReactNode> = {
       <rect x="26" y="6" width="2" height="22" fill="#c0c0c0" stroke="#000" strokeWidth="1"/>
     </svg>
   ),
+  chat: (
+    <svg width={ICON_PX} height={ICON_PX} viewBox="0 0 32 32" shapeRendering="crispEdges">
+      <rect x="4" y="4" width="24" height="18" fill="#000080" stroke="#000" strokeWidth="1"/>
+      <rect x="6" y="6" width="20" height="14" fill="#0000cc"/>
+      <rect x="8" y="9" width="4" height="4" fill="#00ff00"/>
+      <rect x="14" y="9" width="4" height="4" fill="#00ff00"/>
+      <rect x="20" y="9" width="4" height="4" fill="#00ff00"/>
+      <polygon points="10,22 14,22 12,28" fill="#000080"/>
+    </svg>
+  ),
 };
 
 const DESKTOP_ICONS: { id: WindowID; label: string }[] = [
@@ -94,6 +104,7 @@ const DESKTOP_ICONS: { id: WindowID; label: string }[] = [
   { id: 'quickGenerate', label: 'Quick TC' },
   { id: 'diagrams',      label: 'Diagrams' },
   { id: 'rules',         label: 'TC Rules' },
+  { id: 'chat',          label: 'Agent' },
 ];
 
 const WINDOW_TITLES: Record<WindowID, string> = {
@@ -105,6 +116,7 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   quickGenerate: 'Quick TC Generator',
   diagrams:      'Architecture Diagrams',
   rules:         'TC Writing Rules',
+  chat:          'Agent Co-pilot',
 };
 
 // Default icon grid positions (left column, top-to-bottom)

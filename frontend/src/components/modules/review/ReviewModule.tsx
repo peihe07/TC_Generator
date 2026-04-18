@@ -481,16 +481,16 @@ const ReviewModule: React.FC = () => {
             <thead className="sticky top-0 z-10">
               <tr>
                 <th className="win95-th center" style={{ width: 32 }}>
-                  <button
-                    className="flex items-center justify-center w-full"
-                    title={allVisibleSelected ? 'Deselect all' : 'Select all'}
-                    onClick={toggleSelectAll}
-                    style={{ minHeight: 18, padding: 0, background: 'transparent', border: 'none', boxShadow: 'none' }}
-                  >
-                    {allVisibleSelected
-                      ? <RiCheckboxLine className="size-4 text-blue-700" />
-                      : <RiCheckboxBlankLine className="size-4 text-gray-700" />}
-                  </button>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      checked={allVisibleSelected}
+                      onChange={toggleSelectAll}
+                      title={allVisibleSelected ? 'Deselect all' : 'Select all'}
+                    />
+                    <label htmlFor="select-all" style={{ margin: 0 }} />
+                  </div>
                 </th>
                 <th className="win95-th center" style={{ width: 24 }}></th>
                 <th className="win95-th">TC ID</th>
@@ -514,16 +514,19 @@ const ReviewModule: React.FC = () => {
                         ${row.pendingRegenerated && !isActive && !isSelected ? 'bg-yellow-50' : ''}
                       `}
                     >
-                      <td className="text-center px-2 py-2" onClick={(e) => e.stopPropagation()}>
-                        <button
-                          className="flex items-center justify-center w-full"
-                          onClick={() => toggleSelectRow(row.id)}
-                          style={{ minHeight: 18, padding: 0, background: 'transparent', border: 'none', boxShadow: 'none' }}
-                        >
-                          {isSelected
-                            ? <RiCheckboxLine className="size-4 text-blue-700" />
-                            : <RiCheckboxBlankLine className="size-4 text-gray-400" />}
-                        </button>
+                      <td
+                        style={{ cursor: 'pointer', width: 32, textAlign: 'center', verticalAlign: 'middle' }}
+                        onClick={(e) => { e.stopPropagation(); toggleSelectRow(row.id); }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+                          <input
+                            type="checkbox"
+                            id={`row-${row.id}`}
+                            checked={isSelected}
+                            onChange={() => {}}
+                          />
+                          <label htmlFor={`row-${row.id}`} style={{ margin: 0 }} />
+                        </div>
                       </td>
 
                       <td className="text-center py-2" onClick={() => toggleExpand(row.id)}>
