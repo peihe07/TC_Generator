@@ -12,6 +12,7 @@ import {
   RiCheckDoubleFill,
   RiStopCircleLine
 } from '@remixicon/react';
+import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 
 const GenerateModule: React.FC = () => {
   const {
@@ -89,8 +90,16 @@ const GenerateModule: React.FC = () => {
     appendLog(createJobLog('warn', 'Generation stopped by operator.'));
   };
 
+  const buildContext = () => {
+    const jobId = jobMetadata?.jobId ?? '未開啟 job';
+    return `[context: 目前在 Generate Module, job=${jobId}]\n[進度: ${stats.processed}/${stats.total || tcRows.length} rows, 成本 $${stats.cost.toFixed(4)}]\n`;
+  };
+
   return (
     <div className="flex flex-col h-full gap-4">
+      <div className="flex justify-end">
+        <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
+      </div>
       <fieldset className="p-4 border-2 border-sunken">
         <legend className="px-2 font-bold">Progress</legend>
         <div className="flex flex-col gap-2">

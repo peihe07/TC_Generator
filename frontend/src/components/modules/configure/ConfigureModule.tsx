@@ -10,6 +10,7 @@ import {
   RiPlayFill,
   RiRefreshLine,
 } from '@remixicon/react';
+import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 
 type GroupPreviewState = {
   groups: Array<{
@@ -153,8 +154,17 @@ const ConfigureModule: React.FC = () => {
     { id: 'tab3', label: 'Options' },
   ] as const;
 
+  const buildContext = () => {
+    const jobId = jobMetadata?.jobId ?? '未開啟 job';
+    const count = tcRows.length;
+    return `[context: 目前在 Configure Module, job=${jobId}]\n[Test Sets: ${count} 個]\n`;
+  };
+
   return (
     <div className="flex flex-col h-full overflow-hidden">
+      <div className="flex justify-end pb-1">
+        <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
+      </div>
       {/* 98.css native tab structure */}
       <div className="flex-1 flex flex-col overflow-hidden" role="tabpanel">
         <menu role="tablist" style={{ paddingLeft: 3, marginBottom: -2 }}>

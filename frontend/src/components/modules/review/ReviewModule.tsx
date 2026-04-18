@@ -6,6 +6,7 @@ import { useWindowStore } from '../../../store/useWindowStore';
 import { TcRow } from '../../../lib/types';
 import { createJobLog } from '../../../lib/logging';
 import { regenerateRows } from '../../../services/jobAdapter';
+import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import {
   RiCheckFill,
   RiCloseFill,
@@ -473,6 +474,10 @@ const ReviewModule: React.FC = () => {
               Total: {tcRows.length} | Accepted: {tcRows.filter((r) => r.status === 'accepted').length} | Expanded: {expandedRows.size}
             </span>
           </div>
+          <HelpFromAgentButton
+            contextPrompt={`[context: 目前在 Review Module, job=${jobMetadata?.jobId ?? '未開啟 job'}]\n[Validator: ${tcRows.filter(r => (r.validationErrors ?? []).length > 0).length} warnings]\n`}
+            title="求助 AI"
+          />
         </div>
 
         {/* Table */}

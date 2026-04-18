@@ -6,6 +6,7 @@ import { useWindowStore } from '../../../store/useWindowStore';
 import { createJobLog } from '../../../lib/logging';
 import { parseJobFiles } from '../../../services/jobAdapter';
 import { RiFileLine, RiFileExcel2Line, RiFileSearchLine, RiArrowRightLine } from '@remixicon/react';
+import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 
 const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
@@ -88,8 +89,16 @@ const UploadModule: React.FC = () => {
     }
   };
 
+  const buildContext = () => {
+    const fileName = files.tc?.name ?? '未上傳';
+    return `[context: 目前在 Upload Module]\n[目前檔案: ${fileName}]\n`;
+  };
+
   return (
     <div className="flex flex-col h-full gap-4">
+      <div className="flex justify-end">
+        <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
+      </div>
       <div className="flex-1 flex flex-col gap-6">
         <fieldset className="p-4 border-2 border-sunken">
           <legend className="px-2 font-bold">TC Specification (.xlsx)</legend>

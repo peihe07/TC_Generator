@@ -871,3 +871,22 @@ button.btn-icon:hover {
   gap: 2px;
   justify-content: flex-end;
 }
+
+/* Help from Agent button (per-module) */
+.btn-help-agent {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-help-agent:hover:not(:disabled) {
+  background: var(--win95-select-bg, #000080);
+  color: var(--win95-select-text, #fff);
+}
+.btn-help-agent:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

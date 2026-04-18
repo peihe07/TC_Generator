@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { RiSendPlaneLine, RiAttachmentLine, RiLoader4Line } from '@remixicon/react';
 import { useAgentStore } from '../../../store/useAgentStore';
 import { parseJobFiles } from '../../../services/jobAdapter';
@@ -14,6 +14,16 @@ export default function InputArea() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isDisabled = streamState === 'sending' || streamState === 'streaming';
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const prompt = (e as CustomEvent<string>).detail;
+      setText((prev) => prompt + prev);
+      textareaRef.current?.focus();
+    };
+    window.addEventListener('agent-prefill', handler);
+    return () => window.removeEventListener('agent-prefill', handler);
+  }, []);
 
   const handleSend = async () => {
     const trimmed = text.trim();
