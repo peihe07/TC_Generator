@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>TC Generator — Agent / GUI 切換流程</title>
+<style>
+  @font-face {
+    font-family: "Pixelated MS Sans Serif";
+    src: url("https://unpkg.com/98.css@0.1.21/dist/ms_sans_serif.woff") format("woff");
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: "Pixelated MS Sans Serif";
+    src: url("https://unpkg.com/98.css@0.1.21/dist/ms_sans_serif_bold.woff") format("woff");
+    font-weight: bold;
+  }
+
+  * { box-sizing: border-box; border-radius: 0 !important; }
+
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
+    font-size: 13px;
+    background: #008080;
+    min-height: 100vh;
+  }
+
+  .window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+    width: 1280px;
+    margin: 0 auto 24px auto;
+  }
+
+  .title-bar {
+    background: linear-gradient(to right, #000080, #1084d0);
+    color: #ffffff;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    padding: 3px 6px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .window-body { padding: 20px; }
+
+  h2 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #000080;
+    border-bottom: 2px solid #808080;
+    padding-bottom: 4px;
+  }
+
+  h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #303030;
+    margin: 16px 0 6px 0;
+  }
+
+  /* ===== flow diagram ===== */
+  .flow {
+    position: relative;
+    width: 100%;
+    height: 780px;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .node {
+    position: absolute;
+    padding: 10px 14px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 140px;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+    line-height: 1.4;
+  }
+
+  /* node types */
+  .n-start { background: #fffccc; }
+  .n-gui { background: #c8dcf0; border-color: #ffffff #1050a0 #1050a0 #ffffff; }
+  .n-agent { background: #d0e8d0; border-color: #ffffff #307030 #307030 #ffffff; }
+  .n-decision {
+    background: #ffe8b0;
+    border-color: #ffffff #a06000 #a06000 #ffffff;
+    transform: rotate(45deg);
+    width: 110px; height: 110px;
+    min-width: 0;
+    padding: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .n-decision > div {
+    transform: rotate(-45deg);
+    width: 140px;
+    font-weight: bold;
+    font-size: 11px;
+  }
+  .n-bridge {
+    background: #f0c8f0;
+    border-color: #ffffff #802080 #802080 #ffffff;
+    font-style: italic;
+  }
+  .n-end { background: #a0d0a0; font-weight: bold; border-color: #ffffff #204020 #204020 #ffffff; }
+
+  .node small { display: block; font-size: 10px; color: #606060; margin-top: 2px; font-style: italic; }
+
+  /* arrows */
+  .arrow {
+    position: absolute;
+    background: #000000;
+    height: 2px;
+    transform-origin: left center;
+  }
+  .arrow::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border-left: 8px solid #000;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+  .arrow-label {
+    position: absolute;
+    background: #ffffc0;
+    border: 1px solid #808080;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  /* double arrow (bridge) */
+  .bridge-arrow {
+    position: absolute;
+    border-top: 2px dashed #800080;
+    border-bottom: 2px dashed #800080;
+    height: 8px;
+  }
+
+  /* legend */
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    font-size: 12px;
+  }
+  .legend-box {
+    width: 18px; height: 18px;
+    border: 2px solid;
+    border-color: #ffffff #404040 #404040 #ffffff;
+    flex-shrink: 0;
+  }
+
+  /* matrix */
+  .matrix {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 12px;
+  }
+  .matrix th, .matrix td {
+    padding: 8px 10px;
+    border: 1px solid #808080;
+    text-align: left;
+    vertical-align: top;
+  }
+  .matrix th {
+    background: #c0c0c0;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+  }
+  .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: bold;
+    border: 2px solid;
+  }
+  .tag.gui { background: #c8dcf0; border-color: #ffffff #1050a0 #1050a0 #ffffff; color: #0a2a50; }
+  .tag.agent { background: #d0e8d0; border-color: #ffffff #307030 #307030 #ffffff; color: #204020; }
+
+  .scenario {
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .scenario .scen-title {
+    font-weight: bold;
+    color: #000080;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  .scenario .step {
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .scenario .step::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: #808080;
+  }
+  .scenario .handoff {
+    background: #ffe0b0;
+    border-left: 3px solid #a06000;
+    padding: 4px 8px;
+    margin: 4px 0 4px 20px;
+    font-style: italic;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 主流程圖 ===== -->
+<div class="window">
+  <div class="title-bar">User Flow — 何時使用 GUI、何時切 Agent、何時回切</div>
+  <div class="window-body">
+
+    <div class="flow">
+
+      <!-- START -->
+      <div class="node n-start" style="left: 40px; top: 340px;">
+        <strong>使用者有一個需求</strong>
+      </div>
+
+      <!-- DECISION: 需求類型 -->
+      <div class="n-decision" style="left: 260px; top: 310px;">
+        <div>需求<br>類型？</div>
+      </div>
+
+      <!-- GUI path -->
+      <div class="node n-gui" style="left: 470px; top: 130px;">
+        <strong>Upload Module</strong><small>拖檔案 / 設 spec</small>
+      </div>
+      <div class="node n-gui" style="left: 660px; top: 130px;">
+        <strong>Configure Module</strong><small>分組 / 匹配 preview</small>
+      </div>
+      <div class="node n-gui" style="left: 850px; top: 130px;">
+        <strong>Generate Module</strong><small>跑生成</small>
+      </div>
+      <div class="node n-gui" style="left: 470px; top: 230px;">
+        <strong>Review Module</strong><small>逐筆 accept / edit</small>
+      </div>
+      <div class="node n-gui" style="left: 660px; top: 230px;">
+        <strong>Export Module</strong><small>匯出 xlsx</small>
+      </div>
+
+      <!-- Agent path -->
+      <div class="node n-agent" style="left: 470px; top: 480px;">
+        <strong>ChatModule</strong><small>自然語言下指令</small>
+      </div>
+      <div class="node n-agent" style="left: 680px; top: 480px;">
+        <strong>Agent 規劃</strong><small>選 tool chain</small>
+      </div>
+      <div class="node n-agent" style="left: 890px; top: 480px;">
+        <strong>執行 tools</strong><small>parse/generate/...</small>
+      </div>
+      <div class="node n-agent" style="left: 680px; top: 600px;">
+        <strong>回報結果</strong><small>tool card + 選項</small>
+      </div>
+
+      <!-- Bridge zone - GUI to Agent -->
+      <div class="node n-bridge" style="left: 890px; top: 260px; width: 180px;">
+        <strong>卡關？</strong>
+        <small>不會操作 / 想跨 job 查</small>
+      </div>
+
+      <!-- Bridge zone - Agent to GUI -->
+      <div class="node n-bridge" style="left: 890px; top: 600px; width: 180px;">
+        <strong>需要精細操作？</strong>
+        <small>逐筆 edit / side-by-side</small>
+      </div>
+
+      <!-- END -->
+      <div class="node n-end" style="left: 1100px; top: 390px;">
+        Export<br>完成
+      </div>
+
+      <!-- ===== arrows ===== -->
+      <!-- start -> decision -->
+      <div class="arrow" style="left: 196px; top: 360px; width: 60px;"></div>
+
+      <!-- decision -> GUI Upload -->
+      <div class="arrow" style="left: 372px; top: 360px; width: 120px; transform: rotate(-40deg);"></div>
+      <div class="arrow-label" style="left: 400px; top: 248px;">標準流程</div>
+
+      <!-- decision -> ChatModule -->
+      <div class="arrow" style="left: 372px; top: 370px; width: 120px; transform: rotate(40deg);"></div>
+      <div class="arrow-label" style="left: 400px; top: 450px;">模糊 / 查詢 / 批次</div>
+
+      <!-- GUI chain top row -->
+      <div class="arrow" style="left: 612px; top: 152px; width: 46px;"></div>
+      <div class="arrow" style="left: 800px; top: 152px; width: 48px;"></div>
+
+      <!-- GUI generate -> review (wrap) -->
+      <div class="arrow" style="left: 918px; top: 170px; width: 60px; transform: rotate(90deg); transform-origin: left top;"></div>
+      <div class="arrow" style="left: 918px; top: 235px; width: 300px; transform: rotate(180deg); transform-origin: left top;"></div>
+
+      <!-- Review -> Export -->
+      <div class="arrow" style="left: 612px; top: 252px; width: 46px;"></div>
+
+      <!-- Export -> END -->
+      <div class="arrow" style="left: 802px; top: 252px; width: 140px; transform: rotate(32deg);"></div>
+
+      <!-- Agent chain -->
+      <div class="arrow" style="left: 612px; top: 502px; width: 66px;"></div>
+      <div class="arrow" style="left: 822px; top: 502px; width: 66px;"></div>
+
+      <!-- Agent execute -> result -->
+      <div class="arrow" style="left: 950px; top: 522px; width: 90px; transform: rotate(90deg); transform-origin: left top;"></div>
+      <div class="arrow" style="left: 950px; top: 615px; width: 110px; transform: rotate(180deg); transform-origin: left top;"></div>
+
+      <!-- Agent result -> end -->
+      <div class="arrow" style="left: 822px; top: 622px; width: 280px; transform: rotate(-22deg);"></div>
+
+      <!-- ===== BRIDGE arrows (dashed purple) ===== -->
+      <!-- GUI->Bridge->Agent: 卡關時從 Generate 跳到 Chat -->
+      <div class="arrow" style="left: 950px; top: 175px; width: 90px; transform: rotate(90deg); transform-origin: left top; background: #800080;"></div>
+      <div class="arrow-label" style="left: 960px; top: 220px; background: #ffd0ff;">求助 Agent</div>
+
+      <!-- Bridge(卡關) -> ChatModule -->
+      <div class="arrow" style="left: 900px; top: 310px; width: 140px; transform: rotate(122deg); transform-origin: left top; background: #800080;"></div>
+
+      <!-- Agent-> 精細操作 Bridge -> Review -->
+      <div class="arrow" style="left: 980px; top: 600px; width: 80px; transform: rotate(-90deg); transform-origin: left top; background: #800080;"></div>
+      <div class="arrow-label" style="left: 975px; top: 520px; background: #ffd0ff;">Open in Review</div>
+      <div class="arrow" style="left: 900px; top: 615px; width: 430px; transform: rotate(-195deg); transform-origin: left top; background: #800080;"></div>
+
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-box" style="background:#fffccc;"></span>起點</div>
+      <div class="legend-item"><span class="legend-box" style="background:#ffe8b0;"></span>決策點</div>
+      <div class="legend-item"><span class="legend-box" style="background:#c8dcf0;"></span>GUI Module</div>
+      <div class="legend-item"><span class="legend-box" style="background:#d0e8d0;"></span>Agent 節點</div>
+      <div class="legend-item"><span class="legend-box" style="background:#f0c8f0;"></span>切換橋接點</div>
+      <div class="legend-item"><span class="legend-box" style="background:#a0d0a0;"></span>終點</div>
+      <div class="legend-item" style="grid-column: span 2;">
+        <svg width="40" height="8"><line x1="0" y1="4" x2="40" y2="4" stroke="#800080" stroke-width="2" stroke-dasharray="4,3"/></svg>
+        模式切換（雙向）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 決策矩陣 ===== -->
+<div class="window">
+  <div class="title-bar">決策矩陣 — 這個情境該用哪一邊？</div>
+  <div class="window-body">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th style="width: 25%;">情境</th>
+          <th style="width: 10%;">預設模式</th>
+          <th>原因</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第一次跑一個標準 TC 產生</td>
+          <td><span class="tag gui">GUI</span></td>
+          <td>每個欄位看得到、每步可預期、符合 ASPICE 稽核</td>
+        </tr>
+        <tr>
+          <td>跑熟的重複任務（第 10 次同類型）</td>
+          <td><span class="tag agent">AGENT</span></td>
+          <td>一句「跑這份」比點 5 個 module 快</td>
+        </tr>
+        <tr>
+          <td>逐筆 accept / reject / edit Expected Result</td>
+          <td><span class="tag gui">GUI</span></td>
+          <td>Review Module 的 memo 編輯 + side-by-side 比 chat 直觀</td>
+        </tr>
+        <tr>
+          <td>增量補生成（某幾個 REQ）</td>
+          <td><span class="tag agent">AGENT</span></td>
+          <td>「補 REQ-045 到 052」一句解決；GUI 要手動勾選</td>
+        </tr>
+        <tr>
+          <td>跨 job 比較 / 查詢歷史</td>
+          <td><span class="tag agent">AGENT</span></td>
+          <td>GUI 沒有這個功能；Agent 呼 list_jobs 就能做</td>
+        </tr>
+        <tr>
+          <td>手動調整 grouping（拖曳）</td>
+          <td><span class="tag gui">GUI</span></td>
+          <td>拖曳互動非語言能描述；Configure Module 原生支援</td>
+        </tr>
+        <tr>
+          <td>validator 出 warning 不確定怎麼修</td>
+          <td><span class="tag agent">AGENT</span></td>
+          <td>Agent 能診斷並建議 retry / 升級 / 改 prompt</td>
+        </tr>
+        <tr>
+          <td>批次匯出 / 排程</td>
+          <td><span class="tag agent">AGENT</span></td>
+          <td>GUI 未支援；Agent loop 或 cron 皆可</td>
+        </tr>
+        <tr>
+          <td>正式交付 / 客戶送審的最後一版</td>
+          <td><span class="tag gui">GUI</span></td>
+          <td>Export 前人工走一遍 Review，責任鏈清楚</td>
+        </tr>
+        <tr>
+          <td>探索性：「這批品質如何？哪幾筆最弱？」</td>
+          <td><span class="tag agent">AGENT</span></td>
+          <td>對話式分析 + Agent 能直接讀 validator 結果</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 三個標準劇本 ===== -->
+<div class="window">
+  <div class="title-bar">三個典型劇本 — 實際切換時機</div>
+  <div class="window-body">
+
+    <div class="scenario">
+      <div class="scen-title">劇本 A — 純 GUI（日常 SOP，佔 60% 使用量）</div>
+      <div class="step" data-step="1.">開啟 Upload Module → 拖檔</div>
+      <div class="step" data-step="2.">Configure Module → 確認 grouping</div>
+      <div class="step" data-step="3.">Generate Module → 跑</div>
+      <div class="step" data-step="4.">Review Module → 逐筆 accept</div>
+      <div class="step" data-step="5.">Export Module → 匯出</div>
+      <div style="font-size:11px; color:#606060; margin-top: 6px;">→ Agent 完全沒登場。QA 照 SOP 做事，合規安全。</div>
+    </div>
+
+    <div class="scenario">
+      <div class="scen-title">劇本 B — 混用（中段求助 Agent，佔 30% 使用量）</div>
+      <div class="step" data-step="1.">GUI Upload + Configure，照往常開始</div>
+      <div class="step" data-step="2.">Generate 跑完後 Review 看到 2 筆 validator warning，不確定要 regenerate 還是手改</div>
+      <div class="handoff">
+        切換點 → 點 taskbar [AI] 按鈕，問 Agent：「這 2 筆該怎麼處理？」
+      </div>
+      <div class="step" data-step="3.">Agent 分析後建議「升級 gpt-5 重跑這 2 筆」，使用者按下選項</div>
+      <div class="step" data-step="4.">Agent 呼叫 regenerate tool，完成後 tool card 顯示「[Open in Review]」</div>
+      <div class="handoff">
+        切換點 → 點 Open in Review，回到 Review Module 確認結果
+      </div>
+      <div class="step" data-step="5.">Review 完成 → Export Module 匯出</div>
+    </div>
+
+    <div class="scenario">
+      <div class="scen-title">劇本 C — 純 Agent（跨 job 查詢或批次，佔 10% 使用量）</div>
+      <div class="step" data-step="1.">只開 ChatModule，問：「過去一個月哪些 job match rate &lt; 80%？」</div>
+      <div class="step" data-step="2.">Agent 呼叫 list_jobs + get_job_detail 批次查，列出 3 個 job</div>
+      <div class="step" data-step="3.">使用者：「幫這 3 個都補掛 SYS1 spec 重跑」</div>
+      <div class="step" data-step="4.">Agent 逐個 regenerate，回報每個 job 的新 match rate</div>
+      <div class="step" data-step="5.">要正式交付時 → 點某個 job 的 [Open in Review] 轉 GUI 做最後檢查</div>
+      <div style="font-size:11px; color:#606060; margin-top: 6px;">→ 這類工作 GUI 原本做不到，現在變成一句話。</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 切換信號 ===== -->
+<div class="window">
+  <div class="title-bar">該切換的信號（給使用者的判斷提示）</div>
+  <div class="window-body">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+
+      <div>
+        <h3>GUI → Agent 的信號</h3>
+        <ul style="font-size:12px; line-height:1.8; margin:0; padding-left:20px; background:#ffffff; border:2px solid; border-color:#808080 #fff #fff #808080; padding:10px 10px 10px 30px;">
+          <li>發現 <strong>UI 上沒有</strong>這個操作（比如批次、跨 job）</li>
+          <li>要重複做同一件事 <strong>超過 3 次</strong></li>
+          <li>不確定該選哪個模型 / batch size</li>
+          <li>Validator 警告看不懂，不知下一步</li>
+          <li>要「問資料」而不是「改資料」</li>
+          <li>指令像人話（「上週那個」「差不多就好」）</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Agent → GUI 的信號</h3>
+        <ul style="font-size:12px; line-height:1.8; margin:0; padding-left:20px; background:#ffffff; border:2px solid; border-color:#808080 #fff #fff #808080; padding:10px 10px 10px 30px;">
+          <li>要 <strong>逐筆</strong>對內容做決策（accept / reject / edit）</li>
+          <li>需要 <strong>視覺化</strong>操作（拖曳分組、side-by-side diff）</li>
+          <li>正式交付 / 送審前的最後檢查</li>
+          <li>Agent 連問 2 次以上確認細節，不如自己點</li>
+          <li>需要完整 audit trail 存檔的「正式動作」</li>
+          <li>Agent 成本超過預算（降模式節省）</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
