@@ -3,11 +3,14 @@
 提供與舊 in-memory `JOB_REGISTRY: dict[str, dict]` 相容的 API（__getitem__、
 __setitem__、__contains__、get），讓 server 重啟後 job 不會遺失。
 
-Job records 內含 bytes（rawBytes、specBytes 等）與巢狀結構，因此使用 pickle
-序列化到單一 BLOB 欄位，而非 JSON。
+Job records 內含 bytes（rawBytes、specBytes 等）與巢狀結構，因此使用
+JSON + base64 marker 存入 SQLite，避免 pickle 反序列化風險。
 """
 from __future__ import annotations
 
+import base64
+import binascii
+import json
 import os
 import pickle
 import sqlite3
@@ -32,10 +35,11 @@ class SqliteJobStore:
             ")"
         )
         self._conn.commit()
+        self._migrate_legacy_pickle_rows()
 
     # ---- dict-like API ----
     def __setitem__(self, key: str, value: dict) -> None:
-        blob = pickle.dumps(value, protocol=pickle.HIGHEST_PROTOCOL)
+        blob = self._serialize(value)
         with self._lock:
             self._conn.execute(
                 "INSERT INTO jobs (id, data) VALUES (?, ?) "
@@ -48,7 +52,7 @@ class SqliteJobStore:
         row = self._fetch(key)
         if row is None:
             raise KeyError(key)
-        return pickle.loads(row)
+        return self._deserialize(row)
 
     def __contains__(self, key: object) -> bool:
         if not isinstance(key, str):
@@ -64,7 +68,7 @@ class SqliteJobStore:
         row = self._fetch(key)
         if row is None:
             return default
-        return pickle.loads(row)
+        return self._deserialize(row)
 
     def keys(self) -> list[str]:
         with self._lock:
@@ -92,6 +96,99 @@ class SqliteJobStore:
             cur = self._conn.execute("SELECT data FROM jobs WHERE id = ?", (key,))
             row = cur.fetchone()
         return row[0] if row else None
+
+    def _migrate_legacy_pickle_rows(self) -> None:
+        """Upgrade legacy pickled rows in place once, then use JSON-only reads."""
+        with self._lock:
+            rows = list(self._conn.execute("SELECT id, data FROM jobs"))
+
+        migrated: list[tuple[bytes, str]] = []
+        for job_id, payload in rows:
+            try:
+                self._deserialize(payload)
+            except ValueError:
+                legacy = self._try_load_legacy_pickle(payload)
+                if legacy is None:
+                    continue
+                migrated.append((self._serialize(legacy), job_id))
+
+        if not migrated:
+            return
+
+        with self._lock:
+            self._conn.executemany(
+                "UPDATE jobs SET data = ?, updated_at = strftime('%s','now') WHERE id = ?",
+                migrated,
+            )
+            self._conn.commit()
+
+    @classmethod
+    def _serialize(cls, value: dict) -> bytes:
+        return json.dumps(
+            cls._encode_json_safe(value),
+            ensure_ascii=True,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+
+    @classmethod
+    def _deserialize(cls, payload: bytes) -> dict:
+        try:
+            decoded = json.loads(payload.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ValueError("invalid job payload: expected UTF-8 JSON") from exc
+
+        if not isinstance(decoded, dict):
+            raise ValueError("invalid job payload: top-level record must be an object")
+        return cls._decode_json_safe(decoded)
+
+    @classmethod
+    def _encode_json_safe(cls, value):
+        if isinstance(value, bytes):
+            return {
+                "__type__": "bytes",
+                "base64": base64.b64encode(value).decode("ascii"),
+            }
+        if isinstance(value, dict):
+            return {str(k): cls._encode_json_safe(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [cls._encode_json_safe(item) for item in value]
+        if isinstance(value, tuple):
+            return {
+                "__type__": "tuple",
+                "items": [cls._encode_json_safe(item) for item in value],
+            }
+        return value
+
+    @classmethod
+    def _decode_json_safe(cls, value):
+        if isinstance(value, dict):
+            value_type = value.get("__type__")
+            if value_type == "bytes":
+                encoded = value.get("base64")
+                if not isinstance(encoded, str):
+                    raise ValueError("invalid job payload: malformed bytes marker")
+                try:
+                    return base64.b64decode(encoded.encode("ascii"), validate=True)
+                except (ValueError, binascii.Error) as exc:
+                    raise ValueError("invalid job payload: malformed bytes marker") from exc
+            if value_type == "tuple":
+                items = value.get("items")
+                if not isinstance(items, list):
+                    raise ValueError("invalid job payload: malformed tuple marker")
+                return tuple(cls._decode_json_safe(item) for item in items)
+            return {k: cls._decode_json_safe(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [cls._decode_json_safe(item) for item in value]
+        return value
+
+    @staticmethod
+    def _try_load_legacy_pickle(payload: bytes) -> dict | None:
+        try:
+            decoded = pickle.loads(payload)
+        except Exception:
+            return None
+        return decoded if isinstance(decoded, dict) else None
 
 
 def default_db_path() -> Path:

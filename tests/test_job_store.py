@@ -1,8 +1,10 @@
 """Tests for SqliteJobStore — persistence across instances."""
 from __future__ import annotations
 
+import json
+import pickle
+import sqlite3
 import sys
-import tempfile
 from pathlib import Path
 
 import pytest
@@ -24,11 +26,80 @@ def test_set_and_get_roundtrip(db_path: Path) -> None:
 
 
 def test_bytes_payload_roundtrip(db_path: Path) -> None:
-    """Raw file bytes (xlsx uploads) must survive pickle serialization."""
+    """Raw file bytes (xlsx uploads) must survive JSON-safe serialization."""
     store = SqliteJobStore(db_path)
     raw = b"\x00\x01\x02PK\x03\x04" + b"\xff" * 100
     store["j"] = {"rawBytes": raw, "name": "sample.xlsx"}
     assert store["j"]["rawBytes"] == raw
+
+
+def test_sql_payload_is_json_not_pickle(db_path: Path) -> None:
+    """DB payload should be inspectable JSON instead of executable pickle bytes."""
+    store = SqliteJobStore(db_path)
+    store["job-json"] = {
+        "jobId": "job-json",
+        "rawBytes": b"\x00\x01binary",
+        "nested": {"specBytes": b"\xff\x10"},
+    }
+
+    conn = sqlite3.connect(db_path)
+    row = conn.execute("SELECT data FROM jobs WHERE id = ?", ("job-json",)).fetchone()
+    assert row is not None
+
+    payload = json.loads(row[0])
+    assert payload["jobId"] == "job-json"
+    assert payload["rawBytes"]["__type__"] == "bytes"
+    assert payload["nested"]["specBytes"]["__type__"] == "bytes"
+
+
+def test_legacy_pickle_payload_is_rejected(db_path: Path) -> None:
+    """Unexpected legacy pickle blobs should not be deserialized."""
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS jobs ("
+        "  id TEXT PRIMARY KEY,"
+        "  data BLOB NOT NULL,"
+        "  updated_at REAL NOT NULL DEFAULT (strftime('%s','now'))"
+        ")"
+    )
+    conn.execute(
+        "INSERT INTO jobs (id, data) VALUES (?, ?)",
+        ("legacy", b"\x80\x05bad-pickle-payload"),
+    )
+    conn.commit()
+    conn.close()
+
+    store = SqliteJobStore(db_path)
+    with pytest.raises(ValueError, match="invalid job payload"):
+        store.get("legacy")
+
+
+def test_valid_legacy_pickle_payload_is_migrated(db_path: Path) -> None:
+    """Existing trusted app data can be upgraded in place on first open."""
+    record = {"jobId": "legacy-ok", "rawBytes": b"\x00\x01"}
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS jobs ("
+        "  id TEXT PRIMARY KEY,"
+        "  data BLOB NOT NULL,"
+        "  updated_at REAL NOT NULL DEFAULT (strftime('%s','now'))"
+        ")"
+    )
+    conn.execute(
+        "INSERT INTO jobs (id, data) VALUES (?, ?)",
+        ("legacy-ok", pickle.dumps(record, protocol=pickle.HIGHEST_PROTOCOL)),
+    )
+    conn.commit()
+    conn.close()
+
+    store = SqliteJobStore(db_path)
+    assert store.get("legacy-ok") == record
+
+    conn = sqlite3.connect(db_path)
+    row = conn.execute("SELECT data FROM jobs WHERE id = ?", ("legacy-ok",)).fetchone()
+    assert row is not None
+    payload = json.loads(row[0])
+    assert payload["rawBytes"]["__type__"] == "bytes"
 
 
 def test_persistence_across_instances(db_path: Path) -> None:
