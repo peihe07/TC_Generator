@@ -32,7 +32,6 @@ MODEL_PRICING = {
 }
 
 DEFAULT_MODEL = "gpt-4.1"
-MAX_RETRIES = 2
 
 # 當同一 model 重試後仍違反 1:1 時，升級到下列 model 再試一次。
 # 值為 None 代表已是最高層級、不再升級。

@@ -18,24 +18,42 @@ from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_b
 from id_generator import generate_group_abbreviation, generate_tc_ids
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
-from spec_matcher import build_spec_index, extract_pdm_codes, match_spec_references
+from spec_matcher import build_spec_index, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
-from validator import validate_row
-from writer import build_output_path, write_framework_sheet, write_generated_results
+from tools import (
+    ToolError,
+    group_tests_tool,
+    match_spec_tool,
+    parse_workbook_tool,
+    validate_tc_tool,
+    write_excel_tool,
+)
+from writer import build_output_path
+
+
+def _tool_error_to_http(exc: ToolError) -> HTTPException:
+    """Tool 例外 → HTTP 例外的統一翻譯。"""
+    return HTTPException(status_code=exc.http_status, detail=exc.message)
 
 load_dotenv()
 
 app = FastAPI(title="tc-generator-api")
 
+# CORS：開發預設只允 localhost，部署時用 TC_CORS_ORIGINS 覆寫（逗號分隔）。
+# 設為 "*" 重現舊行為（不建議在公開環境）。
+_default_origins = "http://localhost:3000,http://127.0.0.1:3000"
+_cors_origins = [o.strip() for o in os.environ.get("TC_CORS_ORIGINS", _default_origins).split(",") if o.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
+# Upload size guard（單檔 50 MB；TC_MAX_UPLOAD_MB env 可覆寫）
+MAX_UPLOAD_BYTES = int(os.environ.get("TC_MAX_UPLOAD_MB", "50")) * 1024 * 1024
 # SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
 JOB_REGISTRY = SqliteJobStore(default_db_path())
 
@@ -176,8 +194,15 @@ EXPORT_COLUMN_TO_FIELD = {
 }
 
 
-def _build_job_id() -> str:
-    return f"parse-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+async def _read_with_limit(upload: UploadFile, label: str) -> bytes:
+    """讀取 UploadFile 並限制總長度，超過 MAX_UPLOAD_BYTES 即 413。"""
+    data = await upload.read()
+    if len(data) > MAX_UPLOAD_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"{label} exceeds {MAX_UPLOAD_BYTES // (1024*1024)} MB limit",
+        )
+    return data
 
 
 def _build_generate_job_id() -> str:
@@ -190,32 +215,6 @@ def _build_export_path(filename: str, output_mode: str) -> str:
     if output_mode == "overwrite":
         return os.path.join(export_dir, filename)
     return build_output_path(os.path.join(export_dir, filename))
-
-
-def _normalize_row(row: dict) -> dict:
-    return {
-        "id": f"row-{row['row_num']}",
-        "rowNum": row["row_num"],
-        "tcId": row.get("tc_id", ""),
-        "reqId": row.get("req_id", ""),
-        "testItem": row.get("test_item", ""),
-        "originalRequirement": row.get("test_item", ""),
-        "testSet": row.get("test_set", ""),
-        "specReference": row.get("spec_reference"),
-        "priority": row.get("priority", ""),
-        "status": "draft",
-        "reviewStatus": "pending",
-        "generated": None,
-        "validation": [],
-    }
-
-
-def _build_preview(parsed_data: dict) -> tuple[list[str], list[dict]]:
-    preview_headers = ["req_id", "test_item", "test_set", "priority"]
-    preview_rows = []
-    for row in parsed_data["rows"][:5]:
-        preview_rows.append({header: row.get(header, "") for header in preview_headers})
-    return preview_headers, preview_rows
 
 
 def _map_export_rows(rows: list[dict], scope: str, test_group: str | None) -> list[dict]:
@@ -337,52 +336,6 @@ def _build_reference_match_index_for_job(job: dict) -> dict:
             return {}
 
 
-def _derive_test_set_name(row: dict) -> str:
-    existing = str(row.get("test_set") or row.get("testSet") or "").strip()
-    if existing:
-        return existing
-
-    codes = extract_pdm_codes(str(row.get("test_item") or row.get("testItem") or ""))
-    if codes:
-        return codes[0]
-
-    req_id = str(row.get("req_id") or row.get("reqId") or "").strip()
-    req_parts = [part for part in req_id.split("-") if part]
-    if len(req_parts) >= 2:
-        return f"REQ-{req_parts[-2]}"
-
-    return "Unassigned"
-
-
-def _build_group_preview(rows: list[dict]) -> tuple[list[dict], dict[str, list[str]]]:
-    assignments = []
-    framework: dict[str, list[str]] = {}
-
-    for row in rows:
-        test_set = _derive_test_set_name(row)
-        req_id = str(row.get("req_id") or row.get("reqId") or "")
-        assignments.append(
-            {
-                "id": row.get("id"),
-                "reqId": req_id,
-                "testSet": test_set,
-                "source": "existing" if str(row.get("test_set") or row.get("testSet") or "").strip() else "derived",
-            }
-        )
-        framework.setdefault(test_set, []).append(req_id)
-
-    groups = [
-        {
-            "testSet": test_set,
-            "count": len(req_ids),
-            "reqIds": req_ids,
-        }
-        for test_set, req_ids in framework.items()
-    ]
-    groups.sort(key=lambda group: (-group["count"], group["testSet"]))
-    return groups, framework
-
-
 def _prepare_match_preview_rows(rows: list[GenerateRow], job: dict) -> list[dict]:
     prepared_rows = []
     parsed_rows = job.get("parsedData", {}).get("rows", [])
@@ -466,48 +419,20 @@ def _prepare_generation_rows(job: dict) -> list[dict]:
     return prepared_rows
 
 
-def _normalize_validation_issues(results: dict) -> list[dict]:
-    issues = []
-    for check, result in results.items():
-        if result.passed:
-            continue
-        issues.append(
-            {
-                "id": f"{check}-{len(issues) + 1}",
-                "severity": "warning",
-                "field": check,
-                "message": result.message or f"{check} failed validation.",
-            }
-        )
-
-    if not issues:
-        issues.append(
-            {
-                "id": "validation-pass",
-                "severity": "passing",
-                "field": "expected_result",
-                "message": "Generated row passed the current programmatic validation checks.",
-            }
-        )
-
-    return issues
-
-
 def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
-    validation = _normalize_validation_issues(
-        validate_row(
-            {
-                "tc_id": row["tc_id"],
-                "test_item": f"{row['original_requirement']}\n\n{tc['test_item_rewrite']}",
-                "pre_conditions": tc["pre_conditions"],
-                "test_procedure": tc["test_procedure"],
-                "expected_result": tc["expected_result"],
-                "design_method": tc["design_method"],
-                "priority": tc["priority"],
-            }
-        )
+    result = validate_tc_tool(
+        tc={
+            "tc_id": row["tc_id"],
+            "test_item": f"{row['original_requirement']}\n\n{tc['test_item_rewrite']}",
+            "pre_conditions": tc["pre_conditions"],
+            "test_procedure": tc["test_procedure"],
+            "expected_result": tc["expected_result"],
+            "design_method": tc["design_method"],
+            "priority": tc["priority"],
+        }
     )
-    has_warnings = any(issue["severity"] == "warning" for issue in validation)
+    validation = result["issues"]
+    has_warnings = result["hasWarnings"]
     return (
         {
             "id": row["id"],
@@ -682,56 +607,53 @@ async def parse_workbook(
     sys1_file: UploadFile | None = File(default=None),
     spec_file: UploadFile | None = File(default=None),
 ) -> dict:
-    _, raw_ext = os.path.splitext(raw_file.filename or "")
-    raw_ext = raw_ext.lower()
-    if raw_ext not in ALLOWED_RAW_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="raw_file must be .xlsx or .xlsm")
+    # 先做 HTTP 層檢查：size limit、extension。extension 也會被 tool 再驗一次。
+    raw_bytes = await _read_with_limit(raw_file, "raw_file")
 
-    raw_bytes = await raw_file.read()
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        temp_path = os.path.join(tmp_dir, raw_file.filename or f"upload{raw_ext}")
-        with open(temp_path, "wb") as tmp:
-            tmp.write(raw_bytes)
-        parsed_data = parse_tc_xlsx(temp_path)
-
-    preview_headers, preview_rows = _build_preview(parsed_data)
     effective_reference_file = reference_file or sys1_file
-    reference_ext = os.path.splitext(effective_reference_file.filename or "")[1].lower() if effective_reference_file and effective_reference_file.filename else ""
-    if effective_reference_file and reference_ext not in ALLOWED_RAW_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="reference_file must be .xlsx or .xlsm")
-    spec_format = detect_format(spec_file.filename) if spec_file and spec_file.filename else None
-    reference_bytes = await effective_reference_file.read() if effective_reference_file else None
-    spec_bytes = await spec_file.read() if spec_file else None
-    job_id = _build_job_id()
-    JOB_REGISTRY[job_id] = {
-        "jobId": job_id,
-        "rawFileName": raw_file.filename,
-        "rawBytes": raw_bytes,
-        "parsedData": parsed_data,
-        "referenceWorkbookName": effective_reference_file.filename if effective_reference_file else None,
-        "referenceWorkbookBytes": reference_bytes,
-        "specFileName": spec_file.filename if spec_file else None,
-        "specFormat": spec_format,
-        "specBytes": spec_bytes,
-        "status": "parsed",
-    }
+    reference_bytes = (
+        await _read_with_limit(effective_reference_file, "reference_file")
+        if effective_reference_file
+        else None
+    )
+    spec_bytes = await _read_with_limit(spec_file, "spec_file") if spec_file else None
 
-    return {
-        "jobId": job_id,
-        "project": parsed_data["project"],
-        "testGroup": parsed_data["test_group"],
-        "rowCount": parsed_data["row_count"],
-        "previewHeaders": preview_headers,
-        "previewRows": preview_rows,
-        "rows": [_normalize_row(row) for row in parsed_data["rows"]],
-        "columnFillStatus": parsed_data["column_fill_status"],
-        "files": {
-            "rawFileName": raw_file.filename,
-            "referenceWorkbookName": effective_reference_file.filename if effective_reference_file else None,
-            "specFileName": spec_file.filename if spec_file else None,
-            "specFormat": spec_format,
-        },
-    }
+    raw_ext = os.path.splitext(raw_file.filename or "")[1].lower() or ".xlsx"
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        raw_path = os.path.join(tmp_dir, raw_file.filename or f"upload{raw_ext}")
+        with open(raw_path, "wb") as handle:
+            handle.write(raw_bytes)
+
+        reference_path: str | None = None
+        if effective_reference_file and reference_bytes is not None:
+            reference_path = os.path.join(
+                tmp_dir,
+                effective_reference_file.filename or "reference.xlsx",
+            )
+            with open(reference_path, "wb") as handle:
+                handle.write(reference_bytes)
+
+        spec_path: str | None = None
+        if spec_file and spec_bytes is not None:
+            spec_path = os.path.join(tmp_dir, spec_file.filename or "spec.bin")
+            with open(spec_path, "wb") as handle:
+                handle.write(spec_bytes)
+
+        try:
+            return parse_workbook_tool(
+                raw_path=raw_path,
+                raw_filename=raw_file.filename or f"upload{raw_ext}",
+                reference_path=reference_path,
+                reference_filename=(
+                    effective_reference_file.filename if effective_reference_file else None
+                ),
+                spec_path=spec_path,
+                spec_filename=spec_file.filename if spec_file else None,
+                job_store=JOB_REGISTRY,
+            )
+        except ToolError as exc:
+            raise _tool_error_to_http(exc) from exc
 
 
 @app.post("/api/group")
@@ -740,26 +662,8 @@ async def preview_grouping(payload: GroupPreviewRequest) -> dict:
     if not job:
         raise HTTPException(status_code=404, detail="job not found")
 
-    groups, framework = _build_group_preview([row.model_dump() for row in payload.rows])
-    return {
-        "jobId": payload.jobId,
-        "groups": groups,
-        "framework": framework,
-        "assignments": [
-            assignment
-            for group in groups
-            for assignment in [
-                {
-                    "id": row.id,
-                    "reqId": row.reqId,
-                    "testSet": group["testSet"],
-                    "source": "existing" if (row.testSet or "").strip() else "derived",
-                }
-                for row in payload.rows
-                if _derive_test_set_name(row.model_dump()) == group["testSet"]
-            ]
-        ],
-    }
+    result = group_tests_tool(rows=[row.model_dump() for row in payload.rows])
+    return {"jobId": payload.jobId, **result}
 
 
 @app.post("/api/match")
@@ -768,36 +672,23 @@ async def preview_spec_matching(payload: MatchPreviewRequest) -> dict:
     if not job:
         raise HTTPException(status_code=404, detail="job not found")
 
-    reference_index = _build_reference_match_index_for_job(job)
     prepared_rows = _prepare_match_preview_rows(payload.rows, job)
-    matched_rows = match_spec_references(prepared_rows, reference_index) if reference_index else [
-        {**row, "spec_reference": None, "match_type": "unmatched"} for row in prepared_rows
-    ]
+    reference_bytes = job.get("referenceWorkbookBytes")
+    reference_filename = job.get("referenceWorkbookName")
 
-    exact_count = sum(1 for row in matched_rows if row.get("match_type") == "exact")
-    fuzzy_count = sum(1 for row in matched_rows if row.get("match_type") == "fuzzy")
-    unmatched_count = len(matched_rows) - exact_count - fuzzy_count
-    return {
-        "jobId": payload.jobId,
-        "summary": {
-            "total": len(matched_rows),
-            "exact": exact_count,
-            "fuzzy": fuzzy_count,
-            "unmatched": unmatched_count,
-            "hasReferenceWorkbook": bool(reference_index),
-        },
-        "matches": [
-            {
-                "id": row.get("id"),
-                "reqId": row.get("req_id"),
-                "testItem": row.get("test_item"),
-                "specReference": row.get("spec_reference"),
-                "matchType": row.get("match_type"),
-                "matchScore": row.get("match_score"),
-            }
-            for row in matched_rows
-        ],
-    }
+    try:
+        if reference_bytes and reference_filename:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                reference_path = os.path.join(tmp_dir, reference_filename)
+                with open(reference_path, "wb") as handle:
+                    handle.write(reference_bytes)
+                result = match_spec_tool(rows=prepared_rows, reference_workbook_path=reference_path)
+        else:
+            result = match_spec_tool(rows=prepared_rows, reference_workbook_path=None)
+    except ToolError as exc:
+        raise _tool_error_to_http(exc) from exc
+
+    return {"jobId": payload.jobId, **result}
 
 
 @app.post("/api/generate")
@@ -1090,25 +981,27 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
 
     export_path = _build_export_path(job["rawFileName"], payload.outputMode)
     selected_fields = _selected_export_fields(payload.selectedColumns)
+    framework_rows = (
+        _build_framework_rows(export_rows, job.get("parsedData", {}).get("test_group"))
+        if payload.includeFrameworkSheet
+        else None
+    )
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         source_path = os.path.join(tmp_dir, job["rawFileName"])
         with open(source_path, "wb") as source_file:
             source_file.write(job["rawBytes"])
 
-        write_generated_results(
-            source_path,
-            export_rows,
-            export_path,
-            selected_fields=selected_fields,
-        )
-
-    if payload.includeFrameworkSheet:
-        write_framework_sheet(
-            export_path,
-            _build_framework_rows(export_rows, job.get("parsedData", {}).get("test_group")),
-            export_path,
-        )
+        try:
+            write_excel_tool(
+                source_path=source_path,
+                output_path=export_path,
+                rows=export_rows,
+                selected_fields=selected_fields,
+                framework_rows=framework_rows,
+            )
+        except ToolError as exc:
+            raise _tool_error_to_http(exc) from exc
 
     job["exportPath"] = export_path
     JOB_REGISTRY[payload.jobId] = job  # 回寫 SQLite，否則下載時讀不到 exportPath
