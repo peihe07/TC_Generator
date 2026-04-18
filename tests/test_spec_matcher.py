@@ -131,3 +131,41 @@ class TestMatchSpecReferences:
         results = match_spec_references(rows, index)
         assert results[0]["spec_reference"] is None
         assert results[0]["match_type"] == "unmatched"
+
+
+class TestFuzzyMatch:
+    """Layer 1.5: token Jaccard fallback when Layer 1 PDM regex misses."""
+
+    def test_fuzzy_hit_when_no_pdm_code(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        # 沒 PDM code，但描述重疊關鍵字 (device, manager, access)
+        rows = [{"req_id": "R1", "test_item": "The operator can access Device Manager screen"}]
+        results = match_spec_references(rows, index)
+        assert results[0]["match_type"] == "fuzzy"
+        assert results[0]["spec_reference"] is not None
+        # fuzzy score 介於 0 與 1
+        assert 0 < results[0]["match_score"] <= 1
+
+    def test_exact_preferred_over_fuzzy(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        # 同時有 PDM code + 描述性文字 → 應優先 exact
+        rows = [{"req_id": "R1", "test_item": "PDM01 Device Manager access"}]
+        results = match_spec_references(rows, index)
+        assert results[0]["match_type"] == "exact"
+        assert "match_score" not in results[0]
+
+    def test_fuzzy_below_threshold_stays_unmatched(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        # 完全不同領域的文字
+        rows = [{"req_id": "R1", "test_item": "Kitchen timer beeps when food cooks"}]
+        results = match_spec_references(rows, index, fuzzy_threshold=0.5)
+        assert results[0]["match_type"] == "unmatched"
+
+    def test_threshold_controls_aggressiveness(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        rows = [{"req_id": "R1", "test_item": "manager handles device status"}]
+        # 低門檻容易命中，高門檻較嚴
+        permissive = match_spec_references(rows, index, fuzzy_threshold=0.01)
+        strict = match_spec_references(rows, index, fuzzy_threshold=0.99)
+        assert permissive[0]["match_type"] == "fuzzy"
+        assert strict[0]["match_type"] == "unmatched"
