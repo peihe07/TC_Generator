@@ -87,4 +87,41 @@ test.describe('Workspace manager', () => {
     expect((restored.stats as { cost: number }).cost).toBeCloseTo(0.125);
     expect((restored.jobMetadata as { jobId: string }).jobId).toBe('job-ws-e2e-42');
   });
+
+  test('workspace JSON does not contain agent session state', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+
+    await setSeedState(page);
+
+    // Inject fake agent state into localStorage to verify it won't leak into workspace export
+    await page.evaluate(() => {
+      localStorage.setItem('agent-session-id', 'fake-session-abc');
+      localStorage.setItem('agent-messages', JSON.stringify([{ kind: 'user', text: 'hello' }]));
+    });
+
+    // Open Workspace and save
+    await page.getByRole('button', { name: /Workspace/ }).click();
+    page.once('dialog', (d) => d.accept('no-agent-leak'));
+    await page.getByRole('button', { name: 'Save As…' }).click();
+
+    // Export to JSON
+    await page.getByRole('button', { name: /Workspace/ }).click();
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: 'Export JSON' }).click(),
+    ]);
+
+    const content = await download.createReadStream();
+    const chunks: Buffer[] = [];
+    for await (const chunk of content) chunks.push(chunk as Buffer);
+    const json = JSON.parse(Buffer.concat(chunks).toString());
+
+    // Agent state should not appear in workspace export
+    const jsonStr = JSON.stringify(json);
+    expect(jsonStr).not.toContain('fake-session-abc');
+    expect(jsonStr).not.toContain('agent-session');
+    expect(jsonStr).not.toContain('agentStore');
+  });
 });
