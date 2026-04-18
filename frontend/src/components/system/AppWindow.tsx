@@ -1,11 +1,14 @@
 'use client';
 
 import React, { ReactNode, useEffect, useRef } from 'react';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import { useWindowStore, WindowID } from '../../store/useWindowStore';
 import 'react-resizable/css/styles.css';
 import { TASKBAR_HEIGHT } from './layout';
+
+// react-resizable 的型別由本地 stub 宣告為 any；此處內聯最小可用型別。
+type ResizeData = { size: { width: number; height: number } };
 
 // 至少保留多少像素的標題列必須可見，避免視窗被拖到完全看不見
 const MIN_VISIBLE = 80;
@@ -58,11 +61,11 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
   const isFocused = focusedWindowId === id;
   const isMaximized = windowData.isMaximized;
 
-  const onDragStop = (_e: any, data: { x: number; y: number }) => {
+  const onDragStop = (_e: DraggableEvent, data: DraggableData) => {
     updatePosition(id, clampPosition({ x: data.x, y: data.y }, windowData.size));
   };
 
-  const onResizeStop = (_e: any, data: { size: { width: number; height: number } }) => {
+  const onResizeStop = (_e: React.SyntheticEvent, data: ResizeData) => {
     updateSize(id, { width: data.size.width, height: data.size.height });
   };
 
