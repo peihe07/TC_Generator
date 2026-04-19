@@ -540,6 +540,19 @@ button.btn-icon:hover {
   margin: 2px 0;
 }
 
+/*
+ * Taskbar window-tab strip:
+ * hide the native horizontal scrollbar so it cannot add vertical height
+ * and push the 22px tab buttons up out of the 28px taskbar row.
+ * Horizontal scroll is still possible via mouse wheel / trackpad swipe.
+ */
+.taskbar-tabs {
+  scrollbar-width: none;            /* Firefox */
+}
+.taskbar-tabs::-webkit-scrollbar {   /* Chromium / WebKit */
+  display: none;
+}
+
 /* ========== Agent Chat Module ========== */
 
 .chat-module {

@@ -157,8 +157,12 @@ const Taskbar: React.FC = () => {
         {/* Separator */}
         <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
-        {/* Window tabs */}
-        <div className="flex-1 flex gap-1 overflow-x-auto" style={{ minWidth: 0 }}>
+        {/* Window tabs — `taskbar-tabs` hides the native horizontal scrollbar
+            so it cannot push the tab buttons up out of the 28px taskbar row. */}
+        <div
+          className="flex-1 flex gap-1 overflow-x-auto taskbar-tabs"
+          style={{ minWidth: 0, height: 22 }}
+        >
           {openWindows.map((win) => {
             const isActive = focusedWindowId === win.id && !win.isMinimized;
             return (
