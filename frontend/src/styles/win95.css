@@ -206,7 +206,7 @@ fieldset legend { font-weight: var(--font-weight-bold); }
   transition: background-color 120ms ease, border-color 120ms ease;
 }
 .dropzone-sunken.dragging {
-  background: #e8f0ff;
+  background: var(--win95-gray-lighter);
   border-color: var(--win95-navy);
   box-shadow: inset 1px 1px 0 var(--win95-navy), inset -1px -1px 0 var(--win95-navy);
 }
@@ -345,13 +345,13 @@ td.cell-center {
   letter-spacing: 0.5px;
   border-radius: 0 !important;
   border: 2px solid;
-  border-color: var(--win95-gray-dark) #f0f0f0 #f0f0f0 var(--win95-gray-dark);
+  border-color: var(--win95-gray-dark) var(--field-header-bg) var(--field-header-bg) var(--win95-gray-dark);
   box-shadow: var(--shadow-badge-inset);
 }
 .status-badge.accepted  { background: var(--status-accept);      color: var(--text-inverse); }
 .status-badge.rejected  { background: var(--status-reject);      color: var(--text-inverse); }
 .status-badge.flagged   { background: var(--status-warn);        color: var(--win95-black); }
-.status-badge.pending   { background: #909090;                   color: var(--text-inverse); }
+.status-badge.pending   { background: var(--win95-gray-mid);     color: var(--text-inverse); }
 .status-badge.reviewing { background: var(--win95-navy);         color: var(--text-inverse); }
 .status-badge.generating{
   background: var(--win95-navy);
@@ -400,7 +400,7 @@ td.cell-center {
   letter-spacing: 0.5px;
 }
 .title-bar-mini.edit {
-  background: linear-gradient(to right, var(--status-edit-dark), #ea580c);
+  background: linear-gradient(to right, var(--status-edit-dark), var(--status-edit));
 }
 
 /* Edit field (memo-sheet style) */
@@ -428,9 +428,9 @@ td.cell-center {
   display: inline-block;
   border: 1px solid;
 }
-.sys-log-tag.critical { background: var(--status-reject);  color: var(--text-inverse); border-color: #800000; }
-.sys-log-tag.warn     { background: var(--status-warn);    color: var(--win95-black);  border-color: #8a6000; }
-.sys-log-tag.info     { background: var(--status-accept);  color: var(--text-inverse); border-color: #006000; }
+.sys-log-tag.critical { background: var(--status-reject);  color: var(--text-inverse); border-color: var(--status-reject-dark); }
+.sys-log-tag.warn     { background: var(--status-warn);    color: var(--win95-black);  border-color: var(--status-warn-dark); }
+.sys-log-tag.info     { background: var(--status-accept);  color: var(--text-inverse); border-color: var(--status-accept-dark); }
 
 /* Floating toolbox — thick raised border + handle */
 .win95-toolbox {
@@ -474,12 +474,12 @@ td.cell-center {
 .btn-accept { color: var(--status-accept-dark) !important; }
 .btn-reject { color: var(--status-reject-dark) !important; }
 button.btn-icon.btn-accept:hover {
-  background: #a8e6b8 !important;
-  color: #003d0f !important;
+  background: var(--status-accept-bg) !important;
+  color: var(--status-accept-dark) !important;
 }
 button.btn-icon.btn-reject:hover {
   background: var(--status-reject-bg) !important;
-  color: #5a0000 !important;
+  color: var(--status-reject-dark) !important;
 }
 button.btn-icon:hover {
   outline: 1px solid var(--win95-navy);
@@ -709,11 +709,11 @@ button.btn-icon:hover {
 .tool-card {
   border: 2px solid;
   border-color: var(--win95-gray-light) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-gray-light);
-  background: #f0f0f0;
+  background: var(--field-header-bg);
   font-size: var(--font-sm);
 }
 
-.tool-card[data-status="running"] { border-left-color: #0000aa; }
+.tool-card[data-status="running"] { border-left-color: var(--win95-navy); }
 .tool-card[data-status="ok"]      { border-left-color: var(--status-accept); }
 .tool-card[data-status="error"]   { border-left-color: var(--status-error-border); }
 
@@ -757,7 +757,7 @@ button.btn-icon:hover {
 .confirm-card {
   border: 2px solid;
   border-color: var(--win95-gray-light) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-gray-light);
-  background: #fffbe6;
+  background: var(--status-edit-bg);
   font-size: var(--font-sm);
 }
 
@@ -766,7 +766,7 @@ button.btn-icon:hover {
   align-items: center;
   gap: 6px;
   padding: 4px 8px;
-  background: #f0e040;
+  background: var(--status-warn);
   font-weight: var(--font-weight-bold);
 }
 
@@ -775,10 +775,10 @@ button.btn-icon:hover {
 .confirm-card-actions { display: flex; gap: 4px; padding: 4px 8px; }
 
 .btn-confirm-accept {
-  background: #00aa00;
+  background: var(--status-accept);
   color: var(--text-inverse);
   border: 2px solid;
-  border-color: #00ff00 #005500 #005500 #00ff00;
+  border-color: var(--status-accept) var(--status-accept-dark) var(--status-accept-dark) var(--status-accept);
   padding: 2px 10px;
   cursor: pointer;
   font-size: var(--font-sm);
@@ -788,7 +788,7 @@ button.btn-icon:hover {
   background: var(--status-error-border);
   color: var(--text-inverse);
   border: 2px solid;
-  border-color: #ff4444 #880000 #880000 #ff4444;
+  border-color: var(--status-reject) var(--status-reject-dark) var(--status-reject-dark) var(--status-reject);
   padding: 2px 10px;
   cursor: pointer;
   font-size: var(--font-sm);
@@ -874,7 +874,7 @@ button.btn-icon:hover {
 }
 .inspector-trace-item.status-ok      { color: var(--status-accept-dark); }
 .inspector-trace-item.status-error   { color: var(--status-error-border); }
-.inspector-trace-item.status-running { color: #0000aa; }
+.inspector-trace-item.status-running { color: var(--win95-navy); }
 .trace-tool { font-family: var(--font-family-mono); }
 .trace-dur  { color: var(--win95-gray-mid); }
 
@@ -930,12 +930,12 @@ button.btn-icon:hover {
 .agent-taskbar-btn--idle { background: var(--win95-bg); }
 .agent-taskbar-btn--sending,
 .agent-taskbar-btn--streaming {
-  background: #0000cc;
+  background: var(--win95-navy);
   color: var(--text-inverse);
   animation: agent-pulse 1s ease-in-out infinite;
 }
 .agent-taskbar-btn--waiting_confirm {
-  background: #ccaa00;
+  background: var(--status-warn);
   color: var(--text-inverse);
   animation: agent-pulse 0.7s ease-in-out infinite;
 }
@@ -1123,8 +1123,8 @@ button.btn-icon:hover {
 }
 
 .chat-input-area.drag-over {
-  background: #e8f0ff;
-  border-color: #0000cc;
+  background: var(--win95-gray-lighter);
+  border-color: var(--win95-navy);
 }
 
 .chat-input-btns {
@@ -1146,7 +1146,7 @@ button.btn-icon:hover {
 }
 .btn-help-agent:hover:not(:disabled) {
   background: var(--win95-select-bg, #000080);
-  color: var(--win95-select-text, #fff);
+  color: var(--win95-select-text, #ffffff);
 }
 .btn-help-agent:disabled {
   opacity: 0.5;

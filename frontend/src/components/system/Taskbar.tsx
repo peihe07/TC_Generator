@@ -156,10 +156,10 @@ const Taskbar: React.FC = () => {
         >
           {/* Windows flag icon */}
           <svg width="14" height="14" viewBox="0 0 14 14" style={{ imageRendering: 'pixelated' }}>
-            <rect x="0" y="0" width="6" height="6" fill="#ff0000"/>
-            <rect x="8" y="0" width="6" height="6" fill="#00aa00"/>
-            <rect x="0" y="8" width="6" height="6" fill="#0000ff"/>
-            <rect x="8" y="8" width="6" height="6" fill="#ffff00"/>
+            <rect x="0" y="0" width="6" height="6" style={{ fill: 'var(--status-reject)' }}/>
+            <rect x="8" y="0" width="6" height="6" style={{ fill: 'var(--status-accept)' }}/>
+            <rect x="0" y="8" width="6" height="6" style={{ fill: 'var(--win95-navy)' }}/>
+            <rect x="8" y="8" width="6" height="6" style={{ fill: 'var(--status-warn)' }}/>
           </svg>
           <span>Start</span>
         </Button>
