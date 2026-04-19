@@ -94,6 +94,41 @@ describe('useAgentStore', () => {
     expect(result.current.streamState).toBe('idle');
   });
 
+  it('state_update event populates lastStateUpdate with jobId and tool', async () => {
+    simulateTurn([
+      makeEvent('tool_call', { call_id: 'c1', tool: 'parse_workbook', args: {} }),
+      makeEvent('tool_result', { call_id: 'c1', tool: 'parse_workbook', duration_ms: 10, result: {} }),
+      makeEvent('state_update', { job_id: 'job-xyz', tool: 'parse_workbook' }),
+      makeEvent('done', { step_count: 1 }),
+    ]);
+
+    const { result } = renderHook(() => useAgentStore());
+
+    await act(async () => {
+      await result.current.sendMessage('parse it');
+    });
+
+    expect(result.current.lastStateUpdate?.jobId).toBe('job-xyz');
+    expect(result.current.lastStateUpdate?.tool).toBe('parse_workbook');
+    expect(result.current.lastStateUpdate?.ts).toBeGreaterThan(0);
+  });
+
+  it('newSession clears lastStateUpdate', async () => {
+    simulateTurn([
+      makeEvent('state_update', { job_id: 'job-1', tool: 'parse_workbook' }),
+      makeEvent('done', { step_count: 1 }),
+    ]);
+
+    const { result } = renderHook(() => useAgentStore());
+    await act(async () => {
+      await result.current.sendMessage('parse');
+    });
+    expect(result.current.lastStateUpdate).not.toBeNull();
+
+    act(() => result.current.newSession());
+    expect(result.current.lastStateUpdate).toBeNull();
+  });
+
   it('newSession clears messages and sessionId', () => {
     const { result } = renderHook(() => useAgentStore());
 

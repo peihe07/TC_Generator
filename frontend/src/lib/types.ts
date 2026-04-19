@@ -17,10 +17,14 @@ export interface PendingRegeneratedFields {
 
 export interface TcRow {
   id: string;
+  rowNum?: number;
+  tcId?: string;
   reqId: string;
   testGroup: string;
   testSet: string;
   testItem: string;
+  testItemRewrite?: string;
+  reviewStatus?: "pending" | "accepted" | "rejected" | "flagged";
   specReference?: string | null;
   preConditions: string;
   inputTestData: string;

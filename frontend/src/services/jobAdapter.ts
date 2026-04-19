@@ -139,14 +139,22 @@ function mapApiRowToTcRow(
     rawStatus === "error"
       ? "fail"
       : generated
-        ? "reviewing"
+        ? "pending"
         : "pending";
   return {
     id: String(row.id ?? crypto.randomUUID()),
+    rowNum:
+      typeof row.rowNum === "number" ? row.rowNum : undefined,
+    tcId: typeof row.tcId === "string" ? row.tcId : undefined,
     reqId: String(row.reqId ?? ""),
     testGroup,
     testSet: String(row.testSet ?? ""),
     testItem: String(row.testItem ?? ""),
+    testItemRewrite: String(generated?.testItemRewrite ?? ""),
+    reviewStatus:
+      typeof row.reviewStatus === "string"
+        ? (row.reviewStatus as TcRow["reviewStatus"])
+        : "pending",
     specReference: (row.specReference ?? generated?.specReference ?? null) as string | null,
     preConditions: String(generated?.preConditions ?? ""),
     inputTestData: String(generated?.inputTestData ?? ""),
@@ -231,6 +239,8 @@ function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
   const hasWarning = index % 4 === 1;
   return {
     ...row,
+    testItemRewrite: `(${row.testItem}) → Expected observable outcome is verified.`,
+    reviewStatus: "pending",
     preConditions: hasWarning
       ? "1. Feature state prepared\n2. Operator logged in"
       : "1. Required feature enabled\n2. System idle",
@@ -239,7 +249,7 @@ function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
       "1. Prepare the source state.\n2. Trigger the target behavior.\n3. Verify the visible outcome.",
     expectedResults:
       "1. Preparation succeeds.\n2. Triggered behavior is accepted.\n3. Observable result matches the requirement.",
-    status: "reviewing",
+    status: "pending",
     validationErrors: hasWarning
       ? [
           {
@@ -716,6 +726,33 @@ export async function regenerateRows(
 
 export async function exportJob(input: ExportJobInput) {
   if (input.jobId) {
+    const exportRows = input.rows.map((row) => ({
+      id: row.id,
+      rowNum: row.rowNum,
+      tcId: row.tcId ?? row.id,
+      reqId: row.reqId,
+      testGroup: row.testGroup,
+      testSet: row.testSet,
+      testItem: row.testItem,
+      specReference: row.specReference ?? null,
+      reviewStatus:
+        row.status === "accepted" || row.status === "rejected" || row.status === "flagged"
+          ? row.status
+          : (row.reviewStatus ?? "pending"),
+      generated: row.testItemRewrite || row.preConditions || row.inputTestData || row.steps || row.expectedResults
+        ? {
+            testItemRewrite: row.testItemRewrite ?? "",
+            preConditions: row.preConditions,
+            inputTestData: row.inputTestData,
+            testProcedure: row.steps,
+            expectedResult: row.expectedResults,
+            priority: "",
+            designMethod: "",
+            specReference: row.specReference ?? null,
+          }
+        : null,
+    }));
+
     const response = await parseJsonResponse<{
       fileName: string;
       downloadUrl: string;
@@ -726,7 +763,7 @@ export async function exportJob(input: ExportJobInput) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           jobId: input.jobId,
-          rows: input.rows,
+          rows: exportRows,
           scope: input.scope,
           outputMode: input.outputMode,
           includeFrameworkSheet: input.includeFrameworkSheet,
