@@ -20,6 +20,10 @@ output/*.db
 node_modules/
 .next/
 
+# Playwright artefacts
+frontend/test-results/
+frontend/playwright-report/
+
 # IDE
 .vscode/
 .idea/
