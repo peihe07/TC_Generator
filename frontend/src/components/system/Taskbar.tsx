@@ -36,6 +36,7 @@ const WINDOW_TITLES: Record<WindowID, string> = {
 const Taskbar: React.FC = () => {
   const { windows, focusedWindowId, focusWindow, openWindow } = useWindowStore();
   const [time, setTime] = useState('');
+  const [timeTooltip, setTimeTooltip] = useState('');
   const [showStart, setShowStart] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const startRef = useRef<HTMLDivElement>(null);
@@ -47,14 +48,23 @@ const Taskbar: React.FC = () => {
   useEffect(() => {
     const update = () => {
       const now = new Date();
+      // Classic Win95 clock: show HH:MM only in the taskbar,
+      // surface full date-time in the hover tooltip.
       setTime(
+        now.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      );
+      setTimeTooltip(
         now.toLocaleString([], {
           year: 'numeric',
           month: '2-digit',
           day: '2-digit',
+          weekday: 'long',
           hour: '2-digit',
           minute: '2-digit',
-        })
+        }),
       );
     };
     update();
@@ -210,10 +220,11 @@ const Taskbar: React.FC = () => {
         {/* Separator */}
         <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
-        {/* Clock */}
+        {/* Clock — Win95 classic: HH:MM only, full date in tooltip. */}
         <div
-          className="status-bar-field ml-auto flex items-center justify-end px-2"
-          style={{ height: 22, minWidth: 150, textAlign: 'right', whiteSpace: 'nowrap' }}
+          className="status-bar-field flex items-center justify-end px-2"
+          style={{ height: 22, minWidth: 56, textAlign: 'right', whiteSpace: 'nowrap' }}
+          title={timeTooltip}
         >
           {time}
         </div>
