@@ -25,6 +25,9 @@ EXPECTED_TOOL_NAMES = {
     "inspect_workbook",
     "list_jobs",
     "estimate_cost",
+    "get_job_detail",
+    "diff_jobs",
+    "aggregate_metrics",
     "get_job_validation",
 }
 
