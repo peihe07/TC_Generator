@@ -220,10 +220,12 @@ const Taskbar: React.FC = () => {
         {/* Separator */}
         <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
-        {/* Clock — Win95 classic: HH:MM only, full date in tooltip. */}
+        {/* Clock — Win95 classic: HH:MM only, full date in tooltip.
+            No minWidth and tight px-1 so the cell hugs the 5-char "HH:MM"
+            and does not steal width from the window-tabs strip. */}
         <div
-          className="status-bar-field flex items-center justify-end px-2"
-          style={{ height: 22, minWidth: 56, textAlign: 'right', whiteSpace: 'nowrap' }}
+          className="status-bar-field flex items-center px-1"
+          style={{ height: 22, whiteSpace: 'nowrap' }}
           title={timeTooltip}
         >
           {time}
