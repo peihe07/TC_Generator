@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import { useJobStore } from '../../store/useJobStore';
+import { Button, IconButton } from '../ui';
 
 const WorkspaceMenu: React.FC = () => {
   const {
@@ -87,13 +88,13 @@ const WorkspaceMenu: React.FC = () => {
 
   return (
     <div ref={popRef} style={{ position: 'relative' }}>
-      <button
+      <Button
         style={{ height: 22, padding: '0 8px', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
         onClick={() => setOpen((v) => !v)}
         title="Workspace manager"
       >
         {active ? `📂 ${active.name}` : '📂 Workspace'}
-      </button>
+      </Button>
 
       {open && (
         <div
@@ -116,12 +117,12 @@ const WorkspaceMenu: React.FC = () => {
           }}
         >
           <div style={{ display: 'flex', gap: 4 }}>
-            <button onClick={handleSaveAs} style={{ flex: 1 }}>Save As…</button>
-            <button onClick={handleOverwrite} disabled={!activeId} style={{ flex: 1 }}>Save</button>
-            <button onClick={handleNew} style={{ flex: 1 }}>New</button>
+            <Button onClick={handleSaveAs} style={{ flex: 1 }}>Save As…</Button>
+            <Button onClick={handleOverwrite} disabled={!activeId} style={{ flex: 1 }}>Save</Button>
+            <Button onClick={handleNew} style={{ flex: 1 }}>New</Button>
           </div>
           <div style={{ display: 'flex', gap: 4 }}>
-            <button onClick={handleImportClick} style={{ flex: 1 }}>Import…</button>
+            <Button onClick={handleImportClick} style={{ flex: 1 }}>Import…</Button>
             <input
               ref={fileRef}
               type="file"
@@ -157,7 +158,7 @@ const WorkspaceMenu: React.FC = () => {
                     fontSize: 11,
                   }}
                 >
-                  <button
+                  <Button
                     onClick={() => loadWorkspace(w.id)}
                     style={{ flex: 1, textAlign: 'left', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                     title={`Load "${w.name}" (${w.snapshot.tcRows.length} TCs)`}
@@ -166,10 +167,10 @@ const WorkspaceMenu: React.FC = () => {
                     <span style={{ marginLeft: 4, opacity: 0.7, fontSize: 10 }}>
                       ({w.snapshot.tcRows.length} TCs)
                     </span>
-                  </button>
-                  <button onClick={() => handleRename(w.id, w.name)} title="Rename" style={{ padding: '0 4px' }}>✎</button>
-                  <button onClick={() => handleExport(w.id, w.name)} title="Export to JSON" style={{ padding: '0 4px' }}>⤓</button>
-                  <button onClick={() => handleDelete(w.id, w.name)} title="Delete" style={{ padding: '0 4px' }}>✕</button>
+                  </Button>
+                  <IconButton label="Rename" onClick={() => handleRename(w.id, w.name)}>✎</IconButton>
+                  <IconButton label="Export to JSON" onClick={() => handleExport(w.id, w.name)}>⤓</IconButton>
+                  <IconButton label="Delete" onClick={() => handleDelete(w.id, w.name)}>✕</IconButton>
                 </div>
               ))}
           </div>
