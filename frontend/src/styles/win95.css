@@ -225,40 +225,32 @@ fieldset legend { font-weight: var(--font-weight-bold); }
   gap: 2px;
 }
 
-/* Progress bar with percentage overlay */
+/* Progress bar — blocky segmented fill per preview/progress.html.
+ * Well is white sunken; navy chunks are real flex children (.progress-chunk),
+ * last chunk optionally gets .progress-chunk--partial (opacity 0.4) to signal
+ * the in-flight slot. Label is rendered external to the well, in mono font. */
 .progress-bar-wrap {
-  position: relative;
-  height: 22px;
+  height: 20px;
   border: 2px solid;
   border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
-  background: var(--win95-gray);
+  background: var(--win95-white);
   padding: 2px;
+  display: flex;
+  gap: 2px;
   overflow: hidden;
 }
-.progress-bar-wrap .progress-fill {
-  height: 100%;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--win95-navy) 0,
-    var(--win95-navy) 6px,
-    transparent 6px,
-    transparent 8px
-  );
-  background-color: transparent;
-  transition: width var(--motion-progress);
+.progress-chunk {
+  width: 14px;
+  background: var(--win95-navy);
+  flex-shrink: 0;
 }
-.progress-bar-wrap .progress-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--font-md);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-inverse);
-  text-shadow: 1px 0 0 var(--win95-black), -1px 0 0 var(--win95-black), 0 1px 0 var(--win95-black), 0 -1px 0 var(--win95-black);
-  pointer-events: none;
-  letter-spacing: 0.5px;
+.progress-chunk--partial {
+  opacity: 0.4;
+}
+.progress-label {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-sm);
+  color: var(--text-default);
 }
 
 /* Standard button height — 28px balances Win95 look with modern usability */
@@ -367,6 +359,7 @@ menu[role="tablist"] > li[role="tab"][aria-selected="true"] {
 .status-badge.accepted  { background: var(--status-accept);      color: var(--text-inverse); }
 .status-badge.rejected  { background: var(--status-reject);      color: var(--text-inverse); }
 .status-badge.flagged   { background: var(--status-warn);        color: var(--win95-black); }
+.status-badge.fail      { background: var(--status-reject-dark); color: var(--text-inverse); }
 .status-badge.pending   { background: var(--win95-gray-mid);     color: var(--text-inverse); }
 .status-badge.reviewing { background: var(--win95-navy);         color: var(--text-inverse); }
 .status-badge.generating{
