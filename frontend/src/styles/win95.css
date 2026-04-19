@@ -59,11 +59,13 @@
   --status-reject-dark: #8b0000;
   --status-reject-bg: #f5b7b7;
   --status-warn: #e0a000;
+  --status-warn-dark: #7d4e00;          /* fuzzy-match / cautionary text */
   --status-edit: #fb923c;
   --status-edit-dark: #c2410c;
   --status-edit-bg: #fffbe0;
   --status-error-bg: #ffcccc;
   --status-error-border: #cc0000;
+  --status-error-bg-soft: #fff0f0;      /* inline error banner wash */
 
   /* Edit-accent palette — peach staged-change memo (RegenDiff "Changed"
      badge, StackedEditField manual-edit mode). Warmer/saturated than the
@@ -130,6 +132,11 @@ button svg {
   height: 20px !important;
   image-rendering: pixelated;
   flex-shrink: 0;
+}
+
+/* Remix Icon 是向量線條 icon，pixelated 會吃掉細線；強制走正常抗鋸齒 */
+button svg.remixicon {
+  image-rendering: auto;
 }
 
 /* Neutralise ALL rounded-* — every element is sharp-cornered in Win95 */
