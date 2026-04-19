@@ -1,0 +1,35 @@
+/**
+ * Shared types for the QuickGenerate module. Kept separate so that pure
+ * helpers (mockTc, constants) and UI sub-components can import them
+ * without pulling the orchestrator's React state.
+ */
+
+export type Mode = 'single' | 'with_context' | 'decompose';
+
+export type JobPhase = 'idle' | 'decomposing' | 'generating' | 'done' | 'error';
+
+export interface GeneratedTc {
+  scenarioId: number;
+  scenarioName?: string;
+  tc: {
+    test_item_rewrite: string;
+    pre_conditions: string;
+    input_test_data: string;
+    test_procedure: string;
+    expected_result: string;
+    design_method: string;
+    priority: string;
+  };
+}
+
+export interface Scenario {
+  id: number;
+  name: string;
+  description: string;
+  test_item: string;
+}
+
+export interface DecomposeAnalysis {
+  reasoning: string;
+  scenarios: Scenario[];
+}
