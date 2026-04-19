@@ -186,6 +186,33 @@ npm run build      # 確認 type / lint 過
 
 ---
 
+## Post-migration polish（獨立 PR，不在 Phase 1–8 範圍）
+
+Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨立 PR。
+
+### P1 — Review ValidationPanel 可拖曳寬度
+
+**動機：** `ValidationPanel.tsx` 目前寫死 `w-64` (256px)；使用者希望能調整寬度。
+
+**規格：**
+- 垂直 splitter，**sunken bezel**（用 `.border-sunken` 或新 class `.splitter-v`）
+- 寬度 `4px`，`cursor: col-resize`
+- 左側（主內容）預設 `flex: 1`；右側（Validation Results）預設 `320px`
+- min `200px` / max `500px`
+- 拖曳用 **pointer events**（非 mouse events），支援 touch
+- 寬度存 `localStorage`，key：`review-validation-panel-width`
+- a11y：`role="separator"` + `aria-orientation="vertical"` + `aria-valuenow` / `aria-valuemin` / `aria-valuemax`
+- 鍵盤支援 ← → 每次調 `16px`
+
+**禁止：**
+- 不用 3rd-party resize lib（`react-resizable` 等）— 手寫 hook < 80 行
+- 不加動畫 / transition（拖曳必須即時跟隨游標）
+- 不加圓角 / gradient
+
+**進入條件：** Phase 6.2 收完後再開工。
+
+---
+
 ## 給 Claude Code 的執行指令模板
 
 ```
