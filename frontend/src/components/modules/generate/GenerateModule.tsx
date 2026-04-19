@@ -13,6 +13,7 @@ import {
   RiStopCircleLine
 } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
+import { Button } from '../../ui';
 
 const GenerateModule: React.FC = () => {
   const {
@@ -165,24 +166,24 @@ const GenerateModule: React.FC = () => {
       </div>
 
       <div className="flex justify-between items-center pt-2">
-        <button className="flex items-center gap-1" disabled={!isProcessing} onClick={stopRun}>
+        <Button className="flex items-center gap-1" disabled={!isProcessing} onClick={stopRun}>
           <RiStopCircleLine className="size-4" /> Cancel
-        </button>
+        </Button>
         <div className="flex items-center gap-2">
-          <button
+          <Button
             className="flex items-center gap-1 font-bold"
             disabled={isProcessing || !tcRows.length}
             onClick={startRun}
           >
             <RiPlayListAddLine className="size-4 text-green-700" /> Start Run
-          </button>
-          <button
+          </Button>
+          <Button
             className="flex items-center gap-1 font-bold"
             disabled={isProcessing || !tcRows.length}
             onClick={() => openWindow('review', 'TC Generator - Review Results')}
           >
             Review Results <RiCheckDoubleFill className="size-4 text-blue-700" />
-          </button>
+          </Button>
         </div>
       </div>
     </div>

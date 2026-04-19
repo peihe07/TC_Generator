@@ -4,6 +4,7 @@ import React from 'react';
 import { RiQuestionAnswerLine } from '@remixicon/react';
 import { useAgentStore } from '../../store/useAgentStore';
 import { useWindowStore } from '../../store/useWindowStore';
+import { Button } from '../ui';
 
 interface Props {
   contextPrompt: string;
@@ -29,13 +30,14 @@ export default function HelpFromAgentButton({ contextPrompt, title }: Props) {
   const disabled = streamState === 'sending' || streamState === 'streaming';
 
   return (
-    <button
+    <Button
       className="btn-help-agent"
       onClick={handleClick}
       disabled={disabled}
       title={disabled ? 'Agent 正在處理中…' : (title ?? '求助 AI')}
+      aria-label={title ?? '求助 AI'}
     >
       <RiQuestionAnswerLine size={14} />
-    </button>
+    </Button>
   );
 }

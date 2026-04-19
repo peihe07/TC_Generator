@@ -7,6 +7,7 @@ import { TASKBAR_HEIGHT } from './layout';
 import WorkspaceMenu from './WorkspaceMenu';
 import JobHistoryMenu from './JobHistoryMenu';
 import AgentTaskbarButton from '../modules/chat/AgentTaskbarButton';
+import { Button } from '../ui';
 
 const START_MENU_ITEMS: { label: string; icon: string; id: WindowID | null }[] = [
   { label: 'Upload',     icon: '📁', id: 'upload' },
@@ -138,7 +139,7 @@ const Taskbar: React.FC = () => {
         }}
       >
         {/* Start button */}
-        <button
+        <Button
           className={`flex items-center gap-1 font-bold px-2 ${showStart ? 'border-inset' : ''}`}
           style={{ height: 22, fontWeight: 'bold' }}
           onClick={() => setShowStart(v => !v)}
@@ -151,7 +152,7 @@ const Taskbar: React.FC = () => {
             <rect x="8" y="8" width="6" height="6" fill="#ffff00"/>
           </svg>
           <span>Start</span>
-        </button>
+        </Button>
 
         {/* Separator */}
         <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
@@ -161,7 +162,7 @@ const Taskbar: React.FC = () => {
           {openWindows.map((win) => {
             const isActive = focusedWindowId === win.id && !win.isMinimized;
             return (
-              <button
+              <Button
                 key={win.id}
                 onClick={() => handleTaskbarClick(win.id as WindowID)}
                 style={{
@@ -179,7 +180,7 @@ const Taskbar: React.FC = () => {
                 }}
               >
                 {win.isMinimized ? `[${win.title}]` : win.title}
-              </button>
+              </Button>
             );
           })}
         </div>

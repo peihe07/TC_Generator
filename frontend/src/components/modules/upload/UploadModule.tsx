@@ -7,6 +7,7 @@ import { createJobLog } from '../../../lib/logging';
 import { parseJobFiles } from '../../../services/jobAdapter';
 import { RiFileLine, RiFileExcel2Line, RiFileSearchLine, RiArrowRightLine } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
+import { Button } from '../../ui';
 
 const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
@@ -184,13 +185,13 @@ const UploadModule: React.FC = () => {
       </div>
 
       <div className="flex justify-end pt-4 border-t border-gray-400">
-        <button
+        <Button
           className="flex items-center gap-2"
           disabled={!files.tc || isParsing}
           onClick={() => void handleNext()}
         >
           {isParsing ? 'Parsing...' : 'Parse & Next'} <RiArrowRightLine className="size-4" />
-        </button>
+        </Button>
       </div>
     </div>
   );

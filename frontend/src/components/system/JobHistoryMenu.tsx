@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useJobHistoryStore } from '../../store/useJobHistoryStore';
+import { Button } from '../ui';
 
 function fmtDate(ts: number): string {
   const d = new Date(ts);
@@ -43,13 +44,13 @@ const JobHistoryMenu: React.FC = () => {
 
   return (
     <div ref={popRef} style={{ position: 'relative' }}>
-      <button
+      <Button
         style={{ height: 22, padding: '0 8px', maxWidth: 180 }}
         onClick={() => setOpen((v) => !v)}
         title={`Job history — total spent $${totalCost.toFixed(4)}`}
       >
         📊 ${totalCost.toFixed(4)}
-      </button>
+      </Button>
 
       {open && (
         <div
@@ -88,9 +89,9 @@ const JobHistoryMenu: React.FC = () => {
           </div>
 
           <div style={{ display: 'flex', gap: 4 }}>
-            <button onClick={handleClear} disabled={records.length === 0} style={{ flex: 1 }}>
+            <Button onClick={handleClear} disabled={records.length === 0} style={{ flex: 1 }}>
               Clear History
-            </button>
+            </Button>
           </div>
 
           {/* Records */}

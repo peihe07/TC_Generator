@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { RiArrowDownSLine, RiArrowRightSLine, RiCheckLine, RiErrorWarningLine, RiLoader4Line } from '@remixicon/react';
 import type { UIToolPart } from '../../../services/agentEvents';
 import { useWindowStore } from '../../../store/useWindowStore';
+import { Button } from '../../ui';
 
 
 interface Props {
@@ -81,9 +82,9 @@ export default function ToolCallCard({ part }: Props) {
 
       {part.status === 'ok' && handoff && (
         <div className="tool-card-footer">
-          <button className="btn-small" onClick={handleHandoff}>
+          <Button className="btn-small" onClick={handleHandoff}>
             {handoff.label}
-          </button>
+          </Button>
         </div>
       )}
     </div>

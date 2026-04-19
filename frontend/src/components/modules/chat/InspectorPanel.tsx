@@ -6,6 +6,7 @@ import { useAgentStore } from '../../../store/useAgentStore';
 import { useJobStore } from '../../../store/useJobStore';
 import type { UIToolPart } from '../../../services/agentEvents';
 import { getSessionPreview } from '../../../services/agentClient';
+import { Button } from '../../ui';
 
 export default function InspectorPanel() {
   const { messages, recentSessions, sessionId, currentSessionCost, loadSession, deleteSession } =
@@ -94,7 +95,7 @@ export default function InspectorPanel() {
                 key={s.sessionId}
                 className={`inspector-session-item ${s.sessionId === sessionId ? 'active' : ''}`}
               >
-                <button
+                <Button
                   className="inspector-session-btn"
                   onClick={() => loadSession(s.sessionId)}
                   title={s.sessionId}
@@ -103,14 +104,15 @@ export default function InspectorPanel() {
                     {getSessionPreview(s.sessionId === sessionId ? messages : [])}
                   </span>
                   <span className="session-cost">${s.totalCostUsd.toFixed(4)}</span>
-                </button>
-                <button
+                </Button>
+                <Button
                   className="inspector-session-delete"
                   onClick={() => deleteSession(s.sessionId)}
                   title="刪除"
+                  aria-label="刪除"
                 >
                   ×
-                </button>
+                </Button>
               </div>
             ))}
           </div>

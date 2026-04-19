@@ -13,6 +13,7 @@ import {
   RiArrowLeftLine
 } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
+import { Button } from '../../ui';
 
 const ExportModule: React.FC = () => {
   const { tcRows, jobMetadata, appendLog, resetJob, config } = useJobStore();
@@ -137,10 +138,10 @@ const ExportModule: React.FC = () => {
           </div>
 
           <div className="flex justify-between items-center pt-4 border-t border-gray-400">
-            <button className="flex items-center gap-1" onClick={() => openWindow('review', 'Review Results')}>
+            <Button className="flex items-center gap-1" onClick={() => openWindow('review', 'Review Results')}>
               <RiArrowLeftLine className="size-4" /> Back to Review
-            </button>
-            <button
+            </Button>
+            <Button
               className={`flex items-center gap-2 font-bold default min-w-[120px] justify-center ${isExporting ? 'bg-gray-200' : ''}`}
               disabled={isExporting}
               onClick={() => void handleExport()}
@@ -150,7 +151,7 @@ const ExportModule: React.FC = () => {
               ) : (
                 <>Export to Excel <RiFileExcel2Fill className="size-4 text-green-700" /></>
               )}
-            </button>
+            </Button>
           </div>
         </>
       ) : (
@@ -186,7 +187,7 @@ const ExportModule: React.FC = () => {
             >
               <RiDownload2Line className="size-5" /> Download File
             </a>
-            <button
+            <Button
               className="py-2"
               onClick={() => {
                 setExportComplete(false);
@@ -196,7 +197,7 @@ const ExportModule: React.FC = () => {
               }}
             >
               Start New Job
-            </button>
+            </Button>
           </div>
         </div>
       )}

@@ -4,6 +4,7 @@ import React from 'react';
 import { RiMoneyDollarCircleLine } from '@remixicon/react';
 import type { UIConfirmPart } from '../../../services/agentEvents';
 import { useAgentStore } from '../../../store/useAgentStore';
+import { Button } from '../../ui';
 
 interface Props {
   part: UIConfirmPart;
@@ -25,12 +26,12 @@ export default function ConfirmCard({ part }: Props) {
 
       {part.status === 'pending' && (
         <div className="confirm-card-actions">
-          <button className="btn-confirm-accept" onClick={acceptConfirm}>
+          <Button className="btn-confirm-accept" onClick={acceptConfirm}>
             Accept
-          </button>
-          <button className="btn-confirm-decline" onClick={declineConfirm}>
+          </Button>
+          <Button className="btn-confirm-decline" onClick={declineConfirm}>
             Decline
-          </button>
+          </Button>
         </div>
       )}
 

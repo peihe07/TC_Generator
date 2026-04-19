@@ -4,6 +4,7 @@ import React from 'react';
 import { RiRobot2Line, RiRobot2Fill } from '@remixicon/react';
 import { useAgentStore, StreamState } from '../../../store/useAgentStore';
 import { useWindowStore } from '../../../store/useWindowStore';
+import { Button } from '../../ui';
 
 export default function AgentTaskbarButton() {
   const streamState = useAgentStore((s) => s.streamState);
@@ -22,7 +23,7 @@ export default function AgentTaskbarButton() {
   const state = pendingConfirm ? 'need_confirm' : streamState;
 
   return (
-    <button
+    <Button
       className={`agent-taskbar-btn agent-taskbar-btn--${state}`}
       onClick={handleClick}
       title="Agent Co-pilot"
@@ -32,6 +33,6 @@ export default function AgentTaskbarButton() {
       ) : (
         <RiRobot2Fill size={16} />
       )}
-    </button>
+    </Button>
   );
 }

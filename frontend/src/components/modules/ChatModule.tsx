@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { RiAddLine, RiHistoryLine, RiDownloadLine } from '@remixicon/react';
 import { useAgentStore } from '../../store/useAgentStore';
 import { agentClient } from '../../services/agentClient';
+import { IconButton } from '../ui';
 import MessageList from './chat/MessageList';
 import InspectorPanel from './chat/InspectorPanel';
 import InputArea from './chat/InputArea';
@@ -48,20 +49,16 @@ export default function ChatModule() {
       <div className="chat-header">
         <span className="chat-header-title">Agent Co-pilot</span>
         <div className="chat-header-actions">
-          <button className="btn-icon" onClick={newSession} title="New Session">
+          <IconButton label="New Session" onClick={newSession}>
             <RiAddLine size={14} />
-          </button>
-          <button
-            className="btn-icon"
-            onClick={refreshRecentSessions}
-            title="Sessions"
-          >
+          </IconButton>
+          <IconButton label="Sessions" onClick={refreshRecentSessions}>
             <RiHistoryLine size={14} />
-          </button>
+          </IconButton>
           {sessionId && (
-            <button className="btn-icon" onClick={handleExportTrace} title="Export Trace">
+            <IconButton label="Export Trace" onClick={handleExportTrace}>
               <RiDownloadLine size={14} />
-            </button>
+            </IconButton>
           )}
         </div>
       </div>

@@ -4,6 +4,7 @@ import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { RiSendPlaneLine, RiAttachmentLine, RiLoader4Line } from '@remixicon/react';
 import { useAgentStore } from '../../../store/useAgentStore';
 import { parseJobFiles } from '../../../services/jobAdapter';
+import { Button, IconButton } from '../../ui';
 
 export default function InputArea() {
   const [text, setText] = useState('');
@@ -99,21 +100,20 @@ export default function InputArea() {
           style={{ display: 'none' }}
           onChange={handleFileInput}
         />
-        <button
-          className="btn-icon"
+        <IconButton
+          label="附加 xlsx 檔案"
           onClick={() => fileInputRef.current?.click()}
           disabled={isDisabled || isParsing}
-          title="附加 xlsx 檔案"
         >
           {isParsing ? <RiLoader4Line size={14} className="spin" /> : <RiAttachmentLine size={14} />}
-        </button>
-        <button
+        </IconButton>
+        <Button
           className="chat-send-btn"
           onClick={handleSend}
           disabled={!text.trim() || isDisabled}
         >
           <RiSendPlaneLine size={16} />
-        </button>
+        </Button>
       </div>
     </div>
   );
