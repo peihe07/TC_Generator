@@ -1,17 +1,19 @@
 # TC Generator — 專案狀態
 
-最後更新：2026-04-18
+最後更新：2026-04-19
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
 
-> **Phase 0 + Phase 1 已完成**：
-> - Phase 0：`backend/tools/` 下建立 10 個 pure-function tool，所有 FastAPI
->   route 走 tool 層，API 行為零變化。
-> - Phase 1：`agent_dispatcher.py` + `trace_store.py` + `agent_session_store.py`
->   + `routes/agent.py` SSE endpoint，加上 JSON schema / replay CLI / 5 個
->   golden scenario 整合測試。
+> **Phase 0 + Phase 1 + Phase 2 + Phase 3 已完成**：
+> - Phase 0：`backend/tools/` 下建立 10 個 pure-function tool。
+> - Phase 1：`agent_dispatcher.py` + SSE endpoint + session / trace store。
+> - Phase 2：Frontend ChatModule（`useAgentStore` / `agentClient` / SSE parsing /
+>   ToolCallCard / ConfirmCard / MessageList / InspectorPanel / InputArea /
+>   AgentTaskbarButton）+ 煙霧測試 + 4 個 backend bug 修正。
+> - Phase 3：`HelpFromAgentButton` 加入 5 個 GUI module；`agent-prefill`
+>   CustomEvent handoff 機制；handoff E2E。
 >
-> 下一步進 Phase 2（Frontend ChatModule）。
+> 下一步：Phase 4（`state_update` SSE 衝突 toast、`get_job_detail` tool）。
 
 ---
 
@@ -183,6 +185,10 @@ TC_Generator/
 - Job History menu：lifetime cumulative cost + per-job record（localStorage，TTL 90 天 + MAX_RECORDS cap）
 - Review：batch accept/reject/delete/regenerate；word-level diff；spec reference 自動顯示
 - Configure：grouping + matching preview + 手動 `testSet` override
+- Design system：`components/ui/` primitive 層（`Button` / `IconButton` / `StatusBadge`
+  + barrel export），`win95.css` token 化（`--status-*` / `--win95-*`）；
+  全部 GUI modules 統一使用 primitives；`ReviewModule.tsx` 從 800 行拆為
+  orchestrator + 7 個聚焦子元件 + 1 個純函式 diff 模組
 
 ### Runtime 基準（真實檔案壓力測試）
 
@@ -200,7 +206,9 @@ TC_Generator/
 - `pytest -q`：360 pass（225 原始 + 41 Phase 0 tool layer + 94 Phase 1 agent）
   - schemas: 13 / trace_store: 12 / dispatcher: 16 / session_store: 9 /
     route_agent: 9 / replay: 9 / inspect+jobs: 17 / golden scenarios: 5
-- `npx tsc --noEmit`：0 error
+- `npm run typecheck` (`tsc --noEmit`)：0 error
+- `npm run test:unit` (Vitest)：54 pass（Button / IconButton / StatusBadge /
+  ChatModule / agentClient / useAgentStore / diffTokens）
 - Playwright E2E：Workspace JSON round-trip（save → export → new → import → load）
 - API smoke：parse / group / match / generate / regenerate / export / download 端到端
 
