@@ -211,6 +211,22 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** Phase 6.2 收完後再開工。
 
+### P2 — GenerateModule cost budget threshold warning
+
+**動機：** Phase 6.3 發現 GenerateModule 的 Session Stats 目前沒有「超出預算」的視覺警示；cost 數字只單純顯示，超標不變色。`ConfigureModule` 已有 `config.budgetLimit` 這個設定值，但 Generate 階段沒拿來比對。
+
+**規格：**
+- 當 `stats.cost >= config.budgetLimit * THRESHOLD`（例如 `THRESHOLD = 0.8`，即用到 80% 預算）時，cost 數字文字色轉 `var(--status-reject-dark)`，並前置 `<RiAlertLine>` Remix icon
+- 當 `stats.cost >= config.budgetLimit`（100% 以上）時，同上並加 pulse 強調（`animation: agent-pulse 1s ease-in-out infinite`，符合 Phase 4 規範）
+- 未達 threshold 時保持 `var(--text-default)`，無 icon
+
+**禁止：**
+- 不自動停止 generation（僅視覺警示）
+- 不用新顏色，只用既有 `--status-*` token
+- 不加新的 pulse timing（必須是 1s，符合 Phase 4）
+
+**進入條件：** 所有 Phase 6 module alignment 完成後。
+
 ---
 
 ## 給 Claude Code 的執行指令模板
