@@ -1,0 +1,155 @@
+/* Preview card shared base — all cards import this */
+@import url("../colors_and_type.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--win95-gray);
+  font-family: var(--font-family-base);
+  font-size: var(--font-base);
+  color: var(--text-default);
+}
+body {
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.row   { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.swatch {
+  display: flex; flex-direction: column; gap: 4px;
+  width: 96px;
+}
+.swatch-chip {
+  height: 48px; width: 100%;
+  border: 2px solid;
+  border-color: var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white);
+}
+.swatch-chip.sunken {
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  box-shadow: inset 1px 1px 0 var(--win95-black);
+}
+.swatch-label {
+  font-size: var(--font-xs);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+.swatch-hex {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+}
+.meta { font-size: var(--font-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Win95 button baseline (mimics 98.css) */
+.w95-btn {
+  font-family: inherit;
+  font-size: var(--font-base);
+  background: var(--win95-gray);
+  color: var(--win95-black);
+  border: 2px solid;
+  border-color: var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white);
+  box-shadow: inset 1px 1px 0 var(--win95-gray-light), inset -1px -1px 0 var(--win95-gray-dark);
+  padding: 4px 12px;
+  min-height: 28px;
+  cursor: pointer;
+  line-height: 1.2;
+}
+.w95-btn.pressed,
+.w95-btn:active {
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  box-shadow: inset 1px 1px 0 var(--win95-gray-dark);
+}
+.w95-btn.default { font-weight: bold; border-width: 2px; outline: 1px solid var(--win95-black); outline-offset: -4px; }
+.btn-accept { color: var(--status-accept-dark) !important; font-weight: bold; }
+.btn-reject { color: var(--status-reject-dark) !important; font-weight: bold; }
+
+.w95-input {
+  font-family: inherit;
+  font-size: var(--font-base);
+  background: var(--win95-white);
+  color: var(--win95-black);
+  border: 2px solid;
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  box-shadow: inset 1px 1px 0 var(--win95-black);
+  padding: 3px 6px;
+  min-height: 22px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  font-size: var(--font-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid;
+  border-color: var(--win95-gray-dark) #f0f0f0 #f0f0f0 var(--win95-gray-dark);
+  box-shadow: var(--shadow-badge-inset);
+}
+.status-badge.accepted   { background: #00a000; color: #fff; }
+.status-badge.rejected   { background: #c00000; color: #fff; }
+.status-badge.flagged    { background: #e0a000; color: #000; }
+.status-badge.pending    { background: #909090; color: #fff; }
+.status-badge.reviewing  { background: #000080; color: #fff; }
+.status-badge.generating { background: #000080; color: #fff; }
+
+.paper-card {
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  box-shadow: var(--shadow-paper), inset 1px 1px 0 rgba(0,0,0,0.05);
+  padding: 10px;
+}
+.paper-card.edit-mode {
+  background: var(--status-edit-bg);
+  border-color: var(--status-edit);
+  box-shadow: 2px 2px 0 rgba(251,146,60,0.30);
+}
+
+.title-bar-mini {
+  background: linear-gradient(to right, var(--win95-navy), var(--win95-navy-light));
+  color: #ffffff;
+  font-weight: bold;
+  font-size: var(--font-sm);
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.title-bar-mini.edit {
+  background: linear-gradient(to right, var(--status-edit-dark), #ea580c);
+}
+
+.title-bar {
+  background: linear-gradient(to right, var(--win95-navy), var(--win95-navy-light));
+  color: #fff;
+  font-weight: bold;
+  font-size: var(--font-md);
+  padding: 3px 6px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: 0.5px;
+}
+.title-bar.inactive { background: var(--win95-gray-mid); }
+.title-bar-controls { display: flex; gap: 2px; }
+.title-bar-controls > button {
+  width: 20px; height: 20px;
+  font-family: monospace; font-size: 10px; font-weight: bold;
+  background: var(--win95-gray);
+  border: 2px solid; border-color: var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white);
+  cursor: pointer;
+}
+
+fieldset.w95 {
+  border: 2px solid;
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  padding: 10px 12px;
+}
+fieldset.w95 legend { font-weight: bold; padding: 0 6px; }

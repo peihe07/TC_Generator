@@ -1,0 +1,147 @@
+/* ============================================================
+   TC Generator — Colors & Type tokens
+   Extracted from frontend/src/styles/win95.css + docs/DESIGN_SYSTEM.md
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("https://unpkg.com/98.css@0.1.21/dist/ms_sans_serif.woff") format("woff");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("https://unpkg.com/98.css@0.1.21/dist/ms_sans_serif_bold.woff") format("woff");
+  font-weight: bold;
+}
+
+:root {
+  /* ---------- Typography ---------- */
+  --font-family-base: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
+  --font-family-mono: "Courier New", ui-monospace, monospace;
+
+  --font-xs: 10px;
+  --font-sm: 11px;
+  --font-md: 12px;
+  --font-base: 13px;
+  --font-lg: 14px;
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  /* ---------- Spacing ---------- */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-6: 12px;
+  --space-8: 16px;
+
+  /* ---------- Neutrals ---------- */
+  --win95-black:        #000000;
+  --win95-gray-darker:  #404040;
+  --win95-gray-dark:    #606060;
+  --win95-gray-mid:     #808080;
+  --win95-gray:         #c0c0c0;
+  --win95-gray-light:   #dfdfdf;
+  --win95-gray-lighter: #e0e0e0;
+  --win95-white:        #ffffff;
+
+  /* ---------- Brand accents ---------- */
+  --win95-teal:       #008080;  /* desktop wallpaper */
+  --win95-navy:       #000080;  /* active title bar, selection */
+  --win95-navy-light: #1084d0;  /* title-bar gradient partner */
+
+  /* ---------- Selection ---------- */
+  --win95-select-bg:   #000080;
+  --win95-select-text: #ffffff;
+
+  /* ---------- Text ---------- */
+  --text-default: #000000;
+  --text-muted:   #666666;
+  --text-inverse: #ffffff;
+
+  /* ---------- Semantic status ---------- */
+  --status-accept:       #00a000;
+  --status-accept-dark:  #006400;
+  --status-accept-bg:    #c4e9c4;
+
+  --status-reject:       #c00000;
+  --status-reject-dark:  #8b0000;
+  --status-reject-bg:    #f5b7b7;
+
+  --status-warn:         #e0a000;
+  --status-warn-dark:    #7d4e00;
+
+  --status-edit:         #fb923c;
+  --status-edit-dark:    #c2410c;
+  --status-edit-bg:      #fffbe0;
+
+  --status-error-bg:       #ffcccc;
+  --status-error-border:   #cc0000;
+  --status-error-bg-soft:  #fff0f0;
+
+  /* ---------- Edit-accent peach (memo/staging) ---------- */
+  --edit-accent-bg:     #fed7aa;
+  --edit-accent-border: #fdba74;
+  --edit-accent-fg:     #7c2d12;
+
+  /* ---------- Diff palette ---------- */
+  --diff-remove-bg: #faf6f4;
+  --diff-remove-fg: #991b1b;
+  --diff-add-bg:    #f4faf4;
+  --diff-add-fg:    #166534;
+
+  /* ---------- Field header (paper-card section) ---------- */
+  --field-header-bg:     #e8e8e8;
+  --field-header-border: #d0d0d0;
+
+  /* ---------- Motion ---------- */
+  --motion-fast:     120ms ease;
+  --motion-progress: 200ms linear;
+
+  /* ---------- Shadows ---------- */
+  --shadow-paper:   2px 2px 0 rgba(0, 0, 0, 0.15);
+  --shadow-toolbox: 4px 4px 0 rgba(0, 0, 0, 0.35);
+  --shadow-badge-inset: inset 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Global reset (Win95 convention) ---------- */
+* { border-radius: 0 !important; }
+
+body {
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-base) !important;
+  color: var(--text-default);
+  background: var(--win95-teal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button, input, textarea, select, table, td, th, label {
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+/* ---------- Semantic type classes ---------- */
+.type-h1,
+h1.ds { font-size: var(--font-lg); font-weight: var(--font-weight-bold); letter-spacing: 0; }
+.type-h2,
+h2.ds { font-size: var(--font-base); font-weight: var(--font-weight-bold); }
+.type-body,
+p.ds { font-size: var(--font-md); font-weight: var(--font-weight-normal); line-height: 1.5; }
+.type-meta { font-size: var(--font-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.type-badge { font-size: var(--font-sm); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.5px; }
+.type-mono { font-family: var(--font-family-mono); font-size: var(--font-sm); }
+
+/* ---------- 3D bezels (pattern) ---------- */
+.bezel-raised {
+  border: 2px solid;
+  border-color: var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white);
+}
+.bezel-sunken {
+  border: 2px solid;
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  box-shadow: inset 1px 1px 0 var(--win95-black);
+}

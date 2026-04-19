@@ -11,6 +11,7 @@ dist/
 build/
 .venv/
 venv/
+.pytest_cache/
 
 # Output
 output/*.xlsx
@@ -23,6 +24,7 @@ node_modules/
 # Playwright artefacts
 frontend/test-results/
 frontend/playwright-report/
+playwright-report/
 
 # IDE
 .vscode/
@@ -34,6 +36,7 @@ frontend/playwright-report/
 .DS_Store
 Thumbs.db
 .coverage
+*.tsbuildinfo
 
 # Playwright MCP scratch
 .playwright-mcp/

@@ -1,0 +1,1048 @@
+/* frontend/src/styles/win95.css */
+
+/* Pixelated MS Sans Serif — cross-platform web font */
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("https://unpkg.com/98.css@0.1.21/dist/ms_sans_serif.woff") format("woff");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("https://unpkg.com/98.css@0.1.21/dist/ms_sans_serif_bold.woff") format("woff");
+  font-weight: bold;
+}
+
+:root {
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-base-size: 13px;      /* legacy alias; keep for backward compat */
+  --font-xs: 10px;
+  --font-sm: 11px;
+  --font-md: 12px;
+  --font-base: 13px;
+  --font-lg: 14px;
+
+  /* ── Spacing scale ──────────────────────────────────────── */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-6: 12px;
+  --space-8: 16px;
+
+  /* ── Neutral scale (Win95 3D borders need the full gradient) ── */
+  --win95-black: #000000;
+  --win95-gray-darker: #404040;
+  --win95-gray-dark: #606060;
+  --win95-gray-mid: #808080;
+  --win95-gray: #c0c0c0;
+  --win95-gray-light: #dfdfdf;
+  --win95-gray-lighter: #e0e0e0;
+  --win95-white: #ffffff;
+
+  /* ── Brand ──────────────────────────────────────────────── */
+  --win95-teal: #008080;
+  --win95-navy: #000080;
+  --win95-navy-light: #1084d0;
+
+  /* ── Selection ──────────────────────────────────────────── */
+  --win95-select-bg: #000080;
+  --win95-select-text: #ffffff;
+
+  /* ── Text ──────────────────────────────────────────────── */
+  --text-muted: #666666;       /* secondary text on light surface */
+
+  /* ── Semantic status (derived from existing de facto palette) ── */
+  --status-accept: #00a000;
+  --status-accept-dark: #006400;
+  --status-accept-bg: #c4e9c4;
+  --status-reject: #c00000;
+  --status-reject-dark: #8b0000;
+  --status-reject-bg: #f5b7b7;
+  --status-warn: #e0a000;
+  --status-warn-dark: #7d4e00;          /* fuzzy-match / cautionary text */
+  --status-edit: #fb923c;
+  --status-edit-dark: #c2410c;
+  --status-edit-bg: #fffbe0;
+  --status-error-bg: #ffcccc;
+  --status-error-border: #cc0000;
+  --status-error-bg-soft: #fff0f0;      /* inline error banner wash */
+
+  /* Edit-accent palette — peach staged-change memo (RegenDiff "Changed"
+     badge, StackedEditField manual-edit mode). Warmer/saturated than the
+     pale `--status-edit-bg`, reserved for "user is actively editing". */
+  --edit-accent-bg: #fed7aa;
+  --edit-accent-border: #fdba74;
+  --edit-accent-fg: #7c2d12;
+
+  /* Diff palette — side-by-side regen comparison. */
+  --diff-remove-bg: #faf6f4;
+  --diff-remove-fg: #991b1b;
+  --diff-add-bg: #f4faf4;
+  --diff-add-fg: #166534;
+
+  /* Shared "field header" background for labeled read-only cells
+     (StackedReadField / RegenDiff field row). */
+  --field-header-bg: #e8e8e8;
+  --field-header-border: #d0d0d0;
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --motion-fast: 120ms ease;
+  --motion-progress: 200ms linear;
+}
+
+/* Global font — pixelated, no smoothing */
+body {
+  font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif !important;
+  font-size: var(--font-base-size) !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility;
+}
+
+/* Propagate font to form elements (browsers don't inherit by default) */
+button, input, textarea, select, table, td, th, label {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility;
+}
+
+/* 所有視窗 module 內禁止選取/複製文字；輸入元素仍允許編輯 */
+.window-body,
+.window-body * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.window-body input,
+.window-body textarea,
+.window-body [contenteditable="true"],
+.window-body .selectable,
+.window-body .selectable * {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* 98.css 把 button 的 color 設成 transparent、再用 text-shadow 假造文字色。
+   這會讓 SVG 的 fill=currentColor 整個透明（icon 消失），所以這裡蓋回 #222；
+   深色背景按鈕仍可用自己的 class 覆寫（例如 .agent-taskbar-btn--streaming { color:white }）。 */
+button {
+  color: #222;
+}
+
+/* Icons inside buttons — 20px for usability on HiDPI screens */
+button svg {
+  width: 20px !important;
+  height: 20px !important;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+/* Remix Icon 是向量線條 icon，pixelated 會吃掉細線；強制走正常抗鋸齒 */
+button svg.remixicon {
+  image-rendering: auto;
+}
+
+/* Neutralise ALL rounded-* — every element is sharp-cornered in Win95 */
+* {
+  border-radius: 0 !important;
+}
+
+/* Win95 scrollbar */
+::-webkit-scrollbar { width: 16px; height: 16px; }
+::-webkit-scrollbar-track { background: #c0c0c0; }
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+::-webkit-scrollbar-button {
+  background: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  width: 16px;
+  height: 16px;
+}
+::-webkit-scrollbar-corner { background: #c0c0c0; }
+
+/* Dropzone — sunken inset style */
+.dropzone-sunken {
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  box-shadow: inset 1px 1px 0 #000000;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.dropzone-sunken.dragging {
+  background: #e8f0ff;
+  border-color: #000080 #000080 #000080 #000080;
+  box-shadow: inset 1px 1px 0 #000080, inset -1px -1px 0 #000080;
+}
+.dropzone-sunken.dragging * {
+  color: #000080 !important;
+}
+
+/* Sunken stat box — for dashboard numbers */
+.stat-sunken {
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #ffffff;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Progress bar with percentage overlay */
+.progress-bar-wrap {
+  position: relative;
+  height: 22px;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: #c0c0c0;
+  padding: 2px;
+  overflow: hidden;
+}
+.progress-bar-wrap .progress-fill {
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to right,
+    #000080 0,
+    #000080 6px,
+    transparent 6px,
+    transparent 8px
+  );
+  background-color: transparent;
+  transition: width 200ms linear;
+}
+.progress-bar-wrap .progress-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+/* Standard button height — 28px balances Win95 look with modern usability */
+button {
+  min-height: 28px;
+  padding: 4px 12px !important;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+/* Small icon buttons (table action cells) */
+button.btn-icon {
+  min-height: 22px !important;
+  height: 22px !important;
+  width: 22px !important;
+  min-width: 22px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+td.cell-center {
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+/* Title bar — 26px height for better readability */
+.title-bar {
+  padding: 3px 6px !important;
+  height: 26px;
+  min-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.title-bar-text {
+  font-weight: bold;
+  font-size: 12px !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Override: icons inside title bar text should be 20px */
+.title-bar-text svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Title-bar control buttons */
+.title-bar-controls button {
+  min-height: 20px !important;
+  min-width: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 0 !important;
+}
+
+/* Row selection — Win95 navy blue, no hover gradients */
+.win95-row {
+  cursor: pointer;
+}
+.win95-row:hover {
+  background-color: var(--win95-select-bg) !important;
+  color: var(--win95-select-text) !important;
+}
+.win95-row.selected {
+  background-color: var(--win95-select-bg) !important;
+  color: var(--win95-select-text) !important;
+}
+
+/* Status badge — sharp corners only */
+.status-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  font-size: 11px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 0 !important;
+}
+/* Status badge — sunken inset, saturated Win95 system colours */
+.status-badge {
+  border: 2px solid;
+  border-color: #606060 #f0f0f0 #f0f0f0 #606060;
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,0.25);
+  font-weight: bold;
+}
+.status-badge.accepted  { background: #00a000; color: #ffffff; }
+.status-badge.rejected  { background: #c00000; color: #ffffff; }
+.status-badge.flagged   { background: #e0a000; color: #000000; }
+.status-badge.pending   { background: #909090; color: #ffffff; }
+.status-badge.reviewing { background: #000080; color: #ffffff; }
+.status-badge.generating{ background: #000080; color: #ffffff; }
+
+/* Win95 raised 3D table header (button-like, click-to-sort affordance) */
+.win95-th {
+  background: #c0c0c0 !important;
+  border-top: 2px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 2px solid #606060 !important;
+  border-bottom: 2px solid #606060 !important;
+  padding: 6px 12px !important;
+  font-weight: bold !important;
+  text-align: left;
+  box-shadow: inset 1px 1px 0 #ffffff;
+}
+.win95-th.center { text-align: center; }
+
+/* Paper card — used in expanded details (white sheet on gray "desk") */
+.paper-card {
+  background: #ffffff;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.15), inset 1px 1px 0 rgba(0,0,0,0.05);
+}
+.paper-card.edit-mode {
+  background: #fffbe0;
+  border-color: #fb923c #fb923c #fb923c #fb923c;
+  box-shadow: 2px 2px 0 rgba(251,146,60,0.30);
+}
+
+/* Mini window title bar — used inside expanded detail to group sections */
+.title-bar-mini {
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.title-bar-mini.edit {
+  background: linear-gradient(to right, #c2410c, #ea580c);
+}
+
+/* Edit field (memo-sheet style) */
+.memo-edit textarea {
+  background: #fffbe0 !important;
+  border: 1px inset #fdba74 !important;
+  outline: none;
+}
+
+/* System diagnostic entries (Validation Panel) */
+.sys-log-entry {
+  background: #ffffff;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  padding: 6px 8px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.sys-log-tag {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 1px 4px;
+  margin-right: 6px;
+  display: inline-block;
+  border: 1px solid;
+}
+.sys-log-tag.critical { background: #c00000; color: #ffffff; border-color: #800000; }
+.sys-log-tag.warn     { background: #e0a000; color: #000000; border-color: #8a6000; }
+.sys-log-tag.info     { background: #00a000; color: #ffffff; border-color: #006000; }
+
+/* Floating toolbox — thick raised border + handle */
+.win95-toolbox {
+  background: #c0c0c0;
+  border: 3px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  box-shadow:
+    inset 1px 1px 0 #e0e0e0,
+    inset -1px -1px 0 #808080,
+    4px 4px 0 rgba(0,0,0,0.35);
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.win95-toolbox-handle {
+  width: 10px;
+  background-image:
+    linear-gradient(to bottom, #ffffff 50%, transparent 50%),
+    linear-gradient(to bottom, transparent 50%, #808080 50%);
+  background-size: 2px 4px, 2px 4px;
+  background-position: 2px 0, 5px 0;
+  background-repeat: repeat-y;
+  margin-right: 6px;
+}
+.win95-toolbox-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  border-right: 1px solid #808080;
+  border-left: 1px solid #ffffff;
+}
+.win95-toolbox-group:first-of-type { border-left: none; }
+.win95-toolbox-group:last-of-type  { border-right: none; }
+
+/* Inline diff marks (RegenDiff word-level) */
+.diff-add { background: #c4e9c4; color: #004d00; padding: 0 2px; }
+.diff-del { background: #f5b7b7; color: #6b0000; padding: 0 2px; text-decoration: line-through; }
+
+/* Accept / Reject colours with hover emphasis */
+.btn-accept { color: #006400 !important; }
+.btn-reject { color: #8b0000 !important; }
+button.btn-icon.btn-accept:hover {
+  background: #a8e6b8 !important;
+  color: #003d0f !important;
+}
+button.btn-icon.btn-reject:hover {
+  background: #f5b7b7 !important;
+  color: #5a0000 !important;
+}
+button.btn-icon:hover {
+  outline: 1px solid #000080;
+  outline-offset: -2px;
+}
+
+/* Resize handle — Win95 grip dots */
+.react-resizable-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  background-image:
+    radial-gradient(circle, #808080 1px, transparent 1px),
+    radial-gradient(circle, #ffffff 1px, transparent 1px);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+}
+
+/* Desktop background */
+.desktop-bg {
+  background-color: var(--win95-teal);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Desktop icon */
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 72px;
+  cursor: pointer;
+  padding: 4px;
+}
+.desktop-icon:hover .desktop-icon-img,
+.desktop-icon:focus .desktop-icon-img {
+  filter: brightness(0.8);
+}
+.desktop-icon.selected .desktop-icon-img {
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg) brightness(0.8);
+}
+.desktop-icon-label {
+  color: #ffffff;
+  font-size: 12px !important;
+  text-align: center;
+  background: transparent;
+  padding: 1px 3px;
+  max-width: 76px;
+  word-break: break-word;
+  line-height: 1.25;
+}
+.desktop-icon.selected .desktop-icon-label,
+.desktop-icon:focus .desktop-icon-label {
+  background-color: var(--win95-select-bg);
+  color: var(--win95-select-text);
+  outline: 1px dotted var(--win95-white);
+}
+
+/* Start menu popup */
+.start-menu {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 200px;
+  background: var(--win95-gray);
+  border-top: 2px solid var(--win95-white);
+  border-left: 2px solid var(--win95-white);
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  box-shadow: 2px 2px 0 #000;
+  z-index: 99999;
+}
+.start-menu-side {
+  width: 20px;
+  background: var(--win95-navy);
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 4px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: bold;
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  user-select: none;
+}
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px !important;
+}
+.start-menu-item:hover {
+  background-color: var(--win95-select-bg) !important;
+  color: var(--win95-select-text) !important;
+}
+.start-menu-separator {
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid var(--win95-white);
+  margin: 2px 0;
+}
+
+/*
+ * Taskbar window-tab strip:
+ * hide the native horizontal scrollbar so it cannot add vertical height
+ * and push the 22px tab buttons up out of the 28px taskbar row.
+ * Horizontal scroll is still possible via mouse wheel / trackpad swipe.
+ */
+.taskbar-tabs {
+  scrollbar-width: none;            /* Firefox */
+}
+.taskbar-tabs::-webkit-scrollbar {   /* Chromium / WebKit */
+  display: none;
+}
+
+/* ========== Agent Chat Module ========== */
+
+.chat-module {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--win95-bg);
+  font-size: 12px;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background: var(--win95-navy);
+  color: white;
+  flex-shrink: 0;
+}
+
+.chat-header-title { font-weight: bold; font-size: 12px; }
+
+.chat-header-actions { display: flex; gap: 2px; }
+
+.chat-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.chat-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.chat-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.chat-empty {
+  text-align: center;
+  color: #808080;
+  padding: 40px 20px;
+  line-height: 1.8;
+}
+
+.chat-error-banner {
+  background: #ffcccc;
+  border: 1px solid #cc0000;
+  padding: 4px 8px;
+  margin: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.chat-error-dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+/* Messages */
+.message-list { display: flex; flex-direction: column; gap: 6px; }
+
+.message-row { display: flex; }
+.message-row--user { justify-content: flex-end; }
+.message-row--agent { justify-content: flex-start; }
+
+.user-bubble {
+  background: var(--win95-navy);
+  color: white;
+  padding: 6px 10px;
+  max-width: 70%;
+  word-break: break-word;
+  white-space: pre-wrap;
+  border: 1px solid #000080;
+}
+
+.agent-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 90%;
+}
+
+.agent-text {
+  background: white;
+  border: 1px inset var(--win95-bg);
+  padding: 6px 10px;
+}
+
+/* Tool card */
+.tool-card {
+  border: 2px solid;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  background: #f0f0f0;
+  font-size: 11px;
+}
+
+.tool-card[data-status="running"] { border-left-color: #0000aa; }
+.tool-card[data-status="ok"] { border-left-color: #008000; }
+.tool-card[data-status="error"] { border-left-color: #cc0000; }
+
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  cursor: pointer;
+  user-select: none;
+  background: #e0e0e0;
+}
+
+.tool-card-header:hover { background: #d0d0d0; }
+
+.tool-card-name { flex: 1; font-family: monospace; font-weight: bold; font-size: 11px; }
+.tool-card-duration { color: #666; font-size: 10px; }
+.tool-card-chevron { color: #666; }
+
+.tool-card-body { padding: 6px; border-top: 1px solid #c0c0c0; }
+.tool-card-section-label { font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 2px; }
+
+.tool-card-pre {
+  background: white;
+  border: 1px inset #c0c0c0;
+  padding: 4px;
+  font-size: 10px;
+  overflow-x: auto;
+  white-space: pre;
+  max-height: 120px;
+  overflow-y: auto;
+  margin: 0 0 6px;
+  font-family: monospace;
+}
+
+.tool-card-error { color: #cc0000; font-size: 11px; padding: 2px 0; }
+
+.tool-card-footer { padding: 4px 6px; border-top: 1px solid #c0c0c0; }
+
+/* Confirm card */
+.confirm-card {
+  border: 2px solid;
+  border-color: #dfdfdf #808080 #808080 #dfdfdf;
+  background: #fffbe6;
+  font-size: 11px;
+}
+
+.confirm-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: #f0e040;
+  font-weight: bold;
+}
+
+.confirm-card-cost { padding: 4px 8px; }
+
+.confirm-card-actions { display: flex; gap: 4px; padding: 4px 8px; }
+
+.btn-confirm-accept {
+  background: #00aa00;
+  color: white;
+  border: 2px solid;
+  border-color: #00ff00 #005500 #005500 #00ff00;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.btn-confirm-decline {
+  background: #cc0000;
+  color: white;
+  border: 2px solid;
+  border-color: #ff4444 #880000 #880000 #ff4444;
+  padding: 2px 10px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.confirm-card-result { padding: 4px 8px; font-style: italic; }
+.confirm-card-result.accepted { color: #006600; }
+.confirm-card-result.declined { color: #666; }
+
+/* Input area */
+.chat-input-area {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border-top: 2px solid;
+  border-color: #808080 #dfdfdf #dfdfdf #808080;
+  background: var(--win95-bg);
+  flex-shrink: 0;
+}
+
+.chat-textarea {
+  flex: 1;
+  resize: none;
+  font-size: 11px;
+  font-family: inherit;
+  border: 2px inset var(--win95-bg);
+  padding: 4px;
+  background: white;
+  color: black;
+}
+
+.chat-textarea:disabled { background: #e0e0e0; color: #808080; }
+
+.chat-send-btn {
+  width: 36px;
+  align-self: flex-end;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Inspector panel */
+.inspector-panel {
+  width: 200px;
+  flex-shrink: 0;
+  border-left: 2px solid;
+  border-color: #808080 #dfdfdf #dfdfdf #808080;
+  overflow-y: auto;
+  background: var(--win95-bg);
+  font-size: 11px;
+}
+
+.inspector-section { border-bottom: 1px solid #c0c0c0; padding: 6px; }
+
+.inspector-section-title {
+  font-weight: bold;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.inspector-job-box { display: flex; flex-direction: column; gap: 2px; }
+.inspector-row { display: flex; flex-direction: column; }
+.inspector-label { font-size: 9px; text-transform: uppercase; color: #808080; }
+.inspector-value { font-size: 11px; word-break: break-all; }
+.inspector-empty { color: #808080; font-style: italic; font-size: 11px; }
+.inspector-cost { font-size: 13px; font-weight: bold; }
+
+.inspector-trace-list { display: flex; flex-direction: column; gap: 2px; }
+.inspector-trace-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  padding: 1px 2px;
+}
+.inspector-trace-item.status-ok { color: #006600; }
+.inspector-trace-item.status-error { color: #cc0000; }
+.inspector-trace-item.status-running { color: #0000aa; }
+.trace-tool { font-family: monospace; }
+.trace-dur { color: #808080; }
+
+.inspector-session-list { display: flex; flex-direction: column; gap: 1px; }
+.inspector-session-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.inspector-session-item.active .inspector-session-btn { font-weight: bold; }
+
+.inspector-session-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 2px 4px;
+  cursor: pointer;
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+}
+.inspector-session-btn:hover { background: var(--win95-select-bg); color: var(--win95-select-text); }
+.session-preview { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.session-cost { flex-shrink: 0; color: #808080; font-size: 9px; }
+
+.inspector-session-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #808080;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0 2px;
+}
+.inspector-session-delete:hover { color: #cc0000; }
+
+/* Taskbar Agent button */
+.agent-taskbar-btn {
+  height: 22px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.agent-taskbar-btn--idle { background: var(--win95-bg); }
+.agent-taskbar-btn--sending,
+.agent-taskbar-btn--streaming {
+  background: #0000cc;
+  color: white;
+  animation: agent-pulse 1s ease-in-out infinite;
+}
+.agent-taskbar-btn--waiting_confirm {
+  background: #ccaa00;
+  color: white;
+  animation: agent-pulse 0.7s ease-in-out infinite;
+}
+.agent-taskbar-btn--error { background: #cc0000; color: white; }
+
+@keyframes agent-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Small buttons */
+.btn-small {
+  font-size: 10px;
+  padding: 1px 6px;
+  height: 18px;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+/* Spinner */
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.chat-input-area.drag-over {
+  background: #e8f0ff;
+  border-color: #0000cc;
+}
+
+.chat-input-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: flex-end;
+}
+
+/* Help from Agent button (per-module) */
+.btn-help-agent {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-help-agent:hover:not(:disabled) {
+  background: var(--win95-select-bg, #000080);
+  color: var(--win95-select-text, #fff);
+}
+.btn-help-agent:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================================== */
+/* Keyboard focus & active states — accessibility layer        */
+/* ========================================================== */
+
+/*
+ * :focus-visible — only shows the focus ring when the user is
+ * navigating via keyboard, not on mouse click. Classic Win95 uses
+ * a dotted outline inside the button face; we mimic that using
+ * outline + outline-offset so the dotted line sits inside the
+ * 3D bezel rather than outside it.
+ */
+button:focus-visible,
+.start-menu-item:focus-visible,
+.desktop-icon:focus-visible,
+.win95-row:focus-visible,
+[role="tab"]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 1px dotted var(--win95-black);
+  outline-offset: -4px;
+}
+
+/* Inputs / textareas / selects use a navy outline — visible on the
+ * sunken white background where a black dotted line would vanish. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--win95-navy);
+  outline-offset: -2px;
+}
+
+/* Suppress the default mouse-click focus ring entirely (Win95 look). */
+button:focus:not(:focus-visible),
+.start-menu-item:focus:not(:focus-visible),
+.desktop-icon:focus:not(:focus-visible),
+.win95-row:focus:not(:focus-visible),
+[role="tab"]:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/*
+ * :active — Win95 "pressed in" effect. Flip the 3D bezel (light
+ * edges move to bottom-right) and shift the label 1px so the
+ * button face appears to recess.
+ */
+button:active:not(:disabled),
+.title-bar-controls button:active:not(:disabled) {
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
+  padding-top: 5px !important;
+  padding-left: 13px !important;
+  padding-bottom: 3px !important;
+  padding-right: 11px !important;
+}
+
+/* Icon buttons keep their fixed dimensions when pressed — only the
+ * bezel flips, no content shift. */
+button.btn-icon:active:not(:disabled) {
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
+  padding: 0 !important;
+}
