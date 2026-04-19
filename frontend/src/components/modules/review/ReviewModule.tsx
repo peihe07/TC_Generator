@@ -7,6 +7,7 @@ import { TcRow } from '../../../lib/types';
 import { createJobLog } from '../../../lib/logging';
 import { regenerateRows } from '../../../services/jobAdapter';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
+import { Button, IconButton, StatusBadge, type StatusVariant } from '../../ui';
 import {
   RiCheckFill,
   RiCloseFill,
@@ -175,21 +176,21 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
       <div className="title-bar-mini edit -mx-3 -mt-3 mb-3" style={{ padding: '4px 10px' }}>
         <RiRefreshLine className="size-3" />
         <span className="flex-1">New Version Ready — Select fields to apply</span>
-        <button
+        <Button
           className="text-xs"
           style={{ minHeight: 20, padding: '1px 8px' }}
           onClick={onDiscard}
         >
           <RiArrowGoBackLine className="size-3 inline mr-1" />Discard
-        </button>
-        <button
+        </Button>
+        <Button
           className="text-xs font-bold default"
           style={{ minHeight: 20, padding: '1px 10px' }}
           onClick={() => onApply([...selected])}
           disabled={selected.size === 0}
         >
           <RiCheckFill className="size-3 inline mr-1" />Apply Selected
-        </button>
+        </Button>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -551,26 +552,27 @@ const ReviewModule: React.FC = () => {
                         {row.reqId}
                       </td>
                       <td className="px-3 py-2 border-r" onClick={() => toggleExpand(row.id)}>
-                        <span className={`status-badge ${
-                          row.pendingRegenerated ? 'reviewing' :
-                          row.status === 'generating' ? 'generating' :
-                          row.status
-                        } ${row.status === 'generating' ? 'animate-pulse' : ''}`}>
+                        <StatusBadge
+                          status={(row.pendingRegenerated
+                            ? 'reviewing'
+                            : (row.status as StatusVariant))}
+                          className={row.status === 'generating' ? 'animate-pulse' : undefined}
+                        >
                           {row.pendingRegenerated ? 'awaiting apply' : row.status}
-                        </span>
+                        </StatusBadge>
                       </td>
 
                       <td className="p-0 border-r cell-center" onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-center items-center gap-1 h-full min-h-[32px]">
-                          <button className="btn-icon btn-accept" title="Accept" onClick={() => handleStatusChange(row.id, 'accepted')}>
+                          <IconButton label="Accept" variant="accept" onClick={() => handleStatusChange(row.id, 'accepted')}>
                             <RiCheckFill className="size-4" />
-                          </button>
-                          <button className="btn-icon btn-reject" title="Reject" onClick={() => handleStatusChange(row.id, 'rejected')}>
+                          </IconButton>
+                          <IconButton label="Reject" variant="reject" onClick={() => handleStatusChange(row.id, 'rejected')}>
                             <RiCloseFill className="size-4" />
-                          </button>
-                          <button className="btn-icon" title="Delete" style={{ color: '#7f1d1d' }} onClick={() => handleDelete(row.id)}>
+                          </IconButton>
+                          <IconButton label="Delete" style={{ color: 'var(--status-reject-dark)' }} onClick={() => handleDelete(row.id)}>
                             <RiDeleteBinLine className="size-4" />
-                          </button>
+                          </IconButton>
                         </div>
                       </td>
                     </tr>
@@ -665,19 +667,19 @@ const ReviewModule: React.FC = () => {
                             <div className="mt-3 flex justify-end gap-2">
                               {isEditing ? (
                                 <>
-                                  <button className="flex items-center gap-1 text-xs px-3 py-1" onClick={() => setEditingRowId(null)}>
+                                  <Button className="flex items-center gap-1 text-xs px-3 py-1" onClick={() => setEditingRowId(null)}>
                                     <RiArrowGoBackLine className="size-3" /> Cancel
-                                  </button>
-                                  <button className="flex items-center gap-1 text-xs px-3 py-1 font-bold default" onClick={() => saveEdit(row.id)}>
+                                  </Button>
+                                  <Button className="flex items-center gap-1 text-xs px-3 py-1 font-bold default" onClick={() => saveEdit(row.id)}>
                                     <RiSaveLine className="size-3" /> Save Changes
-                                  </button>
+                                  </Button>
                                 </>
                               ) : (
                                 <>
-                                  <button className="flex items-center gap-1 text-xs px-3 py-1" onClick={() => startEditing(row)}>
+                                  <Button className="flex items-center gap-1 text-xs px-3 py-1" onClick={() => startEditing(row)}>
                                     <RiEditLine className="size-3" /> Manual Edit
-                                  </button>
-                                  <button
+                                  </Button>
+                                  <Button
                                     className={`flex items-center gap-1 text-xs px-3 py-1 ${
                                       row.status === 'flagged' ? 'font-bold' : ''
                                     }`}
@@ -688,7 +690,7 @@ const ReviewModule: React.FC = () => {
                                       ? <RiFlagFill className="size-3" />
                                       : <RiFlagLine className="size-3" />}
                                     {row.status === 'flagged' ? 'Unflag' : 'Flag for Human'}
-                                  </button>
+                                  </Button>
                                 </>
                               )}
                             </div>
@@ -756,9 +758,9 @@ const ReviewModule: React.FC = () => {
           </div>
         </fieldset>
 
-        <button className="w-full py-3 flex items-center justify-center gap-2 font-bold default" onClick={() => openWindow('export', 'TC Generator - Export')}>
+        <Button className="w-full py-3 flex items-center justify-center gap-2 font-bold default" onClick={() => openWindow('export', 'TC Generator - Export')}>
           <RiDownload2Line className="size-5" /> Export All
-        </button>
+        </Button>
       </div>
 
       {/* Floating toolbox — shown when rows are selected */}
@@ -772,24 +774,24 @@ const ReviewModule: React.FC = () => {
             <span className="font-bold" style={{ fontSize: 11, padding: '0 4px' }}>
               {selectedIds.size} row{selectedIds.size > 1 ? 's' : ''} selected
             </span>
-            <button onClick={() => setSelectedIds(new Set())}>Clear</button>
+            <Button onClick={() => setSelectedIds(new Set())}>Clear</Button>
           </div>
           <div className="win95-toolbox-group">
-            <button className="flex items-center gap-1" title="Accept selected" onClick={() => handleBulkStatus('accepted')}>
+            <Button className="flex items-center gap-1" title="Accept selected" onClick={() => handleBulkStatus('accepted')}>
               <RiCheckFill className="size-3 text-green-700" /> Accept
-            </button>
-            <button className="flex items-center gap-1" title="Reject selected" onClick={() => handleBulkStatus('rejected')}>
+            </Button>
+            <Button className="flex items-center gap-1" title="Reject selected" onClick={() => handleBulkStatus('rejected')}>
               <RiCloseFill className="size-3 text-red-700" /> Reject
-            </button>
+            </Button>
           </div>
           <div className="win95-toolbox-group">
-            <button className="flex items-center gap-1" title="Delete selected" onClick={handleBulkDelete}>
+            <Button className="flex items-center gap-1" title="Delete selected" onClick={handleBulkDelete}>
               <RiDeleteBinLine className="size-3" /> Delete
-            </button>
-            <button className="font-bold flex items-center gap-1" onClick={handleRegenerate} disabled={isRegenerating}>
+            </Button>
+            <Button className="font-bold flex items-center gap-1" onClick={handleRegenerate} disabled={isRegenerating}>
               <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
               {isRegenerating ? 'Regenerating...' : `Regenerate`}
-            </button>
+            </Button>
           </div>
         </div>
       )}
