@@ -1,5 +1,13 @@
 import React from 'react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
+import { Select } from '../../ui';
+
+const SHOW_OPTIONS = [
+  { value: 'all', label: 'All TCs' },
+  { value: 'flagged', label: 'Flagged Only' },
+  { value: 'pending', label: 'Pending Review' },
+  { value: 'regen', label: 'Awaiting Apply' },
+];
 
 export interface ReviewToolbarProps {
   filter: string;
@@ -34,18 +42,18 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
         <label htmlFor="filter" className="text-xs font-bold">
           Show:
         </label>
-        <select id="filter" value={filter} onChange={(e) => onFilterChange(e.target.value)}>
-          <option value="all">All TCs</option>
-          <option value="flagged">Flagged Only</option>
-          <option value="pending">Pending Review</option>
-          <option value="regen">Awaiting Apply</option>
-        </select>
+        <Select
+          id="filter"
+          value={filter}
+          onChange={(e) => onFilterChange(e.target.value)}
+          options={SHOW_OPTIONS}
+        />
       </div>
       <div className="field-row">
         <label htmlFor="test-set-filter" className="text-xs font-bold">
           Test Set:
         </label>
-        <select
+        <Select
           id="test-set-filter"
           value={testSetFilter}
           onChange={(e) => onTestSetFilterChange(e.target.value)}
@@ -56,7 +64,7 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
               {testSet}
             </option>
           ))}
-        </select>
+        </Select>
       </div>
       <span className="text-xs text-gray-600 ">
         Total: {totalCount} | Accepted: {acceptedCount} | Expanded: {expandedCount}

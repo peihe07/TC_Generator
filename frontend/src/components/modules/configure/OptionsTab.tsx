@@ -1,5 +1,6 @@
 import React from 'react';
 import type { GenerationConfig } from '../../../lib/types';
+import { Checkbox, Radio } from '../../ui';
 import { MODEL_OPTIONS, TARGET_COLUMN_OPTIONS } from './constants';
 
 export interface OptionsTabProps {
@@ -16,16 +17,17 @@ export const OptionsTab: React.FC<OptionsTabProps> = ({ config, onUpdateConfig }
     <fieldset>
       <legend>AI Model</legend>
       {MODEL_OPTIONS.map((opt) => (
-        <div key={opt.id} className="field-row">
-          <input
-            type="radio"
-            id={opt.id}
-            name="model"
-            checked={config.model === opt.value}
-            onChange={() => onUpdateConfig({ model: opt.value as GenerationConfig['model'] })}
-          />
-          <label htmlFor={opt.id}>{opt.label}</label>
-        </div>
+        <Radio
+          key={opt.id}
+          id={opt.id}
+          name="model"
+          value={opt.value}
+          label={opt.label}
+          checked={config.model === opt.value}
+          onChange={() =>
+            onUpdateConfig({ model: opt.value as GenerationConfig['model'] })
+          }
+        />
       ))}
     </fieldset>
 
@@ -54,15 +56,12 @@ export const OptionsTab: React.FC<OptionsTabProps> = ({ config, onUpdateConfig }
             onChange={(e) => onUpdateConfig({ budgetLimit: parseInt(e.target.value, 10) })}
           />
         </div>
-        <div className="field-row">
-          <input
-            type="checkbox"
-            id="strict-validation"
-            checked={config.strictValidation}
-            onChange={(e) => onUpdateConfig({ strictValidation: e.target.checked })}
-          />
-          <label htmlFor="strict-validation">Strict Validation</label>
-        </div>
+        <Checkbox
+          id="strict-validation"
+          label="Strict Validation"
+          checked={config.strictValidation}
+          onChange={(e) => onUpdateConfig({ strictValidation: e.target.checked })}
+        />
       </div>
     </fieldset>
 
@@ -70,20 +69,18 @@ export const OptionsTab: React.FC<OptionsTabProps> = ({ config, onUpdateConfig }
       <legend>Target Columns</legend>
       <div className="flex flex-col gap-1">
         {TARGET_COLUMN_OPTIONS.map(({ key, label }) => (
-          <div key={key} className="field-row">
-            <input
-              type="checkbox"
-              id={key}
-              checked={config.targetColumns.includes(key)}
-              onChange={(e) => {
-                const cols = e.target.checked
-                  ? [...config.targetColumns, key]
-                  : config.targetColumns.filter((c) => c !== key);
-                onUpdateConfig({ targetColumns: cols });
-              }}
-            />
-            <label htmlFor={key}>{label}</label>
-          </div>
+          <Checkbox
+            key={key}
+            id={key}
+            label={label}
+            checked={config.targetColumns.includes(key)}
+            onChange={(e) => {
+              const cols = e.target.checked
+                ? [...config.targetColumns, key]
+                : config.targetColumns.filter((c) => c !== key);
+              onUpdateConfig({ targetColumns: cols });
+            }}
+          />
         ))}
       </div>
     </fieldset>

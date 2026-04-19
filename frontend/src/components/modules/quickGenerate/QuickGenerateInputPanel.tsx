@@ -4,9 +4,16 @@ import {
   RiCloseFill,
   RiRefreshLine,
 } from '@remixicon/react';
-import { Button } from '../../ui';
+import { Button, Select } from '../../ui';
 import { MODE_CONFIG } from './constants';
 import type { JobPhase, Mode } from './types';
+
+const MODEL_OPTIONS = [
+  { value: 'gpt-5', label: 'GPT-5' },
+  { value: 'gpt-4.1', label: 'GPT-4.1' },
+  { value: 'gpt-4.1-mini', label: 'GPT-4.1 mini' },
+  { value: 'gpt-4o-mini', label: 'GPT-4o mini' },
+];
 
 export interface QuickGenerateInputPanelProps {
   mode: Mode;
@@ -130,16 +137,12 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
       {/* Model selector */}
       <div className="field-row">
         <label className="text-xs font-bold">Model:</label>
-        <select
+        <Select
           value={model}
           onChange={(e) => onModelChange(e.target.value)}
           disabled={isRunning}
-        >
-          <option value="gpt-5">GPT-5</option>
-          <option value="gpt-4.1">GPT-4.1</option>
-          <option value="gpt-4.1-mini">GPT-4.1 mini</option>
-          <option value="gpt-4o-mini">GPT-4o mini</option>
-        </select>
+          options={MODEL_OPTIONS}
+        />
       </div>
 
       {/* Generate / Stop buttons */}
