@@ -53,7 +53,7 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({ selectedRow, o
                       {err.severity === 'error' ? 'Logic Conflict' : 'Quality Warning'}
                     </span>
                   </div>
-                  <div className="text-[11px] mt-1" style={{ color: '#303030' }}>
+                  <div className="text-[11px] mt-1" style={{ color: 'var(--win95-gray-darker)' }}>
                     {err.message}
                   </div>
                 </div>
@@ -72,7 +72,7 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({ selectedRow, o
                   <span className="sys-log-tag info">PASS</span>
                   <span className="font-bold text-[11px]">All Checks Passed</span>
                 </div>
-                <div className="text-[11px] mt-1" style={{ color: '#303030' }}>
+                <div className="text-[11px] mt-1" style={{ color: 'var(--win95-gray-darker)' }}>
                   This test case meets all AI quality standards.
                 </div>
               </div>

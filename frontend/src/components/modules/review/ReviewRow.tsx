@@ -167,8 +167,8 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
           colSpan={6}
           className="p-4"
           style={{
-            background: '#9a9a9a',
-            boxShadow: 'inset 2px 2px 0 var(--win95-gray-dark), inset -2px -2px 0 #d0d0d0',
+            background: 'var(--win95-gray-mid)',
+            boxShadow: 'inset 2px 2px 0 var(--win95-gray-dark), inset -2px -2px 0 var(--field-header-border)',
             borderBottom: '2px solid var(--win95-gray-darker)',
           }}
           onClick={() => onSetActive(row.id)}
@@ -280,8 +280,8 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                     }`}
                     style={
                       row.status === 'flagged'
-                        ? { background: '#e0a000', color: '#000000' }
-                        : { color: '#7c2d12' }
+                        ? { background: 'var(--status-warn)', color: 'var(--win95-black)' }
+                        : { color: 'var(--edit-accent-fg)' }
                     }
                     onClick={() => onToggleFlag(row.id, row.status)}
                   >

@@ -33,6 +33,7 @@ export default function AgentTaskbarButton() {
       ) : (
         <RiRobot2Fill size={16} />
       )}
+      <span>Agent</span>
     </Button>
   );
 }

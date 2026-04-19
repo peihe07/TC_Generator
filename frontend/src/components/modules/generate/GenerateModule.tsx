@@ -125,7 +125,7 @@ const GenerateModule: React.FC = () => {
                 <span style={{
                   color: log.level === 'error' ? 'var(--status-reject-dark)'
                        : log.level === 'success' ? 'var(--status-accept-dark)'
-                       : log.level === 'warn' ? '#7d4e00'
+                       : log.level === 'warn' ? 'var(--status-warn-dark)'
                        : 'var(--win95-black)'
                 }}>
                   {log.message}
