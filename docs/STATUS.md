@@ -1,6 +1,8 @@
 # TC Generator — 專案狀態
 
-最後更新：2026-04-19（Taskbar polish + ReviewRow tests）
+最後更新：2026-04-19（Phase 4 功能面完成：get_job_detail / state_update SSE
+/ AgentStateUpdateToast / diff_jobs / aggregate_metrics / Cost Dashboard UI；
++ Taskbar polish + ReviewRow tests + 按鈕 icon 透明度修復）
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
 
@@ -12,8 +14,13 @@
 >   AgentTaskbarButton）+ 煙霧測試 + 4 個 backend bug 修正。
 > - Phase 3：`HelpFromAgentButton` 加入 5 個 GUI module；`agent-prefill`
 >   CustomEvent handoff 機制；handoff E2E。
+> - Phase 4（進行中）：`get_job_detail` ✓；`state_update` SSE event ✓
+>   （`useAgentStore.lastStateUpdate` → `AgentStateUpdateToast`）；
+>   `diff_jobs` ✓；`aggregate_metrics` ✓（跨 job 總 / 平均 rowCount / cost、
+>   matchRate）；Cost Dashboard UI ✓（`/api/metrics/aggregate` REST +
+>   `CostDashboardPopup`，從 CostMeter 標題列小按鈕開啟）。
 >
-> 下一步：Phase 4（`state_update` SSE 衝突 toast、`get_job_detail` tool）。
+> 下一步：Phase 4 進階項（排程執行，與 scheduled-tasks MCP 整合）。
 
 ---
 
@@ -105,16 +112,16 @@ TC_Generator/
 │   │   ├── write.py                 # write_excel_tool         (DESTRUCTIVE)
 │   │   ├── generate.py              # generate_tc_tool         (WRITE_COSTLY)
 │   │   ├── inspect.py               # inspect_workbook_tool    (READ_ONLY)
-│   │   ├── jobs.py                  # list_jobs / estimate_cost / get_job_validation
+│   │   ├── jobs.py                  # list_jobs / estimate_cost / get_job_detail / diff_jobs / aggregate_metrics / get_job_validation
 │   │   └── replay.py                # trace replay CLI
 │   └── main.py                      # CLI 入口
-├── tests/                           # pytest（360 pass）
+├── tests/                           # pytest（394 pass）
 ├── frontend/
 │   ├── app/
 │   │   ├── page.tsx / layout.tsx
 │   │   └── api/                     # Same-origin proxy routes
 │   ├── src/
-│   │   ├── components/system/       # Desktop / Taskbar / WindowManager / CostMeter / WorkspaceMenu / JobHistoryMenu
+│   │   ├── components/system/       # Desktop / Taskbar / WindowManager / CostMeter / CostDashboardPopup / AgentStateUpdateToast / WorkspaceMenu / JobHistoryMenu
 │   │   ├── components/modules/      # Upload / Configure / Generate / Review / Export / QuickGenerate / Diagrams / Rules
 │   │   ├── services/jobAdapter.ts
 │   │   ├── store/                   # useJobStore (persist) / useWindowStore / useWorkspaceStore / useJobHistoryStore
@@ -133,6 +140,7 @@ TC_Generator/
 全數於 `backend/api_server.py`：
 
 - `GET /api/health`
+- `GET /api/metrics/aggregate`
 - `POST /api/parse`
 - `POST /api/group`
 - `POST /api/match`
@@ -165,6 +173,17 @@ TC_Generator/
   - `tools/replay.py`：`python -m tools.replay SID` 稽核重放
   - 10 個 tool + 10 個 OpenAI function-calling JSON schema
   - System prompt v1（英文規則，明確要 LLM 用繁體中文回覆）
+- **Phase 4 agent 擴充**：
+  - `get_job_detail` tool（READ_ONLY）：單一 job 摘要，明確排除 rawBytes
+  - `diff_jobs` tool（READ_ONLY）：reuse `get_job_detail`，回 rowCount /
+    cost / matched / generated deltas + statusChanged
+  - `aggregate_metrics` tool（READ_ONLY）：跨 job 總 / 平均 rowCount、
+    total / avgCostUsd、matchRate；缺資料欄位回 None + `jobsWithCost`
+    / `jobsWithMatch` 樣本數
+  - `agent_dispatcher` 在 WRITE_SAFE / WRITE_COSTLY / DESTRUCTIVE tool
+    成功且 result 帶 jobId 時推 `state_update` SSE event（READ_ONLY 不推）
+  - `GET /api/metrics/aggregate` REST endpoint（包 `aggregate_metrics_tool`）
+    供 Cost Dashboard UI 使用
 - SqliteJobStore：job 跨重啟持久化；啟動自動 `purge_older_than` + `vacuum`（預設 30 天，`TC_JOBS_MAX_AGE_DAYS` 覆寫）
 - Parser 容忍中英雙語 sheet 標題與檔名後綴（`拷貝`、`-1` 等）
 - Spec matcher 命中率從 54.5% 提升到 100%（Layer 1 + Layer 1.5 fuzzy Jaccard）
@@ -180,7 +199,11 @@ TC_Generator/
 - 單一 adapter 層：`services/jobAdapter.ts`
 - Same-origin Next.js proxy routes 全數可用
 - 活躍 modules：Upload / Configure / Generate / Review / Export / QuickGenerate
-- CostMeter：Model / Input / Output / Cache W / Cache R / Hit-rate
+- CostMeter：Model / Input / Output / Cache W / Cache R / Hit-rate；
+  標題列新增 bar-chart 小按鈕開啟 `CostDashboardPopup`（讀
+  `/api/metrics/aggregate` 顯示跨 job 總 / 平均 cost 與 spec match rate）
+- `AgentStateUpdateToast`：Agent 動到目前開著的 job 時右下角浮現提示，
+  6 秒自動消失或點 × 關掉（訂閱 `useAgentStore.lastStateUpdate`）
 - Workspace Manager：save / rename / load / delete / JSON import / JSON export（localStorage 持久化）
 - Job History menu：lifetime cumulative cost + per-job record（localStorage，TTL 90 天 + MAX_RECORDS cap）
 - Review：batch accept/reject/delete/regenerate；word-level diff；spec reference 自動顯示
@@ -192,6 +215,11 @@ TC_Generator/
   隱藏 window-tabs 橫向 scrollbar 避免浮出 28px taskbar、時鐘改 Win95 經典
   HH:MM（完整日期丟 tooltip）、覆蓋 98.css `.status-bar-field` 的
   `flex-grow: 1` 讓時鐘貼齊內容不再吞掉 tabs 的寬度
+- Icon 可見度修復：98.css 把 `button { color: transparent }` 再用
+  text-shadow 假造文字色，導致 Remix Icon 的 `fill=currentColor` 全透明
+  → `win95.css` 加上 `button { color: #222 }` 統一蓋回；並用
+  `button svg.remixicon { image-rendering: auto }` 解除 pixelated
+  rendering 讓線條 icon 恢復抗鋸齒
 
 ### Runtime 基準（真實檔案壓力測試）
 
@@ -206,7 +234,10 @@ TC_Generator/
 
 ### 測試覆蓋
 
-- `pytest -q`：360 pass（225 原始 + 41 Phase 0 tool layer + 94 Phase 1 agent）
+- `pytest -q`：394 pass（225 原始 + 41 Phase 0 tool layer + 94 Phase 1 agent
+  + 12 Phase 4 `get_job_detail` + 5 Phase 4 `state_update` event
+  + 7 Phase 4 `diff_jobs` + 8 Phase 4 `aggregate_metrics`
+  + 2 `/api/metrics/aggregate` smoke）
   - schemas: 13 / trace_store: 12 / dispatcher: 16 / session_store: 9 /
     route_agent: 9 / replay: 9 / inspect+jobs: 17 / golden scenarios: 5
 - `npm run typecheck` (`tsc --noEmit`)：0 error

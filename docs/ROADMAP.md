@@ -1,8 +1,10 @@
 # TC Generator — Roadmap
 
-版本：v1.2
-日期：2026-04-18
-狀態：**Phase 0 + Phase 1 已完成，Phase 2（Frontend ChatModule）待開工**
+版本：v1.3
+日期：2026-04-19
+狀態：**Phase 0 – 3 完成；Phase 4 功能面完成（`get_job_detail` / `diff_jobs`
+/ `aggregate_metrics` / `state_update` SSE / Cost Dashboard UI），僅剩
+排程執行（scheduled-tasks MCP 整合）**
 
 目前已完成的內容請看 [STATUS.md](STATUS.md)。
 
@@ -31,21 +33,21 @@
 
 ---
 
-## 2. 現況基線（2026-04-18 snapshot）
+## 2. 現況基線（2026-04-19 snapshot）
 
 | 項目 | 狀態 |
 |---|---|
 | Backend 核心模組 | `parser / spec_matcher / grouper / prompt_builder / generator / validator / writer / job_manager / job_store` 共 9 個 |
-| Backend tool layer | `backend/tools/` 10 個 tool + JSON schemas（Phase 0 + Phase 1 完成） |
-| Agent 副駕 | `agent_dispatcher.py` / `trace_store.py` / `agent_session_store.py` / `routes/agent.py` / `tools/replay.py`（Phase 1 完成） |
-| FastAPI endpoints | 8 REST + agent chat + session CRUD + trace export（全部走 tool 層） |
-| Backend 測試 | 360 pass（pytest，含 94 個 agent/tool 新增測試） |
-| Frontend 架構 | Next.js desktop，active modules 為 `*Module.tsx`；`jobAdapter.ts` 為單一 adapter |
-| Frontend 測試 | TypeScript typecheck 通過；workspace round-trip E2E 通過 |
+| Backend tool layer | `backend/tools/` 13 個 tool + JSON schemas（10 原 + `get_job_detail` / `diff_jobs` / `aggregate_metrics`） |
+| Agent 副駕 | `agent_dispatcher.py` / `trace_store.py` / `agent_session_store.py` / `routes/agent.py` / `tools/replay.py`；dispatcher 在 WRITE-class tool 後推 `state_update` SSE event |
+| FastAPI endpoints | 9 REST（新增 `GET /api/metrics/aggregate`）+ agent chat + session CRUD + trace export |
+| Backend 測試 | 394 pass（pytest，含 Phase 4 的 32 個新測試） |
+| Frontend 架構 | Next.js desktop；Agent 副駕 UI：ChatModule / AgentTaskbarButton / HelpFromAgentButton / AgentStateUpdateToast / CostDashboardPopup |
+| Frontend 測試 | Vitest 104 pass；TypeScript typecheck 0 error；workspace round-trip E2E 通過 |
 | 真實基準 | 44 rows / $0.125 / cache hit 90.9% / spec match rate 100% |
 
-**結論**：Phase 0 + Phase 1 完成後 backend 已全面就緒，`POST /api/agent/chat`
-能跑 5 個 golden scenario。Phase 2 專注在把 ChatModule 接上這條 SSE。
+**結論**：Phase 0–3 完成，Phase 4 功能面全數交付（分析 tool 三件套、
+`state_update` 衝突提示、Cost Dashboard UI）。剩下僅排程執行整合待排期。
 
 ---
 
@@ -510,12 +512,17 @@ onClick={() => {
 | 衝突處理 toast | 雙邊同時改時有明確提示 |
 | E2E：混用劇本 | Playwright 腳本 run 劇本 B（GUI + Agent 混用）|
 
-### Phase 4 — 進階 & 觀察（選配，1–2 週）
+### Phase 4 — 進階 & 觀察
 
-- Cross-job 分析 tool 擴充（`diff_jobs`、`aggregate_metrics`）
-- 排程執行（與 `scheduled-tasks` MCP 整合）
-- Cost 觀測面板（過去 30 天花費 / cache hit 趨勢）
-- A/B：比較 GUI-only 使用者 vs 混用使用者的平均完成時間
+| 任務 | 狀態 | 備註 |
+|---|---|---|
+| `get_job_detail` tool | ✓ | READ_ONLY；排除 rawBytes；match/group/generated 摘要 |
+| `diff_jobs` tool | ✓ | READ_ONLY；reuse `get_job_detail`；回 deltas |
+| `aggregate_metrics` tool | ✓ | 跨 job total/avg；matchRate；缺資料欄位回 None |
+| `state_update` SSE event | ✓ | dispatcher 在 WRITE-class tool 成功後推，frontend 透過 `AgentStateUpdateToast` 提示 |
+| Cost 觀測面板 | ✓ | `GET /api/metrics/aggregate` + `CostDashboardPopup`（CostMeter 標題列按鈕開啟） |
+| 排程執行 | ⏳ | 與 `scheduled-tasks` MCP 整合；spec 待定 |
+| A/B：混用 vs GUI-only | ⏳ | 需產品層面觀察指標，Phase 4 後期再做 |
 
 ---
 
@@ -643,10 +650,20 @@ frontend/src/
   components/modules/chat/ConfirmCard.tsx
   components/modules/chat/InspectorPanel.tsx
   components/modules/chat/ChoiceButtons.tsx
-  components/system/AgentTaskbarButton.tsx
+  components/modules/chat/AgentTaskbarButton.tsx
   components/system/HelpFromAgentButton.tsx
+  components/system/AgentStateUpdateToast.tsx   # Phase 4：job 衝突提示
+  components/system/CostDashboardPopup.tsx      # Phase 4：跨 job 指標面板
   services/agentClient.ts
-  store/useAgentStore.ts               # agent session state
+  services/agentEvents.ts
+  store/useAgentStore.ts               # agent session state + lastStateUpdate
+
+frontend/app/
+  api/agent/chat/route.ts
+  api/agent/sessions/route.ts
+  api/agent/sessions/[sessionId]/route.ts
+  api/agent/sessions/[sessionId]/trace/route.ts
+  api/metrics/aggregate/route.ts                # Phase 4
 
 frontend/e2e/
   agent.spec.ts
