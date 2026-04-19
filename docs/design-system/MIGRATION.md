@@ -79,6 +79,14 @@ grep -rE "(transition|animation):" src --include="*.tsx" --include="*.css"
 
 其餘 fade / slide / stagger / cubic-bezier 全部刪除。
 
+### Follow-up（Phase 4 完成後記錄）
+
+- `.agent-taskbar-btn--waiting_confirm` pulse 從 `0.7s` 改為 `1s` 後，失去「比 streaming 更急迫」的節奏差異。
+- **若要恢復急迫感，改視覺不改 timing**：
+  - 底色從 `var(--status-warn)`（琥珀）可強化為更飽和 warning
+  - 或加 `!` 圖示 / 邊框強化辨識度
+- 禁止再動 pulse timing 回 `0.7s`（違反 Phase 4 規則）
+
 ---
 
 ## Phase 5 — Desktop / Taskbar / StartMenu 視覺對齊

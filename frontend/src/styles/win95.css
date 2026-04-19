@@ -203,7 +203,7 @@ fieldset legend { font-weight: var(--font-weight-bold); }
   justify-content: center;
   gap: 4px;
   padding: 8px;
-  transition: background-color 120ms ease, border-color 120ms ease;
+  transition: background-color var(--motion-fast), border-color var(--motion-fast);
 }
 .dropzone-sunken.dragging {
   background: var(--win95-gray-lighter);
@@ -297,6 +297,12 @@ td.cell-center {
   align-items: center;
   justify-content: space-between;
   user-select: none;
+}
+
+/* Inactive title bar — 98.css 預設是漸層，但設計系統只允許 active navy 與
+ * edit-variant 兩個漸層。Inactive 改成純色 mid-gray。 */
+.title-bar.inactive {
+  background: var(--win95-gray-mid) !important;
 }
 
 .title-bar-text {
@@ -524,8 +530,12 @@ button.btn-icon:hover {
 .desktop-icon:focus .desktop-icon-img {
   filter: brightness(0.8);
 }
+/* Selected state — translucent navy halo + dotted white outline
+ * （對照 design_system/preview/desktop-icons.html 的 selected wash）。 */
 .desktop-icon.selected .desktop-icon-img {
-  filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg) brightness(0.8);
+  background: color-mix(in srgb, var(--win95-navy) 50%, transparent);
+  outline: 1px dotted var(--win95-white);
+  outline-offset: 0;
 }
 .desktop-icon-label {
   color: var(--text-inverse);
@@ -536,6 +546,8 @@ button.btn-icon:hover {
   max-width: 76px;
   word-break: break-word;
   line-height: 1.25;
+  /* 桌面為 teal，白字需要 1px 黑陰影才看得清 */
+  text-shadow: 1px 1px 0 var(--win95-black);
 }
 .desktop-icon.selected .desktop-icon-label,
 .desktop-icon:focus .desktop-icon-label {
@@ -937,7 +949,7 @@ button.btn-icon:hover {
 .agent-taskbar-btn--waiting_confirm {
   background: var(--status-warn);
   color: var(--text-inverse);
-  animation: agent-pulse 0.7s ease-in-out infinite;
+  animation: agent-pulse 1s ease-in-out infinite;
 }
 .agent-taskbar-btn--error { background: var(--status-error-border); color: var(--text-inverse); }
 

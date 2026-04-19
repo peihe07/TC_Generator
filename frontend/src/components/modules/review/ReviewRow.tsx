@@ -128,7 +128,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
       <td className="px-3 py-2 border-r" onClick={() => onToggleExpand(row.id)}>
         <StatusBadge
           status={row.pendingRegenerated ? 'reviewing' : (row.status as StatusVariant)}
-          className={row.status === 'generating' ? 'animate-pulse' : undefined}
+          style={row.status === 'generating' ? { animation: 'agent-pulse 1s ease-in-out infinite' } : undefined}
         >
           {row.pendingRegenerated ? 'awaiting apply' : row.status}
         </StatusBadge>

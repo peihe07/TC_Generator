@@ -226,7 +226,12 @@ const Taskbar: React.FC = () => {
             and steal width from the window-tabs strip. */}
         <div
           className="status-bar-field flex items-center px-1"
-          style={{ height: 22, whiteSpace: 'nowrap', flex: 'none' }}
+          style={{
+            height: 22,
+            whiteSpace: 'nowrap',
+            flex: 'none',
+            fontFamily: 'var(--font-family-mono)',
+          }}
           title={timeTooltip}
         >
           {time}

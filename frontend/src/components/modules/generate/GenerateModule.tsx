@@ -132,7 +132,7 @@ const GenerateModule: React.FC = () => {
                 </span>
               </div>
             ))}
-            {isProcessing && <div className="animate-pulse">_</div>}
+            {isProcessing && <div style={{ animation: 'agent-pulse 1s ease-in-out infinite' }}>_</div>}
           </div>
         </div>
 

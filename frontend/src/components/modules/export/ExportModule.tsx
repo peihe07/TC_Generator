@@ -137,7 +137,7 @@ const ExportModule: React.FC = () => {
               onClick={() => void handleExport()}
             >
               {isExporting ? (
-                <span className="animate-pulse italic">Exporting...</span>
+                <span className="italic" style={{ animation: 'agent-pulse 1s ease-in-out infinite' }}>Exporting...</span>
               ) : (
                 <>Export to Excel <RiFileExcel2Fill className="size-4 text-green-700" /></>
               )}
