@@ -15,6 +15,12 @@ import type {
 
 export type StreamState = 'idle' | 'sending' | 'streaming' | 'waiting_confirm' | 'error';
 
+export interface AgentStateUpdate {
+  jobId: string;
+  tool: string;
+  ts: number;
+}
+
 interface AgentStore {
   // Current session
   sessionId: string | null;
@@ -22,6 +28,9 @@ interface AgentStore {
   pendingConfirm: UIConfirmPart | null;
   streamState: StreamState;
   lastError: { code: string; message: string } | null;
+
+  // Last job state mutation from agent (for conflict toast in GUI modules)
+  lastStateUpdate: AgentStateUpdate | null;
 
   // Session list
   recentSessions: SessionSummary[];
@@ -137,6 +146,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
   pendingConfirm: null,
   streamState: 'idle',
   lastError: null,
+  lastStateUpdate: null,
   recentSessions: [],
   recentSessionsLoadedAt: null,
   currentSessionCost: 0,
@@ -191,6 +201,14 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
                 streamState: 'error',
                 lastError: { code: event.code, message: event.message },
                 sessionId: sid ?? state.sessionId,
+              };
+            }
+            if (event.type === 'state_update') {
+              return {
+                messages: newMsgs,
+                streamState: 'streaming',
+                sessionId: sid ?? state.sessionId,
+                lastStateUpdate: { jobId: event.job_id, tool: event.tool, ts: Date.now() },
               };
             }
             return { messages: newMsgs, streamState: 'streaming', sessionId: sid ?? state.sessionId };
@@ -257,6 +275,14 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
                 sessionId: sid ?? state.sessionId,
               };
             }
+            if (event.type === 'state_update') {
+              return {
+                messages: newMsgs,
+                streamState: 'streaming',
+                sessionId: sid ?? state.sessionId,
+                lastStateUpdate: { jobId: event.job_id, tool: event.tool, ts: Date.now() },
+              };
+            }
             return { messages: newMsgs, streamState: 'streaming', sessionId: sid ?? state.sessionId };
           });
         },
@@ -320,6 +346,7 @@ export const useAgentStore = create<AgentStore>((set, get) => ({
       pendingConfirm: null,
       streamState: 'idle',
       lastError: null,
+      lastStateUpdate: null,
       currentSessionCost: 0,
     });
   },

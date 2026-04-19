@@ -29,10 +29,19 @@ AgentEventType = Literal[
     "tool_call",
     "tool_result",
     "tool_error",
+    "state_update",
     "require_confirm",
     "done",
     "error",
 ]
+
+
+# 會變動 job state 的 safety level；成功執行後需推 state_update 給前端同步 GUI
+_STATE_MUTATING_SAFETY = {
+    SafetyLevel.WRITE_SAFE,
+    SafetyLevel.WRITE_COSTLY,
+    SafetyLevel.DESTRUCTIVE,
+}
 
 
 @dataclass
@@ -113,7 +122,14 @@ def build_system_prompt(rules_text: str | None = None) -> str:
 # ---------------------------------------------------------------------------
 
 # 哪些 tool 需要注入哪些 caller-provided 參數。
-_INJECT_JOB_STORE = {"parse_workbook", "list_jobs", "estimate_cost"}
+_INJECT_JOB_STORE = {
+    "parse_workbook",
+    "list_jobs",
+    "estimate_cost",
+    "get_job_detail",
+    "diff_jobs",
+    "aggregate_metrics",
+}
 _INJECT_RULES_TEXT = {"generate_tc"}
 
 
@@ -375,6 +391,18 @@ def run_agent_turn(
                         },
                     )
                 )
+                # 若 tool 會異動 job state 且 result 回了 jobId，推 state_update 讓
+                # 前端 GUI 可以 refetch / 提示衝突。READ_ONLY tool 不推，避免噪音。
+                tool_safety = get_tool(name).safety
+                result_payload = outcome["result"] if isinstance(outcome["result"], dict) else {}
+                job_id = result_payload.get("jobId") or result_payload.get("job_id")
+                if tool_safety in _STATE_MUTATING_SAFETY and job_id:
+                    events.append(
+                        AgentEvent(
+                            "state_update",
+                            {"job_id": job_id, "tool": name},
+                        )
+                    )
                 tool_content = json.dumps(
                     {"ok": True, "result": outcome["result"]},
                     default=str, ensure_ascii=False,

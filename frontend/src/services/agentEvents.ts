@@ -40,6 +40,12 @@ export interface RequireConfirmEvent extends BaseAgentEvent {
   est_cost_usd: number;
 }
 
+export interface StateUpdateEvent extends BaseAgentEvent {
+  type: 'state_update';
+  job_id: string;
+  tool: string;
+}
+
 export interface DoneEvent extends BaseAgentEvent {
   type: 'done';
   step_count: number;
@@ -57,6 +63,7 @@ export type AgentEvent =
   | ToolResultEvent
   | ToolErrorEvent
   | RequireConfirmEvent
+  | StateUpdateEvent
   | DoneEvent
   | ErrorEvent;
 

@@ -6,6 +6,7 @@ import { useWindowStore } from '../../store/useWindowStore';
 import WindowManager from './WindowManager';
 import Taskbar from './Taskbar';
 import CostMeter from './CostMeter';
+import AgentStateUpdateToast from './AgentStateUpdateToast';
 import { WindowID } from '../../store/useWindowStore';
 import { TASKBAR_HEIGHT } from './layout';
 
@@ -224,6 +225,7 @@ const Desktop: React.FC = () => {
 
       <WindowManager />
       <Taskbar />
+      <AgentStateUpdateToast />
     </div>
   );
 };

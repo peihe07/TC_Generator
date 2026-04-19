@@ -131,6 +131,135 @@ def test_dispatch_tool_injects_job_store(ctx, tmp_path):
     assert job_id in ctx.job_store
 
 
+def _register_fake_tool(name: str, safety, func):
+    """註冊一次性 tool，回傳 cleanup function（測試用）。"""
+    from tools.registry import ToolSpec, _REGISTRY, register_tool
+
+    previous = _REGISTRY.get(name)
+    register_tool(ToolSpec(name=name, func=func, description="fake", safety=safety))
+
+    def restore():
+        if previous is None:
+            _REGISTRY.pop(name, None)
+        else:
+            _REGISTRY[name] = previous
+
+    return restore
+
+
+def test_loop_emits_state_update_after_write_tool_with_job_id(ctx):
+    """WRITE_SAFE tool 成功且 result 含 jobId → 應推 state_update 事件。"""
+    from tools.registry import SafetyLevel
+
+    cleanup = _register_fake_tool(
+        "fake_write",
+        SafetyLevel.WRITE_SAFE,
+        lambda: {"jobId": "job-abc", "rows": 5},
+    )
+    try:
+        llm = _mock_llm(
+            [
+                LLMStep(tool_calls=[{"id": "c1", "name": "fake_write", "args": {}}]),
+                LLMStep(text="done", tool_calls=[]),
+            ]
+        )
+        events, _ = run_agent_turn(
+            user_message="do it", history=[], ctx=ctx, llm_fn=llm
+        )
+    finally:
+        cleanup()
+
+    types = [e.type for e in events]
+    assert "state_update" in types
+    idx = types.index("state_update")
+    # state_update 緊接 tool_result 之後
+    assert types[idx - 1] == "tool_result"
+    update = events[idx].data
+    assert update["job_id"] == "job-abc"
+    assert update["tool"] == "fake_write"
+
+
+def test_loop_skips_state_update_for_read_only_tool(ctx):
+    """READ_ONLY tool（group_tests）即便 result 有內容也不推 state_update。"""
+    llm = _mock_llm(
+        [
+            LLMStep(
+                tool_calls=[
+                    {
+                        "id": "c1",
+                        "name": "group_tests",
+                        "args": {"rows": [{"id": "r1", "reqId": "R-1", "testItem": "PDM01"}]},
+                    }
+                ]
+            ),
+            LLMStep(text="done", tool_calls=[]),
+        ]
+    )
+    events, _ = run_agent_turn(user_message="group", history=[], ctx=ctx, llm_fn=llm)
+
+    assert all(e.type != "state_update" for e in events)
+
+
+def test_loop_skips_state_update_when_result_has_no_job_id(ctx):
+    """WRITE_SAFE tool 但 result 沒有 jobId → 不推 state_update（避免噪音）。"""
+    from tools.registry import SafetyLevel
+
+    cleanup = _register_fake_tool(
+        "fake_write_no_job",
+        SafetyLevel.WRITE_SAFE,
+        lambda: {"ok": True, "rows": 0},  # 故意沒 jobId
+    )
+    try:
+        llm = _mock_llm(
+            [
+                LLMStep(tool_calls=[{"id": "c1", "name": "fake_write_no_job", "args": {}}]),
+                LLMStep(text="done", tool_calls=[]),
+            ]
+        )
+        events, _ = run_agent_turn(user_message="go", history=[], ctx=ctx, llm_fn=llm)
+    finally:
+        cleanup()
+
+    assert all(e.type != "state_update" for e in events)
+
+
+def test_loop_skips_state_update_when_tool_fails(ctx):
+    """Tool 失敗 → tool_error 已推，不應另外推 state_update。"""
+    llm = _mock_llm(
+        [
+            LLMStep(
+                tool_calls=[
+                    {
+                        "id": "c1",
+                        "name": "match_spec",
+                        "args": {"rows": [], "reference_workbook_path": "/nope.xlsx"},
+                    }
+                ]
+            ),
+            LLMStep(text="fail", tool_calls=[]),
+        ]
+    )
+    events, _ = run_agent_turn(user_message="match", history=[], ctx=ctx, llm_fn=llm)
+
+    assert all(e.type != "state_update" for e in events)
+
+
+def test_dispatch_get_job_detail_via_injected_store(ctx):
+    # 預先塞一筆 job record；dispatcher 應自動注入 job_store
+    ctx.job_store["j-detail"] = {
+        "jobId": "j-detail",
+        "rawFileName": "x.xlsx",
+        "status": "parsed",
+        "parsedData": {"row_count": 7, "project": "P", "test_group": "DM"},
+    }
+
+    out = dispatch_tool("get_job_detail", {"job_id": "j-detail"}, ctx)
+
+    assert out["ok"] is True
+    assert out["result"]["rowCount"] == 7
+    assert out["result"]["testGroup"] == "DM"
+
+
 # ---------------------------------------------------------------------------
 # confirmation gate
 # ---------------------------------------------------------------------------

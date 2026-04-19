@@ -130,7 +130,8 @@ def test_scenario_1_parse_workbook(ctx, tmp_path):
     )
 
     types = [e.type for e in events]
-    assert types == ["tool_call", "tool_result", "message", "done"]
+    # parse_workbook 是 WRITE_SAFE 且 result 帶 jobId → 跟一個 state_update
+    assert types == ["tool_call", "tool_result", "state_update", "message", "done"]
     assert events[0].data["tool"] == "parse_workbook"
     result = events[1].data["result"]
     assert result["rowCount"] == 2
