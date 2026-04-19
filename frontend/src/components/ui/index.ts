@@ -27,3 +27,6 @@ export type { SelectOption, SelectProps } from './Select';
 
 export { Input } from './Input';
 export type { InputProps } from './Input';
+
+export { TitleBarMini } from './TitleBarMini';
+export type { TitleBarMiniProps, TitleBarMiniVariant } from './TitleBarMini';

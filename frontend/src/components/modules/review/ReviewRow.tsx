@@ -15,7 +15,13 @@ import {
   RiSaveLine,
 } from '@remixicon/react';
 import { TcRow } from '../../../lib/types';
-import { Button, IconButton, StatusBadge, type StatusVariant } from '../../ui';
+import {
+  Button,
+  IconButton,
+  StatusBadge,
+  TitleBarMini,
+  type StatusVariant,
+} from '../../ui';
 import { RegenDiff, type DiffFieldKey } from './RegenDiff';
 import { StackedEditField, StackedReadField } from './StackedFields';
 
@@ -177,10 +183,10 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
             <div className="grid grid-cols-5 gap-3">
               {/* Left: Original (40%) */}
               <div className="col-span-2 flex flex-col">
-                <div className="title-bar-mini">
-                  <RiFileTextLine className="size-3" />
-                  <span className="flex-1">Original Requirement</span>
-                </div>
+                <TitleBarMini
+                  icon={<RiFileTextLine className="size-3" />}
+                  title="Original Requirement"
+                />
                 <div
                   className="paper-card flex-1 p-3 text-xs leading-relaxed overflow-auto whitespace-pre-wrap break-words selectable"
                   style={{ minHeight: 140 }}
@@ -191,12 +197,13 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
 
               {/* Right: Generated / Editable (60%) */}
               <div className="col-span-3 flex flex-col">
-                <div className={`title-bar-mini ${isEditing ? 'edit' : ''}`}>
-                  <RiEditBoxLine className="size-3" />
-                  <span className="flex-1">
-                    {isEditing ? 'Generated Test Case — EDIT MODE' : 'Generated Test Case'}
-                  </span>
-                </div>
+                <TitleBarMini
+                  icon={<RiEditBoxLine className="size-3" />}
+                  title={
+                    isEditing ? 'Generated Test Case — EDIT MODE' : 'Generated Test Case'
+                  }
+                  variant={isEditing ? 'edit' : 'default'}
+                />
                 <div className={`paper-card ${isEditing ? 'edit-mode' : ''}`}>
                   {isEditing ? (
                     <div className="flex flex-col">
@@ -224,6 +231,10 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                     </div>
                   ) : (
                     <div className="flex flex-col">
+                      <StackedReadField
+                        label="Test Item Rewrite"
+                        value={row.testItemRewrite ?? ''}
+                      />
                       <StackedReadField label="Pre-Conditions" value={row.preConditions} />
                       <StackedReadField label="Input Test Data" value={row.inputTestData} muted />
                       <StackedReadField label="Test Procedure" value={row.steps} />

@@ -13,14 +13,14 @@ import {
   RiArrowLeftLine
 } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
-import { Button } from '../../ui';
+import { Button, Checkbox, Radio } from '../../ui';
 
 const ExportModule: React.FC = () => {
   const { tcRows, jobMetadata, appendLog, resetJob, config } = useJobStore();
   const { openWindow } = useWindowStore();
   const [isExporting, setIsExporting] = useState(false);
   const [exportComplete, setExportComplete] = useState(false);
-  const [scope, setExportScope] = useState<'all' | 'accepted'>('accepted');
+  const [scope, setExportScope] = useState<'all' | 'accepted'>('all');
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
 
   const acceptedCount = tcRows.filter((r) => r.status === 'accepted').length;
@@ -35,6 +35,10 @@ const ExportModule: React.FC = () => {
   ];
 
   const handleExport = async () => {
+    if (scope === 'accepted' && acceptedCount === 0) {
+      appendLog(createJobLog('warn', 'No accepted rows available for export. Switch scope to All Generated Cases or accept rows first.'));
+      return;
+    }
     setIsExporting(true);
     try {
       const result = await exportJob({
@@ -82,26 +86,20 @@ const ExportModule: React.FC = () => {
             <fieldset className="p-4">
               <legend className="font-bold">Export Scope</legend>
               <div className="flex flex-col gap-2">
-                <div className="field-row">
-                  <input
-                    type="radio"
-                    id="scope-all"
-                    name="scope"
-                    checked={scope === 'all'}
-                    onChange={() => setExportScope('all')}
-                  />
-                  <label htmlFor="scope-all">All Generated Cases ({tcRows.length})</label>
-                </div>
-                <div className="field-row">
-                  <input
-                    type="radio"
-                    id="scope-accepted"
-                    name="scope"
-                    checked={scope === 'accepted'}
-                    onChange={() => setExportScope('accepted')}
-                  />
-                  <label htmlFor="scope-accepted">Accepted Only ({acceptedCount})</label>
-                </div>
+                <Radio
+                  id="scope-all"
+                  name="scope"
+                  label={`All Generated Cases (${tcRows.length})`}
+                  checked={scope === 'all'}
+                  onChange={() => setExportScope('all')}
+                />
+                <Radio
+                  id="scope-accepted"
+                  name="scope"
+                  label={`Accepted Only (${acceptedCount})`}
+                  checked={scope === 'accepted'}
+                  onChange={() => setExportScope('accepted')}
+                />
               </div>
             </fieldset>
 
@@ -109,24 +107,16 @@ const ExportModule: React.FC = () => {
               <legend className="font-bold">Output Settings</legend>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <div className="field-row">
-                    <input type="checkbox" id="inc-steps" defaultChecked />
-                    <label htmlFor="inc-steps">Include Steps</label>
-                  </div>
-                  <div className="field-row">
-                    <input type="checkbox" id="inc-expected" defaultChecked />
-                    <label htmlFor="inc-expected">Include Expected</label>
-                  </div>
+                  <Checkbox id="inc-steps" label="Include Steps" defaultChecked />
+                  <Checkbox id="inc-expected" label="Include Expected" defaultChecked />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="field-row">
-                    <input type="checkbox" id="inc-meta" defaultChecked />
-                    <label htmlFor="inc-meta">Include Metadata</label>
-                  </div>
-                  <div className="field-row">
-                    <input type="checkbox" id="inc-framework" defaultChecked />
-                    <label htmlFor="inc-framework">Update Framework Sheet</label>
-                  </div>
+                  <Checkbox id="inc-meta" label="Include Metadata" defaultChecked />
+                  <Checkbox
+                    id="inc-framework"
+                    label="Update Framework Sheet"
+                    defaultChecked
+                  />
                 </div>
               </div>
             </fieldset>

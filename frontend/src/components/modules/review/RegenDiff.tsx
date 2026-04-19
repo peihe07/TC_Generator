@@ -9,7 +9,7 @@ import {
   RiRefreshLine,
 } from '@remixicon/react';
 import { TcRow } from '../../../lib/types';
-import { Button } from '../../ui';
+import { Button, TitleBarMini } from '../../ui';
 import { diffTokens } from './diffTokens';
 import { DiffText } from './DiffText';
 
@@ -53,9 +53,13 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
           'var(--status-edit) var(--status-edit) var(--status-edit) var(--status-edit)',
       }}
     >
-      <div className="title-bar-mini edit -mx-3 -mt-3 mb-3" style={{ padding: '4px 10px' }}>
-        <RiRefreshLine className="size-3" />
-        <span className="flex-1">New Version Ready — Select fields to apply</span>
+      <TitleBarMini
+        variant="edit"
+        className="-mx-3 -mt-3 mb-3"
+        style={{ padding: '4px 10px' }}
+        icon={<RiRefreshLine className="size-3" />}
+        title="New Version Ready — Select fields to apply"
+      >
         <Button
           className="text-xs"
           style={{ minHeight: 20, padding: '1px 8px' }}
@@ -73,7 +77,7 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
           <RiCheckFill className="size-3 inline mr-1" />
           Apply Selected
         </Button>
-      </div>
+      </TitleBarMini>
 
       <div className="flex flex-col gap-2">
         {DIFF_FIELDS.map(({ key, label }) => {

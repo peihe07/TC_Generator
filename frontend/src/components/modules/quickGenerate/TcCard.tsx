@@ -1,5 +1,6 @@
 import React from 'react';
 import { RiFlashlightLine } from '@remixicon/react';
+import { TitleBarMini } from '../../ui';
 import type { GeneratedTc } from './types';
 import {
   COLUMN_HEADERS,
@@ -19,15 +20,18 @@ export const TcCard: React.FC<TcCardProps> = ({ tc, index }) => {
   const priorityColor = PRIORITY_STYLE[tc.tc.priority] ?? PRIORITY_FALLBACK;
   return (
     <div className="flex flex-col">
-      <div className="title-bar-mini">
-        <RiFlashlightLine className="size-3" />
-        <span className="flex-1">
-          TC {index + 1}
-          {tc.scenarioName ? ` — ${tc.scenarioName}` : ''}
-        </span>
+      <TitleBarMini
+        icon={<RiFlashlightLine className="size-3" />}
+        title={
+          <>
+            TC {index + 1}
+            {tc.scenarioName ? ` — ${tc.scenarioName}` : ''}
+          </>
+        }
+      >
         <span style={{ ...PRIORITY_BASE, ...priorityColor }}>{tc.tc.priority}</span>
         <span className="text-[10px] opacity-75 ml-2">{tc.tc.design_method}</span>
-      </div>
+      </TitleBarMini>
       <div className="paper-card">
         <div className="flex flex-col">
           {COLUMN_HEADERS.map((c) => {
