@@ -132,9 +132,9 @@ const Taskbar: React.FC = () => {
       <div
         className="w-full h-full flex items-center px-1 gap-1"
         style={{
-          background: '#c0c0c0',
-          borderTop: '2px solid #ffffff',
-          boxShadow: 'inset 1px 1px 0 #ffffff',
+          background: 'var(--win95-gray)',
+          borderTop: '2px solid var(--win95-white)',
+          boxShadow: 'inset 1px 1px 0 var(--win95-white)',
         }}
       >
         {/* Start button */}
@@ -154,7 +154,7 @@ const Taskbar: React.FC = () => {
         </button>
 
         {/* Separator */}
-        <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
+        <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
         {/* Window tabs */}
         <div className="flex-1 flex gap-1 overflow-x-auto" style={{ minWidth: 0 }}>
@@ -185,25 +185,25 @@ const Taskbar: React.FC = () => {
         </div>
 
         {/* Separator */}
-        <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
+        <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
         {/* Workspace manager */}
         <WorkspaceMenu />
 
         {/* Separator */}
-        <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
+        <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
         {/* Job history */}
         <JobHistoryMenu />
 
         {/* Separator */}
-        <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
+        <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
         {/* Agent Co-pilot */}
         <AgentTaskbarButton />
 
         {/* Separator */}
-        <div style={{ width: 1, height: 18, background: '#808080', boxShadow: '1px 0 0 #fff', margin: '0 2px' }} />
+        <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
 
         {/* Clock */}
         <div

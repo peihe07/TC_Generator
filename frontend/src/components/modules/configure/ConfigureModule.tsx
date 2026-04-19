@@ -202,7 +202,7 @@ const ConfigureModule: React.FC = () => {
                 </div>
 
                 {groupError && (
-                  <div className="status-bar-field p-1 mb-2" style={{ color: '#8b0000', background: '#fff0f0' }}>
+                  <div className="status-bar-field p-1 mb-2" style={{ color: 'var(--status-reject-dark)', background: '#fff0f0' }}>
                     {groupError}
                   </div>
                 )}
@@ -231,7 +231,7 @@ const ConfigureModule: React.FC = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan={3} className="p-4 text-center" style={{ color: '#808080', fontStyle: 'italic' }}>
+                        <td colSpan={3} className="p-4 text-center" style={{ color: 'var(--win95-gray-mid)', fontStyle: 'italic' }}>
                           {isLoadingGroupPreview ? 'Loading grouping preview...' : 'No grouping preview available yet.'}
                         </td>
                       </tr>
@@ -243,10 +243,10 @@ const ConfigureModule: React.FC = () => {
                 {tcRows.length > 0 && (
                   <>
                     <div className="flex items-center justify-between mb-1 mt-3">
-                      <p className="font-bold text-xs uppercase" style={{ color: '#444' }}>
+                      <p className="font-bold text-xs uppercase" style={{ color: 'var(--text-muted)' }}>
                         Manual Override — edit any row's test set directly
                       </p>
-                      <span className="text-[10px]" style={{ color: '#666' }}>
+                      <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
                         Changes are saved immediately. Use the datalist for existing sets or type a new one.
                       </span>
                     </div>
@@ -263,8 +263,8 @@ const ConfigureModule: React.FC = () => {
                         maxHeight: 260,
                         overflowY: 'auto',
                         border: '2px solid',
-                        borderColor: '#808080 #ffffff #ffffff #808080',
-                        background: '#fff',
+                        borderColor: 'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)',
+                        background: 'var(--win95-white)',
                       }}
                     >
                       <table className="w-full border-collapse text-xs">
@@ -323,7 +323,7 @@ const ConfigureModule: React.FC = () => {
                   <div className="flex flex-col gap-1">
                     <span>Exact traceability preview from the optional reference workbook.</span>
                     {matchPreview && (
-                      <span style={{ color: '#555' }}>
+                      <span style={{ color: 'var(--text-muted)' }}>
                         Exact matches: {matchPreview.summary.exact}/{matchPreview.summary.total} ({exactMatchRatio}%)
                       </span>
                     )}
@@ -335,7 +335,7 @@ const ConfigureModule: React.FC = () => {
                 </div>
 
                 {matchError && (
-                  <div className="status-bar-field p-1 mb-2" style={{ color: '#8b0000', background: '#fff0f0' }}>
+                  <div className="status-bar-field p-1 mb-2" style={{ color: 'var(--status-reject-dark)', background: '#fff0f0' }}>
                     {matchError}
                   </div>
                 )}
@@ -364,9 +364,9 @@ const ConfigureModule: React.FC = () => {
                           <td className="p-1 border-r" style={{ maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.testItem}</td>
                           <td className="p-1 border-r font-mono">{row.specReference || '—'}</td>
                           <td className="p-1 font-bold" style={{
-                            color: row.matchType === 'exact' ? '#006400'
+                            color: row.matchType === 'exact' ? 'var(--status-accept-dark)'
                               : row.matchType === 'fuzzy' ? '#7d4e00'
-                              : '#808080',
+                              : 'var(--win95-gray-mid)',
                           }}>
                             {row.matchType === 'exact'
                               ? 'Exact'
@@ -378,7 +378,7 @@ const ConfigureModule: React.FC = () => {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan={4} className="p-4 text-center" style={{ color: '#808080', fontStyle: 'italic' }}>
+                        <td colSpan={4} className="p-4 text-center" style={{ color: 'var(--win95-gray-mid)', fontStyle: 'italic' }}>
                           {isLoadingMatchPreview ? 'Loading spec matching preview...' : 'No spec matching preview available yet.'}
                         </td>
                       </tr>
@@ -482,17 +482,17 @@ const ConfigureModule: React.FC = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="flex justify-between items-center pt-2 mt-1" style={{ borderTop: '1px solid #808080' }}>
+      <div className="flex justify-between items-center pt-2 mt-1" style={{ borderTop: '1px solid var(--win95-gray-mid)' }}>
         <button className="flex items-center gap-1" onClick={() => openWindow('upload', 'Upload Files')}>
           <RiArrowLeftLine className="size-4" /> Back
         </button>
-        <div style={{ color: '#555', fontSize: 11 }}>
+        <div style={{ color: 'var(--text-muted)', fontSize: 11 }}>
           Est. calls: <strong>{estimatedCalls}</strong>
           {' | '}Est. cost ceiling: <strong>${estimatedBudget.toFixed(2)}</strong>
           {' | '}Validation: <strong>{config.strictValidation ? 'strict' : 'warn only'}</strong>
         </div>
         <button className="flex items-center gap-1 font-bold default" onClick={handleStartGenerate}>
-          Start Generate <RiPlayFill className="size-4" style={{ color: '#006400' }} />
+          Start Generate <RiPlayFill className="size-4" style={{ color: 'var(--status-accept-dark)' }} />
         </button>
       </div>
     </div>

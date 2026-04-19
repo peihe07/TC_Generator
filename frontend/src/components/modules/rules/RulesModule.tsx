@@ -36,7 +36,7 @@ const RulesModule: React.FC = () => {
         style={{
           flex: 1,
           border: '2px solid',
-          borderColor: '#808080 #ffffff #ffffff #808080',
+          borderColor: 'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)',
           overflow: 'hidden',
           minHeight: 0,
         }}

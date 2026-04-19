@@ -30,18 +30,18 @@ const CostMeter: React.FC = () => {
         right: 8,
         zIndex: 50,
         minWidth: 240,
-        background: '#c0c0c0',
+        background: 'var(--win95-gray)',
         border: '2px solid',
-        borderColor: '#ffffff #808080 #808080 #ffffff',
-        boxShadow: '2px 2px 0 #000000',
+        borderColor: 'var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white)',
+        boxShadow: '2px 2px 0 var(--win95-black)',
         userSelect: 'none',
       }}
     >
       {/* Title bar */}
       <div
         style={{
-          background: '#000080',
-          color: '#ffffff',
+          background: 'var(--win95-navy)',
+          color: 'var(--win95-white)',
           padding: '3px 8px',
           fontWeight: 'bold',
           fontSize: 14,
@@ -64,7 +64,7 @@ const CostMeter: React.FC = () => {
         <Row label="Model" value={pricing.label} />
 
         {/* Tokens */}
-        <div style={{ borderTop: '1px solid #808080', marginTop: 2, paddingTop: 2 }}>
+        <div style={{ borderTop: '1px solid var(--win95-gray-mid)', marginTop: 2, paddingTop: 2 }}>
           <Row
             label="Input"
             value={stats.inputTokens > 0 ? `${stats.inputTokens.toLocaleString()} tok` : '—'}
@@ -104,7 +104,7 @@ const CostMeter: React.FC = () => {
         {/* Total cost */}
         <div
           style={{
-            borderTop: '1px solid #808080',
+            borderTop: '1px solid var(--win95-gray-mid)',
             marginTop: 2,
             paddingTop: 3,
             display: 'flex',
@@ -112,13 +112,13 @@ const CostMeter: React.FC = () => {
             alignItems: 'baseline',
           }}
         >
-          <span style={{ fontSize: 13, color: '#444' }}>Total Cost</span>
+          <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Total Cost</span>
           <span
             style={{
               fontFamily: 'monospace',
               fontWeight: 'bold',
               fontSize: 15,
-              color: totalCost > 0 ? '#8b0000' : '#555',
+              color: totalCost > 0 ? 'var(--status-reject-dark)' : 'var(--text-muted)',
             }}
           >
             ${totalCost.toFixed(4)}
@@ -131,8 +131,8 @@ const CostMeter: React.FC = () => {
             <div
               style={{
                 height: 8,
-                background: '#808080',
-                border: '1px solid #555',
+                background: 'var(--win95-gray-mid)',
+                border: '1px solid var(--text-muted)',
                 marginTop: 2,
               }}
             >
@@ -140,12 +140,12 @@ const CostMeter: React.FC = () => {
                 style={{
                   height: '100%',
                   width: `${Math.min((totalCost / config.budgetLimit) * 100, 100).toFixed(1)}%`,
-                  background: totalCost / config.budgetLimit > 0.8 ? '#cc0000' : '#000080',
+                  background: totalCost / config.budgetLimit > 0.8 ? 'var(--status-error-border)' : 'var(--win95-navy)',
                   transition: 'width 0.3s',
                 }}
               />
             </div>
-            <div style={{ fontSize: 11, color: '#555', textAlign: 'right', marginTop: 2 }}>
+            <div style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'right', marginTop: 2 }}>
               budget: ${config.budgetLimit}
             </div>
           </div>
@@ -155,11 +155,11 @@ const CostMeter: React.FC = () => {
         {jobMetadata?.jobId && (
           <div
             style={{
-              borderTop: '1px solid #808080',
+              borderTop: '1px solid var(--win95-gray-mid)',
               marginTop: 2,
               paddingTop: 2,
               fontSize: 11,
-              color: '#666',
+              color: 'var(--text-muted)',
               fontFamily: 'monospace',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -176,10 +176,10 @@ const CostMeter: React.FC = () => {
 
 const Row: React.FC<{ label: string; value: string; sub?: string }> = ({ label, value, sub }) => (
   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-    <span style={{ fontSize: 13, color: '#444', flexShrink: 0 }}>{label}</span>
+    <span style={{ fontSize: 13, color: 'var(--text-muted)', flexShrink: 0 }}>{label}</span>
     <span style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 'bold', textAlign: 'right' }}>
       {value}
-      {sub && <span style={{ fontWeight: 'normal', color: '#666', marginLeft: 4 }}>{sub}</span>}
+      {sub && <span style={{ fontWeight: 'normal', color: 'var(--text-muted)', marginLeft: 4 }}>{sub}</span>}
     </span>
   </div>
 );

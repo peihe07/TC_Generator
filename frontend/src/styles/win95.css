@@ -13,13 +13,61 @@
 }
 
 :root {
-  --font-base-size: 13px;
-  --win95-teal: #008080;
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-base-size: 13px;      /* legacy alias; keep for backward compat */
+  --font-xs: 10px;
+  --font-sm: 11px;
+  --font-md: 12px;
+  --font-base: 13px;
+  --font-lg: 14px;
+
+  /* ── Spacing scale ──────────────────────────────────────── */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-6: 12px;
+  --space-8: 16px;
+
+  /* ── Neutral scale (Win95 3D borders need the full gradient) ── */
+  --win95-black: #000000;
+  --win95-gray-darker: #404040;
+  --win95-gray-dark: #606060;
+  --win95-gray-mid: #808080;
   --win95-gray: #c0c0c0;
-  --win95-navy: #000080;
+  --win95-gray-light: #dfdfdf;
+  --win95-gray-lighter: #e0e0e0;
   --win95-white: #ffffff;
+
+  /* ── Brand ──────────────────────────────────────────────── */
+  --win95-teal: #008080;
+  --win95-navy: #000080;
+  --win95-navy-light: #1084d0;
+
+  /* ── Selection ──────────────────────────────────────────── */
   --win95-select-bg: #000080;
   --win95-select-text: #ffffff;
+
+  /* ── Text ──────────────────────────────────────────────── */
+  --text-muted: #666666;       /* secondary text on light surface */
+
+  /* ── Semantic status (derived from existing de facto palette) ── */
+  --status-accept: #00a000;
+  --status-accept-dark: #006400;
+  --status-accept-bg: #c4e9c4;
+  --status-reject: #c00000;
+  --status-reject-dark: #8b0000;
+  --status-reject-bg: #f5b7b7;
+  --status-warn: #e0a000;
+  --status-edit: #fb923c;
+  --status-edit-dark: #c2410c;
+  --status-edit-bg: #fffbe0;
+  --status-error-bg: #ffcccc;
+  --status-error-border: #cc0000;
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  --motion-fast: 120ms ease;
+  --motion-progress: 200ms linear;
 }
 
 /* Global font — pixelated, no smoothing */
@@ -889,4 +937,67 @@ button.btn-icon:hover {
 .btn-help-agent:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ========================================================== */
+/* Keyboard focus & active states — accessibility layer        */
+/* ========================================================== */
+
+/*
+ * :focus-visible — only shows the focus ring when the user is
+ * navigating via keyboard, not on mouse click. Classic Win95 uses
+ * a dotted outline inside the button face; we mimic that using
+ * outline + outline-offset so the dotted line sits inside the
+ * 3D bezel rather than outside it.
+ */
+button:focus-visible,
+.start-menu-item:focus-visible,
+.desktop-icon:focus-visible,
+.win95-row:focus-visible,
+[role="tab"]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 1px dotted var(--win95-black);
+  outline-offset: -4px;
+}
+
+/* Inputs / textareas / selects use a navy outline — visible on the
+ * sunken white background where a black dotted line would vanish. */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--win95-navy);
+  outline-offset: -2px;
+}
+
+/* Suppress the default mouse-click focus ring entirely (Win95 look). */
+button:focus:not(:focus-visible),
+.start-menu-item:focus:not(:focus-visible),
+.desktop-icon:focus:not(:focus-visible),
+.win95-row:focus:not(:focus-visible),
+[role="tab"]:focus:not(:focus-visible),
+[role="button"]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/*
+ * :active — Win95 "pressed in" effect. Flip the 3D bezel (light
+ * edges move to bottom-right) and shift the label 1px so the
+ * button face appears to recess.
+ */
+button:active:not(:disabled),
+.title-bar-controls button:active:not(:disabled) {
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
+  padding-top: 5px !important;
+  padding-left: 13px !important;
+  padding-bottom: 3px !important;
+  padding-right: 11px !important;
+}
+
+/* Icon buttons keep their fixed dimensions when pressed — only the
+ * bezel flips, no content shift. */
+button.btn-icon:active:not(:disabled) {
+  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
+  padding: 0 !important;
 }

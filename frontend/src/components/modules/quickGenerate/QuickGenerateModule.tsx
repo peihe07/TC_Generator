@@ -112,14 +112,14 @@ const TcCard: React.FC<{ tc: GeneratedTc; index: number }> = ({ tc, index }) => 
           {COLUMN_HEADERS.map((c) => {
             const raw = tc.tc[c.key] as string;
             return (
-              <div key={c.key} style={{ borderTop: '1px solid #e0e0e0' }}>
+              <div key={c.key} style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}>
                 <div
                   className="px-2 py-1 font-bold uppercase"
                   style={{
                     background: '#e8e8e8',
                     borderBottom: '1px solid #d0d0d0',
                     fontSize: 10,
-                    color: '#444',
+                    color: 'var(--text-muted)',
                     letterSpacing: 0.5,
                   }}
                 >
@@ -128,7 +128,7 @@ const TcCard: React.FC<{ tc: GeneratedTc; index: number }> = ({ tc, index }) => 
                 <div
                   className="selectable px-3 py-2 text-xs whitespace-pre-wrap"
                   style={{
-                    color: c.muted ? '#808080' : '#000000',
+                    color: c.muted ? 'var(--win95-gray-mid)' : 'var(--win95-black)',
                     fontStyle: c.muted ? 'italic' : 'normal',
                     wordBreak: 'break-word',
                     lineHeight: 1.5,
@@ -369,7 +369,7 @@ const QuickGenerateModule: React.FC = () => {
                   <div className="flex items-center gap-1 text-xs font-bold">
                     {m.icon} {m.label}
                   </div>
-                  <div className="text-[10px]" style={{ color: mode === m.id ? 'rgba(255,255,255,0.7)' : '#808080' }}>{m.desc}</div>
+                  <div className="text-[10px]" style={{ color: mode === m.id ? 'rgba(255,255,255,0.7)' : 'var(--win95-gray-mid)' }}>{m.desc}</div>
                 </div>
               </label>
             ))}
@@ -485,7 +485,7 @@ const QuickGenerateModule: React.FC = () => {
 
         {/* Error */}
         {phase === 'error' && (
-          <div className="selectable p-2 text-xs flex items-start gap-2 status-bar-field" style={{ color: '#8b0000' }}>
+          <div className="selectable p-2 text-xs flex items-start gap-2 status-bar-field" style={{ color: 'var(--status-reject-dark)' }}>
             <RiCloseFill className="size-4 shrink-0" />
             <span>{errorMsg}</span>
           </div>
@@ -495,10 +495,10 @@ const QuickGenerateModule: React.FC = () => {
         <div className="flex-1 overflow-auto flex flex-col gap-2">
           {/* Decompose analysis block */}
           {analysis && (
-            <div style={{ border: '2px solid', borderColor: '#808080 #ffffff #ffffff #808080' }}>
+            <div style={{ border: '2px solid', borderColor: 'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)' }}>
               <div
                 className="flex items-center gap-2 px-2 py-1 cursor-pointer select-none"
-                style={{ background: '#000080', color: '#ffffff' }}
+                style={{ background: 'var(--win95-navy)', color: 'var(--win95-white)' }}
                 onClick={() => setReasoningExpanded((v) => !v)}
               >
                 <RiLightbulbLine className="size-3 shrink-0" />
@@ -508,8 +508,8 @@ const QuickGenerateModule: React.FC = () => {
                 {reasoningExpanded ? <RiArrowUpSLine className="size-3" /> : <RiArrowDownSLine className="size-3" />}
               </div>
               {reasoningExpanded && (
-                <div className="p-2 flex flex-col gap-1" style={{ background: '#ffffff' }}>
-                  <p className="text-xs leading-relaxed" style={{ color: '#444' }}>{analysis.reasoning}</p>
+                <div className="p-2 flex flex-col gap-1" style={{ background: 'var(--win95-white)' }}>
+                  <p className="text-xs leading-relaxed" style={{ color: 'var(--text-muted)' }}>{analysis.reasoning}</p>
                   <div className="flex flex-col gap-1 mt-1">
                     {analysis.scenarios.map((s) => {
                       const isGenerating = generatingScenarioId === s.id;
@@ -520,16 +520,16 @@ const QuickGenerateModule: React.FC = () => {
                           className="flex items-center gap-2 px-2 py-1 text-xs"
                           style={{
                             background: isDone ? '#d4edda' : isGenerating ? '#fff3cd' : '#f0f0f0',
-                            border: '1px solid #c0c0c0',
+                            border: '1px solid var(--win95-gray)',
                           }}
                         >
                           {isDone
-                            ? <RiCheckFill className="size-3 shrink-0" style={{ color: '#006400' }} />
+                            ? <RiCheckFill className="size-3 shrink-0" style={{ color: 'var(--status-accept-dark)' }} />
                             : isGenerating
                               ? <RiLoader4Line className="size-3 shrink-0 animate-spin" />
-                              : <RiArrowRightLine className="size-3 shrink-0" style={{ color: '#808080' }} />}
+                              : <RiArrowRightLine className="size-3 shrink-0" style={{ color: 'var(--win95-gray-mid)' }} />}
                           <span className="font-bold text-[11px]">#{s.id} {s.name}</span>
-                          <span className="text-[10px]" style={{ color: '#666' }}>{s.description}</span>
+                          <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>{s.description}</span>
                         </div>
                       );
                     })}
@@ -560,7 +560,7 @@ const QuickGenerateModule: React.FC = () => {
 
           {/* Done summary */}
           {phase === 'done' && generatedTcs.length > 0 && (
-            <div className="flex items-center gap-2 p-2 text-xs status-bar-field" style={{ color: '#006400' }}>
+            <div className="flex items-center gap-2 p-2 text-xs status-bar-field" style={{ color: 'var(--status-accept-dark)' }}>
               <RiCheckFill className="size-4 shrink-0" />
               {generatedTcs.length} TC{generatedTcs.length !== 1 ? 's' : ''} generated successfully.
             </div>

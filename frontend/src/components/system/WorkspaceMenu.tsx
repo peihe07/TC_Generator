@@ -104,10 +104,10 @@ const WorkspaceMenu: React.FC = () => {
             right: 0,
             minWidth: 280,
             maxHeight: 320,
-            background: '#c0c0c0',
+            background: 'var(--win95-gray)',
             border: '2px solid',
-            borderColor: '#ffffff #808080 #808080 #ffffff',
-            boxShadow: '2px 2px 0 #000',
+            borderColor: 'var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white)',
+            boxShadow: '2px 2px 0 var(--win95-black)',
             padding: 4,
             zIndex: 10000,
             display: 'flex',
@@ -131,13 +131,13 @@ const WorkspaceMenu: React.FC = () => {
             />
           </div>
 
-          <div style={{ fontSize: 11, fontWeight: 'bold', padding: '2px 4px', borderTop: '1px solid #808080', marginTop: 2 }}>
+          <div style={{ fontSize: 11, fontWeight: 'bold', padding: '2px 4px', borderTop: '1px solid var(--win95-gray-mid)', marginTop: 2 }}>
             Saved Workspaces ({workspaces.length})
           </div>
 
-          <div style={{ overflowY: 'auto', maxHeight: 220, background: '#fff', border: '1px solid #808080' }}>
+          <div style={{ overflowY: 'auto', maxHeight: 220, background: 'var(--win95-white)', border: '1px solid var(--win95-gray-mid)' }}>
             {workspaces.length === 0 && (
-              <div style={{ padding: 8, fontSize: 11, color: '#666', textAlign: 'center' }}>
+              <div style={{ padding: 8, fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
                 No saved workspaces yet.
               </div>
             )}
@@ -152,8 +152,8 @@ const WorkspaceMenu: React.FC = () => {
                     alignItems: 'center',
                     gap: 4,
                     padding: '3px 4px',
-                    background: w.id === activeId ? '#000080' : undefined,
-                    color: w.id === activeId ? '#fff' : undefined,
+                    background: w.id === activeId ? 'var(--win95-navy)' : undefined,
+                    color: w.id === activeId ? 'var(--win95-white)' : undefined,
                     fontSize: 11,
                   }}
                 >

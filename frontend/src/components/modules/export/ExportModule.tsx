@@ -159,15 +159,15 @@ const ExportModule: React.FC = () => {
             style={{
               width: 64,
               height: 64,
-              background: '#c0c0c0',
+              background: 'var(--win95-gray)',
               border: '2px solid',
-              borderColor: '#ffffff #808080 #808080 #ffffff',
+              borderColor: 'var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <RiCheckDoubleLine size={36} style={{ color: '#006400' }} />
+            <RiCheckDoubleLine size={36} style={{ color: 'var(--status-accept-dark)' }} />
           </div>
           <div>
             <h2 className="text-xl font-bold mb-2">Export Successful!</h2>

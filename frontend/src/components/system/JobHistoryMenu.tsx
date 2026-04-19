@@ -59,10 +59,10 @@ const JobHistoryMenu: React.FC = () => {
             right: 0,
             width: 380,
             maxHeight: 400,
-            background: '#c0c0c0',
+            background: 'var(--win95-gray)',
             border: '2px solid',
-            borderColor: '#ffffff #808080 #808080 #ffffff',
-            boxShadow: '2px 2px 0 #000',
+            borderColor: 'var(--win95-white) var(--win95-gray-mid) var(--win95-gray-mid) var(--win95-white)',
+            boxShadow: '2px 2px 0 var(--win95-black)',
             padding: 4,
             zIndex: 10000,
             display: 'flex',
@@ -76,8 +76,8 @@ const JobHistoryMenu: React.FC = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: '4px 6px',
-            background: '#000080',
-            color: '#ffffff',
+            background: 'var(--win95-navy)',
+            color: 'var(--win95-white)',
             fontWeight: 'bold',
             fontSize: 12,
           }}>
@@ -97,11 +97,11 @@ const JobHistoryMenu: React.FC = () => {
           <div style={{
             overflowY: 'auto',
             maxHeight: 300,
-            background: '#ffffff',
-            border: '1px solid #808080',
+            background: 'var(--win95-white)',
+            border: '1px solid var(--win95-gray-mid)',
           }}>
             {records.length === 0 && (
-              <div style={{ padding: 12, fontSize: 11, color: '#666', textAlign: 'center' }}>
+              <div style={{ padding: 12, fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
                 No jobs recorded yet. Run Generate or Quick TC to build history.
               </div>
             )}
@@ -113,19 +113,19 @@ const JobHistoryMenu: React.FC = () => {
                   key={r.id + r.startedAt}
                   style={{
                     padding: '4px 6px',
-                    borderBottom: '1px solid #e0e0e0',
+                    borderBottom: '1px solid var(--win95-gray-lighter)',
                     fontSize: 11,
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
-                    <span style={{ color: '#000080' }}>{r.model}</span>
-                    <span style={{ fontFamily: 'monospace', color: '#8b0000' }}>${r.cost.toFixed(5)}</span>
+                    <span style={{ color: 'var(--win95-navy)' }}>{r.model}</span>
+                    <span style={{ fontFamily: 'monospace', color: 'var(--status-reject-dark)' }}>${r.cost.toFixed(5)}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: '#555', marginTop: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', marginTop: 1 }}>
                     <span>{fmtDate(r.startedAt)} · {fmtDuration(r.finishedAt - r.startedAt)}</span>
                     <span>{r.rowsProcessed}/{r.rowsTotal} rows</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: '#666', fontSize: 10, marginTop: 1, fontFamily: 'monospace' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: 10, marginTop: 1, fontFamily: 'monospace' }}>
                     <span>in {r.inputTokens.toLocaleString()} · out {r.outputTokens.toLocaleString()}</span>
                     {hitRate > 0 && <span>cache {hitRate.toFixed(0)}%</span>}
                   </div>

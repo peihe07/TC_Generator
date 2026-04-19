@@ -87,14 +87,14 @@ const StackedReadField: React.FC<{
   value: string;
   muted?: boolean;
 }> = ({ label, value, muted }) => (
-  <div style={{ borderTop: '1px solid #e0e0e0' }}>
+  <div style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}>
     <div
       className="px-2 py-1 font-bold uppercase"
       style={{
         background: '#e8e8e8',
         borderBottom: '1px solid #d0d0d0',
         fontSize: 10,
-        color: '#444',
+        color: 'var(--text-muted)',
         letterSpacing: 0.5,
       }}
     >
@@ -103,7 +103,7 @@ const StackedReadField: React.FC<{
     <div
       className="selectable px-3 py-2 text-xs whitespace-pre-wrap"
       style={{
-        color: muted ? '#808080' : '#000000',
+        color: muted ? 'var(--win95-gray-mid)' : 'var(--win95-black)',
         wordBreak: 'break-word',
         lineHeight: 1.5,
       }}
@@ -171,7 +171,7 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
   };
 
   return (
-    <div className="paper-card p-3 mt-2" style={{ borderColor: '#fb923c #fb923c #fb923c #fb923c' }}>
+    <div className="paper-card p-3 mt-2" style={{ borderColor: 'var(--status-edit) var(--status-edit) var(--status-edit) var(--status-edit)' }}>
       <div className="title-bar-mini edit -mx-3 -mt-3 mb-3" style={{ padding: '4px 10px' }}>
         <RiRefreshLine className="size-3" />
         <span className="flex-1">New Version Ready — Select fields to apply</span>
@@ -206,15 +206,15 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
               style={{
                 border: '2px solid',
                 borderColor: isSelected
-                  ? '#808080 #ffffff #ffffff #808080'
-                  : '#c0c0c0 #e0e0e0 #e0e0e0 #c0c0c0',
-                background: '#ffffff',
+                  ? 'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)'
+                  : 'var(--win95-gray) var(--win95-gray-lighter) var(--win95-gray-lighter) var(--win95-gray)',
+                background: 'var(--win95-white)',
                 opacity: isSelected ? 1 : 0.55,
               }}
             >
               <div
                 className="flex items-center gap-2 px-2 py-1 cursor-pointer"
-                style={{ background: '#e8e8e8', borderBottom: '1px solid #c0c0c0' }}
+                style={{ background: '#e8e8e8', borderBottom: '1px solid var(--win95-gray)' }}
                 onClick={() => toggle(key)}
               >
                 {isSelected
@@ -222,14 +222,14 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
                   : <RiCheckboxBlankLine className="size-4 text-gray-400 shrink-0" />}
                 <span className="text-[10px] font-bold uppercase text-gray-700">{label}</span>
                 {changed ? (
-                  <span className="ml-auto text-[9px] px-1 font-bold uppercase" style={{ background: '#fed7aa', color: '#7c2d12', border: '1px solid #fb923c' }}>Changed</span>
+                  <span className="ml-auto text-[9px] px-1 font-bold uppercase" style={{ background: '#fed7aa', color: '#7c2d12', border: '1px solid var(--status-edit)' }}>Changed</span>
                 ) : (
-                  <span className="ml-auto text-[9px] px-1 uppercase" style={{ background: '#e0e0e0', color: '#606060', border: '1px solid #c0c0c0' }}>Unchanged</span>
+                  <span className="ml-auto text-[9px] px-1 uppercase" style={{ background: 'var(--win95-gray-lighter)', color: 'var(--win95-gray-dark)', border: '1px solid var(--win95-gray)' }}>Unchanged</span>
                 )}
               </div>
               {changed ? (
-                <div className="grid grid-cols-2" style={{ borderTop: '1px solid #e0e0e0' }}>
-                  <div className="p-2 text-[11px] leading-relaxed selectable" style={{ borderRight: '1px solid #e0e0e0', background: '#faf6f4' }}>
+                <div className="grid grid-cols-2" style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}>
+                  <div className="p-2 text-[11px] leading-relaxed selectable" style={{ borderRight: '1px solid var(--win95-gray-lighter)', background: '#faf6f4' }}>
                     <div className="text-[9px] font-bold uppercase mb-1" style={{ color: '#991b1b' }}>
                       <RiFileTextLine className="size-3 inline mr-1" />Current (strikethrough = removed)
                     </div>
@@ -243,7 +243,7 @@ const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
                   </div>
                 </div>
               ) : (
-                <div className="p-2 text-[11px] text-gray-600 selectable whitespace-pre-wrap" style={{ borderTop: '1px solid #e0e0e0' }}>
+                <div className="p-2 text-[11px] text-gray-600 selectable whitespace-pre-wrap" style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}>
                   {oldVal || '—'}
                 </div>
               )}
@@ -582,8 +582,8 @@ const ReviewModule: React.FC = () => {
                           className="p-4"
                           style={{
                             background: '#9a9a9a',
-                            boxShadow: 'inset 2px 2px 0 #606060, inset -2px -2px 0 #d0d0d0',
-                            borderBottom: '2px solid #404040',
+                            boxShadow: 'inset 2px 2px 0 var(--win95-gray-dark), inset -2px -2px 0 #d0d0d0',
+                            borderBottom: '2px solid var(--win95-gray-darker)',
                           }}
                           onClick={() => setActiveRowId(row.id)}
                         >
@@ -710,7 +710,7 @@ const ReviewModule: React.FC = () => {
           <legend className="font-bold text-sm">Validation Results</legend>
           <div className="flex-1 overflow-auto p-2 flex flex-col gap-2">
             {!selectedRow ? (
-              <div className="sys-log-entry" style={{ color: '#606060' }}>
+              <div className="sys-log-entry" style={{ color: 'var(--win95-gray-dark)' }}>
                 <span className="sys-log-tag info">INFO</span>
                 Expand a row to view validation.
               </div>
@@ -719,8 +719,8 @@ const ReviewModule: React.FC = () => {
                 <div key={i} className="sys-log-entry selectable">
                   <div className="flex items-start gap-2">
                     {err.severity === 'error'
-                      ? <RiErrorWarningFill className="size-4 shrink-0 mt-0.5" style={{ color: '#c00000' }} />
-                      : <RiAlertFill className="size-4 shrink-0 mt-0.5" style={{ color: '#e0a000' }} />}
+                      ? <RiErrorWarningFill className="size-4 shrink-0 mt-0.5" style={{ color: 'var(--status-reject)' }} />
+                      : <RiAlertFill className="size-4 shrink-0 mt-0.5" style={{ color: 'var(--status-warn)' }} />}
                     <div className="flex-1 min-w-0">
                       <div>
                         <span className={`sys-log-tag ${err.severity === 'error' ? 'critical' : 'warn'}`}>
@@ -740,7 +740,7 @@ const ReviewModule: React.FC = () => {
             ) : (
               <div className="sys-log-entry selectable">
                 <div className="flex items-start gap-2">
-                  <RiCheckboxCircleFill className="size-4 shrink-0 mt-0.5" style={{ color: '#00a000' }} />
+                  <RiCheckboxCircleFill className="size-4 shrink-0 mt-0.5" style={{ color: 'var(--status-accept)' }} />
                   <div className="flex-1">
                     <div>
                       <span className="sys-log-tag info">PASS</span>

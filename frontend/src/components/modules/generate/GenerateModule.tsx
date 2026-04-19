@@ -120,12 +120,12 @@ const GenerateModule: React.FC = () => {
           <div className="selectable flex-1 bg-white font-mono text-xs p-2 border-2 border-sunken overflow-auto leading-relaxed">
             {logs.map((log, i) => (
               <div key={i} className="flex gap-2">
-                <span style={{ color: '#808080' }}>[{log.timestamp}]</span>
+                <span style={{ color: 'var(--win95-gray-mid)' }}>[{log.timestamp}]</span>
                 <span style={{
-                  color: log.level === 'error' ? '#8b0000'
-                       : log.level === 'success' ? '#006400'
+                  color: log.level === 'error' ? 'var(--status-reject-dark)'
+                       : log.level === 'success' ? 'var(--status-accept-dark)'
                        : log.level === 'warn' ? '#7d4e00'
-                       : '#000000'
+                       : 'var(--win95-black)'
                 }}>
                   {log.message}
                 </span>
