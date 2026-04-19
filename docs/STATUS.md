@@ -1,6 +1,6 @@
 # TC Generator — 專案狀態
 
-最後更新：2026-04-19
+最後更新：2026-04-19（Taskbar polish + ReviewRow tests）
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
 
@@ -188,7 +188,10 @@ TC_Generator/
 - Design system：`components/ui/` primitive 層（`Button` / `IconButton` / `StatusBadge`
   + barrel export），`win95.css` token 化（`--status-*` / `--win95-*`）；
   全部 GUI modules 統一使用 primitives；`ReviewModule.tsx` 從 800 行拆為
-  orchestrator + 7 個聚焦子元件 + 1 個純函式 diff 模組
+  orchestrator + 7 個聚焦子元件 + 1 個純函式 diff 模組；Taskbar 修正：
+  隱藏 window-tabs 橫向 scrollbar 避免浮出 28px taskbar、時鐘改 Win95 經典
+  HH:MM（完整日期丟 tooltip）、覆蓋 98.css `.status-bar-field` 的
+  `flex-grow: 1` 讓時鐘貼齊內容不再吞掉 tabs 的寬度
 
 ### Runtime 基準（真實檔案壓力測試）
 
@@ -207,8 +210,8 @@ TC_Generator/
   - schemas: 13 / trace_store: 12 / dispatcher: 16 / session_store: 9 /
     route_agent: 9 / replay: 9 / inspect+jobs: 17 / golden scenarios: 5
 - `npm run typecheck` (`tsc --noEmit`)：0 error
-- `npm run test:unit` (Vitest)：54 pass（Button / IconButton / StatusBadge /
-  ChatModule / agentClient / useAgentStore / diffTokens）
+- `npm run test:unit` (Vitest)：73 pass（Button / IconButton / StatusBadge /
+  ChatModule / agentClient / useAgentStore / diffTokens / ReviewRow）
 - Playwright E2E：Workspace JSON round-trip（save → export → new → import → load）
 - API smoke：parse / group / match / generate / regenerate / export / download 端到端
 
