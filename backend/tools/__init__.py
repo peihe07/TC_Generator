@@ -19,7 +19,14 @@ from .validate import validate_tc_tool
 from .write import write_excel_tool
 from .generate import estimate_batch_cost, generate_tc_tool
 from .inspect import inspect_workbook_tool
-from .jobs import estimate_cost_tool, get_job_validation_tool, list_jobs_tool
+from .jobs import (
+    aggregate_metrics_tool,
+    diff_jobs_tool,
+    estimate_cost_tool,
+    get_job_detail_tool,
+    get_job_validation_tool,
+    list_jobs_tool,
+)
 from .schemas import ALL_SCHEMAS, get_schema, openai_tool_definitions
 
 __all__ = [
@@ -39,6 +46,9 @@ __all__ = [
     "inspect_workbook_tool",
     "list_jobs_tool",
     "estimate_cost_tool",
+    "get_job_detail_tool",
+    "diff_jobs_tool",
+    "aggregate_metrics_tool",
     "get_job_validation_tool",
     "ALL_SCHEMAS",
     "get_schema",

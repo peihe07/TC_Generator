@@ -14,7 +14,10 @@ from .errors import ToolError
 from .generate import estimate_batch_cost
 from .registry import SafetyLevel, ToolSpec, register_tool
 from .schemas import (
+    AGGREGATE_METRICS_SCHEMA,
+    DIFF_JOBS_SCHEMA,
     ESTIMATE_COST_SCHEMA,
+    GET_JOB_DETAIL_SCHEMA,
     GET_JOB_VALIDATION_SCHEMA,
     LIST_JOBS_SCHEMA,
 )
@@ -123,6 +126,222 @@ register_tool(
         description=ESTIMATE_COST_SCHEMA["description"],
         safety=SafetyLevel.READ_ONLY,
         input_schema=ESTIMATE_COST_SCHEMA,
+    )
+)
+
+
+# ---------------------------------------------------------------------------
+# get_job_detail
+# ---------------------------------------------------------------------------
+
+def _summarise_match(match_results: Any) -> dict | None:
+    """從 matchResults 萃取 {total, matched, unmatched}；資料不全回 None。"""
+    if not isinstance(match_results, dict):
+        return None
+    items = match_results.get("results")
+    if not isinstance(items, list):
+        return None
+    matched = sum(1 for r in items if isinstance(r, dict) and r.get("matched"))
+    return {"total": len(items), "matched": matched, "unmatched": len(items) - matched}
+
+
+def _summarise_groups(group_results: Any) -> dict | None:
+    """從 groupResults 萃取 {groupCount}；資料不全回 None。"""
+    if not isinstance(group_results, dict):
+        return None
+    groups = group_results.get("groups")
+    if not isinstance(groups, list):
+        return None
+    return {"groupCount": len(groups)}
+
+
+def _count_generated(record: dict) -> int:
+    """計算有 generated 內容的 row 數。兼容 generatedRows / parsedData.rows。"""
+    sources = [record.get("generatedRows"), (record.get("parsedData") or {}).get("rows")]
+    for rows in sources:
+        if isinstance(rows, list):
+            count = sum(
+                1
+                for r in rows
+                if isinstance(r, dict) and r.get("generated")
+            )
+            if count:
+                return count
+    return 0
+
+
+def get_job_detail_tool(*, job_id: str, job_store: Any) -> dict:
+    """取得單一 job 的摘要（不含 rawBytes）。
+
+    Returns:
+        `{jobId, fileName, status, rowCount, project, testGroup, hasRawFile,
+          createdAt, updatedAt, matchSummary, groupSummary, generatedRowCount,
+          costUsd}`。matchSummary / groupSummary 在對應 phase 未跑時為 None。
+    """
+    if not job_id:
+        raise ToolError("job_id is required", code="bad_request")
+
+    record = job_store.get(job_id) if hasattr(job_store, "get") else job_store[job_id]
+    if not record:
+        raise ToolError(f"job not found: {job_id}", code="not_found")
+
+    parsed = record.get("parsedData") or {}
+    return {
+        "jobId": record.get("jobId", job_id),
+        "fileName": record.get("rawFileName") or "",
+        "status": record.get("status", "unknown"),
+        "rowCount": parsed.get("row_count") or record.get("totalRows") or 0,
+        "project": parsed.get("project"),
+        "testGroup": parsed.get("test_group"),
+        "hasRawFile": bool(record.get("rawBytes")),
+        "createdAt": record.get("createdAt"),
+        "updatedAt": record.get("updatedAt"),
+        "matchSummary": _summarise_match(record.get("matchResults")),
+        "groupSummary": _summarise_groups(record.get("groupResults")),
+        "generatedRowCount": _count_generated(record),
+        "costUsd": record.get("costUsd"),
+    }
+
+
+register_tool(
+    ToolSpec(
+        name="get_job_detail",
+        func=get_job_detail_tool,
+        description=GET_JOB_DETAIL_SCHEMA["description"],
+        safety=SafetyLevel.READ_ONLY,
+        input_schema=GET_JOB_DETAIL_SCHEMA,
+    )
+)
+
+
+# ---------------------------------------------------------------------------
+# diff_jobs
+# ---------------------------------------------------------------------------
+
+def _delta_or_none(a: Any, b: Any) -> Any:
+    """若任一端為 None/非數字，回 None；否則回 b - a。"""
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        return None
+    return round(b - a, 4) if isinstance(b - a, float) else b - a
+
+
+def diff_jobs_tool(*, job_a_id: str, job_b_id: str, job_store: Any) -> dict:
+    """比較兩個 job 的摘要與 delta。
+
+    Returns:
+        `{"jobA": <get_job_detail shape>, "jobB": ..., "diff": {...}}`
+        diff 欄位：rowCountDelta / costUsdDelta / statusChanged /
+        matchedDelta / unmatchedDelta / generatedRowCountDelta。任一端缺資料
+        的 delta 欄位為 None，讓 Agent 自己決定怎麼敘述。
+    """
+    if not job_a_id or not job_b_id:
+        raise ToolError("job_a_id and job_b_id are required", code="bad_request")
+    if job_a_id == job_b_id:
+        raise ToolError("job_a_id and job_b_id must differ", code="bad_request")
+
+    detail_a = get_job_detail_tool(job_id=job_a_id, job_store=job_store)
+    detail_b = get_job_detail_tool(job_id=job_b_id, job_store=job_store)
+
+    match_a = detail_a.get("matchSummary") or {}
+    match_b = detail_b.get("matchSummary") or {}
+    has_match_both = bool(detail_a.get("matchSummary") and detail_b.get("matchSummary"))
+
+    diff = {
+        "rowCountDelta": _delta_or_none(detail_a["rowCount"], detail_b["rowCount"]),
+        "costUsdDelta": _delta_or_none(detail_a.get("costUsd"), detail_b.get("costUsd")),
+        "statusChanged": detail_a["status"] != detail_b["status"],
+        "matchedDelta": _delta_or_none(match_a.get("matched"), match_b.get("matched")) if has_match_both else None,
+        "unmatchedDelta": _delta_or_none(match_a.get("unmatched"), match_b.get("unmatched")) if has_match_both else None,
+        "generatedRowCountDelta": _delta_or_none(
+            detail_a["generatedRowCount"], detail_b["generatedRowCount"]
+        ),
+    }
+
+    return {"jobA": detail_a, "jobB": detail_b, "diff": diff}
+
+
+register_tool(
+    ToolSpec(
+        name="diff_jobs",
+        func=diff_jobs_tool,
+        description=DIFF_JOBS_SCHEMA["description"],
+        safety=SafetyLevel.READ_ONLY,
+        input_schema=DIFF_JOBS_SCHEMA,
+    )
+)
+
+
+# ---------------------------------------------------------------------------
+# aggregate_metrics
+# ---------------------------------------------------------------------------
+
+def aggregate_metrics_tool(
+    *,
+    job_ids: list[str] | None = None,
+    job_store: Any,
+) -> dict:
+    """跨 job 聚合指標：總 / 平均 row count、cost、match rate。
+
+    Args:
+        job_ids: 指定要納入統計的 job 列表；None 或空 → 以 job_store 全部為範圍。
+        job_store: dict-like registry（dispatcher 注入）
+
+    Returns:
+        `{jobCount, totalRowCount, totalCostUsd, avgCostUsd, avgRowCount,
+          matchRate, jobsWithMatch, jobsWithCost}`。無資料的欄位回 None，
+        避免 0 與「未知」混淆。
+    """
+    if job_ids:
+        targets = []
+        for jid in job_ids:
+            detail = get_job_detail_tool(job_id=jid, job_store=job_store)
+            targets.append(detail)
+    else:
+        keys_fn = getattr(job_store, "keys", None)
+        all_ids = list(keys_fn()) if callable(keys_fn) else list(job_store)
+        targets = [
+            get_job_detail_tool(job_id=jid, job_store=job_store) for jid in all_ids
+        ]
+
+    job_count = len(targets)
+    total_row = sum(int(t.get("rowCount") or 0) for t in targets)
+
+    costs = [t["costUsd"] for t in targets if isinstance(t.get("costUsd"), (int, float))]
+    total_cost = round(sum(costs), 4) if costs else None
+    avg_cost = round(total_cost / len(costs), 4) if costs else None
+
+    avg_row = (total_row / job_count) if job_count else None
+
+    # Match rate：只納入真的有跑過 match 的 job
+    match_totals = [
+        t["matchSummary"] for t in targets if isinstance(t.get("matchSummary"), dict)
+    ]
+    if match_totals:
+        matched = sum(int(m.get("matched") or 0) for m in match_totals)
+        total_match = sum(int(m.get("total") or 0) for m in match_totals)
+        match_rate = (matched / total_match) if total_match else None
+    else:
+        match_rate = None
+
+    return {
+        "jobCount": job_count,
+        "totalRowCount": total_row,
+        "totalCostUsd": total_cost,
+        "avgCostUsd": avg_cost,
+        "avgRowCount": avg_row,
+        "matchRate": match_rate,
+        "jobsWithCost": len(costs),
+        "jobsWithMatch": len(match_totals),
+    }
+
+
+register_tool(
+    ToolSpec(
+        name="aggregate_metrics",
+        func=aggregate_metrics_tool,
+        description=AGGREGATE_METRICS_SCHEMA["description"],
+        safety=SafetyLevel.READ_ONLY,
+        input_schema=AGGREGATE_METRICS_SCHEMA,
     )
 )
 

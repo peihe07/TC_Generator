@@ -318,6 +318,67 @@ ESTIMATE_COST_SCHEMA: dict[str, Any] = {
 }
 
 
+GET_JOB_DETAIL_SCHEMA: dict[str, Any] = {
+    "name": "get_job_detail",
+    "description": (
+        "Fetch a summary of one registered job without exposing raw binary "
+        "content. Returns core fields (jobId, fileName, status, rowCount, "
+        "project, testGroup, timestamps) and optional match/group/generated "
+        "summaries when those phases have run. Use this when the user asks "
+        "about a specific job beyond what list_jobs returns."
+    ),
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "job_id": {"type": "string", "description": "Target job id."},
+        },
+        "required": ["job_id"],
+    },
+}
+
+
+DIFF_JOBS_SCHEMA: dict[str, Any] = {
+    "name": "diff_jobs",
+    "description": (
+        "Compare two jobs side-by-side. Returns each job's summary (same shape "
+        "as get_job_detail) plus a `diff` block with deltas for rowCount, "
+        "costUsd, matched / unmatched counts, and a statusChanged flag. Use "
+        "when the user asks how one run differs from another."
+    ),
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "job_a_id": {"type": "string", "description": "Baseline job id."},
+            "job_b_id": {"type": "string", "description": "Comparison job id."},
+        },
+        "required": ["job_a_id", "job_b_id"],
+    },
+}
+
+
+AGGREGATE_METRICS_SCHEMA: dict[str, Any] = {
+    "name": "aggregate_metrics",
+    "description": (
+        "Aggregate counters across many jobs: total / average rowCount and "
+        "costUsd, overall spec match rate (matched rows / total match-phase "
+        "rows). Pass job_ids to scope; omit to cover every job in the store. "
+        "Use when the user asks about trends, totals, or \"how much have I "
+        "spent this month\"."
+    ),
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "job_ids": {
+                "type": ["array", "null"],
+                "items": {"type": "string"},
+                "description": "Explicit subset; null/empty = all jobs in store.",
+            },
+        },
+        "required": [],
+    },
+}
+
+
 GET_JOB_VALIDATION_SCHEMA: dict[str, Any] = {
     "name": "get_job_validation",
     "description": (
@@ -353,6 +414,9 @@ ALL_SCHEMAS: dict[str, dict[str, Any]] = {
     "inspect_workbook": INSPECT_WORKBOOK_SCHEMA,
     "list_jobs": LIST_JOBS_SCHEMA,
     "estimate_cost": ESTIMATE_COST_SCHEMA,
+    "get_job_detail": GET_JOB_DETAIL_SCHEMA,
+    "diff_jobs": DIFF_JOBS_SCHEMA,
+    "aggregate_metrics": AGGREGATE_METRICS_SCHEMA,
     "get_job_validation": GET_JOB_VALIDATION_SCHEMA,
 }
 
