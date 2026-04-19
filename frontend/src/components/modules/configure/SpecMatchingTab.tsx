@@ -68,19 +68,19 @@ export const SpecMatchingTab: React.FC<SpecMatchingTabProps> = ({
       <table className="w-full border-collapse">
         <thead>
           <tr>
-            <th className="p-1 border-r text-left">Req ID</th>
-            <th className="p-1 border-r text-left">Test Item</th>
-            <th className="p-1 border-r text-left">Matched Spec</th>
-            <th className="p-1 text-left">Status</th>
+            <th className="win95-th">Req ID</th>
+            <th className="win95-th">Test Item</th>
+            <th className="win95-th">Matched Spec</th>
+            <th className="win95-th">Status</th>
           </tr>
         </thead>
         <tbody>
           {preview?.matches.length ? (
             preview.matches.map((row) => (
-              <tr key={row.id} className="border-b">
-                <td className="p-1 border-r font-mono">{row.reqId}</td>
+              <tr key={row.id}>
+                <td className="p-1 font-mono">{row.reqId}</td>
                 <td
-                  className="p-1 border-r"
+                  className="p-1"
                   style={{
                     maxWidth: 220,
                     overflow: 'hidden',
@@ -90,7 +90,7 @@ export const SpecMatchingTab: React.FC<SpecMatchingTabProps> = ({
                 >
                   {row.testItem}
                 </td>
-                <td className="p-1 border-r font-mono">{row.specReference || '—'}</td>
+                <td className="p-1 font-mono">{row.specReference || '—'}</td>
                 <td
                   className="p-1 font-bold"
                   style={{

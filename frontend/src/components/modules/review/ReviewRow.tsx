@@ -79,7 +79,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
 }) => (
   <>
     <tr
-      className={`border-b cursor-pointer win95-row
+      className={`cursor-pointer win95-row
         ${isActive || isSelected ? 'selected' : ''}
         ${row.status === 'flagged' && !isActive && !isSelected ? 'bg-orange-50' : ''}
         ${row.pendingRegenerated && !isActive && !isSelected ? 'bg-yellow-50' : ''}

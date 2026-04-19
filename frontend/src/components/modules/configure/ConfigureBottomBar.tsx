@@ -35,7 +35,7 @@ export const ConfigureBottomBar: React.FC<ConfigureBottomBarProps> = ({
       {' | '}Validation: <strong>{strictValidation ? 'strict' : 'warn only'}</strong>
     </div>
     <Button
-      className="flex items-center gap-1 font-bold default"
+      className="flex items-center gap-1 default"
       onClick={onStartGenerate}
     >
       Start Generate{' '}

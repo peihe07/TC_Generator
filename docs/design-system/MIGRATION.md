@@ -2,6 +2,31 @@
 
 > 把這份檔案餵給 `frontend/` 下的 Claude Code。每個 Phase 是一個獨立 PR，跑完跑 `npm run dev` 視覺驗收後再進下一個。
 
+## 進度總表（最後更新：2026-04-19）
+
+| Phase | 範圍 | 狀態 | commit |
+|-------|------|------|--------|
+| 0 | Design system bundle 入 repo（`docs/design-system/`） | ✅ | `da81752` |
+| 1 | Token 層 + global hard rules（`win95.css`） | ✅ | pre-migration |
+| 2 | UI primitives（Input / Button / StatusBadge） | ✅ 程式面；⬜ 完整視覺驗收 | pre-migration + `d2a4af4`（generating pulse） |
+| 3 | 顏色清查（hex → token） | ✅ | `3ca2880` |
+| 4 | 動畫清掃（motion tokens、移除 slide-in、pulse 1s 統一） | ✅ | `d2a4af4` |
+| 5 | Desktop / Taskbar / StartMenu 視覺對齊 | ✅ | `d2a4af4` |
+| 6.1 | Upload module | ✅ 程式面；⬜ 視覺驗收 | uncommitted |
+| 6.2 | Configure module（含 `.win95-th` 對齊、Tabs override） | ✅ 程式面；⬜ 視覺驗收 | uncommitted |
+| 6.3 | Generate module | ⬜ | — |
+| 6.4 | Review module（含 2 條 follow-up 待辦，見本檔 §Phase 6.4） | ⬜ | `.win95-th` 已提前對齊於 6.2 |
+| 6.5 | Export module | ⬜ | — |
+| 6.6 | QuickGenerate module | ⬜ | — |
+| 6.7 | ChatModule | ⬜ | — |
+| 6.8 | Diagrams / Rules | ⬜ | — |
+| 7 | Iconography（已於 HANDOFF Phase 5 完成桌面圖示外部化） | ✅ | `d2a4af4` |
+| 8 | 測試 & 驗收 | 🚧 unit tests passing；E2E + 完整手動驗收 ⬜ | — |
+
+Follow-up 待辦（記在對應 Phase 節內）：
+- Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
+- Phase 6.4：GENERATED TEST CASE 欄空白（資料層 bug）+ expanded row 與 selected state 共用 `.selected` class（設計取捨）
+
 ## 前置
 
 ```
@@ -120,6 +145,10 @@ grep -rE "(transition|animation):" src --include="*.tsx" --include="*.css"
 2. **Configure** → `preview/fieldsets.html` + `preview/tabs.html`
 3. **Generate** → `preview/progress.html`（segmented fill）
 4. **Review** → `preview/table.html` + `preview/paper-cards.html`
+   - Note: `.win95-th` 已於 Phase 6.2 對齊（1px bevel、`#808080` BR、`3px 8px` padding、移除 inset shadow），Review module header 視覺已提前調整。
+   - Follow-up 待辦（發現於 Phase 6.2 bisect，與視覺遷移無關）：
+     - **GENERATED TEST CASE 欄位內容渲染為空** — 疑似資料層 bug；查 `ReviewRow.tsx` 展開區塊的 data binding（`row.pendingRegenerated` / regen diff fields）
+     - **Row expanded 時 header 變 navy selected 樣式** — `activeRowId` 與 `selectedIds` 目前共用 `.selected` class（見 `ReviewRow.tsx:83` `${isActive || isSelected ? 'selected' : ''}`）；需確認是否為 intended（Validation Panel sync），若否則拆開兩個 state（例如新增 `.expanded` variant 或獨立底色）
 5. **Export** → `preview/fieldsets.html` + `preview/dialog.html`
 6. **QuickGenerate** → `preview/form-inputs.html`
 7. **ChatModule** → `preview/paper-cards.html`（user bubble = navy / bot = white sunken）

@@ -68,17 +68,17 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
     <table className="w-full border-collapse mb-3">
       <thead>
         <tr>
-          <th className="text-left p-1 border-r">Test Set</th>
-          <th className="text-left p-1 border-r">Count</th>
-          <th className="text-left p-1">Requirement IDs</th>
+          <th className="win95-th">Test Set</th>
+          <th className="win95-th">Count</th>
+          <th className="win95-th">Requirement IDs</th>
         </tr>
       </thead>
       <tbody>
         {preview?.groups.length ? (
           preview.groups.map((group) => (
-            <tr key={group.testSet} className="border-b">
-              <td className="p-1 border-r font-mono">{group.testSet}</td>
-              <td className="p-1 border-r font-mono">{group.count}</td>
+            <tr key={group.testSet}>
+              <td className="p-1 font-mono">{group.testSet}</td>
+              <td className="p-1 font-mono">{group.count}</td>
               <td className="p-1">{group.reqIds.join(', ')}</td>
             </tr>
           ))
@@ -129,26 +129,23 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
           }}
         >
           <table className="w-full border-collapse text-xs">
-            <thead
-              className="sticky top-0"
-              style={{ background: 'var(--field-header-bg)', zIndex: 1 }}
-            >
+            <thead className="sticky top-0" style={{ zIndex: 1 }}>
               <tr>
-                <th className="text-left p-1 border-r" style={{ width: 120 }}>
+                <th className="win95-th" style={{ width: 120 }}>
                   Req ID
                 </th>
-                <th className="text-left p-1 border-r">Test Item</th>
-                <th className="text-left p-1" style={{ width: 160 }}>
+                <th className="win95-th">Test Item</th>
+                <th className="win95-th" style={{ width: 160 }}>
                   Test Set
                 </th>
               </tr>
             </thead>
             <tbody>
               {tcRows.map((row) => (
-                <tr key={row.id} className="border-b">
-                  <td className="p-1 border-r font-mono">{row.reqId}</td>
+                <tr key={row.id}>
+                  <td className="p-1 font-mono">{row.reqId}</td>
                   <td
-                    className="p-1 border-r"
+                    className="p-1"
                     style={{
                       maxWidth: 0,
                       overflow: 'hidden',

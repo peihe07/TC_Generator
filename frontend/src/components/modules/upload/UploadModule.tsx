@@ -100,9 +100,9 @@ const UploadModule: React.FC = () => {
       <div className="flex justify-end">
         <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
       </div>
-      <div className="flex-1 flex flex-col gap-6">
-        <fieldset className="p-4 border-2 border-sunken">
-          <legend className="px-2 font-bold">TC Specification (.xlsx)</legend>
+      <div className="flex-1 flex flex-col gap-4">
+        <fieldset className="p-4 border-sunken">
+          <legend className="px-2">TC Specification (.xlsx)</legend>
           <div
             className={`dropzone-sunken h-32 ${draggingZone === 'tc' ? 'dragging' : ''} ${files.tc ? 'bg-white' : ''}`}
             onClick={() => tcInputRef.current?.click()}
@@ -111,11 +111,13 @@ const UploadModule: React.FC = () => {
             onDragLeave={(e) => handleDragLeave(e, 'tc')}
             onDrop={(e) => handleFileDrop(e, 'tc')}
           >
-            <RiFileExcel2Line className="size-10 text-gray-600" />
+            <RiFileExcel2Line className="size-10" style={{ color: 'var(--text-muted)' }} />
             <span className="text-xs">
               {files.tc ? files.tc.name : 'Drag & Drop TC Spec Excel here'}
             </span>
-            {files.tc && <span className="text-[10px] text-gray-500">[READY]</span>}
+            {files.tc && (
+              <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>[READY]</span>
+            )}
           </div>
           <input
             ref={tcInputRef}
@@ -127,8 +129,8 @@ const UploadModule: React.FC = () => {
         </fieldset>
 
         <div className="grid grid-cols-2 gap-4">
-          <fieldset className="p-4 border-2 border-sunken">
-            <legend className="px-2 font-bold">Reference Workbook (Optional)</legend>
+          <fieldset className="p-4 border-sunken">
+            <legend className="px-2">Reference Workbook (Optional)</legend>
             <div
               className={`dropzone-sunken h-20 ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''}`}
               onClick={() => referenceWorkbookInputRef.current?.click()}
@@ -137,7 +139,7 @@ const UploadModule: React.FC = () => {
               onDragEnter={(e) => handleDragEnter(e, 'referenceWorkbook')}
               onDragLeave={(e) => handleDragLeave(e, 'referenceWorkbook')}
             >
-              <RiFileSearchLine className="size-6 text-gray-500" />
+              <RiFileSearchLine className="size-6" style={{ color: 'var(--text-muted)' }} />
               <span className="text-[10px] truncate px-2 w-full text-center">
                 {files.referenceWorkbook ? files.referenceWorkbook.name : 'Drop Reference Excel'}
               </span>
@@ -151,8 +153,8 @@ const UploadModule: React.FC = () => {
             />
           </fieldset>
 
-          <fieldset className="p-4 border-2 border-sunken">
-            <legend className="px-2 font-bold">Reference PDF/DOCX</legend>
+          <fieldset className="p-4 border-sunken">
+            <legend className="px-2">Reference PDF/DOCX</legend>
             <div
               className={`dropzone-sunken h-20 ${draggingZone === 'spec' ? 'dragging' : ''}`}
               onClick={() => specInputRef.current?.click()}
@@ -161,7 +163,7 @@ const UploadModule: React.FC = () => {
               onDragEnter={(e) => handleDragEnter(e, 'spec')}
               onDragLeave={(e) => handleDragLeave(e, 'spec')}
             >
-              <RiFileLine className="size-6 text-gray-500" />
+              <RiFileLine className="size-6" style={{ color: 'var(--text-muted)' }} />
               <span className="text-[10px] truncate px-2 w-full text-center">
                 {files.spec ? files.spec.name : 'Drop Reference Doc'}
               </span>
@@ -184,7 +186,10 @@ const UploadModule: React.FC = () => {
         )}
       </div>
 
-      <div className="flex justify-end pt-4 border-t border-gray-400">
+      <div
+        className="flex justify-end pt-4"
+        style={{ borderTop: '1px solid var(--win95-gray-mid)' }}
+      >
         <Button
           className="flex items-center gap-2"
           disabled={!files.tc || isParsing}

@@ -305,6 +305,16 @@ td.cell-center {
   background: var(--win95-gray-mid) !important;
 }
 
+/* Tabs — 對齊 preview/tabs.html：inactive 較淺灰、active 用預設灰 + 粗體。
+ * 98.css 預設兩者同色且 active 不 bold，這裡 override。 */
+menu[role="tablist"] > li[role="tab"] {
+  background: var(--win95-gray-light);
+}
+menu[role="tablist"] > li[role="tab"][aria-selected="true"] {
+  background: var(--win95-gray);
+  font-weight: var(--font-weight-bold);
+}
+
 .title-bar-text {
   font-weight: bold;
   font-size: 12px !important;
@@ -365,17 +375,17 @@ td.cell-center {
   animation: agent-pulse 1s ease-in-out infinite;
 }
 
-/* Win95 raised 3D table header (button-like, click-to-sort affordance) */
+/* Win95 raised 3D table header — 對齊 preview/table.html：1px bevel、raised-bezel
+ * shadow 用 --win95-gray-mid、較緊 padding。 */
 .win95-th {
   background: var(--win95-gray) !important;
-  border-top: 2px solid var(--win95-white) !important;
-  border-left: 2px solid var(--win95-white) !important;
-  border-right: 2px solid var(--win95-gray-dark) !important;
-  border-bottom: 2px solid var(--win95-gray-dark) !important;
-  padding: 6px 12px !important;
+  border-top: 1px solid var(--win95-white) !important;
+  border-left: 1px solid var(--win95-white) !important;
+  border-right: 1px solid var(--win95-gray-mid) !important;
+  border-bottom: 1px solid var(--win95-gray-mid) !important;
+  padding: 3px 8px !important;
   font-weight: var(--font-weight-bold) !important;
   text-align: left;
-  box-shadow: inset 1px 1px 0 var(--win95-white);
 }
 .win95-th.center { text-align: center; }
 
