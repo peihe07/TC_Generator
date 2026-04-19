@@ -97,7 +97,10 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
             >
               <div
                 className="flex items-center gap-2 px-2 py-1 cursor-pointer"
-                style={{ background: '#e8e8e8', borderBottom: '1px solid var(--win95-gray)' }}
+                style={{
+                  background: 'var(--field-header-bg)',
+                  borderBottom: '1px solid var(--win95-gray)',
+                }}
                 onClick={() => toggle(key)}
               >
                 {isSelected ? (
@@ -110,8 +113,8 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
                   <span
                     className="ml-auto text-[9px] px-1 font-bold uppercase"
                     style={{
-                      background: '#fed7aa',
-                      color: '#7c2d12',
+                      background: 'var(--edit-accent-bg)',
+                      color: 'var(--edit-accent-fg)',
                       border: '1px solid var(--status-edit)',
                     }}
                   >
@@ -139,12 +142,12 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
                     className="p-2 text-[11px] leading-relaxed selectable"
                     style={{
                       borderRight: '1px solid var(--win95-gray-lighter)',
-                      background: '#faf6f4',
+                      background: 'var(--diff-remove-bg)',
                     }}
                   >
                     <div
                       className="text-[9px] font-bold uppercase mb-1"
-                      style={{ color: '#991b1b' }}
+                      style={{ color: 'var(--diff-remove-fg)' }}
                     >
                       <RiFileTextLine className="size-3 inline mr-1" />
                       Current (strikethrough = removed)
@@ -153,11 +156,11 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
                   </div>
                   <div
                     className="p-2 text-[11px] leading-relaxed selectable"
-                    style={{ background: '#f4faf4' }}
+                    style={{ background: 'var(--diff-add-bg)' }}
                   >
                     <div
                       className="text-[9px] font-bold uppercase mb-1"
-                      style={{ color: '#166534' }}
+                      style={{ color: 'var(--diff-add-fg)' }}
                     >
                       <RiEditBoxLine className="size-3 inline mr-1" />
                       New (highlighted = added)

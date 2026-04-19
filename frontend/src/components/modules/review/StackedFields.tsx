@@ -13,8 +13,8 @@ export const StackedReadField: React.FC<{
     <div
       className="px-2 py-1 font-bold uppercase"
       style={{
-        background: '#e8e8e8',
-        borderBottom: '1px solid #d0d0d0',
+        background: 'var(--field-header-bg)',
+        borderBottom: '1px solid var(--field-header-border)',
         fontSize: 10,
         color: 'var(--text-muted)',
         letterSpacing: 0.5,
@@ -44,14 +44,17 @@ export const StackedEditField: React.FC<{
   onChange: (v: string) => void;
   minHeight?: number;
 }> = ({ label, value, onChange, minHeight = 50 }) => (
-  <div style={{ borderTop: '1px solid #fdba74' }} className="memo-edit">
+  <div
+    style={{ borderTop: '1px solid var(--edit-accent-border)' }}
+    className="memo-edit"
+  >
     <div
       className="px-2 py-1 font-bold uppercase"
       style={{
-        background: '#fed7aa',
-        borderBottom: '1px solid #fdba74',
+        background: 'var(--edit-accent-bg)',
+        borderBottom: '1px solid var(--edit-accent-border)',
         fontSize: 10,
-        color: '#7c2d12',
+        color: 'var(--edit-accent-fg)',
         letterSpacing: 0.5,
       }}
     >

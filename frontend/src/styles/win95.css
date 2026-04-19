@@ -65,6 +65,24 @@
   --status-error-bg: #ffcccc;
   --status-error-border: #cc0000;
 
+  /* Edit-accent palette — peach staged-change memo (RegenDiff "Changed"
+     badge, StackedEditField manual-edit mode). Warmer/saturated than the
+     pale `--status-edit-bg`, reserved for "user is actively editing". */
+  --edit-accent-bg: #fed7aa;
+  --edit-accent-border: #fdba74;
+  --edit-accent-fg: #7c2d12;
+
+  /* Diff palette — side-by-side regen comparison. */
+  --diff-remove-bg: #faf6f4;
+  --diff-remove-fg: #991b1b;
+  --diff-add-bg: #f4faf4;
+  --diff-add-fg: #166534;
+
+  /* Shared "field header" background for labeled read-only cells
+     (StackedReadField / RegenDiff field row). */
+  --field-header-bg: #e8e8e8;
+  --field-header-border: #d0d0d0;
+
   /* ── Motion ─────────────────────────────────────────────── */
   --motion-fast: 120ms ease;
   --motion-progress: 200ms linear;
