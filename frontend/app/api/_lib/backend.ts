@@ -1,7 +1,9 @@
-const backendBaseUrl =
-  process.env.PYTHON_API_BASE?.replace(/\/$/, "") ?? "";
+const configuredBackendBaseUrl = process.env.PYTHON_API_BASE?.replace(/\/$/, "") ?? "";
+const fallbackBackendBaseUrl =
+  process.env.NODE_ENV === "production" ? "" : "http://127.0.0.1:8000";
 
 export function getBackendBaseUrl() {
+  const backendBaseUrl = configuredBackendBaseUrl || fallbackBackendBaseUrl;
   if (!backendBaseUrl) {
     throw new Error("Backend base URL is not configured.");
   }

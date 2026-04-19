@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { RiBarChartBoxLine } from '@remixicon/react';
 import { useJobStore } from '../../store/useJobStore';
+import CostDashboardPopup from './CostDashboardPopup';
 
 const MODEL_PRICING: Record<string, { input: number; output: number; label: string }> = {
   'gpt-5':        { input: 5.00, output: 15.00, label: 'GPT-5' },
@@ -14,6 +16,7 @@ const MODEL_PRICING: Record<string, { input: number; output: number; label: stri
 
 const CostMeter: React.FC = () => {
   const { stats, config, jobMetadata } = useJobStore();
+  const [dashboardOpen, setDashboardOpen] = useState(false);
 
   const pricing = MODEL_PRICING[config.model] ?? MODEL_PRICING['gpt-4.1'];
   const inputCost  = (stats.inputTokens  / 1_000_000) * pricing.input;
@@ -56,7 +59,21 @@ const CostMeter: React.FC = () => {
             {stats.processed}/{stats.total}
           </span>
         )}
+        <button
+          type="button"
+          className="cost-meter-dashboard-btn"
+          aria-label="Open Cost Dashboard"
+          title="Cost Dashboard（跨 job 統計）"
+          onClick={() => setDashboardOpen(true)}
+          style={{
+            marginLeft: hasActivity && stats.processed < stats.total ? 4 : 'auto',
+          }}
+        >
+          <RiBarChartBoxLine size={12} />
+        </button>
       </div>
+
+      {dashboardOpen && <CostDashboardPopup onClose={() => setDashboardOpen(false)} />}
 
       {/* Body */}
       <div style={{ padding: '6px 8px', display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -141,7 +158,7 @@ const CostMeter: React.FC = () => {
                   height: '100%',
                   width: `${Math.min((totalCost / config.budgetLimit) * 100, 100).toFixed(1)}%`,
                   background: totalCost / config.budgetLimit > 0.8 ? 'var(--status-error-border)' : 'var(--win95-navy)',
-                  transition: 'width 0.3s',
+                  transition: 'width var(--motion-progress)',
                 }}
               />
             </div>

@@ -24,6 +24,7 @@ from agent_session_store import SqliteAgentSessionStore, default_session_db_path
 from routes.agent import build_agent_router
 from tools import (
     ToolError,
+    aggregate_metrics_tool,
     generate_tc_tool,
     group_tests_tool,
     match_spec_tool,
@@ -140,6 +141,14 @@ app.include_router(
         rules_text_getter=lambda: RULES_SECTIONS,
     )
 )
+
+
+@app.get("/api/health")
+def healthcheck() -> dict:
+    return {
+        "status": "ok",
+        "openai_configured": bool(os.environ.get("OPENAI_API_KEY")),
+    }
 
 
 class GenerateConfig(BaseModel):
@@ -462,7 +471,10 @@ def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
             "testSet": row.get("test_set", ""),
             "specReference": row.get("spec_reference"),
             "priority": tc["priority"],
-            "status": "error" if has_warnings else "ready",
+            # Validation warnings should still land in Review as a generated row.
+            # Only the SSE event type decides whether strict mode upgrades them
+            # to `row.failed`; non-strict mode should not surface them as fail.
+            "status": "ready",
             "reviewStatus": "pending",
             "generated": {
                 "testItemRewrite": tc["test_item_rewrite"],
@@ -616,6 +628,22 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
 @app.get("/api/health")
 def healthcheck() -> dict:
     return {"status": "ok", "service": "tc-generator-api"}
+
+
+@app.get("/api/metrics/aggregate")
+def metrics_aggregate(job_ids: str | None = None) -> dict:
+    """跨 job 聚合指標（成本觀測面板用）。
+
+    Query:
+        job_ids: 逗號分隔 ID 子集；不帶參數 → 全部 job。
+    """
+    selected: list[str] | None = None
+    if job_ids:
+        selected = [jid.strip() for jid in job_ids.split(",") if jid.strip()]
+    try:
+        return aggregate_metrics_tool(job_ids=selected, job_store=JOB_REGISTRY)
+    except ToolError as exc:
+        raise _tool_error_to_http(exc) from exc
 
 
 @app.post("/api/parse")

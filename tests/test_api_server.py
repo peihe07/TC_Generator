@@ -60,6 +60,23 @@ def test_healthcheck():
     assert response.json()["status"] == "ok"
 
 
+def test_metrics_aggregate_returns_shape_with_empty_store():
+    # 測試環境 JOB_REGISTRY 可能有也可能沒有資料；只驗回傳 shape 正確
+    response = client.get("/api/metrics/aggregate")
+    assert response.status_code == 200
+    payload = response.json()
+    for field in (
+        "jobCount", "totalRowCount", "totalCostUsd", "avgCostUsd",
+        "avgRowCount", "matchRate", "jobsWithCost", "jobsWithMatch",
+    ):
+        assert field in payload
+
+
+def test_metrics_aggregate_rejects_unknown_job_id():
+    response = client.get("/api/metrics/aggregate?job_ids=__does_not_exist__")
+    assert response.status_code == 404
+
+
 def test_parse_workbook():
     files = {
         "raw_file": (
@@ -253,6 +270,58 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
     assert response.status_code == 200
     assert '"type": "row.failed"' in response.text
     assert '"generated": null' in response.text
+
+
+@patch("tools.generate.generate_single_tc")
+def test_stream_generate_job_keeps_warning_rows_completed_in_non_strict_mode(mock_generate_single_tc):
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    payload = parse_response.json()
+
+    mock_generate_single_tc.return_value = SimpleNamespace(
+        tc_data={
+            "test_item_rewrite": "(Condition → Outcome)",
+            "pre_conditions": "1. Open settings menu",
+            "input_test_data": "NA",
+            "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
+            "expected_result": "1. Setup completes.\n2. Works as expected.",
+            "design_method": "invalid method",
+            "priority": "Critical",
+            "split_flag": False,
+            "split_reason": "",
+        },
+        input_tokens=10,
+        output_tokens=20,
+        cost=0.001,
+    )
+
+    client.post(
+        "/api/generate",
+        json={
+            "jobId": payload["jobId"],
+            "rows": [payload["rows"][0]],
+            "config": {
+                "model": "gpt-4.1",
+                "batchSize": 1,
+                "budget": 2,
+                "strictValidation": False,
+            },
+        },
+    )
+
+    response = client.get("/api/generate/stream", params={"jobId": payload["jobId"]})
+    assert response.status_code == 200
+    assert '"type": "row.completed"' in response.text
+    assert '"status": "ready"' in response.text
+    assert '"generated": {' in response.text
 
 
 def test_export_job_and_download():
