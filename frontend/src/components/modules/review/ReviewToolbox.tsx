@@ -1,0 +1,79 @@
+import React from 'react';
+import {
+  RiCheckFill,
+  RiCloseFill,
+  RiDeleteBinLine,
+  RiRefreshLine,
+} from '@remixicon/react';
+import { TcRow } from '../../../lib/types';
+import { Button } from '../../ui';
+
+export interface ReviewToolboxProps {
+  selectedCount: number;
+  isRegenerating: boolean;
+  onClear: () => void;
+  onBulkStatus: (status: TcRow['status']) => void;
+  onBulkDelete: () => void;
+  onRegenerate: () => void;
+}
+
+/**
+ * Floating bulk-action toolbox at the bottom of the Review module.
+ * Renders only when at least one row is selected.
+ */
+export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
+  selectedCount,
+  isRegenerating,
+  onClear,
+  onBulkStatus,
+  onBulkDelete,
+  onRegenerate,
+}) => (
+  <div
+    className="win95-toolbox absolute bottom-4 left-1/2 z-20"
+    style={{ transform: 'translateX(-50%)', padding: '6px 4px' }}
+  >
+    <div className="win95-toolbox-handle" />
+    <div className="win95-toolbox-group">
+      <span className="font-bold" style={{ fontSize: 11, padding: '0 4px' }}>
+        {selectedCount} row{selectedCount > 1 ? 's' : ''} selected
+      </span>
+      <Button onClick={onClear}>Clear</Button>
+    </div>
+    <div className="win95-toolbox-group">
+      <Button
+        className="flex items-center gap-1"
+        title="Accept selected"
+        onClick={() => onBulkStatus('accepted')}
+      >
+        <RiCheckFill className="size-3 text-green-700" /> Accept
+      </Button>
+      <Button
+        className="flex items-center gap-1"
+        title="Reject selected"
+        onClick={() => onBulkStatus('rejected')}
+      >
+        <RiCloseFill className="size-3 text-red-700" /> Reject
+      </Button>
+    </div>
+    <div className="win95-toolbox-group">
+      <Button
+        className="flex items-center gap-1"
+        title="Delete selected"
+        onClick={onBulkDelete}
+      >
+        <RiDeleteBinLine className="size-3" /> Delete
+      </Button>
+      <Button
+        className="font-bold flex items-center gap-1"
+        onClick={onRegenerate}
+        disabled={isRegenerating}
+      >
+        <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
+        {isRegenerating ? 'Regenerating...' : 'Regenerate'}
+      </Button>
+    </div>
+  </div>
+);
+
+export default ReviewToolbox;
