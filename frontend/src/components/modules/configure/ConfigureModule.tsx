@@ -11,6 +11,7 @@ import {
   RiRefreshLine,
 } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
+import { Button } from '../../ui';
 
 type GroupPreviewState = {
   groups: Array<{
@@ -191,13 +192,13 @@ const ConfigureModule: React.FC = () => {
                 <div className="flex items-center justify-between mb-2">
                   <p>Current test set preview for imported requirements.</p>
                   <div className="flex items-center gap-2">
-                    <button className="flex items-center gap-1" onClick={() => void loadGroupingPreview()}>
+                    <Button className="flex items-center gap-1" onClick={() => void loadGroupingPreview()}>
                       {isLoadingGroupPreview ? <RiLoader4Line className="size-3 animate-spin" /> : <RiRefreshLine className="size-3" />}
                       Refresh
-                    </button>
-                    <button onClick={applyGroupingPreview} disabled={!groupPreview}>
+                    </Button>
+                    <Button onClick={applyGroupingPreview} disabled={!groupPreview}>
                       Apply To Rows
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
@@ -328,10 +329,10 @@ const ConfigureModule: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  <button className="flex items-center gap-1" onClick={() => void loadMatchPreview()}>
+                  <Button className="flex items-center gap-1" onClick={() => void loadMatchPreview()}>
                     {isLoadingMatchPreview ? <RiLoader4Line className="size-3 animate-spin" /> : <RiRefreshLine className="size-3" />}
                     Refresh
-                  </button>
+                  </Button>
                 </div>
 
                 {matchError && (
@@ -483,17 +484,17 @@ const ConfigureModule: React.FC = () => {
 
       {/* Bottom bar */}
       <div className="flex justify-between items-center pt-2 mt-1" style={{ borderTop: '1px solid var(--win95-gray-mid)' }}>
-        <button className="flex items-center gap-1" onClick={() => openWindow('upload', 'Upload Files')}>
+        <Button className="flex items-center gap-1" onClick={() => openWindow('upload', 'Upload Files')}>
           <RiArrowLeftLine className="size-4" /> Back
-        </button>
+        </Button>
         <div style={{ color: 'var(--text-muted)', fontSize: 11 }}>
           Est. calls: <strong>{estimatedCalls}</strong>
           {' | '}Est. cost ceiling: <strong>${estimatedBudget.toFixed(2)}</strong>
           {' | '}Validation: <strong>{config.strictValidation ? 'strict' : 'warn only'}</strong>
         </div>
-        <button className="flex items-center gap-1 font-bold default" onClick={handleStartGenerate}>
+        <Button className="flex items-center gap-1 font-bold default" onClick={handleStartGenerate}>
           Start Generate <RiPlayFill className="size-4" style={{ color: 'var(--status-accept-dark)' }} />
-        </button>
+        </Button>
       </div>
     </div>
   );

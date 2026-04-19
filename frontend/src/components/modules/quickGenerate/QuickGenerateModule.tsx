@@ -15,6 +15,7 @@ import {
   RiArrowUpSLine,
   RiLoader4Line,
 } from '@remixicon/react';
+import { Button } from '../../ui';
 
 // --- Types ---
 type Mode = 'single' | 'with_context' | 'decompose';
@@ -426,39 +427,40 @@ const QuickGenerateModule: React.FC = () => {
         {/* Generate / Stop buttons */}
         <div className="flex gap-2">
           {isRunning ? (
-            <button
+            <Button
               className="flex-1 flex items-center justify-center gap-2 font-bold"
               onClick={() => { abortRef.current?.(); setPhase('idle'); }}
             >
               <RiCloseFill className="size-4" /> Stop
-            </button>
+            </Button>
           ) : (
-            <button
+            <Button
               className="flex-1 py-2 flex items-center justify-center gap-2 text-sm font-bold default"
               disabled={!testItem.trim()}
               onClick={handleGenerate}
             >
               <RiArrowRightLine className="size-4" />
               {mode === 'decompose' ? 'Analyse & Generate' : 'Generate TC'}
-            </button>
+            </Button>
           )}
           {(phase === 'done' || phase === 'error') && (
             <>
-              <button
+              <Button
                 className="px-3 py-2 text-sm flex items-center gap-1 font-bold"
                 onClick={handleGenerate}
                 disabled={!testItem.trim()}
                 title="Regenerate with same input"
               >
                 <RiRefreshLine className="size-4" /> Regenerate
-              </button>
-              <button
+              </Button>
+              <Button
                 className="px-3 py-2 text-sm flex items-center gap-1"
                 onClick={reset}
                 title="Clear results"
+                aria-label="Clear results"
               >
                 <RiCloseFill className="size-4" />
-              </button>
+              </Button>
             </>
           )}
         </div>
