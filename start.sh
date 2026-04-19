@@ -8,6 +8,7 @@ ENV_FILE="$ROOT_DIR/.env"
 FRONTEND_ENV="$FRONTEND_DIR/.env.local"
 BACKEND_PORT=8000
 FRONTEND_PORT=3000
+BACKEND_BASE="http://127.0.0.1:${BACKEND_PORT}"
 
 # --- Colour helpers ---
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
@@ -22,13 +23,21 @@ if [ ! -f "$ENV_FILE" ]; then
   warn "Create $ENV_FILE with: OPENAI_API_KEY=sk-proj-..."
 else
   info ".env found."
+  set -a
+  source "$ENV_FILE"
+  set +a
+  if [ -z "${OPENAI_API_KEY:-}" ]; then
+    warn "OPENAI_API_KEY is not set in .env. AI generation and Agent chat will fail."
+  else
+    info "OPENAI_API_KEY detected."
+  fi
 fi
 
-# --- Write frontend .env.local if missing ---
-if [ ! -f "$FRONTEND_ENV" ]; then
-  echo "PYTHON_API_BASE=http://localhost:${BACKEND_PORT}" > "$FRONTEND_ENV"
-  info "Created $FRONTEND_ENV"
-fi
+# --- Sync frontend .env.local ---
+cat > "$FRONTEND_ENV" <<EOF
+PYTHON_API_BASE=$BACKEND_BASE
+EOF
+info "Synced $FRONTEND_ENV"
 
 # --- Activate Python venv ---
 if [ ! -d "$ROOT_DIR/.venv" ]; then
@@ -51,8 +60,8 @@ npm run dev -- --hostname 127.0.0.1 --port "$FRONTEND_PORT" &
 FRONTEND_PID=$!
 
 info "---"
-info "Backend:  http://localhost:${BACKEND_PORT}/docs"
-info "Frontend: http://localhost:${FRONTEND_PORT}"
+info "Backend:  ${BACKEND_BASE}/docs"
+info "Frontend: http://127.0.0.1:${FRONTEND_PORT}"
 info "Press Ctrl+C to stop both."
 
 # --- Cleanup on exit ---
