@@ -32,17 +32,27 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
 }) => (
   <>
     <div className="flex items-center justify-between mb-2">
-      <p>Current test set preview for imported requirements.</p>
+      <div>
+        <p className="font-bold">AI-suggested Test Sets — review, edit, and apply before generation.</p>
+        <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
+          下方清單由 AI 依 requirement 文意分組。滿意就按 Apply；想改就在「Manual Override」改完再 Apply。
+          生成完的 TC 會沿用這裡的 Test Set，不會再跑一次 AI 分類。
+        </p>
+      </div>
       <div className="flex items-center gap-2">
-        <Button className="flex items-center gap-1" onClick={onRefresh}>
+        <Button
+          className="flex items-center gap-1"
+          onClick={onRefresh}
+          title="Ask AI to re-suggest test sets"
+        >
           {isLoading ? (
             <RiLoader4Line className="size-3 animate-spin" />
           ) : (
             <RiRefreshLine className="size-3" />
           )}
-          Refresh
+          AI Re-suggest
         </Button>
-        <Button onClick={onApply} disabled={!preview}>
+        <Button onClick={onApply} disabled={!preview} className="default">
           Apply To Rows
         </Button>
       </div>
@@ -61,7 +71,8 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
     )}
     {preview && (
       <div className="status-bar-field p-1 mb-2">
-        {preview.groups.length} group(s) prepared for {preview.assignments.length} row(s).
+        AI grouped {preview.assignments.length} row(s) into {preview.groups.length} Test Set(s).
+        Apply once you&apos;re happy with the labels below.
       </div>
     )}
 

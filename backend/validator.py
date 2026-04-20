@@ -24,7 +24,29 @@ VALID_DESIGN_METHODS = [
     "基礎故障注入 (Fault Injection Lite)",
 ]
 
-VALID_PRIORITIES = ["High", "Medium", "Low", "NA"]
+VALID_PRIORITIES = ["P0", "P1", "P2"]
+
+# 舊字串 → P-code 的 fuzzy 映射（AI / template 可能還回舊值）。
+_PRIORITY_ALIAS = {
+    "high": "P0",
+    "p0": "P0",
+    "medium": "P1",
+    "med": "P1",
+    "p1": "P1",
+    "low": "P2",
+    "p2": "P2",
+    # 若 AI 回 NA 或空值，不做 fuzzy 映射，交給 validator 回 fail。
+}
+
+
+def normalize_priority(value: str | None) -> str:
+    """Fuzzy-normalize 使用者 / AI 輸入到 P0/P1/P2；對不上就回空字串。"""
+    if not value:
+        return ""
+    key = str(value).strip().lower()
+    if not key:
+        return ""
+    return _PRIORITY_ALIAS.get(key, "")
 
 # Action verbs not allowed in pre-conditions
 ACTION_VERBS = [

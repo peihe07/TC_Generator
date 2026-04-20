@@ -23,6 +23,7 @@ from prompt_builder import (
     build_decompose_prompt,
     build_multi_tc_user_prompt,
     build_multi_tc_batch_prompt,
+    build_test_set_classification_prompt,
     REQUIRED_OUTPUT_KEYS,
 )
 
@@ -260,8 +261,18 @@ def _client() -> Any:
     return openai_module.OpenAI(api_key=api_key)
 
 
-def _chat(system: str, user: str, model: str, max_tokens: int, json_mode: bool = True):
-    """呼叫 OpenAI chat completions；統一錯誤處理與 JSON mode。"""
+def _chat(
+    system: str,
+    user: str,
+    model: str,
+    max_tokens: int | None = None,
+    json_mode: bool = True,
+):
+    """呼叫 OpenAI chat completions；統一錯誤處理與 JSON mode。
+
+    `max_tokens=None` 時不傳 `max_completion_tokens`，讓 OpenAI 用 model 的預設
+    上限。對於拆分 TC 不固定數量的場景特別重要，避免被截斷導致 JSON parse 失敗。
+    """
     client = _client()
     kwargs: dict = {
         "model": model,
@@ -269,8 +280,9 @@ def _chat(system: str, user: str, model: str, max_tokens: int, json_mode: bool =
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
-        "max_completion_tokens": max_tokens,
     }
+    if max_tokens is not None:
+        kwargs["max_completion_tokens"] = max_tokens
     if json_mode:
         kwargs["response_format"] = {"type": "json_object"}
     try:
@@ -506,11 +518,9 @@ def generate_batch(
 # ---------------------------------------------------------------------------
 
 
-# Token budget hint：預估 AI 針對一個 req 最多可能回幾筆 TC，用來向 OpenAI 要
-# 足夠的 output token 空間，並非硬性上限（超過也不會拒絕）。§1.4 要求每種支援
-# 項目各一筆，現實中 8~10 筆都屬常見，給 16 筆緩衝避免被 token 截斷。
-_TC_TOKEN_BUDGET_HINT = 16
-_TC_TOKEN_PER_TC = 2000
+# 注意：multi-TC 路徑**不傳** `max_tokens`。拆幾筆由 AI 依 ASPICE 規則判斷，
+# 任何上限都可能在「AI 想拆 20 筆」時截斷 JSON 中段造成 parse 失敗。讓 OpenAI
+# 用 model 預設上限（gpt-5 64k / gpt-4.1 32768 / gpt-4o 16384）就行。
 
 
 def _validate_tcs_array(tcs, *, context: str) -> list[dict]:
@@ -614,7 +624,8 @@ def generate_tcs_for_row(
     """Generate 1..N TCs for a single requirement. AI decides how many to split."""
     system = build_system_blocks(rules_text)
     user_prompt = build_multi_tc_user_prompt(row, context, spec_index, rules_text="")
-    response = _chat(system, user_prompt, model, max_tokens=_TC_TOKEN_PER_TC * _TC_TOKEN_BUDGET_HINT)
+    # 不設 max_tokens：AI 拆幾筆 TC 不固定，讓 OpenAI 用 model 預設完整上限。
+    response = _chat(system, user_prompt, model)
 
     raw_text = response.choices[0].message.content or ""
     tcs, meta = parse_multi_tc_response(raw_text)
@@ -645,10 +656,8 @@ def generate_batch_multi(
     """Batch variant: N requirements → list[list[TC]]（每個 req 1..N 筆）。"""
     system = build_system_blocks(rules_text, batch=True)
     user_prompt = build_multi_tc_batch_prompt(rows, context, spec_index, rules_text="")
-    response = _chat(
-        system, user_prompt, model,
-        max_tokens=_TC_TOKEN_PER_TC * _TC_TOKEN_BUDGET_HINT * len(rows),
-    )
+    # 不設 max_tokens：batch 中每個 req 可能拆不同數量，讓 OpenAI 用 model 預設上限。
+    response = _chat(system, user_prompt, model)
 
     raw_text = response.choices[0].message.content or ""
     tc_groups, meta_list = parse_multi_tc_batch_response(raw_text, expected_count=len(rows))
@@ -665,4 +674,84 @@ def generate_batch_multi(
         cost=cost,
         model=model,
         split_meta=meta_list,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Test Set classification — 一次 AI 呼叫把整份 requirements 分到若干 Test Set。
+# 不再靠硬編碼 keyword table，純 prompt 驅動。
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class ClassificationResult:
+    """Result of a test-set classification call."""
+    # {req_id: test_set_label}
+    assignments: dict[str, str]
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cache_creation_tokens: int = 0
+    cache_read_tokens: int = 0
+    cost: float = 0.0
+    model: str = ""
+
+
+def classify_test_sets(
+    reqs: list[dict],
+    model: str = DEFAULT_MODEL,
+) -> ClassificationResult:
+    """Classify a batch of requirements into coherent Test Sets (single AI call).
+
+    Args:
+        reqs: list of dicts, each with at least `req_id` and `test_item`.
+              Deduplicate to req-level before calling (not TC-level).
+        model: OpenAI model id.
+
+    Returns:
+        ClassificationResult whose `assignments[req_id]` is the AI-chosen label.
+
+    Raises:
+        GenerationError on API or parse failure.
+    """
+    if not reqs:
+        return ClassificationResult(assignments={})
+
+    system = (
+        "You are a test architect. Your job is to group software requirements "
+        "into coherent Test Sets based on what they verify. "
+        "Return ONLY valid JSON, no markdown fences."
+    )
+    user = build_test_set_classification_prompt(reqs)
+    response = _chat(system, user, model)
+
+    raw_text = response.choices[0].message.content or ""
+    text = _strip_fences(raw_text)
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise GenerationError(f"Failed to parse classification response: {exc}") from exc
+
+    items = data.get("assignments") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        raise GenerationError("Classification response missing 'assignments' array")
+
+    assignments: dict[str, str] = {}
+    for i, item in enumerate(items):
+        if not isinstance(item, dict):
+            raise GenerationError(f"assignments[{i}] is not an object")
+        rid = str(item.get("req_id") or "").strip()
+        label = str(item.get("test_set") or "").strip()
+        if rid and label:
+            assignments[rid] = label
+
+    t = _usage_tokens(response.usage)
+    cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
+    return ClassificationResult(
+        assignments=assignments,
+        input_tokens=t["input"],
+        output_tokens=t["output"],
+        cache_creation_tokens=t["cache_creation"],
+        cache_read_tokens=t["cache_read"],
+        cost=cost,
+        model=model,
     )

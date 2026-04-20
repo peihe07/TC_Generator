@@ -19,6 +19,7 @@ from generator import (
     DEFAULT_MODEL,
     GenerationError,
     calculate_cost,
+    classify_test_sets,
     decompose_requirement,
     generate_quick_tc,
     generate_tcs_for_row,
@@ -40,6 +41,7 @@ from tools import (
     validate_tc_tool,
     write_excel_tool,
 )
+from tools.group import derive_test_set_name
 from trace_store import SqliteTraceStore, default_trace_db_path
 from writer import build_output_path
 
@@ -227,6 +229,7 @@ EXPORT_COLUMN_TO_FIELD = {
     "Test Set": "test_set",
     "Test Item Rewrite": "test_item_rewrite",
     "Pre-Conditions": "pre_conditions",
+    "Input Test Data": "input_test_data",
     "Test Procedure": "test_procedure",
     "Expected Result": "expected_result",
     "Priority": "priority",
@@ -268,29 +271,71 @@ def _map_export_rows(
     # 導致 writer 拿不到正確的 Excel 列號。這裡用 parsedData 做 fallback：
     # 先依 reqId 找回原列，然後把 row_num 補進 export 資料。
     parsed_by_req_id: dict[str, dict] = {}
+    parsed_by_tc_id: dict[str, dict] = {}
     if parsed_rows:
         for pr in parsed_rows:
+            tc_id = pr.get("tc_id")
+            if tc_id and tc_id not in parsed_by_tc_id:
+                parsed_by_tc_id[tc_id] = pr
             rid = pr.get("req_id")
             if rid and rid not in parsed_by_req_id:
                 parsed_by_req_id[rid] = pr
 
-    exportable = []
+    # Phase 1：先篩出要被匯出的列（scope filter），之後統一做 AI 分類。
+    filtered: list[dict] = []
     for row in rows:
         review_status = row.get("reviewStatus")
-        generated = row.get("generated") or {}
-        if not generated:
-            continue
         if scope == "accepted" and review_status != "accepted":
             continue
         if scope == "flagged" and review_status != "flagged":
             continue
+        filtered.append(row)
+
+    # Phase 2：收集「沒有 test_set」的 req → 一次 AI 分類（整份 review 後才跑）。
+    unresolved: dict[str, str] = {}  # req_id -> test_item（去重到 req）
+    for row in filtered:
+        if str(row.get("testSet") or "").strip():
+            continue
+        req_id = str(row.get("reqId") or "").strip()
+        if not req_id:
+            continue
+        if req_id not in unresolved:
+            unresolved[req_id] = str(row.get("testItem") or "").strip()
+
+    classified: dict[str, str] = {}
+    if unresolved:
+        try:
+            result = classify_test_sets(
+                [{"req_id": k, "test_item": v} for k, v in unresolved.items()],
+            )
+            classified = result.assignments
+        except GenerationError:
+            # AI 失敗就留空 test_set，讓 Framework sheet 的空白 group 做為可見提示。
+            classified = {}
+
+    exportable = []
+    for row in filtered:
+        generated = row.get("generated") or {}
 
         row_num = row.get("rowNum")
+        tc_id = row.get("tcId", "")
         req_id = row.get("reqId", "")
+        if not row_num and tc_id:
+            base = parsed_by_tc_id.get(tc_id)
+            if base:
+                row_num = base.get("row_num")
         if not row_num and req_id:
             base = parsed_by_req_id.get(req_id)
             if base:
                 row_num = base.get("row_num")
+
+        test_set = row.get("testSet")
+        if not str(test_set or "").strip():
+            test_set = classified.get(req_id, "")
+
+        input_test_data = generated.get("inputTestData", "")
+        if not str(input_test_data or "").strip():
+            input_test_data = "NA"
 
         exportable.append(
             {
@@ -298,10 +343,10 @@ def _map_export_rows(
                 "tc_id": row.get("tcId", ""),
                 "req_id": req_id,
                 "test_group": test_group or row.get("testGroup"),
-                "test_set": row.get("testSet"),
+                "test_set": test_set,
                 "test_item_rewrite": generated.get("testItemRewrite", ""),
                 "pre_conditions": generated.get("preConditions", ""),
-                "input_test_data": generated.get("inputTestData", ""),
+                "input_test_data": input_test_data,
                 "test_procedure": generated.get("testProcedure", ""),
                 "expected_result": generated.get("expectedResult", ""),
                 "priority": generated.get("priority", ""),
@@ -961,16 +1006,12 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         all_rows = _prepare_generation_rows(job)
         total = len(all_rows)
         config = job.get("config", {})
-        regenerate_all = bool(config.get("regenerateAll", False))
 
-        # RULES.md §499 — split rows: keep existing content unless the caller
-        # explicitly asks to regenerate everything.
-        if regenerate_all:
-            preserved_rows: list[dict] = []
-            rows = all_rows
-        else:
-            preserved_rows = [r for r in all_rows if _row_has_existing_content(r)]
-            rows = [r for r in all_rows if not _row_has_existing_content(r)]
+        # 每一列都走 AI 拆分。Template 已填在 L/M 的 criteria / 預期拆解由
+        # `_format_reviewer_hints` 當 prompt hints 傳給 AI，而不是跳過 AI。
+        # （`regenerateAll` flag 仍保留接口但不再影響流程。）
+        preserved_rows: list[dict] = []
+        rows = all_rows
 
         context = {
             "project": job.get("parsedData", {}).get("project"),
@@ -981,19 +1022,18 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         job["status"] = "running"
         JOB_REGISTRY[jobId] = job  # 回寫 SQLite，避免修改只停留在反序列化副本
 
-        # (A) 預先算好 sub-TC 的 tc_id 起始序號。
-        # 原始列的 tc_id 是 ingest/match 階段由 `generate_tc_ids` 依序配發的，
-        # 若 AI 把某個 req 拆成 N 筆 TC，sub-TC 2..N 也需要獨立的 tc_id 才能
-        # 正確填入 Excel F 欄。這裡抓當下最大序號 +1 作為新 sub 起點。
+        # (A) 依最終顯示順序配 tc_id：主 TC 後面立刻接子 TC，再輪到下一個 req。
+        # 不能只幫 sub-TC 補尾號，否則畫面/Excel 會變成 001, 006, 002, 007...
+        # 這裡改成 stream 時依實際輸出順序連號。
         existing_seqs = _extract_existing_sequence_numbers(all_rows)
-        next_seq = (max(existing_seqs) + 1) if existing_seqs else 1
+        next_seq = min(existing_seqs) if existing_seqs else 1
         tc_project = context["project"] or ""
         tc_group_abbr = (
             generate_group_abbreviation(context["test_group"])
             if context["test_group"] else ""
         )
 
-        def _alloc_sub_tc_id() -> str:
+        def _alloc_stream_tc_id() -> str:
             nonlocal next_seq
             if not tc_project or not tc_group_abbr:
                 return ""
@@ -1085,8 +1125,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 split_meta_list = batch_result.get("splitMeta") or []
 
                 # tc_data_list 現在是 list[list[dict]]：每個 input row 對應 1..N 筆 TC。
-                # 第 1 筆沿用原 row.id / row.rowNum / 原 tc_id（更新既有列），
-                # 第 2..N 筆以 "row.added" 事件送出，並分配新的 tc_id（序號接在最大現存值之後）。
+                # tc_id 改成依實際輸出順序連號，而不是只讓子 TC 補尾號。
                 for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
                     if not isinstance(tc_group, list) or not tc_group:
                         continue
@@ -1132,15 +1171,12 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
 
                     for sub_idx, tc in enumerate(tc_group):
                         is_primary = sub_idx == 0
-                        if is_primary:
-                            sub_row = row
-                        else:
-                            sub_row = {
-                                **row,
-                                "id": f"{row['id']}__tc{sub_idx + 1}",
-                                # (A) 分配新的 tc_id 給 sub-TC
-                                "tc_id": _alloc_sub_tc_id(),
-                            }
+                        sub_row = {
+                            **row,
+                            "tc_id": _alloc_stream_tc_id(),
+                        }
+                        if not is_primary:
+                            sub_row["id"] = f"{row['id']}__tc{sub_idx + 1}"
                         updated_row, has_warnings = _build_stream_row(sub_row, tc)
                         if is_primary:
                             event_type = "row.failed" if strict_validation and has_warnings else "row.completed"
@@ -1345,6 +1381,8 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
     job = JOB_REGISTRY.get(payload.jobId)
     if not job or "rawBytes" not in job or "rawFileName" not in job:
         raise HTTPException(status_code=404, detail="export source workbook not found")
+    if payload.outputMode == "overwrite":
+        raise HTTPException(status_code=400, detail="overwrite export mode is not supported")
 
     export_rows = _map_export_rows(
         payload.rows,

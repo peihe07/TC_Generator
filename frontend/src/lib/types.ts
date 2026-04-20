@@ -98,6 +98,9 @@ export interface GenerationConfig {
   budgetLimit: number;
   strictValidation: boolean;
   targetColumns: string[];
+  // true 時強制對每列都叫 AI，即使 template 已有 pre/procedure/expected 也重跑。
+  // 給使用者手動覆寫 RULES.md §499「preserve existing content」行為用。
+  regenerateAll?: boolean;
 }
 
 export interface JobLog {

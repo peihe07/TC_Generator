@@ -9,14 +9,17 @@ export const StackedReadField: React.FC<{
   value: string;
   muted?: boolean;
 }> = ({ label, value, muted }) => (
-  <div style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}>
+  // 視覺上與 edit mode（橘色框）一致的「每欄獨立區塊」骨架，
+  // 只把強調色換成 Win95 海軍藍 header；這樣一展開就能看清楚
+  // Pre-Cond / Procedure / Expected 各自的分界，不用等按編輯才出現框。
+  <div style={{ borderTop: '2px solid var(--win95-navy)' }}>
     <div
       className="px-2 py-1 font-bold uppercase"
       style={{
-        background: 'var(--field-header-bg)',
-        borderBottom: '1px solid var(--field-header-border)',
+        background: 'var(--win95-navy)',
+        color: 'var(--win95-white)',
+        borderBottom: '1px solid var(--win95-navy)',
         fontSize: 10,
-        color: 'var(--text-muted)',
         letterSpacing: 0.5,
       }}
     >

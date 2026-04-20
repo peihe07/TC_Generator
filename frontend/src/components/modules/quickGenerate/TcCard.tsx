@@ -39,15 +39,16 @@ export const TcCard: React.FC<TcCardProps> = ({ tc, index }) => {
             return (
               <div
                 key={c.key}
-                style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}
+                // 與 Review 面板一致：深藍 header + 分隔線，每欄自成獨立區塊。
+                style={{ borderTop: '2px solid var(--win95-navy)' }}
               >
                 <div
                   className="px-2 py-1 font-bold uppercase"
                   style={{
-                    background: 'var(--field-header-bg)',
-                    borderBottom: '1px solid var(--field-header-border)',
+                    background: 'var(--win95-navy)',
+                    color: 'var(--win95-white)',
+                    borderBottom: '1px solid var(--win95-navy)',
                     fontSize: 10,
-                    color: 'var(--text-muted)',
                     letterSpacing: 0.5,
                   }}
                 >

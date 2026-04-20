@@ -27,12 +27,61 @@ WRAP_TEXT_ALIGNMENT = Alignment(wrap_text=True, vertical="top")
 CLEARABLE_FIELDS = {"test_set", "spec_reference"}
 
 
+# 之前寫入過的 rewrite 尾巴：跨行抓最後一段括號包住的文字（greedy 非必要）。
+# 用 DOTALL 以便跨行比對多行 rewrite。
+_REWRITE_TAIL_RE = re.compile(r"\n\n\(.*\)\s*$", re.DOTALL)
+
+
+def _wrap_rewrite(rewrite: str) -> str:
+    """強制 rewrite 被一對外層 `()` 包住，避免 AI 只回純文字或只帶內層 `()`。
+
+    策略：先剝掉前後空白，若首尾不是「合法外層括號 pair」就整段重新包。
+    判斷合法：`text.startswith("(") and text.endswith(")") and` 前後括號數量
+    平衡且最外層括號是匹配的。保守起見做法：只要外層不是一對單一括號就重包。
+    """
+    text = (rewrite or "").strip()
+    if not text:
+        return ""
+
+    def _wrapped_ok(s: str) -> bool:
+        # 首尾必須是括號；且首括號對應到最後一個字元（代表是最外層 pair）。
+        if not (s.startswith("(") and s.endswith(")")):
+            return False
+        depth = 0
+        for i, ch in enumerate(s):
+            if ch == "(":
+                depth += 1
+            elif ch == ")":
+                depth -= 1
+                if depth == 0 and i != len(s) - 1:
+                    # 中途就歸零 → 首尾不是同一對外括號（例：`(a)(b)` 或 `(a)b)` ）
+                    return False
+        return depth == 0
+
+    if _wrapped_ok(text):
+        return text
+    # 去掉原有不平衡 / 錯位的首尾括號，再整段包起來。
+    stripped = text
+    while stripped.startswith("("):
+        stripped = stripped[1:].lstrip()
+    while stripped.endswith(")"):
+        stripped = stripped[:-1].rstrip()
+    return f"({stripped})"
+
+
 def _merge_test_item_text(existing_text: str | None, rewrite: str) -> str:
-    """Preserve the original test item text while replacing any older rewrite."""
+    """在 Col I 的原始 test item 文字後面追加 AI rewrite。
+
+    保留 template 原文（即使包含 `\\n\\n` 雙語分隔）— 只有當尾端真的是
+    「舊的 `(... → ...)` rewrite」時才剝除，避免重跑時鎖鏈式增生。
+    """
     original = existing_text or ""
-    if "\n\n" in original:
-        original = original.split("\n\n", 1)[0]
-    return f"{original}\n\n{rewrite}"
+    # 移除「先前寫入過」的 rewrite 尾巴，不是所有 \n\n 都是 rewrite 分隔。
+    original = _REWRITE_TAIL_RE.sub("", original).rstrip()
+    wrapped = _wrap_rewrite(rewrite)
+    if not wrapped:
+        return original
+    return f"{original}\n\n{wrapped}"
 
 
 # Suffixes that OS file managers append when duplicating a file. We strip
@@ -47,6 +96,7 @@ _DUPLICATE_SUFFIX_PATTERNS = [
     re.compile(r"\s*copy(?:\s*\d+)?$", re.I),           # macOS 英文: "foo copy" / "foo copy 2"
     re.compile(r"\s*\(\d+\)$"),                         # 通用: "foo (2)"
 ]
+_GENERATED_SUFFIX_RE = re.compile(r"(?:_generated)+$", re.I)
 
 
 def _clean_basename(basename: str) -> str:
@@ -58,7 +108,7 @@ def _clean_basename(basename: str) -> str:
             cleaned = pattern.sub("", cleaned)
         cleaned = cleaned.rstrip()
         if cleaned == before:
-            return cleaned
+            return _GENERATED_SUFFIX_RE.sub("", cleaned).rstrip()
 
 
 def build_output_path(input_path: str, output_dir: str | None = None) -> str:
@@ -69,7 +119,7 @@ def build_output_path(input_path: str, output_dir: str | None = None) -> str:
     return os.path.join(dirname, f"{basename}_generated.xlsx")
 
 
-_TEMPLATE_CARRY_COLUMNS = (3, 4, 9)  # C: Polarion ID, D: Req ID, I: Test Item
+_TEMPLATE_CARRY_COLUMNS = (3, 4, 7, 8, 9)  # C/D/G/H/I: Polarion / ReqID / TestGroup / TestSet / TestItem
 
 
 def _has_value(cell) -> bool:
@@ -98,9 +148,11 @@ def _write_tc_row(
 ) -> None:
     """把單一 TC 的資料寫到指定的 Excel 列。
 
-    `rewritten_req_ids` 是「本次 write session 已經在哪些 req_id 上 append 過 rewrite」
-    的集合；傳入後同一個 req_id 只會 append 一次（跨列 dedup）。
+    `rewritten_req_ids` 參數保留做為介面相容，但 multi-TC 流程下每筆 TC 應各自
+    帶有不同 scenario tag 的 rewrite（§1.2），不再做跨列 dedup。
     """
+    del rewritten_req_ids  # 已廢棄；保留參數避免呼叫端同步改動
+
     for field, col_idx in WRITE_COLUMNS.items():
         if selected_fields is not None and field not in selected_fields:
             continue
@@ -121,18 +173,10 @@ def _write_tc_row(
 
     if append_rewrite:
         rewrite = row_data.get("test_item_rewrite")
-        req_id = (row_data.get("req_id") or "").strip()
-        already_done = rewritten_req_ids is not None and req_id in rewritten_req_ids
-        if (
-            rewrite
-            and (selected_fields is None or "test_item_rewrite" in selected_fields)
-            and not already_done
-        ):
+        if rewrite and (selected_fields is None or "test_item_rewrite" in selected_fields):
             cell_i = ws.cell(row=row_num, column=9)
             cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
             cell_i.alignment = WRAP_TEXT_ALIGNMENT
-            if rewritten_req_ids is not None and req_id:
-                rewritten_req_ids.add(req_id)
 
 
 def write_generated_results(
@@ -178,14 +222,19 @@ def write_generated_results(
         base_row = row_num + cumulative_offset
 
         if extras > 0:
-            # 在原列下方插入 N-1 列，並把 template 的 C/D/I 欄位複製過去，
-            # 這樣每筆 split 出來的 TC 都能對應正確的 req_id / test_item 文字。
+            # 在原列下方插入 N-1 列，複製 template 的 C/D/G/H/I 欄位過去。
+            # Col I (Test Item) 特別處理：若 parent 已經寫過 rewrite tail，
+            # 複製到 child 時要先剝掉，讓 child 之後能 append 屬於自己的 rewrite。
             ws.insert_rows(base_row + 1, amount=extras)
             for offset in range(1, extras + 1):
                 for col in _TEMPLATE_CARRY_COLUMNS:
                     src = ws.cell(row=base_row, column=col)
                     dst = ws.cell(row=base_row + offset, column=col)
-                    dst.value = src.value
+                    value = src.value
+                    if col == 9 and isinstance(value, str):
+                        # 剝掉 parent 留下的 `(... → ...)` rewrite 尾巴
+                        value = _REWRITE_TAIL_RE.sub("", value).rstrip()
+                    dst.value = value
                     _copy_style(src, dst)
 
         for idx, row_data in enumerate(items):

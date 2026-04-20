@@ -524,6 +524,7 @@ export function startGeneration(
                 batchSize: input.config.batchSize,
                 budget: input.config.budgetLimit,
                 strictValidation: input.config.strictValidation,
+                regenerateAll: Boolean(input.config.regenerateAll),
               },
             }),
           }),

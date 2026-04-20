@@ -19,9 +19,9 @@ export const COLUMN_HEADERS: {
 
 // Saturated + sunken-inset look, matched to `.status-badge`.
 export const PRIORITY_STYLE: Record<string, React.CSSProperties> = {
-  High:   { background: 'var(--status-reject)', color: 'var(--win95-white)' },
-  Medium: { background: 'var(--status-warn)',   color: 'var(--win95-black)' },
-  Low:    { background: 'var(--win95-gray-mid)', color: 'var(--win95-white)' },
+  P0: { background: 'var(--status-reject)',   color: 'var(--win95-white)' },
+  P1: { background: 'var(--status-warn)',     color: 'var(--win95-black)' },
+  P2: { background: 'var(--win95-gray-mid)',  color: 'var(--win95-white)' },
 };
 
 export const PRIORITY_FALLBACK: React.CSSProperties = {

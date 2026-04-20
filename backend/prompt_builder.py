@@ -35,14 +35,33 @@ def build_batch_system_prompt() -> str:
 
 
 _HARD_CONSTRAINTS = """
-## HARD CONSTRAINTS (非協商、違反視為失敗)
+## HARD CONSTRAINTS (non-negotiable; violation = failure)
 
-1. **test_item_rewrite MUST be filled** — 依原始 requirement 用 `(Condition/Trigger → Observable Outcome)` 格式改寫；不可留空、不可照抄原文。
-2. **test_procedure 與 expected_result 項目數必須 1:1** — 每個 procedure step 對應剛好一個 expected result，順序一致。不可 3 steps 對 5 results、不可 11 steps 對 4 results。若你內心盤算步驟數是 N，expected result 也**必須**是 N 項。
-3. **pre_conditions 只寫狀態**（state / environment），不可包含動作（"click", "enter", "send" 之類動詞屬於 procedure，不屬於 pre-conditions）。
-4. **design_method 必須是以下 9 個之一**：Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional。
-5. **priority 必須是 High / Medium / Low / NA 之一**。
-6. 回傳時所有欄位 key 使用 snake_case（test_item_rewrite, pre_conditions, input_test_data, test_procedure, expected_result, design_method, priority, split_flag, split_reason）。
+1. **Every single output field MUST be written in English.** This includes
+   `test_item_rewrite`, `pre_conditions`, `input_test_data`, `test_procedure`,
+   `expected_result`, `design_method`, `reasoning`, and every entry inside
+   `keywords` (keyword, meaning, covered_by labels). Requirements may be
+   bilingual (Chinese + English); read both but produce ONLY English output.
+   Proper nouns / API names / protocol names (HFP, A2DP, BLE, etc.) stay
+   as-is. Do NOT emit Chinese anywhere in the response.
+2. **test_item_rewrite MUST be filled** — rewrite the requirement as
+   `(Condition/Trigger → Observable Outcome)`; must not be blank, must not
+   copy the source verbatim.
+3. **test_procedure and expected_result must have the SAME number of
+   numbered items (1:1 mapping).** If procedure has N steps, expected_result
+   must also have exactly N items, aligned in order.
+4. **pre_conditions only describes states / environment.** Never include
+   actions (no "click", "enter", "send" — those belong in test_procedure).
+5. **design_method MUST be one of these 9 values (English label only):**
+   Negative / Fault Injection / State Transition / Decision Table / EP / BVA
+   / Combinatorial / Scenario / Functional.
+6. **priority MUST be one of P0 / P1 / P2.** Mapping: P0 = highest (safety,
+   core functionality, data loss risk), P1 = standard feature (user-facing
+   behaviour), P2 = cosmetic / edge case. Do NOT return "High", "Medium",
+   "Low", "NA", or any other value — always use exactly P0, P1, or P2.
+7. All field keys are snake_case (test_item_rewrite, pre_conditions,
+   input_test_data, test_procedure, expected_result, design_method,
+   priority, split_flag, split_reason).
 """
 
 
@@ -215,6 +234,35 @@ REMINDER for every TC: test_item_rewrite must be rewritten (not blank); test_pro
 # ---------------------------------------------------------------------------
 
 
+def _format_reviewer_hints(row: dict) -> str:
+    """把 template 原本填在 J/K/L/M 欄的內容收集起來，當作 reviewer 已列出的
+    拆解提示（acceptance criteria / 情境 split / 預期行為片段）丟給 AI 參考。
+
+    使用者刻意把 criteria / RD 預期拆解放在 test_procedure 或 expected_result，
+    這些是拆分 TC 時必須一起看的輸入，不是「已完成的 TC 內容」。
+    """
+    fields = [
+        ("Pre-Conditions", row.get("pre_conditions") or row.get("preConditions")),
+        ("Input Test Data", row.get("input_test_data") or row.get("inputTestData")),
+        ("Test Procedure (reviewer pre-fill)", row.get("test_procedure") or row.get("testProcedure")),
+        ("Expected Result (reviewer pre-fill)", row.get("expected_result") or row.get("expectedResult")),
+    ]
+    parts = [(label, str(val).strip()) for label, val in fields if val and str(val).strip()]
+    if not parts:
+        return ""
+    body = "\n".join(f"### {label}\n{text}" for label, text in parts)
+    return (
+        "\n## Reviewer Pre-Fills (use as splitting hints, NOT as finished TCs)\n"
+        "These sections were filled by the reviewer before AI generation, containing "
+        "acceptance criteria / split scenarios / expected behaviour fragments. They "
+        "serve as authoritative hints for how the requirement should be decomposed "
+        "and what each TC must verify. Re-use the exact conditions / scenarios they "
+        "describe; never ignore a scenario they listed.\n\n"
+        f"{body}\n"
+    )
+
+
+
 _MULTI_TC_GUIDANCE = """
 ## Splitting Policy (strictly follow ASPICE SWE.6 rules loaded above)
 
@@ -271,6 +319,7 @@ def build_multi_tc_user_prompt(
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
 
     rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
+    hints_section = _format_reviewer_hints(row)
     return f"""## Context
 - Project: {context['project']}
 - Test Group: {context['test_group']}
@@ -281,7 +330,7 @@ def build_multi_tc_user_prompt(
 - Original Test Item: {row['test_item']}
 
 ## Spec Context
-{spec_context}{rules_section}
+{spec_context}{hints_section}{rules_section}
 {_MULTI_TC_GUIDANCE}
 ## Output
 Return a JSON object with these top-level keys:
@@ -312,6 +361,54 @@ tag (§1.2) and must not be blank; test_procedure and expected_result must have
 the same number of numbered items (1:1 mapping, §4.3)."""
 
 
+def build_test_set_classification_prompt(reqs: list[dict]) -> str:
+    """整份 requirements 分成若干 Test Set 的 prompt。
+
+    Args:
+        reqs: list of {"req_id", "test_item"}。去重到 req 層級，不傳 TC。
+
+    Returns:
+        User prompt 字串，AI 需回 JSON
+        `{"assignments": [{"req_id": "...", "test_set": "..."}, ...]}`。
+    """
+    items = []
+    for i, r in enumerate(reqs, 1):
+        test_item = str(r.get("test_item") or "").strip().replace("\n", " ")
+        if len(test_item) > 400:
+            test_item = test_item[:397] + "..."
+        items.append(f"{i}. [{r.get('req_id', '')}] {test_item}")
+    body = "\n".join(items)
+
+    return f"""## Task
+Group the following requirements into coherent **Test Sets**. A Test Set is a
+short thematic label (typically 1–3 words, English) that captures the feature
+area the requirement belongs to. Examples: "BT Switch", "Device List",
+"Phonebook Sync", "Permissions", "Caller ID".
+
+Rules for choosing labels:
+- Derive labels from what the requirements actually describe; do NOT invent a
+  fixed taxonomy up front.
+- Requirements that verify the same behavioural area MUST share the same
+  Test Set label. Aim for coherent groupings of 2–10 requirements per label,
+  but create a single-req Test Set if a requirement is genuinely unique.
+- Prefer short noun phrases (no trailing "Testing", no "Req-xxx" placeholders,
+  no generic words like "Feature" or "Function" alone).
+- Every requirement must be assigned exactly one Test Set — no empty, no
+  "None", no duplicates on the same req_id.
+
+## Requirements
+{body}
+
+## Output
+Return ONLY valid JSON (no markdown fences):
+{{"assignments": [
+  {{"req_id": "<exact id from the list>", "test_set": "<short label>"}},
+  ...
+]}}
+
+The array length must equal the input count ({len(reqs)})."""
+
+
 def build_multi_tc_batch_prompt(
     rows: list[dict],
     context: dict,
@@ -322,13 +419,18 @@ def build_multi_tc_batch_prompt(
     items = []
     for i, row in enumerate(rows):
         spec_context = _get_spec_context(row, spec_index)
-        items.append(
+        hints = _format_reviewer_hints(row)
+        item = (
             f"### Requirement {i + 1}\n"
             f"- Req ID: {row.get('req_id') or row.get('reqId') or ''}\n"
             f"- Test Set: {row.get('test_set', context.get('test_set', 'N/A'))}\n"
             f"- Test Item: {row['test_item']}\n"
             f"- Spec: {spec_context}"
         )
+        if hints:
+            # 縮排到同一個 Requirement 區塊裡，AI 才知道屬於哪個 req。
+            item += "\n" + hints.strip()
+        items.append(item)
     batch_text = "\n\n".join(items)
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
 

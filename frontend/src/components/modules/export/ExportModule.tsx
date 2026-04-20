@@ -29,12 +29,13 @@ const ExportModule: React.FC = () => {
 
   const acceptedCount = tcRows.filter((r) => r.status === 'accepted').length;
   const selectedColumns = [
+    'Test Item Rewrite',
     ...(includeMeta ? ['TC ID', 'Test Set'] : []),
     ...(config.targetColumns.includes('preConditions') ? ['Pre-Conditions'] : []),
     ...(config.targetColumns.includes('inputTestData') ? ['Input Test Data'] : []),
     ...(includeSteps && config.targetColumns.includes('steps') ? ['Test Procedure'] : []),
     ...(includeExpected && config.targetColumns.includes('expectedResults') ? ['Expected Result'] : []),
-    ...(includeMeta ? ['Priority'] : []),
+    ...(includeMeta ? ['Priority', 'Design Method'] : []),
   ];
 
   const handleExport = async () => {
