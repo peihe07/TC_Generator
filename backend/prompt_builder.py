@@ -62,6 +62,43 @@ _HARD_CONSTRAINTS = """
 7. All field keys are snake_case (test_item_rewrite, pre_conditions,
    input_test_data, test_procedure, expected_result, design_method,
    priority, split_flag, split_reason).
+8. **Every test_procedure step MUST be a single, concrete, executable action
+   with explicit target + value.** FORBIDDEN: vague verbs ("check", "verify
+   the feature", "operate normally"), multiple actions glued by "and/then"
+   in one step, placeholder tokens ("<some value>", "xxx", "TBD"), steps
+   that only restate the expected result. REQUIRED: one action per step,
+   name the exact UI element / API / signal, include the exact value / data
+   used (e.g. "Send AT+BLDN with number 0912345678", not "Send a call").
+9. **Every expected_result item MUST be observable and measurable** — state
+   what appears on screen, what log/signal is emitted, what state changes,
+   or what value is returned. No "works correctly", no "no error".
+10. **input_test_data lists concrete values only** (numbers, strings, file
+    names, enum values). If no data is needed, write "N/A" — never leave
+    it empty and never describe actions here.
+11. **Follow the ASPICE SWE.6 Rules loaded above verbatim.** The rules doc
+    is authoritative. If a rule section (§1.2 / §1.3 / §1.4 / §1.5 / §3.4
+    / §4.3 / §6) applies, obey it — do not paraphrase, skip, or relax.
+"""
+
+
+_WRITING_DISCIPLINE = """
+## WRITING DISCIPLINE (run this self-check BEFORE emitting each TC)
+
+For every TC you are about to output, silently verify:
+  [ ] test_item_rewrite follows `(Trigger → Observable Outcome)` and carries
+      a scenario tag when the req was split (§1.2).
+  [ ] pre_conditions only describes state/environment, no actions.
+  [ ] Every test_procedure step has: explicit actor, explicit action verb,
+      explicit target, and (when applicable) explicit value/data.
+  [ ] procedure step count == expected_result item count, aligned 1:1.
+  [ ] expected_result items are observable (UI / log / API response / state).
+  [ ] design_method is chosen by the 9-method decision flow, not guessed.
+  [ ] priority is exactly P0 / P1 / P2.
+  [ ] No Chinese leaks into any output field (繁中只允許在 reasoning / meaning).
+  [ ] No cross-reference like "same as TC1"; every TC is self-contained.
+
+If any check fails, FIX the TC before outputting. Do not emit a TC that
+would fail the §6 12-item self-check in the rules doc.
 """
 
 
@@ -73,10 +110,10 @@ def build_system_blocks(rules_text: str, batch: bool = False) -> str:
     """
     base = _SYSTEM_BASE_BATCH if batch else _SYSTEM_BASE
     if not rules_text:
-        return f"{_HARD_CONSTRAINTS}\n\n---\n\n{base}"
+        return f"{_HARD_CONSTRAINTS}\n{_WRITING_DISCIPLINE}\n\n---\n\n{base}"
     return (
         f"## ASPICE SWE.6 Rules (authoritative — follow strictly)\n\n{rules_text}\n\n"
-        f"{_HARD_CONSTRAINTS}\n\n---\n\n{base}"
+        f"{_HARD_CONSTRAINTS}\n{_WRITING_DISCIPLINE}\n\n---\n\n{base}"
     )
 
 
@@ -123,7 +160,15 @@ def build_user_prompt(
 ## Output
 Return JSON with keys: {output_keys}
 
-REMINDER: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
+REMINDER — run the WRITING DISCIPLINE self-check before emitting:
+- test_item_rewrite rewritten (not blank, not a copy), `(Trigger → Outcome)` form.
+- Each test_procedure step = one concrete action with explicit target + value;
+  no vague verbs ("check", "verify"), no "and/then"-chained actions, no placeholders.
+- test_procedure and expected_result have the SAME number of numbered items (1:1).
+- Each expected_result item is observable (UI / log / signal / API response).
+- pre_conditions = state only (no actions); input_test_data = concrete values or "N/A".
+- design_method chosen by the 9-method decision flow; priority is P0 / P1 / P2.
+- All output fields in English."""
 
 
 def build_quick_generate_prompt(
@@ -144,7 +189,15 @@ Generate a single test case for the following test item. Follow all rules strict
 ## Output
 Return JSON with keys: {output_keys}
 
-REMINDER: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
+REMINDER — run the WRITING DISCIPLINE self-check before emitting:
+- test_item_rewrite rewritten (not blank, not a copy), `(Trigger → Outcome)` form.
+- Each test_procedure step = one concrete action with explicit target + value;
+  no vague verbs ("check", "verify"), no "and/then"-chained actions, no placeholders.
+- test_procedure and expected_result have the SAME number of numbered items (1:1).
+- Each expected_result item is observable (UI / log / signal / API response).
+- pre_conditions = state only (no actions); input_test_data = concrete values or "N/A".
+- design_method chosen by the 9-method decision flow; priority is P0 / P1 / P2.
+- All output fields in English."""
 
 
 def build_decompose_prompt(requirement: str, rules_text: str) -> str:
@@ -225,7 +278,13 @@ def build_batch_prompt(
 ## Output
 Return a JSON Array with one object per TC. Each object has keys: {output_keys}
 
-REMINDER for every TC: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
+REMINDER for every TC — run the WRITING DISCIPLINE self-check:
+- test_item_rewrite rewritten (not blank, `(Trigger → Outcome)` form).
+- Each test_procedure step = one concrete action with explicit target + value;
+  no vague verbs, no "and/then"-chained actions, no placeholders.
+- test_procedure and expected_result have the SAME count (1:1 mapping).
+- Each expected_result item is observable; input_test_data = concrete values or "N/A".
+- design_method from the 9-method flow; priority is P0 / P1 / P2; output is English."""
 
 
 # ---------------------------------------------------------------------------
@@ -356,9 +415,15 @@ Example (requirement that enumerates 3 supported formats would return 3 TCs):
     {{... TC for format 3 ...}}
   ]}}
 
-REMINDER for every TC: test_item_rewrite must be rewritten with the scenario
-tag (§1.2) and must not be blank; test_procedure and expected_result must have
-the same number of numbered items (1:1 mapping, §4.3)."""
+REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
+- test_item_rewrite rewritten with scenario tag (§1.2), not blank, not a copy.
+- Each test_procedure step = one concrete, executable action with explicit
+  target + value; no "check/verify" handwaving, no chained actions, no placeholders.
+- test_procedure and expected_result have the SAME count (1:1, §4.3).
+- Each expected_result item is observable (UI / log / signal / API response).
+- pre_conditions = state only; input_test_data = concrete values or "N/A".
+- design_method via the 9-method decision flow; priority is P0 / P1 / P2.
+- All output fields English; must pass the §6 12-item self-check."""
 
 
 def build_test_set_classification_prompt(reqs: list[dict]) -> str:
@@ -464,6 +529,12 @@ Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic �
     "keywords": [], "tcs": [{{...}}]}}
 ]}}
 
-REMINDER for every TC: test_item_rewrite must be rewritten with the scenario
-tag (§1.2) and must not be blank; test_procedure and expected_result must have
-the same number of numbered items (1:1 mapping, §4.3)."""
+REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
+- test_item_rewrite rewritten with scenario tag (§1.2), not blank, not a copy.
+- Each test_procedure step = one concrete, executable action with explicit
+  target + value; no "check/verify" handwaving, no chained actions, no placeholders.
+- test_procedure and expected_result have the SAME count (1:1, §4.3).
+- Each expected_result item is observable (UI / log / signal / API response).
+- pre_conditions = state only; input_test_data = concrete values or "N/A".
+- design_method via the 9-method decision flow; priority is P0 / P1 / P2.
+- All output fields English; must pass the §6 12-item self-check."""
