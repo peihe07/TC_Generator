@@ -153,7 +153,17 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
           {row.status === 'fail' && failureReason ? (
             <div
               className="text-[10px] leading-tight"
-              style={{ color: 'var(--status-reject-dark)' }}
+              // F1 臨時補丁：expanded row 會觸發 .selected → navy background
+              // (見 MIGRATION.md §P4 pre-existing `.selected` 語意不分
+              // expanded/selected)，`--status-reject-dark` 紅字 on navy 對比
+              // ~1.3:1 失敗。根治方案見 §P12（decouple expanded state from
+              // selected state），屆時可 revert 此 inline 條件為純 reject-dark。
+              style={{
+                color:
+                  isActive || isSelected
+                    ? 'var(--text-inverse)'
+                    : 'var(--status-reject-dark)',
+              }}
               title={failureReason}
             >
               {failureReason}

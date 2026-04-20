@@ -275,6 +275,7 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 - 不加 transition/animation（符合 Phase 4 規則）
 
 **進入條件：** 獨立任何時機；建議與 P3 一起做以減少 ReviewRow 二次修改。
+**合併建議：** §P12（state 拆解）是本項的實作化具體方案，建議一起處理 —— §P4 是視覺規格目標、§P12 是 state 層 refactor，同一根問題兩個維度。
 
 ### P5 — Review module 展開 row 的 GENERATED TEST CASE 欄位渲染為空 (資料層 bug)
 
@@ -384,6 +385,18 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 - 可能調整的 CSS 只 1–2 行
 
 **進入條件：** Phase 6.8 完成後回看。低優先 — commit 2 驗收未擋。
+
+### P12 — Decouple expanded row state from selected row state (Review module)
+
+**Background:** ReviewRow `toggleExpand` 同時設定 `activeRowId`，觸發 `.selected` navy background。這導致 expanded state 總是視覺上 selected，兩者 UX 語義本該分離（expanded = "看詳細", selected = "對這筆做動作"）。
+
+**Scope:** `activeRowId` state 拆解為 `expandedRowId` + `selectedRowId`；`toggleExpand` 只動 `expandedRowId`；`.selected` CSS 只響應 `selectedRowId`；確認所有 consumers（key navigation、bulk actions、delete confirm、selection-related handlers）正確遷移。
+
+**完成後副作用：** `ReviewRow.tsx` reason text 的 F1 臨時判斷（`isActive || isSelected ? 'var(--text-inverse)' : 'var(--status-reject-dark)'`）可 revert 為純 `var(--status-reject-dark)` color（commit message 已說明）。
+
+**合併建議：** 原 Phase 6.4 §P4 tech-debt 同根問題（`isActive || isSelected` 共用 `.selected` class），建議合併處理。P4 是視覺規格目標、P12 是 state 層 refactor，同一根問題兩個維度。
+
+**進入條件：** 獨立，建議與 P3 (`pendingRegenerated` rename) 合併為一個 Review state refactor PR，減少 ReviewRow 二次修改。
 
 ### Category D exclusion note — `docs/mockups/*.html` 保留舊 hex sunken pattern
 
