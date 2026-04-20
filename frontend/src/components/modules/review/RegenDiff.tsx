@@ -69,7 +69,7 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
           Discard
         </Button>
         <Button
-          className="text-xs font-bold default"
+          className="text-xs default"
           style={{ minHeight: 20, padding: '1px 10px' }}
           onClick={() => onApply([...selected])}
           disabled={selected.size === 0}
@@ -108,11 +108,22 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
                 onClick={() => toggle(key)}
               >
                 {isSelected ? (
-                  <RiCheckboxLine className="size-4 text-orange-600 shrink-0" />
+                  <RiCheckboxLine
+                    className="size-4 shrink-0"
+                    style={{ color: 'var(--status-edit-dark)' }}
+                  />
                 ) : (
-                  <RiCheckboxBlankLine className="size-4 text-gray-400 shrink-0" />
+                  <RiCheckboxBlankLine
+                    className="size-4 shrink-0"
+                    style={{ color: 'var(--win95-gray-mid)' }}
+                  />
                 )}
-                <span className="text-[10px] font-bold uppercase text-gray-700">{label}</span>
+                <span
+                  className="text-[10px] font-bold uppercase"
+                  style={{ color: 'var(--text-default)' }}
+                >
+                  {label}
+                </span>
                 {changed ? (
                   <span
                     className="ml-auto text-[9px] px-1 font-bold uppercase"
@@ -174,8 +185,11 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
                 </div>
               ) : (
                 <div
-                  className="p-2 text-[11px] text-gray-600 selectable whitespace-pre-wrap"
-                  style={{ borderTop: '1px solid var(--win95-gray-lighter)' }}
+                  className="p-2 text-[11px] selectable whitespace-pre-wrap"
+                  style={{
+                    borderTop: '1px solid var(--win95-gray-lighter)',
+                    color: 'var(--text-muted)',
+                  }}
                 >
                   {oldVal || '—'}
                 </div>

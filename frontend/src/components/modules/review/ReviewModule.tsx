@@ -272,7 +272,7 @@ const ReviewModule: React.FC = () => {
         />
 
         {/* Table */}
-        <div className="flex-1 overflow-auto border-2 border-sunken bg-white">
+        <div className="flex-1 overflow-auto border-sunken bg-white">
           <table className="w-full text-sm border-collapse">
             <thead className="sticky top-0 z-10">
               <tr>

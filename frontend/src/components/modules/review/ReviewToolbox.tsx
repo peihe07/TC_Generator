@@ -46,14 +46,14 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
         title="Accept selected"
         onClick={() => onBulkStatus('accepted')}
       >
-        <RiCheckFill className="size-3 text-green-700" /> Accept
+        <RiCheckFill className="size-3" style={{ color: 'var(--status-accept-dark)' }} /> Accept
       </Button>
       <Button
         className="flex items-center gap-1"
         title="Reject selected"
         onClick={() => onBulkStatus('rejected')}
       >
-        <RiCloseFill className="size-3 text-red-700" /> Reject
+        <RiCloseFill className="size-3" style={{ color: 'var(--status-reject-dark)' }} /> Reject
       </Button>
     </div>
     <div className="win95-toolbox-group">

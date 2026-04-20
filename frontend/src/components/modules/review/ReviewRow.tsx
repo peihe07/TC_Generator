@@ -76,14 +76,26 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
   onToggleFlag,
   onApplyRegen,
   onDiscardRegen,
-}) => (
+}) => {
+  const failureReason = row.validationErrors?.[0]?.message;
+  const statusLabel =
+    row.pendingRegenerated
+      ? 'awaiting apply'
+      : row.status === 'pending'
+        ? 'awaiting review'
+        : row.status === 'fail'
+          ? 'failed'
+          : row.status;
+
+  return (
   <>
     <tr
-      className={`cursor-pointer win95-row
-        ${isActive || isSelected ? 'selected' : ''}
-        ${row.status === 'flagged' && !isActive && !isSelected ? 'bg-orange-50' : ''}
-        ${row.pendingRegenerated && !isActive && !isSelected ? 'bg-yellow-50' : ''}
-      `}
+      className={`cursor-pointer win95-row ${isActive || isSelected ? 'selected' : ''}`}
+      style={
+        row.pendingRegenerated && !isActive && !isSelected
+          ? { backgroundColor: 'var(--edit-accent-bg)' }
+          : undefined
+      }
     >
       <td
         style={{ cursor: 'pointer', width: 32, textAlign: 'center', verticalAlign: 'middle' }}
@@ -110,31 +122,47 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
       </td>
 
       <td
-        className="px-3 py-2 border-r font-mono text-xs"
+        className="px-3 py-2 font-mono text-xs"
         onClick={() => onToggleExpand(row.id)}
       >
         <span className="flex items-center gap-1">
-          {row.status === 'flagged' && <RiFlagFill className="size-3 text-orange-600" />}
-          {row.pendingRegenerated && <RiRefreshLine className="size-3 text-yellow-600" />}
+          {row.status === 'flagged' && (
+            <RiFlagFill className="size-3" style={{ color: 'var(--status-warn-dark)' }} />
+          )}
+          {row.pendingRegenerated && (
+            <RiRefreshLine className="size-3" style={{ color: 'var(--status-edit-dark)' }} />
+          )}
           {row.id}
         </span>
       </td>
       <td
-        className="px-3 py-2 border-r font-mono text-xs"
+        className="px-3 py-2 font-mono text-xs"
         onClick={() => onToggleExpand(row.id)}
       >
         {row.reqId}
       </td>
-      <td className="px-3 py-2 border-r" onClick={() => onToggleExpand(row.id)}>
-        <StatusBadge
-          status={row.pendingRegenerated ? 'reviewing' : (row.status as StatusVariant)}
-          style={row.status === 'generating' ? { animation: 'agent-pulse 1s ease-in-out infinite' } : undefined}
-        >
-          {row.pendingRegenerated ? 'awaiting apply' : row.status}
-        </StatusBadge>
+      <td className="px-3 py-2" onClick={() => onToggleExpand(row.id)}>
+        <div className="flex flex-col gap-1">
+          <StatusBadge
+            status={row.pendingRegenerated ? 'reviewing' : (row.status as StatusVariant)}
+            style={row.status === 'generating' ? { animation: 'agent-pulse 1s ease-in-out infinite' } : undefined}
+            title={row.status === 'fail' ? failureReason : undefined}
+          >
+            {statusLabel}
+          </StatusBadge>
+          {row.status === 'fail' && failureReason ? (
+            <div
+              className="text-[10px] leading-tight"
+              style={{ color: 'var(--status-reject-dark)' }}
+              title={failureReason}
+            >
+              {failureReason}
+            </div>
+          ) : null}
+        </div>
       </td>
 
-      <td className="p-0 border-r cell-center" onClick={(e) => e.stopPropagation()}>
+      <td className="p-0 cell-center" onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-center items-center gap-1 h-full min-h-[32px]">
           <IconButton
             label="Accept"
@@ -180,70 +208,84 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
               onDiscard={() => onDiscardRegen(row.id)}
             />
           ) : (
-            <div className="grid grid-cols-5 gap-3">
-              {/* Left: Original (40%) */}
-              <div className="col-span-2 flex flex-col">
-                <TitleBarMini
-                  icon={<RiFileTextLine className="size-3" />}
-                  title="Original Requirement"
-                />
+            <div className="flex flex-col gap-3">
+              {row.status === 'fail' && failureReason ? (
                 <div
-                  className="paper-card flex-1 p-3 text-xs leading-relaxed overflow-auto whitespace-pre-wrap break-words selectable"
-                  style={{ minHeight: 140 }}
+                  className="paper-card p-2 text-xs"
+                  style={{
+                    background: 'var(--status-error-bg-soft)',
+                    border: '1px solid var(--status-error-border)',
+                    color: 'var(--status-reject-dark)',
+                  }}
                 >
-                  {row.testItem}
+                  Generation failed for this row. Reason: {failureReason}
                 </div>
-              </div>
+              ) : null}
+              <div className="grid grid-cols-5 gap-3">
+                {/* Left: Original (40%) */}
+                <div className="col-span-2 flex flex-col">
+                  <TitleBarMini
+                    icon={<RiFileTextLine className="size-3" />}
+                    title="Original Requirement"
+                  />
+                  <div
+                    className="paper-card flex-1 p-3 text-xs leading-relaxed overflow-auto whitespace-pre-wrap break-words selectable"
+                    style={{ minHeight: 140 }}
+                  >
+                    {row.testItem}
+                  </div>
+                </div>
 
-              {/* Right: Generated / Editable (60%) */}
-              <div className="col-span-3 flex flex-col">
-                <TitleBarMini
-                  icon={<RiEditBoxLine className="size-3" />}
-                  title={
-                    isEditing ? 'Generated Test Case — EDIT MODE' : 'Generated Test Case'
-                  }
-                  variant={isEditing ? 'edit' : 'default'}
-                />
-                <div className={`paper-card ${isEditing ? 'edit-mode' : ''}`}>
-                  {isEditing ? (
-                    <div className="flex flex-col">
-                      <StackedEditField
-                        label="Pre-Conditions"
-                        value={editValues.preConditions}
-                        onChange={(v) => onEditValuesChange({ ...editValues, preConditions: v })}
-                      />
-                      <StackedEditField
-                        label="Input Test Data"
-                        value={editValues.inputTestData}
-                        onChange={(v) => onEditValuesChange({ ...editValues, inputTestData: v })}
-                      />
-                      <StackedEditField
-                        label="Test Procedure"
-                        value={editValues.steps}
-                        onChange={(v) => onEditValuesChange({ ...editValues, steps: v })}
-                        minHeight={80}
-                      />
-                      <StackedEditField
-                        label="Expected Result"
-                        value={editValues.expected}
-                        onChange={(v) => onEditValuesChange({ ...editValues, expected: v })}
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex flex-col">
-                      <StackedReadField
-                        label="Test Item Rewrite"
-                        value={row.testItemRewrite ?? ''}
-                      />
-                      <StackedReadField label="Pre-Conditions" value={row.preConditions} />
-                      <StackedReadField label="Input Test Data" value={row.inputTestData} muted />
-                      <StackedReadField label="Test Procedure" value={row.steps} />
-                      <StackedReadField label="Expected Result" value={row.expectedResults} />
-                      {row.specReference && (
-                        <StackedReadField label="Spec Reference" value={row.specReference} muted />
-                      )}
-                    </div>
-                  )}
+                {/* Right: Generated / Editable (60%) */}
+                <div className="col-span-3 flex flex-col">
+                  <TitleBarMini
+                    icon={<RiEditBoxLine className="size-3" />}
+                    title={
+                      isEditing ? 'Generated Test Case — EDIT MODE' : 'Generated Test Case'
+                    }
+                    variant={isEditing ? 'edit' : 'default'}
+                  />
+                  <div className={`paper-card ${isEditing ? 'edit-mode' : ''}`}>
+                    {isEditing ? (
+                      <div className="flex flex-col">
+                        <StackedEditField
+                          label="Pre-Conditions"
+                          value={editValues.preConditions}
+                          onChange={(v) => onEditValuesChange({ ...editValues, preConditions: v })}
+                        />
+                        <StackedEditField
+                          label="Input Test Data"
+                          value={editValues.inputTestData}
+                          onChange={(v) => onEditValuesChange({ ...editValues, inputTestData: v })}
+                        />
+                        <StackedEditField
+                          label="Test Procedure"
+                          value={editValues.steps}
+                          onChange={(v) => onEditValuesChange({ ...editValues, steps: v })}
+                          minHeight={80}
+                        />
+                        <StackedEditField
+                          label="Expected Result"
+                          value={editValues.expected}
+                          onChange={(v) => onEditValuesChange({ ...editValues, expected: v })}
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex flex-col">
+                        <StackedReadField
+                          label="Test Item Rewrite"
+                          value={row.testItemRewrite ?? ''}
+                        />
+                        <StackedReadField label="Pre-Conditions" value={row.preConditions} />
+                        <StackedReadField label="Input Test Data" value={row.inputTestData} muted />
+                        <StackedReadField label="Test Procedure" value={row.steps} />
+                        <StackedReadField label="Expected Result" value={row.expectedResults} />
+                        {row.specReference && (
+                          <StackedReadField label="Spec Reference" value={row.specReference} muted />
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -260,7 +302,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                     <RiArrowGoBackLine className="size-3" /> Cancel
                   </Button>
                   <Button
-                    className="flex items-center gap-1 text-xs px-3 py-1 font-bold default"
+                    className="flex items-center gap-1 text-xs px-3 py-1 default"
                     onClick={() => onSaveEdit(row.id)}
                   >
                     <RiSaveLine className="size-3" /> Save Changes
@@ -300,6 +342,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
       </tr>
     )}
   </>
-);
+  );
+};
 
 export default ReviewRow;

@@ -20,8 +20,11 @@ export interface ValidationPanelProps {
 export const ValidationPanel: React.FC<ValidationPanelProps> = ({ selectedRow, onExport }) => (
   <div className="w-64 flex flex-col gap-2">
     <fieldset className="flex-1 flex flex-col overflow-hidden">
-      <legend className="font-bold text-sm">Validation Results</legend>
+      <legend className="text-sm">Validation Results</legend>
       <div className="flex-1 overflow-auto p-2 flex flex-col gap-2">
+        <div className="text-[11px]" style={{ color: 'var(--win95-gray-dark)' }}>
+          Showing validation for the currently expanded row only.
+        </div>
         {!selectedRow ? (
           <div className="sys-log-entry" style={{ color: 'var(--win95-gray-dark)' }}>
             <span className="sys-log-tag info">INFO</span>
@@ -83,7 +86,7 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({ selectedRow, o
     </fieldset>
 
     <Button
-      className="w-full py-3 flex items-center justify-center gap-2 font-bold default"
+      className="w-full py-3 flex items-center justify-center gap-2 default"
       onClick={onExport}
     >
       <RiDownload2Line className="size-5" /> Export All

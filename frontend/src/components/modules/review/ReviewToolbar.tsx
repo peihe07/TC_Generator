@@ -36,7 +36,10 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
   expandedCount,
   helpContextPrompt,
 }) => (
-  <div className="flex justify-between items-center mb-2 bg-gray-200 p-1 border border-sunken">
+  <div
+    className="flex justify-between items-center mb-2 p-1 border-sunken"
+    style={{ backgroundColor: 'var(--win95-gray)' }}
+  >
     <div className="flex gap-2 items-center">
       <div className="field-row">
         <label htmlFor="filter" className="text-xs font-bold">
@@ -66,7 +69,7 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
           ))}
         </Select>
       </div>
-      <span className="text-xs text-gray-600 ">
+      <span className="text-xs" style={{ color: 'var(--text-muted)' }}>
         Total: {totalCount} | Accepted: {acceptedCount} | Expanded: {expandedCount}
       </span>
     </div>
