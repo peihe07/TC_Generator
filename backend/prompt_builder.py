@@ -142,6 +142,13 @@ Analyze the following software requirement following the ASPICE SWE.6 reviewer w
 
 Every keyword must map to at least one scenario id — if a concept has no coverage, add a scenario for it.
 
+## Language
+The `meaning`, `reasoning`, `name`, and `description` fields MUST be written
+in Traditional Chinese (繁體中文) so the Taiwanese reviewer can audit the
+decomposition logic in their native language. Keep the `keyword` and
+`test_item` fields in the source language of the requirement (do not
+translate) so downstream TC generation stays consistent with the spec.
+
 ## Requirement
 {requirement}{rules_section}
 
@@ -150,18 +157,18 @@ Return ONLY valid JSON (no markdown fences) with this exact structure:
 {{
   "keywords": [
     {{
-      "keyword": "<short keyword from the requirement>",
-      "meaning": "<what this keyword means in this requirement's context>",
+      "keyword": "<short keyword from the requirement — source language>",
+      "meaning": "<此關鍵字在本需求中的意義（繁體中文）>",
       "scenarios": [1, 2]
     }}
   ],
-  "reasoning": "<explain how you identified the scenarios and why>",
+  "reasoning": "<說明你如何識別出這些 scenario、為什麼這樣拆（繁體中文）>",
   "scenarios": [
     {{
       "id": 1,
-      "name": "<short scenario name>",
-      "description": "<one-sentence description of what this scenario tests>",
-      "test_item": "<rewritten test item statement for this specific scenario>"
+      "name": "<簡短的 scenario 名稱（繁體中文）>",
+      "description": "<這個 scenario 驗證什麼的一句話說明（繁體中文）>",
+      "test_item": "<rewritten test item statement — source language>"
     }}
   ]
 }}"""
