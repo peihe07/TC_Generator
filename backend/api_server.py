@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_quick_tc, decompose_requirement
-from id_generator import generate_group_abbreviation, generate_tc_ids
+from id_generator import generate_group_abbreviation, generate_tc_ids, normalize_tc_id
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
 from spec_matcher import build_spec_index, match_spec_references
@@ -156,6 +156,10 @@ class GenerateConfig(BaseModel):
     batchSize: int = Field(ge=1)
     budget: float = Field(ge=0)
     strictValidation: bool = False
+    # RULES.md §499 — skip rows that already have Pre-Cond / Procedure /
+    # Expected content (reference examples that should not be overwritten).
+    # Set True to force regeneration for all rows.
+    regenerateAll: bool = False
 
 
 class GenerateRow(BaseModel):
@@ -405,7 +409,7 @@ def _prepare_generation_rows(job: dict) -> list[dict]:
             {
                 "id": raw_row["id"],
                 "row_num": raw_row.get("rowNum") or base_row.get("row_num") or 0,
-                "tc_id": raw_row.get("tcId") or base_row.get("tc_id", ""),
+                "tc_id": normalize_tc_id(raw_row.get("tcId") or base_row.get("tc_id", "")),
                 "req_id": raw_row.get("reqId") or base_row.get("req_id", ""),
                 "test_item": raw_row.get("testItem") or base_row.get("test_item", ""),
                 "original_requirement": raw_row.get("originalRequirement")
@@ -419,6 +423,13 @@ def _prepare_generation_rows(job: dict) -> list[dict]:
                 "priority": raw_row.get("priority")
                 if raw_row.get("priority") is not None
                 else base_row.get("priority", ""),
+                # Carry existing content from parse so §499 preserve-check
+                # can run. GenerateRow schema does not round-trip these.
+                "pre_conditions": base_row.get("pre_conditions", ""),
+                "input_test_data": base_row.get("input_test_data", ""),
+                "test_procedure": base_row.get("test_procedure", ""),
+                "expected_result": base_row.get("expected_result", ""),
+                "design_method": base_row.get("design_method", ""),
             }
         )
 
@@ -490,6 +501,53 @@ def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
         },
         has_warnings,
     )
+
+
+def _row_has_existing_content(row: dict) -> bool:
+    """True if the parsed row already carries AI-equivalent content.
+
+    Used to honour RULES.md §499 — rows whose Pre-Cond / Procedure / Expected
+    cells are already filled (typically reference examples) should not be
+    regenerated and billed for.
+    """
+    for field in ("pre_conditions", "test_procedure", "expected_result"):
+        value = row.get(field)
+        if value and str(value).strip():
+            return True
+    return False
+
+
+def _build_preserved_stream_row(row: dict) -> dict:
+    """Return a row.completed-shaped dict that surfaces the row's existing
+    content verbatim (no AI call). Shape matches `_build_stream_row` so the
+    Review UI and the export writer treat it identically.
+    """
+    return {
+        "id": row["id"],
+        "rowNum": row["row_num"],
+        "tcId": row["tc_id"],
+        "reqId": row["req_id"],
+        "testItem": row["test_item"],
+        "originalRequirement": row["original_requirement"],
+        "testSet": row.get("test_set", ""),
+        "specReference": row.get("spec_reference"),
+        "priority": row.get("priority", ""),
+        "status": "ready",
+        "reviewStatus": "pending",
+        "generated": {
+            # No rewrite — writer keeps Col I (Test Item) untouched.
+            "testItemRewrite": "",
+            "preConditions": row.get("pre_conditions", ""),
+            "inputTestData": row.get("input_test_data", ""),
+            "testProcedure": row.get("test_procedure", ""),
+            "expectedResult": row.get("expected_result", ""),
+            "designMethod": row.get("design_method", ""),
+            "priority": row.get("priority", ""),
+            "specReference": row.get("spec_reference"),
+        },
+        "validation": [],
+        "preserved": True,
+    }
 
 
 def _build_failed_stream_row(row: dict, message: str) -> dict:
@@ -773,9 +831,20 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         raise HTTPException(status_code=404, detail="job not found")
 
     async def event_generator():
-        rows = _prepare_generation_rows(job)
-        total = len(rows)
+        all_rows = _prepare_generation_rows(job)
+        total = len(all_rows)
         config = job.get("config", {})
+        regenerate_all = bool(config.get("regenerateAll", False))
+
+        # RULES.md §499 — split rows: keep existing content unless the caller
+        # explicitly asks to regenerate everything.
+        if regenerate_all:
+            preserved_rows: list[dict] = []
+            rows = all_rows
+        else:
+            preserved_rows = [r for r in all_rows if _row_has_existing_content(r)]
+            rows = [r for r in all_rows if not _row_has_existing_content(r)]
+
         context = {
             "project": job.get("parsedData", {}).get("project"),
             "test_group": job.get("parsedData", {}).get("test_group"),
@@ -789,7 +858,10 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 "type": "job.started",
                 "jobId": jobId,
                 "stats": {"total": total, "processed": 0, "currentCost": 0},
-                "message": f"Backend generation started for {total} row(s).",
+                "message": (
+                    f"Backend generation started for {total} row(s) "
+                    f"({len(rows)} to generate, {len(preserved_rows)} preserved)."
+                ),
             }
         )
 
@@ -804,7 +876,25 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         strict_validation = config.get("strictValidation", False)
         budget = config.get("budget", 0)
 
-        for i in range(0, total, batch_size):
+        # Emit preserved rows up front — zero cost, zero AI call.
+        for preserved in preserved_rows:
+            processed += 1
+            yield _sse_event(
+                {
+                    "type": "row.completed",
+                    "jobId": jobId,
+                    "row": _build_preserved_stream_row(preserved),
+                    "stats": {
+                        "total": total,
+                        "processed": processed,
+                        "currentCost": round(current_cost, 4),
+                    },
+                    "message": f"Preserved existing content for row {preserved.get('row_num')}.",
+                }
+            )
+
+        to_generate_count = len(rows)
+        for i in range(0, to_generate_count, batch_size):
             batch = rows[i:i + batch_size]
 
             if budget and _would_exceed_budget(current_cost, len(batch), model, budget):

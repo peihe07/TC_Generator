@@ -218,7 +218,159 @@ def test_stream_generate_job(mock_generate_batch):
     assert '"type": "job.started"' in response.text
     assert '"type": "row.completed"' in response.text
     assert '"type": "job.completed"' in response.text
-    assert '"tcId": "newR1L-DMR-001"' in response.text
+    assert '"tcId": "newR1L-DM-001"' in response.text
+
+
+def _build_mixed_workbook_bytes() -> bytes:
+    """Row 10 is a reference example (Pre-Cond/Procedure/Expected filled).
+    Row 11 is a new row that needs generation.
+    """
+    wb = Workbook()
+    ws_pd = wb.active
+    ws_pd.title = "Product Document"
+    ws_pd.cell(row=3, column=2, value="newR1L")
+
+    ws_tc = wb.create_sheet("Test Case Specification&Result")
+    ws_tc.cell(row=9, column=4, value="Requirement or Design ID")
+    ws_tc.cell(row=9, column=9, value="Test Item")
+
+    # Row 10: reference example — fully populated, must not be regenerated.
+    ws_tc.cell(row=10, column=4, value="SWE1-REF-001")
+    ws_tc.cell(row=10, column=9, value="Reference test item text")
+    ws_tc.cell(row=10, column=10, value="1. Reference pre-condition")
+    ws_tc.cell(row=10, column=12, value="1. Reference procedure step")
+    ws_tc.cell(row=10, column=13, value="1. Reference expected outcome")
+
+    # Row 11: needs generation.
+    ws_tc.cell(row=11, column=4, value="SWE1-NEW-002")
+    ws_tc.cell(row=11, column=9, value="New test item text")
+
+    stream = BytesIO()
+    wb.save(stream)
+    return stream.getvalue()
+
+
+@patch("tools.generate.generate_single_tc")
+def test_stream_generate_preserves_existing_content(mock_generate_single):
+    """RULES.md §499 — rows with existing Pre-Cond/Procedure/Expected are
+    passed through without an AI call; only empty rows trigger generation.
+    """
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_mixed_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    parsed = parse_response.json()
+
+    mock_generate_single.return_value = SimpleNamespace(
+        tc_data={
+            "test_item_rewrite": "(Condition → Outcome)",
+            "pre_conditions": "NA",
+            "input_test_data": "NA",
+            "test_procedure": "1. Setup.\n2. Verify.",
+            "expected_result": "1. Setup ok.\n2. Verified.",
+            "design_method": "功能測試 (Functional based ; no specific technique)",
+            "priority": "Medium",
+            "split_flag": False,
+            "split_reason": "",
+        },
+        input_tokens=10,
+        output_tokens=20,
+        cache_creation_tokens=0,
+        cache_read_tokens=0,
+        cost=0.001,
+        model="gpt-4.1",
+    )
+
+    client.post(
+        "/api/generate",
+        json={
+            "jobId": parsed["jobId"],
+            "rows": parsed["rows"],
+            "config": {
+                "model": "gpt-4.1",
+                "batchSize": 1,
+                "budget": 2,
+                "strictValidation": False,
+            },
+        },
+    )
+
+    response = client.get("/api/generate/stream", params={"jobId": parsed["jobId"]})
+    assert response.status_code == 200
+    # AI called exactly once — for the empty row only.
+    assert mock_generate_single.call_count == 1
+    sent_row = mock_generate_single.call_args.args[0]
+    assert sent_row["req_id"] == "SWE1-NEW-002"
+
+    # Preserved row's original content survives in the SSE payload.
+    assert "Reference pre-condition" in response.text
+    assert "Reference procedure step" in response.text
+    assert "Reference expected outcome" in response.text
+    assert '"preserved": true' in response.text
+    assert "1 to generate, 1 preserved" in response.text
+
+
+@patch("tools.generate.generate_batch")
+def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
+    """regenerateAll=True forces AI regeneration for every row."""
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_mixed_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    parsed = parse_response.json()
+
+    mock_generate_batch.return_value = SimpleNamespace(
+        tc_data=[
+            {
+                "test_item_rewrite": "(Condition → Outcome)",
+                "pre_conditions": "NA",
+                "input_test_data": "NA",
+                "test_procedure": "1. Setup.\n2. Verify.",
+                "expected_result": "1. Setup ok.\n2. Verified.",
+                "design_method": "功能測試 (Functional based ; no specific technique)",
+                "priority": "Medium",
+                "split_flag": False,
+                "split_reason": "",
+            }
+        ] * 2,
+        input_tokens=10,
+        output_tokens=20,
+        cost=0.001,
+    )
+
+    client.post(
+        "/api/generate",
+        json={
+            "jobId": parsed["jobId"],
+            "rows": parsed["rows"],
+            "config": {
+                "model": "gpt-4.1",
+                "batchSize": 2,
+                "budget": 2,
+                "strictValidation": False,
+                "regenerateAll": True,
+            },
+        },
+    )
+
+    response = client.get("/api/generate/stream", params={"jobId": parsed["jobId"]})
+    assert response.status_code == 200
+    # Both rows in one batch — AI called once with 2 rows.
+    assert mock_generate_batch.call_count == 1
+    sent_rows = mock_generate_batch.call_args.args[0]
+    assert len(sent_rows) == 2
 
 
 @patch("tools.generate.generate_single_tc")
