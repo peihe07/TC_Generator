@@ -80,10 +80,17 @@ const WorkspaceMenu: React.FC = () => {
         const detail = await res.text();
         throw new Error(detail || `HTTP ${res.status}`);
       }
-      // Wipe every persisted bit of frontend state and hard-reload so all
-      // Zustand stores start fresh.
+      // Wipe only DATA keys (current job / history / workspaces). UI layout
+      // keys like desktop icon positions and panel widths are preserved so
+      // the user doesn't have to re-arrange the desktop after a reset.
+      const DATA_KEYS = [
+        'tc-job-session',              // useJobStore (persist middleware)
+        'tc-generator-job-history',    // useJobHistoryStore
+        'tc-generator-workspaces',     // useWorkspaceStore list
+        'tc-generator-active-workspace', // useWorkspaceStore active id
+      ];
       try {
-        localStorage.clear();
+        for (const key of DATA_KEYS) localStorage.removeItem(key);
         sessionStorage.clear();
       } catch {
         // storage disabled / private mode — reload is still useful
