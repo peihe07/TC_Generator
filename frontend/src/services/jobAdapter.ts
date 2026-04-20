@@ -171,6 +171,10 @@ function mapApiRowToTcRow(
     inputTestData: String(generated?.inputTestData ?? ""),
     steps: String(generated?.testProcedure ?? ""),
     expectedResults: String(generated?.expectedResult ?? ""),
+    designMethod: String(
+      generated?.designMethod ?? generated?.design_method ?? row.designMethod ?? "",
+    ) || undefined,
+    priority: String(generated?.priority ?? row.priority ?? "") || undefined,
     status,
     validationErrors: mapValidationErrors(
       row.validation as Array<Record<string, unknown>> | undefined,
@@ -450,6 +454,7 @@ export function startGeneration(
     cacheCreationTokens: 0,
     cacheReadTokens: 0,
   };
+  const rowOutcomes = new Map<string, "success" | "fail">();
   let completedJobId: string | null = null;
 
   const recordHistory = () => {
@@ -504,9 +509,14 @@ export function startGeneration(
               jobId: input.jobId,
               rows: input.rows.map((row) => ({
                 id: row.id,
+                // rowNum 必須一路帶到 backend，否則 SQLite 存成 null，export 時對不到 Excel 列。
+                rowNum: row.rowNum ?? null,
+                tcId: row.tcId ?? null,
                 reqId: row.reqId,
                 testItem: row.testItem,
+                originalRequirement: row.testItem,
                 testSet: row.testSet,
+                specReference: row.specReference ?? null,
                 priority: row.validationErrors?.length ? "Medium" : undefined,
               })),
               config: {
@@ -526,8 +536,26 @@ export function startGeneration(
           }
 
           const data = JSON.parse(event.data) as Record<string, unknown>;
+          const eventType = typeof data.type === "string" ? data.type : "";
+          const eventRow =
+            data.row && typeof data.row === "object"
+              ? (data.row as Record<string, unknown>)
+              : undefined;
+          if (
+            eventRow &&
+            typeof eventRow.id === "string" &&
+            (eventType === "row.completed" || eventType === "row.failed")
+          ) {
+            rowOutcomes.set(eventRow.id, eventType === "row.completed" ? "success" : "fail");
+          }
           const stats = data.stats as Record<string, number> | undefined;
           if (stats) {
+            let success = 0;
+            let fail = 0;
+            for (const outcome of rowOutcomes.values()) {
+              if (outcome === "success") success += 1;
+              else fail += 1;
+            }
             latestStats.total = Number(stats.total ?? input.rows.length);
             latestStats.processed = Number(stats.processed ?? 0);
             latestStats.cost = Number(stats.currentCost ?? 0);
@@ -538,8 +566,8 @@ export function startGeneration(
             callbacks.onProgress?.({
               total: latestStats.total,
               processed: latestStats.processed,
-              success: latestStats.processed,
-              fail: 0,
+              success,
+              fail,
               cost: latestStats.cost,
               inputTokens: latestStats.inputTokens,
               outputTokens: latestStats.outputTokens,
@@ -809,8 +837,8 @@ export async function exportJob(input: ExportJobInput) {
             inputTestData: row.inputTestData,
             testProcedure: row.steps,
             expectedResult: row.expectedResults,
-            priority: "",
-            designMethod: "",
+            priority: row.priority ?? "",
+            designMethod: row.designMethod ?? "",
             specReference: row.specReference ?? null,
           }
         : null,

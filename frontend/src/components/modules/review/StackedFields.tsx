@@ -68,3 +68,53 @@ export const StackedEditField: React.FC<{
     />
   </div>
 );
+
+/**
+ * 下拉選單版：用在 Priority、Design Method 這類固定選項。
+ * `options` 若不含目前的 `value`，會在最前面加一個「Custom: xxx」條目
+ * 以免切換編輯模式時把 AI 回的 fuzzy 值直接丟掉。
+ */
+export const StackedEditDropdown: React.FC<{
+  label: string;
+  value: string;
+  options: readonly string[];
+  onChange: (v: string) => void;
+  placeholder?: string;
+}> = ({ label, value, options, onChange, placeholder }) => {
+  const hasCustom = Boolean(value) && !options.includes(value);
+  return (
+    <div
+      style={{ borderTop: '1px solid var(--edit-accent-border)' }}
+      className="memo-edit"
+    >
+      <div
+        className="px-2 py-1 font-bold uppercase"
+        style={{
+          background: 'var(--edit-accent-bg)',
+          borderBottom: '1px solid var(--edit-accent-border)',
+          fontSize: 10,
+          color: 'var(--edit-accent-fg)',
+          letterSpacing: 0.5,
+        }}
+      >
+        {label}
+      </div>
+      <select
+        className="w-full px-2 py-1 text-xs"
+        style={{ lineHeight: 1.5 }}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {!value && placeholder ? <option value="">{placeholder}</option> : null}
+        {hasCustom ? (
+          <option value={value}>Custom: {value}</option>
+        ) : null}
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};

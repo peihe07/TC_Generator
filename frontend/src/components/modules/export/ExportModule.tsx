@@ -22,16 +22,19 @@ const ExportModule: React.FC = () => {
   const [exportComplete, setExportComplete] = useState(false);
   const [scope, setExportScope] = useState<'all' | 'accepted'>('all');
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [includeSteps, setIncludeSteps] = useState(true);
+  const [includeExpected, setIncludeExpected] = useState(true);
+  const [includeMeta, setIncludeMeta] = useState(true);
+  const [includeFrameworkSheet, setIncludeFrameworkSheet] = useState(true);
 
   const acceptedCount = tcRows.filter((r) => r.status === 'accepted').length;
   const selectedColumns = [
-    'TC ID',
-    'Test Set',
+    ...(includeMeta ? ['TC ID', 'Test Set'] : []),
     ...(config.targetColumns.includes('preConditions') ? ['Pre-Conditions'] : []),
     ...(config.targetColumns.includes('inputTestData') ? ['Input Test Data'] : []),
-    ...(config.targetColumns.includes('steps') ? ['Test Procedure'] : []),
-    ...(config.targetColumns.includes('expectedResults') ? ['Expected Result'] : []),
-    'Priority',
+    ...(includeSteps && config.targetColumns.includes('steps') ? ['Test Procedure'] : []),
+    ...(includeExpected && config.targetColumns.includes('expectedResults') ? ['Expected Result'] : []),
+    ...(includeMeta ? ['Priority'] : []),
   ];
 
   const handleExport = async () => {
@@ -46,7 +49,7 @@ const ExportModule: React.FC = () => {
         rows: tcRows,
         scope,
         outputMode: 'new-file',
-        includeFrameworkSheet: true,
+        includeFrameworkSheet,
         selectedColumns,
       });
 
@@ -107,15 +110,31 @@ const ExportModule: React.FC = () => {
               <legend>Output Settings</legend>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
-                  <Checkbox id="inc-steps" label="Include Steps" defaultChecked />
-                  <Checkbox id="inc-expected" label="Include Expected" defaultChecked />
+                  <Checkbox
+                    id="inc-steps"
+                    label="Include Steps"
+                    checked={includeSteps}
+                    onChange={(event) => setIncludeSteps(event.target.checked)}
+                  />
+                  <Checkbox
+                    id="inc-expected"
+                    label="Include Expected"
+                    checked={includeExpected}
+                    onChange={(event) => setIncludeExpected(event.target.checked)}
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <Checkbox id="inc-meta" label="Include Metadata" defaultChecked />
+                  <Checkbox
+                    id="inc-meta"
+                    label="Include Metadata"
+                    checked={includeMeta}
+                    onChange={(event) => setIncludeMeta(event.target.checked)}
+                  />
                   <Checkbox
                     id="inc-framework"
                     label="Update Framework Sheet"
-                    defaultChecked
+                    checked={includeFrameworkSheet}
+                    onChange={(event) => setIncludeFrameworkSheet(event.target.checked)}
                   />
                 </div>
               </div>

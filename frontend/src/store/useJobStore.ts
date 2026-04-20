@@ -104,9 +104,34 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
     };
   }),
 
-  deleteTcRows: (ids) => set((state) => ({
-    tcRows: state.tcRows.filter((row) => !ids.includes(row.id)),
-  })),
+  deleteTcRows: (ids) => set((state) => {
+    const keep = state.tcRows.filter((row) => !ids.includes(row.id));
+    // 刪掉某些 sub-TC 後，同 parent 剩下的兄弟列要重新編號 subIndex／tcCount，
+    // 避免 badge 顯示「TC 3/3」但實際只剩 2 筆、或 tcCount 不一致。
+    const byParent = new Map<string, number[]>();
+    keep.forEach((row, idx) => {
+      const parent = row.splitDecision?.parentId ?? row.id;
+      if (!byParent.has(parent)) byParent.set(parent, []);
+      byParent.get(parent)!.push(idx);
+    });
+    return {
+      tcRows: keep.map((row, idx) => {
+        const parentId = row.splitDecision?.parentId ?? row.id;
+        const siblings = byParent.get(parentId);
+        if (!siblings || siblings.length <= 1 || !row.splitDecision) return row;
+        const newSubIdx = siblings.indexOf(idx);
+        if (newSubIdx < 0) return row;
+        return {
+          ...row,
+          splitDecision: {
+            ...row.splitDecision,
+            subIndex: newSubIdx,
+            tcCount: siblings.length,
+          },
+        };
+      }),
+    };
+  }),
 
   renumberTcRows: () => set((state) => ({
     tcRows: renumberRows(state.tcRows),

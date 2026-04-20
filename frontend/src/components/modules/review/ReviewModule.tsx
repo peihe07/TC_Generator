@@ -52,6 +52,8 @@ const ReviewModule: React.FC = () => {
     expected: '',
     preConditions: '',
     inputTestData: '',
+    designMethod: '',
+    priority: '',
   });
   const [filter, setFilter] = useState('all');
   const [testSetFilter, setTestSetFilter] = useState('all');
@@ -99,6 +101,8 @@ const ReviewModule: React.FC = () => {
       expected: row.expectedResults,
       preConditions: row.preConditions,
       inputTestData: row.inputTestData ?? '',
+      designMethod: row.designMethod ?? '',
+      priority: row.priority ?? '',
     });
   };
 
@@ -108,6 +112,8 @@ const ReviewModule: React.FC = () => {
       expectedResults: editValues.expected,
       preConditions: editValues.preConditions,
       inputTestData: editValues.inputTestData,
+      designMethod: editValues.designMethod || undefined,
+      priority: editValues.priority || undefined,
       status: 'accepted',
     });
     setEditingRowId(null);

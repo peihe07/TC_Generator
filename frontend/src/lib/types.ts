@@ -15,6 +15,22 @@ export interface AwaitingApplyFields {
   inputTestData: string;
 }
 
+// 測試案例設計方法 — 與 backend `validator.VALID_DESIGN_METHODS` 對齊。
+// 修改這個清單前請先同步改 backend，否則 export 會在 validator 標 warning。
+export const DESIGN_METHODS = [
+  '功能測試 (Functional based ; no specific technique)',
+  '狀態轉換 (State Transition Testing)',
+  '決策表 (Decision Table Testing)',
+  '等價劃分 (Equivalence Partitioning, EP)',
+  '邊界值分析 (Boundary Value Analysis, BVA)',
+  '組合測試 (Combinatorial Testing ; Pairwise / t-wise)',
+  '情境 / 用例 (Scenario / Use Case Testing)',
+  '負向測試 (Negative / Invalid)',
+  '基礎故障注入 (Fault Injection Lite)',
+] as const;
+
+export type DesignMethod = (typeof DESIGN_METHODS)[number];
+
 export interface SplitKeyword {
   keyword: string;
   meaning: string;
@@ -47,6 +63,10 @@ export interface TcRow {
   inputTestData: string;
   steps: string;
   expectedResults: string;
+  // ASPICE §2 測試設計方法；型別故意寬鬆用 string 允許 AI 回傳 fuzzy 值，
+  // UI 下拉選單會收斂到 DESIGN_METHODS 列表。
+  designMethod?: string;
+  priority?: string;
   status: TcStatus;
   validationErrors?: ValidationError[];
   originalData?: Partial<TcRow>;

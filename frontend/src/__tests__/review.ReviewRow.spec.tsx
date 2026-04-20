@@ -34,6 +34,8 @@ const blankEditValues: EditValues = {
   expected: '',
   preConditions: '',
   inputTestData: '',
+  designMethod: '',
+  priority: '',
 };
 
 /** Build a fresh set of mock callbacks + a partial override for the row. */
@@ -175,13 +177,17 @@ describe('ReviewRow — edit mode flow', () => {
         expected: 'expected body',
         preConditions: 'pre body',
         inputTestData: 'data body',
+        designMethod: '',
+        priority: '',
       },
     });
 
     expect(screen.getByRole('button', { name: /save changes/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument();
-    // 4 StackedEditField textareas
+    // 4 StackedEditField textareas（designMethod / priority 是 dropdown，不算 textbox）
     expect(screen.getAllByRole('textbox')).toHaveLength(4);
+    // Design Method + Priority 下拉選單各 1
+    expect(screen.getAllByRole('combobox')).toHaveLength(2);
   });
 
   it('calls onEditValuesChange with merged object when a textarea changes', () => {
@@ -190,6 +196,8 @@ describe('ReviewRow — edit mode flow', () => {
       expected: 'original expected',
       preConditions: 'original pre',
       inputTestData: 'original data',
+      designMethod: '',
+      priority: '',
     };
     const { handlers } = renderRow({
       isExpanded: true,

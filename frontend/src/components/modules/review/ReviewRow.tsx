@@ -16,7 +16,7 @@ import {
   RiRefreshLine,
   RiSaveLine,
 } from '@remixicon/react';
-import { TcRow } from '../../../lib/types';
+import { DESIGN_METHODS, TcRow } from '../../../lib/types';
 import {
   Button,
   IconButton,
@@ -25,13 +25,17 @@ import {
   type StatusVariant,
 } from '../../ui';
 import { RegenDiff, type DiffFieldKey } from './RegenDiff';
-import { StackedEditField, StackedReadField } from './StackedFields';
+import { StackedEditDropdown, StackedEditField, StackedReadField } from './StackedFields';
+
+const PRIORITY_OPTIONS = ['High', 'Medium', 'Low', 'NA'] as const;
 
 export interface EditValues {
   steps: string;
   expected: string;
   preConditions: string;
   inputTestData: string;
+  designMethod: string;
+  priority: string;
 }
 
 export interface ReviewRowProps {
@@ -362,6 +366,20 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                           value={editValues.expected}
                           onChange={(v) => onEditValuesChange({ ...editValues, expected: v })}
                         />
+                        <StackedEditDropdown
+                          label="Design Method"
+                          value={editValues.designMethod}
+                          options={DESIGN_METHODS}
+                          placeholder="— 選擇 ASPICE 設計方法 —"
+                          onChange={(v) => onEditValuesChange({ ...editValues, designMethod: v })}
+                        />
+                        <StackedEditDropdown
+                          label="Priority"
+                          value={editValues.priority}
+                          options={PRIORITY_OPTIONS}
+                          placeholder="— 選擇優先級 —"
+                          onChange={(v) => onEditValuesChange({ ...editValues, priority: v })}
+                        />
                       </div>
                     ) : (
                       <div className="flex flex-col">
@@ -373,6 +391,16 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                         <StackedReadField label="Input Test Data" value={row.inputTestData} muted />
                         <StackedReadField label="Test Procedure" value={row.steps} />
                         <StackedReadField label="Expected Result" value={row.expectedResults} />
+                        <StackedReadField
+                          label="Design Method"
+                          value={row.designMethod ?? ''}
+                          muted={!row.designMethod}
+                        />
+                        <StackedReadField
+                          label="Priority"
+                          value={row.priority ?? ''}
+                          muted={!row.priority}
+                        />
                         {row.specReference && (
                           <StackedReadField label="Spec Reference" value={row.specReference} muted />
                         )}

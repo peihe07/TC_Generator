@@ -208,4 +208,99 @@ describe('startGeneration status mapping', () => {
     });
     expect(onComplete).toHaveBeenCalledTimes(1);
   });
+
+  it('tracks failed rows in progress stats instead of counting everything as success', async () => {
+    const fetchMock = vi
+      .spyOn(global, 'fetch')
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          jobId: 'job-status-fail',
+          totalRows: 1,
+          streamUrl: '/api/generate/stream?jobId=job-status-fail',
+        }),
+      } as Response);
+
+    class FakeEventSource {
+      onmessage: ((event: MessageEvent<string>) => void) | null = null;
+      onerror: (() => void) | null = null;
+
+      constructor(_url: string) {
+        queueMicrotask(() => {
+          this.onmessage?.({
+            data: JSON.stringify({
+              type: 'row.failed',
+              jobId: 'job-status-fail',
+              row: {
+                id: 'TC-001',
+                reqId: 'REQ-1',
+                testSet: 'Login',
+                testItem: 'User logs in',
+                status: 'error',
+                reviewStatus: 'pending',
+                validation: [],
+              },
+              stats: { total: 1, processed: 1, currentCost: 0.01 },
+            }),
+          } as MessageEvent<string>);
+          this.onmessage?.({
+            data: JSON.stringify({
+              type: 'job.completed',
+              jobId: 'job-status-fail',
+              stats: { total: 1, processed: 1, currentCost: 0.01 },
+            }),
+          } as MessageEvent<string>);
+        });
+      }
+
+      close() {}
+    }
+
+    global.EventSource = FakeEventSource as unknown as typeof EventSource;
+
+    const onProgress = vi.fn();
+
+    startGeneration(
+      {
+        jobId: 'job-status-fail',
+        rows: [
+          {
+            id: 'TC-001',
+            reqId: 'REQ-1',
+            testGroup: 'Auth',
+            testSet: 'Login',
+            testItem: 'User logs in',
+            preConditions: '',
+            inputTestData: '',
+            steps: '',
+            expectedResults: '',
+            status: 'pending',
+            validationErrors: [],
+          },
+        ],
+        config: {
+          model: 'gpt-4.1',
+          batchSize: 1,
+          budgetLimit: 10,
+          strictValidation: false,
+          targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
+        },
+      },
+      {
+        onProgress,
+      },
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(onProgress).toHaveBeenCalledWith(
+      expect.objectContaining({
+        total: 1,
+        processed: 1,
+        success: 0,
+        fail: 1,
+      }),
+    );
+  });
 });
