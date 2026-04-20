@@ -21,16 +21,30 @@
 | 6.7 | ChatModule（double-header 修 + sunken-bezel systemic fix + FAILED contrast F1 patch） | ✅ | `499d391` + `1011123` + `afd3471` |
 | 6.8 | Diagrams / Rules（(α) policy — iframe content intentionally out-of-scope） | ✅ | doc-only（見本檔 §Phase 6 #8） |
 | 7 | Iconography（已於 HANDOFF Phase 5 完成桌面圖示外部化） | ✅ | `d2a4af4` |
-| 8 | 測試 & 驗收 | 🚧 unit tests passing（107/107）；E2E + 完整手動驗收 ⬜ | — |
+| 8 | 測試 & 驗收 | 🚧 unit tests passing（126/126）；E2E + 完整手動驗收 ⬜ | — |
 
-Follow-up 待辦（全數記於 Post-migration polish §P1–§P13）：
-- Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
-- Phase 6.4：~~§P3 (`pendingRegenerated` rename)~~ **已完成 2026-04-20** / ~~§P4 (`isActive` vs `isSelected` 拆分)~~ **已完成，併入 §P12** / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ **已關閉為誤報**
-- Phase 6.5：§P6 (`Win95Dialog` 通用元件)
-- Phase 6.7：~~§P9 (4 TSX inline sunken → `.border-sunken` class)~~ **3/4 已完成**（RegenDiff 條件式 pattern 永久例外）/ ~~§P10 (Review toolbar vs `.win95-th` boundary)~~ **已完成 2026-04-20** / ~~§P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)~~ **已完成 2026-04-20**
-- Phase 6.8：§P13 (Rules tabpanel nested sunken border observation)
+**Post-migration polish 狀態（2026-04-20 session 結束）：**
 
-**Phase 6 — Module migration 全 8 module 完成。** 下一階段為 Phase 8（測試覆蓋）及 Post-migration polish backlog。
+| # | 狀態 | 備註 |
+|---|------|------|
+| §P1 | ✅ Done | ValidationPanel resizable splitter |
+| §P2 | ✅ Done | GenerateModule cost budget threshold warning |
+| §P3 | ✅ Done | `pendingRegenerated` → `awaitingApply` rename |
+| §P4 | ✅ Done | 併入 §P12 |
+| §P5 | ❌ Closed | 誤報（FAILED row 的 `—` 是設計） |
+| §P6 | ✅ Done | `Win95Dialog` 通用元件 |
+| §P7 | 🟡 Deferred | Tailwind font-size → semantic class；機械 refactor 不適合，per-module opportunistic |
+| §P8 | ➖ Removed | 併入 Phase 6.7 ChatModule fix |
+| §P9 | 🟡 3/4 Done | RegenDiff 條件式 pattern 永久例外 |
+| §P10 | ✅ Done | ReviewToolbar 改 raised bezel |
+| §P11 | ➖ Unused | 未派 |
+| §P12 | ✅ Done | Expanded/selected state 拆分（root fix of F1 FAILED contrast） |
+| §P13 | ✅ Done | Rules tabpanel 改 single-frame |
+
+Follow-up 唯一未處理：
+- Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 視覺強化（warning 黃或 `!` 圖示）— 極低優先，需設計判斷
+
+**Phase 6 — Module migration 全 8 module 完成。Polish backlog 實質清空。** 下一階段為 Phase 8（E2E + 完整手動驗收）。
 
 ## 前置
 

@@ -3,7 +3,8 @@
 最後更新：2026-04-19（Phase 4 功能面完成：get_job_detail / state_update SSE
 / AgentStateUpdateToast / diff_jobs / aggregate_metrics / Cost Dashboard UI；
 + Taskbar polish + ReviewRow tests + 按鈕 icon 透明度修復；
-+ Design system migration Phase 1–5 + Phase 6.1–6.2 程式面完成，見
++ Design system migration Phase 1–7 全部完成 + Phase 8 unit tests 126/126 pass
++ Post-migration polish 10 項完成（剩 P7 deferred），見
 [docs/design-system/MIGRATION.md](design-system/MIGRATION.md)）
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
@@ -220,13 +221,20 @@ TC_Generator/
   HH:MM（完整日期丟 tooltip）、覆蓋 98.css `.status-bar-field` 的
   `flex-grow: 1` 讓時鐘貼齊內容不再吞掉 tabs 的寬度
 - Design system migration（對照 [docs/design-system/MIGRATION.md](design-system/MIGRATION.md)）：
-  - Phase 1–5 完成（tokens + global rules + 顏色清查 + motion cleanup + Desktop/Taskbar/AppWindow 視覺對齊）
-  - Phase 6.1 Upload module、6.2 Configure module 程式面完成（含 `.win95-th` 對齊
-    `preview/table.html`：1px bevel / `#808080` BR / `3px 8px` padding、Tabs
-    override `<li role="tab">`：inactive 淺灰、active 預設灰 + 粗體）
-  - Phase 6.4 Review 待辦：GENERATED TEST CASE 欄位渲染為空（資料層 bug）、
-    expanded row 與 selected state 共用 `.selected` class（待設計確認）
-  - Phase 7 Iconography 已完成（9 個桌面 icon 外部化為 `frontend/public/icons/desktop/*.svg`）
+  - **Phase 1–7 全部完成**（tokens + global rules + 顏色清查 + motion cleanup +
+    Desktop/Taskbar/AppWindow 視覺對齊 + 8 modules 視覺對齊 + iconography）
+  - Phase 8 測試 & 驗收：unit tests 126/126 pass；E2E + 完整手動驗收待跑
+  - Post-migration polish backlog（§P1–§P13）：**10 項完成 + 1 deferred + 2 removed/unused**
+    - P1 ValidationPanel resizable splitter、P2 cost budget threshold warning、
+      P3 `pendingRegenerated` → `awaitingApply`、P4/P12 expanded vs selected
+      state 拆分、P5 誤報關閉、P6 `Win95Dialog` 通用元件、P9 inline sunken
+      refactor (3/4, RegenDiff 條件式 pattern 為永久例外)、P10 ReviewToolbar
+      改 raised bezel、P13 Rules tabpanel 移除 nested sunken
+    - P7 Typography Tailwind → semantic class deferred（機械 refactor 會撞到
+      font-weight/line-height 其他 modifier，per-module opportunistic migration）
+  - 相關系統性 fix：sunken-bezel token 語意修正（`--win95-gray-mid` → `--win95-gray-dark`
+    跨 42 處產品程式碼 + design bundle），掃出 TSX inline 重寫 canonical pattern
+    的 bad pattern (§P9)
 - Icon 可見度修復：98.css 把 `button { color: transparent }` 再用
   text-shadow 假造文字色，導致 Remix Icon 的 `fill=currentColor` 全透明
   → `win95.css` 加上 `button { color: #222 }` 統一蓋回；並用
