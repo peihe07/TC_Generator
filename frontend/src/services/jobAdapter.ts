@@ -32,6 +32,17 @@ type ParseJobResult = {
 type GenerateCallbacks = {
   onStart?: (total: number) => void;
   onRow?: (row: TcRow, message: string) => void;
+  // 當 AI 把一個 requirement 拆成多筆 TC 時，會針對 TC 2..N 各發一次 onRowAdded。
+  onRowAdded?: (row: TcRow, parentId: string, message: string) => void;
+  // AI 決定此 req 要拆成 N 筆，帶出拆分 reasoning（§1.2/§1.4/§1.5）與 keyword 分析。
+  onReqSplit?: (info: {
+    rowId: string;
+    reqId: string;
+    tcCount: number;
+    reasoning: string;
+    keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
+    message: string;
+  }) => void;
   onProgress?: (stats: {
     total: number;
     processed: number;
@@ -164,6 +175,33 @@ function mapApiRowToTcRow(
     validationErrors: mapValidationErrors(
       row.validation as Array<Record<string, unknown>> | undefined,
     ),
+    splitDecision: parseSplitDecision(row.splitDecision),
+    splitWarning: typeof row.splitWarning === "string" ? row.splitWarning : undefined,
+  };
+}
+
+function parseSplitDecision(raw: unknown): TcRow["splitDecision"] {
+  if (!raw || typeof raw !== "object") return undefined;
+  const obj = raw as Record<string, unknown>;
+  const kwsRaw = Array.isArray(obj.keywords) ? obj.keywords : [];
+  return {
+    reqId: String(obj.reqId ?? ""),
+    tcCount: Number(obj.tcCount ?? 1),
+    reasoning: String(obj.reasoning ?? ""),
+    keywords: kwsRaw.map((k) => {
+      const o = k as Record<string, unknown>;
+      return {
+        keyword: String(o.keyword ?? ""),
+        meaning: String(o.meaning ?? ""),
+        coveredBy: Array.isArray(o.covered_by)
+          ? (o.covered_by as unknown[]).map((n) => Number(n)).filter((n) => !Number.isNaN(n))
+          : Array.isArray(o.coveredBy)
+            ? (o.coveredBy as unknown[]).map((n) => Number(n)).filter((n) => !Number.isNaN(n))
+            : [],
+      };
+    }),
+    subIndex: typeof obj.subIndex === "number" ? obj.subIndex : undefined,
+    parentId: typeof obj.parentId === "string" ? obj.parentId : undefined,
   };
 }
 
@@ -518,6 +556,31 @@ export function startGeneration(
               input.rows.find((item) => item.id === (data.row as Record<string, unknown>).id)?.testGroup ?? "Generated",
             );
             callbacks.onRow?.(row, String(data.message ?? "Row updated."));
+          }
+
+          if (data.type === "row.added" && data.row) {
+            // AI 把一個 req 拆成多筆 TC 時的第 2..N 筆。
+            const apiRow = data.row as Record<string, unknown>;
+            const parentId = String(apiRow.parentId ?? "");
+            const parentRow = input.rows.find((item) => item.id === parentId);
+            const row = mapApiRowToTcRow(
+              apiRow,
+              parentRow?.testGroup ?? "Generated",
+            );
+            callbacks.onRowAdded?.(row, parentId, String(data.message ?? "TC added."));
+          }
+
+          if (data.type === "req.split") {
+            callbacks.onReqSplit?.({
+              rowId: String(data.rowId ?? ""),
+              reqId: String(data.reqId ?? ""),
+              tcCount: Number(data.tcCount ?? 1),
+              reasoning: String(data.reasoning ?? ""),
+              keywords: Array.isArray(data.keywords)
+                ? (data.keywords as Array<{ keyword: string; meaning: string; covered_by: number[] }>)
+                : [],
+              message: String(data.message ?? ""),
+            });
           }
 
           if (data.type === "job.completed") {

@@ -11,6 +11,8 @@ import {
   RiFileTextLine,
   RiFlagFill,
   RiFlagLine,
+  RiKey2Line,
+  RiLightbulbLine,
   RiRefreshLine,
   RiSaveLine,
 } from '@remixicon/react';
@@ -230,6 +232,86 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                   }}
                 >
                   Generation failed for this row. Reason: {failureReason}
+                </div>
+              ) : null}
+              {row.splitWarning ? (
+                <div
+                  className="paper-card p-2 text-xs leading-relaxed"
+                  style={{
+                    background: 'var(--status-warn-bg-soft, #fff8e1)',
+                    border: '1px solid var(--status-warn-border, #e6a23c)',
+                    color: 'var(--status-warn-dark, #7a5200)',
+                  }}
+                >
+                  <span className="font-bold">Split warning：</span> {row.splitWarning}
+                </div>
+              ) : null}
+              {row.splitDecision && (row.splitDecision.subIndex ?? 0) > 0 ? (
+                // Sub TC：顯示小 badge，指回 primary（同一 req 的 TC 1/N）。
+                <div
+                  className="paper-card p-2 text-xs flex items-center gap-2"
+                  style={{
+                    background: 'var(--win95-gray-light, #f0f0f0)',
+                    border: '1px solid var(--win95-gray-dark)',
+                  }}
+                >
+                  <RiLightbulbLine className="size-3 shrink-0" />
+                  <span>
+                    屬於 <span className="font-bold">{row.splitDecision.reqId}</span> 的
+                    {' '}TC {(row.splitDecision.subIndex ?? 0) + 1}
+                    /{row.splitDecision.tcCount}
+                    （完整拆分決策見第 1 筆 TC 的展開面板）
+                  </span>
+                </div>
+              ) : row.splitDecision && row.splitDecision.tcCount > 1 ? (
+                // Primary：顯示完整 reasoning + keywords。
+                <div className="border-sunken">
+                  <div
+                    className="flex items-center gap-2 px-2 py-1 text-xs font-bold"
+                    style={{ background: 'var(--win95-navy)', color: 'var(--win95-white)' }}
+                  >
+                    <RiLightbulbLine className="size-3 shrink-0" />
+                    <span>
+                      AI 拆分決策 — {row.splitDecision.tcCount} TCs（{row.splitDecision.reqId}）
+                    </span>
+                  </div>
+                  <div
+                    className="p-2 flex flex-col gap-2 text-xs"
+                    style={{ background: 'var(--win95-white)' }}
+                  >
+                    {row.splitDecision.reasoning ? (
+                      <p className="leading-relaxed whitespace-pre-wrap selectable">
+                        {row.splitDecision.reasoning}
+                      </p>
+                    ) : (
+                      <p style={{ color: 'var(--text-muted)' }}>（AI 未提供拆分理由）</p>
+                    )}
+                    {row.splitDecision.keywords.length > 0 && (
+                      <div className="flex flex-col gap-1">
+                        <div
+                          className="flex items-center gap-1 text-[11px] font-bold"
+                          style={{ color: 'var(--text-muted)' }}
+                        >
+                          <RiKey2Line className="size-3" />
+                          Keyword coverage (§1.3)
+                        </div>
+                        <ul className="flex flex-col gap-1 pl-1">
+                          {row.splitDecision.keywords.map((k, idx) => (
+                            <li key={`${k.keyword}-${idx}`} className="leading-snug">
+                              <span className="font-bold">{k.keyword}</span>
+                              {k.meaning ? <>：{k.meaning}</> : null}
+                              {k.coveredBy.length > 0 ? (
+                                <span style={{ color: 'var(--text-muted)' }}>
+                                  {' '}
+                                  → TC {k.coveredBy.join(', ')}
+                                </span>
+                              ) : null}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ) : null}
               <div className="grid grid-cols-5 gap-3">

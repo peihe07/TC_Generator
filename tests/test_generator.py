@@ -346,31 +346,35 @@ class TestDecomposeRequirement:
 
 
 class TestParseMultiTcResponse:
-    def test_wrapped_tcs_array(self):
-        payload = {"tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}]}
-        result = parse_multi_tc_response(json.dumps(payload))
-        assert len(result) == 2
-        assert result[0]["priority"] == "Medium"
-        assert result[1]["priority"] == "High"
+    def test_wrapped_tcs_array_with_reasoning(self):
+        payload = {
+            "reasoning": "測試拆 2 筆的理由",
+            "keywords": [{"keyword": "k1", "meaning": "m1", "covered_by": [1]}],
+            "tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}],
+        }
+        tcs, meta = parse_multi_tc_response(json.dumps(payload))
+        assert len(tcs) == 2
+        assert tcs[0]["priority"] == "Medium"
+        assert meta["reasoning"] == "測試拆 2 筆的理由"
+        assert len(meta["keywords"]) == 1
 
     def test_plain_array_also_accepted(self):
-        result = parse_multi_tc_response(json.dumps([VALID_TC_JSON]))
-        assert len(result) == 1
+        tcs, meta = parse_multi_tc_response(json.dumps([VALID_TC_JSON]))
+        assert len(tcs) == 1
+        assert meta["reasoning"] == ""
 
     def test_single_object_falls_back_to_list(self):
-        """AI 回單一 dict（沒包 tcs）時仍當作 1 筆 TC 處理。"""
-        result = parse_multi_tc_response(json.dumps(VALID_TC_JSON))
-        assert len(result) == 1
+        tcs, _ = parse_multi_tc_response(json.dumps(VALID_TC_JSON))
+        assert len(tcs) == 1
 
     def test_empty_array_raises(self):
         with pytest.raises(GenerationError, match="non-empty"):
             parse_multi_tc_response(json.dumps({"tcs": []}))
 
     def test_no_upper_cap_on_tc_count(self):
-        """沒有上限：AI 依 ASPICE 規則要多少筆就多少筆（例如 §1.4 支援 10 種格式）。"""
         many = {"tcs": [VALID_TC_JSON] * 10}
-        result = parse_multi_tc_response(json.dumps(many))
-        assert len(result) == 10
+        tcs, _ = parse_multi_tc_response(json.dumps(many))
+        assert len(tcs) == 10
 
     def test_missing_keys_raises(self):
         broken = {"tcs": [{"test_procedure": "only one field"}]}
@@ -379,17 +383,29 @@ class TestParseMultiTcResponse:
 
 
 class TestParseMultiTcBatchResponse:
-    def test_per_req_arrays(self):
+    def test_per_req_arrays_with_reasoning(self):
         payload = {
             "requirements": [
-                {"req_id": "R1", "tcs": [VALID_TC_JSON, VALID_TC_JSON]},
-                {"req_id": "R2", "tcs": [VALID_TC_JSON]},
+                {
+                    "req_id": "R1",
+                    "reasoning": "R1 拆兩筆",
+                    "tcs": [VALID_TC_JSON, VALID_TC_JSON],
+                },
+                {
+                    "req_id": "R2",
+                    "reasoning": "原子需求",
+                    "tcs": [VALID_TC_JSON],
+                },
             ]
         }
-        result = parse_multi_tc_batch_response(json.dumps(payload), expected_count=2)
-        assert len(result) == 2
-        assert len(result[0]) == 2
-        assert len(result[1]) == 1
+        tc_groups, meta_list = parse_multi_tc_batch_response(
+            json.dumps(payload), expected_count=2,
+        )
+        assert len(tc_groups) == 2
+        assert len(tc_groups[0]) == 2
+        assert len(tc_groups[1]) == 1
+        assert meta_list[0]["reasoning"] == "R1 拆兩筆"
+        assert meta_list[1]["reasoning"] == "原子需求"
 
     def test_count_mismatch_raises(self):
         payload = {"requirements": [{"req_id": "R1", "tcs": [VALID_TC_JSON]}]}
@@ -399,9 +415,12 @@ class TestParseMultiTcBatchResponse:
 
 class TestGenerateTcsForRow:
     @patch("generator._chat")
-    def test_returns_list_of_tcs(self, mock_chat):
+    def test_returns_list_of_tcs_with_meta(self, mock_chat):
         mock_chat.return_value = make_chat_response(
-            {"tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}]},
+            {
+                "reasoning": "§1.4 拆 2 筆",
+                "tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}],
+            },
             prompt_tokens=100, completion_tokens=50,
         )
         result = generate_tcs_for_row(
@@ -410,18 +429,19 @@ class TestGenerateTcsForRow:
             spec_index=None,
             rules_text="rules",
         )
-        assert isinstance(result.tc_data, list)
         assert len(result.tc_data) == 2
+        assert result.split_meta[0]["reasoning"] == "§1.4 拆 2 筆"
+        assert result.split_meta[0]["req_id"] == "R1"
 
 
 class TestGenerateBatchMulti:
     @patch("generator._chat")
-    def test_returns_groups_aligned_with_input(self, mock_chat):
+    def test_returns_groups_with_meta_aligned(self, mock_chat):
         mock_chat.return_value = make_chat_response(
             {
                 "requirements": [
-                    {"req_id": "R1", "tcs": [VALID_TC_JSON]},
-                    {"req_id": "R2", "tcs": [VALID_TC_JSON, VALID_TC_JSON]},
+                    {"req_id": "R1", "reasoning": "A", "tcs": [VALID_TC_JSON]},
+                    {"req_id": "R2", "reasoning": "B", "tcs": [VALID_TC_JSON, VALID_TC_JSON]},
                 ]
             },
             prompt_tokens=200, completion_tokens=100,
@@ -435,7 +455,7 @@ class TestGenerateBatchMulti:
             spec_index=None,
             rules_text="rules",
         )
-        assert isinstance(result.tc_data, list)
         assert len(result.tc_data) == 2
         assert len(result.tc_data[0]) == 1
         assert len(result.tc_data[1]) == 2
+        assert [m["reasoning"] for m in result.split_meta] == ["A", "B"]

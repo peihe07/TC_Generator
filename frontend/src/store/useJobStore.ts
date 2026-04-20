@@ -15,6 +15,8 @@ interface JobStore {
   setJobMetadata: (data: JobMetadata | null) => void;
   setTcRows: (rows: TcRow[]) => void;
   updateTcRow: (id: string, updates: Partial<TcRow>) => void;
+  // 插入一個新的 TC row，接在 parentId 所屬列後面（用於 AI 把一個 req 拆成多筆 TC 時）。
+  addTcRowAfter: (parentId: string, row: TcRow) => void;
   deleteTcRows: (ids: string[]) => void;
   renumberTcRows: () => void;
   setAwaitingApply: (id: string, data: TcRow['awaitingApply']) => void;
@@ -72,6 +74,35 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
       row.id === id ? { ...row, ...updates } : row
     ),
   })),
+
+  addTcRowAfter: (parentId, row) => set((state) => {
+    // 若已存在相同 id 直接更新，避免重送事件時重複插入。
+    if (state.tcRows.some((r) => r.id === row.id)) {
+      return {
+        tcRows: state.tcRows.map((r) => (r.id === row.id ? { ...r, ...row } : r)),
+      };
+    }
+    const parentIdx = state.tcRows.findIndex((r) => r.id === parentId);
+    if (parentIdx < 0) {
+      // 找不到 parent：補到最後，至少不會遺失 TC。
+      return { tcRows: [...state.tcRows, row] };
+    }
+    // 插在同 parent 所有既有子列的最後面，保持順序。
+    let insertAt = parentIdx + 1;
+    while (
+      insertAt < state.tcRows.length &&
+      state.tcRows[insertAt].id.startsWith(`${parentId}__tc`)
+    ) {
+      insertAt += 1;
+    }
+    return {
+      tcRows: [
+        ...state.tcRows.slice(0, insertAt),
+        row,
+        ...state.tcRows.slice(insertAt),
+      ],
+    };
+  }),
 
   deleteTcRows: (ids) => set((state) => ({
     tcRows: state.tcRows.filter((row) => !ids.includes(row.id)),

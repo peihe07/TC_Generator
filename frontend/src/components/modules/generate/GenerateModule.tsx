@@ -37,6 +37,7 @@ const GenerateModule: React.FC = () => {
     jobMetadata,
     config,
     updateTcRow,
+    addTcRowAfter,
   } = useJobStore();
   const { openWindow } = useWindowStore();
   const runnerRef = useRef<{ stop: () => void } | null>(null);
@@ -112,6 +113,19 @@ const GenerateModule: React.FC = () => {
         onRow: (row, message) => {
           updateTcRow(row.id, row);
           appendLog(createJobLog('info', message));
+        },
+        onRowAdded: (row, parentId, message) => {
+          // AI 把同一 req 拆成多筆 TC 時的第 2..N 筆：插在 parent 後面。
+          addTcRowAfter(parentId, row);
+          appendLog(createJobLog('info', message));
+        },
+        onReqSplit: (info) => {
+          // 每筆 TC 的 row event 自帶 splitDecision，這裡只負責在 log panel 凸顯拆分事件。
+          // 若 AI 拆 >1 筆用 success 等級讓使用者看到進展，1 筆則 info。
+          appendLog(createJobLog(
+            info.tcCount > 1 ? 'success' : 'info',
+            info.message || `${info.reqId}: AI split into ${info.tcCount} TC(s).`,
+          ));
         },
         onComplete: (message) => {
           setProcessing(false);

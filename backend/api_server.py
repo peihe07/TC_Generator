@@ -4,6 +4,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import re
 import tempfile
 from datetime import datetime
 from pathlib import Path
@@ -526,6 +527,40 @@ def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
     )
 
 
+# §1.4 False-Pass 啟發式：需求文字若像在列舉多個支援項目但 AI 只回 1 筆 TC，
+# 很大機率違反 Mistake #4，flag 一個 warning 讓使用者在 Review UI 注意。
+_ENUM_HINTS_RE = re.compile(
+    r"(\.\w{2,5}\s*[,/、]\s*\.\w{2,5})"             # .mp4, .avi 這類副檔名列舉
+    r"|(\b(?:one of|any of|such as|including|e\.g\.|e\.g)\b)"
+    r"|(\b(?:support|supported|supports)\b[^\n]{0,80}[,/、])",
+    re.IGNORECASE,
+)
+_BOUNDARY_HINTS_RE = re.compile(
+    r"\b(maximum|minimum|upper limit|lower limit|at most|at least|no more than|no less than)\b",
+    re.IGNORECASE,
+)
+
+
+def _heuristic_split_warning(row: dict, tc_count: int) -> str:
+    """回傳非空字串就表示此次拆分可能有問題（讓 Review UI 標 warning）。"""
+    if tc_count >= 2:
+        return ""
+    text = str(row.get("test_item") or row.get("original_requirement") or "")
+    if not text.strip():
+        return ""
+    if _ENUM_HINTS_RE.search(text):
+        return (
+            "需求像是列舉多個支援項目（§1.4 Mistake #4），但 AI 只產出 1 筆 TC。"
+            "請確認是否遺漏對各項目的獨立驗證。"
+        )
+    if _BOUNDARY_HINTS_RE.search(text):
+        return (
+            "需求提及 maximum / minimum / 上下限字眼（§1.2 & BVA），"
+            "建議至少拆成「= 上限」「> 上限」「< 上限」等獨立情境。"
+        )
+    return ""
+
+
 def _row_has_existing_content(row: dict) -> bool:
     """True if the parsed row already carries AI-equivalent content.
 
@@ -904,6 +939,27 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         spec_index = _build_spec_index_for_job(job)
         job["status"] = "running"
         JOB_REGISTRY[jobId] = job  # 回寫 SQLite，避免修改只停留在反序列化副本
+
+        # (A) 預先算好 sub-TC 的 tc_id 起始序號。
+        # 原始列的 tc_id 是 ingest/match 階段由 `generate_tc_ids` 依序配發的，
+        # 若 AI 把某個 req 拆成 N 筆 TC，sub-TC 2..N 也需要獨立的 tc_id 才能
+        # 正確填入 Excel F 欄。這裡抓當下最大序號 +1 作為新 sub 起點。
+        existing_seqs = _extract_existing_sequence_numbers(all_rows)
+        next_seq = (max(existing_seqs) + 1) if existing_seqs else 1
+        tc_project = context["project"] or ""
+        tc_group_abbr = (
+            generate_group_abbreviation(context["test_group"])
+            if context["test_group"] else ""
+        )
+
+        def _alloc_sub_tc_id() -> str:
+            nonlocal next_seq
+            if not tc_project or not tc_group_abbr:
+                return ""
+            new_id = generate_tc_ids(tc_project, tc_group_abbr, 1, start=next_seq)[0]
+            next_seq += 1
+            return new_id
+
         yield _sse_event(
             {
                 "type": "job.started",
@@ -988,32 +1044,52 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 split_meta_list = batch_result.get("splitMeta") or []
 
                 # tc_data_list 現在是 list[list[dict]]：每個 input row 對應 1..N 筆 TC。
-                # 第 1 筆沿用原 row.id / row.rowNum（更新既有列），
-                # 第 2..N 筆以 "row.added" 事件送出，前端據此在同一 rowNum 插入新列。
+                # 第 1 筆沿用原 row.id / row.rowNum / 原 tc_id（更新既有列），
+                # 第 2..N 筆以 "row.added" 事件送出，並分配新的 tc_id（序號接在最大現存值之後）。
                 for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
                     if not isinstance(tc_group, list) or not tc_group:
                         continue
 
+                    # (B) 每個 req 只讓 processed +1（對應原始 rows 數），
+                    # 當 AI 拆出 N 筆時把 total 往上加 N-1，這樣進度條與 stats 同步。
+                    extras = max(len(tc_group) - 1, 0)
+                    if extras > 0:
+                        total += extras
+                    processed += 1
+
+                    # (F) 若 req 含多個 enumerated 項目但 AI 只回 1 筆，給個啟發式 warning
+                    split_warning = _heuristic_split_warning(row, len(tc_group))
+
                     # 先送 req.split：告訴前端此 req 拆成幾筆 TC、AI 拆分 reasoning、keyword 分析
                     meta = split_meta_list[group_idx] if group_idx < len(split_meta_list) else {}
-                    yield _sse_event(
-                        {
-                            "type": "req.split",
-                            "jobId": jobId,
-                            "rowId": row["id"],
-                            "reqId": row.get("req_id") or meta.get("req_id") or "",
-                            "tcCount": len(tc_group),
-                            "reasoning": str(meta.get("reasoning") or ""),
-                            "keywords": meta.get("keywords") or [],
-                            "message": (
-                                f"{row.get('req_id') or row['id']}: "
-                                f"AI split into {len(tc_group)} TC(s). "
-                                f"{str(meta.get('reasoning') or '')[:200]}"
-                            ).strip(),
-                        }
-                    )
+                    split_payload = {
+                        "type": "req.split",
+                        "jobId": jobId,
+                        "rowId": row["id"],
+                        "reqId": row.get("req_id") or meta.get("req_id") or "",
+                        "tcCount": len(tc_group),
+                        "reasoning": str(meta.get("reasoning") or ""),
+                        "keywords": meta.get("keywords") or [],
+                        "stats": {
+                            "total": total,
+                            "processed": processed,
+                            "currentCost": round(current_cost, 4),
+                            "inputTokens": total_input_tokens,
+                            "outputTokens": total_output_tokens,
+                            "cacheCreationTokens": total_cache_creation_tokens,
+                            "cacheReadTokens": total_cache_read_tokens,
+                        },
+                        "message": (
+                            f"{row.get('req_id') or row['id']}: "
+                            f"AI split into {len(tc_group)} TC(s). "
+                            f"{str(meta.get('reasoning') or '')[:200]}"
+                        ).strip(),
+                    }
+                    if split_warning:
+                        split_payload["splitWarning"] = split_warning
+                    yield _sse_event(split_payload)
+
                     for sub_idx, tc in enumerate(tc_group):
-                        processed += 1
                         is_primary = sub_idx == 0
                         if is_primary:
                             sub_row = row
@@ -1021,8 +1097,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             sub_row = {
                                 **row,
                                 "id": f"{row['id']}__tc{sub_idx + 1}",
-                                # tc_id 由 AI 生成前為空，導出時會沿用 primary 的列號做群組
-                                "tc_id": "",
+                                # (A) 分配新的 tc_id 給 sub-TC
+                                "tc_id": _alloc_sub_tc_id(),
                             }
                         updated_row, has_warnings = _build_stream_row(sub_row, tc)
                         if is_primary:
@@ -1033,6 +1109,18 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             event_type = "row.added"
                         if event_type == "row.failed":
                             updated_row["generated"] = None
+                        # (G) 把拆分資訊附到每筆 TC，sub 也能直接顯示「屬於 REQ-xxx 的 TC k/N」
+                        updated_row["splitDecision"] = {
+                            "reqId": row.get("req_id") or meta.get("req_id") or "",
+                            "tcCount": len(tc_group),
+                            "subIndex": sub_idx,
+                            "parentId": row["id"],
+                            # 完整 reasoning 僅放在 primary，sub 留空避免重複顯示
+                            "reasoning": str(meta.get("reasoning") or "") if is_primary else "",
+                            "keywords": (meta.get("keywords") or []) if is_primary else [],
+                        }
+                        if split_warning and is_primary:
+                            updated_row["splitWarning"] = split_warning
                         if not is_primary:
                             updated_row["parentId"] = row["id"]
                             updated_row["subIndex"] = sub_idx
@@ -1103,7 +1191,12 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
 
 @app.post("/api/jobs/{job_id}/regenerate/stream")
 async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> StreamingResponse:
-    """Re-generate specific rows and stream results back as SSE."""
+    """Re-generate specific rows and stream results back as SSE.
+
+    Runs with `allow_split=False` (legacy 1:1 contract): 每筆選中的 row 會
+    拿到剛好一筆新 TC 覆蓋原內容，不會再被拆成多筆。使用者若想改拆分數，
+    要回到 Generate 畫面重跑完整流程，而不是 regenerate 既有列。
+    """
     job = JOB_REGISTRY.get(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="job not found")
