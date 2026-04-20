@@ -2,6 +2,20 @@
 import re
 
 
+_NON_ALNUM = re.compile(r"[^A-Za-z0-9]+")
+
+
+def sanitize_id_segment(raw: str) -> str:
+    """
+    Strip any non-alphanumeric characters so the value is safe to embed in
+    a TC ID segment. Source documents sometimes contain spaces or slashes
+    (e.g. "new R/L" in the Product Document sheet) — §2.1 requires each
+    segment to match `[A-Za-z0-9]+`, so we collapse offending characters
+    rather than let them leak into the ID.
+    """
+    return _NON_ALNUM.sub("", raw or "")
+
+
 def generate_group_abbreviation(group_name: str) -> str:
     """
     Generate abbreviation from Test Group name.
@@ -48,7 +62,13 @@ def generate_tc_ids(
     Returns:
         List of TC ID strings
     """
+    safe_project = sanitize_id_segment(project)
+    safe_group = sanitize_id_segment(group_abbr)
+    if not safe_project:
+        raise ValueError(f"project has no alphanumeric characters: {project!r}")
+    if not safe_group:
+        raise ValueError(f"group_abbr has no alphanumeric characters: {group_abbr!r}")
     return [
-        f"{project}-{group_abbr}-{str(start + i).zfill(3)}"
+        f"{safe_project}-{safe_group}-{str(start + i).zfill(3)}"
         for i in range(count)
     ]

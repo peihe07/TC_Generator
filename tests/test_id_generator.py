@@ -1,7 +1,11 @@
 """Tests for TC ID generator module."""
 import pytest
 
-from id_generator import generate_group_abbreviation, generate_tc_ids
+from id_generator import (
+    generate_group_abbreviation,
+    generate_tc_ids,
+    sanitize_id_segment,
+)
 
 
 class TestGenerateGroupAbbreviation:
@@ -48,3 +52,31 @@ class TestGenerateTcIds:
     def test_no_duplicates(self):
         ids = generate_tc_ids(project="p", group_abbr="A", count=100)
         assert len(ids) == len(set(ids))
+
+    def test_project_with_space_and_slash_sanitized(self):
+        # Source workbook sometimes holds "new R/L" — must not leak into ID.
+        ids = generate_tc_ids(project="new R/L", group_abbr="OMR", count=2)
+        assert ids == ["newRL-OMR-001", "newRL-OMR-002"]
+
+    def test_group_abbr_sanitized(self):
+        ids = generate_tc_ids(project="proj", group_abbr="O M R", count=1)
+        assert ids == ["proj-OMR-001"]
+
+    def test_empty_project_after_sanitize_raises(self):
+        with pytest.raises(ValueError, match="project"):
+            generate_tc_ids(project="///", group_abbr="X", count=1)
+
+    def test_empty_group_after_sanitize_raises(self):
+        with pytest.raises(ValueError, match="group_abbr"):
+            generate_tc_ids(project="P", group_abbr="   ", count=1)
+
+
+class TestSanitizeIdSegment:
+    def test_spaces_removed(self):
+        assert sanitize_id_segment("new R/L") == "newRL"
+
+    def test_keeps_alphanumeric(self):
+        assert sanitize_id_segment("newR1L") == "newR1L"
+
+    def test_empty_input(self):
+        assert sanitize_id_segment("") == ""
