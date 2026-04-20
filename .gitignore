@@ -46,3 +46,4 @@ Thumbs.db
 
 # Local sample data / fixtures (do not commit)
 docs/temp/
+docs/test/
