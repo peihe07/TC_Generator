@@ -1,5 +1,6 @@
 """Excel writer for generated TC results (RULES.md §10.3)."""
 import os
+import re
 from copy import copy
 
 from openpyxl import load_workbook
@@ -34,10 +35,37 @@ def _merge_test_item_text(existing_text: str | None, rewrite: str) -> str:
     return f"{original}\n\n{rewrite}"
 
 
+# Suffixes that OS file managers append when duplicating a file. We strip
+# these before tagging "_generated.xlsx" so the output filename stays clean
+# and the `..._SWQT_{TestGroup}_{date}` pattern survives for re-import.
+# Order matters: more specific patterns first so e.g. "bar - Copy" strips
+# the whole " - Copy" (not just " Copy" leaving a dangling hyphen).
+_DUPLICATE_SUFFIX_PATTERNS = [
+    re.compile(r"\s*-\s*copy(?:\s*\(\d+\))?$", re.I),  # Windows: "foo - Copy" / "foo - Copy (2)"
+    re.compile(r"\s*拷貝(?:\s*\d+)?$"),                 # macOS 繁中: "foo 拷貝" / "foo 拷貝 2"
+    re.compile(r"\s*的副本(?:\s*\d+)?$"),                # macOS 簡中: "foo 的副本"
+    re.compile(r"\s*copy(?:\s*\d+)?$", re.I),           # macOS 英文: "foo copy" / "foo copy 2"
+    re.compile(r"\s*\(\d+\)$"),                         # 通用: "foo (2)"
+]
+
+
+def _clean_basename(basename: str) -> str:
+    """Strip common OS "duplicate file" suffixes (拷貝 / copy / (2)) off the tail."""
+    cleaned = basename
+    while True:
+        before = cleaned
+        for pattern in _DUPLICATE_SUFFIX_PATTERNS:
+            cleaned = pattern.sub("", cleaned)
+        cleaned = cleaned.rstrip()
+        if cleaned == before:
+            return cleaned
+
+
 def build_output_path(input_path: str, output_dir: str | None = None) -> str:
     """Build output file path: {input_filename}_generated.xlsx"""
     dirname = output_dir or os.path.dirname(input_path)
     basename = os.path.splitext(os.path.basename(input_path))[0]
+    basename = _clean_basename(basename)
     return os.path.join(dirname, f"{basename}_generated.xlsx")
 
 

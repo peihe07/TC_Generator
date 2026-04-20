@@ -105,6 +105,32 @@ class TestBuildOutputPath:
         assert path.startswith("/out/")
         assert path.endswith("input_generated.xlsx")
 
+    def test_strips_macos_duplicate_suffix_tc(self):
+        # macOS Finder duplicates as "foo 拷貝.xlsx" — must not leak into output.
+        path = build_output_path("/data/Project_SWQT_DeviceManager_20260408 拷貝.xlsx")
+        assert path.endswith("Project_SWQT_DeviceManager_20260408_generated.xlsx")
+
+    def test_strips_macos_duplicate_suffix_no_space(self):
+        # Chinese duplicate marker without separating space.
+        path = build_output_path("/data/foo拷貝.xlsx")
+        assert path.endswith("foo_generated.xlsx")
+
+    def test_strips_windows_copy_suffix(self):
+        path = build_output_path("/data/report - Copy.xlsx")
+        assert path.endswith("report_generated.xlsx")
+
+    def test_strips_windows_copy_with_index(self):
+        path = build_output_path("/data/report - Copy (2).xlsx")
+        assert path.endswith("report_generated.xlsx")
+
+    def test_strips_macos_english_copy(self):
+        path = build_output_path("/data/foo copy 3.xlsx")
+        assert path.endswith("foo_generated.xlsx")
+
+    def test_keeps_clean_basename_unchanged(self):
+        path = build_output_path("/data/Project_SWQT_DeviceManager_20260408.xlsx")
+        assert path.endswith("Project_SWQT_DeviceManager_20260408_generated.xlsx")
+
 
 class TestWriteGeneratedResults:
     def test_writes_tc_id(self, input_xlsx, generated_rows, tmp_path):
