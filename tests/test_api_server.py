@@ -183,7 +183,7 @@ def test_create_generate_job():
     assert "/api/generate/stream?jobId=parse-20260416-123456" in payload["streamUrl"]
 
 
-@patch("tools.generate.generate_batch")
+@patch("tools.generate.generate_batch_multi")
 def test_stream_generate_job(mock_generate_batch):
     parse_response = client.post(
         "/api/parse",
@@ -197,30 +197,35 @@ def test_stream_generate_job(mock_generate_batch):
     )
     payload = parse_response.json()
 
+    # Multi-TC 模式：每個 input row 回傳一個 list of TCs（此測試每 req 只 1 筆）
     mock_generate_batch.return_value = SimpleNamespace(
         tc_data=[
-            {
-                "test_item_rewrite": "(Condition → Outcome A)",
-                "pre_conditions": "NA",
-                "input_test_data": "NA",
-                "test_procedure": "1. Perform setup.\n2. Verify the result.",
-                "expected_result": "1. Setup completes.\n2. Result is verified.",
-                "design_method": "功能測試 (Functional based ; no specific technique)",
-                "priority": "High",
-                "split_flag": False,
-                "split_reason": "",
-            },
-            {
-                "test_item_rewrite": "(Condition → Outcome B)",
-                "pre_conditions": "NA",
-                "input_test_data": "NA",
-                "test_procedure": "1. Perform setup.\n2. Verify the result.",
-                "expected_result": "1. Setup completes.\n2. Result is verified.",
-                "design_method": "功能測試 (Functional based ; no specific technique)",
-                "priority": "Medium",
-                "split_flag": False,
-                "split_reason": "",
-            },
+            [
+                {
+                    "test_item_rewrite": "(Condition → Outcome A)",
+                    "pre_conditions": "NA",
+                    "input_test_data": "NA",
+                    "test_procedure": "1. Perform setup.\n2. Verify the result.",
+                    "expected_result": "1. Setup completes.\n2. Result is verified.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "High",
+                    "split_flag": False,
+                    "split_reason": "",
+                },
+            ],
+            [
+                {
+                    "test_item_rewrite": "(Condition → Outcome B)",
+                    "pre_conditions": "NA",
+                    "input_test_data": "NA",
+                    "test_procedure": "1. Perform setup.\n2. Verify the result.",
+                    "expected_result": "1. Setup completes.\n2. Result is verified.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "Medium",
+                    "split_flag": False,
+                    "split_reason": "",
+                },
+            ],
         ],
         input_tokens=10,
         output_tokens=20,
@@ -279,7 +284,7 @@ def _build_mixed_workbook_bytes() -> bytes:
     return stream.getvalue()
 
 
-@patch("tools.generate.generate_single_tc")
+@patch("tools.generate.generate_tcs_for_row")
 def test_stream_generate_preserves_existing_content(mock_generate_single):
     """RULES.md §499 — rows with existing Pre-Cond/Procedure/Expected are
     passed through without an AI call; only empty rows trigger generation.
@@ -296,8 +301,9 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
     )
     parsed = parse_response.json()
 
+    # Multi-TC mode: tc_data 為 list of TCs（此測試單筆）
     mock_generate_single.return_value = SimpleNamespace(
-        tc_data={
+        tc_data=[{
             "test_item_rewrite": "(Condition → Outcome)",
             "pre_conditions": "NA",
             "input_test_data": "NA",
@@ -307,7 +313,7 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
             "priority": "Medium",
             "split_flag": False,
             "split_reason": "",
-        },
+        }],
         input_tokens=10,
         output_tokens=20,
         cache_creation_tokens=0,
@@ -345,7 +351,7 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
     assert "1 to generate, 1 preserved" in response.text
 
 
-@patch("tools.generate.generate_batch")
+@patch("tools.generate.generate_batch_multi")
 def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
     """regenerateAll=True forces AI regeneration for every row."""
     parse_response = client.post(
@@ -360,9 +366,10 @@ def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
     )
     parsed = parse_response.json()
 
+    # Multi-TC：外層 per-req list，內層 per-TC list（這裡每 req 1 筆 TC）
     mock_generate_batch.return_value = SimpleNamespace(
         tc_data=[
-            {
+            [{
                 "test_item_rewrite": "(Condition → Outcome)",
                 "pre_conditions": "NA",
                 "input_test_data": "NA",
@@ -372,7 +379,7 @@ def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
                 "priority": "Medium",
                 "split_flag": False,
                 "split_reason": "",
-            }
+            }]
         ] * 2,
         input_tokens=10,
         output_tokens=20,
@@ -402,7 +409,7 @@ def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
     assert len(sent_rows) == 2
 
 
-@patch("tools.generate.generate_single_tc")
+@patch("tools.generate.generate_tcs_for_row")
 def test_stream_generate_job_marks_strict_validation_failures(mock_generate_single_tc):
     parse_response = client.post(
         "/api/parse",
@@ -417,7 +424,7 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
     payload = parse_response.json()
 
     mock_generate_single_tc.return_value = SimpleNamespace(
-        tc_data={
+        tc_data=[{
             "test_item_rewrite": "(Condition → Outcome)",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
@@ -427,7 +434,7 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
             "priority": "Critical",
             "split_flag": False,
             "split_reason": "",
-        },
+        }],
         input_tokens=10,
         output_tokens=20,
         cost=0.001,
@@ -453,7 +460,7 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
     assert '"generated": null' in response.text
 
 
-@patch("tools.generate.generate_single_tc")
+@patch("tools.generate.generate_tcs_for_row")
 def test_stream_generate_job_keeps_warning_rows_completed_in_non_strict_mode(mock_generate_single_tc):
     parse_response = client.post(
         "/api/parse",
@@ -468,7 +475,7 @@ def test_stream_generate_job_keeps_warning_rows_completed_in_non_strict_mode(moc
     payload = parse_response.json()
 
     mock_generate_single_tc.return_value = SimpleNamespace(
-        tc_data={
+        tc_data=[{
             "test_item_rewrite": "(Condition → Outcome)",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
@@ -478,7 +485,7 @@ def test_stream_generate_job_keeps_warning_rows_completed_in_non_strict_mode(moc
             "priority": "Critical",
             "split_flag": False,
             "split_reason": "",
-        },
+        }],
         input_tokens=10,
         output_tokens=20,
         cost=0.001,

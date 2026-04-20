@@ -17,6 +17,8 @@ from prompt_builder import (
     build_batch_prompt,
     build_quick_generate_prompt,
     build_decompose_prompt,
+    build_multi_tc_user_prompt,
+    build_multi_tc_batch_prompt,
     REQUIRED_OUTPUT_KEYS,
 )
 
@@ -59,6 +61,10 @@ class GenerationResult:
     cache_read_tokens: int = 0
     cost: float = 0.0
     model: str = ""
+    # Multi-TC 路徑會填入：split_meta[i] = {"req_id", "reasoning", "keywords"}
+    # 與 tc_data（outer list for batch, 或 single list for per-row）對齊。
+    # Legacy 路徑為空 list。
+    split_meta: list[dict] = field(default_factory=list)
 
 
 def _strip_fences(text: str) -> str:
@@ -477,4 +483,172 @@ def generate_batch(
         cache_read_tokens=t["cache_read"],
         cost=cost,
         model=model,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Multi-TC generation (one requirement → 1..N TCs as decided by the model).
+# 沒有上限：AI 依 ASPICE_SWE6 規則決定每個 req 要拆幾筆（§1.2, §1.4, §1.5 等）。
+# ---------------------------------------------------------------------------
+
+
+# Token budget hint：預估 AI 針對一個 req 最多可能回幾筆 TC，用來向 OpenAI 要
+# 足夠的 output token 空間，並非硬性上限（超過也不會拒絕）。§1.4 要求每種支援
+# 項目各一筆，現實中 8~10 筆都屬常見，給 16 筆緩衝避免被 token 截斷。
+_TC_TOKEN_BUDGET_HINT = 16
+_TC_TOKEN_PER_TC = 2000
+
+
+def _validate_tcs_array(tcs, *, context: str) -> list[dict]:
+    """檢查陣列型 TC 回傳是否合法，回傳 normalize 後的 list。"""
+    if not isinstance(tcs, list) or not tcs:
+        raise GenerationError(f"{context}: expected non-empty 'tcs' array")
+    for i, tc in enumerate(tcs):
+        if not isinstance(tc, dict):
+            raise GenerationError(f"{context}: tcs[{i}] is not an object")
+        missing = [k for k in REQUIRED_OUTPUT_KEYS if k not in tc]
+        if missing:
+            raise GenerationError(f"{context}: tcs[{i}] missing keys: {missing}")
+    return [_normalize_tc_dict(tc) for tc in tcs]
+
+
+def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
+    """Parse a `{reasoning, keywords, tcs}` JSON response.
+
+    Returns (tcs, meta) where meta = {"reasoning": str, "keywords": list}.
+    Old callers can just take [0] to keep the TC list.
+    """
+    text = _strip_fences(raw)
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        raise GenerationError(f"Failed to parse multi-TC response: {e}") from e
+
+    reasoning = ""
+    keywords: list = []
+
+    if isinstance(data, list):
+        tcs = data
+    elif isinstance(data, dict) and "tcs" in data:
+        tcs = data["tcs"]
+        reasoning = str(data.get("reasoning") or "")
+        kws = data.get("keywords")
+        if isinstance(kws, list):
+            keywords = kws
+    # 容忍 AI 只回單一 TC（退化成 1 筆）
+    elif isinstance(data, dict) and all(k in data for k in REQUIRED_OUTPUT_KEYS):
+        tcs = [data]
+    else:
+        raise GenerationError("Multi-TC response missing 'tcs' field")
+
+    return _validate_tcs_array(tcs, context="multi_tc"), {
+        "reasoning": reasoning,
+        "keywords": keywords,
+    }
+
+
+def parse_multi_tc_batch_response(
+    raw: str, expected_count: int,
+) -> tuple[list[list[dict]], list[dict]]:
+    """Parse `{requirements: [{req_id, reasoning, keywords, tcs}, ...]}`.
+
+    Returns (tc_groups, meta_list). `meta_list[i]` = {"reasoning": str,
+    "keywords": list, "req_id": str} aligned with input rows.
+    """
+    text = _strip_fences(raw)
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        raise GenerationError(f"Failed to parse multi-TC batch response: {e}") from e
+
+    if isinstance(data, dict) and "requirements" in data:
+        reqs = data["requirements"]
+    elif isinstance(data, list):
+        reqs = data
+    else:
+        raise GenerationError("Multi-TC batch response missing 'requirements' field")
+
+    if not isinstance(reqs, list) or len(reqs) != expected_count:
+        raise GenerationError(
+            f"Multi-TC batch: expected {expected_count} requirement groups, got "
+            f"{len(reqs) if isinstance(reqs, list) else 'non-list'}"
+        )
+
+    tc_groups: list[list[dict]] = []
+    meta_list: list[dict] = []
+    for i, entry in enumerate(reqs):
+        if not isinstance(entry, dict):
+            raise GenerationError(f"requirements[{i}] is not an object")
+        tcs = entry.get("tcs")
+        tc_groups.append(_validate_tcs_array(tcs, context=f"requirements[{i}]"))
+        kws = entry.get("keywords")
+        meta_list.append({
+            "req_id": str(entry.get("req_id") or ""),
+            "reasoning": str(entry.get("reasoning") or ""),
+            "keywords": kws if isinstance(kws, list) else [],
+        })
+    return tc_groups, meta_list
+
+
+def generate_tcs_for_row(
+    row: dict,
+    context: dict,
+    spec_index: dict | None,
+    rules_text: str,
+    model: str = DEFAULT_MODEL,
+) -> GenerationResult:
+    """Generate 1..N TCs for a single requirement. AI decides how many to split."""
+    system = build_system_blocks(rules_text)
+    user_prompt = build_multi_tc_user_prompt(row, context, spec_index, rules_text="")
+    response = _chat(system, user_prompt, model, max_tokens=_TC_TOKEN_PER_TC * _TC_TOKEN_BUDGET_HINT)
+
+    raw_text = response.choices[0].message.content or ""
+    tcs, meta = parse_multi_tc_response(raw_text)
+    meta["req_id"] = str(row.get("req_id") or row.get("reqId") or "")
+
+    t = _usage_tokens(response.usage)
+    cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
+
+    return GenerationResult(
+        tc_data=tcs,
+        input_tokens=t["input"],
+        output_tokens=t["output"],
+        cache_creation_tokens=t["cache_creation"],
+        cache_read_tokens=t["cache_read"],
+        cost=cost,
+        model=model,
+        split_meta=[meta],
+    )
+
+
+def generate_batch_multi(
+    rows: list[dict],
+    context: dict,
+    spec_index: dict | None,
+    rules_text: str,
+    model: str = DEFAULT_MODEL,
+) -> GenerationResult:
+    """Batch variant: N requirements → list[list[TC]]（每個 req 1..N 筆）。"""
+    system = build_system_blocks(rules_text, batch=True)
+    user_prompt = build_multi_tc_batch_prompt(rows, context, spec_index, rules_text="")
+    response = _chat(
+        system, user_prompt, model,
+        max_tokens=_TC_TOKEN_PER_TC * _TC_TOKEN_BUDGET_HINT * len(rows),
+    )
+
+    raw_text = response.choices[0].message.content or ""
+    tc_groups, meta_list = parse_multi_tc_batch_response(raw_text, expected_count=len(rows))
+
+    t = _usage_tokens(response.usage)
+    cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
+
+    return GenerationResult(
+        tc_data=tc_groups,  # type: ignore[arg-type]
+        input_tokens=t["input"],
+        output_tokens=t["output"],
+        cache_creation_tokens=t["cache_creation"],
+        cache_read_tokens=t["cache_read"],
+        cost=cost,
+        model=model,
+        split_meta=meta_list,
     )

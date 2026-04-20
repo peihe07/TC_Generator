@@ -69,6 +69,72 @@ def build_output_path(input_path: str, output_dir: str | None = None) -> str:
     return os.path.join(dirname, f"{basename}_generated.xlsx")
 
 
+_TEMPLATE_CARRY_COLUMNS = (3, 4, 9)  # C: Polarion ID, D: Req ID, I: Test Item
+
+
+def _has_value(cell) -> bool:
+    v = cell.value
+    return v is not None and str(v).strip() != ""
+
+
+def _copy_style(src, dst) -> None:
+    """從 src cell 複製字體/填色/對齊/邊框到 dst cell（樣式物件需 copy 避免共享）。"""
+    if src.has_style:
+        dst.font = copy(src.font)
+        dst.fill = copy(src.fill)
+        dst.border = copy(src.border)
+        dst.alignment = copy(src.alignment)
+        dst.number_format = src.number_format
+        dst.protection = copy(src.protection)
+
+
+def _write_tc_row(
+    ws,
+    row_num: int,
+    row_data: dict,
+    selected_fields: set[str] | None,
+    append_rewrite: bool,
+    rewritten_req_ids: set[str] | None = None,
+) -> None:
+    """把單一 TC 的資料寫到指定的 Excel 列。
+
+    `rewritten_req_ids` 是「本次 write session 已經在哪些 req_id 上 append 過 rewrite」
+    的集合；傳入後同一個 req_id 只會 append 一次（跨列 dedup）。
+    """
+    for field, col_idx in WRITE_COLUMNS.items():
+        if selected_fields is not None and field not in selected_fields:
+            continue
+        if field not in row_data:
+            continue
+
+        value = row_data.get(field)
+        cell = ws.cell(row=row_num, column=col_idx)
+        has_value = value is not None and str(value).strip() != ""
+
+        if has_value:
+            cell.value = value
+            cell.alignment = WRAP_TEXT_ALIGNMENT
+        elif field in CLEARABLE_FIELDS:
+            cell.value = None
+            cell.alignment = WRAP_TEXT_ALIGNMENT
+        # else: 空值且非 clearable 欄 → 保留 template 既有內容，不覆蓋。
+
+    if append_rewrite:
+        rewrite = row_data.get("test_item_rewrite")
+        req_id = (row_data.get("req_id") or "").strip()
+        already_done = rewritten_req_ids is not None and req_id in rewritten_req_ids
+        if (
+            rewrite
+            and (selected_fields is None or "test_item_rewrite" in selected_fields)
+            and not already_done
+        ):
+            cell_i = ws.cell(row=row_num, column=9)
+            cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
+            cell_i.alignment = WRAP_TEXT_ALIGNMENT
+            if rewritten_req_ids is not None and req_id:
+                rewritten_req_ids.add(req_id)
+
+
 def write_generated_results(
     input_path: str,
     generated_rows: list[dict],
@@ -80,51 +146,72 @@ def write_generated_results(
 
     Preserves all original formatting. Only writes to specified columns.
     Col I (Test Item) gets rewrite appended, not overwritten.
+
+    若多筆 generated_rows 指向同一個 row_num（AI 把一個 requirement 拆成 N 筆 TC），
+    會在原列下方 `insert_rows` 補 N-1 列、複製 C/D/I 等欄位，再把每筆 TC 各自寫入。
     """
     wb = load_workbook(input_path)
     ws = wb[TC_SHEET_NAME]
 
-    # Track requirements that have already received a `()` rewrite so one
-    # requirement split into multiple TC rows only gets the summary appended
-    # once (on the first row). Subsequent rows sharing the same req_id keep
-    # their original Col I text untouched — a repeated rewrite would just be
-    # noise since the summary describes the same requirement.
+    # 依 row_num 分組，保留原本傳入順序；row_num 為 None 的項目丟到尾端維持相容。
+    groups: dict[int, list[dict]] = {}
+    order: list[int] = []
+    orphans: list[dict] = []
+    for row_data in generated_rows:
+        rn = row_data.get("row_num")
+        if not rn:
+            orphans.append(row_data)
+            continue
+        if rn not in groups:
+            groups[rn] = []
+            order.append(rn)
+        groups[rn].append(row_data)
+
     rewritten_req_ids: set[str] = set()
 
-    for row_data in generated_rows:
-        row_num = row_data["row_num"]
+    # 由上而下處理 row_num 以保留原始順序（尤其影響 rewrite dedup 的先後）。
+    # 插列會讓後續列位移，所以維護一個累積 offset 套用到後面的 target row。
+    cumulative_offset = 0
+    for row_num in sorted(order):
+        items = groups[row_num]
+        extras = len(items) - 1
+        base_row = row_num + cumulative_offset
 
-        # Write standard generated columns (overwrite)
-        for field, col_idx in WRITE_COLUMNS.items():
-            if selected_fields is not None and field not in selected_fields:
-                continue
-            if field not in row_data:
-                continue
+        if extras > 0:
+            # 在原列下方插入 N-1 列，並把 template 的 C/D/I 欄位複製過去，
+            # 這樣每筆 split 出來的 TC 都能對應正確的 req_id / test_item 文字。
+            ws.insert_rows(base_row + 1, amount=extras)
+            for offset in range(1, extras + 1):
+                for col in _TEMPLATE_CARRY_COLUMNS:
+                    src = ws.cell(row=base_row, column=col)
+                    dst = ws.cell(row=base_row + offset, column=col)
+                    dst.value = src.value
+                    _copy_style(src, dst)
 
-            value = row_data.get(field)
-            cell = ws.cell(row=row_num, column=col_idx)
-            if value is not None:
-                cell.value = value
-                cell.alignment = WRAP_TEXT_ALIGNMENT
-            elif field in CLEARABLE_FIELDS:
-                cell.value = None
-                cell.alignment = WRAP_TEXT_ALIGNMENT
+        for idx, row_data in enumerate(items):
+            _write_tc_row(
+                ws,
+                row_num=base_row + idx,
+                row_data=row_data,
+                selected_fields=selected_fields,
+                append_rewrite=True,
+                rewritten_req_ids=rewritten_req_ids,
+            )
 
-        # Col I (Test Item): append rewrite, preserve original. Dedupe by
-        # req_id so split TCs don't each carry an identical summary.
-        rewrite = row_data.get("test_item_rewrite")
-        req_id = (row_data.get("req_id") or "").strip()
-        should_append_rewrite = (
-            rewrite
-            and (selected_fields is None or "test_item_rewrite" in selected_fields)
-            and req_id not in rewritten_req_ids
-        )
-        if should_append_rewrite:
-            cell_i = ws.cell(row=row_num, column=9)
-            cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
-            cell_i.alignment = WRAP_TEXT_ALIGNMENT
-            if req_id:
-                rewritten_req_ids.add(req_id)
+        cumulative_offset += extras
+
+    # row_num 不明的退回舊行為：直接寫末尾，不插列。
+    if orphans:
+        append_start = ws.max_row + 1
+        for i, row_data in enumerate(orphans):
+            _write_tc_row(
+                ws,
+                row_num=append_start + i,
+                row_data=row_data,
+                selected_fields=selected_fields,
+                append_rewrite=True,
+                rewritten_req_ids=rewritten_req_ids,
+            )
 
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     wb.save(output_path)

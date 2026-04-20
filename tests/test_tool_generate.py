@@ -39,9 +39,11 @@ def _fake_tc(suffix: str = "A") -> dict:
     }
 
 
-def test_generate_single_row_uses_single_tc_path():
+def test_generate_single_row_uses_multi_tc_path():
+    """Default (allow_split=True) 走 generate_tcs_for_row，回傳 list[list[dict]]。"""
+    fake_tc = _fake_tc("A")
     fake_result = SimpleNamespace(
-        tc_data=_fake_tc("A"),
+        tc_data=[fake_tc],
         input_tokens=100,
         output_tokens=50,
         cache_creation_tokens=0,
@@ -49,8 +51,8 @@ def test_generate_single_row_uses_single_tc_path():
         cost=0.001,
         model="gpt-4.1-mini",
     )
-    with patch("backend.tools.generate.generate_single_tc", return_value=fake_result) as single, \
-         patch("backend.tools.generate.generate_batch") as batch_mock:
+    with patch("backend.tools.generate.generate_tcs_for_row", return_value=fake_result) as multi, \
+         patch("backend.tools.generate.generate_batch_multi") as batch_mock:
         out = generate_tc_tool(
             rows=[_BASE_ROW],
             context=_CONTEXT,
@@ -59,19 +61,33 @@ def test_generate_single_row_uses_single_tc_path():
             model="gpt-4.1-mini",
         )
 
-    assert single.called
+    assert multi.called
     assert not batch_mock.called
-    assert out["tcData"] == [fake_result.tc_data]
+    # tcData 是 list[list[dict]]
+    assert out["tcData"] == [[fake_tc]]
     assert out["cost"] == 0.001
     assert out["inputTokens"] == 100
-    assert out["outputTokens"] == 50
-    assert out["cacheReadTokens"] == 20
 
 
-def test_generate_multi_row_uses_batch_path():
-    tcs = [_fake_tc("A"), _fake_tc("B")]
+def test_generate_single_row_splits_into_multiple_tcs():
+    """AI 判斷一個 req 需 3 筆 TC，tool 回傳 [[tc1, tc2, tc3]]。"""
+    tcs = [_fake_tc("A"), _fake_tc("B"), _fake_tc("C")]
     fake_result = SimpleNamespace(
         tc_data=tcs,
+        input_tokens=100, output_tokens=50, cache_creation_tokens=0,
+        cache_read_tokens=0, cost=0.001, model="gpt-4.1",
+    )
+    with patch("backend.tools.generate.generate_tcs_for_row", return_value=fake_result):
+        out = generate_tc_tool(
+            rows=[_BASE_ROW], context=_CONTEXT, rules_text="RULES",
+        )
+    assert out["tcData"] == [tcs]
+
+
+def test_generate_multi_row_uses_batch_multi_path():
+    tc_groups = [[_fake_tc("A1"), _fake_tc("A2")], [_fake_tc("B1")]]
+    fake_result = SimpleNamespace(
+        tc_data=tc_groups,
         input_tokens=200,
         output_tokens=90,
         cache_creation_tokens=0,
@@ -79,8 +95,8 @@ def test_generate_multi_row_uses_batch_path():
         cost=0.002,
         model="gpt-4.1",
     )
-    with patch("backend.tools.generate.generate_batch", return_value=fake_result) as batch_mock, \
-         patch("backend.tools.generate.generate_single_tc") as single_mock:
+    with patch("backend.tools.generate.generate_batch_multi", return_value=fake_result) as batch_mock, \
+         patch("backend.tools.generate.generate_tcs_for_row") as single_mock:
         out = generate_tc_tool(
             rows=[_BASE_ROW, {**_BASE_ROW, "id": "r2", "row_num": 11}],
             context=_CONTEXT,
@@ -90,8 +106,25 @@ def test_generate_multi_row_uses_batch_path():
 
     assert batch_mock.called
     assert not single_mock.called
-    assert out["tcData"] == tcs
+    assert out["tcData"] == tc_groups
     assert out["cost"] == 0.002
+
+
+def test_generate_legacy_single_path_with_allow_split_false():
+    """allow_split=False 走舊的 generate_single_tc，回傳仍包成 [[tc]] 以統一介面。"""
+    fake_tc = _fake_tc("A")
+    fake_result = SimpleNamespace(
+        tc_data=fake_tc,
+        input_tokens=100, output_tokens=50, cache_creation_tokens=0,
+        cache_read_tokens=0, cost=0.001, model="gpt-4.1",
+    )
+    with patch("backend.tools.generate.generate_single_tc", return_value=fake_result) as single:
+        out = generate_tc_tool(
+            rows=[_BASE_ROW], context=_CONTEXT, rules_text="RULES",
+            allow_split=False,
+        )
+    assert single.called
+    assert out["tcData"] == [[fake_tc]]
 
 
 def test_generate_empty_rows_raises():
@@ -103,7 +136,7 @@ def test_generate_empty_rows_raises():
 def test_generate_wraps_generation_error():
     from generator import GenerationError
 
-    with patch("backend.tools.generate.generate_single_tc", side_effect=GenerationError("API down")):
+    with patch("backend.tools.generate.generate_tcs_for_row", side_effect=GenerationError("API down")):
         with pytest.raises(ToolError) as info:
             generate_tc_tool(
                 rows=[_BASE_ROW],
@@ -116,12 +149,12 @@ def test_generate_wraps_generation_error():
 
 def test_generate_does_not_mutate_caller_context():
     fake_result = SimpleNamespace(
-        tc_data=_fake_tc(),
+        tc_data=[_fake_tc()],
         input_tokens=1, output_tokens=1, cache_creation_tokens=0,
         cache_read_tokens=0, cost=0.0, model="",
     )
     ctx = {"project": "p", "test_group": "g", "test_set": "OriginalSet"}
-    with patch("backend.tools.generate.generate_single_tc", return_value=fake_result):
+    with patch("backend.tools.generate.generate_tcs_for_row", return_value=fake_result):
         generate_tc_tool(rows=[_BASE_ROW], context=ctx, rules_text="RULES")
 
     # caller's context 應未被改動

@@ -313,6 +313,117 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=16).value == "Medium"
 
 
+    def test_multi_tc_per_row_inserts_rows(self, input_xlsx, tmp_path):
+        """AI 把 1 個 req 拆成 3 筆 TC 時，writer 應該在原列下方插 2 列，
+        複製 C/D/I 欄，然後各列寫入自己的 TC 內容。"""
+        rows = [
+            {
+                "row_num": 10,
+                "req_id": "SWE1-HMI-DM-001-01",
+                "tc_id": "newR1L-DMR-001",
+                "test_item_rewrite": "(Trigger → Outcome A)",
+                "pre_conditions": "pre-A",
+                "test_procedure": "1. step A",
+                "expected_result": "1. result A",
+                "priority": "High",
+                "design_method": "Functional",
+            },
+            {
+                "row_num": 10,
+                "req_id": "SWE1-HMI-DM-001-01",
+                "tc_id": "newR1L-DMR-002",
+                "test_item_rewrite": "(Trigger → Outcome B)",
+                "pre_conditions": "pre-B",
+                "test_procedure": "1. step B",
+                "expected_result": "1. result B",
+                "priority": "Medium",
+                "design_method": "Functional",
+            },
+            {
+                "row_num": 10,
+                "req_id": "SWE1-HMI-DM-001-01",
+                "tc_id": "newR1L-DMR-003",
+                "test_item_rewrite": "(Trigger → Outcome C)",
+                "pre_conditions": "pre-C",
+                "test_procedure": "1. step C",
+                "expected_result": "1. result C",
+                "priority": "Low",
+                "design_method": "Functional",
+            },
+            # 第二個 req 放在原本的 row 11，確認 insert 後的 offset 正確。
+            {
+                "row_num": 11,
+                "req_id": "SWE1-HMI-DM-002-01",
+                "tc_id": "newR1L-DMR-004",
+                "test_item_rewrite": "(Other trigger → outcome)",
+                "pre_conditions": "pre-D",
+                "test_procedure": "1. step D",
+                "expected_result": "1. result D",
+                "priority": "High",
+                "design_method": "Functional",
+            },
+        ]
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        # Row 10–12 都屬於第一個 req，C/D/I 欄位值應相同。
+        for r in (10, 11, 12):
+            assert ws.cell(row=r, column=4).value == "SWE1-HMI-DM-001-01"
+            assert "PDM01.1) Original text here." in (ws.cell(row=r, column=9).value or "")
+        # 三個 TC ID 各自寫入各自的列。
+        assert ws.cell(row=10, column=6).value == "newR1L-DMR-001"
+        assert ws.cell(row=11, column=6).value == "newR1L-DMR-002"
+        assert ws.cell(row=12, column=6).value == "newR1L-DMR-003"
+        # procedure / expected 各自分開。
+        assert ws.cell(row=10, column=12).value == "1. step A"
+        assert ws.cell(row=11, column=12).value == "1. step B"
+        assert ws.cell(row=12, column=12).value == "1. step C"
+        assert ws.cell(row=10, column=13).value == "1. result A"
+        assert ws.cell(row=12, column=13).value == "1. result C"
+        # rewrite 只 append 在第一筆（row 10），其餘列保留原始 test_item。
+        row10_i = ws.cell(row=10, column=9).value
+        assert "(Trigger → Outcome A)" in row10_i
+        row11_i = ws.cell(row=11, column=9).value or ""
+        assert "(Trigger → Outcome B)" not in row11_i
+        # 第二個 req 被 offset 後應該落在 row 13（10 + 2 extras + 1）。
+        assert ws.cell(row=13, column=4).value == "SWE1-HMI-DM-002-01"
+        assert ws.cell(row=13, column=6).value == "newR1L-DMR-004"
+
+    def test_does_not_overwrite_template_with_empty_values(self, input_xlsx, tmp_path):
+        """Template 既有內容（例如 spec 帶進來的 test_procedure）不應該被
+        空字串 / None 覆蓋。"""
+        # 先模擬 template 原本就有 procedure/expected 內容。
+        wb = load_workbook(input_xlsx)
+        ws = wb["Test Case Specification&Result"]
+        ws.cell(row=10, column=12, value="template procedure from spec")
+        ws.cell(row=10, column=13, value="template expected from spec")
+        wb.save(input_xlsx)
+
+        rows = [{
+            "row_num": 10,
+            "req_id": "SWE1-HMI-DM-001-01",
+            "tc_id": "newR1L-DMR-001",
+            "test_item_rewrite": "(X → Y)",
+            "pre_conditions": "",         # 空字串：不應蓋掉 template
+            "test_procedure": "",
+            "expected_result": "",
+            "priority": "Medium",
+            "design_method": "Functional",
+        }]
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        # Template 原本的內容保留。
+        assert ws.cell(row=10, column=12).value == "template procedure from spec"
+        assert ws.cell(row=10, column=13).value == "template expected from spec"
+        # 非空欄位仍有寫入。
+        assert ws.cell(row=10, column=16).value == "Medium"
+
+
 class TestWriteFrameworkSheet:
     def test_writes_data(self, input_xlsx, framework_data, tmp_path):
         output = str(tmp_path / "output.xlsx")

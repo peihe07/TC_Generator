@@ -14,9 +14,13 @@ from generator import (
     calculate_cost,
     decompose_requirement,
     generate_batch,
+    generate_batch_multi,
     generate_quick_tc,
     generate_single_tc,
+    generate_tcs_for_row,
     parse_batch_response,
+    parse_multi_tc_batch_response,
+    parse_multi_tc_response,
     parse_tc_response,
 )
 
@@ -339,3 +343,99 @@ class TestDecomposeRequirement:
 
         result = decompose_requirement(requirement="req", rules_text="rules", model="gpt-4.1")
         assert abs(result.cost - 10.0) < 0.001
+
+
+class TestParseMultiTcResponse:
+    def test_wrapped_tcs_array(self):
+        payload = {"tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}]}
+        result = parse_multi_tc_response(json.dumps(payload))
+        assert len(result) == 2
+        assert result[0]["priority"] == "Medium"
+        assert result[1]["priority"] == "High"
+
+    def test_plain_array_also_accepted(self):
+        result = parse_multi_tc_response(json.dumps([VALID_TC_JSON]))
+        assert len(result) == 1
+
+    def test_single_object_falls_back_to_list(self):
+        """AI 回單一 dict（沒包 tcs）時仍當作 1 筆 TC 處理。"""
+        result = parse_multi_tc_response(json.dumps(VALID_TC_JSON))
+        assert len(result) == 1
+
+    def test_empty_array_raises(self):
+        with pytest.raises(GenerationError, match="non-empty"):
+            parse_multi_tc_response(json.dumps({"tcs": []}))
+
+    def test_no_upper_cap_on_tc_count(self):
+        """沒有上限：AI 依 ASPICE 規則要多少筆就多少筆（例如 §1.4 支援 10 種格式）。"""
+        many = {"tcs": [VALID_TC_JSON] * 10}
+        result = parse_multi_tc_response(json.dumps(many))
+        assert len(result) == 10
+
+    def test_missing_keys_raises(self):
+        broken = {"tcs": [{"test_procedure": "only one field"}]}
+        with pytest.raises(GenerationError, match="missing keys"):
+            parse_multi_tc_response(json.dumps(broken))
+
+
+class TestParseMultiTcBatchResponse:
+    def test_per_req_arrays(self):
+        payload = {
+            "requirements": [
+                {"req_id": "R1", "tcs": [VALID_TC_JSON, VALID_TC_JSON]},
+                {"req_id": "R2", "tcs": [VALID_TC_JSON]},
+            ]
+        }
+        result = parse_multi_tc_batch_response(json.dumps(payload), expected_count=2)
+        assert len(result) == 2
+        assert len(result[0]) == 2
+        assert len(result[1]) == 1
+
+    def test_count_mismatch_raises(self):
+        payload = {"requirements": [{"req_id": "R1", "tcs": [VALID_TC_JSON]}]}
+        with pytest.raises(GenerationError, match="expected 2 requirement"):
+            parse_multi_tc_batch_response(json.dumps(payload), expected_count=2)
+
+
+class TestGenerateTcsForRow:
+    @patch("generator._chat")
+    def test_returns_list_of_tcs(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            {"tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}]},
+            prompt_tokens=100, completion_tokens=50,
+        )
+        result = generate_tcs_for_row(
+            row={"req_id": "R1", "test_item": "trigger X"},
+            context={"project": "p", "test_group": "g"},
+            spec_index=None,
+            rules_text="rules",
+        )
+        assert isinstance(result.tc_data, list)
+        assert len(result.tc_data) == 2
+
+
+class TestGenerateBatchMulti:
+    @patch("generator._chat")
+    def test_returns_groups_aligned_with_input(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            {
+                "requirements": [
+                    {"req_id": "R1", "tcs": [VALID_TC_JSON]},
+                    {"req_id": "R2", "tcs": [VALID_TC_JSON, VALID_TC_JSON]},
+                ]
+            },
+            prompt_tokens=200, completion_tokens=100,
+        )
+        result = generate_batch_multi(
+            rows=[
+                {"req_id": "R1", "test_item": "x"},
+                {"req_id": "R2", "test_item": "y"},
+            ],
+            context={"project": "p", "test_group": "g"},
+            spec_index=None,
+            rules_text="rules",
+        )
+        assert isinstance(result.tc_data, list)
+        assert len(result.tc_data) == 2
+        assert len(result.tc_data[0]) == 1
+        assert len(result.tc_data[1]) == 2

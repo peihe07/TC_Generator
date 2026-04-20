@@ -248,7 +248,22 @@ def _build_export_path(filename: str, output_mode: str) -> str:
     return build_output_path(os.path.join(export_dir, filename))
 
 
-def _map_export_rows(rows: list[dict], scope: str, test_group: str | None) -> list[dict]:
+def _map_export_rows(
+    rows: list[dict],
+    scope: str,
+    test_group: str | None,
+    parsed_rows: list[dict] | None = None,
+) -> list[dict]:
+    # 前端 payload 的 rowNum 有時會漏（存到 SQLite 就變 null），
+    # 導致 writer 拿不到正確的 Excel 列號。這裡用 parsedData 做 fallback：
+    # 先依 reqId 找回原列，然後把 row_num 補進 export 資料。
+    parsed_by_req_id: dict[str, dict] = {}
+    if parsed_rows:
+        for pr in parsed_rows:
+            rid = pr.get("req_id")
+            if rid and rid not in parsed_by_req_id:
+                parsed_by_req_id[rid] = pr
+
     exportable = []
     for row in rows:
         review_status = row.get("reviewStatus")
@@ -260,11 +275,18 @@ def _map_export_rows(rows: list[dict], scope: str, test_group: str | None) -> li
         if scope == "flagged" and review_status != "flagged":
             continue
 
+        row_num = row.get("rowNum")
+        req_id = row.get("reqId", "")
+        if not row_num and req_id:
+            base = parsed_by_req_id.get(req_id)
+            if base:
+                row_num = base.get("row_num")
+
         exportable.append(
             {
-                "row_num": row.get("rowNum"),
+                "row_num": row_num,
                 "tc_id": row.get("tcId", ""),
-                "req_id": row.get("reqId", ""),
+                "req_id": req_id,
                 "test_group": test_group or row.get("testGroup"),
                 "test_set": row.get("testSet"),
                 "test_item_rewrite": generated.get("testItemRewrite", ""),
@@ -962,31 +984,79 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 total_output_tokens += batch_result["outputTokens"]
                 total_cache_creation_tokens += batch_result["cacheCreationTokens"]
                 total_cache_read_tokens += batch_result["cacheReadTokens"]
-                for row, tc in zip(batch, tc_data_list):
-                    processed += 1
-                    updated_row, has_warnings = _build_stream_row(row, tc)
-                    event_type = "row.failed" if strict_validation and has_warnings else "row.completed"
-                    if event_type == "row.failed":
-                        updated_row["generated"] = None
+
+                split_meta_list = batch_result.get("splitMeta") or []
+
+                # tc_data_list 現在是 list[list[dict]]：每個 input row 對應 1..N 筆 TC。
+                # 第 1 筆沿用原 row.id / row.rowNum（更新既有列），
+                # 第 2..N 筆以 "row.added" 事件送出，前端據此在同一 rowNum 插入新列。
+                for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
+                    if not isinstance(tc_group, list) or not tc_group:
+                        continue
+
+                    # 先送 req.split：告訴前端此 req 拆成幾筆 TC、AI 拆分 reasoning、keyword 分析
+                    meta = split_meta_list[group_idx] if group_idx < len(split_meta_list) else {}
                     yield _sse_event(
                         {
-                            "type": event_type,
+                            "type": "req.split",
                             "jobId": jobId,
-                            "row": updated_row,
-                            "stats": {
-                                "total": total,
-                                "processed": processed,
-                                "currentCost": round(current_cost, 4),
-                                "inputTokens": total_input_tokens,
-                                "outputTokens": total_output_tokens,
-                                "cacheCreationTokens": total_cache_creation_tokens,
-                                "cacheReadTokens": total_cache_read_tokens,
-                            },
+                            "rowId": row["id"],
+                            "reqId": row.get("req_id") or meta.get("req_id") or "",
+                            "tcCount": len(tc_group),
+                            "reasoning": str(meta.get("reasoning") or ""),
+                            "keywords": meta.get("keywords") or [],
                             "message": (
-                                f"Processed {processed}/{total} rows for {row.get('req_id') or row.get('id')}."
-                            ),
+                                f"{row.get('req_id') or row['id']}: "
+                                f"AI split into {len(tc_group)} TC(s). "
+                                f"{str(meta.get('reasoning') or '')[:200]}"
+                            ).strip(),
                         }
                     )
+                    for sub_idx, tc in enumerate(tc_group):
+                        processed += 1
+                        is_primary = sub_idx == 0
+                        if is_primary:
+                            sub_row = row
+                        else:
+                            sub_row = {
+                                **row,
+                                "id": f"{row['id']}__tc{sub_idx + 1}",
+                                # tc_id 由 AI 生成前為空，導出時會沿用 primary 的列號做群組
+                                "tc_id": "",
+                            }
+                        updated_row, has_warnings = _build_stream_row(sub_row, tc)
+                        if is_primary:
+                            event_type = "row.failed" if strict_validation and has_warnings else "row.completed"
+                        else:
+                            # 子 TC：即使 strict mode 有 warning 也走 row.added，讓前端
+                            # 保留整組、由 review UI 決定要不要接受。
+                            event_type = "row.added"
+                        if event_type == "row.failed":
+                            updated_row["generated"] = None
+                        if not is_primary:
+                            updated_row["parentId"] = row["id"]
+                            updated_row["subIndex"] = sub_idx
+                        yield _sse_event(
+                            {
+                                "type": event_type,
+                                "jobId": jobId,
+                                "row": updated_row,
+                                "stats": {
+                                    "total": total,
+                                    "processed": processed,
+                                    "currentCost": round(current_cost, 4),
+                                    "inputTokens": total_input_tokens,
+                                    "outputTokens": total_output_tokens,
+                                    "cacheCreationTokens": total_cache_creation_tokens,
+                                    "cacheReadTokens": total_cache_read_tokens,
+                                },
+                                "message": (
+                                    f"Processed {processed}/{total} rows for "
+                                    f"{row.get('req_id') or row.get('id')}"
+                                    + (f" (TC {sub_idx + 1}/{len(tc_group)})" if len(tc_group) > 1 else "")
+                                ),
+                            }
+                        )
             except ToolError as exc:
                 for row in batch:
                     processed += 1
@@ -1086,6 +1156,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                     spec_index=spec_index,
                     rules_text=RULES_SECTIONS,
                     model=model,
+                    allow_split=False,  # regenerate 走 legacy 1:1：只更新既有列，不新增列。
                 )
                 tc_data_list = batch_result["tcData"]
 
@@ -1094,8 +1165,10 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                 total_out += batch_result["outputTokens"]
                 total_cache_create += batch_result["cacheCreationTokens"]
                 total_cache_read += batch_result["cacheReadTokens"]
-                for row, tc in zip(batch, tc_data_list):
+                for row, tc_group in zip(batch, tc_data_list):
                     processed += 1
+                    # allow_split=False → 每組剛好 1 筆 TC
+                    tc = tc_group[0] if isinstance(tc_group, list) and tc_group else tc_group
                     updated_row, _ = _build_stream_row(row, tc)
                     yield _sse_event(
                         {
@@ -1143,6 +1216,7 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         payload.rows,
         payload.scope,
         job.get("parsedData", {}).get("test_group") if job.get("parsedData") else None,
+        parsed_rows=job.get("parsedData", {}).get("rows") if job.get("parsedData") else None,
     )
     if not export_rows:
         raise HTTPException(status_code=400, detail="no exportable rows for the selected scope")

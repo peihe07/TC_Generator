@@ -207,3 +207,161 @@ def build_batch_prompt(
 Return a JSON Array with one object per TC. Each object has keys: {output_keys}
 
 REMINDER for every TC: test_item_rewrite must be rewritten (not blank); test_procedure and expected_result must have the same number of numbered items (1:1 mapping)."""
+
+
+# ---------------------------------------------------------------------------
+# Multi-TC prompts: AI 自行判斷一個 requirement 要拆成幾筆 TC，回傳陣列。
+# 不再硬性 1 req = 1 TC，由 AI 針對不同 condition / branch / boundary 自行切分。
+# ---------------------------------------------------------------------------
+
+
+_MULTI_TC_GUIDANCE = """
+## Splitting Policy (strictly follow ASPICE SWE.6 rules loaded above)
+
+Return as many TCs as the rules require — **no upper cap**. The number of TCs
+is driven entirely by what the requirement mandates, not by an arbitrary limit.
+
+Apply these authoritative rules from `ASPICE_SWE6_Test_Case_Writing_Rules.md`:
+
+- **§1.2 Design Rule #1** — If the requirement can be validated by more than
+  one scenario, EACH distinct scenario is its own TC, and each `test_item_rewrite`
+  MUST carry a parenthesised scenario tag so reviewers can tell the TCs apart
+  (e.g. `(Initial Sync = 5,000)` vs `(Initial Sync > 5,000)`).
+- **§1.3 Keyword analysis** — Identify the key concepts in the requirement
+  (limits, per-device rules, order-preservation, stop conditions, etc.) and
+  ensure **every keyword maps to at least one TC**. A concept with no TC
+  coverage is a gap that must be closed by adding another TC.
+- **§1.4 Mistake #4 (False-Pass prevention)** — When the requirement explicitly
+  lists multiple supported items (file formats, device types, markets, input
+  classes, etc.), produce ONE TC per item. Never combine them. e.g. supported
+  video formats `.mp4 / .avi / .mpg / .wmv / .3gp / .mkv` → 6 separate TCs.
+- **§1.5 Extended scenarios** — Think about related branches the requirement
+  implies (unknown / private / withheld values, before-vs-after-sync states,
+  negative paths) and add TCs for each that the requirement actually covers.
+- **§3.4 Baseline rule** — When a TC involves before/after comparison, that
+  TC's procedure must establish a baseline before the change action.
+
+Splitting decision tree:
+1. Does the requirement enumerate supported items (§1.4)? → one TC per item.
+2. Does it describe multiple distinct scenarios / conditions / boundaries?
+   → one TC per scenario (§1.2).
+3. Does it imply extended branches (unknown / error / negative)?
+   → add TCs for each covered branch (§1.5, plus Design Method guide).
+4. Only a single atomic behaviour with no branches? → return exactly one TC.
+
+Additional hard constraints:
+- Each TC is self-contained: its own pre-conditions, procedure, expected result.
+  NEVER write "same as TC1 but…" cross-references.
+- `design_method` for each TC must come from the 9 methods defined in
+  `Test Case Design Method 判斷規則.md`; choose via the "快速判斷流程"
+  (negative → fault → state → decision → EP → BVA → combinatorial →
+  scenario → functional).
+- Every TC must pass the 12-item self-check in §6 of the rules doc.
+"""
+
+
+def build_multi_tc_user_prompt(
+    row: dict,
+    context: dict,
+    spec_index: dict | None,
+    rules_text: str,
+) -> str:
+    """Build user prompt for multi-TC-per-req generation (single row input)."""
+    spec_context = _get_spec_context(row, spec_index)
+    output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
+
+    rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
+    return f"""## Context
+- Project: {context['project']}
+- Test Group: {context['test_group']}
+- Test Set: {context.get('test_set', 'N/A')}
+
+## Requirement
+- Requirement ID: {row.get('req_id') or row.get('reqId') or ''}
+- Original Test Item: {row['test_item']}
+
+## Spec Context
+{spec_context}{rules_section}
+{_MULTI_TC_GUIDANCE}
+## Output
+Return a JSON object with these top-level keys:
+- `reasoning` (string, 繁體中文): ≤3 sentences explaining WHY this requirement
+  was split into N TCs, citing the rule section(s) you applied (e.g.
+  「§1.4 列舉了 6 種支援格式，因此拆成 6 筆；每筆 test_item_rewrite 帶不同情境 tag」).
+  For atomic requirements returning 1 TC, briefly state it is atomic.
+- `keywords` (array, optional): keyword analysis per §1.3, each entry
+  `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
+  numbers are 1-based indices into `tcs`.
+- `tcs` (array): produce as many TCs as the rules require — do not collapse
+  distinct scenarios to save output. Each TC object has keys: {output_keys}
+
+Example (requirement that enumerates 3 supported formats would return 3 TCs):
+{{"reasoning": "§1.4 列舉 3 種格式，各一筆 TC 避免 False Pass 風險。",
+  "keywords": [
+    {{"keyword": "supported formats", "meaning": "系統允許的影片格式",
+      "covered_by": [1, 2, 3]}}
+  ],
+  "tcs": [
+    {{... TC for format 1 ...}},
+    {{... TC for format 2 ...}},
+    {{... TC for format 3 ...}}
+  ]}}
+
+REMINDER for every TC: test_item_rewrite must be rewritten with the scenario
+tag (§1.2) and must not be blank; test_procedure and expected_result must have
+the same number of numbered items (1:1 mapping, §4.3)."""
+
+
+def build_multi_tc_batch_prompt(
+    rows: list[dict],
+    context: dict,
+    spec_index: dict | None,
+    rules_text: str,
+) -> str:
+    """Build user prompt for multi-TC batch generation (N rows → N TC arrays)."""
+    items = []
+    for i, row in enumerate(rows):
+        spec_context = _get_spec_context(row, spec_index)
+        items.append(
+            f"### Requirement {i + 1}\n"
+            f"- Req ID: {row.get('req_id') or row.get('reqId') or ''}\n"
+            f"- Test Set: {row.get('test_set', context.get('test_set', 'N/A'))}\n"
+            f"- Test Item: {row['test_item']}\n"
+            f"- Spec: {spec_context}"
+        )
+    batch_text = "\n\n".join(items)
+    output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
+
+    rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
+    return f"""## Context
+- Project: {context['project']}
+- Test Group: {context['test_group']}
+- Test Set: {context.get('test_set', 'N/A')}
+
+## Requirements
+{batch_text}{rules_section}
+{_MULTI_TC_GUIDANCE}
+## Output
+Return a JSON object `{{"requirements": [...]}}`; the outer array has exactly
+one entry per input requirement, in the same order. Each entry has the shape:
+`{{"req_id": "...", "reasoning": "<繁中>", "keywords": [...], "tcs": [...]}}`
+- `reasoning`: ≤3 sentences explaining WHY that req was split into N TCs,
+  citing rule sections. For atomic reqs returning 1 TC, say so.
+- `keywords` (optional): per-req keyword analysis (§1.3),
+  `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
+- `tcs`: as many TC objects as the rules demand (no cap).
+Each TC object has keys: {output_keys}
+
+Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic → 1 TC):
+{{"requirements": [
+  {{"req_id": "REQ-001",
+    "reasoning": "§1.4 列出 6 種支援格式，各一筆 TC。",
+    "keywords": [], "tcs": [{{...}}, {{...}}, {{...}}, {{...}}, {{...}}, {{...}}]}},
+  {{"req_id": "REQ-002",
+    "reasoning": "單一原子行為，不需拆分。",
+    "keywords": [], "tcs": [{{...}}]}}
+]}}
+
+REMINDER for every TC: test_item_rewrite must be rewritten with the scenario
+tag (§1.2) and must not be blank; test_procedure and expected_result must have
+the same number of numbered items (1:1 mapping, §4.3)."""
