@@ -30,10 +30,11 @@ const RulesModule: React.FC = () => {
         ))}
       </menu>
 
-      {/* Content */}
+      {/* Content — frame comes from AppWindow's outer .border-sunken; no
+       * inline bezel here (nested sunken borders read as too heavy, per
+       * MIGRATION.md §P13). */}
       <div
         role="tabpanel"
-        className="border-sunken"
         style={{
           flex: 1,
           overflow: 'hidden',

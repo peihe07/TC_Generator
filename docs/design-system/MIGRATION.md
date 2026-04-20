@@ -434,7 +434,7 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **§P4 狀態同步關閉：** §P4 是本 item 的視覺規格描述（要求 `isActive` 與 `isSelected` 拆分），§P12 是實作路徑。兩者同根問題，一起解決。
 
-### P13 — Rules module tabpanel nested sunken border 觀察
+### P13 — Rules module tabpanel nested sunken border 觀察 — **已完成（2026-04-20）**
 
 **Background:** Phase 6.8 iframe 靜態驗收時觀察到 `RulesModule.tsx` 的 `<div role="tabpanel">` 有自己的 inline `border: 2px solid` sunken bezel，同時外層 `AppWindow` inner container 也套 `.border-sunken`（2px）。兩層 sunken 邊框在 tabpanel 四週疊加 = 4px sunken 視覺厚度，可能偏重。
 
