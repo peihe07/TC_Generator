@@ -180,7 +180,7 @@ const GenerateModule: React.FC = () => {
                 >
                   <RiPlayListAddLine className="size-3" /> Processed
                 </span>
-                <span className="text-lg font-bold font-mono">{stats.processed}</span>
+                <span className="type-h1 font-mono">{stats.processed}</span>
               </div>
               <div className="stat-sunken">
                 <span
@@ -189,7 +189,7 @@ const GenerateModule: React.FC = () => {
                 >
                   <RiMoneyDollarCircleLine className="size-3" /> Current Cost
                 </span>
-                <span className="text-lg font-bold font-mono">${stats.cost.toFixed(4)}</span>
+                <span className="type-h1 font-mono">${stats.cost.toFixed(4)}</span>
               </div>
               <div className="stat-sunken">
                 <span
@@ -198,7 +198,7 @@ const GenerateModule: React.FC = () => {
                 >
                   <RiTimeLine className="size-3" /> Elapsed
                 </span>
-                <span className="text-lg font-bold font-mono">
+                <span className="type-h1 font-mono">
                   {String(Math.floor(elapsedSeconds / 60)).padStart(2, '0')}:{String(elapsedSeconds % 60).padStart(2, '0')}
                 </span>
               </div>
