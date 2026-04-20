@@ -3,7 +3,7 @@
 **Last updated:** 2026-04-19
 **Scope:** `frontend/src/components/ui/` primitives + `frontend/src/styles/win95.css` tokens
 
-This document is the authoritative reference for the Win95-themed design system used in TC Generator. For the historical audit that motivated this refactor see [`DESIGN_SYSTEM_AUDIT.md`](./DESIGN_SYSTEM_AUDIT.md).
+This document is the authoritative reference for the Win95-themed design system used in TC Generator.
 
 ---
 

@@ -156,15 +156,14 @@
 
 <h1>TC Generator — 使用者流程圖</h1>
 <p class="subtitle">
-  對象：第一次接觸工具的使用者、PM、稽核人員。<br>
-  更新：2026-04-18 — 與 <code>docs/STATUS.md</code> 同步。
+  更新：2026-04-20 — 與 <code>docs/STATUS.md</code> 同步。
 </p>
 
 <!-- ========================================
      1. 主流程：五步驟桌面工作流
      ======================================== -->
 <div class="section">
-<h2>① 標準流程 — 產生一份完整的 TC</h2>
+<h2>1. 標準流程 — 產生一份完整的 TC</h2>
 <p class="lede">最常用的操作路徑。從拖檔到匯出五步驟，每一步對應 Win95 桌面上的一個視窗。</p>
 
 <div class="diagram">
@@ -268,8 +267,8 @@
      2. 快速路徑
      ======================================== -->
 <div class="section">
-<h2>② 快速路徑 — Quick Generate</h2>
-<p class="lede">只想試一筆、不用整個 workbook 的情境。不需 upload、不需 review，直接打字看結果。</p>
+<h2>2. 快速路徑 — Quick Generate</h2>
+<p class="lede">只想試一筆需求、不用整個 workbook 的情境。不需 upload、不需 review，直接貼需求看結果。統一走 auto-split：AI 依 ASPICE §1.2/§1.4/§1.5 自動判斷拆成幾筆 TC。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 260">
@@ -281,50 +280,39 @@
 
   <!-- Input -->
   <g class="c-gray">
-    <rect x="40" y="80" width="200" height="100" rx="10"/>
-    <text class="th" x="140" y="118" text-anchor="middle">輸入 Test Item</text>
-    <text class="ts" x="140" y="140" text-anchor="middle">例：「按鈕按下 → LED 亮起」</text>
-    <text class="ts" x="140" y="156" text-anchor="middle">（自由文字）</text>
+    <rect x="40" y="80" width="220" height="100" rx="10"/>
+    <text class="th" x="150" y="118" text-anchor="middle">Requirement（必填）</text>
+    <text class="ts" x="150" y="140" text-anchor="middle">＋ Additional Context（選填）</text>
+    <text class="ts" x="150" y="156" text-anchor="middle">＋ Model 選擇</text>
   </g>
 
-  <!-- Mode split -->
-  <g class="c-teal">
-    <rect x="300" y="40" width="220" height="60" rx="8"/>
-    <text class="th" x="410" y="66" text-anchor="middle">Mode: single</text>
-    <text class="ts" x="410" y="86" text-anchor="middle">直接生成一筆 TC</text>
-  </g>
-  <g class="c-teal">
-    <rect x="300" y="110" width="220" height="60" rx="8"/>
-    <text class="th" x="410" y="136" text-anchor="middle">Mode: with_context</text>
-    <text class="ts" x="410" y="156" text-anchor="middle">加上 context 再生成</text>
-  </g>
-  <g class="c-teal">
-    <rect x="300" y="180" width="220" height="60" rx="8"/>
-    <text class="th" x="410" y="206" text-anchor="middle">Mode: decompose</text>
-    <text class="ts" x="410" y="226" text-anchor="middle">拆解成多個 scenario → N 筆 TC</text>
+  <!-- Auto-split analysis -->
+  <g class="c-purple">
+    <rect x="290" y="60" width="260" height="140" rx="10"/>
+    <text class="th" x="420" y="92" text-anchor="middle">AI Auto-split 分析</text>
+    <text class="ts" x="420" y="116" text-anchor="middle">decomposing phase</text>
+    <text class="ts" x="420" y="136" text-anchor="middle">產生 reasoning + scenarios</text>
+    <text class="ts" x="420" y="156" text-anchor="middle">＋ keyword coverage</text>
+    <text class="tiny" x="420" y="180" text-anchor="middle">（DecomposeAnalysisPanel 顯示）</text>
   </g>
 
   <!-- Output -->
   <g class="c-green">
-    <rect x="580" y="80" width="240" height="100" rx="10"/>
-    <text class="th" x="700" y="116" text-anchor="middle">完整 TC 結果</text>
-    <text class="ts" x="700" y="138" text-anchor="middle">Pre-Cond / Input Data</text>
-    <text class="ts" x="700" y="154" text-anchor="middle">Procedure / Expected Result</text>
-    <text class="ts" x="700" y="170" text-anchor="middle">Design Method / Priority</text>
+    <rect x="580" y="60" width="240" height="140" rx="10"/>
+    <text class="th" x="700" y="92" text-anchor="middle">N 筆 TC（逐張串流）</text>
+    <text class="ts" x="700" y="118" text-anchor="middle">Pre-Cond / Input Data</text>
+    <text class="ts" x="700" y="136" text-anchor="middle">Procedure / Expected Result</text>
+    <text class="ts" x="700" y="154" text-anchor="middle">Design Method / Priority</text>
+    <text class="tiny" x="700" y="180" text-anchor="middle">generating → complete</text>
   </g>
 
-  <line x1="240" y1="100" x2="298" y2="70"  class="arr" marker-end="url(#arr-quick)"/>
-  <line x1="240" y1="130" x2="298" y2="140" class="arr" marker-end="url(#arr-quick)"/>
-  <line x1="240" y1="160" x2="298" y2="210" class="arr" marker-end="url(#arr-quick)"/>
-
-  <line x1="520" y1="70"  x2="578" y2="110" class="arr" marker-end="url(#arr-quick)"/>
-  <line x1="520" y1="140" x2="578" y2="130" class="arr" marker-end="url(#arr-quick)"/>
-  <line x1="520" y1="210" x2="578" y2="150" class="arr" marker-end="url(#arr-quick)"/>
+  <line x1="260" y1="130" x2="288" y2="130" class="arr" marker-end="url(#arr-quick)"/>
+  <line x1="550" y1="130" x2="578" y2="130" class="arr" marker-end="url(#arr-quick)"/>
 </svg>
 </div>
 
 <div class="note">
-  <strong>何時用這條路徑？</strong>：臨時驗證、內部會議示範、寫 prompt 時試個 case。產生的 TC 不會進入 job history、也不會寫進 workbook。
+  <strong>何時用這條路徑？</strong>：臨時驗證、內部會議示範、寫 prompt 時試個 case。產生的 TC 會進入 Job History 但不寫進 workbook。
 </div>
 
 </div>
@@ -333,21 +321,21 @@
      3. 狀態流轉
      ======================================== -->
 <div class="section">
-<h2>③ 單一 Test Case 的狀態流轉</h2>
-<p class="lede">每一筆 TC 從解析開始，到最後被匯出，會經過幾個明確的狀態。Review 階段的決策是核心。</p>
+<h2>3. 單一 Test Case 的狀態流轉</h2>
+<p class="lede">每一筆 TC 從解析開始，到最後被匯出，會經過幾個明確的狀態。Review 階段的決策是核心。若 AI 判斷一筆 requirement 應拆成多個 scenario，generating 期間會觸發 <code>req.split</code> 產生額外 sub-TC rows。</p>
 
 <div class="diagram">
-<svg width="100%" viewBox="0 0 860 420">
+<svg width="100%" viewBox="0 0 860 500">
   <defs>
     <marker id="arr-state" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
   </defs>
 
-  <!-- draft -->
+  <!-- pending -->
   <g class="c-gray">
     <rect x="40" y="180" width="140" height="60" rx="30"/>
-    <text class="th" x="110" y="210" text-anchor="middle">draft</text>
+    <text class="th" x="110" y="210" text-anchor="middle">pending</text>
     <text class="ts" x="110" y="228" text-anchor="middle">剛解析進來</text>
   </g>
 
@@ -358,11 +346,11 @@
     <text class="ts" x="310" y="228" text-anchor="middle">AI 跑中</text>
   </g>
 
-  <!-- ready -->
+  <!-- reviewing -->
   <g class="c-amber">
     <rect x="440" y="180" width="140" height="60" rx="30"/>
-    <text class="th" x="510" y="210" text-anchor="middle">ready</text>
-    <text class="ts" x="510" y="228" text-anchor="middle">等人審查</text>
+    <text class="th" x="510" y="210" text-anchor="middle">reviewing</text>
+    <text class="ts" x="510" y="228" text-anchor="middle">等人審查（含 flagged）</text>
   </g>
 
   <!-- accepted -->
@@ -400,9 +388,19 @@
   <path d="M 510 240 Q 510 300 570 280 Q 620 260 575 240" class="arr-d" marker-end="url(#arr-state)" stroke="var(--amber-600)"/>
   <text class="tiny" x="620" y="220" fill="var(--amber-600)">Edit（手改欄位）</text>
 
+  <!-- Split branch: generating spawns sub-TCs -->
+  <g class="c-purple">
+    <rect x="240" y="360" width="340" height="60" rx="10"/>
+    <text class="th" x="410" y="388" text-anchor="middle">req.split → 新增 sub-TC rows</text>
+    <text class="ts" x="410" y="406" text-anchor="middle">每個 sub-TC 走各自的 generating → ready</text>
+  </g>
+  <path d="M 310 240 Q 310 320 330 358" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
+  <text class="tiny" x="340" y="306" fill="var(--purple-600)">AI 判斷需拆解</text>
+  <path d="M 490 360 Q 520 300 510 242" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
+
   <!-- Final export note -->
-  <line x1="40" y1="380" x2="820" y2="380" stroke="var(--border)" stroke-width="1"/>
-  <text class="ts" x="40" y="403">
+  <line x1="40" y1="450" x2="820" y2="450" stroke="var(--border)" stroke-width="1"/>
+  <text class="ts" x="40" y="473">
     匯出時：只有 accepted 的 row 會寫進最終 .xlsx（可在 Export 階段選 scope 調整）。
   </text>
 </svg>
@@ -413,8 +411,8 @@
      4. 桌面視窗如何協作
      ======================================== -->
 <div class="section">
-<h2>④ 桌面上的視窗如何互動</h2>
-<p class="lede">每個步驟對應一個 Win95 風格的視窗。視窗可以獨立開關 / 重疊 / 最小化；共享的資料放在桌面右下角的 CostMeter 和 Taskbar 選單。</p>
+<h2>4. 桌面上的視窗如何互動</h2>
+<p class="lede">每個步驟對應一個 Win95 風格的視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉，桌面上同一時間只保留一個 active module。CostMeter 常駐在桌面右上角；Workspace / Job History / Agent 按鈕常駐在 Taskbar。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 440">
@@ -428,43 +426,54 @@
   <rect x="30" y="30" width="800" height="380" rx="10" fill="var(--bg)" stroke="var(--border)" stroke-width="1"/>
   <text class="tiny" x="46" y="54">Desktop（桌布）</text>
 
-  <!-- Windows (overlapping) -->
-  <g class="c-blue">
-    <rect x="70" y="80" width="220" height="110" rx="6"/>
-    <text class="th" x="180" y="108" text-anchor="middle">Upload</text>
-    <text class="ts" x="180" y="132" text-anchor="middle">拖檔區</text>
-    <text class="ts" x="180" y="150" text-anchor="middle">Parse 結果預覽</text>
-    <text class="ts" x="180" y="168" text-anchor="middle">「送去 Configure」按鈕</text>
-  </g>
-
-  <g class="c-teal">
-    <rect x="220" y="130" width="240" height="110" rx="6"/>
-    <text class="th" x="340" y="158" text-anchor="middle">Configure</text>
-    <text class="ts" x="340" y="182" text-anchor="middle">分組表格（可編輯）</text>
-    <text class="ts" x="340" y="200" text-anchor="middle">Spec 匹配預覽</text>
-    <text class="ts" x="340" y="218" text-anchor="middle">「送去 Generate」按鈕</text>
-  </g>
-
+  <!-- Single active module window (center) -->
   <g class="c-purple">
-    <rect x="390" y="180" width="240" height="110" rx="6"/>
-    <text class="th" x="510" y="208" text-anchor="middle">Generate</text>
-    <text class="ts" x="510" y="232" text-anchor="middle">模型 / batch 設定</text>
-    <text class="ts" x="510" y="250" text-anchor="middle">即時進度 + 成本</text>
-    <text class="ts" x="510" y="268" text-anchor="middle">SSE 串流事件</text>
+    <rect x="240" y="90" width="380" height="210" rx="6"/>
+    <text class="th" x="430" y="122" text-anchor="middle">Active Module（例：Generate）</text>
+    <text class="ts" x="430" y="150" text-anchor="middle">同一時間桌面只有一個 module 視窗</text>
+    <text class="ts" x="430" y="172" text-anchor="middle">模型 / batch 設定、即時進度 + 成本</text>
+    <text class="ts" x="430" y="192" text-anchor="middle">SSE 串流事件</text>
+    <text class="tiny" x="430" y="222" text-anchor="middle">按「下一步」→ advanceWindow(from, to)</text>
+    <text class="tiny" x="430" y="240" text-anchor="middle">自動關閉當前視窗、開啟目標視窗</text>
+    <text class="tiny" x="430" y="270" text-anchor="middle">（上一步 / 回首頁同理）</text>
   </g>
 
+  <!-- Flow sequence shown as chips on left -->
+  <g class="c-blue">
+    <rect x="60" y="90" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="112" text-anchor="middle">1. Upload</text>
+  </g>
+  <g class="c-teal">
+    <rect x="60" y="132" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="154" text-anchor="middle">2. Configure</text>
+  </g>
+  <g class="c-purple">
+    <rect x="60" y="174" width="140" height="34" rx="6"/>
+    <text class="th" x="130" y="196" text-anchor="middle">3. Generate</text>
+  </g>
   <g class="c-amber">
-    <rect x="560" y="230" width="240" height="110" rx="6"/>
-    <text class="th" x="680" y="258" text-anchor="middle">Review</text>
-    <text class="ts" x="680" y="282" text-anchor="middle">TC 卡片逐張看</text>
-    <text class="ts" x="680" y="300" text-anchor="middle">Accept / Reject / Edit</text>
-    <text class="ts" x="680" y="318" text-anchor="middle">Regenerate（可重跑）</text>
+    <rect x="60" y="216" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="238" text-anchor="middle">4. Review</text>
   </g>
-
   <g class="c-green">
-    <rect x="630" y="340" width="170" height="58" rx="6"/>
-    <text class="th" x="715" y="366" text-anchor="middle">Export</text>
-    <text class="ts" x="715" y="384" text-anchor="middle">下載 .xlsx</text>
+    <rect x="60" y="258" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="280" text-anchor="middle">5. Export</text>
+  </g>
+  <text class="tiny" x="130" y="80" text-anchor="middle">步驟序列（Taskbar）</text>
+
+  <!-- Arrow from sequence to active -->
+  <line x1="202" y1="191" x2="238" y2="191" class="arr" marker-end="url(#arr-desk)"/>
+
+  <!-- Sidebar: persistent, not closed on advance -->
+  <g class="c-gray">
+    <rect x="640" y="90" width="160" height="210" rx="6"/>
+    <text class="th" x="720" y="118" text-anchor="middle">常駐元件</text>
+    <text class="ts" x="720" y="144" text-anchor="middle">CostMeter</text>
+    <text class="tiny" x="720" y="160" text-anchor="middle">（右上角）</text>
+    <text class="ts" x="720" y="184" text-anchor="middle">Workspace / Job History</text>
+    <text class="ts" x="720" y="204" text-anchor="middle">Agent Co-pilot</text>
+    <text class="tiny" x="720" y="220" text-anchor="middle">（Taskbar）</text>
+    <text class="tiny" x="720" y="248" text-anchor="middle">不受 advanceWindow 影響</text>
   </g>
 
   <!-- Taskbar at bottom -->
@@ -479,22 +488,15 @@
     <text class="ts" x="380" y="394">CostMeter</text>
   </g>
 
-  <!-- Side annotations -->
-  <text class="tiny" x="66" y="74">1</text>
-  <text class="tiny" x="216" y="124">2</text>
-  <text class="tiny" x="386" y="174">3</text>
-  <text class="tiny" x="556" y="224">4</text>
-  <text class="tiny" x="626" y="334">5</text>
-
 </svg>
 </div>
 
 <div class="note">
   <strong>重點</strong>：
   <ul style="margin: 6px 0 0 20px;">
-    <li>Taskbar 永遠看得到<strong>累積花費</strong>（CostMeter）與 <strong>Workspace</strong> / <strong>Job History</strong>。</li>
-    <li>視窗可以同時開，比如 Generate 跑的時候打開 Review 預覽剛完成的 rows。</li>
-    <li>關閉視窗不會遺失資料。所有 rows、設定、成本記錄都存在 Zustand store（localStorage）和後端 SQLite。</li>
+    <li>同一時間桌面上只會有一個 module 視窗（Upload / Configure / Generate / Review / Export 擇一）。前進或返回時，<code>advanceWindow(from, to)</code> 會關閉來源視窗、開啟目標視窗。</li>
+    <li>Taskbar 常駐看得到<strong>累積花費</strong>（CostMeter）、<strong>Workspace</strong>、<strong>Job History</strong>，這些不受 advanceWindow 影響。</li>
+    <li>關閉 module 視窗不會遺失資料。所有 rows、設定、成本記錄都存在 Zustand store（localStorage）和後端 SQLite，回到原步驟會恢復上次狀態。</li>
   </ul>
 </div>
 
@@ -504,7 +506,7 @@
      5. 決策點
      ======================================== -->
 <div class="section">
-<h2>⑤ 使用者決策點 — 遇到這些情況怎麼辦</h2>
+<h2>5. 使用者決策點 — 遇到這些情況怎麼辦</h2>
 <p class="lede">在 Review 階段最常問的三個問題，以及對應的操作。</p>
 
 <div class="diagram">
@@ -520,15 +522,12 @@
     <rect x="40" y="30" width="780" height="120" rx="10"/>
   </g>
   <text class="th" x="60" y="58" fill="var(--amber-800)">Q1. 這筆 TC 的內容「差不多對」但有一點不滿意</text>
-  <g class="c-gray"><rect x="60" y="75" width="220" height="60" rx="6"/>
-    <text class="ts" x="170" y="100" text-anchor="middle" font-weight="600">A. 內容小修</text>
-    <text class="tiny" x="170" y="118" text-anchor="middle">點卡片 → Edit → 改完 Save</text></g>
-  <g class="c-gray"><rect x="296" y="75" width="220" height="60" rx="6"/>
-    <text class="ts" x="406" y="100" text-anchor="middle" font-weight="600">B. 整筆重生</text>
-    <text class="tiny" x="406" y="118" text-anchor="middle">點 Regenerate → AI 重跑一次</text></g>
-  <g class="c-gray"><rect x="532" y="75" width="268" height="60" rx="6"/>
-    <text class="ts" x="666" y="100" text-anchor="middle" font-weight="600">C. 批次重生</text>
-    <text class="tiny" x="666" y="118" text-anchor="middle">全選 → Regenerate Selected（多筆一次跑）</text></g>
+  <g class="c-gray"><rect x="60" y="75" width="350" height="60" rx="6"/>
+    <text class="ts" x="235" y="100" text-anchor="middle" font-weight="600">A. 內容小修（Edit）</text>
+    <text class="tiny" x="235" y="118" text-anchor="middle">展開 row → 改欄位 → Save（狀態維持 reviewing）</text></g>
+  <g class="c-gray"><rect x="426" y="75" width="374" height="60" rx="6"/>
+    <text class="ts" x="613" y="100" text-anchor="middle" font-weight="600">B. 整筆/批次重生（Regenerate）</text>
+    <text class="tiny" x="613" y="118" text-anchor="middle">勾選一筆或多筆 → Toolbox 按 Regenerate → 出 diff 再挑欄位套用</text></g>
 
   <!-- Q2 -->
   <g class="c-coral">
@@ -550,15 +549,12 @@
     <rect x="40" y="330" width="780" height="120" rx="10"/>
   </g>
   <text class="th" x="60" y="358" fill="var(--green-800)">Q3. 要交付了，要匯出哪些 row？</text>
-  <g class="c-gray"><rect x="60" y="375" width="240" height="60" rx="6"/>
-    <text class="ts" x="180" y="400" text-anchor="middle" font-weight="600">Scope: accepted</text>
-    <text class="tiny" x="180" y="418" text-anchor="middle">只匯出已按 Accept 的（推薦）</text></g>
-  <g class="c-gray"><rect x="316" y="375" width="240" height="60" rx="6"/>
-    <text class="ts" x="436" y="400" text-anchor="middle" font-weight="600">Scope: all</text>
-    <text class="tiny" x="436" y="418" text-anchor="middle">全部匯出（含未審查）</text></g>
-  <g class="c-gray"><rect x="572" y="375" width="228" height="60" rx="6"/>
-    <text class="ts" x="686" y="400" text-anchor="middle" font-weight="600">Scope: selected</text>
-    <text class="tiny" x="686" y="418" text-anchor="middle">勾選特定 row 匯出</text></g>
+  <g class="c-gray"><rect x="60" y="375" width="370" height="60" rx="6"/>
+    <text class="ts" x="245" y="400" text-anchor="middle" font-weight="600">Scope: All Generated Cases</text>
+    <text class="tiny" x="245" y="418" text-anchor="middle">全部匯出（含未審查、flagged、rejected）</text></g>
+  <g class="c-gray"><rect x="446" y="375" width="354" height="60" rx="6"/>
+    <text class="ts" x="623" y="400" text-anchor="middle" font-weight="600">Scope: Accepted Only（推薦）</text>
+    <text class="tiny" x="623" y="418" text-anchor="middle">只匯出已按 Accept 的 row，需至少一筆</text></g>
 
 </svg>
 </div>
@@ -568,8 +564,8 @@
      6. 下一步：Agent 副駕（預覽）
      ======================================== -->
 <div class="section">
-<h2>⑥ 下一步規劃 — Agent 副駕（預覽）</h2>
-<p class="lede">目前工具全部靠 GUI 操作。下一階段會新增對話式「Agent 副駕」：可用自然語言下指令、跨 job 查詢、批次處理。完整規劃見 <code>docs/ROADMAP.md</code>。</p>
+<h2>6. 雙軌並用 — GUI + Agent 副駕</h2>
+<p class="lede">GUI 五步驟與 Agent 副駕（ChatModule）皆已上線，可從 Taskbar 上的 Agent 按鈕開啟浮動視窗。兩者共用同一份 backend tools 與 job store，可在同一 job 裡來回切換。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 380">
@@ -607,13 +603,13 @@
   </g>
   <text class="ts" x="220" y="230" text-anchor="middle">照 SOP 走、每步看得到、</text>
   <text class="ts" x="220" y="248" text-anchor="middle">適合正式交付與稽核</text>
-  <text class="ts" x="220" y="270" text-anchor="middle" fill="var(--blue-600)">佔 60% 使用時間</text>
+  <text class="ts" x="220" y="270" text-anchor="middle" fill="var(--blue-600)">主要交付路徑</text>
 
   <!-- Agent Path -->
   <g class="c-purple">
     <rect x="460" y="50" width="360" height="240" rx="14"/>
-    <text class="th" x="640" y="84" text-anchor="middle" fill="var(--purple-800)">未來：Agent 副駕</text>
-    <text class="ts" x="640" y="104" text-anchor="middle">（ChatModule，浮動視窗）</text>
+    <text class="th" x="640" y="84" text-anchor="middle" fill="var(--purple-800)">Agent 副駕（已上線）</text>
+    <text class="ts" x="640" y="104" text-anchor="middle">（ChatModule，Taskbar 按鈕開啟）</text>
   </g>
   <g class="c-purple">
     <rect x="480" y="128" width="320" height="32" rx="6"/>
@@ -625,7 +621,7 @@
   </g>
   <text class="ts" x="640" y="230" text-anchor="middle">自然語言、跨 job、批次操作</text>
   <text class="ts" x="640" y="248" text-anchor="middle">GUI 做不到或太慢的事</text>
-  <text class="ts" x="640" y="270" text-anchor="middle" fill="var(--purple-600)">佔 40% 使用時間（含混用）</text>
+  <text class="ts" x="640" y="270" text-anchor="middle" fill="var(--purple-600)">模糊查詢、批次、跨 job 操作</text>
 
   <!-- Bridge -->
   <line x1="400" y1="170" x2="460" y2="170" class="arr-d" stroke="var(--text2)"/>

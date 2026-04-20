@@ -463,18 +463,6 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** 獨立，極低優先 — Phase 6.8 驗收時無視覺 blocker，等之後實測截圖若覺偏重再處理。
 
-### Category D exclusion note — `docs/mockups/*.html` 保留舊 hex sunken pattern
-
-`docs/mockups/chat_module_mockup.html`（7 處）+ `docs/mockups/agent_gui_flow.html`（3 處）共 10 個 `#808080 #ffffff #ffffff #808080` 出現，**刻意不在 sunken-bezel token 修正 commit 範圍內**：
-
-- 這兩份是 pre-design-system 時期的 scratch mockups（最後更動 `da81752 chore(repo): reorganize docs assets`，純複製）
-- 不在 `docs/design-system/` bundle 內，不被 preview / README / colors_and_type 引用
-- 若要清理，合理動作是「刪檔」而非「改色」—— 列 tech-debt 待評估
-
-**進入條件：** 獨立，極低優先。決定「保留為歷史文件」或「刪除」時再處理。
-
----
-
 ## 給 Claude Code 的執行指令模板
 
 ```

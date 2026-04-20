@@ -3,510 +3,653 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TC Auto-Generation Tool — Architecture Diagrams</title>
+<title>TC Generator — 使用者流程圖</title>
 <style>
   :root {
     --bg: #ffffff;
-    --bg2: #f5f4f0;
+    --bg2: #f7f6f2;
     --text: #1a1a1a;
     --text2: #6b6a66;
-    --border: rgba(0,0,0,0.12);
-    --blue-50: #E6F1FB; --blue-600: #185FA5; --blue-800: #0C447C;
-    --teal-50: #E1F5EE; --teal-600: #0F6E56; --teal-800: #085041;
-    --purple-50: #EEEDFE; --purple-600: #534AB7; --purple-800: #3C3489;
-    --coral-50: #FAECE7; --coral-600: #993C1D; --coral-800: #712B13;
-    --amber-50: #FAEEDA; --amber-600: #854F0B; --amber-800: #633806;
-    --green-50: #EAF3DE; --green-600: #3B6D11; --green-800: #27500A;
-    --red-50: #FCEBEB; --red-600: #A32D2D; --red-800: #791F1F;
-    --gray-50: #F1EFE8; --gray-600: #5F5E5A; --gray-800: #444441;
+    --text3: #95938d;
+    --border: rgba(0,0,0,0.1);
+    --blue-50: #EAF3FC;  --blue-600: #1E63A8;  --blue-800: #0E4278;
+    --teal-50: #E6F5EF;  --teal-600: #147054;  --teal-800: #0A4F3B;
+    --purple-50: #F1F0FE; --purple-600: #5A52BA; --purple-800: #3F3893;
+    --coral-50: #FBEDE6; --coral-600: #A0401F; --coral-800: #79301A;
+    --amber-50: #FBEFD9; --amber-600: #8C520E; --amber-800: #643906;
+    --green-50: #EDF5DE; --green-600: #437712; --green-800: #2E530B;
+    --gray-50: #F1EFEA;  --gray-600: #65635D;  --gray-800: #474541;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #1a1a1a;
-      --bg2: #2c2c2a;
+      --bg2: #252522;
       --text: #e8e6df;
       --text2: #9c9a92;
+      --text3: #6c6a64;
       --border: rgba(255,255,255,0.12);
-      --blue-50: #042C53; --blue-600: #85B7EB; --blue-800: #B5D4F4;
-      --teal-50: #04342C; --teal-600: #5DCAA5; --teal-800: #9FE1CB;
-      --purple-50: #26215C; --purple-600: #AFA9EC; --purple-800: #CECBF6;
-      --coral-50: #4A1B0C; --coral-600: #F0997B; --coral-800: #F5C4B3;
-      --amber-50: #412402; --amber-600: #EF9F27; --amber-800: #FAC775;
-      --green-50: #173404; --green-600: #97C459; --green-800: #C0DD97;
-      --red-50: #501313; --red-600: #F09595; --red-800: #F7C1C1;
-      --gray-50: #2C2C2A; --gray-600: #B4B2A9; --gray-800: #D3D1C7;
+      --blue-50: #062F58;  --blue-600: #8BBCEE; --blue-800: #BDD8F6;
+      --teal-50: #04342C;  --teal-600: #61CDA8; --teal-800: #A3E3CE;
+      --purple-50: #27215E; --purple-600: #B2ADEE; --purple-800: #D1CEF7;
+      --coral-50: #4E1D0E; --coral-600: #F29B7D; --coral-800: #F5C5B4;
+      --amber-50: #432603; --amber-600: #F2A128; --amber-800: #FBC876;
+      --green-50: #183606; --green-600: #99C55A; --green-800: #C2DE98;
+      --gray-50: #2D2D2B;  --gray-600: #B6B4AB; --gray-800: #D4D2C8;
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
     background: var(--bg);
     color: var(--text);
-    max-width: 800px;
+    max-width: 920px;
     margin: 0 auto;
-    padding: 40px 24px;
-    line-height: 1.6;
+    padding: 48px 28px 72px 28px;
+    line-height: 1.65;
   }
-  h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
-  .subtitle { font-size: 14px; color: var(--text2); margin-bottom: 48px; }
-  .diagram-section { margin-bottom: 56px; }
-  .diagram-section h2 {
-    font-size: 18px;
-    font-weight: 500;
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
     margin-bottom: 8px;
+    letter-spacing: -0.01em;
   }
-  .diagram-section p {
+  .subtitle {
     font-size: 14px;
     color: var(--text2);
-    margin-bottom: 16px;
+    margin-bottom: 56px;
   }
-  .diagram-card {
+  .section { margin-bottom: 72px; }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .section .lede {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 24px;
+  }
+  .diagram {
     background: var(--bg2);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
+    border-radius: 14px;
+    padding: 32px 24px;
     overflow-x: auto;
   }
-  svg text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-  .t { font-size: 14px; fill: var(--text); }
-  .ts { font-size: 12px; fill: var(--text2); }
-  .th { font-size: 14px; fill: var(--text); font-weight: 500; }
-  .arr { stroke: var(--text2); stroke-width: 1.5; }
-  .leader { stroke: var(--text2); stroke-width: 0.5; stroke-dasharray: 4 3; }
+  svg text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  }
+  .t     { font-size: 13px; fill: var(--text); }
+  .ts    { font-size: 11px; fill: var(--text2); }
+  .tiny  { font-size: 10px; fill: var(--text3); }
+  .th    { font-size: 14px; fill: var(--text); font-weight: 600; }
+  .huge  { font-size: 22px; fill: var(--text); font-weight: 600; }
 
-  .box rect { fill: var(--bg2); stroke: var(--border); }
-  .c-blue rect { fill: var(--blue-50); stroke: var(--blue-600); }
-  .c-blue .th { fill: var(--blue-800); }
-  .c-blue .ts { fill: var(--blue-600); }
-  .c-teal rect { fill: var(--teal-50); stroke: var(--teal-600); }
-  .c-teal .th { fill: var(--teal-800); }
-  .c-teal .ts { fill: var(--teal-600); }
-  .c-purple rect { fill: var(--purple-50); stroke: var(--purple-600); }
-  .c-purple .th { fill: var(--purple-800); }
-  .c-purple .ts { fill: var(--purple-600); }
-  .c-coral rect { fill: var(--coral-50); stroke: var(--coral-600); }
-  .c-coral .th { fill: var(--coral-800); }
-  .c-coral .ts { fill: var(--coral-600); }
-  .c-amber rect { fill: var(--amber-50); stroke: var(--amber-600); }
-  .c-amber .th { fill: var(--amber-800); }
-  .c-amber .ts { fill: var(--amber-600); }
-  .c-green rect { fill: var(--green-50); stroke: var(--green-600); }
-  .c-green .th { fill: var(--green-800); }
-  .c-green .ts { fill: var(--green-600); }
-  .c-red rect { fill: var(--red-50); stroke: var(--red-600); }
-  .c-red .th { fill: var(--red-800); }
-  .c-red .ts { fill: var(--red-600); }
-  .c-gray rect { fill: var(--gray-50); stroke: var(--gray-600); }
-  .c-gray .th { fill: var(--gray-800); }
-  .c-gray .ts { fill: var(--gray-600); }
+  .arr   { stroke: var(--text2); stroke-width: 1.5; fill: none; }
+  .arr-d { stroke: var(--text2); stroke-width: 1.2; fill: none; stroke-dasharray: 5 3; }
+  .arr-thick { stroke: var(--text); stroke-width: 2; fill: none; }
 
+  .c-blue   rect, .c-blue   circle { fill: var(--blue-50);   stroke: var(--blue-600);   stroke-width: 1.2; }
+  .c-blue   .th  { fill: var(--blue-800); }
+  .c-blue   .ts  { fill: var(--blue-600); }
+  .c-teal   rect, .c-teal   circle { fill: var(--teal-50);   stroke: var(--teal-600);   stroke-width: 1.2; }
+  .c-teal   .th  { fill: var(--teal-800); }
+  .c-teal   .ts  { fill: var(--teal-600); }
+  .c-purple rect, .c-purple circle { fill: var(--purple-50); stroke: var(--purple-600); stroke-width: 1.2; }
+  .c-purple .th  { fill: var(--purple-800); }
+  .c-purple .ts  { fill: var(--purple-600); }
+  .c-coral  rect, .c-coral  circle { fill: var(--coral-50);  stroke: var(--coral-600);  stroke-width: 1.2; }
+  .c-coral  .th  { fill: var(--coral-800); }
+  .c-coral  .ts  { fill: var(--coral-600); }
+  .c-amber  rect, .c-amber  circle { fill: var(--amber-50);  stroke: var(--amber-600);  stroke-width: 1.2; }
+  .c-amber  .th  { fill: var(--amber-800); }
+  .c-amber  .ts  { fill: var(--amber-600); }
+  .c-green  rect, .c-green  circle { fill: var(--green-50);  stroke: var(--green-600);  stroke-width: 1.2; }
+  .c-green  .th  { fill: var(--green-800); }
+  .c-green  .ts  { fill: var(--green-600); }
+  .c-gray   rect, .c-gray   circle { fill: var(--gray-50);   stroke: var(--gray-600);   stroke-width: 1.2; }
+  .c-gray   .th  { fill: var(--gray-800); }
+  .c-gray   .ts  { fill: var(--gray-600); }
+
+  .step-number {
+    font-size: 32px;
+    font-weight: 700;
+    fill: var(--text3);
+  }
+  .note {
+    background: var(--bg2);
+    border-left: 3px solid var(--amber-600);
+    padding: 14px 18px;
+    margin: 20px 0 0 0;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text2);
+  }
+  .note strong { color: var(--text); }
+
+  table.legend {
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.legend td {
+    padding: 6px 14px 6px 0;
+    color: var(--text2);
+  }
+  table.legend .sw {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 6px;
+    border: 1px solid var(--border);
+  }
   @media print {
     body { max-width: 100%; padding: 20px; }
-    .diagram-card { break-inside: avoid; }
-    .diagram-section { page-break-inside: avoid; }
+    .diagram { break-inside: avoid; }
+    .section { page-break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<h1>TC Auto-Generation Tool — Architecture Diagrams</h1>
-<p class="subtitle">Generated from RULES.md planning session — April 2026</p>
+<h1>TC Generator — 使用者流程圖</h1>
+<p class="subtitle">
+  更新：2026-04-20 — 與 <code>docs/STATUS.md</code> 同步。
+</p>
 
-<!-- DIAGRAM 1: Overall Architecture -->
-<div class="diagram-section">
-<h2>1. Overall generation pipeline</h2>
-<p>Six-step flow from CFTS spec input through parsing, scenario matching, AI generation, validation, and Excel output.</p>
-<div class="diagram-card">
-<svg width="100%" viewBox="0 0 680 820">
-<defs>
-  <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-</defs>
+<!-- ========================================
+     1. 主流程：五步驟桌面工作流
+     ======================================== -->
+<div class="section">
+<h2>1. 標準流程 — 產生一份完整的 TC</h2>
+<p class="lede">最常用的操作路徑。從拖檔到匯出五步驟，每一步對應 Win95 桌面上的一個視窗。</p>
 
-<g class="c-blue">
-  <rect x="220" y="30" width="240" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="48" text-anchor="middle" dominant-baseline="central">Input: CFTS spec</text>
-  <text class="ts" x="340" y="68" text-anchor="middle" dominant-baseline="central">.xlsx requirement file</text>
-</g>
-<line x1="340" y1="86" x2="340" y2="120" class="arr" marker-end="url(#a1)"/>
+<div class="diagram">
+<svg width="100%" viewBox="0 0 860 360">
+  <defs>
+    <marker id="arr-main" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-<g class="c-gray">
-  <rect x="200" y="120" width="280" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="138" text-anchor="middle" dominant-baseline="central">1. Spec parser</text>
-  <text class="ts" x="340" y="158" text-anchor="middle" dominant-baseline="central">Parse Excel → structured data</text>
-</g>
-<line x1="340" y1="176" x2="340" y2="210" class="arr" marker-end="url(#a1)"/>
+  <!-- Step 1: Upload -->
+  <g class="c-blue">
+    <rect x="20" y="80" width="148" height="120" rx="12"/>
+    <text class="step-number" x="36" y="112">1</text>
+    <text class="th" x="94" y="148" text-anchor="middle">Upload</text>
+    <text class="ts" x="94" y="170" text-anchor="middle">拖入 TC workbook</text>
+    <text class="ts" x="94" y="186" text-anchor="middle">(.xlsx)</text>
+  </g>
 
-<g class="c-teal">
-  <rect x="180" y="210" width="320" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="228" text-anchor="middle" dominant-baseline="central">2. Scenario matcher</text>
-  <text class="ts" x="340" y="248" text-anchor="middle" dominant-baseline="central">Match pattern library → apply scenarios</text>
-</g>
-<g class="c-teal">
-  <rect x="40" y="270" width="120" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="100" y="288" text-anchor="middle" dominant-baseline="central">Pattern</text>
-  <text class="ts" x="100" y="308" text-anchor="middle" dominant-baseline="central">library</text>
-</g>
-<line x1="160" y1="298" x2="178" y2="258" stroke="#0F6E56" stroke-width="0.5" marker-end="url(#a1)" fill="none"/>
-<line x1="340" y1="266" x2="340" y2="300" class="arr" marker-end="url(#a1)"/>
+  <!-- Step 2: Configure -->
+  <g class="c-teal">
+    <rect x="188" y="80" width="148" height="120" rx="12"/>
+    <text class="step-number" x="204" y="112">2</text>
+    <text class="th" x="262" y="148" text-anchor="middle">Configure</text>
+    <text class="ts" x="262" y="170" text-anchor="middle">確認分組</text>
+    <text class="ts" x="262" y="186" text-anchor="middle">確認 spec 匹配</text>
+  </g>
 
-<g class="c-purple">
-  <rect x="180" y="300" width="320" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="318" text-anchor="middle" dominant-baseline="central">3. AI scenario supplement</text>
-  <text class="ts" x="340" y="338" text-anchor="middle" dominant-baseline="central">API call for special logic (optional)</text>
-</g>
-<text class="ts" x="520" y="330" fill="#534AB7">← API cost (optional)</text>
-<line x1="340" y1="356" x2="340" y2="390" class="arr" marker-end="url(#a1)"/>
+  <!-- Step 3: Generate -->
+  <g class="c-purple">
+    <rect x="356" y="80" width="148" height="120" rx="12"/>
+    <text class="step-number" x="372" y="112">3</text>
+    <text class="th" x="430" y="148" text-anchor="middle">Generate</text>
+    <text class="ts" x="430" y="170" text-anchor="middle">AI 自動生成</text>
+    <text class="ts" x="430" y="186" text-anchor="middle">即時看進度/成本</text>
+  </g>
 
-<g class="c-purple">
-  <rect x="180" y="390" width="320" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="408" text-anchor="middle" dominant-baseline="central">4. Test case generator</text>
-  <text class="ts" x="340" y="428" text-anchor="middle" dominant-baseline="central">scenario + rules → full test case</text>
-</g>
-<g class="c-coral">
-  <rect x="520" y="370" width="120" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="580" y="388" text-anchor="middle" dominant-baseline="central">RULES</text>
-  <text class="ts" x="580" y="408" text-anchor="middle" dominant-baseline="central">.md / .json</text>
-</g>
-<line x1="520" y1="398" x2="502" y2="418" stroke="#993C1D" stroke-width="0.5" marker-end="url(#a1)" fill="none"/>
-<line x1="340" y1="446" x2="340" y2="480" class="arr" marker-end="url(#a1)"/>
+  <!-- Step 4: Review -->
+  <g class="c-amber">
+    <rect x="524" y="80" width="148" height="120" rx="12"/>
+    <text class="step-number" x="540" y="112">4</text>
+    <text class="th" x="598" y="148" text-anchor="middle">Review</text>
+    <text class="ts" x="598" y="170" text-anchor="middle">逐筆 accept/reject</text>
+    <text class="ts" x="598" y="186" text-anchor="middle">必要時 regenerate</text>
+  </g>
 
-<g class="c-coral">
-  <rect x="200" y="480" width="280" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="498" text-anchor="middle" dominant-baseline="central">5. Validator</text>
-  <text class="ts" x="340" y="518" text-anchor="middle" dominant-baseline="central">Format + rule checks (code only)</text>
-</g>
-<path d="M480 508 Q540 508 540 440 Q540 418 502 418" stroke="#993C1D" stroke-width="0.5" fill="none" marker-end="url(#a1)"/>
-<text class="ts" x="558" y="468" fill="#993C1D">Fail</text>
-<text class="ts" x="558" y="482" fill="#993C1D">→ retry</text>
-<line x1="340" y1="536" x2="340" y2="570" class="arr" marker-end="url(#a1)"/>
+  <!-- Step 5: Export -->
+  <g class="c-green">
+    <rect x="692" y="80" width="148" height="120" rx="12"/>
+    <text class="step-number" x="708" y="112">5</text>
+    <text class="th" x="766" y="148" text-anchor="middle">Export</text>
+    <text class="ts" x="766" y="170" text-anchor="middle">匯出 .xlsx</text>
+    <text class="ts" x="766" y="186" text-anchor="middle">下載檔案</text>
+  </g>
 
-<g class="c-gray">
-  <rect x="200" y="570" width="280" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="588" text-anchor="middle" dominant-baseline="central">6. Excel formatter</text>
-  <text class="ts" x="340" y="608" text-anchor="middle" dominant-baseline="central">Write to .xlsx columns</text>
-</g>
-<line x1="340" y1="626" x2="340" y2="660" class="arr" marker-end="url(#a1)"/>
+  <!-- Arrows between steps -->
+  <line x1="168" y1="140" x2="186" y2="140" class="arr" marker-end="url(#arr-main)"/>
+  <line x1="336" y1="140" x2="354" y2="140" class="arr" marker-end="url(#arr-main)"/>
+  <line x1="504" y1="140" x2="522" y2="140" class="arr" marker-end="url(#arr-main)"/>
+  <line x1="672" y1="140" x2="690" y2="140" class="arr" marker-end="url(#arr-main)"/>
 
-<g class="c-blue">
-  <rect x="220" y="660" width="240" height="56" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="678" text-anchor="middle" dominant-baseline="central">Output: test cases</text>
-  <text class="ts" x="340" y="698" text-anchor="middle" dominant-baseline="central">.xlsx completed test cases</text>
-</g>
+  <!-- Top row: inputs -->
+  <text class="tiny" x="94"  y="50" text-anchor="middle">輸入檔案</text>
+  <text class="tiny" x="262" y="50" text-anchor="middle">確認規則</text>
+  <text class="tiny" x="430" y="50" text-anchor="middle">LLM 生成</text>
+  <text class="tiny" x="598" y="50" text-anchor="middle">人工審查</text>
+  <text class="tiny" x="766" y="50" text-anchor="middle">交付成果</text>
 
-<rect x="40" y="740" width="12" height="12" rx="2" fill="var(--teal-50)" stroke="var(--teal-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="751">One-time build (claude.ai)</text>
-<rect x="240" y="740" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)" stroke-width="0.5"/>
-<text class="ts" x="258" y="751">Requires API (optional)</text>
-<rect x="430" y="740" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)" stroke-width="0.5"/>
-<text class="ts" x="448" y="751">Rule validation (code only)</text>
-<rect x="40" y="765" width="12" height="12" rx="2" fill="var(--gray-50)" stroke="var(--gray-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="776">Data processing (code only)</text>
-<rect x="240" y="765" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)" stroke-width="0.5"/>
-<text class="ts" x="258" y="776">Input / Output</text>
+  <!-- Bottom row: outputs -->
+  <text class="tiny" x="94"  y="235" text-anchor="middle">解析成 rows</text>
+  <text class="tiny" x="262" y="235" text-anchor="middle">Test Set 分組</text>
+  <text class="tiny" x="430" y="235" text-anchor="middle">Pre-cond / Proc / ER</text>
+  <text class="tiny" x="598" y="235" text-anchor="middle">確認最終版本</text>
+  <text class="tiny" x="766" y="235" text-anchor="middle">完整 workbook</text>
+
+  <!-- Time estimate bar -->
+  <line x1="20" y1="280" x2="840" y2="280" stroke="var(--border)" stroke-width="1"/>
+  <text class="ts" x="20"  y="302">預估時間</text>
+  <text class="ts" x="94"  y="302" text-anchor="middle">&lt; 30 秒</text>
+  <text class="ts" x="262" y="302" text-anchor="middle">1–2 分鐘</text>
+  <text class="ts" x="430" y="302" text-anchor="middle">2–5 分鐘</text>
+  <text class="ts" x="598" y="302" text-anchor="middle">5–15 分鐘</text>
+  <text class="ts" x="766" y="302" text-anchor="middle">&lt; 10 秒</text>
+
+  <text class="ts" x="20"  y="330">成本</text>
+  <text class="ts" x="94"  y="330" text-anchor="middle">$0</text>
+  <text class="ts" x="262" y="330" text-anchor="middle">$0</text>
+  <text class="ts" x="430" y="330" text-anchor="middle">≈ $0.10</text>
+  <text class="ts" x="598" y="330" text-anchor="middle">$0 ~ 少量</text>
+  <text class="ts" x="766" y="330" text-anchor="middle">$0</text>
+</svg>
+</div>
+
+<div class="note">
+  <strong>基準實測（44 rows）</strong>：總耗時約 6 分鐘、成本 $0.125、cache hit 90.9%。真實成本以 Generate 階段為主。
+</div>
+
+</div>
+
+<!-- ========================================
+     2. 快速路徑
+     ======================================== -->
+<div class="section">
+<h2>2. 快速路徑 — Quick Generate</h2>
+<p class="lede">只想試一筆需求、不用整個 workbook 的情境。不需 upload、不需 review，直接貼需求看結果。統一走 auto-split：AI 依 ASPICE §1.2/§1.4/§1.5 自動判斷拆成幾筆 TC。</p>
+
+<div class="diagram">
+<svg width="100%" viewBox="0 0 860 260">
+  <defs>
+    <marker id="arr-quick" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Input -->
+  <g class="c-gray">
+    <rect x="40" y="80" width="220" height="100" rx="10"/>
+    <text class="th" x="150" y="118" text-anchor="middle">Requirement（必填）</text>
+    <text class="ts" x="150" y="140" text-anchor="middle">＋ Additional Context（選填）</text>
+    <text class="ts" x="150" y="156" text-anchor="middle">＋ Model 選擇</text>
+  </g>
+
+  <!-- Auto-split analysis -->
+  <g class="c-purple">
+    <rect x="290" y="60" width="260" height="140" rx="10"/>
+    <text class="th" x="420" y="92" text-anchor="middle">AI Auto-split 分析</text>
+    <text class="ts" x="420" y="116" text-anchor="middle">decomposing phase</text>
+    <text class="ts" x="420" y="136" text-anchor="middle">產生 reasoning + scenarios</text>
+    <text class="ts" x="420" y="156" text-anchor="middle">＋ keyword coverage</text>
+    <text class="tiny" x="420" y="180" text-anchor="middle">（DecomposeAnalysisPanel 顯示）</text>
+  </g>
+
+  <!-- Output -->
+  <g class="c-green">
+    <rect x="580" y="60" width="240" height="140" rx="10"/>
+    <text class="th" x="700" y="92" text-anchor="middle">N 筆 TC（逐張串流）</text>
+    <text class="ts" x="700" y="118" text-anchor="middle">Pre-Cond / Input Data</text>
+    <text class="ts" x="700" y="136" text-anchor="middle">Procedure / Expected Result</text>
+    <text class="ts" x="700" y="154" text-anchor="middle">Design Method / Priority</text>
+    <text class="tiny" x="700" y="180" text-anchor="middle">generating → complete</text>
+  </g>
+
+  <line x1="260" y1="130" x2="288" y2="130" class="arr" marker-end="url(#arr-quick)"/>
+  <line x1="550" y1="130" x2="578" y2="130" class="arr" marker-end="url(#arr-quick)"/>
+</svg>
+</div>
+
+<div class="note">
+  <strong>何時用這條路徑？</strong>：臨時驗證、內部會議示範、寫 prompt 時試個 case。產生的 TC 會進入 Job History 但不寫進 workbook。
+</div>
+
+</div>
+
+<!-- ========================================
+     3. 狀態流轉
+     ======================================== -->
+<div class="section">
+<h2>3. 單一 Test Case 的狀態流轉</h2>
+<p class="lede">每一筆 TC 從解析開始，到最後被匯出，會經過幾個明確的狀態。Review 階段的決策是核心。若 AI 判斷一筆 requirement 應拆成多個 scenario，generating 期間會觸發 <code>req.split</code> 產生額外 sub-TC rows。</p>
+
+<div class="diagram">
+<svg width="100%" viewBox="0 0 860 500">
+  <defs>
+    <marker id="arr-state" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- pending -->
+  <g class="c-gray">
+    <rect x="40" y="180" width="140" height="60" rx="30"/>
+    <text class="th" x="110" y="210" text-anchor="middle">pending</text>
+    <text class="ts" x="110" y="228" text-anchor="middle">剛解析進來</text>
+  </g>
+
+  <!-- generating -->
+  <g class="c-purple">
+    <rect x="240" y="180" width="140" height="60" rx="30"/>
+    <text class="th" x="310" y="210" text-anchor="middle">generating</text>
+    <text class="ts" x="310" y="228" text-anchor="middle">AI 跑中</text>
+  </g>
+
+  <!-- reviewing -->
+  <g class="c-amber">
+    <rect x="440" y="180" width="140" height="60" rx="30"/>
+    <text class="th" x="510" y="210" text-anchor="middle">reviewing</text>
+    <text class="ts" x="510" y="228" text-anchor="middle">等人審查（含 flagged）</text>
+  </g>
+
+  <!-- accepted -->
+  <g class="c-green">
+    <rect x="680" y="80" width="140" height="60" rx="30"/>
+    <text class="th" x="750" y="110" text-anchor="middle">accepted</text>
+    <text class="ts" x="750" y="128" text-anchor="middle">會被匯出</text>
+  </g>
+
+  <!-- rejected -->
+  <g class="c-coral">
+    <rect x="680" y="280" width="140" height="60" rx="30"/>
+    <text class="th" x="750" y="310" text-anchor="middle">rejected</text>
+    <text class="ts" x="750" y="328" text-anchor="middle">不會被匯出</text>
+  </g>
+
+  <!-- arrows -->
+  <line x1="180" y1="210" x2="238" y2="210" class="arr" marker-end="url(#arr-state)"/>
+  <text class="tiny" x="209" y="198" text-anchor="middle">送進 Generate</text>
+
+  <line x1="380" y1="210" x2="438" y2="210" class="arr" marker-end="url(#arr-state)"/>
+  <text class="tiny" x="409" y="198" text-anchor="middle">生成完成</text>
+
+  <line x1="580" y1="200" x2="678" y2="130" class="arr" marker-end="url(#arr-state)"/>
+  <text class="tiny" x="628" y="160" text-anchor="middle">Accept</text>
+
+  <line x1="580" y1="220" x2="678" y2="290" class="arr" marker-end="url(#arr-state)"/>
+  <text class="tiny" x="628" y="262" text-anchor="middle">Reject</text>
+
+  <!-- Regenerate loop -->
+  <path d="M 510 180 Q 510 40  310 90  Q 260 110 265 178" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
+  <text class="tiny" x="350" y="66" fill="var(--purple-600)">Regenerate（重跑）</text>
+
+  <!-- Edit loop (stays in ready) -->
+  <path d="M 510 240 Q 510 300 570 280 Q 620 260 575 240" class="arr-d" marker-end="url(#arr-state)" stroke="var(--amber-600)"/>
+  <text class="tiny" x="620" y="220" fill="var(--amber-600)">Edit（手改欄位）</text>
+
+  <!-- Split branch: generating spawns sub-TCs -->
+  <g class="c-purple">
+    <rect x="240" y="360" width="340" height="60" rx="10"/>
+    <text class="th" x="410" y="388" text-anchor="middle">req.split → 新增 sub-TC rows</text>
+    <text class="ts" x="410" y="406" text-anchor="middle">每個 sub-TC 走各自的 generating → ready</text>
+  </g>
+  <path d="M 310 240 Q 310 320 330 358" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
+  <text class="tiny" x="340" y="306" fill="var(--purple-600)">AI 判斷需拆解</text>
+  <path d="M 490 360 Q 520 300 510 242" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
+
+  <!-- Final export note -->
+  <line x1="40" y1="450" x2="820" y2="450" stroke="var(--border)" stroke-width="1"/>
+  <text class="ts" x="40" y="473">
+    匯出時：只有 accepted 的 row 會寫進最終 .xlsx（可在 Export 階段選 scope 調整）。
+  </text>
 </svg>
 </div>
 </div>
 
-<!-- DIAGRAM 2: Column Mapping -->
-<div class="diagram-section">
-<h2>2. Column mapping — what gets read, generated, and preserved</h2>
-<p>Complete mapping of all Excel columns with rule source references.</p>
-<div class="diagram-card">
-<svg width="100%" viewBox="0 0 680 940">
-<defs>
-  <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-</defs>
+<!-- ========================================
+     4. 桌面視窗如何協作
+     ======================================== -->
+<div class="section">
+<h2>4. 桌面上的視窗如何互動</h2>
+<p class="lede">每個步驟對應一個 Win95 風格的視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉，桌面上同一時間只保留一個 active module。CostMeter 常駐在桌面右上角；Workspace / Job History / Agent 按鈕常駐在 Taskbar。</p>
 
-<text class="th" x="340" y="28" text-anchor="middle">Complete column mapping</text>
+<div class="diagram">
+<svg width="100%" viewBox="0 0 860 440">
+  <defs>
+    <marker id="arr-desk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-<text class="th" x="40" y="60">Input (read-only)</text>
-<line x1="40" y1="68" x2="640" y2="68" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-blue">
-  <rect x="40" y="78" width="190" height="40" rx="8" stroke-width="0.5"/>
-  <text class="th" x="135" y="98" text-anchor="middle" dominant-baseline="central">Col D — Req ID</text>
-</g>
-<g class="c-blue">
-  <rect x="250" y="78" width="390" height="40" rx="8" stroke-width="0.5"/>
-  <text class="th" x="445" y="98" text-anchor="middle" dominant-baseline="central">Col I — Test Item (RD original)</text>
-</g>
+  <!-- Desktop background -->
+  <rect x="30" y="30" width="800" height="380" rx="10" fill="var(--bg)" stroke="var(--border)" stroke-width="1"/>
+  <text class="tiny" x="46" y="54">Desktop（桌布）</text>
 
-<text class="th" x="40" y="150">Generated — preserve + append</text>
-<line x1="40" y1="158" x2="640" y2="158" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-teal">
-  <rect x="40" y="168" width="600" height="64" rx="8" stroke-width="0.5"/>
-  <text class="th" x="50" y="188" dominant-baseline="central">Col I — Test Item</text>
-  <text class="ts" x="50" y="208" dominant-baseline="central">Original RD text + blank line + ([Condition/Trigger] → [Observable Outcome])</text>
-</g>
-<text class="ts" x="560" y="188" fill="var(--teal-600)">AI Inst §6.1</text>
+  <!-- Single active module window (center) -->
+  <g class="c-purple">
+    <rect x="240" y="90" width="380" height="210" rx="6"/>
+    <text class="th" x="430" y="122" text-anchor="middle">Active Module（例：Generate）</text>
+    <text class="ts" x="430" y="150" text-anchor="middle">同一時間桌面只有一個 module 視窗</text>
+    <text class="ts" x="430" y="172" text-anchor="middle">模型 / batch 設定、即時進度 + 成本</text>
+    <text class="ts" x="430" y="192" text-anchor="middle">SSE 串流事件</text>
+    <text class="tiny" x="430" y="222" text-anchor="middle">按「下一步」→ advanceWindow(from, to)</text>
+    <text class="tiny" x="430" y="240" text-anchor="middle">自動關閉當前視窗、開啟目標視窗</text>
+    <text class="tiny" x="430" y="270" text-anchor="middle">（上一步 / 回首頁同理）</text>
+  </g>
 
-<text class="th" x="40" y="265">Generated — overwrite</text>
-<line x1="40" y1="273" x2="640" y2="273" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-purple">
-  <rect x="40" y="283" width="290" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="185" y="300" text-anchor="middle" dominant-baseline="central">Col J — Pre-Conditions</text>
-  <text class="ts" x="185" y="318" text-anchor="middle" dominant-baseline="central">State/env only, not actions</text>
-</g>
-<text class="ts" x="240" y="342" fill="var(--purple-600)">AI Inst §6.2</text>
-<g class="c-purple">
-  <rect x="350" y="283" width="290" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="495" y="300" text-anchor="middle" dominant-baseline="central">Col K — Input Test Data</text>
-  <text class="ts" x="495" y="318" text-anchor="middle" dominant-baseline="central">Explicit trigger or NA</text>
-</g>
-<text class="ts" x="545" y="342" fill="var(--purple-600)">AI Inst §6.3</text>
-<g class="c-coral">
-  <rect x="40" y="355" width="600" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="50" y="372" dominant-baseline="central">Col L — Test Procedure</text>
-  <text class="ts" x="50" y="390" dominant-baseline="central">Setup → Transition → Final Step, each executable + purpose</text>
-</g>
-<text class="ts" x="530" y="372" fill="var(--coral-600)">AI Inst §7.1–7.7</text>
-<g class="c-coral">
-  <rect x="40" y="420" width="600" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="50" y="437" dominant-baseline="central">Col M — Expected Result</text>
-  <text class="ts" x="50" y="455" dominant-baseline="central">1:1 mapping to Procedure, observable, judgeable, complete</text>
-</g>
-<text class="ts" x="530" y="437" fill="var(--coral-600)">AI Inst §8</text>
+  <!-- Flow sequence shown as chips on left -->
+  <g class="c-blue">
+    <rect x="60" y="90" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="112" text-anchor="middle">1. Upload</text>
+  </g>
+  <g class="c-teal">
+    <rect x="60" y="132" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="154" text-anchor="middle">2. Configure</text>
+  </g>
+  <g class="c-purple">
+    <rect x="60" y="174" width="140" height="34" rx="6"/>
+    <text class="th" x="130" y="196" text-anchor="middle">3. Generate</text>
+  </g>
+  <g class="c-amber">
+    <rect x="60" y="216" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="238" text-anchor="middle">4. Review</text>
+  </g>
+  <g class="c-green">
+    <rect x="60" y="258" width="140" height="34" rx="6"/>
+    <text class="ts" x="130" y="280" text-anchor="middle">5. Export</text>
+  </g>
+  <text class="tiny" x="130" y="80" text-anchor="middle">步驟序列（Taskbar）</text>
 
-<text class="th" x="40" y="505">Generated — new fill (currently empty)</text>
-<line x1="40" y1="513" x2="640" y2="513" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-amber">
-  <rect x="40" y="523" width="190" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="135" y="540" text-anchor="middle" dominant-baseline="central">Col P — Priority</text>
-  <text class="ts" x="135" y="558" text-anchor="middle" dominant-baseline="central">High / Med / Low / NA</text>
-</g>
-<g class="c-amber">
-  <rect x="245" y="523" width="190" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="540" text-anchor="middle" dominant-baseline="central">Col Q — Design Method</text>
-  <text class="ts" x="340" y="558" text-anchor="middle" dominant-baseline="central">9 methods, waterfall</text>
-</g>
-<g class="c-amber">
-  <rect x="450" y="523" width="190" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="545" y="540" text-anchor="middle" dominant-baseline="central">Col N — Spec Ref</text>
-  <text class="ts" x="545" y="558" text-anchor="middle" dominant-baseline="central">PDM code match</text>
-</g>
+  <!-- Arrow from sequence to active -->
+  <line x1="202" y1="191" x2="238" y2="191" class="arr" marker-end="url(#arr-desk)"/>
 
-<text class="th" x="40" y="620">Untouched (preserve)</text>
-<line x1="40" y1="628" x2="640" y2="628" stroke="var(--border)" stroke-width="0.5"/>
-<g class="c-gray">
-  <rect x="40" y="638" width="105" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="92" y="656" text-anchor="middle" dominant-baseline="central">Col B No.#</text>
-</g>
-<g class="c-gray">
-  <rect x="155" y="638" width="115" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="212" y="656" text-anchor="middle" dominant-baseline="central">Col C Polarion</text>
-</g>
-<g class="c-gray">
-  <rect x="280" y="638" width="115" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="337" y="656" text-anchor="middle" dominant-baseline="central">Col E–H IDs</text>
-</g>
-<g class="c-gray">
-  <rect x="405" y="638" width="115" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="462" y="656" text-anchor="middle" dominant-baseline="central">Col O Ref</text>
-</g>
-<g class="c-gray">
-  <rect x="530" y="638" width="110" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="585" y="656" text-anchor="middle" dominant-baseline="central">Col R–AG</text>
-</g>
+  <!-- Sidebar: persistent, not closed on advance -->
+  <g class="c-gray">
+    <rect x="640" y="90" width="160" height="210" rx="6"/>
+    <text class="th" x="720" y="118" text-anchor="middle">常駐元件</text>
+    <text class="ts" x="720" y="144" text-anchor="middle">CostMeter</text>
+    <text class="tiny" x="720" y="160" text-anchor="middle">（右上角）</text>
+    <text class="ts" x="720" y="184" text-anchor="middle">Workspace / Job History</text>
+    <text class="ts" x="720" y="204" text-anchor="middle">Agent Co-pilot</text>
+    <text class="tiny" x="720" y="220" text-anchor="middle">（Taskbar）</text>
+    <text class="tiny" x="720" y="248" text-anchor="middle">不受 advanceWindow 影響</text>
+  </g>
 
-<line x1="40" y1="700" x2="640" y2="700" stroke="var(--border)" stroke-width="0.5"/>
-<rect x="40" y="715" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="726">Read input</text>
-<rect x="150" y="715" width="12" height="12" rx="2" fill="var(--teal-50)" stroke="var(--teal-600)" stroke-width="0.5"/>
-<text class="ts" x="168" y="726">Preserve + append</text>
-<rect x="280" y="715" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)" stroke-width="0.5"/>
-<text class="ts" x="298" y="726">Generate overwrite</text>
-<rect x="420" y="715" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)" stroke-width="0.5"/>
-<text class="ts" x="438" y="726">Generate (steps)</text>
-<rect x="40" y="740" width="12" height="12" rx="2" fill="var(--amber-50)" stroke="var(--amber-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="751">New fill (needs rules)</text>
-<rect x="210" y="740" width="12" height="12" rx="2" fill="var(--gray-50)" stroke="var(--gray-600)" stroke-width="0.5"/>
-<text class="ts" x="228" y="751">Untouched</text>
+  <!-- Taskbar at bottom -->
+  <g class="c-gray">
+    <rect x="30" y="370" width="440" height="40" rx="4"/>
+    <text class="th" x="60"  y="394">Start</text>
+    <text class="ts" x="110" y="394" fill="var(--gray-600)">│</text>
+    <text class="ts" x="130" y="394">Workspace Manager</text>
+    <text class="ts" x="255" y="394" fill="var(--gray-600)">│</text>
+    <text class="ts" x="275" y="394">Job History</text>
+    <text class="ts" x="360" y="394" fill="var(--gray-600)">│</text>
+    <text class="ts" x="380" y="394">CostMeter</text>
+  </g>
 
-<text class="th" x="40" y="790">Rule sources</text>
-<line x1="40" y1="798" x2="640" y2="798" stroke="var(--border)" stroke-width="0.5"/>
-<text class="ts" x="50" y="820">AI Instruction §6–8 → Test Item / Pre-Cond / Input / Procedure / Expected Result</text>
-<text class="ts" x="50" y="840">AI Instruction §7.5 → Final Step verification rules</text>
-<text class="ts" x="50" y="860">AI Instruction §9 → False Pass / False Fail prevention</text>
-<text class="ts" x="50" y="880">Design Method §12 → Col Q waterfall (9 methods)</text>
-<text class="ts" x="50" y="900">SYS1 Spec §2.4 → Col N Specification Reference matching</text>
-<text class="ts" x="50" y="920">Writing Rules → Test Item rewrite format</text>
+</svg>
+</div>
+
+<div class="note">
+  <strong>重點</strong>：
+  <ul style="margin: 6px 0 0 20px;">
+    <li>同一時間桌面上只會有一個 module 視窗（Upload / Configure / Generate / Review / Export 擇一）。前進或返回時，<code>advanceWindow(from, to)</code> 會關閉來源視窗、開啟目標視窗。</li>
+    <li>Taskbar 常駐看得到<strong>累積花費</strong>（CostMeter）、<strong>Workspace</strong>、<strong>Job History</strong>，這些不受 advanceWindow 影響。</li>
+    <li>關閉 module 視窗不會遺失資料。所有 rows、設定、成本記錄都存在 Zustand store（localStorage）和後端 SQLite，回到原步驟會恢復上次狀態。</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- ========================================
+     5. 決策點
+     ======================================== -->
+<div class="section">
+<h2>5. 使用者決策點 — 遇到這些情況怎麼辦</h2>
+<p class="lede">在 Review 階段最常問的三個問題，以及對應的操作。</p>
+
+<div class="diagram">
+<svg width="100%" viewBox="0 0 860 480">
+  <defs>
+    <marker id="arr-d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Q1 -->
+  <g class="c-amber">
+    <rect x="40" y="30" width="780" height="120" rx="10"/>
+  </g>
+  <text class="th" x="60" y="58" fill="var(--amber-800)">Q1. 這筆 TC 的內容「差不多對」但有一點不滿意</text>
+  <g class="c-gray"><rect x="60" y="75" width="350" height="60" rx="6"/>
+    <text class="ts" x="235" y="100" text-anchor="middle" font-weight="600">A. 內容小修（Edit）</text>
+    <text class="tiny" x="235" y="118" text-anchor="middle">展開 row → 改欄位 → Save（狀態維持 reviewing）</text></g>
+  <g class="c-gray"><rect x="426" y="75" width="374" height="60" rx="6"/>
+    <text class="ts" x="613" y="100" text-anchor="middle" font-weight="600">B. 整筆/批次重生（Regenerate）</text>
+    <text class="tiny" x="613" y="118" text-anchor="middle">勾選一筆或多筆 → Toolbox 按 Regenerate → 出 diff 再挑欄位套用</text></g>
+
+  <!-- Q2 -->
+  <g class="c-coral">
+    <rect x="40" y="180" width="780" height="120" rx="10"/>
+  </g>
+  <text class="th" x="60" y="208" fill="var(--coral-800)">Q2. Validator 跳警告，不確定要不要管</text>
+  <g class="c-gray"><rect x="60" y="225" width="240" height="60" rx="6"/>
+    <text class="ts" x="180" y="250" text-anchor="middle" font-weight="600">Hard issue（紅）</text>
+    <text class="tiny" x="180" y="268" text-anchor="middle">生成時已自動 retry + 升級模型</text></g>
+  <g class="c-gray"><rect x="316" y="225" width="240" height="60" rx="6"/>
+    <text class="ts" x="436" y="250" text-anchor="middle" font-weight="600">Soft warning（黃）</text>
+    <text class="tiny" x="436" y="268" text-anchor="middle">可忽略；或 Regenerate 看看會不會變好</text></g>
+  <g class="c-gray"><rect x="572" y="225" width="228" height="60" rx="6"/>
+    <text class="ts" x="686" y="250" text-anchor="middle" font-weight="600">手動 Edit</text>
+    <text class="tiny" x="686" y="268" text-anchor="middle">看得懂怎麼修就直接改</text></g>
+
+  <!-- Q3 -->
+  <g class="c-green">
+    <rect x="40" y="330" width="780" height="120" rx="10"/>
+  </g>
+  <text class="th" x="60" y="358" fill="var(--green-800)">Q3. 要交付了，要匯出哪些 row？</text>
+  <g class="c-gray"><rect x="60" y="375" width="370" height="60" rx="6"/>
+    <text class="ts" x="245" y="400" text-anchor="middle" font-weight="600">Scope: All Generated Cases</text>
+    <text class="tiny" x="245" y="418" text-anchor="middle">全部匯出（含未審查、flagged、rejected）</text></g>
+  <g class="c-gray"><rect x="446" y="375" width="354" height="60" rx="6"/>
+    <text class="ts" x="623" y="400" text-anchor="middle" font-weight="600">Scope: Accepted Only（推薦）</text>
+    <text class="tiny" x="623" y="418" text-anchor="middle">只匯出已按 Accept 的 row，需至少一筆</text></g>
+
 </svg>
 </div>
 </div>
 
-<!-- DIAGRAM 3: UI Flow -->
-<div class="diagram-section">
-<h2>3. UI page flow — Upload → Configure → Generate → Review → Export</h2>
-<p>Five-page dashboard for managing the TC generation workflow.</p>
-<div class="diagram-card">
-<svg width="100%" viewBox="0 0 680 1060">
-<defs>
-  <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </marker>
-</defs>
+<!-- ========================================
+     6. 下一步：Agent 副駕（預覽）
+     ======================================== -->
+<div class="section">
+<h2>6. 雙軌並用 — GUI + Agent 副駕</h2>
+<p class="lede">GUI 五步驟與 Agent 副駕（ChatModule）皆已上線，可從 Taskbar 上的 Agent 按鈕開啟浮動視窗。兩者共用同一份 backend tools 與 job store，可在同一 job 裡來回切換。</p>
 
-<!-- PAGE 1: UPLOAD -->
-<g class="c-blue">
-  <rect x="40" y="30" width="600" height="160" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="55" dominant-baseline="central">1. Upload</text>
-</g>
-<g class="c-teal">
-  <rect x="60" y="72" width="170" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="145" y="90" text-anchor="middle" dominant-baseline="central">TC xlsx</text>
-  <text class="ts" x="145" y="108" text-anchor="middle" dominant-baseline="central">Test cases (required)</text>
-</g>
-<g class="c-teal">
-  <rect x="250" y="72" width="170" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="335" y="90" text-anchor="middle" dominant-baseline="central">SYS1 xlsx</text>
-  <text class="ts" x="335" y="108" text-anchor="middle" dominant-baseline="central">Spec reqs (optional)</text>
-</g>
-<g class="c-teal">
-  <rect x="440" y="72" width="170" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="525" y="90" text-anchor="middle" dominant-baseline="central">Spec doc</text>
-  <text class="ts" x="525" y="108" text-anchor="middle" dominant-baseline="central">pdf / docx / xlsx</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="138" width="560" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="340" y="156" text-anchor="middle" dominant-baseline="central">Auto-detect: Project / Test Group / Row count / Column fill status / File type</text>
-</g>
+<div class="diagram">
+<svg width="100%" viewBox="0 0 860 380">
+  <defs>
+    <marker id="arr-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-<line x1="340" y1="190" x2="340" y2="220" class="arr" marker-end="url(#a3)"/>
+  <!-- GUI Path -->
+  <g class="c-blue">
+    <rect x="40" y="50" width="360" height="240" rx="14"/>
+    <text class="th" x="220" y="84" text-anchor="middle" fill="var(--blue-800)">現行 GUI 模式</text>
+    <text class="ts" x="220" y="104" text-anchor="middle">（繼續保留，主要交付路徑）</text>
+  </g>
+  <g class="c-blue">
+    <rect x="62" y="128" width="62" height="32" rx="6"/>
+    <text class="tiny" x="93" y="148" text-anchor="middle">Upload</text>
+  </g>
+  <g class="c-blue">
+    <rect x="132" y="128" width="62" height="32" rx="6"/>
+    <text class="tiny" x="163" y="148" text-anchor="middle">Configure</text>
+  </g>
+  <g class="c-blue">
+    <rect x="202" y="128" width="62" height="32" rx="6"/>
+    <text class="tiny" x="233" y="148" text-anchor="middle">Generate</text>
+  </g>
+  <g class="c-blue">
+    <rect x="272" y="128" width="62" height="32" rx="6"/>
+    <text class="tiny" x="303" y="148" text-anchor="middle">Review</text>
+  </g>
+  <g class="c-blue">
+    <rect x="62" y="170" width="62" height="32" rx="6"/>
+    <text class="tiny" x="93" y="190" text-anchor="middle">Export</text>
+  </g>
+  <text class="ts" x="220" y="230" text-anchor="middle">照 SOP 走、每步看得到、</text>
+  <text class="ts" x="220" y="248" text-anchor="middle">適合正式交付與稽核</text>
+  <text class="ts" x="220" y="270" text-anchor="middle" fill="var(--blue-600)">主要交付路徑</text>
 
-<!-- PAGE 2: CONFIGURE -->
-<g class="c-purple">
-  <rect x="40" y="220" width="600" height="170" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="245" dominant-baseline="central">2. Configure</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="260" width="180" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="150" y="278" text-anchor="middle" dominant-baseline="central">Test Set grouping</text>
-  <text class="ts" x="150" y="296" text-anchor="middle" dominant-baseline="central">Drag-and-drop</text>
-</g>
-<g class="c-gray">
-  <rect x="250" y="260" width="180" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="278" text-anchor="middle" dominant-baseline="central">Spec match preview</text>
-  <text class="ts" x="340" y="296" text-anchor="middle" dominant-baseline="central">PDM match + override</text>
-</g>
-<g class="c-gray">
-  <rect x="440" y="260" width="180" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="530" y="278" text-anchor="middle" dominant-baseline="central">Generation scope</text>
-  <text class="ts" x="530" y="296" text-anchor="middle" dominant-baseline="central">Columns + model</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="325" width="560" height="50" rx="8" stroke-width="0.5"/>
-  <text class="th" x="340" y="343" text-anchor="middle" dominant-baseline="central">Parameters</text>
-  <text class="ts" x="340" y="361" text-anchor="middle" dominant-baseline="central">Model: GPT-4.1 / GPT-5 / GPT-4.1-mini | Batch: 1/5/10 | Columns: I J K L M N P Q</text>
-</g>
+  <!-- Agent Path -->
+  <g class="c-purple">
+    <rect x="460" y="50" width="360" height="240" rx="14"/>
+    <text class="th" x="640" y="84" text-anchor="middle" fill="var(--purple-800)">Agent 副駕（已上線）</text>
+    <text class="ts" x="640" y="104" text-anchor="middle">（ChatModule，Taskbar 按鈕開啟）</text>
+  </g>
+  <g class="c-purple">
+    <rect x="480" y="128" width="320" height="32" rx="6"/>
+    <text class="ts" x="640" y="148" text-anchor="middle">「上週那個 DeviceManager 補 REQ-045~052」</text>
+  </g>
+  <g class="c-purple">
+    <rect x="480" y="168" width="320" height="32" rx="6"/>
+    <text class="ts" x="640" y="188" text-anchor="middle">「過去一個月哪些 job match rate &lt; 80%？」</text>
+  </g>
+  <text class="ts" x="640" y="230" text-anchor="middle">自然語言、跨 job、批次操作</text>
+  <text class="ts" x="640" y="248" text-anchor="middle">GUI 做不到或太慢的事</text>
+  <text class="ts" x="640" y="270" text-anchor="middle" fill="var(--purple-600)">模糊查詢、批次、跨 job 操作</text>
 
-<line x1="340" y1="390" x2="340" y2="420" class="arr" marker-end="url(#a3)"/>
+  <!-- Bridge -->
+  <line x1="400" y1="170" x2="460" y2="170" class="arr-d" stroke="var(--text2)"/>
+  <text class="tiny" x="430" y="160" text-anchor="middle" fill="var(--text2)">Open in</text>
+  <text class="tiny" x="430" y="186" text-anchor="middle" fill="var(--text2)">Review ↔ Chat</text>
 
-<!-- PAGE 3: GENERATE -->
-<g class="c-coral">
-  <rect x="40" y="420" width="600" height="120" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="445" dominant-baseline="central">3. Generate</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="460" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="195" y="478" text-anchor="middle" dominant-baseline="central">Progress bar + live log + token stats</text>
-</g>
-<g class="c-gray">
-  <rect x="350" y="460" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="485" y="478" text-anchor="middle" dominant-baseline="central">Pause / Resume / Cancel / Retry</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="505" width="560" height="24" rx="4" stroke-width="0.5"/>
-  <text class="ts" x="340" y="517" text-anchor="middle" dominant-baseline="central">65/81 TCs — ~$0.14 — ETA 2 min</text>
-</g>
+  <line x1="460" y1="180" x2="400" y2="180" class="arr-d" stroke="var(--text2)"/>
 
-<line x1="340" y1="540" x2="340" y2="570" class="arr" marker-end="url(#a3)"/>
-
-<!-- PAGE 4: REVIEW -->
-<g class="c-amber">
-  <rect x="40" y="570" width="600" height="210" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="595" dominant-baseline="central">4. Review</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="610" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="th" x="195" y="628" text-anchor="middle" dominant-baseline="central">Original (left)</text>
-</g>
-<g class="c-gray">
-  <rect x="350" y="610" width="270" height="36" rx="6" stroke-width="0.5"/>
-  <text class="th" x="485" y="628" text-anchor="middle" dominant-baseline="central">Generated (right)</text>
-</g>
-<g class="c-green">
-  <rect x="60" y="658" width="80" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="100" y="673" text-anchor="middle" dominant-baseline="central">Accept</text>
-</g>
-<g class="c-blue">
-  <rect x="150" y="658" width="70" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="185" y="673" text-anchor="middle" dominant-baseline="central">Edit</text>
-</g>
-<g class="c-red">
-  <rect x="230" y="658" width="80" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="270" y="673" text-anchor="middle" dominant-baseline="central">Reject</text>
-</g>
-<g class="c-amber">
-  <rect x="320" y="658" width="70" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="355" y="673" text-anchor="middle" dominant-baseline="central">Flag</text>
-</g>
-<g class="c-gray">
-  <rect x="420" y="658" width="200" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="520" y="673" text-anchor="middle" dominant-baseline="central">Validator: 62 pass 14 warn 5 fail</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="700" width="560" height="30" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="340" y="715" text-anchor="middle" dominant-baseline="central">Filter: validation | Test Set | review status — Bulk: accept all / regen rejected</text>
-</g>
-<path d="M640 700 Q660 700 660 540 Q660 480 642 480" stroke="var(--coral-600)" stroke-width="0.5" fill="none" marker-end="url(#a3)"/>
-<text class="ts" x="608" y="600" fill="var(--coral-600)">Regen</text>
-
-<line x1="340" y1="780" x2="340" y2="810" class="arr" marker-end="url(#a3)"/>
-
-<!-- PAGE 5: EXPORT -->
-<g class="c-green">
-  <rect x="40" y="810" width="600" height="130" rx="12" stroke-width="0.5"/>
-  <text class="th" x="60" y="835" dominant-baseline="central">5. Export</text>
-</g>
-<g class="c-gray">
-  <rect x="60" y="852" width="170" height="40" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="145" y="865" text-anchor="middle" dominant-baseline="central">Export scope</text>
-  <text class="ts" x="145" y="880" text-anchor="middle" dominant-baseline="central">All / accepted only</text>
-</g>
-<g class="c-gray">
-  <rect x="250" y="852" width="170" height="40" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="335" y="865" text-anchor="middle" dominant-baseline="central">Output mode</text>
-  <text class="ts" x="335" y="880" text-anchor="middle" dominant-baseline="central">Overwrite / new file</text>
-</g>
-<g class="c-gray">
-  <rect x="440" y="852" width="170" height="40" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="525" y="865" text-anchor="middle" dominant-baseline="central">Options</text>
-  <text class="ts" x="525" y="880" text-anchor="middle" dominant-baseline="central">Fill Framework sheet</text>
-</g>
-<g class="c-blue">
-  <rect x="220" y="905" width="240" height="24" rx="6" stroke-width="0.5"/>
-  <text class="ts" x="340" y="917" text-anchor="middle" dominant-baseline="central">Download: DeviceManager_generated.xlsx</text>
-</g>
-
-<line x1="40" y1="960" x2="640" y2="960" stroke="var(--border)" stroke-width="0.5"/>
-<rect x="40" y="975" width="12" height="12" rx="2" fill="var(--blue-50)" stroke="var(--blue-600)" stroke-width="0.5"/>
-<text class="ts" x="58" y="986">Upload</text>
-<rect x="120" y="975" width="12" height="12" rx="2" fill="var(--purple-50)" stroke="var(--purple-600)" stroke-width="0.5"/>
-<text class="ts" x="138" y="986">Configure</text>
-<rect x="220" y="975" width="12" height="12" rx="2" fill="var(--coral-50)" stroke="var(--coral-600)" stroke-width="0.5"/>
-<text class="ts" x="238" y="986">Generate</text>
-<rect x="320" y="975" width="12" height="12" rx="2" fill="var(--amber-50)" stroke="var(--amber-600)" stroke-width="0.5"/>
-<text class="ts" x="338" y="986">Review</text>
-<rect x="410" y="975" width="12" height="12" rx="2" fill="var(--green-50)" stroke="var(--green-600)" stroke-width="0.5"/>
-<text class="ts" x="428" y="986">Export</text>
-<text class="ts" x="40" y="1010">Backend LLM: OpenAI API (GPT-4.1 / GPT-5 family) with automatic prompt caching</text>
-<text class="ts" x="40" y="1030">Persistence: SQLite JOB_REGISTRY + localStorage workspaces (with JSON import/export)</text>
+  <!-- Common backend -->
+  <g class="c-gray">
+    <rect x="40" y="320" width="780" height="36" rx="8"/>
+    <text class="th" x="430" y="344" text-anchor="middle">共用：同一組 Backend Tools + Job Store（兩邊的結果互通）</text>
+  </g>
+  <line x1="220" y1="290" x2="220" y2="320" class="arr-d" stroke="var(--text3)"/>
+  <line x1="640" y1="290" x2="640" y2="320" class="arr-d" stroke="var(--text3)"/>
 </svg>
 </div>
+
+<div class="note">
+  <strong>核心原則</strong>：兩種模式共用同一份資料與 tool；使用者可在同一個 job 裡來回切換。GUI 做正式交付、Agent 做模糊查詢與批次，各司其職。
 </div>
+</div>
+
+<hr style="margin: 48px 0 24px 0; border: none; border-top: 1px solid var(--border);">
+<p class="subtitle" style="margin-bottom: 0;">
+  想深入看技術架構：<code>docs/STATUS.md</code>（現況）與 <code>docs/ROADMAP.md</code>（下一步）。<br>
+  本文件專注於「使用者視角」的工具流程，不涵蓋 backend 內部模組與 API 細節。
+</p>
 
 </body>
 </html>
