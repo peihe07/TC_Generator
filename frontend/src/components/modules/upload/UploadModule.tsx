@@ -11,7 +11,7 @@ import { Button } from '../../ui';
 
 const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
-  const { openWindow } = useWindowStore();
+  const { advanceWindow } = useWindowStore();
   const [isParsing, setIsParsing] = useState(false);
   const [files, setFiles] = useState<{ tc?: File; referenceWorkbook?: File; spec?: File }>({});
   const [draggingZone, setDraggingZone] = useState<'tc' | 'referenceWorkbook' | 'spec' | null>(null);
@@ -77,7 +77,7 @@ const UploadModule: React.FC = () => {
           `Loaded ${result.rows.length} row(s) for ${result.jobMetadata.projectName}.`,
         ),
       );
-      openWindow('configure', 'TC Generator - Configuration');
+      advanceWindow('upload', 'configure', 'TC Generator - Configuration');
     } catch (error) {
       appendLog(
         createJobLog(

@@ -26,7 +26,7 @@ import type {
  */
 const ConfigureModule: React.FC = () => {
   const { tcRows, config, updateConfig, setTcRows, jobMetadata } = useJobStore();
-  const { openWindow } = useWindowStore();
+  const { openWindow, advanceWindow } = useWindowStore();
 
   const [activeTab, setActiveTab] = useState<ConfigureTabId>('tab1');
 
@@ -118,12 +118,12 @@ const ConfigureModule: React.FC = () => {
   }, [groupPreview, tcRows, setTcRows]);
 
   const handleStartGenerate = useCallback(() => {
-    openWindow('generate', 'TC Generator - Generating...');
-  }, [openWindow]);
+    advanceWindow('configure', 'generate', 'TC Generator - Generating...');
+  }, [advanceWindow]);
 
   const handleBack = useCallback(() => {
-    openWindow('upload', 'Upload Files');
-  }, [openWindow]);
+    advanceWindow('configure', 'upload', 'Upload Files');
+  }, [advanceWindow]);
 
   const invalidateGroupPreview = useCallback(() => {
     setGroupPreview(null);

@@ -41,7 +41,7 @@ const ReviewModule: React.FC = () => {
     config,
     appendLog,
   } = useJobStore();
-  const { openWindow } = useWindowStore();
+  const { advanceWindow } = useWindowStore();
 
   // 允許同時展開多列
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
@@ -366,7 +366,7 @@ const ReviewModule: React.FC = () => {
 
       <ValidationPanel
         selectedRow={selectedRow}
-        onExport={() => openWindow('export', 'TC Generator - Export')}
+        onExport={() => advanceWindow('review', 'export', 'TC Generator - Export')}
         width={panelWidth}
       />
 

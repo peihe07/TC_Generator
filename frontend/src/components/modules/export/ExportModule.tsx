@@ -17,7 +17,7 @@ import { Button, Checkbox, Radio } from '../../ui';
 
 const ExportModule: React.FC = () => {
   const { tcRows, jobMetadata, appendLog, resetJob, config } = useJobStore();
-  const { openWindow } = useWindowStore();
+  const { advanceWindow } = useWindowStore();
   const [isExporting, setIsExporting] = useState(false);
   const [exportComplete, setExportComplete] = useState(false);
   const [scope, setExportScope] = useState<'all' | 'accepted'>('all');
@@ -131,7 +131,7 @@ const ExportModule: React.FC = () => {
             className="flex justify-between items-center pt-4"
             style={{ borderTop: '1px solid var(--win95-gray-mid)' }}
           >
-            <Button className="flex items-center gap-1" onClick={() => openWindow('review', 'Review Results')}>
+            <Button className="flex items-center gap-1" onClick={() => advanceWindow('export', 'review', 'Review Results')}>
               <RiArrowLeftLine className="size-4" /> Back to Review
             </Button>
             <Button
@@ -194,7 +194,7 @@ const ExportModule: React.FC = () => {
                 setExportComplete(false);
                 setDownloadUrl(null);
                 resetJob();
-                openWindow('upload', 'Upload Files');
+                advanceWindow('export', 'upload', 'Upload Files');
               }}
             >
               Start New Job

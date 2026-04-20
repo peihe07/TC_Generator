@@ -39,7 +39,7 @@ const GenerateModule: React.FC = () => {
     updateTcRow,
     addTcRowAfter,
   } = useJobStore();
-  const { openWindow } = useWindowStore();
+  const { advanceWindow } = useWindowStore();
   const runnerRef = useRef<{ stop: () => void } | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
@@ -130,7 +130,7 @@ const GenerateModule: React.FC = () => {
         onComplete: (message) => {
           setProcessing(false);
           appendLog(createJobLog('success', message));
-          openWindow('review', 'TC Generator - Review Results');
+          advanceWindow('generate', 'review', 'TC Generator - Review Results');
         },
         onError: (message) => {
           setProcessing(false);
@@ -276,7 +276,7 @@ const GenerateModule: React.FC = () => {
           <Button
             className="flex items-center gap-1 default"
             disabled={isProcessing || !tcRows.length}
-            onClick={() => openWindow('review', 'TC Generator - Review Results')}
+            onClick={() => advanceWindow('generate', 'review', 'TC Generator - Review Results')}
           >
             Review Results{' '}
             <RiCheckDoubleFill

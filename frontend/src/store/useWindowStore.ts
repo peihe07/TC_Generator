@@ -19,6 +19,7 @@ interface WindowStore {
   maxZIndex: number;
 
   openWindow: (id: WindowID, title: string, defaultSize?: { width: number; height: number }) => void;
+  advanceWindow: (from: WindowID, to: WindowID, title: string, defaultSize?: { width: number; height: number }) => void;
   closeWindow: (id: WindowID) => void;
   minimizeWindow: (id: WindowID) => void;
   maximizeWindow: (id: WindowID) => void;
@@ -59,6 +60,26 @@ export const useWindowStore = create<WindowStore>((set) => ({
         },
       },
       focusedWindowId: id,
+      maxZIndex: newMaxZ,
+    };
+  }),
+
+  advanceWindow: (from, to, title, defaultSize) => set((state) => {
+    const newMaxZ = state.maxZIndex + 1;
+    return {
+      windows: {
+        ...state.windows,
+        [from]: { ...state.windows[from], isOpen: false },
+        [to]: {
+          ...state.windows[to],
+          title,
+          isOpen: true,
+          isMinimized: false,
+          zIndex: newMaxZ,
+          ...(defaultSize ? { size: defaultSize } : {}),
+        },
+      },
+      focusedWindowId: to,
       maxZIndex: newMaxZ,
     };
   }),
