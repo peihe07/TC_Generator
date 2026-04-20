@@ -56,7 +56,7 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
     <div className="w-[320px] flex flex-col gap-2 shrink-0">
       {/* Mode selector */}
       <fieldset>
-        <legend className="font-bold text-sm">Mode</legend>
+        <legend className="text-sm">Mode</legend>
         <div className="flex flex-col gap-1 p-1">
           {MODE_CONFIG.map((m) => {
             const active = mode === m.id;
@@ -104,11 +104,11 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
 
       {/* Test Item input */}
       <fieldset className="flex-1 flex flex-col overflow-hidden">
-        <legend className="font-bold text-sm">
+        <legend className="text-sm">
           {mode === 'decompose' ? 'Requirement Description' : 'Test Item'}
         </legend>
         <textarea
-          className="flex-1 p-2 text-xs resize-none min-h-[100px] border-2 border-sunken"
+          className="flex-1 p-2 text-xs resize-none min-h-[100px] border-sunken"
           placeholder={
             mode === 'decompose'
               ? 'Paste full requirement text. AI will identify distinct test scenarios...'
@@ -123,9 +123,9 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
       {/* Context input (only for with_context) */}
       {mode === 'with_context' && (
         <fieldset className="flex flex-col">
-          <legend className="font-bold text-sm">Additional Criteria / Context</legend>
+          <legend className="text-sm">Additional Criteria / Context</legend>
           <textarea
-            className="p-2 text-xs resize-none min-h-[80px] border-2 border-sunken"
+            className="p-2 text-xs resize-none min-h-[80px] border-sunken"
             placeholder="System constraints, related requirements, environment details..."
             value={context}
             onChange={(e) => onContextChange(e.target.value)}
@@ -156,7 +156,7 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
           </Button>
         ) : (
           <Button
-            className="flex-1 py-2 flex items-center justify-center gap-2 text-sm font-bold default"
+            className="flex-1 py-2 flex items-center justify-center gap-2 text-sm default"
             disabled={!testItem.trim()}
             onClick={onGenerate}
           >
@@ -188,7 +188,10 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
 
       {/* Cost display */}
       {cost > 0 && (
-        <div className="text-[10px] text-gray-500 text-right font-mono">
+        <div
+          className="text-[10px] text-right font-mono"
+          style={{ color: 'var(--text-muted)' }}
+        >
           Cost: ${cost.toFixed(4)}
         </div>
       )}

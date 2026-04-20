@@ -61,7 +61,7 @@ export const PRIORITY_BASE: React.CSSProperties = {
   border: '2px solid',
   borderColor:
     'var(--win95-gray-dark) var(--win95-gray-light) var(--win95-gray-light) var(--win95-gray-dark)',
-  boxShadow: 'inset 1px 1px 0 rgba(0,0,0,0.25)',
+  boxShadow: 'var(--shadow-badge-inset)',
   fontWeight: 'bold',
   padding: '1px 6px',
   fontSize: 10,

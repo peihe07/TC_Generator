@@ -285,7 +285,10 @@ const QuickGenerateModule: React.FC = () => {
       <div className="flex-1 flex flex-col gap-2 min-w-0 overflow-hidden">
         {/* Idle state */}
         {phase === 'idle' && generatedTcs.length === 0 && (
-          <div className="flex-1 flex flex-col items-center justify-center text-gray-400 gap-3">
+          <div
+            className="flex-1 flex flex-col items-center justify-center gap-3"
+            style={{ color: 'var(--text-muted)' }}
+          >
             <RiFlashlightLine className="size-12 opacity-30" />
             <div className="text-sm text-center">
               Fill in the input and click Generate
