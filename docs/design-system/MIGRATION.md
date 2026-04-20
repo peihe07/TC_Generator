@@ -2,30 +2,35 @@
 
 > 把這份檔案餵給 `frontend/` 下的 Claude Code。每個 Phase 是一個獨立 PR，跑完跑 `npm run dev` 視覺驗收後再進下一個。
 
-## 進度總表（最後更新：2026-04-19）
+## 進度總表（最後更新：2026-04-20 — Phase 6 全數完成）
 
 | Phase | 範圍 | 狀態 | commit |
 |-------|------|------|--------|
 | 0 | Design system bundle 入 repo（`docs/design-system/`） | ✅ | `da81752` |
 | 1 | Token 層 + global hard rules（`win95.css`） | ✅ | pre-migration |
-| 2 | UI primitives（Input / Button / StatusBadge） | ✅ 程式面；⬜ 完整視覺驗收 | pre-migration + `d2a4af4`（generating pulse） |
+| 2 | UI primitives（Input / Button / StatusBadge） | ✅ | pre-migration + `d2a4af4`（generating pulse） |
 | 3 | 顏色清查（hex → token） | ✅ | `3ca2880` |
 | 4 | 動畫清掃（motion tokens、移除 slide-in、pulse 1s 統一） | ✅ | `d2a4af4` |
 | 5 | Desktop / Taskbar / StartMenu 視覺對齊 | ✅ | `d2a4af4` |
-| 6.1 | Upload module | ✅ 程式面；⬜ 視覺驗收 | uncommitted |
-| 6.2 | Configure module（含 `.win95-th` 對齊、Tabs override） | ✅ 程式面；⬜ 視覺驗收 | uncommitted |
-| 6.3 | Generate module | ⬜ | — |
-| 6.4 | Review module（含 2 條 follow-up 待辦，見本檔 §Phase 6.4） | ⬜ | `.win95-th` 已提前對齊於 6.2 |
-| 6.5 | Export module | ⬜ | — |
-| 6.6 | QuickGenerate module | ⬜ | — |
-| 6.7 | ChatModule | ⬜ | — |
-| 6.8 | Diagrams / Rules | ⬜ | — |
+| 6.1 | Upload module | ✅ | `fa51eea` |
+| 6.2 | Configure module（含 `.win95-th` 對齊、Tabs override） | ✅ | `fa51eea` |
+| 6.3 | Generate module（progress bar blocky chunks 重寫） | ✅ | `a7b00e6` + `c1d0a03` |
+| 6.4 | Review module（peach pending、diff palette、sticky header） | ✅ | `da389fc` |
+| 6.5 | Export module（含 `.type-h1` size 對齊） | ✅ | `490008d` |
+| 6.6 | QuickGenerate module | ✅ | `119a060` |
+| 6.7 | ChatModule（double-header 修 + sunken-bezel systemic fix + FAILED contrast F1 patch） | ✅ | `499d391` + `1011123` + `afd3471` |
+| 6.8 | Diagrams / Rules（(α) policy — iframe content intentionally out-of-scope） | ✅ | doc-only（見本檔 §Phase 6 #8） |
 | 7 | Iconography（已於 HANDOFF Phase 5 完成桌面圖示外部化） | ✅ | `d2a4af4` |
-| 8 | 測試 & 驗收 | 🚧 unit tests passing；E2E + 完整手動驗收 ⬜ | — |
+| 8 | 測試 & 驗收 | 🚧 unit tests passing（107/107）；E2E + 完整手動驗收 ⬜ | — |
 
-Follow-up 待辦（記在對應 Phase 節內）：
+Follow-up 待辦（全數記於 Post-migration polish §P1–§P13）：
 - Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
-- Phase 6.4：已彙整為 Post-migration polish §P3 (`pendingRegenerated` rename) / §P4 (`isActive` vs `isSelected` 拆分) / §P5 (GENERATED TEST CASE 欄空白 bug)
+- Phase 6.4：§P3 (`pendingRegenerated` rename) / §P4 (`isActive` vs `isSelected` 拆分) / §P5 (GENERATED TEST CASE 欄空白 bug)
+- Phase 6.5：§P6 (`Win95Dialog` 通用元件)
+- Phase 6.7：§P9 (4 TSX inline sunken → `.border-sunken` class) / §P10 (Review toolbar vs `.win95-th` boundary) / §P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)
+- Phase 6.8：§P13 (Rules tabpanel nested sunken border observation)
+
+**Phase 6 — Module migration 全 8 module 完成。** 下一階段為 Phase 8（測試覆蓋）及 Post-migration polish backlog。
 
 ## 前置
 
@@ -155,6 +160,23 @@ grep -rE "(transition|animation):" src --include="*.tsx" --include="*.css"
    **附帶修正（獨立 commit）：** Phase 6.7 驗收 `.agent-text` bot bubble bezel 時，發現 sunken-bezel token 語意誤用 — canonical `.bezel-sunken` / `.border-sunken` 及 10 個衍生 sunken surface 的 TL 邊色用 `--win95-gray-mid` (`#808080`)，但 README §「The seven grays」語意綁定為「raised-bezel shadow」；sunken 的語意對應色是 `--win95-gray-dark` (`#606060`)。屬 design system 層級規格 vs 實作分叉。修正為獨立 commit `fix(design-system): correct sunken bezel top/left color semantics`，scope 42 處（產品 `win95.css` 12 + TSX inline 4 + design bundle 規格權威 5 + bundle 鏡像 21；明確排除 `docs/mockups/*.html` 10 處 pre-design-system scratch）。
 
 8. **Diagrams / Rules** → `preview/window-chrome.html`（內容 iframe，外框照舊）
+
+   **採 (α) policy — iframe 內容視為獨立內容區，不強制 Win95 token 化。** 理由：
+   1. MIGRATION.md 字面即 (α) — 「外框照舊，內容 iframe」原意明確，改寫 iframe 內容 HTML 屬 scope creep。
+   2. iframe 邊界是 **content vs chrome 的自然切面** — Win95 桌面是 OS chrome，iframe 內是「應用程式內容」，本來就不該強制同一視覺語言（類比：Win95 IE 開任何網頁也不會強迫該網頁變 Win95）。
+   3. `diagrams.html` 的彩色方塊是 **資訊 encoding**（藍 = infra、珊瑚 = user-facing 等），全換灰階等於砍掉架構圖資訊維度 — 功能損失非視覺升級。
+   4. `rules-*.html` 是 pandoc 從 markdown 產物，重寫 CSS 等於綁死 pipeline — 之後改 rule source 重跑 pandoc 又要重對齊，維護成本不划算。`prefers-color-scheme: dark` 支援不影響外層 Win95 chrome（外層用固定色票不響應 media query）。
+
+   **靜態驗收清單（通過）：**
+   - `<iframe>` 本身 `border: 'none'` ✓（`DiagramsModule.tsx` / `RulesModule.tsx` 皆明確設）
+   - `width: 100%; height: 100%; display: block` ✓ 貼齊父容器
+   - AppWindow inner container 對 diagrams/rules 用 `p-0`（其他 module 是 `p-4`）— 無 padding 灰縫 ✓
+   - Tab bar（Rules 用 98.css `<menu role="tablist">`）已由 Phase 6.2 tabs override 涵蓋 ✓
+   - RulesModule `<div role="tabpanel">` 的 inline sunken border 已由 sunken-bezel systemic fix 涵蓋 ✓
+
+   **實質零程式變更。** AppWindow 外框 + tab bar + sunken border 於前 Phase 已全數覆蓋，Phase 6.8 只做靜態驗收 + doc 記錄。
+
+   **Follow-up：** 見 §P13（Rules nested sunken border 觀察）。
 
 每個 module 改完跑：
 ```bash
@@ -397,6 +419,21 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 **合併建議：** 原 Phase 6.4 §P4 tech-debt 同根問題（`isActive || isSelected` 共用 `.selected` class），建議合併處理。P4 是視覺規格目標、P12 是 state 層 refactor，同一根問題兩個維度。
 
 **進入條件：** 獨立，建議與 P3 (`pendingRegenerated` rename) 合併為一個 Review state refactor PR，減少 ReviewRow 二次修改。
+
+### P13 — Rules module tabpanel nested sunken border 觀察
+
+**Background:** Phase 6.8 iframe 靜態驗收時觀察到 `RulesModule.tsx` 的 `<div role="tabpanel">` 有自己的 inline `border: 2px solid` sunken bezel，同時外層 `AppWindow` inner container 也套 `.border-sunken`（2px）。兩層 sunken 邊框在 tabpanel 四週疊加 = 4px sunken 視覺厚度，可能偏重。
+
+**語意正確 vs 視覺過厚：** 雙層各有語意正確性（外層分隔 window-body 與 title bar、內層分隔 tabpanel 與 tab bar），符合 Win95 nesting 慣例（例如 fieldset 嵌在 window-body 也有類似效果）。**但**若實測視覺偏重，可簡化為單層 frame。
+
+**建議做法（二選一，看實測）：**
+- (1) 移除 `RulesModule.tsx:38-42` inline sunken border，交由外層 `.border-sunken` 唯一表達 frame（4px → 2px）
+- (2) 保留雙層但調細（例如 inline border 改 1px，只保留 token 色語意）
+
+**Scope:**
+- `frontend/src/components/modules/rules/RulesModule.tsx`（L38-42 inline style）
+
+**進入條件：** 獨立，極低優先 — Phase 6.8 驗收時無視覺 blocker，等之後實測截圖若覺偏重再處理。
 
 ### Category D exclusion note — `docs/mockups/*.html` 保留舊 hex sunken pattern
 
