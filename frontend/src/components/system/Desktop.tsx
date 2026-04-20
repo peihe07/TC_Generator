@@ -36,19 +36,25 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   chat:          'Agent Co-pilot',
 };
 
-// Default icon grid positions (left column, top-to-bottom)
+// Default icon grid positions — 5-per-column so the 9th icon (Agent)
+// stays above the fold on 13-14" laptops. Single-column default put the
+// last icon at y≈812 which fell outside the `overflow-hidden` viewport.
 const ICON_W = 80;
 const ICON_H = 92;
 const ICON_GAP = 8;
 const ICON_START_X = 12;
 const ICON_START_Y = 12;
+const ICONS_PER_COLUMN = 5;
+const COLUMN_STEP_X = ICON_W + 12;
 
 function defaultPositions(): Record<WindowID, { x: number; y: number }> {
   const pos: Partial<Record<WindowID, { x: number; y: number }>> = {};
   DESKTOP_ICONS.forEach(({ id }, i) => {
+    const col = Math.floor(i / ICONS_PER_COLUMN);
+    const row = i % ICONS_PER_COLUMN;
     pos[id] = {
-      x: ICON_START_X,
-      y: ICON_START_Y + i * (ICON_H + ICON_GAP),
+      x: ICON_START_X + col * COLUMN_STEP_X,
+      y: ICON_START_Y + row * (ICON_H + ICON_GAP),
     };
   });
   return pos as Record<WindowID, { x: number; y: number }>;
@@ -56,14 +62,41 @@ function defaultPositions(): Record<WindowID, { x: number; y: number }> {
 
 const LS_KEY = 'desktop-icon-positions';
 
+/**
+ * Snap any icon whose persisted position falls outside the current
+ * viewport back to its default slot. Historic layouts were single-column
+ * so the 9th icon (Agent) ended up at y≈812 — on a short laptop the
+ * `overflow-hidden` desktop clips it and the user never sees Agent.
+ */
+function rescueOffscreenIcons(
+  saved: Record<WindowID, { x: number; y: number }>,
+  defaults: Record<WindowID, { x: number; y: number }>,
+): Record<WindowID, { x: number; y: number }> {
+  if (typeof window === 'undefined') return saved;
+  const maxX = window.innerWidth - ICON_W;
+  const maxY = window.innerHeight - ICON_H - 28; // leave room for taskbar
+  const fixed = { ...saved };
+  for (const { id } of DESKTOP_ICONS) {
+    const p = fixed[id];
+    if (!p || p.x < 0 || p.y < 0 || p.x > maxX || p.y > maxY) {
+      fixed[id] = defaults[id];
+    }
+  }
+  return fixed;
+}
+
 function loadPositions(): Record<WindowID, { x: number; y: number }> {
+  const defaults = defaultPositions();
   try {
     const raw = localStorage.getItem(LS_KEY);
-    if (raw) return { ...defaultPositions(), ...JSON.parse(raw) };
+    if (raw) {
+      const merged = { ...defaults, ...JSON.parse(raw) };
+      return rescueOffscreenIcons(merged, defaults);
+    }
   } catch {
     // ignore
   }
-  return defaultPositions();
+  return defaults;
 }
 
 const Desktop: React.FC = () => {
