@@ -151,6 +151,9 @@ grep -rE "(transition|animation):" src --include="*.tsx" --include="*.css"
 5. **Export** → `preview/fieldsets.html` + `preview/dialog.html`
 6. **QuickGenerate** → `preview/form-inputs.html`
 7. **ChatModule** → `preview/paper-cards.html`（user bubble = navy / bot = white sunken）
+
+   **附帶修正（獨立 commit）：** Phase 6.7 驗收 `.agent-text` bot bubble bezel 時，發現 sunken-bezel token 語意誤用 — canonical `.bezel-sunken` / `.border-sunken` 及 10 個衍生 sunken surface 的 TL 邊色用 `--win95-gray-mid` (`#808080`)，但 README §「The seven grays」語意綁定為「raised-bezel shadow」；sunken 的語意對應色是 `--win95-gray-dark` (`#606060`)。屬 design system 層級規格 vs 實作分叉。修正為獨立 commit `fix(design-system): correct sunken bezel top/left color semantics`，scope 42 處（產品 `win95.css` 12 + TSX inline 4 + design bundle 規格權威 5 + bundle 鏡像 21；明確排除 `docs/mockups/*.html` 10 處 pre-design-system scratch）。
+
 8. **Diagrams / Rules** → `preview/window-chrome.html`（內容 iframe，外框照舊）
 
 每個 module 改完跑：
@@ -350,6 +353,35 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 - 不改字重（`font-bold` 保留，除非冗餘）
 
 **進入條件：** **Phase 6 全部完成後** 再做，避免跟進行中的 module migration 衝突。
+
+### P9 — Refactor 4 個 TSX inline sunken bezel 為 `.border-sunken` class
+
+**動機：** Phase 6.7 附帶 sunken-bezel token 修正時發現 4 個 TSX 檔以 `borderColor: 'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)'` inline 重寫了 canonical sunken pattern，而非引用現有的 `.border-sunken` / `.bezel-sunken` class：
+
+- `frontend/src/components/modules/configure/GroupingTab.tsx`（Manual Override 表外框）
+- `frontend/src/components/modules/quickGenerate/DecomposeAnalysisPanel.tsx`（panel 外框）
+- `frontend/src/components/modules/review/RegenDiff.tsx`（field container，selected state）
+- `frontend/src/components/modules/rules/RulesModule.tsx`（iframe 容器）
+
+這次 sunken token 誤用能擴散 16 處（CSS 12 + TSX 4），inline 重寫是放大效果的主因 —— canonical pattern 集中在 class 裡，改一處全 app 生效；inline 版本每份各自改各自，散彈式維護。
+
+**目標：** 把這 4 個 inline `borderColor: ...` 改用 `className="border-sunken"`（或必要時 `.bezel-sunken`）。
+
+**禁止：**
+- 不改視覺（class 與 inline 規格已在 fix commit 後完全一致）
+- 不改這 4 個 TSX 的其他邏輯
+
+**進入條件：** Phase 6 全部完成後；P7（typography）後順手做較方便（兩者都是 TSX 的 className refactor）。
+
+### Category D exclusion note — `docs/mockups/*.html` 保留舊 hex sunken pattern
+
+`docs/mockups/chat_module_mockup.html`（7 處）+ `docs/mockups/agent_gui_flow.html`（3 處）共 10 個 `#808080 #ffffff #ffffff #808080` 出現，**刻意不在 sunken-bezel token 修正 commit 範圍內**：
+
+- 這兩份是 pre-design-system 時期的 scratch mockups（最後更動 `da81752 chore(repo): reorganize docs assets`，純複製）
+- 不在 `docs/design-system/` bundle 內，不被 preview / README / colors_and_type 引用
+- 若要清理，合理動作是「刪檔」而非「改色」—— 列 tech-debt 待評估
+
+**進入條件：** 獨立，極低優先。決定「保留為歷史文件」或「刪除」時再處理。
 
 ---
 

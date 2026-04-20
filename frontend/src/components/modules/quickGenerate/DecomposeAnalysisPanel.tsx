@@ -36,7 +36,7 @@ export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
     style={{
       border: '2px solid',
       borderColor:
-        'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)',
+        'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)',
     }}
   >
     <div

@@ -93,7 +93,7 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
               style={{
                 border: '2px solid',
                 borderColor: isSelected
-                  ? 'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)'
+                  ? 'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)'
                   : 'var(--win95-gray) var(--win95-gray-lighter) var(--win95-gray-lighter) var(--win95-gray)',
                 background: 'var(--win95-white)',
                 opacity: isSelected ? 1 : 0.55,

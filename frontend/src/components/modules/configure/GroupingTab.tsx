@@ -124,7 +124,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             overflowY: 'auto',
             border: '2px solid',
             borderColor:
-              'var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid)',
+              'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)',
             background: 'var(--win95-white)',
           }}
         >

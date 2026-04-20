@@ -142,6 +142,6 @@ p.ds { font-size: var(--font-md); font-weight: var(--font-weight-normal); line-h
 }
 .bezel-sunken {
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   box-shadow: inset 1px 1px 0 var(--win95-black);
 }

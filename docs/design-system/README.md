@@ -158,7 +158,7 @@ border-color: #ffffff #808080 #808080 #ffffff;   /* top/left light, bottom/right
 **Sunken** (inputs, dropzones, paper cards, progress bars, status badges):
 ```css
 border: 2px solid;
-border-color: #808080 #ffffff #ffffff #808080;   /* inverse — top/left dark, bottom/right light */
+border-color: #606060 #ffffff #ffffff #606060;   /* inverse — top/left dark, bottom/right light */
 box-shadow: inset 1px 1px 0 #000000;             /* optional extra depth */
 ```
 

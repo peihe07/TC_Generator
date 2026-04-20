@@ -175,7 +175,7 @@ button svg.remixicon {
 /* Dropzone — sunken inset style */
 .dropzone-sunken {
   border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
+  border-color: #606060 #ffffff #ffffff #606060;
   box-shadow: inset 1px 1px 0 #000000;
   background: #ffffff;
   cursor: pointer;
@@ -199,7 +199,7 @@ button svg.remixicon {
 /* Sunken stat box — for dashboard numbers */
 .stat-sunken {
   border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
+  border-color: #606060 #ffffff #ffffff #606060;
   background: #ffffff;
   padding: 6px 8px;
   display: flex;
@@ -212,7 +212,7 @@ button svg.remixicon {
   position: relative;
   height: 22px;
   border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
+  border-color: #606060 #ffffff #ffffff #606060;
   background: #c0c0c0;
   padding: 2px;
   overflow: hidden;
@@ -358,7 +358,7 @@ td.cell-center {
 .paper-card {
   background: #ffffff;
   border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
+  border-color: #606060 #ffffff #ffffff #606060;
   box-shadow: 2px 2px 0 rgba(0,0,0,0.15), inset 1px 1px 0 rgba(0,0,0,0.05);
 }
 .paper-card.edit-mode {
@@ -395,7 +395,7 @@ td.cell-center {
 .sys-log-entry {
   background: #ffffff;
   border: 1px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
+  border-color: #606060 #ffffff #ffffff #606060;
   padding: 6px 8px;
   font-size: 11px;
   line-height: 1.4;
@@ -1031,7 +1031,7 @@ button:focus:not(:focus-visible),
  */
 button:active:not(:disabled),
 .title-bar-controls button:active:not(:disabled) {
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark) !important;
   box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
   padding-top: 5px !important;
   padding-left: 13px !important;
@@ -1042,7 +1042,7 @@ button:active:not(:disabled),
 /* Icon buttons keep their fixed dimensions when pressed — only the
  * bezel flips, no content shift. */
 button.btn-icon:active:not(:disabled) {
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark) !important;
   box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
   padding: 0 !important;
 }

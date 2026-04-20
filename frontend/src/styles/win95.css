@@ -193,7 +193,7 @@ fieldset legend { font-weight: var(--font-weight-bold); }
 /* Dropzone — sunken inset style */
 .dropzone-sunken {
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   box-shadow: inset 1px 1px 0 var(--win95-black);
   background: var(--win95-white);
   cursor: pointer;
@@ -217,7 +217,7 @@ fieldset legend { font-weight: var(--font-weight-bold); }
 /* Sunken stat box — for dashboard numbers */
 .stat-sunken {
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   background: var(--win95-white);
   padding: 6px 8px;
   display: flex;
@@ -232,7 +232,7 @@ fieldset legend { font-weight: var(--font-weight-bold); }
 .progress-bar-wrap {
   height: 20px;
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   background: var(--win95-white);
   padding: 2px;
   display: flex;
@@ -386,7 +386,7 @@ menu[role="tablist"] > li[role="tab"][aria-selected="true"] {
 .paper-card {
   background: var(--win95-white);
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   box-shadow: var(--shadow-paper), inset 1px 1px 0 rgba(0,0,0,0.05);
 }
 .paper-card.edit-mode {
@@ -423,7 +423,7 @@ menu[role="tablist"] > li[role="tab"][aria-selected="true"] {
 .sys-log-entry {
   background: var(--win95-white);
   border: 1px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   padding: 6px 8px;
   font-size: var(--font-sm);
   line-height: 1.4;
@@ -720,7 +720,7 @@ button.btn-icon:hover {
 .agent-text {
   background: var(--win95-white);
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   box-shadow: inset 1px 1px 0 var(--win95-black);
   padding: 6px 10px;
 }
@@ -998,7 +998,7 @@ button.btn-icon:hover {
 }
 .cost-meter-dashboard-btn svg { width: 12px !important; height: 12px !important; }
 .cost-meter-dashboard-btn:active {
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
 }
 
 .cost-dashboard-popup {
@@ -1040,7 +1040,7 @@ button.btn-icon:hover {
 }
 .cost-dashboard-btn svg { width: 12px !important; height: 12px !important; }
 .cost-dashboard-btn:active {
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
 }
 .cost-dashboard-btn:disabled { cursor: wait; opacity: 0.6; }
 .cost-dashboard-body {
@@ -1240,7 +1240,7 @@ button:focus:not(:focus-visible),
  */
 button:active:not(:disabled),
 .title-bar-controls button:active:not(:disabled) {
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark) !important;
   box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
   padding-top: 5px !important;
   padding-left: 13px !important;
@@ -1251,7 +1251,7 @@ button:active:not(:disabled),
 /* Icon buttons keep their fixed dimensions when pressed — only the
  * bezel flips, no content shift. */
 button.btn-icon:active:not(:disabled) {
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid) !important;
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark) !important;
   box-shadow: inset 1px 1px 0 var(--win95-gray-dark) !important;
   padding: 0 !important;
 }
@@ -1268,7 +1268,7 @@ button.btn-icon:active:not(:disabled) {
 }
 .bezel-sunken {
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   box-shadow: inset 1px 1px 0 var(--win95-black);
 }
 
@@ -1276,7 +1276,7 @@ button.btn-icon:active:not(:disabled) {
  * 對齊 `.bezel-sunken`，讓 `border-sunken` 不再是 dead class。 */
 .border-sunken {
   border: 2px solid;
-  border-color: var(--win95-gray-mid) var(--win95-white) var(--win95-white) var(--win95-gray-mid);
+  border-color: var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark);
   box-shadow: inset 1px 1px 0 var(--win95-black);
 }
 
