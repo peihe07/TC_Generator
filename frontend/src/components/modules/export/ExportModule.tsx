@@ -84,7 +84,7 @@ const ExportModule: React.FC = () => {
         <>
           <div className="flex-1 flex flex-col gap-4">
             <fieldset className="p-4">
-              <legend className="font-bold">Export Scope</legend>
+              <legend>Export Scope</legend>
               <div className="flex flex-col gap-2">
                 <Radio
                   id="scope-all"
@@ -104,7 +104,7 @@ const ExportModule: React.FC = () => {
             </fieldset>
 
             <fieldset className="p-4">
-              <legend className="font-bold">Output Settings</legend>
+              <legend>Output Settings</legend>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
                   <Checkbox id="inc-steps" label="Include Steps" defaultChecked />
@@ -121,25 +121,34 @@ const ExportModule: React.FC = () => {
               </div>
             </fieldset>
 
-            <div className="status-bar-field p-3 text-xs leading-relaxed border-2 border-sunken">
+            <div className="status-bar-field p-3 text-xs leading-relaxed border-sunken">
               <RiSettings4Line className="size-4 inline mr-2 mb-1" />
               Final file will be named: <span className="font-bold font-mono">{jobMetadata?.projectName || 'results'}_generated.xlsx</span>
             </div>
           </div>
 
-          <div className="flex justify-between items-center pt-4 border-t border-gray-400">
+          <div
+            className="flex justify-between items-center pt-4"
+            style={{ borderTop: '1px solid var(--win95-gray-mid)' }}
+          >
             <Button className="flex items-center gap-1" onClick={() => openWindow('review', 'Review Results')}>
               <RiArrowLeftLine className="size-4" /> Back to Review
             </Button>
             <Button
-              className={`flex items-center gap-2 font-bold default min-w-[120px] justify-center ${isExporting ? 'bg-gray-200' : ''}`}
+              className="flex items-center gap-2 default min-w-[120px] justify-center"
               disabled={isExporting}
               onClick={() => void handleExport()}
             >
               {isExporting ? (
                 <span className="italic" style={{ animation: 'agent-pulse 1s ease-in-out infinite' }}>Exporting...</span>
               ) : (
-                <>Export to Excel <RiFileExcel2Fill className="size-4 text-green-700" /></>
+                <>
+                  Export to Excel{' '}
+                  <RiFileExcel2Fill
+                    className="size-4"
+                    style={{ color: 'var(--status-accept-dark)' }}
+                  />
+                </>
               )}
             </Button>
           </div>
@@ -161,14 +170,16 @@ const ExportModule: React.FC = () => {
             <RiCheckDoubleLine size={36} style={{ color: 'var(--status-accept-dark)' }} />
           </div>
           <div>
-            <h2 className="text-xl font-bold mb-2">Export Successful!</h2>
-            <p className="text-xs text-gray-600">Your test cases have been processed and are ready for download.</p>
+            <h2 className="type-h1 mb-2">Export Successful!</h2>
+            <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+              Your test cases have been processed and are ready for download.
+            </p>
           </div>
 
           <div className="flex flex-col gap-3 w-64">
             <a
               href={downloadUrl ?? '#'}
-              className="button default py-3 flex items-center justify-center gap-2 no-underline text-black"
+              className="button default py-3 flex items-center justify-center gap-2 no-underline"
               onClick={(e) => {
                 if (!downloadUrl) {
                   e.preventDefault();
