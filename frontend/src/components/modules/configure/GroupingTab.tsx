@@ -119,12 +119,10 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
           ))}
         </datalist>
         <div
+          className="border-sunken"
           style={{
             maxHeight: 260,
             overflowY: 'auto',
-            border: '2px solid',
-            borderColor:
-              'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)',
             background: 'var(--win95-white)',
           }}
         >

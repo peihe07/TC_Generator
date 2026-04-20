@@ -32,13 +32,7 @@ export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
   expanded,
   onToggleExpanded,
 }) => (
-  <div
-    style={{
-      border: '2px solid',
-      borderColor:
-        'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)',
-    }}
-  >
+  <div className="border-sunken">
     <div
       className="flex items-center gap-2 px-2 py-1 cursor-pointer select-none"
       style={{ background: 'var(--win95-navy)', color: 'var(--win95-white)' }}

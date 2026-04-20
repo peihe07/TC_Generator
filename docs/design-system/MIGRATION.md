@@ -379,22 +379,19 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** **Phase 6 全部完成後** 再做，避免跟進行中的 module migration 衝突。
 
-### P9 — Refactor 4 個 TSX inline sunken bezel 為 `.border-sunken` class
+### P9 — Refactor 4 個 TSX inline sunken bezel 為 `.border-sunken` class — **3/4 已完成（2026-04-20）**
 
-**動機：** Phase 6.7 附帶 sunken-bezel token 修正時發現 4 個 TSX 檔以 `borderColor: 'var(--win95-gray-dark) var(--win95-white) var(--win95-white) var(--win95-gray-dark)'` inline 重寫了 canonical sunken pattern，而非引用現有的 `.border-sunken` / `.bezel-sunken` class：
+**動機：** Phase 6.7 附帶 sunken-bezel token 修正時發現 4 個 TSX 檔以 inline `borderColor` 重寫 canonical sunken pattern 而非引用 `.border-sunken` class。這次 sunken token 誤用擴散 16 處（CSS 12 + TSX 4），inline 重寫是放大效果主因。
 
-- `frontend/src/components/modules/configure/GroupingTab.tsx`（Manual Override 表外框）
-- `frontend/src/components/modules/quickGenerate/DecomposeAnalysisPanel.tsx`（panel 外框）
-- `frontend/src/components/modules/review/RegenDiff.tsx`（field container，selected state）
-- `frontend/src/components/modules/rules/RulesModule.tsx`（iframe 容器）
+**執行狀態：**
+- ✅ `configure/GroupingTab.tsx`（Manual Override 表外框）→ `className="border-sunken"`
+- ✅ `quickGenerate/DecomposeAnalysisPanel.tsx`（panel 外框）→ `className="border-sunken"`
+- ✅ `rules/RulesModule.tsx`（tabpanel 容器）→ `className="border-sunken"`
+- ⚠️ `review/RegenDiff.tsx`（field container）— **刻意保留 inline**：此處 `borderColor` 是 `isSelected` 條件式，selected state 走 sunken pattern，unselected state 走不同的「disabled」pattern（`var(--win95-gray) var(--win95-gray-lighter) ...` + `opacity: 0.55`）。單一 class 無法乾淨表達雙分支，硬套會改變 unselected 視覺語意。
 
-這次 sunken token 誤用能擴散 16 處（CSS 12 + TSX 4），inline 重寫是放大效果的主因 —— canonical pattern 集中在 class 裡，改一處全 app 生效；inline 版本每份各自改各自，散彈式維護。
+**已知視覺 delta：** `.border-sunken` class 除了 border 還有 `box-shadow: inset 1px 1px 0 var(--win95-black)`，而原 inline 版本只有 border 沒 shadow。refactor 後上述 3 處會**多一個 1px 黑色 inset shadow**（完成 canonical sunken pattern）—— 這是讓這 3 處與系統內其他 sunken surface（dropzone / stat / progress well / paper-card / agent-text 等）視覺一致，而非偏離。若需嚴格 zero-diff，各處加 `style={{ boxShadow: 'none' }}` 覆蓋。
 
-**目標：** 把這 4 個 inline `borderColor: ...` 改用 `className="border-sunken"`（或必要時 `.bezel-sunken`）。
-
-**禁止：**
-- 不改視覺（class 與 inline 規格已在 fix commit 後完全一致）
-- 不改這 4 個 TSX 的其他邏輯
+**進入條件：** ✅ 本項 3/4 已完成。RegenDiff 條件式 pattern 列為永久例外（不是待辦 — 是正確設計決定）。
 
 **進入條件：** Phase 6 全部完成後；P7（typography）後順手做較方便（兩者都是 TSX 的 className refactor）。
 
