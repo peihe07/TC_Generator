@@ -30,3 +30,6 @@ export type { InputProps } from './Input';
 
 export { TitleBarMini } from './TitleBarMini';
 export type { TitleBarMiniProps, TitleBarMiniVariant } from './TitleBarMini';
+
+export { Win95Dialog } from './Dialog';
+export type { Win95DialogProps, Win95DialogVariant, Win95DialogAction } from './Dialog';
