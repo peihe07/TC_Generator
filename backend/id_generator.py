@@ -16,6 +16,31 @@ def sanitize_id_segment(raw: str) -> str:
     return _NON_ALNUM.sub("", raw or "")
 
 
+def normalize_tc_id(tc_id: str) -> str:
+    """
+    Clean an already-filled TC ID so it conforms to §2.1.
+
+    Returns:
+        - ""                              if the input is empty or the
+                                          structure is too broken to rescue
+                                          (caller should regenerate fresh)
+        - "{project}-{abbr}-{NNN}"        otherwise, with each segment
+                                          sanitized and the sequence
+                                          zero-padded to 3 digits
+    """
+    if not tc_id:
+        return ""
+    parts = tc_id.split("-")
+    if len(parts) != 3:
+        return ""
+    project = sanitize_id_segment(parts[0])
+    abbr = sanitize_id_segment(parts[1])
+    seq = sanitize_id_segment(parts[2])
+    if not project or not abbr or not seq.isdigit():
+        return ""
+    return f"{project}-{abbr}-{seq.zfill(3)}"
+
+
 def generate_group_abbreviation(group_name: str) -> str:
     """
     Generate abbreviation from Test Group name.
@@ -34,13 +59,10 @@ def generate_group_abbreviation(group_name: str) -> str:
         # Single word: take first 3 chars
         return words[0][:3].upper()
 
-    # Multiple words: first letter of each + last letter of last word
+    # Multiple words: first letter of each word.
+    # No padding — a pure acronym like "BT" stays "BT" instead of becoming
+    # "BTT" (the old logic would duplicate the last letter).
     abbr = "".join(w[0] for w in words)
-    if len(abbr) < 3:
-        # Pad with last chars from last word
-        last_word = words[-1]
-        abbr += last_word[-1]
-
     return abbr[:3].upper()
 
 

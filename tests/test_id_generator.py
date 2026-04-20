@@ -4,19 +4,21 @@ import pytest
 from id_generator import (
     generate_group_abbreviation,
     generate_tc_ids,
+    normalize_tc_id,
     sanitize_id_segment,
 )
 
 
 class TestGenerateGroupAbbreviation:
     def test_camel_case(self):
-        assert generate_group_abbreviation("DeviceManager") == "DMR"
+        # No padding — first letter of each word only.
+        assert generate_group_abbreviation("DeviceManager") == "DM"
 
     def test_single_word(self):
         assert generate_group_abbreviation("Bluetooth") == "BLU"
 
     def test_multi_word(self):
-        assert generate_group_abbreviation("MediaPlayer") == "MPR"
+        assert generate_group_abbreviation("MediaPlayer") == "MP"
 
     def test_three_words(self):
         assert generate_group_abbreviation("AppleCarPlay") == "ACP"
@@ -24,6 +26,10 @@ class TestGenerateGroupAbbreviation:
     def test_short_word(self):
         # Short single words: take first 3 chars uppercase
         assert generate_group_abbreviation("HMI") == "HMI"
+
+    def test_pure_acronym_two_letters(self):
+        # BT stays BT — old logic padded to BTT (duplicated last letter).
+        assert generate_group_abbreviation("BT") == "BT"
 
 
 class TestGenerateTcIds:
@@ -80,3 +86,28 @@ class TestSanitizeIdSegment:
 
     def test_empty_input(self):
         assert sanitize_id_segment("") == ""
+
+
+class TestNormalizeTcId:
+    def test_already_valid_passes_through(self):
+        assert normalize_tc_id("newR1L-DMR-014") == "newR1L-DMR-014"
+
+    def test_space_in_project_cleaned(self):
+        # The exact failure the user reported.
+        assert normalize_tc_id("new R1L-DMR-014") == "newR1L-DMR-014"
+
+    def test_sequence_zero_padded(self):
+        assert normalize_tc_id("proj-ABR-7") == "proj-ABR-007"
+
+    def test_empty_returns_empty(self):
+        assert normalize_tc_id("") == ""
+
+    def test_missing_middle_segment_unrescuable(self):
+        # Only one dash — caller must regenerate from scratch.
+        assert normalize_tc_id("new R/L OMR-007") == ""
+
+    def test_non_numeric_sequence_unrescuable(self):
+        assert normalize_tc_id("proj-ABR-XYZ") == ""
+
+    def test_too_many_segments_unrescuable(self):
+        assert normalize_tc_id("proj-ABR-001-extra") == ""
