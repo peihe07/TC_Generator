@@ -12,6 +12,9 @@ import { ReviewToolbox } from './ReviewToolbox';
 import { ValidationPanel } from './ValidationPanel';
 import type { DiffFieldKey } from './RegenDiff';
 import { useResizablePanel } from '../../../hooks/useResizablePanel';
+import { Win95Dialog } from '../../ui';
+
+type PendingDelete = { kind: 'single'; id: string } | { kind: 'bulk' } | null;
 
 /**
  * Review module orchestrator.
@@ -53,6 +56,7 @@ const ReviewModule: React.FC = () => {
   const [filter, setFilter] = useState('all');
   const [testSetFilter, setTestSetFilter] = useState('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [pendingDelete, setPendingDelete] = useState<PendingDelete>(null);
 
   // Validation panel 顯示最後一個被展開/聚焦的列
   const selectedRow = tcRows.find((r) => r.id === activeRowId) ?? null;
@@ -113,13 +117,12 @@ const ReviewModule: React.FC = () => {
     updateTcRow(id, { status: currentStatus === 'flagged' ? 'reviewing' : 'flagged' });
   };
 
+  // Delete flows are confirm-dialog driven so destructive actions get a
+  // Win95-style prompt rather than a native browser confirm(). See also
+  // handleBulkDelete below; both funnel into `confirmDelete()` once the
+  // user OKs in the dialog.
   const handleDelete = (id: string) => {
-    if (!confirm('Delete this test case?')) return;
-    deleteTcRows([id]);
-    renumberTcRows();
-    collapseOne(id);
-    if (editingId === id) setEditingRowId(null);
-    setSelectedIds(new Set());
+    setPendingDelete({ kind: 'single', id });
   };
 
   const toggleSelectRow = (id: string) => {
@@ -170,20 +173,37 @@ const ReviewModule: React.FC = () => {
 
   const handleBulkDelete = () => {
     if (selectedIds.size === 0) return;
-    if (!confirm(`Delete ${selectedIds.size} selected test case(s)?`)) return;
-    const ids = [...selectedIds];
-    deleteTcRows(ids);
-    renumberTcRows();
-    appendLog(createJobLog('info', `Deleted ${ids.length} row(s).`));
-    setExpandedRows((prev) => {
-      const next = new Set(prev);
-      ids.forEach((i) => next.delete(i));
-      return next;
-    });
-    if (ids.includes(activeRowId ?? '')) setActiveRowId(null);
-    setEditingRowId(null);
-    setSelectedIds(new Set());
+    setPendingDelete({ kind: 'bulk' });
   };
+
+  /** Commit the pending delete action once the Win95Dialog is confirmed. */
+  const confirmDelete = () => {
+    if (!pendingDelete) return;
+    if (pendingDelete.kind === 'single') {
+      const id = pendingDelete.id;
+      deleteTcRows([id]);
+      renumberTcRows();
+      collapseOne(id);
+      if (editingId === id) setEditingRowId(null);
+      setSelectedIds(new Set());
+    } else {
+      const ids = [...selectedIds];
+      deleteTcRows(ids);
+      renumberTcRows();
+      appendLog(createJobLog('info', `Deleted ${ids.length} row(s).`));
+      setExpandedRows((prev) => {
+        const next = new Set(prev);
+        ids.forEach((i) => next.delete(i));
+        return next;
+      });
+      if (ids.includes(activeRowId ?? '')) setActiveRowId(null);
+      setEditingRowId(null);
+      setSelectedIds(new Set());
+    }
+    setPendingDelete(null);
+  };
+
+  const cancelDelete = () => setPendingDelete(null);
 
   const handleRegenerate = useCallback(async () => {
     if (selectedIds.size === 0) return;
@@ -360,6 +380,22 @@ const ReviewModule: React.FC = () => {
           onRegenerate={handleRegenerate}
         />
       )}
+
+      <Win95Dialog
+        open={pendingDelete !== null}
+        variant="warning"
+        title="Confirm Delete"
+        message={
+          pendingDelete?.kind === 'bulk'
+            ? `Delete ${selectedIds.size} selected test case(s)? This cannot be undone.`
+            : 'Delete this test case? This cannot be undone.'
+        }
+        actions={[
+          { label: 'Delete', variant: 'default', onClick: confirmDelete },
+          { label: 'Cancel', variant: 'cancel', onClick: cancelDelete },
+        ]}
+        onClose={cancelDelete}
+      />
     </div>
   );
 };

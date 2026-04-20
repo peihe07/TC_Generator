@@ -42,9 +42,12 @@ test.describe('Review module', () => {
     // Count rows before
     const rowsBefore = await page.locator('table tbody tr:not([class*="expanded"])').count();
 
-    // Click delete on first row (intercept confirm dialog)
-    page.once('dialog', (dialog) => dialog.accept());
+    // Click delete on first row → Win95Dialog opens → confirm
     await page.locator('button[title="Delete"]').first().click();
+    await page
+      .getByRole('alertdialog')
+      .getByRole('button', { name: 'Delete' })
+      .click();
 
     // One fewer row
     const rowsAfter = await page.locator('table tbody tr:not([class*="expanded"])').count();
