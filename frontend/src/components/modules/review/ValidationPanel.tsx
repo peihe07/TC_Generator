@@ -11,14 +11,28 @@ import { Button } from '../../ui';
 export interface ValidationPanelProps {
   selectedRow: TcRow | null;
   onExport: () => void;
+  /**
+   * Panel width in px. Controlled by `useResizablePanel` in the parent
+   * (`ReviewModule`). Defaults to 320 when omitted — that's the initial
+   * width from the hook before it hydrates from localStorage. See
+   * MIGRATION.md §P1 for the splitter spec.
+   */
+  width?: number;
 }
 
 /**
  * Right-hand panel: shows validation results for the currently active row
  * plus the primary "Export All" call-to-action.
  */
-export const ValidationPanel: React.FC<ValidationPanelProps> = ({ selectedRow, onExport }) => (
-  <div className="w-64 flex flex-col gap-2">
+export const ValidationPanel: React.FC<ValidationPanelProps> = ({
+  selectedRow,
+  onExport,
+  width = 320,
+}) => (
+  <div
+    className="flex flex-col gap-2"
+    style={{ width, flexShrink: 0 }}
+  >
     <fieldset className="flex-1 flex flex-col overflow-hidden">
       <legend className="text-sm">Validation Results</legend>
       <div className="flex-1 overflow-auto p-2 flex flex-col gap-2">

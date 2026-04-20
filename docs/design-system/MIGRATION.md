@@ -214,7 +214,7 @@ npm run build      # 確認 type / lint 過
 
 Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨立 PR。
 
-### P1 — Review ValidationPanel 可拖曳寬度
+### P1 — Review ValidationPanel 可拖曳寬度 — **已完成（2026-04-20）**
 
 **動機：** `ValidationPanel.tsx` 目前寫死 `w-64` (256px)；使用者希望能調整寬度。
 

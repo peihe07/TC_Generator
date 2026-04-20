@@ -11,6 +11,7 @@ import { ReviewToolbar } from './ReviewToolbar';
 import { ReviewToolbox } from './ReviewToolbox';
 import { ValidationPanel } from './ValidationPanel';
 import type { DiffFieldKey } from './RegenDiff';
+import { useResizablePanel } from '../../../hooks/useResizablePanel';
 
 /**
  * Review module orchestrator.
@@ -255,8 +256,15 @@ const ReviewModule: React.FC = () => {
     `[context: 目前在 Review Module, job=${jobMetadata?.jobId ?? '未開啟 job'}]\n` +
     `[Validator: ${tcRows.filter((r) => (r.validationErrors ?? []).length > 0).length} warnings]\n`;
 
+  const { width: panelWidth, separatorProps } = useResizablePanel({
+    storageKey: 'review-validation-panel-width',
+    defaultWidth: 320,
+    minWidth: 200,
+    maxWidth: 500,
+  });
+
   return (
-    <div className="flex h-full gap-2 overflow-hidden relative">
+    <div className="flex h-full overflow-hidden relative">
       {/* Main Table Area */}
       <div className="flex-1 flex flex-col min-w-0">
         <ReviewToolbar
@@ -328,9 +336,18 @@ const ReviewModule: React.FC = () => {
         </div>
       </div>
 
+      {/* Splitter — drag to resize ValidationPanel. See useResizablePanel. */}
+      <div
+        className="splitter-v"
+        {...separatorProps}
+        title="拖曳調整 Validation 面板寬度（← → 方向鍵 16px）"
+        aria-label="Resize validation panel"
+      />
+
       <ValidationPanel
         selectedRow={selectedRow}
         onExport={() => openWindow('export', 'TC Generator - Export')}
+        width={panelWidth}
       />
 
       {selectedIds.size > 0 && (

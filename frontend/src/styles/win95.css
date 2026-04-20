@@ -1280,6 +1280,25 @@ button.btn-icon:active:not(:disabled) {
   box-shadow: inset 1px 1px 0 var(--win95-black);
 }
 
+/* Vertical splitter — 4px thin bar with subtle sunken bezel.
+ * `cursor: col-resize` + `touch-action: none` enable drag handling via
+ * pointer events (see useResizablePanel hook). Keyboard focus shows a
+ * 1px dotted outline per Win95 focus style. See MIGRATION.md §P1. */
+.splitter-v {
+  width: 4px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-gray-dark);
+  border-right: 1px solid var(--win95-white);
+  touch-action: none;
+  user-select: none;
+}
+.splitter-v:focus-visible {
+  outline: 1px dotted var(--win95-black);
+  outline-offset: 2px;
+}
+
 /* ============================================================
    Semantic type classes — 供設計系統預覽卡與新介面直接套用
    ============================================================ */
