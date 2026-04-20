@@ -353,6 +353,7 @@ class DecomposeResult:
     """Result of a requirement decomposition call."""
     reasoning: str
     scenarios: list[dict]
+    keywords: list[dict] = field(default_factory=list)
     input_tokens: int = 0
     output_tokens: int = 0
     cost: float = 0.0
@@ -424,6 +425,7 @@ def decompose_requirement(
     return DecomposeResult(
         reasoning=data.get("reasoning", ""),
         scenarios=data["scenarios"],
+        keywords=data.get("keywords", []) or [],
         input_tokens=t["input"],
         output_tokens=t["output"],
         cost=cost,

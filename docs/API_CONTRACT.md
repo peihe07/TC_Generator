@@ -343,6 +343,9 @@ Example events:
 {
   "type": "decompose.analysis",
   "reasoning": "Two distinct paths identified...",
+  "keywords": [
+    { "keyword": "Caller ID", "meaning": "Incoming caller number shown on UI.", "scenarios": [1, 2] }
+  ],
   "scenarios": [
     { "id": 1, "name": "Normal flow", "description": "...", "test_item": "..." }
   ],

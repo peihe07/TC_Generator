@@ -135,8 +135,12 @@ def build_decompose_prompt(requirement: str, rules_text: str) -> str:
         if rules_text else ""
     )
     return f"""## Task
-Analyze the following software requirement and decompose it into distinct, independent test scenarios.
-Each scenario should cover a different aspect, condition, or behaviour path.
+Analyze the following software requirement following the ASPICE SWE.6 reviewer workflow:
+
+1. Extract the key concepts ("keywords") from the requirement. For each keyword, state its meaning in this context and which scenario ids will verify it.
+2. Decompose the requirement into distinct, independent test scenarios. Each scenario should cover a different aspect, condition, or behaviour path.
+
+Every keyword must map to at least one scenario id — if a concept has no coverage, add a scenario for it.
 
 ## Requirement
 {requirement}{rules_section}
@@ -144,6 +148,13 @@ Each scenario should cover a different aspect, condition, or behaviour path.
 ## Output
 Return ONLY valid JSON (no markdown fences) with this exact structure:
 {{
+  "keywords": [
+    {{
+      "keyword": "<short keyword from the requirement>",
+      "meaning": "<what this keyword means in this requirement's context>",
+      "scenarios": [1, 2]
+    }}
+  ],
   "reasoning": "<explain how you identified the scenarios and why>",
   "scenarios": [
     {{

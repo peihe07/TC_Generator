@@ -29,7 +29,14 @@ export interface Scenario {
   test_item: string;
 }
 
+export interface Keyword {
+  keyword: string;
+  meaning: string;
+  scenarios: number[];
+}
+
 export interface DecomposeAnalysis {
   reasoning: string;
   scenarios: Scenario[];
+  keywords: Keyword[];
 }

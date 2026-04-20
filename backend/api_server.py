@@ -544,6 +544,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                 {
                     "type": "decompose.analysis",
                     "reasoning": decompose_result.reasoning,
+                    "keywords": decompose_result.keywords,
                     "scenarios": decompose_result.scenarios,
                     "stats": {"total": len(decompose_result.scenarios), "currentCost": round(current_cost, 4)},
                 }

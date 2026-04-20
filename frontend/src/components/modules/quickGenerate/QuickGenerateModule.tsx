@@ -93,6 +93,23 @@ const QuickGenerateModule: React.FC = () => {
           reasoning:
             '[Mock] Identified 3 distinct test scenarios: the primary success path, a boundary condition, and an error-handling case. Each represents an independent observable behaviour.',
           scenarios: mockScenarios,
+          keywords: [
+            {
+              keyword: item.split(' ')[0] || 'trigger',
+              meaning: 'The action that initiates the behaviour under test.',
+              scenarios: [1, 2, 3],
+            },
+            {
+              keyword: 'boundary',
+              meaning: 'Edge or limit of the accepted input / state range.',
+              scenarios: [2],
+            },
+            {
+              keyword: 'invalid input',
+              meaning: 'Input outside the accepted range, must be rejected gracefully.',
+              scenarios: [3],
+            },
+          ],
         });
         setPhase('generating');
 
@@ -184,7 +201,11 @@ const QuickGenerateModule: React.FC = () => {
             }
 
             if (event.type === 'decompose.analysis') {
-              setAnalysis({ reasoning: event.reasoning, scenarios: event.scenarios });
+              setAnalysis({
+                reasoning: event.reasoning,
+                scenarios: event.scenarios,
+                keywords: event.keywords ?? [],
+              });
               setPhase('generating');
             } else if (event.type === 'tc.generating') {
               setGeneratingScenarioId(event.scenarioId);

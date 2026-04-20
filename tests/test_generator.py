@@ -251,6 +251,10 @@ class TestGenerateQuickTc:
 class TestDecomposeRequirement:
     VALID_DECOMPOSE_RESPONSE = {
         "reasoning": "The requirement has 3 distinct paths: normal, boundary, and error.",
+        "keywords": [
+            {"keyword": "button", "meaning": "The physical input trigger.", "scenarios": [1, 2]},
+            {"keyword": "LED", "meaning": "The observable output indicator.", "scenarios": [1, 2]},
+        ],
         "scenarios": [
             {"id": 1, "name": "Normal flow", "description": "Primary success path.", "test_item": "Button → LED on"},
             {"id": 2, "name": "Boundary", "description": "Edge case input.", "test_item": "Button held → LED blink"},
@@ -273,6 +277,8 @@ class TestDecomposeRequirement:
         assert result.reasoning == self.VALID_DECOMPOSE_RESPONSE["reasoning"]
         assert len(result.scenarios) == 2
         assert result.scenarios[0]["name"] == "Normal flow"
+        assert len(result.keywords) == 2
+        assert result.keywords[0]["keyword"] == "button"
         assert result.input_tokens == 700
         assert result.output_tokens == 400
 

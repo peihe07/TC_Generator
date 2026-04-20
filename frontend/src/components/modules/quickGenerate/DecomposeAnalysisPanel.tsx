@@ -4,6 +4,7 @@ import {
   RiArrowRightLine,
   RiArrowUpSLine,
   RiCheckFill,
+  RiKey2Line,
   RiLightbulbLine,
   RiLoader4Line,
 } from '@remixicon/react';
@@ -66,7 +67,74 @@ export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
         >
           {analysis.reasoning}
         </p>
-        <div className="flex flex-col gap-1 mt-1">
+
+        {analysis.keywords.length > 0 && (
+          <div className="mt-2">
+            <div
+              className="flex items-center gap-1 mb-1 text-[11px] font-bold"
+              style={{ color: 'var(--win95-navy)' }}
+            >
+              <RiKey2Line className="size-3 shrink-0" />
+              Keyword Breakdown
+            </div>
+            <table
+              className="w-full text-[10px] border-collapse"
+              style={{ border: '1px solid var(--win95-gray)' }}
+            >
+              <thead>
+                <tr style={{ background: 'var(--win95-gray-lighter)' }}>
+                  <th
+                    className="text-left px-1 py-0.5 font-bold"
+                    style={{ border: '1px solid var(--win95-gray)' }}
+                  >
+                    Keyword
+                  </th>
+                  <th
+                    className="text-left px-1 py-0.5 font-bold"
+                    style={{ border: '1px solid var(--win95-gray)' }}
+                  >
+                    Meaning
+                  </th>
+                  <th
+                    className="text-left px-1 py-0.5 font-bold w-16"
+                    style={{ border: '1px solid var(--win95-gray)' }}
+                  >
+                    Scenarios
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {analysis.keywords.map((kw, i) => (
+                  <tr key={`${kw.keyword}-${i}`}>
+                    <td
+                      className="px-1 py-0.5 font-bold align-top"
+                      style={{ border: '1px solid var(--win95-gray)' }}
+                    >
+                      {kw.keyword}
+                    </td>
+                    <td
+                      className="px-1 py-0.5 align-top"
+                      style={{
+                        border: '1px solid var(--win95-gray)',
+                        color: 'var(--text-muted)',
+                      }}
+                    >
+                      {kw.meaning}
+                    </td>
+                    <td
+                      className="px-1 py-0.5 align-top"
+                      style={{ border: '1px solid var(--win95-gray)' }}
+                    >
+                      {kw.scenarios.map((id) => `#${id}`).join(', ')}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-1 mt-2">
           {analysis.scenarios.map((s) => {
             const isGenerating = generatingScenarioId === s.id;
             const isDone = completedScenarioIds.has(s.id);
