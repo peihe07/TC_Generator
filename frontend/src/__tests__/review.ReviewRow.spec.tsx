@@ -224,6 +224,41 @@ describe('ReviewRow — edit mode flow', () => {
   });
 });
 
+describe('ReviewRow — expanded non-edit state renders generated TC fields (§P5 diagnosis)', () => {
+  it('renders all 5 StackedReadField values (preConditions / inputTestData / steps / expectedResults / testItemRewrite)', () => {
+    renderRow(
+      { isExpanded: true, isEditing: false },
+      {
+        testItemRewrite: 'rewrite text',
+        preConditions: 'precond text',
+        inputTestData: 'input data text',
+        steps: 'procedure text',
+        expectedResults: 'expected text',
+      },
+    );
+    expect(screen.getByText('rewrite text')).toBeInTheDocument();
+    expect(screen.getByText('precond text')).toBeInTheDocument();
+    expect(screen.getByText('input data text')).toBeInTheDocument();
+    expect(screen.getByText('procedure text')).toBeInTheDocument();
+    expect(screen.getByText('expected text')).toBeInTheDocument();
+  });
+
+  it('renders em-dash placeholders when all 5 fields are empty strings', () => {
+    renderRow(
+      { isExpanded: true, isEditing: false },
+      {
+        testItemRewrite: '',
+        preConditions: '',
+        inputTestData: '',
+        steps: '',
+        expectedResults: '',
+      },
+    );
+    const dashes = screen.getAllByText('—');
+    expect(dashes.length).toBeGreaterThanOrEqual(5);
+  });
+});
+
 describe('ReviewRow — pendingRegenerated state', () => {
   const rowWithPending: Partial<TcRow> = {
     pendingRegenerated: {

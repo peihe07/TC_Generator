@@ -25,7 +25,7 @@
 
 Follow-up 待辦（全數記於 Post-migration polish §P1–§P13）：
 - Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
-- Phase 6.4：§P3 (`pendingRegenerated` rename) / §P4 (`isActive` vs `isSelected` 拆分) / §P5 (GENERATED TEST CASE 欄空白 bug)
+- Phase 6.4：§P3 (`pendingRegenerated` rename) / §P4 (`isActive` vs `isSelected` 拆分) / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ — **已關閉為誤報，見 §P5**
 - Phase 6.5：§P6 (`Win95Dialog` 通用元件)
 - Phase 6.7：§P9 (4 TSX inline sunken → `.border-sunken` class) / §P10 (Review toolbar vs `.win95-th` boundary) / §P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)
 - Phase 6.8：§P13 (Rules tabpanel nested sunken border observation)
@@ -299,21 +299,23 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 **進入條件：** 獨立任何時機；建議與 P3 一起做以減少 ReviewRow 二次修改。
 **合併建議：** §P12（state 拆解）是本項的實作化具體方案，建議一起處理 —— §P4 是視覺規格目標、§P12 是 state 層 refactor，同一根問題兩個維度。
 
-### P5 — Review module 展開 row 的 GENERATED TEST CASE 欄位渲染為空 (資料層 bug)
+### P5 — Review module 展開 row 的 GENERATED TEST CASE 欄位渲染為空 — **已關閉（誤報）**
 
-**動機：** Phase 6.2 bisect 發現既有資料層問題：Review 展開時 GENERATED TEST CASE 欄位 section label 下方實際內容空白，但 ORIGINAL REQUIREMENT 欄正常。Phase 6.2 之前就存在，不是遷移造成的 regression。
+**原報告：** Phase 6.2 bisect 時觀察「Review 展開 row 後 GENERATED TEST CASE 欄位 section label 下方實際內容空白」，疑似資料層 bug。
 
-**目標：** 修復 `ReviewRow.tsx` 展開區塊的 data binding（`row.steps` / `row.expectedResults` / `row.preConditions` / `row.inputTestData` 這 4 個欄位渲染為何沒出現在 GENERATED TEST CASE 那欄）。
+**2026-04-20 診斷結論：不存在 rendering bug。**
 
-**Scope:**
-- `frontend/src/components/modules/review/ReviewRow.tsx`
-- 可能牽涉 `frontend/src/services/jobAdapter.ts`（資料是否正確寫入 store）
-- `frontend/src/store/useJobStore.ts`（資料是否保留）
+`frontend/src/__tests__/review.ReviewRow.spec.tsx` 新增 2 個直接驗證測試（`ReviewRow — expanded non-edit state renders generated TC fields`）：
+- 給定 `row.preConditions` / `inputTestData` / `steps` / `expectedResults` / `testItemRewrite` 都有值 → 5 個 `StackedReadField` 全部渲染對應文字 ✅
+- 給定上述 5 欄全是空字串 → 渲染 5 個 `—` em-dash placeholder ✅
 
-**禁止：**
-- 不動視覺樣式（已於 Phase 6.4 對齊）
+渲染路徑是 `StackedReadField` 的 `{value || '—'}`（`StackedFields.tsx:33`），自 `0b64610` 起未變。
 
-**進入條件：** 獨立，高優先（影響實際 review flow）。
+**真正原因：** 當 row 是 `status: 'fail'` 時，backend `_build_failed_stream_row` 在 `api_server.py:506-508` 設 `generated: None`，frontend `mapApiRowToTcRow` 在 `jobAdapter.ts:159-162` 將 5 個欄位預設為 `""`。展開時 `StackedReadField` 正確渲染 `—` placeholder — 即 **「失敗的 TC 本來就沒有生出來」**，label + `—` 是設計語意，不是 bug。
+
+觀察者視覺誤判可能來自：`—` 字形小 + row 為 `isActive`（navy `.selected` bg）時，em-dash 與 dark red reason text 混在一起不明顯。Navy selected 視覺問題另由 §P4 / §P12 處理。
+
+**狀態：** closed-as-not-a-bug。保留此項供歷史追溯。
 
 ### P6 — `Win95Dialog` 通用元件
 
