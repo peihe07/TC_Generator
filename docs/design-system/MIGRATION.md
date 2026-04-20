@@ -235,7 +235,7 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** Phase 6.2 收完後再開工。
 
-### P2 — GenerateModule cost budget threshold warning
+### P2 — GenerateModule cost budget threshold warning — **已完成（2026-04-20）**
 
 **動機：** Phase 6.3 發現 GenerateModule 的 Session Stats 目前沒有「超出預算」的視覺警示；cost 數字只單純顯示，超標不變色。`ConfigureModule` 已有 `config.budgetLimit` 這個設定值，但 Generate 階段沒拿來比對。
 

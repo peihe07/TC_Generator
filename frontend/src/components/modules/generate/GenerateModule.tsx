@@ -10,7 +10,8 @@ import {
   RiMoneyDollarCircleLine,
   RiTimeLine,
   RiCheckDoubleFill,
-  RiStopCircleLine
+  RiStopCircleLine,
+  RiAlertLine,
 } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { Button } from '../../ui';
@@ -18,6 +19,11 @@ import { Button } from '../../ui';
 // Progress-bar chunk geometry (matches preview/progress.html).
 const CHUNK_WIDTH = 14;
 const CHUNK_GAP = 2;
+
+// §P2 cost budget threshold — fraction of config.budgetLimit at which
+// the Session Stats "Current Cost" switches to warning style. At 1.0
+// (or above) the warning adds a pulse animation.
+const COST_WARN_THRESHOLD = 0.8;
 
 const GenerateModule: React.FC = () => {
   const {
@@ -42,6 +48,14 @@ const GenerateModule: React.FC = () => {
     }
     return Math.round((stats.processed / stats.total) * 100);
   }, [stats.processed, stats.total]);
+
+  // §P2 Cost budget threshold state. `config.budgetLimit` can legitimately
+  // be 0 (user cleared the slider); treat it as "no budget cap" and never
+  // flag warn/over — showing a red icon with no reference limit is noise.
+  const budgetLimit = config.budgetLimit;
+  const costRatio = budgetLimit > 0 ? stats.cost / budgetLimit : 0;
+  const isCostWarn = budgetLimit > 0 && costRatio >= COST_WARN_THRESHOLD;
+  const isCostOverBudget = budgetLimit > 0 && costRatio >= 1;
 
   // 動態依 bar 可用寬度計算 chunk 數量（preview/progress.html 的行為）
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -189,7 +203,29 @@ const GenerateModule: React.FC = () => {
                 >
                   <RiMoneyDollarCircleLine className="size-3" /> Current Cost
                 </span>
-                <span className="type-h1 font-mono">${stats.cost.toFixed(4)}</span>
+                <span
+                  className="type-h1 font-mono flex items-center gap-1"
+                  style={
+                    isCostWarn
+                      ? {
+                          color: 'var(--status-reject-dark)',
+                          ...(isCostOverBudget
+                            ? { animation: 'agent-pulse 1s ease-in-out infinite' }
+                            : {}),
+                        }
+                      : undefined
+                  }
+                  title={
+                    isCostOverBudget
+                      ? `Over budget: $${stats.cost.toFixed(4)} / $${budgetLimit.toFixed(2)}`
+                      : isCostWarn
+                        ? `${Math.round(costRatio * 100)}% of budget used ($${stats.cost.toFixed(4)} / $${budgetLimit.toFixed(2)})`
+                        : undefined
+                  }
+                >
+                  {isCostWarn && <RiAlertLine className="size-4" />}
+                  ${stats.cost.toFixed(4)}
+                </span>
               </div>
               <div className="stat-sunken">
                 <span
