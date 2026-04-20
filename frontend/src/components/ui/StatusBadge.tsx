@@ -6,6 +6,7 @@ export type StatusVariant =
   | 'accepted'
   | 'rejected'
   | 'flagged'
+  | 'fail'
   | 'pending'
   | 'reviewing'
   | 'generating';

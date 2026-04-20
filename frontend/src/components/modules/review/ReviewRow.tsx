@@ -132,7 +132,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
           {row.pendingRegenerated && (
             <RiRefreshLine className="size-3" style={{ color: 'var(--status-edit-dark)' }} />
           )}
-          {row.id}
+          {row.tcId || row.id}
         </span>
       </td>
       <td

@@ -26,6 +26,7 @@ describe('StatusBadge', () => {
     'accepted',
     'rejected',
     'flagged',
+    'fail',
     'pending',
     'reviewing',
     'generating',

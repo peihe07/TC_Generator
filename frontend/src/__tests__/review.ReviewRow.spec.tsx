@@ -86,6 +86,20 @@ describe('ReviewRow — collapsed state', () => {
     expect(screen.getByText('REQ-1')).toBeInTheDocument();
   });
 
+  it('shows awaiting review label for pending rows', () => {
+    renderRow({}, { status: 'pending' });
+    expect(screen.getByText('awaiting review')).toBeInTheDocument();
+  });
+
+  it('shows failure reason for failed rows', () => {
+    renderRow({}, {
+      status: 'fail',
+      validationErrors: [{ severity: 'warning', message: 'Budget exceeded for this row.' }],
+    });
+    expect(screen.getByText('failed')).toBeInTheDocument();
+    expect(screen.getByText('Budget exceeded for this row.')).toBeInTheDocument();
+  });
+
   it('fires onStatusChange("accepted") when Accept icon button clicked', () => {
     const { handlers } = renderRow();
     fireEvent.click(screen.getByRole('button', { name: 'Accept' }));

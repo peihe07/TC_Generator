@@ -269,7 +269,7 @@ There is effectively no imagery — the system is made of bezels, pixel icons, a
 
 Three icon vocabularies coexist:
 
-1. **Hand-drawn pixel-art SVGs (32×32 viewBox, rendered 48×48)** — used only for the nine desktop shortcuts. Hard-coded inline in `frontend/src/components/system/Desktop.tsx`. `shapeRendering="crispEdges"`, 1px black strokes, flat fills from the brand palette. Copied here as separate SVG files in `assets/icons/desktop/` so new surfaces can reuse them.
+1. **Hand-drawn pixel-art SVGs (32×32 viewBox, rendered 48×48)** — used only for the nine desktop shortcuts. The app loads them from `/icons/desktop/*.svg` in `frontend/public/icons/desktop/`, referenced by `frontend/src/components/system/Desktop.tsx`. `shapeRendering="crispEdges"`, 1px black strokes, flat fills from the brand palette. The design-system copies live in `assets/icons/desktop/` so new surfaces can reuse them.
 
 2. **Remix Icon (`@remixicon/react`)** — the primary icon set for everything inside modules. Loaded via CDN in this design system (npm package in the real app). Stroke-based line icons, 16–20px default. Used for toolbar buttons, status glyphs, action buttons.
    - CDN: `https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css`
