@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { RiAddLine, RiHistoryLine, RiDownloadLine } from '@remixicon/react';
+import { RiAddLine, RiDownloadLine } from '@remixicon/react';
 import { useAgentStore } from '../../store/useAgentStore';
 import { agentClient } from '../../services/agentClient';
 import { IconButton } from '../ui';
@@ -45,22 +45,20 @@ export default function ChatModule() {
 
   return (
     <div className="chat-module">
-      {/* Header */}
-      <div className="chat-header">
-        <span className="chat-header-title">Agent Co-pilot</span>
-        <div className="chat-header-actions">
-          <IconButton label="New Session" onClick={newSession}>
-            <RiAddLine size={14} />
+      {/* Session-level toolbar — Win95 convention: thin gray toolbar
+       * directly beneath the window's navy title bar. Hosts session
+       * actions (New Session / Export Trace) that previously lived in
+       * a duplicate navy chat-header. The Sessions refresh moved to
+       * InspectorPanel's "近期 Sessions" header. */}
+      <div className="chat-toolbar">
+        <IconButton label="New Session" onClick={newSession}>
+          <RiAddLine size={14} />
+        </IconButton>
+        {sessionId && (
+          <IconButton label="Export Trace" onClick={handleExportTrace}>
+            <RiDownloadLine size={14} />
           </IconButton>
-          <IconButton label="Sessions" onClick={refreshRecentSessions}>
-            <RiHistoryLine size={14} />
-          </IconButton>
-          {sessionId && (
-            <IconButton label="Export Trace" onClick={handleExportTrace}>
-              <RiDownloadLine size={14} />
-            </IconButton>
-          )}
-        </div>
+        )}
       </div>
 
       {/* Body */}

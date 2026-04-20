@@ -629,19 +629,22 @@ button.btn-icon:hover {
   font-size: var(--font-md);
 }
 
-.chat-header {
+/* Thin gray toolbar directly beneath the AppWindow title bar. Hosts
+ * session-level actions (New Session / Export Trace). Replaces the
+ * former .chat-header which duplicated the navy title bar visually
+ * and by text ("Agent Co-pilot" x2). Win95 toolbar convention:
+ * raised 1px top + sunken 1px bottom, flush with the window title. */
+.chat-toolbar {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: space-between;
-  padding: 4px 8px;
-  background: var(--win95-navy);
-  color: var(--text-inverse);
+  gap: 2px;
+  padding: 2px 4px 2px 8px;
+  background: var(--win95-gray);
+  border-top: 1px solid var(--win95-white);
+  border-bottom: 1px solid var(--win95-gray-mid);
   flex-shrink: 0;
 }
-
-.chat-header-title { font-weight: var(--font-weight-bold); font-size: var(--font-md); }
-
-.chat-header-actions { display: flex; gap: 2px; }
 
 .chat-body {
   display: flex;
@@ -874,6 +877,26 @@ button.btn-icon:hover {
   align-items: center;
   gap: 3px;
 }
+
+/* Custom 14×14 transparent refresh button — sized down from IconButton's
+ * 22×22 default to preserve the 12px section-title density. */
+.inspector-section-refresh {
+  width: 14px;
+  height: 14px;
+  min-width: 14px !important;
+  min-height: 14px !important;
+  padding: 0 !important;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--win95-gray-darker);
+  flex-shrink: 0;
+}
+.inspector-section-refresh:hover { color: var(--win95-navy); }
+.inspector-section-refresh svg { width: 12px !important; height: 12px !important; }
 
 .inspector-job-box { display: flex; flex-direction: column; gap: 2px; }
 .inspector-row { display: flex; flex-direction: column; }

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { RiTimeLine, RiHistoryLine } from '@remixicon/react';
+import { RiTimeLine, RiHistoryLine, RiRefreshLine } from '@remixicon/react';
 import { useAgentStore } from '../../../store/useAgentStore';
 import { useJobStore } from '../../../store/useJobStore';
 import type { UIToolPart } from '../../../services/agentEvents';
@@ -9,8 +9,15 @@ import { getSessionPreview } from '../../../services/agentClient';
 import { Button } from '../../ui';
 
 export default function InspectorPanel() {
-  const { messages, recentSessions, sessionId, currentSessionCost, loadSession, deleteSession } =
-    useAgentStore();
+  const {
+    messages,
+    recentSessions,
+    sessionId,
+    currentSessionCost,
+    loadSession,
+    deleteSession,
+    refreshRecentSessions,
+  } = useAgentStore();
   const { jobMetadata: currentJob, stats } = useJobStore();
 
   // Collect last 20 tool parts from current session
@@ -84,7 +91,17 @@ export default function InspectorPanel() {
       {/* Recent sessions */}
       <section className="inspector-section">
         <div className="inspector-section-title">
-          <RiHistoryLine size={12} /> 近期 Sessions
+          <RiHistoryLine size={12} />
+          <span className="flex-1">近期 Sessions</span>
+          <button
+            type="button"
+            className="inspector-section-refresh"
+            onClick={refreshRecentSessions}
+            title="重新整理 Sessions"
+            aria-label="重新整理 Sessions"
+          >
+            <RiRefreshLine size={12} />
+          </button>
         </div>
         {recentSessions.length === 0 ? (
           <div className="inspector-empty">無記錄</div>
