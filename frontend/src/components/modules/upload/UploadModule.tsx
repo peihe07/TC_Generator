@@ -128,11 +128,11 @@ const UploadModule: React.FC = () => {
           />
         </fieldset>
 
-        <div className="grid grid-cols-2 gap-4">
-          <fieldset className="p-4 border-sunken">
+        <div className="grid grid-cols-2 gap-4 min-w-0">
+          <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
             <legend className="px-2">Reference Workbook (Optional)</legend>
             <div
-              className={`dropzone-sunken h-20 ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''}`}
+              className={`dropzone-sunken h-20 w-full min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''}`}
               onClick={() => referenceWorkbookInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'referenceWorkbook')}
               onDragOver={(e) => e.preventDefault()}
@@ -153,10 +153,10 @@ const UploadModule: React.FC = () => {
             />
           </fieldset>
 
-          <fieldset className="p-4 border-sunken">
+          <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
             <legend className="px-2">Reference PDF/DOCX</legend>
             <div
-              className={`dropzone-sunken h-20 ${draggingZone === 'spec' ? 'dragging' : ''}`}
+              className={`dropzone-sunken h-20 w-full min-w-0 overflow-hidden ${draggingZone === 'spec' ? 'dragging' : ''}`}
               onClick={() => specInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'spec')}
               onDragOver={(e) => e.preventDefault()}
