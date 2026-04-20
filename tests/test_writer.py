@@ -161,6 +161,60 @@ class TestWriteGeneratedResults:
         assert "PDM01.1) Original text here." in cell_value
         assert "(User adds DM → DM icon displayed)" in cell_value
 
+    def test_dedupes_rewrite_across_rows_sharing_req_id(self, input_xlsx, tmp_path):
+        """A requirement split into multiple TC rows should only get the
+        `()` summary appended on the first row — repeating it on every row
+        is redundant since the summary describes the same requirement."""
+        rows = [
+            {
+                "row_num": 10,
+                "req_id": "SWE1-HMI-DM-001-01",
+                "tc_id": "newR1L-DMR-001",
+                "test_item_rewrite": "(Trigger → Outcome)",
+            },
+            {
+                "row_num": 11,
+                "req_id": "SWE1-HMI-DM-001-01",  # same requirement, split TC
+                "tc_id": "newR1L-DMR-002",
+                "test_item_rewrite": "(Trigger → Outcome)",
+            },
+        ]
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        # Row 10 keeps original + appended rewrite.
+        assert "(Trigger → Outcome)" in ws.cell(row=10, column=9).value
+        # Row 11 keeps its original Col I untouched (no rewrite appended).
+        row11_value = ws.cell(row=11, column=9).value or ""
+        assert "(Trigger → Outcome)" not in row11_value
+        assert "PDM02) Another original text." in row11_value
+
+    def test_rewrite_applied_once_per_distinct_req_id(self, input_xlsx, tmp_path):
+        """Different req_ids each get their own rewrite even if text matches."""
+        rows = [
+            {
+                "row_num": 10,
+                "req_id": "SWE1-HMI-DM-001-01",
+                "tc_id": "newR1L-DMR-001",
+                "test_item_rewrite": "(First → A)",
+            },
+            {
+                "row_num": 11,
+                "req_id": "SWE1-HMI-DM-002-01",  # different req_id
+                "tc_id": "newR1L-DMR-002",
+                "test_item_rewrite": "(Second → B)",
+            },
+        ]
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert "(First → A)" in ws.cell(row=10, column=9).value
+        assert "(Second → B)" in ws.cell(row=11, column=9).value
+
     def test_writes_procedure(self, input_xlsx, generated_rows, tmp_path):
         output = str(tmp_path / "output.xlsx")
         write_generated_results(input_xlsx, generated_rows, output)

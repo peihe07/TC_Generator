@@ -264,6 +264,7 @@ def _map_export_rows(rows: list[dict], scope: str, test_group: str | None) -> li
             {
                 "row_num": row.get("rowNum"),
                 "tc_id": row.get("tcId", ""),
+                "req_id": row.get("reqId", ""),
                 "test_group": test_group or row.get("testGroup"),
                 "test_set": row.get("testSet"),
                 "test_item_rewrite": generated.get("testItemRewrite", ""),

@@ -84,6 +84,13 @@ def write_generated_results(
     wb = load_workbook(input_path)
     ws = wb[TC_SHEET_NAME]
 
+    # Track requirements that have already received a `()` rewrite so one
+    # requirement split into multiple TC rows only gets the summary appended
+    # once (on the first row). Subsequent rows sharing the same req_id keep
+    # their original Col I text untouched — a repeated rewrite would just be
+    # noise since the summary describes the same requirement.
+    rewritten_req_ids: set[str] = set()
+
     for row_data in generated_rows:
         row_num = row_data["row_num"]
 
@@ -103,12 +110,21 @@ def write_generated_results(
                 cell.value = None
                 cell.alignment = WRAP_TEXT_ALIGNMENT
 
-        # Col I (Test Item): append rewrite, preserve original
+        # Col I (Test Item): append rewrite, preserve original. Dedupe by
+        # req_id so split TCs don't each carry an identical summary.
         rewrite = row_data.get("test_item_rewrite")
-        if rewrite and (selected_fields is None or "test_item_rewrite" in selected_fields):
+        req_id = (row_data.get("req_id") or "").strip()
+        should_append_rewrite = (
+            rewrite
+            and (selected_fields is None or "test_item_rewrite" in selected_fields)
+            and req_id not in rewritten_req_ids
+        )
+        if should_append_rewrite:
             cell_i = ws.cell(row=row_num, column=9)
             cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
             cell_i.alignment = WRAP_TEXT_ALIGNMENT
+            if req_id:
+                rewritten_req_ids.add(req_id)
 
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     wb.save(output_path)
