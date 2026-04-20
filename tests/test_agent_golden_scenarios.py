@@ -195,7 +195,7 @@ def test_scenario_2_full_pipeline(ctx, tmp_path):
     ]
 
     with patch(
-        "tools.generate.generate_single_tc",
+        "tools.generate.generate_tcs_for_row",
         return_value=_fake_generation_result(row_count=1),
     ):
         events, _ = run_agent_turn(
@@ -267,7 +267,7 @@ def test_scenario_3_list_then_regenerate(ctx):
     ]
 
     with patch(
-        "tools.generate.generate_single_tc",
+        "tools.generate.generate_tcs_for_row",
         return_value=_fake_generation_result(row_count=1),
     ):
         events, _ = run_agent_turn(

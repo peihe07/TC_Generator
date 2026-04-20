@@ -432,7 +432,27 @@ class TestWriteFrameworkSheet:
         wb = load_workbook(output)
         ws = wb["Test Case Framework"]
         assert ws.cell(row=1, column=1).value == "Test Group"
+        assert ws.cell(row=1, column=3).value == "TC Count"
+        assert ws.cell(row=1, column=4).value == "Req Count"
         assert ws.cell(row=2, column=1).value == "DeviceManager"
         assert ws.cell(row=2, column=2).value == "Access & Entry"
+        # req_count only → falls back to both TC and Req counts
         assert ws.cell(row=2, column=3).value == 5
+        assert ws.cell(row=2, column=4).value == 5
         assert ws.cell(row=3, column=2).value == "Device List"
+
+    def test_distinguishes_tc_count_from_req_count(self, input_xlsx, tmp_path):
+        """AI 把一個 req 拆成多筆 TC 時，TC Count > Req Count。"""
+        data = [
+            {"test_group": "DM", "test_set": "Formats", "tc_count": 6, "req_count": 1},
+            {"test_group": "DM", "test_set": "Boundary", "tc_count": 3, "req_count": 3},
+        ]
+        output = str(tmp_path / "output.xlsx")
+        write_framework_sheet(input_xlsx, data, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Framework"]
+        assert ws.cell(row=2, column=3).value == 6  # TC Count
+        assert ws.cell(row=2, column=4).value == 1  # Req Count
+        assert ws.cell(row=3, column=3).value == 3
+        assert ws.cell(row=3, column=4).value == 3

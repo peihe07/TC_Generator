@@ -3,6 +3,7 @@
 OpenAI calls are mocked to avoid actual API usage in tests.
 """
 import json
+from importlib.metadata import PackageNotFoundError
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -11,6 +12,7 @@ from generator import (
     DecomposeResult,
     GenerationError,
     GenerationResult,
+    _client,
     calculate_cost,
     decompose_requirement,
     generate_batch,
@@ -130,6 +132,14 @@ class TestCalculateCost:
 
 
 class TestGenerateSingleTc:
+    @patch("generator.import_module")
+    def test_client_raises_helpful_error_when_openai_package_missing(self, mock_import_module):
+        mock_import_module.side_effect = PackageNotFoundError("openai")
+
+        with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}):
+            with pytest.raises(GenerationError, match="openai package is not installed"):
+                _client()
+
     @patch("generator._chat")
     def test_success(self, mock_chat):
         mock_chat.return_value = make_chat_response(

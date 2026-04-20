@@ -730,71 +730,106 @@ def _parse_sse(content: bytes) -> list[dict]:
     return events
 
 
-@patch("api_server.generate_quick_tc")
-def test_quick_generate_single_mode(mock_gen):
+@patch("api_server.generate_tcs_for_row")
+def test_quick_generate_unified_single_tc(mock_gen):
+    """AI 判斷只需要 1 筆 TC 時，quick-generate 仍會走 auto-split 流程，
+    event 順序：job.started → decompose.analysis → tc.generating → tc.completed → job.completed。
+    """
     from generator import GenerationResult
     mock_gen.return_value = GenerationResult(
-        tc_data=VALID_TC_JSON,
+        tc_data=[VALID_TC_JSON],
         input_tokens=300,
         output_tokens=150,
         cost=0.003,
         model="gpt-4.1",
+        split_meta=[{"req_id": "QUICK", "reasoning": "原子行為，不需拆分。", "keywords": []}],
     )
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "Button pressed → LED on", "context": None, "mode": "single", "model": "gpt-4.1"},
+        json={"testItem": "Button pressed → LED on", "context": None, "model": "gpt-4.1"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
     types = [e["type"] for e in events]
-    assert "job.started" in types
+    assert types[0] == "job.started"
+    assert "decompose.analysis" in types
     assert "tc.completed" in types
-    assert "job.completed" in types
+    assert types[-1] == "job.completed"
 
-    tc_event = next(e for e in events if e["type"] == "tc.completed")
-    assert tc_event["tc"]["priority"] == "Medium"
-    assert tc_event["scenarioId"] == 1
+    analysis = next(e for e in events if e["type"] == "decompose.analysis")
+    assert len(analysis["scenarios"]) == 1
+    assert "原子行為" in analysis["reasoning"]
+
+    tc_done = [e for e in events if e["type"] == "tc.completed"]
+    assert len(tc_done) == 1
+    assert tc_done[0]["tc"]["priority"] == "Medium"
 
 
-@patch("api_server.generate_quick_tc")
-def test_quick_generate_with_context_mode(mock_gen):
+@patch("api_server.generate_tcs_for_row")
+def test_quick_generate_unified_multi_tc(mock_gen):
+    """AI 拆成 3 筆 TC 時應該發 3 個 tc.completed，analysis.scenarios 對應 3 筆。"""
     from generator import GenerationResult
+    tcs = [
+        {**VALID_TC_JSON, "test_item_rewrite": f"(Scenario {i} → outcome)"} for i in (1, 2, 3)
+    ]
     mock_gen.return_value = GenerationResult(
-        tc_data=VALID_TC_JSON,
-        input_tokens=400,
-        output_tokens=200,
-        cost=0.004,
+        tc_data=tcs,
+        input_tokens=600,
+        output_tokens=900,
+        cost=0.012,
         model="gpt-4.1",
+        split_meta=[{
+            "req_id": "QUICK",
+            "reasoning": "§1.4 列舉 3 種格式，各一筆 TC。",
+            "keywords": [{"keyword": "format", "meaning": "支援格式", "covered_by": [1, 2, 3]}],
+        }],
     )
 
     response = client.post(
+        "/api/quick-generate/stream",
+        json={"testItem": "Supports .mp4, .avi, .mpg", "context": None, "model": "gpt-4.1"},
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    tc_done = [e for e in events if e["type"] == "tc.completed"]
+    assert len(tc_done) == 3
+
+    analysis = next(e for e in events if e["type"] == "decompose.analysis")
+    assert len(analysis["scenarios"]) == 3
+    assert analysis["keywords"][0]["scenarios"] == [1, 2, 3]
+
+
+@patch("api_server.generate_tcs_for_row")
+def test_quick_generate_with_context_included_in_prompt(mock_gen):
+    """使用者填 Additional Context 時應該併進傳給 generate_tcs_for_row 的 test_item。"""
+    from generator import GenerationResult
+    mock_gen.return_value = GenerationResult(
+        tc_data=[VALID_TC_JSON],
+        input_tokens=100, output_tokens=50, cost=0.001, model="gpt-4.1",
+        split_meta=[{"req_id": "QUICK", "reasoning": "", "keywords": []}],
+    )
+
+    client.post(
         "/api/quick-generate/stream",
         json={
             "testItem": "Button pressed → LED on",
             "context": "System must be powered",
-            "mode": "with_context",
             "model": "gpt-4.1",
         },
     )
-    assert response.status_code == 200
-    events = _parse_sse(response.content)
-    # generate_quick_tc should receive context
     call_kwargs = mock_gen.call_args[1]
-    assert call_kwargs["context"] == "System must be powered"
-    types = [e["type"] for e in events]
-    assert "tc.completed" in types
-    assert "job.completed" in types
+    assert "System must be powered" in call_kwargs["row"]["test_item"]
 
 
-@patch("api_server.generate_quick_tc")
-def test_quick_generate_single_mode_api_error(mock_gen):
+@patch("api_server.generate_tcs_for_row")
+def test_quick_generate_api_error(mock_gen):
     from generator import GenerationError
     mock_gen.side_effect = GenerationError("API timeout")
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "some item", "context": None, "mode": "single", "model": "gpt-4.1"},
+        json={"testItem": "some item", "context": None, "model": "gpt-4.1"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
@@ -802,61 +837,3 @@ def test_quick_generate_single_mode_api_error(mock_gen):
     assert "job.failed" in types
     failed = next(e for e in events if e["type"] == "job.failed")
     assert "API timeout" in failed["message"]
-
-
-@patch("api_server.generate_quick_tc")
-@patch("api_server.decompose_requirement")
-def test_quick_generate_decompose_mode(mock_decompose, mock_gen):
-    from generator import DecomposeResult, GenerationResult
-    mock_decompose.return_value = DecomposeResult(
-        reasoning=VALID_DECOMPOSE_RESPONSE["reasoning"],
-        scenarios=VALID_DECOMPOSE_RESPONSE["scenarios"],
-        input_tokens=500,
-        output_tokens=250,
-        cost=0.005,
-    )
-    mock_gen.return_value = GenerationResult(
-        tc_data=VALID_TC_JSON,
-        input_tokens=300,
-        output_tokens=150,
-        cost=0.003,
-        model="gpt-4.1",
-    )
-
-    response = client.post(
-        "/api/quick-generate/stream",
-        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "gpt-4.1"},
-    )
-    assert response.status_code == 200
-    events = _parse_sse(response.content)
-    types = [e["type"] for e in events]
-
-    assert "job.started" in types
-    assert "decompose.analysis" in types
-    assert "tc.generating" in types
-    assert "tc.completed" in types
-    assert "job.completed" in types
-
-    # Two scenarios → two tc.completed events
-    tc_done = [e for e in events if e["type"] == "tc.completed"]
-    assert len(tc_done) == 2
-
-    analysis = next(e for e in events if e["type"] == "decompose.analysis")
-    assert len(analysis["scenarios"]) == 2
-
-
-@patch("api_server.decompose_requirement")
-def test_quick_generate_decompose_mode_decompose_error(mock_decompose):
-    from generator import GenerationError
-    mock_decompose.side_effect = GenerationError("Decompose failed")
-
-    response = client.post(
-        "/api/quick-generate/stream",
-        json={"testItem": "Full requirement text", "context": None, "mode": "decompose", "model": "gpt-4.1"},
-    )
-    assert response.status_code == 200
-    events = _parse_sse(response.content)
-    types = [e["type"] for e in events]
-    assert "job.failed" in types
-    failed = next(e for e in events if e["type"] == "job.failed")
-    assert "Decompose failed" in failed["message"]

@@ -242,16 +242,32 @@ DESIGN_METHOD_KEYWORDS = [
 
 
 def validate_design_method(method: str) -> ValidationResult:
-    """Validate design method against allowed values (接受完整字串或英文關鍵字)。"""
+    """Validate design method against the 9 methods in
+    `Test Case Design Method 判斷規則.md`.
+
+    - 完全匹配 VALID_DESIGN_METHODS：pass
+    - 僅關鍵字匹配（例：AI 回 "State Transition"）：pass，但回傳訊息提示
+      建議改用完整繁中 + 英文的標準字串
+    - 兩者皆非：fail，強制 user 看到 warning
+    """
     check = "design_method"
     if not method:
         return ValidationResult(False, check, "Design method is empty.")
     if method in VALID_DESIGN_METHODS:
         return ValidationResult(True, check)
     low = method.lower()
-    if any(kw in low for kw in DESIGN_METHOD_KEYWORDS):
-        return ValidationResult(True, check)
-    return ValidationResult(False, check, f"Invalid design method: '{method}'.")
+    matched = [kw for kw in DESIGN_METHOD_KEYWORDS if kw in low]
+    if matched:
+        return ValidationResult(
+            True, check,
+            f"Design method '{method}' matched by keyword {matched[0]!r}; "
+            "建議改為 VALID_DESIGN_METHODS 清單裡的完整字串以符合下拉選單。",
+        )
+    return ValidationResult(
+        False, check,
+        f"Invalid design method: '{method}'. 必須是 9 種之一："
+        + "／".join(VALID_DESIGN_METHODS[:3]) + " ... 等",
+    )
 
 
 # --- §8.7 Priority ---

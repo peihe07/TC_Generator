@@ -226,7 +226,11 @@ def write_framework_sheet(
     """
     Populate the Test Case Framework sheet.
 
-    Columns: A=Test Group, B=Test Set, C=Req count.
+    Columns: A=Test Group, B=Test Set, C=TC Count, D=Req Count.
+
+    TC Count = 匯出到該 test set 的 TC 筆數（一個 req 被拆多筆時每筆各算 1）。
+    Req Count = 原始 requirement 數（同一 req 的多筆拆分只算一次）。
+    為了向後相容，若 entry 只帶 `req_count` 會當作同時是 TC 與 Req 數。
     """
     wb = load_workbook(input_path)
 
@@ -237,14 +241,18 @@ def write_framework_sheet(
     # Write header
     ws.cell(row=1, column=1, value="Test Group")
     ws.cell(row=1, column=2, value="Test Set")
-    ws.cell(row=1, column=3, value="Req Count")
+    ws.cell(row=1, column=3, value="TC Count")
+    ws.cell(row=1, column=4, value="Req Count")
 
     # Write data
     for i, entry in enumerate(framework_data):
         row = i + 2
         ws.cell(row=row, column=1, value=entry["test_group"])
         ws.cell(row=row, column=2, value=entry["test_set"])
-        ws.cell(row=row, column=3, value=entry["req_count"])
+        tc_count = entry.get("tc_count", entry.get("req_count", 0))
+        req_count = entry.get("req_count", tc_count)
+        ws.cell(row=row, column=3, value=tc_count)
+        ws.cell(row=row, column=4, value=req_count)
 
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     wb.save(output_path)

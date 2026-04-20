@@ -8,8 +8,12 @@ import json
 import os
 import re
 from dataclasses import dataclass, field
+from importlib import import_module
+from importlib.metadata import PackageNotFoundError
+from typing import TYPE_CHECKING, Any
 
-from openai import OpenAI
+if TYPE_CHECKING:
+    from openai import OpenAI
 
 from prompt_builder import (
     build_system_blocks,
@@ -238,12 +242,22 @@ def _usage_tokens(usage) -> dict:
     }
 
 
-def _client() -> OpenAI:
-    """建立 OpenAI client。讀 OPENAI_API_KEY env var。"""
+def _client() -> Any:
+    """建立 OpenAI client。讀 OPENAI_API_KEY env var。
+
+    `openai` 套件改為延遲載入，讓沒裝 AI 依賴的環境（例如純工具 CLI 測試）
+    也能 import `generator` 而不會炸，只有真的要呼叫 API 才會要求套件存在。
+    """
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise GenerationError("OPENAI_API_KEY is not set. Add it to .env.")
-    return OpenAI(api_key=api_key)
+    try:
+        openai_module = import_module("openai")
+    except (PackageNotFoundError, ImportError, ModuleNotFoundError) as exc:
+        raise GenerationError(
+            "openai package is not installed. Run `pip install -e \".[dev]\"` first."
+        ) from exc
+    return openai_module.OpenAI(api_key=api_key)
 
 
 def _chat(system: str, user: str, model: str, max_tokens: int, json_mode: bool = True):

@@ -15,7 +15,14 @@ from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
-from generator import DEFAULT_MODEL, GenerationError, calculate_cost, generate_quick_tc, decompose_requirement
+from generator import (
+    DEFAULT_MODEL,
+    GenerationError,
+    calculate_cost,
+    decompose_requirement,
+    generate_quick_tc,
+    generate_tcs_for_row,
+)
 from id_generator import generate_group_abbreviation, generate_tc_ids, normalize_tc_id
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
@@ -209,7 +216,9 @@ class MatchPreviewRequest(BaseModel):
 class QuickGenerateRequest(BaseModel):
     testItem: str
     context: str | None = None
-    mode: str = "single"  # "single" | "with_context" | "decompose"
+    # mode 保留做 backwards-compat，但目前統一走 auto-split 多筆 TC 路徑，
+    # 傳任何值都會被忽略（包括舊前端的 "single" / "with_context" / "decompose"）。
+    mode: str | None = None
     model: str = DEFAULT_MODEL
 
 
@@ -305,18 +314,25 @@ def _map_export_rows(
 
 
 def _build_framework_rows(rows: list[dict], test_group: str | None) -> list[dict]:
-    counts: dict[tuple[str | None, str | None], int] = {}
+    # tc_count：每個 TC 算 1；req_count：同 req_id 僅計一次（拆分不重複計）。
+    tc_counts: dict[tuple[str | None, str | None], int] = {}
+    req_sets: dict[tuple[str | None, str | None], set[str]] = {}
     for row in rows:
         key = (test_group or row.get("testGroup"), row.get("test_set"))
-        counts[key] = counts.get(key, 0) + 1
+        tc_counts[key] = tc_counts.get(key, 0) + 1
+        req_id = str(row.get("req_id") or "").strip()
+        if req_id:
+            req_sets.setdefault(key, set()).add(req_id)
 
     framework_rows = []
-    for (group_name, test_set), req_count in counts.items():
+    for key, tc_count in tc_counts.items():
+        group_name, test_set = key
         framework_rows.append(
             {
                 "test_group": group_name or "",
                 "test_set": test_set or "",
-                "req_count": req_count,
+                "tc_count": tc_count,
+                "req_count": len(req_sets.get(key, set())) or tc_count,
             }
         )
     return framework_rows
@@ -343,12 +359,22 @@ def _extract_existing_sequence_numbers(rows: list[dict]) -> list[int]:
     return sequences
 
 
+# Multi-TC 下每個 req 平均會回 2–3 筆 TC（§1.4 列舉型需求更多）。output token
+# 以原本 1 TC 預估 × 這個倍數做為保守估計，避免 budget gate 低估導致超支。
+_AVG_TCS_PER_REQ = 2.5
+_AVG_INPUT_TOKENS_PER_REQ = 1500
+_AVG_OUTPUT_TOKENS_PER_TC = 800
+
+
 def _estimate_cost(row_count: int, model: str, batch_size: int) -> float:
-    avg_input = 1500
-    avg_output = 800
-    calls = (row_count + batch_size - 1) // batch_size
-    del calls
-    return calculate_cost(avg_input * row_count, avg_output * row_count, model)
+    # input token 只跟 req 數有關（prompt 依 req 組合），output 會因 AI 拆分變多。
+    del batch_size
+    avg_output = int(_AVG_OUTPUT_TOKENS_PER_TC * _AVG_TCS_PER_REQ)
+    return calculate_cost(
+        _AVG_INPUT_TOKENS_PER_REQ * row_count,
+        avg_output * row_count,
+        model,
+    )
 
 
 def _would_exceed_budget(current_cost: float, batch_size: int, model: str, budget: float) -> bool:
@@ -639,99 +665,114 @@ def _sse_event(payload: dict) -> str:
 
 @app.post("/api/quick-generate/stream")
 async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingResponse:
-    """Ad-hoc TC generation from manual input. Supports single, with_context, and decompose modes."""
+    """Ad-hoc TC generation from manual input.
+
+    統一走 multi-TC auto-split 路徑：AI 自動依 ASPICE §1.2 / §1.4 / §1.5 判斷
+    需要幾筆 TC，先回 reasoning + keyword 分析，再串流每筆 TC，最後收尾。
+    不再保留舊的 single / with_context / decompose 三模式分歧。
+    """
 
     async def event_generator():
         model = payload.model
         current_cost = 0.0
 
-        yield _sse_event({"type": "job.started", "mode": payload.mode})
+        yield _sse_event({"type": "job.started"})
 
-        if payload.mode == "decompose":
-            # Step 1: decompose requirement into scenarios
-            try:
-                decompose_result = decompose_requirement(payload.testItem, RULES_SECTIONS, model)
-            except GenerationError as exc:
-                yield _sse_event({"type": "job.failed", "message": str(exc)})
-                return
+        # 組一個最小可用的 row dict 丟給 generate_tcs_for_row。
+        composed_test_item = payload.testItem.strip()
+        context_text = (payload.context or "").strip()
+        if context_text:
+            composed_test_item = f"{composed_test_item}\n\n[Additional Context]\n{context_text}"
 
-            current_cost += decompose_result.cost
-            yield _sse_event(
+        row = {"req_id": "QUICK", "test_item": composed_test_item}
+        ctx = {"project": "QuickGenerate", "test_group": "QuickGenerate", "test_set": "N/A"}
+
+        try:
+            result = generate_tcs_for_row(
+                row=row,
+                context=ctx,
+                spec_index=None,
+                rules_text=RULES_SECTIONS,
+                model=model,
+            )
+        except GenerationError as exc:
+            yield _sse_event({"type": "job.failed", "message": str(exc)})
+            return
+
+        tcs = result.tc_data if isinstance(result.tc_data, list) else [result.tc_data]
+        meta = result.split_meta[0] if result.split_meta else {}
+        current_cost += result.cost
+        total = len(tcs)
+
+        # 1) 先送 analysis：reasoning + keyword coverage + synthetic scenarios list，
+        #    讓前端的 DecomposeAnalysisPanel 維持原有 UI、不必大改。
+        scenarios = [
+            {
+                "id": i + 1,
+                "name": f"TC {i + 1}",
+                "description": (tc.get("test_item_rewrite") or "").strip() or f"Generated TC {i + 1}",
+                "test_item": composed_test_item,
+            }
+            for i, tc in enumerate(tcs)
+        ]
+        # 正規化 keyword 欄位為前端格式（scenarios: number[]）。
+        kw_out: list[dict] = []
+        for k in (meta.get("keywords") or []):
+            if not isinstance(k, dict):
+                continue
+            cb = k.get("covered_by") or k.get("coveredBy") or k.get("scenarios") or []
+            if not isinstance(cb, list):
+                cb = []
+            kw_out.append(
                 {
-                    "type": "decompose.analysis",
-                    "reasoning": decompose_result.reasoning,
-                    "keywords": decompose_result.keywords,
-                    "scenarios": decompose_result.scenarios,
-                    "stats": {"total": len(decompose_result.scenarios), "currentCost": round(current_cost, 4)},
+                    "keyword": str(k.get("keyword") or ""),
+                    "meaning": str(k.get("meaning") or ""),
+                    "scenarios": [int(n) for n in cb if isinstance(n, (int, float))],
                 }
             )
+        yield _sse_event(
+            {
+                "type": "decompose.analysis",
+                "reasoning": str(meta.get("reasoning") or ""),
+                "keywords": kw_out,
+                "scenarios": scenarios,
+                "stats": {"total": total, "processed": 0, "currentCost": round(current_cost, 4)},
+            }
+        )
 
-            # Step 2: generate TC for each scenario sequentially
-            total = len(decompose_result.scenarios)
-            for i, scenario in enumerate(decompose_result.scenarios):
-                yield _sse_event(
-                    {
-                        "type": "tc.generating",
-                        "scenarioId": scenario["id"],
-                        "scenarioName": scenario.get("name", ""),
-                        "stats": {"total": total, "processed": i, "currentCost": round(current_cost, 4)},
-                    }
-                )
-                try:
-                    result = generate_quick_tc(
-                        test_item=scenario.get("test_item", scenario.get("description", "")),
-                        context=f"Scenario: {scenario.get('name', '')}\n{payload.testItem}",
-                        rules_text=RULES_SECTIONS,
-                        model=model,
-                    )
-                    current_cost += result.cost
-                    yield _sse_event(
-                        {
-                            "type": "tc.completed",
-                            "scenarioId": scenario["id"],
-                            "scenarioName": scenario.get("name", ""),
-                            "tc": result.tc_data,
-                            "stats": {"total": total, "processed": i + 1, "currentCost": round(current_cost, 4)},
-                        }
-                    )
-                except GenerationError as exc:
-                    yield _sse_event(
-                        {
-                            "type": "tc.failed",
-                            "scenarioId": scenario["id"],
-                            "message": str(exc),
-                            "stats": {"total": total, "processed": i + 1, "currentCost": round(current_cost, 4)},
-                        }
-                    )
-                await asyncio.sleep(0.05)
-
-        else:
-            # single or with_context: one TC directly
-            context_text = payload.context if payload.mode == "with_context" else None
-            try:
-                result = generate_quick_tc(
-                    test_item=payload.testItem,
-                    context=context_text,
-                    rules_text=RULES_SECTIONS,
-                    model=model,
-                )
-                current_cost += result.cost
-                yield _sse_event(
-                    {
-                        "type": "tc.completed",
-                        "scenarioId": 1,
-                        "tc": result.tc_data,
-                        "stats": {"total": 1, "processed": 1, "currentCost": round(current_cost, 4)},
-                    }
-                )
-            except GenerationError as exc:
-                yield _sse_event({"type": "job.failed", "message": str(exc)})
-                return
+        # 2) 依序送每筆 TC（沿用 tc.generating / tc.completed event shape，前端無需改）。
+        for i, tc in enumerate(tcs):
+            yield _sse_event(
+                {
+                    "type": "tc.generating",
+                    "scenarioId": i + 1,
+                    "scenarioName": f"TC {i + 1}",
+                    "stats": {"total": total, "processed": i, "currentCost": round(current_cost, 4)},
+                }
+            )
+            await asyncio.sleep(0.03)
+            yield _sse_event(
+                {
+                    "type": "tc.completed",
+                    "scenarioId": i + 1,
+                    "scenarioName": f"TC {i + 1}",
+                    "tc": tc,
+                    "stats": {"total": total, "processed": i + 1, "currentCost": round(current_cost, 4)},
+                }
+            )
 
         yield _sse_event(
             {
                 "type": "job.completed",
-                "stats": {"currentCost": round(current_cost, 4)},
+                "stats": {
+                    "total": total,
+                    "processed": total,
+                    "currentCost": round(current_cost, 4),
+                    "inputTokens": result.input_tokens,
+                    "outputTokens": result.output_tokens,
+                    "cacheCreationTokens": getattr(result, "cache_creation_tokens", 0),
+                    "cacheReadTokens": getattr(result, "cache_read_tokens", 0),
+                },
             }
         )
 
