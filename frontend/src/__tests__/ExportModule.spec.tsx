@@ -84,7 +84,7 @@ describe('ExportModule', () => {
     expect(exportJobMock).toHaveBeenCalledWith(
       expect.objectContaining({
         includeFrameworkSheet: false,
-        selectedColumns: ['TC ID', 'Test Set', 'Pre-Conditions', 'Input Test Data', 'Expected Result', 'Priority'],
+        selectedColumns: ['Test Item Rewrite', 'TC ID', 'Test Set', 'Pre-Conditions', 'Input Test Data', 'Expected Result', 'Priority', 'Design Method'],
       }),
     );
   });

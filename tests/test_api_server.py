@@ -29,6 +29,28 @@ def _build_workbook_bytes() -> bytes:
     return stream.getvalue()
 
 
+def _build_duplicate_req_workbook_bytes() -> bytes:
+    wb = Workbook()
+    ws_pd = wb.active
+    ws_pd.title = "Product Document"
+    ws_pd.cell(row=3, column=2, value="newR1L")
+
+    ws_tc = wb.create_sheet("Test Case Specification&Result")
+    ws_tc.cell(row=9, column=4, value="Requirement or Design ID")
+    ws_tc.cell(row=9, column=6, value="Test Case ID")
+    ws_tc.cell(row=9, column=9, value="Test Item")
+    ws_tc.cell(row=10, column=4, value="SWE1-HMI-DM-001-01")
+    ws_tc.cell(row=10, column=6, value="newR1L-DM-001")
+    ws_tc.cell(row=10, column=9, value="PDM01 original text")
+    ws_tc.cell(row=11, column=4, value="SWE1-HMI-DM-001-01")
+    ws_tc.cell(row=11, column=6, value="newR1L-DM-002")
+    ws_tc.cell(row=11, column=9, value="PDM01 split text")
+
+    stream = BytesIO()
+    wb.save(stream)
+    return stream.getvalue()
+
+
 def _build_reference_workbook_bytes() -> bytes:
     wb = Workbook()
     ws = wb.active
@@ -208,7 +230,7 @@ def test_stream_generate_job(mock_generate_batch):
                     "test_procedure": "1. Perform setup.\n2. Verify the result.",
                     "expected_result": "1. Setup completes.\n2. Result is verified.",
                     "design_method": "功能測試 (Functional based ; no specific technique)",
-                    "priority": "High",
+                    "priority": "P0",
                     "split_flag": False,
                     "split_reason": "",
                 },
@@ -221,7 +243,7 @@ def test_stream_generate_job(mock_generate_batch):
                     "test_procedure": "1. Perform setup.\n2. Verify the result.",
                     "expected_result": "1. Setup completes.\n2. Result is verified.",
                     "design_method": "功能測試 (Functional based ; no specific technique)",
-                    "priority": "Medium",
+                    "priority": "P1",
                     "split_flag": False,
                     "split_reason": "",
                 },
@@ -255,6 +277,99 @@ def test_stream_generate_job(mock_generate_batch):
     assert '"tcId": "newR1L-DM-001"' in response.text
 
 
+@patch("tools.generate.generate_batch_multi")
+def test_stream_generate_assigns_tc_ids_in_final_display_order(mock_generate_batch):
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    payload = parse_response.json()
+
+    mock_generate_batch.return_value = SimpleNamespace(
+        tc_data=[
+            [
+                {
+                    "test_item_rewrite": "(Condition → Outcome A1)",
+                    "pre_conditions": "NA",
+                    "input_test_data": "NA",
+                    "test_procedure": "1. Perform setup.\n2. Verify the result.",
+                    "expected_result": "1. Setup completes.\n2. Result is verified.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "P0",
+                    "split_flag": True,
+                    "split_reason": "Split into two cases",
+                },
+                {
+                    "test_item_rewrite": "(Condition → Outcome A2)",
+                    "pre_conditions": "NA",
+                    "input_test_data": "NA",
+                    "test_procedure": "1. Perform alternate setup.\n2. Verify alternate result.",
+                    "expected_result": "1. Alternate setup completes.\n2. Alternate result is verified.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "P0",
+                    "split_flag": True,
+                    "split_reason": "Split into two cases",
+                },
+            ],
+            [
+                {
+                    "test_item_rewrite": "(Condition → Outcome B1)",
+                    "pre_conditions": "NA",
+                    "input_test_data": "NA",
+                    "test_procedure": "1. Perform setup.\n2. Verify the result.",
+                    "expected_result": "1. Setup completes.\n2. Result is verified.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "P1",
+                    "split_flag": False,
+                    "split_reason": "",
+                },
+            ],
+        ],
+        input_tokens=10,
+        output_tokens=20,
+        cost=0.001,
+        split_meta=[
+            {"req_id": "SWE1-HMI-DM-001-01", "reasoning": "split", "keywords": []},
+            {"req_id": "SWE1-HMI-DM-002-01", "reasoning": "single", "keywords": []},
+        ],
+    )
+
+    client.post(
+        "/api/generate",
+        json={
+            "jobId": payload["jobId"],
+            "rows": payload["rows"],
+            "config": {
+                "model": "gpt-4.1",
+                "batchSize": 2,
+                "budget": 2,
+                "strictValidation": False,
+            },
+        },
+    )
+
+    response = client.get("/api/generate/stream", params={"jobId": payload["jobId"]})
+    assert response.status_code == 200
+
+    events = _parse_sse(response.content)
+    tc_ids = [
+        event["row"]["tcId"]
+        for event in events
+        if event.get("type") in {"row.completed", "row.added"}
+    ]
+    assert tc_ids == [
+        "newR1L-DM-001",
+        "newR1L-DM-002",
+        "newR1L-DM-003",
+    ]
+
+
 def _build_mixed_workbook_bytes() -> bytes:
     """Row 10 is a reference example (Pre-Cond/Procedure/Expected filled).
     Row 11 is a new row that needs generation.
@@ -285,10 +400,9 @@ def _build_mixed_workbook_bytes() -> bytes:
 
 
 @patch("tools.generate.generate_tcs_for_row")
-def test_stream_generate_preserves_existing_content(mock_generate_single):
-    """RULES.md §499 — rows with existing Pre-Cond/Procedure/Expected are
-    passed through without an AI call; only empty rows trigger generation.
-    """
+def test_stream_generate_sends_reviewer_prefills_as_hints(mock_generate_single):
+    """每列都走 AI，template 既有的 pre-conditions / procedure / expected 會被
+    當作 reviewer hints 塞進 prompt，不再當「已完成內容」跳過 AI。"""
     parse_response = client.post(
         "/api/parse",
         files={
@@ -301,7 +415,6 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
     )
     parsed = parse_response.json()
 
-    # Multi-TC mode: tc_data 為 list of TCs（此測試單筆）
     mock_generate_single.return_value = SimpleNamespace(
         tc_data=[{
             "test_item_rewrite": "(Condition → Outcome)",
@@ -310,7 +423,7 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
             "test_procedure": "1. Setup.\n2. Verify.",
             "expected_result": "1. Setup ok.\n2. Verified.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
-            "priority": "Medium",
+            "priority": "P1",
             "split_flag": False,
             "split_reason": "",
         }],
@@ -320,6 +433,7 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
         cache_read_tokens=0,
         cost=0.001,
         model="gpt-4.1",
+        split_meta=[{"req_id": "R", "reasoning": "r", "keywords": []}],
     )
 
     client.post(
@@ -338,17 +452,17 @@ def test_stream_generate_preserves_existing_content(mock_generate_single):
 
     response = client.get("/api/generate/stream", params={"jobId": parsed["jobId"]})
     assert response.status_code == 200
-    # AI called exactly once — for the empty row only.
-    assert mock_generate_single.call_count == 1
-    sent_row = mock_generate_single.call_args.args[0]
-    assert sent_row["req_id"] == "SWE1-NEW-002"
-
-    # Preserved row's original content survives in the SSE payload.
-    assert "Reference pre-condition" in response.text
-    assert "Reference procedure step" in response.text
-    assert "Reference expected outcome" in response.text
-    assert '"preserved": true' in response.text
-    assert "1 to generate, 1 preserved" in response.text
+    # 兩列都應該走 AI（一個 batch_size=1 時每列各 1 次）
+    assert mock_generate_single.call_count == 2
+    # 被送給 AI 的 row dict 仍帶原始 pre-fills，供 prompt_builder 轉成 reviewer hints。
+    sent_rows = [call.args[0] for call in mock_generate_single.call_args_list]
+    prefilled_row = next(
+        r for r in sent_rows if r["req_id"] == "SWE1-REF-001"
+    )
+    assert "Reference pre-condition" in prefilled_row.get("pre_conditions", "")
+    assert "Reference procedure step" in prefilled_row.get("test_procedure", "")
+    # 不再有 preserved / preserved true 的訊息
+    assert '"preserved": true' not in response.text
 
 
 @patch("tools.generate.generate_batch_multi")
@@ -376,7 +490,7 @@ def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
                 "test_procedure": "1. Setup.\n2. Verify.",
                 "expected_result": "1. Setup ok.\n2. Verified.",
                 "design_method": "功能測試 (Functional based ; no specific technique)",
-                "priority": "Medium",
+                "priority": "P1",
                 "split_flag": False,
                 "split_reason": "",
             }]
@@ -553,7 +667,7 @@ def test_export_job_and_download():
                             "2. The requested behavior is shown with the correct visible outcome."
                         ),
                         "designMethod": "功能測試 (Functional based ; no specific technique)",
-                        "priority": "High",
+                        "priority": "P0",
                     },
                 }
             ],
@@ -615,7 +729,7 @@ def test_export_respects_selected_columns():
                             "2. The requested behavior is shown with the correct visible outcome."
                         ),
                         "designMethod": "功能測試 (Functional based ; no specific technique)",
-                        "priority": "High",
+                        "priority": "P0",
                     },
                 }
             ],
@@ -632,7 +746,190 @@ def test_export_respects_selected_columns():
         "1. The setup screen is ready for the operator.\n"
         "2. The requested behavior is shown with the correct visible outcome."
     )
-    assert ws.cell(row=10, column=16).value == "High"
+    assert ws.cell(row=10, column=16).value == "P0"
+
+
+def test_export_includes_metadata_only_rows():
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    export_response = client.post(
+        "/api/export",
+        json={
+            "jobId": job_id,
+            "scope": "accepted",
+            "outputMode": "new-file",
+            "includeFrameworkSheet": False,
+            "selectedColumns": ["Priority", "Design Method"],
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "PDM01 original text",
+                    "reviewStatus": "accepted",
+                    "testSet": "Smoke",
+                    "generated": {
+                        "priority": "P0",
+                        "designMethod": "功能測試 (Functional based ; no specific technique)",
+                    },
+                }
+            ],
+        },
+    )
+    assert export_response.status_code == 200
+    assert export_response.json()["exportedRows"] == 1
+
+    download_response = client.get(f"/api/export/download/{job_id}")
+    workbook = load_workbook(BytesIO(download_response.content))
+    ws = workbook["Test Case Specification&Result"]
+    assert ws.cell(row=10, column=16).value == "P0"
+    assert ws.cell(row=10, column=17).value == "功能測試 (Functional based ; no specific technique)"
+
+
+def test_export_prefers_tc_id_when_row_num_is_missing_for_duplicate_req_ids():
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "DupReq_SWQT_DeviceManager_20260408.xlsx",
+                _build_duplicate_req_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    export_response = client.post(
+        "/api/export",
+        json={
+            "jobId": job_id,
+            "scope": "accepted",
+            "outputMode": "new-file",
+            "includeFrameworkSheet": False,
+            "selectedColumns": ["Expected Result"],
+            "rows": [
+                {
+                    "id": "row-11",
+                    "rowNum": None,
+                    "tcId": "newR1L-DM-002",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "PDM01 split text",
+                    "reviewStatus": "accepted",
+                    "testSet": "Smoke",
+                    "generated": {
+                        "expectedResult": "2nd row only",
+                    },
+                }
+            ],
+        },
+    )
+    assert export_response.status_code == 200
+
+    download_response = client.get(f"/api/export/download/{job_id}")
+    workbook = load_workbook(BytesIO(download_response.content))
+    ws = workbook["Test Case Specification&Result"]
+    assert ws.cell(row=10, column=13).value is None
+    assert ws.cell(row=11, column=13).value == "2nd row only"
+
+
+@patch("api_server.classify_test_sets")
+def test_export_defaults_blank_input_data_and_derives_test_set(mock_classify):
+    from generator import ClassificationResult
+    mock_classify.return_value = ClassificationResult(
+        assignments={"SWE1-HMI-DM-001-01": "BT Switch"},
+    )
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    export_response = client.post(
+        "/api/export",
+        json={
+            "jobId": job_id,
+            "scope": "accepted",
+            "outputMode": "new-file",
+            "includeFrameworkSheet": False,
+            "selectedColumns": ["Test Set", "Input Test Data"],
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "When HMI sends Bluetooth switch request, vehicle provides checkbox to enable/disable Bluetooth",
+                    "reviewStatus": "accepted",
+                    "testSet": "",
+                    "generated": {
+                        "inputTestData": "",
+                    },
+                }
+            ],
+        },
+    )
+    assert export_response.status_code == 200
+
+    download_response = client.get(f"/api/export/download/{job_id}")
+    workbook = load_workbook(BytesIO(download_response.content))
+    ws = workbook["Test Case Specification&Result"]
+    assert ws.cell(row=10, column=8).value == "BT Switch"
+    assert ws.cell(row=10, column=11).value == "NA"
+
+
+def test_export_rejects_overwrite_mode():
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    export_response = client.post(
+        "/api/export",
+        json={
+            "jobId": job_id,
+            "scope": "accepted",
+            "outputMode": "overwrite",
+            "includeFrameworkSheet": False,
+            "selectedColumns": ["Expected Result"],
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "PDM01 original text",
+                    "reviewStatus": "accepted",
+                    "testSet": "Smoke",
+                    "generated": {
+                        "expectedResult": "should not write",
+                    },
+                }
+            ],
+        },
+    )
+    assert export_response.status_code == 400
+    assert export_response.json()["detail"] == "overwrite export mode is not supported"
 
 
 def test_group_preview_returns_assignments():
@@ -703,7 +1000,7 @@ VALID_TC_JSON = {
     "test_procedure": "1. Press button.\n2. Observe LED.",
     "expected_result": "1. LED turns on.",
     "design_method": "Functional",
-    "priority": "Medium",
+    "priority": "P1",
     "split_flag": False,
     "split_reason": "",
 }
@@ -763,7 +1060,7 @@ def test_quick_generate_unified_single_tc(mock_gen):
 
     tc_done = [e for e in events if e["type"] == "tc.completed"]
     assert len(tc_done) == 1
-    assert tc_done[0]["tc"]["priority"] == "Medium"
+    assert tc_done[0]["tc"]["priority"] == "P1"
 
 
 @patch("api_server.generate_tcs_for_row")

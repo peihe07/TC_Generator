@@ -11,12 +11,10 @@ import { useJobHistoryStore } from '../../../store/useJobHistoryStore';
 import { DecomposeAnalysisPanel } from './DecomposeAnalysisPanel';
 import { QuickGenerateInputPanel } from './QuickGenerateInputPanel';
 import { TcList } from './TcCard';
-import { buildMockTc } from './mockTc';
 import type {
   DecomposeAnalysis,
   GeneratedTc,
   JobPhase,
-  Scenario,
 } from './types';
 
 /**
@@ -50,62 +48,6 @@ const QuickGenerateModule: React.FC = () => {
     setReasoningExpanded(true);
   }, []);
 
-  // --- Mock fallback (used when backend is unavailable) ---
-  const runMock = useCallback(
-    async (stopped: () => boolean) => {
-      const item = testItem.trim();
-      const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-      await delay(900);
-      if (stopped()) return;
-      const mockScenarios: Scenario[] = [
-        {
-          id: 1,
-          name: 'Normal flow',
-          description: 'Verify the primary success path.',
-          test_item: `${item} — happy path`,
-        },
-        {
-          id: 2,
-          name: 'Boundary condition',
-          description: 'Test edge-case inputs or state limits.',
-          test_item: `${item} — boundary`,
-        },
-        {
-          id: 3,
-          name: 'Error handling',
-          description: 'Confirm graceful failure on invalid input.',
-          test_item: `${item} — error case`,
-        },
-      ];
-      setAnalysis({
-        reasoning:
-          '[Mock] Identified 3 distinct test scenarios: success path, boundary, error-handling.',
-        scenarios: mockScenarios,
-        keywords: [
-          {
-            keyword: item.split(' ')[0] || 'trigger',
-            meaning: 'The action that initiates the behaviour under test.',
-            scenarios: [1, 2, 3],
-          },
-        ],
-      });
-      setPhase('generating');
-
-      for (const s of mockScenarios) {
-        if (stopped()) return;
-        setGeneratingScenarioId(s.id);
-        await delay(500);
-        if (stopped()) return;
-        setGeneratedTcs((prev) => [...prev, buildMockTc(s.id, s.name, s.test_item)]);
-        setGeneratingScenarioId(null);
-      }
-
-      setPhase('done');
-    },
-    [testItem],
-  );
-
   const handleGenerate = useCallback(async () => {
     if (!testItem.trim()) return;
     reset();
@@ -116,7 +58,6 @@ const QuickGenerateModule: React.FC = () => {
     abortRef.current = () => {
       stopped = true;
     };
-    const isStopped = () => stopped;
 
     // Track latest stats so we can write them into history on job.completed.
     const startedAt = Date.now();
@@ -217,11 +158,11 @@ const QuickGenerateModule: React.FC = () => {
           }
         }
       }
-    } catch {
-      // Backend unavailable — run local mock.
-      await runMock(isStopped);
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'Backend unavailable');
+      setPhase('error');
     }
-  }, [testItem, context, model, reset, runMock]);
+  }, [testItem, context, model, reset]);
 
   const handleStop = useCallback(() => {
     abortRef.current?.();

@@ -80,7 +80,7 @@ def sample_generated():
         "test_procedure": "1. Open settings to access BT.\n2. Check DM and verify it appears.",
         "expected_result": "1. BT settings shown.\n2. DM is visible.",
         "design_method": "功能測試 (Functional based ; no specific technique)",
-        "priority": "Medium",
+        "priority": "P1",
         "split_flag": False,
         "split_reason": "",
     }
@@ -195,10 +195,10 @@ class TestEditRow:
         assert row["validation"]["status"] == "pass"
 
     def test_multiple_edits_override(self, job_with_generated):
-        edit_row(job_with_generated, row_num=10, edits={"priority": "High"})
-        edit_row(job_with_generated, row_num=10, edits={"priority": "Low"})
+        edit_row(job_with_generated, row_num=10, edits={"priority": "P0"})
+        edit_row(job_with_generated, row_num=10, edits={"priority": "P2"})
         row = job_with_generated["rows"][0]
-        assert row["edited"]["priority"] == "Low"
+        assert row["edited"]["priority"] == "P2"
 
 
 class TestGetRowsByStatus:
@@ -221,7 +221,7 @@ class TestGetRowsByStatus:
 class TestGetExportableRows:
     def test_only_accepted_and_edited(self, job_with_generated):
         update_row_status(job_with_generated, row_num=10, status="accepted")
-        edit_row(job_with_generated, row_num=11, edits={"priority": "High"})
+        edit_row(job_with_generated, row_num=11, edits={"priority": "P0"})
         update_row_status(job_with_generated, row_num=12, status="rejected")
 
         exportable = get_exportable_rows(job_with_generated)
@@ -237,9 +237,9 @@ class TestGetExportableRows:
         assert exportable[0]["test_item_rewrite"] == "(Condition → Outcome)"
 
     def test_edited_uses_edited_content(self, job_with_generated):
-        edit_row(job_with_generated, row_num=10, edits={"priority": "High"})
+        edit_row(job_with_generated, row_num=10, edits={"priority": "P0"})
         exportable = get_exportable_rows(job_with_generated)
-        assert exportable[0]["priority"] == "High"
+        assert exportable[0]["priority"] == "P0"
         # Non-edited field still from generated
         assert exportable[0]["test_item_rewrite"] == "(Condition → Outcome)"
 

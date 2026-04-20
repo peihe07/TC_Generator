@@ -37,7 +37,7 @@ def _export_row(row_num: int = 10) -> dict:
         "input_test_data": "NA",
         "test_procedure": "1. Do A.\n2. Verify B.",
         "expected_result": "1. A happens.\n2. B is visible.",
-        "priority": "Medium",
+        "priority": "P1",
         "design_method": "功能測試 (Functional based ; no specific technique)",
         "spec_reference": "SPEC_REF_PDM01",
     }

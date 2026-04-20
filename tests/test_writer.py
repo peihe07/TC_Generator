@@ -67,7 +67,7 @@ def generated_rows():
             "test_procedure": "1. Open settings to access.\n2. Add DM and verify icon appears.",
             "expected_result": "1. Settings shown.\n2. DM icon displayed.",
             "spec_reference": "Device_Manager_HMI Logic_2.3",
-            "priority": "Medium",
+            "priority": "P1",
             "design_method": "功能測試 (Functional based ; no specific technique)",
         },
         {
@@ -81,7 +81,7 @@ def generated_rows():
             "test_procedure": "1. Tap menu bar to open.\n2. Select DM and verify it opens.",
             "expected_result": "1. Menu bar expanded.\n2. DM main screen displayed.",
             "spec_reference": "Device_Manager_HMI Logic_3.1",
-            "priority": "Medium",
+            "priority": "P1",
             "design_method": "功能測試 (Functional based ; no specific technique)",
         },
     ]
@@ -131,6 +131,15 @@ class TestBuildOutputPath:
         path = build_output_path("/data/Project_SWQT_DeviceManager_20260408.xlsx")
         assert path.endswith("Project_SWQT_DeviceManager_20260408_generated.xlsx")
 
+    def test_does_not_double_append_generated_suffix(self):
+        path = build_output_path("/data/foo_generated.xlsx")
+        assert path.endswith("foo_generated.xlsx")
+        assert not path.endswith("foo_generated_generated.xlsx")
+
+    def test_collapses_repeated_generated_suffixes(self):
+        path = build_output_path("/data/foo_generated_generated.xlsx")
+        assert path.endswith("foo_generated.xlsx")
+
 
 class TestWriteGeneratedResults:
     def test_writes_tc_id(self, input_xlsx, generated_rows, tmp_path):
@@ -161,22 +170,21 @@ class TestWriteGeneratedResults:
         assert "PDM01.1) Original text here." in cell_value
         assert "(User adds DM → DM icon displayed)" in cell_value
 
-    def test_dedupes_rewrite_across_rows_sharing_req_id(self, input_xlsx, tmp_path):
-        """A requirement split into multiple TC rows should only get the
-        `()` summary appended on the first row — repeating it on every row
-        is redundant since the summary describes the same requirement."""
+    def test_each_row_gets_its_own_rewrite_even_when_req_id_shared(self, input_xlsx, tmp_path):
+        """Per §1.2：同 req 下每筆 TC 必須有自己帶 scenario tag 的 rewrite，
+        不再跨列 dedup。"""
         rows = [
             {
                 "row_num": 10,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-001",
-                "test_item_rewrite": "(Trigger → Outcome)",
+                "test_item_rewrite": "(Trigger → Outcome A)",
             },
             {
                 "row_num": 11,
-                "req_id": "SWE1-HMI-DM-001-01",  # same requirement, split TC
+                "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-002",
-                "test_item_rewrite": "(Trigger → Outcome)",
+                "test_item_rewrite": "(Trigger → Outcome B)",
             },
         ]
         output = str(tmp_path / "output.xlsx")
@@ -184,11 +192,12 @@ class TestWriteGeneratedResults:
 
         wb = load_workbook(output)
         ws = wb["Test Case Specification&Result"]
-        # Row 10 keeps original + appended rewrite.
-        assert "(Trigger → Outcome)" in ws.cell(row=10, column=9).value
-        # Row 11 keeps its original Col I untouched (no rewrite appended).
+        assert "(Trigger → Outcome A)" in ws.cell(row=10, column=9).value
+        # Row 11 也要有自己的 rewrite
         row11_value = ws.cell(row=11, column=9).value or ""
-        assert "(Trigger → Outcome)" not in row11_value
+        assert "(Trigger → Outcome B)" in row11_value
+        # 不應該混到 A
+        assert "Outcome A" not in row11_value
         assert "PDM02) Another original text." in row11_value
 
     def test_rewrite_applied_once_per_distinct_req_id(self, input_xlsx, tmp_path):
@@ -253,7 +262,7 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=row, column=11).value is not None  # Input Test Data (K)
         assert ws.cell(row=row, column=13).value is not None  # Expected Result (M)
         assert ws.cell(row=row, column=14).value is not None  # Spec Reference (N)
-        assert ws.cell(row=row, column=16).value == "Medium"  # Priority (P)
+        assert ws.cell(row=row, column=16).value == "P1"  # Priority (P)
         assert "功能測試" in ws.cell(row=row, column=17).value  # Design Method (Q)
 
     def test_replaces_existing_rewrite_instead_of_appending_again(self, input_xlsx, generated_rows, tmp_path):
@@ -281,7 +290,7 @@ class TestWriteGeneratedResults:
             "test_procedure": "1. Open settings.\n2. Verify the result.",
             "expected_result": "1. Settings shown.\n2. Result verified.",
             "spec_reference": "Spec_1",
-            "priority": "Medium",
+            "priority": "P1",
             "design_method": "功能測試 (Functional based ; no specific technique)",
         }]
         write_generated_results(input_xlsx, rows, output)
@@ -310,7 +319,7 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=9).value == "PDM01.1) Original text here."  # no rewrite appended
         assert ws.cell(row=10, column=10).value is None  # Pre-Conditions untouched
         assert ws.cell(row=10, column=13).value == "1. Settings shown.\n2. DM icon displayed."
-        assert ws.cell(row=10, column=16).value == "Medium"
+        assert ws.cell(row=10, column=16).value == "P1"
 
 
     def test_multi_tc_per_row_inserts_rows(self, input_xlsx, tmp_path):
@@ -325,7 +334,7 @@ class TestWriteGeneratedResults:
                 "pre_conditions": "pre-A",
                 "test_procedure": "1. step A",
                 "expected_result": "1. result A",
-                "priority": "High",
+                "priority": "P0",
                 "design_method": "Functional",
             },
             {
@@ -336,7 +345,7 @@ class TestWriteGeneratedResults:
                 "pre_conditions": "pre-B",
                 "test_procedure": "1. step B",
                 "expected_result": "1. result B",
-                "priority": "Medium",
+                "priority": "P1",
                 "design_method": "Functional",
             },
             {
@@ -347,7 +356,7 @@ class TestWriteGeneratedResults:
                 "pre_conditions": "pre-C",
                 "test_procedure": "1. step C",
                 "expected_result": "1. result C",
-                "priority": "Low",
+                "priority": "P2",
                 "design_method": "Functional",
             },
             # 第二個 req 放在原本的 row 11，確認 insert 後的 offset 正確。
@@ -359,7 +368,7 @@ class TestWriteGeneratedResults:
                 "pre_conditions": "pre-D",
                 "test_procedure": "1. step D",
                 "expected_result": "1. result D",
-                "priority": "High",
+                "priority": "P0",
                 "design_method": "Functional",
             },
         ]
@@ -382,11 +391,16 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=12, column=12).value == "1. step C"
         assert ws.cell(row=10, column=13).value == "1. result A"
         assert ws.cell(row=12, column=13).value == "1. result C"
-        # rewrite 只 append 在第一筆（row 10），其餘列保留原始 test_item。
+        # 每筆 sub-TC 都有自己專屬的 rewrite（§1.2），且不會混到別筆的 tag。
         row10_i = ws.cell(row=10, column=9).value
-        assert "(Trigger → Outcome A)" in row10_i
         row11_i = ws.cell(row=11, column=9).value or ""
-        assert "(Trigger → Outcome B)" not in row11_i
+        row12_i = ws.cell(row=12, column=9).value or ""
+        assert "(Trigger → Outcome A)" in row10_i
+        assert "(Trigger → Outcome B)" in row11_i
+        assert "(Trigger → Outcome C)" in row12_i
+        # row 11 不應混到 A 或 C
+        assert "Outcome A" not in row11_i
+        assert "Outcome C" not in row11_i
         # 第二個 req 被 offset 後應該落在 row 13（10 + 2 extras + 1）。
         assert ws.cell(row=13, column=4).value == "SWE1-HMI-DM-002-01"
         assert ws.cell(row=13, column=6).value == "newR1L-DMR-004"
@@ -409,7 +423,7 @@ class TestWriteGeneratedResults:
             "pre_conditions": "",         # 空字串：不應蓋掉 template
             "test_procedure": "",
             "expected_result": "",
-            "priority": "Medium",
+            "priority": "P1",
             "design_method": "Functional",
         }]
         output = str(tmp_path / "output.xlsx")
@@ -421,7 +435,7 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=12).value == "template procedure from spec"
         assert ws.cell(row=10, column=13).value == "template expected from spec"
         # 非空欄位仍有寫入。
-        assert ws.cell(row=10, column=16).value == "Medium"
+        assert ws.cell(row=10, column=16).value == "P1"
 
 
 class TestWriteFrameworkSheet:

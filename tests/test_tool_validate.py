@@ -18,7 +18,7 @@ _BASE_TC = {
         "2. The Y panel is displayed on the HU."
     ),
     "design_method": "功能測試 (Functional based ; no specific technique)",
-    "priority": "Medium",
+    "priority": "P1",
 }
 
 

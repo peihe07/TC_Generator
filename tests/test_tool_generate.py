@@ -19,7 +19,7 @@ _BASE_ROW = {
     "original_requirement": "PDM01 original",
     "test_set": "Access",
     "spec_reference": None,
-    "priority": "Medium",
+    "priority": "P1",
 }
 
 _CONTEXT = {"project": "newR1L", "test_group": "DeviceManager", "test_set": "N/A"}
@@ -33,7 +33,7 @@ def _fake_tc(suffix: str = "A") -> dict:
         "test_procedure": "1. Setup.\n2. Verify.",
         "expected_result": "1. Done.\n2. Verified.",
         "design_method": "功能測試 (Functional based ; no specific technique)",
-        "priority": "Medium",
+        "priority": "P1",
         "split_flag": False,
         "split_reason": "",
     }

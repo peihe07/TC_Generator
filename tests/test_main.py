@@ -139,7 +139,7 @@ class TestRunGeneration:
             "test_procedure": "1. Perform setup.\n2. Verify the result.",
             "expected_result": "1. Setup completes.\n2. Result is verified.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
-            "priority": "Medium",
+            "priority": "P1",
             "split_flag": False,
             "split_reason": "",
         }

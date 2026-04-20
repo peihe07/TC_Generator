@@ -15,15 +15,21 @@ from trace_store import SqliteTraceStore
 
 
 def _group_rows() -> list[dict]:
+    # 預填 test_set 讓 group_tests_tool 直接走 existing 路徑，
+    # 不會觸發 AI 分類（trace replay 需要確定性結果）。
     return [
-        {"id": "r1", "reqId": "SWE1-DM-001", "testItem": "PDM01 text"},
-        {"id": "r2", "reqId": "SWE1-DM-002", "testItem": "PDM02 text"},
+        {"id": "r1", "reqId": "SWE1-DM-001", "testItem": "PDM01 text", "testSet": "Access"},
+        {"id": "r2", "reqId": "SWE1-DM-002", "testItem": "PDM02 text", "testSet": "Access"},
     ]
 
 
 @pytest.fixture
 def traced_session(tmp_path):
-    """跑兩次 READ_ONLY tool 寫進 trace，回傳 (db_path, session_id)。"""
+    """跑兩次 READ_ONLY 工具寫進 trace，回傳 (db_path, session_id)。
+
+    group_tests 現在會觸發 AI 分類（WRITE_COSTLY / 非確定性），改用 validate_tc
+    連跑兩次當確定性的回放 fixture。
+    """
     db_path = tmp_path / "trace.db"
     trace = SqliteTraceStore(db_path)
     ctx = DispatchContext(
@@ -34,7 +40,6 @@ def traced_session(tmp_path):
         auto_approve=True,
     )
 
-    dispatch_tool("group_tests", {"rows": _group_rows()}, ctx)
     dispatch_tool(
         "validate_tc",
         {
@@ -45,7 +50,22 @@ def traced_session(tmp_path):
                 "test_procedure": "1. do. 2. verify.",
                 "expected_result": "1. ok.\n2. ok.",
                 "design_method": "功能測試 (Functional based ; no specific technique)",
-                "priority": "Medium",
+                "priority": "P1",
+            }
+        },
+        ctx,
+    )
+    dispatch_tool(
+        "validate_tc",
+        {
+            "tc": {
+                "tc_id": "x",
+                "test_item": "orig\n\n(a → b)",
+                "pre_conditions": "NA",
+                "test_procedure": "1. do. 2. verify.",
+                "expected_result": "1. ok.\n2. ok.",
+                "design_method": "功能測試 (Functional based ; no specific technique)",
+                "priority": "P1",
             }
         },
         ctx,
@@ -70,7 +90,7 @@ def test_replay_report_has_expected_lines(traced_session):
     assert f"Replay session: {sid}" in report
     assert "Tool calls: 2" in report
     assert "[OK]" in report
-    assert "group_tests" in report and "validate_tc" in report
+    assert "validate_tc" in report
 
 
 def test_replay_skips_destructive_by_default(tmp_path):
@@ -112,8 +132,18 @@ def test_replay_detects_mismatch_when_args_changed(tmp_path):
         TraceEvent(
             session_id="sess-C",
             type="tool_call",
-            tool="group_tests",
-            args={"rows": _group_rows()},
+            tool="validate_tc",
+            args={
+                "tc": {
+                    "tc_id": "x",
+                    "test_item": "orig\n\n(a → b)",
+                    "pre_conditions": "NA",
+                    "test_procedure": "1. do. 2. verify.",
+                    "expected_result": "1. ok.\n2. ok.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "P1",
+                }
+            },
             result_hash="sha256:definitely_wrong_hash",
             duration_ms=0,
         )
@@ -170,8 +200,18 @@ def test_main_returns_nonzero_on_mismatch(tmp_path, capsys):
         TraceEvent(
             session_id="bad",
             type="tool_call",
-            tool="group_tests",
-            args={"rows": _group_rows()},
+            tool="validate_tc",
+            args={
+                "tc": {
+                    "tc_id": "x",
+                    "test_item": "orig\n\n(a → b)",
+                    "pre_conditions": "NA",
+                    "test_procedure": "1. do. 2. verify.",
+                    "expected_result": "1. ok.\n2. ok.",
+                    "design_method": "功能測試 (Functional based ; no specific technique)",
+                    "priority": "P1",
+                }
+            },
             result_hash="sha256:wrong",
         )
     )

@@ -64,7 +64,7 @@ def _fake_generation_result(row_count: int = 1) -> SimpleNamespace:
                 "test_procedure": "1. Setup.\n2. Verify result.",
                 "expected_result": "1. Setup complete.\n2. Result verified.",
                 "design_method": "功能測試 (Functional based ; no specific technique)",
-                "priority": "Medium",
+                "priority": "P1",
                 "split_flag": False,
                 "split_reason": "",
             }
@@ -76,7 +76,7 @@ def _fake_generation_result(row_count: int = 1) -> SimpleNamespace:
             "test_procedure": "1. Setup.\n2. Verify result.",
             "expected_result": "1. Setup complete.\n2. Result verified.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
-            "priority": "Medium",
+            "priority": "P1",
             "split_flag": False,
             "split_reason": "",
         },
@@ -156,7 +156,7 @@ def test_scenario_2_full_pipeline(ctx, tmp_path):
         "test_item": "PDM01 original text",
         "original_requirement": "PDM01 original text",
         "test_set": "Access",
-        "priority": "Medium",
+        "priority": "P1",
     }
 
     script = [
@@ -187,7 +187,7 @@ def test_scenario_2_full_pipeline(ctx, tmp_path):
                     "test_procedure": "1. Setup.\n2. Verify result.",
                     "expected_result": "1. Setup complete.\n2. Result verified.",
                     "design_method": "功能測試 (Functional based ; no specific technique)",
-                    "priority": "Medium",
+                    "priority": "P1",
                 }
             },
         }]),
@@ -253,7 +253,7 @@ def test_scenario_3_list_then_regenerate(ctx):
                                 "test_item": "missing thing",
                                 "original_requirement": "missing thing",
                                 "test_set": "Access",
-                                "priority": "Medium",
+                                "priority": "P1",
                             }
                         ],
                         "context": {"project": "newR1L", "test_group": "DeviceManager"},

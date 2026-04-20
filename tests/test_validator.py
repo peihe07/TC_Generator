@@ -222,23 +222,26 @@ class TestValidateDesignMethod:
 # --- §8.7 Priority ---
 
 class TestValidatePriority:
-    def test_high(self):
-        assert validate_priority("High").passed
+    def test_p0(self):
+        assert validate_priority("P0").passed
 
-    def test_medium(self):
-        assert validate_priority("Medium").passed
+    def test_p1(self):
+        assert validate_priority("P1").passed
 
-    def test_low(self):
-        assert validate_priority("Low").passed
+    def test_p2(self):
+        assert validate_priority("P2").passed
 
-    def test_na(self):
-        assert validate_priority("NA").passed
+    def test_na_rejected(self):
+        assert not validate_priority("NA").passed
+
+    def test_old_high_rejected(self):
+        assert not validate_priority("High").passed
 
     def test_invalid(self):
         assert not validate_priority("Critical").passed
 
     def test_case_sensitive(self):
-        assert not validate_priority("high").passed
+        assert not validate_priority("p0").passed
 
 
 # --- Full row validation ---
@@ -252,7 +255,7 @@ class TestValidateRow:
             "test_procedure": "1. Open settings to access BT.\n2. Check DM and verify it appears.",
             "expected_result": "1. BT settings shown.\n2. DM is visible in list.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
-            "priority": "Medium",
+            "priority": "P1",
         }
         results = validate_row(row)
         assert all(r.passed for r in results.values())
@@ -265,7 +268,7 @@ class TestValidateRow:
             "test_procedure": "1. Setup.\n2. Verify result is correct.",
             "expected_result": "1. OK.\n2. Works as expected.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
-            "priority": "Medium",
+            "priority": "P1",
         }
         results = validate_row(row)
         assert not results["tc_id"].passed

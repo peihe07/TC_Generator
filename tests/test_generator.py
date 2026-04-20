@@ -34,7 +34,7 @@ VALID_TC_JSON = {
     "test_procedure": "1. Open status bar settings to access customization.\n2. Add Device Manager and verify icon appears in status bar.",
     "expected_result": "1. Status bar customization screen is displayed.\n2. Device Manager icon is displayed in the status bar.",
     "design_method": "功能測試 (Functional based ; no specific technique)",
-    "priority": "Medium",
+    "priority": "P1",
     "split_flag": False,
     "split_reason": "",
 }
@@ -55,12 +55,12 @@ class TestParseTcResponse:
     def test_valid_json(self):
         result = parse_tc_response(json.dumps(VALID_TC_JSON))
         assert result["test_item_rewrite"] == VALID_TC_JSON["test_item_rewrite"]
-        assert result["priority"] == "Medium"
+        assert result["priority"] == "P1"
 
     def test_json_in_markdown_fence(self):
         raw = f"```json\n{json.dumps(VALID_TC_JSON)}\n```"
         result = parse_tc_response(raw)
-        assert result["priority"] == "Medium"
+        assert result["priority"] == "P1"
 
     def test_invalid_json(self):
         with pytest.raises(GenerationError, match="parse"):
@@ -156,7 +156,7 @@ class TestGenerateSingleTc:
             model="gpt-4.1",
         )
         assert isinstance(result, GenerationResult)
-        assert result.tc_data["priority"] == "Medium"
+        assert result.tc_data["priority"] == "P1"
         assert result.input_tokens == 500
         assert result.output_tokens == 300
 
@@ -212,7 +212,7 @@ class TestGenerateQuickTc:
             rules_text="rules",
         )
         assert isinstance(result, GenerationResult)
-        assert result.tc_data["priority"] == "Medium"
+        assert result.tc_data["priority"] == "P1"
         assert result.input_tokens == 400
         assert result.output_tokens == 200
 
@@ -360,11 +360,11 @@ class TestParseMultiTcResponse:
         payload = {
             "reasoning": "測試拆 2 筆的理由",
             "keywords": [{"keyword": "k1", "meaning": "m1", "covered_by": [1]}],
-            "tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}],
+            "tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "P0"}],
         }
         tcs, meta = parse_multi_tc_response(json.dumps(payload))
         assert len(tcs) == 2
-        assert tcs[0]["priority"] == "Medium"
+        assert tcs[0]["priority"] == "P1"
         assert meta["reasoning"] == "測試拆 2 筆的理由"
         assert len(meta["keywords"]) == 1
 
@@ -429,7 +429,7 @@ class TestGenerateTcsForRow:
         mock_chat.return_value = make_chat_response(
             {
                 "reasoning": "§1.4 拆 2 筆",
-                "tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "High"}],
+                "tcs": [VALID_TC_JSON, {**VALID_TC_JSON, "priority": "P0"}],
             },
             prompt_tokens=100, completion_tokens=50,
         )
