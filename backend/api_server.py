@@ -1279,13 +1279,47 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         raise HTTPException(status_code=404, detail="job not found")
 
     async def event_generator():
-        all_rows = _prepare_generation_rows(job)
-        id_set = set(payload.rowIds)
-        id_order = {rid: i for i, rid in enumerate(payload.rowIds)}
-        rows_to_regen = sorted(
-            [r for r in all_rows if r["id"] in id_set],
-            key=lambda r: id_order.get(r["id"], 999),
-        )
+        # prepared_rows 來自 parsed data（原始 Excel 列），不含首次 stream 生成時
+        # 以 row.added 事件補進的 sub-TC（id 形如 `foo__tc2`）。這些 sub-TC 只存
+        # 在 frontend store，所以 regenerate 要改用 `payload.rows` 補齊，否則被
+        # 使用者勾選的子 TC 永遠找不到對應 row，stream 不 yield → UI 卡 generating。
+        # 若尚未跑過 /api/generate（job["rows"] 不存在），直接依 payload 處理。
+        prepared_rows = _prepare_generation_rows(job) if job.get("rows") else []
+        prepared_by_id = {r["id"]: r for r in prepared_rows}
+
+        def _row_from_payload(raw: dict) -> dict:
+            """把前端送來的 TcRow（camelCase）轉成 generator 吃的 snake_case shape。
+            只覆蓋 regenerate 用得到的欄位；allow_split=False 不需要既有 pre/post。"""
+            req_id = str(raw.get("reqId") or "")
+            test_item = str(raw.get("testItem") or "")
+            return {
+                "id": str(raw.get("id") or ""),
+                "row_num": raw.get("rowNum") or 0,
+                "tc_id": normalize_tc_id(str(raw.get("tcId") or "")),
+                "req_id": req_id,
+                "test_item": test_item,
+                "original_requirement": test_item,
+                "test_set": raw.get("testSet") or "",
+                "spec_reference": raw.get("specReference"),
+                "priority": raw.get("priority") or "",
+                "pre_conditions": str(raw.get("preConditions") or ""),
+                "input_test_data": str(raw.get("inputTestData") or ""),
+                "test_procedure": str(raw.get("steps") or ""),
+                "expected_result": str(raw.get("expectedResults") or ""),
+                "design_method": str(raw.get("designMethod") or ""),
+            }
+
+        payload_by_id = {
+            str(r.get("id")): r for r in payload.rows if r.get("id")
+        }
+
+        rows_to_regen: list[dict] = []
+        for rid in payload.rowIds:
+            if rid in prepared_by_id:
+                rows_to_regen.append(prepared_by_id[rid])
+            elif rid in payload_by_id:
+                rows_to_regen.append(_row_from_payload(payload_by_id[rid]))
+        # 順序即 payload.rowIds 原順序，無需再排序。
 
         cfg = payload.config.model_dump() if payload.config else job.get("config", {})
         context = {

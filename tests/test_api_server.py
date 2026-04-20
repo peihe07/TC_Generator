@@ -1014,6 +1014,70 @@ VALID_DECOMPOSE_RESPONSE = {
 }
 
 
+@patch("api_server.generate_tc_tool")
+def test_regenerate_stream_accepts_sub_tc_row_from_payload(mock_tool):
+    """Sub-TC rows (id like `row__tc2`) only live in frontend state — regenerate
+    must fall back to payload.rows, otherwise UI gets stuck on 'generating'."""
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    mock_tool.return_value = {
+        "tcData": [[{
+            "test_item_rewrite": "(Condition → Outcome)",
+            "pre_conditions": "NA",
+            "input_test_data": "NA",
+            "test_procedure": "1. Setup.\n2. Verify.",
+            "expected_result": "1. Setup ok.\n2. Verified.",
+            "design_method": "功能測試 (Functional based ; no specific technique)",
+            "priority": "P1",
+            "split_flag": False,
+            "split_reason": "",
+        }]],
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
+
+    sub_tc_id = "row-10__tc2"
+    response = client.post(
+        f"/api/jobs/{job_id}/regenerate/stream",
+        json={
+            "rowIds": [sub_tc_id],
+            "rows": [
+                {
+                    "id": sub_tc_id,
+                    "rowNum": None,
+                    "tcId": "newR1L-DM-002",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "PDM01 split text",
+                    "testSet": "Smoke",
+                    "preConditions": "",
+                    "inputTestData": "",
+                    "steps": "",
+                    "expectedResults": "",
+                    "status": "pending",
+                }
+            ],
+        },
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    regenerated = [e for e in events if e["type"] == "row.regenerated"]
+    assert len(regenerated) == 1
+    assert regenerated[0]["row"]["id"] == sub_tc_id
+
+
 def _parse_sse(content: bytes) -> list[dict]:
     """Parse SSE response body into a list of event dicts."""
     events = []
