@@ -351,6 +351,29 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** **Phase 6 全部完成後** 再做，避免跟進行中的 module migration 衝突。
 
+### P8 — `.chat-header` navy 背景 vs「navy-only」規則衝突
+
+**動機：** Phase 6.7 發現 `.chat-header`（ChatModule 頭部 "Agent Co-pilot" 標題列）使用 `background: var(--win95-navy)`，違反設計系統 README 的「navy 只用於 **active title bar + user chat bubble + selection highlight**」規則。ChatModule 的 chat-header 在 window-body 內部，不是 `.title-bar`，technically 不在白名單。
+
+**現況權衡：**
+- 保留 navy：維持 ChatModule 視覺識別，與 user-bubble 色系呼應，用戶容易辨識「這是 agent 區」
+- 移除 navy：嚴守 navy-only 規則，但 ChatModule 的 section header 變淡，與其他 module 的 section 沒區別
+
+**選項（未來評估）：**
+- **(1)** 改 `background: var(--win95-gray)` + bold border-bottom（章節區隔）
+- **(2)** 改 `background: var(--win95-gray-light)` + left-border `var(--win95-navy)` 細線（保留 navy 呼應）
+- **(3)** 保留現狀，在 README 補例外：「navy 也用於 ChatModule section header」
+
+**Scope:**
+- `frontend/src/styles/win95.css`（`.chat-header` background + color）
+- `docs/design-system/README.md`（若選 (3)，更新 navy usage 規則）
+
+**禁止：**
+- 不改 `.user-bubble` navy（那個明確在白名單）
+- 不改 AppWindow `.title-bar` navy
+
+**進入條件：** 獨立，低優先 — 視覺上「borderline 違規」但不影響功能。
+
 ---
 
 ## 給 Claude Code 的執行指令模板
