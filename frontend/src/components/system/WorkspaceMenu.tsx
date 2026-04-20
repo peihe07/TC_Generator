@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import { useJobStore } from '../../store/useJobStore';
-import { Button, IconButton } from '../ui';
+import { Button, IconButton, Win95Dialog } from '../ui';
 
 const WorkspaceMenu: React.FC = () => {
   const {
@@ -13,6 +13,8 @@ const WorkspaceMenu: React.FC = () => {
   } = useWorkspaceStore();
   const resetJob = useJobStore((s) => s.resetJob);
   const [open, setOpen] = useState(false);
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
+  const [resetPending, setResetPending] = useState(false);
   const popRef = useRef<HTMLDivElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -67,6 +69,31 @@ const WorkspaceMenu: React.FC = () => {
     a.download = `${name.replace(/[^\w-]+/g, '_')}.tcw.json`;
     a.click();
     URL.revokeObjectURL(url);
+  };
+
+  const handleResetConfirm = async () => {
+    if (resetPending) return;
+    setResetPending(true);
+    try {
+      const res = await fetch('/api/admin/reset', { method: 'DELETE' });
+      if (!res.ok) {
+        const detail = await res.text();
+        throw new Error(detail || `HTTP ${res.status}`);
+      }
+      // Wipe every persisted bit of frontend state and hard-reload so all
+      // Zustand stores start fresh.
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+      } catch {
+        // storage disabled / private mode — reload is still useful
+      }
+      window.location.reload();
+    } catch (err) {
+      setResetPending(false);
+      setResetDialogOpen(false);
+      window.alert(`Reset failed: ${(err as Error).message}`);
+    }
   };
 
   const handleImportClick = () => fileRef.current?.click();
@@ -136,6 +163,27 @@ const WorkspaceMenu: React.FC = () => {
             Saved Workspaces ({workspaces.length})
           </div>
 
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              borderTop: '1px solid var(--win95-gray-mid)',
+              paddingTop: 4,
+              marginTop: 2,
+            }}
+          >
+            <Button
+              onClick={() => {
+                setOpen(false);
+                setResetDialogOpen(true);
+              }}
+              title="Clear every job, agent session, trace, and browser cache"
+              style={{ fontSize: 11, color: 'var(--status-reject-dark)' }}
+            >
+              Reset All Data…
+            </Button>
+          </div>
+
           <div style={{ overflowY: 'auto', maxHeight: 220, background: 'var(--win95-white)', border: '1px solid var(--win95-gray-mid)' }}>
             {workspaces.length === 0 && (
               <div style={{ padding: 8, fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
@@ -176,6 +224,40 @@ const WorkspaceMenu: React.FC = () => {
           </div>
         </div>
       )}
+
+      <Win95Dialog
+        open={resetDialogOpen}
+        variant="error"
+        title="Reset All Data"
+        message={
+          <>
+            這會永久刪除以下資料，且無法復原：
+            <ul style={{ margin: '6px 0 0 18px', padding: 0 }}>
+              <li>所有 parse / generate / export job</li>
+              <li>Agent 對話歷程與決策 trace</li>
+              <li>瀏覽器暫存（目前 job、workspace layout、job history）</li>
+            </ul>
+            <div style={{ marginTop: 8 }}>
+              已匯出的 <code>*_generated.xlsx</code> 檔不會被刪除。
+            </div>
+          </>
+        }
+        actions={[
+          {
+            label: 'Cancel',
+            variant: 'default',
+            onClick: () => setResetDialogOpen(false),
+          },
+          {
+            label: resetPending ? 'Resetting…' : 'Reset',
+            variant: 'cancel',
+            onClick: handleResetConfirm,
+          },
+        ]}
+        onClose={() => {
+          if (!resetPending) setResetDialogOpen(false);
+        }}
+      />
     </div>
   );
 };

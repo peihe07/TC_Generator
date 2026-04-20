@@ -80,6 +80,13 @@ class SqliteJobStore:
             self._conn.execute("VACUUM")
             self._conn.commit()
 
+    def clear_all(self) -> int:
+        """Delete every job row. Returns count removed."""
+        with self._lock:
+            cur = self._conn.execute("DELETE FROM jobs")
+            self._conn.commit()
+            return cur.rowcount or 0
+
     def purge_older_than(self, max_age_seconds: int) -> int:
         """刪除超過 max_age_seconds 的 job 紀錄；回傳刪除筆數。"""
         with self._lock:

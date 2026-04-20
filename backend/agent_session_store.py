@@ -132,6 +132,13 @@ class SqliteAgentSessionStore:
             self._conn.commit()
             return cur.rowcount > 0
 
+    def clear_all(self) -> int:
+        """Delete every session row. Returns count removed."""
+        with self._lock:
+            cur = self._conn.execute("DELETE FROM agent_sessions")
+            self._conn.commit()
+            return cur.rowcount or 0
+
     def purge_older_than(self, max_age_seconds: int) -> int:
         cutoff = time.time() - max_age_seconds
         with self._lock:

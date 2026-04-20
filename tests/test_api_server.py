@@ -60,6 +60,35 @@ def test_healthcheck():
     assert response.json()["status"] == "ok"
 
 
+def test_admin_reset_wipes_stores_from_localhost():
+    # Seed a job so we can verify it disappears.
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    from api_server import JOB_REGISTRY
+    assert JOB_REGISTRY.get(job_id) is not None
+
+    response = client.delete("/api/admin/reset")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["status"] == "ok"
+    assert payload["jobsRemoved"] >= 1
+    assert "agentSessionsRemoved" in payload
+    assert "tracesRemoved" in payload
+
+    # Job is gone.
+    assert JOB_REGISTRY.get(job_id) is None
+
+
 def test_metrics_aggregate_returns_shape_with_empty_store():
     # 測試環境 JOB_REGISTRY 可能有也可能沒有資料；只驗回傳 shape 正確
     response = client.get("/api/metrics/aggregate")

@@ -690,6 +690,34 @@ def healthcheck() -> dict:
     return {"status": "ok", "service": "tc-generator-api"}
 
 
+@app.delete("/api/admin/reset")
+def reset_all_state(request: Request) -> dict:
+    """Wipe every SQLite row (jobs, agent sessions, traces) — no recovery.
+
+    Only reachable from the loopback interface so a misconfigured reverse
+    proxy cannot invoke this remotely. GUI callers show a Win95Dialog
+    confirmation before hitting this endpoint; see
+    `WorkspaceMenu.tsx` for the user-facing flow.
+    """
+    client_host = request.client.host if request.client else None
+    # "testclient" is the starlette TestClient default host — allow it so
+    # pytest can exercise this endpoint without stubbing the socket.
+    if client_host not in {"127.0.0.1", "::1", "localhost", "testclient"}:
+        raise HTTPException(status_code=403, detail="reset only allowed from localhost")
+
+    jobs_removed = JOB_REGISTRY.clear_all()
+    sessions_removed = AGENT_SESSION_STORE.clear_all()
+    traces_removed = TRACE_STORE.clear_all()
+    JOB_REGISTRY.vacuum()
+
+    return {
+        "status": "ok",
+        "jobsRemoved": jobs_removed,
+        "agentSessionsRemoved": sessions_removed,
+        "tracesRemoved": traces_removed,
+    }
+
+
 @app.get("/api/metrics/aggregate")
 def metrics_aggregate(job_ids: str | None = None) -> dict:
     """跨 job 聚合指標（成本觀測面板用）。

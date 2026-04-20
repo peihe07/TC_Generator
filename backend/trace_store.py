@@ -160,6 +160,13 @@ class SqliteTraceStore:
             self._conn.commit()
             return cur.rowcount
 
+    def clear_all(self) -> int:
+        """Delete every trace event. Returns count removed."""
+        with self._lock:
+            cur = self._conn.execute("DELETE FROM trace_events")
+            self._conn.commit()
+            return cur.rowcount or 0
+
     def purge_older_than(self, max_age_seconds: int) -> int:
         """刪除超過 max_age 秒的事件。"""
         cutoff = time.time() - max_age_seconds
