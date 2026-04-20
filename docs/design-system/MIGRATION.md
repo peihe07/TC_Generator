@@ -25,7 +25,7 @@
 
 Follow-up 待辦（記在對應 Phase 節內）：
 - Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
-- Phase 6.4：GENERATED TEST CASE 欄空白（資料層 bug）+ expanded row 與 selected state 共用 `.selected` class（設計取捨）
+- Phase 6.4：已彙整為 Post-migration polish §P3 (`pendingRegenerated` rename) / §P4 (`isActive` vs `isSelected` 拆分) / §P5 (GENERATED TEST CASE 欄空白 bug)
 
 ## 前置
 
@@ -146,9 +146,8 @@ grep -rE "(transition|animation):" src --include="*.tsx" --include="*.css"
 3. **Generate** → `preview/progress.html`（segmented fill）
 4. **Review** → `preview/table.html` + `preview/paper-cards.html`
    - Note: `.win95-th` 已於 Phase 6.2 對齊（1px bevel、`#808080` BR、`3px 8px` padding、移除 inset shadow），Review module header 視覺已提前調整。
-   - Follow-up 待辦（發現於 Phase 6.2 bisect，與視覺遷移無關）：
-     - **GENERATED TEST CASE 欄位內容渲染為空** — 疑似資料層 bug；查 `ReviewRow.tsx` 展開區塊的 data binding（`row.pendingRegenerated` / regen diff fields）
-     - **Row expanded 時 header 變 navy selected 樣式** — `activeRowId` 與 `selectedIds` 目前共用 `.selected` class（見 `ReviewRow.tsx:83` `${isActive || isSelected ? 'selected' : ''}`）；需確認是否為 intended（Validation Panel sync），若否則拆開兩個 state（例如新增 `.expanded` variant 或獨立底色）
+   - Note: pendingRegenerated row 的 peach 底色 (`--edit-accent-bg`) 僅在 collapsed 狀態顯示；展開時 `isActive=true` 觸發 `.selected` navy 會覆蓋（intended，見 P4 / P5）。
+   - Follow-up（已彙整至 Post-migration polish §P3–P5）
 5. **Export** → `preview/fieldsets.html` + `preview/dialog.html`
 6. **QuickGenerate** → `preview/form-inputs.html`
 7. **ChatModule** → `preview/paper-cards.html`（user bubble = navy / bot = white sunken）
@@ -226,6 +225,69 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 - 不加新的 pulse timing（必須是 1s，符合 Phase 4）
 
 **進入條件：** 所有 Phase 6 module alignment 完成後。
+
+### P3 — Rename `pendingRegenerated` → `awaitingApply` (資料層一致)
+
+**動機：** Phase 6.4 發現 Review module 的「等待套用 regen」狀態在 3 層用 3 個不同名字，造成閱讀混淆：
+
+| 層 | 名字 |
+|----|------|
+| Data model | `TcRow.pendingRegenerated?: PendingRegeneratedFields` |
+| StatusBadge variant | `'reviewing'`（navy 徽章，複用其他狀態） |
+| Label 顯示字 | `"awaiting apply"` → rendered as `AWAITING APPLY` |
+
+**目標：** 統一為 `awaitingApply`：
+- `TcRow.awaitingApply?: RegenFields`（rename field）
+- `StatusBadge` 新增 `'awaitingApply'` variant（或保留 `reviewing`，但改 label 衍生邏輯使用新 field 名）
+- Label 一致顯示 `AWAITING APPLY`
+
+**Scope:**
+- `frontend/src/lib/types.ts`（`TcRow` interface）
+- `frontend/src/store/useJobStore.ts`（`setPendingRegenerated` / `applyRegenerated` / `clearPendingRegenerated` 全 rename）
+- `frontend/src/services/jobAdapter.ts`（regen SSE payload 欄位對應）
+- `frontend/src/components/modules/review/ReviewModule.tsx` / `ReviewRow.tsx` / `RegenDiff.tsx`
+- `frontend/src/__tests__/review.ReviewRow.spec.tsx`（測試名 + fixture）
+- `MIGRATION.md` 本檔提及處
+
+**禁止：**
+- 不改視覺（peach row bg 規則不變）
+- 不改 Phase 6.4 已對齊的 CSS token 使用
+
+**進入條件：** 所有 Phase 6 module alignment 完成後。
+
+### P4 — Review row `isActive` vs `isSelected` 拆分 (selected state 模糊)
+
+**動機：** Phase 6.4 發現 `ReviewRow.tsx:83` `${isActive || isSelected ? 'selected' : ''}` 把「展開 row」（`isActive`，為了 Validation Panel 同步）與「checkbox 選中」（`isSelected`，為了批次操作）合併為同一視覺狀態 → navy 底白字。副作用：展開 pendingRegenerated row 時，peach 底色被 navy 蓋過，視覺傳達失敗。
+
+**目標：** 拆為兩個獨立視覺狀態：
+- `isSelected`（checkbox 勾選）→ 保留現有 `.selected` → navy
+- `isActive`（展開 / Validation Panel 同步）→ 改用較輕視覺（例如 2px navy `outline` inset、或 `--field-header-bg` 淡灰 row bg），不覆蓋 peach
+
+**Scope:**
+- `frontend/src/components/modules/review/ReviewRow.tsx`（L83 className 邏輯）
+- `frontend/src/styles/win95.css`（新增 `.win95-row.active` 視覺規則）
+
+**禁止：**
+- 不新增顏色（用既有 token）
+- 不加 transition/animation（符合 Phase 4 規則）
+
+**進入條件：** 獨立任何時機；建議與 P3 一起做以減少 ReviewRow 二次修改。
+
+### P5 — Review module 展開 row 的 GENERATED TEST CASE 欄位渲染為空 (資料層 bug)
+
+**動機：** Phase 6.2 bisect 發現既有資料層問題：Review 展開時 GENERATED TEST CASE 欄位 section label 下方實際內容空白，但 ORIGINAL REQUIREMENT 欄正常。Phase 6.2 之前就存在，不是遷移造成的 regression。
+
+**目標：** 修復 `ReviewRow.tsx` 展開區塊的 data binding（`row.steps` / `row.expectedResults` / `row.preConditions` / `row.inputTestData` 這 4 個欄位渲染為何沒出現在 GENERATED TEST CASE 那欄）。
+
+**Scope:**
+- `frontend/src/components/modules/review/ReviewRow.tsx`
+- 可能牽涉 `frontend/src/services/jobAdapter.ts`（資料是否正確寫入 store）
+- `frontend/src/store/useJobStore.ts`（資料是否保留）
+
+**禁止：**
+- 不動視覺樣式（已於 Phase 6.4 對齊）
+
+**進入條件：** 獨立，高優先（影響實際 review flow）。
 
 ---
 
