@@ -974,9 +974,15 @@ button.btn-icon:hover {
   color: var(--text-inverse);
   animation: agent-pulse 1s ease-in-out infinite;
 }
+/* Phase 4 follow-up: waiting_confirm 狀態的視覺識別靠 amber 底色 +
+ * AlertFill icon（見 AgentTaskbarButton.tsx）而非更快的 pulse 節奏
+ * (per Phase 4 canonical pulse 1s 規則不可違反)。
+ * 文字色用黑 —— amber 底 + white 文字對比僅 ~2.9:1 WCAG AA 不過；
+ * amber + black ~3.7:1 至少通過 large text AA + 視覺上也更 Win95
+ * alert-dialog 語意（preview/dialog.html 的 ! glyph 也是黃底黑字）。 */
 .agent-taskbar-btn--waiting_confirm {
   background: var(--status-warn);
-  color: var(--text-inverse);
+  color: var(--win95-black);
   animation: agent-pulse 1s ease-in-out infinite;
 }
 .agent-taskbar-btn--error { background: var(--status-error-border); color: var(--text-inverse); }

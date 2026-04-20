@@ -41,8 +41,8 @@
 | §P12 | ✅ Done | Expanded/selected state 拆分（root fix of F1 FAILED contrast） |
 | §P13 | ✅ Done | Rules tabpanel 改 single-frame |
 
-Follow-up 唯一未處理：
-- Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 視覺強化（warning 黃或 `!` 圖示）— 極低優先，需設計判斷
+Follow-up 狀態：
+- ~~Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失~~ **已完成 2026-04-20** — 改 `AgentTaskbarButton.tsx` 在 waiting_confirm 時渲染 `<RiAlertFill>` alert icon 取代 robot icon；amber `#e0a000` 底色 + 黑字（取代原 white，`white on amber` 對比 ~2.9:1 WCAG AA 不過）。同時 fix 一個 naming bug：TSX 先前產生 `--need_confirm` class 名但 CSS rule 是 `--waiting_confirm`，class 從未 match → visual 從未套用；現對齊為 `waiting_confirm`。
 
 **Phase 6 — Module migration 全 8 module 完成。Polish backlog 實質清空。** 下一階段為 Phase 8（E2E + 完整手動驗收）。
 
