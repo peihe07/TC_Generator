@@ -25,9 +25,9 @@
 
 Follow-up 待辦（全數記於 Post-migration polish §P1–§P13）：
 - Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
-- Phase 6.4：§P3 (`pendingRegenerated` rename) / §P4 (`isActive` vs `isSelected` 拆分) / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ — **已關閉為誤報，見 §P5**
+- Phase 6.4：§P3 (`pendingRegenerated` rename) / ~~§P4 (`isActive` vs `isSelected` 拆分)~~ **已完成，併入 §P12** / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ **已關閉為誤報**
 - Phase 6.5：§P6 (`Win95Dialog` 通用元件)
-- Phase 6.7：§P9 (4 TSX inline sunken → `.border-sunken` class) / §P10 (Review toolbar vs `.win95-th` boundary) / §P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)
+- Phase 6.7：~~§P9 (4 TSX inline sunken → `.border-sunken` class)~~ **3/4 已完成**（RegenDiff 條件式 pattern 永久例外）/ §P10 (Review toolbar vs `.win95-th` boundary) / ~~§P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)~~ **已完成 2026-04-20**
 - Phase 6.8：§P13 (Rules tabpanel nested sunken border observation)
 
 **Phase 6 — Module migration 全 8 module 完成。** 下一階段為 Phase 8（測試覆蓋）及 Post-migration polish backlog。
@@ -280,7 +280,7 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** 所有 Phase 6 module alignment 完成後。
 
-### P4 — Review row `isActive` vs `isSelected` 拆分 (selected state 模糊)
+### P4 — Review row `isActive` vs `isSelected` 拆分 (selected state 模糊) — **已完成（2026-04-20），併入 §P12**
 
 **動機：** Phase 6.4 發現 `ReviewRow.tsx:83` `${isActive || isSelected ? 'selected' : ''}` 把「展開 row」（`isActive`，為了 Validation Panel 同步）與「checkbox 選中」（`isSelected`，為了批次操作）合併為同一視覺狀態 → navy 底白字。副作用：展開 pendingRegenerated row 時，peach 底色被 navy 蓋過，視覺傳達失敗。
 
@@ -407,17 +407,21 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** Phase 6.8 完成後回看。低優先 — commit 2 驗收未擋。
 
-### P12 — Decouple expanded row state from selected row state (Review module)
+### P12 — Decouple expanded row state from selected row state (Review module) — **已完成（2026-04-20）**
 
-**Background:** ReviewRow `toggleExpand` 同時設定 `activeRowId`，觸發 `.selected` navy background。這導致 expanded state 總是視覺上 selected，兩者 UX 語義本該分離（expanded = "看詳細", selected = "對這筆做動作"）。
+**Original background:** ReviewRow 原先 `className={... ${isActive || isSelected ? 'selected' : ''}}` 把「展開 row → 同步 ValidationPanel」與「checkbox 勾選 → 批次操作」兩種語義混在同一 `.selected` navy 視覺。副作用：任何展開的 row 都看起來像 selected，peach pendingRegenerated bg 被蓋掉；FAILED reason text 在展開的 row 上 red-on-navy 對比失敗（由 F1 臨時補丁處理）。
 
-**Scope:** `activeRowId` state 拆解為 `expandedRowId` + `selectedRowId`；`toggleExpand` 只動 `expandedRowId`；`.selected` CSS 只響應 `selectedRowId`；確認所有 consumers（key navigation、bulk actions、delete confirm、selection-related handlers）正確遷移。
+**執行（minimum-viable fix）：**
+- `ReviewRow.tsx:93` `.selected` class 條件從 `isActive || isSelected` → `isSelected`（checkbox 勾選才變 navy）
+- `ReviewRow.tsx:95` peach 背景條件從 `!isActive && !isSelected` → `!isSelected`（expand pendingRegenerated row 時 peach 正常顯示）
+- `ReviewRow.tsx:163` F1 條件色從 `isActive || isSelected ? ...` → `isSelected ? ...`（純 FAILED row expand 時走 `--status-reject-dark` 紅字 on white，對比 OK；checkbox-selected 的 edge case 仍走 white on navy）
+- `activeRowId` state **名稱保留**（未 rename 為 `expandedRowId` / `focusedExpandedRowId`）— 減少 churn，state 結構早已獨立於 `selectedIds`，問題出在 class trigger 不是 state shape。
 
-**完成後副作用：** `ReviewRow.tsx` reason text 的 F1 臨時判斷（`isActive || isSelected ? 'var(--text-inverse)' : 'var(--status-reject-dark)'`）可 revert 為純 `var(--status-reject-dark)` color（commit message 已說明）。
+**F1 狀態：** 條件色簡化為 `isSelected` 單參數；沒有完全 revert 因 checkbox-selected edge case 仍需白字。可視為「F1 臨時補丁 → F1.1 精簡版」。
 
-**合併建議：** 原 Phase 6.4 §P4 tech-debt 同根問題（`isActive || isSelected` 共用 `.selected` class），建議合併處理。P4 是視覺規格目標、P12 是 state 層 refactor，同一根問題兩個維度。
+**Tests：** 109/109 pass，無視覺 regression（只有展開 row 不再變 navy — 設計本意）。
 
-**進入條件：** 獨立，建議與 P3 (`pendingRegenerated` rename) 合併為一個 Review state refactor PR，減少 ReviewRow 二次修改。
+**§P4 狀態同步關閉：** §P4 是本 item 的視覺規格描述（要求 `isActive` 與 `isSelected` 拆分），§P12 是實作路徑。兩者同根問題，一起解決。
 
 ### P13 — Rules module tabpanel nested sunken border 觀察
 

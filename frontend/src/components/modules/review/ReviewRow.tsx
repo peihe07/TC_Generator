@@ -90,9 +90,12 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
   return (
   <>
     <tr
-      className={`cursor-pointer win95-row ${isActive || isSelected ? 'selected' : ''}`}
+      // §P12: `.selected` navy bg only responds to checkbox selection (isSelected),
+      // not to "this row is the one synced to ValidationPanel" (isActive).
+      // Expanding a row no longer hijacks the checkbox-selection visual.
+      className={`cursor-pointer win95-row ${isSelected ? 'selected' : ''}`}
       style={
-        row.pendingRegenerated && !isActive && !isSelected
+        row.pendingRegenerated && !isSelected
           ? { backgroundColor: 'var(--edit-accent-bg)' }
           : undefined
       }
@@ -153,16 +156,14 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
           {row.status === 'fail' && failureReason ? (
             <div
               className="text-[10px] leading-tight"
-              // F1 臨時補丁：expanded row 會觸發 .selected → navy background
-              // (見 MIGRATION.md §P4 pre-existing `.selected` 語意不分
-              // expanded/selected)，`--status-reject-dark` 紅字 on navy 對比
-              // ~1.3:1 失敗。根治方案見 §P12（decouple expanded state from
-              // selected state），屆時可 revert 此 inline 條件為純 reject-dark。
+              // Post-§P12: `.selected` 現在只被 checkbox selection 觸發 (isSelected)。
+              // expanded row 不再變 navy，所以大多數情況下 `var(--status-reject-dark)`
+              // 紅字在白/灰底上對比 OK。此條件只剩 checkbox-selected 那個 edge case
+              // (使用者勾選了某 FAILED row 做批次動作) 需要 white 文字對抗 navy bg。
               style={{
-                color:
-                  isActive || isSelected
-                    ? 'var(--text-inverse)'
-                    : 'var(--status-reject-dark)',
+                color: isSelected
+                  ? 'var(--text-inverse)'
+                  : 'var(--status-reject-dark)',
               }}
               title={failureReason}
             >
