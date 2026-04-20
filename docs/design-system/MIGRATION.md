@@ -324,6 +324,33 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** 獨立，非視覺遷移，任何 Phase 6 module 收完後均可開工。
 
+### P7 — Typography: Tailwind font-size class → semantic class 統整
+
+**動機：** Phase 6.5 audit (`/tmp/font-size-audit.txt`) 發現 codebase 仍混用 Tailwind `text-xs` / `text-sm` (共 **49 處**，扣掉 Phase 6.3 修掉的 `text-lg` 3 處) 與 Phase 2 語意 class (`.type-h1` / `.type-body` / `.type-meta` / `.type-badge` / `.type-mono`)。同時使用兩套 font-size 詞彙，閱讀成本高，且 Tailwind `text-xs` 與 token `--font-md` 數值對得上只是巧合（Tailwind 改版後會偏移）。
+
+**目標：** 移除所有 `text-(xs|sm|base|lg|xl|...)` Tailwind class，統一改用 Phase 2 語意 class 或 inline `style={{ fontSize: 'var(--font-*)' }}`。
+
+**對應規則（需逐個判斷上下文）：**
+
+| Tailwind | px | 建議 token / semantic class | 備註 |
+|----------|----|-----------------------------|------|
+| `text-xs` | 12px | `.type-body`（body inside modules）或 inline `fontSize: 'var(--font-md)'` | body / inspector 文字多數 |
+| `text-sm` | 14px | `.type-h1`（headings）or `fontSize: 'var(--font-lg)'` | 需判斷是否為 heading |
+| `text-[10px]` | 10px | inline `fontSize: 'var(--font-xs)'` 或 `.type-meta` | 已是 arbitrary value，直接 swap |
+| `text-[11px]` | 11px | inline `fontSize: 'var(--font-sm)'` 或 `.type-badge`/`.type-mono` | 看場景 |
+
+**Scope：** 約 49 處跨 13 檔，按檔案分佈：
+- QuickGenerate 群（InputPanel / Module / DecomposeAnalysisPanel / TcCard）= 19
+- Generate / ReviewRow / ReviewToolbar / ValidationPanel / ReviewModule = 17
+- Upload / Configure / Export / RegenDiff / StackedFields = 13
+
+**禁止：**
+- 不改實際 font-size 值（必須視覺等價 diff 為零）
+- 不加新 type token（5-step scale 不擴充）
+- 不改字重（`font-bold` 保留，除非冗餘）
+
+**進入條件：** **Phase 6 全部完成後** 再做，避免跟進行中的 module migration 衝突。
+
 ---
 
 ## 給 Claude Code 的執行指令模板
