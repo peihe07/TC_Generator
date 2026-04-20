@@ -50,7 +50,7 @@ source "$ROOT_DIR/.venv/bin/activate"
 # --- Start backend ---
 info "Starting backend on port $BACKEND_PORT..."
 cd "$ROOT_DIR"
-uvicorn api_server:app --app-dir "$BACKEND_DIR" --host 127.0.0.1 --port "$BACKEND_PORT" &
+uvicorn api_server:app --app-dir "$BACKEND_DIR" --host 127.0.0.1 --port "$BACKEND_PORT" --reload --reload-dir "$BACKEND_DIR" &
 BACKEND_PID=$!
 
 # --- Start frontend ---
