@@ -37,7 +37,11 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
   helpContextPrompt,
 }) => (
   <div
-    className="flex justify-between items-center mb-2 p-1 border-sunken"
+    // §P10: Toolbar is "app chrome", not content — should be raised bezel
+    // (matches Win95 File Explorer / app toolbar convention, and preview/
+    // taskbar.html raised pattern). Was .border-sunken which is for
+    // content/input surfaces; visual direction was inconsistent with role.
+    className="flex justify-between items-center mb-2 p-1 bezel-raised"
     style={{ backgroundColor: 'var(--win95-gray)' }}
   >
     <div className="flex gap-2 items-center">

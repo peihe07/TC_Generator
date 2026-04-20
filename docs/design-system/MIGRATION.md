@@ -27,7 +27,7 @@ Follow-up 待辦（全數記於 Post-migration polish §P1–§P13）：
 - Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
 - Phase 6.4：~~§P3 (`pendingRegenerated` rename)~~ **已完成 2026-04-20** / ~~§P4 (`isActive` vs `isSelected` 拆分)~~ **已完成，併入 §P12** / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ **已關閉為誤報**
 - Phase 6.5：§P6 (`Win95Dialog` 通用元件)
-- Phase 6.7：~~§P9 (4 TSX inline sunken → `.border-sunken` class)~~ **3/4 已完成**（RegenDiff 條件式 pattern 永久例外）/ §P10 (Review toolbar vs `.win95-th` boundary) / ~~§P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)~~ **已完成 2026-04-20**
+- Phase 6.7：~~§P9 (4 TSX inline sunken → `.border-sunken` class)~~ **3/4 已完成**（RegenDiff 條件式 pattern 永久例外）/ ~~§P10 (Review toolbar vs `.win95-th` boundary)~~ **已完成 2026-04-20** / ~~§P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)~~ **已完成 2026-04-20**
 - Phase 6.8：§P13 (Rules tabpanel nested sunken border observation)
 
 **Phase 6 — Module migration 全 8 module 完成。** 下一階段為 Phase 8（測試覆蓋）及 Post-migration polish backlog。
@@ -352,9 +352,18 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** 獨立，非視覺遷移，任何 Phase 6 module 收完後均可開工。
 
-### P7 — Typography: Tailwind font-size class → semantic class 統整
+### P7 — Typography: Tailwind font-size class → semantic class 統整 — **Defer: 不適合機械 refactor**
 
 **動機：** Phase 6.5 audit (`/tmp/font-size-audit.txt`) 發現 codebase 仍混用 Tailwind `text-xs` / `text-sm` (共 **49 處**，扣掉 Phase 6.3 修掉的 `text-lg` 3 處) 與 Phase 2 語意 class (`.type-h1` / `.type-body` / `.type-meta` / `.type-badge` / `.type-mono`)。同時使用兩套 font-size 詞彙，閱讀成本高，且 Tailwind `text-xs` 與 token `--font-md` 數值對得上只是巧合（Tailwind 改版後會偏移）。
+
+**2026-04-20 Defer 決策：** 4 / 49 是「純 solo `text-xs`」可安全替換，其餘 45 處伴隨 `font-bold` / `leading-tight` / `font-mono` 等 Tailwind modifier。`.type-body` 明定 `font-weight: normal` + `line-height: 1.5`，機械換掉會**蓋掉字重與行高**，違反 P7 「視覺 diff 應為零」+「不改字重」。自動 sed 不可行，人工每案判斷成本高。
+
+**建議做法：**
+- 日後改動各 module 時順手替換（機會主義式 migration）
+- 或新開「per-module typography sweep」子任務，每個 module 一次 ~5-10 處，視覺驗收逐個截圖
+- **不**新增 `.fs-md` / `.fs-lg` 這種 font-size-only utility class（違反「不加新 type token」規則）
+
+**狀態：** Open / deferred，不作為 active polish 項目追蹤。
 
 **目標：** 移除所有 `text-(xs|sm|base|lg|xl|...)` Tailwind class，統一改用 Phase 2 語意 class 或 inline `style={{ fontSize: 'var(--font-*)' }}`。
 
@@ -395,9 +404,11 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** Phase 6 全部完成後；P7（typography）後順手做較方便（兩者都是 TSX 的 className refactor）。
 
-### P10 — Review toolbar 與 `.win95-th` header 邊界交接視覺審視
+### P10 — Review toolbar 與 `.win95-th` header 邊界交接視覺審視 — **已完成（2026-04-20）**
 
 **動機：** Phase 6.7 sunken-bezel token 修正後驗收時低優先觀察 — `ReviewToolbar`（`Show:` / `Test Set:` + `Total: X | Accepted: X | Expanded: X` 那條）與其下方 table `.win95-th` header 的視覺邊界交接可能不乾淨。兩者一個 sunken（toolbar 用 `border-sunken`，TL 現為 gray-dark）、一個 raised（`.win95-th`，BR 用 gray-mid），相接處可能出現雙暗邊 / 雙亮邊堆疊。
+
+**執行：** Root cause 是 `ReviewToolbar` 的 `.border-sunken` 選用錯誤 —— toolbar 屬於 "app chrome"（工具列）不是 content/input surface，按 Win95 convention（File Explorer toolbar、`preview/taskbar.html`）toolbar 應為 **raised**。改 `.border-sunken` → `.bezel-raised`。視覺方向現在：toolbar "凸出" + 8px margin + 下方 table 容器 "凹陷"，層次分明。
 
 **目標：** 視覺審視交界處，如果需要加 `margin-bottom` / 改用 single-border 接邊，記下規格調整。
 
