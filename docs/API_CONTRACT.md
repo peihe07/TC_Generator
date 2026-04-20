@@ -164,10 +164,16 @@ Request:
     "model": "gpt-4.1",
     "batchSize": 5,
     "budget": 2,
-    "strictValidation": false
+    "strictValidation": false,
+    "regenerateAll": false
   }
 }
 ```
+
+`regenerateAll` (default `false`) honours RULES.md §4 Mode B: rows that
+already carry Pre-Cond / Procedure / Expected content are preserved and the
+AI call is skipped for them. Set to `true` to force regeneration for every
+row.
 
 Response:
 
@@ -195,7 +201,7 @@ SSE event examples:
     "processed": 0,
     "currentCost": 0
   },
-  "message": "Backend generation started for 12 row(s)."
+  "message": "Backend generation started for 12 row(s) (9 to generate, 3 preserved)."
 }
 ```
 
@@ -221,6 +227,21 @@ SSE event examples:
     "total": 12,
     "processed": 1,
     "currentCost": 0.0085
+  }
+}
+```
+
+A preserved row (content already existed in the workbook, no AI call) looks
+identical but carries `"preserved": true` at the row level:
+
+```json
+{
+  "type": "row.completed",
+  "row": {
+    "id": "row-10",
+    "status": "ready",
+    "preserved": true,
+    "generated": { "preConditions": "…", "testProcedure": "…", "…": "…" }
   }
 }
 ```

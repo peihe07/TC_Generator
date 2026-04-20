@@ -187,7 +187,9 @@ TC_Generator/
   - `GET /api/metrics/aggregate` REST endpoint（包 `aggregate_metrics_tool`）
     供 Cost Dashboard UI 使用
 - SqliteJobStore：job 跨重啟持久化；啟動自動 `purge_older_than` + `vacuum`（預設 30 天，`TC_JOBS_MAX_AGE_DAYS` 覆寫）
-- Parser 容忍中英雙語 sheet 標題與檔名後綴（`拷貝`、`-1` 等）
+- Parser 容忍中英雙語 sheet 標題與檔名後綴（`拷貝`、`-1` 等）；Writer 的
+  `_clean_basename()` 也會在 export 前剝掉 `拷貝 / 的副本 / copy / - Copy / (N)`
+  這類複製殘留字尾，避免 `..._拷貝_generated.xlsx` 這種輸出檔名
 - Spec matcher 命中率從 54.5% 提升到 100%（Layer 1 + Layer 1.5 fuzzy Jaccard）
 - Generator：OpenAI function calling + JSON mode、auto prompt caching
 - Hard-issue retry（Proc ≠ ER 計數、空欄位、priority / design_method 無效）

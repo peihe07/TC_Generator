@@ -60,11 +60,21 @@ Columns B, C, E, O, R–AG: preserve original values. Do not modify.
 
 Format: `{project}-{group_abbr}-{sequence}`
 
-- `{project}`: extracted from "Product Document" sheet Row 3 Col B (e.g. `newR1L`)
-- `{group_abbr}`: abbreviated from Test Group name (e.g. `DeviceManager` → `DMS`)
+- `{project}`: extracted from "Product Document" sheet Row 3 Col B (e.g. `newR1L`).
+  Non-alphanumeric characters (spaces, `/`, …) are stripped so a source value
+  like `new R/L` becomes `newRL`.
+- `{group_abbr}`: first letter of each CamelCase word, uppercased, no padding.
+  e.g. `DeviceManager` → `DM`, `MediaPlayer` → `MP`, `AppleCarPlay` → `ACP`,
+  `Bluetooth` → `BLU` (single word → first 3 chars), `BT` → `BT` (pure acronym
+  stays as-is — the previous logic padded to `BTT`, which is no longer the case).
 - `{sequence}`: 3-digit zero-padded, starting from `001`, incrementing per row
 
-Example: `newR1L-DMS-001`, `newR1L-DMS-002`, ...
+Example: `newR1L-DM-001`, `newR1L-DM-002`, ...
+
+TC IDs already present in Col F are normalized on read — a cell like
+`new R1L-DMR-014` becomes `newR1L-DMR-014` before validation. Structurally
+broken values (missing segments, non-numeric sequence) are cleared and
+regenerated from scratch.
 
 Multiple TCs from the same requirement share the same Col D (Req ID) but have distinct Col F (TC ID).
 
@@ -494,9 +504,15 @@ Populate with the Test Set grouping structure:
 
 Process all rows from Row 10 to last data row. Generate all specified columns.
 
-### Mode B: Incremental
+### Mode B: Incremental (default)
 
-Process only rows where Col F (TC ID) is empty — skip already-generated rows.
+Enforced by `_row_has_existing_content()` in `api_server.py`: any row whose
+Pre-Conditions, Test Procedure, or Expected Result cell is already filled is
+emitted as a preserved `row.completed` event (zero LLM cost, `"preserved":
+true` flag in the SSE payload). Only empty rows go through the AI batch loop.
+
+Set `config.regenerateAll = true` on `POST /api/generate` to opt out and
+force Mode A behaviour for all rows.
 
 ### Mode C: Regenerate Specific
 
