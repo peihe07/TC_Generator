@@ -4,8 +4,6 @@
  * without pulling the orchestrator's React state.
  */
 
-export type Mode = 'single' | 'with_context' | 'decompose';
-
 export type JobPhase = 'idle' | 'decomposing' | 'generating' | 'done' | 'error';
 
 export interface GeneratedTc {

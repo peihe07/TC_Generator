@@ -5,8 +5,7 @@ import {
   RiRefreshLine,
 } from '@remixicon/react';
 import { Button, Select } from '../../ui';
-import { MODE_CONFIG } from './constants';
-import type { JobPhase, Mode } from './types';
+import type { JobPhase } from './types';
 
 const MODEL_OPTIONS = [
   { value: 'gpt-5', label: 'GPT-5' },
@@ -16,13 +15,11 @@ const MODEL_OPTIONS = [
 ];
 
 export interface QuickGenerateInputPanelProps {
-  mode: Mode;
   testItem: string;
   context: string;
   model: string;
   phase: JobPhase;
   cost: number;
-  onModeChange: (mode: Mode) => void;
   onTestItemChange: (value: string) => void;
   onContextChange: (value: string) => void;
   onModelChange: (value: string) => void;
@@ -32,17 +29,18 @@ export interface QuickGenerateInputPanelProps {
 }
 
 /**
- * Left column of QuickGenerate: mode picker + text inputs + model +
- * Generate / Stop / Regenerate / Clear buttons + cost readout.
+ * Left column of QuickGenerate: requirement + optional context inputs,
+ * model selector, Generate/Stop/Regenerate controls and cost readout.
+ *
+ * 統一為 auto-split 流程：給需求 → AI 判斷要幾筆 TC → 顯示拆解流程 → 最終總數。
+ * 不再有 single / with_context / decompose 模式切換。
  */
 export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = ({
-  mode,
   testItem,
   context,
   model,
   phase,
   cost,
-  onModeChange,
   onTestItemChange,
   onContextChange,
   onModelChange,
@@ -54,85 +52,29 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
 
   return (
     <div className="w-[320px] flex flex-col gap-2 shrink-0">
-      {/* Mode selector */}
-      <fieldset>
-        <legend className="text-sm">Mode</legend>
-        <div className="flex flex-col gap-1 p-1">
-          {MODE_CONFIG.map((m) => {
-            const active = mode === m.id;
-            return (
-              <label
-                key={m.id}
-                className="flex items-start gap-2 p-1 cursor-pointer"
-                style={
-                  active
-                    ? {
-                        background: 'var(--win95-select-bg)',
-                        color: 'var(--win95-select-text)',
-                      }
-                    : {}
-                }
-              >
-                <input
-                  type="radio"
-                  name="mode"
-                  value={m.id}
-                  checked={active}
-                  onChange={() => onModeChange(m.id)}
-                  className="mt-0.5"
-                />
-                <div>
-                  <div className="flex items-center gap-1 text-xs font-bold">
-                    {m.icon} {m.label}
-                  </div>
-                  <div
-                    className="text-[10px]"
-                    style={{
-                      color: active
-                        ? 'rgba(255,255,255,0.7)'
-                        : 'var(--win95-gray-mid)',
-                    }}
-                  >
-                    {m.desc}
-                  </div>
-                </div>
-              </label>
-            );
-          })}
-        </div>
-      </fieldset>
-
-      {/* Test Item input */}
+      {/* Requirement input */}
       <fieldset className="flex-1 flex flex-col overflow-hidden">
-        <legend className="text-sm">
-          {mode === 'decompose' ? 'Requirement Description' : 'Test Item'}
-        </legend>
+        <legend className="text-sm">Requirement</legend>
         <textarea
-          className="flex-1 p-2 text-xs resize-none min-h-[100px] border-sunken"
-          placeholder={
-            mode === 'decompose'
-              ? 'Paste full requirement text. AI will identify distinct test scenarios...'
-              : 'Enter the test item or condition to generate a TC for...'
-          }
+          className="flex-1 p-2 text-xs resize-none min-h-[120px] border-sunken"
+          placeholder="貼上完整的 requirement 文字。AI 會依 ASPICE §1.2/§1.4/§1.5 判斷要拆成幾筆 TC。"
           value={testItem}
           onChange={(e) => onTestItemChange(e.target.value)}
           disabled={isRunning}
         />
       </fieldset>
 
-      {/* Context input (only for with_context) */}
-      {mode === 'with_context' && (
-        <fieldset className="flex flex-col">
-          <legend className="text-sm">Additional Criteria / Context</legend>
-          <textarea
-            className="p-2 text-xs resize-none min-h-[80px] border-sunken"
-            placeholder="System constraints, related requirements, environment details..."
-            value={context}
-            onChange={(e) => onContextChange(e.target.value)}
-            disabled={isRunning}
-          />
-        </fieldset>
-      )}
+      {/* Optional context */}
+      <fieldset className="flex flex-col">
+        <legend className="text-sm">Additional Context (optional)</legend>
+        <textarea
+          className="p-2 text-xs resize-none min-h-[60px] border-sunken"
+          placeholder="系統限制、相關需求、測試環境等補充資訊，留空代表沒有額外情境。"
+          value={context}
+          onChange={(e) => onContextChange(e.target.value)}
+          disabled={isRunning}
+        />
+      </fieldset>
 
       {/* Model selector */}
       <div className="field-row">
@@ -161,7 +103,7 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
             onClick={onGenerate}
           >
             <RiArrowRightLine className="size-4" />
-            {mode === 'decompose' ? 'Analyse & Generate' : 'Generate TC'}
+            Analyse &amp; Generate
           </Button>
         )}
         {(phase === 'done' || phase === 'error') && (

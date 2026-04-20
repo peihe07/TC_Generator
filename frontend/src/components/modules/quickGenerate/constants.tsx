@@ -1,36 +1,8 @@
 import React from 'react';
-import {
-  RiFileTextLine,
-  RiFlashlightLine,
-  RiListCheck2,
-} from '@remixicon/react';
-import type { GeneratedTc, Mode } from './types';
+import type { GeneratedTc } from './types';
 
-export const MODE_CONFIG: {
-  id: Mode;
-  label: string;
-  icon: React.ReactNode;
-  desc: string;
-}[] = [
-  {
-    id: 'single',
-    label: 'Single TC',
-    icon: <RiFlashlightLine className="size-4" />,
-    desc: 'One test item → one TC',
-  },
-  {
-    id: 'with_context',
-    label: 'With Context',
-    icon: <RiFileTextLine className="size-4" />,
-    desc: 'Test item + additional criteria or context',
-  },
-  {
-    id: 'decompose',
-    label: 'Decompose',
-    icon: <RiListCheck2 className="size-4" />,
-    desc: 'Full requirement → AI splits into multiple TCs',
-  },
-];
+// 原本的 MODE_CONFIG（single / with_context / decompose 三擇一）已移除。
+// Quick Generate 統一走 auto-split 流程，由 AI 判斷要拆幾筆 TC。
 
 /** Column layout for the stacked TC card. */
 export const COLUMN_HEADERS: {

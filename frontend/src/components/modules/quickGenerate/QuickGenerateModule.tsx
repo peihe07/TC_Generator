@@ -16,7 +16,6 @@ import type {
   DecomposeAnalysis,
   GeneratedTc,
   JobPhase,
-  Mode,
   Scenario,
 } from './types';
 
@@ -27,7 +26,6 @@ import type {
  * close together so the data flow stays readable.
  */
 const QuickGenerateModule: React.FC = () => {
-  const [mode, setMode] = useState<Mode>('single');
   const [testItem, setTestItem] = useState('');
   const [context, setContext] = useState('');
   const [model, setModel] = useState('gpt-4.1');
@@ -52,90 +50,67 @@ const QuickGenerateModule: React.FC = () => {
     setReasoningExpanded(true);
   }, []);
 
-  const handleModeChange = useCallback(
-    (next: Mode) => {
-      setMode(next);
-      reset();
-    },
-    [reset],
-  );
-
   // --- Mock fallback (used when backend is unavailable) ---
   const runMock = useCallback(
     async (stopped: () => boolean) => {
       const item = testItem.trim();
       const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-      if (mode === 'decompose') {
-        await delay(900);
-        if (stopped()) return;
-        const mockScenarios: Scenario[] = [
+      await delay(900);
+      if (stopped()) return;
+      const mockScenarios: Scenario[] = [
+        {
+          id: 1,
+          name: 'Normal flow',
+          description: 'Verify the primary success path.',
+          test_item: `${item} — happy path`,
+        },
+        {
+          id: 2,
+          name: 'Boundary condition',
+          description: 'Test edge-case inputs or state limits.',
+          test_item: `${item} — boundary`,
+        },
+        {
+          id: 3,
+          name: 'Error handling',
+          description: 'Confirm graceful failure on invalid input.',
+          test_item: `${item} — error case`,
+        },
+      ];
+      setAnalysis({
+        reasoning:
+          '[Mock] Identified 3 distinct test scenarios: success path, boundary, error-handling.',
+        scenarios: mockScenarios,
+        keywords: [
           {
-            id: 1,
-            name: 'Normal flow',
-            description: 'Verify the primary success path.',
-            test_item: `${item} — happy path`,
+            keyword: item.split(' ')[0] || 'trigger',
+            meaning: 'The action that initiates the behaviour under test.',
+            scenarios: [1, 2, 3],
           },
-          {
-            id: 2,
-            name: 'Boundary condition',
-            description: 'Test edge-case inputs or state limits.',
-            test_item: `${item} — boundary`,
-          },
-          {
-            id: 3,
-            name: 'Error handling',
-            description: 'Confirm graceful failure on invalid input.',
-            test_item: `${item} — error case`,
-          },
-        ];
-        setAnalysis({
-          reasoning:
-            '[Mock] Identified 3 distinct test scenarios: the primary success path, a boundary condition, and an error-handling case. Each represents an independent observable behaviour.',
-          scenarios: mockScenarios,
-          keywords: [
-            {
-              keyword: item.split(' ')[0] || 'trigger',
-              meaning: 'The action that initiates the behaviour under test.',
-              scenarios: [1, 2, 3],
-            },
-            {
-              keyword: 'boundary',
-              meaning: 'Edge or limit of the accepted input / state range.',
-              scenarios: [2],
-            },
-            {
-              keyword: 'invalid input',
-              meaning: 'Input outside the accepted range, must be rejected gracefully.',
-              scenarios: [3],
-            },
-          ],
-        });
-        setPhase('generating');
+        ],
+      });
+      setPhase('generating');
 
-        for (const s of mockScenarios) {
-          if (stopped()) return;
-          setGeneratingScenarioId(s.id);
-          await delay(700);
-          if (stopped()) return;
-          setGeneratedTcs((prev) => [...prev, buildMockTc(s.id, s.name, s.test_item)]);
-          setGeneratingScenarioId(null);
-        }
-      } else {
-        await delay(800);
+      for (const s of mockScenarios) {
         if (stopped()) return;
-        setGeneratedTcs([buildMockTc(1, undefined, item)]);
+        setGeneratingScenarioId(s.id);
+        await delay(500);
+        if (stopped()) return;
+        setGeneratedTcs((prev) => [...prev, buildMockTc(s.id, s.name, s.test_item)]);
+        setGeneratingScenarioId(null);
       }
 
       setPhase('done');
     },
-    [testItem, mode],
+    [testItem],
   );
 
   const handleGenerate = useCallback(async () => {
     if (!testItem.trim()) return;
     reset();
-    setPhase(mode === 'decompose' ? 'decomposing' : 'generating');
+    // 一律先進入 decomposing（AI 正在判斷要拆幾筆），收到 analysis 後才切到 generating。
+    setPhase('decomposing');
 
     let stopped = false;
     abortRef.current = () => {
@@ -162,7 +137,6 @@ const QuickGenerateModule: React.FC = () => {
         body: JSON.stringify({
           testItem: testItem.trim(),
           context: context.trim() || null,
-          mode,
           model,
         }),
       });
@@ -232,7 +206,7 @@ const QuickGenerateModule: React.FC = () => {
                 outputTokens: latest.outputTokens,
                 cacheReadTokens: latest.cacheReadTokens,
                 cacheCreationTokens: latest.cacheCreationTokens,
-                note: mode,
+                note: 'auto-split',
               });
             } else if (event.type === 'job.failed') {
               setErrorMsg(event.message ?? 'Unknown error');
@@ -247,7 +221,7 @@ const QuickGenerateModule: React.FC = () => {
       // Backend unavailable — run local mock.
       await runMock(isStopped);
     }
-  }, [testItem, context, mode, model, reset, runMock]);
+  }, [testItem, context, model, reset, runMock]);
 
   const handleStop = useCallback(() => {
     abortRef.current?.();
@@ -266,13 +240,11 @@ const QuickGenerateModule: React.FC = () => {
     <div className="flex h-full gap-3 overflow-hidden p-1">
       {/* Left Panel — Input */}
       <QuickGenerateInputPanel
-        mode={mode}
         testItem={testItem}
         context={context}
         model={model}
         phase={phase}
         cost={cost}
-        onModeChange={handleModeChange}
         onTestItemChange={setTestItem}
         onContextChange={setContext}
         onModelChange={setModel}
