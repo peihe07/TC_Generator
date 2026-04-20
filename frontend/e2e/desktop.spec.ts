@@ -39,7 +39,16 @@ test.describe('Desktop shell', () => {
   test('multiple windows can be opened simultaneously', async ({ page }) => {
     await page.goto('/');
     await page.getByText('Upload', { exact: true }).dblclick();
-    await page.getByText('Configure', { exact: true }).dblclick();
+    // The Upload window's default position (x=140, y=60) overlaps the
+    // Configure desktop icon to the left, so a plain dblclick on the
+    // icon times out. Open Configure via the Start menu instead — the
+    // taskbar is always on top at z-index 9999. Scope to contentinfo
+    // (the Taskbar) since "Configure" text also exists on the desktop.
+    await page.getByRole('button', { name: /Start/ }).click();
+    await page
+      .getByRole('contentinfo')
+      .getByText('Configure', { exact: true })
+      .click();
 
     await expect(page.getByText('Upload Files').first()).toBeVisible();
     await expect(page.getByText('TC Generator - Configure').first()).toBeVisible();

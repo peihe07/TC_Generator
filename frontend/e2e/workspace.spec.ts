@@ -78,7 +78,10 @@ test.describe('Workspace manager', () => {
     page.once('dialog', (d) => d.accept()); // "Imported 'roundtrip-ws'." alert
 
     // 8. 從列表點 Load 恢復 state
-    await page.getByRole('button', { name: /Workspace/ }).click();
+    // 選單在前面所有動作都沒被關閉（WorkspaceMenu 的 setOpen(false)
+    // 只綁在 "Reset All Data" 按鈕與 document mousedown-outside 上，
+    // 其他動作都維持開啟），所以不必再點 Workspace button toggle —
+    // toggle 反而會關閉選單讓 Load 按鈕不可見。
     await page.getByTitle(/Load "roundtrip-ws"/).first().click();
 
     // 9. 驗證 state 與原始一致
@@ -106,11 +109,12 @@ test.describe('Workspace manager', () => {
     page.once('dialog', (d) => d.accept('no-agent-leak'));
     await page.getByRole('button', { name: 'Save As…' }).click();
 
-    // Export to JSON
-    await page.getByRole('button', { name: /Workspace/ }).click();
+    // Export to JSON — the per-workspace Export button's accessible name
+    // comes from its title attribute ("Export to JSON"), not "Export JSON".
+    // Menu stays open between actions so no re-toggle needed.
     const [download] = await Promise.all([
       page.waitForEvent('download'),
-      page.getByRole('button', { name: 'Export JSON' }).click(),
+      page.getByRole('button', { name: 'Export to JSON' }).first().click(),
     ]);
 
     const content = await download.createReadStream();

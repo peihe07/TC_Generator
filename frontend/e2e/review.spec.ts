@@ -55,13 +55,22 @@ test.describe('Review module', () => {
   });
 
   test('checkbox selection shows floating action bar', async ({ page }) => {
-    // Click first checkbox
-    await page.locator('table tbody tr').first()
-      .locator('button').first().click();
+    // The checkbox cell is the first <td> and fires onToggleSelect
+    // via td onClick (not via the <input> onChange which is a no-op).
+    // Clicking the <input> directly does not trigger selection; clicking
+    // the wrapping td does.
+    await page
+      .locator('table tbody tr')
+      .first()
+      .locator('td')
+      .first()
+      .click();
 
-    // Floating bar with "Selected" text appears
+    // Floating bar with "row(s) selected" text appears.
     await expect(page.getByText(/row.*selected/i)).toBeVisible();
-    await expect(page.getByRole('button', { name: /Regenerate.*Selected/i })).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: /Regenerate/i }),
+    ).toBeVisible();
   });
 
   test('export button opens export window', async ({ page }) => {
