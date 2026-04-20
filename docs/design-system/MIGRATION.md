@@ -317,7 +317,7 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **狀態：** closed-as-not-a-bug。保留此項供歷史追溯。
 
-### P6 — `Win95Dialog` 通用元件
+### P6 — `Win95Dialog` 通用元件 — **已完成（2026-04-20）**
 
 **動機：** Phase 6.5 發現 codebase 沒有統一的 confirm/warning dialog 元件。`preview/dialog.html` 提供了完整規格（chunky yellow `!` glyph、heavy drop shadow、right-aligned action row、default button bold + inset outline），但目前無對應 component。未來多個流程會需要 dialog（見下方使用場景），抽成通用元件比各自手寫更一致。
 
