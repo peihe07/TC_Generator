@@ -79,7 +79,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
 }) => {
   const failureReason = row.validationErrors?.[0]?.message;
   const statusLabel =
-    row.pendingRegenerated
+    row.awaitingApply
       ? 'awaiting apply'
       : row.status === 'pending'
         ? 'awaiting review'
@@ -95,7 +95,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
       // Expanding a row no longer hijacks the checkbox-selection visual.
       className={`cursor-pointer win95-row ${isSelected ? 'selected' : ''}`}
       style={
-        row.pendingRegenerated && !isSelected
+        row.awaitingApply && !isSelected
           ? { backgroundColor: 'var(--edit-accent-bg)' }
           : undefined
       }
@@ -132,7 +132,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
           {row.status === 'flagged' && (
             <RiFlagFill className="size-3" style={{ color: 'var(--status-warn-dark)' }} />
           )}
-          {row.pendingRegenerated && (
+          {row.awaitingApply && (
             <RiRefreshLine className="size-3" style={{ color: 'var(--status-edit-dark)' }} />
           )}
           {row.tcId || row.id}
@@ -147,7 +147,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
       <td className="px-3 py-2" onClick={() => onToggleExpand(row.id)}>
         <div className="flex flex-col gap-1">
           <StatusBadge
-            status={row.pendingRegenerated ? 'reviewing' : (row.status as StatusVariant)}
+            status={row.awaitingApply ? 'reviewing' : (row.status as StatusVariant)}
             style={row.status === 'generating' ? { animation: 'agent-pulse 1s ease-in-out infinite' } : undefined}
             title={row.status === 'fail' ? failureReason : undefined}
           >
@@ -212,7 +212,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
           }}
           onClick={() => onSetActive(row.id)}
         >
-          {row.pendingRegenerated ? (
+          {row.awaitingApply ? (
             <RegenDiff
               row={row}
               onApply={(fields) => onApplyRegen(row.id, fields)}
@@ -302,7 +302,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
             </div>
           )}
 
-          {!row.pendingRegenerated && (
+          {!row.awaitingApply && (
             <div className="mt-3 flex justify-end gap-2">
               {isEditing ? (
                 <>

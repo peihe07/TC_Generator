@@ -17,9 +17,9 @@ interface JobStore {
   updateTcRow: (id: string, updates: Partial<TcRow>) => void;
   deleteTcRows: (ids: string[]) => void;
   renumberTcRows: () => void;
-  setPendingRegenerated: (id: string, data: TcRow['pendingRegenerated']) => void;
+  setAwaitingApply: (id: string, data: TcRow['awaitingApply']) => void;
   applyRegenerated: (id: string, fields: ('steps' | 'expectedResults' | 'preConditions' | 'inputTestData')[]) => void;
-  clearPendingRegenerated: (id: string) => void;
+  clearAwaitingApply: (id: string) => void;
   updateConfig: (updates: Partial<GenerationConfig>) => void;
   appendLog: (log: JobLog) => void;
   updateStats: (updates: Partial<JobStats>) => void;
@@ -81,27 +81,27 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
     tcRows: renumberRows(state.tcRows),
   })),
 
-  setPendingRegenerated: (id, data) => set((state) => ({
+  setAwaitingApply: (id, data) => set((state) => ({
     tcRows: state.tcRows.map((row) =>
-      row.id === id ? { ...row, pendingRegenerated: data } : row
+      row.id === id ? { ...row, awaitingApply: data } : row
     ),
   })),
 
   applyRegenerated: (id, fields) => set((state) => ({
     tcRows: renumberRows(state.tcRows.map((row) => {
-      if (row.id !== id || !row.pendingRegenerated) return row;
+      if (row.id !== id || !row.awaitingApply) return row;
       const updates: Partial<TcRow> = {};
-      if (fields.includes('steps')) updates.steps = row.pendingRegenerated.steps;
-      if (fields.includes('expectedResults')) updates.expectedResults = row.pendingRegenerated.expectedResults;
-      if (fields.includes('preConditions')) updates.preConditions = row.pendingRegenerated.preConditions;
-      if (fields.includes('inputTestData')) updates.inputTestData = row.pendingRegenerated.inputTestData;
-      return { ...row, ...updates, pendingRegenerated: undefined, status: 'reviewing' };
+      if (fields.includes('steps')) updates.steps = row.awaitingApply.steps;
+      if (fields.includes('expectedResults')) updates.expectedResults = row.awaitingApply.expectedResults;
+      if (fields.includes('preConditions')) updates.preConditions = row.awaitingApply.preConditions;
+      if (fields.includes('inputTestData')) updates.inputTestData = row.awaitingApply.inputTestData;
+      return { ...row, ...updates, awaitingApply: undefined, status: 'reviewing' };
     })),
   })),
 
-  clearPendingRegenerated: (id) => set((state) => ({
+  clearAwaitingApply: (id) => set((state) => ({
     tcRows: state.tcRows.map((row) =>
-      row.id === id ? { ...row, pendingRegenerated: undefined } : row
+      row.id === id ? { ...row, awaitingApply: undefined } : row
     ),
   })),
 

@@ -30,7 +30,7 @@ export interface RegenDiffProps {
 
 /**
  * Side-by-side diff for a regenerated row. User can cherry-pick which
- * fields to apply from `row.pendingRegenerated` back into the row.
+ * fields to apply from `row.awaitingApply` back into the row.
  */
 export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard }) => {
   const [selected, setSelected] = useState<Set<DiffFieldKey>>(
@@ -82,7 +82,7 @@ export const RegenDiff: React.FC<RegenDiffProps> = ({ row, onApply, onDiscard })
       <div className="flex flex-col gap-2">
         {DIFF_FIELDS.map(({ key, label }) => {
           const oldVal = row[key] || '';
-          const newVal = row.pendingRegenerated?.[key] || '';
+          const newVal = row.awaitingApply?.[key] || '';
           const changed = oldVal !== newVal;
           const isSelected = selected.has(key);
           const { left, right } = changed ? diffTokens(oldVal, newVal) : { left: [], right: [] };

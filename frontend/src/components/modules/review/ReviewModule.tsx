@@ -29,9 +29,9 @@ const ReviewModule: React.FC = () => {
     updateTcRow,
     deleteTcRows,
     renumberTcRows,
-    setPendingRegenerated,
+    setAwaitingApply,
     applyRegenerated,
-    clearPendingRegenerated,
+    clearAwaitingApply,
     isRegenerating,
     setRegenerating,
     config,
@@ -138,7 +138,7 @@ const ReviewModule: React.FC = () => {
     if (testSetFilter !== 'all' && r.testSet !== testSetFilter) return false;
     if (filter === 'flagged') return r.status === 'flagged';
     if (filter === 'pending') return r.status === 'pending';
-    if (filter === 'regen') return !!r.pendingRegenerated;
+    if (filter === 'regen') return !!r.awaitingApply;
     return true;
   });
 
@@ -202,7 +202,7 @@ const ReviewModule: React.FC = () => {
         },
         {
           onRow: (id, data) => {
-            setPendingRegenerated(id, data);
+            setAwaitingApply(id, data);
             updateTcRow(id, { status: 'reviewing' });
           },
           onFail: (id, message) => {
@@ -234,7 +234,7 @@ const ReviewModule: React.FC = () => {
     jobMetadata,
     setRegenerating,
     updateTcRow,
-    setPendingRegenerated,
+    setAwaitingApply,
     tcRows,
     config,
     appendLog,
@@ -320,7 +320,7 @@ const ReviewModule: React.FC = () => {
                   onCancelEdit={() => setEditingRowId(null)}
                   onToggleFlag={toggleFlag}
                   onApplyRegen={handleApplyRegen}
-                  onDiscardRegen={clearPendingRegenerated}
+                  onDiscardRegen={clearAwaitingApply}
                 />
               ))}
             </tbody>

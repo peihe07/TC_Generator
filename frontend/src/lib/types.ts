@@ -8,7 +8,7 @@ export type TcStatus =
   | "rejected"
   | "flagged";
 
-export interface PendingRegeneratedFields {
+export interface AwaitingApplyFields {
   steps: string;
   expectedResults: string;
   preConditions: string;
@@ -33,7 +33,7 @@ export interface TcRow {
   status: TcStatus;
   validationErrors?: ValidationError[];
   originalData?: Partial<TcRow>;
-  pendingRegenerated?: PendingRegeneratedFields;
+  awaitingApply?: AwaitingApplyFields;
 }
 
 export interface ValidationError {

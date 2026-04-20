@@ -10,7 +10,7 @@ import { TcRow } from '../lib/types';
  *   - accept / reject / delete callbacks
  *   - flag toggle callback with correct argument
  *   - entering edit mode → changing textarea → save
- *   - pendingRegenerated renders <RegenDiff/> and hides row-level actions
+ *   - awaitingApply renders <RegenDiff/> and hides row-level actions
  *
  * The component returns a React fragment of <tr> elements, so we mount it
  * inside a minimal <table><tbody/></table> host to keep the DOM valid.
@@ -259,9 +259,9 @@ describe('ReviewRow — expanded non-edit state renders generated TC fields (§P
   });
 });
 
-describe('ReviewRow — pendingRegenerated state', () => {
+describe('ReviewRow — awaitingApply state', () => {
   const rowWithPending: Partial<TcRow> = {
-    pendingRegenerated: {
+    awaitingApply: {
       steps: 'new step',
       expectedResults: 'new expected',
       preConditions: 'new pre',

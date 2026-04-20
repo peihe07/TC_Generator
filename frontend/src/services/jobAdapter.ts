@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 
 import type {
   GenerationConfig,
-  PendingRegeneratedFields,
+  AwaitingApplyFields,
   TcRow,
   ValidationError,
 } from "@/src/lib/types";
@@ -48,7 +48,7 @@ type GenerateCallbacks = {
 };
 
 type RegenerateCallbacks = {
-  onRow?: (rowId: string, data: PendingRegeneratedFields) => void;
+  onRow?: (rowId: string, data: AwaitingApplyFields) => void;
   onFail?: (rowId: string, message: string) => void;
   onComplete?: () => void;
   onError?: (message: string) => void;

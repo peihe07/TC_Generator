@@ -25,7 +25,7 @@
 
 Follow-up 待辦（全數記於 Post-migration polish §P1–§P13）：
 - Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失 → 改視覺（warning 黃或 `!` 圖示）
-- Phase 6.4：§P3 (`pendingRegenerated` rename) / ~~§P4 (`isActive` vs `isSelected` 拆分)~~ **已完成，併入 §P12** / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ **已關閉為誤報**
+- Phase 6.4：~~§P3 (`pendingRegenerated` rename)~~ **已完成 2026-04-20** / ~~§P4 (`isActive` vs `isSelected` 拆分)~~ **已完成，併入 §P12** / ~~§P5 (GENERATED TEST CASE 欄空白 bug)~~ **已關閉為誤報**
 - Phase 6.5：§P6 (`Win95Dialog` 通用元件)
 - Phase 6.7：~~§P9 (4 TSX inline sunken → `.border-sunken` class)~~ **3/4 已完成**（RegenDiff 條件式 pattern 永久例外）/ §P10 (Review toolbar vs `.win95-th` boundary) / ~~§P12 (decouple expanded/selected state — F1 FAILED-contrast root fix)~~ **已完成 2026-04-20**
 - Phase 6.8：§P13 (Rules tabpanel nested sunken border observation)
@@ -251,7 +251,7 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** 所有 Phase 6 module alignment 完成後。
 
-### P3 — Rename `pendingRegenerated` → `awaitingApply` (資料層一致)
+### P3 — Rename `pendingRegenerated` → `awaitingApply` (資料層一致) — **已完成（2026-04-20）**
 
 **動機：** Phase 6.4 發現 Review module 的「等待套用 regen」狀態在 3 層用 3 個不同名字，造成閱讀混淆：
 
