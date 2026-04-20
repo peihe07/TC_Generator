@@ -373,6 +373,18 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 
 **進入條件：** Phase 6 全部完成後；P7（typography）後順手做較方便（兩者都是 TSX 的 className refactor）。
 
+### P10 — Review toolbar 與 `.win95-th` header 邊界交接視覺審視
+
+**動機：** Phase 6.7 sunken-bezel token 修正後驗收時低優先觀察 — `ReviewToolbar`（`Show:` / `Test Set:` + `Total: X | Accepted: X | Expanded: X` 那條）與其下方 table `.win95-th` header 的視覺邊界交接可能不乾淨。兩者一個 sunken（toolbar 用 `border-sunken`，TL 現為 gray-dark）、一個 raised（`.win95-th`，BR 用 gray-mid），相接處可能出現雙暗邊 / 雙亮邊堆疊。
+
+**目標：** 視覺審視交界處，如果需要加 `margin-bottom` / 改用 single-border 接邊，記下規格調整。
+
+**Scope:**
+- `frontend/src/components/modules/review/ReviewToolbar.tsx` 或 `ReviewModule.tsx` 表格容器
+- 可能調整的 CSS 只 1–2 行
+
+**進入條件：** Phase 6.8 完成後回看。低優先 — commit 2 驗收未擋。
+
 ### Category D exclusion note — `docs/mockups/*.html` 保留舊 hex sunken pattern
 
 `docs/mockups/chat_module_mockup.html`（7 處）+ `docs/mockups/agent_gui_flow.html`（3 處）共 10 個 `#808080 #ffffff #ffffff #808080` 出現，**刻意不在 sunken-bezel token 修正 commit 範圍內**：
