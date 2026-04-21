@@ -63,12 +63,14 @@ _HARD_CONSTRAINTS = """
    input_test_data, test_procedure, expected_result, design_method,
    priority, split_flag, split_reason).
 8. **Every test_procedure step MUST be a single, concrete, executable action
-   with explicit target + value.** FORBIDDEN: vague verbs ("check", "verify
-   the feature", "operate normally"), multiple actions glued by "and/then"
+   with explicit target + value.** FORBIDDEN: bare vague phrases (`verify
+   the feature`, `operate normally`), multiple actions glued by "and/then"
    in one step, placeholder tokens ("<some value>", "xxx", "TBD"), steps
    that only restate the expected result. REQUIRED: one action per step,
    name the exact UI element / API / signal, include the exact value / data
    used (e.g. "Send AT+BLDN with number 0912345678", not "Send a call").
+   For verification steps, use `Check that / Confirm that / Read / Record /
+   Compare` + explicit observable target (see constraint 9a).
 9. **Every expected_result item MUST be observable and measurable** — state
    what appears on screen, what log/signal is emitted, what state changes,
    or what value is returned. No "works correctly", no "no error".
@@ -176,9 +178,13 @@ def build_user_prompt(
 Return JSON with keys: {output_keys}
 
 REMINDER — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten (not blank, not a copy), `(Trigger → Outcome)` form.
-- Each test_procedure step = one concrete action with explicit target + value;
-  no vague verbs ("check", "verify"), no "and/then"-chained actions, no placeholders.
+- test_item_rewrite is ONE short sentence, `(Trigger → Outcome)` form; remove
+  hedge words (`should`, `within reasonable time`, `be able to`).
+- Each test_procedure step = one concrete action with explicit target + value.
+  FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
+  `check whether`, `confirm whether`, `verify`. Use `Check that / Confirm
+  that / Read / Record / Compare` + explicit observable target instead.
+- No "and/then"-chained actions in one step; no placeholders.
 - test_procedure and expected_result have the SAME number of numbered items (1:1).
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only (no actions); input_test_data = concrete values or "N/A".
@@ -205,9 +211,13 @@ Generate a single test case for the following test item. Follow all rules strict
 Return JSON with keys: {output_keys}
 
 REMINDER — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten (not blank, not a copy), `(Trigger → Outcome)` form.
-- Each test_procedure step = one concrete action with explicit target + value;
-  no vague verbs ("check", "verify"), no "and/then"-chained actions, no placeholders.
+- test_item_rewrite is ONE short sentence, `(Trigger → Outcome)` form; remove
+  hedge words (`should`, `within reasonable time`, `be able to`).
+- Each test_procedure step = one concrete action with explicit target + value.
+  FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
+  `check whether`, `confirm whether`, `verify`. Use `Check that / Confirm
+  that / Read / Record / Compare` + explicit observable target instead.
+- No "and/then"-chained actions in one step; no placeholders.
 - test_procedure and expected_result have the SAME number of numbered items (1:1).
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only (no actions); input_test_data = concrete values or "N/A".
