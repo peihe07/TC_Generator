@@ -96,6 +96,21 @@ class TestParseTestGroupFromFilename:
         result = parse_test_group_from_filename("random_file.xlsx")
         assert result is None
 
+    def test_filename_without_date_suffix(self):
+        """Smoke / debug / adhoc 變體：`_SWQT_<group>_<anything>` 都能抽出 group。"""
+        assert parse_test_group_from_filename(
+            "FM-WI_SWQT_DeviceManager_smoke.xlsx"
+        ) == "DeviceManager"
+        assert parse_test_group_from_filename(
+            "Proj_SWQT_BT_debug.xlsx"
+        ) == "BT"
+
+    def test_filename_group_only_no_suffix(self):
+        """檔名結束於 group 本身（例：`..._SWQT_DeviceManager.xlsx`）也能抽出。"""
+        assert parse_test_group_from_filename(
+            "Proj_SWQT_DeviceManager.xlsx"
+        ) == "DeviceManager"
+
 
 class TestParseTcXlsx:
     def test_project_name(self, sample_xlsx):

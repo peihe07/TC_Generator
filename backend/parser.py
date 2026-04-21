@@ -47,13 +47,14 @@ def _find_sheet(wb, prefix: str) -> str | None:
 
 def parse_test_group_from_filename(filename: str) -> str | None:
     """
-    Extract Test Group from filename pattern: ..._SWQT_{TestGroup}_{YYYYMMDD}...xlsx
+    Extract Test Group from filename pattern: ..._SWQT_{TestGroup}...
 
-    容忍日期後出現額外字串（如 `-1`、`拷貝`、`(copy)`），只要 `_SWQT_<group>_<8位日期>`
-    這段完整出現就能抽出 group。
+    只要檔名包含 `_SWQT_<group>`（group 是下一個 `_` 之前、長度 ≥1、非空）
+    就能抽出 group。group 後面接什麼（日期、`smoke`、`debug`、`拷貝`、副檔名）
+    都不影響抽取。
     """
     basename = os.path.basename(filename)
-    match = re.search(r"_SWQT_([^_]+)_\d{8}", basename)
+    match = re.search(r"_SWQT_([^_./\\]+)", basename)
     return match.group(1) if match else None
 
 
