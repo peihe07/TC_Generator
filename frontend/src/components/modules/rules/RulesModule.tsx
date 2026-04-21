@@ -2,16 +2,18 @@
 
 import React, { useState } from 'react';
 
-type RulesTab = 'aspice' | 'design';
+type RulesTab = 'aspice' | 'ai' | 'design';
 
 const TABS: { id: RulesTab; label: string }[] = [
-  { id: 'aspice',  label: 'ASPICE SWE.6 Writing Rules' },
-  { id: 'design',  label: 'Design Method Decision Rules' },
+  { id: 'aspice', label: 'ASPICE SWE.6 Writing Rules' },
+  { id: 'ai',     label: 'ASPICE SWE.6 AI Instruction' },
+  { id: 'design', label: 'Design Method Decision Rules' },
 ];
 
 const SRC: Record<RulesTab, string> = {
-  aspice:  '/rules-aspice.html',
-  design:  '/rules-design-method.html',
+  aspice: '/rules-aspice.html',
+  ai:     '/rules-ai-instruction.html',
+  design: '/rules-design-method.html',
 };
 
 const RulesModule: React.FC = () => {
