@@ -420,10 +420,12 @@ def build_multi_tc_user_prompt(
 {_MULTI_TC_GUIDANCE}
 ## Output
 Return a JSON object with these top-level keys:
-- `reasoning` (string, 繁體中文): ≤3 sentences explaining WHY this requirement
-  was split into N TCs, citing the rule section(s) you applied (e.g.
-  「§9 列舉了 6 種支援格式，因此拆成 6 筆；每筆 test_item_rewrite 帶不同情境 tag」).
-  For atomic requirements returning 1 TC, briefly state it is atomic.
+- `reasoning` (string, 繁體中文): 先用**一句話**總結此需求要驗什麼
+  （例：「驗證 Dealer Mode 可開關 Engineering Configuration，disable
+  時參數還原預設。」）。只有在**有拆分**時才追加第二句說明拆分理由並引用
+  節號（例：「依 §9 列舉 6 種格式，故拆 6 筆避免 False Pass。」）。
+  原子需求就只寫一句，不要補「不需拆分」這種贅述。用途：讓使用者一眼
+  確認 AI 對需求的理解和自己是否一致。
 - `keywords` (array, optional): keyword analysis per §10.2, each entry
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
   numbers are 1-based indices into `tcs`.
@@ -541,8 +543,9 @@ def build_multi_tc_batch_prompt(
 Return a JSON object `{{"requirements": [...]}}`; the outer array has exactly
 one entry per input requirement, in the same order. Each entry has the shape:
 `{{"req_id": "...", "reasoning": "<繁中>", "keywords": [...], "tcs": [...]}}`
-- `reasoning`: ≤3 sentences explaining WHY that req was split into N TCs,
-  citing rule sections. For atomic reqs returning 1 TC, say so.
+- `reasoning`: 一句話總結該 req 要驗什麼；只有在有拆分時才多加一句說明
+  拆分理由並引用節號（例：「依 §9 拆成 6 筆格式驗證」）。原子需求只寫
+  一句。目的：讓使用者確認 AI 對需求的理解。
 - `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
 - `tcs`: as many TC objects as the rules demand (no cap).

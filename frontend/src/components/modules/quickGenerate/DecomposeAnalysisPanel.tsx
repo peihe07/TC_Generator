@@ -21,9 +21,13 @@ export interface DecomposeAnalysisPanelProps {
 }
 
 /**
- * Reasoning header + scenario strip. Shown only for `decompose` mode once
- * the backend has returned the analysis. Status per-row is derived from
- * `generatingScenarioId` / `completedScenarioIds`.
+ * AI interpretation panel. Displays how the AI understands the requirement —
+ * reasoning (驗證目標 / 關鍵概念 / 拆分判斷), keyword breakdown, and the
+ * scenarios that emerge. Shown for every multi-TC job; when the AI decides
+ * the requirement is atomic (single scenario), the scenario strip collapses
+ * to a short "no split needed" note so the panel still carries value as a
+ * sanity check on the AI's interpretation rather than reading as a hollow
+ * "1 scenario identified" report.
  */
 export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
   analysis,
@@ -31,7 +35,12 @@ export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
   completedScenarioIds,
   expanded,
   onToggleExpanded,
-}) => (
+}) => {
+  const isAtomic = analysis.scenarios.length <= 1;
+  const headerLabel = isAtomic
+    ? 'AI 的需求解讀（原子需求，不需拆分）'
+    : `AI 的需求解讀 — 拆成 ${analysis.scenarios.length} 個情境`;
+  return (
   <div className="border-sunken">
     <div
       className="flex items-center gap-2 px-2 py-1 cursor-pointer select-none"
@@ -39,10 +48,7 @@ export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
       onClick={onToggleExpanded}
     >
       <RiLightbulbLine className="size-3 shrink-0" />
-      <span className="text-xs font-bold flex-1">
-        AI Analysis — {analysis.scenarios.length} scenario
-        {analysis.scenarios.length !== 1 ? 's' : ''} identified
-      </span>
+      <span className="text-xs font-bold flex-1">{headerLabel}</span>
       {expanded ? (
         <RiArrowUpSLine className="size-3" />
       ) : (
@@ -128,52 +134,55 @@ export const DecomposeAnalysisPanel: React.FC<DecomposeAnalysisPanelProps> = ({
           </div>
         )}
 
-        <div className="flex flex-col gap-1 mt-2">
-          {analysis.scenarios.map((s) => {
-            const isGenerating = generatingScenarioId === s.id;
-            const isDone = completedScenarioIds.has(s.id);
-            return (
-              <div
-                key={s.id}
-                className="flex items-center gap-2 px-2 py-1 text-xs"
-                style={{
-                  background: isDone
-                    ? 'var(--status-accept-bg)'
-                    : isGenerating
-                      ? 'var(--status-edit-bg)'
-                      : 'var(--win95-gray-lighter)',
-                  border: '1px solid var(--win95-gray)',
-                }}
-              >
-                {isDone ? (
-                  <RiCheckFill
-                    className="size-3 shrink-0"
-                    style={{ color: 'var(--status-accept-dark)' }}
-                  />
-                ) : isGenerating ? (
-                  <RiLoader4Line className="size-3 shrink-0 animate-spin" />
-                ) : (
-                  <RiArrowRightLine
-                    className="size-3 shrink-0"
-                    style={{ color: 'var(--win95-gray-mid)' }}
-                  />
-                )}
-                <span className="font-bold text-[11px]">
-                  #{s.id} {s.name}
-                </span>
-                <span
-                  className="text-[10px]"
-                  style={{ color: 'var(--text-muted)' }}
+        {!isAtomic && (
+          <div className="flex flex-col gap-1 mt-2">
+            {analysis.scenarios.map((s) => {
+              const isGenerating = generatingScenarioId === s.id;
+              const isDone = completedScenarioIds.has(s.id);
+              return (
+                <div
+                  key={s.id}
+                  className="flex items-center gap-2 px-2 py-1 text-xs"
+                  style={{
+                    background: isDone
+                      ? 'var(--status-accept-bg)'
+                      : isGenerating
+                        ? 'var(--status-edit-bg)'
+                        : 'var(--win95-gray-lighter)',
+                    border: '1px solid var(--win95-gray)',
+                  }}
                 >
-                  {s.description}
-                </span>
-              </div>
-            );
-          })}
-        </div>
+                  {isDone ? (
+                    <RiCheckFill
+                      className="size-3 shrink-0"
+                      style={{ color: 'var(--status-accept-dark)' }}
+                    />
+                  ) : isGenerating ? (
+                    <RiLoader4Line className="size-3 shrink-0 animate-spin" />
+                  ) : (
+                    <RiArrowRightLine
+                      className="size-3 shrink-0"
+                      style={{ color: 'var(--win95-gray-mid)' }}
+                    />
+                  )}
+                  <span className="font-bold text-[11px]">
+                    #{s.id} {s.name}
+                  </span>
+                  <span
+                    className="text-[10px]"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    {s.description}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     )}
   </div>
-);
+  );
+};
 
 export default DecomposeAnalysisPanel;
