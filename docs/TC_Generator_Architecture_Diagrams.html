@@ -258,7 +258,7 @@
 </div>
 
 <div class="note">
-  <strong>基準實測（44 rows）</strong>：總耗時約 6 分鐘、成本 $0.125、cache hit 90.9%。真實成本以 Generate 階段為主。
+  <strong>成本分布</strong>：Generate 階段為主要 LLM 成本來源，其餘階段幾乎零成本。實際金額依 row 數、prompt cache 命中率與模型選擇而定。
 </div>
 
 </div>
@@ -268,7 +268,7 @@
      ======================================== -->
 <div class="section">
 <h2>2. 快速路徑 — Quick Generate</h2>
-<p class="lede">只想試一筆需求、不用整個 workbook 的情境。不需 upload、不需 review，直接貼需求看結果。統一走 auto-split：AI 依 ASPICE §1.2/§1.4/§1.5 自動判斷拆成幾筆 TC。</p>
+<p class="lede">只想試一筆需求、不用整個 workbook 的情境。不需 upload、不需 review，直接貼需求看結果。統一走 auto-split：AI 依 ASPICE SWE.6 §6.1（Test Item）、§9（False Pass 拆分）、§10.2.1（延伸情境）自動判斷拆成幾筆 TC。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 260">
@@ -405,6 +405,9 @@
   </text>
 </svg>
 </div>
+<div class="note">
+  <strong>實作細節</strong>：frontend status 欄位實際有 8 種 — <code>pending / generating / success / fail / reviewing / accepted / rejected / flagged</code>。<code>success</code> 與 <code>fail</code> 是 generating 結束的瞬間狀態（成功即進入 reviewing，失敗會保留供重跑）；<code>flagged</code> 是 reviewing 下的子狀態，表示 validator 有警告需人工留意。
+</div>
 </div>
 
 <!-- ========================================
@@ -535,10 +538,10 @@
   </g>
   <text class="th" x="60" y="208" fill="var(--coral-800)">Q2. Validator 跳警告，不確定要不要管</text>
   <g class="c-gray"><rect x="60" y="225" width="240" height="60" rx="6"/>
-    <text class="ts" x="180" y="250" text-anchor="middle" font-weight="600">Hard issue（紅）</text>
+    <text class="ts" x="180" y="250" text-anchor="middle" font-weight="600">error（紅）</text>
     <text class="tiny" x="180" y="268" text-anchor="middle">生成時已自動 retry + 升級模型</text></g>
   <g class="c-gray"><rect x="316" y="225" width="240" height="60" rx="6"/>
-    <text class="ts" x="436" y="250" text-anchor="middle" font-weight="600">Soft warning（黃）</text>
+    <text class="ts" x="436" y="250" text-anchor="middle" font-weight="600">warning（黃）</text>
     <text class="tiny" x="436" y="268" text-anchor="middle">可忽略；或 Regenerate 看看會不會變好</text></g>
   <g class="c-gray"><rect x="572" y="225" width="228" height="60" rx="6"/>
     <text class="ts" x="686" y="250" text-anchor="middle" font-weight="600">手動 Edit</text>
