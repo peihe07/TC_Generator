@@ -445,11 +445,11 @@ onClick={() => {
 |---|---|---|
 | 建 `backend/tools/` + `registry.py` + `ToolError` | ✓ | `SafetyLevel` 4 級；7 種錯誤代碼 → HTTP |
 | 抽 `parse_workbook_tool` | ✓ | WRITE_SAFE |
-| 抽 `group_tests_tool` / `match_spec_tool` | ✓ | READ_ONLY；`group` 含 PDM/REQ fallback，`match` 含 Layer1.5 fuzzy |
+| 抽 `group_tests_tool` / `match_spec_tool` | ✓ | `group` 為 WRITE_COSTLY（AI 失敗時退回 PDM/REQ/Unassigned fallback）；`match` 為 READ_ONLY，含 Layer1.5 fuzzy |
 | 抽 `validate_tc_tool` / `write_excel_tool` | ✓ | READ_ONLY / DESTRUCTIVE |
 | 抽 `generate_tc_tool` | ✓ | WRITE_COSTLY；SSE orchestration 留 route |
 
-**結果**：pytest 225 → 266，API 行為零變化。
+**結果**：後續已擴充到 pytest 446 pass；`group_tests_tool` 保留 AI 分類，但在離線/失敗時改走 deterministic fallback。
 
 ### Phase 1 — Agent Endpoint（已完成 ✓）
 

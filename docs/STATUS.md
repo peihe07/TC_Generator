@@ -109,7 +109,7 @@ TC_Generator/
 │   │   ├── schemas.py               # OpenAI function-calling JSON schemas
 │   │   ├── _budget.py               # needs_confirmation() 門檻
 │   │   ├── parse.py                 # parse_workbook_tool      (WRITE_SAFE)
-│   │   ├── group.py                 # group_tests_tool         (READ_ONLY)
+│   │   ├── group.py                 # group_tests_tool         (WRITE_COSTLY; AI + deterministic fallback)
 │   │   ├── match.py                 # match_spec_tool          (READ_ONLY)
 │   │   ├── validate.py              # validate_tc_tool         (READ_ONLY)
 │   │   ├── write.py                 # write_excel_tool         (DESTRUCTIVE)
@@ -118,7 +118,7 @@ TC_Generator/
 │   │   ├── jobs.py                  # list_jobs / estimate_cost / get_job_detail / diff_jobs / aggregate_metrics / get_job_validation
 │   │   └── replay.py                # trace replay CLI
 │   └── main.py                      # CLI 入口
-├── tests/                           # pytest（394 pass）
+├── tests/                           # pytest（446 pass）
 ├── frontend/
 │   ├── app/
 │   │   ├── page.tsx / layout.tsx

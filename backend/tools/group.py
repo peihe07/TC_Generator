@@ -1,10 +1,13 @@
-"""group_tests tool：把 requirements 分到 Test Set 的 AI 驅動工具。
+"""group_tests tool：把 requirements 分到 Test Set。
 
-完全沒有硬編碼 keyword / 分類表：所有沒帶 test_set 的 row 會一次送給 AI
-分類（`generator.classify_test_sets`）。Route 層負責 jobId 驗證。
+優先使用既有 `test_set`；沒有時先嘗試 AI 分類。若 AI 不可用或結果不完整，
+退回 deterministic fallback：`PDMxx` → `REQ <prefix>` → `Unassigned`。
+Route 層負責 jobId 驗證。
 """
 
 from __future__ import annotations
+
+import re
 
 from generator import DEFAULT_MODEL, GenerationError, classify_test_sets
 
@@ -29,10 +32,29 @@ def _get_any(row: dict, *keys) -> str:
 def derive_test_set_name(row: dict) -> str:
     """回傳既存 test_set；沒有就回空字串。
 
-    以前這裡會走 keyword/PDM 硬編碼 fallback，現在 fallback 由 AI 在
-    `classify_test_sets` 一次處理整批 req，所以單列層級不再猜測。
+    只讀取資料裡既有的 test_set，不自行推論。
     """
     return _get_any(row, "test_set", "testSet")
+
+
+_PDM_PATTERN = re.compile(r"\b(PDM\d{2,})\b", re.IGNORECASE)
+
+
+def _fallback_test_set_name(row: dict) -> str:
+    """AI 失敗或漏配時的 deterministic fallback。"""
+    test_item = _get_any(row, "test_item", "testItem")
+    match = _PDM_PATTERN.search(test_item)
+    if match:
+        return match.group(1).upper()
+
+    req_id = _get_any(row, "req_id", "reqId")
+    if req_id:
+        parts = [part for part in req_id.split("-") if part]
+        if len(parts) >= 2:
+            return f"REQ {'-'.join(parts[:-1])}"
+        return f"REQ {req_id}"
+
+    return "Unassigned"
 
 
 def group_tests_tool(
@@ -52,8 +74,8 @@ def group_tests_tool(
         `{"groups": [...], "framework": {...}, "assignments": [...]}`
         assignments 依 group 出現順序排列（對齊原 /api/group 行為）。
 
-    Raises:
-        ToolError: AI 分類失敗（network / parse error）。
+    AI 分類失敗時不拋錯，改走 deterministic fallback，避免 agent / API 預覽
+    因外部網路不可用而整體失敗。
     """
     # Phase 1: 先分出「已有 test_set」與「需要 AI 分類」兩批
     unresolved_reqs: dict[str, str] = {}  # req_id -> test_item
@@ -73,11 +95,9 @@ def group_tests_tool(
                 [{"req_id": k, "test_item": v} for k, v in unresolved_reqs.items()],
                 model=model,
             )
-        except GenerationError as exc:
-            raise ToolError(
-                f"test-set classification failed: {exc}", code="internal",
-            ) from exc
-        classified = result.assignments
+            classified = result.assignments
+        except GenerationError:
+            classified = {}
 
     # Phase 2: 組 group preview
     framework: dict[str, list[str]] = {}
@@ -89,7 +109,7 @@ def group_tests_tool(
             test_set = existing
             source = "existing"
         else:
-            test_set = classified.get(req_id, "")
+            test_set = classified.get(req_id, "") or _fallback_test_set_name(row)
             source = "derived"
         row_derived.append((row, test_set, req_id, source))
         framework.setdefault(test_set, []).append(req_id)

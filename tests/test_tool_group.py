@@ -106,6 +106,27 @@ def test_group_framework_keyed_by_test_set():
     assert out["framework"]["Alpha"] == ["X-01", "X-02"]
 
 
+def test_group_falls_back_when_ai_classification_fails():
+    from generator import GenerationError
+
+    rows = [
+        {"id": "r1", "reqId": "SWE1-HMI-DM-001-01", "testItem": "PDM01 toggle bluetooth"},
+        {"id": "r2", "reqId": "SWE1-HMI-DM-002-01", "testItem": "no keyword here"},
+        {"id": "r3", "testItem": ""},
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        side_effect=GenerationError("network down"),
+    ) as mock_classify:
+        out = group_tests_tool(rows=rows)
+
+    assert mock_classify.called
+    derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived_sets["r1"] == "PDM01"
+    assert derived_sets["r2"] == "REQ SWE1-HMI-DM-002"
+    assert derived_sets["r3"] == "Unassigned"
+
+
 def test_group_tool_registered():
     spec = get_tool("group_tests")
     # 會觸發 AI 呼叫 → 提升到 WRITE_COSTLY
