@@ -167,23 +167,6 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <style>
-  body { font-family: "Pixelated MS Sans Serif","MS Sans Serif",Arial,sans-serif; font-size:13px; max-width:860px; margin:0 auto; padding:24px 32px; background:#fff; color:#1a1a1a; line-height:1.6; }
-  h1 { font-size:18px; font-weight:bold; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:16px; }
-  h2 { font-size:15px; font-weight:bold; margin-top:24px; margin-bottom:8px; border-left:4px solid #000080; padding-left:8px; }
-  h3 { font-size:13px; font-weight:bold; margin-top:16px; margin-bottom:4px; }
-  h4 { font-size:13px; font-weight:bold; margin-top:12px; color:#444; }
-  pre { background:#f0f0f0; border:1px solid #c0c0c0; padding:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
-  code { background:#f0f0f0; padding:1px 4px; font-size:11px; }
-  blockquote { border-left:3px solid #808080; margin-left:0; padding-left:12px; color:#555; }
-  hr { border:none; border-top:1px solid #808080; margin:16px 0; }
-  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:12px; }
-  th,td { border:1px solid #c0c0c0; padding:4px 8px; text-align:left; }
-  th { background:#c0c0c0; font-weight:bold; }
-  ul,ol { padding-left:20px; margin:4px 0; }
-  li { margin:2px 0; }
-  strong { font-weight:bold; }
-  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -244,7 +227,40 @@ Missed Call log entries.</p>
 排序正確性的測試步驟設計。</p>
 </blockquote>
 <hr />
-<h3 id="requirement-swra-衝突處理">1.1.1 Requirement ↔︎ SWRA
+<h3 id="test-item-必須簡潔精煉">1.1.1 Test Item 必須簡潔精煉</h3>
+<p>Test Item 應使用<strong>一句簡短句子</strong>表達核心測試目標，格式為
+<code>[Trigger] → [Observable Outcome]</code>。只保留觸發條件與可觀察結果，刪除所有冗詞贅句（例如
+<code>the system should</code>、<code>within a reasonable time</code>、<code>the user is able to</code>
+等）。</p>
+<p>過長的 Test Item 會使測試重點模糊，也讓 reviewer
+難以在一眼內判斷驗證目標。</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤（冗長）</th>
+<th>✅ 正確（簡潔）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>When the user selects the Apple CarPlay icon in the Menu Bar, the system should display the CarPlay interface on the HU within a reasonable time.</code></td>
+<td><code>Select CarPlay icon → CarPlay interface displayed</code></td>
+</tr>
+<tr>
+<td><code>First-time Bluetooth pairing is performed with a CarPlay-capable phone, and after the pairing process is completed, the HU should correctly identify the phone as CarPlay-capable.</code></td>
+<td><code>First-time BT pairing with CarPlay phone → HU identifies phone as CarPlay-capable</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>撰寫檢核：</strong> - 是否能用一句話讀完？ -
+是否明確區分出「觸發動作」與「可觀察結果」？ - 是否刪除了所有 hedge
+詞（should、may、within reasonable time 等）？</p>
+<hr />
+<h3 id="requirement-swra-衝突處理">1.1.2 Requirement ↔︎ SWRA
 衝突處理</h3>
 <p>當 SWRA 與 Requirement Description 內容矛盾時： 1.
 <strong>Requirement takes precedence.</strong>（以需求為主） 2.
@@ -671,6 +687,154 @@ entries.</strong> ← 建立基準</td>
 <p><strong>Reviewer 原始檔案內嵌註記：</strong> &gt;
 「寫更新情境要有動作前確認 + 動作後確認 才有對比」</p>
 <hr />
+<h3 id="禁用模糊動詞改用明確檢查動詞">3.5
+禁用模糊動詞，改用明確檢查動詞</h3>
+<p>Step
+的主要動詞決定了測試者是否能清楚知道「這一步要做什麼、要看什麼」。模糊動詞（如
+<code>observe</code>、<code>verify</code>）會讓驗證目標不明確，測試者必須自行判斷，違反
+SWRA 的可重現與確定性原則。</p>
+<h4 id="禁用動詞清單hard-rule">3.5.1 禁用動詞清單（hard rule）</h4>
+<p>以下動詞<strong>不可作為 Step
+的主要動詞</strong>，因為它們隱含「用眼睛看、自己判斷」的意味，導致驗證目標模糊：</p>
+<table>
+<thead>
+<tr>
+<th>禁用動詞</th>
+<th>問題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>observe</code></td>
+<td>沒有具體目標，測試者不知看什麼</td>
+</tr>
+<tr>
+<td><code>observe whether</code></td>
+<td>「是否」把判斷責任丟給測試者</td>
+</tr>
+<tr>
+<td><code>see if</code></td>
+<td>同上，未提供明確判斷標準</td>
+</tr>
+<tr>
+<td><code>check whether</code></td>
+<td>應使用 <code>check that</code> 明確描述標準</td>
+</tr>
+<tr>
+<td><code>confirm whether</code></td>
+<td>應使用 <code>confirm that</code> 明確描述標準</td>
+</tr>
+<tr>
+<td><code>verify</code></td>
+<td>在 SWE.6 語境中過度廣泛；請改用明確動詞</td>
+</tr>
+</tbody>
+</table>
+<p><strong>關於 <code>verify</code> 的例外說明：</strong>
+<code>verify</code> 可以用於描述「目的」，例如
+<code>... to verify that the phone is connected.</code>，但<strong>不可作為
+Step 的主要動作動詞</strong>。因為 <code>verify</code>
+本身沒有指定具體的檢查手段（看 UI？讀
+log？比對數值？），在執行時會產生歧義。</p>
+<h4 id="推薦動詞清單preferred-verbs">3.5.2 推薦動詞清單（Preferred
+Verbs）</h4>
+<p>每個推薦動詞後面都必須接一個<strong>具體、可觀察的目標</strong>（UI
+元件、log 訊息、signal 數值、計數、狀態）：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>推薦動詞</th>
+<th>用途</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Check</code> / <code>Check that</code></td>
+<td>確認 UI 狀態或系統狀態符合預期</td>
+<td><code>Check that the CarPlay home screen is displayed on the HU.</code></td>
+</tr>
+<tr>
+<td><code>Confirm</code> / <code>Confirm that</code></td>
+<td>確認特定條件成立或事件發生</td>
+<td><code>Confirm the BT icon appears in the status bar within 3 s.</code></td>
+</tr>
+<tr>
+<td><code>Read</code></td>
+<td>讀取並取得具體數值</td>
+<td><code>Read the contact count on the HU.</code></td>
+</tr>
+<tr>
+<td><code>Record</code></td>
+<td>記錄數值以供後續比對</td>
+<td><code>Record the initial phonebook entry count.</code></td>
+</tr>
+<tr>
+<td><code>Compare</code></td>
+<td>比對兩個具體數值</td>
+<td><code>Compare the current count with the recorded baseline.</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="錯誤與修正對照">3.5.3 錯誤與修正對照</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>❌ 錯誤</th>
+<th>✅ 正確</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Observe the screen.</code></td>
+<td><code>Check that the Home screen is displayed on the HU.</code></td>
+</tr>
+<tr>
+<td><code>Observe whether CarPlay launches.</code></td>
+<td><code>Check that the CarPlay interface is displayed on the HU.</code></td>
+</tr>
+<tr>
+<td><code>Check whether the BT icon is displayed.</code></td>
+<td><code>Check that the BT icon is displayed in the status bar.</code></td>
+</tr>
+<tr>
+<td><code>Verify the phonebook count.</code></td>
+<td><code>Read the phonebook count on the HU and record the value.</code></td>
+</tr>
+<tr>
+<td><code>Verify the call is connected.</code></td>
+<td><code>Confirm that the call is connected by checking the call status on the HU.</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="與-3.3-原則整合">3.5.4 與 §3.3 原則整合</h4>
+<p>§3.3 原本規定「Step 不可包含 Verify / Confirm，驗證描述應出現在
+Expected Result」。在實務上這有兩種情況：</p>
+<ol type="1">
+<li><strong>最終驗證動作：</strong> 由 Final Step
+承擔，其描述形式為「執行動作 + check that
+可觀察結果」（例：<code>Select the CarPlay icon in the Menu Bar and check that the CarPlay interface is displayed on the HU.</code>）。實際的通過/失敗判斷仍寫在對應的
+Expected Result。</li>
+<li><strong>中間設定確認：</strong> 若需要在流程中建立
+baseline（例：§3.4 的
+<code>Check the HU phonebook contains exactly 5,000 entries.</code>），使用推薦動詞
+<code>Check that</code>
+是允許的，因為它本身就是一個具體、可執行的讀取並比對動作。</li>
+</ol>
+<p>原則不變：<strong>Step 是可執行的動作；驗證標準寫在 Expected
+Result</strong>。但 Step 中的「check that / confirm that」是為了讓 Final
+Step 與 baseline 確認具備明確的操作意圖，並非把 ER 的內容複製到
+Step。</p>
+<hr />
 <h2 id="expected-result-預期結果">4. Expected Result — 預期結果</h2>
 <h3 id="必須是可觀察的結果">4.1 必須是可觀察的結果</h3>
 <p>Expected Result 必須能透過以下方式驗證：</p>
@@ -832,8 +996,13 @@ Expected Result:
 Test Item 情境標示和 Step 5/7/10 的檔案格式不同。</p>
 </blockquote>
 <hr />
-<h2 id="自檢清單12-項必檢錯誤">6. 自檢清單：12 項必檢錯誤</h2>
+<h2 id="自檢清單14-項必檢錯誤">6. 自檢清單：14 項必檢錯誤</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
 <tr>
 <th>#</th>
@@ -900,6 +1069,17 @@ Test Item 情境標示和 Step 5/7/10 的檔案格式不同。</p>
 <tr>
 <td>12</td>
 <td>涉及比較的測試未先建立 Baseline</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Test Item 過於冗長，未使用簡潔的 <code>[Trigger] → [Outcome]</code>
+格式</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Step 使用禁用模糊動詞（observe / verify 等）</td>
 <td>☐</td>
 </tr>
 </tbody>

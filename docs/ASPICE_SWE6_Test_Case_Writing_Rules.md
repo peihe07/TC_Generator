@@ -58,7 +58,25 @@ Test Item 定義「這條 Test Case 要驗證什麼」。每個 Test Item 必須
 
 ---
 
-### 1.1.1 Requirement ↔ SWRA 衝突處理
+### 1.1.1 Test Item 必須簡潔精煉
+
+Test Item 應使用**一句簡短句子**表達核心測試目標，格式為 `[Trigger] → [Observable Outcome]`。只保留觸發條件與可觀察結果，刪除所有冗詞贅句（例如 `the system should`、`within a reasonable time`、`the user is able to` 等）。
+
+過長的 Test Item 會使測試重點模糊，也讓 reviewer 難以在一眼內判斷驗證目標。
+
+| ❌ 錯誤（冗長） | ✅ 正確（簡潔） |
+|---|---|
+| `When the user selects the Apple CarPlay icon in the Menu Bar, the system should display the CarPlay interface on the HU within a reasonable time.` | `Select CarPlay icon → CarPlay interface displayed` |
+| `First-time Bluetooth pairing is performed with a CarPlay-capable phone, and after the pairing process is completed, the HU should correctly identify the phone as CarPlay-capable.` | `First-time BT pairing with CarPlay phone → HU identifies phone as CarPlay-capable` |
+
+**撰寫檢核：**
+- 是否能用一句話讀完？
+- 是否明確區分出「觸發動作」與「可觀察結果」？
+- 是否刪除了所有 hedge 詞（should、may、within reasonable time 等）？
+
+---
+
+### 1.1.2 Requirement ↔ SWRA 衝突處理
 
 當 SWRA 與 Requirement Description 內容矛盾時：
 1. **Requirement takes precedence.**（以需求為主）
@@ -233,6 +251,59 @@ Pre-condition 是測試開始前必須存在的「**狀態 (State)**」或「**�
 
 ---
 
+### 3.5 禁用模糊動詞，改用明確檢查動詞
+
+Step 的主要動詞決定了測試者是否能清楚知道「這一步要做什麼、要看什麼」。模糊動詞（如 `observe`、`verify`）會讓驗證目標不明確，測試者必須自行判斷，違反 SWRA 的可重現與確定性原則。
+
+#### 3.5.1 禁用動詞清單（hard rule）
+
+以下動詞**不可作為 Step 的主要動詞**，因為它們隱含「用眼睛看、自己判斷」的意味，導致驗證目標模糊：
+
+| 禁用動詞 | 問題 |
+|---|---|
+| `observe` | 沒有具體目標，測試者不知看什麼 |
+| `observe whether` | 「是否」把判斷責任丟給測試者 |
+| `see if` | 同上，未提供明確判斷標準 |
+| `check whether` | 應使用 `check that` 明確描述標準 |
+| `confirm whether` | 應使用 `confirm that` 明確描述標準 |
+| `verify` | 在 SWE.6 語境中過度廣泛；請改用明確動詞 |
+
+**關於 `verify` 的例外說明：**
+`verify` 可以用於描述「目的」，例如 `... to verify that the phone is connected.`，但**不可作為 Step 的主要動作動詞**。因為 `verify` 本身沒有指定具體的檢查手段（看 UI？讀 log？比對數值？），在執行時會產生歧義。
+
+#### 3.5.2 推薦動詞清單（Preferred Verbs）
+
+每個推薦動詞後面都必須接一個**具體、可觀察的目標**（UI 元件、log 訊息、signal 數值、計數、狀態）：
+
+| 推薦動詞 | 用途 | 範例 |
+|---|---|---|
+| `Check` / `Check that` | 確認 UI 狀態或系統狀態符合預期 | `Check that the CarPlay home screen is displayed on the HU.` |
+| `Confirm` / `Confirm that` | 確認特定條件成立或事件發生 | `Confirm the BT icon appears in the status bar within 3 s.` |
+| `Read` | 讀取並取得具體數值 | `Read the contact count on the HU.` |
+| `Record` | 記錄數值以供後續比對 | `Record the initial phonebook entry count.` |
+| `Compare` | 比對兩個具體數值 | `Compare the current count with the recorded baseline.` |
+
+#### 3.5.3 錯誤與修正對照
+
+| ❌ 錯誤 | ✅ 正確 |
+|---|---|
+| `Observe the screen.` | `Check that the Home screen is displayed on the HU.` |
+| `Observe whether CarPlay launches.` | `Check that the CarPlay interface is displayed on the HU.` |
+| `Check whether the BT icon is displayed.` | `Check that the BT icon is displayed in the status bar.` |
+| `Verify the phonebook count.` | `Read the phonebook count on the HU and record the value.` |
+| `Verify the call is connected.` | `Confirm that the call is connected by checking the call status on the HU.` |
+
+#### 3.5.4 與 §3.3 原則整合
+
+§3.3 原本規定「Step 不可包含 Verify / Confirm，驗證描述應出現在 Expected Result」。在實務上這有兩種情況：
+
+1. **最終驗證動作：** 由 Final Step 承擔，其描述形式為「執行動作 + check that 可觀察結果」（例：`Select the CarPlay icon in the Menu Bar and check that the CarPlay interface is displayed on the HU.`）。實際的通過/失敗判斷仍寫在對應的 Expected Result。
+2. **中間設定確認：** 若需要在流程中建立 baseline（例：§3.4 的 `Check the HU phonebook contains exactly 5,000 entries.`），使用推薦動詞 `Check that` 是允許的，因為它本身就是一個具體、可執行的讀取並比對動作。
+
+原則不變：**Step 是可執行的動作；驗證標準寫在 Expected Result**。但 Step 中的「check that / confirm that」是為了讓 Final Step 與 baseline 確認具備明確的操作意圖，並非把 ER 的內容複製到 Step。
+
+---
+
 ## 4. Expected Result — 預期結果
 
 ### 4.1 必須是可觀察的結果
@@ -389,7 +460,7 @@ Expected Result:
 
 ---
 
-## 6. 自檢清單：12 項必檢錯誤
+## 6. 自檢清單：14 項必檢錯誤
 
 | # | 錯誤類型 | ✔ |
 |---|---|---|
@@ -405,3 +476,5 @@ Expected Result:
 | 10 | 多種支援項目未個別驗證 (False Pass 風險) | ☐ |
 | 11 | 同一 Req 下多個 TC 未區分各自 scenario | ☐ |
 | 12 | 涉及比較的測試未先建立 Baseline | ☐ |
+| 13 | Test Item 過於冗長，未使用簡潔的 `[Trigger] → [Outcome]` 格式 | ☐ |
+| 14 | Step 使用禁用模糊動詞（observe / verify 等） | ☐ |

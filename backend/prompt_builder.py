@@ -72,6 +72,13 @@ _HARD_CONSTRAINTS = """
 9. **Every expected_result item MUST be observable and measurable** — state
    what appears on screen, what log/signal is emitted, what state changes,
    or what value is returned. No "works correctly", no "no error".
+9a. **Forbidden step verbs (§7.1.1):** NEVER use `observe`, `observe whether`,
+   `see if`, `check whether`, `confirm whether`, or `verify` as the MAIN
+   action verb of a test_procedure step — they leave the target ambiguous.
+   Always pair a preferred verb (`Check that / Confirm that / Read /
+   Record / Compare`) with an explicit observable target (UI element, log
+   line, signal value, count, state). `verify` may appear only to describe
+   purpose (e.g. `... to verify that ...`), never as the step's main verb.
 10. **input_test_data lists concrete values only** (numbers, strings, file
     names, enum values). If no data is needed, write "N/A" — never leave
     it empty and never describe actions here.
@@ -92,6 +99,12 @@ For every TC you are about to output, silently verify:
   [ ] pre_conditions only describes state/environment, no actions.
   [ ] Every test_procedure step has: explicit actor, explicit action verb,
       explicit target, and (when applicable) explicit value/data.
+  [ ] No forbidden vague verbs as a step's main verb — NEVER use `observe`,
+      `observe whether`, `see if`, `check whether`, `confirm whether`, or
+      `verify` as the main action; use `Check that / Confirm that / Read /
+      Record / Compare` + explicit observable target (§7.1.1).
+  [ ] test_item_rewrite is one short sentence, `[Trigger] → [Outcome]`, with
+      hedge words removed (`should / within reasonable time / be able to`).
   [ ] procedure step count == expected_result item count, aligned 1:1.
   [ ] expected_result items are observable (UI / log / API response / state).
   [ ] design_method is chosen by the 9-method decision flow, not guessed.
@@ -283,7 +296,8 @@ Return a JSON Array with one object per TC. Each object has keys: {output_keys}
 REMINDER for every TC — run the WRITING DISCIPLINE self-check:
 - test_item_rewrite rewritten (not blank, `(Trigger → Outcome)` form).
 - Each test_procedure step = one concrete action with explicit target + value;
-  no vague verbs, no "and/then"-chained actions, no placeholders.
+  no forbidden verbs (`observe`/`verify`, §7.1.1) as main verb, no
+  "and/then"-chained actions, no placeholders.
 - test_procedure and expected_result have the SAME count (1:1 mapping).
 - Each expected_result item is observable; input_test_data = concrete values or "N/A".
 - design_method from the 9-method flow; priority is P0 / P1 / P2; output is English."""
@@ -421,7 +435,9 @@ Example (requirement that enumerates 3 supported formats would return 3 TCs):
 REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - test_item_rewrite rewritten with scenario tag (§6.1), not blank, not a copy.
 - Each test_procedure step = one concrete, executable action with explicit
-  target + value; no "check/verify" handwaving, no chained actions, no placeholders.
+  target + value; no "observe/verify" as main verb (§7.1.1), no chained
+  actions, no placeholders. Use `Check that / Confirm that / Read / Record /
+  Compare` + observable target instead.
 - test_procedure and expected_result have the SAME count (1:1, §8).
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only; input_test_data = concrete values or "N/A".
@@ -535,7 +551,9 @@ Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic �
 REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - test_item_rewrite rewritten with scenario tag (§6.1), not blank, not a copy.
 - Each test_procedure step = one concrete, executable action with explicit
-  target + value; no "check/verify" handwaving, no chained actions, no placeholders.
+  target + value; no "observe/verify" as main verb (§7.1.1), no chained
+  actions, no placeholders. Use `Check that / Confirm that / Read / Record /
+  Compare` + observable target instead.
 - test_procedure and expected_result have the SAME count (1:1, §8).
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only; input_test_data = concrete values or "N/A".
