@@ -712,8 +712,9 @@ def _sse_event(payload: dict) -> str:
 async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingResponse:
     """Ad-hoc TC generation from manual input.
 
-    統一走 multi-TC auto-split 路徑：AI 自動依 ASPICE §1.2 / §1.4 / §1.5 判斷
-    需要幾筆 TC，先回 reasoning + keyword 分析，再串流每筆 TC，最後收尾。
+    統一走 multi-TC auto-split 路徑：AI 自動依 ASPICE SWE.6 §6.1（Test Item）、
+    §9（False Pass 拆分）、§10.2.1（延伸情境）判斷需要幾筆 TC，先回
+    reasoning + keyword 分析，再串流每筆 TC，最後收尾。
     不再保留舊的 single / with_context / decompose 三模式分歧。
     """
 
