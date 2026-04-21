@@ -96,6 +96,11 @@ export interface GenerationConfig {
   model: "gpt-5" | "gpt-5-mini" | "gpt-4.1" | "gpt-4.1-mini" | "gpt-4o" | "gpt-4o-mini";
   batchSize: number;
   budgetLimit: number;
+  /**
+   * OpenAI credit balance (USD). 0 = 未設定（不顯示剩餘額度）。
+   * CostMeter 會用 `creditBalance - stats.cost` 顯示剩下多少可用。
+   */
+  creditBalance: number;
   strictValidation: boolean;
   targetColumns: string[];
   // true 時強制對每列都叫 AI，即使 template 已有 pre/procedure/expected 也重跑。

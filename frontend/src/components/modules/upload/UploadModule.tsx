@@ -70,7 +70,13 @@ const UploadModule: React.FC = () => {
 
       setJobMetadata(result.jobMetadata);
       setTcRows(result.rows);
-      updateStats(result.stats);
+      // 只覆寫每筆 job 的進度欄位；token/cost 累積值保留。
+      updateStats({
+        total: result.stats.total,
+        processed: 0,
+        success: 0,
+        fail: 0,
+      });
       appendLog(
         createJobLog(
           'success',

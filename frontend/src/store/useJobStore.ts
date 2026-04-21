@@ -34,6 +34,7 @@ const DEFAULT_CONFIG: GenerationConfig = {
   model: 'gpt-4.1',
   batchSize: 5,
   budgetLimit: 10,
+  creditBalance: 0,
   strictValidation: false,
   targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
 };
@@ -176,14 +177,21 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
   setProcessing: (status) => set({ isProcessing: status }),
   setRegenerating: (status) => set({ isRegenerating: status }),
 
-  resetJob: () => set({
+  resetJob: () => set((state) => ({
     jobMetadata: null,
     tcRows: [],
     logs: [],
-    stats: DEFAULT_STATS,
+    // 累積 API usage（tokens / cost）跨 job 保留；只有每筆 job 的進度欄位歸零。
+    stats: {
+      ...state.stats,
+      total: 0,
+      processed: 0,
+      success: 0,
+      fail: 0,
+    },
     isProcessing: false,
     isRegenerating: false,
-  }),
+  })),
 }), {
   name: 'tc-job-session',
   storage: createJSONStorage(() => localStorage),

@@ -32,6 +32,7 @@ vi.mock('../store/useJobStore', () => ({
       model: 'gpt-4.1',
       batchSize: 5,
       budgetLimit: 10,
+      creditBalance: 0,
       strictValidation: false,
       targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
     },

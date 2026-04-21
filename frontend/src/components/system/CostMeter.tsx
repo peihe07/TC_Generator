@@ -142,6 +142,40 @@ const CostMeter: React.FC = () => {
           </span>
         </div>
 
+        {/* Remaining credit — 只在使用者設定 creditBalance 時顯示 */}
+        {config.creditBalance > 0 && (() => {
+          const remaining = config.creditBalance - totalCost;
+          const lowCredit = remaining < config.creditBalance * 0.2;
+          const overBalance = remaining < 0;
+          return (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'baseline',
+              }}
+            >
+              <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>
+                Remaining <span style={{ fontSize: 11, opacity: 0.7 }}>(of ${config.creditBalance.toFixed(2)})</span>
+              </span>
+              <span
+                style={{
+                  fontFamily: 'monospace',
+                  fontWeight: 'bold',
+                  fontSize: 13,
+                  color: overBalance
+                    ? 'var(--status-error-border)'
+                    : lowCredit
+                      ? 'var(--status-reject-dark)'
+                      : 'var(--win95-navy)',
+                }}
+              >
+                ${remaining.toFixed(4)}
+              </span>
+            </div>
+          );
+        })()}
+
         {/* Budget bar */}
         {config.budgetLimit > 0 && (
           <div>

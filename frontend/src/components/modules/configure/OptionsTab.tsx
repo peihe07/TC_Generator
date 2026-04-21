@@ -56,6 +56,24 @@ export const OptionsTab: React.FC<OptionsTabProps> = ({ config, onUpdateConfig }
             onChange={(e) => onUpdateConfig({ budgetLimit: parseInt(e.target.value, 10) })}
           />
         </div>
+        <div className="field-row-stacked">
+          <label htmlFor="credit-balance">
+            OpenAI Credit Balance (USD):{' '}
+            {config.creditBalance > 0 ? `$${config.creditBalance.toFixed(2)}` : 'not set'}
+          </label>
+          <input
+            id="credit-balance"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0 = 不顯示剩餘額度"
+            value={config.creditBalance || ''}
+            onChange={(e) => {
+              const v = parseFloat(e.target.value);
+              onUpdateConfig({ creditBalance: Number.isFinite(v) && v > 0 ? v : 0 });
+            }}
+          />
+        </div>
         <Checkbox
           id="strict-validation"
           label="Strict Validation"

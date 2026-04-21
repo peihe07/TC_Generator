@@ -94,7 +94,7 @@ const GenerateModule: React.FC = () => {
       processed: 0,
       success: 0,
       fail: 0,
-      cost: 0,
+      // cost / token 為累積值，不在新 job 起始時歸零。
     });
     tcRows.forEach((row) => updateTcRow(row.id, { status: 'generating' }));
     appendLog(createJobLog('info', `Queued ${tcRows.length} row(s) for generation.`));
