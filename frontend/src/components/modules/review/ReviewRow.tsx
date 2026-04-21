@@ -267,8 +267,9 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                     （完整拆分決策見第 1 筆 TC 的展開面板）
                   </span>
                 </div>
-              ) : row.splitDecision && row.splitDecision.tcCount > 1 ? (
+              ) : row.splitDecision && (row.splitDecision.reasoning || row.splitDecision.keywords.length > 0) ? (
                 // Primary：顯示完整 reasoning + keywords。
+                // tcCount === 1（atomic）也要顯示，讓使用者看到 AI 如何理解這個需求。
                 <div className="border-sunken">
                   <div
                     className="flex items-center gap-2 px-2 py-1 text-xs font-bold"
@@ -276,7 +277,9 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                   >
                     <RiLightbulbLine className="size-3 shrink-0" />
                     <span>
-                      AI 拆分決策 — {row.splitDecision.tcCount} TCs（{row.splitDecision.reqId}）
+                      {row.splitDecision.tcCount > 1
+                        ? `AI 的需求解讀 — 拆成 ${row.splitDecision.tcCount} 筆 TC（${row.splitDecision.reqId}）`
+                        : `AI 的需求解讀 — 原子需求，不需拆分（${row.splitDecision.reqId}）`}
                     </span>
                   </div>
                   <div
@@ -288,7 +291,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                         {row.splitDecision.reasoning}
                       </p>
                     ) : (
-                      <p style={{ color: 'var(--text-muted)' }}>（AI 未提供拆分理由）</p>
+                      <p style={{ color: 'var(--text-muted)' }}>（AI 未提供需求解讀）</p>
                     )}
                     {row.splitDecision.keywords.length > 0 && (
                       <div className="flex flex-col gap-1">
@@ -297,7 +300,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                           style={{ color: 'var(--text-muted)' }}
                         >
                           <RiKey2Line className="size-3" />
-                          Keyword coverage (§1.3)
+                          Keyword coverage (§10.2)
                         </div>
                         <ul className="flex flex-col gap-1 pl-1">
                           {row.splitDecision.keywords.map((k, idx) => (
