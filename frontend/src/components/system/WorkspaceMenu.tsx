@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useWorkspaceStore } from '../../store/useWorkspaceStore';
 import { useJobStore } from '../../store/useJobStore';
+import { useWindowStore } from '../../store/useWindowStore';
 import { Button, IconButton, Win95Dialog } from '../ui';
 
 const WorkspaceMenu: React.FC = () => {
@@ -12,6 +13,8 @@ const WorkspaceMenu: React.FC = () => {
     exportWorkspace, importWorkspace,
   } = useWorkspaceStore();
   const resetJob = useJobStore((s) => s.resetJob);
+  const closeWindow = useWindowStore((s) => s.closeWindow);
+  const openWindow = useWindowStore((s) => s.openWindow);
   const [open, setOpen] = useState(false);
   const [resetDialogOpen, setResetDialogOpen] = useState(false);
   const [resetPending, setResetPending] = useState(false);
@@ -43,9 +46,19 @@ const WorkspaceMenu: React.FC = () => {
   };
 
   const handleNew = () => {
-    if (!window.confirm('Start a new workspace? Current unsaved state will be cleared.')) return;
+    const ok = window.confirm(
+      '開始新的 job？\n\n' +
+      '會清除：目前 job 的 rows / logs / 成本統計 + 流程視窗\n' +
+      '會保留：Job History、已儲存 workspace、Config、已匯出檔案\n\n' +
+      '（若要徹底清光所有資料，請改用下方的「Reset All Data…」）',
+    );
+    if (!ok) return;
     resetJob();
     useWorkspaceStore.setState({ activeId: null });
+    // 關掉所有流程視窗（避免殘留舊 job 畫面），重開 Upload 當作新 job 起點。
+    (['configure', 'generate', 'review', 'export', 'quickGenerate'] as const).forEach(closeWindow);
+    openWindow('upload', 'Upload Files');
+    setOpen(false);
   };
 
   const handleRename = (id: string, current: string) => {
@@ -153,7 +166,7 @@ const WorkspaceMenu: React.FC = () => {
           <div style={{ display: 'flex', gap: 4 }}>
             <Button onClick={handleSaveAs} style={{ flex: 1 }}>Save As…</Button>
             <Button onClick={handleOverwrite} disabled={!activeId} style={{ flex: 1 }}>Save</Button>
-            <Button onClick={handleNew} style={{ flex: 1 }}>New</Button>
+            <Button onClick={handleNew} style={{ flex: 1 }} title="清除目前 job（不動歷史與已存 workspace）">New Job</Button>
           </div>
           <div style={{ display: 'flex', gap: 4 }}>
             <Button onClick={handleImportClick} style={{ flex: 1 }}>Import…</Button>
