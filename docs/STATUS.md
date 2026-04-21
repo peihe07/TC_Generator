@@ -291,8 +291,8 @@ TC_Generator/
 | **下一步規劃** | **[ROADMAP.md](ROADMAP.md)** |
 | API 合約 | [API_CONTRACT.md](API_CONTRACT.md) |
 | TC 生成規則（工具實作用） | [RULES.md](RULES.md) |
-| ASPICE SWE.6 規則（LLM prompt 用） | [ASPICE_SWE6_Test_Case_Writing_Rules.md](ASPICE_SWE6_Test_Case_Writing_Rules.md) |
+| ASPICE SWE.6 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |
 | Test Design Method 判斷（LLM prompt 用） | [Test Case Design Method 判斷規則.md](Test%20Case%20Design%20Method%20判斷規則.md) |
 | 架構視覺化 | [TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html) |
 
-> `RULES.md`、`ASPICE_SWE6_Test_Case_Writing_Rules.md`、`Test Case Design Method 判斷規則.md` 的檔名被 `backend/api_server.py` 硬寫死，改名會導致規則載入失敗。
+> `RULES.md`、`ASPICE_SWE6_AI_Instruction.md`、`Test Case Design Method 判斷規則.md` 的檔名被 `backend/api_server.py` 硬寫死，改名會導致規則載入失敗。

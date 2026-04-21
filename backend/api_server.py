@@ -120,7 +120,7 @@ _FALLBACK_RULES = """
 # 規則文件路徑（專案根目錄下 docs/）
 _DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
 _RULE_FILES = [
-    _DOCS_DIR / "ASPICE_SWE6_Test_Case_Writing_Rules.md",
+    _DOCS_DIR / "ASPICE_SWE6_AI_Instruction.md",
     _DOCS_DIR / "Test Case Design Method 判斷規則.md",
 ]
 

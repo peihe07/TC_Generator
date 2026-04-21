@@ -75,9 +75,11 @@ _HARD_CONSTRAINTS = """
 10. **input_test_data lists concrete values only** (numbers, strings, file
     names, enum values). If no data is needed, write "N/A" — never leave
     it empty and never describe actions here.
-11. **Follow the ASPICE SWE.6 Rules loaded above verbatim.** The rules doc
-    is authoritative. If a rule section (§1.2 / §1.3 / §1.4 / §1.5 / §3.4
-    / §4.3 / §6) applies, obey it — do not paraphrase, skip, or relax.
+11. **Follow the ASPICE SWE.6 AI Instruction loaded above verbatim.** The
+    instruction doc is authoritative. Apply the relevant sections — §2 Core
+    Principles, §6 Field Rules, §7 Step Design (incl. §7.5 Final Step /
+    §7.6 Baseline), §8 Expected Results, §9 False Pass/Fail, §10 Requirement
+    Alignment, §11 Review Checklist — do not paraphrase, skip, or relax.
 """
 
 
@@ -86,7 +88,7 @@ _WRITING_DISCIPLINE = """
 
 For every TC you are about to output, silently verify:
   [ ] test_item_rewrite follows `(Trigger → Observable Outcome)` and carries
-      a scenario tag when the req was split (§1.2).
+      a scenario tag when the req was split (§6.1 Test Item).
   [ ] pre_conditions only describes state/environment, no actions.
   [ ] Every test_procedure step has: explicit actor, explicit action verb,
       explicit target, and (when applicable) explicit value/data.
@@ -98,7 +100,7 @@ For every TC you are about to output, silently verify:
   [ ] No cross-reference like "same as TC1"; every TC is self-contained.
 
 If any check fails, FIX the TC before outputting. Do not emit a TC that
-would fail the §6 12-item self-check in the rules doc.
+would fail the §11 12-item self-check in the instruction doc.
 """
 
 
@@ -328,32 +330,33 @@ _MULTI_TC_GUIDANCE = """
 Return as many TCs as the rules require — **no upper cap**. The number of TCs
 is driven entirely by what the requirement mandates, not by an arbitrary limit.
 
-Apply these authoritative rules from `ASPICE_SWE6_Test_Case_Writing_Rules.md`:
+Apply these authoritative rules from `ASPICE_SWE6_AI_Instruction.md`:
 
-- **§1.2 Design Rule #1** — If the requirement can be validated by more than
+- **§6.1 Test Item** — If the requirement can be validated by more than
   one scenario, EACH distinct scenario is its own TC, and each `test_item_rewrite`
   MUST carry a parenthesised scenario tag so reviewers can tell the TCs apart
   (e.g. `(Initial Sync = 5,000)` vs `(Initial Sync > 5,000)`).
-- **§1.3 Keyword analysis** — Identify the key concepts in the requirement
-  (limits, per-device rules, order-preservation, stop conditions, etc.) and
-  ensure **every keyword maps to at least one TC**. A concept with no TC
-  coverage is a gap that must be closed by adding another TC.
-- **§1.4 Mistake #4 (False-Pass prevention)** — When the requirement explicitly
-  lists multiple supported items (file formats, device types, markets, input
+- **§10.2 Keyword-Driven Scenario Decomposition** — Identify the key concepts
+  in the requirement (limits, per-device rules, order-preservation, stop
+  conditions, etc.) and ensure **every keyword maps to at least one TC**.
+  A concept with no TC coverage is a gap that must be closed by adding a TC.
+- **§9 False Pass prevention** — When the requirement explicitly lists
+  multiple supported items (file formats, device types, markets, input
   classes, etc.), produce ONE TC per item. Never combine them. e.g. supported
   video formats `.mp4 / .avi / .mpg / .wmv / .3gp / .mkv` → 6 separate TCs.
-- **§1.5 Extended scenarios** — Think about related branches the requirement
-  implies (unknown / private / withheld values, before-vs-after-sync states,
-  negative paths) and add TCs for each that the requirement actually covers.
-- **§3.4 Baseline rule** — When a TC involves before/after comparison, that
-  TC's procedure must establish a baseline before the change action.
+- **§10.2.1 Extended Branch Checklist** — Scan for implicit branches the
+  requirement rarely states explicitly (unknown / private / withheld values,
+  before-vs-after states, boundary =/>/<, negative paths, concurrency,
+  persistence after reboot) and add TCs for each that the requirement covers.
+- **§7.6 Baseline Comparison** — When a TC involves before/after comparison,
+  that TC's procedure must establish a baseline before the change action.
 
 Splitting decision tree:
-1. Does the requirement enumerate supported items (§1.4)? → one TC per item.
+1. Does the requirement enumerate supported items (§9)? → one TC per item.
 2. Does it describe multiple distinct scenarios / conditions / boundaries?
-   → one TC per scenario (§1.2).
+   → one TC per scenario (§6.1).
 3. Does it imply extended branches (unknown / error / negative)?
-   → add TCs for each covered branch (§1.5, plus Design Method guide).
+   → add TCs for each covered branch (§10.2.1, plus Design Method guide).
 4. Only a single atomic behaviour with no branches? → return exactly one TC.
 
 Additional hard constraints:
@@ -363,7 +366,7 @@ Additional hard constraints:
   `Test Case Design Method 判斷規則.md`; choose via the "快速判斷流程"
   (negative → fault → state → decision → EP → BVA → combinatorial →
   scenario → functional).
-- Every TC must pass the 12-item self-check in §6 of the rules doc.
+- Every TC must pass the §11 12-item self-check in the instruction doc.
 """
 
 
@@ -395,16 +398,16 @@ def build_multi_tc_user_prompt(
 Return a JSON object with these top-level keys:
 - `reasoning` (string, 繁體中文): ≤3 sentences explaining WHY this requirement
   was split into N TCs, citing the rule section(s) you applied (e.g.
-  「§1.4 列舉了 6 種支援格式，因此拆成 6 筆；每筆 test_item_rewrite 帶不同情境 tag」).
+  「§9 列舉了 6 種支援格式，因此拆成 6 筆；每筆 test_item_rewrite 帶不同情境 tag」).
   For atomic requirements returning 1 TC, briefly state it is atomic.
-- `keywords` (array, optional): keyword analysis per §1.3, each entry
+- `keywords` (array, optional): keyword analysis per §10.2, each entry
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
   numbers are 1-based indices into `tcs`.
 - `tcs` (array): produce as many TCs as the rules require — do not collapse
   distinct scenarios to save output. Each TC object has keys: {output_keys}
 
 Example (requirement that enumerates 3 supported formats would return 3 TCs):
-{{"reasoning": "§1.4 列舉 3 種格式，各一筆 TC 避免 False Pass 風險。",
+{{"reasoning": "§9 列舉 3 種格式，各一筆 TC 避免 False Pass 風險。",
   "keywords": [
     {{"keyword": "supported formats", "meaning": "系統允許的影片格式",
       "covered_by": [1, 2, 3]}}
@@ -416,14 +419,14 @@ Example (requirement that enumerates 3 supported formats would return 3 TCs):
   ]}}
 
 REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten with scenario tag (§1.2), not blank, not a copy.
+- test_item_rewrite rewritten with scenario tag (§6.1), not blank, not a copy.
 - Each test_procedure step = one concrete, executable action with explicit
   target + value; no "check/verify" handwaving, no chained actions, no placeholders.
-- test_procedure and expected_result have the SAME count (1:1, §4.3).
+- test_procedure and expected_result have the SAME count (1:1, §8).
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only; input_test_data = concrete values or "N/A".
 - design_method via the 9-method decision flow; priority is P0 / P1 / P2.
-- All output fields English; must pass the §6 12-item self-check."""
+- All output fields English; must pass the §11 12-item self-check."""
 
 
 def build_test_set_classification_prompt(reqs: list[dict]) -> str:
@@ -514,7 +517,7 @@ one entry per input requirement, in the same order. Each entry has the shape:
 `{{"req_id": "...", "reasoning": "<繁中>", "keywords": [...], "tcs": [...]}}`
 - `reasoning`: ≤3 sentences explaining WHY that req was split into N TCs,
   citing rule sections. For atomic reqs returning 1 TC, say so.
-- `keywords` (optional): per-req keyword analysis (§1.3),
+- `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
 - `tcs`: as many TC objects as the rules demand (no cap).
 Each TC object has keys: {output_keys}
@@ -522,7 +525,7 @@ Each TC object has keys: {output_keys}
 Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic → 1 TC):
 {{"requirements": [
   {{"req_id": "REQ-001",
-    "reasoning": "§1.4 列出 6 種支援格式，各一筆 TC。",
+    "reasoning": "§9 列出 6 種支援格式，各一筆 TC。",
     "keywords": [], "tcs": [{{...}}, {{...}}, {{...}}, {{...}}, {{...}}, {{...}}]}},
   {{"req_id": "REQ-002",
     "reasoning": "單一原子行為，不需拆分。",
@@ -530,11 +533,11 @@ Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic �
 ]}}
 
 REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten with scenario tag (§1.2), not blank, not a copy.
+- test_item_rewrite rewritten with scenario tag (§6.1), not blank, not a copy.
 - Each test_procedure step = one concrete, executable action with explicit
   target + value; no "check/verify" handwaving, no chained actions, no placeholders.
-- test_procedure and expected_result have the SAME count (1:1, §4.3).
+- test_procedure and expected_result have the SAME count (1:1, §8).
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only; input_test_data = concrete values or "N/A".
 - design_method via the 9-method decision flow; priority is P0 / P1 / P2.
-- All output fields English; must pass the §6 12-item self-check."""
+- All output fields English; must pass the §11 12-item self-check."""
