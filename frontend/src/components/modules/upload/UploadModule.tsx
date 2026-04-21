@@ -132,17 +132,20 @@ const UploadModule: React.FC = () => {
           <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
             <legend className="px-2">Reference Workbook (Optional)</legend>
             <div
-              className={`dropzone-sunken h-20 w-full min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''}`}
+              className={`dropzone-sunken h-32 w-full min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''} ${files.referenceWorkbook ? 'bg-white' : ''}`}
               onClick={() => referenceWorkbookInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'referenceWorkbook')}
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, 'referenceWorkbook')}
               onDragLeave={(e) => handleDragLeave(e, 'referenceWorkbook')}
             >
-              <RiFileSearchLine className="size-6" style={{ color: 'var(--text-muted)' }} />
-              <span className="text-[10px] truncate px-2 w-full text-center">
+              <RiFileSearchLine className="size-10" style={{ color: 'var(--text-muted)' }} />
+              <span className="text-xs truncate px-2 w-full text-center">
                 {files.referenceWorkbook ? files.referenceWorkbook.name : 'Drop Reference Excel'}
               </span>
+              {files.referenceWorkbook && (
+                <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>[READY]</span>
+              )}
             </div>
             <input
               ref={referenceWorkbookInputRef}
@@ -156,17 +159,20 @@ const UploadModule: React.FC = () => {
           <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
             <legend className="px-2">Reference PDF/DOCX</legend>
             <div
-              className={`dropzone-sunken h-20 w-full min-w-0 overflow-hidden ${draggingZone === 'spec' ? 'dragging' : ''}`}
+              className={`dropzone-sunken h-32 w-full min-w-0 overflow-hidden ${draggingZone === 'spec' ? 'dragging' : ''} ${files.spec ? 'bg-white' : ''}`}
               onClick={() => specInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'spec')}
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, 'spec')}
               onDragLeave={(e) => handleDragLeave(e, 'spec')}
             >
-              <RiFileLine className="size-6" style={{ color: 'var(--text-muted)' }} />
-              <span className="text-[10px] truncate px-2 w-full text-center">
+              <RiFileLine className="size-10" style={{ color: 'var(--text-muted)' }} />
+              <span className="text-xs truncate px-2 w-full text-center">
                 {files.spec ? files.spec.name : 'Drop Reference Doc'}
               </span>
+              {files.spec && (
+                <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>[READY]</span>
+              )}
             </div>
             <input
               ref={specInputRef}
