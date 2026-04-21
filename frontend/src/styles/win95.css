@@ -122,19 +122,11 @@ button, input, textarea, select, table, td, th, label {
   text-rendering: optimizeLegibility;
 }
 
-/* 所有視窗 module 內禁止選取/複製文字；輸入元素仍允許編輯 */
+/* 視窗 module 內預設允許選取/複製文字（對話框、聊天訊息、結果顯示皆可複製）。
+   個別 UI chrome（titlebar、taskbar、Desktop 背景、CostMeter 等）會各自用
+   .select-none 或 user-select: none 關閉選取。 */
 .window-body,
 .window-body * {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.window-body input,
-.window-body textarea,
-.window-body [contenteditable="true"],
-.window-body .selectable,
-.window-body .selectable * {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;

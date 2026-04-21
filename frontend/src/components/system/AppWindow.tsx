@@ -85,27 +85,7 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
       </div>
 
       {/* Window Body */}
-      <div
-        className="window-body flex-1 flex flex-col m-1 overflow-hidden"
-        onCopy={(e) => {
-          const t = e.target as HTMLElement;
-          const tag = t?.tagName;
-          if (tag === 'INPUT' || tag === 'TEXTAREA' || t?.closest?.('.selectable')) return;
-          e.preventDefault();
-        }}
-        onCut={(e) => {
-          const t = e.target as HTMLElement;
-          const tag = t?.tagName;
-          if (tag === 'INPUT' || tag === 'TEXTAREA' || t?.closest?.('.selectable')) return;
-          e.preventDefault();
-        }}
-        onContextMenu={(e) => {
-          const t = e.target as HTMLElement;
-          const tag = t?.tagName;
-          if (tag === 'INPUT' || tag === 'TEXTAREA' || t?.closest?.('.selectable')) return;
-          e.preventDefault();
-        }}
-      >
+      <div className="window-body flex-1 flex flex-col m-1 overflow-hidden">
         <div className={`flex-1 overflow-auto bg-white border-2 border-sunken shadow-inner ${(id === 'diagrams' || id === 'rules') ? 'p-0' : 'p-4'}`}>
           {children}
         </div>
