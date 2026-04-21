@@ -164,7 +164,7 @@
      ======================================== -->
 <div class="section">
 <h2>1. 標準流程 — 產生一份完整的 TC</h2>
-<p class="lede">最常用的操作路徑。從拖檔到匯出五步驟，每一步對應 Win95 桌面上的一個視窗。</p>
+<p class="lede">最常用的操作路徑。從拖檔到匯出共五步。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 360">
@@ -412,7 +412,7 @@
      ======================================== -->
 <div class="section">
 <h2>4. 桌面上的視窗如何互動</h2>
-<p class="lede">每個步驟對應一個 Win95 風格的視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉，桌面上同一時間只保留一個 active module。CostMeter 常駐在桌面右上角；Workspace / Job History / Agent 按鈕常駐在 Taskbar。</p>
+<p class="lede">每個步驟對應一個視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉；CostMeter、Workspace、Job History 與 Agent 則維持常駐。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 440">
@@ -471,7 +471,7 @@
     <text class="ts" x="720" y="144" text-anchor="middle">CostMeter</text>
     <text class="tiny" x="720" y="160" text-anchor="middle">（右上角）</text>
     <text class="ts" x="720" y="184" text-anchor="middle">Workspace / Job History</text>
-    <text class="ts" x="720" y="204" text-anchor="middle">Agent Co-pilot</text>
+    <text class="ts" x="720" y="204" text-anchor="middle">Agent</text>
     <text class="tiny" x="720" y="220" text-anchor="middle">（Taskbar）</text>
     <text class="tiny" x="720" y="248" text-anchor="middle">不受 advanceWindow 影響</text>
   </g>
@@ -561,11 +561,11 @@
 </div>
 
 <!-- ========================================
-     6. 下一步：Agent 副駕（預覽）
+     6. 雙軌並用
      ======================================== -->
 <div class="section">
-<h2>6. 雙軌並用 — GUI + Agent 副駕</h2>
-<p class="lede">GUI 五步驟與 Agent 副駕（ChatModule）皆已上線，可從 Taskbar 上的 Agent 按鈕開啟浮動視窗。兩者共用同一份 backend tools 與 job store，可在同一 job 裡來回切換。</p>
+<h2>6. 雙軌並用 — GUI + Agent</h2>
+<p class="lede">GUI 流程與 Agent 視窗可並用，兩者共用同一份 backend tools 與 job store。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 380">
@@ -578,8 +578,8 @@
   <!-- GUI Path -->
   <g class="c-blue">
     <rect x="40" y="50" width="360" height="240" rx="14"/>
-    <text class="th" x="220" y="84" text-anchor="middle" fill="var(--blue-800)">現行 GUI 模式</text>
-    <text class="ts" x="220" y="104" text-anchor="middle">（繼續保留，主要交付路徑）</text>
+    <text class="th" x="220" y="84" text-anchor="middle" fill="var(--blue-800)">GUI</text>
+    <text class="ts" x="220" y="104" text-anchor="middle">主要操作流程</text>
   </g>
   <g class="c-blue">
     <rect x="62" y="128" width="62" height="32" rx="6"/>
@@ -601,15 +601,15 @@
     <rect x="62" y="170" width="62" height="32" rx="6"/>
     <text class="tiny" x="93" y="190" text-anchor="middle">Export</text>
   </g>
-  <text class="ts" x="220" y="230" text-anchor="middle">照 SOP 走、每步看得到、</text>
-  <text class="ts" x="220" y="248" text-anchor="middle">適合正式交付與稽核</text>
-  <text class="ts" x="220" y="270" text-anchor="middle" fill="var(--blue-600)">主要交付路徑</text>
+  <text class="ts" x="220" y="230" text-anchor="middle">依序操作、逐步確認</text>
+  <text class="ts" x="220" y="248" text-anchor="middle">適合日常交付</text>
+  <text class="ts" x="220" y="270" text-anchor="middle" fill="var(--blue-600)">穩定、可追蹤</text>
 
   <!-- Agent Path -->
   <g class="c-purple">
     <rect x="460" y="50" width="360" height="240" rx="14"/>
-    <text class="th" x="640" y="84" text-anchor="middle" fill="var(--purple-800)">Agent 副駕（已上線）</text>
-    <text class="ts" x="640" y="104" text-anchor="middle">（ChatModule，Taskbar 按鈕開啟）</text>
+    <text class="th" x="640" y="84" text-anchor="middle" fill="var(--purple-800)">Agent</text>
+    <text class="ts" x="640" y="104" text-anchor="middle">從 Taskbar 開啟</text>
   </g>
   <g class="c-purple">
     <rect x="480" y="128" width="320" height="32" rx="6"/>
@@ -619,9 +619,9 @@
     <rect x="480" y="168" width="320" height="32" rx="6"/>
     <text class="ts" x="640" y="188" text-anchor="middle">「過去一個月哪些 job match rate &lt; 80%？」</text>
   </g>
-  <text class="ts" x="640" y="230" text-anchor="middle">自然語言、跨 job、批次操作</text>
-  <text class="ts" x="640" y="248" text-anchor="middle">GUI 做不到或太慢的事</text>
-  <text class="ts" x="640" y="270" text-anchor="middle" fill="var(--purple-600)">模糊查詢、批次、跨 job 操作</text>
+  <text class="ts" x="640" y="230" text-anchor="middle">自然語言與批次操作</text>
+  <text class="ts" x="640" y="248" text-anchor="middle">適合快速查詢與補操作</text>
+  <text class="ts" x="640" y="270" text-anchor="middle" fill="var(--purple-600)">補充 GUI 流程</text>
 
   <!-- Bridge -->
   <line x1="400" y1="170" x2="460" y2="170" class="arr-d" stroke="var(--text2)"/>
