@@ -104,7 +104,7 @@ _FALLBACK_RULES = """
 - Setup steps → Transition steps → Final Step (verification)
 - Each step: executable action + purpose
 - Final step must include action + verification target
-- Forbidden main verbs: observe / see if / check whether / confirm whether / verify
+- Forbidden main verbs: observe / see if / check whether / confirm whether / verify / watch / monitor / inspect
   Use: Check that / Confirm that / Read / Record / Compare + explicit target
 
 ## Expected Result

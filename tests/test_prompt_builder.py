@@ -1,7 +1,13 @@
 """Tests for prompt builder module (RULES.md §12)."""
 import pytest
 
-from prompt_builder import build_system_prompt, build_user_prompt, build_batch_prompt
+from prompt_builder import (
+    build_batch_prompt,
+    build_multi_tc_user_prompt,
+    build_system_blocks,
+    build_system_prompt,
+    build_user_prompt,
+)
 
 
 @pytest.fixture
@@ -45,6 +51,16 @@ class TestBuildSystemPrompt:
     def test_contains_json_instruction(self):
         prompt = build_system_prompt()
         assert "JSON" in prompt
+
+    def test_system_blocks_allow_traditional_chinese_only_for_analysis_fields(self):
+        prompt = build_system_blocks("RULES", batch=False)
+        assert "All TC output fields that will be written back to the workbook MUST be in" in prompt
+        assert "Analytical explanation fields such as `reasoning`, `meaning`" in prompt
+        assert "may be written in Traditional Chinese" in prompt
+
+    def test_batch_system_blocks_request_json_object_contract(self):
+        prompt = build_system_blocks("RULES", batch=True)
+        assert "Return ONLY valid JSON object(s), no markdown fences." in prompt
 
 
 class TestBuildUserPrompt:
@@ -101,7 +117,8 @@ class TestBuildBatchPrompt:
     def test_requests_json_array(self, sample_context, rules_text):
         rows = [{"req_id": "R001", "test_item": "test"}]
         prompt = build_batch_prompt(rows, sample_context, {}, rules_text)
-        assert "array" in prompt.lower() or "Array" in prompt
+        assert 'Return a JSON object with key `tcs`' in prompt
+        assert "array of TC objects" in prompt
 
     def test_includes_per_row_test_set(self, sample_context, rules_text):
         rows = [
@@ -111,3 +128,16 @@ class TestBuildBatchPrompt:
         prompt = build_batch_prompt(rows, sample_context, {}, rules_text)
         assert "- Test Set: Access & Entry" in prompt
         assert "- Test Set: Device List" in prompt
+
+
+class TestBuildMultiTcPrompt:
+    def test_analysis_fields_are_traditional_chinese_but_tc_fields_remain_english(self, sample_row, sample_context):
+        prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
+        assert "`reasoning` (string, 繁體中文)" in prompt
+        assert '"meaning": "<繁中>"' in prompt
+        assert "All output fields English" in prompt
+
+    def test_design_method_mentions_system_normalization(self, sample_row, sample_context):
+        prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
+        assert "short English" in prompt
+        assert "normalized by the system" in prompt or "normalize it to the canonical dropdown value" in prompt

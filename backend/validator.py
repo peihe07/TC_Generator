@@ -24,6 +24,34 @@ VALID_DESIGN_METHODS = [
     "基礎故障注入 (Fault Injection Lite)",
 ]
 
+_DESIGN_METHOD_ALIASES = {
+    "functional": VALID_DESIGN_METHODS[0],
+    "functional based": VALID_DESIGN_METHODS[0],
+    "state transition": VALID_DESIGN_METHODS[1],
+    "state transition testing": VALID_DESIGN_METHODS[1],
+    "decision table": VALID_DESIGN_METHODS[2],
+    "decision table testing": VALID_DESIGN_METHODS[2],
+    "ep": VALID_DESIGN_METHODS[3],
+    "equivalence": VALID_DESIGN_METHODS[3],
+    "equivalence partitioning": VALID_DESIGN_METHODS[3],
+    "equivalence partitioning, ep": VALID_DESIGN_METHODS[3],
+    "bva": VALID_DESIGN_METHODS[4],
+    "boundary": VALID_DESIGN_METHODS[4],
+    "boundary value analysis": VALID_DESIGN_METHODS[4],
+    "boundary value analysis, bva": VALID_DESIGN_METHODS[4],
+    "combinatorial": VALID_DESIGN_METHODS[5],
+    "pairwise": VALID_DESIGN_METHODS[5],
+    "combinatorial testing": VALID_DESIGN_METHODS[5],
+    "scenario": VALID_DESIGN_METHODS[6],
+    "use case": VALID_DESIGN_METHODS[6],
+    "scenario / use case": VALID_DESIGN_METHODS[6],
+    "negative": VALID_DESIGN_METHODS[7],
+    "invalid": VALID_DESIGN_METHODS[7],
+    "negative / invalid": VALID_DESIGN_METHODS[7],
+    "fault injection": VALID_DESIGN_METHODS[8],
+    "fault injection lite": VALID_DESIGN_METHODS[8],
+}
+
 VALID_PRIORITIES = ["P0", "P1", "P2"]
 
 # 舊字串 → P-code 的 fuzzy 映射（AI / template 可能還回舊值）。
@@ -63,8 +91,12 @@ OBVIOUS_STATES = [
 # Vague terms not allowed in expected results
 VAGUE_TERMS = ["normal", "as expected", "works correctly", "no issue"]
 
-# Vague verbs not allowed in final procedure step
-VAGUE_FINAL_VERBS = ["observe whether", "see if", "look at"]
+# Vague verbs not allowed in final procedure step (§7.1.1)
+VAGUE_FINAL_VERBS = [
+    "observe whether", "observe ", "see if", "look at",
+    "check whether", "confirm whether",
+    "watch ", "monitor ", "inspect ",
+]
 
 # Verification verbs required in final procedure step
 VERIFICATION_VERBS = ["verify", "check", "confirm", "ensure"]
@@ -256,11 +288,23 @@ def validate_tc_ids_sequence(ids: list[str]) -> ValidationResult:
 # --- §8.6 Design Method ---
 
 # LLM 常回傳短版英文（如 "State Transition"），這些關鍵字皆視為合法
-DESIGN_METHOD_KEYWORDS = [
-    "functional", "state transition", "decision table", "equivalence",
-    "boundary", "combinatorial", "pairwise", "scenario", "use case",
-    "negative", "invalid", "fault injection",
-]
+DESIGN_METHOD_KEYWORDS = list(_DESIGN_METHOD_ALIASES.keys())
+
+
+def normalize_design_method(method: str | None) -> str:
+    """Normalize short English / mixed labels to the canonical dropdown string."""
+    if not method:
+        return ""
+    text = str(method).strip()
+    if not text:
+        return ""
+    if text in VALID_DESIGN_METHODS:
+        return text
+    low = text.lower()
+    for alias, canonical in _DESIGN_METHOD_ALIASES.items():
+        if alias in low:
+            return canonical
+    return ""
 
 
 def validate_design_method(method: str) -> ValidationResult:
@@ -277,13 +321,13 @@ def validate_design_method(method: str) -> ValidationResult:
         return ValidationResult(False, check, "Design method is empty.")
     if method in VALID_DESIGN_METHODS:
         return ValidationResult(True, check)
-    low = method.lower()
-    matched = [kw for kw in DESIGN_METHOD_KEYWORDS if kw in low]
-    if matched:
+    normalized = normalize_design_method(method)
+    if normalized:
+        matched = [kw for kw in DESIGN_METHOD_KEYWORDS if kw in method.lower()]
         return ValidationResult(
             True, check,
-            f"Design method '{method}' matched by keyword {matched[0]!r}; "
-            "建議改為 VALID_DESIGN_METHODS 清單裡的完整字串以符合下拉選單。",
+            f"Design method '{method}' normalized to '{normalized}'"
+            + (f" via keyword {matched[0]!r}." if matched else "."),
         )
     return ValidationResult(
         False, check,

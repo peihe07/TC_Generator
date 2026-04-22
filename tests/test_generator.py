@@ -71,6 +71,11 @@ class TestParseTcResponse:
         with pytest.raises(GenerationError, match="missing"):
             parse_tc_response(json.dumps(incomplete))
 
+    def test_short_design_method_is_normalized_to_canonical_value(self):
+        payload = {**VALID_TC_JSON, "design_method": "Functional"}
+        result = parse_tc_response(json.dumps(payload))
+        assert result["design_method"] == "功能測試 (Functional based ; no specific technique)"
+
 
 class TestParseBatchResponse:
     def test_valid_array(self):

@@ -89,6 +89,8 @@ def _normalize_tc_dict(data: dict) -> dict:
 
     若 item 已帶有開頭號碼（如 "1.", "1)", "1、"），保留原號碼，避免雙重編號。
     """
+    from validator import normalize_design_method
+
     for key in _LIST_FIELDS:
         val = data.get(key)
         if isinstance(val, list):
@@ -106,6 +108,9 @@ def _normalize_tc_dict(data: dict) -> dict:
             data[key] = "\n".join(lines)
         elif val is None:
             data[key] = ""
+    normalized_method = normalize_design_method(data.get("design_method"))
+    if normalized_method:
+        data["design_method"] = normalized_method
     return data
 
 

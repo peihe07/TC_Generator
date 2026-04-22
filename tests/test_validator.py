@@ -12,6 +12,7 @@ from validator import (
     validate_priority,
     validate_row,
     ValidationResult,
+    normalize_design_method,
 )
 
 
@@ -217,6 +218,12 @@ class TestValidateDesignMethod:
     def test_invalid(self):
         r = validate_design_method("random method")
         assert not r.passed
+
+    def test_short_english_label_normalizes_to_canonical_string(self):
+        assert normalize_design_method("Functional") == "功能測試 (Functional based ; no specific technique)"
+        r = validate_design_method("Functional")
+        assert r.passed
+        assert "normalized to" in r.message
 
 
 # --- §8.7 Priority ---

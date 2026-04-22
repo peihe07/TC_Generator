@@ -66,6 +66,12 @@ def test_build_system_prompt_without_rules():
     assert "authoritative" not in p
 
 
+def test_build_system_prompt_does_not_reference_missing_phase_tools():
+    p = build_system_prompt(None)
+    assert "coming in Phase 4" not in p
+    assert "call `list_jobs`" in p
+
+
 # ---------------------------------------------------------------------------
 # dispatch_tool
 # ---------------------------------------------------------------------------

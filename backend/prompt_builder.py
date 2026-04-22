@@ -21,7 +21,7 @@ _SYSTEM_BASE = (
 )
 _SYSTEM_BASE_BATCH = (
     "You are an ASPICE SWE.6 test case writer. "
-    "Return a JSON array, one object per TC. No markdown fences."
+    "Return ONLY valid JSON object(s), no markdown fences."
 )
 
 
@@ -37,13 +37,15 @@ def build_batch_system_prompt() -> str:
 _HARD_CONSTRAINTS = """
 ## HARD CONSTRAINTS (non-negotiable; violation = failure)
 
-1. **Every single output field MUST be written in English.** This includes
-   `test_item_rewrite`, `pre_conditions`, `input_test_data`, `test_procedure`,
-   `expected_result`, `design_method`, `reasoning`, and every entry inside
-   `keywords` (keyword, meaning, covered_by labels). Requirements may be
-   bilingual (Chinese + English); read both but produce ONLY English output.
+1. **All TC output fields that will be written back to the workbook MUST be in
+   English.** This includes `test_item_rewrite`, `pre_conditions`,
+   `input_test_data`, `test_procedure`, `expected_result`, `design_method`,
+   `priority`, `split_flag`, and `split_reason`. Requirements may be bilingual
+   (Chinese + English); read both but produce these TC fields in English only.
    Proper nouns / API names / protocol names (HFP, A2DP, BLE, etc.) stay
-   as-is. Do NOT emit Chinese anywhere in the response.
+   as-is. Analytical explanation fields such as `reasoning`, `meaning`, or
+   scenario descriptions may be written in Traditional Chinese when explicitly
+   requested below.
 2. **test_item_rewrite MUST be filled** — rewrite the requirement as
    `(Condition/Trigger → Observable Outcome)`; must not be blank, must not
    copy the source verbatim.
@@ -56,9 +58,10 @@ _HARD_CONSTRAINTS = """
    "phonebook contains N contacts" — set up + read in a baseline step). §6.2.
 5. **design_method is assigned AFTER the procedure and expected_result are
    finalized**, judged from the ACTUAL flow (not the requirement text). Use
-   §14 first-match on PRIMARY intent. MUST be one of these 9 English labels:
+   §15 first-match on PRIMARY intent. Prefer these 9 short English labels:
    Negative / Fault Injection / State Transition / Decision Table / EP / BVA
-   / Combinatorial / Scenario / Functional.
+   / Combinatorial / Scenario / Functional. The system will normalize them to
+   the canonical dropdown values.
 6. **priority MUST be one of P0 / P1 / P2.** Mapping: P0 = highest (safety,
    core functionality, data loss risk), P1 = standard feature (user-facing
    behaviour), P2 = cosmetic / edge case. Do NOT return "High", "Medium",
@@ -79,8 +82,9 @@ _HARD_CONSTRAINTS = """
    what appears on screen, what log/signal is emitted, what state changes,
    or what value is returned. No "works correctly", no "no error".
 9a. **Forbidden step verbs (§7.1.1):** NEVER use `observe`, `observe whether`,
-   `see if`, `check whether`, `confirm whether`, or `verify` as the MAIN
-   action verb of a test_procedure step — they leave the target ambiguous.
+   `see if`, `check whether`, `confirm whether`, `verify`, `watch`, `monitor`,
+   or `inspect` as the MAIN action verb of a test_procedure step — they
+   defer judgement to the tester and leave the target ambiguous.
    Always pair a preferred verb (`Check that / Confirm that / Read /
    Record / Compare`) with an explicit observable target (UI element, log
    line, signal value, count, state). `verify` may appear only to describe
@@ -109,16 +113,20 @@ For every TC you are about to output, silently verify:
   [ ] Every test_procedure step has: explicit actor, explicit action verb,
       explicit target, and (when applicable) explicit value/data.
   [ ] No forbidden vague verbs as a step's main verb — NEVER use `observe`,
-      `observe whether`, `see if`, `check whether`, `confirm whether`, or
-      `verify` as the main action; use `Check that / Confirm that / Read /
-      Record / Compare` + explicit observable target (§7.1.1).
+      `observe whether`, `see if`, `check whether`, `confirm whether`,
+      `verify`, `watch`, `monitor`, or `inspect` as the main action; use
+      `Check that / Confirm that / Read / Record / Compare` + explicit
+      observable target (§7.1.1).
   [ ] procedure step count == expected_result item count, aligned 1:1.
   [ ] expected_result items are observable (UI / log / API response / state).
   [ ] design_method assigned AFTER procedure+ER are finalized, judged from
-      the ACTUAL flow (not the requirement text), via §14 first-match on
-      PRIMARY intent.
+      the ACTUAL flow (not the requirement text), via §15 first-match on
+      PRIMARY intent. Short English labels are preferred; the system will
+      normalize them to canonical dropdown values.
   [ ] priority is exactly P0 / P1 / P2.
-  [ ] No Chinese leaks into any output field (繁中只允許在 reasoning / meaning).
+  [ ] All workbook-bound TC fields are English-only; Traditional Chinese is
+      allowed only in explicit analysis/explanation fields such as
+      `reasoning`, `meaning`, `name`, `description` when requested.
   [ ] No cross-reference like "same as TC1"; every TC is self-contained.
 
 If any check fails, FIX the TC before outputting. Do not emit a TC that
@@ -189,7 +197,7 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
   hedge words (`should`, `within reasonable time`, `be able to`).
 - Each test_procedure step = one concrete action with explicit target + value.
   FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
-  `check whether`, `confirm whether`, `verify`. Use `Check that / Confirm
+  `check whether`, `confirm whether`, `verify`, `watch`, `monitor`, `inspect`. Use `Check that / Confirm
   that / Read / Record / Compare` + explicit observable target instead.
 - No "and/then"-chained actions in one step; no placeholders.
 - test_procedure and expected_result have the SAME number of numbered items (1:1).
@@ -197,7 +205,7 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
 - design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
+  ACTUAL flow via §15 first-match on PRIMARY intent; priority is P0 / P1 / P2.
 - All output fields in English."""
 
 
@@ -224,7 +232,7 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
   hedge words (`should`, `within reasonable time`, `be able to`).
 - Each test_procedure step = one concrete action with explicit target + value.
   FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
-  `check whether`, `confirm whether`, `verify`. Use `Check that / Confirm
+  `check whether`, `confirm whether`, `verify`, `watch`, `monitor`, `inspect`. Use `Check that / Confirm
   that / Read / Record / Compare` + explicit observable target instead.
 - No "and/then"-chained actions in one step; no placeholders.
 - test_procedure and expected_result have the SAME number of numbered items (1:1).
@@ -232,7 +240,7 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
 - design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
+  ACTUAL flow via §15 first-match on PRIMARY intent; priority is P0 / P1 / P2.
 - All output fields in English."""
 
 
@@ -312,7 +320,8 @@ def build_batch_prompt(
 {batch_text}{rules_section}
 
 ## Output
-Return a JSON Array with one object per TC. Each object has keys: {output_keys}
+Return a JSON object with key `tcs` whose value is an array of TC objects.
+Each TC object has keys: {output_keys}
 
 REMINDER for every TC — run the WRITING DISCIPLINE self-check:
 - test_item_rewrite rewritten (not blank, `(Trigger → Outcome)` form).
@@ -321,8 +330,9 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check:
   "and/then"-chained actions, no placeholders.
 - test_procedure and expected_result have the SAME count (1:1 mapping).
 - Each expected_result item is observable; input_test_data = concrete values or "N/A".
-- design_method assigned AFTER procedure+ER are finalized, via §14 first-match
-  on the actual flow's PRIMARY intent; priority is P0 / P1 / P2; output is English."""
+- design_method assigned AFTER procedure+ER are finalized, via §15 first-match
+  on the actual flow's PRIMARY intent; short English labels are preferred and
+  will be normalized by the system; priority is P0 / P1 / P2; output is English."""
 
 
 # ---------------------------------------------------------------------------
@@ -400,8 +410,9 @@ Additional hard constraints:
   NEVER write "same as TC1 but…" cross-references.
 - `design_method` for each TC is assigned AFTER its procedure + expected_result
   are finalized — judged from the ACTUAL flow, not the requirement text. Use
-  §14 first-match on PRIMARY intent (negative → fault → state → decision →
-  EP → BVA → combinatorial → scenario → functional). Cross-ref:
+  §15 first-match on PRIMARY intent (negative → fault → state → decision →
+  EP → BVA → combinatorial → scenario → functional). Prefer the short English
+  label; the system will normalize it to the canonical dropdown value. Cross-ref:
   `Test Case Design Method 判斷規則.md`.
 - Every TC must pass the §11 10-item self-check in the instruction doc.
 """
@@ -468,7 +479,8 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence); input_test_data = concrete values or "N/A".
 - design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
+  ACTUAL flow via §15 first-match on PRIMARY intent; short English labels are
+  preferred and will be normalized by the system; priority is P0 / P1 / P2.
 - All output fields English; must pass the §11 10-item self-check."""
 
 
@@ -587,5 +599,6 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence); input_test_data = concrete values or "N/A".
 - design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
+  ACTUAL flow via §15 first-match on PRIMARY intent; short English labels are
+  preferred and will be normalized by the system; priority is P0 / P1 / P2.
 - All output fields English; must pass the §11 10-item self-check."""
