@@ -474,3 +474,69 @@ class TestGenerateBatchMulti:
         assert len(result.tc_data[0]) == 1
         assert len(result.tc_data[1]) == 2
         assert [m["reasoning"] for m in result.split_meta] == ["A", "B"]
+
+
+class TestChatRetry:
+    """_chat 應對上游短暫錯誤做 exponential backoff retry。"""
+
+    def _make_success(self):
+        return make_chat_response({"ok": True})
+
+    @patch("generator.time.sleep", return_value=None)  # 跳過實際等待
+    @patch("generator._client")
+    def test_retries_on_transient_status_error(self, mock_client, _mock_sleep):
+        """上游 502 第一次失敗 → 第二次成功：不應拋出。"""
+        from generator import _chat
+
+        import openai as openai_module
+
+        request = MagicMock()
+        response = MagicMock(status_code=502)
+        transient = openai_module.APIStatusError(
+            "bad gateway", response=response, body=None
+        )
+        success = self._make_success()
+        mock_client.return_value.chat.completions.create.side_effect = [
+            transient,
+            success,
+        ]
+        result = _chat("sys", "usr", "gpt-4.1-mini", json_mode=False)
+        assert result is success
+        assert mock_client.return_value.chat.completions.create.call_count == 2
+
+    @patch("generator.time.sleep", return_value=None)
+    @patch("generator._client")
+    def test_does_not_retry_on_400(self, mock_client, _mock_sleep):
+        """400 bad request 不應 retry（非 transient）。"""
+        from generator import _chat
+
+        import openai as openai_module
+
+        response = MagicMock(status_code=400)
+        fatal = openai_module.APIStatusError(
+            "bad request", response=response, body=None
+        )
+        mock_client.return_value.chat.completions.create.side_effect = fatal
+        with pytest.raises(GenerationError, match="API call failed"):
+            _chat("sys", "usr", "gpt-4.1-mini", json_mode=False)
+        assert mock_client.return_value.chat.completions.create.call_count == 1
+
+    @patch("generator.time.sleep", return_value=None)
+    @patch("generator._client")
+    def test_gives_up_after_max_attempts(self, mock_client, _mock_sleep):
+        """持續 502 → 達到重試上限後仍拋出 GenerationError。"""
+        from generator import _chat, _RETRY_MAX_ATTEMPTS
+
+        import openai as openai_module
+
+        response = MagicMock(status_code=502)
+        transient = openai_module.APIStatusError(
+            "bad gateway", response=response, body=None
+        )
+        mock_client.return_value.chat.completions.create.side_effect = transient
+        with pytest.raises(GenerationError, match="API call failed"):
+            _chat("sys", "usr", "gpt-4.1-mini", json_mode=False)
+        assert (
+            mock_client.return_value.chat.completions.create.call_count
+            == _RETRY_MAX_ATTEMPTS
+        )

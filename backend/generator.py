@@ -5,12 +5,22 @@ prefix 提供 50% input cache discount，usage 透過 `prompt_tokens_details.cac
 回報，不需手動標記 cache_control。
 """
 import json
+import logging
 import os
+import random
 import re
+import time
 from dataclasses import dataclass, field
 from importlib import import_module
 from importlib.metadata import PackageNotFoundError
 from typing import TYPE_CHECKING, Any
+
+logger = logging.getLogger(__name__)
+
+# 上游短暫錯誤的 retry 參數
+_TRANSIENT_STATUS_CODES = {500, 502, 503, 504, 529}
+_RETRY_MAX_ATTEMPTS = 3  # 首次呼叫 + 最多 2 次重試
+_RETRY_BASE_DELAY = 1.0  # seconds
 
 if TYPE_CHECKING:
     from openai import OpenAI
@@ -290,10 +300,38 @@ def _chat(
         kwargs["max_completion_tokens"] = max_tokens
     if json_mode:
         kwargs["response_format"] = {"type": "json_object"}
-    try:
-        return client.chat.completions.create(**kwargs)
-    except Exception as e:
-        raise GenerationError(f"API call failed: {e}") from e
+
+    # 對 OpenAI 上游短暫錯誤（連線中斷、逾時、429、5xx）做 exponential backoff retry，
+    # 其他錯誤（如 400 bad request、auth）不 retry 直接拋出。
+    openai_module = import_module("openai")
+    transient_excs: tuple[type[BaseException], ...] = tuple(
+        cls
+        for name in ("APIConnectionError", "APITimeoutError", "RateLimitError")
+        if (cls := getattr(openai_module, name, None)) is not None
+    )
+    status_error_cls = getattr(openai_module, "APIStatusError", None)
+
+    last_exc: BaseException | None = None
+    for attempt in range(_RETRY_MAX_ATTEMPTS):
+        try:
+            return client.chat.completions.create(**kwargs)
+        except Exception as e:
+            is_transient = isinstance(e, transient_excs) or (
+                status_error_cls is not None
+                and isinstance(e, status_error_cls)
+                and getattr(e, "status_code", None) in _TRANSIENT_STATUS_CODES
+            )
+            if not is_transient or attempt == _RETRY_MAX_ATTEMPTS - 1:
+                last_exc = e
+                break
+            delay = _RETRY_BASE_DELAY * (2 ** attempt) + random.uniform(0, 0.5)
+            logger.warning(
+                "OpenAI API transient error (attempt %d/%d): %s — retrying in %.1fs",
+                attempt + 1, _RETRY_MAX_ATTEMPTS, e, delay,
+            )
+            time.sleep(delay)
+            last_exc = e
+    raise GenerationError(f"API call failed: {last_exc}") from last_exc
 
 
 def generate_single_tc(
