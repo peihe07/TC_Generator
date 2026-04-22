@@ -994,7 +994,7 @@ def test_match_preview_uses_reference_workbook():
 # ── Quick Generate Stream ─────────────────────────────────────────────────────
 
 VALID_TC_JSON = {
-    "test_item_rewrite": "(Button pressed → LED turns on)",
+    "test_item_rewrite": "Button pressed → LED turns on",
     "pre_conditions": "1. System is powered.",
     "input_test_data": "NA",
     "test_procedure": "1. Press button.\n2. Observe LED.",
@@ -1096,7 +1096,8 @@ def test_rerun_stream_emits_split_and_added_for_multi_tc(mock_tool):
 
     def _tc(label: str) -> dict:
         return {
-            "test_item_rewrite": f"({label})",
+            "tc_title": label,
+            "test_item_rewrite": "Trigger action → Observable outcome",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Setup.\n2. Verify.",
@@ -1213,7 +1214,7 @@ def test_quick_generate_unified_multi_tc(mock_gen):
     """AI 拆成 3 筆 TC 時應該發 3 個 tc.completed，analysis.scenarios 對應 3 筆。"""
     from generator import GenerationResult
     tcs = [
-        {**VALID_TC_JSON, "test_item_rewrite": f"(Scenario {i} → outcome)"} for i in (1, 2, 3)
+        {**VALID_TC_JSON, "tc_title": f"Scenario {i}", "test_item_rewrite": f"Trigger {i} → outcome {i}"} for i in (1, 2, 3)
     ]
     mock_gen.return_value = GenerationResult(
         tc_data=tcs,
@@ -1239,7 +1240,11 @@ def test_quick_generate_unified_multi_tc(mock_gen):
 
     analysis = next(e for e in events if e["type"] == "decompose.analysis")
     assert len(analysis["scenarios"]) == 3
+    assert analysis["scenarios"][0]["name"] == "Scenario 1"
     assert analysis["keywords"][0]["scenarios"] == [1, 2, 3]
+
+    tc_done = [e for e in events if e["type"] == "tc.completed"]
+    assert tc_done[0]["scenarioName"] == "Scenario 1"
 
 
 @patch("api_server.generate_tcs_for_row")

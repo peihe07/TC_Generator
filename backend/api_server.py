@@ -88,9 +88,9 @@ except (ValueError, Exception):
 
 # 內建精簡規則：當 docs/ 規則檔案不存在時的 fallback
 _FALLBACK_RULES = """
-## Test Item Rewrite
+## ASPICE TC Writing Rules
 - One behavior per TC, must match requirement intent
-- Format: (Condition/Trigger → Observable Outcome)
+- Format: Condition/Trigger → Observable Outcome
 
 ## Pre-Conditions
 - State or environment ONLY — never actions, checks/reads, or data-presence
@@ -115,7 +115,9 @@ _FALLBACK_RULES = """
 - Judge from the ACTUAL flow via first-match on PRIMARY intent:
   Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
 
-## Priority
+## Application Output Contract
+- Priority is a workbook/tooling field, not an ASPICE rule in the instruction doc
+- Return exactly P0 / P1 / P2
 - P0: safety, core functionality, data loss risk
 - P1: standard feature, user-facing behavior
 - P2: UI cosmetic, edge cases
@@ -739,6 +741,11 @@ def _sse_event(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
 
+def _scenario_title(tc: dict, index: int) -> str:
+    title = str(tc.get("tc_title") or "").strip()
+    return title or f"TC {index}"
+
+
 @app.post("/api/quick-generate/stream")
 async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingResponse:
     """Ad-hoc TC generation from manual input.
@@ -786,7 +793,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
         scenarios = [
             {
                 "id": i + 1,
-                "name": f"TC {i + 1}",
+                "name": _scenario_title(tc, i + 1),
                 "description": (tc.get("test_item_rewrite") or "").strip() or f"Generated TC {i + 1}",
                 "test_item": composed_test_item,
             }
@@ -823,7 +830,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                 {
                     "type": "tc.generating",
                     "scenarioId": i + 1,
-                    "scenarioName": f"TC {i + 1}",
+                    "scenarioName": _scenario_title(tc, i + 1),
                     "stats": {"total": total, "processed": i, "currentCost": round(current_cost, 4)},
                 }
             )
@@ -832,7 +839,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                 {
                     "type": "tc.completed",
                     "scenarioId": i + 1,
-                    "scenarioName": f"TC {i + 1}",
+                    "scenarioName": _scenario_title(tc, i + 1),
                     "tc": tc,
                     "stats": {"total": total, "processed": i + 1, "currentCost": round(current_cost, 4)},
                 }
@@ -1759,35 +1766,120 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
     )
 
 
+def _build_blank_template_workbook(rows: list[dict], test_group: str | None) -> bytes:
+    """當 backend JOB_REGISTRY 已無原 Excel rawBytes 時，從前端 TcRow 產生一份
+    最小可用的空白模板給 writer 寫入。
+
+    產出的 workbook 結構符合 writer 期望：
+      - Sheet "Test Case Specification&Result" 存在
+      - Row 9 是 header（writer 不依賴 header 內容，但為了打開檔案閱讀方便還是寫上）
+      - 每個 row_num 對應的列預先填好 Col D = req_id、Col I = test_item，
+        writer 之後會 append AI rewrite 到 Col I 並寫其他欄位
+
+    缺：原檔的 styling / Product Document sheet / 其他 untouched 欄位（B/C/E/O/...）。
+    """
+    from io import BytesIO
+    from openpyxl import Workbook
+    from writer import TC_SHEET_NAME
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = TC_SHEET_NAME
+
+    # Header row (col D / F / I 是 writer 會碰到的最少欄位)
+    ws.cell(row=9, column=4, value="Requirement or Design ID")
+    ws.cell(row=9, column=6, value="Test Case ID")
+    ws.cell(row=9, column=7, value="Test Group")
+    ws.cell(row=9, column=8, value="Test Set")
+    ws.cell(row=9, column=9, value="Test Item")
+    ws.cell(row=9, column=10, value="Pre-Conditions")
+    ws.cell(row=9, column=11, value="Input Test Data")
+    ws.cell(row=9, column=12, value="Test Procedure")
+    ws.cell(row=9, column=13, value="Expected Result")
+    ws.cell(row=9, column=14, value="Specification Reference")
+    ws.cell(row=9, column=16, value="Priority")
+    ws.cell(row=9, column=17, value="Test Case Design Method")
+
+    # 預先把 req_id / test_item / test_group 寫入對應 row_num，writer 之後會 overlay。
+    # 同 row_num 多筆（AI 拆分）只寫第一筆當 template，writer 會 insert_rows 補齊。
+    written_rows: set[int] = set()
+    for r in rows:
+        rn = r.get("row_num")
+        if not rn or rn in written_rows:
+            continue
+        written_rows.add(rn)
+        if r.get("req_id"):
+            ws.cell(row=rn, column=4, value=str(r["req_id"]))
+        if r.get("test_item"):
+            ws.cell(row=rn, column=9, value=str(r["test_item"]))
+        if test_group:
+            ws.cell(row=rn, column=7, value=test_group)
+
+    buf = BytesIO()
+    wb.save(buf)
+    return buf.getvalue()
+
+
+def _resolve_export_test_group(job: dict | None, rows: list[dict]) -> str | None:
+    """Export context 的 test_group：優先用 parsedData，沒有就從前端 row.testGroup 推。"""
+    if job and job.get("parsedData", {}).get("test_group"):
+        return job["parsedData"]["test_group"]
+    for row in rows:
+        tg = row.get("testGroup")
+        if tg:
+            return str(tg)
+    return None
+
+
 @app.post("/api/export")
 async def export_job(payload: ExportRequest, request: Request) -> dict:
-    job = JOB_REGISTRY.get(payload.jobId)
-    if not job or "rawBytes" not in job or "rawFileName" not in job:
-        raise HTTPException(status_code=404, detail="export source workbook not found")
     if payload.outputMode == "overwrite":
         raise HTTPException(status_code=400, detail="overwrite export mode is not supported")
+
+    job = JOB_REGISTRY.get(payload.jobId)
+    has_source_workbook = bool(
+        job and job.get("rawBytes") and job.get("rawFileName")
+    )
+
+    test_group = _resolve_export_test_group(job, payload.rows)
+    parsed_rows = (
+        job.get("parsedData", {}).get("rows") if job and job.get("parsedData") else None
+    )
 
     export_rows = _map_export_rows(
         payload.rows,
         payload.scope,
-        job.get("parsedData", {}).get("test_group") if job.get("parsedData") else None,
-        parsed_rows=job.get("parsedData", {}).get("rows") if job.get("parsedData") else None,
+        test_group,
+        parsed_rows=parsed_rows,
     )
     if not export_rows:
         raise HTTPException(status_code=400, detail="no exportable rows for the selected scope")
 
-    export_path = _build_export_path(job["rawFileName"], payload.outputMode)
     selected_fields = _selected_export_fields(payload.selectedColumns)
     framework_rows = (
-        _build_framework_rows(export_rows, job.get("parsedData", {}).get("test_group"))
+        _build_framework_rows(export_rows, test_group)
         if payload.includeFrameworkSheet
         else None
     )
 
+    # Source workbook：原檔優先；缺檔時從前端 rows 重建空白模板。
+    if has_source_workbook:
+        raw_bytes = job["rawBytes"]
+        raw_filename = job["rawFileName"]
+        export_path = _build_export_path(raw_filename, payload.outputMode)
+    else:
+        raw_bytes = _build_blank_template_workbook(export_rows, test_group)
+        # 檔名：盡量沿用原 rawFileName，否則用 test_group 拼一個合理名稱。
+        fallback_name = (
+            (job and job.get("rawFileName"))
+            or f"{test_group or 'TC'}_export.xlsx"
+        )
+        export_path = _build_export_path(fallback_name, payload.outputMode)
+
     with tempfile.TemporaryDirectory() as tmp_dir:
-        source_path = os.path.join(tmp_dir, job["rawFileName"])
+        source_path = os.path.join(tmp_dir, os.path.basename(export_path) or "source.xlsx")
         with open(source_path, "wb") as source_file:
-            source_file.write(job["rawBytes"])
+            source_file.write(raw_bytes)
 
         try:
             write_excel_tool(
@@ -1800,8 +1892,12 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         except ToolError as exc:
             raise _tool_error_to_http(exc) from exc
 
+    # Job 不存在時也要建立一筆暫存的下載資訊，否則 download endpoint 找不到 exportPath。
+    if job is None:
+        job = {}
     job["exportPath"] = export_path
-    JOB_REGISTRY[payload.jobId] = job  # 回寫 SQLite，否則下載時讀不到 exportPath
+    job.setdefault("rawFileName", os.path.basename(export_path))
+    JOB_REGISTRY[payload.jobId] = job  # 回寫 SQLite，下載時要讀 exportPath
     download_url = str(request.url_for("download_export", jobId=payload.jobId))
     return {
         "jobId": payload.jobId,
@@ -1810,6 +1906,7 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         "fileName": os.path.basename(export_path),
         "downloadUrl": download_url,
         "selectedColumns": payload.selectedColumns,
+        "fallbackTemplate": not has_source_workbook,
     }
 
 
