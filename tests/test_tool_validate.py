@@ -7,11 +7,11 @@ from backend.tools import get_tool, SafetyLevel, validate_tc_tool
 
 _BASE_TC = {
     "tc_id": "newR1L-DMS-001",
-    "test_item": "Original RD text.\n\n(User taps X → Y is displayed)",
+    "test_item": "Original RD text.\n\nUser taps X → Y is displayed",
     "pre_conditions": "1. System in normal state",
     "test_procedure": (
         "1. Tap the X button to open the menu.\n"
-        "2. Verify that the Y panel is displayed."
+        "2. Check that the Y panel is displayed on the HU."
     ),
     "expected_result": (
         "1. The menu appears.\n"

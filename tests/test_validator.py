@@ -23,7 +23,7 @@ class TestValidateTestItem:
         text = (
             "PDM01.1) The Device Manager can be added to the status bar.\n"
             "\n"
-            "(User adds DM to status bar → DM icon displayed)"
+            "User adds DM to status bar → DM icon displayed"
         )
         r = validate_test_item(text)
         assert r.passed
@@ -32,25 +32,25 @@ class TestValidateTestItem:
         text = (
             "Original text.\n"
             "\n"
-            "(Some rewrite without arrow)"
+            "Some rewrite without arrow"
         )
         r = validate_test_item(text)
         assert not r.passed
         assert "→" in r.message
 
-    def test_missing_parentheses(self):
+    def test_rewrite_without_parentheses_is_allowed(self):
         text = (
             "Original text.\n"
             "\n"
             "Condition → Outcome without parens"
         )
         r = validate_test_item(text)
-        assert not r.passed
+        assert r.passed
 
     def test_missing_blank_line(self):
         text = (
             "Original text.\n"
-            "(Condition → Outcome)"
+            "Condition → Outcome"
         )
         r = validate_test_item(text)
         assert not r.passed
@@ -98,13 +98,13 @@ class TestValidateTestProcedure:
     def test_valid(self):
         text = (
             "1. Open Settings to access Bluetooth menu.\n"
-            "2. Tap Device Manager and verify it opens successfully."
+            "2. Tap Device Manager and check that the Device Manager screen is displayed."
         )
         r = validate_test_procedure(text)
         assert r.passed
 
     def test_single_step(self):
-        text = "1. Verify the screen."
+        text = "1. Check that the screen is displayed."
         r = validate_test_procedure(text)
         assert not r.passed
         assert "2" in r.message or "step" in r.message.lower()
@@ -130,6 +130,33 @@ class TestValidateTestProcedure:
         text = "Open settings and then verify."
         r = validate_test_procedure(text)
         assert not r.passed
+
+    def test_verify_is_forbidden_in_final_step(self):
+        text = (
+            "1. Open Settings.\n"
+            "2. Tap Device Manager and verify the Device Manager screen is displayed."
+        )
+        r = validate_test_procedure(text)
+        assert not r.passed
+        assert "forbidden" in r.message.lower()
+
+    def test_final_step_must_check_test_item_outcome(self):
+        text = (
+            "1. Open Settings.\n"
+            "2. Tap Device Manager and check that the toolbar is refreshed."
+        )
+        r = validate_test_procedure(text, "User opens Device Manager → Device Manager screen displayed")
+        assert not r.passed
+        assert "test item outcome" in r.message.lower()
+
+    def test_non_final_step_cannot_own_main_outcome(self):
+        text = (
+            "1. Check that the Device Manager screen is displayed.\n"
+            "2. Record the event log entry."
+        )
+        r = validate_test_procedure(text, "User opens Device Manager → Device Manager screen displayed")
+        assert not r.passed
+        assert "test item outcome" in r.message.lower() or "before the final step" in r.message.lower()
 
 
 # --- §8.4 Expected Result ---
@@ -257,9 +284,9 @@ class TestValidateRow:
     def test_all_pass(self):
         row = {
             "tc_id": "p-A-001",
-            "test_item": "Original.\n\n(Cond → Outcome)",
+            "test_item": "Original.\n\nOpen DM → DM visible",
             "pre_conditions": "1. BT enabled",
-            "test_procedure": "1. Open settings to access BT.\n2. Check DM and verify it appears.",
+            "test_procedure": "1. Open settings to access BT.\n2. Check that the DM is visible in the list.",
             "expected_result": "1. BT settings shown.\n2. DM is visible in list.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
             "priority": "P1",
@@ -270,7 +297,7 @@ class TestValidateRow:
     def test_mixed_results(self):
         row = {
             "tc_id": "bad",
-            "test_item": "Original.\n\n(Cond → Outcome)",
+            "test_item": "Original.\n\nOpen DM → DM visible",
             "pre_conditions": "NA",
             "test_procedure": "1. Setup.\n2. Verify result is correct.",
             "expected_result": "1. OK.\n2. Works as expected.",

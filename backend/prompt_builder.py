@@ -47,8 +47,10 @@ _HARD_CONSTRAINTS = """
    scenario descriptions may be written in Traditional Chinese when explicitly
    requested below.
 2. **test_item_rewrite MUST be filled** — rewrite the requirement as
-   `(Condition/Trigger → Observable Outcome)`; must not be blank, must not
-   copy the source verbatim.
+   `Condition/Trigger → Observable Outcome`; must not be blank, must not
+   copy the source verbatim. Do NOT add outer parentheses in the generated
+   field; presentation-layer wrapping is handled downstream when writing back
+   to the workbook.
 3. **test_procedure and expected_result must have the SAME number of
    numbered items (1:1 mapping).** If procedure has N steps, expected_result
    must also have exactly N items, aligned in order.
@@ -62,7 +64,9 @@ _HARD_CONSTRAINTS = """
    Negative / Fault Injection / State Transition / Decision Table / EP / BVA
    / Combinatorial / Scenario / Functional. The system will normalize them to
    the canonical dropdown values.
-6. **priority MUST be one of P0 / P1 / P2.** Mapping: P0 = highest (safety,
+6. **Application output contract: `priority` MUST be one of P0 / P1 / P2.**
+   This is a tool-specific workbook/export requirement, not an ASPICE SWE.6
+   rule from the instruction doc. Mapping: P0 = highest (safety,
    core functionality, data loss risk), P1 = standard feature (user-facing
    behaviour), P2 = cosmetic / edge case. Do NOT return "High", "Medium",
    "Low", "NA", or any other value — always use exactly P0, P1, or P2.
@@ -92,6 +96,24 @@ _HARD_CONSTRAINTS = """
 10. **input_test_data lists concrete values only** (numbers, strings, file
     names, enum values). If no data is needed, write "N/A" — never leave
     it empty and never describe actions here.
+10a. **NEVER fabricate specific numeric values, counts, limits, timeouts,
+    file sizes, byte counts, durations, etc. that the requirement does NOT
+    state.** If the requirement says "the maximum download count" /
+    "限制最大下載數量" without giving a number, you MUST refer to it
+    abstractly:
+      ✗ FORBIDDEN: "download limit set to 20", "20 records", "5 seconds",
+        "1024 bytes", "100 entries" — when 20 / 5 / 1024 / 100 came from
+        nowhere.
+      ✓ REQUIRED: use the configured maximum / use the configured limit
+        value / `<configured limit N>` / "the value defined in spec" —
+        leave the actual value to be filled in at execution time.
+    The same applies to expected_result: write "matches the configured
+    download limit", NOT "matches 20".
+    Concrete values are ONLY allowed when (a) the requirement / spec /
+    test_item explicitly states the value, or (b) it's a domain-standard
+    constant (e.g. BT pairing PIN `0000`, HTTP `200 OK`).
+    When no value is stated, also document that in input_test_data:
+    `download_limit: <configured maximum, per spec>`.
 11. **Follow the ASPICE SWE.6 AI Instruction loaded above verbatim.** The
     instruction doc is authoritative. Apply the relevant sections — §2 Core
     Principles, §6 Field Rules, §7 Step Design (incl. §7.5 Final Step /
@@ -104,8 +126,10 @@ _WRITING_DISCIPLINE = """
 ## WRITING DISCIPLINE (run this self-check BEFORE emitting each TC)
 
 For every TC you are about to output, silently verify:
-  [ ] test_item_rewrite follows `(Trigger → Observable Outcome)` and carries
-      a scenario tag when the req was split (§6.1 Test Item).
+  [ ] test_item_rewrite follows `Trigger → Observable Outcome`; if the req
+      was split, keep the branch/scenario tag in `tc_title` / TC title, not
+      inside test_item_rewrite (§6.1 Test Item). Do NOT add outer parentheses
+      in the generated field.
   [ ] pre_conditions only describes state/environment — no actions, no
       checks/reads, no data-presence (§6.2).
   [ ] test_item_rewrite is SHORT, 3–8 words each side, no hedge words
@@ -117,13 +141,21 @@ For every TC you are about to output, silently verify:
       `verify`, `watch`, `monitor`, or `inspect` as the main action; use
       `Check that / Confirm that / Read / Record / Compare` + explicit
       observable target (§7.1.1).
+  [ ] No FABRICATED numeric values: every concrete number, limit,
+      duration, count, byte/size, or threshold in steps / data /
+      expected_result must come from the requirement, spec, or be a
+      domain-standard constant. If the requirement says "maximum N"
+      without a number, write `<configured maximum>` / "the configured
+      limit" — DO NOT invent 20 / 100 / 5s out of thin air (constraint 10a).
   [ ] procedure step count == expected_result item count, aligned 1:1.
   [ ] expected_result items are observable (UI / log / API response / state).
   [ ] design_method assigned AFTER procedure+ER are finalized, judged from
       the ACTUAL flow (not the requirement text), via §15 first-match on
       PRIMARY intent. Short English labels are preferred; the system will
       normalize them to canonical dropdown values.
-  [ ] priority is exactly P0 / P1 / P2.
+  [ ] priority is exactly P0 / P1 / P2 because this tool's workbook/export
+      contract requires it, even though the ASPICE instruction doc does not
+      define a priority field.
   [ ] All workbook-bound TC fields are English-only; Traditional Chinese is
       allowed only in explicit analysis/explanation fields such as
       `reasoning`, `meaning`, `name`, `description` when requested.
@@ -193,7 +225,7 @@ def build_user_prompt(
 Return JSON with keys: {output_keys}
 
 REMINDER — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite is ONE short sentence, `(Trigger → Outcome)` form; remove
+- test_item_rewrite is ONE short sentence, `Trigger → Outcome` form; remove
   hedge words (`should`, `within reasonable time`, `be able to`).
 - Each test_procedure step = one concrete action with explicit target + value.
   FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
@@ -228,7 +260,7 @@ Generate a single test case for the following test item. Follow all rules strict
 Return JSON with keys: {output_keys}
 
 REMINDER — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite is ONE short sentence, `(Trigger → Outcome)` form; remove
+- test_item_rewrite is ONE short sentence, `Trigger → Outcome` form; remove
   hedge words (`should`, `within reasonable time`, `be able to`).
 - Each test_procedure step = one concrete action with explicit target + value.
   FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
@@ -324,7 +356,7 @@ Return a JSON object with key `tcs` whose value is an array of TC objects.
 Each TC object has keys: {output_keys}
 
 REMINDER for every TC — run the WRITING DISCIPLINE self-check:
-- test_item_rewrite rewritten (not blank, `(Trigger → Outcome)` form).
+- test_item_rewrite rewritten (not blank, `Trigger → Outcome` form; no outer parentheses).
 - Each test_procedure step = one concrete action with explicit target + value;
   no forbidden verbs (`observe`/`verify`, §7.1.1) as main verb, no
   "and/then"-chained actions, no placeholders.
@@ -379,9 +411,10 @@ is driven entirely by what the requirement mandates, not by an arbitrary limit.
 Apply these authoritative rules from `ASPICE_SWE6_AI_Instruction.md`:
 
 - **§6.1 Test Item** — If the requirement can be validated by more than
-  one scenario, EACH distinct scenario is its own TC, and each `test_item_rewrite`
-  MUST carry a parenthesised scenario tag so reviewers can tell the TCs apart
-  (e.g. `(Initial Sync = 5,000)` vs `(Initial Sync > 5,000)`).
+  one scenario, EACH distinct scenario is its own TC. Keep the scenario tag
+  in the TC title (`tc_title`), while `test_item_rewrite` stays a clean
+  `Trigger → Outcome` statement. Example titles:
+  `Initial Sync = 5,000`, `Initial Sync > 5,000`.
 - **§10.2 Keyword-Driven Scenario Decomposition** — Identify the key concepts
   in the requirement (limits, per-device rules, order-preservation, stop
   conditions, etc.) and ensure **every keyword maps to at least one TC**.
@@ -454,7 +487,9 @@ Return a JSON object with these top-level keys:
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
   numbers are 1-based indices into `tcs`.
 - `tcs` (array): produce as many TCs as the rules require — do not collapse
-  distinct scenarios to save output. Each TC object has keys: {output_keys}
+  distinct scenarios to save output. Each TC object has keys: {output_keys}.
+  For split requirements, also add `tc_title` with the short scenario tag
+  required by §6.1. For atomic requirements, `tc_title` may be omitted or "".
 
 Example (requirement that enumerates 3 supported formats would return 3 TCs):
 {{"reasoning": "§9 列舉 3 種格式，各一筆 TC 避免 False Pass 風險。",
@@ -469,7 +504,10 @@ Example (requirement that enumerates 3 supported formats would return 3 TCs):
   ]}}
 
 REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten with scenario tag (§6.1), not blank, not a copy.
+- test_item_rewrite rewritten as `Trigger → Outcome`, not blank, not a copy,
+  and without outer parentheses.
+- If the req was split, put the branch tag in `tc_title` / TC title (§6.1),
+  not inside test_item_rewrite.
 - Each test_procedure step = one concrete, executable action with explicit
   target + value; no "observe/verify" as main verb (§7.1.1), no chained
   actions, no placeholders. Use `Check that / Confirm that / Read / Record /
@@ -612,7 +650,8 @@ one entry per input requirement, in the same order. Each entry has the shape:
 - `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
 - `tcs`: as many TC objects as the rules demand (no cap).
-Each TC object has keys: {output_keys}
+Each TC object has keys: {output_keys}. For split requirements, also add
+optional `tc_title` with the short scenario tag required by §6.1.
 
 Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic → 1 TC):
 {{"requirements": [
@@ -625,7 +664,10 @@ Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic �
 ]}}
 
 REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten with scenario tag (§6.1), not blank, not a copy.
+- test_item_rewrite rewritten as `Trigger → Outcome`, not blank, not a copy,
+  and without outer parentheses.
+- If the req was split, put the branch tag in `tc_title` / TC title (§6.1),
+  not inside test_item_rewrite.
 - Each test_procedure step = one concrete, executable action with explicit
   target + value; no "observe/verify" as main verb (§7.1.1), no chained
   actions, no placeholders. Use `Check that / Confirm that / Read / Record /

@@ -98,8 +98,26 @@ VAGUE_FINAL_VERBS = [
     "watch ", "monitor ", "inspect ",
 ]
 
-# Verification verbs required in final procedure step
-VERIFICATION_VERBS = ["verify", "check", "confirm", "ensure"]
+# Forbidden verification phrases anywhere in a step's imperative text (§7.1.1)
+FORBIDDEN_STEP_PHRASES = [
+    "observe whether", "observe ", "see if", "look at",
+    "check whether", "confirm whether", "verify", "watch ", "monitor ", "inspect ",
+]
+
+# Preferred verification patterns for the final step (§7.1.1 / §7.5)
+FINAL_STEP_PATTERNS = [
+    "check that",
+    "confirm that",
+    "read ",
+    "record ",
+    "compare ",
+]
+
+_OUTCOME_STOPWORDS = {
+    "the", "a", "an", "is", "are", "be", "to", "on", "in", "of", "and", "or",
+    "for", "with", "by", "from", "into", "at", "as", "that", "this", "these",
+    "those", "it", "its", "shown", "displayed", "visible",
+}
 
 # TC ID pattern: {project}-{abbr}-{3-digit}
 TC_ID_PATTERN = re.compile(r"^[A-Za-z0-9]+-[A-Za-z0-9]+-\d{3}$")
@@ -133,10 +151,6 @@ def validate_test_item(text: str) -> ValidationResult:
         return ValidationResult(False, check, "No rewrite found after blank line.")
 
     rewrite = parts[1].strip()
-
-    # Must be wrapped in parentheses
-    if not (rewrite.startswith("(") and rewrite.endswith(")")):
-        return ValidationResult(False, check, "Rewrite must be wrapped in parentheses ().")
 
     # Must contain → separator
     if "→" not in rewrite:
@@ -181,7 +195,35 @@ def validate_pre_conditions(text: str) -> ValidationResult:
 
 # --- §8.3 Test Procedure ---
 
-def validate_test_procedure(text: str) -> ValidationResult:
+def _numbered_lines(text: str) -> list[str]:
+    return [line.strip() for line in text.strip().split("\n") if re.match(r"^\d+\.", line.strip())]
+
+
+def _extract_outcome_keywords(test_item_rewrite: str | None) -> set[str]:
+    if not test_item_rewrite or "→" not in test_item_rewrite:
+        return set()
+    outcome = test_item_rewrite.split("→", 1)[1].lower()
+    words = re.findall(r"[a-z0-9]+", outcome)
+    return {w for w in words if len(w) >= 3 and w not in _OUTCOME_STOPWORDS}
+
+
+def _contains_forbidden_phrase(step: str) -> str | None:
+    step_lower = step.lower()
+    for phrase in FORBIDDEN_STEP_PHRASES:
+        if phrase in step_lower:
+            return phrase.strip()
+    return None
+
+
+def _verification_clause(step_lower: str) -> str:
+    for pattern in FINAL_STEP_PATTERNS:
+        idx = step_lower.find(pattern)
+        if idx >= 0:
+            return step_lower[idx:]
+    return step_lower
+
+
+def validate_test_procedure(text: str, test_item_rewrite: str | None = None) -> ValidationResult:
     """Validate test procedure field."""
     check = "test_procedure"
 
@@ -192,30 +234,53 @@ def validate_test_procedure(text: str) -> ValidationResult:
     if step_count < 2:
         return ValidationResult(False, check, "Must have at least 2 steps (setup + verification).")
 
-    # Get final step text
-    lines = text.strip().split("\n")
-    final_step = ""
-    for line in reversed(lines):
-        line = line.strip()
-        if re.match(r"^\d+\.", line):
-            final_step = line.lower()
-            break
+    steps = _numbered_lines(text)
+    final_step = steps[-1].lower()
 
-    # Final step must contain verification verb
-    has_verification = any(v in final_step for v in VERIFICATION_VERBS)
-    if not has_verification:
+    for i, step in enumerate(steps, 1):
+        forbidden = _contains_forbidden_phrase(step)
+        if forbidden:
+            return ValidationResult(
+                False, check,
+                f"Step {i} contains forbidden verification phrase '{forbidden}' (§7.1.1).",
+            )
+
+    # Final step must use preferred verification patterns from §7.1.1 / §7.5
+    has_final_check = any(pattern in final_step for pattern in FINAL_STEP_PATTERNS)
+    if not has_final_check:
         return ValidationResult(
             False, check,
-            "Final step must contain a verification verb (verify/check/confirm/ensure).",
+            "Final step must use Check that / Confirm that / Read / Record / Compare (§7.5).",
         )
 
-    # Final step must not contain vague verbs
+    # Final step must not contain vague verbs / forbidden phrases
     for vague in VAGUE_FINAL_VERBS:
         if vague in final_step:
             return ValidationResult(
                 False, check,
                 f"Final step contains vague verb '{vague}'.",
             )
+
+    # Heuristic for §7.5 / §7.7: the final step should own the Test Item outcome.
+    outcome_keywords = _extract_outcome_keywords(test_item_rewrite)
+    if outcome_keywords:
+        final_clause = _verification_clause(final_step)
+        final_hits = {w for w in outcome_keywords if w in final_clause}
+        if not final_hits:
+            return ValidationResult(
+                False, check,
+                "Final step does not appear to check the Test Item outcome (§7.5).",
+            )
+
+        for i, step in enumerate(steps[:-1], 1):
+            step_lower = step.lower()
+            verify_clause = _verification_clause(step_lower)
+            early_hits = {w for w in outcome_keywords if w in verify_clause}
+            if len(early_hits) >= 2 and any(pattern in step_lower for pattern in FINAL_STEP_PATTERNS):
+                return ValidationResult(
+                    False, check,
+                    f"Step {i} appears to validate the main outcome before the final step (§7.7).",
+                )
 
     return ValidationResult(True, check)
 
@@ -360,7 +425,10 @@ def validate_row(row: dict) -> dict[str, ValidationResult]:
         "tc_id": validate_tc_id(row.get("tc_id", "")),
         "test_item": validate_test_item(row.get("test_item", "")),
         "pre_conditions": validate_pre_conditions(row.get("pre_conditions", "")),
-        "test_procedure": validate_test_procedure(row.get("test_procedure", "")),
+        "test_procedure": validate_test_procedure(
+            row.get("test_procedure", ""),
+            test_item_rewrite=(row.get("test_item", "").split("\n\n", 1)[1] if "\n\n" in row.get("test_item", "") else ""),
+        ),
         "expected_result": validate_expected_result(
             row.get("expected_result", ""),
             step_count=procedure_step_count,

@@ -63,6 +63,15 @@ class TestBuildSystemPrompt:
         prompt = build_system_blocks("RULES", batch=True)
         assert "Return ONLY valid JSON object(s), no markdown fences." in prompt
 
+    def test_system_blocks_forbid_fabricated_numeric_values(self):
+        """需求沒給的具體數值（20 筆、5 秒、1024 bytes）AI 不可自己編出來。"""
+        prompt = build_system_blocks("RULES", batch=False)
+        assert "NEVER fabricate specific numeric values" in prompt
+        # 範例必須提到合法的 abstract 寫法，讓 AI 知道替代寫法
+        assert "configured maximum" in prompt or "configured limit" in prompt
+        # Self-check 也要有對應條目
+        assert "No FABRICATED numeric values" in prompt
+
 
 class TestBuildUserPrompt:
     def test_contains_req_id(self, sample_row, sample_context, sample_spec, rules_text):

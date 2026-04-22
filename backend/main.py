@@ -21,9 +21,9 @@ from writer import write_generated_results, write_framework_sheet, build_output_
 
 
 RULES_SECTIONS = """
-## Test Item Rewrite
+## ASPICE TC Writing Rules
 - One behavior per TC, must match requirement intent
-- Format: (Condition/Trigger → Observable Outcome)
+- Format: Condition/Trigger → Observable Outcome
 
 ## Pre-Conditions
 - State or environment ONLY, never actions
@@ -44,10 +44,12 @@ RULES_SECTIONS = """
 ## Design Method
 - Use decision waterfall: Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
 
-## Priority
-- High: safety, core functionality, data loss risk
-- Medium: standard feature, user-facing behavior
-- Low: UI cosmetic, edge cases
+## Application Output Contract
+- Priority is a workbook/tooling field, not an ASPICE rule in the instruction doc
+- Return exactly P0 / P1 / P2
+- P0: safety, core functionality, data loss risk
+- P1: standard feature, user-facing behavior
+- P2: UI cosmetic, edge cases
 """.strip()
 
 
