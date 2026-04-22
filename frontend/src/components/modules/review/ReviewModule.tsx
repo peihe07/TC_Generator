@@ -5,7 +5,7 @@ import { useJobStore } from '../../../store/useJobStore';
 import { useWindowStore } from '../../../store/useWindowStore';
 import { TcRow } from '../../../lib/types';
 import { createJobLog } from '../../../lib/logging';
-import { regenerateRows } from '../../../services/jobAdapter';
+import { regenerateRows, rerunRows } from '../../../services/jobAdapter';
 import { ReviewRow, type EditValues } from './ReviewRow';
 import { ReviewToolbar } from './ReviewToolbar';
 import { ReviewToolbox } from './ReviewToolbox';
@@ -38,6 +38,7 @@ const ReviewModule: React.FC = () => {
     clearAwaitingApply,
     isRegenerating,
     setRegenerating,
+    addTcRowAfter,
     config,
     appendLog,
   } = useJobStore();
@@ -267,6 +268,73 @@ const ReviewModule: React.FC = () => {
     appendLog,
   ]);
 
+  const handleRerun = useCallback(async () => {
+    if (selectedIds.size === 0) return;
+    setRegenerating(true);
+
+    const ids = [...selectedIds];
+    ids.forEach((id) => updateTcRow(id, { status: 'generating' }));
+
+    try {
+      appendLog(createJobLog('info', `Re-running ${ids.length} selected row(s) through the full pipeline.`));
+      await rerunRows(
+        {
+          jobId: jobMetadata?.jobId ?? null,
+          rowIds: ids,
+          rows: tcRows,
+          config,
+          project: jobMetadata?.projectName ?? null,
+        },
+        {
+          onPrimary: (row) => {
+            // 覆蓋原列，保留 id / tcId。Re-run 不走 diff preview。
+            updateTcRow(row.id, {
+              ...row,
+              awaitingApply: undefined,
+            });
+          },
+          onRowAdded: (row, parentId) => {
+            addTcRowAfter(parentId, row);
+          },
+          onReqSplit: (info) => {
+            if (info.tcCount > 1) {
+              appendLog(createJobLog('info', info.message));
+            }
+          },
+          onFail: (id, message) => {
+            updateTcRow(id, { status: 'fail' });
+            appendLog(createJobLog('error', `${id}: ${message}`));
+          },
+          onComplete: () => {
+            appendLog(
+              createJobLog('success', 'Re-run complete.'),
+            );
+            renumberTcRows();
+          },
+          onError: (message) => {
+            appendLog(createJobLog('warn', message));
+          },
+        },
+      );
+    } catch {
+      ids.forEach((id) => updateTcRow(id, { status: 'fail' }));
+      appendLog(createJobLog('error', 'Re-run failed.'));
+    } finally {
+      setRegenerating(false);
+      setSelectedIds(new Set());
+    }
+  }, [
+    selectedIds,
+    jobMetadata,
+    setRegenerating,
+    updateTcRow,
+    addTcRowAfter,
+    renumberTcRows,
+    tcRows,
+    config,
+    appendLog,
+  ]);
+
   const handleApplyRegen = (id: string, fields: DiffFieldKey[]) => {
     applyRegenerated(id, fields);
     renumberTcRows();
@@ -384,6 +452,7 @@ const ReviewModule: React.FC = () => {
           onBulkStatus={handleBulkStatus}
           onBulkDelete={handleBulkDelete}
           onRegenerate={handleRegenerate}
+          onRerun={handleRerun}
         />
       )}
 

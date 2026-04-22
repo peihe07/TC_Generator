@@ -3,6 +3,7 @@ import {
   RiCheckFill,
   RiCloseFill,
   RiDeleteBinLine,
+  RiPlayLine,
   RiRefreshLine,
 } from '@remixicon/react';
 import { TcRow } from '../../../lib/types';
@@ -15,6 +16,7 @@ export interface ReviewToolboxProps {
   onBulkStatus: (status: TcRow['status']) => void;
   onBulkDelete: () => void;
   onRegenerate: () => void;
+  onRerun: () => void;
 }
 
 /**
@@ -28,6 +30,7 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
   onBulkStatus,
   onBulkDelete,
   onRegenerate,
+  onRerun,
 }) => (
   <div
     className="win95-toolbox absolute bottom-4 left-1/2 z-20"
@@ -65,12 +68,22 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
         <RiDeleteBinLine className="size-3" /> Delete
       </Button>
       <Button
-        className="font-bold flex items-center gap-1"
+        className="flex items-center gap-1"
         onClick={onRegenerate}
         disabled={isRegenerating}
+        title="Re-generate TC text only (keep existing split)"
       >
         <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
         {isRegenerating ? 'Regenerating...' : 'Regenerate'}
+      </Button>
+      <Button
+        className="font-bold flex items-center gap-1"
+        onClick={onRerun}
+        disabled={isRegenerating}
+        title="Re-run full pipeline (AI re-evaluates split & decomposition)"
+      >
+        <RiPlayLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
+        {isRegenerating ? 'Re-running...' : 'Re-run'}
       </Button>
     </div>
   </div>

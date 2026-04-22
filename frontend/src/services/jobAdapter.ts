@@ -65,6 +65,25 @@ type RegenerateCallbacks = {
   onError?: (message: string) => void;
 };
 
+type RerunCallbacks = {
+  // Primary TC：覆蓋既有列（含 generated block + splitDecision metadata）
+  onPrimary?: (row: TcRow, message: string) => void;
+  // AI 把一筆需求拆成多筆 TC 時，TC 2..N 各發一次；前端依 parentId 插在 primary 之後
+  onRowAdded?: (row: TcRow, parentId: string, message: string) => void;
+  // 拆分 reasoning / keyword 分析
+  onReqSplit?: (info: {
+    rowId: string;
+    reqId: string;
+    tcCount: number;
+    reasoning: string;
+    keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
+    message: string;
+  }) => void;
+  onFail?: (rowId: string, message: string) => void;
+  onComplete?: () => void;
+  onError?: (message: string) => void;
+};
+
 type ExportJobInput = {
   jobId: string | null;
   rows: TcRow[];
@@ -814,6 +833,148 @@ export async function regenerateRows(
       callbacks.onComplete?.();
     }
   });
+}
+
+/**
+ * Re-run selected rows through the full generation pipeline（含需求解讀 / 拆分判斷）。
+ * 和 regenerateRows 的差別：
+ *   - 每筆 row 可能產生多筆 TC：primary 覆蓋原列，其餘以 row.added 事件接在 parent 之後
+ *   - 會 emit req.split（讓 UI 顯示拆分 reasoning）
+ *   - 不走 diff-apply preview：primary 直接覆寫
+ */
+export async function rerunRows(
+  input: {
+    jobId: string | null;
+    rowIds: string[];
+    rows: TcRow[];
+    config: GenerationConfig;
+    project?: string | null;
+  },
+  callbacks: RerunCallbacks,
+) {
+  if (!input.rowIds.length || !input.jobId) {
+    callbacks.onError?.("Re-run requires an active backend job.");
+    return;
+  }
+
+  // 後端 JOB_REGISTRY 可能已無此 job（backend 重啟 / DB 清空）—— 這兩個欄位
+  // 讓 backend 在找不到 job 時仍能重建 context 繼續跑。
+  const firstRow = input.rows.find((row) => input.rowIds.includes(row.id)) ?? input.rows[0];
+  const fallbackTestGroup = firstRow?.testGroup ?? "";
+
+  const startedAt = Date.now();
+  const latest = {
+    total: input.rowIds.length, processed: 0, cost: 0,
+    inputTokens: 0, outputTokens: 0,
+    cacheCreationTokens: 0, cacheReadTokens: 0,
+  };
+
+  try {
+    const response = await fetch(
+      `${appApiBase}/jobs/${input.jobId}/rerun/stream`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rowIds: input.rowIds,
+          rows: input.rows,
+          project: input.project ?? null,
+          testGroup: fallbackTestGroup,
+          config: {
+            model: input.config.model,
+            batchSize: input.config.batchSize,
+            budget: input.config.budgetLimit,
+            strictValidation: input.config.strictValidation,
+          },
+        }),
+      },
+    );
+
+    if (!response.ok || !response.body) {
+      throw new Error("Re-run request failed.");
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const parts = buffer.split("\n\n");
+      buffer = parts.pop() ?? "";
+
+      for (const part of parts) {
+        const line = part.replace(/^data: /, "").trim();
+        if (!line) continue;
+
+        const event = JSON.parse(line) as Record<string, unknown>;
+        const stats = event.stats as Record<string, number> | undefined;
+        if (stats) {
+          latest.total = Number(stats.total ?? latest.total);
+          latest.processed = Number(stats.processed ?? latest.processed);
+          latest.cost = Number(stats.currentCost ?? latest.cost);
+          latest.inputTokens = Number(stats.inputTokens ?? latest.inputTokens);
+          latest.outputTokens = Number(stats.outputTokens ?? latest.outputTokens);
+          latest.cacheCreationTokens = Number(stats.cacheCreationTokens ?? latest.cacheCreationTokens);
+          latest.cacheReadTokens = Number(stats.cacheReadTokens ?? latest.cacheReadTokens);
+        }
+
+        if (event.type === "row.regenerated" && event.row) {
+          // Rerun primary：用完整 TcRow 覆蓋既有列
+          const apiRow = event.row as Record<string, unknown>;
+          const parentRow = input.rows.find((item) => item.id === String(apiRow.id ?? ""));
+          const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+          callbacks.onPrimary?.(row, String(event.message ?? "Row re-run."));
+        } else if (event.type === "row.added" && event.row) {
+          const apiRow = event.row as Record<string, unknown>;
+          const parentId = String(apiRow.parentId ?? "");
+          const parentRow = input.rows.find((item) => item.id === parentId);
+          const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+          callbacks.onRowAdded?.(row, parentId, String(event.message ?? "TC added."));
+        } else if (event.type === "req.split") {
+          callbacks.onReqSplit?.({
+            rowId: String(event.rowId ?? ""),
+            reqId: String(event.reqId ?? ""),
+            tcCount: Number(event.tcCount ?? 1),
+            reasoning: String(event.reasoning ?? ""),
+            keywords: Array.isArray(event.keywords)
+              ? (event.keywords as Array<{ keyword: string; meaning: string; covered_by: number[] }>)
+              : [],
+            message: String(event.message ?? ""),
+          });
+        } else if (event.type === "row.regen_failed" && event.row) {
+          const row = event.row as Record<string, unknown>;
+          const validation =
+            (row.validation as Array<Record<string, unknown>> | undefined) ?? [];
+          callbacks.onFail?.(
+            String(row.id),
+            String(validation[0]?.message ?? "Re-run failed."),
+          );
+        }
+      }
+    }
+
+    useJobHistoryStore.getState().appendRecord({
+      id: `rerun-${Date.now().toString(36)}`,
+      kind: 'regenerate',
+      model: input.config.model,
+      startedAt,
+      finishedAt: Date.now(),
+      rowsTotal: latest.total,
+      rowsProcessed: latest.processed,
+      cost: latest.cost,
+      inputTokens: latest.inputTokens,
+      outputTokens: latest.outputTokens,
+      cacheReadTokens: latest.cacheReadTokens,
+      cacheCreationTokens: latest.cacheCreationTokens,
+    });
+
+    callbacks.onComplete?.();
+  } catch {
+    callbacks.onError?.("Backend re-run failed.");
+  }
 }
 
 export async function exportJob(input: ExportJobInput) {

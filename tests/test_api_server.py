@@ -1078,6 +1078,87 @@ def test_regenerate_stream_accepts_sub_tc_row_from_payload(mock_tool):
     assert regenerated[0]["row"]["id"] == sub_tc_id
 
 
+@patch("api_server.generate_tc_tool")
+def test_rerun_stream_emits_split_and_added_for_multi_tc(mock_tool):
+    """Rerun 走完整 pipeline：一筆 req → 多筆 TC 時要發 req.split + row.regenerated
+    (primary) + row.added (extras)，而且帶 parentId 讓前端 insert-after。"""
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    def _tc(label: str) -> dict:
+        return {
+            "test_item_rewrite": f"({label})",
+            "pre_conditions": "NA",
+            "input_test_data": "NA",
+            "test_procedure": "1. Setup.\n2. Verify.",
+            "expected_result": "1. Setup ok.\n2. Verified.",
+            "design_method": "功能測試 (Functional based ; no specific technique)",
+            "priority": "P1",
+            "split_flag": False,
+            "split_reason": "",
+        }
+
+    # 一筆 input → AI 拆成 2 筆 TC
+    mock_tool.return_value = {
+        "tcData": [[_tc("primary"), _tc("secondary")]],
+        "splitMeta": [{"req_id": "SWE1-HMI-DM-001-01", "reasoning": "boundary split", "keywords": []}],
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
+
+    row_id = "row-10"
+    response = client.post(
+        f"/api/jobs/{job_id}/rerun/stream",
+        json={
+            "rowIds": [row_id],
+            "rows": [
+                {
+                    "id": row_id,
+                    "rowNum": 10,
+                    "tcId": "newR1L-DM-001",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "Add DM to status bar",
+                    "testSet": "Smoke",
+                    "preConditions": "",
+                    "inputTestData": "",
+                    "steps": "",
+                    "expectedResults": "",
+                    "status": "pending",
+                }
+            ],
+        },
+    )
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    types = [e["type"] for e in events]
+
+    # 必須有 rerun.started / req.split / 至少一筆 row.regenerated / 一筆 row.added
+    assert "rerun.started" in types
+    assert "req.split" in types
+    regenerated = [e for e in events if e["type"] == "row.regenerated"]
+    added = [e for e in events if e["type"] == "row.added"]
+    assert len(regenerated) == 1
+    assert regenerated[0]["row"]["id"] == row_id
+    assert len(added) == 1
+    assert added[0]["row"]["parentId"] == row_id
+    assert "rerun.completed" in types
+    # 呼叫時必須帶 allow_split=True
+    _, kwargs = mock_tool.call_args
+    assert kwargs.get("allow_split") is True
+
+
 def _parse_sse(content: bytes) -> list[dict]:
     """Parse SSE response body into a list of event dicts."""
     events = []

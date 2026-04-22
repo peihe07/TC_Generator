@@ -207,6 +207,10 @@ class RegenerateRequest(BaseModel):
     rowIds: list[str]
     config: GenerateConfig | None = None
     rows: list[dict]
+    # Optional — Rerun 當 backend JOB_REGISTRY 找不到 job 時用來重建 context。
+    # 前端 Re-run flow 會帶這兩個欄位，regenerate 流程不使用。
+    project: str | None = None
+    testGroup: str | None = None
 
 
 class GroupPreviewRequest(BaseModel):
@@ -1403,6 +1407,274 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         yield _sse_event(
             {
                 "type": "regen.completed",
+                "jobId": job_id,
+                "stats": _stats(),
+            }
+        )
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
+
+
+@app.post("/api/jobs/{job_id}/rerun/stream")
+async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResponse:
+    """Re-run selected rows through the FULL generation pipeline.
+
+    和 `/regenerate/stream` 的差別：
+      - 走 `allow_split=True` → AI 會重新判斷需求解讀與拆分
+      - 一筆選中的 row 可能產出多筆 TC：第一筆以 `row.regenerated` 覆蓋原列，
+        其餘以 `row.added`（含 `parentId`）串流回前端，由前端插在該 row 之後
+      - 會 emit `req.split` 事件讓前端顯示拆分 reasoning / keyword 分析
+
+    Stream event types:
+      - `rerun.started`
+      - `req.split`
+      - `row.regenerated`（primary TC，覆蓋原 row）
+      - `row.added`（sub TCs，前端 insert-after parentId）
+      - `row.regen_failed`
+      - `rerun.completed`
+    """
+    job = JOB_REGISTRY.get(job_id)
+    # Rerun 容許 job 不存在：常發生在 backend 重啟、SQLite 被清空、或使用者
+    # 切換過 session。此時完全依賴前端送來的 payload.rows + project/testGroup
+    # 重建執行 context。Spec 索引會退化成空 dict（沒有 SYS1 匹配資訊），是刻意取捨。
+    job_available = bool(job)
+
+    async def event_generator():
+        prepared_rows = _prepare_generation_rows(job) if job and job.get("rows") else []
+        prepared_by_id = {r["id"]: r for r in prepared_rows}
+
+        def _row_from_payload(raw: dict) -> dict:
+            req_id = str(raw.get("reqId") or "")
+            test_item = str(raw.get("testItem") or "")
+            return {
+                "id": str(raw.get("id") or ""),
+                "row_num": raw.get("rowNum") or 0,
+                "tc_id": normalize_tc_id(str(raw.get("tcId") or "")),
+                "req_id": req_id,
+                "test_item": test_item,
+                "original_requirement": test_item,
+                "test_set": raw.get("testSet") or "",
+                "spec_reference": raw.get("specReference"),
+                "priority": raw.get("priority") or "",
+                "pre_conditions": str(raw.get("preConditions") or ""),
+                "input_test_data": str(raw.get("inputTestData") or ""),
+                "test_procedure": str(raw.get("steps") or ""),
+                "expected_result": str(raw.get("expectedResults") or ""),
+                "design_method": str(raw.get("designMethod") or ""),
+            }
+
+        payload_by_id = {str(r.get("id")): r for r in payload.rows if r.get("id")}
+        rows_to_run: list[dict] = []
+        for rid in payload.rowIds:
+            if rid in prepared_by_id:
+                rows_to_run.append(prepared_by_id[rid])
+            elif rid in payload_by_id:
+                rows_to_run.append(_row_from_payload(payload_by_id[rid]))
+
+        if not rows_to_run:
+            yield _sse_event(
+                {
+                    "type": "rerun.completed",
+                    "jobId": job_id,
+                    "stats": {"total": 0, "processed": 0, "currentCost": 0},
+                    "message": "No matching rows found in payload.",
+                }
+            )
+            return
+
+        cfg = (
+            payload.config.model_dump() if payload.config
+            else (job.get("config", {}) if job_available else {})
+        )
+        # Context 優先用 job parsedData（有完整 project/testGroup），否則 fall back 到
+        # payload 送來的欄位或從 rows 推導（每 row 有 testSet，但沒有 project/group）。
+        parsed = job.get("parsedData", {}) if job_available else {}
+        context = {
+            "project": parsed.get("project") or payload.project or "",
+            "test_group": parsed.get("test_group") or payload.testGroup or "",
+            "test_set": "N/A",
+        }
+        spec_index = _build_spec_index_for_job(job) if job_available else {}
+        total = len(rows_to_run)
+        model = cfg.get("model", DEFAULT_MODEL)
+        batch_size = cfg.get("batchSize", 1)
+        processed = 0
+        current_cost = 0.0
+        total_in = 0
+        total_out = 0
+        total_cache_create = 0
+        total_cache_read = 0
+
+        # 新 sub-TC 的 tc_id 分配：
+        # 1. 從現有 rows 抽最多人用的 tc_id prefix（例如 `newR1L-DM-`），確保新
+        #    sub-TC 和既有 TC 格式一致，不會一半 `newR1L-DM-045` 一半 `Proj-DM-046`。
+        # 2. 編號從現有最大 +1 開始，不會撞號。
+        # 3. 沒有 prefix 可用時才 fallback 到 project + group_abbr scheme。
+        # Primary 沿用原 tc_id，不走這裡。
+        all_payload_rows = list(payload_by_id.values()) + list(prepared_by_id.values())
+        existing_seqs = _extract_existing_sequence_numbers(all_payload_rows)
+        next_seq = (max(existing_seqs) + 1) if existing_seqs else 1
+
+        prefix_counts: dict[str, int] = {}
+        for row in all_payload_rows:
+            tc_id_raw = row.get("tc_id") or row.get("tcId")
+            if not tc_id_raw:
+                continue
+            parts = str(tc_id_raw).rsplit("-", 1)
+            if len(parts) == 2 and parts[1].isdigit():
+                prefix_counts[parts[0]] = prefix_counts.get(parts[0], 0) + 1
+        tc_id_prefix = (
+            max(prefix_counts.items(), key=lambda kv: kv[1])[0]
+            if prefix_counts else None
+        )
+
+        tc_project = context["project"] or ""
+        tc_group_abbr = (
+            generate_group_abbreviation(context["test_group"])
+            if context["test_group"] else ""
+        )
+        # 抽出既有 tc_id 的編號寬度（`045` → 3），避免 `newR1L-DM-46` vs `-046`
+        pad_width = 3
+        for row in all_payload_rows:
+            tc_id_raw = row.get("tc_id") or row.get("tcId")
+            if not tc_id_raw:
+                continue
+            parts = str(tc_id_raw).rsplit("-", 1)
+            if len(parts) == 2 and parts[1].isdigit():
+                pad_width = max(pad_width, len(parts[1]))
+
+        def _alloc_sub_tc_id() -> str:
+            nonlocal next_seq
+            if tc_id_prefix:
+                new_id = f"{tc_id_prefix}-{str(next_seq).zfill(pad_width)}"
+                next_seq += 1
+                return new_id
+            if tc_project and tc_group_abbr:
+                new_id = generate_tc_ids(tc_project, tc_group_abbr, 1, start=next_seq)[0]
+                next_seq += 1
+                return new_id
+            return ""
+
+        yield _sse_event({"type": "rerun.started", "jobId": job_id, "total": total})
+
+        def _stats() -> dict:
+            return {
+                "total": total,
+                "processed": processed,
+                "currentCost": round(current_cost, 4),
+                "inputTokens": total_in,
+                "outputTokens": total_out,
+                "cacheCreationTokens": total_cache_create,
+                "cacheReadTokens": total_cache_read,
+            }
+
+        for i in range(0, total, batch_size):
+            batch = rows_to_run[i : i + batch_size]
+            try:
+                batch_result = generate_tc_tool(
+                    rows=batch,
+                    context=context,
+                    spec_index=spec_index,
+                    rules_text=RULES_SECTIONS,
+                    model=model,
+                    allow_split=True,
+                )
+                tc_data_list = batch_result["tcData"]
+                split_meta_list = batch_result.get("splitMeta") or []
+
+                current_cost += batch_result["cost"]
+                total_in += batch_result["inputTokens"]
+                total_out += batch_result["outputTokens"]
+                total_cache_create += batch_result["cacheCreationTokens"]
+                total_cache_read += batch_result["cacheReadTokens"]
+
+                for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
+                    if not isinstance(tc_group, list) or not tc_group:
+                        continue
+                    processed += 1
+                    # 如果 AI 拆出 N>1 → total 往上加 N-1，進度條一致。
+                    extras = max(len(tc_group) - 1, 0)
+                    if extras > 0:
+                        total += extras
+
+                    split_warning = _heuristic_split_warning(row, len(tc_group))
+                    meta = split_meta_list[group_idx] if group_idx < len(split_meta_list) else {}
+                    split_payload = {
+                        "type": "req.split",
+                        "jobId": job_id,
+                        "rowId": row["id"],
+                        "reqId": row.get("req_id") or meta.get("req_id") or "",
+                        "tcCount": len(tc_group),
+                        "reasoning": str(meta.get("reasoning") or ""),
+                        "keywords": meta.get("keywords") or [],
+                        "stats": _stats(),
+                        "message": (
+                            f"{row.get('req_id') or row['id']}: "
+                            f"AI split into {len(tc_group)} TC(s). "
+                            f"{str(meta.get('reasoning') or '')[:200]}"
+                        ).strip(),
+                    }
+                    if split_warning:
+                        split_payload["splitWarning"] = split_warning
+                    yield _sse_event(split_payload)
+
+                    for sub_idx, tc in enumerate(tc_group):
+                        is_primary = sub_idx == 0
+                        sub_row = dict(row)
+                        if is_primary:
+                            # 保留原 tc_id，primary 覆蓋既有列
+                            sub_row["tc_id"] = row.get("tc_id") or _alloc_sub_tc_id()
+                        else:
+                            sub_row["id"] = f"{row['id']}__tc{sub_idx + 1}"
+                            sub_row["tc_id"] = _alloc_sub_tc_id()
+                        updated_row, _has_warnings = _build_stream_row(sub_row, tc)
+                        updated_row["splitDecision"] = {
+                            "reqId": row.get("req_id") or meta.get("req_id") or "",
+                            "tcCount": len(tc_group),
+                            "subIndex": sub_idx,
+                            "parentId": row["id"],
+                            "reasoning": str(meta.get("reasoning") or "") if is_primary else "",
+                            "keywords": (meta.get("keywords") or []) if is_primary else [],
+                        }
+                        if split_warning and is_primary:
+                            updated_row["splitWarning"] = split_warning
+                        if not is_primary:
+                            updated_row["parentId"] = row["id"]
+                            updated_row["subIndex"] = sub_idx
+
+                        event_type = "row.regenerated" if is_primary else "row.added"
+                        yield _sse_event(
+                            {
+                                "type": event_type,
+                                "jobId": job_id,
+                                "row": updated_row,
+                                "stats": _stats(),
+                                "message": (
+                                    f"Re-ran {row.get('req_id') or row['id']}"
+                                    + (f" (TC {sub_idx + 1}/{len(tc_group)})" if len(tc_group) > 1 else "")
+                                ),
+                            }
+                        )
+            except ToolError as exc:
+                for row in batch:
+                    processed += 1
+                    yield _sse_event(
+                        {
+                            "type": "row.regen_failed",
+                            "jobId": job_id,
+                            "row": _build_failed_stream_row(row, exc.message),
+                            "stats": _stats(),
+                        }
+                    )
+            await asyncio.sleep(0.05)
+
+        yield _sse_event(
+            {
+                "type": "rerun.completed",
                 "jobId": job_id,
                 "stats": _stats(),
             }
