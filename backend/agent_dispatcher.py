@@ -240,12 +240,17 @@ LLMFn = Callable[[list[dict], list[dict]], LLMStep]
 
 
 def _default_llm_fn(messages: list[dict], tool_definitions: list[dict]) -> LLMStep:
-    """真正呼叫 OpenAI Chat Completions 的實作。測試時會被替換。"""
+    """真正呼叫 OpenAI Chat Completions 的實作。測試時會被替換。
+
+    Model 從 generator.DEFAULT_MODEL 讀，避免和 MODEL_PRICING / MODEL_ESCALATION
+    脫鉤（之前寫死 gpt-4.1-mini，該 model 已從 pricing table 移除導致 cost fallback）。
+    """
     from openai import OpenAI  # 延後 import，避免測試不必要
+    from generator import DEFAULT_MODEL
 
     client = OpenAI()
     response = client.chat.completions.create(
-        model="gpt-4.1-mini",
+        model=DEFAULT_MODEL,
         messages=messages,
         tools=tool_definitions,
         tool_choice="auto",

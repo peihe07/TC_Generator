@@ -16,7 +16,8 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 from generator import (
-    DEFAULT_MODEL,
+    ANALYSIS_MODEL,
+    EXECUTION_MODEL,
     GenerationError,
     calculate_cost,
     classify_test_sets,
@@ -231,7 +232,7 @@ class QuickGenerateRequest(BaseModel):
     # mode 保留做 backwards-compat，但目前統一走 auto-split 多筆 TC 路徑，
     # 傳任何值都會被忽略（包括舊前端的 "single" / "with_context" / "decompose"）。
     mode: str | None = None
-    model: str = DEFAULT_MODEL
+    model: str = ANALYSIS_MODEL
 
 
 EXPORT_COLUMN_TO_FIELD = {
@@ -276,7 +277,14 @@ def _map_export_rows(
     scope: str,
     test_group: str | None,
     parsed_rows: list[dict] | None = None,
-) -> list[dict]:
+) -> tuple[list[dict], dict]:
+    """Returns (exportable_rows, classification_usage).
+
+    classification_usage 是 Phase 2 那次 `classify_test_sets` AI 呼叫的 cost /
+    tokens；沒 AI 呼叫（所有 row 都已有 testSet）時為全零。Caller（export_job）
+    需把這份 usage 累加回 job 的 persisted usage，否則使用者看不到匯出時的
+    AI 開銷。
+    """
     # 前端 payload 的 rowNum 有時會漏（存到 SQLite 就變 null），
     # 導致 writer 拿不到正確的 Excel 列號。這裡用 parsedData 做 fallback：
     # 先依 reqId 找回原列，然後把 row_num 補進 export 資料。
@@ -313,6 +321,13 @@ def _map_export_rows(
             unresolved[req_id] = str(row.get("testItem") or "").strip()
 
     classified: dict[str, str] = {}
+    classify_usage = {
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
     if unresolved:
         try:
             result = classify_test_sets(
@@ -320,6 +335,13 @@ def _map_export_rows(
                 test_group=test_group,
             )
             classified = result.assignments
+            classify_usage = {
+                "cost": float(result.cost or 0.0),
+                "inputTokens": int(result.input_tokens or 0),
+                "outputTokens": int(result.output_tokens or 0),
+                "cacheCreationTokens": int(result.cache_creation_tokens or 0),
+                "cacheReadTokens": int(result.cache_read_tokens or 0),
+            }
         except GenerationError:
             # AI 失敗就留空 test_set，讓 Framework sheet 的空白 group 做為可見提示。
             classified = {}
@@ -366,7 +388,7 @@ def _map_export_rows(
             }
         )
 
-    return exportable
+    return exportable, classify_usage
 
 
 def _build_framework_rows(rows: list[dict], test_group: str | None) -> list[dict]:
@@ -1115,7 +1137,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         total_cache_creation_tokens = usage["cacheCreationTokens"]
         total_cache_read_tokens = usage["cacheReadTokens"]
         batch_size = config.get("batchSize", 1)
-        model = config.get("model", DEFAULT_MODEL)
+        model = config.get("model", ANALYSIS_MODEL)
         strict_validation = config.get("strictValidation", False)
         budget = config.get("budget", 0)
 
@@ -1393,7 +1415,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         }
         spec_index = _build_spec_index_for_job(job)
         total = len(rows_to_regen)
-        model = cfg.get("model", DEFAULT_MODEL)
+        model = cfg.get("model", EXECUTION_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
         usage = _job_usage(job)
@@ -1567,7 +1589,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
         }
         spec_index = _build_spec_index_for_job(job) if job_available else {}
         total = len(rows_to_run)
-        model = cfg.get("model", DEFAULT_MODEL)
+        model = cfg.get("model", ANALYSIS_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
         usage = _job_usage(job) if job_available else _job_usage(None)
@@ -1740,16 +1762,19 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                     )
             await asyncio.sleep(0.05)
 
-        if job_available and job is not None:
-            _persist_job_usage(
-                job_id,
-                job,
-                cost=current_cost,
-                input_tokens=total_in,
-                output_tokens=total_out,
-                cache_creation_tokens=total_cache_create,
-                cache_read_tokens=total_cache_read,
-            )
+        # Rerun 即使 job 原本不存在（backend 重啟 / DB 清空時的 fallback 路徑）
+        # 也要建立 job 紀錄來 persist 這次跑的 usage，否則 CostMeter 會見鬼
+        # —— 使用者看到 $$ 花了卻沒進累計。
+        persist_target = job if (job_available and job is not None) else {"jobId": job_id}
+        _persist_job_usage(
+            job_id,
+            persist_target,
+            cost=current_cost,
+            input_tokens=total_in,
+            output_tokens=total_out,
+            cache_creation_tokens=total_cache_create,
+            cache_read_tokens=total_cache_read,
+        )
 
         yield _sse_event(
             {
@@ -1846,7 +1871,7 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         job.get("parsedData", {}).get("rows") if job and job.get("parsedData") else None
     )
 
-    export_rows = _map_export_rows(
+    export_rows, classify_usage = _map_export_rows(
         payload.rows,
         payload.scope,
         test_group,
@@ -1854,6 +1879,21 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
     )
     if not export_rows:
         raise HTTPException(status_code=400, detail="no exportable rows for the selected scope")
+
+    # Export 觸發的 AI 分類也算在 job 的累計成本上，讓 CostMeter 看得到這筆開銷。
+    if classify_usage.get("cost", 0) > 0:
+        existing = _job_usage(job)
+        _persist_job_usage(
+            payload.jobId,
+            job if job else {},
+            cost=existing["cost"] + classify_usage["cost"],
+            input_tokens=existing["inputTokens"] + classify_usage["inputTokens"],
+            output_tokens=existing["outputTokens"] + classify_usage["outputTokens"],
+            cache_creation_tokens=existing["cacheCreationTokens"] + classify_usage["cacheCreationTokens"],
+            cache_read_tokens=existing["cacheReadTokens"] + classify_usage["cacheReadTokens"],
+        )
+        if job is None:
+            job = JOB_REGISTRY.get(payload.jobId)
 
     selected_fields = _selected_export_fields(payload.selectedColumns)
     framework_rows = (
