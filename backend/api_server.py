@@ -315,6 +315,7 @@ def _map_export_rows(
         try:
             result = classify_test_sets(
                 [{"req_id": k, "test_item": v} for k, v in unresolved.items()],
+                test_group=test_group,
             )
             classified = result.assignments
         except GenerationError:

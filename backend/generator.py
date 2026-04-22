@@ -742,6 +742,7 @@ class ClassificationResult:
 def classify_test_sets(
     reqs: list[dict],
     model: str = DEFAULT_MODEL,
+    test_group: str | None = None,
 ) -> ClassificationResult:
     """Classify a batch of requirements into coherent Test Sets (single AI call).
 
@@ -764,7 +765,7 @@ def classify_test_sets(
         "into coherent Test Sets based on what they verify. "
         "Return ONLY valid JSON, no markdown fences."
     )
-    user = build_test_set_classification_prompt(reqs)
+    user = build_test_set_classification_prompt(reqs, test_group=test_group)
     response = _chat(system, user, model)
 
     raw_text = response.choices[0].message.content or ""

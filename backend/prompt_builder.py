@@ -137,7 +137,7 @@ would fail the §11 10-item self-check in the instruction doc.
 def build_system_blocks(rules_text: str, batch: bool = False) -> str:
     """
     建構 system prompt（OpenAI chat completions 格式為單一字串）。
-    規則放在 prefix，OpenAI 會自動對 ≥1024 tokens 重複前綴提供 50% cache 折扣。
+    規則放在 prefix，OpenAI 會自動對 ≥1024 tokens 重複前綴套用 prompt cache。
     Hard constraints 放在最後（recency bias），強化關鍵不變量。
     """
     base = _SYSTEM_BASE_BATCH if batch else _SYSTEM_BASE
@@ -484,11 +484,16 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - All output fields English; must pass the §11 10-item self-check."""
 
 
-def build_test_set_classification_prompt(reqs: list[dict]) -> str:
+def build_test_set_classification_prompt(
+    reqs: list[dict],
+    test_group: str | None = None,
+) -> str:
     """整份 requirements 分成若干 Test Set 的 prompt。
 
     Args:
         reqs: list of {"req_id", "test_item"}。去重到 req 層級，不傳 TC。
+        test_group: 當前 workbook 的 Test Group（例如 "Bluetooth"、"DeviceManager"）。
+            傳入後 AI 會被明確要求 label 不要再重複這個 feature 前綴。
 
     Returns:
         User prompt 字串，AI 需回 JSON
@@ -502,18 +507,49 @@ def build_test_set_classification_prompt(reqs: list[dict]) -> str:
         items.append(f"{i}. [{r.get('req_id', '')}] {test_item}")
     body = "\n".join(items)
 
+    group_clean = (test_group or "").strip()
+    if group_clean:
+        group_context = (
+            f'\n\n## Feature group context\nAll requirements below belong to the '
+            f'Test Group **"{group_clean}"**. This is ALREADY recorded in a '
+            f'separate column — do NOT repeat it in the Test Set label. For '
+            f'example, with Test Group = "Bluetooth", use labels like '
+            f'`Connection`, `Pairing`, `Power Control`, `Device List` — NOT '
+            f'`BT Connection`, `Bluetooth Pairing`, `BT Switch`.\n'
+        )
+    else:
+        group_context = ""
+
     return f"""## Task
 Group the following requirements into coherent **Test Sets**. A Test Set is a
-short thematic label (typically 1–3 words, English) that captures the feature
-area the requirement belongs to. Examples: "BT Switch", "Device List",
-"Phonebook Sync", "Permissions", "Caller ID".
+short thematic label (typically 1–3 words, English) that captures the
+**functional capability** the requirement belongs to — NOT the specific
+sub-flow, UI element, or action verb.{group_context}
 
 Rules for choosing labels:
+- **Group by capability, not by sub-action.** When several requirements
+  describe different steps or UI paths of the same capability, label them
+  with the shared capability. Examples:
+    * "Pairing", "Auto-reconnect", "Manual connect", "Disconnect" →
+      all belong to one Test Set: "Connection"
+    * "Enable", "Disable", "Toggle state" → one Test Set: "Power Control"
+      (or "Switch" if that is the capability under test, not a widget name)
+    * "Add device to list", "Remove device from list", "Show paired list"
+      → one Test Set: "Device List"
+- **Do NOT prefix the label with the feature/module name** (e.g. "BT",
+  "Bluetooth", "DeviceManager", "HMI"). The feature group is tracked in a
+  separate column; labels should describe the capability WITHIN that group.
 - Derive labels from what the requirements actually describe; do NOT invent a
-  fixed taxonomy up front.
-- Requirements that verify the same behavioural area MUST share the same
-  Test Set label. Aim for coherent groupings of 2–10 requirements per label,
-  but create a single-req Test Set if a requirement is genuinely unique.
+  fixed taxonomy up front, but DO zoom out one level: ask "what user-facing
+  capability is this exercising?" rather than "which screen or button?".
+- Requirements that exercise the same capability MUST share the same Test Set
+  label, even if they touch different UI entry points or sub-states. Aim for
+  5–15 requirements per label when the data supports it; avoid splitting a
+  capability into Pairing / Reconnect / Disconnect unless the CFTS really
+  only covers one of them.
+- Single-req Test Sets are allowed ONLY when the requirement is a genuine
+  outlier that doesn't fit any capability shared with other reqs. Otherwise
+  merge it into the closest related capability.
 - Prefer short noun phrases (no trailing "Testing", no "Req-xxx" placeholders,
   no generic words like "Feature" or "Function" alone).
 - Every requirement must be assigned exactly one Test Set — no empty, no

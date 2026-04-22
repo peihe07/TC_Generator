@@ -6,6 +6,7 @@ from prompt_builder import (
     build_multi_tc_user_prompt,
     build_system_blocks,
     build_system_prompt,
+    build_test_set_classification_prompt,
     build_user_prompt,
 )
 
@@ -141,3 +142,46 @@ class TestBuildMultiTcPrompt:
         prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
         assert "short English" in prompt
         assert "normalized by the system" in prompt or "normalize it to the canonical dropdown value" in prompt
+
+
+class TestBuildTestSetClassificationPrompt:
+    """Test Set labels 要用 functional capability 而非 sub-action。
+    參考例子：Pairing / Reconnect / Disconnect 都應該 merge 成 Connection。"""
+
+    def _reqs(self):
+        return [
+            {"req_id": "R1", "test_item": "Pair a new device via BT settings."},
+            {"req_id": "R2", "test_item": "Auto-reconnect to last paired device on power-on."},
+            {"req_id": "R3", "test_item": "Disconnect current BT device from menu."},
+        ]
+
+    def test_prompt_includes_capability_grouping_rule(self):
+        prompt = build_test_set_classification_prompt(self._reqs())
+        # 核心指令：by capability, not by sub-action
+        assert "Group by capability, not by sub-action" in prompt
+        # 明確舉例把 pairing / reconnect / disconnect 合成 Connection
+        assert "Connection" in prompt
+        assert "Pairing" in prompt or "pairing" in prompt
+
+    def test_prompt_discourages_splitting_sub_actions(self):
+        prompt = build_test_set_classification_prompt(self._reqs())
+        assert "zoom out one level" in prompt
+        # 跨行 wrap 時 "user-facing\ncapability" — 正規化空白再比對
+        assert "user-facing capability" in " ".join(prompt.split())
+
+    def test_prompt_still_requires_full_assignment(self):
+        reqs = self._reqs()
+        prompt = build_test_set_classification_prompt(reqs)
+        assert f"array length must equal the input count ({len(reqs)})" in prompt
+
+    def test_test_group_context_tells_ai_not_to_repeat_feature_prefix(self):
+        prompt = build_test_set_classification_prompt(self._reqs(), test_group="Bluetooth")
+        assert 'Test Group **"Bluetooth"**' in prompt
+        # 明確要求不要在 label 裡重複 feature 名
+        assert "do NOT repeat it in the Test Set label" in prompt
+
+    def test_no_test_group_leaves_context_block_empty(self):
+        prompt = build_test_set_classification_prompt(self._reqs(), test_group=None)
+        assert "Feature group context" not in prompt
+        prompt_empty = build_test_set_classification_prompt(self._reqs(), test_group="")
+        assert "Feature group context" not in prompt_empty
