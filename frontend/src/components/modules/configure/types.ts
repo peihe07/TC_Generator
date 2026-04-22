@@ -15,6 +15,12 @@ export type GroupPreviewState = {
     testSet: string;
     source: 'existing' | 'derived';
   }>;
+  cost: number;
+  inputTokens: number;
+  outputTokens: number;
+  cacheCreationTokens: number;
+  cacheReadTokens: number;
+  model?: string;
 };
 
 export type MatchPreviewState = {

@@ -6,6 +6,7 @@ import type {
   GenerationConfig,
   AwaitingApplyFields,
   TcRow,
+  UsageSummary,
   ValidationError,
 } from "@/src/lib/types";
 import { useJobHistoryStore } from "@/src/store/useJobHistoryStore";
@@ -60,6 +61,7 @@ type GenerateCallbacks = {
 
 type RegenerateCallbacks = {
   onRow?: (rowId: string, data: AwaitingApplyFields) => void;
+  onProgress?: (usage: UsageSummary) => void;
   onFail?: (rowId: string, message: string) => void;
   onComplete?: () => void;
   onError?: (message: string) => void;
@@ -79,6 +81,7 @@ type RerunCallbacks = {
     keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
     message: string;
   }) => void;
+  onProgress?: (usage: UsageSummary) => void;
   onFail?: (rowId: string, message: string) => void;
   onComplete?: () => void;
   onError?: (message: string) => void;
@@ -105,6 +108,12 @@ type GroupPreview = {
     testSet: string;
     source: "existing" | "derived";
   }>;
+  cost: number;
+  inputTokens: number;
+  outputTokens: number;
+  cacheCreationTokens: number;
+  cacheReadTokens: number;
+  model?: string;
 };
 
 type MatchPreview = {
@@ -473,6 +482,14 @@ export function startGeneration(
     cacheCreationTokens: 0,
     cacheReadTokens: 0,
   };
+  const baseUsage = {
+    cost: 0,
+    inputTokens: 0,
+    outputTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+  };
+  let baseCaptured = false;
   const rowOutcomes = new Map<string, "success" | "fail">();
   let completedJobId: string | null = null;
 
@@ -486,11 +503,11 @@ export function startGeneration(
       finishedAt: Date.now(),
       rowsTotal: latestStats.total,
       rowsProcessed: latestStats.processed,
-      cost: latestStats.cost,
-      inputTokens: latestStats.inputTokens,
-      outputTokens: latestStats.outputTokens,
-      cacheReadTokens: latestStats.cacheReadTokens,
-      cacheCreationTokens: latestStats.cacheCreationTokens,
+      cost: Number((latestStats.cost - baseUsage.cost).toFixed(4)),
+      inputTokens: Math.max(latestStats.inputTokens - baseUsage.inputTokens, 0),
+      outputTokens: Math.max(latestStats.outputTokens - baseUsage.outputTokens, 0),
+      cacheReadTokens: Math.max(latestStats.cacheReadTokens - baseUsage.cacheReadTokens, 0),
+      cacheCreationTokens: Math.max(latestStats.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
     });
   };
 
@@ -570,6 +587,14 @@ export function startGeneration(
           }
           const stats = data.stats as Record<string, number> | undefined;
           if (stats) {
+            if (!baseCaptured) {
+              baseUsage.cost = Number(stats.currentCost ?? 0);
+              baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
+              baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
+              baseUsage.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+              baseUsage.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+              baseCaptured = true;
+            }
             let success = 0;
             let fail = 0;
             for (const outcome of rowOutcomes.values()) {
@@ -714,6 +739,14 @@ export async function regenerateRows(
       inputTokens: 0, outputTokens: 0,
       cacheCreationTokens: 0, cacheReadTokens: 0,
     };
+    const baseUsage = {
+      cost: 0,
+      inputTokens: 0,
+      outputTokens: 0,
+      cacheCreationTokens: 0,
+      cacheReadTokens: 0,
+    };
+    let baseCaptured = false;
 
     try {
       const response = await fetch(
@@ -761,6 +794,14 @@ export async function regenerateRows(
           const event = JSON.parse(line) as Record<string, unknown>;
           const stats = event.stats as Record<string, number> | undefined;
           if (stats) {
+            if (!baseCaptured) {
+              baseUsage.cost = Number(stats.currentCost ?? 0);
+              baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
+              baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
+              baseUsage.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+              baseUsage.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+              baseCaptured = true;
+            }
             latest.total = Number(stats.total ?? latest.total);
             latest.processed = Number(stats.processed ?? latest.processed);
             latest.cost = Number(stats.currentCost ?? latest.cost);
@@ -768,6 +809,13 @@ export async function regenerateRows(
             latest.outputTokens = Number(stats.outputTokens ?? latest.outputTokens);
             latest.cacheCreationTokens = Number(stats.cacheCreationTokens ?? latest.cacheCreationTokens);
             latest.cacheReadTokens = Number(stats.cacheReadTokens ?? latest.cacheReadTokens);
+            callbacks.onProgress?.({
+              cost: latest.cost,
+              inputTokens: latest.inputTokens,
+              outputTokens: latest.outputTokens,
+              cacheCreationTokens: latest.cacheCreationTokens,
+              cacheReadTokens: latest.cacheReadTokens,
+            });
           }
 
           if (event.type === "row.regenerated" && event.row) {
@@ -801,11 +849,11 @@ export async function regenerateRows(
         finishedAt: Date.now(),
         rowsTotal: latest.total,
         rowsProcessed: latest.processed,
-        cost: latest.cost,
-        inputTokens: latest.inputTokens,
-        outputTokens: latest.outputTokens,
-        cacheReadTokens: latest.cacheReadTokens,
-        cacheCreationTokens: latest.cacheCreationTokens,
+        cost: Number((latest.cost - baseUsage.cost).toFixed(4)),
+        inputTokens: Math.max(latest.inputTokens - baseUsage.inputTokens, 0),
+        outputTokens: Math.max(latest.outputTokens - baseUsage.outputTokens, 0),
+        cacheReadTokens: Math.max(latest.cacheReadTokens - baseUsage.cacheReadTokens, 0),
+        cacheCreationTokens: Math.max(latest.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
       });
 
       callbacks.onComplete?.();
@@ -868,6 +916,14 @@ export async function rerunRows(
     inputTokens: 0, outputTokens: 0,
     cacheCreationTokens: 0, cacheReadTokens: 0,
   };
+  const baseUsage = {
+    cost: 0,
+    inputTokens: 0,
+    outputTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+  };
+  let baseCaptured = false;
 
   try {
     const response = await fetch(
@@ -912,6 +968,14 @@ export async function rerunRows(
         const event = JSON.parse(line) as Record<string, unknown>;
         const stats = event.stats as Record<string, number> | undefined;
         if (stats) {
+          if (!baseCaptured) {
+            baseUsage.cost = Number(stats.currentCost ?? 0);
+            baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
+            baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
+            baseUsage.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+            baseUsage.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+            baseCaptured = true;
+          }
           latest.total = Number(stats.total ?? latest.total);
           latest.processed = Number(stats.processed ?? latest.processed);
           latest.cost = Number(stats.currentCost ?? latest.cost);
@@ -919,6 +983,13 @@ export async function rerunRows(
           latest.outputTokens = Number(stats.outputTokens ?? latest.outputTokens);
           latest.cacheCreationTokens = Number(stats.cacheCreationTokens ?? latest.cacheCreationTokens);
           latest.cacheReadTokens = Number(stats.cacheReadTokens ?? latest.cacheReadTokens);
+          callbacks.onProgress?.({
+            cost: latest.cost,
+            inputTokens: latest.inputTokens,
+            outputTokens: latest.outputTokens,
+            cacheCreationTokens: latest.cacheCreationTokens,
+            cacheReadTokens: latest.cacheReadTokens,
+          });
         }
 
         if (event.type === "row.regenerated" && event.row) {
@@ -958,17 +1029,17 @@ export async function rerunRows(
 
     useJobHistoryStore.getState().appendRecord({
       id: `rerun-${Date.now().toString(36)}`,
-      kind: 'regenerate',
+      kind: 'rerun',
       model: input.config.model,
       startedAt,
       finishedAt: Date.now(),
       rowsTotal: latest.total,
       rowsProcessed: latest.processed,
-      cost: latest.cost,
-      inputTokens: latest.inputTokens,
-      outputTokens: latest.outputTokens,
-      cacheReadTokens: latest.cacheReadTokens,
-      cacheCreationTokens: latest.cacheCreationTokens,
+      cost: Number((latest.cost - baseUsage.cost).toFixed(4)),
+      inputTokens: Math.max(latest.inputTokens - baseUsage.inputTokens, 0),
+      outputTokens: Math.max(latest.outputTokens - baseUsage.outputTokens, 0),
+      cacheReadTokens: Math.max(latest.cacheReadTokens - baseUsage.cacheReadTokens, 0),
+      cacheCreationTokens: Math.max(latest.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
     });
 
     callbacks.onComplete?.();

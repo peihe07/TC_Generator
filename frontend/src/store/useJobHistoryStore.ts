@@ -3,7 +3,7 @@ import { create } from 'zustand';
 // 單一 job 的歷史紀錄；留下足夠欄位讓 UI 顯示成本與 token 分佈
 export interface JobRecord {
   id: string;              // 後端 jobId 或前端 fallback id
-  kind: 'generate' | 'quick' | 'regenerate';
+  kind: 'generate' | 'quick' | 'group' | 'regenerate' | 'rerun';
   model: string;
   startedAt: number;
   finishedAt: number;

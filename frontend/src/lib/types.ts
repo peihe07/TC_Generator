@@ -125,3 +125,11 @@ export interface JobStats {
   cacheCreationTokens: number;
   cacheReadTokens: number;
 }
+
+export interface UsageSummary {
+  cost: number;
+  inputTokens: number;
+  outputTokens: number;
+  cacheCreationTokens: number;
+  cacheReadTokens: number;
+}

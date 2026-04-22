@@ -436,6 +436,28 @@ def _would_exceed_budget(current_cost: float, batch_size: int, model: str, budge
     return current_cost + estimated_batch_cost > budget
 
 
+def _job_usage(job: dict | None) -> dict:
+    usage = (job or {}).get("usage") or {}
+    return {
+        "cost": float(usage.get("cost") or 0.0),
+        "inputTokens": int(usage.get("inputTokens") or 0),
+        "outputTokens": int(usage.get("outputTokens") or 0),
+        "cacheCreationTokens": int(usage.get("cacheCreationTokens") or 0),
+        "cacheReadTokens": int(usage.get("cacheReadTokens") or 0),
+    }
+
+
+def _persist_job_usage(job_id: str, job: dict, *, cost: float, input_tokens: int, output_tokens: int, cache_creation_tokens: int, cache_read_tokens: int) -> None:
+    job["usage"] = {
+        "cost": cost,
+        "inputTokens": input_tokens,
+        "outputTokens": output_tokens,
+        "cacheCreationTokens": cache_creation_tokens,
+        "cacheReadTokens": cache_read_tokens,
+    }
+    JOB_REGISTRY[job_id] = job
+
+
 def _build_spec_index_for_job(job: dict) -> dict:
     spec_bytes = job.get("specBytes")
     spec_filename = job.get("specFileName")
@@ -950,6 +972,21 @@ async def preview_grouping(payload: GroupPreviewRequest) -> dict:
         raise HTTPException(status_code=404, detail="job not found")
 
     result = group_tests_tool(rows=[row.model_dump() for row in payload.rows])
+    usage = _job_usage(job)
+    new_cost = usage["cost"] + float(result.get("cost") or 0.0)
+    new_input = usage["inputTokens"] + int(result.get("inputTokens") or 0)
+    new_output = usage["outputTokens"] + int(result.get("outputTokens") or 0)
+    new_cache_creation = usage["cacheCreationTokens"] + int(result.get("cacheCreationTokens") or 0)
+    new_cache_read = usage["cacheReadTokens"] + int(result.get("cacheReadTokens") or 0)
+    _persist_job_usage(
+        payload.jobId,
+        job,
+        cost=new_cost,
+        input_tokens=new_input,
+        output_tokens=new_output,
+        cache_creation_tokens=new_cache_creation,
+        cache_read_tokens=new_cache_read,
+    )
     return {"jobId": payload.jobId, **result}
 
 
@@ -1064,11 +1101,12 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         )
 
         processed = 0
-        current_cost = 0.0
-        total_input_tokens = 0
-        total_output_tokens = 0
-        total_cache_creation_tokens = 0
-        total_cache_read_tokens = 0
+        usage = _job_usage(job)
+        current_cost = usage["cost"]
+        total_input_tokens = usage["inputTokens"]
+        total_output_tokens = usage["outputTokens"]
+        total_cache_creation_tokens = usage["cacheCreationTokens"]
+        total_cache_read_tokens = usage["cacheReadTokens"]
         batch_size = config.get("batchSize", 1)
         model = config.get("model", DEFAULT_MODEL)
         strict_validation = config.get("strictValidation", False)
@@ -1255,6 +1293,15 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             await asyncio.sleep(0.15)
 
         job["status"] = "completed"
+        _persist_job_usage(
+            jobId,
+            job,
+            cost=current_cost,
+            input_tokens=total_input_tokens,
+            output_tokens=total_output_tokens,
+            cache_creation_tokens=total_cache_creation_tokens,
+            cache_read_tokens=total_cache_read_tokens,
+        )
         JOB_REGISTRY[jobId] = job  # 回寫 SQLite
         yield _sse_event(
             {
@@ -1342,11 +1389,12 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         model = cfg.get("model", DEFAULT_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
-        current_cost = 0.0
-        total_in = 0
-        total_out = 0
-        total_cache_create = 0
-        total_cache_read = 0
+        usage = _job_usage(job)
+        current_cost = usage["cost"]
+        total_in = usage["inputTokens"]
+        total_out = usage["outputTokens"]
+        total_cache_create = usage["cacheCreationTokens"]
+        total_cache_read = usage["cacheReadTokens"]
 
         yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total})
 
@@ -1404,6 +1452,17 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                         }
                     )
             await asyncio.sleep(0.05)
+
+        if job is not None:
+            _persist_job_usage(
+                job_id,
+                job,
+                cost=current_cost,
+                input_tokens=total_in,
+                output_tokens=total_out,
+                cache_creation_tokens=total_cache_create,
+                cache_read_tokens=total_cache_read,
+            )
 
         yield _sse_event(
             {
@@ -1504,11 +1563,12 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
         model = cfg.get("model", DEFAULT_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
-        current_cost = 0.0
-        total_in = 0
-        total_out = 0
-        total_cache_create = 0
-        total_cache_read = 0
+        usage = _job_usage(job) if job_available else _job_usage(None)
+        current_cost = usage["cost"]
+        total_in = usage["inputTokens"]
+        total_out = usage["outputTokens"]
+        total_cache_create = usage["cacheCreationTokens"]
+        total_cache_read = usage["cacheReadTokens"]
 
         # 新 sub-TC 的 tc_id 分配：
         # 1. 從現有 rows 抽最多人用的 tc_id prefix（例如 `newR1L-DM-`），確保新
@@ -1672,6 +1732,17 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                         }
                     )
             await asyncio.sleep(0.05)
+
+        if job_available and job is not None:
+            _persist_job_usage(
+                job_id,
+                job,
+                cost=current_cost,
+                input_tokens=total_in,
+                output_tokens=total_out,
+                cache_creation_tokens=total_cache_create,
+                cache_read_tokens=total_cache_read,
+            )
 
         yield _sse_event(
             {

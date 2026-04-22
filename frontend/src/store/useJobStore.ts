@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { TcRow, GenerationConfig, JobLog, JobStats, JobMetadata } from '../lib/types';
+import { TcRow, GenerationConfig, JobLog, JobStats, JobMetadata, UsageSummary } from '../lib/types';
 
 interface JobStore {
   jobMetadata: JobMetadata | null;
@@ -25,6 +25,7 @@ interface JobStore {
   updateConfig: (updates: Partial<GenerationConfig>) => void;
   appendLog: (log: JobLog) => void;
   updateStats: (updates: Partial<JobStats>) => void;
+  accumulateStats: (usage: UsageSummary) => void;
   setProcessing: (status: boolean) => void;
   setRegenerating: (status: boolean) => void;
   resetJob: () => void;
@@ -172,6 +173,17 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
 
   updateStats: (updates) => set((state) => ({
     stats: { ...state.stats, ...updates },
+  })),
+
+  accumulateStats: (usage) => set((state) => ({
+    stats: {
+      ...state.stats,
+      cost: Number((state.stats.cost + usage.cost).toFixed(4)),
+      inputTokens: state.stats.inputTokens + usage.inputTokens,
+      outputTokens: state.stats.outputTokens + usage.outputTokens,
+      cacheCreationTokens: state.stats.cacheCreationTokens + usage.cacheCreationTokens,
+      cacheReadTokens: state.stats.cacheReadTokens + usage.cacheReadTokens,
+    },
   })),
 
   setProcessing: (status) => set({ isProcessing: status }),

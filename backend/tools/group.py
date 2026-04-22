@@ -89,6 +89,14 @@ def group_tests_tool(
             unresolved_reqs[req_id] = _get_any(row, "test_item", "testItem")
 
     classified: dict[str, str] = {}
+    usage = {
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+        "model": model,
+    }
     if unresolved_reqs:
         try:
             result = classify_test_sets(
@@ -96,6 +104,14 @@ def group_tests_tool(
                 model=model,
             )
             classified = result.assignments
+            usage = {
+                "cost": result.cost,
+                "inputTokens": result.input_tokens,
+                "outputTokens": result.output_tokens,
+                "cacheCreationTokens": result.cache_creation_tokens,
+                "cacheReadTokens": result.cache_read_tokens,
+                "model": result.model,
+            }
         except GenerationError:
             classified = {}
 
@@ -135,7 +151,12 @@ def group_tests_tool(
                 }
             )
 
-    return {"groups": groups, "framework": framework, "assignments": assignments}
+    return {
+        "groups": groups,
+        "framework": framework,
+        "assignments": assignments,
+        **usage,
+    }
 
 
 register_tool(

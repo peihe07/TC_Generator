@@ -7,6 +7,7 @@ import {
   fetchGroupingPreview,
   fetchMatchPreview,
 } from '../../../services/jobAdapter';
+import { useJobHistoryStore } from '../../../store/useJobHistoryStore';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { ConfigureBottomBar } from './ConfigureBottomBar';
 import { GroupingTab } from './GroupingTab';
@@ -25,8 +26,9 @@ import type {
  * data via props.
  */
 const ConfigureModule: React.FC = () => {
-  const { tcRows, config, updateConfig, setTcRows, jobMetadata } = useJobStore();
+  const { tcRows, config, updateConfig, setTcRows, jobMetadata, accumulateStats } = useJobStore();
   const { openWindow, advanceWindow } = useWindowStore();
+  const [groupingCostSpent, setGroupingCostSpent] = useState(0);
 
   const [activeTab, setActiveTab] = useState<ConfigureTabId>('tab1');
 
@@ -40,7 +42,7 @@ const ConfigureModule: React.FC = () => {
   const estimatedCalls = tcRows.length
     ? Math.ceil(tcRows.length / Math.max(config.batchSize, 1))
     : 0;
-  const estimatedBudget = estimateBudget(tcRows.length, config.model, config.budgetLimit);
+  const estimatedBudget = estimateBudget(tcRows.length, config.model, config.budgetLimit, groupingCostSpent);
 
   const loadGroupingPreview = useCallback(async () => {
     if (!tcRows.length) {
@@ -54,6 +56,30 @@ const ConfigureModule: React.FC = () => {
         jobId: jobMetadata?.jobId ?? null,
         rows: tcRows,
       });
+      if (preview.cost > 0) {
+        setGroupingCostSpent((value) => Number((value + preview.cost).toFixed(4)));
+        accumulateStats({
+          cost: preview.cost,
+          inputTokens: preview.inputTokens,
+          outputTokens: preview.outputTokens,
+          cacheCreationTokens: preview.cacheCreationTokens,
+          cacheReadTokens: preview.cacheReadTokens,
+        });
+        useJobHistoryStore.getState().appendRecord({
+          id: `group-${Date.now().toString(36)}`,
+          kind: 'group',
+          model: preview.model || config.model,
+          startedAt: Date.now(),
+          finishedAt: Date.now(),
+          rowsTotal: tcRows.length,
+          rowsProcessed: preview.assignments.length,
+          cost: preview.cost,
+          inputTokens: preview.inputTokens,
+          outputTokens: preview.outputTokens,
+          cacheReadTokens: preview.cacheReadTokens,
+          cacheCreationTokens: preview.cacheCreationTokens,
+        });
+      }
       setGroupPreview(preview);
     } catch (error) {
       setGroupError(
@@ -62,7 +88,7 @@ const ConfigureModule: React.FC = () => {
     } finally {
       setIsLoadingGroupPreview(false);
     }
-  }, [tcRows, jobMetadata?.jobId]);
+  }, [tcRows, jobMetadata?.jobId, accumulateStats, config.model]);
 
   const loadMatchPreview = useCallback(async () => {
     if (!tcRows.length) {

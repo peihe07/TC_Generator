@@ -40,6 +40,7 @@ const ReviewModule: React.FC = () => {
     setRegenerating,
     addTcRowAfter,
     config,
+    updateStats,
     appendLog,
   } = useJobStore();
   const { advanceWindow } = useWindowStore();
@@ -229,6 +230,9 @@ const ReviewModule: React.FC = () => {
           config,
         },
         {
+          onProgress: (usage) => {
+            updateStats(usage);
+          },
           onRow: (id, data) => {
             setAwaitingApply(id, data);
             updateTcRow(id, { status: 'reviewing' });
@@ -266,6 +270,7 @@ const ReviewModule: React.FC = () => {
     tcRows,
     config,
     appendLog,
+    updateStats,
   ]);
 
   const handleRerun = useCallback(async () => {
@@ -286,6 +291,9 @@ const ReviewModule: React.FC = () => {
           project: jobMetadata?.projectName ?? null,
         },
         {
+          onProgress: (usage) => {
+            updateStats(usage);
+          },
           onPrimary: (row) => {
             // 覆蓋原列，保留 id / tcId。Re-run 不走 diff preview。
             updateTcRow(row.id, {
@@ -333,6 +341,7 @@ const ReviewModule: React.FC = () => {
     tcRows,
     config,
     appendLog,
+    updateStats,
   ]);
 
   const handleApplyRegen = (id: string, fields: DiffFieldKey[]) => {
