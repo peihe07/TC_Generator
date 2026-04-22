@@ -22,7 +22,8 @@ Generate TC / Review Existing TC
 5) Define Test Item (single objective, explicit scenario)
 6) Build flow (Setup → Transition → Final Step)
 7) Write Expected Results (1:1), baseline if comparison needed
-8) Self-check (§11)
+8) Assign Design Method based on finalized flow (§14)
+9) Self-check (§11)
 
 ## 5. Template
 
@@ -43,6 +44,9 @@ Test Procedure:
 
 Expected Result:
 1. ...
+
+Design Method:
+[Method Name]
 ```
 
 ## 6. Field Rules
@@ -77,20 +81,15 @@ Each step MUST be executable with clear purpose: establish condition / transitio
 ✓ `Press H/K [Screen Off] button to turn off the screen.`
 
 #### 7.1.1 Forbidden Verbs (hard rule)
-Do NOT use these as step's main verb — they imply "look and judge" and leave target ambiguous:
+Do NOT use as step's main verb: `observe` / `observe whether` / `see if` / `check whether` / `confirm whether` / `verify`
 
-`observe` / `observe whether` / `see if` / `check whether` / `confirm whether` / `verify`
+`verify` note: Allowed only as purpose clause (`... to verify that ...`), never as main verb.
 
-**`verify` note:** Allowed only when describing purpose (e.g., `... to verify that ...`), never as main action verb.
+Preferred verbs: `Check` / `Check that` / `Confirm` / `Confirm that` / `Read` / `Record` / `Compare`
 
-**Preferred verbs** (concrete action + observable target — UI element, log, signal, count, state):
-`Check` / `Check that` / `Confirm` / `Confirm that` / `Read` / `Record` / `Compare`
-
-✗ `Observe the screen.` — no target
-✗ `Verify the BT icon is displayed.` — `verify` forbidden
+✗ `Observe the screen.` ✗ `Verify the BT icon is displayed.`
 ✓ `Check that the CarPlay home screen is displayed on the HU.`
 ✓ `Confirm the BT icon appears in the status bar within 3 s.`
-✓ `Read the contact count on the HU and record the value.`
 
 ### 7.2 No Skipping
 Do not omit necessary steps when state isn't guaranteed or path isn't obvious.
@@ -134,9 +133,7 @@ Test Item must trace to Requirement Description or SWRA. If conflict, Requiremen
 Example: "retrieve max 60 records per BT device... first set... whatever order received"
 → `maximum` → boundary (=60, >60, <60); `stop downloading` → stop behavior; `first set` → order preservation; `per BT device` → multi-device independence
 
-**Extended Branch Checklist** (each applicable = 1 TC): unknown/private/anonymous values; before-vs-after state; boundary (=limit / >limit / <limit / =0 / =1); negative path (denied, disconnected, invalid input); concurrency (multi-device/user, parallel); persistence (reboot, power cycle, background recovery).
-
-**Example:** Req "max 60 records per BT device; stop on limit; first set kept" → 5 TCs: TC1 (=60), TC2 (>60 stops at 60), TC3 (<60), TC4 (order), TC5 (2 devices).
+**Branch Checklist** (each applicable = 1 TC): unknown/private values; before-vs-after; boundary (=limit/>limit/<limit/=0); negative path; concurrency; persistence (reboot/power cycle).
 
 # Mode 2 — Review
 
@@ -153,40 +150,33 @@ Example: "retrieve max 60 records per BT device... first set... whatever order r
 10. Procedure ↔ Expected Result 1:1 aligned (§8)
 11. Expected Results observable, no "normal/as expected" (§8)
 12. No False Pass / No False Fail (§9)
+13. Design Method assigned AFTER finalizing procedure, based on actual flow (§14)
 
 ## 12. Review Output Format
 Table: `| Field | Problem | Severity | Fix |`. Severity: Critical/Major/Minor.
 
 ## 13. Formatting (CRITICAL)
 - NEVER use HTML tags or Markdown tables for TC output
-- Use **plain text block format** from §5 Template; each numbered item on its own line
+- Use **plain text block format** from §5; each numbered item on its own line
+- Align Step and Expected Result numbering
 
-Example:
-```
-TC1: First-time CarPlay pairing
+## 14. Design Method (assign AFTER TC finalized, first-match on actual flow)
 
-Test Item:
-First-time BT pairing with CarPlay phone → HU identifies phone as CarPlay-capable
+Judge by Test Procedure + Expected Result, not requirement text. Match PRIMARY intent:
+- wrong/illegal input → #1; fault/disconnect → #2; state transition is target → #3
+- boundary numbers → #6; end-to-end flow → #8; single feature → #9
 
-Pre-Condition:
-1. A CarPlay-capable phone is available.
-2. Phone never paired with HU.
+| # | Condition | Method |
+|---|---|---|
+| 1 | Invalid input / illegal operation | Negative/Invalid |
+| 2 | Simulated fault (disconnect, timeout, removal) | Fault Injection |
+| 3 | State A → State B transition | State Transition |
+| 4 | Multiple conditions determine outcome | Decision Table |
+| 5 | Input partitioned into valid/invalid classes | Equivalence Partitioning |
+| 6 | Tests at boundary (=limit, limit±1) | Boundary Value Analysis |
+| 7 | Multi-parameter combination | Combinatorial |
+| 8 | End-to-end user flow, multi-step | Scenario/Use Case |
+| 9 | None of above; single feature check | Functional Based |
 
-Input:
-NA
-
-Test Procedure:
-1. Enable Bluetooth on the phone.
-2. On HU, open BT settings and select the phone.
-3. Complete Bluetooth pairing.
-4. Check that the HU recognizes the phone as CarPlay-capable.
-
-Expected Result:
-1. Phone BT is discoverable.
-2. HU starts pairing.
-3. Pairing completed.
-4. HU identifies phone as CarPlay-capable.
-```
-
-## 14. Final Rule
-Each step must have clear purpose. Multiple objectives not allowed. Only final step validates Test Item; TC must align with Req or SWRA.
+## 15. Final Rule
+Each step needs clear purpose. One objective per TC. Only final step validates. TC must align with Req or SWRA.

@@ -115,7 +115,7 @@ For every TC you are about to output, silently verify:
   [ ] No cross-reference like "same as TC1"; every TC is self-contained.
 
 If any check fails, FIX the TC before outputting. Do not emit a TC that
-would fail the §11 12-item self-check in the instruction doc.
+would fail the §11 13-item self-check in the instruction doc.
 """
 
 
@@ -368,7 +368,7 @@ Apply these authoritative rules from `ASPICE_SWE6_AI_Instruction.md`:
   multiple supported items (file formats, device types, markets, input
   classes, etc.), produce ONE TC per item. Never combine them. e.g. supported
   video formats `.mp4 / .avi / .mpg / .wmv / .3gp / .mkv` → 6 separate TCs.
-- **§10.2.1 Extended Branch Checklist** — Scan for implicit branches the
+- **§10.2 Branch Checklist** — Scan for implicit branches the
   requirement rarely states explicitly (unknown / private / withheld values,
   before-vs-after states, boundary =/>/<, negative paths, concurrency,
   persistence after reboot) and add TCs for each that the requirement covers.
@@ -380,7 +380,7 @@ Splitting decision tree:
 2. Does it describe multiple distinct scenarios / conditions / boundaries?
    → one TC per scenario (§6.1).
 3. Does it imply extended branches (unknown / error / negative)?
-   → add TCs for each covered branch (§10.2.1, plus Design Method guide).
+   → add TCs for each covered branch (§10.2, plus Design Method guide).
 4. Only a single atomic behaviour with no branches? → return exactly one TC.
 
 Additional hard constraints:
@@ -390,7 +390,7 @@ Additional hard constraints:
   `Test Case Design Method 判斷規則.md`; choose via the "快速判斷流程"
   (negative → fault → state → decision → EP → BVA → combinatorial →
   scenario → functional).
-- Every TC must pass the §11 12-item self-check in the instruction doc.
+- Every TC must pass the §11 13-item self-check in the instruction doc.
 """
 
 
@@ -454,7 +454,7 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only; input_test_data = concrete values or "N/A".
 - design_method via the 9-method decision flow; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 12-item self-check."""
+- All output fields English; must pass the §11 13-item self-check."""
 
 
 def build_test_set_classification_prompt(reqs: list[dict]) -> str:
@@ -571,4 +571,4 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state only; input_test_data = concrete values or "N/A".
 - design_method via the 9-method decision flow; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 12-item self-check."""
+- All output fields English; must pass the §11 13-item self-check."""
