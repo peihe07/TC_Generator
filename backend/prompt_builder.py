@@ -51,8 +51,12 @@ _HARD_CONSTRAINTS = """
    numbered items (1:1 mapping).** If procedure has N steps, expected_result
    must also have exactly N items, aligned in order.
 4. **pre_conditions only describes states / environment.** Never include
-   actions (no "click", "enter", "send" — those belong in test_procedure).
-5. **design_method MUST be one of these 9 values (English label only):**
+   actions (no "click", "enter", "send" — those belong in test_procedure),
+   checks/reads, or data-presence verifications (no "HU has 5,000 entries",
+   "phonebook contains N contacts" — set up + read in a baseline step). §6.2.
+5. **design_method is assigned AFTER the procedure and expected_result are
+   finalized**, judged from the ACTUAL flow (not the requirement text). Use
+   §14 first-match on PRIMARY intent. MUST be one of these 9 English labels:
    Negative / Fault Injection / State Transition / Decision Table / EP / BVA
    / Combinatorial / Scenario / Functional.
 6. **priority MUST be one of P0 / P1 / P2.** Mapping: P0 = highest (safety,
@@ -98,24 +102,27 @@ _WRITING_DISCIPLINE = """
 For every TC you are about to output, silently verify:
   [ ] test_item_rewrite follows `(Trigger → Observable Outcome)` and carries
       a scenario tag when the req was split (§6.1 Test Item).
-  [ ] pre_conditions only describes state/environment, no actions.
+  [ ] pre_conditions only describes state/environment — no actions, no
+      checks/reads, no data-presence (§6.2).
+  [ ] test_item_rewrite is SHORT, 3–8 words each side, no hedge words
+      (`should`, `properly`, `within reasonable time`) (§6.1).
   [ ] Every test_procedure step has: explicit actor, explicit action verb,
       explicit target, and (when applicable) explicit value/data.
   [ ] No forbidden vague verbs as a step's main verb — NEVER use `observe`,
       `observe whether`, `see if`, `check whether`, `confirm whether`, or
       `verify` as the main action; use `Check that / Confirm that / Read /
       Record / Compare` + explicit observable target (§7.1.1).
-  [ ] test_item_rewrite is one short sentence, `[Trigger] → [Outcome]`, with
-      hedge words removed (`should / within reasonable time / be able to`).
   [ ] procedure step count == expected_result item count, aligned 1:1.
   [ ] expected_result items are observable (UI / log / API response / state).
-  [ ] design_method is chosen by the 9-method decision flow, not guessed.
+  [ ] design_method assigned AFTER procedure+ER are finalized, judged from
+      the ACTUAL flow (not the requirement text), via §14 first-match on
+      PRIMARY intent.
   [ ] priority is exactly P0 / P1 / P2.
   [ ] No Chinese leaks into any output field (繁中只允許在 reasoning / meaning).
   [ ] No cross-reference like "same as TC1"; every TC is self-contained.
 
 If any check fails, FIX the TC before outputting. Do not emit a TC that
-would fail the §11 13-item self-check in the instruction doc.
+would fail the §11 10-item self-check in the instruction doc.
 """
 
 
@@ -187,8 +194,10 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
 - No "and/then"-chained actions in one step; no placeholders.
 - test_procedure and expected_result have the SAME number of numbered items (1:1).
 - Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state only (no actions); input_test_data = concrete values or "N/A".
-- design_method chosen by the 9-method decision flow; priority is P0 / P1 / P2.
+- pre_conditions = state/environment only (no actions, no checks/reads, no
+  data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
+- design_method assigned AFTER procedure+ER are finalized, judged from the
+  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
 - All output fields in English."""
 
 
@@ -220,8 +229,10 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
 - No "and/then"-chained actions in one step; no placeholders.
 - test_procedure and expected_result have the SAME number of numbered items (1:1).
 - Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state only (no actions); input_test_data = concrete values or "N/A".
-- design_method chosen by the 9-method decision flow; priority is P0 / P1 / P2.
+- pre_conditions = state/environment only (no actions, no checks/reads, no
+  data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
+- design_method assigned AFTER procedure+ER are finalized, judged from the
+  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
 - All output fields in English."""
 
 
@@ -310,7 +321,8 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check:
   "and/then"-chained actions, no placeholders.
 - test_procedure and expected_result have the SAME count (1:1 mapping).
 - Each expected_result item is observable; input_test_data = concrete values or "N/A".
-- design_method from the 9-method flow; priority is P0 / P1 / P2; output is English."""
+- design_method assigned AFTER procedure+ER are finalized, via §14 first-match
+  on the actual flow's PRIMARY intent; priority is P0 / P1 / P2; output is English."""
 
 
 # ---------------------------------------------------------------------------
@@ -386,11 +398,12 @@ Splitting decision tree:
 Additional hard constraints:
 - Each TC is self-contained: its own pre-conditions, procedure, expected result.
   NEVER write "same as TC1 but…" cross-references.
-- `design_method` for each TC must come from the 9 methods defined in
-  `Test Case Design Method 判斷規則.md`; choose via the "快速判斷流程"
-  (negative → fault → state → decision → EP → BVA → combinatorial →
-  scenario → functional).
-- Every TC must pass the §11 13-item self-check in the instruction doc.
+- `design_method` for each TC is assigned AFTER its procedure + expected_result
+  are finalized — judged from the ACTUAL flow, not the requirement text. Use
+  §14 first-match on PRIMARY intent (negative → fault → state → decision →
+  EP → BVA → combinatorial → scenario → functional). Cross-ref:
+  `Test Case Design Method 判斷規則.md`.
+- Every TC must pass the §11 10-item self-check in the instruction doc.
 """
 
 
@@ -452,9 +465,11 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
   Compare` + observable target instead.
 - test_procedure and expected_result have the SAME count (1:1, §8).
 - Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state only; input_test_data = concrete values or "N/A".
-- design_method via the 9-method decision flow; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 13-item self-check."""
+- pre_conditions = state/environment only (no actions, no checks/reads, no
+  data-presence); input_test_data = concrete values or "N/A".
+- design_method assigned AFTER procedure+ER are finalized, judged from the
+  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
+- All output fields English; must pass the §11 10-item self-check."""
 
 
 def build_test_set_classification_prompt(reqs: list[dict]) -> str:
@@ -569,6 +584,8 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
   Compare` + observable target instead.
 - test_procedure and expected_result have the SAME count (1:1, §8).
 - Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state only; input_test_data = concrete values or "N/A".
-- design_method via the 9-method decision flow; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 13-item self-check."""
+- pre_conditions = state/environment only (no actions, no checks/reads, no
+  data-presence); input_test_data = concrete values or "N/A".
+- design_method assigned AFTER procedure+ER are finalized, judged from the
+  ACTUAL flow via §14 first-match on PRIMARY intent; priority is P0 / P1 / P2.
+- All output fields English; must pass the §11 10-item self-check."""

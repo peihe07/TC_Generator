@@ -93,7 +93,8 @@ _FALLBACK_RULES = """
 - Format: (Condition/Trigger → Observable Outcome)
 
 ## Pre-Conditions
-- State or environment ONLY, never actions
+- State or environment ONLY — never actions, checks/reads, or data-presence
+  (e.g. "HU has 5,000 entries" → set up + read in a baseline step)
 - Minimum necessary state, numbered list or NA
 
 ## Input Test Data
@@ -103,18 +104,21 @@ _FALLBACK_RULES = """
 - Setup steps → Transition steps → Final Step (verification)
 - Each step: executable action + purpose
 - Final step must include action + verification target
+- Forbidden main verbs: observe / see if / check whether / confirm whether / verify
+  Use: Check that / Confirm that / Read / Record / Compare + explicit target
 
 ## Expected Result
 - 1:1 mapping with procedure steps
 - Observable, judgeable, no vague language
 
-## Design Method
-- Use decision waterfall: Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
+## Design Method (assign AFTER procedure+ER finalized)
+- Judge from the ACTUAL flow via first-match on PRIMARY intent:
+  Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
 
 ## Priority
-- High: safety, core functionality, data loss risk
-- Medium: standard feature, user-facing behavior
-- Low: UI cosmetic, edge cases
+- P0: safety, core functionality, data loss risk
+- P1: standard feature, user-facing behavior
+- P2: UI cosmetic, edge cases
 """.strip()
 
 # 規則文件路徑（專案根目錄下 docs/）
