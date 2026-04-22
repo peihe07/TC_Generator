@@ -32,7 +32,7 @@ interface JobStore {
 }
 
 const DEFAULT_CONFIG: GenerationConfig = {
-  model: 'gpt-4.1',
+  model: 'gpt-5.4-mini',
   batchSize: 5,
   budgetLimit: 10,
   creditBalance: 0,
@@ -214,7 +214,22 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
     config: state.config,
     stats: state.stats,
   }),
-  version: 1,
+  version: 2,
+  migrate: (persistedState: unknown) => {
+    const state = persistedState as { config?: Partial<GenerationConfig> } | undefined;
+    if (!state) return state;
+    const model = state.config?.model;
+    if (model === 'gpt-4.1' || model === 'gpt-5.4' || model === undefined) {
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          model: 'gpt-5.4-mini',
+        },
+      };
+    }
+    return state;
+  },
 }));
 
 // Expose store synchronously in non-production for Playwright E2E tests

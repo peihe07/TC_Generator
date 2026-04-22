@@ -146,7 +146,7 @@ def test_estimate_cost_positive():
             "parsedData": {"row_count": 20},
         }
     }
-    out = estimate_cost_tool(job_id="jX", model="gpt-4.1-mini", job_store=store)
+    out = estimate_cost_tool(job_id="jX", model="gpt-5.4-mini", job_store=store)
     assert out["rowCount"] == 20
     assert out["estCostUsd"] > 0
     assert out["jobId"] == "jX"

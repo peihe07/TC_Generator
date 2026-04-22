@@ -132,7 +132,7 @@ class TestCalculateCost:
             model="gpt-4.1",
             cache_read_tokens=400,
         )
-        expected = ((600 / 1_000_000) * 2.0) + ((400 / 1_000_000) * 2.0 * 0.5)
+        expected = ((600 / 1_000_000) * 2.0) + ((400 / 1_000_000) * 0.20)
         assert abs(cost - expected) < 0.0001
 
 

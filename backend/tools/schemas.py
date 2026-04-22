@@ -250,7 +250,7 @@ GENERATE_TC_SCHEMA: dict[str, Any] = {
             },
             "model": {
                 "type": "string",
-                "description": "OpenAI model id, e.g. gpt-4.1, gpt-4.1-mini.",
+                "description": "OpenAI model id, e.g. gpt-5.4-mini, gpt-5.4, gpt-5.4-nano.",
             },
         },
         "required": ["rows", "context", "rules_text"],
@@ -309,7 +309,7 @@ ESTIMATE_COST_SCHEMA: dict[str, Any] = {
             "job_id": {"type": "string"},
             "model": {
                 "type": "string",
-                "description": "OpenAI model id, e.g. gpt-4.1-mini, gpt-4.1.",
+                "description": "OpenAI model id, e.g. gpt-5.4-mini, gpt-5.4, gpt-5.4-nano.",
             },
             "batch_size": {"type": "integer", "minimum": 1, "default": 5},
         },

@@ -49,7 +49,7 @@ def test_generate_single_row_uses_multi_tc_path():
         cache_creation_tokens=0,
         cache_read_tokens=20,
         cost=0.001,
-        model="gpt-4.1-mini",
+        model="gpt-5.4-mini",
     )
     with patch("backend.tools.generate.generate_tcs_for_row", return_value=fake_result) as multi, \
          patch("backend.tools.generate.generate_batch_multi") as batch_mock:
@@ -58,7 +58,7 @@ def test_generate_single_row_uses_multi_tc_path():
             context=_CONTEXT,
             spec_index={},
             rules_text="RULES",
-            model="gpt-4.1-mini",
+            model="gpt-5.4-mini",
         )
 
     assert multi.called
@@ -75,7 +75,7 @@ def test_generate_single_row_splits_into_multiple_tcs():
     fake_result = SimpleNamespace(
         tc_data=tcs,
         input_tokens=100, output_tokens=50, cache_creation_tokens=0,
-        cache_read_tokens=0, cost=0.001, model="gpt-4.1",
+        cache_read_tokens=0, cost=0.001, model="gpt-5.4-mini",
     )
     with patch("backend.tools.generate.generate_tcs_for_row", return_value=fake_result):
         out = generate_tc_tool(
@@ -93,7 +93,7 @@ def test_generate_multi_row_uses_batch_multi_path():
         cache_creation_tokens=0,
         cache_read_tokens=0,
         cost=0.002,
-        model="gpt-4.1",
+        model="gpt-5.4-mini",
     )
     with patch("backend.tools.generate.generate_batch_multi", return_value=fake_result) as batch_mock, \
          patch("backend.tools.generate.generate_tcs_for_row") as single_mock:
@@ -116,7 +116,7 @@ def test_generate_legacy_single_path_with_allow_split_false():
     fake_result = SimpleNamespace(
         tc_data=fake_tc,
         input_tokens=100, output_tokens=50, cache_creation_tokens=0,
-        cache_read_tokens=0, cost=0.001, model="gpt-4.1",
+        cache_read_tokens=0, cost=0.001, model="gpt-5.4-mini",
     )
     with patch("backend.tools.generate.generate_single_tc", return_value=fake_result) as single:
         out = generate_tc_tool(
@@ -162,7 +162,7 @@ def test_generate_does_not_mutate_caller_context():
 
 
 def test_estimate_batch_cost_positive():
-    cost = estimate_batch_cost(row_count=10, model="gpt-4.1-mini")
+    cost = estimate_batch_cost(row_count=10, model="gpt-5.4-mini")
     assert cost > 0
 
 

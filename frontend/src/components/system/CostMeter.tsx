@@ -5,20 +5,23 @@ import { RiBarChartBoxLine } from '@remixicon/react';
 import { useJobStore } from '../../store/useJobStore';
 import CostDashboardPopup from './CostDashboardPopup';
 
-const MODEL_PRICING: Record<string, { input: number; output: number; label: string }> = {
-  'gpt-5':        { input: 5.00, output: 15.00, label: 'GPT-5' },
-  'gpt-5-mini':   { input: 0.25, output: 2.00,  label: 'GPT-5 mini' },
-  'gpt-4.1':      { input: 2.00, output: 8.00,  label: 'GPT-4.1' },
-  'gpt-4.1-mini': { input: 0.40, output: 1.60,  label: 'GPT-4.1 mini' },
-  'gpt-4o':       { input: 2.50, output: 10.00, label: 'GPT-4o' },
-  'gpt-4o-mini':  { input: 0.15, output: 0.60,  label: 'GPT-4o mini' },
+const MODEL_PRICING: Record<string, { input: number; cachedInput: number; output: number; label: string }> = {
+  'gpt-5.4':      { input: 2.50, cachedInput: 0.25,  output: 15.00, label: 'GPT-5.4' },
+  'gpt-5.4-mini': { input: 0.75, cachedInput: 0.075, output: 4.50,  label: 'GPT-5.4 mini' },
+  'gpt-5.4-nano': { input: 0.20, cachedInput: 0.02,  output: 1.25,  label: 'GPT-5.4 nano' },
+  'gpt-5':        { input: 5.00, cachedInput: 0.50,  output: 15.00, label: 'GPT-5' },
+  'gpt-5-mini':   { input: 0.25, cachedInput: 0.025, output: 2.00,  label: 'GPT-5 mini' },
+  'gpt-4.1':      { input: 2.00, cachedInput: 0.20,  output: 8.00,  label: 'GPT-4.1' },
+  'gpt-4.1-mini': { input: 0.40, cachedInput: 0.04,  output: 1.60,  label: 'GPT-4.1 mini' },
+  'gpt-4o':       { input: 2.50, cachedInput: 1.25,  output: 10.00, label: 'GPT-4o' },
+  'gpt-4o-mini':  { input: 0.15, cachedInput: 0.075, output: 0.60,  label: 'GPT-4o mini' },
 };
 
 const CostMeter: React.FC = () => {
   const { stats, config, jobMetadata } = useJobStore();
   const [dashboardOpen, setDashboardOpen] = useState(false);
 
-  const pricing = MODEL_PRICING[config.model] ?? MODEL_PRICING['gpt-4.1'];
+  const pricing = MODEL_PRICING[config.model] ?? MODEL_PRICING['gpt-5.4-mini'];
   const inputCost  = (stats.inputTokens  / 1_000_000) * pricing.input;
   const outputCost = (stats.outputTokens / 1_000_000) * pricing.output;
   const totalCost  = stats.cost > 0 ? stats.cost : inputCost + outputCost;
@@ -97,12 +100,12 @@ const CostMeter: React.FC = () => {
               <Row
                 label="Cache W"
                 value={`${stats.cacheCreationTokens.toLocaleString()} tok`}
-                sub={`@1.25x`}
+                sub={`$${((stats.cacheCreationTokens / 1_000_000) * pricing.input).toFixed(5)}`}
               />
               <Row
                 label="Cache R"
                 value={`${stats.cacheReadTokens.toLocaleString()} tok`}
-                sub={`@0.10x`}
+                sub={`$${((stats.cacheReadTokens / 1_000_000) * pricing.cachedInput).toFixed(5)}`}
               />
               {(() => {
                 const totalIn = stats.inputTokens + stats.cacheCreationTokens + stats.cacheReadTokens;

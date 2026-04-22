@@ -190,7 +190,7 @@ def test_create_generate_job():
                 }
             ],
             "config": {
-                "model": "gpt-4.1",
+                "model": "gpt-5.4-mini",
                 "batchSize": 5,
                 "budget": 2,
                 "strictValidation": False,
@@ -260,7 +260,7 @@ def test_stream_generate_job(mock_generate_batch):
             "jobId": payload["jobId"],
             "rows": payload["rows"],
             "config": {
-                "model": "gpt-4.1",
+                "model": "gpt-5.4-mini",
                 "batchSize": 2,
                 "budget": 2,
                 "strictValidation": False,
@@ -432,7 +432,7 @@ def test_stream_generate_sends_reviewer_prefills_as_hints(mock_generate_single):
         cache_creation_tokens=0,
         cache_read_tokens=0,
         cost=0.001,
-        model="gpt-4.1",
+        model="gpt-5.4-mini",
         split_meta=[{"req_id": "R", "reasoning": "r", "keywords": []}],
     )
 
@@ -1189,7 +1189,7 @@ def test_quick_generate_unified_single_tc(mock_gen):
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "Button pressed → LED on", "context": None, "model": "gpt-4.1"},
+        json={"testItem": "Button pressed → LED on", "context": None, "model": "gpt-5.4-mini"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
@@ -1220,7 +1220,7 @@ def test_quick_generate_unified_multi_tc(mock_gen):
         input_tokens=600,
         output_tokens=900,
         cost=0.012,
-        model="gpt-4.1",
+        model="gpt-5.4-mini",
         split_meta=[{
             "req_id": "QUICK",
             "reasoning": "§1.4 列舉 3 種格式，各一筆 TC。",
@@ -1230,7 +1230,7 @@ def test_quick_generate_unified_multi_tc(mock_gen):
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "Supports .mp4, .avi, .mpg", "context": None, "model": "gpt-4.1"},
+        json={"testItem": "Supports .mp4, .avi, .mpg", "context": None, "model": "gpt-5.4-mini"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)
@@ -1248,7 +1248,7 @@ def test_quick_generate_with_context_included_in_prompt(mock_gen):
     from generator import GenerationResult
     mock_gen.return_value = GenerationResult(
         tc_data=[VALID_TC_JSON],
-        input_tokens=100, output_tokens=50, cost=0.001, model="gpt-4.1",
+        input_tokens=100, output_tokens=50, cost=0.001, model="gpt-5.4-mini",
         split_meta=[{"req_id": "QUICK", "reasoning": "", "keywords": []}],
     )
 
@@ -1257,7 +1257,7 @@ def test_quick_generate_with_context_included_in_prompt(mock_gen):
         json={
             "testItem": "Button pressed → LED on",
             "context": "System must be powered",
-            "model": "gpt-4.1",
+            "model": "gpt-5.4-mini",
         },
     )
     call_kwargs = mock_gen.call_args[1]
@@ -1271,7 +1271,7 @@ def test_quick_generate_api_error(mock_gen):
 
     response = client.post(
         "/api/quick-generate/stream",
-        json={"testItem": "some item", "context": None, "model": "gpt-4.1"},
+        json={"testItem": "some item", "context": None, "model": "gpt-5.4-mini"},
     )
     assert response.status_code == 200
     events = _parse_sse(response.content)

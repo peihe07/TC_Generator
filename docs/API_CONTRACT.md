@@ -107,9 +107,20 @@ Response:
       "testSet": "PDM01",
       "source": "derived"
     }
-  ]
+  ],
+  "cost": 0.0012,
+  "inputTokens": 420,
+  "outputTokens": 120,
+  "cacheCreationTokens": 0,
+  "cacheReadTokens": 80,
+  "model": "gpt-5.4-mini"
 }
 ```
+
+Notes:
+
+- If every row already has `testSet`, grouping is deterministic and the usage fields will be zero.
+- If AI-based Test Set classification runs, that cost is now counted into the job's cumulative usage.
 
 ### `POST /api/match`
 
@@ -161,7 +172,7 @@ Request:
     }
   ],
   "config": {
-    "model": "gpt-4.1",
+    "model": "gpt-5.4-mini",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false,
@@ -170,10 +181,9 @@ Request:
 }
 ```
 
-`regenerateAll` (default `false`) honours RULES.md §4 Mode B: rows that
-already carry Pre-Cond / Procedure / Expected content are preserved and the
-AI call is skipped for them. Set to `true` to force regeneration for every
-row.
+`regenerateAll` is still accepted for backward compatibility, but the current
+pipeline always runs AI generation for the submitted rows. Reviewer pre-filled
+content is passed as prompt hints rather than causing rows to be preserved.
 
 Response:
 
@@ -199,9 +209,9 @@ SSE event examples:
   "stats": {
     "total": 12,
     "processed": 0,
-    "currentCost": 0
+    "currentCost": 0.0012
   },
-  "message": "Backend generation started for 12 row(s) (9 to generate, 3 preserved)."
+  "message": "Backend generation started for 12 row(s) (12 to generate, 0 preserved)."
 }
 ```
 
@@ -231,20 +241,11 @@ SSE event examples:
 }
 ```
 
-A preserved row (content already existed in the workbook, no AI call) looks
-identical but carries `"preserved": true` at the row level:
+Notes:
 
-```json
-{
-  "type": "row.completed",
-  "row": {
-    "id": "row-10",
-    "status": "ready",
-    "preserved": true,
-    "generated": { "preConditions": "…", "testProcedure": "…", "…": "…" }
-  }
-}
-```
+- `stats.currentCost` is cumulative for the job, not just the current stream step.
+- If Configure → Grouping already triggered AI Test Set classification, generation starts from that existing cost baseline.
+- Re-run and regenerate continue accumulating on the same job usage counters.
 
 ### `POST /api/jobs/[jobId]/regenerate/stream`
 
@@ -257,7 +258,7 @@ Request:
   "rowIds": ["row-10"],
   "rows": [],
   "config": {
-    "model": "gpt-4.1",
+    "model": "gpt-5.4-mini",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false
@@ -266,6 +267,40 @@ Request:
 ```
 
 Response is SSE.
+
+Notes:
+
+- `regenerate` keeps the legacy 1:1 contract: one selected row regenerates into one replacement TC.
+- `stats.currentCost` is cumulative job cost, including earlier grouping / generation usage on the same job.
+
+### `POST /api/jobs/[jobId]/rerun/stream`
+
+Proxy to Python `POST /api/jobs/{jobId}/rerun/stream`.
+
+Request:
+
+```json
+{
+  "rowIds": ["row-10"],
+  "rows": [],
+  "project": "newR1L",
+  "testGroup": "DeviceManager",
+  "config": {
+    "model": "gpt-5.4-mini",
+    "batchSize": 5,
+    "budget": 2,
+    "strictValidation": false
+  }
+}
+```
+
+Response is SSE.
+
+Notes:
+
+- `rerun` re-enters the full generation pipeline with splitting enabled.
+- One selected row may emit one `row.regenerated` plus additional `row.added` events.
+- `stats.currentCost` is cumulative job cost, not delta-only cost for this rerun call.
 
 ### `POST /api/export`
 
@@ -334,21 +369,14 @@ Request:
 {
   "testItem": "Button pressed → LED turns on",
   "context": "System must be powered on",
-  "mode": "single",
-  "model": "gpt-4.1"
+  "model": "gpt-5.4-mini"
 }
 ```
 
-- `mode`: one of `single`, `with_context`, `decompose`
-- `context`: optional, only used when `mode` is `with_context`
+- `context`: optional additional background for the requirement
+- Quick Generate always uses the current auto-split flow; there is no separate mode switch
 
-SSE event sequence for `single` / `with_context`:
-
-```
-job.started → tc.completed → job.completed
-```
-
-SSE event sequence for `decompose`:
+SSE event sequence:
 
 ```
 job.started → decompose.analysis → tc.generating → tc.completed (×N) → job.completed
@@ -357,7 +385,7 @@ job.started → decompose.analysis → tc.generating → tc.completed (×N) → 
 Example events:
 
 ```json
-{ "type": "job.started", "mode": "single" }
+{ "type": "job.started" }
 ```
 
 ```json

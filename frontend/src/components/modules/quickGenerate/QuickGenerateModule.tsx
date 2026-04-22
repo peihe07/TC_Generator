@@ -26,7 +26,7 @@ import type {
 const QuickGenerateModule: React.FC = () => {
   const [testItem, setTestItem] = useState('');
   const [context, setContext] = useState('');
-  const [model, setModel] = useState('gpt-4.1');
+  const [model, setModel] = useState('gpt-5.4-mini');
 
   const [phase, setPhase] = useState<JobPhase>('idle');
   const [analysis, setAnalysis] = useState<DecomposeAnalysis | null>(null);

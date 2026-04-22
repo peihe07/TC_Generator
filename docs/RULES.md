@@ -511,15 +511,15 @@ Populate with the Test Set grouping structure:
 
 Process all rows from Row 10 to last data row. Generate all specified columns.
 
-### Mode B: Incremental (default)
+### Mode B: Incremental (legacy description)
 
-Enforced by `_row_has_existing_content()` in `api_server.py`: any row whose
-Pre-Conditions, Test Procedure, or Expected Result cell is already filled is
-emitted as a preserved `row.completed` event (zero LLM cost, `"preserved":
-true` flag in the SSE payload). Only empty rows go through the AI batch loop.
+The current API pipeline no longer preserves rows based on filled
+Pre-Conditions / Procedure / Expected Result cells. Submitted rows always go
+through AI generation; reviewer pre-filled content is passed into prompts as
+hints instead of causing zero-cost `preserved` events.
 
-Set `config.regenerateAll = true` on `POST /api/generate` to opt out and
-force Mode A behaviour for all rows.
+`config.regenerateAll` is still accepted by the API for backward
+compatibility, but it no longer changes generation behaviour.
 
 ### Mode C: Regenerate Specific
 
@@ -569,12 +569,12 @@ Return JSON:
 
 | Use Case | Model | Model String | Why |
 |----------|-------|-------------|-----|
-| TC generation (default) | GPT-4.1 | `gpt-4.1` | Stable, strong JSON / rule compliance, widely available in Tier 1 |
-| Top quality | GPT-5 | `gpt-5` | Newest; better reasoning on ambiguous specs — requires higher tier on some accounts |
-| Balanced / batch | GPT-4.1 mini | `gpt-4.1-mini` | ~5x cheaper than GPT-4.1 with acceptable quality |
-| Cheapest / preview | GPT-4o mini | `gpt-4o-mini` | For local dev or re-runs where cost dominates |
+| TC generation (default) | GPT-5.4 mini | `gpt-5.4-mini` | Better quality/cost balance for this project's default path |
+| Top quality | GPT-5.4 | `gpt-5.4` | Best quality for ambiguous or complex decomposition |
+| Cheapest | GPT-5.4 nano | `gpt-5.4-nano` | Lowest-cost 5.4-family option for high-volume or rough runs |
+| Legacy stable | GPT-4.1 | `gpt-4.1` | Keep available for comparison or fallback |
 
-Prompt caching is **automatic** on OpenAI for any prompt prefix ≥1024 tokens — no manual `cache_control` markers. Cached input tokens are billed at 50% and reported via `response.usage.prompt_tokens_details.cached_tokens`.
+Prompt caching is **automatic** on OpenAI for any prompt prefix ≥1024 tokens — no manual `cache_control` markers. Cached input tokens are billed at each model's `cached input` rate and reported via `response.usage.prompt_tokens_details.cached_tokens`.
 
 **API call structure:**
 
@@ -584,7 +584,7 @@ import json
 
 client = OpenAI()  # reads OPENAI_API_KEY from env
 
-def generate_test_case(req_id, test_item, spec_context, rules_text, model="gpt-4.1"):
+def generate_test_case(req_id, test_item, spec_context, rules_text, model="gpt-5.4-mini"):
     system_prompt = (
         f"## ASPICE SWE.6 Rules (authoritative)\n\n{rules_text}\n\n---\n\n"
         "You are an ASPICE SWE.6 test case writer. Return ONLY valid JSON, no markdown fences."
@@ -681,9 +681,13 @@ Key stays in the Python backend's `.env`; the frontend only sees the relative UR
 
 1. **Budget cap per job:** configurable max-spend. Backend halts the batch loop before a call that would exceed the budget.
 
-2. **Dry run mode:** Configure page estimates cost based on row count × per-model coefficient.
+2. **Dry run / Configure estimate:** estimate uses the same backend-style token heuristic
+   (`avg input per req` + `avg output per TC × expected split factor`) instead of a flat
+   per-row coefficient.
 
-3. **Token tracking:** input, output, cache-creation (0 on OpenAI), and cache-read tokens are summed per job and streamed to the frontend's CostMeter.
+3. **Token tracking:** input, output, cache-creation (0 on OpenAI), and cache-read tokens are
+   summed per job and streamed to the frontend's CostMeter. This cumulative total includes:
+   Test Set grouping AI calls, initial generation, regenerate, and rerun on the same job.
 
 ```python
 usage = response.usage
@@ -691,19 +695,22 @@ prompt = usage.prompt_tokens
 output = usage.completion_tokens
 cached = (usage.prompt_tokens_details.cached_tokens or 0)
 uncached = prompt - cached
-cost = uncached * in_rate + cached * in_rate * 0.5 + output * out_rate
+cost = uncached * in_rate + cached * cached_in_rate + output * out_rate
 ```
 
 4. **Pricing reference** (USD per million tokens; verify at https://openai.com/api/pricing):
 
 | Model | Input | Output | Cached input |
 |-------|-------|--------|--------------|
+| gpt-5.4-nano | $0.20 | $1.25  | $0.02  |
 | gpt-4o-mini  | $0.15 | $0.60  | $0.075 |
-| gpt-4.1-mini | $0.40 | $1.60  | $0.20  |
+| gpt-4.1-mini | $0.40 | $1.60  | $0.04  |
+| gpt-5.4-mini | $0.75 | $4.50  | $0.075 |
+| gpt-4.1      | $2.00 | $8.00  | $0.20  |
 | gpt-4o       | $2.50 | $10.00 | $1.25  |
-| gpt-4.1      | $2.00 | $8.00  | $1.00  |
-| gpt-5-mini   | $0.25 | $2.00  | $0.125 |
-| gpt-5        | $5.00 | $15.00 | $2.50  |
+| gpt-5.4      | $2.50 | $15.00 | $0.25  |
+| gpt-5-mini   | $0.25 | $2.00  | $0.025 |
+| gpt-5        | $5.00 | $15.00 | $0.50  |
 
 5. **Retry budget:** max 2 retries per TC; after 2 failures flag for manual handling.
 
@@ -795,7 +802,7 @@ Sections:
 - Test Set grouping preview: show AI-suggested groups, allow drag-and-drop to reassign TCs between groups, allow rename/merge/split groups
 - Spec matching preview: show Layer 1 (PDM code) matches and Layer 2 (AI) candidates, allow manual override
 - Generation scope: select which columns to generate (checkboxes for each: Test Item rewrite, Pre-Conditions, Procedure, Expected Result, Priority, Design Method, Spec Reference)
-- Model selection: GPT-4.1 (default) vs GPT-4.1 mini (budget/re-run) 
+- Model selection: GPT-5.4 mini (default) vs GPT-5.4 (quality) vs GPT-5.4 nano (budget/re-run)
 - Batch size: 1 / 5 / 10 TCs per API call
 
 Save configuration as a job file for reproducibility.
@@ -808,7 +815,7 @@ Features:
 - Progress bar: X / N TCs completed
 - Live log: show each TC being processed (Req ID, Test Item snippet, status)
 - Pause / Resume / Cancel controls
-- Running cost estimate (token count × price)
+- Running cumulative spend for the job (includes prior grouping AI calls and later regenerate / rerun on the same job)
 - Error handling: failed TCs collected for retry
 
 **Page 4: Review (審閱)**

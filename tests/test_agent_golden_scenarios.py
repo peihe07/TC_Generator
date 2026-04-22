@@ -85,7 +85,7 @@ def _fake_generation_result(row_count: int = 1) -> SimpleNamespace:
         cache_creation_tokens=0,
         cache_read_tokens=0,
         cost=0.001 * row_count,
-        model="gpt-4.1-mini",
+        model="gpt-5.4-mini",
     )
 
 
@@ -174,7 +174,7 @@ def test_scenario_2_full_pipeline(ctx, tmp_path):
                 "rows": [gen_row],
                 "context": {"project": "newR1L", "test_group": "DeviceManager"},
                 "rules_text": "RULES_STUB",
-                "model": "gpt-4.1-mini",
+                "model": "gpt-5.4-mini",
             },
         }]),
         LLMStep(tool_calls=[{
@@ -258,7 +258,7 @@ def test_scenario_3_list_then_regenerate(ctx):
                         ],
                         "context": {"project": "newR1L", "test_group": "DeviceManager"},
                         "rules_text": "RULES",
-                        "model": "gpt-4.1-mini",
+                        "model": "gpt-5.4-mini",
                     },
                 }
             ]
@@ -377,7 +377,7 @@ def test_scenario_5_inspect_then_quote(ctx, tmp_path):
             ]
         ),
         LLMStep(
-            text="這份檔 5 rows，用 gpt-4.1-mini 粗估約 $0.006 — 精確數字需 parse 後以 estimate_cost 查詢。",
+            text="這份檔 5 rows，用 gpt-5.4-mini 粗估約 $0.006 — 精確數字需 parse 後以 estimate_cost 查詢。",
             tool_calls=[],
         ),
     ]

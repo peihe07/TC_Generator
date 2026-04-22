@@ -1,8 +1,8 @@
 """TC generator — AI call, response parsing, cost tracking.
 
-後端 LLM：OpenAI（GPT-4.1 / GPT-5 系列）。OpenAI 自動對 ≥1024 tokens 的重複
-prefix 提供 50% input cache discount，usage 透過 `prompt_tokens_details.cached_tokens`
-回報，不需手動標記 cache_control。
+後端 LLM：OpenAI（GPT-4.1 / GPT-5 系列）。OpenAI 對 ≥1024 tokens 的重複
+prefix 會自動套用 prompt cache；cached input 依各 model 的 cached input 價格
+計費，usage 透過 `prompt_tokens_details.cached_tokens` 回報。
 """
 import json
 import logging
@@ -40,19 +40,25 @@ from prompt_builder import (
 # OpenAI pricing per million tokens (USD). 來源：https://openai.com/api/pricing
 # 僅列出本 app 會選用的幾個；若 model 不在表內會以 DEFAULT_MODEL 的價格推估。
 MODEL_PRICING = {
-    "gpt-5":           {"input": 5.00,  "output": 15.00},
-    "gpt-5-mini":      {"input": 0.25,  "output": 2.00},
-    "gpt-4.1":         {"input": 2.00,  "output": 8.00},
-    "gpt-4.1-mini":    {"input": 0.40,  "output": 1.60},
-    "gpt-4o":          {"input": 2.50,  "output": 10.00},
-    "gpt-4o-mini":     {"input": 0.15,  "output": 0.60},
+    "gpt-5.4":         {"input": 2.50,  "cached_input": 0.25,  "output": 15.00},
+    "gpt-5.4-mini":    {"input": 0.75,  "cached_input": 0.075, "output": 4.50},
+    "gpt-5.4-nano":    {"input": 0.20,  "cached_input": 0.02,  "output": 1.25},
+    "gpt-5":           {"input": 5.00,  "cached_input": 0.50,  "output": 15.00},
+    "gpt-5-mini":      {"input": 0.25,  "cached_input": 0.025, "output": 2.00},
+    "gpt-4.1":         {"input": 2.00,  "cached_input": 0.20,  "output": 8.00},
+    "gpt-4.1-mini":    {"input": 0.40,  "cached_input": 0.04,  "output": 1.60},
+    "gpt-4o":          {"input": 2.50,  "cached_input": 1.25,  "output": 10.00},
+    "gpt-4o-mini":     {"input": 0.15,  "cached_input": 0.075, "output": 0.60},
 }
 
-DEFAULT_MODEL = "gpt-4.1"
+DEFAULT_MODEL = "gpt-5.4-mini"
 
 # 當同一 model 重試後仍違反 1:1 時，升級到下列 model 再試一次。
 # 值為 None 代表已是最高層級、不再升級。
 MODEL_ESCALATION = {
+    "gpt-5.4-nano": "gpt-5.4-mini",
+    "gpt-5.4-mini": "gpt-5.4",
+    "gpt-5.4":      None,
     "gpt-4o-mini":  "gpt-4o",
     "gpt-4.1-mini": "gpt-4.1",
     "gpt-5-mini":   "gpt-5",
@@ -219,22 +225,22 @@ def calculate_cost(
     Calculate API cost in USD.
 
     OpenAI 計費：
-    - 一般 input：1.0x
-    - cached input：0.5x（自動折扣，對應舊 cache_read）
-    - output：依模型 output 價
+    - 一般 input：依 model input 價
+    - cached input：依 model cached_input 價
+    - output：依 model output 價
 
     cache_creation_tokens 在 OpenAI 沒有對應概念（快取自動建立、不另外計費），
     保留此參數僅為維持舊介面相容；這裡以一般 input 計算。
     """
     pricing = MODEL_PRICING.get(model, MODEL_PRICING[DEFAULT_MODEL])
     in_rate = pricing["input"] / 1_000_000
+    cached_in_rate = pricing["cached_input"] / 1_000_000
     out_rate = pricing["output"] / 1_000_000
-    # OpenAI: input_tokens 已包含 cached_tokens 嗎？實際上 input_tokens 是總數、
-    # 其中 cache_read_tokens 這部分可打 5 折。我們拆開算。
+    # input_tokens 為總 prompt tokens，其中 cache_read_tokens 子集以 cached rate 計價。
     uncached_input = max(input_tokens - cache_read_tokens, 0)
     return (
         uncached_input * in_rate
-        + cache_read_tokens * in_rate * 0.5
+        + cache_read_tokens * cached_in_rate
         + cache_creation_tokens * in_rate  # 視同一般 input
         + output_tokens * out_rate
     )
@@ -563,7 +569,7 @@ def generate_batch(
 
 # 注意：multi-TC 路徑**不傳** `max_tokens`。拆幾筆由 AI 依 ASPICE 規則判斷，
 # 任何上限都可能在「AI 想拆 20 筆」時截斷 JSON 中段造成 parse 失敗。讓 OpenAI
-# 用 model 預設上限（gpt-5 64k / gpt-4.1 32768 / gpt-4o 16384）就行。
+# 用 model 預設上限即可。
 
 
 def _validate_tcs_array(tcs, *, context: str) -> list[dict]:

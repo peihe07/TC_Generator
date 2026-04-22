@@ -194,7 +194,7 @@ TC_Generator/
 - Spec matcher 命中率從 54.5% 提升到 100%（Layer 1 + Layer 1.5 fuzzy Jaccard）
 - Generator：OpenAI function calling + JSON mode、auto prompt caching
 - Hard-issue retry（Proc ≠ ER 計數、空欄位、priority / design_method 無效）
-- `MODEL_ESCALATION`：自動在 `gpt-4.1-mini` → `gpt-4.1` → `gpt-5` 之間升級
+- `MODEL_ESCALATION`：自動在 `gpt-5.4-nano` → `gpt-5.4-mini` → `gpt-5.4` 之間升級
 - ASPICE SWE.6 規則從 `docs/` 自動載入到 system prompt
 
 ### Frontend
@@ -213,6 +213,8 @@ TC_Generator/
 - Job History menu：lifetime cumulative cost + per-job record（localStorage，TTL 90 天 + MAX_RECORDS cap）
 - Review：batch accept/reject/delete/regenerate；word-level diff；spec reference 自動顯示
 - Configure：grouping + matching preview + 手動 `testSet` override
+- 成本統計：同一 job 的 grouping / generate / regenerate / rerun usage 都累加到同一份 session stats；
+  Configure 的估算已改成後端同款 heuristic，不再只是 row-count × 固定係數
 - Design system：`components/ui/` primitive 層（`Button` / `IconButton` / `StatusBadge`
   + barrel export），`win95.css` token 化（`--status-*` / `--win95-*`）；
   全部 GUI modules 統一使用 primitives；`ReviewModule.tsx` 從 800 行拆為
@@ -250,7 +252,7 @@ TC_Generator/
 | 耗時 | 251s |
 | Cache hit | 90.9% |
 | 1:1 violations | 2.3%（1/44）|
-| 模型 | GPT-4.1-mini + retry + escalation |
+| 模型 | GPT-5.4 mini + retry + escalation |
 
 ### 測試覆蓋
 
