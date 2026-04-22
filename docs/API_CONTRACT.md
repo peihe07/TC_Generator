@@ -113,7 +113,7 @@ Response:
   "outputTokens": 120,
   "cacheCreationTokens": 0,
   "cacheReadTokens": 80,
-  "model": "gpt-5.4-mini"
+  "model": "gpt-5"
 }
 ```
 
@@ -172,7 +172,7 @@ Request:
     }
   ],
   "config": {
-    "model": "gpt-5.4-mini",
+    "model": "gpt-5",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false,
@@ -224,13 +224,13 @@ SSE event examples:
     "status": "ready",
     "reviewStatus": "pending",
     "generated": {
-      "testItemRewrite": "(PDM01 original text -> Observable outcome confirmed)",
+      "testItemRewrite": "PDM01 original text -> Observable outcome confirmed",
       "preConditions": "1. Vehicle profile loaded\n2. Required subsystem available",
       "inputTestData": "NA",
       "testProcedure": "1. ...",
       "expectedResult": "1. ...",
       "designMethod": "Functional",
-      "priority": "High"
+      "priority": "P1"
     }
   },
   "stats": {
@@ -246,6 +246,12 @@ Notes:
 - `stats.currentCost` is cumulative for the job, not just the current stream step.
 - If Configure → Grouping already triggered AI Test Set classification, generation starts from that existing cost baseline.
 - Re-run and regenerate continue accumulating on the same job usage counters.
+- `priority` is a tool/workbook output field and uses `P0` / `P1` / `P2`, not
+  `High` / `Medium` / `Low`.
+- `testItemRewrite` is generated without outer parentheses; the backend writer
+  adds `(...)` only when appending it into the workbook Test Item cell.
+- When a requirement is split into multiple TCs, the branch tag belongs in
+  `tc_title` / UI `scenarioName`, not inside `testItemRewrite`.
 
 ### `POST /api/jobs/[jobId]/regenerate/stream`
 
@@ -258,7 +264,7 @@ Request:
   "rowIds": ["row-10"],
   "rows": [],
   "config": {
-    "model": "gpt-5.4-mini",
+    "model": "gpt-5",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false
@@ -286,7 +292,7 @@ Request:
   "project": "newR1L",
   "testGroup": "DeviceManager",
   "config": {
-    "model": "gpt-5.4-mini",
+    "model": "gpt-5",
     "batchSize": 5,
     "budget": 2,
     "strictValidation": false
@@ -322,13 +328,13 @@ Request:
       "reqId": "SWE1-HMI-DM-001-01",
       "reviewStatus": "accepted",
       "generated": {
-        "testItemRewrite": "(...)",
+        "testItemRewrite": "...",
         "preConditions": "1. ...",
         "inputTestData": "NA",
         "testProcedure": "1. ...",
         "expectedResult": "1. ...",
         "designMethod": "Functional",
-        "priority": "High"
+        "priority": "P1"
       }
     }
   ]
@@ -369,7 +375,7 @@ Request:
 {
   "testItem": "Button pressed → LED turns on",
   "context": "System must be powered on",
-  "model": "gpt-5.4-mini"
+  "model": "gpt-5"
 }
 ```
 
@@ -408,13 +414,13 @@ Example events:
   "scenarioId": 1,
   "scenarioName": "Normal flow",
   "tc": {
-    "test_item_rewrite": "(Button pressed → LED turns on)",
+    "test_item_rewrite": "Button pressed → LED turns on",
     "pre_conditions": "1. System is powered.",
     "input_test_data": "NA",
-    "test_procedure": "1. Press button.\n2. Observe LED.",
+    "test_procedure": "1. Press button.\n2. Check that the LED is turned on.",
     "expected_result": "1. LED turns on.",
     "design_method": "Functional",
-    "priority": "Medium"
+    "priority": "P1"
   },
   "stats": { "total": 1, "processed": 1, "currentCost": 0.003 }
 }

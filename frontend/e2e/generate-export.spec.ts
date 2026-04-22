@@ -18,7 +18,7 @@ async function seedJob(page: import('@playwright/test').Page) {
         totalRows: 2,
       },
       config: {
-        model: 'gpt-5.4-mini',
+        model: 'gpt-5',
         batchSize: 5,
         budgetLimit: 10,
         strictValidation: false,

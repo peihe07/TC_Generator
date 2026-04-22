@@ -113,13 +113,13 @@ class TestCalculateCost:
         expected = (1000 / 1_000_000 * 2.0) + (500 / 1_000_000 * 8.0)
         assert abs(cost - expected) < 0.0001
 
-    def test_gpt41mini_cost(self):
+    def test_gpt5mini_cost(self):
         cost = calculate_cost(
             input_tokens=1000,
             output_tokens=500,
-            model="gpt-4.1-mini",
+            model="gpt-5-mini",
         )
-        expected = (1000 / 1_000_000 * 0.40) + (500 / 1_000_000 * 1.60)
+        expected = (1000 / 1_000_000 * 0.25) + (500 / 1_000_000 * 2.00)
         assert abs(cost - expected) < 0.0001
 
     def test_zero_tokens(self):
@@ -144,6 +144,24 @@ class TestGenerateSingleTc:
         with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}):
             with pytest.raises(GenerationError, match="openai package is not installed"):
                 _client()
+
+    @patch("generator.import_module")
+    def test_client_sets_explicit_timeout_and_disables_sdk_retries(self, mock_import_module):
+        """避免單一 OpenAI request hang 住整個 SSE stream（之前有 20 分鐘
+        `other side closed` 案例）；SDK 內建 retry 也要關掉，避免和 _chat
+        裡的 exponential backoff 疊加。"""
+        from generator import _OPENAI_REQUEST_TIMEOUT_SECONDS
+
+        fake_module = MagicMock()
+        mock_import_module.return_value = fake_module
+
+        with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}):
+            _client()
+
+        fake_module.OpenAI.assert_called_once()
+        kwargs = fake_module.OpenAI.call_args.kwargs
+        assert kwargs.get("timeout") == _OPENAI_REQUEST_TIMEOUT_SECONDS
+        assert kwargs.get("max_retries") == 0
 
     @patch("generator._chat")
     def test_success(self, mock_chat):
@@ -500,7 +518,7 @@ class TestChatRetry:
             transient,
             success,
         ]
-        result = _chat("sys", "usr", "gpt-4.1-mini", json_mode=False)
+        result = _chat("sys", "usr", "gpt-5-mini", json_mode=False)
         assert result is success
         assert mock_client.return_value.chat.completions.create.call_count == 2
 
@@ -518,7 +536,7 @@ class TestChatRetry:
         )
         mock_client.return_value.chat.completions.create.side_effect = fatal
         with pytest.raises(GenerationError, match="API call failed"):
-            _chat("sys", "usr", "gpt-4.1-mini", json_mode=False)
+            _chat("sys", "usr", "gpt-5-mini", json_mode=False)
         assert mock_client.return_value.chat.completions.create.call_count == 1
 
     @patch("generator.time.sleep", return_value=None)
@@ -535,7 +553,7 @@ class TestChatRetry:
         )
         mock_client.return_value.chat.completions.create.side_effect = transient
         with pytest.raises(GenerationError, match="API call failed"):
-            _chat("sys", "usr", "gpt-4.1-mini", json_mode=False)
+            _chat("sys", "usr", "gpt-5-mini", json_mode=False)
         assert (
             mock_client.return_value.chat.completions.create.call_count
             == _RETRY_MAX_ATTEMPTS

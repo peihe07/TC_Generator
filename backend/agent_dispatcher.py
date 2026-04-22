@@ -155,7 +155,7 @@ def _requires_confirmation(name: str, args: dict) -> tuple[bool, float]:
         return (True, 0.0)
     if spec.safety is SafetyLevel.WRITE_COSTLY:
         rows = args.get("rows") or []
-        model = args.get("model", "gpt-5.4-mini")
+        model = args.get("model", "gpt-5")
         est = estimate_batch_cost(row_count=len(rows), model=model)
         return (needs_confirmation(est), est)
 

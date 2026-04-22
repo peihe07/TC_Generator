@@ -194,7 +194,7 @@ TC_Generator/
 - Spec matcher 命中率從 54.5% 提升到 100%（Layer 1 + Layer 1.5 fuzzy Jaccard）
 - Generator：OpenAI function calling + JSON mode、auto prompt caching
 - Hard-issue retry（Proc ≠ ER 計數、空欄位、priority / design_method 無效）
-- `MODEL_ESCALATION`：自動在 `gpt-5.4-nano` → `gpt-5.4-mini` → `gpt-5.4` 之間升級
+- `MODEL_ESCALATION`：硬性違規 retry 失敗時自動升級（`gpt-4o` → `gpt-4.1` → `gpt-5.4` → `gpt-5`；`gpt-5-mini` → `gpt-5`）
 - ASPICE SWE.6 規則從 `docs/` 自動載入到 system prompt
 
 ### Frontend

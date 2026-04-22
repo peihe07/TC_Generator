@@ -27,7 +27,7 @@ Input/output: `.xlsx` (Test Case Specification & Result sheet).
 
 | Column | Field | Rule |
 |--------|-------|------|
-| I | Test Item | Keep original text intact. Append rewritten version below with a blank line, wrapped in parentheses. Format: `(Condition/Trigger → Observable Outcome)` |
+| I | Test Item | Keep original text intact. Append rewritten version below with a blank line, wrapped in parentheses when writing back to the workbook. The generated field itself is plain `Condition/Trigger → Observable Outcome`; the `(...)` wrapper is presentation-layer only. |
 
 ### 1.3 Generated — overwrite
 
@@ -322,7 +322,12 @@ Same as Test Procedure: numbered list, `\n` line breaks, 1:1 aligned.
 
 ## 6. Test Case Priority Rules (Col P)
 
-**Values:** `High`, `Medium`, `Low`, `NA`
+**Current app contract values:** `P0`, `P1`, `P2`
+
+**Historical note:** this section previously used `High`, `Medium`, `Low`, `NA`.
+That is obsolete. The live backend now requires `P0` / `P1` / `P2` for the
+workbook/export pipeline. This is an application contract, not a rule defined
+by `ASPICE_SWE6_AI_Instruction.md`.
 
 **Alignment with SWRA priority:**
 - If SWRA provides priority for the requirement → use SWRA priority
@@ -330,10 +335,9 @@ Same as Test Procedure: numbered list, `\n` line breaks, 1:1 aligned.
 
 | Priority | Criteria |
 |----------|----------|
-| High | Safety-related (Functional Safety = Yes), core functionality that blocks usage, data loss/corruption risk |
-| Medium | Standard feature verification, user-facing behavior, connection/disconnection flows |
-| Low | UI cosmetic details, edge cases, display formatting, non-critical convenience features |
-| NA | Not applicable (placeholder or informational rows) |
+| P0 | Safety-related (Functional Safety = Yes), core functionality that blocks usage, data loss/corruption risk |
+| P1 | Standard feature verification, user-facing behavior, connection/disconnection flows |
+| P2 | UI cosmetic details, edge cases, display formatting, non-critical convenience features |
 
 **Note:** Priority rule may need refinement based on project-specific SWRA mapping. This section should be updated when SWRA data is available.
 
@@ -444,7 +448,7 @@ Evaluate in this order. First match wins:
 
 ### 8.7 Priority Check
 
-- Value must be one of: `High`, `Medium`, `Low`, `NA`
+- Value must be one of: `P0`, `P1`, `P2`
 
 ---
 
@@ -549,17 +553,27 @@ You are an ASPICE SWE.6 test case writer.
 ## Output Format
 Return JSON:
 {
-  "test_item_rewrite": "(Condition/Trigger → Observable Outcome)",
+  "test_item_rewrite": "Condition/Trigger → Observable Outcome",
   "pre_conditions": "1. ...\n2. ...",
   "input_test_data": "...",
   "test_procedure": "1. ...\n2. ...\n3. ...",
   "expected_result": "1. ...\n2. ...\n3. ...",
   "design_method": "one of 9 values",
-  "priority": "High|Medium|Low|NA",
+  "priority": "P0|P1|P2",
   "split_flag": true/false,
   "split_reason": "reason if flagged"
 }
 ```
+
+Notes:
+
+- `test_item_rewrite` is generated as plain `Trigger → Outcome` text. Outer
+  parentheses are added only by the workbook writer when appending the rewrite
+  below the original Test Item cell.
+- When a requirement splits into multiple TCs, the scenario tag belongs in the
+  TC title / `tc_title`, not inside `test_item_rewrite`.
+- `priority` is an application workbook/export contract, not an ASPICE SWE.6
+  rule from `ASPICE_SWE6_AI_Instruction.md`.
 
 ### 12.2 API Integration
 
@@ -569,10 +583,11 @@ Return JSON:
 
 | Use Case | Model | Model String | Why |
 |----------|-------|-------------|-----|
-| TC generation (default) | GPT-5.4 mini | `gpt-5.4-mini` | Better quality/cost balance for this project's default path |
-| Top quality | GPT-5.4 | `gpt-5.4` | Best quality for ambiguous or complex decomposition |
-| Cheapest | GPT-5.4 nano | `gpt-5.4-nano` | Lowest-cost 5.4-family option for high-volume or rough runs |
+| TC generation (default) | GPT-5 | `gpt-5` | Highest-quality decomposition for ambiguous specs |
+| Alternative top quality | GPT-5.4 | `gpt-5.4` | Strong reasoning at roughly half the input price |
+| Cheaper | GPT-5 mini | `gpt-5-mini` | Lower-cost option when prompts are simple |
 | Legacy stable | GPT-4.1 | `gpt-4.1` | Keep available for comparison or fallback |
+| Legacy | GPT-4o | `gpt-4o` | Retained for compatibility; not recommended for new runs |
 
 Prompt caching is **automatic** on OpenAI for any prompt prefix ≥1024 tokens — no manual `cache_control` markers. Cached input tokens are billed at each model's `cached input` rate and reported via `response.usage.prompt_tokens_details.cached_tokens`.
 
@@ -584,7 +599,7 @@ import json
 
 client = OpenAI()  # reads OPENAI_API_KEY from env
 
-def generate_test_case(req_id, test_item, spec_context, rules_text, model="gpt-5.4-mini"):
+def generate_test_case(req_id, test_item, spec_context, rules_text, model="gpt-5"):
     system_prompt = (
         f"## ASPICE SWE.6 Rules (authoritative)\n\n{rules_text}\n\n---\n\n"
         "You are an ASPICE SWE.6 test case writer. Return ONLY valid JSON, no markdown fences."
@@ -702,15 +717,11 @@ cost = uncached * in_rate + cached * cached_in_rate + output * out_rate
 
 | Model | Input | Output | Cached input |
 |-------|-------|--------|--------------|
-| gpt-5.4-nano | $0.20 | $1.25  | $0.02  |
-| gpt-4o-mini  | $0.15 | $0.60  | $0.075 |
-| gpt-4.1-mini | $0.40 | $1.60  | $0.04  |
-| gpt-5.4-mini | $0.75 | $4.50  | $0.075 |
-| gpt-4.1      | $2.00 | $8.00  | $0.20  |
-| gpt-4o       | $2.50 | $10.00 | $1.25  |
-| gpt-5.4      | $2.50 | $15.00 | $0.25  |
-| gpt-5-mini   | $0.25 | $2.00  | $0.025 |
-| gpt-5        | $5.00 | $15.00 | $0.50  |
+| gpt-5-mini | $0.25 | $2.00  | $0.025 |
+| gpt-4.1    | $2.00 | $8.00  | $0.20  |
+| gpt-4o     | $2.50 | $10.00 | $1.25  |
+| gpt-5.4    | $2.50 | $15.00 | $0.25  |
+| gpt-5      | $5.00 | $15.00 | $0.50  |
 
 5. **Retry budget:** max 2 retries per TC; after 2 failures flag for manual handling.
 

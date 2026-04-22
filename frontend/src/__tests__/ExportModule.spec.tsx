@@ -29,7 +29,7 @@ vi.mock('../store/useJobStore', () => ({
     appendLog: appendLogMock,
     resetJob: resetJobMock,
     config: {
-      model: 'gpt-5.4-mini',
+      model: 'gpt-5',
       batchSize: 5,
       budgetLimit: 10,
       creditBalance: 0,

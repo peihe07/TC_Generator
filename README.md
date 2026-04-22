@@ -91,7 +91,7 @@ python backend/main.py \
   --spec path/to/spec.docx \
   --framework path/to/framework.json \
   --output-dir output \
-  --model gpt-5.4-mini \
+  --model gpt-5 \
   --batch-size 5
 ```
 
@@ -102,7 +102,7 @@ python backend/main.py \
 - `--spec`: optional supplementary spec document; supported formats are `.pdf`, `.docx`, `.xlsx`
 - `--framework`: optional confirmed `framework.json` for assigning `Test Set`
 - `--output-dir`: output directory; default is `output`
-- `--model`: OpenAI model name; default is `gpt-5.4-mini` (common alternatives: `gpt-5.4`, `gpt-5.4-nano`, `gpt-4.1`)
+- `--model`: OpenAI model name; default is `gpt-5` (alternatives: `gpt-5.4`, `gpt-5-mini`, `gpt-4.1`, `gpt-4o`)
 - `--batch-size`: number of TCs per API call; default is `5`
 - `--mode`: one of `full`, `incremental`, `regenerate`
 - `--rows`: comma-separated row numbers or requirement IDs for `regenerate` mode

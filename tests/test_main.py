@@ -101,8 +101,8 @@ class TestEstimateCost:
         assert cost > 0
 
     def test_mini_cheaper(self):
-        standard = _estimate_cost(10, "gpt-4.1", 5)
-        mini = _estimate_cost(10, "gpt-4.1-mini", 5)
+        standard = _estimate_cost(10, "gpt-5", 5)
+        mini = _estimate_cost(10, "gpt-5-mini", 5)
         assert mini < standard
 
 
@@ -133,10 +133,10 @@ class TestRunGeneration:
         loaded.close()
 
         mock_generate_single_tc.return_value.tc_data = {
-            "test_item_rewrite": "(Condition → Outcome)",
+            "test_item_rewrite": "Condition → Outcome",
             "pre_conditions": "NA",
             "input_test_data": "NA",
-            "test_procedure": "1. Perform setup.\n2. Verify the result.",
+            "test_procedure": "1. Perform setup.\n2. Check that the result is displayed.",
             "expected_result": "1. Setup completes.\n2. Result is verified.",
             "design_method": "功能測試 (Functional based ; no specific technique)",
             "priority": "P1",
@@ -185,7 +185,7 @@ class TestRunGeneration:
     @patch("main.generate_single_tc")
     def test_strict_validation_fails_invalid_rows(self, mock_generate_single_tc, sample_xlsx, tmp_path):
         mock_generate_single_tc.return_value.tc_data = {
-            "test_item_rewrite": "(Condition → Outcome)",
+            "test_item_rewrite": "Condition → Outcome",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
@@ -216,7 +216,7 @@ class TestRunGeneration:
     @patch("main.generate_single_tc")
     def test_non_strict_validation_keeps_warning_behavior(self, mock_generate_single_tc, sample_xlsx, tmp_path):
         mock_generate_single_tc.return_value.tc_data = {
-            "test_item_rewrite": "(Condition → Outcome)",
+            "test_item_rewrite": "Condition → Outcome",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Execute action without verification.",

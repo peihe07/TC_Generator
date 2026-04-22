@@ -185,7 +185,7 @@ describe('startGeneration status mapping', () => {
           },
         ],
         config: {
-          model: 'gpt-5.4-mini',
+          model: 'gpt-5',
           batchSize: 1,
           budgetLimit: 10,
           creditBalance: 0,
@@ -280,7 +280,7 @@ describe('startGeneration status mapping', () => {
           },
         ],
         config: {
-          model: 'gpt-5.4-mini',
+          model: 'gpt-5',
           batchSize: 1,
           budgetLimit: 10,
           creditBalance: 0,

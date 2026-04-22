@@ -22,6 +22,11 @@ _TRANSIENT_STATUS_CODES = {500, 502, 503, 504, 529}
 _RETRY_MAX_ATTEMPTS = 3  # 首次呼叫 + 最多 2 次重試
 _RETRY_BASE_DELAY = 1.0  # seconds
 
+# 單次 OpenAI API 呼叫上限。SDK 預設 600s 太長，會讓整個 SSE stream 卡住到
+# Next.js proxy timeout（之前看到 20 分鐘 `other side closed`）。
+# 90s 對 multi-TC batch 也夠用：實測一筆 batch 約 10–40s。
+_OPENAI_REQUEST_TIMEOUT_SECONDS = 90.0
+
 if TYPE_CHECKING:
     from openai import OpenAI
 
@@ -40,30 +45,22 @@ from prompt_builder import (
 # OpenAI pricing per million tokens (USD). 來源：https://openai.com/api/pricing
 # 僅列出本 app 會選用的幾個；若 model 不在表內會以 DEFAULT_MODEL 的價格推估。
 MODEL_PRICING = {
-    "gpt-5.4":         {"input": 2.50,  "cached_input": 0.25,  "output": 15.00},
-    "gpt-5.4-mini":    {"input": 0.75,  "cached_input": 0.075, "output": 4.50},
-    "gpt-5.4-nano":    {"input": 0.20,  "cached_input": 0.02,  "output": 1.25},
     "gpt-5":           {"input": 5.00,  "cached_input": 0.50,  "output": 15.00},
+    "gpt-5.4":         {"input": 2.50,  "cached_input": 0.25,  "output": 15.00},
     "gpt-5-mini":      {"input": 0.25,  "cached_input": 0.025, "output": 2.00},
     "gpt-4.1":         {"input": 2.00,  "cached_input": 0.20,  "output": 8.00},
-    "gpt-4.1-mini":    {"input": 0.40,  "cached_input": 0.04,  "output": 1.60},
     "gpt-4o":          {"input": 2.50,  "cached_input": 1.25,  "output": 10.00},
-    "gpt-4o-mini":     {"input": 0.15,  "cached_input": 0.075, "output": 0.60},
 }
 
-DEFAULT_MODEL = "gpt-5.4-mini"
+DEFAULT_MODEL = "gpt-5"
 
 # 當同一 model 重試後仍違反 1:1 時，升級到下列 model 再試一次。
 # 值為 None 代表已是最高層級、不再升級。
 MODEL_ESCALATION = {
-    "gpt-5.4-nano": "gpt-5.4-mini",
-    "gpt-5.4-mini": "gpt-5.4",
-    "gpt-5.4":      None,
-    "gpt-4o-mini":  "gpt-4o",
-    "gpt-4.1-mini": "gpt-4.1",
     "gpt-5-mini":   "gpt-5",
     "gpt-4o":       "gpt-4.1",
-    "gpt-4.1":      "gpt-5",
+    "gpt-4.1":      "gpt-5.4",
+    "gpt-5.4":      "gpt-5",
     "gpt-5":        None,
 }
 
@@ -168,7 +165,7 @@ def _hard_issues(tc: dict) -> list[str]:
         issues.append(f"- priority: {pri.message}")
 
     if not (tc.get("test_item_rewrite") or "").strip():
-        issues.append("- test_item_rewrite: must not be empty; rewrite the requirement as (Condition → Outcome)")
+        issues.append("- test_item_rewrite: must not be empty; rewrite the requirement as Condition → Outcome")
 
     return issues
 
@@ -279,7 +276,14 @@ def _client() -> Any:
         raise GenerationError(
             "openai package is not installed. Run `pip install -e \".[dev]\"` first."
         ) from exc
-    return openai_module.OpenAI(api_key=api_key)
+    # 顯式設 timeout 避免單一 request hang 住整個 SSE stream；
+    # max_retries=0 讓我們自己的 exponential backoff（_chat 內）獨佔重試控制，
+    # 不會被 SDK 內建 retry 疊加放大成幾分鐘的 hang。
+    return openai_module.OpenAI(
+        api_key=api_key,
+        timeout=_OPENAI_REQUEST_TIMEOUT_SECONDS,
+        max_retries=0,
+    )
 
 
 def _chat(
