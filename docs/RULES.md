@@ -1,5 +1,12 @@
 # TC Auto-Generation Tool — RULES.md
 
+> **⚠️ DEPRECATED (2026-04-22).** This document is no longer the authoritative
+> rule source. The live rules (禁用動詞清單、Design Method 於 TC 定稿後指派、
+> §11 self-check…) are maintained in
+> [`ASPICE_SWE6_AI_Instruction.md`](./ASPICE_SWE6_AI_Instruction.md).
+> Content below is retained for historical reference only and may be out of sync
+> with `backend/prompt_builder.py` / `backend/validator.py`.
+
 ## 0. Overview
 
 This document defines all rules for the automated test case generation tool.

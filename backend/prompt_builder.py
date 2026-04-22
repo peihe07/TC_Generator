@@ -1,4 +1,4 @@
-"""Prompt builder for TC generation (RULES.md §12)."""
+"""Prompt builder for TC generation (ASPICE_SWE6_AI_Instruction.md §10)."""
 from spec_matcher import extract_pdm_codes
 
 

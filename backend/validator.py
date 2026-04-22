@@ -1,4 +1,4 @@
-"""Programmatic validator for generated TC fields (RULES.md §8). No AI."""
+"""Programmatic validator for generated TC fields (ASPICE_SWE6_AI_Instruction.md §7/§11). No AI."""
 import re
 from dataclasses import dataclass
 

@@ -1,6 +1,13 @@
 # ASPICE SWE.6 Test Case 撰寫規則
 ---
 
+> **⚠️ DEPRECATED (2026-04-22).** 權威版本已遷移至
+> [`ASPICE_SWE6_AI_Instruction.md`](./ASPICE_SWE6_AI_Instruction.md)（v-next）。
+> 本文件保留作歷史參考，不再同步最新的 forbidden verbs 擴充、Design Method
+> 後指派流程、§11 self-check 等更新。請以 AI Instruction 為準。
+
+---
+
 Test Case 必須符合 ASPICE SWE.6 核心要求：
 
 - **Deterministic** 確定性 — 結果不可有模糊空間
