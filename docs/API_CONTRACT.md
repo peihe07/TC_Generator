@@ -457,3 +457,11 @@ Implemented in `backend/api_server.py`:
 - `jobAdapter.ts` should be treated as the frontend integration boundary.
 - Parse, group, match, and export have automated coverage.
 - Generate and regenerate route wiring works, but real success still depends on a valid `OPENAI_API_KEY`.
+
+## Model Policy
+
+- `classify_test_sets` uses fixed `gpt-5-mini`
+- quick generate / generate / regenerate / rerun use the caller-selected model
+- the primary UI exposes only `gpt-5` / `gpt-5.4` as user-selectable models
+- prompts are task-bound, not model-bound: the same task keeps the same prompt
+  shape across `gpt-5` and `gpt-5.4`

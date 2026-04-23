@@ -34,6 +34,15 @@ TC Generator 是一套針對 ASPICE SWE.6 的自動化測試案例產生工具�
 - **Python backend / CLI**：解析、匹配、生成、驗證、Excel 回寫
 - **Next.js desktop frontend**：Win95 風格桌面，提供 upload → configure → generate → review → export 流程
 
+### 模型任務分工
+
+- `classify_test_sets` 固定使用 `gpt-5-mini`
+  因為任務相對簡單，且已有 deterministic fallback。
+- `decompose_requirement`、quick generate、一般 TC generation
+  使用使用者選定的 model。
+- 主流程 UI 目前只提供 `gpt-5` / `gpt-5.4` 給使用者選。
+- 同一任務不因 model 不同而切換 prompt，保持效果可對比。
+
 ---
 
 ## 目前架構
