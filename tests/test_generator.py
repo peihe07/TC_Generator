@@ -353,6 +353,53 @@ also through via fallback
         assert "keep core" in system_prompt
         assert "should still pass through via fallback" in system_prompt
 
+    def test_real_aspice_doc_headers_still_match_whitelist(self):
+        """Pin against the real ASPICE_SWE6_AI_Instruction.md so renaming a
+        section shows up as a failing test instead of a silent token-waste
+        fallback. Re-validates every entry in the hardcoded whitelist.
+        """
+        from pathlib import Path
+        from generator import extract_decompose_rules
+
+        doc_path = (
+            Path(__file__).resolve().parent.parent
+            / "docs" / "ASPICE_SWE6_AI_Instruction.md"
+        )
+        assert doc_path.is_file(), (
+            f"Authoritative rules doc missing at {doc_path}; "
+            "decompose prompt falls back to _FALLBACK_RULES if this file is absent."
+        )
+
+        full_text = doc_path.read_text(encoding="utf-8")
+        extracted = extract_decompose_rules(full_text)
+
+        # Under-extraction guard would trigger → returns full text. Use that
+        # as the failure signal: if the returned string equals the input, we
+        # slipped into fallback, meaning a whitelisted header was renamed.
+        assert extracted != full_text.strip(), (
+            "extract_decompose_rules fell back to the full rules_text, which "
+            "means <50% of the hardcoded headers matched. Either the ASPICE "
+            "doc was restructured (update wanted_headers in generator.py) or "
+            "the fallback threshold is wrong."
+        )
+
+        # Stronger pin: every whitelisted header must appear in the output.
+        wanted_headers = {
+            "## 2. Core Principles",
+            "## 4. Workflow",
+            "### 6.1 Test Item",
+            "## 9. False Pass / False Fail",
+            "## 10. Requirement Alignment",
+            "### 10.2 Keyword Decomposition",
+            "### 10.3 No Fabrication (applies to ALL generated fields)",
+            "## 11. Self-Check (before emitting every TC)",
+        }
+        missing = [h for h in wanted_headers if h not in extracted]
+        assert not missing, (
+            f"Whitelisted headers missing from extracted rules: {missing}. "
+            "Either the ASPICE doc renamed them or the whitelist drifted."
+        )
+
     @patch("generator._chat")
     def test_invalid_json_response_raises(self, mock_chat):
         response = MagicMock()
