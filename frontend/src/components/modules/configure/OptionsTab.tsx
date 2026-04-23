@@ -29,6 +29,14 @@ export const OptionsTab: React.FC<OptionsTabProps> = ({ config, onUpdateConfig }
           }
         />
       ))}
+      <p
+        className="text-xs mt-2 leading-relaxed"
+        style={{ color: 'var(--text-muted)' }}
+      >
+        This selection applies to requirement decomposition and TC generation.
+        Test Set classification always runs on GPT-5 mini internally to keep
+        grouping cheap — it&apos;s not affected by the choice above.
+      </p>
     </fieldset>
 
     <fieldset>

@@ -258,7 +258,21 @@
 </div>
 
 <div class="note">
-  <strong>成本分布</strong>：Generate 階段為主要 LLM 成本來源，其餘階段幾乎零成本。實際金額依 row 數、prompt cache 命中率與模型選擇而定。
+  <strong>成本分布</strong>：Generate 階段為主要 LLM 成本來源。實際金額依 row 數、prompt cache 命中率與模型選擇而定。
+  <br/><br/>
+  <strong>Task-level 模型分層</strong>：
+  <ul style="margin: 6px 0 0 18px; padding: 0;">
+    <li><strong>Test Set 分類</strong>（Configure → Grouping，以及 Export 時補分類）固定用 <code>gpt-5-mini</code>，純歸類不需重度推理。</li>
+    <li><strong>需求解讀 / 拆分判斷</strong>（decompose）與 <strong>TC 正文生成</strong>（generate / regenerate / rerun）用使用者在 Configure → Options 選的 model（預設 <code>gpt-5</code>，另可選 <code>gpt-5.4</code>）。</li>
+  </ul>
+</div>
+
+<div class="note">
+  <strong>Review 操作分兩種</strong>：
+  <ul style="margin: 6px 0 0 18px; padding: 0;">
+    <li><strong>Regenerate</strong>：1:1 替換既有 TC 的文字，不重新評估拆分；使用 <code>allow_split=False</code> 確保每筆選中 row 產出恰好一筆新 TC。走 diff-preview 流程，使用者可接受 / 捨棄。</li>
+    <li><strong>Re-run</strong>：重走完整 pipeline（含 decompose）。一筆 row 可能產生多筆 TC：primary 覆蓋原列、sub-TCs 插在下方。適合對 AI 首輪拆分不滿意的場景。</li>
+  </ul>
 </div>
 
 </div>
