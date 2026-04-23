@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import os
 import re
 import tempfile
@@ -1932,108 +1933,158 @@ def _resolve_export_test_group(job: dict | None, rows: list[dict]) -> str | None
 
 @app.post("/api/export")
 async def export_job(payload: ExportRequest, request: Request) -> dict:
-    if payload.outputMode == "overwrite":
-        raise HTTPException(status_code=400, detail="overwrite export mode is not supported")
+    try:
+        if payload.outputMode == "overwrite":
+            raise HTTPException(status_code=400, detail="overwrite export mode is not supported")
 
-    job = JOB_REGISTRY.get(payload.jobId)
-    has_source_workbook = bool(
-        job and job.get("rawBytes") and job.get("rawFileName")
-    )
+        job = JOB_REGISTRY.get(payload.jobId)
+        has_source_workbook = bool(
+            job and job.get("rawBytes") and job.get("rawFileName")
+        )
 
-    test_group = _resolve_export_test_group(job, payload.rows)
-    parsed_rows = (
-        job.get("parsedData", {}).get("rows") if job and job.get("parsedData") else None
-    )
+        test_group = _resolve_export_test_group(job, payload.rows)
+        parsed_rows = (
+            job.get("parsedData", {}).get("rows") if job and job.get("parsedData") else None
+        )
 
-    export_rows, classify_usage = _map_export_rows(
-        payload.rows,
-        payload.scope,
-        test_group,
-        parsed_rows=parsed_rows,
-    )
-    if not export_rows:
-        # 區分空 payload 和「scope filter 把所有 row 都濾掉」，錯誤訊息分別指引。
-        if not payload.rows:
-            detail = "no rows in payload — re-select rows in Review before export."
+        export_rows, classify_usage = _map_export_rows(
+            payload.rows,
+            payload.scope,
+            test_group,
+            parsed_rows=parsed_rows,
+        )
+        if not export_rows:
+            if not payload.rows:
+                detail = "no rows in payload — re-select rows in Review before export."
+            else:
+                detail = (
+                    f"no rows match scope='{payload.scope}' "
+                    f"(input had {len(payload.rows)} row(s) but none qualify). "
+                    f"Try scope='all' or accept / flag more rows in Review."
+                )
+            raise HTTPException(status_code=400, detail=detail)
+
+        if classify_usage.get("cost", 0) > 0:
+            from generator import CLASSIFICATION_MODEL
+            existing = _job_usage(job)
+            _persist_job_usage(
+                payload.jobId,
+                job if job else {},
+                cost=existing["cost"] + classify_usage["cost"],
+                input_tokens=existing["inputTokens"] + classify_usage["inputTokens"],
+                output_tokens=existing["outputTokens"] + classify_usage["outputTokens"],
+                cache_creation_tokens=existing["cacheCreationTokens"] + classify_usage["cacheCreationTokens"],
+                cache_read_tokens=existing["cacheReadTokens"] + classify_usage["cacheReadTokens"],
+                cost_delta=float(classify_usage["cost"]),
+                model=CLASSIFICATION_MODEL,
+            )
+            if job is None:
+                job = JOB_REGISTRY.get(payload.jobId)
+
+        selected_fields = _selected_export_fields(payload.selectedColumns)
+        framework_rows = (
+            _build_framework_rows(export_rows, test_group)
+            if payload.includeFrameworkSheet
+            else None
+        )
+
+        if has_source_workbook:
+            raw_bytes = job["rawBytes"]
+            raw_filename = job["rawFileName"]
+            export_path = _build_export_path(raw_filename, payload.outputMode)
         else:
-            detail = (
-                f"no rows match scope='{payload.scope}' "
-                f"(input had {len(payload.rows)} row(s) but none qualify). "
-                f"Try scope='all' or accept / flag more rows in Review."
+            raw_bytes = _build_blank_template_workbook(export_rows, test_group)
+            fallback_name = (
+                (job and job.get("rawFileName"))
+                or f"{test_group or 'TC'}_export.xlsx"
             )
-        raise HTTPException(status_code=400, detail=detail)
+            export_path = _build_export_path(fallback_name, payload.outputMode)
 
-    # Export 觸發的 AI 分類也算在 job 的累計成本上，讓 CostMeter 看得到這筆開銷。
-    # classify 是固定 CLASSIFICATION_MODEL，成本歸進該 model 的 bucket。
-    if classify_usage.get("cost", 0) > 0:
-        from generator import CLASSIFICATION_MODEL
-        existing = _job_usage(job)
-        _persist_job_usage(
-            payload.jobId,
-            job if job else {},
-            cost=existing["cost"] + classify_usage["cost"],
-            input_tokens=existing["inputTokens"] + classify_usage["inputTokens"],
-            output_tokens=existing["outputTokens"] + classify_usage["outputTokens"],
-            cache_creation_tokens=existing["cacheCreationTokens"] + classify_usage["cacheCreationTokens"],
-            cache_read_tokens=existing["cacheReadTokens"] + classify_usage["cacheReadTokens"],
-            cost_delta=float(classify_usage["cost"]),
-            model=CLASSIFICATION_MODEL,
-        )
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            source_path = os.path.join(tmp_dir, os.path.basename(export_path) or "source.xlsx")
+            with open(source_path, "wb") as source_file:
+                source_file.write(raw_bytes)
+
+            try:
+                write_excel_tool(
+                    source_path=source_path,
+                    output_path=export_path,
+                    rows=export_rows,
+                    selected_fields=selected_fields,
+                    framework_rows=framework_rows,
+                )
+            except ToolError as exc:
+                raise _tool_error_to_http(exc) from exc
+
         if job is None:
-            job = JOB_REGISTRY.get(payload.jobId)
-
-    selected_fields = _selected_export_fields(payload.selectedColumns)
-    framework_rows = (
-        _build_framework_rows(export_rows, test_group)
-        if payload.includeFrameworkSheet
-        else None
-    )
-
-    # Source workbook：原檔優先；缺檔時從前端 rows 重建空白模板。
-    if has_source_workbook:
-        raw_bytes = job["rawBytes"]
-        raw_filename = job["rawFileName"]
-        export_path = _build_export_path(raw_filename, payload.outputMode)
-    else:
-        raw_bytes = _build_blank_template_workbook(export_rows, test_group)
-        # 檔名：盡量沿用原 rawFileName，否則用 test_group 拼一個合理名稱。
-        fallback_name = (
-            (job and job.get("rawFileName"))
-            or f"{test_group or 'TC'}_export.xlsx"
+            job = {}
+        job["exportPath"] = export_path
+        job.setdefault("rawFileName", os.path.basename(export_path))
+        JOB_REGISTRY[payload.jobId] = job
+        download_url = str(request.url_for("download_export", jobId=payload.jobId))
+        return {
+            "jobId": payload.jobId,
+            "status": "ready",
+            "exportedRows": len(export_rows),
+            "fileName": os.path.basename(export_path),
+            "downloadUrl": download_url,
+            "selectedColumns": payload.selectedColumns,
+            "fallbackTemplate": not has_source_workbook,
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logging.getLogger(__name__).exception(
+            "Unexpected export failure for job %s", payload.jobId
         )
-        export_path = _build_export_path(fallback_name, payload.outputMode)
+        raise HTTPException(
+            status_code=500,
+            detail=f"export failed: {type(exc).__name__}: {exc}",
+        ) from exc
 
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        source_path = os.path.join(tmp_dir, os.path.basename(export_path) or "source.xlsx")
-        with open(source_path, "wb") as source_file:
-            source_file.write(raw_bytes)
 
-        try:
-            write_excel_tool(
-                source_path=source_path,
-                output_path=export_path,
-                rows=export_rows,
-                selected_fields=selected_fields,
-                framework_rows=framework_rows,
-            )
-        except ToolError as exc:
-            raise _tool_error_to_http(exc) from exc
+@app.post("/api/jobs/{job_id}/attach-raw")
+async def attach_raw_workbook(job_id: str, raw_file: UploadFile = File(...)) -> dict:
+    """為既有 job 補上原始 Excel rawBytes。
 
-    # Job 不存在時也要建立一筆暫存的下載資訊，否則 download endpoint 找不到 exportPath。
-    if job is None:
-        job = {}
-    job["exportPath"] = export_path
-    job.setdefault("rawFileName", os.path.basename(export_path))
-    JOB_REGISTRY[payload.jobId] = job  # 回寫 SQLite，下載時要讀 exportPath
-    download_url = str(request.url_for("download_export", jobId=payload.jobId))
+    使用情境：backend JOB_REGISTRY 仍留著 job 但 rawBytes 已遺失（例如
+    匯入 .tcw.json workspace 後才要 export），前端偵測到 fallbackTemplate
+    會 prompt 使用者上傳原始 Excel，再呼叫這支 endpoint 補回。
+    """
+    filename = raw_file.filename or ""
+    ext = os.path.splitext(filename)[1].lower()
+    if ext not in ALLOWED_RAW_EXTENSIONS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"unsupported extension '{ext}' — only .xlsx/.xlsm allowed",
+        )
+    raw_bytes = await _read_with_limit(raw_file, "raw_file")
+
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        # 允許在 backend 完全沒有 job 紀錄時，以最小 stub 建立
+        job = {"jobId": job_id}
+
+    job["rawBytes"] = raw_bytes
+    job["rawFileName"] = filename
+    JOB_REGISTRY[job_id] = job
     return {
-        "jobId": payload.jobId,
-        "status": "ready",
-        "exportedRows": len(export_rows),
-        "fileName": os.path.basename(export_path),
-        "downloadUrl": download_url,
-        "selectedColumns": payload.selectedColumns,
-        "fallbackTemplate": not has_source_workbook,
+        "jobId": job_id,
+        "rawFileName": filename,
+        "size": len(raw_bytes),
+        "hasSource": True,
+    }
+
+
+@app.get("/api/jobs/{job_id}/source-status")
+async def get_source_status(job_id: str) -> dict:
+    """回報 job 是否仍保有 rawBytes，前端 export 前先用來判斷要不要 prompt 補上傳。"""
+    job = JOB_REGISTRY.get(job_id)
+    has_source = bool(job and job.get("rawBytes") and job.get("rawFileName"))
+    return {
+        "jobId": job_id,
+        "hasSource": has_source,
+        "rawFileName": (job or {}).get("rawFileName") if has_source else None,
     }
 
 

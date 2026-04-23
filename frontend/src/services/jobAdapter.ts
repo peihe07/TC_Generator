@@ -334,7 +334,25 @@ function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
 
 async function parseJsonResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}.`);
+    let message = `Request failed with status ${response.status}.`;
+    try {
+      const body = (await response.clone().json()) as { detail?: unknown; message?: unknown };
+      if (typeof body.detail === "string" && body.detail.trim()) {
+        message = body.detail;
+      } else if (typeof body.message === "string" && body.message.trim()) {
+        message = body.message;
+      }
+    } catch {
+      try {
+        const text = await response.text();
+        if (text.trim()) {
+          message = text.trim();
+        }
+      } catch {
+        // Keep the fallback status-only message.
+      }
+    }
+    throw new Error(message);
   }
   return (await response.json()) as T;
 }
@@ -1081,6 +1099,7 @@ export async function exportJob(input: ExportJobInput) {
       fileName: string;
       downloadUrl: string;
       exportedRows: number;
+      fallbackTemplate?: boolean;
     }>(
       await fetch(`${appApiBase}/export`, {
         method: "POST",
@@ -1101,6 +1120,7 @@ export async function exportJob(input: ExportJobInput) {
       fileName: response.fileName,
       downloadUrl: response.downloadUrl,
       exportedRows: response.exportedRows,
+      fallbackTemplate: Boolean(response.fallbackTemplate),
       simulated: false,
     };
   }
@@ -1116,6 +1136,32 @@ export async function exportJob(input: ExportJobInput) {
     fileName: `${input.jobId ?? "tc-generator"}_generated.xlsx`,
     downloadUrl: null,
     exportedRows: scopedRows.length,
+    fallbackTemplate: false,
     simulated: true,
   };
+}
+
+export async function attachRawWorkbook(jobId: string, file: File): Promise<{
+  rawFileName: string;
+  size: number;
+}> {
+  const formData = new FormData();
+  formData.append("raw_file", file);
+  return parseJsonResponse<{ rawFileName: string; size: number }>(
+    await fetch(`${appApiBase}/jobs/${encodeURIComponent(jobId)}/attach-raw`, {
+      method: "POST",
+      body: formData,
+    }),
+  );
+}
+
+export async function fetchSourceStatus(jobId: string): Promise<{
+  hasSource: boolean;
+  rawFileName: string | null;
+}> {
+  return parseJsonResponse<{ hasSource: boolean; rawFileName: string | null }>(
+    await fetch(`${appApiBase}/jobs/${encodeURIComponent(jobId)}/source-status`, {
+      method: "GET",
+    }),
+  );
 }

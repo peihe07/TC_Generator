@@ -32,6 +32,11 @@ interface WorkspaceStore {
   renameWorkspace: (id: string, name: string) => void;
   exportWorkspace: (id: string) => string | null;
   importWorkspace: (json: string) => Workspace;
+  /**
+   * 將 workspace JSON 的 tcRows 合併到「目前 job」上，保留目前的 jobMetadata.jobId
+   * 以便 export 時能使用 backend 仍保有 rawBytes 的原始 Excel 範本。
+   */
+  importIntoCurrentJob: (json: string) => { mergedRows: number };
 }
 
 const EXPORT_VERSION = 1;
@@ -163,5 +168,22 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
     persist(next, get().activeId);
     set({ workspaces: next });
     return ws;
+  },
+
+  importIntoCurrentJob: (json) => {
+    const parsed = JSON.parse(json);
+    if (!parsed || typeof parsed !== 'object') throw new Error('Invalid workspace file');
+    const raw = parsed.workspace ?? parsed;
+    const snap: WorkspaceSnapshot | undefined = raw.snapshot;
+    if (!snap || !Array.isArray(snap.tcRows)) {
+      throw new Error('Workspace snapshot missing tcRows');
+    }
+    const job = useJobStore.getState();
+    if (!job.jobMetadata?.jobId) {
+      throw new Error('請先 Upload 一份原始 Excel 建立 job，再執行 Merge。');
+    }
+    // 只覆蓋 tcRows，保留當前 jobMetadata / config / logs / stats
+    job.setTcRows(snap.tcRows);
+    return { mergedRows: snap.tcRows.length };
   },
 }));

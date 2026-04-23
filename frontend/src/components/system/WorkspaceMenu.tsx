@@ -10,14 +10,16 @@ const WorkspaceMenu: React.FC = () => {
   const {
     workspaces, activeId, loaded,
     loadFromStorage, saveCurrentAs, overwriteActive, loadWorkspace, deleteWorkspace, renameWorkspace,
-    exportWorkspace, importWorkspace,
+    exportWorkspace, importWorkspace, importIntoCurrentJob,
   } = useWorkspaceStore();
   const resetJob = useJobStore((s) => s.resetJob);
+  const currentJobId = useJobStore((s) => s.jobMetadata?.jobId);
   const closeWindow = useWindowStore((s) => s.closeWindow);
   const openWindow = useWindowStore((s) => s.openWindow);
   const [open, setOpen] = useState(false);
   const [resetDialogOpen, setResetDialogOpen] = useState(false);
   const [resetPending, setResetPending] = useState(false);
+  const [importMode, setImportMode] = useState<'new' | 'merge'>('new');
   const popRef = useRef<HTMLDivElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -116,7 +118,19 @@ const WorkspaceMenu: React.FC = () => {
     }
   };
 
-  const handleImportClick = () => fileRef.current?.click();
+  const handleImportClick = () => {
+    setImportMode('new');
+    fileRef.current?.click();
+  };
+
+  const handleMergeClick = () => {
+    if (!currentJobId) {
+      window.alert('請先 Upload 原始 Excel 建立 job，再執行 Merge。');
+      return;
+    }
+    setImportMode('merge');
+    fileRef.current?.click();
+  };
 
   const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -124,8 +138,16 @@ const WorkspaceMenu: React.FC = () => {
     if (!file) return;
     try {
       const text = await file.text();
-      const ws = importWorkspace(text);
-      window.alert(`Imported "${ws.name}".`);
+      if (importMode === 'merge') {
+        const { mergedRows } = importIntoCurrentJob(text);
+        openWindow('review', 'Review');
+        window.alert(`Merged ${mergedRows} tcRows into current job. 可直接 Export 使用原始 Excel 範本。`);
+      } else {
+        const ws = importWorkspace(text);
+        loadWorkspace(ws.id); // 直接套用到 Review，不用再手動點 Load
+        openWindow('review', 'Review');
+        window.alert(`Imported "${ws.name}" 並載入到 Review。`);
+      }
     } catch (err) {
       window.alert(`Import failed: ${(err as Error).message}`);
     }
@@ -170,6 +192,14 @@ const WorkspaceMenu: React.FC = () => {
           </div>
           <div style={{ display: 'flex', gap: 4 }}>
             <Button onClick={handleImportClick} style={{ flex: 1 }}>Import…</Button>
+            <Button
+              onClick={handleMergeClick}
+              disabled={!currentJobId}
+              style={{ flex: 1 }}
+              title={currentJobId ? '將 .tcw.json 的 tcRows 合併到目前 job，保留原始 Excel 範本' : '請先 Upload 原始 Excel'}
+            >
+              Merge…
+            </Button>
             <input
               ref={fileRef}
               type="file"
