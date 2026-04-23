@@ -69,7 +69,7 @@ test.describe('Diagrams & Rules modules', () => {
   test('Diagrams module opens with iframe content', async ({ page }) => {
     await page.goto('/');
     await page.getByText('Diagrams', { exact: true }).dblclick();
-    await expect(page.getByText('Architecture Diagrams').first()).toBeVisible();
+    await expect(page.getByText('Workflow Diagrams').first()).toBeVisible();
     // 內嵌的 iframe（diagrams.html）
     await expect(page.locator('iframe').first()).toBeVisible();
   });

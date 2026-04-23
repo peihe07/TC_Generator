@@ -31,7 +31,7 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   review:        'TC Generator - Review',
   export:        'TC Generator - Export',
   quickGenerate: 'Quick TC Generator',
-  diagrams:      'Architecture Diagrams',
+  diagrams:      'Workflow Diagrams',
   rules:         'TC Writing Rules',
   chat:          'Agent Co-pilot',
 };

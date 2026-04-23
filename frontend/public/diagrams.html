@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TC Generator — 使用者流程圖</title>
+<title>TC Generator — Workflow Diagrams</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -154,7 +154,7 @@
 </head>
 <body>
 
-<h1>TC Generator — 使用者流程圖</h1>
+<h1>TC Generator — Workflow Diagrams</h1>
 <p class="subtitle">
   更新：2026-04-20 — 與 <code>docs/STATUS.md</code> 同步。
 </p>
@@ -429,7 +429,7 @@
      ======================================== -->
 <div class="section">
 <h2>4. 桌面上的視窗如何互動</h2>
-<p class="lede">每個步驟對應一個視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉；CostMeter、Workspace、Job History 與 Agent 則維持常駐。</p>
+<p class="lede">每個步驟對應一個視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉；若使用者從桌面圖示或 Taskbar 直接開窗，仍可同時開多個 module。CostMeter、Workspace、Job History 與 Agent 則維持常駐。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 440">
@@ -447,12 +447,12 @@
   <g class="c-purple">
     <rect x="240" y="90" width="380" height="210" rx="6"/>
     <text class="th" x="430" y="122" text-anchor="middle">Active Module（例：Generate）</text>
-    <text class="ts" x="430" y="150" text-anchor="middle">同一時間桌面只有一個 module 視窗</text>
+    <text class="ts" x="430" y="150" text-anchor="middle">流程前進時，主工作視窗通常只聚焦一個 module</text>
     <text class="ts" x="430" y="172" text-anchor="middle">模型 / batch 設定、即時進度 + 成本</text>
     <text class="ts" x="430" y="192" text-anchor="middle">SSE 串流事件</text>
     <text class="tiny" x="430" y="222" text-anchor="middle">按「下一步」→ advanceWindow(from, to)</text>
     <text class="tiny" x="430" y="240" text-anchor="middle">自動關閉當前視窗、開啟目標視窗</text>
-    <text class="tiny" x="430" y="270" text-anchor="middle">（上一步 / 回首頁同理）</text>
+    <text class="tiny" x="430" y="270" text-anchor="middle">（但也可從桌面 / Taskbar 再開其他 module）</text>
   </g>
 
   <!-- Flow sequence shown as chips on left -->
@@ -511,7 +511,8 @@
 <div class="note">
   <strong>重點</strong>：
   <ul style="margin: 6px 0 0 20px;">
-    <li>同一時間桌面上只會有一個 module 視窗（Upload / Configure / Generate / Review / Export 擇一）。前進或返回時，<code>advanceWindow(from, to)</code> 會關閉來源視窗、開啟目標視窗。</li>
+    <li>主流程前進或返回時，<code>advanceWindow(from, to)</code> 會關閉來源視窗、開啟目標視窗，因此使用者通常一次只沿著一條主流程操作。</li>
+    <li>若從桌面圖示或 Taskbar 直接開窗，仍可同時打開多個 module；這不是主流程預設，但實作上是允許的。</li>
     <li>Taskbar 常駐看得到<strong>累積花費</strong>（CostMeter）、<strong>Workspace</strong>、<strong>Job History</strong>，這些不受 advanceWindow 影響。</li>
     <li>關閉 module 視窗不會遺失資料。所有 rows、設定、成本記錄都存在 Zustand store（localStorage）和後端 SQLite，回到原步驟會恢復上次狀態。</li>
   </ul>
