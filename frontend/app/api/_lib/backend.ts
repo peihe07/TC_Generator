@@ -18,6 +18,33 @@ export async function proxyJson(
   return response;
 }
 
+export async function proxyJsonResponse(
+  path: string,
+  init?: RequestInit,
+  mutateJson?: (data: unknown) => unknown,
+): Promise<Response> {
+  const response = await fetch(`${getBackendBaseUrl()}${path}`, init);
+  const contentType = response.headers.get("content-type") ?? "";
+  const bodyText = await response.text();
+
+  if (bodyText) {
+    try {
+      const parsed = JSON.parse(bodyText) as unknown;
+      const data = mutateJson ? mutateJson(parsed) : parsed;
+      return Response.json(data, { status: response.status });
+    } catch {
+      // Upstream returned a non-JSON body. Preserve its status/body instead of
+      // masking it as a generic proxy failure.
+    }
+  }
+
+  return new Response(bodyText, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: contentType ? { "Content-Type": contentType } : undefined,
+  });
+}
+
 export async function proxyStream(
   path: string,
   init?: RequestInit,

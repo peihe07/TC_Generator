@@ -350,8 +350,23 @@ Response:
   "exportedRows": 1,
   "fileName": "SomeProject_SWQT_DeviceManager_20260408_generated.xlsx",
   "downloadUrl": "/api/export/download/parse-20260416-123456",
-  "selectedColumns": ["TC ID", "Test Procedure", "Expected Result"]
+  "selectedColumns": ["TC ID", "Test Procedure", "Expected Result"],
+  "fallbackTemplate": false
 }
+```
+
+Notes:
+
+- `fallbackTemplate: true` means the backend no longer had the original uploaded
+  workbook bytes and rebuilt a minimal blank template from the current rows
+  before export.
+- The browser-facing Next.js route preserves the upstream HTTP status/body. If
+  the Python backend returns a non-JSON 500 body, the proxy no longer rewrites
+  it into a synthetic `503`.
+- Unexpected backend export failures are normalized to:
+
+```json
+{ "detail": "export failed: ValueError: ..." }
 ```
 
 ### `GET /api/export/download/[jobId]`
@@ -456,6 +471,9 @@ Implemented in `backend/api_server.py`:
 - The active frontend no longer calls the Python backend directly from browser modules.
 - `jobAdapter.ts` should be treated as the frontend integration boundary.
 - Parse, group, match, and export have automated coverage.
+- Browser-facing JSON proxy routes preserve upstream statuses. Generic `503`
+  proxy errors now mean the proxy itself failed to reach/process the backend,
+  not that the backend returned an application error body.
 - Generate and regenerate route wiring works, but real success still depends on a valid `OPENAI_API_KEY`.
 - Generated TC content must not fabricate unstated details. If the
   requirement/spec/reviewer input does not explicitly provide a number,

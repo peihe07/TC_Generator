@@ -1,11 +1,17 @@
 # TC Generator — 專案狀態
 
-最後更新：2026-04-19（Phase 4 功能面完成：get_job_detail / state_update SSE
+最後更新：2026-04-23（Phase 4 功能面完成：get_job_detail / state_update SSE
 / AgentStateUpdateToast / diff_jobs / aggregate_metrics / Cost Dashboard UI；
 + Taskbar polish + ReviewRow tests + 按鈕 icon 透明度修復；
 + Design system migration Phase 1–7 全部完成 + Phase 8 unit tests 126/126 pass
 + Post-migration polish 10 項完成（剩 P7 deferred），見
 [docs/design-system/MIGRATION.md](design-system/MIGRATION.md)）
+
+本次補充：
+- Next.js JSON proxy routes 改為保留 upstream status/body，不再把 backend
+  的非 JSON 失敗誤包成 generic `503`
+- `/api/export` 未預期例外統一回 `detail: "export failed: <Type>: <message>"`
+  方便前端直接顯示根因
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
 
@@ -152,7 +158,7 @@ TC_Generator/
 │   │   ├── jobs.py                  # list_jobs / estimate_cost / get_job_detail / diff_jobs / aggregate_metrics / get_job_validation
 │   │   └── replay.py                # trace replay CLI
 │   └── main.py                      # CLI 入口
-├── tests/                           # pytest（446 pass）
+├── tests/                           # pytest（至少 447 個測試；持續隨功能增補）
 ├── frontend/
 │   ├── app/
 │   │   ├── page.tsx / layout.tsx

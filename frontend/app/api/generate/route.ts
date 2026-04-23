@@ -1,23 +1,34 @@
 import { NextResponse } from "next/server";
 
-import { getBackendBaseUrl } from "../_lib/backend";
+import { proxyJsonResponse } from "../_lib/backend";
 
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
     const payload = await request.json();
-    const response = await fetch(`${getBackendBaseUrl()}/api/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    const data = await response.json();
-    if (response.ok && data?.jobId) {
-      data.streamUrl = `/api/generate/stream?jobId=${encodeURIComponent(data.jobId)}`;
-    }
-    return NextResponse.json(data, { status: response.status });
+    return await proxyJsonResponse(
+      "/api/generate",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+      (data) => {
+        if (
+          typeof data === "object" &&
+          data !== null &&
+          "jobId" in data &&
+          typeof data.jobId === "string"
+        ) {
+          return {
+            ...data,
+            streamUrl: `/api/generate/stream?jobId=${encodeURIComponent(data.jobId)}`,
+          };
+        }
+        return data;
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       {

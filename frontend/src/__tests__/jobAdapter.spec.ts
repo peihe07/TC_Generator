@@ -96,6 +96,28 @@ describe('exportJob', () => {
       reviewStatus: 'accepted',
     });
   });
+
+  it('surfaces backend detail messages instead of a generic status error', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 503,
+      clone: () => ({
+        json: async () => ({ detail: 'export file not found' }),
+      }),
+      json: async () => ({ detail: 'export file not found' }),
+    } as Response);
+
+    await expect(
+      exportJob({
+        jobId: 'job-generate-export-e2e',
+        scope: 'all',
+        outputMode: 'new-file',
+        includeFrameworkSheet: true,
+        selectedColumns: ['TC ID'],
+        rows: [],
+      }),
+    ).rejects.toThrow('export file not found');
+  });
 });
 
 describe('startGeneration status mapping', () => {

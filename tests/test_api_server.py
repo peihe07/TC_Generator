@@ -979,6 +979,48 @@ def test_export_rejects_overwrite_mode():
     assert export_response.json()["detail"] == "overwrite export mode is not supported"
 
 
+def test_export_returns_detail_for_unexpected_exception():
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    with patch("api_server.write_excel_tool", side_effect=ValueError("boom")):
+        export_response = client.post(
+            "/api/export",
+            json={
+                "jobId": job_id,
+                "scope": "accepted",
+                "outputMode": "new-file",
+                "includeFrameworkSheet": False,
+                "selectedColumns": ["Expected Result"],
+                "rows": [
+                    {
+                        "id": "row-10",
+                        "rowNum": 10,
+                        "reqId": "SWE1-HMI-DM-001-01",
+                        "testItem": "PDM01 original text",
+                        "reviewStatus": "accepted",
+                        "testSet": "Smoke",
+                        "generated": {
+                            "expectedResult": "1. Result",
+                        },
+                    }
+                ],
+            },
+        )
+
+    assert export_response.status_code == 500
+    assert export_response.json()["detail"] == "export failed: ValueError: boom"
+
+
 def test_group_preview_returns_assignments():
     parse_response = client.post(
         "/api/parse",
