@@ -265,12 +265,23 @@ def _usage_tokens(usage) -> dict:
     }
 
 
+# Minimum fraction of expected headers that must match before we trust the
+# extraction. Below this threshold we assume the rules doc was restructured
+# (headers renamed / numbering shifted) and fall back to the full text so
+# decompose quality doesn't silently degrade.
+_DECOMPOSE_EXTRACT_MIN_MATCH_RATIO = 0.5
+
+
 def extract_decompose_rules(rules_text: str) -> str:
     """Keep only the splitting-relevant sections for decompose.
 
     Goal: preserve task semantics while reducing prompt bulk for weaker/cheaper
     models. This helper is task-bound, not model-bound: every model doing the
     decompose task receives the same focused rule subset.
+
+    Under-extraction guard: if fewer than half the expected headers match
+    (doc was likely restructured), we log a warning and return the full
+    rules_text instead of a mutilated subset.
     """
     if not rules_text:
         return ""
@@ -286,14 +297,28 @@ def extract_decompose_rules(rules_text: str) -> str:
     }
     lines = rules_text.splitlines()
     kept: list[str] = []
-    current_header = ""
+    matched_headers: set[str] = set()
     keep = False
     for line in lines:
         if line.startswith("## ") or line.startswith("### "):
-            current_header = line.strip()
-            keep = current_header in wanted_headers
+            header = line.strip()
+            keep = header in wanted_headers
+            if keep:
+                matched_headers.add(header)
         if keep:
             kept.append(line)
+
+    match_ratio = len(matched_headers) / len(wanted_headers)
+    if match_ratio < _DECOMPOSE_EXTRACT_MIN_MATCH_RATIO:
+        logger.warning(
+            "extract_decompose_rules matched only %d/%d expected headers "
+            "(%.0f%%); falling back to full rules_text. Rules doc sections "
+            "may have been renamed — update wanted_headers to restore the "
+            "token-saving fast path.",
+            len(matched_headers), len(wanted_headers), match_ratio * 100,
+        )
+        return rules_text.strip()
+
     return "\n".join(kept).strip()
 
 

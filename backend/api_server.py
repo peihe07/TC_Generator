@@ -1359,9 +1359,11 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
     拿到剛好一筆新 TC 覆蓋原內容，不會再被拆成多筆。使用者若想改拆分數，
     要回到 Generate 畫面重跑完整流程，而不是 regenerate 既有列。
     """
+    # 和 rerun 一致：job 缺失時不 404，改從 payload 重建 context。
+    # 舊行為是硬 404，使用者在 backend 重啟後會看到 regenerate 壞但 rerun 正常
+    # 的 UX cliff。現在兩個路徑都能降級；UI 不用先判斷是哪一種錯誤。
     job = JOB_REGISTRY.get(job_id)
-    if not job:
-        raise HTTPException(status_code=404, detail="job not found")
+    job_available = bool(job)
 
     async def event_generator():
         # prepared_rows 來自 parsed data（原始 Excel 列），不含首次 stream 生成時
@@ -1369,7 +1371,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         # 在 frontend store，所以 regenerate 要改用 `payload.rows` 補齊，否則被
         # 使用者勾選的子 TC 永遠找不到對應 row，stream 不 yield → UI 卡 generating。
         # 若尚未跑過 /api/generate（job["rows"] 不存在），直接依 payload 處理。
-        prepared_rows = _prepare_generation_rows(job) if job.get("rows") else []
+        prepared_rows = _prepare_generation_rows(job) if job and job.get("rows") else []
         prepared_by_id = {r["id"]: r for r in prepared_rows}
 
         def _row_from_payload(raw: dict) -> dict:
@@ -1406,18 +1408,22 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                 rows_to_regen.append(_row_from_payload(payload_by_id[rid]))
         # 順序即 payload.rowIds 原順序，無需再排序。
 
-        cfg = payload.config.model_dump() if payload.config else job.get("config", {})
+        cfg = (
+            payload.config.model_dump() if payload.config
+            else (job.get("config", {}) if job_available else {})
+        )
+        parsed = job.get("parsedData", {}) if job_available else {}
         context = {
-            "project": job.get("parsedData", {}).get("project"),
-            "test_group": job.get("parsedData", {}).get("test_group"),
+            "project": parsed.get("project") or "",
+            "test_group": parsed.get("test_group") or "",
             "test_set": "N/A",
         }
-        spec_index = _build_spec_index_for_job(job)
+        spec_index = _build_spec_index_for_job(job) if job_available else {}
         total = len(rows_to_regen)
         model = cfg.get("model", DEFAULT_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
-        usage = _job_usage(job)
+        usage = _job_usage(job) if job_available else _job_usage(None)
         current_cost = usage["cost"]
         total_in = usage["inputTokens"]
         total_out = usage["outputTokens"]
@@ -1481,16 +1487,18 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                     )
             await asyncio.sleep(0.05)
 
-        if job is not None:
-            _persist_job_usage(
-                job_id,
-                job,
-                cost=current_cost,
-                input_tokens=total_in,
-                output_tokens=total_out,
-                cache_creation_tokens=total_cache_create,
-                cache_read_tokens=total_cache_read,
-            )
+        # Job 缺失時也建一筆最小紀錄 persist usage，保持和 rerun 一致的
+        # 語意；CostMeter 才看得到這次 regen 的花費。
+        persist_target = job if (job_available and job is not None) else {"jobId": job_id}
+        _persist_job_usage(
+            job_id,
+            persist_target,
+            cost=current_cost,
+            input_tokens=total_in,
+            output_tokens=total_out,
+            cache_creation_tokens=total_cache_create,
+            cache_read_tokens=total_cache_read,
+        )
 
         yield _sse_event(
             {
@@ -1845,9 +1853,22 @@ def _build_blank_template_workbook(rows: list[dict], test_group: str | None) -> 
 
 
 def _resolve_export_test_group(job: dict | None, rows: list[dict]) -> str | None:
-    """Export context 的 test_group：優先用 parsedData，沒有就從前端 row.testGroup 推。"""
+    """Export context 的 test_group：優先用 parsedData，沒有就從前端 row.testGroup 推。
+
+    多 test_group 混雜時（理論上一個 job 只有一個 group，但 payload 理論上可混）
+    會 log 一條 warning，提醒 blank-template export 只能認一個 group。
+    """
     if job and job.get("parsedData", {}).get("test_group"):
         return job["parsedData"]["test_group"]
+    groups = {str(r.get("testGroup")) for r in rows if r.get("testGroup")}
+    if len(groups) > 1:
+        import logging
+        logging.getLogger(__name__).warning(
+            "export payload contains multiple testGroup values %s; "
+            "blank-template export will use the first one only. "
+            "Re-upload the original workbook per group for proper styling.",
+            sorted(groups),
+        )
     for row in rows:
         tg = row.get("testGroup")
         if tg:
@@ -1877,7 +1898,16 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         parsed_rows=parsed_rows,
     )
     if not export_rows:
-        raise HTTPException(status_code=400, detail="no exportable rows for the selected scope")
+        # 區分空 payload 和「scope filter 把所有 row 都濾掉」，錯誤訊息分別指引。
+        if not payload.rows:
+            detail = "no rows in payload — re-select rows in Review before export."
+        else:
+            detail = (
+                f"no rows match scope='{payload.scope}' "
+                f"(input had {len(payload.rows)} row(s) but none qualify). "
+                f"Try scope='all' or accept / flag more rows in Review."
+            )
+        raise HTTPException(status_code=400, detail=detail)
 
     # Export 觸發的 AI 分類也算在 job 的累計成本上，讓 CostMeter 看得到這筆開銷。
     if classify_usage.get("cost", 0) > 0:

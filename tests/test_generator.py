@@ -294,6 +294,7 @@ drop review
 
     @patch("generator._chat")
     def test_decompose_requirement_uses_focused_rules_subset(self, mock_chat):
+        """Happy path：rules 含足夠多 expected headers 時用 focused subset。"""
         mock_chat.return_value = make_chat_response(
             {"reasoning": "ok", "scenarios": [{"id": 1, "name": "n", "description": "d", "test_item": "x"}]},
             prompt_tokens=100,
@@ -301,10 +302,22 @@ drop review
         )
         rules = """## 2. Core Principles
 keep core
+## 4. Workflow
+keep workflow
+### 6.1 Test Item
+keep test item
 ## 6.2 Pre-Condition
 drop precondition
+## 9. False Pass / False Fail
+keep false
+## 10. Requirement Alignment
+keep alignment
 ### 10.2 Keyword Decomposition
 keep keywords
+## 11. Self-Check (before emitting every TC)
+keep self check
+## 12. Review Output
+drop review
 """
 
         decompose_requirement(requirement="req", rules_text=rules)
@@ -313,6 +326,32 @@ keep keywords
         assert "keep core" in system_prompt
         assert "keep keywords" in system_prompt
         assert "drop precondition" not in system_prompt
+        assert "drop review" not in system_prompt
+
+    @patch("generator._chat")
+    def test_decompose_falls_back_to_full_rules_when_headers_dont_match(self, mock_chat):
+        """若 rules doc 的 header 被 rename 到不認得（match ratio <50%），
+        decompose 會 fallback 回完整 rules_text，避免偷偷丟掉 sections。"""
+        mock_chat.return_value = make_chat_response(
+            {"reasoning": "ok", "scenarios": [{"id": 1, "name": "n", "description": "d", "test_item": "x"}]},
+            prompt_tokens=100,
+            completion_tokens=50,
+        )
+        # 只有 1/7 header 認得 → trigger fallback
+        rules = """## 2. Core Principles
+keep core
+## Renamed Section
+should still pass through via fallback
+## Another Unknown
+also through via fallback
+"""
+
+        decompose_requirement(requirement="req", rules_text=rules)
+
+        system_prompt = mock_chat.call_args.args[0]
+        # Fallback：整份 rules 會被帶進來（包括原本該丟的 section）
+        assert "keep core" in system_prompt
+        assert "should still pass through via fallback" in system_prompt
 
     @patch("generator._chat")
     def test_invalid_json_response_raises(self, mock_chat):
