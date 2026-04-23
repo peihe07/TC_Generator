@@ -211,6 +211,25 @@ PDM01.1) The Device Manager can be added to the reconfigurable status bar.
 
 - Explicit, deterministic values: button name, option path, file type, trigger event
 - Or `NA` if not applicable
+- Never invent unstated data. If the requirement/spec does not explicitly give
+  a number, threshold, timeout, dataset, state, identifier, error code, retry
+  count, or comparison target, keep it abstract instead of guessing, e.g.
+  `<configured limit>`, `<device under test>`, `the value defined in spec`.
+
+### 3.4 No Fabricated Details
+
+This rule applies to **all generated TC fields**: `test_item_rewrite`,
+`pre_conditions`, `input_test_data`, `test_procedure`, and `expected_result`.
+
+- Do not fabricate any concrete value or data point that is not explicitly
+  stated in the requirement, matched spec text, or reviewer pre-fill.
+- This includes not only numeric values, but also file names, dataset names,
+  default states, IDs, error codes, retry limits, capacities, and comparison
+  targets.
+- If the source is ambiguous or incomplete, preserve the ambiguity explicitly
+  rather than filling the gap with a plausible guess.
+- Domain-standard constants are allowed only when they are truly standard and
+  unambiguous in context.
 
 ---
 

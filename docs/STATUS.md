@@ -205,6 +205,10 @@ TC_Generator/
 - Hard-issue retry（Proc ≠ ER 計數、空欄位、priority / design_method 無效）
 - `MODEL_ESCALATION`：硬性違規 retry 失敗時自動升級（`gpt-4o` → `gpt-4.1` → `gpt-5.4` → `gpt-5`；`gpt-5-mini` → `gpt-5`）
 - ASPICE SWE.6 規則從 `docs/` 自動載入到 system prompt
+- **禁止 AI 捏造未指定數值 / 資料**（§10a + §10b + §10.3）：若需求沒給具體數字、
+  錯誤碼、timeout、dataset 名稱、狀態、識別碼等，AI 必須以 `<configured limit>`
+  等 abstract 寫法保留未知，不可編造來讓 TC 看起來「完整」。Self-check 與
+  WRITING DISCIPLINE 兩層都會 gate。
 
 ### Frontend
 

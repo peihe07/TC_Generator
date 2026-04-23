@@ -293,6 +293,7 @@ def extract_decompose_rules(rules_text: str) -> str:
         "## 9. False Pass / False Fail",
         "## 10. Requirement Alignment",
         "### 10.2 Keyword Decomposition",
+        "### 10.3 No Fabrication (applies to ALL generated fields)",
         "## 11. Self-Check (before emitting every TC)",
     }
     lines = rules_text.splitlines()

@@ -457,6 +457,11 @@ Implemented in `backend/api_server.py`:
 - `jobAdapter.ts` should be treated as the frontend integration boundary.
 - Parse, group, match, and export have automated coverage.
 - Generate and regenerate route wiring works, but real success still depends on a valid `OPENAI_API_KEY`.
+- Generated TC content must not fabricate unstated details. If the
+  requirement/spec/reviewer input does not explicitly provide a number,
+  threshold, timeout, dataset, state, identifier, error code, retry count, or
+  similar concrete data point, the output should keep it abstract (for example
+  `<configured limit>` or `defined in spec`) instead of guessing.
 
 ## Model Policy
 

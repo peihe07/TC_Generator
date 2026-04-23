@@ -114,6 +114,19 @@ _HARD_CONSTRAINTS = """
     constant (e.g. BT pairing PIN `0000`, HTTP `200 OK`).
     When no value is stated, also document that in input_test_data:
     `download_limit: <configured maximum, per spec>`.
+10b. **NEVER fabricate any other unstated data point either.** If the
+    requirement / spec / reviewer pre-fill does NOT explicitly provide a
+    concrete condition, dataset, status, identifier, error code, retry count,
+    ordering rule, timeout behaviour, threshold, capacity, or comparison
+    target, do NOT invent one to make the TC look complete.
+      ✗ FORBIDDEN: adding made-up contact counts, file names, VINs, device
+        IDs, error codes, default states, retry limits, or "expected" return
+        values that never appeared in the source.
+      ✓ REQUIRED: keep it abstract and source-grounded, e.g.
+        `<configured dataset>`, `<device under test>`, "the error code
+        defined in spec", "the state defined by the requirement".
+    If the source is ambiguous or incomplete, preserve the ambiguity
+    explicitly instead of guessing.
 11. **Follow the ASPICE SWE.6 AI Instruction loaded above verbatim.** The
     instruction doc is authoritative. Apply the relevant sections — §2 Core
     Principles, §6 Field Rules, §7 Step Design (incl. §7.5 Final Step /
@@ -147,6 +160,11 @@ For every TC you are about to output, silently verify:
       domain-standard constant. If the requirement says "maximum N"
       without a number, write `<configured maximum>` / "the configured
       limit" — DO NOT invent 20 / 100 / 5s out of thin air (constraint 10a).
+  [ ] No FABRICATED unstated data: do not invent dataset names, file names,
+      identifiers, error codes, retry counts, default states, comparison
+      targets, or other concrete details that the requirement/spec/reviewer
+      pre-fill never stated. Preserve unknowns abstractly instead of guessing
+      (constraint 10b).
   [ ] procedure step count == expected_result item count, aligned 1:1.
   [ ] expected_result items are observable (UI / log / API response / state).
   [ ] design_method assigned AFTER procedure+ER are finalized, judged from
@@ -162,7 +180,7 @@ For every TC you are about to output, silently verify:
   [ ] No cross-reference like "same as TC1"; every TC is self-contained.
 
 If any check fails, FIX the TC before outputting. Do not emit a TC that
-would fail the §11 10-item self-check in the instruction doc.
+would fail the §11 11-item self-check in the instruction doc.
 """
 
 
@@ -236,6 +254,9 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
+- Do NOT invent unstated values or data points. If the source does not give a
+  number, code, file name, state, threshold, or dataset, keep it abstract
+  (`<configured limit>`, `<device under test>`, "defined in spec").
 - design_method assigned AFTER procedure+ER are finalized, judged from the
   ACTUAL flow via §15 first-match on PRIMARY intent; priority is P0 / P1 / P2.
 - All output fields in English."""
@@ -271,6 +292,9 @@ REMINDER — run the WRITING DISCIPLINE self-check before emitting:
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
+- Do NOT invent unstated values or data points. If the source does not give a
+  number, code, file name, state, threshold, or dataset, keep it abstract
+  (`<configured limit>`, `<device under test>`, "defined in spec").
 - design_method assigned AFTER procedure+ER are finalized, judged from the
   ACTUAL flow via §15 first-match on PRIMARY intent; priority is P0 / P1 / P2.
 - All output fields in English."""
@@ -289,6 +313,10 @@ Analyze the following software requirement following the ASPICE SWE.6 reviewer w
 2. Decompose the requirement into distinct, independent test scenarios. Each scenario should cover a different aspect, condition, or behaviour path.
 
 Every keyword must map to at least one scenario id — if a concept has no coverage, add a scenario for it.
+
+Do NOT invent missing data while analyzing. If the requirement does not state
+an exact number, threshold, dataset, state, code, or other concrete detail,
+preserve that ambiguity explicitly instead of guessing.
 
 ## Language
 The `meaning`, `reasoning`, `name`, and `description` fields MUST be written
@@ -447,7 +475,7 @@ Additional hard constraints:
   EP → BVA → combinatorial → scenario → functional). Prefer the short English
   label; the system will normalize it to the canonical dropdown value. Cross-ref:
   `Test Case Design Method 判斷規則.md`.
-- Every TC must pass the §11 10-item self-check in the instruction doc.
+- Every TC must pass the §11 11-item self-check in the instruction doc.
 """
 
 
@@ -516,10 +544,13 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence); input_test_data = concrete values or "N/A".
+- Do NOT invent unstated values or data points. If a concrete number, code,
+  dataset, state, threshold, or identifier is not in the source, keep it
+  abstract or mark it as configured/per spec.
 - design_method assigned AFTER procedure+ER are finalized, judged from the
   ACTUAL flow via §15 first-match on PRIMARY intent; short English labels are
   preferred and will be normalized by the system; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 10-item self-check."""
+- All output fields English; must pass the §11 11-item self-check."""
 
 
 def build_test_set_classification_prompt(
@@ -678,7 +709,10 @@ REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
 - Each expected_result item is observable (UI / log / signal / API response).
 - pre_conditions = state/environment only (no actions, no checks/reads, no
   data-presence); input_test_data = concrete values or "N/A".
+- Do NOT invent unstated values or data points. If a concrete number, code,
+  dataset, state, threshold, or identifier is not in the source, keep it
+  abstract or mark it as configured/per spec.
 - design_method assigned AFTER procedure+ER are finalized, judged from the
   ACTUAL flow via §15 first-match on PRIMARY intent; short English labels are
   preferred and will be normalized by the system; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 10-item self-check."""
+- All output fields English; must pass the §11 11-item self-check."""

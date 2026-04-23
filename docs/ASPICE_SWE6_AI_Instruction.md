@@ -147,6 +147,25 @@ Example: "max 60 records per BT device; first set kept"
 
 **Branches** (each = 1 TC): unknown/private; before-vs-after; boundary (=/>/</=0); negative; concurrency; persistence (reboot).
 
+### 10.3 No Fabrication (applies to ALL generated fields)
+Never invent a concrete value the source did not state. This covers every
+TC field — `test_item_rewrite`, `pre_conditions`, `input_test_data`,
+`test_procedure`, `expected_result` — and every data-point type:
+numbers, thresholds, timeouts, byte/file sizes, durations, retry counts,
+default states, dataset / file names, identifiers, VINs, error codes,
+comparison targets, ordering rules.
+
+- ✗ FORBIDDEN: "download limit = 20", "5 s timeout", "error 0x1A",
+  "phonebook has 100 entries", "retry 3 times" — when the source is
+  silent on the number / code / count.
+- ✓ REQUIRED: keep it abstract and source-grounded —
+  `<configured limit>`, `<device under test>`, "the value defined in spec",
+  "the error code defined by the requirement".
+- Domain-standard constants are allowed only when truly standard and
+  unambiguous in context (e.g. BT pairing PIN `0000`, HTTP `200 OK`).
+- If the source is ambiguous or incomplete, **preserve the ambiguity
+  explicitly** — never paper over the gap with a plausible guess.
+
 # Mode 2 — Review
 
 ## 11. Self-Check (before emitting every TC)
@@ -160,6 +179,9 @@ Example: "max 60 records per BT device; first set kept"
 8. Procedure ↔ ER 1:1; ER observable (§8)
 9. No FP / No FF (§9)
 10. Design Method assigned AFTER procedure finalized (§15)
+11. No fabricated data: every concrete number / code / identifier / state
+    came from the requirement, spec, or is a domain-standard constant.
+    Unknowns stay abstract (§10.3).
 
 ## 12. Review Output
 Table: `| Field | Problem | Severity | Fix |`. Severity: Critical/Major/Minor.

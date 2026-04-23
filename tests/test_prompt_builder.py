@@ -3,6 +3,7 @@ import pytest
 
 from prompt_builder import (
     build_batch_prompt,
+    build_decompose_prompt,
     build_multi_tc_user_prompt,
     build_system_blocks,
     build_system_prompt,
@@ -72,6 +73,13 @@ class TestBuildSystemPrompt:
         # Self-check 也要有對應條目
         assert "No FABRICATED numeric values" in prompt
 
+    def test_system_blocks_forbid_other_unstated_data_points(self):
+        prompt = build_system_blocks("RULES", batch=False)
+        assert "NEVER fabricate any other unstated data point either" in prompt
+        assert "error code" in prompt
+        assert "default states" in prompt
+        assert "No FABRICATED unstated data" in prompt
+
 
 class TestBuildUserPrompt:
     def test_contains_req_id(self, sample_row, sample_context, sample_spec, rules_text):
@@ -110,6 +118,11 @@ class TestBuildUserPrompt:
     def test_spec_none(self, sample_row, sample_context, rules_text):
         prompt = build_user_prompt(sample_row, sample_context, None, rules_text)
         assert "SWE1-HMI-DM-001-01" in prompt
+
+    def test_reminds_model_not_to_invent_unstated_data(self, sample_row, sample_context, sample_spec, rules_text):
+        prompt = build_user_prompt(sample_row, sample_context, sample_spec, rules_text)
+        assert "Do NOT invent unstated values or data points" in prompt
+        assert "<configured limit>" in prompt
 
 
 class TestBuildBatchPrompt:
@@ -151,6 +164,18 @@ class TestBuildMultiTcPrompt:
         prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
         assert "short English" in prompt
         assert "normalized by the system" in prompt or "normalize it to the canonical dropdown value" in prompt
+
+    def test_multi_tc_prompt_forbids_inventing_unstated_data(self, sample_row, sample_context):
+        prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
+        assert "Do NOT invent unstated values or data points" in prompt
+        assert "configured/per spec" in prompt
+
+
+class TestBuildDecomposePrompt:
+    def test_decompose_prompt_preserves_unknowns_instead_of_guessing(self):
+        prompt = build_decompose_prompt("REQ text", "")
+        assert "Do NOT invent missing data while analyzing" in prompt
+        assert "preserve that ambiguity explicitly instead of guessing" in prompt
 
 
 class TestBuildTestSetClassificationPrompt:
