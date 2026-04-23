@@ -103,3 +103,22 @@ def test_write_excel_empty_rows_raises(tmp_path):
 def test_write_excel_tool_registered():
     spec = get_tool("write_excel")
     assert spec.safety is SafetyLevel.DESTRUCTIVE
+
+
+def test_write_excel_strips_illegal_control_characters(tmp_path):
+    source = _build_source_workbook(tmp_path / "src.xlsx")
+    out = tmp_path / "out.xlsx"
+    row = _export_row()
+    row["input_test_data"] = "1. password: Ab1!abc\x07"
+    row["test_item_rewrite"] = "(bell\x07 removed)"
+
+    write_excel_tool(
+        source_path=str(source),
+        output_path=str(out),
+        rows=[row],
+    )
+
+    wb = load_workbook(out)
+    ws = wb["Test Case Specification&Result"]
+    assert ws.cell(row=10, column=11).value == "1. password: Ab1!abc"
+    assert "\x07" not in (ws.cell(row=10, column=9).value or "")

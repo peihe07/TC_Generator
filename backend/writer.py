@@ -4,6 +4,7 @@ import re
 from copy import copy
 
 from openpyxl import load_workbook
+from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 from openpyxl.styles import Alignment
 
 TC_SHEET_NAME = "Test Case Specification&Result"
@@ -69,16 +70,23 @@ def _wrap_rewrite(rewrite: str) -> str:
     return f"({stripped})"
 
 
+def _sanitize_excel_text(value):
+    """Strip control chars that OpenXML worksheets cannot store."""
+    if isinstance(value, str):
+        return ILLEGAL_CHARACTERS_RE.sub("", value)
+    return value
+
+
 def _merge_test_item_text(existing_text: str | None, rewrite: str) -> str:
     """在 Col I 的原始 test item 文字後面追加 AI rewrite。
 
     保留 template 原文（即使包含 `\\n\\n` 雙語分隔）— 只有當尾端真的是
     「舊的 `(... → ...)` rewrite」時才剝除，避免重跑時鎖鏈式增生。
     """
-    original = existing_text or ""
+    original = _sanitize_excel_text(existing_text or "")
     # 移除「先前寫入過」的 rewrite 尾巴，不是所有 \n\n 都是 rewrite 分隔。
     original = _REWRITE_TAIL_RE.sub("", original).rstrip()
-    wrapped = _wrap_rewrite(rewrite)
+    wrapped = _wrap_rewrite(_sanitize_excel_text(rewrite))
     if not wrapped:
         return original
     return f"{original}\n\n{wrapped}"
@@ -159,7 +167,7 @@ def _write_tc_row(
         if field not in row_data:
             continue
 
-        value = row_data.get(field)
+        value = _sanitize_excel_text(row_data.get(field))
         cell = ws.cell(row=row_num, column=col_idx)
         has_value = value is not None and str(value).strip() != ""
 
@@ -234,7 +242,7 @@ def write_generated_results(
                     if col == 9 and isinstance(value, str):
                         # 剝掉 parent 留下的 `(... → ...)` rewrite 尾巴
                         value = _REWRITE_TAIL_RE.sub("", value).rstrip()
-                    dst.value = value
+                    dst.value = _sanitize_excel_text(value)
                     _copy_style(src, dst)
 
         for idx, row_data in enumerate(items):
@@ -296,8 +304,8 @@ def write_framework_sheet(
     # Write data
     for i, entry in enumerate(framework_data):
         row = i + 2
-        ws.cell(row=row, column=1, value=entry["test_group"])
-        ws.cell(row=row, column=2, value=entry["test_set"])
+        ws.cell(row=row, column=1, value=_sanitize_excel_text(entry["test_group"]))
+        ws.cell(row=row, column=2, value=_sanitize_excel_text(entry["test_set"]))
         tc_count = entry.get("tc_count", entry.get("req_count", 0))
         req_count = entry.get("req_count", tc_count)
         ws.cell(row=row, column=3, value=tc_count)
