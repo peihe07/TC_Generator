@@ -627,6 +627,47 @@ class TestGenerateBatchMulti:
         assert len(result.tc_data[1]) == 2
         assert [m["reasoning"] for m in result.split_meta] == ["A", "B"]
 
+    @patch("generator._chat")
+    def test_empty_batch_group_falls_back_to_single_row_generation(self, mock_chat):
+        mock_chat.side_effect = [
+            make_chat_response(
+                {
+                    "requirements": [
+                        {"req_id": "R1", "reasoning": "A", "tcs": [VALID_TC_JSON]},
+                        {"req_id": "R2", "reasoning": "B", "tcs": []},
+                    ]
+                },
+                prompt_tokens=200,
+                completion_tokens=100,
+            ),
+            make_chat_response(
+                {
+                    "reasoning": "Fallback regenerated R2",
+                    "tcs": [{**VALID_TC_JSON, "priority": "P0"}],
+                },
+                prompt_tokens=20,
+                completion_tokens=10,
+            ),
+        ]
+
+        result = generate_batch_multi(
+            rows=[
+                {"req_id": "R1", "test_item": "x"},
+                {"req_id": "R2", "test_item": "y"},
+            ],
+            context={"project": "p", "test_group": "g"},
+            spec_index=None,
+            rules_text="rules",
+        )
+
+        assert mock_chat.call_count == 2
+        assert len(result.tc_data) == 2
+        assert len(result.tc_data[0]) == 1
+        assert len(result.tc_data[1]) == 1
+        assert result.tc_data[1][0]["priority"] == "P0"
+        assert result.split_meta[1]["reasoning"] == "Fallback regenerated R2"
+        assert result.split_meta[1]["req_id"] == "R2"
+
 
 class TestChatRetry:
     """_chat 應對上游短暫錯誤做 exponential backoff retry。"""

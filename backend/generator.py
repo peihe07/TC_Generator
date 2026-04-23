@@ -695,6 +695,25 @@ def parse_multi_tc_batch_response(
     Returns (tc_groups, meta_list). `meta_list[i]` = {"reasoning": str,
     "keywords": list, "req_id": str} aligned with input rows.
     """
+    tc_groups, meta_list, invalid_indices = _parse_multi_tc_batch_response_lenient(
+        raw,
+        expected_count=expected_count,
+    )
+    if invalid_indices:
+        i = invalid_indices[0]
+        error = meta_list[i].get("error") or "invalid 'tcs' array"
+        raise GenerationError(f"requirements[{i}]: {error}")
+    return tc_groups, meta_list
+
+
+def _parse_multi_tc_batch_response_lenient(
+    raw: str, expected_count: int,
+) -> tuple[list[list[dict]], list[dict], list[int]]:
+    """Parse a batch response and mark per-requirement TC validation failures.
+
+    Count/shape errors are still fatal because they break alignment. Per-row
+    `tcs` errors can be recovered by regenerating only the affected row.
+    """
     text = _strip_fences(raw)
     try:
         data = json.loads(text)
@@ -716,18 +735,29 @@ def parse_multi_tc_batch_response(
 
     tc_groups: list[list[dict]] = []
     meta_list: list[dict] = []
+    invalid_indices: list[int] = []
     for i, entry in enumerate(reqs):
         if not isinstance(entry, dict):
             raise GenerationError(f"requirements[{i}] is not an object")
         tcs = entry.get("tcs")
-        tc_groups.append(_validate_tcs_array(tcs, context=f"requirements[{i}]"))
+        error = ""
+        try:
+            tc_groups.append(_validate_tcs_array(tcs, context=f"requirements[{i}]"))
+        except GenerationError as exc:
+            tc_groups.append([])
+            invalid_indices.append(i)
+            prefix = f"requirements[{i}]: "
+            error = str(exc)
+            if error.startswith(prefix):
+                error = error[len(prefix):]
         kws = entry.get("keywords")
         meta_list.append({
             "req_id": str(entry.get("req_id") or ""),
             "reasoning": str(entry.get("reasoning") or ""),
             "keywords": kws if isinstance(kws, list) else [],
+            "error": error,
         })
-    return tc_groups, meta_list
+    return tc_groups, meta_list, invalid_indices
 
 
 def generate_tcs_for_row(
@@ -776,17 +806,48 @@ def generate_batch_multi(
     response = _chat(system, user_prompt, model)
 
     raw_text = response.choices[0].message.content or ""
-    tc_groups, meta_list = parse_multi_tc_batch_response(raw_text, expected_count=len(rows))
+    tc_groups, meta_list, invalid_indices = _parse_multi_tc_batch_response_lenient(
+        raw_text,
+        expected_count=len(rows),
+    )
 
     t = _usage_tokens(response.usage)
     cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
+    input_tokens = t["input"]
+    output_tokens = t["output"]
+    cache_creation_tokens = t["cache_creation"]
+    cache_read_tokens = t["cache_read"]
+
+    for i in invalid_indices:
+        fallback = generate_tcs_for_row(
+            row=rows[i],
+            context=context,
+            spec_index=spec_index,
+            rules_text=rules_text,
+            model=model,
+        )
+        fallback_tcs = fallback.tc_data if isinstance(fallback.tc_data, list) else [fallback.tc_data]
+        tc_groups[i] = fallback_tcs
+        if fallback.split_meta:
+            meta_list[i] = fallback.split_meta[0]
+        else:
+            meta_list[i] = {
+                "req_id": str(rows[i].get("req_id") or rows[i].get("reqId") or ""),
+                "reasoning": "Batch response invalid; regenerated this requirement individually.",
+                "keywords": [],
+            }
+        input_tokens += fallback.input_tokens
+        output_tokens += fallback.output_tokens
+        cache_creation_tokens += fallback.cache_creation_tokens
+        cache_read_tokens += fallback.cache_read_tokens
+        cost += fallback.cost
 
     return GenerationResult(
         tc_data=tc_groups,  # type: ignore[arg-type]
-        input_tokens=t["input"],
-        output_tokens=t["output"],
-        cache_creation_tokens=t["cache_creation"],
-        cache_read_tokens=t["cache_read"],
+        input_tokens=input_tokens,
+        output_tokens=output_tokens,
+        cache_creation_tokens=cache_creation_tokens,
+        cache_read_tokens=cache_read_tokens,
         cost=cost,
         model=model,
         split_meta=meta_list,
