@@ -5,6 +5,7 @@ from __future__ import annotations
 from unittest.mock import patch
 
 from backend.tools import group_tests_tool, get_tool, SafetyLevel
+from generator import CLASSIFICATION_MODEL
 
 
 def _fake_classify_result(mapping: dict[str, str]):
@@ -53,6 +54,17 @@ def test_group_calls_ai_for_unresolved_rows():
     assert derived_sets["c"] == "Misc"
     for assignment in out["assignments"]:
         assert assignment["source"] == "derived"
+
+
+def test_group_uses_fixed_classification_model_by_default():
+    rows = [{"id": "a", "reqId": "R-01", "testItem": "BT switch checkbox"}]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        return_value=_fake_classify_result({"R-01": "Connection"}),
+    ) as mock_classify:
+        group_tests_tool(rows=rows)
+
+    assert mock_classify.call_args.kwargs["model"] == CLASSIFICATION_MODEL
 
 
 def test_group_mixes_existing_and_ai_classified():

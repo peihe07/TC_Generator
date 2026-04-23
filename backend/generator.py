@@ -52,7 +52,11 @@ MODEL_PRICING = {
     "gpt-4o":          {"input": 2.50,  "cached_input": 1.25,  "output": 10.00},
 }
 
+# Task-level model policy:
+# - DEFAULT_MODEL: caller-selected default for decomposition / generation tasks
+# - CLASSIFICATION_MODEL: fixed cheap model for Test Set grouping
 DEFAULT_MODEL = "gpt-5"
+CLASSIFICATION_MODEL = "gpt-5-mini"
 
 # 當同一 model 重試後仍違反 1:1 時，升級到下列 model 再試一次。
 # 值為 None 代表已是最高層級、不再升級。
@@ -259,6 +263,38 @@ def _usage_tokens(usage) -> dict:
         "cache_creation": 0,  # OpenAI 不回報 cache write 事件
         "cache_read": cached,
     }
+
+
+def extract_decompose_rules(rules_text: str) -> str:
+    """Keep only the splitting-relevant sections for decompose.
+
+    Goal: preserve task semantics while reducing prompt bulk for weaker/cheaper
+    models. This helper is task-bound, not model-bound: every model doing the
+    decompose task receives the same focused rule subset.
+    """
+    if not rules_text:
+        return ""
+
+    wanted_headers = {
+        "## 2. Core Principles",
+        "## 4. Workflow",
+        "### 6.1 Test Item",
+        "## 9. False Pass / False Fail",
+        "## 10. Requirement Alignment",
+        "### 10.2 Keyword Decomposition",
+        "## 11. Self-Check (before emitting every TC)",
+    }
+    lines = rules_text.splitlines()
+    kept: list[str] = []
+    current_header = ""
+    keep = False
+    for line in lines:
+        if line.startswith("## ") or line.startswith("### "):
+            current_header = line.strip()
+            keep = current_header in wanted_headers
+        if keep:
+            kept.append(line)
+    return "\n".join(kept).strip()
 
 
 def _client() -> Any:
@@ -487,9 +523,10 @@ def decompose_requirement(
     Raises GenerationError on API or parse failure.
     """
     analyst_base = "You are an ASPICE SWE.6 test analyst. Return ONLY valid JSON, no markdown fences."
+    focused_rules = extract_decompose_rules(rules_text)
     system = (
-        f"## ASPICE SWE.6 Rules (authoritative — follow strictly)\n\n{rules_text}\n\n---\n\n{analyst_base}"
-        if rules_text else analyst_base
+        f"## ASPICE SWE.6 Rules (authoritative — follow strictly)\n\n{focused_rules}\n\n---\n\n{analyst_base}"
+        if focused_rules else analyst_base
     )
     user_prompt = build_decompose_prompt(requirement, rules_text="")
     response = _chat(system, user_prompt, model, max_tokens=2000)
@@ -751,7 +788,7 @@ class ClassificationResult:
 
 def classify_test_sets(
     reqs: list[dict],
-    model: str = DEFAULT_MODEL,
+    model: str = CLASSIFICATION_MODEL,
     test_group: str | None = None,
 ) -> ClassificationResult:
     """Classify a batch of requirements into coherent Test Sets (single AI call).

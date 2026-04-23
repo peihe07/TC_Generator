@@ -9,10 +9,12 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from generator import (
+    CLASSIFICATION_MODEL,
     DecomposeResult,
     GenerationError,
     GenerationResult,
     _client,
+    extract_decompose_rules,
     calculate_cost,
     decompose_requirement,
     generate_batch,
@@ -265,6 +267,52 @@ class TestGenerateQuickTc:
                 context=None,
                 rules_text="rules",
             )
+
+
+class TestExtractDecomposeRules:
+    def test_keeps_only_split_relevant_sections(self):
+        rules = """## 2. Core Principles
+keep core
+## 6.2 Pre-Condition
+drop precondition
+### 6.1 Test Item
+keep split
+## 10. Requirement Alignment
+keep alignment
+### 10.2 Keyword Decomposition
+keep keywords
+## 12. Review Output
+drop review
+"""
+        extracted = extract_decompose_rules(rules)
+        assert "keep core" in extracted
+        assert "keep split" in extracted
+        assert "keep alignment" in extracted
+        assert "keep keywords" in extracted
+        assert "drop precondition" not in extracted
+        assert "drop review" not in extracted
+
+    @patch("generator._chat")
+    def test_decompose_requirement_uses_focused_rules_subset(self, mock_chat):
+        mock_chat.return_value = make_chat_response(
+            {"reasoning": "ok", "scenarios": [{"id": 1, "name": "n", "description": "d", "test_item": "x"}]},
+            prompt_tokens=100,
+            completion_tokens=50,
+        )
+        rules = """## 2. Core Principles
+keep core
+## 6.2 Pre-Condition
+drop precondition
+### 10.2 Keyword Decomposition
+keep keywords
+"""
+
+        decompose_requirement(requirement="req", rules_text=rules)
+
+        system_prompt = mock_chat.call_args.args[0]
+        assert "keep core" in system_prompt
+        assert "keep keywords" in system_prompt
+        assert "drop precondition" not in system_prompt
 
     @patch("generator._chat")
     def test_invalid_json_response_raises(self, mock_chat):

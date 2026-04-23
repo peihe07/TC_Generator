@@ -15,7 +15,7 @@ from spec_matcher import build_spec_index, match_spec_references
 from spec_parser import detect_format, parse_pdf, parse_docx, parse_xlsx, merge_indexes
 from grouper import load_framework, save_framework, assign_test_sets, build_framework_sheet_data, build_grouping_prompt, parse_grouping_response
 from prompt_builder import build_user_prompt, build_batch_prompt, REQUIRED_OUTPUT_KEYS
-from generator import generate_single_tc, generate_batch, calculate_cost, GenerationError, DEFAULT_MODEL
+from generator import DEFAULT_MODEL, generate_single_tc, generate_batch, calculate_cost, GenerationError
 from validator import validate_row
 from writer import write_generated_results, write_framework_sheet, build_output_path
 
@@ -62,7 +62,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--spec", help="Supplementary spec document path (optional)")
     p.add_argument("--framework", help="Path to confirmed framework.json (optional)")
     p.add_argument("--output-dir", default="output", help="Output directory (default: output/)")
-    p.add_argument("--model", default=DEFAULT_MODEL, help=f"Model to use (default: {DEFAULT_MODEL})")
+    p.add_argument("--model", default=DEFAULT_MODEL, help=f"Model to use for generation/decomposition tasks (default: {DEFAULT_MODEL})")
     p.add_argument("--batch-size", type=int, default=5, help="TCs per API call (default: 5)")
     p.add_argument("--mode", choices=["full", "incremental", "regenerate"], default="full",
                    help="Generation mode (default: full)")

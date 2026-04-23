@@ -16,8 +16,7 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 from generator import (
-    ANALYSIS_MODEL,
-    EXECUTION_MODEL,
+    DEFAULT_MODEL,
     GenerationError,
     calculate_cost,
     classify_test_sets,
@@ -232,7 +231,7 @@ class QuickGenerateRequest(BaseModel):
     # mode 保留做 backwards-compat，但目前統一走 auto-split 多筆 TC 路徑，
     # 傳任何值都會被忽略（包括舊前端的 "single" / "with_context" / "decompose"）。
     mode: str | None = None
-    model: str = ANALYSIS_MODEL
+    model: str = DEFAULT_MODEL
 
 
 EXPORT_COLUMN_TO_FIELD = {
@@ -1137,7 +1136,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         total_cache_creation_tokens = usage["cacheCreationTokens"]
         total_cache_read_tokens = usage["cacheReadTokens"]
         batch_size = config.get("batchSize", 1)
-        model = config.get("model", ANALYSIS_MODEL)
+        model = config.get("model", DEFAULT_MODEL)
         strict_validation = config.get("strictValidation", False)
         budget = config.get("budget", 0)
 
@@ -1415,7 +1414,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         }
         spec_index = _build_spec_index_for_job(job)
         total = len(rows_to_regen)
-        model = cfg.get("model", EXECUTION_MODEL)
+        model = cfg.get("model", DEFAULT_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
         usage = _job_usage(job)
@@ -1589,7 +1588,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
         }
         spec_index = _build_spec_index_for_job(job) if job_available else {}
         total = len(rows_to_run)
-        model = cfg.get("model", ANALYSIS_MODEL)
+        model = cfg.get("model", DEFAULT_MODEL)
         batch_size = cfg.get("batchSize", 1)
         processed = 0
         usage = _job_usage(job) if job_available else _job_usage(None)

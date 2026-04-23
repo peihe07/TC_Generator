@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from generator import DEFAULT_MODEL, GenerationError, classify_test_sets
+from generator import CLASSIFICATION_MODEL, GenerationError, classify_test_sets
 
 from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
@@ -60,7 +60,7 @@ def _fallback_test_set_name(row: dict) -> str:
 def group_tests_tool(
     *,
     rows: list[dict],
-    model: str = DEFAULT_MODEL,
+    model: str = CLASSIFICATION_MODEL,
 ) -> dict:
     """把 rows 分成若干 Test Set 並回 grouping preview。
 

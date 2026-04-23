@@ -178,6 +178,10 @@ class TestBuildTestSetClassificationPrompt:
         # 跨行 wrap 時 "user-facing\ncapability" — 正規化空白再比對
         assert "user-facing capability" in " ".join(prompt.split())
 
+    def test_prompt_defaults_to_broad_capability_when_unsure(self):
+        prompt = build_test_set_classification_prompt(self._reqs())
+        assert "default to the broader capability" in " ".join(prompt.split())
+
     def test_prompt_still_requires_full_assignment(self):
         reqs = self._reqs()
         prompt = build_test_set_classification_prompt(reqs)

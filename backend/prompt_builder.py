@@ -585,6 +585,8 @@ Rules for choosing labels:
   5–15 requirements per label when the data supports it; avoid splitting a
   capability into Pairing / Reconnect / Disconnect unless the CFTS really
   only covers one of them.
+- If unsure between a narrow label and a broader shared capability, default to
+  the broader capability.
 - Single-req Test Sets are allowed ONLY when the requirement is a genuine
   outlier that doesn't fit any capability shared with other reqs. Otherwise
   merge it into the closest related capability.
