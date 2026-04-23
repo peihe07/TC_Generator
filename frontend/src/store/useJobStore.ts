@@ -219,12 +219,10 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
     const state = persistedState as { config?: Partial<GenerationConfig> } | undefined;
     if (!state) return state;
     const model = state.config?.model;
-    // v3 把預設升到 gpt-5：舊版落在 gpt-4.1 / gpt-5.4 / gpt-5.4-mini 或未填的
-    // 使用者自動升級；已經明確選過 5.4-nano / 5-mini / 4.1-mini / 4o 等非預設
-    // 則尊重原選擇，不覆蓋。
-    // 被移出下拉選單的 model 全部升級到 gpt-5。保留 gpt-5.4 / gpt-5-mini /
-    // gpt-4.1 / gpt-4o 使用者原選擇（這四個仍在 UI 裡）。
-    const ALLOWED = new Set(['gpt-5', 'gpt-5.4', 'gpt-5-mini', 'gpt-4.1', 'gpt-4o']);
+    // 現行主流程只允許使用者選 gpt-5 / gpt-5.4。
+    // 舊 workspace 若存了其他 model（gpt-5-mini / gpt-4.1 / gpt-4o ...），
+    // 一律收斂回 gpt-5，避免 UI/後端策略不一致。
+    const ALLOWED = new Set(['gpt-5', 'gpt-5.4']);
     if (typeof model !== 'string' || !ALLOWED.has(model)) {
       return {
         ...state,

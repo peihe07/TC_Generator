@@ -8,11 +8,8 @@ import { Button, Select } from '../../ui';
 import type { JobPhase } from './types';
 
 const MODEL_OPTIONS = [
-  { value: 'gpt-5', label: 'GPT-5' },
   { value: 'gpt-5.4', label: 'GPT-5.4' },
-  { value: 'gpt-5-mini', label: 'GPT-5 mini' },
-  { value: 'gpt-4.1', label: 'GPT-4.1' },
-  { value: 'gpt-4o', label: 'GPT-4o' },
+  { value: 'gpt-5', label: 'GPT-5' },
 ];
 
 export interface QuickGenerateInputPanelProps {
@@ -58,7 +55,7 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
         <legend className="text-sm">Requirement</legend>
         <textarea
           className="flex-1 p-2 text-xs resize-none min-h-[120px] border-sunken"
-          placeholder="貼上完整的 requirement 文字。預設使用 GPT-5.4 mini；也可切換到更高階或更便宜模型。AI 會依 ASPICE §1.2/§1.4/§1.5 判斷要拆成幾筆 TC。"
+          placeholder="貼上完整的 requirement 文字。此處使用你選的 model 做拆解與生成；只有 Test Set 分類固定使用較便宜模型。AI 會依 ASPICE §1.2/§1.4/§1.5 判斷要拆成幾筆 TC。"
           value={testItem}
           onChange={(e) => onTestItemChange(e.target.value)}
           disabled={isRunning}

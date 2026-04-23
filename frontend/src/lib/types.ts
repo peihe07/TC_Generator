@@ -95,10 +95,7 @@ export interface JobMetadata {
 export interface GenerationConfig {
   model:
     | "gpt-5"
-    | "gpt-5.4"
-    | "gpt-5-mini"
-    | "gpt-4.1"
-    | "gpt-4o";
+    | "gpt-5.4";
   batchSize: number;
   budgetLimit: number;
   /**

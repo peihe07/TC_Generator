@@ -10,9 +10,6 @@ export const TABS: { id: ConfigureTabId; label: string }[] = [
 const MODEL_TOKEN_PRICING: Record<string, { input: number; output: number }> = {
   'gpt-5.4': { input: 2.5, output: 15 },
   'gpt-5': { input: 5, output: 15 },
-  'gpt-5-mini': { input: 0.25, output: 2 },
-  'gpt-4.1': { input: 2, output: 8 },
-  'gpt-4o': { input: 2.5, output: 10 },
 };
 
 const MODEL_TOKEN_PRICING_FALLBACK = { input: 5, output: 15 };
@@ -30,11 +27,8 @@ export const TARGET_COLUMN_OPTIONS: { key: string; label: string }[] = [
 
 /** Model radio options for the Options tab. */
 export const MODEL_OPTIONS: { id: string; value: string; label: string }[] = [
-  { id: 'm-gpt5', value: 'gpt-5', label: 'GPT-5 (Default, Top Quality)' },
-  { id: 'm-gpt54', value: 'gpt-5.4', label: 'GPT-5.4 (Best Quality)' },
-  { id: 'm-gpt5m', value: 'gpt-5-mini', label: 'GPT-5 mini (Cheaper)' },
-  { id: 'm-gpt41', value: 'gpt-4.1', label: 'GPT-4.1 (Legacy Stable)' },
-  { id: 'm-gpt4o', value: 'gpt-4o', label: 'GPT-4o (Legacy)' },
+  { id: 'm-gpt5', value: 'gpt-5', label: 'GPT-5 (Default)' },
+  { id: 'm-gpt54', value: 'gpt-5.4', label: 'GPT-5.4' },
 ];
 
 /** Pure helper — compute the estimated cost ceiling for N rows on a model. */
