@@ -50,41 +50,66 @@ TC Generator 是一套針對 ASPICE SWE.6 的自動化測試案例產生工具�
 ```mermaid
 graph TB
     subgraph "Frontend — Next.js Desktop"
-        Desktop["Desktop / Taskbar / WindowManager"]
-        Modules["Upload / Configure / Generate / Review / Export"]
-        Adapter["jobAdapter.ts"]
-        Proxy["app/api/* proxy routes"]
+        Shell["Desktop / Taskbar / WindowManager"]
+        Modules["Upload / Configure / Generate / Review / Export / QuickGenerate / Chat / Rules / Diagrams"]
+        Stores["Zustand stores + localStorage"]
+        Adapter["jobAdapter.ts / agentClient.ts"]
+        Proxy["app/api/* same-origin proxy routes"]
     end
 
-    subgraph "Backend — FastAPI"
-        API["/api/parse /api/generate /api/export"]
-        Stream["SSE streams"]
+    subgraph "Backend — FastAPI + Agent Router"
+        RestAPI["REST API\n/parse /group /match /generate /export\n/metrics/aggregate /quick-generate"]
+        AgentAPI["Agent API\n/api/agent/chat\n/api/agent/sessions*"]
+        Streams["SSE streams\n generate / regenerate / rerun / agent chat"]
+        JobStore["job_store.py\nSQLite jobs.db"]
+        TraceStore["trace_store.py\nagent trace JSONL export"]
+        SessionStore["agent_session_store.py\nagent conversation history"]
+        Tools["backend/tools/*\nparse / group / match / generate / validate / write / jobs"]
     end
 
     subgraph "Core — Python Modules"
         Parser["parser.py"]
         Matcher["spec_matcher.py"]
+        SpecParser["spec_parser.py"]
         Grouper["grouper.py"]
+        IdGen["id_generator.py"]
         Prompt["prompt_builder.py"]
         Generator["generator.py"]
         Validator["validator.py"]
         Writer["writer.py"]
         JobMgr["job_manager.py"]
+        Dispatcher["agent_dispatcher.py"]
     end
 
-    Desktop --> Modules --> Adapter --> Proxy --> API
-    API --> Parser
-    API --> Matcher
-    API --> Grouper
-    API --> Prompt
-    API --> Generator
-    API --> Validator
-    API --> Writer
-    API --> JobMgr
-    API --> Stream
+    Shell --> Modules --> Stores --> Adapter --> Proxy
+    Proxy --> RestAPI
+    Proxy --> AgentAPI
+
+    RestAPI --> Streams
+    AgentAPI --> Streams
+    RestAPI --> Tools
+    AgentAPI --> Dispatcher
+    Dispatcher --> Tools
+
+    RestAPI --> JobStore
+    AgentAPI --> JobStore
+    AgentAPI --> TraceStore
+    AgentAPI --> SessionStore
+
+    Tools --> Parser
+    Tools --> Matcher
+    Tools --> SpecParser
+    Tools --> Grouper
+    Tools --> IdGen
+    Tools --> Prompt
+    Tools --> Generator
+    Tools --> Validator
+    Tools --> Writer
+    Tools --> JobMgr
 ```
 
-完整視覺化：[TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html)
+完整視覺化（使用者流程）：
+[TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html)
 
 ---
 
@@ -149,9 +174,11 @@ TC_Generator/
 
 ## API 端點
 
-全數於 `backend/api_server.py`：
+HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agent routes 在
+`backend/routes/agent.py`。
 
 - `GET /api/health`
+- `DELETE /api/admin/reset`
 - `GET /api/metrics/aggregate`
 - `POST /api/parse`
 - `POST /api/group`
@@ -159,9 +186,15 @@ TC_Generator/
 - `POST /api/generate`
 - `GET /api/generate/stream`
 - `POST /api/jobs/{jobId}/regenerate/stream`
+- `POST /api/jobs/{jobId}/rerun/stream`
 - `POST /api/export`
 - `GET /api/export/download/{jobId}`
 - `POST /api/quick-generate/stream`
+- `POST /api/agent/chat`
+- `GET /api/agent/sessions`
+- `GET /api/agent/sessions/{sessionId}`
+- `DELETE /api/agent/sessions/{sessionId}`
+- `GET /api/agent/sessions/{sessionId}/trace`
 
 完整 request / response 格式請看 [API_CONTRACT.md](API_CONTRACT.md)。
 
