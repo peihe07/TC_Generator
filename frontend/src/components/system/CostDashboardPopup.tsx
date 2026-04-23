@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { RiCloseLine, RiRefreshLine } from '@remixicon/react';
+import { useJobStore } from '../../store/useJobStore';
 
 interface AggregateMetrics {
   jobCount: number;
@@ -14,6 +15,16 @@ interface AggregateMetrics {
   jobsWithMatch: number;
 }
 
+interface JobUsage {
+  jobId: string;
+  cost: number;
+  inputTokens: number;
+  outputTokens: number;
+  cacheCreationTokens: number;
+  cacheReadTokens: number;
+  costByModel: Record<string, number>;
+}
+
 interface Props {
   onClose: () => void;
 }
@@ -24,8 +35,10 @@ interface Props {
  */
 export default function CostDashboardPopup({ onClose }: Props) {
   const [data, setData] = useState<AggregateMetrics | null>(null);
+  const [jobUsage, setJobUsage] = useState<JobUsage | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const jobId = useJobStore((s) => s.jobMetadata?.jobId ?? null);
 
   const load = async () => {
     setLoading(true);
@@ -40,11 +53,28 @@ export default function CostDashboardPopup({ onClose }: Props) {
     } finally {
       setLoading(false);
     }
+
+    // 當前 job 的 per-model breakdown：best-effort，失敗就靜默略過
+    if (jobId) {
+      try {
+        const res = await fetch(`/api/jobs/${encodeURIComponent(jobId)}/usage`);
+        if (res.ok) {
+          setJobUsage(await res.json());
+        } else {
+          setJobUsage(null);
+        }
+      } catch {
+        setJobUsage(null);
+      }
+    } else {
+      setJobUsage(null);
+    }
   };
 
   useEffect(() => {
     load();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jobId]);
 
   return (
     <div className="cost-dashboard-popup" role="dialog" aria-label="Cost Dashboard">
@@ -131,6 +161,27 @@ export default function CostDashboardPopup({ onClose }: Props) {
                   : undefined
               }
             />
+
+            {jobUsage && Object.keys(jobUsage.costByModel).length > 0 && (
+              <>
+                <div className="cost-dashboard-divider" />
+                <div
+                  className="cost-dashboard-row-label"
+                  style={{ marginBottom: 4 }}
+                >
+                  Current Job — Cost by Model
+                </div>
+                {Object.entries(jobUsage.costByModel)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([model, cost]) => (
+                    <MetricRow
+                      key={model}
+                      label={model || '(unattributed)'}
+                      value={`$${cost.toFixed(4)}`}
+                    />
+                  ))}
+              </>
+            )}
           </>
         )}
       </div>

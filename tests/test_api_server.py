@@ -128,6 +128,53 @@ def test_metrics_aggregate_rejects_unknown_job_id():
     assert response.status_code == 404
 
 
+def test_job_usage_returns_per_model_breakdown():
+    """Per-job usage endpoint — drives CostMeter popup's per-model section."""
+    # Seed a job with a known per-model cost breakdown.
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    from api_server import JOB_REGISTRY, _persist_job_usage
+    job = JOB_REGISTRY.get(job_id)
+    # Simulate two AI tasks on the same job at different model tiers.
+    _persist_job_usage(
+        job_id, job,
+        cost=0.10, input_tokens=1000, output_tokens=200,
+        cache_creation_tokens=0, cache_read_tokens=0,
+        cost_delta=0.10, model="gpt-5",
+    )
+    job = JOB_REGISTRY.get(job_id)
+    _persist_job_usage(
+        job_id, job,
+        cost=0.12, input_tokens=1200, output_tokens=250,
+        cache_creation_tokens=0, cache_read_tokens=0,
+        cost_delta=0.02, model="gpt-5-mini",
+    )
+
+    response = client.get(f"/api/jobs/{job_id}/usage")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["jobId"] == job_id
+    assert payload["cost"] == 0.12
+    # Per-model bucket preserves separate attribution.
+    assert payload["costByModel"]["gpt-5"] == 0.10
+    assert payload["costByModel"]["gpt-5-mini"] == 0.02
+
+
+def test_job_usage_404_for_unknown_job():
+    response = client.get("/api/jobs/does-not-exist/usage")
+    assert response.status_code == 404
+
+
 def test_parse_workbook():
     files = {
         "raw_file": (

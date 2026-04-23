@@ -461,22 +461,52 @@ def _would_exceed_budget(current_cost: float, batch_size: int, model: str, budge
 
 def _job_usage(job: dict | None) -> dict:
     usage = (job or {}).get("usage") or {}
+    by_model_raw = usage.get("costByModel") or {}
     return {
         "cost": float(usage.get("cost") or 0.0),
         "inputTokens": int(usage.get("inputTokens") or 0),
         "outputTokens": int(usage.get("outputTokens") or 0),
         "cacheCreationTokens": int(usage.get("cacheCreationTokens") or 0),
         "cacheReadTokens": int(usage.get("cacheReadTokens") or 0),
+        "costByModel": {
+            str(k): float(v or 0.0) for k, v in by_model_raw.items()
+        } if isinstance(by_model_raw, dict) else {},
     }
 
 
-def _persist_job_usage(job_id: str, job: dict, *, cost: float, input_tokens: int, output_tokens: int, cache_creation_tokens: int, cache_read_tokens: int) -> None:
+def _persist_job_usage(
+    job_id: str,
+    job: dict,
+    *,
+    cost: float,
+    input_tokens: int,
+    output_tokens: int,
+    cache_creation_tokens: int,
+    cache_read_tokens: int,
+    cost_delta: float = 0.0,
+    model: str | None = None,
+) -> None:
+    """Write back cumulative usage. Optional `model` + `cost_delta` attribute
+    the delta to a specific model bucket so the frontend can show a per-model
+    breakdown (e.g. classify_test_sets on gpt-5-mini vs generate on gpt-5).
+
+    Callers that already know the incremental cost of THIS call should pass
+    `cost_delta` + `model`; the bucket grows by `cost_delta` and the cumulative
+    `cost` field continues to track the total as before.
+    """
+    existing = (job.get("usage") or {}).get("costByModel") or {}
+    by_model: dict[str, float] = {
+        str(k): float(v or 0.0) for k, v in existing.items()
+    } if isinstance(existing, dict) else {}
+    if model and cost_delta > 0:
+        by_model[model] = round(by_model.get(model, 0.0) + float(cost_delta), 6)
     job["usage"] = {
         "cost": cost,
         "inputTokens": input_tokens,
         "outputTokens": output_tokens,
         "cacheCreationTokens": cache_creation_tokens,
         "cacheReadTokens": cache_read_tokens,
+        "costByModel": by_model,
     }
     JOB_REGISTRY[job_id] = job
 
@@ -921,6 +951,21 @@ def reset_all_state(request: Request) -> dict:
     }
 
 
+@app.get("/api/jobs/{job_id}/usage")
+def get_job_usage(job_id: str) -> dict:
+    """Per-job usage breakdown including model-level cost attribution.
+
+    Fast read endpoint for CostMeter dashboard popup — lets the UI show
+    "classify: $0.02 (gpt-5-mini) / generate: $0.13 (gpt-5)" without
+    dragging the full job record over the wire.
+    """
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+    usage = _job_usage(job)
+    return {"jobId": job_id, **usage}
+
+
 @app.get("/api/metrics/aggregate")
 def metrics_aggregate(job_ids: str | None = None) -> dict:
     """跨 job 聚合指標（成本觀測面板用）。
@@ -1001,19 +1046,17 @@ async def preview_grouping(payload: GroupPreviewRequest) -> dict:
 
     result = group_tests_tool(rows=[row.model_dump() for row in payload.rows])
     usage = _job_usage(job)
-    new_cost = usage["cost"] + float(result.get("cost") or 0.0)
-    new_input = usage["inputTokens"] + int(result.get("inputTokens") or 0)
-    new_output = usage["outputTokens"] + int(result.get("outputTokens") or 0)
-    new_cache_creation = usage["cacheCreationTokens"] + int(result.get("cacheCreationTokens") or 0)
-    new_cache_read = usage["cacheReadTokens"] + int(result.get("cacheReadTokens") or 0)
+    this_cost = float(result.get("cost") or 0.0)
     _persist_job_usage(
         payload.jobId,
         job,
-        cost=new_cost,
-        input_tokens=new_input,
-        output_tokens=new_output,
-        cache_creation_tokens=new_cache_creation,
-        cache_read_tokens=new_cache_read,
+        cost=usage["cost"] + this_cost,
+        input_tokens=usage["inputTokens"] + int(result.get("inputTokens") or 0),
+        output_tokens=usage["outputTokens"] + int(result.get("outputTokens") or 0),
+        cache_creation_tokens=usage["cacheCreationTokens"] + int(result.get("cacheCreationTokens") or 0),
+        cache_read_tokens=usage["cacheReadTokens"] + int(result.get("cacheReadTokens") or 0),
+        cost_delta=this_cost,
+        model=str(result.get("model") or ""),
     )
     return {"jobId": payload.jobId, **result}
 
@@ -1321,6 +1364,9 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             await asyncio.sleep(0.15)
 
         job["status"] = "completed"
+        # 把這次 stream 新增的成本歸進選定 model 的 bucket；classify 那邊的
+        # gpt-5-mini 成本不會跑進這條 code path，所以 bucket 乾淨。
+        stream_delta = max(current_cost - usage["cost"], 0.0)
         _persist_job_usage(
             jobId,
             job,
@@ -1329,6 +1375,8 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             output_tokens=total_output_tokens,
             cache_creation_tokens=total_cache_creation_tokens,
             cache_read_tokens=total_cache_read_tokens,
+            cost_delta=stream_delta,
+            model=model,
         )
         JOB_REGISTRY[jobId] = job  # 回寫 SQLite
         yield _sse_event(
@@ -1490,6 +1538,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         # Job 缺失時也建一筆最小紀錄 persist usage，保持和 rerun 一致的
         # 語意；CostMeter 才看得到這次 regen 的花費。
         persist_target = job if (job_available and job is not None) else {"jobId": job_id}
+        stream_delta = max(current_cost - usage["cost"], 0.0)
         _persist_job_usage(
             job_id,
             persist_target,
@@ -1498,6 +1547,8 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
             output_tokens=total_out,
             cache_creation_tokens=total_cache_create,
             cache_read_tokens=total_cache_read,
+            cost_delta=stream_delta,
+            model=model,
         )
 
         yield _sse_event(
@@ -1773,6 +1824,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
         # 也要建立 job 紀錄來 persist 這次跑的 usage，否則 CostMeter 會見鬼
         # —— 使用者看到 $$ 花了卻沒進累計。
         persist_target = job if (job_available and job is not None) else {"jobId": job_id}
+        stream_delta = max(current_cost - usage["cost"], 0.0)
         _persist_job_usage(
             job_id,
             persist_target,
@@ -1781,6 +1833,8 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
             output_tokens=total_out,
             cache_creation_tokens=total_cache_create,
             cache_read_tokens=total_cache_read,
+            cost_delta=stream_delta,
+            model=model,
         )
 
         yield _sse_event(
@@ -1910,7 +1964,9 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         raise HTTPException(status_code=400, detail=detail)
 
     # Export 觸發的 AI 分類也算在 job 的累計成本上，讓 CostMeter 看得到這筆開銷。
+    # classify 是固定 CLASSIFICATION_MODEL，成本歸進該 model 的 bucket。
     if classify_usage.get("cost", 0) > 0:
+        from generator import CLASSIFICATION_MODEL
         existing = _job_usage(job)
         _persist_job_usage(
             payload.jobId,
@@ -1920,6 +1976,8 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
             output_tokens=existing["outputTokens"] + classify_usage["outputTokens"],
             cache_creation_tokens=existing["cacheCreationTokens"] + classify_usage["cacheCreationTokens"],
             cache_read_tokens=existing["cacheReadTokens"] + classify_usage["cacheReadTokens"],
+            cost_delta=float(classify_usage["cost"]),
+            model=CLASSIFICATION_MODEL,
         )
         if job is None:
             job = JOB_REGISTRY.get(payload.jobId)
