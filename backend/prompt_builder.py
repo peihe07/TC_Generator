@@ -310,7 +310,12 @@ def build_decompose_prompt(requirement: str, rules_text: str) -> str:
 Analyze the following software requirement following the ASPICE SWE.6 reviewer workflow:
 
 1. Extract the key concepts ("keywords") from the requirement. For each keyword, state its meaning in this context and which scenario ids will verify it.
-2. Decompose the requirement into distinct, independent test scenarios. Each scenario should cover a different aspect, condition, or behaviour path.
+2. Decompose the requirement into distinct, independent test scenarios. Each scenario must have exactly ONE verification point — a single unambiguous pass/fail question (see §10.2 "One Verification Point per TC").
+3. For every scenario, run a PARTIAL-FAILURE stress test: imagine the system
+   succeeds on part of the behaviour and fails on another part. If two
+   different partial failures would both land on "fail" for *different*
+   reasons, the scenario is bundling multiple verification points — split it
+   further until each scenario owns exactly one failure mode.
 
 Every keyword must map to at least one scenario id — if a concept has no coverage, add a scenario for it.
 
@@ -344,10 +349,19 @@ Return ONLY valid JSON (no markdown fences) with this exact structure:
       "id": 1,
       "name": "<簡短的 scenario 名稱（繁體中文）>",
       "description": "<這個 scenario 驗證什麼的一句話說明（繁體中文）>",
+      "verification_question": "<單一 yes/no 判斷問句；若整條 req 通過 SIT 後這題答 yes 即 pass、答 no 即 fail（繁體中文）>",
+      "fail_examples": [
+        "<一種能讓此 scenario fail 的具體 partial-failure 描述（繁體中文）>",
+        "<另一種 partial-failure；若想不出第二種，代表 scenario 可能太窄，重新檢視>"
+      ],
       "test_item": "<rewritten test item statement — source language>"
     }}
   ]
-}}"""
+}}
+
+Self-check before returning: for each scenario, the two `fail_examples` should
+fail for the SAME underlying reason (same verification point). If they fail
+for *different* reasons, split the scenario into two."""
 
 
 def build_batch_prompt(

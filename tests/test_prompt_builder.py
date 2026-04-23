@@ -177,6 +177,16 @@ class TestBuildDecomposePrompt:
         assert "Do NOT invent missing data while analyzing" in prompt
         assert "preserve that ambiguity explicitly instead of guessing" in prompt
 
+    def test_decompose_prompt_enforces_one_verification_point(self):
+        """每個 scenario 必須自帶一個 yes/no verification_question，並列出
+        partial-failure 的 fail_examples，強迫 AI 事前壓測自己是否拆得夠細。"""
+        prompt = build_decompose_prompt("REQ text", "")
+        assert "exactly ONE verification point" in prompt
+        assert "PARTIAL-FAILURE stress test" in prompt
+        # Output schema 必須包含 self-check 欄位，否則 AI 不會產出
+        assert "verification_question" in prompt
+        assert "fail_examples" in prompt
+
 
 class TestBuildTestSetClassificationPrompt:
     """Test Set labels 要用 functional capability 而非 sub-action。

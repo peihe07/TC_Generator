@@ -147,6 +147,27 @@ Example: "max 60 records per BT device; first set kept"
 
 **Branches** (each = 1 TC): unknown/private; before-vs-after; boundary (=/>/</=0); negative; concurrency; persistence (reboot).
 
+**One Verification Point per TC** (critical — prevents over-stuffed scenarios):
+Every TC must answer exactly ONE unambiguous pass/fail question. If two
+*different* partial failures could both land on "fail" via your TC, you are
+bundling multiple verification points and MUST split further.
+
+Stress-test every scenario by asking: *"If only part of the behaviour fails,
+is my pass/fail verdict still unambiguous?"*
+
+Illustrative contrast — requirement "persist SSID / security / credentials for ≥ 4 networks":
+
+| | Example | Why |
+|---|---|---|
+| ✗ Overloaded (1 TC) | save 4 → record → reboot → check 4 networks still have SSID + security + credentials | Conflates 3 axes: **capacity** (did ≥4 save?) × **data integrity** (which fields persisted?) × **persistence** (survived reboot?). "Only 3 saved" and "reboot kept SSID but lost credentials" both fail this TC for *different reasons* — verdict is ambiguous. |
+| ✓ Atomic (3 TCs) | **A Capacity**: save 4th → listed as 4 entries. **B Data Integrity**: after save, each saved entry exposes non-empty SSID + security + credentials. **C Persistence**: reboot → per-field comparison of SSID/security/credentials equals pre-reboot baseline. | Each TC owns ONE failure mode. |
+
+This contrast is illustrative. The principle — one verification point per TC —
+applies to every domain. Do **not** mechanically split every requirement into
+capacity/integrity/persistence; that triad is specific to the Wi-Fi example.
+Choose splits that emerge from the *actual* keywords + branches in the
+requirement at hand.
+
 ### 10.3 No Fabrication (applies to ALL generated fields)
 Never invent a concrete value the source did not state. This covers every
 TC field — `test_item_rewrite`, `pre_conditions`, `input_test_data`,
