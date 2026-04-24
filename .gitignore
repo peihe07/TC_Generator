@@ -47,3 +47,10 @@ Thumbs.db
 # Local sample data / fixtures (do not commit)
 docs/temp/
 docs/test/
+
+# Spec index: 原始 spec 檔與預處理快取（可能含機敏資料）
+spec-index/sources/*
+spec-index/cache/*
+spec-index/manifest.json
+!spec-index/sources/.gitkeep
+!spec-index/cache/.gitkeep
