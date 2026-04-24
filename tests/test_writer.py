@@ -61,7 +61,7 @@ def generated_rows():
             "tc_id": "newR1L-DMR-001",
             "test_group": "DeviceManager",
             "test_set": "Access & Entry",
-            "test_item_rewrite": "(User adds DM → DM icon displayed)",
+            "tc_title": "(User adds DM → DM icon displayed)",
             "pre_conditions": "1. BT enabled on HU",
             "input_test_data": "Status bar menu",
             "test_procedure": "1. Open settings to access.\n2. Add DM and verify icon appears.",
@@ -75,7 +75,7 @@ def generated_rows():
             "tc_id": "newR1L-DMR-002",
             "test_group": "DeviceManager",
             "test_set": "Access & Entry",
-            "test_item_rewrite": "(User opens DM from menu → DM screen shown)",
+            "tc_title": "(User opens DM from menu → DM screen shown)",
             "pre_conditions": "NA",
             "input_test_data": "Menu bar icon",
             "test_procedure": "1. Tap menu bar to open.\n2. Select DM and verify it opens.",
@@ -159,7 +159,7 @@ class TestWriteGeneratedResults:
         ws = wb["Test Case Specification&Result"]
         assert ws.cell(row=10, column=7).value == "DeviceManager"
 
-    def test_appends_test_item_rewrite(self, input_xlsx, generated_rows, tmp_path):
+    def test_appends_tc_title(self, input_xlsx, generated_rows, tmp_path):
         output = str(tmp_path / "output.xlsx")
         write_generated_results(input_xlsx, generated_rows, output)
 
@@ -178,13 +178,13 @@ class TestWriteGeneratedResults:
                 "row_num": 10,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-001",
-                "test_item_rewrite": "(Trigger → Outcome A)",
+                "tc_title": "(Trigger → Outcome A)",
             },
             {
                 "row_num": 11,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-002",
-                "test_item_rewrite": "(Trigger → Outcome B)",
+                "tc_title": "(Trigger → Outcome B)",
             },
         ]
         output = str(tmp_path / "output.xlsx")
@@ -207,13 +207,13 @@ class TestWriteGeneratedResults:
                 "row_num": 10,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-001",
-                "test_item_rewrite": "(First → A)",
+                "tc_title": "(First → A)",
             },
             {
                 "row_num": 11,
                 "req_id": "SWE1-HMI-DM-002-01",  # different req_id
                 "tc_id": "newR1L-DMR-002",
-                "test_item_rewrite": "(Second → B)",
+                "tc_title": "(Second → B)",
             },
         ]
         output = str(tmp_path / "output.xlsx")
@@ -284,7 +284,7 @@ class TestWriteGeneratedResults:
             "tc_id": "newR1L-DMR-001",
             "test_group": "DeviceManager",
             "test_set": "Access & Entry",
-            "test_item_rewrite": "(User adds DM → DM icon displayed)",
+            "tc_title": "(User adds DM → DM icon displayed)",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Open settings.\n2. Verify the result.",
@@ -330,7 +330,7 @@ class TestWriteGeneratedResults:
                 "row_num": 10,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-001",
-                "test_item_rewrite": "(Trigger → Outcome A)",
+                "tc_title": "(Trigger → Outcome A)",
                 "pre_conditions": "pre-A",
                 "test_procedure": "1. step A",
                 "expected_result": "1. result A",
@@ -341,7 +341,7 @@ class TestWriteGeneratedResults:
                 "row_num": 10,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-002",
-                "test_item_rewrite": "(Trigger → Outcome B)",
+                "tc_title": "(Trigger → Outcome B)",
                 "pre_conditions": "pre-B",
                 "test_procedure": "1. step B",
                 "expected_result": "1. result B",
@@ -352,7 +352,7 @@ class TestWriteGeneratedResults:
                 "row_num": 10,
                 "req_id": "SWE1-HMI-DM-001-01",
                 "tc_id": "newR1L-DMR-003",
-                "test_item_rewrite": "(Trigger → Outcome C)",
+                "tc_title": "(Trigger → Outcome C)",
                 "pre_conditions": "pre-C",
                 "test_procedure": "1. step C",
                 "expected_result": "1. result C",
@@ -364,7 +364,7 @@ class TestWriteGeneratedResults:
                 "row_num": 11,
                 "req_id": "SWE1-HMI-DM-002-01",
                 "tc_id": "newR1L-DMR-004",
-                "test_item_rewrite": "(Other trigger → outcome)",
+                "tc_title": "(Other trigger → outcome)",
                 "pre_conditions": "pre-D",
                 "test_procedure": "1. step D",
                 "expected_result": "1. result D",
@@ -419,7 +419,7 @@ class TestWriteGeneratedResults:
             "row_num": 10,
             "req_id": "SWE1-HMI-DM-001-01",
             "tc_id": "newR1L-DMR-001",
-            "test_item_rewrite": "(X → Y)",
+            "tc_title": "(X → Y)",
             "pre_conditions": "",         # 空字串：不應蓋掉 template
             "test_procedure": "",
             "expected_result": "",

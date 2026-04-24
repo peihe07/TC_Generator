@@ -178,7 +178,7 @@ def _row_with_generated(tc_id: str, *, priority: str = "Medium") -> dict:
         "tcId": tc_id,
         "originalRequirement": "Original",
         "generated": {
-            "testItemRewrite": "(A → B)",
+            "tcTitle": "(A → B)",
             "preConditions": "NA",
             "testProcedure": "1. Do A to start.\n2. Verify B.",
             "expectedResult": "1. A happens.\n2. B is visible.",
@@ -288,9 +288,9 @@ def test_get_job_detail_generated_summary_and_cost():
             "status": "completed",
             "parsedData": {"row_count": 4},
             "generatedRows": [
-                {"id": "r1", "generated": {"testItemRewrite": "x"}},
+                {"id": "r1", "generated": {"tcTitle": "x"}},
                 {"id": "r2", "generated": None},
-                {"id": "r3", "generated": {"testItemRewrite": "y"}},
+                {"id": "r3", "generated": {"tcTitle": "y"}},
                 {"id": "r4"},
             ],
             "costUsd": 0.1234,

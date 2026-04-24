@@ -3,7 +3,7 @@ from spec_matcher import extract_pdm_codes
 
 
 REQUIRED_OUTPUT_KEYS = [
-    "test_item_rewrite",
+    "tc_title",
     "pre_conditions",
     "input_test_data",
     "test_procedure",
@@ -38,7 +38,7 @@ _HARD_CONSTRAINTS = """
 ## HARD CONSTRAINTS (non-negotiable; violation = failure)
 
 1. **All TC output fields that will be written back to the workbook MUST be in
-   English.** This includes `test_item_rewrite`, `pre_conditions`,
+   English.** This includes `tc_title`, `pre_conditions`,
    `input_test_data`, `test_procedure`, `expected_result`, `design_method`,
    `priority`, `split_flag`, and `split_reason`. Requirements may be bilingual
    (Chinese + English); read both but produce these TC fields in English only.
@@ -46,13 +46,31 @@ _HARD_CONSTRAINTS = """
    as-is. Analytical explanation fields such as `reasoning`, `meaning`, or
    scenario descriptions may be written in Traditional Chinese when explicitly
    requested below.
-2. **test_item_rewrite MUST be filled** — rewrite the requirement as
-   `Condition/Trigger → Observable Outcome`; must not be blank, must not
-   copy the source verbatim. Length is a HARD LIMIT: **each side MUST be
-   3–8 words**; drop articles (a/the), modals (should/will), and hedges
-   (properly/successfully/within reasonable time). Do NOT add outer
-   parentheses in the generated field; presentation-layer wrapping is
-   handled downstream when writing back to the workbook.
+2. **tc_title is MANDATORY for EVERY TC** — a concise, scenario-based sentence
+   that tells the reviewer *what this TC is verifying* at a glance. It replaces
+   the old `test_item_rewrite` field and is appended in parentheses below the
+   original Test Item when writing back to the workbook. Must not be blank,
+   must not copy the source verbatim. Length target: **6–14 words total**.
+   Two acceptable shapes (pick whichever makes the scenario clearest):
+     (a) **Arrow form** — `Trigger → Observable Outcome` (e.g.
+         `CarPlay connected → CP Media icon shown in App Drawer`). Recommended
+         when causality is the point being verified.
+     (b) **Sentence form** — `[Outcome] when [trigger]` / `[Object] [state]
+         under [condition]` / `[Object] [behavior] in [location]` (e.g.
+         `CP Media icon displayed when CarPlay is connected`,
+         `AA App icon hidden without AA connection`). Recommended when a
+         natural sentence reads more clearly than an arrow.
+   Drop articles only when they hurt readability; modals (should/will) and
+   hedges (properly/successfully/within reasonable time) are always forbidden.
+   **The distinguishing state / trigger MUST appear in tc_title** — NEVER
+   write the inspection action alone (`Open Media category`, `Navigate to
+   Settings`); those belong in `test_procedure`. When two sibling TCs differ
+   only by a state precondition (connected vs disconnected, enabled vs
+   disabled, present vs absent, before vs after, valid vs invalid), that
+   distinguishing state MUST be visible in the title; otherwise the sibling
+   titles become indistinguishable. Do NOT add outer parentheses in the
+   generated field; presentation-layer wrapping is handled downstream when
+   writing back to the workbook.
 3. **test_procedure and expected_result must have the SAME number of
    numbered items (1:1 mapping).** If procedure has N steps, expected_result
    must also have exactly N items, aligned in order.
@@ -72,7 +90,7 @@ _HARD_CONSTRAINTS = """
    core functionality, data loss risk), P1 = standard feature (user-facing
    behaviour), P2 = cosmetic / edge case. Do NOT return "High", "Medium",
    "Low", "NA", or any other value — always use exactly P0, P1, or P2.
-7. All field keys are snake_case (test_item_rewrite, pre_conditions,
+7. All field keys are snake_case (tc_title, pre_conditions,
    input_test_data, test_procedure, expected_result, design_method,
    priority, split_flag, split_reason).
 8. **Every test_procedure step MUST be a single, concrete, executable action
@@ -142,14 +160,24 @@ _WRITING_DISCIPLINE = """
 
 For every TC you are about to output, silently verify:
 
-[Test Item]
-  [ ] test_item_rewrite follows `Trigger → Observable Outcome`; each side
-      is 3–8 words (hard limit); no articles (a/the), no modals
-      (should/will), no hedges (properly/successfully/within reasonable
-      time) (§6.1).
-  [ ] If the req was split, keep the branch/scenario tag in `tc_title` /
-      TC title, not inside test_item_rewrite. Do NOT add outer parentheses
-      in the generated field.
+[TC Title]
+  [ ] tc_title is filled (MANDATORY for every TC), 6–14 words, and uses
+      either arrow form (`Trigger → Observable Outcome`) or a natural
+      scenario sentence (`[Outcome] when [trigger]`, `[Object] [state]
+      under [condition]`, `[Object] [behavior] in [location]`) — pick
+      whichever reads most clearly. No modals (should/will), no hedges
+      (properly/successfully/within reasonable time) (§6.1).
+  [ ] The distinguishing state / trigger is visible in the title —
+      NEVER the bare inspection action (`Open X`, `Navigate to Y`);
+      those belong in test_procedure.
+  [ ] Sibling-distinction check: if this TC has a sibling that differs
+      only by a state precondition (connected↔disconnected, enabled↔
+      disabled, present↔absent, before↔after, valid↔invalid), the
+      distinguishing state MUST appear in the title. Two sibling TCs
+      whose tc_title reads identically (or differs only in "displayed"
+      vs "hidden") is a FAIL — rewrite with the real trigger.
+  [ ] Do NOT add outer parentheses in the generated field; the
+      workbook writer wraps it below the original Test Item.
 
 [Pre-Conditions]
   [ ] Only describes state/environment — no actions, no checks/reads,
@@ -196,7 +224,7 @@ For every TC you are about to output, silently verify:
       success (§8).
 
 [No Fabrication — applies to ALL fields (§10.3)]
-  [ ] No FABRICATED numbers: every concrete number, limit, duration,
+  [ ] No FABRICATED numeric values: every concrete number, limit, duration,
       count, byte/size, or threshold comes from the requirement, spec,
       or is a domain-standard constant. If the req says "maximum N"
       without a number, write `<configured maximum>` / "the configured
@@ -236,7 +264,7 @@ Apply the same QUALITY BAR to any domain.
 ### Example 1 — Pre-Condition is STATE, not action or feature-under-test
 
 Bad:
-  test_item_rewrite: The system should properly support maximum phonebook entries
+  tc_title: The system should properly support maximum phonebook entries
   pre_conditions:
     1. The HU is powered on.
     2. Dealer Mode is accessible.
@@ -245,12 +273,12 @@ Bad:
     5. The device is not connected to the HU.
 
 Reviewer flagged:
-  - test_item_rewrite hedges ("should", "properly"), not `Trigger → Outcome` (§6.1)
+  - tc_title hedges ("should", "properly"), not `Trigger → Outcome` (§6.1)
   - #1 system-obvious; #2 feature under test as premise; #3 action belongs
     in procedure; #5 controlled by test steps, not a precondition (§6.2)
 
 Good:
-  test_item_rewrite: Sync at configured maximum → all entries on HU
+  tc_title: Sync at configured maximum → all entries on HU
   pre_conditions:
     1. A PBAP-supported device is available.
     2. The device contains phonebook entries equal to the configured
@@ -265,7 +293,7 @@ capacity, adding a new contact on the paired device shall not increase
 the HU phonebook count; the new contact shall not be imported."
 
 Bad:
-  test_item_rewrite: Verify adding new contacts beyond maximum works correctly
+  tc_title: Verify adding new contacts beyond maximum works correctly
   test_procedure:
     1. Add one new contact on the device.
     2. Re-trigger phonebook synchronization.
@@ -282,12 +310,12 @@ Reviewer flagged:
   - 3 steps conflate setup + transition; no verification that the
     configured-maximum starting state was really reached before the
     action (§7.7).
-  - test_item_rewrite: "works correctly" is vague, not `Trigger → Outcome` (§6.1).
+  - tc_title: "works correctly" is vague, not `Trigger → Outcome` (§6.1).
   - pre_conditions would need to assume state from prior runs instead of
     establishing it in-procedure (§6.2).
 
 Good:
-  test_item_rewrite: Add contact beyond maximum → count unchanged, not imported
+  tc_title: Add contact beyond maximum → count unchanged, not imported
   pre_conditions:
     1. A PBAP-supported device is available.
     2. HU phonebook has already been synchronized to the configured
@@ -324,7 +352,7 @@ Requirement: "Dealer Mode shall only allow the supported video file types
 to be uploaded. Supported formats: .mp4, .avi, .mpg, .wmv, .3gp, .mkv."
 
 Bad (1 TC lumping all 6 formats):
-  test_item_rewrite: Plays supported file types
+  tc_title: Plays supported file types
   test_procedure (abbreviated):
     1. Press H/K [Screen off] button.
     2. ... enter Dealer Mode.
@@ -337,15 +365,14 @@ Reviewer flagged:
     passes — per-format regressions are invisible (§9, §10.2).
   - Lost traceability: requirement names 6 formats, TC only verifies
     "supported file types" as a collective.
-  - test_item_rewrite too short, not `Trigger → Outcome` (§6.1).
+  - tc_title too short, not `Trigger → Outcome` (§6.1).
   - Early steps lack intent; final step does not state the verification
     target (§7.1, §7.5).
 
 Good (6 TCs, one per format — `.mp4` shown in full; others identical
 pattern with extension swapped):
 
-  tc_title: Upload supported video file type: .mp4
-  test_item_rewrite: Upload .mp4 to Dealer Mode → .mp4 plays on HU
+  tc_title: Upload .mp4 to Dealer Mode → .mp4 plays on HU
   pre_conditions:
     1. Dev / Pre-Prod build.
     2. USB storage device containing a .mp4 video file prepared.
@@ -371,17 +398,48 @@ pattern with extension swapped):
     10. .mp4 video displayed and playback starts.
 
   Sibling TCs (same pattern, swap extension):
-    tc_title: Upload supported video file type: .avi
-    tc_title: Upload supported video file type: .mpg
-    tc_title: Upload supported video file type: .wmv
-    tc_title: Upload supported video file type: .3gp
-    tc_title: Upload supported video file type: .mkv
+    tc_title: Upload .avi to Dealer Mode → .avi plays on HU
+    tc_title: Upload .mpg to Dealer Mode → .mpg plays on HU
+    tc_title: Upload .wmv to Dealer Mode → .wmv plays on HU
+    tc_title: Upload .3gp to Dealer Mode → .3gp plays on HU
+    tc_title: Upload .mkv to Dealer Mode → .mkv plays on HU
   Note:
   - Purpose clauses ("to turn off the screen", "to enter Dealer Mode")
     added only where needed; self-evident steps ("Select File Browser")
     have no clause (§7.1).
-  - tc_title carries the branch tag; test_item_rewrite stays clean
-    `Trigger → Outcome` (§6.1).
+  - Each tc_title carries both the scenario tag (format) AND the
+    observable outcome — sibling TCs differ in the title by their
+    distinguishing data (§6.1).
+
+---
+
+### Example 4 — Trigger must be the causal state, not the inspection action
+
+Requirement: "CP Media source icon shall appear in the App Drawer > Media
+category when CarPlay is connected, and shall disappear when CarPlay is
+disconnected."
+
+Bad (two sibling TCs with indistinguishable rewrites):
+  TC-A tc_title: Open Media category → CP Media icon displayed
+  TC-B tc_title: Open Media category → CP Media icon hidden
+
+Reviewer flagged:
+  - Both Triggers are the SAME inspection action (`Open Media category`).
+    Reading only `tc_title`, you cannot tell which scenario
+    each TC is verifying.
+  - The real distinguishing condition — CarPlay connection state — was
+    dropped to fit the word count. `Open Media category` is what the
+    tester DOES to observe the result; it is not what is being tested.
+  - Sibling-distinction rule (§6.1) requires the differing state to live
+    in the Trigger.
+
+Good:
+  TC-A tc_title: CarPlay connected → CP Media icon shown in App Drawer
+  TC-B tc_title: CarPlay disconnected → CP Media icon hidden from App Drawer
+
+  Now the two rewrites are self-evidently different scenarios, and the
+  inspection action (opening the Media category) stays where it
+  belongs — in each TC's test_procedure.
 
 ---
 
@@ -389,6 +447,8 @@ Key takeaways (apply to any domain):
 1. Pre-conditions are STATE; actions go in steps.
 2. State-change requirements need BASELINE + OUTCOME in the procedure.
 3. Enumerated supported items → one TC per item; prevents False Pass.
+4. Trigger = causal condition, NOT inspection action. Sibling TCs must
+   be distinguishable from tc_title alone.
 """
 
 
@@ -453,6 +513,13 @@ def build_user_prompt(
 
 ## Output
 Return JSON with keys: {output_keys}
+
+Do NOT invent unstated values or data points. If the requirement/spec does
+not provide an exact number, limit, threshold, dataset, state, code, or
+other concrete detail, keep it abstract and source-grounded instead of
+guessing. Use placeholders such as `<configured limit>` / `<configured
+maximum, per spec>` only when the source clearly indicates such a configured
+value exists but does not state the number.
 
 Before emitting, run the WRITING DISCIPLINE self-check listed in the system prompt."""
 
@@ -623,10 +690,11 @@ is driven entirely by what the requirement mandates, not by an arbitrary limit.
 Apply these authoritative rules from `ASPICE_SWE6_AI_Instruction.md`:
 
 - **§6.1 Test Item** — If the requirement can be validated by more than
-  one scenario, EACH distinct scenario is its own TC. Keep the scenario tag
-  in the TC title (`tc_title`), while `test_item_rewrite` stays a clean
-  `Trigger → Outcome` statement. Example titles:
-  `Initial Sync = 5,000`, `Initial Sync > 5,000`.
+  one scenario, EACH distinct scenario is its own TC. `tc_title` is the
+  single scenario-identifying field (mandatory, 6–14 words, arrow form or
+  natural sentence) and MUST visibly distinguish siblings — e.g.
+  `Initial sync at 5,000 → all entries on HU`,
+  `Initial sync > 5,000 → count capped at configured maximum`.
 - **§10.2 Keyword-Driven Scenario Decomposition** — Identify the key concepts
   in the requirement (limits, per-device rules, order-preservation, stop
   conditions, etc.) and ensure **every keyword maps to at least one TC**.
@@ -700,8 +768,18 @@ Return a JSON object with these top-level keys:
   numbers are 1-based indices into `tcs`.
 - `tcs` (array): produce as many TCs as the rules require — do not collapse
   distinct scenarios to save output. Each TC object has keys: {output_keys}.
-  For split requirements, also add `tc_title` with the short scenario tag
-  required by §6.1. For atomic requirements, `tc_title` may be omitted or "".
+  `tc_title` is MANDATORY for every TC (§6.1) regardless of whether the
+  requirement was split.
+
+All output fields English for workbook-bound TC content. Traditional Chinese
+is allowed only for analysis fields such as `reasoning` and keyword
+`meaning`.
+
+Do NOT invent unstated values or data points. If the requirement/spec/reviewer
+pre-fill does not provide an exact number, limit, threshold, dataset, state,
+code, or other concrete detail, preserve the ambiguity explicitly instead of
+guessing. Use abstract wording such as configured/per spec when the source
+implies a configurable value but does not state the literal number.
 
 Example (requirement that enumerates 3 supported formats would return 3 TCs):
 {{"reasoning": "§9 列舉 3 種格式，各一筆 TC 避免 False Pass 風險。",
@@ -716,8 +794,7 @@ Example (requirement that enumerates 3 supported formats would return 3 TCs):
   ]}}
 
 Before emitting, run the WRITING DISCIPLINE self-check listed in the system
-prompt for EVERY TC. For split requirements, put the branch tag in `tc_title`
-(§6.1), not inside test_item_rewrite."""
+prompt for EVERY TC. Every TC must have a non-empty `tc_title` (§6.1)."""
 
 
 def build_test_set_classification_prompt(
@@ -850,8 +927,8 @@ one entry per input requirement, in the same order. Each entry has the shape:
 - `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
 - `tcs`: as many TC objects as the rules demand (no cap).
-Each TC object has keys: {output_keys}. For split requirements, also add
-optional `tc_title` with the short scenario tag required by §6.1.
+Each TC object has keys: {output_keys}. `tc_title` is MANDATORY for every
+TC (§6.1), regardless of whether the requirement was split.
 
 Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic → 1 TC):
 {{"requirements": [
@@ -864,5 +941,5 @@ Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic �
 ]}}
 
 Before emitting, run the WRITING DISCIPLINE self-check listed in the system
-prompt for EVERY TC in EVERY requirement group. For split requirements, put
-the branch tag in `tc_title` (§6.1), not inside test_item_rewrite."""
+prompt for EVERY TC in EVERY requirement group. Every TC must have a
+non-empty `tc_title` (§6.1)."""

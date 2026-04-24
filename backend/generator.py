@@ -154,7 +154,7 @@ def _hard_issues(tc: dict) -> list[str]:
     硬性檢查：
     - design_method 不在允許清單也不含關鍵字
     - priority 不是 High/Medium/Low/NA
-    - test_item_rewrite 空白
+    - tc_title 空白
     """
     from validator import validate_design_method, validate_priority
 
@@ -168,8 +168,8 @@ def _hard_issues(tc: dict) -> list[str]:
     if not pri.passed:
         issues.append(f"- priority: {pri.message}")
 
-    if not (tc.get("test_item_rewrite") or "").strip():
-        issues.append("- test_item_rewrite: must not be empty; rewrite the requirement as Condition → Outcome")
+    if not (tc.get("tc_title") or "").strip():
+        issues.append("- tc_title: must not be empty; rewrite the requirement as Condition → Outcome")
 
     return issues
 

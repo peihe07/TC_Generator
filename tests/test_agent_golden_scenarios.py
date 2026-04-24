@@ -58,7 +58,7 @@ def _fake_generation_result(row_count: int = 1) -> SimpleNamespace:
     return SimpleNamespace(
         tc_data=[
             {
-                "test_item_rewrite": "(Condition → Outcome)",
+                "tc_title": "(Condition → Outcome)",
                 "pre_conditions": "NA",
                 "input_test_data": "NA",
                 "test_procedure": "1. Setup.\n2. Verify result.",
@@ -70,7 +70,7 @@ def _fake_generation_result(row_count: int = 1) -> SimpleNamespace:
             }
             for _ in range(row_count)
         ] if row_count > 1 else {
-            "test_item_rewrite": "(Condition → Outcome)",
+            "tc_title": "(Condition → Outcome)",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Setup.\n2. Verify result.",
@@ -297,7 +297,7 @@ def test_scenario_4_cross_job_validation(ctx):
             "tcId": f"tc-{i}",
             "originalRequirement": "Original",
             "generated": {
-                "testItemRewrite": "(A → B)",
+                "tcTitle": "(A → B)",
                 "preConditions": "NA",
                 "testProcedure": "1. Do A.\n2. Verify B.",
                 "expectedResult": "1. Done.\n2. OK.",

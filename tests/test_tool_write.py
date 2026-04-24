@@ -32,7 +32,7 @@ def _export_row(row_num: int = 10) -> dict:
         "tc_id": "newR1L-DMS-001",
         "test_group": "DeviceManager",
         "test_set": "Access",
-        "test_item_rewrite": "(user taps X -> Y shows)",
+        "tc_title": "(user taps X -> Y shows)",
         "pre_conditions": "1. System normal",
         "input_test_data": "NA",
         "test_procedure": "1. Do A.\n2. Verify B.",
@@ -110,7 +110,7 @@ def test_write_excel_strips_illegal_control_characters(tmp_path):
     out = tmp_path / "out.xlsx"
     row = _export_row()
     row["input_test_data"] = "1. password: Ab1!abc\x07"
-    row["test_item_rewrite"] = "(bell\x07 removed)"
+    row["tc_title"] = "(bell\x07 removed)"
 
     write_excel_tool(
         source_path=str(source),

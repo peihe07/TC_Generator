@@ -10,7 +10,7 @@ export interface GeneratedTc {
   scenarioId: number;
   scenarioName?: string;
   tc: {
-    test_item_rewrite: string;
+    tc_title: string;
     pre_conditions: string;
     input_test_data: string;
     test_procedure: string;

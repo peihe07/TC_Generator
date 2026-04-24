@@ -27,7 +27,7 @@ _CONTEXT = {"project": "newR1L", "test_group": "DeviceManager", "test_set": "N/A
 
 def _fake_tc(suffix: str = "A") -> dict:
     return {
-        "test_item_rewrite": f"(Condition -> Outcome {suffix})",
+        "tc_title": f"(Condition -> Outcome {suffix})",
         "pre_conditions": "NA",
         "input_test_data": "NA",
         "test_procedure": "1. Setup.\n2. Verify.",

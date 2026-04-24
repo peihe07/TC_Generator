@@ -271,7 +271,7 @@ def test_stream_generate_job(mock_generate_batch):
         tc_data=[
             [
                 {
-                    "test_item_rewrite": "(Condition → Outcome A)",
+                    "tc_title": "(Condition → Outcome A)",
                     "pre_conditions": "NA",
                     "input_test_data": "NA",
                     "test_procedure": "1. Perform setup.\n2. Verify the result.",
@@ -284,7 +284,7 @@ def test_stream_generate_job(mock_generate_batch):
             ],
             [
                 {
-                    "test_item_rewrite": "(Condition → Outcome B)",
+                    "tc_title": "(Condition → Outcome B)",
                     "pre_conditions": "NA",
                     "input_test_data": "NA",
                     "test_procedure": "1. Perform setup.\n2. Verify the result.",
@@ -342,7 +342,7 @@ def test_stream_generate_assigns_tc_ids_in_final_display_order(mock_generate_bat
         tc_data=[
             [
                 {
-                    "test_item_rewrite": "(Condition → Outcome A1)",
+                    "tc_title": "(Condition → Outcome A1)",
                     "pre_conditions": "NA",
                     "input_test_data": "NA",
                     "test_procedure": "1. Perform setup.\n2. Verify the result.",
@@ -353,7 +353,7 @@ def test_stream_generate_assigns_tc_ids_in_final_display_order(mock_generate_bat
                     "split_reason": "Split into two cases",
                 },
                 {
-                    "test_item_rewrite": "(Condition → Outcome A2)",
+                    "tc_title": "(Condition → Outcome A2)",
                     "pre_conditions": "NA",
                     "input_test_data": "NA",
                     "test_procedure": "1. Perform alternate setup.\n2. Verify alternate result.",
@@ -366,7 +366,7 @@ def test_stream_generate_assigns_tc_ids_in_final_display_order(mock_generate_bat
             ],
             [
                 {
-                    "test_item_rewrite": "(Condition → Outcome B1)",
+                    "tc_title": "(Condition → Outcome B1)",
                     "pre_conditions": "NA",
                     "input_test_data": "NA",
                     "test_procedure": "1. Perform setup.\n2. Verify the result.",
@@ -464,7 +464,7 @@ def test_stream_generate_sends_reviewer_prefills_as_hints(mock_generate_single):
 
     mock_generate_single.return_value = SimpleNamespace(
         tc_data=[{
-            "test_item_rewrite": "(Condition → Outcome)",
+            "tc_title": "(Condition → Outcome)",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Setup.\n2. Verify.",
@@ -531,7 +531,7 @@ def test_stream_generate_regenerate_all_skips_preservation(mock_generate_batch):
     mock_generate_batch.return_value = SimpleNamespace(
         tc_data=[
             [{
-                "test_item_rewrite": "(Condition → Outcome)",
+                "tc_title": "(Condition → Outcome)",
                 "pre_conditions": "NA",
                 "input_test_data": "NA",
                 "test_procedure": "1. Setup.\n2. Verify.",
@@ -586,7 +586,7 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
 
     mock_generate_single_tc.return_value = SimpleNamespace(
         tc_data=[{
-            "test_item_rewrite": "(Condition → Outcome)",
+            "tc_title": "(Condition → Outcome)",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
@@ -637,7 +637,7 @@ def test_stream_generate_job_keeps_warning_rows_completed_in_non_strict_mode(moc
 
     mock_generate_single_tc.return_value = SimpleNamespace(
         tc_data=[{
-            "test_item_rewrite": "(Condition → Outcome)",
+            "tc_title": "(Condition → Outcome)",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
@@ -693,7 +693,7 @@ def test_export_job_and_download():
             "scope": "accepted",
             "outputMode": "new-file",
             "includeFrameworkSheet": True,
-            "selectedColumns": ["Test Item Rewrite", "Expected Result"],
+            "selectedColumns": ["TC Title", "Expected Result"],
             "rows": [
                 {
                     "id": "row-10",
@@ -703,7 +703,7 @@ def test_export_job_and_download():
                     "reviewStatus": "accepted",
                     "testSet": "Smoke",
                     "generated": {
-                        "testItemRewrite": "(PDM01 original text → Observable outcome confirmed)",
+                        "tcTitle": "(PDM01 original text → Observable outcome confirmed)",
                         "preConditions": "1. Vehicle profile loaded\n2. Required subsystem available",
                         "testProcedure": (
                             "1. Open the source screen and prepare the feature.\n"
@@ -764,7 +764,7 @@ def test_export_respects_selected_columns():
                     "reviewStatus": "accepted",
                     "testSet": "Smoke",
                     "generated": {
-                        "testItemRewrite": "(PDM01 original text → Observable outcome confirmed)",
+                        "tcTitle": "(PDM01 original text → Observable outcome confirmed)",
                         "preConditions": "1. Vehicle profile loaded\n2. Required subsystem available",
                         "inputTestData": "NA",
                         "testProcedure": (
@@ -1083,7 +1083,7 @@ def test_match_preview_uses_reference_workbook():
 # ── Quick Generate Stream ─────────────────────────────────────────────────────
 
 VALID_TC_JSON = {
-    "test_item_rewrite": "Button pressed → LED turns on",
+    "tc_title": "Button pressed → LED turns on",
     "pre_conditions": "1. System is powered.",
     "input_test_data": "NA",
     "test_procedure": "1. Press button.\n2. Observe LED.",
@@ -1121,7 +1121,7 @@ def test_regenerate_stream_accepts_sub_tc_row_from_payload(mock_tool):
 
     mock_tool.return_value = {
         "tcData": [[{
-            "test_item_rewrite": "(Condition → Outcome)",
+            "tc_title": "(Condition → Outcome)",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Setup.\n2. Verify.",
@@ -1186,7 +1186,7 @@ def test_rerun_stream_emits_split_and_added_for_multi_tc(mock_tool):
     def _tc(label: str) -> dict:
         return {
             "tc_title": label,
-            "test_item_rewrite": "Trigger action → Observable outcome",
+            "tc_title": "Trigger action → Observable outcome",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Setup.\n2. Verify.",
@@ -1303,7 +1303,7 @@ def test_quick_generate_unified_multi_tc(mock_gen):
     """AI 拆成 3 筆 TC 時應該發 3 個 tc.completed，analysis.scenarios 對應 3 筆。"""
     from generator import GenerationResult
     tcs = [
-        {**VALID_TC_JSON, "tc_title": f"Scenario {i}", "test_item_rewrite": f"Trigger {i} → outcome {i}"} for i in (1, 2, 3)
+        {**VALID_TC_JSON, "tc_title": f"Trigger {i} → outcome {i}"} for i in (1, 2, 3)
     ]
     mock_gen.return_value = GenerationResult(
         tc_data=tcs,
@@ -1329,11 +1329,11 @@ def test_quick_generate_unified_multi_tc(mock_gen):
 
     analysis = next(e for e in events if e["type"] == "decompose.analysis")
     assert len(analysis["scenarios"]) == 3
-    assert analysis["scenarios"][0]["name"] == "Scenario 1"
+    assert analysis["scenarios"][0]["name"] == "Trigger 1 → outcome 1"
     assert analysis["keywords"][0]["scenarios"] == [1, 2, 3]
 
     tc_done = [e for e in events if e["type"] == "tc.completed"]
-    assert tc_done[0]["scenarioName"] == "Scenario 1"
+    assert tc_done[0]["scenarioName"] == "Trigger 1 → outcome 1"
 
 
 @patch("api_server.generate_tcs_for_row")

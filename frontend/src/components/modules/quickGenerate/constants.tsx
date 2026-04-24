@@ -10,7 +10,7 @@ export const COLUMN_HEADERS: {
   label: string;
   muted?: boolean;
 }[] = [
-  { key: 'test_item_rewrite', label: 'Test Item' },
+  { key: 'tc_title', label: 'Test Item' },
   { key: 'pre_conditions', label: 'Pre-Conditions' },
   { key: 'input_test_data', label: 'Input Test Data', muted: true },
   { key: 'test_procedure', label: 'Test Procedure' },

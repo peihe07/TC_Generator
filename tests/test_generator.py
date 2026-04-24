@@ -30,7 +30,7 @@ from generator import (
 
 
 VALID_TC_JSON = {
-    "test_item_rewrite": "(User adds DM to status bar → DM icon displayed)",
+    "tc_title": "(User adds DM to status bar → DM icon displayed)",
     "pre_conditions": "1. HU is in normal mode",
     "input_test_data": "Status bar customization menu",
     "test_procedure": "1. Open status bar settings to access customization.\n2. Add Device Manager and verify icon appears in status bar.",
@@ -56,7 +56,7 @@ def make_chat_response(payload, *, prompt_tokens=0, completion_tokens=0, cached_
 class TestParseTcResponse:
     def test_valid_json(self):
         result = parse_tc_response(json.dumps(VALID_TC_JSON))
-        assert result["test_item_rewrite"] == VALID_TC_JSON["test_item_rewrite"]
+        assert result["tc_title"] == VALID_TC_JSON["tc_title"]
         assert result["priority"] == "P1"
 
     def test_json_in_markdown_fence(self):
@@ -69,7 +69,7 @@ class TestParseTcResponse:
             parse_tc_response("not json")
 
     def test_missing_required_key(self):
-        incomplete = {"test_item_rewrite": "something"}
+        incomplete = {"tc_title": "something"}
         with pytest.raises(GenerationError, match="missing"):
             parse_tc_response(json.dumps(incomplete))
 

@@ -387,8 +387,8 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                     ) : (
                       <div className="flex flex-col">
                         <StackedReadField
-                          label="Test Item Rewrite"
-                          value={row.testItemRewrite ?? ''}
+                          label="TC Title"
+                          value={row.tcTitle ?? ''}
                         />
                         <StackedReadField label="Pre-Conditions" value={row.preConditions} />
                         <StackedReadField label="Input Test Data" value={row.inputTestData} muted />

@@ -133,7 +133,7 @@ class TestRunGeneration:
         loaded.close()
 
         mock_generate_single_tc.return_value.tc_data = {
-            "test_item_rewrite": "Condition → Outcome",
+            "tc_title": "Condition → Outcome",
             "pre_conditions": "NA",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Check that the result is displayed.",
@@ -185,7 +185,7 @@ class TestRunGeneration:
     @patch("main.generate_single_tc")
     def test_strict_validation_fails_invalid_rows(self, mock_generate_single_tc, sample_xlsx, tmp_path):
         mock_generate_single_tc.return_value.tc_data = {
-            "test_item_rewrite": "Condition → Outcome",
+            "tc_title": "Condition → Outcome",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Execute action without verification.",
@@ -216,7 +216,7 @@ class TestRunGeneration:
     @patch("main.generate_single_tc")
     def test_non_strict_validation_keeps_warning_behavior(self, mock_generate_single_tc, sample_xlsx, tmp_path):
         mock_generate_single_tc.return_value.tc_data = {
-            "test_item_rewrite": "Condition → Outcome",
+            "tc_title": "Condition → Outcome",
             "pre_conditions": "1. Open settings menu",
             "input_test_data": "NA",
             "test_procedure": "1. Perform setup.\n2. Execute action without verification.",

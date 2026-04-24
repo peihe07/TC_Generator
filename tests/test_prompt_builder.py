@@ -106,7 +106,7 @@ class TestBuildUserPrompt:
 
     def test_contains_output_keys(self, sample_row, sample_context, sample_spec, rules_text):
         prompt = build_user_prompt(sample_row, sample_context, sample_spec, rules_text)
-        assert "test_item_rewrite" in prompt
+        assert "tc_title" in prompt
         assert "pre_conditions" in prompt
         assert "test_procedure" in prompt
         assert "expected_result" in prompt

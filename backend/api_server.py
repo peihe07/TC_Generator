@@ -238,7 +238,7 @@ class QuickGenerateRequest(BaseModel):
 EXPORT_COLUMN_TO_FIELD = {
     "TC ID": "tc_id",
     "Test Set": "test_set",
-    "Test Item Rewrite": "test_item_rewrite",
+    "TC Title": "tc_title",
     "Pre-Conditions": "pre_conditions",
     "Input Test Data": "input_test_data",
     "Test Procedure": "test_procedure",
@@ -377,7 +377,7 @@ def _map_export_rows(
                 "req_id": req_id,
                 "test_group": test_group or row.get("testGroup"),
                 "test_set": test_set,
-                "test_item_rewrite": generated.get("testItemRewrite", ""),
+                "tc_title": generated.get("tcTitle", ""),
                 "pre_conditions": generated.get("preConditions", ""),
                 "input_test_data": input_test_data,
                 "test_procedure": generated.get("testProcedure", ""),
@@ -641,7 +641,7 @@ def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
     result = validate_tc_tool(
         tc={
             "tc_id": row["tc_id"],
-            "test_item": f"{row['original_requirement']}\n\n{tc['test_item_rewrite']}",
+            "test_item": f"{row['original_requirement']}\n\n{tc['tc_title']}",
             "pre_conditions": tc["pre_conditions"],
             "test_procedure": tc["test_procedure"],
             "expected_result": tc["expected_result"],
@@ -668,7 +668,7 @@ def _build_stream_row(row: dict, tc: dict) -> tuple[dict, bool]:
             "status": "ready",
             "reviewStatus": "pending",
             "generated": {
-                "testItemRewrite": tc["test_item_rewrite"],
+                "tcTitle": tc["tc_title"],
                 "preConditions": tc["pre_conditions"],
                 "inputTestData": tc["input_test_data"],
                 "testProcedure": tc["test_procedure"],
@@ -750,7 +750,7 @@ def _build_preserved_stream_row(row: dict) -> dict:
         "reviewStatus": "pending",
         "generated": {
             # No rewrite — writer keeps Col I (Test Item) untouched.
-            "testItemRewrite": "",
+            "tcTitle": "",
             "preConditions": row.get("pre_conditions", ""),
             "inputTestData": row.get("input_test_data", ""),
             "testProcedure": row.get("test_procedure", ""),
@@ -846,7 +846,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
             {
                 "id": i + 1,
                 "name": _scenario_title(tc, i + 1),
-                "description": (tc.get("test_item_rewrite") or "").strip() or f"Generated TC {i + 1}",
+                "description": (tc.get("tc_title") or "").strip() or f"Generated TC {i + 1}",
                 "test_item": composed_test_item,
             }
             for i, tc in enumerate(tcs)

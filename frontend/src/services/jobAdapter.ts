@@ -189,7 +189,7 @@ function mapApiRowToTcRow(
     testGroup,
     testSet: String(row.testSet ?? ""),
     testItem: String(row.testItem ?? ""),
-    testItemRewrite: String(generated?.testItemRewrite ?? ""),
+    tcTitle: String(generated?.tcTitle ?? ""),
     reviewStatus:
       typeof row.reviewStatus === "string"
         ? (row.reviewStatus as TcRow["reviewStatus"])
@@ -309,7 +309,7 @@ function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
   const hasWarning = index % 4 === 1;
   return {
     ...row,
-    testItemRewrite: `(${row.testItem}) → Expected observable outcome is verified.`,
+    tcTitle: `(${row.testItem}) → Expected observable outcome is verified.`,
     reviewStatus: "pending",
     preConditions: hasWarning
       ? "1. Feature state prepared\n2. Operator logged in"
@@ -1081,9 +1081,9 @@ export async function exportJob(input: ExportJobInput) {
         row.status === "accepted" || row.status === "rejected" || row.status === "flagged"
           ? row.status
           : (row.reviewStatus ?? "pending"),
-      generated: row.testItemRewrite || row.preConditions || row.inputTestData || row.steps || row.expectedResults
+      generated: row.tcTitle || row.preConditions || row.inputTestData || row.steps || row.expectedResults
         ? {
-            testItemRewrite: row.testItemRewrite ?? "",
+            tcTitle: row.tcTitle ?? "",
             preConditions: row.preConditions,
             inputTestData: row.inputTestData,
             testProcedure: row.steps,

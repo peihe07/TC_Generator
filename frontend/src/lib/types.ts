@@ -56,7 +56,7 @@ export interface TcRow {
   testGroup: string;
   testSet: string;
   testItem: string;
-  testItemRewrite?: string;
+  tcTitle?: string;
   reviewStatus?: "pending" | "accepted" | "rejected" | "flagged";
   specReference?: string | null;
   preConditions: string;

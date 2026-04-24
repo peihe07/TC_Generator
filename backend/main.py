@@ -283,7 +283,7 @@ def run(args: argparse.Namespace) -> int:
                     "tc_id": row["tc_id"],
                     "test_group": tc_data["test_group"],
                     "test_set": row.get("test_set"),
-                    "test_item_rewrite": tc["test_item_rewrite"],
+                    "tc_title": tc["tc_title"],
                     "pre_conditions": tc["pre_conditions"],
                     "input_test_data": tc["input_test_data"],
                     "test_procedure": tc["test_procedure"],
@@ -295,7 +295,7 @@ def run(args: argparse.Namespace) -> int:
                 # Validate
                 validation = validate_row({
                     "tc_id": merged["tc_id"],
-                    "test_item": f"original\n\n{merged['test_item_rewrite']}",
+                    "test_item": f"original\n\n{merged['tc_title']}",
                     "pre_conditions": merged["pre_conditions"],
                     "test_procedure": merged["test_procedure"],
                     "expected_result": merged["expected_result"],

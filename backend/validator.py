@@ -199,10 +199,10 @@ def _numbered_lines(text: str) -> list[str]:
     return [line.strip() for line in text.strip().split("\n") if re.match(r"^\d+\.", line.strip())]
 
 
-def _extract_outcome_keywords(test_item_rewrite: str | None) -> set[str]:
-    if not test_item_rewrite or "→" not in test_item_rewrite:
+def _extract_outcome_keywords(tc_title: str | None) -> set[str]:
+    if not tc_title or "→" not in tc_title:
         return set()
-    outcome = test_item_rewrite.split("→", 1)[1].lower()
+    outcome = tc_title.split("→", 1)[1].lower()
     words = re.findall(r"[a-z0-9]+", outcome)
     return {w for w in words if len(w) >= 3 and w not in _OUTCOME_STOPWORDS}
 
@@ -223,7 +223,7 @@ def _verification_clause(step_lower: str) -> str:
     return step_lower
 
 
-def validate_test_procedure(text: str, test_item_rewrite: str | None = None) -> ValidationResult:
+def validate_test_procedure(text: str, tc_title: str | None = None) -> ValidationResult:
     """Validate test procedure field."""
     check = "test_procedure"
 
@@ -262,7 +262,7 @@ def validate_test_procedure(text: str, test_item_rewrite: str | None = None) -> 
             )
 
     # Heuristic for §7.5 / §7.7: the final step should own the Test Item outcome.
-    outcome_keywords = _extract_outcome_keywords(test_item_rewrite)
+    outcome_keywords = _extract_outcome_keywords(tc_title)
     if outcome_keywords:
         final_clause = _verification_clause(final_step)
         final_hits = {w for w in outcome_keywords if w in final_clause}
@@ -427,7 +427,7 @@ def validate_row(row: dict) -> dict[str, ValidationResult]:
         "pre_conditions": validate_pre_conditions(row.get("pre_conditions", "")),
         "test_procedure": validate_test_procedure(
             row.get("test_procedure", ""),
-            test_item_rewrite=(row.get("test_item", "").split("\n\n", 1)[1] if "\n\n" in row.get("test_item", "") else ""),
+            tc_title=(row.get("test_item", "").split("\n\n", 1)[1] if "\n\n" in row.get("test_item", "") else ""),
         ),
         "expected_result": validate_expected_result(
             row.get("expected_result", ""),

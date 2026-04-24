@@ -357,7 +357,7 @@ def _coerce_row_to_tc(row: dict) -> dict | None:
         return None
 
     original = row.get("originalRequirement") or row.get("original_requirement") or ""
-    rewrite = generated.get("testItemRewrite") or ""
+    rewrite = generated.get("tcTitle") or ""
     test_item = f"{original}\n\n{rewrite}" if original else rewrite
 
     return {

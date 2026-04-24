@@ -384,7 +384,7 @@ GET_JOB_VALIDATION_SCHEMA: dict[str, Any] = {
     "description": (
         "Run programmatic validation across an array of generated rows and "
         "aggregate counts. Each row must carry a `generated` sub-object "
-        "(testItemRewrite/preConditions/testProcedure/expectedResult/...). "
+        "(tcTitle/preConditions/testProcedure/expectedResult/...). "
         "Rows without generated content are marked skipped."
     ),
     "parameters": {

@@ -32,7 +32,7 @@ const ExportModule: React.FC = () => {
 
   const acceptedCount = tcRows.filter((r) => r.status === 'accepted').length;
   const selectedColumns = [
-    'Test Item Rewrite',
+    'TC Title',
     ...(includeMeta ? ['TC ID', 'Test Set'] : []),
     ...(config.targetColumns.includes('preConditions') ? ['Pre-Conditions'] : []),
     ...(config.targetColumns.includes('inputTestData') ? ['Input Test Data'] : []),

@@ -233,11 +233,11 @@ describe('ReviewRow — edit mode flow', () => {
 });
 
 describe('ReviewRow — expanded non-edit state renders generated TC fields (§P5 diagnosis)', () => {
-  it('renders all 5 StackedReadField values (preConditions / inputTestData / steps / expectedResults / testItemRewrite)', () => {
+  it('renders all 5 StackedReadField values (preConditions / inputTestData / steps / expectedResults / tcTitle)', () => {
     renderRow(
       { isExpanded: true, isEditing: false },
       {
-        testItemRewrite: 'rewrite text',
+        tcTitle: 'rewrite text',
         preConditions: 'precond text',
         inputTestData: 'input data text',
         steps: 'procedure text',
@@ -255,7 +255,7 @@ describe('ReviewRow — expanded non-edit state renders generated TC fields (§P
     renderRow(
       { isExpanded: true, isEditing: false },
       {
-        testItemRewrite: '',
+        tcTitle: '',
         preConditions: '',
         inputTestData: '',
         steps: '',

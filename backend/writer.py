@@ -180,8 +180,8 @@ def _write_tc_row(
         # else: 空值且非 clearable 欄 → 保留 template 既有內容，不覆蓋。
 
     if append_rewrite:
-        rewrite = row_data.get("test_item_rewrite")
-        if rewrite and (selected_fields is None or "test_item_rewrite" in selected_fields):
+        rewrite = row_data.get("tc_title")
+        if rewrite and (selected_fields is None or "tc_title" in selected_fields):
             cell_i = ws.cell(row=row_num, column=9)
             cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
             cell_i.alignment = WRAP_TEXT_ALIGNMENT

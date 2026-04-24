@@ -74,7 +74,7 @@ def parsed_data():
 @pytest.fixture
 def sample_generated():
     return {
-        "test_item_rewrite": "User adds DM to status bar → DM icon is shown",
+        "tc_title": "User adds DM to status bar → DM icon is shown",
         "pre_conditions": "1. BT enabled",
         "input_test_data": "Settings menu",
         "test_procedure": "1. Open settings to access BT.\n2. Check DM and verify it appears.",
@@ -175,7 +175,7 @@ class TestEditRow:
         # Edited field is overridden
         assert row["edited"]["pre_conditions"] == "1. WiFi connected"
         # Non-edited fields come from generated
-        assert row["edited"]["test_item_rewrite"] == "User adds DM to status bar → DM icon is shown"
+        assert row["edited"]["tc_title"] == "User adds DM to status bar → DM icon is shown"
 
     def test_triggers_revalidation(self, job_with_generated):
         edits = {"expected_result": "1. Works as expected."}
@@ -234,14 +234,14 @@ class TestGetExportableRows:
     def test_accepted_uses_generated(self, job_with_generated):
         update_row_status(job_with_generated, row_num=10, status="accepted")
         exportable = get_exportable_rows(job_with_generated)
-        assert exportable[0]["test_item_rewrite"] == "User adds DM to status bar → DM icon is shown"
+        assert exportable[0]["tc_title"] == "User adds DM to status bar → DM icon is shown"
 
     def test_edited_uses_edited_content(self, job_with_generated):
         edit_row(job_with_generated, row_num=10, edits={"priority": "P0"})
         exportable = get_exportable_rows(job_with_generated)
         assert exportable[0]["priority"] == "P0"
         # Non-edited field still from generated
-        assert exportable[0]["test_item_rewrite"] == "User adds DM to status bar → DM icon is shown"
+        assert exportable[0]["tc_title"] == "User adds DM to status bar → DM icon is shown"
 
     def test_empty_when_none_accepted(self, job_with_generated):
         exportable = get_exportable_rows(job_with_generated)

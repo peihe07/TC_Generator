@@ -13,7 +13,7 @@ VALID_STATUSES = {"pending", "accepted", "edited", "rejected", "flagged"}
 
 # Fields stored in original/generated/edited
 CONTENT_FIELDS = [
-    "test_item_rewrite", "pre_conditions", "input_test_data",
+    "tc_title", "pre_conditions", "input_test_data",
     "test_procedure", "expected_result", "design_method", "priority",
     "split_flag", "split_reason",
 ]
@@ -92,7 +92,7 @@ def _validate_content(row: dict, content: dict) -> dict:
     # Build a row dict that validator expects
     validate_input = {
         "tc_id": row.get("tc_id", ""),
-        "test_item": f"{row['original'].get('test_item', '')}\n\n{content.get('test_item_rewrite', '')}",
+        "test_item": f"{row['original'].get('test_item', '')}\n\n{content.get('tc_title', '')}",
         "pre_conditions": content.get("pre_conditions", ""),
         "test_procedure": content.get("test_procedure", ""),
         "expected_result": content.get("expected_result", ""),

@@ -37,7 +37,7 @@ describe('exportJob', () => {
           testGroup: 'Auth',
           testSet: 'Login',
           testItem: 'User logs in with valid credentials',
-          testItemRewrite: '(Valid login -> dashboard opens)',
+          tcTitle: '(Valid login -> dashboard opens)',
           reviewStatus: 'pending',
           specReference: 'SPEC-001',
           preConditions: '1. User account exists',
@@ -55,7 +55,7 @@ describe('exportJob', () => {
           testGroup: 'Auth',
           testSet: 'Login',
           testItem: 'User sees an error for invalid password',
-          testItemRewrite: '(Invalid password -> error message appears)',
+          tcTitle: '(Invalid password -> error message appears)',
           reviewStatus: 'accepted',
           specReference: 'SPEC-002',
           preConditions: '1. User account exists',
@@ -85,7 +85,7 @@ describe('exportJob', () => {
       reviewStatus: 'pending',
     });
     expect(payload.rows[0].generated).toMatchObject({
-      testItemRewrite: '(Valid login -> dashboard opens)',
+      tcTitle: '(Valid login -> dashboard opens)',
       preConditions: '1. User account exists',
       inputTestData: 'email=admin@test.com',
       testProcedure: '1. Open login page\n2. Enter valid credentials\n3. Submit',
@@ -158,7 +158,7 @@ describe('startGeneration status mapping', () => {
                 status: 'ready',
                 reviewStatus: 'pending',
                 generated: {
-                  testItemRewrite: '(Valid login -> dashboard opens)',
+                  tcTitle: '(Valid login -> dashboard opens)',
                   preConditions: 'NA',
                   inputTestData: 'NA',
                   testProcedure: '1. Do action\n2. Verify result',
@@ -227,7 +227,7 @@ describe('startGeneration status mapping', () => {
     expect(onRow).toHaveBeenCalledTimes(1);
     expect(onRow.mock.calls[0][0]).toMatchObject({
       status: 'pending',
-      testItemRewrite: '(Valid login -> dashboard opens)',
+      tcTitle: '(Valid login -> dashboard opens)',
     });
     expect(onComplete).toHaveBeenCalledTimes(1);
   });
