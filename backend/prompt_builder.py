@@ -48,9 +48,11 @@ _HARD_CONSTRAINTS = """
    requested below.
 2. **test_item_rewrite MUST be filled** — rewrite the requirement as
    `Condition/Trigger → Observable Outcome`; must not be blank, must not
-   copy the source verbatim. Do NOT add outer parentheses in the generated
-   field; presentation-layer wrapping is handled downstream when writing back
-   to the workbook.
+   copy the source verbatim. Length is a HARD LIMIT: **each side MUST be
+   3–8 words**; drop articles (a/the), modals (should/will), and hedges
+   (properly/successfully/within reasonable time). Do NOT add outer
+   parentheses in the generated field; presentation-layer wrapping is
+   handled downstream when writing back to the workbook.
 3. **test_procedure and expected_result must have the SAME number of
    numbered items (1:1 mapping).** If procedure has N steps, expected_result
    must also have exactly N items, aligned in order.
@@ -139,48 +141,254 @@ _WRITING_DISCIPLINE = """
 ## WRITING DISCIPLINE (run this self-check BEFORE emitting each TC)
 
 For every TC you are about to output, silently verify:
-  [ ] test_item_rewrite follows `Trigger → Observable Outcome`; if the req
-      was split, keep the branch/scenario tag in `tc_title` / TC title, not
-      inside test_item_rewrite (§6.1 Test Item). Do NOT add outer parentheses
+
+[Test Item]
+  [ ] test_item_rewrite follows `Trigger → Observable Outcome`; each side
+      is 3–8 words (hard limit); no articles (a/the), no modals
+      (should/will), no hedges (properly/successfully/within reasonable
+      time) (§6.1).
+  [ ] If the req was split, keep the branch/scenario tag in `tc_title` /
+      TC title, not inside test_item_rewrite. Do NOT add outer parentheses
       in the generated field.
-  [ ] pre_conditions only describes state/environment — no actions, no
-      checks/reads, no data-presence (§6.2).
-  [ ] test_item_rewrite is SHORT, 3–8 words each side, no hedge words
-      (`should`, `properly`, `within reasonable time`) (§6.1).
-  [ ] Every test_procedure step has: explicit actor, explicit action verb,
-      explicit target, and (when applicable) explicit value/data.
-  [ ] No forbidden vague verbs as a step's main verb — NEVER use `observe`,
+
+[Pre-Conditions]
+  [ ] Only describes state/environment — no actions, no checks/reads,
+      no data-presence (§6.2).
+  [ ] Not system-obvious (`HU powered on`) and not the feature under test
+      stated as a premise.
+
+[Test Procedure — Step Design]
+  [ ] Every step has explicit actor, action verb, target, and (when
+      applicable) value/data.
+  [ ] Every step has clear intent. Intent is usually SELF-EVIDENT from
+      action + target (`Press [Screen Off] button`, `Enable BT on the
+      phone`). Add an explicit purpose clause (`... to ...`) ONLY when
+      action alone leaves intent ambiguous — same UI serving multiple
+      purposes, non-obvious setup for a later step, or opaque target
+      names (raw AT commands, deep menu paths, internal signals). Do NOT
+      pad every step with `to ...` — forced clauses on self-evident
+      actions are noise (§7.1).
+  [ ] No forbidden vague verbs as a step's MAIN verb — NEVER use `observe`,
       `observe whether`, `see if`, `check whether`, `confirm whether`,
-      `verify`, `watch`, `monitor`, or `inspect` as the main action; use
-      `Check that / Confirm that / Read / Record / Compare` + explicit
-      observable target (§7.1.1).
-  [ ] No FABRICATED numeric values: every concrete number, limit,
-      duration, count, byte/size, or threshold in steps / data /
-      expected_result must come from the requirement, spec, or be a
-      domain-standard constant. If the requirement says "maximum N"
+      `verify`, `watch`, `monitor`, or `inspect`. Use `Check that /
+      Confirm that / Read / Record / Compare` + explicit observable target
+      (§7.1.1). `verify` is allowed only in a purpose clause
+      (`... to verify that ...`), never as the step's main verb.
+  [ ] No "and/then"-chained actions in one step; no placeholder tokens
+      ("<some value>", "xxx", "TBD"); no step that only restates the
+      expected result.
+  [ ] Only the FINAL step validates the Test Item outcome. Earlier steps
+      may have observable ER (to prove setup/transition succeeded) but
+      must not pre-verify the main outcome (§7.7).
+  [ ] For state-change or boundary requirements, establish a BASELINE
+      (before state) in an earlier step and compare against OUTCOME
+      (after state) in the final step (§7.6).
+
+[Input Test Data]
+  [ ] Concrete values only (numbers, strings, file names, enum values),
+      or `N/A` — never empty, never describes actions (§6.3).
+
+[Expected Result]
+  [ ] Count matches test_procedure exactly, aligned 1:1 (§8).
+  [ ] Every item is observable (UI / log / signal / API response / state);
+      no "normal", "as expected", "works correctly".
+  [ ] Final ER covers the COMPLETE Test Item outcome, not just a partial
+      success (§8).
+
+[No Fabrication — applies to ALL fields (§10.3)]
+  [ ] No FABRICATED numbers: every concrete number, limit, duration,
+      count, byte/size, or threshold comes from the requirement, spec,
+      or is a domain-standard constant. If the req says "maximum N"
       without a number, write `<configured maximum>` / "the configured
-      limit" — DO NOT invent 20 / 100 / 5s out of thin air (constraint 10a).
-  [ ] No FABRICATED unstated data: do not invent dataset names, file names,
-      identifiers, error codes, retry counts, default states, comparison
-      targets, or other concrete details that the requirement/spec/reviewer
-      pre-fill never stated. Preserve unknowns abstractly instead of guessing
-      (constraint 10b).
-  [ ] procedure step count == expected_result item count, aligned 1:1.
-  [ ] expected_result items are observable (UI / log / API response / state).
-  [ ] design_method assigned AFTER procedure+ER are finalized, judged from
-      the ACTUAL flow (not the requirement text), via §15 first-match on
-      PRIMARY intent. Short English labels are preferred; the system will
-      normalize them to canonical dropdown values.
-  [ ] priority is exactly P0 / P1 / P2 because this tool's workbook/export
-      contract requires it, even though the ASPICE instruction doc does not
-      define a priority field.
-  [ ] All workbook-bound TC fields are English-only; Traditional Chinese is
-      allowed only in explicit analysis/explanation fields such as
-      `reasoning`, `meaning`, `name`, `description` when requested.
-  [ ] No cross-reference like "same as TC1"; every TC is self-contained.
+      limit" — NEVER invent 20 / 100 / 5s.
+  [ ] No FABRICATED unstated data: do not invent dataset names, file
+      names, identifiers, error codes, retry counts, default states,
+      comparison targets, or other concrete details the source never
+      stated. Preserve unknowns abstractly.
+
+[Output Contract]
+  [ ] design_method assigned AFTER procedure+ER are finalized, judged
+      from the ACTUAL flow (not the requirement text), via §15
+      first-match on PRIMARY intent. Short English labels preferred;
+      the system normalizes them to canonical dropdown values.
+  [ ] priority is exactly P0 / P1 / P2 (tool-specific workbook contract,
+      not from the ASPICE doc).
+  [ ] All workbook-bound TC fields are English-only. Traditional Chinese
+      is allowed only in explicit analysis fields (`reasoning`, `meaning`,
+      `name`, `description`) when requested.
+  [ ] Each TC is self-contained: its own pre-conditions, procedure, ER.
+      NEVER write cross-references like "same as TC1 but...".
 
 If any check fails, FIX the TC before outputting. Do not emit a TC that
 would fail the §11 11-item self-check in the instruction doc.
+"""
+
+
+_CALIBRATION_EXAMPLES = """
+## CALIBRATION EXAMPLES (reference only — quality bar, not templates)
+
+Three reviewer-approved patterns. Do NOT copy sentence structure, domain
+keywords, or concrete values (5000, 60, .mp4) into unrelated requirements.
+Apply the same QUALITY BAR to any domain.
+
+---
+
+### Example 1 — Pre-Condition is STATE, not action or feature-under-test
+
+Bad:
+  test_item_rewrite: The system should properly support maximum phonebook entries
+  pre_conditions:
+    1. The HU is powered on.
+    2. Dealer Mode is accessible.
+    3. USB or SD Card is inserted and ready.
+    4. The device has 5,000 phonebook entries registered.
+    5. The device is not connected to the HU.
+
+Reviewer flagged:
+  - test_item_rewrite hedges ("should", "properly"), not `Trigger → Outcome` (§6.1)
+  - #1 system-obvious; #2 feature under test as premise; #3 action belongs
+    in procedure; #5 controlled by test steps, not a precondition (§6.2)
+
+Good:
+  test_item_rewrite: Sync at configured maximum → all entries on HU
+  pre_conditions:
+    1. A PBAP-supported device is available.
+    2. The device contains phonebook entries equal to the configured
+       maximum defined in spec.
+
+---
+
+### Example 2 — State change needs baseline (before) + outcome (after)
+
+Requirement: "After the HU phonebook has synchronized to its maximum
+capacity, adding a new contact on the paired device shall not increase
+the HU phonebook count; the new contact shall not be imported."
+
+Bad:
+  test_item_rewrite: Verify adding new contacts beyond maximum works correctly
+  test_procedure:
+    1. Add one new contact on the device.
+    2. Re-trigger phonebook synchronization.
+    3. Open the Phonebook screen on the HU.
+  expected_result:
+    1. The new contact is saved on the device.
+    2. Phonebook update is triggered on the HU.
+    3. The HU phonebook remains at 5,000 entries.
+
+Reviewer flagged:
+  - No baseline: reviewer comment "動作前確認+動作後確認 才有對比".
+    Without Step 2 checking the starting count, "still 5,000" after the
+    action could be coincidence (§7.6).
+  - 3 steps conflate setup + transition; no verification that the
+    configured-maximum starting state was really reached before the
+    action (§7.7).
+  - test_item_rewrite: "works correctly" is vague, not `Trigger → Outcome` (§6.1).
+  - pre_conditions would need to assume state from prior runs instead of
+    establishing it in-procedure (§6.2).
+
+Good:
+  test_item_rewrite: Add contact beyond maximum → count unchanged, not imported
+  pre_conditions:
+    1. A PBAP-supported device is available.
+    2. HU phonebook has already been synchronized to the configured
+       maximum (per spec).
+  test_procedure:
+    1. Pair the PBAP-supported device with the HU via Bluetooth.
+    2. Check the HU phonebook contains exactly the configured maximum
+       number of entries as baseline.
+    3. Add one new contact on the device.
+    4. Trigger phonebook synchronization/update.
+    5. Wait until phonebook synchronization/update is completed.
+    6. Open the Phonebook screen on the HU.
+    7. Search for the newly added contact; compare the HU phonebook
+       count against the baseline recorded in Step 2.
+  expected_result (aligned 1:1, each observable):
+    1. Device paired and connected.
+    2. HU displays exactly the configured maximum entries (baseline recorded).
+    3. New contact created on device.
+    4. Sync/update starts.
+    5. Sync/update completes.
+    6. Phonebook screen opens.
+    7. New contact not found on HU; count equals the Step 2 baseline.
+
+Note on concrete values: "5000 / 60 / 180" are allowed in real TCs when
+the requirement/spec defines them (as in this requirement). When the req
+says only "maximum" with no number, keep it abstract ("configured
+maximum") — never fabricate a value (§10.3).
+
+---
+
+### Example 3 — Enumerated supported items → one TC per item
+
+Requirement: "Dealer Mode shall only allow the supported video file types
+to be uploaded. Supported formats: .mp4, .avi, .mpg, .wmv, .3gp, .mkv."
+
+Bad (1 TC lumping all 6 formats):
+  test_item_rewrite: Plays supported file types
+  test_procedure (abbreviated):
+    1. Press H/K [Screen off] button.
+    2. ... enter Dealer Mode.
+    5. Select "Upload Showroom Demo Video from USB" to upload supported
+       file types.
+    8. Select "Showroom Demo Video" on App Drawer page.
+
+Reviewer flagged:
+  - FALSE PASS: if .mp4 uploads but .mkv silently fails, this TC still
+    passes — per-format regressions are invisible (§9, §10.2).
+  - Lost traceability: requirement names 6 formats, TC only verifies
+    "supported file types" as a collective.
+  - test_item_rewrite too short, not `Trigger → Outcome` (§6.1).
+  - Early steps lack intent; final step does not state the verification
+    target (§7.1, §7.5).
+
+Good (6 TCs, one per format — `.mp4` shown in full; others identical
+pattern with extension swapped):
+
+  tc_title: Upload supported video file type: .mp4
+  test_item_rewrite: Upload .mp4 to Dealer Mode → .mp4 plays on HU
+  pre_conditions:
+    1. Dev / Pre-Prod build.
+    2. USB storage device containing a .mp4 video file prepared.
+  test_procedure:
+    1. Press H/K [Screen Off] button to turn off the screen.
+    2. Press and hold the top-right and bottom-left corners of the
+       screen for 5 seconds to enter Dealer Mode.
+    3. Select "Showroom Demo Mode information".
+    4. Select "File Browser".
+    5. Insert the prepared USB storage device.
+    6. Select "Upload Showroom Demo Video from USB".
+    7. Select the .mp4 video file and confirm upload.
+    8. Tap "X" to exit Dealer Mode.
+    9. Open App Drawer.
+    10. Select "Showroom Demo Video" and check that playback of the
+        uploaded .mp4 video starts on the HU.
+  expected_result (1:1 with procedure, each observable):
+    1. Screen turned off.  2. Dealer Mode entered.
+    3. Info page displayed.  4. File Browser page displayed.
+    5. USB detected.  6. Upload option available.
+    7. .mp4 file accepted.  8. Dealer Mode exited.
+    9. App Drawer displayed.
+    10. .mp4 video displayed and playback starts.
+
+  Sibling TCs (same pattern, swap extension):
+    tc_title: Upload supported video file type: .avi
+    tc_title: Upload supported video file type: .mpg
+    tc_title: Upload supported video file type: .wmv
+    tc_title: Upload supported video file type: .3gp
+    tc_title: Upload supported video file type: .mkv
+  Note:
+  - Purpose clauses ("to turn off the screen", "to enter Dealer Mode")
+    added only where needed; self-evident steps ("Select File Browser")
+    have no clause (§7.1).
+  - tc_title carries the branch tag; test_item_rewrite stays clean
+    `Trigger → Outcome` (§6.1).
+
+---
+
+Key takeaways (apply to any domain):
+1. Pre-conditions are STATE; actions go in steps.
+2. State-change requirements need BASELINE + OUTCOME in the procedure.
+3. Enumerated supported items → one TC per item; prevents False Pass.
 """
 
 
@@ -192,10 +400,14 @@ def build_system_blocks(rules_text: str, batch: bool = False) -> str:
     """
     base = _SYSTEM_BASE_BATCH if batch else _SYSTEM_BASE
     if not rules_text:
-        return f"{_HARD_CONSTRAINTS}\n{_WRITING_DISCIPLINE}\n\n---\n\n{base}"
+        return (
+            f"{_HARD_CONSTRAINTS}\n{_WRITING_DISCIPLINE}\n"
+            f"{_CALIBRATION_EXAMPLES}\n\n---\n\n{base}"
+        )
     return (
         f"## ASPICE SWE.6 Rules (authoritative — follow strictly)\n\n{rules_text}\n\n"
-        f"{_HARD_CONSTRAINTS}\n{_WRITING_DISCIPLINE}\n\n---\n\n{base}"
+        f"{_HARD_CONSTRAINTS}\n{_WRITING_DISCIPLINE}\n"
+        f"{_CALIBRATION_EXAMPLES}\n\n---\n\n{base}"
     )
 
 
@@ -242,24 +454,7 @@ def build_user_prompt(
 ## Output
 Return JSON with keys: {output_keys}
 
-REMINDER — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite is ONE short sentence, `Trigger → Outcome` form; remove
-  hedge words (`should`, `within reasonable time`, `be able to`).
-- Each test_procedure step = one concrete action with explicit target + value.
-  FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
-  `check whether`, `confirm whether`, `verify`, `watch`, `monitor`, `inspect`. Use `Check that / Confirm
-  that / Read / Record / Compare` + explicit observable target instead.
-- No "and/then"-chained actions in one step; no placeholders.
-- test_procedure and expected_result have the SAME number of numbered items (1:1).
-- Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state/environment only (no actions, no checks/reads, no
-  data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
-- Do NOT invent unstated values or data points. If the source does not give a
-  number, code, file name, state, threshold, or dataset, keep it abstract
-  (`<configured limit>`, `<device under test>`, "defined in spec").
-- design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §15 first-match on PRIMARY intent; priority is P0 / P1 / P2.
-- All output fields in English."""
+Before emitting, run the WRITING DISCIPLINE self-check listed in the system prompt."""
 
 
 def build_quick_generate_prompt(
@@ -280,24 +475,7 @@ Generate a single test case for the following test item. Follow all rules strict
 ## Output
 Return JSON with keys: {output_keys}
 
-REMINDER — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite is ONE short sentence, `Trigger → Outcome` form; remove
-  hedge words (`should`, `within reasonable time`, `be able to`).
-- Each test_procedure step = one concrete action with explicit target + value.
-  FORBIDDEN main verbs (§7.1.1): `observe`, `observe whether`, `see if`,
-  `check whether`, `confirm whether`, `verify`, `watch`, `monitor`, `inspect`. Use `Check that / Confirm
-  that / Read / Record / Compare` + explicit observable target instead.
-- No "and/then"-chained actions in one step; no placeholders.
-- test_procedure and expected_result have the SAME number of numbered items (1:1).
-- Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state/environment only (no actions, no checks/reads, no
-  data-presence like "HU has N entries"); input_test_data = concrete values or "N/A".
-- Do NOT invent unstated values or data points. If the source does not give a
-  number, code, file name, state, threshold, or dataset, keep it abstract
-  (`<configured limit>`, `<device under test>`, "defined in spec").
-- design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §15 first-match on PRIMARY intent; priority is P0 / P1 / P2.
-- All output fields in English."""
+Before emitting, run the WRITING DISCIPLINE self-check listed in the system prompt."""
 
 
 def build_decompose_prompt(requirement: str, rules_text: str) -> str:
@@ -397,16 +575,8 @@ def build_batch_prompt(
 Return a JSON object with key `tcs` whose value is an array of TC objects.
 Each TC object has keys: {output_keys}
 
-REMINDER for every TC — run the WRITING DISCIPLINE self-check:
-- test_item_rewrite rewritten (not blank, `Trigger → Outcome` form; no outer parentheses).
-- Each test_procedure step = one concrete action with explicit target + value;
-  no forbidden verbs (`observe`/`verify`, §7.1.1) as main verb, no
-  "and/then"-chained actions, no placeholders.
-- test_procedure and expected_result have the SAME count (1:1 mapping).
-- Each expected_result item is observable; input_test_data = concrete values or "N/A".
-- design_method assigned AFTER procedure+ER are finalized, via §15 first-match
-  on the actual flow's PRIMARY intent; short English labels are preferred and
-  will be normalized by the system; priority is P0 / P1 / P2; output is English."""
+Before emitting, run the WRITING DISCIPLINE self-check listed in the system
+prompt for EVERY TC in the batch."""
 
 
 # ---------------------------------------------------------------------------
@@ -545,26 +715,9 @@ Example (requirement that enumerates 3 supported formats would return 3 TCs):
     {{... TC for format 3 ...}}
   ]}}
 
-REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten as `Trigger → Outcome`, not blank, not a copy,
-  and without outer parentheses.
-- If the req was split, put the branch tag in `tc_title` / TC title (§6.1),
-  not inside test_item_rewrite.
-- Each test_procedure step = one concrete, executable action with explicit
-  target + value; no "observe/verify" as main verb (§7.1.1), no chained
-  actions, no placeholders. Use `Check that / Confirm that / Read / Record /
-  Compare` + observable target instead.
-- test_procedure and expected_result have the SAME count (1:1, §8).
-- Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state/environment only (no actions, no checks/reads, no
-  data-presence); input_test_data = concrete values or "N/A".
-- Do NOT invent unstated values or data points. If a concrete number, code,
-  dataset, state, threshold, or identifier is not in the source, keep it
-  abstract or mark it as configured/per spec.
-- design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §15 first-match on PRIMARY intent; short English labels are
-  preferred and will be normalized by the system; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 11-item self-check."""
+Before emitting, run the WRITING DISCIPLINE self-check listed in the system
+prompt for EVERY TC. For split requirements, put the branch tag in `tc_title`
+(§6.1), not inside test_item_rewrite."""
 
 
 def build_test_set_classification_prompt(
@@ -710,23 +863,6 @@ Example (requirement 1 enumerates 6 formats → 6 TCs; requirement 2 is atomic �
     "keywords": [], "tcs": [{{...}}]}}
 ]}}
 
-REMINDER for every TC — run the WRITING DISCIPLINE self-check before emitting:
-- test_item_rewrite rewritten as `Trigger → Outcome`, not blank, not a copy,
-  and without outer parentheses.
-- If the req was split, put the branch tag in `tc_title` / TC title (§6.1),
-  not inside test_item_rewrite.
-- Each test_procedure step = one concrete, executable action with explicit
-  target + value; no "observe/verify" as main verb (§7.1.1), no chained
-  actions, no placeholders. Use `Check that / Confirm that / Read / Record /
-  Compare` + observable target instead.
-- test_procedure and expected_result have the SAME count (1:1, §8).
-- Each expected_result item is observable (UI / log / signal / API response).
-- pre_conditions = state/environment only (no actions, no checks/reads, no
-  data-presence); input_test_data = concrete values or "N/A".
-- Do NOT invent unstated values or data points. If a concrete number, code,
-  dataset, state, threshold, or identifier is not in the source, keep it
-  abstract or mark it as configured/per spec.
-- design_method assigned AFTER procedure+ER are finalized, judged from the
-  ACTUAL flow via §15 first-match on PRIMARY intent; short English labels are
-  preferred and will be normalized by the system; priority is P0 / P1 / P2.
-- All output fields English; must pass the §11 11-item self-check."""
+Before emitting, run the WRITING DISCIPLINE self-check listed in the system
+prompt for EVERY TC in EVERY requirement group. For split requirements, put
+the branch tag in `tc_title` (§6.1), not inside test_item_rewrite."""

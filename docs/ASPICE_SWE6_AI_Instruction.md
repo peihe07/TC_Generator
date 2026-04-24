@@ -59,7 +59,7 @@ Scenario/Use Case
 ## 6. Field Rules
 
 ### 6.1 Test Item
-- Format: `[Trigger] → [Outcome]` — SHORT, both sides 3–8 words
+- Format: `[Trigger] → [Outcome]` — SHORT, **both sides MUST be 3–8 words** (hard limit)
 - Drop articles (a/the), modals (should/will), hedges (properly/successfully)
 - One behavior; scenario tag in TC title when requirement splits into branches
 
@@ -75,33 +75,89 @@ Scenario/Use Case
 Tag = short phrase for the branch (format/device/source/state/UI path).
 
 ### 6.2 Pre-Condition
-ONLY starting **state/environment**. Never actions, checks, reads, or data-presence. Anything requiring operation, reading, or confirming data exists → move to Test Procedure.
+Starting **state/environment** only, describing the minimum context that must
+exist before the test starts. Never actions, checks, reads, or data-presence.
 
-**Belongs:** external env DUT cannot control (GPS), required hardware (PBAP device), dependency initial state (BT enabled), system mode (Dev Build)
+**Allowed types** — 4 categories, each with a decision criterion:
 
-**Does NOT belong:**
-- System-obvious (`HU powered on`) or feature-under-test as premise (`Dealer Mode accessible`)
-- Action-result (`USB inserted`, `BT connected`) or data-presence (`HU has 5,000 entries`) — move to Steps
+| Type | Decision criterion | Example |
+|---|---|---|
+| External environment | DUT cannot control it; test equipment / environment must provide it | `GPS signal is available.` / `FM/AM signal generator is ready.` |
+| Hardware / peripheral | Requires a specific physical device, accessory, or protocol support | `A PBAP-supported device is available.` / `A USB storage device is available.` |
+| Feature initial state | To test feature B, feature A must be in a specific state | `Bluetooth is enabled.` |
+| System version / mode | Specific build or mode required | `Dev / Pre-Prod build only.` |
 
-**Test:** If a line needs tester to do / check / confirm → NOT a Pre-Condition.
+**Forbidden types** — 5 categories to REJECT, each with the reason:
+
+| Forbidden type | Why it is wrong | Example to REJECT |
+|---|---|---|
+| System-obvious baseline | Default system state, doesn't need listing | `The HU is powered on.` |
+| Feature under test as premise | Turns the thing being tested into an assumption | `Dealer Mode is accessible.` |
+| Action (not state) | Actions belong in Test Procedure | `USB or SD Card is inserted and ready.` |
+| Step-controlled state | State is established by test steps, not pre-existing | `The device is not connected to the HU.` |
+| Redundant system defaults | Restating obvious system state | `HU is powered on and Bluetooth is enabled.` |
+
+**Self-test:** If a line requires the tester to *do*, *check*, or *confirm*
+something → it is NOT a Pre-Condition.
 
 ### 6.3 Input
 Explicit, deterministic (button/option/value/file/trigger) or NA.
 
 ## 7. Step Design
 
-### 7.1 Executable & Purpose (MANDATORY)
-Each step MUST be executable with clear purpose: establish condition / transition state / trigger behavior / check target.
+### 7.1 Executable & Clear Intent (MANDATORY)
+Each step MUST be executable, with clear intent the tester can follow without
+guessing. Intent is usually **self-evident** from action + target
+(`Press [Screen Off] button`, `Enable BT on the phone` — purpose obvious).
 
-✗ `Press H/K [Screen off] button.` — purpose unknown
-✓ `Press H/K [Screen Off] button to turn off the screen.`
+Add an explicit purpose clause (`... to ...`) **ONLY** when the action alone
+leaves intent ambiguous — typically when:
+- The same button / UI element serves different purposes in different contexts
+- The step sets up a non-obvious precondition for a later step
+- The target name doesn't describe its effect (e.g. raw AT commands, opaque
+  menu paths, internal signal names)
+
+Do NOT pad every step with `to ...` — forced purpose clauses on self-evident
+actions are noise and reduce readability.
+
+✓ `Press [Screen Off] button.` — intent self-evident, no clause needed
+✓ `Enable BT on the phone.` — self-evident
+✓ `Send AT+CGMI to query the manufacturer ID.` — opaque command, clause required
+✓ `Navigate to Settings → Network → Wi-Fi to reach the SSID list.` — deep path, intent clarified
+✗ `Press [Screen Off] button to turn off the screen.` — redundant, intent already obvious
+✗ `Navigate to deep menu path X.` — why there? purpose unclear, needs clause
 
 #### 7.1.1 Forbidden Verbs (hard rule)
-NOT as main verb: `observe` / `observe whether` / `see if` / `check whether` / `confirm whether` / `verify` / `watch` / `monitor` / `inspect`
-Reason: defer judgement to tester, ambiguous target.
-(`verify` OK only in purpose clause `... to verify that ...`)
 
-Preferred: `Check (that)` / `Confirm (that)` / `Read` / `Record` / `Compare`
+The MAIN verb of a step decides whether the tester knows exactly what to do
+and what to look at. Vague verbs defer judgement to the tester and violate
+SWE.6 reproducibility.
+
+**Forbidden as main verb** — each with the specific problem:
+
+| Forbidden verb | Problem |
+|---|---|
+| `observe` | No specific target; tester doesn't know what to look at |
+| `observe whether` | "Whether" pushes the pass/fail judgement onto the tester |
+| `see if` | Same as above; no explicit judgement criterion |
+| `check whether` | Should be `check that` + explicit criterion |
+| `confirm whether` | Should be `confirm that` + explicit criterion |
+| `verify` | Too broad; doesn't specify means (UI? log? value?) |
+| `watch` / `monitor` / `inspect` | Passive verbs without a concrete check action |
+
+**`verify` exception:** allowed in a purpose clause (`... to verify that
+the phone is connected.`), never as the step's main verb.
+
+**Preferred verbs** — each MUST be followed by a concrete observable target
+(UI element, log line, signal value, count, state):
+
+| Preferred verb | Usage |
+|---|---|
+| `Check` / `Check that` | Confirm UI / system state matches expectation |
+| `Confirm` / `Confirm that` | Confirm a specific condition holds or event occurred |
+| `Read` | Read and capture a concrete value |
+| `Record` | Record a value for later comparison |
+| `Compare` | Compare two concrete values |
 
 ✗ `Observe the screen.` ✗ `Verify the BT icon is displayed.`
 ✓ `Check that the CarPlay home screen is displayed on the HU.`
