@@ -398,7 +398,7 @@
   <path d="M 510 180 Q 510 40  310 90  Q 260 110 265 178" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
   <text class="tiny" x="350" y="66" fill="var(--purple-600)">Regenerate（重跑）</text>
 
-  <!-- Edit loop (stays in ready) -->
+  <!-- Edit loop (stays in reviewing) -->
   <path d="M 510 240 Q 510 300 570 280 Q 620 260 575 240" class="arr-d" marker-end="url(#arr-state)" stroke="var(--amber-600)"/>
   <text class="tiny" x="620" y="220" fill="var(--amber-600)">Edit（手改欄位）</text>
 
@@ -406,7 +406,7 @@
   <g class="c-purple">
     <rect x="240" y="360" width="340" height="60" rx="10"/>
     <text class="th" x="410" y="388" text-anchor="middle">req.split → 新增 sub-TC rows</text>
-    <text class="ts" x="410" y="406" text-anchor="middle">每個 sub-TC 走各自的 generating → ready</text>
+    <text class="ts" x="410" y="406" text-anchor="middle">每個 sub-TC 走各自的 generating → reviewing</text>
   </g>
   <path d="M 310 240 Q 310 320 330 358" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
   <text class="tiny" x="340" y="306" fill="var(--purple-600)">AI 判斷需拆解</text>
@@ -415,7 +415,7 @@
   <!-- Final export note -->
   <line x1="40" y1="450" x2="820" y2="450" stroke="var(--border)" stroke-width="1"/>
   <text class="ts" x="40" y="473">
-    匯出時：只有 accepted 的 row 會寫進最終 .xlsx（可在 Export 階段選 scope 調整）。
+    匯出時：會依 Export scope 決定。<code>Accepted Only</code> 只匯出 accepted；<code>All Generated Cases</code> 則匯出目前 review 清單中的所有 generated rows。
   </text>
 </svg>
 </div>
