@@ -17,6 +17,8 @@ export interface ReviewToolboxProps {
   onBulkDelete: () => void;
   onRegenerate: () => void;
   onRerun: () => void;
+  regenerateReason: string;
+  onRegenerateReasonChange: (value: string) => void;
 }
 
 /**
@@ -31,6 +33,8 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
   onBulkDelete,
   onRegenerate,
   onRerun,
+  regenerateReason,
+  onRegenerateReasonChange,
 }) => (
   <div
     className="win95-toolbox absolute bottom-4 left-1/2 z-20"
@@ -44,6 +48,15 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
       <Button onClick={onClear}>Clear</Button>
     </div>
     <div className="win95-toolbox-group">
+      <input
+        className="border-2 border-sunken"
+        style={{ width: 220, fontSize: 11, padding: '2px 4px' }}
+        value={regenerateReason}
+        onChange={(event) => onRegenerateReasonChange(event.target.value)}
+        placeholder="Reason for regenerate"
+        title="Reason sent to AI for regenerate"
+        disabled={isRegenerating}
+      />
       <Button
         className="flex items-center gap-1"
         title="Accept selected"

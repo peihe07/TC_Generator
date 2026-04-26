@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { exportJob, parseJobFiles, startGeneration } from '../services/jobAdapter';
+import { exportJob, parseJobFiles, regenerateRows, startGeneration } from '../services/jobAdapter';
 
 describe('exportJob', () => {
   const originalFetch = global.fetch;
@@ -117,6 +117,63 @@ describe('exportJob', () => {
         rows: [],
       }),
     ).rejects.toThrow('export file not found');
+  });
+});
+
+describe('regenerateRows', () => {
+  const originalFetch = global.fetch;
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+    vi.restoreAllMocks();
+  });
+
+  it('sends the reviewer regenerate reason to the backend stream request', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      body: new ReadableStream({
+        start(controller) {
+          controller.enqueue(new TextEncoder().encode('data: {"type":"regen.completed","stats":{"total":1,"processed":1,"currentCost":0}}\n\n'));
+          controller.close();
+        },
+      }),
+    } as Response);
+
+    await regenerateRows(
+      {
+        jobId: 'job-regen-reason',
+        rowIds: ['TC-001'],
+        rows: [
+          {
+            id: 'TC-001',
+            reqId: 'REQ-1',
+            testGroup: 'Auth',
+            testSet: 'Login',
+            testItem: 'User logs in',
+            preConditions: '',
+            inputTestData: '',
+            steps: '',
+            expectedResults: '',
+            status: 'pending',
+            validationErrors: [],
+          },
+        ],
+        config: {
+          model: 'gpt-5',
+          batchSize: 1,
+          budgetLimit: 10,
+          creditBalance: 0,
+          strictValidation: false,
+          targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
+        },
+        regenerateReason: 'Missing negative validation path',
+      },
+      {},
+    );
+
+    const [, init] = vi.mocked(global.fetch).mock.calls[0];
+    const payload = JSON.parse(String(init?.body)) as Record<string, unknown>;
+    expect(payload.regenerateReason).toBe('Missing negative validation path');
   });
 });
 

@@ -59,6 +59,15 @@ type GenerateCallbacks = {
 
 type RegenerateCallbacks = {
   onRow?: (rowId: string, data: AwaitingApplyFields) => void;
+  onRowAdded?: (row: TcRow, parentId: string, message: string) => void;
+  onReqSplit?: (info: {
+    rowId: string;
+    reqId: string;
+    tcCount: number;
+    reasoning: string;
+    keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
+    message: string;
+  }) => void;
   onProgress?: (usage: UsageSummary) => void;
   onFail?: (rowId: string, message: string) => void;
   onComplete?: () => void;
@@ -638,6 +647,7 @@ export async function regenerateRows(
     rowIds: string[];
     rows: TcRow[];
     config: GenerationConfig;
+    regenerateReason?: string;
   },
   callbacks: RegenerateCallbacks,
 ) {
@@ -670,6 +680,7 @@ export async function regenerateRows(
           body: JSON.stringify({
             rowIds: input.rowIds,
             rows: input.rows,
+            regenerateReason: input.regenerateReason ?? "",
             config: {
               model: input.config.model,
               batchSize: input.config.batchSize,
@@ -740,6 +751,23 @@ export async function regenerateRows(
               inputTestData: String(generated.inputTestData ?? ""),
               steps: String(generated.testProcedure ?? ""),
               expectedResults: String(generated.expectedResult ?? ""),
+            });
+          } else if (event.type === "row.added" && event.row) {
+            const apiRow = event.row as Record<string, unknown>;
+            const parentId = String(apiRow.parentId ?? "");
+            const parentRow = input.rows.find((item) => item.id === parentId);
+            const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+            callbacks.onRowAdded?.(row, parentId, String(event.message ?? "TC added."));
+          } else if (event.type === "req.split") {
+            callbacks.onReqSplit?.({
+              rowId: String(event.rowId ?? ""),
+              reqId: String(event.reqId ?? ""),
+              tcCount: Number(event.tcCount ?? 1),
+              reasoning: String(event.reasoning ?? ""),
+              keywords: Array.isArray(event.keywords)
+                ? (event.keywords as Array<{ keyword: string; meaning: string; covered_by: number[] }>)
+                : [],
+              message: String(event.message ?? ""),
             });
           } else if (event.type === "row.regen_failed" && event.row) {
             const row = event.row as Record<string, unknown>;

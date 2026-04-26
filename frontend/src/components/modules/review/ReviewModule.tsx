@@ -60,6 +60,7 @@ const ReviewModule: React.FC = () => {
   const [testSetFilter, setTestSetFilter] = useState('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [pendingDelete, setPendingDelete] = useState<PendingDelete>(null);
+  const [regenerateReason, setRegenerateReason] = useState('');
 
   // Validation panel 顯示最後一個被展開/聚焦的列
   const selectedRow = tcRows.find((r) => r.id === activeRowId) ?? null;
@@ -225,6 +226,7 @@ const ReviewModule: React.FC = () => {
           rowIds: ids,
           rows: tcRows,
           config,
+          regenerateReason: regenerateReason.trim(),
         },
         {
           onProgress: (usage) => {
@@ -237,6 +239,14 @@ const ReviewModule: React.FC = () => {
           onFail: (id, message) => {
             updateTcRow(id, { status: 'fail' });
             appendLog(createJobLog('error', `${id}: ${message}`));
+          },
+          onRowAdded: (row, parentId) => {
+            addTcRowAfter(parentId, row);
+          },
+          onReqSplit: (info) => {
+            if (info.tcCount > 1) {
+              appendLog(createJobLog('info', info.message || `${info.reqId}: split into ${info.tcCount} TC(s).`));
+            }
           },
           onComplete: () => {
             appendLog(
@@ -257,6 +267,7 @@ const ReviewModule: React.FC = () => {
     } finally {
       setRegenerating(false);
       setSelectedIds(new Set());
+      setRegenerateReason('');
     }
   }, [
     selectedIds,
@@ -266,8 +277,10 @@ const ReviewModule: React.FC = () => {
     setAwaitingApply,
     tcRows,
     config,
+    regenerateReason,
     appendLog,
     updateStats,
+    addTcRowAfter,
   ]);
 
   const handleRerun = useCallback(async () => {
@@ -456,6 +469,8 @@ const ReviewModule: React.FC = () => {
           onBulkDelete={handleBulkDelete}
           onRegenerate={handleRegenerate}
           onRerun={handleRerun}
+          regenerateReason={regenerateReason}
+          onRegenerateReasonChange={setRegenerateReason}
         />
       )}
 
