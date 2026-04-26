@@ -20,7 +20,7 @@ import type {
 /**
  * QuickGenerate orchestrator — owns all state (mode, inputs, streaming
  * phase, analysis, generated TCs) and delegates rendering to focused
- * sub-components. Keeps SSE parsing + mock fallback + history bookkeeping
+ * sub-components. Keeps SSE parsing and history bookkeeping
  * close together so the data flow stays readable.
  */
 const QuickGenerateModule: React.FC = () => {
