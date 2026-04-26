@@ -125,7 +125,7 @@ Automatically match each Test Item to its source requirement in the SYS1 spec Ex
 | D | Description | `PDM01.) The user can access...` |
 | E | Source ID | `Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_2.2` |
 
-**Matching strategy — three layers (current implementation stops at 1.5):**
+**Matching strategy — three layers (all three implemented):**
 
 **Layer 1: PDM code exact match (programmatic, no AI)**
 
@@ -145,9 +145,21 @@ For Test Items without a PDM code or where Layer 1 returns no match:
 
 On the DeviceManager real workbook this lifted match rate from **54.5% → 100%** (24 exact + 20 fuzzy).
 
-**Layer 2: Semantic match (AI — deferred)**
+**Layer 2: Semantic match (precomputed embeddings — implemented)**
 
-Only relevant if Layer 1.5 leaves too many unmatched rows or produces false positives. Would send the Test Item + full SYS1 requirement list to the LLM and surface confidence-scored candidates for human review. Not implemented yet; revisit once real-world data shows Layer 1.5 is insufficient.
+Runs when the active `SpecIndex` already carries entry-level embeddings (i.e. cached in `spec-index/cache/<name>.json` with `embedding_model` set; built by `scripts/build_spec_index.py`).
+
+1. Embed the Test Item via the same model as the index (default `text-embedding-3-large`, see `spec_matcher.DEFAULT_EMBEDDING_MODEL`).
+2. Compute cosine similarity against every spec entry's embedding.
+3. If the best score ≥ semantic threshold, set `match_type = "fuzzy"` with `match_score` = cosine score; otherwise mark `unmatched`.
+4. Top-N near-miss entries (when no exact match) are surfaced as `reference_candidate_context` for the AI prompt; the matched entry is exposed as `matched_spec_context`. `prompt_builder._get_spec_context` consumes both fields so generation can cite the referenced spec verbatim.
+
+When the index has no embeddings (e.g. uploaded reference workbook freshly built via `build_spec_index`), Layer 2 is skipped and Layer 1.5 (Jaccard) handles fuzzy fallback automatically.
+
+**Selecting an index at runtime:**
+
+- The Upload page dropdown calls `GET /api/spec-library`, lists every entry from `spec-index/manifest.json`, and posts the chosen `selected_spec_name` to `POST /api/parse`. The job persists `selectedSpecName`, and `/api/match` plus generation load it via `spec_matcher.load_spec_index([name])`.
+- If `selected_spec_name` is unset, the legacy uploaded reference workbook path remains.
 
 **Output format for Col N:**
 `Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_{outline_number}`
@@ -546,7 +558,20 @@ compatibility, but it no longer changes generation behaviour.
 
 ### Mode C: Regenerate Specific
 
-Accept a list of Row numbers or Req IDs. Regenerate only those rows (overwrite previous generation).
+Accept selected row IDs and an optional `regenerateReason`. The reason is
+passed into the AI prompt as the primary correction target. Regenerate uses the
+split-aware generation path: AI first returns `req.split` analysis and an
+`insertPlan` (`needsInsert`, `insertAfterId`, `newCount`,
+`renumberRequired`). If no split is needed, the primary row is regenerated and
+shown in diff preview. If split is needed, the primary row is regenerated and
+extra TCs stream as `row.added` for insertion after the parent row.
+
+### Mode D: Re-run Selected
+
+Accept selected row IDs and re-enter the full generation pipeline without a
+reviewer reason. This is used when the user wants AI to reassess decomposition
+or add missing scenarios. The stream contract is the same split-aware shape:
+`req.split.insertPlan`, primary `row.regenerated`, and optional `row.added`.
 
 ---
 
@@ -757,7 +782,12 @@ tc-generator/
 ├── framework/
 │   └── {test_group}_framework.json # Test Set mapping per CFTS
 ├── spec-index/
-│   └── {test_group}_spec.json      # Parsed SYS1 spec index (§2.4)
+│   ├── manifest.json               # Library index consumed by GET /api/spec-library
+│   ├── sources/                    # Original spec PDFs/PPTX (reference material)
+│   └── cache/
+│       ├── {name}.xlsx             # Source SYS1 workbook (Basic Report sheet)
+│       └── {name}.json             # Built by scripts/build_spec_index.py:
+│                                   # SpecIndex + per-entry embeddings (§2.4 Layer 2)
 ├── backend/
 │   ├── parser.py                   # Excel reader (§10)
 │   ├── spec_matcher.py             # Spec reference matching (§2.4)

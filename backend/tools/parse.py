@@ -94,6 +94,7 @@ def parse_workbook_tool(
     reference_filename: str | None = None,
     spec_path: str | None = None,
     spec_filename: str | None = None,
+    selected_spec_name: str | None = None,
     job_store: Any,
 ) -> dict:
     """Parse a TC workbook, register the job, and return the API-shaped result.
@@ -160,6 +161,8 @@ def parse_workbook_tool(
 
     preview_headers, preview_rows = _build_preview(parsed_data)
 
+    selected_spec_name = (selected_spec_name or "").strip() or None
+
     job_id = _build_job_id()
     job_store[job_id] = {
         "jobId": job_id,
@@ -168,6 +171,7 @@ def parse_workbook_tool(
         "parsedData": parsed_data,
         "referenceWorkbookName": reference_filename,
         "referenceWorkbookBytes": reference_bytes,
+        "selectedSpecName": selected_spec_name,
         "specFileName": spec_filename,
         "specFormat": spec_format,
         "specBytes": spec_bytes,
@@ -186,6 +190,7 @@ def parse_workbook_tool(
         "files": {
             "rawFileName": raw_filename,
             "referenceWorkbookName": reference_filename,
+            "selectedSpecName": selected_spec_name,
             "specFileName": spec_filename,
             "specFormat": spec_format,
         },

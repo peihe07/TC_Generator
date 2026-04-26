@@ -286,10 +286,26 @@ export function isBackendConfigured() {
   return true;
 }
 
+export interface SpecLibraryEntry {
+  name: string;
+  sourceFile: string | null;
+  entriesCount: number | null;
+  embeddingModel: string | null;
+  updatedAt: string | null;
+}
+
+export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {
+  const response = await parseJsonResponse<{ specs: SpecLibraryEntry[] }>(
+    await fetch(`${appApiBase}/spec-library`, { method: "GET" }),
+  );
+  return response.specs ?? [];
+}
+
 export async function parseJobFiles(input: {
   rawFile: File;
   referenceWorkbookFile?: File;
   specFile?: File;
+  selectedSpecName?: string;
 }): Promise<ParseJobResult> {
   const payload = new FormData();
   payload.append("raw_file", input.rawFile);
@@ -298,6 +314,9 @@ export async function parseJobFiles(input: {
   }
   if (input.specFile) {
     payload.append("spec_file", input.specFile);
+  }
+  if (input.selectedSpecName) {
+    payload.append("selected_spec_name", input.selectedSpecName);
   }
 
   const response = await parseJsonResponse<{

@@ -24,7 +24,8 @@ Request:
 
 - `multipart/form-data`
 - `raw_file`: required `.xlsx` / `.xlsm`
-- `reference_file`: optional reference workbook `.xlsx` / `.xlsm`
+- `reference_file`: optional reference workbook `.xlsx` / `.xlsm`. Ignored when `selected_spec_name` is supplied.
+- `selected_spec_name`: optional. Basename (no extension) of a pre-built spec index entry returned by `GET /api/spec-library`. When set, the backend skips the uploaded reference workbook and loads the cached `SpecIndex` from `spec-index/cache/<name>.json`.
 - `spec_file`: optional supplementary file
 
 Response:
@@ -128,8 +129,8 @@ Proxy to Python `POST /api/match`.
 
 Purpose:
 
-- Build Configure page exact-match preview
-- Uses the optional reference workbook only when it is compatible with the expected `Basic Report` structure
+- Build Configure page traceability preview (PDM exact + Jaccard fuzzy + cosine semantic).
+- Source order of precedence: `selectedSpecName` (cached spec index, includes precomputed embeddings) → uploaded reference workbook (`Basic Report` structure) → no-reference fallback (all rows `unmatched`).
 
 Response:
 
@@ -139,6 +140,7 @@ Response:
   "summary": {
     "total": 1,
     "exact": 1,
+    "fuzzy": 0,
     "unmatched": 0,
     "hasReferenceWorkbook": true
   },
@@ -148,11 +150,40 @@ Response:
       "reqId": "SWE1-HMI-DM-001-01",
       "testItem": "PDM01 original text",
       "specReference": "SPEC_REF_PDM01",
-      "matchType": "exact"
+      "matchType": "exact",
+      "matchScore": null
     }
   ]
 }
 ```
+
+`matchType` is one of `exact` / `fuzzy` / `unmatched`. `matchScore` is non-null for fuzzy / semantic matches (cosine or Jaccard, rounded to 3 decimals).
+
+### `GET /api/spec-library`
+
+Proxy to Python `GET /api/spec-library`.
+
+Purpose:
+
+- List pre-built reference spec indices stored in `spec-index/manifest.json`. Used by the Upload page dropdown so users can reuse a cached SYS1 spec without uploading a workbook.
+
+Response:
+
+```json
+{
+  "specs": [
+    {
+      "name": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR25_Post_3A_CR29359_(Feb_24_2025)",
+      "sourceFile": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR25_Post_3A_CR29359_(Feb_24_2025).xlsx",
+      "entriesCount": 187,
+      "embeddingModel": "text-embedding-3-large",
+      "updatedAt": "2026-04-24T14:56:18.772253+00:00"
+    }
+  ]
+}
+```
+
+Returns `{ "specs": [] }` when the manifest is missing or unreadable. Entries are sorted alphabetically by `name`. Pass the chosen `name` back as `selected_spec_name` on `POST /api/parse`.
 
 ### `POST /api/generate`
 
@@ -263,6 +294,7 @@ Request:
 {
   "rowIds": ["row-10"],
   "rows": [],
+  "regenerateReason": "Missing negative validation path",
   "config": {
     "model": "gpt-5",
     "batchSize": 5,
@@ -276,7 +308,14 @@ Response is SSE.
 
 Notes:
 
-- `regenerate` keeps the legacy 1:1 contract: one selected row regenerates into one replacement TC.
+- `regenerateReason` is optional reviewer guidance. The backend passes it into
+  AI context as the primary correction target.
+- `regenerate` now uses the full split-aware generation path. It always emits a
+  `req.split` analysis event before row events. If no split is needed,
+  `insertPlan.newCount` is `0`; if split is needed, the primary TC emits
+  `row.regenerated` and additional TCs emit `row.added`.
+- `req.split.insertPlan` tells the UI where to create space:
+  `needsInsert`, `insertAfterId`, `newCount`, and `renumberRequired`.
 - `stats.currentCost` is cumulative job cost, including earlier grouping / generation usage on the same job.
 
 ### `POST /api/jobs/[jobId]/rerun/stream`
@@ -306,6 +345,8 @@ Notes:
 
 - `rerun` re-enters the full generation pipeline with splitting enabled.
 - One selected row may emit one `row.regenerated` plus additional `row.added` events.
+- `req.split.insertPlan` reports the proposed insertion count and anchor row before
+  added rows stream back.
 - `stats.currentCost` is cumulative job cost, not delta-only cost for this rerun call.
 
 ### `POST /api/export`
@@ -456,6 +497,7 @@ On error:
 Implemented in `backend/api_server.py`:
 
 - `GET /api/health`
+- `GET /api/spec-library`
 - `POST /api/parse`
 - `POST /api/group`
 - `POST /api/match`

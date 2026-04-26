@@ -126,7 +126,7 @@ TC_Generator/
 ├── backend/
 │   ├── api_server.py                # FastAPI 整合層；啟動時執行 purge_older_than + vacuum
 │   ├── parser.py                    # 解析 TC workbook（容忍中英雙語 sheet 標題、檔名日期後綴）
-│   ├── spec_matcher.py              # 規格匹配（Layer 1 PDM regex + Layer 1.5 token Jaccard fuzzy）
+│   ├── spec_matcher.py              # 規格匹配（Layer 1 PDM regex + Layer 1.5 Jaccard + Layer 2 cosine semantic via cached embeddings）
 │   ├── spec_parser.py               # 補充文件解析
 │   ├── id_generator.py              # TC ID 生成
 │   ├── grouper.py                   # Test Set grouping（fallback: existing → PDM → REQ prefix → Unassigned）
@@ -184,6 +184,7 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
 `backend/routes/agent.py`。
 
 - `GET /api/health`
+- `GET /api/spec-library`
 - `DELETE /api/admin/reset`
 - `GET /api/metrics/aggregate`
 - `POST /api/parse`
@@ -263,7 +264,10 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
   6 秒自動消失或點 × 關掉（訂閱 `useAgentStore.lastStateUpdate`）
 - Workspace Manager：save / rename / load / delete / JSON import / JSON export（localStorage 持久化）
 - Job History menu：lifetime cumulative cost + per-job record（localStorage，TTL 90 天 + MAX_RECORDS cap）
-- Review：batch accept/reject/delete/regenerate；word-level diff；spec reference 自動顯示
+- Review：batch accept/reject/delete；Regenerate 可輸入 reviewer reason，AI 以
+  `regenerateReason` 修正並重新判斷是否拆解；Re-run 重走完整 pipeline。兩者
+  都會透過 `req.split.insertPlan` 回報新增列數 / 插入錨點 / 是否重排，前端再
+  以 `row.added` 插入 sub-TC rows；word-level diff；spec reference 自動顯示
 - Configure：grouping + matching preview + 手動 `testSet` override
 - 成本統計：同一 job 的 grouping / generate / regenerate / rerun usage 都累加到同一份 session stats；
   Configure 的估算已改成後端同款 heuristic，不再只是 row-count × 固定係數

@@ -10,7 +10,7 @@ import tempfile
 from datetime import datetime
 from pathlib import Path
 
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
@@ -28,7 +28,7 @@ from generator import (
 from id_generator import generate_group_abbreviation, generate_tc_ids, normalize_tc_id
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
-from spec_matcher import build_spec_index, match_spec_references
+from spec_matcher import build_spec_index, load_spec_index, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
 from agent_session_store import SqliteAgentSessionStore, default_session_db_path
 from routes.agent import build_agent_router
@@ -553,6 +553,13 @@ def _build_spec_index_for_job(job: dict) -> dict:
 
 
 def _build_reference_match_index_for_job(job: dict) -> dict:
+    selected_spec_name = (job.get("selectedSpecName") or "").strip()
+    if selected_spec_name:
+        try:
+            return load_spec_index(names=[selected_spec_name])
+        except Exception:
+            return {}
+
     reference_bytes = job.get("referenceWorkbookBytes")
     reference_filename = job.get("referenceWorkbookName")
     if not reference_bytes or not reference_filename:
@@ -1021,12 +1028,39 @@ def metrics_aggregate(job_ids: str | None = None) -> dict:
         raise _tool_error_to_http(exc) from exc
 
 
+@app.get("/api/spec-library")
+async def list_spec_library() -> dict:
+    """回傳 ``spec-index/manifest.json`` 中已建好的 spec 清單，前端用來做 dropdown 選單。"""
+    manifest_path = Path(__file__).resolve().parent.parent / "spec-index" / "manifest.json"
+    if not manifest_path.is_file():
+        return {"specs": []}
+    try:
+        data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"specs": []}
+    raw_specs = data.get("specs") or []
+    specs = [
+        {
+            "name": item.get("name"),
+            "sourceFile": item.get("source_file"),
+            "entriesCount": item.get("entries_count"),
+            "embeddingModel": item.get("embedding_model"),
+            "updatedAt": item.get("updated_at"),
+        }
+        for item in raw_specs
+        if isinstance(item, dict) and item.get("name")
+    ]
+    specs.sort(key=lambda s: (s.get("name") or "").lower())
+    return {"specs": specs}
+
+
 @app.post("/api/parse")
 async def parse_workbook(
     raw_file: UploadFile = File(...),
     reference_file: UploadFile | None = File(default=None),
     sys1_file: UploadFile | None = File(default=None),
     spec_file: UploadFile | None = File(default=None),
+    selected_spec_name: str | None = Form(default=None),
 ) -> dict:
     # 先做 HTTP 層檢查：size limit、extension。extension 也會被 tool 再驗一次。
     raw_bytes = await _read_with_limit(raw_file, "raw_file")
@@ -1075,6 +1109,7 @@ async def parse_workbook(
                 reference_filename=reference_filename,
                 spec_path=spec_path,
                 spec_filename=spec_filename,
+                selected_spec_name=selected_spec_name,
                 job_store=JOB_REGISTRY,
             )
         except ToolError as exc:
@@ -1111,11 +1146,18 @@ async def preview_spec_matching(payload: MatchPreviewRequest) -> dict:
         raise HTTPException(status_code=404, detail="job not found")
 
     prepared_rows = _prepare_match_preview_rows(payload.rows, job)
+    selected_spec_name = (job.get("selectedSpecName") or "").strip() or None
     reference_bytes = job.get("referenceWorkbookBytes")
     reference_filename = job.get("referenceWorkbookName")
 
     try:
-        if reference_bytes and reference_filename:
+        if selected_spec_name:
+            result = match_spec_tool(
+                rows=prepared_rows,
+                reference_workbook_path=None,
+                selected_spec_name=selected_spec_name,
+            )
+        elif reference_bytes and reference_filename:
             with tempfile.TemporaryDirectory() as tmp_dir:
                 reference_path = os.path.join(
                     tmp_dir,

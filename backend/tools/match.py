@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from spec_matcher import build_spec_index, match_spec_references
+from spec_matcher import build_spec_index, load_spec_index, match_spec_references
 
 from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
@@ -18,18 +18,26 @@ def match_spec_tool(
     *,
     rows: list[dict],
     reference_workbook_path: str | None = None,
+    selected_spec_name: str | None = None,
 ) -> dict:
     """回傳 spec match summary + per-row matches。
 
     Args:
         rows: snake_case dict，必要欄位 `id`、`req_id`、`test_item`
         reference_workbook_path: 可選 SYS1 .xlsx 絕對路徑；None 時走 unmatched fallback
+        selected_spec_name: 從 ``spec-index/cache/`` 預建快取載入的 spec basename。
+            若同時給定 ``reference_workbook_path``，``selected_spec_name`` 優先。
 
     Raises:
         ToolError: reference workbook 存在但無法解析
     """
     reference_index: dict = {}
-    if reference_workbook_path:
+    if selected_spec_name:
+        try:
+            reference_index = load_spec_index(names=[selected_spec_name])
+        except Exception:
+            reference_index = {}
+    elif reference_workbook_path:
         ref_path = Path(reference_workbook_path)
         if not ref_path.is_file():
             raise ToolError(

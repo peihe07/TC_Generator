@@ -1,13 +1,17 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useJobStore } from '../../../store/useJobStore';
 import { useWindowStore } from '../../../store/useWindowStore';
 import { createJobLog } from '../../../lib/logging';
-import { parseJobFiles } from '../../../services/jobAdapter';
+import {
+  fetchSpecLibrary,
+  parseJobFiles,
+  type SpecLibraryEntry,
+} from '../../../services/jobAdapter';
 import { RiFileLine, RiFileExcel2Line, RiFileSearchLine, RiArrowRightLine } from '@remixicon/react';
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
-import { Button } from '../../ui';
+import { Button, Select } from '../../ui';
 
 const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
@@ -16,6 +20,27 @@ const UploadModule: React.FC = () => {
   const [parseError, setParseError] = useState('');
   const [files, setFiles] = useState<{ tc?: File; referenceWorkbook?: File; spec?: File }>({});
   const [draggingZone, setDraggingZone] = useState<'tc' | 'referenceWorkbook' | 'spec' | null>(null);
+  const [specLibrary, setSpecLibrary] = useState<SpecLibraryEntry[]>([]);
+  const [selectedSpecName, setSelectedSpecName] = useState<string>('');
+  const [libraryError, setLibraryError] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchSpecLibrary()
+      .then((list) => {
+        if (!cancelled) setSpecLibrary(list);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          const message =
+            err instanceof Error ? err.message : 'Failed to load spec library.';
+          setLibraryError(message);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const tcInputRef = useRef<HTMLInputElement | null>(null);
   const referenceWorkbookInputRef = useRef<HTMLInputElement | null>(null);
   const specInputRef = useRef<HTMLInputElement | null>(null);
@@ -68,8 +93,9 @@ const UploadModule: React.FC = () => {
     try {
       const result = await parseJobFiles({
         rawFile: files.tc,
-        referenceWorkbookFile: files.referenceWorkbook,
+        referenceWorkbookFile: selectedSpecName ? undefined : files.referenceWorkbook,
         specFile: files.spec,
+        selectedSpecName: selectedSpecName || undefined,
       });
 
       setJobMetadata(result.jobMetadata);
@@ -144,19 +170,56 @@ const UploadModule: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 min-w-0">
           <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
             <legend className="px-2">Reference Workbook (Optional)</legend>
+            <div className="flex flex-col gap-2 mb-2">
+              <label className="text-xs flex items-center gap-2">
+                <span className="whitespace-nowrap">From library:</span>
+                <Select
+                  className="flex-1 min-w-0"
+                  value={selectedSpecName}
+                  onChange={(e) => {
+                    setSelectedSpecName(e.target.value);
+                    setParseError('');
+                  }}
+                >
+                  <option value="">— None (use upload below) —</option>
+                  {specLibrary.map((spec) => (
+                    <option key={spec.name} value={spec.name}>
+                      {spec.name}
+                      {spec.entriesCount != null ? ` (${spec.entriesCount})` : ''}
+                    </option>
+                  ))}
+                </Select>
+              </label>
+              {libraryError && (
+                <span className="text-[10px]" style={{ color: 'var(--status-reject-dark)' }}>
+                  {libraryError}
+                </span>
+              )}
+            </div>
             <div
-              className={`dropzone-sunken h-32 w-full min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''} ${files.referenceWorkbook ? 'bg-white' : ''}`}
-              onClick={() => referenceWorkbookInputRef.current?.click()}
-              onDrop={(e) => handleFileDrop(e, 'referenceWorkbook')}
+              className={`dropzone-sunken h-32 w-full min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''} ${files.referenceWorkbook && !selectedSpecName ? 'bg-white' : ''}`}
+              onClick={() => {
+                if (selectedSpecName) return;
+                referenceWorkbookInputRef.current?.click();
+              }}
+              onDrop={(e) => {
+                if (selectedSpecName) return;
+                handleFileDrop(e, 'referenceWorkbook');
+              }}
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, 'referenceWorkbook')}
               onDragLeave={(e) => handleDragLeave(e, 'referenceWorkbook')}
+              style={selectedSpecName ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
             >
               <RiFileSearchLine className="size-10" style={{ color: 'var(--text-muted)' }} />
               <span className="text-xs truncate px-2 w-full text-center">
-                {files.referenceWorkbook ? files.referenceWorkbook.name : 'Drop Reference Excel'}
+                {selectedSpecName
+                  ? 'Library spec selected'
+                  : files.referenceWorkbook
+                    ? files.referenceWorkbook.name
+                    : 'Drop Reference Excel'}
               </span>
-              {files.referenceWorkbook && (
+              {files.referenceWorkbook && !selectedSpecName && (
                 <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>[READY]</span>
               )}
             </div>
