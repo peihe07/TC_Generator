@@ -230,6 +230,12 @@ class MatchPreviewRequest(BaseModel):
 class QuickGenerateRequest(BaseModel):
     testItem: str
     context: str | None = None
+    testGroup: str | None = None
+    testSet: str | None = None
+    preConditions: str | None = None
+    inputTestData: str | None = None
+    testProcedure: str | None = None
+    expectedResult: str | None = None
     # mode 保留做 backwards-compat，但目前統一走 auto-split 多筆 TC 路徑，
     # 傳任何值都會被忽略（包括舊前端的 "single" / "with_context" / "decompose"）。
     mode: str | None = None
@@ -839,14 +845,27 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
 
         yield _sse_event({"type": "job.started"})
 
-        # 組一個最小可用的 row dict 丟給 generate_tcs_for_row。
-        composed_test_item = payload.testItem.strip()
+        # 組成與 workbook row 相同語意的 context，讓 quick generate 也用同一套
+        # multi-TC split 分析輸入。
+        test_item = payload.testItem.strip()
         context_text = (payload.context or "").strip()
-        if context_text:
-            composed_test_item = f"{composed_test_item}\n\n[Additional Context]\n{context_text}"
-
-        row = {"req_id": "QUICK", "test_item": composed_test_item}
-        ctx = {"project": "QuickGenerate", "test_group": "QuickGenerate", "test_set": "N/A"}
+        test_group = (payload.testGroup or "QuickGenerate").strip() or "QuickGenerate"
+        test_set = (payload.testSet or "Quick Generate").strip() or "Quick Generate"
+        row = {
+            "req_id": "QUICK",
+            "test_group": test_group,
+            "test_set": test_set,
+            "test_item": test_item,
+            "pre_conditions": (
+                str(payload.preConditions).strip()
+                if payload.preConditions and str(payload.preConditions).strip()
+                else context_text
+            ),
+            "input_test_data": str(payload.inputTestData or "").strip(),
+            "test_procedure": str(payload.testProcedure or "").strip(),
+            "expected_result": str(payload.expectedResult or "").strip(),
+        }
+        ctx = {"project": "QuickGenerate", "test_group": test_group, "test_set": test_set}
 
         try:
             result = generate_tcs_for_row(
@@ -872,7 +891,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                 "id": i + 1,
                 "name": _scenario_title(tc, i + 1),
                 "description": (tc.get("tc_title") or "").strip() or f"Generated TC {i + 1}",
-                "test_item": composed_test_item,
+                "test_item": test_item,
             }
             for i, tc in enumerate(tcs)
         ]

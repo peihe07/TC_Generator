@@ -1622,7 +1622,7 @@ def test_quick_generate_unified_multi_tc(mock_gen):
 
 @patch("api_server.generate_tcs_for_row")
 def test_quick_generate_with_context_included_in_prompt(mock_gen):
-    """使用者填 Additional Context 時應該併進傳給 generate_tcs_for_row 的 test_item。"""
+    """Quick Generate should send context through the same row fields used for split analysis."""
     from generator import GenerationResult
     mock_gen.return_value = GenerationResult(
         tc_data=[VALID_TC_JSON],
@@ -1639,7 +1639,42 @@ def test_quick_generate_with_context_included_in_prompt(mock_gen):
         },
     )
     call_kwargs = mock_gen.call_args[1]
-    assert "System must be powered" in call_kwargs["row"]["test_item"]
+    assert call_kwargs["context"]["test_group"] == "QuickGenerate"
+    assert call_kwargs["row"]["test_set"] == "Quick Generate"
+    assert call_kwargs["row"]["test_item"] == "Button pressed → LED on"
+    assert call_kwargs["row"]["pre_conditions"] == "System must be powered"
+
+
+@patch("api_server.generate_tcs_for_row")
+def test_quick_generate_accepts_structured_workbook_context_fields(mock_gen):
+    from generator import GenerationResult
+    mock_gen.return_value = GenerationResult(
+        tc_data=[VALID_TC_JSON],
+        input_tokens=100, output_tokens=50, cost=0.001, model="gpt-5.4-mini",
+        split_meta=[{"req_id": "QUICK", "reasoning": "", "keywords": []}],
+    )
+
+    client.post(
+        "/api/quick-generate/stream",
+        json={
+            "testItem": "Structured Test Item",
+            "context": "fallback context",
+            "testGroup": "DeviceManager",
+            "testSet": "Status Bar",
+            "preConditions": "Structured pre-condition",
+            "testProcedure": "Structured procedure",
+            "expectedResult": "Structured expected result",
+            "model": "gpt-5.4-mini",
+        },
+    )
+
+    call_kwargs = mock_gen.call_args[1]
+    assert call_kwargs["context"]["test_group"] == "DeviceManager"
+    assert call_kwargs["row"]["test_set"] == "Status Bar"
+    assert call_kwargs["row"]["test_item"] == "Structured Test Item"
+    assert call_kwargs["row"]["pre_conditions"] == "Structured pre-condition"
+    assert call_kwargs["row"]["test_procedure"] == "Structured procedure"
+    assert call_kwargs["row"]["expected_result"] == "Structured expected result"
 
 
 @patch("api_server.generate_tcs_for_row")
