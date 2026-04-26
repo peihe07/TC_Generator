@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { exportJob, startGeneration } from '../services/jobAdapter';
+import { exportJob, parseJobFiles, startGeneration } from '../services/jobAdapter';
 
 describe('exportJob', () => {
   const originalFetch = global.fetch;
@@ -120,6 +120,32 @@ describe('exportJob', () => {
   });
 });
 
+describe('parseJobFiles', () => {
+  const originalFetch = global.fetch;
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+    vi.restoreAllMocks();
+  });
+
+  it('surfaces backend parse errors instead of silently creating a mock job', async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 400,
+      clone: () => ({
+        json: async () => ({ detail: 'raw_file must be .xlsx or .xlsm' }),
+      }),
+      json: async () => ({ detail: 'raw_file must be .xlsx or .xlsm' }),
+    } as Response);
+
+    await expect(
+      parseJobFiles({
+        rawFile: new File(['not-an-excel'], 'bad.txt', { type: 'text/plain' }),
+      }),
+    ).rejects.toThrow('raw_file must be .xlsx or .xlsm');
+  });
+});
+
 describe('startGeneration status mapping', () => {
   const originalEventSource = global.EventSource;
 
@@ -232,7 +258,7 @@ describe('startGeneration status mapping', () => {
     expect(onComplete).toHaveBeenCalledTimes(1);
   });
 
-  it('tracks failed rows in progress stats instead of counting everything as success', async () => {
+  it('maps failed row events to fail status even when backend row status is not explicit', async () => {
     const fetchMock = vi
       .spyOn(global, 'fetch')
       .mockResolvedValueOnce({
@@ -259,7 +285,7 @@ describe('startGeneration status mapping', () => {
                 reqId: 'REQ-1',
                 testSet: 'Login',
                 testItem: 'User logs in',
-                status: 'error',
+                status: 'ready',
                 reviewStatus: 'pending',
                 validation: [],
               },
@@ -281,6 +307,7 @@ describe('startGeneration status mapping', () => {
 
     global.EventSource = FakeEventSource as unknown as typeof EventSource;
 
+    const onRow = vi.fn();
     const onProgress = vi.fn();
 
     startGeneration(
@@ -311,6 +338,7 @@ describe('startGeneration status mapping', () => {
         },
       },
       {
+        onRow,
         onProgress,
       },
     );
@@ -318,12 +346,137 @@ describe('startGeneration status mapping', () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(onRow).toHaveBeenCalledWith(
+      expect.objectContaining({ id: 'TC-001', status: 'fail' }),
+      expect.any(String),
+    );
     expect(onProgress).toHaveBeenCalledWith(
       expect.objectContaining({
         total: 1,
         processed: 1,
         success: 0,
         fail: 1,
+      }),
+    );
+  });
+
+  it('counts added split rows as successful generated TCs in progress stats', async () => {
+    const fetchMock = vi
+      .spyOn(global, 'fetch')
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          jobId: 'job-split-stats',
+          totalRows: 1,
+          streamUrl: '/api/generate/stream?jobId=job-split-stats',
+        }),
+      } as Response);
+
+    class FakeEventSource {
+      onmessage: ((event: MessageEvent<string>) => void) | null = null;
+      onerror: (() => void) | null = null;
+
+      constructor(_url: string) {
+        queueMicrotask(() => {
+          this.onmessage?.({
+            data: JSON.stringify({
+              type: 'row.completed',
+              jobId: 'job-split-stats',
+              row: {
+                id: 'row-10',
+                reqId: 'REQ-1',
+                testSet: 'Core',
+                testItem: 'Requirement',
+                status: 'ready',
+                generated: {
+                  tcTitle: '(Scenario 1)',
+                  preConditions: 'NA',
+                  inputTestData: 'NA',
+                  testProcedure: '1. Do',
+                  expectedResult: '1. Done',
+                },
+              },
+              stats: { total: 2, processed: 1, currentCost: 0.01 },
+            }),
+          } as MessageEvent<string>);
+          this.onmessage?.({
+            data: JSON.stringify({
+              type: 'row.added',
+              jobId: 'job-split-stats',
+              row: {
+                id: 'row-10__tc2',
+                parentId: 'row-10',
+                reqId: 'REQ-1',
+                testSet: 'Core',
+                testItem: 'Requirement',
+                status: 'ready',
+                generated: {
+                  tcTitle: '(Scenario 2)',
+                  preConditions: 'NA',
+                  inputTestData: 'NA',
+                  testProcedure: '1. Do other',
+                  expectedResult: '1. Other done',
+                },
+              },
+              stats: { total: 2, processed: 2, currentCost: 0.02 },
+            }),
+          } as MessageEvent<string>);
+          this.onmessage?.({
+            data: JSON.stringify({
+              type: 'job.completed',
+              jobId: 'job-split-stats',
+              stats: { total: 2, processed: 2, currentCost: 0.02 },
+            }),
+          } as MessageEvent<string>);
+        });
+      }
+
+      close() {}
+    }
+
+    global.EventSource = FakeEventSource as unknown as typeof EventSource;
+
+    const onProgress = vi.fn();
+
+    startGeneration(
+      {
+        jobId: 'job-split-stats',
+        rows: [
+          {
+            id: 'row-10',
+            reqId: 'REQ-1',
+            testGroup: 'DeviceManager',
+            testSet: 'Core',
+            testItem: 'Requirement',
+            preConditions: '',
+            inputTestData: '',
+            steps: '',
+            expectedResults: '',
+            status: 'pending',
+            validationErrors: [],
+          },
+        ],
+        config: {
+          model: 'gpt-5',
+          batchSize: 1,
+          budgetLimit: 10,
+          creditBalance: 0,
+          strictValidation: false,
+          targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
+        },
+      },
+      { onProgress },
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(onProgress).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        total: 2,
+        processed: 2,
+        success: 2,
+        fail: 0,
       }),
     );
   });

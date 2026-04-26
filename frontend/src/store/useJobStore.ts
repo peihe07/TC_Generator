@@ -18,7 +18,6 @@ interface JobStore {
   // 插入一個新的 TC row，接在 parentId 所屬列後面（用於 AI 把一個 req 拆成多筆 TC 時）。
   addTcRowAfter: (parentId: string, row: TcRow) => void;
   deleteTcRows: (ids: string[]) => void;
-  renumberTcRows: () => void;
   setAwaitingApply: (id: string, data: TcRow['awaitingApply']) => void;
   applyRegenerated: (id: string, fields: ('steps' | 'expectedResults' | 'preConditions' | 'inputTestData')[]) => void;
   clearAwaitingApply: (id: string) => void;
@@ -51,13 +50,6 @@ const DEFAULT_STATS: JobStats = {
   cacheCreationTokens: 0,
   cacheReadTokens: 0,
 };
-
-function renumberRows(rows: TcRow[]): TcRow[] {
-  return rows.map((row, index) => ({
-    ...row,
-    id: `TC-${String(index + 1).padStart(3, '0')}`,
-  }));
-}
 
 export const useJobStore = create<JobStore>()(persist((set) => ({
   jobMetadata: null,
@@ -135,10 +127,6 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
     };
   }),
 
-  renumberTcRows: () => set((state) => ({
-    tcRows: renumberRows(state.tcRows),
-  })),
-
   setAwaitingApply: (id, data) => set((state) => ({
     tcRows: state.tcRows.map((row) =>
       row.id === id ? { ...row, awaitingApply: data } : row
@@ -146,7 +134,7 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
   })),
 
   applyRegenerated: (id, fields) => set((state) => ({
-    tcRows: renumberRows(state.tcRows.map((row) => {
+    tcRows: state.tcRows.map((row) => {
       if (row.id !== id || !row.awaitingApply) return row;
       const updates: Partial<TcRow> = {};
       if (fields.includes('steps')) updates.steps = row.awaitingApply.steps;
@@ -154,7 +142,7 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
       if (fields.includes('preConditions')) updates.preConditions = row.awaitingApply.preConditions;
       if (fields.includes('inputTestData')) updates.inputTestData = row.awaitingApply.inputTestData;
       return { ...row, ...updates, awaitingApply: undefined, status: 'reviewing' };
-    })),
+    }),
   })),
 
   clearAwaitingApply: (id) => set((state) => ({

@@ -813,12 +813,20 @@ button.btn-icon:hover {
 /* Input area */
 .chat-input-area {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
   padding: 6px;
   border-top: 2px solid;
   border-color: var(--win95-gray-mid) var(--win95-gray-light) var(--win95-gray-light) var(--win95-gray-mid);
   background: var(--win95-bg);
   flex-shrink: 0;
+}
+
+.chat-attach-error {
+  flex-basis: 100%;
+  color: var(--status-reject-dark);
+  font-size: var(--font-xs);
+  line-height: 1.2;
 }
 
 .chat-textarea {

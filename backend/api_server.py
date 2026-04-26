@@ -1323,6 +1323,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             # 保留整組、由 review UI 決定要不要接受。
                             event_type = "row.added"
                         if event_type == "row.failed":
+                            updated_row["status"] = "error"
                             updated_row["generated"] = None
                         # (G) 把拆分資訊附到每筆 TC，sub 也能直接顯示「屬於 REQ-xxx 的 TC k/N」
                         updated_row["splitDecision"] = {

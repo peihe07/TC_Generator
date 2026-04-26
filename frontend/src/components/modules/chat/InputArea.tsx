@@ -10,6 +10,7 @@ export default function InputArea() {
   const [text, setText] = useState('');
   const [isParsing, setIsParsing] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [parseError, setParseError] = useState('');
   const { streamState, sendMessage } = useAgentStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -41,15 +42,21 @@ export default function InputArea() {
   };
 
   const handleFile = useCallback(async (file: File) => {
-    if (!file.name.match(/\.(xlsx|xlsm)$/i)) return;
+    if (!file.name.match(/\.(xlsx|xlsm)$/i)) {
+      setParseError('只支援 .xlsx / .xlsm 附件。');
+      return;
+    }
     setIsParsing(true);
+    setParseError('');
     try {
       const result = await parseJobFiles({ rawFile: file });
       const preview = `附件：${file.name} (job=${result.jobMetadata.jobId}，${result.jobMetadata.totalRows} rows)\n`;
       setText((prev) => preview + prev);
       textareaRef.current?.focus();
-    } catch {
-      setText((prev) => `[Parse 失敗：${file.name}]\n` + prev);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Parse failed.';
+      setParseError(message);
+      setText((prev) => `[Parse 失敗：${file.name} - ${message}]\n` + prev);
     } finally {
       setIsParsing(false);
     }
@@ -115,6 +122,11 @@ export default function InputArea() {
           <RiSendPlaneLine size={16} />
         </Button>
       </div>
+      {parseError && (
+        <div className="chat-attach-error" role="alert">
+          {parseError}
+        </div>
+      )}
     </div>
   );
 }

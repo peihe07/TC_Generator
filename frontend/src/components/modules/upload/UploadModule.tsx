@@ -13,6 +13,7 @@ const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
   const { advanceWindow } = useWindowStore();
   const [isParsing, setIsParsing] = useState(false);
+  const [parseError, setParseError] = useState('');
   const [files, setFiles] = useState<{ tc?: File; referenceWorkbook?: File; spec?: File }>({});
   const [draggingZone, setDraggingZone] = useState<'tc' | 'referenceWorkbook' | 'spec' | null>(null);
   const tcInputRef = useRef<HTMLInputElement | null>(null);
@@ -24,6 +25,7 @@ const UploadModule: React.FC = () => {
     setDraggingZone(null);
     const file = e.dataTransfer.files[0];
     if (file) {
+      setParseError('');
       setFiles((prev) => ({ ...prev, [type]: file }));
     }
   };
@@ -44,6 +46,7 @@ const UploadModule: React.FC = () => {
   ) => {
     const file = event.target.files?.[0];
     if (file) {
+      setParseError('');
       setFiles((prev) => ({ ...prev, [type]: file }));
     }
   };
@@ -54,6 +57,7 @@ const UploadModule: React.FC = () => {
     }
 
     setIsParsing(true);
+    setParseError('');
     appendLog(
       createJobLog(
         'info',
@@ -85,10 +89,13 @@ const UploadModule: React.FC = () => {
       );
       advanceWindow('upload', 'configure', 'TC Generator - Configuration');
     } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Failed to parse the selected workbook.';
+      setParseError(message);
       appendLog(
         createJobLog(
           'error',
-          error instanceof Error ? error.message : 'Failed to parse the selected workbook.',
+          message,
         ),
       );
     } finally {
@@ -194,6 +201,15 @@ const UploadModule: React.FC = () => {
           <div className="status-bar-field p-2 text-xs flex items-center gap-2">
             <span className="font-bold">[READY]</span>
             Workbook staged. Parse the job to populate the shared desktop state.
+          </div>
+        )}
+        {parseError && (
+          <div
+            className="status-bar-field p-2 text-xs"
+            style={{ color: 'var(--status-reject-dark)' }}
+            role="alert"
+          >
+            <span className="font-bold">[PARSE ERROR]</span> {parseError}
           </div>
         )}
       </div>

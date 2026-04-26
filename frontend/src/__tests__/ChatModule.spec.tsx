@@ -22,10 +22,16 @@ vi.mock('../services/agentClient', () => ({
   historyToMessages: vi.fn(() => []),
 }));
 
+const parseJobFilesMock = vi.fn();
+vi.mock('../services/jobAdapter', () => ({
+  parseJobFiles: (...args: unknown[]) => parseJobFilesMock(...args),
+}));
+
 import { useAgentStore } from '../store/useAgentStore';
 import MessageList from '../components/modules/chat/MessageList';
 import ToolCallCard from '../components/modules/chat/ToolCallCard';
 import ConfirmCard from '../components/modules/chat/ConfirmCard';
+import InputArea from '../components/modules/chat/InputArea';
 import type { UIMessage, UIToolPart, UIConfirmPart } from '../services/agentEvents';
 
 function makeStore(overrides = {}) {
@@ -70,6 +76,31 @@ describe('MessageList', () => {
     expect(agent).toBeInTheDocument();
     // User comes before agent in DOM
     expect(user.compareDocumentPosition(agent) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+});
+
+describe('InputArea', () => {
+  beforeEach(() => {
+    parseJobFilesMock.mockReset();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (useAgentStore as any).mockImplementation((selector: (s: unknown) => unknown) =>
+      typeof selector === 'function' ? selector(makeStore()) : makeStore(),
+    );
+  });
+
+  it('shows attached workbook parse errors with backend detail', async () => {
+    parseJobFilesMock.mockRejectedValue(new Error('failed to parse workbook'));
+    render(<InputArea />);
+
+    const input = document.querySelector('input[accept=".xlsx,.xlsm"]') as HTMLInputElement;
+    fireEvent.change(input, {
+      target: {
+        files: [new File(['bad'], 'bad.xlsx', { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })],
+      },
+    });
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('failed to parse workbook');
+    expect(screen.getByDisplayValue(/Parse 失敗：bad\.xlsx - failed to parse workbook/)).toBeInTheDocument();
   });
 });
 

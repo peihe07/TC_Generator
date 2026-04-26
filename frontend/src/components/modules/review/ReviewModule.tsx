@@ -32,7 +32,6 @@ const ReviewModule: React.FC = () => {
     jobMetadata,
     updateTcRow,
     deleteTcRows,
-    renumberTcRows,
     setAwaitingApply,
     applyRegenerated,
     clearAwaitingApply,
@@ -190,14 +189,12 @@ const ReviewModule: React.FC = () => {
     if (pendingDelete.kind === 'single') {
       const id = pendingDelete.id;
       deleteTcRows([id]);
-      renumberTcRows();
       collapseOne(id);
       if (editingId === id) setEditingRowId(null);
       setSelectedIds(new Set());
     } else {
       const ids = [...selectedIds];
       deleteTcRows(ids);
-      renumberTcRows();
       appendLog(createJobLog('info', `Deleted ${ids.length} row(s).`));
       setExpandedRows((prev) => {
         const next = new Set(prev);
@@ -317,7 +314,6 @@ const ReviewModule: React.FC = () => {
             appendLog(
               createJobLog('success', 'Re-run complete.'),
             );
-            renumberTcRows();
           },
           onError: (message) => {
             appendLog(createJobLog('warn', message));
@@ -337,7 +333,6 @@ const ReviewModule: React.FC = () => {
     setRegenerating,
     updateTcRow,
     addTcRowAfter,
-    renumberTcRows,
     tcRows,
     config,
     appendLog,
@@ -346,7 +341,6 @@ const ReviewModule: React.FC = () => {
 
   const handleApplyRegen = (id: string, fields: DiffFieldKey[]) => {
     applyRegenerated(id, fields);
-    renumberTcRows();
     collapseOne(id);
     setEditingRowId(null);
     setSelectedIds(new Set());

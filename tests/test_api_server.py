@@ -648,6 +648,7 @@ def test_stream_generate_job_marks_strict_validation_failures(mock_generate_sing
     response = client.get("/api/generate/stream", params={"jobId": payload["jobId"]})
     assert response.status_code == 200
     assert '"type": "row.failed"' in response.text
+    assert '"status": "error"' in response.text
     assert '"generated": null' in response.text
 
 

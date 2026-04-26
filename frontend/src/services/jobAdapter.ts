@@ -1,7 +1,5 @@
 "use client";
 
-import * as XLSX from "xlsx";
-
 import type {
   GenerationConfig,
   AwaitingApplyFields,
@@ -134,20 +132,6 @@ type MatchPreview = {
   }>;
 };
 
-function getStringCell(
-  row: Record<string, unknown>,
-  candidates: string[],
-  fallback = "",
-) {
-  for (const candidate of candidates) {
-    const value = row[candidate];
-    if (value !== undefined && value !== null && String(value).trim()) {
-      return String(value).trim();
-    }
-  }
-  return fallback;
-}
-
 function mapValidationErrors(
   validation: Array<Record<string, unknown>> | undefined,
 ): ValidationError[] {
@@ -237,74 +221,6 @@ function parseSplitDecision(raw: unknown): TcRow["splitDecision"] {
   };
 }
 
-function buildMockRowsFromWorkbook(file: File): Promise<TcRow[]> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onerror = () => reject(new Error("Failed to read workbook."));
-    reader.onload = (event) => {
-      try {
-        const workbook = XLSX.read(event.target?.result, { type: "array" });
-        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const rows = XLSX.utils.sheet_to_json<Record<string, unknown>>(worksheet, {
-          defval: "",
-        });
-
-        const tcRows = rows.slice(0, 25).map((row, index) => {
-          const reqId = getStringCell(row, [
-            "req_id",
-            "Req ID",
-            "Requirement ID",
-            "RequirementId",
-          ], `ROW-${index + 1}`);
-          const testItem = getStringCell(row, [
-            "test_item",
-            "Test Item",
-            "Requirement",
-            "Description",
-          ]);
-
-          return {
-            id: `preview-${index + 1}`,
-            reqId,
-            testGroup: "Preview",
-            testSet: getStringCell(row, ["test_set", "Test Set"], "Unassigned"),
-            testItem,
-            preConditions: "",
-            inputTestData: "",
-            steps: "",
-            expectedResults: "",
-            status: "pending",
-          } satisfies TcRow;
-        });
-
-        resolve(
-          tcRows.length
-            ? tcRows
-            : [
-                {
-                  id: "preview-1",
-                  reqId: "ROW-1",
-                  testGroup: "Preview",
-                  testSet: "Unassigned",
-                  testItem: "Workbook loaded locally. No structured rows detected.",
-                  preConditions: "",
-                  inputTestData: "",
-                  steps: "",
-                  expectedResults: "",
-                  status: "pending",
-                },
-              ],
-        );
-      } catch (error) {
-        reject(error instanceof Error ? error : new Error("Invalid workbook."));
-      }
-    };
-
-    reader.readAsArrayBuffer(file);
-  });
-}
-
 function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
   const hasWarning = index % 4 === 1;
   return {
@@ -366,59 +282,37 @@ export async function parseJobFiles(input: {
   referenceWorkbookFile?: File;
   specFile?: File;
 }): Promise<ParseJobResult> {
-  try {
-    const payload = new FormData();
-    payload.append("raw_file", input.rawFile);
-    if (input.referenceWorkbookFile) {
-      payload.append("reference_file", input.referenceWorkbookFile);
-    }
-    if (input.specFile) {
-      payload.append("spec_file", input.specFile);
-    }
-
-    const response = await parseJsonResponse<{
-      jobId: string;
-      project: string | null;
-      testGroup: string | null;
-      rowCount: number;
-      rows: Array<Record<string, unknown>>;
-    }>(await fetch(`${appApiBase}/parse`, { method: "POST", body: payload }));
-
-    const testGroup = response.testGroup ?? "Parsed";
-    return {
-      jobMetadata: {
-        jobId: response.jobId,
-        projectName:
-          response.project ??
-          input.rawFile.name.replace(/\.(xlsx|xlsm)$/i, "") ??
-          "Parsed Project",
-        createdAt: new Date().toISOString(),
-        totalRows: response.rowCount,
-      },
-      rows: response.rows.map((row) => mapApiRowToTcRow(row, testGroup)),
-      stats: {
-        total: response.rowCount,
-        processed: 0,
-        success: 0,
-        fail: 0,
-        cost: 0,
-      },
-    };
-  } catch {
-    // Fall back to local workbook preview below.
+  const payload = new FormData();
+  payload.append("raw_file", input.rawFile);
+  if (input.referenceWorkbookFile) {
+    payload.append("reference_file", input.referenceWorkbookFile);
+  }
+  if (input.specFile) {
+    payload.append("spec_file", input.specFile);
   }
 
-  const rows = await buildMockRowsFromWorkbook(input.rawFile);
+  const response = await parseJsonResponse<{
+    jobId: string;
+    project: string | null;
+    testGroup: string | null;
+    rowCount: number;
+    rows: Array<Record<string, unknown>>;
+  }>(await fetch(`${appApiBase}/parse`, { method: "POST", body: payload }));
+
+  const testGroup = response.testGroup ?? "Parsed";
   return {
     jobMetadata: {
-      jobId: `mock-${Date.now()}`,
-      projectName: input.rawFile.name.replace(/\.(xlsx|xlsm)$/i, ""),
+      jobId: response.jobId,
+      projectName:
+        response.project ??
+        input.rawFile.name.replace(/\.(xlsx|xlsm)$/i, "") ??
+        "Parsed Project",
       createdAt: new Date().toISOString(),
-      totalRows: rows.length,
+      totalRows: response.rowCount,
     },
-    rows,
+    rows: response.rows.map((row) => mapApiRowToTcRow(row, testGroup)),
     stats: {
-      total: rows.length,
+      total: response.rowCount,
       processed: 0,
       success: 0,
       fail: 0,
@@ -599,9 +493,9 @@ export function startGeneration(
           if (
             eventRow &&
             typeof eventRow.id === "string" &&
-            (eventType === "row.completed" || eventType === "row.failed")
+            (eventType === "row.completed" || eventType === "row.failed" || eventType === "row.added")
           ) {
-            rowOutcomes.set(eventRow.id, eventType === "row.completed" ? "success" : "fail");
+            rowOutcomes.set(eventRow.id, eventType === "row.failed" ? "fail" : "success");
           }
           const stats = data.stats as Record<string, number> | undefined;
           if (stats) {
@@ -642,9 +536,10 @@ export function startGeneration(
           if (typeof data.jobId === 'string') completedJobId = data.jobId;
 
           if ((data.type === "row.completed" || data.type === "row.failed") && data.row) {
+            const apiRow = data.row as Record<string, unknown>;
             const row = mapApiRowToTcRow(
-              data.row as Record<string, unknown>,
-              input.rows.find((item) => item.id === (data.row as Record<string, unknown>).id)?.testGroup ?? "Generated",
+              data.type === "row.failed" ? { ...apiRow, status: "error" } : apiRow,
+              input.rows.find((item) => item.id === apiRow.id)?.testGroup ?? "Generated",
             );
             callbacks.onRow?.(row, String(data.message ?? "Row updated."));
           }
