@@ -54,6 +54,26 @@ def _build_job_id() -> str:
     return f"parse-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
 
 
+def _safe_upload_filename(filename: str | None, *, fallback: str, label: str) -> str:
+    raw = (filename or "").strip()
+    if not raw:
+        return fallback
+    if "/" in raw or "\\" in raw:
+        raise ToolError(
+            f"{label} filename must not contain path separators",
+            code="bad_request",
+            details={"filename": filename},
+        )
+    safe = os.path.basename(raw)
+    if safe in {"", ".", ".."}:
+        raise ToolError(
+            f"{label} filename is invalid",
+            code="bad_request",
+            details={"filename": filename},
+        )
+    return safe
+
+
 def _validate_extension(filename: str | None, *, label: str) -> str:
     """驗證副檔名，回傳小寫副檔名。"""
     ext = os.path.splitext(filename or "")[1].lower()
@@ -88,6 +108,7 @@ def parse_workbook_tool(
     Raises:
         ToolError: 副檔名錯誤或檔案讀取失敗
     """
+    raw_filename = _safe_upload_filename(raw_filename, fallback="upload.xlsx", label="raw_file")
     _validate_extension(raw_filename, label="raw_file")
 
     raw_path_obj = Path(raw_path)
@@ -106,6 +127,11 @@ def parse_workbook_tool(
 
     reference_bytes: bytes | None = None
     if reference_path and reference_filename:
+        reference_filename = _safe_upload_filename(
+            reference_filename,
+            fallback="reference.xlsx",
+            label="reference_file",
+        )
         _validate_extension(reference_filename, label="reference_file")
         ref_path = Path(reference_path)
         if not ref_path.is_file():
@@ -118,6 +144,11 @@ def parse_workbook_tool(
     spec_format: str | None = None
     spec_bytes: bytes | None = None
     if spec_path and spec_filename:
+        spec_filename = _safe_upload_filename(
+            spec_filename,
+            fallback="spec.bin",
+            label="spec_file",
+        )
         spec_format = detect_format(spec_filename)
         sp = Path(spec_path)
         if not sp.is_file():

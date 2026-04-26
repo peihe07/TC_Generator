@@ -74,8 +74,8 @@ def test_legacy_pickle_payload_is_rejected(db_path: Path) -> None:
         store.get("legacy")
 
 
-def test_valid_legacy_pickle_payload_is_migrated(db_path: Path) -> None:
-    """Existing trusted app data can be upgraded in place on first open."""
+def test_valid_legacy_pickle_payload_is_rejected_by_default(db_path: Path) -> None:
+    """Startup should not deserialize legacy pickle unless explicitly opted in."""
     record = {"jobId": "legacy-ok", "rawBytes": b"\x00\x01"}
     conn = sqlite3.connect(db_path)
     conn.execute(
@@ -93,6 +93,29 @@ def test_valid_legacy_pickle_payload_is_migrated(db_path: Path) -> None:
     conn.close()
 
     store = SqliteJobStore(db_path)
+    with pytest.raises(ValueError, match="invalid job payload"):
+        store.get("legacy-ok")
+
+
+def test_valid_legacy_pickle_payload_can_be_migrated_with_explicit_opt_in(db_path: Path) -> None:
+    """Trusted legacy app data can still be upgraded by an explicit migration run."""
+    record = {"jobId": "legacy-ok", "rawBytes": b"\x00\x01"}
+    conn = sqlite3.connect(db_path)
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS jobs ("
+        "  id TEXT PRIMARY KEY,"
+        "  data BLOB NOT NULL,"
+        "  updated_at REAL NOT NULL DEFAULT (strftime('%s','now'))"
+        ")"
+    )
+    conn.execute(
+        "INSERT INTO jobs (id, data) VALUES (?, ?)",
+        ("legacy-ok", pickle.dumps(record, protocol=pickle.HIGHEST_PROTOCOL)),
+    )
+    conn.commit()
+    conn.close()
+
+    store = SqliteJobStore(db_path, allow_legacy_pickle_migration=True)
     assert store.get("legacy-ok") == record
 
     conn = sqlite3.connect(db_path)

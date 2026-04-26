@@ -260,6 +260,19 @@ async def _read_with_limit(upload: UploadFile, label: str) -> bytes:
     return data
 
 
+def _safe_upload_filename(filename: str | None, fallback: str) -> str:
+    """Return a basename-only upload filename, rejecting traversal input."""
+    raw = (filename or "").strip()
+    if not raw:
+        return fallback
+    if "/" in raw or "\\" in raw:
+        raise HTTPException(status_code=400, detail="filename must not contain path separators")
+    safe = os.path.basename(raw)
+    if safe in {"", ".", ".."}:
+        raise HTTPException(status_code=400, detail="invalid filename")
+    return safe
+
+
 def _build_generate_job_id() -> str:
     return f"generate-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
 
@@ -267,6 +280,7 @@ def _build_generate_job_id() -> str:
 def _build_export_path(filename: str, output_mode: str) -> str:
     export_dir = os.path.join(tempfile.gettempdir(), "tc_generator_exports")
     os.makedirs(export_dir, exist_ok=True)
+    filename = _safe_upload_filename(filename, "export.xlsx")
     if output_mode == "overwrite":
         return os.path.join(export_dir, filename)
     return build_output_path(os.path.join(export_dir, filename))
@@ -525,7 +539,7 @@ def _build_spec_index_for_job(job: dict) -> dict:
         return {}
 
     with tempfile.TemporaryDirectory() as tmp_dir:
-        spec_path = os.path.join(tmp_dir, spec_filename)
+        spec_path = os.path.join(tmp_dir, _safe_upload_filename(spec_filename, "spec.bin"))
         with open(spec_path, "wb") as spec_file:
             spec_file.write(spec_bytes)
         return parser(spec_path)
@@ -538,7 +552,10 @@ def _build_reference_match_index_for_job(job: dict) -> dict:
         return {}
 
     with tempfile.TemporaryDirectory() as tmp_dir:
-        reference_path = os.path.join(tmp_dir, reference_filename)
+        reference_path = os.path.join(
+            tmp_dir,
+            _safe_upload_filename(reference_filename, "reference.xlsx"),
+        )
         with open(reference_path, "wb") as reference_file:
             reference_file.write(reference_bytes)
         try:
@@ -918,12 +935,6 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 
-
-@app.get("/api/health")
-def healthcheck() -> dict:
-    return {"status": "ok", "service": "tc-generator-api"}
-
-
 @app.delete("/api/admin/reset")
 def reset_all_state(request: Request) -> dict:
     """Wipe every SQLite row (jobs, agent sessions, traces) — no recovery.
@@ -1002,37 +1013,41 @@ async def parse_workbook(
     spec_bytes = await _read_with_limit(spec_file, "spec_file") if spec_file else None
 
     raw_ext = os.path.splitext(raw_file.filename or "")[1].lower() or ".xlsx"
+    raw_filename = _safe_upload_filename(raw_file.filename, f"upload{raw_ext}")
+    reference_filename = (
+        _safe_upload_filename(effective_reference_file.filename, "reference.xlsx")
+        if effective_reference_file else None
+    )
+    spec_filename = (
+        _safe_upload_filename(spec_file.filename, "spec.bin")
+        if spec_file else None
+    )
 
     with tempfile.TemporaryDirectory() as tmp_dir:
-        raw_path = os.path.join(tmp_dir, raw_file.filename or f"upload{raw_ext}")
+        raw_path = os.path.join(tmp_dir, raw_filename)
         with open(raw_path, "wb") as handle:
             handle.write(raw_bytes)
 
         reference_path: str | None = None
         if effective_reference_file and reference_bytes is not None:
-            reference_path = os.path.join(
-                tmp_dir,
-                effective_reference_file.filename or "reference.xlsx",
-            )
+            reference_path = os.path.join(tmp_dir, reference_filename or "reference.xlsx")
             with open(reference_path, "wb") as handle:
                 handle.write(reference_bytes)
 
         spec_path: str | None = None
         if spec_file and spec_bytes is not None:
-            spec_path = os.path.join(tmp_dir, spec_file.filename or "spec.bin")
+            spec_path = os.path.join(tmp_dir, spec_filename or "spec.bin")
             with open(spec_path, "wb") as handle:
                 handle.write(spec_bytes)
 
         try:
             return parse_workbook_tool(
                 raw_path=raw_path,
-                raw_filename=raw_file.filename or f"upload{raw_ext}",
+                raw_filename=raw_filename,
                 reference_path=reference_path,
-                reference_filename=(
-                    effective_reference_file.filename if effective_reference_file else None
-                ),
+                reference_filename=reference_filename,
                 spec_path=spec_path,
-                spec_filename=spec_file.filename if spec_file else None,
+                spec_filename=spec_filename,
                 job_store=JOB_REGISTRY,
             )
         except ToolError as exc:
@@ -1075,7 +1090,10 @@ async def preview_spec_matching(payload: MatchPreviewRequest) -> dict:
     try:
         if reference_bytes and reference_filename:
             with tempfile.TemporaryDirectory() as tmp_dir:
-                reference_path = os.path.join(tmp_dir, reference_filename)
+                reference_path = os.path.join(
+                    tmp_dir,
+                    _safe_upload_filename(reference_filename, "reference.xlsx"),
+                )
                 with open(reference_path, "wb") as handle:
                     handle.write(reference_bytes)
                 result = match_spec_tool(rows=prepared_rows, reference_workbook_path=reference_path)
@@ -2051,7 +2069,7 @@ async def attach_raw_workbook(job_id: str, raw_file: UploadFile = File(...)) -> 
     匯入 .tcw.json workspace 後才要 export），前端偵測到 fallbackTemplate
     會 prompt 使用者上傳原始 Excel，再呼叫這支 endpoint 補回。
     """
-    filename = raw_file.filename or ""
+    filename = _safe_upload_filename(raw_file.filename, "upload.xlsx")
     ext = os.path.splitext(filename)[1].lower()
     if ext not in ALLOWED_RAW_EXTENSIONS:
         raise HTTPException(

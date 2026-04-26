@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { proxyJsonResponse } from '@/app/api/_lib/backend';
+import { DELETE as resetAllData } from '@/app/api/admin/reset/route';
 
 describe('proxyJsonResponse', () => {
   const originalFetch = global.fetch;
@@ -46,5 +47,18 @@ describe('proxyJsonResponse', () => {
     expect(response.status).toBe(500);
     await expect(response.text()).resolves.toBe('Internal Server Error');
     expect(response.headers.get('content-type')).toContain('text/plain');
+  });
+
+  it('blocks the reset proxy when the frontend host is not loopback', async () => {
+    global.fetch = vi.fn();
+
+    const response = await resetAllData(
+      new Request('https://tc-generator.example.com/api/admin/reset', {
+        method: 'DELETE',
+      }),
+    );
+
+    expect(response.status).toBe(403);
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 });

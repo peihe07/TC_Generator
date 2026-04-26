@@ -75,6 +75,20 @@ def test_parse_tool_rejects_invalid_extension(tmp_path):
     assert info.value.http_status == 400
 
 
+def test_parse_tool_rejects_path_separator_in_filename(tmp_path):
+    raw = _write_workbook(tmp_path / "SomeProject_SWQT_DeviceManager_20260408.xlsx")
+
+    with pytest.raises(ToolError) as info:
+        parse_workbook_tool(
+            raw_path=str(raw),
+            raw_filename="../evil.xlsx",
+            job_store={},
+        )
+
+    assert info.value.code == "bad_request"
+    assert info.value.http_status == 400
+
+
 def test_parse_tool_missing_file(tmp_path):
     missing = tmp_path / "nope.xlsx"
 

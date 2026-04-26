@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""離線預處理 SYS1/HMI spec xlsx：解析 + 算 embedding → 輸出 pickle 快取。
+"""離線預處理 SYS1/HMI spec xlsx：解析 + 算 embedding → 輸出 JSON 快取。
 
 典型用法
 --------
-預處理所有 ``spec-index/cache/`` 下的 xlsx（pkl 舊於 xlsx 時才重算）：
+預處理所有 ``spec-index/cache/`` 下的 xlsx（JSON 快取舊於 xlsx 時才重算）：
 
     python scripts/build_spec_index.py
 
@@ -42,7 +42,7 @@ from spec_matcher import (  # noqa: E402
     DEFAULT_EMBEDDING_MODEL,
     attach_embeddings,
     build_spec_index,
-    is_pkl_fresh,
+    is_index_fresh,
     save_spec_index,
     update_manifest,
 )
@@ -70,8 +70,8 @@ def process_one(
     manifest_path: Path,
 ) -> str:
     """處理單一 xlsx，回傳狀態字串供 log。"""
-    pkl_path = xlsx_path.with_suffix(".pkl")
-    if not force and is_pkl_fresh(xlsx_path, pkl_path):
+    index_path = xlsx_path.with_suffix(".json")
+    if not force and is_index_fresh(xlsx_path, index_path):
         return f"skip  (fresh)    {xlsx_path.name}"
 
     index = build_spec_index(str(xlsx_path))
@@ -80,7 +80,7 @@ def process_one(
 
     save_spec_index(
         index,
-        pkl_path,
+        index_path,
         name=xlsx_path.stem,
         source_file=xlsx_path,
     )

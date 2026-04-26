@@ -8,7 +8,7 @@ Layer 2   : Semantic match via pre-computed embeddings (cosine similarity)。
 ------------------
 由 ``scripts/build_spec_index.py`` 解析 ``spec-index/cache/*.xlsx``，呼叫
 :func:`build_spec_index` 產生 :class:`SpecIndex`，可再以 :func:`attach_embeddings`
-批次算 embedding，最後 :func:`save_spec_index` 輸出 ``<basename>.pkl`` 於同一
+批次算 embedding，最後 :func:`save_spec_index` 輸出 ``<basename>.json`` 於同一
 資料夾，並經 :func:`update_manifest` 更新 ``manifest.json``。
 
 執行階段
@@ -22,7 +22,6 @@ from __future__ import annotations
 import json
 import math
 import os
-import pickle
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -211,7 +210,7 @@ def save_spec_index(
     name: str,
     source_file: str | os.PathLike,
 ) -> Path:
-    """以 pickle 持久化 SpecIndex 到 ``out_path``。"""
+    """以 JSON 持久化 SpecIndex 到 ``out_path``。"""
     path = Path(out_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     src = Path(source_file)
@@ -221,15 +220,39 @@ def save_spec_index(
         "source_mtime": src.stat().st_mtime if src.exists() else None,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "embedding_model": index.embedding_model,
-        "entries": index.entries,
+        "entries": [_entry_to_json_safe(entry) for entry in index.entries],
         "codes_map": {
             code: _entry_index(index.entries, entry)
             for code, entry in index.items()
         },
     }
-    with path.open("wb") as f:
-        pickle.dump(payload, f, protocol=pickle.HIGHEST_PROTOCOL)
+    path.write_text(
+        json.dumps(payload, ensure_ascii=True, separators=(",", ":"), sort_keys=True),
+        encoding="utf-8",
+    )
     return path
+
+
+def _entry_to_json_safe(entry: dict) -> dict:
+    out = dict(entry)
+    tokens = out.get("tokens")
+    if isinstance(tokens, set):
+        out["tokens"] = sorted(tokens)
+    return out
+
+
+def _entry_from_json_safe(entry: object) -> dict:
+    if not isinstance(entry, dict):
+        raise ValueError("invalid spec index entry: expected object")
+    out = dict(entry)
+    tokens = out.get("tokens")
+    if isinstance(tokens, list):
+        out["tokens"] = {str(token) for token in tokens}
+    elif tokens is None:
+        out["tokens"] = _tokenize(str(out.get("description") or ""))
+    elif not isinstance(tokens, set):
+        out["tokens"] = {str(tokens)}
+    return out
 
 
 def _entry_index(entries: list[dict], target: dict) -> int:
@@ -249,17 +272,17 @@ def load_spec_index(
     Parameters
     ----------
     names
-        要載入的 spec basename（不含 ``.pkl``）。None 代表資料夾內全部 pkl。
+        要載入的 spec basename（不含 ``.json``）。None 代表資料夾內全部 json。
     """
     base = Path(index_dir)
     if not base.exists():
         raise FileNotFoundError(f"Spec index dir not found: {base}")
 
     if names is None:
-        pkl_files = sorted(base.glob("*.pkl"))
+        index_files = sorted(base.glob("*.json"))
     else:
-        pkl_files = [base / f"{n}.pkl" for n in names]
-        missing = [p for p in pkl_files if not p.exists()]
+        index_files = [base / f"{n}.json" for n in names]
+        missing = [p for p in index_files if not p.exists()]
         if missing:
             raise FileNotFoundError(
                 "Missing spec index files: " + ", ".join(str(m) for m in missing)
@@ -267,14 +290,26 @@ def load_spec_index(
 
     merged = SpecIndex()
     models_seen: set[str] = set()
-    for pkl_path in pkl_files:
-        with pkl_path.open("rb") as f:
-            payload = pickle.load(f)
+    for index_path in index_files:
+        try:
+            payload = json.loads(index_path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ValueError(
+                f"Invalid spec index cache {index_path}: expected JSON. "
+                "Regenerate it with scripts/build_spec_index.py."
+            ) from exc
+        if not isinstance(payload, dict):
+            raise ValueError(f"Invalid spec index cache {index_path}: top-level JSON must be an object")
+
+        raw_entries = payload.get("entries")
+        if not isinstance(raw_entries, list):
+            raise ValueError(f"Invalid spec index cache {index_path}: entries must be an array")
+        entries = [_entry_from_json_safe(entry) for entry in raw_entries]
 
         offset = len(merged.entries)
-        merged.entries.extend(payload["entries"])
+        merged.entries.extend(entries)
         for code, idx in (payload.get("codes_map") or {}).items():
-            if 0 <= idx < len(payload["entries"]):
+            if isinstance(idx, int) and 0 <= idx < len(entries):
                 merged[code] = merged.entries[offset + idx]
 
         model = payload.get("embedding_model")
@@ -291,13 +326,13 @@ def load_spec_index(
     return merged
 
 
-def is_pkl_fresh(xlsx_path: str | os.PathLike, pkl_path: str | os.PathLike) -> bool:
-    """pkl 存在且 mtime 不早於 xlsx 視為 fresh。"""
-    pkl = Path(pkl_path)
+def is_index_fresh(xlsx_path: str | os.PathLike, index_path: str | os.PathLike) -> bool:
+    """Cache file exists and is not older than the source xlsx."""
+    cache = Path(index_path)
     xlsx = Path(xlsx_path)
-    if not pkl.exists() or not xlsx.exists():
+    if not cache.exists() or not xlsx.exists():
         return False
-    return pkl.stat().st_mtime >= xlsx.stat().st_mtime
+    return cache.stat().st_mtime >= xlsx.stat().st_mtime
 
 
 def update_manifest(

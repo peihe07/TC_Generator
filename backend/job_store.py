@@ -12,7 +12,6 @@ import base64
 import binascii
 import json
 import os
-import pickle
 import sqlite3
 import threading
 from pathlib import Path
@@ -21,7 +20,7 @@ from pathlib import Path
 class SqliteJobStore:
     """Dict-like SQLite job registry."""
 
-    def __init__(self, db_path: str | Path):
+    def __init__(self, db_path: str | Path, *, allow_legacy_pickle_migration: bool | None = None):
         self._path = Path(db_path)
         self._path.parent.mkdir(parents=True, exist_ok=True)
         # 多執行緒安全：FastAPI worker 可能跨執行緒呼叫
@@ -35,7 +34,10 @@ class SqliteJobStore:
             ")"
         )
         self._conn.commit()
-        self._migrate_legacy_pickle_rows()
+        if allow_legacy_pickle_migration is None:
+            allow_legacy_pickle_migration = os.environ.get("TC_ALLOW_LEGACY_PICKLE_MIGRATION") == "1"
+        if allow_legacy_pickle_migration:
+            self._migrate_legacy_pickle_rows()
 
     # ---- dict-like API ----
     def __setitem__(self, key: str, value: dict) -> None:
@@ -191,6 +193,8 @@ class SqliteJobStore:
 
     @staticmethod
     def _try_load_legacy_pickle(payload: bytes) -> dict | None:
+        import pickle
+
         try:
             decoded = pickle.loads(payload)
         except Exception:

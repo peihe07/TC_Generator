@@ -3,9 +3,12 @@ import pytest
 from openpyxl import Workbook
 
 from spec_matcher import (
+    SpecIndex,
     extract_pdm_codes,
     build_spec_index,
+    load_spec_index,
     match_spec_references,
+    save_spec_index,
 )
 
 
@@ -100,6 +103,24 @@ class TestBuildSpecIndex:
     def test_all_entries(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)
         assert len(index) == 4
+
+    def test_save_and_load_index_uses_json_cache(self, sys1_xlsx, tmp_path):
+        index = build_spec_index(sys1_xlsx)
+        cache_path = tmp_path / "SYS1_spec.json"
+
+        save_spec_index(index, cache_path, name="SYS1_spec", source_file=sys1_xlsx)
+
+        assert cache_path.read_text(encoding="utf-8").startswith("{")
+        loaded = load_spec_index(["SYS1_spec"], index_dir=tmp_path)
+        assert isinstance(loaded, SpecIndex)
+        assert loaded["PDM01"]["nrl_id"] == "NRL-144757"
+        assert len(loaded.entries) == len(index.entries)
+
+    def test_load_index_rejects_legacy_binary_pickle(self, tmp_path):
+        (tmp_path / "legacy.json").write_bytes(b"\x80\x05bad-pickle-payload")
+
+        with pytest.raises(ValueError, match="expected JSON"):
+            load_spec_index(["legacy"], index_dir=tmp_path)
 
 
 class TestMatchSpecReferences:

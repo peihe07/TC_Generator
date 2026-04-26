@@ -111,6 +111,36 @@ def test_admin_reset_wipes_stores_from_localhost():
     assert JOB_REGISTRY.get(job_id) is None
 
 
+def test_parse_workbook_rejects_path_separator_in_filename():
+    response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "../evil.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    assert response.status_code == 400
+    assert "filename" in response.json()["detail"]
+
+
+def test_attach_raw_rejects_path_separator_in_filename():
+    response = client.post(
+        "/api/jobs/job-sec/attach-raw",
+        files={
+            "raw_file": (
+                r"..\\evil.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    assert response.status_code == 400
+    assert "filename" in response.json()["detail"]
+
+
 def test_metrics_aggregate_returns_shape_with_empty_store():
     # 測試環境 JOB_REGISTRY 可能有也可能沒有資料；只驗回傳 shape 正確
     response = client.get("/api/metrics/aggregate")
