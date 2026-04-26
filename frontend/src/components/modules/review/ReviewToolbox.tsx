@@ -84,7 +84,7 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
         className="flex items-center gap-1"
         onClick={onRegenerate}
         disabled={isRegenerating}
-        title="Re-generate TC text only (keep existing split)"
+        title="Re-generate using the reason; AI may keep or split the selected row"
       >
         <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
         {isRegenerating ? 'Regenerating...' : 'Regenerate'}
