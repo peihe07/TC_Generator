@@ -156,7 +156,7 @@
 
 <h1>TC Generator — Workflow Diagrams</h1>
 <p class="subtitle">
-  更新：2026-04-20 — 與 <code>docs/STATUS.md</code> 同步。
+  更新：2026-04-26 — 與 <code>docs/STATUS.md</code> 同步。
 </p>
 
 <!-- ========================================
@@ -207,7 +207,7 @@
     <text class="step-number" x="540" y="112">4</text>
     <text class="th" x="598" y="148" text-anchor="middle">Review</text>
     <text class="ts" x="598" y="170" text-anchor="middle">逐筆 accept/reject</text>
-    <text class="ts" x="598" y="186" text-anchor="middle">必要時 regenerate / rerun</text>
+    <text class="ts" x="598" y="186" text-anchor="middle">reason regenerate / rerun</text>
   </g>
 
   <!-- Step 5: Export -->
@@ -270,8 +270,8 @@
 <div class="note">
   <strong>Review 操作分兩種</strong>：
   <ul style="margin: 6px 0 0 18px; padding: 0;">
-    <li><strong>Regenerate</strong>：1:1 替換既有 TC 的文字，不重新評估拆分；使用 <code>allow_split=False</code> 確保每筆選中 row 產出恰好一筆新 TC。走 diff-preview 流程，使用者可接受 / 捨棄。</li>
-    <li><strong>Re-run</strong>：重走完整 pipeline（含 decompose）。一筆 row 可能產生多筆 TC：primary 覆蓋原列、sub-TCs 插在下方。適合對 AI 首輪拆分不滿意的場景。</li>
+    <li><strong>Regenerate</strong>：使用者先填 <code>regenerateReason</code>，AI 以該原因作為主要修正目標並重新判斷是否需要拆分。若不拆，只回 primary <code>row.regenerated</code>；若需要拆，先回 <code>req.split.insertPlan</code>（新增幾列、插入錨點、是否重排），再用 <code>row.added</code> 補 sub-TCs。Primary 仍走 diff-preview，新增列直接插在 parent 後方。</li>
+    <li><strong>Re-run</strong>：重走完整 pipeline（含 decompose），不依賴 reviewer reason。一筆 row 可能產生多筆 TC：先回 <code>req.split.insertPlan</code>，primary 覆蓋原列，sub-TCs 插在下方。適合對 AI 首輪拆分不滿意或要補缺漏情境的場景。</li>
   </ul>
 </div>
 
@@ -336,7 +336,7 @@
      ======================================== -->
 <div class="section">
 <h2>3. 單一 Test Case 的狀態流轉</h2>
-<p class="lede">每一筆 TC 從解析開始，到最後被匯出，會經過幾個明確的狀態。Review 階段的決策是核心。若 AI 判斷一筆 requirement 應拆成多個 scenario，generating 期間會觸發 <code>req.split</code> 產生額外 sub-TC rows。</p>
+<p class="lede">每一筆 TC 從解析開始，到最後被匯出，會經過幾個明確的狀態。Review 階段的決策是核心。若 AI 判斷一筆 requirement 應拆成多個 scenario，generating 期間會先觸發 <code>req.split.insertPlan</code> 說明新增列數與插入錨點，再產生額外 sub-TC rows。</p>
 
 <div class="diagram">
 <svg width="100%" viewBox="0 0 860 500">
@@ -394,9 +394,10 @@
   <line x1="580" y1="220" x2="678" y2="290" class="arr" marker-end="url(#arr-state)"/>
   <text class="tiny" x="628" y="262" text-anchor="middle">Reject</text>
 
-  <!-- Regenerate loop -->
+  <!-- Review rework loop -->
   <path d="M 510 180 Q 510 40  310 90  Q 260 110 265 178" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
-  <text class="tiny" x="350" y="66" fill="var(--purple-600)">Regenerate（重跑）</text>
+  <text class="tiny" x="352" y="52" fill="var(--purple-600)">Regenerate：帶 reason 修正</text>
+  <text class="tiny" x="352" y="68" fill="var(--purple-600)">Re-run：重走完整 pipeline</text>
 
   <!-- Edit loop (stays in reviewing) -->
   <path d="M 510 240 Q 510 300 570 280 Q 620 260 575 240" class="arr-d" marker-end="url(#arr-state)" stroke="var(--amber-600)"/>
@@ -405,12 +406,13 @@
   <!-- Split branch: generating spawns sub-TCs -->
   <g class="c-purple">
     <rect x="240" y="360" width="340" height="60" rx="10"/>
-    <text class="th" x="410" y="388" text-anchor="middle">req.split → 新增 sub-TC rows</text>
-    <text class="ts" x="410" y="406" text-anchor="middle">每個 sub-TC 走各自的 generating → reviewing</text>
+    <text class="th" x="410" y="386" text-anchor="middle">req.split.insertPlan → 空出列位</text>
+    <text class="ts" x="410" y="404" text-anchor="middle">newCount / insertAfterId / renumberRequired</text>
   </g>
   <path d="M 310 240 Q 310 320 330 358" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
   <text class="tiny" x="340" y="306" fill="var(--purple-600)">AI 判斷需拆解</text>
   <path d="M 490 360 Q 520 300 510 242" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
+  <text class="tiny" x="615" y="392" fill="var(--purple-600)">row.added 插在 parent 後方</text>
 
   <!-- Final export note -->
   <line x1="40" y1="450" x2="820" y2="450" stroke="var(--border)" stroke-width="1"/>
@@ -420,7 +422,7 @@
 </svg>
 </div>
 <div class="note">
-  <strong>實作細節</strong>：frontend status 欄位實際有 8 種 — <code>pending / generating / success / fail / reviewing / accepted / rejected / flagged</code>。<code>success</code> 與 <code>fail</code> 是 generating 結束的瞬間狀態（成功即進入 reviewing，失敗會保留供重跑）；<code>flagged</code> 是 reviewing 下的子狀態，表示 validator 有警告需人工留意。
+  <strong>實作細節</strong>：frontend status 欄位實際有 8 種 — <code>pending / generating / success / fail / reviewing / accepted / rejected / flagged</code>。<code>success</code> 與 <code>fail</code> 是 generating 結束的瞬間狀態（成功即進入 reviewing，失敗會保留供重跑）；<code>flagged</code> 是 reviewing 下的子狀態，表示 validator 有警告需人工留意。<code>req.split.insertPlan</code> 是結構變更計畫，AI 只回新增數量與插入位置，實際 row 插入與 ID/順序調整由前端 store 和 export writer 處理。
 </div>
 </div>
 
@@ -543,24 +545,25 @@
   <g class="c-gray"><rect x="60" y="75" width="350" height="60" rx="6"/>
     <text class="ts" x="235" y="100" text-anchor="middle" font-weight="600">A. 內容小修（Edit）</text>
     <text class="tiny" x="235" y="118" text-anchor="middle">展開 row → 改欄位 → Save（狀態維持 reviewing）</text></g>
-  <g class="c-gray"><rect x="426" y="75" width="374" height="60" rx="6"/>
+  <g class="c-gray"><rect x="426" y="75" width="374" height="72" rx="6"/>
     <text class="ts" x="613" y="100" text-anchor="middle" font-weight="600">B. 整筆/批次重生（Regenerate）</text>
-    <text class="tiny" x="613" y="118" text-anchor="middle">勾選一筆或多筆 → Toolbox 按 Regenerate → 出 diff 再挑欄位套用</text></g>
+    <text class="tiny" x="613" y="118" text-anchor="middle">填 reason → AI 判斷是否拆解 → diff 或新增列</text>
+    <text class="tiny" x="613" y="134" text-anchor="middle">需要拆解時先回 insertPlan，再插 row.added</text></g>
 
   <!-- Q2 -->
   <g class="c-coral">
     <rect x="40" y="180" width="780" height="120" rx="10"/>
   </g>
-  <text class="th" x="60" y="208" fill="var(--coral-800)">Q2. Validator 跳警告，不確定要不要管</text>
+  <text class="th" x="60" y="208" fill="var(--coral-800)">Q2. Validator 跳警告，或覺得缺少情境</text>
   <g class="c-gray"><rect x="60" y="225" width="240" height="60" rx="6"/>
     <text class="ts" x="180" y="250" text-anchor="middle" font-weight="600">error（紅）</text>
     <text class="tiny" x="180" y="268" text-anchor="middle">生成時已自動 retry + 升級模型</text></g>
   <g class="c-gray"><rect x="316" y="225" width="240" height="60" rx="6"/>
     <text class="ts" x="436" y="250" text-anchor="middle" font-weight="600">warning（黃）</text>
-    <text class="tiny" x="436" y="268" text-anchor="middle">可忽略；或 Regenerate 看看會不會變好</text></g>
+    <text class="tiny" x="436" y="268" text-anchor="middle">填原因 Regenerate，讓 AI 針對警告修正</text></g>
   <g class="c-gray"><rect x="572" y="225" width="228" height="60" rx="6"/>
-    <text class="ts" x="686" y="250" text-anchor="middle" font-weight="600">手動 Edit</text>
-    <text class="tiny" x="686" y="268" text-anchor="middle">看得懂怎麼修就直接改</text></g>
+    <text class="ts" x="686" y="250" text-anchor="middle" font-weight="600">Re-run</text>
+    <text class="tiny" x="686" y="268" text-anchor="middle">要補缺漏/重拆分就重走 pipeline</text></g>
 
   <!-- Q3 -->
   <g class="c-green">
