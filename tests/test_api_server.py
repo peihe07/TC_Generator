@@ -1199,6 +1199,82 @@ def test_regenerate_stream_accepts_sub_tc_row_from_payload(mock_tool):
 
 
 @patch("api_server.generate_tc_tool")
+def test_regenerate_stream_passes_reason_and_emits_insert_plan(mock_tool):
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    def _tc(label: str) -> dict:
+        return {
+            "tc_title": label,
+            "pre_conditions": "NA",
+            "input_test_data": "NA",
+            "test_procedure": "1. Setup.\n2. Verify.",
+            "expected_result": "1. Setup ok.\n2. Verified.",
+            "design_method": "功能測試 (Functional based ; no specific technique)",
+            "priority": "P1",
+            "split_flag": False,
+            "split_reason": "",
+        }
+
+    mock_tool.return_value = {
+        "tcData": [[_tc("primary"), _tc("negative")]],
+        "splitMeta": [{"req_id": "SWE1-HMI-DM-001-01", "reasoning": "補負向情境。", "keywords": []}],
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
+
+    response = client.post(
+        f"/api/jobs/{job_id}/regenerate/stream",
+        json={
+            "rowIds": ["row-10"],
+            "regenerateReason": "Missing negative validation case",
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "tcId": "newR1L-DM-001",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "Add DM to status bar",
+                    "testSet": "Smoke",
+                    "preConditions": "",
+                    "inputTestData": "",
+                    "steps": "",
+                    "expectedResults": "",
+                    "status": "pending",
+                }
+            ],
+        },
+    )
+
+    assert response.status_code == 200
+    _, kwargs = mock_tool.call_args
+    assert kwargs["allow_split"] is True
+    assert kwargs["rows"][0]["regenerate_reason"] == "Missing negative validation case"
+
+    events = _parse_sse(response.content)
+    split_events = [e for e in events if e["type"] == "req.split"]
+    assert split_events[0]["insertPlan"] == {
+        "needsInsert": True,
+        "insertAfterId": "row-10",
+        "newCount": 1,
+        "renumberRequired": True,
+    }
+    assert len([e for e in events if e["type"] == "row.added"]) == 1
+
+
+@patch("api_server.generate_tc_tool")
 def test_rerun_stream_emits_split_and_added_for_multi_tc(mock_tool):
     """Rerun 走完整 pipeline：一筆 req → 多筆 TC 時要發 req.split + row.regenerated
     (primary) + row.added (extras)，而且帶 parentId 讓前端 insert-after。"""
@@ -1274,10 +1350,187 @@ def test_rerun_stream_emits_split_and_added_for_multi_tc(mock_tool):
     assert regenerated[0]["row"]["id"] == row_id
     assert len(added) == 1
     assert added[0]["row"]["parentId"] == row_id
+    split = [e for e in events if e["type"] == "req.split"][0]
+    assert split["insertPlan"]["newCount"] == 1
+    assert split["insertPlan"]["insertAfterId"] == row_id
     assert "rerun.completed" in types
     # 呼叫時必須帶 allow_split=True
     _, kwargs = mock_tool.call_args
     assert kwargs.get("allow_split") is True
+
+
+@patch("api_server.generate_tc_tool")
+def test_rerun_stream_uses_payload_workbook_context_fields(mock_tool):
+    """Re-run should send the current row context from the UI to AI analysis."""
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+    mock_tool.return_value = {
+        "tcData": [[VALID_TC_JSON]],
+        "splitMeta": [{"req_id": "SWE1-HMI-DM-001-01", "reasoning": "", "keywords": []}],
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
+
+    client.post(
+        f"/api/jobs/{job_id}/rerun/stream",
+        json={
+            "rowIds": ["row-10"],
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "tcId": "newR1L-DM-001",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "Payload Test Item",
+                    "testSet": "Payload Test Set",
+                    "preConditions": "Payload pre-condition",
+                    "inputTestData": "Payload input data",
+                    "steps": "Payload procedure",
+                    "expectedResults": "Payload expected result",
+                    "designMethod": "Payload design method",
+                    "priority": "P0",
+                    "status": "pending",
+                }
+            ],
+        },
+    )
+
+    sent_row = mock_tool.call_args.kwargs["rows"][0]
+    assert sent_row["test_set"] == "Payload Test Set"
+    assert sent_row["test_item"] == "Payload Test Item"
+    assert sent_row["pre_conditions"] == "Payload pre-condition"
+    assert sent_row["test_procedure"] == "Payload procedure"
+    assert sent_row["expected_result"] == "Payload expected result"
+
+
+@patch("api_server.generate_tc_tool")
+def test_rerun_stream_payload_overrides_existing_job_rows(mock_tool):
+    """When a job already has rows, re-run still uses the current UI row context."""
+    from api_server import JOB_REGISTRY
+
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+    JOB_REGISTRY[job_id]["rows"] = [
+        {
+            "id": "row-10",
+            "rowNum": 10,
+            "tcId": "newR1L-DM-001",
+            "reqId": "SWE1-HMI-DM-001-01",
+            "testItem": "Stale backend Test Item",
+            "testSet": "Stale backend Test Set",
+            "specReference": None,
+            "priority": "P2",
+        }
+    ]
+    mock_tool.return_value = {
+        "tcData": [[VALID_TC_JSON]],
+        "splitMeta": [{"req_id": "SWE1-HMI-DM-001-01", "reasoning": "", "keywords": []}],
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
+
+    client.post(
+        f"/api/jobs/{job_id}/rerun/stream",
+        json={
+            "rowIds": ["row-10"],
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "tcId": "newR1L-DM-001",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "Fresh payload Test Item",
+                    "testSet": "Fresh payload Test Set",
+                    "preConditions": "Fresh payload pre-condition",
+                    "steps": "Fresh payload procedure",
+                    "expectedResults": "Fresh payload expected result",
+                    "priority": "P0",
+                    "status": "pending",
+                }
+            ],
+        },
+    )
+
+    sent_row = mock_tool.call_args.kwargs["rows"][0]
+    assert sent_row["test_set"] == "Fresh payload Test Set"
+    assert sent_row["test_item"] == "Fresh payload Test Item"
+    assert sent_row["pre_conditions"] == "Fresh payload pre-condition"
+    assert sent_row["test_procedure"] == "Fresh payload procedure"
+    assert sent_row["expected_result"] == "Fresh payload expected result"
+
+
+@patch("api_server.generate_tc_tool")
+def test_generate_stream_passes_matched_reference_context_to_ai(mock_tool):
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            ),
+            "reference_file": (
+                "ReferenceWorkbook.xlsx",
+                _build_reference_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            ),
+        },
+    )
+    parsed = parse_response.json()
+    job_id = parsed["jobId"]
+    mock_tool.return_value = {
+        "tcData": [[VALID_TC_JSON] for _ in parsed["rows"]],
+        "splitMeta": [{"req_id": row["reqId"], "reasoning": "", "keywords": []} for row in parsed["rows"]],
+        "cost": 0.0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 0,
+    }
+
+    generate_response = client.post(
+        "/api/generate",
+        json={
+            "jobId": job_id,
+            "rows": parsed["rows"],
+            "config": {
+                "model": "gpt-5.4-mini",
+                "batchSize": 2,
+                "budget": 0,
+                "strictValidation": False,
+            },
+        },
+    )
+    stream_url = generate_response.json()["streamUrl"]
+    client.get(stream_url)
+
+    sent_rows = mock_tool.call_args.kwargs["rows"]
+    assert sent_rows[0]["spec_reference"] == "SPEC_REF_PDM01"
+    assert "PDM01 behavior description" in sent_rows[0]["matched_spec_context"]
 
 
 def _parse_sse(content: bytes) -> list[dict]:

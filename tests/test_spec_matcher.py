@@ -134,6 +134,8 @@ class TestMatchSpecReferences:
             "Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_2.3"
         )
         assert results[0]["match_type"] == "exact"
+        assert "matched_spec_context" in results[0]
+        assert "Device Manager can be added to status bar" in results[0]["matched_spec_context"]
 
     def test_multiple_matches(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)
@@ -143,6 +145,8 @@ class TestMatchSpecReferences:
         results = match_spec_references(rows, index)
         refs = results[0]["spec_reference"].split("; ")
         assert len(refs) == 2
+        assert "PDM01.) The user can access the Device Manager" in results[0]["matched_spec_context"]
+        assert "PDM02) Open Device Manager from menu" in results[0]["matched_spec_context"]
 
     def test_no_match(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)
@@ -164,6 +168,8 @@ class TestFuzzyMatch:
         results = match_spec_references(rows, index)
         assert results[0]["match_type"] == "fuzzy"
         assert results[0]["spec_reference"] is not None
+        assert "matched_spec_context" in results[0]
+        assert "The user can access the Device Manager" in results[0]["matched_spec_context"]
         # fuzzy score 介於 0 與 1
         assert 0 < results[0]["match_score"] <= 1
 
@@ -181,6 +187,16 @@ class TestFuzzyMatch:
         rows = [{"req_id": "R1", "test_item": "Kitchen timer beeps when food cooks"}]
         results = match_spec_references(rows, index, fuzzy_threshold=0.5)
         assert results[0]["match_type"] == "unmatched"
+
+    def test_unmatched_keeps_reference_candidates_for_ai_judgement(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        rows = [{"req_id": "R1", "test_item": "Device shortcut appears in toolbar"}]
+        results = match_spec_references(rows, index, fuzzy_threshold=0.99)
+        assert results[0]["spec_reference"] is None
+        assert results[0]["match_type"] == "unmatched"
+        assert "reference_candidate_context" in results[0]
+        assert "AI judgement required" in results[0]["reference_candidate_context"]
+        assert "Device Manager can be added to status bar" in results[0]["reference_candidate_context"]
 
     def test_threshold_controls_aggressiveness(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)

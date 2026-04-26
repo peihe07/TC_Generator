@@ -399,6 +399,27 @@ def match_spec_references(
     query_embedder
         semantic 模式下計算 test_item 向量的函式；未提供則走 :func:`openai_embed`。
     """
+    def _entry_context(entry: dict) -> str:
+        parts = []
+        if entry.get("source_id"):
+            parts.append(f"Source: {entry['source_id']}")
+        if entry.get("outline"):
+            parts.append(f"Outline: {entry['outline']}")
+        if entry.get("description"):
+            parts.append(f"Description: {entry['description']}")
+        return " | ".join(str(p) for p in parts if p)
+
+    def _candidate_context(scored_entries: list[tuple[float, dict]], limit: int = 3) -> str:
+        parts = []
+        for rank, (score, entry) in enumerate(scored_entries[:limit], 1):
+            context = _entry_context(entry)
+            if context:
+                parts.append(
+                    f"[Reference candidate {rank} - AI judgement required; "
+                    f"score={round(score, 3)}] {context}"
+                )
+        return "\n".join(parts)
+
     entries = getattr(spec_index, "entries", None) or []
     codes_map = spec_index
 
@@ -419,10 +440,15 @@ def match_spec_references(
         test_item = row.get("test_item", "") or ""
         codes = extract_pdm_codes(test_item)
         matched_refs = []
+        matched_contexts = []
 
         for code in codes:
             if code in codes_map:
-                matched_refs.append(codes_map[code]["source_id"])
+                entry = codes_map[code]
+                matched_refs.append(entry["source_id"])
+                context = _entry_context(entry)
+                if context:
+                    matched_contexts.append(f"[Reference exact: {code}] {context}")
 
         if matched_refs:
             seen: set[str] = set()
@@ -435,16 +461,19 @@ def match_spec_references(
                 **row,
                 "spec_reference": "; ".join(unique_refs),
                 "match_type": "exact",
+                "matched_spec_context": "\n".join(matched_contexts),
             })
             continue
 
         if entries:
             best_entry = None
             best_score = 0.0
+            scored_entries: list[tuple[float, dict]] = []
             if use_semantic and query_vectors is not None:
                 qvec = query_vectors[idx]
                 for entry in entries:
                     score = _cosine(qvec, entry["embedding"])
+                    scored_entries.append((score, entry))
                     if score > best_score:
                         best_score = score
                         best_entry = entry
@@ -453,10 +482,12 @@ def match_spec_references(
                 item_tokens = _tokenize(test_item)
                 for entry in entries:
                     score = _jaccard(item_tokens, entry["tokens"])
+                    scored_entries.append((score, entry))
                     if score > best_score:
                         best_score = score
                         best_entry = entry
                 match_type = "fuzzy"
+            scored_entries.sort(key=lambda item: item[0], reverse=True)
 
             if best_entry and best_score >= threshold:
                 results.append({
@@ -464,8 +495,23 @@ def match_spec_references(
                     "spec_reference": best_entry["source_id"],
                     "match_type": match_type,
                     "match_score": round(best_score, 3),
+                    "matched_spec_context": (
+                        f"[Reference {match_type}: score={round(best_score, 3)}] "
+                        f"{_entry_context(best_entry)}"
+                    ),
                 })
                 continue
+
+            candidates = _candidate_context(scored_entries)
+            result = {
+                **row,
+                "spec_reference": None,
+                "match_type": "unmatched",
+            }
+            if candidates:
+                result["reference_candidate_context"] = candidates
+            results.append(result)
+            continue
 
         results.append({
             **row,

@@ -473,17 +473,29 @@ def build_system_blocks(rules_text: str, batch: bool = False) -> str:
 
 def _get_spec_context(row: dict, spec_index: dict | None) -> str:
     """Extract relevant spec context for a single row."""
-    if not spec_index:
-        return "N/A"
-
-    codes = extract_pdm_codes(row["test_item"])
     segments = []
-    for code in codes:
-        if code in spec_index:
-            entry = spec_index[code]
-            text = entry.get("full_text") or entry.get("description", "")
-            if text:
-                segments.append(f"[{code}] {text}")
+    matched_context = row.get("matched_spec_context") or row.get("matchedSpecContext")
+    if matched_context and str(matched_context).strip():
+        segments.append(str(matched_context).strip())
+    candidate_context = (
+        row.get("reference_candidate_context")
+        or row.get("referenceCandidateContext")
+    )
+    if candidate_context and str(candidate_context).strip():
+        segments.append(
+            "Reference candidates below were NOT automatically matched. "
+            "Judge relevance from the source row before using them; ignore unrelated candidates.\n"
+            f"{str(candidate_context).strip()}"
+        )
+
+    if spec_index:
+        codes = extract_pdm_codes(row["test_item"])
+        for code in codes:
+            if code in spec_index:
+                entry = spec_index[code]
+                text = entry.get("full_text") or entry.get("description", "")
+                if text:
+                    segments.append(f"[Spec file: {code}] {text}")
 
     return "\n".join(segments) if segments else "N/A"
 
@@ -497,6 +509,16 @@ def build_user_prompt(
     """Build user prompt for single TC generation."""
     spec_context = _get_spec_context(row, spec_index)
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
+    regenerate_reason = _coalesce_row_value(row, "regenerate_reason", "regenerateReason")
+    regenerate_section = ""
+    if regenerate_reason != "N/A":
+        regenerate_section = (
+            "\n## Reviewer Regenerate Reason\n"
+            f"{regenerate_reason}\n\n"
+            "Use this reason as the primary correction target while still obeying "
+            "all ASPICE SWE.6 writing rules. Fix the stated problem directly; do "
+            "not ignore it or introduce unrelated changes.\n"
+        )
 
     rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
     return f"""## Context
@@ -507,6 +529,7 @@ def build_user_prompt(
 ## Requirement
 - Requirement ID: {row.get('req_id') or row.get('reqId') or ''}
 - Original Test Item: {row['test_item']}
+{regenerate_section}
 
 ## Spec Context
 {spec_context}{rules_section}
@@ -652,31 +675,40 @@ prompt for EVERY TC in the batch."""
 # ---------------------------------------------------------------------------
 
 
-def _format_reviewer_hints(row: dict) -> str:
-    """把 template 原本填在 J/K/L/M 欄的內容收集起來，當作 reviewer 已列出的
-    拆解提示（acceptance criteria / 情境 split / 預期行為片段）丟給 AI 參考。
+def _coalesce_row_value(row: dict, *keys: str) -> str:
+    for key in keys:
+        value = row.get(key)
+        if value is not None and str(value).strip():
+            return str(value).strip()
+    return "N/A"
 
-    使用者刻意把 criteria / RD 預期拆解放在 test_procedure 或 expected_result，
-    這些是拆分 TC 時必須一起看的輸入，不是「已完成的 TC 內容」。
-    """
+
+def _format_source_workbook_row(row: dict, context: dict) -> str:
+    """Format workbook fields AI must consider before deciding multi-TC split."""
+    test_group = _coalesce_row_value(row, "test_group", "testGroup")
+    if test_group == "N/A":
+        test_group = str(context.get("test_group") or "N/A").strip() or "N/A"
+    test_set = _coalesce_row_value(row, "test_set", "testSet")
+    if test_set == "N/A":
+        test_set = str(context.get("test_set") or "N/A").strip() or "N/A"
+
     fields = [
-        ("Pre-Conditions", row.get("pre_conditions") or row.get("preConditions")),
-        ("Input Test Data", row.get("input_test_data") or row.get("inputTestData")),
-        ("Test Procedure (reviewer pre-fill)", row.get("test_procedure") or row.get("testProcedure")),
-        ("Expected Result (reviewer pre-fill)", row.get("expected_result") or row.get("expectedResult")),
+        ("Requirement ID", _coalesce_row_value(row, "req_id", "reqId")),
+        ("Test Group Theme", test_group),
+        ("Test Set", test_set),
+        ("Test Item", _coalesce_row_value(row, "test_item", "testItem")),
+        ("Reviewer Regenerate Reason", _coalesce_row_value(row, "regenerate_reason", "regenerateReason")),
+        ("Pre-Conditions", _coalesce_row_value(row, "pre_conditions", "preConditions")),
+        ("Test Procedure", _coalesce_row_value(row, "test_procedure", "testProcedure")),
+        ("Expected Result", _coalesce_row_value(row, "expected_result", "expectedResult")),
     ]
-    parts = [(label, str(val).strip()) for label, val in fields if val and str(val).strip()]
-    if not parts:
-        return ""
-    body = "\n".join(f"### {label}\n{text}" for label, text in parts)
+    body = "\n".join(f"- {label}: {value}" for label, value in fields)
     return (
-        "\n## Reviewer Pre-Fills (use as splitting hints, NOT as finished TCs)\n"
-        "These sections were filled by the reviewer before AI generation, containing "
-        "acceptance criteria / split scenarios / expected behaviour fragments. They "
-        "serve as authoritative hints for how the requirement should be decomposed "
-        "and what each TC must verify. Re-use the exact conditions / scenarios they "
-        "describe; never ignore a scenario they listed.\n\n"
-        f"{body}\n"
+        "## Source Workbook Row (authoritative context for split analysis)\n"
+        "Use Test Group Theme as the feature/topic context. Consider Test Set, "
+        "Test Item, Pre-Conditions, Test Procedure, and Expected Result together "
+        "before deciding whether this requirement needs 1 or multiple TCs.\n"
+        f"{body}"
     )
 
 
@@ -742,18 +774,15 @@ def build_multi_tc_user_prompt(
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
 
     rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
-    hints_section = _format_reviewer_hints(row)
+    source_row = _format_source_workbook_row(row, context)
     return f"""## Context
 - Project: {context['project']}
-- Test Group: {context['test_group']}
-- Test Set: {context.get('test_set', 'N/A')}
+- Test Group Theme: {context['test_group']}
 
-## Requirement
-- Requirement ID: {row.get('req_id') or row.get('reqId') or ''}
-- Original Test Item: {row['test_item']}
+{source_row}
 
 ## Spec Context
-{spec_context}{hints_section}{rules_section}
+{spec_context}{rules_section}
 {_MULTI_TC_GUIDANCE}
 ## Output
 Return a JSON object with these top-level keys:
@@ -893,17 +922,12 @@ def build_multi_tc_batch_prompt(
     items = []
     for i, row in enumerate(rows):
         spec_context = _get_spec_context(row, spec_index)
-        hints = _format_reviewer_hints(row)
+        source_row = _format_source_workbook_row(row, context)
         item = (
             f"### Requirement {i + 1}\n"
-            f"- Req ID: {row.get('req_id') or row.get('reqId') or ''}\n"
-            f"- Test Set: {row.get('test_set', context.get('test_set', 'N/A'))}\n"
-            f"- Test Item: {row['test_item']}\n"
+            f"{source_row}\n"
             f"- Spec: {spec_context}"
         )
-        if hints:
-            # 縮排到同一個 Requirement 區塊裡，AI 才知道屬於哪個 req。
-            item += "\n" + hints.strip()
         items.append(item)
     batch_text = "\n\n".join(items)
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)

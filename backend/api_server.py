@@ -210,6 +210,7 @@ class RegenerateRequest(BaseModel):
     rowIds: list[str]
     config: GenerateConfig | None = None
     rows: list[dict]
+    regenerateReason: str | None = None
     # Optional — Rerun 當 backend JOB_REGISTRY 找不到 job 時用來重建 context。
     # 前端 Re-run flow 會帶這兩個欄位，regenerate 流程不使用。
     project: str | None = None
@@ -635,6 +636,13 @@ def _prepare_generation_rows(job: dict) -> list[dict]:
         matched_rows = match_spec_references(prepared_rows, reference_index)
         for prepared_row, matched_row in zip(prepared_rows, matched_rows):
             prepared_row["spec_reference"] = matched_row.get("spec_reference")
+            prepared_row["match_type"] = matched_row.get("match_type")
+            if matched_row.get("match_score") is not None:
+                prepared_row["match_score"] = matched_row.get("match_score")
+            if matched_row.get("matched_spec_context"):
+                prepared_row["matched_spec_context"] = matched_row.get("matched_spec_context")
+            if matched_row.get("reference_candidate_context"):
+                prepared_row["reference_candidate_context"] = matched_row.get("reference_candidate_context")
 
     existing_sequences = _extract_existing_sequence_numbers(parsed_rows) + _extract_existing_sequence_numbers(prepared_rows)
     missing_rows = [row for row in prepared_rows if not row.get("tc_id")]
@@ -1423,9 +1431,9 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
 async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> StreamingResponse:
     """Re-generate specific rows and stream results back as SSE.
 
-    Runs with `allow_split=False` (legacy 1:1 contract): 每筆選中的 row 會
-    拿到剛好一筆新 TC 覆蓋原內容，不會再被拆成多筆。使用者若想改拆分數，
-    要回到 Generate 畫面重跑完整流程，而不是 regenerate 既有列。
+    使用 reviewer 提供的 regenerate reason 重新產生選中 rows。AI 會先用完整
+    pipeline 判斷是否需要拆分：primary 仍回 `row.regenerated`，新增 TC 回
+    `row.added`，讓前端插在 parent row 後方。
     """
     # 和 rerun 一致：job 缺失時不 404，改從 payload 重建 context。
     # 舊行為是硬 404，使用者在 backend 重啟後會看到 regenerate 壞但 rerun 正常
@@ -1462,7 +1470,22 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                 "test_procedure": str(raw.get("steps") or ""),
                 "expected_result": str(raw.get("expectedResults") or ""),
                 "design_method": str(raw.get("designMethod") or ""),
+                "regenerate_reason": str(raw.get("regenerateReason") or payload.regenerateReason or ""),
             }
+
+        def _merge_payload_row(base: dict, raw: dict | None) -> dict:
+            merged = dict(base)
+            if raw:
+                payload_row = _row_from_payload(raw)
+                for key, value in payload_row.items():
+                    if value is None:
+                        continue
+                    if isinstance(value, str) and not value.strip():
+                        continue
+                    merged[key] = value
+            if payload.regenerateReason and str(payload.regenerateReason).strip():
+                merged["regenerate_reason"] = str(payload.regenerateReason).strip()
+            return merged
 
         payload_by_id = {
             str(r.get("id")): r for r in payload.rows if r.get("id")
@@ -1471,7 +1494,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         rows_to_regen: list[dict] = []
         for rid in payload.rowIds:
             if rid in prepared_by_id:
-                rows_to_regen.append(prepared_by_id[rid])
+                rows_to_regen.append(_merge_payload_row(prepared_by_id[rid], payload_by_id.get(rid)))
             elif rid in payload_by_id:
                 rows_to_regen.append(_row_from_payload(payload_by_id[rid]))
         # 順序即 payload.rowIds 原順序，無需再排序。
@@ -1500,6 +1523,49 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
 
         yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total})
 
+        all_payload_rows = list(payload_by_id.values()) + list(prepared_by_id.values())
+        existing_seqs = _extract_existing_sequence_numbers(all_payload_rows)
+        next_seq = (max(existing_seqs) + 1) if existing_seqs else 1
+
+        prefix_counts: dict[str, int] = {}
+        for row in all_payload_rows:
+            tc_id_raw = row.get("tc_id") or row.get("tcId")
+            if not tc_id_raw:
+                continue
+            parts = str(tc_id_raw).rsplit("-", 1)
+            if len(parts) == 2 and parts[1].isdigit():
+                prefix_counts[parts[0]] = prefix_counts.get(parts[0], 0) + 1
+        tc_id_prefix = (
+            max(prefix_counts.items(), key=lambda kv: kv[1])[0]
+            if prefix_counts else None
+        )
+
+        tc_project = context["project"] or ""
+        tc_group_abbr = (
+            generate_group_abbreviation(context["test_group"])
+            if context["test_group"] else ""
+        )
+        pad_width = 3
+        for row in all_payload_rows:
+            tc_id_raw = row.get("tc_id") or row.get("tcId")
+            if not tc_id_raw:
+                continue
+            parts = str(tc_id_raw).rsplit("-", 1)
+            if len(parts) == 2 and parts[1].isdigit():
+                pad_width = max(pad_width, len(parts[1]))
+
+        def _alloc_sub_tc_id() -> str:
+            nonlocal next_seq
+            if tc_id_prefix:
+                new_id = f"{tc_id_prefix}-{str(next_seq).zfill(pad_width)}"
+                next_seq += 1
+                return new_id
+            if tc_project and tc_group_abbr:
+                new_id = generate_tc_ids(tc_project, tc_group_abbr, 1, start=next_seq)[0]
+                next_seq += 1
+                return new_id
+            return ""
+
         def _stats() -> dict:
             return {
                 "total": total,
@@ -1520,28 +1586,79 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                     spec_index=spec_index,
                     rules_text=RULES_SECTIONS,
                     model=model,
-                    allow_split=False,  # regenerate 走 legacy 1:1：只更新既有列，不新增列。
+                    allow_split=True,
                 )
                 tc_data_list = batch_result["tcData"]
+                split_meta_list = batch_result.get("splitMeta") or []
 
                 current_cost += batch_result["cost"]
                 total_in += batch_result["inputTokens"]
                 total_out += batch_result["outputTokens"]
                 total_cache_create += batch_result["cacheCreationTokens"]
                 total_cache_read += batch_result["cacheReadTokens"]
-                for row, tc_group in zip(batch, tc_data_list):
+                for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
+                    if not isinstance(tc_group, list) or not tc_group:
+                        continue
                     processed += 1
-                    # allow_split=False → 每組剛好 1 筆 TC
-                    tc = tc_group[0] if isinstance(tc_group, list) and tc_group else tc_group
-                    updated_row, _ = _build_stream_row(row, tc)
-                    yield _sse_event(
-                        {
-                            "type": "row.regenerated",
-                            "jobId": job_id,
-                            "row": updated_row,
-                            "stats": _stats(),
+                    extras = max(len(tc_group) - 1, 0)
+                    if extras > 0:
+                        total += extras
+
+                    meta = split_meta_list[group_idx] if group_idx < len(split_meta_list) else {}
+                    split_warning = _heuristic_split_warning(row, len(tc_group))
+                    split_payload = {
+                        "type": "req.split",
+                        "jobId": job_id,
+                        "rowId": row["id"],
+                        "reqId": row.get("req_id") or meta.get("req_id") or "",
+                        "tcCount": len(tc_group),
+                        "reasoning": str(meta.get("reasoning") or ""),
+                        "keywords": meta.get("keywords") or [],
+                        "insertPlan": {
+                            "needsInsert": extras > 0,
+                            "insertAfterId": row["id"],
+                            "newCount": extras,
+                            "renumberRequired": extras > 0,
+                        },
+                        "stats": _stats(),
+                    }
+                    if split_warning:
+                        split_payload["splitWarning"] = split_warning
+                    yield _sse_event(split_payload)
+
+                    for sub_idx, tc in enumerate(tc_group):
+                        is_primary = sub_idx == 0
+                        sub_row = dict(row)
+                        if is_primary:
+                            sub_row["tc_id"] = row.get("tc_id") or _alloc_sub_tc_id()
+                        else:
+                            sub_row["id"] = f"{row['id']}__tc{sub_idx + 1}"
+                            sub_row["tc_id"] = _alloc_sub_tc_id()
+
+                        updated_row, _ = _build_stream_row(sub_row, tc)
+                        updated_row["splitDecision"] = {
+                            "reqId": row.get("req_id") or meta.get("req_id") or "",
+                            "tcCount": len(tc_group),
+                            "subIndex": sub_idx,
+                            "parentId": row["id"],
+                            "reasoning": str(meta.get("reasoning") or "") if is_primary else "",
+                            "keywords": (meta.get("keywords") or []) if is_primary else [],
                         }
-                    )
+                        if split_warning and is_primary:
+                            updated_row["splitWarning"] = split_warning
+                        if not is_primary:
+                            updated_row["parentId"] = row["id"]
+                            updated_row["subIndex"] = sub_idx
+
+                        event_type = "row.regenerated" if is_primary else "row.added"
+                        yield _sse_event(
+                            {
+                                "type": event_type,
+                                "jobId": job_id,
+                                "row": updated_row,
+                                "stats": _stats(),
+                            }
+                        )
             except ToolError as exc:
                 for row in batch:
                     processed += 1
@@ -1634,11 +1751,24 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                 "design_method": str(raw.get("designMethod") or ""),
             }
 
+        def _merge_payload_row(base: dict, raw: dict | None) -> dict:
+            if not raw:
+                return base
+            payload_row = _row_from_payload(raw)
+            merged = dict(base)
+            for key, value in payload_row.items():
+                if value is None:
+                    continue
+                if isinstance(value, str) and not value.strip():
+                    continue
+                merged[key] = value
+            return merged
+
         payload_by_id = {str(r.get("id")): r for r in payload.rows if r.get("id")}
         rows_to_run: list[dict] = []
         for rid in payload.rowIds:
             if rid in prepared_by_id:
-                rows_to_run.append(prepared_by_id[rid])
+                rows_to_run.append(_merge_payload_row(prepared_by_id[rid], payload_by_id.get(rid)))
             elif rid in payload_by_id:
                 rows_to_run.append(_row_from_payload(payload_by_id[rid]))
 
@@ -1779,6 +1909,12 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                         "tcCount": len(tc_group),
                         "reasoning": str(meta.get("reasoning") or ""),
                         "keywords": meta.get("keywords") or [],
+                        "insertPlan": {
+                            "needsInsert": extras > 0,
+                            "insertAfterId": row["id"],
+                            "newCount": extras,
+                            "renumberRequired": extras > 0,
+                        },
                         "stats": _stats(),
                         "message": (
                             f"{row.get('req_id') or row['id']}: "

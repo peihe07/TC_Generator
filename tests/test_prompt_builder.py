@@ -4,6 +4,7 @@ import pytest
 from prompt_builder import (
     build_batch_prompt,
     build_decompose_prompt,
+    build_multi_tc_batch_prompt,
     build_multi_tc_user_prompt,
     build_system_blocks,
     build_system_prompt,
@@ -124,6 +125,17 @@ class TestBuildUserPrompt:
         assert "Do NOT invent unstated values or data points" in prompt
         assert "<configured limit>" in prompt
 
+    def test_includes_regenerate_reason_when_present(self, sample_row, sample_context, sample_spec, rules_text):
+        row = {
+            **sample_row,
+            "regenerate_reason": "Missing negative validation path.",
+        }
+        prompt = build_user_prompt(row, sample_context, sample_spec, rules_text)
+
+        assert "Reviewer Regenerate Reason" in prompt
+        assert "Missing negative validation path." in prompt
+        assert "primary correction target" in prompt
+
 
 class TestBuildBatchPrompt:
     def test_contains_all_rows(self, sample_context, rules_text):
@@ -154,6 +166,78 @@ class TestBuildBatchPrompt:
 
 
 class TestBuildMultiTcPrompt:
+    def test_multi_tc_prompt_includes_workbook_context_fields(self, sample_context):
+        row = {
+            "req_id": "REQ-001",
+            "test_set": "Status Bar Shortcut",
+            "test_item": "PDM01.1) Device Manager shortcut can be shown.",
+            "pre_conditions": "Device Manager feature is enabled.",
+            "test_procedure": "Open status bar customization.",
+            "expected_result": "Device Manager shortcut is available.",
+        }
+        prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
+
+        assert "Test Group Theme: DeviceManager" in prompt
+        assert "Test Set: Status Bar Shortcut" in prompt
+        assert "Test Item: PDM01.1) Device Manager shortcut can be shown." in prompt
+        assert "Pre-Conditions: Device Manager feature is enabled." in prompt
+        assert "Test Procedure: Open status bar customization." in prompt
+        assert "Expected Result: Device Manager shortcut is available." in prompt
+
+    def test_multi_tc_prompt_includes_regenerate_reason(self, sample_row, sample_context):
+        row = {
+            **sample_row,
+            "regenerate_reason": "Too broad; split positive and negative paths.",
+        }
+        prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
+
+        assert "Reviewer Regenerate Reason: Too broad; split positive and negative paths." in prompt
+
+    def test_multi_tc_prompt_includes_matched_reference_context(self, sample_context):
+        row = {
+            "req_id": "REQ-001",
+            "test_item": "PDM01.1) Device Manager shortcut can be shown.",
+            "matched_spec_context": "[Reference exact] PDM01.1 ref description from SYS1",
+        }
+        prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
+
+        assert "## Spec Context" in prompt
+        assert "[Reference exact] PDM01.1 ref description from SYS1" in prompt
+
+    def test_multi_tc_prompt_includes_reference_candidates_for_ai_judgement(self, sample_context):
+        row = {
+            "req_id": "REQ-001",
+            "test_item": "Device shortcut appears in toolbar.",
+            "reference_candidate_context": (
+                "[Reference candidate 1 - AI judgement required] "
+                "Description: Device Manager can be added to status bar"
+            ),
+        }
+        prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
+
+        assert "AI judgement required" in prompt
+        assert "Device Manager can be added to status bar" in prompt
+
+    def test_multi_tc_batch_prompt_includes_workbook_context_fields(self, sample_context):
+        rows = [
+            {
+                "req_id": "REQ-001",
+                "test_set": "Status Bar Shortcut",
+                "test_item": "PDM01.1) Device Manager shortcut can be shown.",
+                "pre_conditions": "Device Manager feature is enabled.",
+                "test_procedure": "Open status bar customization.",
+                "expected_result": "Device Manager shortcut is available.",
+            }
+        ]
+        prompt = build_multi_tc_batch_prompt(rows, sample_context, {}, "")
+
+        assert "Test Group Theme: DeviceManager" in prompt
+        assert "Test Set: Status Bar Shortcut" in prompt
+        assert "Test Item: PDM01.1) Device Manager shortcut can be shown." in prompt
+        assert "Pre-Conditions: Device Manager feature is enabled." in prompt
+        assert "Test Procedure: Open status bar customization." in prompt
+        assert "Expected Result: Device Manager shortcut is available." in prompt
+
     def test_analysis_fields_are_traditional_chinese_but_tc_fields_remain_english(self, sample_row, sample_context):
         prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
         assert "`reasoning` (string, 繁體中文)" in prompt
