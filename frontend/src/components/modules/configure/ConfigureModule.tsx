@@ -36,6 +36,7 @@ const ConfigureModule: React.FC = () => {
   const [groupError, setGroupError] = useState<string | null>(null);
   const [matchError, setMatchError] = useState<string | null>(null);
   const [isLoadingGroupPreview, setIsLoadingGroupPreview] = useState(false);
+  const [groupLoadingMode, setGroupLoadingMode] = useState<'group' | 'regroup' | null>(null);
   const [isLoadingMatchPreview, setIsLoadingMatchPreview] = useState(false);
 
   const estimatedCalls = tcRows.length
@@ -49,6 +50,7 @@ const ConfigureModule: React.FC = () => {
       return;
     }
     setIsLoadingGroupPreview(true);
+    setGroupLoadingMode(forceRegroup ? 'regroup' : 'group');
     setGroupError(null);
     setGroupPreview(null);
     try {
@@ -88,6 +90,7 @@ const ConfigureModule: React.FC = () => {
       );
     } finally {
       setIsLoadingGroupPreview(false);
+      setGroupLoadingMode(null);
     }
   }, [tcRows, jobMetadata?.jobId, accumulateStats, config.model]);
 
@@ -200,6 +203,7 @@ const ConfigureModule: React.FC = () => {
                 setTcRows={setTcRows}
                 preview={groupPreview}
                 isLoading={isLoadingGroupPreview}
+                loadingMode={groupLoadingMode}
                 error={groupError}
                 onRefresh={() => void loadGroupingPreview()}
                 onForceRegroup={() => void loadGroupingPreview(true)}

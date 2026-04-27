@@ -9,6 +9,7 @@ export interface GroupingTabProps {
   setTcRows: (rows: TcRow[]) => void;
   preview: GroupPreviewState | null;
   isLoading: boolean;
+  loadingMode: 'group' | 'regroup' | null;
   error: string | null;
   onRefresh: () => void;
   onForceRegroup: () => void;
@@ -26,6 +27,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
   setTcRows,
   preview,
   isLoading,
+  loadingMode,
   error,
   onRefresh,
   onForceRegroup,
@@ -57,7 +59,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             ) : (
               <RiRefreshLine className="size-3" />
             )}
-            Fill Blank
+            Group
           </Button>
           <Button
             className="flex items-center justify-center gap-1 min-w-[128px]"
@@ -70,7 +72,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             ) : (
               <RiRefreshLine className="size-3" />
             )}
-            Regroup All
+            Re-Group
           </Button>
         </div>
         <Button onClick={onApply} disabled={!preview || isLoading} className="default min-w-[112px]">
@@ -88,6 +90,14 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
         }}
       >
         {error}
+      </div>
+    )}
+    {isLoading && (
+      <div className="status-bar-field p-1 mb-2 flex items-center gap-1">
+        <RiLoader4Line className="size-3 animate-spin" />
+        {loadingMode === 'regroup'
+          ? 'Re-Group triggered: AI is regrouping all rows...'
+          : 'Group triggered: AI is classifying blank Test Sets...'}
       </div>
     )}
     {preview && (
