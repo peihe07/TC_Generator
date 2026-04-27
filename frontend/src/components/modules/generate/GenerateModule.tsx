@@ -41,6 +41,9 @@ const GenerateModule: React.FC = () => {
   const { advanceWindow } = useWindowStore();
   const runnerRef = useRef<{ stop: () => void } | null>(null);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  // SSE 中斷時保留待處理 row id 給 Resume 用；空陣列代表沒有可恢復的中斷。
+  const [pendingResumeIds, setPendingResumeIds] = useState<string[]>([]);
+  const isDisconnected = pendingResumeIds.length > 0;
 
   const progress = useMemo(() => {
     if (!stats.total) {
@@ -81,18 +84,20 @@ const GenerateModule: React.FC = () => {
   const hasPartial =
     progress > 0 && progress < 100 && (progress / 100) * totalChunks > solidCount;
 
-  const startRun = () => {
-    if (!tcRows.length || isProcessing) {
-      return;
-    }
+  const runGeneration = (rowsToRun: typeof tcRows, isResume: boolean) => {
+    if (!rowsToRun.length) return;
 
     setProcessing(true);
-    setElapsedSeconds(0);
+    setPendingResumeIds([]);
+    if (!isResume) {
+      setElapsedSeconds(0);
+    }
     // Progress denominator = 原始 Requirement ID 數，不是 row 數，避免 AI 拆分後
     // tcRows 變多讓進度條倒退（jobAdapter 那邊也會以同樣的 reqId set 為基準）。
+    // Resume 時只計入這批待跑的 reqId，所以分母會降到剩餘量，符合「續跑」語意。
     const initialReqCount = new Set(
-      tcRows.map((r) => r.reqId).filter(Boolean),
-    ).size || tcRows.length;
+      rowsToRun.map((r) => r.reqId).filter(Boolean),
+    ).size || rowsToRun.length;
     updateStats({
       total: initialReqCount,
       processed: 0,
@@ -100,13 +105,20 @@ const GenerateModule: React.FC = () => {
       fail: 0,
       // cost / token 為累積值，不在新 job 起始時歸零。
     });
-    tcRows.forEach((row) => updateTcRow(row.id, { status: 'generating' }));
-    appendLog(createJobLog('info', `Queued ${tcRows.length} row(s) for generation.`));
+    rowsToRun.forEach((row) => updateTcRow(row.id, { status: 'generating' }));
+    appendLog(
+      createJobLog(
+        'info',
+        isResume
+          ? `Resuming ${rowsToRun.length} pending row(s) after disconnect.`
+          : `Queued ${rowsToRun.length} row(s) for generation.`,
+      ),
+    );
 
     runnerRef.current = startGeneration(
       {
         jobId: jobMetadata?.jobId ?? null,
-        rows: tcRows,
+        rows: rowsToRun,
         config,
       },
       {
@@ -133,14 +145,65 @@ const GenerateModule: React.FC = () => {
         },
         onComplete: (message) => {
           setProcessing(false);
+          setPendingResumeIds([]);
           appendLog(createJobLog('success', message));
           advanceWindow('generate', 'review', 'TC Generator - Review Results');
         },
         onError: (message) => {
           setProcessing(false);
+          // 偵測「斷線」訊號 → 進入可恢復狀態，不要把 row 視為失敗。
+          // jobAdapter 在 source.onerror 固定回 "Live backend stream disconnected."
+          if (message.toLowerCase().includes('disconnect')) {
+            const stillPending = useJobStore
+              .getState()
+              .tcRows.filter((row) => row.status === 'generating')
+              .map((row) => row.id);
+            if (stillPending.length > 0) {
+              setPendingResumeIds(stillPending);
+              appendLog(
+                createJobLog(
+                  'warn',
+                  `${message} ${stillPending.length} row(s) pending — click Resume to continue.`,
+                ),
+              );
+              return;
+            }
+          }
           appendLog(createJobLog('warn', message));
         },
       },
+    );
+  };
+
+  const startRun = () => {
+    if (!tcRows.length || isProcessing) {
+      return;
+    }
+    runGeneration(tcRows, false);
+  };
+
+  const handleResume = () => {
+    if (!isDisconnected || isProcessing) return;
+    const pendingSet = new Set(pendingResumeIds);
+    const pendingRows = tcRows.filter((row) => pendingSet.has(row.id));
+    if (!pendingRows.length) {
+      // Pending row 已被刪除 / 完成 — 直接清掉狀態。
+      setPendingResumeIds([]);
+      return;
+    }
+    runGeneration(pendingRows, true);
+  };
+
+  const discardResume = () => {
+    if (!isDisconnected) return;
+    const pendingSet = new Set(pendingResumeIds);
+    pendingSet.forEach((id) => updateTcRow(id, { status: 'fail' }));
+    setPendingResumeIds([]);
+    appendLog(
+      createJobLog(
+        'warn',
+        `Discarded ${pendingSet.size} pending row(s); marked as failed.`,
+      ),
     );
   };
 
@@ -148,6 +211,7 @@ const GenerateModule: React.FC = () => {
     runnerRef.current?.stop();
     runnerRef.current = null;
     setProcessing(false);
+    setPendingResumeIds([]);
     appendLog(createJobLog('warn', 'Generation stopped by operator.'));
   };
 
@@ -253,6 +317,33 @@ const GenerateModule: React.FC = () => {
         </div>
       </div>
 
+      {isDisconnected && (
+        <div
+          className="paper-card p-2 text-xs flex items-center gap-2"
+          style={{
+            background: 'var(--status-warn-bg-soft, #fff8e1)',
+            border: '1px solid var(--status-warn-border, #e6a23c)',
+            color: 'var(--status-warn-dark, #7a5200)',
+          }}
+        >
+          <RiAlertLine className="size-4 shrink-0" />
+          <span className="flex-1">
+            <strong>連線中斷。</strong>
+            {' '}{pendingResumeIds.length} 筆 row 尚未處理 — 按 Resume 重連續跑這批，或 Discard 將其標為 fail。
+          </span>
+          <Button
+            className="flex items-center gap-1 default"
+            onClick={handleResume}
+            disabled={isProcessing}
+          >
+            <RiPlayListAddLine className="size-3" /> Resume
+          </Button>
+          <Button onClick={discardResume} disabled={isProcessing}>
+            Discard
+          </Button>
+        </div>
+      )}
+
       <div className="flex justify-between items-center pt-2">
         <Button className="flex items-center gap-1" disabled={!isProcessing} onClick={stopRun}>
           <RiStopCircleLine className="size-4" /> Cancel
@@ -260,7 +351,7 @@ const GenerateModule: React.FC = () => {
         <div className="flex items-center gap-2">
           <Button
             className="flex items-center gap-1 default"
-            disabled={isProcessing || !tcRows.length}
+            disabled={isProcessing || isDisconnected || !tcRows.length}
             onClick={startRun}
           >
             <RiPlayListAddLine

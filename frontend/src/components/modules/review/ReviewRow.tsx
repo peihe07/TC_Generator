@@ -146,6 +146,24 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
             <RiRefreshLine className="size-3" style={{ color: 'var(--status-edit-dark)' }} />
           )}
           {row.tcId || row.id}
+          {row.splitDecision?.duplicateOf ? (
+            <span
+              className="inline-flex items-center font-bold"
+              style={{
+                fontSize: 9,
+                padding: '0 4px',
+                marginLeft: 2,
+                background: 'var(--status-reject-bg-soft, #fde8e8)',
+                color: 'var(--status-reject-dark, #7a1f1f)',
+                border: '1px solid var(--status-reject-border, #d04444)',
+                borderRadius: 2,
+                whiteSpace: 'nowrap',
+              }}
+              title={`AI 嚴格判定本列與 row #${row.splitDecision.duplicateOf} 完全等價；展開可看完整訊息。`}
+            >
+              ⊕ DUP→{row.splitDecision.duplicateOf}
+            </span>
+          ) : null}
         </span>
       </td>
       <td
