@@ -8,7 +8,6 @@ import {
   fetchMatchPreview,
 } from '../../../services/jobAdapter';
 import { useJobHistoryStore } from '../../../store/useJobHistoryStore';
-import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { ConfigureBottomBar } from './ConfigureBottomBar';
 import { GroupingTab } from './GroupingTab';
 import { OptionsTab } from './OptionsTab';
@@ -44,7 +43,7 @@ const ConfigureModule: React.FC = () => {
     : 0;
   const estimatedBudget = estimateBudget(tcRows.length, config.model, config.budgetLimit, groupingCostSpent);
 
-  const loadGroupingPreview = useCallback(async () => {
+  const loadGroupingPreview = useCallback(async (forceRegroup = false) => {
     if (!tcRows.length) {
       setGroupPreview(null);
       return;
@@ -55,6 +54,7 @@ const ConfigureModule: React.FC = () => {
       const preview = await fetchGroupingPreview({
         jobId: jobMetadata?.jobId ?? null,
         rows: tcRows,
+        forceRegroup,
       });
       if (preview.cost > 0) {
         setGroupingCostSpent((value) => Number((value + preview.cost).toFixed(4)));
@@ -155,33 +155,25 @@ const ConfigureModule: React.FC = () => {
     setGroupPreview(null);
   }, []);
 
-  const buildContext = useCallback(() => {
-    const jobId = jobMetadata?.jobId ?? '未開啟 job';
-    const count = tcRows.length;
-    return `[context: 目前在 Configure Module, job=${jobId}]\n[Test Sets: ${count} 個]\n`;
-  }, [jobMetadata?.jobId, tcRows.length]);
-
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <div className="flex justify-end pb-1">
-        <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
-      </div>
-
       {/* 98.css native tab structure */}
       <div className="flex-1 flex flex-col overflow-hidden" role="tabpanel">
-        <menu role="tablist" style={{ paddingLeft: 3, marginBottom: -2 }}>
-          {TABS.map(({ id, label }) => (
-            <li
-              key={id}
-              role="tab"
-              aria-selected={activeTab === id}
-              style={{ cursor: 'pointer' }}
-              onClick={() => setActiveTab(id)}
-            >
-              <a onClick={(e) => e.preventDefault()}>{label}</a>
-            </li>
-          ))}
-        </menu>
+        <div className="flex items-end justify-between gap-2">
+          <menu role="tablist" style={{ paddingLeft: 3, marginBottom: -2 }}>
+            {TABS.map(({ id, label }) => (
+              <li
+                key={id}
+                role="tab"
+                aria-selected={activeTab === id}
+                style={{ cursor: 'pointer' }}
+                onClick={() => setActiveTab(id)}
+              >
+                <a onClick={(e) => e.preventDefault()}>{label}</a>
+              </li>
+            ))}
+          </menu>
+        </div>
 
         {/* Tab content panel */}
         <div
@@ -197,6 +189,7 @@ const ConfigureModule: React.FC = () => {
                 isLoading={isLoadingGroupPreview}
                 error={groupError}
                 onRefresh={() => void loadGroupingPreview()}
+                onForceRegroup={() => void loadGroupingPreview(true)}
                 onApply={applyGroupingPreview}
                 onInvalidatePreview={invalidateGroupPreview}
               />

@@ -10,7 +10,6 @@ import {
   type SpecLibraryEntry,
 } from '../../../services/jobAdapter';
 import { RiFileLine, RiFileExcel2Line, RiFileSearchLine, RiArrowRightLine } from '@remixicon/react';
-import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { Button, Select } from '../../ui';
 
 export function formatSpecLibraryLabel(name: string): string {
@@ -147,17 +146,10 @@ const UploadModule: React.FC = () => {
     }
   };
 
-  const buildContext = () => {
-    const fileName = files.tc?.name ?? '未上傳';
-    return `[context: 目前在 Upload Module]\n[目前檔案: ${fileName}]\n`;
-  };
   const dropzoneStyle: React.CSSProperties = { height: 112 };
 
   return (
     <div className="flex flex-col h-full min-h-0 gap-3 overflow-hidden">
-      <div className="flex justify-end shrink-0">
-        <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
-      </div>
       <div className="flex-1 min-h-0 overflow-auto flex flex-col gap-3 pr-1">
         <fieldset className="p-3 border-sunken min-w-0 [min-inline-size:0]">
           <legend className="px-2 max-w-full truncate">TC Specification (.xlsx)</legend>

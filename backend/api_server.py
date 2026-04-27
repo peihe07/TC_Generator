@@ -30,8 +30,6 @@ from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
 from spec_matcher import build_spec_index, load_spec_index, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
-from agent_session_store import SqliteAgentSessionStore, default_session_db_path
-from routes.agent import build_agent_router
 from tools import (
     ToolError,
     aggregate_metrics_tool,
@@ -43,7 +41,6 @@ from tools import (
     write_excel_tool,
 )
 from tools.group import derive_test_set_name
-from trace_store import SqliteTraceStore, default_trace_db_path
 from writer import build_output_path
 
 
@@ -72,9 +69,6 @@ ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 MAX_UPLOAD_BYTES = int(os.environ.get("TC_MAX_UPLOAD_MB", "50")) * 1024 * 1024
 # SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
 JOB_REGISTRY = SqliteJobStore(default_db_path())
-# Agent 副駕相關：trace + session 各自 SQLite，process-wide singleton
-TRACE_STORE = SqliteTraceStore(default_trace_db_path())
-AGENT_SESSION_STORE = SqliteAgentSessionStore(default_session_db_path())
 
 # Startup housekeeping：啟動時清掉超過 JOBS_MAX_AGE_DAYS（預設 30 天）的舊 job
 # 並壓縮檔案。環境變數 `TC_JOBS_MAX_AGE_DAYS` 可覆寫（設 0 停用）。
@@ -151,17 +145,6 @@ def _load_rules() -> str:
 RULES_SECTIONS = _load_rules()
 
 
-# Agent 副駕 router — 依賴注入 (job_store / trace / session / rules)
-app.include_router(
-    build_agent_router(
-        job_store=JOB_REGISTRY,
-        trace_store=TRACE_STORE,
-        session_store=AGENT_SESSION_STORE,
-        rules_text_getter=lambda: RULES_SECTIONS,
-    )
-)
-
-
 @app.get("/api/health")
 def healthcheck() -> dict:
     return {
@@ -222,6 +205,7 @@ class RegenerateRequest(BaseModel):
 class GroupPreviewRequest(BaseModel):
     jobId: str
     rows: list[GenerateRow]
+    forceRegroup: bool = False
 
 
 class MatchPreviewRequest(BaseModel):
@@ -973,7 +957,7 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
 
 @app.delete("/api/admin/reset")
 def reset_all_state(request: Request) -> dict:
-    """Wipe every SQLite row (jobs, agent sessions, traces) — no recovery.
+    """Wipe every SQLite job row — no recovery.
 
     Only reachable from the loopback interface so a misconfigured reverse
     proxy cannot invoke this remotely. GUI callers show a Win95Dialog
@@ -987,15 +971,11 @@ def reset_all_state(request: Request) -> dict:
         raise HTTPException(status_code=403, detail="reset only allowed from localhost")
 
     jobs_removed = JOB_REGISTRY.clear_all()
-    sessions_removed = AGENT_SESSION_STORE.clear_all()
-    traces_removed = TRACE_STORE.clear_all()
     JOB_REGISTRY.vacuum()
 
     return {
         "status": "ok",
         "jobsRemoved": jobs_removed,
-        "agentSessionsRemoved": sessions_removed,
-        "tracesRemoved": traces_removed,
     }
 
 
@@ -1124,7 +1104,10 @@ async def preview_grouping(payload: GroupPreviewRequest) -> dict:
     if not job:
         raise HTTPException(status_code=404, detail="job not found")
 
-    result = group_tests_tool(rows=[row.model_dump() for row in payload.rows])
+    result = group_tests_tool(
+        rows=[row.model_dump() for row in payload.rows],
+        force_regroup=payload.forceRegroup,
+    )
     usage = _job_usage(job)
     this_cost = float(result.get("cost") or 0.0)
     _persist_job_usage(

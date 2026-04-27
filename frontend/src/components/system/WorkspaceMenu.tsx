@@ -227,7 +227,7 @@ const WorkspaceMenu: React.FC = () => {
                 setOpen(false);
                 setResetDialogOpen(true);
               }}
-              title="Clear every job, agent session, trace, and browser cache"
+              title="Clear every job, trace, and browser cache"
               style={{ fontSize: 11, color: 'var(--status-reject-dark)' }}
             >
               Reset All Data…
@@ -284,7 +284,7 @@ const WorkspaceMenu: React.FC = () => {
             這會永久刪除以下資料，且無法復原：
             <ul style={{ margin: '6px 0 0 18px', padding: 0 }}>
               <li>所有 parse / generate / export job</li>
-              <li>Agent 對話歷程與決策 trace</li>
+              <li>決策 trace</li>
               <li>瀏覽器暫存（目前 job、workspace layout、job history）</li>
             </ul>
             <div style={{ marginTop: 8 }}>

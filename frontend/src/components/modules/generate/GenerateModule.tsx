@@ -13,7 +13,6 @@ import {
   RiStopCircleLine,
   RiAlertLine,
 } from '@remixicon/react';
-import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { Button } from '../../ui';
 
 // Progress-bar chunk geometry (matches preview/progress.html).
@@ -147,16 +146,8 @@ const GenerateModule: React.FC = () => {
     appendLog(createJobLog('warn', 'Generation stopped by operator.'));
   };
 
-  const buildContext = () => {
-    const jobId = jobMetadata?.jobId ?? '未開啟 job';
-    return `[context: 目前在 Generate Module, job=${jobId}]\n[進度: ${stats.processed}/${stats.total || tcRows.length} rows, 成本 $${stats.cost.toFixed(4)}]\n`;
-  };
-
   return (
     <div className="flex flex-col h-full gap-4">
-      <div className="flex justify-end">
-        <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
-      </div>
       <fieldset className="p-4 border-sunken">
         <legend className="px-2">Progress</legend>
         <div className="flex flex-col gap-2">

@@ -6,7 +6,6 @@ import { useWindowStore } from '../../store/useWindowStore';
 import WindowManager from './WindowManager';
 import Taskbar from './Taskbar';
 import CostMeter from './CostMeter';
-import AgentStateUpdateToast from './AgentStateUpdateToast';
 import { WindowID } from '../../store/useWindowStore';
 import { TASKBAR_HEIGHT } from './layout';
 
@@ -21,7 +20,6 @@ const DESKTOP_ICONS: { id: WindowID; label: string }[] = [
   { id: 'quickGenerate', label: 'Quick TC' },
   { id: 'diagrams',      label: 'Diagrams' },
   { id: 'rules',         label: 'TC Rules' },
-  { id: 'chat',          label: 'Agent' },
 ];
 
 const WINDOW_TITLES: Record<WindowID, string> = {
@@ -33,12 +31,10 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   quickGenerate: 'Quick TC Generator',
   diagrams:      'Workflow Diagrams',
   rules:         'TC Writing Rules',
-  chat:          'Agent Co-pilot',
 };
 
-// Default icon grid positions — 5-per-column so the 9th icon (Agent)
-// stays above the fold on 13-14" laptops. Single-column default put the
-// last icon at y≈812 which fell outside the `overflow-hidden` viewport.
+// Default icon grid positions — laid out as a 5-per-column grid so the
+// later icons stay above the fold on 13-14" laptops.
 const ICON_W = 80;
 const ICON_H = 92;
 const ICON_GAP = 8;
@@ -64,9 +60,7 @@ const LS_KEY = 'desktop-icon-positions';
 
 /**
  * Snap any icon whose persisted position falls outside the current
- * viewport back to its default slot. Historic layouts were single-column
- * so the 9th icon (Agent) ended up at y≈812 — on a short laptop the
- * `overflow-hidden` desktop clips it and the user never sees Agent.
+ * viewport back to its default slot.
  */
 function rescueOffscreenIcons(
   saved: Record<WindowID, { x: number; y: number }>,
@@ -181,7 +175,6 @@ const Desktop: React.FC = () => {
 
       <WindowManager />
       <Taskbar />
-      <AgentStateUpdateToast />
     </div>
   );
 };

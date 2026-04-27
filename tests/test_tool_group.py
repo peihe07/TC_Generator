@@ -88,6 +88,39 @@ def test_group_mixes_existing_and_ai_classified():
     assert "BT Pairing" in groups
 
 
+def test_group_force_regroup_sends_existing_test_set_as_ai_hint():
+    rows = [
+        {"id": "r1", "reqId": "R-A", "testItem": "bluetooth connection", "testSet": "Old Connectivity"},
+        {"id": "r2", "reqId": "R-B", "testItem": "media artwork", "testSet": "Old Media"},
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        return_value=_fake_classify_result({
+            "R-A": "BT Connection",
+            "R-B": "Media Metadata",
+        }),
+    ) as mock_classify:
+        out = group_tests_tool(rows=rows, force_regroup=True)
+
+    sent_reqs = mock_classify.call_args.args[0]
+    assert sent_reqs == [
+        {
+            "req_id": "R-A",
+            "test_item": "bluetooth connection",
+            "current_test_set": "Old Connectivity",
+        },
+        {
+            "req_id": "R-B",
+            "test_item": "media artwork",
+            "current_test_set": "Old Media",
+        },
+    ]
+    assignments = {a["id"]: a for a in out["assignments"]}
+    assert assignments["r1"]["testSet"] == "BT Connection"
+    assert assignments["r1"]["source"] == "derived"
+    assert assignments["r2"]["testSet"] == "Media Metadata"
+
+
 def test_group_sorts_by_count_desc_then_name_asc():
     rows = [
         {"id": "r1", "reqId": "R-A-01", "testItem": "..."},

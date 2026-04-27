@@ -104,8 +104,6 @@ def test_admin_reset_wipes_stores_from_localhost():
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["jobsRemoved"] >= 1
-    assert "agentSessionsRemoved" in payload
-    assert "tracesRemoved" in payload
 
     # Job is gone.
     assert JOB_REGISTRY.get(job_id) is None

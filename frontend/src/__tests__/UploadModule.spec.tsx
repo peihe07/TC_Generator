@@ -34,10 +34,6 @@ vi.mock('../lib/logging', () => ({
   createJobLog: vi.fn((level: string, message: string) => ({ level, message })),
 }));
 
-vi.mock('../components/system/HelpFromAgentButton', () => ({
-  default: () => null,
-}));
-
 import UploadModule from '../components/modules/upload/UploadModule';
 
 describe('UploadModule', () => {

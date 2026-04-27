@@ -1,5 +1,15 @@
 # TC Generator — Roadmap
 
+> **⚠️ DEPRECATED (2026-04-27).** 整份文件描述的「Agent 副駕模式」已於
+> 2026-04-27 全數移除（`agent_dispatcher` / `routes/agent` / `ChatModule` /
+> `HelpFromAgentButton` / `useAgentStore` / `agentClient` / `trace_store` /
+> `tools/replay` 全刪）。這份 Roadmap 內容**僅留作歷史紀錄**，不代表任何
+> 仍在進行或規劃中的工作。
+>
+> 後續若有 AI 輔助功能，會以**單一窄場景、明確掛點**的形式重新規劃
+> （例如：Review 出錯時針對 validation error 給單次修法建議），不再做
+> 通用 chat / co-pilot。新功能會另起文件。
+
 版本：v1.3
 日期：2026-04-19
 狀態：**Phase 0 – 3 完成；Phase 4 功能面完成（`get_job_detail` / `diff_jobs`

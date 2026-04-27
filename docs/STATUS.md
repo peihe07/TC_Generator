@@ -1,5 +1,13 @@
 # TC Generator — 專案狀態
 
+> **⚠️ 部分內容已 DEPRECATED (2026-04-27)：**「Agent 副駕」相關 Phase 1–4
+> 描述（`agent_dispatcher` / `ChatModule` / `HelpFromAgentButton` /
+> `AgentTaskbarButton` / `AgentStateUpdateToast` / `useAgentStore` /
+> `agentClient` / `trace_store` / `tools/replay` / Cost Dashboard
+> aggregate_metrics 等）已於 2026-04-27 全部移除。下方相關段落**僅為歷史紀錄**。
+> 核心 TC 生成主流程（Upload / Configure / Generate / Review / Export /
+> QuickGenerate）持續維護。
+
 最後更新：2026-04-23（Phase 4 功能面完成：get_job_detail / state_update SSE
 / AgentStateUpdateToast / diff_jobs / aggregate_metrics / Cost Dashboard UI；
 + Taskbar polish + ReviewRow tests + 按鈕 icon 透明度修復；

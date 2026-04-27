@@ -362,10 +362,6 @@ const ReviewModule: React.FC = () => {
   const allVisibleSelected =
     filteredRows.length > 0 && filteredRows.every((r) => selectedIds.has(r.id));
 
-  const helpContextPrompt =
-    `[context: 目前在 Review Module, job=${jobMetadata?.jobId ?? '未開啟 job'}]\n` +
-    `[Validator: ${tcRows.filter((r) => (r.validationErrors ?? []).length > 0).length} warnings]\n`;
-
   const { width: panelWidth, separatorProps } = useResizablePanel({
     storageKey: 'review-validation-panel-width',
     defaultWidth: 320,
@@ -386,7 +382,6 @@ const ReviewModule: React.FC = () => {
           totalCount={tcRows.length}
           acceptedCount={tcRows.filter((r) => r.status === 'accepted').length}
           expandedCount={expandedRows.size}
-          helpContextPrompt={helpContextPrompt}
         />
 
         {/* Table */}

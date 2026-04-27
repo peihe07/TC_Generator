@@ -12,7 +12,6 @@ import {
   RiSettings4Line,
   RiArrowLeftLine
 } from '@remixicon/react';
-import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { Button, Checkbox, Radio, Win95Dialog } from '../../ui';
 
 const ExportModule: React.FC = () => {
@@ -153,12 +152,6 @@ const ExportModule: React.FC = () => {
 
   return (
     <div className="flex flex-col h-full gap-4">
-      <div className="flex justify-end">
-        <HelpFromAgentButton
-          contextPrompt={`[context: 目前在 Export Module, job=${jobMetadata?.jobId ?? '未開啟 job'}]\n`}
-          title="求助 AI"
-        />
-      </div>
       {!exportComplete ? (
         <>
           <div className="flex-1 flex flex-col gap-4">

@@ -1,5 +1,4 @@
 import React from 'react';
-import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { Select } from '../../ui';
 
 const SHOW_OPTIONS = [
@@ -18,12 +17,11 @@ export interface ReviewToolbarProps {
   totalCount: number;
   acceptedCount: number;
   expandedCount: number;
-  helpContextPrompt: string;
 }
 
 /**
  * Top toolbar of the Review module: status filter + test-set filter +
- * counts summary + "Help from AI" button.
+ * counts summary.
  */
 export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
   filter,
@@ -34,7 +32,6 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
   totalCount,
   acceptedCount,
   expandedCount,
-  helpContextPrompt,
 }) => (
   <div
     // §P10: Toolbar is "app chrome", not content — should be raised bezel
@@ -77,7 +74,6 @@ export const ReviewToolbar: React.FC<ReviewToolbarProps> = ({
         Total: {totalCount} | Accepted: {acceptedCount} | Expanded: {expandedCount}
       </span>
     </div>
-    <HelpFromAgentButton contextPrompt={helpContextPrompt} title="求助 AI" />
   </div>
 );
 

@@ -53,10 +53,6 @@ vi.mock('../lib/logging', () => ({
   createJobLog: vi.fn((level: string, message: string) => ({ level, message })),
 }));
 
-vi.mock('../components/system/HelpFromAgentButton', () => ({
-  default: () => null,
-}));
-
 import ExportModule from '../components/modules/export/ExportModule';
 
 describe('ExportModule', () => {

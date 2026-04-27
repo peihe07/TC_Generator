@@ -11,7 +11,6 @@ import ExportModule from '../modules/export/ExportModule';
 import QuickGenerateModule from '../modules/quickGenerate/QuickGenerateModule';
 import DiagramsModule from '../modules/diagrams/DiagramsModule';
 import RulesModule from '../modules/rules/RulesModule';
-import ChatModule from '../modules/ChatModule';
 import {
   RiFolderUploadLine,
   RiSettings3Line,
@@ -21,7 +20,6 @@ import {
   RiFlashlightLine,
   RiFlowChart,
   RiBookOpenLine,
-  RiRobot2Line,
 } from '@remixicon/react';
 
 const ICON_MAP: Record<WindowID, React.ReactNode> = {
@@ -33,7 +31,6 @@ const ICON_MAP: Record<WindowID, React.ReactNode> = {
   quickGenerate: <RiFlashlightLine className="size-4" />,
   diagrams: <RiFlowChart className="size-4" />,
   rules: <RiBookOpenLine className="size-4" />,
-  chat: <RiRobot2Line className="size-4" />,
 };
 
 const CONTENT_MAP: Record<WindowID, React.ReactNode> = {
@@ -45,7 +42,6 @@ const CONTENT_MAP: Record<WindowID, React.ReactNode> = {
   quickGenerate: <QuickGenerateModule />,
   diagrams: <DiagramsModule />,
   rules: <RulesModule />,
-  chat: <ChatModule />,
 };
 
 const WindowManager: React.FC = () => {

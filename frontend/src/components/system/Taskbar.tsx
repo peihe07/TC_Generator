@@ -6,7 +6,6 @@ import { useWindowStore, WindowID } from '../../store/useWindowStore';
 import { TASKBAR_HEIGHT } from './layout';
 import WorkspaceMenu from './WorkspaceMenu';
 import JobHistoryMenu from './JobHistoryMenu';
-import AgentTaskbarButton from '../modules/chat/AgentTaskbarButton';
 import { Button } from '../ui';
 
 const START_MENU_ITEMS: { label: string; icon: string; id: WindowID | null }[] = [
@@ -18,7 +17,6 @@ const START_MENU_ITEMS: { label: string; icon: string; id: WindowID | null }[] =
   { label: 'Quick TC',   icon: '⚡', id: 'quickGenerate' },
   { label: 'Diagrams',   icon: '📊', id: 'diagrams' },
   { label: 'TC Rules',   icon: '📖', id: 'rules' },
-  { label: 'Agent',      icon: '🤖', id: 'chat' },
 ];
 
 const WINDOW_TITLES: Record<WindowID, string> = {
@@ -30,7 +28,6 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   quickGenerate: 'Quick TC Generator',
   diagrams:      'Workflow Diagrams',
   rules:         'TC Writing Rules',
-  chat:          'Agent Co-pilot',
 };
 
 const Taskbar: React.FC = () => {
@@ -210,12 +207,6 @@ const Taskbar: React.FC = () => {
 
         {/* Job history */}
         <JobHistoryMenu />
-
-        {/* Separator */}
-        <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
-
-        {/* Agent Co-pilot */}
-        <AgentTaskbarButton />
 
         {/* Separator */}
         <div style={{ width: 1, height: 18, background: 'var(--win95-gray-mid)', boxShadow: '1px 0 0 var(--win95-white)', margin: '0 2px' }} />
