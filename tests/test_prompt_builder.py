@@ -162,9 +162,9 @@ class TestBuildUserPrompt:
         assert "appears on 3 rows total" in prompt
         assert "[row 11] Disable feature on shutdown." in prompt
         assert "[row 12] Re-enable on next boot." in prompt
-        # 必須帶到 sibling-distinction + split_flag 提示
+        # Must mention sibling-distinction and the structured duplicate_of marker.
         assert "sibling-distinction" in prompt
-        assert "split_flag=true" in prompt
+        assert "duplicate_of" in prompt
 
 
 class TestBuildBatchPrompt:

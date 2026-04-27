@@ -408,6 +408,42 @@ def _map_export_rows(
     return exportable, classify_usage
 
 
+_TC_ID_RE = re.compile(r"^(.+)-(.+)-(\d+)$")
+
+
+def _resequence_export_tc_ids(rows: list[dict]) -> int:
+    """Renumber tc_id sequentially within each (project, group_abbr) bucket.
+
+    Reviewer-side delete leaves gaps in the original sequence (`-001`, `-002`,
+    `-005`…). Export expects gap-free contiguous IDs, so right before write-
+    back we sort each project / group bucket by row_num (ascending) and
+    reassign `-001, -002, -003, …` in that order.
+
+    Returns the number of rows whose tc_id changed (≥0). Rows with no tc_id
+    or with an unparseable tc_id are left untouched.
+    """
+    buckets: dict[tuple[str, str], list[dict]] = {}
+    for row in rows:
+        original = str(row.get("tc_id") or "").strip()
+        if not original:
+            continue
+        match = _TC_ID_RE.match(original)
+        if not match:
+            continue
+        project, group_abbr, _ = match.groups()
+        buckets.setdefault((project, group_abbr), []).append(row)
+
+    changed = 0
+    for (project, group_abbr), bucket in buckets.items():
+        bucket.sort(key=lambda r: (int(r.get("row_num") or 0), str(r.get("tc_id") or "")))
+        new_ids = generate_tc_ids(project, group_abbr, len(bucket))
+        for row, new_id in zip(bucket, new_ids):
+            if row.get("tc_id") != new_id:
+                row["tc_id"] = new_id
+                changed += 1
+    return changed
+
+
 def _build_framework_rows(rows: list[dict], test_group: str | None) -> list[dict]:
     # tc_count：每個 TC 算 1；req_count：同 req_id 僅計一次（拆分不重複計）。
     tc_counts: dict[tuple[str | None, str | None], int] = {}
@@ -1458,6 +1494,9 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             # 完整 reasoning 僅放在 primary，sub 留空避免重複顯示
                             "reasoning": str(meta.get("reasoning") or "") if is_primary else "",
                             "keywords": (meta.get("keywords") or []) if is_primary else [],
+                            # AI strict-marked equivalent sibling row id (Layer 1
+                            # duplicate detection). Empty when not duplicate.
+                            "duplicateOf": str(meta.get("duplicate_of") or "") if is_primary else "",
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -1759,6 +1798,9 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             "parentId": row["id"],
                             "reasoning": str(meta.get("reasoning") or "") if is_primary else "",
                             "keywords": (meta.get("keywords") or []) if is_primary else [],
+                            # AI strict-marked equivalent sibling row id (Layer 1
+                            # duplicate detection). Empty when not duplicate.
+                            "duplicateOf": str(meta.get("duplicate_of") or "") if is_primary else "",
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -2059,6 +2101,9 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                             "parentId": row["id"],
                             "reasoning": str(meta.get("reasoning") or "") if is_primary else "",
                             "keywords": (meta.get("keywords") or []) if is_primary else [],
+                            # AI strict-marked equivalent sibling row id (Layer 1
+                            # duplicate detection). Empty when not duplicate.
+                            "duplicateOf": str(meta.get("duplicate_of") or "") if is_primary else "",
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -2224,6 +2269,9 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
             test_group,
             parsed_rows=parsed_rows,
         )
+        # Renumber TC IDs to fill any gaps left by reviewer-side deletes,
+        # so the exported workbook stays contiguous (-001, -002, …).
+        tc_ids_renumbered = _resequence_export_tc_ids(export_rows)
         if not export_rows:
             if not payload.rows:
                 detail = "no rows in payload — re-select rows in Review before export."
@@ -2301,6 +2349,8 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
             "downloadUrl": download_url,
             "selectedColumns": payload.selectedColumns,
             "fallbackTemplate": not has_source_workbook,
+            # Number of TC IDs renumbered to fill gaps from prior deletes.
+            "tcIdsRenumbered": tc_ids_renumbered,
         }
     except HTTPException:
         raise

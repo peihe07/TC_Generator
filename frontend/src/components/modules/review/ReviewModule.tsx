@@ -362,6 +362,20 @@ const ReviewModule: React.FC = () => {
   const allVisibleSelected =
     filteredRows.length > 0 && filteredRows.every((r) => selectedIds.has(r.id));
 
+  // Map siblings (row uuid → tcId) for the "重複於" badge in ReviewRow.
+  // Recomputed only when tcRows reference changes (cheap O(N) scan).
+  const tcIdByRowId = React.useMemo(() => {
+    const map = new Map<string, string>();
+    for (const r of tcRows) {
+      if (r.tcId) map.set(r.id, r.tcId);
+    }
+    return map;
+  }, [tcRows]);
+  const resolveSiblingTcId = React.useCallback(
+    (rowId: string) => tcIdByRowId.get(rowId),
+    [tcIdByRowId],
+  );
+
   const { width: panelWidth, separatorProps } = useResizablePanel({
     storageKey: 'review-validation-panel-width',
     defaultWidth: 320,
@@ -434,6 +448,7 @@ const ReviewModule: React.FC = () => {
                   onToggleFlag={toggleFlag}
                   onApplyRegen={handleApplyRegen}
                   onDiscardRegen={clearAwaitingApply}
+                  resolveSiblingTcId={resolveSiblingTcId}
                 />
               ))}
             </tbody>

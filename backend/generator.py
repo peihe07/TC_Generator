@@ -666,6 +666,7 @@ def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
 
     reasoning = ""
     keywords: list = []
+    duplicate_of = ""
 
     if isinstance(data, list):
         tcs = data
@@ -675,6 +676,7 @@ def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
         kws = data.get("keywords")
         if isinstance(kws, list):
             keywords = kws
+        duplicate_of = str(data.get("duplicate_of") or "").strip()
     # 容忍 AI 只回單一 TC（退化成 1 筆）
     elif isinstance(data, dict) and all(k in data for k in REQUIRED_OUTPUT_KEYS):
         tcs = [data]
@@ -684,6 +686,7 @@ def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
     return _validate_tcs_array(tcs, context="multi_tc"), {
         "reasoning": reasoning,
         "keywords": keywords,
+        "duplicate_of": duplicate_of,
     }
 
 
@@ -755,6 +758,7 @@ def _parse_multi_tc_batch_response_lenient(
             "req_id": str(entry.get("req_id") or ""),
             "reasoning": str(entry.get("reasoning") or ""),
             "keywords": kws if isinstance(kws, list) else [],
+            "duplicate_of": str(entry.get("duplicate_of") or "").strip(),
             "error": error,
         })
     return tc_groups, meta_list, invalid_indices

@@ -730,10 +730,13 @@ def _format_sibling_section(row: dict) -> str:
         "siblings (§6.1 sibling-distinction rule). The differing state / "
         "input / mode MUST be visible in the title.\n"
         "- Do NOT duplicate verification logic siblings already cover.\n"
-        "- If this row genuinely overlaps with a sibling, set "
-        "`split_flag=true` and use `split_reason` to explain the overlap "
-        "so the reviewer can decide to merge — do NOT silently emit "
-        "duplicate TCs."
+        "- If — and only if — this row is **truly equivalent** to a sibling "
+        "(same trigger AND outcome AND input category AND verification "
+        "target), set `duplicate_of` in the response to that sibling's "
+        "bracketed id (e.g. `\"duplicate_of\": \"row-uuid-of-sibling\"`). "
+        "Reviewers will see a duplicate badge and decide whether to delete. "
+        "STRICT: partial overlaps, similar Test Sets, or shared procedure "
+        "steps DO NOT qualify. When in doubt, omit the field."
     )
 
 
@@ -872,6 +875,19 @@ Return a JSON object with these top-level keys:
 - `keywords` (array, optional): keyword analysis per §10.2, each entry
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
   numbers are 1-based indices into `tcs`.
+- `duplicate_of` (string, OPTIONAL — strict criteria): set to the exact
+  bracketed `id` of a sibling row from the **Sibling Rows** section ONLY
+  when this row is **truly equivalent** to that sibling. STRICT criteria —
+  ALL of these MUST match the sibling, not just some:
+    - Same trigger (same action AND same precondition / state)
+    - Same observable outcome
+    - Same input data category
+    - Same verification target
+  If only the *procedure* or *Test Set* overlaps, or the trigger / outcome
+  differs in any way (different state, different mode, different data
+  bucket), DO NOT mark `duplicate_of` — those are sibling scenarios, not
+  duplicates. When in doubt, omit the field. Leave the field absent or
+  empty when there are no siblings or no true duplicate.
 - `tcs` (array): produce as many TCs as the rules require — do not collapse
   distinct scenarios to save output. Each TC object has keys: {output_keys}.
   `tc_title` is MANDATORY for every TC (§6.1) regardless of whether the
@@ -1055,6 +1071,11 @@ one entry per input requirement, in the same order. Each entry has the shape:
   trail。
 - `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
+- `duplicate_of` (string, optional, STRICT): the bracketed `id` of a
+  sibling row that this row is truly equivalent to (same trigger / outcome /
+  input bucket / verification target). Omit when there are no siblings or
+  no exact duplicate. Used to flag rows for reviewer-side deletion;
+  partial overlaps must NOT be marked.
 - `tcs`: as many TC objects as the rules demand (no cap).
 Each TC object has keys: {output_keys}. `tc_title` is MANDATORY for every
 TC (§6.1), regardless of whether the requirement was split.

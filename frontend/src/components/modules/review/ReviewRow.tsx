@@ -57,6 +57,9 @@ export interface ReviewRowProps {
   onToggleFlag: (id: string, currentStatus: string) => void;
   onApplyRegen: (id: string, fields: DiffFieldKey[]) => void;
   onDiscardRegen: (id: string) => void;
+  /** Resolve a sibling row's tcId for the "重複於" badge. Returns undefined
+   *  when the sibling row was deleted or never existed. */
+  resolveSiblingTcId?: (rowId: string) => string | undefined;
 }
 
 /**
@@ -82,6 +85,7 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
   onToggleFlag,
   onApplyRegen,
   onDiscardRegen,
+  resolveSiblingTcId,
 }) => {
   const failureReason = row.validationErrors?.[0]?.message;
   const statusLabel =
@@ -249,6 +253,30 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                 >
                   <span className="font-bold">Split warning：</span> {row.splitWarning}
                 </div>
+              ) : null}
+              {row.splitDecision?.duplicateOf ? (
+                (() => {
+                  const siblingId = row.splitDecision.duplicateOf;
+                  const siblingTcId =
+                    resolveSiblingTcId?.(siblingId) ?? '(已刪除或未找到)';
+                  return (
+                    <div
+                      className="paper-card p-2 text-xs flex items-start gap-2"
+                      style={{
+                        background: 'var(--status-reject-bg-soft, #fde8e8)',
+                        border: '1px solid var(--status-reject-border, #d04444)',
+                        color: 'var(--status-reject-dark, #7a1f1f)',
+                      }}
+                      title={`AI 嚴格判定本列與 row id ${siblingId} 等價（相同 trigger / outcome / input bucket / 驗證目標）。建議刪除本列或合併到對方。`}
+                    >
+                      <span className="font-bold shrink-0">⊕ 重複於</span>
+                      <span className="font-bold">{siblingTcId}</span>
+                      <span className="leading-relaxed">
+                        — AI 嚴格判定與 sibling 完全等價；請比對後決定是否刪除本列。
+                      </span>
+                    </div>
+                  );
+                })()
               ) : null}
               {row.splitDecision && (row.splitDecision.subIndex ?? 0) > 0 ? (
                 // Sub TC：顯示小 badge，指回 primary（同一 req 的 TC 1/N）。

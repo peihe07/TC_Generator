@@ -46,6 +46,10 @@ export interface SplitDecision {
   subIndex?: number;
   // sub TC 回指到 primary 的 frontend row.id，用來在 UI 連結到主卡片
   parentId?: string;
+  // AI strict-marked equivalent sibling row id (Layer 1 duplicate detection).
+  // Empty when no duplicate. Reviewer-side: shows a badge linking to that
+  // sibling so the reviewer can decide whether to delete this row.
+  duplicateOf?: string;
 }
 
 export interface TcRow {

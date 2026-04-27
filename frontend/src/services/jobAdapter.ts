@@ -227,6 +227,9 @@ function parseSplitDecision(raw: unknown): TcRow["splitDecision"] {
     }),
     subIndex: typeof obj.subIndex === "number" ? obj.subIndex : undefined,
     parentId: typeof obj.parentId === "string" ? obj.parentId : undefined,
+    duplicateOf: typeof obj.duplicateOf === "string" && obj.duplicateOf
+      ? obj.duplicateOf
+      : undefined,
   };
 }
 

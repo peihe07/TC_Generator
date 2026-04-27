@@ -1693,6 +1693,81 @@ def test_quick_generate_api_error(mock_gen):
     assert "API timeout" in failed["message"]
 
 
+class TestResequenceExportTcIds:
+    """Export-time renumbering: gaps from deletes are closed before write."""
+
+    def _row(self, tc_id, row_num):
+        return {"tc_id": tc_id, "row_num": row_num, "req_id": "R-1"}
+
+    def test_no_change_when_already_contiguous(self):
+        from api_server import _resequence_export_tc_ids
+
+        rows = [self._row("newR1L-DM-001", 10), self._row("newR1L-DM-002", 11)]
+        changed = _resequence_export_tc_ids(rows)
+        assert changed == 0
+        assert [r["tc_id"] for r in rows] == ["newR1L-DM-001", "newR1L-DM-002"]
+
+    def test_gaps_are_closed_within_bucket(self):
+        from api_server import _resequence_export_tc_ids
+
+        # User deleted -002 and -004; remaining should renumber to 001/002/003.
+        rows = [
+            self._row("newR1L-DM-001", 10),
+            self._row("newR1L-DM-003", 12),
+            self._row("newR1L-DM-005", 14),
+        ]
+        changed = _resequence_export_tc_ids(rows)
+        assert changed == 2  # 003→002, 005→003
+        assert [r["tc_id"] for r in rows] == [
+            "newR1L-DM-001",
+            "newR1L-DM-002",
+            "newR1L-DM-003",
+        ]
+
+    def test_separate_buckets_renumber_independently(self):
+        from api_server import _resequence_export_tc_ids
+
+        rows = [
+            self._row("newR1L-DM-003", 10),
+            self._row("newR1L-MP-007", 11),
+            self._row("newR1L-DM-009", 12),
+        ]
+        _resequence_export_tc_ids(rows)
+        # DM bucket (rows 10, 12) → 001, 002
+        # MP bucket (row 11) → 001
+        by_id = {r["tc_id"] for r in rows}
+        assert "newR1L-DM-001" in by_id
+        assert "newR1L-DM-002" in by_id
+        assert "newR1L-MP-001" in by_id
+
+    def test_rows_without_tc_id_are_skipped(self):
+        from api_server import _resequence_export_tc_ids
+
+        rows = [
+            {"tc_id": "", "row_num": 10},
+            self._row("newR1L-DM-005", 11),
+        ]
+        _resequence_export_tc_ids(rows)
+        assert rows[0]["tc_id"] == ""
+        assert rows[1]["tc_id"] == "newR1L-DM-001"
+
+    def test_row_order_drives_assignment(self):
+        from api_server import _resequence_export_tc_ids
+
+        # rows out of row_num order → renumber follows row_num ascending.
+        rows = [
+            self._row("newR1L-DM-005", 14),
+            self._row("newR1L-DM-002", 11),
+            self._row("newR1L-DM-008", 17),
+        ]
+        _resequence_export_tc_ids(rows)
+        # After: row_num 11 → 001, row_num 14 → 002, row_num 17 → 003.
+        by_row = {r["row_num"]: r["tc_id"] for r in rows}
+        assert by_row[11] == "newR1L-DM-001"
+        assert by_row[14] == "newR1L-DM-002"
+        assert by_row[17] == "newR1L-DM-003"
+
+
 class TestPrepareGenerationRowsSiblings:
     """Sibling annotation: rows sharing reqId carry each other's test_items."""
 
