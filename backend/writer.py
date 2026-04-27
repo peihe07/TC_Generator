@@ -5,7 +5,6 @@ from copy import copy
 
 from openpyxl import load_workbook
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
-from openpyxl.styles import Alignment
 
 TC_SHEET_NAME = "Test Case Specification&Result"
 FRAMEWORK_SHEET_NAME = "Test Case Framework"
@@ -24,7 +23,6 @@ WRITE_COLUMNS = {
     "design_method": 17,  # Q
 }
 
-WRAP_TEXT_ALIGNMENT = Alignment(wrap_text=True, vertical="top")
 CLEARABLE_FIELDS = {"test_set", "spec_reference"}
 
 
@@ -173,10 +171,8 @@ def _write_tc_row(
 
         if has_value:
             cell.value = value
-            cell.alignment = WRAP_TEXT_ALIGNMENT
         elif field in CLEARABLE_FIELDS:
             cell.value = None
-            cell.alignment = WRAP_TEXT_ALIGNMENT
         # else: 空值且非 clearable 欄 → 保留 template 既有內容，不覆蓋。
 
     if append_rewrite:
@@ -184,7 +180,6 @@ def _write_tc_row(
         if rewrite and (selected_fields is None or "tc_title" in selected_fields):
             cell_i = ws.cell(row=row_num, column=9)
             cell_i.value = _merge_test_item_text(cell_i.value, rewrite)
-            cell_i.alignment = WRAP_TEXT_ALIGNMENT
 
 
 def write_generated_results(

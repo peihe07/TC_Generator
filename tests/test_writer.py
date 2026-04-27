@@ -2,6 +2,7 @@
 import os
 import pytest
 from openpyxl import Workbook, load_workbook
+from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.styles import Alignment
 
 from writer import (
@@ -232,13 +233,22 @@ class TestWriteGeneratedResults:
         ws = wb["Test Case Specification&Result"]
         assert "Open settings" in ws.cell(row=10, column=12).value
 
-    def test_wrap_text_enabled(self, input_xlsx, generated_rows, tmp_path):
+    def test_preserves_template_wrap_text_setting(self, input_xlsx, generated_rows, tmp_path):
+        wb = load_workbook(input_xlsx)
+        ws = wb["Test Case Specification&Result"]
+        ws.cell(row=10, column=12).alignment = Alignment(wrap_text=True, vertical="center")
+        ws.cell(row=11, column=12).alignment = Alignment(wrap_text=False, vertical="center")
+        wb.save(input_xlsx)
+
         output = str(tmp_path / "output.xlsx")
         write_generated_results(input_xlsx, generated_rows, output)
 
         wb = load_workbook(output)
         ws = wb["Test Case Specification&Result"]
         assert ws.cell(row=10, column=12).alignment.wrap_text is True
+        assert ws.cell(row=10, column=12).alignment.vertical == "center"
+        assert ws.cell(row=11, column=12).alignment.wrap_text is not True
+        assert ws.cell(row=11, column=12).alignment.vertical == "center"
 
     def test_preserves_untouched_columns(self, input_xlsx, generated_rows, tmp_path):
         output = str(tmp_path / "output.xlsx")
@@ -436,6 +446,56 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=13).value == "template expected from spec"
         # 非空欄位仍有寫入。
         assert ws.cell(row=10, column=16).value == "P1"
+
+    def test_preserves_existing_cell_format_and_data_validation(self, input_xlsx, generated_rows, tmp_path):
+        wb = load_workbook(input_xlsx)
+        ws = wb["Test Case Specification&Result"]
+        ref = wb.create_sheet("reference")
+        ref.sheet_state = "hidden"
+        for idx, value in enumerate(
+            [
+                "功能測試 (Functional based ; no specific technique)",
+                "狀態轉換 (State Transition Testing)",
+                "決策表 (Decision Table Testing)",
+                "等價劃分 (Equivalence Partitioning, EP)",
+                "邊界值分析 (Boundary Value Analysis, BVA)",
+                "組合測試 (Combinatorial Testing ; Pairwise / t-wise)",
+                "情境 / 用例 (Scenario / Use Case Testing)",
+                "負向測試 (Negative / Invalid)",
+                "基礎故障注入 (Fault Injection Lite)",
+            ],
+            start=4,
+        ):
+            ref.cell(row=idx, column=3, value=value)
+        target = ws.cell(row=10, column=16)
+        target.alignment = Alignment(horizontal="center", vertical="center", wrap_text=False)
+        priority_dv = DataValidation(type="list", formula1='"P0,P1,P2,P3"', allow_blank=True)
+        priority_dv.add(target)
+        ws.add_data_validation(priority_dv)
+        design_method_dv = DataValidation(
+            type="list",
+            formula1="'reference'!$C$4:$C$12",
+            allow_blank=True,
+        )
+        design_method_dv.add(ws.cell(row=10, column=17))
+        ws.add_data_validation(design_method_dv)
+        wb.save(input_xlsx)
+
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, generated_rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        written = ws.cell(row=10, column=16)
+        assert written.value == "P1"
+        assert written.alignment.horizontal == "center"
+        assert written.alignment.vertical == "center"
+        assert written.alignment.wrap_text is not True
+        assert any("P10" in str(dv.sqref) for dv in ws.data_validations.dataValidation)
+        assert any(
+            "Q10" in str(dv.sqref) and dv.formula1 == "'reference'!$C$4:$C$12"
+            for dv in ws.data_validations.dataValidation
+        )
 
 
 class TestWriteFrameworkSheet:
