@@ -5,7 +5,11 @@ import { useJobStore } from '../../../store/useJobStore';
 import { useWindowStore } from '../../../store/useWindowStore';
 import { TcRow } from '../../../lib/types';
 import { createJobLog } from '../../../lib/logging';
-import { regenerateRows, rerunRows } from '../../../services/jobAdapter';
+import {
+  regenerateRows,
+  rerunRows,
+  type RerunSummary,
+} from '../../../services/jobAdapter';
 import { ReviewRow, type EditValues } from './ReviewRow';
 import { ReviewToolbar } from './ReviewToolbar';
 import { ReviewToolbox } from './ReviewToolbox';
@@ -61,6 +65,8 @@ const ReviewModule: React.FC = () => {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [pendingDelete, setPendingDelete] = useState<PendingDelete>(null);
   const [regenerateReason, setRegenerateReason] = useState('');
+  // Re-run 完成後顯示一個明顯的摘要 dialog，讓 reviewer 不會懷疑「跑完沒？」
+  const [rerunSummary, setRerunSummary] = useState<RerunSummary | null>(null);
 
   // Validation panel 顯示最後一個被展開/聚焦的列
   const selectedRow = tcRows.find((r) => r.id === activeRowId) ?? null;
@@ -323,10 +329,15 @@ const ReviewModule: React.FC = () => {
             updateTcRow(id, { status: 'fail' });
             appendLog(createJobLog('error', `${id}: ${message}`));
           },
-          onComplete: () => {
+          onComplete: (summary) => {
+            const detail =
+              `${summary.rowsUpdated} updated, ` +
+              `${summary.rowsAdded} added, ` +
+              `${summary.rowsFailed} failed`;
             appendLog(
-              createJobLog('success', 'Re-run complete.'),
+              createJobLog('success', `Re-run complete (${detail}).`),
             );
+            setRerunSummary(summary);
           },
           onError: (message) => {
             appendLog(createJobLog('warn', message));
@@ -504,6 +515,56 @@ const ReviewModule: React.FC = () => {
           { label: 'Cancel', variant: 'cancel', onClick: cancelDelete },
         ]}
         onClose={cancelDelete}
+      />
+
+      <Win95Dialog
+        open={rerunSummary !== null}
+        variant={
+          rerunSummary && rerunSummary.rowsFailed > 0 ? 'warning' : 'info'
+        }
+        title="Re-run Complete"
+        message={
+          rerunSummary ? (
+            <>
+              <div style={{ marginBottom: 6 }}>
+                AI 已完成 Re-run，結果如下：
+              </div>
+              <ul style={{ margin: '0 0 0 18px', padding: 0 }}>
+                <li>
+                  <strong>{rerunSummary.rowsUpdated}</strong> 筆原列被覆寫更新
+                </li>
+                <li>
+                  <strong>{rerunSummary.rowsAdded}</strong> 筆新 TC 由 AI 拆出加入
+                </li>
+                <li>
+                  <strong>{rerunSummary.rowsFailed}</strong> 筆失敗
+                  {rerunSummary.rowsFailed > 0 ? '（請查看 row 狀態）' : ''}
+                </li>
+              </ul>
+              {rerunSummary.rowsUpdated === 0 &&
+                rerunSummary.rowsAdded === 0 &&
+                rerunSummary.rowsFailed === 0 && (
+                  <div
+                    style={{
+                      marginTop: 6,
+                      color: 'var(--status-warn-dark, #7a5200)',
+                    }}
+                  >
+                    沒有任何 row 被處理 — 可能是後端 stream 中斷或 selection
+                    為空。請檢查 Generation log。
+                  </div>
+                )}
+            </>
+          ) : null
+        }
+        actions={[
+          {
+            label: 'OK',
+            variant: 'default',
+            onClick: () => setRerunSummary(null),
+          },
+        ]}
+        onClose={() => setRerunSummary(null)}
       />
     </div>
   );

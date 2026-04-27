@@ -90,9 +90,18 @@ type RerunCallbacks = {
   }) => void;
   onProgress?: (usage: UsageSummary) => void;
   onFail?: (rowId: string, message: string) => void;
-  onComplete?: () => void;
+  onComplete?: (summary: RerunSummary) => void;
   onError?: (message: string) => void;
 };
+
+export interface RerunSummary {
+  /** Number of original rows whose content was overwritten by the re-run. */
+  rowsUpdated: number;
+  /** Number of new sub-TCs the AI emitted (req split into more rows). */
+  rowsAdded: number;
+  /** Number of rows the backend marked as re-run failed. */
+  rowsFailed: number;
+}
 
 type ExportJobInput = {
   jobId: string | null;
@@ -916,6 +925,10 @@ export async function rerunRows(
   const fallbackTestGroup = firstRow?.testGroup ?? "";
 
   const startedAt = Date.now();
+  // 完成時回給 caller 的摘要（dialog / notification 用）。
+  let rowsUpdated = 0;
+  let rowsAdded = 0;
+  let rowsFailed = 0;
   const latest = {
     total: input.rowIds.length, processed: 0, cost: 0,
     inputTokens: 0, outputTokens: 0,
@@ -1002,12 +1015,14 @@ export async function rerunRows(
           const apiRow = event.row as Record<string, unknown>;
           const parentRow = input.rows.find((item) => item.id === String(apiRow.id ?? ""));
           const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+          rowsUpdated += 1;
           callbacks.onPrimary?.(row, String(event.message ?? "Row re-run."));
         } else if (event.type === "row.added" && event.row) {
           const apiRow = event.row as Record<string, unknown>;
           const parentId = String(apiRow.parentId ?? "");
           const parentRow = input.rows.find((item) => item.id === parentId);
           const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+          rowsAdded += 1;
           callbacks.onRowAdded?.(row, parentId, String(event.message ?? "TC added."));
         } else if (event.type === "req.split") {
           callbacks.onReqSplit?.({
@@ -1024,6 +1039,7 @@ export async function rerunRows(
           const row = event.row as Record<string, unknown>;
           const validation =
             (row.validation as Array<Record<string, unknown>> | undefined) ?? [];
+          rowsFailed += 1;
           callbacks.onFail?.(
             String(row.id),
             String(validation[0]?.message ?? "Re-run failed."),
@@ -1047,7 +1063,7 @@ export async function rerunRows(
       cacheCreationTokens: Math.max(latest.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
     });
 
-    callbacks.onComplete?.();
+    callbacks.onComplete?.({ rowsUpdated, rowsAdded, rowsFailed });
   } catch {
     callbacks.onError?.("Backend re-run failed.");
   }
