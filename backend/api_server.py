@@ -28,6 +28,7 @@ from generator import (
 from id_generator import generate_group_abbreviation, generate_tc_ids, normalize_tc_id
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
+from review_assistant import suggest_review_fix
 from spec_matcher import build_spec_index, load_spec_index, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
 from tools import (
@@ -976,6 +977,43 @@ def reset_all_state(request: Request) -> dict:
     return {
         "status": "ok",
         "jobsRemoved": jobs_removed,
+    }
+
+
+class ReviewFixSuggestRequest(BaseModel):
+    tc: dict
+    errors: list[dict] = Field(default_factory=list)
+    model: str | None = None
+
+
+@app.post("/api/review/suggest-fix")
+def review_suggest_fix(payload: ReviewFixSuggestRequest) -> dict:
+    """Single-shot AI fix suggestion for a TC that failed validation.
+
+    Returns the explanation + a short imperative reason string the reviewer
+    can paste into the Regenerate Reason input. Replaces the removed
+    generic agent co-pilot with a narrow, no-session endpoint.
+    """
+    if not payload.errors:
+        raise HTTPException(
+            status_code=400,
+            detail="suggest-fix requires at least one validation error",
+        )
+    try:
+        result = suggest_review_fix(
+            tc=payload.tc,
+            errors=payload.errors,
+            rules_text=RULES_SECTIONS,
+            model=payload.model or DEFAULT_MODEL,
+        )
+    except GenerationError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    return {
+        "suggestion": result["suggestion"],
+        "suggestedReason": result["suggested_reason"],
+        "model": result["model"],
+        "cost": result["cost"],
+        "usage": result["usage"],
     }
 
 
