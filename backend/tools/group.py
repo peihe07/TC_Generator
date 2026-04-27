@@ -1,7 +1,8 @@
 """group_tests tool：把 requirements 分到 Test Set。
 
-優先使用既有 `test_set`；沒有時先嘗試 AI 分類。若 AI 不可用或結果不完整，
-退回 deterministic fallback：`PDMxx` → `REQ <prefix>` → `Unassigned`。
+優先使用既有 `test_set`；沒有時先嘗試 AI 分類（per-row by `id`，failover
+to `req_id`）。若 AI 不可用或結果漏配，退回 deterministic fallback：
+`PDMxx`（test_item 含 PDM 編碼時用之）→ 否則 `Unclassified`。
 Route 層負責 jobId 驗證。
 """
 
@@ -41,20 +42,19 @@ _PDM_PATTERN = re.compile(r"\b(PDM\d{2,})\b", re.IGNORECASE)
 
 
 def _fallback_test_set_name(row: dict) -> str:
-    """AI 失敗或漏配時的 deterministic fallback。"""
+    """AI 失敗或漏配時的 deterministic fallback。
+
+    保留 PDMxx 偵測（test_item 帶 PDM01 之類的就用該 code，這是可讀的真標籤）；
+    其他情況統一回 `Unclassified`，讓 reviewer 一眼看出這列沒被 AI 分類過、
+    需要 retry 或人工指定。先前回 `REQ <prefix>` 看起來像正常 Test Set，反而
+    遮蔽了「這是 fallback」的訊號。
+    """
     test_item = _get_any(row, "test_item", "testItem")
     match = _PDM_PATTERN.search(test_item)
     if match:
         return match.group(1).upper()
 
-    req_id = _get_any(row, "req_id", "reqId")
-    if req_id:
-        parts = [part for part in req_id.split("-") if part]
-        if len(parts) >= 2:
-            return f"REQ {'-'.join(parts[:-1])}"
-        return f"REQ {req_id}"
-
-    return "Unassigned"
+    return "Unclassified"
 
 
 def group_tests_tool(
@@ -138,8 +138,14 @@ def group_tests_tool(
             test_set = existing
             source = "existing"
         else:
-            classify_key = row_id or req_id
-            test_set = classified.get(classify_key, "") or _fallback_test_set_name(row)
+            # 雙重查找：先試 row_id（新 prompt 要 AI 回 id-keyed），命中失敗
+            # 再退回 req_id（AI 偶爾忽略指示沿用舊 req_id-keyed 格式時的 backup）。
+            # 兩者皆 miss 才走 deterministic fallback。
+            test_set = (
+                classified.get(row_id or "", "")
+                or classified.get(req_id or "", "")
+                or _fallback_test_set_name(row)
+            )
             source = "derived"
         row_derived.append((row, test_set, req_id, source))
         framework.setdefault(test_set, []).append(req_id)

@@ -203,9 +203,34 @@ def test_group_falls_back_when_ai_classification_fails():
 
     assert mock_classify.called
     derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
+    # PDM detection still wins when test_item carries a PDM code.
     assert derived_sets["r1"] == "PDM01"
-    assert derived_sets["r2"] == "REQ SWE1-HMI-DM-002"
-    assert derived_sets["r3"] == "Unassigned"
+    # No PDM code and AI failed → unified `Unclassified` so reviewers can
+    # see at a glance that the row was not classified (replaces the old
+    # `REQ <prefix>` label which looked like a real Test Set).
+    assert derived_sets["r2"] == "Unclassified"
+    assert derived_sets["r3"] == "Unclassified"
+
+
+def test_group_lookup_falls_back_to_req_id_when_ai_returns_legacy_key():
+    """If the AI ignores the new prompt and returns req_id-keyed assignments,
+    group still uses them rather than dropping every row to fallback."""
+    rows = [
+        {"id": "r1", "reqId": "R-A", "testItem": "alpha"},
+        {"id": "r2", "reqId": "R-B", "testItem": "beta"},
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        # Simulates AI returning req_id-keyed assignments (legacy behaviour).
+        return_value=_fake_classify_result({
+            "R-A": "Connection",
+            "R-B": "Power",
+        }),
+    ):
+        out = group_tests_tool(rows=rows)
+
+    derived = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived == {"r1": "Connection", "r2": "Power"}
 
 
 def test_group_tool_registered():
