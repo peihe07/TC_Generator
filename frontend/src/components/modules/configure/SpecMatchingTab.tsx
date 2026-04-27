@@ -36,7 +36,7 @@ export const SpecMatchingTab: React.FC<SpecMatchingTabProps> = ({
             </span>
           )}
         </div>
-        <Button className="flex items-center gap-1" onClick={onRefresh}>
+        <Button className="flex items-center gap-1" onClick={onRefresh} disabled={isLoading}>
           {isLoading ? (
             <RiLoader4Line className="size-3 animate-spin" />
           ) : (
