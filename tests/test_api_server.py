@@ -1693,6 +1693,49 @@ def test_quick_generate_api_error(mock_gen):
     assert "API timeout" in failed["message"]
 
 
+class TestResolveDuplicateOf:
+    """duplicate_of normalizer: AI strings → row_num matched against siblings."""
+
+    siblings = [
+        {"id": "uuid-a", "row_num": 11, "test_item": "scenario A"},
+        {"id": "uuid-b", "row_num": 14, "test_item": "scenario B"},
+    ]
+
+    def test_plain_digit_string_maps_to_row_num(self):
+        from api_server import _resolve_duplicate_of
+
+        assert _resolve_duplicate_of("11", self.siblings) == "11"
+        assert _resolve_duplicate_of("14", self.siblings) == "14"
+
+    def test_row_prefixed_strings_are_normalized(self):
+        from api_server import _resolve_duplicate_of
+
+        assert _resolve_duplicate_of("row #11", self.siblings) == "11"
+        assert _resolve_duplicate_of("row 11", self.siblings) == "11"
+
+    def test_legacy_uuid_resolves_to_row_num(self):
+        from api_server import _resolve_duplicate_of
+
+        # AI 沒照新指示、回了 sibling 的 uuid → 仍要對應到該 sibling 的 row_num。
+        assert _resolve_duplicate_of("uuid-b", self.siblings) == "14"
+
+    def test_unknown_value_returns_empty(self):
+        from api_server import _resolve_duplicate_of
+
+        # AI hallucinate（回 row_num 99 但沒有那個 sibling）→ 直接回空，前端
+        # 不顯示「(已刪除或未找到)」這種誤導訊息。
+        assert _resolve_duplicate_of("99", self.siblings) == ""
+        assert _resolve_duplicate_of("garbage", self.siblings) == ""
+
+    def test_empty_or_no_siblings_returns_empty(self):
+        from api_server import _resolve_duplicate_of
+
+        assert _resolve_duplicate_of("11", None) == ""
+        assert _resolve_duplicate_of("11", []) == ""
+        assert _resolve_duplicate_of("", self.siblings) == ""
+        assert _resolve_duplicate_of(None, self.siblings) == ""
+
+
 class TestResequenceExportTcIds:
     """Export-time renumbering: gaps from deletes are closed before write."""
 

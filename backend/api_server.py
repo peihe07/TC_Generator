@@ -280,6 +280,41 @@ def _build_export_path(filename: str, output_mode: str) -> str:
     return build_output_path(os.path.join(export_dir, filename))
 
 
+def _resolve_duplicate_of(raw: object, siblings: list[dict] | None) -> str:
+    """正規化 AI 回的 duplicate_of 字串為 row_num（純數字字串），需對得到實際
+    sibling 才回傳；hallucinate 或無 siblings 一律回 "" 讓 frontend 不顯示
+    badge（避免「(已刪除或未找到)」這種誤導訊息）。
+
+    AI 可能回的格式：``11``、``"11"``、``"row #11"``、``"row 11"``、舊版 uuid
+    等。這裡掃 siblings 找對應的 row_num。
+    """
+    if not siblings or raw is None:
+        return ""
+    text = str(raw).strip()
+    if not text:
+        return ""
+    # 抽出數字（兼容 "row #11" / "row 11" / "11"）。
+    import re as _re
+
+    digits_match = _re.search(r"\d+", text)
+    digits = digits_match.group(0) if digits_match else ""
+    for s in siblings:
+        sib_row_num = s.get("row_num")
+        sib_id = str(s.get("id") or "")
+        # 1) 數字直接 match row_num
+        if (
+            digits
+            and isinstance(sib_row_num, int)
+            and sib_row_num > 0
+            and digits == str(sib_row_num)
+        ):
+            return str(sib_row_num)
+        # 2) AI 回了 uuid（舊格式）— 用 id match 後也回 row_num
+        if sib_id and text == sib_id and isinstance(sib_row_num, int) and sib_row_num > 0:
+            return str(sib_row_num)
+    return ""
+
+
 def _map_export_rows(
     rows: list[dict],
     scope: str,
@@ -1498,7 +1533,11 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             "keywords": (meta.get("keywords") or []) if is_primary else [],
                             # AI strict-marked equivalent sibling row id (Layer 1
                             # duplicate detection). Empty when not duplicate.
-                            "duplicateOf": str(meta.get("duplicate_of") or "") if is_primary else "",
+                            "duplicateOf": (
+                                _resolve_duplicate_of(meta.get("duplicate_of"), row.get("siblings"))
+                                if is_primary
+                                else ""
+                            ),
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -1802,7 +1841,11 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             "keywords": (meta.get("keywords") or []) if is_primary else [],
                             # AI strict-marked equivalent sibling row id (Layer 1
                             # duplicate detection). Empty when not duplicate.
-                            "duplicateOf": str(meta.get("duplicate_of") or "") if is_primary else "",
+                            "duplicateOf": (
+                                _resolve_duplicate_of(meta.get("duplicate_of"), row.get("siblings"))
+                                if is_primary
+                                else ""
+                            ),
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -2105,7 +2148,11 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                             "keywords": (meta.get("keywords") or []) if is_primary else [],
                             # AI strict-marked equivalent sibling row id (Layer 1
                             # duplicate detection). Empty when not duplicate.
-                            "duplicateOf": str(meta.get("duplicate_of") or "") if is_primary else "",
+                            "duplicateOf": (
+                                _resolve_duplicate_of(meta.get("duplicate_of"), row.get("siblings"))
+                                if is_primary
+                                else ""
+                            ),
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning

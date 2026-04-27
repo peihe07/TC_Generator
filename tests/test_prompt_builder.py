@@ -160,8 +160,10 @@ class TestBuildUserPrompt:
 
         assert "Sibling Rows (same Requirement ID)" in prompt
         assert "appears on 3 rows total" in prompt
-        assert "[row 11] Disable feature on shutdown." in prompt
-        assert "[row 12] Re-enable on next boot." in prompt
+        # New format uses `row #N` (digits-only with `#` prefix) so the AI knows
+        # to echo just the digits in `duplicate_of`.
+        assert "[row #11] Disable feature on shutdown." in prompt
+        assert "[row #12] Re-enable on next boot." in prompt
         # Must mention sibling-distinction and the structured duplicate_of marker.
         assert "sibling-distinction" in prompt
         assert "duplicate_of" in prompt
@@ -233,7 +235,7 @@ class TestBuildMultiTcPrompt:
         prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
 
         assert "Sibling Rows (same Requirement ID)" in prompt
-        assert "[row 15] Edge case: zero entries." in prompt
+        assert "[row #15] Edge case: zero entries." in prompt
 
     def test_multi_tc_prompt_includes_matched_reference_context(self, sample_context):
         row = {

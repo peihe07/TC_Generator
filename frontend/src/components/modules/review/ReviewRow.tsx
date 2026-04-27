@@ -256,9 +256,10 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
               ) : null}
               {row.splitDecision?.duplicateOf ? (
                 (() => {
-                  const siblingId = row.splitDecision.duplicateOf;
-                  const siblingTcId =
-                    resolveSiblingTcId?.(siblingId) ?? '(已刪除或未找到)';
+                  // backend 已把 AI 回的值解析成 row_num（純數字字串），對不到
+                  // sibling 時 backend 直接清空 → 不會走到這個分支。
+                  const siblingRowNum = row.splitDecision.duplicateOf;
+                  const siblingTcId = resolveSiblingTcId?.(siblingRowNum);
                   return (
                     <div
                       className="paper-card p-2 text-xs flex items-start gap-2"
@@ -267,12 +268,17 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                         border: '1px solid var(--status-reject-border, #d04444)',
                         color: 'var(--status-reject-dark, #7a1f1f)',
                       }}
-                      title={`AI 嚴格判定本列與 row id ${siblingId} 等價（相同 trigger / outcome / input bucket / 驗證目標）。建議刪除本列或合併到對方。`}
+                      title="AI 嚴格判定本列與 sibling 完全等價（相同 trigger / outcome / input bucket / 驗證目標）。建議刪除本列或合併到對方。"
                     >
                       <span className="font-bold shrink-0">⊕ 重複於</span>
-                      <span className="font-bold">{siblingTcId}</span>
+                      <span className="font-bold">row #{siblingRowNum}</span>
+                      {siblingTcId ? (
+                        <span className="font-bold" style={{ color: 'var(--win95-gray-darker)' }}>
+                          ({siblingTcId})
+                        </span>
+                      ) : null}
                       <span className="leading-relaxed">
-                        — AI 嚴格判定與 sibling 完全等價；請比對後決定是否刪除本列。
+                        — AI 嚴格判定與該列完全等價；請比對後決定是否刪除本列。
                       </span>
                     </div>
                   );

@@ -714,11 +714,19 @@ def _format_sibling_section(row: dict) -> str:
         return ""
     items = []
     for s in siblings:
-        ident = str(s.get("row_num") or s.get("id") or "?")
+        row_num = s.get("row_num")
+        # 把 row_num 直接當 bracketed identifier，AI 也只回 row_num（純數字字串）。
+        # row_num 是 Excel 列號，對 AI 易讀、對 reviewer 也能在 workbook 直接對照；
+        # 用 uuid 反而 AI 容易 hallucinate 而 lookup 失敗。
+        ident = (
+            f"row #{int(row_num)}"
+            if isinstance(row_num, int) and row_num > 0
+            else "row ?"
+        )
         text = str(s.get("test_item") or "").strip().replace("\n", " ")
         if len(text) > 300:
             text = text[:297] + "..."
-        items.append(f"- [row {ident}] {text or '(empty test_item)'}")
+        items.append(f"- [{ident}] {text or '(empty test_item)'}")
     body = "\n".join(items)
     return (
         "\n\n## Sibling Rows (same Requirement ID)\n"
@@ -733,10 +741,22 @@ def _format_sibling_section(row: dict) -> str:
         "- If — and only if — this row is **truly equivalent** to a sibling "
         "(same trigger AND outcome AND input category AND verification "
         "target), set `duplicate_of` in the response to that sibling's "
-        "bracketed id (e.g. `\"duplicate_of\": \"row-uuid-of-sibling\"`). "
-        "Reviewers will see a duplicate badge and decide whether to delete. "
-        "STRICT: partial overlaps, similar Test Sets, or shared procedure "
-        "steps DO NOT qualify. When in doubt, omit the field."
+        "**row number as a string** — for a sibling shown as `[row #11]`, "
+        "set `\"duplicate_of\": \"11\"` (digits only, no `row` prefix). "
+        "Reviewers will see a duplicate badge linked to that workbook row "
+        "and decide whether to delete. STRICT: partial overlaps, similar "
+        "Test Sets, or shared procedure steps DO NOT qualify. When in "
+        "doubt, omit the field.\n"
+        "- **MANDATORY when siblings exist**: produce a `distinguishing_axis` "
+        "object in the response describing how THIS row differs from the "
+        "siblings as a whole. Schema: "
+        "`{\"axis\": \"trigger_state|input_data|timing|boundary|mode|none\", "
+        "\"delta\": \"<繁中一句話：本列與 sibling 的具體差異>\"}`. "
+        "Use `axis: \"none\"` ONLY when this row is a true duplicate — in "
+        "that case `duplicate_of` MUST also be set. The `delta` sentence "
+        "MUST cite a concrete token (state name, data value, mode, "
+        "boundary) that also appears in this row's `tc_title`; vague "
+        "wording like 「不同情境」/「另一場景」is rejected."
     )
 
 
@@ -875,10 +895,12 @@ Return a JSON object with these top-level keys:
 - `keywords` (array, optional): keyword analysis per §10.2, each entry
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
   numbers are 1-based indices into `tcs`.
-- `duplicate_of` (string, OPTIONAL — strict criteria): set to the exact
-  bracketed `id` of a sibling row from the **Sibling Rows** section ONLY
-  when this row is **truly equivalent** to that sibling. STRICT criteria —
-  ALL of these MUST match the sibling, not just some:
+- `duplicate_of` (string, OPTIONAL — strict criteria): set to the **row
+  number string** of a sibling listed in the **Sibling Rows** section
+  (e.g. `"duplicate_of": "11"` for a sibling shown as `[row #11]` —
+  digits only, no `row` prefix), ONLY when this row is **truly equivalent**
+  to that sibling. STRICT criteria — ALL of these MUST match the sibling,
+  not just some:
     - Same trigger (same action AND same precondition / state)
     - Same observable outcome
     - Same input data category
@@ -888,6 +910,18 @@ Return a JSON object with these top-level keys:
   bucket), DO NOT mark `duplicate_of` — those are sibling scenarios, not
   duplicates. When in doubt, omit the field. Leave the field absent or
   empty when there are no siblings or no true duplicate.
+- `distinguishing_axis` (object, REQUIRED when sibling rows exist; OMIT
+  otherwise): forces an explicit declaration of how this row differs from
+  its siblings, so reviewers can audit close-but-not-duplicate cases.
+  Shape: `{{"axis": "<one of: trigger_state, input_data, timing, boundary,
+  mode, none>", "delta": "<繁體中文一句話，描述 THIS 列 vs. sibling 的
+  具體差異>"}}`. Rules:
+    - `axis: "none"` ⇔ true duplicate; `duplicate_of` MUST also be set in
+      the same response. Mismatch (one set, the other not) is invalid.
+    - `delta` MUST contain a concrete token (state name / value / mode /
+      boundary keyword) that ALSO appears in this row's `tc_title`. Vague
+      sentences like 「不同的驗證情境」 are rejected.
+    - When there are no siblings, omit this field entirely.
 - `tcs` (array): produce as many TCs as the rules require — do not collapse
   distinct scenarios to save output. Each TC object has keys: {output_keys}.
   `tc_title` is MANDATORY for every TC (§6.1) regardless of whether the
@@ -1071,11 +1105,18 @@ one entry per input requirement, in the same order. Each entry has the shape:
   trail。
 - `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
-- `duplicate_of` (string, optional, STRICT): the bracketed `id` of a
-  sibling row that this row is truly equivalent to (same trigger / outcome /
-  input bucket / verification target). Omit when there are no siblings or
-  no exact duplicate. Used to flag rows for reviewer-side deletion;
-  partial overlaps must NOT be marked.
+- `duplicate_of` (string, optional, STRICT): the **row number string** of
+  a sibling row this row is truly equivalent to (same trigger / outcome /
+  input bucket / verification target). For `[row #11]` write
+  `"duplicate_of": "11"`. Omit when there are no siblings or no exact
+  duplicate. Used to flag rows for reviewer-side deletion; partial
+  overlaps must NOT be marked.
+- `distinguishing_axis` (object, REQUIRED when this requirement has
+  siblings; OMIT otherwise): explicit declaration of how this row differs
+  from its siblings. Shape: `{{"axis": "<trigger_state|input_data|
+  timing|boundary|mode|none>", "delta": "<繁中一句話，含具體 token>"}}`.
+  `axis: "none"` ⇔ `duplicate_of` set (mismatch is invalid). `delta`
+  must cite a concrete token that also appears in this row's `tc_title`.
 - `tcs`: as many TC objects as the rules demand (no cap).
 Each TC object has keys: {output_keys}. `tc_title` is MANDATORY for every
 TC (§6.1), regardless of whether the requirement was split.

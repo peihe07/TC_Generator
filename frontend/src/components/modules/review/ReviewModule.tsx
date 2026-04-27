@@ -377,18 +377,21 @@ const ReviewModule: React.FC = () => {
   const allVisibleSelected =
     filteredRows.length > 0 && filteredRows.every((r) => selectedIds.has(r.id));
 
-  // Map siblings (row uuid → tcId) for the "重複於" badge in ReviewRow.
-  // Recomputed only when tcRows reference changes (cheap O(N) scan).
-  const tcIdByRowId = React.useMemo(() => {
+  // duplicateOf 由 backend 解析後是 row_num（字串），這裡建 row_num → tcId map
+  // 給 ReviewRow 的「重複於」徽章用。AI 標的 row 可能已被刪除 → map miss →
+  // 徽章 hide（不顯示 "(已刪除或未找到)" 那種誤導訊息）。
+  const tcIdByRowNum = React.useMemo(() => {
     const map = new Map<string, string>();
     for (const r of tcRows) {
-      if (r.tcId) map.set(r.id, r.tcId);
+      if (r.tcId && typeof r.rowNum === 'number') {
+        map.set(String(r.rowNum), r.tcId);
+      }
     }
     return map;
   }, [tcRows]);
   const resolveSiblingTcId = React.useCallback(
-    (rowId: string) => tcIdByRowId.get(rowId),
-    [tcIdByRowId],
+    (rowNum: string) => tcIdByRowNum.get(rowNum),
+    [tcIdByRowNum],
   );
 
   const { width: panelWidth, separatorProps } = useResizablePanel({
