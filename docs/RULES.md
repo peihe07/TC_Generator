@@ -185,8 +185,17 @@ When the index has no embeddings (e.g. uploaded reference workbook freshly built
 - One behavior only per Test Item
 - Must match the requirement intent
 - Must include the specific scenario (not generic)
-- The `[Condition/Trigger]` is the action or state that initiates the test
+- The `[Condition/Trigger]` MUST carry the condition / state / context — a
+  bare action (`Select X`, `Press Y`) is ambiguous because the same action
+  under different states yields different outcomes. Use
+  `[action] while/with/after [state]` or front-load the state
+  (`With BT off, press Connect → ...`). Bare-action triggers are acceptable
+  only when there is genuinely no relevant state (e.g. cold-boot smoke test).
 - The `[Observable Outcome]` is what the tester verifies
+- For `tc_title` specifically, a natural scenario sentence
+  (`[Outcome] when [trigger]`, `[Object] [state] under [condition]`) is
+  preferred when the arrow form would force telegraphic compression that
+  hides the condition (see AI Instruction §6.1 examples).
 
 **Example:**
 ```

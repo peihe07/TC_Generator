@@ -76,9 +76,23 @@ Test Item 應使用**一句簡短句子**表達核心測試目標，格式為 `[
 | `When the user selects the Apple CarPlay icon in the Menu Bar, the system should display the CarPlay interface on the HU within a reasonable time.` | `Select CarPlay icon → CarPlay interface displayed` |
 | `First-time Bluetooth pairing is performed with a CarPlay-capable phone, and after the pairing process is completed, the HU should correctly identify the phone as CarPlay-capable.` | `First-time BT pairing with CarPlay phone → HU identifies phone as CarPlay-capable` |
 
+**Trigger 必須帶有「條件 / 狀態 / 情境」，不能只是裸動作。**
+同樣的動作在不同前置狀態下會產生不同 outcome（這也是 sibling TC 拆分的根本原因）。若 trigger 只寫動作而省略狀態，讀者無法判斷此 TC 在驗證哪一種情境，sibling TC 的差異也無法呈現。
+
+| ❌ 裸動作（語意不明） | ✅ 動作 + 條件（明確） |
+|---|---|
+| `Select CarPlay icon → CarPlay interface displayed` | `Select CarPlay icon with iPhone connected via USB → CarPlay interface displayed` |
+| `Press Connect → connection succeeds` | `With BT off, press Connect → connection error displayed` |
+| `Tap CarPlay icon → prompt shown` | `Tap CarPlay icon with no phone paired → connection prompt shown` |
+
+裸動作 trigger 只在「確實沒有相關前置狀態」（例如 cold-boot smoke test）時可接受。
+
+當箭頭格式（arrow form）為了塞進長度上限而被迫壓縮、導致語意模糊時，應改用自然句式（natural sentence），例如 `[Outcome] when [trigger]`、`[Object] [state] under [condition]`。
+
 **撰寫檢核：**
 - 是否能用一句話讀完？
 - 是否明確區分出「觸發動作」與「可觀察結果」？
+- Trigger 是否帶有條件 / 狀態，而非只是裸動作？
 - 是否刪除了所有 hedge 詞（should、may、within reasonable time 等）？
 
 ---

@@ -162,11 +162,24 @@ For every TC you are about to output, silently verify:
 
 [TC Title]
   [ ] tc_title is filled (MANDATORY for every TC), 6–14 words, and uses
-      either arrow form (`Trigger → Observable Outcome`) or a natural
-      scenario sentence (`[Outcome] when [trigger]`, `[Object] [state]
-      under [condition]`, `[Object] [behavior] in [location]`) — pick
-      whichever reads most clearly. No modals (should/will), no hedges
+      either a natural scenario sentence (`[Outcome] when [trigger]`,
+      `[Object] [state] under [condition]`, `[Object] [behavior] in
+      [location]`) — PREFERRED for clarity — or arrow form
+      (`Trigger → Observable Outcome`) ONLY when both sides read
+      clearly without telegraphic compression. If fitting the arrow
+      form forces you to drop nouns/objects/context and the result
+      reads ambiguously (`Sync max → entries on HU`), switch to a
+      natural sentence instead. No modals (should/will), no hedges
       (properly/successfully/within reasonable time) (§6.1).
+  [ ] Trigger side MUST include the CONDITION / STATE / CONTEXT, not
+      a bare action. A bare action (`Select X`, `Press Y`, `Open Z`)
+      without the state it operates under is ambiguous — the same
+      action under different states yields different outcomes (that
+      is why sibling TCs exist). Patterns: `[action] while/with/after
+      [state] → [outcome]`, or front-load the state
+      (`With BT off, press Connect → ...`). Bare-action triggers are
+      acceptable ONLY when there is genuinely no relevant state
+      (e.g. cold-boot smoke test).
   [ ] The distinguishing state / trigger is visible in the title —
       NEVER the bare inspection action (`Open X`, `Navigate to Y`);
       those belong in test_procedure.

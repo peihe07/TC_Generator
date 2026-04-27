@@ -67,6 +67,23 @@ Scenario/Use Case
 ✗ `When user selects CarPlay icon, system should display interface within reasonable time.` — filler
 ✗ `Android Auto off, phone via BT A2DP → BT music plays through HU` — too long
 
+**Trigger must carry CONDITION/STATE, not just a bare action.** The same
+action under different states yields different outcomes — that is why
+sibling TCs exist. A bare-action trigger leaves the reader guessing
+what state the action runs against.
+
+✗ `Select CarPlay icon → CarPlay interface displayed`
+   — under what state? phone connected via USB? paired but not connected?
+     no phone paired at all? Each yields a different outcome.
+✓ `Select CarPlay icon with iPhone connected via USB → CarPlay interface displayed`
+✓ `Tap CarPlay icon with no phone paired → connection prompt shown`
+✓ `With BT off, press Connect → connection error displayed`
+
+Bare-action triggers are acceptable ONLY when there is genuinely no
+relevant state (e.g. cold-boot smoke test). When the arrow form forces
+telegraphic compression that hides the condition, switch to a natural
+sentence: `CarPlay UI shown when icon tapped with iPhone over USB`.
+
 **Split example** (same req, format dimension → multi TCs; consistent tag style):
 - `TC1: Play .mp4` — `Play .mp4 → .mp4 plays on HU`
 - `TC2: Play .avi` — `Play .avi → .avi plays on HU`
