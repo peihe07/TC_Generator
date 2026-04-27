@@ -65,6 +65,10 @@ const ReviewModule: React.FC = () => {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [pendingDelete, setPendingDelete] = useState<PendingDelete>(null);
   const [regenerateReason, setRegenerateReason] = useState('');
+  // Regenerate 流程改成「按按鈕 → 跳 dialog 填 reason → 送出」，避免使用者
+  // 在不知情下就觸發。dialog 開啟時會 pre-fill 既有 reason（例如 ValidationPanel
+  // 的 AI suggestion 已經套用過），允許 reviewer 編輯後才正式送出。
+  const [regenerateDialogOpen, setRegenerateDialogOpen] = useState(false);
   // Re-run 完成後顯示一個明顯的摘要 dialog，讓 reviewer 不會懷疑「跑完沒？」
   const [rerunSummary, setRerunSummary] = useState<RerunSummary | null>(null);
 
@@ -494,10 +498,12 @@ const ReviewModule: React.FC = () => {
           onClear={() => setSelectedIds(new Set())}
           onBulkStatus={handleBulkStatus}
           onBulkDelete={handleBulkDelete}
-          onRegenerate={handleRegenerate}
+          onRegenerate={() => {
+            if (selectedIds.size === 0) return;
+            setRegenerateDialogOpen(true);
+          }}
           onRerun={handleRerun}
-          regenerateReason={regenerateReason}
-          onRegenerateReasonChange={setRegenerateReason}
+          hasPendingReason={regenerateReason.trim().length > 0}
         />
       )}
 
@@ -515,6 +521,51 @@ const ReviewModule: React.FC = () => {
           { label: 'Cancel', variant: 'cancel', onClick: cancelDelete },
         ]}
         onClose={cancelDelete}
+      />
+
+      <Win95Dialog
+        open={regenerateDialogOpen}
+        variant="info"
+        title="Regenerate selected rows"
+        message={
+          <div className="flex flex-col gap-2" style={{ minWidth: 360 }}>
+            <div style={{ fontSize: 11 }}>
+              將以下這段 reason 送給 AI，重新生成
+              {' '}<strong>{selectedIds.size}</strong> 筆 row。
+              中文 / 英文皆可，留空則不附 reason 直接 regenerate。
+            </div>
+            <textarea
+              autoFocus
+              className="border-sunken p-1"
+              style={{
+                background: 'var(--win95-white)',
+                minHeight: 96,
+                resize: 'vertical',
+                fontFamily: 'inherit',
+                fontSize: 12,
+              }}
+              value={regenerateReason}
+              onChange={(event) => setRegenerateReason(event.target.value)}
+              placeholder="例：tc_title 缺少前置條件，請補上 iPhone connected via USB"
+            />
+          </div>
+        }
+        actions={[
+          {
+            label: 'Send to AI',
+            variant: 'default',
+            onClick: () => {
+              setRegenerateDialogOpen(false);
+              void handleRegenerate();
+            },
+          },
+          {
+            label: 'Cancel',
+            variant: 'cancel',
+            onClick: () => setRegenerateDialogOpen(false),
+          },
+        ]}
+        onClose={() => setRegenerateDialogOpen(false)}
       />
 
       <Win95Dialog

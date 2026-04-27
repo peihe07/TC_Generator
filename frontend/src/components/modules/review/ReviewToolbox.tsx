@@ -17,13 +17,23 @@ export interface ReviewToolboxProps {
   onBulkDelete: () => void;
   onRegenerate: () => void;
   onRerun: () => void;
-  regenerateReason: string;
-  onRegenerateReasonChange: (value: string) => void;
+  /**
+   * True when a Regenerate Reason has been pre-filled (e.g. via the
+   * ValidationPanel "套用為 Regenerate Reason" flow). Used to mark the
+   * Regenerate button so the reviewer knows there's pending context.
+   */
+  hasPendingReason?: boolean;
 }
 
 /**
  * Floating bulk-action toolbox at the bottom of the Review module.
  * Renders only when at least one row is selected.
+ *
+ * Regenerate no longer carries an inline reason input — clicking the
+ * button opens a Win95Dialog (owned by ReviewModule) where the reviewer
+ * fills in the reason and confirms. This makes the act of regenerating
+ * an explicit, gated action instead of "type and pray you remembered to
+ * click the right button".
  */
 export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
   selectedCount,
@@ -33,8 +43,7 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
   onBulkDelete,
   onRegenerate,
   onRerun,
-  regenerateReason,
-  onRegenerateReasonChange,
+  hasPendingReason = false,
 }) => (
   <div
     className="win95-toolbox absolute bottom-4 left-1/2 z-20"
@@ -48,15 +57,6 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
       <Button onClick={onClear}>Clear</Button>
     </div>
     <div className="win95-toolbox-group">
-      <input
-        className="border-2 border-sunken"
-        style={{ width: 220, fontSize: 11, padding: '2px 4px' }}
-        value={regenerateReason}
-        onChange={(event) => onRegenerateReasonChange(event.target.value)}
-        placeholder="Reason for regenerate"
-        title="Reason sent to AI for regenerate"
-        disabled={isRegenerating}
-      />
       <Button
         className="flex items-center gap-1"
         title="Accept selected"
@@ -84,10 +84,16 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
         className="flex items-center gap-1"
         onClick={onRegenerate}
         disabled={isRegenerating}
-        title="Re-generate using the reason; AI may keep or split the selected row"
+        title={
+          hasPendingReason
+            ? '已有 ValidationPanel 套用的 Regenerate Reason 草稿，按下會跳出對話框讓你確認 / 編輯後送出。'
+            : '按下後會跳出對話框讓你填寫 Regenerate Reason 再送出。'
+        }
       >
         <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
-        {isRegenerating ? 'Regenerating...' : 'Regenerate'}
+        {isRegenerating
+          ? 'Regenerating...'
+          : `Regenerate${hasPendingReason ? ' •' : ''}…`}
       </Button>
       <Button
         className="font-bold flex items-center gap-1"
