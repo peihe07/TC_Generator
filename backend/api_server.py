@@ -118,10 +118,11 @@ _FALLBACK_RULES = """
 
 ## Application Output Contract
 - Priority is a workbook/tooling field, not an ASPICE rule in the instruction doc
-- Return exactly P0 / P1 / P2
-- P0: safety, core functionality, data loss risk
-- P1: standard feature, user-facing behavior
-- P2: UI cosmetic, edge cases
+- Return exactly P0 / P1 / P2 / P3
+- P0: critical/core functionality, safety, boot/recovery, connection, audio output, eCall, vehicle-critical CAN signal, data loss risk
+- P1: major user-facing functionality, key operational logic flow
+- P2: secondary/support functionality with limited major-feature impact
+- P3: minor UI enhancement, low-impact customization, rare-use scenario, cosmetic detail
 """.strip()
 
 # 規則文件路徑（專案根目錄下 docs/）
@@ -129,6 +130,7 @@ _DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
 _RULE_FILES = [
     _DOCS_DIR / "ASPICE_SWE6_AI_Instruction.md",
     _DOCS_DIR / "Test Case Design Method 判斷規則.md",
+    _DOCS_DIR / "test_case_priority.md",
 ]
 
 

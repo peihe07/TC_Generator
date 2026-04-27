@@ -52,7 +52,7 @@ _DESIGN_METHOD_ALIASES = {
     "fault injection lite": VALID_DESIGN_METHODS[8],
 }
 
-VALID_PRIORITIES = ["P0", "P1", "P2"]
+VALID_PRIORITIES = ["P0", "P1", "P2", "P3"]
 
 # 舊字串 → P-code 的 fuzzy 映射（AI / template 可能還回舊值）。
 _PRIORITY_ALIAS = {
@@ -63,12 +63,14 @@ _PRIORITY_ALIAS = {
     "p1": "P1",
     "low": "P2",
     "p2": "P2",
+    "minor": "P3",
+    "p3": "P3",
     # 若 AI 回 NA 或空值，不做 fuzzy 映射，交給 validator 回 fail。
 }
 
 
 def normalize_priority(value: str | None) -> str:
-    """Fuzzy-normalize 使用者 / AI 輸入到 P0/P1/P2；對不上就回空字串。"""
+    """Fuzzy-normalize 使用者 / AI 輸入到 P0/P1/P2/P3；對不上就回空字串。"""
     if not value:
         return ""
     key = str(value).strip().lower()

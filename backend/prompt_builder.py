@@ -84,12 +84,17 @@ _HARD_CONSTRAINTS = """
    Negative / Fault Injection / State Transition / Decision Table / EP / BVA
    / Combinatorial / Scenario / Functional. The system will normalize them to
    the canonical dropdown values.
-6. **Application output contract: `priority` MUST be one of P0 / P1 / P2.**
+6. **Application output contract: `priority` MUST be one of P0 / P1 / P2 / P3.**
    This is a tool-specific workbook/export requirement, not an ASPICE SWE.6
-   rule from the instruction doc. Mapping: P0 = highest (safety,
-   core functionality, data loss risk), P1 = standard feature (user-facing
-   behaviour), P2 = cosmetic / edge case. Do NOT return "High", "Medium",
-   "Low", "NA", or any other value — always use exactly P0, P1, or P2.
+   rule from the instruction doc. Follow the priority rubric in
+   `docs/test_case_priority.md` when it is loaded in the rules text:
+   P0 = critical/core functionality, safety, boot/recovery, connection,
+   audio output, eCall, vehicle-critical CAN signal, or data loss risk;
+   P1 = major user-facing functionality or key operational logic flow;
+   P2 = secondary/support functionality whose failure has limited impact
+   on major features; P3 = minor UI enhancement, low-impact customization,
+   rare-use scenario, or cosmetic detail. Do NOT return "High", "Medium",
+   "Low", "NA", or any other value — always use exactly P0, P1, P2, or P3.
 7. All field keys are snake_case (tc_title, pre_conditions,
    input_test_data, test_procedure, expected_result, design_method,
    priority, split_flag, split_reason).
@@ -252,8 +257,9 @@ For every TC you are about to output, silently verify:
       from the ACTUAL flow (not the requirement text), via §15
       first-match on PRIMARY intent. Short English labels preferred;
       the system normalizes them to canonical dropdown values.
-  [ ] priority is exactly P0 / P1 / P2 (tool-specific workbook contract,
-      not from the ASPICE doc).
+  [ ] priority is exactly P0 / P1 / P2 / P3 (tool-specific workbook
+      contract, not from the ASPICE doc). Use the loaded
+      `docs/test_case_priority.md` rubric when available.
   [ ] All workbook-bound TC fields are English-only. Traditional Chinese
       is allowed only in explicit analysis fields (`reasoning`, `meaning`,
       `name`, `description`) when requested.

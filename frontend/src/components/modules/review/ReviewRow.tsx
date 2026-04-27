@@ -27,7 +27,7 @@ import {
 import { RegenDiff, type DiffFieldKey } from './RegenDiff';
 import { StackedEditDropdown, StackedEditField, StackedReadField } from './StackedFields';
 
-const PRIORITY_OPTIONS = ['P0', 'P1', 'P2'] as const;
+const PRIORITY_OPTIONS = ['P0', 'P1', 'P2', 'P3'] as const;
 
 export interface EditValues {
   steps: string;

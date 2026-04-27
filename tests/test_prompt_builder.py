@@ -81,6 +81,12 @@ class TestBuildSystemPrompt:
         assert "default states" in prompt
         assert "No FABRICATED unstated data" in prompt
 
+    def test_system_blocks_include_p3_priority_contract(self):
+        prompt = build_system_blocks("RULES", batch=False)
+        assert "P0 / P1 / P2 / P3" in prompt
+        assert "P3" in prompt
+        assert "low-impact" in prompt
+
 
 class TestBuildUserPrompt:
     def test_contains_req_id(self, sample_row, sample_context, sample_spec, rules_text):

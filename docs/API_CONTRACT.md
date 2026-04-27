@@ -277,7 +277,7 @@ Notes:
 - `stats.currentCost` is cumulative for the job, not just the current stream step.
 - If Configure → Grouping already triggered AI Test Set classification, generation starts from that existing cost baseline.
 - Re-run and regenerate continue accumulating on the same job usage counters.
-- `priority` is a tool/workbook output field and uses `P0` / `P1` / `P2`, not
+- `priority` is a tool/workbook output field and uses `P0` / `P1` / `P2` / `P3`, not
   `High` / `Medium` / `Low`.
 - `testItemRewrite` is generated without outer parentheses; the backend writer
   adds `(...)` only when appending it into the workbook Test Item cell.

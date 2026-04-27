@@ -362,12 +362,14 @@ Same as Test Procedure: numbered list, `\n` line breaks, 1:1 aligned.
 
 ## 6. Test Case Priority Rules (Col P)
 
-**Current app contract values:** `P0`, `P1`, `P2`
+**Current app contract values:** `P0`, `P1`, `P2`, `P3`
 
 **Historical note:** this section previously used `High`, `Medium`, `Low`, `NA`.
-That is obsolete. The live backend now requires `P0` / `P1` / `P2` for the
+That is obsolete. The live backend now requires `P0` / `P1` / `P2` / `P3` for the
 workbook/export pipeline. This is an application contract, not a rule defined
 by `ASPICE_SWE6_AI_Instruction.md`.
+
+Primary rubric source: `docs/test_case_priority.md`.
 
 **Alignment with SWRA priority:**
 - If SWRA provides priority for the requirement → use SWRA priority
@@ -377,7 +379,8 @@ by `ASPICE_SWE6_AI_Instruction.md`.
 |----------|----------|
 | P0 | Safety-related (Functional Safety = Yes), core functionality that blocks usage, data loss/corruption risk |
 | P1 | Standard feature verification, user-facing behavior, connection/disconnection flows |
-| P2 | UI cosmetic details, edge cases, display formatting, non-critical convenience features |
+| P2 | Secondary/support functionality whose failure has limited impact on major features |
+| P3 | Minor UI enhancement, low-impact customization, rare-use scenario, cosmetic detail |
 
 **Note:** Priority rule may need refinement based on project-specific SWRA mapping. This section should be updated when SWRA data is available.
 
@@ -488,7 +491,7 @@ Evaluate in this order. First match wins:
 
 ### 8.7 Priority Check
 
-- Value must be one of: `P0`, `P1`, `P2`
+- Value must be one of: `P0`, `P1`, `P2`, `P3`
 
 ---
 
@@ -612,7 +615,7 @@ Return JSON:
   "test_procedure": "1. ...\n2. ...\n3. ...",
   "expected_result": "1. ...\n2. ...\n3. ...",
   "design_method": "one of 9 values",
-  "priority": "P0|P1|P2",
+  "priority": "P0|P1|P2|P3",
   "split_flag": true/false,
   "split_reason": "reason if flagged"
 }

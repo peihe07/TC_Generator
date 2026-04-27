@@ -265,6 +265,9 @@ class TestValidatePriority:
     def test_p2(self):
         assert validate_priority("P2").passed
 
+    def test_p3(self):
+        assert validate_priority("P3").passed
+
     def test_na_rejected(self):
         assert not validate_priority("NA").passed
 
