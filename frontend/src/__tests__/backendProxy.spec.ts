@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { proxyJsonResponse } from '@/app/api/_lib/backend';
 import { DELETE as resetAllData } from '@/app/api/admin/reset/route';
+import { GET as listSpecLibrary } from '@/app/api/spec-library/route';
 
 describe('proxyJsonResponse', () => {
   const originalFetch = global.fetch;
@@ -60,5 +61,32 @@ describe('proxyJsonResponse', () => {
 
     expect(response.status).toBe(403);
     expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it('proxies the spec library endpoint to the backend', async () => {
+    global.fetch = vi.fn().mockResolvedValue(
+      Response.json({
+        specs: [
+          {
+            name: 'SWE1',
+            sourceFile: 'SWE1.xlsx',
+            entriesCount: 42,
+            embeddingModel: null,
+            updatedAt: null,
+          },
+        ],
+      }),
+    );
+
+    const response = await listSpecLibrary();
+
+    expect(response.status).toBe(200);
+    expect(global.fetch).toHaveBeenCalledWith(
+      'http://127.0.0.1:8000/api/spec-library',
+      { method: 'GET' },
+    );
+    await expect(response.json()).resolves.toMatchObject({
+      specs: [{ name: 'SWE1' }],
+    });
   });
 });

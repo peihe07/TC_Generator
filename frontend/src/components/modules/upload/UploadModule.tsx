@@ -13,6 +13,24 @@ import { RiFileLine, RiFileExcel2Line, RiFileSearchLine, RiArrowRightLine } from
 import HelpFromAgentButton from '../../system/HelpFromAgentButton';
 import { Button, Select } from '../../ui';
 
+export function formatSpecLibraryLabel(name: string): string {
+  const matches = [...name.matchAll(/(?:^|[_\s])HMI(?=$|[_\s])/g)];
+  if (matches.length === 0) return name;
+
+  const first = matches[0];
+  const firstIndex = first.index ?? 0;
+  const contentStart = firstIndex + first[0].length;
+  const contentEnd =
+    matches[1]?.index ??
+    name.search(/_R\d(?:_|$)|_\([^)]*\)$/);
+  const rawLabel = name.slice(
+    contentStart,
+    contentEnd > contentStart ? contentEnd : undefined,
+  );
+  const label = rawLabel.replace(/^[_\s]+|[_\s]+$/g, '').replace(/_/g, ' ').trim();
+  return label || name;
+}
+
 const UploadModule: React.FC = () => {
   const { setJobMetadata, setTcRows, updateStats, appendLog } = useJobStore();
   const { advanceWindow } = useWindowStore();
@@ -133,25 +151,27 @@ const UploadModule: React.FC = () => {
     const fileName = files.tc?.name ?? '未上傳';
     return `[context: 目前在 Upload Module]\n[目前檔案: ${fileName}]\n`;
   };
+  const dropzoneStyle: React.CSSProperties = { height: 112 };
 
   return (
-    <div className="flex flex-col h-full gap-4">
-      <div className="flex justify-end">
+    <div className="flex flex-col h-full min-h-0 gap-3 overflow-hidden">
+      <div className="flex justify-end shrink-0">
         <HelpFromAgentButton contextPrompt={buildContext()} title="求助 AI" />
       </div>
-      <div className="flex-1 flex flex-col gap-4">
-        <fieldset className="p-4 border-sunken">
-          <legend className="px-2">TC Specification (.xlsx)</legend>
+      <div className="flex-1 min-h-0 overflow-auto flex flex-col gap-3 pr-1">
+        <fieldset className="p-3 border-sunken min-w-0 [min-inline-size:0]">
+          <legend className="px-2 max-w-full truncate">TC Specification (.xlsx)</legend>
           <div
-            className={`dropzone-sunken h-32 ${draggingZone === 'tc' ? 'dragging' : ''} ${files.tc ? 'bg-white' : ''}`}
+            className={`dropzone-sunken h-28 ${draggingZone === 'tc' ? 'dragging' : ''} ${files.tc ? 'bg-white' : ''}`}
             onClick={() => tcInputRef.current?.click()}
             onDragOver={(e) => e.preventDefault()}
             onDragEnter={(e) => handleDragEnter(e, 'tc')}
             onDragLeave={(e) => handleDragLeave(e, 'tc')}
             onDrop={(e) => handleFileDrop(e, 'tc')}
+            style={dropzoneStyle}
           >
             <RiFileExcel2Line className="size-10" style={{ color: 'var(--text-muted)' }} />
-            <span className="text-xs">
+            <span className="text-xs truncate px-2 w-full text-center">
               {files.tc ? files.tc.name : 'Drag & Drop TC Spec Excel here'}
             </span>
             {files.tc && (
@@ -167,14 +187,17 @@ const UploadModule: React.FC = () => {
           />
         </fieldset>
 
-        <div className="grid grid-cols-2 gap-4 min-w-0">
-          <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
-            <legend className="px-2">Reference Workbook (Optional)</legend>
-            <div className="flex flex-col gap-2 mb-2">
-              <label className="text-xs flex items-center gap-2">
+        <div
+          className="grid gap-3 min-w-0"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))' }}
+        >
+          <fieldset className="p-3 border-sunken min-w-0 [min-inline-size:0] overflow-hidden">
+            <legend className="px-2 max-w-full truncate">Reference Workbook (Optional)</legend>
+            <div className="flex flex-col gap-2 mb-2 min-h-[52px]">
+              <label className="text-xs flex flex-col items-stretch gap-1 min-w-0">
                 <span className="whitespace-nowrap">From library:</span>
                 <Select
-                  className="flex-1 min-w-0"
+                  className="w-full min-w-0"
                   value={selectedSpecName}
                   onChange={(e) => {
                     setSelectedSpecName(e.target.value);
@@ -184,7 +207,7 @@ const UploadModule: React.FC = () => {
                   <option value="">— None (use upload below) —</option>
                   {specLibrary.map((spec) => (
                     <option key={spec.name} value={spec.name}>
-                      {spec.name}
+                      {formatSpecLibraryLabel(spec.name)}
                       {spec.entriesCount != null ? ` (${spec.entriesCount})` : ''}
                     </option>
                   ))}
@@ -197,7 +220,7 @@ const UploadModule: React.FC = () => {
               )}
             </div>
             <div
-              className={`dropzone-sunken h-32 w-full min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''} ${files.referenceWorkbook && !selectedSpecName ? 'bg-white' : ''}`}
+              className={`dropzone-sunken h-28 min-w-0 overflow-hidden ${draggingZone === 'referenceWorkbook' ? 'dragging' : ''} ${files.referenceWorkbook && !selectedSpecName ? 'bg-white' : ''}`}
               onClick={() => {
                 if (selectedSpecName) return;
                 referenceWorkbookInputRef.current?.click();
@@ -209,7 +232,11 @@ const UploadModule: React.FC = () => {
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, 'referenceWorkbook')}
               onDragLeave={(e) => handleDragLeave(e, 'referenceWorkbook')}
-              style={selectedSpecName ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
+              style={
+                selectedSpecName
+                  ? { ...dropzoneStyle, opacity: 0.5, cursor: 'not-allowed' }
+                  : dropzoneStyle
+              }
             >
               <RiFileSearchLine className="size-10" style={{ color: 'var(--text-muted)' }} />
               <span className="text-xs truncate px-2 w-full text-center">
@@ -232,15 +259,17 @@ const UploadModule: React.FC = () => {
             />
           </fieldset>
 
-          <fieldset className="p-4 border-sunken min-w-0 overflow-hidden">
-            <legend className="px-2">Reference PDF/DOCX</legend>
+          <fieldset className="p-3 border-sunken min-w-0 [min-inline-size:0] overflow-hidden">
+            <legend className="px-2 max-w-full truncate">Reference PDF/DOCX</legend>
+            <div className="mb-2 min-h-[52px]" aria-hidden="true" />
             <div
-              className={`dropzone-sunken h-32 w-full min-w-0 overflow-hidden ${draggingZone === 'spec' ? 'dragging' : ''} ${files.spec ? 'bg-white' : ''}`}
+              className={`dropzone-sunken h-28 min-w-0 overflow-hidden ${draggingZone === 'spec' ? 'dragging' : ''} ${files.spec ? 'bg-white' : ''}`}
               onClick={() => specInputRef.current?.click()}
               onDrop={(e) => handleFileDrop(e, 'spec')}
               onDragOver={(e) => e.preventDefault()}
               onDragEnter={(e) => handleDragEnter(e, 'spec')}
               onDragLeave={(e) => handleDragLeave(e, 'spec')}
+              style={dropzoneStyle}
             >
               <RiFileLine className="size-10" style={{ color: 'var(--text-muted)' }} />
               <span className="text-xs truncate px-2 w-full text-center">
