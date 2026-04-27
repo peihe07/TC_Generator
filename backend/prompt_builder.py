@@ -865,7 +865,9 @@ def build_test_set_classification_prompt(
         test_item = str(r.get("test_item") or "").strip().replace("\n", " ")
         if len(test_item) > 400:
             test_item = test_item[:397] + "..."
-        items.append(f"{i}. [{r.get('req_id', '')}] {test_item}")
+        current_test_set = str(r.get("current_test_set") or "").strip()
+        hint = f" (current Test Set hint: {current_test_set})" if current_test_set else ""
+        items.append(f"{i}. [{r.get('req_id', '')}] {test_item}{hint}")
     body = "\n".join(items)
 
     group_clean = (test_group or "").strip()

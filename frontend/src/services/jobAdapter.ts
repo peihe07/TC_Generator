@@ -352,6 +352,7 @@ export async function parseJobFiles(input: {
 export async function fetchGroupingPreview(input: {
   jobId: string | null;
   rows: TcRow[];
+  forceRegroup?: boolean;
 }): Promise<GroupPreview> {
   if (!input.jobId) {
     throw new Error("A parsed job is required before grouping preview can run.");
@@ -363,6 +364,7 @@ export async function fetchGroupingPreview(input: {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         jobId: input.jobId,
+        forceRegroup: Boolean(input.forceRegroup),
         rows: input.rows.map((row) => ({
           id: row.id,
           reqId: row.reqId,

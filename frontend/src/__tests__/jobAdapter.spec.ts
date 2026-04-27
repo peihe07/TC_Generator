@@ -1,6 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { exportJob, parseJobFiles, regenerateRows, startGeneration } from '../services/jobAdapter';
+import {
+  exportJob,
+  fetchGroupingPreview,
+  parseJobFiles,
+  regenerateRows,
+  startGeneration,
+} from '../services/jobAdapter';
 
 describe('exportJob', () => {
   const originalFetch = global.fetch;
@@ -200,6 +206,68 @@ describe('parseJobFiles', () => {
         rawFile: new File(['not-an-excel'], 'bad.txt', { type: 'text/plain' }),
       }),
     ).rejects.toThrow('raw_file must be .xlsx or .xlsm');
+  });
+});
+
+describe('fetchGroupingPreview', () => {
+  const originalFetch = global.fetch;
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+    vi.restoreAllMocks();
+  });
+
+  it('sends existing test sets as hints when force-regrouping', async () => {
+    global.fetch = vi.fn().mockResolvedValue(
+      Response.json({
+        groups: [],
+        assignments: [],
+        cost: 0,
+        inputTokens: 0,
+        outputTokens: 0,
+        cacheCreationTokens: 0,
+        cacheReadTokens: 0,
+      }),
+    );
+
+    await fetchGroupingPreview({
+      jobId: 'job-1',
+      forceRegroup: true,
+      rows: [
+        {
+          id: 'row-1',
+          reqId: 'REQ-1',
+          testGroup: 'HMI',
+          testSet: 'Original Set',
+          testItem: 'Bluetooth connection requirement',
+          preConditions: '',
+          inputTestData: '',
+          steps: '',
+          expectedResults: '',
+          status: 'pending',
+          validationErrors: [],
+        },
+      ],
+    });
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      '/api/group',
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify({
+          jobId: 'job-1',
+          forceRegroup: true,
+          rows: [
+            {
+              id: 'row-1',
+              reqId: 'REQ-1',
+              testItem: 'Bluetooth connection requirement',
+              testSet: 'Original Set',
+            },
+          ],
+        }),
+      }),
+    );
   });
 });
 

@@ -11,6 +11,7 @@ export interface GroupingTabProps {
   isLoading: boolean;
   error: string | null;
   onRefresh: () => void;
+  onForceRegroup: () => void;
   onApply: () => void;
   /** Called when a row's Test Set is edited inline so the preview can invalidate. */
   onInvalidatePreview: () => void;
@@ -27,33 +28,51 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
   isLoading,
   error,
   onRefresh,
+  onForceRegroup,
   onApply,
   onInvalidatePreview,
 }) => (
   <>
-    <div className="flex items-center justify-between mb-2">
-      <div>
+    <div className="mb-2">
+      <div className="mb-2">
         <p className="font-bold">AI-suggested Test Sets — review, edit, and apply before generation.</p>
         <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
           下方清單由 AI 依 requirement 文意分組。滿意就按 Apply；想改就在「Manual Override」改完再 Apply。
           生成完的 TC 會沿用這裡的 Test Set，不會再跑一次 AI 分類。
         </p>
       </div>
-      <div className="flex items-center gap-2">
-        <Button
-          className="flex items-center gap-1"
-          onClick={onRefresh}
-          title="Ask AI to re-suggest test sets"
-        >
-          {isLoading ? (
-            <RiLoader4Line className="size-3 animate-spin" />
-          ) : (
-            <RiRefreshLine className="size-3" />
-          )}
-          AI Re-suggest
-        </Button>
-        <Button onClick={onApply} disabled={!preview} className="default">
-          Apply To Rows
+      <div
+        className="flex flex-wrap items-center justify-between gap-2 border-sunken p-2"
+        style={{ background: 'var(--win95-gray-lighter)' }}
+      >
+        <div className="flex flex-wrap items-center gap-2 min-w-0">
+          <Button
+            className="flex items-center justify-center gap-1 min-w-[118px]"
+            onClick={onRefresh}
+            title="Ask AI to suggest test sets for rows that do not already have one"
+          >
+            {isLoading ? (
+              <RiLoader4Line className="size-3 animate-spin" />
+            ) : (
+              <RiRefreshLine className="size-3" />
+            )}
+            Fill Blank
+          </Button>
+          <Button
+            className="flex items-center justify-center gap-1 min-w-[128px]"
+            onClick={onForceRegroup}
+            title="Send existing test sets as hints and ask AI to regroup every row"
+          >
+            {isLoading ? (
+              <RiLoader4Line className="size-3 animate-spin" />
+            ) : (
+              <RiRefreshLine className="size-3" />
+            )}
+            Regroup All
+          </Button>
+        </div>
+        <Button onClick={onApply} disabled={!preview} className="default min-w-[112px]">
+          Apply
         </Button>
       </div>
     </div>

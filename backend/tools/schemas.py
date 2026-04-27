@@ -130,6 +130,13 @@ GROUP_TESTS_SCHEMA: dict[str, Any] = {
                 "items": _ROW_BASIC,
                 "description": "Rows to group (camelCase or snake_case both accepted).",
             },
+            "force_regroup": {
+                "type": "boolean",
+                "description": (
+                    "When true, existing Test Set values are sent as hints but "
+                    "AI may assign new Test Set labels for every row."
+                ),
+            },
         },
         "required": ["rows"],
     },

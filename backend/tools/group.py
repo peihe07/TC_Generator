@@ -61,14 +61,17 @@ def group_tests_tool(
     *,
     rows: list[dict],
     model: str = CLASSIFICATION_MODEL,
+    force_regroup: bool = False,
 ) -> dict:
     """把 rows 分成若干 Test Set 並回 grouping preview。
 
     Args:
         rows: list of dicts，可接受 camelCase 或 snake_case key
               必要欄位：`id`、`reqId`/`req_id`、`testItem`/`test_item`
-              選填欄位：`testSet`/`test_set`（若已填，不會重新分類）
+              選填欄位：`testSet`/`test_set`（若已填，預設不會重新分類）
         model: OpenAI model id（僅當有 req 需要 AI 分類時才真的呼叫）
+        force_regroup: True 時，既有 testSet 會當作 AI hint，但 preview
+              assignment 會使用 AI 重新分類結果；Apply 前不會改動前端 rows。
 
     Returns:
         `{"groups": [...], "framework": {...}, "assignments": [...]}`
@@ -77,10 +80,12 @@ def group_tests_tool(
     AI 分類失敗時不拋錯，改走 deterministic fallback，避免 agent / API 預覽
     因外部網路不可用而整體失敗。
     """
-    # Phase 1: 先分出「已有 test_set」與「需要 AI 分類」兩批
+    # Phase 1: 先分出「已有 test_set」與「需要 AI 分類」兩批。
+    # force_regroup=True 時，既有 test_set 不直接沿用，而是送給 AI 當 hint。
     unresolved_reqs: dict[str, str] = {}  # req_id -> test_item
     for row in rows:
-        if derive_test_set_name(row):
+        existing = derive_test_set_name(row)
+        if existing and not force_regroup:
             continue
         req_id = _get_any(row, "req_id", "reqId")
         if not req_id:
@@ -99,10 +104,15 @@ def group_tests_tool(
     }
     if unresolved_reqs:
         try:
-            result = classify_test_sets(
-                [{"req_id": k, "test_item": v} for k, v in unresolved_reqs.items()],
-                model=model,
-            )
+            reqs = []
+            for k, v in unresolved_reqs.items():
+                item = {"req_id": k, "test_item": v}
+                row = next((_row for _row in rows if _get_any(_row, "req_id", "reqId") == k), None)
+                existing = derive_test_set_name(row or {})
+                if existing and force_regroup:
+                    item["current_test_set"] = existing
+                reqs.append(item)
+            result = classify_test_sets(reqs, model=model)
             classified = result.assignments
             usage = {
                 "cost": result.cost,
@@ -121,7 +131,7 @@ def group_tests_tool(
     for row in rows:
         req_id = _get_any(row, "req_id", "reqId")
         existing = derive_test_set_name(row)
-        if existing:
+        if existing and not force_regroup:
             test_set = existing
             source = "existing"
         else:
