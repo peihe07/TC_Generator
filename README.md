@@ -72,7 +72,7 @@ Notes:
 
 - The frontend talks to the backend through same-origin Next.js proxy routes under `/api/*`.
 - `PYTHON_API_BASE` is the preferred server-side env var for the frontend proxy.
-- If the backend is unavailable, parts of the desktop fall back to local mock behavior.
+- Generate / Regenerate / Export require an active backend job; the desktop no longer creates local mock generated rows when the backend is unavailable.
 
 ## CLI Usage
 
@@ -131,10 +131,11 @@ python backend/main.py \
 Two entry points — pick based on what you need:
 
 - **[docs/STATUS.md](docs/STATUS.md)** — what's been built, current architecture, test baselines
-- **[docs/ROADMAP.md](docs/ROADMAP.md)** — what's planned next (Agent副駕模式 integration)
+- **[docs/ROADMAP.md](docs/ROADMAP.md)** — deprecated Agent planning archive; retained for historical reference
 
 Reference docs:
 
+- [docs/WORKFLOW_MECHANISM_TABLE.md](docs/WORKFLOW_MECHANISM_TABLE.md) — developer table for user actions, API routes, backend work, AI calls, and state writes
 - [docs/API_CONTRACT.md](docs/API_CONTRACT.md) — browser ↔ backend API specs
 - [docs/RULES.md](docs/RULES.md) — TC auto-generation tool rules (column mapping, ID format, validation)
 - [docs/ASPICE_SWE6_AI_Instruction.md](docs/ASPICE_SWE6_AI_Instruction.md) — ASPICE SWE.6 AI Instruction (auto-loaded into LLM prompt)

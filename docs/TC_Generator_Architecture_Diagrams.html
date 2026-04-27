@@ -3,674 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TC Generator — Workflow Diagrams</title>
+<title>TC Generator — Architecture & Logic Diagrams</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#d7d3c9',
+      primaryTextColor: '#1d1d1b',
+      primaryBorderColor: '#68655f',
+      lineColor: '#68655f',
+      secondaryColor: '#f5f4ef',
+      tertiaryColor: '#fff'
+    }
+  });
+</script>
 <style>
   :root {
-    --bg: #ffffff;
-    --bg2: #f7f6f2;
-    --text: #1a1a1a;
-    --text2: #6b6a66;
-    --text3: #95938d;
-    --border: rgba(0,0,0,0.1);
-    --blue-50: #EAF3FC;  --blue-600: #1E63A8;  --blue-800: #0E4278;
-    --teal-50: #E6F5EF;  --teal-600: #147054;  --teal-800: #0A4F3B;
-    --purple-50: #F1F0FE; --purple-600: #5A52BA; --purple-800: #3F3893;
-    --coral-50: #FBEDE6; --coral-600: #A0401F; --coral-800: #79301A;
-    --amber-50: #FBEFD9; --amber-600: #8C520E; --amber-800: #643906;
-    --green-50: #EDF5DE; --green-600: #437712; --green-800: #2E530B;
-    --gray-50: #F1EFEA;  --gray-600: #65635D;  --gray-800: #474541;
+    --bg:#fff; --panel:#f5f4ef; --ink:#1d1d1b; --muted:#68655f; --line:#d7d3c9;
+    --blue:#dcebff; --blue-b:#2867a6;
+    --amber:#fff0cf; --amber-b:#9a650f;
+    --purple:#ece8ff; --purple-b:#6252bc;
+    --green:#e4f3dc; --green-b:#4f7d25;
+    --coral:#ffe5dc; --coral-b:#b64b2f;
+    --gray:#ebe9e1; --gray-b:#747168;
+    --win95-bg: #c0c0c0;
+    --win95-shadow: #808080;
+    --win95-highlight: #ffffff;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1a1a;
-      --bg2: #252522;
-      --text: #e8e6df;
-      --text2: #9c9a92;
-      --text3: #6c6a64;
-      --border: rgba(255,255,255,0.12);
-      --blue-50: #062F58;  --blue-600: #8BBCEE; --blue-800: #BDD8F6;
-      --teal-50: #04342C;  --teal-600: #61CDA8; --teal-800: #A3E3CE;
-      --purple-50: #27215E; --purple-600: #B2ADEE; --purple-800: #D1CEF7;
-      --coral-50: #4E1D0E; --coral-600: #F29B7D; --coral-800: #F5C5B4;
-      --amber-50: #432603; --amber-600: #F2A128; --amber-800: #FBC876;
-      --green-50: #183606; --green-600: #99C55A; --green-800: #C2DE98;
-      --gray-50: #2D2D2B;  --gray-600: #B6B4AB; --gray-800: #D4D2C8;
-    }
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { box-sizing:border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 48px 28px 72px 28px;
-    line-height: 1.65;
+    max-width:1100px; margin:0 auto; padding:40px 24px 80px;
+    font-family: "Segoe UI", "Tahoma", sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.45;
   }
-  h1 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
+  h1 { margin:0 0 4px; font-size:32px; letter-spacing:-.02em; }
+  h2 { margin:0 0 12px; font-size:22px; display: flex; align-items: center; }
+  h2::before { content: ""; display: inline-block; width: 18px; height: 18px; background: #000080; margin-right: 10px; box-shadow: inset 1px 1px #fff, inset -1px -1px #808080; }
+  p { margin:0; }
+  code { font-size:.92em; background:#fff; border:1px solid var(--line); border-radius:4px; padding:1px 4px; }
+  .sub { color:var(--muted); margin-bottom:34px; border-bottom: 2px solid var(--line); padding-bottom: 10px; }
+  .section { margin-bottom:60px; }
+
+  /* Win95 Button/Panel Style */
+  .board {
+    border: 2px solid;
+    border-color: var(--win95-highlight) var(--win95-shadow) var(--win95-shadow) var(--win95-highlight);
+    background: var(--win95-bg);
+    padding: 20px;
+    box-shadow: 1px 1px 0 0 #000;
   }
-  .subtitle {
-    font-size: 14px;
-    color: var(--text2);
-    margin-bottom: 56px;
-  }
-  .section { margin-bottom: 72px; }
-  .section h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    letter-spacing: -0.01em;
-  }
-  .section .lede {
-    font-size: 14px;
-    color: var(--text2);
-    margin-bottom: 24px;
-  }
-  .diagram {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 32px 24px;
+  .inner-board {
+    background: #fff;
+    border: 2px solid;
+    border-color: var(--win95-shadow) var(--win95-highlight) var(--win95-highlight) var(--win95-shadow);
+    padding: 20px;
     overflow-x: auto;
   }
-  svg text {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
-  }
-  .t     { font-size: 13px; fill: var(--text); }
-  .ts    { font-size: 11px; fill: var(--text2); }
-  .tiny  { font-size: 10px; fill: var(--text3); }
-  .th    { font-size: 14px; fill: var(--text); font-weight: 600; }
-  .huge  { font-size: 22px; fill: var(--text); font-weight: 600; }
 
-  .arr   { stroke: var(--text2); stroke-width: 1.5; fill: none; }
-  .arr-d { stroke: var(--text2); stroke-width: 1.2; fill: none; stroke-dasharray: 5 3; }
-  .arr-thick { stroke: var(--text); stroke-width: 2; fill: none; }
+  .flow { display:grid; grid-template-columns:repeat(5, minmax(150px,1fr)); gap:10px; min-width:830px; margin-bottom: 20px; }
+  .card {
+    min-height:90px; padding:12px; border: 2px solid;
+    border-color: var(--win95-highlight) var(--win95-shadow) var(--win95-shadow) var(--win95-highlight);
+    background: var(--win95-bg);
+  }
+  .card b { display:block; margin-bottom:5px; font-size:15px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card span { display:block; color: #000; font-size:12px; font-family: "MS Sans Serif", sans-serif; }
 
-  .c-blue   rect, .c-blue   circle { fill: var(--blue-50);   stroke: var(--blue-600);   stroke-width: 1.2; }
-  .c-blue   .th  { fill: var(--blue-800); }
-  .c-blue   .ts  { fill: var(--blue-600); }
-  .c-teal   rect, .c-teal   circle { fill: var(--teal-50);   stroke: var(--teal-600);   stroke-width: 1.2; }
-  .c-teal   .th  { fill: var(--teal-800); }
-  .c-teal   .ts  { fill: var(--teal-600); }
-  .c-purple rect, .c-purple circle { fill: var(--purple-50); stroke: var(--purple-600); stroke-width: 1.2; }
-  .c-purple .th  { fill: var(--purple-800); }
-  .c-purple .ts  { fill: var(--purple-600); }
-  .c-coral  rect, .c-coral  circle { fill: var(--coral-50);  stroke: var(--coral-600);  stroke-width: 1.2; }
-  .c-coral  .th  { fill: var(--coral-800); }
-  .c-coral  .ts  { fill: var(--coral-600); }
-  .c-amber  rect, .c-amber  circle { fill: var(--amber-50);  stroke: var(--amber-600);  stroke-width: 1.2; }
-  .c-amber  .th  { fill: var(--amber-800); }
-  .c-amber  .ts  { fill: var(--amber-600); }
-  .c-green  rect, .c-green  circle { fill: var(--green-50);  stroke: var(--green-600);  stroke-width: 1.2; }
-  .c-green  .th  { fill: var(--green-800); }
-  .c-green  .ts  { fill: var(--green-600); }
-  .c-gray   rect, .c-gray   circle { fill: var(--gray-50);   stroke: var(--gray-600);   stroke-width: 1.2; }
-  .c-gray   .th  { fill: var(--gray-800); }
-  .c-gray   .ts  { fill: var(--gray-600); }
+  .blue{background:var(--blue);}
+  .amber{background:var(--amber);}
+  .purple{background:var(--purple);}
+  .green{background:var(--green);}
+  .coral{background:var(--coral);}
 
-  .step-number {
-    font-size: 32px;
-    font-weight: 700;
-    fill: var(--text3);
+  .tagrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .tag {
+    border: 1px solid #000; background:#fff; padding:4px 10px; color:#000; font-size:11px; font-weight: bold;
+    box-shadow: 1px 1px 0 0 var(--win95-shadow);
   }
-  .note {
-    background: var(--bg2);
-    border-left: 3px solid var(--amber-600);
-    padding: 14px 18px;
-    margin: 20px 0 0 0;
-    border-radius: 6px;
-    font-size: 13px;
-    color: var(--text2);
-  }
-  .note strong { color: var(--text); }
 
-  table.legend {
-    margin-top: 20px;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  table.legend td {
-    padding: 6px 14px 6px 0;
-    color: var(--text2);
-  }
-  table.legend .sw {
-    display: inline-block;
-    width: 14px; height: 14px;
-    border-radius: 3px;
-    vertical-align: middle;
-    margin-right: 6px;
-    border: 1px solid var(--border);
-  }
-  @media print {
-    body { max-width: 100%; padding: 20px; }
-    .diagram { break-inside: avoid; }
-    .section { page-break-inside: avoid; }
+  .mermaid { background: white; padding: 10px; }
+  .desc { margin: 15px 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+  @media (max-width:780px) {
+    body { padding:28px 14px 52px; }
+    .flow { grid-template-columns:1fr; min-width:0; }
+    .card { min-height: auto; }
   }
 </style>
 </head>
 <body>
-
-<h1>TC Generator — Workflow Diagrams</h1>
-<p class="subtitle">
-  更新：2026-04-26 — 與 <code>docs/STATUS.md</code> 同步。此檔為文件 mirror，runtime 展示以 <code>frontend/public/diagrams.html</code> 為準。
-</p>
-
-<!-- ========================================
-     1. 主流程：五步驟桌面工作流
-     ======================================== -->
-<div class="section">
-<h2>1. 標準流程 — 產生一份完整的 TC</h2>
-<p class="lede">最常用的操作路徑。從拖檔到匯出共五步。</p>
-
-<div class="diagram">
-<svg width="100%" viewBox="0 0 860 360">
-  <defs>
-    <marker id="arr-main" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
-  <!-- Step 1: Upload -->
-  <g class="c-blue">
-    <rect x="20" y="80" width="148" height="120" rx="12"/>
-    <text class="step-number" x="36" y="112">1</text>
-    <text class="th" x="94" y="148" text-anchor="middle">Upload</text>
-    <text class="ts" x="94" y="170" text-anchor="middle">拖入 TC workbook</text>
-    <text class="ts" x="94" y="186" text-anchor="middle">(.xlsx)</text>
-  </g>
-
-  <!-- Step 2: Configure -->
-  <g class="c-teal">
-    <rect x="188" y="80" width="148" height="120" rx="12"/>
-    <text class="step-number" x="204" y="112">2</text>
-    <text class="th" x="262" y="148" text-anchor="middle">Configure</text>
-    <text class="ts" x="262" y="170" text-anchor="middle">確認分組</text>
-    <text class="ts" x="262" y="186" text-anchor="middle">確認 spec 匹配</text>
-  </g>
-
-  <!-- Step 3: Generate -->
-  <g class="c-purple">
-    <rect x="356" y="80" width="148" height="120" rx="12"/>
-    <text class="step-number" x="372" y="112">3</text>
-    <text class="th" x="430" y="148" text-anchor="middle">Generate</text>
-    <text class="ts" x="430" y="170" text-anchor="middle">AI 自動生成</text>
-    <text class="ts" x="430" y="186" text-anchor="middle">即時看進度/成本</text>
-  </g>
-
-  <!-- Step 4: Review -->
-  <g class="c-amber">
-    <rect x="524" y="80" width="148" height="120" rx="12"/>
-    <text class="step-number" x="540" y="112">4</text>
-    <text class="th" x="598" y="148" text-anchor="middle">Review</text>
-    <text class="ts" x="598" y="170" text-anchor="middle">逐筆 accept/reject</text>
-    <text class="ts" x="598" y="186" text-anchor="middle">reason regenerate / rerun</text>
-  </g>
-
-  <!-- Step 5: Export -->
-  <g class="c-green">
-    <rect x="692" y="80" width="148" height="120" rx="12"/>
-    <text class="step-number" x="708" y="112">5</text>
-    <text class="th" x="766" y="148" text-anchor="middle">Export</text>
-    <text class="ts" x="766" y="170" text-anchor="middle">匯出 .xlsx</text>
-    <text class="ts" x="766" y="186" text-anchor="middle">下載檔案</text>
-  </g>
-
-  <!-- Arrows between steps -->
-  <line x1="168" y1="140" x2="186" y2="140" class="arr" marker-end="url(#arr-main)"/>
-  <line x1="336" y1="140" x2="354" y2="140" class="arr" marker-end="url(#arr-main)"/>
-  <line x1="504" y1="140" x2="522" y2="140" class="arr" marker-end="url(#arr-main)"/>
-  <line x1="672" y1="140" x2="690" y2="140" class="arr" marker-end="url(#arr-main)"/>
-
-  <!-- Top row: inputs -->
-  <text class="tiny" x="94"  y="50" text-anchor="middle">輸入檔案</text>
-  <text class="tiny" x="262" y="50" text-anchor="middle">確認規則</text>
-  <text class="tiny" x="430" y="50" text-anchor="middle">LLM 生成</text>
-  <text class="tiny" x="598" y="50" text-anchor="middle">人工審查</text>
-  <text class="tiny" x="766" y="50" text-anchor="middle">交付成果</text>
-
-  <!-- Bottom row: outputs -->
-  <text class="tiny" x="94"  y="235" text-anchor="middle">解析成 rows</text>
-  <text class="tiny" x="262" y="235" text-anchor="middle">Test Set 分組</text>
-  <text class="tiny" x="430" y="235" text-anchor="middle">Pre-cond / Proc / ER</text>
-  <text class="tiny" x="598" y="235" text-anchor="middle">確認最終版本</text>
-  <text class="tiny" x="766" y="235" text-anchor="middle">完整 workbook</text>
-
-  <!-- Time estimate bar -->
-  <line x1="20" y1="280" x2="840" y2="280" stroke="var(--border)" stroke-width="1"/>
-  <text class="ts" x="20"  y="302">預估時間</text>
-  <text class="ts" x="94"  y="302" text-anchor="middle">&lt; 30 秒</text>
-  <text class="ts" x="262" y="302" text-anchor="middle">1–2 分鐘</text>
-  <text class="ts" x="430" y="302" text-anchor="middle">2–5 分鐘</text>
-  <text class="ts" x="598" y="302" text-anchor="middle">5–15 分鐘</text>
-  <text class="ts" x="766" y="302" text-anchor="middle">&lt; 10 秒</text>
-
-  <text class="ts" x="20"  y="330">成本</text>
-  <text class="ts" x="94"  y="330" text-anchor="middle">$0</text>
-  <text class="ts" x="262" y="330" text-anchor="middle">$0</text>
-  <text class="ts" x="430" y="330" text-anchor="middle">≈ $0.10</text>
-  <text class="ts" x="598" y="330" text-anchor="middle">$0 ~ 少量</text>
-  <text class="ts" x="766" y="330" text-anchor="middle">$0</text>
-</svg>
-</div>
-
-<div class="note">
-  <strong>成本分布</strong>：Generate 階段為主要 LLM 成本來源。實際金額依 row 數、prompt cache 命中率與模型選擇而定。
-  <br/><br/>
-  <strong>Task-level 模型分層</strong>：
-  <ul style="margin: 6px 0 0 18px; padding: 0;">
-    <li><strong>Test Set 分類</strong>（Configure → Grouping，以及 Export 時補分類）固定用 <code>gpt-5-mini</code>，純歸類不需重度推理。Configure 內的 <em>Fill Blank</em> 只補空白 Test Set；<em>Regroup All</em> 會把既有 Test Set 當 hint 重新分類全部 row，按 Apply 前不會改寫 row。</li>
-    <li><strong>需求解讀 / 拆分判斷</strong>（decompose）與 <strong>TC 正文生成</strong>（generate / regenerate / rerun）用使用者在 Configure → Options 選的 model（預設 <code>gpt-5</code>，另可選 <code>gpt-5.4</code>）。</li>
-  </ul>
-</div>
-
-<div class="note">
-  <strong>Review 操作分兩種</strong>：
-  <ul style="margin: 6px 0 0 18px; padding: 0;">
-    <li><strong>Regenerate</strong>：使用者先填 <code>regenerateReason</code>，AI 以該原因作為主要修正目標並重新判斷是否需要拆分。若不拆，只回 primary <code>row.regenerated</code>；若需要拆，先回 <code>req.split.insertPlan</code>（新增幾列、插入錨點、是否重排），再用 <code>row.added</code> 補 sub-TCs。Primary 仍走 diff-preview，新增列直接插在 parent 後方。</li>
-    <li><strong>Re-run</strong>：重走完整 pipeline（含 decompose），不依賴 reviewer reason。一筆 row 可能產生多筆 TC：先回 <code>req.split.insertPlan</code>，primary 覆蓋原列，sub-TCs 插在下方。適合對 AI 首輪拆分不滿意或要補缺漏情境的場景。</li>
-  </ul>
-</div>
-
-</div>
-
-<!-- ========================================
-     2. 快速路徑
-     ======================================== -->
-<div class="section">
-<h2>2. 快速路徑 — Quick Generate</h2>
-<p class="lede">只想試一筆需求、不用整個 workbook 的情境。不需 upload、不需 review，直接貼需求看結果。統一走 auto-split：AI 依 ASPICE SWE.6 §6.1（Test Item）、§9（False Pass 拆分）、§10.2（延伸情境）自動判斷拆成幾筆 TC。</p>
-
-<div class="diagram">
-<svg width="100%" viewBox="0 0 860 260">
-  <defs>
-    <marker id="arr-quick" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
-  <!-- Input -->
-  <g class="c-gray">
-    <rect x="40" y="80" width="220" height="100" rx="10"/>
-    <text class="th" x="150" y="118" text-anchor="middle">Requirement（必填）</text>
-    <text class="ts" x="150" y="140" text-anchor="middle">＋ Additional Context（選填）</text>
-    <text class="ts" x="150" y="156" text-anchor="middle">＋ Model 選擇</text>
-  </g>
-
-  <!-- Auto-split analysis -->
-  <g class="c-purple">
-    <rect x="290" y="60" width="260" height="140" rx="10"/>
-    <text class="th" x="420" y="92" text-anchor="middle">AI Auto-split 分析</text>
-    <text class="ts" x="420" y="116" text-anchor="middle">decomposing phase</text>
-    <text class="ts" x="420" y="136" text-anchor="middle">產生 reasoning + scenarios</text>
-    <text class="ts" x="420" y="156" text-anchor="middle">＋ keyword coverage</text>
-    <text class="tiny" x="420" y="180" text-anchor="middle">（DecomposeAnalysisPanel 顯示）</text>
-  </g>
-
-  <!-- Output -->
-  <g class="c-green">
-    <rect x="580" y="60" width="240" height="140" rx="10"/>
-    <text class="th" x="700" y="92" text-anchor="middle">N 筆 TC（逐張串流）</text>
-    <text class="ts" x="700" y="118" text-anchor="middle">Pre-Cond / Input Data</text>
-    <text class="ts" x="700" y="136" text-anchor="middle">Procedure / Expected Result</text>
-    <text class="ts" x="700" y="154" text-anchor="middle">Design Method / Priority</text>
-    <text class="tiny" x="700" y="180" text-anchor="middle">generating → complete</text>
-  </g>
-
-  <line x1="260" y1="130" x2="288" y2="130" class="arr" marker-end="url(#arr-quick)"/>
-  <line x1="550" y1="130" x2="578" y2="130" class="arr" marker-end="url(#arr-quick)"/>
-</svg>
-</div>
-
-<div class="note">
-  <strong>何時用這條路徑？</strong>：臨時驗證、內部會議示範、寫 prompt 時試個 case。產生的 TC 會進入 Job History 但不寫進 workbook。
-</div>
-
-</div>
-
-<!-- ========================================
-     3. 狀態流轉
-     ======================================== -->
-<div class="section">
-<h2>3. 單一 Test Case 的狀態流轉</h2>
-<p class="lede">每一筆 TC 從解析開始，到最後被匯出，會經過幾個明確的狀態。Review 階段的決策是核心。若 AI 判斷一筆 requirement 應拆成多個 scenario，generating 期間會先觸發 <code>req.split.insertPlan</code> 說明新增列數與插入錨點，再產生額外 sub-TC rows。</p>
-
-<div class="diagram">
-<svg width="100%" viewBox="0 0 860 500">
-  <defs>
-    <marker id="arr-state" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
-  <!-- pending -->
-  <g class="c-gray">
-    <rect x="40" y="180" width="140" height="60" rx="30"/>
-    <text class="th" x="110" y="210" text-anchor="middle">pending</text>
-    <text class="ts" x="110" y="228" text-anchor="middle">剛解析進來</text>
-  </g>
-
-  <!-- generating -->
-  <g class="c-purple">
-    <rect x="240" y="180" width="140" height="60" rx="30"/>
-    <text class="th" x="310" y="210" text-anchor="middle">generating</text>
-    <text class="ts" x="310" y="228" text-anchor="middle">AI 跑中</text>
-  </g>
-
-  <!-- reviewing -->
-  <g class="c-amber">
-    <rect x="440" y="180" width="140" height="60" rx="30"/>
-    <text class="th" x="510" y="210" text-anchor="middle">reviewing</text>
-    <text class="ts" x="510" y="228" text-anchor="middle">等人審查（含 flagged）</text>
-  </g>
-
-  <!-- accepted -->
-  <g class="c-green">
-    <rect x="680" y="80" width="140" height="60" rx="30"/>
-    <text class="th" x="750" y="110" text-anchor="middle">accepted</text>
-    <text class="ts" x="750" y="128" text-anchor="middle">會被匯出</text>
-  </g>
-
-  <!-- rejected -->
-  <g class="c-coral">
-    <rect x="680" y="280" width="140" height="60" rx="30"/>
-    <text class="th" x="750" y="310" text-anchor="middle">rejected</text>
-    <text class="ts" x="750" y="328" text-anchor="middle">不會被匯出</text>
-  </g>
-
-  <!-- arrows -->
-  <line x1="180" y1="210" x2="238" y2="210" class="arr" marker-end="url(#arr-state)"/>
-  <text class="tiny" x="209" y="198" text-anchor="middle">送進 Generate</text>
-
-  <line x1="380" y1="210" x2="438" y2="210" class="arr" marker-end="url(#arr-state)"/>
-  <text class="tiny" x="409" y="198" text-anchor="middle">生成完成</text>
-
-  <line x1="580" y1="200" x2="678" y2="130" class="arr" marker-end="url(#arr-state)"/>
-  <text class="tiny" x="628" y="160" text-anchor="middle">Accept</text>
-
-  <line x1="580" y1="220" x2="678" y2="290" class="arr" marker-end="url(#arr-state)"/>
-  <text class="tiny" x="628" y="262" text-anchor="middle">Reject</text>
-
-  <!-- Review rework loop -->
-  <path d="M 510 180 Q 510 40  310 90  Q 260 110 265 178" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
-  <text class="tiny" x="352" y="52" fill="var(--purple-600)">Regenerate：帶 reason 修正</text>
-  <text class="tiny" x="352" y="68" fill="var(--purple-600)">Re-run：重走完整 pipeline</text>
-
-  <!-- Edit loop (stays in reviewing) -->
-  <path d="M 510 240 Q 510 300 570 280 Q 620 260 575 240" class="arr-d" marker-end="url(#arr-state)" stroke="var(--amber-600)"/>
-  <text class="tiny" x="620" y="220" fill="var(--amber-600)">Edit（手改欄位）</text>
-
-  <!-- Split branch: generating spawns sub-TCs -->
-  <g class="c-purple">
-    <rect x="240" y="360" width="340" height="60" rx="10"/>
-    <text class="th" x="410" y="386" text-anchor="middle">req.split.insertPlan → 空出列位</text>
-    <text class="ts" x="410" y="404" text-anchor="middle">newCount / insertAfterId / renumberRequired</text>
-  </g>
-  <path d="M 310 240 Q 310 320 330 358" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
-  <text class="tiny" x="340" y="306" fill="var(--purple-600)">AI 判斷需拆解</text>
-  <path d="M 490 360 Q 520 300 510 242" class="arr-d" marker-end="url(#arr-state)" stroke="var(--purple-600)"/>
-  <text class="tiny" x="615" y="392" fill="var(--purple-600)">row.added 插在 parent 後方</text>
-
-  <!-- Final export note -->
-  <line x1="40" y1="450" x2="820" y2="450" stroke="var(--border)" stroke-width="1"/>
-  <text class="ts" x="40" y="473">
-    匯出時：會依 Export scope 決定。<code>Accepted Only</code> 只匯出 accepted；<code>All Generated Cases</code> 則匯出目前 review 清單中的所有 generated rows。
-  </text>
-</svg>
-</div>
-<div class="note">
-  <strong>實作細節</strong>：frontend status 欄位實際有 8 種 — <code>pending / generating / success / fail / reviewing / accepted / rejected / flagged</code>。<code>success</code> 與 <code>fail</code> 是 generating 結束的瞬間狀態（成功即進入 reviewing，失敗會保留供重跑）；<code>flagged</code> 是 reviewing 下的子狀態，表示 validator 有警告需人工留意。<code>req.split.insertPlan</code> 是結構變更計畫，AI 只回新增數量與插入位置，實際 row 插入與 ID/順序調整由前端 store 和 export writer 處理。
-</div>
-</div>
-
-<!-- ========================================
-     4. 桌面視窗如何協作
-     ======================================== -->
-<div class="section">
-<h2>4. 桌面上的視窗如何互動</h2>
-<p class="lede">每個步驟對應一個視窗。透過 <code>advanceWindow</code> 前進下一步時，前一個 module 視窗會自動關閉；若使用者從桌面圖示或 Taskbar 直接開窗，仍可同時開多個 module。CostMeter、Workspace、Job History 與 Agent 則維持常駐。</p>
-
-<div class="diagram">
-<svg width="100%" viewBox="0 0 860 440">
-  <defs>
-    <marker id="arr-desk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
-  <!-- Desktop background -->
-  <rect x="30" y="30" width="800" height="380" rx="10" fill="var(--bg)" stroke="var(--border)" stroke-width="1"/>
-  <text class="tiny" x="46" y="54">Desktop（桌布）</text>
-
-  <!-- Single active module window (center) -->
-  <g class="c-purple">
-    <rect x="240" y="90" width="380" height="210" rx="6"/>
-    <text class="th" x="430" y="122" text-anchor="middle">Active Module（例：Generate）</text>
-    <text class="ts" x="430" y="150" text-anchor="middle">流程前進時，主工作視窗通常只聚焦一個 module</text>
-    <text class="ts" x="430" y="172" text-anchor="middle">模型 / batch 設定、即時進度 + 成本</text>
-    <text class="ts" x="430" y="192" text-anchor="middle">SSE 串流事件</text>
-    <text class="tiny" x="430" y="222" text-anchor="middle">按「下一步」→ advanceWindow(from, to)</text>
-    <text class="tiny" x="430" y="240" text-anchor="middle">自動關閉當前視窗、開啟目標視窗</text>
-    <text class="tiny" x="430" y="270" text-anchor="middle">（但也可從桌面 / Taskbar 再開其他 module）</text>
-  </g>
-
-  <!-- Flow sequence shown as chips on left -->
-  <g class="c-blue">
-    <rect x="60" y="90" width="140" height="34" rx="6"/>
-    <text class="ts" x="130" y="112" text-anchor="middle">1. Upload</text>
-  </g>
-  <g class="c-teal">
-    <rect x="60" y="132" width="140" height="34" rx="6"/>
-    <text class="ts" x="130" y="154" text-anchor="middle">2. Configure</text>
-  </g>
-  <g class="c-purple">
-    <rect x="60" y="174" width="140" height="34" rx="6"/>
-    <text class="th" x="130" y="196" text-anchor="middle">3. Generate</text>
-  </g>
-  <g class="c-amber">
-    <rect x="60" y="216" width="140" height="34" rx="6"/>
-    <text class="ts" x="130" y="238" text-anchor="middle">4. Review</text>
-  </g>
-  <g class="c-green">
-    <rect x="60" y="258" width="140" height="34" rx="6"/>
-    <text class="ts" x="130" y="280" text-anchor="middle">5. Export</text>
-  </g>
-  <text class="tiny" x="130" y="80" text-anchor="middle">步驟序列（Taskbar）</text>
-
-  <!-- Arrow from sequence to active -->
-  <line x1="202" y1="191" x2="238" y2="191" class="arr" marker-end="url(#arr-desk)"/>
-
-  <!-- Sidebar: persistent, not closed on advance -->
-  <g class="c-gray">
-    <rect x="640" y="90" width="160" height="210" rx="6"/>
-    <text class="th" x="720" y="118" text-anchor="middle">常駐元件</text>
-    <text class="ts" x="720" y="144" text-anchor="middle">CostMeter</text>
-    <text class="tiny" x="720" y="160" text-anchor="middle">（右上角）</text>
-    <text class="ts" x="720" y="184" text-anchor="middle">Workspace / Job History</text>
-    <text class="ts" x="720" y="204" text-anchor="middle">Agent</text>
-    <text class="tiny" x="720" y="220" text-anchor="middle">（Taskbar）</text>
-    <text class="tiny" x="720" y="248" text-anchor="middle">不受 advanceWindow 影響</text>
-  </g>
-
-  <!-- Taskbar at bottom -->
-  <g class="c-gray">
-    <rect x="30" y="370" width="440" height="40" rx="4"/>
-    <text class="th" x="60"  y="394">Start</text>
-    <text class="ts" x="110" y="394" fill="var(--gray-600)">│</text>
-    <text class="ts" x="130" y="394">Workspace Manager</text>
-    <text class="ts" x="255" y="394" fill="var(--gray-600)">│</text>
-    <text class="ts" x="275" y="394">Job History</text>
-    <text class="ts" x="360" y="394" fill="var(--gray-600)">│</text>
-    <text class="ts" x="380" y="394">CostMeter</text>
-  </g>
-
-</svg>
-</div>
-
-<div class="note">
-  <strong>重點</strong>：
-  <ul style="margin: 6px 0 0 20px;">
-    <li>主流程前進或返回時，<code>advanceWindow(from, to)</code> 會關閉來源視窗、開啟目標視窗，因此使用者通常一次只沿著一條主流程操作。</li>
-    <li>若從桌面圖示或 Taskbar 直接開窗，仍可同時打開多個 module；這不是主流程預設，但實作上是允許的。</li>
-    <li>Taskbar 常駐看得到<strong>累積花費</strong>（CostMeter）、<strong>Workspace</strong>、<strong>Job History</strong>，這些不受 advanceWindow 影響。</li>
-    <li>關閉 module 視窗不會遺失資料。所有 rows、設定、成本記錄都存在 Zustand store（localStorage）和後端 SQLite，回到原步驟會恢復上次狀態。</li>
-  </ul>
-</div>
-
-</div>
-
-<!-- ========================================
-     5. 決策點
-     ======================================== -->
-<div class="section">
-<h2>5. 使用者決策點 — 遇到這些情況怎麼辦</h2>
-<p class="lede">在 Review 階段最常問的三個問題，以及對應的操作。</p>
-
-<div class="diagram">
-<svg width="100%" viewBox="0 0 860 480">
-  <defs>
-    <marker id="arr-d" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
-  <!-- Q1 -->
-  <g class="c-amber">
-    <rect x="40" y="30" width="780" height="120" rx="10"/>
-  </g>
-  <text class="th" x="60" y="58" fill="var(--amber-800)">Q1. 這筆 TC 的內容「差不多對」但有一點不滿意</text>
-  <g class="c-gray"><rect x="60" y="75" width="350" height="60" rx="6"/>
-    <text class="ts" x="235" y="100" text-anchor="middle" font-weight="600">A. 內容小修（Edit）</text>
-    <text class="tiny" x="235" y="118" text-anchor="middle">展開 row → 改欄位 → Save（狀態維持 reviewing）</text></g>
-  <g class="c-gray"><rect x="426" y="75" width="374" height="72" rx="6"/>
-    <text class="ts" x="613" y="100" text-anchor="middle" font-weight="600">B. 整筆/批次重生（Regenerate）</text>
-    <text class="tiny" x="613" y="118" text-anchor="middle">填 reason → AI 判斷是否拆解 → diff 或新增列</text>
-    <text class="tiny" x="613" y="134" text-anchor="middle">需要拆解時先回 insertPlan，再插 row.added</text></g>
-
-  <!-- Q2 -->
-  <g class="c-coral">
-    <rect x="40" y="180" width="780" height="120" rx="10"/>
-  </g>
-  <text class="th" x="60" y="208" fill="var(--coral-800)">Q2. Validator 跳警告，或覺得缺少情境</text>
-  <g class="c-gray"><rect x="60" y="225" width="240" height="60" rx="6"/>
-    <text class="ts" x="180" y="250" text-anchor="middle" font-weight="600">error（紅）</text>
-    <text class="tiny" x="180" y="268" text-anchor="middle">生成時已自動 retry + 升級模型</text></g>
-  <g class="c-gray"><rect x="316" y="225" width="240" height="60" rx="6"/>
-    <text class="ts" x="436" y="250" text-anchor="middle" font-weight="600">warning（黃）</text>
-    <text class="tiny" x="436" y="268" text-anchor="middle">填原因 Regenerate，讓 AI 針對警告修正</text></g>
-  <g class="c-gray"><rect x="572" y="225" width="228" height="60" rx="6"/>
-    <text class="ts" x="686" y="250" text-anchor="middle" font-weight="600">Re-run</text>
-    <text class="tiny" x="686" y="268" text-anchor="middle">要補缺漏/重拆分就重走 pipeline</text></g>
-
-  <!-- Q3 -->
-  <g class="c-green">
-    <rect x="40" y="330" width="780" height="120" rx="10"/>
-  </g>
-  <text class="th" x="60" y="358" fill="var(--green-800)">Q3. 要交付了，要匯出哪些 row？</text>
-  <g class="c-gray"><rect x="60" y="375" width="370" height="60" rx="6"/>
-    <text class="ts" x="245" y="400" text-anchor="middle" font-weight="600">Scope: All Generated Cases</text>
-    <text class="tiny" x="245" y="418" text-anchor="middle">全部匯出（含未審查、flagged、rejected）</text></g>
-  <g class="c-gray"><rect x="446" y="375" width="354" height="60" rx="6"/>
-    <text class="ts" x="623" y="400" text-anchor="middle" font-weight="600">Scope: Accepted Only（推薦）</text>
-    <text class="tiny" x="623" y="418" text-anchor="middle">只匯出已按 Accept 的 row，需至少一筆</text></g>
-
-</svg>
-</div>
-</div>
-
-<!-- ========================================
-     6. 雙軌並用
-     ======================================== -->
-<div class="section">
-<h2>6. 雙軌並用 — GUI + Agent</h2>
-<p class="lede">GUI 流程與 Agent 視窗可並用，兩者共用同一份 backend tools 與 job store。</p>
-
-<div class="diagram">
-<svg width="100%" viewBox="0 0 860 380">
-  <defs>
-    <marker id="arr-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-  </defs>
-
-  <!-- GUI Path -->
-  <g class="c-blue">
-    <rect x="40" y="50" width="360" height="240" rx="14"/>
-    <text class="th" x="220" y="84" text-anchor="middle" fill="var(--blue-800)">GUI</text>
-    <text class="ts" x="220" y="104" text-anchor="middle">主要操作流程</text>
-  </g>
-  <g class="c-blue">
-    <rect x="62" y="128" width="62" height="32" rx="6"/>
-    <text class="tiny" x="93" y="148" text-anchor="middle">Upload</text>
-  </g>
-  <g class="c-blue">
-    <rect x="132" y="128" width="62" height="32" rx="6"/>
-    <text class="tiny" x="163" y="148" text-anchor="middle">Configure</text>
-  </g>
-  <g class="c-blue">
-    <rect x="202" y="128" width="62" height="32" rx="6"/>
-    <text class="tiny" x="233" y="148" text-anchor="middle">Generate</text>
-  </g>
-  <g class="c-blue">
-    <rect x="272" y="128" width="62" height="32" rx="6"/>
-    <text class="tiny" x="303" y="148" text-anchor="middle">Review</text>
-  </g>
-  <g class="c-blue">
-    <rect x="62" y="170" width="62" height="32" rx="6"/>
-    <text class="tiny" x="93" y="190" text-anchor="middle">Export</text>
-  </g>
-  <text class="ts" x="220" y="230" text-anchor="middle">依序操作、逐步確認</text>
-  <text class="ts" x="220" y="248" text-anchor="middle">適合日常交付</text>
-  <text class="ts" x="220" y="270" text-anchor="middle" fill="var(--blue-600)">穩定、可追蹤</text>
-
-  <!-- Agent Path -->
-  <g class="c-purple">
-    <rect x="460" y="50" width="360" height="240" rx="14"/>
-    <text class="th" x="640" y="84" text-anchor="middle" fill="var(--purple-800)">Agent</text>
-    <text class="ts" x="640" y="104" text-anchor="middle">從 Taskbar 開啟</text>
-  </g>
-  <g class="c-purple">
-    <rect x="480" y="128" width="320" height="32" rx="6"/>
-    <text class="ts" x="640" y="148" text-anchor="middle">「上週那個 DeviceManager 補 REQ-045~052」</text>
-  </g>
-  <g class="c-purple">
-    <rect x="480" y="168" width="320" height="32" rx="6"/>
-    <text class="ts" x="640" y="188" text-anchor="middle">「過去一個月哪些 job match rate &lt; 80%？」</text>
-  </g>
-  <text class="ts" x="640" y="230" text-anchor="middle">自然語言與批次操作</text>
-  <text class="ts" x="640" y="248" text-anchor="middle">適合快速查詢與補操作</text>
-  <text class="ts" x="640" y="270" text-anchor="middle" fill="var(--purple-600)">補充 GUI 流程</text>
-
-  <!-- Bridge -->
-  <line x1="400" y1="170" x2="460" y2="170" class="arr-d" stroke="var(--text2)"/>
-  <text class="tiny" x="430" y="160" text-anchor="middle" fill="var(--text2)">Open in</text>
-  <text class="tiny" x="430" y="186" text-anchor="middle" fill="var(--text2)">Review ↔ Chat</text>
-
-  <line x1="460" y1="180" x2="400" y2="180" class="arr-d" stroke="var(--text2)"/>
-
-  <!-- Common backend -->
-  <g class="c-gray">
-    <rect x="40" y="320" width="780" height="36" rx="8"/>
-    <text class="th" x="430" y="344" text-anchor="middle">共用：同一組 Backend Tools + Job Store（兩邊的結果互通）</text>
-  </g>
-  <line x1="220" y1="290" x2="220" y2="320" class="arr-d" stroke="var(--text3)"/>
-  <line x1="640" y1="290" x2="640" y2="320" class="arr-d" stroke="var(--text3)"/>
-</svg>
-</div>
-
-<div class="note">
-  <strong>核心原則</strong>：兩種模式共用同一份資料與 tool；使用者可在同一個 job 裡來回切換。GUI 做正式交付、Agent 做模糊查詢與批次，各司其職。
-</div>
-</div>
-
-<hr style="margin: 48px 0 24px 0; border: none; border-top: 1px solid var(--border);">
-<p class="subtitle" style="margin-bottom: 0;">
-  想深入看技術架構：<code>docs/STATUS.md</code>（現況）與 <code>docs/ROADMAP.md</code>（下一步）。<br>
-  本文件專注於「使用者視角」的工具流程，不涵蓋 backend 內部模組與 API 細節。
-</p>
-
+  <h1>TC Generator — Architecture & Logic</h1>
+  <p class="sub">系統機制與 AI 生成邏輯視覺化指標 (更新：2026-04-27)</p>
+
+  <section class="section">
+    <h2>1. 使用者流程與核心模組 (User Workflow)</h2>
+    <div class="board">
+      <div class="flow">
+        <div class="card blue"><b>Upload</b><span>建立 jobId<br>保存原 Excel<br>快取需求內容</span></div>
+        <div class="card amber"><b>Configure</b><span>Grouping (mini model)<br>Spec Matching<br>User Overrides</span></div>
+        <div class="card purple"><b>Generate</b><span>SSE 批次生成<br>Prompt Caching<br>Usage Persist</span></div>
+        <div class="card green"><b>Review</b><span>Accept/Edit<br>Fix Suggestions<br>Regen/Re-run</span></div>
+        <div class="card coral"><b>Export</b><span>TC ID resequence<br>Excel Writing<br>Zip Packing</span></div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">Backend: FastAPI + Tools</span>
+        <span class="tag">Frontend: Win95 Desktop Shell</span>
+        <span class="tag">State: Zustand + JobStore</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>2. AI Prompt Injection 邏輯 (Prompt Construction)</h2>
+    <div class="desc">展示 <code>prompt_builder.py</code> 如何動態組裝上下文，確保 AI 產出符合 ASPICE 規範且不編造數據。</div>
+    <div class="board">
+      <div class="inner-board">
+        <div class="mermaid">
+graph TD
+    subgraph Inputs ["數據輸入源"]
+        REQ["原始需求 (Test Item/ER)"]
+        SPEC["規格書 (Spec/Traceability)"]
+        PDM["PDM 代碼 (Test Set Context)"]
+    end
+
+    subgraph Static ["靜態規則 (Rules Library)"]
+        SWE6["ASPICE SWE.6 指令 (§10)"]
+        PRI["優先級規則 (P0-P3 Rubric)"]
+        DM["設計方法判定規則"]
+    end
+
+    subgraph Logic ["Prompt Builder 邏輯"]
+        BASE["System Base Prompt"]
+        HARD["HARD CONSTRAINTS<br/>(語言/格式/1:1對齊)"]
+        SAFE["§10a/10b 禁編造指令"]
+    end
+
+    Inputs --> Builder{Prompt Builder}
+    Static --> Builder
+    Logic --> Builder
+
+    Builder --> Final["最終產出 Prompt (JSON Mode)"]
+    Final --> OpenAI((OpenAI API))
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>3. Sibling-Aware 生成機制 (Decision Tree)</h2>
+    <div class="desc">當同一個 Requirement ID 有多列需求時，系統如何引導 AI 處理「重複」或「變體」。</div>
+    <div class="board">
+      <div class="inner-board">
+        <div class="mermaid">
+graph TD
+    Start["偵測到 Sibling Rows (同 Req ID)"] --> Inject["將彼此的 Test Item 注入 Prompt Context"]
+    Inject --> AI{AI 判定}
+
+    AI -- "內容實質等價" --> DUP["輸出 duplicate_of: #N"]
+    AI -- "內容有差異" --> VAR["輸出 distinguishing_axis"]
+
+    VAR --> Axis{差異軸判定}
+    Axis -- "觸發條件/資料" --> T["Trigger/Data"]
+    Axis -- "邊界值" --> B["Boundary"]
+    Axis -- "時間/模式" --> M["Timing/Mode"]
+
+    DUP --> UI_RED["前端顯示『⊕ 重複』紅卡"]
+    VAR --> UI_GRAY["前端顯示『⚖ 差異』灰卡"]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>4. 錯誤處理與自癒流程 (Error & Recovery)</h2>
+    <div class="desc">包含硬性違規自動重試、模型升級 (Escalation) 以及 SSE 斷線續傳機制。</div>
+    <div class="board">
+      <div class="inner-board">
+        <div class="mermaid">
+graph TD
+    Call["OpenAI Call (gpt-5-mini / gpt-5)"] --> Parse["Parse JSON Response"]
+    Parse --> Valid{硬性驗證?}
+
+    Valid -- "1:1 違規 / 欄位缺失<br/>DM/Priority 無效" --> Retry["Hard Issue Retry (Max 3)"]
+    Retry -- "重試失敗" --> Escalation["MODEL_ESCALATION<br/>(例如 5-mini → 5)"]
+    Escalation --> Call
+
+    Valid -- "SSE 斷線" --> UI_Banner["前端 Resume/Discard Banner"]
+    UI_Banner -- "Resume" --> Call
+
+    Valid -- "通過" --> Success["成功寫入 JobStore"]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>5. 資料持久化結構 (Data Persistence)</h2>
+    <div class="desc">區分「工作空間狀態」與「Job 執行紀錄」的保存策略。</div>
+    <div class="board">
+      <div class="inner-board">
+        <div class="mermaid">
+graph LR
+    subgraph FE ["Frontend (Browser)"]
+        Z["Zustand Store"]
+        LS["Local Storage"]
+        WS["Workspace JSON"]
+    end
+
+    subgraph BE ["Backend (Server)"]
+        JS["JobStore (Python Object)"]
+        DB[("jobs.db (SQLite)")]
+        EXCEL["Original/Generated Excel"]
+    end
+
+    Z -- "定期保存" --> LS
+    Z -- "下載" --> WS
+    Z -- "API Call" --> JS
+    JS -- "每 Batch 持久化" --> DB
+    JS -- "Export" --> EXCEL
+
+    DB -- "過期清理 (30天)" --> Trash((Delete))
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px;">
+    &copy; 2026 TC Generator Team. Built for ASPICE SWE.6 Compliance.
+  </footer>
 </body>
 </html>

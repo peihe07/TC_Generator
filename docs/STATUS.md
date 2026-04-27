@@ -36,23 +36,17 @@ Review / Generate UX 系列升級，發生在 agent 移除之後：
   完成的 row id 重發 startGeneration。
 - **Sibling badge**：duplicate-of 徽章從只在 expanded panel 顯示，
   改為 collapsed table 也帶一個短 chip。
+- **Workflow mechanism cleanup**：Configure 的 grouping preview 在
+  `Start Generate` 時會自動 apply；Generate / Regenerate 移除 local
+  mock fallback，缺 active backend job 直接報錯；usage base 改由
+  `*.started` event 明確帶出，history 記 delta，backend 每個成功 batch
+  立即 persist usage；Quick Generate Stop 透過 AbortController → Next proxy
+  signal → backend disconnect check 停止後續 SSE success events。
 
-之後增加新功能會繼續追加在此段。下方為歷史紀錄。
+之後增加新功能會繼續追加在此段。
 
-> **⚠️ 部分內容已 DEPRECATED (2026-04-27)：**「Agent 副駕」相關 Phase 1–4
-> 描述（`agent_dispatcher` / `ChatModule` / `HelpFromAgentButton` /
-> `AgentTaskbarButton` / `AgentStateUpdateToast` / `useAgentStore` /
-> `agentClient` / `trace_store` / `tools/replay` / Cost Dashboard
-> aggregate_metrics 等）已於 2026-04-27 全部移除。下方相關段落**僅為歷史紀錄**。
-> 核心 TC 生成主流程（Upload / Configure / Generate / Review / Export /
-> QuickGenerate）持續維護。
-
-最後更新：2026-04-23（Phase 4 功能面完成：get_job_detail / state_update SSE
-/ AgentStateUpdateToast / diff_jobs / aggregate_metrics / Cost Dashboard UI；
-+ Taskbar polish + ReviewRow tests + 按鈕 icon 透明度修復；
-+ Design system migration Phase 1–7 全部完成 + Phase 8 unit tests 126/126 pass
-+ Post-migration polish 10 項完成（剩 P7 deferred），見
-[docs/design-system/MIGRATION.md](design-system/MIGRATION.md)）
+最後更新：2026-04-27（active GUI workflow 與 usage/cancel 機制已對齊目前實作；
+Agent 相關內容保留為歷史紀錄，見 [docs/design-system/MIGRATION.md](design-system/MIGRATION.md)）
 
 本次補充：
 - Next.js JSON proxy routes 改為保留 upstream status/body，不再把 backend
@@ -62,21 +56,11 @@ Review / Generate UX 系列升級，發生在 agent 移除之後：
 
 這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
 
-> **Phase 0 + Phase 1 + Phase 2 + Phase 3 已完成**：
-> - Phase 0：`backend/tools/` 下建立 10 個 pure-function tool。
-> - Phase 1：`agent_dispatcher.py` + SSE endpoint + session / trace store。
-> - Phase 2：Frontend ChatModule（`useAgentStore` / `agentClient` / SSE parsing /
->   ToolCallCard / ConfirmCard / MessageList / InspectorPanel / InputArea /
->   AgentTaskbarButton）+ 煙霧測試 + 4 個 backend bug 修正。
-> - Phase 3：`HelpFromAgentButton` 加入 5 個 GUI module；`agent-prefill`
->   CustomEvent handoff 機制；handoff E2E。
-> - Phase 4（進行中）：`get_job_detail` ✓；`state_update` SSE event ✓
->   （`useAgentStore.lastStateUpdate` → `AgentStateUpdateToast`）；
->   `diff_jobs` ✓；`aggregate_metrics` ✓（跨 job 總 / 平均 rowCount / cost、
->   matchRate）；Cost Dashboard UI ✓（`/api/metrics/aggregate` REST +
->   `CostDashboardPopup`，從 CostMeter 標題列小按鈕開啟）。
->
-> 下一步：Phase 4 進階項（排程執行，與 scheduled-tasks MCP 整合）。
+目前 active 範圍：
+- Backend：FastAPI REST / SSE + `backend/tools/` pure-function tool layer。
+- Frontend：Upload / Configure / Generate / Review / Export / QuickGenerate / Rules / Diagrams。
+- 持久化：`job_store.py` + SQLite `jobs.db`。
+- 已移除：舊 Agent co-pilot、ChatModule、agent routes、trace/session store。
 
 ---
 
@@ -104,19 +88,16 @@ TC Generator 是一套針對 ASPICE SWE.6 的自動化測試案例產生工具�
 graph TB
     subgraph "Frontend — Next.js Desktop"
         Shell["Desktop / Taskbar / WindowManager"]
-        Modules["Upload / Configure / Generate / Review / Export / QuickGenerate / Chat / Rules / Diagrams"]
+        Modules["Upload / Configure / Generate / Review / Export / QuickGenerate / Rules / Diagrams"]
         Stores["Zustand stores + localStorage"]
-        Adapter["jobAdapter.ts / agentClient.ts"]
+        Adapter["jobAdapter.ts"]
         Proxy["app/api/* same-origin proxy routes"]
     end
 
-    subgraph "Backend — FastAPI + Agent Router"
-        RestAPI["REST API\n/parse /group /match /generate /export\n/metrics/aggregate /quick-generate"]
-        AgentAPI["Agent API\n/api/agent/chat\n/api/agent/sessions*"]
-        Streams["SSE streams\n generate / regenerate / rerun / agent chat"]
+    subgraph "Backend — FastAPI"
+        RestAPI["REST API\n/parse /group /match /generate /export\n/quick-generate /review/suggest-fix"]
+        Streams["SSE streams\ngenerate / regenerate / rerun / quick-generate"]
         JobStore["job_store.py\nSQLite jobs.db"]
-        TraceStore["trace_store.py\nagent trace JSONL export"]
-        SessionStore["agent_session_store.py\nagent conversation history"]
         Tools["backend/tools/*\nparse / group / match / generate / validate / write / jobs"]
     end
 
@@ -131,23 +112,15 @@ graph TB
         Validator["validator.py"]
         Writer["writer.py"]
         JobMgr["job_manager.py"]
-        Dispatcher["agent_dispatcher.py"]
     end
 
     Shell --> Modules --> Stores --> Adapter --> Proxy
     Proxy --> RestAPI
-    Proxy --> AgentAPI
 
     RestAPI --> Streams
-    AgentAPI --> Streams
     RestAPI --> Tools
-    AgentAPI --> Dispatcher
-    Dispatcher --> Tools
 
     RestAPI --> JobStore
-    AgentAPI --> JobStore
-    AgentAPI --> TraceStore
-    AgentAPI --> SessionStore
 
     Tools --> Parser
     Tools --> Matcher
@@ -183,13 +156,7 @@ TC_Generator/
 │   ├── writer.py                    # Excel 回寫
 │   ├── job_manager.py               # review/export 狀態管理
 │   ├── job_store.py                 # SqliteJobStore，job 持久化到 output/jobs.db
-│   ├── trace_store.py               # SqliteTraceStore（agent 決策歷程，sha256 hash）
-│   ├── agent_session_store.py       # SqliteAgentSessionStore（對話 history）
-│   ├── agent_dispatcher.py          # LLM loop + tool 分發 + budget gate
-│   ├── routes/
-│   │   ├── __init__.py
-│   │   └── agent.py                 # /api/agent/chat SSE + session REST
-│   ├── tools/                       # Phase 0 tool layer（純函式 + registry）
+│   ├── tools/                       # tool layer（純函式 + registry）
 │   │   ├── __init__.py              # 匯出 ToolError / SafetyLevel / 各 tool
 │   │   ├── errors.py                # ToolError + HTTP status 對照
 │   │   ├── registry.py              # ToolSpec / SafetyLevel / register_tool
@@ -202,16 +169,15 @@ TC_Generator/
 │   │   ├── write.py                 # write_excel_tool         (DESTRUCTIVE)
 │   │   ├── generate.py              # generate_tc_tool         (WRITE_COSTLY)
 │   │   ├── inspect.py               # inspect_workbook_tool    (READ_ONLY)
-│   │   ├── jobs.py                  # list_jobs / estimate_cost / get_job_detail / diff_jobs / aggregate_metrics / get_job_validation
-│   │   └── replay.py                # trace replay CLI
+│   │   └── jobs.py                  # list_jobs / estimate_cost / get_job_detail / diff_jobs / aggregate_metrics / get_job_validation
 │   └── main.py                      # CLI 入口
-├── tests/                           # pytest（至少 447 個測試；持續隨功能增補）
+├── tests/                           # pytest（目前 481 個測試；持續隨功能增補）
 ├── frontend/
 │   ├── app/
 │   │   ├── page.tsx / layout.tsx
 │   │   └── api/                     # Same-origin proxy routes
 │   ├── src/
-│   │   ├── components/system/       # Desktop / Taskbar / WindowManager / CostMeter / CostDashboardPopup / AgentStateUpdateToast / WorkspaceMenu / JobHistoryMenu
+│   │   ├── components/system/       # Desktop / Taskbar / WindowManager / CostMeter / CostDashboardPopup / WorkspaceMenu / JobHistoryMenu
 │   │   ├── components/modules/      # Upload / Configure / Generate / Review / Export / QuickGenerate / Diagrams / Rules
 │   │   ├── services/jobAdapter.ts
 │   │   ├── store/                   # useJobStore (persist) / useWindowStore / useWorkspaceStore / useJobHistoryStore
@@ -227,8 +193,7 @@ TC_Generator/
 
 ## API 端點
 
-HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agent routes 在
-`backend/routes/agent.py`。
+HTTP / SSE 端點集中在 `backend/api_server.py`。
 
 - `GET /api/health`
 - `GET /api/spec-library`
@@ -244,12 +209,6 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
 - `POST /api/export`
 - `GET /api/export/download/{jobId}`
 - `POST /api/quick-generate/stream`
-- `POST /api/agent/chat`
-- `GET /api/agent/sessions`
-- `GET /api/agent/sessions/{sessionId}`
-- `DELETE /api/agent/sessions/{sessionId}`
-- `GET /api/agent/sessions/{sessionId}/trace`
-
 完整 request / response 格式請看 [API_CONTRACT.md](API_CONTRACT.md)。
 
 ---
@@ -259,30 +218,10 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
 ### Backend
 
 - 核心 9 模組全部實作並通過測試（parser / spec_matcher / spec_parser / grouper / prompt_builder / generator / validator / writer / job_manager）
-- **Phase 0 tool layer**：`backend/tools/` 封裝所有業務動作為 pure function；
+- **Tool layer**：`backend/tools/` 封裝所有業務動作為 pure function；
   FastAPI route 變薄，僅處理 HTTP 邊界與 `ToolError → HTTPException` 翻譯；
-  tool 同時可被 Agent dispatcher 直接呼叫
-- **Phase 1 agent 層**：
-  - `agent_dispatcher.py`：LLM loop + tool 分發 + budget gate
-    （DESTRUCTIVE 永遠確認、WRITE_COSTLY 依估算成本超 $0.50 觸發確認）
-  - `trace_store.py`：每個 tool call / llm_response 寫入 SQLite；`result_hash`
-    採 sha256 canonical JSON，供 replay CLI 比對
-  - `agent_session_store.py`：SQLite session table，支援 resume / cleanup
-  - `routes/agent.py`：`/api/agent/chat` SSE + session CRUD + trace export
-  - `tools/replay.py`：`python -m tools.replay SID` 稽核重放
-  - 10 個 tool + 10 個 OpenAI function-calling JSON schema
-  - System prompt v1（英文規則，明確要 LLM 用繁體中文回覆）
-- **Phase 4 agent 擴充**：
-  - `get_job_detail` tool（READ_ONLY）：單一 job 摘要，明確排除 rawBytes
-  - `diff_jobs` tool（READ_ONLY）：reuse `get_job_detail`，回 rowCount /
-    cost / matched / generated deltas + statusChanged
-  - `aggregate_metrics` tool（READ_ONLY）：跨 job 總 / 平均 rowCount、
-    total / avgCostUsd、matchRate；缺資料欄位回 None + `jobsWithCost`
-    / `jobsWithMatch` 樣本數
-  - `agent_dispatcher` 在 WRITE_SAFE / WRITE_COSTLY / DESTRUCTIVE tool
-    成功且 result 帶 jobId 時推 `state_update` SSE event（READ_ONLY 不推）
-  - `GET /api/metrics/aggregate` REST endpoint（包 `aggregate_metrics_tool`）
-    供 Cost Dashboard UI 使用
+  route 與 CLI 共用同一套核心邏輯
+- `GET /api/metrics/aggregate` REST endpoint 供 Cost Dashboard UI 使用
 - SqliteJobStore：job 跨重啟持久化；啟動自動 `purge_older_than` + `vacuum`（預設 30 天，`TC_JOBS_MAX_AGE_DAYS` 覆寫）
 - Parser 容忍中英雙語 sheet 標題與檔名後綴（`拷貝`、`-1` 等）；Writer 的
   `_clean_basename()` 也會在 export 前剝掉 `拷貝 / 的副本 / copy / - Copy / (N)`
@@ -307,8 +246,6 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
 - CostMeter：Model / Input / Output / Cache W / Cache R / Hit-rate；
   標題列新增 bar-chart 小按鈕開啟 `CostDashboardPopup`（讀
   `/api/metrics/aggregate` 顯示跨 job 總 / 平均 cost 與 spec match rate）
-- `AgentStateUpdateToast`：Agent 動到目前開著的 job 時右下角浮現提示，
-  6 秒自動消失或點 × 關掉（訂閱 `useAgentStore.lastStateUpdate`）
 - Workspace Manager：save / rename / load / delete / JSON import / JSON export（localStorage 持久化）
 - Job History menu：lifetime cumulative cost + per-job record（localStorage，TTL 90 天 + MAX_RECORDS cap）
 - Review：batch accept/reject/delete；Regenerate 可輸入 reviewer reason，AI 以
@@ -317,7 +254,7 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
   以 `row.added` 插入 sub-TC rows；word-level diff；spec reference 自動顯示
 - Configure：grouping + matching preview + 手動 `testSet` override
 - 成本統計：同一 job 的 grouping / generate / regenerate / rerun usage 都累加到同一份 session stats；
-  Configure 的估算已改成後端同款 heuristic，不再只是 row-count × 固定係數
+  started event 帶 base usage，前端 history 記 delta；後端每個成功 batch 立即 persist usage。
 - Design system：`components/ui/` primitive 層（`Button` / `IconButton` / `StatusBadge`
   + barrel export），`win95.css` token 化（`--status-*` / `--win95-*`）；
   全部 GUI modules 統一使用 primitives；`ReviewModule.tsx` 從 800 行拆為
@@ -359,15 +296,10 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
 
 ### 測試覆蓋
 
-- `pytest -q`：394 pass（225 原始 + 41 Phase 0 tool layer + 94 Phase 1 agent
-  + 12 Phase 4 `get_job_detail` + 5 Phase 4 `state_update` event
-  + 7 Phase 4 `diff_jobs` + 8 Phase 4 `aggregate_metrics`
-  + 2 `/api/metrics/aggregate` smoke）
-  - schemas: 13 / trace_store: 12 / dispatcher: 16 / session_store: 9 /
-    route_agent: 9 / replay: 9 / inspect+jobs: 17 / golden scenarios: 5
+- `pytest -q`：481 pass
 - `npm run typecheck` (`tsc --noEmit`)：0 error
-- `npm run test:unit` (Vitest)：73 pass（Button / IconButton / StatusBadge /
-  ChatModule / agentClient / useAgentStore / diffTokens / ReviewRow）
+- `npm run test:unit` (Vitest)：128 pass（UI primitives / active modules /
+  jobAdapter / stores / diffTokens / ReviewRow）
 - Playwright E2E：Workspace JSON round-trip（save → export → new → import → load）
 - API smoke：parse / group / match / generate / regenerate / export / download 端到端
 
@@ -394,6 +326,7 @@ HTTP / SSE 端點分成兩塊：主流程 API 在 `backend/api_server.py`，Agen
 |---|---|
 | 設定 + 執行指令 | [../README.md](../README.md) |
 | **下一步規劃** | **[ROADMAP.md](ROADMAP.md)** |
+| 使用機制總表（指令 / API / AI / 狀態） | [WORKFLOW_MECHANISM_TABLE.md](WORKFLOW_MECHANISM_TABLE.md) |
 | API 合約 | [API_CONTRACT.md](API_CONTRACT.md) |
 | TC 生成規則（工具實作用） | [RULES.md](RULES.md) |
 | ASPICE SWE.6 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |

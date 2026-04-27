@@ -9,6 +9,37 @@ There are two layers:
 
 The browser should call the Next.js routes. Those routes proxy to the Python backend using `PYTHON_API_BASE`.
 
+## Route Index
+
+Developer-facing table. The desktop UI should call the same-origin Next.js
+routes; the Next.js route then proxies to the Python backend route.
+For the full user action → API → backend → AI → state mapping, see
+[WORKFLOW_MECHANISM_TABLE.md](WORKFLOW_MECHANISM_TABLE.md).
+
+| Area | Method | Browser / Next.js route | Python backend route | Body / stream | Main caller | Notes |
+|---|---:|---|---|---|---|---|
+| Health | GET | N/A | `/api/health` | JSON | Dev / smoke checks | Backend-only endpoint; reports backend status and whether `OPENAI_API_KEY` is configured. |
+| Spec library | GET | `/api/spec-library` | `/api/spec-library` | JSON | Upload | Lists cached spec indices from `spec-index/manifest.json`. |
+| Parse | POST | `/api/parse` | `/api/parse` | `multipart/form-data` | Upload | Creates parsed job, stores raw workbook bytes, returns `jobId` and normalized rows. |
+| Group preview | POST | `/api/group` | `/api/group` | JSON | Configure | Fill Blank / Regroup All preview. Returns assignments only; Apply or Start Generate writes them into frontend rows. |
+| Spec match preview | POST | `/api/match` | `/api/match` | JSON | Configure | Builds traceability preview from cached spec index, reference workbook, or no-reference fallback. |
+| Create generate job | POST | `/api/generate` | `/api/generate` | JSON | Generate | Queues rows/config in backend job store. Next.js rewrites returned `streamUrl` to same-origin `/api/generate/stream?jobId=...`. |
+| Generate stream | GET | `/api/generate/stream?jobId=...` | `/api/generate/stream?jobId=...` | SSE | Generate | Emits `job.started`, split/row events, `job.completed`; batch usage is persisted as generation progresses. |
+| Review fix suggestion | POST | `/api/review/suggest-fix` | `/api/review/suggest-fix` | JSON | Review / ValidationPanel | Single-shot AI suggestion for one row with validation errors; no chat session. |
+| Regenerate stream | POST | `/api/jobs/[jobId]/regenerate/stream` | `/api/jobs/{job_id}/regenerate/stream` | SSE | Review | Uses reviewer reason when provided. `regen.started` carries base usage; history records delta. |
+| Re-run stream | POST | `/api/jobs/[jobId]/rerun/stream` | `/api/jobs/{job_id}/rerun/stream` | SSE | Review | Re-runs selected rows through full decompose + generate pipeline. `rerun.started` carries base usage. |
+| Job usage | GET | `/api/jobs/[jobId]/usage` | `/api/jobs/{job_id}/usage` | JSON | CostMeter / dashboard | Per-job cost and token breakdown, including model-level attribution. |
+| Metrics aggregate | GET | `/api/metrics/aggregate?job_ids=...` | `/api/metrics/aggregate?job_ids=...` | JSON | Cost dashboard | Aggregates job metrics; `job_ids` query is optional and comma-separated. |
+| Source status | GET | `/api/jobs/[jobId]/source-status` | `/api/jobs/{job_id}/source-status` | JSON | Export | Checks whether backend still has original workbook bytes before export. |
+| Attach raw workbook | POST | `/api/jobs/[jobId]/attach-raw` | `/api/jobs/{job_id}/attach-raw` | `multipart/form-data` | Export fallback | Restores original workbook bytes when a workspace was reloaded without backend raw bytes. |
+| Export | POST | `/api/export` | `/api/export` | JSON | Export | Requires active parsed job. Writes workbook, may classify missing Test Sets, resequences TC IDs. |
+| Download export | GET | `/api/export/download/[jobId]` | `/api/export/download/{jobId}` | file stream | Export | Downloads the generated workbook. Next.js proxies backend file response. |
+| Quick Generate | POST | `/api/quick-generate/stream` | `/api/quick-generate/stream` | SSE | QuickGenerate | Ad-hoc generation without parsed job. Stop uses browser abort → proxy signal → backend disconnect checks. |
+| Admin reset | DELETE | `/api/admin/reset` | `/api/admin/reset` | JSON | Workspace menu / dev | Localhost only. Clears SQLite job registry and vacuums DB. Destructive. |
+
+Current active API does not include Agent routes. Historical Agent references live
+only in deprecated roadmap/design-system notes.
+
 ## Environment
 
 - Frontend proxy env var: `PYTHON_API_BASE`
@@ -75,8 +106,9 @@ Purpose:
 - Force regroup mode (`forceRegroup: true`, UI: **Regroup All**) sends existing
   `testSet` values as hints, but asks AI to produce a fresh assignment for
   every row.
-- The endpoint returns preview assignments only. Frontend rows are changed only
-  after the user clicks **Apply**.
+- The endpoint returns preview assignments only. Frontend rows are changed when
+  the user clicks **Apply** or when **Start Generate** is clicked with a preview
+  still loaded; Start Generate auto-applies that preview before opening Generate.
 - If AI classification fails or omits a row, deterministic fallback labels are
   used for preview and apply-back.
 
@@ -312,7 +344,11 @@ SSE event examples:
   "stats": {
     "total": 12,
     "processed": 0,
-    "currentCost": 0.0012
+    "currentCost": 0.0012,
+    "inputTokens": 420,
+    "outputTokens": 120,
+    "cacheCreationTokens": 0,
+    "cacheReadTokens": 80
   },
   "message": "Backend generation started for 12 row(s) (12 to generate, 0 preserved)."
 }
@@ -347,6 +383,10 @@ SSE event examples:
 Notes:
 
 - `stats.currentCost` is cumulative for the job, not just the current stream step.
+- The `job.started` event carries the stream's base usage. The frontend records
+  history as `final cumulative - started cumulative`.
+- Backend generation / regenerate / rerun persist usage after each successful
+  batch, so disconnects do not drop already-incurred usage.
 - `stats.total` is the count of **original Requirement IDs** in the job
   (deduped at the input rows). It is locked once at start; AI splits that
   add sub-TCs do not inflate the denominator. `stats.processed` advances
@@ -355,6 +395,8 @@ Notes:
   TCs they expand into.
 - If Configure → Grouping already triggered AI Test Set classification, generation starts from that existing cost baseline.
 - Re-run and regenerate continue accumulating on the same job usage counters.
+- Generate / Regenerate do not fall back to local mock generation. Missing or
+  inactive backend job state is reported as an error.
 - `priority` is a tool/workbook output field and uses `P0` / `P1` / `P2` / `P3`, not
   `High` / `Medium` / `Low`.
 - `testItemRewrite` is generated without outer parentheses; the backend writer
@@ -495,6 +537,8 @@ Response:
 
 Notes:
 
+- Export requires an active parsed backend job. Browser-only simulated export is
+  not part of the active workflow.
 - `fallbackTemplate: true` means the backend no longer had the original uploaded
   workbook bytes and rebuilt a minimal blank template from the current rows
   before export.
@@ -539,6 +583,9 @@ Request:
 
 - `context`: optional additional background for the requirement
 - Quick Generate always uses the current auto-split flow; there is no separate mode switch
+- Stop/cancel is disconnect-aware: browser aborts the request, the Next proxy
+  forwards the abort signal, and the Python stream stops sending success events
+  if the client disconnects.
 
 SSE event sequence:
 
@@ -606,9 +653,16 @@ Implemented in `backend/api_server.py`:
 - `POST /api/generate`
 - `GET /api/generate/stream`
 - `POST /api/jobs/{jobId}/regenerate/stream`
+- `POST /api/jobs/{jobId}/rerun/stream`
+- `GET /api/jobs/{jobId}/usage`
+- `GET /api/metrics/aggregate`
+- `POST /api/review/suggest-fix`
 - `POST /api/export`
+- `POST /api/jobs/{jobId}/attach-raw`
+- `GET /api/jobs/{jobId}/source-status`
 - `GET /api/export/download/{jobId}`
 - `POST /api/quick-generate/stream`
+- `DELETE /api/admin/reset`
 
 ## Notes
 

@@ -105,9 +105,9 @@ Sub-feature grouping based on semantic analysis of Test Item content.
    - **Regroup All:** send existing Test Sets as hints, but ask AI to assign a
      fresh Test Set for every row.
 3. Neither preview mode changes rows immediately. The preview is written back
-   to row state only when the user clicks **Apply**.
-4. Generate uses the current row `testSet` values. If the user does not click
-   Apply after Regroup All, generation still uses the pre-existing Test Sets.
+   to row state when the user clicks **Apply** or when the user clicks
+   **Start Generate** with a preview still loaded.
+4. Generate uses the current row `testSet` values after that apply step.
 5. Export can build the `Test Case Framework` sheet from the final Test Set
    assignments. If any rows still lack `testSet` at export time, the same
    AI classifier runs again to fill in the missing values.
@@ -897,8 +897,9 @@ Purpose: Review and adjust generation parameters before running.
 Sections:
 - Test Set grouping preview: `Fill Blank` preserves existing Test Sets and
   classifies only blank rows; `Regroup All` sends existing Test Sets as hints
-  and lets AI propose a fresh taxonomy for every row. Preview changes are not
-  used by generation until the user clicks `Apply`.
+  and lets AI propose a fresh taxonomy for every row. Preview changes are
+  written back by `Apply`, and `Start Generate` also auto-applies a loaded
+  preview before moving to generation.
 - Spec matching preview: show Layer 1 (PDM code) matches and Layer 2 (AI) candidates, allow manual override
 - Generation scope: select which columns to generate (checkboxes for each: Test Item rewrite, Pre-Conditions, Procedure, Expected Result, Priority, Design Method, Spec Reference)
 - Model selection: GPT-5.4 mini (default) vs GPT-5.4 (quality) vs GPT-5.4 nano (budget/re-run)
@@ -916,6 +917,8 @@ Features:
 - Pause / Resume / Cancel controls
 - Running cumulative spend for the job (includes prior grouping AI calls and later regenerate / rerun on the same job)
 - Error handling: failed TCs collected for retry
+- No local mock generation fallback in the active desktop flow; missing backend
+  job state is surfaced as an error.
 
 **Page 4: Review (審閱)**
 
