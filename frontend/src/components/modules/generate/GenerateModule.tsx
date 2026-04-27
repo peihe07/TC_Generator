@@ -88,8 +88,13 @@ const GenerateModule: React.FC = () => {
 
     setProcessing(true);
     setElapsedSeconds(0);
+    // Progress denominator = 原始 Requirement ID 數，不是 row 數，避免 AI 拆分後
+    // tcRows 變多讓進度條倒退（jobAdapter 那邊也會以同樣的 reqId set 為基準）。
+    const initialReqCount = new Set(
+      tcRows.map((r) => r.reqId).filter(Boolean),
+    ).size || tcRows.length;
     updateStats({
-      total: tcRows.length,
+      total: initialReqCount,
       processed: 0,
       success: 0,
       fail: 0,
@@ -152,7 +157,7 @@ const GenerateModule: React.FC = () => {
         <legend className="px-2">Progress</legend>
         <div className="flex flex-col gap-2">
           <div className="flex justify-between text-xs mb-1">
-            <span>Processing {stats.processed} / {stats.total || tcRows.length} TCs</span>
+            <span>Processing {stats.processed} / {stats.total || tcRows.length} requirements</span>
             <span>Elapsed: {String(Math.floor(elapsedSeconds / 60)).padStart(2, '0')}:{String(elapsedSeconds % 60).padStart(2, '0')}</span>
           </div>
           <div className="flex items-center gap-2">

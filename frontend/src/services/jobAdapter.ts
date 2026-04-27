@@ -439,10 +439,19 @@ export function startGeneration(
   let source: EventSource | null = null;
   let mockTimer: ReturnType<typeof setInterval> | null = null;
 
+  // Progress 以「原始 Requirement ID 數」為分母，AI 中途拆出的 sub-TC 不會
+  // 把分母往上推（否則進度條會越跑越倒退）。numerator 用看過的 reqId 數，
+  // 一個 req 不論被拆成幾筆 TC 都只算 1。
+  const originalReqIds = new Set(
+    input.rows.map((r) => String(r.reqId || "")).filter(Boolean),
+  );
+  const totalReqs = originalReqIds.size || input.rows.length;
+  const completedReqIds = new Set<string>();
+
   // 追蹤 job 最新 stats 供 job.completed 時一次寫入歷史
   const startedAt = Date.now();
   const latestStats = {
-    total: input.rows.length,
+    total: totalReqs,
     processed: 0,
     cost: 0,
     inputTokens: 0,
@@ -552,6 +561,12 @@ export function startGeneration(
             (eventType === "row.completed" || eventType === "row.failed" || eventType === "row.added")
           ) {
             rowOutcomes.set(eventRow.id, eventType === "row.failed" ? "fail" : "success");
+            // 用 reqId 推進 req-level progress；只算原本送入的 req（避免 AI
+            // 拆出來的子 row 被誤算成新 req）。
+            const evReqId = typeof eventRow.reqId === "string" ? eventRow.reqId : "";
+            if (evReqId && originalReqIds.has(evReqId)) {
+              completedReqIds.add(evReqId);
+            }
           }
           const stats = data.stats as Record<string, number> | undefined;
           if (stats) {
@@ -569,8 +584,10 @@ export function startGeneration(
               if (outcome === "success") success += 1;
               else fail += 1;
             }
-            latestStats.total = Number(stats.total ?? input.rows.length);
-            latestStats.processed = Number(stats.processed ?? 0);
+            // 分母固定為原始 Requirement ID 數，不跟著 AI 拆分長大。
+            latestStats.total = totalReqs;
+            // 分子 = 已看到 row 事件的原始 reqId 數（每 req 不論幾筆 TC 算 1）。
+            latestStats.processed = Math.min(completedReqIds.size, totalReqs);
             latestStats.cost = Number(stats.currentCost ?? 0);
             latestStats.inputTokens = Number(stats.inputTokens ?? 0);
             latestStats.outputTokens = Number(stats.outputTokens ?? 0);

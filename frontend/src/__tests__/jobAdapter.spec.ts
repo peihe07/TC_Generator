@@ -485,7 +485,7 @@ describe('startGeneration status mapping', () => {
     );
   });
 
-  it('counts added split rows as successful generated TCs in progress stats', async () => {
+  it('keeps progress denominator at the original requirement count even when AI splits', async () => {
     const fetchMock = vi
       .spyOn(global, 'fetch')
       .mockResolvedValueOnce({
@@ -596,10 +596,14 @@ describe('startGeneration status mapping', () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
+    // 1 input req split into 2 TCs by AI — progress stays 1/1 (not 2/2),
+    // because the denominator is locked to the original Requirement ID set.
+    // success counts row-level outcomes (2 successful TCs), independent of
+    // the req-level progress numerator.
     expect(onProgress).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        total: 2,
-        processed: 2,
+        total: 1,
+        processed: 1,
         success: 2,
         fail: 0,
       }),
