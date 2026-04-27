@@ -23,6 +23,14 @@ export interface ReviewToolboxProps {
    * Regenerate button so the reviewer knows there's pending context.
    */
   hasPendingReason?: boolean;
+  /**
+   * Optional rough-cost hints rendered next to each AI action so the
+   * reviewer sees "what will this run cost" before clicking. Strings are
+   * pre-formatted by the parent (`lib/costEstimate.formatEstimate`).
+   * Omitted ⇒ no hint shown.
+   */
+  regenerateEstimate?: string;
+  rerunEstimate?: string;
 }
 
 /**
@@ -44,6 +52,8 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
   onRegenerate,
   onRerun,
   hasPendingReason = false,
+  regenerateEstimate,
+  rerunEstimate,
 }) => (
   <div
     className="win95-toolbox absolute bottom-4 left-1/2 z-20"
@@ -85,24 +95,30 @@ export const ReviewToolbox: React.FC<ReviewToolboxProps> = ({
         onClick={onRegenerate}
         disabled={isRegenerating}
         title={
-          hasPendingReason
+          (hasPendingReason
             ? '已有 ValidationPanel 套用的 Regenerate Reason 草稿，按下會跳出對話框讓你確認 / 編輯後送出。'
-            : '按下後會跳出對話框讓你填寫 Regenerate Reason 再送出。'
+            : '按下後會跳出對話框讓你填寫 Regenerate Reason 再送出。')
+          + (regenerateEstimate ? ` 預估費用 ${regenerateEstimate}。` : '')
         }
       >
         <RiRefreshLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
         {isRegenerating
           ? 'Regenerating...'
-          : `Regenerate${hasPendingReason ? ' •' : ''}…`}
+          : `Regenerate${hasPendingReason ? ' •' : ''}${regenerateEstimate ? ` (~${regenerateEstimate})` : ''}…`}
       </Button>
       <Button
         className="font-bold flex items-center gap-1"
         onClick={onRerun}
         disabled={isRegenerating}
-        title="Re-run full pipeline (AI re-evaluates split & decomposition)"
+        title={
+          'Re-run full pipeline (AI re-evaluates split & decomposition)'
+          + (rerunEstimate ? `. 預估費用 ${rerunEstimate}.` : '')
+        }
       >
         <RiPlayLine className={`size-3 ${isRegenerating ? 'animate-spin' : ''}`} />
-        {isRegenerating ? 'Re-running...' : 'Re-run'}
+        {isRegenerating
+          ? 'Re-running...'
+          : `Re-run${rerunEstimate ? ` (~${rerunEstimate})` : ''}`}
       </Button>
     </div>
   </div>

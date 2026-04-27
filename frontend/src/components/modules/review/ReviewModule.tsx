@@ -10,6 +10,11 @@ import {
   rerunRows,
   type RerunSummary,
 } from '../../../services/jobAdapter';
+import {
+  estimateGenerateCost,
+  estimateRegenerateCost,
+  formatEstimate,
+} from '../../../lib/costEstimate';
 import { ReviewRow, type EditValues } from './ReviewRow';
 import { ReviewToolbar } from './ReviewToolbar';
 import { ReviewToolbox } from './ReviewToolbox';
@@ -507,6 +512,16 @@ const ReviewModule: React.FC = () => {
           }}
           onRerun={handleRerun}
           hasPendingReason={regenerateReason.trim().length > 0}
+          regenerateEstimate={
+            selectedIds.size > 0
+              ? formatEstimate(estimateRegenerateCost(selectedIds.size, config.model))
+              : undefined
+          }
+          rerunEstimate={
+            selectedIds.size > 0
+              ? formatEstimate(estimateGenerateCost(selectedIds.size, config.model))
+              : undefined
+          }
         />
       )}
 
@@ -551,6 +566,15 @@ const ReviewModule: React.FC = () => {
               onChange={(event) => setRegenerateReason(event.target.value)}
               placeholder="例：tc_title 缺少前置條件，請補上 iPhone connected via USB"
             />
+            <div
+              className="text-[11px]"
+              style={{ color: 'var(--text-muted)' }}
+              title={`Rough estimate on ${config.model}. Actual cost may vary ±30%.`}
+            >
+              預估費用：~{formatEstimate(
+                estimateRegenerateCost(selectedIds.size, config.model),
+              )}（{config.model}）
+            </div>
           </div>
         }
         actions={[

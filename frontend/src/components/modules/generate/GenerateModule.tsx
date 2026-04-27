@@ -5,6 +5,7 @@ import { useJobStore } from '../../../store/useJobStore';
 import { useWindowStore } from '../../../store/useWindowStore';
 import { createJobLog } from '../../../lib/logging';
 import { startGeneration } from '../../../services/jobAdapter';
+import { estimateGenerateCost, formatEstimate } from '../../../lib/costEstimate';
 import {
   RiPlayListAddLine,
   RiMoneyDollarCircleLine,
@@ -349,6 +350,19 @@ const GenerateModule: React.FC = () => {
           <RiStopCircleLine className="size-4" /> Cancel
         </Button>
         <div className="flex items-center gap-2">
+          {!isProcessing && tcRows.length > 0 && (() => {
+            const reqCount = new Set(tcRows.map((r) => r.reqId).filter(Boolean)).size || tcRows.length;
+            const estimate = estimateGenerateCost(reqCount, config.model);
+            return (
+              <span
+                className="text-xs"
+                style={{ color: 'var(--text-muted)' }}
+                title={`Rough estimate using ~${1500} input + ~${800 * 2.5} output tokens per requirement on ${config.model}. Actual cost may vary ±30%.`}
+              >
+                Est. ~{formatEstimate(estimate)} for {reqCount} req(s)
+              </span>
+            );
+          })()}
           <Button
             className="flex items-center gap-1 default"
             disabled={isProcessing || isDisconnected || !tcRows.length}
