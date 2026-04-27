@@ -23,8 +23,10 @@ def _build_workbook_bytes() -> bytes:
 
     tc_sheet = wb.create_sheet("Test Case Specification&Result")
     tc_sheet.cell(row=9, column=4, value="Requirement or Design ID")
+    tc_sheet.cell(row=9, column=8, value="Test Set")
     tc_sheet.cell(row=9, column=9, value="Test Item")
     tc_sheet.cell(row=10, column=4, value="SWE1-HMI-DM-001-01")
+    tc_sheet.cell(row=10, column=8, value="Device Manager Access")
     tc_sheet.cell(row=10, column=9, value="PDM01 original text")
 
     buffer = BytesIO()
@@ -51,6 +53,8 @@ def test_parse_tool_returns_expected_shape(tmp_path):
     assert result["testGroup"] == "DeviceManager"
     assert result["rowCount"] == 1
     assert result["rows"][0]["reqId"] == "SWE1-HMI-DM-001-01"
+    assert result["rows"][0]["testSet"] == ""
+    assert result["rows"][0]["testSetHint"] == "Device Manager Access"
     assert result["files"]["rawFileName"] == raw.name
 
     # job_store 被正確寫入

@@ -11,6 +11,7 @@ from __future__ import annotations
 import re
 
 from generator import CLASSIFICATION_MODEL, GenerationError, classify_test_sets
+from spec_matcher import extract_pdm_codes
 
 from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
@@ -51,7 +52,25 @@ def derive_test_set_hint(row: dict) -> str:
     )
 
 
-_PDM_PATTERN = re.compile(r"\b(PDM\d{2,})\b", re.IGNORECASE)
+_HMI_HINT_LABELS = {
+    "system reflected touchscreen hard controls": "Touchscreen & Hard Controls",
+    "system leds hard controls reflect new made": "Hard Control LEDs",
+}
+
+
+def _shorten_test_set_label(label: str) -> str:
+    text = _norm(label)
+    if not text:
+        return ""
+
+    key = re.sub(r"\s+", " ", text.lower())
+    if key in _HMI_HINT_LABELS:
+        return _HMI_HINT_LABELS[key]
+
+    text = re.sub(r"\bSystem\s+", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+Behavior$", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text or _norm(label)
 
 
 def _fallback_test_set_name(row: dict) -> str:
@@ -62,10 +81,14 @@ def _fallback_test_set_name(row: dict) -> str:
     需要 retry 或人工指定。先前回 `REQ <prefix>` 看起來像正常 Test Set，反而
     遮蔽了「這是 fallback」的訊號。
     """
+    hint = derive_test_set_hint(row)
+    if hint:
+        return _shorten_test_set_label(hint)
+
     test_item = _get_any(row, "test_item", "testItem")
-    match = _PDM_PATTERN.search(test_item)
-    if match:
-        return match.group(1).upper()
+    codes = extract_pdm_codes(test_item)
+    if codes:
+        return codes[0].upper()
 
     return "Unclassified"
 

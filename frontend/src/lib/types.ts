@@ -67,6 +67,7 @@ export interface TcRow {
   reqId: string;
   testGroup: string;
   testSet: string;
+  testSetHint?: string;
   testItem: string;
   tcTitle?: string;
   reviewStatus?: "pending" | "accepted" | "rejected" | "flagged";

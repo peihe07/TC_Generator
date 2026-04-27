@@ -50,6 +50,7 @@ def _normalize_row(row: dict) -> dict:
         "testItem": row.get("test_item", ""),
         "originalRequirement": row.get("test_item", ""),
         "testSet": "",
+        "testSetHint": row.get("test_set", ""),
         "specReference": row.get("spec_reference"),
         "priority": row.get("priority", ""),
         "status": "draft",

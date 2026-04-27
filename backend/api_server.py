@@ -173,6 +173,7 @@ class GenerateRow(BaseModel):
     testItem: str
     originalRequirement: str | None = None
     testSet: str | None = None
+    testSetHint: str | None = None
     specReference: str | None = None
     priority: str | None = None
 

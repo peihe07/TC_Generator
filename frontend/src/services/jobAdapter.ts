@@ -190,6 +190,7 @@ function mapApiRowToTcRow(
     reqId: String(row.reqId ?? ""),
     testGroup,
     testSet: String(row.testSet ?? ""),
+    testSetHint: String(row.testSetHint ?? ""),
     testItem: String(row.testItem ?? ""),
     tcTitle: String(generated?.tcTitle ?? ""),
     reviewStatus:
@@ -423,6 +424,7 @@ export async function fetchGroupingPreview(input: {
           reqId: row.reqId,
           testItem: row.testItem,
           testSet: row.testSet,
+          testSetHint: row.testSetHint,
         })),
       }),
     }),

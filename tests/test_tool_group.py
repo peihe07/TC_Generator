@@ -242,6 +242,81 @@ def test_group_falls_back_when_ai_classification_fails():
     assert derived_sets["r3"] == "Unclassified"
 
 
+def test_group_fallback_uses_comfort_hmi_requirement_code_when_ai_fails():
+    from generator import GenerationError
+
+    rows = [
+        {
+            "id": "hmi-1",
+            "reqId": "SWE1-HVAC-002-01",
+            "testItem": "C1.) The system shall changes reflected in both touchscreen and hard controls",
+        },
+        {
+            "id": "hmi-2",
+            "reqId": "SWE1-HVAC-002-02",
+            "testItem": "CR7.) SYNC has on/off state on climate screen",
+        },
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        side_effect=GenerationError("network down"),
+    ):
+        out = group_tests_tool(rows=rows)
+
+    derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived_sets == {"hmi-1": "C1", "hmi-2": "CR7"}
+
+
+def test_group_fallback_prefers_original_test_set_hint_before_code():
+    from generator import GenerationError
+
+    rows = [
+        {
+            "id": "hmi-1",
+            "reqId": "SWE1-HVAC-002-01",
+            "testItem": "C1.) The system shall changes reflected in both touchscreen and hard controls",
+            "testSetHint": "System Reflected Touchscreen Hard Controls",
+        },
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        side_effect=GenerationError("network down"),
+    ):
+        out = group_tests_tool(rows=rows)
+
+    assert out["assignments"][0]["testSet"] == "Touchscreen & Hard Controls"
+
+
+def test_group_fallback_shortens_long_original_hmi_test_set_hints():
+    from generator import GenerationError
+
+    rows = [
+        {
+            "id": "hmi-1",
+            "reqId": "SWE1-HVAC-002-07",
+            "testItem": "The system shall on climate screen: status changes indicated directly",
+            "testSetHint": "HVAC Popup Behavior",
+        },
+        {
+            "id": "hmi-2",
+            "reqId": "SWE1-HVAC-002-08",
+            "testItem": "The system shall LEDs on hard controls reflect new status",
+            "testSetHint": "System Leds Hard Controls Reflect New Made",
+        },
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        side_effect=GenerationError("network down"),
+    ):
+        out = group_tests_tool(rows=rows)
+
+    derived = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived == {
+        "hmi-1": "HVAC Popup",
+        "hmi-2": "Hard Control LEDs",
+    }
+
+
 def test_group_lookup_falls_back_to_req_id_when_ai_returns_legacy_key():
     """If the AI ignores the new prompt and returns req_id-keyed assignments,
     group still uses them rather than dropping every row to fallback."""
