@@ -59,6 +59,36 @@ def test_group_calls_ai_for_unresolved_rows():
         assert assignment["source"] == "derived"
 
 
+def test_group_sends_original_test_set_hint_for_unresolved_rows():
+    """原 workbook 的 Test Set 只能當 AI hint，不能讓 row 被視為已分類。"""
+    rows = [
+        {
+            "id": "a",
+            "reqId": "R-01",
+            "testItem": "BT switch checkbox",
+            "testSet": "",
+            "testSetHint": "Legacy BT Switch",
+        },
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        return_value=_fake_classify_result({"a": "Power Control"}),
+    ) as mock_classify:
+        out = group_tests_tool(rows=rows)
+
+    sent_reqs = mock_classify.call_args.args[0]
+    assert sent_reqs == [
+        {
+            "id": "a",
+            "req_id": "R-01",
+            "test_item": "BT switch checkbox",
+            "current_test_set": "Legacy BT Switch",
+        }
+    ]
+    assert out["assignments"][0]["testSet"] == "Power Control"
+    assert out["assignments"][0]["source"] == "derived"
+
+
 def test_group_classifies_duplicate_req_id_per_row():
     """Same Requirement ID across multiple rows with different test_items
     must each get their own Test Set, not collapse to the first one."""

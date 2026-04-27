@@ -38,6 +38,19 @@ def derive_test_set_name(row: dict) -> str:
     return _get_any(row, "test_set", "testSet")
 
 
+def derive_test_set_hint(row: dict) -> str:
+    """回傳供 AI 參考的既有 Test Set hint，不代表已分類完成。"""
+    return _get_any(
+        row,
+        "current_test_set",
+        "currentTestSet",
+        "test_set_hint",
+        "testSetHint",
+        "original_test_set",
+        "originalTestSet",
+    )
+
+
 _PDM_PATTERN = re.compile(r"\b(PDM\d{2,})\b", re.IGNORECASE)
 
 
@@ -94,13 +107,14 @@ def group_tests_tool(
         # 必須有 id 或 req_id 之一才能送 AI；都沒有就跳過（之後走 fallback）。
         if not row_id and not req_id:
             continue
+        hint = existing if force_regroup else derive_test_set_hint(row)
         item = {
             "id": row_id or req_id,  # row uuid 優先；缺則用 req_id 當 fallback key
             "req_id": req_id,
             "test_item": _get_any(row, "test_item", "testItem"),
         }
-        if existing and force_regroup:
-            item["current_test_set"] = existing
+        if hint:
+            item["current_test_set"] = hint
         unresolved_rows.append(item)
 
     classified: dict[str, str] = {}  # key = row id (or req_id when row id 缺)

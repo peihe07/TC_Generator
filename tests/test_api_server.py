@@ -18,10 +18,13 @@ def _build_workbook_bytes() -> bytes:
 
     ws_tc = wb.create_sheet("Test Case Specification&Result")
     ws_tc.cell(row=9, column=4, value="Requirement or Design ID")
+    ws_tc.cell(row=9, column=8, value="Test Set")
     ws_tc.cell(row=9, column=9, value="Test Item")
     ws_tc.cell(row=10, column=4, value="SWE1-HMI-DM-001-01")
+    ws_tc.cell(row=10, column=8, value="Workbook Legacy Set 1")
     ws_tc.cell(row=10, column=9, value="PDM01 original text")
     ws_tc.cell(row=11, column=4, value="SWE1-HMI-DM-002-01")
+    ws_tc.cell(row=11, column=8, value="Workbook Legacy Set 2")
     ws_tc.cell(row=11, column=9, value="PDM02 original text")
 
     stream = BytesIO()
@@ -220,6 +223,52 @@ def test_parse_workbook():
     assert payload["previewHeaders"] == ["req_id", "test_item", "test_set", "priority"]
     assert payload["rows"][0]["reqId"] == "SWE1-HMI-DM-001-01"
     assert payload["rows"][0]["tcId"] == ""
+    assert payload["rows"][0]["testSet"] == ""
+    assert payload["previewRows"][0]["test_set"] == ""
+
+
+@patch("tools.group.classify_test_sets")
+def test_group_uses_imported_test_set_as_ai_hint_not_existing_assignment(mock_classify):
+    from generator import ClassificationResult
+
+    mock_classify.return_value = ClassificationResult(
+        assignments={"row-10": "Generated Set"},
+    )
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+
+    response = client.post(
+        "/api/group",
+        json={
+            "jobId": job_id,
+            "forceRegroup": False,
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "PDM01 original text",
+                    "testSet": "",
+                }
+            ],
+        },
+    )
+
+    assert response.status_code == 200
+    sent_rows = mock_classify.call_args.args[0]
+    assert sent_rows[0]["current_test_set"] == "Workbook Legacy Set 1"
+    assignment = response.json()["assignments"][0]
+    assert assignment["testSet"] == "Generated Set"
+    assert assignment["source"] == "derived"
 
 
 def test_parse_workbook_accepts_reference_workbook():

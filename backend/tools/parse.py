@@ -22,17 +22,26 @@ ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 
 
 def _build_preview(parsed_data: dict) -> tuple[list[str], list[dict]]:
-    """回傳前 5 row 的欄位預覽。"""
+    """回傳前 5 row 的欄位預覽。
+
+    Import 後 Test Set 一律視為待分類；原始 workbook 的 Col H 保留在
+    parsedData / columnFillStatus 裡，但不回填到前端 row preview。
+    """
     preview_headers = ["req_id", "test_item", "test_set", "priority"]
-    preview_rows = [
-        {header: row.get(header, "") for header in preview_headers}
-        for row in parsed_data["rows"][:5]
-    ]
+    preview_rows = []
+    for row in parsed_data["rows"][:5]:
+        preview = {header: row.get(header, "") for header in preview_headers}
+        preview["test_set"] = ""
+        preview_rows.append(preview)
     return preview_headers, preview_rows
 
 
 def _normalize_row(row: dict) -> dict:
-    """把 parser 的 row dict 轉成前端用的 camelCase 格式。"""
+    """把 parser 的 row dict 轉成前端用的 camelCase 格式。
+
+    Test Set 不沿用原始 Excel：匯入後必須經 Configure grouping 或手動編輯
+    才會成為本次 job 的正式 Test Set。
+    """
     return {
         "id": f"row-{row['row_num']}",
         "rowNum": row["row_num"],
@@ -40,7 +49,7 @@ def _normalize_row(row: dict) -> dict:
         "reqId": row.get("req_id", ""),
         "testItem": row.get("test_item", ""),
         "originalRequirement": row.get("test_item", ""),
-        "testSet": row.get("test_set", ""),
+        "testSet": "",
         "specReference": row.get("spec_reference"),
         "priority": row.get("priority", ""),
         "status": "draft",

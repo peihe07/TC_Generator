@@ -1275,8 +1275,24 @@ async def preview_grouping(payload: GroupPreviewRequest) -> dict:
     if not job:
         raise HTTPException(status_code=404, detail="job not found")
 
+    parsed_rows = job.get("parsedData", {}).get("rows", [])
+    parsed_by_row_num = {row.get("row_num"): row for row in parsed_rows}
+    parsed_by_req_id = {row.get("req_id"): row for row in parsed_rows}
+    rows_for_grouping: list[dict] = []
+    for row in payload.rows:
+        data = row.model_dump()
+        base_row = None
+        if data.get("rowNum") is not None:
+            base_row = parsed_by_row_num.get(data["rowNum"])
+        if base_row is None and data.get("reqId"):
+            base_row = parsed_by_req_id.get(data["reqId"])
+        original_test_set = str((base_row or {}).get("test_set") or "").strip()
+        if original_test_set and not str(data.get("testSet") or "").strip():
+            data["testSetHint"] = original_test_set
+        rows_for_grouping.append(data)
+
     result = group_tests_tool(
-        rows=[row.model_dump() for row in payload.rows],
+        rows=rows_for_grouping,
         force_regroup=payload.forceRegroup,
     )
     usage = _job_usage(job)
