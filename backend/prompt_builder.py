@@ -841,12 +841,34 @@ def build_multi_tc_user_prompt(
 {_MULTI_TC_GUIDANCE}
 ## Output
 Return a JSON object with these top-level keys:
-- `reasoning` (string, 繁體中文): 先用**一句話**總結此需求要驗什麼
-  （例：「驗證 Dealer Mode 可開關 Engineering Configuration，disable
-  時參數還原預設。」）。只有在**有拆分**時才追加第二句說明拆分理由並引用
-  節號（例：「依 §9 列舉 6 種格式，故拆 6 筆避免 False Pass。」）。
-  原子需求就只寫一句，不要補「不需拆分」這種贅述。用途：讓使用者一眼
-  確認 AI 對需求的理解和自己是否一致。
+- `reasoning` (string, 繁體中文): 用 **2–5 句**完整說明你對此需求的解讀，
+  讓 reviewer 不必回去看原文就能對齊判斷。內容必須涵蓋下列元素，按
+  以下順序組織（每點 1 句即可，缺項則略過）：
+    1. **驗證目標**：此 TC（或這組 TC）核心要驗證的行為或外顯結果是什麼。
+    2. **關鍵情境條件**：觸發行為的前置狀態 / 輸入 / 模式（呼應 §6.1 trigger
+       必帶條件的精神）。能寫多項就條列。
+    3. **為什麼這樣切**：
+       - 若 `tcs` 長度 = 1（原子需求）：用一句說明為什麼一筆 TC 已足夠涵蓋
+         （例：「無分支、無列舉項、無狀態切換，單一場景即可完整驗證。」）。
+         **不要寫「不需拆分」這種空話**，要點出*為什麼*不需拆。
+       - 若 `tcs` 長度 ≥ 2：明確引用驅動拆分的 ASPICE 節號（§6.1 / §9 /
+         §10.2 等），並指出拆分維度（格式 / 狀態 / 輸入分群 / 失敗類型 …）。
+    4. **未涵蓋或刻意略過的部分**（optional, 僅當有取捨時寫）：說明哪些相鄰
+       場景被 sibling rows 接走、或因 spec 未明確而留給後續 review。
+
+  範例（原子）：「驗證 Dealer Mode 切換 Engineering Configuration 開關後，
+  系統參數於 disable 時還原為預設值。觸發點為使用者在 Dealer Mode UI
+  按下 toggle，前提是當前已是 enable 狀態並有自訂值。單一狀態切換、無
+  列舉項，因此一筆 TC 即可完整覆蓋；後續 power cycle 行為由其他需求接手。」
+
+  範例（拆分）：「驗證系統可上傳並播放 spec 列舉的 6 種影片格式
+  (.mp4/.avi/.mpg/.wmv/.3gp/.mkv)。觸發點為使用者在 Showroom 模式下選擇
+  USB 中對應格式檔案。依 §9 列舉項規則拆為 6 筆 TC，避免單筆「supported
+  formats」造成 False Pass（任一格式靜默失敗時也會通過）。Codec 內部解碼
+  細節（例如 H.265 vs H.264）非本需求範圍，由媒體框架層需求驗證。」
+
+  用途：讓 reviewer 一眼確認 AI 對需求的理解、判斷取捨、與拆分依據是否
+  與自己一致；也作為 audit trail 紀錄 AI 的決策邏輯。
 - `keywords` (array, optional): keyword analysis per §10.2, each entry
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}` where the
   numbers are 1-based indices into `tcs`.
@@ -1024,9 +1046,13 @@ def build_multi_tc_batch_prompt(
 Return a JSON object `{{"requirements": [...]}}`; the outer array has exactly
 one entry per input requirement, in the same order. Each entry has the shape:
 `{{"req_id": "...", "reasoning": "<繁中>", "keywords": [...], "tcs": [...]}}`
-- `reasoning`: 一句話總結該 req 要驗什麼；只有在有拆分時才多加一句說明
-  拆分理由並引用節號（例：「依 §9 拆成 6 筆格式驗證」）。原子需求只寫
-  一句。目的：讓使用者確認 AI 對需求的理解。
+- `reasoning` (繁體中文，2–5 句): 完整說明對該需求的解讀，依序涵蓋：
+  (1) 驗證目標、(2) 關鍵情境條件 / 觸發、(3) 為何切成這個 TC 數
+  （原子需求要說「為什麼一筆已足夠」，例：「無分支、無列舉、無狀態切換」；
+  拆分需引用 §6.1 / §9 / §10.2 等節號並指出拆分維度）、(4) 若有刻意略過
+  的相鄰場景或交給 sibling rows 接手者，請點出。**禁止只寫「不需拆分」
+  這種空話**。目的：讓 reviewer 不必回去看原文就能對齊判斷，亦做為 audit
+  trail。
 - `keywords` (optional): per-req keyword analysis (§10.2),
   `{{"keyword": "...", "meaning": "<繁中>", "covered_by": [1, 2]}}`.
 - `tcs`: as many TC objects as the rules demand (no cap).
