@@ -101,6 +101,7 @@ const ConfigureModule: React.FC = () => {
     }
     setIsLoadingMatchPreview(true);
     setMatchError(null);
+    setMatchPreview(null);
     try {
       const preview = await fetchMatchPreview({
         jobId: jobMetadata?.jobId ?? null,
@@ -117,20 +118,14 @@ const ConfigureModule: React.FC = () => {
   }, [tcRows, jobMetadata?.jobId]);
 
   useEffect(() => {
-    if (activeTab === 'tab1' && tcRows.length && !groupPreview && !isLoadingGroupPreview) {
-      void loadGroupingPreview();
-    }
     if (activeTab === 'tab2' && tcRows.length && !matchPreview && !isLoadingMatchPreview) {
       void loadMatchPreview();
     }
   }, [
     activeTab,
     tcRows,
-    groupPreview,
     matchPreview,
-    isLoadingGroupPreview,
     isLoadingMatchPreview,
-    loadGroupingPreview,
     loadMatchPreview,
   ]);
 

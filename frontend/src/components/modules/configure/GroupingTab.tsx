@@ -37,10 +37,10 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
   <>
     <div className="mb-2">
       <div className="mb-2">
-        <p className="font-bold">AI-suggested Test Sets — review, edit, and apply before generation.</p>
+        <p className="font-bold">Test Sets — review, edit, then apply before generation.</p>
         <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
-          下方清單由 AI 依 requirement 文意分組。滿意就按 Apply；想改就在「Manual Override」改完再 Apply。
-          生成完的 TC 會沿用這裡的 Test Set，不會再跑一次 AI 分類。
+          Upload 後不會自動分組。按 Group 才會為空白列產生建議；想改就在「Manual Override」直接編輯。
+          生成完的 TC 會沿用這裡的 Test Set。
         </p>
       </div>
       <div
@@ -52,7 +52,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             className="flex items-center justify-center gap-1 min-w-[118px]"
             onClick={onRefresh}
             disabled={isLoading}
-            title="Ask AI to suggest test sets for rows that do not already have one"
+            title="Suggest test sets for rows that do not already have one"
           >
             {isLoading ? (
               <RiLoader4Line className="size-3 animate-spin" />
@@ -65,7 +65,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             className="flex items-center justify-center gap-1 min-w-[128px]"
             onClick={onForceRegroup}
             disabled={isLoading}
-            title="Send existing test sets as hints and ask AI to regroup every row"
+            title="Send existing test sets as hints and regroup every row"
           >
             {isLoading ? (
               <RiLoader4Line className="size-3 animate-spin" />
@@ -96,13 +96,13 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
       <div className="status-bar-field p-1 mb-2 flex items-center gap-1">
         <RiLoader4Line className="size-3 animate-spin" />
         {loadingMode === 'regroup'
-          ? 'Re-Group triggered: AI is regrouping all rows...'
-          : 'Group triggered: AI is classifying blank Test Sets...'}
+          ? 'Re-Group is regrouping all rows...'
+          : 'Group is classifying blank Test Sets...'}
       </div>
     )}
     {preview && (
       <div className="status-bar-field p-1 mb-2">
-        AI grouped {preview.assignments.length} row(s) into {preview.groups.length} Test Set(s).
+        Grouped {preview.assignments.length} row(s) into {preview.groups.length} Test Set(s).
         Apply once you&apos;re happy with the labels below.
       </div>
     )}
@@ -131,7 +131,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
               className="p-4 text-center"
               style={{ color: 'var(--win95-gray-mid)', fontStyle: 'italic' }}
             >
-              {isLoading ? 'Loading grouping preview...' : 'No grouping preview available yet.'}
+              {isLoading ? 'Loading grouping preview...' : 'No grouping preview yet. Click Group or edit Test Set manually.'}
             </td>
           </tr>
         )}
