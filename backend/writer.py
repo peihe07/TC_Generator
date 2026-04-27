@@ -5,6 +5,7 @@ from copy import copy
 
 from openpyxl import load_workbook
 from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
+from openpyxl.styles import Alignment
 
 TC_SHEET_NAME = "Test Case Specification&Result"
 FRAMEWORK_SHEET_NAME = "Test Case Framework"
@@ -21,6 +22,10 @@ WRITE_COLUMNS = {
     "spec_reference": 14, # N
     "priority": 16,       # P
     "design_method": 17,  # Q
+    # AI 對該 requirement 的解讀（splitDecision.reasoning）。Primary TC 才有；
+    # sub TC 的 reasoning 為空字串會被 _write_tc_row 跳過。column R 在大多數
+    # template 是空欄，_ensure_reasoning_header 會自動補一個 header 標籤。
+    "reasoning": 18,      # R
 }
 
 CLEARABLE_FIELDS = {"test_set", "spec_reference"}
@@ -144,6 +149,39 @@ def _copy_style(src, dst) -> None:
         dst.protection = copy(src.protection)
 
 
+def _ensure_reasoning_header(ws) -> None:
+    """在 column R 頂端自動補上 "AI Reasoning" header。
+
+    template 原本沒有這欄，但匯出時 reviewer 看到一整欄無標籤的長文會困惑，
+    所以掃 J（Pre-Conditions）前 10 列找出 header 列、在同列 R 欄寫上中文標籤
+    並複製格式。已存在內容（使用者自訂 template）一律不覆蓋。
+    """
+    header_row = 1
+    for r in range(1, 11):
+        v = str(ws.cell(row=r, column=10).value or "").strip().lower()
+        if "pre" in v or "前置" in v or "condition" in v:
+            header_row = r
+            break
+    # 設 column R 欄寬與自動換行 — reasoning 是 2–5 句長文，不開 wrap 會橫向溢出。
+    # column_dimensions 即使 column 未被存取仍能設定，openpyxl 會在儲存時生效。
+    ws.column_dimensions["R"].width = 60
+
+    target = ws.cell(row=header_row, column=18)
+    if target.value:
+        return
+    target.value = "AI Reasoning"
+    src = ws.cell(row=header_row, column=10)
+    if src.has_style:
+        _copy_style(src, target)
+    # header cell 強制 wrap_text — 即使 source J header 沒開，標題本身短不會吃虧；
+    # 主要目的是保險，多數 template 的 J header 已開 wrap。
+    target.alignment = Alignment(
+        horizontal=target.alignment.horizontal or "left",
+        vertical=target.alignment.vertical or "center",
+        wrap_text=True,
+    )
+
+
 def _write_tc_row(
     ws,
     row_num: int,
@@ -171,6 +209,14 @@ def _write_tc_row(
 
         if has_value:
             cell.value = value
+            # reasoning 是 2–5 句長文，column R 沒有 template 樣式可繼承，
+            # 強制給 wrap_text + top-align 避免橫向溢出與垂直置中切字。
+            if field == "reasoning":
+                cell.alignment = Alignment(
+                    horizontal="left",
+                    vertical="top",
+                    wrap_text=True,
+                )
         elif field in CLEARABLE_FIELDS:
             cell.value = None
         # else: 空值且非 clearable 欄 → 保留 template 既有內容，不覆蓋。
@@ -199,6 +245,7 @@ def write_generated_results(
     """
     wb = load_workbook(input_path)
     ws = wb[TC_SHEET_NAME]
+    _ensure_reasoning_header(ws)
 
     # 依 row_num 分組，保留原本傳入順序；row_num 為 None 的項目丟到尾端維持相容。
     groups: dict[int, list[dict]] = {}

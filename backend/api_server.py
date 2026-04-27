@@ -422,6 +422,14 @@ def _map_export_rows(
         if not str(input_test_data or "").strip():
             input_test_data = "NA"
 
+        # AI 解讀 (splitDecision.reasoning) 只放 primary TC（subIndex=0/undefined）；
+        # 前端 payload 已遵守此約束，這裡照搬即可，sub TC 一律拿到空字串、
+        # writer.py 會跳過該 cell。
+        split_decision = row.get("splitDecision") or {}
+        reasoning = ""
+        if isinstance(split_decision, dict):
+            reasoning = str(split_decision.get("reasoning") or "")
+
         exportable.append(
             {
                 "row_num": row_num,
@@ -437,6 +445,7 @@ def _map_export_rows(
                 "priority": generated.get("priority", ""),
                 "design_method": generated.get("designMethod", ""),
                 "spec_reference": row.get("specReference") or generated.get("specReference"),
+                "reasoning": reasoning,
             }
         )
 

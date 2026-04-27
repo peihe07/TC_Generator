@@ -314,6 +314,73 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=8).value is None
         assert ws.cell(row=10, column=14).value is None
 
+    def test_writes_reasoning_to_column_r_for_primary_tc(self, input_xlsx, generated_rows, tmp_path):
+        # B 方案：AI 解讀寫到 column R（18）。Primary TC 帶 reasoning，
+        # writer 必須把它寫進去且不影響其他欄位。
+        output = str(tmp_path / "output.xlsx")
+        rows = [{**generated_rows[0], "reasoning": "§9 列舉 3 種格式，各一筆 TC。"}]
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert ws.cell(row=10, column=18).value == "§9 列舉 3 種格式，各一筆 TC。"
+
+    def test_skips_reasoning_when_empty_string(self, input_xlsx, generated_rows, tmp_path):
+        # Sub TC 的 reasoning 會是 ""；writer 對非 clearable 的空值會保留 template
+        # 既有內容（這裡 template column R 本來就空）→ cell 維持空值。
+        output = str(tmp_path / "output.xlsx")
+        rows = [{**generated_rows[0], "reasoning": ""}]
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        # column R 仍應是 None / 空（不會被空字串污染）
+        assert not ws.cell(row=10, column=18).value
+
+    def test_reasoning_cell_has_wrap_text_alignment(self, input_xlsx, generated_rows, tmp_path):
+        # 2–5 句的 reasoning 一定要 wrap_text 才不會溢出 column R。
+        output = str(tmp_path / "output.xlsx")
+        rows = [{**generated_rows[0], "reasoning": "原子需求，無分支、無列舉、無狀態切換。"}]
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        cell = ws.cell(row=10, column=18)
+        assert cell.alignment.wrap_text is True
+        assert cell.alignment.vertical == "top"
+
+    def test_reasoning_column_has_explicit_width(self, input_xlsx, generated_rows, tmp_path):
+        # Column R 是新加的欄，沒 template 預設寬度，writer 必須自己設一個合理值。
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, generated_rows, output)
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert ws.column_dimensions["R"].width == 60
+
+    def test_writes_reasoning_header_at_template_header_row(self, input_xlsx, generated_rows, tmp_path):
+        # _ensure_reasoning_header 應該掃 J 欄找到 Pre-Conditions header（row 9），
+        # 在同一列的 R 欄寫上 "AI Reasoning"。
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, generated_rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert ws.cell(row=9, column=18).value == "AI Reasoning"
+
+    def test_does_not_overwrite_existing_reasoning_header(self, input_xlsx, generated_rows, tmp_path):
+        # 使用者自己在 template 改過 column R 的 header → 不要覆蓋。
+        from openpyxl import load_workbook as lw, Workbook  # noqa
+        wb = lw(input_xlsx)
+        ws = wb["Test Case Specification&Result"]
+        ws.cell(row=9, column=18, value="自訂解讀標題")
+        wb.save(input_xlsx)
+
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, generated_rows, output)
+        wb_out = load_workbook(output)
+        ws_out = wb_out["Test Case Specification&Result"]
+        assert ws_out.cell(row=9, column=18).value == "自訂解讀標題"
+
     def test_respects_selected_fields_when_writing(self, input_xlsx, generated_rows, tmp_path):
         output = str(tmp_path / "output.xlsx")
         write_generated_results(
