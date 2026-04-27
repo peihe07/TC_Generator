@@ -1,7 +1,11 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { useJobHistoryStore } from '../../store/useJobHistoryStore';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useJobHistoryStore,
+  type JobRecord,
+  type JobRecordKind,
+} from '../../store/useJobHistoryStore';
 import { Button } from '../ui';
 
 function fmtDate(ts: number): string {
@@ -15,6 +19,40 @@ function fmtDuration(ms: number): string {
   const m = Math.floor(s / 60);
   const rem = s % 60;
   return `${m}m${rem}s`;
+}
+
+const KIND_LABEL: Record<JobRecordKind, string> = {
+  generate: 'Generate',
+  quick: 'Quick TC',
+  group: 'Grouping',
+  regenerate: 'Regenerate',
+  rerun: 'Re-run',
+  'suggest-fix': 'Suggest-Fix',
+  export: 'Export',
+};
+
+interface Subtotal {
+  cost: number;
+  inputTokens: number;
+  outputTokens: number;
+  count: number;
+}
+
+function aggregate<K extends string>(
+  records: JobRecord[],
+  keyFn: (r: JobRecord) => K,
+): Array<[K, Subtotal]> {
+  const map = new Map<K, Subtotal>();
+  for (const r of records) {
+    const k = keyFn(r);
+    const cur = map.get(k) ?? { cost: 0, inputTokens: 0, outputTokens: 0, count: 0 };
+    cur.cost += r.cost || 0;
+    cur.inputTokens += r.inputTokens || 0;
+    cur.outputTokens += r.outputTokens || 0;
+    cur.count += 1;
+    map.set(k, cur);
+  }
+  return [...map.entries()].sort((a, b) => b[1].cost - a[1].cost);
 }
 
 const JobHistoryMenu: React.FC = () => {
@@ -36,6 +74,17 @@ const JobHistoryMenu: React.FC = () => {
 
   const totalCost = records.reduce((s, r) => s + (r.cost || 0), 0);
   const totalTokens = records.reduce((s, r) => s + (r.inputTokens || 0) + (r.outputTokens || 0), 0);
+  const totalCacheRead = records.reduce((s, r) => s + (r.cacheReadTokens || 0), 0);
+
+  // Per-kind / per-model 累計，給 reviewer 看「錢花在哪」。
+  const byKind = useMemo(
+    () => aggregate(records, (r) => r.kind),
+    [records],
+  );
+  const byModel = useMemo(
+    () => aggregate(records, (r) => r.model || '(unknown)'),
+    [records],
+  );
 
   const handleClear = () => {
     if (!window.confirm(`Clear all ${records.length} history entries?`)) return;
@@ -94,6 +143,92 @@ const JobHistoryMenu: React.FC = () => {
             </Button>
           </div>
 
+          {/* Per-kind / per-model breakdown — only render when there is anything
+              to summarise so empty workspaces stay clean. */}
+          {records.length > 0 && (
+            <div
+              style={{
+                background: 'var(--win95-white)',
+                border: '1px solid var(--win95-gray-mid)',
+                padding: '4px 6px',
+                fontSize: 11,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}
+            >
+              <div
+                style={{
+                  fontWeight: 'bold',
+                  color: 'var(--text-muted)',
+                  fontSize: 10,
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                }}
+              >
+                By Kind
+              </div>
+              {byKind.map(([kind, sub]) => (
+                <div
+                  key={`kind-${kind}`}
+                  style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace' }}
+                  title={`${KIND_LABEL[kind] ?? kind}: ${sub.count} call(s), in ${sub.inputTokens.toLocaleString()} / out ${sub.outputTokens.toLocaleString()}`}
+                >
+                  <span>{KIND_LABEL[kind] ?? kind} ({sub.count})</span>
+                  <span style={{ color: 'var(--status-reject-dark)' }}>${sub.cost.toFixed(4)}</span>
+                </div>
+              ))}
+              <div
+                style={{
+                  fontWeight: 'bold',
+                  color: 'var(--text-muted)',
+                  fontSize: 10,
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                  marginTop: 2,
+                }}
+              >
+                By Model
+              </div>
+              {byModel.map(([model, sub]) => (
+                <div
+                  key={`model-${model}`}
+                  style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace' }}
+                  title={`${model}: ${sub.count} call(s)`}
+                >
+                  <span>{model} ({sub.count})</span>
+                  <span style={{ color: 'var(--status-reject-dark)' }}>${sub.cost.toFixed(4)}</span>
+                </div>
+              ))}
+              <div
+                style={{
+                  fontWeight: 'bold',
+                  color: 'var(--text-muted)',
+                  fontSize: 10,
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                  marginTop: 2,
+                }}
+              >
+                Tokens
+              </div>
+              <div
+                style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace' }}
+              >
+                <span>Total in/out</span>
+                <span>{totalTokens.toLocaleString()}</span>
+              </div>
+              {totalCacheRead > 0 && (
+                <div
+                  style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace' }}
+                >
+                  <span>Cache read</span>
+                  <span>{totalCacheRead.toLocaleString()}</span>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Records */}
           <div style={{
             overflowY: 'auto',
@@ -119,7 +254,9 @@ const JobHistoryMenu: React.FC = () => {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
-                    <span style={{ color: 'var(--win95-navy)' }}>{r.model}</span>
+                    <span style={{ color: 'var(--win95-navy)' }}>
+                      {KIND_LABEL[r.kind] ?? r.kind} · {r.model}
+                    </span>
                     <span style={{ fontFamily: 'monospace', color: 'var(--status-reject-dark)' }}>${r.cost.toFixed(5)}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', marginTop: 1 }}>
