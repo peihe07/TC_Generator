@@ -21,6 +21,7 @@ const CostMeter: React.FC = () => {
   const inputCost  = (stats.inputTokens  / 1_000_000) * pricing.input;
   const outputCost = (stats.outputTokens / 1_000_000) * pricing.output;
   const totalCost  = stats.cost > 0 ? stats.cost : inputCost + outputCost;
+  const showEstimatedTokenCost = stats.cost <= 0;
 
   const hasActivity = stats.total > 0 || stats.cost > 0;
 
@@ -84,24 +85,24 @@ const CostMeter: React.FC = () => {
           <Row
             label="Input"
             value={stats.inputTokens > 0 ? `${stats.inputTokens.toLocaleString()} tok` : '—'}
-            sub={stats.inputTokens > 0 ? `$${inputCost.toFixed(5)}` : undefined}
+            sub={showEstimatedTokenCost && stats.inputTokens > 0 ? `$${inputCost.toFixed(5)}` : undefined}
           />
           <Row
             label="Output"
             value={stats.outputTokens > 0 ? `${stats.outputTokens.toLocaleString()} tok` : '—'}
-            sub={stats.outputTokens > 0 ? `$${outputCost.toFixed(5)}` : undefined}
+            sub={showEstimatedTokenCost && stats.outputTokens > 0 ? `$${outputCost.toFixed(5)}` : undefined}
           />
           {(stats.cacheCreationTokens > 0 || stats.cacheReadTokens > 0) && (
             <>
               <Row
                 label="Cache W"
                 value={`${stats.cacheCreationTokens.toLocaleString()} tok`}
-                sub={`$${((stats.cacheCreationTokens / 1_000_000) * pricing.input).toFixed(5)}`}
+                sub={showEstimatedTokenCost ? `$${((stats.cacheCreationTokens / 1_000_000) * pricing.input).toFixed(5)}` : undefined}
               />
               <Row
                 label="Cache R"
                 value={`${stats.cacheReadTokens.toLocaleString()} tok`}
-                sub={`$${((stats.cacheReadTokens / 1_000_000) * pricing.cachedInput).toFixed(5)}`}
+                sub={showEstimatedTokenCost ? `$${((stats.cacheReadTokens / 1_000_000) * pricing.cachedInput).toFixed(5)}` : undefined}
               />
               {(() => {
                 const totalIn = stats.inputTokens + stats.cacheCreationTokens + stats.cacheReadTokens;
