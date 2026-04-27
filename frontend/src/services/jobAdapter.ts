@@ -464,7 +464,6 @@ export function startGeneration(
 ) {
   let stopped = false;
   let source: EventSource | null = null;
-  let mockTimer: ReturnType<typeof setInterval> | null = null;
 
   // Progress 以「原始 Requirement ID 數」為分母，AI 中途拆出的 sub-TC 不會
   // 把分母往上推（否則進度條會越跑越倒退）。numerator 用看過的 reqId 數，
@@ -521,10 +520,6 @@ export function startGeneration(
       source.close();
       source = null;
     }
-    if (mockTimer) {
-      clearInterval(mockTimer);
-      mockTimer = null;
-    }
   };
 
   const run = async () => {
@@ -535,43 +530,47 @@ export function startGeneration(
 
     callbacks.onStart?.(input.rows.length);
 
-    if (input.jobId) {
-      try {
-        const createJobResponse = await parseJsonResponse<{
-          jobId: string;
-          totalRows: number;
-          streamUrl: string;
-        }>(
-          await fetch(`${appApiBase}/generate`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              jobId: input.jobId,
-              rows: input.rows.map((row) => ({
-                id: row.id,
-                // rowNum 必須一路帶到 backend，否則 SQLite 存成 null，export 時對不到 Excel 列。
-                rowNum: row.rowNum ?? null,
-                tcId: row.tcId ?? null,
-                reqId: row.reqId,
-                testItem: row.testItem,
-                originalRequirement: row.testItem,
-                testSet: row.testSet,
-                specReference: row.specReference ?? null,
-                priority: row.priority || undefined,
-              })),
-              config: {
-                model: input.config.model,
-                batchSize: input.config.batchSize,
-                budget: input.config.budgetLimit,
-                strictValidation: input.config.strictValidation,
-                regenerateAll: Boolean(input.config.regenerateAll),
-              },
-            }),
-          }),
-        );
+    if (!input.jobId) {
+      callbacks.onError?.("Generation requires an active parsed job.");
+      return;
+    }
 
-        source = new EventSource(createJobResponse.streamUrl);
-        source.onmessage = (event) => {
+    try {
+      const createJobResponse = await parseJsonResponse<{
+        jobId: string;
+        totalRows: number;
+        streamUrl: string;
+      }>(
+        await fetch(`${appApiBase}/generate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            jobId: input.jobId,
+            rows: input.rows.map((row) => ({
+              id: row.id,
+              // rowNum 必須一路帶到 backend，否則 SQLite 存成 null，export 時對不到 Excel 列。
+              rowNum: row.rowNum ?? null,
+              tcId: row.tcId ?? null,
+              reqId: row.reqId,
+              testItem: row.testItem,
+              originalRequirement: row.testItem,
+              testSet: row.testSet,
+              specReference: row.specReference ?? null,
+              priority: row.priority || undefined,
+            })),
+            config: {
+              model: input.config.model,
+              batchSize: input.config.batchSize,
+              budget: input.config.budgetLimit,
+              strictValidation: input.config.strictValidation,
+              regenerateAll: Boolean(input.config.regenerateAll),
+            },
+          }),
+        }),
+      );
+
+      source = new EventSource(createJobResponse.streamUrl);
+      source.onmessage = (event) => {
           if (stopped) {
             return;
           }
@@ -597,7 +596,7 @@ export function startGeneration(
           }
           const stats = data.stats as Record<string, number> | undefined;
           if (stats) {
-            if (!baseCaptured) {
+            if (!baseCaptured && eventType === "job.started") {
               baseUsage.cost = Number(stats.currentCost ?? 0);
               baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
               baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
@@ -674,58 +673,19 @@ export function startGeneration(
             callbacks.onComplete?.(String(data.message ?? "Generation complete."));
             stop();
           }
-        };
+      };
 
-        source.onerror = () => {
-          callbacks.onError?.("Live backend stream disconnected.");
-          stop();
-        };
-        return;
-      } catch {
-        callbacks.onError?.("Backend generation failed. Falling back to local mock mode.");
-      }
+      source.onerror = () => {
+        callbacks.onError?.("Live backend stream disconnected.");
+        stop();
+      };
+      return;
+    } catch (error) {
+      callbacks.onError?.(
+        error instanceof Error ? error.message : "Backend generation failed.",
+      );
+      return;
     }
-
-    let processed = 0;
-    let success = 0;
-    let fail = 0;
-    let cost = 0;
-
-    mockTimer = setInterval(() => {
-      if (stopped) {
-        return;
-      }
-
-      const next = input.rows[processed];
-      if (!next) {
-        callbacks.onComplete?.("Mock generation complete.");
-        stop();
-        return;
-      }
-
-      const updated = buildMockGeneratedRow(next, processed);
-      processed += 1;
-      success += updated.validationErrors?.some((issue) => issue.severity === "error") ? 0 : 1;
-      fail += updated.validationErrors?.some((issue) => issue.severity === "error") ? 1 : 0;
-      cost = Number((cost + 0.018).toFixed(4));
-      callbacks.onRow?.(updated, `Generated ${updated.reqId} in local preview mode.`);
-      callbacks.onProgress?.({
-        total: input.rows.length,
-        processed,
-        success,
-        fail,
-        cost,
-        inputTokens: 0,
-        outputTokens: 0,
-        cacheCreationTokens: 0,
-        cacheReadTokens: 0,
-      });
-
-      if (processed >= input.rows.length) {
-        callbacks.onComplete?.("Mock generation complete.");
-        stop();
-      }
-    }, 700);
   };
 
   void run();
@@ -807,9 +767,10 @@ export async function regenerateRows(
           }
 
           const event = JSON.parse(line) as Record<string, unknown>;
+          const eventType = typeof event.type === "string" ? event.type : "";
           const stats = event.stats as Record<string, number> | undefined;
           if (stats) {
-            if (!baseCaptured) {
+            if (!baseCaptured && eventType === "regen.started") {
               baseUsage.cost = Number(stats.currentCost ?? 0);
               baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
               baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
@@ -891,28 +852,12 @@ export async function regenerateRows(
       callbacks.onComplete?.();
       return;
     } catch {
-      callbacks.onError?.("Backend regenerate failed. Falling back to local preview mode.");
+      callbacks.onError?.("Backend regenerate failed.");
+      return;
     }
   }
 
-  input.rowIds.forEach((rowId, index) => {
-    const row = input.rows.find((item) => item.id === rowId);
-    if (!row) {
-      return;
-    }
-
-    callbacks.onRow?.(rowId, {
-      preConditions: row.preConditions || "1. Local preview environment ready",
-      inputTestData: row.inputTestData || "NA",
-      steps: `${row.steps || "1. Prepare the feature"}\n2. Re-run the targeted behavior`,
-      expectedResults:
-        row.expectedResults || "Visible output remains consistent after regeneration.",
-    });
-
-    if (index === input.rowIds.length - 1) {
-      callbacks.onComplete?.();
-    }
-  });
+  callbacks.onError?.("Regenerate requires an active backend job.");
 }
 
 /**
@@ -1002,9 +947,10 @@ export async function rerunRows(
         if (!line) continue;
 
         const event = JSON.parse(line) as Record<string, unknown>;
+        const eventType = typeof event.type === "string" ? event.type : "";
         const stats = event.stats as Record<string, number> | undefined;
         if (stats) {
-          if (!baseCaptured) {
+          if (!baseCaptured && eventType === "rerun.started") {
             baseUsage.cost = Number(stats.currentCost ?? 0);
             baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
             baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
@@ -1088,6 +1034,10 @@ export async function rerunRows(
 }
 
 export async function exportJob(input: ExportJobInput) {
+  if (!input.jobId) {
+    throw new Error("A parsed job is required before exporting to Excel.");
+  }
+
   if (input.jobId) {
     const exportRows = input.rows.map((row) => ({
       id: row.id,
@@ -1183,20 +1133,7 @@ export async function exportJob(input: ExportJobInput) {
     };
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 900));
-  const scopedRows =
-    input.scope === "accepted"
-      ? input.rows.filter((row) => row.status === "accepted")
-      : input.rows;
-
-  return {
-    status: "ready" as const,
-    fileName: `${input.jobId ?? "tc-generator"}_generated.xlsx`,
-    downloadUrl: null,
-    exportedRows: scopedRows.length,
-    fallbackTemplate: false,
-    simulated: true,
-  };
+  throw new Error("A parsed job is required before exporting to Excel.");
 }
 
 export async function attachRawWorkbook(jobId: string, file: File): Promise<{

@@ -80,6 +80,14 @@ const ExportModule: React.FC = () => {
   };
 
   const handleExport = async () => {
+    if (!jobMetadata?.jobId) {
+      appendLog(createJobLog('warn', 'Export requires an active parsed job. Upload or merge into a current job first.'));
+      return;
+    }
+    if (tcRows.length === 0) {
+      appendLog(createJobLog('warn', 'No rows available for export.'));
+      return;
+    }
     if (scope === 'accepted' && acceptedCount === 0) {
       appendLog(createJobLog('warn', 'No accepted rows available for export. Switch scope to All Generated Cases or accept rows first.'));
       return;
@@ -224,7 +232,7 @@ const ExportModule: React.FC = () => {
             </Button>
             <Button
               className="flex items-center gap-2 default min-w-[120px] justify-center"
-              disabled={isExporting}
+              disabled={isExporting || !jobMetadata?.jobId || tcRows.length === 0}
               onClick={() => void handleExport()}
             >
               {isExporting ? (

@@ -6,6 +6,7 @@ export interface ConfigureBottomBarProps {
   estimatedCalls: number;
   estimatedBudget: number;
   strictValidation: boolean;
+  canStartGenerate: boolean;
   onBack: () => void;
   onStartGenerate: () => void;
 }
@@ -19,6 +20,7 @@ export const ConfigureBottomBar: React.FC<ConfigureBottomBarProps> = ({
   estimatedCalls,
   estimatedBudget,
   strictValidation,
+  canStartGenerate,
   onBack,
   onStartGenerate,
 }) => (
@@ -37,6 +39,7 @@ export const ConfigureBottomBar: React.FC<ConfigureBottomBarProps> = ({
     <Button
       className="flex items-center gap-1 default"
       onClick={onStartGenerate}
+      disabled={!canStartGenerate}
     >
       Start Generate{' '}
       <RiPlayFill className="size-4" style={{ color: 'var(--status-accept-dark)' }} />

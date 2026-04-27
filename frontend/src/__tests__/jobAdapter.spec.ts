@@ -181,6 +181,45 @@ describe('regenerateRows', () => {
     const payload = JSON.parse(String(init?.body)) as Record<string, unknown>;
     expect(payload.regenerateReason).toBe('Missing negative validation path');
   });
+
+  it('does not fall back to local preview when no backend job is active', async () => {
+    const onError = vi.fn();
+    const onRow = vi.fn();
+
+    await regenerateRows(
+      {
+        jobId: null,
+        rowIds: ['TC-001'],
+        rows: [
+          {
+            id: 'TC-001',
+            reqId: 'REQ-1',
+            testGroup: 'Auth',
+            testSet: 'Login',
+            testItem: 'User logs in',
+            preConditions: '',
+            inputTestData: '',
+            steps: '',
+            expectedResults: '',
+            status: 'pending',
+            validationErrors: [],
+          },
+        ],
+        config: {
+          model: 'gpt-5',
+          batchSize: 1,
+          budgetLimit: 10,
+          creditBalance: 0,
+          strictValidation: false,
+          targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
+        },
+      },
+      { onError, onRow },
+    );
+
+    expect(onError).toHaveBeenCalledWith('Regenerate requires an active backend job.');
+    expect(onRow).not.toHaveBeenCalled();
+  });
 });
 
 describe('parseJobFiles', () => {
@@ -277,6 +316,46 @@ describe('startGeneration status mapping', () => {
   afterEach(() => {
     global.EventSource = originalEventSource;
     vi.restoreAllMocks();
+  });
+
+  it('requires an active backend job instead of running local mock generation', async () => {
+    const onError = vi.fn();
+    const onRow = vi.fn();
+
+    startGeneration(
+      {
+        jobId: null,
+        rows: [
+          {
+            id: 'TC-001',
+            reqId: 'REQ-1',
+            testGroup: 'Auth',
+            testSet: 'Login',
+            testItem: 'User logs in',
+            preConditions: '',
+            inputTestData: '',
+            steps: '',
+            expectedResults: '',
+            status: 'pending',
+            validationErrors: [],
+          },
+        ],
+        config: {
+          model: 'gpt-5',
+          batchSize: 1,
+          budgetLimit: 10,
+          creditBalance: 0,
+          strictValidation: false,
+          targetColumns: ['preConditions', 'inputTestData', 'steps', 'expectedResults'],
+        },
+      },
+      { onError, onRow },
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(onError).toHaveBeenCalledWith('Generation requires an active parsed job.');
+    expect(onRow).not.toHaveBeenCalled();
   });
 
   it('maps generated backend rows to pending for first review', async () => {

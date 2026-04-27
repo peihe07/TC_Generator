@@ -145,8 +145,20 @@ const ConfigureModule: React.FC = () => {
   }, [groupPreview, tcRows, setTcRows]);
 
   const handleStartGenerate = useCallback(() => {
+    if (!tcRows.length) return;
+    if (groupPreview) {
+      const assignments = new Map(
+        groupPreview.assignments.map((entry) => [entry.id, entry.testSet]),
+      );
+      setTcRows(
+        tcRows.map((row) => ({
+          ...row,
+          testSet: assignments.get(row.id) ?? row.testSet,
+        })),
+      );
+    }
     advanceWindow('configure', 'generate', 'TC Generator - Generating...');
-  }, [advanceWindow]);
+  }, [advanceWindow, groupPreview, tcRows, setTcRows]);
 
   const handleBack = useCallback(() => {
     advanceWindow('configure', 'upload', 'Upload Files');
@@ -216,6 +228,7 @@ const ConfigureModule: React.FC = () => {
         estimatedCalls={estimatedCalls}
         estimatedBudget={estimatedBudget}
         strictValidation={config.strictValidation}
+        canStartGenerate={tcRows.length > 0}
         onBack={handleBack}
         onStartGenerate={handleStartGenerate}
       />
