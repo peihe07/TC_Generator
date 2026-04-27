@@ -34,7 +34,7 @@ export interface ValidationPanelProps {
 type SuggestState =
   | { kind: 'idle' }
   | { kind: 'loading' }
-  | { kind: 'ok'; data: ReviewFixSuggestion }
+  | { kind: 'ok'; data: ReviewFixSuggestion; editableReason: string }
   | { kind: 'error'; message: string };
 
 /**
@@ -84,7 +84,7 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({
           message: err.message,
         })),
       });
-      setSuggest({ kind: 'ok', data });
+      setSuggest({ kind: 'ok', data, editableReason: data.suggestedReason });
     } catch (err) {
       setSuggest({
         kind: 'error',
@@ -95,9 +95,15 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({
 
   const handleApplyReason = () => {
     if (suggest.kind !== 'ok' || !onApplySuggestedReason) return;
-    const reason = suggest.data.suggestedReason.trim();
+    const reason = suggest.editableReason.trim();
     if (!reason) return;
     onApplySuggestedReason(reason);
+  };
+
+  const handleEditableReasonChange = (value: string) => {
+    setSuggest((current) =>
+      current.kind === 'ok' ? { ...current, editableReason: value } : current,
+    );
   };
 
   return (
@@ -200,21 +206,32 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({
                     {suggest.data.suggestion}
                   </div>
                   <div className="text-[11px] flex flex-col gap-1">
-                    <span className="font-bold">Suggested Regenerate Reason:</span>
-                    <code
-                      className="border-sunken p-1 select-all"
-                      style={{ background: 'var(--win95-white)' }}
-                    >
-                      {suggest.data.suggestedReason || '(空)'}
-                    </code>
+                    <span className="font-bold">
+                      Regenerate Reason（可編輯，中/英皆可）：
+                    </span>
+                    <textarea
+                      className="border-sunken p-1"
+                      style={{
+                        background: 'var(--win95-white)',
+                        minHeight: 56,
+                        resize: 'vertical',
+                        fontFamily: 'inherit',
+                        fontSize: 11,
+                      }}
+                      value={suggest.editableReason}
+                      onChange={(event) =>
+                        handleEditableReasonChange(event.target.value)
+                      }
+                      placeholder="可改寫或自由描述問題，AI 會以此為主要修正目標"
+                    />
                   </div>
                   <Button
                     onClick={handleApplyReason}
                     disabled={
                       !onApplySuggestedReason ||
-                      !suggest.data.suggestedReason.trim()
+                      !suggest.editableReason.trim()
                     }
-                    title="把建議寫入下方 Regenerate Reason 欄位（不會自動觸發 Regenerate）"
+                    title="把上方 reason 寫入下方 Regenerate Reason 欄位（不會自動觸發 Regenerate）"
                   >
                     套用為 Regenerate Reason
                   </Button>

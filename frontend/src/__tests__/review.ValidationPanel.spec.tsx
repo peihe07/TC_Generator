@@ -88,6 +88,64 @@ describe('ValidationPanel — AI fix suggestion', () => {
     expect(onApply).toHaveBeenCalledWith('Add precondition to tc_title trigger.');
   });
 
+  it('lets the reviewer edit the suggested reason (Chinese or English) before applying', async () => {
+    requestReviewFixSuggestionMock.mockResolvedValue({
+      suggestion: '建議內容',
+      suggestedReason: 'Add precondition to tc_title trigger.',
+      model: 'gpt-test',
+      cost: 0,
+    });
+
+    const onApply = vi.fn();
+    render(
+      <ValidationPanel
+        selectedRow={rowWithError}
+        onExport={() => {}}
+        onApplySuggestedReason={onApply}
+      />,
+    );
+    fireEvent.click(screen.getByText('詢問 AI'));
+
+    const textarea = (await screen.findByPlaceholderText(
+      /可改寫或自由描述問題/,
+    )) as HTMLTextAreaElement;
+    expect(textarea.value).toBe('Add precondition to tc_title trigger.');
+
+    fireEvent.change(textarea, {
+      target: { value: '請補上 BT off 前置條件並把它寫進 tc_title' },
+    });
+    fireEvent.click(screen.getByText('套用為 Regenerate Reason'));
+    expect(onApply).toHaveBeenCalledWith(
+      '請補上 BT off 前置條件並把它寫進 tc_title',
+    );
+  });
+
+  it('disables apply when the editable reason is empty after trimming', async () => {
+    requestReviewFixSuggestionMock.mockResolvedValue({
+      suggestion: '建議內容',
+      suggestedReason: 'Add precondition.',
+      model: 'gpt-test',
+      cost: 0,
+    });
+
+    render(
+      <ValidationPanel
+        selectedRow={rowWithError}
+        onExport={() => {}}
+        onApplySuggestedReason={() => {}}
+      />,
+    );
+    fireEvent.click(screen.getByText('詢問 AI'));
+
+    const textarea = (await screen.findByPlaceholderText(
+      /可改寫或自由描述問題/,
+    )) as HTMLTextAreaElement;
+    fireEvent.change(textarea, { target: { value: '   ' } });
+
+    const apply = screen.getByText('套用為 Regenerate Reason') as HTMLButtonElement;
+    expect(apply.disabled).toBe(true);
+  });
+
   it('renders the error message when the request fails', async () => {
     requestReviewFixSuggestionMock.mockRejectedValue(new Error('network down'));
 
