@@ -9,10 +9,8 @@ export interface GroupingTabProps {
   setTcRows: (rows: TcRow[]) => void;
   preview: GroupPreviewState | null;
   isLoading: boolean;
-  loadingMode: 'group' | 'regroup' | null;
   error: string | null;
-  onRefresh: () => void;
-  onForceRegroup: () => void;
+  onGroup: () => void;
   onApply: () => void;
   /** Called when a row's Test Set is edited inline so the preview can invalidate. */
   onInvalidatePreview: () => void;
@@ -27,10 +25,8 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
   setTcRows,
   preview,
   isLoading,
-  loadingMode,
   error,
-  onRefresh,
-  onForceRegroup,
+  onGroup,
   onApply,
   onInvalidatePreview,
 }) => (
@@ -39,7 +35,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
       <div className="mb-2">
         <p className="font-bold">Test Sets — review, edit, then apply before generation.</p>
         <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
-          Upload 後不會自動分組。按 Group 才會為空白列產生建議；想改就在「Manual Override」直接編輯。
+          Upload 後不會自動分組。按 Group 會依現有內容與 hints 重新分類全部列；想改就在「Manual Override」直接編輯。
           生成完的 TC 會沿用這裡的 Test Set。
         </p>
       </div>
@@ -50,20 +46,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
         <div className="flex flex-wrap items-center gap-2 min-w-0">
           <Button
             className="flex items-center justify-center gap-1 min-w-[118px]"
-            onClick={onRefresh}
-            disabled={isLoading}
-            title="Suggest test sets for rows that do not already have one"
-          >
-            {isLoading ? (
-              <RiLoader4Line className="size-3 animate-spin" />
-            ) : (
-              <RiRefreshLine className="size-3" />
-            )}
-            Group
-          </Button>
-          <Button
-            className="flex items-center justify-center gap-1 min-w-[128px]"
-            onClick={onForceRegroup}
+            onClick={onGroup}
             disabled={isLoading}
             title="Send existing test sets as hints and regroup every row"
           >
@@ -72,7 +55,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             ) : (
               <RiRefreshLine className="size-3" />
             )}
-            Re-Group
+            Group
           </Button>
         </div>
         <Button onClick={onApply} disabled={!preview || isLoading} className="default min-w-[112px]">
@@ -95,9 +78,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
     {isLoading && (
       <div className="status-bar-field p-1 mb-2 flex items-center gap-1">
         <RiLoader4Line className="size-3 animate-spin" />
-        {loadingMode === 'regroup'
-          ? 'Re-Group is regrouping all rows...'
-          : 'Group is classifying blank Test Sets...'}
+        Group is regrouping all rows...
       </div>
     )}
     {preview && (
