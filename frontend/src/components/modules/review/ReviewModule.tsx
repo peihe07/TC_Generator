@@ -452,6 +452,12 @@ const ReviewModule: React.FC = () => {
       <ValidationPanel
         selectedRow={selectedRow}
         onExport={() => advanceWindow('review', 'export', 'TC Generator - Export')}
+        onApplySuggestedReason={(reason) => {
+          setRegenerateReason(reason);
+          if (selectedRow) {
+            setSelectedIds(new Set([selectedRow.id]));
+          }
+        }}
         width={panelWidth}
       />
 

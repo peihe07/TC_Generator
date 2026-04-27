@@ -301,6 +301,27 @@ export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {
   return response.specs ?? [];
 }
 
+export interface ReviewFixSuggestion {
+  suggestion: string;
+  suggestedReason: string;
+  model: string;
+  cost: number;
+}
+
+export async function requestReviewFixSuggestion(input: {
+  tc: Record<string, unknown>;
+  errors: Array<{ severity: string; field?: string; message: string }>;
+}): Promise<ReviewFixSuggestion> {
+  const response = await parseJsonResponse<ReviewFixSuggestion>(
+    await fetch(`${appApiBase}/review/suggest-fix`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tc: input.tc, errors: input.errors }),
+    }),
+  );
+  return response;
+}
+
 export async function parseJobFiles(input: {
   rawFile: File;
   referenceWorkbookFile?: File;
