@@ -80,20 +80,30 @@ def group_tests_tool(
     AI 分類失敗時不拋錯，改走 deterministic fallback，避免 agent / API 預覽
     因外部網路不可用而整體失敗。
     """
-    # Phase 1: 先分出「已有 test_set」與「需要 AI 分類」兩批。
+    # Phase 1: 收集要送給 AI 分類的 row（per-row，不再以 req_id 去重）。
+    # 這讓「同一 Requirement ID 對應多列且內容不同」的 case 能拿到各自的
+    # Test Set，而不是被迫共用第一筆的分類結果。
     # force_regroup=True 時，既有 test_set 不直接沿用，而是送給 AI 當 hint。
-    unresolved_reqs: dict[str, str] = {}  # req_id -> test_item
+    unresolved_rows: list[dict] = []
     for row in rows:
         existing = derive_test_set_name(row)
         if existing and not force_regroup:
             continue
+        row_id = _get_any(row, "id")
         req_id = _get_any(row, "req_id", "reqId")
-        if not req_id:
+        # 必須有 id 或 req_id 之一才能送 AI；都沒有就跳過（之後走 fallback）。
+        if not row_id and not req_id:
             continue
-        if req_id not in unresolved_reqs:
-            unresolved_reqs[req_id] = _get_any(row, "test_item", "testItem")
+        item = {
+            "id": row_id or req_id,  # row uuid 優先；缺則用 req_id 當 fallback key
+            "req_id": req_id,
+            "test_item": _get_any(row, "test_item", "testItem"),
+        }
+        if existing and force_regroup:
+            item["current_test_set"] = existing
+        unresolved_rows.append(item)
 
-    classified: dict[str, str] = {}
+    classified: dict[str, str] = {}  # key = row id (or req_id when row id 缺)
     usage = {
         "cost": 0.0,
         "inputTokens": 0,
@@ -102,17 +112,9 @@ def group_tests_tool(
         "cacheReadTokens": 0,
         "model": model,
     }
-    if unresolved_reqs:
+    if unresolved_rows:
         try:
-            reqs = []
-            for k, v in unresolved_reqs.items():
-                item = {"req_id": k, "test_item": v}
-                row = next((_row for _row in rows if _get_any(_row, "req_id", "reqId") == k), None)
-                existing = derive_test_set_name(row or {})
-                if existing and force_regroup:
-                    item["current_test_set"] = existing
-                reqs.append(item)
-            result = classify_test_sets(reqs, model=model)
+            result = classify_test_sets(unresolved_rows, model=model)
             classified = result.assignments
             usage = {
                 "cost": result.cost,
@@ -129,13 +131,15 @@ def group_tests_tool(
     framework: dict[str, list[str]] = {}
     row_derived: list[tuple[dict, str, str, str]] = []  # row, test_set, req_id, source
     for row in rows:
+        row_id = _get_any(row, "id")
         req_id = _get_any(row, "req_id", "reqId")
         existing = derive_test_set_name(row)
         if existing and not force_regroup:
             test_set = existing
             source = "existing"
         else:
-            test_set = classified.get(req_id, "") or _fallback_test_set_name(row)
+            classify_key = row_id or req_id
+            test_set = classified.get(classify_key, "") or _fallback_test_set_name(row)
             source = "derived"
         row_derived.append((row, test_set, req_id, source))
         framework.setdefault(test_set, []).append(req_id)

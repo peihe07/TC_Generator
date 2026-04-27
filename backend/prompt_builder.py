@@ -849,16 +849,22 @@ def build_test_set_classification_prompt(
     reqs: list[dict],
     test_group: str | None = None,
 ) -> str:
-    """整份 requirements 分成若干 Test Set 的 prompt。
+    """Rows 分成若干 Test Set 的 prompt（per-row identity preserved）。
 
     Args:
-        reqs: list of {"req_id", "test_item"}。去重到 req 層級，不傳 TC。
+        reqs: list of dicts. Each item supplies a unique key via `id`
+            (preferred row-level UUID) or `req_id` (fallback when caller
+            intentionally classifies at requirement level), plus `test_item`.
+            When the same `req_id` appears across multiple rows with
+            different `test_item` content, pass distinct `id`s so each row
+            is classified independently rather than collapsing.
         test_group: 當前 workbook 的 Test Group（例如 "Bluetooth"、"DeviceManager"）。
             傳入後 AI 會被明確要求 label 不要再重複這個 feature 前綴。
 
     Returns:
         User prompt 字串，AI 需回 JSON
-        `{"assignments": [{"req_id": "...", "test_set": "..."}, ...]}`。
+        `{"assignments": [{"id": "...", "test_set": "..."}, ...]}`，`id`
+        為呼叫端提供的唯一 key（row uuid 或 req_id）。
     """
     items = []
     for i, r in enumerate(reqs, 1):
@@ -867,7 +873,16 @@ def build_test_set_classification_prompt(
             test_item = test_item[:397] + "..."
         current_test_set = str(r.get("current_test_set") or "").strip()
         hint = f" (current Test Set hint: {current_test_set})" if current_test_set else ""
-        items.append(f"{i}. [{r.get('req_id', '')}] {test_item}{hint}")
+        # 優先用 row-level id；缺則退回 req_id（向後相容）。req_id 仍以
+        # metadata 欄位附帶，讓 AI 看得出哪些列來自同一需求。
+        key = str(r.get("id") or r.get("req_id") or "").strip()
+        req_id_meta = str(r.get("req_id") or "").strip()
+        req_meta = (
+            f" (req {req_id_meta})"
+            if req_id_meta and req_id_meta != key
+            else ""
+        )
+        items.append(f"{i}. [{key}]{req_meta} {test_item}{hint}")
     body = "\n".join(items)
 
     group_clean = (test_group or "").strip()
@@ -902,6 +917,10 @@ Rules for choosing labels:
 - **Do NOT prefix the label with the feature/module name** (e.g. "BT",
   "Bluetooth", "DeviceManager", "HMI"). The feature group is tracked in a
   separate column; labels should describe the capability WITHIN that group.
+- If a requirement includes a `current Test Set hint`, treat it as reviewer /
+  workbook context, not a binding answer. Preserve it when it already matches
+  the capability-level grouping; otherwise merge, rename, or regroup it to
+  make the whole workbook taxonomy consistent.
 - Derive labels from what the requirements actually describe; do NOT invent a
   fixed taxonomy up front, but DO zoom out one level: ask "what user-facing
   capability is this exercising?" rather than "which screen or button?".
@@ -926,11 +945,14 @@ Rules for choosing labels:
 ## Output
 Return ONLY valid JSON (no markdown fences):
 {{"assignments": [
-  {{"req_id": "<exact id from the list>", "test_set": "<short label>"}},
+  {{"id": "<exact id from the bracketed prefix>", "test_set": "<short label>"}},
   ...
 ]}}
 
-The array length must equal the input count ({len(reqs)})."""
+The `id` MUST match the bracketed prefix verbatim. The `(req <req_id>)` suffix
+is metadata only — do NOT echo it back as the `id`. Each input line MUST
+appear exactly once in the output; the array length must equal the input
+count ({len(reqs)})."""
 
 
 def build_multi_tc_batch_prompt(

@@ -317,18 +317,26 @@ def _map_export_rows(
             continue
         filtered.append(row)
 
-    # Phase 2：收集「沒有 test_set」的 req → 一次 AI 分類（整份 review 後才跑）。
-    unresolved: dict[str, str] = {}  # req_id -> test_item（去重到 req）
+    # Phase 2：收集「沒有 test_set」的 row → 一次 AI 分類（整份 review 後才跑）。
+    # 改採 per-row 分類（不再以 req_id 去重），同一 Requirement ID 對應多列
+    # 且內容不同時，每列各自獲得 Test Set，而非被迫共用第一筆。
+    unresolved_rows: list[dict] = []
     for row in filtered:
         if str(row.get("testSet") or "").strip():
             continue
+        row_id = str(row.get("id") or "").strip()
         req_id = str(row.get("reqId") or "").strip()
-        if not req_id:
+        if not row_id and not req_id:
             continue
-        if req_id not in unresolved:
-            unresolved[req_id] = str(row.get("testItem") or "").strip()
+        unresolved_rows.append(
+            {
+                "id": row_id or req_id,
+                "req_id": req_id,
+                "test_item": str(row.get("testItem") or "").strip(),
+            }
+        )
 
-    classified: dict[str, str] = {}
+    classified: dict[str, str] = {}  # key = row id (or req_id fallback)
     classify_usage = {
         "cost": 0.0,
         "inputTokens": 0,
@@ -336,10 +344,10 @@ def _map_export_rows(
         "cacheCreationTokens": 0,
         "cacheReadTokens": 0,
     }
-    if unresolved:
+    if unresolved_rows:
         try:
             result = classify_test_sets(
-                [{"req_id": k, "test_item": v} for k, v in unresolved.items()],
+                unresolved_rows,
                 test_group=test_group,
             )
             classified = result.assignments
@@ -372,7 +380,8 @@ def _map_export_rows(
 
         test_set = row.get("testSet")
         if not str(test_set or "").strip():
-            test_set = classified.get(req_id, "")
+            row_id = str(row.get("id") or "").strip()
+            test_set = classified.get(row_id, "") or classified.get(req_id, "")
 
         input_test_data = generated.get("inputTestData", "")
         if not str(input_test_data or "").strip():

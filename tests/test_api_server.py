@@ -921,8 +921,9 @@ def test_export_prefers_tc_id_when_row_num_is_missing_for_duplicate_req_ids():
 @patch("api_server.classify_test_sets")
 def test_export_defaults_blank_input_data_and_derives_test_set(mock_classify):
     from generator import ClassificationResult
+    # Per-row classification: assignments keyed by row id (uuid).
     mock_classify.return_value = ClassificationResult(
-        assignments={"SWE1-HMI-DM-001-01": "BT Switch"},
+        assignments={"row-10": "BT Switch"},
     )
     parse_response = client.post(
         "/api/parse",

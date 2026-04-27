@@ -32,6 +32,7 @@ def test_group_respects_existing_test_set_no_ai_call():
 
 
 def test_group_calls_ai_for_unresolved_rows():
+    """Per-row classification: assignments now keyed by row uuid (id)."""
     rows = [
         {"id": "a", "reqId": "R-01", "testItem": "BT switch checkbox"},
         {"id": "b", "reqId": "R-02", "testItem": "read paired device list"},
@@ -40,14 +41,16 @@ def test_group_calls_ai_for_unresolved_rows():
     with patch(
         "backend.tools.group.classify_test_sets",
         return_value=_fake_classify_result({
-            "R-01": "BT Switch",
-            "R-02": "Device List",
-            "R-03": "Misc",
+            "a": "BT Switch",
+            "b": "Device List",
+            "c": "Misc",
         }),
     ) as mock_classify:
         out = group_tests_tool(rows=rows)
 
     assert mock_classify.called
+    sent_reqs = mock_classify.call_args.args[0]
+    assert [r["id"] for r in sent_reqs] == ["a", "b", "c"]
     derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
     assert derived_sets["a"] == "BT Switch"
     assert derived_sets["b"] == "Device List"
@@ -56,11 +59,41 @@ def test_group_calls_ai_for_unresolved_rows():
         assert assignment["source"] == "derived"
 
 
+def test_group_classifies_duplicate_req_id_per_row():
+    """Same Requirement ID across multiple rows with different test_items
+    must each get their own Test Set, not collapse to the first one."""
+    rows = [
+        {"id": "r1", "reqId": "R-DUP", "testItem": "bluetooth pairing flow"},
+        {"id": "r2", "reqId": "R-DUP", "testItem": "media metadata display"},
+        {"id": "r3", "reqId": "R-DUP", "testItem": "phonebook synchronization"},
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        return_value=_fake_classify_result({
+            "r1": "Connection",
+            "r2": "Media",
+            "r3": "Phonebook",
+        }),
+    ) as mock_classify:
+        out = group_tests_tool(rows=rows)
+
+    sent_reqs = mock_classify.call_args.args[0]
+    # Each row sent independently — duplicate req_id no longer dedups.
+    assert [r["id"] for r in sent_reqs] == ["r1", "r2", "r3"]
+    assert [r["test_item"] for r in sent_reqs] == [
+        "bluetooth pairing flow",
+        "media metadata display",
+        "phonebook synchronization",
+    ]
+    derived = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived == {"r1": "Connection", "r2": "Media", "r3": "Phonebook"}
+
+
 def test_group_uses_fixed_classification_model_by_default():
     rows = [{"id": "a", "reqId": "R-01", "testItem": "BT switch checkbox"}]
     with patch(
         "backend.tools.group.classify_test_sets",
-        return_value=_fake_classify_result({"R-01": "Connection"}),
+        return_value=_fake_classify_result({"a": "Connection"}),
     ) as mock_classify:
         group_tests_tool(rows=rows)
 
@@ -75,12 +108,13 @@ def test_group_mixes_existing_and_ai_classified():
     ]
     with patch(
         "backend.tools.group.classify_test_sets",
-        return_value=_fake_classify_result({"R-B": "BT Pairing"}),
+        return_value=_fake_classify_result({"r2": "BT Pairing"}),
     ) as mock_classify:
         out = group_tests_tool(rows=rows)
 
-    # AI 只收到 R-B
+    # AI 只收到 r2（其 reqId = R-B）
     sent_reqs = mock_classify.call_args.args[0]
+    assert [r["id"] for r in sent_reqs] == ["r2"]
     assert [r["req_id"] for r in sent_reqs] == ["R-B"]
 
     groups = {g["testSet"]: g for g in out["groups"]}
@@ -96,8 +130,8 @@ def test_group_force_regroup_sends_existing_test_set_as_ai_hint():
     with patch(
         "backend.tools.group.classify_test_sets",
         return_value=_fake_classify_result({
-            "R-A": "BT Connection",
-            "R-B": "Media Metadata",
+            "r1": "BT Connection",
+            "r2": "Media Metadata",
         }),
     ) as mock_classify:
         out = group_tests_tool(rows=rows, force_regroup=True)
@@ -105,11 +139,13 @@ def test_group_force_regroup_sends_existing_test_set_as_ai_hint():
     sent_reqs = mock_classify.call_args.args[0]
     assert sent_reqs == [
         {
+            "id": "r1",
             "req_id": "R-A",
             "test_item": "bluetooth connection",
             "current_test_set": "Old Connectivity",
         },
         {
+            "id": "r2",
             "req_id": "R-B",
             "test_item": "media artwork",
             "current_test_set": "Old Media",
@@ -130,7 +166,7 @@ def test_group_sorts_by_count_desc_then_name_asc():
     with patch(
         "backend.tools.group.classify_test_sets",
         return_value=_fake_classify_result({
-            "R-A-01": "BT Switch", "R-A-02": "BT Switch", "R-B-01": "Device List",
+            "r1": "BT Switch", "r2": "BT Switch", "r3": "Device List",
         }),
     ):
         out = group_tests_tool(rows=rows)

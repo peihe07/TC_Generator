@@ -878,15 +878,21 @@ def classify_test_sets(
     model: str = CLASSIFICATION_MODEL,
     test_group: str | None = None,
 ) -> ClassificationResult:
-    """Classify a batch of requirements into coherent Test Sets (single AI call).
+    """Classify a batch of requirements/rows into coherent Test Sets (single AI call).
 
     Args:
-        reqs: list of dicts, each with at least `req_id` and `test_item`.
-              Deduplicate to req-level before calling (not TC-level).
+        reqs: list of dicts; each item must carry **either** an `id`
+              (row-level UUID, preferred — pass this when the same req_id
+              may map to multiple rows whose contents differ) or a `req_id`
+              (used as fallback identifier when `id` is absent). Plus
+              `test_item` for the actual classification text.
         model: OpenAI model id.
 
     Returns:
-        ClassificationResult whose `assignments[req_id]` is the AI-chosen label.
+        ClassificationResult whose `assignments[<id-or-req_id>]` is the
+        AI-chosen label. The key matches whichever identifier the caller
+        supplied — use `id` when you need per-row classification, `req_id`
+        when intentionally deduplicating at requirement level.
 
     Raises:
         GenerationError on API or parse failure.
@@ -917,10 +923,12 @@ def classify_test_sets(
     for i, item in enumerate(items):
         if not isinstance(item, dict):
             raise GenerationError(f"assignments[{i}] is not an object")
-        rid = str(item.get("req_id") or "").strip()
+        # Accept either "id" (new per-row key) or legacy "req_id" — whichever
+        # the AI returns, mirroring whatever was supplied in the prompt.
+        key = str(item.get("id") or item.get("req_id") or "").strip()
         label = str(item.get("test_set") or "").strip()
-        if rid and label:
-            assignments[rid] = label
+        if key and label:
+            assignments[key] = label
 
     t = _usage_tokens(response.usage)
     cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])

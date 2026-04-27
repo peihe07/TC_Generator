@@ -310,7 +310,29 @@ class TestBuildTestSetClassificationPrompt:
     def test_prompt_still_requires_full_assignment(self):
         reqs = self._reqs()
         prompt = build_test_set_classification_prompt(reqs)
-        assert f"array length must equal the input count ({len(reqs)})" in prompt
+        normalized = " ".join(prompt.split())
+        assert f"array length must equal the input count ({len(reqs)})" in normalized
+
+    def test_prompt_uses_id_as_unique_key_when_supplied(self):
+        reqs = [
+            {"id": "row-1", "req_id": "R-DUP", "test_item": "pairing flow"},
+            {"id": "row-2", "req_id": "R-DUP", "test_item": "media metadata"},
+        ]
+        prompt = build_test_set_classification_prompt(reqs)
+        # Bracketed prefix is the row-level id, req_id appears as metadata.
+        assert "[row-1]" in prompt
+        assert "[row-2]" in prompt
+        assert "(req R-DUP)" in prompt
+        # Output schema instructs AI to echo the bracketed id, not req_id.
+        assert '"id": "<exact id from the bracketed prefix>"' in prompt
+
+    def test_prompt_falls_back_to_req_id_when_id_absent(self):
+        reqs = [{"req_id": "R-LEGACY", "test_item": "legacy entry"}]
+        prompt = build_test_set_classification_prompt(reqs)
+        # No `id` supplied → bracketed key is the req_id, no duplicate (req ...)
+        # metadata since the key already equals the req_id.
+        assert "[R-LEGACY]" in prompt
+        assert "(req R-LEGACY)" not in prompt
 
     def test_test_group_context_tells_ai_not_to_repeat_feature_prefix(self):
         prompt = build_test_set_classification_prompt(self._reqs(), test_group="Bluetooth")
