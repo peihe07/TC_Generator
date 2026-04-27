@@ -941,7 +941,7 @@ def test_export_prefers_tc_id_when_row_num_is_missing_for_duplicate_req_ids():
             "scope": "accepted",
             "outputMode": "new-file",
             "includeFrameworkSheet": False,
-            "selectedColumns": ["Expected Result"],
+            "selectedColumns": ["Expected Result", "AI 需求解讀"],
             "rows": [
                 {
                     "id": "row-11",
@@ -954,6 +954,9 @@ def test_export_prefers_tc_id_when_row_num_is_missing_for_duplicate_req_ids():
                     "generated": {
                         "expectedResult": "2nd row only",
                     },
+                    "splitDecision": {
+                        "reasoning": "AI 判定兩列完全重複，保留第二列覆寫原始 row。",
+                    },
                 }
             ],
         },
@@ -963,8 +966,12 @@ def test_export_prefers_tc_id_when_row_num_is_missing_for_duplicate_req_ids():
     download_response = client.get(f"/api/export/download/{job_id}")
     workbook = load_workbook(BytesIO(download_response.content))
     ws = workbook["Test Case Specification&Result"]
-    assert ws.cell(row=10, column=13).value is None
-    assert ws.cell(row=11, column=13).value == "2nd row only"
+    assert ws.cell(row=10, column=4).value == "SWE1-HMI-DM-001-01"
+    assert ws.cell(row=10, column=9).value == "PDM01 split text"
+    assert ws.cell(row=10, column=13).value == "2nd row only"
+    assert ws.cell(row=9, column=18).value == "AI 需求解讀"
+    assert ws.cell(row=10, column=18).value == "AI 判定兩列完全重複，保留第二列覆寫原始 row。"
+    assert ws.cell(row=11, column=4).value is None
 
 
 @patch("api_server.classify_test_sets")

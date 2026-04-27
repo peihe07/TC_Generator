@@ -114,8 +114,8 @@ _FALLBACK_RULES = """
 ## Application Output Contract
 - Priority is a workbook/tooling field, not an ASPICE rule in the instruction doc
 - Return exactly P0 / P1 / P2 / P3
-- P0: critical/core functionality, safety, boot/recovery, connection, audio output, eCall, vehicle-critical CAN signal, data loss risk
-- P1: major user-facing functionality, key operational logic flow
+- P0: a feature's core/primary flow (the must-test happy path that defines the feature working at all); plus safety, boot/recovery, connection, audio output, eCall, vehicle-critical CAN signal, data loss risk. Default any "main functionality normal flow" test case to P0.
+- P1: secondary or advanced operations of a major feature that are NOT the core primary flow — boundary/variation cases, key operational logic branches, non-primary user-facing flows
 - P2: secondary/support functionality with limited major-feature impact
 - P3: minor UI enhancement, low-impact customization, rare-use scenario, cosmetic detail
 """.strip()
@@ -240,6 +240,8 @@ EXPORT_COLUMN_TO_FIELD = {
     "Priority": "priority",
     "Spec Reference": "spec_reference",
     "Design Method": "design_method",
+    "AI 需求解讀": "reasoning",
+    "AI Reasoning": "reasoning",
 }
 
 
@@ -2403,6 +2405,57 @@ def _build_blank_template_workbook(rows: list[dict], test_group: str | None) -> 
     return buf.getvalue()
 
 
+def _prune_unexported_source_rows(
+    source_path: str,
+    export_rows: list[dict],
+    parsed_rows: list[dict] | None,
+) -> list[dict]:
+    """Remove original workbook rows that are no longer part of the export.
+
+    Review-side deletes only remove rows from the frontend payload. When export
+    uses the original workbook as a template, those deleted source rows would
+    otherwise remain in the output as stale, non-overwritten lines.
+    """
+    if not parsed_rows:
+        return export_rows
+
+    source_row_nums = {
+        int(row["row_num"])
+        for row in parsed_rows
+        if isinstance(row.get("row_num"), int) and row.get("row_num") > 0
+    }
+    keep_row_nums = {
+        int(row["row_num"])
+        for row in export_rows
+        if isinstance(row.get("row_num"), int) and row.get("row_num") > 0
+    }
+    delete_row_nums = sorted(source_row_nums - keep_row_nums)
+    if not delete_row_nums:
+        return export_rows
+
+    from bisect import bisect_left
+    from openpyxl import load_workbook
+    from writer import TC_SHEET_NAME
+
+    wb = load_workbook(source_path)
+    ws = wb[TC_SHEET_NAME]
+    for row_num in reversed(delete_row_nums):
+        ws.delete_rows(row_num, 1)
+    wb.save(source_path)
+    wb.close()
+
+    adjusted_rows: list[dict] = []
+    for row in export_rows:
+        row_num = row.get("row_num")
+        if not isinstance(row_num, int) or row_num <= 0:
+            adjusted_rows.append(row)
+            continue
+        adjusted = dict(row)
+        adjusted["row_num"] = row_num - bisect_left(delete_row_nums, row_num)
+        adjusted_rows.append(adjusted)
+    return adjusted_rows
+
+
 def _resolve_export_test_group(job: dict | None, rows: list[dict]) -> str | None:
     """Export context 的 test_group：優先用 parsedData，沒有就從前端 row.testGroup 推。
 
@@ -2504,11 +2557,17 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
             with open(source_path, "wb") as source_file:
                 source_file.write(raw_bytes)
 
+            rows_to_write = (
+                _prune_unexported_source_rows(source_path, export_rows, parsed_rows)
+                if has_source_workbook
+                else export_rows
+            )
+
             try:
                 write_excel_tool(
                     source_path=source_path,
                     output_path=export_path,
-                    rows=export_rows,
+                    rows=rows_to_write,
                     selected_fields=selected_fields,
                     framework_rows=framework_rows,
                 )

@@ -359,13 +359,13 @@ class TestWriteGeneratedResults:
 
     def test_writes_reasoning_header_at_template_header_row(self, input_xlsx, generated_rows, tmp_path):
         # _ensure_reasoning_header 應該掃 J 欄找到 Pre-Conditions header（row 9），
-        # 在同一列的 R 欄寫上 "AI Reasoning"。
+        # 在同一列的 R 欄寫上 "AI 需求解讀"。
         output = str(tmp_path / "output.xlsx")
         write_generated_results(input_xlsx, generated_rows, output)
 
         wb = load_workbook(output)
         ws = wb["Test Case Specification&Result"]
-        assert ws.cell(row=9, column=18).value == "AI Reasoning"
+        assert ws.cell(row=9, column=18).value == "AI 需求解讀"
 
     def test_does_not_overwrite_existing_reasoning_header(self, input_xlsx, generated_rows, tmp_path):
         # 使用者自己在 template 改過 column R 的 header → 不要覆蓋。

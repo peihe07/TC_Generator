@@ -12,26 +12,26 @@ The IVI app test case priorities in SWE.6 are defined from **P0 to P3** based on
 
 ### 🔴 P0 - Critical Functionality（核心功能）
 
-**定義：** Critical functionality that must be tested without fail. Any failure would impact core system or functionality operations.
+**定義：** Critical functionality that must be tested without fail. Any failure would impact core system or functionality operations. **A feature's core/primary flow (the must-test happy path that defines the feature working) defaults to P0** — do not downgrade it to P1 unless it is clearly a secondary/advanced operation.
 
-必須完整測試的關鍵功能，任何失敗都會影響核心系統或功能運作。
+必須完整測試的關鍵功能，任何失敗都會影響核心系統或功能運作。**功能的核心主流程（讓該功能成立的必測 happy path）預設就是 P0**，除非明確屬於次要或進階操作，否則不應降級為 P1。
 
 **Examples：**
 - System boot-up and recovery
 - Application start up
-- Features' core functionality, Media Play, Navi, BT Pairing
+- Features' core/primary functionality — the main happy path of any feature (e.g., Media Play, Navi, BT Pairing)
 
 ---
 
 ### 🟡 P1 - Major Functionality（主要功能）
 
-**定義：** Key Features with Significant Impact. While not immediately system-breaking, failures can significantly affect major features or workflows.
+**定義：** Secondary or advanced operations of a major feature that are NOT the core primary flow. Boundary/variation cases, key operational logic branches, and non-primary user-facing flows fall here. While not immediately system-breaking, failures can significantly affect major features or workflows.
 
-雖然失敗不會立即導致系統崩潰，但會顯著影響主要功能或工作流程。
+主要功能的次要/進階操作（非核心主流程），例如邊界情境、變化路徑、主要功能的次要邏輯分支。雖然失敗不會立即導致系統崩潰，但會顯著影響主要功能或工作流程。
 
 **Examples：**
-- Features' major functionality
-- Operational logic flow of the major functions complies with the specifications
+- Boundary/variation cases of a major feature (the primary happy path itself is P0, not P1)
+- Operational logic branches of major functions (non-primary paths) complying with the specifications
 
 ---
 

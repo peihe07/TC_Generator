@@ -38,6 +38,7 @@ const ExportModule: React.FC = () => {
     ...(includeSteps && config.targetColumns.includes('steps') ? ['Test Procedure'] : []),
     ...(includeExpected && config.targetColumns.includes('expectedResults') ? ['Expected Result'] : []),
     ...(includeMeta ? ['Priority', 'Design Method'] : []),
+    'AI 需求解讀',
   ];
 
   const runExport = async () => {

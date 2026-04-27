@@ -52,6 +52,12 @@ describe('exportJob', () => {
           expectedResults: '1. Login accepted\n2. Dashboard is visible',
           status: 'reviewing',
           validationErrors: [],
+          splitDecision: {
+            reqId: 'REQ-1',
+            tcCount: 1,
+            reasoning: 'AI 判定為單一登入行為，不需拆分。',
+            keywords: [],
+          },
         },
         {
           id: 'TC-002',
@@ -97,6 +103,9 @@ describe('exportJob', () => {
       testProcedure: '1. Open login page\n2. Enter valid credentials\n3. Submit',
       expectedResult: '1. Login accepted\n2. Dashboard is visible',
       specReference: 'SPEC-001',
+    });
+    expect(payload.rows[0].splitDecision).toEqual({
+      reasoning: 'AI 判定為單一登入行為，不需拆分。',
     });
     expect(payload.rows[1]).toMatchObject({
       reviewStatus: 'accepted',

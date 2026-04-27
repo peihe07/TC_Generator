@@ -2,6 +2,67 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { TcRow, GenerationConfig, JobLog, JobStats, JobMetadata, UsageSummary } from '../lib/types';
 
+const TC_ID_PATTERN = /^(.+)-(.+)-(\d+)$/;
+
+function resequenceTcIds(rows: TcRow[]): TcRow[] {
+  const buckets = new Map<string, number[]>();
+
+  rows.forEach((row, index) => {
+    const match = row.tcId?.trim().match(TC_ID_PATTERN);
+    if (!match) return;
+    const [, project, groupAbbr] = match;
+    const key = `${project}\u0000${groupAbbr}`;
+    buckets.set(key, [...(buckets.get(key) ?? []), index]);
+  });
+
+  if (buckets.size === 0) return rows;
+
+  const nextRows = [...rows];
+  buckets.forEach((indices) => {
+    indices.forEach((rowIndex, sequenceIndex) => {
+      const row = nextRows[rowIndex];
+      const match = row.tcId?.trim().match(TC_ID_PATTERN);
+      if (!match) return;
+      const [, project, groupAbbr] = match;
+      const nextTcId = `${project}-${groupAbbr}-${String(sequenceIndex + 1).padStart(3, '0')}`;
+      if (row.tcId !== nextTcId) {
+        nextRows[rowIndex] = { ...row, tcId: nextTcId };
+      }
+    });
+  });
+
+  return nextRows;
+}
+
+function clearDeletedDuplicateReferences(rows: TcRow[]): TcRow[] {
+  const liveRowNums = new Set(
+    rows
+      .map((row) => row.rowNum)
+      .filter((rowNum): rowNum is number => typeof rowNum === 'number')
+      .map(String),
+  );
+
+  if (liveRowNums.size === 0) return rows;
+
+  return rows.map((row) => {
+    const splitDecision = row.splitDecision;
+    const duplicateOf = splitDecision?.duplicateOf;
+    if (!duplicateOf || liveRowNums.has(duplicateOf)) return row;
+
+    const nextSplitDecision = { ...splitDecision };
+    delete nextSplitDecision.duplicateOf;
+
+    if (nextSplitDecision.distinguishingAxis?.axis === 'none') {
+      delete nextSplitDecision.distinguishingAxis;
+    }
+
+    return {
+      ...row,
+      splitDecision: nextSplitDecision,
+    };
+  });
+}
+
 interface JobStore {
   jobMetadata: JobMetadata | null;
   tcRows: TcRow[];
@@ -108,22 +169,24 @@ export const useJobStore = create<JobStore>()(persist((set) => ({
       if (!byParent.has(parent)) byParent.set(parent, []);
       byParent.get(parent)!.push(idx);
     });
+    const cleanedRows = clearDeletedDuplicateReferences(keep);
+    const reindexedRows = cleanedRows.map((row, idx) => {
+      const parentId = row.splitDecision?.parentId ?? row.id;
+      const siblings = byParent.get(parentId);
+      if (!siblings || siblings.length <= 1 || !row.splitDecision) return row;
+      const newSubIdx = siblings.indexOf(idx);
+      if (newSubIdx < 0) return row;
+      return {
+        ...row,
+        splitDecision: {
+          ...row.splitDecision,
+          subIndex: newSubIdx,
+          tcCount: siblings.length,
+        },
+      };
+    });
     return {
-      tcRows: keep.map((row, idx) => {
-        const parentId = row.splitDecision?.parentId ?? row.id;
-        const siblings = byParent.get(parentId);
-        if (!siblings || siblings.length <= 1 || !row.splitDecision) return row;
-        const newSubIdx = siblings.indexOf(idx);
-        if (newSubIdx < 0) return row;
-        return {
-          ...row,
-          splitDecision: {
-            ...row.splitDecision,
-            subIndex: newSubIdx,
-            tcCount: siblings.length,
-          },
-        };
-      }),
+      tcRows: resequenceTcIds(reindexedRows),
     };
   }),
 

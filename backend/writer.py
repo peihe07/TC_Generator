@@ -150,7 +150,7 @@ def _copy_style(src, dst) -> None:
 
 
 def _ensure_reasoning_header(ws) -> None:
-    """在 column R 頂端自動補上 "AI Reasoning" header。
+    """在 column R 頂端自動補上 "AI 需求解讀" header。
 
     template 原本沒有這欄，但匯出時 reviewer 看到一整欄無標籤的長文會困惑，
     所以掃 J（Pre-Conditions）前 10 列找出 header 列、在同列 R 欄寫上中文標籤
@@ -158,8 +158,17 @@ def _ensure_reasoning_header(ws) -> None:
     """
     header_row = 1
     for r in range(1, 11):
-        v = str(ws.cell(row=r, column=10).value or "").strip().lower()
-        if "pre" in v or "前置" in v or "condition" in v:
+        header_text = " ".join(
+            str(ws.cell(row=r, column=col).value or "").strip().lower()
+            for col in (4, 9, 10)
+        )
+        if (
+            "pre" in header_text
+            or "前置" in header_text
+            or "condition" in header_text
+            or "requirement" in header_text
+            or "test item" in header_text
+        ):
             header_row = r
             break
     # 設 column R 欄寬與自動換行 — reasoning 是 2–5 句長文，不開 wrap 會橫向溢出。
@@ -169,7 +178,7 @@ def _ensure_reasoning_header(ws) -> None:
     target = ws.cell(row=header_row, column=18)
     if target.value:
         return
-    target.value = "AI Reasoning"
+    target.value = "AI 需求解讀"
     src = ws.cell(row=header_row, column=10)
     if src.has_style:
         _copy_style(src, target)
