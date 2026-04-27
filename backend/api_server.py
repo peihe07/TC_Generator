@@ -936,7 +936,7 @@ def _scenario_title(tc: dict, index: int) -> str:
 
 
 @app.post("/api/quick-generate/stream")
-async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingResponse:
+async def stream_quick_generate(payload: QuickGenerateRequest, request: Request) -> StreamingResponse:
     """Ad-hoc TC generation from manual input.
 
     統一走 multi-TC auto-split 路徑：AI 自動依 ASPICE SWE.6 §6.1（Test Item）、
@@ -974,14 +974,25 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
         ctx = {"project": "QuickGenerate", "test_group": test_group, "test_set": test_set}
 
         try:
-            result = generate_tcs_for_row(
-                row=row,
-                context=ctx,
-                spec_index=None,
-                rules_text=RULES_SECTIONS,
-                model=model,
+            task = asyncio.create_task(
+                asyncio.to_thread(
+                    generate_tcs_for_row,
+                    row=row,
+                    context=ctx,
+                    spec_index=None,
+                    rules_text=RULES_SECTIONS,
+                    model=model,
+                )
             )
+            while not task.done():
+                if await request.is_disconnected():
+                    task.cancel()
+                    return
+                await asyncio.sleep(0.1)
+            result = task.result()
         except GenerationError as exc:
+            if await request.is_disconnected():
+                return
             yield _sse_event({"type": "job.failed", "message": str(exc)})
             return
 
@@ -1016,6 +1027,8 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                     "scenarios": [int(n) for n in cb if isinstance(n, (int, float))],
                 }
             )
+        if await request.is_disconnected():
+            return
         yield _sse_event(
             {
                 "type": "decompose.analysis",
@@ -1028,6 +1041,8 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
 
         # 2) 依序送每筆 TC（沿用 tc.generating / tc.completed event shape，前端無需改）。
         for i, tc in enumerate(tcs):
+            if await request.is_disconnected():
+                return
             yield _sse_event(
                 {
                     "type": "tc.generating",
@@ -1037,6 +1052,8 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                 }
             )
             await asyncio.sleep(0.03)
+            if await request.is_disconnected():
+                return
             yield _sse_event(
                 {
                     "type": "tc.completed",
@@ -1047,6 +1064,8 @@ async def stream_quick_generate(payload: QuickGenerateRequest) -> StreamingRespo
                 }
             )
 
+        if await request.is_disconnected():
+            return
         yield _sse_event(
             {
                 "type": "job.completed",
@@ -1384,18 +1403,6 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             next_seq += 1
             return new_id
 
-        yield _sse_event(
-            {
-                "type": "job.started",
-                "jobId": jobId,
-                "stats": {"total": total, "processed": 0, "currentCost": 0},
-                "message": (
-                    f"Backend generation started for {total} row(s) "
-                    f"({len(rows)} to generate, {len(preserved_rows)} preserved)."
-                ),
-            }
-        )
-
         processed = 0
         usage = _job_usage(job)
         current_cost = usage["cost"]
@@ -1403,10 +1410,31 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         total_output_tokens = usage["outputTokens"]
         total_cache_creation_tokens = usage["cacheCreationTokens"]
         total_cache_read_tokens = usage["cacheReadTokens"]
+        persisted_cost = usage["cost"]
         batch_size = config.get("batchSize", 1)
         model = config.get("model", DEFAULT_MODEL)
         strict_validation = config.get("strictValidation", False)
         budget = config.get("budget", 0)
+
+        yield _sse_event(
+            {
+                "type": "job.started",
+                "jobId": jobId,
+                "stats": {
+                    "total": total,
+                    "processed": 0,
+                    "currentCost": round(current_cost, 4),
+                    "inputTokens": total_input_tokens,
+                    "outputTokens": total_output_tokens,
+                    "cacheCreationTokens": total_cache_creation_tokens,
+                    "cacheReadTokens": total_cache_read_tokens,
+                },
+                "message": (
+                    f"Backend generation started for {total} row(s) "
+                    f"({len(rows)} to generate, {len(preserved_rows)} preserved)."
+                ),
+            }
+        )
 
         # Emit preserved rows up front — zero cost, zero AI call.
         for preserved in preserved_rows:
@@ -1465,6 +1493,20 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 total_output_tokens += batch_result["outputTokens"]
                 total_cache_creation_tokens += batch_result["cacheCreationTokens"]
                 total_cache_read_tokens += batch_result["cacheReadTokens"]
+                batch_delta = max(current_cost - persisted_cost, 0.0)
+                if batch_delta > 0:
+                    _persist_job_usage(
+                        jobId,
+                        job,
+                        cost=current_cost,
+                        input_tokens=total_input_tokens,
+                        output_tokens=total_output_tokens,
+                        cache_creation_tokens=total_cache_creation_tokens,
+                        cache_read_tokens=total_cache_read_tokens,
+                        cost_delta=batch_delta,
+                        model=model,
+                    )
+                    persisted_cost = current_cost
 
                 split_meta_list = batch_result.get("splitMeta") or []
 
@@ -1607,7 +1649,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         job["status"] = "completed"
         # 把這次 stream 新增的成本歸進選定 model 的 bucket；classify 那邊的
         # gpt-5-mini 成本不會跑進這條 code path，所以 bucket 乾淨。
-        stream_delta = max(current_cost - usage["cost"], 0.0)
+        stream_delta = max(current_cost - persisted_cost, 0.0)
         _persist_job_usage(
             jobId,
             job,
@@ -1655,6 +1697,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
     job_available = bool(job)
 
     async def event_generator():
+        nonlocal job, job_available
         # prepared_rows 來自 parsed data（原始 Excel 列），不含首次 stream 生成時
         # 以 row.added 事件補進的 sub-TC（id 形如 `foo__tc2`）。這些 sub-TC 只存
         # 在 frontend store，所以 regenerate 要改用 `payload.rows` 補齊，否則被
@@ -1733,8 +1776,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         total_out = usage["outputTokens"]
         total_cache_create = usage["cacheCreationTokens"]
         total_cache_read = usage["cacheReadTokens"]
-
-        yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total})
+        persisted_cost = usage["cost"]
 
         all_payload_rows = list(payload_by_id.values()) + list(prepared_by_id.values())
         existing_seqs = _extract_existing_sequence_numbers(all_payload_rows)
@@ -1790,6 +1832,8 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                 "cacheReadTokens": total_cache_read,
             }
 
+        yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total, "stats": _stats()})
+
         for i in range(0, total, batch_size):
             batch = rows_to_regen[i : i + batch_size]
             try:
@@ -1809,6 +1853,24 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                 total_out += batch_result["outputTokens"]
                 total_cache_create += batch_result["cacheCreationTokens"]
                 total_cache_read += batch_result["cacheReadTokens"]
+                persist_target = job if (job_available and job is not None) else {"jobId": job_id}
+                batch_delta = max(current_cost - persisted_cost, 0.0)
+                if batch_delta > 0:
+                    _persist_job_usage(
+                        job_id,
+                        persist_target,
+                        cost=current_cost,
+                        input_tokens=total_in,
+                        output_tokens=total_out,
+                        cache_creation_tokens=total_cache_create,
+                        cache_read_tokens=total_cache_read,
+                        cost_delta=batch_delta,
+                        model=model,
+                    )
+                    if not job_available or job is None:
+                        job = JOB_REGISTRY.get(job_id)
+                        job_available = job is not None
+                    persisted_cost = current_cost
                 for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
                     if not isinstance(tc_group, list) or not tc_group:
                         continue
@@ -1903,7 +1965,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
         # Job 缺失時也建一筆最小紀錄 persist usage，保持和 rerun 一致的
         # 語意；CostMeter 才看得到這次 regen 的花費。
         persist_target = job if (job_available and job is not None) else {"jobId": job_id}
-        stream_delta = max(current_cost - usage["cost"], 0.0)
+        stream_delta = max(current_cost - persisted_cost, 0.0)
         _persist_job_usage(
             job_id,
             persist_target,
@@ -1956,6 +2018,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
     job_available = bool(job)
 
     async def event_generator():
+        nonlocal job, job_available
         prepared_rows = _prepare_generation_rows(job) if job and job.get("rows") else []
         prepared_by_id = {r["id"]: r for r in prepared_rows}
 
@@ -2034,6 +2097,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
         total_out = usage["outputTokens"]
         total_cache_create = usage["cacheCreationTokens"]
         total_cache_read = usage["cacheReadTokens"]
+        persisted_cost = usage["cost"]
 
         # 新 sub-TC 的 tc_id 分配：
         # 1. 從現有 rows 抽最多人用的 tc_id prefix（例如 `newR1L-DM-`），確保新
@@ -2085,8 +2149,6 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                 return new_id
             return ""
 
-        yield _sse_event({"type": "rerun.started", "jobId": job_id, "total": total})
-
         def _stats() -> dict:
             return {
                 "total": total,
@@ -2097,6 +2159,8 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                 "cacheCreationTokens": total_cache_create,
                 "cacheReadTokens": total_cache_read,
             }
+
+        yield _sse_event({"type": "rerun.started", "jobId": job_id, "total": total, "stats": _stats()})
 
         for i in range(0, total, batch_size):
             batch = rows_to_run[i : i + batch_size]
@@ -2117,6 +2181,24 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                 total_out += batch_result["outputTokens"]
                 total_cache_create += batch_result["cacheCreationTokens"]
                 total_cache_read += batch_result["cacheReadTokens"]
+                persist_target = job if (job_available and job is not None) else {"jobId": job_id}
+                batch_delta = max(current_cost - persisted_cost, 0.0)
+                if batch_delta > 0:
+                    _persist_job_usage(
+                        job_id,
+                        persist_target,
+                        cost=current_cost,
+                        input_tokens=total_in,
+                        output_tokens=total_out,
+                        cache_creation_tokens=total_cache_create,
+                        cache_read_tokens=total_cache_read,
+                        cost_delta=batch_delta,
+                        model=model,
+                    )
+                    if not job_available or job is None:
+                        job = JOB_REGISTRY.get(job_id)
+                        job_available = job is not None
+                    persisted_cost = current_cost
 
                 for group_idx, (row, tc_group) in enumerate(zip(batch, tc_data_list)):
                     if not isinstance(tc_group, list) or not tc_group:
@@ -2223,7 +2305,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
         # 也要建立 job 紀錄來 persist 這次跑的 usage，否則 CostMeter 會見鬼
         # —— 使用者看到 $$ 花了卻沒進累計。
         persist_target = job if (job_available and job is not None) else {"jobId": job_id}
-        stream_delta = max(current_cost - usage["cost"], 0.0)
+        stream_delta = max(current_cost - persisted_cost, 0.0)
         _persist_job_usage(
             job_id,
             persist_target,

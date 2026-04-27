@@ -11,6 +11,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
         Accept: "text/event-stream",
       },
+      signal: request.signal,
       body: payload,
     });
   } catch (error) {

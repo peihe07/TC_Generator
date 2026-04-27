@@ -55,7 +55,7 @@ export const QuickGenerateInputPanel: React.FC<QuickGenerateInputPanelProps> = (
         <legend className="text-sm">Requirement</legend>
         <textarea
           className="flex-1 p-2 text-xs resize-none min-h-[120px] border-sunken"
-          placeholder="貼上完整的 requirement 文字。此處使用你選的 model 做拆解與生成；只有 Test Set 分類固定使用較便宜模型。AI 會依 ASPICE §1.2/§1.4/§1.5 判斷要拆成幾筆 TC。"
+          placeholder="貼上完整的 requirement 文字"
           value={testItem}
           onChange={(e) => onTestItemChange(e.target.value)}
           disabled={isRunning}

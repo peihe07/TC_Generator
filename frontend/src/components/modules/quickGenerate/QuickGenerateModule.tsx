@@ -55,9 +55,12 @@ const QuickGenerateModule: React.FC = () => {
     setPhase('decomposing');
 
     let stopped = false;
-    abortRef.current = () => {
+    const controller = new AbortController();
+    const abortCurrent = () => {
       stopped = true;
+      controller.abort();
     };
+    abortRef.current = abortCurrent;
 
     // Track latest stats so we can write them into history on job.completed.
     const startedAt = Date.now();
@@ -75,6 +78,7 @@ const QuickGenerateModule: React.FC = () => {
       const res = await fetch('/api/quick-generate/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
         body: JSON.stringify({
           testItem: testItem.trim(),
           context: context.trim() || null,
@@ -159,8 +163,11 @@ const QuickGenerateModule: React.FC = () => {
         }
       }
     } catch (err) {
+      if (stopped) return;
       setErrorMsg(err instanceof Error ? err.message : 'Backend unavailable');
       setPhase('error');
+    } finally {
+      if (abortRef.current === abortCurrent) abortRef.current = null;
     }
   }, [testItem, context, model, reset]);
 
