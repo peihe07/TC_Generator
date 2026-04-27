@@ -493,7 +493,7 @@ export function startGeneration(
                 originalRequirement: row.testItem,
                 testSet: row.testSet,
                 specReference: row.specReference ?? null,
-                priority: row.validationErrors?.length ? "Medium" : undefined,
+                priority: row.priority || undefined,
               })),
               config: {
                 model: input.config.model,
