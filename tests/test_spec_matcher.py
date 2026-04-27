@@ -41,6 +41,13 @@ class TestExtractPdmCodes:
     def test_psr_code(self):
         assert extract_pdm_codes("PSR1 passenger") == ["PSR1"]
 
+    def test_comfort_hmi_c_code(self):
+        assert extract_pdm_codes("C1.) The system shall reflect changes") == ["C1"]
+
+    def test_comfort_hmi_variant_codes(self):
+        codes = extract_pdm_codes("R1C1.) base behavior CR7.) rear behavior ICE10.) ice behavior LS2.) seat behavior")
+        assert codes == ["R1C1", "CR7", "ICE10", "LS2"]
+
     def test_no_codes(self):
         assert extract_pdm_codes("No codes in this text") == []
 
@@ -72,6 +79,8 @@ def sys1_xlsx(tmp_path):
          "Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_3.1"),
         ("NRL-144770", "5.1", "TD1.7) Touch display calibration",
          "Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_5.1"),
+        ("NRL-153341", "2.2", "C1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations.",
+         "Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2"),
     ]
     for i, (nrl, outline, desc, source) in enumerate(data):
         row = i + 2
@@ -100,9 +109,14 @@ class TestBuildSpecIndex:
         index = build_spec_index(sys1_xlsx)
         assert "TD1.7" in index
 
+    def test_comfort_hmi_c_code_index(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        assert "C1" in index
+        assert index["C1"]["nrl_id"] == "NRL-153341"
+
     def test_all_entries(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)
-        assert len(index) == 4
+        assert len(index) == 5
 
     def test_save_and_load_index_uses_json_cache(self, sys1_xlsx, tmp_path):
         index = build_spec_index(sys1_xlsx)
@@ -148,6 +162,38 @@ class TestMatchSpecReferences:
         assert "PDM01.) The user can access the Device Manager" in results[0]["matched_spec_context"]
         assert "PDM02) Open Device Manager from menu" in results[0]["matched_spec_context"]
 
+    def test_comfort_hmi_c_code_exact_match(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        rows = [
+            {
+                "req_id": "SWE1-HVAC-002-01",
+                "test_item": "C1.) The system shall changes reflected in both touchscreen and hard controls",
+            },
+        ]
+        results = match_spec_references(rows, index)
+        assert results[0]["match_type"] == "exact"
+        assert results[0]["spec_reference"] == (
+            "Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2"
+        )
+
+    def test_exact_match_does_not_require_semantic_embedding(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        for entry in index.entries:
+            entry["embedding"] = [0.1, 0.2, 0.3]
+        index.embedding_model = "test-embedding"
+
+        def fail_embedder(texts, model):
+            raise AssertionError("exact match should not call embedder")
+
+        rows = [
+            {
+                "req_id": "SWE1-HVAC-002-01",
+                "test_item": "C1.) The system shall changes reflected in both touchscreen and hard controls",
+            },
+        ]
+        results = match_spec_references(rows, index, query_embedder=fail_embedder)
+        assert results[0]["match_type"] == "exact"
+
     def test_no_match(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)
         rows = [
@@ -172,6 +218,23 @@ class TestFuzzyMatch:
         assert "The user can access the Device Manager" in results[0]["matched_spec_context"]
         # fuzzy score 介於 0 與 1
         assert 0 < results[0]["match_score"] <= 1
+
+    def test_fuzzy_uses_test_set_hint_when_test_item_is_too_short(self, sys1_xlsx):
+        index = build_spec_index(sys1_xlsx)
+        rows = [
+            {
+                "req_id": "SWE1-HVAC-002-01",
+                "test_set": "System Reflected Touchscreen Hard Controls",
+                "test_item": "The system shall changes reflected in both touchscreen and hard controls",
+                "test_procedure": "Action: Adjust climate system via hard controls or touchscreen",
+                "expected_result": "Changes reflected in both touchscreen and hard controls",
+            },
+        ]
+        results = match_spec_references(rows, index)
+        assert results[0]["match_type"] == "fuzzy"
+        assert results[0]["spec_reference"] == (
+            "Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2"
+        )
 
     def test_exact_preferred_over_fuzzy(self, sys1_xlsx):
         index = build_spec_index(sys1_xlsx)

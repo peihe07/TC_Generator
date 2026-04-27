@@ -33,7 +33,8 @@ from openpyxl import load_workbook
 # Regex for all PDM code patterns
 PDM_PATTERN = re.compile(
     r"\b(PDM\d+\.?\d*|PDMS\d+\.?\d*|MPDM\d+\.?\d*|TD\d+\.?\d*"
-    r"|DNDS\d+\.?\d*|PDEE\d+\.?\d*|APAC\d+\.?\d*|PSR\d+\.?\d*)\b"
+    r"|DNDS\d+\.?\d*|PDEE\d+\.?\d*|APAC\d+\.?\d*|PSR\d+\.?\d*"
+    r"|R1C\d+\.?\d*|CR\d+\.?\d*|ICE\d+\.?\d*|LS\d+\.?\d*|C\d+\.?\d*)\b"
 )
 
 # 通用英文 stop words 與無語意短詞
@@ -311,6 +312,9 @@ def load_spec_index(
         for code, idx in (payload.get("codes_map") or {}).items():
             if isinstance(idx, int) and 0 <= idx < len(entries):
                 merged[code] = merged.entries[offset + idx]
+        for entry in entries:
+            for code in extract_pdm_codes(str(entry.get("description") or "")):
+                merged.setdefault(code, entry)
 
         model = payload.get("embedding_model")
         if model:
@@ -420,20 +424,44 @@ def match_spec_references(
                 )
         return "\n".join(parts)
 
+    def _row_query_text(row: dict) -> str:
+        parts = [
+            row.get("test_set") or row.get("testSet") or row.get("test_set_hint") or row.get("testSetHint") or "",
+            row.get("test_item") or row.get("testItem") or "",
+            row.get("test_procedure") or row.get("testProcedure") or "",
+            row.get("expected_result") or row.get("expectedResult") or "",
+        ]
+        return " ".join(str(part).strip() for part in parts if str(part or "").strip())
+
     entries = getattr(spec_index, "entries", None) or []
     codes_map = spec_index
 
-    use_semantic = _has_embeddings(entries)
+    use_semantic = _has_embeddings(entries) and (
+        query_embedder is not None or bool(os.environ.get("OPENAI_API_KEY"))
+    )
     threshold = fuzzy_threshold
     if threshold is None:
         threshold = COSINE_THRESHOLD if use_semantic else JACCARD_THRESHOLD
 
-    query_vectors: list[list[float]] | None = None
+    query_vectors: dict[int, list[float]] = {}
     if use_semantic and rows:
-        model = getattr(spec_index, "embedding_model", None) or DEFAULT_EMBEDDING_MODEL
-        embed_fn = query_embedder or openai_embed
-        test_items = [row.get("test_item", "") or "" for row in rows]
-        query_vectors = embed_fn(test_items, model)
+        semantic_indices = []
+        semantic_texts = []
+        for row_idx, row in enumerate(rows):
+            test_item = row.get("test_item", "") or ""
+            codes = extract_pdm_codes(test_item)
+            if any(code in codes_map for code in codes):
+                continue
+            semantic_indices.append(row_idx)
+            semantic_texts.append(_row_query_text(row))
+        if semantic_texts:
+            model = getattr(spec_index, "embedding_model", None) or DEFAULT_EMBEDDING_MODEL
+            embed_fn = query_embedder or openai_embed
+            vectors = embed_fn(semantic_texts, model)
+            query_vectors = {
+                row_idx: vector
+                for row_idx, vector in zip(semantic_indices, vectors)
+            }
 
     results = []
     for idx, row in enumerate(rows):
@@ -469,7 +497,7 @@ def match_spec_references(
             best_entry = None
             best_score = 0.0
             scored_entries: list[tuple[float, dict]] = []
-            if use_semantic and query_vectors is not None:
+            if use_semantic and idx in query_vectors:
                 qvec = query_vectors[idx]
                 for entry in entries:
                     score = _cosine(qvec, entry["embedding"])
@@ -479,7 +507,7 @@ def match_spec_references(
                         best_entry = entry
                 match_type = "semantic"
             else:
-                item_tokens = _tokenize(test_item)
+                item_tokens = _tokenize(_row_query_text(row))
                 for entry in entries:
                     score = _jaccard(item_tokens, entry["tokens"])
                     scored_entries.append((score, entry))
