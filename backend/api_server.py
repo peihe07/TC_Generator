@@ -640,6 +640,29 @@ def _prepare_generation_rows(job: dict) -> list[dict]:
             }
         )
 
+    # Sibling annotation：同一 Requirement ID 對應多列時，把其他列的 test_item
+    # 帶進來當 prompt context，讓 AI 在寫 tc_title trigger 時做 sibling-distinction
+    # （§6.1），並能主動 flag 重複場景（split_flag=true / split_reason）。
+    rows_by_req: dict[str, list[dict]] = {}
+    for prepared in prepared_rows:
+        rid = str(prepared.get("req_id") or "").strip()
+        if rid:
+            rows_by_req.setdefault(rid, []).append(prepared)
+    for prepared in prepared_rows:
+        rid = str(prepared.get("req_id") or "").strip()
+        peers = rows_by_req.get(rid, [])
+        if len(peers) <= 1:
+            continue
+        prepared["siblings"] = [
+            {
+                "id": peer["id"],
+                "row_num": peer.get("row_num") or 0,
+                "test_item": str(peer.get("test_item") or "").strip(),
+            }
+            for peer in peers
+            if peer["id"] != prepared["id"]
+        ]
+
     reference_index = _build_reference_match_index_for_job(job)
     if reference_index:
         matched_rows = match_spec_references(prepared_rows, reference_index)

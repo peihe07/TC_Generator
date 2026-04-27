@@ -142,6 +142,30 @@ class TestBuildUserPrompt:
         assert "Missing negative validation path." in prompt
         assert "primary correction target" in prompt
 
+    def test_omits_sibling_section_when_none(self, sample_row, sample_context, sample_spec, rules_text):
+        prompt = build_user_prompt(sample_row, sample_context, sample_spec, rules_text)
+        assert "Sibling Rows" not in prompt
+
+    def test_includes_sibling_section_when_row_has_siblings(
+        self, sample_row, sample_context, sample_spec, rules_text,
+    ):
+        row = {
+            **sample_row,
+            "siblings": [
+                {"id": "r2", "row_num": 11, "test_item": "Disable feature on shutdown."},
+                {"id": "r3", "row_num": 12, "test_item": "Re-enable on next boot."},
+            ],
+        }
+        prompt = build_user_prompt(row, sample_context, sample_spec, rules_text)
+
+        assert "Sibling Rows (same Requirement ID)" in prompt
+        assert "appears on 3 rows total" in prompt
+        assert "[row 11] Disable feature on shutdown." in prompt
+        assert "[row 12] Re-enable on next boot." in prompt
+        # 必須帶到 sibling-distinction + split_flag 提示
+        assert "sibling-distinction" in prompt
+        assert "split_flag=true" in prompt
+
 
 class TestBuildBatchPrompt:
     def test_contains_all_rows(self, sample_context, rules_text):
@@ -198,6 +222,18 @@ class TestBuildMultiTcPrompt:
         prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
 
         assert "Reviewer Regenerate Reason: Too broad; split positive and negative paths." in prompt
+
+    def test_multi_tc_prompt_includes_sibling_section_when_present(self, sample_row, sample_context):
+        row = {
+            **sample_row,
+            "siblings": [
+                {"id": "r-other", "row_num": 15, "test_item": "Edge case: zero entries."},
+            ],
+        }
+        prompt = build_multi_tc_user_prompt(row, sample_context, {}, "")
+
+        assert "Sibling Rows (same Requirement ID)" in prompt
+        assert "[row 15] Edge case: zero entries." in prompt
 
     def test_multi_tc_prompt_includes_matched_reference_context(self, sample_context):
         row = {

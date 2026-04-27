@@ -1691,3 +1691,63 @@ def test_quick_generate_api_error(mock_gen):
     assert "job.failed" in types
     failed = next(e for e in events if e["type"] == "job.failed")
     assert "API timeout" in failed["message"]
+
+
+class TestPrepareGenerationRowsSiblings:
+    """Sibling annotation: rows sharing reqId carry each other's test_items."""
+
+    def _job(self, rows_input):
+        return {
+            "rows": rows_input,
+            "parsedData": {
+                "rows": [
+                    {"row_num": r.get("rowNum"), "req_id": r["reqId"], "test_item": r.get("testItem", "")}
+                    for r in rows_input
+                ],
+                "project": "newR1L",
+                "test_group": "DeviceManager",
+            },
+            "config": {"model": "gpt-test"},
+        }
+
+    def test_unique_req_ids_get_no_siblings(self):
+        from api_server import _prepare_generation_rows
+
+        job = self._job([
+            {"id": "a", "rowNum": 10, "reqId": "R-1", "testItem": "alpha"},
+            {"id": "b", "rowNum": 11, "reqId": "R-2", "testItem": "beta"},
+        ])
+        prepared = _prepare_generation_rows(job)
+        for row in prepared:
+            assert "siblings" not in row or not row["siblings"]
+
+    def test_duplicate_req_id_annotates_other_rows_as_siblings(self):
+        from api_server import _prepare_generation_rows
+
+        job = self._job([
+            {"id": "a", "rowNum": 10, "reqId": "R-DUP", "testItem": "scenario A"},
+            {"id": "b", "rowNum": 11, "reqId": "R-DUP", "testItem": "scenario B"},
+            {"id": "c", "rowNum": 12, "reqId": "R-DUP", "testItem": "scenario C"},
+            {"id": "d", "rowNum": 13, "reqId": "R-OTHER", "testItem": "alone"},
+        ])
+        prepared = _prepare_generation_rows(job)
+        by_id = {r["id"]: r for r in prepared}
+
+        # Each duplicate row sees the other two — and only those.
+        siblings_a = {s["id"] for s in by_id["a"].get("siblings", [])}
+        siblings_b = {s["id"] for s in by_id["b"].get("siblings", [])}
+        siblings_c = {s["id"] for s in by_id["c"].get("siblings", [])}
+        assert siblings_a == {"b", "c"}
+        assert siblings_b == {"a", "c"}
+        assert siblings_c == {"a", "b"}
+
+        # Self never appears as own sibling.
+        assert all(s["id"] != "a" for s in by_id["a"]["siblings"])
+
+        # The standalone row gets no siblings.
+        assert not by_id["d"].get("siblings")
+
+        # Sibling entries carry test_item content for AI context.
+        a_sibs = {s["id"]: s["test_item"] for s in by_id["a"]["siblings"]}
+        assert a_sibs["b"] == "scenario B"
+        assert a_sibs["c"] == "scenario C"

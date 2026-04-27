@@ -540,6 +540,7 @@ def build_user_prompt(
         )
 
     rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
+    sibling_section = _format_sibling_section(row)
     return f"""## Context
 - Project: {context['project']}
 - Test Group: {context['test_group']}
@@ -548,7 +549,7 @@ def build_user_prompt(
 ## Requirement
 - Requirement ID: {row.get('req_id') or row.get('reqId') or ''}
 - Original Test Item: {row['test_item']}
-{regenerate_section}
+{regenerate_section}{sibling_section}
 
 ## Spec Context
 {spec_context}{rules_section}
@@ -702,6 +703,40 @@ def _coalesce_row_value(row: dict, *keys: str) -> str:
     return "N/A"
 
 
+def _format_sibling_section(row: dict) -> str:
+    """同 reqId 多列時 inject 的 prompt 段落。沒 sibling 回空字串。
+
+    `row['siblings']` 預期為 list of dicts with `id`/`row_num`/`test_item`，
+    由 api_server._prepare_generation_rows 填入。
+    """
+    siblings = row.get("siblings") or []
+    if not siblings:
+        return ""
+    items = []
+    for s in siblings:
+        ident = str(s.get("row_num") or s.get("id") or "?")
+        text = str(s.get("test_item") or "").strip().replace("\n", " ")
+        if len(text) > 300:
+            text = text[:297] + "..."
+        items.append(f"- [row {ident}] {text or '(empty test_item)'}")
+    body = "\n".join(items)
+    return (
+        "\n\n## Sibling Rows (same Requirement ID)\n"
+        f"This Requirement ID appears on {len(siblings) + 1} rows total. "
+        "Other rows under the same Requirement ID:\n"
+        f"{body}\n\n"
+        "When designing THIS TC:\n"
+        "- Make `tc_title` trigger CLEARLY distinguish this scenario from "
+        "siblings (§6.1 sibling-distinction rule). The differing state / "
+        "input / mode MUST be visible in the title.\n"
+        "- Do NOT duplicate verification logic siblings already cover.\n"
+        "- If this row genuinely overlaps with a sibling, set "
+        "`split_flag=true` and use `split_reason` to explain the overlap "
+        "so the reviewer can decide to merge — do NOT silently emit "
+        "duplicate TCs."
+    )
+
+
 def _format_source_workbook_row(row: dict, context: dict) -> str:
     """Format workbook fields AI must consider before deciding multi-TC split."""
     test_group = _coalesce_row_value(row, "test_group", "testGroup")
@@ -728,6 +763,7 @@ def _format_source_workbook_row(row: dict, context: dict) -> str:
         "Test Item, Pre-Conditions, Test Procedure, and Expected Result together "
         "before deciding whether this requirement needs 1 or multiple TCs.\n"
         f"{body}"
+        f"{_format_sibling_section(row)}"
     )
 
 
