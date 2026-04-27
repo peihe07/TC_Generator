@@ -977,20 +977,38 @@ def classify_test_sets(
     except json.JSONDecodeError as exc:
         raise GenerationError(f"Failed to parse classification response: {exc}") from exc
 
-    items = data.get("assignments") if isinstance(data, dict) else None
-    if not isinstance(items, list):
-        raise GenerationError("Classification response missing 'assignments' array")
-
     assignments: dict[str, str] = {}
-    for i, item in enumerate(items):
-        if not isinstance(item, dict):
-            raise GenerationError(f"assignments[{i}] is not an object")
-        # Accept either "id" (new per-row key) or legacy "req_id" — whichever
-        # the AI returns, mirroring whatever was supplied in the prompt.
-        key = str(item.get("id") or item.get("req_id") or "").strip()
-        label = str(item.get("test_set") or "").strip()
-        if key and label:
-            assignments[key] = label
+    items = data.get("assignments") if isinstance(data, dict) else None
+    if isinstance(items, list):
+        for i, item in enumerate(items):
+            if not isinstance(item, dict):
+                raise GenerationError(f"assignments[{i}] is not an object")
+            # Accept either "id" (new per-row key) or legacy "req_id" — whichever
+            # the AI returns, mirroring whatever was supplied in the prompt.
+            key = str(item.get("id") or item.get("req_id") or item.get("row_id") or "").strip()
+            label = str(item.get("test_set") or item.get("testSet") or "").strip()
+            if key and label:
+                assignments[key] = label
+    elif isinstance(data, dict):
+        # Backward-compatible parser for the older prompt shape:
+        # {"Test Set Name": ["row-1", "row-2"]}. Some models still return this
+        # after seeing the words "mapping" or older cached context.
+        metadata_keys = {"inputTokens", "outputTokens", "cost", "model"}
+        for label, ids in data.items():
+            if label in metadata_keys or label == "assignments" or not isinstance(ids, list):
+                continue
+            label = str(label or "").strip()
+            if not label:
+                continue
+            for key in ids:
+                key = str(key or "").strip()
+                if key:
+                    assignments[key] = label
+    else:
+        raise GenerationError("Classification response must be a JSON object")
+
+    if not assignments:
+        raise GenerationError("Classification response contained no usable assignments")
 
     t = _usage_tokens(response.usage)
     cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])

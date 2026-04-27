@@ -22,6 +22,7 @@ from generator import (
     generate_quick_tc,
     generate_single_tc,
     generate_tcs_for_row,
+    classify_test_sets,
     parse_batch_response,
     parse_multi_tc_batch_response,
     parse_multi_tc_response,
@@ -77,6 +78,46 @@ class TestParseTcResponse:
         payload = {**VALID_TC_JSON, "design_method": "Functional"}
         result = parse_tc_response(json.dumps(payload))
         assert result["design_method"] == "功能測試 (Functional based ; no specific technique)"
+
+
+class TestClassifyTestSets:
+    def test_accepts_camel_case_test_set_key(self):
+        response = make_chat_response({
+            "assignments": [
+                {"id": "row-1", "testSet": "Connection"},
+                {"id": "row-2", "testSet": "Media Metadata"},
+            ],
+        })
+
+        with patch("generator._chat", return_value=response):
+            result = classify_test_sets([
+                {"id": "row-1", "req_id": "REQ-1", "test_item": "bluetooth connection"},
+                {"id": "row-2", "req_id": "REQ-2", "test_item": "media artwork"},
+            ])
+
+        assert result.assignments == {
+            "row-1": "Connection",
+            "row-2": "Media Metadata",
+        }
+
+    def test_accepts_legacy_test_set_to_ids_mapping(self):
+        response = make_chat_response({
+            "Connection": ["row-1", "row-2"],
+            "Device List": ["row-3"],
+        })
+
+        with patch("generator._chat", return_value=response):
+            result = classify_test_sets([
+                {"id": "row-1", "req_id": "REQ-1", "test_item": "pair device"},
+                {"id": "row-2", "req_id": "REQ-2", "test_item": "disconnect device"},
+                {"id": "row-3", "req_id": "REQ-3", "test_item": "show paired devices"},
+            ])
+
+        assert result.assignments == {
+            "row-1": "Connection",
+            "row-2": "Connection",
+            "row-3": "Device List",
+        }
 
 
 class TestParseBatchResponse:
