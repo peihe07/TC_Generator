@@ -30,6 +30,7 @@ The IVI app test case priorities in SWE.6 are defined from **P0 to P3** based on
 主要功能的次要/進階操作（非核心主流程），例如邊界情境、變化路徑、主要功能的次要邏輯分支。雖然失敗不會立即導致系統崩潰，但會顯著影響主要功能或工作流程。
 
 **Examples：**
+
 - Boundary/variation cases of a major feature (the primary happy path itself is P0, not P1)
 - Operational logic branches of major functions (non-primary paths) complying with the specifications
 
