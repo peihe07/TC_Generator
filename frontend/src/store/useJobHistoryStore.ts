@@ -1,9 +1,20 @@
 import { create } from 'zustand';
 
 // 單一 job 的歷史紀錄；留下足夠欄位讓 UI 顯示成本與 token 分佈
+export type JobRecordKind =
+  | 'generate'
+  | 'quick'
+  | 'group'
+  | 'regenerate'
+  | 'rerun'
+  // Review module ValidationPanel「詢問 AI」呼叫 /api/review/suggest-fix。
+  | 'suggest-fix'
+  // Export 階段對缺 testSet 的 row 補跑 classify_test_sets。cost 為 0 時不記錄。
+  | 'export';
+
 export interface JobRecord {
   id: string;              // 後端 jobId 或前端 fallback id
-  kind: 'generate' | 'quick' | 'group' | 'regenerate' | 'rerun';
+  kind: JobRecordKind;
   model: string;
   startedAt: number;
   finishedAt: number;

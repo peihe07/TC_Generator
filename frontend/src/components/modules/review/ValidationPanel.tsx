@@ -12,6 +12,7 @@ import {
   requestReviewFixSuggestion,
   type ReviewFixSuggestion,
 } from '../../../services/jobAdapter';
+import { useJobHistoryStore } from '../../../store/useJobHistoryStore';
 
 export interface ValidationPanelProps {
   selectedRow: TcRow | null;
@@ -65,6 +66,7 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({
   const handleAsk = async () => {
     if (!selectedRow || !hasErrors) return;
     setSuggest({ kind: 'loading' });
+    const startedAt = Date.now();
     try {
       const data = await requestReviewFixSuggestion({
         tc: {
@@ -83,6 +85,22 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({
           field: err.column,
           message: err.message,
         })),
+      });
+      // 把這次 AI 調用算進 workspace job-history（先前是 dark spending）。
+      useJobHistoryStore.getState().appendRecord({
+        id: `suggest-fix-${selectedRow.id}-${startedAt.toString(36)}`,
+        kind: 'suggest-fix',
+        model: data.model,
+        startedAt,
+        finishedAt: Date.now(),
+        rowsTotal: 1,
+        rowsProcessed: 1,
+        cost: data.cost,
+        inputTokens: Number(data.usage?.input ?? 0),
+        outputTokens: Number(data.usage?.output ?? 0),
+        cacheCreationTokens: Number(data.usage?.cache_creation ?? 0),
+        cacheReadTokens: Number(data.usage?.cache_read ?? 0),
+        note: `tc=${selectedRow.tcId ?? selectedRow.id}`,
       });
       setSuggest({ kind: 'ok', data, editableReason: data.suggestedReason });
     } catch (err) {

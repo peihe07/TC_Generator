@@ -2414,6 +2414,7 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
         job.setdefault("rawFileName", os.path.basename(export_path))
         JOB_REGISTRY[payload.jobId] = job
         download_url = str(request.url_for("download_export", jobId=payload.jobId))
+        from generator import CLASSIFICATION_MODEL as _CLASS_MODEL
         return {
             "jobId": payload.jobId,
             "status": "ready",
@@ -2424,6 +2425,14 @@ async def export_job(payload: ExportRequest, request: Request) -> dict:
             "fallbackTemplate": not has_source_workbook,
             # Number of TC IDs renumbered to fill gaps from prior deletes.
             "tcIdsRenumbered": tc_ids_renumbered,
+            # AI Test Set classification usage incurred during this export.
+            # Frontend uses this to record an `export` entry in the workspace
+            # job-history store; cost > 0 only when some rows arrived without
+            # `testSet` and the backend ran `classify_test_sets` again.
+            "classifyUsage": {
+                **classify_usage,
+                "model": _CLASS_MODEL,
+            },
         }
     except HTTPException:
         raise

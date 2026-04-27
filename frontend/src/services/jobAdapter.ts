@@ -332,6 +332,12 @@ export interface ReviewFixSuggestion {
   suggestedReason: string;
   model: string;
   cost: number;
+  usage?: {
+    input?: number;
+    output?: number;
+    cache_creation?: number;
+    cache_read?: number;
+  };
 }
 
 export async function requestReviewFixSuggestion(input: {
@@ -1108,13 +1114,29 @@ export async function exportJob(input: ExportJobInput) {
             specReference: row.specReference ?? null,
           }
         : null,
+      // AI 對需求的解讀（拆分理由 + 為何不需拆分）。Backend 只把 reasoning
+      // 放在 primary TC（subIndex 0）的 splitDecision；sub TC 為空字串會被
+      // writer.py 跳過。匯出到 column R（"AI Reasoning"）。
+      splitDecision: row.splitDecision
+        ? { reasoning: row.splitDecision.reasoning ?? "" }
+        : undefined,
     }));
 
+    const startedAt = Date.now();
     const response = await parseJsonResponse<{
       fileName: string;
       downloadUrl: string;
       exportedRows: number;
       fallbackTemplate?: boolean;
+      tcIdsRenumbered?: number;
+      classifyUsage?: {
+        cost?: number;
+        inputTokens?: number;
+        outputTokens?: number;
+        cacheCreationTokens?: number;
+        cacheReadTokens?: number;
+        model?: string;
+      };
     }>(
       await fetch(`${appApiBase}/export`, {
         method: "POST",
@@ -1129,6 +1151,27 @@ export async function exportJob(input: ExportJobInput) {
         }),
       }),
     );
+
+    // Export 階段對缺 testSet 的 row 補跑 AI 分類也是真實成本。Cost > 0 時
+    // 才記，避免大量純檔案匯出的零元紀錄。
+    const usage = response.classifyUsage;
+    if (usage && Number(usage.cost ?? 0) > 0) {
+      useJobHistoryStore.getState().appendRecord({
+        id: `export-${input.jobId ?? "anon"}-${startedAt.toString(36)}`,
+        kind: 'export',
+        model: usage.model ?? 'gpt-5-mini',
+        startedAt,
+        finishedAt: Date.now(),
+        rowsTotal: response.exportedRows ?? 0,
+        rowsProcessed: response.exportedRows ?? 0,
+        cost: Number(usage.cost ?? 0),
+        inputTokens: Number(usage.inputTokens ?? 0),
+        outputTokens: Number(usage.outputTokens ?? 0),
+        cacheCreationTokens: Number(usage.cacheCreationTokens ?? 0),
+        cacheReadTokens: Number(usage.cacheReadTokens ?? 0),
+        note: 'export classify',
+      });
+    }
 
     return {
       status: "ready" as const,
