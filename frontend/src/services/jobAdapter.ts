@@ -239,7 +239,19 @@ function parseSplitDecision(raw: unknown): TcRow["splitDecision"] {
     duplicateOf: typeof obj.duplicateOf === "string" && obj.duplicateOf
       ? obj.duplicateOf
       : undefined,
+    distinguishingAxis: parseDistinguishingAxis(obj.distinguishingAxis),
   };
+}
+
+function parseDistinguishingAxis(
+  raw: unknown,
+): { axis: string; delta: string } | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const o = raw as Record<string, unknown>;
+  const axis = typeof o.axis === "string" ? o.axis.trim() : "";
+  const delta = typeof o.delta === "string" ? o.delta.trim() : "";
+  if (!axis && !delta) return undefined;
+  return { axis, delta };
 }
 
 function buildMockGeneratedRow(row: TcRow, index: number): TcRow {

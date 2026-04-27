@@ -307,3 +307,83 @@ describe('ReviewRow — awaitingApply state', () => {
     );
   });
 });
+
+describe('ReviewRow — distinguishing axis (B 方案 sibling 差異聲明)', () => {
+  // 共用 splitDecision 樣板：primary（subIndex 0），帶 reqId / tcCount。
+  const baseSplit = {
+    reqId: 'REQ-1',
+    tcCount: 2,
+    reasoning: '',
+    keywords: [] as never[],
+    subIndex: 0,
+  };
+
+  it('renders axis label + delta when AI 宣告差異 (axis !== "none")', () => {
+    renderRow(
+      { isExpanded: true },
+      {
+        splitDecision: {
+          ...baseSplit,
+          distinguishingAxis: {
+            axis: 'trigger_state',
+            delta: '本列觸發於 disable 狀態，sibling 為 enable 狀態。',
+          },
+        },
+      },
+    );
+    expect(screen.getByText('⚖ 與 sibling 差異')).toBeInTheDocument();
+    expect(screen.getByText('(觸發狀態)')).toBeInTheDocument();
+    expect(screen.getByText(/disable 狀態/)).toBeInTheDocument();
+    // 一致時不應出現警告。
+    expect(screen.queryByText('⚠ Sibling 判定不一致')).not.toBeInTheDocument();
+  });
+
+  it('axis === "none" + duplicateOf 同時填 → 互鎖一致，不亮警告', () => {
+    renderRow(
+      { isExpanded: true },
+      {
+        splitDecision: {
+          ...baseSplit,
+          duplicateOf: '11',
+          distinguishingAxis: { axis: 'none', delta: '與 row #11 完全等價' },
+        },
+      },
+      // 不傳 resolveSiblingTcId 也沒關係，duplicate badge 仍會顯示主要訊息。
+    );
+    // axis === 'none' 不該再顯示差異卡。
+    expect(screen.queryByText('⚖ 與 sibling 差異')).not.toBeInTheDocument();
+    expect(screen.queryByText('⚠ Sibling 判定不一致')).not.toBeInTheDocument();
+    // duplicate badge 應該顯示。
+    expect(screen.getByText('⊕ 重複於')).toBeInTheDocument();
+  });
+
+  it('axis === "none" 但 duplicateOf 為空 → 亮互鎖警告', () => {
+    renderRow(
+      { isExpanded: true },
+      {
+        splitDecision: {
+          ...baseSplit,
+          // duplicateOf undefined
+          distinguishingAxis: { axis: 'none', delta: '' },
+        },
+      },
+    );
+    expect(screen.getByText('⚠ Sibling 判定不一致')).toBeInTheDocument();
+    expect(screen.getByText(/未填 duplicate_of/)).toBeInTheDocument();
+  });
+
+  it('axis 有值但 duplicateOf 同時被填 → 亮互鎖警告（矛盾）', () => {
+    renderRow(
+      { isExpanded: true },
+      {
+        splitDecision: {
+          ...baseSplit,
+          duplicateOf: '12',
+          distinguishingAxis: { axis: 'input_data', delta: '格式 A vs sibling 格式 B' },
+        },
+      },
+    );
+    expect(screen.getByText('⚠ Sibling 判定不一致')).toBeInTheDocument();
+    expect(screen.getByText(/兩者矛盾/)).toBeInTheDocument();
+  });
+});

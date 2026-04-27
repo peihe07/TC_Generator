@@ -548,6 +548,72 @@ class TestParseMultiTcResponse:
         with pytest.raises(GenerationError, match="missing keys"):
             parse_multi_tc_response(json.dumps(broken))
 
+    def test_distinguishing_axis_captured_when_present(self):
+        # B 方案：sibling 存在時 AI 必須宣告差異軸；parser 要原封透傳。
+        payload = {
+            "reasoning": "拆 1 筆",
+            "tcs": [VALID_TC_JSON],
+            "duplicate_of": "",
+            "distinguishing_axis": {
+                "axis": "trigger_state",
+                "delta": "本列觸發於 disable 狀態，sibling 為 enable 狀態",
+            },
+        }
+        _, meta = parse_multi_tc_response(json.dumps(payload))
+        assert meta["distinguishing_axis"]["axis"] == "trigger_state"
+        assert "disable" in meta["distinguishing_axis"]["delta"]
+
+    def test_distinguishing_axis_absent_returns_empty_dict(self):
+        # 沒有 sibling 時 AI 應 omit；parser 要回 {} 而非 None。
+        payload = {"reasoning": "原子", "tcs": [VALID_TC_JSON]}
+        _, meta = parse_multi_tc_response(json.dumps(payload))
+        assert meta["distinguishing_axis"] == {}
+
+    def test_distinguishing_axis_malformed_normalized_to_empty(self):
+        # AI 回了非 dict（例如直接寫字串），parser 不該爆，只回 {}。
+        payload = {
+            "reasoning": "x",
+            "tcs": [VALID_TC_JSON],
+            "distinguishing_axis": "trigger_state",
+        }
+        _, meta = parse_multi_tc_response(json.dumps(payload))
+        assert meta["distinguishing_axis"] == {}
+
+    def test_reconcile_drops_duplicate_when_axis_says_distinct(self):
+        # AI 衝突：既說與 row 11 重複，又說 axis = trigger_state（其實不重複）。
+        # Reconcile 信任 axis（描述更具體），清掉 duplicate_of。
+        payload = {
+            "reasoning": "x",
+            "tcs": [VALID_TC_JSON],
+            "duplicate_of": "11",
+            "distinguishing_axis": {"axis": "trigger_state", "delta": "BT off vs on"},
+        }
+        _, meta = parse_multi_tc_response(json.dumps(payload))
+        assert meta["duplicate_of"] == ""
+        assert meta["distinguishing_axis"]["axis"] == "trigger_state"
+
+    def test_reconcile_fills_axis_none_when_only_duplicate_set(self):
+        # AI 只回 duplicate_of 沒回 axis → 補 axis = "none" 維持對等。
+        payload = {
+            "reasoning": "x",
+            "tcs": [VALID_TC_JSON],
+            "duplicate_of": "11",
+        }
+        _, meta = parse_multi_tc_response(json.dumps(payload))
+        assert meta["duplicate_of"] == "11"
+        assert meta["distinguishing_axis"] == {"axis": "none", "delta": ""}
+
+    def test_reconcile_drops_axis_none_without_duplicate_target(self):
+        # axis = "none" 但沒指出哪一個 sibling → 不可 actionable，整個清掉。
+        payload = {
+            "reasoning": "x",
+            "tcs": [VALID_TC_JSON],
+            "distinguishing_axis": {"axis": "none", "delta": ""},
+        }
+        _, meta = parse_multi_tc_response(json.dumps(payload))
+        assert meta["duplicate_of"] == ""
+        assert meta["distinguishing_axis"] == {}
+
 
 class TestParseMultiTcBatchResponse:
     def test_per_req_arrays_with_reasoning(self):
@@ -578,6 +644,22 @@ class TestParseMultiTcBatchResponse:
         payload = {"requirements": [{"req_id": "R1", "tcs": [VALID_TC_JSON]}]}
         with pytest.raises(GenerationError, match="expected 2 requirement"):
             parse_multi_tc_batch_response(json.dumps(payload), expected_count=2)
+
+    def test_batch_distinguishing_axis_per_entry(self):
+        # B：batch 路徑也要 per-req 透傳 distinguishing_axis。
+        payload = {
+            "requirements": [
+                {
+                    "req_id": "R1",
+                    "tcs": [VALID_TC_JSON],
+                    "distinguishing_axis": {"axis": "input_data", "delta": "格式 A vs sibling 格式 B"},
+                },
+                {"req_id": "R2", "tcs": [VALID_TC_JSON]},
+            ]
+        }
+        _, meta_list = parse_multi_tc_batch_response(json.dumps(payload), expected_count=2)
+        assert meta_list[0]["distinguishing_axis"]["axis"] == "input_data"
+        assert meta_list[1]["distinguishing_axis"] == {}
 
 
 class TestGenerateTcsForRow:

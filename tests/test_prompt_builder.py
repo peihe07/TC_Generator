@@ -167,6 +167,10 @@ class TestBuildUserPrompt:
         # Must mention sibling-distinction and the structured duplicate_of marker.
         assert "sibling-distinction" in prompt
         assert "duplicate_of" in prompt
+        # B 方案：sibling 存在時必須要求 distinguishing_axis 結構化欄位。
+        assert "distinguishing_axis" in prompt
+        assert "trigger_state" in prompt
+        assert "input_data" in prompt
 
 
 class TestBuildBatchPrompt:
@@ -236,6 +240,16 @@ class TestBuildMultiTcPrompt:
 
         assert "Sibling Rows (same Requirement ID)" in prompt
         assert "[row #15] Edge case: zero entries." in prompt
+        # B：multi-TC prompt 也要要求 distinguishing_axis（sibling 存在時）。
+        assert "distinguishing_axis" in prompt
+
+    def test_multi_tc_prompt_omits_distinguishing_axis_doc_when_no_sibling(
+        self, sample_row, sample_context,
+    ):
+        # 沒有 sibling 時，axis 欄位不該成為強制要求 — 但 prompt 文件裡仍會
+        # 描述「siblings 存在時 REQUIRED」這條規則。確認這條件性語意有寫到。
+        prompt = build_multi_tc_user_prompt(sample_row, sample_context, {}, "")
+        assert "REQUIRED when sibling rows exist" in prompt
 
     def test_multi_tc_prompt_includes_matched_reference_context(self, sample_context):
         row = {

@@ -50,6 +50,14 @@ export interface SplitDecision {
   // Empty when no duplicate. Reviewer-side: shows a badge linking to that
   // sibling so the reviewer can decide whether to delete this row.
   duplicateOf?: string;
+  // AI 對 sibling 差異的明確聲明（B 方案）。Sibling 不存在時 AI 會 omit，
+  // 所以這欄為 undefined / {} 都代表「無 sibling 或 AI 漏回」。
+  // axis 為 trigger_state / input_data / timing / boundary / mode / none。
+  // axis === 'none' 時表示真重複（與 duplicateOf 對等），UI 走 duplicate badge。
+  distinguishingAxis?: {
+    axis: string;
+    delta: string;
+  };
 }
 
 export interface TcRow {

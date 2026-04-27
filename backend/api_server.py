@@ -1538,6 +1538,14 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                                 if is_primary
                                 else ""
                             ),
+                            # AI 對 sibling 差異的明確聲明（B 方案），primary 才帶。
+                            # axis: trigger_state / input_data / timing / boundary / mode / none；
+                            # delta: 繁中差異描述含具體 token。沒 sibling 時 AI omit。
+                            "distinguishingAxis": (
+                                meta.get("distinguishing_axis") or {}
+                                if is_primary
+                                else {}
+                            ),
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -1846,6 +1854,14 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                                 if is_primary
                                 else ""
                             ),
+                            # AI 對 sibling 差異的明確聲明（B 方案），primary 才帶。
+                            # axis: trigger_state / input_data / timing / boundary / mode / none；
+                            # delta: 繁中差異描述含具體 token。沒 sibling 時 AI omit。
+                            "distinguishingAxis": (
+                                meta.get("distinguishing_axis") or {}
+                                if is_primary
+                                else {}
+                            ),
                         }
                         if split_warning and is_primary:
                             updated_row["splitWarning"] = split_warning
@@ -2152,6 +2168,14 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                                 _resolve_duplicate_of(meta.get("duplicate_of"), row.get("siblings"))
                                 if is_primary
                                 else ""
+                            ),
+                            # AI 對 sibling 差異的明確聲明（B 方案），primary 才帶。
+                            # axis: trigger_state / input_data / timing / boundary / mode / none；
+                            # delta: 繁中差異描述含具體 token。沒 sibling 時 AI omit。
+                            "distinguishingAxis": (
+                                meta.get("distinguishing_axis") or {}
+                                if is_primary
+                                else {}
                             ),
                         }
                         if split_warning and is_primary:

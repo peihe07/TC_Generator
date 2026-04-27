@@ -254,6 +254,69 @@ export const ReviewRow: React.FC<ReviewRowProps> = ({
                   <span className="font-bold">Split warning：</span> {row.splitWarning}
                 </div>
               ) : null}
+              {(() => {
+                // axis ⇔ duplicateOf 互鎖檢查：B 方案 prompt 規定
+                // axis === 'none' 必須 ⇔ duplicateOf 有值。AI 違規時亮警告，
+                // 讓 reviewer 知道 AI 自己邏輯打架，需要人工確認。
+                const axis = row.splitDecision?.distinguishingAxis;
+                const dup = row.splitDecision?.duplicateOf;
+                const axisIsNone = axis?.axis === 'none';
+                const hasDup = !!dup;
+                const inconsistent = axis && (axisIsNone !== hasDup);
+                if (!inconsistent) return null;
+                const reason = axisIsNone
+                  ? 'AI 宣告 axis="none"（真重複）但未填 duplicate_of —— 請人工確認是否真為重複。'
+                  : `AI 宣告差異 axis="${axis?.axis}" 但同時填了 duplicate_of —— 兩者矛盾，請人工確認。`;
+                return (
+                  <div
+                    className="paper-card p-2 text-xs flex items-start gap-2"
+                    style={{
+                      background: 'var(--status-warn-bg-soft, #fff8e1)',
+                      border: '1px solid var(--status-warn-border, #e6a23c)',
+                      color: 'var(--status-warn-dark, #7a5200)',
+                    }}
+                    title="B 方案互鎖規則：axis === 'none' ⇔ duplicate_of 有值。違反代表 AI 邏輯不一致。"
+                  >
+                    <span className="font-bold shrink-0">⚠ Sibling 判定不一致</span>
+                    <span className="leading-relaxed">{reason}</span>
+                  </div>
+                );
+              })()}
+              {(() => {
+                const axis = row.splitDecision?.distinguishingAxis;
+                // axis === 'none' 走 duplicate badge，這裡跳過避免重複；無資料也跳過。
+                if (!axis || axis.axis === 'none' || (!axis.axis && !axis.delta)) {
+                  return null;
+                }
+                const AXIS_LABELS: Record<string, string> = {
+                  trigger_state: '觸發狀態',
+                  input_data: '輸入資料',
+                  timing: '時序',
+                  boundary: '邊界值',
+                  mode: '模式',
+                };
+                const label = AXIS_LABELS[axis.axis] ?? axis.axis;
+                return (
+                  <div
+                    className="paper-card p-2 text-xs flex items-start gap-2"
+                    style={{
+                      background: 'var(--win95-gray-light, #f0f0f0)',
+                      border: '1px solid var(--win95-gray-dark)',
+                      color: 'var(--win95-black)',
+                    }}
+                    title={`AI 對 sibling 差異的明確聲明（axis=${axis.axis}）；reviewer 可用此核對 tc_title 是否真有體現該差異。`}
+                  >
+                    <span className="font-bold shrink-0">⚖ 與 sibling 差異</span>
+                    <span
+                      className="font-bold shrink-0"
+                      style={{ color: 'var(--win95-navy)' }}
+                    >
+                      ({label})
+                    </span>
+                    <span className="leading-relaxed">{axis.delta}</span>
+                  </div>
+                );
+              })()}
               {row.splitDecision?.duplicateOf ? (
                 (() => {
                   // backend 已把 AI 回的值解析成 row_num（純數字字串），對不到

@@ -639,6 +639,53 @@ def generate_batch(
 # 用 model 預設上限即可。
 
 
+_AXIS_VALUES = {"trigger_state", "input_data", "timing", "boundary", "mode", "none"}
+
+
+def _normalize_distinguishing_axis(value: object) -> dict:
+    """規格化 AI 回的 distinguishing_axis 物件。
+
+    回傳 ``{"axis": str, "delta": str}``；不合法 / 缺欄一律回 ``{}``，由
+    review 階段自行 fallback 顯示空值。axis 不在 enum 內時保留 raw 字串
+    讓 reviewer 看見模型偷懶的字眼，但不阻擋 generation。
+    """
+    if not isinstance(value, dict):
+        return {}
+    axis = str(value.get("axis") or "").strip()
+    delta = str(value.get("delta") or "").strip()
+    if not axis and not delta:
+        return {}
+    return {"axis": axis, "delta": delta}
+
+
+def _reconcile_duplicate_axis(duplicate_of: str, axis: dict) -> tuple[str, dict]:
+    """確保 duplicate_of 與 distinguishing_axis 一致：兩者必須同步表態。
+
+    Prompt 規定 ``axis="none"`` ⇔ ``duplicate_of`` 必填。AI 不一致時的 reconcile
+    策略：
+
+    - 兩者都填且 axis ≠ "none"：兩者衝突（既說重複又說有差異）→ 移除
+      duplicate_of，相信 axis 給的差異描述。
+    - 只填 duplicate_of：補上 ``axis="none"`` 維持對等。
+    - 只填 axis="none"：清掉 axis（沒指出對哪個 sibling 不算 actionable）。
+
+    回傳 reconcile 後的 ``(duplicate_of, axis)``。
+    """
+    has_dup = bool(duplicate_of)
+    axis_label = (axis.get("axis") or "").strip().lower()
+    is_none_axis = axis_label == "none"
+
+    if has_dup and axis and not is_none_axis:
+        # 衝突：先信 axis（差異更具描述性），把 duplicate_of 清掉。
+        return "", axis
+    if has_dup and not axis:
+        return duplicate_of, {"axis": "none", "delta": ""}
+    if is_none_axis and not has_dup:
+        # axis="none" 但沒指出哪一個 sibling → 清掉 axis 視同未判定。
+        return "", {}
+    return duplicate_of, axis
+
+
 def _validate_tcs_array(tcs, *, context: str) -> list[dict]:
     """檢查陣列型 TC 回傳是否合法，回傳 normalize 後的 list。"""
     if not isinstance(tcs, list) or not tcs:
@@ -667,6 +714,7 @@ def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
     reasoning = ""
     keywords: list = []
     duplicate_of = ""
+    distinguishing_axis: dict = {}
 
     if isinstance(data, list):
         tcs = data
@@ -677,16 +725,21 @@ def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
         if isinstance(kws, list):
             keywords = kws
         duplicate_of = str(data.get("duplicate_of") or "").strip()
+        distinguishing_axis = _normalize_distinguishing_axis(data.get("distinguishing_axis"))
     # 容忍 AI 只回單一 TC（退化成 1 筆）
     elif isinstance(data, dict) and all(k in data for k in REQUIRED_OUTPUT_KEYS):
         tcs = [data]
     else:
         raise GenerationError("Multi-TC response missing 'tcs' field")
 
+    duplicate_of, distinguishing_axis = _reconcile_duplicate_axis(
+        duplicate_of, distinguishing_axis,
+    )
     return _validate_tcs_array(tcs, context="multi_tc"), {
         "reasoning": reasoning,
         "keywords": keywords,
         "duplicate_of": duplicate_of,
+        "distinguishing_axis": distinguishing_axis,
     }
 
 
@@ -754,11 +807,16 @@ def _parse_multi_tc_batch_response_lenient(
             if error.startswith(prefix):
                 error = error[len(prefix):]
         kws = entry.get("keywords")
+        dup_of, axis = _reconcile_duplicate_axis(
+            str(entry.get("duplicate_of") or "").strip(),
+            _normalize_distinguishing_axis(entry.get("distinguishing_axis")),
+        )
         meta_list.append({
             "req_id": str(entry.get("req_id") or ""),
             "reasoning": str(entry.get("reasoning") or ""),
             "keywords": kws if isinstance(kws, list) else [],
-            "duplicate_of": str(entry.get("duplicate_of") or "").strip(),
+            "duplicate_of": dup_of,
+            "distinguishing_axis": axis,
             "error": error,
         })
     return tc_groups, meta_list, invalid_indices
