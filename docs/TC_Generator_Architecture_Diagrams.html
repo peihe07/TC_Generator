@@ -3,235 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TC Generator — Architecture & Logic Diagrams</title>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>
-  mermaid.initialize({
-    startOnLoad: true,
-    theme: 'base',
-    themeVariables: {
-      primaryColor: '#d7d3c9',
-      primaryTextColor: '#1d1d1b',
-      primaryBorderColor: '#68655f',
-      lineColor: '#68655f',
-      secondaryColor: '#f5f4ef',
-      tertiaryColor: '#fff'
-    }
-  });
-</script>
+<title>TC Generator — Architecture Diagrams</title>
 <style>
   :root {
-    --bg:#fff; --panel:#f5f4ef; --ink:#1d1d1b; --muted:#68655f; --line:#d7d3c9;
-    --blue:#dcebff; --blue-b:#2867a6;
-    --amber:#fff0cf; --amber-b:#9a650f;
-    --purple:#ece8ff; --purple-b:#6252bc;
-    --green:#e4f3dc; --green-b:#4f7d25;
-    --coral:#ffe5dc; --coral-b:#b64b2f;
-    --gray:#ebe9e1; --gray-b:#747168;
-    --win95-bg: #c0c0c0;
-    --win95-shadow: #808080;
-    --win95-highlight: #ffffff;
+    --bg:#fafaf7;
+    --surface:#ffffff;
+    --panel:#f4f2eb;
+    --ink:#1a1a18;
+    --muted:#6b6862;
+    --line:#e2dfd5;
   }
   * { box-sizing:border-box; }
   body {
-    max-width:1100px; margin:0 auto; padding:40px 24px 80px;
-    font-family: "Segoe UI", "Tahoma", sans-serif;
-    color:var(--ink); background:var(--bg); line-height:1.45;
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 24px;
+    color:var(--ink);
+    background:var(--bg);
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height:1.55;
   }
-  h1 { margin:0 0 4px; font-size:32px; letter-spacing:-.02em; }
-  h2 { margin:0 0 12px; font-size:22px; display: flex; align-items: center; }
-  h2::before { content: ""; display: inline-block; width: 18px; height: 18px; background: #000080; margin-right: 10px; box-shadow: inset 1px 1px #fff, inset -1px -1px #808080; }
-  p { margin:0; }
-  code { font-size:.92em; background:#fff; border:1px solid var(--line); border-radius:4px; padding:1px 4px; }
-  .sub { color:var(--muted); margin-bottom:34px; border-bottom: 2px solid var(--line); padding-bottom: 10px; }
-  .section { margin-bottom:60px; }
-
-  /* Win95 Button/Panel Style */
-  .board {
-    border: 2px solid;
-    border-color: var(--win95-highlight) var(--win95-shadow) var(--win95-shadow) var(--win95-highlight);
-    background: var(--win95-bg);
-    padding: 20px;
-    box-shadow: 1px 1px 0 0 #000;
+  h1 { margin:0 0 8px; font-size:28px; }
+  p { margin:0 0 16px; color:var(--muted); }
+  .panel {
+    margin-top:28px;
+    padding:22px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--surface);
   }
-  .inner-board {
-    background: #fff;
-    border: 2px solid;
-    border-color: var(--win95-shadow) var(--win95-highlight) var(--win95-highlight) var(--win95-shadow);
-    padding: 20px;
-    overflow-x: auto;
+  code {
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:1px 5px;
   }
-
-  .flow { display:grid; grid-template-columns:repeat(5, minmax(150px,1fr)); gap:10px; min-width:830px; margin-bottom: 20px; }
-  .card {
-    min-height:90px; padding:12px; border: 2px solid;
-    border-color: var(--win95-highlight) var(--win95-shadow) var(--win95-shadow) var(--win95-highlight);
-    background: var(--win95-bg);
-  }
-  .card b { display:block; margin-bottom:5px; font-size:15px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .card span { display:block; color: #000; font-size:12px; font-family: "MS Sans Serif", sans-serif; }
-
-  .blue{background:var(--blue);}
-  .amber{background:var(--amber);}
-  .purple{background:var(--purple);}
-  .green{background:var(--green);}
-  .coral{background:var(--coral);}
-
-  .tagrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-  .tag {
-    border: 1px solid #000; background:#fff; padding:4px 10px; color:#000; font-size:11px; font-weight: bold;
-    box-shadow: 1px 1px 0 0 var(--win95-shadow);
-  }
-
-  .mermaid { background: white; padding: 10px; }
-  .desc { margin: 15px 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-
-  @media (max-width:780px) {
-    body { padding:28px 14px 52px; }
-    .flow { grid-template-columns:1fr; min-width:0; }
-    .card { min-height: auto; }
-  }
+  a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
 </style>
 </head>
 <body>
-  <h1>TC Generator — Architecture & Logic</h1>
-  <p class="sub">系統機制與 AI 生成邏輯視覺化指標 (更新：2026-04-27)</p>
-
-  <section class="section">
-    <h2>1. 使用者流程與核心模組 (User Workflow)</h2>
-    <div class="board">
-      <div class="flow">
-        <div class="card blue"><b>Upload</b><span>建立 jobId<br>保存原 Excel<br>快取需求內容</span></div>
-        <div class="card amber"><b>Configure</b><span>Grouping (mini model)<br>Spec Matching<br>User Overrides</span></div>
-        <div class="card purple"><b>Generate</b><span>SSE 批次生成<br>Prompt Caching<br>Usage Persist</span></div>
-        <div class="card green"><b>Review</b><span>Accept/Edit<br>Fix Suggestions<br>Regen/Re-run</span></div>
-        <div class="card coral"><b>Export</b><span>TC ID resequence<br>Excel Writing<br>Zip Packing</span></div>
-      </div>
-      <div class="tagrow">
-        <span class="tag">Backend: FastAPI + Tools</span>
-        <span class="tag">Frontend: Win95 Desktop Shell</span>
-        <span class="tag">State: Zustand + JobStore</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>2. AI Prompt Injection 邏輯 (Prompt Construction)</h2>
-    <div class="desc">展示 <code>prompt_builder.py</code> 如何動態組裝上下文，確保 AI 產出符合 ASPICE 規範且不編造數據。</div>
-    <div class="board">
-      <div class="inner-board">
-        <div class="mermaid">
-graph TD
-    subgraph Inputs ["數據輸入源"]
-        REQ["原始需求 (Test Item/ER)"]
-        SPEC["規格書 (Spec/Traceability)"]
-        PDM["PDM 代碼 (Test Set Context)"]
-    end
-
-    subgraph Static ["靜態規則 (Rules Library)"]
-        SWE6["ASPICE SWE.6 指令 (§10)"]
-        PRI["優先級規則 (P0-P3 Rubric)"]
-        DM["設計方法判定規則"]
-    end
-
-    subgraph Logic ["Prompt Builder 邏輯"]
-        BASE["System Base Prompt"]
-        HARD["HARD CONSTRAINTS<br/>(語言/格式/1:1對齊)"]
-        SAFE["§10a/10b 禁編造指令"]
-    end
-
-    Inputs --> Builder{Prompt Builder}
-    Static --> Builder
-    Logic --> Builder
-
-    Builder --> Final["最終產出 Prompt (JSON Mode)"]
-    Final --> OpenAI((OpenAI API))
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>3. Sibling-Aware 生成機制 (Decision Tree)</h2>
-    <div class="desc">當同一個 Requirement ID 有多列需求時，系統如何引導 AI 處理「重複」或「變體」。</div>
-    <div class="board">
-      <div class="inner-board">
-        <div class="mermaid">
-graph TD
-    Start["偵測到 Sibling Rows (同 Req ID)"] --> Inject["將彼此的 Test Item 注入 Prompt Context"]
-    Inject --> AI{AI 判定}
-
-    AI -- "內容實質等價" --> DUP["輸出 duplicate_of: #N"]
-    AI -- "內容有差異" --> VAR["輸出 distinguishing_axis"]
-
-    VAR --> Axis{差異軸判定}
-    Axis -- "觸發條件/資料" --> T["Trigger/Data"]
-    Axis -- "邊界值" --> B["Boundary"]
-    Axis -- "時間/模式" --> M["Timing/Mode"]
-
-    DUP --> UI_RED["前端顯示『⊕ 重複』紅卡"]
-    VAR --> UI_GRAY["前端顯示『⚖ 差異』灰卡"]
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>4. 錯誤處理與自癒流程 (Error & Recovery)</h2>
-    <div class="desc">包含硬性違規自動重試、模型升級 (Escalation) 以及 SSE 斷線續傳機制。</div>
-    <div class="board">
-      <div class="inner-board">
-        <div class="mermaid">
-graph TD
-    Call["OpenAI Call (gpt-5-mini / gpt-5)"] --> Parse["Parse JSON Response"]
-    Parse --> Valid{硬性驗證?}
-
-    Valid -- "1:1 違規 / 欄位缺失<br/>DM/Priority 無效" --> Retry["Hard Issue Retry (Max 3)"]
-    Retry -- "重試失敗" --> Escalation["MODEL_ESCALATION<br/>(例如 5-mini → 5)"]
-    Escalation --> Call
-
-    Valid -- "SSE 斷線" --> UI_Banner["前端 Resume/Discard Banner"]
-    UI_Banner -- "Resume" --> Call
-
-    Valid -- "通過" --> Success["成功寫入 JobStore"]
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>5. 資料持久化結構 (Data Persistence)</h2>
-    <div class="desc">區分「工作空間狀態」與「Job 執行紀錄」的保存策略。</div>
-    <div class="board">
-      <div class="inner-board">
-        <div class="mermaid">
-graph LR
-    subgraph FE ["Frontend (Browser)"]
-        Z["Zustand Store"]
-        LS["Local Storage"]
-        WS["Workspace JSON"]
-    end
-
-    subgraph BE ["Backend (Server)"]
-        JS["JobStore (Python Object)"]
-        DB[("jobs.db (SQLite)")]
-        EXCEL["Original/Generated Excel"]
-    end
-
-    Z -- "定期保存" --> LS
-    Z -- "下載" --> WS
-    Z -- "API Call" --> JS
-    JS -- "每 Batch 持久化" --> DB
-    JS -- "Export" --> EXCEL
-
-    DB -- "過期清理 (30天)" --> Trash((Delete))
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer style="text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px;">
-    &copy; 2026 TC Generator Team. Built for ASPICE SWE.6 Compliance.
-  </footer>
+  <h1>TC Generator — Architecture Diagrams</h1>
+  <p>更新：2026-04-27</p>
+  <div class="panel">
+    <p>目前 diagram 的 canonical 版本在 app 靜態頁：</p>
+    <p><code>frontend/public/diagrams.html</code></p>
+    <p>這份 docs 入口保留給文件索引使用，避免同時維護兩份流程圖造成 Upload / Configure / Export 行為描述不一致。</p>
+  </div>
 </body>
 </html>

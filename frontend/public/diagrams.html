@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TC Generator — Diagrams</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
 <style>
   :root {
     --bg:#fafaf7;
@@ -15,329 +14,407 @@
     --muted:#6b6862;
     --line:#e2dfd5;
     --line-2:#d0ccc0;
-
-    --user:#2867a6;    --user-bg:#e7f0fb;    --user-bd:#cfe0f3;
-    --ai:#6252bc;      --ai-bg:#ece8ff;      --ai-bd:#d8d2f2;
-    --action:#9a650f;  --action-bg:#fff3d6;  --action-bd:#f0dfa8;
-    --done:#4f7d25;    --done-bg:#e9f4dc;    --done-bd:#cee2b1;
-    --warn:#b64b2f;    --warn-bg:#ffe7dc;    --warn-bd:#f3c5b3;
+    --blue:#2867a6;
+    --blue-bg:#e7f0fb;
+    --blue-bd:#cfe0f3;
+    --violet:#6252bc;
+    --violet-bg:#ece8ff;
+    --violet-bd:#d8d2f2;
+    --amber:#9a650f;
+    --amber-bg:#fff3d6;
+    --amber-bd:#f0dfa8;
+    --green:#4f7d25;
+    --green-bg:#e9f4dc;
+    --green-bd:#cee2b1;
+    --red:#b64b2f;
+    --red-bg:#ffe7dc;
+    --red-bd:#f3c5b3;
   }
   * { box-sizing:border-box; }
   html, body { background:var(--bg); }
   body {
-    max-width:1080px; margin:0 auto; padding:56px 28px 96px;
-    color:var(--ink); line-height:1.55;
+    max-width:1040px;
+    margin:0 auto;
+    padding:42px 24px 76px;
+    color:var(--ink);
+    line-height:1.55;
     font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   }
-  code { font-size:.92em; background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:1px 5px; }
-
-  /* Hero */
-  .hero { margin-bottom:48px; }
-  .hero h1 { margin:0 0 8px; font-size:30px; font-weight:600; letter-spacing:-.02em; }
+  code {
+    font-size:.92em;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:1px 5px;
+  }
+  .hero { margin-bottom:34px; }
+  .hero h1 { margin:0 0 8px; font-size:28px; font-weight:650; }
   .hero .meta { margin:0; color:var(--muted); font-size:13px; }
-
-  /* Section */
-  section { margin-bottom:48px; }
-  section h2 { margin:0 0 6px; font-size:22px; font-weight:600; letter-spacing:-.01em; }
-  section h2 .num {
-    display:inline-block; width:28px; height:28px; line-height:28px; text-align:center;
-    border-radius:8px; background:var(--ink); color:#fff; font-size:14px; margin-right:10px;
-    vertical-align:2px;
+  section { margin-bottom:36px; }
+  h2 { margin:0 0 6px; font-size:19px; font-weight:650; }
+  h2 .num {
+    display:inline-flex;
+    width:28px;
+    height:28px;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    background:var(--ink);
+    color:#fff;
+    font-size:14px;
+    margin-right:10px;
   }
-  section .lede { margin:0 0 18px; max-width:760px; color:var(--muted); font-size:14px; }
-
-  /* Board */
-  .board { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:22px; }
+  .lede { margin:0 0 14px; max-width:780px; color:var(--muted); font-size:13.5px; }
+  .board {
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px;
+    overflow-x:auto;
+  }
   .board + .board { margin-top:14px; }
-
-  /* Grids */
-  .grid { display:grid; gap:14px; }
-  .g3 { grid-template-columns:repeat(3, minmax(0,1fr)); }
-  .g5 { grid-template-columns:repeat(5, minmax(0,1fr)); }
-
-  /* Step card */
-  .step { padding:18px 16px 16px; border-radius:10px; background:var(--panel); border:1px solid var(--line); }
-  .step .icon {
-    width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center;
-    font-size:18px; color:#fff; margin-bottom:10px;
+  .grid { display:grid; gap:12px; justify-content:center; }
+  .g2 { grid-template-columns:repeat(2, 360px); }
+  .g3 { grid-template-columns:repeat(3, 286px); }
+  .g5 { grid-template-columns:repeat(5, 170px); }
+  .card {
+    width:100%;
+    min-height:136px;
+    padding:14px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--panel);
   }
-  .step .lbl  { font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-  .step .name { font-size:16px; font-weight:600; margin-bottom:6px; }
-  .step .desc { font-size:13px; color:var(--ink-2); }
-  .step .meta { margin-top:10px; font-size:12px; color:var(--muted); display:flex; gap:10px; flex-wrap:wrap; }
-  .step .meta i { color:var(--ink-2); }
-
-  /* Step modifiers */
-  .step.user-tone   { background:var(--user-bg);   border-color:var(--user-bd); }
-  .step.user-tone   .icon { background:var(--user); }
-  .step.ai-tone     { background:var(--ai-bg);     border-color:var(--ai-bd); }
-  .step.ai-tone     .icon { background:var(--ai); }
-  .step.action-tone { background:var(--action-bg); border-color:var(--action-bd); }
-  .step.action-tone .icon { background:var(--action); }
-  .step.warn-tone   { background:var(--warn-bg);   border-color:var(--warn-bd); }
-  .step.warn-tone   .icon { background:var(--warn); }
-
-  /* Main flow per-step icon color */
-  .s-upload    .icon { background:var(--user); }
-  .s-configure .icon { background:var(--action); }
-  .s-generate  .icon { background:var(--ai); }
-  .s-review    .icon { background:var(--done); }
-  .s-export    .icon { background:var(--warn); }
-
-  /* Step heading inside §2 boards */
-  .step-title { margin:0 0 12px; font-size:16px; font-weight:600; }
-  .step-title i { margin-right:6px; }
-
-  /* User vs Backend duo */
-  .duo { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .duo .col { padding:18px 18px 16px; border-radius:12px; border:1px solid var(--line); }
-  .duo .col.user { background:var(--user-bg); border-color:var(--user-bd); }
-  .duo .col.ai   { background:var(--ai-bg);   border-color:var(--ai-bd); }
-  .duo h4 {
-    margin:0 0 12px; font-size:14px; font-weight:600;
-    display:flex; align-items:center; gap:8px;
+  .card .mark {
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:8px;
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.04em;
   }
-  .duo .col.user h4 i { color:var(--user); }
-  .duo .col.ai   h4 i { color:var(--ai); }
-  .duo ul { margin:0; padding-left:20px; font-size:13.5px; color:var(--ink-2); }
-  .duo li { margin-bottom:5px; }
-
-  /* Footer */
+  .card .label {
+    color:var(--muted);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .card .name { font-size:15px; font-weight:650; margin-bottom:5px; }
+  .card .desc { color:var(--ink-2); font-size:12.5px; }
+  .card .meta {
+    margin-top:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    color:var(--muted);
+    font-size:12px;
+  }
+  .blue { background:var(--blue-bg); border-color:var(--blue-bd); }
+  .blue .mark { background:var(--blue); }
+  .violet { background:var(--violet-bg); border-color:var(--violet-bd); }
+  .violet .mark { background:var(--violet); }
+  .amber { background:var(--amber-bg); border-color:var(--amber-bd); }
+  .amber .mark { background:var(--amber); }
+  .green { background:var(--green-bg); border-color:var(--green-bd); }
+  .green .mark { background:var(--green); }
+  .red { background:var(--red-bg); border-color:var(--red-bd); }
+  .red .mark { background:var(--red); }
+  .split {
+    display:grid;
+    grid-template-columns:repeat(2, 470px);
+    justify-content:center;
+    gap:16px;
+  }
+  .lane {
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:16px;
+    background:var(--surface);
+  }
+  .lane h3 { margin:0 0 12px; font-size:15px; font-weight:650; }
+  ul { margin:0; padding-left:20px; color:var(--ink-2); font-size:13.5px; }
+  li { margin-bottom:6px; }
+  .flow {
+    display:grid;
+    grid-template-columns:repeat(4, 205px);
+    justify-content:center;
+    gap:10px;
+  }
+  .flow-step {
+    position:relative;
+    min-height:96px;
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--surface);
+  }
+  .flow-step::after {
+    content:"";
+    position:absolute;
+    top:50%;
+    right:-10px;
+    width:10px;
+    height:1px;
+    background:var(--line-2);
+  }
+  .flow-step:last-child::after { display:none; }
+  .flow-step b { display:block; margin-bottom:5px; font-size:13.5px; }
+  .flow-step span { display:block; color:var(--ink-2); font-size:12.5px; }
+  .pillrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .pill {
+    border:1px solid var(--line-2);
+    border-radius:999px;
+    padding:4px 10px;
+    color:var(--ink-2);
+    background:var(--surface);
+    font-size:12px;
+  }
   footer {
-    margin-top:56px; padding-top:24px; border-top:1px solid var(--line);
-    color:var(--muted); font-size:13px;
+    margin-top:54px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:13px;
   }
-  footer a { color:var(--ink-2); text-decoration:none; border-bottom:1px solid var(--line-2); }
-  footer a:hover { color:var(--ink); }
-
-  @media (max-width: 880px) {
-    .g3, .g5, .duo { grid-template-columns:1fr; }
+  @media (max-width:900px) {
+    body { padding:34px 18px 64px; }
+    .g2, .g3, .g5, .split, .flow { grid-template-columns:minmax(0,1fr); }
+    .flow-step::after { display:none; }
   }
 </style>
 </head>
 <body>
-
   <header class="hero">
     <h1>TC Generator</h1>
-    <p class="meta">更新：2026-04-27</p>
+    <p class="meta">Architecture & workflow diagrams · 更新：2026-04-27</p>
   </header>
 
-  <!-- 1. 為什麼是 GUI + AI -->
   <section>
-    <h2><span class="num">1</span>為什麼是 GUI + AI</h2>
-    <p class="lede">AI 負責生成、人負責審查、固定動作走 GUI。</p>
+    <h2><span class="num">1</span>運作原則</h2>
+    <p class="lede">固定流程走 GUI 與 API；只有需要語意判斷或生成的地方才使用 AI。這樣使用者看得到狀態，也不會把 token 花在可以用按鈕完成的動作。</p>
     <div class="board">
       <div class="grid g3">
-        <div class="step ai-tone">
-          <div class="icon"><i class="ri-sparkling-2-line"></i></div>
-          <div class="lbl">為什麼需要 AI</div>
-          <div class="name">生成是這個專案的核心</div>
-          <div class="desc">把一行 requirement 轉成 Pre-Cond / Input / Procedure / Expected Result 需要理解語意，不是填 template。沒有 AI 生成，整個系統只是一個 Excel 解析器。</div>
+        <div class="card violet">
+          <div class="mark">AI</div>
+          <div class="label">生成核心</div>
+          <div class="name">Requirement 轉 Test Case</div>
+          <div class="desc">Generate / Regenerate / Re-run 會讓模型產出 Pre-Cond、Input、Procedure、Expected Result、Method、Priority 與 AI 需求解讀。</div>
         </div>
-        <div class="step user-tone">
-          <div class="icon"><i class="ri-eye-line"></i></div>
-          <div class="lbl">為什麼是 GUI</div>
-          <div class="name">Review 必須能逐列看見</div>
-          <div class="desc">AI 產出不能直接交付，每筆 TC 都得有人逐列確認。在 chat 裡 accept / reject 200 筆 TC 不可行，把流程外化成畫面才看得到狀態、改得動。</div>
+        <div class="card blue">
+          <div class="mark">UI</div>
+          <div class="label">人工審查</div>
+          <div class="name">逐列確認與修改</div>
+          <div class="desc">Review 階段顯示每筆 TC 狀態、duplicate/difference 註記、validation result，使用者可接受、刪除、編輯或重生。</div>
         </div>
-        <div class="step action-tone">
-          <div class="icon"><i class="ri-coin-line"></i></div>
-          <div class="lbl">為什麼不全交給 Agent</div>
-          <div class="name">把固定流程做成按鈕更便宜</div>
-          <div class="desc">Upload、Configure、Generate、Export 這些是固定動作，做成 GUI 按鈕直接打 Backend，不需要 LLM 來「理解你想做什麼」。token 只花在真正的生成上，不花在意圖解析。</div>
+        <div class="card amber">
+          <div class="mark">$</div>
+          <div class="label">成本邊界</div>
+          <div class="name">可預期的 AI 呼叫</div>
+          <div class="desc">Upload 與一般 Export 不呼叫 AI；Group 是手動觸發；Spec Matching 先走 exact/fuzzy，只有有 embedding 條件時才進 semantic。</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2. 主流程 -->
   <section>
-    <h2><span class="num">2</span>主流程</h2>
-    <p class="lede">五個步驟，五個視窗，按「下一步」自動切換。</p>
+    <h2><span class="num">2</span>GUI 與 API 並行 / 切換</h2>
+    <p class="lede">GUI 是操作層，API 是執行層。使用者不需要知道每個 backend endpoint，但每個按鈕背後都對應明確 API；當流程需要 AI 時，API 再把必要上下文交給模型。</p>
+    <div class="board">
+      <div class="grid g3">
+        <div class="card blue">
+          <div class="mark">GUI</div>
+          <div class="label">固定操作</div>
+          <div class="name">把流程變成可見狀態</div>
+          <div class="desc">Upload、Configure、Review、Export 都是高重複、需要確認狀態的工作。做成 GUI 可以看到 rows、preview、validation、usage 與輸出範圍，不必在 chat 裡反覆描述要刪哪幾筆或匯出哪個版本。</div>
+        </div>
+        <div class="card amber">
+          <div class="mark">API</div>
+          <div class="label">確定執行</div>
+          <div class="name">把副作用收斂到 endpoint</div>
+          <div class="desc">解析 Excel、儲存 job、spec matching、grouping preview、generate stream、export workbook 都由 API 執行。這讓每一步有固定輸入輸出，錯誤可重試，也能被測試覆蓋。</div>
+        </div>
+        <div class="card violet">
+          <div class="mark">AI</div>
+          <div class="label">語意判斷</div>
+          <div class="name">只在需要理解時切入</div>
+          <div class="desc">AI 不負責操作整個系統，只負責 requirement 解讀、test case 生成、必要的分類或修正建議。GUI 決定何時呼叫 API，API 決定是否需要模型。</div>
+        </div>
+      </div>
+    </div>
+    <div class="board">
+      <div class="flow">
+        <div class="flow-step"><b>User Action</b><span>使用者在 GUI 選檔、按 Group、Refresh Match、Generate、Delete 或 Export。</span></div>
+        <div class="flow-step"><b>API Contract</b><span>前端送出明確 payload，backend 回傳 preview、job state、SSE event 或 Excel file。</span></div>
+        <div class="flow-step"><b>AI Boundary</b><span>只有語意不足以用規則處理時，backend 才組 prompt 並呼叫模型。</span></div>
+        <div class="flow-step"><b>GUI State</b><span>結果回到畫面，使用者可審查、覆寫、刪除、重跑或匯出。</span></div>
+      </div>
+      <div class="pillrow">
+        <span class="pill">可追蹤：每一步都有狀態</span>
+        <span class="pill">可測試：API 行為固定</span>
+        <span class="pill">可省成本：AI 只處理必要內容</span>
+        <span class="pill">可人工覆寫：不被模型結果綁死</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>主流程</h2>
+    <p class="lede">五個主要模組對應五個決策點。Configure 不會在載入時自動 group，必須由使用者按 Group 或手動編輯。</p>
     <div class="board">
       <div class="grid g5">
-        <div class="step s-upload">
-          <div class="icon"><i class="ri-upload-cloud-2-line"></i></div>
-          <div class="lbl">Step 1</div>
-          <div class="name">Upload</div>
-          <div class="desc">拖入 TC workbook，建立 Job ID。</div>
-          <div class="meta"><span><i class="ri-time-line"></i> &lt; 30s</span><span><i class="ri-coin-line"></i> $0</span></div>
+        <div class="card blue">
+          <div class="mark">1</div>
+          <div class="label">Upload</div>
+          <div class="name">建立 Job</div>
+          <div class="desc">解析 workbook、保存原檔，保留原 H 欄作為 <code>testSetHint</code>，但不直接當成最終 group。</div>
+          <div class="meta"><span>&lt; 30s</span><span>$0</span></div>
         </div>
-        <div class="step s-configure">
-          <div class="icon"><i class="ri-settings-3-line"></i></div>
-          <div class="lbl">Step 2</div>
-          <div class="name">Configure</div>
-          <div class="desc">分組、spec matching、選 model。</div>
-          <div class="meta"><span><i class="ri-time-line"></i> 1–2 min</span><span><i class="ri-coin-line"></i> &lt; $0.01</span></div>
+        <div class="card amber">
+          <div class="mark">2</div>
+          <div class="label">Configure</div>
+          <div class="name">Group / Match / Options</div>
+          <div class="desc">使用者手動執行 grouping；spec matching 可 refresh preview；model 與 batch size 在這裡設定。</div>
+          <div class="meta"><span>手動觸發</span><span>可預覽</span></div>
         </div>
-        <div class="step s-generate">
-          <div class="icon"><i class="ri-sparkling-2-line"></i></div>
-          <div class="lbl">Step 3</div>
-          <div class="name">Generate</div>
-          <div class="desc">透過 SSE 串流逐筆產出 TC，並顯示累積進度與成本。</div>
-          <div class="meta"><span><i class="ri-time-line"></i> 2–5 min</span><span><i class="ri-coin-line"></i> ≈ $0.10</span></div>
+        <div class="card violet">
+          <div class="mark">3</div>
+          <div class="label">Generate</div>
+          <div class="name">SSE 逐筆產生</div>
+          <div class="desc">批次生成、即時回傳進度，處理 auto split、duplicate sibling 與 validation retry。</div>
+          <div class="meta"><span>2-5 min</span><span>計 usage</span></div>
         </div>
-        <div class="step s-review">
-          <div class="icon"><i class="ri-check-double-line"></i></div>
-          <div class="lbl">Step 4</div>
-          <div class="name">Review</div>
-          <div class="desc">逐筆 Accept / Edit / Regenerate / Re-run。</div>
-          <div class="meta"><span><i class="ri-time-line"></i> 5–15 min</span><span><i class="ri-coin-line"></i> 依重生次數</span></div>
+        <div class="card green">
+          <div class="mark">4</div>
+          <div class="label">Review</div>
+          <div class="name">審查與修正</div>
+          <div class="desc">Accept / Edit / Delete / Regenerate。刪除後前端會清除失效 duplicate reference 並重排 TC ID。</div>
+          <div class="meta"><span>人工確認</span><span>本地重排</span></div>
         </div>
-        <div class="step s-export">
-          <div class="icon"><i class="ri-download-2-line"></i></div>
-          <div class="lbl">Step 5</div>
-          <div class="name">Export</div>
-          <div class="desc">寫回 Excel、TC ID 重編、下載。</div>
-          <div class="meta"><span><i class="ri-time-line"></i> &lt; 10s</span><span><i class="ri-coin-line"></i> $0</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. 每步驟 User vs Backend -->
-  <section>
-    <h2><span class="num">3</span>每步驟：User vs Backend</h2>
-    <p class="lede">左欄是 User 在 GUI 上的動作，右欄是觸發的 API。</p>
-
-    <div class="board">
-      <h3 class="step-title"><i class="ri-upload-cloud-2-line" style="color:var(--user)"></i>Step 1 · Upload</h3>
-      <div class="duo">
-        <div class="col user">
-          <h4><i class="ri-user-line"></i> User</h4>
-          <ul>
-            <li>拖入 TC workbook（<code>*_SWQT_{TestGroup}_YYYYMMDD.xlsx</code>）</li>
-            <li>選填：SYS1 spec、補充 spec、framework.json</li>
-          </ul>
-        </div>
-        <div class="col ai">
-          <h4><i class="ri-server-line"></i> Backend</h4>
-          <ul>
-            <li>解析 workbook、建立 Job ID、保存原檔以供日後寫回</li>
-            <li>偵測同 Requirement ID 的 sibling rows，標註以利 generate 階段參考</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="board">
-      <h3 class="step-title"><i class="ri-settings-3-line" style="color:var(--action)"></i>Step 2 · Configure</h3>
-      <div class="duo">
-        <div class="col user">
-          <h4><i class="ri-user-line"></i> User</h4>
-          <ul>
-            <li><b>Grouping</b>：Fill Blank / Regroup All → Apply</li>
-            <li><b>Spec Matching</b>：檢查 preview，必要時覆寫</li>
-            <li><b>Options</b>：選 model（<code>gpt-5</code> / <code>gpt-5.4</code>）與批次大小</li>
-          </ul>
-        </div>
-        <div class="col ai">
-          <h4><i class="ri-server-line"></i> Backend</h4>
-          <ul>
-            <li>用 <code>gpt-5-mini</code> 對 row 做 Test Set 分類，分類失敗 fallback 為 <code>Unclassified</code></li>
-            <li>產 spec ↔ requirement 對應 preview 供使用者檢查</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="board">
-      <h3 class="step-title"><i class="ri-sparkling-2-line" style="color:var(--ai)"></i>Step 3 · Generate</h3>
-      <div class="duo">
-        <div class="col user">
-          <h4><i class="ri-user-line"></i> User</h4>
-          <ul>
-            <li>Start Generate / Stop</li>
-            <li>SSE 斷線時從 banner 按 Resume 接續</li>
-          </ul>
-        </div>
-        <div class="col ai">
-          <h4><i class="ri-server-line"></i> Backend</h4>
-          <ul>
-            <li>建 generate job，透過 SSE 逐筆推送結果</li>
-            <li>Decompose：判斷一筆 requirement 要拆成幾筆 TC；sibling 回 <code>duplicate_of</code> 或 <code>distinguishing_axis</code></li>
-            <li>產 TC 欄位（Pre-Cond / Input / Procedure / ER / Method / Priority）</li>
-            <li>每個成功 batch 立即寫入 usage 紀錄</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="board">
-      <h3 class="step-title"><i class="ri-check-double-line" style="color:var(--done)"></i>Step 4 · Review</h3>
-      <div class="duo">
-        <div class="col user">
-          <h4><i class="ri-user-line"></i> User</h4>
-          <ul>
-            <li>Accept / Reject / Edit</li>
-            <li>Regenerate（dialog 填 reason）</li>
-            <li>Re-run（結束顯示 dialog 摘要）</li>
-          </ul>
-        </div>
-        <div class="col ai">
-          <h4><i class="ri-server-line"></i> Backend</h4>
-          <ul>
-            <li>Regenerate：以使用者填入的 reason 為主要修正目標重新生成</li>
-            <li>Re-run：重走 decompose 與 generate 完整 pipeline</li>
-            <li>有 validation error 時，提供結構化修法建議（root cause / affected fields / proposed change / suggested reason）</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="board">
-      <h3 class="step-title"><i class="ri-download-2-line" style="color:var(--warn)"></i>Step 5 · Export</h3>
-      <div class="duo">
-        <div class="col user">
-          <h4><i class="ri-user-line"></i> User</h4>
-          <ul>
-            <li>選 scope（Accepted Only / All Generated）</li>
-            <li>按 Export 下載 .xlsx</li>
-          </ul>
-        </div>
-        <div class="col ai">
-          <h4><i class="ri-server-line"></i> Backend</h4>
-          <ul>
-            <li>確認原 Excel 是否仍可掛回，否則改用 blank template</li>
-            <li>寫回 sheet；缺 Test Set 時補跑 classifier 並記錄 usage</li>
-            <li>TC ID 依 (project, group_abbr) 為 bucket 重新 001/002/003 編號，閉合刪除留下的空隙</li>
-          </ul>
+        <div class="card red">
+          <div class="mark">5</div>
+          <div class="label">Export</div>
+          <div class="name">寫回 Excel</div>
+          <div class="desc">依 scope 輸出，移除已刪除的原 workbook rows，重編 TC ID，最後欄輸出 <code>AI 需求解讀</code>。</div>
+          <div class="meta"><span>&lt; 10s</span><span>$0</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Quick Generate -->
   <section>
-    <h2><span class="num">4</span>替代路徑：Quick Generate</h2>
-    <p class="lede">單筆 requirement 直接出 TC，不開 workbook、不寫回 Excel；結果只進 Job History。</p>
+    <h2><span class="num">4</span>Configure 決策圖</h2>
+    <p class="lede">這裡是目前最容易誤會的區塊：載入頁面只顯示現有資料，真正分類要按 Group；Spec Matching 則有明確的 exact → fuzzy → semantic 順序。</p>
+    <div class="board">
+      <div class="split">
+        <div class="lane">
+          <h3>Grouping</h3>
+          <div class="flow">
+            <div class="flow-step"><b>Load</b><span>讀取 rows 與 <code>testSetHint</code>，不自動產生 group。</span></div>
+            <div class="flow-step"><b>Group</b><span>用現有 Test Set 與 hint 當參考，重新分類全部 rows。</span></div>
+            <div class="flow-step"><b>Review</b><span>檢查 preview；需要時在 Manual Override 直接改 row。</span></div>
+            <div class="flow-step"><b>Apply</b><span>寫回 job rows，test set label 會縮短為可讀名稱。</span></div>
+          </div>
+          <div class="pillrow">
+            <span class="pill">HVAC Popup</span>
+            <span class="pill">Status Bar</span>
+            <span class="pill">Touchscreen & Hard Controls</span>
+            <span class="pill">Hard Control LEDs</span>
+            <span class="pill">Unclassified</span>
+          </div>
+        </div>
+        <div class="lane">
+          <h3>Spec Matching</h3>
+          <div class="flow">
+            <div class="flow-step"><b>Exact Code</b><span>先抓 <code>C1</code>、<code>C6.1</code>、<code>CR</code>、<code>ICE</code>、<code>LS</code>、PDM code。</span></div>
+            <div class="flow-step"><b>Fuzzy Text</b><span>沒有前綴時，改用 H/I/L/M 欄與 hint 做文字比對。</span></div>
+            <div class="flow-step"><b>Semantic</b><span>只有 spec cache 有 embedding 且環境可用時才跑。</span></div>
+            <div class="flow-step"><b>Preview</b><span>使用者可 refresh 與檢查 unmatched / low confidence。</span></div>
+          </div>
+          <div class="pillrow">
+            <span class="pill">無前綴也可比對</span>
+            <span class="pill">Exact 不需 embedding</span>
+            <span class="pill">Refresh 會重載 preview</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Generate / Review 邏輯</h2>
+    <p class="lede">生成階段負責結構化產出；Review 階段負責把不該交付的 rows 排除，並維持後續 export 的資料一致性。</p>
+    <div class="board">
+      <div class="grid g2">
+        <div class="card violet">
+          <div class="mark">GEN</div>
+          <div class="label">AI pipeline</div>
+          <div class="name">Decompose → Generate → Validate</div>
+          <div class="desc">同一 Requirement ID 的 sibling rows 會被放進 prompt context。模型需判斷 duplicate 或差異軸，validation 失敗時走 retry / escalation。</div>
+        </div>
+        <div class="card green">
+          <div class="mark">REV</div>
+          <div class="label">Local state</div>
+          <div class="name">Delete 後立即整理</div>
+          <div class="desc">刪除 row 後會重算 split sibling metadata、清掉指向已刪除 row 的 duplicate note，並依 group bucket 重排 TC ID。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Export 寫回規則</h2>
+    <p class="lede">Export 使用 Review 後的最終 rows，不把已刪除的原 workbook row 帶回輸出檔。</p>
+    <div class="board">
+      <div class="flow">
+        <div class="flow-step"><b>Scope</b><span>Accepted Only 或 All Generated 決定輸出集合。</span></div>
+        <div class="flow-step"><b>Prune</b><span>原 workbook 中被刪掉的 rows 會從輸出移除。</span></div>
+        <div class="flow-step"><b>Resequence</b><span>依 <code>(project, group_abbr)</code> 重新 001/002/003 編號。</span></div>
+        <div class="flow-step"><b>Write</b><span>Excel 寫入 TC 欄位、Framework sheet 與最後欄 <code>AI 需求解讀</code>。</span></div>
+      </div>
+      <div class="pillrow">
+        <span class="pill">刪除重複項後不再輸出兩條</span>
+        <span class="pill">TC ID gap 會閉合</span>
+        <span class="pill">R 欄：AI 需求解讀</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>Quick Generate</h2>
+    <p class="lede">替代路徑：單筆 requirement 直接生成 TC，不載入 workbook，也不寫回原 Excel。</p>
     <div class="board">
       <div class="grid g3">
-        <div class="step user-tone">
-          <div class="icon"><i class="ri-user-line"></i></div>
-          <div class="lbl">User</div>
+        <div class="card blue">
+          <div class="mark">IN</div>
+          <div class="label">User</div>
           <div class="name">貼 requirement</div>
-          <div class="desc">必填：requirement 文字。選填：Additional Context、model。</div>
+          <div class="desc">輸入 requirement、optional context 與 model setting。</div>
         </div>
-        <div class="step ai-tone">
-          <div class="icon"><i class="ri-server-line"></i></div>
-          <div class="lbl">Backend</div>
-          <div class="name">Auto-split 串流生成</div>
-          <div class="desc">AI 依 ASPICE SWE.6 §6.1 / §9 / §10.2 自動判斷拆成幾筆 TC，逐張串流回 GUI。</div>
+        <div class="card violet">
+          <div class="mark">AI</div>
+          <div class="label">Backend</div>
+          <div class="name">Auto split + stream</div>
+          <div class="desc">依 ASPICE/SWE.6 規則拆分並產出 test cases，透過 SSE 回傳。</div>
         </div>
-        <div class="step warn-tone">
-          <div class="icon"><i class="ri-stop-circle-line"></i></div>
-          <div class="lbl">User</div>
-          <div class="name">Stop</div>
-          <div class="desc">AbortController → Backend disconnect，停送後續 events。</div>
+        <div class="card amber">
+          <div class="mark">OUT</div>
+          <div class="label">Result</div>
+          <div class="name">只進 history</div>
+          <div class="desc">結果保存在 job history，不參與 workbook export 的 row pruning。</div>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    細節參考 <a href="/STATUS">docs/STATUS.md</a>。
+    Canonical app page: <code>frontend/public/diagrams.html</code>. 主要狀態與實作細節請以目前程式碼與測試為準。
   </footer>
-
 </body>
 </html>

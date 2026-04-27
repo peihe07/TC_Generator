@@ -35,7 +35,7 @@ const DEFAULT_WINDOWS: Record<WindowID, WindowState> = {
   review: { id: 'review', title: 'Review Results', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 100, y: 50 }, size: { width: 900, height: 650 } },
   export: { id: 'export', title: 'Export', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 200, y: 150 }, size: { width: 500, height: 450 } },
   quickGenerate: { id: 'quickGenerate', title: 'Quick TC Generator', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 120, y: 80 }, size: { width: 860, height: 620 } },
-  diagrams:      { id: 'diagrams',      title: 'Workflow Diagrams',      isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 160, y: 60 }, size: { width: 900, height: 680 } },
+  diagrams:      { id: 'diagrams',      title: 'Workflow Diagrams',      isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 40, y: 36 }, size: { width: 1120, height: 760 } },
   rules:         { id: 'rules',         title: 'TC Writing Rules',        isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 180, y: 70 }, size: { width: 820, height: 640 } },
 };
 
