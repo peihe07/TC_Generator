@@ -1077,7 +1077,9 @@ def review_suggest_fix(payload: ReviewFixSuggestRequest) -> dict:
     except GenerationError as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
     return {
-        "suggestion": result["suggestion"],
+        "problemRootCause": result["problem_root_cause"],
+        "affectedFields": result["affected_fields"],
+        "proposedChange": result["proposed_change"],
         "suggestedReason": result["suggested_reason"],
         "model": result["model"],
         "cost": result["cost"],

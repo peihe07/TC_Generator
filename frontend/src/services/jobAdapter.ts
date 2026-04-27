@@ -305,7 +305,9 @@ export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {
 }
 
 export interface ReviewFixSuggestion {
-  suggestion: string;
+  problemRootCause: string;
+  affectedFields: string[];
+  proposedChange: string;
   suggestedReason: string;
   model: string;
   cost: number;

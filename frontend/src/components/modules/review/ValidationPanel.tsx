@@ -199,12 +199,51 @@ export const ValidationPanel: React.FC<ValidationPanelProps> = ({
 
               {suggest.kind === 'ok' && (
                 <div className="flex flex-col gap-2">
-                  <div
-                    className="text-[11px] whitespace-pre-wrap"
-                    style={{ color: 'var(--win95-gray-darker)' }}
-                  >
-                    {suggest.data.suggestion}
+                  <div className="text-[11px] flex flex-col gap-1">
+                    <span
+                      className="font-bold"
+                      style={{ color: 'var(--status-reject-dark)' }}
+                    >
+                      問題根源：
+                    </span>
+                    <p
+                      className="leading-relaxed whitespace-pre-wrap selectable"
+                      style={{ color: 'var(--win95-gray-darker)' }}
+                    >
+                      {suggest.data.problemRootCause}
+                    </p>
                   </div>
+
+                  {suggest.data.affectedFields.length > 0 && (
+                    <div className="text-[11px] flex flex-wrap items-center gap-1">
+                      <span className="font-bold">影響欄位：</span>
+                      {suggest.data.affectedFields.map((field) => (
+                        <code
+                          key={field}
+                          className="border-sunken px-1"
+                          style={{ background: 'var(--win95-white)' }}
+                        >
+                          {field}
+                        </code>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="text-[11px] flex flex-col gap-1">
+                    <span
+                      className="font-bold"
+                      style={{ color: 'var(--status-accept-dark)' }}
+                    >
+                      建議改法：
+                    </span>
+                    <p
+                      className="leading-relaxed whitespace-pre-wrap selectable"
+                      style={{ color: 'var(--win95-gray-darker)' }}
+                    >
+                      {suggest.data.proposedChange}
+                    </p>
+                  </div>
+
                   <div className="text-[11px] flex flex-col gap-1">
                     <span className="font-bold">
                       Regenerate Reason（可編輯，中/英皆可）：

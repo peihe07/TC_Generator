@@ -45,9 +45,11 @@ describe('ValidationPanel — AI fix suggestion', () => {
     expect(screen.queryByText(/AI 修法建議/)).not.toBeInTheDocument();
   });
 
-  it('shows suggestion + reason and applies reason via callback', async () => {
+  it('shows structured fix proposal and applies reason via callback', async () => {
     requestReviewFixSuggestionMock.mockResolvedValue({
-      suggestion: 'tc_title 缺少前置條件，請補上。',
+      problemRootCause: 'tc_title 為裸動作，違反 §6.1 sibling-distinction。',
+      affectedFields: ['tc_title', 'pre_conditions'],
+      proposedChange: 'tc_title 補上 with iPhone connected via USB；pre_conditions 加 BT pairing 完成。',
       suggestedReason: 'Add precondition to tc_title trigger.',
       model: 'gpt-test',
       cost: 0,
@@ -77,12 +79,20 @@ describe('ValidationPanel — AI fix suggestion', () => {
       }),
     );
 
+    // 三個結構化區塊都要顯示
     await waitFor(() =>
-      expect(screen.getByText('tc_title 缺少前置條件，請補上。')).toBeInTheDocument(),
+      expect(
+        screen.getByText('tc_title 為裸動作，違反 §6.1 sibling-distinction。'),
+      ).toBeInTheDocument(),
     );
+    expect(screen.getByText('問題根源：')).toBeInTheDocument();
+    expect(screen.getByText('建議改法：')).toBeInTheDocument();
     expect(
-      screen.getByText('Add precondition to tc_title trigger.'),
+      screen.getByText(/tc_title 補上 with iPhone connected via USB/),
     ).toBeInTheDocument();
+    // affected_fields 渲染為 inline code badges
+    expect(screen.getByText('tc_title')).toBeInTheDocument();
+    expect(screen.getByText('pre_conditions')).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('套用為 Regenerate Reason'));
     expect(onApply).toHaveBeenCalledWith('Add precondition to tc_title trigger.');
@@ -90,7 +100,9 @@ describe('ValidationPanel — AI fix suggestion', () => {
 
   it('lets the reviewer edit the suggested reason (Chinese or English) before applying', async () => {
     requestReviewFixSuggestionMock.mockResolvedValue({
-      suggestion: '建議內容',
+      problemRootCause: '建議內容',
+      affectedFields: [],
+      proposedChange: '建議改法',
       suggestedReason: 'Add precondition to tc_title trigger.',
       model: 'gpt-test',
       cost: 0,
@@ -122,7 +134,9 @@ describe('ValidationPanel — AI fix suggestion', () => {
 
   it('disables apply when the editable reason is empty after trimming', async () => {
     requestReviewFixSuggestionMock.mockResolvedValue({
-      suggestion: '建議內容',
+      problemRootCause: '建議內容',
+      affectedFields: [],
+      proposedChange: '建議改法',
       suggestedReason: 'Add precondition.',
       model: 'gpt-test',
       cost: 0,
@@ -161,7 +175,9 @@ describe('ValidationPanel — AI fix suggestion', () => {
 
   it('resets suggestion state when the active row changes', async () => {
     requestReviewFixSuggestionMock.mockResolvedValue({
-      suggestion: '建議內容 A',
+      problemRootCause: '建議內容 A',
+      affectedFields: [],
+      proposedChange: '改法 A',
       suggestedReason: 'reason A',
       model: 'gpt-test',
       cost: 0,

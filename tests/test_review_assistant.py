@@ -28,9 +28,11 @@ def _fake_chat_response(content: str, in_tokens: int = 100, out_tokens: int = 60
 
 
 class TestSuggestReviewFix:
-    def test_returns_suggestion_and_reason(self, client):
+    def test_returns_structured_fix_proposal(self, client):
         body = (
-            '{"suggestion": "tc_title 缺少觸發條件，請補上前置狀態。", '
+            '{"problem_root_cause": "tc_title 為裸動作，違反 §6.1 sibling-distinction 規則。", '
+            '"affected_fields": ["tc_title", "pre_conditions"], '
+            '"proposed_change": "tc_title 補上 with iPhone via USB；pre_conditions 加 BT pairing 完成。", '
             '"suggested_reason": "Add precondition to tc_title trigger."}'
         )
         with patch("review_assistant._chat", return_value=_fake_chat_response(body)):
@@ -55,12 +57,34 @@ class TestSuggestReviewFix:
 
         assert response.status_code == 200
         payload = response.json()
-        assert "tc_title" in payload["suggestion"]
+        assert "tc_title" in payload["problemRootCause"]
+        assert payload["affectedFields"] == ["tc_title", "pre_conditions"]
+        assert "tc_title 補上" in payload["proposedChange"]
         assert payload["suggestedReason"].startswith("Add precondition")
         assert "model" in payload
         assert payload["cost"] >= 0
         assert payload["usage"]["input"] == 100
         assert payload["usage"]["output"] == 60
+
+    def test_unknown_field_keys_are_dropped_from_affected_fields(self, client):
+        body = (
+            '{"problem_root_cause": "x", '
+            '"affected_fields": ["tc_title", "TC_TITLE", "bogus_key", ""], '
+            '"proposed_change": "x", '
+            '"suggested_reason": "x"}'
+        )
+        with patch("review_assistant._chat", return_value=_fake_chat_response(body)):
+            response = client.post(
+                "/api/review/suggest-fix",
+                json={
+                    "tc": {"tc_id": "TC-001"},
+                    "errors": [
+                        {"severity": "warning", "field": "tc_title", "message": "x"}
+                    ],
+                },
+            )
+        # tc_title kept (case-normalized); duplicates and unknown keys dropped.
+        assert response.json()["affectedFields"] == ["tc_title"]
 
     def test_rejects_empty_errors(self, client):
         response = client.post(
