@@ -120,6 +120,42 @@ something → it is NOT a Pre-Condition.
 ### 6.3 Input
 Explicit, deterministic (button/option/value/file/trigger) or NA.
 
+### 6.4 Sibling Awareness (when same Requirement ID has multiple rows)
+
+When the workbook has multiple rows under the **same Requirement ID**,
+the prompt injects a `## Sibling Rows` section listing each peer as
+`[row #N] <test_item>`. Two structured output fields make AI's reasoning
+about those siblings explicit and reviewable:
+
+**`duplicate_of`** (string, OPTIONAL — STRICT):
+- Set to the row number digits of a sibling (e.g. `"11"`, no `row` /
+  `#` prefix) **only** when this row is **truly equivalent** to that
+  sibling — same trigger AND outcome AND input bucket AND verification
+  target.
+- Partial overlaps, similar Test Sets, or shared procedure steps DO NOT
+  qualify. When in doubt, omit the field.
+- Backend resolves whatever the model returns ("11" / "row #11" /
+  legacy uuid) against the row's siblings; hallucinated values that
+  match no sibling are dropped silently so the reviewer-side badge
+  hides instead of showing misleading text.
+- Reviewers see a `⊕ DUP→N` chip in the TC ID column + a red
+  "重複於 row #N" card in the expanded panel. Deletion is reviewer-
+  driven; the system never auto-merges.
+
+**`distinguishing_axis`** (object, REQUIRED when siblings exist; OMIT
+otherwise):
+- Shape `{"axis": "<enum>", "delta": "<繁體中文一句話>"}`.
+- `axis ∈ {trigger_state, input_data, timing, boundary, mode, none}`.
+- `delta` MUST contain a concrete token (state name / value / mode /
+  boundary keyword) that ALSO appears in this row's `tc_title`. Vague
+  sentences like 「不同的驗證情境」 are rejected.
+- Cross-rule: `axis="none"` ⇔ `duplicate_of` is set in the same
+  response. Backend reconciles inconsistent output (conflict drops
+  `duplicate_of`, lone `duplicate_of` fills `axis="none"`, lone
+  `axis="none"` without a sibling target is cleared).
+- Reviewers see `⚖ 與 sibling 差異 (label) — delta` in the expanded
+  panel; this is the audit trail for close-but-not-duplicate cases.
+
 ## 7. Step Design
 
 ### 7.1 Executable & Clear Intent (MANDATORY)

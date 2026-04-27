@@ -194,6 +194,69 @@ Response:
 
 Returns `{ "specs": [] }` when the manifest is missing or unreadable. Entries are sorted alphabetically by `name`. Pass the chosen `name` back as `selected_spec_name` on `POST /api/parse`.
 
+### `POST /api/review/suggest-fix`
+
+Proxy to Python `POST /api/review/suggest-fix`.
+
+Single-shot AI assist for the Review module. Given **one** TC and its
+validation errors, returns a structured fix proposal the reviewer can
+inspect before sending a Regenerate Reason back to the AI. Replaces the
+removed generic chat co-pilot — no session, no streaming.
+
+Request:
+
+```json
+{
+  "tc": {
+    "tc_id": "newR1L-DM-005",
+    "req_id": "PDM01",
+    "tc_title": "Select X",
+    "pre_conditions": "1. ...",
+    "input_test_data": "NA",
+    "test_procedure": "1. ...",
+    "expected_result": "1. ...",
+    "design_method": "Functional",
+    "priority": "P1"
+  },
+  "errors": [
+    {
+      "severity": "error",
+      "field": "tc_title",
+      "message": "Trigger missing precondition (§6.1)."
+    }
+  ],
+  "model": null
+}
+```
+
+Response:
+
+```json
+{
+  "problemRootCause": "tc_title 為裸動作，違反 §6.1 sibling-distinction 規則。",
+  "affectedFields": ["tc_title", "pre_conditions"],
+  "proposedChange": "tc_title 補上 with iPhone connected via USB；pre_conditions 補 BT pairing 完成。",
+  "suggestedReason": "Add precondition (iPhone connected via USB) to tc_title trigger so it distinguishes from the no-phone-paired sibling.",
+  "model": "gpt-5",
+  "cost": 0.00041,
+  "usage": { "input": 870, "output": 162, "cache_creation": 0, "cache_read": 0 }
+}
+```
+
+Notes:
+
+- `errors[]` MUST contain at least one entry (`400 Bad Request` otherwise).
+- `affectedFields` is whitelisted to the canonical TC field keys
+  (`tc_title`, `pre_conditions`, `input_test_data`, `test_procedure`,
+  `expected_result`, `design_method`, `priority`); unknown / case-variant
+  values from the model are dropped silently.
+- `problemRootCause` and `proposedChange` are mandatory on the AI side;
+  empty values cause the backend to raise `502 Bad Gateway` with a
+  `GenerationError` detail rather than emitting a useless suggestion.
+- `suggestedReason` is the string the frontend ValidationPanel offers as
+  the editable Regenerate Reason — clicking "套用為 Regenerate Reason"
+  pre-fills the dialog opened by the toolbox Regenerate button.
+
 ### `POST /api/generate`
 
 Proxy to Python `POST /api/generate`.
@@ -284,6 +347,12 @@ SSE event examples:
 Notes:
 
 - `stats.currentCost` is cumulative for the job, not just the current stream step.
+- `stats.total` is the count of **original Requirement IDs** in the job
+  (deduped at the input rows). It is locked once at start; AI splits that
+  add sub-TCs do not inflate the denominator. `stats.processed` advances
+  once per unique reqId seen on a row event, so the progress bar reaches
+  100% when all requirements have been processed regardless of how many
+  TCs they expand into.
 - If Configure → Grouping already triggered AI Test Set classification, generation starts from that existing cost baseline.
 - Re-run and regenerate continue accumulating on the same job usage counters.
 - `priority` is a tool/workbook output field and uses `P0` / `P1` / `P2` / `P3`, not
@@ -292,6 +361,24 @@ Notes:
   adds `(...)` only when appending it into the workbook Test Item cell.
 - When a requirement is split into multiple TCs, the branch tag belongs in
   `tc_title` / UI `scenarioName`, not inside `testItemRewrite`.
+- Each row event carries a `splitDecision` object summarizing AI's
+  decision for the row's parent requirement:
+  - `reqId`, `tcCount`, `subIndex`, `parentId` — split structure.
+  - `reasoning`, `keywords` — AI's analysis (only on the primary row).
+  - `duplicateOf` (string, optional) — the **row number** of a sibling
+    row this row is **strictly equivalent** to (same trigger, outcome,
+    input bucket, verification target). Backend resolves whatever AI
+    returns ("11" / "row #11" / legacy uuid) against the row's siblings;
+    hallucinated values are dropped to "" so the frontend hides the
+    badge instead of showing a misleading placeholder.
+  - `distinguishingAxis` (object, optional) — `{axis, delta}` declaring
+    how this row differs from its siblings. `axis ∈ {trigger_state,
+    input_data, timing, boundary, mode, none}`; `delta` is a single
+    Traditional Chinese sentence with concrete tokens. Backend
+    enforces the cross-rule `axis="none" ⇔ duplicateOf is set`:
+    inconsistent AI output is reconciled (conflict drops `duplicateOf`,
+    lone `duplicateOf` fills `axis="none"`, lone `axis="none"` without
+    a target is cleared).
 
 ### `POST /api/jobs/[jobId]/regenerate/stream`
 
@@ -401,7 +488,8 @@ Response:
   "fileName": "SomeProject_SWQT_DeviceManager_20260408_generated.xlsx",
   "downloadUrl": "/api/export/download/parse-20260416-123456",
   "selectedColumns": ["TC ID", "Test Procedure", "Expected Result"],
-  "fallbackTemplate": false
+  "fallbackTemplate": false,
+  "tcIdsRenumbered": 0
 }
 ```
 
@@ -410,6 +498,11 @@ Notes:
 - `fallbackTemplate: true` means the backend no longer had the original uploaded
   workbook bytes and rebuilt a minimal blank template from the current rows
   before export.
+- `tcIdsRenumbered` is the count of TC IDs the backend resequenced
+  before write-back to close gaps left by reviewer-side deletes
+  (`-001, -002, -005…` → `-001, -002, -003`). Renumbering happens per
+  `(project, group_abbr)` bucket sorted by `row_num`. `0` means every
+  bucket was already contiguous.
 - The browser-facing Next.js route preserves the upstream HTTP status/body. If
   the Python backend returns a non-JSON 500 body, the proxy no longer rewrites
   it into a synthetic `503`.

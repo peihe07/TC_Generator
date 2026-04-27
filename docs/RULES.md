@@ -109,7 +109,24 @@ Sub-feature grouping based on semantic analysis of Test Item content.
 4. Generate uses the current row `testSet` values. If the user does not click
    Apply after Regroup All, generation still uses the pre-existing Test Sets.
 5. Export can build the `Test Case Framework` sheet from the final Test Set
-   assignments.
+   assignments. If any rows still lack `testSet` at export time, the same
+   AI classifier runs again to fill in the missing values.
+
+**Classification key — per row, not per Requirement ID:**
+The classifier (`classify_test_sets`) is keyed on the row-level `id`
+(frontend uuid) rather than `req_id`. This matters when a workbook has
+multiple rows sharing the same Requirement ID with different `test_item`
+content — each row is classified independently rather than collapsing
+to the first row's label. The `req_id` is still surfaced as metadata
+in the prompt so the AI sees which rows belong to the same requirement.
+
+**Deterministic fallback** (when AI is unavailable or omits a row):
+- If the `test_item` text contains a `PDMxx` code, use that code as the
+  Test Set label (a meaningful AI-equivalent fallback).
+- Otherwise the row gets the literal label `Unclassified` so reviewers
+  can see at a glance that classification did not run for that row.
+  (Earlier versions emitted `REQ <prefix>` which looked like a real
+  Test Set and masked the failure mode.)
 
 **Naming convention:** Short English labels describing the sub-feature (e.g. `Access & Entry`, `Device List & Recognition`, `Function Connection`)
 

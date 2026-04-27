@@ -1,5 +1,44 @@
 # TC Generator — 專案狀態
 
+## Recent changes (2026-04-27 ~ 2026-04-28)
+
+Review / Generate UX 系列升級，發生在 agent 移除之後：
+
+- **Review fix suggestion**：新增窄場景 `POST /api/review/suggest-fix`
+  端點（`backend/review_assistant.py`），ValidationPanel 在 row 有
+  validation error 時提供 AI 結構化修法建議
+  （`problem_root_cause` / `affected_fields` / `proposed_change` /
+  `suggested_reason` 四欄分區顯示），取代被移除的通用 chat co-pilot。
+- **Regenerate dialog**：底部 toolbox 拿掉常駐 reason 輸入框；改成按
+  Regenerate 按鈕後才跳出 Win95Dialog 填 reason，避免使用者在不知情
+  下觸發 AI。ValidationPanel 套用過的 reason 會 pre-fill 進該 dialog。
+- **Re-run completion summary**：Re-run 結束顯示 Win95Dialog 摘要
+  （rowsUpdated / rowsAdded / rowsFailed），不再只在 log panel 印
+  一行小字。
+- **Sibling-aware generation**：Parse 時偵測同 Requirement ID 多列
+  並把彼此 test_item 注入 prompt，AI 必須回兩個結構化欄位 ——
+  `duplicate_of`（嚴格判定等價的 row 編號）+ `distinguishing_axis`
+  （`{axis ∈ trigger_state | input_data | timing | boundary | mode |
+  none, delta}`）。Backend 對兩者做 cross-validation；前端
+  `splitDecision` 分別顯示「⊕ 重複於 row #N」紅卡與「⚖ 與 sibling
+  差異」灰卡，TC ID 欄位另加 `⊕ DUP→N` chip 讓 collapsed view 也看得到。
+- **Test Set 分類 per-row**：`classify_test_sets` 改用 row uuid 為唯一
+  key（不再 dedup 到 req_id），同 Requirement ID 多列各自獲得 Test
+  Set；deterministic fallback 從 `REQ <prefix>` 改成 `Unclassified`
+  讓「分類失敗」更顯眼。
+- **Export TC ID 重編**：Export 前 `_resequence_export_tc_ids` 把每個
+  `(project, group_abbr)` bucket 重新 001/002/003 編號，閉合 reviewer
+  刪除留下的空隙；response 多 `tcIdsRenumbered` 欄位回報數量。
+- **Generate progress**：`stats.total` 改以原始 Requirement ID 計算
+  並鎖定，AI 拆分不會把分母往上推；UI 也從「TCs」改成「requirements」。
+- **Generate stream resume**：SSE 斷線不再直接 dead-end；GenerateModule
+  捕捉 disconnect 訊息後顯示 Resume / Discard banner，Resume 用尚未
+  完成的 row id 重發 startGeneration。
+- **Sibling badge**：duplicate-of 徽章從只在 expanded panel 顯示，
+  改為 collapsed table 也帶一個短 chip。
+
+之後增加新功能會繼續追加在此段。下方為歷史紀錄。
+
 > **⚠️ 部分內容已 DEPRECATED (2026-04-27)：**「Agent 副駕」相關 Phase 1–4
 > 描述（`agent_dispatcher` / `ChatModule` / `HelpFromAgentButton` /
 > `AgentTaskbarButton` / `AgentStateUpdateToast` / `useAgentStore` /
