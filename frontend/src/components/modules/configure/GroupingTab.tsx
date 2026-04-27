@@ -49,6 +49,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
           <Button
             className="flex items-center justify-center gap-1 min-w-[118px]"
             onClick={onRefresh}
+            disabled={isLoading}
             title="Ask AI to suggest test sets for rows that do not already have one"
           >
             {isLoading ? (
@@ -61,6 +62,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
           <Button
             className="flex items-center justify-center gap-1 min-w-[128px]"
             onClick={onForceRegroup}
+            disabled={isLoading}
             title="Send existing test sets as hints and ask AI to regroup every row"
           >
             {isLoading ? (
@@ -71,7 +73,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
             Regroup All
           </Button>
         </div>
-        <Button onClick={onApply} disabled={!preview} className="default min-w-[112px]">
+        <Button onClick={onApply} disabled={!preview || isLoading} className="default min-w-[112px]">
           Apply
         </Button>
       </div>

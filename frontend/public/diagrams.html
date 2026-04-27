@@ -262,7 +262,7 @@
   <br/><br/>
   <strong>Task-level 模型分層</strong>：
   <ul style="margin: 6px 0 0 18px; padding: 0;">
-    <li><strong>Test Set 分類</strong>（Configure → Grouping，以及 Export 時補分類）固定用 <code>gpt-5-mini</code>，純歸類不需重度推理。</li>
+    <li><strong>Test Set 分類</strong>（Configure → Grouping，以及 Export 時補分類）固定用 <code>gpt-5-mini</code>，純歸類不需重度推理。Configure 內的 <em>Fill Blank</em> 只補空白 Test Set；<em>Regroup All</em> 會把既有 Test Set 當 hint 重新分類全部 row，按 Apply 前不會改寫 row。</li>
     <li><strong>需求解讀 / 拆分判斷</strong>（decompose）與 <strong>TC 正文生成</strong>（generate / regenerate / rerun）用使用者在 Configure → Options 選的 model（預設 <code>gpt-5</code>，另可選 <code>gpt-5.4</code>）。</li>
   </ul>
 </div>

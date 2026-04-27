@@ -50,6 +50,7 @@ const ConfigureModule: React.FC = () => {
     }
     setIsLoadingGroupPreview(true);
     setGroupError(null);
+    setGroupPreview(null);
     try {
       const preview = await fetchGroupingPreview({
         jobId: jobMetadata?.jobId ?? null,

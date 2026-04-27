@@ -99,10 +99,17 @@ All rows in the same file share the same Test Group value.
 Sub-feature grouping based on semantic analysis of Test Item content.
 
 **Process:**
-1. First run on a new CFTS: use AI to cluster all Test Items into sub-feature groups
-2. Generate a `framework.json` mapping: `{ "Test Set Name": [list of Req ID patterns] }`
-3. Human reviews and confirms the mapping
-4. Subsequent runs use the confirmed mapping (no AI needed)
+1. Parse preserves any existing Col H `Test Set` values from the workbook.
+2. Configure → Grouping supports two AI preview modes:
+   - **Fill Blank:** keep existing Test Sets and ask AI only for blank rows.
+   - **Regroup All:** send existing Test Sets as hints, but ask AI to assign a
+     fresh Test Set for every row.
+3. Neither preview mode changes rows immediately. The preview is written back
+   to row state only when the user clicks **Apply**.
+4. Generate uses the current row `testSet` values. If the user does not click
+   Apply after Regroup All, generation still uses the pre-existing Test Sets.
+5. Export can build the `Test Case Framework` sheet from the final Test Set
+   assignments.
 
 **Naming convention:** Short English labels describing the sub-feature (e.g. `Access & Entry`, `Device List & Recognition`, `Function Connection`)
 
@@ -871,7 +878,10 @@ Display a summary card with detected metadata before proceeding.
 Purpose: Review and adjust generation parameters before running.
 
 Sections:
-- Test Set grouping preview: show AI-suggested groups, allow drag-and-drop to reassign TCs between groups, allow rename/merge/split groups
+- Test Set grouping preview: `Fill Blank` preserves existing Test Sets and
+  classifies only blank rows; `Regroup All` sends existing Test Sets as hints
+  and lets AI propose a fresh taxonomy for every row. Preview changes are not
+  used by generation until the user clicks `Apply`.
 - Spec matching preview: show Layer 1 (PDM code) matches and Layer 2 (AI) candidates, allow manual override
 - Generation scope: select which columns to generate (checkboxes for each: Test Item rewrite, Pre-Conditions, Procedure, Expected Result, Priority, Design Method, Spec Reference)
 - Model selection: GPT-5.4 mini (default) vs GPT-5.4 (quality) vs GPT-5.4 nano (budget/re-run)

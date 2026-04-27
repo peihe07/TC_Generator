@@ -70,14 +70,22 @@ Proxy to Python `POST /api/group`.
 Purpose:
 
 - Build Configure page grouping preview from current rows
-- Reuse existing `testSet` values when present
-- Otherwise derive fallback grouping labels for preview and apply-back
+- Default mode (`forceRegroup: false`, UI: **Fill Blank**) reuses existing
+  `testSet` values and asks AI only for rows where `testSet` is blank.
+- Force regroup mode (`forceRegroup: true`, UI: **Regroup All**) sends existing
+  `testSet` values as hints, but asks AI to produce a fresh assignment for
+  every row.
+- The endpoint returns preview assignments only. Frontend rows are changed only
+  after the user clicks **Apply**.
+- If AI classification fails or omits a row, deterministic fallback labels are
+  used for preview and apply-back.
 
 Request:
 
 ```json
 {
   "jobId": "parse-20260416-123456",
+  "forceRegroup": false,
   "rows": [
     {
       "id": "row-10",
@@ -120,7 +128,8 @@ Response:
 
 Notes:
 
-- If every row already has `testSet`, grouping is deterministic and the usage fields will be zero.
+- If every row already has `testSet` and `forceRegroup` is false, grouping is deterministic and the usage fields will be zero.
+- If `forceRegroup` is true, existing `testSet` values remain in the request as AI hints but may be replaced in the returned preview assignments.
 - If AI-based Test Set classification runs, that cost is now counted into the job's cumulative usage.
 
 ### `POST /api/match`
