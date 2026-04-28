@@ -4,7 +4,7 @@ import "./globals.css";
 import "../src/styles/win95.css";
 
 export const metadata: Metadata = {
-  title: "TC Generator - Windows 95 Edition",
+  title: "TC Generator",
   description: "AI-powered Test Case Generator",
 };
 
