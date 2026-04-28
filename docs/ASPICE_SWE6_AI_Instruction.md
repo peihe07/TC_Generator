@@ -1,345 +1,132 @@
 ## 0. Purpose
-Balance SWE.6 (deterministic, reproducible, auditable, traceable, no FP) with reviewer needs (explicit flow, clear final verification).
+Balance SWE.6 (deterministic, reproducible, auditable, traceable, no FP) with reviewer needs. Runtime rules + worked examples live in `backend/prompt_builder.py`; this doc is the human summary.
 
 ## 1. Language
-TC: English; Analysis: Traditional Chinese; No emoji
+TC workbook fields: English only. Reasoning fields: Traditional Chinese allowed. No emoji.
 
 ## 2. Core Principles
 - One TC = one verification objective; flow multi-step, validation single
 - Final Step owns validation; represents Test Item executably
-- No vague wording/hidden assumptions; TC reflects Req/SWRA
+- TC reflects Req / SWRA; no vague wording, no hidden assumptions
 
-## 3. Modes
-Generate TC / Review Existing TC
-
-# Mode 1 — Generate
-
-## 4. Workflow
-1) Understand requirement (behavior, trigger, outcome)
-2) Extract keywords → split dimensions (device/format/source/UI/state)
-3) Break down behaviors (main vs supporting)
-4) Align Req ↔ SWRA ↔ Test Item
-5) Define Test Item (single objective, scenario)
-6) Build flow (Setup → Transition → Final Step)
-7) Write ER (1:1), baseline if needed
-8) Assign Design Method per §15
-9) Self-check (§11)
-
-## 5. Template (pattern: `TC[N]: [Scenario]`; blank line between fields)
-
-```
-TC1: First-time CarPlay pairing
-
-Test Item:
-First-time BT pairing with CarPlay phone → HU identifies phone as CarPlay-capable
-
-Pre-Condition:
-1. CarPlay-capable phone available.
-2. Phone never paired with HU.
-
-Input:
-NA
-
-Test Procedure:
-1. Enable BT on the phone.
-2. On HU, open BT settings and select the phone.
-3. Complete BT pairing.
-4. Check that HU recognizes phone as CarPlay-capable.
-
-Expected Result:
-1. Phone BT enabled and discoverable.
-2. HU starts pairing.
-3. Pairing completed.
-4. HU identifies phone as CarPlay-capable.
-
-Design Method:
-Scenario/Use Case
-```
+## 4. Workflow (Generate)
+1. Understand requirement (behavior, trigger, outcome)
+2. Extract keywords → split dimensions (device / format / source / UI / state / env)
+3. Identify sibling axes; one branch = one TC
+4. Align Req ↔ SWRA ↔ Test Item
+5. Define Test Item (single objective)
+6. Build flow (Setup → Transition → Final Step)
+7. Write ER (1:1 with steps); baseline if needed
+8. Assign Design Method per §15
+9. Self-check (§11)
 
 ## 6. Field Rules
 
-### 6.1 Test Item
-- Format: `[Trigger] → [Outcome]` — SHORT, **both sides MUST be 3–8 words** (hard limit)
-- Drop articles (a/the), modals (should/will), hedges (properly/successfully)
-- One behavior; scenario tag in TC title when requirement splits into branches
+### 6.1 Test Item / tc_title — three acceptable shapes
+Length **2–14 words**. Pick whichever makes the scenario clearest:
 
-✓ `Select CarPlay icon → CarPlay interface displayed`
-✗ `When user selects CarPlay icon, system should display interface within reasonable time.` — filler
-✗ `Android Auto off, phone via BT A2DP → BT music plays through HU` — too long
+- **(a) Arrow** — `Trigger → Outcome`. Use when causality is the point. Trigger MUST carry CONDITION / STATE, not bare action. ✓ `CarPlay connected → CP Media icon shown in App Drawer`
+- **(b) Sentence** — `[Outcome] when [trigger]` / `[Object] [state] under [condition]`. Use when natural sentence reads more clearly. ✓ `CP Media icon displayed when CarPlay is connected`
+- **(c) Scenario tag** — short noun phrase naming branch / data / env / boundary. **PREFERRED** when siblings differ only by data / env / branch — matches reviewer Excel template. The tag IS the distinguishing token. ✓ `Cold boot`, `Power Cycle`, `Upload supported video file type: .mp4`, `Upload unsupported video file type: .mov`, `Initial Sync = 5,000`
 
-**Trigger must carry CONDITION/STATE, not just a bare action.** The same
-action under different states yields different outcomes — that is why
-sibling TCs exist. A bare-action trigger leaves the reader guessing
-what state the action runs against.
+Forbidden: modals (`should`, `will`), hedges (`properly`, `successfully`, `within reasonable time`).
 
-✗ `Select CarPlay icon → CarPlay interface displayed`
-   — under what state? phone connected via USB? paired but not connected?
-     no phone paired at all? Each yields a different outcome.
-✓ `Select CarPlay icon with iPhone connected via USB → CarPlay interface displayed`
-✓ `Tap CarPlay icon with no phone paired → connection prompt shown`
-✓ `With BT off, press Connect → connection error displayed`
-
-Bare-action triggers are acceptable ONLY when there is genuinely no
-relevant state (e.g. cold-boot smoke test). When the arrow form forces
-telegraphic compression that hides the condition, switch to a natural
-sentence: `CarPlay UI shown when icon tapped with iPhone over USB`.
-
-**Split example** (same req, format dimension → multi TCs; consistent tag style):
-- `TC1: Play .mp4` — `Play .mp4 → .mp4 plays on HU`
-- `TC2: Play .avi` — `Play .avi → .avi plays on HU`
-- `TC3: Play .mpg` — `Play .mpg → .mpg plays on HU`
-
-Tag = short phrase for the branch (format/device/source/state/UI path).
+**Sibling-distinction:** two sibling tc_titles that read identically (or differ only `displayed` vs `hidden`) = FAIL.
 
 ### 6.2 Pre-Condition
-Starting **state/environment** only, describing the minimum context that must
-exist before the test starts. Never actions, checks, reads, or data-presence.
+Starting **state / environment** only. Never actions, checks, reads, data-presence.
 
-**Allowed types** — 4 categories, each with a decision criterion:
+**Allowed types:** external env (`GPS signal is available.`); hardware / peripheral (`A PBAP-supported device is available.`); feature initial state (`Bluetooth is enabled.`); system version / mode (`Dev / Pre-Prod build only.`).
 
-| Type | Decision criterion | Example |
-|---|---|---|
-| External environment | DUT cannot control it; test equipment / environment must provide it | `GPS signal is available.` / `FM/AM signal generator is ready.` |
-| Hardware / peripheral | Requires a specific physical device, accessory, or protocol support | `A PBAP-supported device is available.` / `A USB storage device is available.` |
-| Feature initial state | To test feature B, feature A must be in a specific state | `Bluetooth is enabled.` |
-| System version / mode | Specific build or mode required | `Dev / Pre-Prod build only.` |
+**Forbidden:** system defaults (`HU is powered on.`); feature under test as premise (`Dealer Mode is accessible.`); actions (`USB inserted and ready.` — belongs in Procedure); step-controlled state (`Device is not connected.`).
 
-**Forbidden types** — 5 categories to REJECT, each with the reason:
-
-| Forbidden type | Why it is wrong | Example to REJECT |
-|---|---|---|
-| System-obvious baseline | Default system state, doesn't need listing | `The HU is powered on.` |
-| Feature under test as premise | Turns the thing being tested into an assumption | `Dealer Mode is accessible.` |
-| Action (not state) | Actions belong in Test Procedure | `USB or SD Card is inserted and ready.` |
-| Step-controlled state | State is established by test steps, not pre-existing | `The device is not connected to the HU.` |
-| Redundant system defaults | Restating obvious system state | `HU is powered on and Bluetooth is enabled.` |
-
-**Self-test:** If a line requires the tester to *do*, *check*, or *confirm*
-something → it is NOT a Pre-Condition.
+Self-test: requires *do / check / confirm* → NOT a Pre-Condition.
 
 ### 6.3 Input
-Explicit, deterministic (button/option/value/file/trigger) or NA.
+Explicit deterministic value (button / option / value / file / trigger) or `NA`.
 
-### 6.4 Sibling Awareness (when same Requirement ID has multiple rows)
-
-When the workbook has multiple rows under the **same Requirement ID**,
-the prompt injects a `## Sibling Rows` section listing each peer as
-`[row #N] <test_item>`. Two structured output fields make AI's reasoning
-about those siblings explicit and reviewable:
-
-**`duplicate_of`** (string, OPTIONAL — STRICT):
-- Set to the row number digits of a sibling (e.g. `"11"`, no `row` /
-  `#` prefix) **only** when this row is **truly equivalent** to that
-  sibling — same trigger AND outcome AND input bucket AND verification
-  target.
-- Partial overlaps, similar Test Sets, or shared procedure steps DO NOT
-  qualify. When in doubt, omit the field.
-- Backend resolves whatever the model returns ("11" / "row #11" /
-  legacy uuid) against the row's siblings; hallucinated values that
-  match no sibling are dropped silently so the reviewer-side badge
-  hides instead of showing misleading text.
-- Reviewers see a `⊕ DUP→N` chip in the TC ID column + a red
-  "重複於 row #N" card in the expanded panel. Deletion is reviewer-
-  driven; the system never auto-merges.
-
-**`distinguishing_axis`** (object, REQUIRED when siblings exist; OMIT
-otherwise):
-- Shape `{"axis": "<enum>", "delta": "<繁體中文一句話>"}`.
-- `axis ∈ {trigger_state, input_data, timing, boundary, mode, none}`.
-- `delta` MUST contain a concrete token (state name / value / mode /
-  boundary keyword) that ALSO appears in this row's `tc_title`. Vague
-  sentences like 「不同的驗證情境」 are rejected.
-- Cross-rule: `axis="none"` ⇔ `duplicate_of` is set in the same
-  response. Backend reconciles inconsistent output (conflict drops
-  `duplicate_of`, lone `duplicate_of` fills `axis="none"`, lone
-  `axis="none"` without a sibling target is cleared).
-- Reviewers see `⚖ 與 sibling 差異 (label) — delta` in the expanded
-  panel; this is the audit trail for close-but-not-duplicate cases.
+### 6.4 Sibling Awareness
+On `## Sibling Rows` injection, output `duplicate_of` (only if truly equivalent: same trigger+outcome+input+verification target) and `distinguishing_axis` `{"axis": "<trigger_state|input_data|timing|boundary|mode|none>", "delta": "<繁中一句, 含 tc_title 具體 token>"}`. Rule: `axis="none"` ⇔ `duplicate_of` set. Full contract in code.
 
 ## 7. Step Design
 
-### 7.1 Executable & Clear Intent (MANDATORY)
-Each step MUST be executable, with clear intent the tester can follow without
-guessing. Intent is usually **self-evident** from action + target
-(`Press [Screen Off] button`, `Enable BT on the phone` — purpose obvious).
+### 7.1 Executable & Clear Intent
+Each step MUST be executable with clear intent. Intent is usually **self-evident** from action + target (`Press [Screen Off] button`). Add `... to ...` ONLY when the same UI serves multiple purposes, the step sets up a non-obvious precondition, or the target is opaque (raw AT, deep menu, internal signal). Do NOT pad every step with `to ...`.
 
-Add an explicit purpose clause (`... to ...`) **ONLY** when the action alone
-leaves intent ambiguous — typically when:
-- The same button / UI element serves different purposes in different contexts
-- The step sets up a non-obvious precondition for a later step
-- The target name doesn't describe its effect (e.g. raw AT commands, opaque
-  menu paths, internal signal names)
+#### 7.1.1 Forbidden Verbs
+**Never** as MAIN verb: `observe`, `observe whether`, `see if`, `check whether`, `confirm whether`, `verify`, `watch`, `monitor`, `inspect`. They defer judgement to the tester.
 
-Do NOT pad every step with `to ...` — forced purpose clauses on self-evident
-actions are noise and reduce readability.
+`verify` exception: allowed in purpose clause (`... to verify that ...`), never as main verb.
 
-✓ `Press [Screen Off] button.` — intent self-evident, no clause needed
-✓ `Enable BT on the phone.` — self-evident
-✓ `Send AT+CGMI to query the manufacturer ID.` — opaque command, clause required
-✓ `Navigate to Settings → Network → Wi-Fi to reach the SSID list.` — deep path, intent clarified
-✗ `Press [Screen Off] button to turn off the screen.` — redundant, intent already obvious
-✗ `Navigate to deep menu path X.` — why there? purpose unclear, needs clause
+**Preferred verbs** (each + concrete observable target — UI / log / signal / count / state): `Check that`, `Confirm that`, `Read`, `Record`, `Compare`.
 
-#### 7.1.1 Forbidden Verbs (hard rule)
-
-The MAIN verb of a step decides whether the tester knows exactly what to do
-and what to look at. Vague verbs defer judgement to the tester and violate
-SWE.6 reproducibility.
-
-**Forbidden as main verb** — each with the specific problem:
-
-| Forbidden verb | Problem |
-|---|---|
-| `observe` | No specific target; tester doesn't know what to look at |
-| `observe whether` | "Whether" pushes the pass/fail judgement onto the tester |
-| `see if` | Same as above; no explicit judgement criterion |
-| `check whether` | Should be `check that` + explicit criterion |
-| `confirm whether` | Should be `confirm that` + explicit criterion |
-| `verify` | Too broad; doesn't specify means (UI? log? value?) |
-| `watch` / `monitor` / `inspect` | Passive verbs without a concrete check action |
-
-**`verify` exception:** allowed in a purpose clause (`... to verify that
-the phone is connected.`), never as the step's main verb.
-
-**Preferred verbs** — each MUST be followed by a concrete observable target
-(UI element, log line, signal value, count, state):
-
-| Preferred verb | Usage |
-|---|---|
-| `Check` / `Check that` | Confirm UI / system state matches expectation |
-| `Confirm` / `Confirm that` | Confirm a specific condition holds or event occurred |
-| `Read` | Read and capture a concrete value |
-| `Record` | Record a value for later comparison |
-| `Compare` | Compare two concrete values |
-
-✗ `Observe the screen.` ✗ `Verify the BT icon is displayed.`
-✓ `Check that the CarPlay home screen is displayed on the HU.`
-
-### 7.2 No Skipping / Step Types
-Do not omit necessary steps. Supporting = establish condition (prevent FF); Transition = move to required state (pairing, navigation, dialog).
+- ✗ `Verify the BT icon is displayed.`
+- ✓ `Check that the CarPlay home screen is displayed on the HU.`
 
 ### 7.5 Final Step (Verification Owner)
-**Final Step alone must reveal what is checked, mapping Test Item outcome.** Include ACTION + check target. Use §7.1.1 preferred verbs.
+Final Step alone reveals what is checked, mapping Test Item outcome. Include ACTION + check target. Use §7.1.1 preferred verbs.
 
-Test Item: `Select CarPlay icon → CarPlay interface displayed`
-✓ `Select CarPlay icon in Menu Bar and check that the CarPlay interface is displayed on the HU.`
-✗ `Select the CarPlay icon.` — no check target
-✗ `... and verify the interface.` — forbidden verb
+- ✗ `Select the CarPlay icon.` (no check target)
+- ✓ `Select CarPlay icon in Menu Bar and check that the CarPlay interface is displayed on the HU.`
 
 ### 7.6 Baseline Comparison
-State change or boundary → establish **baseline (before)** and check **outcome (after)**.
-Example (max 5,000): Pair → Check HU = 5,000 (baseline) → Add contact → Sync → Check count = 5,000; new contact not imported (outcome)
+State change or boundary → establish **baseline (before)** AND check **outcome (after)** in the same TC.
 
 ### 7.7 One Objective
-Steps = Setup / Transition / Verification (final only). Earlier failure = setup not reached → keep; = independent feature → split.
+Steps = Setup / Transition / Verification (final only). Earlier failure = setup not reached → keep. Independent feature → split.
 
 ## 8. Expected Results
-- 1:1 aligned with steps; observable, judgeable; no "normal/as expected"
-- Setup/transition may have ER to prove condition established
-- Final ER covers **complete** check objective (partial = incomplete)
-
-✗ Only "upload success" when Test Item = upload + playback
-✓ Both: file accepted AND playback starts
+1:1 aligned with steps; observable, judgeable; no `normal` / `as expected`. Setup / transition may have ER to prove condition established. Final ER covers the **complete** Test Item outcome (partial = incomplete).
 
 ## 9. False Pass / False Fail
-- **FP:** Split when independent items/branches exist. Multiple formats (.mp4, .avi, .mpg) checked individually. Same for devices, protocols, UI paths.
-- **FF:** Include setup/transition; don't assume hidden state.
+- **FP:** Split when independent items / branches exist (formats, devices, protocols, UI paths). Enumerated supported items → ALWAYS pair with at least one unsupported negative TC.
+- **FF:** Include setup / transition; don't assume hidden state.
 
 ## 10. Requirement Alignment
 
 ### 10.1 Test Item ↔ Requirement
 Traces to Req or SWRA. Conflict → Req wins; flag RD. TC checking neither = invalid.
 
-### 10.2 Keyword Decomposition
-Example: "max 60 records per BT device; first set kept"
-→ `max 60` → boundary (=60, >60, <60); `first set` → order; `per BT device` → multi-device
+### 10.2 Keyword Decomposition (sibling axes — each = 1 TC)
+Format / type (pair supported + unsupported); device / source / protocol; boundary (=limit, limit±1, =0); negative / invalid; concurrency / interruption; persistence (reboot); **environment** (`Cold boot` / `Power Cycle` / `Low memory` / `Network loss` — prepend ONE env-establishing step, re-run the verification); mode / role / permission.
 
-**Branches** (each = 1 TC): unknown/private; before-vs-after; boundary (=/>/</=0); negative; concurrency; persistence (reboot).
+**One Verification Point per TC:** if two *different* partial failures both land on "fail" via your TC, you are bundling — split. Stress-test: *"If only part of the behaviour fails, is my pass/fail verdict still unambiguous?"*
 
-**One Verification Point per TC** (critical — prevents over-stuffed scenarios):
-Every TC must answer exactly ONE unambiguous pass/fail question. If two
-*different* partial failures could both land on "fail" via your TC, you are
-bundling multiple verification points and MUST split further.
+### 10.3 No Fabrication
+Never invent a value the source did not state (numbers, thresholds, timeouts, sizes, durations, retry counts, default states, file names, identifiers, error codes, ordering rules).
 
-Stress-test every scenario by asking: *"If only part of the behaviour fails,
-is my pass/fail verdict still unambiguous?"*
+- ✗ `download limit = 20`, `5s timeout` (when source silent)
+- ✓ `<configured limit>`, "value defined in spec"
+- Domain constants OK (BT PIN `0000`, HTTP `200 OK`); ambiguous source → preserve ambiguity.
 
-Illustrative contrast — requirement "persist SSID / security / credentials for ≥ 4 networks":
+## 11. Self-Check (before emitting each TC)
+1. tc_title: one of 3 shapes, 2–14 words, sibling token visible (§6.1)
+2. Pre-Condition state/env only; Input deterministic or `NA` (§6.2-6.3)
+3. Steps executable; no forbidden verbs; Final Step owns verification (§7.1, §7.5)
+4. Baseline when before/after needed (§7.6)
+5. Procedure ↔ ER 1:1; ER observable; complete outcome covered (§8)
+6. No FP / FF; supported paired with negative (§9)
+7. Traces to Req/SWRA; no fabricated data (§10)
+8. Design Method assigned AFTER procedure finalized (§15)
 
-| | Example | Why |
-|---|---|---|
-| ✗ Overloaded (1 TC) | save 4 → record → reboot → check 4 networks still have SSID + security + credentials | Conflates 3 axes: **capacity** (did ≥4 save?) × **data integrity** (which fields persisted?) × **persistence** (survived reboot?). "Only 3 saved" and "reboot kept SSID but lost credentials" both fail this TC for *different reasons* — verdict is ambiguous. |
-| ✓ Atomic (3 TCs) | **A Capacity**: save 4th → listed as 4 entries. **B Data Integrity**: after save, each saved entry exposes non-empty SSID + security + credentials. **C Persistence**: reboot → per-field comparison of SSID/security/credentials equals pre-reboot baseline. | Each TC owns ONE failure mode. |
-
-This contrast is illustrative. The principle — one verification point per TC —
-applies to every domain. Do **not** mechanically split every requirement into
-capacity/integrity/persistence; that triad is specific to the Wi-Fi example.
-Choose splits that emerge from the *actual* keywords + branches in the
-requirement at hand.
-
-### 10.3 No Fabrication (applies to ALL generated fields)
-Never invent a concrete value the source did not state. This covers every
-TC field — `test_item_rewrite`, `pre_conditions`, `input_test_data`,
-`test_procedure`, `expected_result` — and every data-point type:
-numbers, thresholds, timeouts, byte/file sizes, durations, retry counts,
-default states, dataset / file names, identifiers, VINs, error codes,
-comparison targets, ordering rules.
-
-- ✗ FORBIDDEN: "download limit = 20", "5 s timeout", "error 0x1A",
-  "phonebook has 100 entries", "retry 3 times" — when the source is
-  silent on the number / code / count.
-- ✓ REQUIRED: keep it abstract and source-grounded —
-  `<configured limit>`, `<device under test>`, "the value defined in spec",
-  "the error code defined by the requirement".
-- Domain-standard constants are allowed only when truly standard and
-  unambiguous in context (e.g. BT pairing PIN `0000`, HTTP `200 OK`).
-- If the source is ambiguous or incomplete, **preserve the ambiguity
-  explicitly** — never paper over the gap with a plausible guess.
-
-# Mode 2 — Review
-
-## 11. Self-Check (before emitting every TC)
-1. Test Item = `[Trigger] → [Outcome]`, 3–8 words/side, scenario-tagged if split (§6.1)
-2. Traces to Req/SWRA; keywords mapped (§10)
-3. Pre-Condition: state/env ONLY; no actions/checks/data-presence (§6.2)
-4. Input deterministic or NA (§6.3)
-5. Steps have purpose + executable action; no forbidden verbs (§7.1)
-6. Final Step owns verification, maps Test Item outcome (§7.5)
-7. Baseline established when before/after needed (§7.6)
-8. Procedure ↔ ER 1:1; ER observable (§8)
-9. No FP / No FF (§9)
-10. Design Method assigned AFTER procedure finalized (§15)
-11. No fabricated data: every concrete number / code / identifier / state
-    came from the requirement, spec, or is a domain-standard constant.
-    Unknowns stay abstract (§10.3).
-
-## 12. Review Output
-Table: `| Field | Problem | Severity | Fix |`. Severity: Critical/Major/Minor.
-
-## 13. Formatting (CRITICAL)
-- NEVER use HTML tags or Markdown tables for TC output
-- Use plain text block from §5; each numbered item on own line; blank line between fields
+## 13. Formatting
+No HTML / Markdown tables in TC output. Plain numbered text; one item per line; blank line between fields.
 
 ## 15. Design Method (assign AFTER TC finalized, first-match)
 
-Match PRIMARY intent from Test Procedure + ER:
+| Condition | Method |
+|---|---|
+| Invalid input / illegal op | Negative / Invalid |
+| Simulated fault (disconnect, timeout) | Fault Injection |
+| State A → State B transition | State Transition |
+| Multiple conditions → outcome | Decision Table |
+| Input partitioned valid / invalid | Equivalence Partitioning |
+| Boundary (=limit, limit±1) | Boundary Value Analysis |
+| Multi-parameter combination | Combinatorial |
+| End-to-end flow, ≥3 features | Scenario / Use Case |
+| Single feature check | Functional Based |
 
-| # | Condition | Method |
-|---|---|---|
-| 1 | Invalid input / illegal operation | Negative/Invalid |
-| 2 | Simulated fault (disconnect, timeout) | Fault Injection |
-| 3 | State A → State B transition | State Transition |
-| 4 | Multiple conditions determine outcome | Decision Table |
-| 5 | Input partitioned into valid/invalid | Equivalence Partitioning |
-| 6 | Tests at boundary (=limit, limit±1) | Boundary Value Analysis |
-| 7 | Multi-parameter combination | Combinatorial |
-| 8 | End-to-end user flow, multi-step | Scenario/Use Case |
-| 9 | None above; single feature check | Functional Based |
-
-**Tie-break:**
-- #3 = focus on state change itself (A→B verified)
-- #8 = ≥3 steps crossing multiple features/operations
-- #9 = 1–2 steps, single feature, no state change focus
+Tie-break: State Transition = state-change focus; Scenario = ≥3 steps crossing features; Functional = 1–2 steps single feature.
 
 ## 16. Final Rule
-Each step needs clear purpose. One objective per TC. Only final step validates. TC aligns with Req/SWRA.
+One objective per TC. Only final step validates. TC aligns with Req/SWRA.

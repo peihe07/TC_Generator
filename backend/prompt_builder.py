@@ -46,12 +46,13 @@ _HARD_CONSTRAINTS = """
    as-is. Analytical explanation fields such as `reasoning`, `meaning`, or
    scenario descriptions may be written in Traditional Chinese when explicitly
    requested below.
-2. **tc_title is MANDATORY for EVERY TC** — a concise, scenario-based sentence
+2. **tc_title is MANDATORY for EVERY TC** — a concise, scenario-based phrase
    that tells the reviewer *what this TC is verifying* at a glance. It replaces
    the old `test_item_rewrite` field and is appended in parentheses below the
    original Test Item when writing back to the workbook. Must not be blank,
-   must not copy the source verbatim. Length target: **6–14 words total**.
-   Two acceptable shapes (pick whichever makes the scenario clearest):
+   must not copy the source verbatim. Length target: **2–14 words total**
+   (Scenario tag form may be as short as 2 words, e.g. `Cold boot`).
+   Three acceptable shapes (pick whichever makes the scenario clearest):
      (a) **Arrow form** — `Trigger → Observable Outcome` (e.g.
          `CarPlay connected → CP Media icon shown in App Drawer`). Recommended
          when causality is the point being verified.
@@ -60,6 +61,22 @@ _HARD_CONSTRAINTS = """
          `CP Media icon displayed when CarPlay is connected`,
          `AA App icon hidden without AA connection`). Recommended when a
          natural sentence reads more clearly than an arrow.
+     (c) **Scenario tag form** — short noun phrase naming the branch /
+         data point / environment being exercised (e.g.
+         `Upload supported video file type: .mp4`,
+         `Upload unsupported video file type: .mov`,
+         `Cold boot`, `Power Cycle`, `Low memory`,
+         `Add Contact After Deletion to Return to 5,000`,
+         `Initial Sync = 5,000`,
+         `Per BT Device — Independent Limit`).
+         **PREFERRED** when this TC is one of many siblings under the same
+         requirement and the only thing distinguishing it from siblings is
+         the data point / environment / branch / boundary value being
+         exercised. Matches the format reviewer-approved Excel templates
+         actually use (e.g. `(Cold boot)`, `(Upload supported video file
+         type: .mp4)`). The tag MUST contain the distinguishing token
+         (format extension, env keyword, boundary value, mode name) so
+         siblings remain self-evidently different from tc_title alone.
    Drop articles only when they hurt readability; modals (should/will) and
    hedges (properly/successfully/within reasonable time) are always forbidden.
    **The distinguishing state / trigger MUST appear in tc_title** — NEVER
@@ -68,9 +85,10 @@ _HARD_CONSTRAINTS = """
    only by a state precondition (connected vs disconnected, enabled vs
    disabled, present vs absent, before vs after, valid vs invalid), that
    distinguishing state MUST be visible in the title; otherwise the sibling
-   titles become indistinguishable. Do NOT add outer parentheses in the
-   generated field; presentation-layer wrapping is handled downstream when
-   writing back to the workbook.
+   titles become indistinguishable. For Scenario tag form (c), the tag
+   itself IS the distinguishing token — no separate trigger/outcome needed.
+   Do NOT add outer parentheses in the generated field; presentation-layer
+   wrapping is handled downstream when writing back to the workbook.
 3. **test_procedure and expected_result must have the SAME number of
    numbered items (1:1 mapping).** If procedure has N steps, expected_result
    must also have exactly N items, aligned in order.
@@ -166,34 +184,51 @@ _WRITING_DISCIPLINE = """
 For every TC you are about to output, silently verify:
 
 [TC Title]
-  [ ] tc_title is filled (MANDATORY for every TC), 6–14 words, and uses
-      either a natural scenario sentence (`[Outcome] when [trigger]`,
-      `[Object] [state] under [condition]`, `[Object] [behavior] in
-      [location]`) — PREFERRED for clarity — or arrow form
-      (`Trigger → Observable Outcome`) ONLY when both sides read
-      clearly without telegraphic compression. If fitting the arrow
-      form forces you to drop nouns/objects/context and the result
-      reads ambiguously (`Sync max → entries on HU`), switch to a
-      natural sentence instead. No modals (should/will), no hedges
-      (properly/successfully/within reasonable time) (§6.1).
-  [ ] Trigger side MUST include the CONDITION / STATE / CONTEXT, not
-      a bare action. A bare action (`Select X`, `Press Y`, `Open Z`)
-      without the state it operates under is ambiguous — the same
-      action under different states yields different outcomes (that
-      is why sibling TCs exist). Patterns: `[action] while/with/after
+  [ ] tc_title is filled (MANDATORY for every TC), 2–14 words, and uses
+      one of three shapes:
+        - Arrow form (`Trigger → Observable Outcome`) — pick when
+          causality is the point being verified, and ONLY when both
+          sides read clearly without telegraphic compression. If
+          fitting the arrow form forces you to drop nouns/objects/
+          context and the result reads ambiguously
+          (`Sync max → entries on HU`), switch to a sentence or tag.
+        - Sentence form (`[Outcome] when [trigger]`, `[Object] [state]
+          under [condition]`, `[Object] [behavior] in [location]`) —
+          pick when a natural sentence reads more clearly than arrow.
+        - Scenario tag form — short noun phrase naming the branch /
+          data point / environment / boundary (e.g.
+          `Upload supported video file type: .mp4`, `Cold boot`,
+          `Power Cycle`, `Initial Sync = 5,000`). PREFERRED when
+          siblings differ only by data / env / branch — matches the
+          reviewer-approved Excel template format.
+      No modals (should/will), no hedges (properly/successfully/within
+      reasonable time) (§6.1).
+  [ ] For Arrow form (a) and Sentence form (b): trigger side MUST
+      include the CONDITION / STATE / CONTEXT, not a bare action.
+      A bare action (`Select X`, `Press Y`, `Open Z`) without the
+      state it operates under is ambiguous — the same action under
+      different states yields different outcomes (that is why
+      sibling TCs exist). Patterns: `[action] while/with/after
       [state] → [outcome]`, or front-load the state
-      (`With BT off, press Connect → ...`). Bare-action triggers are
-      acceptable ONLY when there is genuinely no relevant state
+      (`With BT off, press Connect → ...`). Bare-action triggers
+      are acceptable ONLY when there is genuinely no relevant state
       (e.g. cold-boot smoke test).
-  [ ] The distinguishing state / trigger is visible in the title —
-      NEVER the bare inspection action (`Open X`, `Navigate to Y`);
+  [ ] For Scenario tag form (c): the tag itself IS the distinguishing
+      token — no separate trigger/outcome required. The tag MUST
+      contain the differentiating keyword (format extension, env
+      name, boundary value, mode label, role), so the tag alone tells
+      the reviewer which sibling this TC is.
+  [ ] The distinguishing state / trigger / tag is visible in the title
+      — NEVER the bare inspection action (`Open X`, `Navigate to Y`);
       those belong in test_procedure.
   [ ] Sibling-distinction check: if this TC has a sibling that differs
       only by a state precondition (connected↔disconnected, enabled↔
-      disabled, present↔absent, before↔after, valid↔invalid), the
-      distinguishing state MUST appear in the title. Two sibling TCs
-      whose tc_title reads identically (or differs only in "displayed"
-      vs "hidden") is a FAIL — rewrite with the real trigger.
+      disabled, present↔absent, before↔after, valid↔invalid), or by
+      data / environment (`.mp4`↔`.avi`, `Cold boot`↔`Power Cycle`,
+      `=5000`↔`>5000`), the distinguishing token MUST appear in the
+      title. Two sibling TCs whose tc_title reads identically (or
+      differs only in "displayed" vs "hidden") is a FAIL — rewrite
+      with the real trigger or tag.
   [ ] Do NOT add outer parentheses in the generated field; the
       workbook writer wraps it below the original Test Item.
 
@@ -416,19 +451,34 @@ pattern with extension swapped):
     9. App Drawer displayed.
     10. .mp4 video displayed and playback starts.
 
-  Sibling TCs (same pattern, swap extension):
-    tc_title: Upload .avi to Dealer Mode → .avi plays on HU
-    tc_title: Upload .mpg to Dealer Mode → .mpg plays on HU
-    tc_title: Upload .wmv to Dealer Mode → .wmv plays on HU
-    tc_title: Upload .3gp to Dealer Mode → .3gp plays on HU
-    tc_title: Upload .mkv to Dealer Mode → .mkv plays on HU
+  Sibling TCs (same procedure pattern, swap extension). Two equally
+  valid title shapes — Scenario tag form (c) is what the reviewer
+  template actually uses and is PREFERRED for enumerated formats:
+
+    Scenario tag form (PREFERRED — matches reviewer template):
+      tc_title: Upload supported video file type: .mp4
+      tc_title: Upload supported video file type: .avi
+      tc_title: Upload supported video file type: .mpg
+      tc_title: Upload supported video file type: .wmv
+      tc_title: Upload supported video file type: .3gp
+      tc_title: Upload supported video file type: .mkv
+      tc_title: Upload unsupported video file type: .mov   ← negative pair
+
+    Arrow form (also acceptable when causality is the focus):
+      tc_title: Upload .mp4 to Dealer Mode → .mp4 plays on HU
+      tc_title: Upload .avi to Dealer Mode → .avi plays on HU
+      ...
+
   Note:
   - Purpose clauses ("to turn off the screen", "to enter Dealer Mode")
     added only where needed; self-evident steps ("Select File Browser")
     have no clause (§7.1).
-  - Each tc_title carries both the scenario tag (format) AND the
-    observable outcome — sibling TCs differ in the title by their
-    distinguishing data (§6.1).
+  - When supported items are enumerated, ALWAYS pair the supported-set
+    with at least one unsupported negative TC (e.g. `.mov`). Reviewers
+    expect the negative branch to be explicit, not implied.
+  - Scenario tag form (c): the format extension IS the distinguishing
+    token; siblings remain self-evidently different from tc_title alone
+    (§6.1).
 
 ---
 
@@ -462,12 +512,100 @@ Good:
 
 ---
 
+### Example 5 — Same requirement, environment dimension → sibling TCs
+
+Requirement: "The radio HU shall allow a user to see system information."
+
+This is a basic "open the page and verify fields" feature, but reviewers
+expect the SAME feature to be re-verified under several environment
+conditions, because regressions often surface only after cold boot,
+power cycle, or low-memory pressure. The reviewer-approved Excel
+template shows this pattern explicitly: one base TC plus one sibling
+per environment axis, distinguished by Scenario tag form (c).
+
+Bad (1 TC, only happy path):
+  tc_title: View system information
+
+Reviewer flagged:
+  - Misses environment-axis siblings. A page that renders fine on a
+    warm boot can fail to populate after cold boot or power cycle.
+    Without per-environment TCs, regressions in those paths are
+    invisible (§9 FP, §10.2 branches).
+
+Good (4 sibling TCs, Scenario tag form):
+
+  TC-1 (base — warm-boot happy path):
+    tc_title: View system information
+    test_procedure:
+      1. Press [Screen Off] button.
+      2. Press and hold the designated corners for 5 seconds to enter
+         the target mode.
+      3. Select "System Information" and check displayed fields.
+    expected_result:
+      1. HU screen is OFF.
+      2. Mode page is displayed.
+      3. All required system information fields are displayed.
+
+  TC-2 (env axis: cold boot):
+    tc_title: Cold boot
+    test_procedure:
+      1. Cold boot the HU.
+      2. Press [Screen Off] button.
+      3. Press and hold the designated corners for 5 seconds to enter
+         the target mode.
+      4. Select "System Information" and check displayed fields.
+    expected_result:
+      1. HU cold boots normally without error.
+      2. HU screen is OFF.
+      3. Mode page is displayed.
+      4. All required system information fields are displayed.
+
+  TC-3 (env axis: power cycle):
+    tc_title: Power Cycle
+    test_procedure:
+      1. Power cycle the HU.
+      2. Press [Screen Off] button.
+      3. ... (rest identical to TC-1)
+    expected_result:
+      1. HU reconnects normally without error.
+      2. ... (rest aligned)
+
+  TC-4 (env axis: low memory):
+    tc_title: Low memory
+    test_procedure:
+      1. Drive the HU into a low-memory state (per spec / test setup).
+      2. Press [Screen Off] button.
+      3. ... (rest identical)
+    expected_result:
+      1. HU is in the low-memory state defined for this test.
+      2. ... (rest aligned)
+
+Notes:
+  - tc_title uses Scenario tag form (c) — the env keyword IS the
+    distinguishing token. No arrow / sentence needed.
+  - The base TC (no env tag) covers the warm-boot happy path; each
+    env sibling prepends ONE environment-establishing step plus its
+    matching ER, then re-runs the same verification.
+  - Same pattern applies to other environment axes when relevant to
+    the requirement: Reboot persistence, Background app load, Network
+    loss, Storage full, etc. Pick the axes that actually matter for
+    the feature under test — do NOT mechanically add all of them.
+  - Reviewer rationale: "page renders" is not the same guarantee as
+    "page recovers"; environment siblings catch persistence /
+    initialization regressions that the base TC cannot.
+
+---
+
 Key takeaways (apply to any domain):
 1. Pre-conditions are STATE; actions go in steps.
 2. State-change requirements need BASELINE + OUTCOME in the procedure.
 3. Enumerated supported items → one TC per item; prevents False Pass.
+   Pair the supported set with at least one unsupported negative.
 4. Trigger = causal condition, NOT inspection action. Sibling TCs must
    be distinguishable from tc_title alone.
+5. Environment dimension (Cold boot / Power Cycle / Low memory / etc.)
+   is a sibling axis — use Scenario tag form (c) to name the env, and
+   prepend ONE environment-establishing step to each env sibling.
 """
 
 
