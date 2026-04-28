@@ -1539,6 +1539,65 @@ def test_rerun_stream_payload_overrides_existing_job_rows(mock_tool):
 
 
 @patch("api_server.generate_tc_tool")
+def test_rerun_stream_stops_on_quota_exceeded(mock_tool):
+    from tools.errors import ToolError
+
+    parse_response = client.post(
+        "/api/parse",
+        files={
+            "raw_file": (
+                "SomeProject_SWQT_DeviceManager_20260408.xlsx",
+                _build_workbook_bytes(),
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            )
+        },
+    )
+    job_id = parse_response.json()["jobId"]
+    mock_tool.side_effect = ToolError(
+        "generation failed: API call failed: insufficient_quota",
+        code="quota_exceeded",
+    )
+
+    response = client.post(
+        f"/api/jobs/{job_id}/rerun/stream",
+        json={
+            "rowIds": ["row-10", "row-11"],
+            "rows": [
+                {
+                    "id": "row-10",
+                    "rowNum": 10,
+                    "tcId": "newR1L-DM-001",
+                    "reqId": "SWE1-HMI-DM-001-01",
+                    "testItem": "A",
+                    "status": "pending",
+                },
+                {
+                    "id": "row-11",
+                    "rowNum": 11,
+                    "tcId": "newR1L-DM-002",
+                    "reqId": "SWE1-HMI-DM-001-02",
+                    "testItem": "B",
+                    "status": "pending",
+                },
+            ],
+            "config": {
+                "model": "gpt-5",
+                "batchSize": 1,
+                "budget": 0,
+                "strictValidation": False,
+            },
+        },
+    )
+
+    assert response.status_code == 200
+    events = _parse_sse(response.content)
+    types = [event["type"] for event in events]
+    assert "rerun.failed" in types
+    assert "row.regen_failed" not in types
+    assert mock_tool.call_count == 1
+
+
+@patch("api_server.generate_tc_tool")
 def test_generate_stream_passes_matched_reference_context_to_ai(mock_tool):
     parse_response = client.post(
         "/api/parse",

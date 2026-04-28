@@ -22,6 +22,7 @@ from generator import (
     generate_quick_tc,
     generate_single_tc,
     generate_tcs_for_row,
+    _openai_request_timeout_seconds,
     classify_test_sets,
     parse_batch_response,
     parse_multi_tc_batch_response,
@@ -206,6 +207,16 @@ class TestGenerateSingleTc:
         assert kwargs.get("timeout") == _OPENAI_REQUEST_TIMEOUT_SECONDS
         assert kwargs.get("max_retries") == 0
 
+    def test_openai_timeout_can_be_overridden_by_env(self):
+        with patch.dict("os.environ", {"OPENAI_REQUEST_TIMEOUT_SECONDS": "240"}):
+            assert _openai_request_timeout_seconds() == 240.0
+
+    def test_openai_timeout_uses_default_for_invalid_env(self):
+        from generator import _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
+
+        with patch.dict("os.environ", {"OPENAI_REQUEST_TIMEOUT_SECONDS": "nope"}):
+            assert _openai_request_timeout_seconds() == _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
+
     @patch("generator._chat")
     def test_success(self, mock_chat):
         mock_chat.return_value = make_chat_response(
@@ -314,23 +325,41 @@ class TestExtractDecomposeRules:
     def test_keeps_only_split_relevant_sections(self):
         rules = """## 2. Core Principles
 keep core
-## 6.2 Pre-Condition
-drop precondition
+## 4. Workflow (Generate)
+keep workflow
+## 6. Field Rules
+keep field rules
 ### 6.1 Test Item
 keep split
+### 6.2 Pre-Condition
+keep precondition
+## 7. Step Design
+keep steps
+## 8. Expected Results
+keep expected
+## 9. False Pass / False Fail
+keep false
 ## 10. Requirement Alignment
 keep alignment
 ### 10.2 Keyword Decomposition
 keep keywords
+## 11. Self-Check (before emitting each TC)
+keep self check
 ## 12. Review Output
 drop review
 """
         extracted = extract_decompose_rules(rules)
         assert "keep core" in extracted
+        assert "keep workflow" in extracted
+        assert "keep field rules" in extracted
         assert "keep split" in extracted
+        assert "keep precondition" in extracted
+        assert "keep steps" in extracted
+        assert "keep expected" in extracted
+        assert "keep false" in extracted
         assert "keep alignment" in extracted
         assert "keep keywords" in extracted
-        assert "drop precondition" not in extracted
+        assert "keep self check" in extracted
         assert "drop review" not in extracted
 
     @patch("generator._chat")
@@ -343,19 +372,25 @@ drop review
         )
         rules = """## 2. Core Principles
 keep core
-## 4. Workflow
+## 4. Workflow (Generate)
 keep workflow
+## 6. Field Rules
+keep field rules
 ### 6.1 Test Item
 keep test item
-## 6.2 Pre-Condition
-drop precondition
+### 6.2 Pre-Condition
+keep precondition
+## 7. Step Design
+keep steps
+## 8. Expected Results
+keep expected
 ## 9. False Pass / False Fail
 keep false
 ## 10. Requirement Alignment
 keep alignment
 ### 10.2 Keyword Decomposition
 keep keywords
-## 11. Self-Check (before emitting every TC)
+## 11. Self-Check (before emitting each TC)
 keep self check
 ## 12. Review Output
 drop review
@@ -366,7 +401,7 @@ drop review
         system_prompt = mock_chat.call_args.args[0]
         assert "keep core" in system_prompt
         assert "keep keywords" in system_prompt
-        assert "drop precondition" not in system_prompt
+        assert "keep precondition" in system_prompt
         assert "drop review" not in system_prompt
 
     @patch("generator._chat")
@@ -427,13 +462,13 @@ also through via fallback
         # Stronger pin: every whitelisted header must appear in the output.
         wanted_headers = {
             "## 2. Core Principles",
-            "## 4. Workflow",
-            "### 6.1 Test Item",
+            "## 4. Workflow (Generate)",
+            "## 6. Field Rules",
+            "## 7. Step Design",
+            "## 8. Expected Results",
             "## 9. False Pass / False Fail",
             "## 10. Requirement Alignment",
-            "### 10.2 Keyword Decomposition",
-            "### 10.3 No Fabrication (applies to ALL generated fields)",
-            "## 11. Self-Check (before emitting every TC)",
+            "## 11. Self-Check (before emitting each TC)",
         }
         missing = [h for h in wanted_headers if h not in extracted]
         assert not missing, (

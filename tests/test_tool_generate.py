@@ -147,6 +147,25 @@ def test_generate_wraps_generation_error():
     assert "API down" in info.value.message
 
 
+def test_generate_maps_insufficient_quota_to_quota_error():
+    from generator import GenerationError
+
+    quota_message = (
+        "API call failed: Error code: 429 - "
+        "{'error': {'type': 'insufficient_quota', "
+        "'message': 'You exceeded your current quota'}}"
+    )
+    with patch("backend.tools.generate.generate_tcs_for_row", side_effect=GenerationError(quota_message)):
+        with pytest.raises(ToolError) as info:
+            generate_tc_tool(
+                rows=[_BASE_ROW],
+                context=_CONTEXT,
+                rules_text="RULES",
+            )
+    assert info.value.code == "quota_exceeded"
+    assert info.value.http_status == 429
+
+
 def test_generate_does_not_mutate_caller_context():
     fake_result = SimpleNamespace(
         tc_data=[_fake_tc()],

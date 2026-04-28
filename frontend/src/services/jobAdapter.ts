@@ -751,6 +751,7 @@ export async function regenerateRows(
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = "";
+      let fatalError: string | null = null;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -831,8 +832,15 @@ export async function regenerateRows(
               String(row.id),
               String(validation[0]?.message ?? "Re-generation failed."),
             );
+          } else if (event.type === "regen.failed") {
+            fatalError = String(event.message ?? "Re-generation failed.");
           }
         }
+      }
+
+      if (fatalError) {
+        callbacks.onError?.(fatalError);
+        return;
       }
 
       // 寫入 history
@@ -936,6 +944,7 @@ export async function rerunRows(
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let buffer = "";
+    let fatalError: string | null = null;
 
     while (true) {
       const { done, value } = await reader.read();
@@ -1010,8 +1019,15 @@ export async function rerunRows(
             String(row.id),
             String(validation[0]?.message ?? "Re-run failed."),
           );
+        } else if (event.type === "rerun.failed") {
+          fatalError = String(event.message ?? "Re-run failed.");
         }
       }
+    }
+
+    if (fatalError) {
+      callbacks.onError?.(fatalError);
+      return;
     }
 
     useJobHistoryStore.getState().appendRecord({

@@ -272,6 +272,7 @@ const ReviewModule: React.FC = () => {
             );
           },
           onError: (message) => {
+            ids.forEach((id) => updateTcRow(id, { status: 'fail' }));
             appendLog(createJobLog('warn', message));
           },
         },
@@ -349,6 +350,7 @@ const ReviewModule: React.FC = () => {
             setRerunSummary(summary);
           },
           onError: (message) => {
+            ids.forEach((id) => updateTcRow(id, { status: 'fail' }));
             appendLog(createJobLog('warn', message));
           },
         },

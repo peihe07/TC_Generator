@@ -1,3 +1,6 @@
+import http from "node:http";
+import https from "node:https";
+
 const configuredBackendBaseUrl = process.env.PYTHON_API_BASE?.replace(/\/$/, "") ?? "";
 const fallbackBackendBaseUrl =
   process.env.NODE_ENV === "production" ? "" : "http://127.0.0.1:8000";
@@ -49,10 +52,64 @@ export async function proxyStream(
   path: string,
   init?: RequestInit,
 ): Promise<Response> {
-  const response = await fetch(`${getBackendBaseUrl()}${path}`, init);
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: response.headers,
+  return new Promise<Response>((resolve, reject) => {
+    const url = new URL(`${getBackendBaseUrl()}${path}`);
+    const transport = url.protocol === "https:" ? https : http;
+    const headers = new Headers(init?.headers);
+    const body = typeof init?.body === "string" ? init.body : undefined;
+
+    if (body && !headers.has("Content-Length")) {
+      headers.set("Content-Length", Buffer.byteLength(body).toString());
+    }
+
+    const req = transport.request(
+      url,
+      {
+        method: init?.method ?? "GET",
+        headers: Object.fromEntries(headers.entries()),
+      },
+      (upstream) => {
+        const responseHeaders = new Headers();
+        for (const [key, value] of Object.entries(upstream.headers)) {
+          if (!value || key.toLowerCase() === "transfer-encoding") continue;
+          responseHeaders.set(key, Array.isArray(value) ? value.join(", ") : value);
+        }
+
+        const stream = new ReadableStream<Uint8Array>({
+          start(controller) {
+            upstream.on("data", (chunk: Buffer) => {
+              controller.enqueue(new Uint8Array(chunk));
+            });
+            upstream.on("end", () => {
+              controller.close();
+            });
+            upstream.on("error", (error) => {
+              controller.error(error);
+            });
+          },
+          cancel() {
+            upstream.destroy();
+            req.destroy();
+          },
+        });
+
+        resolve(
+          new Response(stream, {
+            status: upstream.statusCode ?? 502,
+            statusText: upstream.statusMessage,
+            headers: responseHeaders,
+          }),
+        );
+      },
+    );
+
+    req.on("error", reject);
+    init?.signal?.addEventListener("abort", () => {
+      req.destroy();
+      reject(new DOMException("The operation was aborted.", "AbortError"));
+    });
+
+    if (body) req.write(body);
+    req.end();
   });
 }

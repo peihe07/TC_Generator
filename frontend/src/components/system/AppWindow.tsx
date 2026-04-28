@@ -70,9 +70,9 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
   };
 
   const windowContent = (
-    <div className={`window flex flex-col h-full ${isMaximized ? 'border-0' : ''}`}>
+    <div className={`window flex flex-col h-full min-h-0 min-w-0 ${isMaximized ? 'border-0' : ''}`}>
       {/* Title Bar */}
-      <div className={`title-bar ${isFocused ? '' : 'inactive'}`} onDoubleClick={() => maximizeWindow(id)}>
+      <div className={`title-bar flex-shrink-0 ${isFocused ? '' : 'inactive'}`} onDoubleClick={() => maximizeWindow(id)}>
         <div className="title-bar-text flex items-center gap-2">
           {icon && <span className="flex items-center">{icon}</span>}
           {windowData.title}
@@ -85,8 +85,14 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
       </div>
 
       {/* Window Body */}
-      <div className="window-body flex-1 flex flex-col m-1 overflow-hidden">
-        <div className={`flex-1 overflow-auto bg-white border-2 border-sunken shadow-inner ${(id === 'diagrams' || id === 'rules') ? 'p-0' : 'p-4'}`}>
+      <div
+        className="window-body flex-1 min-h-0 min-w-0 flex flex-col m-1 overflow-hidden"
+        data-testid={`app-window-${id}-body`}
+      >
+        <div
+          className={`flex-1 min-h-0 min-w-0 overflow-auto bg-white border-2 border-sunken shadow-inner ${(id === 'diagrams' || id === 'rules') ? 'p-0' : 'p-4'}`}
+          data-testid={`app-window-${id}-scroller`}
+        >
           {children}
         </div>
       </div>
@@ -96,8 +102,9 @@ const AppWindow: React.FC<AppWindowProps> = ({ id, children, icon }) => {
   if (isMaximized) {
     return (
       <div
-        className="fixed top-0 left-0 right-0 bg-gray-300"
-        style={{ zIndex: windowData.zIndex, bottom: TASKBAR_HEIGHT }}
+        className="fixed top-0 left-0 right-0 min-h-0 overflow-hidden bg-gray-300"
+        data-testid={`app-window-${id}-maximized`}
+        style={{ zIndex: windowData.zIndex, height: `calc(100dvh - ${TASKBAR_HEIGHT}px)` }}
         onClick={() => focusWindow(id)}
       >
         {windowContent}

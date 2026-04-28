@@ -22,6 +22,15 @@ from .registry import SafetyLevel, ToolSpec, register_tool
 from .schemas import GENERATE_TC_SCHEMA
 
 
+def _is_quota_exceeded_error(exc: GenerationError) -> bool:
+    message = str(exc).lower()
+    return (
+        "insufficient_quota" in message
+        or "exceeded your current quota" in message
+        or "check your plan and billing details" in message
+    )
+
+
 def _result_to_dict(result: GenerationResult, tc_groups: list[list[dict]]) -> dict:
     return {
         # tcData: list[list[dict]] — 每個 input row 對應一個 TC list（長度 1..N）
@@ -97,7 +106,8 @@ def generate_tc_tool(
                 # 每個 req 一筆 → wrap 成 [[tc]]
                 tc_groups = [[tc] for tc in tc_list]
     except GenerationError as exc:
-        raise ToolError(f"generation failed: {exc}", code="internal") from exc
+        code = "quota_exceeded" if _is_quota_exceeded_error(exc) else "internal"
+        raise ToolError(f"generation failed: {exc}", code=code) from exc
 
     return _result_to_dict(result, tc_groups)
 

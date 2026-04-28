@@ -49,6 +49,10 @@ def _tool_error_to_http(exc: ToolError) -> HTTPException:
     """Tool 例外 → HTTP 例外的統一翻譯。"""
     return HTTPException(status_code=exc.http_status, detail=exc.message)
 
+
+def _is_quota_exceeded_tool_error(exc: ToolError) -> bool:
+    return exc.code == "quota_exceeded"
+
 load_dotenv()
 
 app = FastAPI(title="tc-generator-api")
@@ -1644,6 +1648,20 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             }
                         )
             except ToolError as exc:
+                if _is_quota_exceeded_tool_error(exc):
+                    yield _sse_event(
+                        {
+                            "type": "job.failed",
+                            "jobId": jobId,
+                            "stats": {
+                                "total": total,
+                                "processed": processed,
+                                "currentCost": round(current_cost, 4),
+                            },
+                            "message": exc.message,
+                        }
+                    )
+                    return
                 for row in batch:
                     processed += 1
                     yield _sse_event(
@@ -1969,6 +1987,16 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             }
                         )
             except ToolError as exc:
+                if _is_quota_exceeded_tool_error(exc):
+                    yield _sse_event(
+                        {
+                            "type": "regen.failed",
+                            "jobId": job_id,
+                            "stats": _stats(),
+                            "message": exc.message,
+                        }
+                    )
+                    return
                 for row in batch:
                     processed += 1
                     yield _sse_event(
@@ -2308,6 +2336,16 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                             }
                         )
             except ToolError as exc:
+                if _is_quota_exceeded_tool_error(exc):
+                    yield _sse_event(
+                        {
+                            "type": "rerun.failed",
+                            "jobId": job_id,
+                            "stats": _stats(),
+                            "message": exc.message,
+                        }
+                    )
+                    return
                 for row in batch:
                     processed += 1
                     yield _sse_event(

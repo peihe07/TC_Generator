@@ -22,10 +22,35 @@ _TRANSIENT_STATUS_CODES = {500, 502, 503, 504, 529}
 _RETRY_MAX_ATTEMPTS = 3  # 首次呼叫 + 最多 2 次重試
 _RETRY_BASE_DELAY = 1.0  # seconds
 
-# 單次 OpenAI API 呼叫上限。SDK 預設 600s 太長，會讓整個 SSE stream 卡住到
-# Next.js proxy timeout（之前看到 20 分鐘 `other side closed`）。
-# 90s 對 multi-TC batch 也夠用：實測一筆 batch 約 10–40s。
-_OPENAI_REQUEST_TIMEOUT_SECONDS = 90.0
+# 單次 OpenAI API 呼叫上限。可用 OPENAI_REQUEST_TIMEOUT_SECONDS 覆寫。
+# multi-TC row 在規則/規格 context 很大時可能超過 90s；預設拉到 180s，
+# 同時保留上限避免單一 request 無限卡住整個 SSE stream。
+_DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS = 180.0
+
+
+def _openai_request_timeout_seconds() -> float:
+    raw = os.environ.get("OPENAI_REQUEST_TIMEOUT_SECONDS")
+    if not raw:
+        return _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
+    try:
+        value = float(raw)
+    except ValueError:
+        logger.warning(
+            "Invalid OPENAI_REQUEST_TIMEOUT_SECONDS=%r; using default %.0fs.",
+            raw,
+            _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS,
+        )
+        return _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
+    if value <= 0:
+        logger.warning(
+            "OPENAI_REQUEST_TIMEOUT_SECONDS must be positive; using default %.0fs.",
+            _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS,
+        )
+        return _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
+    return value
+
+
+_OPENAI_REQUEST_TIMEOUT_SECONDS = _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
 
 if TYPE_CHECKING:
     from openai import OpenAI
@@ -288,24 +313,33 @@ def extract_decompose_rules(rules_text: str) -> str:
 
     wanted_headers = {
         "## 2. Core Principles",
-        "## 4. Workflow",
-        "### 6.1 Test Item",
+        "## 4. Workflow (Generate)",
+        "## 6. Field Rules",
+        "## 7. Step Design",
+        "## 8. Expected Results",
         "## 9. False Pass / False Fail",
         "## 10. Requirement Alignment",
-        "### 10.2 Keyword Decomposition",
-        "### 10.3 No Fabrication (applies to ALL generated fields)",
-        "## 11. Self-Check (before emitting every TC)",
+        "## 11. Self-Check (before emitting each TC)",
     }
     lines = rules_text.splitlines()
     kept: list[str] = []
     matched_headers: set[str] = set()
     keep = False
+    keep_parent_h2 = False
     for line in lines:
-        if line.startswith("## ") or line.startswith("### "):
+        if line.startswith("## "):
             header = line.strip()
             keep = header in wanted_headers
+            keep_parent_h2 = keep
             if keep:
                 matched_headers.add(header)
+        elif line.startswith("### "):
+            header = line.strip()
+            if header in wanted_headers:
+                keep = True
+                matched_headers.add(header)
+            else:
+                keep = keep_parent_h2
         if keep:
             kept.append(line)
 
@@ -343,7 +377,7 @@ def _client() -> Any:
     # 不會被 SDK 內建 retry 疊加放大成幾分鐘的 hang。
     return openai_module.OpenAI(
         api_key=api_key,
-        timeout=_OPENAI_REQUEST_TIMEOUT_SECONDS,
+        timeout=_openai_request_timeout_seconds(),
         max_retries=0,
     )
 

@@ -23,6 +23,7 @@ class ToolError(Exception):
         "payload_too_large": 413,
         "unprocessable": 422,
         "budget_exceeded": 402,
+        "quota_exceeded": 429,
         "internal": 500,
     }
 
