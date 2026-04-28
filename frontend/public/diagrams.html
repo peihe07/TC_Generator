@@ -133,6 +133,7 @@
     gap:16px;
   }
   .lane {
+    min-width:0;
     border:1px solid var(--line);
     border-radius:10px;
     padding:16px;
@@ -165,8 +166,76 @@
     background:var(--line-2);
   }
   .flow-step:last-child::after { display:none; }
+  .flow-2x2 {
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+  }
+  .flow-2x2 .flow-step::after { display:none; }
+  .lane .flow {
+    width:100%;
+    justify-content:stretch;
+  }
   .flow-step b { display:block; margin-bottom:5px; font-size:13.5px; }
   .flow-step span { display:block; color:var(--ink-2); font-size:12.5px; }
+  .decision-flow {
+    counter-reset:step;
+  }
+  .decision-flow .flow-step {
+    min-height:124px;
+    padding:12px 12px 12px 46px;
+  }
+  .decision-flow .flow-step::before {
+    counter-increment:step;
+    content:counter(step);
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:24px;
+    height:24px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:7px;
+    background:var(--ink);
+    color:#fff;
+    font-size:12px;
+    font-weight:700;
+  }
+  .cost-summary {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .cost-card {
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:13px;
+    background:var(--panel);
+  }
+  .cost-card strong { display:block; margin-bottom:4px; font-size:14px; }
+  .cost-card span { display:block; color:var(--ink-2); font-size:12.5px; }
+  .cost-meter { display:grid; gap:8px; margin:4px 0 14px; }
+  .cost-row {
+    display:grid;
+    grid-template-columns:112px minmax(0,1fr) 74px;
+    align-items:center;
+    gap:10px;
+    color:var(--ink-2);
+    font-size:12.5px;
+  }
+  .cost-track {
+    height:12px;
+    border:1px solid var(--line-2);
+    background:var(--panel);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .cost-bar { height:100%; border-radius:999px; }
+  .cost-bar.core { width:76%; background:var(--violet); }
+  .cost-bar.low { width:14%; background:var(--green); }
+  .cost-bar.medium { width:38%; background:var(--amber); }
+  .cost-bar.high { width:86%; background:var(--red); }
   .pillrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
   .pill {
     border:1px solid var(--line-2);
@@ -185,8 +254,13 @@
   }
   @media (max-width:900px) {
     body { padding:34px 18px 64px; }
-    .g2, .g3, .g5, .split, .flow { grid-template-columns:minmax(0,1fr); }
+    .g2, .g3, .g5, .split, .flow, .cost-summary { grid-template-columns:minmax(0,1fr); }
+    .cost-row { grid-template-columns:92px minmax(0,1fr) 64px; }
     .flow-step::after { display:none; }
+    .decision-flow .flow-step {
+      min-height:0;
+      padding-left:46px;
+    }
   }
 </style>
 </head>
@@ -238,7 +312,7 @@
           <div class="mark">API</div>
           <div class="label">確定執行</div>
           <div class="name">把副作用收斂到 endpoint</div>
-          <div class="desc">解析 Excel、儲存 job、spec matching、grouping preview、generate stream、export workbook 都由 API 執行。這讓每一步有固定輸入輸出，錯誤可重試，也能被測試覆蓋。</div>
+          <div class="desc">parse、match、group、generate stream、export 都由對應的 API endpoint 執行；job 狀態則是這些流程的副作用，由 job_manager 持久化。每一步有固定輸入輸出，錯誤可重試，也能被測試覆蓋。</div>
         </div>
         <div class="card violet">
           <div class="mark">AI</div>
@@ -265,7 +339,53 @@
   </section>
 
   <section>
-    <h2><span class="num">3</span>主流程</h2>
+    <h2><span class="num">3</span>Token 成本：GUI vs Agent</h2>
+    <p class="lede">核心差異不是「有沒有用 AI」，而是 AI 只拿生成需要的上下文，或是讓 agent 在每一步都讀取工具結果、重看歷史並做下一個決策。基準：一份 Excel 約 50 條需求 → 約 150 條 test case。</p>
+    <div class="board">
+      <div class="cost-summary">
+        <div class="cost-card green">
+          <strong>GUI / API 路徑：成本集中在 Generate</strong>
+          <span>parse、match、group、export 由程式碼完成；LLM 只處理 requirement → test case 的語意生成。</span>
+        </div>
+        <div class="cost-card red">
+          <strong>Agent 路徑：Generate 之外還有決策成本</strong>
+          <span>tool schema、tool result、規劃文字與多輪歷史 replay 都會進 context，任務越長越容易放大。</span>
+        </div>
+      </div>
+      <div class="split">
+        <div class="lane">
+          <h3>GUI 模式（目前架構）</h3>
+          <div class="cost-meter">
+            <div class="cost-row"><span>Generate</span><div class="cost-track"><div class="cost-bar core"></div></div><strong>~130k</strong></div>
+            <div class="cost-row"><span>固定流程</span><div class="cost-track"><div class="cost-bar low"></div></div><strong>0–少量</strong></div>
+          </div>
+          <div class="flow flow-2x2">
+            <div class="flow-step"><b>Parse Excel</b><span>純 Python（openpyxl）。<br>0 token</span></div>
+            <div class="flow-step"><b>Match / Group</b><span>字串比對、cached embedding、規則 heuristic。<br>0–少量 token</span></div>
+            <div class="flow-step"><b>Generate TC</b><span>唯一真正燒 token 的步驟。<br>~130k（input 100k + output 30k）</span></div>
+            <div class="flow-step"><b>Export</b><span>openpyxl 寫檔。<br>0 token</span></div>
+          </div>
+        </div>
+        <div class="lane">
+          <h3>Agent 模式（同樣工作交給 chat agent）</h3>
+          <div class="cost-meter">
+            <div class="cost-row"><span>Generate</span><div class="cost-track"><div class="cost-bar core"></div></div><strong>~130k</strong></div>
+            <div class="cost-row"><span>額外 context</span><div class="cost-track"><div class="cost-bar medium"></div></div><strong>+10–100%</strong></div>
+            <div class="cost-row"><span>重試 / clarify</span><div class="cost-track"><div class="cost-bar high"></div></div><strong>1.5–3×</strong></div>
+          </div>
+          <div class="flow flow-2x2">
+            <div class="flow-step"><b>Generate TC</b><span>同樣要 ~130k，這段省不掉。</span></div>
+            <div class="flow-step"><b>Tool schema</b><span>每輪都帶 system prompt 與 tool definitions。</span></div>
+            <div class="flow-step"><b>Tool result</b><span>parse、match、group 結果要回填 context 才能繼續。</span></div>
+            <div class="flow-step"><b>多輪 replay</b><span>規劃、中介回覆、修正與重試會反覆重看歷史。</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>主流程</h2>
     <p class="lede">五個主要模組對應五個決策點。Configure 不會在載入時自動 group，必須由使用者按 Group 或手動編輯。</p>
     <div class="board">
       <div class="grid g5">
@@ -309,38 +429,26 @@
   </section>
 
   <section>
-    <h2><span class="num">4</span>Configure 決策圖</h2>
+    <h2><span class="num">5</span>Configure 決策圖</h2>
     <p class="lede">這裡是目前最容易誤會的區塊：載入頁面只顯示現有資料，真正分類要按 Group；Spec Matching 則有明確的 exact → fuzzy → semantic 順序。</p>
     <div class="board">
       <div class="split">
         <div class="lane">
-          <h3>Grouping</h3>
-          <div class="flow">
-            <div class="flow-step"><b>Load</b><span>讀取 rows 與 <code>testSetHint</code>，不自動產生 group。</span></div>
-            <div class="flow-step"><b>Group</b><span>用現有 Test Set 與 hint 當參考，重新分類全部 rows。</span></div>
-            <div class="flow-step"><b>Review</b><span>檢查 preview；需要時在 Manual Override 直接改 row。</span></div>
-            <div class="flow-step"><b>Apply</b><span>寫回 job rows，test set label 會縮短為可讀名稱。</span></div>
-          </div>
-          <div class="pillrow">
-            <span class="pill">HVAC Popup</span>
-            <span class="pill">Status Bar</span>
-            <span class="pill">Touchscreen & Hard Controls</span>
-            <span class="pill">Hard Control LEDs</span>
-            <span class="pill">Unclassified</span>
+          <h3>Grouping：使用者決定何時分類</h3>
+          <div class="flow flow-2x2 decision-flow">
+            <div class="flow-step"><b>Load rows</b><span>讀取 workbook rows 與原 H 欄 <code>testSetHint</code>。只呈現既有資料，不自動產生 group。</span></div>
+            <div class="flow-step"><b>Run Group</b><span>使用者按 Group 後，才用 requirement、hint 與現有 Test Set 重新分類全部 rows。</span></div>
+            <div class="flow-step"><b>Check preview</b><span>結果先留在 preview。若分類不對，可在 Manual Override 逐 row 改成正確 Test Set。</span></div>
+            <div class="flow-step"><b>Apply to job</b><span>確認後寫回 job rows，並把 test set label 縮短成可讀名稱。</span></div>
           </div>
         </div>
         <div class="lane">
-          <h3>Spec Matching</h3>
-          <div class="flow">
-            <div class="flow-step"><b>Exact Code</b><span>先抓 <code>C1</code>、<code>C6.1</code>、<code>CR</code>、<code>ICE</code>、<code>LS</code>、PDM code。</span></div>
-            <div class="flow-step"><b>Fuzzy Text</b><span>沒有前綴時，改用 H/I/L/M 欄與 hint 做文字比對。</span></div>
-            <div class="flow-step"><b>Semantic</b><span>只有 spec cache 有 embedding 且環境可用時才跑。</span></div>
-            <div class="flow-step"><b>Preview</b><span>使用者可 refresh 與檢查 unmatched / low confidence。</span></div>
-          </div>
-          <div class="pillrow">
-            <span class="pill">無前綴也可比對</span>
-            <span class="pill">Exact 不需 embedding</span>
-            <span class="pill">Refresh 會重載 preview</span>
+          <h3>Spec Matching：由確定到模糊</h3>
+          <div class="flow flow-2x2 decision-flow">
+            <div class="flow-step"><b>Exact code</b><span>先找 <code>C1</code>、<code>C6.1</code>、<code>CR</code>、<code>ICE</code>、<code>LS</code>、PDM code。命中時 confidence 最高。</span></div>
+            <div class="flow-step"><b>Fuzzy text</b><span>沒有明確 code 時，用 H/I/L/M 欄、requirement text 與 hint 做文字比對。</span></div>
+            <div class="flow-step"><b>Semantic match</b><span>只有 spec cache 有 embedding 且環境可用時才跑，用來補足文字相近但 code 不明的情況。</span></div>
+            <div class="flow-step"><b>Review preview</b><span>結果進 preview。使用者可 refresh，並優先檢查 unmatched 與 low confidence rows。</span></div>
           </div>
         </div>
       </div>
@@ -348,7 +456,7 @@
   </section>
 
   <section>
-    <h2><span class="num">5</span>Generate / Review 邏輯</h2>
+    <h2><span class="num">6</span>Generate / Review 邏輯</h2>
     <p class="lede">生成階段負責結構化產出；Review 階段負責把不該交付的 rows 排除，並維持後續 export 的資料一致性。</p>
     <div class="board">
       <div class="grid g2">
@@ -369,7 +477,7 @@
   </section>
 
   <section>
-    <h2><span class="num">6</span>Export 寫回規則</h2>
+    <h2><span class="num">7</span>Export 寫回規則</h2>
     <p class="lede">Export 使用 Review 後的最終 rows，不把已刪除的原 workbook row 帶回輸出檔。</p>
     <div class="board">
       <div class="flow">
@@ -387,7 +495,7 @@
   </section>
 
   <section>
-    <h2><span class="num">7</span>Quick Generate</h2>
+    <h2><span class="num">8</span>Quick Generate</h2>
     <p class="lede">替代路徑：單筆 requirement 直接生成 TC，不載入 workbook，也不寫回原 Excel。</p>
     <div class="board">
       <div class="grid g3">
