@@ -15,7 +15,9 @@ import {
 import { useBuilderDraftStore } from "../../../store/useBuilderDraftStore";
 import { useJobStore } from "../../../store/useJobStore";
 import type { TcRow } from "../../../lib/types";
+import BulkToolbox from "./review/BulkToolbox";
 import ReviewExportPanel from "./review/ReviewExportPanel";
+import RegeneratePanel from "./review/RegeneratePanel";
 
 type Filter = "all" | "error" | "warn" | "ok";
 
@@ -45,6 +47,7 @@ export default function ReviewStep() {
 
   const [filter, setFilter] = useState<Filter>("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [bulkSelected, setBulkSelected] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (tcRows.length > 0) markStepComplete("review", true);
@@ -131,20 +134,52 @@ export default function ReviewStep() {
           <RowList
             rows={filtered}
             selectedId={selectedId}
+            bulkSelected={bulkSelected}
+            onToggleBulk={(id) =>
+              setBulkSelected((prev) => {
+                const next = new Set(prev);
+                if (next.has(id)) next.delete(id);
+                else next.add(id);
+                return next;
+              })
+            }
+            onToggleAll={() =>
+              setBulkSelected((prev) => {
+                const allSelected =
+                  filtered.length > 0 &&
+                  filtered.every((r) => prev.has(r.id));
+                if (allSelected) {
+                  const next = new Set(prev);
+                  filtered.forEach((r) => next.delete(r.id));
+                  return next;
+                }
+                const next = new Set(prev);
+                filtered.forEach((r) => next.add(r.id));
+                return next;
+              })
+            }
             onSelect={setSelectedId}
             onDelete={(id) => {
               deleteTcRows([id]);
               if (selectedId === id) setSelectedId(null);
+              setBulkSelected((prev) => {
+                const next = new Set(prev);
+                next.delete(id);
+                return next;
+              });
             }}
           />
         </div>
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 space-y-4">
           {selected ? (
-            <RowDetail
-              key={selected.id}
-              row={selected}
-              onChange={(patch) => updateTcRow(selected.id, patch)}
-            />
+            <>
+              <RowDetail
+                key={selected.id}
+                row={selected}
+                onChange={(patch) => updateTcRow(selected.id, patch)}
+              />
+              <RegeneratePanel key={`regen-${selected.id}`} row={selected} />
+            </>
           ) : (
             <div className="surface p-8 text-center text-muted text-sm">
               Pick a row to review.
@@ -152,6 +187,12 @@ export default function ReviewStep() {
           )}
         </div>
       </div>
+
+      <BulkToolbox
+        selectedIds={Array.from(bulkSelected)}
+        rows={tcRows}
+        onClear={() => setBulkSelected(new Set())}
+      />
 
       <ReviewExportPanel />
     </div>
@@ -203,13 +244,19 @@ function FilterPill({
 function RowList({
   rows,
   selectedId,
+  bulkSelected,
   onSelect,
   onDelete,
+  onToggleBulk,
+  onToggleAll,
 }: {
   rows: TcRow[];
   selectedId: string | null;
+  bulkSelected: Set<string>;
   onSelect: (id: string) => void;
   onDelete: (id: string) => void;
+  onToggleBulk: (id: string) => void;
+  onToggleAll: () => void;
 }) {
   if (rows.length === 0) {
     return (
@@ -219,21 +266,40 @@ function RowList({
     );
   }
 
+  const allChecked = rows.every((r) => bulkSelected.has(r.id));
+  const someChecked = !allChecked && rows.some((r) => bulkSelected.has(r.id));
+
   return (
     <div
       className="surface p-2 overflow-y-auto"
       style={{ maxHeight: 600 }}
     >
-      <ul className="space-y-1">
+      <div
+        className="flex items-center gap-3 px-3 py-2 text-[10px] uppercase tracking-wider text-muted font-bold"
+        style={{ boxShadow: "inset 0 -1px 0 rgba(21, 97, 109, 0.1)" }}
+      >
+        <BulkCheckbox
+          checked={allChecked}
+          indeterminate={someChecked}
+          onChange={onToggleAll}
+          ariaLabel="Select all visible rows"
+        />
+        <span>
+          {bulkSelected.size > 0
+            ? `${bulkSelected.size} selected`
+            : `${rows.length} rows`}
+        </span>
+      </div>
+      <ul className="space-y-1 mt-1">
         {rows.map((row) => {
           const sev = severity(row);
           const active = row.id === selectedId;
+          const isBulk = bulkSelected.has(row.id);
+          const isAwaiting = !!row.awaitingApply;
           return (
             <li key={row.id}>
-              <button
-                type="button"
-                onClick={() => onSelect(row.id)}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all focus-ring row-hover"
+              <div
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all row-hover"
                 style={{
                   backgroundColor: active
                     ? "rgba(255, 125, 0, 0.12)"
@@ -243,32 +309,107 @@ function RowList({
                     : undefined,
                 }}
               >
-                <SeverityIcon severity={sev} />
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm text-primary font-bold truncate">
-                    {row.reqId} · {row.tcTitle || row.testItem}
-                  </div>
-                  <div className="text-xs text-muted truncate">
-                    {row.testSet || "—"}
-                  </div>
-                </div>
+                <BulkCheckbox
+                  checked={isBulk}
+                  onChange={() => onToggleBulk(row.id)}
+                  ariaLabel={`Select ${row.reqId}`}
+                />
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (window.confirm(`Delete ${row.reqId}?`)) onDelete(row.id);
+                  onClick={() => onSelect(row.id)}
+                  className="flex-1 flex items-center gap-3 min-w-0 text-left focus-ring rounded"
+                >
+                  <SeverityIcon severity={sev} />
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm text-primary font-bold truncate">
+                      {row.reqId} · {row.tcTitle || row.testItem}
+                    </div>
+                    <div className="text-xs text-muted truncate flex items-center gap-2">
+                      <span>{row.testSet || "—"}</span>
+                      {isAwaiting && (
+                        <span
+                          className="text-[9px] uppercase tracking-wider font-bold"
+                          style={{ color: "var(--color-tangerine)" }}
+                        >
+                          awaiting apply
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm(`Delete ${row.reqId}?`))
+                      onDelete(row.id);
                   }}
                   className="text-muted hover:text-[var(--color-brandy)] focus-ring rounded p-1"
                   aria-label="Delete row"
                 >
                   <RiDeleteBin6Line size={14} />
                 </button>
-              </button>
+              </div>
             </li>
           );
         })}
       </ul>
     </div>
+  );
+}
+
+function BulkCheckbox({
+  checked,
+  indeterminate,
+  onChange,
+  ariaLabel,
+}: {
+  checked: boolean;
+  indeterminate?: boolean;
+  onChange: () => void;
+  ariaLabel: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={indeterminate ? "mixed" : checked}
+      aria-label={ariaLabel}
+      onClick={onChange}
+      className="flex items-center justify-center w-4 h-4 rounded transition-all focus-ring shrink-0"
+      style={{
+        backgroundColor:
+          checked || indeterminate ? "var(--color-tangerine)" : "transparent",
+        boxShadow:
+          checked || indeterminate
+            ? "0 1px 2px var(--shadow-tint)"
+            : "inset 0 0 0 1.5px var(--color-teal)",
+        color: "var(--color-ink)",
+      }}
+    >
+      {indeterminate ? (
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <line
+            x1="3"
+            y1="6"
+            x2="9"
+            y2="6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+      ) : checked ? (
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path
+            d="M2 6.5L5 9.5L10 3.5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ) : null}
+    </button>
   );
 }
 
