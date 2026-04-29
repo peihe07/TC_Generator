@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: tc_generator_backend
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      TC_CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./output:/app/output
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tc_generator_frontend
+    environment:
+      PYTHON_API_BASE: http://backend:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
