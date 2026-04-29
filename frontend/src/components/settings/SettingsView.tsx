@@ -2,7 +2,7 @@
 
 import { RiResetLeftLine, RiCheckLine } from "@remixicon/react";
 import { useEffect, useMemo, useState } from "react";
-import { MODEL_OPTIONS } from "../modules/configure/constants";
+import { MODEL_OPTIONS } from "../../lib/configureConstants";
 import {
   Section,
   RadioCard,

@@ -3,7 +3,7 @@
 import {
   MODEL_OPTIONS,
   TARGET_COLUMN_OPTIONS,
-} from "../../../modules/configure/constants";
+} from "../../../../lib/configureConstants";
 import type { GenerationConfig } from "../../../../lib/types";
 import { useJobStore } from "../../../../store/useJobStore";
 import {

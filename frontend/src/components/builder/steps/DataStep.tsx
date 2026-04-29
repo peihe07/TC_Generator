@@ -15,7 +15,7 @@ import {
 } from "../../../services/jobAdapter";
 import { useBuilderDraftStore } from "../../../store/useBuilderDraftStore";
 import { useJobStore } from "../../../store/useJobStore";
-import { formatSpecLibraryLabel } from "../../modules/upload/UploadModule";
+import { formatSpecLibraryLabel } from "../../../lib/specLibrary";
 
 type Slot = "tc" | "referenceWorkbook" | "spec";
 

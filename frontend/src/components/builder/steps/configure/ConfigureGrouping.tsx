@@ -7,9 +7,7 @@ import {
 } from "../../../../services/jobAdapter";
 import { useJobHistoryStore } from "../../../../store/useJobHistoryStore";
 import { useJobStore } from "../../../../store/useJobStore";
-import type {
-  GroupPreviewState,
-} from "../../../modules/configure/types";
+import type { GroupPreviewState } from "../../../../lib/configurePreviewTypes";
 import { Section, StatusPill } from "./shared";
 
 export default function ConfigureGrouping() {

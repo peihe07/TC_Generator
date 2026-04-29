@@ -12,7 +12,7 @@ import {
   fetchSpecLibrary,
   type SpecLibraryEntry,
 } from "../../services/jobAdapter";
-import { formatSpecLibraryLabel } from "../modules/upload/UploadModule";
+import { formatSpecLibraryLabel } from "../../lib/specLibrary";
 
 export default function TemplateDetailView({
   templateId,

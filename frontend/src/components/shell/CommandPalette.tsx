@@ -9,7 +9,6 @@ import {
   RiDatabase2Line,
   RiSettings3Line,
   RiAddLine,
-  RiArchive2Line,
   RiDownload2Line,
   RiRefreshLine,
   RiBookmarkLine,
@@ -24,7 +23,7 @@ import { toRuns } from "../../services/runAdapter";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
 import { useCommandPaletteStore } from "../../store/useCommandPaletteStore";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
-import { formatSpecLibraryLabel } from "../modules/upload/UploadModule";
+import { formatSpecLibraryLabel } from "../../lib/specLibrary";
 
 type CommandGroup = "Navigate" | "Action" | "Run" | "Template" | "Output";
 
@@ -48,7 +47,6 @@ const STATIC_COMMANDS: Command[] = [
   { id: "nav-data", label: "Data", group: "Navigate", href: "/data", icon: RiDatabase2Line },
   { id: "nav-settings", label: "Settings", group: "Navigate", href: "/settings", icon: RiSettings3Line },
   { id: "act-new-run", label: "New Run", group: "Action", href: "/run-builder", icon: RiAddLine, keywords: "create start generate builder" },
-  { id: "nav-legacy", label: "Open Legacy Desktop", group: "Action", href: "/legacy", icon: RiArchive2Line, keywords: "98 windows old fallback" },
 ];
 
 export default function CommandPalette() {

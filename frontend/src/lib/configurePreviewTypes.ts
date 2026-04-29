@@ -1,7 +1,4 @@
-/**
- * Shared types for the Configure module tab previews. Kept separate so
- * hooks, tab panels, and the orchestrator share one source of truth.
- */
+// Configure step API 回傳的 preview 型別，供 Builder grouping / spec matching 共用。
 
 export type GroupPreviewState = {
   groups: Array<{
@@ -13,7 +10,7 @@ export type GroupPreviewState = {
     id: string;
     reqId: string;
     testSet: string;
-    source: 'existing' | 'derived';
+    source: "existing" | "derived";
   }>;
   cost: number;
   inputTokens: number;
@@ -36,9 +33,7 @@ export type MatchPreviewState = {
     reqId: string;
     testItem: string;
     specReference: string | null;
-    matchType: 'exact' | 'fuzzy' | 'unmatched';
+    matchType: "exact" | "fuzzy" | "unmatched";
     matchScore?: number | null;
   }>;
 };
-
-export type ConfigureTabId = 'tab1' | 'tab2' | 'tab3';

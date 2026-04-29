@@ -4,7 +4,7 @@ import { RiLoader4Line, RiRefreshLine } from "@remixicon/react";
 import { useEffect, useMemo, useState } from "react";
 import { fetchMatchPreview } from "../../../../services/jobAdapter";
 import { useJobStore } from "../../../../store/useJobStore";
-import type { MatchPreviewState } from "../../../modules/configure/types";
+import type { MatchPreviewState } from "../../../../lib/configurePreviewTypes";
 import { Section, StatusPill } from "./shared";
 
 export default function ConfigureSpecMatching() {

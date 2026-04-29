@@ -6,7 +6,6 @@ import {
   RiArrowLeftLine,
   RiPlayCircleLine,
   RiPencilLine,
-  RiArchive2Line,
 } from "@remixicon/react";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
 import {
@@ -211,14 +210,6 @@ export default function RunDetailView({ runId }: { runId: string }) {
             <span>Output artifacts and download links</span>
           </li>
         </ul>
-        <Link
-          href="/legacy"
-          className="inline-flex items-center gap-1.5 text-xs font-bold mt-2"
-          style={{ color: "var(--color-tangerine)" }}
-        >
-          <RiArchive2Line size={14} />
-          Open in legacy desktop
-        </Link>
       </section>
     </div>
   );

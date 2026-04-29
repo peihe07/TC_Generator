@@ -36,8 +36,6 @@ body {
   min-height: 100%;
 }
 
-/* legacy 桌面隱喻保留 overflow-hidden（透過 .legacy-shell 套用） */
-
 /* ---------- Surfaces ---------- */
 .surface {
   background-color: var(--surface-papaya);
