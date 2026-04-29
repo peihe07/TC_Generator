@@ -13,8 +13,10 @@ test.describe("Workspace shell", () => {
     for (const label of ["Home", "Runs", "Templates", "Outputs", "Data"]) {
       await expect(page.getByRole("link", { name: label }).first()).toBeVisible();
     }
-    // CTA visible
-    await expect(page.getByRole("link", { name: /New Run/i })).toBeVisible();
+    // CTA visible（Home 頁有多個 "New Run" 連結，TopNav / Quick Actions / Recent Runs 空狀態）
+    await expect(
+      page.getByRole("link", { name: /New Run/i }).first()
+    ).toBeVisible();
   });
 
   test("primary nav navigates between destinations", async ({ page }) => {
@@ -54,7 +56,11 @@ test.describe("Workspace shell", () => {
 
   test("Run Builder shows 5-step stepper", async ({ page }) => {
     await page.goto("/run-builder");
-    // Stepper labels are visible at md+ breakpoints; default Playwright viewport hits md.
+    // Run Builder 標頭 + 第一步 "Select Data" 標題與描述總是在
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Select Data" })
+    ).toBeVisible();
+    // Stepper labels 在 md+ 才顯示；用 attached 而非 visible
     for (const label of [
       "Select Data",
       "Configure Rules",
@@ -62,7 +68,9 @@ test.describe("Workspace shell", () => {
       "Execute",
       "Review",
     ]) {
-      await expect(page.getByText(label, { exact: true }).first()).toBeVisible();
+      await expect(
+        page.getByText(label, { exact: true }).first()
+      ).toBeAttached();
     }
   });
 

@@ -28,11 +28,6 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-const seed = (
-  partial: Partial<Parameters<typeof useJobHistoryStore.getState>[0]> = {}
-) => {
-  void partial;
-};
 
 describe("RunsView", () => {
   it("空 history 時顯示空狀態 + 0 of 0 runs", () => {
@@ -92,5 +87,3 @@ describe("RunsView", () => {
   });
 });
 
-// keep tsc happy: seed unused but typed
-void seed;
