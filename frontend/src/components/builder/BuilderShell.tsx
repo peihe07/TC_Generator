@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
+import { useJobStore } from "../../store/useJobStore";
+import { useWorkspaceSettingsStore } from "../../store/useWorkspaceSettingsStore";
 import BuilderActionBar from "./BuilderActionBar";
 import BuilderStepper from "./BuilderStepper";
 import ConfigureStep from "./steps/ConfigureStep";
@@ -42,6 +44,15 @@ export default function BuilderShell() {
   const update = useBuilderDraftStore((s) => s.update);
   const clearDraft = useBuilderDraftStore((s) => s.clear);
 
+  const wsSettings = useWorkspaceSettingsStore((s) => s.settings);
+  const wsSettingsLoaded = useWorkspaceSettingsStore((s) => s.loaded);
+  const loadWsSettings = useWorkspaceSettingsStore((s) => s.loadFromStorage);
+  const updateJobConfig = useJobStore((s) => s.updateConfig);
+
+  useEffect(() => {
+    if (!wsSettingsLoaded) loadWsSettings();
+  }, [wsSettingsLoaded, loadWsSettings]);
+
   const stepFromUrl = searchParams.get("step");
 
   const fromRunId = searchParams.get("from");
@@ -59,11 +70,24 @@ export default function BuilderShell() {
     if (!loaded) loadFromStorage();
   }, [loaded, loadFromStorage]);
 
+  // 開新 draft 時把 workspace defaults 套到 job config
+  const applyDefaults = () => {
+    if (!wsSettingsLoaded) return;
+    updateJobConfig({
+      model: wsSettings.defaultModel,
+      batchSize: wsSettings.defaultBatchSize,
+      budgetLimit: wsSettings.defaultBudgetLimit,
+      creditBalance: wsSettings.defaultCreditBalance,
+      strictValidation: wsSettings.defaultStrictValidation,
+    });
+  };
+
   useEffect(() => {
     if (!loaded) return;
     // 從 Run Detail 帶 source runId 來：若不是當前 draft 的來源 → 開新 draft
     if (sourceRunId && draft?.sourceRunId !== sourceRunId) {
       startNew();
+      applyDefaults();
       update({ sourceRunId, rerunMode: rerunMode ?? undefined });
       return;
     }
@@ -81,8 +105,12 @@ export default function BuilderShell() {
       });
       return;
     }
-    if (!draft) startNew();
-  }, [loaded, draft, sourceRunId, rerunMode, templateIdParam, startNew, update]);
+    if (!draft) {
+      startNew();
+      applyDefaults();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loaded, draft, sourceRunId, rerunMode, templateIdParam, startNew, update, wsSettingsLoaded]);
 
   const current: BuilderStep = useMemo(() => {
     if (stepFromUrl && isBuilderStep(stepFromUrl)) return stepFromUrl;
