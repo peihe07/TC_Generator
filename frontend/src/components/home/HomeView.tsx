@@ -3,6 +3,7 @@
 import { useEffect, useMemo } from "react";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
 import { aggregate, toRuns } from "../../services/runAdapter";
+import ContinueDraft from "./ContinueDraft";
 import KpiCards from "./KpiCards";
 import QuickActions from "./QuickActions";
 import RecentRuns from "./RecentRuns";
@@ -29,6 +30,8 @@ export default function HomeView() {
       </header>
 
       <KpiCards agg={agg} />
+
+      <ContinueDraft />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
