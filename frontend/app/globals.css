@@ -115,3 +115,36 @@ body {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-tangerine);
 }
+
+/* ---------- Skeleton shimmer ---------- */
+.tc-skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(21, 97, 109, 0.1);
+}
+.tc-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 236, 209, 0) 0%,
+    rgba(255, 236, 209, 0.6) 50%,
+    rgba(255, 236, 209, 0) 100%
+  );
+  animation: tc-skeleton-shimmer 1.4s ease-in-out infinite;
+  transform: translateX(-100%);
+}
+@keyframes tc-skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tc-skeleton::after {
+    animation: none;
+  }
+}

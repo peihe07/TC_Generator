@@ -17,7 +17,7 @@ import {
   type RemixiconComponentType,
 } from "@remixicon/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fetchSpecLibrary, type SpecLibraryEntry } from "../../services/jobAdapter";
 import { toRuns } from "../../services/runAdapter";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
@@ -65,6 +65,7 @@ export default function CommandPalette() {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const [templates, setTemplates] = useState<SpecLibraryEntry[]>([]);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   // 全域 Cmd/Ctrl+K
   useEffect(() => {
@@ -81,7 +82,16 @@ export default function CommandPalette() {
   }, [toggle, setOpen]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      // 關閉時把焦點還給先前的元素，鍵盤使用者不會迷路
+      previousFocusRef.current?.focus?.();
+      previousFocusRef.current = null;
+      return;
+    }
+    previousFocusRef.current =
+      typeof document !== "undefined"
+        ? (document.activeElement as HTMLElement | null)
+        : null;
     if (!loaded) loadFromStorage();
     if (!draftLoaded) loadDraft();
     setQuery("");
@@ -271,10 +281,14 @@ export default function CommandPalette() {
         backgroundColor: "rgba(0, 21, 36, 0.45)",
         backdropFilter: "blur(4px)",
       }}
+      role="presentation"
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className="surface-floating w-full max-w-xl overflow-hidden"
+        role="dialog"
+        aria-label="Command palette"
+        aria-modal="true"
       >
         <input
           autoFocus

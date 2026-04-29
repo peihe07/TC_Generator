@@ -3,9 +3,12 @@
 import {
   RiDownload2Line,
   RiArrowLeftRightLine,
+  RiInboxLine,
 } from "@remixicon/react";
 import Link from "next/link";
+import EmptyState from "../shell/EmptyState";
 import { useEffect, useMemo, useState } from "react";
+import { track } from "../../lib/telemetry";
 import {
   formatCost,
   formatDuration,
@@ -57,17 +60,12 @@ export default function OutputsView() {
       </header>
 
       {outputs.length === 0 ? (
-        <div className="surface p-10 text-center text-muted text-sm">
-          No outputs yet. Complete a run via{" "}
-          <Link
-            href="/run-builder"
-            className="font-bold"
-            style={{ color: "var(--color-tangerine)" }}
-          >
-            New Run
-          </Link>{" "}
-          to populate this list.
-        </div>
+        <EmptyState
+          Icon={RiInboxLine}
+          title="No outputs yet"
+          description="Outputs appear after a run completes."
+          action={{ label: "Start New Run", href: "/run-builder" }}
+        />
       ) : (
         <div className="surface p-2 overflow-x-auto">
           <table className="w-full text-sm">
@@ -169,6 +167,14 @@ export default function OutputsView() {
                 selected[0]
               )}&b=${encodeURIComponent(selected[1] ?? "")}`}
               aria-disabled={selected.length !== 2}
+              onClick={() => {
+                if (selected.length === 2) {
+                  track("output_compare_open", {
+                    a: selected[0],
+                    b: selected[1],
+                  });
+                }
+              }}
               className="cta inline-flex items-center gap-1.5 text-sm"
               style={{
                 pointerEvents: selected.length === 2 ? "auto" : "none",

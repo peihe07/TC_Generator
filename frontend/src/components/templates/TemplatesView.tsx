@@ -5,6 +5,8 @@ import {
   RiFileList3Line,
   RiSearchLine,
 } from "@remixicon/react";
+import EmptyState from "../shell/EmptyState";
+import { SkeletonCard } from "../shell/Skeleton";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -84,17 +86,27 @@ export default function TemplatesView() {
       )}
 
       {entries === null && !error && (
-        <div className="surface p-8 text-center text-secondary text-sm">
-          Loading templates...
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
         </div>
       )}
 
       {filtered && filtered.length === 0 && (
-        <div className="surface p-8 text-center text-muted text-sm">
-          {entries && entries.length > 0
-            ? "No templates match the search."
-            : "No templates yet."}
-        </div>
+        <EmptyState
+          Icon={RiBookmarkLine}
+          title={
+            entries && entries.length > 0
+              ? "No templates match the search"
+              : "No templates yet"
+          }
+          description={
+            entries && entries.length > 0
+              ? "Try a different keyword."
+              : "Templates appear once your spec library is populated."
+          }
+        />
       )}
 
       {filtered && filtered.length > 0 && (

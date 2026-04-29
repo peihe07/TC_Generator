@@ -27,17 +27,20 @@ export default function RecentRuns({ runs }: { runs: Run[] }) {
       </header>
 
       {recent.length === 0 ? (
-        <p className="text-sm text-muted py-6 text-center">
-          No runs yet. Start with{" "}
-          <Link
-            href="/run-builder"
-            className="font-bold"
-            style={{ color: "var(--color-tangerine)" }}
-          >
-            New Run
-          </Link>
-          .
-        </p>
+        <div className="text-sm text-muted py-8 text-center space-y-1">
+          <div className="font-bold text-secondary">No runs yet</div>
+          <div>
+            Start with{" "}
+            <Link
+              href="/run-builder"
+              className="font-bold"
+              style={{ color: "var(--color-tangerine)" }}
+            >
+              New Run
+            </Link>
+            .
+          </div>
+        </div>
       ) : (
         <table className="w-full text-sm">
           <thead>

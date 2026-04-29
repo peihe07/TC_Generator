@@ -6,6 +6,7 @@ import {
   RiUploadCloud2Line,
 } from "@remixicon/react";
 import Link from "next/link";
+import EmptyState from "../shell/EmptyState";
 import { useEffect, useMemo } from "react";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
 import { useJobStore } from "../../store/useJobStore";
@@ -137,19 +138,12 @@ export default function DataView() {
       </header>
 
       {datasets.length === 0 ? (
-        <div className="surface p-10 text-center space-y-2">
-          <p className="text-sm text-muted">
-            No datasets yet. Start a{" "}
-            <Link
-              href="/run-builder"
-              className="font-bold"
-              style={{ color: "var(--color-tangerine)" }}
-            >
-              New Run
-            </Link>{" "}
-            to upload one.
-          </p>
-        </div>
+        <EmptyState
+          Icon={RiDatabase2Line}
+          title="No datasets yet"
+          description="Upload a workbook in a New Run to register it here."
+          action={{ label: "Start New Run", href: "/run-builder" }}
+        />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {datasets.map((d) => (

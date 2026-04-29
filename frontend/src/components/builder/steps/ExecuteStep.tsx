@@ -11,6 +11,7 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 import { estimateGenerateCost, formatEstimate } from "../../../lib/costEstimate";
 import { createJobLog } from "../../../lib/logging";
+import { track } from "../../../lib/telemetry";
 import { startGeneration } from "../../../services/jobAdapter";
 import { useBuilderDraftStore } from "../../../store/useBuilderDraftStore";
 import { useJobStore } from "../../../store/useJobStore";
@@ -82,6 +83,10 @@ export default function ExecuteStep({ onAdvance }: { onAdvance: () => void }) {
     if (!isResume) {
       startedAtRef.current = Date.now();
       setElapsedSeconds(0);
+      track("run_execute_start", {
+        jobId: jobMetadata?.jobId ?? null,
+        rowCount: rowsToRun.length,
+      });
     }
     const initialReqCount =
       new Set(rowsToRun.map((r) => r.reqId).filter(Boolean)).size ||
@@ -131,11 +136,22 @@ export default function ExecuteStep({ onAdvance }: { onAdvance: () => void }) {
           setProcessing(false);
           setPendingResumeIds([]);
           appendLog(createJobLog("success", message));
+          track("run_execute_success", {
+            jobId: jobMetadata?.jobId ?? null,
+            rowCount: rowsToRun.length,
+            durationMs: startedAtRef.current
+              ? Date.now() - startedAtRef.current
+              : undefined,
+          });
           markStepComplete("execute", true);
           onAdvance();
         },
         onError: (message) => {
           setProcessing(false);
+          track("run_execute_fail", {
+            jobId: jobMetadata?.jobId ?? null,
+            reason: message,
+          });
           if (message.toLowerCase().includes("disconnect")) {
             const stillPending = useJobStore
               .getState()
@@ -284,6 +300,8 @@ export default function ExecuteStep({ onAdvance }: { onAdvance: () => void }) {
         </div>
         <div
           className="font-mono text-xs leading-relaxed overflow-auto p-3 rounded-md max-h-[280px]"
+          aria-live="polite"
+          aria-label="Generation log"
           style={{
             backgroundColor: "rgba(0, 21, 36, 0.04)",
             boxShadow: "inset 0 1px 2px rgba(0, 21, 36, 0.08)",

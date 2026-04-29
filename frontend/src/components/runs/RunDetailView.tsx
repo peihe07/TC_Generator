@@ -8,6 +8,7 @@ import {
   RiPencilLine,
 } from "@remixicon/react";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+import { track } from "../../lib/telemetry";
 import {
   formatCost,
   formatDuration,
@@ -16,6 +17,7 @@ import {
   STATUS_LABEL,
   toRun,
 } from "../../services/runAdapter";
+import { Skeleton, SkeletonRows } from "../shell/Skeleton";
 
 interface UsageResponse {
   cost?: number;
@@ -65,7 +67,27 @@ export default function RunDetailView({ runId }: { runId: string }) {
   }, [runId]);
 
   if (!loaded) {
-    return <div className="text-secondary">Loading...</div>;
+    return (
+      <div className="space-y-6">
+        <BackLink />
+        <header className="space-y-2">
+          <Skeleton height={32} width="40%" />
+          <Skeleton height={12} width="55%" />
+        </header>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="surface p-4 space-y-2">
+              <Skeleton height={10} width="40%" />
+              <Skeleton height={20} width="60%" />
+            </div>
+          ))}
+        </div>
+        <div className="surface p-5 space-y-3">
+          <Skeleton height={12} width="20%" />
+          <SkeletonRows rows={2} />
+        </div>
+      </div>
+    );
   }
 
   if (!run) {
@@ -126,6 +148,9 @@ export default function RunDetailView({ runId }: { runId: string }) {
         <div className="flex items-center gap-2">
           <Link
             href={`/run-builder?from=${encodeURIComponent(run.id)}`}
+            onClick={() =>
+              track("run_retry_click", { runId: run.id, mode: "rerun" })
+            }
             className="cta inline-flex items-center gap-1.5 text-sm"
           >
             <RiPlayCircleLine size={16} />
@@ -133,6 +158,9 @@ export default function RunDetailView({ runId }: { runId: string }) {
           </Link>
           <Link
             href={`/run-builder?edit=${encodeURIComponent(run.id)}`}
+            onClick={() =>
+              track("run_retry_click", { runId: run.id, mode: "edit" })
+            }
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold focus-ring transition-all"
             style={{
               backgroundColor: "rgba(21, 97, 109, 0.12)",

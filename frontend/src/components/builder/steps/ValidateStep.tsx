@@ -5,7 +5,8 @@ import {
   RiCloseLine,
   RiAlertLine,
 } from "@remixicon/react";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { track } from "../../../lib/telemetry";
 import { useBuilderDraftStore } from "../../../store/useBuilderDraftStore";
 import { useJobStore } from "../../../store/useJobStore";
 
@@ -25,12 +26,17 @@ export default function ValidateStep() {
     (c) => c.status === "fail" && c.critical
   ).length;
 
+  const lastFailCount = useRef<number | null>(null);
   useEffect(() => {
     if (criticalFails === 0) {
       markStepComplete("validate", true);
     } else {
       markStepComplete("validate", false);
+      if (lastFailCount.current !== criticalFails) {
+        track("builder_validation_fail", { criticalCount: criticalFails });
+      }
     }
+    lastFailCount.current = criticalFails;
   }, [criticalFails, markStepComplete]);
 
   const reqCount = useMemo(

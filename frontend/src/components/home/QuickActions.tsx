@@ -4,6 +4,7 @@ import {
   RiFileList3Line,
   RiUploadCloud2Line,
 } from "@remixicon/react";
+import { track } from "../../lib/telemetry";
 
 type Action = {
   href: string;
@@ -46,6 +47,10 @@ export default function QuickActions() {
           <Link
             key={href}
             href={href}
+            onClick={() => {
+              if (href === "/run-builder")
+                track("home_new_run_click", { source: "quick-actions" });
+            }}
             className="flex items-center gap-3 p-3 rounded-lg row-hover focus-ring transition-all"
           >
             <span

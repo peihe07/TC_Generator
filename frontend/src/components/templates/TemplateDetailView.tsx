@@ -13,6 +13,8 @@ import {
   type SpecLibraryEntry,
 } from "../../services/jobAdapter";
 import { formatSpecLibraryLabel } from "../../lib/specLibrary";
+import { track } from "../../lib/telemetry";
+import { Skeleton, SkeletonRows } from "../shell/Skeleton";
 
 export default function TemplateDetailView({
   templateId,
@@ -42,7 +44,29 @@ export default function TemplateDetailView({
   }, [templateId]);
 
   if (entry === undefined && !error) {
-    return <div className="text-secondary text-sm">Loading template...</div>;
+    return (
+      <div className="space-y-6">
+        <BackLink />
+        <header className="flex items-start gap-4">
+          <Skeleton width={48} height={48} rounded={10} />
+          <div className="flex-1 space-y-2">
+            <Skeleton height={28} width="40%" />
+            <Skeleton height={12} width="25%" />
+          </div>
+        </header>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="surface p-4 space-y-2">
+              <Skeleton height={10} width="40%" />
+              <Skeleton height={20} width="60%" />
+            </div>
+          ))}
+        </div>
+        <div className="surface p-5">
+          <SkeletonRows rows={3} />
+        </div>
+      </div>
+    );
   }
 
   if (error) {
@@ -100,6 +124,9 @@ export default function TemplateDetailView({
 
         <Link
           href={`/run-builder?templateId=${encodeURIComponent(entry.name)}`}
+          onClick={() =>
+            track("template_use_click", { templateId: entry.name })
+          }
           className="cta inline-flex items-center gap-1.5 text-sm"
         >
           Use in New Run

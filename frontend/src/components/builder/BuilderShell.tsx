@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { track } from "../../lib/telemetry";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
 import { useJobStore } from "../../store/useJobStore";
 import { useWorkspaceSettingsStore } from "../../store/useWorkspaceSettingsStore";
@@ -138,7 +139,10 @@ export default function BuilderShell() {
 
   const onNext = useCallback(() => {
     const n = nextStep(current);
-    if (n) goTo(n);
+    if (n) {
+      track("builder_step_next", { from: current, to: n });
+      goTo(n);
+    }
   }, [current, goTo]);
 
   const onBack = useCallback(() => {
