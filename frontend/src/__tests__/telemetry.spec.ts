@@ -1,12 +1,22 @@
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+  _resetForTest,
   clearRecordedEvents,
+  flushNow,
   getRecordedEvents,
   track,
 } from "../lib/telemetry";
 
-beforeEach(() => clearRecordedEvents());
-afterEach(() => clearRecordedEvents());
+beforeEach(() => {
+  clearRecordedEvents();
+  _resetForTest();
+});
+afterEach(() => {
+  clearRecordedEvents();
+  _resetForTest();
+  vi.restoreAllMocks();
+  vi.unstubAllEnvs();
+});
 
 describe("telemetry", () => {
   it("track 把事件推到 buffer", () => {
@@ -29,6 +39,39 @@ describe("telemetry", () => {
     track("home_new_run_click", {});
     clearRecordedEvents();
     expect(getRecordedEvents()).toEqual([]);
+  });
+
+  it("非 test 環境下批次 flush 到 /api/events", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(JSON.stringify({ ok: true, count: 10 }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      })
+    );
+    vi.stubGlobal("fetch", fetchMock);
+
+    // 10 個事件達到 FLUSH_THRESHOLD → 立即 flush
+    for (let i = 0; i < 10; i++) {
+      track("builder_step_next", { from: "data", to: "configure" });
+    }
+    await flushNow();
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const [url, init] = fetchMock.mock.calls[0];
+    expect(url).toBe("/api/events");
+    expect((init as RequestInit).method).toBe("POST");
+    const body = JSON.parse((init as RequestInit).body as string);
+    expect(body.events).toHaveLength(10);
+    expect(body.events[0].name).toBe("builder_step_next");
+  });
+
+  it("test 環境下不送出（避免污染外部 fetch mock）", async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+    track("home_new_run_click", { source: "x" });
+    await flushNow();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("不同 event 的 props 都被保留", () => {

@@ -1,11 +1,9 @@
-// Client-only event tracking. 後端尚無 collector endpoint，所以這層只做：
-// 1. console.debug 方便本地觀察
-// 2. 推到 window.__tcEvents（dev/test mode）給 Playwright 斷言
-// 3. 預留 transport 接口以便後續接後端 / 分析工具
+// Client-side event tracking。每個 track() 呼叫：
+// 1. console.debug（dev/test only）
+// 2. 推到 window.__tcEvents（dev/test only，給 Playwright 斷言）
+// 3. 排入 send queue，定期 batched flush 到 POST /api/events
 //
-// Event 命名沿用 blueprint §13.2。新增事件請：
-// - 在 EventName union 加上 literal
-// - 在 KnownEvents map 補欄位限制（強型別 props）
+// 失敗 silent — telemetry 不能拖累主功能；網路錯誤就丟掉，避免堆積記憶體。
 
 export type EventName =
   | "home_new_run_click"
@@ -45,6 +43,12 @@ interface RecordedEvent {
 }
 
 const BUFFER_LIMIT = 200;
+const FLUSH_INTERVAL_MS = 5000;
+const FLUSH_THRESHOLD = 10;
+const MAX_QUEUE = 500;
+
+let pendingQueue: RecordedEvent[] = [];
+let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
 function pushBuffer(event: RecordedEvent) {
   if (typeof window === "undefined") return;
@@ -54,6 +58,30 @@ function pushBuffer(event: RecordedEvent) {
   w.__tcEvents.push(event);
   if (w.__tcEvents.length > BUFFER_LIMIT) {
     w.__tcEvents.splice(0, w.__tcEvents.length - BUFFER_LIMIT);
+  }
+}
+
+function scheduleFlush() {
+  if (typeof window === "undefined") return;
+  if (flushTimer) return;
+  flushTimer = setTimeout(() => {
+    flushTimer = null;
+    void flush();
+  }, FLUSH_INTERVAL_MS);
+}
+
+async function flush() {
+  if (pendingQueue.length === 0) return;
+  const batch = pendingQueue.splice(0, pendingQueue.length);
+  try {
+    await fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ events: batch }),
+      keepalive: true,
+    });
+  } catch {
+    // silent — telemetry 不重要到要 retry
   }
 }
 
@@ -68,6 +96,20 @@ export function track<T extends EventName>(name: T, props: EventProps<T>): void 
     // eslint-disable-next-line no-console
     console.debug("[telemetry]", name, props);
   }
+
+  if (typeof window === "undefined") return;
+  // 測試環境（NODE_ENV='test'）跳過實際送出，避免污染外部 fetch mock
+  if (process.env.NODE_ENV === "test") return;
+
+  pendingQueue.push(event);
+  if (pendingQueue.length > MAX_QUEUE) {
+    pendingQueue.splice(0, pendingQueue.length - MAX_QUEUE);
+  }
+  if (pendingQueue.length >= FLUSH_THRESHOLD) {
+    void flush();
+  } else {
+    scheduleFlush();
+  }
 }
 
 // 測試 / 工具：拿目前 buffer 快照
@@ -81,4 +123,18 @@ export function clearRecordedEvents(): void {
   if (typeof window === "undefined") return;
   const w = window as unknown as { __tcEvents?: RecordedEvent[] };
   w.__tcEvents = [];
+}
+
+// 暫停應用前主動 flush（如 beforeunload）；keepalive fetch 也會嘗試送出。
+export function flushNow(): Promise<void> {
+  return flush();
+}
+
+// 測試專用：清掉 pending queue
+export function _resetForTest(): void {
+  pendingQueue = [];
+  if (flushTimer) {
+    clearTimeout(flushTimer);
+    flushTimer = null;
+  }
 }

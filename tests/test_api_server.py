@@ -1984,3 +1984,287 @@ class TestPrepareGenerationRowsSiblings:
         a_sibs = {s["id"]: s["test_item"] for s in by_id["a"]["siblings"]}
         assert a_sibs["b"] == "scenario B"
         assert a_sibs["c"] == "scenario C"
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Telemetry collector
+# ─────────────────────────────────────────────────────────────────────
+
+
+def test_events_appends_to_jsonl(tmp_path, monkeypatch):
+    log = tmp_path / "events.jsonl"
+    monkeypatch.setenv("TC_EVENTS_LOG", str(log))
+
+    response = client.post(
+        "/api/events",
+        json={
+            "events": [
+                {"name": "home_new_run_click", "props": {"source": "top-nav"}},
+                {
+                    "name": "builder_step_next",
+                    "props": {"from": "data", "to": "configure"},
+                    "ts": 1714000000000,
+                },
+            ]
+        },
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["ok"] is True
+    assert body["count"] == 2
+
+    lines = log.read_text("utf-8").splitlines()
+    assert len(lines) == 2
+    first = json.loads(lines[0])
+    assert first["name"] == "home_new_run_click"
+    assert first["props"]["source"] == "top-nav"
+    assert "received_at" in first
+    second = json.loads(lines[1])
+    assert second["ts"] == 1714000000000
+
+
+def test_events_rejects_unknown_name(tmp_path, monkeypatch):
+    monkeypatch.setenv("TC_EVENTS_LOG", str(tmp_path / "events.jsonl"))
+    response = client.post(
+        "/api/events",
+        json={"events": [{"name": "totally_made_up", "props": {}}]},
+    )
+    assert response.status_code == 400
+    assert "unknown event" in response.json()["detail"]
+
+
+def test_events_rejects_empty_batch(tmp_path, monkeypatch):
+    monkeypatch.setenv("TC_EVENTS_LOG", str(tmp_path / "events.jsonl"))
+    response = client.post("/api/events", json={"events": []})
+    assert response.status_code == 400
+
+
+def test_events_rejects_too_large_batch(tmp_path, monkeypatch):
+    monkeypatch.setenv("TC_EVENTS_LOG", str(tmp_path / "events.jsonl"))
+    payload = {
+        "events": [
+            {"name": "home_new_run_click", "props": {}}
+            for _ in range(101)
+        ]
+    }
+    response = client.post("/api/events", json=payload)
+    assert response.status_code == 400
+    assert "batch too large" in response.json()["detail"]
+
+
+def test_events_rejects_oversized_props(tmp_path, monkeypatch):
+    monkeypatch.setenv("TC_EVENTS_LOG", str(tmp_path / "events.jsonl"))
+    huge = "x" * (5 * 1024)  # > 4 KB
+    response = client.post(
+        "/api/events",
+        json={
+            "events": [
+                {"name": "builder_validation_fail", "props": {"detail": huge}}
+            ]
+        },
+    )
+    assert response.status_code == 413
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Job timeline
+# ─────────────────────────────────────────────────────────────────────
+
+
+def test_timeline_404_for_unknown_job():
+    response = client.get("/api/jobs/does-not-exist/timeline")
+    assert response.status_code == 404
+
+
+def test_timeline_records_queued_after_generate():
+    """POST /api/generate 應寫入 'queued' timeline event。"""
+    import api_server
+
+    job_id = "timeline-job-1"
+    api_server.JOB_REGISTRY[job_id] = {
+        "jobId": job_id,
+        "parsedData": {"project": "P", "test_group": "G"},
+    }
+
+    payload = {
+        "jobId": job_id,
+        "rows": [
+            {
+                "id": "r1",
+                "reqId": "REQ-1",
+                "testGroup": "G",
+                "testSet": "Set",
+                "testItem": "Item",
+                "preConditions": "",
+                "inputTestData": "",
+                "steps": "",
+                "expectedResults": "",
+                "status": "pending",
+            }
+        ],
+        "config": {
+            "model": "gpt-5",
+            "batchSize": 5,
+            "budget": 10,
+            "strictValidation": False,
+        },
+    }
+    res = client.post("/api/generate", json=payload)
+    assert res.status_code == 200, res.text
+
+    response = client.get(f"/api/jobs/{job_id}/timeline")
+    assert response.status_code == 200
+    events = response.json()["events"]
+    assert events[0]["kind"] == "queued"
+    assert events[0]["rowCount"] == 1
+    assert isinstance(events[0]["ts"], int)
+
+
+def test_timeline_helper_running_completed_messages():
+    import api_server
+
+    job_id = "timeline-job-helper"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    api_server._append_job_event(job_id, "running", rowCount=3)
+    api_server._append_job_event(
+        job_id, "completed", rowCount=3, processed=3, cost=0.05
+    )
+
+    events = client.get(f"/api/jobs/{job_id}/timeline").json()["events"]
+    assert [e["kind"] for e in events] == ["running", "completed"]
+    assert events[1]["processed"] == 3
+    assert events[1]["cost"] == 0.05
+
+
+def test_timeline_caps_at_50_events():
+    import api_server
+
+    job_id = "timeline-job-bound"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    for i in range(60):
+        api_server._append_job_event(job_id, "running", rowCount=i)
+    events = client.get(f"/api/jobs/{job_id}/timeline").json()["events"]
+    assert len(events) == 50
+    # 上限保護下保留最後 50 筆
+    assert events[0]["rowCount"] == 10
+    assert events[-1]["rowCount"] == 59
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Output compare
+# ─────────────────────────────────────────────────────────────────────
+
+
+def _build_export_workbook_bytes(rows: list[dict]) -> bytes:
+    """Tiny TC workbook matching writer's column layout."""
+    from writer import TC_SHEET_NAME, WRITE_COLUMNS
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = TC_SHEET_NAME
+    for ridx, row in enumerate(rows, start=10):
+        if "reqId" in row:
+            ws.cell(row=ridx, column=4, value=row["reqId"])
+        for field, col in WRITE_COLUMNS.items():
+            if field in row:
+                ws.cell(row=ridx, column=col, value=row[field])
+    stream = BytesIO()
+    wb.save(stream)
+    return stream.getvalue()
+
+
+def test_compare_diff_tcs_changed_added_removed(tmp_path):
+    import api_server
+
+    a_path = tmp_path / "a.xlsx"
+    b_path = tmp_path / "b.xlsx"
+    a_path.write_bytes(
+        _build_export_workbook_bytes(
+            [
+                {
+                    "reqId": "REQ-1",
+                    "tc_id": "T-001",
+                    "pre_conditions": "old pre",
+                    "test_procedure": "step",
+                    "expected_result": "ok",
+                },
+                {
+                    "reqId": "REQ-2",
+                    "tc_id": "T-002",
+                    "pre_conditions": "stable",
+                },
+            ]
+        )
+    )
+    b_path.write_bytes(
+        _build_export_workbook_bytes(
+            [
+                {
+                    "reqId": "REQ-1",
+                    "tc_id": "T-001",
+                    "pre_conditions": "new pre",  # changed
+                    "test_procedure": "step",
+                    "expected_result": "ok",
+                },
+                {
+                    "reqId": "REQ-3",  # added
+                    "tc_id": "T-003",
+                    "pre_conditions": "fresh",
+                },
+            ]
+        )
+    )
+
+    api_server.JOB_REGISTRY["job-a"] = {"jobId": "job-a", "exportPath": str(a_path)}
+    api_server.JOB_REGISTRY["job-b"] = {"jobId": "job-b", "exportPath": str(b_path)}
+
+    response = client.post(
+        "/api/outputs/compare", json={"a": "job-a", "b": "job-b"}
+    )
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["summary"]["total"] == 3
+    assert body["summary"]["changed"] == 1
+    assert body["summary"]["added"] == 1
+    assert body["summary"]["removed"] == 1
+
+    by_id = {r["tcId"]: r for r in body["rows"]}
+    assert by_id["T-001"]["status"] == "changed"
+    fields = {c["field"] for c in by_id["T-001"]["changes"]}
+    assert "pre_conditions" in fields
+    assert by_id["T-002"]["status"] == "removed"
+    assert by_id["T-003"]["status"] == "added"
+
+
+def test_compare_rejects_same_job():
+    import api_server
+
+    api_server.JOB_REGISTRY["job-self"] = {
+        "jobId": "job-self",
+        "exportPath": "/nope.xlsx",
+    }
+    response = client.post(
+        "/api/outputs/compare", json={"a": "job-self", "b": "job-self"}
+    )
+    assert response.status_code == 400
+
+
+def test_compare_404_when_job_missing():
+    response = client.post(
+        "/api/outputs/compare",
+        json={"a": "ghost-1", "b": "ghost-2"},
+    )
+    assert response.status_code == 404
+
+
+def test_compare_409_when_export_missing():
+    import api_server
+
+    api_server.JOB_REGISTRY["job-no-export-a"] = {"jobId": "job-no-export-a"}
+    api_server.JOB_REGISTRY["job-no-export-b"] = {"jobId": "job-no-export-b"}
+    response = client.post(
+        "/api/outputs/compare",
+        json={"a": "job-no-export-a", "b": "job-no-export-b"},
+    )
+    assert response.status_code == 409
+    assert "Export first" in response.json()["detail"]

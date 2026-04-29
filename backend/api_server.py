@@ -75,6 +75,72 @@ MAX_UPLOAD_BYTES = int(os.environ.get("TC_MAX_UPLOAD_MB", "50")) * 1024 * 1024
 # SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
 JOB_REGISTRY = SqliteJobStore(default_db_path())
 
+# Telemetry events — 從前端收 client-side analytics events，append-only JSONL。
+# TC_EVENTS_LOG 可覆寫路徑（測試會用 monkeypatch 把它指到 tmp 檔）。
+import threading
+
+_TELEMETRY_LOCK = threading.Lock()
+ALLOWED_TELEMETRY_EVENTS = {
+    "home_new_run_click",
+    "builder_step_next",
+    "builder_validation_fail",
+    "run_execute_start",
+    "run_execute_success",
+    "run_execute_fail",
+    "run_retry_click",
+    "template_use_click",
+    "output_compare_open",
+}
+MAX_TELEMETRY_BATCH = 100
+MAX_TELEMETRY_PROPS_BYTES = 4 * 1024  # 4 KB per event
+
+
+def telemetry_log_path() -> Path:
+    """目前 events log 路徑。每次 call 重算讓測試 monkeypatch env 生效。"""
+    override = os.environ.get("TC_EVENTS_LOG")
+    if override:
+        return Path(override)
+    return Path(__file__).resolve().parent.parent / "output" / "events.jsonl"
+
+
+# ---------------------------------------------------------------------
+# Job timeline — 在 SQLite job dict 內維護一個事件清單，給 Run Detail 使用
+# ---------------------------------------------------------------------
+JOB_TIMELINE_MAX = 50
+
+
+def _append_job_event(job_id: str, kind: str, message: str = "", **extra) -> None:
+    """Append a timeline event to the job dict. Silent no-op if job missing."""
+    try:
+        job = JOB_REGISTRY.get(job_id)
+    except Exception:
+        return
+    if not job:
+        return
+    timeline = job.get("timeline")
+    if not isinstance(timeline, list):
+        timeline = []
+    event: dict = {
+        "kind": kind,
+        "ts": int(datetime.utcnow().timestamp() * 1000),
+    }
+    if message:
+        event["message"] = message
+    for k, v in extra.items():
+        if v is None:
+            continue
+        event[k] = v
+    timeline.append(event)
+    # 上限保護，避免歷史無限長
+    if len(timeline) > JOB_TIMELINE_MAX:
+        timeline = timeline[-JOB_TIMELINE_MAX:]
+    job["timeline"] = timeline
+    try:
+        JOB_REGISTRY[job_id] = job
+    except Exception:
+        # 寫入失敗不影響主流程
+        pass
+
 # Startup housekeeping：啟動時清掉超過 JOBS_MAX_AGE_DAYS（預設 30 天）的舊 job
 # 並壓縮檔案。環境變數 `TC_JOBS_MAX_AGE_DAYS` 可覆寫（設 0 停用）。
 try:
@@ -1118,6 +1184,66 @@ def reset_all_state(request: Request) -> dict:
     }
 
 
+class TelemetryEvent(BaseModel):
+    name: str
+    props: dict = Field(default_factory=dict)
+    ts: int | None = None
+
+
+class TelemetryBatchRequest(BaseModel):
+    events: list[TelemetryEvent]
+
+
+@app.post("/api/events")
+def collect_events(payload: TelemetryBatchRequest) -> dict:
+    """Append client telemetry events to the JSONL log.
+
+    - 每個 event 的 name 必須在 ALLOWED_TELEMETRY_EVENTS 內，否則整批拒絕
+    - props 序列化後不能超過 4 KB（防 abuse）
+    - 一次最多 MAX_TELEMETRY_BATCH 筆
+    """
+    events = payload.events or []
+    if not events:
+        raise HTTPException(status_code=400, detail="no events")
+    if len(events) > MAX_TELEMETRY_BATCH:
+        raise HTTPException(
+            status_code=400,
+            detail=f"batch too large (max {MAX_TELEMETRY_BATCH})",
+        )
+
+    now_ms = int(datetime.utcnow().timestamp() * 1000)
+    serialized: list[str] = []
+    for event in events:
+        if event.name not in ALLOWED_TELEMETRY_EVENTS:
+            raise HTTPException(
+                status_code=400, detail=f"unknown event: {event.name}"
+            )
+        ts = event.ts if event.ts and event.ts > 0 else now_ms
+        record = {
+            "name": event.name,
+            "props": event.props,
+            "ts": ts,
+            "received_at": now_ms,
+        }
+        line = json.dumps(record, ensure_ascii=False, separators=(",", ":"))
+        if len(line.encode("utf-8")) > MAX_TELEMETRY_PROPS_BYTES + 256:
+            raise HTTPException(
+                status_code=413,
+                detail=f"event payload too large for {event.name}",
+            )
+        serialized.append(line)
+
+    log_path = telemetry_log_path()
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with _TELEMETRY_LOCK:
+        with open(log_path, "a", encoding="utf-8") as fh:
+            for line in serialized:
+                fh.write(line)
+                fh.write("\n")
+
+    return {"ok": True, "count": len(serialized)}
+
+
 class ReviewFixSuggestRequest(BaseModel):
     tc: dict
     errors: list[dict] = Field(default_factory=list)
@@ -1155,6 +1281,181 @@ def review_suggest_fix(payload: ReviewFixSuggestRequest) -> dict:
         "cost": result["cost"],
         "usage": result["usage"],
     }
+
+
+class OutputCompareRequest(BaseModel):
+    a: str
+    b: str
+
+
+_COMPARE_COLUMN_LABELS = {
+    "tc_id": "TC ID",
+    "test_group": "Test Group",
+    "test_set": "Test Set",
+    "pre_conditions": "Pre-Conditions",
+    "input_test_data": "Input Test Data",
+    "test_procedure": "Test Procedure",
+    "expected_result": "Expected Result",
+    "spec_reference": "Spec Reference",
+    "priority": "Priority",
+    "design_method": "Design Method",
+}
+
+
+def _read_tc_sheet_rows(xlsx_path: str) -> list[dict]:
+    """Read every TC row (key = tc_id) from a generated workbook."""
+    from openpyxl import load_workbook
+    from writer import TC_SHEET_NAME, WRITE_COLUMNS
+
+    wb = load_workbook(xlsx_path, data_only=True, read_only=True)
+    if TC_SHEET_NAME not in wb.sheetnames:
+        wb.close()
+        return []
+    ws = wb[TC_SHEET_NAME]
+    rows: list[dict] = []
+    # 第 10 列以後是 data；header 在 row 9
+    for raw in ws.iter_rows(min_row=10, values_only=True):
+        if raw is None:
+            continue
+        if all(cell is None or str(cell).strip() == "" for cell in raw):
+            continue
+        record: dict = {"reqId": raw[3] if len(raw) > 3 else None}
+        for field, col in WRITE_COLUMNS.items():
+            if field == "reasoning":
+                continue
+            idx = col - 1
+            value = raw[idx] if idx < len(raw) else None
+            record[field] = "" if value is None else str(value)
+        rows.append(record)
+    wb.close()
+    return rows
+
+
+def _diff_output_rows(rows_a: list[dict], rows_b: list[dict]) -> dict:
+    """Diff two sets of rows keyed by tc_id."""
+    by_a = {r["tc_id"]: r for r in rows_a if r.get("tc_id")}
+    by_b = {r["tc_id"]: r for r in rows_b if r.get("tc_id")}
+    keys = sorted(set(by_a) | set(by_b))
+    diff_rows = []
+    added = removed = changed = unchanged = 0
+    for key in keys:
+        a = by_a.get(key)
+        b = by_b.get(key)
+        if a and not b:
+            removed += 1
+            diff_rows.append(
+                {
+                    "tcId": key,
+                    "status": "removed",
+                    "reqId": a.get("reqId"),
+                    "changes": [],
+                }
+            )
+            continue
+        if b and not a:
+            added += 1
+            diff_rows.append(
+                {
+                    "tcId": key,
+                    "status": "added",
+                    "reqId": b.get("reqId"),
+                    "changes": [],
+                }
+            )
+            continue
+        changes = []
+        for field, label in _COMPARE_COLUMN_LABELS.items():
+            if field == "tc_id":
+                continue
+            va = (a or {}).get(field, "") or ""
+            vb = (b or {}).get(field, "") or ""
+            if va != vb:
+                changes.append(
+                    {"field": field, "label": label, "before": va, "after": vb}
+                )
+        if changes:
+            changed += 1
+            diff_rows.append(
+                {
+                    "tcId": key,
+                    "status": "changed",
+                    "reqId": (a or b or {}).get("reqId"),
+                    "changes": changes,
+                }
+            )
+        else:
+            unchanged += 1
+            diff_rows.append(
+                {
+                    "tcId": key,
+                    "status": "unchanged",
+                    "reqId": (a or {}).get("reqId"),
+                    "changes": [],
+                }
+            )
+
+    return {
+        "summary": {
+            "total": len(keys),
+            "added": added,
+            "removed": removed,
+            "changed": changed,
+            "unchanged": unchanged,
+        },
+        "rows": diff_rows,
+    }
+
+
+@app.post("/api/outputs/compare")
+def compare_outputs(payload: OutputCompareRequest) -> dict:
+    """Diff two exported workbooks row-by-row keyed by TC ID."""
+    if payload.a == payload.b:
+        raise HTTPException(
+            status_code=400, detail="cannot compare a job with itself"
+        )
+
+    job_a = JOB_REGISTRY.get(payload.a)
+    job_b = JOB_REGISTRY.get(payload.b)
+    if not job_a:
+        raise HTTPException(status_code=404, detail=f"job not found: {payload.a}")
+    if not job_b:
+        raise HTTPException(status_code=404, detail=f"job not found: {payload.b}")
+
+    path_a = job_a.get("exportPath")
+    path_b = job_b.get("exportPath")
+    if not path_a or not os.path.isfile(path_a):
+        raise HTTPException(
+            status_code=409,
+            detail=f"job {payload.a} has no exported workbook (run Export first)",
+        )
+    if not path_b or not os.path.isfile(path_b):
+        raise HTTPException(
+            status_code=409,
+            detail=f"job {payload.b} has no exported workbook (run Export first)",
+        )
+
+    try:
+        rows_a = _read_tc_sheet_rows(path_a)
+        rows_b = _read_tc_sheet_rows(path_b)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500, detail=f"failed to read workbooks: {exc}"
+        ) from exc
+
+    diff = _diff_output_rows(rows_a, rows_b)
+    return {"a": payload.a, "b": payload.b, **diff}
+
+
+@app.get("/api/jobs/{job_id}/timeline")
+def get_job_timeline(job_id: str) -> dict:
+    """Return ordered timeline events for a job (queued / running / completed / etc.)."""
+    job = JOB_REGISTRY.get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="job not found")
+    timeline = job.get("timeline")
+    if not isinstance(timeline, list):
+        timeline = []
+    return {"jobId": job_id, "events": timeline}
 
 
 @app.get("/api/jobs/{job_id}/usage")
@@ -1372,6 +1673,7 @@ async def create_generate_job(payload: GenerateRequest, request: Request) -> dic
         }
     )
     JOB_REGISTRY[job_id] = job_record
+    _append_job_event(job_id, "queued", rowCount=total_rows)
 
     return {
         "jobId": job_id,
@@ -1406,6 +1708,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
         spec_index = _build_spec_index_for_job(job)
         job["status"] = "running"
         JOB_REGISTRY[jobId] = job  # 回寫 SQLite，避免修改只停留在反序列化副本
+        _append_job_event(jobId, "running", rowCount=total)
 
         # (A) 依最終顯示順序配 tc_id：主 TC 後面立刻接子 TC，再輪到下一個 req。
         # 不能只幫 sub-TC 補尾號，否則畫面/Excel 會變成 001, 006, 002, 007...
@@ -1699,6 +2002,13 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             model=model,
         )
         JOB_REGISTRY[jobId] = job  # 回寫 SQLite
+        _append_job_event(
+            jobId,
+            "completed",
+            rowCount=total,
+            processed=processed,
+            cost=round(current_cost, 4),
+        )
         yield _sse_event(
             {
                 "type": "job.completed",

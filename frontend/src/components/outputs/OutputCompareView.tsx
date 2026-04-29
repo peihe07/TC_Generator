@@ -2,7 +2,7 @@
 
 import { RiArrowLeftLine, RiDownload2Line } from "@remixicon/react";
 import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   formatCost,
   formatDuration,
@@ -13,6 +13,35 @@ import {
   type Run,
 } from "../../services/runAdapter";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+
+interface DiffChange {
+  field: string;
+  label: string;
+  before: string;
+  after: string;
+}
+
+interface DiffRow {
+  tcId: string;
+  reqId?: string;
+  status: "added" | "removed" | "changed" | "unchanged";
+  changes: DiffChange[];
+}
+
+interface DiffSummary {
+  total: number;
+  added: number;
+  removed: number;
+  changed: number;
+  unchanged: number;
+}
+
+interface DiffResponse {
+  a: string;
+  b: string;
+  summary: DiffSummary;
+  rows: DiffRow[];
+}
 
 export default function OutputCompareView({
   a,
@@ -28,6 +57,43 @@ export default function OutputCompareView({
   useEffect(() => {
     if (!loaded) loadFromStorage();
   }, [loaded, loadFromStorage]);
+
+  const [diff, setDiff] = useState<DiffResponse | null>(null);
+  const [diffError, setDiffError] = useState<string | null>(null);
+  const [diffLoading, setDiffLoading] = useState(false);
+
+  useEffect(() => {
+    if (!a || !b) return;
+    let cancelled = false;
+    setDiff(null);
+    setDiffError(null);
+    setDiffLoading(true);
+    fetch("/api/outputs/compare", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ a, b }),
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.detail ?? `Status ${res.status}`);
+        }
+        return (await res.json()) as DiffResponse;
+      })
+      .then((data) => {
+        if (!cancelled) setDiff(data);
+      })
+      .catch((err) => {
+        if (!cancelled)
+          setDiffError(err instanceof Error ? err.message : "Diff failed");
+      })
+      .finally(() => {
+        if (!cancelled) setDiffLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [a, b]);
 
   const runA = useMemo(() => {
     const rec = records.find((r) => r.id === a);
@@ -52,7 +118,7 @@ export default function OutputCompareView({
       <header className="space-y-1">
         <h1 className="text-3xl font-bold text-primary">Compare Outputs</h1>
         <p className="text-secondary text-sm">
-          Side-by-side metadata. File-content diff coming in a later phase.
+          Side-by-side metadata + per-row TC content diff.
         </p>
       </header>
 
@@ -62,7 +128,159 @@ export default function OutputCompareView({
       </div>
 
       <ComparisonSummary runA={runA} runB={runB} />
+
+      <DiffSection
+        diff={diff}
+        loading={diffLoading}
+        error={diffError}
+      />
     </div>
+  );
+}
+
+function DiffSection({
+  diff,
+  loading,
+  error,
+}: {
+  diff: DiffResponse | null;
+  loading: boolean;
+  error: string | null;
+}) {
+  return (
+    <section className="surface p-5 space-y-3">
+      <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
+        TC Content Diff
+      </h2>
+      {loading && <p className="text-xs text-muted">Diffing workbooks…</p>}
+      {error && (
+        <p className="text-sm" style={{ color: "var(--color-brandy)" }}>
+          {error}
+        </p>
+      )}
+      {diff && (
+        <>
+          <dl className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
+            <DiffStat label="Total TCs" value={diff.summary.total} />
+            <DiffStat
+              label="Added"
+              value={diff.summary.added}
+              tone="add"
+            />
+            <DiffStat
+              label="Removed"
+              value={diff.summary.removed}
+              tone="remove"
+            />
+            <DiffStat
+              label="Changed"
+              value={diff.summary.changed}
+              tone="change"
+            />
+            <DiffStat label="Unchanged" value={diff.summary.unchanged} />
+          </dl>
+
+          {diff.rows.filter((r) => r.status !== "unchanged").length === 0 ? (
+            <p className="text-xs text-muted">
+              No content differences between the two workbooks.
+            </p>
+          ) : (
+            <ul className="space-y-2">
+              {diff.rows
+                .filter((r) => r.status !== "unchanged")
+                .map((row) => (
+                  <DiffRowItem key={row.tcId} row={row} />
+                ))}
+            </ul>
+          )}
+        </>
+      )}
+    </section>
+  );
+}
+
+function DiffStat({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: number;
+  tone?: "add" | "remove" | "change";
+}) {
+  const color =
+    tone === "add"
+      ? "var(--color-teal)"
+      : tone === "remove"
+      ? "var(--color-brandy)"
+      : tone === "change"
+      ? "var(--color-tangerine)"
+      : "var(--color-ink)";
+  return (
+    <div>
+      <dt className="text-[10px] uppercase tracking-wider text-muted">
+        {label}
+      </dt>
+      <dd className="text-base font-bold" style={{ color }}>
+        {value}
+      </dd>
+    </div>
+  );
+}
+
+function DiffRowItem({ row }: { row: DiffRow }) {
+  const tone =
+    row.status === "added"
+      ? "var(--color-teal)"
+      : row.status === "removed"
+      ? "var(--color-brandy)"
+      : "var(--color-tangerine)";
+  return (
+    <li className="space-y-1.5 px-3 py-2 rounded" style={{ boxShadow: "inset 0 0 0 1px rgba(21, 97, 109, 0.12)" }}>
+      <div className="flex items-center gap-2 flex-wrap">
+        <span
+          className="text-[10px] uppercase tracking-wider font-bold"
+          style={{ color: tone }}
+        >
+          {row.status}
+        </span>
+        <span className="text-sm font-bold text-primary">{row.tcId}</span>
+        {row.reqId && (
+          <span className="text-xs text-muted">{row.reqId}</span>
+        )}
+      </div>
+      {row.changes.length > 0 && (
+        <ul className="space-y-1.5 text-xs">
+          {row.changes.map((change) => (
+            <li key={change.field} className="space-y-0.5">
+              <div className="text-[10px] uppercase tracking-wider text-secondary font-bold">
+                {change.label}
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                <div
+                  className="px-2 py-1 rounded text-secondary"
+                  style={{
+                    backgroundColor: "rgba(120, 41, 15, 0.06)",
+                    whiteSpace: "pre-wrap",
+                  }}
+                >
+                  {change.before || "—"}
+                </div>
+                <div
+                  className="px-2 py-1 rounded text-secondary"
+                  style={{
+                    backgroundColor: "rgba(21, 97, 109, 0.08)",
+                    whiteSpace: "pre-wrap",
+                  }}
+                >
+                  {change.after || "—"}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
   );
 }
 

@@ -27,6 +27,34 @@ interface UsageResponse {
   cacheCreationTokens?: number;
 }
 
+interface TimelineEvent {
+  kind: string;
+  ts: number;
+  message?: string;
+  rowCount?: number;
+  processed?: number;
+  cost?: number;
+}
+
+interface TimelineResponse {
+  jobId: string;
+  events: TimelineEvent[];
+}
+
+const KIND_LABEL: Record<string, string> = {
+  queued: "Queued",
+  running: "Running",
+  completed: "Completed",
+  failed: "Failed",
+};
+
+const KIND_COLOR: Record<string, string> = {
+  queued: "var(--color-teal)",
+  running: "var(--color-tangerine)",
+  completed: "var(--color-teal)",
+  failed: "var(--color-brandy)",
+};
+
 export default function RunDetailView({ runId }: { runId: string }) {
   const records = useJobHistoryStore((s) => s.records);
   const loaded = useJobHistoryStore((s) => s.loaded);
@@ -44,11 +72,13 @@ export default function RunDetailView({ runId }: { runId: string }) {
 
   const [liveUsage, setLiveUsage] = useState<UsageResponse | null>(null);
   const [usageError, setUsageError] = useState<string | null>(null);
+  const [timeline, setTimeline] = useState<TimelineEvent[] | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     setLiveUsage(null);
     setUsageError(null);
+    setTimeline(null);
     fetch(`/api/jobs/${encodeURIComponent(runId)}/usage`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`Status ${res.status}`);
@@ -60,6 +90,17 @@ export default function RunDetailView({ runId }: { runId: string }) {
       .catch((err) => {
         if (!cancelled)
           setUsageError(err instanceof Error ? err.message : "Failed");
+      });
+    fetch(`/api/jobs/${encodeURIComponent(runId)}/timeline`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        return (await res.json()) as TimelineResponse;
+      })
+      .then((data) => {
+        if (!cancelled) setTimeline(data.events ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setTimeline([]);
       });
     return () => {
       cancelled = true;
@@ -216,30 +257,64 @@ export default function RunDetailView({ runId }: { runId: string }) {
         </section>
       )}
 
-      <section className="surface p-5 space-y-3">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
-          Coming Soon
-        </h2>
-        <ul className="space-y-1.5 text-sm text-secondary">
-          <li className="flex gap-2">
-            <span style={{ color: "var(--color-tangerine)" }}>›</span>
-            <span>Timeline (queued → running → completed/failed)</span>
-          </li>
-          <li className="flex gap-2">
-            <span style={{ color: "var(--color-tangerine)" }}>›</span>
-            <span>Resolved config snapshot (template + overrides)</span>
-          </li>
-          <li className="flex gap-2">
-            <span style={{ color: "var(--color-tangerine)" }}>›</span>
-            <span>Validation logs and error context</span>
-          </li>
-          <li className="flex gap-2">
-            <span style={{ color: "var(--color-tangerine)" }}>›</span>
-            <span>Output artifacts and download links</span>
-          </li>
-        </ul>
-      </section>
+      <TimelineSection events={timeline} />
     </div>
+  );
+}
+
+function TimelineSection({ events }: { events: TimelineEvent[] | null }) {
+  return (
+    <section className="surface p-5 space-y-3">
+      <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
+        Timeline
+      </h2>
+      {events === null ? (
+        <p className="text-xs text-muted">Loading timeline…</p>
+      ) : events.length === 0 ? (
+        <p className="text-xs text-muted">
+          No timeline events recorded for this run.
+        </p>
+      ) : (
+        <ol className="space-y-2">
+          {events.map((event, idx) => (
+            <li
+              key={`${event.kind}-${idx}-${event.ts}`}
+              className="flex items-start gap-3"
+            >
+              <span
+                className="mt-1.5 inline-block w-2 h-2 rounded-full shrink-0"
+                style={{
+                  backgroundColor:
+                    KIND_COLOR[event.kind] ?? "var(--color-teal)",
+                }}
+              />
+              <div className="flex-1 min-w-0 space-y-0.5">
+                <div className="text-sm font-bold text-primary">
+                  {KIND_LABEL[event.kind] ?? event.kind}
+                </div>
+                <div className="text-xs text-muted flex items-center gap-2 flex-wrap">
+                  <span>{formatRelativeTime(event.ts)}</span>
+                  {event.rowCount != null && (
+                    <span>· {event.rowCount} rows</span>
+                  )}
+                  {event.processed != null && (
+                    <span>· {event.processed} processed</span>
+                  )}
+                  {event.cost != null && (
+                    <span>· {formatCost(event.cost)}</span>
+                  )}
+                </div>
+                {event.message && (
+                  <div className="text-xs text-secondary">
+                    {event.message}
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
   );
 }
 
