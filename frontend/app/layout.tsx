@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google";
 import "./globals.css";
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-space-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "TC Generator",
@@ -20,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceMono.variable}>
+    <html lang="en">
       <body className="antialiased">{children}</body>
     </html>
   );

@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 :root {
+  --font-space-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+
   /* Palette */
   --color-ink: #001524;
   --color-teal: #15616d;
@@ -24,8 +27,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-space-mono), ui-monospace, SFMono-Regular, Menlo,
-    monospace;
+  font-family: var(--font-space-mono);
   margin: 0;
   padding: 0;
 }
