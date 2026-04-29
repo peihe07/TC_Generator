@@ -4,8 +4,10 @@ Automated test case generation tool for ASPICE SWE.6.
 
 The project has two working surfaces:
 
-- Python backend and CLI for parsing, generation, validation, and Excel writing
-- Next.js desktop frontend for the upload -> configure -> generate -> review -> export workflow
+- Python backend (FastAPI + CLI) for parsing, generation, validation, Excel writing, and analytics endpoints
+- Next.js workspace frontend with top-nav navigation across Home / Runs / Templates / Outputs / Data / Settings, plus a multi-step Run Builder (data → configure → validate → execute → review)
+
+Frontend details live in [`frontend/README.md`](frontend/README.md).
 
 ## Requirements
 
@@ -51,7 +53,7 @@ cd frontend
 npm run typecheck
 ```
 
-## Run The Desktop App
+## Run The Workspace App
 
 1. Start the Python API:
 
@@ -72,7 +74,39 @@ Notes:
 
 - The frontend talks to the backend through same-origin Next.js proxy routes under `/api/*`.
 - `PYTHON_API_BASE` is the preferred server-side env var for the frontend proxy.
-- Generate / Regenerate / Export require an active backend job; the desktop no longer creates local mock generated rows when the backend is unavailable.
+- All generation / regenerate / export flows require an active backend job — the workspace does not synthesize local mocks.
+
+## Run With Docker
+
+Build and start the current Next.js desktop frontend with the FastAPI backend:
+
+```bash
+docker compose up -d --build
+```
+
+Open `http://localhost:3000`.
+
+The backend is published on `http://localhost:8002` because port `8000` is commonly used by local development services. Inside Docker, the frontend proxy talks to `http://backend:8000`.
+
+Stop the containers:
+
+```bash
+docker compose down
+```
+
+For local Docker development with hot reload:
+
+```bash
+docker compose -f docker-compose.dev.yml up -d --build
+```
+
+This mode runs the frontend with `next dev`, runs the backend with
+`uvicorn --reload`, and mounts `frontend/`, `backend/`, and `docs/` into the
+containers. Stop it with:
+
+```bash
+docker compose -f docker-compose.dev.yml down
+```
 
 ## CLI Usage
 
@@ -112,18 +146,32 @@ python backend/main.py \
 
 ## Current Frontend Architecture
 
-- The frontend is a single-page Win95-style desktop, not a multi-route form flow.
-- Active UI modules are `*Module.tsx`; legacy `*Window.tsx` files were removed.
-- Shared workflow state lives in Zustand stores.
-- All frontend backend access goes through `frontend/app/api/*` proxy routes.
-- `frontend/src/services/jobAdapter.ts` is the single adapter layer used by active modules.
+- Top-nav workspace shell (no desktop, no 98.css). Routes: `/`, `/runs`, `/runs/[id]`, `/run-builder`, `/templates`, `/templates/[id]`, `/outputs`, `/outputs/compare`, `/data`, `/settings`.
+- Run Builder is a 5-step flow with draft auto-save and three entry points: `?from=runId` (Rerun), `?edit=runId` (Edit & Rerun), `?templateId=name` (Use Template), `?dataset=jobId` (Reuse Dataset hint).
+- State split across five Zustand stores (job, jobHistory, builderDraft, commandPalette, workspaceSettings); see `frontend/README.md` for the layering.
+- All backend access goes through `frontend/app/api/*` Next.js proxy routes; `frontend/src/services/jobAdapter.ts` is the single adapter, `runAdapter.ts` exposes a UI-friendly `Run` view-model.
+- Telemetry events (9 named events, batched POST `/api/events`) are wired via `frontend/src/lib/telemetry.ts`.
+
+## Backend endpoints (selected)
+
+Beyond the parse/generate/regenerate/rerun/export streams that drive the run pipeline:
+
+- `GET /api/jobs/{id}/timeline` — queued / running / completed lifecycle events
+- `GET /api/jobs/{id}/config` — resolved config snapshot (model, batch, budget, strict)
+- `GET|POST /api/jobs/{id}/validation-logs` — row-level issues posted from Review
+- `GET /api/jobs/{id}/usage` — per-job cost / token breakdown
+- `POST /api/outputs/compare` — diff two exported workbooks by TC ID with per-column changes
+- `POST /api/events` — append-only client telemetry collector (`output/events.jsonl`)
+- `GET /api/spec-library` — list templates from `spec-index/manifest.json`
+- `POST /api/review/suggest-fix` — single-shot AI fix suggestion for a TC
+- `DELETE /api/admin/reset` — wipe SQLite job registry (loopback only)
 
 ## Notes
 
 - The parser expects the workbook sheets `Product Document` and `Test Case Specification&Result`.
 - The test group is derived from the input filename pattern `*_SWQT_{TestGroup}_YYYYMMDD.xlsx`.
 - If the workbook contains blank rows between valid data rows, parsing continues and later rows are still processed.
-- Parse and export are verified end-to-end through the desktop and proxy routes.
+- Parse and export are verified end-to-end through the workspace and proxy routes.
 - Real generation still depends on a valid OpenAI credential at runtime.
 
 ## Documentation
