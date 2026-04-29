@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import "98.css"; // 直接引入確保載入
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
-import "../src/styles/win95.css";
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "TC Generator",
@@ -14,10 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased overflow-hidden bg-black">
-        {children}
-      </body>
+    <html lang="en" className={spaceMono.variable}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

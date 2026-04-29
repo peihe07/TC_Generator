@@ -3,21 +3,117 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Palette */
+  --color-ink: #001524;
+  --color-teal: #15616d;
+  --color-papaya: #ffecd1;
+  --color-tangerine: #ff7d00;
+  --color-brandy: #78290f;
+
+  /* Derived */
+  --shadow-tint: rgba(0, 21, 36, 0.12);
+  --shadow-tint-strong: rgba(0, 21, 36, 0.24);
+  --surface-papaya: rgba(255, 236, 209, 0.6);
+  --surface-ink: rgba(0, 21, 36, 0.85);
+
+  /* Legacy aliases (待移除) */
+  --background: var(--color-papaya);
+  --foreground: var(--color-ink);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
   margin: 0;
   padding: 0;
 }
 
-/* 確保全螢幕容器不會被裁切 */
-html, body {
+html,
+body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+}
+
+/* legacy 桌面隱喻保留 overflow-hidden（透過 .legacy-shell 套用） */
+
+/* ---------- Surfaces ---------- */
+.surface {
+  background-color: var(--surface-papaya);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 2px var(--shadow-tint);
+  border-radius: 12px;
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+.surface-floating {
+  background-color: var(--surface-papaya);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 32px var(--shadow-tint), 0 2px 8px var(--shadow-tint);
+  border-radius: 16px;
+}
+
+.surface-ink {
+  background-color: var(--surface-ink);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--color-papaya);
+  box-shadow: 0 4px 16px var(--shadow-tint-strong);
+}
+
+.surface:hover {
+  box-shadow: 0 6px 20px var(--shadow-tint);
+  transform: translateY(-1px);
+}
+
+/* ---------- Text ---------- */
+.text-primary {
+  color: var(--color-ink);
+}
+.text-secondary {
+  color: var(--color-teal);
+}
+.text-muted {
+  color: var(--color-teal);
+  opacity: 0.7;
+}
+
+/* ---------- CTA ---------- */
+.cta {
+  background-color: var(--color-tangerine);
+  color: var(--color-ink);
+  font-weight: 700;
+  padding: 0.625rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--shadow-tint);
+  transition: background-color 150ms ease, color 150ms ease,
+    box-shadow 150ms ease, transform 150ms ease;
+  cursor: pointer;
+}
+.cta:hover {
+  background-color: var(--color-brandy);
+  color: var(--color-papaya);
+  box-shadow: 0 8px 20px var(--shadow-tint-strong);
+  transform: translateY(-1px);
+}
+.cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-tangerine), 0 4px 12px var(--shadow-tint);
+}
+
+/* ---------- Table row hover ---------- */
+.row-hover {
+  transition: background-color 150ms ease;
+}
+.row-hover:hover {
+  background-color: rgba(255, 236, 209, 0.85);
+}
+
+/* ---------- Focus ring (general) ---------- */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-tangerine);
 }
