@@ -107,16 +107,23 @@ export function toRuns(records: JobRecord[]): Run[] {
 
 export interface RunAggregates {
   total: number;
+  finishedCount: number;
   successCount: number;
   failCount: number;
   partialCount: number;
+  issueCount: number;
   runningCount: number;
   successRate: number; // 0..1，分母排除 running
   avgDurationMs: number | null;
+  completedAvgDurationMs: number | null;
+  recent7dTotal: number;
+  recent7dSuccessRate: number;
   totalCost: number;
 }
 
-export function aggregate(runs: Run[]): RunAggregates {
+const RECENT_WINDOW_MS = 7 * 86_400_000;
+
+export function aggregate(runs: Run[], now = Date.now()): RunAggregates {
   const total = runs.length;
   let successCount = 0;
   let failCount = 0;
@@ -124,12 +131,22 @@ export function aggregate(runs: Run[]): RunAggregates {
   let runningCount = 0;
   let durationSum = 0;
   let durationN = 0;
+  let completedDurationSum = 0;
+  let completedDurationN = 0;
+  let recent7dTotal = 0;
+  let recent7dFinished = 0;
+  let recent7dSuccessCount = 0;
   let totalCost = 0;
 
   for (const r of runs) {
     totalCost += r.cost;
-    if (r.status === "completed") successCount += 1;
-    else if (r.status === "failed") failCount += 1;
+    if (r.status === "completed") {
+      successCount += 1;
+      if (r.durationMs && r.durationMs > 0) {
+        completedDurationSum += r.durationMs;
+        completedDurationN += 1;
+      }
+    } else if (r.status === "failed") failCount += 1;
     else if (r.status === "partial") partialCount += 1;
     else if (r.status === "running") runningCount += 1;
 
@@ -137,20 +154,36 @@ export function aggregate(runs: Run[]): RunAggregates {
       durationSum += r.durationMs;
       durationN += 1;
     }
+
+    const activityTs = r.finishedAt ?? r.startedAt;
+    if (activityTs >= now - RECENT_WINDOW_MS) {
+      recent7dTotal += 1;
+      if (r.status !== "running") recent7dFinished += 1;
+      if (r.status === "completed") recent7dSuccessCount += 1;
+    }
   }
 
   const finishedDenom = total - runningCount;
   const successRate = finishedDenom > 0 ? successCount / finishedDenom : 0;
   const avgDurationMs = durationN > 0 ? durationSum / durationN : null;
+  const completedAvgDurationMs =
+    completedDurationN > 0 ? completedDurationSum / completedDurationN : null;
+  const recent7dSuccessRate =
+    recent7dFinished > 0 ? recent7dSuccessCount / recent7dFinished : 0;
 
   return {
     total,
+    finishedCount: finishedDenom,
     successCount,
     failCount,
     partialCount,
+    issueCount: failCount + partialCount,
     runningCount,
     successRate,
     avgDurationMs,
+    completedAvgDurationMs,
+    recent7dTotal,
+    recent7dSuccessRate,
     totalCost,
   };
 }

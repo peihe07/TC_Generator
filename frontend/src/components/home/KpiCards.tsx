@@ -11,27 +11,29 @@ export default function KpiCards({ agg }: { agg: RunAggregates }) {
       <KpiCard
         label="Success Rate"
         value={agg.total === 0 ? "—" : formatPercent(agg.successRate)}
-        hint={`${agg.successCount}/${agg.total - agg.runningCount} finished`}
+        hint={`${agg.successCount}/${agg.finishedCount} finished`}
         accent="var(--color-teal)"
       />
       <KpiCard
-        label="Avg Duration"
-        value={formatDuration(agg.avgDurationMs)}
-        hint={agg.total === 0 ? "No runs yet" : undefined}
+        label="Avg Successful Duration"
+        value={formatDuration(agg.completedAvgDurationMs)}
+        hint={agg.total === 0 ? "No runs yet" : "Completed runs only"}
       />
       <KpiCard
-        label="Fail Count"
-        value={String(agg.failCount + agg.partialCount)}
+        label="Needs Attention"
+        value={String(agg.issueCount)}
         hint={`${agg.failCount} failed · ${agg.partialCount} partial`}
         accent={
           agg.failCount > 0 ? "var(--color-brandy)" : "var(--color-ink)"
         }
       />
       <KpiCard
-        label="Total Runs"
-        value={String(agg.total)}
+        label="7d Success"
+        value={agg.recent7dTotal === 0 ? "—" : formatPercent(agg.recent7dSuccessRate)}
         hint={
-          agg.runningCount > 0 ? `${agg.runningCount} running now` : undefined
+          agg.runningCount > 0
+            ? `${agg.runningCount} running now`
+            : `${agg.recent7dTotal} recent runs`
         }
         accent="var(--color-tangerine)"
       />

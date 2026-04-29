@@ -360,18 +360,32 @@ Response principles:
 
 ## 12.1 Product KPIs
 
-- run completion rate
-- first successful run time
-- template reuse rate
-- rerun conversion rate
-- weekly active workspaces
+| KPI | UI / Event Source | Current Definition |
+|---|---|---|
+| Run success rate | Home KPI, `run_execute_success`, `run_execute_fail` | `completed / finished`, excluding actively running runs |
+| Avg successful duration | Home KPI, `run_execute_success.durationMs` | Average duration for completed runs only |
+| Needs attention | Home KPI, run history status | `failed + partial` runs |
+| 7d success | Home KPI, run history timestamps | Success rate for runs active in the last 7 days |
+| First successful run time | Event stream | Time from first `home_new_run_click` or builder start to first `run_execute_success` |
+| Template reuse rate | `template_use_click` | Template-backed runs / all started runs |
+| Rerun conversion rate | `run_retry_click`, run terminal events | Successful reruns / rerun clicks |
 
 ## 12.2 UX KPIs
 
-- validation error rate
-- abandonment rate by builder step
-- run diagnosis time
-- success after retry
+| KPI | Event Source | Current Definition |
+|---|---|---|
+| Validation error rate | `builder_validation_fail`, `builder_step_next` | Validation failures / validation step visits |
+| Abandonment by builder step | `builder_step_next`, draft resume state | Last recorded step before session exit |
+| Run diagnosis time | Run Detail open to `run_retry_click` | Median time between failed-run inspection and next action |
+| Success after retry | `run_retry_click`, terminal run events | Successful retry runs / retry attempts |
+| Output comparison engagement | `output_compare_open` | Compare opens / completed runs |
+
+## 12.3 KPI Display Rules
+
+1. Home KPI cards use local run history only, so the dashboard remains useful without a backend analytics collector.
+2. Duration cards use completed runs only; partial and failed runs feed `Needs Attention` instead of skewing performance.
+3. Recent health uses a 7-day rolling window anchored to run `finishedAt` when present, otherwise `startedAt`.
+4. Telemetry events carry the active experiment assignment under `experiments`, allowing KPI slices by variant.
 
 ---
 
@@ -379,14 +393,24 @@ Response principles:
 
 ## 13.1 A/B Test Themes
 
-- Home layout emphasis (KPI-first vs action-first)
-- Builder split layout (fixed preview vs collapsible preview)
-- Run list detail mode (inline panel vs dedicated page)
+| Experiment | Status | Variants | Decision Metric |
+|---|---|---|---|
+| `home_layout_emphasis` | Implemented | `kpi_first`, `action_first` | New-run click rate, successful run completion, 7d success |
+| Builder split layout | Planned | Fixed preview, collapsible preview | Validation failure rate, step abandonment |
+| Run list detail mode | Planned | Inline panel, dedicated page | Diagnosis time, retry conversion |
+
+Implementation notes:
+
+1. Client assignments are persisted in `localStorage` under `tc:experiments:v1`.
+2. Deterministic bucketing uses the experiment key plus subject id; explicit overrides are supported with `?exp_home_layout_emphasis=action_first`.
+3. `experiment_exposure` fires on Home mount and every tracked event includes the active assignment map.
+4. Experiments must define one default/control variant and keep the control behavior shippable.
 
 ## 13.2 Event Tracking
 
 Core events:
 
+- `experiment_exposure`
 - `home_new_run_click`
 - `builder_step_next`
 - `builder_validation_fail`
@@ -445,6 +469,22 @@ Core events:
 4. Templates can be created and reused in subsequent runs.
 5. Outputs can be searched, previewed, and compared.
 6. KPI telemetry is available for all key workflow milestones.
+7. Home A/B assignment persists across reloads and can be overridden for QA.
+8. KPI cards match the definitions in section 12 and have unit coverage for edge cases.
+
+## 16.1 DoD Acceptance Matrix
+
+| Area | Acceptance Check | Verification |
+|---|---|---|
+| Navigation | Top nav reaches Home, Runs, Templates, Outputs, Settings without dead ends | Playwright smoke + manual pass |
+| Run builder | User can complete a new run and refresh without losing draft state | Component tests + smoke scenario |
+| Failure recovery | Failed or partial run exposes retry/edit path in <= 3 actions | Run Detail test + manual pass |
+| Reuse | Template can be opened and used as the basis for a new run | Template detail test |
+| Output review | Completed outputs can be opened and compared | Outputs test |
+| Telemetry | Core workflow events include typed props and experiment assignment | `telemetry.spec.ts`, dev buffer |
+| A/B framework | `home_layout_emphasis` persists assignment and supports URL override | `experiments.spec.ts`, HomeView test |
+| KPI | Success, duration, attention, and 7d window use documented formulas | `runAdapter.test.ts` |
+| Release evidence | Unit test suite, typecheck, and E2E/manual notes are attached to release notes | Release checklist |
 
 ---
 

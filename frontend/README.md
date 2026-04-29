@@ -98,6 +98,7 @@ Currently wired:
 
 | Event | Where |
 |---|---|
+| `experiment_exposure` | HomeView experiment assignment |
 | `home_new_run_click` | TopNav New Run, Home Quick Actions |
 | `builder_step_next` | BuilderShell onNext |
 | `builder_validation_fail` | ValidateStep critical-fail change |
@@ -106,7 +107,13 @@ Currently wired:
 | `template_use_click` | TemplateDetailView |
 | `output_compare_open` | OutputsView Compare CTA |
 
-There is no backend collector yet; add a transport in `telemetry.ts` when ready.
+Every event includes an `experiments` map from `src/lib/experiments.ts`. Current experiment:
+
+| Experiment | Variants | QA override |
+|---|---|---|
+| `home_layout_emphasis` | `kpi_first`, `action_first` | `?exp_home_layout_emphasis=action_first` |
+
+The Next proxy for `POST /api/events` exists; backend storage/analytics can be added behind the same contract.
 
 ## Backend dependencies
 

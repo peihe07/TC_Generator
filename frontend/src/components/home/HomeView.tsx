@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
 import { aggregate, toRuns } from "../../services/runAdapter";
+import { getExperimentAssignment } from "../../lib/experiments";
+import { track } from "../../lib/telemetry";
 import ContinueDraft from "./ContinueDraft";
 import KpiCards from "./KpiCards";
 import QuickActions from "./QuickActions";
@@ -12,13 +14,28 @@ export default function HomeView() {
   const records = useJobHistoryStore((s) => s.records);
   const loaded = useJobHistoryStore((s) => s.loaded);
   const loadFromStorage = useJobHistoryStore((s) => s.loadFromStorage);
+  const [homeLayoutVariant, setHomeLayoutVariant] = useState<
+    "kpi_first" | "action_first"
+  >("kpi_first");
 
   useEffect(() => {
     if (!loaded) loadFromStorage();
   }, [loaded, loadFromStorage]);
 
+  useEffect(() => {
+    const assignment = getExperimentAssignment("home_layout_emphasis", {
+      subjectId: "default-workspace",
+    });
+    setHomeLayoutVariant(assignment.variant);
+    track("experiment_exposure", {
+      experiment: assignment.key,
+      variant: assignment.variant,
+    });
+  }, []);
+
   const runs = useMemo(() => toRuns(records), [records]);
   const agg = useMemo(() => aggregate(runs), [runs]);
+  const actionFirst = homeLayoutVariant === "action_first";
 
   return (
     <div className="space-y-6">
@@ -29,17 +46,32 @@ export default function HomeView() {
         </p>
       </header>
 
-      <KpiCards agg={agg} />
-
-      <ContinueDraft />
+      {actionFirst ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div>
+            <QuickActions />
+          </div>
+          <div className="lg:col-span-2 space-y-6">
+            <ContinueDraft />
+            <KpiCards agg={agg} />
+          </div>
+        </div>
+      ) : (
+        <>
+          <KpiCards agg={agg} />
+          <ContinueDraft />
+        </>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+        <div className={actionFirst ? "lg:col-span-3" : "lg:col-span-2"}>
           <RecentRuns runs={runs} />
         </div>
-        <div>
-          <QuickActions />
-        </div>
+        {!actionFirst && (
+          <div>
+            <QuickActions />
+          </div>
+        )}
       </div>
     </div>
   );

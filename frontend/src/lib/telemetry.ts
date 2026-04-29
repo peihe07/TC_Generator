@@ -1,3 +1,6 @@
+import type { ExperimentKey, ExperimentVariant } from "./experiments";
+import { getExperimentVariantMap } from "./experiments";
+
 // Client-side event tracking。每個 track() 呼叫：
 // 1. console.debug（dev/test only）
 // 2. 推到 window.__tcEvents（dev/test only，給 Playwright 斷言）
@@ -6,6 +9,7 @@
 // 失敗 silent — telemetry 不能拖累主功能；網路錯誤就丟掉，避免堆積記憶體。
 
 export type EventName =
+  | "experiment_exposure"
   | "home_new_run_click"
   | "builder_step_next"
   | "builder_validation_fail"
@@ -17,6 +21,10 @@ export type EventName =
   | "output_compare_open";
 
 interface KnownEvents {
+  experiment_exposure: {
+    experiment: ExperimentKey;
+    variant: ExperimentVariant;
+  };
   home_new_run_click: { source?: string };
   builder_step_next: { from: string; to: string };
   builder_validation_fail: { criticalCount: number };
@@ -39,6 +47,7 @@ export type EventProps<T extends EventName> = T extends keyof KnownEvents
 interface RecordedEvent {
   name: EventName;
   props: Record<string, unknown>;
+  experiments: Partial<Record<ExperimentKey, ExperimentVariant>>;
   ts: number;
 }
 
@@ -89,6 +98,7 @@ export function track<T extends EventName>(name: T, props: EventProps<T>): void 
   const event: RecordedEvent = {
     name,
     props: props as Record<string, unknown>,
+    experiments: getExperimentVariantMap(),
     ts: Date.now(),
   };
   pushBuffer(event);

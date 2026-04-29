@@ -8,10 +8,12 @@ import {
 } from "../lib/telemetry";
 
 beforeEach(() => {
+  localStorage.clear();
   clearRecordedEvents();
   _resetForTest();
 });
 afterEach(() => {
+  localStorage.clear();
   clearRecordedEvents();
   _resetForTest();
   vi.restoreAllMocks();
@@ -25,7 +27,31 @@ describe("telemetry", () => {
     expect(events).toHaveLength(1);
     expect(events[0].name).toBe("home_new_run_click");
     expect(events[0].props.source).toBe("test");
+    expect(events[0].experiments).toEqual({});
     expect(typeof events[0].ts).toBe("number");
+  });
+
+  it("track 附帶目前 experiment assignment", () => {
+    localStorage.setItem(
+      "tc:experiments:v1",
+      JSON.stringify({
+        home_layout_emphasis: {
+          key: "home_layout_emphasis",
+          variant: "action_first",
+          assignedAt: 1000,
+          source: "override",
+        },
+      })
+    );
+
+    track("experiment_exposure", {
+      experiment: "home_layout_emphasis",
+      variant: "action_first",
+    });
+
+    expect(getRecordedEvents()[0].experiments).toEqual({
+      home_layout_emphasis: "action_first",
+    });
   });
 
   it("buffer 上限為 200，溢出時移除最舊的", () => {

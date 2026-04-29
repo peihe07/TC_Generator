@@ -32,8 +32,8 @@ describe("HomeView", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: "Home" })
     ).toBeInTheDocument();
-    // Total Runs 為 0
-    expect(screen.getByText("Total Runs")).toBeInTheDocument();
+    expect(screen.getByText("7d Success")).toBeInTheDocument();
+    expect(screen.getByText("Needs Attention")).toBeInTheDocument();
     // RecentRuns 空狀態
     expect(
       screen.getByText("Start with", { exact: false })
@@ -86,5 +86,24 @@ describe("HomeView", () => {
     ).toBeInTheDocument();
     expect(screen.getByText("draft_xyz")).toBeInTheDocument();
     expect(screen.getByText("Resume")).toBeInTheDocument();
+  });
+
+  it("可用 stored experiment assignment 固定 KPI-first layout", () => {
+    localStorage.setItem(
+      "tc:experiments:v1",
+      JSON.stringify({
+        home_layout_emphasis: {
+          key: "home_layout_emphasis",
+          variant: "kpi_first",
+          assignedAt: 1000,
+          source: "override",
+        },
+      })
+    );
+
+    render(<HomeView />);
+
+    expect(screen.getByText("Success Rate")).toBeInTheDocument();
+    expect(screen.getByText("Quick Actions")).toBeInTheDocument();
   });
 });

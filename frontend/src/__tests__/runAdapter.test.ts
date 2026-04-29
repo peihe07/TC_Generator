@@ -75,14 +75,33 @@ describe("aggregate", () => {
       toRun(makeRecord({ id: "3", rowsProcessed: 0 })),
       toRun(makeRecord({ id: "4", finishedAt: 0 })),
     ];
-    const a = aggregate(runs);
+    const a = aggregate(runs, 10_000);
     expect(a.total).toBe(4);
+    expect(a.finishedCount).toBe(3);
     expect(a.successCount).toBe(1);
     expect(a.failCount).toBe(1);
     expect(a.partialCount).toBe(1);
+    expect(a.issueCount).toBe(2);
     expect(a.runningCount).toBe(1);
     expect(a.successRate).toBeCloseTo(1 / 3); // 排除 running
     expect(a.avgDurationMs).toBe(4_000);
+    expect(a.completedAvgDurationMs).toBe(4_000);
+    expect(a.recent7dTotal).toBe(4);
+    expect(a.recent7dSuccessRate).toBeCloseTo(1 / 3);
+  });
+
+  it("7 day KPI window excludes older runs", () => {
+    const now = 8 * 86_400_000;
+    const runs = [
+      toRun(makeRecord({ id: "old", finishedAt: 1_000 })),
+      toRun(makeRecord({ id: "recent", startedAt: now - 10_000, finishedAt: now })),
+    ];
+
+    const a = aggregate(runs, now);
+
+    expect(a.total).toBe(2);
+    expect(a.recent7dTotal).toBe(1);
+    expect(a.recent7dSuccessRate).toBe(1);
   });
 });
 

@@ -532,7 +532,8 @@ onClick={() => {
 | `state_update` SSE event | ✓ | dispatcher 在 WRITE-class tool 成功後推，frontend 透過 `AgentStateUpdateToast` 提示 |
 | Cost 觀測面板 | ✓ | `GET /api/metrics/aggregate` + `CostDashboardPopup`（CostMeter 標題列按鈕開啟） |
 | 排程執行 | ⏳ | 與 `scheduled-tasks` MCP 整合；spec 待定 |
-| A/B：混用 vs GUI-only | ⏳ | 需產品層面觀察指標，Phase 4 後期再做 |
+| A/B：Home layout emphasis | ✓ | `home_layout_emphasis` framework 已上：localStorage persisted assignment、URL override、telemetry exposure |
+| A/B：混用 vs GUI-only | ⏳ | 需 Agent/GUI event 對齊後再開；沿用現有 experiment framework |
 
 ---
 
