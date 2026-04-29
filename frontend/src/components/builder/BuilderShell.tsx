@@ -5,9 +5,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
 import BuilderActionBar from "./BuilderActionBar";
 import BuilderStepper from "./BuilderStepper";
+import ConfigureStep from "./steps/ConfigureStep";
 import DataStep from "./steps/DataStep";
 import ExecuteStep from "./steps/ExecuteStep";
-import LegacyBridgeStep from "./steps/LegacyBridgeStep";
+import ReviewStep from "./steps/ReviewStep";
+import ValidateStep from "./steps/ValidateStep";
 import {
   BUILDER_STEPS,
   isBuilderStep,
@@ -23,51 +25,9 @@ function renderStepPanel(
 ): React.ReactNode {
   if (step === "data") return <DataStep onAdvance={onAdvance} />;
   if (step === "execute") return <ExecuteStep onAdvance={onAdvance} />;
-  if (step === "configure") {
-    return (
-      <LegacyBridgeStep
-        step="configure"
-        title="Configure Rules"
-        description="Pick a template and tweak overrides."
-        legacyModuleNotes={[
-          "Spec matching tab (heuristics + manual overrides)",
-          "Grouping tab (test-set classification)",
-          "Generation options (model, budget, prompt presets)",
-        ]}
-        onAdvance={onAdvance}
-      />
-    );
-  }
-  if (step === "validate") {
-    return (
-      <LegacyBridgeStep
-        step="validate"
-        title="Validate"
-        description="Confirm schema and rule compatibility before execution."
-        legacyModuleNotes={[
-          "Schema compatibility checks",
-          "Spec match coverage summary",
-          "Critical-error guardrail before generation",
-        ]}
-        onAdvance={onAdvance}
-      />
-    );
-  }
-  if (step === "review") {
-    return (
-      <LegacyBridgeStep
-        step="review"
-        title="Review & Export"
-        description="Inspect outputs, fix issues, and export."
-        legacyModuleNotes={[
-          "Per-row review with diff and validation panel",
-          "Suggest-fix AI assistant",
-          "Export to xlsx with bundled metadata",
-        ]}
-        onAdvance={onAdvance}
-      />
-    );
-  }
+  if (step === "configure") return <ConfigureStep />;
+  if (step === "validate") return <ValidateStep />;
+  if (step === "review") return <ReviewStep />;
   return null;
 }
 
@@ -247,6 +207,14 @@ export default function BuilderShell() {
 
       <BuilderActionBar
         current={current}
+        blocked={
+          current === "validate" && draft.completed?.validate === false
+        }
+        blockReason={
+          current === "validate" && draft.completed?.validate === false
+            ? "Resolve blocking checks first"
+            : undefined
+        }
         onBack={onBack}
         onNext={onNext}
         onSaveDraft={onSaveDraft}
