@@ -10,19 +10,32 @@ import {
   RiSettings3Line,
   RiAddLine,
   RiArchive2Line,
+  RiDownload2Line,
+  RiRefreshLine,
+  RiBookmarkLine,
+  RiDraftLine,
+  RiCloseCircleLine,
   type RemixiconComponentType,
 } from "@remixicon/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { fetchSpecLibrary, type SpecLibraryEntry } from "../../services/jobAdapter";
 import { toRuns } from "../../services/runAdapter";
+import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
 import { useCommandPaletteStore } from "../../store/useCommandPaletteStore";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+import { formatSpecLibraryLabel } from "../modules/upload/UploadModule";
+
+type CommandGroup = "Navigate" | "Action" | "Run" | "Template" | "Output";
 
 interface Command {
   id: string;
   label: string;
-  group: "Navigate" | "Action" | "Run";
+  hint?: string;
+  group: CommandGroup;
   href?: string;
+  external?: boolean; // <a target=_blank style download
+  onSelect?: () => void;
   icon: RemixiconComponentType;
   keywords?: string;
 }
@@ -34,8 +47,8 @@ const STATIC_COMMANDS: Command[] = [
   { id: "nav-outputs", label: "Outputs", group: "Navigate", href: "/outputs", icon: RiInboxLine },
   { id: "nav-data", label: "Data", group: "Navigate", href: "/data", icon: RiDatabase2Line },
   { id: "nav-settings", label: "Settings", group: "Navigate", href: "/settings", icon: RiSettings3Line },
-  { id: "act-new-run", label: "New Run", group: "Action", href: "/run-builder", icon: RiAddLine, keywords: "create start generate" },
-  { id: "nav-legacy", label: "Open Legacy Desktop", group: "Action", href: "/legacy", icon: RiArchive2Line, keywords: "98 windows old" },
+  { id: "act-new-run", label: "New Run", group: "Action", href: "/run-builder", icon: RiAddLine, keywords: "create start generate builder" },
+  { id: "nav-legacy", label: "Open Legacy Desktop", group: "Action", href: "/legacy", icon: RiArchive2Line, keywords: "98 windows old fallback" },
 ];
 
 export default function CommandPalette() {
@@ -46,9 +59,14 @@ export default function CommandPalette() {
   const records = useJobHistoryStore((s) => s.records);
   const loaded = useJobHistoryStore((s) => s.loaded);
   const loadFromStorage = useJobHistoryStore((s) => s.loadFromStorage);
+  const draft = useBuilderDraftStore((s) => s.draft);
+  const draftLoaded = useBuilderDraftStore((s) => s.loaded);
+  const loadDraft = useBuilderDraftStore((s) => s.loadFromStorage);
+  const clearDraft = useBuilderDraftStore((s) => s.clear);
 
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
+  const [templates, setTemplates] = useState<SpecLibraryEntry[]>([]);
 
   // 全域 Cmd/Ctrl+K
   useEffect(() => {
@@ -65,37 +83,127 @@ export default function CommandPalette() {
   }, [toggle, setOpen]);
 
   useEffect(() => {
-    if (open && !loaded) loadFromStorage();
-    if (open) {
-      setQuery("");
-      setActiveIndex(0);
-    }
-  }, [open, loaded, loadFromStorage]);
+    if (!open) return;
+    if (!loaded) loadFromStorage();
+    if (!draftLoaded) loadDraft();
+    setQuery("");
+    setActiveIndex(0);
+    // 拉一次 templates（沿用 spec-library）
+    fetchSpecLibrary()
+      .then((list) => setTemplates(list))
+      .catch(() => setTemplates([]));
+  }, [open, loaded, loadFromStorage, draftLoaded, loadDraft]);
 
-  const runCommands: Command[] = useMemo(() => {
-    if (!query.trim()) return [];
-    return toRuns(records)
-      .slice(0, 8)
+  // ---------- Dynamic commands ----------
+  const runs = useMemo(() => toRuns(records), [records]);
+
+  const recentRunCommands: Command[] = useMemo(() => {
+    return runs.slice(0, 6).map((r) => ({
+      id: `run-${r.id}`,
+      label: `Open ${r.kindLabel}`,
+      hint: r.id,
+      group: "Run" as const,
+      href: `/runs/${r.id}`,
+      icon: RiPlayCircleLine,
+      keywords: `${r.id} ${r.model} open`,
+    }));
+  }, [runs]);
+
+  const rerunCommands: Command[] = useMemo(() => {
+    return runs.slice(0, 5).map((r) => ({
+      id: `rerun-${r.id}`,
+      label: `Rerun ${r.kindLabel}`,
+      hint: r.id,
+      group: "Run" as const,
+      href: `/run-builder?from=${encodeURIComponent(r.id)}`,
+      icon: RiRefreshLine,
+      keywords: `rerun ${r.id} ${r.model}`,
+    }));
+  }, [runs]);
+
+  const outputCommands: Command[] = useMemo(() => {
+    return runs
+      .filter(
+        (r) =>
+          r.status !== "running" &&
+          ["generate", "quick", "rerun", "regenerate"].includes(r.kind)
+      )
+      .slice(0, 5)
       .map((r) => ({
-        id: `run-${r.id}`,
-        label: `${r.kindLabel} · ${r.id}`,
-        group: "Run" as const,
-        href: `/runs/${r.id}`,
-        icon: RiPlayCircleLine,
-        keywords: r.model,
+        id: `dl-${r.id}`,
+        label: `Download output`,
+        hint: r.id,
+        group: "Output" as const,
+        href: `/api/export/download/${encodeURIComponent(r.id)}`,
+        external: true,
+        icon: RiDownload2Line,
+        keywords: `download export ${r.id}`,
       }));
-  }, [records, query]);
+  }, [runs]);
+
+  const templateCommands: Command[] = useMemo(() => {
+    return templates.slice(0, 6).map((t) => ({
+      id: `tpl-${t.name}`,
+      label: `Use template ${formatSpecLibraryLabel(t.name)}`,
+      hint: t.name,
+      group: "Template" as const,
+      href: `/run-builder?templateId=${encodeURIComponent(t.name)}`,
+      icon: RiBookmarkLine,
+      keywords: `${t.name} ${formatSpecLibraryLabel(t.name)} template`,
+    }));
+  }, [templates]);
+
+  const draftCommands: Command[] = useMemo(() => {
+    if (!draft) return [];
+    return [
+      {
+        id: "draft-resume",
+        label: "Resume current draft",
+        hint: draft.id,
+        group: "Action",
+        href: `/run-builder?step=${draft.currentStep}`,
+        icon: RiDraftLine,
+        keywords: "draft resume continue",
+      },
+      {
+        id: "draft-discard",
+        label: "Discard current draft",
+        hint: draft.id,
+        group: "Action",
+        onSelect: () => {
+          if (window.confirm("Discard current draft?")) {
+            clearDraft();
+          }
+        },
+        icon: RiCloseCircleLine,
+        keywords: "draft delete reset",
+      },
+    ];
+  }, [draft, clearDraft]);
 
   const allCommands = useMemo(
-    () => [...STATIC_COMMANDS, ...runCommands],
-    [runCommands]
+    () => [
+      ...STATIC_COMMANDS,
+      ...draftCommands,
+      ...recentRunCommands,
+      ...rerunCommands,
+      ...outputCommands,
+      ...templateCommands,
+    ],
+    [
+      draftCommands,
+      recentRunCommands,
+      rerunCommands,
+      outputCommands,
+      templateCommands,
+    ]
   );
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return allCommands;
     return allCommands.filter((c) => {
-      const hay = `${c.label} ${c.keywords ?? ""} ${c.group}`.toLowerCase();
+      const hay = `${c.label} ${c.hint ?? ""} ${c.keywords ?? ""} ${c.group}`.toLowerCase();
       return hay.includes(q);
     });
   }, [allCommands, query]);
@@ -105,19 +213,39 @@ export default function CommandPalette() {
   }, [query]);
 
   const grouped = useMemo(() => {
-    const map = new Map<Command["group"], Command[]>();
+    const order: CommandGroup[] = [
+      "Action",
+      "Navigate",
+      "Run",
+      "Template",
+      "Output",
+    ];
+    const map = new Map<CommandGroup, Command[]>();
     for (const c of filtered) {
       const arr = map.get(c.group) ?? [];
       arr.push(c);
       map.set(c.group, arr);
     }
-    return Array.from(map.entries());
+    return order
+      .filter((g) => map.has(g))
+      .map((g) => [g, map.get(g)!] as const);
   }, [filtered]);
 
   if (!open) return null;
 
   const exec = (cmd: Command) => {
-    if (cmd.href) router.push(cmd.href);
+    if (cmd.onSelect) {
+      cmd.onSelect();
+      setOpen(false);
+      return;
+    }
+    if (cmd.href) {
+      if (cmd.external) {
+        window.open(cmd.href, "_blank", "noopener");
+      } else {
+        router.push(cmd.href);
+      }
+    }
     setOpen(false);
   };
 
@@ -135,14 +263,16 @@ export default function CommandPalette() {
     }
   };
 
-  // 計算每個項目在 filtered 中的 index 以對應 activeIndex
   let runningIdx = 0;
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[15vh]"
       onClick={() => setOpen(false)}
-      style={{ backgroundColor: "rgba(0, 21, 36, 0.45)", backdropFilter: "blur(4px)" }}
+      style={{
+        backgroundColor: "rgba(0, 21, 36, 0.45)",
+        backdropFilter: "blur(4px)",
+      }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -153,16 +283,11 @@ export default function CommandPalette() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="Type a command, page, or run id..."
+          placeholder="Type a command, run id, template, or page..."
           className="w-full bg-transparent px-5 py-4 text-base outline-none text-primary placeholder:text-[var(--color-teal)] placeholder:opacity-60"
         />
-        <div
-          className="border-t-0"
-          style={{
-            boxShadow: "inset 0 1px 0 rgba(21, 97, 109, 0.15)",
-          }}
-        />
-        <div className="max-h-[50vh] overflow-y-auto py-2">
+        <div style={{ boxShadow: "inset 0 1px 0 rgba(21, 97, 109, 0.15)" }} />
+        <div className="max-h-[55vh] overflow-y-auto py-2">
           {filtered.length === 0 ? (
             <div className="px-5 py-6 text-sm text-muted text-center">
               No results
@@ -191,9 +316,16 @@ export default function CommandPalette() {
                       }}
                     >
                       <Icon size={16} />
-                      <span className="flex-1 text-sm text-primary truncate">
-                        {c.label}
-                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm text-primary truncate">
+                          {c.label}
+                        </div>
+                        {c.hint && (
+                          <div className="text-[10px] text-muted truncate">
+                            {c.hint}
+                          </div>
+                        )}
+                      </div>
                       {active && (
                         <RiArrowRightLine
                           size={14}
