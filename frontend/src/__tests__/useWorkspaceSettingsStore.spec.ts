@@ -1,9 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { useWorkspaceSettingsStore } from "../store/useWorkspaceSettingsStore";
+import {
+  useWorkspaceSettingsStore,
+  type WorkspaceSettings,
+} from "../store/useWorkspaceSettingsStore";
 
 const LS_KEY = "tc-generator-workspace-settings";
 
-const FALLBACK = {
+const FALLBACK: WorkspaceSettings = {
   defaultModel: "gpt-5",
   defaultBatchSize: 5,
   defaultBudgetLimit: 10,
