@@ -86,6 +86,7 @@ export default function BuilderShell() {
 
   const fromRunId = searchParams.get("from");
   const editRunId = searchParams.get("edit");
+  const templateIdParam = searchParams.get("templateId");
   const sourceRunId = fromRunId || editRunId || null;
   const rerunMode: "rerun" | "edit" | null = fromRunId
     ? "rerun"
@@ -102,13 +103,26 @@ export default function BuilderShell() {
     if (!loaded) return;
     // 從 Run Detail 帶 source runId 來：若不是當前 draft 的來源 → 開新 draft
     if (sourceRunId && draft?.sourceRunId !== sourceRunId) {
-      const next = startNew();
+      startNew();
       update({ sourceRunId, rerunMode: rerunMode ?? undefined });
-      void next;
+      return;
+    }
+    // 從 Templates 帶 templateId 來：套到 configure
+    if (
+      templateIdParam &&
+      draft?.configure?.templateId !== templateIdParam
+    ) {
+      if (!draft) startNew();
+      update({
+        configure: {
+          ...(draft?.configure ?? {}),
+          templateId: templateIdParam,
+        },
+      });
       return;
     }
     if (!draft) startNew();
-  }, [loaded, draft, sourceRunId, rerunMode, startNew, update]);
+  }, [loaded, draft, sourceRunId, rerunMode, templateIdParam, startNew, update]);
 
   const current: BuilderStep = useMemo(() => {
     if (stepFromUrl && isBuilderStep(stepFromUrl)) return stepFromUrl;
@@ -208,6 +222,18 @@ export default function BuilderShell() {
             {draft.rerunMode === "edit" ? "Editing run" : "Rerunning run"}
           </span>
           <code className="text-primary">{draft.sourceRunId}</code>
+        </div>
+      )}
+
+      {draft.configure?.templateId && (
+        <div
+          className="surface px-4 py-2 text-xs flex items-center gap-2"
+          style={{ color: "var(--color-teal)" }}
+        >
+          <span className="font-bold uppercase tracking-wider">
+            Using template
+          </span>
+          <code className="text-primary">{draft.configure.templateId}</code>
         </div>
       )}
 
