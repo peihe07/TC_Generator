@@ -2268,3 +2268,201 @@ def test_compare_409_when_export_missing():
     )
     assert response.status_code == 409
     assert "Export first" in response.json()["detail"]
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Job config snapshot
+# ─────────────────────────────────────────────────────────────────────
+
+
+def test_config_404_for_unknown_job():
+    response = client.get("/api/jobs/nope/config")
+    assert response.status_code == 404
+
+
+def test_config_returns_snapshot():
+    import api_server
+
+    job_id = "config-snapshot-job"
+    api_server.JOB_REGISTRY[job_id] = {
+        "jobId": job_id,
+        "status": "completed",
+        "totalRows": 4,
+        "parsedData": {"project": "Demo", "test_group": "Core"},
+        "config": {
+            "model": "gpt-5",
+            "batchSize": 5,
+            "budget": 12.5,
+            "strictValidation": True,
+        },
+    }
+    response = client.get(f"/api/jobs/{job_id}/config")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["jobId"] == job_id
+    assert body["projectName"] == "Demo"
+    assert body["testGroup"] == "Core"
+    assert body["totalRows"] == 4
+    assert body["status"] == "completed"
+    assert body["config"]["model"] == "gpt-5"
+    assert body["config"]["strictValidation"] is True
+
+
+def test_config_returns_none_when_no_config_stored():
+    import api_server
+
+    job_id = "config-no-snapshot"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    body = client.get(f"/api/jobs/{job_id}/config").json()
+    assert body["config"] is None
+    assert body["projectName"] is None
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Validation logs
+# ─────────────────────────────────────────────────────────────────────
+
+
+def test_validation_logs_append_and_get():
+    import api_server
+
+    job_id = "vl-job-1"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+
+    res = client.post(
+        f"/api/jobs/{job_id}/validation-logs",
+        json={
+            "entries": [
+                {
+                    "rowId": "r1",
+                    "reqId": "REQ-1",
+                    "severity": "error",
+                    "field": "steps",
+                    "message": "missing steps",
+                },
+                {
+                    "rowId": "r2",
+                    "reqId": "REQ-2",
+                    "severity": "warning",
+                    "message": "soft warning",
+                },
+            ]
+        },
+    )
+    assert res.status_code == 200
+    assert res.json() == {"ok": True, "count": 2}
+
+    body = client.get(f"/api/jobs/{job_id}/validation-logs").json()
+    rows = {e["rowId"]: e for e in body["entries"]}
+    assert rows["r1"]["severity"] == "error"
+    assert rows["r1"]["field"] == "steps"
+    assert rows["r2"]["severity"] == "warning"
+    assert all(isinstance(e["ts"], int) for e in body["entries"])
+
+
+def test_validation_logs_replace_by_row_id():
+    import api_server
+
+    job_id = "vl-job-replace"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+
+    client.post(
+        f"/api/jobs/{job_id}/validation-logs",
+        json={"entries": [{"rowId": "r1", "severity": "error", "message": "v1"}]},
+    )
+    client.post(
+        f"/api/jobs/{job_id}/validation-logs",
+        json={"entries": [{"rowId": "r1", "severity": "warning", "message": "v2"}]},
+    )
+    entries = client.get(f"/api/jobs/{job_id}/validation-logs").json()["entries"]
+    assert len(entries) == 1
+    assert entries[0]["message"] == "v2"
+
+
+def test_validation_logs_404_unknown_job():
+    assert client.get("/api/jobs/no-such/validation-logs").status_code == 404
+    res = client.post(
+        "/api/jobs/no-such/validation-logs",
+        json={"entries": [{"rowId": "r1", "severity": "error", "message": "x"}]},
+    )
+    assert res.status_code == 404
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Template usage analytics
+# ─────────────────────────────────────────────────────────────────────
+
+
+def test_spec_library_usage_no_matches():
+    response = client.get("/api/spec-library/template-with-no-runs/usage")
+    assert response.status_code == 200
+    assert response.json() == {
+        "name": "template-with-no-runs",
+        "usageCount": 0,
+        "lastUsedAt": None,
+        "recentRunIds": [],
+    }
+
+
+def test_spec_library_usage_counts_matching_jobs():
+    import api_server
+
+    api_server.JOB_REGISTRY["tpl-usage-a"] = {
+        "jobId": "tpl-usage-a",
+        "templateId": "tpl-X",
+        "status": "completed",
+        "timeline": [{"kind": "queued", "ts": 100}],
+    }
+    api_server.JOB_REGISTRY["tpl-usage-b"] = {
+        "jobId": "tpl-usage-b",
+        "templateId": "tpl-X",
+        "status": "completed",
+        "timeline": [{"kind": "completed", "ts": 200}],
+    }
+    api_server.JOB_REGISTRY["tpl-usage-other"] = {
+        "jobId": "tpl-usage-other",
+        "templateId": "tpl-Y",
+    }
+
+    body = client.get("/api/spec-library/tpl-X/usage").json()
+    assert body["usageCount"] == 2
+    assert body["lastUsedAt"] == 200
+    assert body["recentRunIds"][0] == "tpl-usage-b"
+    assert "tpl-usage-other" not in body["recentRunIds"]
+
+
+def test_generate_persists_template_id_for_attribution():
+    import api_server
+
+    job_id = "tpl-attrib-job"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    payload = {
+        "jobId": job_id,
+        "templateId": "tpl-Z",
+        "rows": [
+            {
+                "id": "r1",
+                "reqId": "REQ-1",
+                "testGroup": "G",
+                "testSet": "S",
+                "testItem": "Item",
+                "preConditions": "",
+                "inputTestData": "",
+                "steps": "",
+                "expectedResults": "",
+                "status": "pending",
+            }
+        ],
+        "config": {
+            "model": "gpt-5",
+            "batchSize": 5,
+            "budget": 5,
+            "strictValidation": False,
+        },
+    }
+    res = client.post("/api/generate", json=payload)
+    assert res.status_code == 200
+    assert api_server.JOB_REGISTRY[job_id]["templateId"] == "tpl-Z"
+    usage = client.get("/api/spec-library/tpl-Z/usage").json()
+    assert usage["usageCount"] >= 1
+    assert job_id in usage["recentRunIds"]

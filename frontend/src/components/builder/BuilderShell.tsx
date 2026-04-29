@@ -59,6 +59,7 @@ export default function BuilderShell() {
   const fromRunId = searchParams.get("from");
   const editRunId = searchParams.get("edit");
   const templateIdParam = searchParams.get("templateId");
+  const datasetParam = searchParams.get("dataset");
   const sourceRunId = fromRunId || editRunId || null;
   const rerunMode: "rerun" | "edit" | null = fromRunId
     ? "rerun"
@@ -106,12 +107,24 @@ export default function BuilderShell() {
       });
       return;
     }
+    // 從 Data registry 帶 dataset 來：先記下 datasetId，使用者仍需重新上傳檔案
+    // （backend job 可能已 purge raw bytes）。Banner 會提示來源。
+    if (datasetParam && draft?.data?.datasetId !== datasetParam) {
+      if (!draft) startNew();
+      update({
+        data: {
+          ...(draft?.data ?? {}),
+          datasetId: datasetParam,
+        },
+      });
+      return;
+    }
     if (!draft) {
       startNew();
       applyDefaults();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loaded, draft, sourceRunId, rerunMode, templateIdParam, startNew, update, wsSettingsLoaded]);
+  }, [loaded, draft, sourceRunId, rerunMode, templateIdParam, datasetParam, startNew, update, wsSettingsLoaded]);
 
   const current: BuilderStep = useMemo(() => {
     if (stepFromUrl && isBuilderStep(stepFromUrl)) return stepFromUrl;
@@ -226,6 +239,21 @@ export default function BuilderShell() {
             Using template
           </span>
           <code className="text-primary">{draft.configure.templateId}</code>
+        </div>
+      )}
+
+      {draft.data?.datasetId && !draft.data?.fileName && (
+        <div
+          className="surface px-4 py-2 text-xs flex items-center gap-2 flex-wrap"
+          style={{ color: "var(--color-teal)" }}
+        >
+          <span className="font-bold uppercase tracking-wider">
+            Reusing dataset
+          </span>
+          <code className="text-primary">{draft.data.datasetId}</code>
+          <span className="text-muted">
+            — re-upload the workbook to populate rows
+          </span>
         </div>
       )}
 

@@ -32,6 +32,9 @@ export default function ExecuteStep({ onAdvance }: { onAdvance: () => void }) {
   const addTcRowAfter = useJobStore((s) => s.addTcRowAfter);
 
   const markStepComplete = useBuilderDraftStore((s) => s.markStepComplete);
+  const templateId = useBuilderDraftStore(
+    (s) => s.draft?.configure?.templateId ?? null
+  );
 
   const runnerRef = useRef<{ stop: () => void } | null>(null);
   const startedAtRef = useRef<number | null>(null);
@@ -112,6 +115,7 @@ export default function ExecuteStep({ onAdvance }: { onAdvance: () => void }) {
         jobId: jobMetadata?.jobId ?? null,
         rows: rowsToRun,
         config,
+        templateId,
       },
       {
         onProgress: (next) => updateStats(next),

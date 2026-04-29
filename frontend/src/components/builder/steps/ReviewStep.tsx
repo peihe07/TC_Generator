@@ -41,6 +41,7 @@ interface EditableFields {
 
 export default function ReviewStep() {
   const tcRows = useJobStore((s) => s.tcRows);
+  const jobMetadata = useJobStore((s) => s.jobMetadata);
   const updateTcRow = useJobStore((s) => s.updateTcRow);
   const deleteTcRows = useJobStore((s) => s.deleteTcRows);
   const markStepComplete = useBuilderDraftStore((s) => s.markStepComplete);
@@ -52,6 +53,32 @@ export default function ReviewStep() {
   useEffect(() => {
     if (tcRows.length > 0) markStepComplete("review", true);
   }, [tcRows.length, markStepComplete]);
+
+  // 把驗證結果 POST 給後端，讓 Run Detail 可以顯示 issues feed
+  useEffect(() => {
+    const jobId = jobMetadata?.jobId;
+    if (!jobId || tcRows.length === 0) return;
+    const entries = tcRows.flatMap((row) =>
+      (row.validationErrors ?? []).map((err) => ({
+        rowId: row.id,
+        reqId: row.reqId,
+        severity: err.severity,
+        field: err.column,
+        message: err.message,
+      }))
+    );
+    if (entries.length === 0) return;
+    fetch(
+      `/api/jobs/${encodeURIComponent(jobId)}/validation-logs`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ entries }),
+      }
+    ).catch(() => {
+      // silent — 失敗不影響 review 主流程
+    });
+  }, [jobMetadata?.jobId, tcRows]);
 
   // 自動選第一筆
   useEffect(() => {

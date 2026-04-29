@@ -16,6 +16,13 @@ import { formatSpecLibraryLabel } from "../../lib/specLibrary";
 import { track } from "../../lib/telemetry";
 import { Skeleton, SkeletonRows } from "../shell/Skeleton";
 
+interface UsageResponse {
+  name: string;
+  usageCount: number;
+  lastUsedAt: number | null;
+  recentRunIds: string[];
+}
+
 export default function TemplateDetailView({
   templateId,
 }: {
@@ -25,6 +32,7 @@ export default function TemplateDetailView({
     undefined
   );
   const [error, setError] = useState<string | null>(null);
+  const [usage, setUsage] = useState<UsageResponse | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -37,6 +45,17 @@ export default function TemplateDetailView({
       .catch((err) => {
         if (!cancelled)
           setError(err instanceof Error ? err.message : "Fetch failed");
+      });
+    fetch(`/api/spec-library/${encodeURIComponent(templateId)}/usage`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        return (await res.json()) as UsageResponse;
+      })
+      .then((data) => {
+        if (!cancelled) setUsage(data);
+      })
+      .catch(() => {
+        // 默默 fallback
       });
     return () => {
       cancelled = true;
@@ -159,6 +178,58 @@ export default function TemplateDetailView({
 
       <section className="surface p-5 space-y-3">
         <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
+          Usage
+        </h2>
+        {usage ? (
+          <div className="space-y-3">
+            <dl className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+              <div>
+                <dt className="text-[10px] uppercase tracking-wider text-muted">
+                  Runs using this template
+                </dt>
+                <dd className="text-2xl font-bold text-primary">
+                  {usage.usageCount}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[10px] uppercase tracking-wider text-muted">
+                  Last used
+                </dt>
+                <dd className="text-sm text-primary">
+                  {usage.lastUsedAt
+                    ? formatRelativeTs(usage.lastUsedAt)
+                    : "—"}
+                </dd>
+              </div>
+            </dl>
+            {usage.recentRunIds.length > 0 && (
+              <div className="space-y-1">
+                <div className="text-[10px] uppercase tracking-wider text-muted font-bold">
+                  Recent runs
+                </div>
+                <ul className="space-y-1 text-xs">
+                  {usage.recentRunIds.map((runId) => (
+                    <li key={runId}>
+                      <Link
+                        href={`/runs/${runId}`}
+                        className="font-bold focus-ring rounded"
+                        style={{ color: "var(--color-tangerine)" }}
+                      >
+                        {runId}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ) : (
+          <p className="text-xs text-muted">Loading usage…</p>
+        )}
+      </section>
+
+      <section className="surface p-5 space-y-3">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
           Coming Soon
         </h2>
         <ul className="space-y-1.5 text-sm text-secondary">
@@ -172,16 +243,20 @@ export default function TemplateDetailView({
           </li>
           <li className="flex gap-2">
             <span style={{ color: "var(--color-tangerine)" }}>›</span>
-            <span>Usage analytics (runs created with this template)</span>
-          </li>
-          <li className="flex gap-2">
-            <span style={{ color: "var(--color-tangerine)" }}>›</span>
             <span>Clone, deprecate, override actions</span>
           </li>
         </ul>
       </section>
     </div>
   );
+}
+
+function formatRelativeTs(ts: number): string {
+  const diff = Date.now() - ts;
+  if (diff < 60_000) return "just now";
+  if (diff < 3_600_000) return `${Math.floor(diff / 60_000)}m ago`;
+  if (diff < 86_400_000) return `${Math.floor(diff / 3_600_000)}h ago`;
+  return `${Math.floor(diff / 86_400_000)}d ago`;
 }
 
 function BackLink() {

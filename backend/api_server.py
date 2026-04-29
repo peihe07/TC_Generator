@@ -252,6 +252,9 @@ class GenerateRequest(BaseModel):
     jobId: str | None = None
     rows: list[GenerateRow]
     config: GenerateConfig
+    # Optional — when the user picked a template in the Builder, frontend
+    # passes its name here so the backend can attribute usage analytics.
+    templateId: str | None = None
 
 
 class ExportRequest(BaseModel):
@@ -1458,6 +1461,93 @@ def get_job_timeline(job_id: str) -> dict:
     return {"jobId": job_id, "events": timeline}
 
 
+class ValidationLogEntry(BaseModel):
+    rowId: str
+    reqId: str | None = None
+    severity: str
+    field: str | None = None
+    message: str
+    ts: int | None = None
+
+
+class ValidationLogBatch(BaseModel):
+    entries: list[ValidationLogEntry]
+
+
+VALIDATION_LOG_MAX = 500
+
+
+@app.post("/api/jobs/{job_id}/validation-logs")
+def append_validation_logs(job_id: str, payload: ValidationLogBatch) -> dict:
+    """Frontend posts row-level validation issues for a finished run.
+
+    Rows are aggregated (latest write replaces older ones for the same rowId),
+    so re-posting after a Regenerate session keeps the latest state without
+    unbounded growth.
+    """
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+
+    now_ms = int(datetime.utcnow().timestamp() * 1000)
+    existing = job.get("validationLog")
+    if not isinstance(existing, list):
+        existing = []
+    by_row: dict[str, dict] = {}
+    for prior in existing:
+        if isinstance(prior, dict) and prior.get("rowId"):
+            by_row[str(prior["rowId"])] = prior
+    for entry in payload.entries:
+        record = {
+            "rowId": entry.rowId,
+            "reqId": entry.reqId,
+            "severity": entry.severity,
+            "field": entry.field,
+            "message": entry.message,
+            "ts": entry.ts if entry.ts and entry.ts > 0 else now_ms,
+        }
+        by_row[entry.rowId] = record
+    merged = list(by_row.values())
+    if len(merged) > VALIDATION_LOG_MAX:
+        merged = merged[-VALIDATION_LOG_MAX:]
+    job["validationLog"] = merged
+    JOB_REGISTRY[job_id] = job
+    return {"ok": True, "count": len(merged)}
+
+
+@app.get("/api/jobs/{job_id}/validation-logs")
+def get_validation_logs(job_id: str) -> dict:
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+    log = job.get("validationLog")
+    if not isinstance(log, list):
+        log = []
+    return {"jobId": job_id, "entries": log}
+
+
+@app.get("/api/jobs/{job_id}/config")
+def get_job_config(job_id: str) -> dict:
+    """Return the resolved generation config snapshot recorded for this job.
+
+    Run Detail uses this to show "what this run was actually configured with"
+    without requiring the frontend to keep its own copy of the config.
+    """
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+    config = job.get("config")
+    parsed = job.get("parsedData") or {}
+    return {
+        "jobId": job_id,
+        "config": config if isinstance(config, dict) else None,
+        "projectName": parsed.get("project") or job.get("projectName"),
+        "testGroup": parsed.get("test_group") or job.get("testGroup"),
+        "totalRows": job.get("totalRows"),
+        "status": job.get("status"),
+    }
+
+
 @app.get("/api/jobs/{job_id}/usage")
 def get_job_usage(job_id: str) -> dict:
     """Per-job usage breakdown including model-level cost attribution.
@@ -1513,6 +1603,33 @@ async def list_spec_library() -> dict:
     ]
     specs.sort(key=lambda s: (s.get("name") or "").lower())
     return {"specs": specs}
+
+
+@app.get("/api/spec-library/{name}/usage")
+def spec_library_usage(name: str) -> dict:
+    """Count completed runs that used the named template.
+
+    Scans the SQLite job registry for jobs whose stored ``templateId`` matches.
+    Only the latest 10 run IDs are returned to keep the payload light.
+    """
+    matches: list[dict] = []
+    for job_id in JOB_REGISTRY.keys():
+        job = JOB_REGISTRY.get(job_id)
+        if not job or job.get("templateId") != name:
+            continue
+        timeline = job.get("timeline") if isinstance(job.get("timeline"), list) else []
+        last_ts = max((e.get("ts") or 0 for e in timeline), default=0)
+        matches.append({"jobId": job_id, "lastTs": last_ts, "status": job.get("status")})
+
+    matches.sort(key=lambda m: m["lastTs"] or 0, reverse=True)
+    recent = matches[:10]
+    last_used_at = recent[0]["lastTs"] if recent else None
+    return {
+        "name": name,
+        "usageCount": len(matches),
+        "lastUsedAt": last_used_at if last_used_at else None,
+        "recentRunIds": [m["jobId"] for m in recent],
+    }
 
 
 @app.post("/api/parse")
@@ -1664,14 +1781,15 @@ async def create_generate_job(payload: GenerateRequest, request: Request) -> dic
     stream_url = str(request.url_for("stream_generate_job")) + f"?jobId={job_id}"
 
     job_record = JOB_REGISTRY.get(job_id, {"jobId": job_id})
-    job_record.update(
-        {
-            "status": "queued",
-            "rows": [row.model_dump() for row in payload.rows],
-            "config": payload.config.model_dump(),
-            "totalRows": total_rows,
-        }
-    )
+    update_fields = {
+        "status": "queued",
+        "rows": [row.model_dump() for row in payload.rows],
+        "config": payload.config.model_dump(),
+        "totalRows": total_rows,
+    }
+    if payload.templateId:
+        update_fields["templateId"] = payload.templateId
+    job_record.update(update_fields)
     JOB_REGISTRY[job_id] = job_record
     _append_job_event(job_id, "queued", rowCount=total_rows)
 

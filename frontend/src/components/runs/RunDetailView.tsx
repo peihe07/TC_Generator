@@ -41,6 +41,30 @@ interface TimelineResponse {
   events: TimelineEvent[];
 }
 
+interface ConfigSnapshot {
+  jobId: string;
+  config: {
+    model?: string;
+    batchSize?: number;
+    budget?: number;
+    strictValidation?: boolean;
+    regenerateAll?: boolean;
+  } | null;
+  projectName?: string | null;
+  testGroup?: string | null;
+  totalRows?: number | null;
+  status?: string | null;
+}
+
+interface ValidationLogEntry {
+  rowId: string;
+  reqId?: string | null;
+  severity: string;
+  field?: string | null;
+  message: string;
+  ts: number;
+}
+
 const KIND_LABEL: Record<string, string> = {
   queued: "Queued",
   running: "Running",
@@ -73,12 +97,40 @@ export default function RunDetailView({ runId }: { runId: string }) {
   const [liveUsage, setLiveUsage] = useState<UsageResponse | null>(null);
   const [usageError, setUsageError] = useState<string | null>(null);
   const [timeline, setTimeline] = useState<TimelineEvent[] | null>(null);
+  const [configSnap, setConfigSnap] = useState<ConfigSnapshot | null>(null);
+  const [validationLog, setValidationLog] = useState<ValidationLogEntry[] | null>(
+    null
+  );
 
   useEffect(() => {
     let cancelled = false;
     setLiveUsage(null);
     setUsageError(null);
     setTimeline(null);
+    setConfigSnap(null);
+    setValidationLog(null);
+    fetch(`/api/jobs/${encodeURIComponent(runId)}/validation-logs`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        return (await res.json()) as { entries: ValidationLogEntry[] };
+      })
+      .then((data) => {
+        if (!cancelled) setValidationLog(data.entries ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setValidationLog([]);
+      });
+    fetch(`/api/jobs/${encodeURIComponent(runId)}/config`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        return (await res.json()) as ConfigSnapshot;
+      })
+      .then((data) => {
+        if (!cancelled) setConfigSnap(data);
+      })
+      .catch(() => {
+        // 沒設定就靜默；UI 自然不顯示
+      });
     fetch(`/api/jobs/${encodeURIComponent(runId)}/usage`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`Status ${res.status}`);
@@ -257,8 +309,118 @@ export default function RunDetailView({ runId }: { runId: string }) {
         </section>
       )}
 
+      <ConfigSnapshotSection snapshot={configSnap} />
+      <ValidationLogSection entries={validationLog} />
       <TimelineSection events={timeline} />
     </div>
+  );
+}
+
+function ValidationLogSection({
+  entries,
+}: {
+  entries: ValidationLogEntry[] | null;
+}) {
+  if (entries === null) return null;
+  if (entries.length === 0) return null;
+  const errorCount = entries.filter((e) => e.severity === "error").length;
+  const warnCount = entries.filter((e) => e.severity === "warning").length;
+  return (
+    <section className="surface p-5 space-y-3">
+      <header className="flex items-center justify-between gap-2 flex-wrap">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
+          Validation Log
+        </h2>
+        <span className="text-xs text-muted">
+          {errorCount > 0 && (
+            <span style={{ color: "var(--color-brandy)" }}>
+              {errorCount} error{errorCount > 1 ? "s" : ""}
+            </span>
+          )}
+          {errorCount > 0 && warnCount > 0 && " · "}
+          {warnCount > 0 && (
+            <span style={{ color: "var(--color-tangerine)" }}>
+              {warnCount} warning{warnCount > 1 ? "s" : ""}
+            </span>
+          )}
+        </span>
+      </header>
+      <ul className="space-y-1.5 max-h-[320px] overflow-y-auto pr-1">
+        {entries.map((entry) => (
+          <li
+            key={entry.rowId + entry.ts}
+            className="flex items-start gap-3 text-xs"
+          >
+            <span
+              className="mt-0.5 shrink-0"
+              style={{
+                color:
+                  entry.severity === "error"
+                    ? "var(--color-brandy)"
+                    : "var(--color-tangerine)",
+              }}
+            >
+              {entry.severity === "error" ? "✕" : "⚠"}
+            </span>
+            <div className="flex-1 min-w-0">
+              <div className="text-primary truncate">
+                <span className="font-bold">{entry.reqId ?? entry.rowId}</span>
+                {entry.field ? ` · ${entry.field}` : ""}
+              </div>
+              <div className="text-secondary">{entry.message}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function ConfigSnapshotSection({
+  snapshot,
+}: {
+  snapshot: ConfigSnapshot | null;
+}) {
+  if (!snapshot || !snapshot.config) return null;
+  const c = snapshot.config;
+  const items: Array<{ label: string; value: string }> = [];
+  if (c.model) items.push({ label: "Model", value: c.model });
+  if (c.batchSize != null)
+    items.push({ label: "Batch Size", value: String(c.batchSize) });
+  if (c.budget != null)
+    items.push({ label: "Budget", value: `$${c.budget}` });
+  if (c.strictValidation != null)
+    items.push({
+      label: "Strict",
+      value: c.strictValidation ? "On" : "Off",
+    });
+  if (c.regenerateAll)
+    items.push({ label: "Regenerate All", value: "On" });
+  if (snapshot.projectName)
+    items.push({ label: "Project", value: snapshot.projectName });
+  if (snapshot.testGroup)
+    items.push({ label: "Test Group", value: snapshot.testGroup });
+
+  if (items.length === 0) return null;
+
+  return (
+    <section className="surface p-5 space-y-3">
+      <h2 className="text-sm font-bold uppercase tracking-wider text-primary">
+        Resolved Config
+      </h2>
+      <dl className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+        {items.map((item) => (
+          <div key={item.label}>
+            <dt className="text-[10px] uppercase tracking-wider text-muted">
+              {item.label}
+            </dt>
+            <dd className="text-sm font-bold text-primary truncate">
+              {item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 

@@ -461,6 +461,8 @@ export function startGeneration(
     jobId: string | null;
     rows: TcRow[];
     config: GenerationConfig;
+    /** Optional template name for usage analytics attribution. */
+    templateId?: string | null;
   },
   callbacks: GenerateCallbacks,
 ) {
@@ -548,6 +550,7 @@ export function startGeneration(
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             jobId: input.jobId,
+            templateId: input.templateId ?? undefined,
             rows: input.rows.map((row) => ({
               id: row.id,
               // rowNum 必須一路帶到 backend，否則 SQLite 存成 null，export 時對不到 Excel 列。
