@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { DEFAULT_WORKSPACE_ID, useWorkspaceStore } from './useWorkspaceStore';
+
 // 單一 job 的歷史紀錄；留下足夠欄位讓 UI 顯示成本與 token 分佈
 export type JobRecordKind =
   | 'generate'
@@ -26,6 +28,8 @@ export interface JobRecord {
   cacheReadTokens: number;
   cacheCreationTokens: number;
   note?: string;
+  /** Workspace tag (Phase C-S1). 舊紀錄缺失時視為 default。 */
+  workspaceId?: string;
 }
 
 interface JobHistoryStore {
@@ -70,9 +74,17 @@ export const useJobHistoryStore = create<JobHistoryStore>((set, get) => ({
   },
 
   appendRecord: (record) => {
+    // 自動帶上目前 workspace id（caller 沒指定的話）
+    const tagged: JobRecord = {
+      ...record,
+      workspaceId:
+        record.workspaceId ??
+        useWorkspaceStore.getState().currentId ??
+        DEFAULT_WORKSPACE_ID,
+    };
     // 保留最新 MAX_RECORDS 筆，同時汰換 MAX_AGE_MS 之外的舊紀錄
     const cutoff = Date.now() - MAX_AGE_MS;
-    const next = [record, ...get().records]
+    const next = [tagged, ...get().records]
       .filter((r) => (r.finishedAt ?? r.startedAt ?? 0) >= cutoff)
       .slice(0, MAX_RECORDS);
     persist(next);
@@ -86,3 +98,13 @@ export const useJobHistoryStore = create<JobHistoryStore>((set, get) => ({
 
   totalCost: () => get().records.reduce((sum, r) => sum + (r.cost || 0), 0),
 }));
+
+/** 依 workspace 過濾。舊紀錄 workspaceId 缺失視為 default workspace。 */
+export function filterRecordsByWorkspace(
+  records: JobRecord[],
+  workspaceId: string,
+): JobRecord[] {
+  return records.filter(
+    (r) => (r.workspaceId ?? DEFAULT_WORKSPACE_ID) === workspaceId,
+  );
+}

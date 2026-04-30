@@ -1,13 +1,13 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import {
   toRuns,
   type RunKind,
   type RunStatus,
 } from "../../services/runAdapter";
-import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+import { useWorkspaceFilteredRecords } from "../../lib/useWorkspaceFiltered";
 import RunFilters, { type RunFilterValue } from "./RunFilters";
 import RunsTable from "./RunsTable";
 
@@ -32,13 +32,7 @@ export default function RunsView() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const records = useJobHistoryStore((s) => s.records);
-  const loaded = useJobHistoryStore((s) => s.loaded);
-  const loadFromStorage = useJobHistoryStore((s) => s.loadFromStorage);
-
-  useEffect(() => {
-    if (!loaded) loadFromStorage();
-  }, [loaded, loadFromStorage]);
+  const records = useWorkspaceFilteredRecords();
 
   const filters = useMemo(
     () => parseFilters(searchParams),

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { BuilderStep } from "../components/builder/types";
+import { DEFAULT_WORKSPACE_ID, useWorkspaceStore } from "./useWorkspaceStore";
 
 const LS_KEY = "tc-generator-builder-draft";
 
@@ -8,6 +9,8 @@ export interface BuilderDraft {
   createdAt: number;
   updatedAt: number;
   currentStep: BuilderStep;
+  /** Workspace tag (Phase C-S1)，draft 開新時抓當前 workspace。 */
+  workspaceId?: string;
   /** 由 Run Detail 的 Rerun / Edit & Rerun 帶過來的來源 runId */
   sourceRunId?: string;
   /** rerun mode：'rerun' 直接執行同樣設定；'edit' 允許在 builder 中調整再執行 */
@@ -80,6 +83,8 @@ export const useBuilderDraftStore = create<DraftStore>((set, get) => ({
       createdAt: now,
       updatedAt: now,
       currentStep: "data",
+      workspaceId:
+        useWorkspaceStore.getState().currentId ?? DEFAULT_WORKSPACE_ID,
       completed: {},
     };
     persist(draft);

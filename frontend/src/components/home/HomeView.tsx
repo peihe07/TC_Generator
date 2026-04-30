@@ -1,26 +1,20 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useJobHistoryStore } from "../../store/useJobHistoryStore";
 import { aggregate, toRuns } from "../../services/runAdapter";
 import { getExperimentAssignment } from "../../lib/experiments";
 import { track } from "../../lib/telemetry";
+import { useWorkspaceFilteredRecords } from "../../lib/useWorkspaceFiltered";
 import ContinueDraft from "./ContinueDraft";
 import KpiCards from "./KpiCards";
 import QuickActions from "./QuickActions";
 import RecentRuns from "./RecentRuns";
 
 export default function HomeView() {
-  const records = useJobHistoryStore((s) => s.records);
-  const loaded = useJobHistoryStore((s) => s.loaded);
-  const loadFromStorage = useJobHistoryStore((s) => s.loadFromStorage);
+  const records = useWorkspaceFilteredRecords();
   const [homeLayoutVariant, setHomeLayoutVariant] = useState<
     "kpi_first" | "action_first"
   >("kpi_first");
-
-  useEffect(() => {
-    if (!loaded) loadFromStorage();
-  }, [loaded, loadFromStorage]);
 
   useEffect(() => {
     const assignment = getExperimentAssignment("home_layout_emphasis", {

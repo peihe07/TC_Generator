@@ -10,7 +10,7 @@ import EmptyState from "../shell/EmptyState";
 import { useEffect, useMemo } from "react";
 import { useBuilderDraftStore } from "../../store/useBuilderDraftStore";
 import { useJobStore } from "../../store/useJobStore";
-import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+import { useWorkspaceFilteredRecords } from "../../lib/useWorkspaceFiltered";
 import {
   formatCost,
   formatRelativeTime,
@@ -38,9 +38,7 @@ const KIND_LABEL: Record<string, string> = {
 };
 
 export default function DataView() {
-  const records = useJobHistoryStore((s) => s.records);
-  const loaded = useJobHistoryStore((s) => s.loaded);
-  const loadFromStorage = useJobHistoryStore((s) => s.loadFromStorage);
+  const records = useWorkspaceFilteredRecords();
 
   const jobMetadata = useJobStore((s) => s.jobMetadata);
   const tcRows = useJobStore((s) => s.tcRows);
@@ -50,9 +48,8 @@ export default function DataView() {
   const loadDraft = useBuilderDraftStore((s) => s.loadFromStorage);
 
   useEffect(() => {
-    if (!loaded) loadFromStorage();
     if (!draftLoaded) loadDraft();
-  }, [loaded, loadFromStorage, draftLoaded, loadDraft]);
+  }, [draftLoaded, loadDraft]);
 
   const datasets = useMemo<Dataset[]>(() => {
     const map = new Map<string, Dataset>();

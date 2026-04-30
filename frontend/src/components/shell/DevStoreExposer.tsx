@@ -6,6 +6,7 @@ import { useCommandPaletteStore } from "../../store/useCommandPaletteStore";
 import { useJobHistoryStore } from "../../store/useJobHistoryStore";
 import { useJobStore } from "../../store/useJobStore";
 import { useWorkspaceSettingsStore } from "../../store/useWorkspaceSettingsStore";
+import { useWorkspaceStore } from "../../store/useWorkspaceStore";
 
 // Non-production builds expose stores on window so Playwright can seed state
 // via page.evaluate(). 不在 production 暴露，避免外洩內部狀態。
@@ -18,6 +19,7 @@ export default function DevStoreExposer() {
     w.__tcDraftStore = useBuilderDraftStore;
     w.__tcCommandPaletteStore = useCommandPaletteStore;
     w.__tcWorkspaceSettingsStore = useWorkspaceSettingsStore;
+    w.__tcWorkspaceStore = useWorkspaceStore;
   }, []);
   return null;
 }
