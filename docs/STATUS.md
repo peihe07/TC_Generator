@@ -298,9 +298,13 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 
 - `pytest -q`：481 pass
 - `npm run typecheck` (`tsc --noEmit`)：0 error
-- `npm run test:unit` (Vitest)：128 pass（UI primitives / active modules /
-  jobAdapter / stores / diffTokens / ReviewRow）
-- Playwright E2E：Workspace JSON round-trip（save → export → new → import → load）
+- `npm run test:unit` (Vitest)：91 pass（workspace shell / top-nav reframe /
+  builder stores / job history / telemetry / A/B experiments / KPI aggregates）
+- `npm run test:e2e` (Playwright)：10 pass
+  - Workspace shell smoke：top nav destinations、command palette、builder stepper、
+    missing run fallback
+  - Reframe acceptance：Home A/B override + exposure、draft refresh/resume、
+    Template → Run Builder、Outputs compare、failed Run Detail edit/rerun path
 - API smoke：parse / group / match / generate / regenerate / export / download 端到端
 
 ---
