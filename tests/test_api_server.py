@@ -2399,6 +2399,99 @@ def test_compare_409_when_export_missing():
 
 
 # ─────────────────────────────────────────────────────────────────────
+# Bulk output download (zip)
+# ─────────────────────────────────────────────────────────────────────
+
+
+def test_bulk_download_returns_zip(tmp_path):
+    import api_server
+    import io
+    import zipfile
+
+    a_path = tmp_path / "alpha.xlsx"
+    b_path = tmp_path / "beta.xlsx"
+    a_path.write_bytes(_build_export_workbook_bytes([{"reqId": "REQ-A", "tc_id": "T-A"}]))
+    b_path.write_bytes(_build_export_workbook_bytes([{"reqId": "REQ-B", "tc_id": "T-B"}]))
+
+    api_server.JOB_REGISTRY["bulk-a"] = {"jobId": "bulk-a", "exportPath": str(a_path)}
+    api_server.JOB_REGISTRY["bulk-b"] = {"jobId": "bulk-b", "exportPath": str(b_path)}
+
+    res = client.post(
+        "/api/outputs/bulk-download",
+        json={"jobIds": ["bulk-a", "bulk-b"]},
+    )
+    assert res.status_code == 200
+    assert res.headers["content-type"].startswith("application/zip")
+    cd = res.headers.get("content-disposition", "")
+    assert ".zip" in cd
+    with zipfile.ZipFile(io.BytesIO(res.content)) as zf:
+        names = zf.namelist()
+        assert "alpha.xlsx" in names
+        assert "beta.xlsx" in names
+
+
+def test_bulk_download_dedupes_and_handles_collisions(tmp_path):
+    """Repeating the same jobId is silently dropped; same filename for two jobs gets a -2 suffix."""
+    import api_server
+    import io
+    import zipfile
+
+    same_name_a = tmp_path / "dup.xlsx"
+    same_name_a.write_bytes(_build_export_workbook_bytes([{"reqId": "A", "tc_id": "T-A"}]))
+    sub = tmp_path / "sub"
+    sub.mkdir()
+    same_name_b = sub / "dup.xlsx"
+    same_name_b.write_bytes(_build_export_workbook_bytes([{"reqId": "B", "tc_id": "T-B"}]))
+
+    api_server.JOB_REGISTRY["bulk-d1"] = {"jobId": "bulk-d1", "exportPath": str(same_name_a)}
+    api_server.JOB_REGISTRY["bulk-d2"] = {"jobId": "bulk-d2", "exportPath": str(same_name_b)}
+
+    res = client.post(
+        "/api/outputs/bulk-download",
+        json={"jobIds": ["bulk-d1", "bulk-d1", "bulk-d2"]},
+    )
+    assert res.status_code == 200
+    with zipfile.ZipFile(io.BytesIO(res.content)) as zf:
+        names = zf.namelist()
+        assert "dup.xlsx" in names
+        assert "dup-2.xlsx" in names
+        assert len(names) == 2
+
+
+def test_bulk_download_empty_jobids_400():
+    res = client.post("/api/outputs/bulk-download", json={"jobIds": []})
+    assert res.status_code == 400
+
+
+def test_bulk_download_too_many_jobids_400():
+    res = client.post(
+        "/api/outputs/bulk-download",
+        json={"jobIds": [f"x{i}" for i in range(60)]},
+    )
+    assert res.status_code == 400
+    assert "too many" in res.json()["detail"]
+
+
+def test_bulk_download_404_unknown_job():
+    res = client.post(
+        "/api/outputs/bulk-download",
+        json={"jobIds": ["bulk-ghost"]},
+    )
+    assert res.status_code == 404
+
+
+def test_bulk_download_409_no_export(tmp_path):
+    import api_server
+
+    api_server.JOB_REGISTRY["bulk-noexp"] = {"jobId": "bulk-noexp"}
+    res = client.post(
+        "/api/outputs/bulk-download",
+        json={"jobIds": ["bulk-noexp"]},
+    )
+    assert res.status_code == 409
+
+
+# ─────────────────────────────────────────────────────────────────────
 # Job config snapshot
 # ─────────────────────────────────────────────────────────────────────
 
@@ -2507,6 +2600,44 @@ def test_validation_logs_replace_by_row_id():
     assert entries[0]["message"] == "v2"
 
 
+def test_record_stream_validation_failure_writes_log_entry():
+    import api_server
+
+    job_id = "stream-vlog-job"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    api_server._record_stream_validation_failure(
+        job_id,
+        {"id": "row-7", "req_id": "REQ-7", "row_num": 7},
+        "Generation failed: quota",
+        field="generation",
+    )
+    body = client.get(f"/api/jobs/{job_id}/validation-logs").json()
+    assert len(body["entries"]) == 1
+    entry = body["entries"][0]
+    assert entry["rowId"] == "row-7"
+    assert entry["reqId"] == "REQ-7"
+    assert entry["severity"] == "error"
+    assert entry["field"] == "generation"
+    assert "quota" in entry["message"]
+    assert isinstance(entry["ts"], int)
+
+
+def test_record_stream_validation_failure_replaces_per_row():
+    import api_server
+
+    job_id = "stream-vlog-replace"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    api_server._record_stream_validation_failure(
+        job_id, {"id": "row-1", "req_id": "REQ-1"}, "first"
+    )
+    api_server._record_stream_validation_failure(
+        job_id, {"id": "row-1", "req_id": "REQ-1"}, "second"
+    )
+    entries = client.get(f"/api/jobs/{job_id}/validation-logs").json()["entries"]
+    assert len(entries) == 1
+    assert entries[0]["message"] == "second"
+
+
 def test_validation_logs_404_unknown_job():
     assert client.get("/api/jobs/no-such/validation-logs").status_code == 404
     res = client.post(
@@ -2557,6 +2688,217 @@ def test_spec_library_usage_counts_matching_jobs():
     assert body["lastUsedAt"] == 200
     assert body["recentRunIds"][0] == "tpl-usage-b"
     assert "tpl-usage-other" not in body["recentRunIds"]
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Dataset re-hydrate
+# ─────────────────────────────────────────────────────────────────────
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Spec library changelog
+# ─────────────────────────────────────────────────────────────────────
+
+
+def _seed_manifest(tmp_path, specs: list[dict]) -> str:
+    path = tmp_path / "manifest.json"
+    path.write_text(json.dumps({"specs": specs}, ensure_ascii=False, indent=2))
+    return str(path)
+
+
+def test_spec_library_returns_version_and_changelog(tmp_path, monkeypatch):
+    manifest = _seed_manifest(
+        tmp_path,
+        [
+            {
+                "name": "tpl-A",
+                "source_file": "a.xlsx",
+                "entries_count": 5,
+                "version": "1.2.0",
+                "changelog": [
+                    {"version": "1.0.0", "message": "initial", "ts": 1},
+                ],
+            }
+        ],
+    )
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    body = client.get("/api/spec-library").json()
+    assert len(body["specs"]) == 1
+    spec = body["specs"][0]
+    assert spec["version"] == "1.2.0"
+    assert spec["changelog"][0]["message"] == "initial"
+
+
+def test_spec_library_changelog_append(tmp_path, monkeypatch):
+    manifest = _seed_manifest(
+        tmp_path,
+        [{"name": "tpl-CL", "version": "1.0.0", "changelog": []}],
+    )
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+
+    res = client.post(
+        "/api/spec-library/tpl-CL/changelog",
+        json={"version": "1.1.0", "message": "added boundary cases"},
+    )
+    assert res.status_code == 200, res.text
+    body = res.json()
+    assert body["ok"] is True
+    assert body["spec"]["version"] == "1.1.0"
+    assert body["spec"]["changelog"][-1]["message"] == "added boundary cases"
+
+    persisted = json.loads(open(manifest).read())
+    assert persisted["specs"][0]["version"] == "1.1.0"
+    assert (
+        persisted["specs"][0]["changelog"][-1]["message"]
+        == "added boundary cases"
+    )
+
+
+def test_spec_library_changelog_404_unknown(tmp_path, monkeypatch):
+    manifest = _seed_manifest(tmp_path, [])
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.post(
+        "/api/spec-library/ghost/changelog",
+        json={"message": "anything"},
+    )
+    assert res.status_code == 404
+
+
+def test_spec_library_changelog_rejects_empty_message(tmp_path, monkeypatch):
+    manifest = _seed_manifest(tmp_path, [{"name": "tpl-X", "changelog": []}])
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.post(
+        "/api/spec-library/tpl-X/changelog",
+        json={"message": "   "},
+    )
+    assert res.status_code == 400
+
+
+def test_output_preview_404_for_unknown_job():
+    assert client.get("/api/jobs/no-such/output-preview").status_code == 404
+
+
+def test_output_preview_409_when_no_export():
+    import api_server
+
+    api_server.JOB_REGISTRY["preview-no-export"] = {"jobId": "preview-no-export"}
+    res = client.get("/api/jobs/preview-no-export/output-preview")
+    assert res.status_code == 409
+
+
+def test_output_preview_returns_rows(tmp_path):
+    import api_server
+
+    path = tmp_path / "preview.xlsx"
+    path.write_bytes(
+        _build_export_workbook_bytes(
+            [
+                {"reqId": "REQ-1", "tc_id": "T-001", "pre_conditions": "p1"},
+                {"reqId": "REQ-2", "tc_id": "T-002", "pre_conditions": "p2"},
+                {"reqId": "REQ-3", "tc_id": "T-003", "pre_conditions": "p3"},
+            ]
+        )
+    )
+    api_server.JOB_REGISTRY["preview-job"] = {
+        "jobId": "preview-job",
+        "exportPath": str(path),
+    }
+    body = client.get("/api/jobs/preview-job/output-preview").json()
+    assert body["jobId"] == "preview-job"
+    assert body["totalRows"] == 3
+    assert body["limit"] == 200
+    assert len(body["rows"]) == 3
+    assert body["rows"][0]["tc_id"] == "T-001"
+
+
+def test_output_preview_respects_limit(tmp_path):
+    import api_server
+
+    path = tmp_path / "preview.xlsx"
+    path.write_bytes(
+        _build_export_workbook_bytes(
+            [
+                {"reqId": f"REQ-{i}", "tc_id": f"T-{i:03d}"}
+                for i in range(5)
+            ]
+        )
+    )
+    api_server.JOB_REGISTRY["preview-limit-job"] = {
+        "jobId": "preview-limit-job",
+        "exportPath": str(path),
+    }
+    body = client.get(
+        "/api/jobs/preview-limit-job/output-preview?limit=2"
+    ).json()
+    assert body["totalRows"] == 5
+    assert body["limit"] == 2
+    assert len(body["rows"]) == 2
+
+
+def test_dataset_404_for_unknown_job():
+    assert client.get("/api/jobs/no-such/dataset").status_code == 404
+
+
+def test_dataset_returns_camel_case_rows_for_builder():
+    import api_server
+
+    job_id = "dataset-rehydrate-job"
+    api_server.JOB_REGISTRY[job_id] = {
+        "jobId": job_id,
+        "parsedData": {
+            "project": "Demo",
+            "test_group": "Core",
+            "rows": [
+                {
+                    "row_num": 10,
+                    "req_id": "REQ-1",
+                    "test_set": "Workbook Set",
+                    "test_item": "First requirement",
+                },
+                {
+                    "row_num": 11,
+                    "req_id": "REQ-2",
+                    "test_set": "Workbook Set",
+                    "test_item": "Second requirement",
+                },
+            ],
+        },
+        "rows": [
+            {
+                "id": "row-10",
+                "rowNum": 10,
+                "reqId": "REQ-1",
+                "testItem": "First requirement",
+                "testSet": "User Override",
+            }
+        ],
+    }
+    body = client.get(f"/api/jobs/{job_id}/dataset").json()
+    assert body["jobId"] == job_id
+    assert body["projectName"] == "Demo"
+    assert body["testGroup"] == "Core"
+    assert body["rowCount"] == 2
+
+    by_req = {r["reqId"]: r for r in body["rows"]}
+    # 用戶覆寫的 testSet 應優先於 parser 原值
+    assert by_req["REQ-1"]["testSet"] == "User Override"
+    assert by_req["REQ-2"]["testSet"] == "Workbook Set"
+    # generated content 還沒填，狀態應為 pending
+    assert by_req["REQ-1"]["status"] == "pending"
+    assert by_req["REQ-1"]["preConditions"] == ""
+    assert by_req["REQ-1"]["testGroup"] == "Core"
+    assert by_req["REQ-2"]["id"] == "row-11"
+
+
+def test_dataset_empty_rows_when_no_parsed_data():
+    import api_server
+
+    job_id = "dataset-no-parsed"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    body = client.get(f"/api/jobs/{job_id}/dataset").json()
+    assert body["rowCount"] == 0
+    assert body["rows"] == []
+    assert body["projectName"] is None
 
 
 def test_generate_persists_template_id_for_attribution():

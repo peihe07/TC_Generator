@@ -110,6 +110,54 @@ def telemetry_log_path() -> Path:
 JOB_TIMELINE_MAX = 50
 
 
+VALIDATION_LOG_MAX = 500
+
+
+def _record_stream_validation_failure(
+    job_id: str,
+    row: dict,
+    message: str,
+    *,
+    field: str | None = None,
+    severity: str = "error",
+) -> None:
+    """Inline record of a row failure into job["validationLog"].
+
+    Mirrors POST /api/jobs/{id}/validation-logs semantics so reviewers see
+    the same entries even before opening the Review step.
+    """
+    try:
+        job = JOB_REGISTRY.get(job_id)
+    except Exception:
+        return
+    if not job:
+        return
+    existing = job.get("validationLog")
+    if not isinstance(existing, list):
+        existing = []
+    by_row: dict[str, dict] = {}
+    for prior in existing:
+        if isinstance(prior, dict) and prior.get("rowId"):
+            by_row[str(prior["rowId"])] = prior
+    row_id = str(row.get("id", "")) or f"row-{row.get('row_num', '?')}"
+    by_row[row_id] = {
+        "rowId": row_id,
+        "reqId": str(row.get("req_id", "") or "") or None,
+        "severity": severity,
+        "field": field,
+        "message": message,
+        "ts": int(datetime.utcnow().timestamp() * 1000),
+    }
+    merged = list(by_row.values())
+    if len(merged) > VALIDATION_LOG_MAX:
+        merged = merged[-VALIDATION_LOG_MAX:]
+    job["validationLog"] = merged
+    try:
+        JOB_REGISTRY[job_id] = job
+    except Exception:
+        pass
+
+
 def _append_job_event(job_id: str, kind: str, message: str = "", **extra) -> None:
     """Append a timeline event to the job dict. Silent no-op if job missing."""
     try:
@@ -1536,6 +1584,70 @@ def _diff_output_rows(rows_a: list[dict], rows_b: list[dict]) -> dict:
     }
 
 
+class BulkDownloadRequest(BaseModel):
+    jobIds: list[str]
+
+
+@app.post("/api/outputs/bulk-download")
+def bulk_download_outputs(payload: BulkDownloadRequest) -> StreamingResponse:
+    """Stream a zip archive containing each requested job's exported workbook."""
+    import io
+    import zipfile
+
+    if not payload.jobIds:
+        raise HTTPException(status_code=400, detail="jobIds required")
+    if len(payload.jobIds) > 50:
+        raise HTTPException(
+            status_code=400, detail="too many jobs (max 50)"
+        )
+
+    seen: set[str] = set()
+    paths: list[tuple[str, str]] = []
+    for jid in payload.jobIds:
+        if not isinstance(jid, str) or not jid or jid in seen:
+            continue
+        seen.add(jid)
+        job = JOB_REGISTRY.get(jid)
+        if not job:
+            raise HTTPException(
+                status_code=404, detail=f"job not found: {jid}"
+            )
+        export_path = job.get("exportPath")
+        if not export_path or not os.path.isfile(export_path):
+            raise HTTPException(
+                status_code=409,
+                detail=f"job {jid} has no exported workbook",
+            )
+        paths.append((jid, export_path))
+
+    if not paths:
+        raise HTTPException(status_code=400, detail="no usable jobs")
+
+    used_names: set[str] = set()
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+        for _job_id, path in paths:
+            base = os.path.basename(path)
+            arcname = base
+            stem, ext = os.path.splitext(arcname)
+            counter = 1
+            while arcname in used_names:
+                counter += 1
+                arcname = f"{stem}-{counter}{ext}"
+            used_names.add(arcname)
+            zf.write(path, arcname)
+    buffer.seek(0)
+
+    filename = (
+        f"tc-outputs-bundle-{datetime.utcnow().strftime('%Y%m%d-%H%M%S')}.zip"
+    )
+    return StreamingResponse(
+        iter([buffer.getvalue()]),
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
 @app.post("/api/outputs/compare")
 def compare_outputs(payload: OutputCompareRequest) -> dict:
     """Diff two exported workbooks row-by-row keyed by TC ID."""
@@ -1599,9 +1711,6 @@ class ValidationLogEntry(BaseModel):
 
 class ValidationLogBatch(BaseModel):
     entries: list[ValidationLogEntry]
-
-
-VALIDATION_LOG_MAX = 500
 
 
 @app.post("/api/jobs/{job_id}/validation-logs")
@@ -1706,30 +1815,218 @@ def metrics_aggregate(job_ids: str | None = None) -> dict:
         raise _tool_error_to_http(exc) from exc
 
 
+def _spec_manifest_path() -> Path:
+    """Spec library manifest path; override via TC_SPEC_INDEX_MANIFEST."""
+    override = os.environ.get("TC_SPEC_INDEX_MANIFEST")
+    if override:
+        return Path(override)
+    return (
+        Path(__file__).resolve().parent.parent / "spec-index" / "manifest.json"
+    )
+
+
+def _read_spec_manifest() -> dict:
+    path = _spec_manifest_path()
+    if not path.is_file():
+        return {"specs": []}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"specs": []}
+    if not isinstance(data, dict):
+        return {"specs": []}
+    return data
+
+
+def _write_spec_manifest(data: dict) -> None:
+    path = _spec_manifest_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+
+def _serialize_spec_entry(item: dict) -> dict:
+    return {
+        "name": item.get("name"),
+        "sourceFile": item.get("source_file"),
+        "entriesCount": item.get("entries_count"),
+        "embeddingModel": item.get("embedding_model"),
+        "updatedAt": item.get("updated_at"),
+        "version": item.get("version"),
+        "changelog": item.get("changelog") or [],
+    }
+
+
 @app.get("/api/spec-library")
 async def list_spec_library() -> dict:
     """回傳 ``spec-index/manifest.json`` 中已建好的 spec 清單，前端用來做 dropdown 選單。"""
-    manifest_path = Path(__file__).resolve().parent.parent / "spec-index" / "manifest.json"
-    if not manifest_path.is_file():
-        return {"specs": []}
-    try:
-        data = json.loads(manifest_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return {"specs": []}
+    data = _read_spec_manifest()
     raw_specs = data.get("specs") or []
     specs = [
-        {
-            "name": item.get("name"),
-            "sourceFile": item.get("source_file"),
-            "entriesCount": item.get("entries_count"),
-            "embeddingModel": item.get("embedding_model"),
-            "updatedAt": item.get("updated_at"),
-        }
+        _serialize_spec_entry(item)
         for item in raw_specs
         if isinstance(item, dict) and item.get("name")
     ]
     specs.sort(key=lambda s: (s.get("name") or "").lower())
     return {"specs": specs}
+
+
+class ChangelogEntryRequest(BaseModel):
+    version: str | None = None
+    message: str
+    author: str | None = None
+
+
+@app.post("/api/spec-library/{name}/changelog")
+def append_spec_changelog(
+    name: str, payload: ChangelogEntryRequest, request: Request
+) -> dict:
+    """Append a changelog entry to a template; bump `version` if provided.
+
+    Loopback-only — same posture as `/api/admin/reset` since it mutates the
+    on-disk manifest. Tests run via Starlette's TestClient (host=testclient).
+    """
+    client_host = request.client.host if request.client else None
+    if client_host not in {"127.0.0.1", "::1", "localhost", "testclient"}:
+        raise HTTPException(
+            status_code=403,
+            detail="changelog edits only allowed from localhost",
+        )
+
+    if not payload.message.strip():
+        raise HTTPException(status_code=400, detail="message required")
+
+    manifest = _read_spec_manifest()
+    specs = manifest.get("specs")
+    if not isinstance(specs, list):
+        raise HTTPException(
+            status_code=404, detail=f"template not found: {name}"
+        )
+    target: dict | None = None
+    for entry in specs:
+        if isinstance(entry, dict) and entry.get("name") == name:
+            target = entry
+            break
+    if target is None:
+        raise HTTPException(
+            status_code=404, detail=f"template not found: {name}"
+        )
+
+    changelog = target.get("changelog")
+    if not isinstance(changelog, list):
+        changelog = []
+    new_entry = {
+        "version": payload.version or target.get("version") or "1.0.0",
+        "message": payload.message.strip(),
+        "ts": int(datetime.utcnow().timestamp() * 1000),
+    }
+    if payload.author:
+        new_entry["author"] = payload.author
+    changelog.append(new_entry)
+    target["changelog"] = changelog
+    if payload.version:
+        target["version"] = payload.version
+
+    _write_spec_manifest(manifest)
+    return {"ok": True, "entry": new_entry, "spec": _serialize_spec_entry(target)}
+
+
+@app.get("/api/jobs/{job_id}/output-preview")
+def get_job_output_preview(job_id: str, limit: int = 200) -> dict:
+    """Read the exported workbook so the frontend can preview rows in-page.
+
+    Returns at most ``limit`` rows (cap 1000 to keep payload sane). 409 when
+    the job has no exported workbook yet — same contract as compare.
+    """
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+    export_path = job.get("exportPath")
+    if not export_path or not os.path.isfile(export_path):
+        raise HTTPException(
+            status_code=409,
+            detail="no exported workbook (run Export first)",
+        )
+    cap = max(1, min(int(limit) if limit else 200, 1000))
+    try:
+        all_rows = _read_tc_sheet_rows(export_path)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500, detail=f"failed to read workbook: {exc}"
+        ) from exc
+    return {
+        "jobId": job_id,
+        "fileName": os.path.basename(export_path),
+        "totalRows": len(all_rows),
+        "limit": cap,
+        "rows": all_rows[:cap],
+    }
+
+
+@app.get("/api/jobs/{job_id}/dataset")
+def get_job_dataset(job_id: str) -> dict:
+    """Return the parsed dataset rows so the Builder can re-hydrate without
+    re-uploading the workbook.
+
+    The response uses camelCase keys aligned with the frontend `TcRow` shape so
+    the client can populate `useJobStore.tcRows` directly.
+    """
+    job = JOB_REGISTRY.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="job not found")
+
+    parsed = job.get("parsedData") or {}
+    parsed_rows = parsed.get("rows") or []
+    test_group = parsed.get("test_group") or job.get("testGroup") or ""
+
+    # /api/generate input rows (camelCase). 用來補 generated content 預設值。
+    input_rows = job.get("rows") or []
+    inputs_by_id = {
+        str(r.get("id")): r
+        for r in input_rows
+        if isinstance(r, dict) and r.get("id")
+    }
+
+    rows: list[dict] = []
+    for parsed_row in parsed_rows:
+        row_num = parsed_row.get("row_num")
+        # parser 產出 row_id；GenerateRow 的 id 則是前端自訂 — 兩者擇一。
+        row_id = (
+            parsed_row.get("id")
+            or parsed_row.get("row_id")
+            or f"row-{row_num}"
+        )
+        # 若有對應的 GenerateRow 輸入，順便還原它的 id 與 testSet
+        gen_row = inputs_by_id.get(str(row_id))
+        rows.append(
+            {
+                "id": str(row_id),
+                "rowNum": row_num,
+                "reqId": parsed_row.get("req_id") or "",
+                "testItem": parsed_row.get("test_item") or "",
+                "testSet": (
+                    (gen_row or {}).get("testSet")
+                    or parsed_row.get("test_set")
+                    or ""
+                ),
+                "testGroup": test_group,
+                "specReference": parsed_row.get("spec_reference"),
+                "preConditions": "",
+                "inputTestData": "",
+                "steps": "",
+                "expectedResults": "",
+                "status": "pending",
+            }
+        )
+
+    return {
+        "jobId": job_id,
+        "rowCount": len(rows),
+        "projectName": parsed.get("project"),
+        "testGroup": test_group,
+        "rows": rows,
+    }
 
 
 @app.get("/api/spec-library/{name}/usage")
@@ -2031,14 +2328,15 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
             if budget and _would_exceed_budget(current_cost, len(batch), model, budget):
                 for row in batch:
                     processed += 1
+                    skip_msg = (
+                        f"Skipped because the next batch would exceed the configured "
+                        f"budget of ${budget:.2f}."
+                    )
                     yield _sse_event(
                         {
                             "type": "row.failed",
                             "jobId": jobId,
-                            "row": _build_failed_stream_row(
-                                row,
-                                f"Skipped because the next batch would exceed the configured budget of ${budget:.2f}.",
-                            ),
+                            "row": _build_failed_stream_row(row, skip_msg),
                             "stats": {
                                 "total": total,
                                 "processed": processed,
@@ -2046,6 +2344,9 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             },
                             "message": f"Skipped {row.get('req_id')} due to budget limit.",
                         }
+                    )
+                    _record_stream_validation_failure(
+                        jobId, row, skip_msg, field="budget"
                     )
                 continue
 
@@ -2174,6 +2475,17 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                         if not is_primary:
                             updated_row["parentId"] = row["id"]
                             updated_row["subIndex"] = sub_idx
+                        if event_type == "row.failed":
+                            first_issue = next(
+                                iter(updated_row.get("validation") or []), None
+                            )
+                            _record_stream_validation_failure(
+                                jobId,
+                                row,
+                                (first_issue or {}).get("message")
+                                or "Strict validation rejected this row.",
+                                field=(first_issue or {}).get("field"),
+                            )
                         yield _sse_event(
                             {
                                 "type": event_type,
@@ -2212,14 +2524,12 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                     return
                 for row in batch:
                     processed += 1
+                    fail_msg = f"Generation failed: {exc.message}"
                     yield _sse_event(
                         {
                             "type": "row.failed",
                             "jobId": jobId,
-                            "row": _build_failed_stream_row(
-                                row,
-                                f"Generation failed: {exc.message}",
-                            ),
+                            "row": _build_failed_stream_row(row, fail_msg),
                             "stats": {
                                 "total": total,
                                 "processed": processed,
@@ -2227,6 +2537,9 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                             },
                             "message": f"Generation failed for {row.get('req_id') or row.get('id')}.",
                         }
+                    )
+                    _record_stream_validation_failure(
+                        jobId, row, fail_msg, field="generation"
                     )
 
             await asyncio.sleep(0.15)
@@ -2561,6 +2874,9 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
                             "row": _build_failed_stream_row(row, exc.message),
                             "stats": _stats(),
                         }
+                    )
+                    _record_stream_validation_failure(
+                        job_id, row, exc.message, field="regenerate"
                     )
             await asyncio.sleep(0.05)
 
@@ -2910,6 +3226,9 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
                             "row": _build_failed_stream_row(row, exc.message),
                             "stats": _stats(),
                         }
+                    )
+                    _record_stream_validation_failure(
+                        job_id, row, exc.message, field="rerun"
                     )
             await asyncio.sleep(0.05)
 
