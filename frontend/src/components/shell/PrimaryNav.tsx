@@ -9,6 +9,8 @@ const items = [
   { href: "/templates", label: "Templates" },
   { href: "/outputs", label: "Outputs" },
   { href: "/data", label: "Data" },
+  { href: "/diagrams", label: "Diagrams" },
+  { href: "/rules", label: "Rules" },
 ] as const;
 
 export default function PrimaryNav() {
