@@ -21,7 +21,14 @@ export interface ExperimentAssignment {
   key: ExperimentKey;
   variant: ExperimentVariant;
   assignedAt: number;
-  source: "bucket" | "override" | "default";
+  source: "bucket" | "override" | "default" | "concluded";
+}
+
+export interface ExperimentDecision {
+  key: ExperimentKey;
+  winner: ExperimentVariant;
+  decidedAt: number;
+  note?: string;
 }
 
 export const EXPERIMENT_DEFINITIONS: Record<
@@ -46,6 +53,7 @@ export const EXPERIMENT_DEFINITIONS: Record<
 };
 
 export const EXPERIMENT_STORAGE_KEY = "tc:experiments:v1";
+export const EXPERIMENT_DECISIONS_KEY = "tc:experiments:decisions:v1";
 
 function canUseStorage(): boolean {
   return typeof window !== "undefined" && typeof localStorage !== "undefined";
@@ -69,6 +77,26 @@ function writeAssignments(
 ) {
   if (!canUseStorage()) return;
   localStorage.setItem(EXPERIMENT_STORAGE_KEY, JSON.stringify(assignments));
+}
+
+function readDecisions(): Partial<Record<ExperimentKey, ExperimentDecision>> {
+  if (!canUseStorage()) return {};
+  try {
+    const parsed = JSON.parse(
+      localStorage.getItem(EXPERIMENT_DECISIONS_KEY) ?? "{}"
+    );
+    if (!parsed || typeof parsed !== "object") return {};
+    return parsed as Partial<Record<ExperimentKey, ExperimentDecision>>;
+  } catch {
+    return {};
+  }
+}
+
+function writeDecisions(
+  decisions: Partial<Record<ExperimentKey, ExperimentDecision>>
+) {
+  if (!canUseStorage()) return;
+  localStorage.setItem(EXPERIMENT_DECISIONS_KEY, JSON.stringify(decisions));
 }
 
 function hashString(value: string): number {
@@ -123,6 +151,17 @@ export function getExperimentAssignment(
     return assignment;
   }
 
+  // 已 concluded 的實驗：所有人服務 winner，不走 bucket，也不快取進 assignments。
+  const decision = readDecisions()[key];
+  if (decision && isVariant(definition, decision.winner)) {
+    return {
+      key,
+      variant: decision.winner,
+      assignedAt: decision.decidedAt,
+      source: "concluded",
+    };
+  }
+
   const existing = readAssignments()[key];
   if (existing && isVariant(definition, existing.variant)) return existing;
 
@@ -160,4 +199,41 @@ export function getExperimentVariantMap(): Partial<
 export function clearExperimentAssignments(): void {
   if (!canUseStorage()) return;
   localStorage.removeItem(EXPERIMENT_STORAGE_KEY);
+}
+
+export function getExperimentDecisions(): Partial<
+  Record<ExperimentKey, ExperimentDecision>
+> {
+  return readDecisions();
+}
+
+export function getExperimentDecision(
+  key: ExperimentKey
+): ExperimentDecision | null {
+  return readDecisions()[key] ?? null;
+}
+
+export function setExperimentDecision(
+  key: ExperimentKey,
+  winner: ExperimentVariant,
+  note?: string
+): ExperimentDecision {
+  const definition = EXPERIMENT_DEFINITIONS[key];
+  if (!isVariant(definition, winner)) {
+    throw new Error(`Invalid winner ${winner} for experiment ${key}`);
+  }
+  const decision: ExperimentDecision = {
+    key,
+    winner,
+    decidedAt: Date.now(),
+    ...(note ? { note } : {}),
+  };
+  writeDecisions({ ...readDecisions(), [key]: decision });
+  return decision;
+}
+
+export function clearExperimentDecision(key: ExperimentKey): void {
+  const next = { ...readDecisions() };
+  delete next[key];
+  writeDecisions(next);
 }

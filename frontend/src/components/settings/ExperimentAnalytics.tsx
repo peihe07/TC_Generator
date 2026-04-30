@@ -1,10 +1,15 @@
 "use client";
 
-import { RiBarChart2Line, RiLoader4Line } from "@remixicon/react";
+import { RiBarChart2Line, RiLoader4Line, RiTrophyLine, RiArrowGoBackLine } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import {
   EXPERIMENT_DEFINITIONS,
+  clearExperimentDecision,
+  getExperimentDecision,
+  setExperimentDecision,
+  type ExperimentDecision,
   type ExperimentKey,
+  type ExperimentVariant,
 } from "../../lib/experiments";
 import { buildWorkspaceHeader } from "../../lib/workspaceHeader";
 import { useWorkspaceStore } from "../../store/useWorkspaceStore";
@@ -46,6 +51,20 @@ export default function ExperimentAnalytics({
   const [data, setData] = useState<AggregateResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [decision, setDecision] = useState<ExperimentDecision | null>(null);
+
+  useEffect(() => {
+    setDecision(getExperimentDecision(experiment));
+  }, [experiment]);
+
+  const promote = (winner: ExperimentVariant) => {
+    const next = setExperimentDecision(experiment, winner);
+    setDecision(next);
+  };
+  const resume = () => {
+    clearExperimentDecision(experiment);
+    setDecision(null);
+  };
 
   const currentWorkspaceId = useWorkspaceStore((s) => s.currentId);
 
@@ -91,14 +110,28 @@ export default function ExperimentAnalytics({
             />
           )}
         </div>
-        {data && (
-          <span className="text-xs text-muted">
-            {data.totalEvents} events
-            {data.malformedLines > 0
-              ? ` · ${data.malformedLines} malformed`
-              : ""}
-          </span>
-        )}
+        <div className="flex items-center gap-2">
+          {decision && (
+            <span
+              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded"
+              style={{
+                color: "var(--color-teal)",
+                backgroundColor: "rgba(21, 97, 109, 0.12)",
+              }}
+            >
+              <RiTrophyLine size={10} />
+              Concluded · {decision.winner}
+            </span>
+          )}
+          {data && (
+            <span className="text-xs text-muted">
+              {data.totalEvents} events
+              {data.malformedLines > 0
+                ? ` · ${data.malformedLines} malformed`
+                : ""}
+            </span>
+          )}
+        </div>
       </header>
 
       {error && (
@@ -127,15 +160,26 @@ export default function ExperimentAnalytics({
                     {c.label}
                   </th>
                 ))}
+                <th className="font-normal py-1 pr-3 text-right w-20">
+                  {decision ? "" : "Promote"}
+                </th>
               </tr>
             </thead>
             <tbody>
               {definition.variants.map((variant) => {
                 const bucket = data.variants[variant] ?? null;
+                const isWinner = decision?.winner === variant;
                 return (
                   <tr key={variant} className="row-hover">
                     <td className="py-1.5 pr-3 font-bold text-primary">
                       {variant}
+                      {isWinner && (
+                        <RiTrophyLine
+                          size={10}
+                          className="inline ml-1"
+                          style={{ color: "var(--color-teal)" }}
+                        />
+                      )}
                     </td>
                     {COLUMNS.map((c) => (
                       <td
@@ -145,6 +189,36 @@ export default function ExperimentAnalytics({
                         {formatCell(bucket?.[c.key], c.format)}
                       </td>
                     ))}
+                    <td className="py-1.5 pr-3 text-right">
+                      {!decision ? (
+                        <button
+                          type="button"
+                          onClick={() => promote(variant)}
+                          className="text-[10px] font-bold px-2 py-0.5 rounded focus-ring"
+                          style={{
+                            color: "var(--color-teal)",
+                            backgroundColor: "rgba(21, 97, 109, 0.08)",
+                          }}
+                          aria-label={`Promote ${variant} as winner`}
+                        >
+                          Promote
+                        </button>
+                      ) : isWinner ? (
+                        <button
+                          type="button"
+                          onClick={resume}
+                          className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded focus-ring"
+                          style={{
+                            color: "var(--color-brandy)",
+                            backgroundColor: "rgba(120, 41, 15, 0.08)",
+                          }}
+                          aria-label={`Resume ${experiment} experiment`}
+                        >
+                          <RiArrowGoBackLine size={10} />
+                          Resume
+                        </button>
+                      ) : null}
+                    </td>
                   </tr>
                 );
               })}
@@ -164,6 +238,7 @@ export default function ExperimentAnalytics({
                       )}
                     </td>
                   ))}
+                  <td />
                 </tr>
               )}
             </tbody>
