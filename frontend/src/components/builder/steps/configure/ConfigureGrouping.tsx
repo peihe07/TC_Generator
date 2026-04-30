@@ -10,7 +10,11 @@ import { useJobStore } from "../../../../store/useJobStore";
 import type { GroupPreviewState } from "../../../../lib/configurePreviewTypes";
 import { Section, StatusPill } from "./shared";
 
-export default function ConfigureGrouping() {
+export default function ConfigureGrouping({
+  defaultOpen = true,
+}: {
+  defaultOpen?: boolean;
+}) {
   const tcRows = useJobStore((s) => s.tcRows);
   const setTcRows = useJobStore((s) => s.setTcRows);
   const accumulateStats = useJobStore((s) => s.accumulateStats);
@@ -95,6 +99,7 @@ export default function ConfigureGrouping() {
     <Section
       title="Grouping"
       hint="Classify rows into Test Sets. Edit manually or let AI regroup."
+      defaultOpen={defaultOpen}
     >
       <div className="space-y-3">
         <div className="flex items-center gap-2 flex-wrap">

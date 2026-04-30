@@ -7,7 +7,11 @@ import { useJobStore } from "../../../../store/useJobStore";
 import type { MatchPreviewState } from "../../../../lib/configurePreviewTypes";
 import { Section, StatusPill } from "./shared";
 
-export default function ConfigureSpecMatching() {
+export default function ConfigureSpecMatching({
+  defaultOpen = false,
+}: {
+  defaultOpen?: boolean;
+}) {
   const tcRows = useJobStore((s) => s.tcRows);
   const jobMetadata = useJobStore((s) => s.jobMetadata);
 
@@ -50,7 +54,7 @@ export default function ConfigureSpecMatching() {
     <Section
       title="Spec Matching"
       hint="Traceability from rows to the optional reference workbook."
-      defaultOpen={false}
+      defaultOpen={defaultOpen}
     >
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-3 flex-wrap">

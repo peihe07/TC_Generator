@@ -6,7 +6,8 @@ import {
   RiLoader4Line,
 } from "@remixicon/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import DataTable, { type DataTableColumn } from "../ui/DataTable";
 
 interface PreviewRow {
   reqId?: string | null;
@@ -115,50 +116,98 @@ export default function OutputPreviewView({ runId }: { runId: string }) {
             </span>
           </div>
 
-          <div className="surface p-2 overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="text-left text-[10px] uppercase tracking-wider text-muted">
-                  <th className="font-normal px-3 py-2">TC ID</th>
-                  <th className="font-normal px-3 py-2">Req</th>
-                  <th className="font-normal px-3 py-2">Test Set</th>
-                  <th className="font-normal px-3 py-2">Pre-Conditions</th>
-                  <th className="font-normal px-3 py-2">Procedure</th>
-                  <th className="font-normal px-3 py-2">Expected</th>
-                  <th className="font-normal px-3 py-2">Priority</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.rows.map((row, i) => (
-                  <tr key={`${row.tc_id ?? i}`} className="row-hover">
-                    <td className="px-3 py-2 align-top text-primary font-bold">
-                      {row.tc_id || "—"}
-                    </td>
-                    <td className="px-3 py-2 align-top text-secondary">
-                      {row.reqId || "—"}
-                    </td>
-                    <td className="px-3 py-2 align-top text-secondary">
-                      {row.test_set || "—"}
-                    </td>
-                    <td className="px-3 py-2 align-top text-secondary max-w-[220px] whitespace-pre-wrap">
-                      {row.pre_conditions || "—"}
-                    </td>
-                    <td className="px-3 py-2 align-top text-secondary max-w-[260px] whitespace-pre-wrap">
-                      {row.test_procedure || "—"}
-                    </td>
-                    <td className="px-3 py-2 align-top text-secondary max-w-[220px] whitespace-pre-wrap">
-                      {row.expected_result || "—"}
-                    </td>
-                    <td className="px-3 py-2 align-top text-secondary">
-                      {row.priority || "—"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PreviewTable rows={data.rows} />
         </>
       )}
     </div>
+  );
+}
+
+function PreviewTable({ rows }: { rows: PreviewRow[] }) {
+  const columns = useMemo<DataTableColumn<PreviewRow>[]>(
+    () => [
+      {
+        id: "tc_id",
+        header: "TC ID",
+        sortBy: (r) => r.tc_id ?? "",
+        cell: (r) => (
+          <span className="text-primary font-bold align-top">
+            {r.tc_id || "—"}
+          </span>
+        ),
+      },
+      {
+        id: "reqId",
+        header: "Req",
+        sortBy: (r) => r.reqId ?? "",
+        cell: (r) => (
+          <span className="text-secondary align-top">{r.reqId || "—"}</span>
+        ),
+      },
+      {
+        id: "test_set",
+        header: "Test Set",
+        sortBy: (r) => r.test_set ?? "",
+        cell: (r) => (
+          <span className="text-secondary align-top">
+            {r.test_set || "—"}
+          </span>
+        ),
+      },
+      {
+        id: "pre",
+        header: "Pre-Conditions",
+        cell: (r) => (
+          <span
+            className="text-secondary align-top whitespace-pre-wrap"
+            style={{ display: "block", maxWidth: 220 }}
+          >
+            {r.pre_conditions || "—"}
+          </span>
+        ),
+      },
+      {
+        id: "proc",
+        header: "Procedure",
+        cell: (r) => (
+          <span
+            className="text-secondary align-top whitespace-pre-wrap"
+            style={{ display: "block", maxWidth: 260 }}
+          >
+            {r.test_procedure || "—"}
+          </span>
+        ),
+      },
+      {
+        id: "expected",
+        header: "Expected",
+        cell: (r) => (
+          <span
+            className="text-secondary align-top whitespace-pre-wrap"
+            style={{ display: "block", maxWidth: 220 }}
+          >
+            {r.expected_result || "—"}
+          </span>
+        ),
+      },
+      {
+        id: "priority",
+        header: "Priority",
+        cell: (r) => (
+          <span className="text-secondary align-top">
+            {r.priority || "—"}
+          </span>
+        ),
+      },
+    ],
+    [],
+  );
+
+  return (
+    <DataTable
+      rows={rows}
+      columns={columns}
+      rowKey={(r, i) => r.tc_id ?? `row-${i}`}
+    />
   );
 }

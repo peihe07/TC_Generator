@@ -1,6 +1,15 @@
-export type ExperimentKey = "home_layout_emphasis";
+export type ExperimentKey =
+  | "home_layout_emphasis"
+  | "runs_detail_mode"
+  | "builder_split_layout";
 
-export type ExperimentVariant = "kpi_first" | "action_first";
+export type ExperimentVariant =
+  | "kpi_first"
+  | "action_first"
+  | "dedicated_page"
+  | "inline_panel"
+  | "fixed_preview"
+  | "collapsible_preview";
 
 export interface ExperimentDefinition {
   key: ExperimentKey;
@@ -23,6 +32,16 @@ export const EXPERIMENT_DEFINITIONS: Record<
     key: "home_layout_emphasis",
     variants: ["kpi_first", "action_first"],
     defaultVariant: "kpi_first",
+  },
+  runs_detail_mode: {
+    key: "runs_detail_mode",
+    variants: ["dedicated_page", "inline_panel"],
+    defaultVariant: "dedicated_page",
+  },
+  builder_split_layout: {
+    key: "builder_split_layout",
+    variants: ["fixed_preview", "collapsible_preview"],
+    defaultVariant: "fixed_preview",
   },
 };
 

@@ -20,7 +20,12 @@ export default function HomeView() {
     const assignment = getExperimentAssignment("home_layout_emphasis", {
       subjectId: "default-workspace",
     });
-    setHomeLayoutVariant(assignment.variant);
+    if (
+      assignment.variant === "kpi_first" ||
+      assignment.variant === "action_first"
+    ) {
+      setHomeLayoutVariant(assignment.variant);
+    }
     track("experiment_exposure", {
       experiment: assignment.key,
       variant: assignment.variant,
