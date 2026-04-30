@@ -328,6 +328,7 @@ export interface SpecLibraryEntry {
   version?: string | null;
   changelog?: SpecChangelogEntry[];
   deprecated?: boolean;
+  clonedFrom?: string | null;
 }
 
 export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {

@@ -1960,7 +1960,18 @@ def _serialize_spec_entry(item: dict) -> dict:
         "version": item.get("version"),
         "changelog": item.get("changelog") or [],
         "deprecated": bool(item.get("deprecated")),
+        "clonedFrom": item.get("cloned_from"),
     }
+
+
+_TEMPLATE_NAME_RE = re.compile(r"^[A-Za-z0-9._\-()&\s]{1,128}$")
+
+
+def _find_spec_entry(specs: list, name: str) -> dict | None:
+    for entry in specs:
+        if isinstance(entry, dict) and entry.get("name") == name:
+            return entry
+    return None
 
 
 @app.get("/api/spec-library")
@@ -2076,6 +2087,78 @@ def patch_spec_library_entry(
     target["deprecated"] = bool(payload.deprecated)
     _write_spec_manifest(manifest)
     return {"ok": True, "spec": _serialize_spec_entry(target)}
+
+
+class TemplateCloneRequest(BaseModel):
+    newName: str
+
+
+@app.post("/api/spec-library/{name}/clone")
+def clone_spec_library_entry(
+    name: str, payload: TemplateCloneRequest, request: Request
+) -> dict:
+    """Clone an existing template under a new name (loopback only).
+
+    Source file & embedding cache are reused (same ``source_file`` path) —
+    embeddings are content-keyed so this is safe and side-steps the
+    ingestion pipeline. The new entry stamps ``clonedFrom`` pointing to
+    the origin so users can trace lineage. Future divergence (re-ingest
+    against a fork) is out of scope here.
+    """
+    client_host = request.client.host if request.client else None
+    if client_host not in {"127.0.0.1", "::1", "localhost", "testclient"}:
+        raise HTTPException(
+            status_code=403,
+            detail="manifest edits only allowed from localhost",
+        )
+
+    new_name = (payload.newName or "").strip()
+    if not new_name:
+        raise HTTPException(status_code=400, detail="newName required")
+    if not _TEMPLATE_NAME_RE.match(new_name):
+        raise HTTPException(
+            status_code=400,
+            detail="newName contains unsupported characters",
+        )
+    if new_name == name:
+        raise HTTPException(
+            status_code=400, detail="newName must differ from origin"
+        )
+
+    manifest = _read_spec_manifest()
+    specs = manifest.get("specs")
+    if not isinstance(specs, list):
+        raise HTTPException(
+            status_code=404, detail=f"template not found: {name}"
+        )
+    origin = _find_spec_entry(specs, name)
+    if origin is None:
+        raise HTTPException(
+            status_code=404, detail=f"template not found: {name}"
+        )
+    if _find_spec_entry(specs, new_name) is not None:
+        raise HTTPException(
+            status_code=409, detail=f"template already exists: {new_name}"
+        )
+
+    cloned: dict = {
+        **origin,
+        "name": new_name,
+        "cloned_from": name,
+        "updated_at": datetime.utcnow().isoformat(timespec="seconds") + "+00:00",
+        "version": "1.0.0",
+        "changelog": [
+            {
+                "version": "1.0.0",
+                "message": f"Cloned from {name}",
+                "ts": int(datetime.utcnow().timestamp() * 1000),
+            }
+        ],
+        "deprecated": False,
+    }
+    specs.append(cloned)
+    _write_spec_manifest(manifest)
+    return {"ok": True, "spec": _serialize_spec_entry(cloned)}
 
 
 @app.get("/api/jobs/{job_id}/output-preview")

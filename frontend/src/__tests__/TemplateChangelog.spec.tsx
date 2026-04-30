@@ -22,6 +22,11 @@ vi.mock("next/link", () => ({
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/templates/tpl-A",
+  useRouter: () => ({
+    push: () => {},
+    refresh: () => {},
+    replace: () => {},
+  }),
 }));
 
 const seedEntry = (

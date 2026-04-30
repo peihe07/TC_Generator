@@ -5,8 +5,11 @@ import {
   RiArrowRightLine,
   RiBookmarkLine,
   RiFileList3Line,
+  RiFileCopyLine,
+  RiLoader4Line,
 } from "@remixicon/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   fetchSpecLibrary,
@@ -152,10 +155,23 @@ export default function TemplateDetailView({
               )}
             </div>
             <code className="text-xs text-muted">{entry.name}</code>
+            {entry.clonedFrom && (
+              <div className="text-[10px] uppercase tracking-wider text-muted">
+                Cloned from{" "}
+                <Link
+                  href={`/templates/${encodeURIComponent(entry.clonedFrom)}`}
+                  className="font-bold focus-ring rounded"
+                  style={{ color: "var(--color-tangerine)" }}
+                >
+                  {entry.clonedFrom}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
+          <CloneButton entry={entry} />
           <DeprecateToggle
             entry={entry}
             onChange={(updated) => setEntry({ ...entry, ...updated })}
@@ -272,7 +288,10 @@ export default function TemplateDetailView({
           </li>
           <li className="flex gap-2">
             <span style={{ color: "var(--color-tangerine)" }}>›</span>
-            <span>Clone, deprecate, override actions</span>
+            <span>
+              Brand-new templates from scratch (needs embedding ingestion
+              pipeline)
+            </span>
           </li>
         </ul>
       </section>
@@ -478,6 +497,74 @@ function Stat({
     </div>
   );
 }
+
+function CloneButton({ entry }: { entry: SpecLibraryEntry }) {
+  const router = useRouter();
+  const [busy, setBusy] = useState(false);
+
+  const submit = async () => {
+    const suggested = `${entry.name} (copy)`;
+    const newName = window.prompt(
+      `Clone "${entry.name}" as:`,
+      suggested
+    );
+    if (newName == null) return;
+    const trimmed = newName.trim();
+    if (!trimmed || trimmed === entry.name) return;
+
+    setBusy(true);
+    try {
+      const res = await fetch(
+        `/api/spec-library/${encodeURIComponent(entry.name)}/clone`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ newName: trimmed }),
+        }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail ?? `Status ${res.status}`);
+      }
+      const body = await res.json();
+      const created = body.spec?.name as string | undefined;
+      track("template_save", {
+        templateId: trimmed,
+        kind: "clone",
+      });
+      if (created) {
+        router.push(`/templates/${encodeURIComponent(created)}`);
+      } else {
+        router.refresh();
+      }
+    } catch (err) {
+      window.alert(err instanceof Error ? err.message : "Clone failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={() => void submit()}
+      disabled={busy}
+      className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-50"
+      style={{
+        backgroundColor: "rgba(21, 97, 109, 0.12)",
+        color: "var(--color-teal)",
+      }}
+    >
+      {busy ? (
+        <RiLoader4Line size={12} className="animate-spin" />
+      ) : (
+        <RiFileCopyLine size={12} />
+      )}
+      {busy ? "Cloning…" : "Clone"}
+    </button>
+  );
+}
+
 
 function DeprecateToggle({
   entry,

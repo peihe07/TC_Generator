@@ -2810,6 +2810,85 @@ def test_spec_library_patch_404_unknown(tmp_path, monkeypatch):
     assert res.status_code == 404
 
 
+def test_spec_library_clone_creates_new_entry(tmp_path, monkeypatch):
+    manifest = _seed_manifest(
+        tmp_path,
+        [
+            {
+                "name": "tpl-origin",
+                "source_file": "origin.xlsx",
+                "entries_count": 42,
+                "embedding_model": "text-embedding-3-large",
+                "version": "2.0.0",
+                "changelog": [{"version": "2.0.0", "message": "stable", "ts": 1}],
+            }
+        ],
+    )
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+
+    res = client.post(
+        "/api/spec-library/tpl-origin/clone",
+        json={"newName": "tpl-clone-A"},
+    )
+    assert res.status_code == 200, res.text
+    spec = res.json()["spec"]
+    assert spec["name"] == "tpl-clone-A"
+    assert spec["clonedFrom"] == "tpl-origin"
+    assert spec["sourceFile"] == "origin.xlsx"  # 共用 source_file
+    assert spec["entriesCount"] == 42
+    assert spec["embeddingModel"] == "text-embedding-3-large"
+    # version 重置 + changelog 留下 clone 紀錄
+    assert spec["version"] == "1.0.0"
+    assert spec["changelog"][0]["message"] == "Cloned from tpl-origin"
+    assert spec["deprecated"] is False
+
+    persisted = json.loads(open(manifest).read())
+    assert {s["name"] for s in persisted["specs"]} == {"tpl-origin", "tpl-clone-A"}
+
+
+def test_spec_library_clone_409_on_duplicate(tmp_path, monkeypatch):
+    manifest = _seed_manifest(
+        tmp_path,
+        [{"name": "tpl-A"}, {"name": "tpl-B"}],
+    )
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.post(
+        "/api/spec-library/tpl-A/clone",
+        json={"newName": "tpl-B"},
+    )
+    assert res.status_code == 409
+
+
+def test_spec_library_clone_400_when_same_name(tmp_path, monkeypatch):
+    manifest = _seed_manifest(tmp_path, [{"name": "tpl-X"}])
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.post(
+        "/api/spec-library/tpl-X/clone",
+        json={"newName": "tpl-X"},
+    )
+    assert res.status_code == 400
+
+
+def test_spec_library_clone_404_unknown(tmp_path, monkeypatch):
+    manifest = _seed_manifest(tmp_path, [])
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.post(
+        "/api/spec-library/ghost/clone",
+        json={"newName": "anything"},
+    )
+    assert res.status_code == 404
+
+
+def test_spec_library_clone_400_when_invalid_chars(tmp_path, monkeypatch):
+    manifest = _seed_manifest(tmp_path, [{"name": "tpl-V"}])
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.post(
+        "/api/spec-library/tpl-V/clone",
+        json={"newName": "../etc/passwd"},
+    )
+    assert res.status_code == 400
+
+
 def test_output_preview_404_for_unknown_job():
     assert client.get("/api/jobs/no-such/output-preview").status_code == 404
 

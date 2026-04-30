@@ -41,8 +41,9 @@ interface KnownEvents {
   template_use_click: { templateId: string };
   template_save: {
     templateId: string;
-    /** 'changelog' for changelog appends; 'deprecate' for deprecate flag toggle. */
-    kind: "changelog" | "deprecate";
+    /** 'changelog' for changelog appends; 'deprecate' for deprecate flag toggle;
+     *  'clone' for cloning an existing template under a new name. */
+    kind: "changelog" | "deprecate" | "clone";
     version?: string;
   };
   output_compare_open: { a: string; b: string };
