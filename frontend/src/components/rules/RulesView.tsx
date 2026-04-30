@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import AutoSizingIframe from "../AutoSizingIframe";
 
 type RulesTab = "aspice" | "ai" | "design";
 
@@ -42,8 +43,11 @@ export default function RulesView() {
               style={{
                 color: isActive ? "var(--color-papaya)" : "var(--color-ink)",
                 backgroundColor: isActive
-                  ? "var(--color-teal)"
-                  : "rgba(21, 97, 109, 0.08)",
+                  ? "var(--color-ink)"
+                  : "rgba(0, 21, 36, 0.08)",
+                boxShadow: isActive
+                  ? "0 8px 18px rgba(0, 21, 36, 0.16)"
+                  : "none",
               }}
             >
               {tab.label}
@@ -52,21 +56,11 @@ export default function RulesView() {
         })}
       </nav>
 
-      <div
-        role="tabpanel"
-        className="surface overflow-hidden"
-        style={{ height: "calc(100vh - 240px)", minHeight: 480 }}
-      >
-        <iframe
+      <div role="tabpanel" className="surface overflow-hidden">
+        <AutoSizingIframe
           key={current.id}
           src={current.src}
           title={current.label}
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "none",
-            display: "block",
-          }}
         />
       </div>
     </div>

@@ -7,21 +7,21 @@
   <title>TC Design Method Rules</title>
   <style>
     html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
+      color: #001524;
+      background-color: transparent;
     }
     body {
       margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
+      max-width: 40em;
+      padding: 24px 28px 48px;
       hyphens: auto;
       overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
     }
+    /* Hide internal title — outer React page owns the heading */
+    #title-block-header { display: none; }
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
@@ -168,18 +168,21 @@
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <style>
-  body { font-family: "Pixelated MS Sans Serif","MS Sans Serif",Arial,sans-serif; font-size:13px; max-width:860px; margin:0 auto; padding:24px 32px; background:#fff; color:#1a1a1a; line-height:1.6; }
-  h1 { font-size:18px; font-weight:bold; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:16px; }
-  h2 { font-size:15px; font-weight:bold; margin-top:24px; margin-bottom:8px; border-left:4px solid #000080; padding-left:8px; }
+  html { background: transparent; }
+  body { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:13px; max-width:860px; margin:0 auto; padding:24px 28px 48px; background: transparent; color:#001524; line-height:1.6; }
+  h1 { font-size:18px; font-weight:bold; border-bottom:2px solid rgba(0, 21, 36, 0.30); padding-bottom:4px; margin-bottom:16px; }
+  h2 { font-size:15px; font-weight:bold; margin-top:24px; margin-bottom:8px; border-left:4px solid #15616d; padding-left:8px; }
   h3 { font-size:13px; font-weight:bold; margin-top:16px; margin-bottom:4px; }
-  h4 { font-size:13px; font-weight:bold; margin-top:12px; color:#444; }
-  pre { background:#f0f0f0; border:1px solid #c0c0c0; padding:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
-  code { background:#f0f0f0; padding:1px 4px; font-size:11px; }
-  blockquote { border-left:3px solid #808080; margin-left:0; padding-left:12px; color:#555; }
-  hr { border:none; border-top:1px solid #808080; margin:16px 0; }
+  h4 { font-size:13px; font-weight:bold; margin-top:12px; color:#15616d; }
+  pre { background: rgba(21, 97, 109, 0.08); border:1px solid rgba(0, 21, 36, 0.12); padding:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
+  code { background: rgba(21, 97, 109, 0.08); padding:1px 4px; font-size:11px; }
+  blockquote { border-left:3px solid rgba(21, 97, 109, 0.40); margin-left:0; padding-left:12px; color: rgba(21, 97, 109, 0.85); }
+  hr { border:none; border-top:1px solid rgba(0, 21, 36, 0.20); margin:16px 0; }
   table { border-collapse:collapse; width:100%; margin:12px 0; font-size:12px; }
-  th,td { border:1px solid #c0c0c0; padding:4px 8px; text-align:left; }
-  th { background:#c0c0c0; font-weight:bold; }
+  th,td { border:1px solid rgba(0, 21, 36, 0.18); padding:4px 8px; text-align:left; }
+  th { background: rgba(0, 21, 36, 0.06); }
+  a, a:visited { color: #15616d; }
+  th { background:#ddd7cb; font-weight:bold; }
   ul,ol { padding-left:20px; margin:4px 0; }
   li { margin:2px 0; }
   strong { font-weight:bold; }

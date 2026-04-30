@@ -7,21 +7,21 @@
   <title>ASPICE SWE.6 TC Writing Rules</title>
   <style>
     html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
+      color: #001524;
+      background-color: transparent;
     }
     body {
       margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
+      max-width: 40em;
+      padding: 24px 28px 48px;
       hyphens: auto;
       overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
     }
+    /* Hide internal title — outer React page owns the heading */
+    #title-block-header { display: none; }
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
@@ -166,6 +166,18 @@
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    html { background-color: transparent; }
+    body {
+      background: transparent;
+      color: #001524;
+    }
+    blockquote, pre, code { background-color: rgba(21, 97, 109, 0.08); }
+    th { background-color: rgba(0, 21, 36, 0.08); }
+    a, a:visited { color: #15616d; }
+    blockquote { border-left-color: rgba(21, 97, 109, 0.30); color: rgba(21, 97, 109, 0.85); }
+    hr { border-top-color: rgba(0, 21, 36, 0.20); }
+    tbody { border-top-color: rgba(0, 21, 36, 0.30); border-bottom-color: rgba(0, 21, 36, 0.30); }
+    th { border-top-color: rgba(0, 21, 36, 0.30); }
   </style>
 </head>
 <body>

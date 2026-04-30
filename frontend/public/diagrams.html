@@ -6,14 +6,14 @@
 <title>TC Generator — Diagrams</title>
 <style>
   :root {
-    --bg:#fafaf7;
-    --surface:#ffffff;
-    --panel:#f4f2eb;
-    --ink:#1a1a18;
-    --ink-2:#3d3b36;
-    --muted:#6b6862;
-    --line:#e2dfd5;
-    --line-2:#d0ccc0;
+    --bg:transparent;
+    --surface:#f6f0e2;
+    --panel:#ece4d0;
+    --ink:#001524;
+    --ink-2:#15616d;
+    --muted:rgba(21, 97, 109, 0.75);
+    --line:rgba(0, 21, 36, 0.10);
+    --line-2:rgba(0, 21, 36, 0.16);
     --blue:#2867a6;
     --blue-bg:#e7f0fb;
     --blue-bd:#cfe0f3;
@@ -23,9 +23,9 @@
     --amber:#9a650f;
     --amber-bg:#fff3d6;
     --amber-bd:#f0dfa8;
-    --green:#4f7d25;
-    --green-bg:#e9f4dc;
-    --green-bd:#cee2b1;
+    --green:#5f6f4c;
+    --green-bg:#ece8dc;
+    --green-bd:#d7d0bf;
     --red:#b64b2f;
     --red-bg:#ffe7dc;
     --red-bd:#f3c5b3;
@@ -35,11 +35,13 @@
   body {
     max-width:1040px;
     margin:0 auto;
-    padding:42px 24px 76px;
+    padding:24px 20px 48px;
     color:var(--ink);
     line-height:1.55;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   }
+  /* Hide internal hero — outer React page already shows the title */
+  .hero { display:none; }
   code {
     font-size:.92em;
     background:var(--panel);
@@ -67,8 +69,8 @@
   .lede { margin:0 0 14px; max-width:780px; color:var(--muted); font-size:13.5px; }
   .board {
     background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:10px;
+    box-shadow:0 10px 28px rgba(26,26,24,.10), 0 1px 2px rgba(26,26,24,.08);
+    border-radius:6px;
     padding:18px;
     overflow-x:auto;
   }
@@ -81,14 +83,14 @@
     width:100%;
     min-height:136px;
     padding:14px;
-    border-radius:8px;
-    border:1px solid var(--line);
+    border-radius:5px;
+    box-shadow:0 4px 12px rgba(26,26,24,.08);
     background:var(--panel);
   }
   .card .mark {
     width:34px;
     height:34px;
-    border-radius:8px;
+    border-radius:5px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -134,8 +136,8 @@
   }
   .lane {
     min-width:0;
-    border:1px solid var(--line);
-    border-radius:10px;
+    box-shadow:0 8px 22px rgba(26,26,24,.08);
+    border-radius:6px;
     padding:16px;
     background:var(--surface);
   }
@@ -152,8 +154,8 @@
     position:relative;
     min-height:96px;
     padding:12px;
-    border:1px solid var(--line);
-    border-radius:8px;
+    box-shadow:0 4px 12px rgba(26,26,24,.08);
+    border-radius:5px;
     background:var(--surface);
   }
   .flow-step::after {
@@ -209,7 +211,7 @@
   }
   .cost-card {
     border:1px solid var(--line);
-    border-radius:8px;
+    border-radius:5px;
     padding:13px;
     background:var(--panel);
   }
