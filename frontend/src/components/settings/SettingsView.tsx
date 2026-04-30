@@ -3,6 +3,8 @@
 import { RiResetLeftLine, RiCheckLine } from "@remixicon/react";
 import { useEffect, useMemo, useState } from "react";
 import { MODEL_OPTIONS } from "../../lib/configureConstants";
+import { EXPERIMENT_DEFINITIONS } from "../../lib/experiments";
+import ExperimentAnalytics from "./ExperimentAnalytics";
 import {
   Section,
   RadioCard,
@@ -10,7 +12,7 @@ import {
   NumberField,
   Toggle,
 } from "../builder/steps/configure/shared";
-import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+import { useWorkspaceFilteredRecords } from "../../lib/useWorkspaceFiltered";
 import { useWorkspaceSettingsStore } from "../../store/useWorkspaceSettingsStore";
 import {
   aggregate,
@@ -28,14 +30,11 @@ export default function SettingsView() {
   const update = useWorkspaceSettingsStore((s) => s.update);
   const reset = useWorkspaceSettingsStore((s) => s.reset);
 
-  const records = useJobHistoryStore((s) => s.records);
-  const historyLoaded = useJobHistoryStore((s) => s.loaded);
-  const loadHistory = useJobHistoryStore((s) => s.loadFromStorage);
+  const records = useWorkspaceFilteredRecords();
 
   useEffect(() => {
     if (!loaded) loadFromStorage();
-    if (!historyLoaded) loadHistory();
-  }, [loaded, loadFromStorage, historyLoaded, loadHistory]);
+  }, [loaded, loadFromStorage]);
 
   const [savedFlash, setSavedFlash] = useState(false);
   const flash = () => {
@@ -149,6 +148,22 @@ export default function SettingsView() {
               flash();
             }}
           />
+        </div>
+      </Section>
+
+      <Section
+        title="Experiments"
+        hint="Telemetry buckets per A/B variant — backed by /api/events/aggregate."
+        defaultOpen={false}
+      >
+        <div className="space-y-5">
+          {(
+            Object.keys(EXPERIMENT_DEFINITIONS) as Array<
+              keyof typeof EXPERIMENT_DEFINITIONS
+            >
+          ).map((key) => (
+            <ExperimentAnalytics key={key} experiment={key} />
+          ))}
         </div>
       </Section>
 

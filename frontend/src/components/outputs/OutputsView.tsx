@@ -7,7 +7,7 @@ import {
 } from "@remixicon/react";
 import Link from "next/link";
 import EmptyState from "../shell/EmptyState";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { track } from "../../lib/telemetry";
 import {
   formatCost,
@@ -18,18 +18,12 @@ import {
   toRuns,
   type Run,
 } from "../../services/runAdapter";
-import { useJobHistoryStore } from "../../store/useJobHistoryStore";
+import { useWorkspaceFilteredRecords } from "../../lib/useWorkspaceFiltered";
 
 const OUTPUT_KINDS = new Set(["generate", "quick", "rerun", "regenerate"]);
 
 export default function OutputsView() {
-  const records = useJobHistoryStore((s) => s.records);
-  const loaded = useJobHistoryStore((s) => s.loaded);
-  const loadFromStorage = useJobHistoryStore((s) => s.loadFromStorage);
-
-  useEffect(() => {
-    if (!loaded) loadFromStorage();
-  }, [loaded, loadFromStorage]);
+  const records = useWorkspaceFilteredRecords();
 
   const outputs = useMemo<Run[]>(() => {
     return toRuns(records).filter(
@@ -40,11 +34,45 @@ export default function OutputsView() {
   const [selected, setSelected] = useState<string[]>([]);
 
   const toggleSelect = (id: string) => {
-    setSelected((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id);
-      if (prev.length >= 2) return [prev[1], id];
-      return [...prev, id];
-    });
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
+
+  const [bulkLoading, setBulkLoading] = useState(false);
+  const [bulkError, setBulkError] = useState<string | null>(null);
+
+  const downloadBulk = async () => {
+    if (selected.length === 0) return;
+    setBulkLoading(true);
+    setBulkError(null);
+    try {
+      const res = await fetch("/api/outputs/bulk-download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jobIds: selected }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail ?? `Status ${res.status}`);
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download =
+        res.headers
+          .get("content-disposition")
+          ?.match(/filename="?([^";]+)"?/)?.[1] ?? "tc-outputs-bundle.zip";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      setBulkError(err instanceof Error ? err.message : "Download failed");
+    } finally {
+      setBulkLoading(false);
+    }
   };
 
   return (
@@ -124,14 +152,22 @@ export default function OutputsView() {
                     {r.finishedAt ? formatRelativeTime(r.finishedAt) : "—"}
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <a
-                      href={`/api/export/download/${encodeURIComponent(r.id)}`}
-                      className="inline-flex items-center gap-1 text-xs font-bold focus-ring rounded px-2 py-1"
-                      style={{ color: "var(--color-tangerine)" }}
-                    >
-                      <RiDownload2Line size={12} />
-                      Download
-                    </a>
+                    <div className="inline-flex items-center gap-2">
+                      <Link
+                        href={`/outputs/${encodeURIComponent(r.id)}`}
+                        className="text-xs font-bold focus-ring rounded px-2 py-1"
+                        style={{ color: "var(--color-tangerine)" }}
+                      >
+                        Preview
+                      </Link>
+                      <a
+                        href={`/api/export/download/${encodeURIComponent(r.id)}`}
+                        className="inline-flex items-center gap-1 text-xs font-bold focus-ring rounded px-2 py-1 text-secondary"
+                      >
+                        <RiDownload2Line size={12} />
+                        Download
+                      </a>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -142,49 +178,72 @@ export default function OutputsView() {
 
       {selected.length > 0 && (
         <div
-          className="sticky bottom-4 surface-floating px-5 py-3 flex items-center justify-between gap-3"
+          className="sticky bottom-4 surface-floating px-5 py-3 space-y-2"
           style={{ borderRadius: 16 }}
         >
-          <span className="text-sm text-secondary">
-            {selected.length === 2
-              ? "2 outputs selected — ready to compare"
-              : `${selected.length} of 2 selected`}
-          </span>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setSelected([])}
-              className="text-xs px-3 py-1.5 rounded-md focus-ring"
-              style={{
-                backgroundColor: "rgba(21, 97, 109, 0.12)",
-                color: "var(--color-teal)",
-              }}
-            >
-              Clear
-            </button>
-            <Link
-              href={`/outputs/compare?a=${encodeURIComponent(
-                selected[0]
-              )}&b=${encodeURIComponent(selected[1] ?? "")}`}
-              aria-disabled={selected.length !== 2}
-              onClick={() => {
-                if (selected.length === 2) {
-                  track("output_compare_open", {
-                    a: selected[0],
-                    b: selected[1],
-                  });
-                }
-              }}
-              className="cta inline-flex items-center gap-1.5 text-sm"
-              style={{
-                pointerEvents: selected.length === 2 ? "auto" : "none",
-                opacity: selected.length === 2 ? 1 : 0.5,
-              }}
-            >
-              <RiArrowLeftRightLine size={16} />
-              Compare
-            </Link>
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <span className="text-sm text-secondary">
+              {selected.length === 2
+                ? "2 outputs selected — ready to compare"
+                : `${selected.length} selected`}
+            </span>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setSelected([])}
+                className="text-xs px-3 py-1.5 rounded-md focus-ring"
+                style={{
+                  backgroundColor: "rgba(21, 97, 109, 0.12)",
+                  color: "var(--color-teal)",
+                }}
+              >
+                Clear
+              </button>
+              <button
+                type="button"
+                onClick={() => void downloadBulk()}
+                disabled={bulkLoading}
+                className="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-40"
+                style={{
+                  backgroundColor: "rgba(21, 97, 109, 0.12)",
+                  color: "var(--color-teal)",
+                }}
+              >
+                <RiDownload2Line size={14} />
+                {bulkLoading ? "Bundling…" : "Download zip"}
+              </button>
+              <Link
+                href={`/outputs/compare?a=${encodeURIComponent(
+                  selected[0]
+                )}&b=${encodeURIComponent(selected[1] ?? "")}`}
+                aria-disabled={selected.length !== 2}
+                onClick={() => {
+                  if (selected.length === 2) {
+                    track("output_compare_open", {
+                      a: selected[0],
+                      b: selected[1],
+                    });
+                  }
+                }}
+                className="cta inline-flex items-center gap-1.5 text-sm"
+                style={{
+                  pointerEvents: selected.length === 2 ? "auto" : "none",
+                  opacity: selected.length === 2 ? 1 : 0.5,
+                }}
+              >
+                <RiArrowLeftRightLine size={16} />
+                Compare
+              </Link>
+            </div>
           </div>
+          {bulkError && (
+            <p
+              className="text-xs"
+              style={{ color: "var(--color-brandy)" }}
+            >
+              {bulkError}
+            </p>
+          )}
         </div>
       )}
     </div>

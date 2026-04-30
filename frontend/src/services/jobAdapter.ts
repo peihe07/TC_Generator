@@ -311,12 +311,21 @@ export function isBackendConfigured() {
   return true;
 }
 
+export interface SpecChangelogEntry {
+  version: string;
+  message: string;
+  ts: number;
+  author?: string;
+}
+
 export interface SpecLibraryEntry {
   name: string;
   sourceFile: string | null;
   entriesCount: number | null;
   embeddingModel: string | null;
   updatedAt: string | null;
+  version?: string | null;
+  changelog?: SpecChangelogEntry[];
 }
 
 export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {

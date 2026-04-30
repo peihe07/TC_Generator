@@ -49,6 +49,14 @@ export default function BuilderShell() {
   const wsSettingsLoaded = useWorkspaceSettingsStore((s) => s.loaded);
   const loadWsSettings = useWorkspaceSettingsStore((s) => s.loadFromStorage);
   const updateJobConfig = useJobStore((s) => s.updateConfig);
+  const setJobMetadata = useJobStore((s) => s.setJobMetadata);
+  const setTcRows = useJobStore((s) => s.setTcRows);
+  const updateStats = useJobStore((s) => s.updateStats);
+  const markStepComplete = useBuilderDraftStore((s) => s.markStepComplete);
+
+  const [hydrating, setHydrating] = useState<string | null>(null);
+  const [hydratedFor, setHydratedFor] = useState<string | null>(null);
+  const [hydrateError, setHydrateError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!wsSettingsLoaded) loadWsSettings();
@@ -125,6 +133,93 @@ export default function BuilderShell() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loaded, draft, sourceRunId, rerunMode, templateIdParam, datasetParam, startNew, update, wsSettingsLoaded]);
+
+  // Re-hydrate parsed rows from backend when the user picks a dataset from /data.
+  const datasetId = draft?.data?.datasetId ?? null;
+  useEffect(() => {
+    if (!datasetId) return;
+    if (hydratedFor === datasetId) return;
+    if (hydrating === datasetId) return;
+    setHydrating(datasetId);
+    setHydrateError(null);
+    let cancelled = false;
+    fetch(`/api/jobs/${encodeURIComponent(datasetId)}/dataset`)
+      .then(async (res) => {
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.detail ?? `Status ${res.status}`);
+        }
+        return (await res.json()) as {
+          jobId: string;
+          rowCount: number;
+          projectName?: string | null;
+          testGroup?: string | null;
+          rows: Array<Record<string, unknown>>;
+        };
+      })
+      .then((data) => {
+        if (cancelled) return;
+        if (data.rows.length === 0) {
+          setHydrateError(
+            "This dataset has no parsed rows on the server — re-upload the workbook to continue.",
+          );
+          setHydrating(null);
+          return;
+        }
+        setJobMetadata({
+          jobId: data.jobId,
+          projectName: data.projectName ?? "Reused dataset",
+          createdAt: new Date().toISOString(),
+          totalRows: data.rowCount,
+        });
+        // 後端 row 已是 camelCase；補 Frontend TcRow 缺的 fields。
+        setTcRows(
+          data.rows.map((r) => ({
+            id: String(r.id),
+            rowNum: typeof r.rowNum === "number" ? r.rowNum : undefined,
+            reqId: String(r.reqId ?? ""),
+            testGroup: String(r.testGroup ?? data.testGroup ?? ""),
+            testSet: String(r.testSet ?? ""),
+            testItem: String(r.testItem ?? ""),
+            specReference:
+              typeof r.specReference === "string" ? r.specReference : null,
+            preConditions: "",
+            inputTestData: "",
+            steps: "",
+            expectedResults: "",
+            status: "pending",
+          })),
+        );
+        updateStats({
+          total: data.rowCount,
+          processed: 0,
+          success: 0,
+          fail: 0,
+        });
+        update({
+          data: {
+            ...(draft?.data ?? {}),
+            datasetId: data.jobId,
+            fileName: data.projectName ?? undefined,
+            rowCount: data.rowCount,
+          },
+        });
+        markStepComplete("data", true);
+        setHydratedFor(data.jobId);
+        setHydrating(null);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setHydrateError(
+          err instanceof Error ? err.message : "Failed to load dataset",
+        );
+        setHydrating(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [datasetId, hydratedFor]);
 
   const current: BuilderStep = useMemo(() => {
     if (stepFromUrl && isBuilderStep(stepFromUrl)) return stepFromUrl;
@@ -242,18 +337,31 @@ export default function BuilderShell() {
         </div>
       )}
 
-      {draft.data?.datasetId && !draft.data?.fileName && (
+      {draft.data?.datasetId && (
         <div
           className="surface px-4 py-2 text-xs flex items-center gap-2 flex-wrap"
-          style={{ color: "var(--color-teal)" }}
+          style={{
+            color: hydrateError
+              ? "var(--color-brandy)"
+              : "var(--color-teal)",
+          }}
         >
           <span className="font-bold uppercase tracking-wider">
-            Reusing dataset
+            {hydrating
+              ? "Loading dataset…"
+              : hydrateError
+              ? "Dataset error"
+              : "Reusing dataset"}
           </span>
           <code className="text-primary">{draft.data.datasetId}</code>
-          <span className="text-muted">
-            — re-upload the workbook to populate rows
-          </span>
+          {!hydrating && !hydrateError && draft.data.rowCount != null && (
+            <span className="text-muted">
+              · {draft.data.rowCount} row(s) loaded
+            </span>
+          )}
+          {hydrateError && (
+            <span className="text-muted">— {hydrateError}</span>
+          )}
         </div>
       )}
 
