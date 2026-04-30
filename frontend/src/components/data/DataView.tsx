@@ -197,19 +197,27 @@ function DatasetCard({ dataset }: { dataset: Dataset }) {
         <Stat label="Cost" value={formatCost(dataset.totalCost)} />
       </dl>
 
-      <div className="flex items-center justify-between gap-2 pt-1">
+      <div className="flex items-center justify-between gap-2 pt-1 flex-wrap">
         <span className="text-[10px] text-muted">
           {KIND_LABEL[dataset.latestKind] ?? dataset.latestKind} ·{" "}
           {formatRelativeTime(dataset.latestActivity)}
         </span>
-        <Link
-          href={`/run-builder?dataset=${encodeURIComponent(dataset.jobId)}`}
-          className="text-xs font-bold focus-ring rounded px-2 py-1 inline-flex items-center gap-1"
-          style={{ color: "var(--color-tangerine)" }}
-        >
-          Use in New Run
-          <RiArrowRightLine size={12} />
-        </Link>
+        <div className="inline-flex items-center gap-2">
+          <Link
+            href={`/data/${encodeURIComponent(dataset.jobId)}`}
+            className="text-xs font-bold focus-ring rounded px-2 py-1 text-secondary"
+          >
+            Inspect
+          </Link>
+          <Link
+            href={`/run-builder?dataset=${encodeURIComponent(dataset.jobId)}`}
+            className="text-xs font-bold focus-ring rounded px-2 py-1 inline-flex items-center gap-1"
+            style={{ color: "var(--color-tangerine)" }}
+          >
+            Use in New Run
+            <RiArrowRightLine size={12} />
+          </Link>
+        </div>
       </div>
     </article>
   );
