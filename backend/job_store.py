@@ -12,8 +12,10 @@ import base64
 import binascii
 import json
 import os
+import re
 import sqlite3
 import threading
+from contextvars import ContextVar
 from pathlib import Path
 
 
@@ -208,3 +210,122 @@ def default_db_path() -> Path:
     if env:
         return Path(env)
     return Path(__file__).resolve().parent.parent / "output" / "jobs.db"
+
+
+# Hard isolation (S3) — workspace-scoped routing.
+DEFAULT_WORKSPACE_ID = "default"
+_WORKSPACE_VAR: ContextVar[str] = ContextVar(
+    "tc_current_workspace_id", default=DEFAULT_WORKSPACE_ID
+)
+_WORKSPACE_SAFE = re.compile(r"[^A-Za-z0-9._-]+")
+
+
+def safe_workspace_segment(workspace_id: str) -> str:
+    """Sanitize a workspace_id to a path-safe segment.
+
+    禁止 ``..``、空白、斜線等出現在資料夾名稱裡，避免外部使用者送 header
+    後造成 path traversal。"""
+    cleaned = _WORKSPACE_SAFE.sub("-", (workspace_id or "").strip()) or DEFAULT_WORKSPACE_ID
+    if cleaned in {".", ".."}:
+        cleaned = DEFAULT_WORKSPACE_ID
+    return cleaned[:64]  # 限制長度避免極端情境
+
+
+def set_current_workspace(workspace_id: str | None) -> object:
+    """Bind current workspace id for downstream JOB_REGISTRY routing.
+
+    Returns the token to pass back to ``reset_current_workspace``.
+    """
+    return _WORKSPACE_VAR.set(workspace_id or DEFAULT_WORKSPACE_ID)
+
+
+def reset_current_workspace(token: object) -> None:
+    _WORKSPACE_VAR.reset(token)  # type: ignore[arg-type]
+
+
+def current_workspace_id() -> str:
+    return _WORKSPACE_VAR.get()
+
+
+def default_workspace_root() -> Path:
+    """Per-workspace data root. ``TC_WORKSPACE_ROOT`` env 可覆寫（測試常用）。"""
+    env = os.environ.get("TC_WORKSPACE_ROOT")
+    if env:
+        return Path(env)
+    return Path(__file__).resolve().parent.parent / "output" / ".workspaces"
+
+
+class WorkspaceJobStoreRouter:
+    """Dict-like façade that routes operations to per-workspace SqliteJobStore.
+
+    Workspace 由 ``current_workspace_id`` ContextVar 決定；middleware 會在
+    每個 HTTP request 進來時把 header 讀進來 set。這樣呼叫端不必改 API
+    （仍然 ``JOB_REGISTRY.get(id)``、``JOB_REGISTRY[id] = job`` 即可），
+    但底層讀寫已經物理隔離到各 workspace 自己的 jobs.db。
+    """
+
+    def __init__(self, root: str | Path):
+        self._root = Path(root)
+        self._root.mkdir(parents=True, exist_ok=True)
+        self._stores: dict[str, SqliteJobStore] = {}
+        self._lock = threading.RLock()
+
+    # 內部：取得當前 workspace 對應的 store
+    def _store(self, workspace_id: str | None = None) -> SqliteJobStore:
+        ws = safe_workspace_segment(workspace_id or current_workspace_id())
+        with self._lock:
+            store = self._stores.get(ws)
+            if store is None:
+                db_path = self._root / ws / "jobs.db"
+                store = SqliteJobStore(db_path)
+                self._stores[ws] = store
+            return store
+
+    def workspace_root(self, workspace_id: str | None = None) -> Path:
+        ws = safe_workspace_segment(workspace_id or current_workspace_id())
+        path = self._root / ws
+        path.mkdir(parents=True, exist_ok=True)
+        return path
+
+    # ---- dict-like API ----
+    def __setitem__(self, key: str, value: dict) -> None:
+        self._store()[key] = value
+
+    def __getitem__(self, key: str) -> dict:
+        return self._store()[key]
+
+    def __contains__(self, key: object) -> bool:
+        return key in self._store()
+
+    def __delitem__(self, key: str) -> None:
+        del self._store()[key]
+
+    def get(self, key: str, default=None):
+        return self._store().get(key, default)
+
+    def keys(self) -> list[str]:
+        return self._store().keys()
+
+    def vacuum(self) -> None:
+        self._store().vacuum()
+
+    def clear_all(self) -> int:
+        return self._store().clear_all()
+
+    def purge_older_than(self, max_age_seconds: int) -> int:
+        # 啟動時掃所有 workspace。已建立的 store 全部跑一次。
+        total = 0
+        with self._lock:
+            stores = list(self._stores.values())
+        for store in stores:
+            total += store.purge_older_than(max_age_seconds)
+        # 也掃磁碟上有但 lazy 還沒載入的
+        for child in self._root.iterdir() if self._root.exists() else []:
+            if not child.is_dir():
+                continue
+            db_path = child / "jobs.db"
+            if db_path.exists() and child.name not in self._stores:
+                store = SqliteJobStore(db_path)
+                self._stores[child.name] = store
+                total += store.purge_older_than(max_age_seconds)
+        return total

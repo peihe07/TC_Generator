@@ -2902,46 +2902,116 @@ def _gen_payload(job_id: str) -> dict:
     }
 
 
-def test_generate_tags_job_with_workspace_from_header():
+def _seed_job_in_workspace(workspace_id: str, job_id: str, body: dict) -> None:
+    """Hard isolation: writing/reading JOB_REGISTRY routes by ContextVar,
+    so seeding outside a request needs the workspace bound manually."""
     import api_server
+    from job_store import set_current_workspace, reset_current_workspace
 
+    token = set_current_workspace(workspace_id)
+    try:
+        api_server.JOB_REGISTRY[job_id] = body
+    finally:
+        reset_current_workspace(token)
+
+
+def _read_job_from_workspace(workspace_id: str, job_id: str) -> dict | None:
+    import api_server
+    from job_store import set_current_workspace, reset_current_workspace
+
+    token = set_current_workspace(workspace_id)
+    try:
+        return api_server.JOB_REGISTRY.get(job_id)
+    finally:
+        reset_current_workspace(token)
+
+
+def test_generate_tags_job_with_workspace_from_header():
     job_id = "ws-tag-job-1"
-    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    _seed_job_in_workspace("ws-alpha", job_id, {"jobId": job_id})
     res = client.post(
         "/api/generate",
         json=_gen_payload(job_id),
         headers={"X-Workspace-Id": "ws-alpha"},
     )
     assert res.status_code == 200, res.text
-    assert api_server.JOB_REGISTRY[job_id]["workspaceId"] == "ws-alpha"
+    assert _read_job_from_workspace("ws-alpha", job_id)["workspaceId"] == "ws-alpha"
 
 
 def test_generate_defaults_workspace_when_header_missing():
-    import api_server
-
     job_id = "ws-tag-job-default"
-    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    _seed_job_in_workspace("default", job_id, {"jobId": job_id})
     res = client.post("/api/generate", json=_gen_payload(job_id))
     assert res.status_code == 200
-    assert api_server.JOB_REGISTRY[job_id]["workspaceId"] == "default"
+    assert _read_job_from_workspace("default", job_id)["workspaceId"] == "default"
 
 
-def test_generate_keeps_workspace_set_by_parse():
-    """If parse already tagged the job, /api/generate keeps the original tag."""
-    import api_server
-
-    job_id = "ws-tag-prior"
-    api_server.JOB_REGISTRY[job_id] = {
-        "jobId": job_id,
-        "workspaceId": "ws-prior",
-    }
-    res = client.post(
-        "/api/generate",
-        json=_gen_payload(job_id),
-        headers={"X-Workspace-Id": "ws-different"},
+def test_jobs_are_physically_isolated_per_workspace():
+    """Hard isolation S3: a job seeded in workspace A is invisible from
+    workspace B; both workspaces can hold rows under the same id without
+    cross-talk."""
+    job_id = "ws-isolated-shared-id"
+    _seed_job_in_workspace(
+        "ws-prior", job_id, {"jobId": job_id, "marker": "from-prior"}
     )
-    assert res.status_code == 200
-    assert api_server.JOB_REGISTRY[job_id]["workspaceId"] == "ws-prior"
+    _seed_job_in_workspace(
+        "ws-other", job_id, {"jobId": job_id, "marker": "from-other"}
+    )
+
+    # 各 workspace 看到自己的 marker，不會看到對方的
+    assert _read_job_from_workspace("ws-prior", job_id)["marker"] == "from-prior"
+    assert _read_job_from_workspace("ws-other", job_id)["marker"] == "from-other"
+    # 第三個未曾建立的 workspace 完全看不到這個 id
+    assert _read_job_from_workspace("ws-new", job_id) is None
+
+
+def test_telemetry_log_path_per_workspace(tmp_path, monkeypatch):
+    """When TC_EVENTS_LOG is unset, telemetry_log_path should land each
+    workspace into its own events.jsonl under TC_WORKSPACE_ROOT."""
+    from api_server import telemetry_log_path
+    from job_store import set_current_workspace, reset_current_workspace
+
+    monkeypatch.delenv("TC_EVENTS_LOG", raising=False)
+    monkeypatch.setenv("TC_WORKSPACE_ROOT", str(tmp_path))
+
+    token_a = set_current_workspace("ws-A")
+    try:
+        path_a = telemetry_log_path()
+    finally:
+        reset_current_workspace(token_a)
+
+    token_b = set_current_workspace("ws-B")
+    try:
+        path_b = telemetry_log_path()
+    finally:
+        reset_current_workspace(token_b)
+
+    assert path_a != path_b
+    assert path_a.parent.name == "ws-A"
+    assert path_b.parent.name == "ws-B"
+    assert path_a.parent.parent == tmp_path
+
+
+def test_workspace_id_path_traversal_is_sanitized(tmp_path, monkeypatch):
+    """A malicious X-Workspace-Id header must not escape TC_WORKSPACE_ROOT."""
+    from api_server import telemetry_log_path
+    from job_store import set_current_workspace, reset_current_workspace
+
+    monkeypatch.delenv("TC_EVENTS_LOG", raising=False)
+    monkeypatch.setenv("TC_WORKSPACE_ROOT", str(tmp_path))
+
+    token = set_current_workspace("../../etc/passwd")
+    try:
+        evil_path = telemetry_log_path()
+    finally:
+        reset_current_workspace(token)
+
+    # 結果必須仍在 TC_WORKSPACE_ROOT 之下，且 path 中沒有逃出 root 的部分。
+    resolved = evil_path.resolve()
+    assert resolved.is_relative_to(tmp_path.resolve())
+    # workspace 段不能恰好是 ".." / "."，避免任何 traversal
+    workspace_segment = evil_path.parent.name
+    assert workspace_segment not in {"..", "."}
 
 
 def test_events_records_workspace_from_header(tmp_path, monkeypatch):

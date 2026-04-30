@@ -26,7 +26,15 @@ from generator import (
     generate_tcs_for_row,
 )
 from id_generator import generate_group_abbreviation, generate_tc_ids, normalize_tc_id
-from job_store import SqliteJobStore, default_db_path
+from job_store import (
+    SqliteJobStore,
+    WorkspaceJobStoreRouter,
+    default_db_path,
+    default_workspace_root,
+    reset_current_workspace,
+    safe_workspace_segment,
+    set_current_workspace,
+)
 from parser import parse_tc_xlsx
 from review_assistant import suggest_review_fix
 from spec_matcher import build_spec_index, load_spec_index, match_spec_references
@@ -69,11 +77,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.middleware("http")
+async def _bind_workspace_middleware(request: Request, call_next):
+    """每個 request 進來先把 X-Workspace-Id 綁到 contextvar，
+    讓 JOB_REGISTRY 自動路由到該 workspace 的 SQLite。"""
+    raw = request.headers.get("x-workspace-id") or ""
+    token = set_current_workspace(raw.strip() or None)
+    try:
+        return await call_next(request)
+    finally:
+        reset_current_workspace(token)
+
 ALLOWED_RAW_EXTENSIONS = {".xlsx", ".xlsm"}
 # Upload size guard（單檔 50 MB；TC_MAX_UPLOAD_MB env 可覆寫）
 MAX_UPLOAD_BYTES = int(os.environ.get("TC_MAX_UPLOAD_MB", "50")) * 1024 * 1024
-# SQLite-backed job registry — server 重啟後 jobs 仍可被檢索
-JOB_REGISTRY = SqliteJobStore(default_db_path())
+# SQLite-backed job registry — server 重啟後 jobs 仍可被檢索。
+# Hard isolation (S3): 每個 workspace 有自己的 jobs.db 在
+# ``output/.workspaces/<workspace>/jobs.db``，由 WorkspaceJobStoreRouter
+# 透過 ContextVar 路由。middleware 在 HTTP 層讀 header 後 set。
+JOB_REGISTRY = WorkspaceJobStoreRouter(default_workspace_root())
 
 # Telemetry events — 從前端收 client-side analytics events，append-only JSONL。
 # TC_EVENTS_LOG 可覆寫路徑（測試會用 monkeypatch 把它指到 tmp 檔）。
@@ -97,12 +120,20 @@ MAX_TELEMETRY_BATCH = 100
 MAX_TELEMETRY_PROPS_BYTES = 4 * 1024  # 4 KB per event
 
 
-def telemetry_log_path() -> Path:
-    """目前 events log 路徑。每次 call 重算讓測試 monkeypatch env 生效。"""
+def telemetry_log_path(workspace_id: str | None = None) -> Path:
+    """目前 events log 路徑（per-workspace）。
+
+    - ``TC_EVENTS_LOG`` 仍可覆寫總路徑；測試常 monkeypatch 它指到 tmp 檔。
+    - 否則寫到 ``output/.workspaces/<workspace>/events.jsonl``，與 jobs.db
+      同根目錄，達成 S3 物理隔離。
+    """
     override = os.environ.get("TC_EVENTS_LOG")
     if override:
         return Path(override)
-    return Path(__file__).resolve().parent.parent / "output" / "events.jsonl"
+    from job_store import current_workspace_id
+
+    workspace = safe_workspace_segment(workspace_id or current_workspace_id())
+    return default_workspace_root() / workspace / "events.jsonl"
 
 
 # ---------------------------------------------------------------------
