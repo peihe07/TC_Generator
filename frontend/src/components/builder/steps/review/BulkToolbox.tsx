@@ -1,8 +1,11 @@
 "use client";
 
 import {
+  RiCheckLine,
+  RiCloseCircleLine,
   RiCloseLine,
   RiDeleteBin6Line,
+  RiFlag2Line,
   RiLoader4Line,
   RiRefreshLine,
   RiSparklingLine,
@@ -42,6 +45,12 @@ export default function BulkToolbox({
 
   const selectedRows = rows.filter((r) => selectedIds.includes(r.id));
   const count = selectedRows.length;
+
+  const setBulkReviewStatus = (
+    status: "accepted" | "rejected" | "flagged"
+  ) => {
+    selectedIds.forEach((id) => updateTcRow(id, { reviewStatus: status }));
+  };
 
   const onDelete = () => {
     if (
@@ -172,6 +181,45 @@ export default function BulkToolbox({
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
+          <button
+            type="button"
+            onClick={() => setBulkReviewStatus("accepted")}
+            disabled={isRegenerating || isRerunning}
+            className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-50 transition-all"
+            style={{
+              backgroundColor: "rgba(21, 97, 109, 0.12)",
+              color: "var(--color-teal)",
+            }}
+          >
+            <RiCheckLine size={12} />
+            Accept
+          </button>
+          <button
+            type="button"
+            onClick={() => setBulkReviewStatus("rejected")}
+            disabled={isRegenerating || isRerunning}
+            className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-50 transition-all"
+            style={{
+              backgroundColor: "rgba(120, 41, 15, 0.1)",
+              color: "var(--color-brandy)",
+            }}
+          >
+            <RiCloseCircleLine size={12} />
+            Reject
+          </button>
+          <button
+            type="button"
+            onClick={() => setBulkReviewStatus("flagged")}
+            disabled={isRegenerating || isRerunning}
+            className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-50 transition-all"
+            style={{
+              backgroundColor: "rgba(255, 125, 0, 0.12)",
+              color: "var(--color-tangerine)",
+            }}
+          >
+            <RiFlag2Line size={12} />
+            Flag
+          </button>
           <button
             type="button"
             onClick={() => {

@@ -6,8 +6,11 @@ import {
   RiErrorWarningFill,
   RiSparklingLine,
   RiDeleteBin6Line,
+  RiCheckLine,
+  RiCloseCircleLine,
+  RiFlag2Line,
 } from "@remixicon/react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   requestReviewFixSuggestion,
   type ReviewFixSuggestion,
@@ -259,7 +262,7 @@ function FilterPill({
         backgroundColor: active ? colors[tone] : "transparent",
         color: active ? "var(--color-papaya)" : colors[tone],
         boxShadow: active
-          ? "0 2px 6px var(--shadow-tint)"
+          ? "0 4px 10px var(--shadow-tint)"
           : `inset 0 0 0 1px ${colors[tone]}33`,
       }}
     >
@@ -332,7 +335,7 @@ function RowList({
                     ? "rgba(255, 125, 0, 0.12)"
                     : undefined,
                   boxShadow: active
-                    ? "inset 0 0 0 2px var(--color-tangerine)"
+                    ? "inset 3px 0 0 var(--color-tangerine), inset 0 0 0 1px rgba(255, 125, 0, 0.28)"
                     : undefined,
                 }}
               >
@@ -353,6 +356,7 @@ function RowList({
                     </div>
                     <div className="text-xs text-muted truncate flex items-center gap-2">
                       <span>{row.testSet || "—"}</span>
+                      <ReviewStatusBadge status={row.reviewStatus} />
                       {isAwaiting && (
                         <span
                           className="text-[9px] uppercase tracking-wider font-bold"
@@ -500,12 +504,24 @@ function RowDetail({
 
   return (
     <div className="surface p-5 space-y-4">
-      <header className="space-y-1">
-        <div className="text-xs text-muted">{row.reqId}</div>
+      <header className="space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <div className="text-xs text-muted">{row.reqId}</div>
+          <ReviewStatusBadge status={row.reviewStatus} />
+        </div>
         <h3 className="text-base font-bold text-primary">
           {row.tcTitle || row.testItem}
         </h3>
-        <div className="text-xs text-secondary">{row.testSet || "—"}</div>
+        <div className="text-xs text-secondary">{row.testSet || "-"}</div>
+        <ReviewStatusBar
+          status={row.reviewStatus ?? "pending"}
+          onChange={(next) =>
+            onChange({
+              reviewStatus:
+                row.reviewStatus === next ? "pending" : next,
+            })
+          }
+        />
       </header>
 
       {errors.length > 0 && (
@@ -518,21 +534,19 @@ function RowDetail({
 
       <div className="space-y-3">
         {FIELDS.map(({ key, label }) => (
-          <div key={key} className="space-y-1">
+          <div
+            key={key}
+            className="space-y-1.5 rounded-md p-3"
+            style={{ backgroundColor: "rgba(226, 222, 214, 0.48)" }}
+          >
             <label className="text-[10px] uppercase tracking-wider text-muted font-bold">
               {label}
             </label>
-            <textarea
+            <AutoResizeTextarea
               value={edits[key]}
-              onChange={(e) => {
-                setEdits((prev) => ({ ...prev, [key]: e.target.value }));
+              onChange={(value) => {
+                setEdits((prev) => ({ ...prev, [key]: value }));
                 setDirty(true);
-              }}
-              rows={key === "steps" || key === "expectedResults" ? 3 : 1}
-              className="w-full bg-transparent text-sm py-2 px-3 rounded-md text-primary focus-ring resize-y"
-              style={{
-                boxShadow: "inset 0 0 0 1px rgba(21, 97, 109, 0.2)",
-                minHeight: 32,
               }}
             />
           </div>
@@ -603,7 +617,7 @@ function ValidationSummary({
 
   return (
     <div
-      className="space-y-2 px-3 py-2.5 rounded-md"
+      className="space-y-2 px-3 py-3 rounded-md"
       style={{
         backgroundColor:
           errorCount > 0
@@ -675,5 +689,110 @@ function ValidationSummary({
         </div>
       )}
     </div>
+  );
+}
+
+type ReviewStatus = NonNullable<TcRow["reviewStatus"]>;
+
+const REVIEW_STATUS_TONE: Record<
+  Exclude<ReviewStatus, "pending">,
+  { color: string; label: string }
+> = {
+  accepted: { color: "var(--color-teal)", label: "Accepted" },
+  rejected: { color: "var(--color-brandy)", label: "Rejected" },
+  flagged: { color: "var(--color-tangerine)", label: "Flagged" },
+};
+
+function ReviewStatusBar({
+  status,
+  onChange,
+}: {
+  status: ReviewStatus;
+  onChange: (next: Exclude<ReviewStatus, "pending">) => void;
+}) {
+  const buttons: Array<{
+    key: Exclude<ReviewStatus, "pending">;
+    icon: React.ReactNode;
+    label: string;
+  }> = [
+    { key: "accepted", icon: <RiCheckLine size={12} />, label: "Accept" },
+    { key: "rejected", icon: <RiCloseCircleLine size={12} />, label: "Reject" },
+    { key: "flagged", icon: <RiFlag2Line size={12} />, label: "Flag" },
+  ];
+  return (
+    <div className="grid grid-cols-3 gap-1.5 pt-1">
+      {buttons.map(({ key, icon, label }) => {
+        const active = status === key;
+        const color = REVIEW_STATUS_TONE[key].color;
+        return (
+          <button
+            key={key}
+            type="button"
+            onClick={() => onChange(key)}
+            className="inline-flex items-center justify-center gap-1 text-[11px] font-bold px-2 py-1.5 rounded-md focus-ring transition-all"
+            style={{
+              backgroundColor: active ? color : "transparent",
+              color: active ? "var(--color-papaya)" : color,
+              boxShadow: active
+                ? "0 3px 8px var(--shadow-tint)"
+                : `inset 0 0 0 1px ${color}55`,
+            }}
+            aria-pressed={active}
+          >
+            {icon}
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function ReviewStatusBadge({ status }: { status?: ReviewStatus }) {
+  const pendingTone = { color: "var(--color-teal)", label: "Pending" };
+  const tone = !status || status === "pending" ? pendingTone : REVIEW_STATUS_TONE[status];
+  return (
+    <span
+      className="text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded"
+      style={{
+        color: tone.color,
+        backgroundColor: `${tone.color}1f`,
+      }}
+    >
+      {tone.label}
+    </span>
+  );
+}
+
+function AutoResizeTextarea({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  const ref = useRef<HTMLTextAreaElement | null>(null);
+
+  // 隨內容自動撐高，使用者仍可手動再拉
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [value]);
+
+  return (
+    <textarea
+      ref={ref}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      rows={1}
+      className="w-full text-sm py-2 px-3 rounded-md text-primary focus-ring resize-y overflow-hidden"
+      style={{
+        backgroundColor: "rgba(255, 252, 247, 0.38)",
+        boxShadow: "inset 0 0 0 1px rgba(21, 97, 109, 0.2)",
+        minHeight: 36,
+      }}
+    />
   );
 }
