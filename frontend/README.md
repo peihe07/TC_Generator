@@ -43,7 +43,7 @@ Run Builder accepts these query params:
 - `?from=<runId>` — start a draft as a Rerun of the given run
 - `?edit=<runId>` — start a draft as Edit & Rerun of the given run
 - `?templateId=<name>` — pre-fill `draft.configure.templateId`
-- `?dataset=<jobId>` — placeholder reserved for dataset reuse (not wired yet)
+- `?dataset=<jobId>` — re-hydrate parsed rows from a prior job's `parsedData` (via `GET /api/jobs/{id}/dataset`), populate `useJobStore`, mark Data complete, and jump to Configure
 
 ## Architecture
 
@@ -62,7 +62,7 @@ src/
     shell/                   AppShell, TopNav, CommandPalette, Skeleton, EmptyState, DevStoreExposer
     builder/                 BuilderShell + 5 step components (data / configure / validate / execute / review)
     home/, runs/, outputs/, templates/, data/, settings/   page-specific views
-  store/                     5 zustand stores (jobStore, jobHistoryStore, builderDraftStore, commandPaletteStore, workspaceSettingsStore)
+  store/                     6 zustand stores (jobStore, jobHistoryStore, builderDraftStore, commandPaletteStore, workspaceSettingsStore, workspaceStore)
   services/                  jobAdapter (legacy backend wrapper) + runAdapter (UI view-model layer)
   lib/                       specLibrary, configureConstants, configurePreviewTypes, telemetry, costEstimate, logging
   __tests__/                 Vitest specs
@@ -128,14 +128,33 @@ The Next proxies for `POST /api/events` and `GET /api/events/aggregate?experimen
 
 Frontend talks to the backend via Next API routes that proxy under `/api/`. Required endpoints:
 
-- `POST /api/parse` — workbook upload + parse
+Streaming / write paths:
+
+- `POST /api/parse` — workbook upload + parse (tags job with X-Workspace-Id)
 - `POST /api/generate/stream`, `POST /api/quick-generate/stream` — streaming generation (SSE)
 - `POST /api/jobs/:id/regenerate/stream`, `POST /api/jobs/:id/rerun/stream` — streaming reprocess
-- `GET  /api/jobs/:id/usage` — Run Detail live usage
 - `POST /api/group`, `POST /api/match` — Configure step previews
-- `GET  /api/spec-library` — Templates list source
 - `POST /api/export` + `GET /api/export/download/:id` — Review export
 - `POST /api/review/suggest-fix` — Ask AI in Review step
+
+Run / output / template metadata:
+
+- `GET /api/jobs/:id/usage` — live cost / token breakdown
+- `GET /api/jobs/:id/timeline` — queued / running / completed events
+- `GET /api/jobs/:id/config` — resolved GenerationConfig snapshot
+- `GET /api/jobs/:id/validation-logs` (+ POST) — row-level validation issues
+- `GET /api/jobs/:id/dataset` — parsed rows for Builder rehydrate
+- `GET /api/jobs/:id/output-preview` — in-page xlsx preview (capped 1000 rows)
+- `POST /api/outputs/compare` — diff two exports by tc_id
+- `POST /api/outputs/bulk-download` — zip multiple exports
+- `GET /api/spec-library` — list templates (with version + changelog)
+- `GET /api/spec-library/:name/usage` — runs attributed to a template
+- `POST /api/spec-library/:name/changelog` — append changelog entry (loopback only)
+
+Telemetry:
+
+- `POST /api/events` — append client events to JSONL (workspace-tagged)
+- `GET /api/events/aggregate?experiment=...` — variant funnel buckets (workspace-filterable)
 
 See `app/api/_lib/backend.ts` for proxy setup and base-URL resolution.
 

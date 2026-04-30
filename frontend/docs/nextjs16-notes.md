@@ -53,5 +53,6 @@ const spaceMono = Space_Mono({
 - Current `globals.css` still uses v3 `@tailwind base/components/utilities` — works through compatibility but should be migrated.
 
 ## Project-specific gotchas
-- Legacy 98.css is loaded globally via `app/layout.tsx`. Phase 1 移除全域引入後改為 `app/legacy/layout.tsx` 內 scoped 引入。
-- `body` 目前 `overflow: hidden` 是為了桌面隱喻。新 AppShell 需要恢復可滾動 (`overflow-y-auto`)。
+- Legacy 98.css 與 `/legacy` 路由都已移除。`globals.css` 仍用 v3 `@tailwind` 指令，遇到 Tailwind v4 行為差異時優先檢查這裡。
+- `body` 不再 `overflow: hidden`；workspace 滾動由 `AppShell` 內的容器負責。
+- Stores 在 `src/store/`，每個都用 zustand + localStorage；測試前用 `setState` 重置 + `localStorage.clear()`。
