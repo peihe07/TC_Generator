@@ -72,12 +72,37 @@ function ConfigureSummary() {
     [tcRows.length, config.model]
   );
   const estimatedCalls = estimateCallCount(tcRows.length);
+  const budgetUsedPct =
+    config.budgetLimit > 0
+      ? Math.min(100, (estimatedCost / config.budgetLimit) * 100)
+      : 0;
+  const overBudget = estimatedCost > config.budgetLimit && config.budgetLimit > 0;
 
   return (
-    <section className="surface p-5 space-y-3">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+    <section className="surface p-5 space-y-4">
+      <header className="flex items-start justify-between gap-4 flex-wrap">
+        <div className="space-y-1">
+          <h3 className="text-sm font-bold text-primary">Generation Summary</h3>
+          <p className="text-xs text-secondary">
+            Estimated calls and budget pressure before execution.
+          </p>
+        </div>
+        <span
+          className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-md"
+          style={{
+            color: overBudget ? "var(--color-brandy)" : "var(--color-teal)",
+            backgroundColor: overBudget
+              ? "rgba(120, 41, 15, 0.1)"
+              : "rgba(21, 97, 109, 0.1)",
+          }}
+        >
+          {overBudget ? "Budget risk" : "Ready"}
+        </span>
+      </header>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 text-sm">
         <SummaryItem label="Rows loaded" value={String(tcRows.length)} />
-        <SummaryItem label="Model" value={config.model} />
+        <SummaryItem label="Model" value={config.model} tone="teal" />
         <SummaryItem
           label="Target columns"
           value={String(config.targetColumns.length)}
@@ -89,10 +114,12 @@ function ConfigureSummary() {
         <SummaryItem
           label="Est. calls"
           value={String(estimatedCalls)}
+          tone="teal"
         />
         <SummaryItem
           label="Est. cost ceiling"
           value={`$${estimatedCost.toFixed(2)}`}
+          tone={overBudget ? "brandy" : "tangerine"}
         />
         <SummaryItem
           label="Budget cap"
@@ -103,16 +130,37 @@ function ConfigureSummary() {
           value={String(config.batchSize)}
         />
       </div>
-      {estimatedCost > config.budgetLimit && config.budgetLimit > 0 && (
+
+      {config.budgetLimit > 0 && (
+        <div className="space-y-1.5">
+          <div className="h-2 rounded-full overflow-hidden bg-[rgba(21,97,109,0.14)]">
+            <div
+              className="h-full rounded-full transition-all"
+              style={{
+                width: `${budgetUsedPct}%`,
+                backgroundColor: overBudget
+                  ? "var(--color-brandy)"
+                  : "var(--color-tangerine)",
+              }}
+            />
+          </div>
+          <div className="flex items-center justify-between gap-3 text-[10px] uppercase tracking-wider text-muted">
+            <span>Estimated budget use</span>
+            <span>{budgetUsedPct.toFixed(0)}%</span>
+          </div>
+        </div>
+      )}
+
+      {overBudget && (
         <div
-          className="text-xs px-3 py-2 rounded-md"
+          className="text-xs px-3 py-2 rounded-md leading-relaxed"
           style={{
             color: "var(--color-brandy)",
             backgroundColor: "rgba(120, 41, 15, 0.08)",
           }}
         >
           Estimated cost ${estimatedCost.toFixed(2)} exceeds the budget cap
-          ${config.budgetLimit.toFixed(2)} — generation will halt early when
+          ${config.budgetLimit.toFixed(2)}. Generation will halt early when
           the cap is reached.
         </div>
       )}
@@ -120,13 +168,34 @@ function ConfigureSummary() {
   );
 }
 
-function SummaryItem({ label, value }: { label: string; value: string }) {
+function SummaryItem({
+  label,
+  value,
+  tone = "ink",
+}: {
+  label: string;
+  value: string;
+  tone?: "ink" | "teal" | "tangerine" | "brandy";
+}) {
+  const color =
+    tone === "teal"
+      ? "var(--color-teal)"
+      : tone === "tangerine"
+      ? "var(--color-tangerine)"
+      : tone === "brandy"
+      ? "var(--color-brandy)"
+      : "var(--color-ink)";
   return (
-    <div>
+    <div
+      className="rounded-md px-3 py-2.5 min-w-0"
+      style={{ backgroundColor: "rgba(226, 222, 214, 0.5)" }}
+    >
       <dt className="text-[10px] uppercase tracking-wider text-muted">
         {label}
       </dt>
-      <dd className="text-base font-bold text-primary truncate">{value}</dd>
+      <dd className="text-base font-bold truncate" style={{ color }}>
+        {value}
+      </dd>
     </div>
   );
 }

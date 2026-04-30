@@ -148,17 +148,44 @@ export default function ReviewExportPanel() {
     );
   };
 
+  const exportDisabled =
+    state.kind === "running" ||
+    !jobMetadata?.jobId ||
+    tcRows.length === 0 ||
+    selectedColumns.length === 0;
+  const selectedColumnCount = selectedColumns.length;
+  const sourceMissing = !!sourceStatus && !sourceStatus.hasSource && !!jobMetadata?.jobId;
+  const sourceNeeded = outputMode === "overwrite" || includeFramework;
+
   return (
-    <section className="surface p-5 space-y-4">
-      <header className="space-y-1">
-        <h3 className="text-base font-bold text-primary">Export</h3>
-        <p className="text-xs text-secondary">
-          Build the final xlsx and download it.
-        </p>
+    <section className="surface p-5 space-y-5">
+      <header className="flex items-start justify-between gap-4 flex-wrap">
+        <div className="space-y-1">
+          <h3 className="text-base font-bold text-primary">Export</h3>
+          <p className="text-xs text-secondary">
+            Build the final xlsx with reviewed rows and selected columns.
+          </p>
+        </div>
+        <div
+          className="text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-md"
+          style={{
+            color: sourceMissing && sourceNeeded
+              ? "var(--color-brandy)"
+              : "var(--color-teal)",
+            backgroundColor: sourceMissing && sourceNeeded
+              ? "rgba(120, 41, 15, 0.1)"
+              : "rgba(21, 97, 109, 0.1)",
+          }}
+        >
+          {sourceMissing && sourceNeeded ? "Source needed" : "Ready to build"}
+        </div>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div
+          className="space-y-2 rounded-md p-3"
+          style={{ backgroundColor: "rgba(226, 222, 214, 0.5)" }}
+        >
           <SubLabel>Scope</SubLabel>
           <PillGroup
             value={scope}
@@ -166,7 +193,10 @@ export default function ReviewExportPanel() {
             onChange={setScope}
           />
         </div>
-        <div className="space-y-2">
+        <div
+          className="space-y-2 rounded-md p-3"
+          style={{ backgroundColor: "rgba(226, 222, 214, 0.5)" }}
+        >
           <SubLabel>Output</SubLabel>
           <PillGroup
             value={outputMode}
@@ -176,8 +206,16 @@ export default function ReviewExportPanel() {
         </div>
       </div>
 
-      <div className="space-y-2">
-        <SubLabel>Columns to include</SubLabel>
+      <div
+        className="space-y-3 rounded-md p-3"
+        style={{ backgroundColor: "rgba(226, 222, 214, 0.5)" }}
+      >
+        <div className="flex items-center justify-between gap-3">
+          <SubLabel>Columns to include</SubLabel>
+          <span className="text-[10px] uppercase tracking-wider text-muted">
+            {selectedColumnCount}/{COLUMN_OPTIONS.length}
+          </span>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
           {COLUMN_OPTIONS.map(({ key, label }) => (
             <button
@@ -203,7 +241,10 @@ export default function ReviewExportPanel() {
         </div>
       </div>
 
-      <label className="flex items-center gap-2 text-sm cursor-pointer">
+      <label
+        className="flex items-center gap-3 text-sm cursor-pointer rounded-md px-3 py-2.5"
+        style={{ backgroundColor: "rgba(21, 97, 109, 0.08)" }}
+      >
         <input
           type="checkbox"
           checked={includeFramework}
@@ -234,25 +275,30 @@ export default function ReviewExportPanel() {
             </svg>
           )}
         </span>
-        <span className="text-secondary">
-          Include framework / instructions sheet
+        <span className="flex-1 min-w-0">
+          <span className="block text-secondary font-bold">
+            Include framework / instructions sheet
+          </span>
+          <span className="block text-xs text-muted">
+            Adds the source workbook guide sheet to the exported file.
+          </span>
         </span>
       </label>
 
-      {sourceStatus && !sourceStatus.hasSource && jobMetadata?.jobId && (
+      {sourceMissing && (
         <div
-          className="text-sm px-3 py-2 rounded-md flex items-start gap-2 flex-wrap"
+          className="text-sm px-3 py-3 rounded-md flex items-start gap-3"
           style={{
             color: "var(--color-brandy)",
             backgroundColor: "rgba(120, 41, 15, 0.08)",
           }}
         >
-          <RiAlertLine size={16} className="shrink-0 mt-0.5" />
-          <div className="flex-1 space-y-1 min-w-0">
-            <div>
+          <RiAlertLine size={18} className="shrink-0 mt-0.5" />
+          <div className="flex-1 space-y-2 min-w-0">
+            <div className="leading-relaxed">
               Original raw workbook is missing on the server (likely cleared
               after a restart).
-              {outputMode === "overwrite" || includeFramework
+              {sourceNeeded
                 ? " Re-attach it before exporting."
                 : " New-file export will still work; re-attach is required for overwrite mode and framework sheet rebuild."}
             </div>
@@ -289,8 +335,16 @@ export default function ReviewExportPanel() {
       )}
 
       {sourceStatus?.hasSource && sourceStatus.rawFileName && (
-        <div className="text-[10px] uppercase tracking-wider text-muted">
-          Source: <code className="text-secondary">{sourceStatus.rawFileName}</code>
+        <div
+          className="text-xs rounded-md px-3 py-2 flex items-center gap-2"
+          style={{
+            color: "var(--color-teal)",
+            backgroundColor: "rgba(21, 97, 109, 0.08)",
+          }}
+        >
+          <RiCheckLine size={14} />
+          <span className="text-muted">Source</span>
+          <code className="text-secondary truncate">{sourceStatus.rawFileName}</code>
         </div>
       )}
 
@@ -333,20 +387,18 @@ export default function ReviewExportPanel() {
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-3 pt-1">
-        <span className="text-xs text-muted">
-          {tcRows.length} row(s) · jobId{" "}
-          <code>{jobMetadata?.jobId ?? "—"}</code>
-        </span>
+      <div
+        className="flex items-center justify-between gap-3 pt-1 flex-wrap"
+        style={{ boxShadow: "inset 0 1px 0 rgba(21, 97, 109, 0.12)" }}
+      >
+        <div className="text-xs text-muted pt-3">
+          <span className="font-bold text-secondary">{tcRows.length}</span>{" "}
+          row(s) · jobId <code>{jobMetadata?.jobId ?? "—"}</code>
+        </div>
         <button
           type="button"
           onClick={() => void onExport()}
-          disabled={
-            state.kind === "running" ||
-            !jobMetadata?.jobId ||
-            tcRows.length === 0 ||
-            selectedColumns.length === 0
-          }
+          disabled={exportDisabled}
           className="cta inline-flex items-center gap-1.5 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {state.kind === "running" ? (
