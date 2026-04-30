@@ -19,6 +19,7 @@ export type EventName =
   | "run_execute_fail"
   | "run_retry_click"
   | "template_use_click"
+  | "template_save"
   | "output_compare_open";
 
 interface KnownEvents {
@@ -38,6 +39,12 @@ interface KnownEvents {
   run_execute_fail: { jobId?: string | null; reason: string };
   run_retry_click: { runId: string; mode: "rerun" | "edit" };
   template_use_click: { templateId: string };
+  template_save: {
+    templateId: string;
+    /** 'changelog' for changelog appends; 'deprecate' for deprecate flag toggle. */
+    kind: "changelog" | "deprecate";
+    version?: string;
+  };
   output_compare_open: { a: string; b: string };
 }
 

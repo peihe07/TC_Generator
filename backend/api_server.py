@@ -90,6 +90,7 @@ ALLOWED_TELEMETRY_EVENTS = {
     "run_execute_fail",
     "run_retry_click",
     "template_use_click",
+    "template_save",
     "output_compare_open",
 }
 MAX_TELEMETRY_BATCH = 100
@@ -1320,8 +1321,18 @@ def _empty_event_bucket() -> dict:
         "runStarts": 0,
         "runSuccesses": 0,
         "runFailures": 0,
+        "templateUses": 0,
+        "templateSaves": 0,
+        "retryClicks": 0,
+        "comparesOpened": 0,
+        "builderStepNexts": 0,
+        "validationFails": 0,
         "completionRate": 0.0,
         "failureRate": 0.0,
+        "templateReuseRate": 0.0,
+        "rerunConversionRate": 0.0,
+        "validationErrorRate": 0.0,
+        "compareEngagementRate": 0.0,
     }
 
 
@@ -1337,6 +1348,18 @@ def _increment_event_bucket(bucket: dict, event_name: str) -> None:
         bucket["runSuccesses"] += 1
     elif event_name == "run_execute_fail":
         bucket["runFailures"] += 1
+    elif event_name == "template_use_click":
+        bucket["templateUses"] += 1
+    elif event_name == "template_save":
+        bucket["templateSaves"] += 1
+    elif event_name == "run_retry_click":
+        bucket["retryClicks"] += 1
+    elif event_name == "output_compare_open":
+        bucket["comparesOpened"] += 1
+    elif event_name == "builder_step_next":
+        bucket["builderStepNexts"] += 1
+    elif event_name == "builder_validation_fail":
+        bucket["validationFails"] += 1
 
 
 def _finalize_event_bucket(bucket: dict) -> dict:
@@ -1346,6 +1369,26 @@ def _finalize_event_bucket(bucket: dict) -> dict:
     )
     bucket["failureRate"] = (
         bucket["runFailures"] / terminal if terminal > 0 else 0.0
+    )
+    bucket["templateReuseRate"] = (
+        bucket["templateUses"] / bucket["runStarts"]
+        if bucket["runStarts"] > 0
+        else 0.0
+    )
+    bucket["rerunConversionRate"] = (
+        bucket["retryClicks"] / bucket["runFailures"]
+        if bucket["runFailures"] > 0
+        else 0.0
+    )
+    bucket["validationErrorRate"] = (
+        bucket["validationFails"] / bucket["builderStepNexts"]
+        if bucket["builderStepNexts"] > 0
+        else 0.0
+    )
+    bucket["compareEngagementRate"] = (
+        bucket["comparesOpened"] / bucket["runSuccesses"]
+        if bucket["runSuccesses"] > 0
+        else 0.0
     )
     return bucket
 
@@ -1885,6 +1928,7 @@ def _serialize_spec_entry(item: dict) -> dict:
         "updatedAt": item.get("updated_at"),
         "version": item.get("version"),
         "changelog": item.get("changelog") or [],
+        "deprecated": bool(item.get("deprecated")),
     }
 
 
@@ -1960,6 +2004,47 @@ def append_spec_changelog(
 
     _write_spec_manifest(manifest)
     return {"ok": True, "entry": new_entry, "spec": _serialize_spec_entry(target)}
+
+
+class TemplateDeprecateRequest(BaseModel):
+    deprecated: bool
+
+
+@app.patch("/api/spec-library/{name}")
+def patch_spec_library_entry(
+    name: str, payload: TemplateDeprecateRequest, request: Request
+) -> dict:
+    """Toggle the ``deprecated`` flag for a template (loopback only).
+
+    Currently scoped to the deprecation flag. Other metadata (display name,
+    embedding model overrides) belong in their own ingestion pipeline tools.
+    """
+    client_host = request.client.host if request.client else None
+    if client_host not in {"127.0.0.1", "::1", "localhost", "testclient"}:
+        raise HTTPException(
+            status_code=403,
+            detail="manifest edits only allowed from localhost",
+        )
+
+    manifest = _read_spec_manifest()
+    specs = manifest.get("specs")
+    if not isinstance(specs, list):
+        raise HTTPException(
+            status_code=404, detail=f"template not found: {name}"
+        )
+    target: dict | None = None
+    for entry in specs:
+        if isinstance(entry, dict) and entry.get("name") == name:
+            target = entry
+            break
+    if target is None:
+        raise HTTPException(
+            status_code=404, detail=f"template not found: {name}"
+        )
+
+    target["deprecated"] = bool(payload.deprecated)
+    _write_spec_manifest(manifest)
+    return {"ok": True, "spec": _serialize_spec_entry(target)}
 
 
 @app.get("/api/jobs/{job_id}/output-preview")

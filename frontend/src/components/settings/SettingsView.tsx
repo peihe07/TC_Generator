@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { MODEL_OPTIONS } from "../../lib/configureConstants";
 import { EXPERIMENT_DEFINITIONS } from "../../lib/experiments";
 import ExperimentAnalytics from "./ExperimentAnalytics";
+import KpiDashboard from "./KpiDashboard";
 import {
   Section,
   RadioCard,
@@ -149,6 +150,14 @@ export default function SettingsView() {
             }}
           />
         </div>
+      </Section>
+
+      <Section
+        title="KPI Dashboard"
+        hint="Workflow-wide funnel metrics aggregated from telemetry events."
+        defaultOpen={false}
+      >
+        <KpiDashboard />
       </Section>
 
       <Section

@@ -2774,6 +2774,42 @@ def test_spec_library_changelog_rejects_empty_message(tmp_path, monkeypatch):
     assert res.status_code == 400
 
 
+def test_spec_library_patch_deprecate_round_trip(tmp_path, monkeypatch):
+    manifest = _seed_manifest(
+        tmp_path,
+        [{"name": "tpl-D", "version": "1.0.0", "changelog": []}],
+    )
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+
+    res = client.patch(
+        "/api/spec-library/tpl-D",
+        json={"deprecated": True},
+    )
+    assert res.status_code == 200, res.text
+    body = res.json()
+    assert body["spec"]["deprecated"] is True
+
+    persisted = json.loads(open(manifest).read())
+    assert persisted["specs"][0]["deprecated"] is True
+
+    res = client.patch(
+        "/api/spec-library/tpl-D",
+        json={"deprecated": False},
+    )
+    assert res.status_code == 200
+    assert res.json()["spec"]["deprecated"] is False
+
+
+def test_spec_library_patch_404_unknown(tmp_path, monkeypatch):
+    manifest = _seed_manifest(tmp_path, [])
+    monkeypatch.setenv("TC_SPEC_INDEX_MANIFEST", manifest)
+    res = client.patch(
+        "/api/spec-library/ghost",
+        json={"deprecated": True},
+    )
+    assert res.status_code == 404
+
+
 def test_output_preview_404_for_unknown_job():
     assert client.get("/api/jobs/no-such/output-preview").status_code == 404
 

@@ -137,21 +137,40 @@ export default function TemplateDetailView({
             <RiBookmarkLine size={24} />
           </span>
           <div className="space-y-1">
-            <h1 className="text-3xl font-bold text-primary">{label}</h1>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-3xl font-bold text-primary">{label}</h1>
+              {entry.deprecated && (
+                <span
+                  className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded"
+                  style={{
+                    color: "var(--color-brandy)",
+                    backgroundColor: "rgba(120, 41, 15, 0.1)",
+                  }}
+                >
+                  deprecated
+                </span>
+              )}
+            </div>
             <code className="text-xs text-muted">{entry.name}</code>
           </div>
         </div>
 
-        <Link
-          href={`/run-builder?templateId=${encodeURIComponent(entry.name)}`}
-          onClick={() =>
-            track("template_use_click", { templateId: entry.name })
-          }
-          className="cta inline-flex items-center gap-1.5 text-sm"
-        >
-          Use in New Run
-          <RiArrowRightLine size={16} />
-        </Link>
+        <div className="flex items-center gap-2 flex-wrap">
+          <DeprecateToggle
+            entry={entry}
+            onChange={(updated) => setEntry({ ...entry, ...updated })}
+          />
+          <Link
+            href={`/run-builder?templateId=${encodeURIComponent(entry.name)}`}
+            onClick={() =>
+              track("template_use_click", { templateId: entry.name })
+            }
+            className="cta inline-flex items-center gap-1.5 text-sm"
+          >
+            Use in New Run
+            <RiArrowRightLine size={16} />
+          </Link>
+        </div>
       </header>
 
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -306,6 +325,11 @@ function ChangelogSection({
         version: body.spec?.version,
         changelog: body.spec?.changelog,
       });
+      track("template_save", {
+        templateId,
+        kind: "changelog",
+        version: body.spec?.version ?? undefined,
+      });
       setDraftVersion("");
       setDraftMessage("");
       setShowForm(false);
@@ -452,5 +476,73 @@ function Stat({
       </div>
       <div className="text-base font-bold text-primary truncate">{value}</div>
     </div>
+  );
+}
+
+function DeprecateToggle({
+  entry,
+  onChange,
+}: {
+  entry: SpecLibraryEntry;
+  onChange: (patch: Partial<SpecLibraryEntry>) => void;
+}) {
+  const [busy, setBusy] = useState(false);
+  const isDeprecated = !!entry.deprecated;
+
+  const submit = async () => {
+    const next = !isDeprecated;
+    if (
+      next &&
+      !window.confirm(
+        `Mark "${entry.name}" as deprecated? It will be hidden from the Templates list by default.`
+      )
+    )
+      return;
+    setBusy(true);
+    try {
+      const res = await fetch(
+        `/api/spec-library/${encodeURIComponent(entry.name)}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ deprecated: next }),
+        }
+      );
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.detail ?? `Status ${res.status}`);
+      }
+      const body = await res.json();
+      onChange({ deprecated: !!body.spec?.deprecated });
+      track("template_save", {
+        templateId: entry.name,
+        kind: "deprecate",
+      });
+    } catch (err) {
+      window.alert(err instanceof Error ? err.message : "Update failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={() => void submit()}
+      disabled={busy}
+      className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-50"
+      style={{
+        backgroundColor: isDeprecated
+          ? "rgba(21, 97, 109, 0.12)"
+          : "rgba(120, 41, 15, 0.1)",
+        color: isDeprecated ? "var(--color-teal)" : "var(--color-brandy)",
+      }}
+    >
+      {busy
+        ? "Saving…"
+        : isDeprecated
+        ? "Undeprecate"
+        : "Deprecate"}
+    </button>
   );
 }

@@ -19,6 +19,7 @@ export default function TemplatesView() {
   const [entries, setEntries] = useState<SpecLibraryEntry[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const [showDeprecated, setShowDeprecated] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -35,17 +36,23 @@ export default function TemplatesView() {
     };
   }, []);
 
+  const deprecatedCount = useMemo(
+    () => entries?.filter((e) => e.deprecated).length ?? 0,
+    [entries]
+  );
+
   const filtered = useMemo(() => {
     if (!entries) return null;
     const q = query.trim().toLowerCase();
-    if (!q) return entries;
     return entries.filter((e) => {
+      if (e.deprecated && !showDeprecated) return false;
+      if (!q) return true;
       const hay = `${e.name} ${formatSpecLibraryLabel(
         e.name
       )} ${e.sourceFile ?? ""}`.toLowerCase();
       return hay.includes(q);
     });
-  }, [entries, query]);
+  }, [entries, query, showDeprecated]);
 
   return (
     <div className="space-y-6">
@@ -64,16 +71,53 @@ export default function TemplatesView() {
       </header>
 
       <div
-        className="surface px-4 py-2 flex items-center gap-2"
+        className="surface px-4 py-2 flex items-center gap-3 flex-wrap"
         style={{ boxShadow: "inset 0 0 0 1px rgba(21, 97, 109, 0.15)" }}
       >
-        <RiSearchLine size={16} className="text-secondary" />
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search templates..."
-          className="bg-transparent text-sm flex-1 outline-none text-primary placeholder:text-[var(--color-teal)] placeholder:opacity-60"
-        />
+        <div className="flex items-center gap-2 flex-1 min-w-[200px]">
+          <RiSearchLine size={16} className="text-secondary" />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search templates..."
+            className="bg-transparent text-sm flex-1 outline-none text-primary placeholder:text-[var(--color-teal)] placeholder:opacity-60"
+          />
+        </div>
+        {deprecatedCount > 0 && (
+          <label className="flex items-center gap-2 text-xs font-bold text-secondary cursor-pointer focus-ring rounded">
+            <input
+              type="checkbox"
+              checked={showDeprecated}
+              onChange={(e) => setShowDeprecated(e.target.checked)}
+              className="sr-only"
+            />
+            <span
+              className="flex items-center justify-center w-4 h-4 rounded transition-all"
+              style={{
+                backgroundColor: showDeprecated
+                  ? "var(--color-tangerine)"
+                  : "transparent",
+                boxShadow: showDeprecated
+                  ? "0 1px 2px var(--shadow-tint)"
+                  : "inset 0 0 0 1.5px var(--color-teal)",
+                color: "var(--color-ink)",
+              }}
+            >
+              {showDeprecated && (
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M2 6.5L5 9.5L10 3.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </span>
+            Show deprecated ({deprecatedCount})
+          </label>
+        )}
       </div>
 
       {error && (
@@ -126,6 +170,7 @@ function TemplateCard({ entry }: { entry: SpecLibraryEntry }) {
     <Link
       href={`/templates/${encodeURIComponent(entry.name)}`}
       className="surface p-5 space-y-3 block focus-ring"
+      style={{ opacity: entry.deprecated ? 0.55 : 1 }}
     >
       <div className="flex items-start gap-3">
         <span
@@ -138,9 +183,19 @@ function TemplateCard({ entry }: { entry: SpecLibraryEntry }) {
           <RiBookmarkLine size={20} />
         </span>
         <div className="flex-1 min-w-0">
-          <h2 className="text-base font-bold text-primary truncate">
-            {label}
-          </h2>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h2 className="text-base font-bold text-primary truncate">
+              {label}
+            </h2>
+            {entry.deprecated && (
+              <span
+                className="text-[10px] uppercase tracking-wider font-bold"
+                style={{ color: "var(--color-brandy)" }}
+              >
+                deprecated
+              </span>
+            )}
+          </div>
           <p className="text-xs text-muted truncate">{entry.name}</p>
         </div>
       </div>
