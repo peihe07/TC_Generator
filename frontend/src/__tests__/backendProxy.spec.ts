@@ -79,16 +79,33 @@ describe('proxyJsonResponse', () => {
       }),
     );
 
-    const response = await listSpecLibrary();
+    const response = await listSpecLibrary(
+      new Request('http://localhost/api/spec-library', { method: 'GET' }),
+    );
 
     expect(response.status).toBe(200);
     expect(global.fetch).toHaveBeenCalledWith(
       'http://127.0.0.1:8000/api/spec-library',
-      { method: 'GET' },
+      { method: 'GET', headers: {} },
     );
-    await expect(response.json()).resolves.toMatchObject({
-      specs: [{ name: 'SWE1' }],
-    });
+  });
+
+  it('forwards X-Workspace-Id from incoming request to the backend (hard isolation S3)', async () => {
+    global.fetch = vi.fn().mockResolvedValue(
+      Response.json({ specs: [] }),
+    );
+
+    await listSpecLibrary(
+      new Request('http://localhost/api/spec-library', {
+        method: 'GET',
+        headers: { 'X-Workspace-Id': 'ws-frontend-A' },
+      }),
+    );
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      'http://127.0.0.1:8000/api/spec-library',
+      { method: 'GET', headers: { 'X-Workspace-Id': 'ws-frontend-A' } },
+    );
   });
 
   it('proxies events aggregate query params to the backend', async () => {

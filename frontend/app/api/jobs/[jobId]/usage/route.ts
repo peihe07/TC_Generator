@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../../../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../../../_lib/backend";
 
 export const runtime = "nodejs";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ jobId: string }> },
 ) {
   try {

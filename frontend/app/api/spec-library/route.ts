@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../_lib/backend";
 
 export const runtime = "nodejs";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    return await proxyJsonResponse("/api/spec-library", { method: "GET" });
+    return await proxyJsonResponse("/api/spec-library", {
+      method: "GET",
+      headers: workspaceHeaderFrom(request),
+    });
   } catch (error) {
     return NextResponse.json(
       {

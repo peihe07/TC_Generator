@@ -13,6 +13,17 @@ export function getBackendBaseUrl() {
   return backendBaseUrl;
 }
 
+/** Forward X-Workspace-Id from the incoming Next.js request to the backend.
+ *
+ * Hard isolation (S3) routes JOB_REGISTRY by ContextVar set from this header,
+ * so any proxy that forgets to forward it lands the request in the "default"
+ * workspace and silently corrupts cross-workspace correctness.
+ */
+export function workspaceHeaderFrom(request: Request): Record<string, string> {
+  const wsId = request.headers.get("x-workspace-id");
+  return wsId ? { "X-Workspace-Id": wsId } : {};
+}
+
 export async function proxyJson(
   path: string,
   init?: RequestInit,

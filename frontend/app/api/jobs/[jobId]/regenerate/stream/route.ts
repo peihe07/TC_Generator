@@ -1,4 +1,4 @@
-import { proxyStream } from "../../../../_lib/backend";
+import { proxyStream ,  workspaceHeaderFrom } from "../../../../_lib/backend";
 
 export const runtime = "nodejs";
 

@@ -5,9 +5,14 @@ import {
   RiLoader4Line,
   RiCheckLine,
   RiAlertLine,
+  RiUpload2Line,
 } from "@remixicon/react";
-import { useState } from "react";
-import { exportJob } from "../../../../services/jobAdapter";
+import { useEffect, useRef, useState } from "react";
+import {
+  attachRawWorkbook,
+  exportJob,
+  fetchSourceStatus,
+} from "../../../../services/jobAdapter";
 import { useBuilderDraftStore } from "../../../../store/useBuilderDraftStore";
 import { useJobStore } from "../../../../store/useJobStore";
 
@@ -59,6 +64,55 @@ export default function ReviewExportPanel() {
     | { kind: "done"; result: ExportResult }
     | { kind: "error"; message: string }
   >({ kind: "idle" });
+
+  // Source workbook attach status — when the job lost rawBytes (e.g. server
+  // restart), overwrite mode + framework sheet rebuild can't run without it.
+  const [sourceStatus, setSourceStatus] = useState<{
+    hasSource: boolean;
+    rawFileName: string | null;
+  } | null>(null);
+  const [attaching, setAttaching] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (!jobMetadata?.jobId) {
+      setSourceStatus(null);
+      return;
+    }
+    let cancelled = false;
+    void fetchSourceStatus(jobMetadata.jobId)
+      .then((s) => {
+        if (!cancelled) setSourceStatus(s);
+      })
+      .catch(() => {
+        if (!cancelled) setSourceStatus(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [jobMetadata?.jobId]);
+
+  const handleAttach = async (file: File) => {
+    if (!jobMetadata?.jobId) return;
+    setAttaching(true);
+    try {
+      const res = await attachRawWorkbook(jobMetadata.jobId, file);
+      setSourceStatus({
+        hasSource: res.hasSource,
+        rawFileName: res.rawFileName,
+      });
+    } catch (err) {
+      setState({
+        kind: "error",
+        message:
+          err instanceof Error
+            ? err.message
+            : "Failed to attach raw workbook.",
+      });
+    } finally {
+      setAttaching(false);
+    }
+  };
 
   const onExport = async () => {
     if (!jobMetadata?.jobId) {
@@ -184,6 +238,61 @@ export default function ReviewExportPanel() {
           Include framework / instructions sheet
         </span>
       </label>
+
+      {sourceStatus && !sourceStatus.hasSource && jobMetadata?.jobId && (
+        <div
+          className="text-sm px-3 py-2 rounded-md flex items-start gap-2 flex-wrap"
+          style={{
+            color: "var(--color-brandy)",
+            backgroundColor: "rgba(120, 41, 15, 0.08)",
+          }}
+        >
+          <RiAlertLine size={16} className="shrink-0 mt-0.5" />
+          <div className="flex-1 space-y-1 min-w-0">
+            <div>
+              Original raw workbook is missing on the server (likely cleared
+              after a restart).
+              {outputMode === "overwrite" || includeFramework
+                ? " Re-attach it before exporting."
+                : " New-file export will still work; re-attach is required for overwrite mode and framework sheet rebuild."}
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".xlsx,.xlsm"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) void handleAttach(file);
+                e.target.value = "";
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={attaching}
+              className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md font-bold focus-ring disabled:opacity-50"
+              style={{
+                color: "var(--color-brandy)",
+                backgroundColor: "rgba(120, 41, 15, 0.12)",
+              }}
+            >
+              {attaching ? (
+                <RiLoader4Line size={12} className="animate-spin" />
+              ) : (
+                <RiUpload2Line size={12} />
+              )}
+              {attaching ? "Attaching…" : "Re-attach raw workbook"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {sourceStatus?.hasSource && sourceStatus.rawFileName && (
+        <div className="text-[10px] uppercase tracking-wider text-muted">
+          Source: <code className="text-secondary">{sourceStatus.rawFileName}</code>
+        </div>
+      )}
 
       {state.kind === "error" && (
         <div

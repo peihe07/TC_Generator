@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -9,7 +9,10 @@ export async function POST(request: Request) {
     const body = await request.text();
     return await proxyJsonResponse("/api/outputs/compare", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...workspaceHeaderFrom(request),
+      },
       body,
     });
   } catch (error) {

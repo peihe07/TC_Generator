@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -11,7 +11,10 @@ export async function POST(request: Request) {
       "/api/export",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+        "Content-Type": "application/json",
+        ...workspaceHeaderFrom(request),
+      },
         body: JSON.stringify(payload),
       },
       (data) => {

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../../../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../../../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -15,7 +15,7 @@ export async function GET(
     const path = `/api/jobs/${encodeURIComponent(jobId)}/output-preview${
       qs ? `?${qs}` : ""
     }`;
-    return await proxyJsonResponse(path, { method: "GET" });
+    return await proxyJsonResponse(path, { method: "GET", headers: workspaceHeaderFrom(request)  });
   } catch (error) {
     return NextResponse.json(
       {

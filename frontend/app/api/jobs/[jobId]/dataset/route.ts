@@ -1,18 +1,18 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../../../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../../../_lib/backend";
 
 export const runtime = "nodejs";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ jobId: string }> },
 ) {
   try {
     const { jobId } = await context.params;
     return await proxyJsonResponse(
       `/api/jobs/${encodeURIComponent(jobId)}/dataset`,
-      { method: "GET" },
+      { method: "GET", headers: workspaceHeaderFrom(request)  },
     );
   } catch (error) {
     return NextResponse.json(

@@ -1181,12 +1181,18 @@ export async function exportJob(input: ExportJobInput) {
 export async function attachRawWorkbook(jobId: string, file: File): Promise<{
   rawFileName: string;
   size: number;
+  hasSource: boolean;
 }> {
   const formData = new FormData();
   formData.append("raw_file", file);
-  return parseJsonResponse<{ rawFileName: string; size: number }>(
+  return parseJsonResponse<{
+    rawFileName: string;
+    size: number;
+    hasSource: boolean;
+  }>(
     await fetch(`${appApiBase}/jobs/${encodeURIComponent(jobId)}/attach-raw`, {
       method: "POST",
+      headers: buildWorkspaceHeader(),
       body: formData,
     }),
   );
@@ -1199,6 +1205,7 @@ export async function fetchSourceStatus(jobId: string): Promise<{
   return parseJsonResponse<{ hasSource: boolean; rawFileName: string | null }>(
     await fetch(`${appApiBase}/jobs/${encodeURIComponent(jobId)}/source-status`, {
       method: "GET",
+      headers: buildWorkspaceHeader(),
     }),
   );
 }

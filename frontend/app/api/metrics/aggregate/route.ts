@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../../_lib/backend";
+import { proxyJsonResponse ,  workspaceHeaderFrom } from "../../_lib/backend";
 
 export const runtime = "nodejs";
 

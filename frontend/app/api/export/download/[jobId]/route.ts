@@ -1,9 +1,9 @@
-import { getBackendBaseUrl } from "../../../_lib/backend";
+import { getBackendBaseUrl ,  workspaceHeaderFrom } from "../../../_lib/backend";
 
 export const runtime = "nodejs";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ jobId: string }> },
 ) {
   try {
