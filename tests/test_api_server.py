@@ -2023,6 +2023,134 @@ def test_events_appends_to_jsonl(tmp_path, monkeypatch):
     assert second["ts"] == 1714000000000
 
 
+def test_events_accepts_experiment_exposure_and_assignment_map(tmp_path, monkeypatch):
+    log = tmp_path / "events.jsonl"
+    monkeypatch.setenv("TC_EVENTS_LOG", str(log))
+
+    response = client.post(
+        "/api/events",
+        json={
+            "events": [
+                {
+                    "name": "experiment_exposure",
+                    "props": {
+                        "experiment": "home_layout_emphasis",
+                        "variant": "action_first",
+                    },
+                    "experiments": {
+                        "home_layout_emphasis": "action_first",
+                    },
+                }
+            ]
+        },
+    )
+
+    assert response.status_code == 200
+    record = json.loads(log.read_text("utf-8").splitlines()[0])
+    assert record["name"] == "experiment_exposure"
+    assert record["experiments"] == {
+        "home_layout_emphasis": "action_first",
+    }
+
+
+def test_events_aggregate_empty_log(tmp_path, monkeypatch):
+    monkeypatch.setenv("TC_EVENTS_LOG", str(tmp_path / "missing.jsonl"))
+
+    response = client.get("/api/events/aggregate")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["totalEvents"] == 0
+    assert payload["variants"] == {}
+    assert payload["unknownVariant"]["eventCount"] == 0
+
+
+def test_events_aggregate_by_experiment_variant(tmp_path, monkeypatch):
+    log = tmp_path / "events.jsonl"
+    monkeypatch.setenv("TC_EVENTS_LOG", str(log))
+    records = [
+        {
+            "name": "experiment_exposure",
+            "props": {
+                "experiment": "home_layout_emphasis",
+                "variant": "action_first",
+            },
+            "experiments": {"home_layout_emphasis": "action_first"},
+            "ts": 1,
+        },
+        {
+            "name": "home_new_run_click",
+            "props": {"source": "quick-actions"},
+            "experiments": {"home_layout_emphasis": "action_first"},
+            "ts": 2,
+        },
+        {
+            "name": "run_execute_start",
+            "props": {"jobId": "j1", "rowCount": 4},
+            "experiments": {"home_layout_emphasis": "action_first"},
+            "ts": 3,
+        },
+        {
+            "name": "run_execute_success",
+            "props": {"jobId": "j1", "rowCount": 4},
+            "experiments": {"home_layout_emphasis": "action_first"},
+            "ts": 4,
+        },
+        {
+            "name": "run_execute_fail",
+            "props": {"jobId": "j2", "reason": "boom"},
+            "experiments": {"home_layout_emphasis": "kpi_first"},
+            "ts": 5,
+        },
+        {"bad": "json"},
+    ]
+    log.write_text(
+        "\n".join(json.dumps(r) for r in records) + "\nnot-json\n",
+        encoding="utf-8",
+    )
+
+    response = client.get(
+        "/api/events/aggregate?experiment=home_layout_emphasis"
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["experiment"] == "home_layout_emphasis"
+    assert payload["totalEvents"] == 6
+    assert payload["malformedLines"] == 1
+    action = payload["variants"]["action_first"]
+    assert action["eventCount"] == 4
+    assert action["exposures"] == 1
+    assert action["newRunClicks"] == 1
+    assert action["runStarts"] == 1
+    assert action["runSuccesses"] == 1
+    assert action["runFailures"] == 0
+    assert action["completionRate"] == 1.0
+    assert action["failureRate"] == 0.0
+    kpi = payload["variants"]["kpi_first"]
+    assert kpi["runFailures"] == 1
+    assert kpi["completionRate"] == 0.0
+    assert kpi["failureRate"] == 1.0
+
+
+def test_events_aggregate_unknown_variant_bucket(tmp_path, monkeypatch):
+    log = tmp_path / "events.jsonl"
+    monkeypatch.setenv("TC_EVENTS_LOG", str(log))
+    log.write_text(
+        json.dumps({"name": "home_new_run_click", "props": {}, "ts": 1}) + "\n",
+        encoding="utf-8",
+    )
+
+    response = client.get(
+        "/api/events/aggregate?experiment=home_layout_emphasis"
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["unknownVariant"]["eventCount"] == 1
+    assert payload["unknownVariant"]["newRunClicks"] == 1
+
+
 def test_events_rejects_unknown_name(tmp_path, monkeypatch):
     monkeypatch.setenv("TC_EVENTS_LOG", str(tmp_path / "events.jsonl"))
     response = client.post(

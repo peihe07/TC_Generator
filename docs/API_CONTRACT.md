@@ -30,6 +30,8 @@ For the full user action → API → backend → AI → state mapping, see
 | Re-run stream | POST | `/api/jobs/[jobId]/rerun/stream` | `/api/jobs/{job_id}/rerun/stream` | SSE | Review | Re-runs selected rows through full decompose + generate pipeline. `rerun.started` carries base usage. |
 | Job usage | GET | `/api/jobs/[jobId]/usage` | `/api/jobs/{job_id}/usage` | JSON | CostMeter / dashboard | Per-job cost and token breakdown, including model-level attribution. |
 | Metrics aggregate | GET | `/api/metrics/aggregate?job_ids=...` | `/api/metrics/aggregate?job_ids=...` | JSON | Cost dashboard | Aggregates job metrics; `job_ids` query is optional and comma-separated. |
+| Telemetry events | POST | `/api/events` | `/api/events` | JSON | Client telemetry | Appends typed client analytics events to JSONL. |
+| Telemetry aggregate | GET | `/api/events/aggregate?experiment=...` | `/api/events/aggregate?experiment=...` | JSON | Experiment analysis | Aggregates event counts by experiment variant; query is optional. |
 | Source status | GET | `/api/jobs/[jobId]/source-status` | `/api/jobs/{job_id}/source-status` | JSON | Export | Checks whether backend still has original workbook bytes before export. |
 | Attach raw workbook | POST | `/api/jobs/[jobId]/attach-raw` | `/api/jobs/{job_id}/attach-raw` | `multipart/form-data` | Export fallback | Restores original workbook bytes when a workspace was reloaded without backend raw bytes. |
 | Export | POST | `/api/export` | `/api/export` | JSON | Export | Requires active parsed job. Writes workbook, may classify missing Test Sets, resequences TC IDs. |
@@ -221,6 +223,100 @@ Response:
       "updatedAt": "2026-04-24T14:56:18.772253+00:00"
     }
   ]
+}
+```
+
+### `POST /api/events`
+
+Proxy to Python `POST /api/events`.
+
+Purpose:
+
+- Append client telemetry to the backend JSONL event log.
+- Events are best-effort analytics only; callers should not block core UX on the response.
+- Each event may include an `experiments` map so aggregates can be sliced by active A/B variant.
+
+Request:
+
+```json
+{
+  "events": [
+    {
+      "name": "experiment_exposure",
+      "props": {
+        "experiment": "home_layout_emphasis",
+        "variant": "action_first"
+      },
+      "experiments": {
+        "home_layout_emphasis": "action_first"
+      },
+      "ts": 1714000000000
+    }
+  ]
+}
+```
+
+Allowed `name` values:
+
+- `experiment_exposure`
+- `home_new_run_click`
+- `builder_step_next`
+- `builder_validation_fail`
+- `run_execute_start`
+- `run_execute_success`
+- `run_execute_fail`
+- `run_retry_click`
+- `template_use_click`
+- `output_compare_open`
+
+Response:
+
+```json
+{
+  "ok": true,
+  "count": 1
+}
+```
+
+### `GET /api/events/aggregate`
+
+Proxy to Python `GET /api/events/aggregate`.
+
+Purpose:
+
+- Read the append-only telemetry JSONL and produce lightweight experiment analysis.
+- Supports `?experiment=home_layout_emphasis` to group metrics by assigned variant.
+- Malformed historical JSONL rows are skipped and counted under `malformedLines`.
+
+Response:
+
+```json
+{
+  "experiment": "home_layout_emphasis",
+  "totalEvents": 5,
+  "malformedLines": 0,
+  "variants": {
+    "action_first": {
+      "eventCount": 4,
+      "exposures": 1,
+      "newRunClicks": 1,
+      "runStarts": 1,
+      "runSuccesses": 1,
+      "runFailures": 0,
+      "completionRate": 1.0,
+      "failureRate": 0.0
+    }
+  },
+  "unknownVariant": {
+    "eventCount": 0,
+    "exposures": 0,
+    "newRunClicks": 0,
+    "runStarts": 0,
+    "runSuccesses": 0,
+    "runFailures": 0,
+    "completionRate": 0.0,
+    "failureRate": 0.0
+  }
 }
 ```
 

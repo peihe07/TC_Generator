@@ -199,6 +199,8 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 - `GET /api/spec-library`
 - `DELETE /api/admin/reset`
 - `GET /api/metrics/aggregate`
+- `POST /api/events`
+- `GET /api/events/aggregate`
 - `POST /api/parse`
 - `POST /api/group`
 - `POST /api/match`
@@ -298,7 +300,7 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 
 - `pytest -q`：481 pass
 - `npm run typecheck` (`tsc --noEmit`)：0 error
-- `npm run test:unit` (Vitest)：91 pass（workspace shell / top-nav reframe /
+- `npm run test:unit` (Vitest)：92 pass（workspace shell / top-nav reframe /
   builder stores / job history / telemetry / A/B experiments / KPI aggregates）
 - `npm run test:e2e` (Playwright)：10 pass
   - Workspace shell smoke：top nav destinations、command palette、builder stepper、

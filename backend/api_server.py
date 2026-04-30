@@ -81,6 +81,7 @@ import threading
 
 _TELEMETRY_LOCK = threading.Lock()
 ALLOWED_TELEMETRY_EVENTS = {
+    "experiment_exposure",
     "home_new_run_click",
     "builder_step_next",
     "builder_validation_fail",
@@ -1190,6 +1191,7 @@ def reset_all_state(request: Request) -> dict:
 class TelemetryEvent(BaseModel):
     name: str
     props: dict = Field(default_factory=dict)
+    experiments: dict = Field(default_factory=dict)
     ts: int | None = None
 
 
@@ -1225,6 +1227,7 @@ def collect_events(payload: TelemetryBatchRequest) -> dict:
         record = {
             "name": event.name,
             "props": event.props,
+            "experiments": event.experiments,
             "ts": ts,
             "received_at": now_ms,
         }
@@ -1245,6 +1248,130 @@ def collect_events(payload: TelemetryBatchRequest) -> dict:
                 fh.write("\n")
 
     return {"ok": True, "count": len(serialized)}
+
+
+def _empty_event_bucket() -> dict:
+    return {
+        "eventCount": 0,
+        "exposures": 0,
+        "newRunClicks": 0,
+        "runStarts": 0,
+        "runSuccesses": 0,
+        "runFailures": 0,
+        "completionRate": 0.0,
+        "failureRate": 0.0,
+    }
+
+
+def _increment_event_bucket(bucket: dict, event_name: str) -> None:
+    bucket["eventCount"] += 1
+    if event_name == "experiment_exposure":
+        bucket["exposures"] += 1
+    elif event_name == "home_new_run_click":
+        bucket["newRunClicks"] += 1
+    elif event_name == "run_execute_start":
+        bucket["runStarts"] += 1
+    elif event_name == "run_execute_success":
+        bucket["runSuccesses"] += 1
+    elif event_name == "run_execute_fail":
+        bucket["runFailures"] += 1
+
+
+def _finalize_event_bucket(bucket: dict) -> dict:
+    terminal = bucket["runSuccesses"] + bucket["runFailures"]
+    bucket["completionRate"] = (
+        bucket["runSuccesses"] / terminal if terminal > 0 else 0.0
+    )
+    bucket["failureRate"] = (
+        bucket["runFailures"] / terminal if terminal > 0 else 0.0
+    )
+    return bucket
+
+
+def _event_variant(record: dict, experiment: str | None) -> str | None:
+    if not experiment:
+        return None
+    experiments = record.get("experiments")
+    if isinstance(experiments, dict):
+        variant = experiments.get(experiment)
+        if isinstance(variant, str) and variant:
+            return variant
+    props = record.get("props")
+    if (
+        record.get("name") == "experiment_exposure"
+        and isinstance(props, dict)
+        and props.get("experiment") == experiment
+        and isinstance(props.get("variant"), str)
+    ):
+        return props["variant"]
+    return None
+
+
+@app.get("/api/events/aggregate")
+def events_aggregate(experiment: str | None = None) -> dict:
+    """Read the append-only telemetry JSONL and aggregate experiment metrics.
+
+    This endpoint is intentionally read-only and tolerant of malformed lines:
+    bad historical rows are counted under `malformedLines` instead of breaking
+    the dashboard.
+    """
+    log_path = telemetry_log_path()
+    variants: dict[str, dict] = {}
+    unknown_variant = _empty_event_bucket()
+    total_events = 0
+    malformed_lines = 0
+
+    if not log_path.exists():
+        return {
+            "experiment": experiment,
+            "totalEvents": 0,
+            "malformedLines": 0,
+            "variants": {},
+            "unknownVariant": unknown_variant,
+        }
+
+    with _TELEMETRY_LOCK:
+        lines = log_path.read_text("utf-8").splitlines()
+
+    for line in lines:
+        if not line.strip():
+            continue
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError:
+            malformed_lines += 1
+            continue
+        if not isinstance(record, dict):
+            malformed_lines += 1
+            continue
+        event_name = record.get("name")
+        if not isinstance(event_name, str):
+            total_events += 1
+            continue
+
+        total_events += 1
+        variant = _event_variant(record, experiment)
+        if experiment:
+            bucket = (
+                variants.setdefault(variant, _empty_event_bucket())
+                if variant
+                else unknown_variant
+            )
+        else:
+            bucket = variants.setdefault("all", _empty_event_bucket())
+        _increment_event_bucket(bucket, event_name)
+
+    finalized_variants = {
+        variant: _finalize_event_bucket(bucket)
+        for variant, bucket in sorted(variants.items())
+    }
+    return {
+        "experiment": experiment,
+        "totalEvents": total_events,
+        "malformedLines": malformed_lines,
+        "variants": finalized_variants,
+        "unknownVariant": _finalize_event_bucket(unknown_variant),
+    }
 
 
 class ReviewFixSuggestRequest(BaseModel):

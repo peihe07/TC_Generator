@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { proxyJsonResponse } from '@/app/api/_lib/backend';
 import { DELETE as resetAllData } from '@/app/api/admin/reset/route';
+import { GET as aggregateEvents } from '@/app/api/events/aggregate/route';
 import { GET as listSpecLibrary } from '@/app/api/spec-library/route';
 
 describe('proxyJsonResponse', () => {
@@ -87,6 +88,31 @@ describe('proxyJsonResponse', () => {
     );
     await expect(response.json()).resolves.toMatchObject({
       specs: [{ name: 'SWE1' }],
+    });
+  });
+
+  it('proxies events aggregate query params to the backend', async () => {
+    global.fetch = vi.fn().mockResolvedValue(
+      Response.json({
+        experiment: 'home_layout_emphasis',
+        totalEvents: 0,
+        variants: {},
+      }),
+    );
+
+    const response = await aggregateEvents(
+      new Request(
+        'http://localhost:3000/api/events/aggregate?experiment=home_layout_emphasis',
+      ),
+    );
+
+    expect(response.status).toBe(200);
+    expect(global.fetch).toHaveBeenCalledWith(
+      'http://127.0.0.1:8000/api/events/aggregate?experiment=home_layout_emphasis',
+      { method: 'GET' },
+    );
+    await expect(response.json()).resolves.toMatchObject({
+      experiment: 'home_layout_emphasis',
     });
   });
 });

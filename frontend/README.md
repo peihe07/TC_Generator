@@ -113,7 +113,7 @@ Every event includes an `experiments` map from `src/lib/experiments.ts`. Current
 |---|---|---|
 | `home_layout_emphasis` | `kpi_first`, `action_first` | `?exp_home_layout_emphasis=action_first` |
 
-The Next proxy for `POST /api/events` exists; backend storage/analytics can be added behind the same contract.
+The Next proxies for `POST /api/events` and `GET /api/events/aggregate?experiment=...` exist. The aggregate endpoint groups exposures, new-run clicks, starts, successes, failures, completion rate, and failure rate by experiment variant.
 
 ## Backend dependencies
 
