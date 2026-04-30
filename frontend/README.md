@@ -74,10 +74,19 @@ e2e/
 ### State layering
 
 - `useJobStore` — current run state (rows, config, logs, stats). Mutated by Builder + ReviewStep.
-- `useJobHistoryStore` — completed runs persisted to localStorage. Source of truth for Home / Runs / Outputs / Data.
-- `useBuilderDraftStore` — current builder draft (id, step, data, configure, completed flags). Persisted.
+- `useJobHistoryStore` — completed runs persisted to localStorage. Source of truth for Home / Runs / Outputs / Data. Each record carries `workspaceId` (defaults to `default` for legacy rows).
+- `useBuilderDraftStore` — current builder draft (id, step, data, configure, completed flags, `workspaceId`). Persisted.
 - `useWorkspaceSettingsStore` — user defaults applied when starting a new draft.
+- `useWorkspaceStore` — list of workspaces + currentId. TopNav switcher reads it. Filter every record-driven view via `useWorkspaceFilteredRecords` (`src/lib/useWorkspaceFiltered.ts`).
 - `useCommandPaletteStore` — open/closed flag for `Cmd/Ctrl+K`.
+
+### Workspaces
+
+Workspaces are first-class on both layers:
+
+- **Frontend (C-S1)** — `useWorkspaceStore` keeps a list (default seeded). Records and drafts auto-tag with the active workspace. Home / Runs / Outputs / Data / Settings all filter via `useWorkspaceFilteredRecords`. Run Detail and Output Compare deliberately stay unfiltered so direct links from outside still resolve.
+- **Backend (C-S2)** — endpoints honour the `X-Workspace-Id` header. `/api/parse` and `/api/generate` tag the SQLite job record at create time; existing tags win so a parse-then-generate pair stays consistent. `/api/events` records the workspace per event; `/api/events/aggregate` filters by header (header absent = aggregate across workspaces, useful for ops).
+- **Frontend transport** — `src/lib/workspaceHeader.ts` exposes `buildWorkspaceHeader()`; the four critical fetch paths (`parseJobFiles`, `startGeneration`, telemetry flush, `ExperimentAnalytics`) inject it. The matching Next proxies forward the header to the backend.
 
 The `Run` view-model in `src/services/runAdapter.ts` wraps each `JobRecord` with derived status, formatted duration, formatted cost, etc. UI code should read `Run`, never `JobRecord` directly.
 

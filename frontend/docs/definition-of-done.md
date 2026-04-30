@@ -22,10 +22,19 @@ can declare the reframe shipped.
 | Backend tests | `pytest tests/test_api_server.py` | ✅ 78/78 |
 | Frontend production build | `npm run build` | ✅ |
 
-## Open follow-ups (not blocking reframe release)
+## Post-release work shipped
 
-- Template authoring UI (create / version / changelog).
-- Inline xlsx preview in `/outputs/[id]`.
-- Validation log capture during streaming on the backend (currently posted from frontend ReviewStep on mount).
-- `?dataset=:jobId` could re-hydrate parsed rows server-side if backend retained `job["rows"]` after job completion (currently shows banner asking the user to re-upload).
+- **Inline xlsx preview** — `GET /api/jobs/{id}/output-preview` + `/outputs/[runId]` page; OutputsView grew a Preview link per row.
+- **Server-side validation log capture** — `_record_stream_validation_failure` hooks the four streaming paths (budget skip, strict-fail, generation tool error, regenerate/rerun fail). ReviewStep still posts client-side validations on mount as a backstop.
+- **Dataset re-hydrate** — `GET /api/jobs/{id}/dataset` returns parsed rows in TcRow shape; BuilderShell consumes `?dataset=:jobId` to populate `useJobStore`, mark Data step complete, and skip ahead to Configure.
+- **Template changelog + version** — `_spec_manifest_path()` env override + `POST /api/spec-library/{name}/changelog` (loopback only); TemplateDetailView ships a Changelog timeline + add-entry form.
+- **Bulk download** — `POST /api/outputs/bulk-download` streams a zip; OutputsView supports >2 selection with a `Download zip` toolbar button.
+- **Experiment analytics dashboard** — `GET /api/events/aggregate` powers the Settings Experiments panel.
+- **Workspaces (C-S1 + C-S2)** — local label-only workspaces with TopNav switcher, plus backend tagging via `X-Workspace-Id` for `/api/parse`, `/api/generate`, `/api/events`, `/api/events/aggregate`. Record / draft / event objects all carry `workspaceId`.
+
+## Open follow-ups
+
+- Authoring brand-new templates (the changelog endpoint patches existing manifest entries; create / clone / deprecate need an embedding ingestion pipeline).
+- Hard isolation (S3): per-workspace SQLite DB / output dir, workspace-aware authentication.
 - Promote A/B framework beyond `home_layout_emphasis` once the first experiment yields a decision.
+- `/legacy` is fully removed; if a regression escapes, only e2e + unit tests catch it.
