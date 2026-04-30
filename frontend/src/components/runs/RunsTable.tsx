@@ -15,7 +15,21 @@ import {
 type SortKey = "startedAt" | "durationMs" | "cost";
 type SortDir = "asc" | "desc";
 
-export default function RunsTable({ runs }: { runs: Run[] }) {
+interface RunsTableProps {
+  runs: Run[];
+  archivedIds?: Set<string>;
+  selectedIds?: Set<string>;
+  onToggleSelect?: (id: string) => void;
+  onToggleSelectAll?: () => void;
+}
+
+export default function RunsTable({
+  runs,
+  archivedIds,
+  selectedIds,
+  onToggleSelect,
+  onToggleSelectAll,
+}: RunsTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("startedAt");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
 
@@ -34,6 +48,19 @@ export default function RunsTable({ runs }: { runs: Run[] }) {
     }
   };
 
+  const selectionEnabled =
+    selectedIds !== undefined &&
+    onToggleSelect !== undefined &&
+    onToggleSelectAll !== undefined;
+  const allChecked =
+    selectionEnabled &&
+    sorted.length > 0 &&
+    sorted.every((r) => selectedIds!.has(r.id));
+  const someChecked =
+    selectionEnabled &&
+    !allChecked &&
+    sorted.some((r) => selectedIds!.has(r.id));
+
   if (runs.length === 0) {
     return (
       <div className="surface p-10 text-center">
@@ -49,6 +76,16 @@ export default function RunsTable({ runs }: { runs: Run[] }) {
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left text-xs uppercase tracking-wider text-muted">
+            {selectionEnabled && (
+              <th className="font-normal px-3 py-2 w-8">
+                <BulkCheckbox
+                  checked={allChecked}
+                  indeterminate={someChecked}
+                  onChange={onToggleSelectAll!}
+                  ariaLabel="Select all visible runs"
+                />
+              </th>
+            )}
             <th className="font-normal px-3 py-2">Run</th>
             <th className="font-normal px-3 py-2">Status</th>
             <th className="font-normal px-3 py-2">Model</th>
@@ -74,58 +111,84 @@ export default function RunsTable({ runs }: { runs: Run[] }) {
           </tr>
         </thead>
         <tbody>
-          {sorted.map((r) => (
-            <tr
-              key={r.id}
-              className="row-hover"
-              style={{ borderRadius: 8 }}
-            >
-              <td className="px-3 py-2.5">
-                <Link
-                  href={`/runs/${r.id}`}
-                  className="text-primary font-bold hover:underline"
-                >
-                  {r.kindLabel}
-                </Link>
-                <div className="text-xs text-muted truncate max-w-[260px]">
-                  {r.id}
-                </div>
-              </td>
-              <td className="px-3 py-2.5">
-                <span
-                  className="inline-flex items-center gap-1.5 text-xs font-bold"
-                  style={{ color: STATUS_COLOR[r.status] }}
-                >
+          {sorted.map((r) => {
+            const isArchived = archivedIds?.has(r.id) ?? false;
+            const isSelected = selectedIds?.has(r.id) ?? false;
+            return (
+              <tr
+                key={r.id}
+                className="row-hover"
+                style={{
+                  borderRadius: 8,
+                  opacity: isArchived ? 0.55 : 1,
+                }}
+              >
+                {selectionEnabled && (
+                  <td className="px-3 py-2.5">
+                    <BulkCheckbox
+                      checked={isSelected}
+                      onChange={() => onToggleSelect!(r.id)}
+                      ariaLabel={`Select ${r.id}`}
+                    />
+                  </td>
+                )}
+                <td className="px-3 py-2.5">
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href={`/runs/${r.id}`}
+                      className="text-primary font-bold hover:underline"
+                    >
+                      {r.kindLabel}
+                    </Link>
+                    {isArchived && (
+                      <span
+                        className="text-[10px] uppercase tracking-wider font-bold"
+                        style={{ color: "var(--color-teal)" }}
+                      >
+                        archived
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs text-muted truncate max-w-[260px]">
+                    {r.id}
+                  </div>
+                </td>
+                <td className="px-3 py-2.5">
                   <span
-                    className="inline-block w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: STATUS_COLOR[r.status] }}
-                  />
-                  {STATUS_LABEL[r.status]}
-                </span>
-              </td>
-              <td className="px-3 py-2.5 text-secondary text-xs">
-                {r.model}
-              </td>
-              <td className="px-3 py-2.5 text-secondary">
-                {formatDuration(r.durationMs)}
-              </td>
-              <td className="px-3 py-2.5 text-secondary">
-                {formatCost(r.cost)}
-              </td>
-              <td className="px-3 py-2.5 text-muted text-xs">
-                {formatRelativeTime(r.startedAt)}
-              </td>
-              <td className="px-3 py-2.5 text-right">
-                <Link
-                  href={`/runs/${r.id}`}
-                  className="text-xs font-bold focus-ring rounded px-2 py-1"
-                  style={{ color: "var(--color-tangerine)" }}
-                >
-                  View →
-                </Link>
-              </td>
-            </tr>
-          ))}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold"
+                    style={{ color: STATUS_COLOR[r.status] }}
+                  >
+                    <span
+                      className="inline-block w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: STATUS_COLOR[r.status] }}
+                    />
+                    {STATUS_LABEL[r.status]}
+                  </span>
+                </td>
+                <td className="px-3 py-2.5 text-secondary text-xs">
+                  {r.model}
+                </td>
+                <td className="px-3 py-2.5 text-secondary">
+                  {formatDuration(r.durationMs)}
+                </td>
+                <td className="px-3 py-2.5 text-secondary">
+                  {formatCost(r.cost)}
+                </td>
+                <td className="px-3 py-2.5 text-muted text-xs">
+                  {formatRelativeTime(r.startedAt)}
+                </td>
+                <td className="px-3 py-2.5 text-right">
+                  <Link
+                    href={`/runs/${r.id}`}
+                    className="text-xs font-bold focus-ring rounded px-2 py-1"
+                    style={{ color: "var(--color-tangerine)" }}
+                  >
+                    View →
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -163,5 +226,61 @@ function SortableTh({
           ))}
       </button>
     </th>
+  );
+}
+
+function BulkCheckbox({
+  checked,
+  indeterminate,
+  onChange,
+  ariaLabel,
+}: {
+  checked: boolean;
+  indeterminate?: boolean;
+  onChange: () => void;
+  ariaLabel: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={indeterminate ? "mixed" : checked}
+      aria-label={ariaLabel}
+      onClick={onChange}
+      className="flex items-center justify-center w-4 h-4 rounded transition-all focus-ring"
+      style={{
+        backgroundColor:
+          checked || indeterminate ? "var(--color-tangerine)" : "transparent",
+        boxShadow:
+          checked || indeterminate
+            ? "0 1px 2px var(--shadow-tint)"
+            : "inset 0 0 0 1.5px var(--color-teal)",
+        color: "var(--color-ink)",
+      }}
+    >
+      {indeterminate ? (
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <line
+            x1="3"
+            y1="6"
+            x2="9"
+            y2="6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+      ) : checked ? (
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+          <path
+            d="M2 6.5L5 9.5L10 3.5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ) : null}
+    </button>
   );
 }

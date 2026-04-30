@@ -26,6 +26,7 @@ export interface RunFilterValue {
   status: RunStatus | "all";
   kind: RunKind | "all";
   q: string;
+  showArchived: boolean;
 }
 
 export default function RunFilters({
@@ -70,6 +71,42 @@ export default function RunFilters({
           className="bg-transparent text-sm flex-1 outline-none text-primary placeholder:text-[var(--color-teal)] placeholder:opacity-60"
         />
       </div>
+
+      <label className="flex items-center gap-2 text-xs font-bold text-secondary cursor-pointer focus-ring rounded">
+        <input
+          type="checkbox"
+          checked={value.showArchived}
+          onChange={(e) =>
+            onChange({ ...value, showArchived: e.target.checked })
+          }
+          className="sr-only"
+        />
+        <span
+          className="flex items-center justify-center w-4 h-4 rounded transition-all"
+          style={{
+            backgroundColor: value.showArchived
+              ? "var(--color-tangerine)"
+              : "transparent",
+            boxShadow: value.showArchived
+              ? "0 1px 2px var(--shadow-tint)"
+              : "inset 0 0 0 1.5px var(--color-teal)",
+            color: "var(--color-ink)",
+          }}
+        >
+          {value.showArchived && (
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path
+                d="M2 6.5L5 9.5L10 3.5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </span>
+        Show archived
+      </label>
     </div>
   );
 }

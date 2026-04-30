@@ -78,4 +78,28 @@ describe("useJobHistoryStore", () => {
     expect(useJobHistoryStore.getState().records).toEqual([]);
     expect(localStorage.getItem(LS_KEY)).toBe("[]");
   });
+
+  it("setArchived 切換單筆記錄旗標並 persist", () => {
+    useJobHistoryStore.getState().appendRecord(makeRec("r1"));
+    useJobHistoryStore.getState().setArchived("r1", true);
+    expect(
+      useJobHistoryStore.getState().records.find((r) => r.id === "r1")
+        ?.archived,
+    ).toBe(true);
+    const persisted = JSON.parse(localStorage.getItem(LS_KEY) ?? "[]");
+    expect(persisted[0].archived).toBe(true);
+  });
+
+  it("bulkSetArchived 一次處理多筆", () => {
+    useJobHistoryStore.getState().appendRecord(makeRec("r1"));
+    useJobHistoryStore.getState().appendRecord(makeRec("r2"));
+    useJobHistoryStore.getState().appendRecord(makeRec("r3"));
+    useJobHistoryStore.getState().bulkSetArchived(["r1", "r3"], true);
+    const map = Object.fromEntries(
+      useJobHistoryStore.getState().records.map((r) => [r.id, r.archived]),
+    );
+    expect(map.r1).toBe(true);
+    expect(map.r2).toBeFalsy();
+    expect(map.r3).toBe(true);
+  });
 });

@@ -30,6 +30,8 @@ export interface JobRecord {
   note?: string;
   /** Workspace tag (Phase C-S1). 舊紀錄缺失時視為 default。 */
   workspaceId?: string;
+  /** Archive flag — hidden from Runs list by default; data preserved. */
+  archived?: boolean;
 }
 
 interface JobHistoryStore {
@@ -40,6 +42,8 @@ interface JobHistoryStore {
   appendRecord: (record: JobRecord) => void;
   clearHistory: () => void;
   totalCost: () => number;
+  setArchived: (id: string, archived: boolean) => void;
+  bulkSetArchived: (ids: string[], archived: boolean) => void;
 }
 
 const LS_KEY = 'tc-generator-job-history';
@@ -97,6 +101,23 @@ export const useJobHistoryStore = create<JobHistoryStore>((set, get) => ({
   },
 
   totalCost: () => get().records.reduce((sum, r) => sum + (r.cost || 0), 0),
+
+  setArchived: (id, archived) => {
+    const next = get().records.map((r) =>
+      r.id === id ? { ...r, archived } : r,
+    );
+    persist(next);
+    set({ records: next });
+  },
+
+  bulkSetArchived: (ids, archived) => {
+    const ids_set = new Set(ids);
+    const next = get().records.map((r) =>
+      ids_set.has(r.id) ? { ...r, archived } : r,
+    );
+    persist(next);
+    set({ records: next });
+  },
 }));
 
 /** 依 workspace 過濾。舊紀錄 workspaceId 缺失視為 default workspace。 */
