@@ -3,7 +3,6 @@
 import {
   RiArrowLeftLine,
   RiArrowRightLine,
-  RiSave3Line,
   RiPlayCircleLine,
   RiCheckDoubleLine,
 } from "@remixicon/react";
@@ -16,18 +15,14 @@ export default function BuilderActionBar({
   blockReason,
   onBack,
   onNext,
-  onSaveDraft,
   onFinish,
-  saving,
 }: {
   current: BuilderStep;
   blocked?: boolean;
   blockReason?: string;
   onBack: () => void;
   onNext: () => void;
-  onSaveDraft: () => void;
   onFinish: () => void;
-  saving?: boolean;
 }) {
   const isFirst = current === BUILDER_STEPS[0];
   const isLast = current === BUILDER_STEPS[BUILDER_STEPS.length - 1];
@@ -60,20 +55,6 @@ export default function BuilderActionBar({
             {blockReason}
           </span>
         )}
-
-        <button
-          type="button"
-          onClick={onSaveDraft}
-          disabled={saving}
-          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-bold focus-ring transition-all disabled:opacity-40"
-          style={{
-            backgroundColor: "rgba(21, 97, 109, 0.12)",
-            color: "var(--color-teal)",
-          }}
-        >
-          <RiSave3Line size={16} />
-          {saving ? "Saving..." : "Save Draft"}
-        </button>
 
         {isLast ? (
           <button

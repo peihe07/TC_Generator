@@ -234,7 +234,6 @@ export default function BuilderShell() {
     }
   }, [current, draft, update]);
 
-  const [savedFlash, setSavedFlash] = useState(false);
 
   const goTo = useCallback(
     (step: BuilderStep) => {
@@ -257,12 +256,6 @@ export default function BuilderShell() {
     const p = prevStep(current);
     if (p) goTo(p);
   }, [current, goTo]);
-
-  const onSaveDraft = useCallback(() => {
-    update({}); // touch updatedAt
-    setSavedFlash(true);
-    setTimeout(() => setSavedFlash(false), 1500);
-  }, [update]);
 
   const onFinish = useCallback(() => {
     clearDraft();
@@ -305,11 +298,7 @@ export default function BuilderShell() {
           <div>
             Draft <code>{draft.id}</code>
           </div>
-          <div>
-            {savedFlash
-              ? "Saved ✓"
-              : `Updated ${formatTime(draft.updatedAt)}`}
-          </div>
+          <div>Auto-saved · {formatTime(draft.updatedAt)}</div>
         </div>
       </header>
 
@@ -385,7 +374,6 @@ export default function BuilderShell() {
         }
         onBack={onBack}
         onNext={onNext}
-        onSaveDraft={onSaveDraft}
         onFinish={onFinish}
       />
     </div>
