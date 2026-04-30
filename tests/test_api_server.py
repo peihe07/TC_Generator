@@ -2835,6 +2835,142 @@ def test_output_preview_respects_limit(tmp_path):
     assert len(body["rows"]) == 2
 
 
+# ─────────────────────────────────────────────────────────────────────
+# Workspace tagging (Phase C-S2)
+# ─────────────────────────────────────────────────────────────────────
+
+
+def _gen_payload(job_id: str) -> dict:
+    return {
+        "jobId": job_id,
+        "rows": [
+            {
+                "id": "r1",
+                "reqId": "REQ-1",
+                "testGroup": "G",
+                "testSet": "S",
+                "testItem": "Item",
+                "preConditions": "",
+                "inputTestData": "",
+                "steps": "",
+                "expectedResults": "",
+                "status": "pending",
+            }
+        ],
+        "config": {
+            "model": "gpt-5",
+            "batchSize": 5,
+            "budget": 5,
+            "strictValidation": False,
+        },
+    }
+
+
+def test_generate_tags_job_with_workspace_from_header():
+    import api_server
+
+    job_id = "ws-tag-job-1"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    res = client.post(
+        "/api/generate",
+        json=_gen_payload(job_id),
+        headers={"X-Workspace-Id": "ws-alpha"},
+    )
+    assert res.status_code == 200, res.text
+    assert api_server.JOB_REGISTRY[job_id]["workspaceId"] == "ws-alpha"
+
+
+def test_generate_defaults_workspace_when_header_missing():
+    import api_server
+
+    job_id = "ws-tag-job-default"
+    api_server.JOB_REGISTRY[job_id] = {"jobId": job_id}
+    res = client.post("/api/generate", json=_gen_payload(job_id))
+    assert res.status_code == 200
+    assert api_server.JOB_REGISTRY[job_id]["workspaceId"] == "default"
+
+
+def test_generate_keeps_workspace_set_by_parse():
+    """If parse already tagged the job, /api/generate keeps the original tag."""
+    import api_server
+
+    job_id = "ws-tag-prior"
+    api_server.JOB_REGISTRY[job_id] = {
+        "jobId": job_id,
+        "workspaceId": "ws-prior",
+    }
+    res = client.post(
+        "/api/generate",
+        json=_gen_payload(job_id),
+        headers={"X-Workspace-Id": "ws-different"},
+    )
+    assert res.status_code == 200
+    assert api_server.JOB_REGISTRY[job_id]["workspaceId"] == "ws-prior"
+
+
+def test_events_records_workspace_from_header(tmp_path, monkeypatch):
+    log = tmp_path / "events.jsonl"
+    monkeypatch.setenv("TC_EVENTS_LOG", str(log))
+    res = client.post(
+        "/api/events",
+        json={"events": [{"name": "home_new_run_click", "props": {}}]},
+        headers={"X-Workspace-Id": "ws-tagged"},
+    )
+    assert res.status_code == 200
+    line = log.read_text("utf-8").splitlines()[0]
+    assert json.loads(line)["workspaceId"] == "ws-tagged"
+
+
+def test_events_aggregate_filters_by_workspace_header(tmp_path, monkeypatch):
+    log = tmp_path / "events.jsonl"
+    monkeypatch.setenv("TC_EVENTS_LOG", str(log))
+    client.post(
+        "/api/events",
+        json={
+            "events": [
+                {
+                    "name": "experiment_exposure",
+                    "props": {
+                        "experiment": "home_layout_emphasis",
+                        "variant": "kpi_first",
+                    },
+                }
+            ]
+        },
+        headers={"X-Workspace-Id": "ws-A"},
+    )
+    client.post(
+        "/api/events",
+        json={
+            "events": [
+                {
+                    "name": "experiment_exposure",
+                    "props": {
+                        "experiment": "home_layout_emphasis",
+                        "variant": "action_first",
+                    },
+                }
+            ]
+        },
+        headers={"X-Workspace-Id": "ws-B"},
+    )
+
+    body_a = client.get(
+        "/api/events/aggregate?experiment=home_layout_emphasis",
+        headers={"X-Workspace-Id": "ws-A"},
+    ).json()
+    assert body_a["workspaceId"] == "ws-A"
+    assert body_a["totalEvents"] == 1
+    assert body_a["variants"].get("kpi_first", {}).get("exposures") == 1
+    assert "action_first" not in body_a["variants"]
+
+    body_all = client.get(
+        "/api/events/aggregate?experiment=home_layout_emphasis"
+    ).json()
+    assert body_all["totalEvents"] == 2
+    assert body_all["workspaceId"] is None
+
+
 def test_dataset_404_for_unknown_job():
     assert client.get("/api/jobs/no-such/dataset").status_code == 404
 

@@ -1,5 +1,6 @@
 import type { ExperimentKey, ExperimentVariant } from "./experiments";
 import { getExperimentVariantMap } from "./experiments";
+import { buildWorkspaceHeader } from "./workspaceHeader";
 
 // Client-side event tracking。每個 track() 呼叫：
 // 1. console.debug（dev/test only）
@@ -85,7 +86,10 @@ async function flush() {
   try {
     await fetch("/api/events", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...buildWorkspaceHeader(),
+      },
       body: JSON.stringify({ events: batch }),
       keepalive: true,
     });

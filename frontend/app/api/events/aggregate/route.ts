@@ -9,8 +9,10 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const qs = url.searchParams.toString();
     const suffix = qs ? `?${qs}` : "";
+    const wsId = request.headers.get("x-workspace-id");
     return await proxyJsonResponse(`/api/events/aggregate${suffix}`, {
       method: "GET",
+      headers: wsId ? { "X-Workspace-Id": wsId } : undefined,
     });
   } catch (error) {
     return NextResponse.json(

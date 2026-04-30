@@ -7,11 +7,15 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   try {
     const payload = await request.json();
+    const wsId = request.headers.get("x-workspace-id");
     return await proxyJsonResponse(
       "/api/generate",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(wsId ? { "X-Workspace-Id": wsId } : {}),
+        },
         body: JSON.stringify(payload),
       },
       (data) => {

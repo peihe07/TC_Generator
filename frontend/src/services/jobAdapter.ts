@@ -8,6 +8,7 @@ import type {
   ValidationError,
 } from "@/src/lib/types";
 import { useJobHistoryStore } from "@/src/store/useJobHistoryStore";
+import { buildWorkspaceHeader } from "@/src/lib/workspaceHeader";
 
 const appApiBase = "/api";
 
@@ -388,7 +389,13 @@ export async function parseJobFiles(input: {
     testGroup: string | null;
     rowCount: number;
     rows: Array<Record<string, unknown>>;
-  }>(await fetch(`${appApiBase}/parse`, { method: "POST", body: payload }));
+  }>(
+    await fetch(`${appApiBase}/parse`, {
+      method: "POST",
+      headers: buildWorkspaceHeader(),
+      body: payload,
+    }),
+  );
 
   const testGroup = response.testGroup ?? "Parsed";
   return {
@@ -556,7 +563,10 @@ export function startGeneration(
       }>(
         await fetch(`${appApiBase}/generate`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            ...buildWorkspaceHeader(),
+          },
           body: JSON.stringify({
             jobId: input.jobId,
             templateId: input.templateId ?? undefined,

@@ -6,6 +6,8 @@ import {
   EXPERIMENT_DEFINITIONS,
   type ExperimentKey,
 } from "../../lib/experiments";
+import { buildWorkspaceHeader } from "../../lib/workspaceHeader";
+import { useWorkspaceStore } from "../../store/useWorkspaceStore";
 
 interface VariantBucket {
   eventCount: number;
@@ -45,12 +47,15 @@ export default function ExperimentAnalytics({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const currentWorkspaceId = useWorkspaceStore((s) => s.currentId);
+
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     setError(null);
     fetch(
-      `/api/events/aggregate?experiment=${encodeURIComponent(experiment)}`
+      `/api/events/aggregate?experiment=${encodeURIComponent(experiment)}`,
+      { headers: buildWorkspaceHeader() }
     )
       .then(async (res) => {
         if (!res.ok) throw new Error(`Status ${res.status}`);
@@ -69,7 +74,7 @@ export default function ExperimentAnalytics({
     return () => {
       cancelled = true;
     };
-  }, [experiment]);
+  }, [experiment, currentWorkspaceId]);
 
   return (
     <div className="space-y-3">

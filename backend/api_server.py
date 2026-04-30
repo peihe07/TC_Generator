@@ -112,6 +112,16 @@ JOB_TIMELINE_MAX = 50
 
 VALIDATION_LOG_MAX = 500
 
+WORKSPACE_HEADER = "x-workspace-id"
+DEFAULT_WORKSPACE_ID = "default"
+
+
+def _workspace_id(request: Request | None) -> str:
+    """Read X-Workspace-Id header; fall back to ``default`` for backwards compat."""
+    raw = request.headers.get(WORKSPACE_HEADER) if request else None
+    value = (raw or "").strip()
+    return value or DEFAULT_WORKSPACE_ID
+
 
 def _record_stream_validation_failure(
     job_id: str,
@@ -1248,7 +1258,9 @@ class TelemetryBatchRequest(BaseModel):
 
 
 @app.post("/api/events")
-def collect_events(payload: TelemetryBatchRequest) -> dict:
+def collect_events(
+    payload: TelemetryBatchRequest, request: Request
+) -> dict:
     """Append client telemetry events to the JSONL log.
 
     - 每個 event 的 name 必須在 ALLOWED_TELEMETRY_EVENTS 內，否則整批拒絕
@@ -1264,6 +1276,7 @@ def collect_events(payload: TelemetryBatchRequest) -> dict:
             detail=f"batch too large (max {MAX_TELEMETRY_BATCH})",
         )
 
+    workspace_id = _workspace_id(request)
     now_ms = int(datetime.utcnow().timestamp() * 1000)
     serialized: list[str] = []
     for event in events:
@@ -1276,6 +1289,7 @@ def collect_events(payload: TelemetryBatchRequest) -> dict:
             "name": event.name,
             "props": event.props,
             "experiments": event.experiments,
+            "workspaceId": workspace_id,
             "ts": ts,
             "received_at": now_ms,
         }
@@ -1356,22 +1370,31 @@ def _event_variant(record: dict, experiment: str | None) -> str | None:
 
 
 @app.get("/api/events/aggregate")
-def events_aggregate(experiment: str | None = None) -> dict:
+def events_aggregate(
+    request: Request, experiment: str | None = None
+) -> dict:
     """Read the append-only telemetry JSONL and aggregate experiment metrics.
 
-    This endpoint is intentionally read-only and tolerant of malformed lines:
-    bad historical rows are counted under `malformedLines` instead of breaking
-    the dashboard.
+    Tolerant of malformed lines (counted under ``malformedLines``).
+
+    When the X-Workspace-Id header is present, only events tagged with that
+    workspace are counted. Header absent = aggregate across all workspaces
+    (useful for ops dashboards).
     """
     log_path = telemetry_log_path()
     variants: dict[str, dict] = {}
     unknown_variant = _empty_event_bucket()
     total_events = 0
     malformed_lines = 0
+    workspace_filter = (
+        request.headers.get(WORKSPACE_HEADER) if request else None
+    )
+    workspace_filter = (workspace_filter or "").strip() or None
 
     if not log_path.exists():
         return {
             "experiment": experiment,
+            "workspaceId": workspace_filter,
             "totalEvents": 0,
             "malformedLines": 0,
             "variants": {},
@@ -1396,6 +1419,12 @@ def events_aggregate(experiment: str | None = None) -> dict:
         if not isinstance(event_name, str):
             total_events += 1
             continue
+        # Workspace filter (Phase C-S2). Older rows without workspaceId map
+        # to the default bucket so legacy data isn't silently dropped.
+        if workspace_filter is not None:
+            event_ws = record.get("workspaceId") or DEFAULT_WORKSPACE_ID
+            if event_ws != workspace_filter:
+                continue
 
         total_events += 1
         variant = _event_variant(record, experiment)
@@ -1415,6 +1444,7 @@ def events_aggregate(experiment: str | None = None) -> dict:
     }
     return {
         "experiment": experiment,
+        "workspaceId": workspace_filter,
         "totalEvents": total_events,
         "malformedLines": malformed_lines,
         "variants": finalized_variants,
@@ -2058,6 +2088,7 @@ def spec_library_usage(name: str) -> dict:
 
 @app.post("/api/parse")
 async def parse_workbook(
+    request: Request,
     raw_file: UploadFile = File(...),
     reference_file: UploadFile | None = File(default=None),
     sys1_file: UploadFile | None = File(default=None),
@@ -2104,7 +2135,7 @@ async def parse_workbook(
                 handle.write(spec_bytes)
 
         try:
-            return parse_workbook_tool(
+            result = parse_workbook_tool(
                 raw_path=raw_path,
                 raw_filename=raw_filename,
                 reference_path=reference_path,
@@ -2116,6 +2147,16 @@ async def parse_workbook(
             )
         except ToolError as exc:
             raise _tool_error_to_http(exc) from exc
+
+        # Tag the freshly-created job with the caller's workspace so future
+        # listings / analytics can scope by workspace (Phase C-S2).
+        new_job_id = result.get("jobId") if isinstance(result, dict) else None
+        if isinstance(new_job_id, str):
+            stored = JOB_REGISTRY.get(new_job_id)
+            if isinstance(stored, dict):
+                stored["workspaceId"] = _workspace_id(request)
+                JOB_REGISTRY[new_job_id] = stored
+        return result
 
 
 @app.post("/api/group")
@@ -2210,6 +2251,9 @@ async def create_generate_job(payload: GenerateRequest, request: Request) -> dic
         "rows": [row.model_dump() for row in payload.rows],
         "config": payload.config.model_dump(),
         "totalRows": total_rows,
+        # Phase C-S2: tag with workspace if not already set; existing tag
+        # (e.g. from /api/parse) wins so multiple stages stay consistent.
+        "workspaceId": job_record.get("workspaceId") or _workspace_id(request),
     }
     if payload.templateId:
         update_fields["templateId"] = payload.templateId

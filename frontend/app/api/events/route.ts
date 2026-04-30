@@ -7,9 +7,13 @@ export const runtime = "nodejs";
 export async function POST(request: Request) {
   try {
     const body = await request.text();
+    const wsId = request.headers.get("x-workspace-id");
     return await proxyJsonResponse("/api/events", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(wsId ? { "X-Workspace-Id": wsId } : {}),
+      },
       body,
     });
   } catch (error) {
