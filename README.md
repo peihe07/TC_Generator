@@ -113,6 +113,18 @@ python backend/main.py \
   --batch-size 5
 ```
 
+Review existing TCs against ASPICE SWE.6 (no generation):
+
+```bash
+python backend/main.py --review \
+  --input path/to/existing_tcs.xlsx \
+  --output-dir output
+```
+
+Outputs `output/findings.json` (full §9 schema) and `output/findings_report.md`
+(human-readable). Add `--dry-run` to run only the regex pre-pass without
+calling the LLM.
+
 ## CLI Options
 
 - `--input`: required TC specification `.xlsx`
@@ -127,6 +139,7 @@ python backend/main.py \
 - `--dry-run`: skip API calls and only print estimated cost
 - `--budget`: maximum allowed spend in USD; default is `5.0`
 - `--strict-validation`: treat validation warnings as failures
+- `--review`: switch to review mode; audits existing TCs and writes `findings.json` + `findings_report.md` to `--output-dir`. Incompatible with generate-only flags (`--sys1`, `--spec`, `--framework`, `--mode`, `--rows`, `--batch-size`, `--strict-validation`)
 
 ## Current Frontend Architecture
 

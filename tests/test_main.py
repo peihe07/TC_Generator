@@ -4,7 +4,7 @@ from openpyxl import Workbook
 from unittest.mock import patch
 from openpyxl import load_workbook
 
-from main import parse_args, _filter_rows, _estimate_cost, run
+from main import parse_args, _filter_rows, _estimate_cost, _reject_generate_flags, main, run
 
 
 @pytest.fixture
@@ -242,3 +242,73 @@ class TestRunGeneration:
         assert exit_code == 0
         output_path = tmp_path / "out" / "Test_SWQT_DeviceManager_20260408_generated.xlsx"
         assert output_path.exists()
+
+
+# ---------------------------------------------------------------------------
+# --review CLI mode
+# ---------------------------------------------------------------------------
+
+
+def _build_review_workbook(tmp_path):
+    fp = tmp_path / "Review_SWQT_Projection_20260502.xlsx"
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Product Document"
+    ws.cell(row=3, column=2, value="Projection")
+    ws_tc = wb.create_sheet("Test Case Specification&Result")
+    headers = {4: "Req ID", 6: "TC ID", 9: "Test Item", 10: "Pre-Cond",
+               12: "Procedure", 13: "ER", 14: "Spec Ref", 16: "Priority", 17: "Design Method"}
+    for col, name in headers.items():
+        ws_tc.cell(row=9, column=col, value=name)
+    ws_tc.cell(row=10, column=4, value="REQ-A")
+    ws_tc.cell(row=10, column=6, value="TC-A-1")
+    ws_tc.cell(row=10, column=9, value="the HU shall display the icon")
+    ws_tc.cell(row=10, column=12, value="1. Open menu.\n2. Confirm icon visible.")
+    ws_tc.cell(row=10, column=13, value="1. Menu opens.\n2. Icon shown.")
+    ws_tc.cell(row=10, column=16, value="P1")
+    ws_tc.cell(row=10, column=17, value="Functional")
+    wb.save(fp)
+    return str(fp)
+
+
+class TestReviewMode:
+    def test_review_flag_parses(self):
+        args = parse_args(["--input", "x.xlsx", "--review"])
+        assert args.review is True
+
+    def test_review_rejects_generate_only_flags(self):
+        args = parse_args([
+            "--input", "x.xlsx", "--review",
+            "--mode", "incremental", "--batch-size", "10",
+        ])
+        err = _reject_generate_flags(args)
+        assert err is not None
+        assert "--mode" in err and "--batch-size" in err
+
+    def test_review_accepts_shared_flags(self):
+        args = parse_args([
+            "--input", "x.xlsx", "--review",
+            "--output-dir", "out", "--model", "gpt-5", "--dry-run", "--budget", "2.0",
+        ])
+        assert _reject_generate_flags(args) is None
+
+    def test_review_dry_run_writes_outputs(self, tmp_path):
+        fp = _build_review_workbook(tmp_path)
+        out = tmp_path / "review_out"
+        exit_code = main([
+            "--input", fp, "--review",
+            "--output-dir", str(out), "--dry-run",
+        ])
+        assert exit_code == 0
+        assert (out / "findings.json").is_file()
+        assert (out / "findings_report.md").is_file()
+
+    def test_review_main_returns_2_when_misused(self, tmp_path, capsys):
+        fp = _build_review_workbook(tmp_path)
+        exit_code = main([
+            "--input", fp, "--review",
+            "--mode", "incremental",
+        ])
+        assert exit_code == 2
+        captured = capsys.readouterr()
+        assert "generate-only flags" in captured.err

@@ -75,7 +75,80 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Treat validation warnings as failures and skip writing invalid rows",
     )
+    p.add_argument(
+        "--review",
+        action="store_true",
+        help="Audit existing TCs against ASPICE SWE.6 instead of generating new ones. "
+             "Outputs findings.json + findings_report.md in --output-dir.",
+    )
     return p.parse_args(argv)
+
+
+# CLI flags that belong only to the generate path. When --review is passed,
+# any of these (set to a non-default value) is rejected so the user does not
+# silently mix modes.
+_GENERATE_ONLY_DEFAULTS = {
+    "sys1": None,
+    "spec": None,
+    "framework": None,
+    "rows": None,
+    "mode": "full",
+    "batch_size": 5,
+    "strict_validation": False,
+}
+
+
+def _reject_generate_flags(args: argparse.Namespace) -> str | None:
+    """Return an error message if generate-only flags were used with --review."""
+    bad = [
+        flag for flag, default in _GENERATE_ONLY_DEFAULTS.items()
+        if getattr(args, flag) != default
+    ]
+    if not bad:
+        return None
+    pretty = ", ".join(f"--{f.replace('_','-')}" for f in bad)
+    return (
+        f"--review does not accept generate-only flags: {pretty}. "
+        "Run review separately or omit those flags."
+    )
+
+
+def run_review(args: argparse.Namespace) -> int:
+    """Review-mode entry point. Mirrors `run` shape but routes through
+    `review_engine.review_workbook`."""
+    from review_engine import review_workbook  # local import to keep generate path lean
+
+    print(f"\n{'='*60}")
+    print("TC Review — ASPICE SWE.6")
+    print(f"{'='*60}\n")
+    print(f"Input: {args.input}")
+    print(f"Output dir: {args.output_dir}")
+    print(f"Model: {args.model}")
+    print(f"Dry run: {args.dry_run}")
+
+    os.makedirs(args.output_dir, exist_ok=True)
+    report = review_workbook(
+        workbook_path=args.input,
+        output_dir=args.output_dir,
+        model=args.model,
+        dry_run=args.dry_run,
+    )
+
+    summary = report["batch_summary"]
+    counts = summary["verdict_counts"]
+    meta = report["batch_meta"]
+    print(f"\n{'='*60}")
+    print("Review Summary")
+    print(f"  Source: {meta['source_file']}")
+    print(f"  Total TCs: {meta['total_tcs']} across {meta['total_req_groups']} Req groups")
+    print(f"  Pass: {counts['pass']}  Pass with issues: {counts['pass_with_issues']}  Fail: {counts['fail']}")
+    print(f"  Tier 1 findings: {len(report['per_req_findings'])}")
+    print(f"  Tier 2/3 TC entries: {len(report['per_tc_findings'])}")
+    print(f"\n  Reasoning: {summary['reasoning']}")
+    print(f"\n  Wrote: {args.output_dir}/findings.json")
+    print(f"         {args.output_dir}/findings_report.md")
+    print(f"{'='*60}\n")
+    return 0
 
 
 def _filter_rows(rows: list[dict], mode: str, target_rows: str | None) -> list[dict]:
@@ -358,6 +431,12 @@ def run(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.review:
+        err = _reject_generate_flags(args)
+        if err:
+            print(f"Error: {err}", file=sys.stderr)
+            return 2
+        return run_review(args)
     return run(args)
 
 
