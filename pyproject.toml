@@ -11,6 +11,7 @@ dependencies = [
     "python-multipart",
     "python-docx",
     "python-dotenv",
+    "pyyaml",
     "uvicorn",
 ]
 
@@ -37,6 +38,8 @@ py-modules = [
     "main",
     "parser",
     "prompt_builder",
+    "review_engine",
+    "review_prompt_builder",
     "spec_matcher",
     "spec_parser",
     "validator",
