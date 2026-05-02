@@ -1,0 +1,583 @@
+# ASPICE SWE.6 Review Rules Table
+# Source: ASPICE_SWE6_AI_Review_v2_2.md
+# Generated: 2026-05-02
+#
+# Field reference:
+#   id              – rule code (§6.x / §7.x / §8.x.y)
+#   tier            – 1 / 2 / 3
+#   field           – which TC field this rule scrutinises
+#   severity        – Critical / Major / Minor / Info
+#   short_title     – 4-8 word English label for dashboards
+#   detect          – plain-English description of the trigger
+#   detect_pattern  – machine-runnable hint (regex / keyword list / requires_llm)
+#   bilingual       – whether ZH and EN triggers must be checked separately
+#   exception       – when not to fire (or empty)
+#   suggestion_template – pattern for the rewrite proposal
+#   notes           – cross-rule interactions, schema specifics
+
+version: "v2.2"
+language_policy:
+  finding_text: zh-Hant   # issue / reasoning / suggestion_note
+  rewrite: source_language # original / revised follow source field
+
+# ----------------------------------------------------------------------------
+# TIER 1 — Requirement Decomposition (per Req group)
+# ----------------------------------------------------------------------------
+
+tier1:
+  - id: "§6.1"
+    tier: 1
+    field: req_group
+    severity: Critical
+    short_title: "Missing supported/negative pair"
+    detect: |
+      Req spec句 contains binary phrasing (supports/supported, enabled/valid,
+      if...allow, permitted) but TC group covers only the affirmative path.
+    detect_pattern:
+      keywords_en: [supports, supported, enabled, valid format, "if .* allow", permitted]
+      keywords_zh: [支援, 允許, 有效, 啟用]
+      requires_llm: false   # presence detection + counterpart check
+    suggestion_template: |
+      Provide stub for missing negative TC: test_item / pre_conditions /
+      test_procedure_outline. Stub language matches dominant language of group.
+    notes: "stub required"
+
+  - id: "§6.2"
+    tier: 1
+    field: req_group
+    severity: Critical
+    short_title: "Missing boundary axis"
+    detect: |
+      Req spec句 mentions numeric limit / threshold / range / count
+      (up to N, at least N, within N seconds, maximum N) but TCs only test
+      mid-range, not =limit / limit±1 / =0.
+    detect_pattern:
+      regex_en: '(up to|at least|within|maximum|minimum|less than|greater than)\s+\d+'
+      regex_zh: '(最多|至少|小於|大於|不超過|範圍)\s*\d+'
+      regex_units: '\d+\s*(秒|s|sec|分鐘|min|次|times|小時|hours|Hz|kHz|dB|RMS|%|ms)'
+      requires_llm: false
+    suggestion_template: |
+      List missing boundary cases with one-line rationale each (=limit, limit±1, =0).
+    notes: |
+      v2.2 heuristic: if Req group has only one multi-Req-ID TC AND spec contains
+      measurement thresholds (RMS=2500, <1%, 100Hz-4000Hz), §6.2 almost always fires.
+    stub_required: true
+
+  - id: "§6.3"
+    tier: 1
+    field: req_group
+    severity: Critical
+    short_title: "Missing enumeration coverage"
+    detect: |
+      Req spec句 enumerates supported items (A2DP/HFP/AVRCP; USB-A/USB-B;
+      MP3/WAV/FLAC) — TC group covers only a subset.
+    detect_pattern:
+      regex_separator: '([A-Z][A-Za-z0-9-]+(/|，|,|、)){2,}'
+      requires_llm: true   # needs to parse actual enumeration list
+    suggestion_template: "List each missing enumerated item."
+    stub_required: true
+
+  - id: "§6.4"
+    tier: 1
+    field: req_group
+    severity: Major
+    short_title: "Sibling axis ambiguous"
+    detect: |
+      Req group has 2+ TCs that read identically except trivial wording, AND
+      no Test Item carries an explicit distinguishing token (no scenario tag).
+    detect_pattern:
+      requires_llm: false   # exact-match comparison + token presence
+    suggestion_template: |
+      Rewrite Test Items in scenario-tag shape — name the differentiating
+      data / device / branch / boundary axis.
+    stub_required: false
+
+  - id: "§6.5"
+    tier: 1
+    field: req_group
+    severity: Critical
+    short_title: "Spec句 inconsistent across siblings"
+    detect: |
+      2+ TCs in the group carry different English shall/must/should sentences.
+      Means TCs cite different spec versions; traceability broken.
+    detect_pattern:
+      requires_llm: false   # set comparison of extracted spec句 strings
+    suggestion_template: |
+      Identify canonical spec句 (typically longest / most detailed); flag others
+      for reconciliation. Do NOT auto-rewrite — reviewer must confirm version.
+    stub_required: false
+
+  - id: "§6.6"
+    tier: 1
+    field: req_group
+    severity: Major   # v2.1 raised from Info
+    short_title: "Tier 1 not executable (no spec句)"
+    detect: |
+      No TC in the group carries an English spec句 with shall/must/should.
+      Tier 1 cannot anchor decomposition checks; Tier 2 spec-comparison rules
+      will all skip for this group.
+    detect_pattern:
+      regex: '\b(shall|must|should)\b'
+      flags: IGNORECASE
+      requires_llm: false
+    suggestion_template: |
+      Locate canonical Req spec from upstream (Polarion / SWRA) and paste into
+      Test Item of at least one TC. Tier 3 §8.3.6 fallback runs as compensation.
+    stub_required: false   # omit
+    triggers_skip:
+      - tier: 2
+        scope: req_group
+      # Tier 3 still runs; §8.3.6 fallback activates
+
+  - id: "§6.7"
+    tier: 1
+    field: tc                   # unusual — flagged on the TC but recorded in per_req_findings
+    severity: Major
+    short_title: "Multi-Req-ID in single TC"
+    detect: |
+      Requirement or Design ID cell contains multiple Req IDs separated by newline,
+      OR Test Item uses [REQ-ID] bracket tags to delimit multiple spec句 segments.
+    detect_pattern:
+      requires_llm: false
+      cell_check: 'split(req_id, "\n") | filter(non_empty) | length >= 2'
+      bracket_tags: '\[[A-Z][A-Z0-9-]+\]'
+    exception: |
+      Test tools producing multiple measurements simultaneously (e.g. PCTS-MT1
+      sensitivity + distortion in one run). Still flag, but suggestion_note
+      marks operational infeasibility of split.
+    suggestion_template: |
+      Prefer splitting into separate TCs (one per Req). If splitting infeasible
+      due to test-tool coupling, rewrite Test Item as compound objective with
+      both Req IDs explicitly named, AND ensure ER has separate observable
+      outcomes per Req — "1. <Req-A outcome>; 2. <Req-B outcome>".
+    stub_required: false   # optional
+    schema:
+      record_in: per_req_findings
+      req_id_format: "comma-joined"
+      example: "SWE1-PROJ-212, SWE1-PROJ-213"
+      scope_tcs: [single TC ID]
+      duplicate_under_constituent_groups: false
+    group_participation: |
+      TC is registered under EACH constituent Req ID for §6.1–§6.5 grouping.
+      Each Req group runs §6.1–§6.5 independently using only the spec句
+      segment matching that Req ID's [REQ-ID] tag.
+
+# ----------------------------------------------------------------------------
+# TIER 2 — TC ↔ Requirement Alignment (per TC)
+# ----------------------------------------------------------------------------
+# Skipped entirely if TC's Req group is tier1_skipped (i.e. §6.6 fired).
+
+tier2:
+  evidence_req_spec_format:
+    single_req: "verbatim quote of Req spec句"
+    multi_req_both: "[REQ-A] <spec句 A>\\n[REQ-B] <spec句 B>"
+    multi_req_one: "quote only the relevant Req's segment"
+    empty_disallowed: true
+
+  - id: "§7.1"
+    tier: 2
+    field: test_item
+    severity: Critical
+    short_title: "Test Item outcome not in Req spec句"
+    detect: |
+      Test Item's outcome clause references behavior, signal, or UI element
+      not present in Req spec句 nor broader Req context.
+    detect_pattern:
+      requires_llm: true   # semantic comparison of outcome vs spec
+    suggestion_template: |
+      Rewrite Test Item to describe Req's stated outcome. If test target is
+      intentionally derived behavior, it needs its own Req ID.
+
+  - id: "§7.2"
+    tier: 2
+    field: expected_result
+    severity: Major   # Critical if ER addresses NO Req outcome elements
+    severity_critical_if: "ER addresses NONE of Req's outcome elements"
+    short_title: "ER misses Req outcome elements"
+    detect: |
+      Req spec句 enumerates outcome elements (dialog with Confirm and Cancel
+      buttons, connect AND launch projection, disconnect A2DP AND HFP); ER
+      covers only a subset.
+    detect_pattern:
+      requires_llm: true   # element extraction + coverage check
+    suggestion_template: |
+      Enumerate every observable element from Req spec句; rewrite ER to include all.
+
+  - id: "§7.3"
+    tier: 2
+    field: pre_cond
+    severity: Major
+    short_title: "Pre-Cond duplicates Req trigger"
+    detect: |
+      Req spec句 specifies trigger ("when user selects to pair", "if user
+      requests to connect"); Pre-Cond states this trigger as already-true
+      rather than upstream state.
+    detect_pattern:
+      requires_llm: true   # trigger semantics vs precondition state
+    suggestion_template: |
+      Replace target-state Pre-Cond with upstream state; move the trigger
+      action into Test Procedure step 1.
+
+  - id: "§7.4"
+    tier: 2
+    field: [test_procedure, expected_result]
+    severity: Critical
+    short_title: "Fabricated numeric value vs Req"
+    detect: |
+      Procedure or ER contains specific numbers (durations, counts, sizes,
+      retries, timeouts) that do NOT appear in Req spec句, AND do NOT appear
+      in Specification Reference column.
+    detect_pattern:
+      regex: '(\d+)\s*(秒|s|sec|分鐘|min|次|times|小時|hours|ms|分)'
+      requires_llm: false
+      requires_spec_句_lookup: true   # absent from Req spec
+      requires_spec_ref_lookup: true  # absent from Specification Reference
+    exception: "domain constants (BT PIN 0000, HTTP 200 OK, SI units in standard form)"
+    suggestion_template: |
+      Replace with <value defined in spec> placeholder, OR cite the spec
+      section in Specification Reference, OR remove if not Req-driven.
+    mutual_exclusion:
+      - "§8.3.6"   # never both fire on same value
+
+  - id: "§7.5"
+    tier: 2
+    field: test_procedure
+    severity: Critical
+    short_title: "Final Step launches tool, no result read"
+    detect: |
+      Final step main verb is 執行 / Run / Execute / 啟動 / 開始 / 點選...開始
+      followed by a test tool / suite name (PCTS-MT1, PCTS-PT1, Facets-XXXX,
+      ATS, PCTS-NavigationStatusTests), AND no subsequent step reads the
+      tool's verdict (確認 / 對照 / 結果符合 / Pass).
+    detect_pattern:
+      verbs_zh: [執行, 啟動, 開始, "點選.*開始", 點擊]
+      verbs_en: [Run, Execute, Launch, Start, Click.*start]
+      tool_names: [PCTS-MT1, PCTS-PT1, PCTS-NavigationStatusTests, "PCTS-[A-Z0-9]+", "Facets-[A-Z0-9]+", ATS, "PCTS-[A-Z]+"]
+      verification_followups_zh: [確認, 對照, 結果符合, 通過, 讀取, 查看.*報告]
+      verification_followups_en: [Confirm, Verify (in purpose clause only), pass, "read.*report"]
+      requires_llm: false
+    suggestion_template: |
+      Append verification step: "N+1. Confirm <tool> result report shows
+      <pass criteria>" / "N+1. 確認 <工具> 結果報告為 <通過條件>".
+    distinguishes_from: "§8.3.5"   # §7.5 = implicit deferral, §8.3.5 = no check at all
+
+# ----------------------------------------------------------------------------
+# TIER 3 — TC Writing Quality (per TC)
+# ----------------------------------------------------------------------------
+# Always runs, even for tier1_skipped Req groups.
+# §8.3.6 fallback only activates when Req group is tier1_skipped.
+
+tier3:
+
+  # ======== 8.1 Test Item ========
+  - id: "§8.1.1"
+    tier: 3
+    field: test_item
+    severity: Major
+    short_title: "Test Item length out of range"
+    detect: ">14 words EN or ~35 chars ZH"
+    detect_pattern:
+      word_count_en_max: 14
+      char_count_zh_max: 35
+      requires_llm: false
+    suggestion_template: "Trim to shortest form naming trigger or scenario."
+
+  - id: "§8.1.2"
+    tier: 3
+    field: test_item
+    severity: Major
+    short_title: "Modal/hedge wording in Test Item"
+    detect_pattern:
+      keywords_en: [should, will, properly, successfully, "within reasonable time"]
+      keywords_zh: [應該, "會 ", 正常地, 成功地, 合理時間內, 如預期]
+      requires_llm: false
+    suggestion_template: "Replace with concrete observable outcome."
+
+  - id: "§8.1.3"
+    tier: 3
+    field: test_item
+    severity: Info
+    short_title: "Multi-language collision"
+    detect: |
+      Field contains both English sentence AND Chinese sentence (often 3+ versions:
+      EN spec / Simplified ZH explanation / Traditional ZH rewrite / EN tag).
+    detect_pattern:
+      detect_en: '\b(shall|must|should|will|the)\b'
+      detect_zh_simp: '[\u4e00-\u9fff].*[简体]?'
+      detect_zh_trad: '[\u4e00-\u9fff]'
+      separator_indicators: ['\n\n', '|', '/']
+      requires_llm: false
+    suggestion_template: |
+      Keep variant carrying most actionable scenario detail (typically the
+      ZH-Traditional rewrite or short EN tag). Move EN spec to Specification
+      Reference column.
+
+  - id: "§8.1.4"
+    tier: 3
+    field: test_item
+    severity: Major
+    short_title: "Sibling-distinction token missing"
+    detect: |
+      Test Item identical to siblings under same Req. Skip if Tier 1 §6.4
+      already flagged at group level.
+    detect_pattern:
+      requires_llm: false
+    suggestion_template: "Rewrite using scenario-tag shape."
+    suppressed_by: "§6.4"
+
+  - id: "§8.1.5"
+    tier: 3
+    field: test_item
+    severity: Critical   # only if Requirement ID is also blank
+    severity_otherwise: Major
+    short_title: "No spec sentence nor traceable Req"
+    detect: |
+      Test Item lacks English spec句 (shall/must/should). Critical only if
+      Requirement ID column is also blank; else Major (and group-level §6.6
+      will likely fire too).
+
+  # ======== 8.2 Pre-Condition ========
+  - id: "§8.2.1"
+    tier: 3
+    field: pre_cond
+    severity: Major
+    short_title: "Action verb in Pre-Cond"
+    detect_pattern:
+      verbs_en: [Insert, Press, Connect, Open, Tap, Launch, Send, Configure, Run, Execute]
+      verbs_zh: [插入, 按下, 點擊, "開啟（作為動作）", 啟動, 傳送, 設定, 執行]
+      sequence_words_zh: [依次, 先後, 依序]
+      heuristic: "If line could plausibly start a Test Procedure step, it's an action."
+      requires_llm: false
+    suggestion_template: |
+      Move action into Test Procedure step 1; rewrite Pre-Cond as resulting state
+      (Bluetooth is enabled / 藍牙已開啟).
+
+  - id: "§8.2.2"
+    tier: 3
+    field: pre_cond
+    severity: Major
+    short_title: "Verification verb in Pre-Cond"
+    detect_pattern:
+      verbs_en: [Check, Verify, Confirm, Observe, Read]
+      verbs_zh: [檢查, 確認, 查看, 觀察, 讀取, 是否]
+      requires_llm: false
+    suggestion_template: |
+      Pre-Conditions are static facts. Remove verification clause; if proof needed,
+      move to Setup step in Test Procedure with its own ER.
+
+  - id: "§8.2.3"
+    tier: 3
+    field: pre_cond
+    severity: Minor
+    short_title: "System default stated as Pre-Cond"
+    detect_pattern:
+      keywords_en: ["HU is powered on", "System has booted", "device is charged"]
+      keywords_zh: [車機已開機, 系統已啟動, 系統已開機]
+      requires_llm: false
+    suggestion_template: "Remove. Only state preconditions that vary across TCs."
+
+  - id: "§8.2.4"
+    tier: 3
+    field: pre_cond
+    severity: Critical
+    short_title: "Feature-under-test stated as ready"
+    detect: |
+      Pre-Cond declares feature being tested as already in target state
+      (e.g. testing CarPlay connection but Pre-Cond says "CarPlay is connected").
+    detect_pattern:
+      requires_llm: true   # needs cross-reference to Test Item subject
+    suggestion_template: |
+      Replace with upstream prerequisite state (Phone supports CarPlay /
+      手機支援 CarPlay); have Test Procedure establish the feature state.
+
+  - id: "§8.2.5"
+    tier: 3
+    field: pre_cond
+    severity: Minor
+    short_title: "Pre-Cond bound to specific instance"
+    detect_pattern:
+      keywords: ["pixel 裝置", "iPhone 14", "iPhone 15", "Galaxy S23", "specific model name"]
+      regex: '(pixel|iPhone|Galaxy|Pixel)\s*\d+'
+      requires_llm: false
+    suggestion_template: |
+      Abstract to capability description (手機支援 Android Auto, phone supports CarPlay).
+
+  # ======== 8.3 Test Procedure ========
+  - id: "§8.3.1"
+    tier: 3
+    field: test_procedure
+    severity: Major
+    short_title: "Forbidden verb / guessing tone"
+    detect_pattern:
+      verbs_en: [observe, "see if", "check whether", "confirm whether", verify, watch, monitor, inspect]
+      verbs_zh: [觀察, 查看, 檢視, 看看, 是否, 確認是否, 留意]
+      verb_position: "main verb only — `... to verify that ...` purpose clause is OK"
+      requires_llm: false
+    suggestion_template: |
+      Rewrite using preferred verbs + concrete observable target — Check that
+      <X> is displayed on <Y> / 確認 <Y> 上顯示 <X>. The verification target
+      MUST be a UI element, log line, signal name, count, or named state.
+
+  - id: "§8.3.2"
+    tier: 3
+    field: test_procedure
+    severity: Major
+    short_title: "Step lacking executable content"
+    detect_pattern:
+      patterns_zh: ['是否可以.*$', '應該.*$']
+      patterns_en: ['should be able to', 'might', 'may']
+      requires_llm: false
+    suggestion_template: "Convert to imperative action with deterministic target."
+
+  - id: "§8.3.3"
+    tier: 3
+    field: test_procedure
+    severity: Major
+    short_title: "Single-step procedure"
+    detect: "Test Procedure has only one numbered step."
+    detect_pattern:
+      regex: '^\d+[.\s]'
+      multiline: true
+      count_max: 1
+      requires_llm: false
+
+  - id: "§8.3.4"
+    tier: 3
+    field: test_procedure
+    severity: Minor
+    short_title: "Step numbering anomaly"
+    detect: "Duplicate numbering (5 and 5. both exist) or ambiguous self-reference."
+    detect_pattern:
+      duplicate_regex: '^(\d+)[.\s].*?\n.*?^\1[.\s]'
+      ambiguous_self_ref: '步驟\d+\.\d+'
+      requires_llm: false
+
+  - id: "§8.3.5"
+    tier: 3
+    field: test_procedure
+    severity: Critical
+    short_title: "Final Step has no check target"
+    detect: |
+      Last step is a pure action (Select the CarPlay icon, 點選 CarPlay 圖示)
+      WITHOUT any "Check that... / 確認..." clause.
+    detect_pattern:
+      requires_llm: false
+    suggestion_template: |
+      Rewrite as "<action> and check that <observable outcome>" /
+      "<動作>，並確認 <可觀察結果>".
+    distinguishes_from: "§7.5"   # §8.3.5 = no check at all; §7.5 = tool launched but result unread
+
+  - id: "§8.3.6"
+    tier: 3
+    field: [test_procedure, expected_result]
+    severity: Major
+    short_title: "Fabricated value (Tier 2 fallback)"
+    detect: |
+      Procedure or ER contains specific numbers; Specification Reference is
+      empty. Fires ONLY when TC's Req group is tier1_skipped (§7.4 cannot
+      fire because no Req spec句 to compare against).
+    detect_pattern:
+      regex: '(\d+)\s*(秒|s|sec|分鐘|min|次|times|小時|hours)'
+      requires_llm: false
+      activation_condition: "tc.req_group.tier1_status == 'skipped'"
+    exception: "domain constants (BT PIN 0000, HTTP 200 OK)"
+    severity_rationale: |
+      Major rather than Critical: without Req spec句 we cannot prove fabrication —
+      only that value has no documented source. Reviewer must verify upstream.
+    suggestion_template: |
+      Add Specification Reference citation, OR replace with <value defined in
+      spec>, OR remove if not derived from any spec.
+    mutual_exclusion:
+      - "§7.4"
+
+  # ======== 8.4 Expected Result ========
+  - id: "§8.4.1"
+    tier: 3
+    field: expected_result
+    severity: Major
+    short_title: "Vague outcome wording"
+    detect_pattern:
+      keywords_en: [normal, "as expected", "works correctly", properly, successfully]
+      keywords_zh: [正常, 如預期, 運作正常, 正確顯示, 成功]
+      requires_llm: false
+
+  - id: "§8.4.2"
+    tier: 3
+    field: expected_result
+    severity: Major
+    short_title: "Step↔ER count mismatch"
+    detect: |
+      Procedure has N numbered steps requiring observation; ER has fewer
+      entries OR ER entries don't map to any step.
+    detect_pattern:
+      requires_llm: true   # alignment requires understanding which steps need verification
+
+  - id: "§8.4.3"
+    tier: 3
+    field: expected_result
+    severity: Minor
+    short_title: "ER numbering anomaly"
+    detect_pattern:
+      regex: '^(\d+)\.\1\.'   # matches "1.1." "2.2." double-numbering
+      blank_bullets: '^\s*[.•]\s*$'
+      requires_llm: false
+
+  # ======== 8.5 Priority and Design Method ========
+  - id: "§8.5.1"
+    tier: 3
+    field: priority
+    severity: Major
+    short_title: "Priority outside P0–P3"
+    detect_pattern:
+      allowed_values: [P0, P1, P2, P3]
+      common_violations: [P4, P5, High, Medium, Low, NA, ""]
+      requires_llm: false
+
+  - id: "§8.5.2"
+    tier: 3
+    field: design_method
+    severity: Major
+    short_title: "Design Method missing"
+    detect_pattern:
+      empty_check: true
+      requires_llm: false
+
+  - id: "§8.5.3"
+    tier: 3
+    field: design_method
+    severity: Major
+    short_title: "Design Method inconsistent with Procedure"
+    detect: |
+      Method does not match procedure shape:
+        BVA but no boundary tested → mismatch
+        State Transition but no state-change verification → mismatch
+        Negative/Invalid but procedure tests valid input → mismatch
+        Fault Injection but no simulated fault → mismatch
+        Scenario/Use Case with only 1–2 steps → mismatch
+    detect_pattern:
+      requires_llm: true   # method-vs-procedure semantic alignment
+
+# ----------------------------------------------------------------------------
+# Cross-rule interactions (for engine sequencing)
+# ----------------------------------------------------------------------------
+interactions:
+  mutual_exclusions:
+    - rules: ["§7.4", "§8.3.6"]
+      condition: "Same numeric value. §8.3.6 fires only when TC's Req group is tier1_skipped."
+
+  suppressions:
+    - suppressed: "§8.1.4"
+      suppressor: "§6.4"
+      reason: "Tier 1 already flagged sibling-axis at group level."
+
+  tier_skip_conditions:
+    - condition: "§6.6 fired on Req group"
+      effect: "Skip Tier 2 (§7.1–§7.5) for all TCs in group; Tier 3 still runs; §8.3.6 activates."
+
+# ----------------------------------------------------------------------------
+# Severity ceilings per Tier
+# ----------------------------------------------------------------------------
+severity_ceilings:
+  tier1: Critical
+  tier2: Critical
+  tier3: Major
