@@ -26,6 +26,7 @@ For the full user action → API → backend → AI → state mapping, see
 | Create generate job | POST | `/api/generate` | `/api/generate` | JSON | Generate | Queues rows/config in backend job store. Next.js rewrites returned `streamUrl` to same-origin `/api/generate/stream?jobId=...`. |
 | Generate stream | GET | `/api/generate/stream?jobId=...` | `/api/generate/stream?jobId=...` | SSE | Generate | Emits `job.started`, split/row events, `job.completed`; batch usage is persisted as generation progresses. |
 | Review fix suggestion | POST | `/api/review/suggest-fix` | `/api/review/suggest-fix` | JSON | Review / ValidationPanel | Single-shot AI suggestion for one row with validation errors; no chat session. |
+| Audit (SWE.6 review) | POST | `/api/audit` | `/api/audit` | `multipart/form-data` | AuditModule | One-shot ASPICE SWE.6 review of an uploaded workbook. Returns the §9-shaped findings JSON (Tier 1 per-Req + Tier 2/3 per-TC + batch summary). `dry_run=true` skips the LLM and runs only the regex pre-pass. |
 | Regenerate stream | POST | `/api/jobs/[jobId]/regenerate/stream` | `/api/jobs/{job_id}/regenerate/stream` | SSE | Review | Uses reviewer reason when provided. `regen.started` carries base usage; history records delta. |
 | Re-run stream | POST | `/api/jobs/[jobId]/rerun/stream` | `/api/jobs/{job_id}/rerun/stream` | SSE | Review | Re-runs selected rows through full decompose + generate pipeline. `rerun.started` carries base usage. |
 | Job usage | GET | `/api/jobs/[jobId]/usage` | `/api/jobs/{job_id}/usage` | JSON | CostMeter / dashboard | Per-job cost and token breakdown, including model-level attribution. |
@@ -288,6 +289,93 @@ Notes:
 - `suggestedReason` is the string the frontend ValidationPanel offers as
   the editable Regenerate Reason — clicking "套用為 Regenerate Reason"
   pre-fills the dialog opened by the toolbox Regenerate button.
+
+### `POST /api/audit`
+
+Proxy to Python `POST /api/audit`.
+
+ASPICE SWE.6 audit (review pipeline). Distinct from `/api/review/suggest-fix`,
+which is a per-TC narrow assist; this endpoint runs the full Three-Tier
+review of an entire workbook against `docs/ASPICE_SWE6_AI_Review.md`.
+
+Request: `multipart/form-data`
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `workbook` | file | yes | `.xlsx` / `.xlsm`. Same shape the Generate path expects (`Test Case Specification&Result` sheet, header row 9). |
+| `dry_run` | string | no | `"true"` (default) skips LLM and runs only the regex pre-pass; `"false"` enables LLM-driven rules (§6.1/§6.3/§7.1/§7.2/§7.3/§8.2.4/§8.4.2/§8.5.3). |
+| `model` | string | no | Model id for LLM rules; defaults to `DEFAULT_MODEL`. Ignored when `dry_run=true`. |
+
+Response: §9-shaped findings JSON.
+
+```json
+{
+  "batch_meta": {
+    "source_file": "audit_in.xlsx",
+    "sheet": "Test Case Specification&Result",
+    "total_tcs": 602,
+    "total_req_groups": 87,
+    "reviewed_at": "2026-05-02T10:30:00+00:00"
+  },
+  "per_req_findings": [
+    {
+      "req_id": "SWE1-PROJ-212, SWE1-PROJ-213",
+      "tier": 1,
+      "rule_ref": "§6.7",
+      "severity": "Major",
+      "scope_tcs": ["TC-PROJ-212-001"],
+      "issue": "...",
+      "evidence_req_spec": "",
+      "suggestion_note": "..."
+    }
+  ],
+  "per_tc_findings": [
+    {
+      "tc_id": "TC-PROJ-212-001",
+      "row": 480,
+      "overall_verdict": "fail",
+      "findings": [
+        {
+          "tier": 2,
+          "field": "test_procedure",
+          "step_index": 5,
+          "rule_ref": "§7.5",
+          "severity": "Critical",
+          "issue": "Final Step 啟動 PCTS-MT1 但未讀取結果",
+          "evidence": "5. Run PCTS-MT1 to start measurement.",
+          "evidence_req_spec": "Audio sensitivity MUST be 2500 RMS",
+          "original": "...",
+          "revised": "",
+          "suggestion_note": "追加 6. 確認 PCTS-MT1 結果報告為通過"
+        }
+      ]
+    }
+  ],
+  "batch_summary": {
+    "verdict_counts": { "pass": 0, "pass_with_issues": 12, "fail": 590 },
+    "tier_summary": { "tier1": { "...": "..." }, "tier2": { "...": "..." }, "tier3": { "...": "..." } },
+    "reasoning": "Tier 1：... Tier 2：... Tier 3：..."
+  }
+}
+```
+
+Notes:
+
+- `tier` 1 → `per_req_findings`; tiers 2 & 3 → `per_tc_findings`. The two
+  arrays are independent; a Tier 1 Critical does NOT duplicate into
+  per-TC findings.
+- Tier 3 findings cannot emit `Critical`. The backend enforces this
+  ceiling and raises `ReviewEngineError` (HTTP 500) when a detector
+  violates it — surfacing the bug rather than silently clamping.
+- `§7.4` and `§8.3.6` are mutually exclusive on the same numeric value:
+  `§8.3.6` only fires when the TC's Req group is `tier1_skipped`
+  (i.e. §6.6 also fired); otherwise `§7.4` takes precedence.
+- `§6.7` (multi-Req-ID) is recorded ONCE in `per_req_findings` with
+  `req_id` set to the comma-joined ID list and `scope_tcs` containing
+  only the offending TC ID.
+- The endpoint is synchronous; the regex pre-pass typically completes
+  in &lt;1s for a 600-TC workbook. LLM mode (`dry_run=false`) extends
+  the call to 5–60s depending on batch count.
 
 ### `POST /api/generate`
 

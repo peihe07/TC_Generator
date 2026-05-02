@@ -1,5 +1,38 @@
 # TC Generator — 專案狀態
 
+## Recent changes (2026-05-02)
+
+ASPICE SWE.6 Review feature：與既有 Generate path 並行，**不取代**任何
+現有功能。
+
+- **Review spec & rules table**：`docs/ASPICE_SWE6_AI_Review.md`（v2.2）
+  + `backend/rules/review_rules.yaml` 雙檔案，前者 auto-load 進 review
+  prompt（mirrors `ASPICE_SWE6_AI_Instruction.md`），後者是 31 條規則的
+  機器可讀表（20 條 `requires_llm: false`、11 條需 LLM）。
+- **Backend pipeline**：`backend/review_engine.py` 完整實作 §5 Workflow ——
+  parse → group by Req ID → Tier 1（§6.x）→ Tier 2（§7.x，跳過 tier1_skipped
+  的 group）→ Tier 3（§8.x，永遠跑）→ apply mutual exclusions
+  （§7.4 ⊕ §8.3.6）+ suppressions（§6.4 → §8.1.4）→ enforce severity
+  ceilings（Tier 3 attempt to emit Critical 拋 `ReviewEngineError`）→
+  emit §9 schema findings。`review_prompt_builder.py` 鏡像
+  `prompt_builder.py` 樣式、批次餵 LLM 規則。
+- **CLI**：`python backend/main.py --review --input X.xlsx --output-dir
+  output [--dry-run]` 產 `findings.json` + `findings_report.md`。誤
+  混 generate-only flags（`--mode` / `--batch-size` / `--sys1` 等）
+  以 exit 2 拒絕。
+- **API**：`POST /api/audit`（multipart workbook upload，回 §9 JSON），
+  Next.js proxy `frontend/app/api/audit/route.ts`。
+- **Frontend**：`AuditModule.tsx`（self-contained：upload → run → batch
+  summary + Per Req / Per TC tabs + severity 篩選 + JSON 下載）。命名
+  避開既有的 `ReviewModule.tsx`（per-TC validation），endpoint 用
+  `/api/audit` 避開既有 `/api/review/suggest-fix`。
+- **測試**：`tests/test_review_engine.py`（20 個，4 個 deep-dive
+  cases、mutual exclusion、suppression、ceiling enforcement、dry-run、
+  schema invariants）+ `tests/test_main.py` review CLI 5 個 +
+  `tests/test_api_server.py` audit endpoint 2 個。全 backend 528
+  tests pass。
+- **依賴**：新增 `pyyaml`（rule table 解析）。
+
 ## Recent changes (2026-04-27 ~ 2026-04-28)
 
 Review / Generate UX 系列升級，發生在 agent 移除之後：
@@ -209,6 +242,7 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 - `POST /api/export`
 - `GET /api/export/download/{jobId}`
 - `POST /api/quick-generate/stream`
+- `POST /api/audit`（ASPICE SWE.6 review pipeline，§9 schema findings）
 完整 request / response 格式請看 [API_CONTRACT.md](API_CONTRACT.md)。
 
 ---
@@ -242,7 +276,7 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 - Zustand stores：`useJobStore`（persist）/ `useWindowStore` / `useWorkspaceStore` / `useJobHistoryStore`
 - 單一 adapter 層：`services/jobAdapter.ts`
 - Same-origin Next.js proxy routes 全數可用
-- 活躍 modules：Upload / Configure / Generate / Review / Export / QuickGenerate
+- 活躍 modules：Upload / Configure / Generate / Review / Export / QuickGenerate / **Audit**（ASPICE SWE.6 三層審核，self-contained module，未掛入 desktop window manager）
 - CostMeter：Model / Input / Output / Cache W / Cache R / Hit-rate；
   標題列新增 bar-chart 小按鈕開啟 `CostDashboardPopup`（讀
   `/api/metrics/aggregate` 顯示跨 job 總 / 平均 cost 與 spec match rate）

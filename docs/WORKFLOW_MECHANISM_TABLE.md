@@ -38,6 +38,8 @@
 | Workspace: Export / Import JSON | 匯出 / 匯入 `.tcw.json` | local file APIs | 無 | 無 | 無 | 無 | 匯入後若 backend 缺 raw bytes，export 需 attach raw |
 | Dev health check | 開發者檢查 backend | curl / smoke check | N/A | `GET /api/health` | 回 backend status / OpenAI key configured flag | 無 | 確認 backend 活著 |
 | Admin reset | Workspace menu 確認 reset | reset action | `DELETE /api/admin/reset` | `DELETE /api/admin/reset` | 清空 SQLite job registry，vacuum | 無 | destructive；localhost only |
+| Audit: Upload + Run | 在 AuditModule 上傳 workbook 後按「開始審核」 | `runAudit()` | `POST /api/audit` | `POST /api/audit` | `review_engine.review_workbook` 跑 Tier 1/2/3，套用 mutual exclusion / suppression / severity ceiling | `dry_run=false` 時走 `_run_llm_pipeline`（§6.1/§6.3/§7.1/§7.2/§7.3/§8.2.4/§8.4.2/§8.5.3）；預設 `dry_run=true` 不呼叫 AI | 回 §9 schema 的 findings JSON；前端顯示 batch summary + Per Req / Per TC tabs；可下載 `findings.json` |
+| Audit: Filter / Download | 切 tab、調最低嚴重度、下載 JSON | local component state | 無 | 無 | 無 | 無 | 純前端篩選 / 序列化下載 |
 
 ## AI 連接總表
 
@@ -47,6 +49,7 @@
 | Requirement 拆分判斷 | Generate / Re-run | `decompose_requirement` / generation path | 使用者選的 `gpt-5` 或 `gpt-5.4` | requirement、sibling rows、rules、context | split reasoning、keywords、scenario count | 累加到 generate / rerun usage |
 | TC 正文生成 | Generate / Regenerate / Re-run / Quick Generate | `generate_tcs_for_row` | 使用者選的 model | row context、rules、spec reference、review reason（regen only） | TC 欄位：title/pre-cond/input/proc/ER/method/priority 等 | 累加到對應 job / quick history |
 | Review 修正建議 | ValidationPanel 有 error 時使用者按詢問 AI | `suggest_review_fix` | 預設 `gpt-5` | 單筆 TC + validation errors + rules | root cause、affected fields、proposed change、suggested reason | 可記為 `suggest-fix` 類型 |
+| ASPICE SWE.6 Audit (LLM rules) | AuditModule `dry_run=false` | `review_engine._run_llm_pipeline` → `review_prompt_builder` | 預設 `gpt-5`，可由 form `model` 覆寫 | 批次 TC（每批 5 筆）+ 該批要評估的 rule 集合 + Req spec 索引 | per_req_findings + per_tc_findings（§9 schema） | audit endpoint 同步呼叫，目前不持久化到 job DB |
 | Semantic spec match | Configure match，且需要 semantic matching | `spec_matcher` embeddings | embedding model 依 spec index / matcher 設定 | spec text / requirement text | cosine match score | 不走 chat cost history；cached spec index 優先 |
 
 ## 寫入點
