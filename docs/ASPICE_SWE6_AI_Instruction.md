@@ -109,6 +109,56 @@ Never invent a value the source did not state (numbers, thresholds, timeouts, si
 7. Traces to Req/SWRA; no fabricated data (§10)
 8. Design Method assigned AFTER procedure finalized (§15)
 
+## 12. Tool-Specific Output Contract (workbook export, not ASPICE rules)
+
+These are application-side requirements for writing back into the Excel template.
+Validation enforces them; LLM output MUST comply.
+
+### 12.1 Required output keys (snake_case)
+Every TC JSON object MUST include all 9 keys: `tc_title`, `pre_conditions`,
+`input_test_data`, `test_procedure`, `expected_result`, `design_method`,
+`priority`, `split_flag`, `split_reason`. Top-level response also carries
+`reasoning` (§12.4) and optional `keywords`, `duplicate_of`,
+`distinguishing_axis`.
+
+### 12.2 Priority — exactly P0 / P1 / P2 / P3
+Per `docs/test_case_priority.md` rubric. Never `High` / `Medium` / `Low` / `NA`.
+
+| Level | Scope |
+|---|---|
+| **P0** | Critical/core: safety, boot/recovery, connection, audio output, eCall, vehicle-critical CAN signal, data-loss risk |
+| **P1** | Major user-facing functionality or key operational logic flow |
+| **P2** | Secondary/support functionality; failure has limited impact on major features |
+| **P3** | Minor UI enhancement, low-impact customization, rare-use scenario, cosmetic detail |
+
+### 12.3 TC ID format
+Pattern: `{project}-{abbr}-{NNN}` — alphanumeric project + alphanumeric module
+abbreviation + zero-padded 3-digit sequence (e.g. `PROJ-DM-001`). IDs MUST be
+monotonically increasing within the same `{project}-{abbr}` group; the
+generator handles assignment, the LLM does not emit `tc_id`.
+
+### 12.4 `reasoning` field (Traditional Chinese, 2–5 sentences)
+Top-level field on the response (not per-TC). Audit trail so reviewers can
+align on the AI's interpretation without re-reading the source. Cover in
+order (1 sentence each, skip if N/A):
+1. **驗證目標** — core behavior / observable outcome under test.
+2. **關鍵情境條件** — trigger preconditions / inputs / mode (echoes §6.1).
+3. **為什麼這樣切** — if `tcs.length == 1`, justify why one TC suffices
+   (do NOT write empty phrases like "不需拆分"); if `tcs.length ≥ 2`, cite
+   the driving §-section (§6.1 / §9 / §10.2 …) and the split dimension.
+4. **未涵蓋 / 刻意略過**（optional）— adjacent scenarios delegated to siblings
+   or left for future review when spec is ambiguous.
+
+### 12.5 `test_procedure` minimum
+At least 2 numbered steps (Setup → Verification minimum). Single-step TCs are
+rejected — even smoke tests need an explicit verification step.
+
+### 12.6 `duplicate_of` encoding
+Digits-only row-number string (e.g. `"11"`, never `"row 11"` or `11` as int),
+matching a sibling shown as `[row #11]` in the Sibling Rows section. Strict
+equivalence required: same trigger + outcome + input + verification target.
+When in doubt, omit the field.
+
 ## 13. Formatting
 No HTML / Markdown tables in TC output. Plain numbered text; one item per line; blank line between fields.
 

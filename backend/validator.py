@@ -154,9 +154,14 @@ def validate_test_item(text: str) -> ValidationResult:
 
     rewrite = parts[1].strip()
 
-    # Must contain → separator
-    if "→" not in rewrite:
-        return ValidationResult(False, check, "Rewrite must contain → separator.")
+    # 接受 §6.1 三種形狀：Arrow / Sentence / Scenario tag
+    # 不再強制 → 分隔符；僅檢查長度 2–14 詞
+    word_count = len(rewrite.split())
+    if word_count < 2 or word_count > 14:
+        return ValidationResult(
+            False, check,
+            f"Rewrite must be 2–14 words (got {word_count}).",
+        )
 
     return ValidationResult(True, check)
 

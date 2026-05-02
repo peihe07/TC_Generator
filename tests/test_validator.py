@@ -28,24 +28,40 @@ class TestValidateTestItem:
         r = validate_test_item(text)
         assert r.passed
 
-    def test_missing_arrow(self):
+    def test_sentence_form_allowed(self):
+        # §6.1 (b) Sentence form — 不需 → 分隔符
         text = (
             "Original text.\n"
             "\n"
-            "Some rewrite without arrow"
-        )
-        r = validate_test_item(text)
-        assert not r.passed
-        assert "→" in r.message
-
-    def test_rewrite_without_parentheses_is_allowed(self):
-        text = (
-            "Original text.\n"
-            "\n"
-            "Condition → Outcome without parens"
+            "CP Media icon displayed when CarPlay is connected"
         )
         r = validate_test_item(text)
         assert r.passed
+
+    def test_scenario_tag_form_allowed(self):
+        # §6.1 (c) Scenario tag form — 短名詞片語
+        text = (
+            "Original text.\n"
+            "\n"
+            "Upload supported video file type: .mp4"
+        )
+        r = validate_test_item(text)
+        assert r.passed
+
+    def test_rewrite_too_long_rejected(self):
+        text = (
+            "Original text.\n"
+            "\n"
+            "this rewrite has way too many words to fit within the fourteen word upper limit boundary today"
+        )
+        r = validate_test_item(text)
+        assert not r.passed
+        assert "2–14 words" in r.message
+
+    def test_rewrite_too_short_rejected(self):
+        text = "Original text.\n\nx"
+        r = validate_test_item(text)
+        assert not r.passed
 
     def test_missing_blank_line(self):
         text = (
