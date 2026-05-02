@@ -50,7 +50,7 @@ Follow-up 狀態：
 
 ```
 cd frontend
-npm run dev   # 開 http://localhost:3000
+npm run dev -- --port 3333   # 開 http://localhost:3333
 ```
 
 對照基準：`design_system/ui_kits/desktop/desktop-ui-kit.png` 與 `design_system/preview/*.html`。

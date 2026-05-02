@@ -63,16 +63,34 @@ uvicorn api_server:app --app-dir backend --host 127.0.0.1 --port 8000
 
 ```bash
 cd frontend
-PYTHON_API_BASE=http://127.0.0.1:8000 npm run dev -- --hostname 127.0.0.1 --port 3000
+PYTHON_API_BASE=http://127.0.0.1:8000 npm run dev -- --hostname 127.0.0.1 --port 3333
 ```
 
-3. Open `http://127.0.0.1:3000`
+3. Open `http://127.0.0.1:3333`
 
 Notes:
 
 - The frontend talks to the backend through same-origin Next.js proxy routes under `/api/*`.
 - `PYTHON_API_BASE` is the preferred server-side env var for the frontend proxy.
 - Generate / Regenerate / Export require an active backend job; the desktop no longer creates local mock generated rows when the backend is unavailable.
+
+## Run With Docker
+
+Both dev and prod expose the frontend on host port **3333** (backend on **8002**).
+
+Prod (production build, no hot reload):
+
+```bash
+docker compose up --build
+```
+
+Dev (hot reload for backend and frontend):
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+Then open `http://localhost:3333`. Set `OPENAI_API_KEY` in `.env` at the repo root before starting.
 
 ## CLI Usage
 

@@ -16,6 +16,7 @@ venv/
 # Output
 output/*.xlsx
 output/*.db
+output/.workspaces/
 
 # Node
 node_modules/
