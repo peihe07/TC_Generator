@@ -1157,6 +1157,42 @@ def review_suggest_fix(payload: ReviewFixSuggestRequest) -> dict:
     }
 
 
+@app.post("/api/audit")
+async def audit_workbook(
+    workbook: UploadFile = File(...),
+    dry_run: str = Form(default="true"),
+    model: str = Form(default=DEFAULT_MODEL),
+) -> dict:
+    """Audit existing TCs against ASPICE SWE.6 (review_engine pipeline).
+
+    Synchronous endpoint — the regex pre-pass handles ~65% of findings in
+    well under a second on a 600-TC workbook. When `dry_run=false`, the
+    LLM rules also run (subject to the server's OpenAI credentials).
+    Returns the §9 schema findings JSON; the markdown report is fetchable
+    via /api/audit/report?... (TODO if needed).
+    """
+    from review_engine import review_workbook  # local import keeps generate path lean
+
+    raw_bytes = await _read_with_limit(workbook, "workbook")
+    filename = _safe_upload_filename(workbook.filename, "workbook.xlsx")
+    is_dry = str(dry_run).strip().lower() not in {"false", "0", "no"}
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        wb_path = os.path.join(tmp_dir, filename)
+        with open(wb_path, "wb") as handle:
+            handle.write(raw_bytes)
+        try:
+            report = review_workbook(
+                workbook_path=wb_path,
+                output_dir=None,  # caller doesn't need files; consumes JSON
+                model=model,
+                dry_run=is_dry,
+            )
+        except Exception as exc:  # pragma: no cover — surface as 500 with reason
+            raise HTTPException(status_code=500, detail=f"audit failed: {exc}") from exc
+    return report
+
+
 @app.get("/api/jobs/{job_id}/usage")
 def get_job_usage(job_id: str) -> dict:
     """Per-job usage breakdown including model-level cost attribution.

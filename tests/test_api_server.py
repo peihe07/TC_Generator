@@ -1984,3 +1984,60 @@ class TestPrepareGenerationRowsSiblings:
         a_sibs = {s["id"]: s["test_item"] for s in by_id["a"]["siblings"]}
         assert a_sibs["b"] == "scenario B"
         assert a_sibs["c"] == "scenario C"
+
+
+# ---------------------------------------------------------------------------
+# /api/audit (ASPICE SWE.6 review pipeline)
+# ---------------------------------------------------------------------------
+
+
+def _build_audit_workbook_bytes() -> bytes:
+    wb = Workbook()
+    ws_pd = wb.active
+    ws_pd.title = "Product Document"
+    ws_pd.cell(row=3, column=2, value="Projection")
+
+    ws_tc = wb.create_sheet("Test Case Specification&Result")
+    headers = {
+        4: "Requirement or Design ID", 6: "Test Case ID", 9: "Test Item",
+        10: "Pre-Conditions", 12: "Test Procedure", 13: "Expected Result",
+        14: "Specification Reference", 16: "Priority", 17: "Design Method",
+    }
+    for col, name in headers.items():
+        ws_tc.cell(row=9, column=col, value=name)
+
+    # TC with vague ER + missing design method → exercises Tier 3 detectors
+    ws_tc.cell(row=10, column=4, value="REQ-A")
+    ws_tc.cell(row=10, column=6, value="TC-A-1")
+    ws_tc.cell(row=10, column=9, value="the HU shall display the icon")
+    ws_tc.cell(row=10, column=12, value="1. Open menu.\n2. Confirm icon shown.")
+    ws_tc.cell(row=10, column=13, value="1. Menu opens.\n2. Works correctly.")
+    ws_tc.cell(row=10, column=16, value="P1")
+    # design_method intentionally blank
+    stream = BytesIO()
+    wb.save(stream)
+    return stream.getvalue()
+
+
+def test_audit_endpoint_dry_run_returns_findings():
+    response = client.post(
+        "/api/audit",
+        files={"workbook": ("audit_in.xlsx", _build_audit_workbook_bytes(),
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")},
+        data={"dry_run": "true"},
+    )
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert "batch_meta" in data
+    assert "per_req_findings" in data
+    assert "per_tc_findings" in data
+    assert "batch_summary" in data
+    # Tier 3 §8.4.1 (vague outcome) and §8.5.2 (design_method missing) should fire
+    refs = [f["rule_ref"] for entry in data["per_tc_findings"] for f in entry["findings"]]
+    assert "§8.4.1" in refs
+    assert "§8.5.2" in refs
+
+
+def test_audit_endpoint_rejects_missing_workbook():
+    response = client.post("/api/audit", data={"dry_run": "true"})
+    assert response.status_code == 422  # FastAPI validation error
