@@ -20,6 +20,7 @@ const DESKTOP_ICONS: { id: WindowID; label: string }[] = [
   { id: 'quickGenerate', label: 'Quick TC' },
   { id: 'diagrams',      label: 'Diagrams' },
   { id: 'rules',         label: 'TC Rules' },
+  { id: 'audit',         label: 'Audit' },
 ];
 
 const WINDOW_TITLES: Record<WindowID, string> = {
@@ -31,6 +32,7 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   quickGenerate: 'Quick TC Generator',
   diagrams:      'Workflow Diagrams',
   rules:         'TC Writing Rules',
+  audit:         'ASPICE SWE.6 Audit',
 };
 
 // Default icon grid positions — laid out as a 5-per-column grid so the

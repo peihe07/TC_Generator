@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type WindowID = 'upload' | 'configure' | 'generate' | 'review' | 'export' | 'quickGenerate' | 'diagrams' | 'rules';
+export type WindowID = 'upload' | 'configure' | 'generate' | 'review' | 'export' | 'quickGenerate' | 'diagrams' | 'rules' | 'audit';
 
 interface WindowState {
   id: WindowID;
@@ -37,6 +37,7 @@ const DEFAULT_WINDOWS: Record<WindowID, WindowState> = {
   quickGenerate: { id: 'quickGenerate', title: 'Quick TC Generator', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 120, y: 80 }, size: { width: 860, height: 620 } },
   diagrams:      { id: 'diagrams',      title: 'Workflow Diagrams',      isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 40, y: 36 }, size: { width: 1120, height: 760 } },
   rules:         { id: 'rules',         title: 'TC Writing Rules',        isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 180, y: 70 }, size: { width: 820, height: 640 } },
+  audit:         { id: 'audit',         title: 'ASPICE SWE.6 Audit',      isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 140, y: 60 }, size: { width: 1000, height: 720 } },
 };
 
 export const useWindowStore = create<WindowStore>((set) => ({

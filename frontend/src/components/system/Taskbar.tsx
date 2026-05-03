@@ -17,6 +17,7 @@ const START_MENU_ITEMS: { label: string; icon: string; id: WindowID | null }[] =
   { label: 'Quick TC',   icon: '⚡', id: 'quickGenerate' },
   { label: 'Diagrams',   icon: '📊', id: 'diagrams' },
   { label: 'TC Rules',   icon: '📖', id: 'rules' },
+  { label: 'Audit',      icon: '🛡', id: 'audit' },
 ];
 
 const WINDOW_TITLES: Record<WindowID, string> = {
@@ -28,6 +29,7 @@ const WINDOW_TITLES: Record<WindowID, string> = {
   quickGenerate: 'Quick TC Generator',
   diagrams:      'Workflow Diagrams',
   rules:         'TC Writing Rules',
+  audit:         'ASPICE SWE.6 Audit',
 };
 
 const Taskbar: React.FC = () => {
