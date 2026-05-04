@@ -93,12 +93,17 @@ const AuditModule: React.FC = () => {
   const [report, setReport] = useState<AuditReport | null>(null);
   const [tab, setTab] = useState<Tab>('per_req');
   const [minSeverity, setMinSeverity] = useState<Severity>('Info');
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleFile = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const next = event.target.files?.[0] ?? null;
     setFile(next);
     setError(null);
     setReport(null);
+  }, []);
+
+  const triggerFilePicker = useCallback(() => {
+    fileInputRef.current?.click();
   }, []);
 
   const runAudit = useCallback(async () => {
@@ -160,15 +165,28 @@ const AuditModule: React.FC = () => {
 
   return (
     <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <RiUpload2Line size={20} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
         <input
+          ref={fileInputRef}
           type="file"
           accept=".xlsx,.xlsm"
           onChange={handleFile}
           disabled={running}
+          style={{ display: 'none' }}
         />
-        <label style={{ marginLeft: 12 }}>
+        <Button onClick={triggerFilePicker} disabled={running}>
+          <RiUpload2Line size={16} /> 選擇 .xlsx
+        </Button>
+        <span
+          style={{
+            fontSize: 13,
+            color: file ? '#1a5f1a' : '#888',
+            fontStyle: file ? 'normal' : 'italic',
+          }}
+        >
+          {file ? `已選：${file.name}（${(file.size / 1024).toFixed(0)} KB）` : '尚未選擇檔案'}
+        </span>
+        <label style={{ marginLeft: 12, fontSize: 13 }}>
           <input
             type="checkbox"
             checked={dryRun}
@@ -180,7 +198,11 @@ const AuditModule: React.FC = () => {
         <Button
           onClick={runAudit}
           disabled={!file || running}
-          style={{ marginLeft: 'auto' }}
+          style={{
+            marginLeft: 'auto',
+            ...(!file || running ? { opacity: 0.5, cursor: 'not-allowed' } : {}),
+          }}
+          title={!file ? '請先選擇 .xlsx 檔' : running ? '審核進行中' : '開始審核'}
         >
           <RiPlayLine size={16} /> {running ? '審核中…' : '開始審核'}
         </Button>
