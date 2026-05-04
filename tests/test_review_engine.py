@@ -14,6 +14,9 @@ Covers:
 """
 from __future__ import annotations
 
+import json
+from types import SimpleNamespace
+
 from openpyxl import Workbook
 
 import pytest
@@ -28,6 +31,7 @@ from review_engine import (
     _detect_7_5,
     _enforce_severity_ceiling,
     _normalize_row,
+    _run_llm_pipeline,
     _run_regex_pipeline,
     extract_spec_sentence,
     review_workbook,
@@ -376,6 +380,51 @@ def test_dry_run_does_not_invoke_openai(tmp_path, monkeypatch):
     }])
     review_workbook(fp, dry_run=True)
     assert called["flag"] is False
+
+
+def test_llm_pipeline_keeps_empty_tc_id_rows_distinct(monkeypatch):
+    tcs = [
+        _make_tc(row_num=10, tc_id=""),
+        _make_tc(row_num=11, tc_id=""),
+    ]
+
+    def _fake_chat(**_kwargs):
+        body = {
+            "per_req_findings": [],
+            "per_tc_findings": [
+                {
+                    "tc_id": "",
+                    "row": 10,
+                    "findings": [{
+                        "tier": 3,
+                        "field": "expected_result",
+                        "rule_ref": "§8.4.2",
+                        "severity": "Major",
+                        "issue": "第 10 列 finding",
+                    }],
+                },
+                {
+                    "tc_id": "",
+                    "row": 11,
+                    "findings": [{
+                        "tier": 3,
+                        "field": "expected_result",
+                        "rule_ref": "§8.4.2",
+                        "severity": "Major",
+                        "issue": "第 11 列 finding",
+                    }],
+                },
+            ],
+        }
+        return SimpleNamespace(
+            choices=[SimpleNamespace(message=SimpleNamespace(content=json.dumps(body)))]
+        )
+
+    monkeypatch.setattr("generator._chat", _fake_chat)
+    _, per_tc = _run_llm_pipeline(tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)}, model="fake")
+
+    assert [entry["row"] for entry in per_tc] == [10, 11]
+    assert [entry["findings"][0]["issue"] for entry in per_tc] == ["第 10 列 finding", "第 11 列 finding"]
 
 
 # ---------------------------------------------------------------------------

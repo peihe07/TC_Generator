@@ -867,11 +867,15 @@ def _run_regex_pipeline(
             for tc in grp.tcs:
                 suppressed_8_1_4_tc_ids.add(tc.tc_id)
 
-    seen_tc_ids: set[str] = set()
+    # Dedupe by row_num (always unique) — multi-Req-ID TCs would otherwise
+    # be processed once per constituent group via the outer iteration.
+    # tc_id alone is unsafe: workbooks pre-ID-generation share an empty tc_id
+    # across all rows and would collapse to a single entry.
+    seen_rows: set[int] = set()
     for tc in tcs:
-        if tc.tc_id in seen_tc_ids:
+        if tc.row_num in seen_rows:
             continue
-        seen_tc_ids.add(tc.tc_id)
+        seen_rows.add(tc.row_num)
 
         # Pick the primary group for this TC for spec-comparison rules
         primary_rid = tc.req_ids[0] if tc.req_ids else ""
@@ -904,7 +908,7 @@ def _run_regex_pipeline(
             else:
                 f.pop("evidence_req_spec", None)
 
-        per_tc[tc.tc_id] = {
+        per_tc[str(tc.row_num)] = {
             "tc_id": tc.tc_id,
             "row": tc.row_num,
             "overall_verdict": _overall_verdict(tc_findings),
@@ -954,7 +958,8 @@ def _run_llm_pipeline(
     ]
 
     per_req: list[dict] = []
-    per_tc_acc: dict[str, list[dict]] = defaultdict(list)
+    per_tc_acc: dict[int, list[dict]] = defaultdict(list)
+    tc_id_by_row: dict[int, str] = {tc.row_num: tc.tc_id for tc in tcs}
     system = build_review_system_prompt()
 
     for i in range(0, len(payload_tcs), batch_size):
@@ -973,25 +978,37 @@ def _run_llm_pipeline(
         for f in data.get("per_req_findings", []) or []:
             per_req.append(f)
         for entry in data.get("per_tc_findings", []) or []:
-            tc_id = entry.get("tc_id")
-            if not tc_id:
+            row = _coerce_row(entry.get("row"))
+            if row is None:
+                row = _row_for_tc(tcs, str(entry.get("tc_id") or ""))
+            if row is None:
                 continue
-            per_tc_acc[tc_id].extend(entry.get("findings", []) or [])
+            per_tc_acc[row].extend(entry.get("findings", []) or [])
 
     # Convert per_tc_acc to list-of-dicts shape
     per_tc = [
-        {"tc_id": tc_id, "row": _row_for_tc(tcs, tc_id), "overall_verdict": "pass",
+        {"tc_id": tc_id_by_row.get(row, ""), "row": row, "overall_verdict": "pass",
          "findings": findings}
-        for tc_id, findings in per_tc_acc.items()
+        for row, findings in per_tc_acc.items()
     ]
     return per_req, per_tc
 
 
-def _row_for_tc(tcs: list[TCRecord], tc_id: str) -> int:
+def _coerce_row(value: object) -> int | None:
+    try:
+        row = int(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return None
+    return row if row > 0 else None
+
+
+def _row_for_tc(tcs: list[TCRecord], tc_id: str) -> int | None:
+    if not tc_id:
+        return None
     for tc in tcs:
         if tc.tc_id == tc_id:
             return tc.row_num
-    return 0
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -1003,13 +1020,15 @@ def _merge_per_tc(
     regex_entries: list[dict],
     llm_entries: list[dict],
 ) -> list[dict]:
-    by_id: dict[str, dict] = {e["tc_id"]: e for e in regex_entries}
+    # Key by row_num (always unique) rather than tc_id, since pre-ID-generation
+    # workbooks have empty tc_id on every row.
+    by_id: dict[int, dict] = {e["row"]: e for e in regex_entries}
     for e in llm_entries:
-        tc_id = e["tc_id"]
-        if tc_id in by_id:
-            by_id[tc_id]["findings"].extend(e["findings"])
+        row = e.get("row")
+        if row in by_id:
+            by_id[row]["findings"].extend(e["findings"])
         else:
-            by_id[tc_id] = e
+            by_id[row] = e
     # Recompute overall_verdict
     for entry in by_id.values():
         entry["overall_verdict"] = _overall_verdict(entry["findings"])
