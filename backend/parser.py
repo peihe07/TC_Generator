@@ -33,6 +33,7 @@ DATA_START_ROW = 10
 # 真實檔案中 sheet 名稱可能帶中文副標（如 "Product Document 記錄封面頁"），
 # 因此用 prefix 比對。
 TC_SHEET_NAME = "Test Case Specification&Result"
+TC_SHEET_PREFIX = "Test Case Specification"
 PRODUCT_SHEET_PREFIX = "Product Document"
 
 
@@ -88,16 +89,27 @@ def parse_tc_xlsx(filepath: str) -> dict:
     rows = []
     column_fill_status = {col: 0 for col in READ_COLUMNS}
 
-    if TC_SHEET_NAME in wb.sheetnames:
-        ws_tc = wb[TC_SHEET_NAME]
-        for row_num in range(DATA_START_ROW, ws_tc.max_row + 1):
-            req_id = ws_tc.cell(row=row_num, column=COL_MAP["D"]).value
+    tc_sheet = TC_SHEET_NAME if TC_SHEET_NAME in wb.sheetnames else _find_sheet(wb, TC_SHEET_PREFIX)
+    if tc_sheet:
+        ws_tc = wb[tc_sheet]
+        for offset, values in enumerate(
+            ws_tc.iter_rows(
+                min_row=DATA_START_ROW,
+                max_row=ws_tc.max_row,
+                max_col=COL_MAP["Q"],
+                values_only=True,
+            ),
+            start=DATA_START_ROW,
+        ):
+            row_num = offset
+            req_id = values[COL_MAP["D"] - 1] if len(values) >= COL_MAP["D"] else None
             if not req_id:
                 continue
 
             row_data = {"row_num": row_num}
             for col_letter, field_name in READ_COLUMNS.items():
-                value = ws_tc.cell(row=row_num, column=COL_MAP[col_letter]).value
+                col_index = COL_MAP[col_letter] - 1
+                value = values[col_index] if len(values) > col_index else None
                 row_data[field_name] = value or ""
                 if value:
                     column_fill_status[col_letter] += 1

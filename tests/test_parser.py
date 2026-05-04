@@ -125,6 +125,25 @@ class TestParseTcXlsx:
         result = parse_tc_xlsx(sample_xlsx)
         assert result["row_count"] == 3
 
+    def test_tc_sheet_with_bilingual_specification_name(self, tmp_path):
+        filepath = tmp_path / "SomeProject_SWQT_Projection_20260502_EN.xlsx"
+        wb = Workbook()
+        ws_pd = wb.active
+        ws_pd.title = "Product Document 記錄封面頁"
+        ws_pd.cell(row=3, column=2, value="new R1L")
+
+        ws_tc = wb.create_sheet("Test Case Specification 測試用例規範")
+        ws_tc.cell(row=9, column=4, value="Requirement or Design ID")
+        ws_tc.cell(row=9, column=9, value="Test Item")
+        ws_tc.cell(row=10, column=4, value="SWE1-PROJ-001")
+        ws_tc.cell(row=10, column=9, value="Projection phrase should be parsed.")
+        wb.save(filepath)
+
+        result = parse_tc_xlsx(str(filepath))
+
+        assert result["row_count"] == 1
+        assert result["rows"][0]["test_item"] == "Projection phrase should be parsed."
+
     def test_rows_structure(self, sample_xlsx):
         result = parse_tc_xlsx(sample_xlsx)
         rows = result["rows"]
