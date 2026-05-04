@@ -79,7 +79,7 @@ Review / Generate UX 系列升級，發生在 agent 移除之後：
 之後增加新功能會繼續追加在此段。
 
 最後更新：2026-04-27（active GUI workflow 與 usage/cancel 機制已對齊目前實作；
-Agent 相關內容保留為歷史紀錄，見 [docs/design-system/MIGRATION.md](design-system/MIGRATION.md)）
+Agent 相關內容保留為歷史紀錄，見 [docs/design-system/archive/MIGRATION.md](design-system/archive/MIGRATION.md)）
 
 本次補充：
 - Next.js JSON proxy routes 改為保留 upstream status/body，不再把 backend
@@ -87,7 +87,7 @@ Agent 相關內容保留為歷史紀錄，見 [docs/design-system/MIGRATION.md](
 - `/api/export` 未預期例外統一回 `detail: "export failed: <Type>: <message>"`
   方便前端直接顯示根因
 
-這份文件描述**目前已完成的內容**。下一步規劃請看 [ROADMAP.md](ROADMAP.md)。
+這份文件描述**目前已完成的內容**。
 
 目前 active 範圍：
 - Backend：FastAPI REST / SSE + `backend/tools/` pure-function tool layer。
@@ -359,12 +359,12 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 | 用途 | 檔案 |
 |---|---|
 | 設定 + 執行指令 | [../README.md](../README.md) |
-| **下一步規劃** | **[ROADMAP.md](ROADMAP.md)** |
 | 使用機制總表（指令 / API / AI / 狀態） | [WORKFLOW_MECHANISM_TABLE.md](WORKFLOW_MECHANISM_TABLE.md) |
 | API 合約 | [API_CONTRACT.md](API_CONTRACT.md) |
-| TC 生成規則（工具實作用） | [RULES.md](RULES.md) |
-| ASPICE SWE.6 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |
+| ASPICE SWE.6 Generate 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |
+| ASPICE SWE.6 Review 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Review.md](ASPICE_SWE6_AI_Review.md) |
 | Test Design Method 判斷（LLM prompt 用） | [Test Case Design Method 判斷規則.md](Test%20Case%20Design%20Method%20判斷規則.md) |
+| Test Case Priority 定義 | [test_case_priority.md](test_case_priority.md) |
 | 架構視覺化 | [TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html) |
 
-> `RULES.md`、`ASPICE_SWE6_AI_Instruction.md`、`Test Case Design Method 判斷規則.md` 的檔名被 `backend/api_server.py` 硬寫死，改名會導致規則載入失敗。
+> `ASPICE_SWE6_AI_Instruction.md`、`ASPICE_SWE6_AI_Review.md`、`Test Case Design Method 判斷規則.md` 的檔名被 `backend/api_server.py` 硬寫死，改名會導致規則載入失敗。

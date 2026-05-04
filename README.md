@@ -159,17 +159,16 @@ calling the LLM.
 
 ## Documentation
 
-Two entry points — pick based on what you need:
+Entry point:
 
-- **[docs/STATUS.md](docs/STATUS.md)** — what's been built, current architecture, test baselines
-- **[docs/ROADMAP.md](docs/ROADMAP.md)** — deprecated Agent planning archive; retained for historical reference
+- **[docs/CHANGELOG.md](docs/CHANGELOG.md)** — what's been built, current architecture, test baselines, recent changes
 
 Reference docs:
 
 - [docs/WORKFLOW_MECHANISM_TABLE.md](docs/WORKFLOW_MECHANISM_TABLE.md) — developer table for user actions, API routes, backend work, AI calls, and state writes
 - [docs/API_CONTRACT.md](docs/API_CONTRACT.md) — browser ↔ backend API specs
-- [docs/RULES.md](docs/RULES.md) — TC auto-generation tool rules (column mapping, ID format, validation)
 - [docs/ASPICE_SWE6_AI_Instruction.md](docs/ASPICE_SWE6_AI_Instruction.md) — ASPICE SWE.6 AI Instruction (auto-loaded into LLM prompt)
 - [docs/ASPICE_SWE6_AI_Review.md](docs/ASPICE_SWE6_AI_Review.md) — ASPICE SWE.6 AI Review spec (auto-loaded into review prompt)
 - [docs/Test Case Design Method 判斷規則.md](docs/Test%20Case%20Design%20Method%20判斷規則.md) — Design method selection rules (auto-loaded into LLM prompt)
+- [docs/test_case_priority.md](docs/test_case_priority.md) — P0–P3 priority definitions
 - [docs/TC_Generator_Architecture_Diagrams.html](docs/TC_Generator_Architecture_Diagrams.html) — visual architecture reference
