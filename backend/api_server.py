@@ -1374,6 +1374,7 @@ async def preview_grouping(payload: GroupPreviewRequest) -> dict:
     result = group_tests_tool(
         rows=rows_for_grouping,
         force_regroup=payload.forceRegroup,
+        test_group=job.get("parsedData", {}).get("test_group"),
     )
     usage = _job_usage(job)
     this_cost = float(result.get("cost") or 0.0)

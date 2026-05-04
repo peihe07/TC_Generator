@@ -1183,7 +1183,7 @@ Rules for choosing labels:
 - Prefer short noun phrases (no trailing "Testing", no "Req-xxx" placeholders,
   no generic words like "Feature" or "Function" alone).
 - Every requirement must be assigned exactly one Test Set — no empty, no
-  "None", no duplicates on the same req_id.
+  "None", no "Unclassified", no "Misc", no duplicates on the same req_id.
 
 ## Requirements
 {body}

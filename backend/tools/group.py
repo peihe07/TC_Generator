@@ -17,17 +17,25 @@ from .errors import ToolError
 from .registry import SafetyLevel, ToolSpec, register_tool
 from .schemas import GROUP_TESTS_SCHEMA
 
+_AI_CLASSIFICATION_BATCH_SIZE = 50
+_FALLBACK_LABELS = {"unclassified"}
+
 
 def _norm(value) -> str:
     return str(value or "").strip()
+
+
+def _is_fallback_label(value: str) -> bool:
+    return _norm(value).lower() in _FALLBACK_LABELS
 
 
 def _get_any(row: dict, *keys) -> str:
     """對 snake_case / camelCase 雙格式取值，回傳 stripped string。"""
     for key in keys:
         value = row.get(key)
-        if value:
-            return str(value).strip()
+        text = _norm(value)
+        if text and not _is_fallback_label(text):
+            return text
     return ""
 
 
@@ -86,6 +94,20 @@ def _fallback_test_set_name(row: dict) -> str:
         return _shorten_test_set_label(hint)
 
     test_item = _get_any(row, "test_item", "testItem")
+    lowered = test_item.lower()
+    if any(term in lowered for term in ("bluetooth audio", "bt audio", "audio source")):
+        return "Bluetooth Audio Management"
+    if any(term in lowered for term in ("pair", "pairing", "paired")) and any(
+        term in lowered for term in ("bluetooth", "bt")
+    ):
+        return "Bluetooth Pairing"
+    if any(term in lowered for term in ("carplay", "android auto", "wireless projection", "projection")):
+        if any(term in lowered for term in ("determine", "detect", "capability", "supports", "supported", "prompt")):
+            return "Projection Detection"
+        if any(term in lowered for term in ("launch", "start", "connect", "connected", "enable")):
+            return "Projection Launch"
+        return "Projection"
+
     codes = extract_pdm_codes(test_item)
     if codes:
         return codes[0].upper()
@@ -98,6 +120,7 @@ def group_tests_tool(
     rows: list[dict],
     model: str = CLASSIFICATION_MODEL,
     force_regroup: bool = False,
+    test_group: str | None = None,
 ) -> dict:
     """把 rows 分成若干 Test Set 並回 grouping preview。
 
@@ -108,6 +131,7 @@ def group_tests_tool(
         model: OpenAI model id（僅當有 req 需要 AI 分類時才真的呼叫）
         force_regroup: True 時，既有 testSet 會當作 AI hint，但 preview
               assignment 會使用 AI 重新分類結果；Apply 前不會改動前端 rows。
+        test_group: workbook Test Group context passed to the AI prompt.
 
     Returns:
         `{"groups": [...], "framework": {...}, "assignments": [...]}`
@@ -150,19 +174,19 @@ def group_tests_tool(
         "model": model,
     }
     if unresolved_rows:
-        try:
-            result = classify_test_sets(unresolved_rows, model=model)
-            classified = result.assignments
-            usage = {
-                "cost": result.cost,
-                "inputTokens": result.input_tokens,
-                "outputTokens": result.output_tokens,
-                "cacheCreationTokens": result.cache_creation_tokens,
-                "cacheReadTokens": result.cache_read_tokens,
-                "model": result.model,
-            }
-        except GenerationError:
-            classified = {}
+        for start in range(0, len(unresolved_rows), _AI_CLASSIFICATION_BATCH_SIZE):
+            chunk = unresolved_rows[start:start + _AI_CLASSIFICATION_BATCH_SIZE]
+            try:
+                result = classify_test_sets(chunk, model=model, test_group=test_group)
+            except GenerationError:
+                continue
+            classified.update(result.assignments)
+            usage["cost"] += result.cost
+            usage["inputTokens"] += result.input_tokens
+            usage["outputTokens"] += result.output_tokens
+            usage["cacheCreationTokens"] += result.cache_creation_tokens
+            usage["cacheReadTokens"] += result.cache_read_tokens
+            usage["model"] = result.model
 
     # Phase 2: 組 group preview
     framework: dict[str, list[str]] = {}
@@ -183,6 +207,8 @@ def group_tests_tool(
                 or classified.get(req_id or "", "")
                 or _fallback_test_set_name(row)
             )
+            if _is_fallback_label(test_set):
+                test_set = _fallback_test_set_name(row)
             source = "derived"
         row_derived.append((row, test_set, req_id, source))
         framework.setdefault(test_set, []).append(req_id)

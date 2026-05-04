@@ -137,6 +137,10 @@ GROUP_TESTS_SCHEMA: dict[str, Any] = {
                     "AI may assign new Test Set labels for every row."
                 ),
             },
+            "test_group": {
+                "type": ["string", "null"],
+                "description": "Workbook Test Group context for AI grouping labels.",
+            },
         },
         "required": ["rows"],
     },

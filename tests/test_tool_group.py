@@ -89,6 +89,33 @@ def test_group_sends_original_test_set_hint_for_unresolved_rows():
     assert out["assignments"][0]["source"] == "derived"
 
 
+def test_group_ignores_unclassified_as_existing_value_or_hint():
+    rows = [
+        {
+            "id": "a",
+            "reqId": "R-01",
+            "testItem": "projection capability prompt",
+            "testSet": "Unclassified",
+            "testSetHint": "Unclassified",
+        },
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        return_value=_fake_classify_result({"a": "Projection Prompt"}),
+    ) as mock_classify:
+        out = group_tests_tool(rows=rows, force_regroup=True)
+
+    sent_reqs = mock_classify.call_args.args[0]
+    assert sent_reqs == [
+        {
+            "id": "a",
+            "req_id": "R-01",
+            "test_item": "projection capability prompt",
+        }
+    ]
+    assert out["assignments"][0]["testSet"] == "Projection Prompt"
+
+
 def test_group_classifies_duplicate_req_id_per_row():
     """Same Requirement ID across multiple rows with different test_items
     must each get their own Test Set, not collapse to the first one."""
@@ -128,6 +155,26 @@ def test_group_uses_fixed_classification_model_by_default():
         group_tests_tool(rows=rows)
 
     assert mock_classify.call_args.kwargs["model"] == CLASSIFICATION_MODEL
+
+
+def test_group_chunks_large_ai_classification_batches_and_passes_test_group():
+    rows = [
+        {"id": f"r{i}", "reqId": f"R-{i:03}", "testItem": f"projection behavior {i}"}
+        for i in range(121)
+    ]
+
+    def fake_classify(reqs, **kwargs):
+        return _fake_classify_result({row["id"]: f"Set {row['id']}" for row in reqs})
+
+    with patch("backend.tools.group.classify_test_sets", side_effect=fake_classify) as mock_classify:
+        out = group_tests_tool(rows=rows, test_group="Projection")
+
+    assert mock_classify.call_count == 3
+    assert [len(call.args[0]) for call in mock_classify.call_args_list] == [50, 50, 21]
+    assert all(call.kwargs["test_group"] == "Projection" for call in mock_classify.call_args_list)
+    derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived_sets["r0"] == "Set r0"
+    assert derived_sets["r120"] == "Set r120"
 
 
 def test_group_mixes_existing_and_ai_classified():
@@ -240,6 +287,35 @@ def test_group_falls_back_when_ai_classification_fails():
     # `REQ <prefix>` label which looked like a real Test Set).
     assert derived_sets["r2"] == "Unclassified"
     assert derived_sets["r3"] == "Unclassified"
+
+
+def test_group_replaces_ai_unclassified_with_projection_keyword_fallback():
+    rows = [
+        {
+            "id": "proj-1",
+            "reqId": "SWE1-PROJ-071-001",
+            "testItem": "The HU shall determine if the device supports wireless projection and prompt the user to continue CarPlay pairing.",
+        },
+        {
+            "id": "proj-2",
+            "reqId": "SWE1-PROJ-073-001",
+            "testItem": "Bluetooth audio shall remain available while projection is connected.",
+        },
+    ]
+    with patch(
+        "backend.tools.group.classify_test_sets",
+        return_value=_fake_classify_result({
+            "proj-1": "Unclassified",
+            "proj-2": "Unclassified",
+        }),
+    ):
+        out = group_tests_tool(rows=rows, test_group="Projection")
+
+    derived = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived == {
+        "proj-1": "Projection Detection",
+        "proj-2": "Bluetooth Audio Management",
+    }
 
 
 def test_group_fallback_uses_comfort_hmi_requirement_code_when_ai_fails():
