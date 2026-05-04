@@ -1660,6 +1660,42 @@ def _parse_sse(content: bytes) -> list[dict]:
     return events
 
 
+def test_chunk_rows_preserving_req_id_keeps_sibling_rows_together():
+    from api_server import _chunk_rows_preserving_req_id
+
+    rows = [
+        {"id": "row-10", "req_id": "REQ-A"},
+        {"id": "row-11", "req_id": "REQ-B"},
+        {"id": "row-12", "req_id": "REQ-A"},
+        {"id": "row-13", "req_id": "REQ-C"},
+    ]
+
+    chunks = _chunk_rows_preserving_req_id(rows, batch_size=2)
+
+    assert [[row["id"] for row in chunk] for chunk in chunks] == [
+        ["row-10", "row-12"],
+        ["row-11", "row-13"],
+    ]
+
+
+def test_chunk_rows_preserving_req_id_allows_large_requirement_group():
+    from api_server import _chunk_rows_preserving_req_id
+
+    rows = [
+        {"id": "row-10", "req_id": "REQ-A"},
+        {"id": "row-11", "req_id": "REQ-A"},
+        {"id": "row-12", "req_id": "REQ-A"},
+        {"id": "row-13", "req_id": "REQ-B"},
+    ]
+
+    chunks = _chunk_rows_preserving_req_id(rows, batch_size=2)
+
+    assert [[row["id"] for row in chunk] for chunk in chunks] == [
+        ["row-10", "row-11", "row-12"],
+        ["row-13"],
+    ]
+
+
 @patch("api_server.generate_tcs_for_row")
 def test_quick_generate_unified_single_tc(mock_gen):
     """AI 判斷只需要 1 筆 TC 時，quick-generate 仍會走 auto-split 流程，

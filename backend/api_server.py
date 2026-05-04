@@ -564,6 +564,43 @@ def _would_exceed_budget(current_cost: float, batch_size: int, model: str, budge
     return current_cost + estimated_batch_cost > budget
 
 
+def _chunk_rows_preserving_req_id(rows: list[dict], batch_size: int) -> list[list[dict]]:
+    """Chunk rows while keeping identical Requirement IDs in the same call."""
+    if not rows:
+        return []
+
+    effective_batch_size = max(int(batch_size or 1), 1)
+    groups: list[list[dict]] = []
+    group_by_key: dict[tuple[str, str], list[dict]] = {}
+
+    for index, row in enumerate(rows):
+        req_id = str(row.get("req_id") or row.get("reqId") or "").strip()
+        key = ("req", req_id) if req_id else ("row", str(index))
+        group = group_by_key.get(key)
+        if group is None:
+            group = []
+            group_by_key[key] = group
+            groups.append(group)
+        group.append(row)
+
+    chunks: list[list[dict]] = []
+    current: list[dict] = []
+    for group in groups:
+        if current and len(current) + len(group) > effective_batch_size:
+            chunks.append(current)
+            current = []
+
+        if len(group) >= effective_batch_size:
+            chunks.append(group)
+            continue
+
+        current.extend(group)
+
+    if current:
+        chunks.append(current)
+    return chunks
+
+
 def _job_usage(job: dict | None) -> dict:
     usage = (job or {}).get("usage") or {}
     by_model_raw = usage.get("costByModel") or {}
@@ -1512,10 +1549,7 @@ async def stream_generate_job(jobId: str) -> StreamingResponse:
                 }
             )
 
-        to_generate_count = len(rows)
-        for i in range(0, to_generate_count, batch_size):
-            batch = rows[i:i + batch_size]
-
+        for batch in _chunk_rows_preserving_req_id(rows, batch_size):
             if budget and _would_exceed_budget(current_cost, len(batch), model, budget):
                 for row in batch:
                     processed += 1
@@ -1907,8 +1941,7 @@ async def stream_regenerate(job_id: str, payload: RegenerateRequest) -> Streamin
 
         yield _sse_event({"type": "regen.started", "jobId": job_id, "total": total, "stats": _stats()})
 
-        for i in range(0, total, batch_size):
-            batch = rows_to_regen[i : i + batch_size]
+        for batch in _chunk_rows_preserving_req_id(rows_to_regen, batch_size):
             try:
                 batch_result = generate_tc_tool(
                     rows=batch,
@@ -2245,8 +2278,7 @@ async def stream_rerun(job_id: str, payload: RegenerateRequest) -> StreamingResp
 
         yield _sse_event({"type": "rerun.started", "jobId": job_id, "total": total, "stats": _stats()})
 
-        for i in range(0, total, batch_size):
-            batch = rows_to_run[i : i + batch_size]
+        for batch in _chunk_rows_preserving_req_id(rows_to_run, batch_size):
             try:
                 batch_result = generate_tc_tool(
                     rows=batch,
