@@ -76,7 +76,7 @@ Notes:
 
 ## Run With Docker
 
-Both dev and prod expose the frontend on host port **3333** (backend on **8002**).
+Both dev and prod expose the frontend on host port **3333** (backend on **8003**).
 
 Prod (production build, no hot reload):
 

@@ -8,7 +8,7 @@ services:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       TC_CORS_ORIGINS: http://localhost:3333,http://127.0.0.1:3333
     ports:
-      - "8002:8000"
+      - "8003:8000"
     volumes:
       - ./output:/app/output
 
