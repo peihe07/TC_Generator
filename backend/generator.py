@@ -126,10 +126,27 @@ _LIST_FIELDS = {"pre_conditions", "test_procedure", "expected_result", "input_te
 _PREFIX_NUM = re.compile(r"^\s*\d+[\.\)、]\s*")
 
 
+def _strip_line_trailing_period(line: str) -> str:
+    """移除單行末尾的句點（"." / "。"），保留行內標點。"""
+    s = line.rstrip()
+    while s and s[-1] in (".", "。"):
+        s = s[:-1].rstrip()
+    return s
+
+
+def _strip_trailing_periods(text: str) -> str:
+    """把多行字串裡每一行末尾的句點移除（§格式：四大欄位末段不留句點）。"""
+    if not text:
+        return text
+    return "\n".join(_strip_line_trailing_period(line) for line in text.split("\n"))
+
+
 def _normalize_tc_dict(data: dict) -> dict:
     """把 LLM 有時回傳的陣列欄位轉為編號字串，避免下游驗證器 crash。
 
     若 item 已帶有開頭號碼（如 "1.", "1)", "1、"），保留原號碼，避免雙重編號。
+    Pre-Conditions / Input Test Data / Test Procedure / Expected Result 四欄
+    末尾不留句點 — 由 `_strip_trailing_periods` 統一逐行清掉。
     """
     from validator import normalize_design_method
 
@@ -147,9 +164,11 @@ def _normalize_tc_dict(data: dict) -> dict:
                     lines.append(text.strip())
                 else:
                     lines.append(f"{i}. {text.strip()}")
-            data[key] = "\n".join(lines)
+            data[key] = _strip_trailing_periods("\n".join(lines))
         elif val is None:
             data[key] = ""
+        elif isinstance(val, str):
+            data[key] = _strip_trailing_periods(val)
     normalized_method = normalize_design_method(data.get("design_method"))
     if normalized_method:
         data["design_method"] = normalized_method

@@ -867,9 +867,10 @@ def test_export_respects_selected_columns():
     ws = workbook["Test Case Specification&Result"]
     assert ws.cell(row=10, column=6).value is None
     assert ws.cell(row=10, column=9).value == "PDM01 original text"
+    # 末尾句點被 writer 逐行剝除（四欄輸出格式規範）
     assert ws.cell(row=10, column=13).value == (
-        "1. The setup screen is ready for the operator.\n"
-        "2. The requested behavior is shown with the correct visible outcome."
+        "1. The setup screen is ready for the operator\n"
+        "2. The requested behavior is shown with the correct visible outcome"
     )
     assert ws.cell(row=10, column=16).value == "P0"
 

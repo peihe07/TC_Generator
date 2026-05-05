@@ -152,6 +152,27 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=6).value == "newR1L-DMR-001"
         assert ws.cell(row=11, column=6).value == "newR1L-DMR-002"
 
+    def test_accepts_bilingual_tc_sheet_name(self, generated_rows, tmp_path):
+        input_path = tmp_path / "Projection_SWQT_Projection_20260502.xlsx"
+        wb = Workbook()
+        wb.active.title = "Product Document 記錄封面頁"
+        ws = wb.create_sheet("Test Case Specification 測試用例規範")
+        ws.cell(row=9, column=4, value="Requirement or Design ID")
+        ws.cell(row=9, column=9, value="Test Item")
+        ws.cell(row=9, column=10, value="Pre-Conditions")
+        ws.cell(row=10, column=4, value="SWE1-PROJ-071-001")
+        ws.cell(row=10, column=9, value="Original projection requirement.")
+        wb.save(input_path)
+
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(str(input_path), [generated_rows[0]], output)
+
+        saved = load_workbook(output)
+        ws_out = saved["Test Case Specification 測試用例規範"]
+        assert ws_out.cell(row=10, column=6).value == "newR1L-DMR-001"
+        assert "User adds DM" in ws_out.cell(row=10, column=9).value
+        saved.close()
+
     def test_writes_test_group(self, input_xlsx, generated_rows, tmp_path):
         output = str(tmp_path / "output.xlsx")
         write_generated_results(input_xlsx, generated_rows, output)
@@ -395,9 +416,36 @@ class TestWriteGeneratedResults:
         assert ws.cell(row=10, column=6).value is None  # TC ID untouched
         assert ws.cell(row=10, column=9).value == "PDM01.1) Original text here."  # no rewrite appended
         assert ws.cell(row=10, column=10).value is None  # Pre-Conditions untouched
-        assert ws.cell(row=10, column=13).value == "1. Settings shown.\n2. DM icon displayed."
+        # 末尾句點會被 writer 逐行移除（Pre-Conditions / ITD / Procedure / ER 四欄）
+        assert ws.cell(row=10, column=13).value == "1. Settings shown\n2. DM icon displayed"
         assert ws.cell(row=10, column=16).value == "P1"
 
+
+    def test_strips_trailing_periods_from_four_fields(self, input_xlsx, tmp_path):
+        """Pre-Conditions / Input Test Data / Test Procedure / Expected Result
+        四欄逐行末尾的句點都要被去掉；行內句點保留。"""
+        rows = [{
+            "row_num": 10,
+            "tc_id": "newR1L-DMR-001",
+            "tc_title": "(X → Y)",
+            "pre_conditions": "1. BT enabled.\n2. HU powered.",
+            "input_test_data": "Status bar menu.",
+            "test_procedure": "1. Press button. Wait 5s.\n2. Add DM.",
+            "expected_result": "1. Settings shown.\n2. DM icon displayed。",
+            "priority": "P1",
+            "design_method": "Functional",
+        }]
+        output = str(tmp_path / "output.xlsx")
+        write_generated_results(input_xlsx, rows, output)
+
+        wb = load_workbook(output)
+        ws = wb["Test Case Specification&Result"]
+        assert ws.cell(row=10, column=10).value == "1. BT enabled\n2. HU powered"
+        assert ws.cell(row=10, column=11).value == "Status bar menu"
+        # 行內句點（"button.", "5s."→ "5s"）：尾端被剝、句中保留
+        assert ws.cell(row=10, column=12).value == "1. Press button. Wait 5s\n2. Add DM"
+        # 全形 "。" 同樣會被處理
+        assert ws.cell(row=10, column=13).value == "1. Settings shown\n2. DM icon displayed"
 
     def test_multi_tc_per_row_inserts_rows(self, input_xlsx, tmp_path):
         """AI 把 1 個 req 拆成 3 筆 TC 時，writer 應該在原列下方插 2 列，

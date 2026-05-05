@@ -8,6 +8,7 @@ from openpyxl.cell.cell import ILLEGAL_CHARACTERS_RE
 from openpyxl.styles import Alignment
 
 TC_SHEET_NAME = "Test Case Specification&Result"
+TC_SHEET_PREFIX = "Test Case Specification"
 FRAMEWORK_SHEET_NAME = "Test Case Framework"
 
 # Column mapping: field name -> 1-based column index
@@ -30,10 +31,45 @@ WRITE_COLUMNS = {
 
 CLEARABLE_FIELDS = {"test_set", "spec_reference"}
 
+# 這四欄輸出時每行末尾都不留句點（"." / "。"）— 與 generator._normalize_tc_dict
+# 保持一致，舊存量資料在匯出時也會被一併清掉。
+_NO_TRAILING_PERIOD_FIELDS = {
+    "pre_conditions",
+    "input_test_data",
+    "test_procedure",
+    "expected_result",
+}
+
+
+def _strip_trailing_periods_per_line(text):
+    """逐行移除末尾句點；非字串原樣返回。"""
+    if not isinstance(text, str) or not text:
+        return text
+    cleaned_lines = []
+    for line in text.split("\n"):
+        s = line.rstrip()
+        while s and s[-1] in (".", "。"):
+            s = s[:-1].rstrip()
+        cleaned_lines.append(s)
+    return "\n".join(cleaned_lines)
+
 
 # 之前寫入過的 rewrite 尾巴：跨行抓最後一段括號包住的文字（greedy 非必要）。
 # 用 DOTALL 以便跨行比對多行 rewrite。
 _REWRITE_TAIL_RE = re.compile(r"\n\n\(.*\)\s*$", re.DOTALL)
+
+
+def find_tc_sheet_name(wb) -> str:
+    """Resolve the TC sheet, accepting bilingual template sheet names."""
+    if TC_SHEET_NAME in wb.sheetnames:
+        return TC_SHEET_NAME
+
+    prefix = TC_SHEET_PREFIX.lower()
+    for name in wb.sheetnames:
+        if name.strip().lower().startswith(prefix):
+            return name
+
+    raise KeyError(f"Worksheet {TC_SHEET_NAME} does not exist.")
 
 
 def _wrap_rewrite(rewrite: str) -> str:
@@ -213,6 +249,8 @@ def _write_tc_row(
             continue
 
         value = _sanitize_excel_text(row_data.get(field))
+        if field in _NO_TRAILING_PERIOD_FIELDS:
+            value = _strip_trailing_periods_per_line(value)
         cell = ws.cell(row=row_num, column=col_idx)
         has_value = value is not None and str(value).strip() != ""
 
@@ -253,7 +291,7 @@ def write_generated_results(
     會在原列下方 `insert_rows` 補 N-1 列、複製 C/D/I 等欄位，再把每筆 TC 各自寫入。
     """
     wb = load_workbook(input_path)
-    ws = wb[TC_SHEET_NAME]
+    ws = wb[find_tc_sheet_name(wb)]
     _ensure_reasoning_header(ws)
 
     # 依 row_num 分組，保留原本傳入順序；row_num 為 None 的項目丟到尾端維持相容。
