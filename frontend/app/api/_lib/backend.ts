@@ -3,7 +3,7 @@ import https from "node:https";
 
 const configuredBackendBaseUrl = process.env.PYTHON_API_BASE?.replace(/\/$/, "") ?? "";
 const fallbackBackendBaseUrl =
-  process.env.NODE_ENV === "production" ? "" : "http://127.0.0.1:8000";
+  process.env.NODE_ENV === "production" ? "" : "http://127.0.0.1:8003";
 
 export function getBackendBaseUrl() {
   const backendBaseUrl = configuredBackendBaseUrl || fallbackBackendBaseUrl;
@@ -46,6 +46,79 @@ export async function proxyJsonResponse(
     statusText: response.statusText,
     headers: contentType ? { "Content-Type": contentType } : undefined,
   });
+}
+
+export function proxyErrorResponse(error: unknown, fallback = "Proxy request failed.") {
+  return Response.json(
+    {
+      detail: error instanceof Error ? error.message : fallback,
+    },
+    { status: 503 },
+  );
+}
+
+export async function proxyGetJsonRoute(path: string): Promise<Response> {
+  try {
+    return await proxyJsonResponse(path, { method: "GET" });
+  } catch (error) {
+    return proxyErrorResponse(error);
+  }
+}
+
+export async function proxyJsonBodyRoute(
+  request: Request,
+  path: string,
+  mutateJson?: (data: unknown) => unknown,
+): Promise<Response> {
+  try {
+    const payload = await request.json();
+    return await proxyJsonResponse(
+      path,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+      mutateJson,
+    );
+  } catch (error) {
+    return proxyErrorResponse(error);
+  }
+}
+
+export async function proxyFormBodyRoute(
+  request: Request,
+  path: string,
+): Promise<Response> {
+  try {
+    const formData = await request.formData();
+    return await proxyJsonResponse(path, {
+      method: "POST",
+      body: formData,
+    });
+  } catch (error) {
+    return proxyErrorResponse(error);
+  }
+}
+
+export async function proxyTextStreamRoute(
+  request: Request,
+  path: string,
+): Promise<Response> {
+  try {
+    const payload = await request.text();
+    return await proxyStream(path, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "text/event-stream",
+      },
+      signal: request.signal,
+      body: payload,
+    });
+  } catch (error) {
+    return proxyErrorResponse(error);
+  }
 }
 
 export async function proxyStream(

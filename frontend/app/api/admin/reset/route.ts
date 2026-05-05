@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { proxyJsonResponse } from "../../_lib/backend";
+import { proxyErrorResponse, proxyJsonResponse } from "../../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -22,12 +22,6 @@ export async function DELETE(request: Request) {
       method: "DELETE",
     });
   } catch (error) {
-    return NextResponse.json(
-      {
-        detail:
-          error instanceof Error ? error.message : "Reset request failed.",
-      },
-      { status: 503 },
-    );
+    return proxyErrorResponse(error, "Reset request failed.");
   }
 }

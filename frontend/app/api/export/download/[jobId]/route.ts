@@ -1,4 +1,4 @@
-import { getBackendBaseUrl } from "../../../_lib/backend";
+import { getBackendBaseUrl, proxyErrorResponse } from "../../../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -21,12 +21,6 @@ export async function GET(
       headers: response.headers,
     });
   } catch (error) {
-    return Response.json(
-      {
-        detail:
-          error instanceof Error ? error.message : "Proxy request failed.",
-      },
-      { status: 503 },
-    );
+    return proxyErrorResponse(error);
   }
 }

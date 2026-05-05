@@ -1,4 +1,4 @@
-import { proxyStream } from "../../_lib/backend";
+import { proxyErrorResponse, proxyStream } from "../../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -20,12 +20,6 @@ export async function GET(request: Request) {
       },
     );
   } catch (error) {
-    return Response.json(
-      {
-        detail:
-          error instanceof Error ? error.message : "Proxy request failed.",
-      },
-      { status: 503 },
-    );
+    return proxyErrorResponse(error);
   }
 }

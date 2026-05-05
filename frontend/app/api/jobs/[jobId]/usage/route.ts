@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
-
-import { proxyJsonResponse } from "../../../_lib/backend";
+import { proxyGetJsonRoute } from "../../../_lib/backend";
 
 export const runtime = "nodejs";
 
@@ -8,18 +6,6 @@ export async function GET(
   _request: Request,
   context: { params: Promise<{ jobId: string }> },
 ) {
-  try {
-    const { jobId } = await context.params;
-    return await proxyJsonResponse(`/api/jobs/${encodeURIComponent(jobId)}/usage`, {
-      method: "GET",
-    });
-  } catch (error) {
-    return NextResponse.json(
-      {
-        detail:
-          error instanceof Error ? error.message : "Proxy request failed.",
-      },
-      { status: 503 },
-    );
-  }
+  const { jobId } = await context.params;
+  return proxyGetJsonRoute(`/api/jobs/${encodeURIComponent(jobId)}/usage`);
 }

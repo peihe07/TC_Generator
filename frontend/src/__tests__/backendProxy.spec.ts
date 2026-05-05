@@ -82,7 +82,7 @@ describe('proxyJsonResponse', () => {
 
     expect(response.status).toBe(200);
     expect(global.fetch).toHaveBeenCalledWith(
-      'http://127.0.0.1:8000/api/spec-library',
+      'http://127.0.0.1:8003/api/spec-library',
       { method: 'GET' },
     );
     await expect(response.json()).resolves.toMatchObject({
