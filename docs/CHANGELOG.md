@@ -362,9 +362,10 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 | 使用機制總表（指令 / API / AI / 狀態） | [WORKFLOW_MECHANISM_TABLE.md](WORKFLOW_MECHANISM_TABLE.md) |
 | API 合約 | [API_CONTRACT.md](API_CONTRACT.md) |
 | ASPICE SWE.6 Generate 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |
+| Test Set 分類 / hint / export policy | [TEST_SET_POLICY.md](TEST_SET_POLICY.md) |
 | ASPICE SWE.6 Review 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Review.md](ASPICE_SWE6_AI_Review.md) |
 | Test Design Method 判斷（LLM prompt 用） | [Test Case Design Method 判斷規則.md](Test%20Case%20Design%20Method%20判斷規則.md) |
 | Test Case Priority 定義 | [test_case_priority.md](test_case_priority.md) |
 | 架構視覺化 | [TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html) |
 
-> `ASPICE_SWE6_AI_Instruction.md`、`ASPICE_SWE6_AI_Review.md`、`Test Case Design Method 判斷規則.md` 的檔名被 `backend/api_server.py` 硬寫死，改名會導致規則載入失敗。
+> Generate 規則由 `backend/rules_loader.py` 載入；改名或搬移 runtime 規則文件時，需同步更新 loader 與相關測試。

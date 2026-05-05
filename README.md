@@ -56,14 +56,14 @@ npm run typecheck
 1. Start the Python API:
 
 ```bash
-uvicorn api_server:app --app-dir backend --host 127.0.0.1 --port 8000
+uvicorn api_server:app --app-dir backend --host 127.0.0.1 --port 8003
 ```
 
 2. Start the Next.js frontend:
 
 ```bash
 cd frontend
-PYTHON_API_BASE=http://127.0.0.1:8000 npm run dev -- --hostname 127.0.0.1 --port 3333
+PYTHON_API_BASE=http://127.0.0.1:8003 npm run dev -- --hostname 127.0.0.1 --port 3333
 ```
 
 3. Open `http://127.0.0.1:3333`
@@ -72,6 +72,7 @@ Notes:
 
 - The frontend talks to the backend through same-origin Next.js proxy routes under `/api/*`.
 - `PYTHON_API_BASE` is the preferred server-side env var for the frontend proxy.
+- Local non-Docker frontend defaults to `http://127.0.0.1:8003`; Docker overrides this to the internal service URL `http://backend:8000`.
 - Generate / Regenerate / Export require an active backend job; the desktop no longer creates local mock generated rows when the backend is unavailable.
 
 ## Run With Docker
@@ -165,10 +166,13 @@ Entry point:
 
 Reference docs:
 
+- [docs/README.md](docs/README.md) — docs index: runtime / developer / archive split
 - [docs/WORKFLOW_MECHANISM_TABLE.md](docs/WORKFLOW_MECHANISM_TABLE.md) — developer table for user actions, API routes, backend work, AI calls, and state writes
 - [docs/API_CONTRACT.md](docs/API_CONTRACT.md) — browser ↔ backend API specs
 - [docs/ASPICE_SWE6_AI_Instruction.md](docs/ASPICE_SWE6_AI_Instruction.md) — ASPICE SWE.6 AI Instruction (auto-loaded into LLM prompt)
+- [docs/TEST_SET_POLICY.md](docs/TEST_SET_POLICY.md) — Test Set grouping, hint, override, and export policy
 - [docs/ASPICE_SWE6_AI_Review.md](docs/ASPICE_SWE6_AI_Review.md) — ASPICE SWE.6 AI Review spec (auto-loaded into review prompt)
 - [docs/Test Case Design Method 判斷規則.md](docs/Test%20Case%20Design%20Method%20判斷規則.md) — Design method selection rules (auto-loaded into LLM prompt)
 - [docs/test_case_priority.md](docs/test_case_priority.md) — P0–P3 priority definitions
 - [docs/TC_Generator_Architecture_Diagrams.html](docs/TC_Generator_Architecture_Diagrams.html) — visual architecture reference
+- [docs/archive/README.md](docs/archive/README.md) — archived notes that must not be loaded into runtime prompts

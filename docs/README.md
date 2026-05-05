@@ -1,0 +1,30 @@
+# TC Generator Docs
+
+## Runtime Docs
+
+These files are loaded by backend prompts or directly define runtime behavior.
+Rename or move them only with matching code and test updates.
+
+- `ASPICE_SWE6_AI_Instruction.md` — generation instruction loaded by `backend/rules_loader.py`
+- `Test Case Design Method 判斷規則.md` — design-method rules loaded by `backend/rules_loader.py`
+- `test_case_priority.md` — priority rubric loaded by `backend/rules_loader.py`
+- `ASPICE_SWE6_AI_Review.md` — review prompt / review-engine reference
+- `TEST_SET_POLICY.md` — grouping, hint, override, and export policy
+
+## Developer Docs
+
+- `API_CONTRACT.md` — frontend/backend API contract
+- `WORKFLOW_MECHANISM_TABLE.md` — user action → frontend → backend → AI/state map
+- `CHANGELOG.md` — architecture notes, history, and current baselines
+- `TC_Generator_Architecture_Diagrams.html` — architecture visual reference
+- `design-system/` — UI conventions and design-system assets
+
+## Archive
+
+- `archive/` — historical notes and merged patches that must not be loaded into
+  runtime prompts
+
+## Local / Ignored Data
+
+- `test/` and `temp/` are local sample data / scratch fixtures and are ignored
+  by git

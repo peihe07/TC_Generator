@@ -939,8 +939,8 @@ Apply these authoritative rules from `ASPICE_SWE6_AI_Instruction.md`:
 
 - **§6.1 Test Item** — If the requirement can be validated by more than
   one scenario, EACH distinct scenario is its own TC. `tc_title` is the
-  single scenario-identifying field (mandatory, 6–14 words, arrow form or
-  natural sentence) and MUST visibly distinguish siblings — e.g.
+  single scenario-identifying field (mandatory, 2–14 words; arrow form,
+  natural sentence, or scenario tag) and MUST visibly distinguish siblings — e.g.
   `Initial sync at 5,000 → all entries on HU`,
   `Initial sync > 5,000 → count capped at configured maximum`.
 - **§10.2 Keyword-Driven Scenario Decomposition** — Identify the key concepts

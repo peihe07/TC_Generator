@@ -22,6 +22,23 @@ TC workbook fields: English only. Reasoning fields: Traditional Chinese allowed.
 
 ## 6. Field Rules
 
+### 6.0 Test Set
+Short English noun phrase, typically **1–3 words**. A Test Set captures the
+functional capability inside the workbook Test Group; it is not a test
+technique, procedure action, UI widget name, or sentence. Runtime ownership
+and export behavior are defined in `TEST_SET_POLICY.md`.
+
+- Map to SWRA / Req sub-feature capability, e.g. `Connection`, `Device List`, `System Information`, `ECU Certificate`
+- Do **not** repeat the Test Group / module prefix already stored in the Test Group column. With Test Group = `Bluetooth`, use `Connection` / `Pairing` / `Power Control`, not `BT Connection` / `Bluetooth Pairing`
+- Group by capability, not by sub-action. Different steps, UI paths, or sub-states of the same capability should share one Test Set
+- Prefer broader shared capability when unsure; single-req Test Sets are allowed only for genuine outliers
+- Same Test Set should imply a shared setup pattern and UI entry path where the requirements support it
+- Workbook-imported Test Set values are hints only until Configure grouping or reviewer override confirms them
+- Keep spelling case-sensitive and consistent across the project; no trailing spaces; no synonym drift
+- Forbidden: action labels (`Verify XXX`, `Test Bluetooth`), full sentences, bracket tags, placeholders (`Req-xxx`, `Feature`, `Function` alone), empty / `None` / `Unclassified` / `Misc`
+- ✓ `Bluetooth`, `System Information`, `ECU Certificate`, `Showroom Demo Mode`
+- ✗ `Screenshot` and `Screen Shot` both used; ✗ `BT (Bluetooth)`; ✗ `Bluetooth Connection` when Test Group already equals `Bluetooth`
+
 ### 6.1 Test Item / tc_title — three acceptable shapes
 Length **2–14 words**. Pick whichever makes the scenario clearest:
 
@@ -42,8 +59,21 @@ Starting **state / environment** only. Never actions, checks, reads, data-presen
 
 Self-test: requires *do / check / confirm* → NOT a Pre-Condition.
 
-### 6.3 Input
-Explicit deterministic value (button / option / value / file / trigger) or `NA`.
+### 6.3 Input Test Data — field ownership
+Data belongs to exactly one field. Do not duplicate the same value across
+Pre-Condition, Input Test Data, and Procedure.
+
+1. **Environment data** (file, device, external signal source) → Pre-Condition
+   - ✓ `1. A USB drive containing valid .mp4 video files is connected`
+2. **Interaction data** (button, option, UI value selected by the tester) → Procedure step
+   - ✓ `Press [Screen Off] button`
+3. **Independent dataset** (CAN signal values, boundary values, batch test data) → Input Test Data
+   - ✓ `CAN: VinLockStatus = 0x01`
+   - ✓ `File size: 200 MB / 201 MB`
+   - ✓ `Test files: video_5MB.mp4, video_300MB.mp4`
+
+If the data already belongs to Pre-Condition or Procedure, set Input Test Data
+to `NA`. `NA` is valid for many UI-operation TCs and does not fail self-check.
 
 ### 6.4 Sibling Awareness
 On `## Sibling Rows` injection, output `duplicate_of` (only if truly equivalent: same trigger+outcome+input+verification target) and `distinguishing_axis` `{"axis": "<trigger_state|input_data|timing|boundary|mode|none>", "delta": "<繁中一句, 含 tc_title 具體 token>"}`. Rule: `axis="none"` ⇔ `duplicate_of` set. Full contract in code.
@@ -75,8 +105,111 @@ State change or boundary → establish **baseline (before)** AND check **outcome
 ### 7.7 One Objective
 Steps = Setup / Transition / Verification (final only). Earlier failure = setup not reached → keep. Independent feature → split.
 
+### 7.8 Standard Setup Snippets
+Project-level repeated setup steps SHOULD be managed as constants and reused
+verbatim. Case, hyphenation, spacing, and wording variants are not allowed to
+spread across TCs.
+
+Examples (project-specific constants must be maintained together with tooling):
+- `ENTER_DEALER_MODE`: `Press and Hold the top right and bottom left corners of the screen for 5 seconds to enter Dealer Mode`
+- `ENTER_ENG_MODE`: `Press and Hold the top left and bottom right corners of the screen for 5 seconds to enter Eng Mode`
+- `SCREEN_OFF`: `Press H/K [Screen Off] button to turn off the HU screen`
+- `ENTER_APP_DRAWER`: `Press [Apps] on Menu Bar to open App Drawer`
+
+Tooling (prompt builder / linter / export normalizer) should enforce the same
+canonical strings. When adding a constant, update both this instruction and the
+tooling constant table; do not introduce ad-hoc variants.
+
+### 7.9 Tooling / CLI Step Format
+When a step requires shell, adb, CAN tooling, or another external command, use
+a two-line format:
+
+- Description line: numbered step, business-level action / intent
+- Command line: starts with `$`, unnumbered, immediately under the description
+- ER line: describes observable result; do not repeat the command string
+
+Example:
+
+Procedure:
+```text
+3. Mount a tmpfs of 1 GB to occupy actual RAM
+   $ mount -t tmpfs -o size=1024M tmpfs /data/local/tmp/ramtest
+
+4. Fill tmpfs with zero-filled blocks to consume memory
+   $ dd if=/dev/zero of=/data/local/tmp/ramtest/blob bs=10M count=100
+```
+
+ER:
+```text
+3. tmpfs is mounted at /data/local/tmp/ramtest
+4. Available memory has decreased
+```
+
+### 7.10 Step Length & Intent Level
+Manage step wording by role, not by a single hard length limit.
+
+**A. Normal setup / transition step**
+- Target length: ≤ 12 words
+- Action + target only; no purpose clause unless §7.1 exception applies
+- ✓ `Insert USB device`
+- ✗ `Press the Screen Off button on the head unit so that we can later enter Eng Mode by pressing the corners`
+
+**B. Final Step (§7.5 verification owner)**
+- Must include verification intent: `check that ...`, `to verify ...`, or `... to check ...`
+- Length may extend to ≤ 18 words because it carries action + check target
+- ✓ `Select CarPlay icon in Menu Bar and check that the CarPlay interface is displayed on the HU`
+
+**C. Setup step that requires intent (§7.1 exception)**
+- If UI is multi-purpose, the step establishes a non-obvious precondition, or
+  the target is opaque, keep a short `to ...` clause; length may extend to ≤ 18 words
+- ✓ `Press and Hold the top right and bottom left corners of the screen for 5 seconds to enter Dealer Mode`
+- ✓ `Mount tmpfs of 1 GB to occupy actual RAM`
+
+Decision test: if removing the `to ...` clause still leaves the next step
+unambiguous, remove it. Do not repeat previous state, explain background, or
+write conditional branches inside one TC.
+
 ## 8. Expected Results
 1:1 aligned with steps; observable, judgeable; no `normal` / `as expected`. Setup / transition may have ER to prove condition established. Final ER covers the **complete** Test Item outcome (partial = incomplete).
+
+### 8.3 Multi-Phase ER Layout
+When Procedure includes an environment-establishment phase (fault injection,
+boundary setup, stress setup) and then the main verification phase:
+
+- Separate phases with one blank line
+- Keep 1:1 alignment with Procedure steps
+- If the final verification must list sub-items, use `a./b./c.` sublevels and `-` bullets
+
+Example:
+
+```text
+Procedure:
+1. Access adb shell
+2. Check current RAM usage
+3. Mount tmpfs of 1 GB
+4. Fill tmpfs to consume RAM
+5. Re-check available memory
+6. Press [Screen Off] button
+7. Enter Dealer Mode
+8. Select System Information
+
+ER:
+1. adb shell is accessed
+2. RAM usage is visible
+3. tmpfs is mounted at /data/local/tmp/ramtest
+4. tmpfs is populated
+5. Available memory has decreased
+
+6. HU screen is OFF
+7. Dealer Mode page is displayed
+8. System Information includes:
+   a. Radio Part Information
+      - Hardware part number
+      - Software version number
+   b. SDAR Information
+      - SDAR hardware version
+      - SDAR firmware version
+```
 
 ## 9. False Pass / False Fail
 - **FP:** Split when independent items / branches exist (formats, devices, protocols, UI paths). Enumerated supported items → ALWAYS pair with at least one unsupported negative TC.
@@ -100,14 +233,19 @@ Never invent a value the source did not state (numbers, thresholds, timeouts, si
 - Domain constants OK (BT PIN `0000`, HTTP `200 OK`); ambiguous source → preserve ambiguity.
 
 ## 11. Self-Check (before emitting each TC)
-1. tc_title: one of 3 shapes, 2–14 words, sibling token visible (§6.1)
-2. Pre-Condition state/env only; Input deterministic or `NA` (§6.2-6.3)
-3. Steps executable; no forbidden verbs; Final Step owns verification (§7.1, §7.5)
-4. Baseline when before/after needed (§7.6)
-5. Procedure ↔ ER 1:1; ER observable; complete outcome covered (§8)
-6. No FP / FF; supported paired with negative (§9)
-7. Traces to Req/SWRA; no fabricated data (§10)
-8. Design Method assigned AFTER procedure finalized (§15)
+1. Test Set: noun phrase, capability-level, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§6.0)
+2. tc_title: one of 3 shapes, 2–14 words, sibling token visible (§6.1)
+3. Pre-Condition state/env only; Input Test Data field ownership correct, duplicate data moved to PC / Procedure or `NA` (§6.2-6.3)
+4. Steps executable; no forbidden verbs; Final Step owns verification (§7.1, §7.5)
+5. Standard setup snippets reused verbatim when applicable (§7.8)
+6. CLI / tooling steps use description + `$` command format (§7.9)
+7. Step length and intent level fit normal / final / necessary-intent categories (§7.10)
+8. Baseline when before/after needed (§7.6)
+9. Procedure ↔ ER 1:1; ER observable; complete outcome covered; multi-phase ER layout used when needed (§8, §8.3)
+10. No FP / FF; supported paired with negative (§9)
+11. Traces to Req/SWRA; no fabricated data (§10)
+12. Design Method assigned AFTER procedure finalized (§15)
+13. No trailing period on any line of `pre_conditions` / `input_test_data` / `test_procedure` / `expected_result` (§13)
 
 ## 12. Tool-Specific Output Contract (workbook export, not ASPICE rules)
 
@@ -161,6 +299,8 @@ When in doubt, omit the field.
 
 ## 13. Formatting
 No HTML / Markdown tables in TC output. Plain numbered text; one item per line; blank line between fields.
+
+**No trailing period** in `pre_conditions`, `input_test_data`, `test_procedure`, `expected_result` — strip the final `.` (or `。`) at the end of every line. Mid-sentence periods are kept (e.g. `Press button. Wait 5s` is fine; `Press button. Wait 5s.` is NOT). Applies to every numbered item.
 
 ## 15. Design Method (assign AFTER TC finalized, first-match)
 
