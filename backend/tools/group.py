@@ -29,6 +29,10 @@ def _is_fallback_label(value: str) -> bool:
     return _norm(value).lower() in _FALLBACK_LABELS
 
 
+def _is_projection_group(test_group: str | None) -> bool:
+    return _norm(test_group).lower() == "projection"
+
+
 def _get_any(row: dict, *keys) -> str:
     """對 snake_case / camelCase 雙格式取值，回傳 stripped string。"""
     for key in keys:
@@ -174,19 +178,20 @@ def group_tests_tool(
         "model": model,
     }
     if unresolved_rows:
-        for start in range(0, len(unresolved_rows), _AI_CLASSIFICATION_BATCH_SIZE):
-            chunk = unresolved_rows[start:start + _AI_CLASSIFICATION_BATCH_SIZE]
-            try:
-                result = classify_test_sets(chunk, model=model, test_group=test_group)
-            except GenerationError:
-                continue
-            classified.update(result.assignments)
-            usage["cost"] += result.cost
-            usage["inputTokens"] += result.input_tokens
-            usage["outputTokens"] += result.output_tokens
-            usage["cacheCreationTokens"] += result.cache_creation_tokens
-            usage["cacheReadTokens"] += result.cache_read_tokens
-            usage["model"] = result.model
+        if not _is_projection_group(test_group):
+            for start in range(0, len(unresolved_rows), _AI_CLASSIFICATION_BATCH_SIZE):
+                chunk = unresolved_rows[start:start + _AI_CLASSIFICATION_BATCH_SIZE]
+                try:
+                    result = classify_test_sets(chunk, model=model, test_group=test_group)
+                except GenerationError:
+                    continue
+                classified.update(result.assignments)
+                usage["cost"] += result.cost
+                usage["inputTokens"] += result.input_tokens
+                usage["outputTokens"] += result.output_tokens
+                usage["cacheCreationTokens"] += result.cache_creation_tokens
+                usage["cacheReadTokens"] += result.cache_read_tokens
+                usage["model"] = result.model
 
     # Phase 2: 組 group preview
     framework: dict[str, list[str]] = {}

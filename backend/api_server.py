@@ -2543,10 +2543,10 @@ def _prune_unexported_source_rows(
 
     from bisect import bisect_left
     from openpyxl import load_workbook
-    from writer import TC_SHEET_NAME
+    from writer import find_tc_sheet_name
 
     wb = load_workbook(source_path)
-    ws = wb[TC_SHEET_NAME]
+    ws = wb[find_tc_sheet_name(wb)]
     for row_num in reversed(delete_row_nums):
         ws.delete_rows(row_num, 1)
     wb.save(source_path)
