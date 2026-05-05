@@ -8,11 +8,10 @@ import os
 import re
 import tempfile
 from datetime import datetime
-from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
@@ -29,11 +28,11 @@ from id_generator import generate_group_abbreviation, generate_tc_ids, normalize
 from job_store import SqliteJobStore, default_db_path
 from parser import parse_tc_xlsx
 from review_assistant import suggest_review_fix
+from rules_loader import load_rules
 from spec_matcher import build_spec_index, load_spec_index, match_spec_references
 from spec_parser import detect_format, parse_docx, parse_pdf, parse_xlsx
 from tools import (
     ToolError,
-    aggregate_metrics_tool,
     generate_tc_tool,
     group_tests_tool,
     match_spec_tool,
@@ -43,6 +42,7 @@ from tools import (
 )
 from tools.group import derive_test_set_name
 from writer import build_output_path
+from routes.system import register_system_routes
 
 
 def _tool_error_to_http(exc: ToolError) -> HTTPException:
@@ -86,76 +86,7 @@ try:
 except (ValueError, Exception):
     pass
 
-# 內建精簡規則：當 docs/ 規則檔案不存在時的 fallback
-_FALLBACK_RULES = """
-## ASPICE TC Writing Rules
-- One behavior per TC, must match requirement intent
-- Format: Condition/Trigger → Observable Outcome
-
-## Pre-Conditions
-- State or environment ONLY — never actions, checks/reads, or data-presence
-  (e.g. "HU has 5,000 entries" → set up + read in a baseline step)
-- Minimum necessary state, numbered list or NA
-
-## Input Test Data
-- Explicit deterministic values, or NA
-
-## Test Procedure
-- Setup steps → Transition steps → Final Step (verification)
-- Each step: executable action + purpose
-- Final step must include action + verification target
-- Forbidden main verbs: observe / see if / check whether / confirm whether / verify / watch / monitor / inspect
-  Use: Check that / Confirm that / Read / Record / Compare + explicit target
-
-## Expected Result
-- 1:1 mapping with procedure steps
-- Observable, judgeable, no vague language
-
-## Design Method (assign AFTER procedure+ER finalized)
-- Judge from the ACTUAL flow via first-match on PRIMARY intent:
-  Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
-
-## Application Output Contract
-- Priority is a workbook/tooling field, not an ASPICE rule in the instruction doc
-- Return exactly P0 / P1 / P2 / P3
-- P0: a feature's core/primary flow (the must-test happy path that defines the feature working at all); plus safety, boot/recovery, connection, audio output, eCall, vehicle-critical CAN signal, data loss risk. Default any "main functionality normal flow" test case to P0.
-- P1: secondary or advanced operations of a major feature that are NOT the core primary flow — boundary/variation cases, key operational logic branches, non-primary user-facing flows
-- P2: secondary/support functionality with limited major-feature impact
-- P3: minor UI enhancement, low-impact customization, rare-use scenario, cosmetic detail
-""".strip()
-
-# 規則文件路徑（專案根目錄下 docs/）
-_DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
-_RULE_FILES = [
-    _DOCS_DIR / "ASPICE_SWE6_AI_Instruction.md",
-    _DOCS_DIR / "Test Case Design Method 判斷規則.md",
-    _DOCS_DIR / "test_case_priority.md",
-]
-
-
-def _load_rules() -> str:
-    """讀取 docs/ 下的規則 markdown 並串接；若全部缺失則退回精簡 fallback。"""
-    sections: list[str] = []
-    for path in _RULE_FILES:
-        if path.is_file():
-            try:
-                text = path.read_text(encoding="utf-8").strip()
-                if text:
-                    sections.append(f"# {path.stem}\n\n{text}")
-            except OSError:
-                continue
-    return "\n\n---\n\n".join(sections) if sections else _FALLBACK_RULES
-
-
-RULES_SECTIONS = _load_rules()
-
-
-@app.get("/api/health")
-def healthcheck() -> dict:
-    return {
-        "status": "ok",
-        "openai_configured": bool(os.environ.get("OPENAI_API_KEY")),
-    }
+RULES_SECTIONS = load_rules()
 
 
 class GenerateConfig(BaseModel):
@@ -653,6 +584,14 @@ def _persist_job_usage(
     JOB_REGISTRY[job_id] = job
 
 
+register_system_routes(
+    app,
+    job_store=JOB_REGISTRY,
+    job_usage=_job_usage,
+    tool_error_to_http=_tool_error_to_http,
+)
+
+
 def _build_spec_index_for_job(job: dict) -> dict:
     spec_bytes = job.get("specBytes")
     spec_filename = job.get("specFileName")
@@ -1131,30 +1070,6 @@ async def stream_quick_generate(payload: QuickGenerateRequest, request: Request)
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
     )
 
-@app.delete("/api/admin/reset")
-def reset_all_state(request: Request) -> dict:
-    """Wipe every SQLite job row — no recovery.
-
-    Only reachable from the loopback interface so a misconfigured reverse
-    proxy cannot invoke this remotely. GUI callers show a Win95Dialog
-    confirmation before hitting this endpoint; see
-    `WorkspaceMenu.tsx` for the user-facing flow.
-    """
-    client_host = request.client.host if request.client else None
-    # "testclient" is the starlette TestClient default host — allow it so
-    # pytest can exercise this endpoint without stubbing the socket.
-    if client_host not in {"127.0.0.1", "::1", "localhost", "testclient"}:
-        raise HTTPException(status_code=403, detail="reset only allowed from localhost")
-
-    jobs_removed = JOB_REGISTRY.clear_all()
-    JOB_REGISTRY.vacuum()
-
-    return {
-        "status": "ok",
-        "jobsRemoved": jobs_removed,
-    }
-
-
 class ReviewFixSuggestRequest(BaseModel):
     tc: dict
     errors: list[dict] = Field(default_factory=list)
@@ -1228,63 +1143,6 @@ async def audit_workbook(
         except Exception as exc:  # pragma: no cover — surface as 500 with reason
             raise HTTPException(status_code=500, detail=f"audit failed: {exc}") from exc
     return report
-
-
-@app.get("/api/jobs/{job_id}/usage")
-def get_job_usage(job_id: str) -> dict:
-    """Per-job usage breakdown including model-level cost attribution.
-
-    Fast read endpoint for CostMeter dashboard popup — lets the UI show
-    "classify: $0.02 (gpt-5-mini) / generate: $0.13 (gpt-5)" without
-    dragging the full job record over the wire.
-    """
-    job = JOB_REGISTRY.get(job_id)
-    if not job:
-        raise HTTPException(status_code=404, detail="job not found")
-    usage = _job_usage(job)
-    return {"jobId": job_id, **usage}
-
-
-@app.get("/api/metrics/aggregate")
-def metrics_aggregate(job_ids: str | None = None) -> dict:
-    """跨 job 聚合指標（成本觀測面板用）。
-
-    Query:
-        job_ids: 逗號分隔 ID 子集；不帶參數 → 全部 job。
-    """
-    selected: list[str] | None = None
-    if job_ids:
-        selected = [jid.strip() for jid in job_ids.split(",") if jid.strip()]
-    try:
-        return aggregate_metrics_tool(job_ids=selected, job_store=JOB_REGISTRY)
-    except ToolError as exc:
-        raise _tool_error_to_http(exc) from exc
-
-
-@app.get("/api/spec-library")
-async def list_spec_library() -> dict:
-    """回傳 ``spec-index/manifest.json`` 中已建好的 spec 清單，前端用來做 dropdown 選單。"""
-    manifest_path = Path(__file__).resolve().parent.parent / "spec-index" / "manifest.json"
-    if not manifest_path.is_file():
-        return {"specs": []}
-    try:
-        data = json.loads(manifest_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return {"specs": []}
-    raw_specs = data.get("specs") or []
-    specs = [
-        {
-            "name": item.get("name"),
-            "sourceFile": item.get("source_file"),
-            "entriesCount": item.get("entries_count"),
-            "embeddingModel": item.get("embedding_model"),
-            "updatedAt": item.get("updated_at"),
-        }
-        for item in raw_specs
-        if isinstance(item, dict) and item.get("name")
-    ]
-    specs.sort(key=lambda s: (s.get("name") or "").lower())
-    return {"specs": specs}
 
 
 @app.post("/api/parse")
@@ -2751,28 +2609,3 @@ async def attach_raw_workbook(job_id: str, raw_file: UploadFile = File(...)) -> 
         "size": len(raw_bytes),
         "hasSource": True,
     }
-
-
-@app.get("/api/jobs/{job_id}/source-status")
-async def get_source_status(job_id: str) -> dict:
-    """回報 job 是否仍保有 rawBytes，前端 export 前先用來判斷要不要 prompt 補上傳。"""
-    job = JOB_REGISTRY.get(job_id)
-    has_source = bool(job and job.get("rawBytes") and job.get("rawFileName"))
-    return {
-        "jobId": job_id,
-        "hasSource": has_source,
-        "rawFileName": (job or {}).get("rawFileName") if has_source else None,
-    }
-
-
-@app.get("/api/export/download/{jobId}", name="download_export")
-async def download_export(jobId: str) -> FileResponse:
-    job = JOB_REGISTRY.get(jobId)
-    if not job or not job.get("exportPath") or not os.path.exists(job["exportPath"]):
-        raise HTTPException(status_code=404, detail="export file not found")
-
-    return FileResponse(
-        job["exportPath"],
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        filename=os.path.basename(job["exportPath"]),
-    )

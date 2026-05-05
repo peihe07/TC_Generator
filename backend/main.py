@@ -18,40 +18,10 @@ from prompt_builder import build_user_prompt, build_batch_prompt, REQUIRED_OUTPU
 from generator import DEFAULT_MODEL, generate_single_tc, generate_batch, calculate_cost, GenerationError
 from validator import validate_row
 from writer import write_generated_results, write_framework_sheet, build_output_path
+from rules_loader import load_rules
 
 
-RULES_SECTIONS = """
-## ASPICE TC Writing Rules
-- One behavior per TC, must match requirement intent
-- Format: Condition/Trigger → Observable Outcome
-
-## Pre-Conditions
-- State or environment ONLY, never actions
-- Minimum necessary state, numbered list or NA
-
-## Input Test Data
-- Explicit deterministic values, or NA
-
-## Test Procedure
-- Setup steps → Transition steps → Final Step (verification)
-- Each step: executable action + purpose
-- Final step must include action + verification target
-
-## Expected Result
-- 1:1 mapping with procedure steps
-- Observable, judgeable, no vague language
-
-## Design Method
-- Use decision waterfall: Negative → Fault Injection → State Transition → Decision Table → EP → BVA → Combinatorial → Scenario → Functional
-
-## Application Output Contract
-- Priority is a workbook/tooling field, not an ASPICE rule in the instruction doc
-- Return exactly P0 / P1 / P2 / P3
-- P0: a feature's core/primary flow (the must-test happy path that defines the feature working at all); plus safety, boot/recovery, connection, audio output, eCall, vehicle-critical CAN signal, data loss risk. Default any "main functionality normal flow" test case to P0.
-- P1: secondary or advanced operations of a major feature that are NOT the core primary flow — boundary/variation cases, key operational logic branches, non-primary user-facing flows
-- P2: secondary/support functionality with limited major-feature impact
-- P3: minor UI enhancement, low-impact customization, rare-use scenario, cosmetic detail
-""".strip()
+RULES_SECTIONS = load_rules()
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

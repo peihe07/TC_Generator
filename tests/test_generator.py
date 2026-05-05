@@ -443,7 +443,7 @@ also through via fallback
         )
         assert doc_path.is_file(), (
             f"Authoritative rules doc missing at {doc_path}; "
-            "decompose prompt falls back to _FALLBACK_RULES if this file is absent."
+            "decompose prompt falls back to rules_loader.FALLBACK_RULES if this file is absent."
         )
 
         full_text = doc_path.read_text(encoding="utf-8")
