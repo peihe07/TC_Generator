@@ -118,9 +118,9 @@ PARSE_WORKBOOK_SCHEMA: dict[str, Any] = {
 GROUP_TESTS_SCHEMA: dict[str, Any] = {
     "name": "group_tests",
     "description": (
-        "Derive Test Set assignments from rows using existing value, PDM code, "
-        "or REQ ID prefix fallback. Returns groups, framework map, and "
-        "per-row assignments."
+        "Derive Test Set assignments from rows using existing values, hints, "
+        "AI classification, or deterministic fallback per docs/TEST_SET_POLICY.md. "
+        "Returns groups, framework map, and per-row assignments."
     ),
     "parameters": {
         "type": "object",

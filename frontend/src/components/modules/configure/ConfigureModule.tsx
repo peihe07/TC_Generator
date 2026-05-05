@@ -129,7 +129,9 @@ const ConfigureModule: React.FC = () => {
   const applyGroupingPreview = useCallback(() => {
     if (!groupPreview) return;
     const assignments = new Map(
-      groupPreview.assignments.map((entry) => [entry.id, entry.testSet]),
+      groupPreview.assignments
+        .filter((entry) => !entry.needsReview)
+        .map((entry) => [entry.id, entry.testSet]),
     );
     setTcRows(
       tcRows.map((row) => ({
@@ -143,7 +145,9 @@ const ConfigureModule: React.FC = () => {
     if (!tcRows.length) return;
     if (groupPreview) {
       const assignments = new Map(
-        groupPreview.assignments.map((entry) => [entry.id, entry.testSet]),
+        groupPreview.assignments
+          .filter((entry) => !entry.needsReview)
+          .map((entry) => [entry.id, entry.testSet]),
       );
       setTcRows(
         tcRows.map((row) => ({

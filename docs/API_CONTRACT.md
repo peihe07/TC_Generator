@@ -110,8 +110,10 @@ Purpose:
 - The endpoint returns preview assignments only. Frontend rows are changed when
   the user clicks **Apply** or when **Start Generate** is clicked with a preview
   still loaded; Start Generate auto-applies that preview before opening Generate.
-- If AI classification fails or omits a row, deterministic fallback labels are
-  used for preview and apply-back.
+- If AI classification fails or omits a row, deterministic fallback may produce
+  a capability label for preview. Rows that still cannot be classified are
+  returned as `Needs Classification` with `needsReview: true`; the frontend
+  must not apply that placeholder as a final Test Set.
 
 Request:
 
@@ -147,7 +149,8 @@ Response:
       "id": "row-10",
       "reqId": "SWE1-HMI-DM-001-01",
       "testSet": "PDM01",
-      "source": "derived"
+      "source": "derived",
+      "needsReview": false
     }
   ],
   "cost": 0.0012,
@@ -164,6 +167,9 @@ Notes:
 - If every row already has `testSet` and `forceRegroup` is false, grouping is deterministic and the usage fields will be zero.
 - If `forceRegroup` is true, existing `testSet` values remain in the request as AI hints but may be replaced in the returned preview assignments.
 - If AI-based Test Set classification runs, that cost is now counted into the job's cumulative usage.
+- Assignment `source` is `existing`, `derived`, or `fallback`. `needsReview:
+  true` means the label is preview-only and must be manually replaced before it
+  becomes a formal Test Set.
 
 ### `POST /api/match`
 

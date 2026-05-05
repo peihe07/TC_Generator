@@ -85,6 +85,11 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
       <div className="status-bar-field p-1 mb-2">
         Grouped {preview.assignments.length} row(s) into {preview.groups.length} Test Set(s).
         Apply once you&apos;re happy with the labels below.
+        {preview.assignments.some((entry) => entry.needsReview) && (
+          <span style={{ color: 'var(--status-reject-dark)' }}>
+            {' '}Rows marked Needs Classification require manual override and will not be applied automatically.
+          </span>
+        )}
       </div>
     )}
 
@@ -100,7 +105,14 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
         {preview?.groups.length ? (
           preview.groups.map((group) => (
             <tr key={group.testSet}>
-              <td className="p-1 font-mono">{group.testSet}</td>
+              <td className="p-1 font-mono">
+                {group.testSet}
+                {group.testSet === 'Needs Classification' && (
+                  <span className="ml-1" style={{ color: 'var(--status-reject-dark)' }}>
+                    manual
+                  </span>
+                )}
+              </td>
               <td className="p-1 font-mono">{group.count}</td>
               <td className="p-1">{group.reqIds.join(', ')}</td>
             </tr>
@@ -137,7 +149,7 @@ export const GroupingTab: React.FC<GroupingTabProps> = ({
           {[...new Set(tcRows.map((r) => r.testSet).filter(Boolean))].map((ts) => (
             <option key={ts} value={ts} />
           ))}
-          {preview?.groups.map((g) => (
+          {preview?.groups.filter((g) => g.testSet !== 'Needs Classification').map((g) => (
             <option key={`grp-${g.testSet}`} value={g.testSet} />
           ))}
         </datalist>

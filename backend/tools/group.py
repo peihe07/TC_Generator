@@ -1,8 +1,10 @@
-"""group_tests tool：把 requirements 分到 Test Set。
+"""group_tests tool：把 requirements 分到 Test Set.
+
+Policy: docs/TEST_SET_POLICY.md
 
 優先使用既有 `test_set`；沒有時先嘗試 AI 分類（per-row by `id`，failover
-to `req_id`）。若 AI 不可用或結果漏配，退回 deterministic fallback：
-`PDMxx`（test_item 含 PDM 編碼時用之）→ 否則 `Unclassified`。
+to `req_id`）。若 AI 不可用或結果漏配，退回 deterministic fallback；
+fallback label 不應看起來像已正式分類的 requirement-code placeholder。
 Route 層負責 jobId 驗證。
 """
 
@@ -18,7 +20,8 @@ from .registry import SafetyLevel, ToolSpec, register_tool
 from .schemas import GROUP_TESTS_SCHEMA
 
 _AI_CLASSIFICATION_BATCH_SIZE = 50
-_FALLBACK_LABELS = {"unclassified"}
+NEEDS_CLASSIFICATION_LABEL = "Needs Classification"
+_FALLBACK_LABELS = {"unclassified", "misc", "none", NEEDS_CLASSIFICATION_LABEL.lower()}
 
 
 def _norm(value) -> str:
@@ -89,9 +92,8 @@ def _fallback_test_set_name(row: dict) -> str:
     """AI 失敗或漏配時的 deterministic fallback。
 
     保留 PDMxx 偵測（test_item 帶 PDM01 之類的就用該 code，這是可讀的真標籤）；
-    其他情況統一回 `Unclassified`，讓 reviewer 一眼看出這列沒被 AI 分類過、
-    需要 retry 或人工指定。先前回 `REQ <prefix>` 看起來像正常 Test Set，反而
-    遮蔽了「這是 fallback」的訊號。
+    其他情況回 `Needs Classification` preview placeholder，並由 assignment
+    metadata 標記 needsReview，避免 placeholder 被當成正式 Test Set。
     """
     hint = derive_test_set_hint(row)
     if hint:
@@ -116,7 +118,7 @@ def _fallback_test_set_name(row: dict) -> str:
     if codes:
         return codes[0].upper()
 
-    return "Unclassified"
+    return NEEDS_CLASSIFICATION_LABEL
 
 
 def group_tests_tool(
@@ -195,7 +197,7 @@ def group_tests_tool(
 
     # Phase 2: 組 group preview
     framework: dict[str, list[str]] = {}
-    row_derived: list[tuple[dict, str, str, str]] = []  # row, test_set, req_id, source
+    row_derived: list[tuple[dict, str, str, str, bool]] = []
     for row in rows:
         row_id = _get_any(row, "id")
         req_id = _get_any(row, "req_id", "reqId")
@@ -203,19 +205,24 @@ def group_tests_tool(
         if existing and not force_regroup:
             test_set = existing
             source = "existing"
+            needs_review = False
         else:
             # 雙重查找：先試 row_id（新 prompt 要 AI 回 id-keyed），命中失敗
             # 再退回 req_id（AI 偶爾忽略指示沿用舊 req_id-keyed 格式時的 backup）。
             # 兩者皆 miss 才走 deterministic fallback。
-            test_set = (
+            ai_test_set = (
                 classified.get(row_id or "", "")
                 or classified.get(req_id or "", "")
-                or _fallback_test_set_name(row)
             )
-            if _is_fallback_label(test_set):
+            if ai_test_set and not _is_fallback_label(ai_test_set):
+                test_set = ai_test_set
+                source = "derived"
+                needs_review = False
+            else:
                 test_set = _fallback_test_set_name(row)
-            source = "derived"
-        row_derived.append((row, test_set, req_id, source))
+                source = "fallback"
+                needs_review = _is_fallback_label(test_set)
+        row_derived.append((row, test_set, req_id, source, needs_review))
         framework.setdefault(test_set, []).append(req_id)
 
     groups = [
@@ -227,7 +234,7 @@ def group_tests_tool(
     # assignments：依 group 順序 flatten
     assignments = []
     for group in groups:
-        for row, derived_set, req_id, source in row_derived:
+        for row, derived_set, req_id, source, needs_review in row_derived:
             if derived_set != group["testSet"]:
                 continue
             assignments.append(
@@ -236,6 +243,7 @@ def group_tests_tool(
                     "reqId": req_id,
                     "testSet": group["testSet"],
                     "source": source,
+                    "needsReview": needs_review,
                 }
             )
 

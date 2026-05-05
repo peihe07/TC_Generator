@@ -54,9 +54,14 @@ def test_group_calls_ai_for_unresolved_rows():
     derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
     assert derived_sets["a"] == "BT Switch"
     assert derived_sets["b"] == "Device List"
-    assert derived_sets["c"] == "Misc"
+    assert derived_sets["c"] == "Needs Classification"
     for assignment in out["assignments"]:
-        assert assignment["source"] == "derived"
+        if assignment["id"] == "c":
+            assert assignment["source"] == "fallback"
+            assert assignment["needsReview"] is True
+        else:
+            assert assignment["source"] == "derived"
+            assert assignment["needsReview"] is False
 
 
 def test_group_sends_original_test_set_hint_for_unresolved_rows():
@@ -282,11 +287,14 @@ def test_group_falls_back_when_ai_classification_fails():
     derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
     # PDM detection still wins when test_item carries a PDM code.
     assert derived_sets["r1"] == "PDM01"
-    # No PDM code and AI failed → unified `Unclassified` so reviewers can
-    # see at a glance that the row was not classified (replaces the old
-    # `REQ <prefix>` label which looked like a real Test Set).
-    assert derived_sets["r2"] == "Unclassified"
-    assert derived_sets["r3"] == "Unclassified"
+    # No deterministic capability can be derived → preview placeholder only.
+    # Frontend Apply must not persist this as a formal Test Set.
+    assert derived_sets["r2"] == "Needs Classification"
+    assert derived_sets["r3"] == "Needs Classification"
+    assignments = {a["id"]: a for a in out["assignments"]}
+    assert assignments["r2"]["source"] == "fallback"
+    assert assignments["r2"]["needsReview"] is True
+    assert assignments["r3"]["needsReview"] is True
 
 
 def test_group_replaces_ai_unclassified_with_projection_keyword_fallback():

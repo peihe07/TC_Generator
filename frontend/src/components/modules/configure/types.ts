@@ -13,7 +13,8 @@ export type GroupPreviewState = {
     id: string;
     reqId: string;
     testSet: string;
-    source: 'existing' | 'derived';
+    source: 'existing' | 'derived' | 'fallback';
+    needsReview?: boolean;
   }>;
   cost: number;
   inputTokens: number;
