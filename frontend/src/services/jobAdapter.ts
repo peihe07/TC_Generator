@@ -2,153 +2,37 @@
 
 import type {
   GenerationConfig,
-  AwaitingApplyFields,
   TcRow,
-  UsageSummary,
   ValidationError,
 } from "@/src/lib/types";
 import { useJobHistoryStore } from "@/src/store/useJobHistoryStore";
+import type {
+  ExportJobInput,
+  GenerateCallbacks,
+  GroupPreview,
+  MatchPreview,
+  ParseJobResult,
+  RegenerateCallbacks,
+  RerunCallbacks,
+  RerunSummary,
+  ReviewFixSuggestion,
+  SpecLibraryEntry,
+} from "./jobAdapterTypes";
+
+export type {
+  ExportJobInput,
+  GenerateCallbacks,
+  GroupPreview,
+  MatchPreview,
+  ParseJobResult,
+  RegenerateCallbacks,
+  RerunCallbacks,
+  RerunSummary,
+  ReviewFixSuggestion,
+  SpecLibraryEntry,
+} from "./jobAdapterTypes";
 
 const appApiBase = "/api";
-
-type ParseJobResult = {
-  jobMetadata: {
-    jobId: string;
-    projectName: string;
-    createdAt: string;
-    totalRows: number;
-  };
-  rows: TcRow[];
-  stats: {
-    total: number;
-    processed: number;
-    success: number;
-    fail: number;
-    cost: number;
-  };
-};
-
-type GenerateCallbacks = {
-  onStart?: (total: number) => void;
-  onRow?: (row: TcRow, message: string) => void;
-  // 當 AI 把一個 requirement 拆成多筆 TC 時，會針對 TC 2..N 各發一次 onRowAdded。
-  onRowAdded?: (row: TcRow, parentId: string, message: string) => void;
-  // AI 決定此 req 要拆成 N 筆，帶出拆分 reasoning（§1.2/§1.4/§1.5）與 keyword 分析。
-  onReqSplit?: (info: {
-    rowId: string;
-    reqId: string;
-    tcCount: number;
-    reasoning: string;
-    keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
-    message: string;
-  }) => void;
-  onProgress?: (stats: {
-    total: number;
-    processed: number;
-    success: number;
-    fail: number;
-    cost: number;
-    inputTokens: number;
-    outputTokens: number;
-    cacheCreationTokens: number;
-    cacheReadTokens: number;
-  }) => void;
-  onComplete?: (message: string) => void;
-  onError?: (message: string) => void;
-};
-
-type RegenerateCallbacks = {
-  onRow?: (rowId: string, data: AwaitingApplyFields) => void;
-  onRowAdded?: (row: TcRow, parentId: string, message: string) => void;
-  onReqSplit?: (info: {
-    rowId: string;
-    reqId: string;
-    tcCount: number;
-    reasoning: string;
-    keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
-    message: string;
-  }) => void;
-  onProgress?: (usage: UsageSummary) => void;
-  onFail?: (rowId: string, message: string) => void;
-  onComplete?: () => void;
-  onError?: (message: string) => void;
-};
-
-type RerunCallbacks = {
-  // Primary TC：覆蓋既有列（含 generated block + splitDecision metadata）
-  onPrimary?: (row: TcRow, message: string) => void;
-  // AI 把一筆需求拆成多筆 TC 時，TC 2..N 各發一次；前端依 parentId 插在 primary 之後
-  onRowAdded?: (row: TcRow, parentId: string, message: string) => void;
-  // 拆分 reasoning / keyword 分析
-  onReqSplit?: (info: {
-    rowId: string;
-    reqId: string;
-    tcCount: number;
-    reasoning: string;
-    keywords: Array<{ keyword: string; meaning: string; covered_by: number[] }>;
-    message: string;
-  }) => void;
-  onProgress?: (usage: UsageSummary) => void;
-  onFail?: (rowId: string, message: string) => void;
-  onComplete?: (summary: RerunSummary) => void;
-  onError?: (message: string) => void;
-};
-
-export interface RerunSummary {
-  /** Number of original rows whose content was overwritten by the re-run. */
-  rowsUpdated: number;
-  /** Number of new sub-TCs the AI emitted (req split into more rows). */
-  rowsAdded: number;
-  /** Number of rows the backend marked as re-run failed. */
-  rowsFailed: number;
-}
-
-type ExportJobInput = {
-  jobId: string | null;
-  rows: TcRow[];
-  scope: "all" | "accepted";
-  outputMode: "new-file" | "overwrite";
-  includeFrameworkSheet: boolean;
-  selectedColumns: string[];
-};
-
-type GroupPreview = {
-  groups: Array<{
-    testSet: string;
-    count: number;
-    reqIds: string[];
-  }>;
-  assignments: Array<{
-    id: string;
-    reqId: string;
-    testSet: string;
-    source: "existing" | "derived";
-  }>;
-  cost: number;
-  inputTokens: number;
-  outputTokens: number;
-  cacheCreationTokens: number;
-  cacheReadTokens: number;
-  model?: string;
-};
-
-type MatchPreview = {
-  summary: {
-    total: number;
-    exact: number;
-    fuzzy: number;
-    unmatched: number;
-    hasReferenceWorkbook: boolean;
-  };
-  matches: Array<{
-    id: string;
-    reqId: string;
-    testItem: string;
-    specReference: string | null;
-    matchType: "exact" | "fuzzy" | "unmatched";
-    matchScore?: number | null;
-  }>;
-};
 
 function mapValidationErrors(
   validation: Array<Record<string, unknown>> | undefined,
@@ -311,34 +195,11 @@ export function isBackendConfigured() {
   return true;
 }
 
-export interface SpecLibraryEntry {
-  name: string;
-  sourceFile: string | null;
-  entriesCount: number | null;
-  embeddingModel: string | null;
-  updatedAt: string | null;
-}
-
 export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {
   const response = await parseJsonResponse<{ specs: SpecLibraryEntry[] }>(
     await fetch(`${appApiBase}/spec-library`, { method: "GET" }),
   );
   return response.specs ?? [];
-}
-
-export interface ReviewFixSuggestion {
-  problemRootCause: string;
-  affectedFields: string[];
-  proposedChange: string;
-  suggestedReason: string;
-  model: string;
-  cost: number;
-  usage?: {
-    input?: number;
-    output?: number;
-    cache_creation?: number;
-    cache_read?: number;
-  };
 }
 
 export async function requestReviewFixSuggestion(input: {
