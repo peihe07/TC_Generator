@@ -167,11 +167,11 @@ def test_group_chunks_large_ai_classification_batches_and_passes_test_group():
         return _fake_classify_result({row["id"]: f"Set {row['id']}" for row in reqs})
 
     with patch("backend.tools.group.classify_test_sets", side_effect=fake_classify) as mock_classify:
-        out = group_tests_tool(rows=rows, test_group="Projection")
+        out = group_tests_tool(rows=rows, test_group="DeviceManager")
 
     assert mock_classify.call_count == 3
     assert [len(call.args[0]) for call in mock_classify.call_args_list] == [50, 50, 21]
-    assert all(call.kwargs["test_group"] == "Projection" for call in mock_classify.call_args_list)
+    assert all(call.kwargs["test_group"] == "DeviceManager" for call in mock_classify.call_args_list)
     derived_sets = {a["id"]: a["testSet"] for a in out["assignments"]}
     assert derived_sets["r0"] == "Set r0"
     assert derived_sets["r120"] == "Set r120"
@@ -316,6 +316,32 @@ def test_group_replaces_ai_unclassified_with_projection_keyword_fallback():
         "proj-1": "Projection Detection",
         "proj-2": "Bluetooth Audio Management",
     }
+
+
+def test_projection_grouping_uses_deterministic_fallback_without_ai():
+    rows = [
+        {
+            "id": "proj-1",
+            "reqId": "SWE1-PROJ-071-001",
+            "testItem": "The HU shall determine if the device supports wireless projection and prompt the user to continue CarPlay pairing.",
+        },
+        {
+            "id": "proj-2",
+            "reqId": "SWE1-PROJ-074-001",
+            "testItem": "The user pairs a Bluetooth device before Android Auto can be enabled.",
+        },
+    ]
+
+    with patch("backend.tools.group.classify_test_sets") as mock_classify:
+        out = group_tests_tool(rows=rows, force_regroup=True, test_group="Projection")
+
+    assert not mock_classify.called
+    derived = {a["id"]: a["testSet"] for a in out["assignments"]}
+    assert derived == {
+        "proj-1": "Projection Detection",
+        "proj-2": "Bluetooth Pairing",
+    }
+    assert out["cost"] == 0
 
 
 def test_group_fallback_uses_comfort_hmi_requirement_code_when_ai_fails():
