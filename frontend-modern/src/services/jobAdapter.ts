@@ -1,0 +1,1041 @@
+"use client";
+
+import type {
+  GenerationConfig,
+  TcRow,
+  ValidationError,
+} from "@/src/lib/types";
+import { useJobHistoryStore } from "@/src/store/useJobHistoryStore";
+import type {
+  ExportJobInput,
+  GenerateCallbacks,
+  GroupPreview,
+  MatchPreview,
+  ParseJobResult,
+  RegenerateCallbacks,
+  RerunCallbacks,
+  RerunSummary,
+  ReviewFixSuggestion,
+  SpecLibraryEntry,
+} from "./jobAdapterTypes";
+
+export type {
+  ExportJobInput,
+  GenerateCallbacks,
+  GroupPreview,
+  MatchPreview,
+  ParseJobResult,
+  RegenerateCallbacks,
+  RerunCallbacks,
+  RerunSummary,
+  ReviewFixSuggestion,
+  SpecLibraryEntry,
+} from "./jobAdapterTypes";
+
+const appApiBase = "/api";
+
+function mapValidationErrors(
+  validation: Array<Record<string, unknown>> | undefined,
+): ValidationError[] {
+  if (!validation?.length) {
+    return [];
+  }
+
+  return validation
+    .filter((issue) => issue.severity !== "passing")
+    .map((issue) => ({
+      severity: issue.severity === "warning" ? "warning" : "error",
+      message: String(issue.message ?? "Validation issue."),
+      column:
+        typeof issue.field === "string" && issue.field.length
+          ? issue.field
+          : undefined,
+    }));
+}
+
+function mapApiRowToTcRow(
+  row: Record<string, unknown>,
+  testGroup: string,
+): TcRow {
+  const generated =
+    (row.generated as Record<string, unknown> | null | undefined) ?? null;
+  const rawStatus = String(row.status ?? "");
+  const status =
+    rawStatus === "error"
+      ? "fail"
+      : generated
+        ? "pending"
+        : "pending";
+  return {
+    id: String(row.id ?? crypto.randomUUID()),
+    rowNum:
+      typeof row.rowNum === "number" ? row.rowNum : undefined,
+    tcId: typeof row.tcId === "string" ? row.tcId : undefined,
+    reqId: String(row.reqId ?? ""),
+    testGroup,
+    testSet: String(row.testSet ?? ""),
+    testSetHint: String(row.testSetHint ?? ""),
+    testItem: String(row.testItem ?? ""),
+    tcTitle: String(generated?.tcTitle ?? ""),
+    reviewStatus:
+      typeof row.reviewStatus === "string"
+        ? (row.reviewStatus as TcRow["reviewStatus"])
+        : "pending",
+    specReference: (row.specReference ?? generated?.specReference ?? null) as string | null,
+    preConditions: String(generated?.preConditions ?? ""),
+    inputTestData: String(generated?.inputTestData ?? ""),
+    steps: String(generated?.testProcedure ?? ""),
+    expectedResults: String(generated?.expectedResult ?? ""),
+    designMethod: String(
+      generated?.designMethod ?? generated?.design_method ?? row.designMethod ?? "",
+    ) || undefined,
+    priority: String(generated?.priority ?? row.priority ?? "") || undefined,
+    status,
+    validationErrors: mapValidationErrors(
+      row.validation as Array<Record<string, unknown>> | undefined,
+    ),
+    splitDecision: parseSplitDecision(row.splitDecision),
+    splitWarning: typeof row.splitWarning === "string" ? row.splitWarning : undefined,
+  };
+}
+
+function parseSplitDecision(raw: unknown): TcRow["splitDecision"] {
+  if (!raw || typeof raw !== "object") return undefined;
+  const obj = raw as Record<string, unknown>;
+  const kwsRaw = Array.isArray(obj.keywords) ? obj.keywords : [];
+  return {
+    reqId: String(obj.reqId ?? ""),
+    tcCount: Number(obj.tcCount ?? 1),
+    reasoning: String(obj.reasoning ?? ""),
+    keywords: kwsRaw.map((k) => {
+      const o = k as Record<string, unknown>;
+      return {
+        keyword: String(o.keyword ?? ""),
+        meaning: String(o.meaning ?? ""),
+        coveredBy: Array.isArray(o.covered_by)
+          ? (o.covered_by as unknown[]).map((n) => Number(n)).filter((n) => !Number.isNaN(n))
+          : Array.isArray(o.coveredBy)
+            ? (o.coveredBy as unknown[]).map((n) => Number(n)).filter((n) => !Number.isNaN(n))
+            : [],
+      };
+    }),
+    subIndex: typeof obj.subIndex === "number" ? obj.subIndex : undefined,
+    parentId: typeof obj.parentId === "string" ? obj.parentId : undefined,
+    duplicateOf: typeof obj.duplicateOf === "string" && obj.duplicateOf
+      ? obj.duplicateOf
+      : undefined,
+    distinguishingAxis: parseDistinguishingAxis(obj.distinguishingAxis),
+  };
+}
+
+function parseDistinguishingAxis(
+  raw: unknown,
+): { axis: string; delta: string } | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const o = raw as Record<string, unknown>;
+  const axis = typeof o.axis === "string" ? o.axis.trim() : "";
+  const delta = typeof o.delta === "string" ? o.delta.trim() : "";
+  if (!axis && !delta) return undefined;
+  return { axis, delta };
+}
+
+function buildMockGeneratedRow(row: TcRow, index: number): TcRow {
+  const hasWarning = index % 4 === 1;
+  return {
+    ...row,
+    tcTitle: `(${row.testItem}) → Expected observable outcome is verified.`,
+    reviewStatus: "pending",
+    preConditions: hasWarning
+      ? "1. Feature state prepared\n2. Operator logged in"
+      : "1. Required feature enabled\n2. System idle",
+    inputTestData: "NA",
+    steps:
+      "1. Prepare the source state.\n2. Trigger the target behavior.\n3. Verify the visible outcome.",
+    expectedResults:
+      "1. Preparation succeeds.\n2. Triggered behavior is accepted.\n3. Observable result matches the requirement.",
+    status: "pending",
+    validationErrors: hasWarning
+      ? [
+          {
+            severity: "warning",
+            message: "Verification wording should be tightened before export.",
+            column: "steps",
+          },
+        ]
+      : [],
+  };
+}
+
+async function parseJsonResponse<T>(response: Response): Promise<T> {
+  if (!response.ok) {
+    let message = `Request failed with status ${response.status}.`;
+    try {
+      const body = (await response.clone().json()) as { detail?: unknown; message?: unknown };
+      if (typeof body.detail === "string" && body.detail.trim()) {
+        message = body.detail;
+      } else if (typeof body.message === "string" && body.message.trim()) {
+        message = body.message;
+      }
+    } catch {
+      try {
+        const text = await response.text();
+        if (text.trim()) {
+          message = text.trim();
+        }
+      } catch {
+        // Keep the fallback status-only message.
+      }
+    }
+    throw new Error(message);
+  }
+  return (await response.json()) as T;
+}
+
+export function isBackendConfigured() {
+  return true;
+}
+
+export async function fetchSpecLibrary(): Promise<SpecLibraryEntry[]> {
+  const response = await parseJsonResponse<{ specs: SpecLibraryEntry[] }>(
+    await fetch(`${appApiBase}/spec-library`, { method: "GET" }),
+  );
+  return response.specs ?? [];
+}
+
+export async function requestReviewFixSuggestion(input: {
+  tc: Record<string, unknown>;
+  errors: Array<{ severity: string; field?: string; message: string }>;
+}): Promise<ReviewFixSuggestion> {
+  const response = await parseJsonResponse<ReviewFixSuggestion>(
+    await fetch(`${appApiBase}/review/suggest-fix`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tc: input.tc, errors: input.errors }),
+    }),
+  );
+  return response;
+}
+
+export async function parseJobFiles(input: {
+  rawFile: File;
+  referenceWorkbookFile?: File;
+  specFile?: File;
+  selectedSpecName?: string;
+}): Promise<ParseJobResult> {
+  const payload = new FormData();
+  payload.append("raw_file", input.rawFile);
+  if (input.referenceWorkbookFile) {
+    payload.append("reference_file", input.referenceWorkbookFile);
+  }
+  if (input.specFile) {
+    payload.append("spec_file", input.specFile);
+  }
+  if (input.selectedSpecName) {
+    payload.append("selected_spec_name", input.selectedSpecName);
+  }
+
+  const response = await parseJsonResponse<{
+    jobId: string;
+    project: string | null;
+    testGroup: string | null;
+    rowCount: number;
+    rows: Array<Record<string, unknown>>;
+  }>(await fetch(`${appApiBase}/parse`, { method: "POST", body: payload }));
+
+  const testGroup = response.testGroup ?? "Parsed";
+  return {
+    jobMetadata: {
+      jobId: response.jobId,
+      projectName:
+        response.project ??
+        input.rawFile.name.replace(/\.(xlsx|xlsm)$/i, "") ??
+        "Parsed Project",
+      createdAt: new Date().toISOString(),
+      totalRows: response.rowCount,
+    },
+    rows: response.rows.map((row) => mapApiRowToTcRow(row, testGroup)),
+    stats: {
+      total: response.rowCount,
+      processed: 0,
+      success: 0,
+      fail: 0,
+      cost: 0,
+    },
+  };
+}
+
+export async function fetchGroupingPreview(input: {
+  jobId: string | null;
+  rows: TcRow[];
+  forceRegroup?: boolean;
+}): Promise<GroupPreview> {
+  if (!input.jobId) {
+    throw new Error("A parsed job is required before grouping preview can run.");
+  }
+
+  return parseJsonResponse<GroupPreview>(
+    await fetch(`${appApiBase}/group`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jobId: input.jobId,
+        forceRegroup: Boolean(input.forceRegroup),
+        rows: input.rows.map((row) => ({
+          id: row.id,
+          reqId: row.reqId,
+          testItem: row.testItem,
+          testSet: row.testSet,
+          testSetHint: row.testSetHint,
+        })),
+      }),
+    }),
+  );
+}
+
+export async function fetchMatchPreview(input: {
+  jobId: string | null;
+  rows: TcRow[];
+}): Promise<MatchPreview> {
+  if (!input.jobId) {
+    throw new Error("A parsed job is required before spec matching preview can run.");
+  }
+
+  return parseJsonResponse<MatchPreview>(
+    await fetch(`${appApiBase}/match`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jobId: input.jobId,
+        rows: input.rows.map((row) => ({
+          id: row.id,
+          reqId: row.reqId,
+          testItem: row.testItem,
+          testSet: row.testSet,
+        })),
+      }),
+    }),
+  );
+}
+
+export function startGeneration(
+  input: {
+    jobId: string | null;
+    rows: TcRow[];
+    config: GenerationConfig;
+  },
+  callbacks: GenerateCallbacks,
+) {
+  let stopped = false;
+  let source: EventSource | null = null;
+
+  // Progress 以「原始 Requirement ID 數」為分母，AI 中途拆出的 sub-TC 不會
+  // 把分母往上推（否則進度條會越跑越倒退）。numerator 用看過的 reqId 數，
+  // 一個 req 不論被拆成幾筆 TC 都只算 1。
+  const originalReqIds = new Set(
+    input.rows.map((r) => String(r.reqId || "")).filter(Boolean),
+  );
+  const totalReqs = originalReqIds.size || input.rows.length;
+  const completedReqIds = new Set<string>();
+
+  // 追蹤 job 最新 stats 供 job.completed 時一次寫入歷史
+  const startedAt = Date.now();
+  const latestStats = {
+    total: totalReqs,
+    processed: 0,
+    cost: 0,
+    inputTokens: 0,
+    outputTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+  };
+  const baseUsage = {
+    cost: 0,
+    inputTokens: 0,
+    outputTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+  };
+  let baseCaptured = false;
+  const rowOutcomes = new Map<string, "success" | "fail">();
+  let completedJobId: string | null = null;
+
+  const recordHistory = () => {
+    if (!completedJobId) return;
+    useJobHistoryStore.getState().appendRecord({
+      id: completedJobId,
+      kind: 'generate',
+      model: input.config.model,
+      startedAt,
+      finishedAt: Date.now(),
+      rowsTotal: latestStats.total,
+      rowsProcessed: latestStats.processed,
+      cost: Number((latestStats.cost - baseUsage.cost).toFixed(4)),
+      inputTokens: Math.max(latestStats.inputTokens - baseUsage.inputTokens, 0),
+      outputTokens: Math.max(latestStats.outputTokens - baseUsage.outputTokens, 0),
+      cacheReadTokens: Math.max(latestStats.cacheReadTokens - baseUsage.cacheReadTokens, 0),
+      cacheCreationTokens: Math.max(latestStats.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
+    });
+  };
+
+  const stop = () => {
+    stopped = true;
+    if (source) {
+      source.close();
+      source = null;
+    }
+  };
+
+  const run = async () => {
+    if (!input.rows.length) {
+      callbacks.onError?.("No rows available for generation.");
+      return;
+    }
+
+    callbacks.onStart?.(input.rows.length);
+
+    if (!input.jobId) {
+      callbacks.onError?.("Generation requires an active parsed job.");
+      return;
+    }
+
+    try {
+      const createJobResponse = await parseJsonResponse<{
+        jobId: string;
+        totalRows: number;
+        streamUrl: string;
+      }>(
+        await fetch(`${appApiBase}/generate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            jobId: input.jobId,
+            rows: input.rows.map((row) => ({
+              id: row.id,
+              // rowNum 必須一路帶到 backend，否則 SQLite 存成 null，export 時對不到 Excel 列。
+              rowNum: row.rowNum ?? null,
+              tcId: row.tcId ?? null,
+              reqId: row.reqId,
+              testItem: row.testItem,
+              originalRequirement: row.testItem,
+              testSet: row.testSet,
+              specReference: row.specReference ?? null,
+              priority: row.priority || undefined,
+            })),
+            config: {
+              model: input.config.model,
+              batchSize: input.config.batchSize,
+              budget: input.config.budgetLimit,
+              strictValidation: input.config.strictValidation,
+              regenerateAll: Boolean(input.config.regenerateAll),
+            },
+          }),
+        }),
+      );
+
+      source = new EventSource(createJobResponse.streamUrl);
+      source.onmessage = (event) => {
+          if (stopped) {
+            return;
+          }
+
+          const data = JSON.parse(event.data) as Record<string, unknown>;
+          const eventType = typeof data.type === "string" ? data.type : "";
+          const eventRow =
+            data.row && typeof data.row === "object"
+              ? (data.row as Record<string, unknown>)
+              : undefined;
+          if (
+            eventRow &&
+            typeof eventRow.id === "string" &&
+            (eventType === "row.completed" || eventType === "row.failed" || eventType === "row.added")
+          ) {
+            rowOutcomes.set(eventRow.id, eventType === "row.failed" ? "fail" : "success");
+            // 用 reqId 推進 req-level progress；只算原本送入的 req（避免 AI
+            // 拆出來的子 row 被誤算成新 req）。
+            const evReqId = typeof eventRow.reqId === "string" ? eventRow.reqId : "";
+            if (evReqId && originalReqIds.has(evReqId)) {
+              completedReqIds.add(evReqId);
+            }
+          }
+          const stats = data.stats as Record<string, number> | undefined;
+          if (stats) {
+            if (!baseCaptured && eventType === "job.started") {
+              baseUsage.cost = Number(stats.currentCost ?? 0);
+              baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
+              baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
+              baseUsage.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+              baseUsage.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+              baseCaptured = true;
+            }
+            let success = 0;
+            let fail = 0;
+            for (const outcome of rowOutcomes.values()) {
+              if (outcome === "success") success += 1;
+              else fail += 1;
+            }
+            // 分母固定為原始 Requirement ID 數，不跟著 AI 拆分長大。
+            latestStats.total = totalReqs;
+            // 分子 = 已看到 row 事件的原始 reqId 數（每 req 不論幾筆 TC 算 1）。
+            latestStats.processed = Math.min(completedReqIds.size, totalReqs);
+            latestStats.cost = Number(stats.currentCost ?? 0);
+            latestStats.inputTokens = Number(stats.inputTokens ?? 0);
+            latestStats.outputTokens = Number(stats.outputTokens ?? 0);
+            latestStats.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+            latestStats.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+            callbacks.onProgress?.({
+              total: latestStats.total,
+              processed: latestStats.processed,
+              success,
+              fail,
+              cost: latestStats.cost,
+              inputTokens: latestStats.inputTokens,
+              outputTokens: latestStats.outputTokens,
+              cacheCreationTokens: latestStats.cacheCreationTokens,
+              cacheReadTokens: latestStats.cacheReadTokens,
+            });
+          }
+
+          if (typeof data.jobId === 'string') completedJobId = data.jobId;
+
+          if ((data.type === "row.completed" || data.type === "row.failed") && data.row) {
+            const apiRow = data.row as Record<string, unknown>;
+            const row = mapApiRowToTcRow(
+              data.type === "row.failed" ? { ...apiRow, status: "error" } : apiRow,
+              input.rows.find((item) => item.id === apiRow.id)?.testGroup ?? "Generated",
+            );
+            callbacks.onRow?.(row, String(data.message ?? "Row updated."));
+          }
+
+          if (data.type === "row.added" && data.row) {
+            // AI 把一個 req 拆成多筆 TC 時的第 2..N 筆。
+            const apiRow = data.row as Record<string, unknown>;
+            const parentId = String(apiRow.parentId ?? "");
+            const parentRow = input.rows.find((item) => item.id === parentId);
+            const row = mapApiRowToTcRow(
+              apiRow,
+              parentRow?.testGroup ?? "Generated",
+            );
+            callbacks.onRowAdded?.(row, parentId, String(data.message ?? "TC added."));
+          }
+
+          if (data.type === "req.split") {
+            callbacks.onReqSplit?.({
+              rowId: String(data.rowId ?? ""),
+              reqId: String(data.reqId ?? ""),
+              tcCount: Number(data.tcCount ?? 1),
+              reasoning: String(data.reasoning ?? ""),
+              keywords: Array.isArray(data.keywords)
+                ? (data.keywords as Array<{ keyword: string; meaning: string; covered_by: number[] }>)
+                : [],
+              message: String(data.message ?? ""),
+            });
+          }
+
+          if (data.type === "job.completed") {
+            recordHistory();
+            callbacks.onComplete?.(String(data.message ?? "Generation complete."));
+            stop();
+          }
+      };
+
+      source.onerror = () => {
+        callbacks.onError?.("Live backend stream disconnected.");
+        stop();
+      };
+      return;
+    } catch (error) {
+      callbacks.onError?.(
+        error instanceof Error ? error.message : "Backend generation failed.",
+      );
+      return;
+    }
+  };
+
+  void run();
+  return { stop };
+}
+
+export async function regenerateRows(
+  input: {
+    jobId: string | null;
+    rowIds: string[];
+    rows: TcRow[];
+    config: GenerationConfig;
+    regenerateReason?: string;
+  },
+  callbacks: RegenerateCallbacks,
+) {
+  if (!input.rowIds.length) {
+    return;
+  }
+
+  if (input.jobId) {
+    const startedAt = Date.now();
+    const latest = {
+      total: input.rowIds.length, processed: 0, cost: 0,
+      inputTokens: 0, outputTokens: 0,
+      cacheCreationTokens: 0, cacheReadTokens: 0,
+    };
+    const baseUsage = {
+      cost: 0,
+      inputTokens: 0,
+      outputTokens: 0,
+      cacheCreationTokens: 0,
+      cacheReadTokens: 0,
+    };
+    let baseCaptured = false;
+
+    try {
+      const response = await fetch(
+        `${appApiBase}/jobs/${input.jobId}/regenerate/stream`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            rowIds: input.rowIds,
+            rows: input.rows,
+            regenerateReason: input.regenerateReason ?? "",
+            config: {
+              model: input.config.model,
+              batchSize: input.config.batchSize,
+              budget: input.config.budgetLimit,
+              strictValidation: input.config.strictValidation,
+            },
+          }),
+        },
+      );
+
+      if (!response.ok || !response.body) {
+        throw new Error("Regenerate request failed.");
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let fatalError: string | null = null;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) {
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        const parts = buffer.split("\n\n");
+        buffer = parts.pop() ?? "";
+
+        for (const part of parts) {
+          const line = part.replace(/^data: /, "").trim();
+          if (!line) {
+            continue;
+          }
+
+          const event = JSON.parse(line) as Record<string, unknown>;
+          const eventType = typeof event.type === "string" ? event.type : "";
+          const stats = event.stats as Record<string, number> | undefined;
+          if (stats) {
+            if (!baseCaptured && eventType === "regen.started") {
+              baseUsage.cost = Number(stats.currentCost ?? 0);
+              baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
+              baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
+              baseUsage.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+              baseUsage.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+              baseCaptured = true;
+            }
+            latest.total = Number(stats.total ?? latest.total);
+            latest.processed = Number(stats.processed ?? latest.processed);
+            latest.cost = Number(stats.currentCost ?? latest.cost);
+            latest.inputTokens = Number(stats.inputTokens ?? latest.inputTokens);
+            latest.outputTokens = Number(stats.outputTokens ?? latest.outputTokens);
+            latest.cacheCreationTokens = Number(stats.cacheCreationTokens ?? latest.cacheCreationTokens);
+            latest.cacheReadTokens = Number(stats.cacheReadTokens ?? latest.cacheReadTokens);
+            callbacks.onProgress?.({
+              cost: latest.cost,
+              inputTokens: latest.inputTokens,
+              outputTokens: latest.outputTokens,
+              cacheCreationTokens: latest.cacheCreationTokens,
+              cacheReadTokens: latest.cacheReadTokens,
+            });
+          }
+
+          if (event.type === "row.regenerated" && event.row) {
+            const row = event.row as Record<string, unknown>;
+            const generated =
+              (row.generated as Record<string, unknown> | undefined) ?? {};
+            callbacks.onRow?.(String(row.id), {
+              preConditions: String(generated.preConditions ?? ""),
+              inputTestData: String(generated.inputTestData ?? ""),
+              steps: String(generated.testProcedure ?? ""),
+              expectedResults: String(generated.expectedResult ?? ""),
+            });
+          } else if (event.type === "row.added" && event.row) {
+            const apiRow = event.row as Record<string, unknown>;
+            const parentId = String(apiRow.parentId ?? "");
+            const parentRow = input.rows.find((item) => item.id === parentId);
+            const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+            callbacks.onRowAdded?.(row, parentId, String(event.message ?? "TC added."));
+          } else if (event.type === "req.split") {
+            callbacks.onReqSplit?.({
+              rowId: String(event.rowId ?? ""),
+              reqId: String(event.reqId ?? ""),
+              tcCount: Number(event.tcCount ?? 1),
+              reasoning: String(event.reasoning ?? ""),
+              keywords: Array.isArray(event.keywords)
+                ? (event.keywords as Array<{ keyword: string; meaning: string; covered_by: number[] }>)
+                : [],
+              message: String(event.message ?? ""),
+            });
+          } else if (event.type === "row.regen_failed" && event.row) {
+            const row = event.row as Record<string, unknown>;
+            const validation =
+              (row.validation as Array<Record<string, unknown>> | undefined) ?? [];
+            callbacks.onFail?.(
+              String(row.id),
+              String(validation[0]?.message ?? "Re-generation failed."),
+            );
+          } else if (event.type === "regen.failed") {
+            fatalError = String(event.message ?? "Re-generation failed.");
+          }
+        }
+      }
+
+      if (fatalError) {
+        callbacks.onError?.(fatalError);
+        return;
+      }
+
+      // 寫入 history
+      useJobHistoryStore.getState().appendRecord({
+        id: `regen-${Date.now().toString(36)}`,
+        kind: 'regenerate',
+        model: input.config.model,
+        startedAt,
+        finishedAt: Date.now(),
+        rowsTotal: latest.total,
+        rowsProcessed: latest.processed,
+        cost: Number((latest.cost - baseUsage.cost).toFixed(4)),
+        inputTokens: Math.max(latest.inputTokens - baseUsage.inputTokens, 0),
+        outputTokens: Math.max(latest.outputTokens - baseUsage.outputTokens, 0),
+        cacheReadTokens: Math.max(latest.cacheReadTokens - baseUsage.cacheReadTokens, 0),
+        cacheCreationTokens: Math.max(latest.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
+      });
+
+      callbacks.onComplete?.();
+      return;
+    } catch {
+      callbacks.onError?.("Backend regenerate failed.");
+      return;
+    }
+  }
+
+  callbacks.onError?.("Regenerate requires an active backend job.");
+}
+
+/**
+ * Re-run selected rows through the full generation pipeline（含需求解讀 / 拆分判斷）。
+ * 和 regenerateRows 的差別：
+ *   - 每筆 row 可能產生多筆 TC：primary 覆蓋原列，其餘以 row.added 事件接在 parent 之後
+ *   - 會 emit req.split（讓 UI 顯示拆分 reasoning）
+ *   - 不走 diff-apply preview：primary 直接覆寫
+ */
+export async function rerunRows(
+  input: {
+    jobId: string | null;
+    rowIds: string[];
+    rows: TcRow[];
+    config: GenerationConfig;
+    project?: string | null;
+  },
+  callbacks: RerunCallbacks,
+) {
+  if (!input.rowIds.length || !input.jobId) {
+    callbacks.onError?.("Re-run requires an active backend job.");
+    return;
+  }
+
+  // 後端 JOB_REGISTRY 可能已無此 job（backend 重啟 / DB 清空）—— 這兩個欄位
+  // 讓 backend 在找不到 job 時仍能重建 context 繼續跑。
+  const firstRow = input.rows.find((row) => input.rowIds.includes(row.id)) ?? input.rows[0];
+  const fallbackTestGroup = firstRow?.testGroup ?? "";
+
+  const startedAt = Date.now();
+  // 完成時回給 caller 的摘要（dialog / notification 用）。
+  let rowsUpdated = 0;
+  let rowsAdded = 0;
+  let rowsFailed = 0;
+  const latest = {
+    total: input.rowIds.length, processed: 0, cost: 0,
+    inputTokens: 0, outputTokens: 0,
+    cacheCreationTokens: 0, cacheReadTokens: 0,
+  };
+  const baseUsage = {
+    cost: 0,
+    inputTokens: 0,
+    outputTokens: 0,
+    cacheCreationTokens: 0,
+    cacheReadTokens: 0,
+  };
+  let baseCaptured = false;
+
+  try {
+    const response = await fetch(
+      `${appApiBase}/jobs/${input.jobId}/rerun/stream`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rowIds: input.rowIds,
+          rows: input.rows,
+          project: input.project ?? null,
+          testGroup: fallbackTestGroup,
+          config: {
+            model: input.config.model,
+            batchSize: input.config.batchSize,
+            budget: input.config.budgetLimit,
+            strictValidation: input.config.strictValidation,
+          },
+        }),
+      },
+    );
+
+    if (!response.ok || !response.body) {
+      throw new Error("Re-run request failed.");
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let fatalError: string | null = null;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const parts = buffer.split("\n\n");
+      buffer = parts.pop() ?? "";
+
+      for (const part of parts) {
+        const line = part.replace(/^data: /, "").trim();
+        if (!line) continue;
+
+        const event = JSON.parse(line) as Record<string, unknown>;
+        const eventType = typeof event.type === "string" ? event.type : "";
+        const stats = event.stats as Record<string, number> | undefined;
+        if (stats) {
+          if (!baseCaptured && eventType === "rerun.started") {
+            baseUsage.cost = Number(stats.currentCost ?? 0);
+            baseUsage.inputTokens = Number(stats.inputTokens ?? 0);
+            baseUsage.outputTokens = Number(stats.outputTokens ?? 0);
+            baseUsage.cacheCreationTokens = Number(stats.cacheCreationTokens ?? 0);
+            baseUsage.cacheReadTokens = Number(stats.cacheReadTokens ?? 0);
+            baseCaptured = true;
+          }
+          latest.total = Number(stats.total ?? latest.total);
+          latest.processed = Number(stats.processed ?? latest.processed);
+          latest.cost = Number(stats.currentCost ?? latest.cost);
+          latest.inputTokens = Number(stats.inputTokens ?? latest.inputTokens);
+          latest.outputTokens = Number(stats.outputTokens ?? latest.outputTokens);
+          latest.cacheCreationTokens = Number(stats.cacheCreationTokens ?? latest.cacheCreationTokens);
+          latest.cacheReadTokens = Number(stats.cacheReadTokens ?? latest.cacheReadTokens);
+          callbacks.onProgress?.({
+            cost: latest.cost,
+            inputTokens: latest.inputTokens,
+            outputTokens: latest.outputTokens,
+            cacheCreationTokens: latest.cacheCreationTokens,
+            cacheReadTokens: latest.cacheReadTokens,
+          });
+        }
+
+        if (event.type === "row.regenerated" && event.row) {
+          // Rerun primary：用完整 TcRow 覆蓋既有列
+          const apiRow = event.row as Record<string, unknown>;
+          const parentRow = input.rows.find((item) => item.id === String(apiRow.id ?? ""));
+          const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+          rowsUpdated += 1;
+          callbacks.onPrimary?.(row, String(event.message ?? "Row re-run."));
+        } else if (event.type === "row.added" && event.row) {
+          const apiRow = event.row as Record<string, unknown>;
+          const parentId = String(apiRow.parentId ?? "");
+          const parentRow = input.rows.find((item) => item.id === parentId);
+          const row = mapApiRowToTcRow(apiRow, parentRow?.testGroup ?? "Generated");
+          rowsAdded += 1;
+          callbacks.onRowAdded?.(row, parentId, String(event.message ?? "TC added."));
+        } else if (event.type === "req.split") {
+          callbacks.onReqSplit?.({
+            rowId: String(event.rowId ?? ""),
+            reqId: String(event.reqId ?? ""),
+            tcCount: Number(event.tcCount ?? 1),
+            reasoning: String(event.reasoning ?? ""),
+            keywords: Array.isArray(event.keywords)
+              ? (event.keywords as Array<{ keyword: string; meaning: string; covered_by: number[] }>)
+              : [],
+            message: String(event.message ?? ""),
+          });
+        } else if (event.type === "row.regen_failed" && event.row) {
+          const row = event.row as Record<string, unknown>;
+          const validation =
+            (row.validation as Array<Record<string, unknown>> | undefined) ?? [];
+          rowsFailed += 1;
+          callbacks.onFail?.(
+            String(row.id),
+            String(validation[0]?.message ?? "Re-run failed."),
+          );
+        } else if (event.type === "rerun.failed") {
+          fatalError = String(event.message ?? "Re-run failed.");
+        }
+      }
+    }
+
+    if (fatalError) {
+      callbacks.onError?.(fatalError);
+      return;
+    }
+
+    useJobHistoryStore.getState().appendRecord({
+      id: `rerun-${Date.now().toString(36)}`,
+      kind: 'rerun',
+      model: input.config.model,
+      startedAt,
+      finishedAt: Date.now(),
+      rowsTotal: latest.total,
+      rowsProcessed: latest.processed,
+      cost: Number((latest.cost - baseUsage.cost).toFixed(4)),
+      inputTokens: Math.max(latest.inputTokens - baseUsage.inputTokens, 0),
+      outputTokens: Math.max(latest.outputTokens - baseUsage.outputTokens, 0),
+      cacheReadTokens: Math.max(latest.cacheReadTokens - baseUsage.cacheReadTokens, 0),
+      cacheCreationTokens: Math.max(latest.cacheCreationTokens - baseUsage.cacheCreationTokens, 0),
+    });
+
+    callbacks.onComplete?.({ rowsUpdated, rowsAdded, rowsFailed });
+  } catch {
+    callbacks.onError?.("Backend re-run failed.");
+  }
+}
+
+export async function exportJob(input: ExportJobInput) {
+  if (!input.jobId) {
+    throw new Error("A parsed job is required before exporting to Excel.");
+  }
+
+  if (input.jobId) {
+    const exportRows = input.rows.map((row) => ({
+      id: row.id,
+      rowNum: row.rowNum,
+      tcId: row.tcId ?? row.id,
+      reqId: row.reqId,
+      testGroup: row.testGroup,
+      testSet: row.testSet,
+      testItem: row.testItem,
+      specReference: row.specReference ?? null,
+      reviewStatus:
+        row.status === "accepted" || row.status === "rejected" || row.status === "flagged"
+          ? row.status
+          : (row.reviewStatus ?? "pending"),
+      generated: row.tcTitle || row.preConditions || row.inputTestData || row.steps || row.expectedResults
+        ? {
+            tcTitle: row.tcTitle ?? "",
+            preConditions: row.preConditions,
+            inputTestData: row.inputTestData,
+            testProcedure: row.steps,
+            expectedResult: row.expectedResults,
+            priority: row.priority ?? "",
+            designMethod: row.designMethod ?? "",
+            specReference: row.specReference ?? null,
+          }
+        : null,
+      // AI 對需求的解讀（拆分理由 + 為何不需拆分）。Backend 只把 reasoning
+      // 放在 primary TC（subIndex 0）的 splitDecision；sub TC 為空字串會被
+      // writer.py 跳過。匯出到 column R（"AI Reasoning"）。
+      splitDecision: row.splitDecision
+        ? { reasoning: row.splitDecision.reasoning ?? "" }
+        : undefined,
+    }));
+
+    const startedAt = Date.now();
+    const response = await parseJsonResponse<{
+      fileName: string;
+      downloadUrl: string;
+      exportedRows: number;
+      fallbackTemplate?: boolean;
+      tcIdsRenumbered?: number;
+      classifyUsage?: {
+        cost?: number;
+        inputTokens?: number;
+        outputTokens?: number;
+        cacheCreationTokens?: number;
+        cacheReadTokens?: number;
+        model?: string;
+      };
+    }>(
+      await fetch(`${appApiBase}/export`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jobId: input.jobId,
+          rows: exportRows,
+          scope: input.scope,
+          outputMode: input.outputMode,
+          includeFrameworkSheet: input.includeFrameworkSheet,
+          selectedColumns: input.selectedColumns,
+        }),
+      }),
+    );
+
+    // Export 階段對缺 testSet 的 row 補跑 AI 分類也是真實成本。Cost > 0 時
+    // 才記，避免大量純檔案匯出的零元紀錄。
+    const usage = response.classifyUsage;
+    if (usage && Number(usage.cost ?? 0) > 0) {
+      useJobHistoryStore.getState().appendRecord({
+        id: `export-${input.jobId ?? "anon"}-${startedAt.toString(36)}`,
+        kind: 'export',
+        model: usage.model ?? 'gpt-5-mini',
+        startedAt,
+        finishedAt: Date.now(),
+        rowsTotal: response.exportedRows ?? 0,
+        rowsProcessed: response.exportedRows ?? 0,
+        cost: Number(usage.cost ?? 0),
+        inputTokens: Number(usage.inputTokens ?? 0),
+        outputTokens: Number(usage.outputTokens ?? 0),
+        cacheCreationTokens: Number(usage.cacheCreationTokens ?? 0),
+        cacheReadTokens: Number(usage.cacheReadTokens ?? 0),
+        note: 'export classify',
+      });
+    }
+
+    return {
+      status: "ready" as const,
+      fileName: response.fileName,
+      downloadUrl: response.downloadUrl,
+      exportedRows: response.exportedRows,
+      fallbackTemplate: Boolean(response.fallbackTemplate),
+      simulated: false,
+    };
+  }
+
+  throw new Error("A parsed job is required before exporting to Excel.");
+}
+
+export async function attachRawWorkbook(jobId: string, file: File): Promise<{
+  rawFileName: string;
+  size: number;
+}> {
+  const formData = new FormData();
+  formData.append("raw_file", file);
+  return parseJsonResponse<{ rawFileName: string; size: number }>(
+    await fetch(`${appApiBase}/jobs/${encodeURIComponent(jobId)}/attach-raw`, {
+      method: "POST",
+      body: formData,
+    }),
+  );
+}
+
+export async function fetchSourceStatus(jobId: string): Promise<{
+  hasSource: boolean;
+  rawFileName: string | null;
+}> {
+  return parseJsonResponse<{ hasSource: boolean; rawFileName: string | null }>(
+    await fetch(`${appApiBase}/jobs/${encodeURIComponent(jobId)}/source-status`, {
+      method: "GET",
+    }),
+  );
+}

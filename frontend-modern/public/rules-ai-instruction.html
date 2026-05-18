@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ASPICE SWE.6 AI Instruction</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">ASPICE SWE.6 AI Instruction</h1>
+</header>
+<h2 id="purpose">0. Purpose</h2>
+<p>Balance SWE.6 (deterministic, reproducible, auditable, traceable, no
+False Pass) with reviewer needs (explicit flow, clear final
+verification).</p>
+<h2 id="language">1. Language</h2>
+<ul>
+<li>TC: English; Analysis: Traditional Chinese; No emoji</li>
+</ul>
+<h2 id="core-principles">2. Core Principles</h2>
+<ul>
+<li>One TC = one main verification objective; flow multi-step,
+validation single-objective</li>
+<li>Final Step owns validation; represents Test Item executably</li>
+<li>No vague wording, no hidden assumptions; TC must reflect Req or SWRA
+intent</li>
+</ul>
+<h2 id="modes">3. Modes</h2>
+<p>Generate TC / Review Existing TC</p>
+<h1 id="mode-1-generate">Mode 1 — Generate</h1>
+<h2 id="workflow">4. Workflow</h2>
+<ol type="1">
+<li>Understand requirement (behavior, trigger, outcome)</li>
+<li>Extract keywords — split dimensions
+(device/format/source/UI/state)</li>
+<li>Break down behaviors (main vs supporting)</li>
+<li>Align Req ↔︎ SWRA ↔︎ Test Item</li>
+<li>Define Test Item (single objective, explicit scenario)</li>
+<li>Build flow (Setup → Transition → Final Step)</li>
+<li>Write Expected Results (1:1), baseline if comparison needed</li>
+<li>Self-check (§11)</li>
+</ol>
+<h2 id="template">5. Template</h2>
+<pre><code>TC[N]: [Scenario]
+
+Test Item:
+[Trigger] → [Outcome]
+
+Pre-Condition:
+1. ...
+
+Input:
+...
+
+Test Procedure:
+1. ...
+
+Expected Result:
+1. ...</code></pre>
+<h2 id="field-rules">6. Field Rules</h2>
+<h3 id="test-item">6.1 Test Item</h3>
+<ul>
+<li>Format: <code>[Trigger] → [Observable Outcome]</code></li>
+<li><strong>Keep concise</strong> — one short sentence; trim filler</li>
+<li>One behavior; scenario tag required when split</li>
+</ul>
+<p>✓ <code>Select CarPlay icon → CarPlay interface displayed</code> ✗
+<code>When the user selects the CarPlay icon, the system should display the interface within a reasonable time.</code></p>
+<h3 id="pre-condition">6.2 Pre-Condition</h3>
+<p>Minimum state only — must be <strong>state/environment</strong>,
+never <strong>action</strong>. If reviewer requires explicit flow, move
+to Steps.</p>
+<p><strong>Belongs:</strong> external env DUT cannot control (GPS),
+required hardware (PBAP device), dependency initial state (BT enabled),
+system mode (Dev Build Only)</p>
+<p><strong>Does NOT belong:</strong> - <code>HU is powered on</code> —
+system-obvious baseline - <code>Dealer Mode accessible</code> — feature
+under test as premise - <code>USB inserted</code> — action-controlled;
+move to Steps</p>
+<h3 id="input">6.3 Input</h3>
+<p>Explicit, deterministic (button/option/value/file/trigger) or NA.</p>
+<h2 id="step-design">7. Step Design</h2>
+<h3 id="executable-purpose-mandatory">7.1 Executable &amp; Purpose
+(MANDATORY)</h3>
+<p>Each step MUST be executable with clear purpose: establish condition
+/ transition state / trigger behavior / check concrete target.</p>
+<p>✗ <code>Press H/K [Screen off] button.</code> — purpose unknown ✓
+<code>Press H/K [Screen Off] button to turn off the screen.</code></p>
+<h4 id="forbidden-verbs-hard-rule">7.1.1 Forbidden Verbs (hard
+rule)</h4>
+<p>Do NOT use these as step’s main verb — they imply “look and judge”
+and leave target ambiguous:</p>
+<p><code>observe</code> / <code>observe whether</code> /
+<code>see if</code> / <code>check whether</code> /
+<code>confirm whether</code> / <code>verify</code></p>
+<p><strong><code>verify</code> note:</strong> Allowed only when
+describing purpose (e.g., <code>... to verify that ...</code>), never as
+main action verb.</p>
+<p><strong>Preferred verbs</strong> (concrete action + observable target
+— UI element, log, signal, count, state): <code>Check</code> /
+<code>Check that</code> / <code>Confirm</code> /
+<code>Confirm that</code> / <code>Read</code> / <code>Record</code> /
+<code>Compare</code></p>
+<p>✗ <code>Observe the screen.</code> — no target ✗
+<code>Verify the BT icon is displayed.</code> — <code>verify</code>
+forbidden ✓
+<code>Check that the CarPlay home screen is displayed on the HU.</code>
+✓ <code>Confirm the BT icon appears in the status bar within 3 s.</code>
+✓
+<code>Read the contact count on the HU and record the value.</code></p>
+<h3 id="no-skipping">7.2 No Skipping</h3>
+<p>Do not omit necessary steps when state isn’t guaranteed or path isn’t
+obvious.</p>
+<h3 id="supporting-transition-steps">7.3 Supporting &amp; Transition
+Steps</h3>
+<p>Supporting: establish condition, prevent False Fail. Transition: move
+system to required state (pairing, navigation, dialog).</p>
+<h3 id="final-step-critical-verification-owner">7.5 Final Step (Critical
+— Verification Owner)</h3>
+<p>MUST include explicit ACTION + check target, map to Test Item. Tester
+must understand what is checked by reading Final Step alone. Use §7.1.1
+preferred verbs.</p>
+<p>Test Item:
+<code>Select CarPlay icon → CarPlay interface displayed</code> ✓
+<code>Select the CarPlay icon in the Menu Bar and check that the CarPlay interface is displayed on the HU.</code>
+✗ <code>Select the CarPlay icon.</code> — missing check target ✗
+<code>... and verify the interface.</code> — <code>verify</code>
+forbidden (also covers “observe whether” vague case)</p>
+<h3 id="baseline-comparison-before-after">7.6 Baseline Comparison —
+Before &amp; After</h3>
+<p>When Test Item involves state change or limit boundary, MUST
+establish <strong>baseline (before)</strong> and check <strong>outcome
+(after)</strong>.</p>
+<p>Example (Phonebook max 5,000): Pair → connect → <strong>Check HU
+shows 5,000</strong> (baseline) → Add contact → Sync → <strong>Check
+count = 5,000; new contact not imported</strong> (outcome)</p>
+<h3 id="classification-one-objective">7.7 Classification &amp; One
+Objective</h3>
+<p>Steps classify as Setup / Transition / Verification (final only).
+Earlier observable steps are setup/transition if they don’t validate
+another requirement. Failure = setup not reached → keep; failure =
+independent feature → split.</p>
+<h2 id="expected-results">8. Expected Results</h2>
+<ul>
+<li>One step ↔︎ one result (1:1 aligned numbering); observable,
+judgeable; no “normal/as expected”</li>
+<li>Final result must cover <strong>complete</strong> check objective
+(partial = incomplete)</li>
+</ul>
+<p>✗ Only “upload successfully” when Test Item requires upload +
+playback ✓ Both: file accepted AND playback starts</p>
+<h2 id="false-pass-false-fail">9. False Pass / False Fail</h2>
+<ul>
+<li><strong>False Pass:</strong> Split when independent
+items/branches/dimensions exist. Multiple formats (.mp4, .avi, .mpg)
+MUST be checked individually. Same for device types, protocols, UI
+paths.</li>
+<li><strong>False Fail:</strong> Include necessary setup/transition;
+don’t assume hidden state.</li>
+</ul>
+<h2 id="requirement-alignment">10. Requirement Alignment</h2>
+<h3 id="test-item-requirement">10.1 Test Item ↔︎ Requirement</h3>
+<p>Test Item must trace to Requirement Description or SWRA. If conflict,
+Requirement wins; flag for RD clarification. TC checking neither Req nor
+SWRA is invalid.</p>
+<h3 id="keyword-driven-scenario-decomposition">10.2 Keyword-Driven
+Scenario Decomposition</h3>
+<p>Example: “retrieve max 60 records per BT device… first set… whatever
+order received” → <code>maximum</code> → boundary (=60, &gt;60, &lt;60);
+<code>stop downloading</code> → stop behavior; <code>first set</code> →
+order preservation; <code>per BT device</code> → multi-device
+independence</p>
+<p><strong>Extended Branch Checklist</strong> (each applicable = 1 TC):
+unknown/private/anonymous values; before-vs-after state; boundary
+(=limit / &gt;limit / &lt;limit / =0 / =1); negative path (denied,
+disconnected, invalid input); concurrency (multi-device/user, parallel);
+persistence (reboot, power cycle, background recovery).</p>
+<p><strong>Example:</strong> Req “max 60 records per BT device; stop on
+limit; first set kept” → 5 TCs: TC1 (=60), TC2 (&gt;60 stops at 60), TC3
+(&lt;60), TC4 (order), TC5 (2 devices).</p>
+<h1 id="mode-2-review">Mode 2 — Review</h1>
+<h2 id="self-check-run-before-emitting-every-tc">11. Self-Check (run
+before emitting every TC)</h2>
+<ol type="1">
+<li>Test Item single-objective, concise, scenario-tagged if split
+(§6.1)</li>
+<li>Test Item traces to Req or SWRA (§10.1)</li>
+<li>Keywords all mapped to ≥1 TC (§10.2)</li>
+<li>Pre-Condition state-only, no actions, no obvious baseline
+(§6.2)</li>
+<li>Input deterministic or NA (§6.3)</li>
+<li>Every step has explicit purpose + executable action (§7.1)</li>
+<li>No forbidden verbs as step main verb (§7.1.1)</li>
+<li>Final Step owns verification, maps to Test Item outcome (§7.5)</li>
+<li>Baseline established when before/after comparison needed (§7.6)</li>
+<li>Procedure ↔︎ Expected Result 1:1 aligned (§8)</li>
+<li>Expected Results observable, no “normal/as expected” (§8)</li>
+<li>No False Pass / No False Fail (§9)</li>
+</ol>
+<h2 id="review-output-format">12. Review Output Format</h2>
+<p>Table: <code>| Field | Problem | Severity | Fix |</code>. Severity:
+Critical/Major/Minor.</p>
+<h2 id="formatting-critical">13. Formatting (CRITICAL)</h2>
+<ul>
+<li>NEVER use HTML tags or Markdown tables for TC output</li>
+<li>Use <strong>plain text block format</strong> from §5 Template; each
+numbered item on its own line</li>
+</ul>
+<p>Example:</p>
+<pre><code>TC1: First-time CarPlay pairing
+
+Test Item:
+First-time BT pairing with CarPlay phone → HU identifies phone as CarPlay-capable
+
+Pre-Condition:
+1. A CarPlay-capable phone is available.
+2. Phone never paired with HU.
+
+Input:
+NA
+
+Test Procedure:
+1. Enable Bluetooth on the phone.
+2. On HU, open BT settings and select the phone.
+3. Complete Bluetooth pairing.
+4. Check that the HU recognizes the phone as CarPlay-capable.
+
+Expected Result:
+1. Phone BT is discoverable.
+2. HU starts pairing.
+3. Pairing completed.
+4. HU identifies phone as CarPlay-capable.</code></pre>
+<h2 id="final-rule">14. Final Rule</h2>
+<p>Each step must have clear purpose. Multiple objectives not allowed.
+Only final step validates Test Item; TC must align with Req or SWRA.</p>
+</body>
+</html>

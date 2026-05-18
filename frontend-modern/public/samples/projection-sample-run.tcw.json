@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "workspace": {
+    "id": "sample-projection-run",
+    "name": "Sample Projection Run - 4 TCs",
+    "createdAt": 1779080000000,
+    "updatedAt": 1779080000000,
+    "snapshot": {
+      "jobMetadata": {
+        "jobId": "parse-20260518-120654",
+        "projectName": "new R1L",
+        "createdAt": "2026-05-18T04:12:04.485801+00:00",
+        "totalRows": 4
+      },
+      "tcRows": [
+        {
+          "id": "row-10",
+          "rowNum": 10,
+          "tcId": "newR1L-PRO-001",
+          "reqId": "SWE1-PROJ-071-001",
+          "testGroup": "Projection",
+          "testSet": "Projection Pairing",
+          "testSetHint": "",
+          "testItem": "When the user selects to pair a device to Bluetooth, the HU shall determine if the device supports wireless projection. If the device supports wireless projection, the HU shall prompt the user to continue the pairing process.\n\n(CarPlay capability can be normally detected if supported)",
+          "tcTitle": "CarPlay supported device → CarPlay prompt shown",
+          "reviewStatus": "pending",
+          "specReference": "CFTS085-4935519",
+          "preConditions": "1. An Apple CarPlay-capable phone is available and not previously paired with the HU\n2. Phone Bluetooth is enabled and the phone is discoverable",
+          "inputTestData": "1. N/A",
+          "steps": "1. Enable Bluetooth on the HU and put the HU into pairing mode\n2. On the phone, enable Bluetooth and make the phone discoverable\n3. On the HU, search for nearby Bluetooth devices and select the phone's Bluetooth name to initiate pairing\n4. Complete the Bluetooth pairing operation on both the phone and the HU\n5. Check that the HU displays a CarPlay connection confirmation dialog with \"Confirm\" and \"Cancel\" buttons",
+          "expectedResults": "1. HU Bluetooth is enabled and in pairing mode\n2. Phone Bluetooth is enabled and discoverable\n3. HU shows a pairing request for the phone\n4. Phone and HU complete Bluetooth pairing and connect\n5. CarPlay connection confirmation dialog is displayed with \"Confirm\" and \"Cancel\" buttons",
+          "designMethod": "決策表 (Decision Table Testing)",
+          "priority": "P0",
+          "status": "reviewing",
+          "validationErrors": [
+            {
+              "severity": "warning",
+              "message": "Rewrite must be 2–14 words (got 15).",
+              "column": "test_item"
+            }
+          ],
+          "splitDecision": {
+            "reqId": "SWE1-PROJ-071-001",
+            "tcCount": 2,
+            "subIndex": 0,
+            "parentId": "row-10",
+            "reasoning": "驗證目標：確認在使用者發起 Bluetooth 配對時，HU 能判定裝置是否支援無線投影，並在支援時提示使用者繼續配對。關鍵情境條件：觸發於「第一次配對」流程，分別針對（1）Apple CarPlay-capable device（支援無線投影）與（2）device without projection support（不支援）兩種裝置能力。為什麼這樣切：依據 §9 與 §10.2 異常/分支處理規則，裝置能力為明顯的輸入分支（supported vs not supported），且若將兩者合併會造成 False Pass，因此拆為兩筆 TC 以覆蓋正負分支（參見 §6.1 / §9 / §10.2）。未涵蓋或刻意略過的部分：未包含使用者選擇「取消」或後續流程（例如按下 Confirm 後的行為），此類驗證屬於後續配對流程或 HMI 細節需求的範圍",
+            "keywords": [
+              {
+                "keyword": "wireless projection support",
+                "meaning": "裝置是否支援無線投影（例如 CarPlay 支援）",
+                "coveredBy": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "keyword": "Apple CarPlay-capable phone",
+                "meaning": "具備 CarPlay 能力的行動電話（支援投影的代表）",
+                "coveredBy": [
+                  1
+                ]
+              },
+              {
+                "keyword": "device without projection support",
+                "meaning": "不支援無線投影的裝置（負向分支）",
+                "coveredBy": [
+                  2
+                ]
+              },
+              {
+                "keyword": "first-time pairing",
+                "meaning": "裝置從未與 HU 配對過的初次配對狀態",
+                "coveredBy": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "duplicateOf": "",
+            "distinguishingAxis": {
+              "axis": "input_data",
+              "delta": "本列以裝置能力為區分，tc_title 含 'CarPlay supported device' 表示測試支援無線投影的裝置，兄弟列則為 'Device without projection support'"
+            }
+          }
+        },
+        {
+          "id": "row-10__tc2",
+          "rowNum": 10,
+          "tcId": "newR1L-PRO-002",
+          "reqId": "SWE1-PROJ-071-001",
+          "testGroup": "Projection",
+          "testSet": "Projection Pairing",
+          "testSetHint": "",
+          "testItem": "When the user selects to pair a device to Bluetooth, the HU shall determine if the device supports wireless projection. If the device supports wireless projection, the HU shall prompt the user to continue the pairing process.\n\n(CarPlay capability can be normally detected if supported)",
+          "tcTitle": "Device without projection support → No CarPlay prompt",
+          "reviewStatus": "pending",
+          "specReference": "CFTS085-4935519",
+          "preConditions": "1. A phone that does not support wireless projection is available and not previously paired with the HU\n2. Phone Bluetooth is enabled and the phone is discoverable",
+          "inputTestData": "1. N/A",
+          "steps": "1. Enable Bluetooth on the HU and put the HU into pairing mode\n2. On the phone, enable Bluetooth and make the phone discoverable\n3. On the HU, search for nearby Bluetooth devices and select the phone's Bluetooth name to initiate pairing\n4. Complete the Bluetooth pairing operation on both the phone and the HU\n5. Check that no CarPlay connection confirmation dialog is displayed on the HU",
+          "expectedResults": "1. HU Bluetooth is enabled and in pairing mode\n2. Phone Bluetooth is enabled and discoverable\n3. HU shows a pairing request for the phone\n4. Phone and HU complete Bluetooth pairing and connect\n5. No CarPlay connection confirmation dialog is displayed on the HU",
+          "designMethod": "決策表 (Decision Table Testing)",
+          "priority": "P0",
+          "status": "reviewing",
+          "validationErrors": [
+            {
+              "severity": "warning",
+              "message": "Rewrite must be 2–14 words (got 16).",
+              "column": "test_item"
+            }
+          ],
+          "splitDecision": {
+            "reqId": "SWE1-PROJ-071-001",
+            "tcCount": 2,
+            "subIndex": 1,
+            "parentId": "row-10",
+            "reasoning": "",
+            "keywords": [],
+            "duplicateOf": "",
+            "distinguishingAxis": {}
+          }
+        },
+        {
+          "id": "row-13",
+          "rowNum": 13,
+          "tcId": "newR1L-PRO-003",
+          "reqId": "SWE1-PROJ-071-002",
+          "testGroup": "Projection",
+          "testSet": "Projection Pairing",
+          "testSetHint": "",
+          "testItem": "When the user selects to pair a device to Bluetooth, the HU shall determine if the device supports wireless projection. If the device supports wireless projection, the HU shall prompt the user to continue the pairing process.\n\n配对蓝牙成功后，会通过蓝牙获取手机是否有AA能力，需要弹出一个确认对话框，提示用户选择是否启用Android Auto，该弹窗需要有一个确认按钮。\n\n支援Android Auto功能可正常檢測到能力\nAndroid Auto capability can be normally detected if supported",
+          "tcTitle": "Device supports Android Auto → Enable dialog shown",
+          "reviewStatus": "pending",
+          "specReference": "CFTS085-4935519",
+          "preConditions": "1. A Pixel device with Android Auto capability is available\n2. The phone and the car's Bluetooth are in pairing mode\n3. The device has never been connected before",
+          "inputTestData": "N/A",
+          "steps": "1. Turn on the car Bluetooth, search for and select the Pixel device listed by the HU\n2. Complete the pairing operation on both the phone and the HU (accept PIN or pairing request as required)\n3. Check that the HU displays a confirmation dialog prompting to enable \"Android Auto\" and that the dialog contains \"Confirm\" and \"Cancel\" buttons",
+          "expectedResults": "1. Pixel device is visible in the HU Bluetooth device list\n2. Device is paired and connected on both the phone and the HU\n3. A confirmation dialog prompting to enable \"Android Auto\" is displayed on the HU and contains \"Confirm\" and \"Cancel\" buttons",
+          "designMethod": "功能測試 (Functional based ; no specific technique)",
+          "priority": "P0",
+          "status": "reviewing",
+          "validationErrors": [
+            {
+              "severity": "warning",
+              "message": "Rewrite must be 2–14 words (got 21).",
+              "column": "test_item"
+            }
+          ],
+          "splitDecision": {
+            "reqId": "SWE1-PROJ-071-002",
+            "tcCount": 2,
+            "subIndex": 0,
+            "parentId": "row-13",
+            "reasoning": "驗證目標：確認在藍牙配對完成後，HU 能夠偵測裝置是否支援 Android Auto 能力；當支援時顯示啟用 Android Auto 的確認對話框並包含確認與取消按鈕，當不支援時不顯示該對話框。關鍵情境條件：觸發點為藍牙配對完成，前置狀態包含裝置是否支援 Android Auto、電話與車輛藍牙處於配對模式、裝置先前未連線。為什麼這樣切：依據 §6.1 與 §10.2 的分支規則，本需求在“支援”與“不支援”兩個互斥情境下有不同可觀察結果，為避免 False Pass 必須拆成兩筆 TC（supported vs unsupported）。未涵蓋/刻意略過的部分：偵測錯誤、逾時或部分通訊失敗的錯誤處理路徑因規格未明確而留待後續需求或 fault-injection 類 TC 補充。",
+            "keywords": [
+              {
+                "keyword": "Android Auto capability",
+                "meaning": "裝置是否支援 Android Auto 投影功能",
+                "coveredBy": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "keyword": "confirmation dialog",
+                "meaning": "配對成功後提示使用者啟用 Android Auto 的確認對話框",
+                "coveredBy": [
+                  1
+                ]
+              },
+              {
+                "keyword": "no prompt when unsupported",
+                "meaning": "當裝置不支援 Android Auto 時 HU 不應顯示啟用提示",
+                "coveredBy": [
+                  2
+                ]
+              }
+            ],
+            "duplicateOf": "",
+            "distinguishingAxis": {}
+          }
+        },
+        {
+          "id": "row-13__tc2",
+          "rowNum": 13,
+          "tcId": "newR1L-PRO-004",
+          "reqId": "SWE1-PROJ-071-002",
+          "testGroup": "Projection",
+          "testSet": "Projection Pairing",
+          "testSetHint": "",
+          "testItem": "When the user selects to pair a device to Bluetooth, the HU shall determine if the device supports wireless projection. If the device supports wireless projection, the HU shall prompt the user to continue the pairing process.\n\n配对蓝牙成功后，会通过蓝牙获取手机是否有AA能力，需要弹出一个确认对话框，提示用户选择是否启用Android Auto，该弹窗需要有一个确认按钮。\n\n支援Android Auto功能可正常檢測到能力\nAndroid Auto capability can be normally detected if supported",
+          "tcTitle": "Device does not support Android Auto → No enable dialog",
+          "reviewStatus": "pending",
+          "specReference": "CFTS085-4935519",
+          "preConditions": "1. A phone without Android Auto capability is available\n2. The phone and the car's Bluetooth are in pairing mode\n3. The device has never been connected before",
+          "inputTestData": "N/A",
+          "steps": "1. Turn on the car Bluetooth, search for and select the phone listed by the HU\n2. Complete the pairing operation on both the phone and the HU (accept PIN or pairing request as required)\n3. Check that the HU does not display a confirmation dialog prompting to enable \"Android Auto\" after pairing",
+          "expectedResults": "1. Phone is visible in the HU Bluetooth device list\n2. Device is paired and connected on both the phone and the HU\n3. No confirmation dialog prompting to enable \"Android Auto\" is displayed on the HU after pairing",
+          "designMethod": "功能測試 (Functional based ; no specific technique)",
+          "priority": "P0",
+          "status": "reviewing",
+          "validationErrors": [
+            {
+              "severity": "warning",
+              "message": "Rewrite must be 2–14 words (got 23).",
+              "column": "test_item"
+            }
+          ],
+          "splitDecision": {
+            "reqId": "SWE1-PROJ-071-002",
+            "tcCount": 2,
+            "subIndex": 1,
+            "parentId": "row-13",
+            "reasoning": "",
+            "keywords": [],
+            "duplicateOf": "",
+            "distinguishingAxis": {}
+          }
+        }
+      ],
+      "config": {
+        "model": "gpt-5",
+        "batchSize": 1,
+        "budgetLimit": 1,
+        "creditBalance": 0,
+        "strictValidation": false,
+        "targetColumns": [
+          "preConditions",
+          "inputTestData",
+          "steps",
+          "expectedResults"
+        ]
+      },
+      "logs": [
+        {
+          "timestamp": "2026-05-18T04:12:04.486104+00:00",
+          "level": "success",
+          "message": "Loaded sample run from docs/test Projection workbook."
+        },
+        {
+          "timestamp": "2026-05-18T04:12:04.486105+00:00",
+          "level": "info",
+          "message": "Generated 4 TCs from 2 sampled requirements using gpt-5-mini."
+        }
+      ],
+      "stats": {
+        "total": 2,
+        "processed": 2,
+        "success": 4,
+        "fail": 0,
+        "cost": 0.02292385,
+        "inputTokens": 35689,
+        "outputTokens": 8700,
+        "cacheCreationTokens": 0,
+        "cacheReadTokens": 15104
+      }
+    }
+  }
+}
