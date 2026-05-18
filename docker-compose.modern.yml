@@ -1,0 +1,45 @@
+name: tc-generator-modern
+
+services:
+  backend-modern:
+    image: tc-generator-modern-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      labels:
+        tc-generator.variant: modern
+        tc-generator.component: backend
+    container_name: tc_generator_modern_backend
+    labels:
+      tc-generator.variant: modern
+      tc-generator.component: backend
+      tc-generator.display: "TC Generator Modern Backend"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      TC_CORS_ORIGINS: http://localhost:3433,http://127.0.0.1:3433
+    ports:
+      - "8013:8000"
+    volumes:
+      - ./output-modern:/app/output
+
+  frontend-modern:
+    image: tc-generator-modern-frontend:latest
+    build:
+      context: ./frontend-modern
+      dockerfile: Dockerfile
+      labels:
+        tc-generator.variant: modern
+        tc-generator.component: frontend
+    container_name: tc_generator_modern_frontend
+    labels:
+      tc-generator.variant: modern
+      tc-generator.component: frontend
+      tc-generator.display: "TC Generator Modern Frontend"
+    environment:
+      PYTHON_API_BASE: http://backend-modern:8000
+      NEXT_PUBLIC_TC_GENERATOR_VARIANT: modern
+    ports:
+      - "3433:3000"
+    depends_on:
+      backend-modern:
+        condition: service_healthy

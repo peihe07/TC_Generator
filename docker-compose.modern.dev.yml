@@ -1,0 +1,82 @@
+name: tc-generator-modern-dev
+
+services:
+  backend-modern:
+    image: tc-generator-modern-backend-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      labels:
+        tc-generator.variant: modern-dev
+        tc-generator.component: backend
+    container_name: tc_generator_modern_dev_backend
+    command:
+      - uvicorn
+      - api_server:app
+      - --app-dir
+      - backend
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --reload
+      - --reload-dir
+      - backend
+      - --reload-dir
+      - docs
+    labels:
+      tc-generator.variant: modern-dev
+      tc-generator.component: backend
+      tc-generator.display: "TC Generator Modern Dev Backend"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      TC_CORS_ORIGINS: http://localhost:3433,http://127.0.0.1:3433
+    ports:
+      - "8013:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./docs:/app/docs
+      - ./output-modern:/app/output
+      - ./pyproject.toml:/app/pyproject.toml:ro
+
+  frontend-modern:
+    image: tc-generator-modern-frontend-dev:latest
+    build:
+      context: ./frontend-modern
+      dockerfile: Dockerfile
+      target: deps
+      labels:
+        tc-generator.variant: modern-dev
+        tc-generator.component: frontend
+    container_name: tc_generator_modern_dev_frontend
+    command:
+      - npm
+      - run
+      - dev
+      - --
+      - --hostname
+      - 0.0.0.0
+      - --port
+      - "3000"
+    labels:
+      tc-generator.variant: modern-dev
+      tc-generator.component: frontend
+      tc-generator.display: "TC Generator Modern Dev Frontend"
+    environment:
+      PYTHON_API_BASE: http://backend-modern:8000
+      NEXT_PUBLIC_TC_GENERATOR_VARIANT: modern-dev
+      NEXT_TELEMETRY_DISABLED: "1"
+      WATCHPACK_POLLING: "true"
+    ports:
+      - "3433:3000"
+    volumes:
+      - ./frontend-modern:/app
+      - frontend_modern_node_modules:/app/node_modules
+      - frontend_modern_next_cache:/app/.next
+    depends_on:
+      backend-modern:
+        condition: service_healthy
+
+volumes:
+  frontend_modern_node_modules:
+  frontend_modern_next_cache:

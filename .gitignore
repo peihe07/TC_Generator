@@ -17,6 +17,7 @@ venv/
 output/*.xlsx
 output/*.db
 output/.workspaces/
+output-modern/
 
 # Node
 node_modules/
@@ -25,6 +26,8 @@ node_modules/
 # Playwright artefacts
 frontend/test-results/
 frontend/playwright-report/
+frontend-modern/test-results/
+frontend-modern/playwright-report/
 playwright-report/
 
 # IDE
