@@ -1,5 +1,26 @@
 # TC Generator — 專案狀態
 
+## Recent changes (2026-05-18)
+
+- **Modern UI variant**：新增獨立 `frontend-modern/` Next.js package，不取代
+  既有 `frontend/` Win95 desktop；包含 same-origin proxy routes、Zustand
+  stores、module UI、Vitest unit tests、Playwright E2E specs、Dockerfile 與
+  `frontend-modern/README.md`。
+- **Separate runtime ports**：modern local launcher 使用 frontend `3433`、
+  backend `8013`；`./start-modern.sh` 會讀取 repo root `.env`、同步
+  `frontend-modern/.env.local`，並同時啟動 backend reload 與 modern
+  Next.js dev server。
+- **Modern Docker profiles**：新增 `docker-compose.modern.dev.yml` 與
+  `docker-compose.modern.yml`，container / image / compose project 均以
+  modern 命名隔離；modern backend runtime output 寫入 `output-modern/`。
+- **ASPICE wording rules**：`ASPICE_SWE6_AI_Instruction.md` 補強 UI label
+  必須使用 double quotes、baseline wording、one trigger 多 consequential
+  outcomes 不拆 TC 等規則。
+- **Refinement helper**：新增 `refinement/retry_failed.py`，針對 lint_failed
+  TC 用較強 retry prompt 重跑並要求 step / ER 1:1。
+- **Verification**：modern frontend `npm run typecheck` 通過；
+  `npm run test:unit` 為 20 files / 134 tests pass。
+
 ## Recent changes (2026-05-02)
 
 ASPICE SWE.6 Review feature：與既有 Generate path 並行，**不取代**任何

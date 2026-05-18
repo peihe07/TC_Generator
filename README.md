@@ -6,6 +6,7 @@ The project has two working surfaces:
 
 - Python backend and CLI for parsing, generation, validation, and Excel writing
 - Next.js desktop frontend for the upload -> configure -> generate -> review -> export workflow
+- Optional modern Next.js UI variant under `frontend-modern/`, isolated from the legacy desktop app
 
 ## Requirements
 
@@ -36,6 +37,13 @@ cd frontend
 npm install
 ```
 
+Modern frontend variant:
+
+```bash
+cd frontend-modern
+npm install
+```
+
 ## Run Tests
 
 Backend:
@@ -49,6 +57,14 @@ Frontend typecheck:
 ```bash
 cd frontend
 npm run typecheck
+```
+
+Modern frontend checks:
+
+```bash
+cd frontend-modern
+npm run typecheck
+npm run test:unit
 ```
 
 ## Run The Desktop App
@@ -75,6 +91,25 @@ Notes:
 - Local non-Docker frontend defaults to `http://127.0.0.1:8003`; Docker overrides this to the internal service URL `http://backend:8000`.
 - Generate / Regenerate / Export require an active backend job; the desktop no longer creates local mock generated rows when the backend is unavailable.
 
+## Run The Modern UI Variant
+
+The modern UI is a separate frontend package. It does not replace the existing
+`frontend/` desktop app and uses separate ports by default.
+
+From the repository root:
+
+```bash
+./start-modern.sh
+```
+
+Modern UI ports:
+
+- Frontend: `http://127.0.0.1:3433`
+- Backend: `http://127.0.0.1:8013`
+
+The launcher reads `.env`, writes `frontend-modern/.env.local`, starts the
+backend with reload, and starts the modern Next.js dev server.
+
 ## Run With Docker
 
 Both dev and prod expose the frontend on host port **3333** (backend on **8003**).
@@ -92,6 +127,20 @@ docker compose -f docker-compose.dev.yml up --build
 ```
 
 Then open `http://localhost:3333`. Set `OPENAI_API_KEY` in `.env` at the repo root before starting.
+
+Modern UI Docker runs use separate compose files and expose the frontend on
+host port **3433** (backend on **8013**):
+
+```bash
+docker compose -f docker-compose.modern.dev.yml up --build
+```
+
+```bash
+docker compose -f docker-compose.modern.yml up --build
+```
+
+The modern backend writes runtime output to `output-modern/`, which is ignored
+by git and kept separate from the legacy `output/` directory.
 
 ## CLI Usage
 
@@ -149,6 +198,7 @@ calling the LLM.
 - Shared workflow state lives in Zustand stores.
 - All frontend backend access goes through `frontend/app/api/*` proxy routes.
 - `frontend/src/services/jobAdapter.ts` is the single adapter layer used by active modules.
+- `frontend-modern/` mirrors the backend proxy pattern in a separate Next.js package and has its own README, tests, E2E specs, Dockerfile, and runtime ports.
 
 ## Notes
 
@@ -163,6 +213,7 @@ calling the LLM.
 Entry point:
 
 - **[docs/CHANGELOG.md](docs/CHANGELOG.md)** — what's been built, current architecture, test baselines, recent changes
+- **[frontend-modern/README.md](frontend-modern/README.md)** — modern UI variant setup, ports, and Docker commands
 
 Reference docs:
 

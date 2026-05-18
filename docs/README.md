@@ -18,6 +18,8 @@ Rename or move them only with matching code and test updates.
 - `CHANGELOG.md` — architecture notes, history, and current baselines
 - `TC_Generator_Architecture_Diagrams.html` — architecture visual reference
 - `design-system/` — UI conventions and design-system assets
+- `../frontend-modern/README.md` — separate modern UI variant setup, ports,
+  and Docker commands
 
 ## Archive
 
