@@ -66,7 +66,7 @@ Pre-Condition, Input Test Data, and Procedure.
 1. **Environment data** (file, device, external signal source) → Pre-Condition
    - ✓ `1. A USB drive containing valid .mp4 video files is connected`
 2. **Interaction data** (button, option, UI value selected by the tester) → Procedure step
-   - ✓ `Press [Screen Off] button`
+   - ✓ `Press "Screen Off" button`
 3. **Independent dataset** (CAN signal values, boundary values, batch test data) → Input Test Data
    - ✓ `CAN: VinLockStatus = 0x01`
    - ✓ `File size: 200 MB / 201 MB`
@@ -81,7 +81,7 @@ On `## Sibling Rows` injection, output `duplicate_of` (only if truly equivalent:
 ## 7. Step Design
 
 ### 7.1 Executable & Clear Intent
-Each step MUST be executable with clear intent. Intent is usually **self-evident** from action + target (`Press [Screen Off] button`). Add `... to ...` ONLY when the same UI serves multiple purposes, the step sets up a non-obvious precondition, or the target is opaque (raw AT, deep menu, internal signal). Do NOT pad every step with `to ...`.
+Each step MUST be executable with clear intent. Intent is usually **self-evident** from action + target (`Press "Screen Off" button`). Add `... to ...` ONLY when the same UI serves multiple purposes, the step sets up a non-obvious precondition, or the target is opaque (raw AT, deep menu, internal signal). Do NOT pad every step with `to ...`.
 
 #### 7.1.1 Forbidden Verbs
 **Never** as MAIN verb: `observe`, `observe whether`, `see if`, `check whether`, `confirm whether`, `verify`, `watch`, `monitor`, `inspect`. They defer judgement to the tester.
@@ -102,8 +102,20 @@ Final Step alone reveals what is checked, mapping Test Item outcome. Include ACT
 ### 7.6 Baseline Comparison
 State change or boundary → establish **baseline (before)** AND check **outcome (after)** in the same TC.
 
+**Baseline wording**: Use the word `baseline` only in the comparison step in the final ER, not in the recording step. The recording step describes what is read; the comparison step is where the baseline label belongs. Avoid the redundant pattern `record the baseline ... as baseline`.
+
+- ✗ `Read and record the baseline A2DP and HFP status as baseline`
+- ✓ Recording step: `Locate the phone and record its A2DP and HFP status shown in the list`
+- ✓ Comparison ER: `The phone's HFP status remains the same as recorded in step 2`
+
 ### 7.7 One Objective
 Steps = Setup / Transition / Verification (final only). Earlier failure = setup not reached → keep. Independent feature → split.
+
+**One trigger → multiple consequential outcomes belong in ONE TC, not split.** The trigger is the verification unit; outcomes that necessarily follow from the same trigger are facts to be checked, not separate TCs. Cover them as multiple ER lines.
+
+- ✗ Splitting `Disconnect CarPlay → Phone icon restored` and `Disconnect CarPlay → BT paging starts` into two TCs (same trigger, both consequences of the same disconnect)
+- ✓ One TC `User disconnects CarPlay → native restored and BT paging started` with both ER lines
+- Split criterion remains: different **triggers**, different **inputs**, different **scopes** — not different outcomes of the same trigger.
 
 ### 7.8 Standard Setup Snippets
 Project-level repeated setup steps SHOULD be managed as constants and reused
@@ -113,8 +125,8 @@ spread across TCs.
 Examples (project-specific constants must be maintained together with tooling):
 - `ENTER_DEALER_MODE`: `Press and Hold the top right and bottom left corners of the screen for 5 seconds to enter Dealer Mode`
 - `ENTER_ENG_MODE`: `Press and Hold the top left and bottom right corners of the screen for 5 seconds to enter Eng Mode`
-- `SCREEN_OFF`: `Press H/K [Screen Off] button to turn off the HU screen`
-- `ENTER_APP_DRAWER`: `Press [Apps] on Menu Bar to open App Drawer`
+- `SCREEN_OFF`: `Press H/K "Screen Off" button to turn off the HU screen`
+- `ENTER_APP_DRAWER`: `Press "Apps" on Menu Bar to open App Drawer`
 
 Tooling (prompt builder / linter / export normalizer) should enforce the same
 canonical strings. When adding a constant, update both this instruction and the
@@ -189,7 +201,7 @@ Procedure:
 3. Mount tmpfs of 1 GB
 4. Fill tmpfs to consume RAM
 5. Re-check available memory
-6. Press [Screen Off] button
+6. Press "Screen Off" button
 7. Enter Dealer Mode
 8. Select System Information
 
@@ -246,6 +258,7 @@ Never invent a value the source did not state (numbers, thresholds, timeouts, si
 11. Traces to Req/SWRA; no fabricated data (§10)
 12. Design Method assigned AFTER procedure finalized (§15)
 13. No trailing period on any line of `pre_conditions` / `input_test_data` / `test_procedure` / `expected_result` (§13)
+14. UI element labels use `"..."` double quotes, never `[...]` square brackets (§13)
 
 ## 12. Tool-Specific Output Contract (workbook export, not ASPICE rules)
 
@@ -302,6 +315,18 @@ No HTML / Markdown tables in TC output. Plain numbered text; one item per line; 
 
 **No trailing period** in `pre_conditions`, `input_test_data`, `test_procedure`, `expected_result` — strip the final `.` (or `。`) at the end of every line. Mid-sentence periods are kept (e.g. `Press button. Wait 5s` is fine; `Press button. Wait 5s.` is NOT). Applies to every numbered item.
 
+**UI element labels use double quotes**, never square brackets. Applies to on-screen buttons, menu bar items, popup buttons, hard-key (H/K) buttons, tab names, and any literal label the tester reads off the UI. Display text and indicators that are values rather than tappable elements (e.g. source indicator `"AA"`, status text `"Music Muted"`) follow the same convention.
+
+- ✓ `Press "Media" on Menu Bar`
+- ✓ `Press H/K "Screen Off" button`
+- ✓ `Press "OK" in the popup`
+- ✓ `The source indicator displays "AA"`
+- ✗ `Press [Media] on Menu Bar`
+- ✗ `Press 'Screen Off' button` (single quotes)
+- ✗ `Press <Apps> button` (angle brackets)
+
+Square brackets `[...]` are reserved for placeholder syntax in this document only (e.g. `[Outcome] when [trigger]` in §6.1) and for sibling row markers (e.g. `[row #11]` in §12.6). They MUST NOT appear in TC output fields.
+
 ## 15. Design Method (assign AFTER TC finalized, first-match)
 
 | Condition | Method |
@@ -320,3 +345,5 @@ Tie-break: State Transition = state-change focus; Scenario = ≥3 steps crossing
 
 ## 16. Final Rule
 One objective per TC. Only final step validates. TC aligns with Req/SWRA.
+
+
