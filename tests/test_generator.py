@@ -826,6 +826,57 @@ class TestGenerateBatchMulti:
         assert result.split_meta[1]["reasoning"] == "Fallback regenerated R2"
         assert result.split_meta[1]["req_id"] == "R2"
 
+    @patch("generator._chat")
+    def test_group_count_mismatch_falls_back_to_per_row_generation(self, mock_chat):
+        """模型把多個 req 合併/漏掉導致群組數量不符時，整批改逐筆生成而非整批失敗。"""
+        # 第 1 次批次：3 個 req 只回 2 個 group → 無法對齊。
+        # 之後 3 次：逐筆 fallback 各回 1 筆 TC。
+        mock_chat.side_effect = [
+            make_chat_response(
+                {
+                    "requirements": [
+                        {"req_id": "R1", "reasoning": "merged", "tcs": [VALID_TC_JSON]},
+                        {"req_id": "R3", "reasoning": "merged", "tcs": [VALID_TC_JSON]},
+                    ]
+                },
+                prompt_tokens=300,
+                completion_tokens=150,
+            ),
+            make_chat_response(
+                {"reasoning": "per-row R1", "tcs": [{**VALID_TC_JSON, "priority": "P0"}]},
+                prompt_tokens=10, completion_tokens=5,
+            ),
+            make_chat_response(
+                {"reasoning": "per-row R2", "tcs": [{**VALID_TC_JSON, "priority": "P1"}]},
+                prompt_tokens=10, completion_tokens=5,
+            ),
+            make_chat_response(
+                {"reasoning": "per-row R3", "tcs": [{**VALID_TC_JSON, "priority": "P2"}]},
+                prompt_tokens=10, completion_tokens=5,
+            ),
+        ]
+
+        result = generate_batch_multi(
+            rows=[
+                {"req_id": "R1", "test_item": "x"},
+                {"req_id": "R2", "test_item": "y"},
+                {"req_id": "R3", "test_item": "z"},
+            ],
+            context={"project": "p", "test_group": "g"},
+            spec_index=None,
+            rules_text="rules",
+        )
+
+        # 1 次失敗批次 + 3 次逐筆
+        assert mock_chat.call_count == 4
+        # 每個 row 都有獨立產出（不再整批失敗）
+        assert len(result.tc_data) == 3
+        assert [g[0]["priority"] for g in result.tc_data] == ["P0", "P1", "P2"]
+        assert [m["req_id"] for m in result.split_meta] == ["R1", "R2", "R3"]
+        # 失敗批次已耗用的 token 仍被計入（300+150 + 3*(10+5)）
+        assert result.input_tokens == 330
+        assert result.output_tokens == 165
+
 
 class TestChatRetry:
     """_chat 應對上游短暫錯誤做 exponential backoff retry。"""

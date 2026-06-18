@@ -907,6 +907,62 @@ def generate_tcs_for_row(
     )
 
 
+def _generate_rows_individually(
+    rows: list[dict],
+    context: dict,
+    spec_index: dict | None,
+    rules_text: str,
+    model: str,
+    base_tokens: tuple[int, int, int, int] = (0, 0, 0, 0),
+    base_cost: float = 0.0,
+) -> GenerationResult:
+    """對每個 row 逐筆呼叫 `generate_tcs_for_row` 並彙總成一個 batch 結果。
+
+    當批次回應無法和輸入對齊（數量/結構不符）時的 fallback：逐筆生成保證
+    每個 req 都能獨立產出。`base_tokens` / `base_cost` 用來把先前失敗批次
+    已耗用的用量算進來，避免漏計成本。
+    """
+    tc_groups: list[list[dict]] = []
+    meta_list: list[dict] = []
+    input_tokens, output_tokens, cache_creation_tokens, cache_read_tokens = base_tokens
+    cost = base_cost
+
+    for row in rows:
+        result = generate_tcs_for_row(
+            row=row,
+            context=context,
+            spec_index=spec_index,
+            rules_text=rules_text,
+            model=model,
+        )
+        tcs = result.tc_data if isinstance(result.tc_data, list) else [result.tc_data]
+        tc_groups.append(tcs)
+        if result.split_meta:
+            meta_list.append(result.split_meta[0])
+        else:
+            meta_list.append({
+                "req_id": str(row.get("req_id") or row.get("reqId") or ""),
+                "reasoning": "Batch response could not be aligned; regenerated this requirement individually.",
+                "keywords": [],
+            })
+        input_tokens += result.input_tokens
+        output_tokens += result.output_tokens
+        cache_creation_tokens += result.cache_creation_tokens
+        cache_read_tokens += result.cache_read_tokens
+        cost += result.cost
+
+    return GenerationResult(
+        tc_data=tc_groups,  # type: ignore[arg-type]
+        input_tokens=input_tokens,
+        output_tokens=output_tokens,
+        cache_creation_tokens=cache_creation_tokens,
+        cache_read_tokens=cache_read_tokens,
+        cost=cost,
+        model=model,
+        split_meta=meta_list,
+    )
+
+
 def generate_batch_multi(
     rows: list[dict],
     context: dict,
@@ -921,17 +977,34 @@ def generate_batch_multi(
     response = _chat(system, user_prompt, model)
 
     raw_text = response.choices[0].message.content or ""
-    tc_groups, meta_list, invalid_indices = _parse_multi_tc_batch_response_lenient(
-        raw_text,
-        expected_count=len(rows),
-    )
-
     t = _usage_tokens(response.usage)
     cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
     input_tokens = t["input"]
     output_tokens = t["output"]
     cache_creation_tokens = t["cache_creation"]
     cache_read_tokens = t["cache_read"]
+
+    try:
+        tc_groups, meta_list, invalid_indices = _parse_multi_tc_batch_response_lenient(
+            raw_text,
+            expected_count=len(rows),
+        )
+    except GenerationError as exc:
+        # 群組數量/結構無法和輸入對齊（模型把多個 req 合併或漏掉）時無法逐欄救援，
+        # 改成整批逐筆生成，並把這次失敗批次已耗用的 token/cost 一併帶入。
+        logger.warning(
+            "Batch response unalignable (%s); falling back to per-row generation for %d rows.",
+            exc, len(rows),
+        )
+        return _generate_rows_individually(
+            rows,
+            context,
+            spec_index,
+            rules_text,
+            model,
+            base_tokens=(input_tokens, output_tokens, cache_creation_tokens, cache_read_tokens),
+            base_cost=cost,
+        )
 
     for i in invalid_indices:
         fallback = generate_tcs_for_row(
