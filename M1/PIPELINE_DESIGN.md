@@ -1,0 +1,563 @@
+# TC Generator — 端到端 Pipeline 設計(互動式為主)
+
+> 目標:把現有「OpenAI API 批次生成」改造成「深拆 + domain 接地 + spec 核查 + 自動 review + KPI 量化」的 pipeline。
+> **主路徑用互動式 Claude Code(訂閱額度,邊際成本 0)**,Python 處理確定性工作,人工只審「疑慮」而非逐條。
+> 自動化 / 大量無人值守再走 API(按量計費)。
+
+文件狀態:設計草案 · 最後更新 2026-06-25
+
+---
+
+## 設計原則(先讀這段)
+
+0. **互動式為主。** 主要工作流是「你坐在 Claude Code 互動式 session 裡,用 subagent 驅動深拆 / 生成 / review」——這部分算進你的 Max 訂閱額度、不額外計費。**腳本 / headless(`claude -p`、Agent SDK)自 2026/6/15 起按 API 費率計費**,只在真的需要無人值守大量產出時才用。
+1. **確定性的歸 Python,需要判斷的才給 LLM。** Excel 進出、ID、traceability、欄位完整性 → Python;深拆、生成、語意 review → agent。
+2. **LLM backend 解耦。** 所有 LLM 呼叫走同一個 provider interface(現集中在 `generator.py::_chat`),底下可插 互動式 session / Claude API / OpenAI。
+3. **domain knowledge 做成「審一次、重複用」的 artifact**,不要每條 TC 讓模型重猜。
+4. **retrieval 已經有了**(`spec_matcher`:PDM → Jaccard → embedding),不重做。
+5. **review 要 spec 接地、domain 感知**,而不是只比格式(見 Stage 6)。
+6. **人工只在兩個 gate 介入**:① domain pack 審查(早期、便宜)② 最終疑慮 report(只看被標記的)。
+
+---
+
+## 運行模式與成本(互動式為主)
+
+### 兩種運行模式
+
+| | 互動式 Claude Code(主路徑) | Headless / API(備援) |
+|---|---|---|
+| 怎麼跑 | 你在 `claude` session 裡驅動 subagent | `claude -p` 腳本 / Agent SDK / 直接 Anthropic API |
+| 計費 | 算進 **Max 訂閱額度**,邊際成本 0 | **按 API token 計費**(6/15 後 headless 亦然) |
+| 限制 | 5 小時滾動 + 每週上限;**需你在場** | 無硬上限,可無人值守、高併發 |
+| 用在 | 深拆 / 生成 / review / Gate ① 的人在迴圈階段 | 真正大量、排程、自動跑的批次 |
+
+> 重點:**「跑腳本」= API 計費**。要用訂閱免費額度,流程必須是互動式、你親自推進。
+
+### Token 量(用真實檔案估)
+
+進 prompt 的固定成本:ASPICE 規則 ~7k tokens、Review spec ~6.5k、Domain pack(新)~10k。
+這些都應做成**快取前綴**(cache 讀取只算 10% 價格),是最大省法。
+
+**新版深拆 + 獨立 review,每個需求約 35k–70k tokens(典型 ~50k)**,換算每條 TC ~10k——
+比現行批次版(~2.3k/TC)重 4–8 倍。**這是「深度」的必然代價**:深讀 spec + domain + 獨立稽核。
+
+### 一次 run 估算(可換成你的真實需求數)
+
+| 需求數 | 總 token | 互動式 Max 5x(Sonnet) | Headless/API(Sonnet,開快取) | Opus |
+|---|---|---|---|---|
+| 100 | ~5M | $0 額外(Sonnet 在 Max 5x 近乎用不完) | ~$15–25 | ~$27 |
+| 200 | ~10M | 可能撞 5 小時窗,需分批 | ~$30–50 | ~$54 |
+
+- 開 **Batch API** 可再砍一半(非即時,24h 內回)。
+- **深拆用 Sonnet,必要時局部用 Opus**:Max 5x 的 Sonnet 一般工作量用不完,但 Opus 每週僅約 50–75 小時,會明顯吃額度。
+- 估算為 order-of-magnitude;實際取決於需求數、每需求 match 多少 spec、每需求產幾條 TC。
+
+### 降 token 的槓桿
+
+1. 規則 / Review spec / Domain pack 當**快取前綴**(讀取算 10%)。
+2. review **逐需求批次**送,不逐 TC(共用同一份 spec 切片)。
+3. 機械填充階段(Stage 4)可用便宜模型;深拆(Stage 3)才用較強模型。
+
+> 價格基準(2026-06):Sonnet 4.6 $3/$15、Opus 4.8 $5/$25、Haiku 4.5 $1/$5(input/output 每 M token);cache hit = input 價 10%;Batch = 50% off。
+
+---
+
+## Pipeline 總覽
+
+```
+[Phase 0] Provider 解耦 (前置改造,一次性)
+     │
+     ▼
+Stage 0  Spec Intake & Inventory        ── Python ── 已有索引基礎
+     │
+     ▼
+Stage 1  Domain Knowledge Pack  ★新     ── 互動式 agent ── ▶ 人工 Gate ①
+     │
+     ▼
+Stage 2  Requirement Scan & Context     ── Python(spec_matcher)── 已有
+     │
+     ▼
+Stage 2.5 Pre-flight Budget Checkpoint ★新 ── Python(fit_batch)+ 人工 /usage ── ▶ go / shrink / wait
+     │
+     ▼
+Stage 3  Deep Decompose          ★改造  ── 互動式 agent(Sonnet,深讀)
+     │
+     ▼
+Stage 4  TC Generation                  ── agent / 便宜模型 ── 改造
+     │
+     ▼
+Stage 5  Completeness Check             ── Python(validator)── 已有,不用 AI
+     │
+     ▼
+Stage 6  Review Agent  ★強化            ── 獨立 agent(spec 接地 + domain)+ regex
+     │
+     ▼
+Stage 7  Report + KPI Scorecard  ★新    ── Python 組裝
+     │
+     ▼
+Stage 8  Human Review                   ── 人 ── ▶ 人工 Gate ②
+     │
+     ▼
+Stage 9  Export                         ── Python(writer)── 已有
+     │
+     └──────── KPI 未達標 → 退回 Stage 3/4 重生成(feedback loop)
+```
+
+---
+
+## Phase 0 — Provider 解耦(前置,一次性)
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 把 `_chat` 抽成 `LLMProvider` interface,可插互動式 session / Claude API / OpenAI,並能 A/B 比較深度 |
+| 輸入 | messages、model、參數 |
+| 輸出 | 統一 response + usage(互動式模式 usage 退化為 request/額度計數) |
+| 引擎 | — |
+| 狀態 | **改造**(`_chat` 已是唯一呼叫點,工作量小) |
+| 備註 | `_budget.py` 的「美金預算」在互動式模式改成「rate-limit 排隊 / 每窗請求數」;注意 `ANTHROPIC_API_KEY` 環境變數會讓 Claude Code 改走 API 計費 |
+
+---
+
+## Stage 0 — Spec Intake & Inventory
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 盤點本次專案所有來源文件,確認都已建索引 |
+| 輸入 | 見下方〈輸入文件模型〉;**預設 SPEC + SWE.1,SYS 層選用** |
+| 輸出 | spec 清單 + 索引狀態(`spec-index/manifest.json`) |
+| 引擎 | Python |
+| 狀態 | **已有**(`scripts/build_spec_index.py`、embedding 索引已建 200+ 條);**待改造**:索引納入 SPEC 內容(見 Section G) |
+| KPI hook | 來源文件覆蓋率(已索引 / 應索引) |
+
+**輸入文件模型(文件鏈角色)★新**
+
+ASPICE 文件鏈在本 pipeline 裡分**三種角色**,不是一條線性輸入:
+
+| 文件 | ASPICE 階段 | 在 pipeline 的角色 | 被誰消費 |
+|---|---|---|---|
+| SPEC(CFTS / VF / HMI) | 客戶 / 功能規格 | **行為真相來源**:TC 要忠於誰、reality-gap 比對誰 | Stage 2 grounding、Stage 6 |
+| SYS.1(HMI 索引) | 系統需求 | **ID 鷹架**:給編號 / PDM code,**不是行為敘述** | Stage 2 traceability ID |
+| SYS.2 | 系統架構分析 | **追溯 + 車型**:req-ID 跨文件連結、variant 支援表 | Stage 2 traceability、variant 標註 |
+| SYS.3 | 系統設計 | 架構背景(選用) | Stage 1 domain pack(選用) |
+| **SWE.1(SWRA)** | 軟體需求分析 | **需求來源主體**:要被拆的 row、需求數、實際拆解內容 | Stage 2 逐筆迭代對象 |
+
+**預設輸入契約 = SPEC + SWE.1**;SYS 層為**選用 enrichment**,只在 SWE.1 拆解不足、或需補車型 / 追溯時才拉入。Stage 0 intake 不必每次硬吃整條 chain。
+
+> 關鍵推論:**SWE.1 的品質決定要拆多深。** 拆得好 → Stage 3 走 light expand(輕);拆得淺 → 走 deep decompose(重,~50k/需求)。見 Stage 3 分流。
+
+---
+
+## Stage 1 — Domain Knowledge Pack ★新(最關鍵的新增)
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 萃取穩定的 domain 背景,解決「background 不夠 → 拆解淺」的根因 |
+| 輸入 | 全部 spec(透過索引)+ 需求總覽 |
+| 輸出 | 一份持久化 artifact(見下方 schema),**人工審一次後重複用** |
+| 引擎 | 互動式 agent(深讀整包) |
+| 狀態 | **新增** |
+| 人工 Gate | **Gate ①** — 在生成任何 TC 前先審「模型對 domain 的理解對不對」 |
+| KPI hook | open-questions 數量、人工修正數(理解品質的早期指標) |
+
+**Domain Pack schema(草案,可調):**
+- `glossary` — 術語 / 縮寫對照(HFP、A2DP、BLE… 的定義與行為)
+- `feature_model` — 各 feature 的正常 / 異常 / 邊界行為摘要
+- `interactions` — 跨 feature 互動與互斥(哪些狀態會互相影響)
+- `boundaries` — 已知數值邊界、列舉值、上下限
+- `traceability_hints` — 需求 ↔ spec 的對應線索(補 `spec_matcher` 的語意缺口)
+- `open_questions` — 規格不清、需人工澄清的點(Gate ① 的審查清單)
+
+> 原則:每個欄位都要被下游 Stage 3/4/6 真的消費到,否則不寫。不做「抽象地理解 domain」。
+
+---
+
+## Stage 2 — Requirement Scan & Context Assembly
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 逐需求抓出相關 spec 切片,組成該需求的生成 context |
+| 輸入 | 需求列、domain pack、spec 索引 |
+| 輸出 | 每需求一包 context(相關 spec 段落 + 對應的 domain pack 片段) |
+| 引擎 | Python(`spec_matcher`:PDM 精確 → Jaccard → embedding cosine) |
+| 狀態 | **已有** |
+| KPI hook | 每需求 retrieval 命中數、traceability 完整度 |
+
+> **grounding 來源(★):** 行為真相在 **SPEC(CFTS / VF / HMI)**,SYS.1 / PDM code 只當對應 ID 的鷹架。現行 spec-index 只索 SYS1 ~150 字元(編號 / 標題級),**抓不到行為落差**;Stage 6 reality-gap 要能比對,需把 SPEC 內容切片納入索引(見 Section G 改造)。
+
+---
+
+## Stage 2.5 — Pre-flight Budget Checkpoint ★新(額度預檢,非資料轉換)
+
+> 這是一個**運行閘門(operational gate)**,不是資料轉換 stage:在開始燒訂閱額度的 Stage 3 之前,先確認「這批跑得完、不會中途被截斷」。
+> 因為訂閱額度**無法程式化讀取**(Claude Code / CLI 無此 API,只能人工看 `/usage` 或 Settings > Usage),這一閘必然是「Python 估算 + 人工瞄一眼」的混合,**不可能全自動 gate**。
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 開跑前確認當前五小時窗的額度足以跑完這批需求;不足就縮批或等下一個窗口 |
+| 輸入 | 本次要跑的需求數 N、校準得到的 `per_req_pct`、`/usage` 當下剩餘 % |
+| 輸出 | 決策 `go` / `shrink`(縮到 K 個)/ `wait`(等重置)+ 這批的需求切片清單 |
+| 引擎 | Python(`fit_batch`,零額度消耗)+ 人工讀 `/usage` |
+| 狀態 | **新增** |
+| 人工介入 | 開跑前讀一次 `/usage`(非 Gate ①/②,屬運行操作) |
+| KPI hook | 每需求實際吃掉的 %(回填校準)、被截斷次數(目標 0) |
+
+**為什麼需要這一閘:**
+- 訂閱額度是 claude.ai / Claude Code / Desktop **共用一個桶**,只能人工看,沒有腳本接口。
+- Stage 3–4–6 是吃額度的主體;一旦五小時窗中途見底,Claude Code 會停。有了這一閘 + 下面的 resumability,中途停 = **暫停**,不是重來。
+
+**校準流程(每專案做一次,屬執行期、非規劃期):**
+1. 等窗口剛 reset,跑 `/usage`,記下起始 %。
+2. 跑一個 probe batch(例如 10 個需求)走完 Stage 3 → 4。
+3. 再跑 `/usage`,算 `delta%`,`÷` probe 數 → 得到 `per_req_pct`。
+4. 把 `per_req_pct` 存進專案設定(如 `config/budget.json`);之後每次開跑前讀 `/usage` 剩餘 % 餵進 `fit_batch`。
+
+**`fit_batch`(純 Python,零額度):**
+```python
+def fit_batch(remaining_pct: float, per_req_pct: float, safety: float = 0.7) -> int:
+    """How many requirements safely fit the current 5h window, with margin."""
+    usable = max(0.0, remaining_pct - (1 - safety))  # leave headroom
+    return int(usable // per_req_pct)
+```
+
+> **雙峰校準(★):** `per_req_pct` 不是單一值——Stage 3 的 light expand 與 deep decompose 各記一個(校準時兩種各跑幾筆 probe)。混批就用兩 path 的需求數加權估,別用一個平均值,否則 deep 多的批會低估、被截斷。
+
+**Resumability(讓截斷無痛,沿用現有機制):**
+- Stage 4 每個需求完成即落地(沿用 `job_store` per-row persist + SSE `row.completed`)。
+- 中途見底 → 下個窗口用 `--mode incremental` 從第 K+1 個需求續跑,**不重做、不丟資料**。
+
+**降額度的前提(必做,否則量一上去就爆):**
+- 固定前綴(ASPICE 規則 ~7k + Review spec ~6.5k + Domain pack ~10k ≈ 23k)做成**快取前綴 / skill 載入一次**,跨需求重用,讀取約算一成。這是「大量產出」能成立的關鍵槓桿。
+
+> 規劃期注意:`per_req_pct` 要等真的跑過一次 probe 才有數。**本 stage 規劃階段只定欄位、流程、位置,數字留空待測。**
+
+---
+
+## Stage 3 — Deep Decompose ★改造重點
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 像手動那樣深拆:**一需求一支 subagent**,自己深讀切片 + domain pack 再拆 |
+| 輸入 | 單需求 context 包 |
+| 輸出 | 該需求的拆解計畫(情境 / 分支 / 邊界 / 列舉,尚未填欄位) |
+| 引擎 | 互動式 agent(Sonnet 為主,深讀;必要時局部 Opus);ASPICE 規則打包成 skill 自動載入 |
+| 狀態 | **改造**(`build_decompose_prompt` 已存在,但目前被塞進批次,需改成單需求 agent 扇出) |
+| KPI hook | 平均拆解步數 / 需求(對抗「不夠深」);light vs deep 兩 regime 分開統計 |
+
+> **拆解分流(★新):** 先判每筆 **SWE.1 的拆解品質**,再決定走哪條 path——
+> ① **拆得好 = light expand(輕):** 既有拆解直接展開成 TC 欄位 + 對 SPEC 接地,token 低。
+> ② **拆得淺 = deep decompose(重):** 才靠 SPEC / SYS 補結構深拆,即 doc 裡 ~50k/需求 那情境。
+> 兩條 path 的 token / 拆解步數差很多,KPI 與 **Stage 2.5 校準必須分開記、別平均成一個值**。判斷器本身用便宜模型 / 規則即可,不必動用深讀。
+
+> 把 `ASPICE_SWE6_AI_Instruction.md`、`Test Case Design Method 判斷規則.md`、`test_case_priority.md` 打包成 skill,每支 agent 自動載入 → 解決 background 不夠。
+
+---
+
+## Stage 4 — TC Generation
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 把拆解計畫的每一項填成完整 TC 欄位 |
+| 輸入 | Stage 3 拆解計畫 |
+| 輸出 | TC 草稿(tc_title / pre_conditions / input_test_data / test_procedure / expected_result / design_method / priority / split_flag / split_reason) |
+| 引擎 | 機械填充,互動式或便宜模型;Test Set 分類維持便宜模型 |
+| 狀態 | **改造**(沿用 `prompt_builder` 既有欄位契約與 hard constraints) |
+| KPI hook | 生成數量、單需求 TC 數 |
+
+---
+
+## Stage 5 — Completeness Check(確定性,不用 AI)
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 檢查「所有欄位有沒有填好、格式對不對」——純規則 |
+| 輸入 | TC 草稿 |
+| 輸出 | 缺漏 / 格式違規清單(structural errors) |
+| 引擎 | **Python**(`validator.py` regex pre-pass) |
+| 狀態 | **已有** |
+| KPI hook | 欄位完整率、格式合規率 |
+
+> 重要:這步**不要用 agent**。「有沒有填」是確定性問題,Python 做零成本零誤差。與 Stage 6 的「填得對不對」分流。
+
+---
+
+## Stage 6 — Review Agent ★強化(spec 接地 + domain 感知)
+
+**為什麼要強化:** 現行 `review_engine` 的可執行性檢查(§8.3.x)多是 regex 形狀檢查,驗的是**格式**不是**真能不能執行**;
+Tier 2 雖錨到 Req spec句,但只餵一行句子,看不出「步驟和實際行為的落差」。要解決你擔心的「步驟不夠明確執行、和實際有落差」,review 要做四件事:
+
+| 強化點 | 內容 |
+|---|---|
+| 1. 同等 grounding | 把 `spec_matcher` 抓到的**完整 spec 切片** + **domain pack** 餵進 review context,而不是只給一行 Req spec句 |
+| 2. spec fidelity / reality-gap 規則(新) | 逐 TC 比對 `test_procedure` + `expected_result` 與 spec 實際行為,標出:(a) 步驟假設了 spec 沒定義的行為、(b) expected_result 對不到具體 spec 結果、(c) 漏掉 spec 定義的分支 |
+| 3. 可執行性改語意檢查 | 用一支「只拿 spec + domain、拿不到 generator 推理」的 agent 照步驟**心智執行一遍**,卡住的地方(誰執行不明 / 缺前置 / 無可觀察結果)就標記 |
+| 4. 獨立稽核 + 證據引用 | reviewer **看不到 generator 的推理**,只看 TC + spec + domain,才抓得到隱藏假設;每個 flag 必須引用支持/牴觸它的 **spec 原句**(擴充現有 `evidence` 欄位,連 spec 來源一起引) |
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 語意層稽核:步驟能不能確實執行、內容和實際 spec 有無落差、是否違反 ASPICE SWE.6 |
+| 輸入 | 通過完整性檢查的 TC + 完整 spec 切片 + domain pack |
+| 輸出 | §9 schema findings(rule_ref / severity / tier / spec evidence / 建議修正) |
+| 引擎 | hybrid:20 條 regex + 11 條 LLM,**新增 reality-gap / 可執行性語意規則**;獨立 agent |
+| 狀態 | **強化**(`review_engine.py` + `review_prompt_builder.py` 既有,新增 grounding 與規則) |
+| KPI hook | 各 rule 違反次數、severity 分佈、reality-gap flag 數 |
+
+> 核心:把 review 從「規則比對」升級成「spec 接地、domain 感知的稽核」——reviewer 拿著 spec 原文證據說話,而不是只比格式。
+
+---
+
+## Stage 7 — Report + KPI Scorecard ★新
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 把完整性 + findings 彙整成人工只需看「疑慮」的 report,並算 KPI |
+| 輸入 | Stage 5 結構錯誤 + Stage 6 findings |
+| 輸出 | `findings_report.md`(已有)+ **KPI scorecard(新)** |
+| 引擎 | Python 組裝(幾乎不花 AI 成本) |
+| 狀態 | **新增 scorecard**(report 本體已有) |
+
+**KPI 定義(公司要的量化):**
+- **一次通過率** = 零 Critical/Major finding 的 TC 數 / 總 TC 數 ← 最重要的品質指標
+- **需求覆蓋率** = 有產 TC 的需求 / 總需求
+- **Traceability 完整度** = 有對到 spec 的 TC / 總 TC
+- **Design method 正確率** = 設計方法符合規則的 TC 比例
+- **平均拆解深度** = 平均每需求拆解步數
+- **欄位完整率** = 通過 Stage 5 的 TC 比例
+- **Reality-gap 率** = 被 Stage 6 標出落差的 TC 比例(你擔心的「和實際有落差」的量化)
+
+---
+
+## Stage 8 — Human Review(Gate ②)
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 人工只審被標記為疑慮的 TC,不逐條看 |
+| 輸入 | KPI scorecard + 被標記的 findings |
+| 輸出 | 確認 / 退回(退回觸發 feedback loop) |
+| 引擎 | 人 |
+| 狀態 | 流程定義 |
+
+---
+
+## Stage 9 — Export
+
+| 項目 | 內容 |
+|---|---|
+| 目的 | 寫回 Excel(原 workbook 格式) |
+| 輸入 | 確認後的 TC |
+| 輸出 | 輸出 workbook |
+| 引擎 | Python(`writer.py`) |
+| 狀態 | **已有** |
+
+---
+
+## Feedback Loop(KPI 驅動的改進)
+
+```
+Stage 7 KPI 未達門檻(例如一次通過率 < 80%)
+   → 分析 findings 集中在哪幾條 rule
+   → 調整 skill / decompose prompt / domain pack
+   → 退回 Stage 3/4 重生成被標記的需求
+   → 重新量 KPI
+門檻穩定後 → 才放大批量(才知道一個 run 能穩定吃多少量)
+```
+
+---
+
+## 既有 / 改造 / 新增 一覽
+
+| 狀態 | 項目 |
+|---|---|
+| **已有(沿用)** | spec 索引、`spec_matcher`、`validator`、`review_engine`、`writer`、`prompt_builder` 欄位契約 |
+| **改造** | `_chat` → provider 解耦、`decompose` → 單需求 agent 扇出、生成填充層、**spec-index 納入 SPEC 內容(SYS1/PDM 當鍵)**、**Stage 3 拆解分流(light / deep)** |
+| **強化** | Review(Stage 6)→ spec 接地 + domain 感知 + 可執行性語意檢查 + 獨立稽核 |
+| **新增** | Domain Knowledge Pack(Stage 1)、Pre-flight Budget Checkpoint + resumable 續跑(Stage 2.5)、KPI Scorecard + Reality-gap 指標(Stage 7)、**TC `applicable_variants` 欄位(來源 SYS.2)** |
+
+---
+
+## 建議落地順序
+
+1. **Phase 0 解耦** + **Stage 7 scorecard** + **Stage 2.5 額度預檢骨架**(都低風險、純 Python、馬上有用:能比較引擎、拿到 baseline KPI、開跑前能評估額度。`per_req_pct` 校準等第一次真實 run 才做)
+2. **Stage 1 Domain Pack** schema + 單專案試做 + Gate ① 流程
+3. **Stage 3 深拆 PoC**:單需求互動式 agent,對比現行 gpt-5 批次的深度
+4. **Stage 6 review 強化**:接 spec 切片 + domain pack,加 reality-gap / 可執行性語意規則
+5. KPI 穩定後,決定 Stage 4 填充層要不要混便宜模型 / 是否值得做 headless 批量(API 計費)放大量
+
+---
+
+## 決策紀錄(本次討論結論)
+
+- **主路徑定為互動式 Claude Code**(訂閱額度、邊際成本 0);headless/API 僅作大量無人值守的備援。
+- **沒有「agent 訂閱」這種獨立產品**;subagent 是 Claude Code 功能。但 2026/6/15 起 headless / Agent SDK 按 API 費率計費,訂閱免費只在互動式成立。
+- **review 是重點疑慮**:必須 spec 接地、domain 感知、能查核可執行性,並做獨立稽核(reviewer 看不到 generator 推理)。
+- **深度有成本**:深拆 + 獨立 review 約 50k tokens/需求(~10k/TC),互動式 Sonnet 下一次 100 需求 run 基本算進 Max 5x 方案內、不另計費,代價是需你在場且受 rate-limit。
+
+---
+
+# 附錄:現有 TC Generator 系統全貌(供細部規劃用)
+
+> 這一整段把現有 codebase 的資訊萃取進來,讓本文件 self-contained。
+> 之後可整份丟給 Claude chat 做細部規劃,再交給 Claude Code 開發。
+> 資料萃取自 backend 原始碼、`docs/`、`backend/rules/review_rules.yaml`(2026-06-25)。
+
+## A. 系統概觀
+
+- 用途:ASPICE SWE.6 自動測試案例(TC)生成與審核工具。
+- 兩個工作面:① Python backend + CLI(parse / generate / validate / review / export)② Next.js 桌面前端(Win95 風格單頁 desktop,另有獨立 `frontend-modern/` 變體)。
+- 技術棧:Python ≥3.10、FastAPI、Next.js、SQLite job store(`output/jobs.db`)、OpenAI(目前 gpt-5 系列)。
+- Python 依賴:`openai>=1.50`、`fastapi`、`openpyxl`、`pdfplumber`、`python-docx`、`python-dotenv`、`pyyaml`、`uvicorn`;dev:`httpx`、`pytest`、`pytest-cov`。
+- 前後端邊界:瀏覽器只打 same-origin `/api/*`(Next.js proxy),再轉 Python backend(`PYTHON_API_BASE`)。
+
+## B. Backend 模組地圖
+
+| 模組 | 行數 | 職責 |
+|---|---:|---|
+| `parser.py` | 127 | 解析 TC spec workbook;預期 sheet `Product Document 記錄封面頁` + `Test Case Specification 測試用例規範`;檔名規則 `*_SWQT_{TestGroup}_YYYYMMDD.xlsx` 取 Test Group |
+| `spec_parser.py` | 138 | 解析補充 spec(PDF / DOCX / XLSX)→ 以 PDM code 為 key 的文字段落 |
+| `spec_matcher.py` | 550 | 三層 spec 對應:① PDM code regex 精確 ② token Jaccard 模糊 ③ embedding cosine(`text-embedding-3-large`);離線預建索引 |
+| `generator.py` | 1149 | LLM 呼叫 / 回應解析 / 成本追蹤;model policy、batch、1:1 enforcement、model escalation、retry、prompt cache、timeout |
+| `prompt_builder.py` | 1274 | 生成 prompt;auto-load ASPICE 規則;9 個 `REQUIRED_OUTPUT_KEYS`;decompose / batch / multi-TC / Test Set 分類 prompt |
+| `grouper.py` | 116 | Test Set capability 分組 |
+| `id_generator.py` | 96 | TC ID `{project}-{abbr}-{NNN}`;segment sanitize;從 CamelCase Test Group 產縮寫 |
+| `validator.py` | 445 | **純程式**欄位驗證(無 AI);逐欄 validator + priority/design method 正規化 |
+| `writer.py` | 405 | 寫回 Excel;產 `Test Case Framework` sheet;Col I 原文後接 rewrite;Col R reasoning header「AI 需求解讀」;TC ID resequence |
+| `job_manager.py` | 165 | review workflow job 狀態管理 |
+| `job_store.py` | 210 | SQLite job registry(dict-like),`output/jobs.db` |
+| `review_engine.py` | 1195 | 審核管線:parse → group → Tier1/2/3 → 互斥/抑制 → severity ceiling → §9 schema |
+| `review_prompt_builder.py` | 234 | 審核 prompt;auto-load Review spec |
+| `review_assistant.py` | 151 | 單筆 TC 修正建議(root cause / fields / change / reason) |
+| `rules_loader.py` | 81 | runtime 規則載入 |
+| `api_server.py` | 2611 | FastAPI server(全部 endpoint) |
+| `main.py` | 414 | CLI 入口(generate + review 兩種模式) |
+
+## C. TC 資料模型(output contract)
+
+生成必填 9 欄(snake_case,寫回 workbook 一律英文):
+`tc_title`、`pre_conditions`、`input_test_data`、`test_procedure`、`expected_result`、`design_method`、`priority`、`split_flag`、`split_reason`。
+
+附加欄位:`reasoning`(繁中 2–5 句,寫入 Col R「AI 需求解讀」)、`duplicate_of`(sibling 等價列號)、`distinguishing_axis`(`trigger_state | input_data | timing | boundary | mode | none` + delta)、**`applicable_variants` ★新(來源 SYS.2 車型支援表;需求受限車型時,寫回「適用車型」欄並反映在 `pre_conditions`;全車型適用則留空 / `ALL`)**。
+
+ID 格式:`{project}-{group_abbr}-{NNN}`(3 碼零補);Priority 嚴格 `P0/P1/P2/P3`。
+
+## D. 生成管線(現行)
+
+`parse`(workbook→rows)→ `group`(Test Set 分類,固定 `gpt-5-mini`)→ `match`(spec_matcher traceability)→ `decompose_requirement`(拆分判斷 + sibling 偵測)→ `generate_tcs_for_row`(產 TC 欄位,batch=5)→ `validator`(程式驗證)→ `writer`(寫回 Excel + resequence ID)。
+
+Sibling-aware:同 Requirement ID 多列時互相注入 test_item,AI 須回 `duplicate_of` + `distinguishing_axis`,backend 做 cross-validation。
+
+## E. Generator 行為細節
+
+- Model policy:`DEFAULT_MODEL = gpt-5`(UI 另有 `gpt-5.4`);`CLASSIFICATION_MODEL = gpt-5-mini`(Test Set 固定、不受使用者 model 影響)。
+- `MODEL_PRICING` 內建各 model 單價(含 cached_input);`MODEL_ESCALATION`:1:1 違反重試仍失敗時 `gpt-5-mini→gpt-5`、`gpt-4o→gpt-4.1`。
+- Retry:暫時性錯誤 `{500,502,503,504,529}`,首次 + 最多 2 次重試;單次 request timeout 預設 180s。
+- 1:1 enforcement:step ↔ ER 數量對齊;違反會重試 / 升級 model。
+- Prompt cache:利用 OpenAI ≥1024 token prefix 快取(規則 / spec context 當前綴)。
+- 成本:逐 batch persist usage 到 job DB;前端 CostMeter / dashboard 顯示 per-kind / per-model。
+
+## F. Review 系統(31 條規則)
+
+管線:`parse → group by Req ID → Tier1(§6.x) → Tier2(§7.x,跳過 tier1_skipped group) → Tier3(§8.x,永遠跑) → 互斥(§7.4 ⊕ §8.3.6)+ 抑制(§6.4 → §8.1.4) → severity ceiling → §9 schema`。Tier3 嘗試輸出 Critical 會拋 `ReviewEngineError`。
+severity ceiling:Tier1 Critical / Tier2 Critical / **Tier3 max Major**。約 20 條 regex、11 條需 LLM(語意比對)。輸出 `findings.json` + `findings_report.md`。
+
+| Rule | Tier | Severity | 主旨 |
+|---|---|---|---|
+| §6.1 | 1 | Critical | 缺 supported/negative 配對 |
+| §6.2 | 1 | Critical | 缺 boundary 軸 |
+| §6.3 | 1 | Critical(LLM) | 缺列舉覆蓋 |
+| §6.4 | 1 | Major | sibling 軸不明 |
+| §6.5 | 1 | Critical | sibling 間 spec句 不一致 |
+| §6.6 | 1 | Major | Tier1 無 spec句、不可執行 |
+| §6.7 | 1 | Major | 單一 TC 多 Req ID |
+| §7.1 | 2 | Critical(LLM) | Test Item 結果不在 Req spec句 |
+| §7.2 | 2 | Major/Critical(LLM) | ER 未覆蓋 Req 結果元素 |
+| §7.3 | 2 | Major(LLM) | Pre-Cond 與 Req trigger 重複/矛盾 |
+| §7.4 | 2 | Critical | 捏造數值、無法追溯 Req/spec |
+| §7.5 | 2 | Critical | 末步驟啟動工具卻沒讀結果 |
+| §8.1.1 | 3 | Major | Test Item 長度超範圍 |
+| §8.1.2 | 3 | Major | Test Item 出現 modal/hedge 字眼 |
+| §8.1.3 | 3 | Info | 多語言混雜 |
+| §8.1.4 | 3 | Major | 缺 sibling 區別 token |
+| §8.1.5 | 3 | Critical* | 無 spec句 也無可追溯 Req(*僅 Req ID 也空時) |
+| §8.2.1 | 3 | Major | Pre-Cond 出現動作動詞 |
+| §8.2.2 | 3 | Major | Pre-Cond 出現驗證動詞 |
+| §8.2.3 | 3 | Minor | 系統預設被當成 Pre-Cond |
+| §8.2.4 | 3 | Critical(LLM) | 受測功能被當成已就緒 |
+| §8.2.5 | 3 | Minor | Pre-Cond 綁特定 instance |
+| §8.3.1 | 3 | Major | 禁用動詞 / 猜測語氣 |
+| §8.3.2 | 3 | Major | 步驟缺可執行內容 |
+| §8.3.3 | 3 | Major | 單步驟流程 |
+| §8.3.4 | 3 | Minor | 步驟編號異常 |
+| §8.3.5 | 3 | Critical | 末步驟無檢查標的 |
+| §8.3.6 | 3 | Major | 捏造數值(Tier2 fallback) |
+| §8.4.1 | 3 | Major | ER 結果用語含糊 |
+| §8.4.2 | 3 | Major(LLM) | step ↔ ER 數量不符 |
+| §8.4.3 | 3 | Minor | ER 編號異常 |
+| §8.5.1 | 3 | Major | Priority 不在 P0–P3 |
+| §8.5.2 | 3 | Major | Design Method 缺失 |
+| §8.5.3 | 3 | Major(LLM) | Design Method 與 Procedure 不一致 |
+
+§9 輸出 schema:top-level shape、per-Req finding(Tier1)、per-TC finding(Tier2+3)、batch summary。
+
+## G. spec-index / retrieval 機制
+
+- 離線:`scripts/build_spec_index.py` 解析 `spec-index/cache/*.xlsx` → `build_spec_index` → `attach_embeddings`(`text-embedding-3-large`)→ 存 `<name>.json` + 更新 `manifest.json`。
+- 執行:`load_spec_index` 依名稱載入,`match_spec_references` 對應;有 embedding 走 cosine,否則 fallback Jaccard。
+- 現況:`manifest.json` 已索引 200+ 條 SYS1 spec(每條 entry ~150 字元)。
+- **改造(★):** 現索引只含 SYS1 ~150 字元(ID / 標題級),Stage 6 reality-gap 要比對的是**行為敘述**,SYS1 給不了。需把 **SPEC(CFTS / VF / HMI)內容**切片納入索引,以 **SYS1 / PDM code 為對應鍵**;`build_spec_index` 的 cache 來源要擴及 SPEC 文件,不只 SYS1。
+
+## H. ASPICE 規則文件地圖(auto-load 進 prompt)
+
+- `ASPICE_SWE6_AI_Instruction.md`(19.7k 字元):§0 Purpose / §1 Language / §2 Core Principles / §4 Workflow / §6 Field Rules(6.0 Test Set、6.1 tc_title 三型、6.2 Pre-Cond、6.3 Input Data、6.4 Sibling)/ §7 Step Design(7.1 Executable、7.5 Final Step、7.6 Baseline、7.7 One Objective、7.8 Setup Snippets、7.9 Tooling/CLI、7.10 Step Length)/ §8 Expected Results / §9 False Pass-Fail / §10 Requirement Alignment / §11 Self-Check / §12 Output Contract / §13 Formatting / §15 Design Method / §16 Final Rule。
+- `ASPICE_SWE6_AI_Review.md`(25.5k 字元):§3 Three-Tier Model / §4 Severity Rubric / §5 Workflow / §6 Tier1 / §7 Tier2 / §8 Tier3 / §9 Output Contract / §10 Self-Check。
+- `Test Case Design Method 判斷規則.md`:9 種設計方法(Functional based / State Transition / Decision Table / Equivalence Partitioning / Boundary Value / Combinatorial / Scenario / Negative / Fault Injection Lite)+ first-match 快速判斷流程。
+- `test_case_priority.md`:P0–P3 定義(P0 核心 happy path 預設、P1 次要/邊界、P2 輔助、P3 UI 強化)+ IVI / CAN 範例。
+- `TEST_SET_POLICY.md`:Test Set = capability 級分組;命名規則(短英文名詞、不重複 Test Group prefix、禁 `Unclassified`/`Misc`/placeholder)。
+
+## I. API Routes(api_server.py)
+
+主要 endpoint(瀏覽器走 `/api/*` proxy):`/api/health`、`/api/spec-library`、`/api/parse`、`/api/group`、`/api/match`、`/api/generate` + `/api/generate/stream`(SSE)、`/api/review/suggest-fix`、`/api/audit`(SWE.6 審核,`dry_run` 預設跳 LLM)、`/api/jobs/{id}/regenerate|rerun/stream`(SSE)、`/api/jobs/{id}/usage|source-status|attach-raw`、`/api/export` + `/api/export/download/{id}`、`/api/quick-generate/stream`、`/api/metrics/aggregate`、`/api/admin/reset`(localhost destructive)。
+
+SSE 事件:generate(`job.started`/`req.split`/`row.completed`/`row.added`/`job.completed`)、regenerate(`regen.started`/`row.regenerated`/`row.regen_failed`)、quick(`decompose.analysis`/`tc.generating`/`tc.completed`)。
+
+## J. 前端架構
+
+- Legacy `frontend/`:Win95 單頁 desktop;modules:Upload / Configure / Generate / Review / Audit / Export / QuickGenerate / Rules / Diagrams(`*Module.tsx`)。
+- Zustand stores:`useWindowStore`、`useJobStore`、`useJobHistoryStore`、`useWorkspaceStore`。
+- 單一 adapter:`frontend/src/services/jobAdapter.ts`;所有 backend 存取走 `frontend/app/api/*` proxy。
+- Modern 變體 `frontend-modern/`:獨立 package、ports(FE 3433 / BE 8013)、自己的 README / Vitest / Playwright / Dockerfile。
+- 重要邊界:Agent routes / ChatModule / trace/session store 已移除,不要新增依賴。
+
+## K. CLI(main.py)
+
+生成:`python backend/main.py --input X.xlsx [--sys1 --spec --framework --output-dir --model gpt-5 --batch-size 5 --mode full|incremental|regenerate --rows --dry-run --budget --strict-validation]`。
+審核:`python backend/main.py --review --input X.xlsx --output-dir output [--dry-run]` → `findings.json` + `findings_report.md`(與 generate-only flags 互斥)。
+
+## L. 測試 baseline
+
+- backend:26 個 test 檔(`tests/test_*.py`);CHANGELOG 記錄 528 backend tests pass(含 review_engine 20、audit endpoint 2)。
+- modern frontend:`npm run test:unit` 20 files / 134 tests pass;另有 Playwright E2E。
+- 慣例(依使用者偏好):Python pytest、JS Jest/Vitest。
+
+## M. 現有元件 → 新 Pipeline 對應
+
+| 現有元件 | 對應 Stage | 處置 |
+|---|---|---|
+| `parser` / `spec_parser` | Stage 0 / 2 | 沿用 |
+| `spec_matcher` + spec-index | Stage 2 | 沿用(retrieval 已完成) |
+| ASPICE docs + `prompt_builder` | Stage 1 skill / 3 / 4 | 打包成 skill,改 prompt 結構 |
+| `generator`(decompose/generate) | Stage 3 / 4 | **改造**:`_chat` provider 解耦 + 單需求 agent 扇出 |
+| `validator` | Stage 5 | 沿用(確定性、不用 AI) |
+| `review_engine` + rules + `review_prompt_builder` | Stage 6 | **強化**:spec 切片 grounding + domain pack + reality-gap / 可執行性語意規則 |
+| `writer` | Stage 9 | 沿用 |
+| `job_store` / `job_manager` | orchestration 狀態 | 沿用 / 調整 |
+| `api_server` / 前端 | 選用 UI 層 | 視是否保留桌面 UI |
+
+## N. 給 Claude chat 規劃時的已知缺口 / 待決
+
+- Provider 解耦尚未做(`_chat` 仍綁 OpenAI);新 pipeline 第一步。
+- Domain Knowledge Pack(Stage 1)為全新,schema 見前文,尚無實作。
+- KPI Scorecard(Stage 7)為全新;findings.json 已有,需聚合層。
+- Review 強化(Stage 6)需把完整 spec 切片 + domain pack 餵進 review context(現只餵一行 Req spec句)。
+- 互動式 vs headless 的 orchestration 觸發方式(誰驅動 subagent、如何分批排隊)待設計。
+- **輸入文件模型已定**(見 Stage 0):預設 SPEC + SWE.1、SYS 選用;grounding 接 SPEC、SYS1/PDM 當 ID。→ **待辦:`build_spec_index` 改為納入 SPEC 內容(現只有 SYS1 ~150 字元),否則 Stage 6 reality-gap 抓不到落差。**
+- **variant 已決定納入 TC**(`applicable_variants`,來源 SYS.2)。→ **待辦:`writer.py` 加「適用車型」欄、生成契約加欄、Stage 4 從 SYS.2 帶值。**
+- **Stage 3 拆解分流已定**(SWE.1 品質 → light / deep)。→ **待辦:品質判斷器(便宜模型 / 規則)規格未定;Stage 2.5 `per_req_pct` 需雙峰校準。**

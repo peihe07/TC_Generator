@@ -28,7 +28,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="TC Auto-Generation Tool — ASPICE SWE.6",
     )
-    p.add_argument("--input", required=True, help="TC Specification xlsx path")
+    p.add_argument("--input", help="TC Specification xlsx path (required except for --scorecard)")
     p.add_argument("--sys1", help="SYS1 Spec xlsx path (optional)")
     p.add_argument("--spec", help="Supplementary spec document path (optional)")
     p.add_argument("--framework", help="Path to confirmed framework.json (optional)")
@@ -50,6 +50,17 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Audit existing TCs against ASPICE SWE.6 instead of generating new ones. "
              "Outputs findings.json + findings_report.md in --output-dir.",
+    )
+    p.add_argument(
+        "--scorecard",
+        action="store_true",
+        help="Compute Stage 7 KPI scorecard from an existing findings.json "
+             "(no AI). Use with --findings; writes scorecard.json + scorecard.md.",
+    )
+    p.add_argument(
+        "--findings",
+        help="Path to an existing findings.json for --scorecard "
+             "(default: <output-dir>/findings.json).",
     )
     return p.parse_args(argv)
 
@@ -115,8 +126,46 @@ def run_review(args: argparse.Namespace) -> int:
     print(f"  Tier 1 findings: {len(report['per_req_findings'])}")
     print(f"  Tier 2/3 TC entries: {len(report['per_tc_findings'])}")
     print(f"\n  Reasoning: {summary['reasoning']}")
+    # Stage 7 — also emit a KPI scorecard from the findings we just produced.
+    from scorecard import compute_scorecard, write_scorecard
+
+    sc = compute_scorecard(report)
+    write_scorecard(sc, args.output_dir)
+
     print(f"\n  Wrote: {args.output_dir}/findings.json")
     print(f"         {args.output_dir}/findings_report.md")
+    print(f"         {args.output_dir}/scorecard.json")
+    print(f"         {args.output_dir}/scorecard.md")
+    print(f"  Gate: {'PASS' if sc.gate_passed else 'FAIL'}")
+    print(f"{'='*60}\n")
+    return 0
+
+
+def run_scorecard(args: argparse.Namespace) -> int:
+    """Standalone Stage 7 entry: recompute KPIs from an existing findings.json.
+
+    No AI, zero cost. Used to take a baseline against existing review output.
+    """
+    from scorecard import compute_scorecard, write_scorecard
+
+    findings_path = args.findings or os.path.join(args.output_dir, "findings.json")
+    if not os.path.isfile(findings_path):
+        print(f"Error: findings file not found: {findings_path}", file=sys.stderr)
+        return 2
+
+    with open(findings_path, encoding="utf-8") as fh:
+        findings = json.load(fh)
+
+    sc = compute_scorecard(findings)
+    write_scorecard(sc, args.output_dir)
+
+    print(f"\n{'='*60}")
+    print("KPI Scorecard")
+    print(f"  Source: {findings_path}")
+    print(f"  Total TCs: {sc.total_tcs} across {sc.total_requirements} Req groups")
+    print(f"  Gate: {'PASS' if sc.gate_passed else 'FAIL'}")
+    print(f"  Wrote: {args.output_dir}/scorecard.json")
+    print(f"         {args.output_dir}/scorecard.md")
     print(f"{'='*60}\n")
     return 0
 
@@ -401,6 +450,11 @@ def run(args: argparse.Namespace) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.scorecard:
+        return run_scorecard(args)
+    if not args.input:
+        print("Error: --input is required (except for --scorecard).", file=sys.stderr)
+        return 2
     if args.review:
         err = _reject_generate_flags(args)
         if err:
