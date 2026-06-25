@@ -108,6 +108,15 @@ LLM_RULE_HINTS: dict[str, dict] = {
                "checks": "Step↔ER count mismatch — alignment 1:1 fails."},
     "§8.5.3": {"tier": 3, "field": "design_method",
                "checks": "Design Method inconsistent with Procedure shape (e.g. BVA but no boundary)."},
+    # Stage 6 enhancement — semantic reality-gap / executability (domain-grounded).
+    "§7.6": {"tier": 2, "field": "test_procedure",
+             "checks": "Reality gap vs spec/domain: (a) a step/ER assumes behaviour "
+                       "the spec/domain does NOT define; (b) ER does not map to a "
+                       "concrete spec-defined outcome; (c) the TC misses a spec-defined "
+                       "branch/enumeration value; or (d) a step is not executable "
+                       "(actor unclear, missing precondition, no observable result). "
+                       "Use the Domain Pack as ground truth; cite the spec/domain line. "
+                       "Mark these findings with \"reality_gap\": true."},
 }
 
 
@@ -115,6 +124,7 @@ def build_review_user_prompt(
     tcs_batch: list[dict],
     rule_ids: list[str],
     req_spec_index: dict[str, str] | None = None,
+    domain_block: str | None = None,
 ) -> str:
     """Build the user prompt for one LLM evaluation batch.
 
@@ -169,10 +179,21 @@ def build_review_user_prompt(
             f"{json.dumps(req_spec_index, ensure_ascii=False, indent=2)}\n"
         )
 
+    domain_pack_block = ""
+    if domain_block:
+        domain_pack_block = (
+            "\n## Domain Pack (GROUND TRUTH — audit TCs against this, "
+            "cite it as evidence, do NOT invent behaviour beyond it)\n"
+            f"{domain_block}\n"
+        )
+
     return f"""## Task
 Evaluate the following TCs against the listed rules ONLY. For every match,
 emit a finding per the §9 schema. For any TC where the rule does NOT match,
 emit nothing for that rule (do not emit "no issue" placeholders).
+You are an INDEPENDENT auditor: judge only from the TC text + Req spec句 +
+Domain Pack below; do not assume intent that is not written.
+{domain_pack_block}
 
 ## Rules to evaluate in this batch
 {rules_listing}
@@ -213,12 +234,17 @@ Return a single object:
           "evidence_req_spec": "<Req spec句; tier 2 only>",
           "original": "<source verbatim>",
           "revised": "<rewrite in source language>",
-          "suggestion_note": "<繁體中文>"
+          "suggestion_note": "<繁體中文>",
+          "reality_gap": true
         }}
       ]
     }}
   ]
 }}
+
+For §7.6 findings ONLY: set `"reality_gap": true` and make `evidence_req_spec`
+quote the spec/Domain-Pack line the TC contradicts or omits. Other rules omit
+the `reality_gap` key.
 
 Self-check before emitting (per §10 of the spec):
 1. `tier` matches the rule's section (§6→1, §7→2, §8→3).

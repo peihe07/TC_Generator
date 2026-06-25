@@ -460,3 +460,43 @@ def test_tier2_findings_have_evidence_req_spec(tmp_path):
                 assert "evidence_req_spec" in f and f["evidence_req_spec"]
             else:
                 assert "evidence_req_spec" not in f
+
+
+def test_llm_pipeline_injects_domain_block_and_reality_gap(monkeypatch):
+    """Stage 6: domain pack is injected into the review prompt, and §7.6
+    reality-gap findings flow through with their flag intact."""
+    from review_prompt_builder import LLM_RULE_HINTS
+    assert "§7.6" in LLM_RULE_HINTS  # reality-gap rule registered
+
+    tcs = [_make_tc(row_num=10, tc_id="T10")]
+    captured = {}
+
+    def _fake_chat(system, user, model, json_mode=True):
+        captured["user"] = user
+        from providers import LLMResponse, LLMUsage
+        body = {
+            "per_req_findings": [],
+            "per_tc_findings": [{
+                "tc_id": "T10", "row": 10,
+                "findings": [{
+                    "tier": 2, "field": "test_procedure", "rule_ref": "§7.6",
+                    "severity": "Major",
+                    "issue": "假設了 spec 未定義的 No Repeat 態",
+                    "evidence": "step 3", "reality_gap": True,
+                }],
+            }],
+        }
+        return LLMResponse(text=json.dumps(body), usage=LLMUsage(), model="fake")
+
+    monkeypatch.setattr("generator._chat", _fake_chat)
+    _, per_tc = _run_llm_pipeline(
+        tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)},
+        model="fake", domain_block="# Domain Pack — Player\nRepeat only All/One Track",
+    )
+
+    # Domain block reached the prompt.
+    assert "Domain Pack" in captured["user"]
+    assert "Repeat only All/One Track" in captured["user"]
+    # Reality-gap finding flowed through with its flag.
+    gaps = [f for tc in per_tc for f in tc["findings"] if f.get("reality_gap")]
+    assert gaps and gaps[0]["rule_ref"] == "§7.6"

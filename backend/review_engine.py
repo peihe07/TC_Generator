@@ -57,6 +57,7 @@ _RULE_TITLES = {
     "§7.3": "Pre-Cond duplicates Req trigger",
     "§7.4": "Fabricated numeric value vs Req",
     "§7.5": "Final Step launches tool, no result read",
+    "§7.6": "Reality gap vs spec/domain",
     "§8.1.1": "Test Item length out of range",
     "§8.1.2": "Modal/hedge wording in Test Item",
     "§8.1.3": "Multi-language collision",
@@ -932,9 +933,11 @@ def _run_llm_pipeline(
     groups: dict[str, ReqGroup],
     model: str,
     batch_size: int = 5,
+    domain_block: str | None = None,
 ) -> tuple[list[dict], list[dict]]:
-    """Call OpenAI for the rules in `LLM_RULE_HINTS`. Imports OpenAI lazily
-    so dry-run never depends on credentials."""
+    """Call the LLM for the rules in `LLM_RULE_HINTS`. Imports the provider
+    lazily so dry-run never depends on credentials. `domain_block` (Stage 1
+    Domain Pack) is injected into every batch as ground truth."""
     from generator import _chat, GenerationError  # local import
 
     rule_ids = list(LLM_RULE_HINTS.keys())
@@ -964,7 +967,7 @@ def _run_llm_pipeline(
 
     for i in range(0, len(payload_tcs), batch_size):
         batch = payload_tcs[i:i + batch_size]
-        user = build_review_user_prompt(batch, rule_ids)
+        user = build_review_user_prompt(batch, rule_ids, domain_block=domain_block)
         try:
             resp = _chat(system=system, user=user, model=model, json_mode=True)
         except GenerationError:
@@ -1152,10 +1155,12 @@ def review_workbook(
     output_dir: str | None = None,
     model: str = "gpt-5",
     dry_run: bool = False,
+    domain_pack_path: str | None = None,
 ) -> dict:
     """End-to-end review pipeline. Returns the findings dict; when
     `output_dir` is supplied, also writes findings.json and
-    findings_report.md."""
+    findings_report.md. `domain_pack_path` (Stage 1) grounds the semantic
+    rules so the reviewer audits against domain truth, not just one Req句."""
     parsed = parse_tc_xlsx(workbook_path)
     tcs = [_normalize_row(row) for row in parsed["rows"]]
     groups = _build_groups(tcs)
@@ -1163,7 +1168,12 @@ def review_workbook(
     per_req, per_tc = _run_regex_pipeline(tcs, groups)
 
     if not dry_run:
-        llm_per_req, llm_per_tc = _run_llm_pipeline(tcs, groups, model=model)
+        domain_block = None
+        if domain_pack_path:
+            from domain_pack import load_domain_pack, to_prompt_block
+            domain_block = to_prompt_block(load_domain_pack(domain_pack_path))
+        llm_per_req, llm_per_tc = _run_llm_pipeline(
+            tcs, groups, model=model, domain_block=domain_block)
         per_req.extend(llm_per_req)
         per_tc = _merge_per_tc(per_tc, llm_per_tc)
 

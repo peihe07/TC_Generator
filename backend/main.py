@@ -83,6 +83,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--end-pct", type=float, help="Window % after the probe run.")
     p.add_argument("--n-probe", type=int, help="Requirements processed in the probe run.")
     p.add_argument("--regime", choices=["light", "deep"], help="Calibration regime.")
+    p.add_argument(
+        "--domain-pack",
+        help="Path to a Stage 1 domain_pack.json to ground the --review semantic "
+             "rules (spec/domain truth + reality-gap detection).",
+    )
     return p.parse_args(argv)
 
 
@@ -134,6 +139,7 @@ def run_review(args: argparse.Namespace) -> int:
         output_dir=args.output_dir,
         model=args.model,
         dry_run=args.dry_run,
+        domain_pack_path=args.domain_pack,
     )
 
     summary = report["batch_summary"]

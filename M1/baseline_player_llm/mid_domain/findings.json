@@ -1,0 +1,961 @@
+{
+  "batch_meta": {
+    "source_file": "sample_mid.xlsx",
+    "sheet": "Test Case Specification&Result",
+    "total_tcs": 13,
+    "total_req_groups": 9,
+    "reviewed_at": "2026-06-25T14:09:22.893497+00:00"
+  },
+  "per_req_findings": [
+    {
+      "req_id": "SWE1-PLA-030-01",
+      "tier": 1,
+      "rule_ref": "§6.3",
+      "severity": "Critical",
+      "scope_tcs": [
+        "NR1L-Player-094",
+        "NR1L-Player-095"
+      ],
+      "issue": "Req spec句定義 Repeat mode 為一組列舉（Repeat All、Repeat One Track），但本群組僅有 'Repeat All' 相關 TC，缺少 'Repeat One Track' 覆蓋。",
+      "evidence_req_spec": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.",
+      "suggestion_note": "建議補新增針對 Repeat One Track 模式的測試用例，確保該列舉值的行為有被驗證。",
+      "stub": {
+        "test_item": "The HU shall toggle to Repeat One Track mode via the repeat softkey and loop the current track during playback.",
+        "pre_conditions": "1. One BTSA-capable device containing at least two playable items is available.",
+        "test_procedure_outline": "1. Connect the BTSA-capable device to the HU.\n2. Start playback of a playlist from the BTSA device.\n3. On the Playing screen, activate Repeat One Track via the Repeat softkey.\n4. Allow the current track to play until it reaches the end.\n5. Check playback state after the track finishes."
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-030-02",
+      "tier": 1,
+      "rule_ref": "§6.3",
+      "severity": "Critical",
+      "scope_tcs": [
+        "NR1L-Player-096",
+        "NR1L-Player-097"
+      ],
+      "issue": "Req 權責定義在 CFTS025 §3.1.1.4.2.7，Repeat modes 僅分為『Repeat All』與『Repeat One Track』兩種，但本 Req 群組僅針對 Repeat All 覆蓋，缺少 Repeat One Track 層面的 TC，未涵蓋全部列舉值。",
+      "evidence_req_spec": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.",
+      "suggestion_note": "建議新增一組專門驗證 Repeat One Track（或 Repeat Song）模式下行為的測試用例，依 Domain Pack『Repeat modes』定義；需涵蓋『單曲循環』的播放與模式轉換。",
+      "stub": {
+        "test_item": "When in Repeat One Track mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.",
+        "pre_conditions": "1. 一台支援 BTSA 的裝置，內含至少一首可播放曲目\n2. Repeat mode 設定為 Repeat One Track",
+        "test_procedure_outline": "1. 將裝置連接至 HU\n2. 啟動播放清單中的任一曲目\n3. 按下 Repeat softkey，切換至 Repeat One Track\n4. 允許該曲目完整播放至結束\n5. 確認該曲目自動從 00:00:00 重新播放"
+      }
+    }
+  ],
+  "per_tc_findings": [
+    {
+      "tc_id": "NR1L-Player-086",
+      "row": 10,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（18 words），超出 14 words / 35 chars 上限",
+          "evidence": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.",
+          "original": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.\n\nPC2.2) Long press on Skip buttons (500 msec) to fast forward/rewind (redundant to moving slider on progress bar)\nPC6.3) With a long press of the seek button the slider has to move in the bar accordingly the current time detected.\n\n(Long press \"Skip Back\" softkey → HU entLong press \"Skip Back\" softkey for at least 500 ms during BTSA playback → HU enters Fast Rewind state)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 8,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "8. Check the playback control state after the long press.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Long press the \"Skip Back\" softkey for at least 500 ms.\n8. Check the playback control state after the long press.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playback starts.\n6. The Playing screen is displayed.\n7. The long press action is accepted.\n8. HU enters Fast Rewind state.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未標註測試設計方法，且流程明顯為功能驗證情境，請補上適用設計方法。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "此用例驗證長按『Skip Back』鍵是否能進入快倒帶狀態，屬於功能流程驗證，應標註 Scenario / Use Case 為設計方法。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-087",
+      "row": 11,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（18 words），超出 14 words / 35 chars 上限",
+          "evidence": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.",
+          "original": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.\n\nPC2.2) Long press on Skip buttons (500 msec) to fast forward/rewind (redundant to moving slider on progress bar)\nPC6.3) With a long press of the seek button the slider has to move in the bar accordingly the current time detected.\n\n(Hold \"Skip Back\" in Fast Rewind state when playback time is detectable → Progress bar slider moves backward continuously)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 11,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "11. Check the progress bar slider movement during the hold period.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Allow playback time to progress beyond the initial position.\n8. Record the initial position of the progress bar slider.\n9. Long press and hold the \"Skip Back\" softkey for at least 500 ms.\n10. Continue holding the \"Skip Back\" softkey.\n11. Check the progress bar slider movement during the hold period.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playback starts with valid playback time metadata.\n6. The Playing screen is displayed.\n7. Playback time progresses beyond the initial position.\n8. The initial progress bar slider position is recorded.\n9. HU enters Fast Rewind state.\n10. Fast Rewind state is maintained while the softkey is held.\n11. The progress bar slider moves backward continuously according to the detected current playback time.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未標註設計方法；本流程明確屬於功能情境驗證。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "需補上 Scenario / Use Case，因驗證快倒帶搭配可偵測時間為端到端情境流程。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-088",
+      "row": 12,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（18 words），超出 14 words / 35 chars 上限",
+          "evidence": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.",
+          "original": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.\n\nPC2.2) Long press on Skip buttons (500 msec) to fast forward/rewind (redundant to moving slider on progress bar)\nPC6.3.1) If the HU is not able to detect the current time during the fast seek the slider will maintain its position until the user ends the fast seek, at that time makes the slider move to the new position.\n\n(Hold \"Skip Back\" in Fast Rewind state when playback time is undetectable → Progress bar slider remains static during hold and updates after release)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 12,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "12. Check the progress bar slider position after release.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Record the initial position of the progress bar slider.\n8. Long press and hold the \"Skip Back\" softkey for at least 500 ms.\n9. Continue holding the \"Skip Back\" softkey for several seconds.\n10. Check the progress bar slider position during the hold period.\n11. Release the \"Skip Back\" softkey.\n12. Check the progress bar slider position after release.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playback starts without playback time metadata.\n6. The Playing screen is displayed.\n7. The initial progress bar slider position is recorded.\n8. HU enters Fast Rewind state.\n9. Fast Rewind state is maintained while the softkey is held.\n10. The progress bar slider remains at the initial position during the hold period.\n11. The Fast Rewind hold action ends.\n12. The progress bar slider updates to the new playback position after release..",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未標註設計方法，本用例明顯屬於特殊情境流程（快倒帶搭配無法偵測播放時間）。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "請補上 Scenario / Use Case，反映「播放時間不可偵測」的test scenario。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-089",
+      "row": 13,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（15 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall be able to control the BTSA Device by invoking a “Play” function.",
+          "original": "The HU shall be able to control the BTSA Device by invoking a “Play” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar.\n\n(BTSA playback is paused and Playing screen is displayed → Play softkey is displayed in Play Controls area)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 8,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "8. Check the Play Controls area on the Playing screen.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Press the \"Pause\" softkey to pause playback.\n8. Check the Play Controls area on the Playing screen.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playback starts.\n6. The Playing screen is displayed.\n7. Playback is paused.\n8. The Play Controls area is displayed and includes the \"Play\" softkey.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未標註設計方法，且驗證項目屬於情境流程，建議補上。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "本測試確定暫停後是否顯示 Play softkey，屬於情境（Scenario）驗證。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-090",
+      "row": 14,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（15 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall be able to control the BTSA Device by invoking a “Play” function.",
+          "original": "The HU shall be able to control the BTSA Device by invoking a “Play” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar.\n\n(Select \"Play\" softkey when BTSA playback is paused → Audio playback starts and Play softkey changes to Pause)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 9,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "9. Check the playback state and Play/Pause softkey state after selecting \"Play\".",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Press the \"Pause\" softkey to pause playback.\n8. Press the \"Play\" softkey in the Play Controls area.\n9. Check the playback state and Play/Pause softkey state after selecting \"Play\".",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playback starts.\n6. The Playing screen is displayed.\n7. Playback is paused and the \"Play\" softkey is displayed.\n8. The Play command is sent to the BTSA device.\n9. Audio playback starts, and the \"Play\" softkey changes to the \"Pause\" softkey.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未填寫，該用例屬於完整流程驗證，應補設計方法。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "由 Pause 至 Play 直至檢查播放狀態，乃情境流程，請補 Scenario / Use Case。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-091",
+      "row": 15,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（25 words），超出 14 words / 35 chars 上限",
+          "evidence": "While the HU determines the Bluetooth Device is in the Play state the HU shall display a 'Pause' softkey on the appropriate BTSA Source screens.",
+          "original": "While the HU determines the Bluetooth Device is in the Play state the HU shall display a 'Pause' softkey on the appropriate BTSA Source screens.\n\nPC3.1) When the audio is playing, the pause icon will be shown.\n\n(When audio playback is active on the BTSA source → Pause softkey is displayed in the Play Controls area)\n",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 7,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "7. Check the Play Controls area on the Playing screen.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Check the Play Controls area on the Playing screen.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Audio playback is active.\n6. The Playing screen is displayed.\n7. The Play Controls area is displayed and includes the \"Pause\" softkey.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未填寫，且本用例為單一驗證情境（未針對邊界或多種列舉值），應為 Scenario / Use Case。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "請依據程序內容補上正確設計方法。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-092",
+      "row": 16,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（19 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall provide a “Pause” softkey on the Play Controls area of Playing Tab for the “Pause” function..",
+          "original": "The HU shall provide a “Pause” softkey on the Play Controls area of Playing Tab for the “Pause” function..\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar.\n\n(When audio playback is active on the BTSA source → Pause softkey is displayed in the Play Controls area)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 7,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "7. Check the Play Controls area on the Playing screen.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Check the Play Controls area on the Playing screen.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Audio playback is active.\n6. The Playing screen is displayed.\n7. The Play Controls area is displayed and includes the \"Pause\" softkey.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未填寫，且本用例為單一驗證情境，屬於 Scenario / Use Case。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "請根據實際步驟補上 Scenario / Use Case。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-093",
+      "row": 17,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（25 words），超出 14 words / 35 chars 上限",
+          "evidence": "While the HU determines the Bluetooth Device is in the Pause state the HU shall display a 'Play' softkey on the appropriate BTSA Source screens.",
+          "original": "While the HU determines the Bluetooth Device is in the Pause state the HU shall display a 'Play' softkey on the appropriate BTSA Source screens.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar.\nPC3.1) When the audio is playing, the pause icon will be shown.\n\n(When audio playback is paused on the BTSA source → Play softkey is displayed in the Play Controls area)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 8,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "8. Check the playback state and Play/Pause softkey state after selecting \"Pause\".",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Press the \"Pause\" softkey in the Play Controls area.\n8. Check the playback state and Play/Pause softkey state after selecting \"Pause\".",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Audio playback is active.\n6. The Playing screen is displayed.\n7. The Pause command is sent to the BTSA device.\n8. Audio playback is paused, and the \"Play\" softkey is displayed in the Play Controls area.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未填寫，本用例步驟多且屬於一般情境驗證，建議明確填列 Scenario / Use Case。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "根據程序內容補填設計方法以符合規範。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-094",
+      "row": 18,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（19 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.",
+          "original": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.\n\nPC4.3) Repeat All plays the current list of songs repeatedly.\n\n(Start BTSA playback → Repeat mode is set to Repeat All by default)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 7,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "7. Check the Repeat mode state after playback is initiated.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a playlist from the BTSA device.\n6. Navigate to the Playing screen.\n7. Check the Repeat mode state after playback is initiated.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playlist playback starts.\n6. The Playing screen is displayed.\n7. Repeat mode is set to Repeat All by default.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 2,
+          "field": "expected_result",
+          "step_index": 7,
+          "rule_ref": "§7.2",
+          "severity": "Major",
+          "issue": "ER 僅驗證 Repeat mode 回到 Repeat All（預設），但未覆蓋 Repeat One Track，缺列舉完整性。",
+          "evidence": "7. Repeat mode is set to Repeat All by default.",
+          "evidence_req_spec": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.",
+          "original": "7. Repeat mode is set to Repeat All by default.",
+          "revised": "7. Repeat mode is set to Repeat All by default.\n8.（建議）Repeat One Track 狀態轉換後顯示為 Repeat One Track，並重複現在歌曲直到使用者操作切換。",
+          "suggestion_note": "需補驗證 Repeat One Track，確保所有模式皆經覆蓋。"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未填寫，且只針對 Repeat All 單一驗證，屬 Scenario / Use Case。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "請補上設計方法。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-095",
+      "row": 19,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（19 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.",
+          "original": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.\n\nPC4.3) Repeat All plays the current list of songs repeatedly.\n\n(Playlist reaches end in default Repeat All mode → First track restarts automatically)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 10,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "10. Check playback state after the last item finishes.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a playlist from the BTSA device.\n6. Navigate to the Playing screen.\n7. Check the Repeat mode state after playback is initiated.\n8. Navigate playback to the last item in the playlist.\n9. Allow the last item to play until it reaches the end.\n10. Check playback state after the last item finishes.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playlist playback starts.\n6. The Playing screen is displayed.\n7. Repeat mode is set to Repeat All by default.\n8. The last item in the playlist is playing.\n9. The last item reaches the end.\n10. Playback automatically continues from the first item in the playlist without stopping or pausing.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 2,
+          "field": "expected_result",
+          "step_index": 10,
+          "rule_ref": "§7.2",
+          "severity": "Major",
+          "issue": "ER 僅驗證 Repeat All 狀態下到底時自動環迴，未涵蓋 Repeat One Track/切換與單曲重複行為，列舉覆蓋不足。",
+          "evidence": "10. Playback automatically continues from the first item in the playlist without stopping or pausing.",
+          "evidence_req_spec": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.",
+          "original": "10. Playback automatically continues from the first item in the playlist without stopping or pausing.",
+          "revised": "10. Playback automatically continues from the first item in the playlist without stopping or pausing.\n11.（建議）Repeat One Track 狀態下，歌曲結尾繼續重播同一首，不跳至清單首。",
+          "suggestion_note": "需補驗證 'Repeat One Track' 之行為以符合規格要求。"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未填寫，本例為情境流程，應為 Scenario / Use Case。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "請補上設計方法以提升用例可追蹤性。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-096",
+      "row": 20,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（29 words），超出 14 words / 35 chars 上限",
+          "evidence": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.",
+          "original": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.\n\nPC4.3) Repeat All plays the current list of songs repeatedly.\n\n(Non-last track reaches end in Repeat All mode → Playback continues with next track)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 10,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "10. Check playback state after the selected track finishes.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a playlist from the BTSA device.\n6. Navigate to the Playing screen.\n7. Set the Repeat mode to Repeat All using the Repeat softkey if it is not already in Repeat All mode.\n8. Select a non-last track in the playlist.\n9. Allow the selected track to play until it reaches the end.\n10. Check playback state after the selected track finishes.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playlist playback starts.\n6. The Playing screen is displayed.\n7. Repeat mode is set to Repeat All.\n8. The selected non-last track starts playback.\n9. The selected track reaches the end.\n10. Playback continues with the next track in the playlist order.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "Test Procedure 為正常流程但 Design Method 未標註，未對應 BVA 或 Scenario。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "本 TC 為完整流程驗證，應標註 Scenario / Use Case。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-097",
+      "row": 21,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（29 words），超出 14 words / 35 chars 上限",
+          "evidence": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.",
+          "original": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.\n\nPC4.3) Repeat All plays the current list of songs repeatedly.\n\n(Last track reaches end in Repeat All mode → Playback restarts from first track)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 10,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "10. Check playback state after the last item finishes.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a playlist from the BTSA device.\n6. Navigate to the Playing screen.\n7. Set the Repeat mode to Repeat All using the 8. Repeat softkey if it is not already in Repeat All mode.\n8. Navigate playback to the last item in the playlist.\n9. Allow the last item to play until it reaches the end.\n10. Check playback state after the last item finishes.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playlist playback starts.\n6. The Playing screen is displayed.\n7. Repeat mode is set to Repeat All.\n8. The last item in the playlist is playing.\n9. The last item reaches the end.\n10. Playback restarts from the first item in the playlist, and playback does not transition to stopped or paused state.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "Test Procedure 為正常操作但 Design Method 欄位未填，寫法不一致。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "建議補上 Scenario / Use Case 作為設計方法，與步驟內容相符。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-098",
+      "row": 22,
+      "overall_verdict": "fail",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（22 words），超出 14 words / 35 chars 上限",
+          "evidence": "When in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.",
+          "original": "When in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.\n\nPC4.2) Repeat Song plays the current track repeatedly.\n\n(Track reaches end in Repeat Song mode → Same track restarts from 00:00:00y)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 10,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "10. Check the playback state after the current item finishes.",
+          "original": "1. Connect the BTSA-capable device to the HU.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select the BTSA device as the active media source.\n5. Start playback of a media item from the BTSA device.\n6. Navigate to the Playing screen.\n7. Set the Repeat mode to Repeat Song using the Repeat softkey.\n8. Record the currently playing item.\n9. Allow the current item to play until it reaches the end.\n10. Check the playback state after the current item finishes.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "expected_result",
+          "rule_ref": "§8.4.1",
+          "severity": "Major",
+          "issue": "Expected Result 出現模糊用語（例如「正常」「如預期」），無法做客觀判定",
+          "evidence": "1. The BTSA device is connected successfully.",
+          "original": "1. The BTSA device is connected successfully.\n2. The Media page is displayed.\n3. The Source Tab is displayed.\n4. The BTSA source is activated.\n5. Playback starts.\n6. The Playing screen is displayed.\n7. Repeat mode is set to Repeat Song.\n8. Current playing item is recorded.\n9. The current item reaches the end.\n10. Playback remains on the same item, and the play time position restarts from 00:00:00.",
+          "revised": "",
+          "suggestion_note": "改寫為可觀察可量測的具體結果（UI 元素 / log / signal / 狀態 / 計數）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 2,
+          "field": "test_item",
+          "step_index": null,
+          "rule_ref": "§7.1",
+          "severity": "Critical",
+          "issue": "Test Item 涵蓋『Repeat Song』模式（即 Repeat One Track），但其依附的 Req Spec 為『Repeat All』，功能範圍與 Req spec句不一致，造成追蹤性斷裂。",
+          "evidence": "When in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.",
+          "evidence_req_spec": "When in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.",
+          "original": "When in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.",
+          "revised": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.",
+          "suggestion_note": "本 TC 內容應對應 Req Spec 內容，建議移至正確的 Req（Repeat One Track/Repeat Song 專用），或調整 Test Item 內容與 Req spec句一致。"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "Test Procedure 為完整步驟操作但 Design Method 欄未填，缺少明確設計標註。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "依據驗證步驟為端到端流程，建議標註 Scenario / Use Case。"
+        }
+      ]
+    }
+  ],
+  "batch_summary": {
+    "verdict_counts": {
+      "pass": 0,
+      "pass_with_issues": 12,
+      "fail": 1
+    },
+    "tier_summary": {
+      "tier1": {
+        "req_groups_total": 9,
+        "req_groups_with_critical": 2,
+        "req_groups_skipped": 0,
+        "top_rules": [
+          {
+            "rule_ref": "§6.3",
+            "count": 2,
+            "title": "Missing enumeration coverage"
+          }
+        ]
+      },
+      "tier2": {
+        "tcs_with_critical": 1,
+        "top_rules": [
+          {
+            "rule_ref": "§7.2",
+            "count": 2,
+            "title": "ER misses Req outcome elements"
+          },
+          {
+            "rule_ref": "§7.1",
+            "count": 1,
+            "title": "Test Item outcome not in Req spec句"
+          }
+        ]
+      },
+      "tier3": {
+        "tcs_with_findings": 13,
+        "top_rules": [
+          {
+            "rule_ref": "§8.1.1",
+            "count": 13,
+            "title": "Test Item length out of range"
+          },
+          {
+            "rule_ref": "§8.3.5",
+            "count": 13,
+            "title": "Final Step has no check target"
+          },
+          {
+            "rule_ref": "§8.4.1",
+            "count": 13,
+            "title": "Vague outcome wording"
+          },
+          {
+            "rule_ref": "§8.5.2",
+            "count": 13,
+            "title": "Design Method missing"
+          },
+          {
+            "rule_ref": "§8.5.3",
+            "count": 13,
+            "title": "Design Method inconsistent with Procedure"
+          }
+        ]
+      }
+    },
+    "reasoning": "Tier 1：共 9 個 Req group，其中 2 個出現 Critical 拆解問題，0 個無英文 spec句（§6.6）。 Tier 2：1 個 Critical 對齊問題，多集中於 Final Step 工具未讀結果或數值未引用 spec。 Tier 3：65 筆寫作層違規（多為禁用動詞、模糊用語、Design Method 缺漏）。 修正順序建議：先補完 Tier 1 拆解 → 重審 → 再依 Tier 2 / Tier 3 finding 個別調整。"
+  }
+}
