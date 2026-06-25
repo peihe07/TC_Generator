@@ -11,9 +11,7 @@ import random
 import re
 import time
 from dataclasses import dataclass, field
-from importlib import import_module
-from importlib.metadata import PackageNotFoundError
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -51,9 +49,6 @@ def _openai_request_timeout_seconds() -> float:
 
 
 _OPENAI_REQUEST_TIMEOUT_SECONDS = _DEFAULT_OPENAI_REQUEST_TIMEOUT_SECONDS
-
-if TYPE_CHECKING:
-    from openai import OpenAI
 
 from prompt_builder import (
     build_system_blocks,
@@ -292,20 +287,14 @@ def calculate_cost(
 
 
 def _usage_tokens(usage) -> dict:
-    """標準化 OpenAI usage 物件為 dict；cache_read 來自 prompt_tokens_details.cached_tokens。"""
+    """標準化 `LLMUsage` 為舊版 token dict(下游成本累加沿用此形狀)。"""
     if usage is None:
         return {"input": 0, "output": 0, "cache_creation": 0, "cache_read": 0}
-    prompt_tokens = getattr(usage, "prompt_tokens", 0) or 0
-    completion_tokens = getattr(usage, "completion_tokens", 0) or 0
-    details = getattr(usage, "prompt_tokens_details", None)
-    cached = 0
-    if details is not None:
-        cached = getattr(details, "cached_tokens", 0) or 0
     return {
-        "input": prompt_tokens,
-        "output": completion_tokens,
-        "cache_creation": 0,  # OpenAI 不回報 cache write 事件
-        "cache_read": cached,
+        "input": getattr(usage, "input_tokens", 0) or 0,
+        "output": getattr(usage, "output_tokens", 0) or 0,
+        "cache_creation": 0,  # provider 不回報 cache write 事件
+        "cache_read": getattr(usage, "cached_input_tokens", 0) or 0,
     }
 
 
@@ -376,44 +365,19 @@ def extract_decompose_rules(rules_text: str) -> str:
     return "\n".join(kept).strip()
 
 
-def _client() -> Any:
-    """建立 OpenAI client。讀 OPENAI_API_KEY env var。
+# OpenAI client creation / retry / timeout now live in
+# `providers/openai_provider.py`. generator no longer imports openai directly.
 
-    `openai` 套件改為延遲載入，讓沒裝 AI 依賴的環境（例如純工具 CLI 測試）
-    也能 import `generator` 而不會炸，只有真的要呼叫 API 才會要求套件存在。
-    """
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise GenerationError("OPENAI_API_KEY is not set. Add it to .env.")
-    try:
-        openai_module = import_module("openai")
-    except (PackageNotFoundError, ImportError, ModuleNotFoundError) as exc:
-        raise GenerationError(
-            "openai package is not installed. Run `pip install -e \".[dev]\"` first."
-        ) from exc
-    # 顯式設 timeout 避免單一 request hang 住整個 SSE stream；
-    # max_retries=0 讓我們自己的 exponential backoff（_chat 內）獨佔重試控制，
-    # 不會被 SDK 內建 retry 疊加放大成幾分鐘的 hang。
-    return openai_module.OpenAI(
-        api_key=api_key,
-        timeout=_openai_request_timeout_seconds(),
-        max_retries=0,
-    )
-
-
-# --- Optional provider delegation seam (Phase 0) -------------------------------
-# When a provider is registered via `set_provider`, `_chat` delegates to it
-# instead of calling OpenAI directly. Default (None) keeps the legacy OpenAI
-# path byte-for-byte, so existing behaviour and tests are unchanged. The adapter
-# below makes an `LLMResponse` look like an OpenAI chat response so the legacy
-# call sites (`.choices[0].message.content`, `_usage_tokens(.usage)`) keep working.
-from types import SimpleNamespace
-
+# --- LLM provider delegation (Phase 0) -----------------------------------------
+# All LLM calls go through an LLMProvider. `_ACTIVE_PROVIDER` overrides the
+# default (set via `set_provider`, e.g. for headless / A-B / Claude); otherwise a
+# lazily-built OpenAI provider is used so behaviour matches the legacy path.
 _ACTIVE_PROVIDER: Any = None
+_DEFAULT_PROVIDER: Any = None
 
 
 def set_provider(provider: Any) -> None:
-    """Register an LLMProvider for `_chat` to delegate to (None = legacy OpenAI)."""
+    """Register an LLMProvider for `_chat` to use (None = default OpenAI)."""
     global _ACTIVE_PROVIDER
     _ACTIVE_PROVIDER = provider
 
@@ -422,16 +386,19 @@ def get_provider() -> Any:
     return _ACTIVE_PROVIDER
 
 
-def _adapt_provider_response(resp: Any) -> Any:
-    u = resp.usage
-    usage = SimpleNamespace(
-        prompt_tokens=u.input_tokens,
-        completion_tokens=u.output_tokens,
-        prompt_tokens_details=SimpleNamespace(cached_tokens=u.cached_input_tokens),
-    )
-    message = SimpleNamespace(content=resp.text)
-    choice = SimpleNamespace(message=message, finish_reason=resp.stop_reason)
-    return SimpleNamespace(choices=[choice], usage=usage)
+def _default_provider() -> Any:
+    """Lazily build (and cache) the default provider.
+
+    Backend is chosen by the single `TC_LLM_BACKEND` env var (default 'openai'),
+    so swapping OpenAI->Anthropic needs no code change.
+    """
+    global _DEFAULT_PROVIDER
+    if _DEFAULT_PROVIDER is None:
+        from providers import make_provider
+        backend = os.environ.get("TC_LLM_BACKEND", "openai")
+        _DEFAULT_PROVIDER = make_provider(
+            backend, timeout=_openai_request_timeout_seconds())
+    return _DEFAULT_PROVIDER
 
 
 def _chat(
@@ -441,70 +408,32 @@ def _chat(
     max_tokens: int | None = None,
     json_mode: bool = True,
 ):
-    """呼叫 LLM chat completions；統一錯誤處理與 JSON mode。
+    """呼叫 LLM chat completions(經 provider);統一錯誤處理與 JSON mode。
 
-    預設走 OpenAI；若已 `set_provider`，改委派該 provider（headless / A-B / Claude）。
-    `max_tokens=None` 時不傳 `max_completion_tokens`，讓 model 用預設上限。
+    預設走 OpenAI provider;`set_provider` 後改用指定 provider(headless / A-B / Claude)。
+    回傳 `LLMResponse`(`.text` / `.usage` 為 `LLMUsage`)。
+    `max_tokens=None` 時用 model 預設上限。
     """
-    provider = _ACTIVE_PROVIDER
-    if provider is not None:
-        messages = [
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ]
-        resp = provider.chat(
+    provider = _ACTIVE_PROVIDER or _default_provider()
+    messages = [
+        {"role": "system", "content": system},
+        {"role": "user", "content": user},
+    ]
+    try:
+        return provider.chat(
             messages,
             model,
             max_tokens=max_tokens if max_tokens is not None else 4096,
             json_mode=json_mode,
             cache_prefix=system,
         )
-        return _adapt_provider_response(resp)
-
-    client = _client()
-    kwargs: dict = {
-        "model": model,
-        "messages": [
-            {"role": "system", "content": system},
-            {"role": "user", "content": user},
-        ],
-    }
-    if max_tokens is not None:
-        kwargs["max_completion_tokens"] = max_tokens
-    if json_mode:
-        kwargs["response_format"] = {"type": "json_object"}
-
-    # 對 OpenAI 上游短暫錯誤（連線中斷、逾時、429、5xx）做 exponential backoff retry，
-    # 其他錯誤（如 400 bad request、auth）不 retry 直接拋出。
-    openai_module = import_module("openai")
-    transient_excs: tuple[type[BaseException], ...] = tuple(
-        cls
-        for name in ("APIConnectionError", "APITimeoutError", "RateLimitError")
-        if (cls := getattr(openai_module, name, None)) is not None
-    )
-    status_error_cls = getattr(openai_module, "APIStatusError", None)
-
-    last_exc: BaseException | None = None
-    for attempt in range(_RETRY_MAX_ATTEMPTS):
-        try:
-            return client.chat.completions.create(**kwargs)
-        except Exception as e:
-            is_transient = isinstance(e, transient_excs) or (
-                status_error_cls is not None
-                and isinstance(e, status_error_cls)
-                and getattr(e, "status_code", None) in _TRANSIENT_STATUS_CODES
-            )
-            if not is_transient or attempt == _RETRY_MAX_ATTEMPTS - 1:
-                last_exc = e
-                break
-            delay = _RETRY_BASE_DELAY * (2 ** attempt) + random.uniform(0, 0.5)
-            logger.warning(
-                "OpenAI API transient error (attempt %d/%d): %s — retrying in %.1fs",
-                attempt + 1, _RETRY_MAX_ATTEMPTS, e, delay,
-            )
-            time.sleep(delay)
-            last_exc = e
-    raise GenerationError(f"API call failed: {last_exc}") from last_exc
+    except GenerationError:
+        raise
+    except Exception as e:  # normalize provider/SDK errors to GenerationError
+        message = str(e)
+        if not message.startswith("API call failed"):
+            message = f"API call failed: {message}"
+        raise GenerationError(message) from e
 
 
 def generate_single_tc(
@@ -523,7 +452,7 @@ def generate_single_tc(
     user_prompt = build_user_prompt(row, context, spec_index, rules_text="")
     response = _chat(system, user_prompt, model, max_tokens=2000)
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     tc_data = parse_tc_response(raw_text)
     t = _usage_tokens(response.usage)
     used_model = model
@@ -545,7 +474,7 @@ def generate_single_tc(
             + "\n".join(issues)
         )
         retry = _chat(system, retry_prompt, model, max_tokens=2000)
-        retry_text = retry.choices[0].message.content or ""
+        retry_text = retry.text
         retry_data = parse_tc_response(retry_text)
         rt = _usage_tokens(retry.usage)
         t = {
@@ -568,7 +497,7 @@ def generate_single_tc(
                     + "\n\nBe extra careful; correct every item above."
                 )
                 esc = _chat(system, esc_prompt, escalated, max_tokens=2000)
-                esc_text = esc.choices[0].message.content or ""
+                esc_text = esc.text
                 esc_data = parse_tc_response(esc_text)
                 et = _usage_tokens(esc.usage)
                 base_cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
@@ -622,7 +551,7 @@ def generate_quick_tc(
     user_prompt = build_quick_generate_prompt(test_item, context, rules_text="")
     response = _chat(system, user_prompt, model, max_tokens=2000)
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     tc_data = parse_tc_response(raw_text)
     t = _usage_tokens(response.usage)
     cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
@@ -658,7 +587,7 @@ def decompose_requirement(
     user_prompt = build_decompose_prompt(requirement, rules_text="")
     response = _chat(system, user_prompt, model, max_tokens=2000)
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     text = _strip_fences(raw_text)
     try:
         data = json.loads(text)
@@ -701,7 +630,7 @@ def generate_batch(
     )
     response = _chat(system, user_prompt, model, max_tokens=2000 * len(rows))
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     # 解包 {"tcs": [...]} → list
     try:
         wrapped = json.loads(_strip_fences(raw_text))
@@ -936,7 +865,7 @@ def generate_tcs_for_row(
     # 不設 max_tokens：AI 拆幾筆 TC 不固定，讓 OpenAI 用 model 預設完整上限。
     response = _chat(system, user_prompt, model)
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     tcs, meta = parse_multi_tc_response(raw_text)
     meta["req_id"] = str(row.get("req_id") or row.get("reqId") or "")
 
@@ -1024,7 +953,7 @@ def generate_batch_multi(
     # 不設 max_tokens：batch 中每個 req 可能拆不同數量，讓 OpenAI 用 model 預設上限。
     response = _chat(system, user_prompt, model)
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     t = _usage_tokens(response.usage)
     cost = calculate_cost(t["input"], t["output"], model, t["cache_creation"], t["cache_read"])
     input_tokens = t["input"]
@@ -1144,7 +1073,7 @@ def classify_test_sets(
     user = build_test_set_classification_prompt(reqs, test_group=test_group)
     response = _chat(system, user, model)
 
-    raw_text = response.choices[0].message.content or ""
+    raw_text = response.text
     text = _strip_fences(raw_text)
     try:
         data = json.loads(text)

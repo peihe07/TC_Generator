@@ -30,16 +30,17 @@
 - [x] `LLMResponse.usage` 兩後端正確;訂閱情境 `cost_usd is None` 且 `Budget.charge` no-op。
 - [x] OpenAI 路徑行為一致 —— **全套 556 tests green**(原 550 + 6)。
 - [x] `_chat` 在 `set_provider` 後確實委派(`test_generator_delegates_to_provider`)。
-- [~] 「切換預設後端只需一個設定點」:已可由外部 `set_provider(make_provider(...))` 達成;尚未接到 env/config 啟動點。
-- [ ] **「`generator.py` 不再 import openai」未達成(刻意保留)。** 見下方 M0b。
+- [x] 「切換預設後端只需一個設定點」:`TC_LLM_BACKEND` env(預設 `openai`)決定預設 provider;另可 `set_provider()` 覆寫。
+- [x] **「`generator.py` 不再 import openai」已達成**(見下方 M0b)。
 
-## 待收尾(M0b,建議互動式在場時做)
+## M0b — 已收尾(2026-06-25)
 
-把 OpenAI 完全從 `generator` 拔除是高風險核心改動,且要連帶改寫 25+ 既有測試的 mock 形狀:
+把 OpenAI 完全從 `generator` 拔除,全程走 provider:
 
-1. 各呼叫點 `response.choices[0].message.content` → `response.text`;`_usage_tokens(response.usage)` → 直接讀 `LLMUsage`。
-2. 移除 `generator._client` / 內嵌 retry,改全程 `provider.chat`。
-3. 既有 `test_generator.py` 的 `make_chat_response` 改產 `LLMResponse`。
-4. 啟動點:由 env(如 `TC_LLM_BACKEND`)決定 `set_provider(make_provider(...))`。
+1. 呼叫點 `response.choices[0].message.content` → `response.text`(generator 9 處 + `review_engine` + `review_assistant`)。
+2. `_usage_tokens` 改吃 `LLMUsage`;`_chat` 回 `LLMResponse`、錯誤統一包成 `GenerationError`。
+3. 移除 `generator._client`、內嵌 retry、`import openai` / `import_module` / `TYPE_CHECKING`;client/timeout/retry 全移到 `OpenAIProvider`。
+4. 啟動點:`_default_provider()` 讀 `TC_LLM_BACKEND`。
+5. 既有測試 mock 形狀改 `LLMResponse`(`test_generator` / `test_review_engine` / `test_review_assistant`);`_client` 與 retry 測試移到 `test_providers`(新增 4 個)。
 
-完成後刪除本 seam 的 adapter,acceptance 最後兩項即補齊。
+**驗收:全套 555 tests green;`grep openai backend/generator.py` = 0。** acceptance 全數打勾。

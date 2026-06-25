@@ -117,7 +117,7 @@ def suggest_review_fix(
         f"# Project rules excerpt\n{(rules_text or '').strip() or '(none provided)'}\n"
     )
     response = _chat(_SYSTEM_PROMPT, user_prompt, model, max_tokens=1200)
-    raw = response.choices[0].message.content or ""
+    raw = response.text or ""
     try:
         parsed = json.loads(raw)
     except json.JSONDecodeError as exc:

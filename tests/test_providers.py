@@ -100,11 +100,78 @@ def test_generator_delegates_to_provider():
     generator.set_provider(FakeProvider())
     try:
         resp = generator._chat("SYS", "USER", "gpt-5", max_tokens=100)
-        # Legacy call sites read `.choices[0].message.content` + `.usage`.
-        assert resp.choices[0].message.content == '{"delegated": true}'
-        assert resp.usage.prompt_tokens == 5
+        # `_chat` now returns the provider's LLMResponse directly.
+        assert resp.text == '{"delegated": true}'
+        assert resp.usage.input_tokens == 5
         assert calls["model"] == "gpt-5"
         assert calls["cache_prefix"] == "SYS"
         assert calls["messages"][0]["role"] == "system"
     finally:
-        generator.set_provider(None)  # restore legacy path for other tests
+        generator.set_provider(None)  # restore default provider for other tests
+
+
+# --- OpenAIProvider client config + retry (ported from test_generator) ----------
+
+import openai as openai_module  # noqa: E402
+from unittest.mock import MagicMock, patch  # noqa: E402
+
+
+def _status_error(code):
+    return openai_module.APIStatusError(
+        "boom", response=MagicMock(status_code=code), body=None)
+
+
+def _success_raw():
+    return SimpleNamespace(
+        choices=[SimpleNamespace(
+            message=SimpleNamespace(content='{"ok": true}'), finish_reason="stop")],
+        usage=SimpleNamespace(
+            prompt_tokens=1, completion_tokens=1,
+            prompt_tokens_details=SimpleNamespace(cached_tokens=0)),
+    )
+
+
+@patch("providers.openai_provider.import_module")
+def test_openai_provider_client_config(mock_import_module):
+    fake_module = MagicMock()
+    mock_import_module.return_value = fake_module
+    provider = OpenAIProvider(api_key="test-key", timeout=240.0)
+    provider._get_client()
+    fake_module.OpenAI.assert_called_once()
+    kwargs = fake_module.OpenAI.call_args.kwargs
+    assert kwargs.get("timeout") == 240.0
+    assert kwargs.get("max_retries") == 0
+
+
+@patch("providers.openai_provider.time.sleep", return_value=None)
+def test_openai_provider_retries_on_transient(_sleep):
+    create = MagicMock(side_effect=[_status_error(502), _success_raw()])
+    client = SimpleNamespace(
+        chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    provider = OpenAIProvider(client=client)
+    resp = provider.chat([{"role": "user", "content": "x"}], "gpt-5-mini")
+    assert resp.text == '{"ok": true}'
+    assert create.call_count == 2
+
+
+@patch("providers.openai_provider.time.sleep", return_value=None)
+def test_openai_provider_does_not_retry_on_400(_sleep):
+    create = MagicMock(side_effect=_status_error(400))
+    client = SimpleNamespace(
+        chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    provider = OpenAIProvider(client=client)
+    with pytest.raises(RuntimeError, match="API call failed"):
+        provider.chat([{"role": "user", "content": "x"}], "gpt-5-mini")
+    assert create.call_count == 1
+
+
+@patch("providers.openai_provider.time.sleep", return_value=None)
+def test_openai_provider_gives_up_after_max_attempts(_sleep):
+    from providers.openai_provider import _RETRY_MAX_ATTEMPTS
+    create = MagicMock(side_effect=_status_error(502))
+    client = SimpleNamespace(
+        chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    provider = OpenAIProvider(client=client)
+    with pytest.raises(RuntimeError, match="API call failed"):
+        provider.chat([{"role": "user", "content": "x"}], "gpt-5-mini")
+    assert create.call_count == _RETRY_MAX_ATTEMPTS

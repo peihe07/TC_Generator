@@ -416,9 +416,8 @@ def test_llm_pipeline_keeps_empty_tc_id_rows_distinct(monkeypatch):
                 },
             ],
         }
-        return SimpleNamespace(
-            choices=[SimpleNamespace(message=SimpleNamespace(content=json.dumps(body)))]
-        )
+        from providers import LLMResponse, LLMUsage
+        return LLMResponse(text=json.dumps(body), usage=LLMUsage(), model="fake")
 
     monkeypatch.setattr("generator._chat", _fake_chat)
     _, per_tc = _run_llm_pipeline(tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)}, model="fake")

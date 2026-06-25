@@ -62,6 +62,27 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Path to an existing findings.json for --scorecard "
              "(default: <output-dir>/findings.json).",
     )
+    # Stage 2.5 — pre-flight budget checkpoint (no API, zero usage).
+    p.add_argument(
+        "--preflight",
+        action="store_true",
+        help="Estimate whether a batch fits the current 5h window (zero API). "
+             "Use with --remaining-pct / --n-light / --n-deep.",
+    )
+    p.add_argument(
+        "--calibrate",
+        action="store_true",
+        help="Record per-requirement window cost from a probe run (zero API). "
+             "Use with --start-pct / --end-pct / --n-probe / --regime.",
+    )
+    p.add_argument("--remaining-pct", type=float,
+                   help="Fraction 0..1 of the 5h window remaining (from /usage).")
+    p.add_argument("--n-light", type=int, default=0, help="Light-regime requirement count.")
+    p.add_argument("--n-deep", type=int, default=0, help="Deep-regime requirement count.")
+    p.add_argument("--start-pct", type=float, help="Window % before the probe run.")
+    p.add_argument("--end-pct", type=float, help="Window % after the probe run.")
+    p.add_argument("--n-probe", type=int, help="Requirements processed in the probe run.")
+    p.add_argument("--regime", choices=["light", "deep"], help="Calibration regime.")
     return p.parse_args(argv)
 
 
@@ -448,8 +469,61 @@ def run(args: argparse.Namespace) -> int:
     return 1 if failed_rows else 0
 
 
+def run_preflight(args: argparse.Namespace) -> int:
+    """Stage 2.5 pre-flight: does this batch fit the current window? Zero API."""
+    from budget_planner import load_budget, fit_mixed
+
+    if args.remaining_pct is None:
+        print("Error: --preflight requires --remaining-pct (0..1 from /usage).",
+              file=sys.stderr)
+        return 2
+
+    cfg = load_budget()
+    result = fit_mixed(args.remaining_pct, args.n_light, args.n_deep, cfg)
+    print(f"\n{'='*60}")
+    print("Pre-flight Budget Checkpoint")
+    print(f"  Remaining window: {args.remaining_pct:.0%}  (safety {cfg.safety:.0%})")
+    print(f"  Batch: {args.n_light} light + {args.n_deep} deep")
+    if result["decision"] == "wait":
+        print("  Decision: WAIT — per_req_pct not calibrated yet.")
+        print("  Run `--calibrate` after a probe run first.")
+    else:
+        print(f"  Projected window cost: {result['projected_pct']:.1%}")
+        print(f"  Decision: {result['decision'].upper()}")
+        if result["decision"] == "shrink":
+            print(f"  Suggested caps: --n-light {result['max_light']} "
+                  f"/ --n-deep {result['max_deep']}")
+    print(f"{'='*60}\n")
+    return 0
+
+
+def run_calibrate(args: argparse.Namespace) -> int:
+    """Stage 2.5 calibration: derive per_req_pct from a probe run. Zero API."""
+    from budget_planner import record_calibration
+
+    missing = [f"--{n.replace('_', '-')}" for n in
+               ("start_pct", "end_pct", "n_probe", "regime")
+               if getattr(args, n) is None]
+    if missing:
+        print(f"Error: --calibrate requires {', '.join(missing)}.", file=sys.stderr)
+        return 2
+
+    cfg = record_calibration(args.start_pct, args.end_pct, args.n_probe, args.regime)
+    per = cfg.per_req_pct_light if args.regime == "light" else cfg.per_req_pct_deep
+    print(f"\n{'='*60}")
+    print(f"Calibrated {args.regime}: per_req_pct = {per:.4f} "
+          f"({per:.2%} of window per requirement)")
+    print(f"  Saved to config/budget.json at {cfg.calibrated_at}")
+    print(f"{'='*60}\n")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.preflight:
+        return run_preflight(args)
+    if args.calibrate:
+        return run_calibrate(args)
     if args.scorecard:
         return run_scorecard(args)
     if not args.input:

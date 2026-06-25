@@ -3,7 +3,6 @@
 OpenAI calls are mocked to avoid actual API usage in tests.
 """
 import json
-from importlib.metadata import PackageNotFoundError
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -13,7 +12,6 @@ from generator import (
     DecomposeResult,
     GenerationError,
     GenerationResult,
-    _client,
     extract_decompose_rules,
     calculate_cost,
     decompose_requirement,
@@ -29,6 +27,20 @@ from generator import (
     parse_multi_tc_response,
     parse_tc_response,
 )
+from providers import LLMResponse, LLMUsage
+
+
+def _llm_response(text, *, prompt_tokens=0, completion_tokens=0, cached_tokens=0):
+    """Build a normalized LLMResponse (what `_chat` now returns)."""
+    return LLMResponse(
+        text=text,
+        usage=LLMUsage(
+            input_tokens=prompt_tokens,
+            output_tokens=completion_tokens,
+            cached_input_tokens=cached_tokens,
+        ),
+        model="gpt-5",
+    )
 
 
 VALID_TC_JSON = {
@@ -45,14 +57,12 @@ VALID_TC_JSON = {
 
 
 def make_chat_response(payload, *, prompt_tokens=0, completion_tokens=0, cached_tokens=0):
-    response = MagicMock()
-    response.choices = [MagicMock(message=MagicMock(content=json.dumps(payload)))]
-    response.usage = MagicMock(
+    return _llm_response(
+        json.dumps(payload),
         prompt_tokens=prompt_tokens,
         completion_tokens=completion_tokens,
-        prompt_tokens_details=MagicMock(cached_tokens=cached_tokens),
+        cached_tokens=cached_tokens,
     )
-    return response
 
 
 class TestParseTcResponse:
@@ -181,32 +191,8 @@ class TestCalculateCost:
 
 
 class TestGenerateSingleTc:
-    @patch("generator.import_module")
-    def test_client_raises_helpful_error_when_openai_package_missing(self, mock_import_module):
-        mock_import_module.side_effect = PackageNotFoundError("openai")
-
-        with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}):
-            with pytest.raises(GenerationError, match="openai package is not installed"):
-                _client()
-
-    @patch("generator.import_module")
-    def test_client_sets_explicit_timeout_and_disables_sdk_retries(self, mock_import_module):
-        """避免單一 OpenAI request hang 住整個 SSE stream（之前有 20 分鐘
-        `other side closed` 案例）；SDK 內建 retry 也要關掉，避免和 _chat
-        裡的 exponential backoff 疊加。"""
-        from generator import _OPENAI_REQUEST_TIMEOUT_SECONDS
-
-        fake_module = MagicMock()
-        mock_import_module.return_value = fake_module
-
-        with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}):
-            _client()
-
-        fake_module.OpenAI.assert_called_once()
-        kwargs = fake_module.OpenAI.call_args.kwargs
-        assert kwargs.get("timeout") == _OPENAI_REQUEST_TIMEOUT_SECONDS
-        assert kwargs.get("max_retries") == 0
-
+    # NB: OpenAI client creation / timeout / retry now live in OpenAIProvider;
+    # those behaviours are covered in tests/test_providers.py.
     def test_openai_timeout_can_be_overridden_by_env(self):
         with patch.dict("os.environ", {"OPENAI_REQUEST_TIMEOUT_SECONDS": "240"}):
             assert _openai_request_timeout_seconds() == 240.0
@@ -478,14 +464,8 @@ also through via fallback
 
     @patch("generator._chat")
     def test_invalid_json_response_raises(self, mock_chat):
-        response = MagicMock()
-        response.choices = [MagicMock(message=MagicMock(content="not json at all"))]
-        response.usage = MagicMock(
-            prompt_tokens=100,
-            completion_tokens=50,
-            prompt_tokens_details=MagicMock(cached_tokens=0),
-        )
-        mock_chat.return_value = response
+        mock_chat.return_value = _llm_response(
+            "not json at all", prompt_tokens=100, completion_tokens=50)
 
         with pytest.raises(GenerationError, match="parse"):
             generate_quick_tc(
@@ -532,14 +512,8 @@ class TestDecomposeRequirement:
     @patch("generator._chat")
     def test_success_with_fenced_json(self, mock_chat):
         raw = f"```json\n{json.dumps(self.VALID_DECOMPOSE_RESPONSE)}\n```"
-        response = MagicMock()
-        response.choices = [MagicMock(message=MagicMock(content=raw))]
-        response.usage = MagicMock(
-            prompt_tokens=700,
-            completion_tokens=400,
-            prompt_tokens_details=MagicMock(cached_tokens=0),
-        )
-        mock_chat.return_value = response
+        mock_chat.return_value = _llm_response(
+            raw, prompt_tokens=700, completion_tokens=400)
 
         result = decompose_requirement(requirement="req", rules_text="rules")
         assert len(result.scenarios) == 2
@@ -553,14 +527,8 @@ class TestDecomposeRequirement:
 
     @patch("generator._chat")
     def test_invalid_json_raises(self, mock_chat):
-        response = MagicMock()
-        response.choices = [MagicMock(message=MagicMock(content="definitely not json"))]
-        response.usage = MagicMock(
-            prompt_tokens=100,
-            completion_tokens=50,
-            prompt_tokens_details=MagicMock(cached_tokens=0),
-        )
-        mock_chat.return_value = response
+        mock_chat.return_value = _llm_response(
+            "definitely not json", prompt_tokens=100, completion_tokens=50)
 
         with pytest.raises(GenerationError, match="parse"):
             decompose_requirement(requirement="req", rules_text="rules")
@@ -876,69 +844,3 @@ class TestGenerateBatchMulti:
         # 失敗批次已耗用的 token 仍被計入（300+150 + 3*(10+5)）
         assert result.input_tokens == 330
         assert result.output_tokens == 165
-
-
-class TestChatRetry:
-    """_chat 應對上游短暫錯誤做 exponential backoff retry。"""
-
-    def _make_success(self):
-        return make_chat_response({"ok": True})
-
-    @patch("generator.time.sleep", return_value=None)  # 跳過實際等待
-    @patch("generator._client")
-    def test_retries_on_transient_status_error(self, mock_client, _mock_sleep):
-        """上游 502 第一次失敗 → 第二次成功：不應拋出。"""
-        from generator import _chat
-
-        import openai as openai_module
-
-        request = MagicMock()
-        response = MagicMock(status_code=502)
-        transient = openai_module.APIStatusError(
-            "bad gateway", response=response, body=None
-        )
-        success = self._make_success()
-        mock_client.return_value.chat.completions.create.side_effect = [
-            transient,
-            success,
-        ]
-        result = _chat("sys", "usr", "gpt-5-mini", json_mode=False)
-        assert result is success
-        assert mock_client.return_value.chat.completions.create.call_count == 2
-
-    @patch("generator.time.sleep", return_value=None)
-    @patch("generator._client")
-    def test_does_not_retry_on_400(self, mock_client, _mock_sleep):
-        """400 bad request 不應 retry（非 transient）。"""
-        from generator import _chat
-
-        import openai as openai_module
-
-        response = MagicMock(status_code=400)
-        fatal = openai_module.APIStatusError(
-            "bad request", response=response, body=None
-        )
-        mock_client.return_value.chat.completions.create.side_effect = fatal
-        with pytest.raises(GenerationError, match="API call failed"):
-            _chat("sys", "usr", "gpt-5-mini", json_mode=False)
-        assert mock_client.return_value.chat.completions.create.call_count == 1
-
-    @patch("generator.time.sleep", return_value=None)
-    @patch("generator._client")
-    def test_gives_up_after_max_attempts(self, mock_client, _mock_sleep):
-        """持續 502 → 達到重試上限後仍拋出 GenerationError。"""
-        from generator import _chat, _RETRY_MAX_ATTEMPTS
-
-        import openai as openai_module
-
-        response = MagicMock(status_code=502)
-        transient = openai_module.APIStatusError(
-            "bad gateway", response=response, body=None
-        )
-        mock_client.return_value.chat.completions.create.side_effect = transient
-        with pytest.raises(GenerationError, match="API call failed"):
-            _chat("sys", "usr", "gpt-5-mini", json_mode=False)
-        assert (
-            mock_client.return_value.chat.completions.create.call_count
-            == _RETRY_MAX_ATTEMPTS
-        )

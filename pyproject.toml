@@ -32,6 +32,7 @@ package-dir = {"" = "backend"}
 packages = ["providers"]
 py-modules = [
     "api_server",
+    "budget_planner",
     "generator",
     "grouper",
     "id_generator",

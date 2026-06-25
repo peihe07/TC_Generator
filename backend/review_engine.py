@@ -970,7 +970,7 @@ def _run_llm_pipeline(
         except GenerationError:
             continue  # skip batch on transient error; engine still returns regex findings
         try:
-            content = resp.choices[0].message.content
+            content = resp.text
             data = json.loads(content)
         except (AttributeError, IndexError, json.JSONDecodeError):
             continue

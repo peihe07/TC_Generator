@@ -16,15 +16,13 @@ def client():
 
 
 def _fake_chat_response(content: str, in_tokens: int = 100, out_tokens: int = 60):
-    """模擬 OpenAI Chat Completions 回應結構。"""
-    message = SimpleNamespace(content=content)
-    choice = SimpleNamespace(message=message)
-    usage = SimpleNamespace(
-        prompt_tokens=in_tokens,
-        completion_tokens=out_tokens,
-        prompt_tokens_details=SimpleNamespace(cached_tokens=0),
+    """`_chat` 現在回傳正規化的 LLMResponse。"""
+    from providers import LLMResponse, LLMUsage
+    return LLMResponse(
+        text=content,
+        usage=LLMUsage(input_tokens=in_tokens, output_tokens=out_tokens),
+        model="gpt-5",
     )
-    return SimpleNamespace(choices=[choice], usage=usage)
 
 
 class TestSuggestReviewFix:
