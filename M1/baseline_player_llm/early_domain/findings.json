@@ -1,0 +1,554 @@
+{
+  "batch_meta": {
+    "source_file": "sample10.xlsx",
+    "sheet": "Test Case Specification&Result",
+    "total_tcs": 9,
+    "total_req_groups": 4,
+    "reviewed_at": "2026-06-25T14:19:54.215106+00:00"
+  },
+  "per_req_findings": [
+    {
+      "req_id": "SWE1-PLA-004",
+      "tier": 1,
+      "rule_ref": "§6.6",
+      "severity": "Major",
+      "scope_tcs": [
+        "NR1L-Player-008",
+        "NR1L-Player-009"
+      ],
+      "issue": "本 Req group 沒有任何 TC 帶英文 shall/must/should spec句，Tier 1 無法錨定，Tier 2 全部跳過",
+      "evidence_req_spec": "",
+      "suggestion_note": "從 Polarion / SWRA 上游取得 canonical Req spec 並貼回至少一個 TC 的 Test Item；Tier 3 §8.3.6 fallback 將自動啟用"
+    },
+    {
+      "req_id": "SWE1-PLA-001",
+      "tier": 1,
+      "rule_ref": "§6.3",
+      "severity": "Critical",
+      "scope_tcs": [
+        "NR1L-Player-001",
+        "NR1L-Player-002"
+      ],
+      "issue": "Req 規格要求 PU0003 trigger 為「No Supported Files Found」發生時，但現有 TC 僅驗證全部檔案皆為不支援格式情境，未涵蓋其他媒體類型（如 USB-AUX/CD/BTSA）或其他可觸發此 popup 之來源。",
+      "evidence_req_spec": "When “No Supported Files Found Error” occurs, the HU shall display Pop Up ID PU0003 (or otherwise indicate an error according to HMI requirements).",
+      "suggestion_note": "依 Domain Pack 『Player sources』枚舉，須於每個支援 source（如 External CD/HU AUX/HU USB/HU BTSA）分別檢驗無支援檔案時系統能彈出 PU0003。建議以同樣邏輯補齊 other sources case。",
+      "stub": {
+        "test_item": "當 External CD 僅含非支援媒體檔案時，車機應顯示 PU0003 Popup",
+        "pre_conditions": "1. 準備一張僅包含 .txt/.pdf 等非支援格式檔案的外接 CD\n2. 確認 CD 已插入車機",
+        "test_procedure_outline": "1. 於車機選取 CD 為媒體來源\n2. 觀察系統行為\n3. 驗證是否跳出 PU0003 pop up"
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-002",
+      "tier": 1,
+      "rule_ref": "§6.3",
+      "severity": "Critical",
+      "scope_tcs": [
+        "NR1L-Player-003",
+        "NR1L-Player-004"
+      ],
+      "issue": "Req 規格要求 PU0024 trigger 為『USB Device File Read Error』，現有 TC 皆僅驗證 USB source，未涵蓋所有 Player sources（AUX、CD、BTSA）之讀取異常情境。",
+      "evidence_req_spec": "When “USB Device File Read Error” occurs, the HU shall display Pop Up ID PU0024 (or otherwise indicate an error according to HMI requirements).",
+      "suggestion_note": "應補齊各來源（CD/AUX/BTSA）發生單一檔案讀取錯誤時的顯示行為驗證（如 EX: 在 CD 發生 unreadable track 亦需跳出 PU0024）。",
+      "stub": {
+        "test_item": "當 External CD 含損毀檔案且無法播放時，車機應顯示 PU0024 Popup",
+        "pre_conditions": "1. 準備一片含不可讀音樂檔案的 External CD 並插入車機",
+        "test_procedure_outline": "1. 於車機選取 CD 為媒體來源並嘗試播放損壞檔案\n2. 觀察系統行為\n3. 驗證是否跳出 PU0024 popup"
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-003",
+      "tier": 1,
+      "rule_ref": "§6.3",
+      "severity": "Critical",
+      "scope_tcs": [
+        "NR1L-Player-005"
+      ],
+      "issue": "Req 規格規定 PU0005 generic error 須涵蓋所有來源與情境，現有 TC 僅針對 USB source 驗證，未涵蓋所有支援來源 (如 CD/AUX/BTSA)。",
+      "evidence_req_spec": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.",
+      "suggestion_note": "請於各 Player source (CD/AUX/BTSA) 分別建構造成 generic error（非 PU0003/PU0024 情境）之情形以驗證 PU0005 Popup 行為。",
+      "stub": {
+        "test_item": "當 AUX Source 發生非特定定義之讀取錯誤時，車機應顯示 PU0005 Popup",
+        "pre_conditions": "1. 準備一 AUX 音訊來源連接，模擬檔案系統資訊異常\n2. 輸入故障音源",
+        "test_procedure_outline": "1. 在車機選擇 AUX 為媒體來源並啟動播放\n2. 使來源出現異常讀取狀態\n3. 驗證系統是否顯示 PU0005 popup"
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-003",
+      "tier": 1,
+      "rule_ref": "§6.3",
+      "severity": "Critical",
+      "scope_tcs": [
+        "NR1L-Player-006",
+        "NR1L-Player-007"
+      ],
+      "issue": "Req 為所有錯誤未被上層覆蓋時都需顯示 PU0005，但目前僅測試 USB 發生錯誤時的Popup，未覆蓋 Player subgroup 其它來源 (External CD、HU AUX、HU BTSA) 發生同類錯誤時之行為。",
+      "evidence_req_spec": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.",
+      "suggestion_note": "建議為 External CD、HU AUX、HU BTSA 三個來源各補一組發生未明確定義錯誤時顯示 PU0005 的測試用例。",
+      "stub": {
+        "test_item": "External CD 發生未定義讀取錯誤時，應顯示 PU0005 Popup",
+        "pre_conditions": "1. 具備可產生未知讀取錯誤的 External CD\n2. 車機可正常讀取 CD 源",
+        "test_procedure_outline": "1. 將 External CD 插入車機 CD 來源\n2. 操作至觸發未知讀取錯誤\n3. 確認車機顯示 PU0005 Popup"
+      }
+    }
+  ],
+  "per_tc_findings": [
+    {
+      "tc_id": "NR1L-Player-001",
+      "row": 10,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（24 words），超出 14 words / 35 chars 上限",
+          "evidence": "When “No Supported Files Found Error” occurs, the HU shall display Pop Up ID PU0003 (or otherwise indicate an error according to HMI requirements).",
+          "original": "When “No Supported Files Found Error” occurs, the HU shall display Pop Up ID PU0003 (or otherwise indicate an error according to HMI requirements).\n(See the HMI Pup Up List reference document for Pup Up ID.)\n\n(No supported media files → popup PU0003 displayed)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 5,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "5. Check the system response after selecting the USB source.",
+          "original": "1. Insert the prepared USB storage device into the HU USB port.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select \"USB\" button as the active source.\n5. Check the system response after selecting the USB source.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未標示，且本 TC 屬於典型異常情境驗證，建議補充為 Error-Handling 或 Enumeration。",
+          "original": "",
+          "revised": "Enumeration / Error-Handling",
+          "suggestion_note": "根據 PU0003 為所有來源異常共用行為，此 TC 為純粹異常分支驗證，建議設計方法標為 Enumeration 或 Error-Handling。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-002",
+      "row": 11,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（24 words），超出 14 words / 35 chars 上限",
+          "evidence": "When “No Supported Files Found Error” occurs, the HU shall display Pop Up ID PU0003 (or otherwise indicate an error according to HMI requirements).",
+          "original": "When “No Supported Files Found Error” occurs, the HU shall display Pop Up ID PU0003 (or otherwise indicate an error according to HMI requirements).\n(See the HMI Pup Up List reference document for Pup Up ID.)\n\n(Popup PU0003 message text equals \"Media file not found\")",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 5,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "5. Check the popup message after selecting the USB source.",
+          "original": "1. Insert the prepared USB storage device into the HU USB port.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select \"USB\" button as the active source.\n5. Check the popup message after selecting the USB source.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未標示，該 TC 係針對異常訊息及格式比對，應標註為 Enumeration/Message Verification。",
+          "original": "",
+          "revised": "Enumeration / Message Verification",
+          "suggestion_note": "本 TC 著重於錯誤訊息內容驗證，屬於枚舉元件核對，設計方法請補充。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-003",
+      "row": 12,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（24 words），超出 14 words / 35 chars 上限",
+          "evidence": "When “USB Device File Read Error” occurs, the HU shall display Pop Up ID PU0024 (or otherwise indicate an error according to HMI requirements).",
+          "original": "When “USB Device File Read Error” occurs, the HU shall display Pop Up ID PU0024 (or otherwise indicate an error according to HMI requirements).\n(See the HMI Pup Up List reference document for Pup Up ID.) while the error exists.\n\n(Corrupted media playback → PU0024 popup displayd)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 6,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "6. Check the system response during playback of the corrupted media file.",
+          "original": "1. Insert the prepared USB storage device into the HU USB port.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select \"USB\" button as the active source.\n5. Select the corrupted media file from the media file list to start playback.\n6. Check the system response during playback of the corrupted media file.\n",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未標示，本用例為異常情境之來源覆蓋，建議註明 Boundary & Error-Handling。",
+          "original": "",
+          "revised": "Boundary Value Analysis / Error-Handling",
+          "suggestion_note": "本 TC 屬於某一來源出現讀取異常（特定 error popup），請補齊合適的設計方法標示。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-004",
+      "row": 13,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（24 words），超出 14 words / 35 chars 上限",
+          "evidence": "When “USB Device File Read Error” occurs, the HU shall display Pop Up ID PU0024 (or otherwise indicate an error according to HMI requirements).",
+          "original": "When “USB Device File Read Error” occurs, the HU shall display Pop Up ID PU0024 (or otherwise indicate an error according to HMI requirements).\n(See the HMI Pup Up List reference document for Pup Up ID.) while the error exists.\n\n(Popup PU0024 message text equals \"File reading error\")",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 6,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "6. Check the popup message displayed during playback failure.",
+          "original": "1. Insert the prepared USB storage device into the HU USB port.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select \"USB\" button as the active source.\n5. Select the corrupted media file from the media file list to start playback.\n6. Check the popup message displayed during playback failure.\n",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未標註設計方法，且本測試屬於錯誤訊息提示細項驗證，建議標註為 Enumeration/Message Verification。",
+          "original": "",
+          "revised": "Enumeration / Message Verification",
+          "suggestion_note": "針對錯誤 popup 訊息內容判斷的驗證須明確標註設計方法。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-005",
+      "row": 14,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（33 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.",
+          "original": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.\n (See the HMI Pup Up List reference document for Pup Up ID.)\n\n(Generic read error condition → PU0005 popup display)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未標註，且用例針對所有 generic error case，建議補標記為 Enumeration / Error-Handling。",
+          "original": "",
+          "revised": "Enumeration / Error-Handling",
+          "suggestion_note": "PU0005 屬於 generic error 保底 popup，覆蓋各未指定分類之來源與錯誤情境，請補標設計方法。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-006",
+      "row": 15,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（33 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.",
+          "original": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.\n (See the HMI Pup Up List reference document for Pup Up ID.)\n\n(PU0005 popup message format → \"(Device Name) error\")",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法缺少與測試步驟形式一致性，TC以標準流程驗證 Popup 行為但未標註 Design Method。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "應補上適當設計方法，例如『Scenario / Use Case』以符合 ASPICE SWE.6 稽核標準。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-007",
+      "row": 16,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_item",
+          "rule_ref": "§8.1.1",
+          "severity": "Major",
+          "issue": "Test Item 過長（33 words），超出 14 words / 35 chars 上限",
+          "evidence": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.",
+          "original": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.\n (See the HMI Pup Up List reference document for Pup Up ID.)\n\n(PU0005 popup persistence while error exists)",
+          "revised": "",
+          "suggestion_note": "壓縮為命名 trigger 或 scenario 的最短句型"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "設計方法未標註，流程性驗證且測試步驟與規格貼合，應標記設計方法。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "補上『Scenario / Use Case』為設計方法，與步驟型態對應。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-008",
+      "row": 17,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 6,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "6. Select \"Audio\" tab to verify accessibility",
+          "original": "1. Insert an AUX device into the HU AUX input.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select \"AUX\" as the active source.\n5. Select \"Source\" tab to verify accessibility\n6. Select \"Audio\" tab to verify accessibility",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未標註設計方法，該用例屬流程驗證且步驟明確。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "增加『Scenario / Use Case』設計方法，以呼應流程檢驗特性。"
+        }
+      ]
+    },
+    {
+      "tc_id": "NR1L-Player-009",
+      "row": 18,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 5,
+          "rule_ref": "§8.3.5",
+          "severity": "Major",
+          "issue": "Final Step 沒有檢查目標，僅為動作而無 Check/Confirm 子句",
+          "evidence": "5. Select \"Browse\" tab to verify accessibility.",
+          "original": "1. Insert an AUX device into the HU AUX input.\n2. Press \"Media\" icon on menu bar.\n3. Select \"Source\" tab.\n4. Select \"AUX\" as the active source.\n5. Select \"Browse\" tab to verify accessibility.",
+          "revised": "",
+          "suggestion_note": "改寫為 `<動作>，並確認 <可觀察結果>` 的形式"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.2",
+          "severity": "Major",
+          "issue": "缺少測試用例設計方法（Design Method）",
+          "evidence": "(empty)",
+          "original": "",
+          "revised": "",
+          "suggestion_note": "依實際 procedure 流程判定 §15 first-match（Negative / Fault Injection / State Transition / Decision Table / EP / BVA / Combinatorial / Scenario / Functional）"
+        },
+        {
+          "tier": 3,
+          "field": "design_method",
+          "rule_ref": "§8.5.3",
+          "severity": "Major",
+          "issue": "未提供設計方法分類，該測試是步驟型流程驗證。",
+          "original": "",
+          "revised": "Scenario / Use Case",
+          "suggestion_note": "請標明『Scenario / Use Case』以補足設計方法規格。"
+        }
+      ]
+    }
+  ],
+  "batch_summary": {
+    "verdict_counts": {
+      "pass": 0,
+      "pass_with_issues": 9,
+      "fail": 0
+    },
+    "tier_summary": {
+      "tier1": {
+        "req_groups_total": 4,
+        "req_groups_with_critical": 4,
+        "req_groups_skipped": 1,
+        "top_rules": [
+          {
+            "rule_ref": "§6.3",
+            "count": 4,
+            "title": "Missing enumeration coverage"
+          },
+          {
+            "rule_ref": "§6.6",
+            "count": 1,
+            "title": "Tier 1 not executable (no spec句)"
+          }
+        ]
+      },
+      "tier2": {
+        "tcs_with_critical": 0,
+        "top_rules": []
+      },
+      "tier3": {
+        "tcs_with_findings": 9,
+        "top_rules": [
+          {
+            "rule_ref": "§8.5.2",
+            "count": 9,
+            "title": "Design Method missing"
+          },
+          {
+            "rule_ref": "§8.5.3",
+            "count": 9,
+            "title": "Design Method inconsistent with Procedure"
+          },
+          {
+            "rule_ref": "§8.1.1",
+            "count": 7,
+            "title": "Test Item length out of range"
+          },
+          {
+            "rule_ref": "§8.3.5",
+            "count": 6,
+            "title": "Final Step has no check target"
+          }
+        ]
+      }
+    },
+    "reasoning": "Tier 1：共 4 個 Req group，其中 4 個出現 Critical 拆解問題，1 個無英文 spec句（§6.6）。 Tier 2：0 個 Critical 對齊問題，多集中於 Final Step 工具未讀結果或數值未引用 spec。 Tier 3：31 筆寫作層違規（多為禁用動詞、模糊用語、Design Method 缺漏）。 修正順序建議：先補完 Tier 1 拆解 → 重審 → 再依 Tier 2 / Tier 3 finding 個別調整。"
+  }
+}

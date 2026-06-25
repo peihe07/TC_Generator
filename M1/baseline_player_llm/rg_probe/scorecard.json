@@ -1,0 +1,71 @@
+{
+  "total_tcs": 1,
+  "total_requirements": 1,
+  "gate_passed": false,
+  "kpis": {
+    "first_pass_rate": {
+      "name": "first_pass_rate",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "threshold": 0.8,
+      "passed": false
+    },
+    "requirement_coverage": {
+      "name": "requirement_coverage",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "threshold": 1.0,
+      "passed": null
+    },
+    "traceability_completeness": {
+      "name": "traceability_completeness",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "threshold": 0.95,
+      "passed": null
+    },
+    "design_method_accuracy": {
+      "name": "design_method_accuracy",
+      "numerator": 0,
+      "denominator": 1,
+      "value": 0.0,
+      "threshold": null,
+      "passed": null
+    },
+    "avg_decompose_depth": {
+      "name": "avg_decompose_depth",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "threshold": null,
+      "passed": null
+    },
+    "field_completeness": {
+      "name": "field_completeness",
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "threshold": 0.98,
+      "passed": null
+    },
+    "reality_gap_rate": {
+      "name": "reality_gap_rate",
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0,
+      "threshold": null,
+      "passed": null
+    },
+    "tier1_critical_req_rate": {
+      "name": "tier1_critical_req_rate",
+      "numerator": 1,
+      "denominator": 1,
+      "value": 1.0,
+      "threshold": null,
+      "passed": null
+    }
+  }
+}
