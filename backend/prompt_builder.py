@@ -726,13 +726,24 @@ Return JSON with keys: {output_keys}
 Before emitting, run the WRITING DISCIPLINE self-check listed in the system prompt."""
 
 
-def build_decompose_prompt(requirement: str, rules_text: str) -> str:
-    """Build prompt to decompose a requirement into distinct test scenarios."""
+def build_decompose_prompt(requirement: str, rules_text: str,
+                           domain_block: str | None = None) -> str:
+    """Build prompt to decompose a requirement into distinct test scenarios.
+
+    `domain_block` (Stage 1 Domain Pack) is GROUND TRUTH: decompose to cover
+    every spec/domain-defined branch & enumeration value, but never invent a
+    state/mode the domain does not define.
+    """
     rules_section = (
         f"\n\n## Rules (for context, these will guide TC generation after decomposition)\n{rules_text}"
         if rules_text else ""
     )
-    return f"""## Task
+    domain_section = (
+        f"\n\n## Domain Pack (GROUND TRUTH — decompose to cover every enumeration "
+        f"value / branch listed here; do NOT invent states/modes beyond it)\n{domain_block}"
+        if domain_block else ""
+    )
+    return f"""## Task{domain_section}
 Analyze the following software requirement following the ASPICE SWE.6 reviewer workflow:
 
 1. Extract the key concepts ("keywords") from the requirement. For each keyword, state its meaning in this context and which scenario ids will verify it.

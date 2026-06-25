@@ -536,6 +536,12 @@ class DecomposeResult:
     cost: float = 0.0
 
 
+def build_decompose_meta(results: "dict[str, DecomposeResult]") -> dict[str, int]:
+    """Map req_id -> decomposition depth (scenario count) for Stage 7's
+    `avg_decompose_depth` KPI. Feed the output of per-requirement decompose."""
+    return {req_id: len(res.scenarios or []) for req_id, res in results.items()}
+
+
 def generate_quick_tc(
     test_item: str,
     context: str | None,
@@ -571,10 +577,13 @@ def decompose_requirement(
     requirement: str,
     rules_text: str,
     model: str = DEFAULT_MODEL,
+    domain_block: str | None = None,
 ) -> DecomposeResult:
     """
     Decompose a requirement into distinct test scenarios.
 
+    `domain_block` (Stage 1 Domain Pack) grounds the decomposition so it covers
+    every spec-defined branch/enumeration without inventing undefined states.
     Returns structured analysis + scenario list.
     Raises GenerationError on API or parse failure.
     """
@@ -584,7 +593,7 @@ def decompose_requirement(
         f"## ASPICE SWE.6 Rules (authoritative — follow strictly)\n\n{focused_rules}\n\n---\n\n{analyst_base}"
         if focused_rules else analyst_base
     )
-    user_prompt = build_decompose_prompt(requirement, rules_text="")
+    user_prompt = build_decompose_prompt(requirement, rules_text="", domain_block=domain_block)
     response = _chat(system, user_prompt, model, max_tokens=2000)
 
     raw_text = response.text

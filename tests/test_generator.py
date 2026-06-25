@@ -844,3 +844,37 @@ class TestGenerateBatchMulti:
         # 失敗批次已耗用的 token 仍被計入（300+150 + 3*(10+5)）
         assert result.input_tokens == 330
         assert result.output_tokens == 165
+
+
+class TestStage3DecomposeDomain:
+    def test_build_decompose_prompt_injects_domain_block(self):
+        from prompt_builder import build_decompose_prompt
+        p = build_decompose_prompt("the HU shall toggle Repeat", rules_text="",
+                                   domain_block="# Domain Pack\nRepeat: All/One Track only")
+        assert "Domain Pack" in p and "All/One Track only" in p
+        # Without a domain block the section is absent.
+        assert "Domain Pack" not in build_decompose_prompt("x", rules_text="")
+
+    @patch("generator._chat")
+    def test_decompose_requirement_passes_domain_block(self, mock_chat):
+        captured = {}
+
+        def _cap(system, user, model, max_tokens=None, json_mode=True):
+            captured["user"] = user
+            return make_chat_response({
+                "keywords": [], "reasoning": "r",
+                "scenarios": [{"name": "s1"}, {"name": "s2"}],
+            })
+
+        mock_chat.side_effect = _cap
+        decompose_requirement("the HU shall toggle Repeat", rules_text="",
+                              domain_block="# Domain Pack\nRepeat: All/One Track only")
+        assert "Domain Pack" in captured["user"]
+
+    def test_build_decompose_meta_counts_scenarios(self):
+        from generator import build_decompose_meta, DecomposeResult
+        results = {
+            "REQ-A": DecomposeResult(reasoning="", scenarios=[{}, {}, {}]),
+            "REQ-B": DecomposeResult(reasoning="", scenarios=[{}]),
+        }
+        assert build_decompose_meta(results) == {"REQ-A": 3, "REQ-B": 1}
