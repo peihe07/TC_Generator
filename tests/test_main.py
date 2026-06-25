@@ -312,3 +312,73 @@ class TestReviewMode:
         assert exit_code == 2
         captured = capsys.readouterr()
         assert "generate-only flags" in captured.err
+
+
+# ---------------------------------------------------------------------------
+# Stage 2.5 / 7 / 6 — new CLI subcommands (zero API)
+# ---------------------------------------------------------------------------
+
+import json as _json
+
+
+def _write_findings(path):
+    path.write_text(_json.dumps({
+        "batch_meta": {"source_file": "x.xlsx", "total_tcs": 4, "total_req_groups": 2},
+        "per_req_findings": [
+            {"req_id": "R1", "tier": 1, "severity": "Critical", "rule_ref": "§6.3"},
+        ],
+        "per_tc_findings": [
+            {"tc_id": "T1", "row": 10, "findings": [
+                {"tier": 2, "rule_ref": "§7.4", "severity": "Critical"}]},
+        ],
+        "batch_summary": {},
+    }, ensure_ascii=False), encoding="utf-8")
+
+
+class TestScorecardCli:
+    def test_scorecard_writes_outputs(self, tmp_path):
+        findings = tmp_path / "findings.json"
+        _write_findings(findings)
+        out = tmp_path / "sc_out"
+        assert main(["--scorecard", "--findings", str(findings),
+                     "--output-dir", str(out)]) == 0
+        assert (out / "scorecard.json").is_file()
+        assert (out / "scorecard.md").is_file()
+        data = _json.loads((out / "scorecard.json").read_text(encoding="utf-8"))
+        assert data["total_tcs"] == 4
+        assert data["kpis"]["tier1_critical_req_rate"]["numerator"] == 1
+
+    def test_scorecard_missing_findings_returns_2(self, tmp_path):
+        assert main(["--scorecard", "--findings",
+                     str(tmp_path / "nope.json"), "--output-dir", str(tmp_path)]) == 2
+
+
+class TestBudgetCli:
+    def test_preflight_uncalibrated_waits(self, tmp_path, monkeypatch, capsys):
+        monkeypatch.chdir(tmp_path)  # no config/budget.json -> defaults (uncalibrated)
+        assert main(["--preflight", "--remaining-pct", "0.65",
+                     "--n-light", "10", "--n-deep", "2"]) == 0
+        assert "WAIT" in capsys.readouterr().out
+
+    def test_preflight_requires_remaining_pct(self):
+        assert main(["--preflight", "--n-light", "10"]) == 2
+
+    def test_calibrate_roundtrips_to_budget_json(self, tmp_path, monkeypatch):
+        monkeypatch.chdir(tmp_path)
+        assert main(["--calibrate", "--start-pct", "1.0", "--end-pct", "0.88",
+                     "--n-probe", "10", "--regime", "deep"]) == 0
+        cfg = _json.loads((tmp_path / "config" / "budget.json").read_text(encoding="utf-8"))
+        assert abs(cfg["per_req_pct_deep"] - 0.012) < 1e-9
+
+
+class TestReviewDomainPackCli:
+    def test_review_dry_run_accepts_domain_pack(self, tmp_path):
+        fp = _build_review_workbook(tmp_path)
+        dp = tmp_path / "dp.json"
+        dp.write_text(_json.dumps({"project": "X", "glossary": [
+            {"term": "A", "definition": "B"}]}), encoding="utf-8")
+        out = tmp_path / "rev_out"
+        # dry-run skips the LLM, but the --domain-pack arg must parse and not crash.
+        assert main(["--input", fp, "--review", "--dry-run",
+                     "--output-dir", str(out), "--domain-pack", str(dp)]) == 0
+        assert (out / "scorecard.json").is_file()

@@ -500,3 +500,19 @@ def test_llm_pipeline_injects_domain_block_and_reality_gap(monkeypatch):
     # Reality-gap finding flowed through with its flag.
     gaps = [f for tc in per_tc for f in tc["findings"] if f.get("reality_gap")]
     assert gaps and gaps[0]["rule_ref"] == "§7.6"
+
+
+def test_review_workbook_dry_run_feeds_scorecard(tmp_path):
+    """Cross-module: real findings.json shape from review_workbook parses cleanly
+    into the Stage 7 scorecard."""
+    from scorecard import compute_scorecard
+    fp = _build_workbook(tmp_path, [{
+        "D": "SWE1-PROJ-001", "F": "TC-PROJ-001-001", "I": "open the page",
+        "L": "1. open", "M": "1. page shown", "P": "P1",
+    }])
+    report = review_workbook(fp, dry_run=True)
+    sc = compute_scorecard(report)
+    assert sc.total_tcs == report["batch_meta"]["total_tcs"]
+    assert sc.total_requirements == report["batch_meta"]["total_req_groups"]
+    # first_pass_rate is computable from the real findings shape.
+    assert sc.kpis["first_pass_rate"].denominator == sc.total_tcs
