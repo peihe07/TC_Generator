@@ -401,6 +401,39 @@ def _client() -> Any:
     )
 
 
+# --- Optional provider delegation seam (Phase 0) -------------------------------
+# When a provider is registered via `set_provider`, `_chat` delegates to it
+# instead of calling OpenAI directly. Default (None) keeps the legacy OpenAI
+# path byte-for-byte, so existing behaviour and tests are unchanged. The adapter
+# below makes an `LLMResponse` look like an OpenAI chat response so the legacy
+# call sites (`.choices[0].message.content`, `_usage_tokens(.usage)`) keep working.
+from types import SimpleNamespace
+
+_ACTIVE_PROVIDER: Any = None
+
+
+def set_provider(provider: Any) -> None:
+    """Register an LLMProvider for `_chat` to delegate to (None = legacy OpenAI)."""
+    global _ACTIVE_PROVIDER
+    _ACTIVE_PROVIDER = provider
+
+
+def get_provider() -> Any:
+    return _ACTIVE_PROVIDER
+
+
+def _adapt_provider_response(resp: Any) -> Any:
+    u = resp.usage
+    usage = SimpleNamespace(
+        prompt_tokens=u.input_tokens,
+        completion_tokens=u.output_tokens,
+        prompt_tokens_details=SimpleNamespace(cached_tokens=u.cached_input_tokens),
+    )
+    message = SimpleNamespace(content=resp.text)
+    choice = SimpleNamespace(message=message, finish_reason=resp.stop_reason)
+    return SimpleNamespace(choices=[choice], usage=usage)
+
+
 def _chat(
     system: str,
     user: str,
@@ -408,11 +441,26 @@ def _chat(
     max_tokens: int | None = None,
     json_mode: bool = True,
 ):
-    """呼叫 OpenAI chat completions；統一錯誤處理與 JSON mode。
+    """呼叫 LLM chat completions；統一錯誤處理與 JSON mode。
 
-    `max_tokens=None` 時不傳 `max_completion_tokens`，讓 OpenAI 用 model 的預設
-    上限。對於拆分 TC 不固定數量的場景特別重要，避免被截斷導致 JSON parse 失敗。
+    預設走 OpenAI；若已 `set_provider`，改委派該 provider（headless / A-B / Claude）。
+    `max_tokens=None` 時不傳 `max_completion_tokens`，讓 model 用預設上限。
     """
+    provider = _ACTIVE_PROVIDER
+    if provider is not None:
+        messages = [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ]
+        resp = provider.chat(
+            messages,
+            model,
+            max_tokens=max_tokens if max_tokens is not None else 4096,
+            json_mode=json_mode,
+            cache_prefix=system,
+        )
+        return _adapt_provider_response(resp)
+
     client = _client()
     kwargs: dict = {
         "model": model,
