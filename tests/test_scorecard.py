@@ -132,6 +132,7 @@ def test_scorecard_json_schema_stable(tmp_path):
         "avg_decompose_depth",
         "field_completeness",
         "reality_gap_rate",
+        "tier1_critical_req_rate",
     ]
     assert list(d["kpis"].keys()) == expected_order
 
@@ -150,6 +151,22 @@ def test_scorecard_json_schema_stable(tmp_path):
         reloaded = json.load(fh)
     assert reloaded["total_tcs"] == 2
     assert (tmp_path / "scorecard.md").is_file()
+
+
+def test_tier1_critical_req_rate():
+    # 4 Req groups; 2 carry a Tier-1 Critical decomposition finding -> 0.5.
+    findings = _findings(6, 4, [])
+    findings["per_req_findings"] = [
+        {"req_id": "R1", "tier": 1, "severity": "Critical", "rule_ref": "§6.3"},
+        {"req_id": "R2", "tier": 1, "severity": "Critical", "rule_ref": "§6.1"},
+        {"req_id": "R2", "tier": 1, "severity": "Critical", "rule_ref": "§6.1"},  # dup req
+        {"req_id": "R3", "tier": 1, "severity": "Major", "rule_ref": "§6.6"},     # not Critical
+    ]
+    sc = compute_scorecard(findings)
+    k = sc.kpis["tier1_critical_req_rate"]
+    assert k.numerator == 2 and k.denominator == 4  # R1, R2 (dedup); R3 excluded
+    assert k.value == pytest.approx(0.5)
+    assert k.passed is None  # report-only
 
 
 def test_design_method_accuracy_from_findings():

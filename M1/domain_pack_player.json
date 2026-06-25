@@ -1,0 +1,162 @@
+{
+  "project": "Player (CFTS025 Player Functions)",
+  "glossary": [
+    {
+      "term": "Player subgroup",
+      "definition": "Entertainment A/V sources sharing the same Source Control events: External CD, HU AUX, HU USB, HU BTSA (CFTS025 §3.1.1.3.1)"
+    },
+    {
+      "term": "Source Control events",
+      "definition": "Seek Up/Down, FF/RW, Play/Pause, Browse/List, Shuffle, Repeat — apply across all Player subgroup sources"
+    },
+    {
+      "term": "Repeat All",
+      "definition": "Default mode: play whole 'Now Playing' playlist, loop to start after last. 'repeat' softkey shown in OFF state"
+    },
+    {
+      "term": "Repeat One Track",
+      "definition": "Repeat the currently playing item. 'repeat' softkey shown in ON state. Toggled from Repeat All via the same softkey"
+    },
+    {
+      "term": "Shuffle On/Off",
+      "definition": "On = play playlist in randomized sequence; Off = normal sequence (CFTS025 §3.1.1.4.2.8)"
+    },
+    {
+      "term": "Seek Up (Skip Forward)",
+      "definition": "Go to next file, wrap-around to first; in Random mode regenerates random list (§3.1.1.4.2.1)"
+    },
+    {
+      "term": "Seek Down",
+      "definition": "Go to current or previous track/file (§4.1.5.1.2)"
+    }
+  ],
+  "feature_model": [
+    {
+      "feature": "Play/Pause",
+      "normal": "toggles playback; Pause softkey shown while playing",
+      "abnormal": "no media / no supported files -> control unavailable",
+      "boundary": "binary state: Playing <-> Paused"
+    },
+    {
+      "feature": "Repeat",
+      "normal": "toggle Repeat All <-> Repeat One Track via 'repeat' softkey",
+      "abnormal": "—",
+      "boundary": "EXACTLY TWO states (All, One Track). There is NO 'No Repeat/Off' mode"
+    },
+    {
+      "feature": "Shuffle",
+      "normal": "toggle On/Off; On randomizes Now Playing playlist",
+      "abnormal": "—",
+      "boundary": "binary: On / Off"
+    },
+    {
+      "feature": "Seek/Skip",
+      "normal": "Seek Up=next (wrap to first), Seek Down=prev/current",
+      "abnormal": "unreadable file -> auto skip forward to next readable (PU0024)",
+      "boundary": "wrap-around at playlist ends"
+    },
+    {
+      "feature": "Unsupported/Read errors",
+      "normal": "playback of supported files",
+      "abnormal": "no supported files -> PU0003; disc/USB read error -> PU0005 '(Device Name) error'; unreadable track -> PU0024 auto-skip",
+      "boundary": "format list per CFTS 'Disc Media' section"
+    }
+  ],
+  "interactions": [
+    {
+      "features": [
+        "Repeat",
+        "Shuffle",
+        "Seek"
+      ],
+      "rule": "All are Source Control events; identical behaviour expected across External CD / HU AUX / HU USB / HU BTSA — sibling TCs per source"
+    },
+    {
+      "features": [
+        "Shuffle",
+        "Seek Up"
+      ],
+      "rule": "In Random (Shuffle On) mode, Seek Up regenerates a new random list"
+    }
+  ],
+  "boundaries": [
+    {
+      "name": "Repeat modes",
+      "enum": [
+        "Repeat All (default, softkey OFF)",
+        "Repeat One Track (softkey ON)"
+      ],
+      "source": "CFTS025 §3.1.1.4.2.7"
+    },
+    {
+      "name": "Shuffle states",
+      "enum": [
+        "On (randomized)",
+        "Off (normal)"
+      ],
+      "source": "CFTS025 §3.1.1.4.2.8"
+    },
+    {
+      "name": "Player sources",
+      "enum": [
+        "External CD",
+        "HU AUX",
+        "HU USB",
+        "HU BTSA"
+      ],
+      "source": "CFTS025 §3.1.1.3.1"
+    },
+    {
+      "name": "Media error Pop Ups",
+      "enum": [
+        "PU0001 Loading Disc",
+        "PU0003 Media file not found (no supported files)",
+        "PU0004 Disc Hot-Wait",
+        "PU0005 (Device Name) error (read error)",
+        "PU0024 file not readable -> auto skip",
+        "PU0025 Reading (Device Name)"
+      ],
+      "source": "Pop Up List HMI (Dec 15 2023)"
+    },
+    {
+      "name": "Unsupported-file handling",
+      "enum": [
+        "Generic 'No Supported Files Found' (PU0003) only — NO per-format enumeration in spec"
+      ],
+      "source": "CFTS025 §3.1.1.2.4.2 (confirmed at Gate ①: no format list)"
+    }
+  ],
+  "traceability_hints": [
+    {
+      "req": "SWE1-PLA-001",
+      "spec_ref": "§3.1.1.2.4.2 No Supported Files Found Error -> PU0003"
+    },
+    {
+      "req": "SWE1-PLA-027",
+      "spec_ref": "§3.1.1.3.1 Source Control events (full Play Controls list)"
+    },
+    {
+      "req": "SWE1-PLA-028",
+      "spec_ref": "Play/Pause softkey state"
+    },
+    {
+      "req": "SWE1-PLA-030-01",
+      "spec_ref": "§3.1.1.4.2.7 Repeat All / Repeat One Track"
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "Confirm Repeat has NO 'Off/No Repeat' state — spec defines only Repeat All <-> Repeat One Track. (Reviewer earlier hallucinated a 'No Repeat' mode.)",
+      "context": "CFTS025 §3.1.1.4.2.7",
+      "status": "resolved",
+      "resolution": "Confirmed: Repeat has ONLY Repeat All <-> Repeat One Track. No 'Off/No Repeat' state."
+    },
+    {
+      "question": "Supported media file-format list — defined in CFTS 'Disc Media' section, not in this doc. Need that list to enumerate unsupported-format negative TCs.",
+      "context": "§3.1.1.2.4.2 references it",
+      "status": "resolved",
+      "resolution": "No enumerated format list exists. Unsupported handling is the SINGLE generic 'No Supported Files Found' error (PU0003). Do NOT enumerate per-format negative TCs (.exe/.apk/etc.) — over-reach beyond spec."
+    }
+  ],
+  "reviewed_at": "2026-06-25T14:03:52.439391+00:00"
+}

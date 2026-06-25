@@ -33,6 +33,7 @@ packages = ["providers"]
 py-modules = [
     "api_server",
     "budget_planner",
+    "domain_pack",
     "generator",
     "grouper",
     "id_generator",

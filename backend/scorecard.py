@@ -45,6 +45,8 @@ KPI_ORDER = [
     "avg_decompose_depth",
     "field_completeness",
     "reality_gap_rate",
+    # Appended (schema evolves by appending only, to keep older columns stable).
+    "tier1_critical_req_rate",  # lower is better; measures decomposition depth
 ]
 
 # Severities that disqualify a TC from "first pass".
@@ -190,6 +192,22 @@ def _reality_gap_rate(findings: dict, total_tcs: int, threshold: float | None) -
     return _make_kpi("reality_gap_rate", len(flagged), total_tcs, threshold)
 
 
+def _tier1_critical_req_rate(findings: dict, total_requirements: int,
+                            threshold: float | None) -> KPI:
+    """Fraction of Req groups carrying a Tier-1 Critical decomposition finding.
+
+    Lower is better — directly measures under-decomposition (missing enumeration
+    values / negative branches) that only the semantic review catches.
+    """
+    crit = {
+        f.get("req_id")
+        for f in findings.get("per_req_findings", [])
+        if f.get("tier") == 1 and f.get("severity") == "Critical"
+    }
+    crit.discard(None)
+    return _make_kpi("tier1_critical_req_rate", len(crit), total_requirements, threshold)
+
+
 def compute_scorecard(
     findings: dict,
     validation: dict | None = None,
@@ -218,6 +236,8 @@ def compute_scorecard(
             validation, total_tcs, th.get("field_completeness")),
         "reality_gap_rate": _reality_gap_rate(
             findings, total_tcs, th.get("reality_gap_rate")),
+        "tier1_critical_req_rate": _tier1_critical_req_rate(
+            findings, total_requirements, th.get("tier1_critical_req_rate")),
     }
 
     gated = [k for k in kpis.values() if k.threshold is not None and k.value is not None]
