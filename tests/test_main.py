@@ -382,3 +382,21 @@ class TestReviewDomainPackCli:
         assert main(["--input", fp, "--review", "--dry-run",
                      "--output-dir", str(out), "--domain-pack", str(dp)]) == 0
         assert (out / "scorecard.json").is_file()
+
+
+class TestTraceCli:
+    def test_trace_writes_outputs(self, tmp_path):
+        fp = _build_review_workbook(tmp_path)
+        reqs = tmp_path / "swe1.json"
+        reqs.write_text(_json.dumps([
+            {"id": "SWE1-X-001", "title": "Pairing", "desc": "the HU shall complete pairing"},
+        ]), encoding="utf-8")
+        out = tmp_path / "trace_out"
+        assert main(["--trace", "--input", fp, "--swe1-reqs", str(reqs),
+                     "--output-dir", str(out)]) == 0
+        assert (out / "traceability.json").is_file()
+        assert (out / "traceability.md").is_file()
+
+    def test_trace_requires_swe1_reqs(self, tmp_path):
+        fp = _build_review_workbook(tmp_path)
+        assert main(["--trace", "--input", fp, "--output-dir", str(tmp_path)]) == 2

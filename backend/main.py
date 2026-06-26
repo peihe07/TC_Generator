@@ -94,6 +94,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
              "anchors traceability by CONTENT match instead of the (possibly "
              "renumbered) req_id.",
     )
+    p.add_argument(
+        "--trace",
+        action="store_true",
+        help="Content-based traceability (zero API): match each TC to its SWE1 "
+             "requirement by text. Use with --input and --swe1-reqs.",
+    )
     return p.parse_args(argv)
 
 
@@ -531,8 +537,60 @@ def run_calibrate(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_trace(args: argparse.Namespace) -> int:
+    """Content-based traceability (zero API): match TCs to SWE1 reqs by text."""
+    from parser import parse_tc_xlsx
+    from req_tracer import load_swe1_reqs, trace_tcs, summarize
+
+    if not args.input or not args.swe1_reqs:
+        print("Error: --trace requires --input and --swe1-reqs.", file=sys.stderr)
+        return 2
+
+    reqs = load_swe1_reqs(args.swe1_reqs)
+    parsed = parse_tc_xlsx(args.input)
+    rows = parsed["rows"] if isinstance(parsed, dict) else parsed
+    results = trace_tcs(rows, reqs)
+    s = summarize(results)
+
+    os.makedirs(args.output_dir, exist_ok=True)
+    with open(os.path.join(args.output_dir, "traceability.json"), "w",
+              encoding="utf-8") as fh:
+        json.dump({"summary": s, "results": [r.__dict__ for r in results]},
+                  fh, ensure_ascii=False, indent=2)
+
+    rate = s["content_traceability_rate"]
+    lines = [
+        "# Traceability (content-based)", "",
+        f"- 總 TC:{s['total_tcs']}",
+        f"- 內文可追溯:{s['traceable']} / 未追溯:{s['untraceable']}",
+        f"- 內文可追溯率:{rate:.1%}" if rate is not None else "- 內文可追溯率:N/A",
+        f"- ID 與內文不符:{s['id_mismatch_count']}", "",
+        "## ID 與內文不符的 TC(換 ID 嫌疑)", "",
+        "| TC | 寫的 req_id | 內文對到 | score |", "|---|---|---|---|",
+    ]
+    for r in results:
+        if r.traceable and not r.id_agrees:
+            lines.append(f"| {r.tc_id} | {r.tc_req_id} | {r.matched_req_id} | {r.score} |")
+    untraceable = [r for r in results if not r.traceable]
+    if untraceable:
+        lines += ["", "## 內文對不到任何需求的 TC", ""]
+        lines += [f"- {r.tc_id}(score {r.score})" for r in untraceable]
+    with open(os.path.join(args.output_dir, "traceability.md"), "w",
+              encoding="utf-8") as fh:
+        fh.write("\n".join(lines) + "\n")
+
+    print(f"\n{'='*60}\nContent-based Traceability")
+    print(f"  TCs: {s['total_tcs']}  traceable: {s['traceable']}  "
+          f"id-mismatch: {s['id_mismatch_count']}")
+    print(f"  Wrote: {args.output_dir}/traceability.json")
+    print(f"         {args.output_dir}/traceability.md\n{'='*60}\n")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.trace:
+        return run_trace(args)
     if args.preflight:
         return run_preflight(args)
     if args.calibrate:
