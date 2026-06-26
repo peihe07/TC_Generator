@@ -190,3 +190,69 @@ class TestParseTcXlsx:
         result = parse_tc_xlsx(str(filepath))
         assert result["row_count"] == 2
         assert [row["row_num"] for row in result["rows"]] == [10, 12]
+
+
+class TestHeaderBasedColumnResolution:
+    """Regression: real workbooks insert columns (e.g. 'Estimated Test Time'),
+    shifting 'Design Methods' from Q to R. Resolution must follow the header
+    text, not a fixed letter, and must disambiguate twin columns."""
+
+    def _build(self, tmp_path, headers, data):
+        filepath = tmp_path / "Proj_SWQT_Player_20260626.xlsx"
+        wb = Workbook()
+        ws_pd = wb.active
+        ws_pd.title = "Product Document"
+        ws_pd.cell(row=3, column=2, value="newR1L")
+        ws_tc = wb.create_sheet("Test Case Specification&Result")
+        for col, name in headers.items():
+            ws_tc.cell(row=9, column=col, value=name)
+        for col, value in data.items():
+            ws_tc.cell(row=10, column=col, value=value)
+        wb.save(filepath)
+        return str(filepath)
+
+    def test_shifted_design_method_read_from_correct_column(self, tmp_path):
+        # Layout matching the real Player file: Q = Estimated Test Time (empty),
+        # R = the actual Design Methods column.
+        headers = {
+            4: "Requirement or Design ID 需求/設計 ID",
+            6: "Test Case ID 測試用例ID",
+            9: "Test Item 測試項目",
+            16: "Test Case Priority 測試用例優先級別",
+            17: "Estimated Test Time (mins) 預估測試時間",
+            18: "Test Case Design  Methods 測試用例設計方法",
+        }
+        data = {
+            4: "SWE1-PLA-001",
+            6: "NR1L-Player-001",
+            9: "Verify popup PU0003 appears.",
+            16: "P1",
+            17: None,  # Estimated Test Time empty
+            18: "負向測試 (Negative / Invalid)",
+        }
+        result = parse_tc_xlsx(self._build(tmp_path, headers, data))
+        row = result["rows"][0]
+        assert row["design_method"] == "負向測試 (Negative / Invalid)"
+        assert row["priority"] == "P1"
+
+    def test_twin_columns_disambiguated(self, tmp_path):
+        # Polarion req-id (C) and TestRail tc-id (E) must NOT be picked; the
+        # working req-id (D) and tc-id (F) must win.
+        headers = {
+            3: "Requirement or Design ID (Polarion) 設計/需求 ID (Polarion)",
+            4: "Requirement or Design ID 需求/設計 ID",
+            5: "Test Case ID (TestRail) 測試用例 ID (TestRail)",
+            6: "Test Case ID 測試用例ID",
+            9: "Test Item 測試項目",
+        }
+        data = {
+            3: "POLARION-999",
+            4: "SWE1-PLA-007",
+            5: "TR-12345",
+            6: "NR1L-Player-007",
+            9: "Verify repeat mode.",
+        }
+        result = parse_tc_xlsx(self._build(tmp_path, headers, data))
+        row = result["rows"][0]
+        assert row["req_id"] == "SWE1-PLA-007"
+        assert row["tc_id"] == "NR1L-Player-007"
