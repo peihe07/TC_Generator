@@ -35,6 +35,14 @@ def _ids_agree(a: str, b: str) -> bool:
 
 # Below this Jaccard score a TC is considered NOT traceable to any requirement.
 DEFAULT_THRESHOLD = 0.08
+# The content match must beat the TC's own written-id requirement by at least
+# this margin to be a SUSPECT mismatch worth a human/semantic check. Sibling-
+# templated requirements (MSC vs DAP Alphajump, Skip Forward vs Back, the "BT
+# Device Function - X" family) score almost identically — a tiny margin means
+# "ambiguous twin", where the written id is probably fine and token-Jaccard
+# simply cannot tell them apart (only a semantic review can). Calibrated on the
+# Player set, where genuine suspects sit at margin >= ~0.03 and exact twins at 0.
+MISMATCH_MARGIN = 0.03
 
 
 @dataclass
@@ -46,6 +54,14 @@ class TraceResult:
     score: float
     traceable: bool
     id_agrees: bool           # does the TC's own req_id match the content match?
+    written_score: float = 0.0   # content score of TC vs its own written-id req
+    ambiguous: bool = False      # best match barely beats written id -> sibling twin
+
+    @property
+    def confident_mismatch(self) -> bool:
+        """A mismatch we trust: content-traceable, the written id does not match
+        the content, AND it is not a sibling-twin ambiguity."""
+        return self.traceable and not self.id_agrees and not self.ambiguous
 
 
 def load_swe1_reqs(path: str) -> list[dict]:
@@ -81,9 +97,25 @@ def trace_tcs(tcs: list[dict], reqs: list[dict],
     out: list[TraceResult] = []
     for tc in tcs:
         text = f"{tc.get('test_item', '')} {tc.get('expected_result', '')}"
+        tc_tokens = _tokenize(text)
         best, score = match_tc(text, reqs, req_tokens)
         matched_id = best.get("id") if best else None
         tc_req = str(tc.get("req_id", "") or "")
+
+        # Score the TC against its OWN written-id requirement (if it exists).
+        written_score = 0.0
+        written_found = False
+        for req, rt in zip(reqs, req_tokens):
+            if _ids_agree(req.get("id", ""), tc_req):
+                written_found = True
+                written_score = max(written_score, _jaccard(tc_tokens, rt))
+
+        id_agrees = _ids_agree(matched_id, tc_req)
+        # Ambiguous = the written id req exists and scores almost as well as the
+        # best match -> sibling-templated twin, the content can't separate them.
+        ambiguous = (not id_agrees and written_found
+                     and (score - written_score) < MISMATCH_MARGIN)
+
         out.append(TraceResult(
             tc_id=str(tc.get("tc_id", "") or ""),
             tc_req_id=tc_req,
@@ -91,8 +123,9 @@ def trace_tcs(tcs: list[dict], reqs: list[dict],
             matched_title=best.get("title", "") if best else "",
             score=round(score, 3),
             traceable=score >= threshold,
-            # Compare by normalized FEATURE-NNN core (namespace-independent).
-            id_agrees=_ids_agree(matched_id, tc_req),
+            id_agrees=id_agrees,
+            written_score=round(written_score, 3),
+            ambiguous=ambiguous,
         ))
     return out
 
@@ -110,7 +143,9 @@ def to_scorecard_traceability(results: list[TraceResult],
             r.tc_id: {
                 "matched": r.traceable,
                 "req_id": r.matched_req_id,   # content-matched req (the reliable one)
-                "id_agrees": r.id_agrees,
+                # Treat sibling-twin ambiguity as "agrees" so it isn't counted as
+                # a req_id mismatch in the scorecard.
+                "id_agrees": r.id_agrees or r.ambiguous,
             }
             for r in results
         },
@@ -121,11 +156,13 @@ def to_scorecard_traceability(results: list[TraceResult],
 def summarize(results: list[TraceResult]) -> dict:
     total = len(results)
     traceable = sum(1 for r in results if r.traceable)
-    id_mismatch = sum(1 for r in results if r.traceable and not r.id_agrees)
+    confident = sum(1 for r in results if r.confident_mismatch)
+    ambiguous = sum(1 for r in results if r.ambiguous)
     return {
         "total_tcs": total,
         "traceable": traceable,
         "untraceable": total - traceable,
         "content_traceability_rate": (traceable / total) if total else None,
-        "id_mismatch_count": id_mismatch,  # content matches but written req_id differs
+        "id_mismatch_count": confident,    # confident mismatches only (twins excluded)
+        "ambiguous_twin_count": ambiguous,  # sibling-templated; written id likely fine
     }

@@ -55,3 +55,32 @@ def test_id_agrees_across_namespaces():
     assert _ids_agree("SWE1-PLA-006-02", "SWE1-PLA-006-02") is True
     # Genuinely different feature numbers do NOT agree.
     assert _ids_agree("SWE1-PLA-006-02", "SWE1-PLA-030-02") is False
+
+
+def test_sibling_twin_suppressed_real_suspect_kept():
+    """Templated twins (MSC vs DAP Alphajump, identical wording) -> ambiguous, not
+    a mismatch. A TC whose content clearly leans to a different feature -> suspect."""
+    reqs = [
+        {"id": "SWE1-PLA-014", "title": "USB MSC Alphajump",
+         "desc": "enable the alphajump softkey and display the alphajump screen"},
+        {"id": "SWE1-PLA-016", "title": "USB DAP Alphajump",
+         "desc": "enable the alphajump softkey and display the alphajump screen"},
+        {"id": "SWE1-PLA-039", "title": "Metadata Display",
+         "desc": "show and hide the track metadata title artist album on screen"},
+    ]
+    tcs = [
+        # Written 016 (DAP); content has no MSC/DAP keyword -> identical to both -> twin.
+        {"tc_id": "T-twin", "req_id": "SWE1-PLA-016",
+         "test_item": "enable the alphajump softkey and display the alphajump screen"},
+        # Written 040 (not in universe); content clearly = metadata -> suspect.
+        {"tc_id": "T-suspect", "req_id": "SWE1-PLA-040",
+         "test_item": "show and hide the track metadata title artist album on screen"},
+    ]
+    res = {r.tc_id: r for r in trace_tcs(tcs, reqs)}
+    assert res["T-twin"].ambiguous is True
+    assert res["T-twin"].confident_mismatch is False
+    assert res["T-suspect"].confident_mismatch is True
+
+    s = summarize(list(res.values()))
+    assert s["id_mismatch_count"] == 1
+    assert s["ambiguous_twin_count"] == 1

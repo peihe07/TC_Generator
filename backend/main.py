@@ -564,13 +564,24 @@ def run_trace(args: argparse.Namespace) -> int:
         f"- 總 TC:{s['total_tcs']}",
         f"- 內文可追溯:{s['traceable']} / 未追溯:{s['untraceable']}",
         f"- 內文可追溯率:{rate:.1%}" if rate is not None else "- 內文可追溯率:N/A",
-        f"- ID 與內文不符:{s['id_mismatch_count']}", "",
-        "## ID 與內文不符的 TC(換 ID 嫌疑)", "",
-        "| TC | 寫的 req_id | 內文對到 | score |", "|---|---|---|---|",
+        f"- **內文較傾向別的需求(建議查,suspect):{s['id_mismatch_count']}**",
+        f"- 兄弟雙胞胎 / 平手(同模板,工具分不出,寫的 id 多半對):{s['ambiguous_twin_count']}",
+        "",
+        "> 注意:這是 token 比對的建議,不是定論。模板化需求只有語意 review 能確認。",
+        "", "## 建議優先查的 TC(內文較傾向別的需求)", "",
+        "| TC | 寫的 req_id | 內文較像 | score | 自身分 |", "|---|---|---|---|---|",
     ]
     for r in results:
-        if r.traceable and not r.id_agrees:
-            lines.append(f"| {r.tc_id} | {r.tc_req_id} | {r.matched_req_id} | {r.score} |")
+        if r.confident_mismatch:
+            lines.append(f"| {r.tc_id} | {r.tc_req_id} | {r.matched_req_id} | "
+                         f"{r.score} | {r.written_score} |")
+    twins = [r for r in results if r.ambiguous]
+    if twins:
+        lines += ["", "## 兄弟雙胞胎(同模板需求,工具分不出;寫的 id 多半正確)", "",
+                  "| TC | 寫的 req_id | 內文像 | score / 自身分 |", "|---|---|---|---|"]
+        for r in twins:
+            lines.append(f"| {r.tc_id} | {r.tc_req_id} | {r.matched_req_id} | "
+                         f"{r.score} / {r.written_score} |")
     untraceable = [r for r in results if not r.traceable]
     if untraceable:
         lines += ["", "## 內文對不到任何需求的 TC", ""]
@@ -581,7 +592,8 @@ def run_trace(args: argparse.Namespace) -> int:
 
     print(f"\n{'='*60}\nContent-based Traceability")
     print(f"  TCs: {s['total_tcs']}  traceable: {s['traceable']}  "
-          f"id-mismatch: {s['id_mismatch_count']}")
+          f"confident-mismatch: {s['id_mismatch_count']}  "
+          f"ambiguous-twin: {s['ambiguous_twin_count']}")
     print(f"  Wrote: {args.output_dir}/traceability.json")
     print(f"         {args.output_dir}/traceability.md\n{'='*60}\n")
     return 0
