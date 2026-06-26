@@ -1,65 +1,99 @@
 {
-  "project": "Player (CFTS025 Player Functions)",
+  "project": "Player (CFTS025) — SWE1 分析綜整 v2",
   "glossary": [
     {
       "term": "Player subgroup",
-      "definition": "Entertainment A/V sources sharing the same Source Control events: External CD, HU AUX, HU USB, HU BTSA (CFTS025 §3.1.1.3.1)"
+      "definition": "共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA"
     },
     {
-      "term": "Source Control events",
-      "definition": "Seek Up/Down, FF/RW, Play/Pause, Browse/List, Shuffle, Repeat — apply across all Player subgroup sources"
+      "term": "Now Playing playlist",
+      "definition": "當前播放清單;Repeat/Shuffle 都作用於此"
     },
     {
       "term": "Repeat All",
-      "definition": "Default mode: play whole 'Now Playing' playlist, loop to start after last. 'repeat' softkey shown in OFF state"
+      "definition": "預設;依序播完整清單後自動從第一首繼續。softkey 顯示 OFF 態(PLA-006-01/02, 009)"
     },
     {
-      "term": "Repeat One Track",
-      "definition": "Repeat the currently playing item. 'repeat' softkey shown in ON state. Toggled from Repeat All via the same softkey"
+      "term": "Repeat Song",
+      "definition": "重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)"
     },
     {
       "term": "Shuffle On/Off",
-      "definition": "On = play playlist in randomized sequence; Off = normal sequence (CFTS025 §3.1.1.4.2.8)"
+      "definition": "On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)"
     },
     {
-      "term": "Seek Up (Skip Forward)",
-      "definition": "Go to next file, wrap-around to first; in Random mode regenerates random list (§3.1.1.4.2.1)"
+      "term": "Alphajump",
+      "definition": "字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)"
     },
     {
-      "term": "Seek Down",
-      "definition": "Go to current or previous track/file (§4.1.5.1.2)"
+      "term": "DAP / MSC",
+      "definition": "USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)"
+    },
+    {
+      "term": "Source / Audio Tab",
+      "definition": "AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)"
     }
   ],
   "feature_model": [
     {
-      "feature": "Play/Pause",
-      "normal": "toggles playback; Pause softkey shown while playing",
-      "abnormal": "no media / no supported files -> control unavailable",
-      "boundary": "binary state: Playing <-> Paused"
+      "feature": "Error popups",
+      "normal": "播放支援檔",
+      "abnormal": "No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示)",
+      "boundary": "三類錯誤對應三個 PU ID;PU0005 為 catch-all"
+    },
+    {
+      "feature": "AUX",
+      "normal": "播放 AUX",
+      "abnormal": "無 command & control",
+      "boundary": "只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)"
     },
     {
       "feature": "Repeat",
-      "normal": "toggle Repeat All <-> Repeat One Track via 'repeat' softkey",
+      "normal": "預設 Repeat All;softkey toggle All↔Song",
       "abnormal": "—",
-      "boundary": "EXACTLY TWO states (All, One Track). There is NO 'No Repeat/Off' mode"
+      "boundary": "恰兩態:All(預設,softkey OFF)/ Song(softkey ON)。無 'Off/No Repeat' 態"
     },
     {
       "feature": "Shuffle",
-      "normal": "toggle On/Off; On randomizes Now Playing playlist",
+      "normal": "toggle On/Off",
       "abnormal": "—",
-      "boundary": "binary: On / Off"
+      "boundary": "二元:On(隨機)/ Off(正常序)"
     },
     {
-      "feature": "Seek/Skip",
-      "normal": "Seek Up=next (wrap to first), Seek Down=prev/current",
-      "abnormal": "unreadable file -> auto skip forward to next readable (PU0024)",
-      "boundary": "wrap-around at playlist ends"
+      "feature": "Metadata",
+      "normal": "顯示/隱藏切換(PLA-011)",
+      "abnormal": "BTSA metadata 不支援時的顯示(PLA-019)",
+      "boundary": "—"
     },
     {
-      "feature": "Unsupported/Read errors",
-      "normal": "playback of supported files",
-      "abnormal": "no supported files -> PU0003; disc/USB read error -> PU0005 '(Device Name) error'; unreadable track -> PU0024 auto-skip",
-      "boundary": "format list per CFTS 'Disc Media' section"
+      "feature": "Track List ('trks')",
+      "normal": "顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03)",
+      "abnormal": "—",
+      "boundary": "—"
+    },
+    {
+      "feature": "Folder/File Nav",
+      "normal": "USB MSC 資料夾/檔案瀏覽(PLA-013)",
+      "abnormal": "—",
+      "boundary": "—"
+    },
+    {
+      "feature": "Alphajump (MSC & DAP)",
+      "normal": "啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項)",
+      "abnormal": "Cancel softkey 取消",
+      "boundary": "只啟用清單存在首字母的字元(Intelligent Character Filtering)"
+    },
+    {
+      "feature": "DAP Category Nav",
+      "normal": "類別瀏覽(PLA-015)",
+      "abnormal": "—",
+      "boundary": "—"
+    },
+    {
+      "feature": "Browse Tab",
+      "normal": "捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02)",
+      "abnormal": "—",
+      "boundary": "menu item vs playable item 兩種選取行為"
     }
   ],
   "interactions": [
@@ -69,94 +103,118 @@
         "Shuffle",
         "Seek"
       ],
-      "rule": "All are Source Control events; identical behaviour expected across External CD / HU AUX / HU USB / HU BTSA — sibling TCs per source"
+      "rule": "皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)"
     },
     {
       "features": [
-        "Shuffle",
+        "AUX",
+        "所有播放控制"
+      ],
+      "rule": "AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab"
+    },
+    {
+      "features": [
+        "Shuffle On",
         "Seek Up"
       ],
-      "rule": "In Random (Shuffle On) mode, Seek Up regenerates a new random list"
+      "rule": "Random 模式下 Seek Up 會重新產生隨機清單"
     }
   ],
   "boundaries": [
     {
       "name": "Repeat modes",
       "enum": [
-        "Repeat All (default, softkey OFF)",
-        "Repeat One Track (softkey ON)"
+        "Repeat All (預設, softkey OFF)",
+        "Repeat Song (softkey ON)"
       ],
-      "source": "CFTS025 §3.1.1.4.2.7"
+      "source": "SWE1-PLA-006/008/009;CFTS PC4/PC4.1"
     },
     {
       "name": "Shuffle states",
       "enum": [
-        "On (randomized)",
-        "Off (normal)"
+        "On (隨機)",
+        "Off (正常序)"
       ],
-      "source": "CFTS025 §3.1.1.4.2.8"
+      "source": "SWE1-PLA-010;CFTS PC5.1"
+    },
+    {
+      "name": "Error popups",
+      "enum": [
+        "PU0003 No Supported Files",
+        "PU0024 USB File Read Error",
+        "PU0005 Generic Error (catch-all)"
+      ],
+      "source": "SWE1-PLA-001/002/003;Pop Up List"
     },
     {
       "name": "Player sources",
       "enum": [
         "External CD",
-        "HU AUX",
+        "HU AUX(無控制)",
         "HU USB",
         "HU BTSA"
       ],
-      "source": "CFTS025 §3.1.1.3.1"
+      "source": "Media HMI PC1.3"
     },
     {
-      "name": "Media error Pop Ups",
+      "name": "Alphajump 字元",
       "enum": [
-        "PU0001 Loading Disc",
-        "PU0003 Media file not found (no supported files)",
-        "PU0004 Disc Hot-Wait",
-        "PU0005 (Device Name) error (read error)",
-        "PU0024 file not readable -> auto skip",
-        "PU0025 Reading (Device Name)"
+        "只啟用清單首字母存在的字元"
       ],
-      "source": "Pop Up List HMI (Dec 15 2023)"
+      "source": "SWE1-PLA-014-03/016-03"
     },
     {
-      "name": "Unsupported-file handling",
+      "name": "Browse 選取",
       "enum": [
-        "Generic 'No Supported Files Found' (PU0003) only — NO per-format enumeration in spec"
+        "menu item(進子選單)",
+        "playable item(開始播放)"
       ],
-      "source": "CFTS025 §3.1.1.2.4.2 (confirmed at Gate ①: no format list)"
+      "source": "SWE1-PLA-018-01/02"
     }
   ],
   "traceability_hints": [
     {
-      "req": "SWE1-PLA-001",
-      "spec_ref": "§3.1.1.2.4.2 No Supported Files Found Error -> PU0003"
+      "req": "Repeat (PLA-006/008/009)",
+      "spec_ref": "Media HMI PC4 / PC4.1"
     },
     {
-      "req": "SWE1-PLA-027",
-      "spec_ref": "§3.1.1.3.1 Source Control events (full Play Controls list)"
+      "req": "Shuffle (PLA-010)",
+      "spec_ref": "Media HMI PC5.1 / SS.4"
     },
     {
-      "req": "SWE1-PLA-028",
-      "spec_ref": "Play/Pause softkey state"
+      "req": "Error popups (PLA-001/002/003)",
+      "spec_ref": "Pop Up List PU0003/PU0024/PU0005"
     },
     {
-      "req": "SWE1-PLA-030-01",
-      "spec_ref": "§3.1.1.4.2.7 Repeat All / Repeat One Track"
+      "req": "AUX (PLA-004)",
+      "spec_ref": "Media HMI PC1.3"
+    },
+    {
+      "req": "Track List (PLA-012)",
+      "spec_ref": "Media HMI SS4 / SS4.6"
+    },
+    {
+      "req": "Alphajump (PLA-014/016)",
+      "spec_ref": "CFTS091 Player Component Functions"
+    },
+    {
+      "req": "__全 94 需求清單__",
+      "spec_ref": "M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)"
     }
   ],
   "open_questions": [
     {
-      "question": "Confirm Repeat has NO 'Off/No Repeat' state — spec defines only Repeat All <-> Repeat One Track. (Reviewer earlier hallucinated a 'No Repeat' mode.)",
-      "context": "CFTS025 §3.1.1.4.2.7",
-      "status": "resolved",
-      "resolution": "Confirmed: Repeat has ONLY Repeat All <-> Repeat One Track. No 'Off/No Repeat' state."
+      "question": "Req-ID 對不上:SWE1 分析 Repeat=PLA-006,但 TC 工作簿用 PLA-030;Shuffle 等亦可能錯位。需確認 TC↔SWE1 的 ID 對應或重編。",
+      "context": "SWE1 vs Review workbook",
+      "status": "confirmed",
+      "resolution": "人工確認(Gate ①):TC 的 req ID 應對到 SWE1 分析但目前對不上(Repeat: SWE1 PLA-006 vs TC PLA-030),屬 traceability 缺陷。需修正 TC req ID 或建對應表;review 應能標出『TC req_id 不在 SWE1 需求母體』。"
     },
     {
-      "question": "Supported media file-format list — defined in CFTS 'Disc Media' section, not in this doc. Need that list to enumerate unsupported-format negative TCs.",
-      "context": "§3.1.1.2.4.2 references it",
+      "question": "確認 Repeat 無 'Off' 態(只有 All↔Song)——SWE1-PLA-006 已佐證,留作 reviewer 防幻覺錨點。",
+      "context": "PLA-006/008/009",
       "status": "resolved",
-      "resolution": "No enumerated format list exists. Unsupported handling is the SINGLE generic 'No Supported Files Found' error (PU0003). Do NOT enumerate per-format negative TCs (.exe/.apk/etc.) — over-reach beyond spec."
+      "resolution": "確認:只有 Repeat All / Repeat Song 兩態。"
     }
   ],
-  "reviewed_at": "2026-06-25T14:03:52.439391+00:00"
+  "reviewed_at": "2026-06-26T01:17:46.853992+00:00"
 }

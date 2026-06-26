@@ -1,0 +1,566 @@
+[
+ {
+  "id": "SWE1-PLA-001",
+  "src": "",
+  "title": "Popup For No Supported Files Found Error",
+  "desc": "When “No Supported Files Found Error” occurs, the HU shall display Pop Up ID PU0003 (or otherwise indicate an error according to HMI requirements).\n(See the HMI Pup Up List reference document for Pup "
+ },
+ {
+  "id": "SWE1-PLA-002",
+  "src": "",
+  "title": "Popup For USB Device File Read Error",
+  "desc": "When “USB Device File Read Error” occurs, the HU shall display Pop Up ID PU0024 (or otherwise indicate an error according to HMI requirements).\n(See the HMI Pup Up List reference document for Pup Up I"
+ },
+ {
+  "id": "SWE1-PLA-003",
+  "src": "",
+  "title": "Popup For Generic Error",
+  "desc": "The HU shall treat any error not covered above as a Generic Error and shall display Pop Up ID PU0005 (or otherwise indicate an error according to HMI requirements) while the error exists.\n (See the HM"
+ },
+ {
+  "id": "SWE1-PLA-004",
+  "src": "",
+  "title": "AUX No Controls",
+  "desc": "The HU AUX source does not have any command & control capability.\n\nPC1.3) If playing an AUX device the only controls available are the Source Tab and Audio Tab, all other buttons will be greyed out. T"
+ },
+ {
+  "id": "SWE1-PLA-005",
+  "src": "",
+  "title": "Browsing Apple Music Radio Stations Through USB",
+  "desc": "If an Apple device is connected, refer to CFTS025-5429 for Apple Music Radio Stations.\n\nBT1.10) Apple devices that support Apple Music must support browsing for Apple Music Radio stations (USB, BT and"
+ },
+ {
+  "id": "SWE1-PLA-006",
+  "src": "",
+  "title": "USB - Repeat Mode Behaviors",
+  "desc": "The HU USB device will be controlled so that by default it will play all items in the current playlist ('Now Playing' playlist) in a repeating manner. So once all items in the playlist have been playe"
+ },
+ {
+  "id": "SWE1-PLA-006-01",
+  "src": "",
+  "title": "Default Repeat Mode",
+  "desc": "The system shall set the media playback mode to Repeat All by default whenever playback is initiated from the USB source."
+ },
+ {
+  "id": "SWE1-PLA-006-02",
+  "src": "",
+  "title": "Repeat All Behavior",
+  "desc": "When the system is in Repeat All mode, it shall play each item in the playlist sequentially and automatically continue playback from the first item after the last item has finished."
+ },
+ {
+  "id": "SWE1-PLA-006-03",
+  "src": "",
+  "title": "Repeat Song Behavior",
+  "desc": "When the system is in Repeat Song mode, it shall continuously replay the currently playing item by restarting it from the beginning each time it reaches the end."
+ },
+ {
+  "id": "SWE1-PLA-007",
+  "src": "",
+  "title": "BT Device Function - Repeat",
+  "desc": "The HU shall be able to control the HU USB Device by invoking a “Repeat” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar."
+ },
+ {
+  "id": "SWE1-PLA-008",
+  "src": "",
+  "title": "Repeat Song State UI",
+  "desc": "While in Repeat Song mode HU shall show the 'repeat' softkey and/or icon in the 'ON' state.\n\nPC4.1) When Repeat Song/All is activated, the repeat button is highlighted with the labeling of Repeat Song"
+ },
+ {
+  "id": "SWE1-PLA-009",
+  "src": "",
+  "title": "Repeat All State UI",
+  "desc": "While in Repeat All mode the HU shall show the 'repeat' softkey and/or icon in the 'OFF' state.\n\nPC4.1) When Repeat Song/All is activated, the repeat button is highlighted with the labeling of Repeat "
+ },
+ {
+  "id": "SWE1-PLA-010",
+  "src": "",
+  "title": "USB Device Shuffle Behaviors",
+  "desc": "When the Cabin Output Channel has selected an HU USB source, the user can request to toggle between Shuffle On and Shuffle Off modes using the HU HMI. When the user selects the Shuffle On/Off function"
+ },
+ {
+  "id": "SWE1-PLA-010-01",
+  "src": "",
+  "title": "Shuffle Control via HMI",
+  "desc": "The system shall allow the user to toggle the Shuffle mode On or Off through the HU HMI when USB is the active source.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuf"
+ },
+ {
+  "id": "SWE1-PLA-010-02",
+  "src": "",
+  "title": "Shuffle On Behavior",
+  "desc": "When Shuffle mode is On, the system shall play all items in the ‘Now Playing’ playlist in a randomized sequence.\n\nPC5.1) If user presses shuffle button, button is highlighted and the head unit shall g"
+ },
+ {
+  "id": "SWE1-PLA-010-03",
+  "src": "",
+  "title": "Shuffle Off Behavior",
+  "desc": "When Shuffle mode is Off, the system shall play all items in the ‘Now Playing’ playlist in their normal sequential order.\n\nPC5.1) If user presses shuffle button, button is highlighted and the head uni"
+ },
+ {
+  "id": "SWE1-PLA-011",
+  "src": "",
+  "title": "Metadata Display and Hide Behavior",
+  "desc": "When the user selects the Info function the HU shall display/not display any additional metadata for the currently playing File.\n\nSS2) Pressing the Info button will bring up a window showing the curre"
+ },
+ {
+  "id": "SWE1-PLA-012",
+  "src": "",
+  "title": "Track List Behaviors",
+  "desc": "When the user selects the 'trks' function the HU shall display a list of items that are members of the 'Now Playing' playlist. The user shall be able to navigate the list and select an item to start p"
+ },
+ {
+  "id": "SWE1-PLA-012-01",
+  "src": "",
+  "title": "Display Track List UI",
+  "desc": "The system shall display the list of items in the “Now Playing” playlist when the user selects the ‘trks’ function.\n\nSS4) Pressing Tracks button opens a split screen view showing up to 6 lines of the "
+ },
+ {
+  "id": "SWE1-PLA-012-02",
+  "src": "",
+  "title": "Track List Navigation",
+  "desc": "The system shall allow the user to navigate through the list displayed in the ‘trks’ view."
+ },
+ {
+  "id": "SWE1-PLA-012-03",
+  "src": "",
+  "title": "Track Selection and Playback",
+  "desc": "The system shall begin playback of the selected item when the user selects an item from the ‘trks’ list.\n\nSS4.6) The user can directly touch an item to start playing that track.\nSS4.6.1) This will tra"
+ },
+ {
+  "id": "SWE1-PLA-013",
+  "src": "",
+  "title": "Folder And File Navigation Behaviors",
+  "desc": "The HU shall allow the user to navigate the Folder/Category structure and select items as defined in CFTS091-1957 and CFTS091-2190.\n\nFor the folder navigation and file selection behaviors, please refe"
+ },
+ {
+  "id": "SWE1-PLA-014",
+  "src": "",
+  "title": "USB MSC Alphajump Behaviors",
+  "desc": "When a USB-MSC device is connected, metadata is available and is sorted alphanumerically the Alphajump softkey shall be enabled. When the Alphajump softkey is selected the HU shall present an intellig"
+ },
+ {
+  "id": "SWE1-PLA-014-01",
+  "src": "",
+  "title": "Enable Alphajump Softkey",
+  "desc": "When a USB-MSC device is connected and metadata is sorted alphanumerically, the HU shall enable the Alphajump softkey."
+ },
+ {
+  "id": "SWE1-PLA-014-02",
+  "src": "",
+  "title": "Display Alphajump Screen",
+  "desc": "When the user selects the Alphajump softkey, the HU shall display the alpha-numeric selection screen."
+ },
+ {
+  "id": "SWE1-PLA-014-03",
+  "src": "",
+  "title": "Intelligent Character Filtering",
+  "desc": "The Alphajump screen shall enable only the characters that correspond to the first character of the items in the current list."
+ },
+ {
+  "id": "SWE1-PLA-014-04",
+  "src": "",
+  "title": "Provide Cancel Softkey",
+  "desc": "The Alphajump screen shall include a Cancel softkey that returns the user to the previous list."
+ },
+ {
+  "id": "SWE1-PLA-014-05",
+  "src": "",
+  "title": "Reposition on Character Selection",
+  "desc": "When the user selects a character, the HU shall return to the list and reposition the current item pointer to the first item beginning with that character."
+ },
+ {
+  "id": "SWE1-PLA-015",
+  "src": "",
+  "title": "DAP - Category Navigation Behaviors",
+  "desc": "The HU shall allow the user to navigate the Category structure and select items as defined in CFTS091-1957 and CFTS091-2190.\n\nFor the folder navigation and file selection behaviors, please refer to : "
+ },
+ {
+  "id": "SWE1-PLA-016",
+  "src": "",
+  "title": "USB DAP Alphajump Behaviors",
+  "desc": "When a USB-DAP device is connected, metadata is available and is sorted alphanumerically the Alphajump softkey shall be enabled. When the Alphajump softkey is selected the HU shall present an intellig"
+ },
+ {
+  "id": "SWE1-PLA-016-01",
+  "src": "",
+  "title": "Enable Alphajump Softkey",
+  "desc": "When a USB-DAP device is connected and metadata is sorted alphanumerically, the HU shall enable the Alphajump softkey."
+ },
+ {
+  "id": "SWE1-PLA-016-02",
+  "src": "",
+  "title": "Display Alphajump Screen",
+  "desc": "When the user selects the Alphajump softkey, the HU shall display the alpha-numeric selection screen."
+ },
+ {
+  "id": "SWE1-PLA-016-03",
+  "src": "",
+  "title": "Intelligent Character Filtering",
+  "desc": "The Alphajump screen shall enable only the characters that correspond to the first character of the items in the current list."
+ },
+ {
+  "id": "SWE1-PLA-016-04",
+  "src": "",
+  "title": "Provide Cancel Softkey",
+  "desc": "The Alphajump screen shall include a Cancel softkey that returns the user to the previous list."
+ },
+ {
+  "id": "SWE1-PLA-016-05",
+  "src": "",
+  "title": "Reposition on Character Selection",
+  "desc": "When the user selects a character, the HU shall return to the list and reposition the current item pointer to the first item beginning with that character."
+ },
+ {
+  "id": "SWE1-PLA-017",
+  "src": "",
+  "title": "Scrolling Behavior in Browse Tab",
+  "desc": "When a list of items is being displayed and the user selects the Scroll Up or Scroll Down function the HU shall update the display one row at a time unless otherwise specified by the HMI requirements."
+ },
+ {
+  "id": "SWE1-PLA-018",
+  "src": "",
+  "title": "Browse List Selection Behavior",
+  "desc": "When the user selects an item from the list of items being displayed the HU shall go to another menu item or shall select that item as the current item to be acted upon."
+ },
+ {
+  "id": "SWE1-PLA-018-01",
+  "src": "",
+  "title": "Menu Item Selected",
+  "desc": "When the user selects an item from the list of items being displayed the HU shall go to another menu item.\n\nBT2.2) Otherwise, selecting a list item brings up a new list inside Browse with further choi"
+ },
+ {
+  "id": "SWE1-PLA-018-02",
+  "src": "",
+  "title": "Playable Item Selected",
+  "desc": "When the user selects an item from the list of items being displayed the HU shall select that item as the current item to be acted upon.\n\nBT2.1) If list item is a track, station, or chapter the system"
+ },
+ {
+  "id": "SWE1-PLA-019",
+  "src": "",
+  "title": "Display Behavior for Unsupported BTSA Metadata",
+  "desc": "When the Cabin Output Channel is using the HU BTSA source and the version of the Bluetooth Profile on the BTSA capable device does not support reporting the File #s and/or Play Time Position and/or Fi"
+ },
+ {
+  "id": "SWE1-PLA-020",
+  "src": "",
+  "title": "Browsing Apple Music Radio Stations Through BT",
+  "desc": "If an Apple device is connected, the \"Apple Radio Music\" station shall be browsable and\nBrowse selection \"Apple Music Radio\" station must be available through the HU Native Browse selection. (Song, Ar"
+ },
+ {
+  "id": "SWE1-PLA-021",
+  "src": "",
+  "title": "BT Device Function - Skip Forward",
+  "desc": "The HU shall be able to control the BTSA Device with a “Skip Forward” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar."
+ },
+ {
+  "id": "SWE1-PLA-022",
+  "src": "",
+  "title": "Skip Forward Completion and Playback Transition",
+  "desc": "If the HU component finds the Next File it will exit the Skip Forward state, return to Play mode and play the new File from the beginning of the Play Time position."
+ },
+ {
+  "id": "SWE1-PLA-023",
+  "src": "",
+  "title": "BT Device Function - Skip Back",
+  "desc": "The HU shall be able to control the BTSA Device with a “Skip Back” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar."
+ },
+ {
+  "id": "SWE1-PLA-024",
+  "src": "",
+  "title": "Skip Back Completion and Playback Transition",
+  "desc": "If the HU component finds the Current/Previous Track/File it will exit the Skip Back state, return to Play mode and play the current/new File from the beginning of the Play Time position."
+ },
+ {
+  "id": "SWE1-PLA-024-01",
+  "src": "",
+  "title": "Skip Back within 3 sec from beginning",
+  "desc": "If the HU component finds the Current Track/File it will exit the Skip Back state, return to Play mode and play the current File from the beginning of the Play Time position.\n\nPC2.3) If the current tr"
+ },
+ {
+  "id": "SWE1-PLA-024-02",
+  "src": "",
+  "title": "Skip Back after 3 sec from beginning",
+  "desc": "If the HU component finds the Previous Track/File it will exit the Skip Back state, return to Play mode and play the new File from the beginning of the Play Time position.\n\nPC2.4) If the current track"
+ },
+ {
+  "id": "SWE1-PLA-025",
+  "src": "",
+  "title": "BT Device Function - Fast Forward",
+  "desc": "The HU shall be able to control the BTSA Device with a “Fast Forward” function."
+ },
+ {
+  "id": "SWE1-PLA-025-01",
+  "src": "",
+  "title": "Fast Forward While Play Time Detectable",
+  "desc": "When the user long presses(500 ms) the ‘Skip Forward’ softkey, the HU shall enter the Fast Forward state.\n\nPC6.3) With a long press of the seek button the slider has to move in the bar accordingly the"
+ },
+ {
+  "id": "SWE1-PLA-025-02",
+  "src": "",
+  "title": "Fast Forward While Play Time Undetectable",
+  "desc": "When the user long presses(500 ms) the ‘Skip Forward’ softkey, the HU shall enter the Fast Forward state.\n\nPC6.3.1) If the HU is not able to detect the current time during the fast seek the slider wil"
+ },
+ {
+  "id": "SWE1-PLA-026",
+  "src": "",
+  "title": "BT Device Function - Fast Rewind",
+  "desc": "The HU shall be able to control the BTSA Device with a “Fast Rewind” function."
+ },
+ {
+  "id": "SWE1-PLA-026-01",
+  "src": "",
+  "title": "Fast Rewind While Play Time Detectable",
+  "desc": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.\n\nPC2.2) Long press on Skip buttons (500 msec) to fast forward/rewind (redundant to moving slider o"
+ },
+ {
+  "id": "SWE1-PLA-026-02",
+  "src": "",
+  "title": "Fast Rewind While Play Time Undetectable",
+  "desc": "When the user long presses(500 ms) the ‘Skip Back’ softkey, the HU shall enter the Fast Rewind state.\n\nPC2.2) Long press on Skip buttons (500 msec) to fast forward/rewind (redundant to moving slider o"
+ },
+ {
+  "id": "SWE1-PLA-027",
+  "src": "",
+  "title": "BT Device Function - Play",
+  "desc": "The HU shall be able to control the BTSA Device by invoking a “Play” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar."
+ },
+ {
+  "id": "SWE1-PLA-028",
+  "src": "",
+  "title": "Softkey Display in BTSA Play State",
+  "desc": "While the HU determines the Bluetooth Device is in the Play state the HU shall display a 'Pause' softkey on the appropriate BTSA Source screens.\n\nPC3.1) When the audio is playing, the pause icon will "
+ },
+ {
+  "id": "SWE1-PLA-029",
+  "src": "",
+  "title": "BT Device Function - Pause",
+  "desc": "The HU shall be able to control the BTSA Device by invoking a “Pause” function."
+ },
+ {
+  "id": "SWE1-PLA-029-01",
+  "src": "",
+  "title": "Display Pause Softkey",
+  "desc": "The HU shall provide a “Pause” softkey on the Play Controls area of Playing Tab for the “Pause” function..\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Pro"
+ },
+ {
+  "id": "SWE1-PLA-029-02",
+  "src": "",
+  "title": "Softkey Display in BTSA Pause State",
+  "desc": "While the HU determines the Bluetooth Device is in the Pause state the HU shall display a 'Play' softkey on the appropriate BTSA Source screens.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back"
+ },
+ {
+  "id": "SWE1-PLA-030",
+  "src": "",
+  "title": "BTSA - Repeat Mode Behaviors",
+  "desc": "The BTSA CE device will be controlled so that by default it will play all items in the current playlist ('Now Playing' playlist) in a repeating manner. So once all items in the playlist have been play"
+ },
+ {
+  "id": "SWE1-PLA-030-01",
+  "src": "",
+  "title": "Default Repeat Mode",
+  "desc": "The HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.\n\nPC4.3) Repeat All plays the current list of songs repeatedly."
+ },
+ {
+  "id": "SWE1-PLA-030-02",
+  "src": "",
+  "title": "Repeat All Behavior",
+  "desc": "When in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.\n\nPC4.3) Repeat All plays the current list o"
+ },
+ {
+  "id": "SWE1-PLA-030-03",
+  "src": "",
+  "title": "Repeat Song Behavior",
+  "desc": "When in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.\n\nPC4.2) Repeat Song plays the current track repeatedly."
+ },
+ {
+  "id": "SWE1-PLA-031",
+  "src": "",
+  "title": "BT Device Function - Repeat",
+  "desc": "The HU shall be able to control the BTSA Device by invoking a “Repeat” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar."
+ },
+ {
+  "id": "SWE1-PLA-032",
+  "src": "",
+  "title": "Repeat Song State UI",
+  "desc": "While the HU determines the Bluetooth Device is in the Repeat Song state the HU shall display a 'Repeat' softkey and/or icon in the 'ON' state on the appropriate BTSA Source screens.\n\nPC4.1) When Repe"
+ },
+ {
+  "id": "SWE1-PLA-033",
+  "src": "",
+  "title": "Repeat Off State UI",
+  "desc": "While the HU determines the Bluetooth Device is in the Repeat Off state the HU shall display a 'Repeat' softkey and/or icon in the 'OFF' state on the appropriate BTSA Source screens."
+ },
+ {
+  "id": "SWE1-PLA-034",
+  "src": "",
+  "title": "Repeat Unavailable State UI",
+  "desc": "While the HU determines the Bluetooth Device is in the 'Repeat Unavailable' state the HU shall display a 'Repeat' softkey and/or icon in the 'Unavailable' state on the appropriate BTSA Source screens."
+ },
+ {
+  "id": "SWE1-PLA-035",
+  "src": "",
+  "title": "BT Device Function - Shuffle",
+  "desc": "The HU shall be able to control the BTSA Device by invoking a “Shuffle” function.\n\nPC1.1) Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar."
+ },
+ {
+  "id": "SWE1-PLA-036",
+  "src": "",
+  "title": "Shuffle On State",
+  "desc": "While the HU determines the Bluetooth Device is in the Shuffle On state the HU shall display a 'Shuffle' softkey and/or icon in the 'ON' state on the appropriate BTSA Source screens.\n\nPC5.1) If the us"
+ },
+ {
+  "id": "SWE1-PLA-037",
+  "src": "",
+  "title": "Shuffle Off State",
+  "desc": "While the HU determines the Bluetooth Device is in the Shuffle Off state the HU shall display a 'Shuffle' softkey and/or icon in the 'OFF' state on the appropriate BTSA Source screens."
+ },
+ {
+  "id": "SWE1-PLA-038",
+  "src": "",
+  "title": "Shuffle Unavailable State",
+  "desc": "While the HU determines the Bluetooth Device is in the 'Shuffle Unavailable' state the HU shall display a 'Shuffle' softkey and/or icon in the 'Unavailable' state on the appropriate BTSA Source screen"
+ },
+ {
+  "id": "SWE1-PLA-039",
+  "src": "",
+  "title": "Metadata Display and Hide Behavior",
+  "desc": "The system shall display/hide “Metadata” information ('INFO') on the currently playing Song/Podcast/Audio Book.\n\nSS2.2) Pressing the Info button shows an info window with further information; Artist, "
+ },
+ {
+  "id": "SWE1-PLA-040",
+  "src": "",
+  "title": "INFO Screen Display",
+  "desc": "When at the BTSA Home Screen and the \"Info\" function is selected the HU shall display an \"INFO Screen\" containing metadata information from the BTSA source for the currently selected Song/Podcast/Audi"
+ },
+ {
+  "id": "SWE1-PLA-041",
+  "src": "",
+  "title": "Info Unavailable State",
+  "desc": "While the HU determines the Bluetooth Device is in the 'Info Unavailable' state the HU shall display an 'Info' softkey in the 'Unavailable' state on the appropriate BTSA Source screens.\n\nSS2.1) Info b"
+ },
+ {
+  "id": "SWE1-PLA-042",
+  "src": "",
+  "title": "Metadata Info Shown",
+  "desc": "While the HU determines the Bluetooth Device is in the 'Info Available' state the HU shall display an 'Info' softkey in  'Available+ON' state when displaying the 'info' metadata information.\n\nSS2.1) I"
+ },
+ {
+  "id": "SWE1-PLA-042-01",
+  "src": "",
+  "title": "Metadata Info Hidden",
+  "desc": "While the HU determines the Bluetooth Device is in the 'Info Available' state the HU shall display an 'Info' softkey in the 'Available+OFF' state when not displaying the 'info' metadata information.\n\n"
+ },
+ {
+  "id": "SWE1-PLA-043",
+  "src": "",
+  "title": "Currently Playing Playlist",
+  "desc": "The system shall display/hide the 'Currently Playing Playlist'."
+ },
+ {
+  "id": "SWE1-PLA-044",
+  "src": "",
+  "title": "Currently Playing Playlist Selection",
+  "desc": "When the user selects the 'trks' function the HU shall display a list of items that are members of the 'Currently Playing Playlist' (a.k.a. 'Now Playing' Playlist). The user shall be able to navigate "
+ },
+ {
+  "id": "SWE1-PLA-045",
+  "src": "",
+  "title": "Currently Playing Playlist Browsing",
+  "desc": "When displaying the 'Currently Playing Playlist' screen, the 'Browse by' function shall request the HU to display the 'Metadata Browsing Categories' screen."
+ },
+ {
+  "id": "SWE1-PLA-046",
+  "src": "",
+  "title": "Currently Playing Playlist Tracks",
+  "desc": "When displaying the 'Currently Playing Playlist' screen, the 'trks' function shall request the HU to exit the 'Currently Playing Playlist' screen."
+ },
+ {
+  "id": "SWE1-PLA-047",
+  "src": "",
+  "title": "Browse Metadata",
+  "desc": "The system shall support 'Browsing Metadata'.\n\nBT1) Pressing the Browse Tab soft-key or by pressing the Browse/Enter hard control will bring up the Browse Tab, which will contain the Categories Bank a"
+ },
+ {
+  "id": "SWE1-PLA-048",
+  "src": "",
+  "title": "Browse Categories/Folders",
+  "desc": "When the user selects the 'Browse' function the HU shall display a list of browse Categories/Folders. The user shall be able to navigate the list and select an item(s) to start playing.\n\nBT1) Pressing"
+ },
+ {
+  "id": "SWE1-PLA-049",
+  "src": "",
+  "title": "Return/Close Function",
+  "desc": "When displaying the 'Browse' screen, the 'Screen Return/Close' function shall request the HU to exit the 'Browse' screen."
+ },
+ {
+  "id": "SWE1-PLA-050",
+  "src": "",
+  "title": "Scroll Up/Down",
+  "desc": "When a list of items is being displayed and the user selects the Scroll Up or Scroll Down function the HU shall update the display one row at a time unless otherwise specified by the HMI requirements."
+ },
+ {
+  "id": "SWE1-PLA-051",
+  "src": "",
+  "title": "Page Up/Down",
+  "desc": "When a list of items is being displayed and the user selects the Page Up or Page Down function the HU shall update the display one page of items at a time unless otherwise specified by the HMI require"
+ },
+ {
+  "id": "SWE1-PLA-052",
+  "src": "",
+  "title": "Video Player in Dealer Mode",
+  "desc": "Refer to CFTS012-696, CFTS022-2237 and 'Showroom Demo Mode HMI Logic and Flow' for more requirements related to Video Player in Dealer Mode."
+ },
+ {
+  "id": "SWE1-PLA-053",
+  "src": "",
+  "title": "3rd Party Services App Shortcut",
+  "desc": "App Tray must display shortcuts for 3rd party services. Shortcut icon and action should leverage standard Android shortcut channels. Icon and action should originate from interfaces to Ignite Store."
+ },
+ {
+  "id": "SWE1-PLA-054",
+  "src": "",
+  "title": "App Icons for 3rd Party Services",
+  "desc": "The App Store shall bring the template for Weather and POI apps when user selects them."
+ },
+ {
+  "id": "SWE1-PLA-055",
+  "src": "",
+  "title": "Show 3rd Party Services App Icons",
+  "desc": "When the user enables a services (templated) app, the App Icon shall appear in the App drawer\n\nAPPST2.) The App Store will allow user to download new apps onto their Head Unit. Downloaded apps will go"
+ },
+ {
+  "id": "SWE1-PLA-056",
+  "src": "",
+  "title": "Remove 3rd Party Services App Icons",
+  "desc": "When the user disables a services (templated) app, the App Icon shall be removed from the app drawer.\n\nAPPST2.3) If a user deletes an app from the AppStore, then the removed app should be also removed"
+ },
+ {
+  "id": "SWE1-PLA-057",
+  "src": "",
+  "title": "App Icons for 3rd Party Apps",
+  "desc": "App Tray must display standard launch icons for 3rd party Android apps after an app is installed."
+ },
+ {
+  "id": "SWE1-PLA-057-01",
+  "src": "",
+  "title": "App Icons Behavior for 3rd Party Apps",
+  "desc": "Behavior of the app icon should be to launch the default activity (example: if Spotify icon is clicked, media player should open with Spotify as the source)"
+ },
+ {
+  "id": "SWE1-PLA-058",
+  "src": "",
+  "title": "Login Menu",
+  "desc": "When the user selects a source in the media player, if the AAM indicates the user is not logged in a \"login is required\" popup shall be shown.\n\nAPPST4.1) When the user selects a source in the media pl"
+ },
+ {
+  "id": "SWE1-PLA-059",
+  "src": "",
+  "title": "Settings Menu",
+  "desc": "The HU shall show the settings button only if the app supports the settings interface as defined by Android."
+ },
+ {
+  "id": "SWE1-PLA-060",
+  "src": "",
+  "title": "Login",
+  "desc": "The HU shall use the Login flows and authentication failure interfaces defined in Android P to manage the login pop-ups if a source which is not logged in is selected."
+ }
+]
