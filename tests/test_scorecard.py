@@ -133,6 +133,7 @@ def test_scorecard_json_schema_stable(tmp_path):
         "field_completeness",
         "reality_gap_rate",
         "tier1_critical_req_rate",
+        "req_id_mismatch_rate",
     ]
     assert list(d["kpis"].keys()) == expected_order
 
@@ -165,6 +166,23 @@ def test_tier1_critical_req_rate():
     sc = compute_scorecard(findings)
     k = sc.kpis["tier1_critical_req_rate"]
     assert k.numerator == 2 and k.denominator == 4  # R1, R2 (dedup); R3 excluded
+    assert k.value == pytest.approx(0.5)
+    assert k.passed is None  # report-only
+
+
+def test_req_id_mismatch_rate():
+    findings = _findings(4, 2, [])
+    traceability = {
+        "per_tc": {
+            "T1": {"matched": True, "req_id": "R1", "id_agrees": True},
+            "T2": {"matched": True, "req_id": "R2", "id_agrees": False},   # mismatch
+            "T3": {"matched": True, "req_id": "R3", "id_agrees": False},   # mismatch
+            "T4": {"matched": False, "req_id": None, "id_agrees": False},  # untraceable, excluded
+        },
+    }
+    sc = compute_scorecard(findings, traceability=traceability)
+    k = sc.kpis["req_id_mismatch_rate"]
+    assert k.numerator == 2 and k.denominator == 4
     assert k.value == pytest.approx(0.5)
     assert k.passed is None  # report-only
 

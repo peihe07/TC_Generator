@@ -47,6 +47,7 @@ KPI_ORDER = [
     "reality_gap_rate",
     # Appended (schema evolves by appending only, to keep older columns stable).
     "tier1_critical_req_rate",  # lower is better; measures decomposition depth
+    "req_id_mismatch_rate",     # lower is better; TC's written req_id != content match
 ]
 
 # Severities that disqualify a TC from "first pass".
@@ -208,6 +209,21 @@ def _tier1_critical_req_rate(findings: dict, total_requirements: int,
     return _make_kpi("tier1_critical_req_rate", len(crit), total_requirements, threshold)
 
 
+def _req_id_mismatch_rate(traceability: dict | None, total_tcs: int,
+                          threshold: float | None) -> KPI:
+    """Fraction of TCs whose written req_id disagrees with their content match.
+
+    Lower is better — surfaces renumbered / mis-tagged req IDs (the confirmed
+    Player defect). Only content-traceable TCs are considered for the numerator.
+    """
+    per_tc = (traceability or {}).get("per_tc")
+    if not per_tc:
+        return _make_kpi("req_id_mismatch_rate", 0, 0, threshold)
+    mismatch = sum(1 for v in per_tc.values()
+                   if v.get("matched") and v.get("id_agrees") is False)
+    return _make_kpi("req_id_mismatch_rate", mismatch, total_tcs, threshold)
+
+
 def compute_scorecard(
     findings: dict,
     validation: dict | None = None,
@@ -238,6 +254,8 @@ def compute_scorecard(
             findings, total_tcs, th.get("reality_gap_rate")),
         "tier1_critical_req_rate": _tier1_critical_req_rate(
             findings, total_requirements, th.get("tier1_critical_req_rate")),
+        "req_id_mismatch_rate": _req_id_mismatch_rate(
+            traceability, total_tcs, th.get("req_id_mismatch_rate")),
     }
 
     gated = [k for k in kpis.values() if k.threshold is not None and k.value is not None]

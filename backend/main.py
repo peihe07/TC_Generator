@@ -88,6 +88,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Path to a Stage 1 domain_pack.json to ground the --review semantic "
              "rules (spec/domain truth + reality-gap detection).",
     )
+    p.add_argument(
+        "--swe1-reqs",
+        help="Path to a SWE1 requirements JSON (id/title/desc). --review then "
+             "anchors traceability by CONTENT match instead of the (possibly "
+             "renumbered) req_id.",
+    )
     return p.parse_args(argv)
 
 
@@ -140,6 +146,7 @@ def run_review(args: argparse.Namespace) -> int:
         model=args.model,
         dry_run=args.dry_run,
         domain_pack_path=args.domain_pack,
+        swe1_reqs_path=args.swe1_reqs,
     )
 
     summary = report["batch_summary"]

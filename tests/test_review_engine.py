@@ -516,3 +516,24 @@ def test_review_workbook_dry_run_feeds_scorecard(tmp_path):
     assert sc.total_requirements == report["batch_meta"]["total_req_groups"]
     # first_pass_rate is computable from the real findings shape.
     assert sc.kpis["first_pass_rate"].denominator == sc.total_tcs
+
+
+def test_llm_pipeline_injects_content_req(monkeypatch):
+    """Stage 6 + content-traceability: the content-matched requirement is fed
+    into the review payload so the reviewer anchors on it, not the stale id."""
+    tcs = [_make_tc(row_num=10, tc_id="T10", test_item="Repeat All loops to first")]
+    captured = {}
+
+    def _fake_chat(system, user, model, json_mode=True):
+        captured["user"] = user
+        from providers import LLMResponse, LLMUsage
+        return LLMResponse(text='{"per_req_findings":[],"per_tc_findings":[]}',
+                           usage=LLMUsage(), model="fake")
+
+    monkeypatch.setattr("generator._chat", _fake_chat)
+    content_map = {10: {"req_id": "SWE1-PLA-006-02", "title": "Repeat All Behavior",
+                        "desc": "plays each item sequentially", "score": 0.4}}
+    _run_llm_pipeline(tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)},
+                      model="fake", content_map=content_map)
+    assert "content_req" in captured["user"]
+    assert "SWE1-PLA-006-02" in captured["user"]

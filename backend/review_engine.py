@@ -934,12 +934,14 @@ def _run_llm_pipeline(
     model: str,
     batch_size: int = 5,
     domain_block: str | None = None,
+    content_map: dict[int, dict] | None = None,
 ) -> tuple[list[dict], list[dict]]:
     """Call the LLM for the rules in `LLM_RULE_HINTS`. Imports the provider
     lazily so dry-run never depends on credentials. `domain_block` (Stage 1
     Domain Pack) is injected into every batch as ground truth."""
     from generator import _chat, GenerationError  # local import
 
+    content_map = content_map or {}
     rule_ids = list(LLM_RULE_HINTS.keys())
     payload_tcs = [
         {
@@ -956,6 +958,8 @@ def _run_llm_pipeline(
             "design_method": tc.design_method,
             "req_spec_sentence": tc.req_spec_sentence,
             "tier1_skipped": tc.tier1_skipped,
+            # Requirement matched by CONTENT (the written req_id may be wrong).
+            "content_req": content_map.get(tc.row_num),
         }
         for tc in tcs
     ]
@@ -1150,12 +1154,30 @@ def _render_markdown_report(report: dict) -> str:
 # ---------------------------------------------------------------------------
 
 
+def _build_content_map(tcs: list[TCRecord], swe1_reqs_path: str) -> dict[int, dict]:
+    """Map each TC's row -> the SWE1 requirement matched by CONTENT (not id)."""
+    from req_tracer import load_swe1_reqs, match_tc, _req_tokens
+    reqs = load_swe1_reqs(swe1_reqs_path)
+    req_tokens = [_req_tokens(r) for r in reqs]
+    out: dict[int, dict] = {}
+    for tc in tcs:
+        best, score = match_tc(
+            f"{tc.test_item} {tc.expected_result}", reqs, req_tokens)
+        if best and score > 0:
+            out[tc.row_num] = {
+                "req_id": best.get("id"), "title": best.get("title"),
+                "desc": best.get("desc"), "score": round(score, 3),
+            }
+    return out
+
+
 def review_workbook(
     workbook_path: str,
     output_dir: str | None = None,
     model: str = "gpt-5",
     dry_run: bool = False,
     domain_pack_path: str | None = None,
+    swe1_reqs_path: str | None = None,
 ) -> dict:
     """End-to-end review pipeline. Returns the findings dict; when
     `output_dir` is supplied, also writes findings.json and
@@ -1172,8 +1194,10 @@ def review_workbook(
         if domain_pack_path:
             from domain_pack import load_domain_pack, to_prompt_block
             domain_block = to_prompt_block(load_domain_pack(domain_pack_path))
+        content_map = _build_content_map(tcs, swe1_reqs_path) if swe1_reqs_path else None
         llm_per_req, llm_per_tc = _run_llm_pipeline(
-            tcs, groups, model=model, domain_block=domain_block)
+            tcs, groups, model=model, domain_block=domain_block,
+            content_map=content_map)
         per_req.extend(llm_per_req)
         per_tc = _merge_per_tc(per_tc, llm_per_tc)
 

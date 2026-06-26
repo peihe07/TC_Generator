@@ -80,6 +80,27 @@ def trace_tcs(tcs: list[dict], reqs: list[dict],
     return out
 
 
+def to_scorecard_traceability(results: list[TraceResult],
+                              all_req_ids: list[str]) -> dict:
+    """Shape req_tracer output for `scorecard.compute_scorecard(traceability=...)`.
+
+    per_tc carries content-match status + whether the written id agrees, so the
+    scorecard can compute traceability_completeness, requirement_coverage and
+    req_id_mismatch_rate.
+    """
+    return {
+        "per_tc": {
+            r.tc_id: {
+                "matched": r.traceable,
+                "req_id": r.matched_req_id,   # content-matched req (the reliable one)
+                "id_agrees": r.id_agrees,
+            }
+            for r in results
+        },
+        "all_requirements": list(all_req_ids),
+    }
+
+
 def summarize(results: list[TraceResult]) -> dict:
     total = len(results)
     traceable = sum(1 for r in results if r.traceable)

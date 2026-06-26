@@ -169,6 +169,7 @@ def build_review_user_prompt(
             "design_method": tc.get("design_method", ""),
             "req_spec_sentence": tc.get("req_spec_sentence"),
             "tier1_skipped": bool(tc.get("tier1_skipped", False)),
+            "content_req": tc.get("content_req"),
         })
     tc_json = json.dumps(tc_payloads, ensure_ascii=False, indent=2)
 
@@ -193,6 +194,10 @@ emit a finding per the §9 schema. For any TC where the rule does NOT match,
 emit nothing for that rule (do not emit "no issue" placeholders).
 You are an INDEPENDENT auditor: judge only from the TC text + Req spec句 +
 Domain Pack below; do not assume intent that is not written.
+
+NOTE: the written `req_id` may be wrong (IDs were renumbered). When a TC carries
+`content_req` (the requirement matched by CONTENT), use THAT as the traceability
+anchor for §7.x checks, not the possibly-stale `req_id`.
 {domain_pack_block}
 
 ## Rules to evaluate in this batch
