@@ -935,7 +935,8 @@ def _run_llm_pipeline(
     batch_size: int = 5,
     domain_block: str | None = None,
     content_map: dict[int, dict] | None = None,
-) -> tuple[list[dict], list[dict]]:
+    llm_max_tokens: int = 16000,
+) -> tuple[list[dict], list[dict], dict]:
     """Call the LLM for the rules in `LLM_RULE_HINTS`. Imports the provider
     lazily so dry-run never depends on credentials. `domain_block` (Stage 1
     Domain Pack) is injected into every batch as ground truth."""
@@ -969,17 +970,25 @@ def _run_llm_pipeline(
     tc_id_by_row: dict[int, str] = {tc.row_num: tc.tc_id for tc in tcs}
     system = build_review_system_prompt()
 
+    n_batches = 0
+    n_failed = 0
     for i in range(0, len(payload_tcs), batch_size):
+        n_batches += 1
         batch = payload_tcs[i:i + batch_size]
         user = build_review_user_prompt(batch, rule_ids, domain_block=domain_block)
         try:
-            resp = _chat(system=system, user=user, model=model, json_mode=True)
+            # Reasoning models (gpt-5) spend output tokens on hidden reasoning
+            # before the JSON; a small cap truncates them to empty. Give headroom.
+            resp = _chat(system=system, user=user, model=model, json_mode=True,
+                         max_tokens=llm_max_tokens)
         except GenerationError:
+            n_failed += 1
             continue  # skip batch on transient error; engine still returns regex findings
         try:
             content = resp.text
             data = json.loads(content)
         except (AttributeError, IndexError, json.JSONDecodeError):
+            n_failed += 1  # empty/truncated/non-JSON response (e.g. reasoning ate the budget)
             continue
 
         for f in data.get("per_req_findings", []) or []:
@@ -998,7 +1007,8 @@ def _run_llm_pipeline(
          "findings": findings}
         for row, findings in per_tc_acc.items()
     ]
-    return per_req, per_tc
+    stats = {"llm_batches": n_batches, "llm_failed": n_failed}
+    return per_req, per_tc, stats
 
 
 def _coerce_row(value: object) -> int | None:
@@ -1189,13 +1199,14 @@ def review_workbook(
 
     per_req, per_tc = _run_regex_pipeline(tcs, groups)
 
+    llm_stats = None
     if not dry_run:
         domain_block = None
         if domain_pack_path:
             from domain_pack import load_domain_pack, to_prompt_block
             domain_block = to_prompt_block(load_domain_pack(domain_pack_path))
         content_map = _build_content_map(tcs, swe1_reqs_path) if swe1_reqs_path else None
-        llm_per_req, llm_per_tc = _run_llm_pipeline(
+        llm_per_req, llm_per_tc, llm_stats = _run_llm_pipeline(
             tcs, groups, model=model, domain_block=domain_block,
             content_map=content_map)
         per_req.extend(llm_per_req)
@@ -1210,6 +1221,7 @@ def review_workbook(
             "total_tcs": len(tcs),
             "total_req_groups": len(groups),
             "reviewed_at": datetime.now(timezone.utc).isoformat(),
+            "llm_stats": llm_stats,  # None on dry-run; {llm_batches, llm_failed} otherwise
         },
         "per_req_findings": per_req,
         "per_tc_findings": per_tc,

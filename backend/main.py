@@ -165,6 +165,14 @@ def run_review(args: argparse.Namespace) -> int:
     print(f"  Pass: {counts['pass']}  Pass with issues: {counts['pass_with_issues']}  Fail: {counts['fail']}")
     print(f"  Tier 1 findings: {len(report['per_req_findings'])}")
     print(f"  Tier 2/3 TC entries: {len(report['per_tc_findings'])}")
+    llm_stats = meta.get("llm_stats")
+    if llm_stats:
+        failed, total = llm_stats.get("llm_failed", 0), llm_stats.get("llm_batches", 0)
+        if failed:
+            print(f"  ⚠ LLM 語意層:{total} 批中 {failed} 批失敗(空/截斷回應)——"
+                  f"這些批只剩 regex 結果。換 --model gpt-4.1 或檢查 model/額度。")
+        else:
+            print(f"  LLM 語意層:{total} 批全部成功")
     print(f"\n  Reasoning: {summary['reasoning']}")
     # Stage 7 — also emit a KPI scorecard from the findings we just produced.
     from scorecard import compute_scorecard, write_scorecard

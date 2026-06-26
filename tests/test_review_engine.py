@@ -420,7 +420,7 @@ def test_llm_pipeline_keeps_empty_tc_id_rows_distinct(monkeypatch):
         return LLMResponse(text=json.dumps(body), usage=LLMUsage(), model="fake")
 
     monkeypatch.setattr("generator._chat", _fake_chat)
-    _, per_tc = _run_llm_pipeline(tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)}, model="fake")
+    _, per_tc, _stats = _run_llm_pipeline(tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)}, model="fake")
 
     assert [entry["row"] for entry in per_tc] == [10, 11]
     assert [entry["findings"][0]["issue"] for entry in per_tc] == ["第 10 列 finding", "第 11 列 finding"]
@@ -471,7 +471,7 @@ def test_llm_pipeline_injects_domain_block_and_reality_gap(monkeypatch):
     tcs = [_make_tc(row_num=10, tc_id="T10")]
     captured = {}
 
-    def _fake_chat(system, user, model, json_mode=True):
+    def _fake_chat(system, user, model, json_mode=True, max_tokens=None):
         captured["user"] = user
         from providers import LLMResponse, LLMUsage
         body = {
@@ -489,7 +489,7 @@ def test_llm_pipeline_injects_domain_block_and_reality_gap(monkeypatch):
         return LLMResponse(text=json.dumps(body), usage=LLMUsage(), model="fake")
 
     monkeypatch.setattr("generator._chat", _fake_chat)
-    _, per_tc = _run_llm_pipeline(
+    _, per_tc, _stats = _run_llm_pipeline(
         tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)},
         model="fake", domain_block="# Domain Pack — Player\nRepeat only All/One Track",
     )
@@ -524,7 +524,7 @@ def test_llm_pipeline_injects_content_req(monkeypatch):
     tcs = [_make_tc(row_num=10, tc_id="T10", test_item="Repeat All loops to first")]
     captured = {}
 
-    def _fake_chat(system, user, model, json_mode=True):
+    def _fake_chat(system, user, model, json_mode=True, max_tokens=None):
         captured["user"] = user
         from providers import LLMResponse, LLMUsage
         return LLMResponse(text='{"per_req_findings":[],"per_tc_findings":[]}',
@@ -537,3 +537,19 @@ def test_llm_pipeline_injects_content_req(monkeypatch):
                       model="fake", content_map=content_map)
     assert "content_req" in captured["user"]
     assert "SWE1-PLA-006-02" in captured["user"]
+
+
+def test_llm_pipeline_reports_failed_batches(monkeypatch):
+    """Empty/truncated LLM responses (e.g. reasoning model ran out of budget)
+    must be COUNTED, not silently swallowed into a regex-only result."""
+    tcs = [_make_tc(row_num=10, tc_id="T10"), _make_tc(row_num=11, tc_id="T11")]
+
+    def _empty_chat(system, user, model, json_mode=True, max_tokens=None):
+        from providers import LLMResponse, LLMUsage
+        return LLMResponse(text="", usage=LLMUsage(), model="fake")  # truncated -> ""
+
+    monkeypatch.setattr("generator._chat", _empty_chat)
+    _, _, stats = _run_llm_pipeline(
+        tcs, {"REQ-A": ReqGroup(req_id="REQ-A", tcs=tcs)}, model="fake", batch_size=1)
+    assert stats["llm_batches"] == 2
+    assert stats["llm_failed"] == 2  # both empty -> both counted as failed
