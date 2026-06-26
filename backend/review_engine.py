@@ -208,9 +208,19 @@ _VERIFY_PURPOSE = re.compile(r"\bto\s+verify\b", re.IGNORECASE)
 
 # §8.4.1 vague outcome
 _VAGUE_8_4_1_EN = re.compile(
-    r"\b(normal|as expected|works correctly|properly|successfully)\b", re.IGNORECASE
+    r"\b(normal|as expected|works correctly|properly)\b", re.IGNORECASE
 )
 _VAGUE_8_4_1_ZH = re.compile(r"(正常|如預期|運作正常|正確顯示|成功(?!地?連線))")
+# "successfully" mirrors the ZH 成功(?!連線) carve-out: it is only vague when it
+# does NOT modify a concrete observable action (connected/paired/recognized/…).
+# "The BTSA device is connected successfully" is observable, not vague.
+_SUCCESS_WORD = re.compile(r"\bsuccessfully\b", re.IGNORECASE)
+_SUCCESS_CONCRETE = re.compile(
+    r"\b(connect(?:ed|s)?|pair(?:ed|s)?|recogni[sz]e[ds]?|mount(?:ed|s)?|"
+    r"load(?:ed|s)?|detect(?:ed|s)?|sav(?:e|ed|es)|play(?:ed|s)?|"
+    r"display(?:ed|s)?|switch(?:ed|es)?|launch(?:ed|es)?)\b",
+    re.IGNORECASE,
+)
 
 # §8.1.2 modal/hedge in Test Item
 _MODAL_8_1_2_EN = re.compile(
@@ -322,9 +332,14 @@ def _detect_8_3_1(tc: TCRecord) -> list[dict]:
 
 
 def _detect_8_4_1(tc: TCRecord) -> list[dict]:
-    if not tc.expected_result:
+    er = tc.expected_result
+    if not er:
         return []
-    if not (_VAGUE_8_4_1_EN.search(tc.expected_result) or _VAGUE_8_4_1_ZH.search(tc.expected_result)):
+    vague = bool(_VAGUE_8_4_1_EN.search(er) or _VAGUE_8_4_1_ZH.search(er))
+    # bare "successfully" is vague only when no concrete observable verb is present
+    if not vague and _SUCCESS_WORD.search(er) and not _SUCCESS_CONCRETE.search(er):
+        vague = True
+    if not vague:
         return []
     return [{
         "tier": 3,
@@ -345,6 +360,12 @@ def _detect_8_1_1(tc: TCRecord) -> list[dict]:
         return []
     # 取第一個 line（避免多語版本同欄位混算字數）
     first = text.splitlines()[0].strip()
+    # House convention: this team's Test Item carries the full normative
+    # requirement句 (Tier 1 §6.6 anchors on it). A shall/must/should sentence is
+    # the requirement itself, not a concise title — the length limit does not
+    # apply. Short title-style Test Items (no spec句) are still checked.
+    if _SPEC_SENTENCE.search(first):
+        return []
     # heuristic: ASCII-dominant → word count; else char count
     ascii_chars = sum(1 for c in first if ord(c) < 128)
     if ascii_chars > len(first) / 2:

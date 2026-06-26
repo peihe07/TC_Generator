@@ -378,6 +378,66 @@ def test_8_3_5_flags_bare_action_final_step():
     assert [f["rule_ref"] for f in findings] == ["§8.3.5"]
 
 
+def test_8_1_1_exempts_requirement_sentence_test_item(tmp_path):
+    """House convention: Test Item carries the full shall/must/should
+    requirement句; §8.1.1 length limit must not fire on it."""
+    fp = _build_workbook(tmp_path, [{
+        "D": "REQ-A", "F": "TC-A-1",
+        "I": ("When a No Supported Files Found Error occurs, the HU shall "
+              "display Pop Up ID PU0003 with the corresponding message text."),
+        "L": "1. Trigger the error.\n2. Check the popup ID.",
+        "M": "1. Error triggered.\n2. PU0003 shown.",
+        "P": "P1", "Q": "Functional",
+    }])
+    report = review_workbook(fp, dry_run=True)
+    refs = [f["rule_ref"] for f in report["per_tc_findings"][0]["findings"]]
+    assert "§8.1.1" not in refs
+
+
+def test_8_4_1_successfully_with_concrete_verb_not_vague(tmp_path):
+    """Regression: 'connected successfully' is observable (mirrors the ZH
+    成功(?!連線) carve-out) and must NOT be flagged as vague."""
+    fp = _build_workbook(tmp_path, [{
+        "D": "REQ-A", "F": "TC-A-1",
+        "I": "the HU shall connect the BTSA device",
+        "L": "1. Pair the device.\n2. Check the connection state.",
+        "M": "1. The BTSA device is connected successfully.",
+        "P": "P1", "Q": "Functional",
+    }])
+    report = review_workbook(fp, dry_run=True)
+    refs = [f["rule_ref"] for f in report["per_tc_findings"][0]["findings"]]
+    assert "§8.4.1" not in refs
+
+
+def test_8_4_1_bare_vague_words_still_flagged(tmp_path):
+    """Genuinely vague outcomes (no concrete observable) are still flagged."""
+    fp = _build_workbook(tmp_path, [{
+        "D": "REQ-A", "F": "TC-A-1",
+        "I": "the HU shall play the track",
+        "L": "1. Start playback.\n2. Check the result.",
+        "M": "1. The system works correctly and behaves as expected.",
+        "P": "P1", "Q": "Functional",
+    }])
+    report = review_workbook(fp, dry_run=True)
+    refs = [f["rule_ref"] for f in report["per_tc_findings"][0]["findings"]]
+    assert "§8.4.1" in refs
+
+
+def test_8_1_1_still_flags_long_title_without_spec_sentence(tmp_path):
+    """A long Test Item that is NOT a normative requirement句 is still flagged."""
+    fp = _build_workbook(tmp_path, [{
+        "D": "REQ-A", "F": "TC-A-1",
+        "I": ("Player USB source browsing folder category navigation and item "
+              "selection across every supported media type end to end"),
+        "L": "1. Open menu.\n2. Check the list.",
+        "M": "1. Menu.\n2. List shown.",
+        "P": "P1", "Q": "Functional",
+    }])
+    report = review_workbook(fp, dry_run=True)
+    refs = [f["rule_ref"] for f in report["per_tc_findings"][0]["findings"]]
+    assert "§8.1.1" in refs
+
+
 # ---------------------------------------------------------------------------
 # Dry run never calls the LLM
 # ---------------------------------------------------------------------------
