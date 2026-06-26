@@ -260,6 +260,17 @@ _VERIFICATION_FOLLOWUP = re.compile(
     re.IGNORECASE,
 )
 
+# §8.3.5 final-step check verbs. The last step must verify an observable
+# outcome — but real test cases write "Check the …", "Verify that …",
+# "Validate …", not only the narrow "Check that". Accept the full check-verb
+# family (English + Chinese) as a leading/whole word; a bare action step
+# (e.g. "Select the USB source") still has no check verb and is flagged.
+_FINAL_CHECK_VERB = re.compile(
+    r"\b(Check|Verify|Confirm|Validate|Ensure|Observe|Read|Record|Compare)\b"
+    r"|(檢查|確認|驗證|查看|觀察|讀取|對照|比對|記錄|是否|符合)",
+    re.IGNORECASE,
+)
+
 # §8.3.4 step numbering anomalies
 _STEP_LINE = re.compile(r"^\s*(\d+)[.\s]", re.MULTILINE)
 
@@ -489,7 +500,7 @@ def _detect_8_3_5(tc: TCRecord) -> list[dict]:
         return []
     last = steps[-1]
     body = re.sub(r"^\s*\d+[.\s]+", "", last)
-    has_check = bool(re.search(r"(Check that|Confirm that|Read|Record|Compare|確認|對照)", body, re.IGNORECASE))
+    has_check = bool(_FINAL_CHECK_VERB.search(body))
     if has_check:
         return []
     # If the last step is a tool-launch, §7.5 (Tier 2) handles it instead

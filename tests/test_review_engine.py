@@ -29,6 +29,7 @@ from review_engine import (
     _build_groups,
     _detect_7_4_or_8_3_6,
     _detect_7_5,
+    _detect_8_3_5,
     _enforce_severity_ceiling,
     _normalize_row,
     _run_llm_pipeline,
@@ -354,6 +355,27 @@ def test_8_3_1_forbidden_verb(tmp_path):
     report = review_workbook(fp, dry_run=True)
     refs = [f["rule_ref"] for f in report["per_tc_findings"][0]["findings"]]
     assert "§8.3.1" in refs
+
+
+def test_8_3_5_accepts_real_check_verbs():
+    """Regression: a final step that verifies an outcome must NOT be flagged.
+    Real test cases write 'Check the …' / 'Verify that …', not only the narrow
+    'Check that' the old regex required (which also omitted 'Verify')."""
+    for last_step in (
+        "5. Check the system response after selecting the USB source.",
+        "8. Verify that all controls except Source are disabled.",
+        "3. Validate the repeat mode status is highlighted.",
+        "4. 確認重複模式顯示為 Repeat All。",
+    ):
+        tc = _make_tc(test_procedure="1. Open the player.\n" + last_step)
+        assert _detect_8_3_5(tc) == [], f"false positive on: {last_step}"
+
+
+def test_8_3_5_flags_bare_action_final_step():
+    """A final step that is a bare action with no verification is still flagged."""
+    tc = _make_tc(test_procedure="1. Open the player.\n2. Select the USB source.")
+    findings = _detect_8_3_5(tc)
+    assert [f["rule_ref"] for f in findings] == ["§8.3.5"]
 
 
 # ---------------------------------------------------------------------------
