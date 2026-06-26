@@ -45,3 +45,13 @@ def test_trace_tcs_flags_untraceable_and_id_mismatch():
     s = summarize(results)
     assert s["total_tcs"] == 2 and s["traceable"] == 1
     assert s["id_mismatch_count"] == 1
+
+
+def test_id_agrees_across_namespaces():
+    """Different projects use different id namespaces but share the FEATURE-NNN
+    core (TC 'SWE1-DEAL-001-01' vs SWE1 analysis 'NEWR1L-SWRA-DEAL-001')."""
+    from req_tracer import _ids_agree
+    assert _ids_agree("NEWR1L-SWRA-DEAL-001", "SWE1-DEAL-001-01") is True
+    assert _ids_agree("SWE1-PLA-006-02", "SWE1-PLA-006-02") is True
+    # Genuinely different feature numbers do NOT agree.
+    assert _ids_agree("SWE1-PLA-006-02", "SWE1-PLA-030-02") is False

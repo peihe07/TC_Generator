@@ -9,9 +9,29 @@ content does not map to any requirement.
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 
 from spec_matcher import _tokenize, _jaccard
+
+# Trailing "FEATURE-NNN(-NN)*" core of a req id, namespace-independent.
+# e.g. SWE1-DEAL-001-01 -> DEAL-001-01 ; NEWR1L-SWRA-DEAL-001 -> DEAL-001.
+_CORE_RE = re.compile(r"[A-Za-z]+-\d+(?:-\d+)*$")
+
+
+def _core(req_id: str) -> str:
+    m = _CORE_RE.search(req_id or "")
+    return m.group(0).upper() if m else (req_id or "").upper()
+
+
+def _ids_agree(a: str, b: str) -> bool:
+    """Compare two req ids by normalized core, tolerant of different namespaces
+    (project A uses SWE1-DEAL-..., the SWE1 analysis uses NEWR1L-SWRA-DEAL-...)
+    and of -NN sub-suffixes (parent vs child req)."""
+    if not a or not b:
+        return False
+    ca, cb = _core(a), _core(b)
+    return ca == cb or ca.startswith(cb) or cb.startswith(ca)
 
 # Below this Jaccard score a TC is considered NOT traceable to any requirement.
 DEFAULT_THRESHOLD = 0.08
@@ -71,11 +91,8 @@ def trace_tcs(tcs: list[dict], reqs: list[dict],
             matched_title=best.get("title", "") if best else "",
             score=round(score, 3),
             traceable=score >= threshold,
-            # IDs "agree" only if the TC's own req_id is a prefix-or-equal of the
-            # content match (tolerant of -NN suffixes).
-            id_agrees=bool(matched_id and tc_req and (
-                matched_id == tc_req or matched_id.startswith(tc_req)
-                or tc_req.startswith(matched_id))),
+            # Compare by normalized FEATURE-NNN core (namespace-independent).
+            id_agrees=_ids_agree(matched_id, tc_req),
         ))
     return out
 

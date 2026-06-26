@@ -1,0 +1,428 @@
+[
+ {
+  "id": "NEWR1L-SWRA-DEAL-001",
+  "src": "NEWR1L-24831",
+  "title": "System information and control data",
+  "desc": "The radio HU shall allow a user to see system information, download and restore data, and take a screen snapshot."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-001-01",
+  "src": "NEWR1L-24831",
+  "title": "System information and control data - 01",
+  "desc": "The radio HU shall allow a user to see system information"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-001-02",
+  "src": "NEWR1L-24831",
+  "title": "System information and control data - 02",
+  "desc": "The radio HU shall allow a user to download data."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-001-03",
+  "src": "NEWR1L-24831",
+  "title": "System information and control data - 03",
+  "desc": "The radio HU shall allow a user to restore data."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-001-04",
+  "src": "NEWR1L-24831",
+  "title": "System information and control data - 04",
+  "desc": "The radio HU shall allow a user to take a screen snapshot."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-002",
+  "src": "NEWR1L-24832",
+  "title": "Access for Issue Resolution and Customer Support",
+  "desc": "The dealer mode will be used by Stellantis dealerships and other outside groups to assist the customer in resolving issues."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-003",
+  "src": "NEWR1L-24833",
+  "title": "English-Only Dealer Mode Screens",
+  "desc": "The screens developed for dealer mode are not required to implement languages other than English."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-004",
+  "src": "NEWR1L-24857",
+  "title": "Entering Dealer Mode",
+  "desc": "When the HU enters dealer mode, the HU shall display the main menu.  Do not store and recall the last entry displayed before exiting."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-005",
+  "src": "NEWR1L-24858",
+  "title": "Normal Operation with Information Gathering",
+  "desc": "When the HU enters dealer mode, the HU shall continue to operate in normal mode by implementing each system with the exception that the display shows the dealer mode menu and the HU enters the process"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-006",
+  "src": "NEWR1L-24862\nNEWR1L-24868",
+  "title": "Exiting Dealer Mode",
+  "desc": "If Dealer Mode has an \"X\" button, the HU shall exit through the \"X\" button instead."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-007",
+  "src": "NEWR1L-24876",
+  "title": "Exit Navigation",
+  "desc": "For each screen, the display shall have a method, virtual button, to exit the screen and return to the last location in the dealer mode menu."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details",
+  "desc": "The display shall include the following information as applicable:\nStellantis Hardware part number: For the definition, refer to Spare Part Number in CS.00021.\nSoftware version number\nSerial number: F"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-01",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 01",
+  "desc": "The display shall include the following information as applicable:\nStellantis Hardware part number: For the definition, refer to Spare Part Number in CS.00021."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-02",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 02",
+  "desc": "The display shall include the following information as applicable:\nSoftware version number"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-03",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 03",
+  "desc": "The display shall include the following information as applicable:\nSerial number: For the definition, refer to ECU Serial Number in CS.00021."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-04",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 04",
+  "desc": "The display shall include the following information as applicable:\nHD tuner firmware version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-05",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 05",
+  "desc": "The display shall include the following information as applicable:\nDAB tuner firmware version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-06",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 06",
+  "desc": "The display shall include the following information as applicable:\nEQ version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-008-07",
+  "src": "NEWR1L-24889",
+  "title": "System Information Display Details - 07",
+  "desc": "The display shall include the following information as applicable:\nAndroid version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-009",
+  "src": "NEWR1L-24890",
+  "title": "Security Serial Number Display",
+  "desc": "The display shall include the following information as applicable:\n Security Serial number, SSN, non-modifiable.  For the definition, refer to CFTS084."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-010",
+  "src": "NEWR1L-24891\nNEWR1L-24896",
+  "title": "Local Collection of System Information",
+  "desc": "The HU shall collect the information locally within the HU assembly."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-011",
+  "src": "NEWR1L-24892",
+  "title": "SDAR Information (NAFTA Market Configurations only)",
+  "desc": "The display shall include the following SDAR information as applicable:\nSDAR hardware version\nSDAR firmware version\nSDAR Audio/Traffic/Data on demand SiriusXM Radio ID (ESN)"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-011-01",
+  "src": "NEWR1L-24892",
+  "title": "SDAR Information (NAFTA Market Configurations only) - 01",
+  "desc": "The display shall include the following SDAR information as applicable:\nSDAR hardware version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-011-02",
+  "src": "NEWR1L-24892",
+  "title": "SDAR Information (NAFTA Market Configurations only) - 02",
+  "desc": "The display shall include the following SDAR information as applicable:\nSDAR firmware version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-011-03",
+  "src": "NEWR1L-24892",
+  "title": "SDAR Information (NAFTA Market Configurations only) - 03",
+  "desc": "The display shall include the following SDAR information as applicable:\nSDAR Audio/Traffic/Data on demand SiriusXM Radio ID (ESN)"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-012",
+  "src": "NEWR1L-24893",
+  "title": "SDAR Information (NAFTA Market Configurations only)",
+  "desc": "The HU shall collect the information locally within the HU assembly."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-013",
+  "src": "NEWR1L-24894",
+  "title": "Flash Loader version",
+  "desc": "The display shall include the flash loader version."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-014",
+  "src": "NEWR1L-24895",
+  "title": "Navigation version",
+  "desc": "The display shall include the following navigation information or equivalent version information:\n Map database version"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-015",
+  "src": "NEWR1L-24899",
+  "title": "Copy User Data to SD/USB",
+  "desc": "The display shall allow the user to select to download user data from flash memory to either the USB storage device or the SD card, if so equipped."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-016",
+  "src": "NEWR1L-24905",
+  "title": "Stored User Media and EQ Settings",
+  "desc": "The following information shall be stored:\n Media Presets\n SXM Favorites\n Driver User EQ Settings"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-016-01",
+  "src": "NEWR1L-24905",
+  "title": "Stored User Media and EQ Settings - 01",
+  "desc": "The following information shall be stored:\n Media Presets"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-016-02",
+  "src": "NEWR1L-24905",
+  "title": "Stored User Media and EQ Settings - 02",
+  "desc": "The following information shall be stored:\n SXM Favorites"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-016-03",
+  "src": "NEWR1L-24905",
+  "title": "Stored User Media and EQ Settings - 03",
+  "desc": "The following information shall be stored:\n Driver User EQ Settings"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-017",
+  "src": "NEWR1L-24905",
+  "title": "Restore User Data from SD/USB",
+  "desc": "The display shall allow the user to select to download user data from either the USB mass storage device or the SD card, if so equipped, to flash memory."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-017-01",
+  "src": "NEWR1L-24905",
+  "title": "Restore User Data from SD/USB - 01",
+  "desc": "The display shall allow the user to select to download user data from either the USB mass storage device or the SD card, if so equipped, to flash memory."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-017-02",
+  "src": "NEWR1L-24905",
+  "title": "Restore User Data from SD/USB - 02",
+  "desc": "The display shall allow the user to select to download user data from either the USB mass storage device or the SD card, if so equipped, to flash memory."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-018",
+  "src": "NEWR1L-24916",
+  "title": "Screenshot Mode",
+  "desc": "For the steps to perform the Screenshot for R1L, refer to reference document \"Screenshot and System Level Logs function\"."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-019",
+  "src": "NEWR1L-24917",
+  "title": "Screenshot Timing",
+  "desc": "The screenshot shall be taken within the time listed in reference document \"Screenshot and System Level Logs function\"."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-020",
+  "src": "NEWR1L-24918",
+  "title": "Write Storage Timing",
+  "desc": "The write process to the storage media shall start within 2 seconds, and finish within 10 seconds."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-020-01",
+  "src": "NEWR1L-24918",
+  "title": "Write Storage Timing - 01",
+  "desc": "The write process to the storage media shall start within 2 seconds."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-020-02",
+  "src": "NEWR1L-24918",
+  "title": "Write Storage Timing - 02",
+  "desc": "The write process to the storage media shall finish within 10 seconds."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-021",
+  "src": "NEWR1L-24919",
+  "title": "Screenshot file format",
+  "desc": "The screenshot file shall be saved in a commonly used format (e.g. BMP, JPEG, PNG)."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-022",
+  "src": "NEWR1L-24920",
+  "title": "Screenshot file name",
+  "desc": "The filename of the screenshot shall contain the date and time when the screenshot was taken (e.g. \"yyyymmddhhmmss.bmp\")."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-023",
+  "src": "NEWR1L-24934",
+  "title": "Showroom Demo Mode",
+  "desc": "The Showroom Demo Mode shall be able to be turned ON and OFF from the Dealer Mode."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-024",
+  "src": "NEWR1L-24935",
+  "title": "Upload Demo Video",
+  "desc": "The user shall upload the Showroom Demo Video from USB device through the File Browser interface."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-025",
+  "src": "NEWR1L-24936",
+  "title": "Maximum File Size in HU",
+  "desc": "The maximum memory size for a single file shall be 200MB."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-026",
+  "src": "NEWR1L-24937",
+  "title": "Play Video",
+  "desc": "The HU shall load and play the Demo Video."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-027",
+  "src": "NEWR1L-24938",
+  "title": "Functionality of Personal Data Clearing",
+  "desc": "Clear personal data shall remove the Demo Video and disable the functionality in the Dealer Mode."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-027-01",
+  "src": "NEWR1L-24938",
+  "title": "Functionality of Personal Data Clearing - 01",
+  "desc": "Clear personal data shall remove the Demo Video in the Dealer Mode."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-027-02",
+  "src": "NEWR1L-24938",
+  "title": "Functionality of Personal Data Clearing - 02",
+  "desc": "Clear personal data shall disable the functionality in the Dealer Mode."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-028",
+  "src": "NEWR1L-24941",
+  "title": "Showroom Demo Video Lock Option",
+  "desc": "The Dealer Mode shall have the option to not allow user to exit the Video.  If set, once video starts, the video only exits when video finishes playing and returns to last HU screen, or video continue"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-028-01",
+  "src": "NEWR1L-24941",
+  "title": "Showroom Demo Video Lock Option - 01",
+  "desc": "The Dealer Mode shall have the option to not allow user to exit the Video.  If set, once video starts, the video only exits when video finishes playing and returns to last HU screen, the user has to u"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-028-02",
+  "src": "NEWR1L-24941",
+  "title": "Showroom Demo Video Lock Option - 02",
+  "desc": "The Dealer Mode shall have the option to not allow user to exit the Video.  If set, once video starts, the video continues to loop play if set to repeat, the user has to use Dealer Mode then to exit."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-029",
+  "src": "NEWR1L-24942",
+  "title": "Showroom Demo Video Format Restriction",
+  "desc": "Dealer Mode shall only allow video file types to be uploaded.  Reference CFTS018 for the allowed video file types."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-030",
+  "src": "NEWR1L-24944",
+  "title": "Showroom Demo Playback Reset",
+  "desc": "Dealer Demo shall not play over ignition cycles."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-031",
+  "src": "NEWR1L-24945",
+  "title": "ECU ID Certificate Download Function",
+  "desc": "The Dealer Menu shall have buttons to implement functionality to trigger ECU ID Certificate download using existing process.\n\nNote: Pass or Fail response expected to be displayed."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-031-01",
+  "src": "NEWR1L-24945",
+  "title": "ECU ID Certificate Download Function - 01",
+  "desc": "The Dealer Menu shall have buttons to implement functionality to trigger ECU ID Certificate download using existing process.\n\nShould show some thing when pass"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-031-02",
+  "src": "NEWR1L-24945",
+  "title": "ECU ID Certificate Download Function - 02",
+  "desc": "The Dealer Menu shall have buttons to implement functionality to trigger ECU ID Certificate download using existing process.\n\nShould show some thing when getting fail"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-032",
+  "src": "NEWR1L-24948",
+  "title": "ECU ID Certificate USB Import/Export",
+  "desc": "The Dealer Menu shall have buttons to implement functionality to import and export ECU ID Certificate from USB.\n\nNote: Pass or Fail response expected to be displayed."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-032-01",
+  "src": "NEWR1L-24948",
+  "title": "ECU ID Certificate USB Import/Export - 01",
+  "desc": "The Dealer Menu shall have buttons to implement functionality to import and export ECU ID Certificate from USB.\n\nShould show some thing when getting pass"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-032-02",
+  "src": "NEWR1L-24948",
+  "title": "ECU ID Certificate USB Import/Export - 02",
+  "desc": "The Dealer Menu shall have buttons to implement functionality to import and export ECU ID Certificate from USB.\n\nShould show some thing when getting fail"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-033",
+  "src": "NEWR1L-24951",
+  "title": "Invalid Certificate Rejection",
+  "desc": "The Dealer Menu shall support functionality to confirm that invalid certificates are rejected per CFTS084 or CS.00165."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-034",
+  "src": "NEWR1L-24952",
+  "title": "ECU ID Certificate Status Display",
+  "desc": "The Dealer Menu shall have ECU ID Certificate status field to communicate the following states:\n Certificate not present.\n CSR not present.\n Certificate present.\n Certificate invalid.\n Private key not"
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-034-01",
+  "src": "NEWR1L-24952",
+  "title": "ECU ID Certificate Status Display - 01",
+  "desc": "The Dealer Menu shall have ECU ID Certificate status field to communicate the following states:\n Certificate not present."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-034-02",
+  "src": "NEWR1L-24952",
+  "title": "ECU ID Certificate Status Display - 02",
+  "desc": "The Dealer Menu shall have ECU ID Certificate status field to communicate the following states:\n CSR not present."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-034-03",
+  "src": "NEWR1L-24952",
+  "title": "ECU ID Certificate Status Display - 03",
+  "desc": "The Dealer Menu shall have ECU ID Certificate status field to communicate the following states:\n Certificate present."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-034-04",
+  "src": "NEWR1L-24952",
+  "title": "ECU ID Certificate Status Display - 04",
+  "desc": "The Dealer Menu shall have ECU ID Certificate status field to communicate the following states:\n Certificate invalid."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-034-05",
+  "src": "NEWR1L-24952",
+  "title": "ECU ID Certificate Status Display - 05",
+  "desc": "The Dealer Menu shall have ECU ID Certificate status field to communicate the following states:\n Private key not present."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-035",
+  "src": "NEWR1L-24836",
+  "title": "Dealer Mode HMI Development",
+  "desc": "The supplier is responsible for developing HMI to implement dealer mode."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-036",
+  "src": "NEWR1L-24873",
+  "title": "Feature Listing Order in HU",
+  "desc": "The HU shall list the features in the order listed in the following sections below."
+ },
+ {
+  "id": "NEWR1L-SWRA-DEAL-037",
+  "src": "NEWR1L-24874",
+  "title": "Feature Information Display Order",
+  "desc": "The HU shall display the information of the features in the order listed in the following sections below."
+ }
+]
