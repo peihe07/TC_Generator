@@ -132,6 +132,43 @@ def _reject_generate_flags(args: argparse.Namespace) -> str | None:
     )
 
 
+# Fields a complete TC must have filled (Stage 5 "有沒有填", not "填得對不對").
+# pre_conditions / input_test_data may legitimately be NA, so they are excluded.
+_REQUIRED_TC_FIELDS = (
+    "test_item", "test_procedure", "expected_result", "priority", "design_method",
+)
+
+
+def _build_scorecard_inputs(input_path: str, swe1_reqs_path: str | None):
+    """Derive the deterministic scorecard feeds (no AI) from the TC workbook:
+    field-completeness validation and content-based traceability.
+
+    Returns (validation, traceability). Either may be None when its source is
+    unavailable (e.g. no --swe1-reqs ⇒ traceability stays None ⇒ N/A KPIs)."""
+    parsed = parse_tc_xlsx(input_path)
+    rows = parsed["rows"]
+
+    # field_completeness: a TC passes when every required field is non-empty.
+    validation = {}
+    for row in rows:
+        tc_id = str(row.get("tc_id") or f"row{row.get('row_num')}")
+        passed = all(str(row.get(f) or "").strip() for f in _REQUIRED_TC_FIELDS)
+        validation[tc_id] = {"passed": passed}
+
+    # traceability: content-match each TC to the SWE1 requirement universe.
+    traceability = None
+    if swe1_reqs_path:
+        from req_tracer import (
+            load_swe1_reqs, trace_tcs, to_scorecard_traceability,
+        )
+        reqs = load_swe1_reqs(swe1_reqs_path)
+        results = trace_tcs(rows, reqs)
+        all_req_ids = [r.get("id") for r in reqs if r.get("id")]
+        traceability = to_scorecard_traceability(results, all_req_ids)
+
+    return validation, traceability
+
+
 def run_review(args: argparse.Namespace) -> int:
     """Review-mode entry point. Mirrors `run` shape but routes through
     `review_engine.review_workbook`."""
@@ -177,7 +214,10 @@ def run_review(args: argparse.Namespace) -> int:
     # Stage 7 — also emit a KPI scorecard from the findings we just produced.
     from scorecard import compute_scorecard, write_scorecard
 
-    sc = compute_scorecard(report)
+    validation, traceability = _build_scorecard_inputs(
+        args.input, args.swe1_reqs)
+    sc = compute_scorecard(
+        report, validation=validation, traceability=traceability)
     write_scorecard(sc, args.output_dir)
 
     print(f"\n  Wrote: {args.output_dir}/findings.json")

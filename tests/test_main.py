@@ -4,7 +4,12 @@ from openpyxl import Workbook
 from unittest.mock import patch
 from openpyxl import load_workbook
 
-from main import parse_args, _filter_rows, _estimate_cost, _reject_generate_flags, main, run
+import json
+
+from main import (
+    parse_args, _filter_rows, _estimate_cost, _reject_generate_flags,
+    _build_scorecard_inputs, main, run,
+)
 
 
 @pytest.fixture
@@ -269,6 +274,34 @@ def _build_review_workbook(tmp_path):
     ws_tc.cell(row=10, column=17, value="Functional")
     wb.save(fp)
     return str(fp)
+
+
+class TestScorecardInputs:
+    def test_completeness_and_traceability_feeds(self, tmp_path):
+        fp = _build_review_workbook(tmp_path)  # one fully-filled TC (REQ-A)
+        reqs = [
+            {"id": "REQ-A", "title": "Icon display",
+             "desc": "the HU shall display the icon on the status bar"},
+            {"id": "REQ-B", "title": "Unrelated",
+             "desc": "the climate fan speed shall be adjustable"},
+        ]
+        reqs_path = tmp_path / "swe1.json"
+        reqs_path.write_text(json.dumps(reqs), encoding="utf-8")
+
+        validation, traceability = _build_scorecard_inputs(fp, str(reqs_path))
+
+        # field_completeness: the single TC has all required fields filled.
+        assert validation["TC-A-1"]["passed"] is True
+        # traceability: content-traces to REQ-A; all_requirements lists both.
+        assert traceability["all_requirements"] == ["REQ-A", "REQ-B"]
+        assert traceability["per_tc"]["TC-A-1"]["matched"] is True
+        assert traceability["per_tc"]["TC-A-1"]["req_id"] == "REQ-A"
+
+    def test_traceability_none_without_swe1_reqs(self, tmp_path):
+        fp = _build_review_workbook(tmp_path)
+        validation, traceability = _build_scorecard_inputs(fp, None)
+        assert traceability is None
+        assert validation["TC-A-1"]["passed"] is True
 
 
 class TestReviewMode:
