@@ -1,0 +1,121 @@
+{
+  "batch_meta": {
+    "source_file": "generated_tcs.xlsx",
+    "sheet": "Test Case Specification&Result",
+    "total_tcs": 5,
+    "total_req_groups": 1,
+    "reviewed_at": "2026-06-27T08:24:45.973175+00:00",
+    "llm_stats": null
+  },
+  "per_req_findings": [
+    {
+      "req_id": "SWE1-PLA-006",
+      "tier": 1,
+      "rule_ref": "§6.5",
+      "severity": "Critical",
+      "scope_tcs": [
+        "GEN-0001",
+        "GEN-0002",
+        "GEN-0003",
+        "GEN-0004"
+      ],
+      "issue": "同 Req group 內多個 TC 引用不同版本的 spec句，Traceability 已斷裂",
+      "evidence_req_spec": "repeat softkey shall toggle between repeat all and repeat song.",
+      "suggestion_note": "確認 canonical 版本並讓所有 TC 對齊；不要自動覆寫，請 reviewer 對應 Polarion / SWRA 確認"
+    }
+  ],
+  "per_tc_findings": [
+    {
+      "tc_id": "GEN-0001",
+      "row": 10,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "GEN-0002",
+      "row": 11,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "GEN-0003",
+      "row": 12,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "GEN-0004",
+      "row": 13,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 2,
+          "rule_ref": "§8.3.1",
+          "severity": "Major",
+          "issue": "測試程序步驟使用了猜測語氣或被禁止的動詞，將判斷推給測試人員",
+          "evidence": "2. Verify the softkey label and highlight.",
+          "original": "2. Verify the softkey label and highlight.",
+          "revised": "",
+          "suggestion_note": "改用 Check that / Confirm that / Read / Record / Compare + 明確可觀察目標"
+        }
+      ]
+    },
+    {
+      "tc_id": "GEN-0005",
+      "row": 14,
+      "overall_verdict": "pass_with_issues",
+      "findings": [
+        {
+          "tier": 3,
+          "field": "test_procedure",
+          "step_index": 2,
+          "rule_ref": "§8.3.1",
+          "severity": "Major",
+          "issue": "測試程序步驟使用了猜測語氣或被禁止的動詞，將判斷推給測試人員",
+          "evidence": "2. Check whether an Off/No-Repeat state appears.",
+          "original": "2. Check whether an Off/No-Repeat state appears.",
+          "revised": "",
+          "suggestion_note": "改用 Check that / Confirm that / Read / Record / Compare + 明確可觀察目標"
+        }
+      ]
+    }
+  ],
+  "batch_summary": {
+    "verdict_counts": {
+      "pass": 3,
+      "pass_with_issues": 2,
+      "fail": 0
+    },
+    "tier_summary": {
+      "tier1": {
+        "req_groups_total": 1,
+        "req_groups_with_critical": 1,
+        "req_groups_skipped": 0,
+        "top_rules": [
+          {
+            "rule_ref": "§6.5",
+            "count": 1,
+            "title": "Spec句 inconsistent across siblings"
+          }
+        ]
+      },
+      "tier2": {
+        "tcs_with_critical": 0,
+        "top_rules": []
+      },
+      "tier3": {
+        "tcs_with_findings": 2,
+        "top_rules": [
+          {
+            "rule_ref": "§8.3.1",
+            "count": 2,
+            "title": "Forbidden verb / guessing tone"
+          }
+        ]
+      }
+    },
+    "reasoning": "Tier 1：共 1 個 Req group，其中 1 個出現 Critical 拆解問題，0 個無英文 spec句（§6.6）。 Tier 2：0 個 Critical 對齊問題，多集中於 Final Step 工具未讀結果或數值未引用 spec。 Tier 3：2 筆寫作層違規（多為禁用動詞、模糊用語、Design Method 缺漏）。 修正順序建議：先補完 Tier 1 拆解 → 重審 → 再依 Tier 2 / Tier 3 finding 個別調整。"
+  }
+}
