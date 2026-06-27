@@ -152,9 +152,15 @@ def _requirement_coverage(findings: dict, traceability: dict | None,
     if not all_reqs:
         # findings alone cannot see requirements that produced zero TCs.
         return _make_kpi("requirement_coverage", 0, 0, threshold)
-    per_tc = (traceability or {}).get("per_tc") or {}
-    reqs_with_tc = {v.get("req_id") for v in per_tc.values() if v.get("req_id")}
-    covered = sum(1 for r in all_reqs if r in reqs_with_tc)
+    # Prefer the coverage set computed by req_tracer (content OR written-id OR
+    # parent/child rollup) — robust to templated-sibling under-counting. Fall
+    # back to the legacy content-only set if absent.
+    covered_set = (traceability or {}).get("covered_requirements")
+    if covered_set is None:
+        per_tc = (traceability or {}).get("per_tc") or {}
+        covered_set = {v.get("req_id") for v in per_tc.values() if v.get("req_id")}
+    covered_set = set(covered_set)
+    covered = sum(1 for r in all_reqs if r in covered_set)
     return _make_kpi("requirement_coverage", covered, len(all_reqs), threshold)
 
 

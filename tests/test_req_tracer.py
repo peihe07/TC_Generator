@@ -84,3 +84,34 @@ def test_sibling_twin_suppressed_real_suspect_kept():
     s = summarize(list(res.values()))
     assert s["id_mismatch_count"] == 1
     assert s["ambiguous_twin_count"] == 1
+
+
+def test_coverage_counts_written_id_and_rollup():
+    """A requirement is covered when a TC's written id points to it even if
+    content-tracing attributed the TC to a templated twin; a parent is covered
+    when a child is covered."""
+    from req_tracer import to_scorecard_traceability
+    reqs = [
+        {"id": "SWE1-PLA-014", "title": "USB MSC Alphajump",
+         "desc": "enable the alphajump softkey and display the alphajump screen"},
+        {"id": "SWE1-PLA-016", "title": "USB DAP Alphajump",
+         "desc": "enable the alphajump softkey and display the alphajump screen"},
+        {"id": "SWE1-PLA-016-02", "title": "Display Alphajump Screen",
+         "desc": "display the alpha-numeric selection screen"},
+        {"id": "SWE1-PLA-099", "title": "Lonely", "desc": "totally unrelated climate"},
+    ]
+    tcs = [
+        # written for 014, but identical wording content-matches 016 (twin).
+        {"tc_id": "T1", "req_id": "SWE1-PLA-014",
+         "test_item": "enable the alphajump softkey and display the alphajump screen"},
+        # written for the child 016-02 -> parent 016 should roll up as covered.
+        {"tc_id": "T2", "req_id": "SWE1-PLA-016-02",
+         "test_item": "display the alpha-numeric selection screen"},
+    ]
+    all_ids = [r["id"] for r in reqs]
+    trace = to_scorecard_traceability(trace_tcs(tcs, reqs), all_ids)
+    cov = set(trace["covered_requirements"])
+    # 014 (written), 016 (twin/parent rollup), 016-02 (written) all covered.
+    assert {"SWE1-PLA-014", "SWE1-PLA-016", "SWE1-PLA-016-02"} <= cov
+    # the unrelated requirement stays uncovered.
+    assert "SWE1-PLA-099" not in cov

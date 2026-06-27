@@ -130,13 +130,42 @@ def trace_tcs(tcs: list[dict], reqs: list[dict],
     return out
 
 
+def _covered_requirements(results: list[TraceResult],
+                          all_req_ids: list[str]) -> set[str]:
+    """Set of requirements that have at least one TC testing them.
+
+    A requirement is covered when EITHER a TC content-matches it OR a TC's
+    written req_id agrees with it (author intent). Templated sibling/parent-child
+    requirements (USB MSC vs DAP Alphajump, the BT-function family, a parent vs
+    its -NN children) would otherwise be under-counted by single-best-match
+    content tracing, producing false "uncovered" requirements. A parent/child is
+    also covered when its child/parent is covered (rollup)."""
+    direct: set[str] = set()
+    for r in results:
+        if r.traceable and r.matched_req_id:
+            direct.add(r.matched_req_id)
+        if r.tc_req_id:
+            for rid in all_req_ids:
+                if _ids_agree(rid, r.tc_req_id):
+                    direct.add(rid)
+    covered = set(direct)
+    for rid in all_req_ids:
+        if rid in covered:
+            continue
+        if any(c != rid and (c.startswith(rid + "-") or rid.startswith(c + "-"))
+               for c in direct):
+            covered.add(rid)
+    return covered
+
+
 def to_scorecard_traceability(results: list[TraceResult],
                               all_req_ids: list[str]) -> dict:
     """Shape req_tracer output for `scorecard.compute_scorecard(traceability=...)`.
 
     per_tc carries content-match status + whether the written id agrees, so the
-    scorecard can compute traceability_completeness, requirement_coverage and
-    req_id_mismatch_rate.
+    scorecard can compute traceability_completeness and req_id_mismatch_rate.
+    `covered_requirements` is the coverage set (content OR written-id OR rollup)
+    used for requirement_coverage, robust to templated-sibling under-counting.
     """
     return {
         "per_tc": {
@@ -150,6 +179,7 @@ def to_scorecard_traceability(results: list[TraceResult],
             for r in results
         },
         "all_requirements": list(all_req_ids),
+        "covered_requirements": sorted(_covered_requirements(results, all_req_ids)),
     }
 
 
