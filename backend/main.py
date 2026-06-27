@@ -112,6 +112,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Path to a review_bundle.json whose batch answers Claude has filled. "
              "Merges them into findings.json + scorecard.md (zero API).",
     )
+    p.add_argument(
+        "--spec-coverage",
+        help="Path to a spec_coverage_*.json (from M1/spec_coverage_analysis.py). "
+             "Feeds the L2 `spec_coverage` KPI (SPEC behaviours covered vs the "
+             "SPEC original, not just the derived requirements).",
+    )
     return p.parse_args(argv)
 
 
@@ -149,6 +155,18 @@ def _reject_generate_flags(args: argparse.Namespace) -> str | None:
 _REQUIRED_TC_FIELDS = (
     "test_item", "test_procedure", "expected_result", "priority", "design_method",
 )
+
+
+def _load_spec_coverage(path: str | None) -> dict | None:
+    """Read a spec_coverage_*.json (per-PC rows) into {covered, total} for the
+    L2 spec_coverage KPI. A PC rule counts as covered when `req_covered` is set."""
+    if not path:
+        return None
+    with open(path, encoding="utf-8") as fh:
+        rows = json.load(fh)
+    total = len(rows)
+    covered = sum(1 for r in rows if r.get("req_covered"))
+    return {"covered": covered, "total": total}
 
 
 def _build_scorecard_inputs(input_path: str, swe1_reqs_path: str | None):
@@ -229,7 +247,8 @@ def run_review(args: argparse.Namespace) -> int:
     validation, traceability = _build_scorecard_inputs(
         args.input, args.swe1_reqs)
     sc = compute_scorecard(
-        report, validation=validation, traceability=traceability)
+        report, validation=validation, traceability=traceability,
+        spec_coverage=_load_spec_coverage(args.spec_coverage))
     write_scorecard(sc, args.output_dir)
 
     print(f"\n  Wrote: {args.output_dir}/findings.json")
@@ -256,7 +275,8 @@ def run_scorecard(args: argparse.Namespace) -> int:
     with open(findings_path, encoding="utf-8") as fh:
         findings = json.load(fh)
 
-    sc = compute_scorecard(findings)
+    sc = compute_scorecard(
+        findings, spec_coverage=_load_spec_coverage(args.spec_coverage))
     write_scorecard(sc, args.output_dir)
 
     print(f"\n{'='*60}")
@@ -690,7 +710,9 @@ def run_assemble(args: argparse.Namespace) -> int:
     report = assemble_review(bundle, output_dir=args.output_dir)
     validation, traceability = _build_scorecard_inputs(
         bundle["workbook_path"], args.swe1_reqs)
-    sc = compute_scorecard(report, validation=validation, traceability=traceability)
+    sc = compute_scorecard(
+        report, validation=validation, traceability=traceability,
+        spec_coverage=_load_spec_coverage(args.spec_coverage))
     write_scorecard(sc, args.output_dir)
     counts = report["batch_summary"]["verdict_counts"]
     answered = report["batch_meta"]["llm_stats"]

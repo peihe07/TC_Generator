@@ -48,6 +48,7 @@ KPI_ORDER = [
     # Appended (schema evolves by appending only, to keep older columns stable).
     "tier1_critical_req_rate",  # lower is better; measures decomposition depth
     "req_id_mismatch_rate",     # lower is better; TC's written req_id != content match
+    "spec_coverage",            # L2: SPEC behaviours covered (vs L1 requirements)
 ]
 
 # Severities that disqualify a TC from "first pass".
@@ -63,6 +64,7 @@ _DEFAULT_THRESHOLDS = {
     "requirement_coverage": 1.00,
     "traceability_completeness": 0.95,
     "field_completeness": 0.98,
+    "spec_coverage": 0.95,
 }
 
 _DEFAULT_THRESHOLDS_PATH = os.path.join("config", "kpi_thresholds.json")
@@ -135,6 +137,19 @@ def _design_method_accuracy(findings: dict, total_tcs: int,
     flagged.discard(None)
     return _make_kpi("design_method_accuracy", total_tcs - len(flagged),
                      total_tcs, threshold)
+
+
+def _spec_coverage(spec_coverage: dict | None, threshold: float | None) -> KPI:
+    """L2 coverage: SPEC behaviours (e.g. Media HMI PC rules) covered by some
+    requirement/TC, vs the SPEC original — NOT the derived requirement list.
+    Catches behaviours that were never decomposed into a requirement (so L1
+    `requirement_coverage` can report 100% while the SPEC is under-covered).
+    Input: {"covered": int, "total": int} from spec_coverage_analysis."""
+    if not spec_coverage:
+        return _make_kpi("spec_coverage", 0, 0, threshold)
+    covered = int(spec_coverage.get("covered", 0) or 0)
+    total = int(spec_coverage.get("total", 0) or 0)
+    return _make_kpi("spec_coverage", covered, total, threshold)
 
 
 def _traceability_completeness(traceability: dict | None, total_tcs: int,
@@ -236,8 +251,9 @@ def compute_scorecard(
     traceability: dict | None = None,
     decompose_meta: dict | None = None,
     thresholds: dict | None = None,
+    spec_coverage: dict | None = None,
 ) -> Scorecard:
-    """Aggregate findings + structural + traceability data into 7 KPIs."""
+    """Aggregate findings + structural + traceability + L2 SPEC coverage into KPIs."""
     th = thresholds if thresholds is not None else load_thresholds()
     meta = findings.get("batch_meta", {})
     total_tcs = int(meta.get("total_tcs", 0) or 0)
@@ -262,6 +278,8 @@ def compute_scorecard(
             findings, total_requirements, th.get("tier1_critical_req_rate")),
         "req_id_mismatch_rate": _req_id_mismatch_rate(
             traceability, total_tcs, th.get("req_id_mismatch_rate")),
+        "spec_coverage": _spec_coverage(
+            spec_coverage, th.get("spec_coverage")),
     }
 
     gated = [k for k in kpis.values() if k.threshold is not None and k.value is not None]

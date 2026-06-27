@@ -2,5 +2,6 @@
   "first_pass_rate": 0.80,
   "requirement_coverage": 1.00,
   "traceability_completeness": 0.95,
-  "field_completeness": 0.98
+  "field_completeness": 0.98,
+  "spec_coverage": 0.95
 }

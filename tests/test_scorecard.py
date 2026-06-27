@@ -66,6 +66,23 @@ def test_requirement_coverage():
     assert k.value == pytest.approx(2 / 3)
 
 
+def test_spec_coverage_l2():
+    # 55 SPEC behaviours, 44 covered -> 80% < 0.95 gate -> the L2 KPI fails even
+    # while L1 requirement_coverage could be 100%.
+    findings = _findings(10, 5, [])
+    sc = compute_scorecard(findings, spec_coverage={"covered": 44, "total": 55})
+    k = sc.kpis["spec_coverage"]
+    assert k.numerator == 44 and k.denominator == 55
+    assert k.value == pytest.approx(44 / 55)
+    assert k.threshold == 0.95 and k.passed is False
+
+
+def test_spec_coverage_absent_is_na():
+    sc = compute_scorecard(_findings(3, 1, []))
+    k = sc.kpis["spec_coverage"]
+    assert k.value is None and k.passed is None  # N/A, not gated when missing
+
+
 def test_traceability_ratio():
     findings = _findings(4, 2, [])
     traceability = {
@@ -134,6 +151,7 @@ def test_scorecard_json_schema_stable(tmp_path):
         "reality_gap_rate",
         "tier1_critical_req_rate",
         "req_id_mismatch_rate",
+        "spec_coverage",
     ]
     assert list(d["kpis"].keys()) == expected_order
 
