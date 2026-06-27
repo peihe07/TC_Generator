@@ -32,6 +32,7 @@ from review_engine import (
     _detect_8_3_5,
     _enforce_severity_ceiling,
     _normalize_row,
+    requirement_anchor,
     _run_llm_pipeline,
     _run_regex_pipeline,
     extract_spec_sentence,
@@ -342,6 +343,58 @@ def test_8_5_1_priority_outside_p0_p3(tmp_path):
     report = review_workbook(fp, dry_run=True)
     refs = [f["rule_ref"] for f in report["per_tc_findings"][0]["findings"]]
     assert "§8.5.1" in refs
+
+
+class TestRequirementAnchor:
+    def test_shall_sentence(self):
+        req = {"id": "R", "title": "T", "desc": "The HU shall display PU0003."}
+        assert "shall display" in requirement_anchor(req)
+
+    def test_will_sentence_anchors(self):
+        # requirements legitimately use "will" — must anchor, not be rejected.
+        req = {"id": "R", "title": "Skip Back Completion",
+               "desc": "If the HU finds the file it will exit Skip Back and play."}
+        assert requirement_anchor(req) is not None
+        assert "will exit" in requirement_anchor(req)
+
+    def test_declarative_requirement_anchors(self):
+        req = {"id": "R", "title": "AUX",
+               "desc": "The HU AUX source does not have any command capability."}
+        assert requirement_anchor(req) is not None
+
+    def test_cross_reference_pointer_does_not_anchor(self):
+        req = {"id": "R", "title": "Video Player in Dealer Mode",
+               "desc": "Refer to CFTS012-696 and CFTS022-2237 for more requirements."}
+        assert requirement_anchor(req) is None
+
+
+class TestTier1AnchorsOnRequirement:
+    def test_group_anchors_on_swe1_req_when_tc_has_no_spec_sentence(self):
+        # TC carries no shall/must/should — Tier 1 must still anchor via SWE1 req.
+        tc = _make_tc(req_id_raw="SWE1-PLA-022", req_ids=["SWE1-PLA-022"],
+                      test_item="Skip forward and observe the next file plays")
+        reqs = [{"id": "SWE1-PLA-022", "title": "Skip Forward Completion",
+                 "desc": "If the HU finds the Next File it will exit Skip Forward "
+                         "and play the new file from the beginning."}]
+        groups = _build_groups([tc], reqs)
+        grp = groups["SWE1-PLA-022"]
+        assert grp.tier1_skipped is False
+        assert grp.spec_sentence and "will exit" in grp.spec_sentence
+
+    def test_pointer_requirement_still_tier1_skipped(self):
+        tc = _make_tc(req_id_raw="SWE1-PLA-052", req_ids=["SWE1-PLA-052"],
+                      test_item="Refer to CFTS012; select a Showroom Demo Video")
+        reqs = [{"id": "SWE1-PLA-052", "title": "Video Player in Dealer Mode",
+                 "desc": "Refer to CFTS012-696 for more requirements."}]
+        groups = _build_groups([tc], reqs)
+        assert groups["SWE1-PLA-052"].tier1_skipped is True
+
+    def test_no_swe1_reqs_keeps_legacy_behavior(self):
+        # Without --swe1-reqs, a TC with no spec句 is still tier1_skipped.
+        tc = _make_tc(req_id_raw="SWE1-PLA-022", req_ids=["SWE1-PLA-022"],
+                      test_item="Skip forward and observe")
+        groups = _build_groups([tc])
+        assert groups["SWE1-PLA-022"].tier1_skipped is True
 
 
 def test_8_3_1_forbidden_verb(tmp_path):

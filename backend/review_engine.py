@@ -146,6 +146,39 @@ _SPEC_SENTENCE = re.compile(
     r"[^.\n]*\b(shall|must|should)\b[^.\n]*\.?",
     re.IGNORECASE,
 )
+# Requirement-side normative sentence. Requirements legitimately use "will" and
+# declarative phrasing, not only shall/must/should — so Tier 1 can anchor on the
+# SWE1 requirement even when the TC carries no spec句. Broader than the
+# conservative TC-side _SPEC_SENTENCE on purpose.
+_REQ_NORM_SENTENCE = re.compile(
+    r"[^.\n]*\b(shall|must|should|will)\b[^.\n]*\.?",
+    re.IGNORECASE,
+)
+# A pure cross-document pointer ("Refer to CFTS012 …") carries no behaviour of
+# its own and does NOT anchor Tier 1.
+_REF_ONLY = re.compile(r"^\s*refer to\b", re.IGNORECASE)
+
+
+def requirement_anchor(req: dict | None) -> str | None:
+    """Resolve a Tier-1 anchor句 from a SWE1 requirement (NOT the TC).
+
+    A requirement anchors Tier 1 whenever it carries substantive normative text —
+    shall/must/should OR will OR a declarative requirement statement — so a TC is
+    never required to embed a spec句. Pure cross-reference stubs do not anchor."""
+    if not req:
+        return None
+    title = str(req.get("title") or "").strip()
+    desc = str(req.get("desc") or "").strip()
+    if not desc and not title:
+        return None
+    m = _REQ_NORM_SENTENCE.search(f"{title}. {desc}")
+    if m:
+        return m.group(0).strip()
+    # Declarative requirement (no modal verb): anchor on the desc unless it is
+    # only a cross-document pointer with no behaviour of its own.
+    if desc and not _REF_ONLY.match(desc):
+        return desc[:300]
+    return None
 
 
 def _split_req_ids(raw: str) -> list[str]:
@@ -803,8 +836,16 @@ def _normalize_row(row: dict) -> TCRecord:
     )
 
 
-def _build_groups(tcs: list[TCRecord]) -> dict[str, ReqGroup]:
-    """Group TCs by Req ID. Multi-Req-ID TCs register under each constituent."""
+def _build_groups(tcs: list[TCRecord],
+                  swe1_reqs: list[dict] | None = None) -> dict[str, ReqGroup]:
+    """Group TCs by Req ID. Multi-Req-ID TCs register under each constituent.
+
+    Tier 1 anchors on a normative requirement句. It is resolved (in order):
+    1. from a TC's Test Item (shall/must/should), then
+    2. from the matched SWE1 requirement itself (shall/must/should/will/declarative)
+       — so a TC is NOT required to embed a spec句.
+    §6.6 (tier1_skipped) only fires when neither source yields an anchor."""
+    from req_tracer import _ids_agree
     groups: dict[str, ReqGroup] = {}
     for tc in tcs:
         ids = tc.req_ids or [""]  # blank Req ID still gets a group
@@ -818,6 +859,14 @@ def _build_groups(tcs: list[TCRecord]) -> dict[str, ReqGroup]:
             if s:
                 grp.spec_sentence = s
                 break
+        # Fallback: anchor on the SWE1 requirement (the TC need not carry a句).
+        if grp.spec_sentence is None and swe1_reqs and rid:
+            for req in swe1_reqs:
+                if _ids_agree(str(req.get("id", "")), rid):
+                    anchor = requirement_anchor(req)
+                    if anchor:
+                        grp.spec_sentence = anchor
+                        break
         if grp.spec_sentence is None:
             grp.tier1_skipped = True
             for tc in grp.tcs:
@@ -1227,7 +1276,11 @@ def review_workbook(
     rules so the reviewer audits against domain truth, not just one Req句."""
     parsed = parse_tc_xlsx(workbook_path)
     tcs = [_normalize_row(row) for row in parsed["rows"]]
-    groups = _build_groups(tcs)
+    swe1_reqs = None
+    if swe1_reqs_path:
+        from req_tracer import load_swe1_reqs
+        swe1_reqs = load_swe1_reqs(swe1_reqs_path)
+    groups = _build_groups(tcs, swe1_reqs)
 
     per_req, per_tc = _run_regex_pipeline(tcs, groups)
 
