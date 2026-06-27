@@ -8,8 +8,33 @@ from openpyxl.styles import Alignment
 from writer import (
     write_generated_results,
     write_framework_sheet,
+    write_generated_tc_workbook,
     build_output_path,
 )
+
+
+def test_generated_tc_workbook_roundtrips_through_parser(tmp_path):
+    """A generated workbook must be parseable by the same parser used for review
+    (closed loop: generate -> xlsx -> review)."""
+    from parser import parse_tc_xlsx
+    tcs = [
+        {"tc_id": "GEN-0001", "req_id": "SWE1-PLA-006",
+         "tc_title": "USB default Repeat All",
+         "test_item": "The HU USB device shall default to Repeat All.",
+         "pre_conditions": "1. USB connected.", "input_test_data": "NA",
+         "test_procedure": "1. Start playback.\n2. Check the Repeat mode.",
+         "expected_result": "1. Repeat All active.",
+         "design_method": "Scenario", "priority": "P1"},
+    ]
+    out = tmp_path / "Proj_SWQT_Player_gen.xlsx"
+    write_generated_tc_workbook(tcs, str(out), project="newR1L")
+    parsed = parse_tc_xlsx(str(out))
+    assert parsed["row_count"] == 1
+    row = parsed["rows"][0]
+    assert row["req_id"] == "SWE1-PLA-006"
+    assert row["tc_id"] == "GEN-0001"
+    assert row["design_method"] == "Scenario"      # design method read back correctly
+    assert "default to Repeat All" in row["test_item"]
 
 
 @pytest.fixture

@@ -403,3 +403,58 @@ def write_framework_sheet(
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     wb.save(output_path)
     wb.close()
+
+
+# Bilingual headers whose keywords match the parser's header resolution, so a
+# generated workbook can be fed straight back into --review (closed loop).
+_GEN_HEADERS = {
+    4: "Requirement or Design ID 需求/設計 ID",
+    6: "Test Case ID 測試用例ID",
+    7: "Test Group 測試組",
+    9: "Test Item 測試項目",
+    10: "Pre-Conditions 先前條件",
+    11: "Input Test Data 輸入條件",
+    12: "Test procedure 測試程序",
+    13: "Expected Result 預期結果",
+    14: "Specification Reference 規格參考",
+    16: "Test Case Priority 測試用例優先級別",
+    17: "Test Case Design Methods 測試用例設計方法",
+}
+_GEN_FIELD_COL = {
+    "req_id": 4, "tc_id": 6, "test_group": 7, "test_item": 9,
+    "pre_conditions": 10, "input_test_data": 11, "test_procedure": 12,
+    "expected_result": 13, "spec_reference": 14, "priority": 16,
+    "design_method": 17,
+}
+
+
+def write_generated_tc_workbook(tcs, output_path, project="GEN",
+                                test_group="Generated") -> None:
+    """Write freshly generated TCs (gen_bridge output) into a NEW workbook using
+    the team's header layout. Header row = 9, data from row 10 — re-reviewable."""
+    from openpyxl import Workbook
+    wb = Workbook()
+    ws_pd = wb.active
+    ws_pd.title = "Product Document"
+    ws_pd.cell(row=3, column=2, value=project)
+
+    ws = wb.create_sheet(TC_SHEET_NAME)
+    for col, name in _GEN_HEADERS.items():
+        ws.cell(row=9, column=col, value=name)
+
+    for i, tc in enumerate(tcs):
+        r = 10 + i
+        row = dict(tc)
+        row.setdefault("test_group", test_group)
+        # test_item carries the requirement句 (Tier 1 anchor); prepend the title.
+        title = str(row.get("tc_title") or "").strip()
+        item = str(row.get("test_item") or "").strip()
+        row["test_item"] = f"{title}\n{item}" if title and item else (item or title)
+        for field, col in _GEN_FIELD_COL.items():
+            val = row.get(field)
+            if val:
+                ws.cell(row=r, column=col, value=_sanitize_excel_text(str(val)))
+
+    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+    wb.save(output_path)
+    wb.close()

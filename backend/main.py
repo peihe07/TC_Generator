@@ -771,6 +771,7 @@ def run_gen_export(args: argparse.Namespace) -> int:
 def run_gen_assemble(args: argparse.Namespace) -> int:
     """Generation — flatten Claude's filled bundle into generated TCs ($0)."""
     from gen_bridge import assemble_generation
+    from writer import write_generated_tc_workbook
     with open(args.gen_assemble, encoding="utf-8") as fh:
         bundle = json.load(fh)
     os.makedirs(args.output_dir, exist_ok=True)
@@ -778,12 +779,15 @@ def run_gen_assemble(args: argparse.Namespace) -> int:
     out_path = os.path.join(args.output_dir, "generated_tcs.json")
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(result, fh, ensure_ascii=False, indent=2)
+    xlsx_path = os.path.join(args.output_dir, "generated_tcs.xlsx")
+    write_generated_tc_workbook(result["test_cases"], xlsx_path)
     s = result["stats"]
     print(f"\n{'='*60}\nGeneration Assembled (interactive / $0)")
     print(f"  Requirements answered: {s['requirements_answered']}/{s['requirements_total']}")
     print(f"  TCs generated: {s['tcs_generated']}  "
           f"(of which SPEC-only behaviours: {s['tcs_from_spec_only']})")
-    print(f"  Wrote: {out_path}\n{'='*60}\n")
+    print(f"  Wrote: {out_path}")
+    print(f"         {xlsx_path}  (re-reviewable)\n{'='*60}\n")
     return 0
 
 
