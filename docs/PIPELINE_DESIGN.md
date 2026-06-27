@@ -480,8 +480,53 @@ SSE 事件:generate(`job.started`/`req.split`/`row.completed`/`row.added`/`job.c
 
 ## N. 給 Claude chat 規劃時的已知缺口 / 待決
 
-- Provider 解耦尚未做(`_chat` 仍綁 OpenAI);新 pipeline 第一步。
-- Domain Knowledge Pack(Stage 1)為全新,schema 見前文,尚無實作。
-- KPI Scorecard(Stage 7)為全新;findings.json 已有,需聚合層。
-- Review 強化(Stage 6)需把完整 spec 切片 + domain pack 餵進 review context(現只餵一行 Req spec句)。
-- 互動式 vs headless 的 orchestration 觸發方式(誰驅動 subagent、如何分批排隊)待設計。
+- ~~Provider 解耦尚未做~~ → **已完成**(`backend/providers/`)。
+- ~~Domain Knowledge Pack(Stage 1)~~ → **已完成**(`domain_pack.py` + `M1/domain_pack_*.json`)。
+- ~~KPI Scorecard(Stage 7)~~ → **已完成**(`scorecard.py`,9 KPI;trace+validation 已接)。
+- ~~Review 強化(Stage 6)~~ → **已完成**(domain pack + content-trace + reality-gap 已餵入)。
+- ~~互動式 vs headless 的 orchestration~~ → **已落地**:見下方 SOP。
+- 待續:L2 SPEC 覆蓋做成 KPI;Stage 3/4 單需求 agent 扇出;補進度條/Shuffle 缺口測項(見 `M1/spec_coverage_gaps_final.md`)。
+
+---
+
+## O. 互動式 Review SOP(訂閱、$0,主路徑)
+
+> 目標:整條 review 的語意層由 Claude 在互動式 session 裡做,**不打 API、算 Max 訂閱額度**。
+> 確定性層(parser / traceability / scorecard / regex 規則)永遠純 Python、$0。
+
+### 三步流程
+
+```bash
+# 1) export — 純 Python 產 context 包(regex findings + 每批 prompt),不打 API
+python backend/main.py --export-bundle \
+  --input "<TC.xlsx>" --output-dir output/X \
+  --domain-pack M1/domain_pack_<proj>.json --swe1-reqs M1/swe1_<proj>_reqs.json
+#    → output/X/review_bundle.json(N 批,每批含 user_prompt + answer:null)
+```
+
+```text
+# 2) Claude 在 session 裡:讀 review_bundle.json,逐批讀 batches[i].user_prompt,
+#    產出 §9-schema 的 answer JSON 填回 batches[i].answer。← 訂閱額度、$0
+#    (可分段做;未填的批在 assemble 時退化為 regex-only,不會壞)
+```
+
+```bash
+# 3) assemble — 純 Python 把答案併成最終報告 + scorecard,不打 API
+python backend/main.py --assemble output/X/review_bundle.json \
+  --output-dir output/X --swe1-reqs M1/swe1_<proj>_reqs.json
+#    → findings.json / findings_report.md / scorecard.json / scorecard.md
+```
+
+### 設計重點
+
+- API 路徑(`--review --model`)與互動橋**共用** `_build_payload_tcs` / `_build_review_batches` / `_accumulate_llm_findings`,兩者 findings 結構完全一致,只差「語意那一步誰做」。
+- bundle 是純資料檔(prompt + 答案 + regex findings),可版本控管、可重現、可分段填。
+- headless / API 路徑(`--review --model gpt-4.1`)保留為「大量無人值守」備援(計費)。
+
+### 計費對照
+
+| | 互動橋(主路徑) | headless / API(備援) |
+|---|---|---|
+| 語意層 | Claude in session | 腳本打 gpt-4.1 / Claude API |
+| 計費 | **訂閱額度,$0** | API token |
+| 適用 | 你在場、逐步、品質可控 | 大量、排程、無人值守 |

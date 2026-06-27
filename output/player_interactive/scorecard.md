@@ -6,15 +6,16 @@
 
 | KPI | 數值 | 分子/分母 | 門檻 / 結果 |
 |---|---|---|---|
-| first_pass_rate | 51.0% | 80/157 | 門檻 80% · FAIL |
+| first_pass_rate | 66.9% | 105/157 | 門檻 80% · FAIL |
 | requirement_coverage | 100.0% | 94/94 | 門檻 100% · PASS |
 | traceability_completeness | 100.0% | 157/157 | 門檻 95% · PASS |
-| design_method_accuracy | 99.4% | 156/157 | —（僅報） |
+| design_method_accuracy | 100.0% | 157/157 | —（僅報） |
 | avg_decompose_depth | N/A (來源缺) | 0/0 | —（僅報） |
 | field_completeness | 100.0% | 157/157 | 門檻 98% · PASS |
 | reality_gap_rate | 16.6% | 26/157 | —（僅報） |
-| tier1_critical_req_rate | 31.3% | 26/83 | —（僅報） |
+| tier1_critical_req_rate | 27.7% | 23/83 | —（僅報） |
 | req_id_mismatch_rate | 5.1% | 8/157 | —（僅報） |
+| spec_coverage | 80.0% | 44/55 | 門檻 95% · FAIL |
 
 ## 無法計算（缺來源資料）
 
