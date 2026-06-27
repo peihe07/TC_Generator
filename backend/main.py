@@ -100,6 +100,18 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Content-based traceability (zero API): match each TC to its SWE1 "
              "requirement by text. Use with --input and --swe1-reqs.",
     )
+    p.add_argument(
+        "--export-bundle",
+        action="store_true",
+        help="Interactive (subscription, $0) review: export a context bundle "
+             "(regex findings + per-batch prompts) for Claude to answer "
+             "in-session instead of calling the API. Writes review_bundle.json.",
+    )
+    p.add_argument(
+        "--assemble",
+        help="Path to a review_bundle.json whose batch answers Claude has filled. "
+             "Merges them into findings.json + scorecard.md (zero API).",
+    )
     return p.parse_args(argv)
 
 
@@ -647,8 +659,55 @@ def run_trace(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_export_bundle(args: argparse.Namespace) -> int:
+    """Interactive review — export the context bundle (zero API)."""
+    from review_engine import export_review_bundle
+    os.makedirs(args.output_dir, exist_ok=True)
+    bundle = export_review_bundle(
+        args.input, domain_pack_path=args.domain_pack,
+        swe1_reqs_path=args.swe1_reqs, batch_size=args.batch_size)
+    out_path = os.path.join(args.output_dir, "review_bundle.json")
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(bundle, fh, ensure_ascii=False, indent=2)
+    n = len(bundle["batches"])
+    print(f"\n{'='*60}\nReview Bundle Exported (interactive / $0)")
+    print(f"  Source: {bundle['source_file']}")
+    print(f"  TCs: {bundle['total_tcs']}  ·  batches to answer: {n}")
+    print(f"  Wrote: {out_path}")
+    print("  Next: Claude fills each batches[i]['answer'] in-session, then")
+    print(f"        python backend/main.py --assemble {out_path} "
+          f"--output-dir {args.output_dir} --swe1-reqs <reqs.json>\n{'='*60}\n")
+    return 0
+
+
+def run_assemble(args: argparse.Namespace) -> int:
+    """Interactive review — merge Claude's filled bundle into the report (zero API)."""
+    from review_engine import assemble_review
+    from scorecard import compute_scorecard, write_scorecard
+    with open(args.assemble, encoding="utf-8") as fh:
+        bundle = json.load(fh)
+    os.makedirs(args.output_dir, exist_ok=True)
+    report = assemble_review(bundle, output_dir=args.output_dir)
+    validation, traceability = _build_scorecard_inputs(
+        bundle["workbook_path"], args.swe1_reqs)
+    sc = compute_scorecard(report, validation=validation, traceability=traceability)
+    write_scorecard(sc, args.output_dir)
+    counts = report["batch_summary"]["verdict_counts"]
+    answered = report["batch_meta"]["llm_stats"]
+    print(f"\n{'='*60}\nReview Assembled (interactive / $0)")
+    print(f"  Pass: {counts['pass']}  Pass with issues: {counts['pass_with_issues']}"
+          f"  Fail: {counts['fail']}")
+    print(f"  Batches answered: {answered['llm_batches']-answered['llm_failed']}"
+          f"/{answered['llm_batches']}")
+    print(f"  Gate: {'PASS' if sc.gate_passed else 'FAIL'}")
+    print(f"  Wrote: {args.output_dir}/findings.json + scorecard.md\n{'='*60}\n")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.assemble:
+        return run_assemble(args)
     if args.trace:
         return run_trace(args)
     if args.preflight:
@@ -660,6 +719,8 @@ def main(argv: list[str] | None = None) -> int:
     if not args.input:
         print("Error: --input is required (except for --scorecard).", file=sys.stderr)
         return 2
+    if args.export_bundle:
+        return run_export_bundle(args)
     if args.review:
         err = _reject_generate_flags(args)
         if err:

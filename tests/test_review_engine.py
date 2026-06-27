@@ -397,6 +397,49 @@ class TestTier1AnchorsOnRequirement:
         assert groups["SWE1-PLA-022"].tier1_skipped is True
 
 
+class TestInteractiveBridge:
+    def test_export_then_assemble_merges_llm_with_regex(self, tmp_path):
+        from review_engine import export_review_bundle, assemble_review
+        fp = _build_workbook(tmp_path, [{
+            "D": "REQ-A", "F": "TC-A-1",
+            "I": "the HU shall display the icon",
+            "L": "1. Open menu.\n2. Confirm icon visible.",
+            "M": "1. Menu.\n2. Icon shown.",
+            "P": "P1", "Q": "Functional",
+        }])
+        bundle = export_review_bundle(fp)
+
+        # exported deterministically, no model called
+        assert bundle["schema"] == "review-bundle/v1"
+        assert bundle["total_tcs"] == 1
+        assert bundle["batches"] and bundle["batches"][0]["answer"] is None
+        assert "user_prompt" in bundle["batches"][0]
+        # regex findings already present in the bundle
+        assert "per_tc" in bundle["regex_findings"]
+
+        # Claude fills the batch answer in-session (simulated here)
+        bundle["batches"][0]["answer"] = {
+            "per_req_findings": [],
+            "per_tc_findings": [
+                {"row": 10, "tc_id": "TC-A-1",
+                 "findings": [{"rule_ref": "§7.6", "tier": 2, "severity": "Major",
+                               "field": "expected_result", "issue": "reality gap demo"}]},
+            ],
+        }
+        report = assemble_review(bundle, output_dir=str(tmp_path / "out"))
+
+        assert report["batch_meta"]["llm_stats"]["mode"] == "interactive"
+        row10 = next(e for e in report["per_tc_findings"] if e["row"] == 10)
+        refs = [f["rule_ref"] for f in row10["findings"]]
+        assert "§7.6" in refs  # LLM finding merged
+        assert (tmp_path / "out" / "findings.json").is_file()
+
+    def test_assemble_rejects_bad_schema(self, tmp_path):
+        from review_engine import assemble_review, ReviewEngineError
+        with pytest.raises(ReviewEngineError):
+            assemble_review({"schema": "nope", "batches": []})
+
+
 def test_8_3_1_forbidden_verb(tmp_path):
     fp = _build_workbook(tmp_path, [{
         "D": "REQ-A", "F": "TC-A-1",

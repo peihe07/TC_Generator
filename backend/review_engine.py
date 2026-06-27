@@ -1009,23 +1009,11 @@ def _run_regex_pipeline(
 # ---------------------------------------------------------------------------
 
 
-def _run_llm_pipeline(
-    tcs: list[TCRecord],
-    groups: dict[str, ReqGroup],
-    model: str,
-    batch_size: int = 5,
-    domain_block: str | None = None,
-    content_map: dict[int, dict] | None = None,
-    llm_max_tokens: int = 16000,
-) -> tuple[list[dict], list[dict], dict]:
-    """Call the LLM for the rules in `LLM_RULE_HINTS`. Imports the provider
-    lazily so dry-run never depends on credentials. `domain_block` (Stage 1
-    Domain Pack) is injected into every batch as ground truth."""
-    from generator import _chat, GenerationError  # local import
-
+def _build_payload_tcs(tcs: list[TCRecord],
+                       content_map: dict[int, dict] | None = None) -> list[dict]:
+    """The per-TC payload the semantic layer reasons over (API or interactive)."""
     content_map = content_map or {}
-    rule_ids = list(LLM_RULE_HINTS.keys())
-    payload_tcs = [
+    return [
         {
             "row_num": tc.row_num,
             "tc_id": tc.tc_id,
@@ -1046,32 +1034,36 @@ def _run_llm_pipeline(
         for tc in tcs
     ]
 
+
+def _build_review_batches(payload_tcs: list[dict], domain_block: str | None,
+                          batch_size: int = 5) -> list[dict]:
+    """Slice the payload into batches, each carrying its rendered user prompt and
+    the rows it covers. Shared by the API path and the interactive bridge."""
+    rule_ids = list(LLM_RULE_HINTS.keys())
+    batches = []
+    for idx, i in enumerate(range(0, len(payload_tcs), batch_size)):
+        batch = payload_tcs[i:i + batch_size]
+        batches.append({
+            "batch_index": idx,
+            "rows": [t["row_num"] for t in batch],
+            "user_prompt": build_review_user_prompt(
+                batch, rule_ids, domain_block=domain_block),
+        })
+    return batches
+
+
+def _accumulate_llm_findings(answers: list[dict | None],
+                             tcs: list[TCRecord]) -> tuple[list[dict], list[dict]]:
+    """Merge a list of per-batch LLM answer dicts into (per_req, per_tc).
+
+    Answer source is irrelevant — an OpenAI/Anthropic API response or a JSON
+    object Claude produced interactively both land here identically."""
     per_req: list[dict] = []
     per_tc_acc: dict[int, list[dict]] = defaultdict(list)
     tc_id_by_row: dict[int, str] = {tc.row_num: tc.tc_id for tc in tcs}
-    system = build_review_system_prompt()
-
-    n_batches = 0
-    n_failed = 0
-    for i in range(0, len(payload_tcs), batch_size):
-        n_batches += 1
-        batch = payload_tcs[i:i + batch_size]
-        user = build_review_user_prompt(batch, rule_ids, domain_block=domain_block)
-        try:
-            # Reasoning models (gpt-5) spend output tokens on hidden reasoning
-            # before the JSON; a small cap truncates them to empty. Give headroom.
-            resp = _chat(system=system, user=user, model=model, json_mode=True,
-                         max_tokens=llm_max_tokens)
-        except GenerationError:
-            n_failed += 1
-            continue  # skip batch on transient error; engine still returns regex findings
-        try:
-            content = resp.text
-            data = json.loads(content)
-        except (AttributeError, IndexError, json.JSONDecodeError):
-            n_failed += 1  # empty/truncated/non-JSON response (e.g. reasoning ate the budget)
+    for data in answers:
+        if not data:
             continue
-
         for f in data.get("per_req_findings", []) or []:
             per_req.append(f)
         for entry in data.get("per_tc_findings", []) or []:
@@ -1081,14 +1073,47 @@ def _run_llm_pipeline(
             if row is None:
                 continue
             per_tc_acc[row].extend(entry.get("findings", []) or [])
-
-    # Convert per_tc_acc to list-of-dicts shape
     per_tc = [
         {"tc_id": tc_id_by_row.get(row, ""), "row": row, "overall_verdict": "pass",
          "findings": findings}
         for row, findings in per_tc_acc.items()
     ]
-    stats = {"llm_batches": n_batches, "llm_failed": n_failed}
+    return per_req, per_tc
+
+
+def _run_llm_pipeline(
+    tcs: list[TCRecord],
+    groups: dict[str, ReqGroup],
+    model: str,
+    batch_size: int = 5,
+    domain_block: str | None = None,
+    content_map: dict[int, dict] | None = None,
+    llm_max_tokens: int = 16000,
+) -> tuple[list[dict], list[dict], dict]:
+    """API path: call the LLM for each batch. Imports the provider lazily so
+    dry-run never depends on credentials. `domain_block` (Stage 1 Domain Pack)
+    is injected into every batch as ground truth."""
+    from generator import _chat, GenerationError  # local import
+
+    payload_tcs = _build_payload_tcs(tcs, content_map)
+    batches = _build_review_batches(payload_tcs, domain_block, batch_size)
+    system = build_review_system_prompt()
+
+    answers: list[dict | None] = []
+    n_failed = 0
+    for b in batches:
+        try:
+            # Reasoning models (gpt-5) spend output tokens on hidden reasoning
+            # before the JSON; a small cap truncates them to empty. Give headroom.
+            resp = _chat(system=system, user=b["user_prompt"], model=model,
+                         json_mode=True, max_tokens=llm_max_tokens)
+            answers.append(json.loads(resp.text))
+        except (GenerationError, AttributeError, IndexError, json.JSONDecodeError):
+            n_failed += 1
+            answers.append(None)
+
+    per_req, per_tc = _accumulate_llm_findings(answers, tcs)
+    stats = {"llm_batches": len(batches), "llm_failed": n_failed}
     return per_req, per_tc, stats
 
 
@@ -1297,8 +1322,16 @@ def review_workbook(
         per_req.extend(llm_per_req)
         per_tc = _merge_per_tc(per_tc, llm_per_tc)
 
-    summary = _build_batch_summary(per_req, per_tc, total_tcs=len(tcs), total_groups=len(groups))
+    return _finalize_report(workbook_path, tcs, groups, per_req, per_tc,
+                            llm_stats, output_dir)
 
+
+def _finalize_report(workbook_path, tcs, groups, per_req, per_tc,
+                     llm_stats, output_dir):
+    """Assemble the report dict from merged findings and optionally write it.
+    Shared by the API path (`review_workbook`) and the interactive bridge."""
+    summary = _build_batch_summary(per_req, per_tc, total_tcs=len(tcs),
+                                   total_groups=len(groups))
     report = {
         "batch_meta": {
             "source_file": Path(workbook_path).name,
@@ -1306,21 +1339,99 @@ def review_workbook(
             "total_tcs": len(tcs),
             "total_req_groups": len(groups),
             "reviewed_at": datetime.now(timezone.utc).isoformat(),
-            "llm_stats": llm_stats,  # None on dry-run; {llm_batches, llm_failed} otherwise
+            "llm_stats": llm_stats,
         },
         "per_req_findings": per_req,
         "per_tc_findings": per_tc,
         "batch_summary": summary,
     }
-
     if output_dir:
         out = Path(output_dir)
         out.mkdir(parents=True, exist_ok=True)
         (out / "findings.json").write_text(
-            json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
-        )
+            json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
         (out / "findings_report.md").write_text(
-            _render_markdown_report(report), encoding="utf-8"
-        )
-
+            _render_markdown_report(report), encoding="utf-8")
     return report
+
+
+# ---------------------------------------------------------------------------
+# Interactive bridge — run the semantic layer on the Claude subscription ($0)
+# instead of a billed API call. Python exports context bundles; Claude fills
+# each batch's answer in-session; Python assembles the same report.
+# ---------------------------------------------------------------------------
+
+REVIEW_BUNDLE_SCHEMA = "review-bundle/v1"
+
+
+def export_review_bundle(
+    workbook_path: str,
+    domain_pack_path: str | None = None,
+    swe1_reqs_path: str | None = None,
+    batch_size: int = 5,
+) -> dict:
+    """Produce a self-contained bundle for the interactive (subscription) path.
+
+    Runs all deterministic work (parse / groups / regex / content-trace) and
+    renders the per-batch semantic prompts WITHOUT calling any model. Claude
+    fills each `batches[i]['answer']` with the §9-schema JSON, then
+    `assemble_review` merges them into the final report — zero API cost."""
+    parsed = parse_tc_xlsx(workbook_path)
+    tcs = [_normalize_row(row) for row in parsed["rows"]]
+    swe1_reqs = None
+    if swe1_reqs_path:
+        from req_tracer import load_swe1_reqs
+        swe1_reqs = load_swe1_reqs(swe1_reqs_path)
+    groups = _build_groups(tcs, swe1_reqs)
+    regex_per_req, regex_per_tc = _run_regex_pipeline(tcs, groups)
+
+    domain_block = None
+    if domain_pack_path:
+        from domain_pack import load_domain_pack, to_prompt_block
+        domain_block = to_prompt_block(load_domain_pack(domain_pack_path))
+    content_map = _build_content_map(tcs, swe1_reqs_path) if swe1_reqs_path else None
+
+    payload_tcs = _build_payload_tcs(tcs, content_map)
+    batches = _build_review_batches(payload_tcs, domain_block, batch_size)
+    for b in batches:
+        b["answer"] = None  # Claude fills this in-session
+
+    return {
+        "schema": REVIEW_BUNDLE_SCHEMA,
+        "workbook_path": str(workbook_path),
+        "source_file": Path(workbook_path).name,
+        "total_tcs": len(tcs),
+        "total_req_groups": len(groups),
+        "system_prompt": build_review_system_prompt(),
+        "answer_format": (
+            'Per batch, return JSON: {"per_req_findings":[...],'
+            '"per_tc_findings":[{"row":<int>,"tc_id":"...","findings":[...]}]} '
+            "following the §9 schema in the system prompt."
+        ),
+        "batches": batches,
+        "regex_findings": {"per_req": regex_per_req, "per_tc": regex_per_tc},
+    }
+
+
+def assemble_review(bundle: dict, output_dir: str | None = None) -> dict:
+    """Merge a bundle whose `batches[i]['answer']` Claude has filled into the
+    final report — identical shape to `review_workbook`'s output."""
+    if bundle.get("schema") != REVIEW_BUNDLE_SCHEMA:
+        raise ReviewEngineError(f"unexpected bundle schema: {bundle.get('schema')}")
+    workbook_path = bundle["workbook_path"]
+    parsed = parse_tc_xlsx(workbook_path)
+    tcs = [_normalize_row(row) for row in parsed["rows"]]
+    groups = _build_groups(tcs)
+
+    answers = [b.get("answer") for b in bundle["batches"]]
+    llm_per_req, llm_per_tc = _accumulate_llm_findings(answers, tcs)
+
+    per_req = list(bundle["regex_findings"]["per_req"]) + llm_per_req
+    per_tc = _merge_per_tc(bundle["regex_findings"]["per_tc"], llm_per_tc)
+    llm_stats = {
+        "llm_batches": len(answers),
+        "llm_failed": sum(1 for a in answers if not a),
+        "mode": "interactive",
+    }
+    return _finalize_report(workbook_path, tcs, groups, per_req, per_tc,
+                            llm_stats, output_dir)
