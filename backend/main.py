@@ -118,6 +118,22 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
              "Feeds the L2 `spec_coverage` KPI (SPEC behaviours covered vs the "
              "SPEC original, not just the derived requirements).",
     )
+    p.add_argument(
+        "--gen-export-bundle",
+        action="store_true",
+        help="Generation (interactive, $0): export a SPEC-grounded per-requirement "
+             "deep-decompose + TC-generation bundle for Claude to answer in-session. "
+             "Use with --swe1-reqs (+ --domain-pack / --spec-coverage / --req-ids).",
+    )
+    p.add_argument(
+        "--gen-assemble",
+        help="Path to a gen_bundle.json whose answers Claude has filled. Flattens "
+             "the generated TCs (with IDs + spec-only tagging) into generated_tcs.json.",
+    )
+    p.add_argument(
+        "--req-ids",
+        help="Comma-separated requirement ids to limit --gen-export-bundle.",
+    )
     return p.parse_args(argv)
 
 
@@ -726,8 +742,57 @@ def run_assemble(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_gen_export(args: argparse.Namespace) -> int:
+    """Generation — export the SPEC-grounded decompose+generate bundle ($0)."""
+    from gen_bridge import export_generation_bundle
+    if not args.swe1_reqs:
+        print("Error: --gen-export-bundle requires --swe1-reqs.", file=sys.stderr)
+        return 2
+    os.makedirs(args.output_dir, exist_ok=True)
+    req_ids = [s.strip() for s in args.req_ids.split(",")] if args.req_ids else None
+    bundle = export_generation_bundle(
+        args.swe1_reqs, domain_pack_path=args.domain_pack,
+        spec_coverage_path=args.spec_coverage, req_ids=req_ids)
+    out_path = os.path.join(args.output_dir, "gen_bundle.json")
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(bundle, fh, ensure_ascii=False, indent=2)
+    n = len(bundle["requirements"])
+    spec_only = sum(r["spec_only_count"] for r in bundle["requirements"])
+    print(f"\n{'='*60}\nGeneration Bundle Exported (interactive / $0)")
+    print(f"  Requirements: {n}  ·  linked SPEC-only behaviours to cover: {spec_only}")
+    print(f"  Wrote: {out_path}")
+    print("  Next: Claude fills each requirements[i]['answer'] = "
+          "{decomposition, test_cases}, then")
+    print(f"        python backend/main.py --gen-assemble {out_path} "
+          f"--output-dir {args.output_dir}\n{'='*60}\n")
+    return 0
+
+
+def run_gen_assemble(args: argparse.Namespace) -> int:
+    """Generation — flatten Claude's filled bundle into generated TCs ($0)."""
+    from gen_bridge import assemble_generation
+    with open(args.gen_assemble, encoding="utf-8") as fh:
+        bundle = json.load(fh)
+    os.makedirs(args.output_dir, exist_ok=True)
+    result = assemble_generation(bundle)
+    out_path = os.path.join(args.output_dir, "generated_tcs.json")
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(result, fh, ensure_ascii=False, indent=2)
+    s = result["stats"]
+    print(f"\n{'='*60}\nGeneration Assembled (interactive / $0)")
+    print(f"  Requirements answered: {s['requirements_answered']}/{s['requirements_total']}")
+    print(f"  TCs generated: {s['tcs_generated']}  "
+          f"(of which SPEC-only behaviours: {s['tcs_from_spec_only']})")
+    print(f"  Wrote: {out_path}\n{'='*60}\n")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
+    if args.gen_assemble:
+        return run_gen_assemble(args)
+    if args.gen_export_bundle:
+        return run_gen_export(args)
     if args.assemble:
         return run_assemble(args)
     if args.trace:

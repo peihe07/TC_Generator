@@ -1,0 +1,87 @@
+"""Generation bridge tests (deterministic; the LLM step is simulated)."""
+import json
+
+import pytest
+
+from gen_bridge import (
+    GEN_BUNDLE_SCHEMA,
+    export_generation_bundle,
+    assemble_generation,
+    _spec_pc_for_req,
+)
+
+
+def _write_reqs(tmp_path):
+    reqs = [
+        {"id": "SWE1-PLA-006", "title": "USB Repeat",
+         "desc": "Default Repeat All; toggle Repeat Song."},
+        {"id": "SWE1-PLA-010", "title": "Shuffle",
+         "desc": "Toggle Shuffle On/Off."},
+    ]
+    p = tmp_path / "reqs.json"
+    p.write_text(json.dumps(reqs), encoding="utf-8")
+    return str(p)
+
+
+def _write_spec_cov(tmp_path):
+    rows = [
+        {"pc": "PC4", "text": "Repeat has 3 states: Off / Song / All.",
+         "cited_by": ["SWE1-PLA-006"], "best_req": "SWE1-PLA-006", "req_covered": True},
+        {"pc": "PC4.7", "text": "Repeat Off not presented if unsupported.",
+         "cited_by": [], "best_req": "SWE1-PLA-006", "req_covered": False},  # SPEC-only
+    ]
+    p = tmp_path / "spec.json"
+    p.write_text(json.dumps(rows), encoding="utf-8")
+    return str(p)
+
+
+def test_spec_pc_links_cited_and_content():
+    rows = [
+        {"pc": "PC4", "text": "x", "cited_by": ["R1"], "best_req": "R9", "req_covered": True},
+        {"pc": "PC4.7", "text": "y", "cited_by": [], "best_req": "R1", "req_covered": False},
+        {"pc": "PC9", "text": "z", "cited_by": [], "best_req": "R2", "req_covered": True},
+    ]
+    linked = _spec_pc_for_req("R1", rows)
+    assert {p["pc"] for p in linked} == {"PC4", "PC4.7"}  # cited OR best match
+
+
+def test_export_includes_spec_only_and_req_filter(tmp_path):
+    bundle = export_generation_bundle(
+        _write_reqs(tmp_path), spec_coverage_path=_write_spec_cov(tmp_path),
+        req_ids=["SWE1-PLA-006"])
+    assert bundle["schema"] == GEN_BUNDLE_SCHEMA
+    assert len(bundle["requirements"]) == 1           # filtered
+    req = bundle["requirements"][0]
+    assert req["req_id"] == "SWE1-PLA-006"
+    assert req["spec_only_count"] == 1                 # PC4.7 is SPEC-only
+    assert "PC4.7" in req["context_prompt"]            # SPEC original fed into decompose
+    assert "★SPEC-only" in req["context_prompt"]
+    assert req["answer"] is None
+
+
+def test_assemble_flattens_and_tags_spec_only(tmp_path):
+    bundle = export_generation_bundle(
+        _write_reqs(tmp_path), spec_coverage_path=_write_spec_cov(tmp_path),
+        req_ids=["SWE1-PLA-006"])
+    # Claude fills the answer in-session (simulated)
+    bundle["requirements"][0]["answer"] = {
+        "decomposition": {"reasoning": "...", "scenarios": [
+            {"id": 1, "source": "requirement"},
+            {"id": 2, "source": "spec-only"},  # the Repeat Off behaviour
+        ]},
+        "test_cases": [
+            {"scenario_id": 1, "tc_title": "Repeat All loops", "priority": "P1"},
+            {"scenario_id": 2, "tc_title": "Repeat Off hidden when unsupported", "priority": "P2"},
+        ],
+    }
+    result = assemble_generation(bundle)
+    assert result["stats"]["tcs_generated"] == 2
+    assert result["stats"]["tcs_from_spec_only"] == 1
+    ids = [tc["tc_id"] for tc in result["test_cases"]]
+    assert ids == ["GEN-0001", "GEN-0002"]
+    assert result["test_cases"][1]["source"] == "spec-only"
+
+
+def test_assemble_rejects_bad_schema():
+    with pytest.raises(ValueError):
+        assemble_generation({"schema": "nope", "requirements": []})
