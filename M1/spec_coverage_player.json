@@ -1,0 +1,662 @@
+[
+  {
+    "pc": "PC1",
+    "text": "Play Controls apply to the following sources: USB/BTSA/SD-Card/AUX/HDMI",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-021",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-020",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC1.1",
+    "text": "Play Controls consist of Skip Forward/Skip Back, Play/Pause, Repeat, Shuffle, and Progress Bar.",
+    "cited_by": [
+      "SWE1-PLA-007",
+      "SWE1-PLA-010-01",
+      "SWE1-PLA-021",
+      "SWE1-PLA-023",
+      "SWE1-PLA-027",
+      "SWE1-PLA-029-01",
+      "SWE1-PLA-029-02",
+      "SWE1-PLA-031",
+      "SWE1-PLA-035"
+    ],
+    "best_req": "SWE1-PLA-021",
+    "req_score": 0.65,
+    "best_tc": "NR1L-Player-092",
+    "tc_score": 0.34,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC1.1.1",
+    "text": "For Audiobooks and Podcasts, update the Play Controls and replace Shuffle with Rewind 15 seconds and Repeat with Forward  15 seconds.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-021",
+    "req_score": 0.22,
+    "best_tc": "NR1L-Player-092",
+    "tc_score": 0.13,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC1.2",
+    "text": "Tune knob, while playing from USB/BTSA/SD-Card/Disc, goes to previous/next track (if tracks screen is not open)",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-046",
+    "req_score": 0.14,
+    "best_tc": "NR1L-Player-035",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC1.3",
+    "text": "If playing an AUX device the only controls available are the Source Tab and Audio Tab, all other buttons will be greyed out. The tune knob will not be  functional either.",
+    "cited_by": [
+      "SWE1-PLA-004"
+    ],
+    "best_req": "SWE1-PLA-004",
+    "req_score": 0.6,
+    "best_tc": "NR1L-Player-008",
+    "tc_score": 0.57,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC1.4",
+    "text": "If a command is not available by the current device but it is not able to send the signal to grey out the button , display the pop-up ‘Function currently  not  available with this device’ when the button is pressed. (See: Pop Up List – PU01",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-044",
+    "req_score": 0.19,
+    "best_tc": "NR1L-Player-107",
+    "tc_score": 0.15,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC2",
+    "text": "Pressing Skip buttons switches to next/previous track/chapter.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-024",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-081",
+    "tc_score": 0.08,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC2.1",
+    "text": "If listening to the only track in a playlist, pressing next button restarts the one track.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-012-01",
+    "req_score": 0.17,
+    "best_tc": "NR1L-Player-153",
+    "tc_score": 0.09,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC2.2",
+    "text": "Long press on Skip buttons (500 msec) to fast forward/rewind (redundant to moving slider on progress bar)",
+    "cited_by": [
+      "SWE1-PLA-026-01",
+      "SWE1-PLA-026-02"
+    ],
+    "best_req": "SWE1-PLA-026-01",
+    "req_score": 0.5,
+    "best_tc": "NR1L-Player-086",
+    "tc_score": 0.28,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC2.2.1",
+    "text": "When the button is released the system will continue normal playback at that position in the song.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-008",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-022",
+    "tc_score": 0.09,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC2.2.2",
+    "text": "Fast forward/rewind stops if the beginning of the current track is reached, after which the current track begins playback  immediately.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-024",
+    "req_score": 0.14,
+    "best_tc": "NR1L-Player-017",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC2.2.2.1",
+    "text": "Playback shall begin even if the user is still pressing the Skip Forward/Skip Back button.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-021",
+    "req_score": 0.13,
+    "best_tc": "NR1L-Player-092",
+    "tc_score": 0.11,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC2.3",
+    "text": "If current track has been playing for less than 3 sec. and Skip Back is pressed, go back to previous track.",
+    "cited_by": [
+      "SWE1-PLA-024-01"
+    ],
+    "best_req": "SWE1-PLA-024-02",
+    "req_score": 0.25,
+    "best_tc": "NR1L-Player-081",
+    "tc_score": 0.22,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC2.4",
+    "text": "If current track has been playing for more than 3 sec. and Skip Back is pressed, go back to beginning of current track.",
+    "cited_by": [
+      "SWE1-PLA-024-02"
+    ],
+    "best_req": "SWE1-PLA-024-01",
+    "req_score": 0.27,
+    "best_tc": "NR1L-Player-082",
+    "tc_score": 0.21,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC3",
+    "text": "The Play/Pause button allows the user to pause and resume the audio.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-028",
+    "req_score": 0.16,
+    "best_tc": "NR1L-Player-091",
+    "tc_score": 0.09,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC3.1",
+    "text": "When the audio is playing, the pause icon will be shown.",
+    "cited_by": [
+      "SWE1-PLA-027",
+      "SWE1-PLA-028",
+      "SWE1-PLA-029-02"
+    ],
+    "best_req": "SWE1-PLA-028",
+    "req_score": 0.24,
+    "best_tc": "NR1L-Player-091",
+    "tc_score": 0.17,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC3.1.1",
+    "text": "To manually pause, press Pause icon  or press the Mute hard control.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-029",
+    "req_score": 0.17,
+    "best_tc": "NR1L-Player-077",
+    "tc_score": 0.07,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC3.2",
+    "text": "If the audio is paused, the play icon will show and the mute icon will be displayed in the Status-Alert box.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-028",
+    "req_score": 0.13,
+    "best_tc": "NR1L-Player-091",
+    "tc_score": 0.11,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC3.2.1",
+    "text": "To resume, press Play button or Mute hard control.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-025-01",
+    "req_score": 0.13,
+    "best_tc": "NR1L-Player-077",
+    "tc_score": 0.07,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC4",
+    "text": "Repeat has 3 states: 1) Off 2) Repeat Song 3) Repeat All.",
+    "cited_by": [
+      "SWE1-PLA-006",
+      "SWE1-PLA-030"
+    ],
+    "best_req": "SWE1-PLA-009",
+    "req_score": 0.21,
+    "best_tc": "NR1L-Player-023",
+    "tc_score": 0.07,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC4.1",
+    "text": "When Repeat Song/All is activated, the repeat button is highlighted with the labeling of Repeat Song/Repeat All, respectively.",
+    "cited_by": [
+      "SWE1-PLA-008",
+      "SWE1-PLA-009",
+      "SWE1-PLA-032"
+    ],
+    "best_req": "SWE1-PLA-008",
+    "req_score": 0.46,
+    "best_tc": "NR1L-Player-022",
+    "tc_score": 0.23,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC4.2",
+    "text": "Repeat Song plays the current track repeatedly.",
+    "cited_by": [
+      "SWE1-PLA-030-03"
+    ],
+    "best_req": "SWE1-PLA-030-03",
+    "req_score": 0.35,
+    "best_tc": "NR1L-Player-098",
+    "tc_score": 0.16,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC4.3",
+    "text": "Repeat All plays the current list of songs repeatedly.",
+    "cited_by": [
+      "SWE1-PLA-030-01",
+      "SWE1-PLA-030-02"
+    ],
+    "best_req": "SWE1-PLA-030-01",
+    "req_score": 0.43,
+    "best_tc": "NR1L-Player-094",
+    "tc_score": 0.22,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC4.4",
+    "text": "Repeat Song/All will stay active until the customer deactivates Repeat Song/All or the device is disconnected.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-032",
+    "req_score": 0.14,
+    "best_tc": "NR1L-Player-022",
+    "tc_score": 0.08,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC4.4.1",
+    "text": "Repeat Song/All will be source dependent, if the user is on iPod with Shuffle on and changes to Disc which did not previously have Repeat on,  Repeat will be off, but upon returning to iPod if the previous device is still inserted Repeat So",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-033",
+    "req_score": 0.16,
+    "best_tc": "NR1L-Player-090",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC4.5",
+    "text": "While Repeat Song/All is active: Skip Forward/Skip Back button maintain normal behavior.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-010-01",
+    "req_score": 0.19,
+    "best_tc": "NR1L-Player-092",
+    "tc_score": 0.14,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC4.6",
+    "text": "If Repeat Song/All is currently unavailable or not supported by the device the button shall be shown as disabled.",
+    "cited_by": [
+      "SWE1-PLA-034"
+    ],
+    "best_req": "SWE1-PLA-008",
+    "req_score": 0.17,
+    "best_tc": "NR1L-Player-102",
+    "tc_score": 0.26,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC4.7",
+    "text": "If the “Repeat Off” function cannot be supported, then it should not be presented to the user.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-009",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-102",
+    "tc_score": 0.08,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC5",
+    "text": "Shuffle Media Default: Shuffle is OFF.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-006-01",
+    "req_score": 0.17,
+    "best_tc": "NR1L-Player-106",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC5.1",
+    "text": "If user presses shuffle button, button is highlighted and the head unit shall generate a randomized order list for the currently playing list, not the entire device  library.",
+    "cited_by": [
+      "SWE1-PLA-010-02",
+      "SWE1-PLA-010-03",
+      "SWE1-PLA-036"
+    ],
+    "best_req": "SWE1-PLA-010-02",
+    "req_score": 0.35,
+    "best_tc": "NR1L-Player-027",
+    "tc_score": 0.31,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC5.2",
+    "text": "Shuffled lists shall be created with the currently playing track as the first track in the shuffled list.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-043",
+    "req_score": 0.18,
+    "best_tc": "NR1L-Player-062",
+    "tc_score": 0.11,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC5.2.1",
+    "text": "The shuffled list shall not be played by the head unit until the currently active track ends or the SKIP command is used.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-012-02",
+    "req_score": 0.1,
+    "best_tc": "NR1L-Player-024",
+    "tc_score": 0.09,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC5.2.2",
+    "text": "Shuffled list is not to be re-shuffled when the end of the list is reached.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-012-02",
+    "req_score": 0.08,
+    "best_tc": "NR1L-Player-016",
+    "tc_score": 0.05,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC5.2.3",
+    "text": "The Browse Tab will display the original list order and the displayed list order shall not differ from the original list order when  shuffle is active.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-017",
+    "req_score": 0.2,
+    "best_tc": "NR1L-Player-043",
+    "tc_score": 0.17,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC5.3",
+    "text": "If shuffle is activated, the Shuffle ON status and shuffled list for that source shall be maintained until one of the following conditions is met: 1) The source is  ejected or 2) The Shuffle button is toggled OFF.",
+    "cited_by": [
+      "SWE1-PLA-010-01"
+    ],
+    "best_req": "SWE1-PLA-009",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-024",
+    "tc_score": 0.31,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC5.3.1",
+    "text": "Shuffle will be source dependent, if the user is on iPod with Shuffle on and changes to Disc which did not previously have Shuffle on, shuffle will be  off, but upon returning to iPod if the previous device is still inserted Shuffle will be",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-037",
+    "req_score": 0.17,
+    "best_tc": "NR1L-Player-106",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC5.4",
+    "text": "If Shuffle is currently unavailable or not supported by the device the button will be shown greyed out.",
+    "cited_by": [
+      "SWE1-PLA-038"
+    ],
+    "best_req": "SWE1-PLA-038",
+    "req_score": 0.16,
+    "best_tc": "NR1L-Player-107",
+    "tc_score": 0.24,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6",
+    "text": "Progress Bar shows Current Track or Chapter of Total Tracks or Movie Chapters (left) and Time Elapsed/Total Time (right).",
+    "cited_by": [
+      "SWE1-PLA-019"
+    ],
+    "best_req": "SWE1-PLA-018-02",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-068",
+    "tc_score": 0.22,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6.1",
+    "text": "If the HU determines the device/connection type supports position jumping: The progress bar + the slider moving in the bar will be displayed.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-021",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-084",
+    "tc_score": 0.11,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.1.1",
+    "text": "Slider moves and indicates elapsed time.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-025-01",
+    "req_score": 0.09,
+    "best_tc": "NR1L-Player-084",
+    "tc_score": 0.06,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.1.2",
+    "text": "If slider on progress bar is dragged and then let go, the music will play where the slider’s new position is. Example: Slider is at 1:05 and user  presses slider and drags it to 8:14 then releases the slider, the music should play at 8:14.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-025-01",
+    "req_score": 0.14,
+    "best_tc": "NR1L-Player-085",
+    "tc_score": 0.1,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.2",
+    "text": "If the HU determines the device/connection type does not support position jumping: Remove the slider from the progress bar and display the bar only, filling  it accordingly the current time.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-019",
+    "req_score": 0.15,
+    "best_tc": "NR1L-Player-084",
+    "tc_score": 0.14,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6.3",
+    "text": "With a long press of seek button the slider has to move in the bar accordingly the current time detected.",
+    "cited_by": [
+      "SWE1-PLA-025-01",
+      "SWE1-PLA-026-01"
+    ],
+    "best_req": "SWE1-PLA-025-01",
+    "req_score": 0.43,
+    "best_tc": "NR1L-Player-083",
+    "tc_score": 0.29,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6.3.1",
+    "text": "If the HU is not able to detect the current time during the fast seek the slider will maintain its position until the user ends the fast seek, at that time  makes the slider move to the new position.",
+    "cited_by": [
+      "SWE1-PLA-025-02",
+      "SWE1-PLA-026-02"
+    ],
+    "best_req": "SWE1-PLA-025-02",
+    "req_score": 0.31,
+    "best_tc": "NR1L-Player-085",
+    "tc_score": 0.27,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6.4",
+    "text": "For all Media sources, show time format as HH:MM:SS.",
+    "cited_by": [
+      "SWE1-PLA-019"
+    ],
+    "best_req": "SWE1-PLA-006-01",
+    "req_score": 0.07,
+    "best_tc": "NR1L-Player-117",
+    "tc_score": 0.08,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.5",
+    "text": "For Audiobook, Track number display is \"Now playing chapter number of Total number of chapters\". If selected audiobook has no chapters, track number  display is\"1 of 1\".",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-012",
+    "req_score": 0.18,
+    "best_tc": "NR1L-Player-121",
+    "tc_score": 0.12,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6.6",
+    "text": "For all USB devices, upon insertion, display ‘<n>’ Songs Found’ in the elapsed time bar in place of the track counter while the system is looking for a song to  play.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-030-03",
+    "req_score": 0.1,
+    "best_tc": "NR1L-Player-098",
+    "tc_score": 0.1,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.6.1",
+    "text": "Once playback is ready, go to normal play screen with the track counter (will continue to increase if necessary).",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-006-02",
+    "req_score": 0.14,
+    "best_tc": "NR1L-Player-114",
+    "tc_score": 0.12,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.7",
+    "text": "If the user’s device does not support track information (# of #), the track information can be hidden.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-042-01",
+    "req_score": 0.2,
+    "best_tc": "NR1L-Player-119",
+    "tc_score": 0.12,
+    "req_covered": true,
+    "tc_covered": true
+  },
+  {
+    "pc": "PC6.8",
+    "text": "Remove the entire progress bar (slider + bar) if:",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-021",
+    "req_score": 0.1,
+    "best_tc": "NR1L-Player-084",
+    "tc_score": 0.06,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.8.1",
+    "text": "1) The HU is not able to determine if the device/connection type supports or does not support the position jumping.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-025",
+    "req_score": 0.14,
+    "best_tc": "NR1L-Player-154",
+    "tc_score": 0.08,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.8.1.1",
+    "text": "In that case the current time/total time info are maintained.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-024-01",
+    "req_score": 0.1,
+    "best_tc": "NR1L-Player-084",
+    "tc_score": 0.06,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.8.2",
+    "text": "2) The HU is not able to display the information about the current time on the bar (filling the bar).",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-025-02",
+    "req_score": 0.12,
+    "best_tc": "NR1L-Player-077",
+    "tc_score": 0.09,
+    "req_covered": true,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.8.2.1",
+    "text": "In that case remove the current time/total time info also.",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-056",
+    "req_score": 0.11,
+    "best_tc": "NR1L-Player-111",
+    "tc_score": 0.07,
+    "req_covered": false,
+    "tc_covered": false
+  },
+  {
+    "pc": "PC6.8.3",
+    "text": "The display status of the progress bar or scrubber should not change in the middle of a song. They should only be displayed at the beginning of a  song. Play Controls (cont.) 16 See MN1.2 for general anatomy of the Source Tab. ST1) Pressing",
+    "cited_by": [],
+    "best_req": "SWE1-PLA-004",
+    "req_score": 0.11,
+    "best_tc": "NR1L-Player-021",
+    "tc_score": 0.16,
+    "req_covered": false,
+    "tc_covered": true
+  }
+]
