@@ -82,6 +82,32 @@ def test_assemble_flattens_and_tags_spec_only(tmp_path):
     assert result["test_cases"][1]["source"] == "spec-only"
 
 
+def test_context_includes_design_method_vocabulary(tmp_path):
+    bundle = export_generation_bundle(_write_reqs(tmp_path), req_ids=["SWE1-PLA-006"])
+    cp = bundle["requirements"][0]["context_prompt"]
+    assert "Design Method" in cp
+    assert "狀態轉換 (State Transition Testing)" in cp  # controlled vocabulary fed in
+
+
+def test_assemble_flags_off_vocabulary_design_method(tmp_path):
+    from gen_bridge import DESIGN_METHODS
+    bundle = export_generation_bundle(_write_reqs(tmp_path), req_ids=["SWE1-PLA-006"])
+    bundle["requirements"][0]["answer"] = {
+        "decomposition": {"scenarios": [{"id": 1, "source": "requirement"},
+                                        {"id": 2, "source": "requirement"}]},
+        "test_cases": [
+            {"scenario_id": 1, "design_method": "狀態轉換 (State Transition Testing)"},
+            {"scenario_id": 2, "design_method": "場景測試 (Scenario)"},  # off-vocabulary
+        ],
+    }
+    result = assemble_generation(bundle)
+    assert result["stats"]["tcs_invalid_design_method"] == 1
+    by_id = {tc["tc_id"]: tc for tc in result["test_cases"]}
+    assert by_id["GEN-0001"]["design_method_valid"] is True
+    assert by_id["GEN-0002"]["design_method_valid"] is False
+    assert "狀態轉換 (State Transition Testing)" in DESIGN_METHODS
+
+
 def test_assemble_rejects_bad_schema():
     with pytest.raises(ValueError):
         assemble_generation({"schema": "nope", "requirements": []})

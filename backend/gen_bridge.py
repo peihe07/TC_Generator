@@ -24,6 +24,34 @@ TC_FIELDS = [
     "split_flag", "split_reason",
 ]
 
+# The team's controlled Design Method vocabulary (docs/Test Case Design Method
+# 判斷規則.md). design_method MUST be one of these exact bilingual labels —
+# never a free-form technique name.
+DESIGN_METHODS = [
+    "功能測試 (Functional based ; no specific technique)",
+    "狀態轉換 (State Transition Testing)",
+    "決策表 (Decision Table Testing)",
+    "等價劃分 (Equivalence Partitioning, EP)",
+    "邊界值分析 (Boundary Value Analysis, BVA)",
+    "組合測試 (Combinatorial Testing)",
+    "情境 / 用例 (Scenario / Use Case Testing)",
+    "負向測試 (Negative / Invalid)",
+    "基礎故障注入 (Fault Injection Lite)",
+]
+# Quick-selection flow (判斷規則 §12) — first match wins.
+_DESIGN_METHOD_FLOW = (
+    "Design Method 必須從下列控制清單擇一(完整字串照貼),依序判斷:\n"
+    "1. 錯誤輸入/不合法操作 → 負向測試 (Negative / Invalid)\n"
+    "2. 模擬系統或環境故障(連線中斷/設備移除)→ 基礎故障注入 (Fault Injection Lite)\n"
+    "3. 涉及系統狀態改變(模式/狀態切換、狀態相依 UI)→ 狀態轉換 (State Transition Testing)\n"
+    "4. 多條件判斷邏輯 → 決策表 (Decision Table Testing)\n"
+    "5. 測試輸入區間 → 等價劃分 (Equivalence Partitioning, EP)\n"
+    "6. 測試邊界值 → 邊界值分析 (Boundary Value Analysis, BVA)\n"
+    "7. 多參數組合 → 組合測試 (Combinatorial Testing)\n"
+    "8. 驗證完整操作流程 → 情境 / 用例 (Scenario / Use Case Testing)\n"
+    "9. 以上皆非 → 功能測試 (Functional based ; no specific technique)"
+)
+
 
 def _spec_pc_for_req(req_id: str, spec_rows: list[dict]) -> list[dict]:
     """SPEC PC rules linked to a requirement: explicitly cited OR best content
@@ -52,6 +80,9 @@ def _context_prompt(req: dict, domain_block: str | None,
         "- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,"
         "也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。",
         "- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。",
+        "",
+        "### Design Method(必須用控制詞彙)",
+        _DESIGN_METHOD_FLOW,
     ]
     if domain_block:
         parts += ["", "### Domain Pack(GROUND TRUTH)", domain_block]
@@ -148,9 +179,11 @@ def assemble_generation(bundle: dict) -> dict:
     if bundle.get("schema") != GEN_BUNDLE_SCHEMA:
         raise ValueError(f"unexpected gen-bundle schema: {bundle.get('schema')}")
 
+    valid_methods = set(DESIGN_METHODS)
     tcs: list[dict] = []
     n_reqs_answered = 0
     n_spec_only = 0
+    n_bad_method = 0
     seq = 1
     for req in bundle["requirements"]:
         ans = req.get("answer")
@@ -164,11 +197,15 @@ def assemble_generation(bundle: dict) -> dict:
             if src == "spec-only":
                 n_spec_only += 1
             row = {k: tc.get(k, "") for k in TC_FIELDS}
+            method_ok = row.get("design_method") in valid_methods
+            if not method_ok:
+                n_bad_method += 1
             row.update({
                 "tc_id": f"GEN-{seq:04d}",
                 "req_id": req["req_id"],
                 "scenario_id": tc.get("scenario_id"),
                 "source": src,
+                "design_method_valid": method_ok,  # off the controlled vocabulary?
             })
             tcs.append(row)
             seq += 1
@@ -180,5 +217,6 @@ def assemble_generation(bundle: dict) -> dict:
             "requirements_answered": n_reqs_answered,
             "tcs_generated": len(tcs),
             "tcs_from_spec_only": n_spec_only,  # behaviours the requirement never decomposed
+            "tcs_invalid_design_method": n_bad_method,  # off the controlled vocabulary
         },
     }
