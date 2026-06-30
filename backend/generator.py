@@ -321,13 +321,13 @@ def extract_decompose_rules(rules_text: str) -> str:
 
     wanted_headers = {
         "## 2. Core Principles",
-        "## 4. Workflow (Generate)",
-        "## 6. Field Rules",
-        "## 7. Step Design",
-        "## 8. Expected Results",
-        "## 9. False Pass / False Fail",
-        "## 10. Requirement Alignment",
-        "## 11. Self-Check (before emitting each TC)",
+        "## 3. Workflow (Generate)",
+        "## 4. Field Rules",
+        "## 5. Step Design",
+        "## 6. Expected Results",
+        "## 7. False Pass / False Fail",
+        "## 8. Requirement Alignment",
+        "## 9. Self-Check (before emitting each TC)",
     }
     lines = rules_text.splitlines()
     kept: list[str] = []

@@ -176,7 +176,7 @@ Stage 9  Export                         ── Python(writer)── 已有
 | 狀態 | **改造**(`build_decompose_prompt` 已存在,但目前被塞進批次,需改成單需求 agent 扇出) |
 | KPI hook | 平均拆解步數 / 需求(對抗「不夠深」) |
 
-> 把 `ASPICE_SWE6_AI_Instruction.md`、`Test Case Design Method 判斷規則.md`、`test_case_priority.md` 打包成 skill,每支 agent 自動載入 → 解決 background 不夠。
+> 把 `ASPICE_SWE6_AI_Instruction.md`、`TEST_CASE_DESIGN_METHOD.md`、`TEST_CASE_PRIORITY.md` 打包成 skill,每支 agent 自動載入 → 解決 background 不夠。
 
 ---
 
@@ -435,8 +435,8 @@ severity ceiling:Tier1 Critical / Tier2 Critical / **Tier3 max Major**。約 20 
 
 - `ASPICE_SWE6_AI_Instruction.md`(19.7k 字元):§0 Purpose / §1 Language / §2 Core Principles / §4 Workflow / §6 Field Rules(6.0 Test Set、6.1 tc_title 三型、6.2 Pre-Cond、6.3 Input Data、6.4 Sibling)/ §7 Step Design(7.1 Executable、7.5 Final Step、7.6 Baseline、7.7 One Objective、7.8 Setup Snippets、7.9 Tooling/CLI、7.10 Step Length)/ §8 Expected Results / §9 False Pass-Fail / §10 Requirement Alignment / §11 Self-Check / §12 Output Contract / §13 Formatting / §15 Design Method / §16 Final Rule。
 - `ASPICE_SWE6_AI_Review.md`(25.5k 字元):§3 Three-Tier Model / §4 Severity Rubric / §5 Workflow / §6 Tier1 / §7 Tier2 / §8 Tier3 / §9 Output Contract / §10 Self-Check。
-- `Test Case Design Method 判斷規則.md`:9 種設計方法(Functional based / State Transition / Decision Table / Equivalence Partitioning / Boundary Value / Combinatorial / Scenario / Negative / Fault Injection Lite)+ first-match 快速判斷流程。
-- `test_case_priority.md`:P0–P3 定義(P0 核心 happy path 預設、P1 次要/邊界、P2 輔助、P3 UI 強化)+ IVI / CAN 範例。
+- `TEST_CASE_DESIGN_METHOD.md`:9 種設計方法(Functional based / State Transition / Decision Table / Equivalence Partitioning / Boundary Value / Combinatorial / Scenario / Negative / Fault Injection Lite)+ first-match 快速判斷流程。
+- `TEST_CASE_PRIORITY.md`:P0–P3 定義(P0 核心 happy path 預設、P1 次要/邊界、P2 輔助、P3 UI 強化)+ IVI / CAN 範例。
 - `TEST_SET_POLICY.md`:Test Set = capability 級分組;命名規則(短英文名詞、不重複 Test Group prefix、禁 `Unclassified`/`Misc`/placeholder)。
 
 ## I. API Routes(api_server.py)
@@ -530,3 +530,46 @@ python backend/main.py --assemble output/X/review_bundle.json \
 | 語意層 | Claude in session | 腳本打 gpt-4.1 / Claude API |
 | 計費 | **訂閱額度,$0** | API token |
 | 適用 | 你在場、逐步、品質可控 | 大量、排程、無人值守 |
+
+---
+
+## P. 互動式生成 SOP(SPEC 接地 + 兩層合規,$0)
+
+> 單需求深拆 + 多 TC 扇出,接地在 **Domain Pack + SPEC 原文 PC + 權威規則**(`load_rules()`:AI Instruction / 判斷規則 / priority)。語意層在 session 做,訂閱 $0。
+
+### 流程(一個 feature 家族一輪)
+
+```bash
+# 1) export — 每需求組 SPEC 接地 context;system_prompt 帶權威規則。不打 API
+python backend/main.py --gen-export-bundle \
+  --swe1-reqs M1/swe1_<proj>_reqs.json --domain-pack M1/domain_pack_<proj>.json \
+  --spec-coverage M1/spec_coverage_<proj>.json \
+  --req-ids <該家族的 req ids> --output-dir output/gen_<family>
+```
+```text
+# 2) Claude 在 session 裡:每需求填 {decomposition, test_cases}。← 訂閱 $0
+#    - 拆解看 SPEC 原文,SPEC-only 行為標 source:"spec-only"
+#    - 欄位寫法 / Design Method / Priority 全依 system_prompt 的權威規則
+```
+```bash
+# 3) assemble — 攤平 + 第一層確定性合規閘(method/priority/必填),寫 xlsx
+python backend/main.py --gen-assemble output/gen_<family>/gen_bundle.json \
+  --output-dir output/gen_<family>
+#    → generated_tcs.json / generated_tcs.xlsx(Compliance: ✓ / ⚠ N off rules)
+
+# 4) 第二層寫作規則稽核 — 把生成的 xlsx 丟回 review(§8.x)
+python backend/main.py --review --dry-run \
+  --input output/gen_<family>/generated_tcs.xlsx \
+  --output-dir output/gen_<family>/audit --swe1-reqs M1/swe1_<proj>_reqs.json
+#    → 若 §8.x 有違規(禁用動詞/模糊用語/Final Step),修 procedure/ER 後重跑 3-4
+```
+
+### 兩層合規保證
+
+| 層 | 查 | 在哪 |
+|---|---|---|
+| 確定性閘 | Design Method 控制詞彙、Priority P0–P3、必填欄非空 | `assemble`(`compliance_issues` / `tcs_noncompliant`)|
+| 寫作規則稽核 | 禁用動詞(§8.3.1)、模糊用語(§8.4.1)、Final Step(§8.3.5)、欄位契約 | `--review` §8.x |
+
+> 規則單一真實來源 = `load_rules()`(`docs/ASPICE_SWE6_AI_Instruction.md` + `判斷規則.md` + `TEST_CASE_PRIORITY.md`)。改文件 → 生成與稽核兩端自動跟進。
+> 迴圈:**生成 → 兩層合規 → 修 → 再稽核**,直到 §8.x = 0、確定性閘 = ✓。

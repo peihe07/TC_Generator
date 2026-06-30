@@ -381,7 +381,7 @@ def normalize_design_method(method: str | None) -> str:
 
 def validate_design_method(method: str) -> ValidationResult:
     """Validate design method against the 9 methods in
-    `Test Case Design Method 判斷規則.md`.
+    `TEST_CASE_DESIGN_METHOD.md`.
 
     - 完全匹配 VALID_DESIGN_METHODS：pass
     - 僅關鍵字匹配（例：AI 回 "State Transition"）：pass，但回傳訊息提示

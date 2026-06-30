@@ -311,25 +311,25 @@ class TestExtractDecomposeRules:
     def test_keeps_only_split_relevant_sections(self):
         rules = """## 2. Core Principles
 keep core
-## 4. Workflow (Generate)
+## 3. Workflow (Generate)
 keep workflow
-## 6. Field Rules
+## 4. Field Rules
 keep field rules
-### 6.1 Test Item
+### 4.3 Test Item
 keep split
-### 6.2 Pre-Condition
+### 4.4 Pre-Condition
 keep precondition
-## 7. Step Design
+## 5. Step Design
 keep steps
-## 8. Expected Results
+## 6. Expected Results
 keep expected
-## 9. False Pass / False Fail
+## 7. False Pass / False Fail
 keep false
-## 10. Requirement Alignment
+## 8. Requirement Alignment
 keep alignment
-### 10.2 Keyword Decomposition
+### 8.3 Keyword Decomposition
 keep keywords
-## 11. Self-Check (before emitting each TC)
+## 9. Self-Check (before emitting each TC)
 keep self check
 ## 12. Review Output
 drop review
@@ -358,25 +358,25 @@ drop review
         )
         rules = """## 2. Core Principles
 keep core
-## 4. Workflow (Generate)
+## 3. Workflow (Generate)
 keep workflow
-## 6. Field Rules
+## 4. Field Rules
 keep field rules
-### 6.1 Test Item
+### 4.3 Test Item
 keep test item
-### 6.2 Pre-Condition
+### 4.4 Pre-Condition
 keep precondition
-## 7. Step Design
+## 5. Step Design
 keep steps
-## 8. Expected Results
+## 6. Expected Results
 keep expected
-## 9. False Pass / False Fail
+## 7. False Pass / False Fail
 keep false
-## 10. Requirement Alignment
+## 8. Requirement Alignment
 keep alignment
-### 10.2 Keyword Decomposition
+### 8.3 Keyword Decomposition
 keep keywords
-## 11. Self-Check (before emitting each TC)
+## 9. Self-Check (before emitting each TC)
 keep self check
 ## 12. Review Output
 drop review
@@ -448,13 +448,13 @@ also through via fallback
         # Stronger pin: every whitelisted header must appear in the output.
         wanted_headers = {
             "## 2. Core Principles",
-            "## 4. Workflow (Generate)",
-            "## 6. Field Rules",
-            "## 7. Step Design",
-            "## 8. Expected Results",
-            "## 9. False Pass / False Fail",
-            "## 10. Requirement Alignment",
-            "## 11. Self-Check (before emitting each TC)",
+            "## 3. Workflow (Generate)",
+            "## 4. Field Rules",
+            "## 5. Step Design",
+            "## 6. Expected Results",
+            "## 7. False Pass / False Fail",
+            "## 8. Requirement Alignment",
+            "## 9. Self-Check (before emitting each TC)",
         }
         missing = [h for h in wanted_headers if h not in extracted]
         assert not missing, (

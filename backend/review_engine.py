@@ -605,7 +605,7 @@ def _detect_8_5_1(tc: TCRecord) -> list[dict]:
         "evidence": pri or "(empty)",
         "original": pri,
         "revised": "",
-        "suggestion_note": "依 docs/test_case_priority.md 重新判定 P0–P3",
+        "suggestion_note": "依 docs/TEST_CASE_PRIORITY.md 重新判定 P0–P3",
     }]
 
 

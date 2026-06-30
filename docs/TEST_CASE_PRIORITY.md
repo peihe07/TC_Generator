@@ -10,7 +10,7 @@ The IVI app test case priorities in SWE.6 are defined from **P0 to P3** based on
 
 ## 優先級定義
 
-### 🔴 P0 - Critical Functionality（核心功能）
+### P0 - Critical Functionality（核心功能）
 
 **定義：** Critical functionality that must be tested without fail. Any failure would impact core system or functionality operations. **A feature's core/primary flow (the must-test happy path that defines the feature working) defaults to P0** — do not downgrade it to P1 unless it is clearly a secondary/advanced operation.
 
@@ -23,7 +23,7 @@ The IVI app test case priorities in SWE.6 are defined from **P0 to P3** based on
 
 ---
 
-### 🟡 P1 - Major Functionality（主要功能）
+### P1 - Major Functionality（主要功能）
 
 **定義：** Secondary or advanced operations of a major feature that are NOT the core primary flow. Boundary/variation cases, key operational logic branches, and non-primary user-facing flows fall here. While not immediately system-breaking, failures can significantly affect major features or workflows.
 
@@ -36,7 +36,7 @@ The IVI app test case priorities in SWE.6 are defined from **P0 to P3** based on
 
 ---
 
-### 🔵 P2 - Secondary Functionality（輔助功能）
+### P2 - Secondary Functionality（輔助功能）
 
 **定義：** Support Features. These involve secondary features whose failures have a limited impact on the major features.
 
@@ -49,7 +49,7 @@ The IVI app test case priorities in SWE.6 are defined from **P0 to P3** based on
 
 ---
 
-### 🟢 P3 - Minor Functionality（次要功能）
+### P3 - Minor Functionality（次要功能）
 
 **定義：** Enhancements or low-impact features. These cover non-critical aspects such as UI enhancements or rare-use scenarios, with minimal risk to operations.
 

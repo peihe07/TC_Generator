@@ -2,7 +2,7 @@
 
 This document is the runtime policy for Test Set classification, review, and
 export. The short generation-facing summary lives in
-`ASPICE_SWE6_AI_Instruction.md` §6.0.
+`ASPICE_SWE6_AI_Instruction.md` §4.2.
 
 ## Purpose
 

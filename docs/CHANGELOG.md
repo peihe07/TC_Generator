@@ -385,8 +385,8 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 | ASPICE SWE.6 Generate 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |
 | Test Set 分類 / hint / export policy | [TEST_SET_POLICY.md](TEST_SET_POLICY.md) |
 | ASPICE SWE.6 Review 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Review.md](ASPICE_SWE6_AI_Review.md) |
-| Test Design Method 判斷（LLM prompt 用） | [Test Case Design Method 判斷規則.md](Test%20Case%20Design%20Method%20判斷規則.md) |
-| Test Case Priority 定義 | [test_case_priority.md](test_case_priority.md) |
+| Test Design Method 判斷（LLM prompt 用） | [TEST_CASE_DESIGN_METHOD.md](TEST_CASE_DESIGN_METHOD.md) |
+| Test Case Priority 定義 | [TEST_CASE_PRIORITY.md](TEST_CASE_PRIORITY.md) |
 | 架構視覺化 | [TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html) |
 
 > Generate 規則由 `backend/rules_loader.py` 載入；改名或搬移 runtime 規則文件時，需同步更新 loader 與相關測試。

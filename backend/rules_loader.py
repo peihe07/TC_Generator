@@ -9,8 +9,8 @@ from typing import Iterable
 DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
 RULE_FILES = [
     DOCS_DIR / "ASPICE_SWE6_AI_Instruction.md",
-    DOCS_DIR / "Test Case Design Method 判斷規則.md",
-    DOCS_DIR / "test_case_priority.md",
+    DOCS_DIR / "TEST_CASE_DESIGN_METHOD.md",
+    DOCS_DIR / "TEST_CASE_PRIORITY.md",
 ]
 
 

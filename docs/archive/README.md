@@ -6,8 +6,8 @@ prompts.
 Runtime generation rules are loaded from:
 
 - `docs/ASPICE_SWE6_AI_Instruction.md`
-- `docs/Test Case Design Method 判斷規則.md`
-- `docs/test_case_priority.md`
+- `docs/TEST_CASE_DESIGN_METHOD.md`
+- `docs/TEST_CASE_PRIORITY.md`
 
 When an instruction patch has been merged into the active rule document, keep
 any patch-list copy here only as change history. Do not reference archived
