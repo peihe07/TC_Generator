@@ -37,6 +37,43 @@ def test_generated_tc_workbook_roundtrips_through_parser(tmp_path):
     assert "default to Repeat All" in row["test_item"]
 
 
+def test_generated_into_template_uses_header_layout(tmp_path):
+    """Writing into the team's template must place fields by HEADER name — e.g.
+    design_method lands in column R (template has Estimated Test Time at Q)."""
+    from parser import parse_tc_xlsx
+    # Build a template whose layout differs from the legacy letters: an extra
+    # 'Estimated Test Time' column at Q pushes Design Methods to R.
+    tmpl = tmp_path / "Tmpl_SWQT_Player_20260101.xlsx"
+    wb = Workbook()
+    ws_pd = wb.active
+    ws_pd.title = "Product Document"
+    ws_pd.cell(row=3, column=2, value="newR1L")
+    ws = wb.create_sheet("Test Case Specification 測試用例規範")
+    headers = {4: "Requirement or Design ID 需求/設計 ID", 6: "Test Case ID 測試用例ID",
+               9: "Test Item 測試項目", 12: "Test procedure 測試程序",
+               13: "Expected Result 預期結果", 16: "Test Case Priority",
+               17: "Estimated Test Time (mins)", 18: "Test Case Design Methods 設計方法"}
+    for c, n in headers.items():
+        ws.cell(row=9, column=c, value=n)
+    ws.cell(row=10, column=4, value="OLD-REQ")        # example data to be cleared
+    ws.cell(row=10, column=18, value="OLD-METHOD")
+    wb.save(tmpl)
+
+    tcs = [{"tc_id": "GEN-0001", "req_id": "SWE1-PLA-010-02",
+            "tc_title": "Shuffle On randomized", "test_item": "the system shall shuffle",
+            "test_procedure": "1. Enable.\n2. Check that order differs.",
+            "expected_result": "1. Randomized.", "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P0"}]
+    out = tmp_path / "Out_SWQT_Player_gen.xlsx"
+    write_generated_tc_workbook(tcs, str(out), template_path=str(tmpl))
+
+    parsed = parse_tc_xlsx(str(out))
+    assert parsed["row_count"] == 1                    # example row overwritten, not appended
+    row = parsed["rows"][0]
+    assert row["req_id"] == "SWE1-PLA-010-02"
+    assert row["design_method"] == "狀態轉換 (State Transition Testing)"  # landed in R via header
+
+
 @pytest.fixture
 def input_xlsx(tmp_path):
     """Create a minimal input xlsx to write results into."""

@@ -428,33 +428,61 @@ _GEN_FIELD_COL = {
 }
 
 
+def _gen_test_item(row: dict, test_group: str) -> dict:
+    row = dict(row)
+    row.setdefault("test_group", test_group)
+    title = str(row.get("tc_title") or "").strip()
+    item = str(row.get("test_item") or "").strip()
+    row["test_item"] = f"{title}\n{item}" if title and item else (item or title)
+    return row
+
+
 def write_generated_tc_workbook(tcs, output_path, project="GEN",
-                                test_group="Generated") -> None:
-    """Write freshly generated TCs (gen_bridge output) into a NEW workbook using
-    the team's header layout. Header row = 9, data from row 10 — re-reviewable."""
+                                test_group="Generated",
+                                template_path: str | None = None) -> None:
+    """Write freshly generated TCs (gen_bridge output) into a workbook.
+
+    With `template_path`, write into a COPY of the team's real template —
+    preserving every column, cell format, dropdown and cover sheet — resolving
+    each field's column by HEADER NAME (so design_method lands in the template's
+    actual column, e.g. R). Otherwise emit a minimal re-reviewable stub."""
+    if template_path:
+        from parser import _resolve_columns, HEADER_ROW, DATA_START_ROW
+        wb = load_workbook(template_path)  # keep formatting / dropdowns / covers
+        ws = wb[find_tc_sheet_name(wb)]
+        headers = [ws.cell(row=HEADER_ROW, column=c).value
+                   for c in range(1, ws.max_column + 1)]
+        field_cols = _resolve_columns(headers)  # field -> 1-based col (R for design)
+        # Clear any example/placeholder data rows in the mapped columns.
+        for r in range(DATA_START_ROW, ws.max_row + 1):
+            for col in field_cols.values():
+                ws.cell(row=r, column=col).value = None
+        for i, tc in enumerate(tcs):
+            row = _gen_test_item(tc, test_group)
+            for field, col in field_cols.items():
+                val = row.get(field)
+                if val:
+                    ws.cell(row=DATA_START_ROW + i, column=col,
+                            value=_sanitize_excel_text(str(val)))
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+        wb.save(output_path)
+        wb.close()
+        return
+
     from openpyxl import Workbook
     wb = Workbook()
     ws_pd = wb.active
     ws_pd.title = "Product Document"
     ws_pd.cell(row=3, column=2, value=project)
-
     ws = wb.create_sheet(TC_SHEET_NAME)
     for col, name in _GEN_HEADERS.items():
         ws.cell(row=9, column=col, value=name)
-
     for i, tc in enumerate(tcs):
-        r = 10 + i
-        row = dict(tc)
-        row.setdefault("test_group", test_group)
-        # test_item carries the requirement句 (Tier 1 anchor); prepend the title.
-        title = str(row.get("tc_title") or "").strip()
-        item = str(row.get("test_item") or "").strip()
-        row["test_item"] = f"{title}\n{item}" if title and item else (item or title)
+        row = _gen_test_item(tc, test_group)
         for field, col in _GEN_FIELD_COL.items():
             val = row.get(field)
             if val:
-                ws.cell(row=r, column=col, value=_sanitize_excel_text(str(val)))
-
+                ws.cell(row=10 + i, column=col, value=_sanitize_excel_text(str(val)))
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     wb.save(output_path)
     wb.close()

@@ -134,6 +134,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--req-ids",
         help="Comma-separated requirement ids to limit --gen-export-bundle.",
     )
+    p.add_argument(
+        "--gen-template",
+        help="Path to the team's blank TC template xlsx. --gen-assemble then "
+             "writes generated TCs into a copy of it (full columns/format/"
+             "dropdowns preserved), instead of a minimal stub.",
+    )
     return p.parse_args(argv)
 
 
@@ -780,12 +786,16 @@ def run_gen_assemble(args: argparse.Namespace) -> int:
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(result, fh, ensure_ascii=False, indent=2)
     xlsx_path = os.path.join(args.output_dir, "generated_tcs.xlsx")
-    write_generated_tc_workbook(result["test_cases"], xlsx_path)
+    write_generated_tc_workbook(result["test_cases"], xlsx_path,
+                                template_path=args.gen_template)
     s = result["stats"]
     print(f"\n{'='*60}\nGeneration Assembled (interactive / $0)")
     print(f"  Requirements answered: {s['requirements_answered']}/{s['requirements_total']}")
     print(f"  TCs generated: {s['tcs_generated']}  "
           f"(of which SPEC-only behaviours: {s['tcs_from_spec_only']})")
+    nc = s.get("tcs_noncompliant", 0)
+    flag = "✓ all on house rules" if not nc else f"⚠ {nc} off house rules (method/priority/fields)"
+    print(f"  Compliance: {flag}")
     print(f"  Wrote: {out_path}")
     print(f"         {xlsx_path}  (re-reviewable)\n{'='*60}\n")
     return 0

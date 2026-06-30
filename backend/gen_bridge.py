@@ -24,9 +24,10 @@ TC_FIELDS = [
     "split_flag", "split_reason",
 ]
 
-# The team's controlled Design Method vocabulary (docs/Test Case Design Method
-# 判斷規則.md). design_method MUST be one of these exact bilingual labels —
-# never a free-form technique name.
+# The team's controlled Design Method vocabulary (the exact bilingual labels as
+# used in their workbooks). Prompt GUIDANCE on choosing among them comes from the
+# authoritative rules via rules_loader.load_rules(); this list is only the
+# deterministic post-check that a generated design_method is on-vocabulary.
 DESIGN_METHODS = [
     "功能測試 (Functional based ; no specific technique)",
     "狀態轉換 (State Transition Testing)",
@@ -38,19 +39,6 @@ DESIGN_METHODS = [
     "負向測試 (Negative / Invalid)",
     "基礎故障注入 (Fault Injection Lite)",
 ]
-# Quick-selection flow (判斷規則 §12) — first match wins.
-_DESIGN_METHOD_FLOW = (
-    "Design Method 必須從下列控制清單擇一(完整字串照貼),依序判斷:\n"
-    "1. 錯誤輸入/不合法操作 → 負向測試 (Negative / Invalid)\n"
-    "2. 模擬系統或環境故障(連線中斷/設備移除)→ 基礎故障注入 (Fault Injection Lite)\n"
-    "3. 涉及系統狀態改變(模式/狀態切換、狀態相依 UI)→ 狀態轉換 (State Transition Testing)\n"
-    "4. 多條件判斷邏輯 → 決策表 (Decision Table Testing)\n"
-    "5. 測試輸入區間 → 等價劃分 (Equivalence Partitioning, EP)\n"
-    "6. 測試邊界值 → 邊界值分析 (Boundary Value Analysis, BVA)\n"
-    "7. 多參數組合 → 組合測試 (Combinatorial Testing)\n"
-    "8. 驗證完整操作流程 → 情境 / 用例 (Scenario / Use Case Testing)\n"
-    "9. 以上皆非 → 功能測試 (Functional based ; no specific technique)"
-)
 
 
 def _spec_pc_for_req(req_id: str, spec_rows: list[dict]) -> list[dict]:
@@ -80,9 +68,8 @@ def _context_prompt(req: dict, domain_block: str | None,
         "- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,"
         "也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。",
         "- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。",
-        "",
-        "### Design Method(必須用控制詞彙)",
-        _DESIGN_METHOD_FLOW,
+        "- 欄位寫法、Design Method 判斷、Priority(P0–P3)一律遵照 system prompt "
+        "載入的權威規則(ASPICE_SWE6_AI_Instruction / 判斷規則 / test_case_priority)。",
     ]
     if domain_block:
         parts += ["", "### Domain Pack(GROUND TRUTH)", domain_block]
@@ -158,15 +145,24 @@ def export_generation_bundle(
             "answer": None,
         })
 
+    # Authoritative house rules (ASPICE_SWE6_AI_Instruction + Design Method 判斷規則
+    # + test_case_priority) — the single source of truth the original generator
+    # uses. Do NOT hand-roll a partial prompt; inject these verbatim.
+    from rules_loader import load_rules
+    rules_text = load_rules()
+    system_prompt = (
+        "## ASPICE SWE.6 權威規則(嚴格遵守,逐字)\n\n" + rules_text + "\n\n---\n\n"
+        "你是 ASPICE SWE.6 測試分析師。深拆需求並生成測試案例,"
+        "欄位寫法 / Design Method / Priority 全部依上方規則。"
+        "只回合法 JSON,不要 markdown fences。說明欄位用繁體中文,"
+        "test_item / tc_title 保留來源語言。"
+    )
+
     return {
         "schema": GEN_BUNDLE_SCHEMA,
         "swe1_reqs_path": str(swe1_reqs_path),
         "domain_pack_path": domain_pack_path,
-        "system_prompt": (
-            "你是 ASPICE SWE.6 測試分析師。深拆需求並生成測試案例。"
-            "只回合法 JSON,不要 markdown fences。所有說明欄位用繁體中文,"
-            "test_item / tc_title 保留來源語言。"
-        ),
+        "system_prompt": system_prompt,
         "requirements": requirements,
     }
 
@@ -179,11 +175,10 @@ def assemble_generation(bundle: dict) -> dict:
     if bundle.get("schema") != GEN_BUNDLE_SCHEMA:
         raise ValueError(f"unexpected gen-bundle schema: {bundle.get('schema')}")
 
-    valid_methods = set(DESIGN_METHODS)
     tcs: list[dict] = []
     n_reqs_answered = 0
     n_spec_only = 0
-    n_bad_method = 0
+    n_noncompliant = 0
     seq = 1
     for req in bundle["requirements"]:
         ans = req.get("answer")
@@ -197,15 +192,17 @@ def assemble_generation(bundle: dict) -> dict:
             if src == "spec-only":
                 n_spec_only += 1
             row = {k: tc.get(k, "") for k in TC_FIELDS}
-            method_ok = row.get("design_method") in valid_methods
-            if not method_ok:
-                n_bad_method += 1
+            issues = _check_compliance(row)
+            if issues:
+                n_noncompliant += 1
             row.update({
                 "tc_id": f"GEN-{seq:04d}",
                 "req_id": req["req_id"],
                 "scenario_id": tc.get("scenario_id"),
                 "source": src,
-                "design_method_valid": method_ok,  # off the controlled vocabulary?
+                "design_method_valid": "design_method" not in
+                    {i.split(":")[0] for i in issues},
+                "compliance_issues": issues,
             })
             tcs.append(row)
             seq += 1
@@ -217,6 +214,27 @@ def assemble_generation(bundle: dict) -> dict:
             "requirements_answered": n_reqs_answered,
             "tcs_generated": len(tcs),
             "tcs_from_spec_only": n_spec_only,  # behaviours the requirement never decomposed
-            "tcs_invalid_design_method": n_bad_method,  # off the controlled vocabulary
+            "tcs_noncompliant": n_noncompliant,  # off the house rules (method/priority/fields)
         },
     }
+
+
+# Deterministic, house-rule field gate (the deep writing-rule audit is the full
+# --review §8.x pass on the generated workbook).
+VALID_PRIORITIES = {"P0", "P1", "P2", "P3"}
+_REQUIRED_NONEMPTY = ("tc_title", "test_item", "test_procedure",
+                      "expected_result", "design_method", "priority")
+
+
+def _check_compliance(row: dict) -> list[str]:
+    """Return a list of `field:reason` compliance issues for one generated TC."""
+    issues = []
+    for f in _REQUIRED_NONEMPTY:
+        if not str(row.get(f) or "").strip():
+            issues.append(f"{f}:empty")
+    if row.get("design_method") and row["design_method"] not in set(DESIGN_METHODS):
+        issues.append("design_method:off-vocabulary")
+    pri = str(row.get("priority") or "").strip()
+    if pri and pri not in VALID_PRIORITIES:
+        issues.append("priority:not P0-P3")
+    return issues

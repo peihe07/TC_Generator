@@ -82,11 +82,24 @@ def test_assemble_flattens_and_tags_spec_only(tmp_path):
     assert result["test_cases"][1]["source"] == "spec-only"
 
 
-def test_context_includes_design_method_vocabulary(tmp_path):
+def test_system_prompt_carries_authoritative_rules(tmp_path):
+    # gen_bridge must inject the team's existing rules (load_rules), not a
+    # hand-rolled partial prompt — so writing rules / Design Method / Priority
+    # all come from the single source of truth.
     bundle = export_generation_bundle(_write_reqs(tmp_path), req_ids=["SWE1-PLA-006"])
-    cp = bundle["requirements"][0]["context_prompt"]
-    assert "Design Method" in cp
-    assert "狀態轉換 (State Transition Testing)" in cp  # controlled vocabulary fed in
+    sp = bundle["system_prompt"]
+    assert "State Transition Testing" in sp   # from Design Method 判斷規則
+    assert "Design Method" in sp
+    # the per-req context defers field/method/priority rules to the system prompt
+    assert "權威規則" in bundle["requirements"][0]["context_prompt"]
+
+
+def _full_tc(sid, **over):
+    base = {"scenario_id": sid, "tc_title": "T", "test_item": "the HU shall X",
+            "test_procedure": "1. Do.\n2. Check that X.", "expected_result": "1. X.",
+            "design_method": "狀態轉換 (State Transition Testing)", "priority": "P1"}
+    base.update(over)
+    return base
 
 
 def test_assemble_flags_off_vocabulary_design_method(tmp_path):
@@ -96,16 +109,33 @@ def test_assemble_flags_off_vocabulary_design_method(tmp_path):
         "decomposition": {"scenarios": [{"id": 1, "source": "requirement"},
                                         {"id": 2, "source": "requirement"}]},
         "test_cases": [
-            {"scenario_id": 1, "design_method": "狀態轉換 (State Transition Testing)"},
-            {"scenario_id": 2, "design_method": "場景測試 (Scenario)"},  # off-vocabulary
+            _full_tc(1),
+            _full_tc(2, design_method="場景測試 (Scenario)"),  # off-vocabulary
         ],
     }
     result = assemble_generation(bundle)
-    assert result["stats"]["tcs_invalid_design_method"] == 1
     by_id = {tc["tc_id"]: tc for tc in result["test_cases"]}
     assert by_id["GEN-0001"]["design_method_valid"] is True
     assert by_id["GEN-0002"]["design_method_valid"] is False
+    assert "design_method:off-vocabulary" in by_id["GEN-0002"]["compliance_issues"]
     assert "狀態轉換 (State Transition Testing)" in DESIGN_METHODS
+
+
+def test_assemble_flags_bad_priority_and_empty_fields(tmp_path):
+    bundle = export_generation_bundle(_write_reqs(tmp_path), req_ids=["SWE1-PLA-006"])
+    bundle["requirements"][0]["answer"] = {
+        "decomposition": {"scenarios": [{"id": 1, "source": "requirement"},
+                                        {"id": 2, "source": "requirement"}]},
+        "test_cases": [
+            _full_tc(1, priority="P5"),                 # bad priority
+            _full_tc(2, expected_result=""),            # empty required field
+        ],
+    }
+    result = assemble_generation(bundle)
+    assert result["stats"]["tcs_noncompliant"] == 2
+    by_id = {tc["tc_id"]: tc for tc in result["test_cases"]}
+    assert "priority:not P0-P3" in by_id["GEN-0001"]["compliance_issues"]
+    assert "expected_result:empty" in by_id["GEN-0002"]["compliance_issues"]
 
 
 def test_assemble_rejects_bad_schema():
