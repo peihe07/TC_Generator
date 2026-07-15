@@ -1,0 +1,679 @@
+{
+  "batch_meta": {
+    "source_file": "Player_generated_full.xlsx",
+    "sheet": "Test Case Specification&Result",
+    "total_tcs": 95,
+    "total_req_groups": 90,
+    "reviewed_at": "2026-06-28T07:26:41.992557+00:00",
+    "llm_stats": null
+  },
+  "per_req_findings": [
+    {
+      "req_id": "SWE1-PLA-032",
+      "tier": 1,
+      "rule_ref": "§6.5",
+      "severity": "Critical",
+      "scope_tcs": [
+        "PLA-GEN-0004",
+        "PLA-GEN-0005"
+      ],
+      "issue": "同 Req group 內多個 TC 引用不同版本的 spec句，Traceability 已斷裂",
+      "evidence_req_spec": "repeat song/all shall stay active until deactivated or the device disconnects (pc4.",
+      "suggestion_note": "確認 canonical 版本並讓所有 TC 對齊；不要自動覆寫，請 reviewer 對應 Polarion / SWRA 確認"
+    },
+    {
+      "req_id": "SWE1-PLA-033",
+      "tier": 1,
+      "rule_ref": "§6.5",
+      "severity": "Critical",
+      "scope_tcs": [
+        "PLA-GEN-0006",
+        "PLA-GEN-0007"
+      ],
+      "issue": "同 Req group 內多個 TC 引用不同版本的 spec句，Traceability 已斷裂",
+      "evidence_req_spec": "repeat shall be source dependent: switching source retains each source's repeat state (pc4.",
+      "suggestion_note": "確認 canonical 版本並讓所有 TC 對齊；不要自動覆寫，請 reviewer 對應 Polarion / SWRA 確認"
+    },
+    {
+      "req_id": "SWE1-PLA-010-01",
+      "tier": 1,
+      "rule_ref": "§6.5",
+      "severity": "Critical",
+      "scope_tcs": [
+        "PLA-GEN-0009",
+        "PLA-GEN-0010"
+      ],
+      "issue": "同 Req group 內多個 TC 引用不同版本的 spec句，Traceability 已斷裂",
+      "evidence_req_spec": "the shuffled list shall be created with the currently playing track as the first track (pc5.",
+      "suggestion_note": "確認 canonical 版本並讓所有 TC 對齊；不要自動覆寫，請 reviewer 對應 Polarion / SWRA 確認"
+    },
+    {
+      "req_id": "SWE1-PLA-010-02",
+      "tier": 1,
+      "rule_ref": "§6.5",
+      "severity": "Critical",
+      "scope_tcs": [
+        "PLA-GEN-0011",
+        "PLA-GEN-0012"
+      ],
+      "issue": "同 Req group 內多個 TC 引用不同版本的 spec句，Traceability 已斷裂",
+      "evidence_req_spec": "when shuffle is on the system shall play the now playing playlist in a randomized sequence.",
+      "suggestion_note": "確認 canonical 版本並讓所有 TC 對齊；不要自動覆寫，請 reviewer 對應 Polarion / SWRA 確認"
+    },
+    {
+      "req_id": "SWE1-PLA-037",
+      "tier": 1,
+      "rule_ref": "§6.5",
+      "severity": "Critical",
+      "scope_tcs": [
+        "PLA-GEN-0015",
+        "PLA-GEN-0016"
+      ],
+      "issue": "同 Req group 內多個 TC 引用不同版本的 spec句，Traceability 已斷裂",
+      "evidence_req_spec": "shuffle shall be source dependent: switching source retains each source's shuffle state (pc5.",
+      "suggestion_note": "確認 canonical 版本並讓所有 TC 對齊；不要自動覆寫，請 reviewer 對應 Polarion / SWRA 確認"
+    }
+  ],
+  "per_tc_findings": [
+    {
+      "tc_id": "PLA-GEN-0001",
+      "row": 10,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0002",
+      "row": 11,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0003",
+      "row": 12,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0004",
+      "row": 13,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0005",
+      "row": 14,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0006",
+      "row": 15,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0007",
+      "row": 16,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0008",
+      "row": 17,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0009",
+      "row": 18,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0010",
+      "row": 19,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0011",
+      "row": 20,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0012",
+      "row": 21,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0013",
+      "row": 22,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0014",
+      "row": 23,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0015",
+      "row": 24,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0016",
+      "row": 25,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0017",
+      "row": 26,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0018",
+      "row": 27,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0019",
+      "row": 28,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0020",
+      "row": 29,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0021",
+      "row": 30,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0022",
+      "row": 31,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0023",
+      "row": 32,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0024",
+      "row": 33,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0025",
+      "row": 34,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0026",
+      "row": 35,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0027",
+      "row": 36,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0028",
+      "row": 37,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0029",
+      "row": 38,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0030",
+      "row": 39,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0031",
+      "row": 40,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0032",
+      "row": 41,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0033",
+      "row": 42,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0034",
+      "row": 43,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0035",
+      "row": 44,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0036",
+      "row": 45,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0037",
+      "row": 46,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0038",
+      "row": 47,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0039",
+      "row": 48,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0040",
+      "row": 49,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0041",
+      "row": 50,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0042",
+      "row": 51,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0043",
+      "row": 52,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0044",
+      "row": 53,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0045",
+      "row": 54,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0046",
+      "row": 55,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0047",
+      "row": 56,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0048",
+      "row": 57,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0049",
+      "row": 58,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0050",
+      "row": 59,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0051",
+      "row": 60,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0052",
+      "row": 61,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0053",
+      "row": 62,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0054",
+      "row": 63,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0055",
+      "row": 64,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0056",
+      "row": 65,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0057",
+      "row": 66,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0058",
+      "row": 67,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0059",
+      "row": 68,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0060",
+      "row": 69,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0061",
+      "row": 70,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0062",
+      "row": 71,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0063",
+      "row": 72,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0064",
+      "row": 73,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0065",
+      "row": 74,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0066",
+      "row": 75,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0067",
+      "row": 76,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0068",
+      "row": 77,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0069",
+      "row": 78,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0070",
+      "row": 79,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0071",
+      "row": 80,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0072",
+      "row": 81,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0073",
+      "row": 82,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0074",
+      "row": 83,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0075",
+      "row": 84,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0076",
+      "row": 85,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0077",
+      "row": 86,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0078",
+      "row": 87,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0079",
+      "row": 88,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0080",
+      "row": 89,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0081",
+      "row": 90,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0082",
+      "row": 91,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0083",
+      "row": 92,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0084",
+      "row": 93,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0085",
+      "row": 94,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0086",
+      "row": 95,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0087",
+      "row": 96,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0088",
+      "row": 97,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0089",
+      "row": 98,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0090",
+      "row": 99,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0091",
+      "row": 100,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0092",
+      "row": 101,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0093",
+      "row": 102,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0094",
+      "row": 103,
+      "overall_verdict": "pass",
+      "findings": []
+    },
+    {
+      "tc_id": "PLA-GEN-0095",
+      "row": 104,
+      "overall_verdict": "pass",
+      "findings": []
+    }
+  ],
+  "batch_summary": {
+    "verdict_counts": {
+      "pass": 95,
+      "pass_with_issues": 0,
+      "fail": 0
+    },
+    "tier_summary": {
+      "tier1": {
+        "req_groups_total": 90,
+        "req_groups_with_critical": 5,
+        "req_groups_skipped": 0,
+        "top_rules": [
+          {
+            "rule_ref": "§6.5",
+            "count": 5,
+            "title": "Spec句 inconsistent across siblings"
+          }
+        ]
+      },
+      "tier2": {
+        "tcs_with_critical": 0,
+        "top_rules": []
+      },
+      "tier3": {
+        "tcs_with_findings": 0,
+        "top_rules": []
+      }
+    },
+    "reasoning": "Tier 1：共 90 個 Req group，其中 5 個出現 Critical 拆解問題，0 個無英文 spec句（§6.6）。 Tier 2：0 個 Critical 對齊問題，多集中於 Final Step 工具未讀結果或數值未引用 spec。 Tier 3：0 筆寫作層違規（多為禁用動詞、模糊用語、Design Method 缺漏）。 修正順序建議：先補完 Tier 1 拆解 → 重審 → 再依 Tier 2 / Tier 3 finding 個別調整。"
+  }
+}
