@@ -1,0 +1,264 @@
+{
+  "schema": "gen-bundle/v1",
+  "swe1_reqs_path": "M1/swe1_pla_reqs.json",
+  "domain_pack_path": "M1/domain_pack_player.json",
+  "system_prompt": "你是 ASPICE SWE.6 測試分析師。深拆需求並生成測試案例。只回合法 JSON,不要 markdown fences。所有說明欄位用繁體中文,test_item / tc_title 保留來源語言。",
+  "requirements": [
+    {
+      "req_id": "SWE1-PLA-030-01",
+      "title": "Default Repeat Mode",
+      "spec_pc_count": 1,
+      "spec_only_count": 0,
+      "context_prompt": "## 任務:單需求深拆 + 測試案例生成(ASPICE SWE.6)\n\n依序做兩件事,回 JSON:\n1. **深拆**:把需求拆成數個獨立 scenario,每個只有一個驗證點(partial-failure stress test:若兩種部分失敗會因不同原因 fail,代表還要再拆)。\n2. **生成**:每個 scenario 產一條完整 TC(欄位見下方 schema)。\n\n### 接地原則(重要)\n- Domain Pack 是 GROUND TRUTH:覆蓋其列舉的每個值/分支,但不得發明未定義狀態。\n- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。\n- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。\n\n### Domain Pack(GROUND TRUTH)\n# Domain Pack — Player (CFTS025) — SWE1 分析綜整 v2\n## Glossary\n- term: Player subgroup | definition: 共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA\n- term: Now Playing playlist | definition: 當前播放清單;Repeat/Shuffle 都作用於此\n- term: Repeat All | definition: 預設;依序播完整清單後自動從第一首繼續。softkey 高亮/ON,標籤『Repeat All』(HMI PC4.1 優先於 CFTS,PLA-006-01/02, 009 裁決)\n- term: Repeat Song | definition: 重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)\n- term: Shuffle On/Off | definition: On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)\n- term: Alphajump | definition: 字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)\n- term: DAP / MSC | definition: USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)\n- term: Source / Audio Tab | definition: AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)\n- term: Showroom Demo Video | definition: Dealer Mode 下的展示影片;行為定義於 CFTS012(Dealer),非 Player CFTS091。Player PLA-052 僅為跨文件指標 stub\n## Feature behaviour\n- feature: Error popups | normal: 播放支援檔 | abnormal: No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示) | boundary: 三類錯誤對應三個 PU ID;PU0005 為 catch-all\n- feature: AUX | normal: 播放 AUX | abnormal: 無 command & control | boundary: 只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)\n- feature: Repeat | normal: 預設 Repeat All;softkey toggle All↔Song | abnormal: — | boundary: 恰兩態,兩態 softkey 皆『高亮/ON』,差別在標籤:All(預設,標籤『Repeat All』)/ Song(標籤『Repeat Song』)。無 'Off/No Repeat' 態。CFTS 字面寫 Repeat All=OFF,但 HMI(PC4.1)優先於 CFTS,SWE1-PLA-009 已裁決以 HMI 為準=高亮\n- feature: Shuffle | normal: toggle On/Off | abnormal: — | boundary: 二元:On(隨機)/ Off(正常序)\n- feature: Metadata | normal: 顯示/隱藏切換(PLA-011) | abnormal: BTSA metadata 不支援時的顯示(PLA-019) | boundary: —\n- feature: Track List ('trks') | normal: 顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03) | abnormal: — | boundary: —\n- feature: Folder/File Nav | normal: USB MSC 資料夾/檔案瀏覽(PLA-013) | abnormal: — | boundary: —\n- feature: Alphajump (MSC & DAP) | normal: 啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項) | abnormal: Cancel softkey 取消 | boundary: 只啟用清單存在首字母的字元(Intelligent Character Filtering)\n- feature: DAP Category Nav | normal: 類別瀏覽(PLA-015) | abnormal: — | boundary: —\n- feature: Browse Tab | normal: 捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02) | abnormal: — | boundary: menu item vs playable item 兩種選取行為\n- feature: Demo Video (Dealer Mode, 跨文件) | normal: 從清單選 Showroom Demo Video → 載入並播放(影音輸出)(DEAL-026) | abnormal: Exit Lock 開啟時:播放中不可退出,須播完才退(DEAL-028/028-01);若設 repeat 則循環播放(DEAL-028-02) | boundary: 點火循環:Demo 不跨點火循環續播,重開後不自動恢復(DEAL-030);清除個資會移除 Demo Video 並停用(DEAL-027/027-01)\n## Cross-feature interactions\n- features: ['Repeat', 'Shuffle', 'Seek'] | rule: 皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)\n- features: ['AUX', '所有播放控制'] | rule: AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab\n- features: ['Shuffle On', 'Seek Up'] | rule: Random 模式下 Seek Up 會重新產生隨機清單\n## Boundaries / enumerations\n- name: Repeat modes | enum: ['Repeat All (預設, softkey 高亮/ON, 標籤『Repeat All』)', 'Repeat Song (softkey 高亮/ON, 標籤『Repeat Song』)'] | source: SWE1-PLA-006/008/009;CFTS PC4/PC4.1。注:CFTS 字面 Repeat All=OFF 與 HMI PC4.1=高亮衝突,SWE1-PLA-009 裁決 HMI 優先→兩態皆高亮,以標籤區分\n- name: Shuffle states | enum: ['On (隨機)', 'Off (正常序)'] | source: SWE1-PLA-010;CFTS PC5.1\n- name: Error popups | enum: ['PU0003 No Supported Files', 'PU0024 USB File Read Error', 'PU0005 Generic Error (catch-all)'] | source: SWE1-PLA-001/002/003;Pop Up List\n- name: Player sources | enum: ['External CD', 'HU AUX(無控制)', 'HU USB', 'HU BTSA'] | source: Media HMI PC1.3\n- name: Alphajump 字元 | enum: ['只啟用清單首字母存在的字元'] | source: SWE1-PLA-014-03/016-03\n- name: Browse 選取 | enum: ['menu item(進子選單)', 'playable item(開始播放)'] | source: SWE1-PLA-018-01/02\n- name: Demo Video 行為(Dealer Mode, 跨文件) | enum: ['播放:載入並播放影音(DEAL-026)', 'Exit Lock=ON:播放中不可退出,播完才退(DEAL-028-01)', 'Exit Lock=ON + repeat:循環播放(DEAL-028-02)', '點火循環後:不自動續播(DEAL-030)'] | source: 跨文件:CFTS012 Dealer Mode SWRA(NEWR1L-SWRA-DEAL-026/027/028/030);Player PLA-052 為指標型 stub\n## Traceability hints\n- req: Repeat (PLA-006/008/009) | spec_ref: Media HMI PC4 / PC4.1\n- req: Shuffle (PLA-010) | spec_ref: Media HMI PC5.1 / SS.4\n- req: Error popups (PLA-001/002/003) | spec_ref: Pop Up List PU0003/PU0024/PU0005\n- req: AUX (PLA-004) | spec_ref: Media HMI PC1.3\n- req: Track List (PLA-012) | spec_ref: Media HMI SS4 / SS4.6\n- req: Alphajump (PLA-014/016) | spec_ref: CFTS091 Player Component Functions\n- req: __全 94 需求清單__ | spec_ref: M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)\n- req: Video Player in Dealer Mode (PLA-052 → 跨文件) | spec_ref: CFTS012 DEAL-026(play)/028(exit lock)/028-02(repeat)/030(ignition reset);Showroom Demo Mode HMI Logic and Flow\n\n### SPEC 原文 PC 規則(此需求關聯;★ = 尚未被需求涵蓋,優先補)\n- [PC4.3] Repeat All plays the current list of songs repeatedly.\n\n### 需求\nSWE1-PLA-030-01: Default Repeat Mode\nThe HU shall set the BTSA CE device to the Repeat All mode by default when playback is initiated.\n\nPC4.3) Repeat All plays the current list of songs repeatedly.\n\n### 輸出 JSON 結構\n{\n  \"decomposition\": {\n    \"reasoning\": \"<繁中:如何拆、為何這樣拆>\",\n    \"scenarios\": [\n      {\n        \"id\": 1,\n        \"name\": \"<繁中>\",\n        \"verification_question\": \"<繁中 yes/no>\",\n        \"source\": \"requirement | spec-only\",\n        \"spec_ref\": \"<PCx.y 或 需求 id>\"\n      }\n    ]\n  },\n  \"test_cases\": [\n    {\n      \"scenario_id\": 1,\n      \"tc_title\": \"<source language, ≤14 words>\",\n      \"test_item\": \"<需求/SPEC 規範句, source language>\",\n      \"pre_conditions\": \"1. ...\",\n      \"input_test_data\": \"1. ... 或 NA\",\n      \"test_procedure\": \"1. ...\\n2. ...(最後一步須 Check/Verify 可觀察結果)\",\n      \"expected_result\": \"1. ...(具體可觀察,勿用『正常/如預期』)\",\n      \"design_method\": \"<等價分割/邊界值/列舉/場景…>\",\n      \"priority\": \"P1|P2|P3\",\n      \"split_flag\": false,\n      \"split_reason\": \"\"\n    }\n  ]\n}",
+      "answer": {
+        "decomposition": {
+          "reasoning": "預設模式單一驗證點:啟動播放時是否為 Repeat All(PC4.3)。",
+          "scenarios": [
+            {
+              "id": 1,
+              "name": "BTSA 預設 Repeat All",
+              "verification_question": "啟動播放時是否預設 Repeat All?",
+              "source": "requirement",
+              "spec_ref": "PC4.3"
+            }
+          ]
+        },
+        "test_cases": [
+          {
+            "scenario_id": 1,
+            "tc_title": "BTSA default Repeat All on playback",
+            "test_item": "The HU shall set the BTSA device to Repeat All by default when playback is initiated.",
+            "pre_conditions": "1. BTSA device connected and selected.\n2. Playlist has >=2 items.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Start playback from BTSA.\n2. Check the Repeat mode indicator.",
+            "expected_result": "1. Playback starts.\n2. Repeat mode is Repeat All (softkey highlighted, label 'Repeat All').",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P0",
+            "split_flag": false,
+            "split_reason": ""
+          }
+        ]
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-030-02",
+      "title": "Repeat All Behavior",
+      "spec_pc_count": 1,
+      "spec_only_count": 0,
+      "context_prompt": "## 任務:單需求深拆 + 測試案例生成(ASPICE SWE.6)\n\n依序做兩件事,回 JSON:\n1. **深拆**:把需求拆成數個獨立 scenario,每個只有一個驗證點(partial-failure stress test:若兩種部分失敗會因不同原因 fail,代表還要再拆)。\n2. **生成**:每個 scenario 產一條完整 TC(欄位見下方 schema)。\n\n### 接地原則(重要)\n- Domain Pack 是 GROUND TRUTH:覆蓋其列舉的每個值/分支,但不得發明未定義狀態。\n- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。\n- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。\n\n### Domain Pack(GROUND TRUTH)\n# Domain Pack — Player (CFTS025) — SWE1 分析綜整 v2\n## Glossary\n- term: Player subgroup | definition: 共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA\n- term: Now Playing playlist | definition: 當前播放清單;Repeat/Shuffle 都作用於此\n- term: Repeat All | definition: 預設;依序播完整清單後自動從第一首繼續。softkey 高亮/ON,標籤『Repeat All』(HMI PC4.1 優先於 CFTS,PLA-006-01/02, 009 裁決)\n- term: Repeat Song | definition: 重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)\n- term: Shuffle On/Off | definition: On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)\n- term: Alphajump | definition: 字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)\n- term: DAP / MSC | definition: USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)\n- term: Source / Audio Tab | definition: AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)\n- term: Showroom Demo Video | definition: Dealer Mode 下的展示影片;行為定義於 CFTS012(Dealer),非 Player CFTS091。Player PLA-052 僅為跨文件指標 stub\n## Feature behaviour\n- feature: Error popups | normal: 播放支援檔 | abnormal: No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示) | boundary: 三類錯誤對應三個 PU ID;PU0005 為 catch-all\n- feature: AUX | normal: 播放 AUX | abnormal: 無 command & control | boundary: 只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)\n- feature: Repeat | normal: 預設 Repeat All;softkey toggle All↔Song | abnormal: — | boundary: 恰兩態,兩態 softkey 皆『高亮/ON』,差別在標籤:All(預設,標籤『Repeat All』)/ Song(標籤『Repeat Song』)。無 'Off/No Repeat' 態。CFTS 字面寫 Repeat All=OFF,但 HMI(PC4.1)優先於 CFTS,SWE1-PLA-009 已裁決以 HMI 為準=高亮\n- feature: Shuffle | normal: toggle On/Off | abnormal: — | boundary: 二元:On(隨機)/ Off(正常序)\n- feature: Metadata | normal: 顯示/隱藏切換(PLA-011) | abnormal: BTSA metadata 不支援時的顯示(PLA-019) | boundary: —\n- feature: Track List ('trks') | normal: 顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03) | abnormal: — | boundary: —\n- feature: Folder/File Nav | normal: USB MSC 資料夾/檔案瀏覽(PLA-013) | abnormal: — | boundary: —\n- feature: Alphajump (MSC & DAP) | normal: 啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項) | abnormal: Cancel softkey 取消 | boundary: 只啟用清單存在首字母的字元(Intelligent Character Filtering)\n- feature: DAP Category Nav | normal: 類別瀏覽(PLA-015) | abnormal: — | boundary: —\n- feature: Browse Tab | normal: 捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02) | abnormal: — | boundary: menu item vs playable item 兩種選取行為\n- feature: Demo Video (Dealer Mode, 跨文件) | normal: 從清單選 Showroom Demo Video → 載入並播放(影音輸出)(DEAL-026) | abnormal: Exit Lock 開啟時:播放中不可退出,須播完才退(DEAL-028/028-01);若設 repeat 則循環播放(DEAL-028-02) | boundary: 點火循環:Demo 不跨點火循環續播,重開後不自動恢復(DEAL-030);清除個資會移除 Demo Video 並停用(DEAL-027/027-01)\n## Cross-feature interactions\n- features: ['Repeat', 'Shuffle', 'Seek'] | rule: 皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)\n- features: ['AUX', '所有播放控制'] | rule: AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab\n- features: ['Shuffle On', 'Seek Up'] | rule: Random 模式下 Seek Up 會重新產生隨機清單\n## Boundaries / enumerations\n- name: Repeat modes | enum: ['Repeat All (預設, softkey 高亮/ON, 標籤『Repeat All』)', 'Repeat Song (softkey 高亮/ON, 標籤『Repeat Song』)'] | source: SWE1-PLA-006/008/009;CFTS PC4/PC4.1。注:CFTS 字面 Repeat All=OFF 與 HMI PC4.1=高亮衝突,SWE1-PLA-009 裁決 HMI 優先→兩態皆高亮,以標籤區分\n- name: Shuffle states | enum: ['On (隨機)', 'Off (正常序)'] | source: SWE1-PLA-010;CFTS PC5.1\n- name: Error popups | enum: ['PU0003 No Supported Files', 'PU0024 USB File Read Error', 'PU0005 Generic Error (catch-all)'] | source: SWE1-PLA-001/002/003;Pop Up List\n- name: Player sources | enum: ['External CD', 'HU AUX(無控制)', 'HU USB', 'HU BTSA'] | source: Media HMI PC1.3\n- name: Alphajump 字元 | enum: ['只啟用清單首字母存在的字元'] | source: SWE1-PLA-014-03/016-03\n- name: Browse 選取 | enum: ['menu item(進子選單)', 'playable item(開始播放)'] | source: SWE1-PLA-018-01/02\n- name: Demo Video 行為(Dealer Mode, 跨文件) | enum: ['播放:載入並播放影音(DEAL-026)', 'Exit Lock=ON:播放中不可退出,播完才退(DEAL-028-01)', 'Exit Lock=ON + repeat:循環播放(DEAL-028-02)', '點火循環後:不自動續播(DEAL-030)'] | source: 跨文件:CFTS012 Dealer Mode SWRA(NEWR1L-SWRA-DEAL-026/027/028/030);Player PLA-052 為指標型 stub\n## Traceability hints\n- req: Repeat (PLA-006/008/009) | spec_ref: Media HMI PC4 / PC4.1\n- req: Shuffle (PLA-010) | spec_ref: Media HMI PC5.1 / SS.4\n- req: Error popups (PLA-001/002/003) | spec_ref: Pop Up List PU0003/PU0024/PU0005\n- req: AUX (PLA-004) | spec_ref: Media HMI PC1.3\n- req: Track List (PLA-012) | spec_ref: Media HMI SS4 / SS4.6\n- req: Alphajump (PLA-014/016) | spec_ref: CFTS091 Player Component Functions\n- req: __全 94 需求清單__ | spec_ref: M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)\n- req: Video Player in Dealer Mode (PLA-052 → 跨文件) | spec_ref: CFTS012 DEAL-026(play)/028(exit lock)/028-02(repeat)/030(ignition reset);Showroom Demo Mode HMI Logic and Flow\n\n### SPEC 原文 PC 規則(此需求關聯;★ = 尚未被需求涵蓋,優先補)\n- [PC4.3] Repeat All plays the current list of songs repeatedly.\n\n### 需求\nSWE1-PLA-030-02: Repeat All Behavior\nWhen in Repeat All mode, the HU shall cause all items in the playlist to play sequentially and continue from the first item after the last item is finished.\n\nPC4.3) Repeat All plays the current list o\n\n### 輸出 JSON 結構\n{\n  \"decomposition\": {\n    \"reasoning\": \"<繁中:如何拆、為何這樣拆>\",\n    \"scenarios\": [\n      {\n        \"id\": 1,\n        \"name\": \"<繁中>\",\n        \"verification_question\": \"<繁中 yes/no>\",\n        \"source\": \"requirement | spec-only\",\n        \"spec_ref\": \"<PCx.y 或 需求 id>\"\n      }\n    ]\n  },\n  \"test_cases\": [\n    {\n      \"scenario_id\": 1,\n      \"tc_title\": \"<source language, ≤14 words>\",\n      \"test_item\": \"<需求/SPEC 規範句, source language>\",\n      \"pre_conditions\": \"1. ...\",\n      \"input_test_data\": \"1. ... 或 NA\",\n      \"test_procedure\": \"1. ...\\n2. ...(最後一步須 Check/Verify 可觀察結果)\",\n      \"expected_result\": \"1. ...(具體可觀察,勿用『正常/如預期』)\",\n      \"design_method\": \"<等價分割/邊界值/列舉/場景…>\",\n      \"priority\": \"P1|P2|P3\",\n      \"split_flag\": false,\n      \"split_reason\": \"\"\n    }\n  ]\n}",
+      "answer": {
+        "decomposition": {
+          "reasoning": "Repeat All 行為:播完最後一首是否循環回第一首(PC4.3)。",
+          "scenarios": [
+            {
+              "id": 1,
+              "name": "Repeat All 循環",
+              "verification_question": "最後一首播畢是否從第一首續播?",
+              "source": "requirement",
+              "spec_ref": "PC4.3"
+            }
+          ]
+        },
+        "test_cases": [
+          {
+            "scenario_id": 1,
+            "tc_title": "BTSA Repeat All loops to first",
+            "test_item": "In Repeat All mode the HU shall continue from the first item after the last.",
+            "pre_conditions": "1. BTSA Repeat All active.\n2. Positioned on last item.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Let the last item finish.\n2. Check which item plays next.",
+            "expected_result": "1. The first item of the playlist starts playing.",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P0",
+            "split_flag": false,
+            "split_reason": ""
+          }
+        ]
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-030-03",
+      "title": "Repeat Song Behavior",
+      "spec_pc_count": 2,
+      "spec_only_count": 1,
+      "context_prompt": "## 任務:單需求深拆 + 測試案例生成(ASPICE SWE.6)\n\n依序做兩件事,回 JSON:\n1. **深拆**:把需求拆成數個獨立 scenario,每個只有一個驗證點(partial-failure stress test:若兩種部分失敗會因不同原因 fail,代表還要再拆)。\n2. **生成**:每個 scenario 產一條完整 TC(欄位見下方 schema)。\n\n### 接地原則(重要)\n- Domain Pack 是 GROUND TRUTH:覆蓋其列舉的每個值/分支,但不得發明未定義狀態。\n- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。\n- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。\n\n### Domain Pack(GROUND TRUTH)\n# Domain Pack — Player (CFTS025) — SWE1 分析綜整 v2\n## Glossary\n- term: Player subgroup | definition: 共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA\n- term: Now Playing playlist | definition: 當前播放清單;Repeat/Shuffle 都作用於此\n- term: Repeat All | definition: 預設;依序播完整清單後自動從第一首繼續。softkey 高亮/ON,標籤『Repeat All』(HMI PC4.1 優先於 CFTS,PLA-006-01/02, 009 裁決)\n- term: Repeat Song | definition: 重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)\n- term: Shuffle On/Off | definition: On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)\n- term: Alphajump | definition: 字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)\n- term: DAP / MSC | definition: USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)\n- term: Source / Audio Tab | definition: AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)\n- term: Showroom Demo Video | definition: Dealer Mode 下的展示影片;行為定義於 CFTS012(Dealer),非 Player CFTS091。Player PLA-052 僅為跨文件指標 stub\n## Feature behaviour\n- feature: Error popups | normal: 播放支援檔 | abnormal: No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示) | boundary: 三類錯誤對應三個 PU ID;PU0005 為 catch-all\n- feature: AUX | normal: 播放 AUX | abnormal: 無 command & control | boundary: 只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)\n- feature: Repeat | normal: 預設 Repeat All;softkey toggle All↔Song | abnormal: — | boundary: 恰兩態,兩態 softkey 皆『高亮/ON』,差別在標籤:All(預設,標籤『Repeat All』)/ Song(標籤『Repeat Song』)。無 'Off/No Repeat' 態。CFTS 字面寫 Repeat All=OFF,但 HMI(PC4.1)優先於 CFTS,SWE1-PLA-009 已裁決以 HMI 為準=高亮\n- feature: Shuffle | normal: toggle On/Off | abnormal: — | boundary: 二元:On(隨機)/ Off(正常序)\n- feature: Metadata | normal: 顯示/隱藏切換(PLA-011) | abnormal: BTSA metadata 不支援時的顯示(PLA-019) | boundary: —\n- feature: Track List ('trks') | normal: 顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03) | abnormal: — | boundary: —\n- feature: Folder/File Nav | normal: USB MSC 資料夾/檔案瀏覽(PLA-013) | abnormal: — | boundary: —\n- feature: Alphajump (MSC & DAP) | normal: 啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項) | abnormal: Cancel softkey 取消 | boundary: 只啟用清單存在首字母的字元(Intelligent Character Filtering)\n- feature: DAP Category Nav | normal: 類別瀏覽(PLA-015) | abnormal: — | boundary: —\n- feature: Browse Tab | normal: 捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02) | abnormal: — | boundary: menu item vs playable item 兩種選取行為\n- feature: Demo Video (Dealer Mode, 跨文件) | normal: 從清單選 Showroom Demo Video → 載入並播放(影音輸出)(DEAL-026) | abnormal: Exit Lock 開啟時:播放中不可退出,須播完才退(DEAL-028/028-01);若設 repeat 則循環播放(DEAL-028-02) | boundary: 點火循環:Demo 不跨點火循環續播,重開後不自動恢復(DEAL-030);清除個資會移除 Demo Video 並停用(DEAL-027/027-01)\n## Cross-feature interactions\n- features: ['Repeat', 'Shuffle', 'Seek'] | rule: 皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)\n- features: ['AUX', '所有播放控制'] | rule: AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab\n- features: ['Shuffle On', 'Seek Up'] | rule: Random 模式下 Seek Up 會重新產生隨機清單\n## Boundaries / enumerations\n- name: Repeat modes | enum: ['Repeat All (預設, softkey 高亮/ON, 標籤『Repeat All』)', 'Repeat Song (softkey 高亮/ON, 標籤『Repeat Song』)'] | source: SWE1-PLA-006/008/009;CFTS PC4/PC4.1。注:CFTS 字面 Repeat All=OFF 與 HMI PC4.1=高亮衝突,SWE1-PLA-009 裁決 HMI 優先→兩態皆高亮,以標籤區分\n- name: Shuffle states | enum: ['On (隨機)', 'Off (正常序)'] | source: SWE1-PLA-010;CFTS PC5.1\n- name: Error popups | enum: ['PU0003 No Supported Files', 'PU0024 USB File Read Error', 'PU0005 Generic Error (catch-all)'] | source: SWE1-PLA-001/002/003;Pop Up List\n- name: Player sources | enum: ['External CD', 'HU AUX(無控制)', 'HU USB', 'HU BTSA'] | source: Media HMI PC1.3\n- name: Alphajump 字元 | enum: ['只啟用清單首字母存在的字元'] | source: SWE1-PLA-014-03/016-03\n- name: Browse 選取 | enum: ['menu item(進子選單)', 'playable item(開始播放)'] | source: SWE1-PLA-018-01/02\n- name: Demo Video 行為(Dealer Mode, 跨文件) | enum: ['播放:載入並播放影音(DEAL-026)', 'Exit Lock=ON:播放中不可退出,播完才退(DEAL-028-01)', 'Exit Lock=ON + repeat:循環播放(DEAL-028-02)', '點火循環後:不自動續播(DEAL-030)'] | source: 跨文件:CFTS012 Dealer Mode SWRA(NEWR1L-SWRA-DEAL-026/027/028/030);Player PLA-052 為指標型 stub\n## Traceability hints\n- req: Repeat (PLA-006/008/009) | spec_ref: Media HMI PC4 / PC4.1\n- req: Shuffle (PLA-010) | spec_ref: Media HMI PC5.1 / SS.4\n- req: Error popups (PLA-001/002/003) | spec_ref: Pop Up List PU0003/PU0024/PU0005\n- req: AUX (PLA-004) | spec_ref: Media HMI PC1.3\n- req: Track List (PLA-012) | spec_ref: Media HMI SS4 / SS4.6\n- req: Alphajump (PLA-014/016) | spec_ref: CFTS091 Player Component Functions\n- req: __全 94 需求清單__ | spec_ref: M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)\n- req: Video Player in Dealer Mode (PLA-052 → 跨文件) | spec_ref: CFTS012 DEAL-026(play)/028(exit lock)/028-02(repeat)/030(ignition reset);Showroom Demo Mode HMI Logic and Flow\n\n### SPEC 原文 PC 規則(此需求關聯;★ = 尚未被需求涵蓋,優先補)\n- [PC4.2] Repeat Song plays the current track repeatedly.\n- [PC6.6] ★SPEC-only For all USB devices, upon insertion, display ‘<n>’ Songs Found’ in the elapsed time bar in place of the track counter while the system is looking for a song to  play.\n\n### 需求\nSWE1-PLA-030-03: Repeat Song Behavior\nWhen in Repeat Song mode, the HU shall cause the currently playing item to restart from the beginning upon reaching the end.\n\nPC4.2) Repeat Song plays the current track repeatedly.\n\n### 輸出 JSON 結構\n{\n  \"decomposition\": {\n    \"reasoning\": \"<繁中:如何拆、為何這樣拆>\",\n    \"scenarios\": [\n      {\n        \"id\": 1,\n        \"name\": \"<繁中>\",\n        \"verification_question\": \"<繁中 yes/no>\",\n        \"source\": \"requirement | spec-only\",\n        \"spec_ref\": \"<PCx.y 或 需求 id>\"\n      }\n    ]\n  },\n  \"test_cases\": [\n    {\n      \"scenario_id\": 1,\n      \"tc_title\": \"<source language, ≤14 words>\",\n      \"test_item\": \"<需求/SPEC 規範句, source language>\",\n      \"pre_conditions\": \"1. ...\",\n      \"input_test_data\": \"1. ... 或 NA\",\n      \"test_procedure\": \"1. ...\\n2. ...(最後一步須 Check/Verify 可觀察結果)\",\n      \"expected_result\": \"1. ...(具體可觀察,勿用『正常/如預期』)\",\n      \"design_method\": \"<等價分割/邊界值/列舉/場景…>\",\n      \"priority\": \"P1|P2|P3\",\n      \"split_flag\": false,\n      \"split_reason\": \"\"\n    }\n  ]\n}",
+      "answer": {
+        "decomposition": {
+          "reasoning": "Repeat Song 行為:當前曲目播畢是否重頭(PC4.2)。",
+          "scenarios": [
+            {
+              "id": 1,
+              "name": "Repeat Song 單曲循環",
+              "verification_question": "當前曲目播畢是否重頭播放?",
+              "source": "requirement",
+              "spec_ref": "PC4.2"
+            }
+          ]
+        },
+        "test_cases": [
+          {
+            "scenario_id": 1,
+            "tc_title": "BTSA Repeat Song restarts track",
+            "test_item": "In Repeat Song mode the HU shall restart the current item from the beginning.",
+            "pre_conditions": "1. BTSA Repeat Song active.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Let the current item finish.\n2. Check which item plays next.",
+            "expected_result": "1. The same item restarts from the beginning.",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P1",
+            "split_flag": false,
+            "split_reason": ""
+          }
+        ]
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-032",
+      "title": "Repeat Song State UI",
+      "spec_pc_count": 2,
+      "spec_only_count": 0,
+      "context_prompt": "## 任務:單需求深拆 + 測試案例生成(ASPICE SWE.6)\n\n依序做兩件事,回 JSON:\n1. **深拆**:把需求拆成數個獨立 scenario,每個只有一個驗證點(partial-failure stress test:若兩種部分失敗會因不同原因 fail,代表還要再拆)。\n2. **生成**:每個 scenario 產一條完整 TC(欄位見下方 schema)。\n\n### 接地原則(重要)\n- Domain Pack 是 GROUND TRUTH:覆蓋其列舉的每個值/分支,但不得發明未定義狀態。\n- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。\n- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。\n\n### Domain Pack(GROUND TRUTH)\n# Domain Pack — Player (CFTS025) — SWE1 分析綜整 v2\n## Glossary\n- term: Player subgroup | definition: 共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA\n- term: Now Playing playlist | definition: 當前播放清單;Repeat/Shuffle 都作用於此\n- term: Repeat All | definition: 預設;依序播完整清單後自動從第一首繼續。softkey 高亮/ON,標籤『Repeat All』(HMI PC4.1 優先於 CFTS,PLA-006-01/02, 009 裁決)\n- term: Repeat Song | definition: 重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)\n- term: Shuffle On/Off | definition: On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)\n- term: Alphajump | definition: 字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)\n- term: DAP / MSC | definition: USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)\n- term: Source / Audio Tab | definition: AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)\n- term: Showroom Demo Video | definition: Dealer Mode 下的展示影片;行為定義於 CFTS012(Dealer),非 Player CFTS091。Player PLA-052 僅為跨文件指標 stub\n## Feature behaviour\n- feature: Error popups | normal: 播放支援檔 | abnormal: No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示) | boundary: 三類錯誤對應三個 PU ID;PU0005 為 catch-all\n- feature: AUX | normal: 播放 AUX | abnormal: 無 command & control | boundary: 只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)\n- feature: Repeat | normal: 預設 Repeat All;softkey toggle All↔Song | abnormal: — | boundary: 恰兩態,兩態 softkey 皆『高亮/ON』,差別在標籤:All(預設,標籤『Repeat All』)/ Song(標籤『Repeat Song』)。無 'Off/No Repeat' 態。CFTS 字面寫 Repeat All=OFF,但 HMI(PC4.1)優先於 CFTS,SWE1-PLA-009 已裁決以 HMI 為準=高亮\n- feature: Shuffle | normal: toggle On/Off | abnormal: — | boundary: 二元:On(隨機)/ Off(正常序)\n- feature: Metadata | normal: 顯示/隱藏切換(PLA-011) | abnormal: BTSA metadata 不支援時的顯示(PLA-019) | boundary: —\n- feature: Track List ('trks') | normal: 顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03) | abnormal: — | boundary: —\n- feature: Folder/File Nav | normal: USB MSC 資料夾/檔案瀏覽(PLA-013) | abnormal: — | boundary: —\n- feature: Alphajump (MSC & DAP) | normal: 啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項) | abnormal: Cancel softkey 取消 | boundary: 只啟用清單存在首字母的字元(Intelligent Character Filtering)\n- feature: DAP Category Nav | normal: 類別瀏覽(PLA-015) | abnormal: — | boundary: —\n- feature: Browse Tab | normal: 捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02) | abnormal: — | boundary: menu item vs playable item 兩種選取行為\n- feature: Demo Video (Dealer Mode, 跨文件) | normal: 從清單選 Showroom Demo Video → 載入並播放(影音輸出)(DEAL-026) | abnormal: Exit Lock 開啟時:播放中不可退出,須播完才退(DEAL-028/028-01);若設 repeat 則循環播放(DEAL-028-02) | boundary: 點火循環:Demo 不跨點火循環續播,重開後不自動恢復(DEAL-030);清除個資會移除 Demo Video 並停用(DEAL-027/027-01)\n## Cross-feature interactions\n- features: ['Repeat', 'Shuffle', 'Seek'] | rule: 皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)\n- features: ['AUX', '所有播放控制'] | rule: AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab\n- features: ['Shuffle On', 'Seek Up'] | rule: Random 模式下 Seek Up 會重新產生隨機清單\n## Boundaries / enumerations\n- name: Repeat modes | enum: ['Repeat All (預設, softkey 高亮/ON, 標籤『Repeat All』)', 'Repeat Song (softkey 高亮/ON, 標籤『Repeat Song』)'] | source: SWE1-PLA-006/008/009;CFTS PC4/PC4.1。注:CFTS 字面 Repeat All=OFF 與 HMI PC4.1=高亮衝突,SWE1-PLA-009 裁決 HMI 優先→兩態皆高亮,以標籤區分\n- name: Shuffle states | enum: ['On (隨機)', 'Off (正常序)'] | source: SWE1-PLA-010;CFTS PC5.1\n- name: Error popups | enum: ['PU0003 No Supported Files', 'PU0024 USB File Read Error', 'PU0005 Generic Error (catch-all)'] | source: SWE1-PLA-001/002/003;Pop Up List\n- name: Player sources | enum: ['External CD', 'HU AUX(無控制)', 'HU USB', 'HU BTSA'] | source: Media HMI PC1.3\n- name: Alphajump 字元 | enum: ['只啟用清單首字母存在的字元'] | source: SWE1-PLA-014-03/016-03\n- name: Browse 選取 | enum: ['menu item(進子選單)', 'playable item(開始播放)'] | source: SWE1-PLA-018-01/02\n- name: Demo Video 行為(Dealer Mode, 跨文件) | enum: ['播放:載入並播放影音(DEAL-026)', 'Exit Lock=ON:播放中不可退出,播完才退(DEAL-028-01)', 'Exit Lock=ON + repeat:循環播放(DEAL-028-02)', '點火循環後:不自動續播(DEAL-030)'] | source: 跨文件:CFTS012 Dealer Mode SWRA(NEWR1L-SWRA-DEAL-026/027/028/030);Player PLA-052 為指標型 stub\n## Traceability hints\n- req: Repeat (PLA-006/008/009) | spec_ref: Media HMI PC4 / PC4.1\n- req: Shuffle (PLA-010) | spec_ref: Media HMI PC5.1 / SS.4\n- req: Error popups (PLA-001/002/003) | spec_ref: Pop Up List PU0003/PU0024/PU0005\n- req: AUX (PLA-004) | spec_ref: Media HMI PC1.3\n- req: Track List (PLA-012) | spec_ref: Media HMI SS4 / SS4.6\n- req: Alphajump (PLA-014/016) | spec_ref: CFTS091 Player Component Functions\n- req: __全 94 需求清單__ | spec_ref: M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)\n- req: Video Player in Dealer Mode (PLA-052 → 跨文件) | spec_ref: CFTS012 DEAL-026(play)/028(exit lock)/028-02(repeat)/030(ignition reset);Showroom Demo Mode HMI Logic and Flow\n\n### SPEC 原文 PC 規則(此需求關聯;★ = 尚未被需求涵蓋,優先補)\n- [PC4.1] When Repeat Song/All is activated, the repeat button is highlighted with the labeling of Repeat Song/Repeat All, respectively.\n- [PC4.4] Repeat Song/All will stay active until the customer deactivates Repeat Song/All or the device is disconnected.\n\n### 需求\nSWE1-PLA-032: Repeat Song State UI\nWhile the HU determines the Bluetooth Device is in the Repeat Song state the HU shall display a 'Repeat' softkey and/or icon in the 'ON' state on the appropriate BTSA Source screens.\n\nPC4.1) When Repe\n\n### 輸出 JSON 結構\n{\n  \"decomposition\": {\n    \"reasoning\": \"<繁中:如何拆、為何這樣拆>\",\n    \"scenarios\": [\n      {\n        \"id\": 1,\n        \"name\": \"<繁中>\",\n        \"verification_question\": \"<繁中 yes/no>\",\n        \"source\": \"requirement | spec-only\",\n        \"spec_ref\": \"<PCx.y 或 需求 id>\"\n      }\n    ]\n  },\n  \"test_cases\": [\n    {\n      \"scenario_id\": 1,\n      \"tc_title\": \"<source language, ≤14 words>\",\n      \"test_item\": \"<需求/SPEC 規範句, source language>\",\n      \"pre_conditions\": \"1. ...\",\n      \"input_test_data\": \"1. ... 或 NA\",\n      \"test_procedure\": \"1. ...\\n2. ...(最後一步須 Check/Verify 可觀察結果)\",\n      \"expected_result\": \"1. ...(具體可觀察,勿用『正常/如預期』)\",\n      \"design_method\": \"<等價分割/邊界值/列舉/場景…>\",\n      \"priority\": \"P1|P2|P3\",\n      \"split_flag\": false,\n      \"split_reason\": \"\"\n    }\n  ]\n}",
+      "answer": {
+        "decomposition": {
+          "reasoning": "狀態 UI(PC4.1 高亮+標籤);另依 SPEC PC4.4 補『持續到關閉或斷線』——需求未拆,屬 SPEC-only。",
+          "scenarios": [
+            {
+              "id": 1,
+              "name": "Repeat Song softkey 高亮",
+              "verification_question": "Repeat Song 時 softkey 是否高亮並標 'Repeat Song'?",
+              "source": "requirement",
+              "spec_ref": "PC4.1"
+            },
+            {
+              "id": 2,
+              "name": "Repeat 持續性",
+              "verification_question": "Repeat 是否持續到使用者關閉或裝置斷線?",
+              "source": "spec-only",
+              "spec_ref": "PC4.4"
+            }
+          ]
+        },
+        "test_cases": [
+          {
+            "scenario_id": 1,
+            "tc_title": "BTSA Repeat Song softkey highlighted",
+            "test_item": "While in Repeat Song state the HU shall display the Repeat softkey highlighted.",
+            "pre_conditions": "1. BTSA playing, Repeat Song active.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Read the Repeat softkey state and label.\n2. Check that the softkey is highlighted with label 'Repeat Song'.",
+            "expected_result": "1. Repeat softkey is highlighted with label 'Repeat Song'.",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P2",
+            "split_flag": false,
+            "split_reason": ""
+          },
+          {
+            "scenario_id": 2,
+            "tc_title": "BTSA Repeat persists until off or disconnect",
+            "test_item": "Repeat Song/All shall stay active until deactivated or the device disconnects (PC4.4).",
+            "pre_conditions": "1. BTSA Repeat Song active.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Skip across several items without touching Repeat.\n2. Check the Repeat state.\n3. Disconnect the BTSA device.\n4. Check the Repeat state after reconnect.",
+            "expected_result": "1. Repeat stays active across items.\n2. After disconnect the Repeat state resets per spec.",
+            "design_method": "基礎故障注入 (Fault Injection Lite)",
+            "priority": "P2",
+            "split_flag": true,
+            "split_reason": "SPEC PC4.4 持續性,需求未拆,需 Gate① 確認重連後行為"
+          }
+        ]
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-033",
+      "title": "Repeat Off State UI",
+      "spec_pc_count": 1,
+      "spec_only_count": 0,
+      "context_prompt": "## 任務:單需求深拆 + 測試案例生成(ASPICE SWE.6)\n\n依序做兩件事,回 JSON:\n1. **深拆**:把需求拆成數個獨立 scenario,每個只有一個驗證點(partial-failure stress test:若兩種部分失敗會因不同原因 fail,代表還要再拆)。\n2. **生成**:每個 scenario 產一條完整 TC(欄位見下方 schema)。\n\n### 接地原則(重要)\n- Domain Pack 是 GROUND TRUTH:覆蓋其列舉的每個值/分支,但不得發明未定義狀態。\n- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。\n- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。\n\n### Domain Pack(GROUND TRUTH)\n# Domain Pack — Player (CFTS025) — SWE1 分析綜整 v2\n## Glossary\n- term: Player subgroup | definition: 共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA\n- term: Now Playing playlist | definition: 當前播放清單;Repeat/Shuffle 都作用於此\n- term: Repeat All | definition: 預設;依序播完整清單後自動從第一首繼續。softkey 高亮/ON,標籤『Repeat All』(HMI PC4.1 優先於 CFTS,PLA-006-01/02, 009 裁決)\n- term: Repeat Song | definition: 重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)\n- term: Shuffle On/Off | definition: On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)\n- term: Alphajump | definition: 字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)\n- term: DAP / MSC | definition: USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)\n- term: Source / Audio Tab | definition: AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)\n- term: Showroom Demo Video | definition: Dealer Mode 下的展示影片;行為定義於 CFTS012(Dealer),非 Player CFTS091。Player PLA-052 僅為跨文件指標 stub\n## Feature behaviour\n- feature: Error popups | normal: 播放支援檔 | abnormal: No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示) | boundary: 三類錯誤對應三個 PU ID;PU0005 為 catch-all\n- feature: AUX | normal: 播放 AUX | abnormal: 無 command & control | boundary: 只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)\n- feature: Repeat | normal: 預設 Repeat All;softkey toggle All↔Song | abnormal: — | boundary: 恰兩態,兩態 softkey 皆『高亮/ON』,差別在標籤:All(預設,標籤『Repeat All』)/ Song(標籤『Repeat Song』)。無 'Off/No Repeat' 態。CFTS 字面寫 Repeat All=OFF,但 HMI(PC4.1)優先於 CFTS,SWE1-PLA-009 已裁決以 HMI 為準=高亮\n- feature: Shuffle | normal: toggle On/Off | abnormal: — | boundary: 二元:On(隨機)/ Off(正常序)\n- feature: Metadata | normal: 顯示/隱藏切換(PLA-011) | abnormal: BTSA metadata 不支援時的顯示(PLA-019) | boundary: —\n- feature: Track List ('trks') | normal: 顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03) | abnormal: — | boundary: —\n- feature: Folder/File Nav | normal: USB MSC 資料夾/檔案瀏覽(PLA-013) | abnormal: — | boundary: —\n- feature: Alphajump (MSC & DAP) | normal: 啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項) | abnormal: Cancel softkey 取消 | boundary: 只啟用清單存在首字母的字元(Intelligent Character Filtering)\n- feature: DAP Category Nav | normal: 類別瀏覽(PLA-015) | abnormal: — | boundary: —\n- feature: Browse Tab | normal: 捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02) | abnormal: — | boundary: menu item vs playable item 兩種選取行為\n- feature: Demo Video (Dealer Mode, 跨文件) | normal: 從清單選 Showroom Demo Video → 載入並播放(影音輸出)(DEAL-026) | abnormal: Exit Lock 開啟時:播放中不可退出,須播完才退(DEAL-028/028-01);若設 repeat 則循環播放(DEAL-028-02) | boundary: 點火循環:Demo 不跨點火循環續播,重開後不自動恢復(DEAL-030);清除個資會移除 Demo Video 並停用(DEAL-027/027-01)\n## Cross-feature interactions\n- features: ['Repeat', 'Shuffle', 'Seek'] | rule: 皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)\n- features: ['AUX', '所有播放控制'] | rule: AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab\n- features: ['Shuffle On', 'Seek Up'] | rule: Random 模式下 Seek Up 會重新產生隨機清單\n## Boundaries / enumerations\n- name: Repeat modes | enum: ['Repeat All (預設, softkey 高亮/ON, 標籤『Repeat All』)', 'Repeat Song (softkey 高亮/ON, 標籤『Repeat Song』)'] | source: SWE1-PLA-006/008/009;CFTS PC4/PC4.1。注:CFTS 字面 Repeat All=OFF 與 HMI PC4.1=高亮衝突,SWE1-PLA-009 裁決 HMI 優先→兩態皆高亮,以標籤區分\n- name: Shuffle states | enum: ['On (隨機)', 'Off (正常序)'] | source: SWE1-PLA-010;CFTS PC5.1\n- name: Error popups | enum: ['PU0003 No Supported Files', 'PU0024 USB File Read Error', 'PU0005 Generic Error (catch-all)'] | source: SWE1-PLA-001/002/003;Pop Up List\n- name: Player sources | enum: ['External CD', 'HU AUX(無控制)', 'HU USB', 'HU BTSA'] | source: Media HMI PC1.3\n- name: Alphajump 字元 | enum: ['只啟用清單首字母存在的字元'] | source: SWE1-PLA-014-03/016-03\n- name: Browse 選取 | enum: ['menu item(進子選單)', 'playable item(開始播放)'] | source: SWE1-PLA-018-01/02\n- name: Demo Video 行為(Dealer Mode, 跨文件) | enum: ['播放:載入並播放影音(DEAL-026)', 'Exit Lock=ON:播放中不可退出,播完才退(DEAL-028-01)', 'Exit Lock=ON + repeat:循環播放(DEAL-028-02)', '點火循環後:不自動續播(DEAL-030)'] | source: 跨文件:CFTS012 Dealer Mode SWRA(NEWR1L-SWRA-DEAL-026/027/028/030);Player PLA-052 為指標型 stub\n## Traceability hints\n- req: Repeat (PLA-006/008/009) | spec_ref: Media HMI PC4 / PC4.1\n- req: Shuffle (PLA-010) | spec_ref: Media HMI PC5.1 / SS.4\n- req: Error popups (PLA-001/002/003) | spec_ref: Pop Up List PU0003/PU0024/PU0005\n- req: AUX (PLA-004) | spec_ref: Media HMI PC1.3\n- req: Track List (PLA-012) | spec_ref: Media HMI SS4 / SS4.6\n- req: Alphajump (PLA-014/016) | spec_ref: CFTS091 Player Component Functions\n- req: __全 94 需求清單__ | spec_ref: M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)\n- req: Video Player in Dealer Mode (PLA-052 → 跨文件) | spec_ref: CFTS012 DEAL-026(play)/028(exit lock)/028-02(repeat)/030(ignition reset);Showroom Demo Mode HMI Logic and Flow\n\n### SPEC 原文 PC 規則(此需求關聯;★ = 尚未被需求涵蓋,優先補)\n- [PC4.4.1] Repeat Song/All will be source dependent, if the user is on iPod with Shuffle on and changes to Disc which did not previously have Repeat on,  Repeat will be off, but upon returning to iPod if the previous device is still inserted Repeat So\n\n### 需求\nSWE1-PLA-033: Repeat Off State UI\nWhile the HU determines the Bluetooth Device is in the Repeat Off state the HU shall display a 'Repeat' softkey and/or icon in the 'OFF' state on the appropriate BTSA Source screens.\n\n### 輸出 JSON 結構\n{\n  \"decomposition\": {\n    \"reasoning\": \"<繁中:如何拆、為何這樣拆>\",\n    \"scenarios\": [\n      {\n        \"id\": 1,\n        \"name\": \"<繁中>\",\n        \"verification_question\": \"<繁中 yes/no>\",\n        \"source\": \"requirement | spec-only\",\n        \"spec_ref\": \"<PCx.y 或 需求 id>\"\n      }\n    ]\n  },\n  \"test_cases\": [\n    {\n      \"scenario_id\": 1,\n      \"tc_title\": \"<source language, ≤14 words>\",\n      \"test_item\": \"<需求/SPEC 規範句, source language>\",\n      \"pre_conditions\": \"1. ...\",\n      \"input_test_data\": \"1. ... 或 NA\",\n      \"test_procedure\": \"1. ...\\n2. ...(最後一步須 Check/Verify 可觀察結果)\",\n      \"expected_result\": \"1. ...(具體可觀察,勿用『正常/如預期』)\",\n      \"design_method\": \"<等價分割/邊界值/列舉/場景…>\",\n      \"priority\": \"P1|P2|P3\",\n      \"split_flag\": false,\n      \"split_reason\": \"\"\n    }\n  ]\n}",
+      "answer": {
+        "decomposition": {
+          "reasoning": "Off 狀態 UI;另依 PC4.4.1 補『來源相依』——換來源是否各自記住 Repeat 狀態,屬 SPEC-only。",
+          "scenarios": [
+            {
+              "id": 1,
+              "name": "Repeat Off softkey 顯示",
+              "verification_question": "Repeat Off 時 softkey 是否顯示 OFF 態?",
+              "source": "requirement",
+              "spec_ref": "PLA-033"
+            },
+            {
+              "id": 2,
+              "name": "Repeat 來源相依",
+              "verification_question": "換來源時是否各自保留 Repeat 狀態?",
+              "source": "spec-only",
+              "spec_ref": "PC4.4.1"
+            }
+          ]
+        },
+        "test_cases": [
+          {
+            "scenario_id": 1,
+            "tc_title": "BTSA Repeat Off softkey state",
+            "test_item": "While in Repeat Off state the HU shall display the Repeat softkey in the OFF state.",
+            "pre_conditions": "1. BTSA playing, Repeat Off.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Read the Repeat softkey state.\n2. Check that the softkey shows the OFF (not highlighted) state.",
+            "expected_result": "1. Repeat softkey shows OFF state (not highlighted).",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P2",
+            "split_flag": false,
+            "split_reason": ""
+          },
+          {
+            "scenario_id": 2,
+            "tc_title": "Repeat state is source dependent",
+            "test_item": "Repeat shall be source dependent: switching source retains each source's Repeat state (PC4.4.1).",
+            "pre_conditions": "1. Source A (BTSA) with Repeat All on.\n2. Source B previously Repeat Off.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Switch to source B.\n2. Check source B Repeat state.\n3. Switch back to source A.\n4. Check source A Repeat state.",
+            "expected_result": "1. Source B shows its own Repeat Off.\n2. Source A still shows Repeat All.",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P1",
+            "split_flag": true,
+            "split_reason": "SPEC PC4.4.1 來源相依,需求未拆"
+          }
+        ]
+      }
+    },
+    {
+      "req_id": "SWE1-PLA-034",
+      "title": "Repeat Unavailable State UI",
+      "spec_pc_count": 1,
+      "spec_only_count": 0,
+      "context_prompt": "## 任務:單需求深拆 + 測試案例生成(ASPICE SWE.6)\n\n依序做兩件事,回 JSON:\n1. **深拆**:把需求拆成數個獨立 scenario,每個只有一個驗證點(partial-failure stress test:若兩種部分失敗會因不同原因 fail,代表還要再拆)。\n2. **生成**:每個 scenario 產一條完整 TC(欄位見下方 schema)。\n\n### 接地原則(重要)\n- Domain Pack 是 GROUND TRUTH:覆蓋其列舉的每個值/分支,但不得發明未定義狀態。\n- **拆解要看 SPEC 原文(下方 PC 規則),不只看需求**。SPEC 有、但需求沒寫的行為,也要拆出 scenario 並生成 TC(例如 Repeat Off 態)。標出哪些 scenario 來自 SPEC-only 行為。\n- 不要發明需求/SPEC 沒有的具體數值;有歧義就明確保留。\n\n### Domain Pack(GROUND TRUTH)\n# Domain Pack — Player (CFTS025) — SWE1 分析綜整 v2\n## Glossary\n- term: Player subgroup | definition: 共用 Source Control events 的來源:External CD、HU AUX、HU USB、HU BTSA\n- term: Now Playing playlist | definition: 當前播放清單;Repeat/Shuffle 都作用於此\n- term: Repeat All | definition: 預設;依序播完整清單後自動從第一首繼續。softkey 高亮/ON,標籤『Repeat All』(HMI PC4.1 優先於 CFTS,PLA-006-01/02, 009 裁決)\n- term: Repeat Song | definition: 重複當前曲目(到結尾重頭播)。softkey 顯示 ON 態(PLA-006-03, 008)\n- term: Shuffle On/Off | definition: On=Now Playing 隨機序;Off=正常序(PLA-010-02/03)\n- term: Alphajump | definition: 字母快跳;只啟用清單首字母對應的字元(Intelligent Character Filtering, PLA-014-03/016-03)\n- term: DAP / MSC | definition: USB DAP(Database Audio Player,類別瀏覽)與 USB MSC(Mass Storage,資料夾/檔案瀏覽)\n- term: Source / Audio Tab | definition: AUX 模式下唯一可用的兩個 tab,其餘控制 greyed out(PLA-004)\n- term: Showroom Demo Video | definition: Dealer Mode 下的展示影片;行為定義於 CFTS012(Dealer),非 Player CFTS091。Player PLA-052 僅為跨文件指標 stub\n## Feature behaviour\n- feature: Error popups | normal: 播放支援檔 | abnormal: No Supported Files→PU0003;USB File Read Error→PU0024;其他一律 Generic Error→PU0005(存在期間持續顯示) | boundary: 三類錯誤對應三個 PU ID;PU0005 為 catch-all\n- feature: AUX | normal: 播放 AUX | abnormal: 無 command & control | boundary: 只有 Source/Audio Tab 可用,其餘 greyed out(PLA-004)\n- feature: Repeat | normal: 預設 Repeat All;softkey toggle All↔Song | abnormal: — | boundary: 恰兩態,兩態 softkey 皆『高亮/ON』,差別在標籤:All(預設,標籤『Repeat All』)/ Song(標籤『Repeat Song』)。無 'Off/No Repeat' 態。CFTS 字面寫 Repeat All=OFF,但 HMI(PC4.1)優先於 CFTS,SWE1-PLA-009 已裁決以 HMI 為準=高亮\n- feature: Shuffle | normal: toggle On/Off | abnormal: — | boundary: 二元:On(隨機)/ Off(正常序)\n- feature: Metadata | normal: 顯示/隱藏切換(PLA-011) | abnormal: BTSA metadata 不支援時的顯示(PLA-019) | boundary: —\n- feature: Track List ('trks') | normal: 顯示 Now Playing 清單、可導航、選曲播放(PLA-012-01/02/03) | abnormal: — | boundary: —\n- feature: Folder/File Nav | normal: USB MSC 資料夾/檔案瀏覽(PLA-013) | abnormal: — | boundary: —\n- feature: Alphajump (MSC & DAP) | normal: 啟用 softkey→顯示字母畫面→選字母重定位(PLA-014/016 各 5 子項) | abnormal: Cancel softkey 取消 | boundary: 只啟用清單存在首字母的字元(Intelligent Character Filtering)\n- feature: DAP Category Nav | normal: 類別瀏覽(PLA-015) | abnormal: — | boundary: —\n- feature: Browse Tab | normal: 捲動(PLA-017)、選 menu item / playable item(PLA-018-01/02) | abnormal: — | boundary: menu item vs playable item 兩種選取行為\n- feature: Demo Video (Dealer Mode, 跨文件) | normal: 從清單選 Showroom Demo Video → 載入並播放(影音輸出)(DEAL-026) | abnormal: Exit Lock 開啟時:播放中不可退出,須播完才退(DEAL-028/028-01);若設 repeat 則循環播放(DEAL-028-02) | boundary: 點火循環:Demo 不跨點火循環續播,重開後不自動恢復(DEAL-030);清除個資會移除 Demo Video 並停用(DEAL-027/027-01)\n## Cross-feature interactions\n- features: ['Repeat', 'Shuffle', 'Seek'] | rule: 皆為 Source Control events;跨 USB/BTSA/CD 行為一致 → 每來源 sibling TC(AUX 例外,無控制)\n- features: ['AUX', '所有播放控制'] | rule: AUX 模式所有播放控制 greyed out,僅 Source/Audio Tab\n- features: ['Shuffle On', 'Seek Up'] | rule: Random 模式下 Seek Up 會重新產生隨機清單\n## Boundaries / enumerations\n- name: Repeat modes | enum: ['Repeat All (預設, softkey 高亮/ON, 標籤『Repeat All』)', 'Repeat Song (softkey 高亮/ON, 標籤『Repeat Song』)'] | source: SWE1-PLA-006/008/009;CFTS PC4/PC4.1。注:CFTS 字面 Repeat All=OFF 與 HMI PC4.1=高亮衝突,SWE1-PLA-009 裁決 HMI 優先→兩態皆高亮,以標籤區分\n- name: Shuffle states | enum: ['On (隨機)', 'Off (正常序)'] | source: SWE1-PLA-010;CFTS PC5.1\n- name: Error popups | enum: ['PU0003 No Supported Files', 'PU0024 USB File Read Error', 'PU0005 Generic Error (catch-all)'] | source: SWE1-PLA-001/002/003;Pop Up List\n- name: Player sources | enum: ['External CD', 'HU AUX(無控制)', 'HU USB', 'HU BTSA'] | source: Media HMI PC1.3\n- name: Alphajump 字元 | enum: ['只啟用清單首字母存在的字元'] | source: SWE1-PLA-014-03/016-03\n- name: Browse 選取 | enum: ['menu item(進子選單)', 'playable item(開始播放)'] | source: SWE1-PLA-018-01/02\n- name: Demo Video 行為(Dealer Mode, 跨文件) | enum: ['播放:載入並播放影音(DEAL-026)', 'Exit Lock=ON:播放中不可退出,播完才退(DEAL-028-01)', 'Exit Lock=ON + repeat:循環播放(DEAL-028-02)', '點火循環後:不自動續播(DEAL-030)'] | source: 跨文件:CFTS012 Dealer Mode SWRA(NEWR1L-SWRA-DEAL-026/027/028/030);Player PLA-052 為指標型 stub\n## Traceability hints\n- req: Repeat (PLA-006/008/009) | spec_ref: Media HMI PC4 / PC4.1\n- req: Shuffle (PLA-010) | spec_ref: Media HMI PC5.1 / SS.4\n- req: Error popups (PLA-001/002/003) | spec_ref: Pop Up List PU0003/PU0024/PU0005\n- req: AUX (PLA-004) | spec_ref: Media HMI PC1.3\n- req: Track List (PLA-012) | spec_ref: Media HMI SS4 / SS4.6\n- req: Alphajump (PLA-014/016) | spec_ref: CFTS091 Player Component Functions\n- req: __全 94 需求清單__ | spec_ref: M1/swe1_pla_reqs.json(SWE1 分析報告解析,含每需求 source spec)\n- req: Video Player in Dealer Mode (PLA-052 → 跨文件) | spec_ref: CFTS012 DEAL-026(play)/028(exit lock)/028-02(repeat)/030(ignition reset);Showroom Demo Mode HMI Logic and Flow\n\n### SPEC 原文 PC 規則(此需求關聯;★ = 尚未被需求涵蓋,優先補)\n- [PC4.6] If Repeat Song/All is currently unavailable or not supported by the device the button shall be shown as disabled.\n\n### 需求\nSWE1-PLA-034: Repeat Unavailable State UI\nWhile the HU determines the Bluetooth Device is in the 'Repeat Unavailable' state the HU shall display a 'Repeat' softkey and/or icon in the 'Unavailable' state on the appropriate BTSA Source screens.\n\n### 輸出 JSON 結構\n{\n  \"decomposition\": {\n    \"reasoning\": \"<繁中:如何拆、為何這樣拆>\",\n    \"scenarios\": [\n      {\n        \"id\": 1,\n        \"name\": \"<繁中>\",\n        \"verification_question\": \"<繁中 yes/no>\",\n        \"source\": \"requirement | spec-only\",\n        \"spec_ref\": \"<PCx.y 或 需求 id>\"\n      }\n    ]\n  },\n  \"test_cases\": [\n    {\n      \"scenario_id\": 1,\n      \"tc_title\": \"<source language, ≤14 words>\",\n      \"test_item\": \"<需求/SPEC 規範句, source language>\",\n      \"pre_conditions\": \"1. ...\",\n      \"input_test_data\": \"1. ... 或 NA\",\n      \"test_procedure\": \"1. ...\\n2. ...(最後一步須 Check/Verify 可觀察結果)\",\n      \"expected_result\": \"1. ...(具體可觀察,勿用『正常/如預期』)\",\n      \"design_method\": \"<等價分割/邊界值/列舉/場景…>\",\n      \"priority\": \"P1|P2|P3\",\n      \"split_flag\": false,\n      \"split_reason\": \"\"\n    }\n  ]\n}",
+      "answer": {
+        "decomposition": {
+          "reasoning": "Unavailable 狀態 UI(PC4.6):不支援時 softkey 呈 Unavailable。",
+          "scenarios": [
+            {
+              "id": 1,
+              "name": "Repeat Unavailable softkey",
+              "verification_question": "裝置不支援 Repeat 時 softkey 是否呈 Unavailable?",
+              "source": "requirement",
+              "spec_ref": "PC4.6"
+            }
+          ]
+        },
+        "test_cases": [
+          {
+            "scenario_id": 1,
+            "tc_title": "BTSA Repeat Unavailable softkey",
+            "test_item": "While Repeat is unavailable the HU shall display the Repeat softkey in the Unavailable state.",
+            "pre_conditions": "1. BTSA device that does not support Repeat.",
+            "input_test_data": "NA",
+            "test_procedure": "1. Read the Repeat softkey state.\n2. Check that the softkey shows the Unavailable (greyed) state.",
+            "expected_result": "1. Repeat softkey shows Unavailable/greyed state.",
+            "design_method": "狀態轉換 (State Transition Testing)",
+            "priority": "P3",
+            "split_flag": false,
+            "split_reason": ""
+          }
+        ]
+      }
+    }
+  ]
+}
