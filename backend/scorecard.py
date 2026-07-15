@@ -327,7 +327,7 @@ def render_markdown(sc: Scorecard) -> str:
         "",
         f"- 總 TC 數:{sc.total_tcs}",
         f"- 總需求數:{sc.total_requirements}",
-        f"- **Gate:{'PASS ✅' if sc.gate_passed else 'FAIL ❌'}**",
+        f"- **Gate:{'PASS' if sc.gate_passed else 'FAIL'}**",
         "",
         "| KPI | 數值 | 分子/分母 | 門檻 / 結果 |",
         "|---|---|---|---|",

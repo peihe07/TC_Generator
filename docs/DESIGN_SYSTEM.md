@@ -255,7 +255,7 @@ These are app-level classes defined in `win95.css` that components still use dir
 - **`.selectable`** — opts text back into user selection inside the global-noselect window body.
 - **`.diff-add`** / **`.diff-del`** — inline token highlighting inside RegenDiff's `DiffText` renderer.
 
-> ⚠️ Known dead class: `border-sunken` is referenced by `Input` and several modules (via `border-2 border-sunken`) but has no matching CSS rule. The "sunken" visual today comes from `border-2` alone + browser default border color. Candidate for cleanup in the upcoming CSS split (P3-3) — either define it as a real Tailwind 4 utility or remove the references.
+> Known dead class: `border-sunken` is referenced by `Input` and several modules (via `border-2 border-sunken`) but has no matching CSS rule. The "sunken" visual today comes from `border-2` alone + browser default border color. Candidate for cleanup in the upcoming CSS split (P3-3) — either define it as a real Tailwind 4 utility or remove the references.
 
 Classes not listed here (chat module, desktop, start menu, taskbar) are feature-module-specific and shouldn't be used outside their module.
 

@@ -7,19 +7,19 @@
 
 | 項目 | 內容 | 測試 | commit |
 |---|---|---|---|
-| **M0** Provider 解耦 | `providers/`(OpenAI+Anthropic+Budget+factory)、`set_provider` seam | ✅ | `9d7ac70` |
-| **M0b** generator 拔除 openai | `_chat` 全走 provider、`TC_LLM_BACKEND` env | ✅ | `c95ac7b` |
-| **M1** Stage 7 Scorecard | `scorecard.py` 7+1 KPI、`--scorecard` CLI | ✅ | `570d0db` |
-| **M2** Budget planner | `budget_planner.py`、`--preflight`/`--calibrate` | ✅ | (併入) |
-| **KPI** tier1_critical_req_rate | 拆解深度指標 | ✅ | `14da502` |
-| **Stage 1** Domain Pack | `domain_pack.py` + Player pack(Gate ① 已簽、SWE1 重建) | ✅ | `14da502` / `ee0695e` |
-| **Stage 3** 深拆接地 | decompose 注入 domain + `build_decompose_meta` | ✅ | `0967c3c` |
-| **Stage 6** review 強化 | domain 注入 + §7.6 reality-gap + `--domain-pack` | ✅ | `4cd6c6d` |
+| **M0** Provider 解耦 | `providers/`(OpenAI+Anthropic+Budget+factory)、`set_provider` seam | | `9d7ac70` |
+| **M0b** generator 拔除 openai | `_chat` 全走 provider、`TC_LLM_BACKEND` env | | `c95ac7b` |
+| **M1** Stage 7 Scorecard | `scorecard.py` 7+1 KPI、`--scorecard` CLI | | `570d0db` |
+| **M2** Budget planner | `budget_planner.py`、`--preflight`/`--calibrate` | | (併入) |
+| **KPI** tier1_critical_req_rate | 拆解深度指標 | | `14da502` |
+| **Stage 1** Domain Pack | `domain_pack.py` + Player pack(Gate ① 已簽、SWE1 重建) | | `14da502` / `ee0695e` |
+| **Stage 3** 深拆接地 | decompose 注入 domain + `build_decompose_meta` | | `0967c3c` |
+| **Stage 6** review 強化 | domain 注入 + §7.6 reality-gap + `--domain-pack` | | `4cd6c6d` |
 | **§7.6 驗證** | 探針 TC 證實 reality-gap 觸發 | — | `704dfde` |
-| **Content traceability** | `req_tracer.py`、`--trace` CLI、req_id_mismatch KPI | ✅ | `2a113cf` / `a96dc3d` |
-| **L2 spec_coverage KPI** | SPEC behaviours vs SPEC original 覆蓋率 | ✅ | `09b73d2` / `3f94639` |
-| **Interactive review SOP** | subscription 語意層($0)、`--export-bundle`/`--assemble` | ✅ | `8cb2164` |
-| **Closed-loop generation** | SPEC-grounded 生成橋接 → team template + house rules → 可再審查 xlsx | ✅ | `0a0ccc0` / `4e816c8` / `a7dd35c` |
+| **Content traceability** | `req_tracer.py`、`--trace` CLI、req_id_mismatch KPI | | `2a113cf` / `a96dc3d` |
+| **L2 spec_coverage KPI** | SPEC behaviours vs SPEC original 覆蓋率 | | `09b73d2` / `3f94639` |
+| **Interactive review SOP** | subscription 語意層($0)、`--export-bundle`/`--assemble` | | `8cb2164` |
+| **Closed-loop generation** | SPEC-grounded 生成橋接 → team template + house rules → 可再審查 xlsx | | `0a0ccc0` / `4e816c8` / `a7dd35c` |
 
 ## 用真實 Player 資料證明的事
 

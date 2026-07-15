@@ -20,19 +20,19 @@ canonical summary.
 
 | Milestone | Scope | Status |
 |---|---|---|
-| **M0** — Provider abstraction | `backend/providers/` (OpenAI + Anthropic + budget + factory), `set_provider` seam | ✅ Done |
-| **M0b** — De-couple generator | `generator._chat` routes through the provider layer; `TC_LLM_BACKEND` env switch | ✅ Done |
-| **M1** — Stage 7 KPI scorecard | `backend/scorecard.py`, `config/kpi_thresholds.json`, `--scorecard` CLI | ✅ Done |
-| **M2** — Budget planner | `backend/budget_planner.py`, `--preflight` / `--calibrate` | ✅ Done |
+| **M0** — Provider abstraction | `backend/providers/` (OpenAI + Anthropic + budget + factory), `set_provider` seam | Done |
+| **M0b** — De-couple generator | `generator._chat` routes through the provider layer; `TC_LLM_BACKEND` env switch | Done |
+| **M1** — Stage 7 KPI scorecard | `backend/scorecard.py`, `config/kpi_thresholds.json`, `--scorecard` CLI | Done |
+| **M2** — Budget planner | `backend/budget_planner.py`, `--preflight` / `--calibrate` | Done |
 
 ### Pipeline stages
 
 | Stage | Capability | Status |
 |---|---|---|
-| **Stage 1** — Domain grounding | `backend/domain_pack.py`; Player pack rebuilt from SWE1 analysis (`M1/domain_pack_player.json`) | ✅ Done |
-| **Stage 3** — Deep decompose | Single-requirement decomposition grounded in the domain pack | ✅ Done |
-| **Stage 6** — Grounded review | Domain-injected review + §7.6 reality-gap rule (`--domain-pack`) | ✅ Done |
-| **Stage 7** — KPI scorecard | 7+1 KPIs incl. `tier1_critical_req_rate` and L2 `spec_coverage` | ✅ Done |
+| **Stage 1** — Domain grounding | `backend/domain_pack.py`; Player pack rebuilt from SWE1 analysis (`M1/domain_pack_player.json`) | Done |
+| **Stage 3** — Deep decompose | Single-requirement decomposition grounded in the domain pack | Done |
+| **Stage 6** — Grounded review | Domain-injected review + §7.6 reality-gap rule (`--domain-pack`) | Done |
+| **Stage 7** — KPI scorecard | 7+1 KPIs incl. `tier1_critical_req_rate` and L2 `spec_coverage` | Done |
 
 ### Cross-cutting
 

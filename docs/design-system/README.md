@@ -67,7 +67,7 @@ There is **one product** (the desktop) and **one brand**. No marketing site, no 
 - **Bilingual:** UI labels are English; comments, logs and help contexts occasionally switch to Traditional Chinese (`求助 AI`, `[context: 目前在 Upload Module]`). When writing new strings, mirror this — English for user-facing, bilingual OK in internal help contexts.
 - **Jargon OK.** The audience is QA/test-automation engineers. Use terms like _TC_, _Req ID_, _Test Set_, _SWE.6_, _regen diff_ without glossing.
 - **Numbers are precise.** Costs show four decimals (`$0.0123`), durations are `mm:ss` with zero-padding, rows are _N / total_ never _N out of total_.
-- **No emoji in product copy.** Emoji appear only in the Start menu (`📁 ⚙ ▶ 📋 💾 ⚡ 📊 📖 🤖`) as compact icon glyphs. Everything else uses Remix Icon SVGs or hand-drawn pixel-art SVGs.
+- **No emoji in product copy.** Emoji appear only in the Start menu (`▶ `) as compact icon glyphs. Everything else uses Remix Icon SVGs or hand-drawn pixel-art SVGs.
 - **Error messages are blunt.** _"Export failed."_, _"No accepted rows available for export. Switch scope to All Generated Cases or accept rows first."_ No apology, no "Oops".
 
 ### Examples (real strings from the app)
@@ -275,7 +275,7 @@ Three icon vocabularies coexist:
    - React export pattern: `<RiCheckFill className="size-4" />`
    - Overrides: `button svg { width: 20px !important; height: 20px !important }` inside `win95.css`, but `svg.remixicon` gets `image-rendering: auto` (line icons should not be pixelated).
 
-3. **Unicode glyphs** — appear only in the Start menu (`📁 ⚙ ▶ 📋 💾 ⚡ 📊 📖 🤖`) as cheap icon stand-ins. This is canon, but don't extend it to other surfaces; prefer Remix Icon or a new pixel-art SVG.
+3. **Unicode glyphs** — appear only in the Start menu (`▶ `) as cheap icon stand-ins. This is canon, but don't extend it to other surfaces; prefer Remix Icon or a new pixel-art SVG.
 
 **Never invent SVG icons unless you're sure the system doesn't already have one.** Remix Icon has ~2800 icons; the ones actually used in the app live in `frontend/src/components/modules/**/*.tsx` imports (grep for `@remixicon/react`).
 

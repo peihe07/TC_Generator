@@ -188,7 +188,7 @@
 <p>Test Item 定義「這條 Test Case 要驗證什麼」。每個 Test Item
 必須對應一個 Requirement behavior 或一個 Requirement
 scenario，不可自行發揮或偏離需求。</p>
-<h4 id="mistake-7-測項設計與需求swra-皆無關">❌ Mistake #7 —
+<h4 id="mistake-7-測項設計與需求swra-皆無關">Mistake #7 —
 測項設計與需求/SWRA 皆無關</h4>
 <p><strong>Requirement：</strong> &gt; Camera Mode: The HU shall have
 the option to enable or disable the engineering configuration. If
@@ -202,7 +202,7 @@ disabled, the HU shall revert to default parameters.</p>
 <p>問題：測項僅測試 Camera Mode 畫面操作與 RVC 啟動，與需求意圖
 (enable/disable → revert to default) 毫無關係。</p>
 </blockquote>
-<h4 id="正確的-test-procedure">✅ 正確的 Test Procedure：</h4>
+<h4 id="正確的-test-procedure">正確的 Test Procedure：</h4>
 <pre><code>1. Launch EngMode.
 2. Set Engineering Configuration to Enable.
 3. Change at least one camera-related parameter.
@@ -213,7 +213,7 @@ disabled, the HU shall revert to default parameters.</p>
 <p>→ 完整驗證 enable → change → disable → revert to default 流程。</p>
 </blockquote>
 <hr />
-<h4 id="mistake-72-未驗證需求關鍵行為">❌ Mistake #7(2) —
+<h4 id="mistake-72-未驗證需求關鍵行為">Mistake #7(2) —
 未驗證需求關鍵行為</h4>
 <p><strong>Requirement：</strong> &gt; The HU shall create the ‘All Call
 Logs’ list by analyzing the time stamps of the Outgoing, Incoming and
@@ -241,8 +241,8 @@ Missed Call log entries.</p>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤（冗長）</th>
-<th>✅ 正確（簡潔）</th>
+<th>錯誤（冗長）</th>
+<th>正確（簡潔）</th>
 </tr>
 </thead>
 <tbody>
@@ -281,8 +281,8 @@ Missed Call log entries.</p>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>
@@ -372,8 +372,8 @@ TC 驗證會產生 False Pass 風險。</p>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>
@@ -425,7 +425,7 @@ contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
 (State)</strong>」或「<strong>環境
 (Environment)</strong>」，而不是測試者在執行期間要做的「<strong>動作
 (Action)</strong>」。只包含最小必要狀態。</p>
-<h4 id="合法的-pre-condition-類型">✅ 合法的 Pre-Condition 類型</h4>
+<h4 id="合法的-pre-condition-類型">合法的 Pre-Condition 類型</h4>
 <table>
 <colgroup>
 <col style="width: 33%" />
@@ -462,7 +462,7 @@ contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
 </tr>
 </tbody>
 </table>
-<h4 id="不可放入-pre-condition-的內容">❌ 不可放入 Pre-Condition
+<h4 id="不可放入-pre-condition-的內容">不可放入 Pre-Condition
 的內容</h4>
 <table>
 <colgroup>
@@ -513,8 +513,8 @@ contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 原始寫法（過多不必要資訊）</th>
-<th>✅ 修正後（僅保留必要狀態）</th>
+<th>原始寫法（過多不必要資訊）</th>
+<th>修正後（僅保留必要狀態）</th>
 </tr>
 </thead>
 <tbody>
@@ -543,7 +543,7 @@ contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
 必須有明確目的</h3>
 <p>每一步都要讓測試者在操作時心中有明確的預期結果。</p>
 <p>判斷標準：讀完這一步後，測試者是否能立刻回答「這一步是為了什麼？」</p>
-<h4 id="mistake-5-step-缺乏明確目的">❌ Mistake #5 — Step
+<h4 id="mistake-5-step-缺乏明確目的">Mistake #5 — Step
 缺乏明確目的</h4>
 <table>
 <colgroup>
@@ -552,8 +552,8 @@ contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>
@@ -603,8 +603,8 @@ contain .mp4, .avi, .mpg, .wmv, .3gp, .mkv)</td>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>
@@ -644,8 +644,8 @@ at 5,000」。</p>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>
@@ -789,8 +789,8 @@ Verbs）</h4>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>
@@ -857,8 +857,8 @@ Step。</p>
 </colgroup>
 <thead>
 <tr>
-<th>❌ 錯誤</th>
-<th>✅ 正確</th>
+<th>錯誤</th>
+<th>正確</th>
 </tr>
 </thead>
 <tbody>

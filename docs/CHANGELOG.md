@@ -104,7 +104,7 @@ Review / Generate UX 系列升級，發生在 agent 移除之後：
   `duplicate_of`（嚴格判定等價的 row 編號）+ `distinguishing_axis`
   （`{axis ∈ trigger_state | input_data | timing | boundary | mode |
   none, delta}`）。Backend 對兩者做 cross-validation；前端
-  `splitDecision` 分別顯示「⊕ 重複於 row #N」紅卡與「⚖ 與 sibling
+  `splitDecision` 分別顯示「⊕ 重複於 row #N」紅卡與「與 sibling
   差異」灰卡，TC ID 欄位另加 `⊕ DUP→N` chip 讓 collapsed view 也看得到。
 - **Test Set 分類 per-row**：`classify_test_sets` 改用 row uuid 為唯一
   key（不再 dedup 到 req_id），同 Requirement ID 多列各自獲得 Test

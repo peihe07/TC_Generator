@@ -258,7 +258,7 @@ def run_review(args: argparse.Namespace) -> int:
     if llm_stats:
         failed, total = llm_stats.get("llm_failed", 0), llm_stats.get("llm_batches", 0)
         if failed:
-            print(f"  ⚠ LLM 語意層:{total} 批中 {failed} 批失敗(空/截斷回應)——"
+            print(f"  LLM 語意層:{total} 批中 {failed} 批失敗(空/截斷回應)——"
                   f"這些批只剩 regex 結果。換 --model gpt-4.1 或檢查 model/額度。")
         else:
             print(f"  LLM 語意層:{total} 批全部成功")
@@ -486,12 +486,12 @@ def run(args: argparse.Namespace) -> int:
 
         # Budget check
         if total_cost >= args.budget:
-            print(f"\n  ⚠ Budget limit reached (${total_cost:.4f} >= ${args.budget:.2f}). Stopping.")
+            print(f"\n  Budget limit reached (${total_cost:.4f} >= ${args.budget:.2f}). Stopping.")
             failed_rows.extend(batch)
             continue
         if _would_exceed_budget(total_cost, len(batch), args.model, args.budget):
             print(
-                f"\n  ⚠ Skipping batch: estimated cost would exceed budget "
+                f"\n  Skipping batch: estimated cost would exceed budget "
                 f"(${total_cost:.4f} + batch > ${args.budget:.2f})."
             )
             failed_rows.extend(batch)
@@ -539,7 +539,7 @@ def run(args: argparse.Namespace) -> int:
                 })
                 issues = [v for v in validation.values() if not v.passed]
                 if issues:
-                    print(f"    ⚠ {row['tc_id']}: {len(issues)} validation warning(s)")
+                    print(f"    {row['tc_id']}: {len(issues)} validation warning(s)")
                     for issue in issues:
                         print(f"      - [{issue.check}] {issue.message}")
                     if args.strict_validation:
@@ -794,7 +794,7 @@ def run_gen_assemble(args: argparse.Namespace) -> int:
     print(f"  TCs generated: {s['tcs_generated']}  "
           f"(of which SPEC-only behaviours: {s['tcs_from_spec_only']})")
     nc = s.get("tcs_noncompliant", 0)
-    flag = "✓ all on house rules" if not nc else f"⚠ {nc} off house rules (method/priority/fields)"
+    flag = "✓ all on house rules" if not nc else f"{nc} off house rules (method/priority/fields)"
     print(f"  Compliance: {flag}")
     print(f"  Wrote: {out_path}")
     print(f"         {xlsx_path}  (re-reviewable)\n{'='*60}\n")

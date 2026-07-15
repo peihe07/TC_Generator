@@ -555,7 +555,7 @@ python backend/main.py --gen-export-bundle \
 # 3) assemble — 攤平 + 第一層確定性合規閘(method/priority/必填),寫 xlsx
 python backend/main.py --gen-assemble output/gen_<family>/gen_bundle.json \
   --output-dir output/gen_<family>
-#    → generated_tcs.json / generated_tcs.xlsx(Compliance: ✓ / ⚠ N off rules)
+#    → generated_tcs.json / generated_tcs.xlsx(Compliance: ✓ / N off rules)
 
 # 4) 第二層寫作規則稽核 — 把生成的 xlsx 丟回 review(§8.x)
 python backend/main.py --review --dry-run \

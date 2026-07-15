@@ -6,40 +6,40 @@
 
 | Phase | 範圍 | 狀態 | commit |
 |-------|------|------|--------|
-| 0 | Design system bundle 入 repo（`docs/design-system/`） | ✅ | `da81752` |
-| 1 | Token 層 + global hard rules（`win95.css`） | ✅ | pre-migration |
-| 2 | UI primitives（Input / Button / StatusBadge） | ✅ | pre-migration + `d2a4af4`（generating pulse） |
-| 3 | 顏色清查（hex → token） | ✅ | `3ca2880` |
-| 4 | 動畫清掃（motion tokens、移除 slide-in、pulse 1s 統一） | ✅ | `d2a4af4` |
-| 5 | Desktop / Taskbar / StartMenu 視覺對齊 | ✅ | `d2a4af4` |
-| 6.1 | Upload module | ✅ | `fa51eea` |
-| 6.2 | Configure module（含 `.win95-th` 對齊、Tabs override） | ✅ | `fa51eea` |
-| 6.3 | Generate module（progress bar blocky chunks 重寫） | ✅ | `a7b00e6` + `c1d0a03` |
-| 6.4 | Review module（peach pending、diff palette、sticky header） | ✅ | `da389fc` |
-| 6.5 | Export module（含 `.type-h1` size 對齊） | ✅ | `490008d` |
-| 6.6 | QuickGenerate module | ✅ | `119a060` |
-| 6.7 | ChatModule（double-header 修 + sunken-bezel systemic fix + FAILED contrast F1 patch） | ✅ | `499d391` + `1011123` + `afd3471` |
-| 6.8 | Diagrams / Rules（(α) policy — iframe content intentionally out-of-scope） | ✅ | doc-only（見本檔 §Phase 6 #8） |
-| 7 | Iconography（已於 HANDOFF Phase 5 完成桌面圖示外部化） | ✅ | `d2a4af4` |
-| 8 | 測試 & 驗收 | 🚧 unit tests passing（126/126）；E2E + 完整手動驗收 ⬜ | — |
+| 0 | Design system bundle 入 repo（`docs/design-system/`） | | `da81752` |
+| 1 | Token 層 + global hard rules（`win95.css`） | | pre-migration |
+| 2 | UI primitives（Input / Button / StatusBadge） | | pre-migration + `d2a4af4`（generating pulse） |
+| 3 | 顏色清查（hex → token） | | `3ca2880` |
+| 4 | 動畫清掃（motion tokens、移除 slide-in、pulse 1s 統一） | | `d2a4af4` |
+| 5 | Desktop / Taskbar / StartMenu 視覺對齊 | | `d2a4af4` |
+| 6.1 | Upload module | | `fa51eea` |
+| 6.2 | Configure module（含 `.win95-th` 對齊、Tabs override） | | `fa51eea` |
+| 6.3 | Generate module（progress bar blocky chunks 重寫） | | `a7b00e6` + `c1d0a03` |
+| 6.4 | Review module（peach pending、diff palette、sticky header） | | `da389fc` |
+| 6.5 | Export module（含 `.type-h1` size 對齊） | | `490008d` |
+| 6.6 | QuickGenerate module | | `119a060` |
+| 6.7 | ChatModule（double-header 修 + sunken-bezel systemic fix + FAILED contrast F1 patch） | | `499d391` + `1011123` + `afd3471` |
+| 6.8 | Diagrams / Rules（(α) policy — iframe content intentionally out-of-scope） | | doc-only（見本檔 §Phase 6 #8） |
+| 7 | Iconography（已於 HANDOFF Phase 5 完成桌面圖示外部化） | | `d2a4af4` |
+| 8 | 測試 & 驗收 | unit tests passing（126/126）；E2E + 完整手動驗收 | — |
 
 **Post-migration polish 狀態（2026-04-20 session 結束）：**
 
 | # | 狀態 | 備註 |
 |---|------|------|
-| §P1 | ✅ Done | ValidationPanel resizable splitter |
-| §P2 | ✅ Done | GenerateModule cost budget threshold warning |
-| §P3 | ✅ Done | `pendingRegenerated` → `awaitingApply` rename |
-| §P4 | ✅ Done | 併入 §P12 |
-| §P5 | ❌ Closed | 誤報（FAILED row 的 `—` 是設計） |
-| §P6 | ✅ Done | `Win95Dialog` 通用元件 |
-| §P7 | 🟡 Deferred | Tailwind font-size → semantic class；機械 refactor 不適合，per-module opportunistic |
-| §P8 | ➖ Removed | 併入 Phase 6.7 ChatModule fix |
-| §P9 | 🟡 3/4 Done | RegenDiff 條件式 pattern 永久例外 |
-| §P10 | ✅ Done | ReviewToolbar 改 raised bezel |
-| §P11 | ➖ Unused | 未派 |
-| §P12 | ✅ Done | Expanded/selected state 拆分（root fix of F1 FAILED contrast） |
-| §P13 | ✅ Done | Rules tabpanel 改 single-frame |
+| §P1 | Done | ValidationPanel resizable splitter |
+| §P2 | Done | GenerateModule cost budget threshold warning |
+| §P3 | Done | `pendingRegenerated` → `awaitingApply` rename |
+| §P4 | Done | 併入 §P12 |
+| §P5 | Closed | 誤報（FAILED row 的 `—` 是設計） |
+| §P6 | Done | `Win95Dialog` 通用元件 |
+| §P7 | Deferred | Tailwind font-size → semantic class；機械 refactor 不適合，per-module opportunistic |
+| §P8 | Removed | 併入 Phase 6.7 ChatModule fix |
+| §P9 | 3/4 Done | RegenDiff 條件式 pattern 永久例外 |
+| §P10 | Done | ReviewToolbar 改 raised bezel |
+| §P11 | Unused | 未派 |
+| §P12 | Done | Expanded/selected state 拆分（root fix of F1 FAILED contrast） |
+| §P13 | Done | Rules tabpanel 改 single-frame |
 
 Follow-up 狀態：
 - ~~Phase 4：`.agent-taskbar-btn--waiting_confirm` pulse 節奏差異丟失~~ **已完成 2026-04-20** — 改 `AgentTaskbarButton.tsx` 在 waiting_confirm 時渲染 `<RiAlertFill>` alert icon 取代 robot icon；amber `#e0a000` 底色 + 黑字（取代原 white，`white on amber` 對比 ~2.9:1 WCAG AA 不過）。同時 fix 一個 naming bug：TSX 先前產生 `--need_confirm` class 名但 CSS rule 是 `--waiting_confirm`，class 從未 match → visual 從未套用；現對齊為 `waiting_confirm`。
@@ -68,7 +68,7 @@ mkdir -p frontend/design_system
 
 ---
 
-## Phase 1 — 已完成 ✅
+## Phase 1 — 已完成
 Token 層 + global rules 都齊（`frontend/src/styles/win95.css`）。**跳過**。
 
 ---
@@ -320,8 +320,8 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 **2026-04-20 診斷結論：不存在 rendering bug。**
 
 `frontend/src/__tests__/review.ReviewRow.spec.tsx` 新增 2 個直接驗證測試（`ReviewRow — expanded non-edit state renders generated TC fields`）：
-- 給定 `row.preConditions` / `inputTestData` / `steps` / `expectedResults` / `testItemRewrite` 都有值 → 5 個 `StackedReadField` 全部渲染對應文字 ✅
-- 給定上述 5 欄全是空字串 → 渲染 5 個 `—` em-dash placeholder ✅
+- 給定 `row.preConditions` / `inputTestData` / `steps` / `expectedResults` / `testItemRewrite` 都有值 → 5 個 `StackedReadField` 全部渲染對應文字
+- 給定上述 5 欄全是空字串 → 渲染 5 個 `—` em-dash placeholder
 
 渲染路徑是 `StackedReadField` 的 `{value || '—'}`（`StackedFields.tsx:33`），自 `0b64610` 起未變。
 
@@ -407,14 +407,14 @@ Migration 期間發現、但不屬於視覺對齊的小功能。每項一個獨�
 **動機：** Phase 6.7 附帶 sunken-bezel token 修正時發現 4 個 TSX 檔以 inline `borderColor` 重寫 canonical sunken pattern 而非引用 `.border-sunken` class。這次 sunken token 誤用擴散 16 處（CSS 12 + TSX 4），inline 重寫是放大效果主因。
 
 **執行狀態：**
-- ✅ `configure/GroupingTab.tsx`（Manual Override 表外框）→ `className="border-sunken"`
-- ✅ `quickGenerate/DecomposeAnalysisPanel.tsx`（panel 外框）→ `className="border-sunken"`
-- ✅ `rules/RulesModule.tsx`（tabpanel 容器）→ `className="border-sunken"`
-- ⚠️ `review/RegenDiff.tsx`（field container）— **刻意保留 inline**：此處 `borderColor` 是 `isSelected` 條件式，selected state 走 sunken pattern，unselected state 走不同的「disabled」pattern（`var(--win95-gray) var(--win95-gray-lighter) ...` + `opacity: 0.55`）。單一 class 無法乾淨表達雙分支，硬套會改變 unselected 視覺語意。
+- `configure/GroupingTab.tsx`（Manual Override 表外框）→ `className="border-sunken"`
+- `quickGenerate/DecomposeAnalysisPanel.tsx`（panel 外框）→ `className="border-sunken"`
+- `rules/RulesModule.tsx`（tabpanel 容器）→ `className="border-sunken"`
+- `review/RegenDiff.tsx`（field container）— **刻意保留 inline**：此處 `borderColor` 是 `isSelected` 條件式，selected state 走 sunken pattern，unselected state 走不同的「disabled」pattern（`var(--win95-gray) var(--win95-gray-lighter) ...` + `opacity: 0.55`）。單一 class 無法乾淨表達雙分支，硬套會改變 unselected 視覺語意。
 
 **已知視覺 delta：** `.border-sunken` class 除了 border 還有 `box-shadow: inset 1px 1px 0 var(--win95-black)`，而原 inline 版本只有 border 沒 shadow。refactor 後上述 3 處會**多一個 1px 黑色 inset shadow**（完成 canonical sunken pattern）—— 這是讓這 3 處與系統內其他 sunken surface（dropzone / stat / progress well / paper-card / agent-text 等）視覺一致，而非偏離。若需嚴格 zero-diff，各處加 `style={{ boxShadow: 'none' }}` 覆蓋。
 
-**進入條件：** ✅ 本項 3/4 已完成。RegenDiff 條件式 pattern 列為永久例外（不是待辦 — 是正確設計決定）。
+**進入條件：** 本項 3/4 已完成。RegenDiff 條件式 pattern 列為永久例外（不是待辦 — 是正確設計決定）。
 
 **進入條件：** Phase 6 全部完成後；P7（typography）後順手做較方便（兩者都是 TSX 的 className refactor）。
 
