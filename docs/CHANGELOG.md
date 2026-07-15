@@ -1,5 +1,35 @@
 # TC Generator — 專案狀態
 
+## Recent changes (2026-06-30)
+
+Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在
+`feat/m1-stage7-scorecard` 分支，**尚未 merge 進 `main`**。Backend 測試基線
+**618 tests collected**。詳見 [`M1/PROGRESS.md`](../M1/PROGRESS.md)。
+
+- **M0/M0b — Provider 抽象**：新增 `backend/providers/`（OpenAI + Anthropic +
+  budget + factory）與 `set_provider` seam；`generator._chat` 全走 provider
+  層，透過 `TC_LLM_BACKEND` env 切換後端（`anthropic` 需 `ANTHROPIC_API_KEY`）。
+- **M1 — Stage 7 KPI Scorecard**：`backend/scorecard.py` + `config/kpi_thresholds.json`，
+  純 Python、零花費；`--scorecard --findings <path>` 從既有 `findings.json`
+  算 7+1 KPI（含 `tier1_critical_req_rate`、L2 `spec_coverage`）。
+- **M2 — Budget planner**：`backend/budget_planner.py`，`--preflight` 估算花費/
+  時間、`--calibrate` 由 probe run 推導 throughput。
+- **Stage 1 — Domain grounding**：`backend/domain_pack.py`；Player pack 由 SWE1
+  分析重建（`M1/domain_pack_player.json`）。實測拆解誤報 55.6% → 22.2%。
+- **Stage 3 — Deep decompose**：單需求拆解注入 domain pack（PLA-030 Repeat
+  覆蓋 ~3 → 11 情境、0 幻覺）。
+- **Stage 6 — Grounded review**：review 注入 domain + §7.6 reality-gap 規則
+  （`--domain-pack`）；對真矛盾 TC 觸發、對乾淨 TC 靜默。
+- **Content traceability**：`backend/req_tracer.py` + `--trace` CLI，基於內容
+  比對而非固定 id；新增 req_id_mismatch KPI（Dealer / Player 資料驗證）。
+- **Closed-loop generation**：SPEC-grounded 生成橋接（互動、$0）把 TC 寫入
+  team template 並套用 house rules，再匯出可再審查的 `.xlsx`，形成
+  生成 → 審查 → 匯出 的閉環（`--gen-export-bundle` / `--gen-assemble` /
+  `--gen-template`）。
+- **Interactive review SOP**：語意 review 層可在 subscription 上跑（$0），
+  `--export-bundle` / `--assemble`；`review_workbook(..., domain_pack_path=...)`
+  主路徑可用。
+
 ## Recent changes (2026-05-18)
 
 - **Modern UI variant**：新增獨立 `frontend-modern/` Next.js package，不取代

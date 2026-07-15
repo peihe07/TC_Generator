@@ -237,6 +237,39 @@ calling the LLM.
 - `--strict-validation`: treat validation warnings as failures
 - `--review`: switch to review mode; audits existing TCs and writes `findings.json` + `findings_report.md` to `--output-dir`. Incompatible with generate-only flags (`--sys1`, `--spec`, `--framework`, `--mode`, `--rows`, `--batch-size`, `--strict-validation`)
 
+### KPI scorecard (M1, no LLM, $0)
+
+- `--scorecard`: compute a KPI scorecard from an existing `findings.json`; no LLM calls
+- `--findings`: path to the `findings.json` consumed by `--scorecard`
+- `--spec-coverage`: path to a `spec_coverage_*.json` (from `M1/spec_coverage_analysis.py`) to feed the L2 `spec_coverage` KPI
+
+### Domain grounding & traceability
+
+- `--domain-pack`: path to a domain pack `.json` injected into review and decompose (Stage 1/3/6 grounding)
+- `--trace`: content-based traceability pass against `--sys1`; emits `traceability.json` + `traceability.md`
+
+### Budget planner (M2)
+
+- `--preflight`: estimate spend/time before a run
+- `--calibrate`: derive throughput from a probe run
+- `--regime`: calibration regime, one of `light`, `deep`
+- `--n-light` / `--n-deep`: requirement counts per regime
+- `--n-probe`: requirements processed in the probe run
+- `--start-pct` / `--end-pct`: usage-window percentage before/after the probe
+- `--remaining-pct`: fraction `0..1` of the 5h usage window remaining (from `/usage`)
+
+### Interactive review (subscription, $0)
+
+- `--export-bundle`: export a review context bundle for answering on a subscription instead of API
+- `--assemble`: assemble a filled `review_bundle.json` back into findings
+
+### Closed-loop generation (interactive, $0)
+
+- `--gen-export-bundle`: export a SPEC-grounded per-requirement generation bundle (single-req decompose + TC fan-out)
+- `--req-ids`: comma-separated requirement ids to limit `--gen-export-bundle`
+- `--gen-assemble`: flatten a filled `gen_bundle.json` into generated TCs
+- `--gen-template`: blank team TC template `.xlsx`; `--gen-assemble` writes the generated TCs into it with the house rules applied
+
 ## Current Frontend Architecture
 
 - The frontend is a single-page Win95-style desktop, not a multi-route form flow.
