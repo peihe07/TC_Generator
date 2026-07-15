@@ -8,6 +8,52 @@ The project has two working surfaces:
 - Next.js desktop frontend for the upload -> configure -> generate -> review -> export workflow
 - Optional modern Next.js UI variant under `frontend-modern/`, isolated from the legacy desktop app
 
+## Project Status
+
+The backend is being reworked into a grounded, KPI-measured pipeline. All work
+below currently lives on `feat/m1-stage7-scorecard` and has **not** been merged
+into `main` yet. Backend test baseline: **618 tests collected**. The full
+per-session log lives in [`M1/PROGRESS.md`](M1/PROGRESS.md); this table is the
+canonical summary.
+
+### Milestones
+
+| Milestone | Scope | Status |
+|---|---|---|
+| **M0** — Provider abstraction | `backend/providers/` (OpenAI + Anthropic + budget + factory), `set_provider` seam | ✅ Done |
+| **M0b** — De-couple generator | `generator._chat` routes through the provider layer; `TC_LLM_BACKEND` env switch | ✅ Done |
+| **M1** — Stage 7 KPI scorecard | `backend/scorecard.py`, `config/kpi_thresholds.json`, `--scorecard` CLI | ✅ Done |
+| **M2** — Budget planner | `backend/budget_planner.py`, `--preflight` / `--calibrate` | ✅ Done |
+
+### Pipeline stages
+
+| Stage | Capability | Status |
+|---|---|---|
+| **Stage 1** — Domain grounding | `backend/domain_pack.py`; Player pack rebuilt from SWE1 analysis (`M1/domain_pack_player.json`) | ✅ Done |
+| **Stage 3** — Deep decompose | Single-requirement decomposition grounded in the domain pack | ✅ Done |
+| **Stage 6** — Grounded review | Domain-injected review + §7.6 reality-gap rule (`--domain-pack`) | ✅ Done |
+| **Stage 7** — KPI scorecard | 7+1 KPIs incl. `tier1_critical_req_rate` and L2 `spec_coverage` | ✅ Done |
+
+### Cross-cutting
+
+- **Content traceability** — `backend/req_tracer.py` + `--trace` CLI, id-mismatch KPI (validated on Dealer & Player data).
+- **Closed-loop generation** — SPEC-grounded generation bridge writes TCs into the team template with house rules, then re-exports a re-reviewable `.xlsx` so output can be audited again.
+- **Interactive review SOP** — semantic review layer runnable on subscription (`review_workbook(..., domain_pack_path=...)`).
+
+### Backlog (not blocking, confirm before starting)
+
+- Stage 3/4 single-requirement agent fan-out orchestration (decompose is still batched).
+- Full 157-TC A/B run for complete KPI numbers.
+- Wire the Stage 4 generation-fill layer to the domain pack (currently only decompose + review consume it).
+
+### Branches
+
+| Branch | State | Notes |
+|---|---|---|
+| `main` | Stable baseline (2026-05-05) | Behind the feature branch by 43 commits; none of the pipeline rework is here yet. |
+| `feat/m1-stage7-scorecard` | **Active** — pushed to `origin`, tracked | Current development line; contains all M0/M1/M2 + Stage work above. |
+| `codex/modern-ui-shell` | Local only (2026-06-18), not pushed | Modern UI shell experiment; its commits are already included in the feature branch. |
+
 ## Requirements
 
 - Python `>=3.10`
