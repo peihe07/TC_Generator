@@ -1,5 +1,19 @@
 # TC Generator — 專案狀態
 
+## Recent changes (2026-07-15)
+
+- **AI instruction 規則擴充**：從一份 feature-agnostic 通則吸收三段新規則進權威
+  文件 `docs/ASPICE_SWE6_AI_Instruction.md`（auto-load 進 generate / review /
+  gen_bridge prompt）：
+  - **§8.6 Spec Reference Hierarchy**：原始 spec 來源優先於追溯 index 匯出；
+    不因需求未出現在 index 就撤回，先查原始 spec。
+  - **§8.7 Cross-Domain Behavioral Patterns**：spec-sourced threshold 用具體值、
+    區分語意相近操作(cancel/stop)、variant label 一致套用、greyed-out ≠ 不可操作。
+  - **§8.2.2** 補「同/不同控制實體」的拆併條件；**§9 Self-Check** 新增第 17 項。
+  - 其餘章節與現有文件重疊未動；文件維護 meta 慣例未併入 prompt。
+- **文件去 emoji**：文件、產物報告與其產生器(`scorecard.py` / `main.py`)移除彩色
+  emoji，保留箭頭 / 圈號 / 單色標記。
+
 ## Recent changes (2026-06-30)
 
 Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在

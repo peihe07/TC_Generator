@@ -380,6 +380,11 @@ the same TC, split into multiple TCs, all tracing to the same RD sub-id.
 sub-ids into one TC. RD-level consolidation belongs to the RD authors,
 not the TC authors (§8.2.1).
 
+**Split condition when a sub-id bundles controls**: the same physical/logical
+control element → keep one TC with a multi-row ER; different control entities →
+split into independent TCs; independent partial failures under one sub-id →
+split and record.
+
 **Workbook handling**: when one RD sub-id yields multiple TCs, both TCs
 list the same `Requirement or Design ID`; TC IDs (`{project}-{abbr}-{NNN}`,
 §10.3) remain independently sequenced.
@@ -441,6 +446,37 @@ test to run?" Former → Pre-Condition. Latter → drop.
   test-implementation convenience, not a spec trigger; testers naturally
   prepare suitable test material
 
+### 8.6 Spec Reference Hierarchy
+When a traceability index export and the original spec source disagree, the
+**original spec source wins**. Do not retract a requirement merely because it is
+absent from the index export — check the source spec directly first. TC scope is
+bounded by the literal spec section it verifies; behaviors from external or
+adjacent specs must not be pulled in unless the current RD explicitly references
+them.
+
+### 8.7 Cross-Domain Behavioral Patterns
+Feature-agnostic rules that hold across domains:
+
+#### 8.7.1 Spec-sourced thresholds
+Every trigger / release threshold MUST come from the spec and appear as a
+**concrete value** in the Pre-Condition, never vague language ("in motion",
+"approximately"). General form: `<condition> >= <trigger value>` to trigger,
+`<condition> <= <release value>` to release, each citing its Req ID.
+
+#### 8.7.2 Disambiguate similar operations
+Semantically close operations (cancel vs stop, pause vs mute) MUST have their
+end states distinguished in the ER, each citing its Req ID; the ER must not
+state only a shared vague outcome.
+
+#### 8.7.3 Variant label overrides
+Market / variant-specific UI label overrides MUST be applied consistently across
+all related steps, noting the source requirement (e.g. `<variant-ref>`).
+
+#### 8.7.4 Selectable-but-styled
+A visual state (greyed-out, dimmed) does NOT imply non-operability; the ER must
+not assert operability that contradicts the spec. Follow the behavior the spec
+explicitly states.
+
 ## 9. Self-Check (before emitting each TC)
 1. Test Set: noun phrase, capability-level, matches `framework.md`, no Test Group prefix, consistent spelling, no `Unclassified` / `Misc` (§4.1, §4.2)
 2. tc_title: one of 3 shapes, 2–14 words, sibling token visible, no modals (§4.3)
@@ -458,6 +494,7 @@ test to run?" Former → Pre-Condition. Latter → drop.
 14. No trailing period on any line of `pre_conditions` / `input_test_data` / `test_procedure` / `expected_result` (§11)
 15. UI element labels use `"..."` double quotes, never `[...]` square brackets (§11)
 16. `specification_reference` lists every spec section the TC directly verifies (§10.7)
+17. Source spec wins over index export (§8.6); thresholds are spec-sourced concrete values, similar operations disambiguated in ER, variant labels applied consistently, styled elements not assumed inoperable (§8.7)
 
 ## 10. Tool-Specific Output Contract (workbook export, not ASPICE rules)
 
