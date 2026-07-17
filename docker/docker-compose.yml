@@ -1,8 +1,10 @@
+name: tc-generator
+
 services:
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ..
+      dockerfile: docker/Dockerfile.backend
     container_name: tc_generator_backend
     environment:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
@@ -10,11 +12,11 @@ services:
     ports:
       - "8003:8000"
     volumes:
-      - ./output:/app/output
+      - ../output:/app/output
 
   frontend:
     build:
-      context: ./frontend
+      context: ../frontend
       dockerfile: Dockerfile
     container_name: tc_generator_frontend
     environment:

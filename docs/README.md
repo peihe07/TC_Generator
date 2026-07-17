@@ -30,12 +30,12 @@ of sync. When a rule is confirmed:
 
 ## Developer Docs
 
-- `API_CONTRACT.md` — frontend/backend API contract
-- `WORKFLOW_MECHANISM_TABLE.md` — user action → frontend → backend → AI/state map
-- `PIPELINE_DESIGN.md` — end-to-end generation pipeline design (draft)
+- `dev/API_CONTRACT.md` — frontend/backend API contract
+- `dev/WORKFLOW_MECHANISM_TABLE.md` — user action → frontend → backend → AI/state map
+- `dev/PIPELINE_DESIGN.md` — end-to-end generation pipeline design (draft)
 - `CHANGELOG.md` — architecture notes, history, and current baselines
-- `DESIGN_SYSTEM.md` — Win95-themed frontend design-system reference
-- `TC_Generator_Architecture_Diagrams.html` — architecture visual reference
+- `design-system/DESIGN_SYSTEM.md` — Win95-themed frontend design-system reference
+- `dev/TC_Generator_Architecture_Diagrams.html` — architecture visual reference
 - `design-system/` — UI conventions and design-system assets
 - `../frontend-modern/README.md` — separate modern UI variant setup, ports,
   and Docker commands

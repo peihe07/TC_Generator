@@ -163,13 +163,13 @@ Both dev and prod expose the frontend on host port **3333** (backend on **8003**
 Prod (production build, no hot reload):
 
 ```bash
-docker compose up --build
+docker compose -f docker/docker-compose.yml up --build
 ```
 
 Dev (hot reload for backend and frontend):
 
 ```bash
-docker compose -f docker-compose.dev.yml up --build
+docker compose -f docker/docker-compose.dev.yml up --build
 ```
 
 Then open `http://localhost:3333`. Set `OPENAI_API_KEY` in `.env` at the repo root before starting.
@@ -178,11 +178,11 @@ Modern UI Docker runs use separate compose files and expose the frontend on
 host port **3433** (backend on **8013**):
 
 ```bash
-docker compose -f docker-compose.modern.dev.yml up --build
+docker compose -f docker/docker-compose.modern.dev.yml up --build
 ```
 
 ```bash
-docker compose -f docker-compose.modern.yml up --build
+docker compose -f docker/docker-compose.modern.yml up --build
 ```
 
 The modern backend writes runtime output to `output-modern/`, which is ignored
@@ -297,12 +297,12 @@ Entry point:
 Reference docs:
 
 - [docs/README.md](docs/README.md) — docs index: runtime / developer / archive split
-- [docs/WORKFLOW_MECHANISM_TABLE.md](docs/WORKFLOW_MECHANISM_TABLE.md) — developer table for user actions, API routes, backend work, AI calls, and state writes
-- [docs/API_CONTRACT.md](docs/API_CONTRACT.md) — browser ↔ backend API specs
+- [docs/WORKFLOW_MECHANISM_TABLE.md](docs/dev/WORKFLOW_MECHANISM_TABLE.md) — developer table for user actions, API routes, backend work, AI calls, and state writes
+- [docs/API_CONTRACT.md](docs/dev/API_CONTRACT.md) — browser ↔ backend API specs
 - [docs/ASPICE_SWE6_AI_Instruction.md](docs/ASPICE_SWE6_AI_Instruction.md) — ASPICE SWE.6 AI Instruction (auto-loaded into LLM prompt)
 - [docs/TEST_SET_POLICY.md](docs/TEST_SET_POLICY.md) — Test Set grouping, hint, override, and export policy
 - [docs/ASPICE_SWE6_AI_Review.md](docs/ASPICE_SWE6_AI_Review.md) — ASPICE SWE.6 AI Review spec (auto-loaded into review prompt)
 - [docs/TEST_CASE_DESIGN_METHOD.md](docs/TEST_CASE_DESIGN_METHOD.md) — Design method selection rules (auto-loaded into LLM prompt)
 - [docs/TEST_CASE_PRIORITY.md](docs/TEST_CASE_PRIORITY.md) — P0–P3 priority definitions
-- [docs/TC_Generator_Architecture_Diagrams.html](docs/TC_Generator_Architecture_Diagrams.html) — visual architecture reference
+- [docs/TC_Generator_Architecture_Diagrams.html](docs/dev/TC_Generator_Architecture_Diagrams.html) — visual architecture reference
 - [docs/archive/README.md](docs/archive/README.md) — archived notes that must not be loaded into runtime prompts

@@ -18,7 +18,7 @@ This system was reverse-engineered from:
   - `frontend/src/components/modules/` — 9 feature modules (upload, configure, generate, review, export, chat, quickGenerate, diagrams, rules)
   - `frontend/src/components/system/` — desktop chrome (Desktop, Taskbar, AppWindow, CostMeter)
 - **Docs:**
-  - `docs/DESIGN_SYSTEM.md` — authoritative design system reference
+  - `docs/design-system/DESIGN_SYSTEM.md` — authoritative design system reference
   - `docs/ASPICE_SWE6_AI_Instruction.md` — product domain
 
 ## Index
@@ -317,6 +317,6 @@ No separate marketing / mobile / docs kits exist in the product; if you need one
 
 ## Caveats & known gaps
 
-- **`border-sunken` Tailwind class:** referenced in `Input` and several modules but has no matching CSS rule (documented in `docs/DESIGN_SYSTEM.md` as a known dead class). Any "sunken" look today comes from `border-2` + browser default border color. Keep using it for parity; the upstream plans to define or remove it.
+- **`border-sunken` Tailwind class:** referenced in `Input` and several modules but has no matching CSS rule (documented in `docs/design-system/DESIGN_SYSTEM.md` as a known dead class). Any "sunken" look today comes from `border-2` + browser default border color. Keep using it for parity; the upstream plans to define or remove it.
 - **No dark mode.** The teal desktop + gray chrome is the only theme. Don't invent one.
 - **No responsive layout.** Windows are fixed-size and draggable; on small screens they just overflow. The product is desktop-only by design.

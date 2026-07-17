@@ -4,8 +4,8 @@ services:
   backend-modern:
     image: tc-generator-modern-backend:latest
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ..
+      dockerfile: docker/Dockerfile.backend
       labels:
         tc-generator.variant: modern
         tc-generator.component: backend
@@ -20,12 +20,12 @@ services:
     ports:
       - "8013:8000"
     volumes:
-      - ./output-modern:/app/output
+      - ../output-modern:/app/output
 
   frontend-modern:
     image: tc-generator-modern-frontend:latest
     build:
-      context: ./frontend-modern
+      context: ../frontend-modern
       dockerfile: Dockerfile
       labels:
         tc-generator.variant: modern

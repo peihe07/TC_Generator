@@ -56,8 +56,8 @@ FRONTEND_PID=$!
 info "---"
 info "Modern Backend:  ${BACKEND_BASE}/docs"
 info "Modern Frontend: http://127.0.0.1:${FRONTEND_PORT}"
-info "Docker dev: docker compose -f docker-compose.modern.dev.yml up --build"
-info "Docker prod: docker compose -f docker-compose.modern.yml up --build"
+info "Docker dev: docker compose -f docker/docker-compose.modern.dev.yml up --build"
+info "Docker prod: docker compose -f docker/docker-compose.modern.yml up --build"
 info "Press Ctrl+C to stop both."
 
 trap "kill $BACKEND_PID $FRONTEND_PID 2>/dev/null; info 'Stopped MODERN UI.'" EXIT INT TERM

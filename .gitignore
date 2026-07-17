@@ -58,3 +58,6 @@ spec-index/cache/*
 spec-index/manifest.json
 !spec-index/sources/.gitkeep
 !spec-index/cache/.gitkeep
+
+# Local trash staged for manual deletion
+_to_delete/

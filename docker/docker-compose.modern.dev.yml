@@ -4,8 +4,8 @@ services:
   backend-modern:
     image: tc-generator-modern-backend-dev:latest
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ..
+      dockerfile: docker/Dockerfile.backend
       labels:
         tc-generator.variant: modern-dev
         tc-generator.component: backend
@@ -34,15 +34,15 @@ services:
     ports:
       - "8013:8000"
     volumes:
-      - ./backend:/app/backend
-      - ./docs:/app/docs
-      - ./output-modern:/app/output
-      - ./pyproject.toml:/app/pyproject.toml:ro
+      - ../backend:/app/backend
+      - ../docs:/app/docs
+      - ../output-modern:/app/output
+      - ../pyproject.toml:/app/pyproject.toml:ro
 
   frontend-modern:
     image: tc-generator-modern-frontend-dev:latest
     build:
-      context: ./frontend-modern
+      context: ../frontend-modern
       dockerfile: Dockerfile
       target: deps
       labels:
@@ -70,7 +70,7 @@ services:
     ports:
       - "3433:3000"
     volumes:
-      - ./frontend-modern:/app
+      - ../frontend-modern:/app
       - frontend_modern_node_modules:/app/node_modules
       - frontend_modern_next_cache:/app/.next
     depends_on:

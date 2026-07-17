@@ -21,13 +21,13 @@ Modern UI ports:
 Development:
 
 ```bash
-docker compose -f docker-compose.modern.dev.yml up --build
+docker compose -f docker/docker-compose.modern.dev.yml up --build
 ```
 
 Production:
 
 ```bash
-docker compose -f docker-compose.modern.yml up --build
+docker compose -f docker/docker-compose.modern.yml up --build
 ```
 
 Modern Docker names are intentionally labeled and separated:

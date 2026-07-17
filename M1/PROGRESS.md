@@ -37,7 +37,7 @@
 - Player domain pack:`M1/domain_pack_player.json`(Gate ① 簽核)
 - Baseline / 驗證:`M1/baseline_player*/`、`M1/stage3_demo_repeat.md`、`M1/spec_coverage_*`
 - 生成實驗:`output/player_gen_{all,repeat,shuffle}/`(生成 TC + audit/rereview scorecards)
-- 規劃文件:`docs/PIPELINE_DESIGN.md`、`M1/EXECUTION_SPEC.md`、`M1/{M0,M2}_NOTES.md`
+- 規劃文件:`docs/dev/PIPELINE_DESIGN.md`、`M1/EXECUTION_SPEC.md`、`M1/{M0,M2}_NOTES.md`
 
 ## 尚未做(非 blocker,需確認再動)
 

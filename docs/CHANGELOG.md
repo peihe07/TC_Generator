@@ -54,8 +54,8 @@ Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在
   backend `8013`；`./start-modern.sh` 會讀取 repo root `.env`、同步
   `frontend-modern/.env.local`，並同時啟動 backend reload 與 modern
   Next.js dev server。
-- **Modern Docker profiles**：新增 `docker-compose.modern.dev.yml` 與
-  `docker-compose.modern.yml`，container / image / compose project 均以
+- **Modern Docker profiles**：新增 `docker/docker-compose.modern.dev.yml` 與
+  `docker/docker-compose.modern.yml`，container / image / compose project 均以
   modern 命名隔離；modern backend runtime output 寫入 `output-modern/`。
 - **ASPICE wording rules**：`ASPICE_SWE6_AI_Instruction.md` 補強 UI label
   必須使用 double quotes、baseline wording、one trigger 多 consequential
@@ -233,7 +233,7 @@ graph TB
 ```
 
 完整視覺化（使用者流程）：
-[TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html)
+[TC_Generator_Architecture_Diagrams.html](dev/TC_Generator_Architecture_Diagrams.html)
 
 ---
 
@@ -308,7 +308,7 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 - `GET /api/export/download/{jobId}`
 - `POST /api/quick-generate/stream`
 - `POST /api/audit`（ASPICE SWE.6 review pipeline，§9 schema findings）
-完整 request / response 格式請看 [API_CONTRACT.md](API_CONTRACT.md)。
+完整 request / response 格式請看 [API_CONTRACT.md](dev/API_CONTRACT.md)。
 
 ---
 
@@ -424,13 +424,13 @@ HTTP / SSE 端點集中在 `backend/api_server.py`。
 | 用途 | 檔案 |
 |---|---|
 | 設定 + 執行指令 | [../README.md](../README.md) |
-| 使用機制總表（指令 / API / AI / 狀態） | [WORKFLOW_MECHANISM_TABLE.md](WORKFLOW_MECHANISM_TABLE.md) |
-| API 合約 | [API_CONTRACT.md](API_CONTRACT.md) |
+| 使用機制總表（指令 / API / AI / 狀態） | [WORKFLOW_MECHANISM_TABLE.md](dev/WORKFLOW_MECHANISM_TABLE.md) |
+| API 合約 | [API_CONTRACT.md](dev/API_CONTRACT.md) |
 | ASPICE SWE.6 Generate 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Instruction.md](ASPICE_SWE6_AI_Instruction.md) |
 | Test Set 分類 / hint / export policy | [TEST_SET_POLICY.md](TEST_SET_POLICY.md) |
 | ASPICE SWE.6 Review 規則（LLM prompt 用） | [ASPICE_SWE6_AI_Review.md](ASPICE_SWE6_AI_Review.md) |
 | Test Design Method 判斷（LLM prompt 用） | [TEST_CASE_DESIGN_METHOD.md](TEST_CASE_DESIGN_METHOD.md) |
 | Test Case Priority 定義 | [TEST_CASE_PRIORITY.md](TEST_CASE_PRIORITY.md) |
-| 架構視覺化 | [TC_Generator_Architecture_Diagrams.html](TC_Generator_Architecture_Diagrams.html) |
+| 架構視覺化 | [TC_Generator_Architecture_Diagrams.html](dev/TC_Generator_Architecture_Diagrams.html) |
 
 > Generate 規則由 `backend/rules_loader.py` 載入；改名或搬移 runtime 規則文件時，需同步更新 loader 與相關測試。
