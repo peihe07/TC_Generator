@@ -540,3 +540,90 @@ is genuinely uncovered.
 
 **Open:** RD-1 — should 037 gain a leaf for MPB1.7 (HD preset labels)? Confirm
 MPB1.8.x is out of scope for FW036.
+
+---
+
+## A-021 — "All Presets Pop up" and "Presets Pop Up": one container or two?
+
+**Found:** 2026-08-07, generating RAD ch18 (the Preset Management stop point).
+
+ch18 names its popup two different ways and never states whether they are the
+same thing:
+
+- `APP1` — *"Pressing the 'All Presets' button opens the **All Presets Pop up**
+  displaying up to 3 banks of presets per page, a 'Presets Shown' indicator,
+  currently playing metadata, an X."*
+- `APP2`, `APP10`–`APP13`, `APP17`, `APP18` — all say **"Presets Pop Up"**.
+- The page-30 screenshot is captioned **"Presets Pop Up"**, and shows metadata,
+  an X, preset rows and an "Edit Presets" button.
+
+Evidence they are the same: the screenshot's contents match APP1's list, and
+nothing in the deck describes opening a second, different popup.
+Evidence they might not be: APP1 lists a "Presets Shown" indicator, but in the
+screenshots that indicator appears on the **Edit Presets Pop Up**, not on the
+"Presets Pop Up"; and APP1 never mentions the Edit Presets button that APP12
+places on the "Presets Pop Up".
+
+**Handling — generated on a declared assumption.** They are treated as one
+container. Each TC uses the container name from the clause it is written
+against (APP1 leaves say "All Presets Pop-up", APP10+ leaves say "Presets
+Pop-up"), matching 037's own wording, and never invents a third name.
+
+This matters more than a naming nit: the whole ch18 review discipline is
+"anchor every ER to its container and quote that container's own strings". A
+container that has two names in the source is exactly where that discipline
+produces false confidence.
+
+**Open:** RD-1 — are "All Presets Pop up" and "Presets Pop Up" the same
+screen? If yes, which name is canonical? If no, what opens the second one?
+
+---
+
+## A-022 — APP10/APP17 and APP11/APP18 are duplicate requirements
+
+**Found:** 2026-08-07, generating RAD ch18.
+
+Two pairs of clauses state the same requirement twice:
+
+| | |
+|---|---|
+| `APP10` (18.5) | *"The user can long press an existing preset (500 ms) to save a new preset over that existing preset on the Presets Pop up."* |
+| `APP17` (18.12) | *"The user is able to long press and save a new preset over an existing preset from the Presets Pop Up."* |
+| `APP11` (18.6) | *"The user can short press a plus ['+'] sign to add a new preset to an empty slot on the Presets Pop Up."* |
+| `APP18` (18.13) | *"short press a plus ['+'] sign to add a new preset from the Presets Pop Up."* |
+
+037 allocated a separate leaf to each, so the pairs produce identical TC
+content under different req_ids: RAD-075-01 ≡ RAD-082-01, RAD-076-01 ≡
+RAD-083-01. APP10 adds the 500 ms figure that APP17 omits; otherwise the
+clauses are equivalent in trigger, input and verification target.
+
+**Handling:** the later parents (RAD-082, RAD-083) will set `duplicate_of`
+pointing at the earlier TC rather than silently emitting a second copy — this is
+what the field exists for. Both still get a workbook row, because both leaves
+exist in 037 and traceability needs them.
+
+**Open:** RD-1 — are APP17/APP18 redundant restatements to be removed, or was a
+distinction intended that the wording lost?
+
+---
+
+## A-023 — APP13 names the wrong container
+
+**Found:** 2026-08-07, generating RAD ch18.
+
+*"APP13) The **Presets Pop Up** will have a 'Done' button and an [X} which both
+close the popup and return to the **Presets Pop Up** screen."*
+
+As written the clause is circular — a popup whose Done button closes it and
+returns to itself. The page-30 screenshots resolve it: "Done" appears on the
+**Edit Presets Pop Up**, and closing it returns to the Presets Pop Up. 037 reads
+it that way too — all four `SWE1-MEDIA-RAD-078` leaves say "Edit Presets
+Pop-up".
+
+Generation follows 037 and the screenshots (Done/X live on the Edit Presets Pop
+Up). Because that is a reading of a self-contradictory clause, RAD-078 will
+carry an `assumption` marker naming this anomaly.
+
+**Open:** RD-1 — confirm APP13's first "Presets Pop Up" should read "Edit
+Presets Pop Up". Ask together with A-021; both are container-naming defects in
+the same section.

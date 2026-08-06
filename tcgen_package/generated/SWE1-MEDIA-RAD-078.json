@@ -1,0 +1,83 @@
+{
+  "parent": "SWE1-MEDIA-RAD-078",
+  "reasoning": "18.8（APP13）的原文為「The Presets Pop Up will have a \"Done\" button and an [X] which both close the popup and return to the Presets Pop Up screen」——按字面是「關閉自己回到自己」，自身循環矛盾（A-023）。假設聲明：page 30 的截圖顯示 Done 位於 Edit Presets Pop Up 上，037 的四個 leaf 亦全部寫 Edit Presets Pop-up，雙來源對單一且自我矛盾的 prose，故依 037 與截圖生成：Done 與 X 位於 Edit Presets Pop-up，關閉後回到 Presets Pop-up。此讀法的把握度高於 A-021 的容器命名問題，但因 spec 原文字面相反，仍掛 assumption marker。037 拆成四個 leaf：兩個元素存在、兩個關閉行為。元素與行為的驗證標的不同，關閉的兩個入口為列舉的等價輸入（§7 成對涵蓋）。容器錨定：ch18 內有兩個彈窗容器——Presets Pop-up 與其上 Edit Presets 按鈕開啟的 Edit Presets Pop-up（APP12）。加上 ch17 的 Mixed Presets Bank 與 ch16 的 Browse Presets List，同一批 preset 共有四個容器，故每一行 ER 指名觀察所在的容器，且只引用該容器自己的字串。 關閉後的 ER 以「Presets Pop-up 的 Edit Presets 按鈕重新可見」判定，而非只說「彈窗關閉了」——兩個彈窗外觀相近，需以容器專屬元素證明回到的是哪一個。優先級：兩個元素存在訂 P2；兩個關閉行為是離開編輯模式的唯一途徑訂 P1。",
+  "keywords": [
+    "Preset Management",
+    "APP13",
+    "Done",
+    "close",
+    "Edit Presets Pop-up",
+    "A-023"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "078-01／02 驗兩個元素存在，078-03／04 分別以 Done 與 X 兩個等價輸入驗關閉並返回"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-078-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display a 'Done' button in the Edit Presets Pop-up.\n\n(Done button present in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the controls displayed in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. A \"Done\" button is displayed in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.8",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-078-02",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display an 'X' close button in the Edit Presets Pop-up.\n\n(X button present in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the controls displayed in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. An \"X\" close button is displayed in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.8",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-078-03",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall close the Edit Presets Pop-up and return to the Presets Pop-up when the 'Done' button is pressed.\n\n(Closing with \"Done\")",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Press the \"Done\" button in the Edit Presets Pop-up and read the content displayed over the Media screen",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The Edit Presets Pop-up is no longer displayed and the Presets Pop-up is displayed with its \"Edit Presets\" button visible",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.8",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-078-04",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall close the Edit Presets Pop-up and return to the Presets Pop-up when the 'X' button is pressed.\n\n(Closing with \"X\")",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Press the \"X\" button in the Edit Presets Pop-up and read the content displayed over the Media screen",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The Edit Presets Pop-up is no longer displayed and the Presets Pop-up is displayed with its \"Edit Presets\" button visible",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.8",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ],
+  "assumption": [
+    {
+      "note": "APP13 literally says the Done button and X live on the Presets Pop Up and return to the Presets Pop Up screen, which is circular. Generation follows 037's four leaves and the page-30 screenshots, which both place Done/X on the Edit Presets Pop Up. If RD-1 rules the prose is correct as written, all four TCs must be rewritten",
+      "anomaly": "A-023",
+      "req_ids": [
+        "SWE1-MEDIA-RAD-078-01",
+        "SWE1-MEDIA-RAD-078-02",
+        "SWE1-MEDIA-RAD-078-03",
+        "SWE1-MEDIA-RAD-078-04"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-073",
+  "reasoning": "18.3（APP3）規定 Presets Shown 指示器在此容器的行為與 PRE2.3 相同。PRE2.3 系列中可被本條繼承且可觀察的核心行為是「以整個 bank 為級距增減」（PRE2.3.2，見 RAD-057），故本筆在 Presets Pop-up 內以相同方式驗證級距，證明行為確實被繼承。PRE2.3 的其他子條各有專屬 leaf（預設值 RAD-056、隱藏還原 RAD-058、SiriusXM 範圍 RAD-059、文字 RAD-060／RAD-074），本筆不重複驗證，僅驗級距這一項作為 behaves the same 的可判定代表。容器錨定：ch18 內有兩個彈窗容器——Presets Pop-up 與其上 Edit Presets 按鈕開啟的 Edit Presets Pop-up（APP12）。加上 ch17 的 Mixed Presets Bank 與 ch16 的 Browse Presets List，同一批 preset 共有四個容器，故每一行 ER 指名觀察所在的容器，且只引用該容器自己的字串。 本筆全程在 Presets Pop-up 內操作與觀察，與 RAD-057 在 Browse Presets List 內的同一行為構成跨容器對照。優先級：級距錯誤會讓數量跳動不符預期，訂 P1。",
+  "keywords": [
+    "Preset Management",
+    "APP3",
+    "Presets Shown",
+    "PRE2.3",
+    "full bank"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-073-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall apply the same behavior of the 'Presets Shown' indicator as defined in PRE2.3 within the All Presets Pop-up.\n\n(Full-bank step size inside the Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The Presets Shown indicator is set to a bank count that can still be increased and decreased",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Count the preset slots displayed in the Presets Pop-up and record the number of presets in one bank for the vehicle radio size as defined in Table PRE1.1\n5. Press the increase control of the Presets Shown indicator once and count the preset slots displayed in the Presets Pop-up\n6. Press the decrease control of the Presets Shown indicator once and count the preset slots displayed in the Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The number of preset slots displayed in the Presets Pop-up and the number of presets per bank are recorded\n5. The number of preset slots displayed in the Presets Pop-up has increased by exactly the number of presets in one bank recorded in step 4\n6. The number of preset slots displayed in the Presets Pop-up is the number recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.3.2\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

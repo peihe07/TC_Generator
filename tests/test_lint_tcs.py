@@ -275,6 +275,19 @@ def test_baseline_in_the_final_comparison_step_is_allowed():
     assert "er-baseline" not in rules(findings)
 
 
+def test_rd_bracket_labels_in_the_quoted_half_of_test_item_are_allowed():
+    """APP16's RD text literally says "delete [X] button"; the quotation is not ours to reword."""
+    findings = lint(
+        test_item="The system shall display a delete [X] button for each saved preset.\n\n(tag)"
+    )
+    assert "label-format" not in rules(findings)
+
+
+def test_bracket_labels_in_the_authored_tag_of_test_item_are_still_flagged():
+    findings = lint(test_item="The system shall do something.\n\n(Radio size: [8.4 inch])")
+    assert "label-format" in rules(findings)
+
+
 def test_rd_single_quotes_in_test_item_are_allowed():
     """test_item quotes the RD sentence verbatim; RD source text uses '...' for strings."""
     findings = lint(
@@ -377,6 +390,40 @@ def test_assumption_marker_is_reported_not_failed(tmp_path):
     assert report.passed is True
     assert report.assumptions == [
         ("assumed.json", "A-011: BT1.1.2 wins over BT1.1.1 by specific-over-general")]
+
+
+def test_multiple_assumption_markers_are_reported_with_their_own_scopes(tmp_path):
+    """A ruling usually invalidates specific TCs, so req_ids are scoped per marker."""
+    f = tmp_path / "two.json"
+    f.write_text(json.dumps({
+        "assumption": [
+            {"note": "container naming", "anomaly": "A-021",
+             "req_ids": ["SWE1-MEDIA-RAD-070-01", "SWE1-MEDIA-RAD-070-02"]},
+            {"note": "indicator location", "anomaly": "A-021b",
+             "req_ids": ["SWE1-MEDIA-RAD-070-03"]},
+        ],
+        "tcs": [VALID_TC],
+    }), encoding="utf-8")
+    report = lint_tcs.lint_paths([f], TEST_SETS)
+    assert report.passed is True
+    assert report.assumptions == [
+        ("two.json", "A-021: container naming [SWE1-MEDIA-RAD-070-01, SWE1-MEDIA-RAD-070-02]"),
+        ("two.json", "A-021b: indicator location [SWE1-MEDIA-RAD-070-03]"),
+    ]
+
+
+def test_one_malformed_marker_in_a_list_fails_the_whole_declaration(tmp_path):
+    f = tmp_path / "mixed.json"
+    f.write_text(json.dumps({
+        "assumption": [
+            {"note": "fine", "anomaly": "A-021"},
+            {"note": "no anomaly id"},
+        ],
+        "tcs": [VALID_TC],
+    }), encoding="utf-8")
+    report = lint_tcs.lint_paths([f], TEST_SETS)
+    assert "assumption-marker" in rules(report.findings)
+    assert report.assumptions == []
 
 
 @pytest.mark.parametrize("assumption", [

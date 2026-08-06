@@ -1,0 +1,35 @@
+{
+  "parent": "SWE1-MEDIA-RAD-083",
+  "reasoning": "18.13（APP18）與 18.6（APP11）等價（A-022）：同一容器、同一手勢、同一驗證標的，APP11 多寫了 to an empty slot，APP18 省略。依 §10.6 屬嚴格等價，以 duplicate_of 指回 SWE1-MEDIA-RAD-076-01。037 兩邊都配了 leaf，兩列 workbook row 皆保留以維持追溯性；write_back 指示要求 AH Remarks 標明重複關係與同步義務，避免 double-maintenance。",
+  "keywords": [
+    "Preset Management",
+    "APP18",
+    "APP11",
+    "duplicate",
+    "plus sign",
+    "A-022"
+  ],
+  "duplicate_of": "SWE1-MEDIA-RAD-076-01",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "與 SWE1-MEDIA-RAD-076-01 嚴格等價"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-083-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall create a new preset in an empty slot when the '+' button is short pressed in the Presets Pop-up.\n\n(Short press on an empty slot in the Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one preset slot is unset\n4. The currently tuned station is not stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Record the frequency of the currently tuned station shown on the Playing Tab\n5. Press the preset slot displaying a plus sign \"+\" in the Presets Pop-up and read the content displayed in that slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The frequency of the currently tuned station is recorded\n5. The preset slot in the Presets Pop-up displays the station recorded in step 4 and no longer displays a plus sign",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.13\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.6",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ],
+  "write_back": {
+    "remarks": "duplicate of SWE1-MEDIA-RAD-076-01 per ANOMALIES A-022 (APP11 and APP18 state the same requirement). Content must be kept in sync with SWE1-MEDIA-RAD-076-01."
+  }
+}

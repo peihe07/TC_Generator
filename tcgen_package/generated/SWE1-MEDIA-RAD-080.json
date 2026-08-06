@@ -1,0 +1,98 @@
+{
+  "parent": "SWE1-MEDIA-RAD-080",
+  "reasoning": "18.10（APP15）規定 Edit Presets Pop-up 的提示文字、拖放重排、拖曳時的殘影、拖到既有 preset 上互換位置、拖到空位則移動、以及移動後原位置顯示加號。037 拆成六個 leaf。080-04（互換）與 080-05（移動到空位）是不同的放置目標，spec 明確分列兩種結果，依 §8.3 各自成一筆；080-06 是 080-05 的後續結果但屬獨立 sub-id，依 §8.2.2 不得合併，故以驗證標的區分——080-05 看被移動的 preset 到了哪裡，080-06 看它原本的位置變成什麼。spec 舉的例子（Lithium 與 FM 88.7 互換）是說明用途，步驟不照抄其電台名，改以「記錄兩槽內容再比對」的方式表述，使 TC 不依賴特定測試素材。080-03 的殘影只在拖曳過程中存在，故步驟明確要求在放開前讀取。容器錨定：本 parent 全程在 Edit Presets Pop-up 內操作與觀察，ER 逐行指名該容器，與 Presets Pop-up、ch17 的 Mixed Presets Bank、ch16 的 Browse Presets List 區隔。優先級：重排與其結果是編輯模式的主要操作訂 P1；提示文字與殘影屬顯示細節訂 P2。",
+  "keywords": [
+    "Preset Management",
+    "APP15",
+    "drag and drop",
+    "rearrange",
+    "ghost image",
+    "swap",
+    "Edit Presets Pop-up"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "六筆分別驗提示文字、拖放支援、拖曳殘影、互換、移到空位、原位置變加號"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-080-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display the text 'Press and Hold to Rearrange' in the Edit Presets Pop-up.\n\n(Instruction text in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the text displayed in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The text \"Press and Hold to Rearrange\" is displayed in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-080-02",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall support drag-and-drop interaction for rearranging presets in the Edit Presets Pop-up.\n\n(Rearranging by drag and drop in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least two preset slots hold distinguishable stored stations and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Record the stations shown in the first and second preset slots in the Edit Presets Pop-up\n6. Press and hold the first preset slot, drag it onto the second preset slot and release it, then read the stations shown in those two slots",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The stations in the first and second preset slots are recorded\n6. The two preset slots in the Edit Presets Pop-up show the stations recorded in step 5 in exchanged positions",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-080-03",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display a ghost image of the preset during drag-and-drop movement.\n\n(Ghost image while dragging, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least two preset slots hold distinguishable stored stations and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Press and hold the first preset slot in the Edit Presets Pop-up until it can be dragged\n6. Drag it part way towards another preset slot and, without releasing it, read the content displayed at the pointer position",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The first preset slot can be dragged\n6. A ghost image of the dragged preset is displayed following the pointer position in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-080-04",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall swap positions when a dragged preset is dropped onto another preset.\n\n(Dropped onto another preset, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least two preset slots hold distinguishable stored stations and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Record the stations shown in two preset slots that both hold stored stations in the Edit Presets Pop-up\n6. Press and hold the first of those slots, drag it onto the second one and release it, then read the stations shown in those two slots",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The stations in the two preset slots are recorded\n6. Each of the two preset slots in the Edit Presets Pop-up now shows the station previously held by the other, and no preset slot has become empty",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-080-05",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall move a preset to an empty slot when dropped into an empty position.\n\n(Dropped onto an empty slot, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least two preset slots hold distinguishable stored stations and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Record the station shown in a stored preset slot and the position of an unset preset slot in the Edit Presets Pop-up\n6. Press and hold the stored preset slot, drag it onto the unset slot and release it, then read the content displayed in the unset slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The station and the position of the unset slot are recorded\n6. The previously unset preset slot in the Edit Presets Pop-up displays the station recorded in step 5",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-080-06",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display a '+' placeholder in the previous position when a preset is moved to an empty slot.\n\n(Source slot after moving to an empty slot, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least two preset slots hold distinguishable stored stations and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Record the position of a stored preset slot and the position of an unset preset slot in the Edit Presets Pop-up\n6. Press and hold the stored preset slot, drag it onto the unset slot and release it, then read the content displayed in the position recorded for the stored slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The positions of the stored and unset preset slots are recorded\n6. The position previously holding the stored preset displays a greyed plus sign \"+\" in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

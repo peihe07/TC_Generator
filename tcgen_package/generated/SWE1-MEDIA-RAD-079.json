@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-079",
+  "reasoning": "18.9（APP14）規定 Edit Presets 畫面不能新增 preset，故所有加號都變灰。ER 需同時陳述加號變灰與按下無效果，否則無法排除「只是顏色不同但仍可新增」的失效；按下的步驟用 Attempt to press 並以純結果式 ER 表述（該槽仍為空、未存入電台），不描述拒絕的呈現方式——spec 未規定按下變灰加號會有什麼回饋（APP16 的拒絕音屬 catalog 情境，不適用於此）。容器錨定：本 parent 全程在 Edit Presets Pop-up 內操作與觀察，ER 逐行指名該容器，與 Presets Pop-up、ch17 的 Mixed Presets Bank、ch16 的 Browse Presets List 區隔。 與 Presets Pop-up 的加號行為（APP11／RAD-076，可短按新增）恰好相反，是兩個容器最容易被複製貼上寫錯的一對，ER 因此明確指名 Edit Presets Pop-up。優先級：屬編輯模式下的控制項狀態，訂 P2。",
+  "keywords": [
+    "Preset Management",
+    "APP14",
+    "plus sign",
+    "greyed out",
+    "Edit Presets Pop-up"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-079-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall disable the '+' button in the Edit Presets Pop-up.\n\n(Plus sign disabled in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the state of the preset slot displaying a plus sign \"+\" in the Edit Presets Pop-up\n6. Attempt to press that plus sign and read the content displayed in that slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The plus sign in the Edit Presets Pop-up is displayed greyed out\n6. That preset slot in the Edit Presets Pop-up still displays a plus sign and no station has been stored in it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.9",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

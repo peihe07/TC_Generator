@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-077",
+  "reasoning": "18.7（APP12）規定 Presets Pop-up 上有一個 Edit Presets 按鈕，按下開啟 Edit Presets Pop-up。037 拆成兩個 leaf：按鈕存在、按下開啟。兩者驗證標的不同（元素存在 vs 轉換行為），各自成一筆。容器錨定：ch18 內有兩個彈窗容器——Presets Pop-up 與其上 Edit Presets 按鈕開啟的 Edit Presets Pop-up（APP12）。加上 ch17 的 Mixed Presets Bank 與 ch16 的 Browse Presets List，同一批 preset 共有四個容器，故每一行 ER 指名觀察所在的容器，且只引用該容器自己的字串。 本 parent 是兩個彈窗容器之間的橋樑：077-01 觀察於 Presets Pop-up，077-02 的最終 ER 觀察於 Edit Presets Pop-up，後者的 ER 以該容器自己的字串 \"Press and Hold to Rearrange\"（APP15）判定，而非只說「另一個彈窗出現了」——在兩個外觀相近的彈窗之間，用容器專屬字串判定才排除得掉「其實沒切換」的失效。優先級：077-01 屬元素存在訂 P2；077-02 是進入編輯模式的唯一入口訂 P1。",
+  "keywords": [
+    "Preset Management",
+    "APP12",
+    "Edit Presets",
+    "Presets Pop-up",
+    "Edit Presets Pop-up"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "077-01 驗按鈕存在於 Presets Pop-up，077-02 驗按下後開啟 Edit Presets Pop-up"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-077-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display an 'Edit Presets' button in the Presets Pop-up.\n\n(Button present in the Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Read the controls displayed in the Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. An \"Edit Presets\" button is displayed in the Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.7",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-077-02",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display the Edit Presets Pop-up when the 'Edit Presets' button is pressed.\n\n(Transition from the Presets Pop-up to the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the text displayed in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The text \"Press and Hold to Rearrange\" is displayed in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.7\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

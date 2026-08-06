@@ -1,0 +1,35 @@
+{
+  "parent": "SWE1-MEDIA-RAD-082",
+  "reasoning": "18.12（APP17）與 18.5（APP10）在觸發（Presets Pop-up 上長按既有 preset）、輸入（目前電台）與驗證標的（該槽被覆寫）上完全等價，僅 APP10 多寫了 500ms 而 APP17 未寫（A-022）。依 §10.6 屬嚴格等價，故本 parent 以 duplicate_of 指回 SWE1-MEDIA-RAD-075-01，不再生一份實質相同的內容。037 兩邊都配了 leaf，追溯性要求兩列 workbook row 都存在，故本筆仍產出 TC；為避免 §8.2.1 警告的 double-maintenance，write_back 指示要求 AH Remarks 標明重複關係與同步義務，讓日後修改 RAD-075 的人在 workbook 內就看得到牽連，不必翻 repo。500ms 依 APP10 補上——兩條既然等價，取較具體的一條的參數是 §8.1 的一貫作法。",
+  "keywords": [
+    "Preset Management",
+    "APP17",
+    "APP10",
+    "duplicate",
+    "long press",
+    "A-022"
+  ],
+  "duplicate_of": "SWE1-MEDIA-RAD-075-01",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "與 SWE1-MEDIA-RAD-075-01 嚴格等價"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-082-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall overwrite the selected preset with the current station when a long press is performed in the Presets Pop-up.\n\n(Long press of 500 ms on a stored slot in the Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The currently tuned station differs from the station stored in that preset slot",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Record the station shown in a stored preset slot in the Presets Pop-up and the frequency of the currently tuned station\n5. Press and hold that preset slot for 500 ms and read the content displayed in that slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The stored preset station and the currently tuned station are recorded and they differ\n5. The preset slot in the Presets Pop-up displays the currently tuned station recorded in step 4 and no longer displays the previously stored station",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.12\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ],
+  "write_back": {
+    "remarks": "duplicate of SWE1-MEDIA-RAD-075-01 per ANOMALIES A-022 (APP10 and APP17 state the same requirement). Content must be kept in sync with SWE1-MEDIA-RAD-075-01."
+  }
+}

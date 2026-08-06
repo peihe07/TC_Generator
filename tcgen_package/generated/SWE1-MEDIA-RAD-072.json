@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-072",
+  "reasoning": "18.2.1（APP2.1）規定用 Presets Shown 指示器加出一列 preset 而導致需要新的一頁時，Presets Pop-up 會轉到那一頁顯示新加入的列。037 拆成兩個 leaf：072-01 驗新頁產生、072-02 驗檢視自動轉到該頁。兩者驗證標的不同（分頁存在 vs 檢視位置），各自成一筆。觸發條件是「加出的列剛好超出目前頁的容量」，故前置條件把指示器設在 3 的倍數（APP1 規定每頁最多 3 個 bank），使再加一列必然產生新頁——否則測到的是同頁內增列而非本條。容器錨定：ch18 內有兩個彈窗容器——Presets Pop-up 與其上 Edit Presets 按鈕開啟的 Edit Presets Pop-up（APP12）。加上 ch17 的 Mixed Presets Bank 與 ch16 的 Browse Presets List，同一批 preset 共有四個容器，故每一行 ER 指名觀察所在的容器，且只引用該容器自己的字串。優先級：分頁與自動轉頁都是使用者能否看到新列的關鍵，兩筆皆 P1。",
+  "keywords": [
+    "Preset Management",
+    "APP2.1",
+    "new page",
+    "Presets Shown",
+    "pagination"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "072-01 驗新的一頁是否產生，072-02 驗檢視是否轉到該頁，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-072-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display a new page in the All Presets Pop-up when increasing preset banks results in additional pages.\n\n(Bank count raised past a full page, in the Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The Presets Shown indicator is set to exactly 3 preset banks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Read the page indication displayed in the Presets Pop-up\n5. Press the increase control of the Presets Shown indicator once and read the page indication displayed in the Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Presets Pop-up indicates a single page of presets\n5. The Presets Pop-up indicates more than one page of presets",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.2.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-072-02",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall transition the All Presets Pop-up view to the page containing the newly added preset bank.\n\n(View follows the newly added bank, in the Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The Presets Shown indicator is set to exactly 3 preset banks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Record the preset banks displayed on the current page of the Presets Pop-up\n5. Press the increase control of the Presets Shown indicator once and read the preset banks displayed in the Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The preset banks of the first page are recorded\n5. The Presets Pop-up displays the page containing the newly added preset bank, and that bank is not among those recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.2.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -229,6 +229,12 @@ def _check_ui_label_quoting(tc: dict, add) -> None:
         raw = tc.get(key)
         if not isinstance(raw, str):
             continue
+        if key == "test_item":
+            # test_item is "<RD sentence verbatim>\n\n(<scenario tag>)". Only the
+            # tag is ours to word; the RD half is a quotation and may legitimately
+            # contain the source's own bracket labels (e.g. APP16's "delete [X]
+            # button"). Check what we author, not what we quote.
+            raw = raw.split("\n\n", 1)[1] if "\n\n" in raw else raw
         text = _DOUBLE_QUOTED_RE.sub(" ", raw)
         if _SQUARE_RE.search(text):
             add("label-format", f"`{key}` uses [...] bracket labels; use \"...\"")
@@ -370,25 +376,39 @@ def blocked_reason(payload) -> str:
     return f"{anomaly}: {reason}"
 
 
-def assumption_note(payload) -> str:
-    """A parent may be generated on a declared reading of an unresolved conflict.
+def assumption_notes(payload) -> list[str]:
+    """Declared readings of unresolved conflicts this parent is generated on.
 
-    Such a file declares `"assumption": {"note": ..., "anomaly": ...}`. Both
-    fields are required — same contract as `blocked` — so every bet placed on a
-    pending RD-1 ruling is machine-retrievable when the ruling arrives, instead
-    of living in someone's memory. A malformed marker is reported as a finding
-    rather than silently ignored.
+    A file declares `"assumption": {...}` or, when one parent bets on more than
+    one open question, `"assumption": [{...}, {...}]`. Each marker needs a
+    `note` and an `anomaly` id — same contract as `blocked` — so every bet on a
+    pending RD-1 ruling is machine-retrievable when the ruling arrives.
+
+    Each marker also carries `req_ids`, and they are deliberately scoped per
+    marker rather than per parent: a ruling usually invalidates *specific* TCs,
+    not everything the parent produced, and a whole-parent marker would make the
+    rework list far larger than reality.
+
+    Returns [] if any marker is malformed, so the caller can report it.
     """
     if not isinstance(payload, dict) or "assumption" not in payload:
-        return ""
-    a = payload.get("assumption")
-    if not isinstance(a, dict):
-        return ""
-    note = str(a.get("note") or "").strip()
-    anomaly = str(a.get("anomaly") or "").strip()
-    if not note or not anomaly:
-        return ""
-    return f"{anomaly}: {note}"
+        return []
+    raw = payload.get("assumption")
+    markers = raw if isinstance(raw, list) else [raw]
+    if not markers:
+        return []
+    out = []
+    for a in markers:
+        if not isinstance(a, dict):
+            return []
+        note = str(a.get("note") or "").strip()
+        anomaly = str(a.get("anomaly") or "").strip()
+        if not note or not anomaly:
+            return []
+        ids = a.get("req_ids") or []
+        scope = f" [{', '.join(ids)}]" if isinstance(ids, list) and ids else ""
+        out.append(f"{anomaly}: {note}{scope}")
+    return out
 
 
 def lint_paths(paths: list[Path], test_sets: set[str]) -> LintReport:
@@ -396,13 +416,14 @@ def lint_paths(paths: list[Path], test_sets: set[str]) -> LintReport:
     for path in paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
         if isinstance(payload, dict) and "assumption" in payload:
-            note = assumption_note(payload)
-            if note:
-                report.assumptions.append((path.name, note))
+            notes = assumption_notes(payload)
+            if notes:
+                report.assumptions.extend((path.name, n) for n in notes)
             else:
                 report.findings.append(Finding(
                     req_id="<file>", rule="assumption-marker",
-                    message="`assumption` needs both `note` and `anomaly`", source=path.name))
+                    message="every `assumption` marker needs both `note` and `anomaly`",
+                    source=path.name))
         tcs = extract_tcs(payload)
         if not tcs:
             reason = blocked_reason(payload)

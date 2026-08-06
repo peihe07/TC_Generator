@@ -1,0 +1,72 @@
+{
+  "parent": "SWE1-MEDIA-RAD-081",
+  "reasoning": "18.11（APP16）規定 Edit Presets Pop-up 上每個已儲存的 preset 帶一個 X 刪除鍵，按下刪除該 preset 並顯示變灰的加號，且未儲存的 preset 不顯示刪除鍵。037 拆成四個 leaf。081-01／02 是「已儲存 vs 未儲存」的等價配對（§7），兩者的差異正是本容器與 ch16 Browse Presets List 的關鍵分歧：後者依 PRE1.2.1 對未儲存項目是把刪除鍵「變灰」（RAD-045），本容器則是「不顯示」。兩種行為互斥，跨容器套用即為錯誤，故 081-02 的 ER 明確要求「未顯示」並排除「顯示為變灰」這個相鄰容器的行為。081-04 的加號是變灰的加號，與 APP14（RAD-079）所述編輯模式下加號一律變灰一致，ER 據此表述。容器錨定：本 parent 全程在 Edit Presets Pop-up 內操作與觀察，ER 逐行指名該容器，與 Presets Pop-up、ch17 的 Mixed Presets Bank、ch16 的 Browse Presets List 區隔。優先級：刪除操作與其結果訂 P1；兩個元素存在與否的顯示規則訂 P2。",
+  "keywords": [
+    "Preset Management",
+    "APP16",
+    "delete",
+    "X button",
+    "greyed plus",
+    "Edit Presets Pop-up",
+    "PRE1.2.1"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "081-01／02 為已儲存與未儲存兩個等價類，081-03 驗刪除生效，081-04 驗刪除後的呈現"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-081-01",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display a delete [X] button for each saved preset in the Edit Presets Pop-up.\n\n(Saved preset shows a delete button, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the controls displayed on every preset slot holding a stored station in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. Every preset slot holding a stored station in the Edit Presets Pop-up displays an \"X\" delete button",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.11",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-081-02",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall not display the delete [X] button for unsaved preset slots in the Edit Presets Pop-up.\n\n(Unsaved slot shows no delete button, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the controls displayed on the unset preset slot in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The unset preset slot in the Edit Presets Pop-up displays no \"X\" delete button at all, neither enabled nor greyed out",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.11",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-081-03",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall delete the selected preset when the delete [X] button is pressed.\n\n(Delete button pressed, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Record the station shown in a stored preset slot in the Edit Presets Pop-up\n6. Press the \"X\" delete button on that preset slot and read the preset slots displayed in the Edit Presets Pop-up",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The station in that preset slot is recorded\n6. The station recorded in step 5 is no longer stored in any preset slot in the Edit Presets Pop-up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.11",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-081-04",
+      "test_group": "MediaHMI",
+      "test_set": "Preset Management",
+      "test_item": "The system shall display a greyed '+' placeholder after a preset is deleted.\n\n(Slot rendering after deletion, in the Edit Presets Pop-up)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \"All Presets\" button on the Playing Tab\n4. Press the \"Edit Presets\" button in the Presets Pop-up\n5. Read the content displayed in a stored preset slot in the Edit Presets Pop-up\n6. Press the \"X\" delete button on that preset slot and read the content displayed in that slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Presets Pop-up is displayed over the Media screen\n4. The Edit Presets Pop-up is displayed over the Media screen\n5. The preset slot displays its stored station and does not display a plus sign\n6. The preset slot in the Edit Presets Pop-up displays a greyed plus sign \"+\" and no longer displays a station",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.11\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_18.9",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -52,6 +52,28 @@ Worked examples of each:
   label requirements as a layout requirement, so they generate nothing and go
   to the tracker instead.
 
+## Blocked-parent rule — delegation proportion
+
+A missing referenced artefact (an absent Pop Up List id, a missing table) does
+**not** by itself block a parent. What matters is how much of the leaf's
+content was delegated to the missing thing:
+
+- **Fully delegated → BLOCKED.** The clause *is* the reference and carries no
+  content of its own. `SWE1-MEDIA-COM-051` (13.2): the entire requirement reads
+  *"SMP1) See Pop Up List: PU0996"*, and PU0996 does not exist. Writing a TC
+  would mean inventing the popup wholesale (§8.4), so the parent emits no TC,
+  carries a `blocked` marker, and still gets a workbook row whose Remarks make
+  the hole visible.
+- **Self-contained, reference is supplementary → generate.** The clause states
+  its own testable content and the reference only adds detail no leaf asks for.
+  `SWE1-MEDIA-RAD-070` (18.1): APP1 names every element the five leaves verify
+  (3 banks per page, indicator, metadata, X) and merely cites PU0997 for
+  popup-spec detail. The parent generates normally; the reasoning states what
+  the missing reference does and does not affect.
+
+Test: *"does the missing artefact carry content that a leaf asks us to
+verify?"* Yes → BLOCKED. No → generate, and bound the impact in reasoning.
+
 ## Layer 1 — Test Group
 
 - `Media` (workbook Test Group column value: `MediaHMI`)
