@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-059",
+  "reasoning": "16.2.3.4（PRE2.3.4）規定 Presets Shown 指示器只適用於 SiriusXM 的 Presets 清單，不適用於其他 SiriusXM Browse 分類。這是範圍限制條文，驗證必須成對：在 SiriusXM 的 Presets 分類中指示器出現、在 SiriusXM 的其他分類中不出現——只驗其一無法證明「只適用於」。兩者為同一條文的兩面，依 §5.7 以同一筆 TC 的多行 ER 涵蓋。容器錨定：Presets Shown 指示器同時出現在 Browse Presets List 與 ch18 的 Presets Pop up／Edit Presets Pop Up。PRE2.3.x 的條文位於 ch16，故本批一律在 Browse Presets List 操作與觀察，ER 逐行指名該容器；彈窗內的對應行為屬 APP3（ch18），不在此產生。 本筆的容器為 SiriusXM 來源下的 Browse 分類清單。spec 未列舉 SiriusXM 的完整分類清單（Table BT3.1 未含 SiriusXM 列），故步驟以「Presets 以外的任一分類」表述，不指名特定分類。優先級：屬設定的適用範圍，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.3.4",
+    "SiriusXM",
+    "Presets Shown",
+    "scope"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-059-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall apply the Presets Shown indicator only to the SiriusXM 'Presets' list category.\n\n(SiriusXM Presets category versus another SiriusXM category)",
+      "pre_conditions": "1. The vehicle is equipped with SiriusXM and SiriusXM is the active source on the HU\n2. At least one SiriusXM channel is stored as a preset\n3. The SiriusXM Categories Bank contains at least one category other than Presets",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank and read the controls displayed with the list\n4. Press a category other than Presets in the Categories Bank and read the controls displayed with the list",
+      "expected_result": "1. The Media screen is displayed and SiriusXM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed and a Presets Shown indicator is displayed with it\n4. The list of that category is displayed and no Presets Shown indicator is displayed with it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.3.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

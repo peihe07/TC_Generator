@@ -1,0 +1,45 @@
+{
+  "parent": "SWE1-MEDIA-RAD-046",
+  "reasoning": "16.1.3（PRE1.3）規定兩種儲存方式：按加號存入空槽，或長按既有 preset 500ms 覆寫。037 拆成兩個 leaf，兩者觸發手勢與目標槽狀態皆不同，各自成一筆。500ms 為 spec 明載值，寫入步驟；覆寫筆的 ER 需同時陳述新電台已存入與舊電台已不在該槽，否則無法排除「新增到別的槽」而非覆寫。容器錨定：ch16 橫跨兩個容器——Playing Tab 上的 Mixed Presets Bank（PRE1.x）與 Browse Tab 內的 Browse Presets List（PRE2.x）。兩者的 preset 外觀相近、步驟前綴卻不同，故每一行 ER 都指名觀察所在的容器，tc_title 的 tag 亦帶容器名，避免 reviewer 與測試者誤判。 兩筆皆觀察於 Playing Tab 的 Mixed Presets Bank。儲存成功的確認音與按鈕更新屬 PRE1.3.1，由 RAD-047 涵蓋，本 parent 不重複驗證。優先級：儲存 preset 是此功能的主要操作，兩筆皆 P1。",
+  "keywords": [
+    "Presets",
+    "PRE1.3",
+    "store preset",
+    "plus sign",
+    "long press",
+    "overwrite"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "046-01 為按加號存入空槽，046-02 為長按 500ms 覆寫既有 preset"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-046-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall store the current station as a new preset when the '+' preset button is pressed.\n\n(Short press on an unset slot in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot is unset\n3. The currently tuned station is not stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the frequency of the currently tuned station shown on the Playing Tab\n4. Press the preset slot displaying a plus sign \"+\" in the Mixed Presets Bank and read the content displayed in that slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The frequency of the currently tuned station is recorded\n4. The preset slot displays the station recorded in step 3 and no longer displays a plus sign",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-046-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall overwrite the existing preset with the current station when a preset button is long pressed.\n\n(Long press of 500 ms on a stored slot in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The currently tuned station differs from the station stored in that preset slot",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the station shown in the preset slot in the Mixed Presets Bank and the frequency of the currently tuned station\n4. Press and hold that preset slot for 500 ms and read the content displayed in that slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The station in the preset slot and the currently tuned station are recorded and they differ\n4. The preset slot displays the currently tuned station recorded in step 3 and no longer displays the previously stored station",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

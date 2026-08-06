@@ -400,3 +400,64 @@ mapping. Recorded only so a reviewer comparing TCs against the 2023 PDF does
 not read the mismatch as an error. Same class as A-002.
 
 **Open:** none. Informational.
+
+---
+
+## A-015 — PU0997 is also absent; two consecutive missing PU ids
+
+**Found:** 2026-08-07, reading page 30 while surveying RAD ch16.
+
+`APP1` (ch18, All Presets Pop up) cites *"(See Pop up List: PU0997)"*. PU0997
+is not in `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` either — same
+search as A-009 (all 3 sheets, 1340 PU ids; the PU099x range holds only
+PU0998).
+
+**This materially changes the reading of A-009.** Two *consecutive* ids —
+PU0996 (SMP1, ch13) and PU0997 (APP1, ch18) — are both missing from the same
+revision, while PU0998 in the same range is present. Two independent typos
+landing on adjacent ids is far less likely than one revision gap: the evidence
+now favours A-009's RD-1 direction 2 (the Pop Up List revision post-dates
+Dec 15 2023 and PU0996/PU0997 were added in it).
+
+**Action:** ask the RD-1 question once for both ids. If a newer Pop Up List is
+obtained, `SWE1-MEDIA-COM-051` unblocks and the ch18 APP1 leaf can be written
+without a blocked marker.
+
+---
+
+## A-016 — `Table PRE1.2` does not exist
+
+**Found:** 2026-08-07, generating RAD ch16.
+
+`16.2.3.1 (PRE2.3.1)` — *"The default will be 3 banks of presets from a maximum
+of 6 preset banks. **(See Table PRE1.2)**"*.
+
+There is no Table PRE1.2. `PRE1.2` is a clause ("If a preset has not been set
+it will display a plus sign"), and the only table in the Mixed Presets section
+is `PRE1.1) Presets per Bank by Radio Size`. Neither PRE1.1 nor any table on
+pages 28 or 30 states a bank count of 3 or a maximum of 6.
+
+The values 3 and 6 appear only in the PRE2.3.1 sentence itself, so the
+generated TC takes them from the prose and cites 16.2.3.1 alone.
+
+**Open:** RD-1 — is the reference meant to be Table PRE1.1, or is a bank-count
+table missing from the deck?
+
+---
+
+## A-017 — APP clause numbering jumps from APP4 to APP10
+
+**Found:** 2026-08-07, reading page 30 (ch18 All Presets Pop up).
+
+The clause list runs APP1, APP2, APP2.1, APP3, APP3.1, APP4, APP4.1, then
+**APP10** through APP18. APP5–APP9 are absent from both the page image and the
+SYS1 export.
+
+Same class as A-013 (BT4.1.1 skipping item 2). 037 allocates leaves only to the
+clauses that exist, so nothing is silently dropped from generation — but if
+APP5–APP9 were real clauses, the ch18 Preset Management set has a coverage hole
+that no leaf reveals.
+
+**Open:** RD-1 — were APP5–APP9 removed, or are they missing from this deck
+revision? Ask together with A-015, since both point at the same revision
+question.

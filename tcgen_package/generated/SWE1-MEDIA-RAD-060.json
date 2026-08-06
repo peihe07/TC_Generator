@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-060",
+  "reasoning": "16.2.3.5（PRE2.3.5）規定 Presets 清單中該處顯示的文字為 \"Number of Presets Shown\"。字串為 spec 明載，逐字引用不改寫。容器錨定：Presets Shown 指示器同時出現在 Browse Presets List 與 ch18 的 Presets Pop up／Edit Presets Pop Up。PRE2.3.x 的條文位於 ch16，故本批一律在 Browse Presets List 操作與觀察，ER 逐行指名該容器；彈窗內的對應行為屬 APP3（ch18），不在此產生。 本筆觀察於 Browse Presets List。註：ch18 的 APP3.1 規定 Presets Pop up 上同一指示器顯示的文字為 \"Presets Shown\"（較短），與本條的字串不同，兩者分屬不同容器不可互相套用——這是容器分界在字串層級的直接體現，ER 因此指名容器。優先級：屬標籤文字，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.3.5",
+    "Number of Presets Shown",
+    "label"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-060-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the text 'Number of Presets Shown' in the Presets list.\n\n(Indicator label in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the text displayed with the Presets Shown indicator in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The text displayed with the Presets Shown indicator in the Browse Presets List is \"Number of Presets Shown\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.3.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

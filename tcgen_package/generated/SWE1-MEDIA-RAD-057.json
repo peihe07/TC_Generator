@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-MEDIA-RAD-057",
+  "reasoning": "16.2.3.2（PRE2.3.2）規定顯示的 preset 數量以整個 bank 為單位增減，並舉例每 bank 4 個 preset 時以 4 為級距。驗證方式是先數出本車 radio size 每 bank 的 preset 數（由 Table PRE1.1 決定，見 RAD-043），再比對增減前後顯示的 preset 總數差值是否等於該數——單看指示器數字變化只證明 bank 數變了，不足以證明 preset 數以整 bank 為級距。級距值不寫死：本 parent 是不指定 radio size 的通用條，以 symbolic 方式引用 Table PRE1.1 的值，與 RAD-043 指定尺寸寫死的分工一致（慣例見 COM-044／COM-047）。容器錨定：Presets Shown 指示器同時出現在 Browse Presets List 與 ch18 的 Presets Pop up／Edit Presets Pop Up。PRE2.3.x 的條文位於 ch16，故本批一律在 Browse Presets List 操作與觀察，ER 逐行指名該容器；彈窗內的對應行為屬 APP3（ch18），不在此產生。優先級：級距錯誤會讓顯示數量不符預期，訂 P1。",
+  "keywords": [
+    "Presets",
+    "PRE2.3.2",
+    "full bank",
+    "increase",
+    "decrease",
+    "PRE1.1"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-057-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall increase or decrease the number of displayed presets by one full preset bank at a time.\n\n(Step size equals one bank, in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Presets Shown indicator is set to a bank count that can still be increased and decreased",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Count the preset entries displayed in the Browse Presets List and record the number of presets in one bank for the vehicle radio size as defined in Table PRE1.1\n5. Press the increase control of the Presets Shown indicator once and count the preset entries displayed in the Browse Presets List\n6. Press the decrease control of the Presets Shown indicator once and count the preset entries displayed in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The number of preset entries displayed and the number of presets per bank are recorded\n5. The number of preset entries displayed has increased by exactly the number of presets in one bank recorded in step 4\n6. The number of preset entries displayed is the number recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.3.2\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-056",
+  "reasoning": "16.2.3.1（PRE2.3.1）規定預設顯示 3 個 preset bank，最多 6 個。「預設」必須以回復原廠設定建立，否則測到的是使用者上次的設定值。ER 同時判定預設為 3 個 bank 與最多可增至 6 個——只驗預設值無法涵蓋條文的後半段。註（A-016）：本條寫 (See Table PRE1.2)，但 spec 中不存在 Table PRE1.2——PRE1.2 是「未設定顯示加號」的條文，Mixed Presets 段唯一的表格是 PRE1.1（Presets per Bank by Radio Size），且該表未載明 bank 數。3 與 6 兩個數值只出現在本條文本身，故 ER 取自條文，specification_reference 亦只列 16.2.3.1，已交 RD-1。容器錨定：Presets Shown 指示器同時出現在 Browse Presets List 與 ch18 的 Presets Pop up／Edit Presets Pop Up。PRE2.3.x 的條文位於 ch16，故本批一律在 Browse Presets List 操作與觀察，ER 逐行指名該容器；彈窗內的對應行為屬 APP3（ch18），不在此產生。優先級：預設值錯誤會影響開箱體驗，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.3.1",
+    "default banks",
+    "maximum banks",
+    "A-016"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆驗預設 3 個 bank 與上限 6 個 bank 兩個邊界"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-056-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall use 3 preset banks as the default displayed preset configuration.\n\n(Default and maximum bank count in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The HU has been restored to factory settings and the Presets Shown indicator has not been changed since",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the number of preset banks indicated by the Presets Shown indicator in the Browse Presets List\n5. Press the increase control of the Presets Shown indicator repeatedly until it no longer increases and read the number of preset banks indicated",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The Presets Shown indicator indicates 3 preset banks\n5. The Presets Shown indicator indicates 6 preset banks and does not increase beyond 6",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.3.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

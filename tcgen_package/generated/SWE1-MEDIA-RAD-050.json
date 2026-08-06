@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-050",
+  "reasoning": "16.1.5（PRE1.5）規定目前播放中的電台若已存為 preset，該按鈕會被標示。驗證需涵蓋兩個時點：切到該 preset 電台時被標示、切到非 preset 電台時不再標示——只驗前者無法排除「所有 preset 都恆亮」的失效。兩者為同一觸發（目前電台變化）的必然結果，依 §5.7 以多行 ER 涵蓋。容器錨定：每一行 ER 指名觀察所在的容器（Playing Tab 的 Mixed Presets Bank 或 Browse Tab 內的 Browse Presets List），tc_title 的 tag 亦帶容器名。 觀察於 Playing Tab 的 Mixed Presets Bank。優先級：屬狀態指示的顯示規格，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE1.5",
+    "highlight",
+    "currently playing station"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-050-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall highlight the preset button corresponding to the currently playing station.\n\n(Highlight following the tuned station, on the Playing Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. At least one receivable station is not stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the preset slot holding a stored station in the Mixed Presets Bank and read the state of that slot\n4. Tune to a station that is not stored as a preset and read the state of that preset slot",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The preset slot is displayed highlighted and its station is the tuned station\n4. The preset slot is no longer displayed highlighted",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

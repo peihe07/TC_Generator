@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-051",
+  "reasoning": "16.2.1（PRE2.1）規定 Browse Presets List 顯示的 preset 與 Playing Tab 上相同。驗證標的是「兩個容器內容一致」，因此步驟必須在兩個容器各讀一次並比對——這是本 parent 唯一橫跨兩容器的 TC。容器錨定：每一行 ER 指名觀察所在的容器（Playing Tab 的 Mixed Presets Bank 或 Browse Tab 內的 Browse Presets List），tc_title 的 tag 亦帶容器名。 本筆刻意先在 Playing Tab 記錄再到 Browse Presets List 比對，ER 明確標示每一步的觀察容器。PRE2.2 另規定 Browse Presets List 每項還帶刪除鍵等額外欄位，屬 RAD-052 範圍；本條的 same as 指 preset 的內容一致而非版面完全相同，故 ER 以「同樣的 preset、同樣的順序」判定，不要求版面一致。優先級：兩容器不一致會誤導使用者，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.1",
+    "Browse Presets List",
+    "Playing Tab",
+    "consistency"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-051-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the user's presets in the Browse Presets List using the same preset information as the Playing Tab.\n\n(Playing Tab and Browse Presets List compared)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the presets displayed in the Mixed Presets Bank on the Playing Tab and their order\n4. Press \"Browse\" on the Tab Buttons, then press the \"Presets\" category in the Categories Bank\n5. Read the preset entries displayed in the Browse Presets List and their order",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The presets in the Mixed Presets Bank and their order are recorded\n4. The Browse Presets List is displayed in the Browse List\n5. The Browse Presets List shows the same presets in the same order as recorded in step 3, with the same station information",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-055",
+  "reasoning": "16.2.3（PRE2.3）規定有一個 Presets Shown 指示器，用來選擇 Playing Tab 與 Presets Pop up 上顯示的 preset 數量。本 leaf 只驗「該選擇器存在且可操作」，實際的增減粒度屬 PRE2.3.2（RAD-057）、預設值屬 PRE2.3.1（RAD-056）、顯示文字屬 PRE2.3.5（RAD-060），皆有各自的 leaf，本筆不重複驗證。ER 因此收斂為「指示器已顯示且具備增減控制項」，不判定其數值。容器錨定：Presets Shown 指示器同時出現在 Browse Presets List 與 ch18 的 Presets Pop up／Edit Presets Pop Up。PRE2.3.x 的條文位於 ch16，故本批一律在 Browse Presets List 操作與觀察，ER 逐行指名該容器；彈窗內的對應行為屬 APP3（ch18），不在此產生。優先級：屬設定入口，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.3",
+    "Presets Shown",
+    "indicator",
+    "selector"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-055-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall provide a Presets Shown indicator for selecting the number of presets displayed on the Playing Tab and Presets Pop-up.\n\n(Indicator present in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the controls displayed with the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. A Presets Shown indicator is displayed with the Browse Presets List and provides a control to increase and a control to decrease the number shown",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

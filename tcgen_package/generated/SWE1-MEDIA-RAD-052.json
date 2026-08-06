@@ -1,0 +1,86 @@
+{
+  "parent": "SWE1-MEDIA-RAD-052",
+  "reasoning": "16.2.2（PRE2.2）列舉 Browse Presets List 每個 preset 項目應顯示的五個元素：編號、頻率、電台名（if applicable）、曲風（if applicable）、刪除鍵。037 拆成五個 leaf，各自成一筆。電台名與曲風帶 if applicable 條件，屬 spec 自身的條件式，故該兩筆的 Pre-Condition 指定該資訊可取得的電台，並只對該項目判定，不對整份清單一律要求——否則會把條件式讀成無條件（處置同 RAD-040）。容器錨定：每一行 ER 指名觀察所在的容器（Playing Tab 的 Mixed Presets Bank 或 Browse Tab 內的 Browse Presets List），tc_title 的 tag 亦帶容器名。 五筆全部觀察於 Browse Presets List，ER 逐行指名該容器，避免與 Playing Tab 的 Mixed Presets Bank 混淆——後者不含刪除鍵，是兩個容器最明顯的差異。優先級：編號、頻率、刪除鍵為每個項目必備訂 P1；電台名與曲風為條件式輔助資訊訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.2",
+    "Browse Presets List",
+    "preset number",
+    "frequency",
+    "station name",
+    "genre",
+    "delete button"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "五筆分別驗編號、頻率、電台名、曲風、刪除鍵五個顯示元素"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-052-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the preset number for each preset item in the Browse Presets List.\n\n(Preset number on every entry)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the preset number displayed on every preset entry in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. Every preset entry in the Browse Presets List displays its preset number",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-052-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the station frequency for each preset item in the Browse Presets List.\n\n(Station frequency on every entry)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the station frequency displayed on every preset entry in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. Every preset entry in the Browse Presets List displays its station frequency",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-052-03",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the station name for each preset item when station name information is available.\n\n(Station name when available)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations\n3. At least one stored preset station broadcasts a station name",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the content displayed on the preset entry whose station broadcasts a station name, in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. That preset entry in the Browse Presets List displays the station name in addition to the station frequency",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-052-04",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display genre information for each preset item when genre information is available.\n\n(Genre when available)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations\n3. At least one stored preset station broadcasts genre information",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the content displayed on the preset entry whose station broadcasts genre information, in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. That preset entry in the Browse Presets List displays the genre in addition to the station frequency",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-052-05",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display a delete button for each preset item in the Browse Presets List.\n\n(Delete button on every entry)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the controls displayed on every preset entry in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. Every preset entry in the Browse Presets List displays a delete button",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "parent": "SWE1-MEDIA-RAD-042",
+  "reasoning": "16.1（PRE1）規定只有一個 Preset Bank，且該 bank 混合 AM/FM/SiriusXM(NA only)/DAB(EMEA only) 的 preset。037 拆成兩個 leaf：042-01 驗單一 bank、042-02 驗 NA 地區的 AM/FM/SXM 混合。042-01 的「只有一個」要可判定，故步驟涵蓋切換來源後仍是同一組 preset——若各來源各有一組 bank，切換後內容會不同。042-02 依 037 的 leaf 範圍只驗 NA 三種來源；DAB 屬 EMEA 且無對應 leaf，不在此產生。容器錨定：ch16 橫跨兩個容器——Playing Tab 上的 Mixed Presets Bank（PRE1.x）與 Browse Tab 內的 Browse Presets List（PRE2.x）。兩者的 preset 外觀相近、步驟前綴卻不同，故每一行 ER 都指名觀察所在的容器，tc_title 的 tag 亦帶容器名，避免 reviewer 與測試者誤判。 本 parent 的 preset 皆觀察於 Playing Tab 的 Mixed Presets Bank。優先級：混合 bank 是整個 preset 功能的結構前提，兩筆皆 P1。",
+  "keywords": [
+    "Presets",
+    "PRE1",
+    "Preset Bank",
+    "mixed presets",
+    "AM",
+    "FM",
+    "SiriusXM"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "042-01 驗 bank 的單一性，042-02 驗同一 bank 內可混存不同來源的 preset"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-042-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall provide a single Preset Bank for radio preset management.\n\n(One bank shared across radio sources, on the Playing Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is configured for the NAFTA market\n3. At least one FM station is stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the presets displayed in the Mixed Presets Bank on the Playing Tab\n4. Select \"AM\" as the active source and read the presets displayed in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The presets displayed in the Mixed Presets Bank are recorded\n4. The Mixed Presets Bank displays the same presets as recorded in step 3, including the FM preset",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-042-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall support mixed presets across AM, FM, SiriusXM for NA region\n\n(AM, FM and SiriusXM presets coexisting in the Mixed Presets Bank)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market and is equipped with SiriusXM\n2. One AM station, one FM station and one SiriusXM channel are each stored as a preset\n3. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Read the presets displayed in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The Mixed Presets Bank displays the stored AM, FM and SiriusXM presets together in the same bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

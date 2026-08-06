@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-RAD-049",
+  "reasoning": "16.1.4（PRE1.4）規定按下 preset 切到該電台，且透過 seek／tune／直接選台／preset 選台時開始播放並轉到 Playing Tab。037 拆成三個 leaf：切台、開始播放、畫面轉換。三者驗證標的不同（電台、音訊、畫面），依 §8.2.2 不得合併。049-02／049-03 的條文列舉四種選台途徑，本批以 preset 選台驗證（與本 parent 的 049-01 同一入口，使三筆共用同一觸發而只在驗證標的上分工）；seek／tune／station list 三種入口不另做笛卡兒積，理由同 COM-074：spec 將它們列為同一結果的等價手段而非不同結果。049-02 的播放是否真的開始，用經過時間或音訊輸出判定，避免不可觀察的敘述。容器錨定：每一行 ER 指名觀察所在的容器（Playing Tab 的 Mixed Presets Bank 或 Browse Tab 內的 Browse Presets List），tc_title 的 tag 亦帶容器名。 049-01／02 觸發於 Playing Tab 的 Mixed Presets Bank，049-03 的驗證對象為 Tab Area。優先級：按 preset 聽到電台是此功能的目的本身，049-01 訂 P0；播放起始與畫面轉換為其後續結果，訂 P1。",
+  "keywords": [
+    "Presets",
+    "PRE1.4",
+    "preset button",
+    "switch station",
+    "Playing Tab"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "049-01 驗切到 preset 電台、049-02 驗音訊開始、049-03 驗畫面轉到 Playing Tab，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-049-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall switch playback to the station stored in the selected preset.\n\n(Preset pressed in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The currently tuned station differs from that stored preset station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the frequency of the currently tuned station and the station shown in the preset slot\n4. Press that preset slot in the Mixed Presets Bank and read the frequency of the tuned station shown on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The currently tuned station and the preset station are recorded and they differ\n4. The tuned station shown on the Playing Tab is the preset station recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.4",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-049-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall begin audio playback after station selection through seek, tune, direct station selection, or preset selection.\n\n(Audio after preset selection from the Playing Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The currently tuned station differs from that stored preset station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the station shown in the preset slot in the Mixed Presets Bank\n4. Press that preset slot and listen to the audio output of the HU\n5. Listen to the audio output of the HU after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The preset station is recorded\n4. Audio of the preset station recorded in step 3 is output from the HU speakers\n5. Audio of that station is still output from the HU speakers without interruption",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-049-03",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall transition to the Playing Tab after station selection through seek, tune, direct station selection, or preset selection.\n\n(Tab transition after preset selection from the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station\n3. The currently tuned station differs from that stored preset station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Press the preset entry holding a stored station in the Browse Presets List and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The Playing Tab is displayed in the Tab Area and the Browse Presets List is no longer displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

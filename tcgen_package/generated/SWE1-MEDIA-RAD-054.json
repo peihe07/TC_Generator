@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-054",
+  "reasoning": "16.2.2.1.1（PRE2.2.1.1）規定所有 preset 都被刪除後，按下方向盤的 next-preset 鍵會播放\"failed activation of touch screen control\" 確認音，且電台不變。037 拆成兩個 leaf：聽覺回饋與電台維持。兩者驗證標的不同（音訊 vs 電台狀態），各自成一筆。「所有 preset 都被刪除」是本條的觸發條件本身，依 §8.5 exception 寫進 Pre-Condition。054-02 的 ER 以「頻率與步驟中記錄的相同」判定，不使用「電台沒有改變」這種不可觀察的敘述。容器錨定：每一行 ER 指名觀察所在的容器（Playing Tab 的 Mixed Presets Bank 或 Browse Tab 內的 Browse Presets List），tc_title 的 tag 亦帶容器名。 觸發來自方向盤而非畫面容器，故步驟不需進入特定容器，但仍在 Playing Tab 上觀察電台以取得可讀的頻率。優先級：屬空狀態下的錯誤回饋，兩筆皆 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.2.1.1",
+    "next-preset",
+    "steering wheel control",
+    "failed activation"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "054-01 驗失敗確認音，054-02 驗電台維持不變，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-054-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall play the 'failed activation of touch screen control' confirmation sound when the next-preset steering wheel control is pressed and all presets are deleted.\n\n(All presets deleted, next-preset pressed)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. No preset slot holds a stored station\n3. The vehicle is equipped with a next-preset Steering Wheel Control button",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the next-preset button on the Steering Wheel Control and listen to the audio output of the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The \"failed activation of touch screen control\" confirmation sound is output from the HU speakers",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2.1.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-054-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall maintain the current station when the next-preset steering wheel control is pressed and all presets are deleted.\n\n(All presets deleted, tuned station unchanged)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. No preset slot holds a stored station\n3. The vehicle is equipped with a next-preset Steering Wheel Control button",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the frequency of the currently tuned station shown on the Playing Tab\n4. Press the next-preset button on the Steering Wheel Control and read the frequency of the tuned station shown on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The frequency of the currently tuned station is recorded\n4. The frequency shown on the Playing Tab is the frequency recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2.1.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "parent": "SWE1-MEDIA-RAD-043",
+  "reasoning": "16.1.1（PRE1.1）是純表格節點，SYS1 文字僅有標題與 image 參照，內容取自頁圖 Table PRE1.1（page 28），依 A-001 的作法處理。037 配了三個 leaf，各指定一種 radio size：8.4\" Landscape=5、10.1\" Landscape=6、10.1\" Portrait=5，皆為表格明載值故直接寫死，與不指定尺寸的通用條採 symbolic 的分工一致（慣例見 COM-044／COM-047）。Delegation：表格另有 7\" Landscape=5（LATAM 例外為 4）、10.25\" Widescreen=6、12\" Landscape=6、12\" Portrait=6 未配 leaf，其中 LATAM 的 4 是唯一與其他值不同的邊界，無 req_id 可掛故不於此產生，記於 ANOMALIES A-008 的同一模式交 RD-1。容器錨定：ch16 橫跨兩個容器——Playing Tab 上的 Mixed Presets Bank（PRE1.x）與 Browse Tab 內的 Browse Presets List（PRE2.x）。兩者的 preset 外觀相近、步驟前綴卻不同，故每一行 ER 都指名觀察所在的容器，tc_title 的 tag 亦帶容器名，避免 reviewer 與測試者誤判。 本 parent 觀察於 Playing Tab 的 Mixed Presets Bank。優先級：每 bank 的槽位數決定版面，三筆皆 P1。",
+  "keywords": [
+    "Presets",
+    "PRE1.1",
+    "presets per bank",
+    "radio size"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "三筆為 Table PRE1.1 中三種不同 radio size 設定，每 bank 槽位數分別為 5、6、5"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-043-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display 5 presets per bank when the radio size is 8.4\" Landscape.\n\n(Radio size: 8.4\" Landscape, on the Playing Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle radio size is 8.4\" Landscape\n3. More than 5 stations are receivable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Count the preset slots displayed in one bank of the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. 5 preset slots are displayed in one bank of the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-043-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display 6 presets per bank when the radio size is 10.1\" Landscape.\n\n(Radio size: 10.1\" Landscape, on the Playing Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle radio size is 10.1\" Landscape\n3. More than 6 stations are receivable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Count the preset slots displayed in one bank of the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. 6 preset slots are displayed in one bank of the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-043-03",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display 5 presets per bank when the radio size is 10.1\" Portrait.\n\n(Radio size: 10.1\" Portrait, on the Playing Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle radio size is 10.1\" Portrait\n3. More than 5 stations are receivable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Count the preset slots displayed in one bank of the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. 5 preset slots are displayed in one bank of the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

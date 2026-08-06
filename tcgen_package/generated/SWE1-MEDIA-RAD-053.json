@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-053",
+  "reasoning": "16.2.2.1（PRE2.2.1）規定按下刪除鍵會刪除該 preset 並改為顯示加號。037 拆成兩個 leaf：053-01 驗刪除生效、053-02 驗刪除後顯示加號。兩者為同一觸發的兩個結果，但屬不同 RD sub-id，依 §8.2.2 不得合併，故以驗證標的區分：前者看該電台是否已不在清單，後者看槽位的呈現。容器錨定：每一行 ER 指名觀察所在的容器（Playing Tab 的 Mixed Presets Bank 或 Browse Tab 內的 Browse Presets List），tc_title 的 tag 亦帶容器名。 觸發於 Browse Presets List；053-02 的加號需在兩個容器都出現，但本條文位於 PRE2.x（Browse Presets List），故 ER 以該容器為準，Playing Tab 的加號顯示屬 PRE1.2（RAD-044）。優先級：053-01 為刪除操作本身訂 P1；053-02 的加號呈現訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE2.2.1",
+    "delete preset",
+    "plus sign",
+    "Browse Presets List"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "053-01 驗 preset 是否被刪除，053-02 驗刪除後該槽的呈現，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-053-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall delete the selected preset when the preset delete button is pressed.\n\n(Delete button pressed in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Record the station shown on the first preset entry in the Browse Presets List\n5. Press the delete button on that preset entry and read the preset entries displayed in the Browse Presets List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The station on the first preset entry is recorded\n5. The station recorded in step 4 is no longer stored on that preset entry in the Browse Presets List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-053-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display a plus sign '+' after a preset is deleted.\n\n(Slot rendering after deletion, in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least two preset slots hold stored stations",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the content displayed on the first preset entry in the Browse Presets List\n5. Press the delete button on that preset entry and read the content displayed on that entry",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The preset entry displays its stored station and does not display a plus sign\n5. The preset entry displays a plus sign \"+\" and no longer displays a station",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

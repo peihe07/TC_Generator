@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-045",
+  "reasoning": "16.1.2.1（PRE1.2.1）規定 Browse Presets List 中未儲存的 preset，其刪除鍵呈現變灰。容器錨定：ch16 橫跨兩個容器——Playing Tab 上的 Mixed Presets Bank（PRE1.x）與 Browse Tab 內的 Browse Presets List（PRE2.x）。兩者的 preset 外觀相近、步驟前綴卻不同，故每一行 ER 都指名觀察所在的容器，tc_title 的 tag 亦帶容器名，避免 reviewer 與測試者誤判。 本筆是 ch16 第一條明確屬於 Browse Presets List 的條文，步驟前綴因此走 Browse Tab → Presets 分類，而非 Playing Tab；ER 每一行都指名 Browse Presets List，與 RAD-044 的 Playing Tab 觀察對象區隔。ER 需同時陳述未儲存項目的刪除鍵變灰與已儲存項目的刪除鍵可用，否則無法排除刪除鍵一律變灰的失效。註：ch18 的 Edit Presets Pop Up 對未儲存 preset 是「不顯示刪除鍵」（APP16），與本條的「變灰」不同，兩者分屬不同容器不可互相套用。優先級：屬刪除鍵的狀態顯示，訂 P2。",
+  "keywords": [
+    "Presets",
+    "PRE1.2.1",
+    "delete button",
+    "greyed out",
+    "Browse Presets List"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-045-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the delete button as greyed out for unsaved preset entries in the Browse Preset List.\n\n(Unsaved entry in the Browse Presets List)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot holds a stored station and at least one preset slot is unset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Presets\" category in the Categories Bank to open the Browse Presets List\n4. Read the state of the delete button on the unsaved preset entry in the Browse Presets List\n5. Read the state of the delete button on the preset entry that holds a stored station",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse Presets List is displayed in the Browse List\n4. The delete button on the unsaved preset entry is displayed greyed out\n5. The delete button on the preset entry holding a stored station is displayed in an enabled state",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}
