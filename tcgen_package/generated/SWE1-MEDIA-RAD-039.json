@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-039",
+  "reasoning": "14.4.1（BT4.1）規定找到的 FM analog 與 HD Radio 電台依頻率排序顯示。驗證標的是排序，因此 ER 必須以「相鄰項目的頻率遞增」表述而非只說「電台已顯示」；步驟要求讀取全部項目的頻率並比較，才能判定整份清單的順序。spec 未規定遞增或遞減，故 ER 以「依頻率單調排列且無亂序」表述，保留 spec 未定義的方向性（§8.4）。037 的 leaf 只提 FM analog，HD Radio 站未另配 leaf，本筆依 leaf 範圍驗證 FM analog。優先級：排序錯亂會讓使用者難以定位電台，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.1",
+    "frequency order",
+    "All Stations",
+    "FM analog"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-039-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display all found FM analog Radio stations in frequency order.\n\n(Station list ordering by frequency)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed and at least three FM stations were found",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the frequency of every station displayed in the Browse List\n4. Scroll through the Browse List to its last entry and read the frequency of every station displayed",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The stations displayed are arranged so that each frequency follows the previous one in monotonic order\n4. The frequencies continue in the same monotonic order to the last entry of the list, with no station out of order",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

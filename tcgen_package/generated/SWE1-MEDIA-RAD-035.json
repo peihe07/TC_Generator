@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-035",
+  "reasoning": "14.3.6.1（BT3.6.1）規定尚未掃描過時，按下 Scan 或 All Stations 都會啟動電台掃描。Scan 與 All Stations 是 spec 列舉的兩個入口，依 §7 需成對涵蓋，故產出兩筆等價劃分 TC。「尚未掃描過」是本條的觸發條件本身，依 §8.5 exception 寫進 Pre-Condition，並以回復原廠設定建立可控狀態。spec 以 See: Station Scan Flow 委託掃描流程細節，該流程不在本 spec 檔內，故 ER 只判定掃描已啟動這個可觀察事實（掃描中的提示字串屬 BT3.6.1.1，由 RAD-036 涵蓋），不臆測流程內部行為。註：Table BT3.1（14.3.1）顯示 Scan 分類僅存在於 Single-Tuner FM-Analog，故前置條件指定單一 tuner。優先級：無掃描結果時的入口行為，兩筆皆 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.6.1",
+    "Scan",
+    "All Stations",
+    "station scan"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "兩筆分別以 Scan 與 All Stations 兩個入口觸發掃描，為 spec 列舉的兩個等價輸入"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-035-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall initiate station scan when the user selects 'Scan' or 'All Stations' before any station scan has been completed.\n\n(Entry point: \"Scan\" category)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. The HU has been restored to factory settings and no station scan has been performed since",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Scan\" category in the Categories Bank and read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. A station scan has started and the Browse List indicates that the station list is being updated",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-035-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall initiate station scan when the user selects 'Scan' or 'All Stations' before any station scan has been completed.\n\n(Entry point: \"All Stations\" category)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. The HU has been restored to factory settings and no station scan has been performed since",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. A station scan has started and the Browse List indicates that the station list is being updated",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "parent": "SWE1-MEDIA-RAD-040",
+  "reasoning": "14.4.2（BT4.1.1）規定電台項目顯示的欄位。037 拆成三個 leaf：頻率、Station ID、曲風簡稱，各自成一筆。Station ID 與曲風皆帶 if available 條件，屬 spec 自身的條件式，故該兩筆的 Pre-Condition 指定該資訊可取得的電台，並在 ER 中只對該電台判定，不對整份清單一律要求——否則會把 spec 的條件式讀成無條件。註（A-013）：BT4.1.1 的編號為 1) 3) 4)，缺少 2)，頁圖與 SYS1 皆如此。037 也只配了三個 leaf，本批依現有條文生成；若 2) 是被刪除的真實欄位，則該欄位無 leaf 亦無 TC，已交 RD-1。LATAM 地區不顯示 Station ID 屬 BT4.1.1.1，由 RAD-041 涵蓋，故本批的 040-02 前置條件排除 LATAM。優先級：頻率是電台的主要識別欄位訂 P1；Station ID 與曲風為輔助資訊訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.1.1",
+    "frequency",
+    "Station ID",
+    "genre",
+    "A-013"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "三筆分別驗頻率、Station ID、曲風簡稱三個欄位，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-040-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display station frequency for each FM analog and HD Radio station item.\n\n(Frequency displayed on every station item)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed and at least three FM stations were found",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the content of every station item displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. Every station item displayed shows its station frequency",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-040-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display station ID for each FM analog and HD Radio station item when station ID is available.\n\n(Station ID displayed when available)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed and at least one station broadcasting a station ID was found\n4. The vehicle is not configured for the LATAM region",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the content of the station item for the station that broadcasts a station ID",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The station item for that station shows its station ID in addition to its frequency",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-040-03",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the short form of genre name for each FM analog and HD Radio station item when genre information is available.\n\n(Genre short form displayed when available)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed and at least one station broadcasting a station program type was found",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the content of the station item for the station that broadcasts a station program type",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The station item for that station shows the short form of its genre name in addition to its frequency",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

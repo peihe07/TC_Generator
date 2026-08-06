@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-034",
+  "reasoning": "14.3.6（BT3.6）規定單一 tuner 的 AM/FM Browse 中，若使用者掃描過電台，All Stations 分類顯示最近一次掃描的結果，且新的掃描結果會取代舊清單。037 拆成兩個 leaf：034-01 驗顯示掃描結果、034-02 驗新掃描取代舊清單。034-02 的關鍵在於必須能區分新舊清單，故步驟在兩次掃描之間改變接收條件（換頻段或改變天線環境），並先記錄第一次的清單內容作為比對對象；若兩次掃描結果相同，無法判定是取代還是沿用。spec 未規定清單以何種欄位排序或掃描耗時，故 ER 不臆測筆數與順序，只判定內容是否被更新。單一 tuner 是 spec 明載的適用條件（BT3.6 開頭 for a single tuner），依 §8.5 exception 寫進 Pre-Condition。優先級：掃描清單是單 tuner 車型尋找電台的主要途徑，兩筆皆 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.6",
+    "All Stations",
+    "station scan",
+    "single tuner"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "034-01 驗掃描結果是否顯示於 All Stations，034-02 驗再次掃描後舊清單是否被取代"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-034-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the most recently scanned stations in the 'All Stations' category during AM/FM Browse in single tuner mode.\n\n(All Stations after a completed scan)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the stations displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The stations found by the completed station scan are displayed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-034-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall replace the previous scanned station list with the latest scanned station list after a new scan is completed.\n\n(Second scan under different reception conditions)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed on the HU",
+      "input_test_data": "Reception conditions for two scans that yield different receivable station sets",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and record the stations displayed in the Browse List\n4. Change the reception conditions so that a different set of stations is receivable, run a new station scan and wait until it completes\n5. Press the \"All Stations\" category in the Categories Bank and read the stations displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The stations found by the earlier scan are displayed and their list is recorded\n4. The new station scan completes\n5. The stations displayed are the stations found by the new scan, and the stations recorded in step 3 that are no longer receivable are not displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

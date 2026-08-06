@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-032",
+  "reasoning": "14.3.3（BT3.3）規定裝置支援但內容為空的分類仍然顯示為可用。驗證重點是「空的分類沒有被隱藏或變灰」，因此 ER 必須同時陳述該分類有列出、且呈現為可用狀態——只驗「有列出」無法排除它被變灰的失效。空分類以 USB 的 Playlists 建立：Table BT3.1（14.3.1）明列 USB 含 Playlists 分類，而不放入任何播放清單即可使該分類為空，這是 spec 明載的分類清單，不是自行挑選的分類。進入該分類後首列顯示 \"No items\" 屬 BT3.3.1，由 RAD-033 涵蓋，本筆不重複驗證。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：空分類被隱藏會讓使用者以為裝置不支援該分類，屬顯示規格，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.3",
+    "empty category",
+    "shown as available"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-032-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display a browse category as available even when the category contains no items.\n\n(Supported category with no content)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format and no playlist is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Read the categories displayed in the Categories Bank\n4. Read the state of the \"Playlists\" category in the Categories Bank",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. A \"Playlists\" category is displayed in the Categories Bank\n4. The \"Playlists\" category is displayed in an enabled state and is not greyed out",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

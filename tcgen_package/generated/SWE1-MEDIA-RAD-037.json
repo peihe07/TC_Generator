@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-037",
+  "reasoning": "14.3.6.2（BT3.6.2）規定電台清單會 latch 直到重新掃描。latch 的意思是清單在沒有新掃描的情況下維持不變，因此驗證必須包含「離開再回來」與「跨越 ignition cycle」兩種擾動仍不變，只在同一畫面重讀無法證明 latch。兩者是同一性質（未重新掃描則不變）的連續驗證，依 §5.7 以同一筆 TC 的多行 ER 涵蓋。spec 未規定 latch 是否跨越電源循環，故 ER 對 ignition cycle 之後的判定與前一步採同一敘述，若實作僅在同一 cycle 內 latch，此步會失敗並成為有效的 RD-1 觸發點，而非由 TC 自行假設。優先級：清單意外重置會讓使用者重跑掃描，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.6.2",
+    "station list",
+    "latch",
+    "re-scan"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-037-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall retain the scanned station list until a new station scan is performed.\n\n(List unchanged across navigation and an ignition cycle)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. A station scan has been completed on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and record the stations displayed in the Browse List\n4. Press \"Playing\" on the Tab Buttons, then press \"Browse\" and the \"All Stations\" category again, and read the stations displayed\n5. Cycle the ignition, then open the Browse Tab and the \"All Stations\" category again and read the stations displayed",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The stations found by the completed scan are displayed and their list is recorded\n4. The stations displayed are the stations recorded in step 3\n5. The stations displayed are the stations recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6.2",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-038",
+  "reasoning": "14.3.6.3（BT3.6.3）規定掃描找不到電台時顯示 \"No Stations Found\"。字串為 spec 明載，逐字引用不改寫。此情境需要「無可接收電台」的環境，這是本條直接驗證的 spec 觸發條件，依 §8.5 exception 寫進 Pre-Condition；如何營造該環境（屏蔽室或移除天線）屬測試備料，放在 Input Test Data 而非 Pre-Condition。ER 需同時陳述提示字串顯示與清單中無電台項目，否則無法排除「提示與電台同時顯示」的失效。優先級：屬空結果的提示文字，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.6.3",
+    "No Stations Found",
+    "station scan"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆為掃描結果為空的情況，與 RAD-034／036 的有結果情況相對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-038-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'No Stations Found' when station scan returns no stations.\n\n(Scan completes with no receivable stations)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. No FM station is receivable at the vehicle location",
+      "input_test_data": "A reception environment with no receivable FM station, such as a shielded chamber or a disconnected antenna",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and wait until the station scan has completed\n4. Read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The station scan completes\n4. \"No Stations Found\" is displayed in the Browse List and no station is listed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

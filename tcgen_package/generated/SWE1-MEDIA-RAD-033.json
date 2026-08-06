@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-033",
+  "reasoning": "14.3.3.1（BT3.3.1）規定進入空分類時首列顯示 \"No items\"。字串為 spec 明載，逐字引用不改寫。ER 除了陳述首列的文字外，還需陳述清單中沒有其他項目——否則無法區分「空清單」與「有內容但首列多了一行提示」。沿用 RAD-032 的 USB Playlists 空分類，兩筆的驗證標的分別是分類的可用狀態與進入後的清單內容。註：本條在 2023 年 PDF 上標為 BT4.2.1，與 page 26 的 List Display Reference 表格撞號，SYS1 已更正為 BT3.3.1，生成依 SYS1 outline number（14.3.3.1），詳見 ANOMALIES A-014。優先級：空狀態提示屬顯示細節，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.3.1",
+    "No items",
+    "empty category"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-033-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'No items' as the first line item when entering an empty category.\n\n(Entering an empty category)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format and no playlist is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"Playlists\" category in the Categories Bank and read the first line item displayed in the Browse List\n4. Read the remaining line items displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The first line item of the Browse List is displayed as \"No items\"\n4. No further line item is displayed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.3.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -357,3 +357,46 @@ everywhere, COM-061-01 and COM-061-04 must be reworked.
 target: COM-065-02 is unambiguous by scope and needs no rework whatever the
 ruling, so a marker there would be a false positive. COM-065's reasoning
 cross-references A-012 instead.
+
+---
+
+## A-013 — BT4.1.1's field list skips number 2
+
+**Found:** 2026-08-07, reading page 26 for RAD ch14.
+
+*"BT4.1.1) Display station information as follows: **1)** Frequency, **3)**
+Station ID (call sign), if available, **4)** short form of genre name (station
+program type), if available."*
+
+The enumeration runs 1, 3, 4 — item **2** is absent, in both the page image and
+the SYS1 export, so this is not an OCR artefact. Either a field was deleted
+without renumbering, or one is missing from the list.
+
+037 allocates exactly three leaves (`SWE1-MEDIA-RAD-040-01..03`), one per
+surviving item, so the generated TCs cover what is written. If item 2 was a
+real field, no TC covers it and no leaf exists for it.
+
+**Open:** RD-1 — was a second field (e.g. HD indicator, station name) removed
+from BT4.1.1, or is the numbering simply wrong?
+
+---
+
+## A-014 — Item code `BT4.2.1` is used for two different clauses (informational)
+
+**Found:** 2026-08-07, cross-reading pages 25/26 against the SYS1 outline.
+
+On the page images, `BT4.2.1)` labels both:
+
+- page 25 — *"When entering that category the first line item will state 'No items'."*
+- page 26 — the *"List Display Reference"* table
+
+The SYS1 R1L-L export renumbers the first one to `BT3.3.1`, which is the
+consistent reading (it belongs under BT3.3, empty categories). Generation
+follows the SYS1 outline number (14.3.3.1), so nothing is ambiguous in
+practice.
+
+**Impact:** none on generation — outline numbers, not item codes, drive every
+mapping. Recorded only so a reviewer comparing TCs against the 2023 PDF does
+not read the mismatch as an error. Same class as A-002.
+
+**Open:** none. Informational.

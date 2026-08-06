@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-041",
+  "reasoning": "14.4.2.1（BT4.1.1.1）規定 LATAM 地區不顯示 Station ID，是 RAD-040-02 的地區負向配對（§7）。驗證條件是「電台確實有廣播 Station ID」但畫面不顯示——若用沒有 Station ID 的電台，測到的是 if available 條件而非本條，故前置條件明確要求該電台有廣播 Station ID。ER 需同時陳述 Station ID 未顯示與其他欄位仍正常顯示，否則無法排除整個項目未渲染的失效。優先級：地區配置錯誤會顯示不該顯示的資訊，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.1.1.1",
+    "LATAM",
+    "Station ID",
+    "region"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "本筆為 LATAM 地區設定，與 RAD-040-02 的非 LATAM 設定構成地區的正負配對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-041-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall suppress Station ID display for LATAM region.\n\n(LATAM region with a station that broadcasts a station ID)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is configured for the LATAM region\n3. A station scan has been completed and at least one station broadcasting a station ID was found",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the content of the station item for the station that broadcasts a station ID",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The station item for that station shows its station frequency and does not show its station ID",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

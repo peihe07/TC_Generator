@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-036",
+  "reasoning": "14.3.6.1.1（BT3.6.1.1）規定清單更新期間顯示 \"Scanning stations. Please wait...\"。字串為 spec 明載，逐字引用不改寫。驗證需涵蓋兩個時點才完整：掃描期間顯示、掃描完成後不再顯示——只驗前者無法排除提示永遠不消失的失效。兩個時點是同一觸發（掃描狀態變化）的必然結果，依 §5.7 以同一筆 TC 的多行 ER 涵蓋，不拆成兩筆。優先級：屬進行中狀態的提示文字，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.6.1.1",
+    "Scanning stations",
+    "station scan",
+    "progress message"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-036-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'Scanning stations. Please wait...' while the station list is being updated.\n\n(Message shown during and cleared after the scan)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is equipped with a single tuner\n3. The HU has been restored to factory settings and no station scan has been performed since",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the \"All Stations\" category in the Categories Bank and read the content displayed in the Browse List\n4. Wait until the station scan has completed and read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. \"Scanning stations. Please wait...\" is displayed in the Browse List\n4. \"Scanning stations. Please wait...\" is no longer displayed and the stations found by the scan are displayed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.6.1.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}
