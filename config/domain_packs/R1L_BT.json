@@ -1,0 +1,54 @@
+{
+  "project": "FW036 R1L SWE1_BT (Stellantis Atlantis High, 25PI3.5/SR26)",
+  "reviewed_at": null,
+  "glossary": [
+    {"term": "FW036", "definition": "SWQT test case specification workbook FMWIFSM036A01 — the SWE1_BT deliverable; header row 9, data row 10, Spec Reference = column 14"},
+    {"term": "SWRA", "definition": "Software Requirements Analysis — source of the bilingual When/And/Case/Then AC blocks; treated as a generic wrapper when it conflicts with CFTS"},
+    {"term": "CFTS", "definition": "Customer Functional Test Specification — the authoritative clause source for TC content (wins over SWRA AC on conflict, §10.1)"},
+    {"term": "SYSAD", "definition": "System Architectural Design docx — source of the full long SYS3 Spec Reference form for SWEs without CFTS coverage"},
+    {"term": "RD-1", "definition": "Escalation channel to the requirements author for unresolvable conflicts, dead-code gaps, and SWRA↔CFTS mismatches; recorded in remarks, tracked across sessions"},
+    {"term": "BTSA", "definition": "Bluetooth Streaming Audio source (CFTS025); source selection observed on CAN as STATUS_TELEMATIC.CurrentSource = 23 and HFM_BlueTooth_1_Selected"},
+    {"term": "Eng Mode", "definition": "Engineering mode display (CFTS011); entered via press-and-hold top-left + bottom-right corners for 5 seconds"},
+    {"term": "BT test APK", "definition": "com.test.btapp (app-system-debug.apk, md5 a3eff9310c9fb773417a50f603c0e8a4), system-signed with BLUETOOTH_PRIVILEGED; the standard HU-side test harness"},
+    {"term": "极致拆", "definition": "max_granularity split mode: one verification point per TC, applied uniformly to the whole batch once chosen (connect/disconnect states and all mode variants separate)"}
+  ],
+  "feature_model": [
+    {"feature": "Connection / Adapter", "normal": "Adapter enable/disable via adb shell svc bluetooth enable|disable; reconnect verified with logcat and dumpsys bluetooth_manager", "abnormal": "Async connect followed immediately by a state query races — an explicit wait step with APK broadcast confirmation is mandatory before any state query", "boundary": "Adapter disable is the standard fault-injection point for connection tests, but INVALID for call-state tests (see interactions)"},
+    {"feature": "Phone (HFP)", "normal": "Call control via test-APK PhoneFragment; steps use real APK labels such as hfpClient.disconnect(device)", "abnormal": "getHfpDevice() returning null causes silent return-void in all call-control methods", "boundary": "SWE1_BT_070 is the only TC allowed to use HU adapter disable in a call-state context (targets proxy-not-ready itself)"},
+    {"feature": "Phonebook (PBAP)", "normal": "Contact/call-log sync exercised via PBAP connect/disconnect in ContactsFragment", "abnormal": "deleteData / downloadContacts / downloadCallLog buttons are permanently dead code — never referenced in steps; workaround is PBAP connect/disconnect plus a remarks note", "boundary": ""},
+    {"feature": "Media (A2DP/AVRCP)", "normal": "Playback control via MusicFragment; control→command→display triad for one user action is ONE TC (§7.7)", "abnormal": "Repeat softkey/icon shows Unavailable state on BTSA Source screens when the source does not support Repeat (CFTS025 §3.1.1.4.3.7)", "boundary": "Repeat All / Repeat One / Shuffle are separate TCs under max_granularity split mode"},
+    {"feature": "BTSA source selection", "normal": "Selecting BT audio source updates CAN: STATUS_TELEMATIC.CurrentSource = 23, HFM_BlueTooth_1_Selected", "abnormal": "", "boundary": "CAN reads use the wording: Read the <Signal> value on CAN and record as <Var>_initial/_after"},
+    {"feature": "Eng Mode display", "normal": "BT information page verified one verification point per TC; connect-state and disconnect-state are separate TCs", "abnormal": "", "boundary": ""},
+    {"feature": "Data Control (RFCOMM/SPP)", "normal": "SPP link tested with Serial Bluetooth Terminal (Kai Morich), UUID 00001101 (BT_121/122, BT_131/132)", "abnormal": "", "boundary": ""}
+  ],
+  "interactions": [
+    {"features": ["Phone (HFP)", "Connection / Adapter"], "rule": "HU adapter disable makes getHfpDevice() return null → call-control methods silently no-op. Adapter disable is an INVALID injection point for call-state tests; sole exception SWE1_BT_070 (proxy-not-ready)."},
+    {"features": ["Media (A2DP)", "BTSA source selection"], "rule": "BTSA playback TCs that assert source selection must observe the CAN signals (CurrentSource = 23, HFM_BlueTooth_1_Selected), not only the HMI."},
+    {"features": ["Connection / Adapter", "BT test APK"], "rule": "Every async connect/disconnect call is followed by an explicit wait step confirmed via the APK broadcast listener before any state query (known systematic timing race)."},
+    {"features": ["Phonebook (PBAP)", "BT test APK"], "rule": "Phonebook/call-log data operations route through PBAP connect/disconnect because the APK's data buttons are dead code; each such workaround carries a remarks note."}
+  ],
+  "boundaries": [
+    {"name": "test_set", "enum": ["Adapter & Device", "Connection", "Pairing", "Phonebook (PBAP)", "Phone (HFP)", "Media (A2DP)", "Data Control", "IVI Integration"], "source": "FW036 fixed Test Set vocabulary — no deviations"},
+    {"name": "design_method", "enum": ["功能測試 (Functional based ; no specific technique)", "基礎故障注入 (Fault Injection Lite)"], "source": "FW036 dropdown — only two values exist"},
+    {"name": "step_count", "min": 4, "max": 7, "source": "FW036 house style; exception/recovery TCs (AC2 with 並恢復) may reach ~8"},
+    {"name": "spec_reference_format", "enum": ["CFTS short form: CFTS085-XXXXXXX", "SYS3 full long form: SYS3_BT_FM-WI-FSM-011-A01 系統架構設計 System Architectural Design_SYSAD_V03-SYS-RA-[ID]"], "source": "Always looked up from FW036 column 14 — never inferred"},
+    {"name": "spp_uuid", "enum": ["00001101"], "source": "Serial Bluetooth Terminal (Kai Morich), project-standard SPP fixture"},
+    {"name": "btsa_can_source_value", "enum": ["STATUS_TELEMATIC.CurrentSource = 23", "HFM_BlueTooth_1_Selected"], "source": "Logical_Identifiers_and_CAN_Mapping_v1_78.xlsx"}
+  ],
+  "traceability_hints": [
+    {"req": "Phone (HFP) series", "spec_ref": "CFTS026 Hands Free Phone; Phone HMI Logic and Flow"},
+    {"req": "Media (A2DP) / BTSA series", "spec_ref": "CFTS025 BTSA source/media"},
+    {"req": "Brought-In Device Mirroring series", "spec_ref": "CFTS085 (BT_119/120: CFTS085-4935521 unconfirmed)"},
+    {"req": "Connection series", "spec_ref": "CFTS021 Connection Manager — OCR of scanned JPEG; every reference requires a remarks provenance note"},
+    {"req": "Eng Mode display series (BT_139–144)", "spec_ref": "CFTS011 Eng Mode display"},
+    {"req": "Device/pairing HMI series", "spec_ref": "Device Manager HMI Logic and Flow; Core HMI Logic and Flow"},
+    {"req": "VR-related series", "spec_ref": "VR Command Reference Tables"},
+    {"req": "SWEs without CFTS coverage", "spec_ref": "SYSAD docx via full long SYS3 form"}
+  ],
+  "open_questions": [
+    {"question": "BT_109/110: is the HMI display behavior within SWE1 scope?", "context": "Pending scope decision before the TCs can be finalized", "status": "open"},
+    {"question": "BT_119/120: Spec Reference CFTS085-4935521 unconfirmed", "context": "SWE1 Source Requirement ID lookup pending", "status": "open"},
+    {"question": "R136, R151, R151a, R152, R152a use the short Spec Reference form but need the full long SYS3 form", "context": "Format errors identified in a prior session; correction pending in FW036", "status": "open"},
+    {"question": "BT_149/150 execution fixture: a BTSA source with Repeat genuinely unavailable", "context": "Required to execute the Repeat-Unavailable TCs (CFTS025 §3.1.1.4.3.7); also carries the RD-1 flag for the SWRA boilerplate mismatch across BT_148/149/150", "status": "open"}
+  ]
+}
