@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-064",
+  "reasoning": "11.4.1.1（BTSA1.1）只規定 PU0998 彈窗按下 Yes 之後要帶出藍牙配對彈窗，觸發與驗證標的單一，產出一筆 TC。前置步驟必須先把 PU0998 叫出來（無已連線藍牙音源時選擇 Bluetooth 音源），這屬於步驟而非前置條件，依 §4.4 不寫進 Pre-Condition。No／Close 的相對分支屬 11.4.1.2，由 SWE1-MEDIA-PLA-065 涵蓋。優先級：配對入口是藍牙音源設定的主要操作分支但非播放核心流程，訂 P1。",
+  "keywords": [
+    "Bluetooth",
+    "BTSA1.1",
+    "pairing popup",
+    "Yes",
+    "PU0998"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆按 \"Yes\" 帶出配對彈窗；PLA-065 按 \"No\"／close 關閉彈窗，為同一彈窗的相對分支"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-064-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall launch the Bluetooth pairing popup when Yes is selected.\n\n(Press \"Yes\" in the pairing prompt popup)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer to display the popup defined by PU0998\n4. Press \"Yes\" in the popup and read the content displayed on the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The popup defined by PU0998 String/Popup Message is displayed\n4. The popup defined by PU0998 is closed and the Bluetooth pairing popup is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

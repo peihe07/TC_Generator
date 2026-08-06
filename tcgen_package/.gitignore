@@ -1,0 +1,19 @@
+# Customer source files - never commit
+inputs/
+
+# Regenerable artifacts (rebuilt by split_spec.py / make_batch_context.py)
+data/spec_pages/
+data/page_ocr/
+data/page_index.json
+data/spec_sections.json
+data/section_manifest.json
+data/remaining_leaves.json
+data/sibling_map.json
+data/exemplars.json
+batches/
+lint_report.json
+
+# Local noise
+__pycache__/
+*.pyc
+output/

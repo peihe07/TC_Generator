@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-COM-066",
+  "reasoning": "14.1.7（BT1.7）規定在 browse 選單中以下箭頭翻過各頁分類，並且會循環。驗證重點在「循環」——只翻到最後一頁不足以證明會 cycle，必須繼續按到回到第一頁，故步驟先記錄第一頁內容作為比對基準，翻完整輪後比對是否回到同一內容。ER 以顯示的分類內容判定而非頁碼，因為 spec 未規定頁碼指示器。優先級：分類導航是 browse 的基本操作，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.7",
+    "categories",
+    "down arrow",
+    "cycle"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-066-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall cycle through categories when navigating using the down arrow.\n\n(Down arrow pressed past the last page of categories)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The Categories Bank for USB contains more categories than fit on one page",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Record the categories displayed in the Categories Bank\n4. Press the down arrow repeatedly until the last page of categories is displayed and read the categories displayed\n5. Press the down arrow once more and read the categories displayed in the Categories Bank",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The first page of categories is displayed and its categories are recorded\n4. The last page of categories is displayed and its categories differ from the categories recorded in step 3\n5. The categories recorded in step 3 are displayed again",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.7",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

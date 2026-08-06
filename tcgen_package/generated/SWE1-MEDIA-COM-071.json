@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-COM-071",
+  "reasoning": "14.1.9.1（BT1.9.1）規定 catalog 建立期間按下已變灰的 Browse／Shuffle／Tracks 按鈕，會播放拒絕音並顯示 10 秒彈窗。§8.5 判定：本 parent 與 COM-057 相反——這裡 catalog 仍在建立中「就是」spec 明載的觸發條件本身（BT1.9 擁有此狀態），落在 §8.5 的 exception，故三筆都把它寫進 Pre-Condition。這與 COM-057／COM-059 刻意不寫是同一條規則的兩面。037 拆成三個 leaf：拒絕音、彈窗出現、彈窗文字內容，驗證標的分屬聽覺、存在性、文字，各自成一筆。彈窗標題與內文為 spec 逐字明載，071-03 原樣引用不改寫；10 秒為 spec 明載值故可寫入步驟，與 COM-064 使用觀察窗的情況不同。BT1.9 列出三個按鈕，本批以 Browse 按鈕觸發；Shuffle 與 Tracks 的對應行為分屬其他 leaf 的範圍。優先級：071-01／02 是 catalog 期間的主要回饋行為訂 P1；071-03 的文字正確性屬顯示細節訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.9.1",
+    "catalog building",
+    "rejection tone",
+    "popup"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "071-01 驗拒絕音、071-02 驗彈窗出現與 10 秒後關閉、071-03 驗彈窗標題與內文，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-071-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall play a rejection tone when a disabled button is pressed during catalog building.\n\n(Browse button pressed while the catalog is building)",
+      "pre_conditions": "1. A USB drive containing a large number of files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The HU is still building the browse catalog for the USB drive",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Press \"Browse\" on the Tab Buttons and listen to the audio output of the HU",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The \"Browse\" button is displayed greyed out\n3. A rejection tone is output from the HU speakers",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.9.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-071-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display a popup indicating that the browse list is being built.\n\n(Popup shown for 10 seconds)",
+      "pre_conditions": "1. A USB drive containing a large number of files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The HU is still building the browse catalog for the USB drive",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons and read the content displayed on the HU\n3. Read the buttons displayed in the popup\n4. Read the content displayed on the HU 10 seconds after the popup appeared",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. A popup is displayed on the HU\n3. An \"OK\" button is displayed in the popup\n4. The popup is no longer displayed and the Media screen is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.9.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-071-03",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the correct popup message with title 'Browse' and the defined body text.\n\n(Popup title and body text)",
+      "pre_conditions": "1. A USB drive containing a large number of files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The HU is still building the browse catalog for the USB drive",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons and read the title displayed in the popup\n3. Read the body text displayed in the popup",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The popup title is displayed as \"Browse\"\n3. The popup body text is displayed as \"Browse list is being built. Larger media collections can significantly increase the time needed to build the list. Please wait.\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.9.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

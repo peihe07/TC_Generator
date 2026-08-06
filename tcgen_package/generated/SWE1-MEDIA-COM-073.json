@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-COM-073",
+  "reasoning": "14.1.9.2（BT1.9.2）規定 Browse 按鈕在所有歌曲找齊之前保持變灰。驗證需要涵蓋兩個時點才完整：建立期間變灰、完成後恢復可用——只驗前者無法區分「永遠變灰」這種失效。兩個時點是同一觸發（catalog 狀態變化）的必然結果，依 §5.7 以同一筆 TC 的多行 ER 涵蓋，不拆成兩筆。§8.5：catalog 狀態是本條的觸發條件，寫進 Pre-Condition。與 COM-057-02 的變灰是不同成因：該筆是來源不支援 browse，本筆是 catalog 未完成，兩者互不重疊。優先級：Browse 功能的可用時機，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.9.2",
+    "greyed out",
+    "catalog building",
+    "all songs found"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-073-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall keep the Browse button disabled until all songs are discovered during catalog building.\n\n(Browse button state across catalog completion)",
+      "pre_conditions": "1. A USB drive containing a large number of files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The HU is still building the browse catalog for the USB drive",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Wait until the HU has finished building the browse catalog and read the state of the \"Browse\" button\n4. Press \"Browse\" on the Tab Buttons and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The \"Browse\" button is displayed greyed out\n3. The \"Browse\" button is displayed in an enabled state and is no longer greyed out\n4. The Browse Tab is displayed in the Tab Area",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.9.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

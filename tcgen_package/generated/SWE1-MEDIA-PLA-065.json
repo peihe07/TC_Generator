@@ -1,0 +1,70 @@
+{
+  "parent": "SWE1-MEDIA-PLA-065",
+  "reasoning": "11.4.1.2（BTSA1.2）同時規定兩件事：按 no／close 會關閉彈窗，以及關閉後 metadata 區要顯示 \"Connect a Bluetooth Audio Device\"。037 已拆成兩個 leaf。065-01 的 no 與 close 是列舉出來的兩個等價操作，依 §7 需成對涵蓋，故產出兩筆等價劃分 TC；兩筆的觸發輸入不同（\"No\" 按鈕 vs close(X)），符合 §8.2 的拆分準則。065-02 驗證關閉之後的 metadata 顯示，驗證標的與關閉行為不同，另立一筆。優先級：關閉彈窗屬主要操作分支訂 P1；metadata 提示字串為顯示細節訂 P2。（review 補充：§7 既然要求 no／close 分開驗關閉行為，關閉後的 metadata 顯示也必須對稱涵蓋兩個出口，故 065-02 同樣拆成 \"No\" 與 close 兩筆；不可改用「把 metadata 併進 065-01 的 ER」來省，因為 -01 與 -02 是不同 RD sub-id，§8.2.2 禁止合併。）",
+  "keywords": [
+    "Bluetooth",
+    "BTSA1.2",
+    "popup close",
+    "metadata area",
+    "Connect a Bluetooth Audio Device"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "065-01 的兩筆分別以 \"No\" 按鈕與 close(X) 觸發關閉，065-02 的兩筆以同樣兩個輸入驗證關閉後 metadata 區顯示的字串；四筆皆為列舉輸入 × 驗證標的的成對覆蓋"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-065-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall close the popup when No or Close is selected.\n\n(Press \"No\" in the pairing prompt popup)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer to display the popup defined by PU0998\n4. Press \"No\" in the popup and read the content displayed on the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The popup defined by PU0998 String/Popup Message is displayed\n4. The popup is closed and the Media screen is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1.2",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-065-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall close the popup when No or Close is selected.\n\n(Press close in the pairing prompt popup)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer to display the popup defined by PU0998\n4. Press the close button in the popup and read the content displayed on the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The popup defined by PU0998 String/Popup Message is displayed\n4. The popup is closed and the Media screen is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1.2",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-065-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display 'Connect a Bluetooth Audio Device' in the metadata area after closing the popup.\n\n(Metadata area after closing with \"No\")",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer to display the popup defined by PU0998\n4. Press \"No\" in the popup and read the content displayed in the metadata area on the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The popup defined by PU0998 String/Popup Message is displayed\n4. The popup is closed and \"Connect a Bluetooth Audio Device\" is displayed in the metadata area",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-065-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display 'Connect a Bluetooth Audio Device' in the metadata area after closing the popup.\n\n(Metadata area after closing with close)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer to display the popup defined by PU0998\n4. Press the close button in the popup and read the content displayed in the metadata area on the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The popup defined by PU0998 String/Popup Message is displayed\n4. The popup is closed and \"Connect a Bluetooth Audio Device\" is displayed in the metadata area",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

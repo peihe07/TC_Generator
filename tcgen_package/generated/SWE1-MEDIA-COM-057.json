@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-057",
+  "reasoning": "14.1.1（BT1.1）規定 Browse 按鈕在來源支援 browse 時可用、不支援時變灰且不移除。037 拆成兩個 leaf，兩者是「來源是否支援 browse」這個條件的兩個等價類，依 §7 成對涵蓋，故用等價劃分。§8.5 判定：本 parent 是按鈕狀態（anatomy）條，不是 catalog 條。BT1.9 另外規定「catalog 仍在建立時 Browse 會變灰」，但那個狀態由 BT1.9／COM-070~073 擁有，屬於 §8.5 明列的 ✗ 案例（implicit environment premise），因此兩筆的 Pre-Condition 都刻意不寫「browse catalog has finished building」。反之「來源是否支援 browse」本身就是本 TC 直接驗證的 spec 觸發條件，落在 §8.5 的 exception，故寫進 Pre-Condition。057-01 除了讀按鈕外觀，還按下去確認 Browse Tab 真的開得起來——「shown available」若只驗外觀無法判定是否真的可用；BT1 已規定按下 Browse 會帶出 Browse Tab，故此步不算越界。057-02 是 §5.7 的標準形態：同一觸發（來源不支援 browse）產生兩個必然結果（變灰、未被移除），以同一筆 TC 的兩行 ER 涵蓋，不拆成兩筆。spec 未規定按下變灰按鈕的行為（BT1.9.1 的拒絕音與彈窗是 catalog 情境專屬），故不臆測。來源具名為 AUX：Table BT3.1（14.3.1）明列 AUX 為 Browse not available，spec 既已載明就不再用 symbolic 表述——symbolic 的正當性來自 §8.4「spec 沒說」，該前提在此不成立。依 §10.7，specification_reference 併列 14.1.1 與 14.3.1 兩個直接依賴的段落。與 COM-077-01 第四筆的關係：本筆驗的是 BT1.1 規定的按鈕狀態行為（變灰且不移除），COM-077 驗的是 Table BT3.1 表格內容本身（AUX 無分類可列），兩者驗證標的不同，不算重複。優先級：057-01 是整個 Browse 功能的啟用前提，訂 P1；057-02 的變灰不移除屬版面穩定性的顯示規格，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.1",
+    "greyed out",
+    "browse supported",
+    "Tab Buttons"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "057-01 的作用中來源支援 browse，057-02 的來源不支援，為同一條件的兩個等價類"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-057-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the Browse Tab button as enabled when browse is supported.\n\n(Active source supports browse)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format is connected to the HU\n2. USB is the active source on the HU and browse is supported by that source",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Press \"Browse\" on the Tab Buttons and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The \"Browse\" button is displayed in an enabled state and is not greyed out\n3. The Browse Tab is displayed in the Tab Area",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-057-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the Browse Tab button as greyed out when browse is not supported, without removing it.\n\n(Active source is AUX, which does not support browse)",
+      "pre_conditions": "1. An AUX device is connected to the HU\n2. AUX is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Read the Tab Buttons displayed on the Media screen",
+      "expected_result": "1. The Media screen is displayed and AUX is the active source\n2. The \"Browse\" button is displayed greyed out\n3. The \"Browse\" button is still displayed among the Tab Buttons and has not been removed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

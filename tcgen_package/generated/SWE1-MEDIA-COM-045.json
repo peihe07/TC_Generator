@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-COM-045",
+  "reasoning": "12.2.2（PSB2.2）規定當允許的 pinned 數量少於 Table PSB2.3 的預設項目數時，依表格順序填入直到 bank 滿。NAFTA 預設有四項（FM / SXM / Bluetooth / USB1），而 Table PSB2.4 中 7\" Landscape 與 10.25\" Widescreen 的上限是 3，正好構成「允許數 < 預設數」的觸發條件，故用該類設定驗證。這兩個上限為 3 的 radio size 在 037 沒有對應 leaf（A-008），但本 leaf 的規則本身有 leaf，因此在此驗證。驗證標的是「取前 N 項且順序不變」，ER 必須指名實際來源而非只說 bank 滿了。優先級：屬容量與預設值交互的邏輯分支，訂 P1。",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB2.2",
+    "truncation",
+    "default order",
+    "PSB2.3"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆專驗允許數少於預設數時的截斷順序，與 COM-044 的純容量邊界不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-045-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall prioritize default sources when the maximum number of pinned sources is less than the number of default sources.\n\n(Allowed maximum lower than the number of NAFTA defaults)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle is equipped with SXM\n3. The vehicle radio size allows fewer pinned sources than the four NAFTA Default Favorites in Table PSB2.3\n4. The HU has been restored to factory settings and no user change has been made to the Pinned Sources Bank",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Read the sources displayed in the Pinned Sources Bank and their order from top to bottom\n4. Count the sources displayed in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The sources displayed are the leading entries of the NAFTA Default Favorites in Table PSB2.3 order, starting with FM, and no entry is skipped\n4. The number of sources displayed equals the maximum defined for the vehicle radio size in Table PSB2.4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2.2",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

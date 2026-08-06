@@ -1,0 +1,31 @@
+{
+  "_comment": "Curated style anchors, preferred over data/exemplars.json in make_batch_context.py. Browse Tab is anchored on the reviewed COM-057 pair rather than the single done-region exemplar (COM-014-01) because the §8.5 judgement — catalog state deliberately kept OUT of Pre-Condition, browse-supportedness deliberately kept IN — is built into it, and every remaining ch14/19/20 leaf needs that same call. Approved by Pei 2026-08-06. Updated 2026-08-06: COM-057-02 now names AUX from Table BT3.1 instead of a symbolic unsupported source, so the anchor also demonstrates citing a spec table value and listing every directly-relied-on section per §10.7.",
+  "Browse Tab": [
+    {
+      "req_id": "SWE1-MEDIA-COM-057-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the Browse Tab button as enabled when browse is supported.\n\n(Active source supports browse)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format is connected to the HU\n2. USB is the active source on the HU and browse is supported by that source",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Press \"Browse\" on the Tab Buttons and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The \"Browse\" button is displayed in an enabled state and is not greyed out\n3. The Browse Tab is displayed in the Tab Area",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-057-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the Browse Tab button as greyed out when browse is not supported, without removing it.\n\n(Active source is AUX, which does not support browse)",
+      "pre_conditions": "1. An AUX device is connected to the HU\n2. AUX is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Read the Tab Buttons displayed on the Media screen",
+      "expected_result": "1. The Media screen is displayed and AUX is the active source\n2. The \"Browse\" button is displayed greyed out\n3. The \"Browse\" button is still displayed among the Tab Buttons and has not been removed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

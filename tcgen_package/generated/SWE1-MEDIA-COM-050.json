@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-050",
+  "reasoning": "13.1（SMP0）規定在 Media Playing Tab 上再按 Main Menu Bar 的 Media 鍵會開啟 Source Secondary Menu Pop up。觸發條件包含「已經在 Playing Tab 上」這個狀態，因此步驟必須先明確進入 Playing Tab，不能只按一次 Media 鍵。頁圖顯示該彈窗是位於 Main Menu Bar 上方的一列最近來源橫條，ER 依此描述其位置與內容型態，不臆測未載明的樣式細節。優先級：屬來源切換的捷徑入口，非播放核心流程，訂 P1。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP0",
+    "Media button",
+    "Playing Tab"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-050-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display the Source Secondary Menu Pop-up when the Media button is pressed on the Now Playing Tab.\n\n(Media button pressed while the Playing Tab is displayed)",
+      "pre_conditions": "1. A source is playing on the HU\n2. At least two sources have been used recently on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press \"Media\" on Main Menu Bar again and read the content displayed above the Main Menu Bar",
+      "expected_result": "1. The Media screen is displayed\n2. The Playing Tab is displayed in the Tab Area\n3. The Source Secondary Menu Pop up is displayed above the Main Menu Bar and shows a row of recent sources",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

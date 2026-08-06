@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-060",
+  "reasoning": "14.1.2（BT1.2）規定進入 browse 時落點分兩種情況：本次 ignition cycle 尚未瀏覽過該來源時到第一個分類，瀏覽過則回到前次分類。037 拆成兩個 leaf，兩者是同一條件的兩個等價類，依 §7 成對涵蓋。「本次 ignition cycle 未瀏覽過」用 ignition cycle 重啟建立可控狀態，這是 spec 明載的觸發條件本身，依 §8.5 exception 寫進 Pre-Condition；catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫（§8.5 ✗ 案例，沿用 COM-057 的取捨）。兩筆的 ER 都同時陳述落在哪個分類與清單是否在頂端，因為 BT1.2 對兩者都有規定，只驗其一屬不完整結果。優先級：進入 browse 的落點是主要操作流程的一部分，兩筆皆 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.2",
+    "ignition cycle",
+    "first category",
+    "previously browsed"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "060-01 為本次 ignition cycle 尚未瀏覽過該來源，060-02 為已瀏覽過並回到前次分類"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-060-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall navigate to the first category if no previous browse exists during the ignition cycle.\n\n(Source not browsed during this ignition cycle)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The ignition has been cycled and USB has not been browsed since",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Read the category shown as selected in the Categories Bank\n4. Read the position of the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The first category of the Categories Bank is shown as selected\n4. The Browse List is shown at the top of the list",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.2",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-060-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall navigate to the previously browsed category if available.\n\n(Source browsed earlier in the same ignition cycle)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The ignition has not been cycled since USB was last browsed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Select a category other than the first one in the Categories Bank and record which category it is\n4. Press \"Playing\" on the Tab Buttons to leave the Browse Tab\n5. Press \"Browse\" on the Tab Buttons again and read the category shown as selected in the Categories Bank\n6. Read the position of the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The selected category is displayed and which category was selected is recorded\n4. The Playing Tab is displayed in the Tab Area\n5. The category recorded in step 3 is shown as selected in the Categories Bank\n6. The Browse List is shown at the top of the list",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.2",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "parent": "SWE1-MEDIA-COM-058",
+  "reasoning": "14.1.1.1（BT1.1.1）與 14.1.1.2（BT1.1.2）對「來源已連接但無有效音訊格式檔案」給出完全相反的結論（A-011）：前者說 Browse Tab 不可用，後者說 USB／Disc 情境下可用且各分類顯示 \"No items\"。頁圖顯示 BT1.1.1 原本寫的是「USB or Disc is inserted」，被劃掉改成更廣的「a source is connected」，重疊由此產生。依 specific-over-general，USB／Disc 情境歸 BT1.1.2（見 COM-059）。問題在於扣掉 USB／Disc 之後，BT1.1.1 剩下的無歧義範圍是「非 USB／Disc 的來源、已連接、且無有效音訊格式檔案」——這個範圍在 spec 裡沒有可實例化的對象：BTSA 串流沒有「檔案」概念，AUX 本來就不支援 browse（由 BT1.1 涵蓋，見 COM-057-02）。要寫出這條 TC，必須先發明一個「有檔案概念、支援 browse、且不是 USB／Disc」的來源類別——這不是選讀法的問題，是連測試範圍本身都要憑空造，屬 §8.4 禁止的發明行為。故標記 BLOCKED，交 RD-1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.1.1",
+    "no valid audio files",
+    "blocked",
+    "RD-1",
+    "A-011"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "無 TC 產出（BLOCKED）"
+  },
+  "blocked": {
+    "reason": "BT1.1.1 contradicts BT1.1.2 for the USB/Disc case; after resolving that overlap in favour of the more specific BT1.1.2, the residual scope of BT1.1.1 (a non-USB/Disc source that supports browse and has a file concept) has no instantiable subject in the spec, so the test scope itself would have to be invented",
+    "anomaly": "A-011",
+    "req_ids": [
+      "SWE1-MEDIA-COM-058-01"
+    ],
+    "write_back": {
+      "emit_row": true,
+      "test_procedure": "BLOCKED - see Remarks",
+      "expected_result": "BLOCKED - see Remarks",
+      "priority": "",
+      "design_method": "",
+      "remarks": "BLOCKED: BT1.1.1 (14.1.1.1) and BT1.1.2 (14.1.1.2) give opposite outcomes for a connected source with no valid audio files. After specific-over-general resolution the residual scope of BT1.1.1 has no instantiable source type. See ANOMALIES A-011. Awaiting RD-1."
+    }
+  },
+  "tcs": []
+}

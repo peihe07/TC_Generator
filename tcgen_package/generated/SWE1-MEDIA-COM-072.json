@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-072",
+  "reasoning": "14.1.9.1.1（BT1.9.1.1）規定 catalog 建立完成時彈窗自動關閉。這與 BT1.9.1 的 10 秒自動關閉是兩個不同的關閉觸發，因此步驟必須讓 catalog 在 10 秒內完成才能區分兩者——若使用大量檔案的 USB，10 秒逾時會先發生，測到的就不是本條。故前置條件以 spec 錨點表述為「catalog 在 BT1.9.1 定義的逾時之前完成」——這是 BT1.9.1 與 BT1.9.1.1 兩個分支的判別條件本身，落在 §8.5 exception；「檔案數量要少」屬備料指引而非 spec 觸發條件，依 §8.5 移出 Pre-Condition 改置於 Input Test Data，並在 ER 明確要求關閉發生在 catalog 完成的當下而非 10 秒屆滿。§8.5：catalog 狀態是本條的觸發條件，寫進 Pre-Condition。優先級：屬 catalog 期間的主要回饋行為，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.9.1.1",
+    "popup auto close",
+    "cataloging complete"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆的關閉觸發是 catalog 完成，與 COM-071-02 的 10 秒逾時關閉不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-072-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall automatically close the popup when catalog building is complete.\n\n(Catalog completes before the 10 second timeout)",
+      "pre_conditions": "1. A USB drive is connected to the HU and USB is the active source\n2. The HU is still building the browse catalog for the USB drive\n3. The catalog build for the connected USB drive completes before the timeout defined in BT1.9.1",
+      "input_test_data": "A USB drive whose media collection is small enough for the catalog build to complete within the BT1.9.1 timeout",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons and read the content displayed on the HU\n3. Read the content displayed on the HU at the moment the \"Browse\" button stops being greyed out",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. A popup is displayed on the HU\n3. The popup is no longer displayed, and it closed when the \"Browse\" button stopped being greyed out rather than after 10 seconds had elapsed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.9.1.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

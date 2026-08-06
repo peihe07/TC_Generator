@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-056",
+  "reasoning": "13.4（SMP3）規定從彈窗選取來源後，音訊會更新且 Playing Tab 上的來源會改變。037 拆成兩個 leaf：056-01 驗音訊實際切換、056-02 驗 Playing Tab 的顯示更新。兩者為同一觸發但驗證標的不同（音訊 vs 畫面），各自對應一列 workbook row，依 §8.2.2 不得合併。056-01 的音訊是否真的切換，用經過時間有無前進判定，沿用 done 區 SWE1-MEDIA-COM-017-01 的寫法。優先級：從彈窗切換來源是此功能存在的目的本身，屬核心主流程，056-01 訂 P0；顯示同步為其次要結果，056-02 訂 P1。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP3",
+    "source switch",
+    "audio update",
+    "Playing Tab"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "056-01 驗音訊是否切換到新來源，056-02 驗 Playing Tab 的來源顯示是否更新，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-056-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall switch the active source and update audio playback based on the selected source.\n\n(Audio moves to the source selected from the pop-up)",
+      "pre_conditions": "1. A USB drive containing a playable music file is connected to the HU\n2. FM is the active source on the HU and is playing\n3. USB has been used recently on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press \"Media\" on Main Menu Bar again and record the active source shown on the Media screen\n4. Press \"USB\" in the Source Secondary Menu Pop up and read the audio output of the HU and the elapsed time shown on the Media screen\n5. Read the elapsed time shown on the Media screen after 5 seconds",
+      "expected_result": "1. The Media screen is displayed\n2. The Playing Tab is displayed in the Tab Area\n3. The Source Secondary Menu Pop up is displayed and FM is recorded as the active source\n4. Audio from FM has stopped, audio is output from the USB drive, and the elapsed time is displayed\n5. The elapsed time has advanced from the value read in step 4 at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.4",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-056-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall update the Playing Tab to reflect the newly selected source.\n\n(Playing Tab shows the source selected from the pop-up)",
+      "pre_conditions": "1. A USB drive containing a playable music file is connected to the HU\n2. FM is the active source on the HU and is playing\n3. USB has been used recently on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press \"Media\" on Main Menu Bar again and record the source shown on the Playing Tab\n4. Press \"USB\" in the Source Secondary Menu Pop up and read the source shown on the Playing Tab\n5. Read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed\n2. The Playing Tab is displayed in the Tab Area\n3. The Source Secondary Menu Pop up is displayed and FM is recorded as the source shown on the Playing Tab\n4. USB is shown as the source on the Playing Tab and it differs from the source recorded in step 3\n5. The Playing Tab is displayed in the Tab Area",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

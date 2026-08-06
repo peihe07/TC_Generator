@@ -1,0 +1,58 @@
+{
+  "parent": "SWE1-MEDIA-COM-074",
+  "reasoning": "14.2（BT2）本身只規定「以觸控或 Browse/Enter 實體鍵按下清單項目來選取」，實際行為落在 037 未分配 leaf 的兩個子節（A-001 模式）：BT2.1 規定項目為 track／station／chapter 時開始播放並轉到 Playing Tab，BT2.2 規定其餘項目帶出下一層清單。這兩者是項目型別的兩個等價類，依 §7 成對涵蓋，故產出兩筆等價劃分 TC。BT2 另列舉觸控與實體鍵兩種選取方式，兩者在 spec 中是同一動作的等價手段而非不同結果，故不對每個項目型別各做兩遍，而是另立一筆以實體鍵驗證播放型項目，證明兩種輸入等價。074-01 的播放是否真的開始，用經過時間有無前進判定，沿用 done 區 SWE1-MEDIA-COM-017-01 的寫法。優先級：從 browse 選曲播放是 Browse Tab 存在的目的本身，074-01 訂 P0；下鑽與實體鍵為次要路徑，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT2",
+    "BT2.1",
+    "BT2.2",
+    "list item",
+    "Browse/Enter"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "三筆分別為：觸控選取播放型項目、觸控選取非播放型項目、以 Browse/Enter 實體鍵選取播放型項目"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-074-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall perform the action associated with the selected Browse list item type.\n\n(List item is a track, selected by touch)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the category containing the track list in the Categories Bank and record the track the cursor is on\n4. Press a track entry in the Browse List and read the content displayed in the Tab Area and the elapsed time shown on the Media screen\n5. Read the elapsed time shown on the Media screen after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The track list is displayed and the track the cursor is on is recorded\n4. The Playing Tab is displayed in the Tab Area, the track pressed in step 4 is playing, and the elapsed time is displayed\n5. The elapsed time has advanced from the value read in step 4 at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.1",
+      "priority": "P0",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-074-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall perform the action associated with the selected Browse list item type.\n\n(List item is not a track, selected by touch)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains at least three artists, each with at least three tracks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Artists category in the Categories Bank and record the entries displayed in the Browse List\n4. Press an artist entry in the Browse List and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Artists list is displayed and its entries are recorded\n4. The Browse Tab is still displayed in the Tab Area and the track list of the artist pressed in step 4 is displayed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.2",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-074-03",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall perform the action associated with the selected Browse list item type.\n\n(List item is a track, selected with the Browse/Enter hard control)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the category containing the track list in the Categories Bank and move the cursor to a track that is not the first entry, recording which track it is\n4. Press the Browse/Enter hard control and read the content displayed in the Tab Area and the elapsed time shown on the Media screen\n5. Read the elapsed time shown on the Media screen after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The track list is displayed and the track the cursor is on is recorded\n4. The Playing Tab is displayed in the Tab Area, the track recorded in step 3 is playing, and the elapsed time is displayed\n5. The elapsed time has advanced from the value read in step 4 at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

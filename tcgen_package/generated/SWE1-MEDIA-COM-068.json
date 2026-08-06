@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-068",
+  "reasoning": "14.1.8（BT1.8）規定 browse 中的 breadcrumb 顯示目前所在區段的標題。只在單一層級讀取無法證明 breadcrumb 隨區段變動，故步驟先在分類層讀一次、再下鑽一層讀一次並比對。ER 以「顯示的標題等於所在區段的名稱」判定，不寫死任何分類名稱，因為 USB 的分類清單由 Table BT3.1 決定而非本條。優先級：屬導航指示的顯示規格，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.8",
+    "breadcrumb",
+    "current section"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-068-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display breadcrumb indicating the current section in the Browse Tab.\n\n(Breadcrumb after drilling one level down)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press a category in the Categories Bank and read the breadcrumb displayed and the name of the category pressed\n4. Press an entry in the Browse List to open the next level and read the breadcrumb displayed and the name of the entry pressed",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The breadcrumb displays the name of the category pressed in step 3\n4. The breadcrumb displays the name of the entry pressed in step 4 and no longer displays the name read in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.8",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

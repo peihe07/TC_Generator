@@ -1,0 +1,29 @@
+{
+  "parent": "SWE1-MEDIA-COM-052",
+  "reasoning": "13.3（SMP2）規定彈窗會顯示一列最近使用過的來源。驗證標的是「顯示的是最近使用過的來源」，因此步驟先實際依序使用數個來源建立可判定的最近清單，再開啟彈窗比對，而非只確認「有東西顯示」。清單筆數上限屬 13.3.1／13.3.3，排序規則 spec 未規定，故 ER 只陳述「步驟中使用過的來源都出現在清單中」，不臆測順序。優先級：屬彈窗的主要內容，訂 P1。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP2",
+    "recent sources"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-052-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display the list of recent sources in the Source Secondary Menu Pop-up.\n\n(Recently used sources appear in the pop-up)",
+      "pre_conditions": "1. At least three sources are available on the HU\n2. The number of sources used in this test does not exceed the maximum defined for the vehicle radio size in Table SMP2.2",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and select three different sources one after another, recording the order in which they are selected\n3. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n4. Press \"Media\" on Main Menu Bar again and read the sources displayed in the Source Secondary Menu Pop up",
+      "expected_result": "1. The Media screen is displayed\n2. Each selected source becomes the active source in turn and the selection order is recorded\n3. The Playing Tab is displayed in the Tab Area\n4. The Source Secondary Menu Pop up is displayed and all three sources selected in step 2 are shown in its list of recent sources",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

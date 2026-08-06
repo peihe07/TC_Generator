@@ -1,0 +1,45 @@
+{
+  "parent": "SWE1-MEDIA-COM-076",
+  "reasoning": "14.2.4（BT2.4）規定下鑽另一條路徑後按返回鍵，會回到先前的清單位置與游標位置。037 拆成兩個 leaf：076-01 記錄、076-02 還原。與 COM-069 同樣的問題——記錄無法獨立觀察——故兩筆皆端對端驗證，以驗證標的區分：076-01 驗清單的捲動位置、076-02 驗游標所在項目。兩者在 spec 中是並列的兩件事（list position and cursor position），分開驗證可在只有其中一個失效時精確定位。與 COM-069 的差異：BT1.8.1 談的是區段之間返回時的游標，本條談的是下鑽路徑後返回時清單捲動位置與游標一併還原，故步驟刻意讓清單處於捲動狀態，這是 COM-069 未涵蓋的面向。優先級：兩筆皆 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT2.4",
+    "drill down",
+    "back button",
+    "list position",
+    "cursor position"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "076-01 驗返回後清單捲動位置是否還原，076-02 驗返回後游標所在項目是否還原"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-076-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall store the list and cursor position when navigating deeper into a browse path.\n\n(List scrolled before drilling down)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains a category whose list is longer than one page and whose entries open a further list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press that category in the Categories Bank and scroll the Browse List down beyond its first page, recording the entries displayed\n4. Press an entry displayed after scrolling to open the next level and read the content displayed in the Browse List\n5. Press the back button and read the entries displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed scrolled beyond its first page and the entries displayed are recorded\n4. The next level list of the entry pressed in step 4 is displayed\n5. The Browse List is displayed showing the entries recorded in step 3 at the same scroll position",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.4",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-076-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall restore the previous list and cursor position when the back button is pressed.\n\n(Cursor position after returning from a deeper level)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains a category whose list is longer than one page and whose entries open a further list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press that category in the Categories Bank and move the cursor to an entry beyond the first page, recording which entry it is\n4. Press that entry to open the next level and read the content displayed in the Browse List\n5. Press the back button and read the entry the cursor is on in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed and the entry the cursor is on is recorded\n4. The next level list of the entry recorded in step 3 is displayed\n5. The Browse List is displayed and the cursor is on the entry recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.4",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

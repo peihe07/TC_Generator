@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-049",
+  "reasoning": "12.4（PSB4）規定 Pinned Sources Bank 的設定會存進 driver profile。驗證的關鍵是「跟著 profile 走」，因此步驟必須包含切換到另一個 driver profile 觀察差異、再切回原 profile 確認設定仍在 —— 只驗「改完還在」無法區分是存進 profile 還是存在系統全域。spec 未規定各 profile 的初始值，故第二個 profile 的 ER 只陳述「與 profile A 的設定不同」這個可觀察事實，不臆測其內容。優先級：個人化設定遺失會影響主要使用體驗，訂 P1。",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB4",
+    "driver profile",
+    "persistence"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-049-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall persist Pinned Sources Bank configuration to the driver profile.\n\n(Configuration follows the driver profile across a profile switch)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. Two driver profiles are available on the HU\n3. Driver profile A is the active profile",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Change the sources pinned in the Pinned Sources Bank and record the resulting sources and their order from top to bottom\n4. Switch the active driver profile to profile B and read the sources displayed in the Pinned Sources Bank\n5. Switch the active driver profile back to profile A and read the sources displayed in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The Pinned Sources Bank displays the changed sources and their order is recorded\n4. The sources displayed in the Pinned Sources Bank differ from the sources recorded in step 3\n5. The Pinned Sources Bank displays the sources and the order recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

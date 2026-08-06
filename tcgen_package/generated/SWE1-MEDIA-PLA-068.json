@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-068",
+  "reasoning": "11.4.3（BTSA3）規定：選擇連接新裝置時，原本的 A2DP 裝置會被中斷為 Audio Device，串流停止，並開始播放新裝置的串流。037 拆成兩個 leaf——068-01 管連線狀態的轉移，068-02 管音訊串流的轉移。兩者同一觸發但驗證標的不同（連線狀態 vs 音訊來源），各自對應一列 workbook row，故各產出一筆 TC 而非合併。兩筆都需要兩台藍牙裝置，前置條件明確寫出「已連線的裝置」與「已配對但未連線的第二台裝置」，避免用步驟才建立的狀態當前置。優先級：多裝置切換屬主要功能的操作分支而非單一裝置的核心播放流程，兩筆皆訂 P1。",
+  "keywords": [
+    "Bluetooth",
+    "BTSA3",
+    "A2DP",
+    "device switch",
+    "audio streaming"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "068-01 驗證舊裝置的 A2DP 連線是否中斷，068-02 驗證音訊串流是否從舊裝置停止並在新裝置開始，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-068-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall disconnect the currently connected A2DP device when a new device is selected.\n\n(Connection state of the previous A2DP device)",
+      "pre_conditions": "1. A Bluetooth audio device containing a playable music file is connected to the HU as an A2DP source\n2. A second Bluetooth audio device is paired with the HU and is not connected as an A2DP source\n3. Bluetooth is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab and record the device shown as the connected Audio Device\n3. Select the second Bluetooth audio device as the Audio Device and read the connection state of the device recorded in step 2\n4. Read the connection state of the second Bluetooth audio device",
+      "expected_result": "1. The Media screen is displayed and Bluetooth is the active source\n2. The Source Tab is displayed in the Tab Area and the currently connected Audio Device is recorded\n3. The device recorded in step 2 is no longer connected as the Audio Device\n4. The second Bluetooth audio device is connected as the Audio Device",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-068-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall stop audio streaming from the previous device and start audio streaming from the new A2DP device.\n\n(Audio streaming moves to the new device)",
+      "pre_conditions": "1. A Bluetooth audio device containing a playable music file is connected to the HU as an A2DP source\n2. A second Bluetooth audio device containing a playable music file is paired with the HU and is not connected as an A2DP source\n3. Bluetooth is the active source on the HU and a track is playing from the connected device",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab and record the track name shown on the Media screen\n3. Select the second Bluetooth audio device as the Audio Device and read the audio output of the HU\n4. Read the track name shown on the Media screen and the elapsed time\n5. Read the elapsed time shown on the Media screen after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and Bluetooth is the active source\n2. The Source Tab is displayed in the Tab Area and the track name streamed from the first device is recorded\n3. Audio streaming from the device recorded in step 2 has stopped\n4. The track name shown is the track streamed from the second Bluetooth audio device and differs from the track name recorded in step 2, and the elapsed time is displayed\n5. The elapsed time has advanced from the value read in step 4 at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

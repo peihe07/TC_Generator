@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-MEDIA-COM-051",
+  "reasoning": "13.2（SMP1）的需求內容只有一句「See Pop Up List: PU0996」，全部內容委託給該彈窗定義。但 PU0996 在 Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023) 的三個工作表中皆不存在——共 1340 個 PU id，PU099x 區間只有 PU0998。在沒有彈窗版面、字串與退出條件的情況下撰寫 TC，等同依 §8.4 禁止的方式發明行為，因此本 parent 不產生 TC，標記為 BLOCKED 並交 RD-1。此 leaf 在 PU0996 補齊之前沒有 workbook row。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP1",
+    "PU0996",
+    "blocked",
+    "RD-1"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "無 TC 產出（BLOCKED）"
+  },
+  "tcs": [],
+  "blocked": {
+    "reason": "PU0996 is absent from the Pop Up List (all 3 sheets, 1340 PU ids searched); the requirement delegates its entire content to that missing definition",
+    "anomaly": "A-009",
+    "req_ids": [
+      "SWE1-MEDIA-COM-051-01"
+    ],
+    "write_back": {
+      "emit_row": true,
+      "test_procedure": "BLOCKED - see Remarks",
+      "expected_result": "BLOCKED - see Remarks",
+      "priority": "",
+      "design_method": "",
+      "remarks": "BLOCKED: PU0996 not found in Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023). Requirement content is fully delegated to that missing definition. See ANOMALIES A-009. Awaiting RD-1."
+    }
+  }
+}

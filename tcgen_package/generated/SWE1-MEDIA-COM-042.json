@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-042",
+  "reasoning": "12.1（PSB1）只規定 Pinned Sources Bank 內每個來源僅顯示圖示，不顯示文字標籤。單一驗證標的，產出一筆 TC。此處要驗的是「沒有標籤」這個否定性質，因此 ER 必須同時陳述「圖示有顯示」與「標籤未顯示」，只寫其中一半屬不完整結果。與 Source Drawer 對照可強化判定，但 Source Drawer 的標籤行為屬 ch10，不在本 leaf 範圍，故不納入步驟。優先級：屬 Source Tab 的顯示規格細節而非播放主流程，訂 P2。",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB1",
+    "icon only",
+    "no label"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-042-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall display only the icon for each source in the Pinned Sources Bank.\n\n(Icon shown without a text label)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. At least two sources are pinned in the Pinned Sources Bank",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Read the content displayed on each pinned source in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. Each pinned source displays its source icon only, and no text label is displayed on any pinned source",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

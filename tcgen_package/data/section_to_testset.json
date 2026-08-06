@@ -1,0 +1,20 @@
+{
+  "_comment": "FINAL chapter -> Test Set mapping, ruled by Pei 2026-08-05. New Test Sets: 'Preset Management' (ch18) and 'Media Widget' (ch23) - framework.md and the workbook 'Test Case Framework' sheet must both gain these two rows before generation. 'overrides' maps individual parents to a different Test Set than their chapter default. 'exemplar_fallback' names an existing Test Set whose exemplars anchor style for new Sets with no done-region examples.",
+  "chapters": {
+    "11": {"test_set": "Source Selection", "code_prefix": "USB/BTSA", "leaves": 10, "note": "BTSA source-selection popups / playback start / device switch. PLA-062 (USB label on source button) overridden to Source Tab below"},
+    "12": {"test_set": "Source Tab", "code_prefix": "PSB", "leaves": 12, "note": "Pinned Sources Bank"},
+    "13": {"test_set": "Source Selection", "code_prefix": "SMP", "leaves": 10, "note": "Source secondary menu popup + recent sources"},
+    "14": {"test_set": "Browse Tab", "code_prefix": "BT", "leaves": 57, "note": "Browse tab logic"},
+    "16": {"test_set": "Presets", "code_prefix": "PRE", "leaves": 34, "note": "Mixed preset bank, store/delete/overwrite, Browse Presets List"},
+    "17": {"test_set": "Presets", "code_prefix": "MPB", "leaves": 16, "note": "Playing Tab preset bank display/navigation - ruled Presets (capability over location)"},
+    "18": {"test_set": "Preset Management", "code_prefix": "APP", "leaves": 31, "note": "NEW Test Set - All Presets Popup + Edit Presets (add/overwrite/rearrange/delete). Split from Presets per docs.md 4.1.2 granularity target", "exemplar_fallback": "Presets"},
+    "19": {"test_set": "Browse Tab", "code_prefix": "FB", "leaves": 14, "note": "Folder browse: All Songs behavior"},
+    "20": {"test_set": "Browse Tab", "code_prefix": "FF", "leaves": 12, "note": "Folder structure, sorting, multi-partition"},
+    "21": {"test_set": "Audio Settings", "code_prefix": "SA", "leaves": 32, "note": "Settings Audio: EQ, balance/fade, SVC, surround, AUX offset, auto-on radio"},
+    "22": {"test_set": "Play Controls", "code_prefix": "AP", "leaves": 9, "note": "AutoPlay (USB only) - playback auto-start policy"},
+    "23": {"test_set": "Media Widget", "code_prefix": "MW", "leaves": 25, "note": "NEW Test Set - Home screen Media widget (spec formal name kept per Pei's ruling)", "exemplar_fallback": "Playing Tab"}
+  },
+  "overrides": {
+    "SWE1-MEDIA-PLA-062": {"test_set": "Source Tab", "reason": "USB source-button label display belongs to Source Tab anatomy, not the selection flow"}
+  }
+}

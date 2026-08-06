@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-PLA-062",
+  "reasoning": "此 leaf（11.3.1）本身只有一句抽象敘述「USB 來源標籤可能隨連接的磁碟類型改變」，真正可測的行為全部落在 037 未分配 leaf 的子節：11.3.1.1 規定接上 iPod 時 USB 圖示改變且標籤變成 \"iPod\"，11.3.1.1.1 規定此時 App Drawer 內的名稱不得跟著改。依 §8.2.2，單一 RD sub-id 可產出多個 TC，因此拆為三筆。磁碟類型是列舉條件，iPod 與一般 USB 大容量儲存裝置構成兩個等價類，依 §7 需要成對涵蓋，故 TC-01／TC-02 用等價劃分。TC-03 驗證跨畫面不連動，屬獨立的功能分支。優先級：來源標籤與圖示屬 Source Tab 的顯示變化而非媒體播放主流程，訂為 P2；App Drawer 名稱一致性影響更小，訂為 P3。",
+  "keywords": [
+    "USB",
+    "iPod",
+    "source label",
+    "Source Drawer",
+    "App Drawer"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "TC-01 接 iPod、TC-02 接一般 USB 大容量儲存裝置，兩者為磁碟類型的兩個等價類；TC-03 改看 App Drawer 名稱是否不連動"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-062-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall update the USB source label based on the connected drive type.\n\n(Connected drive type: iPod)",
+      "pre_conditions": "1. An iPod containing at least one playable music file is available for connection to the HU\n2. No USB device is connected to the HU USB port",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Connect the iPod to the HU USB port and read the label of the USB source in the Source Drawer\n4. Read the icon displayed on that source in the Source Drawer",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The source label is displayed as \"iPod\"\n4. The iPod icon is displayed on that source instead of the USB icon",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-062-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall update the USB source label based on the connected drive type.\n\n(Connected drive type: USB mass-storage drive)",
+      "pre_conditions": "1. A USB mass-storage drive containing at least one playable music file is available for connection to the HU\n2. No USB device is connected to the HU USB port",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Connect the USB mass-storage drive to the HU USB port and read the label of the USB source in the Source Drawer\n4. Read the icon displayed on that source in the Source Drawer",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The source label is displayed as \"USB\"\n4. The USB icon is displayed on that source",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-062-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall update the USB source label based on the connected drive type.\n\n(App Drawer name unchanged while the source label is \"iPod\")",
+      "pre_conditions": "1. An iPod containing at least one playable music file is connected to the HU USB port",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab and read the label of the USB source in the Source Drawer\n3. Open the App Drawer and read the name of the USB media entry",
+      "expected_result": "1. The Media screen is displayed\n2. The source label is displayed as \"iPod\"\n3. The USB media entry in the App Drawer is displayed with its original \"USB\" name and not as \"iPod\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1.1.1",
+      "priority": "P3",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-075",
+  "reasoning": "14.2.3（BT2.3）規定進入新的 browse 分類時，清單與游標都回到第一個位置。037 拆成兩個 leaf：075-01 清單位置、075-02 游標位置。兩者是同一觸發的兩個結果，但因為是不同 RD sub-id，依 §8.2.2 不得合併為一筆，故各自成一筆並以驗證標的區分。關鍵在於必須先讓前一個分類處於非頂端狀態，否則「回到第一個位置」與「維持原狀」無法區分，故步驟先在第一個分類把清單捲到下方再切換分類。此條與 BT1.2 的「回到前次瀏覽分類」不衝突：BT1.2 談的是重新進入 browse 時落在哪個分類，本條談的是進入新分類後清單內的位置。優先級：兩筆皆屬分類切換的主要行為，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT2.3",
+    "new category",
+    "list position",
+    "cursor first item"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "075-01 驗清單捲動位置回到頂端，075-02 驗游標回到第一個項目，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-075-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall reset the list position to the top when entering a new browse category.\n\n(List scrolled down in the previous category)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The Categories Bank for USB contains at least two categories whose lists are longer than one page",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the first category in the Categories Bank and scroll the Browse List down beyond its first page, recording the entries displayed\n4. Press a different category in the Categories Bank and read the entries displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed scrolled beyond its first page and the entries displayed are recorded\n4. The list of the newly selected category is displayed at the top of the list, showing its first entries",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-075-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall set the cursor position to the first item when entering a new browse category.\n\n(Cursor moved off the first item in the previous category)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The Categories Bank for USB contains at least two categories whose lists are longer than one page",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the first category in the Categories Bank and move the cursor to an entry that is not the first one, recording which entry it is\n4. Press a different category in the Categories Bank and read the entry the cursor is on",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed and the entry the cursor is on is recorded, and it is not the first entry\n4. The list of the newly selected category is displayed and the cursor is on its first entry",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.2.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

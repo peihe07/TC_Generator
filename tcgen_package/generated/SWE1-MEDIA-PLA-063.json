@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-063",
+  "reasoning": "11.4.1（BTSA1）規定：使用者切到 Bluetooth 模式而沒有已連線的藍牙音源時，系統要跳出 PU0998 彈窗。037 把它拆成兩個 leaf——063-01 管「彈窗有沒有出現」，063-02 管「彈窗的訊息內容與按鈕」——兩者驗證標的不同（存在性 vs 內容），依 §8.2 各自成一筆 TC，不合併。彈窗字串與按鈕不自行改寫，一律以 §8.4 的方式引用 PU0998 的 String/Popup Message 欄位。反向情境（已有裝置連線時不跳彈窗、直接播放）屬 11.4.2，由 SWE1-MEDIA-PLA-067 涵蓋，此處不重複產生。優先級：進入藍牙音源但無裝置屬主要功能的分支路徑而非核心 happy path，063-01 訂 P1；訊息文字與按鈕為顯示細節，063-02 訂 P2。",
+  "keywords": [
+    "Bluetooth",
+    "BTSA",
+    "pairing popup",
+    "PU0998",
+    "no connected device"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "063-01 驗證彈窗是否出現，063-02 驗證彈窗內的兩行訊息與 Close/Yes/No 按鈕，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-063-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display a popup with pairing prompt when no Bluetooth audio device is connected.\n\n(Popup appears on selecting Bluetooth with no connected device)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer and read the content displayed on the HU",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. A popup is displayed on the HU as defined by PU0998 String/Popup Message",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-063-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display the message 'No Bluetooth audio device connected. Would you like to pair a device?' with Close, Yes, and No buttons.\n\n(Message lines and buttons match PU0998)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle is stationary",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer and read the two message lines displayed in the popup\n4. Read the buttons displayed in the popup",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The two message lines displayed match PU0998 String/Popup Message\n4. The close, \"Yes\" and \"No\" buttons are displayed as defined by PU0998 Exit Conditions",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

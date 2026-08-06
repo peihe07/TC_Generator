@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-065",
+  "reasoning": "14.1.6（BT1.6）規定兩件事：播放中的歌曲或電台以 activated color 標示，而游標永遠從清單頂端開始。037 拆成兩個 leaf，前者是視覺標記、後者是初始游標位置，驗證標的不同。A-012 假設聲明：BT1.6 的「always」與 BT1.2.1 對 Presets／All Stations 清單的規定相衝突。065-02 依 specific-over-general 收斂範圍——刻意選在 USB 曲目清單（非 Presets、非 All Stations）驗證，使本筆 TC 自身無歧義；Presets／All Stations 的游標落點由 COM-061 依 BT1.2.1 涵蓋。若 RD-1 裁定 BT1.6 全域適用，需回修的是 COM-061-01 與 COM-061-04，本 parent 因已用 scope 化解而自身無歧義、不需回修，故 assumption marker 掛在 COM-061 而非本檔——marker 跟著回修對象走，掛在此處會製造誤報。065-01 的驗證需要「播放中項目同時出現在清單中」，故步驟先播放一首再進入 browse；ER 明確區分 activated color 與游標的 highlighted outline 兩種標記，並涵蓋兩者不重合的情況。優先級：065-01 屬顯示標記訂 P2；065-02 是進入清單的落點行為訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.6",
+    "activated color",
+    "cursor top of list",
+    "A-012"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "065-01 驗播放中項目的視覺標記，065-02 驗進入 browse 時的游標初始位置"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-065-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall highlight the currently playing song or station using activated color.\n\n(Playing track highlighted in the Browse List)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. A track from the USB drive is playing on the HU and it is not the first entry of the track list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the category containing the track list in the Categories Bank and read the entry displayed in activated color\n4. Read the entry the cursor is on in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The track list is displayed and the entry for the currently playing track is displayed in activated color\n4. The cursor is on the first entry of the list and is displayed with a highlighted outline, on a different entry from the one read in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.6",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-065-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall initialize the cursor position at the top of the list when entering Browse.\n\n(Entering a USB track list, not Presets or All Stations)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. A track from the USB drive is playing on the HU and it is not the first entry of the track list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the category containing the track list in the Categories Bank and read the entry the cursor is on",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The track list is displayed and the cursor is on the first entry of the list",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.6",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

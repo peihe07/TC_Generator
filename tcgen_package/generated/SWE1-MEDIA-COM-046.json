@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-046",
+  "reasoning": "12.2.3（PSB2.3）的 SYS1 文字只有表格標題與 (image: image11.png)，實際內容只存在於頁圖，已依 A-001 的作法以頁圖為 ground truth。NAFTA 那列的第二項是條件式列舉：配備 SXM 時為 SXM，未配備時為 AM —— 這是列舉的兩個等價類，依 §7 需成對涵蓋，故產出兩筆等價劃分 TC。頁圖另有 EMEA／LATAM／APAC／APAC-China 四個市場變體，但 037 的 leaf 只引用 NA 一列，越界產生會超出 leaf 範圍，記於 A-008 交 RD-1。優先級：預設清單正確與否影響開箱即用的主要體驗，兩筆皆 P1。",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB2.3",
+    "NAFTA defaults",
+    "SXM",
+    "AM"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "兩筆分別為配備 SXM 與未配備 SXM 兩個等價類，第二個預設項目因此不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-046-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall apply default pinned sources as defined below : \nNA Default Favorites (from top to bottom):\nFM, SXM (AM when not equipped with SXM), Bluetooth, USB1\n\n(Vehicle equipped with SXM)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle is equipped with SXM\n3. The HU has been restored to factory settings and no user change has been made to the Pinned Sources Bank\n4. The vehicle radio size allows at least four pinned sources",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Read the sources displayed in the Pinned Sources Bank and their order from top to bottom",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The Pinned Sources Bank displays FM, SXM, Bluetooth and USB1 in that order from top to bottom",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2.3",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-046-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall apply default pinned sources as defined below : \nNA Default Favorites (from top to bottom):\nFM, SXM (AM when not equipped with SXM), Bluetooth, USB1\n\n(Vehicle not equipped with SXM)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle is not equipped with SXM\n3. The HU has been restored to factory settings and no user change has been made to the Pinned Sources Bank\n4. The vehicle radio size allows at least four pinned sources",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Read the sources displayed in the Pinned Sources Bank and their order from top to bottom",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The Pinned Sources Bank displays FM, AM, Bluetooth and USB1 in that order from top to bottom, and SXM is not displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2.3",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

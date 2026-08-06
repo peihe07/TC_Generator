@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-063",
+  "reasoning": "14.1.4（BT1.4）規定游標隨 tune 旋鈕方向上下移動。順時針與逆時針是同一互動的兩個方向，沿用 done 區 SWE1-MEDIA-COM-016-01 的既有寫法，以同一筆 TC 的相鄰步驟涵蓋兩個方向並回到原位，而非拆成兩筆——回到原位本身就是對稱性的證明，拆開反而失去這個判定。ER 以游標所在項目相對於基準項目的變化判定，不使用不可觀察的「游標移動了」這類敘述。優先級：清單導航是 browse 的基本操作，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.4",
+    "cursor",
+    "tune knob"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-063-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall move the cursor up or down the list based on tune knob rotation direction.\n\n(Tune knob rotated in both directions)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press a category in the Categories Bank and record the entry the cursor is on in the Browse List\n4. Rotate the Tune knob clockwise one detent and read the entry the cursor is on\n5. Rotate the Tune knob counter-clockwise one detent and read the entry the cursor is on",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed and the entry the cursor is on is recorded\n4. The cursor is on the entry immediately below the entry recorded in step 3\n5. The cursor is on the entry recorded in step 3 again",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

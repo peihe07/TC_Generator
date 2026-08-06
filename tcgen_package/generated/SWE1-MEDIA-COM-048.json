@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-048",
+  "reasoning": "12.3（PSB3）規定 Pinned Sources Bank 的圖示尺寸與位置固定，且明文涵蓋 Source Tab 與 Playing Tab 兩個畫面。兩個畫面是不同的驗證範圍，依 §8.2 的 scope 準則拆成兩筆，而非用一筆 TC 的多階段 ER 帶過。驗證方式是先記錄再比對：ER3 只陳述「已記錄」，baseline 一詞依 §5.6 留給末步比較句，此處直接寫「與步驟 3 記錄的相同」。優先級：屬版面穩定性的顯示規格，兩筆皆 P2。",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB3",
+    "icon size",
+    "icon position",
+    "Playing Tab"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "mode",
+    "delta": "兩筆分別在 Source Tab 與 Playing Tab 上驗證同一條版面規則，驗證範圍不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-048-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall maintain constant size and position of icons in the Pinned Sources Bank regardless of the number of pinned sources.\n\n(Pinned Sources Bank on the Source Tab)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. At least three sources are pinned in the Pinned Sources Bank\n3. A USB drive containing a playable music file is connected to the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Record the size and screen position of each icon displayed in the Pinned Sources Bank\n4. Unpin one source and read the size and screen position of the remaining icons in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The size and screen position of each pinned icon are recorded\n4. The remaining icons are displayed at the same size and the same screen positions as recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-048-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall maintain constant size and position of icons in the Pinned Sources Bank regardless of the number of pinned sources.\n\n(Pinned Sources Bank on the Playing Tab)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. At least three sources are pinned in the Pinned Sources Bank\n3. A USB drive containing a playable music file is connected to the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the size and screen position of each icon displayed in the Pinned Sources Bank\n4. Unpin one source and read the size and screen position of the remaining icons in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Playing Tab is displayed in the Tab Area\n3. The size and screen position of each pinned icon are recorded\n4. The remaining icons are displayed at the same size and the same screen positions as recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

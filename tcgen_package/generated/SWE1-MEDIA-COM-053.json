@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-COM-053",
+  "reasoning": "13.3.1（SMP2.1）規定最近來源的顯示筆數取決於螢幕尺寸並指向 Table SMP2.2。本 parent 是不指定尺寸的通用條，因此上限以 symbolic 方式引用「該 radio size 在 Table SMP2.2 的值」，與 COM-055 指定尺寸、直接寫死數值的寫法分工，與 ch12 的 COM-044／COM-047 同一慣例。驗證方式是刻意使用超過上限的來源數，再確認顯示筆數不超過表列值。Table SMP2.2 中 7\" Landscape 與 10.25\" Widescreen 標為 N/A，語意未定義（不提供彈窗？無上限？未規定？），三種讀法會導致不同 ER，故本筆的前置條件明確排除這兩種設定，缺口記 A-010 交 RD-1。優先級：筆數上限被突破會直接破壞版面，訂 P1。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP2.1",
+    "recent sources",
+    "radio size",
+    "SMP2.2"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆為不指定尺寸的通用條，COM-055 的三筆為指定尺寸的條文"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-053-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall limit the number of recent sources displayed according to the maximum defined for the display size.\n\n(More sources used than the configured maximum)",
+      "pre_conditions": "1. The vehicle radio size has a numeric maximum defined in Table SMP2.2\n2. The number of sources available on the HU exceeds that maximum",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and select sources one after another until the number of sources used exceeds the maximum defined for the vehicle radio size in Table SMP2.2\n3. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n4. Press \"Media\" on Main Menu Bar again and count the sources displayed in the Source Secondary Menu Pop up",
+      "expected_result": "1. The Media screen is displayed\n2. Each selected source becomes the active source in turn\n3. The Playing Tab is displayed in the Tab Area\n4. The number of sources displayed in the Source Secondary Menu Pop up equals the maximum defined for the vehicle radio size in Table SMP2.2 and does not exceed it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.3.1",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

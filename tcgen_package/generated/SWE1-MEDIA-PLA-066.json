@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-066",
+  "reasoning": "11.4.1.3 規定車輛行進中不得提供 PU0998 彈窗，PU0998 的 Description 欄位也記載 \"not available when car is in motion\"，兩者一致。結果取決於「無已連線藍牙音源」與「車輛是否行進」兩個條件的組合，故用決策表；靜止時應顯示彈窗的那一格已由 SWE1-MEDIA-PLA-063 涵蓋，此處只產出行進中抑制的那一格，避免重複。最終 ER 必須同時涵蓋「彈窗未出現」與「畫面實際顯示什麼」，只寫「彈窗未出現」屬不完整結果。優先級：與行車分心抑制相關，屬主要功能的邏輯分支，訂 P1。",
+  "keywords": [
+    "Bluetooth",
+    "BTSA1.2",
+    "vehicle in motion",
+    "popup suppression",
+    "PU0998"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆在車輛行進中觸發，彈窗被抑制；PLA-063 在車輛靜止中觸發，彈窗顯示"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-066-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall suppress the Bluetooth pairing popup when the vehicle is in motion.\n\n(Vehicle in motion)",
+      "pre_conditions": "1. No Bluetooth audio device is connected to the HU as an A2DP source\n2. FM is the active source on the HU\n3. The vehicle speed signal indicates the vehicle is in motion",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer and read the content displayed on the HU\n4. Read the content displayed on the HU after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The popup defined by PU0998 is not displayed and the Media screen remains displayed\n4. The popup defined by PU0998 is still not displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.1.3",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)"
+    }
+  ]
+}

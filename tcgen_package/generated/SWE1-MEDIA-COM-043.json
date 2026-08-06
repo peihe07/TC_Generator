@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-043",
+  "reasoning": "12.2（PSB2）規定兩件事：Pinned Sources Bank 以 Table PSB2.3 的預設項目初始化，且使用者可以更改。037 拆成兩個 leaf，043-01 驗初始預設值、043-02 驗可更改，觸發與驗證標的皆不同，各自成一筆。預設清單以頁圖 Table PSB2.3 為 ground truth；037 的 leaf 只引用 NAFTA 一列，故本批僅涵蓋 NAFTA，其餘四個市場變體記於 ANOMALIES A-008。043-01 用回復原廠設定建立可觀察的初始狀態，避免把「尚未被使用者改過」寫成無法驗證的前置條件。優先級：預設值與可編輯性都是 Pinned Sources Bank 的主要功能分支，兩筆皆 P1。",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB2",
+    "default sources",
+    "PSB2.3",
+    "user alterable"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "043-01 驗初始化的預設內容，043-02 驗使用者更改後是否生效，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-043-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall initialize the Pinned Sources Bank with default sources based on configuration.\n\n(Defaults after a settings reset)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle is equipped with SXM\n3. The HU has been restored to factory settings and no user change has been made to the Pinned Sources Bank",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Read the sources displayed in the Pinned Sources Bank and their order from top to bottom",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The Pinned Sources Bank displays FM, SXM, Bluetooth and USB1 in that order from top to bottom, matching Table PSB2.3 NAFTA Default Favorites",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-043-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall allow the user to modify the default pinned sources.\n\n(Replacing a default pinned source)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The Pinned Sources Bank holds the NAFTA default sources\n3. A source that is not pinned is available in the Source Drawer",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Record the sources displayed in the Pinned Sources Bank and their order from top to bottom\n4. Replace one pinned source with a source from the Source Drawer and read the sources displayed in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. The Pinned Sources Bank displays the NAFTA default sources and their order is recorded\n4. The replaced source is no longer displayed in the Pinned Sources Bank and the source taken from the Source Drawer is displayed in its position",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

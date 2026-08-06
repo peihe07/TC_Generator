@@ -1,0 +1,70 @@
+{
+  "parent": "SWE1-MEDIA-COM-077",
+  "reasoning": "14.3（BT3）規定 browse 分類依裝置而定並指向 Table BT3.1；該表的內容只存在於頁圖（14.3.1 的 SYS1 文字僅有標題與 image 參照），已依 A-001 的作法以頁圖為 ground truth。表中列出九種裝置類別，037 只配一個 leaf，依 §8.2.2 單一 sub-id 可產出多筆 TC，故選取四個涵蓋不同結構的等價類：USB/SD-Card（最完整的六分類）、FM-Analog（電台型兩分類）、BTSA（媒體播放器型五分類）、AUX（Browse not available，即 §7 要求的負向配對）。AUX 這筆同時回頭實證了 COM-057-02 的「不支援 browse 的來源」確實存在於 spec 中。未涵蓋的 AM-Analog、Single-Tuner FM-Analog、Disc (Audio)、Disc (MP3)、MTP 五類，其分類清單在表中皆為前述結構的子集或變體，且受車輛實際配備限制無法一次驗證；若需完整涵蓋需 037 補 leaf，記於 ANOMALIES A-008 的同一模式。分類名稱逐字引用表格，順序亦依表格所列，不自行排序。優先級：分類清單錯誤會讓使用者找不到內容，USB 與 AUX 兩筆訂 P1，FM 與 BTSA 訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3",
+    "BT3.1",
+    "browse categories",
+    "device type"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "四筆分別為 USB/SD-Card、FM-Analog、BTSA、AUX 四種裝置類別，AUX 為不支援 browse 的負向配對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-077-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display browse categories based on the connected device type as defined in Table BT3.1.\n\n(Device type: USB/SD-Card)",
+      "pre_conditions": "1. A USB drive containing files with a valid audio format in more than one folder is connected to the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Select \"USB\" as the active source\n3. Press \"Browse\" on the Tab Buttons and read the categories displayed in the Categories Bank",
+      "expected_result": "1. The Media screen is displayed\n2. \"USB\" is the active source\n3. The Browse Tab is displayed and the Categories Bank displays Folders, Artists, Playlists, Songs, Albums and Genre",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-077-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display browse categories based on the connected device type as defined in Table BT3.1.\n\n(Device type: FM-Analog)",
+      "pre_conditions": "1. The vehicle is equipped with an FM-Analog tuner\n2. At least one station is stored in the Presets list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Select \"FM\" as the active source\n3. Press \"Browse\" on the Tab Buttons and read the categories displayed in the Categories Bank",
+      "expected_result": "1. The Media screen is displayed\n2. \"FM\" is the active source\n3. The Browse Tab is displayed and the Categories Bank displays All Stations and Presets",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-077-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display browse categories based on the connected device type as defined in Table BT3.1.\n\n(Device type: BTSA)",
+      "pre_conditions": "1. A Bluetooth audio device containing playable music files is connected to the HU as an A2DP source",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Select \"Bluetooth\" as the active source\n3. Press \"Browse\" on the Tab Buttons and read the categories displayed in the Categories Bank",
+      "expected_result": "1. The Media screen is displayed\n2. \"Bluetooth\" is the active source\n3. The Browse Tab is displayed and the Categories Bank displays Artists, Playlists, Songs, Albums and Genres",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-077-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display browse categories based on the connected device type as defined in Table BT3.1.\n\n(Device type: AUX (browse not available))",
+      "pre_conditions": "1. An AUX device is connected to the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Select \"AUX\" as the active source\n3. Press \"Browse\" on the Tab Buttons and read the categories displayed in the Categories Bank",
+      "expected_result": "1. The Media screen is displayed\n2. \"AUX\" is the active source\n3. The Browse Tab is displayed and the Categories Bank displays no categories, because the \"Browse\" button is greyed out and the Browse Tab cannot be opened",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

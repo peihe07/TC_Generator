@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-064",
+  "reasoning": "14.1.5（BT1.5）規定無操作時 Browse Tab 不會逾時關閉。spec 未給定逾時門檻，因此步驟使用觀察窗（5 分鐘無操作）而非引用任何 spec 未載明的秒數，ER 只陳述畫面仍維持在 Browse Tab。「無操作」必須真的不觸碰任何控制項，故步驟明確要求期間不進行任何操作，避免測試者以讀取動作破壞前提。優先級：屬畫面維持行為，失效時使用者會被踢出清單但不影響核心播放，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.5",
+    "timeout",
+    "no interaction"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-064-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall maintain the Browse Tab without timeout when no user interaction occurs.\n\n(No interaction for an extended observation window)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press a category in the Categories Bank and record the entry the cursor is on in the Browse List\n4. Leave the HU without operating any control for 5 minutes and read the content displayed in the Tab Area\n5. Read the entry the cursor is on in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed and the entry the cursor is on is recorded\n4. The Browse Tab is still displayed in the Tab Area\n5. The cursor is on the entry recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "parent": "SWE1-MEDIA-COM-061",
+  "reasoning": "14.1.2.1（BT1.2.1）規定 Presets 與 All Stations 清單的游標初始位置分 a) 目前收聽電台、b) 非 preset 時為清單頂端、c) 前次瀏覽分類三種情況，另加一句「作用中頻道與游標應盡可能顯示為清單第一個可見項目」。這三種是不同觸發情境（目前頻道是否為 preset、是否有前次分類）而非同一觸發的多個結果，依 §8.3 拆為不同 TC 而非同一 TC 的多行 ER；037 也已拆成四個 leaf，依 §8.2.2 不得合併。061-04 的 as possible 是 spec 自身的模糊限定，依 §8.4 保留模糊而不自行定義例外條件，ER 只在該項目存在於清單中時判定。本 parent 與 A-012 相關：BT1.6 的「游標永遠從頂端開始」與本條的 a) 相矛盾，本 parent 依 specific-over-general 以本條為準。優先級：061-01／02 是進入清單的主要落點行為訂 P1；061-03 屬分類層級的記憶、061-04 屬捲動呈現，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.2.1",
+    "cursor",
+    "presets",
+    "All Stations",
+    "tuned station"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "四筆分別為：目前收聽電台在清單中、目前頻道非 preset、返回前次瀏覽分類、作用中項目捲動至第一個可見位置"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-061-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall initially position the cursor at the currently tuned station when the currently tuned station is available in the Presets list or the All Stations list.\n\n(Currently tuned station is present in the list)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least three stations are stored in the Presets list\n3. The currently tuned station is stored in the Presets list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Presets category in the Categories Bank and read the entry the cursor is on",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Presets list is displayed and the cursor is on the entry for the currently tuned station",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.2.1",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-061-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall initially position the cursor at the top of the Presets list when the currently tuned station is not a preset.\n\n(Currently tuned station is not stored as a preset)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least three stations are stored in the Presets list\n3. The currently tuned station is not stored in the Presets list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Presets category in the Categories Bank and read the entry the cursor is on",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Presets list is displayed and the cursor is on the first entry of the list",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.2.1",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-061-03",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall initially position the cursor at the previously selected browse category when returning to the browse category list, if applicable.\n\n(Returning to the category list after a previous selection)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least three stations are stored in the Presets list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Select a category other than the first one in the Categories Bank and record which category it is\n4. Press the back button to return to the browse category list and read the category the cursor is on",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The selected category is displayed and which category was selected is recorded\n4. The browse category list is displayed and the cursor is on the category recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.2.1",
+      "priority": "P2",
+      "design_method": "決策表 (Decision Table Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-061-04",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall scroll the Presets list or All Stations list so that the item containing the active channel or cursor is shown as the first visible item when possible.\n\n(Active channel positioned beyond the first visible page)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least three stations are stored in the Presets list\n3. The currently tuned station is stored in the Presets list at a position beyond the first visible page of the list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Presets category in the Categories Bank and read the entries displayed in the Presets list\n4. Read the position of the entry for the currently tuned station within the displayed entries",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Presets list is displayed scrolled to the entry for the currently tuned station\n4. The entry for the currently tuned station is displayed as the first visible entry of the list",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ],
+  "assumption": {
+    "note": "BT1.6 says the cursor always begins at the top of the list, which conflicts with BT1.2.1 for the Presets / All Stations lists (A-012). These TCs follow BT1.2.1 by specific-over-general. If RD-1 rules BT1.6 authoritative everywhere, COM-061-01 and COM-061-04 must be reworked",
+    "anomaly": "A-012",
+    "req_ids": [
+      "SWE1-MEDIA-COM-061-01",
+      "SWE1-MEDIA-COM-061-04"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-COM-079",
+  "reasoning": "16.2（PRE2）規定在 Browse Tab 中按下 Presets 分類會開啟 Browse Presets List。本 leaf 只管「按下去會開啟該清單」這個轉換，清單內每個 preset 的呈現內容（編號、頻率、電台名、曲風、刪除鍵）屬 PRE2.2，與 Playing Tab 呈現一致性屬 PRE2.1，兩者在 037 各有自己的 leaf（ch16 的 RAD parents），依 §8.2.2 不併入本筆。ER 因此收斂為「Browse Presets List 已顯示」而不逐項描述清單內容，避免與鄰居 leaf 重複驗證。前置條件需要一個 Presets 分類存在的來源：依 Table BT3.1（14.3.1），AM／FM 皆含 Presets 分類，故以 FM 驗證。§8.5：catalog 建立狀態屬 BT1.9／COM-070~073，且 FM 不涉及 media catalog，不寫進 Pre-Condition。優先級：是進入 preset 管理的主要入口，訂 P1。",
+  "keywords": [
+    "Presets",
+    "PRE2",
+    "Browse Presets List",
+    "Browse Tab",
+    "Presets category"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-079-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the Browse Presets List when the 'Presets' category is selected in the Browse Tab.\n\n(Presets category pressed in the Browse Tab)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one station is stored in the Presets list",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Read the categories displayed in the Categories Bank\n4. Press the \"Presets\" category in the Categories Bank and read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. A \"Presets\" category is displayed in the Categories Bank\n4. The Browse Presets List is displayed in the Browse List and the stored preset is listed in it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.2\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

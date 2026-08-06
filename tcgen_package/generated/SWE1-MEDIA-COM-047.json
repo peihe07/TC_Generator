@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-COM-047",
+  "reasoning": "12.2.4（PSB2.4）同樣是純表格節點，內容取自頁圖。表格共七種 radio size，037 只配了三個 leaf（8.4\" Landscape、10.1\" Landscape、10.1\" Portrait），三者上限皆為 4；未配 leaf 的 7\" Landscape 與 10.25\" Widescreen 上限為 3，是更有價值的邊界，但沒有 req_id 可掛，記於 A-008 交 RD-1。每個 leaf 指定一種 radio size，三筆的差異僅在設定值，屬 §8.2 的不同輸入，各自成一筆。每筆都驗「剛好 4 」與「試圖加到 5 」兩格，因為只驗前者無法證明上限真的被強制。優先級：容量上限被突破會直接破壞版面，三筆皆 P1。（review 補充：本 parent 的三個 leaf 各自指定 radio size，4 為 Table PSB2.4 明載值故直接寫死；COM-044 為不指定尺寸的通用條，以 symbolic 方式引用表格值，兩者寫法不同但不矛盾。Delegation：Table PSB2.4 中上限為 3 的 7\" Landscape 與 10.25\" Widescreen、以及 Table PSB2.3 中 EMEA／LATAM／APAC／APAC-China 四個市場變體，037 皆未配 leaf，無 req_id 可掛故不於此產生，已記 ANOMALIES A-008 交 RD-1。超限步驟同 COM-044 收斂為純結果式 ER 並使用 Attempt to pin。）",
+  "keywords": [
+    "Pinned Sources Bank",
+    "PSB2.4",
+    "radio size",
+    "maximum 4",
+    "boundary"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "三筆為 Table PSB2.4 中三種不同 radio size 設定，上限同為 4"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-047-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall allow a maximum of 4 pinned sources when the screen size is 8.4\" Landscape.\n\n(Radio size: 8.4\" Landscape)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle radio size is 8.4\" Landscape\n3. The Pinned Sources Bank holds 4 pinned sources\n4. A source that is not pinned is available in the Source Drawer",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Count the sources displayed in the Pinned Sources Bank\n4. Attempt to pin one further source from the Source Drawer and count the sources displayed in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. Four sources are displayed in the Pinned Sources Bank\n4. Four sources are still displayed in the Pinned Sources Bank and the source selected in step 4 has not been added",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2.4",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-047-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall allow a maximum of 4 pinned sources when the screen size is 10.1\" Landscape.\n\n(Radio size: 10.1\" Landscape)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle radio size is 10.1\" Landscape\n3. The Pinned Sources Bank holds 4 pinned sources\n4. A source that is not pinned is available in the Source Drawer",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Count the sources displayed in the Pinned Sources Bank\n4. Attempt to pin one further source from the Source Drawer and count the sources displayed in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. Four sources are displayed in the Pinned Sources Bank\n4. Four sources are still displayed in the Pinned Sources Bank and the source selected in step 4 has not been added",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2.4",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-047-03",
+      "test_group": "MediaHMI",
+      "test_set": "Source Tab",
+      "test_item": "The system shall allow a maximum of 4 pinned sources when the screen size is 10.1\" Portrait.\n\n(Radio size: 10.1\" Portrait)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. The vehicle radio size is 10.1\" Portrait\n3. The Pinned Sources Bank holds 4 pinned sources\n4. A source that is not pinned is available in the Source Drawer",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Count the sources displayed in the Pinned Sources Bank\n4. Attempt to pin one further source from the Source Drawer and count the sources displayed in the Pinned Sources Bank",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed in the Tab Area\n3. Four sources are displayed in the Pinned Sources Bank\n4. Four sources are still displayed in the Pinned Sources Bank and the source selected in step 4 has not been added",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_12.2.4",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

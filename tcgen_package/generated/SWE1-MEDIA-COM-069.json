@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-COM-069",
+  "reasoning": "14.1.8.1（BT1.8.1）規定返回時系統顯示游標上次所在的區段位置，spec 自身舉的例子是「在 Artists 清單中回到先前選取的 Artist」。037 拆成兩個 leaf：069-01 記錄、069-02 還原。要注意的是「記錄」本身不可獨立觀察——只有透過還原才看得見，若把 069-01 寫成驗證某個內部狀態就違反 ER 可觀察原則。因此兩筆都以端對端方式驗證，改以導航深度區分（§8.2 的不同輸入）：069-01 下鑽一層後返回，069-02 下鑽兩層後逐層返回，後者額外證明每一層各自保有自己的游標位置，而非只記住最後一個。步驟刻意選擇非第一個項目，否則還原到第一項與 BT2.3 的重設行為無法區分。優先級：導航位置遺失會顯著影響長清單的使用，兩筆皆 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.8.1",
+    "cursor position",
+    "back",
+    "restore"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "069-01 為下鑽一層後返回，069-02 為下鑽兩層後逐層返回，驗證每層各自保有游標位置"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-069-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall store the cursor position when navigating between sections.\n\n(One level deep, then back)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains at least three artists, each with at least three tracks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Artists category in the Categories Bank and move the cursor to an artist that is not the first entry, recording which artist it is\n4. Press that artist to open its track list and read the content displayed in the Browse List\n5. Press the back button and read the entry the cursor is on in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Artists list is displayed and the artist the cursor is on is recorded\n4. The track list of the artist recorded in step 3 is displayed\n5. The Artists list is displayed and the cursor is on the artist recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.8.1",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-069-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall restore the cursor position to the last position when returning to a previous section.\n\n(Two levels deep, then back level by level)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains at least three artists, each with at least three tracks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Artists category in the Categories Bank and move the cursor to an artist that is not the first entry, recording which artist it is\n4. Press that artist to open its track list, move the cursor to a track that is not the first entry and record which track it is\n5. Press that track to start playback, then press the back button and read the entry the cursor is on in the Browse List\n6. Press the back button again and read the entry the cursor is on in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Artists list is displayed and the artist the cursor is on is recorded\n4. The track list of the artist recorded in step 3 is displayed and the track the cursor is on is recorded\n5. The track list of the artist recorded in step 3 is displayed and the cursor is on the track recorded in step 4\n6. The Artists list is displayed and the cursor is on the artist recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.8.1",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

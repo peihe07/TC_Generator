@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-062",
+  "reasoning": "14.1.3（BT1.3）規定游標的呈現形式是 highlighted outline。驗證標的是游標的外觀，為了讓「哪一項是游標」可判定，步驟先移動游標再讀取，藉由外框位置的移動確認被觀察的確實是游標而非其他highlight；BT1.6 另規定播放中項目以 activated color 標示，兩者是不同的視覺標記，ER 明確區分以免混淆（該行為由 COM-065-01 驗證）。catalog 狀態依 §8.5 不寫進 Pre-Condition。優先級：屬顯示規格細節，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.3",
+    "cursor",
+    "highlighted outline"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-062-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the cursor as a highlighted outline in the Browse list.\n\n(Cursor rendering in the Browse List)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press a category in the Categories Bank and read the entry the cursor is on in the Browse List\n4. Rotate the Tune knob clockwise one detent and read the entry the cursor is on",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Browse List is displayed and the entry the cursor is on is displayed with a highlighted outline\n4. The highlighted outline is displayed on the next entry of the list and is no longer displayed on the entry read in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

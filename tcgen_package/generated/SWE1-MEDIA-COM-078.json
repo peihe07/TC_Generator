@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-COM-078",
+  "reasoning": "14.4.4（BT5）規定在 Browse Tab 中按下方向盤的 Source Advance 鍵，畫面轉到 Now Playing Tab。觸發條件包含「使用者正在 Browse Tab」這個狀態，故步驟必須先明確進入 Browse Tab。Source Advance 的本職是切換來源，因此 ER 除了畫面轉換外還需陳述來源狀態，否則無法區分「只是切換來源順帶換頁」與「本條規定的畫面轉換」；spec 未規定本情境下來源是否同時前進，故 ER 只陳述可觀察的畫面結果，不臆測來源是否改變。畫面名稱採用 done 區既有用語 Playing Tab。優先級：屬方向盤控制與畫面狀態的互動分支，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT5",
+    "Source Advance",
+    "Steering Wheel Control",
+    "Playing Tab"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-078-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall transition from the Browse Tab to the Now Playing Tab when the Source Advance Steering Wheel Control button is pressed.\n\n(Source Advance pressed while the Browse Tab is displayed)",
+      "pre_conditions": "1. A USB drive containing at least ten files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The vehicle is equipped with a Source Advance Steering Wheel Control button",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Source Advance button on the Steering Wheel Control and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The Playing Tab is displayed in the Tab Area and the Browse Tab is no longer displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

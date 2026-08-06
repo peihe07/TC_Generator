@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-MEDIA-COM-070",
+  "reasoning": "14.1.9（BT1.9）規定 catalog 建立期間 Browse、Shuffle、Tracks 三個按鈕同時變灰。三者是同一觸發（catalog 尚未完成）的三個必然結果，依 §5.7 以同一筆 TC 的三行 ER 涵蓋，不拆成三筆。§8.5：本 parent 就是 catalog 狀態的擁有者，該狀態是 spec 明載的觸發條件，寫進 Pre-Condition。步驟不指定 Shuffle 與 Tracks 按鈕的所在位置，只要求讀取其狀態——spec 本條未規定其版面位置，寫死畫面位置屬發明。本筆與 COM-073 的分工：本筆驗三個按鈕在建立期間同時變灰，COM-073 驗 Browse 按鈕跨越 catalog 完成時點的狀態變化。優先級：三個 browse 相關功能的可用時機，訂 P1。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.9",
+    "catalog building",
+    "greyed out",
+    "Shuffle",
+    "Tracks"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-070-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall disable Browse, Shuffle, and Tracks buttons while catalog building is in progress.\n\n(All three buttons during catalog building)",
+      "pre_conditions": "1. A USB drive containing a large number of files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The HU is still building the browse catalog for the USB drive",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Read the state of the \"Shuffle\" button on the Media screen\n4. Read the state of the \"Tracks\" button on the Media screen",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The \"Browse\" button is displayed greyed out\n3. The \"Shuffle\" button is displayed greyed out\n4. The \"Tracks\" button is displayed greyed out",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.9",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

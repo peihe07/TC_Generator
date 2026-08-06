@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-067",
+  "reasoning": "11.4.2（BTSA2）規定：選擇 Bluetooth 音源且已有裝置連線時，直接進入 Now Playing 畫面並開始播放。這是藍牙音源選擇的核心 happy path，與 PLA-063 的無裝置分支互為 §7 的正／負配對。單一觸發、單一情境，產出一筆 TC。最終 ER 需同時涵蓋畫面轉換與播放實際開始兩件事才算完整結果；播放是否真的在跑，用經過時間有無前進來判定，沿用 done 區 SWE1-MEDIA-COM-017-01 的寫法，避免出現不可觀察的敘述。畫面名稱採用 done 區既有用語 Playing Tab。優先級：屬功能核心主流程，依 P0 定義不降級，訂 P0。",
+  "keywords": [
+    "Bluetooth",
+    "BTSA2",
+    "Now Playing",
+    "Playing Tab",
+    "playback start"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆在已有藍牙裝置連線時選擇 Bluetooth，直接播放；PLA-063 在無裝置連線時選擇，跳出配對彈窗"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-067-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall navigate to the Now Playing screen and start playback when a Bluetooth device is connected.\n\n(A Bluetooth device is already connected)",
+      "pre_conditions": "1. A Bluetooth audio device containing a playable music file is connected to the HU as an A2DP source\n2. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons to open the Source Tab\n3. Press \"Bluetooth\" in the Source Drawer and read the content displayed in the Tab Area and the elapsed time shown on the Media screen\n4. Read the elapsed time shown on the Media screen after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Source Tab is displayed in the Tab Area\n3. The Playing Tab is displayed in the Tab Area, Bluetooth is the active source, audio is output from the Bluetooth audio device, and the elapsed time is displayed\n4. The elapsed time has advanced from the value read in step 3 at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.4.2",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

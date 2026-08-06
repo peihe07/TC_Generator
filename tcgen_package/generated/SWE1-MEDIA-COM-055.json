@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-COM-055",
+  "reasoning": "13.3.3（SMP2.2）是純表格節點，內容取自頁圖。三個 leaf 各指定一種 radio size，上限分別為 8.4\" Landscape=5、10.1\" Landscape=6、10.1\" Portrait=5；這些是 spec 表格明載值，故直接寫死，與 COM-053 通用條的 symbolic 寫法分工，慣例同 ch12 的 COM-047／COM-044。每筆刻意多用一個來源再數，因為只用到剛好上限無法證明上限真的被強制。Delegation：Table SMP2.2 中 12\" Landscape=6、12\" Portrait=6 未配 leaf，7\" Landscape 與 10.25\" Widescreen 標為 N/A 且語意未定義，四者皆無 req_id 可掛，不於此產生，已記 ANOMALIES A-010 交 RD-1。優先級：三筆皆 P1。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP2.2",
+    "radio size",
+    "max recent sources",
+    "boundary"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "三筆為 Table SMP2.2 中三種不同 radio size 設定，上限分別為 5、6、5"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-055-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display a maximum of 5 recent sources when the screen size is 8.4\" Landscape.\n\n(Radio size: 8.4\" Landscape)",
+      "pre_conditions": "1. The vehicle radio size is 8.4\" Landscape\n2. More than 5 sources are available on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and select 6 different sources one after another\n3. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n4. Press \"Media\" on Main Menu Bar again and count the sources displayed in the Source Secondary Menu Pop up",
+      "expected_result": "1. The Media screen is displayed\n2. Each selected source becomes the active source in turn\n3. The Playing Tab is displayed in the Tab Area\n4. 5 sources are displayed in the Source Secondary Menu Pop up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.3.3",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-055-02",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display a maximum of 6 recent sources when the screen size is 10.1\" Landscape.\n\n(Radio size: 10.1\" Landscape)",
+      "pre_conditions": "1. The vehicle radio size is 10.1\" Landscape\n2. More than 6 sources are available on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and select 7 different sources one after another\n3. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n4. Press \"Media\" on Main Menu Bar again and count the sources displayed in the Source Secondary Menu Pop up",
+      "expected_result": "1. The Media screen is displayed\n2. Each selected source becomes the active source in turn\n3. The Playing Tab is displayed in the Tab Area\n4. 6 sources are displayed in the Source Secondary Menu Pop up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.3.3",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-055-03",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display a maximum of 5 recent sources when the screen size is 10.1\" Portrait.\n\n(Radio size: 10.1\" Portrait)",
+      "pre_conditions": "1. The vehicle radio size is 10.1\" Portrait\n2. More than 5 sources are available on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and select 6 different sources one after another\n3. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n4. Press \"Media\" on Main Menu Bar again and count the sources displayed in the Source Secondary Menu Pop up",
+      "expected_result": "1. The Media screen is displayed\n2. Each selected source becomes the active source in turn\n3. The Playing Tab is displayed in the Tab Area\n4. 5 sources are displayed in the Source Secondary Menu Pop up",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.3.3",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

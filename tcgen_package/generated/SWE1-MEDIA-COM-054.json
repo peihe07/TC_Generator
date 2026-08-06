@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-COM-054",
+  "reasoning": "13.3.2（SMP2.3）規定沒有最近來源時，彈窗只顯示目前播放中的來源。這是清單為空的下邊界，故用邊界值分析。「沒有最近來源」用回復原廠設定後只選一個來源的方式建立可控狀態，避免把無法驗證的歷史狀態寫成前置條件。ER 需同時陳述「只顯示目前播放來源」與「筆數為 1」，只寫其中一半無法排除其他來源也一併顯示的情況。優先級：空清單處理不當會出現空白彈窗，屬主要功能分支，訂 P1。",
+  "keywords": [
+    "Source Secondary Menu Pop up",
+    "SMP2.3",
+    "no recent sources",
+    "currently playing"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆為最近來源清單為空的下邊界，與 COM-053 的上限邊界相對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-054-01",
+      "test_group": "MediaHMI",
+      "test_set": "Source Selection",
+      "test_item": "The system shall display only the currently playing source when no recent sources are available.\n\n(Lower boundary: no recent sources)",
+      "pre_conditions": "1. The HU has been restored to factory settings and no source has been used since\n2. The vehicle radio size has a numeric maximum defined in Table SMP2.2",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and select one source\n3. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n4. Press \"Media\" on Main Menu Bar again and read the sources displayed in the Source Secondary Menu Pop up",
+      "expected_result": "1. The Media screen is displayed\n2. The selected source becomes the active source\n3. The Playing Tab is displayed in the Tab Area\n4. The Source Secondary Menu Pop up displays the source selected in step 2 only, and no other source is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_13.3.2",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

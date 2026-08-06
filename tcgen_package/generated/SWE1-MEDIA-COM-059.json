@@ -1,0 +1,53 @@
+{
+  "parent": "SWE1-MEDIA-COM-059",
+  "reasoning": "假設聲明：BT1.1.1（14.1.1.1）與 BT1.1.2（14.1.1.2）對「USB／Disc 已插入但無有效音訊格式檔案」的結論相反（A-011）。本 parent 依 specific-over-general 以 BT1.1.2 為準——BT1.1.2 針對 USB／Disc 明確規範，BT1.1.1 是被擴寫成的通則，且頁圖上 BT1.1.1 的「USB or Disc is inserted」有劃改痕跡，支持「擴寫時漏做排除」的讀法。若 RD-1 裁定相反，本 parent 的全部 TC 需要回修；檔案帶 assumption marker 供機器檢索。037 拆成兩個 leaf：059-01 驗 Browse Tab 仍可進入，059-02 驗進入後各分類顯示 \"No items\"，後者的觸發是「按下分類」，與前者的「按下 Browse」不同，依 §8.2 各自成一筆。§8.5 判定：沿用 COM-057 的取捨，catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition；「USB 已連接且無有效音訊格式檔案」本身是本 TC 直接驗證的 spec 觸發條件，故寫進 Pre-Condition。\"No items\" 為 spec 明載字串，逐字引用不改寫。優先級：059-01 是空媒體情境下 Browse 是否還進得去的主要分支，訂 P1；059-02 的空狀態文字為顯示細節，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT1.1.2",
+    "No items",
+    "empty media",
+    "USB",
+    "A-011"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "059-01 驗 Browse Tab 是否仍可進入，059-02 驗進入後各分類的空狀態文字，觸發與驗證標的皆不同"
+  },
+  "assumption": {
+    "note": "BT1.1.1 and BT1.1.2 give opposite outcomes for USB/Disc with no valid audio files; these TCs follow BT1.1.2 by specific-over-general. If RD-1 rules the other way, every TC in this parent must be reworked",
+    "anomaly": "A-011",
+    "req_ids": [
+      "SWE1-MEDIA-COM-059-01",
+      "SWE1-MEDIA-COM-059-02"
+    ]
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-COM-059-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall allow Browse Tab access for USB even when no valid audio files exist.\n\n(USB with no valid audio files)",
+      "pre_conditions": "1. A USB drive containing no file with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Read the state of the \"Browse\" button on the Tab Buttons\n3. Press \"Browse\" on the Tab Buttons and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The \"Browse\" button is displayed in an enabled state and is not greyed out\n3. The Browse Tab is displayed in the Tab Area and the Categories Bank for USB is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.1.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-COM-059-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'No items' in each category when no valid audio files exist.\n\n(Each category shows the empty-state text)",
+      "pre_conditions": "1. A USB drive containing no file with a valid audio format is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons and record the categories displayed in the Categories Bank\n3. Press each category recorded in step 2 in turn and read the content displayed in the Browse List for each one",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed and the categories available for USB are recorded\n3. The Browse List displays \"No items\" for every category pressed, and no track entry is displayed in any of them",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.1.1.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}
