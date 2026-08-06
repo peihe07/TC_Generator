@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-065",
+  "reasoning": "17.1.3.1（MPB1.3.1）規定在最後一個 bank 按下 \">\" 會回到第一個 bank，是 bank 導航的循環邊界。驗證需先記錄第一個 bank 的內容，翻到最後一個 bank，再按一次確認回到記錄的內容——只確認「內容改變」不足以證明回到第一個而非跳到任意 bank。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：循環失效會讓使用者卡在最後一個 bank，訂 P1。",
+  "keywords": [
+    "Presets",
+    "MPB1.3.1",
+    "wrap around",
+    "final bank",
+    "first bank"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆為 bank 導航的循環邊界，與 RAD-064 的一般前進不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-065-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall return to the first preset bank when the '>' button is pressed while the final preset bank is displayed.\n\n(Wrap from the final bank, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. The first and final preset banks each hold at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the stations displayed in the first preset bank in the Mixed Presets Bank on the Playing Tab\n4. Press the \">\" button repeatedly until the final preset bank is displayed and read the stations displayed\n5. Press the \">\" button once more and read the stations displayed in the Mixed Presets Bank",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The stations of the first preset bank are recorded\n4. The stations of the final preset bank are displayed and they differ from the stations recorded in step 3\n5. The stations recorded in step 3 are displayed again in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.3.1",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

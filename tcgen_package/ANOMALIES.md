@@ -461,3 +461,82 @@ that no leaf reveals.
 **Open:** RD-1 — were APP5–APP9 removed, or are they missing from this deck
 revision? Ask together with A-015, since both point at the same revision
 question.
+
+---
+
+## A-018 — MPB1.1 allows 8 presets per bank; Table PRE1.1 tops out at 6
+
+**Found:** 2026-08-07, generating RAD ch17.
+
+- `17.1.1 (MPB1.1)` — *"The preset bank can have a maximum of **8** presets."*
+- `16.1.1 (PRE1.1)` Presets per Bank by Radio Size — 7" = 5 (LATAM 4),
+  8.4" = 5, 10.1" L = 6, 10.1" P = 5, 10.25" = 6, 12" L = 6, 12" P = 6.
+
+No listed radio size allows more than 6, so a bank of 8 is unreachable on any
+configuration. Structurally identical to A-007 (PSB2.1's "maximum of 5" against
+Table PSB2.4's max of 4).
+
+**Handling — generated on a declared assumption.** A-007 was ruled
+table-over-prose (the per-configuration table is the more specific source).
+Applying the same canon here, `SWE1-MEDIA-RAD-062-01` verifies the bank against
+the value defined for the vehicle radio size in Table PRE1.1, expressed
+symbolically, rather than against the unreachable literal 8.
+
+Unlike A-007 this *is* a bet: there the leaf was the table itself, here the leaf
+sentence is the one asserting 8. `generated/SWE1-MEDIA-RAD-062.json` therefore
+carries an `assumption` marker naming this anomaly.
+
+**Open:** RD-1 — ask together with A-007, they are the same question twice: is
+the prose figure stale, or does a radio size exist that is missing from both
+tables?
+
+---
+
+## A-019 — MPB clause numbering skips 1.4
+
+**Found:** 2026-08-07, reading page 29.
+
+The clause list runs MPB1.1, 1.2, 1.3, 1.3.1, **1.5**, 1.5.1, 1.6, 1.7, 1.8,
+1.8.1–1.8.3, 1.9. `MPB1.4` is absent from the page image and from the SYS1
+export, and the SYS1 outline numbering absorbs the gap (17.1.4 → MPB1.5), so
+outline-driven generation is unaffected.
+
+Third instance of the same defect class: A-013 (BT4.1.1 skips 2), A-017
+(APP5–APP9 absent), and now this. **Recommend raising the pattern itself with
+RD-1**, not just the individual gaps — three independent numbering holes in one
+deck suggests clauses were deleted without renumbering, and each hole is a place
+where a requirement may have been silently dropped.
+
+**Open:** RD-1 — was an MPB1.4 clause removed?
+
+---
+
+## A-020 — MPB1.7 / MPB1.8.x have no leaf, and are not elaborations of their ancestor
+
+**Found:** 2026-08-07, generating RAD ch17.
+
+Five sub-sections under 17.1 have no leaf of their own: `17.1.6 (MPB1.7)` HD
+sub-channel preset labels, `17.1.7 (MPB1.8)` FM-EU PSN labels, and
+`17.1.7.1–.3 (MPB1.8.1–.3)` PSN fallback, truncation, and save-as-displayed.
+
+The A-001 coverage rule routes orphan sub-sections to the batch of their nearest
+leaf ancestor, so these land in `SWE1-MEDIA-RAD-061`'s context. **That is the
+right routing but the wrong content relationship**, and it marks a limit of the
+rule worth stating explicitly:
+
+> A-001 decides which batch *sees* an orphan's text. It does not decide that
+> the orphan elaborates the ancestor leaf. Here the ancestor leaf is MPB1
+> ("Playing Tab shows one full bank at a time"); the orphans are preset-button
+> *label* rules, i.e. siblings of MPB1.5 / MPB1.6 — which do have leaves
+> (RAD-066, RAD-067, RAD-068). Writing them under RAD-061-01 would attribute
+> label requirements to a layout requirement.
+
+Generation therefore covers only MPB1 under RAD-061, and these five clauses get
+no TC — no req_id, nothing to write a row against (A-008 logic).
+
+Scope note: MPB1.8.x is FM-EU, likely out of scope for this NAFTA programme;
+MPB1.7 (HD Radio) is not — HD Radio is an NA feature and its preset label rule
+is genuinely uncovered.
+
+**Open:** RD-1 — should 037 gain a leaf for MPB1.7 (HD preset labels)? Confirm
+MPB1.8.x is out of scope for FW036.

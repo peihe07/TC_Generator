@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-064",
+  "reasoning": "17.1.3（MPB1.3）規定按下 \">\" 按鈕帶出下一個 preset bank。ER 以 bank 內的 preset 內容改變判定，並要求記錄前一個 bank 的內容作為比對對象，否則無法區分「換到下一個 bank」與「畫面重繪但內容未變」。翻到最後一個 bank 後再按的循環行為屬 MPB1.3.1，由 RAD-065 涵蓋，本筆的前置條件因此指定目前不在最後一個 bank。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：bank 導航是 preset 區的主要操作，訂 P1。",
+  "keywords": [
+    "Presets",
+    "MPB1.3",
+    "next bank",
+    "navigation button"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-064-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the next preset bank when the '>' preset bank navigation button is pressed.\n\n(Next bank from a non-final bank, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. The displayed preset bank is not the final preset bank\n4. The displayed bank and the following bank each hold at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the stations displayed in the Mixed Presets Bank on the Playing Tab\n4. Press the \">\" button and read the stations displayed in the Mixed Presets Bank",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The stations of the displayed preset bank are recorded\n4. The stations of the following preset bank are displayed and they differ from the stations recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

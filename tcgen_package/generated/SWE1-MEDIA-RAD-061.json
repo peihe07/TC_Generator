@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-RAD-061",
+  "reasoning": "17.1（MPB1）規定 Playing Tab 一次只顯示一整個 preset bank。驗證標的是「一次一個 bank」，故 ER 需同時陳述顯示的槽數等於一個 bank 的槽數、且下一個 bank 的 preset 未同時顯示——只數槽數無法排除兩個 bank 併排顯示。一個 bank 的槽數由 Table PRE1.1 依 radio size 決定（RAD-043），本 parent 為不指定尺寸的通用條，故以 symbolic 方式引用該表值。Delegation（A-020）：17.1 底下有五個無 leaf 的子節（MPB1.7 的 HD 副頻標籤、MPB1.8.x 的 FM-EU PSN 標籤），依 A-001 規則會被帶進本 parent 的 context，但它們是 preset 按鈕的標籤規則，屬 MPB1.5／MPB1.6 的同輩（各有自己的 leaf），不是本 leaf「一次一個 bank」這條版面規則的細化。掛在 RAD-061-01 之下會把標籤需求錯記為版面需求，故不於此產生，已記 ANOMALIES A-020 交 RD-1。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：屬 preset 區的基本版面規則，訂 P1。",
+  "keywords": [
+    "Presets",
+    "MPB1",
+    "one bank at a time",
+    "Mixed Presets Bank",
+    "Playing Tab"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-061-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display one full preset bank at a time in the Playing Tab.\n\n(One bank visible in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. At least one preset in the first bank and at least one preset in the second bank hold stored stations",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Count the preset slots displayed in the Mixed Presets Bank on the Playing Tab and record the number of presets in one bank for the vehicle radio size as defined in Table PRE1.1\n4. Read the stations shown in the preset slots displayed in the Mixed Presets Bank",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The number of preset slots displayed in the Mixed Presets Bank equals the number of presets in one bank defined for the vehicle radio size in Table PRE1.1\n4. Only the presets of one bank are shown, and the station stored in the second bank is not displayed in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

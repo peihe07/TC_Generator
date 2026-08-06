@@ -1,0 +1,84 @@
+{
+  "parent": "SWE1-MEDIA-RAD-069",
+  "reasoning": "17.1.8（MPB1.9）規定 Presets Bank 支援左右滑動切換 bank，兩端皆循環，且 All Presets 按鈕位置固定。037 拆成五個 leaf：前滑、後滑、前滑循環、後滑循環、按鈕固定。前四筆是不同觸發情境（方向 × 是否在端點）而非同一觸發的多個結果，依 §8.3 各自成一筆；037 亦已拆開，依 §8.2.2 不得合併。069-05 的驗證標的是版面而非導航，故步驟在滑動前後各讀一次按鈕位置並比對，ER 以「與滑動前記錄的位置相同」判定，不使用「位置沒有改變」這種不可觀察的敘述。與 RAD-064／065 的分工：那兩筆的觸發是 \">\" 按鈕，本 parent 的觸發是手勢，屬 §8.2 的不同輸入，spec 亦分列為兩條條文，故不視為重複。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：四筆導航行為訂 P1；按鈕位置固定屬版面穩定性訂 P2。",
+  "keywords": [
+    "Presets",
+    "MPB1.9",
+    "swipe",
+    "preset bank",
+    "wrap around",
+    "All Presets"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "五筆分別為前滑、後滑、前滑越過最後一個 bank、後滑越過第一個 bank、滑動期間 All Presets 按鈕位置固定"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-069-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall support swipe-forward gestures for navigating to the next preset bank.\n\n(Swipe forward from a non-final bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. Each preset bank holds at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the stations displayed in the Mixed Presets Bank on the Playing Tab\n4. Swipe forward on the Mixed Presets Bank and read the stations displayed",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The stations of the displayed preset bank are recorded\n4. The stations of the following preset bank are displayed and they differ from the stations recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.8",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-069-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall support swipe-backward gestures for navigating to the previous preset bank.\n\n(Swipe backward from a non-first bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. Each preset bank holds at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Press the \">\" button once to leave the first preset bank and record the stations displayed in the Mixed Presets Bank on the Playing Tab\n4. Swipe backward on the Mixed Presets Bank and read the stations displayed",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The stations of the second preset bank are displayed and recorded\n4. The stations of the first preset bank are displayed and they differ from the stations recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.8",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-069-03",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the first preset bank when the user swipes forward past the final preset bank.\n\n(Swipe forward past the final bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. Each preset bank holds at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the stations displayed in the first preset bank in the Mixed Presets Bank on the Playing Tab\n4. Swipe forward repeatedly until the final preset bank is displayed and read the stations displayed\n5. Swipe forward once more and read the stations displayed in the Mixed Presets Bank",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The stations of the first preset bank are recorded\n4. The stations of the final preset bank are displayed and they differ from the stations recorded in step 3\n5. The stations recorded in step 3 are displayed again in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.8",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-069-04",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the final preset bank when the user swipes backward from the first preset bank.\n\n(Swipe backward from the first bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. Each preset bank holds at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the stations displayed in the first preset bank in the Mixed Presets Bank on the Playing Tab\n4. Swipe forward repeatedly until the final preset bank is displayed and record the stations displayed\n5. Press the \">\" button once to return to the first preset bank, then swipe backward and read the stations displayed",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The stations of the first preset bank are recorded\n4. The stations of the final preset bank are displayed and recorded\n5. The stations recorded in step 4 are displayed in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.8",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-069-05",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall maintain the 'All Presets' button in a fixed location during preset bank swipe navigation.\n\n(All Presets button position across swipes)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More preset banks than one are configured by the Presets Shown indicator\n3. Each preset bank holds at least one distinguishable stored station",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the screen position of the \"All Presets\" button on the Playing Tab\n4. Swipe forward on the Mixed Presets Bank and read the screen position of the \"All Presets\" button\n5. Swipe backward on the Mixed Presets Bank and read the screen position of the \"All Presets\" button",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The screen position of the \"All Presets\" button is recorded\n4. The displayed preset bank has changed and the \"All Presets\" button is displayed at the position recorded in step 3\n5. The displayed preset bank has changed and the \"All Presets\" button is displayed at the position recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.8",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

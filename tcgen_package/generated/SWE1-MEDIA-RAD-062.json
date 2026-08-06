@@ -1,0 +1,39 @@
+{
+  "parent": "SWE1-MEDIA-RAD-062",
+  "reasoning": "17.1.1（MPB1.1）規定一個 preset bank 最多 8 個 preset。但 Table PRE1.1（16.1.1）逐一列出各 radio size 的每 bank 槽數，最大值為 6——沒有任何設定能達到 8（A-018）。假設聲明：本筆依 A-007 已裁定的 table-over-prose 原則，以「該 radio size 在 Table PRE1.1 的值」作為上限驗證，而非驗證無法達成的字面值 8。與 A-007 不同的是，該案的 leaf 就是表格本身，本案的 leaf 正是主張 8 的那句話，因此這是一次押注而非單純的來源取捨，檔案帶 assumption marker 供檢索。驗證同時涵蓋「達到上限」與「試圖超過上限」兩格，且超限步驟用 Attempt to store，不預設控制項可操作、ER 收斂為純結果式（慣例見 COM-044）。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：容量上限被突破會直接破壞版面，訂 P1。",
+  "keywords": [
+    "Presets",
+    "MPB1.1",
+    "maximum presets",
+    "preset bank",
+    "PRE1.1",
+    "A-018"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆驗達到上限與試圖超過上限兩格，上限取自 Table PRE1.1 而非條文字面的 8"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-062-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall support up to 8 presets within a preset bank.\n\n(Bank filled to the configured maximum, then one more attempted)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Every preset slot of the first bank holds a stored station\n3. The currently tuned station is not stored in that bank",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Count the preset slots holding a stored station in the Mixed Presets Bank on the Playing Tab and record the number of presets in one bank for the vehicle radio size as defined in Table PRE1.1\n4. Attempt to store the currently tuned station as an additional preset in the same bank and count the preset slots displayed in the Mixed Presets Bank",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The number of preset slots holding a stored station equals the number of presets in one bank defined for the vehicle radio size in Table PRE1.1\n4. The number of preset slots displayed in the Mixed Presets Bank has not increased beyond that number",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_16.1.1",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ],
+  "assumption": {
+    "note": "MPB1.1 states a maximum of 8 presets per bank, but Table PRE1.1 caps every listed radio size at 6, so 8 is unreachable (A-018). This TC follows the A-007 table-over-prose ruling and verifies against the Table PRE1.1 value. If RD-1 rules that 8 is correct and a radio size is missing from the tables, this TC must be reworked",
+    "anomaly": "A-018",
+    "req_ids": [
+      "SWE1-MEDIA-RAD-062-01"
+    ]
+  }
+}

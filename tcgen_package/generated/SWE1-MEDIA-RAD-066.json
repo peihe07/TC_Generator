@@ -1,0 +1,59 @@
+{
+  "parent": "SWE1-MEDIA-RAD-066",
+  "reasoning": "17.1.4（MPB1.5）規定 AM/FM/DAB 的 preset 顯示 preset 編號、波段與電台號碼。037 拆成三個 leaf，且只涵蓋 AM 與 FM——DAB 為 EMEA 專屬且無對應 leaf，依 leaf 範圍不於此產生（處置同 RAD-042-02）。三筆的驗證標的分別是三個顯示元素，各自成一筆。步驟同時存有 AM 與 FM 兩個 preset，使波段那筆能以兩者對比判定，避免波段永遠顯示同一值的失效被漏掉。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：preset 編號與電台號碼是識別 preset 的必要資訊訂 P1；波段為輔助標示訂 P2。",
+  "keywords": [
+    "Presets",
+    "MPB1.5",
+    "preset number",
+    "band",
+    "station number",
+    "AM",
+    "FM"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "三筆分別驗 preset 編號、波段、電台號碼三個顯示元素"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-066-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the preset number for AM and FM presets.\n\n(Preset number in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. FM is the active source on the HU\n3. At least one FM station and at least one AM station are stored as presets",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Read the preset number displayed on every preset slot holding a stored station in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. Every preset slot holding a stored station displays its preset number in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-066-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the radio band for AM and FM presets.\n\n(Radio band on AM and FM presets, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. FM is the active source on the HU\n3. At least one FM station and at least one AM station are stored as presets",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Read the band displayed on the FM preset slot and on the AM preset slot in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The FM preset slot displays FM as its band and the AM preset slot displays AM as its band in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-066-03",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the station number for AM and FM presets.\n\n(Station number on AM and FM presets, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. The vehicle is configured for the NAFTA market\n2. FM is the active source on the HU\n3. At least one FM station and at least one AM station are stored as presets",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Read the station number displayed on the FM preset slot and on the AM preset slot in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. Each of those preset slots displays the station number of its stored station in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

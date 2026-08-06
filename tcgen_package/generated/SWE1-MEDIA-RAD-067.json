@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-RAD-067",
+  "reasoning": "17.1.4.1（MPB1.5.1）規定 preset 按鈕顯示完整的電台頻率。與 RAD-066-03 的分工：後者驗「有顯示電台號碼」，本筆驗「顯示的是完整頻率而非截斷或省略形式」，故 ER 以「與 Playing Tab 上目前收聽電台顯示的頻率逐字相同」判定，取得可比對的基準而不自行定義何謂完整。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：頻率殘缺會讓使用者無法辨識 preset，訂 P1。",
+  "keywords": [
+    "Presets",
+    "MPB1.5.1",
+    "full station frequency",
+    "preset button"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-067-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the full station frequency for preset buttons.\n\n(Frequency on the preset button matches the tuned frequency, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The currently tuned FM station is stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Record the station frequency of the currently tuned station shown on the Playing Tab\n4. Read the frequency displayed on the preset slot holding that station in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and FM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. The station frequency of the currently tuned station is recorded\n4. The preset slot in the Mixed Presets Bank displays the same frequency as recorded in step 3, with no digit omitted",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.4.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

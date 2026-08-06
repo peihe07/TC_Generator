@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-RAD-068",
+  "reasoning": "17.1.5（MPB1.6）規定 SiriusXM 的 preset 顯示 preset 編號與電台 logo。037 拆成兩個 leaf，驗證標的分別是編號與圖像，各自成一筆。與 RAD-066 的分工：AM/FM 顯示波段與電台號碼、SiriusXM 顯示 logo，兩者是不同來源的不同顯示規則，故 068-02 的 ER 需同時陳述 logo 有顯示且未改以頻率或文字呈現，才能區分兩種規則被套錯的失效。容器錨定：ch17 全部條文都描述 Playing Tab 上的 Mixed Presets Bank，故每行 ER 指名該容器，與 ch16 PRE2.x 的 Browse Presets List、ch18 的 Presets Pop up 明確區隔——三者的 preset 外觀相近但欄位與控制項不同。優先級：屬特定來源的顯示規格，兩筆皆 P2。",
+  "keywords": [
+    "Presets",
+    "MPB1.6",
+    "SiriusXM",
+    "preset number",
+    "station logo"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "068-01 驗 preset 編號、068-02 驗電台 logo，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-RAD-068-01",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the preset number for SiriusXM presets.\n\n(Preset number on SiriusXM presets, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. The vehicle is equipped with SiriusXM and SiriusXM is the active source on the HU\n2. At least one SiriusXM channel is stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Read the preset number displayed on the preset slot holding the SiriusXM channel in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and SiriusXM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. That preset slot displays its preset number in the Mixed Presets Bank",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-RAD-068-02",
+      "test_group": "MediaHMI",
+      "test_set": "Presets",
+      "test_item": "The system shall display the station logo for SiriusXM presets.\n\n(Station logo on SiriusXM presets, in the Playing Tab Mixed Presets Bank)",
+      "pre_conditions": "1. The vehicle is equipped with SiriusXM and SiriusXM is the active source on the HU\n2. At least one SiriusXM channel is stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons to open the Playing Tab\n3. Read the content displayed on the preset slot holding the SiriusXM channel in the Mixed Presets Bank on the Playing Tab",
+      "expected_result": "1. The Media screen is displayed and SiriusXM is the active source\n2. The Playing Tab is displayed in the Tab Area\n3. That preset slot displays the station logo of the stored SiriusXM channel in the Mixed Presets Bank, and does not display a frequency in place of the logo",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_17.1.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}
