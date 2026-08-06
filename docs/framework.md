@@ -13,17 +13,44 @@ overridden from Source Selection to Source Tab. Machine-readable mapping:
 
 ## Coverage rule — orphan sub-sections
 
-037 does not allocate a leaf to every SYS1 sub-section. A sub-section with no
-leaf of its own belongs to the batch of its nearest **leaf ancestor**, and its
-text is in scope for that ancestor's TCs. A sub-section that IS itself a
-remaining leaf stays with its own parent and must not be pulled upward.
+037 does not allocate a leaf to every SYS1 sub-section. Orphan sub-sections are
+handled in **two layers**, and the layers answer different questions.
 
-Example: 11.3.1 is a leaf whose own text is only the abstract *"label may
-change based on connected drive type"*; the testable behaviour lives in the
-unallocated 11.3.1.1 / 11.3.1.1.1, so both fall under 11.3.1's parent
-(SWE1-MEDIA-PLA-062). 10 of the 158 remaining leaf sections are affected —
-see `tcgen_package/ANOMALIES.md` A-001; implemented in
-`make_batch_context.py`.
+### Layer A — routing (which batch sees the text)
+
+A sub-section with no leaf of its own is routed into the batch context of its
+nearest **leaf ancestor**. A sub-section that IS itself a remaining leaf stays
+with its own parent and must not be pulled upward. 10 of the 158 remaining leaf
+sections are affected. Implemented in `make_batch_context.py`; see
+`tcgen_package/ANOMALIES.md` A-001.
+
+### Layer B — attribution (whether it enters that leaf's TC scope)
+
+**Routing is not attribution.** Layer A decides which batch *sees* an orphan's
+text; it does not decide that the orphan elaborates the ancestor leaf.
+
+Decision test — *"is this text explaining how the ancestor leaf holds, or is it
+asserting something the ancestor leaf never said?"*
+
+- **Elaborates the ancestor** → in scope. Write TCs for it under the ancestor's
+  req_id (§8.2.2 allows several TCs per sub-id).
+- **Independent behaviour, parallel to a sibling leaf** → **context-only**. Do
+  not generate TCs, do not attach it to a sibling leaf (§8.2.1), and record the
+  gap in the tracker for RD-1 (A-008 logic — no req_id means no workbook row to
+  write against).
+
+Worked examples of each:
+
+- **In scope (A-001):** 11.3.1 is a leaf whose own text is only the abstract
+  *"label may change based on connected drive type"*; the testable behaviour
+  lives in the unallocated 11.3.1.1 / 11.3.1.1.1, which explain exactly how
+  that leaf holds. Both are in scope for SWE1-MEDIA-PLA-062.
+- **Context-only (A-020):** 17.1 is a leaf asserting a *layout* rule (MPB1,
+  "Playing Tab shows one full bank at a time"). Its orphans MPB1.7 / MPB1.8.x
+  are preset-button *label* rules — siblings of MPB1.5 / MPB1.6, which have
+  their own leaves (RAD-066/067/068). Attaching them to RAD-061-01 would record
+  label requirements as a layout requirement, so they generate nothing and go
+  to the tracker instead.
 
 ## Layer 1 — Test Group
 
