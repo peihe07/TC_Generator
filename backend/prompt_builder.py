@@ -1,4 +1,6 @@
 """Prompt builder for TC generation (ASPICE_SWE6_AI_Instruction.md §10)."""
+import os
+
 from spec_matcher import extract_pdm_codes
 
 
@@ -12,7 +14,13 @@ REQUIRED_OUTPUT_KEYS = [
     "priority",
     "split_flag",
     "split_reason",
+    "remarks",
 ]
+
+# Keys listed in the output contract but tolerated when absent — the parser
+# fills them with "" instead of raising. Keeps old engine outputs (and engines
+# that drop optional fields) from hard-failing the whole response.
+OPTIONAL_OUTPUT_KEYS = {"remarks"}
 
 
 _SYSTEM_BASE = (
@@ -170,6 +178,10 @@ _HARD_CONSTRAINTS = """
         defined in spec", "the state defined by the requirement".
     If the source is ambiguous or incomplete, preserve the ambiguity
     explicitly instead of guessing.
+10c. **`remarks` is empty string by default.** Fill it ONLY when a loaded
+    project profile mandates a note (e.g. OCR-provenance flags, dead-code
+    workaround notes, BLOCKED / RD-1 escalations). Never pad it with
+    commentary, summaries, or restated rules.
 11. **Follow the ASPICE SWE.6 AI Instruction loaded above verbatim.** The
     instruction doc is authoritative. Apply the relevant sections — §2 Core
     Principles, §6 Field Rules, §7 Step Design (incl. §7.5 Final Step /
@@ -990,17 +1002,76 @@ Additional hard constraints:
 """
 
 
+_MAX_GRANULARITY_ADDENDUM = """
+### Batch Split Mode: MAX GRANULARITY (「极致拆」) — overrides the decision tree above
+
+This batch was explicitly set to maximum-granularity splitting. It applies
+UNIFORMLY to every requirement in the batch:
+
+- One verification point per TC — no bundling of verification points.
+- Connect-state and disconnect-state are SEPARATE TCs.
+- Every mode variant is a SEPARATE TC (e.g. Repeat All / Repeat One / Shuffle
+  → three TCs, not one).
+- Fixed exception (both modes, §7.7): an AVRCP control→command→display triad
+  for ONE user action stays ONE TC (control on HU → AVRCP command observed →
+  display update). Never split the triad.
+"""
+
+
+def _resolve_split_mode(split_mode: str | None) -> str:
+    """Param wins; falls back to env TC_SPLIT_MODE; default 'standard'."""
+    mode = (split_mode or os.environ.get("TC_SPLIT_MODE") or "standard").strip().lower()
+    return mode if mode in ("standard", "max_granularity") else "standard"
+
+
+def _multi_tc_guidance(split_mode: str | None = None) -> str:
+    if _resolve_split_mode(split_mode) == "max_granularity":
+        return f"{_MULTI_TC_GUIDANCE}\n{_MAX_GRANULARITY_ADDENDUM}"
+    return _MULTI_TC_GUIDANCE
+
+
+_DOMAIN_BLOCK_CACHE: dict[str, str] = {}
+
+
+def _resolve_domain_block(domain_block: str | None) -> str:
+    """Param wins; falls back to loading the pack at env TC_DOMAIN_PACK.
+
+    Returns a ready-to-inject section string ("" when no pack is configured).
+    The env-loaded render is cached per path (packs are static per run).
+    """
+    if domain_block:
+        block = domain_block
+    else:
+        path = (os.environ.get("TC_DOMAIN_PACK") or "").strip()
+        if not path:
+            return ""
+        if path not in _DOMAIN_BLOCK_CACHE:
+            from domain_pack import load_domain_pack, to_prompt_block
+            _DOMAIN_BLOCK_CACHE[path] = to_prompt_block(load_domain_pack(path))
+        block = _DOMAIN_BLOCK_CACHE[path]
+    if not block.strip():
+        return ""
+    return (
+        "\n\n## Domain Pack (GROUND TRUTH — cover every enumeration value / "
+        "branch listed here; do NOT invent states/modes beyond it)\n"
+        f"{block.strip()}"
+    )
+
+
 def build_multi_tc_user_prompt(
     row: dict,
     context: dict,
     spec_index: dict | None,
     rules_text: str,
+    split_mode: str | None = None,
+    domain_block: str | None = None,
 ) -> str:
     """Build user prompt for multi-TC-per-req generation (single row input)."""
     spec_context = _get_spec_context(row, spec_index)
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
 
     rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
+    domain_section = _resolve_domain_block(domain_block)
     source_row = _format_source_workbook_row(row, context)
     return f"""## Context
 - Project: {context['project']}
@@ -1009,8 +1080,8 @@ def build_multi_tc_user_prompt(
 {source_row}
 
 ## Spec Context
-{spec_context}{rules_section}
-{_MULTI_TC_GUIDANCE}
+{spec_context}{domain_section}{rules_section}
+{_multi_tc_guidance(split_mode)}
 ## Output
 Return a JSON object with these top-level keys:
 - `reasoning` (string, 繁體中文): 用 **2–5 句**完整說明你對此需求的解讀，
@@ -1102,9 +1173,20 @@ Before emitting, run the WRITING DISCIPLINE self-check listed in the system
 prompt for EVERY TC. Every TC must have a non-empty `tc_title` (§6.1)."""
 
 
+def _resolve_fixed_test_sets(fixed_test_sets: list[str] | None) -> list[str]:
+    """Param wins; falls back to env TC_FIXED_TEST_SETS ('|'-separated)."""
+    if fixed_test_sets:
+        return [s.strip() for s in fixed_test_sets if str(s).strip()]
+    raw = (os.environ.get("TC_FIXED_TEST_SETS") or "").strip()
+    if not raw:
+        return []
+    return [s.strip() for s in raw.split("|") if s.strip()]
+
+
 def build_test_set_classification_prompt(
     reqs: list[dict],
     test_group: str | None = None,
+    fixed_test_sets: list[str] | None = None,
 ) -> str:
     """Rows 分成若干 Test Set 的 prompt（per-row identity preserved）。
 
@@ -1141,6 +1223,40 @@ def build_test_set_classification_prompt(
         )
         items.append(f"{i}. [{key}]{req_meta} {test_item}{hint}")
     body = "\n".join(items)
+
+    fixed = _resolve_fixed_test_sets(fixed_test_sets)
+    if fixed:
+        fixed_lines = "\n".join(f"- {label}" for label in fixed)
+        return f"""## Task
+Assign each requirement below to a **Test Set** from a FIXED vocabulary.
+
+## Fixed Test Set vocabulary (closed list — project profile)
+{fixed_lines}
+
+Rules:
+- Every requirement gets EXACTLY ONE label, copied **character-for-character**
+  from the list above. Do NOT invent, merge, rename, abbreviate, translate,
+  re-case, or otherwise vary a label.
+- If a requirement includes a `current Test Set hint` that matches a listed
+  label, keep it. Otherwise pick the closest label from the list by the
+  capability the requirement exercises.
+- No empty labels, no "None"/"Unclassified"/"Misc", and no label outside the
+  list under any circumstance.
+
+## Requirements
+{body}
+
+## Output
+Return ONLY valid JSON (no markdown fences):
+{{"assignments": [
+  {{"id": "<exact id from the bracketed prefix>", "test_set": "<label from the fixed list>"}},
+  ...
+]}}
+
+The `id` MUST match the bracketed prefix verbatim. The `(req <req_id>)` suffix
+is metadata only — do NOT echo it back as the `id`. Each input line MUST
+appear exactly once in the output; the array length must equal the input
+count ({len(reqs)})."""
 
     group_clean = (test_group or "").strip()
     if group_clean:
@@ -1217,6 +1333,8 @@ def build_multi_tc_batch_prompt(
     context: dict,
     spec_index: dict | None,
     rules_text: str,
+    split_mode: str | None = None,
+    domain_block: str | None = None,
 ) -> str:
     """Build user prompt for multi-TC batch generation (N rows → N TC arrays)."""
     items = []
@@ -1233,14 +1351,15 @@ def build_multi_tc_batch_prompt(
     output_keys = ", ".join(REQUIRED_OUTPUT_KEYS)
 
     rules_section = f"\n\n## Rules\n{rules_text}" if rules_text else ""
+    domain_section = _resolve_domain_block(domain_block)
     return f"""## Context
 - Project: {context['project']}
 - Test Group: {context['test_group']}
 - Test Set: {context.get('test_set', 'N/A')}
 
 ## Requirements
-{batch_text}{rules_section}
-{_MULTI_TC_GUIDANCE}
+{batch_text}{domain_section}{rules_section}
+{_multi_tc_guidance(split_mode)}
 ## Output
 Return a JSON object `{{"requirements": [...]}}`; the outer array has exactly
 one entry per input requirement, in the same order. Each entry has the shape:

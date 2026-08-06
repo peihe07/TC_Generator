@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Iterable
 
 
 DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
+# Project profile overlay (e.g. FW036_R1L_BT_Profile). Loaded LAST so its
+# [OVERRIDE] rules win over the generic instruction via recency + its own
+# precedence header. Select via `profile=` arg or TC_PROJECT_PROFILE env var
+# (file stem, without .md).
+PROFILES_DIR = DOCS_DIR / "profiles"
 RULE_FILES = [
     DOCS_DIR / "ASPICE_SWE6_AI_Instruction.md",
     DOCS_DIR / "TEST_CASE_DESIGN_METHOD.md",
@@ -62,14 +68,24 @@ FALLBACK_RULES = """
 def load_rules(
     rule_files: Iterable[Path] | None = None,
     fallback: str = FALLBACK_RULES,
+    profile: str | None = None,
 ) -> str:
     """Load markdown rule files and concatenate them for prompt injection.
 
     Empty or unreadable files are skipped. If no rule file contributes content,
     the compact fallback is returned.
+
+    `profile` (or env TC_PROJECT_PROFILE) names a project profile markdown in
+    docs/profiles/ (stem only, e.g. "FW036_R1L_BT_Profile"). It is appended
+    AFTER the generic rules so its [OVERRIDE] sections take precedence.
     """
+    files = list(rule_files or RULE_FILES)
+    profile = profile or os.environ.get("TC_PROJECT_PROFILE") or ""
+    profile = profile.strip()
+    if profile:
+        files.append(PROFILES_DIR / f"{profile}.md")
     sections: list[str] = []
-    for path in rule_files or RULE_FILES:
+    for path in files:
         if not path.is_file():
             continue
         try:

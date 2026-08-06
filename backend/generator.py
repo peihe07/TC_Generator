@@ -60,6 +60,7 @@ from prompt_builder import (
     build_multi_tc_batch_prompt,
     build_test_set_classification_prompt,
     REQUIRED_OUTPUT_KEYS,
+    OPTIONAL_OUTPUT_KEYS,
 )
 
 # OpenAI pricing per million tokens (USD). 來源：https://openai.com/api/pricing
@@ -167,6 +168,11 @@ def _normalize_tc_dict(data: dict) -> dict:
     normalized_method = normalize_design_method(data.get("design_method"))
     if normalized_method:
         data["design_method"] = normalized_method
+    # Optional key: profile-mandated notes (OCR provenance, dead-code
+    # workaround, BLOCKED/RD-1). Default to empty string when the engine
+    # omits it so downstream writers can rely on the key existing.
+    if not isinstance(data.get("remarks"), str):
+        data["remarks"] = "" if data.get("remarks") is None else str(data["remarks"])
     return data
 
 
@@ -222,7 +228,8 @@ def parse_tc_response(raw: str) -> dict:
         raise GenerationError(f"Failed to parse TC response: {e}") from e
 
     # Validate required keys
-    missing = [k for k in REQUIRED_OUTPUT_KEYS if k not in data]
+    missing = [k for k in REQUIRED_OUTPUT_KEYS
+               if k not in data and k not in OPTIONAL_OUTPUT_KEYS]
     if missing:
         raise GenerationError(f"TC response missing required keys: {missing}")
 
@@ -242,7 +249,8 @@ def parse_batch_response(raw: str, expected_count: int | None = None) -> list[di
 
     # Validate each item
     for i, item in enumerate(data):
-        missing = [k for k in REQUIRED_OUTPUT_KEYS if k not in item]
+        missing = [k for k in REQUIRED_OUTPUT_KEYS
+                   if k not in item and k not in OPTIONAL_OUTPUT_KEYS]
         if missing:
             raise GenerationError(f"TC[{i}] missing required keys: {missing}")
 
@@ -732,7 +740,8 @@ def _validate_tcs_array(tcs, *, context: str) -> list[dict]:
     for i, tc in enumerate(tcs):
         if not isinstance(tc, dict):
             raise GenerationError(f"{context}: tcs[{i}] is not an object")
-        missing = [k for k in REQUIRED_OUTPUT_KEYS if k not in tc]
+        missing = [k for k in REQUIRED_OUTPUT_KEYS
+                   if k not in tc and k not in OPTIONAL_OUTPUT_KEYS]
         if missing:
             raise GenerationError(f"{context}: tcs[{i}] missing keys: {missing}")
     return [_normalize_tc_dict(tc) for tc in tcs]
@@ -766,7 +775,9 @@ def parse_multi_tc_response(raw: str) -> tuple[list[dict], dict]:
         duplicate_of = str(data.get("duplicate_of") or "").strip()
         distinguishing_axis = _normalize_distinguishing_axis(data.get("distinguishing_axis"))
     # 容忍 AI 只回單一 TC（退化成 1 筆）
-    elif isinstance(data, dict) and all(k in data for k in REQUIRED_OUTPUT_KEYS):
+    elif isinstance(data, dict) and all(
+        k in data for k in REQUIRED_OUTPUT_KEYS if k not in OPTIONAL_OUTPUT_KEYS
+    ):
         tcs = [data]
     else:
         raise GenerationError("Multi-TC response missing 'tcs' field")
