@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-INT-012",
+  "reasoning": "21.9（SA12）規定收音機有電源鍵且非 ICS 時，才顯示 Auto-On Radio 設定。這是兩個條件的合取（有電源鍵 AND 非 ICS），故用決策表。兩個條件都是車輛／機型配置，屬 spec 明載的觸發條件，依 §8.5 exception 寫進 Pre-Condition。spec 未定義 ICS 一詞，也未規定不符條件時該設定是隱藏或變灰，故本筆只驗條件成立時「有顯示」這一格；條件不成立的反向格需要知道另一種機型的實際配置，本案輸入無法判定該配置是否存在於七款車型中，強行產生會落入 §8.4 的發明行為，故不生，缺口記於 ANOMALIES A-025 的同一模式。優先級：設定入口是否出現，訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA12",
+    "Auto-On Radio",
+    "power button",
+    "ICS"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆只驗條件成立時設定顯示；條件不成立的反向格因無法判定機型配置而不產生"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-012-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall display the Auto-On Radio setting when the radio has a power button and is not ICS.\n\n(Radio with a power button and not ICS)",
+      "pre_conditions": "1. The radio in the vehicle has a power button\n2. The radio is not an ICS radio\n3. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Read the settings listed in the Audio Settings",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. An \"Auto On Radio\" setting is listed in the Audio Settings",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.9",
+      "priority": "P2",
+      "design_method": "決策表 (Decision Table Testing)"
+    }
+  ]
+}

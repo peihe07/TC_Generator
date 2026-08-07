@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-018",
+  "reasoning": "21.12（SA15）規定 Volume Adjustments 中類別的順序為 Media、Phone Call、Phone Ring、Navigation、VR。順序為 spec 明載，ER 逐字採用該順序並要求由上而下逐一比對；只確認「五個類別都在」不足以驗證順序，故步驟明確要求讀取由上而下的排列。page 34 的 Volume Adjustment 截圖顯示五列類別，佐證版面為單一縱向清單。本 parent 與 INT-017 同掛 21.12，但只有本筆真正對應 SA15 的內容（見 A-024）。優先級：屬清單排列的顯示規格，訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA15",
+    "Volume Adjustment",
+    "category order"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "本筆驗類別排列順序，INT-017 驗調整行為，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-018-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall display the volume adjustment categories in the following order: Media, Phone Call, Phone Ring, Navigation, VR.\n\n(Category order in the Volume Adjustment settings)",
+      "pre_conditions": "1. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Volume Levels\" to open the Volume Adjustment settings\n4. Read the volume categories displayed and their order from top to bottom",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Volume Adjustment settings are displayed\n4. The categories displayed from top to bottom are \"Media\", \"Phone Call\", \"Phone Ring\", \"Navigation\" and \"VR\" in that order",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.12",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

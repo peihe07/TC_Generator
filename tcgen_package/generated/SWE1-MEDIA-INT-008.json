@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-008",
+  "reasoning": "21.6.1（SA6.0.1）規定 Surround Sound 開啟時顯示其圖形。本筆與 SWE1-MEDIA-INT-009 是同一圖形在兩個狀態下的等價配對（§7），故步驟先設到相反狀態再切換，使圖形的變化可比對——只在單一狀態讀一次無法區分「正確呈現」與「永遠都是這個樣子」。按鈕本身的標示屬 SA6（INT-007），本 parent 只驗圖形。優先級：屬狀態的圖形呈現，訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA6.0.1",
+    "Surround Sound",
+    "graphic"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆為 Surround Sound ON 狀態下的圖形呈現，與 SWE1-MEDIA-INT-009 的相反狀態構成配對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-008-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall display the Surround Sound graphic when Surround Sound is enabled.\n\n(Graphic when Surround Sound is enabled)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Surround Sound is set to OFF",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Surround Sound\" to open its settings\n4. Read the Surround Sound graphic displayed\n5. Press the \"On\" button and read the Surround Sound graphic displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Surround Sound settings are displayed\n4. The Surround Sound graphic is displayed greyed out\n5. The Surround Sound graphic is displayed and is not greyed out",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.6.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

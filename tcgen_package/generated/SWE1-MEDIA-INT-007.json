@@ -1,0 +1,58 @@
+{
+  "parent": "SWE1-MEDIA-INT-007",
+  "reasoning": "21.6（SA6）規定 SURROUND SOUND 旁的按鈕在 ON／OFF 間切換，且開啟時 ON 鍵被標示、關閉時 OFF 鍵被標示。037 拆成三個 leaf：切換行為、ON 標示、OFF 標示。007-02 與 007-03 是同一規則的兩個等價狀態（§7 成對涵蓋），各自的 ER 需同時陳述該鍵被標示與另一鍵未被標示，否則無法排除兩鍵同時標示的失效。圖形的顯示與變灰屬 SA6.0.1／SA6.0.2（INT-008／INT-009），本 parent 不重複驗證。優先級：切換功能訂 P1；兩個標示狀態訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA6",
+    "Surround Sound",
+    "ON",
+    "OFF",
+    "highlight"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "007-01 驗切換行為，007-02／03 分別驗 ON 與 OFF 狀態下的按鈕標示"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-007-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall toggle Surround Sound between ON and OFF when the corresponding buttons are pressed.\n\n(Toggling in both directions)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Surround Sound is set to OFF",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Surround Sound\" to open its settings\n4. Press the \"On\" button and read which button is shown as highlighted\n5. Press the \"Off\" button and read which button is shown as highlighted",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Surround Sound settings are displayed\n4. The \"On\" button is shown as highlighted\n5. The \"Off\" button is shown as highlighted",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.6",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-007-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall highlight the ON button when Surround Sound is enabled.\n\n(Surround Sound enabled)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Surround Sound is set to ON",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Surround Sound\" to open its settings\n4. Read the state of the \"On\" button\n5. Read the state of the \"Off\" button",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Surround Sound settings are displayed\n4. The \"On\" button is shown as highlighted\n5. The \"Off\" button is not shown as highlighted",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.6",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-007-03",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall highlight the OFF button when Surround Sound is disabled.\n\n(Surround Sound disabled)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Surround Sound is set to OFF",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Surround Sound\" to open its settings\n4. Read the state of the \"Off\" button\n5. Read the state of the \"On\" button",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Surround Sound settings are displayed\n4. The \"Off\" button is shown as highlighted\n5. The \"On\" button is not shown as highlighted",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.6",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "parent": "SWE1-MEDIA-INT-017",
+  "reasoning": "本 leaf 的敘述為「以加減鍵調整各類別的音量」，該行為是 SA14（21.11）；但 037 給的 HMI Source ID 是 21.12（SA15），而 SA15 只規定類別的排列順序（A-024）。依 §8.1「Conflict → Req wins; flag RD」，TC 依 leaf 實際主張的行為撰寫，specification_reference 先列真正管轄的 21.11 再保留 037 給的 21.12，追溯不中斷。推翻 037 的 mapping 是判斷而非轉錄，故掛 assumption marker。驗證以 Media 類別為例，ER 以數值變化判定；其餘四個類別為同一規則的等價適用對象，不做笛卡兒積（處置同 COM-074）。spec 未規定音量的數值範圍，故 ER 只判定相對變化而不寫死上下限。優先級：音量調整是主要功能，訂 P1。",
+  "keywords": [
+    "Audio Settings",
+    "SA14",
+    "SA15",
+    "Volume Adjustment",
+    "A-024"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "本筆驗音量調整行為，INT-018 驗類別排列順序，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-017-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall increase or decrease volume levels using plus and minus buttons for each volume category.\n\n(Plus and minus on the Media volume category)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Media volume level is not at either end of its range",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Volume Levels\" to open the Volume Adjustment settings\n4. Record the volume level displayed for the \"Media\" category\n5. Press the plus button next to \"Media\" once and read the volume level displayed\n6. Press the minus button next to \"Media\" once and read the volume level displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Volume Adjustment settings are displayed\n4. The volume level of the \"Media\" category is recorded\n5. The volume level displayed is one step higher than the level recorded in step 4\n6. The volume level displayed is the level recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.11\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.12",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ],
+  "assumption": [
+    {
+      "note": "037 maps this leaf to 21.12 (SA15, category ordering), but the behaviour it states — plus/minus volume adjustment — is SA14 at 21.11, which has no leaf of its own. The TC follows the leaf's stated behaviour and cites 21.11 first. If the 037 owner rules that this leaf was meant to verify SA15's ordering instead, this TC must be rewritten",
+      "anomaly": "A-024",
+      "req_ids": [
+        "SWE1-MEDIA-INT-017-01"
+      ]
+    }
+  ]
+}

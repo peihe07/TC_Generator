@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-INT-003",
+  "reasoning": "21.2（SA2）規定從 Settings 畫面進入 Audio Settings 時：變更自動生效、畫面不逾時、按返回鍵回到 Settings 主畫面。037 拆成三個 leaf，驗證標的分別是生效、逾時、返回導航，各自成一筆。003-01 與 INT-002-01 是同一行為的兩個入口（Media 分頁 vs Settings 清單），spec 分列兩條條文且 037 各配 leaf，依 §8.2.2 不合併；兩者的差異在進入路徑，故步驟前綴不同而驗證方式一致。003-02 的逾時 spec 未給門檻，故用觀察窗 5 分鐘且期間不操作任何控制項（處置同 COM-064）。優先級：003-01 訂 P1；畫面維持與返回導航訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA2",
+    "Settings screen",
+    "no timeout",
+    "back button"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "003-01 驗變更生效、003-02 驗畫面不逾時、003-03 驗返回導航，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-003-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall apply audio setting changes automatically when adjusted from the Settings screen.\n\n(Change made from the Settings screen entry point)",
+      "pre_conditions": "1. The HU is in an operating state where the Settings screen is reachable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Settings\" on Main Menu Bar to open the Settings screen\n2. Press the \"Audio Settings\" list item\n3. Press \"Equalizer\" and record the Bass value displayed\n4. Press the plus button next to Bass once and read the Bass value displayed\n5. Press the back button without pressing any confirmation control, then press \"Equalizer\" again and read the Bass value displayed",
+      "expected_result": "1. The Settings screen is displayed\n2. The Audio Settings screen is displayed\n3. The Equalizer settings are displayed and the Bass value is recorded\n4. The Bass value displayed is one step higher than the value recorded in step 3\n5. The Bass value displayed is the value read in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-003-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall not timeout the Audio Settings screen when accessed from the Settings screen.\n\n(No interaction for an extended observation window)",
+      "pre_conditions": "1. The HU is in an operating state where the Settings screen is reachable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Settings\" on Main Menu Bar to open the Settings screen\n2. Press the \"Audio Settings\" list item\n3. Record the content displayed on the Audio Settings screen\n4. Leave the HU without operating any control for 5 minutes and read the content displayed on the HU",
+      "expected_result": "1. The Settings screen is displayed\n2. The Audio Settings screen is displayed\n3. The content of the Audio Settings screen is recorded\n4. The Audio Settings screen is still displayed showing the content recorded in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-003-03",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall return to the Settings Main screen when the back button is pressed from the Audio Settings screen.\n\n(Back button from the Audio Settings screen)",
+      "pre_conditions": "1. The HU is in an operating state where the Settings screen is reachable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Settings\" on Main Menu Bar to open the Settings screen\n2. Press the \"Audio Settings\" list item\n3. Press the back button and read the content displayed on the HU",
+      "expected_result": "1. The Settings screen is displayed\n2. The Audio Settings screen is displayed\n3. The Settings Main screen is displayed and the \"Audio Settings\" list item is displayed on it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-002",
+  "reasoning": "21.1（SA1）規定從 Media 畫面的 Audio Settings 分頁進入時，變更會自動生效（不需要確認鍵）。「自動生效」的可判定形式是：調整後不按任何確認鍵、離開設定畫面再回來，設定值仍為新值——只讀設定畫面上的數字無法區分「已生效」與「僅顯示於畫面尚未套用」。以 Equalizer 的 Bass 作為受測設定，因為它有可讀的數值（page 33 截圖顯示 +9／-4／0 等數值）。優先級：設定不生效等同功能失效，訂 P1。",
+  "keywords": [
+    "Audio Settings",
+    "SA1",
+    "automatically taken over",
+    "Media screen"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-002-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall apply audio setting changes automatically when adjusted from the Media Audio Settings tab.\n\n(Change made from the Media Audio Settings tab)",
+      "pre_conditions": "1. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Equalizer\" and record the Bass value displayed\n4. Press the plus button next to Bass once and read the Bass value displayed\n5. Press the back button to leave the Audio Settings without pressing any confirmation control, then open the Audio Settings and \"Equalizer\" again and read the Bass value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Equalizer settings are displayed and the Bass value is recorded\n4. The Bass value displayed is one step higher than the value recorded in step 3\n5. The Bass value displayed is the value read in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

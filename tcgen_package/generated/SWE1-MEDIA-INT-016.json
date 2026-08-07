@@ -1,0 +1,43 @@
+{
+  "parent": "SWE1-MEDIA-INT-016",
+  "reasoning": "21.10.3（SA13.3）規定 Recall Last 會還原收音機上次的狀態。「還原上次狀態」需要兩個方向都驗才完整：上次為開則開、上次為關則關——只驗其中一個方向無法與 SA13.1（永遠關）或 SA13.2（永遠開）區分，這正是本條與另兩條的判別點。兩個方向是同一設定值下的兩個輸入情境，依 §8.3 各自成一筆。ER 以收音機開關狀態與音訊輸出判定，與 INT-014／015 一致。優先級：兩筆皆 P1。",
+  "keywords": [
+    "Audio Settings",
+    "SA13.3",
+    "Recall Last",
+    "ignition cycle"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "兩筆分別為關機前收音機開啟與關閉兩種上次狀態，證明還原而非固定行為"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-016-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall restore the previous radio state after an ignition cycle when Auto-On Radio is set to Recall Last.\n\n(Radio was on before the ignition cycle)",
+      "pre_conditions": "1. The radio in the vehicle has a power button and is not an ICS radio\n2. Auto-On Radio is set to Recall Last\n3. Before the ignition is switched off, the radio is on",
+      "input_test_data": "NA",
+      "test_procedure": "1. Switch the ignition off and read the state of the HU\n2. Switch the ignition on and wait until the HU has completed start-up\n3. Read the state of the radio and listen to the audio output of the HU",
+      "expected_result": "1. The HU is switched off\n2. The HU has completed start-up\n3. The radio is on and audio is output from the HU speakers, matching the state before the ignition cycle",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.10.3",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-016-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall restore the previous radio state after an ignition cycle when Auto-On Radio is set to Recall Last.\n\n(Radio was off before the ignition cycle)",
+      "pre_conditions": "1. The radio in the vehicle has a power button and is not an ICS radio\n2. Auto-On Radio is set to Recall Last\n3. Before the ignition is switched off, the radio is off",
+      "input_test_data": "NA",
+      "test_procedure": "1. Switch the ignition off and read the state of the HU\n2. Switch the ignition on and wait until the HU has completed start-up\n3. Read the state of the radio and listen to the audio output of the HU",
+      "expected_result": "1. The HU is switched off\n2. The HU has completed start-up\n3. The radio is off and no audio is output from the HU speakers, matching the state before the ignition cycle",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.10.3",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

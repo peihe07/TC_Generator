@@ -1,0 +1,97 @@
+{
+  "parent": "SWE1-MEDIA-INT-005",
+  "reasoning": "21.4（SA4）規定 BALANCE-FADE 的四種操作方式（方向鍵、長按快速移動、拖曳 Centering Icon、直接觸控圖形）、按 Centering Icon 置中、以及 2 人座車型顯示 2-seat 圖形。037 拆成六個 leaf。§8.4.2：long press 的節奏定義由 Core HMI Logic and Flow 擁有（SA3／SA4 明寫 see LONG PRESS notes in Core Logic and Flow），本 TC 只驗 Media 範圍內的可觀察結果——值變化比單擊快、放開即停——不引入 Core 的節奏參數，specification_reference 亦不列 Core 的段落。005-06 的 2-seat 圖形由 PDO 定義且取決於車型配置，屬 spec 明載的觸發條件，依 §8.5 exception 寫進 Pre-Condition；本案七款車型是否含 2 人座無法從輸入判定，故 ER 只在該配置成立時判定，不臆測哪款車適用。005-05 的置中需先讓位置偏離中心才可判定，故步驟先用方向鍵移動再按 Centering Icon。位置的可觀察形式是 Centering Icon 在 Balance/Fade 圖形中的位置（page 33 截圖顯示為車輛俯視圖上的圓點），ER 據此表述，不使用不可觀察的音場敘述。優先級：方向鍵調整與置中為主要操作訂 P1；長按、拖曳、直接觸控為替代輸入方式訂 P2；2-seat 圖形屬配置顯示訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA4",
+    "Balance",
+    "Fade",
+    "Centering Icon",
+    "2-seat graphic"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "六筆分別驗方向鍵、長按快速調整、拖曳置中圖示、直接觸控圖形、按置中圖示歸中、2 人座圖形"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-005-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall adjust Balance and Fade using arrow buttons.\n\n(Arrow buttons in the Balance/Fade settings)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Balance and Fade position is centred",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Balance/Fade\" to open the Balance and Fade settings\n4. Record the position of the Centering Icon in the Balance/Fade graphic\n5. Press the right arrow button once and read the position of the Centering Icon\n6. Press the left arrow button once and read the position of the Centering Icon",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Balance and Fade settings are displayed\n4. The position of the Centering Icon is recorded\n5. The Centering Icon is displayed further to the right than the position recorded in step 4\n6. The Centering Icon is displayed at the position recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-005-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall support long press on arrow buttons for fast adjustment of Balance and Fade.\n\n(Long press versus repeated single presses on an arrow button)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Balance and Fade position is centred",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Balance/Fade\" to open the Balance and Fade settings\n4. Press and release the right arrow button three times and record the position of the Centering Icon\n5. Press the Centering Icon to return the position to the centre, then press and hold the right arrow button for three seconds and release it, then read the position of the Centering Icon\n6. Read the position of the Centering Icon 3 seconds after releasing the button",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Balance and Fade settings are displayed\n4. The Centering Icon has moved to the right and its position is recorded\n5. The Centering Icon is displayed further to the right than the position recorded in step 4, so the long press changed the position faster than the individual presses\n6. The Centering Icon is displayed at the position read in step 5, so the position stopped changing when the button was released",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-005-03",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall allow drag interaction on the centering icon to adjust Balance and Fade.\n\n(Dragging the Centering Icon)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Balance and Fade position is centred",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Balance/Fade\" to open the Balance and Fade settings\n4. Record the position of the Centering Icon in the Balance/Fade graphic\n5. Press and hold the Centering Icon, drag it to a different position in the Balance/Fade graphic and release it, then read the position of the Centering Icon",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Balance and Fade settings are displayed\n4. The position of the Centering Icon is recorded\n5. The Centering Icon is displayed at the position it was released at, and it differs from the position recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-005-04",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall allow direct touch on the Balance/Fade graphic to adjust audio position.\n\n(Touching a position in the Balance/Fade graphic)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Balance and Fade position is centred",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Balance/Fade\" to open the Balance and Fade settings\n4. Record the position of the Centering Icon in the Balance/Fade graphic\n5. Touch a position in the Balance/Fade graphic away from the Centering Icon and read the position of the Centering Icon",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Balance and Fade settings are displayed\n4. The position of the Centering Icon is recorded\n5. The Centering Icon is displayed at the touched position and it differs from the position recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-005-05",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall center the audio Balance and Fade when the centering icon is pressed.\n\n(Centering Icon pressed from an off-centre position)",
+      "pre_conditions": "1. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Balance/Fade\" to open the Balance and Fade settings\n4. Press the right arrow button and the up arrow button several times and read the position of the Centering Icon\n5. Press the Centering Icon and read its position in the Balance/Fade graphic",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Balance and Fade settings are displayed\n4. The Centering Icon is displayed away from the centre of the Balance/Fade graphic\n5. The Centering Icon is displayed at the centre of the Balance/Fade graphic",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-005-06",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall display a 2-seat graphic when the vehicle is configured as a 2-seater.\n\n(Vehicle configured as a 2-seater)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The vehicle is configured as a 2-seater as defined by PDO",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Balance/Fade\" to open the Balance and Fade settings\n4. Read the seating graphic displayed in the Balance/Fade graphic",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Balance and Fade settings are displayed\n4. A 2-seat graphic is displayed in the Balance/Fade graphic",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

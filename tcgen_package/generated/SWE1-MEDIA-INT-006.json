@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-INT-006",
+  "reasoning": "21.5（SA5）規定 SPEED ADJUSTED VOLUME 可按 OFF 停用，或直接觸控增量在三個等級中選擇。037 拆成三個 leaf：停用、三個等級、直接觸控選取。006-02 與 006-03 的驗證標的相近但不同：前者驗「有三個等級且皆可選中」，後者驗「直接觸控即可選取」這個輸入方式；037 既已拆開，依 §8.2.2 不合併，故 006-02 逐一走訪三個等級、006-03 只驗一次觸控選取行為。page 33 截圖顯示該設定為 off / 1 / 2 / 3 的階梯狀增量條，ER 依此以「所選增量呈現為選取狀態」判定，spec 未規定選取的視覺形式，故不臆測樣式。優先級：三個等級的可選性訂 P1；停用與觸控方式訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA5",
+    "Speed Adjusted Volume",
+    "OFF",
+    "levels"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "006-01 驗停用、006-02 驗三個等級皆可選、006-03 驗直接觸控的輸入方式"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-006-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall allow the user to deactivate Speed Adjusted Volume by selecting OFF.\n\n(Selecting \"off\" on the increment scale)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Speed Adjusted Volume is set to one of its three levels",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Speed Adjusted Volume\" to open its settings\n4. Record the increment shown as selected on the Speed Adjusted Volume scale\n5. Press \"off\" on the Speed Adjusted Volume scale and read the increment shown as selected",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Speed Adjusted Volume settings are displayed\n4. One of the three levels is shown as selected and which one is recorded\n5. \"off\" is shown as selected and the level recorded in step 4 is no longer shown as selected",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-006-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall allow the user to select one of three Speed Adjusted Volume levels.\n\n(All three levels selected in turn)",
+      "pre_conditions": "1. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Speed Adjusted Volume\" to open its settings\n4. Read the increments displayed on the Speed Adjusted Volume scale\n5. Press increment \"1\" and read the increment shown as selected\n6. Press increment \"2\" and read the increment shown as selected\n7. Press increment \"3\" and read the increment shown as selected",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Speed Adjusted Volume settings are displayed\n4. The increments \"off\", \"1\", \"2\" and \"3\" are displayed on the scale\n5. Increment \"1\" is shown as selected\n6. Increment \"2\" is shown as selected and increment \"1\" is no longer shown as selected\n7. Increment \"3\" is shown as selected and increment \"2\" is no longer shown as selected",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.5",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-006-03",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall allow direct touch selection of Speed Adjusted Volume levels.\n\n(Level selected by touching the increment directly)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. Speed Adjusted Volume is set to off",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Speed Adjusted Volume\" to open its settings\n4. Touch increment \"2\" on the Speed Adjusted Volume scale directly and read the increment shown as selected",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Speed Adjusted Volume settings are displayed\n4. Increment \"2\" is shown as selected without any intermediate step through increment \"1\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

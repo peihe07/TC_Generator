@@ -1,0 +1,72 @@
+{
+  "parent": "SWE1-MEDIA-INT-004",
+  "reasoning": "21.3（SA3）規定 BASS／MID／TREB 的四種調整方式與範圍：加減鍵、每方向 9 級、長按快速移動、直接觸控增量。037 拆成四個 leaf，各自成一筆。004-02 的 9 steps in each direction 是以 0 為中心的雙向邊界，page 33 的 Equalizer 截圖顯示 Bass +9、Middle -4，佐證數值範圍為 -9 至 +9。驗證需涵蓋兩端且各多按一次確認不越界，只驗單端不足以證明範圍。§8.4.2：long press 的節奏定義由 Core HMI Logic and Flow 擁有（SA3／SA4 明寫 see LONG PRESS notes in Core Logic and Flow），本 TC 只驗 Media 範圍內的可觀察結果——值變化比單擊快、放開即停——不引入 Core 的節奏參數，specification_reference 亦不列 Core 的段落。004-01 以 BASS 驗證加減方向；MID 與 TREB 的相同行為屬同一 leaf 的等價項目，spec 將三者並列為同一規則的適用對象而非不同結果，故不做笛卡兒積（處置同 COM-074）。優先級：調整功能本身與範圍邊界訂 P1；長按與直接觸控為替代輸入方式訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA3",
+    "BASS",
+    "MID",
+    "TREBLE",
+    "9 steps",
+    "long press"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "四筆分別驗加減鍵調整、每方向 9 級的邊界、長按快速調整、直接觸控選值"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-004-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall increase or decrease BASS, MID, and TREBLE using plus and minus buttons.\n\n(Plus and minus on the Bass control)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Bass value is not at either end of its range",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Equalizer\" to open the Equalizer settings\n4. Record the Bass value displayed\n5. Press the plus button next to Bass once and read the Bass value displayed\n6. Press the minus button next to Bass once and read the Bass value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Equalizer settings are displayed\n4. The Bass value is recorded\n5. The Bass value displayed is one step higher than the value recorded in step 4\n6. The Bass value displayed is the value recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-004-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall support 9 adjustment steps in each direction for BASS, MID, and TREBLE.\n\n(Both ends of the Bass range)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Bass value is 0",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Equalizer\" to open the Equalizer settings\n4. Press the plus button next to Bass repeatedly until the value stops increasing, counting the presses that changed the value, and read the Bass value displayed\n5. Press the plus button once more and read the Bass value displayed\n6. Press the minus button next to Bass repeatedly until the value stops decreasing, counting the presses that changed the value, and read the Bass value displayed\n7. Press the minus button once more and read the Bass value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Equalizer settings are displayed\n4. The value increased 9 times and the Bass value displayed is +9\n5. The Bass value displayed is still +9\n6. The value decreased 18 times from +9 and the Bass value displayed is -9\n7. The Bass value displayed is still -9",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.3",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-004-03",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall support long press on plus and minus buttons for fast adjustment of BASS, MID, and TREBLE.\n\n(Long press versus repeated single presses on the Bass control)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Bass value is 0",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Equalizer\" to open the Equalizer settings\n4. Press and release the plus button next to Bass three times and read the Bass value displayed\n5. Set the Bass value back to 0, then press and hold the plus button next to Bass for three seconds and release it, then read the Bass value displayed\n6. Read the Bass value displayed 3 seconds after releasing the button",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Equalizer settings are displayed\n4. The Bass value displayed is +3\n5. The Bass value displayed is higher than the value read in step 4, so the long press changed the value faster than the individual presses\n6. The Bass value displayed is the value read in step 5, so the value stopped changing when the button was released",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-004-04",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall allow direct touch selection of BASS, MID, and TREBLE values.\n\n(Touching a position on the Bass increment scale)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. The Bass value is 0",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Equalizer\" to open the Equalizer settings\n4. Record the Bass value displayed\n5. Touch a position on the Bass increment scale away from the current position and read the Bass value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Equalizer settings are displayed\n4. The Bass value is recorded\n5. The Bass value displayed corresponds to the touched position and differs from the value recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

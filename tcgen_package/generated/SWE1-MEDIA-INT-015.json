@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-015",
+  "reasoning": "21.10.2（SA13.2）規定 Auto-On Radio 設為 On 時，ignition cycle 之後收音機會自動開啟。驗證必須跨越 ignition cycle，故步驟明確包含關閉再開啟電門。前置條件刻意讓收音機在 ignition cycle 前處於關閉狀態，使 cycle 後的狀態變化可判定——若前後狀態相同，無法區分「設定生效」與「狀態未改變」。ER 以收音機的開關狀態與音訊輸出兩者判定，不使用不可觀察的內部狀態敘述。本筆與 SWE1-MEDIA-INT-014 及 INT-016 構成三個設定值的完整涵蓋（§7）。優先級：影響上電後的使用者體驗，訂 P1。",
+  "keywords": [
+    "Audio Settings",
+    "SA13.2",
+    "Auto On Radio",
+    "ignition cycle"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆為 Auto-On Radio 設為 On 的情況，與另兩個設定值構成三向涵蓋"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-015-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall automatically turn on the radio after an ignition cycle when Auto-On Radio is set to ON.\n\n(Auto-On Radio set to \"On\")",
+      "pre_conditions": "1. The radio in the vehicle has a power button and is not an ICS radio\n2. Auto-On Radio is set to On\n3. Before the ignition is switched off, the radio is off",
+      "input_test_data": "NA",
+      "test_procedure": "1. Switch the ignition off and read the state of the HU\n2. Switch the ignition on and wait until the HU has completed start-up\n3. Read the state of the radio and listen to the audio output of the HU",
+      "expected_result": "1. The HU is switched off\n2. The HU has completed start-up\n3. The radio is on and audio is output from the HU speakers",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.10.2",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

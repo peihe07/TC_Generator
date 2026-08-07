@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-MEDIA-INT-013",
+  "reasoning": "21.10（SA13）規定 AUTO ON RADIO 有 OFF、ON、Recall last 三個狀態。本 leaf 只驗三個狀態存在且皆可選中；各狀態的實際行為屬 SA13.1／13.2／13.3（INT-014～016），本 parent 不重複驗證。page 34 的 Auto On Radio 截圖顯示三個選項為 On / Off / Recall Last，ER 逐字採用截圖與條文的用語。三個狀態逐一走訪，ER 每步同時陳述新選取與前一選取已解除，排除多選並存的失效。優先級：設定選項齊備是後續三條行為 TC 的前提，訂 P1。",
+  "keywords": [
+    "Audio Settings",
+    "SA13",
+    "Auto On Radio",
+    "OFF",
+    "ON",
+    "Recall Last"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-013-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall provide three selectable states for Auto-On Radio: OFF, ON, and Recall Last.\n\n(All three states selected in turn)",
+      "pre_conditions": "1. The radio in the vehicle has a power button and is not an ICS radio\n2. FM is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Auto On Radio\" to open its settings\n4. Read the options displayed in the Auto On Radio settings\n5. Press \"Off\" and read which option is shown as selected\n6. Press \"On\" and read which option is shown as selected\n7. Press \"Recall Last\" and read which option is shown as selected",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Auto On Radio settings are displayed\n4. The options \"On\", \"Off\" and \"Recall Last\" are displayed\n5. \"Off\" is shown as selected\n6. \"On\" is shown as selected and \"Off\" is no longer shown as selected\n7. \"Recall Last\" is shown as selected and \"On\" is no longer shown as selected",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.10",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

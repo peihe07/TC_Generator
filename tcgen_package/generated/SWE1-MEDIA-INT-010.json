@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-INT-010",
+  "reasoning": "21.7（SA8）規定 AUX VOLUME OFFSET 以加減鍵在 -3 到 3（含 0，共 7 級）間調整，且未播放 AUX 裝置時該設定變灰。037 拆成三個 leaf：調整、範圍、未使用 AUX 時停用。010-02 的 7 級是明確的雙向邊界，驗證需涵蓋兩端且各多按一次確認不越界。010-03 的「未播放 AUX」是本條明載的觸發條件，依 §8.5 exception 寫進 Pre-Condition；ER 需同時陳述設定變灰與按下無效果，才排除「只是顏色不同仍可調整」的失效，按下步驟用 Attempt to press 並以純結果式 ER 表述（慣例見 COM-044、RAD-079）。優先級：調整與範圍訂 P1；停用狀態訂 P2。",
+  "keywords": [
+    "Audio Settings",
+    "SA8",
+    "AUX Volume Offset",
+    "7 levels",
+    "greyed out"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "010-01 驗加減調整、010-02 驗 -3 到 +3 的範圍邊界、010-03 驗非 AUX 來源時停用"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-010-01",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall increase or decrease AUX Volume Offset using plus and minus buttons.\n\n(Plus and minus on the Aux Volume Offset control)",
+      "pre_conditions": "1. An AUX device is connected to the HU and AUX is the active source\n2. The Aux Volume Offset value is 0",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Aux Volume Offset\" to open its settings\n4. Record the Aux Volume Offset value displayed\n5. Press the plus button once and read the value displayed\n6. Press the minus button once and read the value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Aux Volume Offset settings are displayed\n4. The Aux Volume Offset value is recorded\n5. The value displayed is one step higher than the value recorded in step 4\n6. The value displayed is the value recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.7",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-010-02",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall support AUX Volume Offset levels from -3 to +3 including 0.\n\n(Both ends of the -3 to +3 range)",
+      "pre_conditions": "1. An AUX device is connected to the HU and AUX is the active source\n2. The Aux Volume Offset value is 0",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Aux Volume Offset\" to open its settings\n4. Press the plus button repeatedly until the value stops increasing and read the value displayed\n5. Press the plus button once more and read the value displayed\n6. Press the minus button repeatedly until the value stops decreasing, counting the presses that changed the value, and read the value displayed\n7. Press the minus button once more and read the value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Aux Volume Offset settings are displayed\n4. The value displayed is +3\n5. The value displayed is still +3\n6. The value decreased 6 times from +3 and the value displayed is -3, giving 7 levels including 0\n7. The value displayed is still -3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.7",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-010-03",
+      "test_group": "MediaHMI",
+      "test_set": "Audio Settings",
+      "test_item": "The system shall display AUX Volume Offset setting as disabled when AUX is not the active source.\n\n(AUX is not the active source)",
+      "pre_conditions": "1. FM is the active source on the HU and no AUX device is playing",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Audio\" on the Tab Buttons to open the Audio Settings\n3. Press \"Aux Volume Offset\" to open its settings\n4. Read the state of the Aux Volume Offset control\n5. Record the Aux Volume Offset value displayed, then attempt to press the plus button and read the value displayed",
+      "expected_result": "1. The Media screen is displayed\n2. The Audio Settings are displayed in the Tab Area\n3. The Aux Volume Offset settings are displayed\n4. The Aux Volume Offset control is displayed greyed out\n5. The value displayed is the value recorded in step 5 and has not changed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_21.7",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}
