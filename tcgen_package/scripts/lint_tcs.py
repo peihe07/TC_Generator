@@ -25,6 +25,7 @@ import argparse
 import json
 import re
 import sys
+from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -89,6 +90,13 @@ _DOUBLE_QUOTED_RE = re.compile(r'"[^"]*"')
 _BR_TAG_RE = re.compile(r"<\s*br\s*/?\s*>", re.IGNORECASE)
 # §5.6：baseline 一詞只能出現在末步的比較 ER，不能出現在記錄步。
 _BASELINE_RE = re.compile(r"\bas\s+(?:the\s+)?baseline\b", re.IGNORECASE)
+# A-026：Media Tab Button 的標籤依 radio tier 而異（MN2：R1High="Playing"、
+# R1Low="Playing: Source"）。tier 未裁決前不改寫 TC，改以計數追蹤——marker
+# 適合精準檢索，不適合普查。裁決下來後跑一次替換，數字必須整批歸零或整批換邊。
+_TIER_LABEL_RES = {
+    "playing-r1high": re.compile(r'"Playing"'),
+    "playing-r1low": re.compile(r'"Playing:[^"]*"'),
+}
 
 
 @dataclass
@@ -114,6 +122,8 @@ class LintReport:
     # (file, "<anomaly id>: <note>") — parents generated on a declared reading of
     # an unresolved spec conflict; retrievable when the ruling arrives
     assumptions: list[tuple[str, str]] = field(default_factory=list)
+    # A-026 tier-dependent label occurrences, counted not flagged
+    tier_labels: Counter = field(default_factory=Counter)
 
     @property
     def failed_req_ids(self) -> list[str]:
@@ -134,6 +144,7 @@ class LintReport:
             "passed": self.passed,
             "blocked": [{"source": s, "reason": r} for s, r in self.blocked],
             "assumptions": [{"source": s, "note": n} for s, n in self.assumptions],
+            "tier_labels": dict(self.tier_labels),
             "findings": [
                 {
                     "req_id": f.req_id,
@@ -357,6 +368,19 @@ def extract_tcs(payload) -> list[dict]:
     return []
 
 
+def count_tier_labels(tc: dict) -> Counter:
+    """Count tier-dependent tab-button labels in one TC (A-026).
+
+    Not a finding: which form is correct is an open RD-1 question, so the gate
+    tracks the population instead of rejecting it. After the ruling, one
+    replacement pass must drive one counter to zero.
+    """
+    blob = " ".join(str(tc.get(k) or "") for k in ("test_procedure", "expected_result", "test_item"))
+    # Counts TCs, not occurrences: the actionable number is how many rows a
+    # replacement pass must touch.
+    return Counter({name: 1 for name, rx in _TIER_LABEL_RES.items() if rx.search(blob)})
+
+
 def blocked_reason(payload) -> str:
     """A parent may legitimately produce no TC when its spec source is unusable.
 
@@ -437,6 +461,7 @@ def lint_paths(paths: list[Path], test_sets: set[str]) -> LintReport:
         for tc in tcs:
             report.total += 1
             report.findings.extend(lint_tc(tc, test_sets, source=path.name))
+            report.tier_labels.update(count_tier_labels(tc))
     return report
 
 
@@ -477,6 +502,10 @@ def main() -> int:
 
     for source, note in report.assumptions:
         print(f"{source}:: ASSUMPTION — {note}")
+
+    if report.tier_labels:
+        counts = ", ".join(f"{k}={v}" for k, v in sorted(report.tier_labels.items()))
+        print(f"\nA-026 tier-dependent tab labels (open ruling, tracked not flagged): {counts}")
 
     failed = len(report.failed_req_ids)
     extra = ""

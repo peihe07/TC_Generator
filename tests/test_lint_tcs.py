@@ -441,6 +441,25 @@ def test_assumption_without_both_note_and_anomaly_fails(tmp_path, assumption):
     assert report.assumptions == []
 
 
+def test_tier_dependent_tab_labels_are_counted_not_flagged(tmp_path):
+    """A-026: which label form is correct is an open ruling, so the gate tracks, not rejects."""
+    hi = {**VALID_TC, "test_procedure": '1. Press "Playing" on the Tab Buttons\n2. Read the HU screen'}
+    lo = {**VALID_TC, "test_procedure": '1. Press "Playing: USB" on the Tab Buttons\n2. Read the HU screen'}
+    f = tmp_path / "labels.json"
+    f.write_text(json.dumps({"tcs": [hi, hi, lo]}), encoding="utf-8")
+    report = lint_tcs.lint_paths([f], TEST_SETS)
+    assert report.passed is True, "tier labels must never fail the gate while the ruling is open"
+    assert report.tier_labels["playing-r1high"] == 2
+    assert report.tier_labels["playing-r1low"] == 1
+
+
+def test_tier_label_counter_counts_tcs_not_occurrences():
+    twice = {**VALID_TC,
+             "test_procedure": '1. Press "Playing" on the Tab Buttons\n2. Press "Playing" again',
+             "expected_result": '1. The Playing Tab is displayed\n2. It is still displayed'}
+    assert lint_tcs.count_tier_labels(twice)["playing-r1high"] == 1
+
+
 def test_lint_paths_reports_files_with_no_tcs(tmp_path):
     bad = tmp_path / "empty.json"
     bad.write_text(json.dumps({"unexpected": 1}), encoding="utf-8")

@@ -775,6 +775,38 @@ A mechanical fix is available for outcomes 2 and 3 once the ruling lands (the
 label appears in a fixed step-prefix form), so the cost of waiting is low and
 the cost of guessing wrong is 76 TCs rewritten twice.
 
+### Tracking — counted by the linter, deliberately not marked
+
+No `assumption` markers are used here. Markers are for precise retrieval of a
+handful of TCs; a population this size would drown that signal. Instead the
+gate **counts** the two label forms and prints them on every run, following the
+A-005 pinning pattern:
+
+```
+A-026 tier-dependent tab labels (open ruling, tracked not flagged): playing-r1high=76
+```
+
+Retrieval patterns (regex over `test_procedure`, `expected_result`,
+`test_item`):
+
+| Form | Pattern |
+|---|---|
+| R1 High | `"Playing"` |
+| R1 Low | `"Playing:[^"]*"` |
+
+Counts are TCs, not occurrences. Baseline as of INT ch21 start: **76 R1High, 0
+R1Low** across 171 TCs; update this line at each chapter close.
+
+**Acceptance after the ruling:** one replacement pass, then the counters must be
+all-or-nothing — either `playing-r1low=0` (outcome 1, nothing changes) or
+`playing-r1high=0` (outcome 2, all switched). A split result means the pass
+missed rows. Under outcome 3 both counters go to zero and a tier-neutral
+formulation replaces them.
+
+Note that the eight done-region rows carrying a hard-coded label are in the same
+position and are not ours to change (rows 10–332 are out of scope, cf. A-005) —
+but they should be included in whatever the ruling decides.
+
 **Open:** RD-1 — see A-025(a). This is the highest-impact open question in the
 tracker.
 

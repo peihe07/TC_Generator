@@ -52,6 +52,23 @@ Worked examples of each:
   label requirements as a layout requirement, so they generate nothing and go
   to the tracker instead.
 
+## Anchors are style authority, not fact authority
+
+Curated anchors (`tcgen_package/anchors.json`) and done-region exemplars supply
+**form**: step shape, ER phrasing, how a scenario tag reads, which judgement
+calls a Test Set needs. They do not establish **fact**. A UI label, a numeric
+limit, a state name — those come from the spec, and only from the spec.
+
+The rule exists because the done region violated it and generation followed.
+MN2 makes the Media Tab Button label tier-dependent (`"Playing"` on R1 High,
+`"Playing: Source"` on R1 Low); the done region uses *both* forms across
+different TCs; generation anchored on a sample containing only the first, and
+76 TCs inherited an unverified fact. See `ANOMALIES.md` A-026.
+
+Practical consequence: when an anchor supplies a literal — a quoted label, a
+number, an enumerated value — trace it to its spec clause before reusing it. If
+the spec makes it conditional, the anchor cannot tell you which condition holds.
+
 ## Blocked-parent rule — delegation proportion
 
 A missing referenced artefact (an absent Pop Up List id, a missing table) does

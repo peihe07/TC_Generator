@@ -60,6 +60,25 @@ Evidence in both directions:
 | CFTS input is `R1LR_Atl-H` | Workbook covers `HDCC27`/`DT27` (**Atl-Hi**) and five **Atl-Mi** models |
 | Spec 1.9 lists exclusions specific to `R1L-R` | All 322 done-region rows set every vehicle flag (T–Z) to `1` |
 
+**The strongest evidence is that the workbook contradicts itself.** Two facts
+about rows 10–332 cannot both be right:
+
+- Those rows use **both** tab-button labels — so the label is being treated as
+  tier-specific.
+- All 322 of those rows set **every** vehicle flag (T–Z, covering both Atl-Hi
+  and Atl-Mi models) to `1` — so every TC is being declared applicable to every
+  model regardless of tier.
+
+If the label is tier-specific, the flags should not be uniformly `1` on the rows
+that hard-code one form. If the uniform flags are correct and every row applies
+to every model, then no row should hard-code a tier-specific label at all.
+
+This reframes the question. It is not that we failed to determine the vehicle
+tier — it is that **the established practice in this workbook has never ruled on
+it**, and the eight done-region rows carrying a hard-coded label are themselves
+awaiting that ruling. Our 76 rows are not a new error; they extend an existing
+undecided convention, and this is the first time it has been raised.
+
 **Questions:**
 
 1. **Which of the seven vehicle models in the workbook are R1 High, and which
