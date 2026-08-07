@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-INT-020",
+  "reasoning": "22.4.1（AP4.1）規定同一情境下 HU 也不得自動切換到 Media 畫面，同樣與設定無關。regardless of setting 是 spec 明寫的限定，意思是本條在 AutoPlay 開與關兩種設定下都成立。依 §7，這使兩個設定值成為必須成對涵蓋的等價類——只驗 AutoPlay OFF 無法區分「本條生效」與「AutoPlay 本來就關著」，那正是這條需求存在的理由（通話中要壓過 AutoPlay ON）。故兩筆皆以 AutoPlay ON 驗證，並在前置條件明確寫出設定值，使 regardless 的意義可判定。與 INT-019 的分工：該筆驗音訊、本筆驗畫面，兩者為同一觸發的不同驗證標的，且屬不同 RD sub-id，依 §8.2.2 不得合併。ER 以「畫面仍為連接前記錄的畫面」判定，故步驟先記錄當前畫面——只寫「Media 畫面未顯示」無法排除跳到第三個畫面的失效。優先級：通話中畫面被搶走會影響通話操作，訂 P1。",
+  "keywords": [
+    "Play Controls",
+    "AP4.1",
+    "AutoPlay",
+    "active call",
+    "Media screen"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "INT-019 驗媒體音訊不自動播放，本筆驗畫面不自動切換，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-020-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall not automatically switch to the Media screen when a paired phone is connected via USB during an active phone call.\n\n(AutoPlay ON, screen during an active call)",
+      "pre_conditions": "1. A phone is paired with the HU over Bluetooth and contains at least one file with a valid audio format\n2. An active phone call is in progress on that phone through the HU\n3. No USB device is connected to the HU\n4. AutoPlay is set to ON\n5. The in-call screen is displayed on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Record the screen displayed on the HU\n2. Connect the paired phone to the HU USB port and read the screen displayed on the HU\n3. Read the screen displayed on the HU after 5 seconds",
+      "expected_result": "1. The in-call screen is displayed and is recorded\n2. The screen recorded in step 1 is still displayed and the Media screen is not displayed\n3. The screen recorded in step 1 is still displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.4.1",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)"
+    }
+  ]
+}

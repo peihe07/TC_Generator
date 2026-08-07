@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-021",
+  "reasoning": "22.5（AP5）規定 AutoPlay 不適用於 Projection 裝置。這是範圍排除條文，驗證必須成對才有意義：Projection 裝置接上時不自動播放，而同一設定下 USB 裝置會自動播放——只驗前者無法區分「AutoPlay 對 Projection 不適用」與「AutoPlay 根本沒生效」。兩者是同一 AutoPlay ON 設定下的兩種裝置輸入，依 §5.7 屬同一觸發設定的對照，但裝置不同即為 §8.2 的不同輸入，故以同一筆 TC 的多階段步驟涵蓋對照——分成兩筆會讓對照關係消失，而對照正是本條可判定的唯一方式。AutoPlay 僅適用於 USB（AP1，22.1）屬 PLA 段的 leaf，本筆的 USB 對照步驟只作為判別基準，不重複驗證該條。優先級：屬適用範圍的排除規則，訂 P2。",
+  "keywords": [
+    "Play Controls",
+    "AP5",
+    "AutoPlay",
+    "Projection Devices"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "本筆以同一 AutoPlay ON 設定下 Projection 裝置與 USB 裝置的對照，驗證排除規則"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-021-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall not apply AutoPlay functionality to Projection Devices.\n\n(Projection device versus USB device under the same AutoPlay setting)",
+      "pre_conditions": "1. AutoPlay is set to ON\n2. A projection device containing at least one file with a valid audio format is available\n3. A USB drive containing at least one file with a valid audio format is available\n4. FM is the active source on the HU and no device is connected to the HU USB port",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the projection device to the HU and listen to the audio output of the HU\n2. Listen to the audio output of the HU after 5 seconds\n3. Disconnect the projection device, connect the USB drive to the HU USB port and listen to the audio output of the HU",
+      "expected_result": "1. FM audio continues to be output from the HU speakers and no media from the projection device is played\n2. FM audio is still output from the HU speakers and no media from the projection device is played\n3. Audio from the USB drive is output from the HU speakers, confirming AutoPlay is active for USB under this setting",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.5",
+      "priority": "P2",
+      "design_method": "決策表 (Decision Table Testing)"
+    }
+  ]
+}

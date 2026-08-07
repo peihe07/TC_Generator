@@ -810,3 +810,32 @@ but they should be included in whatever the ruling decides.
 **Open:** RD-1 — see A-025(a). This is the highest-impact open question in the
 tracker.
 
+
+---
+
+## A-027 — 22.2.2 has no leaf while its own child does
+
+**Found:** 2026-08-07, generating INT ch22.
+
+- `22.2.2 (AP2.2)` — *"If user listens to iPod and then plugs it in the HU, the
+  system will continue playing the item selected **if AutoPlay is ON**."* — no
+  leaf.
+- `22.2.2.1 (AP2.2.1)` — *"If AutoPlay is OFF when the user selects to start
+  playing that device start playing the item the user had playing previous."* —
+  **has** a leaf (under a PLA parent).
+
+So the AutoPlay **OFF** branch is covered and the **ON** branch is not, even
+though the ON branch is the primary case and its child exists only as its
+counterpart. §7's positive/negative pairing has one half missing at the source.
+
+Also without a leaf: `22.2` (a pure reference — *"See Last Mode Table … as well
+as AutoPlay Setting - Use Cases"*) and `22.6` (a Use Cases table, image only).
+`22.2` carries no testable content of its own; `22.6` may.
+
+Not the A-020 shape: there the orphan asserted something parallel to a sibling
+leaf. Here the orphan is the **parent** of a leaf and states the primary branch
+of the same rule.
+
+**Open:** RD-1 / 037 owner — should AP2.2 (AutoPlay ON, resume the item that
+was playing) gain a leaf? It reads as the main case of the pair whose exception
+already has one.

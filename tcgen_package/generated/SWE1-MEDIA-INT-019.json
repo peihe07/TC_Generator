@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-INT-019",
+  "reasoning": "22.4（AP4）規定通話進行中把已配對手機以 USB 接上時，不得自動播放媒體，且與 AutoPlay 設定無關。regardless of setting 是 spec 明寫的限定，意思是本條在 AutoPlay 開與關兩種設定下都成立。依 §7，這使兩個設定值成為必須成對涵蓋的等價類——只驗 AutoPlay OFF 無法區分「本條生效」與「AutoPlay 本來就關著」，那正是這條需求存在的理由（通話中要壓過 AutoPlay ON）。故兩筆皆以 AutoPlay ON 驗證，並在前置條件明確寫出設定值，使 regardless 的意義可判定。ER 需同時陳述沒有媒體音訊輸出、且通話音訊未被中斷——只驗前者無法排除「媒體確實沒播但通話也斷了」這種更糟的失效。自動切換到 Media 畫面屬 AP4.1，由 INT-020 涵蓋，本筆不重複驗證。優先級：通話中被媒體打斷屬影響核心功能的失效，訂 P0。",
+  "keywords": [
+    "Play Controls",
+    "AP4",
+    "AutoPlay",
+    "active call",
+    "USB"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆在 AutoPlay ON 且通話中連接 USB，驗證媒體不自動播放"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-019-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall not automatically start media playback when a paired phone is connected via USB during an active phone call.\n\n(AutoPlay ON, phone connected during an active call)",
+      "pre_conditions": "1. A phone is paired with the HU over Bluetooth and contains at least one file with a valid audio format\n2. An active phone call is in progress on that phone through the HU\n3. No USB device is connected to the HU\n4. AutoPlay is set to ON",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the paired phone to the HU USB port and listen to the audio output of the HU\n2. Listen to the audio output of the HU after 5 seconds\n3. Read the elapsed time area on the HU",
+      "expected_result": "1. The call audio continues to be output from the HU speakers and no media audio is output\n2. The call audio is still output from the HU speakers and no media audio is output\n3. No media playback is in progress and no elapsed time is advancing",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.4",
+      "priority": "P0",
+      "design_method": "決策表 (Decision Table Testing)"
+    }
+  ]
+}
