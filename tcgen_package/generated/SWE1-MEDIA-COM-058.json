@@ -26,7 +26,8 @@
       "expected_result": "BLOCKED - see Remarks",
       "priority": "",
       "design_method": "",
-      "remarks": "BLOCKED: BT1.1.1 (14.1.1.1) and BT1.1.2 (14.1.1.2) give opposite outcomes for a connected source with no valid audio files. After specific-over-general resolution the residual scope of BT1.1.1 has no instantiable source type. See ANOMALIES A-011. Awaiting RD-1."
+      "remarks": "BLOCKED: BT1.1.1 (14.1.1.1) and BT1.1.2 (14.1.1.2) give opposite outcomes for a connected source with no valid audio files. After specific-over-general resolution the residual scope of BT1.1.1 has no instantiable source type. See ANOMALIES A-011. Awaiting RD-1.",
+      "test_set": "Browse Tab"
     }
   },
   "tcs": []

@@ -26,7 +26,8 @@
       "expected_result": "BLOCKED - see Remarks",
       "priority": "",
       "design_method": "",
-      "remarks": "BLOCKED: PU0996 not found in Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023). Requirement content is fully delegated to that missing definition. See ANOMALIES A-009. Awaiting RD-1."
+      "remarks": "BLOCKED: PU0996 not found in Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023). Requirement content is fully delegated to that missing definition. See ANOMALIES A-009. Awaiting RD-1.",
+      "test_set": "Source Selection"
     }
   }
 }

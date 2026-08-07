@@ -13,7 +13,9 @@ FW036 SWQT test case specification (rows 333+, 262 leaf FRs from
 FMWIFSM037A03, sourced from Media HMI spec chapters 11–23).
 
 Full detail for every item is in `tcgen_package/ANOMALIES.md` under the same
-anomaly id. The **Impact** column is generated from the linter's JSON report,
+anomaly id; the work each answer triggers on our side is queued in
+`docs/pending_passes.md`, so a ruling becomes a work order rather than a
+re-investigation. The **Impact** column is generated from the linter's JSON report,
 not maintained by hand — it says what changes if you answer.
 
 Status at time of writing: **171 TCs generated, 0 lint findings, 2 parents

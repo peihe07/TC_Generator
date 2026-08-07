@@ -114,16 +114,52 @@ Reject any TC failing:
 
 ## Step 4 — Write-back
 
-Produce `output/FW036_regen.xlsx`:
-1. Copy the source workbook; keep rows 10–332 untouched
-2. Delete rows 333–755; append generated TCs from row 333 grouped in 037
-   document order (parent order), leaf order within parent
-3. Column mapping (0-based): D=req_id(leaf sub-id), G=MediaHMI, H=test_set,
-   I=test_item, J=pre_conditions, K=input_test_data, L=test_procedure,
-   M=expected_result, N=specification_reference, O=`NEW`, P=priority,
-   R=design_method, S=`NA`, T..Z vehicle-model flags `1`, AA=author
-4. Re-copy the B / F column formulas from the template row
-5. Re-run the linter against the written workbook as final verification
+Run `scripts/write_back.py`; do not hand-edit the workbook. Every RD-1 ruling
+that lands means regenerating this file, so the run has to be reproducible.
+
+```bash
+python scripts/write_back.py \
+    --src "inputs/FM-WI-FSM-036-A01 ... MediaHMI_20260625.xlsx" \
+    --data data --generated generated \
+    --out output/FW036_regen.xlsx        # --revision / --date override defaults
+```
+
+What it does:
+
+1. Copies the source workbook; rows 10-332 are never written to.
+2. Deletes rows 333+ and rewrites them from `generated/*.json` in 037 document
+   order (parent order, leaf order within parent).
+3. Column mapping (1-based): D=req_id, G=`MediaHMI`, H=test_set, I=test_item,
+   J=pre_conditions, K=input_test_data, L=test_procedure, M=expected_result,
+   N=specification_reference, O=`NEW`, P=priority, R=design_method, S=`NA`,
+   T..Z vehicle flags `1`, AA=author, **AH=Remarks**.
+   AH was missing from this runbook's original mapping; it carries the blocked
+   declarations, the duplicate-sync notes (A-022) and the pending-flag note
+   (A-029), so omitting it silently drops all of them.
+4. Re-emits the B and F column formulas on every new row.
+5. Blocked parents (A-009, A-011) still get a row: Test Item is the RD sentence,
+   Procedure/ER read `BLOCKED - see Remarks`, P and R are left blank because no
+   dropdown value would be truthful, and AH carries the reason and anomaly id.
+   Without the row, 037's 262 leaves would produce 260 rows and an ASPICE
+   traceability audit would see an unexplained gap.
+6. Adds `Preset Management` and `Media Widget` to the `Test Case Framework`
+   sheet (A15/A16) — see `docs/framework.md`.
+7. Appends a `ChangeHistory` revision row. This is a controlled document.
+8. Normalises the saved xlsx (zip entry timestamps and `docProps` dcterms) so
+   identical content yields identical bytes — the file's SHA256 is recorded
+   against the commit that produced it, which only means anything if the digest
+   is stable.
+
+Three invariants abort the run rather than producing a suspect file:
+
+- **Traceability** — every req_id must exist in 037. §8.2.2 lets one sub-id
+  yield several TCs, but they share that sub-id; inventing `-02` invents a
+  requirement, and such a row is well-formed under every row-level rule.
+- **Completeness** — leaves written must equal remaining leaves exactly.
+- **Done region** — rows 10-332 are hashed before and after and must match.
+
+Covered by `tests/test_write_back.py`, including byte-level idempotency across
+a time gap.
 
 ## Step 5 — Execution order & model assignment
 

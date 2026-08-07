@@ -52,6 +52,28 @@ Worked examples of each:
   label requirements as a layout requirement, so they generate nothing and go
   to the tracker instead.
 
+## Lint being green does not mean traceability is correct
+
+Row-level linting checks each TC against the writing rules. It structurally
+cannot check whether a row points at a requirement that exists — such a row is
+well-formed in every respect the linter can see.
+
+This is not hypothetical. Five parents were generated with TCs numbered `-01`,
+`-02`, `-03` under a leaf 037 only defines as `-01`. §8.2.2 permits several TCs
+per sub-id, but they **share** that sub-id; incrementing it invents a
+requirement. All 277 TCs passed lint at the time. Only reconciling the written
+req_ids against the leaf list caught it.
+
+Two gates now exist because of it, and they are deliberately redundant:
+
+- `unknown-req-id` in `lint_tcs.py` — fails any TC whose req_id is not a leaf.
+- `assert_traceable_and_complete` in `write_back.py` — aborts the write unless
+  the set of written req_ids equals the set of leaves exactly, in both
+  directions.
+
+The second is the one that matters for the deliverable: a missing leaf produces
+no row at all, so nothing exists for a row-level rule to inspect.
+
 ## When an unresolved spec question needs an `assumption` marker — and when it does not
 
 A marker is a retrieval handle for **rework**. It belongs on a TC only if a
