@@ -1,5 +1,13 @@
 # RD-1 Questions — FW036 Media HMI TC Regeneration
 
+| | |
+|---|---|
+| Prepared | 2026-08-07 |
+| Prepared by | Pei (SWQT, FW036 Media HMI) |
+| Sent to | _(fill in: RD author / requirements owner)_ |
+| Sent on | _(fill in)_ |
+| Response received | _(fill in)_ |
+
 Open questions for the requirements author, raised during regeneration of the
 FW036 SWQT test case specification (rows 333+, 262 leaf FRs from
 FMWIFSM037A03, sourced from Media HMI spec chapters 11–23).
@@ -53,9 +61,17 @@ continue. If you rule the other way, the listed TCs are reworked.
 | **A-018** | 17.1.1 `MPB1.1` vs Table `PRE1.1` | MPB1.1 allows a **maximum of 8** presets per bank; Table PRE1.1 caps every listed radio size at **6**. A bank of 8 is unreachable on any configuration. | table-over-prose (same canon as A-007): verified against the Table PRE1.1 value for the vehicle radio size. | **ASSUMPTION:** `RAD-062-01`. |
 | **A-007** | 12.2.1 `PSB2.1` vs Table `PSB2.4` | PSB2.1 allows a **maximum of 5** pinned sources; Table PSB2.4 caps every radio size at **4**. Same shape as A-018. | table-over-prose. TCs express the limit symbolically as "the value defined for this radio size in Table PSB2.4", so they hold under either answer. | No marker — the TCs are valid either way. |
 
-**Recommended single question for this group:** *"When a prose clause and its
-own referenced table disagree on a limit, which is authoritative?"* — that one
-ruling settles A-007 and A-018 together.
+**Recommended single question for this group — stated as a position to confirm,
+not an open problem to re-solve:**
+
+> *"Where a prose clause and its own referenced table disagree on a limit, we
+> are treating the **table** as authoritative — it is the more specific source
+> and is broken down per configuration. Please confirm, or tell us to use the
+> prose figure instead."*
+
+One ruling settles A-007 and A-018 together. Phrasing it this way keeps the
+cost of agreeing to a single word, and puts our working assumption formally on
+record if no answer comes back.
 
 ---
 
@@ -88,6 +104,7 @@ configurations are in scope for FW036, 037 needs leaves for them.
 | **A-020** | `MPB1.7` (HD Radio preset labels — **NA-relevant, a real gap**) and `MPB1.8.x` (FM-EU PSN labels — please confirm out of scope for a NAFTA programme). | These sit under a leaf about *layout*, so they cannot be attached to it without recording label requirements as layout requirements. |
 | **A-013** | If BT4.1.1's missing item **2** was a real field, nothing covers it. | See Group 5. |
 | **A-017** | If APP5–APP9 were real clauses, nothing covers them. | See Group 5. |
+| **A-006** *(low priority)* | 11.3.1 / `USB1` names only iPod as a label-changing drive type and enumerates no supported set, so §7's "enumerated items need a negative pair" has no trigger to fire on. | **Question:** is there a defined set of drive types that change the USB source label, and what label does a type outside that set get? |
 
 ---
 
@@ -107,20 +124,23 @@ dropped silently; a single audit is more useful to us than three point fixes.
 
 | Id | Spec anchor | Observation | Impact |
 |---|---|---|---|
-| **A-022** | 18.5 `APP10` ≡ 18.12 `APP17`; 18.6 `APP11` ≡ 18.13 `APP18` | Two clause pairs state the same requirement twice (APP10 adds a 500 ms figure APP17 omits; otherwise equivalent in trigger, input and verification target). 037 allocated a separate leaf to each. | Handled with `duplicate_of` rather than a second copy of the content; both leaves keep a workbook row for traceability, and the Remarks column flags the sync obligation. **Question:** are APP17/APP18 redundant restatements to be removed, or was a distinction intended that the wording lost? |
+| **A-022** | 18.5 `APP10` ≡ 18.12 `APP17`; 18.6 `APP11` ≡ 18.13 `APP18` | Two clause pairs state the same requirement twice (APP10 adds a 500 ms figure APP17 omits; otherwise equivalent in trigger, input and verification target). 037 allocated a separate leaf to each. | Handled with `duplicate_of` rather than a second copy of the content; both leaves keep a workbook row for traceability, and the Remarks column flags the sync obligation. **Questions:** (a) are APP17/APP18 redundant restatements to be removed, or was a distinction intended that the wording lost? (b) **Does the 500 ms long-press duration in APP10 apply to APP17 as well?** We have assumed it does and used 500 ms in both TCs — if the answer to (a) is "a distinction was intended", that assumption becomes unsupported and the duration for APP17 is undefined. |
 | **A-002**, **A-014** | 11.4.1.2 / 11.4.1.3; pages 25/26 | Duplicate item codes (`BTSA1.2` used twice; `BT4.2.1` used for two different clauses). Confirmed against page images — not OCR artefacts. The SYS1 R1L-L export already corrects the second one. | Informational. Outline numbers drive all mapping, so nothing is ambiguous in generation. Listed so a reviewer comparing against the 2023 PDF does not read the mismatch as our error. |
 
 ---
 
-## Closed — no action needed
+## Closed / for information
 
-| Id | Resolution |
-|---|---|
-| **A-001** | 037 does not allocate a leaf to every SYS1 sub-section (10 of 158 affected). Handled in tooling; see `docs/framework.md` orphan coverage rule. |
-| **A-003** | SYS1 (R1L-L Feb 2026) ↔ PDF (July 2023) version risk — closed by cross-check: 5 of 6 sampled done-region sections matched verbatim, 158/158 section numbers resolve. |
-| **A-004** | No spec-confirmed control label for opening the App Drawer; step written without inventing one. Reviewer with HU access to confirm. |
-| **A-005** | Done region (rows 10–332) uses `as the baseline` in recording steps, against §5.6. Frozen deliberately — rows 10–332 are out of scope for this regeneration. Count pinned at 8 in the test suite. |
-| **A-006** | No enumerated USB drive-type list, so §7's negative-pair requirement has no trigger. Recorded as a question below. |
+Audience note: everything above is for the requirements author. The two items
+below are not — they are listed so nobody mistakes them for our errors.
 
-**A-006 question (low priority):** is there a defined set of drive types that
-change the USB source label, and what label does a type outside that set get?
+| Id | Audience | Resolution |
+|---|---|---|
+| **A-002**, **A-014** | Reviewers comparing our TCs against the 2023 PDF | Duplicate item codes in the source (`BTSA1.2` used for two clauses; `BT4.2.1` used for both the "No items" clause and the List Display Reference table). Confirmed against the page images — not OCR artefacts, and the SYS1 R1L-L export already corrects the second one. Outline numbers drive all our mapping, so nothing is ambiguous in generation. |
+| **A-003** | Supports the Group 1 version argument | SYS1 (R1L-L, Feb 2026) ↔ PDF (July 2023) version risk was cross-checked and closed: 5 of 6 sampled done-region sections matched verbatim, and all 158 remaining section numbers resolve. The source *text* is consistent across the two revisions — which is why the missing Pop Up List ids in Group 1 point at the Pop Up List specifically, not at a general version drift. |
+| **A-004** | A tester with HU access, not the RD author | No spec-confirmed control label for opening the App Drawer, so the step is written as "Open the App Drawer" rather than inventing a quoted label. Someone with the unit should supply the real label. |
+
+Internal tooling and process decisions taken during regeneration (orphan
+sub-section routing, the frozen §5.6 deviation in rows 10–332, and others) are
+recorded in `tcgen_package/ANOMALIES.md` and need no input from the
+requirements author.
