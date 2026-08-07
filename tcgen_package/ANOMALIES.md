@@ -627,3 +627,154 @@ carry an `assumption` marker naming this anomaly.
 **Open:** RD-1 — confirm APP13's first "Presets Pop Up" should read "Edit
 Presets Pop Up". Ask together with A-021; both are container-naming defects in
 the same section.
+
+---
+
+## A-024 — INT-017-01 is mapped to the wrong section
+
+**Found:** 2026-08-07, generating INT ch21.
+
+`SWE1-MEDIA-INT-017-01` — *"The system shall increase or decrease volume levels
+using plus and minus buttons for each volume category."* — carries HMI Source
+ID `21.12`. But 21.12 is `SA15`, which says only:
+
+> *"The order of the categories in Volume Adjustments is: Media, Phone Call,
+> Phone Ring, Navigation, VR."*
+
+The behaviour the leaf describes is `SA14` at **21.11**:
+
+> *"For Volume Adjustment, press plus / minus buttons to increase / decrease the
+> volume level for each category."*
+
+21.11 has no leaf of its own, and 21.12 has two leaves (INT-017, INT-018) of
+which only INT-018 ("display the categories in this order") matches SA15.
+
+**Handling:** the TC is written against the behaviour the leaf actually states
+(SA14), and `specification_reference` cites **21.11 first, then 21.12**, so the
+row traces to the clause that governs it without dropping 037's own mapping.
+`generated/SWE1-MEDIA-INT-017.json` carries an `assumption` marker, because
+overriding 037's stated HMI Source ID is a judgement, not a transcription.
+
+**Open:** RD-1 / 037 owner — should INT-017-01's HMI Source ID be corrected to
+21.11 (SA14)?
+
+---
+
+## A-025 — Nine ch21 sections have no leaf at all, including R1H Virtual Venue
+
+**Found:** 2026-08-07, generating INT ch21.
+
+Unlike A-008 (unallocated *rows* of an allocated table) and A-020 (orphan
+sub-sections under an allocated leaf), these are whole clauses that 037 skipped
+outright:
+
+| Section | Clause | Content |
+|---|---|---|
+| 21.8 | `SA9` | Beats Audio — Balance/Fade and Equalizer graphics updated when the vehicle supports it |
+| 21.11 | `SA14` | Volume Adjustment plus/minus per category (see A-024 — its content did get a leaf, mis-mapped to 21.12) |
+| 21.13 | — | Radio Off with Door |
+| 21.14 | `SA19` | **(R1H Only)** Virtual Venue setting: On / Off |
+| 21.14.1 | `SA19.1` | Cycling venues with the arrow buttons or tune knob |
+| 21.14.1.1 | `SA19.1.1` | Wrapping from the last venue back to Default |
+| 21.14.1.2 | `SA19.1.2` | Virtual Venue does not latch over ignition cycles |
+| 21.15 | `SA19.2` | Venue name as defined in `Virtual_Venues_Profiles_V1.0` |
+| 21.16 | `SA19.3` | Venue info popup as defined in `Virtual_Venues_Profiles_V1.0` |
+
+**The Virtual Venue block is marked *(R1H Only)*, and whether it applies is
+NOT yet established.** An earlier draft of this entry asserted the programme is
+Atlantis High and cited MN2 plus done-region usage as proof. That reasoning was
+wrong and is retracted — see A-026. What the inputs actually show:
+
+- The workbook's vehicle columns (T–Z) cover **both** tiers: `HDCC27` and
+  `DT27` marked **Atl-Hi**, and five models (`VF(ProMaster)637`,
+  `Commander 598`, `Regengade 5210`, `Toro 2261`, `Fastack 376`) marked
+  **Atl-Mi**. All 322 done-region rows set every one of the seven flags to `1`.
+- The SYS1 export is `R1L-L` and the CFTS input is `R1LR_Atl-H`, i.e. R1 **Low**
+  variants, while `(R1H Only)` names R1 **High**.
+- Spec 1.2 says the deck "covers requirements for R1 High and Low radios".
+
+So `(R1H Only)` may apply to a subset of the programme's vehicles, all of them,
+or none — this cannot be decided from the inputs. If it applies to only the two
+Atl-Hi models, its TCs would also be the first rows in the workbook not to set
+all seven vehicle flags to `1`, which no done-region row does.
+
+The other six clauses in the table above carry their own gating, assessed
+separately below.
+
+Two of them (`SA19.2`, `SA19.3`) also delegate to an external document,
+`Virtual_Venues_Profiles_V1.0`, which is not among the inputs — so even with a
+leaf they would need that file.
+
+### Per-clause gating assessment
+
+Reporting all nine as gaps would be wrong — some may be correct
+non-configuration rather than omissions. Classified:
+
+| Section | Gating in the spec text | Classification |
+|---|---|---|
+| 21.11 `SA14` | none | **Not a gap** — its content did get a leaf, mis-mapped to 21.12. See A-024. |
+| 21.13 Radio Off with Door | none stated; page 34 shows a full settings screen with On/Off | **Real gap** — no gating, no leaf. |
+| 21.8 `SA9` Beats Audio | *"If the vehicle supports Beats Audio"* — an audio-hardware option | **Cannot determine** — nothing in the inputs says whether these seven models carry Beats. Ask. |
+| 21.14–21.16 `SA19.x` Virtual Venue | *(R1H Only)* | **Cannot determine** — see the tier question above. Ask. |
+
+Only 21.13 is reported as an unambiguous gap. The rest are questions, so that a
+single "that one doesn't apply" answer cannot be used to dismiss the others.
+
+**Open:** RD-1 / 037 owner —
+(a) **Radio tier:** which of the seven vehicle models are R1 High and which are
+    R1 Low? This decides SA19.x and, more urgently, A-026.
+(b) **Virtual Venue:** if any model is R1H, 037 needs leaves for SA19.x, and we
+    need `Virtual_Venues_Profiles_V1.0` (not among our inputs).
+(c) **Beats Audio:** do any of the seven models support it?
+(d) **21.13 Radio Off with Door:** confirmed missing a leaf — should 037 gain one?
+
+---
+
+## A-026 — Tab Button label is tier-dependent, and 76 of 171 generated TCs assume one tier
+
+**Found:** 2026-08-07, while building the evidence chain for A-025 — and it
+invalidates the claim that entry originally made.
+
+`4.2 (MN2)` defines the Media Tab Button labels:
+
+> *"Playing" (R1High Only) or "Playing: Source" (R1Low Only)*
+
+The label a tester must press therefore depends on the radio tier. **The
+done region uses both forms**, which is how this surfaced:
+
+| Form | Done-region TCs |
+|---|---|
+| `"Playing"` (R1High) | SWE1-MEDIA-COM-001-05, COM-002-02 |
+| `"Playing: <source>"` (R1Low) | SWE1-MEDIA-COM-014-01, COM-032-01 (×3) |
+
+The human-authored reference region is itself inconsistent, so anchoring on it —
+which is what generation did — cannot resolve the question, and the sample that
+informed the choice happened to contain only the `"Playing"` form.
+
+**Scale: 76 of 171 generated TCs contain the literal `"Playing"` label** in a
+step or an expected result. If the programme is R1 Low, every one of those steps
+names a button that does not exist on the unit, and the TCs fail on a wording
+defect rather than a real one.
+
+Evidence pointing at **R1 Low**: the SYS1 export is `R1L-L`; the CFTS input is
+`R1LR_Atl-H`; spec 1.9 lists exclusions specific to `R1L-R`.
+Evidence pointing at **mixed**: spec 1.2 covers "R1 High and Low radios"; the
+workbook covers Atl-Hi and Atl-Mi models with all vehicle flags set to `1`.
+
+**Status: not yet fixed — awaiting the tier ruling in A-025(a).** Three
+outcomes, deliberately not pre-empted:
+
+1. **R1 High** → the generated TCs are correct as written; the two done-region
+   `"Playing: <source>"` TCs are the ones that are wrong.
+2. **R1 Low** → all 76 TCs need the label changed to `"Playing: <source>"`.
+3. **Mixed fleet** → the label cannot be written literally at all. Every
+   affected TC needs a tier-neutral formulation, and the workbook's uniform
+   all-`1` vehicle flags need revisiting for tier-specific rows.
+
+A mechanical fix is available for outcomes 2 and 3 once the ruling lands (the
+label appears in a fixed step-prefix form), so the cost of waiting is low and
+the cost of guessing wrong is 76 TCs rewritten twice.
+
+**Open:** RD-1 — see A-025(a). This is the highest-impact open question in the
+tracker.
+

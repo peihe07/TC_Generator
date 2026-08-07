@@ -17,7 +17,7 @@ anomaly id. The **Impact** column is generated from the linter's JSON report,
 not maintained by hand — it says what changes if you answer.
 
 Status at time of writing: **171 TCs generated, 0 lint findings, 2 parents
-blocked, 6 assumption markers.**
+blocked, 6 assumption markers, 1 open question affecting 76 TCs (Group 0).**
 
 ---
 
@@ -25,11 +25,56 @@ blocked, 6 assumption markers.**
 
 | Group | Items | Why it matters |
 |---|---|---|
+| **0. Radio tier — blocks a mechanical fix to 76 TCs** | **A-026**, A-025(a) | The Media Tab Button is labelled `"Playing"` on R1 High and `"Playing: Source"` on R1 Low. **76 of 171 generated TCs use the literal `"Playing"`.** The done region uses both forms, so it cannot settle the question. Answer this first — it is one sentence for you and 76 rows for us. |
 | **1. Missing referenced artefacts** | A-009, A-015, A-016 | Two consecutive Pop Up List ids and one table are cited but do not exist. One leaf is fully blocked; a second is at risk. Strong evidence of a **Pop Up List version mismatch**, which is one answer that unblocks several items at once. |
 | **2. Spec self-contradictions** | A-011, A-012, A-018, A-007 | Two clauses give opposite answers for the same situation, or prose contradicts its own table. One leaf blocked, 6 TCs generated on a declared reading that must be reworked if we read it wrong. |
 | **3. Container naming defects (ch18)** | A-021, A-023 | The same popup has two names, and one clause names the wrong container (a circular "close and return to itself"). 9 TCs affected. |
 | **4. Coverage gaps — 037 allocated no leaf** | A-008, A-010, A-020 | Spec tables and clauses with real content that no requirement leaf covers, so no TC can be written against them. Not blocking; these are **holes in the deliverable** you may want closed. |
 | **5. Clause numbering / duplication** | A-013, A-017, A-019, A-022 | Three independent numbering gaps and two duplicated clause pairs in one deck. Raised as a **pattern**, not as three edits. |
+
+---
+
+## Group 0 — Radio tier (answer this first)
+
+This is the highest-impact question in the document: one sentence from you
+resolves a mechanical change to 76 test cases.
+
+`4.2 (MN2)` defines the Media Tab Button label as **`"Playing"` (R1High Only)**
+or **`"Playing: Source"` (R1Low Only)**. Every test case that navigates to that
+tab must press the right label.
+
+**We could not determine the tier from the inputs, and we did not guess in the
+document — but generation had already anchored on the done region, which turns
+out to use both forms:**
+
+| Form | Done-region TCs (rows 10–332, human-authored) |
+|---|---|
+| `"Playing"` (R1 High) | `SWE1-MEDIA-COM-001-05`, `COM-002-02` |
+| `"Playing: <source>"` (R1 Low) | `SWE1-MEDIA-COM-014-01`, `COM-032-01` (×3) |
+
+Evidence in both directions:
+
+| Points to R1 **Low** | Points to **mixed / High** |
+|---|---|
+| SYS1 export is `R1L-L` | Spec 1.2: deck "covers requirements for R1 High and Low radios" |
+| CFTS input is `R1LR_Atl-H` | Workbook covers `HDCC27`/`DT27` (**Atl-Hi**) and five **Atl-Mi** models |
+| Spec 1.9 lists exclusions specific to `R1L-R` | All 322 done-region rows set every vehicle flag (T–Z) to `1` |
+
+**Questions:**
+
+1. **Which of the seven vehicle models in the workbook are R1 High, and which
+   are R1 Low?**
+2. If the fleet is mixed, how should a tier-dependent UI label be written in a
+   test case that applies to all seven models — the workbook has no
+   tier-specific mechanism today beyond the per-model flag columns.
+3. Secondary, same ruling: `SA19.x` Virtual Venue is marked *(R1H Only)*. Is it
+   in scope for any model in this programme? (If yes, see A-025 in Group 4 and
+   the missing profiles document in Group 1.)
+
+**Impact:** `A-026` — **76 of 171 generated TCs** contain the literal
+`"Playing"` label. Under a "R1 Low" or "mixed" answer they need the label
+changed; the change is mechanical and cheap once the ruling lands, which is why
+we are holding rather than guessing.
 
 ---
 
@@ -41,11 +86,13 @@ These unblock generation.
 |---|---|---|---|---|
 | **A-009** | 13.2 / `SMP1` | `SMP1) See Pop Up List: PU0996` — PU0996 is not in `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023)` (all 3 sheets, 1340 ids searched). Is PU0996 a typo pointing at the wrong id, **or** is it defined in a Pop Up List revision newer than Dec 2023? | None — parent is blocked. The clause delegates 100% of its content to the missing definition, so writing a TC would mean inventing the popup. | **BLOCKED:** `SWE1-MEDIA-COM-051-01`. Answering unblocks 1 leaf. |
 | **A-015** | 18.1 / `APP1` | `APP1 … (See Pop up List: PU0997)` — PU0997 is **also** absent from the same file. Two *consecutive* ids missing while PU0998 in the same range is present. Is the Dec 2023 Pop Up List simply older than these two popups? | Treated as supplementary: APP1 states its own testable content, so RAD-070 generates normally (see `docs/framework.md`, delegation-proportion rule). | No TC blocked. But a "yes" here **also answers A-009** and unblocks COM-051. |
+| **A-025(b)** | 21.15 / `SA19.2`, 21.16 / `SA19.3` | Both delegate to **`Virtual_Venues_Profiles_V1.0`** for venue names and venue info popup content. That document is not among our inputs. Same class as the missing Pop Up List ids: even if 037 gains leaves for these clauses, no TC can be written without the file. | None — no leaf exists yet either. | Blocks any future Virtual Venue coverage. Only relevant if the answer to Group 0 puts R1H models in scope. |
 | **A-016** | 16.2.3.1 / `PRE2.3.1` | `(See Table PRE1.2)` — there is no Table PRE1.2. `PRE1.2` is a clause about the plus sign; the only table in the section is `PRE1.1) Presets per Bank by Radio Size`, which states no bank count. Should this read Table PRE1.1, or is a bank-count table missing from the deck? | The values 3 and 6 are taken from the PRE2.3.1 sentence itself. | No TC blocked. Answer confirms whether the numbers have a second source. |
 
-**Recommended single question for this group:** *"Is the Dec 15 2023 Pop Up List
-the current revision for this programme? Two ids we cite (PU0996, PU0997) are
-absent from it."*
+**Recommended single question for this group:** *"Is our input set complete and
+current? Two Pop Up List ids we cite (PU0996, PU0997) are absent from the
+Dec 15 2023 revision, and `Virtual_Venues_Profiles_V1.0` — cited by SA19.2 and
+SA19.3 — was never supplied to us."*
 
 ---
 
@@ -102,6 +149,7 @@ configurations are in scope for FW036, 037 needs leaves for them.
 | **A-008** | Table PSB2.4: 4 of 7 radio sizes (7", 10.25", 12"L, 12"P). Both **max-3** configurations — the more interesting boundary — are uncovered. Table PSB2.3: 4 of 5 market variants (EMEA / LATAM / APAC / APAC-China). | Only NAFTA and three radio sizes are covered. |
 | **A-010** | Table SMP2.2: 12"L and 12"P have no leaf; 7" and 10.25" are marked **N/A** with no stated meaning (no popup? no limit? unspecified?). Three readings give three different expected results. | The two N/A configurations are explicitly out of scope in the generated TC. |
 | **A-020** | `MPB1.7` (HD Radio preset labels — **NA-relevant, a real gap**) and `MPB1.8.x` (FM-EU PSN labels — please confirm out of scope for a NAFTA programme). | These sit under a leaf about *layout*, so they cannot be attached to it without recording label requirements as layout requirements. |
+| **A-025** *(feature-level — not a table row or a sub-clause, a whole settings block)* | **21.13 Radio Off with Door** — no gating stated anywhere, no leaf, and page 34 shows it as a complete settings screen with On/Off. This one is an unambiguous gap. | Nine ch21 sections have no leaf; the other eight are classified in ANOMALIES.md as either not-a-gap (21.11, see A-024) or gated-and-undetermined (Beats Audio, Virtual Venue — both moved to Group 0/1). Only 21.13 is reported as a plain omission. |
 | **A-013** | If BT4.1.1's missing item **2** was a real field, nothing covers it. | See Group 5. |
 | **A-017** | If APP5–APP9 were real clauses, nothing covers them. | See Group 5. |
 | **A-006** *(low priority)* | 11.3.1 / `USB1` names only iPod as a label-changing drive type and enumerates no supported set, so §7's "enumerated items need a negative pair" has no trigger to fire on. | **Question:** is there a defined set of drive types that change the USB source label, and what label does a type outside that set get? |
