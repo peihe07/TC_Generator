@@ -98,6 +98,11 @@ _TIER_LABEL_RES = {
     "playing-r1low": re.compile(r'"Playing:[^"]*"'),
 }
 
+# A-029：部分需求依 radio tier × 螢幕尺寸而適用（MW9 排除 R1 Low 7"）。
+# 這些 TC 的車型旗標暫依 workbook 現行慣例全設 1，待 Group 0 裁決後修正。
+# 標記方式是 parent 檔的 write_back.flags_pending，計數以便一次檢索。
+FLAGS_PENDING_KEY = "flags_pending"
+
 
 @dataclass
 class Finding:
@@ -124,6 +129,8 @@ class LintReport:
     assumptions: list[tuple[str, str]] = field(default_factory=list)
     # A-026 tier-dependent label occurrences, counted not flagged
     tier_labels: Counter = field(default_factory=Counter)
+    # A-029 parents whose vehicle-flag assignment awaits the Group 0 ruling
+    flags_pending: list[tuple[str, str]] = field(default_factory=list)
 
     @property
     def failed_req_ids(self) -> list[str]:
@@ -145,6 +152,7 @@ class LintReport:
             "blocked": [{"source": s, "reason": r} for s, r in self.blocked],
             "assumptions": [{"source": s, "note": n} for s, n in self.assumptions],
             "tier_labels": dict(self.tier_labels),
+            "flags_pending": [{"source": s, "note": n} for s, n in self.flags_pending],
             "findings": [
                 {
                     "req_id": f.req_id,
@@ -448,6 +456,12 @@ def lint_paths(paths: list[Path], test_sets: set[str]) -> LintReport:
                     req_id="<file>", rule="assumption-marker",
                     message="every `assumption` marker needs both `note` and `anomaly`",
                     source=path.name))
+        if isinstance(payload, dict):
+            wb = payload.get("write_back") or {}
+            note = str(wb.get(FLAGS_PENDING_KEY) or "").strip()
+            if note:
+                report.flags_pending.append((path.name, note))
+
         tcs = extract_tcs(payload)
         if not tcs:
             reason = blocked_reason(payload)
@@ -502,6 +516,9 @@ def main() -> int:
 
     for source, note in report.assumptions:
         print(f"{source}:: ASSUMPTION — {note}")
+
+    for source, note in report.flags_pending:
+        print(f"{source}:: FLAGS PENDING — {note}")
 
     if report.tier_labels:
         counts = ", ".join(f"{k}={v}" for k, v in sorted(report.tier_labels.items()))

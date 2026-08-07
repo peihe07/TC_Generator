@@ -839,3 +839,133 @@ of the same rule.
 **Open:** RD-1 / 037 owner — should AP2.2 (AutoPlay ON, resume the item that
 was playing) gain a leaf? It reads as the main case of the pair whose exception
 already has one.
+
+---
+
+## A-028 — `MW8` labels two different clauses, and MW7.x sits under it
+
+**Found:** 2026-08-07, reading page 38 for the ch23 stop point.
+
+Two unrelated clauses both carry the code `MW8`:
+
+- `23.7` — *"MW8.) Pressing the 'All Presets' button on the Media Widget opens
+  the All Presets Pop up."*
+- `23.8` — *"MW8.) For use cases, when Apple CarPlay is displayed as a Media
+  source in widget, it must be displayed on first screen of options…"*
+
+Compounding it, the two sub-clauses indented under the **first** MW8 are
+numbered `MW7.1` and `MW7.2` — while a separate `MW7` exists at 23.6 (*"For
+Japan Region only – Only 1 media widget available"*), which they clearly do not
+elaborate:
+
+- `MW7.1` — *"'All Presets' button is only available for sources that allow
+  presets"* → belongs to MW8 (the All Presets button)
+- `MW7.2` — *"Up to 5 presets may be displayed on the Media widget"* → belongs
+  to the widget's preset bank
+
+The SYS1 outline resolves both problems: it places them at 23.7.1 / 23.7.2,
+i.e. as children of 23.7 (the first MW8), which matches the page indentation
+and the content. Generation follows the outline numbers, as always.
+
+Same class as A-002 / A-014, but noted because two defects overlap here and a
+reviewer comparing our `specification_reference` values against the 2023 PDF
+item codes will find both.
+
+**Open:** informational. No ruling needed unless the 037 owner wants the codes
+corrected upstream.
+
+---
+
+## A-029 — MW9 introduces a third radio-variant axis: "R1 Low 7 inch"
+
+**Found:** 2026-08-07, reading page 38.
+
+`23.9 (MW9)` — *"**For all R1 radios except R1 Low 7"**, the Presets Bank in
+widgets will support gestures to swipe forward…"*
+
+This is directly relevant to **A-026**. Until now the tier evidence involved two
+axes: radio tier (R1 High / R1 Low, from MN2) and vehicle platform (Atl-Hi /
+Atl-Mi, from the workbook). MW9 adds a third: **screen size within a tier** —
+"R1 Low 7 inch" is excluded, so R1 Low at other sizes is included.
+
+Two further data points on the same axis appear in ch23 and ch18:
+
+- `23.8 (MW8, second)` — *"ie: **for R1 Low** in the Audio source selector
+  popup, the CP audio source should not be displayed on the second screen"* —
+  another R1 Low-specific rule, in a leaf we must write a TC for.
+- Table PSB2.4 / PRE1.1 already enumerate 7 radio sizes including 7" Landscape.
+
+So the programme's radio configuration is not a single value: a TC may need to
+be scoped by tier **and** screen size. `SWE1-MEDIA-INT-034` (5 leaves, all
+swipe-gesture behaviour) is gated by this exclusion, and its Pre-Condition
+states the exclusion symbolically rather than naming a size.
+
+**Open:** RD-1 — fold into the Group 0 tier question: for each of the seven
+vehicle models, which radio tier **and which screen size**? The answer decides
+A-026's 76 TCs, SA19.x's applicability (A-025), and whether INT-034 applies to
+every model in the workbook.
+
+---
+
+## A-030 — ch23's "All Presets Pop up" versus ch18's: same screen or not?
+
+**Found:** 2026-08-07, generating INT ch23.
+
+Both chapters name a popup reached from an "All Presets" button:
+
+- `23.7 (MW8)` — pressing "All Presets" **on the Media Widget** opens the All
+  Presets Pop up.
+- `18.1 (APP1)` — pressing "All Presets" opens the All Presets Pop up, which
+  APP12 says carries an "Edit Presets" button.
+
+The page-38 screenshot of the widget's popup shows a "Presets Shown" indicator
+and preset slots but **no "Edit Presets" button**, while ch18's popup has one
+per APP12. That difference admits two readings and the deck settles neither:
+
+1. **Two different containers** — the widget opens a lighter popup than the
+   Playing Tab does.
+2. **One container, different presentation by entry point** — the same screen,
+   with Edit Presets shown only when reached from the Playing Tab.
+
+**Handling — neither reading is assumed.** ch23 TCs verify only what ch23
+states, and per §8.4.2 no APP behaviour is imported: whether the popup has an
+Edit Presets button is ch18's business, and if it does not, that is not ch23's
+business either. `SWE1-MEDIA-INT-030-01` deliberately does not mention that
+button in its ER.
+
+Container anchoring uses the **entry path** instead of a name — *"the popup
+opened from the 'All Presets' button in the Media Widget"* — which is stable
+under either reading and under A-021's unresolved naming as well. No assumption
+marker: nothing was bet on, because the ambiguous element was excluded from the
+verification target rather than resolved.
+
+**Open:** RD-1 — is the popup opened from the Media Widget the same screen as
+the one opened from the Playing Tab? If the same, does its content vary by entry
+point? Ask together with A-021 (which asks whether ch18's own two names denote
+one screen).
+
+---
+
+## A-031 — 23.3.2 (MW3.2) has no leaf: the first metadata line is uncovered
+
+**Found:** 2026-08-07, generating INT ch23.
+
+`23.3.2 (MW3.2)` — *"The first line of metadata will show song title or
+frequency. For HD radio, show sub-station number after station frequency
+(Example: 106.7-2 HD if on sub-station 2)."* — has no leaf.
+
+Its siblings do: `MW3.1` (23.3.1, consistency with Playing Tab) → INT-023,
+`MW3.3` (23.3.3, second line shows artist) → INT-024, `MW3.4` (23.3.4, "unknown"
+when both lines are empty) → INT-025.
+
+So the **second** metadata line has a TC, the empty case has a TC, and the
+**first** line — carrying two concrete rules, including the HD sub-station
+format — has none. Same shape as A-027 (22.2.2): the primary case is missing
+while its neighbours and exceptions are covered.
+
+This is also the second HD-Radio-specific rule with no coverage, after MPB1.7
+(A-020).
+
+**Open:** RD-1 / 037 owner — should MW3.2 gain a leaf? Note that HD Radio
+coverage now has two independent holes (MW3.2 first-line format, MPB1.7 preset
+labels); ask whether HD Radio is in scope for FW036 at all.

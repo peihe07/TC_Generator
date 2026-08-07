@@ -1,0 +1,45 @@
+{
+  "parent": "SWE1-MEDIA-INT-035",
+  "reasoning": "23.10（MW10）規定在 Media widget 上可按加號新增 preset，或長按既有 preset 500ms 覆寫。037 拆成兩個 leaf。兩者觸發手勢與目標槽狀態皆不同，各自成一筆。500ms 為 spec 明載值，寫入步驟。覆寫筆的 ER 需同時陳述新電台已存入與舊電台已不在該槽，否則無法排除新增到其他槽。\n\n與其他容器的分工：ch16 PRE1.3（RAD-046）在 Playing Tab 的 Mixed Presets Bank、ch18 APP10／APP11（RAD-075／076）在 Presets Pop-up，本 parent 在 Home Screen 的 Media Widget。三者是 spec 分列的三條條文、三個容器，各有自己的 leaf，故非重複；ER 逐行指名 Media Widget。此處也是容器紀律的實效點——三處手勢寫法幾乎相同，僅容器與入口不同。優先級：新增與覆寫是 widget 上的主要編輯操作，兩筆皆 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW10",
+    "plus sign",
+    "long press",
+    "overwrite",
+    "preset"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "035-01 為按加號新增至空槽，035-02 為長按 500ms 覆寫既有 preset"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-035-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall add a new preset in the Media widget when the plus sign is pressed.\n\n(Plus sign pressed on the Media Widget)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot on the Media Widget is unset and at least one holds a stored station\n3. The Media Widget is displayed on the Home Screen\n4. The currently tuned station is not stored as a preset",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the frequency of the currently tuned station shown in the Media Widget\n3. Press the preset slot displaying a plus sign \"+\" in the Media Widget and read the content displayed in that slot",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The frequency of the currently tuned station is recorded\n3. The preset slot in the Media Widget displays the station recorded in step 2 and no longer displays a plus sign",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-035-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall overwrite an existing preset in the Media widget when it is long pressed for 500 ms.\n\n(Long press of 500 ms on a stored preset in the Media Widget)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one preset slot on the Media Widget is unset and at least one holds a stored station\n3. The Media Widget is displayed on the Home Screen\n4. The currently tuned station differs from the station stored in that preset slot",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the station shown in a stored preset slot in the Media Widget and the frequency of the currently tuned station\n3. Press and hold that preset slot for 500 ms and read the content displayed in that slot",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The stored preset station and the currently tuned station are recorded and they differ\n3. The preset slot in the Media Widget displays the currently tuned station recorded in step 2 and no longer displays the previously stored station",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

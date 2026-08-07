@@ -52,6 +52,25 @@ Worked examples of each:
   label requirements as a layout requirement, so they generate nothing and go
   to the tracker instead.
 
+## Priority follows the verification target, not the feature's importance
+
+A TC's priority is set by **what fails to be detected when the TC fails**, not
+by how important the underlying feature is. The temptation runs the other way:
+a display requirement about a play/pause control looks like it deserves the
+priority of playback itself.
+
+Worked example (ruled 2026-08-07): `SWE1-MEDIA-INT-022-02` verifies that the
+Media Widget *displays* a play/pause control. Failing it means a button is
+missing from a widget — not that audio stopped. The widget's actual playback
+behaviour is explicitly delegated by 23.1 ("Refer to the Media - Mixed Presets
+and playing Tab HMI sections for complete logic"), so the P0 lives in ch5/ch9,
+where the done region already covers it. INT-022-02 is P1.
+
+Consequence to accept rather than correct: **a whole chapter may legitimately
+contain no P0**. ch23 Media Widget has none, because every one of its leaves
+verifies display or navigation and its audio behaviour is delegated elsewhere.
+Do not rebalance a chapter to "earn" a P0.
+
 ## Anchors are style authority, not fact authority
 
 Curated anchors (`tcgen_package/anchors.json`) and done-region exemplars supply

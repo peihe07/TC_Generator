@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-INT-030",
+  "reasoning": "23.7（MW8）規定按下 Media Widget 上的 \"All Presets\" 按鈕會開啟 All Presets Pop up。本 leaf 只驗「按下會開啟一個列出 preset 的彈窗」這個轉換，不驗彈窗內部行為——ch23 對該彈窗的內容規定僅止於此，其餘（Presets Shown 指示器、Edit Presets、拖放重排）皆屬 ch18 的 APP 條文。容器錨定：ch23 的第三個容器是由 widget 的 \"All Presets\" 按鈕開啟的彈窗。它與 ch18 APP1 的同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱（the popup opened from the \"All Presets\" button in the Media Widget），在命名歧義未決前這比任何名稱都穩。依 §8.4.2，本章只驗 ch23 條文明載的內容，不從 ch18 進口 APP 行為——該彈窗若有 Edit Presets 按鈕那是 ch18 的事，若沒有更不關 ch23 的事。ER 以「彈窗已開啟且列出已儲存的 preset」判定，並刻意不陳述彈窗是否含 Edit Presets 按鈕——page 38 的 widget 版截圖未顯示該按鈕而 ch18 的版本依 APP12 有，該差異是待裁項而非本筆的驗證標的。優先級：是 widget 上進入 preset 管理的唯一入口，訂 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW8",
+    "All Presets",
+    "popup",
+    "A-030"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-030-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display the All Presets Pop-up when the 'All Presets' button is pressed on the Media Widget.\n\n(All Presets pressed on the Media Widget)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one FM station is stored as a preset\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Press the \"All Presets\" button in the Media Widget and read the content displayed on the HU",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The popup opened from the \"All Presets\" button in the Media Widget is displayed and the stored presets are listed in it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.7",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

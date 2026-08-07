@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-026",
+  "reasoning": "23.4（MW5）規定按下 widget 的 Source 按鈕（以目前來源加下箭頭呈現）會開啟 Sources Pop up。步驟以 spec 描述的呈現方式指認該按鈕（目前播放來源旁帶下箭頭），而非自創標籤——page 38 截圖顯示該處為來源名稱加向下箭頭，與條文一致。ER 需同時陳述彈窗已開啟且列出可選來源，只寫「彈窗顯示」無法排除空彈窗。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 本筆觀察 Media Widget 本體與其開啟的 Sources Pop up。優先級：是 widget 上切換來源的唯一入口，訂 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW5",
+    "Source button",
+    "Sources Pop up"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-026-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display the Sources Pop-up when the Source button is pressed in the Media Widget.\n\n(Source button pressed in the Media Widget)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format and full metadata is connected to the HU\n2. USB is the active source on the HU and a track is playing\n3. The Media Widget is displayed on the Home Screen\n4. At least two audio sources are available on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Press the source button in the Media Widget, shown as the currently playing source with a down arrow next to it, and read the content displayed on the HU",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Sources Pop up is displayed and the available audio sources are listed in it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "parent": "SWE1-MEDIA-INT-022",
+  "reasoning": "23.3（MW3）規定 Media Widget 顯示與目前來源相稱的播放控制項，並列舉 seek back／seek forward、channel up／channel down、elapsed time bar、play/pause，且明寫 including but not limited to。037 拆成兩個 leaf：022-01 驗「與來源相稱」這個對應關係，022-02 驗列舉的控制項存在。\n\n「相稱」的可判定形式是跨來源對照：USB 這類曲目來源顯示 seek back／forward，FM 這類電台來源顯示 channel up／down，兩者互不相同。單看一個來源只能確認「有控制項」，無法驗證「相稱」，故 022-01 以兩個來源對照，並在 ER 明確要求另一組控制項未同時出現——這是本條唯一能排除「所有控制項一律全顯示」的判定方式。\n\nincluding but not limited to 是 spec 自身的開放式限定：清單非窮盡。依 §8.4 保留模糊而不自行補足，022-02 只驗列舉的四項存在，ER 不寫「且沒有其他控制項」——那會把開放式清單讀成封閉清單。\n\n容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、All Presets Pop up（MW8／23.7）、Sources Pop up（MW5／23.4）。本 parent 全程觀察 Media Widget 本體，ER 逐行指名該容器。特別注意：ch23 的 All Presets Pop up 與 ch18（APP1）的同名彈窗未必是同一個——page 38 的截圖顯示 widget 版本帶 Presets Shown 指示器但無 Edit Presets 按鈕，而 ch18 的版本依 APP12 帶 Edit Presets 按鈕。此差異在 INT-030 處理，本 parent 不涉及。\n\nP0 錨點：022-02 的 play/pause 屬影響音訊輸出的控制項，但本 leaf 驗的是「控制項有顯示」而非按下後音訊是否改變，驗證標的為顯示而非音訊，故依 rubric 訂 P1 而非 P0；widget 上實際的播放/暫停行為屬 23.1 委託的 Playing Tab 邏輯，在 ch23 沒有自己的 leaf。022-01 的來源相稱性同樣屬顯示層，訂 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW3",
+    "play controls",
+    "seek",
+    "channel",
+    "play/pause",
+    "elapsed time bar"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "022-01 驗控制項組合是否隨來源改變，022-02 驗列舉的四類控制項存在，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-022-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display play controls in the Media Widget appropriate to the current active source.\n\n(Controls compared between a track source and a station source)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. The Media Widget is displayed on the Home Screen\n3. At least one FM station is receivable",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Select USB as the active source and read the play controls displayed in the Media Widget\n3. Select FM as the active source and read the play controls displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Media Widget displays seek back and seek forward controls for the USB source\n3. The Media Widget displays channel up and channel down controls for the FM source, and the seek back and seek forward controls read in step 2 are no longer displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.3",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-022-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall include controls such as seek back/forward, channel up/down, elapsed time bar, and play/pause where applicable.\n\n(Listed controls present for a track source)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. USB is the active source on the HU and a track is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Read the play controls displayed in the Media Widget\n3. Read the elapsed time area displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Media Widget displays a seek back control, a seek forward control and a play/pause control\n3. The Media Widget displays an elapsed time bar showing the progress of the playing track",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

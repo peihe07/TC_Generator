@@ -1,0 +1,89 @@
+{
+  "parent": "SWE1-MEDIA-INT-034",
+  "reasoning": "23.9（MW9）規定 widget 的 Presets Bank 支援左右滑動切換 bank、兩端皆循環，且 All Presets 按鈕位置固定。037 拆成五個 leaf，結構與 ch17 的 MPB1.9（RAD-069）完全對應，但容器不同——那是 Playing Tab 上的 Mixed Presets Bank，本 parent 是 Home Screen 上的 Media Widget，spec 分列為兩條條文，故不視為重複；ER 逐行指名 Media Widget。\n\n適用性 gating（A-029）：MW9 明寫 for all R1 radios except R1 Low 7\"，即本條依 radio tier × 螢幕尺寸而適用。本案七款車型的 tier 與尺寸尚未確定（Group 0 待裁），故前置條件以 spec 原文的排除條件表述而不指名尺寸，車型旗標暫依 workbook 現行慣例全設 1，並在 AH Remarks 標注適用性待裁，使裁決後的旗標修正 pass 可機器檢索。\n\n前四筆是不同觸發情境（方向 × 是否在端點）而非同一觸發的多個結果，依 §8.3 各自成一筆；034-05 的驗證標的是版面而非導航，以滑動前後的位置比對判定，ER 用「與滑動前記錄的位置相同」而非不可觀察的「位置沒有改變」。優先級：四筆導航行為訂 P1；按鈕位置固定屬版面穩定性訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW9",
+    "swipe",
+    "preset bank",
+    "wrap around",
+    "All Presets",
+    "A-029"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "五筆分別為前滑、後滑、前滑越過最後一個 bank、後滑越過第一個 bank、滑動期間 All Presets 按鈕位置固定"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-034-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall support swipe-forward gestures for navigating to the next preset bank in the Media Widget.\n\n(Swipe forward from a non-final bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More stations are stored as presets than are displayed in one bank on the Media Widget\n3. The vehicle radio is not an R1 Low 7 inch radio, as required by MW9\n4. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the presets displayed in the Media Widget\n3. Swipe forward on the presets bank in the Media Widget and read the presets displayed",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The presets of the displayed bank are recorded\n3. The presets of the following bank are displayed in the Media Widget and they differ from those recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.9",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-034-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall support swipe-backward gestures for navigating to the previous preset bank in the Media Widget.\n\n(Swipe backward from a non-first bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More stations are stored as presets than are displayed in one bank on the Media Widget\n3. The vehicle radio is not an R1 Low 7 inch radio, as required by MW9\n4. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Swipe forward once on the presets bank in the Media Widget and record the presets displayed\n3. Swipe backward on the presets bank in the Media Widget and read the presets displayed",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The presets of the second bank are displayed in the Media Widget and are recorded\n3. The presets of the first bank are displayed in the Media Widget and they differ from those recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.9",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-034-03",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display the first preset bank when the user swipes forward past the final preset bank in the Media Widget.\n\n(Swipe forward past the final bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More stations are stored as presets than are displayed in one bank on the Media Widget\n3. The vehicle radio is not an R1 Low 7 inch radio, as required by MW9\n4. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the presets displayed in the first bank in the Media Widget\n3. Swipe forward repeatedly until the final bank is displayed and read the presets displayed\n4. Swipe forward once more and read the presets displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The presets of the first bank are recorded\n3. The presets of the final bank are displayed and they differ from those recorded in step 2\n4. The presets recorded in step 2 are displayed again in the Media Widget",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.9",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-034-04",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display the final preset bank when the user swipes backward from the first preset bank in the Media Widget.\n\n(Swipe backward from the first bank)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More stations are stored as presets than are displayed in one bank on the Media Widget\n3. The vehicle radio is not an R1 Low 7 inch radio, as required by MW9\n4. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the presets displayed in the first bank in the Media Widget\n3. Swipe forward repeatedly until the final bank is displayed and record the presets displayed\n4. Swipe forward once more to return to the first bank, then swipe backward and read the presets displayed",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The presets of the first bank are recorded\n3. The presets of the final bank are displayed and are recorded\n4. The presets recorded in step 3 are displayed in the Media Widget",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.9",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-034-05",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall keep the 'All Presets' button in its fixed location during preset bank swipe navigation in the Media Widget.\n\n(All Presets button position across swipes)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More stations are stored as presets than are displayed in one bank on the Media Widget\n3. The vehicle radio is not an R1 Low 7 inch radio, as required by MW9\n4. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the position of the \"All Presets\" button in the Media Widget\n3. Swipe forward on the presets bank and read the position of the \"All Presets\" button\n4. Swipe backward on the presets bank and read the position of the \"All Presets\" button",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The position of the \"All Presets\" button is recorded\n3. The displayed preset bank has changed and the \"All Presets\" button is displayed at the position recorded in step 2\n4. The displayed preset bank has changed and the \"All Presets\" button is displayed at the position recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.9",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ],
+  "write_back": {
+    "flags_pending": "MW9 (23.9) applies to \"all R1 radios except R1 Low 7\\\"\" — applicability per vehicle model depends on the radio tier x screen size matrix requested in RD-1 Group 0. Vehicle flags T-Z are set to 1 per current workbook convention pending that ruling.",
+    "remarks": "Applicability gated by MW9 (excludes R1 Low 7\" radios); vehicle flag assignment pending the RD-1 Group 0 tier x screen-size ruling. See ANOMALIES A-029."
+  }
+}

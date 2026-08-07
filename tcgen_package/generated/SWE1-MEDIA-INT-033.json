@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-INT-033",
+  "reasoning": "23.8（MW8，第二個同碼條文）規定 Apple CarPlay 作為 widget 的 Media 來源顯示時，必須出現在選項的第一個畫面，使用者不需捲動或翻頁即可選取；條文並以 R1 Low 的 Audio source selector popup 為例，說明 CP 來源不得落在第二個畫面。037 拆成兩個 leaf：033-01 驗出現在第一個畫面、033-02 驗不需捲動即可選取。兩者驗證標的相近但可分：前者是位置（在第幾頁），後者是可達性（不需額外操作），037 既已拆開依 §8.2.2 不合併。驗證的容器是 widget 的 Sources Pop up（MW5 開啟者），故前置條件要求來源數多到會分頁，否則第一個畫面就是全部，無法區分。R1 Low 是條文舉例而非適用條件（條文主句未限定 tier），故不寫入 Pre-Condition；該例證的 tier 相關性記於 A-029。容器錨定：ch23 的第三個容器是由 widget 的 \"All Presets\" 按鈕開啟的彈窗。它與 ch18 APP1 的同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱（the popup opened from the \"All Presets\" button in the Media Widget），在命名歧義未決前這比任何名稱都穩。依 §8.4.2，本章只驗 ch23 條文明載的內容，不從 ch18 進口 APP 行為——該彈窗若有 Edit Presets 按鈕那是 ch18 的事，若沒有更不關 ch23 的事。優先級：CarPlay 選不到會影響主要使用情境，兩筆皆 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW8",
+    "Apple CarPlay",
+    "first screen",
+    "Sources Pop up"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "033-01 驗 CP 來源位於第一個畫面，033-02 驗不需捲動即可選取，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-033-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display Apple CarPlay on the first screen of options when shown as a Media source in the widget.\n\n(CarPlay position in the Sources Pop up)",
+      "pre_conditions": "1. An Apple device supporting CarPlay is connected to the HU and CarPlay is available as a Media source\n2. More audio sources are available than fit on one screen of the Sources Pop up\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Press the source button in the Media Widget and read the audio sources displayed on the first screen of the Sources Pop up",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Sources Pop up is displayed and the Apple CarPlay source is among the sources displayed on its first screen",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.8",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-033-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall make Apple CarPlay selectable without scrolling or navigating beyond the first surface of options.\n\n(CarPlay reachable without scrolling)",
+      "pre_conditions": "1. An Apple device supporting CarPlay is connected to the HU and CarPlay is available as a Media source\n2. More audio sources are available than fit on one screen of the Sources Pop up\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Press the source button in the Media Widget to open the Sources Pop up\n3. Press the Apple CarPlay source without scrolling the Sources Pop up or moving to a further screen, and read the content displayed on the HU",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Sources Pop up is displayed\n3. The Apple CarPlay source is selected and the Home Screen is displayed with the Media Widget showing Apple CarPlay as the source",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.8",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

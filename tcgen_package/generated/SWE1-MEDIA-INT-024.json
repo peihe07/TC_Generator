@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-INT-024",
+  "reasoning": "23.3.3（MW3.3）規定 metadata 第二行顯示演出者（if available）。if available 是 spec 自身的條件式，故前置條件指定該曲目含演出者資訊，並只對該曲目判定，不對所有曲目一律要求（處置同 RAD-040、RAD-052）。ER 需同時指明「第二行」這個位置與內容——只驗「演出者有顯示」無法驗證行位規則。第一行的內容規則屬 MW3.2（23.3.2），該 section 無 leaf，不於此產生（記於 A-031）。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 本筆觀察 Media Widget 本體。優先級：屬 metadata 的版面規格，訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW3.3",
+    "metadata",
+    "second line",
+    "artist"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-024-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display artist information on the second line of metadata when available.\n\n(Track carrying artist metadata)",
+      "pre_conditions": "1. A USB drive containing a file with a valid audio format whose metadata includes an artist name is connected to the HU\n2. USB is the active source on the HU and that track is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Read the metadata lines displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The second line of metadata in the Media Widget displays the artist name of the playing track",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.3.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

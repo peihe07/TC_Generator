@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-025",
+  "reasoning": "23.3.4（MW3.4）規定第一行與第二行都沒有 metadata 時顯示 \"unknown\"。條文明寫 first AND second line，是兩行皆無的合取條件，故前置條件要求該曲目完全沒有 metadata；若只有一行缺失則不符觸發條件，ER 不涵蓋該情境（spec 未規定部分缺失的行為，依 §8.4 不臆測）。\"unknown\" 為 spec 明載字串，逐字引用不改寫。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 本筆觀察 Media Widget 本體。優先級：屬空狀態的顯示文字，訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW3.4",
+    "unknown",
+    "no metadata"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆為兩行 metadata 皆無的情況，與 INT-024 的有資訊情況相對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-025-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display 'unknown' when no metadata is available for both the first and second line.\n\n(Track with no metadata at all)",
+      "pre_conditions": "1. A USB drive containing a file with a valid audio format and no metadata is connected to the HU\n2. USB is the active source on the HU and that track is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Read the metadata lines displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Media Widget displays \"unknown\" in place of the metadata",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.3.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

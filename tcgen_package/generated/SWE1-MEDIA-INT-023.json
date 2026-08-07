@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-INT-023",
+  "reasoning": "23.3.1（MW3.1）規定 widget 的 metadata 與 Playing Tab 顯示相同資訊。驗證標的是「兩處一致」，故步驟必須在兩個畫面各讀一次並比對，先在 Playing Tab 記錄再回 Home Screen 對照。本條只管一致性；各行的內容規則屬 MW3.2（23.3.2，無 leaf）與 MW3.3（23.3.3，INT-024），故 ER 以整體資訊比對表述，不逐行指定應顯示什麼。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 本筆觀察 Media Widget 本體與 Playing Tab 兩處。優先級：兩處不一致會誤導使用者但不影響播放，訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW3.1",
+    "metadata",
+    "Playing Tab",
+    "consistency"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-023-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display metadata in the Media Widget consistent with the Playing Tab.\n\n(Widget metadata compared with the Playing Tab)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format and full metadata is connected to the HU\n2. USB is the active source on the HU and a track is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Playing\" on the Tab Buttons and record the metadata displayed for the playing track\n3. Press \"Home\" on Main Menu Bar and read the metadata displayed in the Media Widget",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Playing Tab is displayed and the metadata of the playing track is recorded\n3. The Media Widget displays the same metadata as recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.3.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

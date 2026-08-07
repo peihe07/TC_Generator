@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-INT-032",
+  "reasoning": "23.7.2（MW7.2）規定 Media widget 上最多顯示 5 個 preset。「最多 5」是上限，故驗證需在已儲存超過 5 個 preset 的情況下計數，才能證明上限被強制；若只存 5 個以下，測到的是實際數量而非上限。注意這與 ch17 MPB1.1 的每 bank 上限（A-018，Table PRE1.1 給 5 或 6）是不同容器的不同規則：本條規範 widget 版面能顯示幾個，MPB1.1 規範一個 bank 有幾個槽，兩者不可互相套用。5 為本條明載值故直接寫死。註（A-028）：本條在 2023 PDF 上標為 MW7.2 但縮排在 MW8 之下，SYS1 outline 歸為 23.7.2，生成依 outline。容器錨定：ch23 的第三個容器是由 widget 的 \"All Presets\" 按鈕開啟的彈窗。它與 ch18 APP1 的同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱（the popup opened from the \"All Presets\" button in the Media Widget），在命名歧義未決前這比任何名稱都穩。依 §8.4.2，本章只驗 ch23 條文明載的內容，不從 ch18 進口 APP 行為——該彈窗若有 Edit Presets 按鈕那是 ch18 的事，若沒有更不關 ch23 的事。 本筆觀察 Media Widget 本體。優先級：超出上限會破壞 widget 版面，訂 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW7.2",
+    "up to 5 presets",
+    "widget"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆驗 widget 顯示 preset 數的上限，與 ch17 MPB1.1 的每 bank 槽數為不同容器的不同規則"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-032-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display up to 5 presets on the Media widget.\n\n(More than 5 presets stored)",
+      "pre_conditions": "1. FM is the active source on the HU\n2. More than 5 stations are stored as presets\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Count the presets displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. No more than 5 presets are displayed in the Media Widget",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.7.2",
+      "priority": "P1",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
+    }
+  ]
+}

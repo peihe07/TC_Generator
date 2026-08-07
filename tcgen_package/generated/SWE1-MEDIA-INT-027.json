@@ -1,0 +1,57 @@
+{
+  "parent": "SWE1-MEDIA-INT-027",
+  "reasoning": "23.4.1（MW5.1）規定在 Sources Pop up 中選取來源會開始播放該來源的音訊，並轉回 Home Screen 且 widget 更新為新來源。037 拆成三個 leaf：音訊開始、轉回 Home Screen、widget 更新。三者為同一觸發的不同驗證標的，屬不同 RD sub-id，依 §8.2.2 不得合併。027-01 的音訊是否真的開始，用經過時間有無前進判定，沿用 done 區 SWE1-MEDIA-COM-017-01 的寫法。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 觸發於 Sources Pop up，結果觀察於 Home Screen 上的 Media Widget，ER 逐行指名。優先級：027-01 涉及音訊輸出——本 leaf 直接驗證選取後音訊是否播放，驗證標的是音訊本身而非顯示，依 rubric 訂 P0；轉場與 widget 更新屬顯示層，訂 P1。",
+  "keywords": [
+    "Media Widget",
+    "MW5.1",
+    "source selection",
+    "Home Screen",
+    "audio"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "027-01 驗音訊開始、027-02 驗轉回 Home Screen、027-03 驗 widget 更新，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-027-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall start audio for the selected source when a source is chosen in the Sources Pop-up.\n\n(Audio after selecting USB in the Sources Pop up)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format is connected to the HU\n2. FM is the active source on the HU and is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Press the source button in the Media Widget and read the sources listed in the Sources Pop up\n3. Press \"USB\" in the Sources Pop up and listen to the audio output of the HU\n4. Read the elapsed time displayed in the Media Widget after 5 seconds",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Sources Pop up is displayed and USB is listed in it\n3. Audio from the USB drive is output from the HU speakers and FM audio has stopped\n4. The elapsed time has advanced at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.4.1",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-027-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall transition back to the Home Screen after a source is selected in the Sources Pop-up.\n\n(Screen after selecting a source in the Sources Pop up)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format is connected to the HU\n2. FM is the active source on the HU\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Press the source button in the Media Widget to open the Sources Pop up\n3. Press \"USB\" in the Sources Pop up and read the content displayed on the HU",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The Sources Pop up is displayed\n3. The Sources Pop up is closed and the Home Screen is displayed with the Media Widget on it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.4.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-027-03",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall update the Media Widget to reflect the newly selected source.\n\n(Widget content after selecting a source in the Sources Pop up)",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format is connected to the HU\n2. FM is the active source on the HU\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the source shown in the Media Widget\n3. Press the source button in the Media Widget to open the Sources Pop up\n4. Press \"USB\" in the Sources Pop up and read the source shown in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. FM is shown as the source in the Media Widget and is recorded\n3. The Sources Pop up is displayed\n4. USB is shown as the source in the Media Widget and it differs from the source recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.4.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

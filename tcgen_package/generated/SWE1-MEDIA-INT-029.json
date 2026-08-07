@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-INT-029",
+  "reasoning": "23.5（MW6）規定進度條不可按壓，只作狀態顯示。037 拆成兩個 leaf。「不可按壓」的可判定形式是：按下進度條後播放位置不變——若只確認「沒有視覺回饋」無法排除實際已改變播放位置。故兩筆都以經過時間為觀察對象：029-01 驗按下後位置未跳動，029-02 驗它持續反映播放進度（即仍在作狀態顯示）。按壓步驟用 Attempt to press，不預設該處可互動，ER 收斂為純結果式（慣例見 COM-044、RAD-079）。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 兩筆皆觀察 Media Widget 本體。優先級：誤觸導致播放跳動會影響使用體驗，029-01 訂 P1；進度顯示屬狀態呈現訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW6",
+    "progress bar",
+    "not pressable",
+    "status"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "029-01 驗按壓不改變播放位置，029-02 驗進度條持續反映播放狀態"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-029-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall not respond to press input on the Media Widget progress bar.\n\n(Progress bar pressed in the Media Widget)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format and full metadata is connected to the HU\n2. USB is the active source on the HU and a track is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Record the elapsed time displayed in the Media Widget\n3. Attempt to press a position on the progress bar away from the current playback position and read the elapsed time displayed",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The elapsed time is recorded\n3. The elapsed time displayed has continued advancing from the value recorded in step 2 and has not jumped to the pressed position",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-029-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall use the Media Widget progress bar for status indication only.\n\n(Progress bar tracking playback status)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format and full metadata is connected to the HU\n2. USB is the active source on the HU and a track is playing\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Read the position of the progress bar and the elapsed time displayed in the Media Widget\n3. Read the position of the progress bar and the elapsed time displayed after 10 seconds",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. The progress bar position and the elapsed time are read\n3. The elapsed time has advanced and the progress bar position has moved forward correspondingly",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

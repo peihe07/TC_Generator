@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-INT-028",
+  "reasoning": "23.4.2（MW5.2）規定 Sources Pop up 中音訊來源的順序，與 Media > Sources 畫面的順序一致，條文並以使用者重新排列來源為例說明兩者連動。037 拆成兩個 leaf：順序一致、重排後跟隨。028-01 驗初始一致：先在 Media 的 Source Tab 記錄順序，再開 widget 的 Sources Pop up 比對。028-02 驗連動：在 Source Tab 改變順序後，widget 的彈窗順序也要跟著變——只驗初始一致無法區分「連動」與「兩處各自寫死同一份順序」，這正是條文舉例要表達的重點。容器錨定：ch23 有三個容器——Home Screen 上的 Media Widget 本體、由 widget 的 Source 按鈕開啟的 Sources Pop up、以及由 widget 的 \"All Presets\" 按鈕開啟的彈窗。第三者與 ch18 同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱而非名稱。 本 parent 橫跨 Media 畫面的 Source Tab 與 widget 的 Sources Pop up，ER 逐行指名觀察處。優先級：順序不一致會讓使用者在兩處看到不同排列，訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW5.2",
+    "Sources Pop up",
+    "source order",
+    "Media > Sources"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "028-01 驗兩處順序一致，028-02 驗在 Source Tab 重排後彈窗跟隨，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-028-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display audio sources in the Sources Pop-up in the same order as the Media Sources screen.\n\n(Order compared between the Source Tab and the Sources Pop up)",
+      "pre_conditions": "1. At least three audio sources are available on the HU\n2. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Source\" on the Tab Buttons and record the order of the audio sources displayed\n3. Press \"Home\" on Main Menu Bar, press the source button in the Media Widget and read the order of the audio sources listed",
+      "expected_result": "1. The Media screen is displayed\n2. The Source Tab is displayed and the order of the audio sources is recorded\n3. The Sources Pop up lists the audio sources in the same order as recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.4.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-028-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall reflect a rearranged source order from the Media Sources screen in the Sources Pop-up.\n\n(Order after rearranging sources on the Source Tab)",
+      "pre_conditions": "1. At least three audio sources are available on the HU\n2. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar and press \"Source\" on the Tab Buttons\n2. Rearrange the audio sources into a different order and record the resulting order\n3. Press \"Home\" on Main Menu Bar, press the source button in the Media Widget and read the order of the audio sources listed",
+      "expected_result": "1. The Source Tab is displayed in the Tab Area\n2. The audio sources are displayed in the new order and it is recorded\n3. The Sources Pop up lists the audio sources in the order recorded in step 2",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.4.2",
+      "priority": "P2",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

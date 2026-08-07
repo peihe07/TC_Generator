@@ -1,0 +1,43 @@
+{
+  "parent": "SWE1-MEDIA-INT-031",
+  "reasoning": "23.7.1（MW7.1）規定 \"All Presets\" 按鈕只在支援 preset 的來源下可用。這是條件式可用性，驗證必須成對：支援 preset 的來源（FM）下按鈕存在，不支援的來源下不存在——只驗其一無法證明 only available for。不支援 preset 的來源以 USB 為例：Table BT3.1（14.3.1）與 ch16 的 PRE1 顯示 preset bank 涵蓋 AM/FM/SXM/DAB，USB 不在其中，故為 spec 可支撐的對照組而非自行挑選。spec 未規定不支援時按鈕是隱藏或變灰，故 ER 以「未顯示為可用」表述並涵蓋兩種可能，依 §8.4 不臆測呈現方式。註（A-028）：本條在 2023 PDF 上標為 MW7.1，縮排卻在 MW8 之下；SYS1 outline 歸為 23.7.1，生成依 outline。容器錨定：ch23 的第三個容器是由 widget 的 \"All Presets\" 按鈕開啟的彈窗。它與 ch18 APP1 的同名彈窗是否為同一個尚未裁決（A-030），故 ER 一律以入口路徑指稱（the popup opened from the \"All Presets\" button in the Media Widget），在命名歧義未決前這比任何名稱都穩。依 §8.4.2，本章只驗 ch23 條文明載的內容，不從 ch18 進口 APP 行為——該彈窗若有 Edit Presets 按鈕那是 ch18 的事，若沒有更不關 ch23 的事。優先級：屬按鈕的條件式可用性，訂 P2。",
+  "keywords": [
+    "Media Widget",
+    "MW7.1",
+    "All Presets",
+    "sources that allow presets"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "兩筆分別為支援 preset 的來源與不支援的來源，構成 only available for 的成對驗證"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-INT-031-01",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display the 'All Presets' button only for sources that allow presets.\n\n(Source that allows presets (FM))",
+      "pre_conditions": "1. FM is the active source on the HU\n2. At least one FM station is stored as a preset\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Read the controls displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. An \"All Presets\" button is displayed in the Media Widget in an enabled state",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.7.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-INT-031-02",
+      "test_group": "MediaHMI",
+      "test_set": "Media Widget",
+      "test_item": "The system shall display the 'All Presets' button only for sources that allow presets.\n\n(Source that does not allow presets (USB))",
+      "pre_conditions": "1. A USB drive containing at least one file with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The Media Widget is displayed on the Home Screen",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Home\" on Main Menu Bar to open the Home Screen\n2. Read the controls displayed in the Media Widget",
+      "expected_result": "1. The Home Screen is displayed and the Media Widget is displayed on it\n2. No \"All Presets\" button is displayed in an enabled state in the Media Widget",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_23.7.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

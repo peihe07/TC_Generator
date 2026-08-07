@@ -28,7 +28,7 @@ blocked, 6 assumption markers, 1 open question affecting 76 TCs (Group 0).**
 | **0. Radio tier — blocks a mechanical fix to 76 TCs** | **A-026**, A-025(a) | The Media Tab Button is labelled `"Playing"` on R1 High and `"Playing: Source"` on R1 Low. **76 of 171 generated TCs use the literal `"Playing"`.** The done region uses both forms, so it cannot settle the question. Answer this first — it is one sentence for you and 76 rows for us. |
 | **1. Missing referenced artefacts** | A-009, A-015, A-016 | Two consecutive Pop Up List ids and one table are cited but do not exist. One leaf is fully blocked; a second is at risk. Strong evidence of a **Pop Up List version mismatch**, which is one answer that unblocks several items at once. |
 | **2. Spec self-contradictions** | A-011, A-012, A-018, A-007 | Two clauses give opposite answers for the same situation, or prose contradicts its own table. One leaf blocked, 6 TCs generated on a declared reading that must be reworked if we read it wrong. |
-| **3. Container naming defects (ch18)** | A-021, A-023 | The same popup has two names, and one clause names the wrong container (a circular "close and return to itself"). 9 TCs affected. |
+| **3. Container identity and naming** | A-021, A-023, A-030 | One set of presets is shown in **five** containers whose contents genuinely differ. Two clauses name containers wrongly or ambiguously, and it is unresolved whether ch18's and ch23's "All Presets Pop up" are the same screen. 9 TCs carry markers. |
 | **4. Coverage gaps — 037 allocated no leaf** | A-008, A-010, A-020 | Spec tables and clauses with real content that no requirement leaf covers, so no TC can be written against them. Not blocking; these are **holes in the deliverable** you may want closed. |
 | **5. Clause numbering / duplication** | A-013, A-017, A-019, A-022 | Three independent numbering gaps and two duplicated clause pairs in one deck. Raised as a **pattern**, not as three edits. |
 
@@ -141,17 +141,27 @@ record if no answer comes back.
 
 ---
 
-## Group 3 — Container naming defects (ch18)
+## Group 3 — Container identity and naming
 
-ch18 describes four preset containers across the deck (Playing Tab Mixed
-Presets Bank, Browse Presets List, Presets Pop-up, Edit Presets Pop-up). Test
-cases must state which container each observation is made in, so container
-names being wrong or ambiguous directly produces false-passing tests.
+**The full picture: one set of presets, five containers, three unresolved
+identity questions.** The same stored presets are displayed in the Playing Tab
+Mixed Presets Bank (ch17), the Browse Presets List (ch16), the Presets Pop-up
+and Edit Presets Pop-up (ch18), and the Media Widget with its own popup (ch23).
+Their contents differ in ways that matter — the Browse Presets List has delete
+buttons the Mixed Presets Bank does not; an unsaved slot shows a *greyed* delete
+button in one container and *no* delete button in another; the same indicator
+reads `"Number of Presets Shown"` in one and `"Presets Shown"` in another.
+
+Test cases therefore have to state which container each observation is made in,
+and quote that container's own strings. Where the deck names containers
+inconsistently, that discipline produces confident-looking but wrong tests —
+which is why these are grouped and asked together.
 
 | Id | Spec anchor | Question | Working assumption | Impact |
 |---|---|---|---|---|
 | **A-021** | 18.1 `APP1` vs `APP2`, `APP10`–`APP13`, `APP17`, `APP18` | The popup is called **"All Presets Pop up"** in APP1 and **"Presets Pop Up"** everywhere else (including the page-30 screenshot caption). Same screen or two? If one, which name is canonical? | One container; each TC uses 037's own wording for its clause. | **ASSUMPTION:** all 5 of `RAD-070-01..05`. |
 | **A-021** (second, narrower) | 18.1 `APP1` | APP1 lists a "Presets Shown" indicator as part of this popup, but in the screenshots that indicator appears on the **Edit Presets Pop Up**. Which is correct? | Followed APP1's text. | **ASSUMPTION:** `RAD-070-03` specifically. If the screenshot is right, **this TC verifies an object that does not exist in that container** and must be rewritten or withdrawn. |
+| **A-030** | 23.7 `MW8` vs 18.1 `APP1` | Both chapters open an "All Presets Pop up" from an "All Presets" button — one from the Media Widget, one from the Playing Tab. The page-38 screenshot of the widget's popup shows **no "Edit Presets" button**, which ch18's has per APP12. Two different screens, or one screen presented differently depending on entry point? | Neither assumed. ch23 TCs verify only what ch23 states and import no APP behaviour (§8.4.2); container anchoring uses the **entry path** (*"the popup opened from the 'All Presets' button in the Media Widget"*) rather than a name, which holds under either reading. | No marker — the ambiguous element was excluded from the verification target rather than resolved. |
 | **A-023** | 18.8 `APP13` | *"The **Presets Pop Up** will have a 'Done' button and an [X] which both close the popup and return to the **Presets Pop Up** screen"* — circular as written. Should the first one read "Edit Presets Pop Up"? | Yes — 037's four leaves and the page-30 screenshots both place Done/X on the Edit Presets Pop Up. Two sources against one self-contradictory clause. | **ASSUMPTION:** `RAD-078-01..04`. |
 
 ---
