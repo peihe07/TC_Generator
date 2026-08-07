@@ -302,7 +302,7 @@ Proxy to Python `POST /api/audit`.
 
 ASPICE SWE.6 audit (review pipeline). Distinct from `/api/review/suggest-fix`,
 which is a per-TC narrow assist; this endpoint runs the full Three-Tier
-review of an entire workbook against `docs/ASPICE_SWE6_AI_Review.md`.
+review of an entire workbook against `docs/runtime/ASPICE_SWE6_AI_Review.md`.
 
 Request: `multipart/form-data`
 

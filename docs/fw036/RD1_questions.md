@@ -14,7 +14,7 @@ FMWIFSM037A03, sourced from Media HMI spec chapters 11–23).
 
 Full detail for every item is in `tcgen_package/ANOMALIES.md` under the same
 anomaly id; the work each answer triggers on our side is queued in
-`docs/pending_passes.md`, so a ruling becomes a work order rather than a
+`docs/fw036/pending_passes.md`, so a ruling becomes a work order rather than a
 re-investigation. The **Impact** column is generated from the linter's JSON report,
 not maintained by hand — it says what changes if you answer.
 
@@ -114,7 +114,7 @@ These unblock generation.
 | Id | Spec anchor | Question | Working assumption | Impact |
 |---|---|---|---|---|
 | **A-009** | 13.2 / `SMP1` | `SMP1) See Pop Up List: PU0996` — PU0996 is not in `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023)` (all 3 sheets, 1340 ids searched). Is PU0996 a typo pointing at the wrong id, **or** is it defined in a Pop Up List revision newer than Dec 2023? | None — parent is blocked. The clause delegates 100% of its content to the missing definition, so writing a TC would mean inventing the popup. | **BLOCKED:** `SWE1-MEDIA-COM-051-01`. Answering unblocks 1 leaf. |
-| **A-015** | 18.1 / `APP1` | `APP1 … (See Pop up List: PU0997)` — PU0997 is **also** absent from the same file. Two *consecutive* ids missing while PU0998 in the same range is present. Is the Dec 2023 Pop Up List simply older than these two popups? | Treated as supplementary: APP1 states its own testable content, so RAD-070 generates normally (see `docs/framework.md`, delegation-proportion rule). | No TC blocked. But a "yes" here **also answers A-009** and unblocks COM-051. |
+| **A-015** | 18.1 / `APP1` | `APP1 … (See Pop up List: PU0997)` — PU0997 is **also** absent from the same file. Two *consecutive* ids missing while PU0998 in the same range is present. Is the Dec 2023 Pop Up List simply older than these two popups? | Treated as supplementary: APP1 states its own testable content, so RAD-070 generates normally (see `docs/fw036/framework.md`, delegation-proportion rule). | No TC blocked. But a "yes" here **also answers A-009** and unblocks COM-051. |
 | **A-025(b)** | 21.15 / `SA19.2`, 21.16 / `SA19.3` | Both delegate to **`Virtual_Venues_Profiles_V1.0`** for venue names and venue info popup content. That document is not among our inputs. Same class as the missing Pop Up List ids: even if 037 gains leaves for these clauses, no TC can be written without the file. | None — no leaf exists yet either. | Blocks any future Virtual Venue coverage. Only relevant if the answer to Group 0 puts R1H models in scope. |
 | **A-016** | 16.2.3.1 / `PRE2.3.1` | `(See Table PRE1.2)` — there is no Table PRE1.2. `PRE1.2` is a clause about the plus sign; the only table in the section is `PRE1.1) Presets per Bank by Radio Size`, which states no bank count. Should this read Table PRE1.1, or is a bank-count table missing from the deck? | The values 3 and 6 are taken from the PRE2.3.1 sentence itself. | No TC blocked. Answer confirms whether the numbers have a second source. |
 

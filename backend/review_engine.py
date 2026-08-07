@@ -1,7 +1,7 @@
 """ASPICE SWE.6 Review engine.
 
 Implements the v2.2 Review pipeline described in
-`docs/ASPICE_SWE6_AI_Review.md`:
+`docs/runtime/ASPICE_SWE6_AI_Review.md`:
 
     parse → group by Req ID → Tier 1 (§6.x) → Tier 2 (§7.x) → Tier 3 (§8.x)
     → apply interactions (mutual exclusions, suppressions, tier skips)
@@ -605,7 +605,7 @@ def _detect_8_5_1(tc: TCRecord) -> list[dict]:
         "evidence": pri or "(empty)",
         "original": pri,
         "revised": "",
-        "suggestion_note": "依 docs/TEST_CASE_PRIORITY.md 重新判定 P0–P3",
+        "suggestion_note": "依 docs/runtime/TEST_CASE_PRIORITY.md 重新判定 P0–P3",
     }]
 
 

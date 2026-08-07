@@ -571,5 +571,5 @@ python backend/main.py --review --dry-run \
 | 確定性閘 | Design Method 控制詞彙、Priority P0–P3、必填欄非空 | `assemble`(`compliance_issues` / `tcs_noncompliant`)|
 | 寫作規則稽核 | 禁用動詞(§8.3.1)、模糊用語(§8.4.1)、Final Step(§8.3.5)、欄位契約 | `--review` §8.x |
 
-> 規則單一真實來源 = `load_rules()`(`docs/ASPICE_SWE6_AI_Instruction.md` + `判斷規則.md` + `TEST_CASE_PRIORITY.md`)。改文件 → 生成與稽核兩端自動跟進。
+> 規則單一真實來源 = `load_rules()`(`docs/runtime/ASPICE_SWE6_AI_Instruction.md` + `判斷規則.md` + `TEST_CASE_PRIORITY.md`)。改文件 → 生成與稽核兩端自動跟進。
 > 迴圈:**生成 → 兩層合規 → 修 → 再稽核**,直到 §8.x = 0、確定性閘 = ✓。

@@ -296,13 +296,25 @@ Entry point:
 
 Reference docs:
 
+- [docs/REPO_LAYOUT.md](docs/REPO_LAYOUT.md) — 每個頂層目錄的角色、可重建項目、不可搬動清單
+
 - [docs/README.md](docs/README.md) — docs index: runtime / developer / archive split
 - [docs/WORKFLOW_MECHANISM_TABLE.md](docs/dev/WORKFLOW_MECHANISM_TABLE.md) — developer table for user actions, API routes, backend work, AI calls, and state writes
 - [docs/API_CONTRACT.md](docs/dev/API_CONTRACT.md) — browser ↔ backend API specs
-- [docs/ASPICE_SWE6_AI_Instruction.md](docs/ASPICE_SWE6_AI_Instruction.md) — ASPICE SWE.6 AI Instruction (auto-loaded into LLM prompt)
-- [docs/TEST_SET_POLICY.md](docs/TEST_SET_POLICY.md) — Test Set grouping, hint, override, and export policy
-- [docs/ASPICE_SWE6_AI_Review.md](docs/ASPICE_SWE6_AI_Review.md) — ASPICE SWE.6 AI Review spec (auto-loaded into review prompt)
-- [docs/TEST_CASE_DESIGN_METHOD.md](docs/TEST_CASE_DESIGN_METHOD.md) — Design method selection rules (auto-loaded into LLM prompt)
-- [docs/TEST_CASE_PRIORITY.md](docs/TEST_CASE_PRIORITY.md) — P0–P3 priority definitions
+- [docs/runtime/ASPICE_SWE6_AI_Instruction.md](docs/runtime/ASPICE_SWE6_AI_Instruction.md) — ASPICE SWE.6 AI Instruction (auto-loaded into LLM prompt)
+- [docs/runtime/TEST_SET_POLICY.md](docs/runtime/TEST_SET_POLICY.md) — Test Set grouping, hint, override, and export policy
+- [docs/runtime/ASPICE_SWE6_AI_Review.md](docs/runtime/ASPICE_SWE6_AI_Review.md) — ASPICE SWE.6 AI Review spec (auto-loaded into review prompt)
+- [docs/runtime/TEST_CASE_DESIGN_METHOD.md](docs/runtime/TEST_CASE_DESIGN_METHOD.md) — Design method selection rules (auto-loaded into LLM prompt)
+- [docs/runtime/TEST_CASE_PRIORITY.md](docs/runtime/TEST_CASE_PRIORITY.md) — P0–P3 priority definitions
 - [docs/TC_Generator_Architecture_Diagrams.html](docs/dev/TC_Generator_Architecture_Diagrams.html) — visual architecture reference
 - [docs/archive/README.md](docs/archive/README.md) — archived notes that must not be loaded into runtime prompts
+
+Proposals (not yet implemented):
+
+- [docs/plans/TCGEN_PIPELINE_FEEDBACK.md](docs/plans/TCGEN_PIPELINE_FEEDBACK.md) — tcgen 跑法對既有 pipeline 的回饋評估
+- [docs/plans/TCGEN_INTEGRATION_PLAN.md](docs/plans/TCGEN_INTEGRATION_PLAN.md) — W1–W12 實作規劃
+- [docs/plans/INTAKE_ANALYSIS_DESIGN.md](docs/plans/INTAKE_ANALYSIS_DESIGN.md) — Stage 0 Intake 分析設計
+
+Project artifacts:
+
+- [docs/fw036/](docs/fw036/) — FW036 / MediaHMI 的 framework、RD-1 問題單、pending passes

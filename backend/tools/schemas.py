@@ -119,7 +119,7 @@ GROUP_TESTS_SCHEMA: dict[str, Any] = {
     "name": "group_tests",
     "description": (
         "Derive Test Set assignments from rows using existing values, hints, "
-        "AI classification, or deterministic fallback per docs/TEST_SET_POLICY.md. "
+        "AI classification, or deterministic fallback per docs/runtime/TEST_SET_POLICY.md. "
         "Returns groups, framework map, and per-row assignments."
     ),
     "parameters": {

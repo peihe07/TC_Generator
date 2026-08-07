@@ -143,7 +143,7 @@ What it does:
    Without the row, 037's 262 leaves would produce 260 rows and an ASPICE
    traceability audit would see an unexplained gap.
 6. Adds `Preset Management` and `Media Widget` to the `Test Case Framework`
-   sheet (A15/A16) — see `docs/framework.md`.
+   sheet (A15/A16) — see `docs/fw036/framework.md`.
 7. Appends a `ChangeHistory` revision row. This is a controlled document.
 8. Normalises the saved xlsx (zip entry timestamps and `docProps` dcterms) so
    identical content yields identical bytes — the file's SHA256 is recorded

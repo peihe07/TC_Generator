@@ -2,7 +2,7 @@
 """Step 3 hard gate — lint generated TCs before workbook write-back.
 
 Implements the RUNBOOK.md "Step 3 — Lint" reject list. Every rule maps to a
-section of docs/ASPICE_SWE6_AI_Instruction.md; the section is named in each
+section of docs/runtime/ASPICE_SWE6_AI_Instruction.md; the section is named in each
 finding so a reviewer can jump straight to the authority.
 
 The linted record is the WORKBOOK-facing shape (the one `exemplars.json` and

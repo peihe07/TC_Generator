@@ -242,7 +242,7 @@ def write_rows(ws, rows: list[dict]) -> int:
 
 
 def sync_framework_sheet(wb) -> list[str]:
-    """Add the two Test Sets ruled in for ch18/ch23 (see docs/framework.md)."""
+    """Add the two Test Sets ruled in for ch18/ch23 (see docs/fw036/framework.md)."""
     ws = wb[FRAMEWORK_SHEET]
     added = []
     for row, label in NEW_TEST_SETS.items():

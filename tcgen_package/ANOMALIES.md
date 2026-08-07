@@ -99,7 +99,7 @@ step once the control name is confirmed.
 
 **Found:** 2026-08-06, adding the §5.6 linter rule during pilot review.
 
-docs/ASPICE_SWE6_AI_Instruction.md §5.6 reserves the word `baseline` for the
+docs/runtime/ASPICE_SWE6_AI_Instruction.md §5.6 reserves the word `baseline` for the
 final comparison ER: *"Use the word `baseline` only in the comparison step in
 the final ER, not in the recording step."* The human-authored done region
 breaks this in 8 places, all in non-final recording ERs:
@@ -996,7 +996,7 @@ default case rather than overriding the setting.
 **Handling:** `SWE1-MEDIA-PLA-087-01` is generated with AutoPlay ON stated in
 its Pre-Condition, so the TC is unambiguous under either ruling — the AutoPlay
 OFF case belongs to AP2.1's own leaf. That is scope convergence, not a bet, so
-**no assumption marker** (cf. the marker criterion in `docs/framework.md`).
+**no assumption marker** (cf. the marker criterion in `docs/fw036/framework.md`).
 
 **Open:** RD-1 — should FF2 read "…and AutoPlay is ON"? Ask together with
 A-011/A-012 as a third instance of the same drafting pattern: a general clause

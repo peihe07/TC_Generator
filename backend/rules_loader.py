@@ -8,15 +8,18 @@ from typing import Iterable
 
 
 DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
+# Docs loaded into prompts live under docs/runtime/ so a reader can tell at a
+# glance which markdown is executable configuration and which is prose.
+RUNTIME_DIR = DOCS_DIR / "runtime"
 # Project profile overlay (e.g. FW036_R1L_BT_Profile). Loaded LAST so its
 # [OVERRIDE] rules win over the generic instruction via recency + its own
 # precedence header. Select via `profile=` arg or TC_PROJECT_PROFILE env var
 # (file stem, without .md).
-PROFILES_DIR = DOCS_DIR / "profiles"
+PROFILES_DIR = RUNTIME_DIR / "profiles"
 RULE_FILES = [
-    DOCS_DIR / "ASPICE_SWE6_AI_Instruction.md",
-    DOCS_DIR / "TEST_CASE_DESIGN_METHOD.md",
-    DOCS_DIR / "TEST_CASE_PRIORITY.md",
+    RUNTIME_DIR / "ASPICE_SWE6_AI_Instruction.md",
+    RUNTIME_DIR / "TEST_CASE_DESIGN_METHOD.md",
+    RUNTIME_DIR / "TEST_CASE_PRIORITY.md",
 ]
 
 
@@ -76,7 +79,7 @@ def load_rules(
     the compact fallback is returned.
 
     `profile` (or env TC_PROJECT_PROFILE) names a project profile markdown in
-    docs/profiles/ (stem only, e.g. "FW036_R1L_BT_Profile"). It is appended
+    docs/runtime/profiles/ (stem only, e.g. "FW036_R1L_BT_Profile"). It is appended
     AFTER the generic rules so its [OVERRIDE] sections take precedence.
     """
     files = list(rule_files or RULE_FILES)

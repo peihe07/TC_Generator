@@ -425,7 +425,7 @@ also through via fallback
 
         doc_path = (
             Path(__file__).resolve().parent.parent
-            / "docs" / "ASPICE_SWE6_AI_Instruction.md"
+            / "docs" / "runtime" / "ASPICE_SWE6_AI_Instruction.md"
         )
         assert doc_path.is_file(), (
             f"Authoritative rules doc missing at {doc_path}; "

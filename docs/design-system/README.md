@@ -19,7 +19,7 @@ This system was reverse-engineered from:
   - `frontend/src/components/system/` — desktop chrome (Desktop, Taskbar, AppWindow, CostMeter)
 - **Docs:**
   - `docs/design-system/DESIGN_SYSTEM.md` — authoritative design system reference
-  - `docs/ASPICE_SWE6_AI_Instruction.md` — product domain
+  - `docs/runtime/ASPICE_SWE6_AI_Instruction.md` — product domain
 
 ## Index
 

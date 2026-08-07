@@ -2,7 +2,7 @@
 
 Covers: rules_loader profile overlay, remarks output key tolerance,
 split_mode addendum, fixed Test Set vocabulary mode, and domain pack
-injection — the five wiring points in docs/profiles/PROFILE_INTEGRATION.md.
+injection — the five wiring points in docs/runtime/profiles/PROFILE_INTEGRATION.md.
 """
 import json
 import sys
@@ -24,7 +24,7 @@ from validator import normalize_design_method, validate_design_method  # noqa: E
 # helpers
 # ---------------------------------------------------------------------------
 
-FW036_PROFILE = REPO / "docs" / "profiles" / "FW036_R1L_BT_Profile.md"
+FW036_PROFILE = REPO / "docs" / "runtime" / "profiles" / "FW036_R1L_BT_Profile.md"
 BT_PACK = REPO / "config" / "domain_packs" / "R1L_BT.json"
 
 MINIMAL_TC = {

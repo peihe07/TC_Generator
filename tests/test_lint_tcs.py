@@ -514,7 +514,7 @@ def test_done_region_exemplars_pass_every_rule_except_the_known_deviation():
     """Rows 10-332 are the compliant reference region — the gate must not reject them.
 
     Sole exception: the done region writes `recorded as the baseline` in
-    recording steps, which docs/ASPICE_SWE6_AI_Instruction.md §5.6 reserves for
+    recording steps, which docs/runtime/ASPICE_SWE6_AI_Instruction.md §5.6 reserves for
     the final comparison ER. That is a pre-existing deviation in the
     human-authored rows, not a linter defect — see ANOMALIES.md A-005.
     """

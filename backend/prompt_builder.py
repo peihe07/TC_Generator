@@ -113,7 +113,7 @@ _HARD_CONSTRAINTS = """
 6. **Application output contract: `priority` MUST be one of P0 / P1 / P2 / P3.**
    This is a tool-specific workbook/export requirement, not an ASPICE SWE.6
    rule from the instruction doc. Follow the priority rubric in
-   `docs/TEST_CASE_PRIORITY.md` when it is loaded in the rules text:
+   `docs/runtime/TEST_CASE_PRIORITY.md` when it is loaded in the rules text:
    P0 = critical/core functionality, safety, boot/recovery, connection,
    audio output, eCall, vehicle-critical CAN signal, or data loss risk;
    P1 = major user-facing functionality or key operational logic flow;
@@ -306,7 +306,7 @@ For every TC you are about to output, silently verify:
       the system normalizes them to canonical dropdown values.
   [ ] priority is exactly P0 / P1 / P2 / P3 (tool-specific workbook
       contract, not from the ASPICE doc). Use the loaded
-      `docs/TEST_CASE_PRIORITY.md` rubric when available.
+      `docs/runtime/TEST_CASE_PRIORITY.md` rubric when available.
   [ ] All workbook-bound TC fields are English-only. Traditional Chinese
       is allowed only in explicit analysis fields (`reasoning`, `meaning`,
       `name`, `description`) when requested.

@@ -3,7 +3,7 @@
 ## Recent changes (2026-07-15)
 
 - **AI instruction 規則擴充**：從一份 feature-agnostic 通則吸收三段新規則進權威
-  文件 `docs/ASPICE_SWE6_AI_Instruction.md`（auto-load 進 generate / review /
+  文件 `docs/runtime/ASPICE_SWE6_AI_Instruction.md`（auto-load 進 generate / review /
   gen_bridge prompt）：
   - **§8.6 Spec Reference Hierarchy**：原始 spec 來源優先於追溯 index 匯出；
     不因需求未出現在 index 就撤回，先查原始 spec。
@@ -70,7 +70,7 @@ Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在
 ASPICE SWE.6 Review feature：與既有 Generate path 並行，**不取代**任何
 現有功能。
 
-- **Review spec & rules table**：`docs/ASPICE_SWE6_AI_Review.md`（v2.2）
+- **Review spec & rules table**：`docs/runtime/ASPICE_SWE6_AI_Review.md`（v2.2）
   + `backend/rules/review_rules.yaml` 雙檔案，前者 auto-load 進 review
   prompt（mirrors `ASPICE_SWE6_AI_Instruction.md`），後者是 31 條規則的
   機器可讀表（20 條 `requires_llm: false`、11 條需 LLM）。

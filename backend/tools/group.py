@@ -1,6 +1,6 @@
 """group_tests tool：把 requirements 分到 Test Set.
 
-Policy: docs/TEST_SET_POLICY.md
+Policy: docs/runtime/TEST_SET_POLICY.md
 
 優先使用既有 `test_set`；沒有時先嘗試 AI 分類（per-row by `id`，failover
 to `req_id`）。若 AI 不可用或結果漏配，退回 deterministic fallback；

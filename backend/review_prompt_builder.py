@@ -17,7 +17,7 @@ from pathlib import Path
 
 
 _DOCS_DIR = Path(__file__).resolve().parent.parent / "docs"
-_REVIEW_SPEC_PATH = _DOCS_DIR / "ASPICE_SWE6_AI_Review.md"
+_REVIEW_SPEC_PATH = _DOCS_DIR / "runtime" / "ASPICE_SWE6_AI_Review.md"
 
 
 def _load_review_spec() -> str:

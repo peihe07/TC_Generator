@@ -7,7 +7,7 @@ research task.
 Each pass states its **acceptance check** — a command whose output decides
 whether the pass is complete. Do not mark a pass done on inspection.
 
-After any pass: re-run `scripts/lint_tcs.py`, then `scripts/write_back.py`, and
+After any pass: re-run `tcgen_package/scripts/lint_tcs.py`, then `tcgen_package/scripts/write_back.py`, and
 compare the new workbook against the previous one. The write-back is
 byte-reproducible, so the diff shows exactly what the pass changed and nothing
 else.
@@ -95,7 +95,7 @@ may outlive its anomaly's resolution.
 | **A-009** | `COM-051-01` | A Pop Up List revision containing PU0996 arrives, **or** SMP1's reference is corrected. Then write the TC and remove the blocked marker; the row's Remarks and blank P/R are replaced by real values. |
 | **A-011** | `COM-058-01` | The BT1.1.1/BT1.1.2 ruling gives BT1.1.1 an instantiable scope. |
 
-**Acceptance:** `scripts/lint_tcs.py` reports 0 blocked parents, and the
+**Acceptance:** `tcgen_package/scripts/lint_tcs.py` reports 0 blocked parents, and the
 write-back's row count goes from 277 TC + 2 blocked to 279 TC + 0 blocked.
 
 ---
