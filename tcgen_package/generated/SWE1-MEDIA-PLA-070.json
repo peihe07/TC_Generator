@@ -1,0 +1,45 @@
+{
+  "parent": "SWE1-MEDIA-PLA-070",
+  "reasoning": "14.3.2.1（BT3.2.1）規定 All Songs 只適用於大量儲存類裝置（含光碟），不適用於被視為媒體播放器的裝置（如 iPod、智慧型手機）。037 拆成兩個 leaf，兩者是裝置類別的正負配對（§7），各自成一筆。spec 逐字列出 iPod 與 smartphones 為媒體播放器的例子，故 070-02 以 iPod 驗證屬 spec 明載而非自行挑選。070-02 的 ER 需同時陳述 All Songs 未出現與清單其他內容正常顯示，否則無法排除整個分類未載入的失效。註：iPod 接上時來源標籤會變為 \"iPod\"（11.3.1.1，PLA-062），故步驟以該標籤指認來源，兩條互相佐證。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬清單內容的裝置類別規則，兩筆皆 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.2.1",
+    "All Songs",
+    "mass storage",
+    "media player",
+    "iPod"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "070-01 為大量儲存裝置（USB），070-02 為媒體播放器（iPod），構成裝置類別的正負配對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-070-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'All Songs' only for mass storage class devices.\n\n(Mass storage device (USB drive))",
+      "pre_conditions": "1. A USB drive containing at least one folder and at least one file with a valid audio format outside any folder is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank and read the first line item displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The first line item of the Browse List is displayed as \"All Songs\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.2.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-070-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall not display 'All Songs' for media player devices such as smartphones or iPods.\n\n(Media player device (iPod))",
+      "pre_conditions": "1. An iPod containing at least three playable music files is connected to the HU USB port\n2. The iPod is the active source on the HU and the source label is displayed as \"iPod\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press a category in the Categories Bank and read the line items displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and the iPod is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The content of the iPod is listed in the Browse List and no \"All Songs\" line item is displayed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.2.1\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_11.3.1.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

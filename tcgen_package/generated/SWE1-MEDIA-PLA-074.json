@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-MEDIA-PLA-074",
+  "reasoning": "14.4.3.2（BT4.2.2）規定清單項目帶一個指示型別的元素（歌曲、資料夾、播放清單），與 browse 分類所示者相同。驗證標的是「不同型別的項目有不同的指示」，故步驟在同一份清單中同時取得資料夾與歌曲兩種項目再比對——只讀一種型別無法區分「型別指示」與「固定圖示」。spec 未規定該指示的視覺形式（圖示或文字），故 ER 以「與該型別在分類中所用者相同」表述，不臆測樣式。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬清單項目的顯示規格，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.2.2",
+    "item type",
+    "folder",
+    "song",
+    "playlist"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-074-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display an item type indicator for browse list items when applicable.\n\n(Folder and song items compared in one list)",
+      "pre_conditions": "1. A USB drive containing at least one folder and at least one file with a valid audio format outside any folder is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank and read the type indicator displayed on a folder line item\n4. Read the type indicator displayed on a song line item in the same list",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder line item displays a type indicator matching the one used for folders in the browse categories\n4. The song line item displays a type indicator matching the one used for songs in the browse categories, and it differs from the indicator read in step 3",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

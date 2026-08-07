@@ -1,0 +1,43 @@
+{
+  "parent": "SWE1-MEDIA-PLA-083",
+  "reasoning": "19.4（FB3）規定多分割區 USB 的瀏覽行為與一般 USB 相同，差別在於以資料夾瀏覽時，主分類為各個分割區。037 拆成兩個 leaf：083-01 驗行為一致、083-02 驗分割區為頂層資料夾。083-01 的「與一般 USB 相同」需要一個可判定的代表行為，故選 FB1 的 All Songs 首列規則驗證——該規則在一般 USB 上已由 PLA-077 驗過，此處確認多分割區裝置上同樣成立，reasoning 點名該對應關係以免被視為重複。與 PLA-071（BT3.4 分割區顯示為資料夾）的分工：那條在 ch14 談呈現形式，本條在 ch19 談瀏覽階層位置（頂層主分類），分屬兩章兩條條文，故非重複。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：兩筆皆屬多分割區裝置的瀏覽結構，訂 P2。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB3",
+    "multi-partition",
+    "top-level folders"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "083-01 驗瀏覽行為與一般 USB 一致，083-02 驗分割區位於頂層，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-083-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall support multi-partition USB browsing behavior consistent with standard USB browsing.\n\n(All Songs rule holds on a multi-partition drive)",
+      "pre_conditions": "1. A USB drive with three partitions, each containing at least two files with a valid audio format, is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the first line item displayed in the Browse List\n5. Press the first partition folder and read the first line item displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The first line item of the Browse List is displayed as \"All Songs\", as it is for a single-partition drive\n5. The contents of that partition are displayed and the browse list behaves as it does for a single-partition drive",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-083-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display partitions as top-level folders when browsing a multi-partition USB device.\n\n(Partitions at the top level of folder browse)",
+      "pre_conditions": "1. A USB drive with three partitions, each containing at least two files with a valid audio format, is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the folder line items displayed in the Browse List\n5. Press the first partition folder and read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. Each partition of the USB drive is displayed as a top level folder line item in the Browse List\n5. The files and folders held in that partition are displayed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-094",
+  "reasoning": "22.2.1（AP2.1）規定 AutoPlay 關閉時插入 USB 不會自動播放。這是 PLA-087（FF2）的對照分支——A-032：FF2 未附條件地規定自動播放，本條規定關閉時不播，兩者對此情境結論相反；依 specific-over-general 以本條為準，PLA-087 的前置條件因此明確設為 AutoPlay ON，兩筆各自無歧義。ER 需同時陳述沒有媒體音訊輸出與原本的來源仍在播放，否則無法排除「媒體沒播但原來源也被中斷」這種更糟的失效（處置同 INT-019）。跨模組分工：ch22 的 leaf 分屬 PLA 與 INT 兩段——INT 段涵蓋 22.4／22.4.1／22.5（通話中連接、畫面不切換、Projection 排除，見 SWE1-MEDIA-INT-019~021），PLA 段涵蓋 22.1／22.2.x／22.3。兩段 section 不重疊，非重複；reasoning 互相點名。優先級：驗證標的為音訊輸出行為，且錯誤會打斷使用者正在聽的內容，訂 P1。",
+  "keywords": [
+    "Play Controls",
+    "AP2.1",
+    "AutoPlay OFF",
+    "no auto play",
+    "A-032"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆為 AutoPlay 關閉的情況，與 PLA-087（AutoPlay 開啟）構成設定值的正負配對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-094-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall not start playback automatically when a USB device is connected and AutoPlay is OFF.\n\n(USB inserted with AutoPlay OFF)",
+      "pre_conditions": "1. AutoPlay is set to OFF\n2. A USB drive containing at least one file with a valid audio format is available\n3. FM is the active source on the HU and is playing, and no USB device is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the USB drive to the HU USB port and listen to the audio output of the HU\n2. Listen to the audio output of the HU after 5 seconds\n3. Read the active source shown on the Media screen",
+      "expected_result": "1. FM audio continues to be output from the HU speakers and no audio from the USB drive is played\n2. FM audio is still output from the HU speakers and no audio from the USB drive is played\n3. FM is still shown as the active source and the source has not switched to USB",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.2.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

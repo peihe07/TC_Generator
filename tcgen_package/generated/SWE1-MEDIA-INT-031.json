@@ -27,7 +27,7 @@
       "design_method": "等價劃分 (Equivalence Partitioning, EP)"
     },
     {
-      "req_id": "SWE1-MEDIA-INT-031-02",
+      "req_id": "SWE1-MEDIA-INT-031-01",
       "test_group": "MediaHMI",
       "test_set": "Media Widget",
       "test_item": "The system shall display the 'All Presets' button only for sources that allow presets.\n\n(Source that does not allow presets (USB))",

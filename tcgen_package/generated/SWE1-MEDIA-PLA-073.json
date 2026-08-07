@@ -1,0 +1,59 @@
+{
+  "parent": "SWE1-MEDIA-PLA-073",
+  "reasoning": "14.4.3（BT4.2）規定 Disc（Audio 與 MP3）、USB/SD-Card 與 BTSA 的清單顯示依 Table BT4.2.1。該表內容只存在於頁圖（page 26 的 List Display Reference），依 A-001 的作法以頁圖為 ground truth。表中列出 Artists／Playlists／Songs／Albums／Genres／Podcasts／Audiobooks／Radio 八種分類各自的清單結構，037 只配一個 leaf，依 §8.2.2 單一 sub-id 可產出多筆 TC，故選取三個結構差異最大的分類驗證：Artists（兩層下鑽且首列可能為 All Songs）、Albums（曲目編號且依專輯順序）、Playlists（明文規定不顯示 All Songs）。Playlists 那筆同時是 §7 的負向配對：表格明寫 Do not display All songs at the top of the Playlist list，與 PLA-069 的 All Songs 規則相對，可排除 All Songs 被無差別插入所有清單的失效。未涵蓋的分類其結構為前述三者的子集或變體，且受實際媒體內容限制無法一次驗證；若需完整涵蓋需 037 補 leaf，記於 ANOMALIES A-008 的同一模式。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：清單結構錯誤會讓使用者找不到內容，三筆皆 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.2",
+    "BT4.2.1",
+    "List Display Reference",
+    "Artists",
+    "Albums",
+    "Playlists"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "三筆分別為 Artists、Albums、Playlists 三種清單結構，其中 Playlists 為不顯示 All Songs 的負向配對"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-073-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall apply the list display reference for USB, SD-Card, and BTSA sources as defined in Table BT4.2.1.\n\n(Artists list structure)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains at least two artists, each with at least two albums",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Artists category in the Categories Bank and read the line items displayed in the Browse List\n4. Press an artist entry and read the line items displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The artists on the USB drive are listed in the Browse List\n4. The albums of the artist pressed in step 4 are listed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-073-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall apply the list display reference for USB, SD-Card, and BTSA sources as defined in Table BT4.2.1.\n\n(Albums list structure with numbered tracks)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains at least one album with at least three tracks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Albums category in the Categories Bank and read the line items displayed in the Browse List\n4. Press an album entry and read the line items displayed in the Browse List and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The albums on the USB drive are listed in the Browse List\n4. The tracks of the album pressed in step 4 are listed as a numbered list in album order",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-073-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall apply the list display reference for USB, SD-Card, and BTSA sources as defined in Table BT4.2.1.\n\n(Playlists list structure without an All Songs entry)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains at least one playlist with at least two tracks",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Playlists category in the Categories Bank and read the line items displayed in the Browse List\n4. Press a playlist entry and read the first line item displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The playlists on the USB drive are listed in the Browse List\n4. The tracks of the playlist pressed in step 4 are listed and no \"All Songs\" line item is displayed at the top of the list",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3\nMedia_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.1",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)"
+    }
+  ]
+}

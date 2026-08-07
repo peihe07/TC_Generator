@@ -86,7 +86,15 @@ undecided convention, and this is the first time it has been raised.
 2. If the fleet is mixed, how should a tier-dependent UI label be written in a
    test case that applies to all seven models — the workbook has no
    tier-specific mechanism today beyond the per-model flag columns.
-3. Secondary, same ruling: `SA19.x` Virtual Venue is marked *(R1H Only)*. Is it
+3. **A third axis, same ruling (A-029):** `23.9 (MW9)` reads *"for all R1
+   radios **except R1 Low 7\"**"*, so screen size matters within a tier, not
+   just the tier. `23.8 (MW8)` adds another R1 Low-specific rule. **Please give
+   the tier *and* screen size for each of the seven models** — one matrix
+   settles A-026's 76 TCs, SA19.x's applicability, and whether
+   `SWE1-MEDIA-INT-034` (5 TCs, swipe gestures) applies to every model. Those
+   5 TCs currently set all vehicle flags to `1` per existing workbook
+   convention, flagged in their Remarks as pending this answer.
+4. Secondary, same ruling: `SA19.x` Virtual Venue is marked *(R1H Only)*. Is it
    in scope for any model in this programme? (If yes, see A-025 in Group 4 and
    the missing profiles document in Group 1.)
 
@@ -126,6 +134,13 @@ continue. If you rule the other way, the listed TCs are reworked.
 | **A-012** | 14.1.6 `BT1.6` vs 14.1.2.1 `BT1.2.1` | BT1.6 says the cursor **always** begins at the top of the list; BT1.2.1 says that for Presets / All Stations it begins at the currently tuned station. Is BT1.6's "always" meant to exclude those two lists? | specific-over-general: BT1.2.1 governs Presets / All Stations. The general TC is scoped to a USB track list so it stays unambiguous either way. | **ASSUMPTION:** `COM-061-01`, `COM-061-04`. |
 | **A-018** | 17.1.1 `MPB1.1` vs Table `PRE1.1` | MPB1.1 allows a **maximum of 8** presets per bank; Table PRE1.1 caps every listed radio size at **6**. A bank of 8 is unreachable on any configuration. | table-over-prose (same canon as A-007): verified against the Table PRE1.1 value for the vehicle radio size. | **ASSUMPTION:** `RAD-062-01`. |
 | **A-007** | 12.2.1 `PSB2.1` vs Table `PSB2.4` | PSB2.1 allows a **maximum of 5** pinned sources; Table PSB2.4 caps every radio size at **4**. Same shape as A-018. | table-over-prose. TCs express the limit symbolically as "the value defined for this radio size in Table PSB2.4", so they hold under either answer. | No marker — the TCs are valid either way. |
+
+| **A-032** | 20.3 `FF2` vs 22.2.1 `AP2.1` | FF2 says a USB inserted with nothing selected **will automatically play**, with no condition attached; AP2.1 says that **if AutoPlay is OFF** it will not. Should FF2 read "…and AutoPlay is ON"? | specific-over-general (third instance of the canon, after A-011 and A-012): AP2.1 names the setting and sits in the chapter that owns it. `PLA-087-01` states AutoPlay ON in its Pre-Condition so it holds either way; the OFF case is covered by AP2.1's own leaf (`PLA-094-01`). | No marker — scope convergence, not a bet. |
+
+**A pattern worth naming:** A-011, A-012 and A-032 are the same drafting shape —
+a general clause written without the qualifier that a more specific clause
+elsewhere supplies. Three instances suggests reviewing for others rather than
+fixing these three.
 
 **Recommended single question for this group — stated as a position to confirm,
 not an open problem to re-solve:**
@@ -179,6 +194,8 @@ configurations are in scope for FW036, 037 needs leaves for them.
 | **A-010** | Table SMP2.2: 12"L and 12"P have no leaf; 7" and 10.25" are marked **N/A** with no stated meaning (no popup? no limit? unspecified?). Three readings give three different expected results. | The two N/A configurations are explicitly out of scope in the generated TC. |
 | **A-020** | `MPB1.7` (HD Radio preset labels — **NA-relevant, a real gap**) and `MPB1.8.x` (FM-EU PSN labels — please confirm out of scope for a NAFTA programme). | These sit under a leaf about *layout*, so they cannot be attached to it without recording label requirements as layout requirements. |
 | **A-025** *(feature-level — not a table row or a sub-clause, a whole settings block)* | **21.13 Radio Off with Door** — no gating stated anywhere, no leaf, and page 34 shows it as a complete settings screen with On/Off. This one is an unambiguous gap. | Nine ch21 sections have no leaf; the other eight are classified in ANOMALIES.md as either not-a-gap (21.11, see A-024) or gated-and-undetermined (Beats Audio, Virtual Venue — both moved to Group 0/1). Only 21.13 is reported as a plain omission. |
+| **A-027** | `22.2.2 (AP2.2)` — *"if user listens to iPod and then plugs it in, the system will continue playing the item selected **if AutoPlay is ON**"* — has no leaf, while its own child `22.2.2.1` (the AutoPlay **OFF** case) does. | The exception is covered and the primary case is not. **Question:** should AP2.2 gain a leaf? |
+| **A-031** | `23.3.2 (MW3.2)` — the **first** line of widget metadata (song title or frequency; HD sub-station format `106.7-2 HD`) — has no leaf, while the second line (MW3.3), the empty case (MW3.4) and the consistency rule (MW3.1) all do. | Same shape as A-027. **This is also the second uncovered HD Radio rule**, after `MPB1.7` in A-020. **Question:** should MW3.2 gain a leaf — and is HD Radio in scope for FW036 at all? One answer covers both holes. |
 | **A-013** | If BT4.1.1's missing item **2** was a real field, nothing covers it. | See Group 5. |
 | **A-017** | If APP5–APP9 were real clauses, nothing covers them. | See Group 5. |
 | **A-006** *(low priority)* | 11.3.1 / `USB1` names only iPod as a label-changing drive type and enumerates no supported set, so §7's "enumerated items need a negative pair" has no trigger to fire on. | **Question:** is there a defined set of drive types that change the USB source label, and what label does a type outside that set get? |
@@ -192,8 +209,9 @@ configurations are in scope for FW036, 037 needs leaves for them.
 | **A-013** | 14.4.2 `BT4.1.1` | Field list runs **1), 3), 4)** — item 2 absent, in both the page image and the SYS1 export. |
 | **A-017** | ch18 `APP` | Clauses run APP1–APP4, then **APP10**–APP18. APP5–APP9 absent. |
 | **A-019** | ch17 `MPB` | Clauses run MPB1.1, 1.2, 1.3, 1.3.1, **1.5**, 1.5.1 … MPB1.4 absent. |
+| **A-028** | ch23 `MW` | `MW8` labels **two** unrelated clauses (23.7 All Presets button, 23.8 CarPlay placement), and the two sub-clauses indented under the first one are numbered `MW7.1` / `MW7.2` while a separate `MW7` exists at 23.6. |
 
-**Main question (pattern, not three edits):** *three independent numbering holes
+**Main question (pattern, not four edits):** *four independent numbering or code-reuse defects
 in one deck — please confirm whether these are deliberate deletions or
 omissions, and whether the deck has a known history of clauses being removed
 without renumbering.* Each hole is a place where a requirement may have been
@@ -205,6 +223,12 @@ dropped silently; a single audit is more useful to us than three point fixes.
 | **A-002**, **A-014** | 11.4.1.2 / 11.4.1.3; pages 25/26 | Duplicate item codes (`BTSA1.2` used twice; `BT4.2.1` used for two different clauses). Confirmed against page images — not OCR artefacts. The SYS1 R1L-L export already corrects the second one. | Informational. Outline numbers drive all mapping, so nothing is ambiguous in generation. Listed so a reviewer comparing against the 2023 PDF does not read the mismatch as our error. |
 
 ---
+
+## For reviewers only — no ruling needed
+
+| Id | What to know |
+|---|---|
+| **A-033** | Display order and play order differ in USB folder browse and both are correct. Display (`FB2.1`): folders, then playlists, then songs, each alphabetical. Play (`FF4` and the page-32 examples): the current folder's own songs **first**, then its subfolders. For a root holding `Pop`, `Rock`, `Dancing`, `Get Low`, the list shows Pop, Rock, Dancing, Get Low while playback runs Dancing, Get Low, then Pop's contents, then Rock's. Both rules have leaves and TCs; the scenario tags say which order each TC verifies. |
 
 ## Closed / for information
 

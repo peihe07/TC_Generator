@@ -52,6 +52,32 @@ Worked examples of each:
   label requirements as a layout requirement, so they generate nothing and go
   to the tracker instead.
 
+## When an unresolved spec question needs an `assumption` marker — and when it does not
+
+A marker is a retrieval handle for **rework**. It belongs on a TC only if a
+ruling could invalidate that TC. Two ways of handling an open question look
+similar and are not:
+
+- **A bet → marker.** The TC's verification target depends on which reading is
+  right. `SWE1-MEDIA-RAD-070-03` verifies a "Presets Shown" indicator that APP1
+  places in one container and the screenshots place in another; if the
+  screenshot wins, the TC verifies an object that is not there. Marked (A-021),
+  scoped to that one req_id.
+- **Scope convergence → no marker.** The ambiguous element is kept *out* of the
+  verification target, so the TC holds under every reading.
+  `SWE1-MEDIA-COM-065-02` is scoped to a USB track list, sidestepping the
+  Presets/All Stations conflict (A-012). `SWE1-MEDIA-INT-030-01` verifies that
+  a popup opens and lists presets, and deliberately says nothing about the
+  Edit Presets button whose presence is disputed (A-030).
+
+Test: *"if the ruling goes the other way, does this TC change?"* Yes → marker,
+scoped to the affected req_ids only. No → no marker; record the reasoning in the
+tracker instead. Over-marking is not free: a marker that never needs rework
+dilutes the retrieval set the ruling is supposed to produce.
+
+Related: markers follow the **rework target**, not the parent that raised the
+question — A-012 is marked on COM-061, not on COM-065 which found it.
+
 ## Priority follows the verification target, not the feature's importance
 
 A TC's priority is set by **what fails to be detected when the TC fails**, not

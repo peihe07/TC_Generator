@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-PLA-080",
+  "reasoning": "19.2.2.1（FB1.2.1）規定 Track list 檢視中看到的就是同一份 All Songs 清單。驗證標的是「兩處內容一致」，故步驟先在 All Songs 清單記錄內容與順序，再開 Track list 比對。ER 需同時比對內容與順序——只比對內容無法排除順序不同的失效，而順序正是 FB1.1 特別規定的部分。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：兩處不一致會誤導使用者但不影響播放，訂 P2。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB1.2.1",
+    "Track list",
+    "All Songs"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-080-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display the same 'All Songs' list in the Track list view.\n\n(All Songs list compared with the Track list)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press \"All Songs\" and record the songs listed in the Browse List and their order\n5. Press the first song in the list to start playback\n6. Press the \"Tracks\" button and read the songs listed and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The songs of the All Songs list and their order are recorded\n5. The song pressed in step 5 is played\n6. The track list displays the same songs in the same order as recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.2.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

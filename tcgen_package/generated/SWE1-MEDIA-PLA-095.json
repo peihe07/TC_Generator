@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-PLA-095",
+  "reasoning": "22.2.1.1（AP2.1.1）規定裝置若能透過 USB 充電，AutoPlay 關閉時只充電。「只充電」需要兩件事同時成立：充電有發生、播放沒有發生。ER 因此同時陳述兩者——只驗其一都不足以支撐 only。充電狀態的可觀察形式取自受測裝置本身（電量指示或充電圖示），spec 未規定 HU 端會顯示充電狀態，故不臆測 HU 畫面上有任何充電指示。受測裝置需具備 USB 充電能力，這是本條明載的觸發條件，依 §8.5 exception 寫進 Pre-Condition。跨模組分工：ch22 的 leaf 分屬 PLA 與 INT 兩段——INT 段涵蓋 22.4／22.4.1／22.5（通話中連接、畫面不切換、Projection 排除，見 SWE1-MEDIA-INT-019~021），PLA 段涵蓋 22.1／22.2.x／22.3。兩段 section 不重疊，非重複；reasoning 互相點名。優先級：屬 AutoPlay 關閉時的附帶行為，訂 P2。",
+  "keywords": [
+    "Play Controls",
+    "AP2.1.1",
+    "charge only",
+    "AutoPlay OFF"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-095-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall allow USB device charging without initiating playback when AutoPlay is OFF.\n\n(Chargeable device connected with AutoPlay OFF)",
+      "pre_conditions": "1. AutoPlay is set to OFF\n2. A device that contains at least one file with a valid audio format and can charge over USB is available, and its battery is not full\n3. FM is the active source on the HU and is playing, and no USB device is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the device to the HU USB port and listen to the audio output of the HU\n2. Read the charging state shown on the connected device\n3. Read the active source shown on the Media screen",
+      "expected_result": "1. FM audio continues to be output from the HU speakers and no audio from the connected device is played\n2. The connected device shows that it is charging\n3. FM is still shown as the active source",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.2.1.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

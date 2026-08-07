@@ -37,7 +37,7 @@
   ],
   "tcs": [
     {
-      "req_id": "SWE1-MEDIA-RAD-070-1",
+      "req_id": "SWE1-MEDIA-RAD-070-01",
       "test_group": "MediaHMI",
       "test_set": "Preset Management",
       "test_item": "The system shall display the All Presets Pop-up when the 'All Presets' button is pressed.\n\n(All Presets button pressed on the Playing Tab)",
@@ -50,7 +50,7 @@
       "design_method": "功能測試 (Functional based ; no specific technique)"
     },
     {
-      "req_id": "SWE1-MEDIA-RAD-070-2",
+      "req_id": "SWE1-MEDIA-RAD-070-02",
       "test_group": "MediaHMI",
       "test_set": "Preset Management",
       "test_item": "The system shall display up to 3 preset banks per page in the All Presets Pop-up.\n\n(More than 3 banks configured, in the All Presets Pop-up)",
@@ -63,7 +63,7 @@
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)"
     },
     {
-      "req_id": "SWE1-MEDIA-RAD-070-3",
+      "req_id": "SWE1-MEDIA-RAD-070-03",
       "test_group": "MediaHMI",
       "test_set": "Preset Management",
       "test_item": "The system shall display the 'Presets Shown' indicator in the All Presets Pop-up.\n\n(Indicator label in the All Presets Pop-up)",
@@ -76,7 +76,7 @@
       "design_method": "功能測試 (Functional based ; no specific technique)"
     },
     {
-      "req_id": "SWE1-MEDIA-RAD-070-4",
+      "req_id": "SWE1-MEDIA-RAD-070-04",
       "test_group": "MediaHMI",
       "test_set": "Preset Management",
       "test_item": "The system shall display the currently playing metadata in the All Presets Pop-up.\n\n(Metadata matches the Playing Tab, in the All Presets Pop-up)",
@@ -89,7 +89,7 @@
       "design_method": "功能測試 (Functional based ; no specific technique)"
     },
     {
-      "req_id": "SWE1-MEDIA-RAD-070-5",
+      "req_id": "SWE1-MEDIA-RAD-070-05",
       "test_group": "MediaHMI",
       "test_set": "Preset Management",
       "test_item": "The system shall display a close ('X') button in the All Presets Pop-up.\n\n(Close button present and functional, in the All Presets Pop-up)",

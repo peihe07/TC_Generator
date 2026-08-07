@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-076",
+  "reasoning": "14.4.3.4（BT4.2.4）規定演出者名稱開頭的 \"The\" 在排序時忽略、依下一個字排列，但顯示名稱維持原樣。037 拆成兩個 leaf：排序規則與顯示保留。兩者驗證標的不同（位置 vs 文字），各自成一筆。spec 舉 The Beatles 應排在 B 而非 T 為例，故步驟以名稱開頭字母可比對的三個演出者建立可判定的排序，ER 以相對位置判定而非絕對索引——spec 未規定是否顯示字母索引。076-02 的顯示保留必須與 076-01 在同一份清單中驗證才有意義（排序已改但文字未改），故兩筆使用相同的前置條件與媒體內容。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：排序錯誤會讓使用者找不到演出者訂 P2；顯示名稱保留訂 P3。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.2.4",
+    "The",
+    "alphabetize",
+    "artist name"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "076-01 驗排序位置，076-02 驗顯示名稱保留原樣，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-076-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall ignore the leading word 'The' when sorting artist names.\n\n(Artist name beginning with \"The\" placed by its next word)",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains tracks by three artists whose names begin with \"The\", with a letter before that word and a letter after it in the alphabet",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Artists category in the Categories Bank and read the artists listed and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The artist whose name begins with \"The\" is listed at the position given by the word following \"The\", between the artist whose name sorts before that word and the artist whose name sorts after it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-076-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall preserve the original artist display name when showing artist names that begin with 'The'.\n\n(Displayed name still carries \"The\")",
+      "pre_conditions": "1. A USB drive containing at least three files with a valid audio format is connected to the HU\n2. USB is the active source on the HU\n3. The USB drive contains tracks by an artist whose name begins with \"The\"",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Artists category in the Categories Bank and read the name displayed for that artist",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The name displayed for that artist begins with \"The\" exactly as stored in its metadata",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.4",
+      "priority": "P3",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

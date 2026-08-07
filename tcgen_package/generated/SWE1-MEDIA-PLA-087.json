@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-087",
+  "reasoning": "20.3（FF2）規定 USB 插入且使用者尚未選取檔案時，系統自動播放 USB 上的全部歌曲。A-032：本條未附條件，而 22.2.1（AP2.1）規定 AutoPlay 關閉時不自動播放，兩者對「AutoPlay 關閉」的情境結論相反。依 specific-over-general（與 A-011／A-012 同一準則），AP2.1 明確指名 AutoPlay 設定且屬擁有該設定的章節，較具體。本筆的前置條件明確寫出 AutoPlay 為 ON，使 TC 在任一裁決下都成立——這是把歧義排除在驗證標的之外的 scope 收斂，而非押注，故不掛 assumption marker；AutoPlay 關閉的情境由 AP2.1 自己的 leaf 涵蓋。「自動播放全部歌曲」的判定依 page 32 的 No File Selected Play Order 範例：根層歌曲先播，再依序走訪資料夾，故 ER 同時驗開始播放與播放範圍為全碟。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：驗證標的為音訊輸出本身，依 rubric 訂 P0。",
+  "keywords": [
+    "USB Folder Filtering",
+    "FF2",
+    "auto play",
+    "AutoPlay",
+    "A-032"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本筆的前置條件為 AutoPlay 開啟；AutoPlay 關閉的情境屬 AP2.1 的 leaf"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-087-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall automatically start playback of all songs on the USB device when no file is selected.\n\n(USB inserted with AutoPlay ON and no file selected)",
+      "pre_conditions": "1. A USB drive whose root holds two folders and two songs, with songs inside the folders, is available\n2. AutoPlay is set to ON\n3. FM is the active source on the HU and no USB device is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the USB drive to the HU USB port and listen to the audio output of the HU\n2. Read the song shown as playing and the elapsed time on the Media screen\n3. Press \"Tracks\" and read the songs listed and their order",
+      "expected_result": "1. Audio from the USB drive is output from the HU speakers without any file having been selected\n2. A song from the USB drive is shown as playing and the elapsed time is advancing\n3. The track list contains all the songs on the USB drive, with the songs held in the root listed before the songs held in the folders",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.3",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

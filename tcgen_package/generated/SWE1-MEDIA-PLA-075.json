@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-PLA-075",
+  "reasoning": "14.4.3.3（BT4.2.3）規定瀏覽清單中不顯示副檔名，spec 舉例 .mp3／.wma／.aac。驗證需要檔名可對照，故前置條件要求 USB 上的檔案具有已知檔名與副檔名，ER 以「顯示的名稱不含該副檔名」判定，並要求名稱本體仍完整顯示——只驗「沒有 .mp3」無法排除整個檔名被截斷。spec 的例子為 e.g. 開頭，屬非窮盡列舉，依 §8.4 不將其讀成封閉清單，故 ER 不逐一列舉所有副檔名。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬清單文字的顯示規格，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT4.2.3",
+    "file extensions",
+    "browse list"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-075-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall not display file extensions in browsing lists.\n\n(Track file with a known name and extension)",
+      "pre_conditions": "1. A USB drive containing a file with a valid audio format whose file name and extension are known is connected to the HU\n2. USB is the active source on the HU\n3. That file carries no title metadata, so its file name is used as the displayed name",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank and read the name displayed for that file in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The name displayed for that file is its file name without the file extension, and the rest of the file name is displayed in full",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.4.3.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

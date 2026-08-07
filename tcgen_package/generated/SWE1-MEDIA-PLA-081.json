@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-081",
+  "reasoning": "19.3（FB2）規定 Folder browse 含資料夾、歌曲與播放清單三種項目。驗證標的是三種型別皆出現，故前置條件要求裝置上三者俱備，ER 逐一確認——只確認「清單非空」不足以驗證組成。三者的排序屬 FB2.1（PLA-082），本筆不驗順序。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬清單組成，訂 P2。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB2",
+    "folders",
+    "songs",
+    "playlists"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-081-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall include folders, songs, and playlists in Folder browse.\n\n(All three item types present in the folder browse list)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the line items displayed in the Browse List and the type of each one",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The Browse List displays the folders held in the root, the playlist held in the root and the songs held in the root",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

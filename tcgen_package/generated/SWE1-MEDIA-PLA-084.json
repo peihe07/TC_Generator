@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-084",
+  "reasoning": "19.4.1（FB3.1）規定進入 Folders 時會看到 'All Songs'、'Folder A'、'Folder B' 等。與 PLA-083-02 的分工：那條驗「分割區位於頂層」這個階層位置，本條驗「進入時看到的具體項目組成」——包含 All Songs 這一項，而 083-02 未涵蓋。分割區的命名規則屬 FB3.2（PLA-085），本筆的 ER 以 spec 逐字列出的 'All Songs'、'Folder A'、'Folder B' 判定。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬清單組成，訂 P2。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB3.1",
+    "All Songs",
+    "Folder A",
+    "Folder B"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-084-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'All Songs' and partition folders when entering Folder browse for a multi-partition USB device.\n\n(Entry list for a three-partition drive)",
+      "pre_conditions": "1. A USB drive with three partitions, each containing at least two files with a valid audio format, is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the line items displayed in the Browse List and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The Browse List displays \"All Songs\" as the first line item, followed by \"Folder A\", \"Folder B\" and \"Folder C\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.4.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

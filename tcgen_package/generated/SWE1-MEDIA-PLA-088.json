@@ -1,0 +1,43 @@
+{
+  "parent": "SWE1-MEDIA-PLA-088",
+  "reasoning": "20.4（FF3）規定使用者選取檔案播放時，只播該資料夾內的檔案，不播其子資料夾。037 拆成兩個 leaf：088-01 驗播放清單只含該資料夾檔案、088-02 驗子資料夾內容被排除。兩者是同一規則的正反兩面但屬不同 sub-id，依 §8.2.2 不得合併，故以驗證標的區分——前者看清單包含什麼，後者看清單不含什麼並以播放到底確認不會續播子資料夾。依 page 32 的 Be Quiet selected within Rock Folder 範例（只播 Be Quiet 與 We Will Rock You 兩首，不含 Korn 與 Metallica 子資料夾的歌曲），前置條件因此要求該資料夾同時有自有歌曲與子資料夾。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：播放範圍錯誤會播出非預期內容，兩筆皆 P1。",
+  "keywords": [
+    "USB Folder Filtering",
+    "FF3",
+    "playback list",
+    "subfolders excluded"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "088-01 驗播放清單只含該資料夾的檔案，088-02 驗播畢不續播子資料夾內容"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-088-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall generate a playback list containing only files within the selected folder.\n\n(Track list after selecting a file inside a folder)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds songs of its own and record the songs and subfolders it contains\n5. Press one of its songs to start playback, then press \"Tracks\" and read the songs listed",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The contents of that folder are displayed and its own songs and its subfolders are recorded\n5. The track list contains only the songs held directly in that folder, and no song from its subfolders is listed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-088-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall exclude subfolder contents from playback when a file is selected from a folder.\n\n(Playback at the end of the folder's own songs)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds songs of its own and record the songs held in its subfolders\n5. Press the last of that folder's own songs to start playback and read the song shown as playing\n6. Wait until that song finishes and read the song shown as playing",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The songs held in the subfolders are recorded\n5. The song pressed in step 5 is shown as playing\n6. The song shown as playing is not one of the songs recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.4",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

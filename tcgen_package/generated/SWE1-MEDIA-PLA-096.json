@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-MEDIA-PLA-096",
+  "reasoning": "22.2.2.1（AP2.2.1）規定 AutoPlay 關閉時使用者手動開始播放該裝置，會從先前播放的項目繼續。驗證需要「先前播放的項目」是可控且可辨識的，故步驟先在該裝置上播放一首非第一首的歌曲並記錄，再拔除、重新連接、手動選取該來源——若直接用第一首，無法區分「續播」與「從頭播」。註（A-027）：本條的對照條文 AP2.2（22.2.2，AutoPlay 開啟時繼續播放先前項目）在 037 中沒有 leaf，故 §7 的正負配對只有本條這一半，缺口已記於 tracker。跨模組分工：ch22 的 leaf 分屬 PLA 與 INT 兩段——INT 段涵蓋 22.4／22.4.1／22.5（通話中連接、畫面不切換、Projection 排除，見 SWE1-MEDIA-INT-019~021），PLA 段涵蓋 22.1／22.2.x／22.3。兩段 section 不重疊，非重複；reasoning 互相點名。優先級：續播位置錯誤會影響使用體驗但不中斷功能，訂 P2。",
+  "keywords": [
+    "Play Controls",
+    "AP2.2.1",
+    "resume",
+    "previous item",
+    "AutoPlay OFF",
+    "A-027"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的；對照條文 AP2.2 在 037 中無 leaf（A-027）"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-096-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall resume playback of the previously played item when the user manually starts playback with AutoPlay OFF.\n\n(Manual source selection after reconnecting the device)",
+      "pre_conditions": "1. AutoPlay is set to OFF\n2. A USB drive containing at least three files with a valid audio format is available",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the USB drive to the HU USB port, select USB as the active source and play a track that is not the first one on the drive, then record which track it is\n2. Disconnect the USB drive and select FM as the active source\n3. Connect the USB drive again and listen to the audio output of the HU\n4. Select USB as the active source and read the track shown as playing",
+      "expected_result": "1. The selected track is played and is recorded\n2. FM audio is output from the HU speakers\n3. FM audio is still output from the HU speakers and no audio from the USB drive is played\n4. The track recorded in step 1 is shown as playing",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.2.2.1",
+      "priority": "P2",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

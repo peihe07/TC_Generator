@@ -376,6 +376,37 @@ def extract_tcs(payload) -> list[dict]:
     return []
 
 
+def check_req_ids_against_leaves(payload, leaves: set[str], source: str) -> list[Finding]:
+    """Every req_id must name a leaf that exists in 037.
+
+    §8.2.2 lets one RD sub-id produce several TCs — they all keep that one
+    sub-id. Inventing `-02`, `-03` to number the TCs silently creates rows
+    pointing at requirements that do not exist, which no other rule catches
+    because such a row is otherwise well-formed.
+    """
+    if not leaves:
+        return []
+    out = []
+    for tc in extract_tcs(payload):
+        rid = str(tc.get("req_id") or "")
+        if rid and rid not in leaves:
+            out.append(Finding(req_id=rid, rule="unknown-req-id",
+                               message="req_id does not match any leaf in 037", source=source))
+    for rid in (payload.get("blocked") or {}).get("req_ids", []) if isinstance(payload, dict) else []:
+        if rid not in leaves:
+            out.append(Finding(req_id=rid, rule="unknown-req-id",
+                               message="blocked req_id does not match any leaf in 037", source=source))
+    return out
+
+
+def load_leaf_ids(data_dir: Path) -> set[str]:
+    """req_ids of every remaining leaf, or empty when the artifact is not built."""
+    path = data_dir / "remaining_leaves.json"
+    if not path.exists():
+        return set()
+    return {l["req_id"] for l in json.loads(path.read_text(encoding="utf-8")) if l.get("req_id")}
+
+
 def count_tier_labels(tc: dict) -> Counter:
     """Count tier-dependent tab-button labels in one TC (A-026).
 
@@ -443,10 +474,11 @@ def assumption_notes(payload) -> list[str]:
     return out
 
 
-def lint_paths(paths: list[Path], test_sets: set[str]) -> LintReport:
+def lint_paths(paths: list[Path], test_sets: set[str], leaf_ids: set[str] | None = None) -> LintReport:
     report = LintReport()
     for path in paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
+        report.findings.extend(check_req_ids_against_leaves(payload, leaf_ids or set(), path.name))
         if isinstance(payload, dict) and "assumption" in payload:
             notes = assumption_notes(payload)
             if notes:
@@ -506,7 +538,7 @@ def main() -> int:
     if not test_sets:
         print("warning: section_to_testset.json not found — skipping Test Set whitelist check", file=sys.stderr)
 
-    report = lint_paths(paths, test_sets)
+    report = lint_paths(paths, test_sets, load_leaf_ids(Path(args.data)))
 
     for finding in report.findings:
         print(finding.format())

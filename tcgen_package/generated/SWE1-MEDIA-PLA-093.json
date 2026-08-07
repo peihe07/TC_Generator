@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-PLA-093",
+  "reasoning": "22.1（AP1）規定 AutoPlay 只適用於 USB。這是範圍限制條文，驗證必須成對：AutoPlay 開啟時 USB 會自動播放、同一設定下非 USB 來源不會——只驗其一無法證明 only。兩者為同一設定下的兩種裝置輸入，以同一筆 TC 的多階段步驟涵蓋對照（處置同 INT-021），拆開會讓對照關係消失。非 USB 來源以藍牙音訊裝置為對照：BTSA 是 spec 明列的媒體來源（Table BT3.1），且與 USB 同為可播放媒體的來源，構成有效對照。跨模組分工：ch22 的 leaf 分屬 PLA 與 INT 兩段——INT 段涵蓋 22.4／22.4.1／22.5（通話中連接、畫面不切換、Projection 排除，見 SWE1-MEDIA-INT-019~021），PLA 段涵蓋 22.1／22.2.x／22.3。兩段 section 不重疊，非重複；reasoning 互相點名。 INT-021（AP5）驗的是 Projection 裝置的排除，本筆驗的是「只限 USB」這條總則，兩者互補。優先級：適用範圍錯誤會造成非預期的自動播放，訂 P1。",
+  "keywords": [
+    "Play Controls",
+    "AP1",
+    "AutoPlay",
+    "USB only"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "本筆以同一 AutoPlay ON 設定下 USB 與藍牙音訊裝置的對照，驗證只限 USB"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-093-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall apply AutoPlay functionality only to USB devices.\n\n(USB versus a Bluetooth audio device under the same AutoPlay setting)",
+      "pre_conditions": "1. AutoPlay is set to ON\n2. A USB drive containing at least one file with a valid audio format is available\n3. A Bluetooth audio device containing at least one playable music file is paired with the HU and not connected\n4. FM is the active source on the HU and no USB device is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the Bluetooth audio device to the HU as an A2DP source and listen to the audio output of the HU\n2. Listen to the audio output of the HU after 5 seconds\n3. Connect the USB drive to the HU USB port and listen to the audio output of the HU",
+      "expected_result": "1. FM audio continues to be output from the HU speakers and no media from the Bluetooth device is played\n2. FM audio is still output from the HU speakers\n3. Audio from the USB drive is output from the HU speakers, confirming AutoPlay applies to USB under this setting",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.1",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)"
+    }
+  ]
+}

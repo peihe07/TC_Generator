@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-079",
+  "reasoning": "19.2.2（FB1.2）規定從 All Songs 清單選一首歌後，會開始播放「該份清單」——即播放範圍是整份 All Songs 清單而非單一首歌。037 拆成兩個 leaf：079-01 驗播放開始、079-02 驗播放範圍。079-02 的關鍵是選取非最後一首，播完後續接的必須是該清單的下一首——只驗「選的那首有播」無法區分「播單曲」與「播整份清單」，這正是本條的重點。播放是否真的開始，用經過時間有無前進判定（沿用 done 區 SWE1-MEDIA-COM-017-01 的寫法）。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：079-01 驗證標的為音訊輸出本身，依 rubric 訂 P0；079-02 的清單範圍屬播放邏輯訂 P1。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB1.2",
+    "All Songs",
+    "playback",
+    "song list"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "079-01 驗播放是否開始，079-02 驗播放範圍是否為整份 All Songs 清單"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-079-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall start playback when a song is selected from the 'All Songs' list.\n\n(Song selected from the All Songs list)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press \"All Songs\" and record the songs listed in the Browse List\n5. Press the first song in the list and listen to the audio output of the HU\n6. Read the elapsed time shown on the Media screen after 5 seconds",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The songs of the All Songs list are recorded\n5. The song pressed in step 5 is played and its audio is output from the HU speakers\n6. The elapsed time has advanced at normal playback speed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.2.2",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-079-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall play the full 'All Songs' list starting from the selected song.\n\n(Playback continues to the next song of the list)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press \"All Songs\" and record the songs listed in the Browse List and their order\n5. Press a song that is not the last one in the list and read the song shown as playing\n6. Wait until that song finishes and read the song shown as playing",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The songs of the All Songs list and their order are recorded\n5. The song pressed in step 5 is shown as playing\n6. The song following it in the list recorded in step 4 is shown as playing",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.2.2",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

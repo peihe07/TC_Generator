@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-091",
+  "reasoning": "20.6.1（FF5.1）規定聽到清單最後一首時按 seek next，會回到目前清單的第一個項目。與 PLA-090-02 的分工：結果相同（回到第一首）但觸發不同——那條是自然播畢，本條是按鍵，spec 分列兩條條文且各有 leaf，依 §8.2.2 不合併；reasoning 互相點名。步驟必須先播到最後一首才按 seek next，否則測到的是一般的下一首行為而非循環邊界。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：屬播放清單的循環邊界，訂 P1。",
+  "keywords": [
+    "USB Folder Filtering",
+    "FF5.1",
+    "seek next",
+    "first item",
+    "wrap"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "boundary",
+    "delta": "本筆的觸發為在最後一首按 seek next，與 PLA-090-02 的自然播畢不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-091-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall navigate to the first item in the current playback list when seek next is pressed at the last item.\n\n(Seek next pressed on the last song of the list)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds songs of its own and record its own songs and their order\n5. Press the last of those songs to start playback and read the song shown as playing\n6. Press the seek next control and read the song shown as playing",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The folder's own songs and their order are recorded\n5. The last song recorded in step 4 is shown as playing\n6. The first song recorded in step 4 is shown as playing",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.6.1",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

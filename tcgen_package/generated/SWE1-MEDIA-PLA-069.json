@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-069",
+  "reasoning": "14.3.2（BT3.2）規定清單同時含資料夾與歌曲時，第一列為 'All Songs'。觸發條件是「同時含兩者」，故前置條件明確要求 USB 上同時有資料夾與根目錄歌曲——只有資料夾或只有歌曲都不符觸發，測到的會是別的情境。ER 需同時陳述首列為 All Songs 與其後仍列出資料夾，否則無法排除 All Songs 取代了整份清單。「只適用於大量儲存裝置」屬 BT3.2.1（PLA-070），本筆以 USB（大量儲存）驗證，不涉裝置類別判別。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。 跨模組分工：COM 段已涵蓋 ch14 的 14.1.x／14.2.x／14.3／14.3.1／14.4.4（Browse Tab 的進入、導航、分類清單、方向盤轉場），本 parent 屬 14.3.2 以降的清單內容規則，兩者 section 不重疊，非重複。優先級：清單首列缺失會影響瀏覽起點，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.2",
+    "All Songs",
+    "folders",
+    "songs"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-069-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'All Songs' as the first item when a list contains both folders and songs.\n\n(USB containing both folders and songs at the same level)",
+      "pre_conditions": "1. A USB drive containing at least one folder and at least one file with a valid audio format outside any folder is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank and read the first line item displayed in the Browse List\n4. Read the remaining line items displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The first line item of the Browse List is displayed as \"All Songs\"\n4. The folders on the USB drive are displayed as line items below it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

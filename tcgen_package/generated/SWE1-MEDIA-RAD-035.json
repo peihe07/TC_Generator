@@ -28,7 +28,7 @@
       "design_method": "等價劃分 (Equivalence Partitioning, EP)"
     },
     {
-      "req_id": "SWE1-MEDIA-RAD-035-02",
+      "req_id": "SWE1-MEDIA-RAD-035-01",
       "test_group": "MediaHMI",
       "test_set": "Browse Tab",
       "test_item": "The system shall initiate station scan when the user selects 'Scan' or 'All Stations' before any station scan has been completed.\n\n(Entry point: \"All Stations\" category)",

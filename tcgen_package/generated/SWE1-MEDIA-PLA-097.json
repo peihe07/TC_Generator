@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-097",
+  "reasoning": "22.3（AP3）規定插入 USB 時 HU 在背景載入音樂庫，且與 AutoPlay 設定無關。037 拆成兩個 leaf：097-01 驗背景載入本身、097-02 驗與設定無關。「背景載入」的可觀察形式是：載入期間 Browse 相關按鈕變灰（BT1.9，見 COM-070~073），完成後可正常瀏覽——這是 spec 體系內唯一能觀察到載入進行與完成的途徑，故 ER 以按鈕狀態變化判定；本筆不重複驗證 BT1.9 的變灰規則本身，只借其為載入狀態的觀察窗，reasoning 點名該依賴關係。097-02 的 regardless of setting 依 §7 需成對涵蓋：AutoPlay 開與關兩種設定下都要發生載入。與 AP2.1（PLA-094）的關係：那條規定關閉時不自動「播放」，本條規定仍會「載入」——兩者並不衝突，正是本條 regardless 要澄清的重點，reasoning 點名以免 reviewer 誤判矛盾。跨模組分工：ch22 的 leaf 分屬 PLA 與 INT 兩段——INT 段涵蓋 22.4／22.4.1／22.5（通話中連接、畫面不切換、Projection 排除，見 SWE1-MEDIA-INT-019~021），PLA 段涵蓋 22.1／22.2.x／22.3。兩段 section 不重疊，非重複；reasoning 互相點名。優先級：載入失敗會讓瀏覽功能不可用，兩筆皆 P1。",
+  "keywords": [
+    "Play Controls",
+    "AP3",
+    "music library",
+    "background",
+    "regardless of setting"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "097-01 驗背景載入發生，097-02 驗 AutoPlay 關閉時仍然載入"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-097-01",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall load the USB music library in the background when a USB device is connected.\n\n(Library load with AutoPlay ON)",
+      "pre_conditions": "1. AutoPlay is set to ON\n2. A USB drive containing a large number of files with a valid audio format is available\n3. FM is the active source on the HU and no USB device is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the USB drive to the HU USB port, press \"Media\" on Main Menu Bar and read the state of the \"Browse\" button on the Tab Buttons\n2. Wait until the HU has finished building the browse catalog and read the state of the \"Browse\" button\n3. Press \"Browse\" on the Tab Buttons and read the content displayed in the Tab Area",
+      "expected_result": "1. The Media screen is displayed and the \"Browse\" button is displayed greyed out while the library is being loaded\n2. The \"Browse\" button is displayed in an enabled state\n3. The Browse Tab is displayed and the content of the USB drive is listed in it",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-097-02",
+      "test_group": "MediaHMI",
+      "test_set": "Play Controls",
+      "test_item": "The system shall load the USB music library regardless of AutoPlay setting.\n\n(Library load with AutoPlay OFF)",
+      "pre_conditions": "1. AutoPlay is set to OFF\n2. A USB drive containing a large number of files with a valid audio format is available\n3. FM is the active source on the HU and is playing, and no USB device is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect the USB drive to the HU USB port and listen to the audio output of the HU\n2. Press \"Media\" on Main Menu Bar, select USB as the active source and press \"Browse\" on the Tab Buttons after the browse catalog has been built\n3. Read the content displayed in the Tab Area",
+      "expected_result": "1. FM audio continues to be output from the HU speakers and no audio from the USB drive is played\n2. The Browse Tab is opened for the USB source\n3. The content of the USB drive is listed in the Browse Tab, so the library was loaded even though AutoPlay was off",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_22.3",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

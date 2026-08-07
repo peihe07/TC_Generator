@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-071",
+  "reasoning": "14.3.4（BT3.4）規定大量儲存裝置上的分割區顯示為資料夾。驗證需要一顆有多個分割區的 USB，這是本條直接驗證的 spec 觸發條件，依 §8.5 exception 寫進 Pre-Condition；如何準備該裝置屬測試備料，放在 Input Test Data 而非 Pre-Condition（處置同 COM-072）。ER 需陳述每個分割區各自對應一個資料夾項目，並可進入——只確認「有資料夾」無法區分分割區與一般資料夾。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，屬其他 RD 的環境前提，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬儲存結構的呈現規則，訂 P2。",
+  "keywords": [
+    "Browse Tab",
+    "BT3.4",
+    "partitions",
+    "folders",
+    "mass storage"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-071-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display partitions on mass storage devices as folders.\n\n(USB drive carrying two partitions)",
+      "pre_conditions": "1. A USB drive with two partitions, each containing at least one file with a valid audio format, is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank and read the line items displayed in the Browse List\n4. Press the line item corresponding to the first partition and read the content displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. Each partition of the USB drive is displayed as a folder line item in the Browse List\n4. The files contained in the first partition are listed in the Browse List",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_14.3.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

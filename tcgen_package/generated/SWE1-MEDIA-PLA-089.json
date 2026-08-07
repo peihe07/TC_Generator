@@ -1,0 +1,58 @@
+{
+  "parent": "SWE1-MEDIA-PLA-089",
+  "reasoning": "20.5（FF4）規定含子資料夾（或子資料夾與歌曲）時 'All Songs' 為首列，選它會播放目前資料夾內的個別歌曲與子資料夾內容，且個別歌曲先播、再走訪子資料夾。037 拆成三個 leaf：首列位置、清單組成、播放順序。089-03 的順序依 page 32 的 All Songs selected within Rock folder 範例逐字對應（Be Quiet、We Will Rock You 兩首個別歌曲在前，隨後才是 Korn 與 Metallica 子資料夾的歌曲）。註（A-033）：此播放順序與 FB2.1（PLA-082）的顯示排序不同——顯示是資料夾優先，播放是個別歌曲優先。本 parent 的 tag 明示驗的是播放順序，避免與顯示排序混淆。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：首列位置訂 P2；清單組成與播放順序影響實際播出內容，訂 P1。",
+  "keywords": [
+    "USB Folder Filtering",
+    "FF4",
+    "All Songs",
+    "play order",
+    "subfolders",
+    "A-033"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "089-01 驗首列位置，089-02 驗播放清單組成，089-03 驗個別歌曲先於子資料夾的播放順序"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-089-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'All Songs' as the first item when a folder contains subfolders or subfolders and songs.\n\n(First line item inside a folder holding subfolders and songs)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds both songs and subfolders and read the first line item displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The first line item displayed inside that folder is \"All Songs\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-089-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall generate a playback list including both songs and subfolders when 'All Songs' is selected.\n\n(Track list composition after selecting All Songs inside a folder)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds both songs and subfolders and record its own songs and the songs held in its subfolders\n5. Press \"All Songs\", then press the first song listed to start playback, then press \"Tracks\" and read the songs listed",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The folder's own songs and the songs held in its subfolders are recorded\n5. The track list contains both the folder's own songs and the songs held in its subfolders, as recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-089-03",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall play individual songs first and then songs from subfolders when 'All Songs' is selected.\n\n(Play order, not display order, inside a folder)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds both songs and subfolders and record its own songs and the songs held in its subfolders\n5. Press \"All Songs\" and read the songs listed and their order\n6. Press the first song listed to start playback, wait until it finishes and read the song shown as playing",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The folder's own songs and the songs held in its subfolders are recorded\n5. The folder's own songs are listed before the songs held in its subfolders\n6. The song shown as playing is the other song held directly in that folder, not a song from a subfolder",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.5",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

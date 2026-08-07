@@ -29,7 +29,7 @@
       "design_method": "等價劃分 (Equivalence Partitioning, EP)"
     },
     {
-      "req_id": "SWE1-MEDIA-COM-074-02",
+      "req_id": "SWE1-MEDIA-COM-074-01",
       "test_group": "MediaHMI",
       "test_set": "Browse Tab",
       "test_item": "The system shall perform the action associated with the selected Browse list item type.\n\n(List item is not a track, selected by touch)",
@@ -42,7 +42,7 @@
       "design_method": "等價劃分 (Equivalence Partitioning, EP)"
     },
     {
-      "req_id": "SWE1-MEDIA-COM-074-03",
+      "req_id": "SWE1-MEDIA-COM-074-01",
       "test_group": "MediaHMI",
       "test_set": "Browse Tab",
       "test_item": "The system shall perform the action associated with the selected Browse list item type.\n\n(List item is a track, selected with the Browse/Enter hard control)",

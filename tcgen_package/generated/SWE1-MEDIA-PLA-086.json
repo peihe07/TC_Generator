@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-PLA-086",
+  "reasoning": "20.2（FF1）規定同一層級的所有資料夾依字母序排列。與 PLA-082-01（FB2.1，ch19）的分工：那條規範 folder browse 中三種型別的整體排序（資料夾優先且字母序），本條在 ch20 規範「同一層級」這個範圍——重點在跨層級各自排序而非全域排序，故步驟在根層與子層各驗一次，這是 PLA-082-01 未涵蓋的面向；reasoning 點名以免被視為重複。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：屬清單排序，訂 P2。",
+  "keywords": [
+    "USB Folder Filtering",
+    "FF1",
+    "alphabetical order",
+    "same level"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-086-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall sort all folders on the same level in alphabetical order.\n\n(Sorting checked at two levels)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the folder line items displayed in the Browse List and their order\n5. Press the first folder and read the folder line items displayed inside it and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The folders at the root level are displayed in alphabetical order by name\n5. The folders inside that folder are displayed in alphabetical order by name",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

@@ -969,3 +969,62 @@ This is also the second HD-Radio-specific rule with no coverage, after MPB1.7
 **Open:** RD-1 / 037 owner — should MW3.2 gain a leaf? Note that HD Radio
 coverage now has two independent holes (MW3.2 first-line format, MPB1.7 preset
 labels); ask whether HD Radio is in scope for FW036 at all.
+
+---
+
+## A-032 — FF2 says USB always auto-plays; AP2.1 says only when AutoPlay is ON
+
+**Found:** 2026-08-07, generating PLA ch20.
+
+- `20.3 (FF2)` — *"When a USB is inserted and the user has not selected a file
+  to play, the system **will automatically play all songs** on the USB stick."*
+  No condition attached.
+- `22.2.1 (AP2.1)` — *"**If AutoPlay is OFF** and the user plugs in a USB
+  device, the device **will not play automatically**."*
+
+For the case "USB inserted, nothing selected, AutoPlay OFF" the two clauses give
+opposite outcomes. Both have leaves: `SWE1-MEDIA-PLA-087-01` (FF2) and a PLA
+leaf under 22.2.1.
+
+Same shape as A-011 and A-012 — a general clause against a conditional one — and
+resolved the same way: **specific-over-general**, the canon already applied
+twice and endorsed. AP2.1 names the AutoPlay setting explicitly and belongs to
+the chapter that owns that setting (ch22 "Audio Settings - AutoPlay Setting");
+FF2 sits in a chapter about folder *filtering* and reads as describing the
+default case rather than overriding the setting.
+
+**Handling:** `SWE1-MEDIA-PLA-087-01` is generated with AutoPlay ON stated in
+its Pre-Condition, so the TC is unambiguous under either ruling — the AutoPlay
+OFF case belongs to AP2.1's own leaf. That is scope convergence, not a bet, so
+**no assumption marker** (cf. the marker criterion in `docs/framework.md`).
+
+**Open:** RD-1 — should FF2 read "…and AutoPlay is ON"? Ask together with
+A-011/A-012 as a third instance of the same drafting pattern: a general clause
+written without the qualifier that a more specific clause elsewhere applies.
+
+---
+
+## A-033 — Display order and play order differ, and only one has a leaf
+
+**Found:** 2026-08-07, reading page 32.
+
+Two orderings coexist in USB folder browse and they are not the same:
+
+- **Display order** — `19.3.1 (FB2.1)`: all folders alphabetically, then all
+  playlists alphabetically, then all songs alphabetically. Covered by
+  `SWE1-MEDIA-PLA-082-01..03`.
+- **Play order** — `20.5 (FF4)` and the page-32 examples: individual songs in
+  the current folder **first**, then the contents of its subfolders. Covered by
+  `SWE1-MEDIA-PLA-089-03`.
+
+Page 32's worked example makes the divergence concrete: for a root holding
+folders `Pop`, `Rock` and songs `Dancing`, `Get Low`, the *displayed* list is
+Pop, Rock, Dancing, Get Low — while the *play* order is Dancing, Get Low, then
+Pop's contents, then Rock's.
+
+Not a defect and not a gap — both rules have leaves. Recorded because the two
+orders are easy to conflate when reading either clause alone, and a TC that
+asserts one where the other applies would be wrong in a way that looks right.
+The generated TCs state which order they verify in the scenario tag.
+
+**Open:** none. Informational, for reviewers.

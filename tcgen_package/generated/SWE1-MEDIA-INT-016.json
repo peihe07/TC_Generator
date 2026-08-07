@@ -27,7 +27,7 @@
       "design_method": "等價劃分 (Equivalence Partitioning, EP)"
     },
     {
-      "req_id": "SWE1-MEDIA-INT-016-02",
+      "req_id": "SWE1-MEDIA-INT-016-01",
       "test_group": "MediaHMI",
       "test_set": "Audio Settings",
       "test_item": "The system shall restore the previous radio state after an ignition cycle when Auto-On Radio is set to Recall Last.\n\n(Radio was off before the ignition cycle)",

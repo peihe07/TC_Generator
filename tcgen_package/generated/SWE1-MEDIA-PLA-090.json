@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-090",
+  "reasoning": "20.6（FF5）規定資料夾最後一首播完後的行為分兩種情況：選了 All Songs 則跳到下一個資料夾的第一個檔案，使用者自選檔案播放則回到目前資料夾的第一個檔案。037 拆成兩個 leaf，兩者是不同觸發情境（§8.3），各自成一筆。兩筆都必須播到最後一首才觸發，故步驟明確選取最後一首並等待播畢——這是本條唯一的觸發方式，無法以其他操作替代。090-02 的「回到目前資料夾第一個檔案」與 FF5.1（PLA-091）的 seek next 行為結果相同但觸發不同（自然播畢 vs 按鍵），spec 分列兩條條文，reasoning 點名以免被視為重複。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition。優先級：播放續接錯誤會中斷聆聽，兩筆皆 P1。",
+  "keywords": [
+    "USB Folder Filtering",
+    "FF5",
+    "end of folder",
+    "next folder",
+    "wrap"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "090-01 為選取 All Songs 後播畢跳下一個資料夾，090-02 為自選檔案播畢回到本資料夾第一首"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-090-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall play the first file of the next folder when 'All Songs' is selected and playback reaches the end of the folder.\n\n(End of list with All Songs selected)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Record the folders displayed in the Browse List and their order\n5. Press the first folder, press \"All Songs\" and record the songs listed\n6. Press the last song listed to start playback, wait until it finishes and read the song shown as playing",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The folders and their order are recorded\n5. The songs of that folder and its subfolders are listed and recorded\n6. The song shown as playing is the first song of the folder that follows in the order recorded in step 4",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.6",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-090-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall restart playback from the first file of the current folder when a file was manually selected and playback reaches the end.\n\n(End of list with a manually selected file)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders and two songs; each folder holds two subfolders and, in one case, two songs of its own; each subfolder holds two songs\n2. USB is the active source on the HU\n3. One of the root folders holds two songs of its own in addition to its subfolders",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press the folder that holds songs of its own and record its own songs and their order\n5. Press the last of those songs to start playback and read the song shown as playing\n6. Wait until that song finishes and read the song shown as playing",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The folder's own songs and their order are recorded\n5. The last song recorded in step 4 is shown as playing\n6. The first song recorded in step 4 is shown as playing",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_20.6",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)"
+    }
+  ]
+}

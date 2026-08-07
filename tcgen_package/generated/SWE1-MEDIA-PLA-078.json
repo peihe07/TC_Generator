@@ -1,0 +1,44 @@
+{
+  "parent": "SWE1-MEDIA-PLA-078",
+  "reasoning": "19.2.1（FB1.1）規定選 All Songs 會列出目前清單中的歌曲，接著是資料夾／子資料夾內的歌曲，且不含播放清單中的歌曲。037 拆成兩個 leaf：078-01 驗清單組成與順序、078-02 驗排除播放清單歌曲。順序依 page 31 的範例（Song 9、Song 10 在前，隨後才是資料夾內的歌曲），即「目前層的歌曲優先，再走訪資料夾」，ER 據此判定而非只確認「歌曲都在」。078-02 需要一個只存在於播放清單中的歌曲作為判別基準，否則無法區分「排除」與「本來就沒有」，故前置條件明確要求該歌曲不在任何資料夾中。註（A-033）：本條談的是播放／清單內容順序，與 FB2.1（PLA-082）的顯示排序是不同的兩種順序。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：清單內容錯誤會讓使用者聽到非預期的歌曲，兩筆皆 P2。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB1.1",
+    "All Songs",
+    "playlist songs",
+    "order"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "078-01 驗清單組成與順序，078-02 驗播放清單歌曲被排除，驗證標的不同"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-078-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display a list of all songs from the current folder and its subfolders when 'All Songs' is selected.\n\n(Current-level songs listed before subfolder songs)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press \"All Songs\" and read the songs listed in the Browse List and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The two songs held in the root are listed first, followed by the songs held in the folders and the subfolder",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    },
+    {
+      "req_id": "SWE1-MEDIA-PLA-078-02",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall exclude playlist songs when displaying the 'All Songs' list.\n\n(Song present only in a playlist)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU\n3. The playlist in the root contains one song that is not stored in any folder on the drive",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Press \"All Songs\" and read the songs listed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The songs held in the folders and the subfolder are listed and the song that exists only in the playlist is not listed",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.2.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

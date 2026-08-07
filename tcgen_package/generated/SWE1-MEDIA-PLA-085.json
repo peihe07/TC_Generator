@@ -1,0 +1,31 @@
+{
+  "parent": "SWE1-MEDIA-PLA-085",
+  "reasoning": "19.4.2（FB3.2）規定每個分割區命名為 'Folder' 加上結尾字母 A 到 J。A-J 是十個字母的範圍上限，但驗證到第十個分割區需要特製裝置，屬實務上難以取得的邊界；故本筆驗證命名規則本身（依序 A、B、C）與字母隨分割區遞增這個規律，不宣稱驗證了 J 這個上限——依 §8.4 不假裝涵蓋未實際執行的邊界。上限 J 的驗證缺口記於 reasoning，供 reviewer 判斷是否需要特製測試裝置。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：屬命名規則，訂 P3。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB3.2",
+    "partition naming",
+    "Folder A",
+    "A-J"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-085-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall name partitions as 'Folder A' through 'Folder J'.\n\n(Naming sequence for the first three partitions)",
+      "pre_conditions": "1. A USB drive with three partitions, each containing at least two files with a valid audio format, is connected to the HU\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the names of the partition folder line items displayed in the Browse List and their order",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The partition folders are named \"Folder A\", \"Folder B\" and \"Folder C\", each named \"Folder\" followed by a letter advancing in alphabetical order",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.4.2",
+      "priority": "P3",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}

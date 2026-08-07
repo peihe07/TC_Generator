@@ -460,6 +460,34 @@ def test_tier_label_counter_counts_tcs_not_occurrences():
     assert lint_tcs.count_tier_labels(twice)["playing-r1high"] == 1
 
 
+def test_req_id_not_in_037_is_flagged(tmp_path):
+    """§8.2.2: several TCs may share one sub-id; inventing -02/-03 invents a requirement."""
+    f = tmp_path / "bad_ids.json"
+    f.write_text(json.dumps({"tcs": [
+        {**VALID_TC, "req_id": "SWE1-MEDIA-COM-074-01"},
+        {**VALID_TC, "req_id": "SWE1-MEDIA-COM-074-02"},
+    ]}), encoding="utf-8")
+    report = lint_tcs.lint_paths([f], TEST_SETS, {"SWE1-MEDIA-COM-074-01"})
+    assert "unknown-req-id" in rules(report.findings)
+    assert [f.req_id for f in report.findings if f.rule == "unknown-req-id"] == ["SWE1-MEDIA-COM-074-02"]
+
+
+def test_blocked_req_id_is_checked_too(tmp_path):
+    f = tmp_path / "blocked_bad.json"
+    f.write_text(json.dumps({
+        "blocked": {"reason": "r", "anomaly": "A-009", "req_ids": ["SWE1-MEDIA-COM-051-99"]},
+        "tcs": [],
+    }), encoding="utf-8")
+    report = lint_tcs.lint_paths([f], TEST_SETS, {"SWE1-MEDIA-COM-051-01"})
+    assert "unknown-req-id" in rules(report.findings)
+
+
+def test_req_id_check_is_skipped_without_the_leaf_artifact(tmp_path):
+    f = tmp_path / "any.json"
+    f.write_text(json.dumps({"tcs": [{**VALID_TC, "req_id": "WHATEVER-99"}]}), encoding="utf-8")
+    assert lint_tcs.lint_paths([f], TEST_SETS, set()).passed is True
+
+
 def test_lint_paths_reports_files_with_no_tcs(tmp_path):
     bad = tmp_path / "empty.json"
     bad.write_text(json.dumps({"unexpected": 1}), encoding="utf-8")

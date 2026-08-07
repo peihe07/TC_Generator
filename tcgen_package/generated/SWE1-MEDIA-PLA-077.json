@@ -1,0 +1,30 @@
+{
+  "parent": "SWE1-MEDIA-PLA-077",
+  "reasoning": "19.2（FB1）規定選 Folders 時，只要清單中含有子資料夾，'All Songs' 一律顯示為首列。與 PLA-069（BT3.2）的分工：那條的觸發是「同時含資料夾與歌曲」，本條是「含子資料夾」，條件不同且分屬 ch14 與 ch19 兩條條文，故非重複；reasoning 在此點名以免 reviewer 誤判。always 是 spec 的強調語，其可判定形式是「在含子資料夾的每一層都出現」，故步驟在根層與下一層各驗一次，只驗根層無法涵蓋 always。§8.5：catalog 建立狀態由 BT1.9／COM-070~073 擁有，不寫進 Pre-Condition（沿用 COM-057 的取捨）。優先級：清單首列缺失會影響瀏覽起點，訂 P2。",
+  "keywords": [
+    "USB Folder Browse",
+    "FB1",
+    "All Songs",
+    "subfolders"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-MEDIA-PLA-077-01",
+      "test_group": "MediaHMI",
+      "test_set": "Browse Tab",
+      "test_item": "The system shall display 'All Songs' as the first item when subfolders exist in the Folder browse list.\n\n(All Songs present at the root level and one level down)",
+      "pre_conditions": "1. A USB drive is connected to the HU with this structure: the root holds two folders, one playlist and two songs; the first folder holds one subfolder and two songs; the subfolder holds two songs\n2. USB is the active source on the HU",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Media\" on Main Menu Bar to open the Media screen\n2. Press \"Browse\" on the Tab Buttons to open the Browse Tab\n3. Press the Folders category in the Categories Bank\n4. Read the first line item displayed in the Browse List\n5. Press the first folder and read the first line item displayed in the Browse List",
+      "expected_result": "1. The Media screen is displayed and USB is the active source\n2. The Browse Tab is displayed in the Tab Area\n3. The folder browse list is displayed in the Browse List\n4. The first line item of the Browse List is displayed as \"All Songs\"\n5. The contents of that folder are displayed and the first line item is displayed as \"All Songs\"",
+      "specification_reference": "Media_HMI_Logic_and_Flow_R1_SR24_Post_2A_(July_25th,_2023)_19.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)"
+    }
+  ]
+}
