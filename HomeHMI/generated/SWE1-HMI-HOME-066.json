@@ -1,0 +1,65 @@
+{
+  "parent": "SWE1-HMI-HOME-066",
+  "batch": "B5",
+  "reasoning": "SNS5（outline 10.5）在 037 同時存在 parent 066 與 sub-id 066-01 / 066-02,三者皆標為 Functional Requirement。依 A-H01 裁決,066 的內容已完全分解為 -01（啟動路徑）與 -02（通知回饋）,自身無殘餘內容,故不產獨立 TC——寫一條只會與兩個子項重複追溯（§8.2.1）;但 037 既標為 Functional Requirement,完整性不變量仍要求一列,故出 placeholder。066-02 的通知本體在 PDF p.16 被明確畫為灰底佔位框「See Navigation Supplier Release for Details」,表示通知的外觀與文字由 Navigation 供應商規格持有（§8.4.2）。因此 066-02 的 ER 只主張 Home 側可觀察的事實：路徑啟動後出現了路徑已開始的通知,不主張其版面、文字或停留時間。066-01 與 066-02 的差異軸為「動作結果」與「回饋」,兩者同一次按壓觸發,但 037 已拆 sub-id,§8.2.1 勝出。優先級:啟動路徑是 navigation shortcut 存在的理由,066-01 訂 P0;通知屬回饋,訂 P2。",
+  "keywords": [
+    "navigation shortcut",
+    "SNS5",
+    "start route",
+    "notification",
+    "supplier owned"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "037 parent/sub-id decomposition",
+    "delta": "066 fully delegated (placeholder); -01 the route starts; -02 the notification is provided"
+  },
+  "coverage_notes": [
+    "The notification's appearance and wording are rendered in PDF p.16 as 'See Navigation Supplier Release for Details' — supplier-owned (§8.4.2). Only its presence is asserted."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-066",
+      "test_group": "",
+      "test_set": "",
+      "placeholder": true,
+      "test_item": "The system shall implement Start Route and Notification Feedback: SNS5.) Once a shortcut is set, pressing it will start the route and provide a notification that a route has begun.",
+      "pre_conditions": "",
+      "input_test_data": "",
+      "test_procedure": "BLOCKED - see Remarks",
+      "expected_result": "BLOCKED - see Remarks",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.5",
+      "priority": "",
+      "design_method": "",
+      "remarks": "Covered by 066-01/066-02; RD-1: reclassify 066 as Heading (A-H01)"
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-066-01",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Once a shortcut is set, pressing it shall start the route.\n\n(Navigation shortcut pressed with no route active -> a route to the shortcut's location is started)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A navigation shortcut to a saved location is set in the Shortcuts widget\n4. No route is active",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the navigation shortcut\n3. Read the route state in the Navigation application",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. A route is started\n3. The active route destination is the location set in the navigation shortcut",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.5",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-066-02",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Route Started Notification Feedback: Provide a notification that a route has begun.\n\n(Navigation shortcut pressed with no route active -> a notification stating the route has begun is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A navigation shortcut to a saved location is set in the Shortcuts widget\n4. No route is active",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the navigation shortcut\n3. Read the notification displayed on the screen",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. A route to the location set in the navigation shortcut is started\n3. A notification stating that the route has begun is displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Notification layout and wording are supplier-owned (PDF p.16 placeholder); only its presence is asserted"
+    }
+  ]
+}

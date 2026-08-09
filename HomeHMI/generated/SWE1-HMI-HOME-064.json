@@ -1,0 +1,27 @@
+{
+  "parent": "SWE1-HMI-HOME-064",
+  "batch": "B5",
+  "reasoning": "SNS3(outline 10.4)描述一段跨規格流程:Home/Work 未存過時可在 navigation 搜尋畫面搜尋、於流程結尾儲存結果、儲存後停留在 navigation 畫面。PDF p.16 把搜尋畫面與搜尋結果畫面都畫成灰底佔位框「See Navigation Supplier Release for Details」,表示這兩個畫面的版面與互動由 Navigation 供應商規格持有(§8.4.2)。因此本條的 ER 不主張搜尋畫面長相、鍵盤行為或結果清單格式,只主張 Home 側可觀察且由本規格明文承諾的三件事:未存地址時可進入搜尋畫面、搜尋結果可被儲存、儲存後仍停留在 navigation 畫面(而非彈回 Home Screen 或 shortcut 設定流程)。第三點是本條唯一與 Home 畫面流程直接相關的斷言,也是最容易被實作弄錯的一項,故程序的最後一步刻意讀取儲存後所在畫面。優先級:屬首次設定 navigation shortcut 的前置流程,訂 P1。",
+  "keywords": ["SNS3", "navigation search", "save search result", "Home address", "Work address"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id;後續「把已存地址設為 shortcut」由 065 持有"},
+  "coverage_notes": [
+    "The navigation search screen and the search result screen are rendered in PDF p.16 as 'See Navigation Supplier Release for Details' — supplier-owned (§8.4.2). Their layout and interaction are not asserted."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-064",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "SNS3.) If Home or Work addresses have not been previously saved, user shall be able to search for the addresses in the navigation search screen. At the end of the search flow, the user shall be able to save the search result. Upon saving the search result, they shall stay in the navigation screen.\n\n(Home address not previously saved -> the address can be searched and saved, and the navigation screen remains displayed afterwards)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least one empty shortcut position is available in the Shortcuts widget\n4. No Home address is saved in the Navigation application",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position and select the \"Set A Route\" category\n3. Select \"Home\" on the location selection screen\n4. Enter an address in the navigation search screen and complete the search\n5. Select \"Save\" on the search result\n6. Read the screen displayed",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The location selection screen is displayed\n3. The navigation search screen is displayed because no Home address is saved\n4. The search result for the entered address is displayed\n5. The address is saved as the Home address\n6. The navigation screen remains displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Search and result screens are supplier-owned (PDF p.16 placeholder); their layout is not asserted"
+    }
+  ]
+}

@@ -313,6 +313,57 @@ runs; RESOLVED entries record the ruling verbatim.
 - RD-1: ask upstream to split PU1274 into per-variant rows, or to state the
   base string and the substitution separately.
 
+## [A-H20] 070 / 071 are pure supplier references — RESOLVED by A-H02 precedent
+
+- `SWE1-HMI-HOME-070` (SNS9) and `-071` (SNS10) read, in full: "See Navigation
+  supplier specifications for naming of shortcuts." / "… for errors
+  notifications." Neither states any behaviour of its own.
+- Same shape as 055-03, and the A-H02 ruling is directly on point: a
+  reference-integrity TC cannot pass the §5.7 single-objective test, so no
+  independent TC is written and a placeholder row carries the traceability.
+- One difference from 055-03: that one split into sibling delegation plus an
+  external spec. These two point wholly at a single external document —
+  the Navigation supplier specification, which is not in `inputs/`. Pure
+  §8.4.2.
+- Applied as a precedent, not as a fresh ruling. Flagged for Pei to confirm
+  the extension; nothing is blocked either way, since a contrary ruling would
+  only change these two rows.
+
+## [A-H21] 037 records SNS9 at outline 10.8 instead of 10.9 — RECORDED
+
+- `SWE1-HMI-HOME-070`'s title and description are both SNS9 ("naming of
+  shortcuts"), but its HMI Source ID suffix is `_10.8`.
+- SYS1 outline **10.8 is SNS8** (the iconography rule, already owned by
+  `SWE1-HMI-HOME-069`). **SNS9 is at 10.9**, which exists in the export.
+- Disposition: 070's `spec_reference` cites **10.9**. Two fields (title,
+  description) agree against one (the source id), which is the same judgement
+  used for A-H17. The divergence is declared in the TC via
+  `spec_reference_override: "A-H21"` — `lint_tcs.py` fails any unexplained
+  mismatch, so this is recorded rather than silent.
+- RD-1: ask upstream to correct 070's HMI Source ID.
+
+## [A-H22] SNS4 does not exist in the spec — RECORDED (no action)
+
+- The SNS notes run SNS1, SNS2, SNS3, SNS3.1, **SNS5**, SNS6 … SNS10 in both
+  SYS1 and the PDF. There is no SNS4.
+- No 037 requirement traces to it and no behaviour is missing as a result —
+  recorded only so a reviewer counting SNS items does not read the gap as a
+  dropped section (the third such omission, A-H18, made that a live concern).
+
+## [A-H23] Navigation screens are supplier-owned placeholders — RECORDED
+
+- PDF p.16 renders the navigation search screen, the search result screen and
+  the route notification as grey boxes reading "See Navigation Supplier
+  Release for Details".
+- Affects `064` (search and save flow), `066-02` (route begun notification)
+  and `067` (waypoint notification): their layout, wording and timing are
+  owned by the Navigation supplier spec (§8.4.2).
+- Disposition: TCs assert only the Home-side observable facts the Home spec
+  itself commits to — that the search screen is reached, that the result can
+  be saved, that the navigation screen is retained afterwards, and that a
+  notification of the stated kind appears. No TC asserts supplier UI detail.
+  Recorded in each parent's `coverage_notes`.
+
 ---
 
 ## Assumption markers

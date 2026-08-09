@@ -1,0 +1,25 @@
+{
+  "parent": "SWE1-HMI-HOME-071",
+  "batch": "B5",
+  "reasoning": "SNS10 的全文是「See Navigation supplier specifications for errors notifications.」——與 070 同型的純參照,依 A-H02 先例出 placeholder 列,不產獨立 TC。錯誤通知的觸發條件、文字與版面全部由 Navigation 供應商規格持有,該文件不在 inputs/;PDF p.16 亦將通知畫面畫為「See Navigation Supplier Release for Details」佔位框,與此一致。本條的 HMI Source ID 後綴 _10.10 與 SYS1 的 SNS10 位置相符,無 070 的追溯偏差。",
+  "keywords": ["SNS10", "supplier specification", "error notification", "external reference"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "純外部參照,無內容"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-071",
+      "test_group": "",
+      "test_set": "",
+      "placeholder": true,
+      "test_item": "The system shall implement Error Notification Integration: SNS10.) See Navigation supplier specifications for errors notifications.",
+      "pre_conditions": "",
+      "input_test_data": "",
+      "test_procedure": "BLOCKED - see Remarks",
+      "expected_result": "BLOCKED - see Remarks",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.10",
+      "priority": "",
+      "design_method": "",
+      "remarks": "Pure external reference to the Navigation supplier specification, which is not in inputs/; no testable Home behaviour (A-H20, precedent A-H02)"
+    }
+  ]
+}

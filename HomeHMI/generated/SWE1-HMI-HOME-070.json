@@ -1,0 +1,26 @@
+{
+  "parent": "SWE1-HMI-HOME-070",
+  "batch": "B5",
+  "reasoning": "SNS9 的全文是「See Navigation supplier specifications for naming of shortcuts.」——純參照,本身不含可測行為,與 055-03 同型,依 A-H02 已建立的裁決先例處置:不產獨立 TC(參照完整性測項無法通過 §5.7 單一標的檢驗),改出 placeholder 列以滿足完整性不變量。差別在於 055-03 的參照可拆成兄弟委派與外部規格兩半,本條則整條指向單一外部文件(Navigation supplier specifications),該文件不在 inputs/,屬純 §8.4.2 案例。追溯另有一個問題:037 的 070 其 HMI Source ID 後綴為 _10.8,但 10.8 是 SNS8(圖示規則,069 已持有);SNS9 在 SYS1 位於 10.9,且 070 的 title 與 description 都是 SNS9 的內容。依 A-H17 已用過的判準——title 與內容一致而單一欄位為離群值時,離群者為缺陷——本條 spec_reference 採 10.9,並以 spec_reference_override 明示所依據的異常編號,不靜默偏離。",
+  "keywords": ["SNS9", "supplier specification", "naming", "external reference"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "純外部參照,無內容"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-070",
+      "test_group": "",
+      "test_set": "",
+      "placeholder": true,
+      "spec_reference_override": "A-H21",
+      "test_item": "The system shall implement Navigation Shortcut Naming Convention: SNS9.) See Navigation supplier specifications for naming of shortcuts.",
+      "pre_conditions": "",
+      "input_test_data": "",
+      "test_procedure": "BLOCKED - see Remarks",
+      "expected_result": "BLOCKED - see Remarks",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.9",
+      "priority": "",
+      "design_method": "",
+      "remarks": "Pure external reference to the Navigation supplier specification, which is not in inputs/; no testable Home behaviour (A-H20, precedent A-H02). Spec reference cites 10.9 (SNS9); 037 records 10.8, which is SNS8 (A-H21)"
+    }
+  ]
+}

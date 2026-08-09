@@ -1,0 +1,27 @@
+{
+  "parent": "SWE1-HMI-HOME-067",
+  "batch": "B5",
+  "reasoning": "SNS6(outline 10.6)是 SNS5 的條件分支:已有路徑時,通知改為告知該 shortcut 被加為途經點(waypoint)。與 066-02 的差異軸是既有路徑的有無——同一個按壓動作,因前置狀態不同而產生不同通知,兩者互為對照,不可合併(合併會使 ER 出現條件語句,違反單一可觀察結果)。通知本體同樣由 Navigation 供應商規格持有(PDF p.16 佔位框),故 ER 只主張通知內容指出「加為途經點」這件事實,不主張版面與字串。規格未言明既有路徑是否保留原目的地,但「waypoint」一詞本身即蘊含原路徑續存,故 ER 併同陳述原目的地仍為作用中路徑的終點——若實作改以新地點取代原目的地,本條必須失敗,這正是本條存在的理由。優先級:屬既有路徑下的行為分支,訂 P2。",
+  "keywords": ["SNS6", "waypoint", "existing route", "notification"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "existing route present", "delta": "066-02 no route active -> route begun notification; 067 route active -> added as waypoint notification"},
+  "coverage_notes": [
+    "Notification layout and wording are supplier-owned (PDF p.16 placeholder); only the fact it reports a waypoint is asserted."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-067",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Add Waypoint Logic: SNS6.) If there is already a route, the notification shall tell the customer that the shortcut was added as a waypoint.\n\n(Navigation shortcut pressed while a route is active -> the notification reports the shortcut was added as a waypoint and the original destination is retained)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A navigation shortcut to a saved location is set in the Shortcuts widget\n4. A route to a different destination is active",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the destination of the active route\n3. Select the navigation shortcut\n4. Read the notification displayed on the screen\n5. Read the destination and waypoints of the active route",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The active route destination is displayed\n3. The location set in the navigation shortcut is added to the active route\n4. A notification stating that the shortcut was added as a waypoint is displayed\n5. The original destination remains the route destination and the shortcut location is listed as a waypoint",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.6",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Notification wording is supplier-owned (PDF p.16 placeholder)"
+    }
+  ]
+}

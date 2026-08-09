@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-063",
+  "batch": "B5",
+  "reasoning": "SNS2(outline 10.3)規定「Select A Route」清單中 Home 與 Work 置頂。PDF p.16 的 SNS02 圖顯示該畫面分為 Favorites 區(Home、Work、Enter Address)與 Recents 區,故「置頂」的可觀察形式是 Home 與 Work 出現在清單最前、位於 Recents 之前。ER 必須同時陳述兩者的相對位置與其位於 Recents 之上,只寫「Home 與 Work 有顯示」不構成順序驗證。單一驗證標的,不拆。此條與 Recents 內容無關,故前置條件刻意要求已有 recent 紀錄——沒有 Recents 就無法證明置頂,清單只有兩項時順序不具鑑別力。優先級:屬清單排序的呈現規則,訂 P2。",
+  "keywords": ["SNS2", "Select A Route", "Favorites", "Home", "Work", "list order"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-063",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "SNS2.) The location selection shall have Home and Work on the top of the list.\n\n(Location selection opened with recent destinations present -> Home and Work are listed above the recent destinations)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least one empty shortcut position is available in the Shortcuts widget\n4. Home and Work addresses are saved in the Navigation application\n5. At least two recent destinations exist in the Navigation application",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position on the Shortcuts Layout screen\n3. Select the \"Set A Route\" category on the \"Select Shortcut Type\" screen\n4. Read the order of the entries on the location selection screen",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The \"Select Shortcut Type\" screen is displayed\n3. The location selection screen is displayed\n4. \"Home\" and \"Work\" are displayed at the top of the list, above the recent destinations",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

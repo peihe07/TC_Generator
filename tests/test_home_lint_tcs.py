@@ -213,6 +213,33 @@ def test_br_tag_is_rejected(tc, ctx):
     assert "br-tag" in rules(tc, ctx)
 
 
+# ----------------------------------------------------- spec-reference override
+
+def test_recorded_override_allows_a_deliberate_section_divergence(tc, ctx):
+    """037 sometimes records the wrong outline; diverging must be declared."""
+    ctx["outlines"].add("4.8.6")
+    tc["specification_reference"] = TEMPLATE.replace("{outline}", "4.8.6")
+    assert "spec-reference" in rules(tc, ctx)
+    tc["spec_reference_override"] = "A-H21"
+    assert "spec-reference" not in rules(tc, ctx)
+
+
+def test_override_must_be_an_anomaly_id(tc, ctx):
+    ctx["outlines"].add("4.8.6")
+    tc["specification_reference"] = TEMPLATE.replace("{outline}", "4.8.6")
+    tc["spec_reference_override"] = "because 037 is wrong"
+    found = rules(tc, ctx)
+    assert "spec-reference-override" in found
+    assert "spec-reference" in found, "a malformed override must not excuse it"
+
+
+def test_override_does_not_excuse_an_unresolvable_outline(tc, ctx):
+    """An outline absent from the map is still a hard failure."""
+    tc["specification_reference"] = TEMPLATE.replace("{outline}", "99.9")
+    tc["spec_reference_override"] = "A-H21"
+    assert "spec-reference" in rules(tc, ctx)
+
+
 # --------------------------------------------------------------- placeholders
 
 @pytest.fixture

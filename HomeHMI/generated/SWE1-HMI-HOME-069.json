@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-069",
+  "batch": "B5",
+  "reasoning": "SNS8(outline 10.8)劃出三個等價類別:Home 有專屬圖示、Work 有專屬圖示、其餘所有 navigation shortcut 用 pin 圖示。三類為互斥且窮盡的分割,採等價劃分於同一條 TC 取樣,不拆三條——037 未按類別拆 sub-id,Profile §4 要求不超出其粒度。ER 只主張三者的圖示彼此相異且第三類為 pin,不主張 Home 與 Work 圖示的具體形狀:規格未定義形狀,PDF p.16 的 SNS03 圖僅可見 Go Home 使用綠色定位圖示,不足以支撐形狀斷言,寫死形狀會製造無法追溯的驗收標準。優先級:屬圖示呈現規則,對功能無影響,訂 P3。",
+  "keywords": ["SNS8", "Home icon", "Work icon", "pin icon", "navigation shortcut"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,以三個等價類別取樣"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-069",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Navigation Iconography: SNS8.) Home and work have specific icons. All other shortcuts use the pin icon.\n\n(Home, Work and a third navigation shortcut set -> Home and Work each show their own icon and the third shows the pin icon)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. Home and Work addresses are saved in the Navigation application\n4. A Home shortcut, a Work shortcut and a navigation shortcut to a third saved address are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the icon displayed on the Home shortcut\n3. Read the icon displayed on the Work shortcut\n4. Read the icon displayed on the third navigation shortcut",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Home shortcut displays its own icon, which is not the pin icon\n3. The Work shortcut displays its own icon, which is neither the pin icon nor the Home icon\n4. The third navigation shortcut displays the pin icon",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.8",
+      "priority": "P3",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

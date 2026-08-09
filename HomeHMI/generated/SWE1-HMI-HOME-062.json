@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-062",
+  "batch": "B5",
+  "reasoning": "SNS1(outline 10.2)是 SNS 章的統攝句:navigation widget 讓使用者「快速」啟動到特定地點的路徑。與 066-01「按下已設定的 shortcut 會啟動路徑」高度相鄰,必須劃清界線,否則構成重複測項。界線取在規格用的「quickly」:062 驗的是可達性——從 Home Screen 的 Shortcuts widget 單次按壓即可啟動,途中不需先進入 Navigation 應用程式或任何中間選單;066-01 驗的是按壓後路徑確實啟動。因此本條的 ER 著重「未經任何中間畫面」與「仍停留在 Home Screen」,而非路徑本身的正確性。這是 framework.md Part I 記錄過的抽象葉節點模式(A-001):抽象敘述的可測內容由鄰近具體條文承擔,本條只保留自己獨有的那一面。優先級:屬 navigation shortcut 的核心價值主張,訂 P1(路徑實際啟動的 P0 由 066-01 持有,不重複計)。",
+  "keywords": ["SNS1", "navigation widget", "quick start", "single press"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "abstract vs concrete", "delta": "062 asserts one-press reachability from the widget; 066-01 asserts the route actually starts"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-062",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Navigation Quick Start: SNS1.) Navigation widgets allow the user to quickly start a route to a specific location.\n\n(Navigation shortcut pressed from the Home Screen -> the route starts directly, with no intermediate screen and without leaving the Home Screen)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A navigation shortcut to a saved location is set in the Shortcuts widget\n4. No route is active",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the navigation shortcut displayed in the Shortcuts widget\n3. Select the navigation shortcut\n4. Read the screen displayed",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The navigation shortcut is displayed with the location set in it\n3. A route to that location is started without any intermediate selection screen being displayed\n4. The Home Screen page remains displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

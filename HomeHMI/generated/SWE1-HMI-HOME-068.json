@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-068",
+  "batch": "B5",
+  "reasoning": "SNS7(outline 10.7)規定 Home/Work shortcut 一律引用 navigation 中儲存的地址,且該地址在 navigation 內被變更時 shortcut 隨之改變。這是一條參照關係而非快照關係,唯一能證明它的方式是「改一次來源、回頭看 shortcut」,故程序必須跨越 Home 與 Navigation 兩側並返回。ER 必須陳述 shortcut 啟動後的實際目的地為新地址,而非只看 shortcut 標籤——標籤可能因快取而正確、目的地卻仍指向舊地址,那正是本條要攔截的失效模式,只讀標籤會漏掉。方法採狀態轉換:驗的是來源資料變更後系統狀態的同步,而非單一功能是否存在。優先級:失效會導致使用者被導往錯誤地點,屬主要功能,訂 P1。",
+  "keywords": ["SNS7", "Home address", "Work address", "synchronization", "saved address"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-068",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "SNS7.) Home or work shortcuts shall always use the saved home and work address in navigation. If I change my home address in navigation, the shortcut should also change.\n\n(Home address changed in the Navigation application -> the Home shortcut routes to the new address)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A Home address is saved in the Navigation application\n4. A Home shortcut is set in the Shortcuts widget\n5. No route is active",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the Home shortcut\n2. Read the destination of the started route and cancel the route\n3. Change the saved Home address in the Navigation application to a different address\n4. Press \"Home\" on the Main Menu Bar and select the Home shortcut\n5. Read the destination of the started route",
+      "expected_result": "1. A route is started from the Home shortcut\n2. The route destination is the originally saved Home address and the route is cancelled\n3. The saved Home address is changed to the different address\n4. A route is started from the Home shortcut\n5. The route destination is the newly saved Home address",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.7",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}

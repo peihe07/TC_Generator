@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-065",
+  "batch": "B5",
+  "reasoning": "SNS3.1(outline 10.4.1)承接 064:剛儲存的地址可回到 Home Screen 的 Shortcuts widget 設為 shortcut。與 064 的界線在於觸發點與畫面歸屬——064 停在 navigation 畫面,本條從返回 Home Screen 起算,驗的是新存地址出現在 shortcut 的地點選擇清單中且可被設定。這一段完全在 Home 側,不涉供應商畫面,故 ER 可完整斷言。ER 必須同時陳述「該地址出現在選擇清單」與「設定後於 widget 顯示」,只寫其中一半無法區分是清單缺漏還是設定失敗。優先級:屬 navigation shortcut 的建立主流程,訂 P1。",
+  "keywords": ["SNS3.1", "recently saved address", "shortcut", "Shortcuts widget"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的;064 持有搜尋與儲存,本條持有回到 widget 設為 shortcut"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-065",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "SNS3.1) The user shall be able to go back to the home screen shortcuts widget and make their recently saved address a shortcut.\n\n(Address saved in navigation -> returning to the Shortcuts widget, that address can be set as a shortcut)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least one empty shortcut position is available in the Shortcuts widget\n4. An address has just been saved in the Navigation application",
+      "input_test_data": "",
+      "test_procedure": "1. Press \"Home\" on the Main Menu Bar and navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the edit button and select the empty shortcut position\n3. Select the \"Set A Route\" category on the \"Select Shortcut Type\" screen\n4. Read the entries on the location selection screen\n5. Select the recently saved address and select \"Done\"",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Shortcuts Layout screen is displayed in the Edit state\n3. The location selection screen is displayed\n4. The recently saved address is displayed among the selectable locations\n5. The shortcut to the recently saved address is displayed at the previously empty position in the Shortcuts widget",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_10.4.1",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

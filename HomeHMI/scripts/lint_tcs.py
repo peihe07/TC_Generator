@@ -79,6 +79,7 @@ _BRACKET_TOKEN_RE = re.compile(r"<[^>\n]{1,30}>|\[[^\]\n]{1,30}\]")
 _PU_RE = re.compile(r"\bPU\d{3,4}\b")
 _BR_TAG_RE = re.compile(r"<\s*br\s*/?\s*>", re.IGNORECASE)
 _CITATION_RE = re.compile(r"as defined by PU\d{3,4} String/Popup Message")
+_ANOMALY_RE = re.compile(r"\bA-H\d{2}\b")
 
 
 @dataclass
@@ -204,13 +205,23 @@ def _check_spec_reference(tc: dict, leaves: dict, outlines: set[str],
     req_id = str(tc.get("req_id", ""))
     leaf = leaves.get(req_id)
     home_prefix = template.split("{")[0]
+    # A TC may cite a section other than the one 037 records, but only by
+    # declaring the anomaly that authorises it (e.g. 037 pointing at the wrong
+    # outline). Silent divergence stays a hard failure.
+    override = str(tc.get("spec_reference_override", "")).strip()
+    if override and not _ANOMALY_RE.fullmatch(override):
+        add("spec-reference-override",
+            f"`spec_reference_override` must be an anomaly id (A-Hnn), "
+            f"got {override!r}")
+        override = ""
 
     if ref.startswith(LAST_MODE_REFERENCE_PREFIX):
         suffix = ref[len(LAST_MODE_REFERENCE_PREFIX):]
         if not suffix.isdigit():
             add("spec-reference",
                 f"Last Mode reference suffix {suffix!r} is not a List Item number")
-        elif leaf and leaf.get("section") and suffix != leaf["section"]:
+        elif (leaf and leaf.get("section") and suffix != leaf["section"]
+              and not override):
             add("spec-reference",
                 f"List Item {suffix} != 037 List Item {leaf['section']}")
         return
@@ -224,9 +235,12 @@ def _check_spec_reference(tc: dict, leaves: dict, outlines: set[str],
         add("spec-reference",
             f"outline {outline!r} does not resolve through "
             "spec_id_to_outline.tsv")
-    elif leaf and leaf.get("section") and outline != leaf["section"]:
+    elif (leaf and leaf.get("section") and outline != leaf["section"]
+          and not override):
         add("spec-reference",
-            f"outline {outline} != the 037 section {leaf['section']} for {req_id}")
+            f"outline {outline} != the 037 section {leaf['section']} for "
+            f"{req_id}; declare `spec_reference_override` with the anomaly id "
+            "if 037 is the one that is wrong")
 
 
 def _check_steps(tc: dict, add) -> None:
@@ -330,7 +344,6 @@ def _check_br_tags(tc: dict, add) -> None:
 
 
 PLACEHOLDER_BODY = "BLOCKED - see Remarks"
-_ANOMALY_RE = re.compile(r"\bA-H\d{2}\b")
 
 
 def _check_placeholder(tc: dict, add) -> None:
