@@ -297,6 +297,11 @@ runs; RESOLVED entries record the ruling verbatim.
   patches — a per-sentence fix leaves the next omission undetected.
   `data/spec_diff.json` compares item CODES only and cannot see a dropped
   sentence inside a section that is otherwise present.
+- Evidence that these are defects rather than deliberate filtering: in
+  chapter 11 the SYS1 export *correctly* dropped the struck-through Know & Go
+  clause from BSP2 and all of BSP5 (verified against the p.19 render, A-H04).
+  The chapter 9 sentences carry no strikethrough, so the export had no reason
+  to omit them.
 
 ## [A-H19] PU1274 String/Popup Message merges both product variants — RECORDED
 
@@ -363,6 +368,23 @@ runs; RESOLVED entries record the ruling verbatim.
   be saved, that the navigation screen is retained afterwards, and that a
   notification of the stated kind appears. No TC asserts supplier UI detail.
   Recorded in each parent's `coverage_notes`.
+
+## [A-H24] 075's title claims locking; BSP4 states only ordering — RECORDED
+
+- 037 titles `SWE1-HMI-HOME-075` "Home Screen Locking", but the requirement
+  text is BSP4 in full: "The first home screen should be the Default Home
+  Screen (HSD1) and Branded Pages should follow." Nothing about locking,
+  nothing about forbidding a reorder.
+- The title's natural reading — that the user cannot move a branded page
+  ahead of the Default Home Screen — matters, because HSD7 does let the user
+  reorder pages. If that constraint exists, 075 is the only place it could
+  live, and it is not written down.
+- Disposition: 075 tests the stated ordering only. No reorder attempt is
+  included; asserting an undefined constraint would invent a requirement.
+- RD-1: ask whether a reorder lock is intended. If yes it needs its own
+  requirement text, and a TC becomes writable — this is a coverage gap that
+  a green lint cannot detect, exactly the failure mode framework.md Part I
+  records.
 
 ---
 

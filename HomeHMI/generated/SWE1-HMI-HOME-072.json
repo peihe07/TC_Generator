@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-072",
+  "batch": "B6",
+  "reasoning": "BSP1(outline 11.2)規定品牌頁的 widget 一律成對且為 50/50 尺寸。可觀察形式是:品牌頁上恰好兩個 widget、各佔一半、無 25% 尺寸。ER 必須同時陳述數量與尺寸,只寫「顯示兩個 widget」無法排除 50/25/25 這種同樣是兩欄但尺寸不符的版面。p.19 的 SRT 與 TRX 圖例(Timers + SRT Gauges、Pitch/Roll + Performance Gauges)即為此規則的呈現。規格只規範既有版面,未言明使用者能否在品牌頁上改成其他尺寸,故不加入編輯步驟——那會斷言規格未主張的行為。單一驗證標的,不拆。優先級:屬品牌頁的版面基本約束,失效即版面錯誤,訂 P1。",
+  "keywords": ["BSP1", "brand specific page", "50/50 widgets", "layout"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-072",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "BSP1.) Widgets shall be in pairs of 50/50 sizes only.\n\n(Brand specific page displayed -> it carries exactly two widgets, each occupying 50% of the page)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a brand specific Default Page\n3. The brand specific page is present on the Home Screen",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the brand specific Home Screen page\n2. Read the number of widgets displayed on the page\n3. Read the size of each widget displayed on the page",
+      "expected_result": "1. The brand specific Home Screen page is displayed\n2. Exactly two widgets are displayed on the page\n3. Each of the two widgets occupies 50% of the page and no 25% widget is displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_11.2",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

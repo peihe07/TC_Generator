@@ -260,7 +260,7 @@ the Home workbook (Profile §2).
 | Shortcut Actions | 061 | SW7, SW7.1 (actions table) | remaining |
 | Navigation Shortcuts | 062~071 (incl. 066/-01/-02) | SNS1~SNS10 | remaining |
 | Brand Pages | 072, 073, 074 | BSP1, BSP2, BSP3/BSP4 | remaining |
-| Screen Locking | 075 | (section pending — resolve at batch time) | remaining |
+| Screen Locking | 075 | BSP4 (outline 11.5) | remaining |
 | Last Mode | 076~090 | Last Mode Table L&F List Items 1~331 (external spec, §8.4.2) | remaining |
 
 Ruled by Pei 2026-08-09: **020/021 attribute to CarPlay Template**, not

@@ -1,0 +1,27 @@
+{
+  "parent": "SWE1-HMI-HOME-075",
+  "batch": "B6",
+  "reasoning": "BSP4(outline 11.5)規定第一個 home screen 為 Default Home Screen(HSD1),品牌頁接續其後。037 給本條的 title 是「Home Screen Locking」,但 BSP4 的內文只講順序,完全沒有提到鎖定或禁止重排——title 蘊含的「使用者不能把品牌頁移到第一頁」是規格從未主張的行為(A-H24)。本條因此只驗規格明文承諾的順序:第一頁為 Default Home Screen,品牌頁在其後。不加入重排嘗試步驟,那會斷言未定義行為;若確實存在鎖定約束,它需要自己的需求條目,已列為 RD-1。與 074 的界線:074 驗多個品牌頁彼此之間的先後,本條驗 Default Home Screen 與品牌頁之間的先後,兩者觀察對象不同,不重複。優先級:第一頁是開機後的落點,屬核心版面約束,訂 P1。",
+  "keywords": ["BSP4", "Default Home Screen", "HSD1", "branded pages", "page order"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "ordering scope", "delta": "074 orders brand pages among themselves; 075 orders the Default Home Screen ahead of all brand pages"},
+  "coverage_notes": [
+    "037's title says 'Home Screen Locking' but BSP4 states only an ordering rule; no reorder constraint is asserted (A-H24)."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-075",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Home Screen Locking: BSP4.) The first home screen should be the Default Home Screen (HSD1) and Branded Pages should follow.\n\n(Vehicle equipped with a brand specific Default Page -> the first Home Screen page is the Default Home Screen and the brand page follows it)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a brand specific Default Page\n3. The Home Screen configuration is at factory default",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen\n2. Read the first Home Screen page\n3. Swipe to the next Home Screen page and read it",
+      "expected_result": "1. The Home Screen is displayed\n2. The first Home Screen page is the Default Home Screen\n3. The brand specific page is displayed after the Default Home Screen page",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_11.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "037 titles this leaf 'Home Screen Locking' but BSP4 states ordering only; no reorder lock is asserted (A-H24)"
+    }
+  ]
+}

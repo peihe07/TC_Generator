@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-074",
+  "batch": "B6",
+  "reasoning": "BSP3(outline 11.4)規定車輛具備多個 Default Page 時,品牌頁依「上表由上而下」的順序加入。順序的權威是 outline 11.1 的 Default Pages 表:1 RU、2 RAM、3 SRT、4 Jeep、5 EV、6 TRX。可觀察形式是兩個以上品牌頁的相對先後,故前置條件必須要求車輛同時具備至少兩個 Default Page(例如同時符合 RAM 與 EV 的車型),只有一個品牌頁時順序不具鑑別力。ER 陳述的是相對順序而非絕對頁碼,因為絕對頁碼還受 BSP4(第一頁為 Default Home Screen)與使用者自建頁數影響,寫死頁碼會讓本條在無關變更下失敗。方法採狀態轉換不適用——這是靜態排序而非狀態遷移,採功能測試。優先級:屬多品牌車型的版面排序,訂 P2。",
+  "keywords": ["BSP3", "Default Pages", "brand page order", "chart order"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-074",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Multi-Page Stack Order: BSP3.) If multiple Default Pages are available in a vehicle, multiple brand pages should be added in order from top to bottom (of the chart above).\n\n(Vehicle equipped with two Default Pages -> the brand pages appear in the order given by the Default Pages chart)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with two brand specific Default Pages that occupy different rows of the Default Pages chart\n3. Both brand specific pages are present on the Home Screen",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen\n2. Swipe through the Home Screen pages and read each brand specific page in the order it appears\n3. Compare the order of the two brand specific pages with the Default Pages chart order",
+      "expected_result": "1. The Home Screen is displayed\n2. Both brand specific pages are displayed, each on its own Home Screen page\n3. The brand specific page from the higher chart row is displayed before the brand specific page from the lower chart row",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_11.4",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

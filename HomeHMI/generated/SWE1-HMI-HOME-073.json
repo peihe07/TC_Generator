@@ -1,0 +1,27 @@
+{
+  "parent": "SWE1-HMI-HOME-073",
+  "batch": "B6",
+  "reasoning": "BSP2(outline 11.3)規定:designated pairing 中的品牌 widget 不可用時,顯示帶 + 的 template。依 A-H04 裁決,PDF 中該句尾的「, or populate with the Know & Go Hub widget」有刪除線,BSP5 全系列亦然,一律不在範圍內;本批已目視確認 p.19 的刪除線,且 SYS1 匯出的 11.3 已正確排除該子句——匯出端與裁決一致,無須額外處置。因此 ER 只主張帶 + 的空 template,不提 Know & Go Hub。ER 必須同時陳述「可用的那一側正常顯示品牌 widget」與「不可用的那一側顯示帶 + 的 template」,只寫後者無法區分是 fallback 生效還是整頁失效。選用 RAM 頁作為情境,因為圖表已明列其右側 Shortcuts 的預填內容與未配備時的處理,配備差異最容易建立。優先級:屬品牌頁在配備不全時的降級路徑,訂 P2。",
+  "keywords": ["BSP2", "brand widget", "fallback", "template with plus", "A-H04"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "coverage_notes": [
+    "The Know & Go Hub population path (struck through in PDF p.19 and absent from SYS1 11.3) is out of scope per A-H04."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-073",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "BSP2.) If a brand specific widget in designated pairing isn't available, a template with + shall display.\n\n(One widget of the designated brand pairing unavailable on the vehicle -> that side displays a template with a plus symbol)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a brand specific Default Page\n3. One widget of the designated pairing for that brand page is not available on the vehicle\n4. The other widget of the designated pairing is available",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the brand specific Home Screen page\n2. Read the widget displayed on the side whose brand widget is available\n3. Read the widget area displayed on the side whose brand widget is not available",
+      "expected_result": "1. The brand specific Home Screen page is displayed\n2. The available brand specific widget is displayed on its designated side\n3. The side whose brand widget is not available displays a template with a plus symbol",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_11.3",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Know & Go Hub population path excluded as struck-through source text (A-H04)"
+    }
+  ]
+}
