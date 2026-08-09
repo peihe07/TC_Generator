@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-076",
+  "batch": "B7",
+  "reasoning": "List Item 1 的行為是「Return to last active Home Screen page」,不是回到第一頁,因此程序刻意停在第三頁後才進入 deep sleep。表中另註明 FPDM 在所有適用操作中跟隨主機的 last mode 行為,該註記涉及乘客顯示器,屬另一顯示裝置,本條不擴充斷言。優先級:開機後的落點是使用者每次上車都會遇到的核心行為,訂 P0。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 1",
+    "Home Screen",
+    "deep sleep"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Radio powered off into deep sleep and powered on again -> the last active Home Screen page is restored"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-076",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Deep Sleep to Radio On Last Mode: from Radio Off (deep sleep or Suspend to RAM) to Radio On, return to the last active Home Screen page.\n\n(Radio powered off into deep sleep and powered on again -> the last active Home Screen page is restored)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Turn the radio off so that the system enters deep sleep\n3. Turn the radio on\n4. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The radio is off and the system has entered deep sleep\n3. The radio is on and the Home Screen is displayed\n4. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_1",
+      "priority": "P0",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}

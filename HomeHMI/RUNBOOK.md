@@ -187,8 +187,49 @@ Same contract as Media RUNBOOK Step 2. Home-specific holds:
 Batch order: B1 pilot (5 leaves, CarPlay Template) → Pei review → B2→B6 → B7.
 B7 is last only because its extraction artifact is the newest, not because it
 is blocked.
+
+**Status 2026-08-09: Step 2 COMPLETE.** All 62 leaves generated, 72 TCs
+(1.16 TC/leaf) including 4 placeholder rows, lint clean.
+
+| Batch | Leaves | TCs | Notes |
+|---|---|---|---|
+| B1 CarPlay Template | 5 | 9 | |
+| B2 Shortcuts Edit | 10 | 10 | |
+| B3 Shortcuts Lockout + Exclusion | 9 | 9 | 055-03 placeholder (A-H02) |
+| B4 Shortcut Availability + Actions | 7 | 13 | 061 = 7 TCs over the SW7 table |
+| B5 Navigation Shortcuts | 12 | 12 | 066 / 070 / 071 placeholders |
+| B6 Brand Pages + Locking | 4 | 4 | |
+| B7 Last Mode | 15 | 15 | cites the Last Mode file name (A-H03) |
+
+Priority spread P0/P1/P2/P3 = 10/37/19/2. Design methods: Functional 35,
+State Transition 14, Equivalence Partitioning 13, Decision Table 3,
+Negative 3 — the done region used Functional exclusively, so the other four
+are new to this workbook and are the first thing to check in review
+(Profile §3.3 assigns per §12 truthfully rather than matching precedent).
 Model: Opus 4.8 for B1/B5/B6 (layout judgement, external-ref density);
 Sonnet 4.6 acceptable for B2–B4 (templated, strong HSS exemplars).
+
+## Pilot gate — PASSED (Pei, 2026-08-09) — pre-write-back tasks
+
+Reviewed in chat: B1 complete + stratified samples across B3–B7 (11 parents,
+20 TCs). Full record in ANOMALIES.md (pilot gate entry). Verdict: PASS with
+one corpus-wide mechanical correction. The earlier "lint clean" predates the
+A-H10 amendment, so lint must be re-run after:
+
+1. **A-H10 amendment correction (corpus-wide)**: `Press <OK>` → `Press "OK"`
+   etc. — PU tokens in the author's own prose (procedure press-targets,
+   non-quoting ER lines) become double-quoted labels, matching Arif rows
+   44/45. Verbatim-quote ER segments (`... as defined by PUxxxx ...`) and
+   `test_item` keep PU notation.
+2. **Narrow the `popup-token` gate to the amended scope** and add the
+   matching negative test.
+3. Re-run lint → green.
+4. write_back.py per Step 4, tests first; `--dry-run` diff summary reviewed
+   by Pei before `--write`.
+
+Priority/design-method distributions and the placeholder set
+{055-03, 066, 070, 071} are confirmed against the review expectations.
+A-H25 records the inherited "(more than 8)" speed constant.
 
 ## Step 3 — Lint (hard gate)
 
@@ -241,13 +282,18 @@ INTERLEAVED between done segments, so:
    into `data/row_segments.json` (`ordered_content_hash`).
 3. Segment order invariant: Arif segment 1 < regen 1 < Arif 2 < regen 2 <
    Arif 3 < regen 3.
-4. Re-emit B (=ROW()-9) and F formulas on every row below the first edit.
+4. Re-emit the B (`=ROW()-9`) formula on every data row. **Column F carries
+   no formula in this workbook** — it is blank on all 229 rows, unlike Media
+   where it holds a TC ID formula. Do not invent one.
 5. Column mapping (1-based, verified): D=req_id, G/H=blank, I=test_item,
    J=pre_conditions, K=input_test_data, L=test_procedure, M=expected_result,
    N=spec_reference, O=`NEW`, P=priority, Q=design_method, R=`NA`,
-   S–Y=vehicle flags, Z=author(`PeiPYHsu`), **AG=Remarks** (verified against
-   header row 9 — Media's AH lesson: dropping it silently drops all
-   BLOCKED/anomaly notes).
+   Z=author(`PeiPYHsu`), **AG=Remarks** (verified against header row 9 —
+   Media's AH lesson: dropping it silently drops all BLOCKED/anomaly notes).
+   **S–Y (vehicle flags) stay BLANK**: they are empty on all 229 existing
+   rows, Arif's and draft alike. Media writes 1 there; copying that would
+   introduce a value this workbook has never carried. C, E and F are likewise
+   blank throughout.
 6. Traceability / completeness invariants as Media, with one scoping change:
    every req_id ∈ 037 applies to **regen rows only** — Arif's rows 129–130
    trace to 035, which 037 omits (A-H06). Regen leaves == 62 exactly;
@@ -255,8 +301,20 @@ INTERLEAVED between done segments, so:
    SHA256.
 7. Do NOT touch Arif's 13 blank-priority rows (A-H05 — recorded, not fixed).
 
-Extend `tests/test_write_back.py`: interleaved-segment fixture + content-hash
-invariant + idempotency.
+`scripts/write_back.py` implements this. Dry run by default; `--write`
+produces `output/<source name>.xlsx` plus a `.sha256` sidecar, after
+normalising zip timestamps and `dcterms` dates so the digest is reproducible.
+
+One trap found while building it: build_remaining identifies the done region
+as "author is non-empty", which is only true of the pristine workbook — after
+write-back the regen rows carry `PeiPYHsu` too. The hash must select on
+`done_region.author_value` instead, or the invariant compares the wrong set of
+rows and fails on a correct write. `tests/test_home_write_back.py` pins this.
+
+Tests: `tests/test_home_write_back.py` — segment assignment (including the two
+leaves with no draft row), placeholder cell guards, the content-hash selector,
+and an integration dry run asserting the hash, the leaf count, the segment
+order and determinism.
 
 ## Step 5 — Delivery
 

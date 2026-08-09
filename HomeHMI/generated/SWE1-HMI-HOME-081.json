@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-081",
+  "batch": "B7",
+  "reasoning": "List Item 181 是本批中唯一結果不是 Maintain 或 Return 的一條:以 VR 撥號且畫面上沒有 Home widget 或 shortcut 時,系統主動切換到 Phone Current Call/Call Tab。前置條件必須明確排除 Phone widget 與 Make a Call shortcut,否則落入 082 的情境(Maintain),兩條會互相污染。ER 斷言離開 Home Screen 並顯示 Phone 通話畫面;該畫面的版面由 Phone 規格持有,故不描述其內容。優先級:訂 P1。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 181",
+    "Home Screen",
+    "VR call"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Call placed by voice recognition with no Phone widget or Make a Call shortcut present -> the Phone Current Call screen is displayed"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-081",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement VR Call Last Mode: when a phone call is placed via VR with no Home Screen widget or Shortcut involved, go to the Phone Current Call or Call Tab.\n\n(Call placed by voice recognition with no Phone widget or Make a Call shortcut present -> the Phone Current Call screen is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed\n5. A phone is paired and connected\n6. No Phone widget and no Make a Call shortcut are present on any Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Place a phone call using voice recognition\n3. Read the screen displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The call is placed to the requested contact\n3. The Phone Current Call screen is displayed and the Home Screen is no longer displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_181",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}

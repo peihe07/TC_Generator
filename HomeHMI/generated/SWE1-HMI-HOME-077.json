@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-077",
+  "batch": "B7",
+  "reasoning": "List Item 35 列出兩個可互換的觸發:「Radio Off(未進入睡眠)→ Radio On」與「Passenger Display 關閉 → 開啟」,結果同為 Maintain Mode,屬等價類別,於同一條 TC 各取樣一次,不拆兩條。與 076 的差異軸是是否進入睡眠:076 進入 deep sleep 後為 Return to last active page,本條未進入睡眠故為 Maintain Mode,兩條並列才能證明實作有區分。優先級:屬電源狀態切換的次要路徑,訂 P1。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 35",
+    "Home Screen",
+    "screen off"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Radio switched off without entering sleep and switched on again -> the displayed screen is maintained"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-077",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Screen Off to On Last Mode: from Radio Off without entering sleep mode to Radio On, or from Power Off on the Passenger Display to Power On, maintain mode.\n\n(Radio switched off without entering sleep and switched on again -> the displayed screen is maintained)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed\n5. The vehicle is equipped with a Passenger Display",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Turn the radio off without allowing the system to enter sleep mode\n3. Turn the radio on and read the Home Screen page displayed\n4. Turn the Passenger Display off and turn it on again\n5. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The radio is off and the system has not entered sleep mode\n3. The third Home Screen page is displayed\n4. The Passenger Display is turned off and on again\n5. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_35",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

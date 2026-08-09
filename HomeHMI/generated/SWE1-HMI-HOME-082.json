@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-082",
+  "batch": "B7",
+  "reasoning": "List Item 182 列出兩個可互換的撥號來源:Home Screen widget(Favorites 或 Recent)與 Make a Call shortcut,結果同為 Maintain Mode,屬等價類別,於同一條 TC 各取樣一次。與 081 的差異軸即為撥號來源是否來自 Home Screen:有 widget/shortcut 時停留,無時切換至 Phone 畫面。兩條必須並存,單獨任一條都無法證明系統有做出區分。優先級:訂 P1。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 182",
+    "Home Screen",
+    "widget call"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Call placed from the Phone widget and from a Make a Call shortcut -> the Home Screen page remains displayed"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-082",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Widget or Shortcut Call Last Mode: when a call is made from the Home Screen widgets or a Make a Call shortcut, maintain mode.\n\n(Call placed from the Phone widget and from a Make a Call shortcut -> the Home Screen page remains displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. A Phone widget and a Make a Call shortcut are present on the third Home Screen page\n5. The third Home Screen page is displayed\n6. A phone is paired and connected",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Place a call from a contact in the Phone widget\n3. Read the Home Screen page displayed and end the call\n4. Place a call from the Make a Call shortcut\n5. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The call to the selected contact is placed\n3. The third Home Screen page is displayed and the call is ended\n4. The call from the Make a Call shortcut is placed\n5. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_182",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

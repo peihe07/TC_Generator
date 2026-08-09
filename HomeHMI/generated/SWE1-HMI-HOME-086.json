@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-086",
+  "batch": "B7",
+  "reasoning": "List Item 236 適用於 Disc、USB(AutoPlay ON)、SD、AUX 四種來源,屬等價類別,取樣 USB 與 SD,不爆成四條。本條的行為欄同時要求三件事:維持目前頁、Media widget 內容更新(若有)、播放連接裝置的音訊,三者為同一觸發的連帶結果,依 §5.7 併為一條、多行 ER。ER 必須同時陳述頁次未變與 widget 已更新——只寫其中一半無法區分是 last mode 正確還是 widget 根本沒反應。前置條件要求第三頁上有 Media widget,否則「update media widget content if available」無從觀察。優先級:訂 P1。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 236",
+    "Home Screen",
+    "AutoPlay on"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Media device connected with AutoPlay on -> the Home Screen page is maintained, the Media widget updates and audio plays from the device"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-086",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Device Connected Last Mode with AutoPlay on: maintain the current Home Screen page, update the media widget content if available, and play audio from the connected device.\n\n(Media device connected with AutoPlay on -> the Home Screen page is maintained, the Media widget updates and audio plays from the device)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. A Media widget is present on the third Home Screen page\n5. The third Home Screen page is displayed\n6. AutoPlay is set to on",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed and the content of the Media widget\n2. Connect a USB device containing audio files\n3. Read the Home Screen page displayed and the content of the Media widget\n4. Disconnect the USB device and connect an SD card containing audio files\n5. Read the Home Screen page displayed and the content of the Media widget",
+      "expected_result": "1. The third Home Screen page is displayed and the Media widget shows the previous source\n2. The USB device is connected and audio from the USB device is playing\n3. The third Home Screen page is displayed and the Media widget shows the USB source\n4. The SD card is connected and audio from the SD card is playing\n5. The third Home Screen page is displayed and the Media widget shows the SD source",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_236",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

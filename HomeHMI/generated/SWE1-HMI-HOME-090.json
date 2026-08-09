@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-090",
+  "batch": "B7",
+  "reasoning": "List Item 331 的觸發是方向燈啟動的盲點攝影中斷後取消。與 089 同為攝影中斷取消的 Maintain Mode,差異軸為中斷來源(倒車檔 vs 方向燈),兩條各有 List Item,不合併。ER 只斷言中斷顯示、解除與落點頁次;盲點畫面內容由 Camera 規格持有。優先級:方向燈觸發的中斷持續時間短且發生於行車中,影響小於倒車,訂 P2。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 331",
+    "Home Screen",
+    "blind spot camera"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Turn signal activated then cancelled from a Home Screen page -> that Home Screen page is restored"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-090",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Blind Spot Camera Interrupt Cancel Last Mode: when the turn signal activated blind spot view interrupt is cancelled, maintain mode.\n\n(Turn signal activated then cancelled from a Home Screen page -> that Home Screen page is restored)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed\n5. The vehicle is equipped with a turn signal activated blind spot camera view",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Activate the turn signal\n3. Cancel the turn signal\n4. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The blind spot camera view interrupts the display\n3. The blind spot camera view is cancelled\n4. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_331",
+      "priority": "P2",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}

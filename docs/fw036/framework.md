@@ -59,6 +59,32 @@ Worked examples of each:
   label requirements as a layout requirement, so they generate nothing and go
   to the tracker instead.
 
+## The three-layer gate: lint, human review, done region as arbiter
+
+Carried forward from the Home run (2026-08-09) and intended to be reused
+as-is on the next feature. The layers catch different classes of defect and
+none of them substitutes for another:
+
+1. **`lint_tcs.py` catches mechanical deviation** — malformed references,
+   step/ER mismatches, illegal dropdown values, unexplained divergence from
+   037. Cheap, exhaustive, and runs on every batch.
+2. **Human review catches judgement deviation** — scope, splitting, whether a
+   TC's objective is the one the requirement actually asserts. The Home pilot
+   review found a real defect (bracket-token notation, A-H10) inside a corpus
+   that was already lint-clean. No rule would have surfaced it, because the
+   question was "which notation is authoritative here", not "is this
+   well-formed".
+3. **The done region arbitrates** — when layers 1 and 2 disagree, or when a
+   rule is proposed on intuition, the frozen human-authored rows are the
+   evidence. Two Home rulings were *reversed* by measuring them: the
+   trailing-period rule (28% of lines, so not a convention — A-H11) and the
+   Input Test Data convention (blank, not `NA`). Both would have shipped as
+   plausible-sounding rules had they not been checked against the corpus.
+
+The practical instruction: **do not add a lint rule from intuition.** Measure
+it against the done region first, and if the region contradicts it, record the
+measurement rather than the rule.
+
 ## Lint being green does not mean traceability is correct
 
 Row-level linting checks each TC against the writing rules. It structurally

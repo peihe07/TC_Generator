@@ -163,6 +163,7 @@ runs; RESOLVED entries record the ruling verbatim.
 - Recorded in `docs/fw036/framework.md` Part II Layer 2/3 table.
 
 ## [A-H10] Pop Up List control tokens vs the bracket-label ban — LINT RULE
+(amended 2026-08-09 at pilot review)
 
 - Media's linter bans `[...]` and `<...>` in TC text, requiring `"..."` for UI
   labels. Home's done region uses both: 20 of Arif's 144 rows contain tokens
@@ -178,6 +179,14 @@ runs; RESOLVED entries record the ruling verbatim.
   requirement may also name a popup that a given TC does not exercise
   (034-01 tests the allowed swap, not the popup).
 - Same family as A-H08: quoted source text is not the author's prose.
+- **Pilot-review amendment (Pei, 2026-08-09): the exemption covers ONLY
+  verbatim-quote segments in ER (e.g. `with the <OK> and <X> controls, as
+  defined by PU1291 String/Popup Message`) and `test_item`. The author's own
+  instructions — procedure press-targets and non-quoting ER prose — use
+  double-quoted labels per the done region's own precedent (rows 44/45:
+  `Press "OK" button to close the popup`). Corpus correction applied:
+  `Press <OK>` → `Press "OK"` etc. across all generated TCs; lint enforces
+  the narrowed scope.**
 
 ## [A-H11] Media's trailing-period rule does not apply to Home — RECORDED
 
@@ -385,6 +394,28 @@ runs; RESOLVED entries record the ruling verbatim.
   requirement text, and a TC becomes writable — this is a coverage gap that
   a green lint cannot detect, exactly the failure mode framework.md Part I
   records.
+
+## [A-H25] Done region's speed value "(more than 8)" is an unsourced constant — RECORDED
+
+- Arif rows 44/45 (and the pilot-following 052-01/-02) write `Set the vehicle
+  speed above 0 (more than 8)`. No Home spec section states a numeric speed
+  threshold — HSD4 says only "when the speed threshold is reached".
+- The generated TCs correctly follow the done-region wording (style
+  authority); the "8" is inherited, not fabricated by generation. Its unit
+  and origin (bench convention? vehicle config?) are undocumented.
+- Recorded so a reviewer does not read the number as spec-sourced. RD-1
+  candidate only if a tester needs the authoritative threshold.
+
+---
+
+## Pilot gate — PASSED (Pei, 2026-08-09)
+
+- Scope reviewed: B1 complete (020/021/032/033/034) + stratified samples
+  052 (B3), 059 (B4), 066+070 (B5), 075 (B6), 081 (B7) — 11 parents, 20 TCs.
+- Verdict: PASS with one corpus-wide mechanical correction (A-H10 amendment,
+  popup control notation) before lint. Write-back unlocks after: correction
+  applied → lint green → dry-run diff reviewed.
+- Retroactive ratifications included: A-H03, A-H09, A-H20 dispositions.
 
 ---
 

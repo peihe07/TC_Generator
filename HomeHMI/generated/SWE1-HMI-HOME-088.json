@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-088",
+  "batch": "B7",
+  "reasoning": "List Item 279 適用於 Disc、USB、SD、AUX,屬等價類別,取樣 USB 與 SD。觸發條件為「使用中被移除或來源被中斷」,故前置條件要求該來源正在播放——未在使用中拔除不構成本條的觸發。ER 只斷言 Home Screen 頁次維持不變;來源中斷後媒體端的行為(切換來源或停止播放)由 Media HMI Logic & Flow 持有,屬 §8.4.2,不在此斷言。優先級:訂 P2。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 279",
+    "Home Screen",
+    "device disconnected"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Media device disconnected while playing -> the Home Screen page is maintained"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-088",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Media Device Disconnected Last Mode: when the device is disconnected or the source is interrupted while in use, maintain mode.\n\n(Media device disconnected while playing -> the Home Screen page is maintained)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed\n5. A USB device containing audio files is connected and playing",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Disconnect the USB device while it is playing\n3. Read the Home Screen page displayed\n4. Connect an SD card containing audio files, start playback and disconnect the SD card while it is playing\n5. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The USB device is disconnected\n3. The third Home Screen page is displayed\n4. The SD card is disconnected while playing\n5. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_279",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

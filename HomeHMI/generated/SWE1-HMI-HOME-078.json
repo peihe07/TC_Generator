@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-078",
+  "batch": "B7",
+  "reasoning": "List Item 64 的示例明寫「離開 Home 類別(前往一個以上其他類別)後返回 Home 類別」,因此程序刻意經過兩個不同類別再返回,單一類別往返無法涵蓋「one or more other categories」。行為為 Return to last active Home Screen page,ER 斷言第三頁而非第一頁。這是本批中使用者觸發頻率最高的一條——每次切到 Media 或 Nav 再回來都會發生。優先級:訂 P0。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 64",
+    "Home Screen",
+    "category transition"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Home Screen category left for other categories and returned to -> the last active Home Screen page is restored"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-078",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Category Transition Return Last Mode: after going to another mode and back to the last mode, return to the last active Home Screen page.\n\n(Home Screen category left for other categories and returned to -> the last active Home Screen page is restored)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Press \"Media\" on the Main Menu Bar\n3. Press \"Nav\" on the Main Menu Bar\n4. Press \"Home\" on the Main Menu Bar\n5. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The Media screen is displayed\n3. The Navigation screen is displayed\n4. The Home Screen is displayed\n5. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_64",
+      "priority": "P0",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-079",
+  "batch": "B7",
+  "reasoning": "List Item 155 列出兩種取消來電中斷的方式:拒接、以及在接起前讓來電停止,結果同為 Maintain Mode,屬等價類別,於同一條 TC 各取樣一次。Maintain Mode 的語意是回到中斷發生前所在的畫面,故 ER 斷言第三頁。與 083/084/085 的差異在於本條的通話從未接通,那三條是通話結束後的行為。優先級:來電中斷是行車中的常見事件,訂 P1。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 155",
+    "Home Screen",
+    "phone interrupt"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "Incoming call rejected, and stopped before pickup -> the Home Screen page displayed before the interrupt is maintained"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-079",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Phone Interrupt Cancel Last Mode: when a phone interrupt is cancelled, maintain mode.\n\n(Incoming call rejected, and stopped before pickup -> the Home Screen page displayed before the interrupt is maintained)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. The third Home Screen page is displayed\n5. A phone is paired and connected",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed\n2. Place an incoming call to the connected phone and reject it from the head unit\n3. Read the Home Screen page displayed\n4. Place a second incoming call and stop it from the calling device before it is answered\n5. Read the Home Screen page displayed",
+      "expected_result": "1. The third Home Screen page is displayed\n2. The incoming call is rejected and the phone interrupt is cancelled\n3. The third Home Screen page is displayed\n4. The second incoming call stops before being answered\n5. The third Home Screen page is displayed",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_155",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

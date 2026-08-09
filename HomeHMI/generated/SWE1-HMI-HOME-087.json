@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-087",
+  "batch": "B7",
+  "reasoning": "List Item 261 只適用 USB(AutoPlay OFF),與 086 構成 AutoPlay 開關的對照:開啟時更新 widget 並播放,關閉時僅維持模式。ER 因此必須明確斷言「未開始播放」——若只寫「頁面未變」,一個錯誤地自動播放的實作仍會通過,而那正是 AutoPlay 設定失效的典型徵狀。兩條並存才構成對 AutoPlay 設定的有效驗證。優先級:屬設定關閉時的行為分支,訂 P2。\n\nB7 全批的 spec_reference 依 A-H03 裁決採實際檔名 `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,後綴 {n} 為 Last Mode Table 分頁的 List Item 編號,而非 outline number。037 引用的版本標籤為 R1L-R,已裁定為同一份文件的不同標籤寫法。\n\n本批共通的測試設計要點:Last Mode Table 的兩種結果語意不同,必須測得出差異——「Maintain Mode」是停留在觸發前所在的畫面,「Return to last active Home Screen page」是回到先前作用中的那一個 Home Screen 頁。若前置條件把使用者放在第一頁,一個錯誤地一律跳回第一頁的實作也會通過,兩種語意都失去鑑別力。因此本批一律建立三頁 Home Screen 並停在第三頁,ER 明確斷言頁次。",
+  "keywords": [
+    "Last Mode Table",
+    "List Item 261",
+    "Home Screen",
+    "AutoPlay off"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Last Mode trigger",
+    "delta": "USB device connected with AutoPlay off -> the Home Screen page is maintained and playback does not start"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-087",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Device Connected Last Mode with AutoPlay off for USB: maintain mode.\n\n(USB device connected with AutoPlay off -> the Home Screen page is maintained and playback does not start)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The Home Screen has three pages\n3. The third Home Screen page is the last active Home Screen page\n4. A Media widget is present on the third Home Screen page\n5. The third Home Screen page is displayed\n6. AutoPlay is set to off\n7. No media source is playing",
+      "input_test_data": "",
+      "test_procedure": "1. Read the Home Screen page displayed and the playback state\n2. Connect a USB device containing audio files\n3. Read the Home Screen page displayed and the playback state",
+      "expected_result": "1. The third Home Screen page is displayed and no audio is playing\n2. The USB device is connected\n3. The third Home Screen page is displayed and no audio is playing",
+      "specification_reference": "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_261",
+      "priority": "P2",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}
