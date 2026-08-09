@@ -19,6 +19,33 @@ from pathlib import Path
 
 DIRS = ["inputs", "data", "batches", "generated", "scripts", "docs"]
 
+# Written on scaffold, not left for the operator to remember: inputs/ holds
+# customer source documents and data/ holds regenerable artefacts. A feature
+# dir created without this commits several MB of customer material on the
+# first `git add`. The per-feature data/ exclusions are added by that
+# feature's Step 1 as its artefacts appear — only the always-true rules and
+# the one deliberate exception are stated here.
+GITIGNORE = """\
+# Customer source files - never commit
+inputs/
+
+# Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
+# own data/*.json artefacts here as Step 1 starts emitting them.
+data/recon.json
+batches/
+lint_report.json
+
+# data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
+# one: it is the traceability lookup every spec_reference is linted against,
+# and a diff on it is the signal that the spec export moved underneath us.
+
+# Local noise
+__pycache__/
+*.pyc
+output/
+.DS_Store
+"""
+
 RUNBOOK_SKELETON = """\
 # FW036 {feature} HMI — TC Generation Runbook
 
@@ -82,6 +109,7 @@ def scaffold(feature: str, root: Path) -> None:
     templates = root / "docs" / "fw036" / "templates"
     decisions_tpl = (templates / "DECISIONS.md").read_text(encoding="utf-8")
     yaml_tpl = (templates / "feature.yaml").read_text(encoding="utf-8")
+    playbook_tpl = (templates / "PLAYBOOK.md").read_text(encoding="utf-8")
 
     for d in DIRS:
         (feat_dir / d).mkdir(parents=True)
@@ -95,6 +123,10 @@ def scaffold(feature: str, root: Path) -> None:
         decisions_tpl.replace("{FEATURE}", feature), encoding="utf-8")
     (feat_dir / "feature.yaml").write_text(
         yaml_tpl.replace("{FEATURE}", feature), encoding="utf-8")
+    (feat_dir / "PLAYBOOK.md").write_text(
+        playbook_tpl.replace("{FEATURE}", feature)
+        .replace("{abbr}", abbr), encoding="utf-8")
+    (feat_dir / ".gitignore").write_text(GITIGNORE, encoding="utf-8")
 
     print(f"scaffolded {feat_dir}")
     print("next steps:")

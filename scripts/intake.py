@@ -411,7 +411,16 @@ KIND_TO_YAML = {
 
 
 def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
-             root: Path) -> None:
+             root: Path, a03_pick: dict | None = None) -> None:
+    """Create <Feature>HMI/, move classified files in, pre-fill feature.yaml.
+
+    `a03_pick` is the Scope-arbitrated requirement report. It matters when
+    several are present: without it every swra_report writes a03_report in
+    turn and the last one in sorted order silently wins, which is both
+    non-deterministic in intent and free to disagree with the arbitration the
+    report just printed. When the choice was contested the written line is
+    annotated so the Tier 2 reviewer sees a decision was made, not a default.
+    """
     feat_dir = root / f"{feature}HMI"
     if not feat_dir.exists():
         import subprocess
@@ -422,14 +431,28 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
     inputs.mkdir(exist_ok=True)
     yaml_path = feat_dir / "feature.yaml"
     text = yaml_path.read_text(encoding="utf-8")
+    swras = [f for f in files if f["kind"] == "swra_report"]
     for f in files:
         if f["kind"] in ("unclassified", "unreadable"):
             continue
         shutil.move(str(folder / f["file"]), str(inputs / f["file"]))
         key = KIND_TO_YAML.get(f["kind"])
+        if key == "a03_report" and a03_pick and f["file"] != a03_pick["file"]:
+            continue          # not the Scope-designated TC source
         if key:
             text = re.sub(
                 rf'({key}:\s*)"[^"]*"', rf'\g<1>"inputs/{f["file"]}"', text)
+    if len(swras) > 1:
+        others = "\n".join(f'  #   inputs/{s["file"]}'
+                           for s in swras if not a03_pick
+                           or s["file"] != a03_pick["file"])
+        text = re.sub(
+            r'(  a03_report:[^\n]*\n)',
+            rf'\g<1>  # CONFIRM (Tier 2): {len(swras)} requirement reports '
+            'present. The line above is\n'
+            "  # the one the workbook's Scope field names; a ruling may "
+            'override it. Others:\n' + others.replace("\\", "\\\\") + "\n",
+            text, count=1)
     text = re.sub(r'(spec_mode:\s*)"[A-E]"', rf'\g<1>"{mode}"', text)
     yaml_path.write_text(text, encoding="utf-8")
     print(f"\nscaffolded {feat_dir}; classified files moved to inputs/; "
@@ -449,7 +472,7 @@ def main() -> None:
 
     files = classify(folder)
     swras = [f for f in files if f["kind"] == "swra_report"]
-    cited, matched = Counter(), []
+    cited, matched, pick = Counter(), [], None
     if swras:
         # prefer the report the workbook Scope names; else first
         wbk = next((f for f in files if f["kind"] == "workbook"), None)
@@ -471,7 +494,7 @@ def main() -> None:
         if missing:
             print("\nNOTE: scaffolding with missing documents — the affected "
                   "leaves will start BLOCKED", file=sys.stderr)
-        scaffold(args.feature, folder, files, mode[0], root)
+        scaffold(args.feature, folder, files, mode[0], root, a03_pick=pick)
 
 
 if __name__ == "__main__":
