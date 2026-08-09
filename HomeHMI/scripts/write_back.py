@@ -19,6 +19,11 @@ remaining leaf is assigned to the first segment whose bound covers it. That
 places the two leaves with no draft row at all (055-03, 066) correctly without
 hard-coding them.
 
+The header block is otherwise preserved, with one deliberate exception: the
+範圍 Scope field named another deliverable's workbook (A-H26) and is rewritten
+to the 037 report's filename. It sits in row 5, outside the D..AG data range
+the content hash covers, so the invariant is unaffected.
+
 Column conventions are read from feature.yaml and verified against the done
 region — Home differs from Media in two ways worth stating: the vehicle flag
 columns S..Y are EMPTY on all 229 existing rows (Media writes 1), and column F
@@ -110,6 +115,62 @@ def segments_of(rows: list[dict], author: str) -> list[dict]:
             segs.append({"kind": kind, "start": r["row"], "end": r["row"],
                          "ids": [r["req_id"]]})
     return segs
+
+
+# --------------------------------------------------------------- Scope field
+
+def find_scope_cell(ws, cfg) -> tuple[int, int]:
+    """Locate the header 範圍 Scope VALUE cell — (row, column), 1-based.
+
+    Found by its label text rather than by a hard-coded coordinate (A-H26),
+    the same header-text positioning intake.py v2 uses: the AM/FM workbook is
+    the same template with the block at a different offset. Only the rows
+    above the data header are searched, so column N's own header — which also
+    contains the word "Reference" — can never be mistaken for it.
+    """
+    label = cfg["write_back"]["scope_label"]
+    needle = label.split()[-1].casefold()          # "scope"
+    hits = []
+    for r in range(1, cfg["workbook"]["header_row"]):
+        for c in range(1, 21):
+            v = ws.cell(r, c).value
+            if v is None:
+                continue
+            text = str(v)
+            if needle in text.casefold() or label.split()[0] in text:
+                hits.append((r, c))
+    if len(hits) != 1:
+        raise WriteBackError(
+            f"expected exactly one {label!r} label above row "
+            f"{cfg['workbook']['header_row']}, found {len(hits)}: {hits}")
+    r, c = hits[0]
+    return r, c + 1
+
+
+def _merge_anchor(ws, row: int, col: int) -> tuple[int, int]:
+    """openpyxl refuses a write to a merged range's non-anchor member."""
+    for rng in ws.merged_cells.ranges:
+        if rng.min_row <= row <= rng.max_row and rng.min_col <= col <= rng.max_col:
+            return rng.min_row, rng.min_col
+    return row, col
+
+
+def fix_scope(ws, cfg, expected: str) -> dict:
+    """Make the header Scope field name THIS deliverable's 037 report.
+
+    A-H26: the Home workbook carried another deliverable's name here since the
+    Arif era, and write-back preserves the header region, so regeneration kept
+    carrying it forward. The cell is in the header block (row 5), outside the
+    D..AG data range the done-region content hash covers, so correcting it
+    cannot disturb the invariant.
+    """
+    row, col = find_scope_cell(ws, cfg)
+    row, col = _merge_anchor(ws, row, col)
+    before = ws.cell(row, col).value
+    before = "" if before is None else str(before)
+    ws.cell(row, col).value = expected
+    return {"cell": f"{ws.cell(row, col).coordinate}", "before": before,
+            "after": expected, "changed": before != expected}
 
 
 # ------------------------------------------------------------------ planning
@@ -234,7 +295,8 @@ def reemit_row_numbers(ws, cfg) -> int:
     return n
 
 
-def append_history(wb, cfg, when: str, report: list[dict], n_rows: int) -> str:
+def append_history(wb, cfg, when: str, report: list[dict], n_rows: int,
+                   scope: dict | None = None) -> str:
     ws = wb[HISTORY_SHEET]
     row = 5
     last = None
@@ -245,8 +307,7 @@ def append_history(wb, cfg, when: str, report: list[dict], n_rows: int) -> str:
     spans = "; ".join(
         f"segment {d['segment']} at row {d['start']}: {d['old_rows']} -> "
         f"{d['new_rows']} rows" for d in report)
-    ws.cell(row, 1).value = revision
-    ws.cell(row, 2).value = (
+    note = (
         f"Regenerated the three blank-author segments from FMWIFSM037A03 "
         f"remaining leaves ({spans}); {n_rows} rows total.\n"
         "The 144 rows authored by Arif are unchanged — verified by an ordered "
@@ -254,6 +315,12 @@ def append_history(wb, cfg, when: str, report: list[dict], n_rows: int) -> str:
         "Leaves with no testable content of their own carry a placeholder row "
         "with the reason in Remarks (see ANOMALIES A-H01, A-H02, A-H20)."
     )
+    if scope and scope["changed"]:
+        note += (f"\nCorrected the header 範圍 Scope field ({scope['cell']}), "
+                 f"which named another deliverable: {scope['before']} -> "
+                 f"{scope['after']}.")
+    ws.cell(row, 1).value = revision
+    ws.cell(row, 2).value = note
     ws.cell(row, 3).value = cfg["write_back"]["author_value"]
     ws.cell(row, 4).value = when
     return revision
@@ -319,6 +386,11 @@ def run(args) -> int:
             f"({before_hash[:16]} != {baseline['ordered_content_hash'][:16]}); "
             "rerun build_remaining.py against the workbook you intend to edit")
 
+    # A-H26 — header region only; the done-region hash above already passed
+    # against the untouched D..AG data range, and the Scope cell is outside it.
+    scope_expected = resolve_path(cfg, cfg["write_back"]["scope_source"]).stem
+    scope = fix_scope(ws, cfg, scope_expected)
+
     segs = segments_of(before_rows, arif_author)
     regen = [s for s in segs if s["kind"] == "REGEN"]
     arif_before = [r for r in before_rows if r["author"] == arif_author]
@@ -379,6 +451,11 @@ def run(args) -> int:
     print(f"row numbers : {numbered} rows re-emitted with {ROW_NUMBER_FORMULA}")
     print(f"blank by convention: {', '.join(INTENTIONALLY_BLANK)}")
     print(f"sheet rows  : {before_rows[-1]['row']} -> {after_rows[-1]['row']}")
+    if scope["changed"]:
+        print(f"Scope {scope['cell']}  : {scope['before']!r}\n"
+              f"           -> {scope['after']!r}  (A-H26)")
+    else:
+        print(f"Scope {scope['cell']}  : already correct ({scope['after']!r})")
 
     if not args.write:
         print("\nDRY RUN — nothing written. Re-run with --write to produce the "
@@ -386,7 +463,7 @@ def run(args) -> int:
         return 0
 
     revision = append_history(wb, cfg, args.date or date.today().isoformat(),
-                              report, len(tcs))
+                              report, len(tcs), scope)
     out = Path(args.out) if args.out else Path("output") / src.name
     out.parent.mkdir(parents=True, exist_ok=True)
     wb.save(out)

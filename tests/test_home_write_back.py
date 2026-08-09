@@ -174,6 +174,81 @@ def test_valid_placeholder_passes():
     assert v[CFG["col"]["remarks"]].endswith("(A-H01)")
 
 
+# --------------------------------------------------------------- Scope field
+
+SCOPE_CFG = {"workbook": {"header_row": 9},
+             "write_back": {"scope_label": "範圍 Scope"}}
+
+
+def _header_book(label="範圍 Scope：", label_at="C5", value="wrong-deliverable",
+                 merge=None):
+    import openpyxl as _pyxl
+    wb = _pyxl.Workbook()
+    ws = wb.active
+    ws["A1"] = "STLA Test Case Specification & Result"
+    ws["C2"] = "專案名稱 Project  Name："
+    ws["D2"] = "newR1L"
+    ws[label_at] = label
+    r, c = _pyxl.utils.cell.coordinate_to_tuple(label_at)
+    ws.cell(r, c + 1).value = value
+    if merge:
+        ws.merge_cells(merge)
+    return ws
+
+
+def test_scope_cell_is_located_by_its_label_not_a_coordinate():
+    ws = _header_book()
+    assert write_back.find_scope_cell(ws, SCOPE_CFG) == (5, 4)
+
+
+def test_scope_cell_follows_the_label_when_the_layout_moves():
+    """A workbook whose header block sits one column over must still resolve —
+    AM/FM is the same template with a different offset."""
+    ws = _header_book(label_at="D5")
+    assert write_back.find_scope_cell(ws, SCOPE_CFG) == (5, 5)
+
+
+def test_missing_scope_label_aborts():
+    ws = _header_book(label="目的 Purpose：")
+    with pytest.raises(write_back.WriteBackError, match="Scope"):
+        write_back.find_scope_cell(ws, SCOPE_CFG)
+
+
+def test_scope_search_stops_at_the_header_row():
+    """Column N's own header text must never be mistaken for the Scope field."""
+    ws = _header_book(label="目的 Purpose：")
+    ws.cell(9, 14).value = "Specification Reference \n規格參考 Scope"
+    with pytest.raises(write_back.WriteBackError, match="Scope"):
+        write_back.find_scope_cell(ws, SCOPE_CFG)
+
+
+def test_scope_is_rewritten_to_the_expected_deliverable():
+    ws = _header_book(value="FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-Projection"
+                            "-SWE1HMI-V0.1 STLA 報告")
+    result = write_back.fix_scope(ws, SCOPE_CFG,
+                                  "FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1 "
+                                  "STLA 報告")
+    assert result["changed"] is True
+    assert "AppDrawer" in result["before"]
+    assert ws.cell(5, 4).value == ("FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1 "
+                                   "STLA 報告")
+
+
+def test_fixing_an_already_correct_scope_is_a_no_op():
+    ws = _header_book(value="FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1")
+    result = write_back.fix_scope(ws, SCOPE_CFG,
+                                  "FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1")
+    assert result["changed"] is False
+
+
+def test_scope_write_targets_the_anchor_of_a_merged_range():
+    """D5:H5 is merged in the real workbook; writing to a non-anchor member
+    raises inside openpyxl."""
+    ws = _header_book(value=None, merge="D5:H5")
+    write_back.fix_scope(ws, SCOPE_CFG, "correct-name")
+    assert ws["D5"].value == "correct-name"
+
+
 # ---------------------------------------------------------- normalisation
 
 def test_normalisation_keeps_the_workbook_openable(tmp_path):
@@ -245,6 +320,14 @@ def test_dry_run_holds_every_invariant(dry_run):
     assert rc == 0
     assert "144 Arif rows unchanged" in out
     assert "DRY RUN" in out
+
+
+def test_dry_run_corrects_the_scope_field(dry_run):
+    """A-H26 — the shipped workbook must claim its own 037 report."""
+    _, out = dry_run
+    line = next(l for l in out.splitlines() if l.startswith("Scope "))
+    assert "AppDrawer-Projection" in line, "the residue must be reported"
+    assert "SWE1-Home-HMI-V0.1" in out
 
 
 def test_dry_run_writes_every_remaining_leaf(dry_run):

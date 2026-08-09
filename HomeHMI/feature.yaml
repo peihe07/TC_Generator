@@ -46,6 +46,11 @@ write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
   fill_test_group_set: false
+  # A-H26: the header 範圍 Scope field named another deliverable's workbook.
+  # The cell is found by this label text (not a coordinate) and rewritten to
+  # the stem of the paths.<scope_source> input file.
+  scope_label: "範圍 Scope"
+  scope_source: "a03_report"
 
 lint:
   design_method_source: "dropdown_sheet"

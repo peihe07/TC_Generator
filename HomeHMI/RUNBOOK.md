@@ -300,6 +300,12 @@ INTERLEAVED between done segments, so:
    ChangeHistory revision row appended; xlsx normalization for stable
    SHA256.
 7. Do NOT touch Arif's 13 blank-priority rows (A-H05 — recorded, not fixed).
+8. **Header block is preserved with ONE exception**: the 範圍 Scope field
+   (A-H26) named another deliverable's workbook and is rewritten to the 037
+   report's filename. The cell is found by its label text, never by a
+   coordinate, so the same code serves AM/FM. Row 5 is outside the D..AG data
+   range the content hash covers, so invariant 2 is unaffected — the hash is
+   identical before and after (`b40e56826e7d7d84…`).
 
 `scripts/write_back.py` implements this. Dry run by default; `--write`
 produces `output/<source name>.xlsx` plus a `.sha256` sidecar, after
@@ -321,4 +327,17 @@ order and determinism.
 Same as Media: lint_report → ANOMALIES review → release tag binding xlsx
 SHA256 to commit → controlled document submission + RD-1 questions
 (A-H01, A-H02, A-H03 version-label confirmation, A-H06 missing 035) to
-upstream.
+upstream. RD-1 package: `docs/fw036/RD1_questions_home.md`.
+
+**Status 2026-08-09: Step 4 COMPLETE (v2).**
+
+| | |
+|---|---|
+| Workbook | `output/FM-WI-FSM-036-A01 … _Home_20260720.xlsx` |
+| SHA256 | `cfc007f33c58ba77b07e46d07518f770b20bb07f4b826484b1eec2712e6dddd4` |
+| Rows | 238 → 225; 72 regen TCs over 62 leaves (4 placeholder) |
+| Done region | 144 Arif rows, hash `b40e56826e7d7d84…` unchanged |
+| Tag | `fw036-home-regen-v2` (v1 kept — pre-A-H26 state) |
+
+v1 → v2 differs only in the A-H26 Scope correction and its ChangeHistory
+sentence. No TC content changed.

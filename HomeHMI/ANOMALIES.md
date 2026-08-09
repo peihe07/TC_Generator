@@ -408,6 +408,58 @@ runs; RESOLVED entries record the ruling verbatim.
 
 ---
 
+## [A-H26] Workbook Scope field names the wrong deliverable — RESOLVED (2026-08-09)
+
+- The workbook header's 範圍 Scope field reads
+  `FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-Projection-SWE1HMI-V0.1` — a
+  copy-paste residue from another deliverable's workbook. Present since the
+  Arif era; write-back preserves the header region so regeneration carried
+  it forward. Found by intake.py's workbook profiler during the AM/FM
+  onboarding run.
+- **Ruling (Pei): fix before submission.** The Scope field is the controlled
+  document's identity claim; submitting it wrong is an audit finding.
+- Disposition:
+  1. `write_back.py` gains a header-fix step: Scope →
+     `FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1` (matches the 037 input
+     filename exactly)
+  2. Re-run `--write` → new SHA256 → tag `fw036-home-regen-v2` (v1's
+     annotation digest is superseded; do not delete v1 — it documents the
+     pre-fix state)
+  3. Done-region content-hash invariant is UNAFFECTED: the Scope cell is in
+     the header region (row 5), outside the 144-row D..AG hash scope
+  4. ChangeHistory gains a revision line for the Scope correction
+- Process note: the workbook Scope field is now read by intake.py on every
+  feature (it arbitrates between multiple requirement reports) — this class
+  of residue is machine-caught from here on.
+
+**Executed 2026-08-09.** `write_back.py` gained `find_scope_cell` /
+`fix_scope`. The cell is located by its **label text** (`範圍 Scope`, config
+key `write_back.scope_label`), not by a hard-coded `D5` — the same
+header-text positioning `intake.py` v2 uses, so the AM/FM workbook resolves
+without a code change. The replacement value is the stem of the
+`paths.<write_back.scope_source>` input file, i.e. the 037 report's own
+filename, so it cannot drift from the input it names.
+
+| | |
+|---|---|
+| Cell | `D5` (label `C5`, merged `D5:H5`) |
+| Before | `FM-WI-FSM-037-A03-N1L-SWE1-AppDrawer-Projection-SWE1HMI-V0.1 STLA 報告` |
+| After | `FM-WI-FSM-037-A03-N1L-SWE1-Home-HMI-V0.1 STLA 報告` |
+| Done-region hash | `b40e56826e7d7d84…` — **unchanged**, 144 Arif rows |
+| ChangeHistory | revision `C`, now carrying the Scope correction sentence |
+| SHA256 (v2) | `cfc007f33c58ba77b07e46d07518f770b20bb07f4b826484b1eec2712e6dddd4` |
+| SHA256 (v1, superseded) | `a332e24e5954c0ad7300c2f71c6bd8c828a54f8f8fa2b7f3131fc448d0488fd8` |
+
+The trailing ` STLA 報告` is kept: the residue carried it too, so the field's
+convention is the 037 filename verbatim, and the corrected value now matches
+`inputs/` byte for byte. A second `--write` reproduces the same digest.
+Negative tests in `tests/test_home_write_back.py` cover a missing label, a
+label found below the header row, a moved column offset, the merged-range
+anchor, and the already-correct no-op. v1's tag is kept — it documents the
+pre-fix state.
+
+---
+
 ## Pilot gate — PASSED (Pei, 2026-08-09)
 
 - Scope reviewed: B1 complete (020/021/032/033/034) + stratified samples
@@ -416,6 +468,25 @@ runs; RESOLVED entries record the ruling verbatim.
   popup control notation) before lint. Write-back unlocks after: correction
   applied → lint green → dry-run diff reviewed.
 - Retroactive ratifications included: A-H03, A-H09, A-H20 dispositions.
+
+## [A-H25] Done region: 14 rows with a single-step procedure — RECORDED
+
+- `scripts/recon.py` reports 27 done-region compliance notes: the 13 blank
+  priorities already recorded as A-H05, **plus 14 rows whose Test procedure
+  has fewer than two numbered steps** (§10.5). Rows 27, 28, 29, 31, 81–85,
+  129, 130, 136, 137, 138.
+- `lint_tcs.py` enforces `step-count >= 2` on generated rows. That gate was
+  inherited from Media and, unlike the trailing-period rule (A-H11) and the
+  Input Test Data convention, it was **not** measured against the done region
+  before being adopted — recon.py surfaced the deviation afterwards.
+- Measured now: 14 of 144 rows (10%) are single-step, against 130 (90%) that
+  are not. Unlike A-H11's 28/72 split, the majority convention agrees with the
+  rule, and §10.5 states it independently. **The gate stands.**
+- The done region is frozen, so the 14 rows are not fixed. Recorded here for
+  the same reason as A-H05: so a reviewer sees the deviation is pre-existing.
+- Process note: this is the third done-region measurement to change a rule's
+  standing, and the first found by a tool rather than by hand. See the
+  three-layer gate section in `docs/fw036/framework.md`.
 
 ---
 
