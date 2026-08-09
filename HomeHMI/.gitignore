@@ -1,0 +1,26 @@
+# Customer source files - never commit
+inputs/
+
+# Regenerable artifacts (rebuilt by Step 1 scripts)
+data/spec_pages/
+data/page_text/
+data/page_index.json
+data/spec_sections.json
+data/section_manifest.json
+data/spec_diff.json
+data/remaining_leaves.json
+data/sibling_map.json
+data/row_segments.json
+data/exemplars.json
+batches/
+lint_report.json
+
+# data/spec_id_to_outline.tsv IS tracked on purpose: it is the traceability
+# lookup every spec_reference is linted against, and a diff on it is the
+# signal that SYS1 was re-exported underneath us.
+
+# Local noise
+__pycache__/
+*.pyc
+output/
+.DS_Store

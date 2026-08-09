@@ -39,15 +39,45 @@ runs; RESOLVED entries record the ruling verbatim.
   shortcut exclusion exception`.
 - Affects: batch B3 (unblocked by this ruling).
 
-## [A-H03] Last Mode spec missing from inputs — OPEN (blocking)
+## [A-H03] Last Mode spec — evidence gathered, RULING PENDING (2026-08-09)
 
 - `SWE1-HMI-HOME-076` … `-090` (15 leaves) trace to
-  `Last Mode Table HMI Logic and Flow R1L-R (August 2 2021)_1`, which is not
-  in `inputs/`.
-- Disposition: B7 produces BLOCKED placeholder rows only, Remarks =
-  `BLOCKED - source spec not available (A-H03)`. Unblock by dropping the
-  file into `inputs/` and rerunning Step 1 + B7.
-- Action owner: Pei (request file from upstream).
+  `Last Mode Table HMI Logic and Flow R1L-R (August 2 2021)_{n}`.
+- The originally recorded disposition (file missing → B7 emits BLOCKED
+  placeholder rows) is **probably obsolete**. `inputs/` contains
+  `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021).xlsx`
+  (Title sheet: `R1 Last Mode Table`, Spec Release `SR24 1A Post DCR19344`,
+  Date **2021-08-02** — the same date as the `R1L-R` label in 037).
+- Verified against the file: the `_{n}` suffix is the **List Item** number in
+  the 359-row `Last Mode Table` sheet, and all 15 resolve, all with
+  `Screen Display Status = HOME`:
+
+  | leaf | item | operation → element | behavior |
+  |---|---|---|---|
+  | 076 | 1 | From Radio Off (deep sleep / STR), Any Home Screen page | Return to last active Home Screen page |
+  | 077 | 35 | From Radio Off (no sleep), Any Screen | Maintain Mode |
+  | 078 | 64 | Go to another mode → back, Any Screen | Return to last active Home Screen page |
+  | 079 | 155 | Phone interrupt → cancel | Maintain Mode |
+  | 080 | 180 | Answer incoming call | Maintain Mode |
+  | 081 | 181 | Place call via VR, no Home widget | Go to Phone Current Call/Call Tab |
+  | 082 | 182 | Call from Home Screen widget/shortcut | Maintain Mode |
+  | 083 | 208 | End call (answered via popup/SWC) | Maintain Mode |
+  | 084 | 209 | End VR call, no Home widget | Return to last mode |
+  | 085 | 210 | End widget/shortcut call | Maintain Mode |
+  | 086 | 236 | Device connected, AutoPlay ON | Maintain page, update media |
+  | 087 | 261 | Device connected, AutoPlay OFF | Maintain Mode |
+  | 088 | 279 | Device disconnected / source interrupt | Maintain Mode |
+  | 089 | 308 | Backup camera interrupt → cancel | Maintain Mode |
+  | 090 | 331 | Blind spot view (turn signal) → cancel | Maintain Mode |
+
+- Ruling needed from Pei: is `R1L-R` the same document as
+  `R1 SR24 1A Post DCR19344`? If yes → A-H03 RESOLVED, B7 generates normally
+  (15 leaves, spec_reference keeps the 037 `R1L-R` string verbatim), and the
+  upstream mail becomes a version-label confirmation rather than a file
+  request. If no → the original BLOCKED disposition stands.
+- Until the ruling lands, B7 stays last in the batch order and no Last Mode
+  extraction artifact is generated.
+- Action owner: Pei (confirm version label with upstream).
 
 ## [A-H04] BSP struck-through text out of scope — RESOLVED (2026-08-09)
 
@@ -63,6 +93,22 @@ runs; RESOLVED entries record the ruling verbatim.
 - Done region is frozen (content-hash invariant, RUNBOOK Step 4); rows are
   NOT fixed. Recorded here so reviewers see the deviation is pre-existing,
   not introduced by regeneration.
+
+## [A-H06] 035 exists in FW036 but not in 037 — RECORDED (RD-1 candidate)
+
+- 037 numbers `SWE1-HMI-HOME-001` … `-090` with exactly one gap: **035**.
+- FW036 done region rows 129–130 nevertheless carry two Arif-authored TCs for
+  `SWE1-HMI-HOME-035` ("Loading State and Minimum Dwell", spec outline `4.9`,
+  i.e. HSD spec text that genuinely exists).
+- So the requirement is real in the spec and covered in the workbook, but the
+  SWE requirement row is missing from the analysis report.
+- Impact: the RUNBOOK Step 4 completeness invariant "every req_id ∈ 037"
+  would fail on Arif's own frozen rows. The invariant is therefore scoped to
+  **regen rows only**; 035 is an allow-listed exception.
+- Not fixed here: the done region is frozen (content-hash invariant) and 037
+  is an upstream controlled document. Raise as an RD-1 question asking the RD
+  authors to add the missing 035 row.
+- `build_remaining.py` reports it every run under `ORPHAN req_ids`.
 
 ---
 

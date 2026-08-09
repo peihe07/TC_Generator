@@ -35,19 +35,33 @@
    Keep them blank on new rows.** Framework Test Sets are used only for
    batching/lint grouping (see `docs/fw036/framework.md` Home section).
    Workbook `Test Case Framework` sheet is empty — do not populate.
-6. Last Mode spec (`Last Mode Table HMI Logic and Flow R1L-R (August 2 2021)`)
-   is MISSING from inputs. B7 (076–090, 15 leaves) is BLOCKED until the file
-   lands in `inputs/`. See ANOMALIES.md A-H03.
+6. Last Mode spec: 037 cites `... R1L-R (August 2 2021)`; `inputs/` holds
+   `... R1 SR24 1A (August 2 2021).xlsx`, whose 359-row `Last Mode Table`
+   resolves all 15 B7 `_{n}` suffixes exactly. Same document under a
+   different release label, pending Pei's confirmation — see A-H03.
+7. Remarks is column **AG (33)**, not AH as in Media. Header row is 9;
+   the sheet is `Test Case Specification&Result` (no space before `&`).
 
 ## Directory layout (mirrors mediaHMI/)
 
 ```
 HomeHMI/
-├── inputs/     # 5 source files + Last_Mode_Table_....pdf when obtained
-├── data/       # derived: spec text/pages, outline map, exemplars, sibling map
+├── inputs/     # 6 source files (incl. Last Mode Table xlsx — see A-H03)
+├── data/       # derived, all regenerable — never hand-edit:
+│               #   spec_id_to_outline.tsv  outline map
+│               #   remaining_leaves.json   62 regen targets
+│               #   sibling_map.json        parent -> all leaf sub-ids
+│               #   row_segments.json       segments + done-region hash
+│               #   spec_sections.json      SYS1 outline -> text
+│               #   section_manifest.json   outline -> text/code/pages
+│               #   spec_pages/ page_text/  PNG + extracted text per page
+│               #   page_index.json         per-page codes
+│               #   spec_diff.json          SYS1 <-> PDF code diff
+│               #   exemplars.json          few-shot anchors by chapter
 ├── batches/    # per-batch context JSON (B1–B7)
 ├── generated/  # per-parent output JSON (checkpoint/resume)
-├── scripts/    # copied from mediaHMI/scripts + build_outline_map.py; adapt constants
+├── scripts/    # build_outline_map / build_remaining / split_spec /
+│               # extract_exemplars (Home-adapted); lint + write_back TODO
 ├── docs/       # batches-home.md (execution plan)
 ├── ANOMALIES.md
 └── RUNBOOK.md  # this file
@@ -63,25 +77,53 @@ generic ASPICE instruction). Framework: Home Test Group section appended to
 2. ~~A-H02~~ RESOLVED 2026-08-09: 055-03 → placeholder row, no independent TC
 3. 020/021 Test Set attribution (Default Layout vs CarPlay Template) —
    batching only, no workbook impact
-4. Obtain Last Mode spec (unblocks B7) — STILL OPEN, critical path
+4. A-H03: confirm `R1L-R` == `R1 SR24 1A Post DCR19344` (the file is already
+   in `inputs/` and resolves all 15 leaves). Ruling unblocks B7 — no longer a
+   file request, only a version-label confirmation.
+5. A-H06 (new): 035 exists in FW036 + spec but is missing from 037 — RD-1
+   question; no batch is blocked by it.
 
 ## Step 1 — Rebuild data artifacts (idempotent)
 
 ```bash
 python scripts/build_outline_map.py --sys1 inputs/SYS1_*.xlsx --out data
-python scripts/build_remaining.py --a03 inputs/FMWIFSM037*.xlsx \
-    --fw036 inputs/FMWIFSM036*.xlsx --out data
+python scripts/build_remaining.py --a03 inputs/FM-WI-FSM-037*.xlsx \
+    --fw036 inputs/FM-WI-FSM-036*.xlsx --out data
 python scripts/split_spec.py --sys1 inputs/SYS1_*.xlsx \
-    --pdf inputs/Home_Screen_*.pdf --out data --try-text-layer
-python scripts/extract_exemplars.py --fw036 inputs/FMWIFSM036*.xlsx --out data
+    --pdf "inputs/Home Screen"*.pdf --out data
+python scripts/extract_exemplars.py --fw036 inputs/FM-WI-FSM-036*.xlsx --out data
 ```
 
 Adaptations vs Media:
-- `build_remaining.py`: done-region detection by author=="Arif" (three
-  segments), NOT by row threshold
-- `split_spec.py`: text-layer-first; PNG render kept for figure pages
-- `extract_exemplars.py`: key exemplars by spec chapter (HSD/HSS/SNS/BSP)
-  since Test Set column is blank
+- `build_remaining.py`: done-region detection by non-empty Test Case Author
+  (col Z), three segments, NOT by row threshold. Asserts the expected shape
+  (140 leaves / 62 remaining / 144 Arif rows) and fails loud if the inputs
+  moved; `--no-assert` to override deliberately. Also emits
+  `row_segments.json` (segment boundaries + done-region content hash) for
+  Step 4, and reports orphan req_ids (A-H06).
+- `split_spec.py`: text-layer-first, per-page OCR fallback; PNG render kept
+  for figure pages. Chapter-heading and parent-outline fallbacks map the
+  code-less "Please refer to the diagram" rows onto their figure page.
+  `--force-ocr` reverts to the Media-style pipeline.
+- `extract_exemplars.py`: keys exemplars by spec chapter (HSD/HSS/HS) via
+  `spec_id_to_outline.tsv`, since the Test Set column is blank. Skips
+  blank-priority rows (A-H05) so they are not learned as style.
+
+Verified output (2026-08-09 inputs):
+
+```
+037 leaves: 140  done: 78  remaining: 62 across 48 parents
+segments: ARIF 10-86 (77)  REGEN 87-90 (4)  ARIF 91-124 (34)
+          REGEN 125-128 (4)  ARIF 129-161 (33)  REGEN 162-238 (77)
+spec_sections: 104 outline entries; 96 mapped to pages
+text extraction: text-layer=18, ocr=1; 0 SYS1 codes absent from PDF
+exemplars: 9 TCs across 3 spec chapters (HSD 116, HSS 23, HS 5 in pool)
+```
+
+All 47 B1–B6 leaves resolve to a spec page. The 15 unresolved are B7 — they
+trace to the Last Mode spec, not the Home Screen spec (see A-H03).
+**No exemplars exist for SNS / BSP / SW**: Arif never wrote those chapters, so
+B4–B6 must borrow HSS exemplars as the nearest analogue.
 
 ## Step 2 — Generation loop (one parent per turn)
 
@@ -119,21 +161,24 @@ INTERLEAVED between done segments, so:
 1. Rewrite each of the three blank segments IN PLACE, in 037 document order;
    row insert/delete allowed WITHIN a segment (regen TC count ≠ 85).
 2. **Done-region invariant is content-based, not positional**: the ordered
-   sequence of 144 Arif row contents (col D..AH) is hashed before and after
+   sequence of 144 Arif row contents (cols D..AG) is hashed before and after
    and must match exactly, regardless of absolute row indices after
-   insertion/deletion.
+   insertion/deletion. The baseline hash is emitted by `build_remaining.py`
+   into `data/row_segments.json` (`ordered_content_hash`).
 3. Segment order invariant: Arif segment 1 < regen 1 < Arif 2 < regen 2 <
    Arif 3 < regen 3.
 4. Re-emit B (=ROW()-9) and F formulas on every row below the first edit.
 5. Column mapping (1-based, verified): D=req_id, G/H=blank, I=test_item,
    J=pre_conditions, K=input_test_data, L=test_procedure, M=expected_result,
    N=spec_reference, O=`NEW`, P=priority, Q=design_method, R=`NA`,
-   S–Y=vehicle flags, Z=author(`PeiPYHsu`), Remarks column = verify header
-   at adaptation time (Media's AH lesson: dropping it silently drops all
+   S–Y=vehicle flags, Z=author(`PeiPYHsu`), **AG=Remarks** (verified against
+   header row 9 — Media's AH lesson: dropping it silently drops all
    BLOCKED/anomaly notes).
-6. Traceability / completeness invariants as Media: every req_id ∈ 037;
-   regen leaves == 62 exactly; ChangeHistory revision row appended;
-   xlsx normalization for stable SHA256.
+6. Traceability / completeness invariants as Media, with one scoping change:
+   every req_id ∈ 037 applies to **regen rows only** — Arif's rows 129–130
+   trace to 035, which 037 omits (A-H06). Regen leaves == 62 exactly;
+   ChangeHistory revision row appended; xlsx normalization for stable
+   SHA256.
 7. Do NOT touch Arif's 13 blank-priority rows (A-H05 — recorded, not fixed).
 
 Extend `tests/test_write_back.py`: interleaved-segment fixture + content-hash
@@ -143,4 +188,5 @@ invariant + idempotency.
 
 Same as Media: lint_report → ANOMALIES review → release tag binding xlsx
 SHA256 to commit → controlled document submission + RD-1 questions
-(A-H01, A-H02, Last Mode spec request) to upstream.
+(A-H01, A-H02, A-H03 version-label confirmation, A-H06 missing 035) to
+upstream.
