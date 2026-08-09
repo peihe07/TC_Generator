@@ -455,8 +455,14 @@ convention is the 037 filename verbatim, and the corrected value now matches
 `inputs/` byte for byte. A second `--write` reproduces the same digest.
 Negative tests in `tests/test_home_write_back.py` cover a missing label, a
 label found below the header row, a moved column offset, the merged-range
-anchor, and the already-correct no-op. v1's tag is kept — it documents the
-pre-fix state.
+anchor, and the already-correct no-op.
+
+Note on v1: the Home pre-fix build was **never tagged** — `fw036-regen-v1` is
+Media's tag, and Home v1 existed only as an `output/` sidecar (gitignored).
+Its digest is recorded in the table above, which is now the only record of
+the pre-fix state; nothing was deleted. `fw036-home-regen-v2` is therefore
+Home's first release tag, and its "v2" is a workbook revision number, not a
+tag succession.
 
 ---
 

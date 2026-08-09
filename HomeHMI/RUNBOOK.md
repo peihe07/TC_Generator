@@ -337,7 +337,7 @@ upstream. RD-1 package: `docs/fw036/RD1_questions_home.md`.
 | SHA256 | `cfc007f33c58ba77b07e46d07518f770b20bb07f4b826484b1eec2712e6dddd4` |
 | Rows | 238 → 225; 72 regen TCs over 62 leaves (4 placeholder) |
 | Done region | 144 Arif rows, hash `b40e56826e7d7d84…` unchanged |
-| Tag | `fw036-home-regen-v2` (v1 kept — pre-A-H26 state) |
+| Tag | `fw036-home-regen-v2` — Home's first tag; the pre-A-H26 build was never tagged (`fw036-regen-v1` is Media's), its digest lives in ANOMALIES A-H26 |
 
 v1 → v2 differs only in the A-H26 Scope correction and its ChangeHistory
 sentence. No TC content changed.

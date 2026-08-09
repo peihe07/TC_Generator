@@ -20,8 +20,8 @@ document.
 
 Status at time of writing: **72 TCs generated across 62 leaves, lint green,
 4 placeholder rows (055-03, 066, 070, 071), release tag
-`fw036-home-regen-v2` (supersedes v1; the only difference is the A-H26 Scope
-correction — no TC content changed).**
+`fw036-home-regen-v2` (workbook revision C; "v2" marks the A-H26 Scope
+correction over our internal pre-fix build — no TC content changed).**
 
 ---
 
