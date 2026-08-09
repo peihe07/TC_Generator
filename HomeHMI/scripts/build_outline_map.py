@@ -11,6 +11,9 @@ Specification Reference column, following the done-region format:
 Derived artifact — regenerate whenever SYS1 is re-exported. Do NOT hand-edit
 the output tsv; stale mappings silently corrupt traceability.
 
+The SYS1 path defaults to `feature.yaml` `paths.sys1_export`; --sys1
+overrides it.
+
 Known limitation: only rows whose Description starts with an item code
 pattern `XXn[.n].)` resolve to a spec_id (76 of 104 in the 2023-03-17
 export). Rows without a code (Assumptions, chapter headings, image-only
@@ -25,6 +28,8 @@ import sys
 from pathlib import Path
 
 import openpyxl
+
+from feature_config import load_feature_config, resolve_path
 
 # Matches leading item codes like `HSD1.)`, `HSS4.1)`, `SNS3.1)`, `HS9.2.1)`
 ITEM_CODE_RE = re.compile(r"\s*([A-Z]{2,4}\d+(?:\.\d+)*)\.?\)")
@@ -52,11 +57,13 @@ def build_map(sys1_path: Path) -> list[tuple[str, str, str]]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--sys1", required=True, help="SYS1 Polarion export xlsx")
+    ap.add_argument("--sys1", help="override feature.yaml paths.sys1_export")
+    ap.add_argument("--feature-dir", default=".")
     ap.add_argument("--out", default="data", help="output directory")
     args = ap.parse_args()
 
-    rows = build_map(Path(args.sys1))
+    cfg = load_feature_config(args.feature_dir)
+    rows = build_map(resolve_path(cfg, "sys1_export", args.sys1))
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "spec_id_to_outline.tsv"

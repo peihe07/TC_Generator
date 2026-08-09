@@ -249,10 +249,10 @@ the Home workbook (Profile §2).
 
 | Test Set | RD range | Spec sections (Layer 3) | Status |
 |---|---|---|---|
-| Default Layout | 001-01~03, 020, 021 | HSD1, HSD5.6, HSD5.7 | 001 done; 020/021 remaining |
+| Default Layout | 001-01~03 | HSD1 | done region |
 | Widget Edit | 002~010 series | HSD2.x, HS10 | done region |
 | Page Management | 011~019, 022~031 series | HSD4~HSD7.x | done region |
-| CarPlay Template | 032, 033, 034 | HSD8.4, HSD8.5, HSD8.6 | remaining |
+| CarPlay Template | 020, 021, 032, 033, 034 | HSD5.6, HSD5.7, HSD8.4, HSD8.5, HSD8.6 | remaining |
 | Shortcuts Edit | 048-01~06, 049-01/02, 050, 051 | HSS4, HSS4.1~4.3 | remaining |
 | Shortcuts Lockout | 052-01/02, 053 | HSS2, HSS4.4, HSS5 | remaining |
 | Shortcut Exclusion | 054, 055-01~03, 056, 057 | HSS6, HSS6.1, HSS6.2, HSS7 | remaining |
@@ -261,11 +261,14 @@ the Home workbook (Profile §2).
 | Navigation Shortcuts | 062~071 (incl. 066/-01/-02) | SNS1~SNS10 | remaining |
 | Brand Pages | 072, 073, 074 | BSP1, BSP2, BSP3/BSP4 | remaining |
 | Screen Locking | 075 | (section pending — resolve at batch time) | remaining |
-| Last Mode | 076~090 | Last Mode Table L&F (external spec, §8.4.2) | BLOCKED (A-H03) |
+| Last Mode | 076~090 | Last Mode Table L&F List Items 1~331 (external spec, §8.4.2) | remaining |
 
-Open attribution question (batching only, no workbook impact): 020/021 sit
-under the layout chapter in RD but describe CarPlay layouts — Pei to rule
-Default Layout vs CarPlay Template before B1.
+Ruled by Pei 2026-08-09: **020/021 attribute to CarPlay Template**, not
+Default Layout. Both describe CarPlay layout rules (HSD5.6 the additional
+12" Portrait layout options, HSD5.7 the CarPlay area constraints); RD files
+them under the layout chapter, but attribution follows capability, not
+location — the same principle as the Media `Presets` ruling in Part I.
+Batching is unaffected: both were already in B1.
 
 ### Granularity check
 
@@ -276,9 +279,11 @@ outliers per §4.2, accepted.
 
 ### Home anomalies
 
-A-H01…A-H05 — register and dispositions in `HomeHMI/ANOMALIES.md`.
-B7 (Last Mode, 15 leaves) is blocked on a missing external spec; every other
-Set is generation-ready pending the Step-0 rulings in `HomeHMI/RUNBOOK.md`.
+A-H01…A-H08 — register and dispositions in `HomeHMI/ANOMALIES.md`.
+**All Step-0 rulings are closed as of 2026-08-09; every Set including Last
+Mode is generation-ready.** A-H03 resolved: the Last Mode spec is present in
+`inputs/` under a different release label, and all 15 leaf `_{n}` suffixes
+resolve to List Items in its table.
 
 ### Workbook sync
 

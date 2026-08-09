@@ -21,8 +21,11 @@ Home differs from Media in two ways:
 Batch membership is read from `docs/batches-home.md`, which stays the single
 source of truth for the B1–B7 split.
 
+The Pop Up List path and the spec_reference template come from
+`feature.yaml`; --popup overrides the path.
+
 Usage:
-    python make_batch_context.py --batch B1 --popup "inputs/Pop Up List*.xlsx"
+    python make_batch_context.py --batch B1
     python make_batch_context.py --parent SWE1-HMI-HOME-048 --data data/
     python make_batch_context.py --list
 """
@@ -31,10 +34,16 @@ import json
 import re
 from pathlib import Path
 
+from feature_config import load_feature_config, resolve_path
+
 PU_RE = re.compile(r"\bPU\d{3,4}\b")
 CHAPTER_RE = re.compile(r"^([A-Z]{2,4})")
 REQ_PREFIX = "SWE1-HMI-HOME-"
 HOME_SPEC_PREFIX = "Home Screen HMI Logic and Flow"
+LAST_MODE_PREFIX = "Last Mode Table HMI Logic and Flow"
+# A-H03 ruling: cite the file that exists, not 037's `R1L-R` release label.
+LAST_MODE_SPEC_REFERENCE = (
+    "Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}")
 # Chapters present in the done region, best first. SNS/BSP/SW have no
 # exemplars of their own — Arif never wrote those chapters.
 EXEMPLAR_FALLBACK = ["HSS", "HSD", "HS"]
@@ -164,13 +173,15 @@ def main() -> None:
     ap.add_argument("--parent", help="single parent req id")
     ap.add_argument("--list", action="store_true")
     ap.add_argument("--data", default="data")
+    ap.add_argument("--feature-dir", default=".")
     ap.add_argument("--batches-md", default="docs/batches-home.md")
-    ap.add_argument("--popup", help="Pop Up List xlsx (strongly recommended)")
+    ap.add_argument("--popup", help="override feature.yaml paths.popup_list")
     ap.add_argument("--per-chapter", type=int, default=3,
                     help="max exemplars to embed")
     ap.add_argument("--out", help="output json (default: batches/<id>.json)")
     args = ap.parse_args()
 
+    cfg = load_feature_config(args.feature_dir)
     data = Path(args.data)
     remaining = json.loads((data / "remaining_leaves.json").read_text())
     sibling_map = json.loads((data / "sibling_map.json").read_text())
@@ -229,8 +240,8 @@ def main() -> None:
 
     pu_ids = sorted({m for s in sections.values() for m in PU_RE.findall(s["text"])})
     popups = {}
-    if pu_ids and args.popup:
-        pu_index = load_popup_index(args.popup)
+    if pu_ids:
+        pu_index = load_popup_index(resolve_path(cfg, "popup_list", args.popup))
         popups = {pid: pu_index.get(pid, "NOT FOUND IN POP UP LIST")
                   for pid in pu_ids}
 
@@ -245,9 +256,7 @@ def main() -> None:
                     "done region — leave them blank. Author (Z) = PeiPYHsu, "
                     "Test Case Reference ID (O) = NEW, Functional Safety (R) = "
                     "NA, Remarks = column AG.",
-            "spec_reference_format":
-                "Home Screen HMI Logic and Flow R1 SR24 Post 2A "
-                "(March 17 2023)_{outline}",
+            "spec_reference_format": cfg["spec_reference_template"],
         },
         "requirements": leaves,
         "siblings": {p: sibling_map[p] for p in
@@ -269,6 +278,35 @@ def main() -> None:
                     "L&F; no Home spec text was injected for them.",
         }
 
+    # Last Mode leaves carry their spec content in a separate table keyed by
+    # List Item number (A-H03), so resolve it here rather than leaving B7
+    # with requirement titles and nothing else.
+    lm_leaves = [l for l in leaves
+                 if l.get("hmi_source_id", "").startswith(LAST_MODE_PREFIX)]
+    if lm_leaves:
+        lm_path = data / "last_mode_items.json"
+        if not lm_path.exists():
+            raise SystemExit(f"{target} needs {lm_path}; "
+                             "run build_last_mode.py first")
+        lm_items = json.loads(lm_path.read_text())
+        resolved, unresolved_lm = {}, []
+        for leaf in lm_leaves:
+            n = leaf.get("section") or ""
+            if n in lm_items:
+                resolved[leaf["req_id"]] = dict(lm_items[n], list_item=n)
+            else:
+                unresolved_lm.append(leaf["req_id"])
+        if unresolved_lm:
+            raise SystemExit(
+                f"{target}: Last Mode List Items unresolved for "
+                f"{unresolved_lm} — do not generate against a missing item")
+        ctx["last_mode_items"] = resolved
+        ctx["column_conventions"]["spec_reference_format_last_mode"] = \
+            LAST_MODE_SPEC_REFERENCE
+        lm_note = f"{len(resolved)}/{len(lm_leaves)} Last Mode List Items resolved"
+    else:
+        lm_note = ""
+
     out = Path(args.out) if args.out else Path("batches") / f"{target}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(ctx, ensure_ascii=False, indent=2))
@@ -278,11 +316,10 @@ def main() -> None:
     print(f"  chapters={chapters}  exemplars from {ex_source!r}"
           + ("  (FALLBACK — no exemplar exists for this chapter)"
              if ctx["exemplar_is_fallback"] else ""))
+    if lm_note:
+        print(f"  {lm_note}")
     if anomalies:
         print(f"  applicable anomalies: {', '.join(anomalies)}")
-    if pu_ids and not args.popup:
-        print(f"  WARNING: {len(pu_ids)} PU refs cited but --popup not given; "
-              "popup wording must be verbatim")
     if unresolved:
         print(f"  UNRESOLVED sections for: {unresolved}")
     if foreign:

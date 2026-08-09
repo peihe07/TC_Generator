@@ -11,8 +11,13 @@ Author column (Z) being non-empty, never by a row threshold. The detected
 segment boundaries are emitted to `row_segments.json` for the write-back step,
 which rewrites regen segments in place and content-hashes the Arif segments.
 
+Paths default to `feature.yaml` `paths.a03_report` / `paths.workbook`, and
+the workbook sheet, header row and column letters come from the same file —
+one source of constants for the whole pipeline. CLI paths are overrides.
+
 Usage:
-    python build_remaining.py --a03 <037.xlsx> --fw036 <036.xlsx> --out data/
+    python build_remaining.py --out data/
+    python build_remaining.py --fw036 <other-036.xlsx> --out data/   # override
 """
 import argparse
 import hashlib
@@ -23,13 +28,9 @@ from pathlib import Path
 
 import openpyxl
 
-TC_SHEET = "Test Case Specification&Result"
-A03_SHEET = "Analysis Report"
-TC_FIRST_DATA_ROW = 10
-AUTHOR_COL = 25  # 0-based index of column Z (Test Case Author)
-REQ_ID_COL = 3   # 0-based index of column D (Requirement or Design ID)
-# Content columns hashed for the done-region invariant: D..AG (1-based 4..33)
-CONTENT_COLS = range(3, 33)
+from feature_config import load_feature_config, resolve_path
+
+A03_SHEET = "Analysis Report"  # 037 layout, not described by feature.yaml
 
 # Expected shape, verified against the 2026-07-20 workbook. A mismatch means
 # the inputs changed underneath the plan — fail loud rather than regenerate
@@ -39,7 +40,7 @@ EXPECT_REMAINING = 62
 EXPECT_ARIF_ROWS = 144
 
 
-def load_a03(path: str) -> "OrderedDict[str, dict]":
+def load_a03(path) -> "OrderedDict[str, dict]":
     """Return all leaf FRs from the 037 analysis report, in document order."""
     wb = openpyxl.load_workbook(path, read_only=True)
     ws = wb[A03_SHEET]
@@ -51,7 +52,9 @@ def load_a03(path: str) -> "OrderedDict[str, dict]":
         if cat != "Functional Requirement":
             continue
         src = str(r[2] or "")
-        m = re.search(r"_(\d{1,2}(?:\.\d+)*)$", src)
+        # Home Screen suffixes are outline numbers (4.5.6); Last Mode suffixes
+        # are List Item numbers up to 3 digits (A-H03) — both parse here.
+        m = re.search(r"_(\d{1,3}(?:\.\d+)*)$", src)
         leaves[str(rid)] = {
             "req_id": str(rid),
             "parent": str(rid).rsplit("-", 1)[0] if re.search(r"-\d+-\d+$", str(rid))
@@ -67,27 +70,33 @@ def load_a03(path: str) -> "OrderedDict[str, dict]":
     return leaves
 
 
-def load_fw036(path: str) -> tuple[list[dict], list[dict]]:
+def load_fw036(path, cfg: dict) -> tuple[list[dict], list[dict]]:
     """Return (rows, segments) for the TC sheet.
 
     Each row is {row, req_id, author, content_hash}. Segments are contiguous
     runs of the same kind: {"kind": "ARIF"|"REGEN", "start": r, "end": r}.
     """
+    col = cfg["col"]
+    first_data_row = cfg["workbook"]["header_row"] + 1
+    author_col, req_id_col = col["author"], col["req_id"]
+    # Content columns hashed for the done-region invariant: req_id..remarks
+    content_cols = range(req_id_col, col["remarks"] + 1)
+
     wb = openpyxl.load_workbook(path, read_only=True)
-    ws = wb[TC_SHEET]
+    ws = wb[cfg["workbook"]["sheet"]]
     rows = []
-    for i, r in enumerate(ws.iter_rows(min_row=TC_FIRST_DATA_ROW,
+    for i, r in enumerate(ws.iter_rows(min_row=first_data_row,
                                        values_only=True),
-                          start=TC_FIRST_DATA_ROW):
+                          start=first_data_row):
         if not any(c is not None for c in r):
             continue
         cells = [str(r[c]) if c < len(r) and r[c] is not None else ""
-                 for c in CONTENT_COLS]
+                 for c in content_cols]
         rows.append({
             "row": i,
-            "req_id": str(r[REQ_ID_COL] or ""),
-            "author": str(r[AUTHOR_COL] or "").strip()
-                      if len(r) > AUTHOR_COL else "",
+            "req_id": str(r[req_id_col] or ""),
+            "author": str(r[author_col] or "").strip()
+                      if len(r) > author_col else "",
             "content_hash": hashlib.sha256(
                 "\x1f".join(cells).encode("utf-8")).hexdigest()[:16],
         })
@@ -108,8 +117,9 @@ def load_fw036(path: str) -> tuple[list[dict], list[dict]]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--a03", required=True)
-    ap.add_argument("--fw036", required=True)
+    ap.add_argument("--a03", help="override feature.yaml paths.a03_report")
+    ap.add_argument("--fw036", help="override feature.yaml paths.workbook")
+    ap.add_argument("--feature-dir", default=".")
     ap.add_argument("--out", default="data")
     ap.add_argument("--no-assert", action="store_true",
                     help="skip the expected-shape assertions (inputs changed)")
@@ -118,8 +128,9 @@ def main() -> None:
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    leaves = load_a03(args.a03)
-    rows, segments = load_fw036(args.fw036)
+    cfg = load_feature_config(args.feature_dir)
+    leaves = load_a03(resolve_path(cfg, "a03_report", args.a03))
+    rows, segments = load_fw036(resolve_path(cfg, "workbook", args.fw036), cfg)
 
     done = {r["req_id"] for r in rows if r["author"] and r["req_id"]}
     draft = {r["req_id"] for r in rows if not r["author"] and r["req_id"]}

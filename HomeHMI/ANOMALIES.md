@@ -39,12 +39,13 @@ runs; RESOLVED entries record the ruling verbatim.
   shortcut exclusion exception`.
 - Affects: batch B3 (unblocked by this ruling).
 
-## [A-H03] Last Mode spec — evidence gathered, RULING PENDING (2026-08-09)
+## [A-H03] Last Mode spec release-label mismatch — RESOLVED (2026-08-09)
 
 - `SWE1-HMI-HOME-076` … `-090` (15 leaves) trace to
   `Last Mode Table HMI Logic and Flow R1L-R (August 2 2021)_{n}`.
 - The originally recorded disposition (file missing → B7 emits BLOCKED
-  placeholder rows) is **probably obsolete**. `inputs/` contains
+  placeholder rows) was **wrong**: the file was in `inputs/` all along, under
+  a different release label. `inputs/` contains
   `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021).xlsx`
   (Title sheet: `R1 Last Mode Table`, Spec Release `SR24 1A Post DCR19344`,
   Date **2021-08-02** — the same date as the `R1L-R` label in 037).
@@ -70,14 +71,23 @@ runs; RESOLVED entries record the ruling verbatim.
   | 089 | 308 | Backup camera interrupt → cancel | Maintain Mode |
   | 090 | 331 | Blind spot view (turn signal) → cancel | Maintain Mode |
 
-- Ruling needed from Pei: is `R1L-R` the same document as
-  `R1 SR24 1A Post DCR19344`? If yes → A-H03 RESOLVED, B7 generates normally
-  (15 leaves, spec_reference keeps the 037 `R1L-R` string verbatim), and the
-  upstream mail becomes a version-label confirmation rather than a file
-  request. If no → the original BLOCKED disposition stands.
-- Until the ruling lands, B7 stays last in the batch order and no Last Mode
-  extraction artifact is generated.
-- Action owner: Pei (confirm version label with upstream).
+- **Ruling (Pei, 2026-08-09): same document.** Independently verified —
+  identical date, 15/15 leaves resolve, and each leaf's title matches its
+  List Item semantically. The only difference is how the release is labelled
+  (037 writes `R1L-R`; the file title writes `R1 SR24 1A`).
+- Disposition:
+  (a) B7 is **UNBLOCKED** — generate normally, no placeholder rows.
+  (b) `spec_reference` uses the **actual file name**, not 037's label:
+      `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`
+      where `{n}` is the List Item number. Rationale: the reference must name
+      a document the tester can actually locate, which is the intent of
+      Profile §3.5. This deliberately diverges from the 037 string.
+  (c) RD-1 note asks upstream to confirm `R1L-R` ≡ `R1 SR24 1A Post
+      DCR19344`, recorded as residual risk. If upstream denies the
+      equivalence, only the `spec_reference` string changes — TC content is
+      unaffected, because the content was derived from the table itself.
+- Follow-on work: a Last Mode extraction artifact (List Item -> operation /
+  screen element / behavior) is now required for the B7 batch context.
 
 ## [A-H04] BSP struck-through text out of scope — RESOLVED (2026-08-09)
 
@@ -137,6 +147,20 @@ runs; RESOLVED entries record the ruling verbatim.
   check, otherwise every correctly-cited popup TC fails the gate.
 - Affects B1 (033, 034 — PU1291) and every later batch citing PU0091 /
   PU0942 / PU1274.
+
+## [A-H09] 020/021 Test Set attribution — RESOLVED (2026-08-09)
+
+- 037 files `SWE1-HMI-HOME-020` (HSD5.6) and `-021` (HSD5.7) under the layout
+  chapter, but both describe CarPlay layout rules: the additional 12" Portrait
+  CarPlay layout options, and the CarPlay area's placement and control
+  constraints.
+- Ruling (Pei): attribute both to **CarPlay Template**, not Default Layout.
+  Attribution follows capability, not the RD's filing location — the same
+  principle as the Media `Presets` ruling (framework.md Part I).
+- Framework-internal only: Test Group / Test Set columns stay blank in the
+  workbook (Profile §2), so there is no workbook impact. Batching is
+  unaffected — 020/021 were already in B1.
+- Recorded in `docs/fw036/framework.md` Part II Layer 2/3 table.
 
 ---
 

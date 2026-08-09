@@ -24,9 +24,10 @@
 - Spec TEXT authority is the SYS1 export; the PDF supplies figures and layout
   tables. On PDF↔SYS1 wording conflict, SYS1 wins; flag the delta in
   ANOMALIES.md.
-- External referenced specs (Pop Up List; Setting Navigation Shortcuts /
-  Phone HMI for 055-03; Last Mode Table for 076–090) follow §8.4.2: never
-  absorb their rules; BLOCKED placeholder when the file is missing.
+- External referenced specs (Pop Up List; Phone HMI for the 055-03 phone-side
+  exception; Last Mode Table for 076–090) follow §8.4.2: never absorb their
+  rules; BLOCKED placeholder when the file is missing. The Last Mode Table is
+  present under a different release label (A-H03) — 076–090 are NOT blocked.
 
 ## 2. Test Set vocabulary [OVERRIDE — replaces workbook Test Set output]
 
@@ -86,7 +87,11 @@ Exactly the done-region format:
 where `{outline}` is the SYS1 Outline Number resolved via
 `data/spec_id_to_outline.tsv`. Unresolvable section → ANOMALIES.md entry +
 reference pending; never construct an outline number by guess.
-Last Mode TCs (post-unblock) use that spec's own filename + outline.
+Last Mode TCs (076–090) use that spec's ACTUAL file name plus its List Item
+number, per the A-H03 ruling:
+`Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`.
+This deliberately differs from 037's `R1L-R` label — the reference must name
+a document the tester can locate.
 
 ### 3.6 Remarks [ADD]
 
@@ -122,13 +127,17 @@ is a manual convention.
 - BLOCKED rows keep the req row: Test Item = requirement sentence,
   Procedure/ER = `BLOCKED - see Remarks`, Priority and Design Method blank,
   Remarks = reason + anomaly id.
-- Standing blocks at profile creation: B7 (076–090, A-H03 Last Mode spec
-  missing); candidates pending Pei ruling: 066 parent (A-H01), 055-03
-  (A-H02).
+- No standing blocks as of 2026-08-09. All Step-0 rulings are closed:
+  066 parent (A-H01) and 055-03 (A-H02) get placeholder rows with delegation
+  Remarks; B7 (A-H03) generates normally. The blocked-placeholder format
+  above stays defined for any block found during generation.
 
 ## 7. Known anomalies register [ADD]
 
 A-H01 066 parent/child duplication; A-H02 055-03 pure-reference req;
-A-H03 Last Mode spec missing; A-H04 BSP struck-through text out of scope;
-A-H05 done-region 13 rows blank priority (recorded, not fixed).
+A-H03 Last Mode spec release-label mismatch (resolved — not missing);
+A-H04 BSP struck-through text out of scope; A-H05 done-region 13 rows blank
+priority (recorded, not fixed); A-H06 035 in FW036 but absent from 037;
+A-H07 HSD5.6 grey-out assumption; A-H08 quoted popup text is exempt from the
+ER modal-verb ban; A-H09 020/021 attribute to CarPlay Template.
 Details and dispositions live in `HomeHMI/ANOMALIES.md`.

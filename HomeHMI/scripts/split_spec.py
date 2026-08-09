@@ -23,8 +23,11 @@ Outputs (under --out):
   section_manifest.json {outline: {text, code, pages:[...]}}
   spec_diff.json        {sys1_codes_missing_from_pdf, pdf_codes_missing_from_sys1}
 
+Paths default to `feature.yaml` `paths.sys1_export` / `paths.spec_pdf`;
+--sys1 / --pdf override them.
+
 Usage:
-    python split_spec.py --sys1 <SYS1.xlsx> --pdf <HomeScreen.pdf> --out data/
+    python split_spec.py --out data/
     # --skip-render reuses previous PNGs; --force-ocr ignores the text layer
 """
 import argparse
@@ -34,6 +37,8 @@ from pathlib import Path
 
 import fitz  # pymupdf
 import openpyxl
+
+from feature_config import load_feature_config, resolve_path
 
 # Item codes leading spec sentences: HSD1) HSS4.1) SNS3) BSP5.1) SW7) HS9.0.1)
 CODE_RE = re.compile(r"\b([A-Z]{1,4}\d+(?:\.\d+)*)\s*[).]")
@@ -219,26 +224,31 @@ def build_manifest(sections: dict, page_index: list, txt_dir: Path) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--sys1", required=True)
-    ap.add_argument("--pdf", required=True)
+    ap.add_argument("--sys1", help="override feature.yaml paths.sys1_export")
+    ap.add_argument("--pdf", help="override feature.yaml paths.spec_pdf")
+    ap.add_argument("--feature-dir", default=".")
     ap.add_argument("--out", default="data")
     ap.add_argument("--skip-render", action="store_true")
     ap.add_argument("--force-ocr", action="store_true",
                     help="ignore the text layer (Media-style OCR pipeline)")
     args = ap.parse_args()
 
+    cfg = load_feature_config(args.feature_dir)
+    sys1_path = resolve_path(cfg, "sys1_export", args.sys1)
+    pdf_path = str(resolve_path(cfg, "spec_pdf", args.pdf))
+
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
 
-    sections = build_spec_sections(args.sys1)
+    sections = build_spec_sections(sys1_path)
     (out / "spec_sections.json").write_text(
         json.dumps(sections, ensure_ascii=False, indent=2))
     print(f"spec_sections: {len(sections)} outline entries")
 
-    pngs = render_pages(args.pdf, out / "spec_pages", args.skip_render)
+    pngs = render_pages(pdf_path, out / "spec_pages", args.skip_render)
     print(f"pages: {len(pngs)} ({'reused' if args.skip_render else 'rendered'})")
 
-    page_index = extract_text(args.pdf, out / "page_text", pngs, args.force_ocr)
+    page_index = extract_text(pdf_path, out / "page_text", pngs, args.force_ocr)
     (out / "page_index.json").write_text(
         json.dumps(page_index, ensure_ascii=False, indent=2))
     by_source: dict[str, int] = {}

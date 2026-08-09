@@ -15,8 +15,11 @@ Selection heuristic per chapter: prefer diversity of Design Method, then the
 longest procedures (richer patterns: baseline setup, multi-phase ER, popup
 citation format).
 
+Workbook path, sheet and column letters come from `feature.yaml`; --fw036
+overrides the path.
+
 Usage:
-    python extract_exemplars.py --fw036 <036.xlsx> --out data/ [--per-chapter 3]
+    python extract_exemplars.py --out data/ [--per-chapter 3]
 """
 import argparse
 import csv
@@ -27,16 +30,17 @@ from pathlib import Path
 
 import openpyxl
 
-TC_SHEET = "Test Case Specification&Result"
-TC_FIRST_DATA_ROW = 10
-AUTHOR_COL = 25  # column Z
+from feature_config import load_feature_config, resolve_path
 
-# 0-based column indices, verified against the 2026-07-20 workbook header row 9
-FIELDS = {
-    "req_id": 3, "test_group": 6, "test_set": 7, "test_item": 8,
-    "pre_conditions": 9, "input_test_data": 10, "test_procedure": 11,
-    "expected_result": 12, "specification_reference": 13, "priority": 15,
-    "design_method": 16, "remarks": 32,
+# Exemplar field -> feature.yaml column key. The output key stays
+# `specification_reference` because downstream consumers read that name.
+FIELD_COLUMNS = {
+    "req_id": "req_id", "test_group": "test_group", "test_set": "test_set",
+    "test_item": "test_item", "pre_conditions": "pre_conditions",
+    "input_test_data": "input_test_data", "test_procedure": "test_procedure",
+    "expected_result": "expected_result",
+    "specification_reference": "spec_reference", "priority": "priority",
+    "design_method": "design_method", "remarks": "remarks",
 }
 
 OUTLINE_RE = re.compile(r"_(\d{1,2}(?:\.\d+)*)\s*$")
@@ -82,7 +86,8 @@ def chapter_of(spec_ref: str, outline_to_chapter: dict[str, str]) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--fw036", required=True)
+    ap.add_argument("--fw036", help="override feature.yaml paths.workbook")
+    ap.add_argument("--feature-dir", default=".")
     ap.add_argument("--out", default="data")
     ap.add_argument("--per-chapter", type=int, default=3)
     args = ap.parse_args()
@@ -91,19 +96,25 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     outline_to_chapter = load_outline_to_chapter(out / "spec_id_to_outline.tsv")
 
-    wb = openpyxl.load_workbook(args.fw036, read_only=True)
-    ws = wb[TC_SHEET]
+    cfg = load_feature_config(args.feature_dir)
+    fields = {k: cfg["col"][v] for k, v in FIELD_COLUMNS.items()}
+    author_col = cfg["col"]["author"]
+    first_data_row = cfg["workbook"]["header_row"] + 1
+
+    wb = openpyxl.load_workbook(
+        resolve_path(cfg, "workbook", args.fw036), read_only=True)
+    ws = wb[cfg["workbook"]["sheet"]]
 
     by_chapter: "OrderedDict[str, list]" = OrderedDict()
-    for rownum, r in enumerate(ws.iter_rows(min_row=TC_FIRST_DATA_ROW,
+    for rownum, r in enumerate(ws.iter_rows(min_row=first_data_row,
                                             values_only=True),
-                               start=TC_FIRST_DATA_ROW):
-        if not r[FIELDS["req_id"]]:
+                               start=first_data_row):
+        if not r[fields["req_id"]]:
             continue
-        if not (len(r) > AUTHOR_COL and str(r[AUTHOR_COL] or "").strip()):
+        if not (len(r) > author_col and str(r[author_col] or "").strip()):
             continue  # regen region — not an exemplar
         tc = {k: (str(r[i]).strip() if len(r) > i and r[i] is not None else "")
-              for k, i in FIELDS.items()}
+              for k, i in fields.items()}
         tc["_row"] = rownum
         tc["_chapter"] = chapter_of(tc["specification_reference"],
                                     outline_to_chapter)

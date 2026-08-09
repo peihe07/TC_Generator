@@ -37,8 +37,11 @@
    Workbook `Test Case Framework` sheet is empty — do not populate.
 6. Last Mode spec: 037 cites `... R1L-R (August 2 2021)`; `inputs/` holds
    `... R1 SR24 1A (August 2 2021).xlsx`, whose 359-row `Last Mode Table`
-   resolves all 15 B7 `_{n}` suffixes exactly. Same document under a
-   different release label, pending Pei's confirmation — see A-H03.
+   resolves all 15 B7 `_{n}` suffixes exactly. **Ruled the same document
+   (A-H03).** B7 spec_reference uses the ACTUAL file name, not 037's label:
+   `Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021)_{n}`,
+   `{n}` = List Item number. This is a deliberate divergence from the 037
+   string so the reference names a document the tester can locate.
 7. Remarks is column **AG (33)**, not AH as in Media. Header row is 9;
    the sheet is `Test Case Specification&Result` (no space before `&`).
 
@@ -58,10 +61,16 @@ HomeHMI/
 │               #   page_index.json         per-page codes
 │               #   spec_diff.json          SYS1 <-> PDF code diff
 │               #   exemplars.json          few-shot anchors by chapter
+│               #   last_mode_items.json    List Item -> behavior (B7)
 ├── batches/    # per-batch context JSON (B1–B7)
 ├── generated/  # per-parent output JSON (checkpoint/resume)
-├── scripts/    # build_outline_map / build_remaining / split_spec /
-│               # extract_exemplars (Home-adapted); lint + write_back TODO
+├── feature.yaml # SINGLE SOURCE of constants: input path globs, sheet name,
+│               # header row, column letters, done-region detection, lint
+│               # inputs. Scripts read it via scripts/feature_config.py.
+├── scripts/    # feature_config (loader) + build_outline_map /
+│               # build_remaining / split_spec / extract_exemplars /
+│               # build_last_mode / make_batch_context; lint_tcs +
+│               # write_back TODO
 ├── docs/       # batches-home.md (execution plan)
 ├── ANOMALIES.md
 └── RUNBOOK.md  # this file
@@ -71,17 +80,19 @@ Profile: `docs/runtime/profiles/FW036_R1L_Home_Profile.md` (overlay on the
 generic ASPICE instruction). Framework: Home Test Group section appended to
 `docs/fw036/framework.md` — one project, one framework.md.
 
-## Step 0 — Pending rulings (Pei)
+## Step 0 — Rulings: ALL CLOSED (2026-08-09)
 
-1. ~~A-H01~~ RESOLVED 2026-08-09: 066 → placeholder row, content on -01/-02
-2. ~~A-H02~~ RESOLVED 2026-08-09: 055-03 → placeholder row, no independent TC
-3. 020/021 Test Set attribution (Default Layout vs CarPlay Template) —
-   batching only, no workbook impact
-4. A-H03: confirm `R1L-R` == `R1 SR24 1A Post DCR19344` (the file is already
-   in `inputs/` and resolves all 15 leaves). Ruling unblocks B7 — no longer a
-   file request, only a version-label confirmation.
-5. A-H06 (new): 035 exists in FW036 + spec but is missing from 037 — RD-1
-   question; no batch is blocked by it.
+| # | Ruling | Effect |
+|---|---|---|
+| A-H01 | 066 fully decomposed → placeholder row, content on -01/-02 | B5 unblocked |
+| A-H02 | 055-03 → placeholder row, no independent TC | B3 unblocked |
+| A-H03 | `R1L-R` ≡ `R1 SR24 1A Post DCR19344`, same document | **B7 unblocked** |
+| A-H09 | 020/021 attribute to CarPlay Template, not Default Layout | batching only |
+
+Nothing blocks generation. **All 62 leaves have a path.** Two items remain as
+RD-1 questions carried to delivery, neither gating: A-H06 (035 missing from
+037) and the A-H03(c) residual risk (upstream to confirm the label
+equivalence; if denied, only the `spec_reference` string changes).
 
 ## Step 1 — Rebuild data artifacts (idempotent)
 
@@ -92,7 +103,24 @@ python scripts/build_remaining.py --a03 inputs/FM-WI-FSM-037*.xlsx \
 python scripts/split_spec.py --sys1 inputs/SYS1_*.xlsx \
     --pdf "inputs/Home Screen"*.pdf --out data
 python scripts/extract_exemplars.py --fw036 inputs/FM-WI-FSM-036*.xlsx --out data
+python scripts/build_last_mode.py --last-mode "inputs/Last Mode Table"*.xlsx \
+    --out data
 ```
+
+Then assemble batch contexts (Step 2 input):
+
+```bash
+for b in B1 B2 B3 B4 B5 B6 B7; do
+  python scripts/make_batch_context.py --batch $b \
+      --popup "inputs/Pop Up List"*.xlsx
+done
+```
+
+All path arguments are **overrides**: omit them and the script resolves the
+glob in `feature.yaml` `paths.*` (fail loud unless it matches exactly one
+file). The commands above pass paths explicitly and still work unchanged.
+No script carries its own column map — sheet name, header row and column
+letters all come from `feature.yaml` through `scripts/feature_config.py`.
 
 Adaptations vs Media:
 - `build_remaining.py`: done-region detection by non-empty Test Case Author
@@ -108,6 +136,13 @@ Adaptations vs Media:
 - `extract_exemplars.py`: keys exemplars by spec chapter (HSD/HSS/HS) via
   `spec_id_to_outline.tsv`, since the Test Set column is blank. Skips
   blank-priority rows (A-H05) so they are not learned as style.
+- `build_last_mode.py` (new, Home-only): extracts the Last Mode Table into a
+  List Item lookup for B7. Forward-fills the vertically merged Operation and
+  Screen Display Status columns — a row read alone loses its trigger.
+- `make_batch_context.py`: batch membership from `docs/batches-home.md`;
+  refuses to resolve non-Home-spec leaves against the Home manifest (the
+  `_{n}` namespaces collide); pulls chapter figure pages in via the
+  image-only sibling rows; reports exemplar fallbacks instead of hiding them.
 
 Verified output (2026-08-09 inputs):
 
@@ -118,7 +153,11 @@ segments: ARIF 10-86 (77)  REGEN 87-90 (4)  ARIF 91-124 (34)
 spec_sections: 104 outline entries; 96 mapped to pages
 text extraction: text-layer=18, ocr=1; 0 SYS1 codes absent from PDF
 exemplars: 9 TCs across 3 spec chapters (HSD 116, HSS 23, HS 5 in pool)
+last_mode_items: 352 List Items, exactly 15 with Screen Display Status = HOME
 ```
+
+Those 15 HOME rows are a 1:1 match with B7's 15 leaves — independent
+corroboration of the A-H03 ruling.
 
 All 47 B1–B6 leaves resolve to a spec page. The 15 unresolved are B7 — they
 trace to the Last Mode spec, not the Home Screen spec (see A-H03).
@@ -139,13 +178,31 @@ Same contract as Media RUNBOOK Step 2. Home-specific holds:
   valid Pre-Condition (§8.5 exception); popup + grey-out are the same
   trigger's consequential outcomes → one TC, multi-line ER (§5.7)
 - BSP struck-through text (Know & Go Hub) is OUT of scope (A-H04)
-- B7: BLOCKED placeholder rows only until Last Mode spec lands
+- B7 generates normally (A-H03 resolved). Its context comes from the Last
+  Mode Table sheet, not the Home Screen spec — `make_batch_context.py`
+  deliberately injects no Home spec text for those 15 leaves, because the
+  `_{n}` suffixes are List Item numbers that collide with Home outline
+  numbers.
 
 Batch order: B1 pilot (5 leaves, CarPlay Template) → Pei review → B2→B6 → B7.
+B7 is last only because its extraction artifact is the newest, not because it
+is blocked.
 Model: Opus 4.8 for B1/B5/B6 (layout judgement, external-ref density);
 Sonnet 4.6 acceptable for B2–B4 (templated, strong HSS exemplars).
 
 ## Step 3 — Lint (hard gate)
+
+`lint_tcs.py` is NOT yet written for Home. When it is, it must read its
+inputs from `feature.yaml` rather than hard-coding them:
+- `lint.popup_ids` for the PU allow-list
+- the workbook `下拉選單` sheet for the Design Method whitelist (9 strings,
+  exact match) — the sheet is the authority, `feature.yaml` only points at
+  the workbook
+- `workbook.columns` for every column index
+
+It must also implement the A-H08 rule: strip double-quoted spans before the
+ER modal-verb check, so verbatim popup text (`Widget cannot be moved here.`)
+does not fail the gate.
 
 All Media gates, plus:
 - test_group and test_set cells must be EMPTY (done-region convention)

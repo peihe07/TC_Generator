@@ -1,0 +1,53 @@
+# feature.yaml — pipeline configuration for Home HMI
+# All feature-specific constants live here; shared scripts (scripts/recon.py
+# and downstream) read this file. Regenerate nothing by editing code.
+# NOTE: input filename patterns match the real files in inputs/ (hyphenated
+# FM-WI-FSM names, spaces in the PDF name).
+
+feature: "Home"
+test_group: "Home"               # framework-internal; workbook columns stay blank
+
+paths:
+  workbook: "inputs/FM-WI-FSM-036*.xlsx"
+  a03_report: "inputs/FM-WI-FSM-037*.xlsx"
+  sys1_export: "inputs/SYS1_*.xlsx"
+  spec_pdf: "inputs/Home Screen*.pdf"
+  popup_list: "inputs/Pop Up List*.xlsx"
+
+spec_mode: "A"        # SYS1 export is text authority; PDF supplies figures
+spec_reference_template: "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_{outline}"
+
+workbook:
+  sheet: "Test Case Specification&Result"
+  header_row: 9
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "Q"
+    functional_safety: "R"
+    author: "Z"
+    remarks: "AG"      # verified against header row 9 (AG=33, not Media's AH)
+
+done_region:
+  detection: "author"
+  author_value: "Arif"
+  invariant: "content_hash"      # interleaved segments — see RUNBOOK Step 4
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: false
+
+lint:
+  design_method_source: "dropdown_sheet"
+  popup_ids: [PU0091, PU0942, PU1274, PU1291]
+  extra_rules: []
