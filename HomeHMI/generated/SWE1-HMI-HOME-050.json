@@ -1,0 +1,33 @@
+{
+  "parent": "SWE1-HMI-HOME-050",
+  "batch": "B2",
+  "reasoning": "HSS4.2（outline 9.5.2）是離開 Edit state 的第二條路徑：Cancel 還原並離開。「還原成原始版面」與「回到前一畫面」是同一觸發的連帶結果，依 §5.7 併為一條、多行 ER，不拆兩條。規格加了「if any changes were made」這個條件——未做任何變更時 Cancel 仍應離開，只是沒有可還原的內容；該情形與有變更時的離開路徑相同，不構成獨立驗證標的，故不另產 TC，於此記錄判斷。ER 必須同時陳述「shortcut 順序回到原始狀態」與「前一畫面顯示」，只寫離開無法證明還原有效。與 049-01 的差異軸是離開方式（Done 儲存 vs Cancel 還原），與 051 的差異是離開為顯式操作而非導航離開。優先級：屬主要功能的還原路徑而非核心主流程，訂 P1。",
+  "keywords": [
+    "Shortcuts Layout screen",
+    "Cancel",
+    "HSS4.2",
+    "revert",
+    "original layout"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Edit state exit path",
+    "delta": "049-01 Done saves; 050 Cancel reverts; 051 navigating away discards"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-050",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "When in editing Shortcuts widget screen selecting \"Cancel\" shall revert shortcuts to original layout if any changes were made and exit editing Shortcuts widget screen. User shall be returned to previous screen.\n\n(Changes made then \"Cancel\" selected -> the original shortcut layout is restored and the previous screen is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts with different content are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Read the order of the shortcuts on the Shortcuts Layout screen\n3. Press and hold the first shortcut, drag it onto the second shortcut position and release\n4. Select \"Cancel\"\n5. Read the screen displayed and the order of the shortcuts in the Shortcuts widget",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The original order of the shortcuts is displayed\n3. The first and the second shortcut have exchanged positions on the Shortcuts Layout screen\n4. The Edit state is exited\n5. The Home Screen page that contains the Shortcuts widget is displayed and the Shortcuts widget shows the original shortcut order",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5.2",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}

@@ -186,6 +186,53 @@ runs; RESOLVED entries record the ruling verbatim.
 - A 28/72 split is not a convention. The rule is omitted from Home's linter
   rather than enforced against a majority of Arif's own rows.
 
+## [A-H12] SYS1 export drops a sentence from HSS4 — RECORDED (affects 048-04)
+
+- The Home PDF's HSS4 contains a sentence the SYS1 export does not:
+  `If there is a custom routine, or a preset routine that has customization,
+  show "Edit <name>" within the routine button (see Edit Routine section for
+  more information on custom routines).`
+- 037's `SWE1-HMI-HOME-048-04` ("Edit Mode: Edit Routines") follows SYS1 and
+  therefore says only "the edit state allows the user to edit routines within
+  the widget" — the button label and the routine-editing behaviour are absent.
+- The referenced "Edit Routine section" is in **neither** document: the Home
+  PDF only points at it, and SYS1 has no routine section at all. HSS1.1's
+  table likewise defers: "Preset Routines -> Go to Preset Routines page, see
+  Preset Routines logic page(s)".
+- Disposition: 048-04 is scoped to the **entry point only** — the edit state
+  offers a way into routine editing. The routine editing behaviour itself is
+  an external-spec case (§8.4.2) and generates nothing here. Same shape as
+  A-H02. RD-1: ask upstream to re-export HSS4 completely and to name the
+  Edit Routine spec.
+- Profile §1 says SYS1 is the text authority; this is an omission, not a
+  wording conflict, so nothing is overridden — the missing content simply has
+  no SWE requirement to hang a TC on.
+
+## [A-H13] SW06 figure text differs from the specified prompt — RECORDED
+
+- `SWE1-HMI-HOME-048-01` requires the Edit state to show
+  `"Press and hold to drag and reorder shortcuts."` Both SYS1 9.5 and the PDF
+  text layer agree on that wording.
+- The SW06 figure on PDF p.14 renders the screen header as
+  `Hold & Drag To Reorder Shortcuts` — different words, different casing.
+- Profile §1: SYS1 is the text authority and the PDF supplies figures, so the
+  TC asserts the specified wording. Recorded as a source inconsistency, since
+  a tester comparing against the figure will see a mismatch.
+- RD-1 candidate: ask which string ships.
+
+## [A-H14] lint.popup_ids is not a closed list — RECORDED
+
+- `feature.yaml` originally listed four popups (PU0091, PU0942, PU1274,
+  PU1291) — the ones the SYS1 spec text cites BY ID.
+- HSS4.1 instead quotes its popup by wording only: `display popup notification
+  "Home screen updates saved." [X]`. The Pop Up List does define it —
+  **PU0808** (module Home, 5 s timeout, exit `Timeout` / `<X>`).
+- Disposition: cite PU0808 in `SWE1-HMI-HOME-049-02` and add it to
+  `lint.popup_ids`. Citing the ID gives the tester the timeout and exit
+  conditions that the Home spec omits, which is the point of Profile §3.4.
+- The list grows per batch as spec wording is matched back to Pop Up List
+  rows. It is an allow-list for typo detection, not a coverage claim.
+
 ---
 
 ## Assumption markers

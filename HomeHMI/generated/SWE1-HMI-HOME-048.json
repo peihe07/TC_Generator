@@ -1,0 +1,103 @@
+{
+  "parent": "SWE1-HMI-HOME-048",
+  "batch": "B2",
+  "reasoning": "HSS4（outline 9.5）被 037 拆成六個 sub-id，依 §8.2.1 每個 sub-id 各自持有 TC，不合併。048-01 驗進入 Edit state 與提示文字（單一標的：畫面出現 + 文字正確）；048-02/03/05 各驗 Edit state 內的一種操作；048-06 驗編輯既有 shortcut 內容類型後的返回行為。048-04 特殊：SYS1 匯出漏掉 HSS4 中「show \"Edit <name>\" within the routine button」整句，且其指向的 Edit Routine section 在 SYS1 與 Home PDF 皆不存在（A-H12），故本條只驗「Edit state 提供進入 routine 編輯的入口」，routine 編輯本身屬外部規格（§8.4.2），不在此產生 TC。048-01 的提示文字以 SYS1 原文為準；SW06 圖面渲染為 \"Hold & Drag To Reorder Shortcuts\"，與規格文字不符，已記入 A-H13，依 Profile §1 規格文字勝出。前置條件一律含車速 0——HSS2 規定 shortcut 只能在車輛未行進時設定，這是規格觸發條件而非環境敘述（Profile §3.2）。優先級：進入 Edit state 是本功能成立的前提，訂 P0；其餘各項編輯操作與返回行為訂 P1。",
+  "keywords": [
+    "Shortcuts widget",
+    "Edit state",
+    "HSS4",
+    "Shortcuts Layout screen",
+    "press and hold"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "037 sub-id",
+    "delta": "-01 entry + prompt text; -02 delete; -03 reorder; -04 routine entry point; -05 add; -06 return after content-type selection"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-048-01",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Enter Shortcuts Edit Mode and Prompt Text: User is able to select a separate edit button on the Shortcut widget which allows the user to enter to Edit state screen, and show the text: \"Press and hold to drag and reorder shortcuts.\"\n\n(Edit button on the Shortcuts widget selected -> the Shortcuts Layout screen opens showing the specified prompt text)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the edit button on the Shortcuts widget\n3. Read the text displayed on the Shortcuts Layout screen",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Shortcuts Layout screen is displayed in the Edit state\n3. The text \"Press and hold to drag and reorder shortcuts.\" is displayed on the Shortcuts Layout screen",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Prompt text follows SYS1; the SW06 figure renders different wording (A-H13)"
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-048-02",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Edit Mode: Delete Shortcuts: The edit state allows the user to delete shortcuts within the widget.\n\n(Delete control on a shortcut selected in the Edit state -> that shortcut is removed from the Shortcuts widget)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Read the shortcuts displayed on the Shortcuts Layout screen\n3. Select the delete control on the first shortcut\n4. Read the shortcuts displayed on the Shortcuts Layout screen",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. Each shortcut is displayed with a delete control\n3. The first shortcut is removed from the Shortcuts Layout screen\n4. The remaining shortcuts are displayed and the deleted position shows an empty shortcut",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-048-03",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Edit Mode: Reorder Shortcuts: The edit state allows the user to reorder shortcuts within the widget.\n\n(Shortcut pressed and held then dragged to another position in the Edit state -> the shortcuts exchange positions)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts with different content are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Read the content and position of the first and the second shortcut\n3. Press and hold the first shortcut, drag it onto the second shortcut position and release\n4. Read the content and position of the first and the second shortcut",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The content and position of the first and the second shortcut are displayed\n3. The first shortcut is moved to the second shortcut position\n4. The first and the second shortcut have exchanged positions",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-048-04",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Edit Mode: Edit Routines: The edit state allows the user to edit routines within the widget.\n\n(Routine shortcut selected in the Edit state -> the routine editing entry point is provided)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A routine shortcut is set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Read the routine shortcut displayed on the Shortcuts Layout screen\n3. Select the routine shortcut",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The routine shortcut is displayed with an edit control\n3. The routine editing screen is opened from the Shortcuts Layout screen",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Entry point only. SYS1 omits the HSS4 routine-button sentence and the referenced Edit Routine section is in neither document (A-H12); routine editing behaviour is external-spec scope"
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-048-05",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Edit Mode: Add Shortcuts: The edit state allows the user to add shortcuts within the widget.\n\n(Empty shortcut selected in the Edit state -> the Select Shortcut Type screen opens and the chosen shortcut is added)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least one empty shortcut position is available in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position on the Shortcuts Layout screen\n3. Select a shortcut category on the \"Select Shortcut Type\" screen\n4. Select a shortcut from the category content list\n5. Read the shortcut displayed at the previously empty position",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The \"Select Shortcut Type\" screen is displayed\n3. The content list of the selected shortcut category is displayed\n4. The Shortcuts Layout screen is displayed\n5. The selected shortcut is displayed at the previously empty position",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-048-06",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "User shall be returned to Shortcuts Layout screen after a selection is made.\n\n(Content type of an existing shortcut edited from the Shortcuts Layout screen -> the user returns to the Shortcuts Layout screen once the selection is made)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least one shortcut is set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the existing shortcut to edit its content type\n3. Select a different shortcut category on the \"Select Shortcut Type\" screen\n4. Select a shortcut from the category content list\n5. Read the screen displayed after the selection",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The \"Select Shortcut Type\" screen is displayed\n3. The content list of the selected shortcut category is displayed\n4. The selection is applied to the edited shortcut\n5. The Shortcuts Layout screen is displayed with the edited shortcut showing the newly selected content",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

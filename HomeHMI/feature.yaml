@@ -49,5 +49,7 @@ write_back:
 
 lint:
   design_method_source: "dropdown_sheet"
-  popup_ids: [PU0091, PU0942, PU1274, PU1291]
+  # Grows per batch as spec wording is matched back to Pop Up List rows
+  # (A-H14). PU0808 added for HSS4.1, which quotes its popup by wording only.
+  popup_ids: [PU0091, PU0808, PU0942, PU1274, PU1291]
   extra_rules: []

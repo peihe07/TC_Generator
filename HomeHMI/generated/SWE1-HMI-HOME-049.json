@@ -1,0 +1,50 @@
+{
+  "parent": "SWE1-HMI-HOME-049",
+  "batch": "B2",
+  "reasoning": "HSS4.1（outline 9.5.1）被 037 拆成兩個 sub-id：049-01 是「Done 儲存並離開至前一畫面」的狀態轉換，049-02 是隨之顯示的 popup 通知。依 §8.2.1 各持有自己的 TC，不因同屬一句規格而合併。049-01 屬離開 Edit state 的三條路徑之一（另兩條為 050 Cancel、051 導航離開），三者同狀態、不同觸發、不同持久化結果，方法一致採狀態轉換。049-01 的 ER 必須同時陳述「變更已儲存」與「回到前一畫面」，只寫其中一半無法區分是儲存成功還是單純離開。049-02 的 popup 規格文字只給了訊息與 [X]，未給逾時；Pop Up List 的 PU0808（Home，5 秒逾時，exit Timeout/<X>）才是完整權威，依 Profile §3.4 以 ID 引用並照抄原文（A-H14）。PU0808 的 5 秒逾時屬 Pop Up List 行為、非 049-02 所主張的內容，本條不擴充驗證範圍。優先級：Done 儲存是本功能的核心（不成立則所有編輯白做），訂 P0；popup 通知屬輔助回饋，訂 P2。",
+  "keywords": [
+    "Shortcuts Layout screen",
+    "Done",
+    "HSS4.1",
+    "PU0808",
+    "save changes"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "037 sub-id",
+    "delta": "-01 the save-and-exit transition; -02 the confirmation popup that accompanies it"
+  },
+  "coverage_notes": [
+    "PU0808's 5 second timeout is a Pop Up List attribute, not asserted by 049-02; not verified here."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-049-01",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "When in editing Shortcuts widget screen selecting \"Done\" shall save changes and exit editing Shortcuts to previous screen.\n\n(Changes made then \"Done\" selected -> the changes persist and the previous screen is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts with different content are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Press and hold the first shortcut, drag it onto the second shortcut position and release\n3. Select \"Done\"\n4. Read the screen displayed and the order of the shortcuts in the Shortcuts widget",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The first and the second shortcut have exchanged positions on the Shortcuts Layout screen\n3. The Edit state is exited\n4. The Home Screen page that contains the Shortcuts widget is displayed and the Shortcuts widget shows the exchanged shortcut order",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5.1",
+      "priority": "P0",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-049-02",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Save Changes Popup Notification: display popup notification \"Home screen updates saved.\" [X].\n\n(\"Done\" selected after changes -> the save confirmation popup is displayed and closes on its dismiss control)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts with different content are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Press and hold the first shortcut, drag it onto the second shortcut position and release\n3. Select \"Done\"\n4. Read the popup displayed on the screen\n5. Press <X> on the popup",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The first and the second shortcut have exchanged positions on the Shortcuts Layout screen\n3. The Edit state is exited and the previous screen is displayed\n4. Popup PU0808 is displayed reading \"Home screen updates saved.\" with the <X> control, as defined by PU0808 String/Popup Message\n5. Popup PU0808 is dismissed and the previous screen remains displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "HSS4.1 quotes the popup by wording only; PU0808 is the Pop Up List row (A-H14)"
+    }
+  ]
+}

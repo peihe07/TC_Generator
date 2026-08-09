@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-051",
+  "batch": "B2",
+  "reasoning": "HSS4.3（outline 9.5.3）是離開 Edit state 的第三條路徑：導航到其他畫面，變更不儲存。與 050 的差異在於離開是隱含的（未按 Cancel），與 049-01 的差異在於結果相反（不儲存）。ER 必須陳述「返回 Shortcuts widget 後順序仍為原始狀態」，而非只寫「導航成功」——後者無法證明變更真的沒被儲存，需要回到原畫面重新讀取才構成可觀察結果，故程序刻意含返回步驟。導航目標選用 Main Menu Bar 上的其他模式（規格未指定特定畫面，任一不同畫面皆滿足「navigates to a different screen」）。優先級：屬主要功能的隱含離開路徑，與 050 同級，訂 P1。",
+  "keywords": [
+    "Shortcuts Layout screen",
+    "navigate away",
+    "HSS4.3",
+    "changes not saved"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Edit state exit path",
+    "delta": "049-01 Done saves; 050 Cancel reverts explicitly; 051 navigating away discards implicitly"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-051",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "If user is on editing Shortcuts widget screen and navigates to a different screen, changes shall not be saved.\n\n(Changes made then the user navigates away without selecting \"Done\" or \"Cancel\" -> the changes are discarded)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts with different content are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Read the order of the shortcuts on the Shortcuts Layout screen\n3. Press and hold the first shortcut, drag it onto the second shortcut position and release\n4. Press \"Media\" on the Main Menu Bar\n5. Press \"Home\" on the Main Menu Bar and read the order of the shortcuts in the Shortcuts widget",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The original order of the shortcuts is displayed\n3. The first and the second shortcut have exchanged positions on the Shortcuts Layout screen\n4. The Media screen is displayed and the Edit state is exited\n5. The Home Screen page is displayed and the Shortcuts widget shows the original shortcut order",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5.3",
+      "priority": "P1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "remarks": ""
+    }
+  ]
+}
