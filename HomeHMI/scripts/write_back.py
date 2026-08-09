@@ -275,7 +275,10 @@ def normalize_for_reproducibility(path: Path) -> None:
         for info in items:
             data = src.read(info.filename)
             if info.filename == "docProps/core.xml":
-                data = _DCTERMS_RE.sub(rb"\1" + _FIXED_STAMP + rb"\3", data)
+                # \g<1> not \1: `\1` followed by the stamp's leading "2"
+                # would parse as group 12 and silently corrupt core.xml.
+                data = _DCTERMS_RE.sub(
+                    rb"\g<1>" + _FIXED_STAMP + rb"\g<3>", data)
             new = zipfile.ZipInfo(info.filename, date_time=_EPOCH)
             new.compress_type = zipfile.ZIP_DEFLATED
             new.external_attr = info.external_attr

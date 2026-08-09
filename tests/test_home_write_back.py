@@ -174,6 +174,42 @@ def test_valid_placeholder_passes():
     assert v[CFG["col"]["remarks"]].endswith("(A-H01)")
 
 
+# ---------------------------------------------------------- normalisation
+
+def test_normalisation_keeps_the_workbook_openable(tmp_path):
+    """The dcterms substitution once used `\\1` immediately before a stamp
+    starting with "2", which Python read as group 12 and silently destroyed
+    docProps/core.xml. The file still hashed fine — only reopening caught it."""
+    import openpyxl as _pyxl
+    src = tmp_path / "wb.xlsx"
+    wb = _pyxl.Workbook()
+    wb.active["A1"] = "hello"
+    wb.save(src)
+
+    write_back.normalize_for_reproducibility(src)
+
+    reopened = _pyxl.load_workbook(src)
+    assert reopened.active["A1"].value == "hello"
+
+    import zipfile
+    core = zipfile.ZipFile(src).read("docProps/core.xml")
+    assert b"2000-01-01T00:00:00Z" in core
+    assert b"</dcterms:created>" in core, "closing tag must survive"
+
+
+def test_normalisation_is_idempotent_and_stable(tmp_path):
+    import openpyxl as _pyxl
+    digests = []
+    for name in ("a.xlsx", "b.xlsx"):
+        p = tmp_path / name
+        wb = _pyxl.Workbook()
+        wb.active["A1"] = "same"
+        wb.save(p)
+        write_back.normalize_for_reproducibility(p)
+        digests.append(write_back.sha256_file(p))
+    assert digests[0] == digests[1], "two identical books must hash identically"
+
+
 # ------------------------------------------------------------------ integration
 
 @pytest.fixture(scope="module")
