@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-057",
+  "batch": "B3",
+  "reasoning": "HSS7(outline 9.8)是一條全稱敘述:任何 control、app 或 comfort control 都能成為 shortcut。全稱無法窮舉驗證,規格本身已把可設定對象劃成三個類別,三者即天然的等價類別,故採等價劃分,每類取一個代表性項目於同一條 TC 內驗證,而非爆成三條——037 未按類別拆 sub-id,Profile §4 要求不超出 037 的粒度。ER 逐類陳述「該 shortcut 已設定於 widget 且可啟動」,只寫「設定成功」不足以支撐 HSS7 的「can be a shortcut」——能被設定但按下無作用並不滿足需求。與 053(不可用項目灰化)互為正反面:053 驗不可用者被擋,本條驗可用者確實可設。優先級:屬 shortcut 設定能力的廣度確認而非單一主流程,訂 P2。",
+  "keywords": ["HSS7", "control", "app", "comfort control", "shortcut capability"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,以三個等價類別取樣"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-057",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Any control, app, or comfort control shall be able to be a short cut.\n\n(One representative item from each of the control, app and comfort control classes -> each can be set as a shortcut and operates from the widget)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least three empty shortcut positions are available in the Shortcuts widget\n4. The vehicle is equipped with the comfort control used in this test",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select an empty shortcut position, select the \"Controls\" category and select a control option\n3. Select an empty shortcut position, select the \"Apps\" category and select an app option\n4. Select an empty shortcut position, select the \"Seats & Wheel\" category and select a comfort control option\n5. Select \"Done\" and read the shortcuts displayed in the Shortcuts widget\n6. Select each of the three shortcuts in turn",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The selected control is set as a shortcut at the first position\n3. The selected app is set as a shortcut at the second position\n4. The selected comfort control is set as a shortcut at the third position\n5. The Home Screen page is displayed and the Shortcuts widget shows the control, the app and the comfort control shortcuts\n6. Each of the three shortcuts performs its assigned action",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.8",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    }
+  ]
+}

@@ -22,6 +22,12 @@ would fail Arif's own compliant done-region rows:
   - the ER modal-verb check strips double-quoted spans first, so verbatim
     popup text such as "Widget cannot be moved here." passes (A-H08).
 
+A TC carrying `"placeholder": true` is a Profile §6 row: a leaf that
+legitimately produces no test content but still needs a workbook row for the
+completeness invariant. It is linted for traceability, blank columns, the
+fixed body string and an anomaly citation in Remarks, and exempted from the
+gates that assume real content.
+
 Usage:
     python lint_tcs.py generated/
     python lint_tcs.py generated/SWE1-HMI-HOME-020.json
@@ -323,6 +329,39 @@ def _check_br_tags(tc: dict, add) -> None:
             add("br-tag", f"`{key}` contains a literal <br>; use a real newline")
 
 
+PLACEHOLDER_BODY = "BLOCKED - see Remarks"
+_ANOMALY_RE = re.compile(r"\bA-H\d{2}\b")
+
+
+def _check_placeholder(tc: dict, add) -> None:
+    """Profile §6 shape for a leaf that legitimately produces no TC content.
+
+    A placeholder still occupies a row — the completeness invariant requires
+    one per leaf — so it is linted for the things that keep it traceable and
+    auditable, and exempted from the ones that assume real test content.
+    """
+    for key in ("test_procedure", "expected_result"):
+        if str(tc.get(key, "")).strip() != PLACEHOLDER_BODY:
+            add("placeholder-body",
+                f"`{key}` must be exactly {PLACEHOLDER_BODY!r} on a placeholder "
+                f"row, got {str(tc.get(key, ''))[:40]!r}")
+    for key in ("priority", "design_method"):
+        if str(tc.get(key, "")).strip():
+            add("placeholder-body",
+                f"`{key}` must be blank on a placeholder row, got {tc[key]!r}")
+    remarks = str(tc.get("remarks", "")).strip()
+    if not remarks:
+        add("placeholder-remarks",
+            "a placeholder row must state its reason in Remarks")
+    elif not _ANOMALY_RE.search(remarks):
+        add("placeholder-remarks",
+            "Remarks must cite the anomaly that authorises the placeholder "
+            f"(A-Hnn), got {remarks[:60]!r}")
+    if not str(tc.get("test_item", "")).strip():
+        add("placeholder-body",
+            "`test_item` must still carry the requirement sentence")
+
+
 def lint_tc(tc: dict, ctx: dict, source: str = "") -> list[Finding]:
     findings: list[Finding] = []
     req_id = str(tc.get("req_id", "?"))
@@ -334,6 +373,14 @@ def lint_tc(tc: dict, ctx: dict, source: str = "") -> list[Finding]:
         add("unknown-req-id",
             "not a remaining leaf in remaining_leaves.json — a well-formed row "
             "pointing at a requirement that does not exist")
+
+    if tc.get("placeholder") is True:
+        _check_blank_columns(tc, add)
+        _check_spec_reference(tc, ctx["leaves"], ctx["outlines"],
+                              ctx["template"], add)
+        _check_placeholder(tc, add)
+        _check_br_tags(tc, add)
+        return findings
 
     _check_keys(tc, add)
     _check_blank_columns(tc, add)
@@ -386,19 +433,21 @@ def main() -> int:
     }
 
     findings: list[Finding] = []
-    tc_count = 0
+    tc_count = placeholders = 0
     seen_req_ids: Counter = Counter()
     for path in paths:
         payload = json.loads(path.read_text())
         for tc in payload.get("tcs", []):
             tc_count += 1
+            placeholders += 1 if tc.get("placeholder") is True else 0
             seen_req_ids[str(tc.get("req_id", "?"))] += 1
             findings.extend(lint_tc(tc, ctx, source=path.name))
 
     by_rule = Counter(f.rule for f in findings)
     failed = {f.req_id for f in findings}
 
-    print(f"linted {tc_count} TCs from {len(paths)} file(s) "
+    print(f"linted {tc_count} TCs ({placeholders} placeholder) "
+          f"from {len(paths)} file(s) "
           f"against {len(ctx['methods'])} design methods, "
           f"{len(ctx['outlines'])} outlines, {len(ctx['leaves'])} leaves")
     if findings:
@@ -417,6 +466,7 @@ def main() -> int:
     if args.json_report:
         Path(args.json_report).write_text(json.dumps({
             "tc_count": tc_count,
+            "placeholder_count": placeholders,
             "files": [p.name for p in paths],
             "req_ids": covered,
             "findings": [f.__dict__ for f in findings],

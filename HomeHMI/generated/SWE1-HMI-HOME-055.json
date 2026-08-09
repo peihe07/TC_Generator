@@ -1,0 +1,62 @@
+{
+  "parent": "SWE1-HMI-HOME-055",
+  "batch": "B3",
+  "reasoning": "HSS6.1（outline 9.7.1）被 037 拆成三個 sub-id：055-01 個別選項灰化、055-02 類別本身不灰化、055-03 導航與電話的例外參照。055-01 與 055-02 是同一畫面上一對互補的呈現規則（項目灰、類別不灰），但 037 已拆 sub-id，依 §8.2.1 各持有 TC；且兩者觀察對象不同（清單項目 vs 類別磚），不構成重複。055-01 的規格明列四個類別（Controls、Apps、Seats & Wheel、Media），四者是同一規則的等價類別，以等價劃分逐一取樣於同一條 TC，而非爆成四條——037 未按類別拆 sub-id，Profile §4 要求不超出 037 的拆分粒度。055-03 依 A-H02 裁決不產 TC 內容，改出 placeholder 列：導航側行為由同規格的 SNS 節（062–071 兄弟 leaf）持有，屬 §8.2.1 兄弟委派；電話側才是 §8.4.2 的外部規格參照。優先級：055-01 是防止重複設定的實際呈現手段，訂 P1；055-02 是避免過度灰化的邊界條件，訂 P2。",
+  "keywords": [
+    "Select Shortcut Type",
+    "HSS6.1",
+    "greyed out",
+    "shortcut category",
+    "already set"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "037 sub-id",
+    "delta": "-01 individual options grey out; -02 the category itself stays open; -03 delegated reference, no content"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-055-01",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Item-Level Exclusion: Grey Out Selected Items: For Controls, Apps, Seats & Wheel, Media, grey out any individual shortcut option which has already been set within the Shortcuts widget.\n\n(One shortcut already set in each of the four listed categories -> that individual option is greyed out in its category content list)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. One shortcut from each of the \"Controls\", \"Apps\", \"Seats & Wheel\" and \"Media\" categories is set in the Shortcuts widget\n4. At least one empty shortcut position is available in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position, select the \"Controls\" category and read the state of the already set option\n3. Return to the \"Select Shortcut Type\" screen, select the \"Apps\" category and read the state of the already set option\n4. Return to the \"Select Shortcut Type\" screen, select the \"Seats & Wheel\" category and read the state of the already set option\n5. Return to the \"Select Shortcut Type\" screen, select the \"Media\" category and read the state of the already set option",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The already set option in the \"Controls\" content list is displayed greyed out\n3. The already set option in the \"Apps\" content list is displayed greyed out\n4. The already set option in the \"Seats & Wheel\" content list is displayed greyed out\n5. The already set option in the \"Media\" content list is displayed greyed out",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.7.1",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-055-02",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Category-Level State: Keep Entry Open: Do not gray out the shortcut category.\n\n(Shortcut already set from a category -> the category itself remains selectable on the Select Shortcut Type screen)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. One shortcut from the \"Controls\" category is set in the Shortcuts widget\n4. At least one empty shortcut position is available in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position on the Shortcuts Layout screen\n3. Read the state of the \"Controls\" category on the \"Select Shortcut Type\" screen\n4. Select the \"Controls\" category",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The \"Select Shortcut Type\" screen is displayed\n3. The \"Controls\" category is displayed without greying and remains selectable\n4. The content list of the \"Controls\" category is displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.7.1",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-055-03",
+      "test_group": "",
+      "test_set": "",
+      "placeholder": true,
+      "test_item": "The system shall implement Navigation and Phone Exception Behavior Reference: Refer to Setting Navigation Shortcuts and Phone HMI Logic and Flow for other specific behavior.",
+      "pre_conditions": "",
+      "input_test_data": "",
+      "test_procedure": "BLOCKED - see Remarks",
+      "expected_result": "BLOCKED - see Remarks",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.7.1",
+      "priority": "",
+      "design_method": "",
+      "remarks": "Nav-side behaviors owned by 062-071; Phone-side owned by external Phone HMI spec. RD-1: confirm Phone project has parallel SWE coverage for shortcut exclusion exception (A-H02)"
+    }
+  ]
+}

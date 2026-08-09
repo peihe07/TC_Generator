@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-053",
+  "batch": "B3",
+  "reasoning": "HSS5（outline 9.6）只有一句：不可用的 shortcut 要灰化。規格未定義「不可用」的判定來源，但 HSS1 已述明「Available shortcuts are dependent on vehicle configuration」，故以車輛配置未搭載的功能作為代表性不可用項目。ER 必須同時陳述「該選項仍出現在清單中」與「呈灰化且不可選取」——只寫灰化不足以區分是灰化還是整項被移除，而 HSS1.6 對 CP/AA 採的正是「不提供選項」的另一種處理，兩者必須可分辨。單一驗證標的，不拆。優先級：屬清單呈現的輔助規則，非新增 shortcut 的主流程，訂 P2。",
+  "keywords": ["Select Shortcut Type", "HSS5", "greyed out", "unavailable shortcut"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的，037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-053",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Unavailable Feature Greying: HSS5.) Grey out a shortcut if it is not available.\n\n(Shortcut option not available for the vehicle configuration -> the option is listed but greyed out and cannot be selected)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least one empty shortcut position is available in the Shortcuts widget\n4. The vehicle is not equipped with at least one feature offered as a shortcut option",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position on the Shortcuts Layout screen\n3. Select the shortcut category that contains the unequipped feature\n4. Read the state of the shortcut option for the unequipped feature\n5. Select the shortcut option for the unequipped feature",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The \"Select Shortcut Type\" screen is displayed\n3. The content list of the selected shortcut category is displayed\n4. The shortcut option for the unequipped feature is listed and displayed greyed out\n5. The option is not selected and the content list remains displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.6",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

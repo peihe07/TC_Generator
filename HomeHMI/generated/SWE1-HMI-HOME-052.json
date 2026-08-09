@@ -1,0 +1,47 @@
+{
+  "parent": "SWE1-HMI-HOME-052",
+  "batch": "B3",
+  "reasoning": "HSS4.4（outline 9.5.4）被 037 拆成兩個 sub-id：052-01 是編輯按鈕在行車中灰化且編輯畫面不可用，052-02 是按下後的攔截 popup。依 §8.2.1 各持有 TC。這兩者是同一觸發（行車中按下編輯按鈕）的連帶結果，若 037 未拆，依 §5.7 應併為一條；但 037 已拆 sub-id，§8.2.1 勝出（與 Profile §4 對 052-01/052-02 的明文一致）。車輛行進狀態是規格觸發條件，屬 §8.5 例外允許的 Pre-Condition。052-02 的 popup：規格寫「Feature not available while vehicle is in motion.」，但 Profile §3.4 明定 popup 文字取自 Pop Up List 而非規格書轉述。Pop Up List 中 PU0091（General，Driver Lockout: Function，控制項 <X>/<OK>，與規格描述的 [OK, X] 相符）為對應列，Arif done region 列 44/45 亦引用 PU0091。另一候選 PU0243 雖字面相符，但其 description 為「main category bar」的鎖定，屬不同功能且無退出條件，不採。Feature/Function 用字差異記入 A-H15。優先級：行車中鎖定屬駕駛分心防護，052-01 訂 P0；攔截 popup 為其回饋，訂 P1。",
+  "keywords": [
+    "Shortcuts widget",
+    "vehicle in motion",
+    "HSS4.4",
+    "greyed out",
+    "PU0091"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "037 sub-id",
+    "delta": "-01 the lockout itself (button greyed, edit screen unavailable); -02 the popup shown when the greyed button is pressed"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-052-01",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Shortcut Icon Lockout in Motion: Shortcut Layout edit screen is not available and button is greyed out while the vehicle is in motion.\n\n(Vehicle in motion -> the Shortcuts widget edit button is greyed out and the Shortcuts Layout screen does not open)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the state of the edit button on the Shortcuts widget\n3. Set the vehicle speed above 0 (more than 8)\n4. Read the state of the edit button on the Shortcuts widget\n5. Select the edit button on the Shortcuts widget",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The edit button on the Shortcuts widget is displayed and available\n3. The vehicle speed is set above 0 (more than 8)\n4. The edit button on the Shortcuts widget is greyed out\n5. The Shortcuts Layout screen is not displayed and the Home Screen page remains displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5.4",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-052-02",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "\"Feature not available while vehicle is in motion.\" [OK, X] shall close pop-up.\n\n(Greyed edit button pressed while the vehicle is in motion -> the driver lockout popup is displayed and closes on either control)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. At least two shortcuts are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Set the vehicle speed above 0 (more than 8)\n3. Select the greyed out edit button on the Shortcuts widget\n4. Press <OK> on the popup\n5. Select the greyed out edit button on the Shortcuts widget again\n6. Press <X> on the popup",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The vehicle speed is set above 0 (more than 8)\n3. Popup PU0091 is displayed reading \"Function not available while vehicle is in motion.\" with the <OK> and <X> controls, as defined by PU0091 String/Popup Message\n4. Popup PU0091 is closed and the Home Screen page remains displayed\n5. Popup PU0091 is displayed again\n6. Popup PU0091 is closed and the Shortcuts Layout screen is not displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.5.4",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Popup wording follows PU0091 per Profile §3.4; the spec paraphrases it as \"Feature ...\" (A-H15)"
+    }
+  ]
+}

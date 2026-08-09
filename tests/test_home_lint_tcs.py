@@ -213,6 +213,58 @@ def test_br_tag_is_rejected(tc, ctx):
     assert "br-tag" in rules(tc, ctx)
 
 
+# --------------------------------------------------------------- placeholders
+
+@pytest.fixture
+def placeholder(tc):
+    """Profile §6 shape: a leaf that legitimately produces no test content."""
+    return dict(tc, placeholder=True,
+                pre_conditions="",
+                test_procedure=lint_tcs.PLACEHOLDER_BODY,
+                expected_result=lint_tcs.PLACEHOLDER_BODY,
+                priority="",
+                design_method="",
+                remarks="Covered by 062-071; external Phone HMI spec (A-H02)")
+
+
+def test_pristine_placeholder_is_clean(placeholder, ctx):
+    assert rules(placeholder, ctx) == set()
+
+
+@pytest.mark.parametrize("field,value", [
+    ("test_procedure", "1. Do something\n2. Do more"),
+    ("expected_result", "1. Something happens\n2. More happens"),
+    ("priority", "P1"),
+    ("design_method", FUNCTIONAL),
+    ("test_item", ""),
+])
+def test_placeholder_body_must_stay_empty_or_fixed(placeholder, ctx, field, value):
+    placeholder[field] = value
+    assert "placeholder-body" in rules(placeholder, ctx)
+
+
+@pytest.mark.parametrize("remarks", ["", "covered elsewhere"])
+def test_placeholder_remarks_must_cite_an_anomaly(placeholder, ctx, remarks):
+    placeholder["remarks"] = remarks
+    assert "placeholder-remarks" in rules(placeholder, ctx)
+
+
+def test_placeholder_still_checks_traceability(placeholder, ctx):
+    placeholder["specification_reference"] = TEMPLATE.replace("{outline}", "99.9")
+    assert "spec-reference" in rules(placeholder, ctx)
+
+
+def test_placeholder_still_checks_blank_columns(placeholder, ctx):
+    placeholder["test_set"] = "Shortcut Exclusion"
+    assert "blank-column" in rules(placeholder, ctx)
+
+
+def test_placeholder_is_exempt_from_content_gates(placeholder, ctx):
+    """The gates that assume real content must not fire on a placeholder."""
+    assert not ({"step-count", "step-numbering", "priority", "design-method",
+                 "keys"} & rules(placeholder, ctx))
+
+
 def test_generated_b1_output_passes_the_real_gate():
     """Integration: real loaders, real inputs. Skips when inputs are absent."""
     data = HOME / "data"

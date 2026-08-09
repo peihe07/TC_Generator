@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-056",
+  "batch": "B3",
+  "reasoning": "037 的 056 有一個描述錯置：title「CP/AA Cross-Category Exclusion Exception」與 HMI Source ID 的 outline 9.7.2 都指向 HSS6.2,但 Requirement Description 欄填的是 HSS6.1 的整段文字(甚至字面保留了「HSS6.1)」前綴),與 055-01/-02/-03 重複。依 Profile §1,規格文字權威為 SYS1,outline 9.7.2 即 HSS6.2,且 title 亦與 HSS6.2 相符,故本條依 HSS6.2 撰寫;描述錯置記入 A-H17 作為 RD-1。HSS6.2 是一條完整流程:從 Media 或 Apps 擇一加入 AA/CP 後,該項自「該類別」移除,但仍可從另一類別選取,結果是 AA/CP 可在同一 widget 內重複。移除、仍可選、可重複三者是同一觸發的連續結果,依 §5.7 併為一條、多行 ER。ER 必須同時陳述「來源類別已不再列出該項」與「另一類別仍列出且可選」,只寫其中一半無法區分是跨類別例外還是全域移除。這也是 054(同 widget 不可重複)的明文例外,兩條並存不衝突。優先級:屬 054 主規則的例外分支,訂 P2。",
+  "keywords": ["Android Auto", "Apple CarPlay", "HSS6.2", "Media", "Apps", "cross-category"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的;為 054 互斥規則的明文例外"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-056",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement CP/AA Cross-Category Exclusion Exception: If a user chooses an AA/CP shortcut from either Media or Apps, remove it from that category. The user can still choose it from the other available category. Android Auto and Apple CarPlay shortcuts can be duplicated in the shortcuts widget as long as they come from Media and Apps.\n\n(Apple CarPlay added from \"Media\" -> it is removed from the \"Media\" list but still available from \"Apps\", and both can coexist in the widget)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. Apple CarPlay is connected\n4. At least two empty shortcut positions are available in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select an empty shortcut position, select the \"Media\" category and select the Apple CarPlay option\n3. Select the second empty shortcut position and select the \"Media\" category\n4. Return to the \"Select Shortcut Type\" screen and select the \"Apps\" category\n5. Select the Apple CarPlay option\n6. Read the shortcuts displayed on the Shortcuts Layout screen",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The Apple CarPlay shortcut is set at the first position\n3. The \"Media\" content list is displayed without the Apple CarPlay option\n4. The \"Apps\" content list is displayed with the Apple CarPlay option available\n5. The Apple CarPlay shortcut is set at the second position\n6. Two Apple CarPlay shortcuts are displayed in the Shortcuts widget",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.7.2",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "Written against HSS6.2; 037's Requirement Description for this leaf carries HSS6.1's text instead (A-H17)"
+    }
+  ]
+}

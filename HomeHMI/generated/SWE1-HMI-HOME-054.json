@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-054",
+  "batch": "B3",
+  "reasoning": "HSS6（outline 9.7）陳述規則本身：同一個 Shortcuts widget 內不可重複設定同一個 shortcut。其實作機制（已設定項目灰化）由 055-01 持有，兩者不重複：本條驗的是「結果上無法造成重複」，055-01 驗的是「灰化這個呈現手段」。程序刻意在第二個空位重試同一個 shortcut，因為只讀清單狀態無法證明規則生效——那是 055-01 的標的。HSS6 在 PDF 有一句例外（preset routines 與 custom routines 可重複），SYS1 匯出的 9.7 未含該句，且 037 的 054 描述同樣未含，故不納入本條範圍；差異記入 A-H16。優先級：防止重複設定屬 shortcut 設定主流程的完整性規則，訂 P1。",
+  "keywords": ["Shortcuts widget", "HSS6", "duplicate shortcut", "mutual exclusion"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "rule vs mechanism", "delta": "054 the outcome (no duplicate can be set); 055-01 the greying that enforces it"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-054",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Selection Mutual Exclusion: HSS6.) User is not able to set the same shortcut within the same Shortcuts widget.\n\n(Shortcut already set in the widget selected again for a second position -> it cannot be set a second time)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. One shortcut from the \"Controls\" category is set in the Shortcuts widget\n4. At least one empty shortcut position is available in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget and select the edit button\n2. Select the empty shortcut position on the Shortcuts Layout screen\n3. Select the \"Controls\" category on the \"Select Shortcut Type\" screen\n4. Select the shortcut option that is already set in the Shortcuts widget\n5. Read the shortcuts displayed on the Shortcuts Layout screen",
+      "expected_result": "1. The Shortcuts Layout screen is displayed in the Edit state\n2. The \"Select Shortcut Type\" screen is displayed\n3. The content list of the \"Controls\" category is displayed\n4. The already set shortcut option is not selected\n5. The already set shortcut appears once in the Shortcuts widget and the empty position remains empty",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.7",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

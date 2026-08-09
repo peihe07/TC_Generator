@@ -233,6 +233,56 @@ runs; RESOLVED entries record the ruling verbatim.
 - The list grows per batch as spec wording is matched back to Pop Up List
   rows. It is an allow-list for typo detection, not a coverage claim.
 
+## [A-H15] In-motion popup: spec says "Feature", PU0091 says "Function" — RECORDED
+
+- Four Home spec sections (HSD4, HSD5.2, HSS2, HSS4.4) quote the driver
+  lockout popup as `"Feature not available while vehicle is in motion."
+  [OK, X]`.
+- The Pop Up List has no row with that exact wording AND those controls:
+  - **PU0091** (General, description "Driver Lockout: Function") reads
+    `Function not available while vehicle is in motion.` with `<X>` / `<OK>`
+    — controls match the spec's `[OK, X]`, wording differs by one word.
+  - **PU0243** (General) reads `Feature not available while vehicle is in
+    motion’` — wording matches, but its description scopes it to *"Editing
+    the main category bar"*, a different feature, and it lists no exit
+    conditions.
+- The done region is itself inconsistent: Arif's rows 36–41 (012-03, same
+  spec sentence) quote the spec wording and cite no PU, while rows 44–45
+  (012-05) cite PU0091 and quote nothing.
+- Disposition for `SWE1-HMI-HOME-052-02`: cite **PU0091** and quote PU0091's
+  wording. Profile §3.4 is explicit that popup text comes from the Pop Up
+  List and "never from the Home spec's paraphrase", and PU0091 is the only
+  candidate whose controls and scope fit. PU0243 is rejected on scope.
+- RD-1: ask upstream which string ships, and whether PU0243 is a stale
+  duplicate of PU0091.
+
+## [A-H16] SYS1 export drops the HSS6 routines exception — RECORDED (affects 054)
+
+- Home PDF HSS6: "User is not able to set the same shortcut within the same
+  Shortcuts widget. **Exception: preset routines and custom routines can be
+  duplicated within the same shortcuts widget.**"
+- SYS1 outline 9.7 and 037's `SWE1-HMI-HOME-054` description both stop at the
+  first sentence.
+- Disposition: 054 is written to the SYS1 scope (no duplicates). The routines
+  exception generates nothing — there is no SWE requirement to hang it on.
+- Second instance of the same defect class as A-H12: the SYS1 re-export is
+  truncating HSS sentences. RD-1 should ask for a full re-export of chapter 9
+  rather than sentence-by-sentence fixes.
+
+## [A-H17] 037's 056 description is HSS6.1's text — RECORDED (RD-1 candidate)
+
+- `SWE1-HMI-HOME-056` has title "CP/AA Cross-Category Exclusion Exception"
+  and HMI Source ID outline **9.7.2** (= HSS6.2), but its Requirement
+  Description carries HSS6.1's text verbatim — literally including the
+  `HSS6.1)` prefix — duplicating 055-01/-02/-03.
+- HSS6.2's real content (AA/CP chosen from Media or Apps is removed from that
+  category, remains selectable from the other, and may therefore be
+  duplicated) appears in no 037 description at all.
+- Disposition: 056 is written against **HSS6.2**, since both the title and the
+  outline agree on it and Profile §1 makes SYS1 the text authority. The TC
+  Remarks record the divergence from the 037 description.
+- RD-1: ask upstream to correct the 056 description.
+
 ---
 
 ## Assumption markers
