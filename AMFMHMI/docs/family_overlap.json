@@ -1,0 +1,319 @@
+{
+ "new": "SWE1_AMFM_FM-WI-FSM-037-A03 STLA 報告_SWRA STLA Report_SWRA_20260323.xlsx",
+ "old": "FM-WI-SW-RAD-SWRA-A02.xlsx",
+ "axis": {
+  "new_field": "title",
+  "old_field": "description"
+ },
+ "thresholds": {
+  "strong": 0.85,
+  "plausible": 0.6
+ },
+ "counts": {
+  "new_rows": 102,
+  "old_rows": 57,
+  "strong": 35,
+  "plausible": 6,
+  "unmatched_new": 61,
+  "weakly_represented_old": 4,
+  "orphaned_old": 18
+ },
+ "weakly_represented_old": [
+  "SWE-RAD-001",
+  "SWE-RAD-022",
+  "SWE-RAD-028",
+  "SWE-RAD-029"
+ ],
+ "strong": [
+  {
+   "new": "SWE-RA-RAD-015",
+   "old": "SWE-RAD-002",
+   "ratio": 0.9688
+  },
+  {
+   "new": "SWE-RA-RAD-016",
+   "old": "SWE-RAD-003",
+   "ratio": 0.9636
+  },
+  {
+   "new": "SWE-RA-RAD-017",
+   "old": "SWE-RAD-004",
+   "ratio": 0.9636
+  },
+  {
+   "new": "SWE-RA-RAD-018",
+   "old": "SWE-RAD-005",
+   "ratio": 0.9623
+  },
+  {
+   "new": "SWE-RA-RAD-020",
+   "old": "SWE-RAD-006",
+   "ratio": 0.8837
+  },
+  {
+   "new": "SWE-RA-RAD-022",
+   "old": "SWE-RAD-007",
+   "ratio": 0.9712
+  },
+  {
+   "new": "SWE-RA-RAD-023",
+   "old": "SWE-RAD-008",
+   "ratio": 0.975
+  },
+  {
+   "new": "SWE-RA-RAD-024",
+   "old": "SWE-RAD-009",
+   "ratio": 0.9619
+  },
+  {
+   "new": "SWE-RA-RAD-032",
+   "old": "SWE-RAD-010",
+   "ratio": 0.9841
+  },
+  {
+   "new": "SWE-RA-RAD-036",
+   "old": "SWE-RAD-011",
+   "ratio": 0.9708
+  },
+  {
+   "new": "SWE-RA-RAD-037",
+   "old": "SWE-RAD-012",
+   "ratio": 0.9773
+  },
+  {
+   "new": "SWE-RA-RAD-039",
+   "old": "SWE-RAD-013",
+   "ratio": 0.9891
+  },
+  {
+   "new": "SWE-RA-RAD-041",
+   "old": "SWE-RAD-014",
+   "ratio": 0.9835
+  },
+  {
+   "new": "SWE-RA-RAD-042",
+   "old": "SWE-RAD-015",
+   "ratio": 0.9835
+  },
+  {
+   "new": "SWE-RA-RAD-044",
+   "old": "SWE-RAD-016",
+   "ratio": 0.9792
+  },
+  {
+   "new": "SWE-RA-RAD-045",
+   "old": "SWE-RAD-017",
+   "ratio": 0.9793
+  },
+  {
+   "new": "SWE-RA-RAD-047",
+   "old": "SWE-RAD-018",
+   "ratio": 0.9677
+  },
+  {
+   "new": "SWE-RA-RAD-049",
+   "old": "SWE-RAD-019",
+   "ratio": 0.9677
+  },
+  {
+   "new": "SWE-RA-RAD-050",
+   "old": "SWE-RAD-020",
+   "ratio": 0.9658
+  },
+  {
+   "new": "SWE-RA-RAD-051",
+   "old": "SWE-RAD-021",
+   "ratio": 0.9633
+  },
+  {
+   "new": "SWE-RA-RAD-062",
+   "old": "SWE-RAD-023",
+   "ratio": 0.8814
+  },
+  {
+   "new": "SWE-RA-RAD-063",
+   "old": "SWE-RAD-024",
+   "ratio": 0.9545
+  },
+  {
+   "new": "SWE-RA-RAD-065",
+   "old": "SWE-RAD-025",
+   "ratio": 0.9797
+  },
+  {
+   "new": "SWE-RA-RAD-066",
+   "old": "SWE-RAD-026",
+   "ratio": 0.9501
+  },
+  {
+   "new": "SWE-RA-RAD-067",
+   "old": "SWE-RAD-027",
+   "ratio": 0.95
+  },
+  {
+   "new": "SWE-RA-RAD-070",
+   "old": "SWE-RAD-030",
+   "ratio": 0.9403
+  },
+  {
+   "new": "SWE-RA-RAD-071",
+   "old": "SWE-RAD-031",
+   "ratio": 0.9675
+  },
+  {
+   "new": "SWE-RA-RAD-072",
+   "old": "SWE-RAD-032",
+   "ratio": 0.9385
+  },
+  {
+   "new": "SWE-RA-RAD-074",
+   "old": "SWE-RAD-033",
+   "ratio": 0.9742
+  },
+  {
+   "new": "SWE-RA-RAD-075",
+   "old": "SWE-RAD-034",
+   "ratio": 0.9672
+  },
+  {
+   "new": "SWE-RA-RAD-076",
+   "old": "SWE-RAD-035",
+   "ratio": 0.9697
+  },
+  {
+   "new": "SWE-RA-RAD-077",
+   "old": "SWE-RAD-036",
+   "ratio": 0.991
+  },
+  {
+   "new": "SWE-RA-RAD-078",
+   "old": "SWE-RAD-037",
+   "ratio": 0.957
+  },
+  {
+   "new": "SWE-RA-RAD-079",
+   "old": "SWE-RAD-038",
+   "ratio": 0.978
+  },
+  {
+   "new": "SWE-RA-RAD-080",
+   "old": "SWE-RAD-039",
+   "ratio": 0.9685
+  }
+ ],
+ "plausible": [
+  {
+   "new": "SWE-RA-RAD-014",
+   "old": "SWE-RAD-001",
+   "ratio": 0.764
+  },
+  {
+   "new": "SWE-RA-RAD-021",
+   "old": "SWE-RAD-008",
+   "ratio": 0.6226
+  },
+  {
+   "new": "SWE-RA-RAD-060",
+   "old": "SWE-RAD-024",
+   "ratio": 0.6883
+  },
+  {
+   "new": "SWE-RA-RAD-061",
+   "old": "SWE-RAD-022",
+   "ratio": 0.6162
+  },
+  {
+   "new": "SWE-RA-RAD-068",
+   "old": "SWE-RAD-028",
+   "ratio": 0.8357
+  },
+  {
+   "new": "SWE-RA-RAD-069",
+   "old": "SWE-RAD-029",
+   "ratio": 0.7853
+  }
+ ],
+ "unmatched_new": [
+  "SWE-RA-RAD-001",
+  "SWE-RA-RAD-002",
+  "SWE-RA-RAD-003",
+  "SWE-RA-RAD-004",
+  "SWE-RA-RAD-005",
+  "SWE-RA-RAD-006",
+  "SWE-RA-RAD-007",
+  "SWE-RA-RAD-008",
+  "SWE-RA-RAD-009",
+  "SWE-RA-RAD-010",
+  "SWE-RA-RAD-011",
+  "SWE-RA-RAD-012",
+  "SWE-RA-RAD-013",
+  "SWE-RA-RAD-019",
+  "SWE-RA-RAD-025",
+  "SWE-RA-RAD-026",
+  "SWE-RA-RAD-027",
+  "SWE-RA-RAD-028",
+  "SWE-RA-RAD-029",
+  "SWE-RA-RAD-030",
+  "SWE-RA-RAD-031",
+  "SWE-RA-RAD-033",
+  "SWE-RA-RAD-034",
+  "SWE-RA-RAD-035",
+  "SWE-RA-RAD-038",
+  "SWE-RA-RAD-040",
+  "SWE-RA-RAD-043",
+  "SWE-RA-RAD-046",
+  "SWE-RA-RAD-048",
+  "SWE-RA-RAD-052",
+  "SWE-RA-RAD-053",
+  "SWE-RA-RAD-054",
+  "SWE-RA-RAD-055",
+  "SWE-RA-RAD-056",
+  "SWE-RA-RAD-057",
+  "SWE-RA-RAD-058",
+  "SWE-RA-RAD-059",
+  "SWE-RA-RAD-064",
+  "SWE-RA-RAD-073",
+  "SWE-RA-RAD-081",
+  "SWE-RA-RAD-082",
+  "SWE-RA-RAD-083",
+  "SWE-RA-RAD-084",
+  "SWE-RA-RAD-085",
+  "SWE-RA-RAD-087",
+  "SWE-RA-RAD-089",
+  "SWE-RA-RAD-090",
+  "SWE-RA-RAD-091",
+  "SWE-RA-RAD-092",
+  "SWE-RA-RAD-093",
+  "SWE-RA-RAD-094",
+  "SWE-RA-RAD-095",
+  "SWE-RA-RAD-096",
+  "SWE-RA-RAD-097",
+  "SWE-RA-RAD-098",
+  "SWE-RA-RAD-099",
+  "SWE-RA-RAD-100",
+  "SWE-RA-RAD-101",
+  "SWE-RA-RAD-102",
+  "SWE-RA-RAD-103",
+  "SWE-RA-RAD-104"
+ ],
+ "orphaned_old": [
+  "SWE-RAD-001-01",
+  "SWE-RAD-001-02",
+  "SWE-RAD-001-03",
+  "SWE-RAD-001-04",
+  "SWE-RAD-001-05",
+  "SWE-RAD-001-06",
+  "SWE-RAD-040",
+  "SWE-RAD-040-001",
+  "SWE-RAD-040-002",
+  "SWE-RAD-040-003",
+  "SWE-RAD-041",
+  "SWE-RAD-041-001",
+  "SWE-RAD-041-002",
+  "SWE-RAD-041-003",
+  "SWE-RAD-042",
+  "SWE-RAD-043",
+  "SWE-RAD-044",
+  "SWE-RAD-045"
+ ]
+}

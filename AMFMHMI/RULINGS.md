@@ -71,3 +71,74 @@ base for recon and write-back, now placed in `inputs/`. The blank form
 bootstrap base and rejected for now; it remains available as the layout
 reference. C2a (disposition of Wilson's 158 rows within this instance)
 stays PENDING and is unaffected by R2.
+
+## R3 — Authorship principle (Pei, 2026-08-09)
+
+**Ruling (verbatim): 「只要是我產的要打PeiPYHsu，完全引用他人的就留著他人的名字」**
+— rows Pei generates carry `PeiPYHsu`; rows fully quoted from another
+author keep that author's name. Applied to feature.yaml
+(`write_back.author_value`, done_region comment). Under R4(i) the frozen
+Wilson rows therefore keep `Wilson`.
+
+A-AM05's two prior corrections signed in the same pass:
+`done_region.author_value: Arif → Wilson` (selector semantics per R4),
+`columns.remarks: AH → AG` (header text is authority).
+
+## R4 — C2a: Wilson 158 rows (Pei, 2026-08-09)
+
+**Ruling: 選項 (i) — 凍結為 legacy region**，並綁一條 RD-1。
+
+- The 158 `SWE-RAD-*` rows stay in the workbook, frozen, excluded from
+  coverage/traceability invariants (Home A-H06 scoping at 158-row scale)
+- Style authority survives: borrow style, not traceability (A-AM02 note)
+- Re-map (iii) rejected: RD work, not TC-author work (§8.2); would resolve
+  at most ~1/3 (A-AM03) with per-pair human confirmation
+- Replace (ii) rejected for now: organizational cost not assessable inside
+  the pipeline; if RD-1 confirms SWRA-A02 formally superseded, downgrade
+  to (ii) later is a pure deletion operation — (i) preserves that option
+- RD-1 question (the A-AM04 sharpened form): was the 037-A03 authored
+  against an earlier SWRA-A02 revision? Is the contiguous tail
+  `SWE-RAD-040`…`-045` deferred or deleted? Is SWRA-A02 formally
+  superseded? — recorded in `docs/fw036/RD1_questions_amfm.md`
+
+## R5 — C3a: 18 unrepresented SWRA-A02 rows (Pei, 2026-08-09)
+
+**Ruling: 確認本 workbook 不承擔其覆蓋。**
+
+- Safety exposure measured and bounded: all 57 SWRA-A02 rows are ASIL `QM`
+  / FTTI `NA`; R1 drops no ASIL-rated requirement (A-AM04)
+- Disposition question merges into the R4 RD-1 (same question, two faces)
+- A-AM04 resolution condition: RD-1 reply arrives or delivery deadline,
+  whichever first
+
+## R6 — DECISIONS remaining [PROPOSED] (Pei, 2026-08-09)
+
+**Ruling: 照案簽。** Includes: SYS2/SYSRA layer not in trace chain (no
+ASIL/FTTI attachment point on ruled leaves); style authority = Wilson rows
+(style only); spec_reference `<Spec Filename>_{outline}` pending Phase 3
+mode-D refinement; batch plan by spec chapter, pilot = smallest coherent
+batch; done-region compliance notes (5) frozen, not fixed.
+
+## R7 — Phase 3 framework rulings (Pei, 2026-08-09)
+
+Verbatim: 「Q1-AMFM Q2 能力制 Q3本來就會有多份，如果需要補上我會補上該份spec
+重複就是重複 但要標注起來我會自行判斷」
+
+- **Q1 — Test Group = `AMFM`** (overrides the Wilson `Radio` precedent for
+  new rows; legacy rows keep `Radio`, frozen). feature.yaml `test_group`
+  already reads `AMFM`.
+- **Q2 — Test Set = capability scheme** (framework Part III table), not the
+  legacy band scheme (`FM`/`AM`/`USB`). Divergence from legacy recorded in
+  the profile.
+- **Q3 — multi-spec references are expected.** Cite `CFTS024-{stla_id}` /
+  `CFTS011-{stla_id}` / `CFTS004-{stla_id}` per the leaf's source; missing
+  spec files (CFTS011, CFTS004) will be supplied by Pei when needed —
+  registered A-AM06/A-AM07, no leaf blocked, no RD-1 for the files.
+  CFTS004 attribution carries `[ASSUMPTION A-AM07]` until the file confirms.
+- **Q4 — duplicates stay duplicates, marked.** 037-internal duplicate STLA
+  ids and numbering gaps registered as A-AM08; each leaf still gets its own
+  TC (§8.2, no consolidation); disposition of each duplicate pair is Pei's
+  per-case call at review.
+
+The R6 spec_reference placeholder (`<Spec Filename>_{outline}`) is hereby
+refined by R7-Q3 to the per-source `{doc}-{stla_id}` format.

@@ -1,0 +1,103 @@
+req_id	stla_id	doc	section	section_title	resolution
+SWE-RA-RAD-001	4872375	CFTS024	1.3	HU Analog Tuner	paragraph
+SWE-RA-RAD-002	4872378	CFTS024	1.3	HU Analog Tuner	paragraph
+SWE-RA-RAD-003	4872383	CFTS024	1.3.1	Seek Up	paragraph
+SWE-RA-RAD-004	4872384	CFTS024	1.3.1	Seek Up	paragraph
+SWE-RA-RAD-005	4872390	CFTS024	1.3.1	Seek Up	paragraph
+SWE-RA-RAD-006	4872395	CFTS024	1.3.1	Seek Up	paragraph
+SWE-RA-RAD-007	4872396	CFTS024	1.3.1	Seek Up	paragraph
+SWE-RA-RAD-008	4872397	CFTS024	1.3.1	Seek Up	paragraph
+SWE-RA-RAD-009	4872401	CFTS024	1.3.2	Seek Down	paragraph
+SWE-RA-RAD-010	4872408	CFTS024	1.3.2	Seek Down	paragraph
+SWE-RA-RAD-011	4872413	CFTS024	1.3.2	Seek Down	paragraph
+SWE-RA-RAD-012	4872414	CFTS024	1.3.2	Seek Down	paragraph
+SWE-RA-RAD-013	4872415	CFTS024	1.3.2	Seek Down	paragraph
+SWE-RA-RAD-014	4872420	CFTS024	1.3.3	Browse	paragraph
+SWE-RA-RAD-015	4872421	CFTS024	1.3.3	Browse	paragraph
+SWE-RA-RAD-016	4872422	CFTS024	1.3.3	Browse	paragraph
+SWE-RA-RAD-017	4872423	CFTS024	1.3.3	Browse	paragraph
+SWE-RA-RAD-018	4872424	CFTS024	1.3.3	Browse	paragraph
+SWE-RA-RAD-019	4872426	CFTS024	1.3.3.1	Browse Category- Presets	paragraph
+SWE-RA-RAD-020	4872427	CFTS024	1.3.3.1	Browse Category- Presets	paragraph
+SWE-RA-RAD-021	4872428	CFTS024	1.3.3.1	Browse Category- Presets	paragraph
+SWE-RA-RAD-022	4872429	CFTS024	1.3.3.1	Browse Category- Presets	paragraph
+SWE-RA-RAD-023	4872430	CFTS024	1.3.3.1	Browse Category- Presets	paragraph
+SWE-RA-RAD-024	4872435	CFTS024	1.3.3.2	Browse Category- Genre	paragraph
+SWE-RA-RAD-025	4872439	CFTS024	1.3.4	Tune Up	paragraph
+SWE-RA-RAD-026	4872442	CFTS024	1.3.4	Tune Up	paragraph
+SWE-RA-RAD-027	4872448	CFTS024	1.3.5	Tune Down	paragraph
+SWE-RA-RAD-028	4872451	CFTS024	1.3.5	Tune Down	paragraph
+SWE-RA-RAD-029	4872451	CFTS024	1.3.5	Tune Down	paragraph
+SWE-RA-RAD-030	4872459	CFTS024	1.3.6	Tune by Direct Number Input	paragraph
+SWE-RA-RAD-031	4872465	CFTS024	1.3.7	Preset Select/Recall	paragraph
+SWE-RA-RAD-032	4872466	CFTS024	1.3.7	Preset Select/Recall	paragraph
+SWE-RA-RAD-033	4872467	CFTS024	1.3.7	Preset Select/Recall	paragraph
+SWE-RA-RAD-034	4872468	CFTS024	1.3.7	Preset Select/Recall	paragraph
+SWE-RA-RAD-035	4872474	CFTS024	1.3.8	Preset Save	paragraph
+SWE-RA-RAD-036	4872475	CFTS024	1.3.8	Preset Save	paragraph
+SWE-RA-RAD-037	4872476	CFTS024	1.3.8	Preset Save	paragraph
+SWE-RA-RAD-038	4872477	CFTS024	1.3.8	Preset Save	paragraph
+SWE-RA-RAD-039	4872478	CFTS024	1.3.8	Preset Save	paragraph
+SWE-RA-RAD-040	4872493	CFTS024	1.3.10	Scroll Up/Down	paragraph
+SWE-RA-RAD-041	4872494	CFTS024	1.3.10	Scroll Up/Down	paragraph
+SWE-RA-RAD-042	4872495	CFTS024	1.3.10	Scroll Up/Down	paragraph
+SWE-RA-RAD-043	4872499	CFTS024	1.3.11	Page Up/Down	paragraph
+SWE-RA-RAD-044	4872500	CFTS024	1.3.11	Page Up/Down	paragraph
+SWE-RA-RAD-045	4872501	CFTS024	1.3.11	Page Up/Down	paragraph
+SWE-RA-RAD-046	4872505	CFTS024	1.3.12	Enter or Item Select	paragraph
+SWE-RA-RAD-047	4872506	CFTS024	1.3.12	Enter or Item Select	paragraph
+SWE-RA-RAD-048	4872507	CFTS024	1.3.12	Enter or Item Select	paragraph
+SWE-RA-RAD-049	4872508	CFTS024	1.3.12	Enter or Item Select	paragraph
+SWE-RA-RAD-050	4872509	CFTS024	1.3.12	Enter or Item Select	paragraph
+SWE-RA-RAD-051	4872510	CFTS024	1.3.12	Enter or Item Select	paragraph
+SWE-RA-RAD-052	4872516	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-053	4872517	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-054	4872518	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-055	4872519	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-056	4872520	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-057	4872521	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-058	4872522	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-059	4872523	CFTS024	1.3.13	RDS/RBDS Features	paragraph
+SWE-RA-RAD-060	4872526	CFTS024	1.3.13.1	Traffic Announcements (TA) & PTY 31	paragraph
+SWE-RA-RAD-061	4872529	CFTS024	1.3.13.1	Traffic Announcements (TA) & PTY 31	paragraph
+SWE-RA-RAD-062	4872536	CFTS024	1.3.13.1	Traffic Announcements (TA) & PTY 31	paragraph
+SWE-RA-RAD-063	4872540	CFTS024	1.3.13.2	Alternate Frequency (AF)	paragraph
+SWE-RA-RAD-064	4872549	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-065	4872551	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-066	4872555	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-067	4872556	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-068	4872557	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-069	4872558	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-070	4872559	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-071	4872560	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-072	4872561	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-073	4872562	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-074	4872563	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-075	4872564	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-076	4872565	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-077	4872566	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-078	4872567	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-079	4872568	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-080	4872570	CFTS024	1.3.14	Station List	paragraph
+SWE-RA-RAD-081	4873882	CFTS024	1.12.1.3.1.5	ID 48 Description : $Country_Code$	paragraph
+SWE-RA-RAD-082	4873903	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
+SWE-RA-RAD-083	4873904	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
+SWE-RA-RAD-084	4873907	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
+SWE-RA-RAD-085	4873908	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
+SWE-RA-RAD-087	4942534	CFTS011			external-allocation
+SWE-RA-RAD-089	4942540	CFTS011			external-allocation
+SWE-RA-RAD-090	4942536	CFTS011			external-allocation
+SWE-RA-RAD-091	4942538	CFTS011			external-allocation
+SWE-RA-RAD-092	4942542	CFTS011			external-allocation
+SWE-RA-RAD-093	4942543	CFTS011			external-allocation
+SWE-RA-RAD-094	4942534	CFTS011			external-allocation
+SWE-RA-RAD-095	4942540	CFTS011			external-allocation
+SWE-RA-RAD-096	4942545	CFTS011			external-allocation
+SWE-RA-RAD-097	4939949	CFTS004			external-allocation
+SWE-RA-RAD-098	4939946	CFTS004			external-allocation
+SWE-RA-RAD-099	4939809	CFTS004			external-allocation
+SWE-RA-RAD-100	4939822	CFTS004			external-allocation
+SWE-RA-RAD-101	4939808	CFTS004			external-allocation
+SWE-RA-RAD-102	4940337	CFTS004			external-allocation
+SWE-RA-RAD-103	4940334	CFTS004			external-allocation
+SWE-RA-RAD-104	4940333	CFTS004			external-allocation

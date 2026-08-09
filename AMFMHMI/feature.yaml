@@ -13,8 +13,11 @@ paths:
   # same defect class as Home A-H26) and makes the 037-A03 the requirement
   # basis: 102 leaves, SWE-RA-RAD-*, sources = SYSAD components.
   a03_report: "inputs/SWE1_AMFM_FM-WI-FSM-037-A03 STLA 報告_SWRA STLA Report_SWRA_20260323.xlsx"
-  # Superseded candidate, kept on record: inputs/FM-WI-SW-RAD-SWRA-A02.xlsx
-  # (57 leaves, SWE-RAD-*, ASIL/FTTI) — its coverage claim is RULINGS C3a.
+  # Superseded requirement report under R1 (57 leaves, SWE-RAD-*, carries the
+  # only ASIL/FTTI columns in the corpus). NOT the TC source, but declared so
+  # recon hashes it: RULINGS C2a/C3a are argued from its contents, and an
+  # un-hashed input is one nobody can prove they surveyed.
+  swra_a02_report: "inputs/FM-WI-SW-RAD-SWRA-A02.xlsx"
   # intake.py filed the SYS2 safety-analysis report here because it is a
   # Polarion export; it is NOT a spec-text export (mode A's role for this key).
   # Recorded below as sysra_export instead.
@@ -30,7 +33,20 @@ paths:
   sysra_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"
 
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
-spec_reference_template: "<Spec Filename>_{outline}"
+# R7-Q3 (Pei, 2026-08-09): per-source doc + STLA id from the 037 title tail.
+# {doc} in {CFTS024, CFTS011, CFTS004} per framework Part III allocation.
+spec_reference_template: "{doc}-{stla_id}"
+
+# R7-Q3 allocation. `primary` is the doc whose headings carry the anchors the
+# bracket map reads; `external` lists the leaves ruled to other CFTS documents
+# (A-AM06 evidenced by SYS3 §4.4.2 c.3; A-AM07 inferred, marked in reasoning).
+# build_stla_map.py cross-checks this list against the leaves whose STLA id
+# falls outside the primary document's anchor range — the two must agree.
+spec_docs:
+  primary: "CFTS024"
+  external:
+    CFTS011: "087, 089-096"
+    CFTS004: "097-104"
 
 workbook:
   sheet: "Test Case Specification&Result"
@@ -51,19 +67,34 @@ workbook:
     design_method: "Q"
     functional_safety: "R"
     author: "Z"
-    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+    remarks: "AG"      # recon-verified against header text (was AH, a Media
+                       # prior; A-AM05 sign-off 2026-08-09)
 
 done_region:
   # detection: "author" (author-cell match) or "rows" (explicit ranges)
   detection: "author"
-  author_value: "Arif"
+  # R3 (Pei, 2026-08-09): C2a = option (i). 'Wilson' selects the FROZEN
+  # LEGACY region (158 rows, SWE-RAD-* family), excluded from coverage
+  # invariants — NOT a protected done region in the Home sense. Style may
+  # be borrowed from these rows; traceability may not. Authorship ruling:
+  # rows fully quoted from others keep the original author's name.
+  author_value: "Wilson"
   # invariant: "content_hash" (interleaved-safe) or "positional"
   invariant: "content_hash"
 
 write_back:
+  # R裁決1 (Pei, 2026-08-09): rows Pei generates → PeiPYHsu; rows fully
+  # quoted from another author keep that author's name.
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
-  fill_test_group_set: false     # true only under BLANK per canon §2
+  # R7-Q1/Q2 + DECISIONS §4 (match done-region convention = columns FILLED):
+  # new rows write Test Group = AMFM, Test Set = capability value from
+  # framework Part III. Legacy rows keep Radio + band scheme, frozen.
+  fill_test_group_set: true
+  # A-AM01 / RULINGS C1: Scope field is stale (names SWRA-A02); corrected
+  # at write-back by label text, exactly as Home A-H26.
+  scope_label: "範圍 Scope"
+  scope_source: "a03_report"
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary

@@ -7,9 +7,17 @@ data/recon.json
 batches/
 lint_report.json
 
-# data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
-# one: it is the traceability lookup every spec_reference is linted against,
-# and a diff on it is the signal that the spec export moved underneath us.
+# These carry customer prose, not just derived structure — stla_to_cfts.json
+# embeds the CFTS clause text for every leaf, exemplars.json embeds Wilson's
+# test-case text. Same policy as inputs/.
+data/stla_to_cfts.json
+data/exemplars.json
+data/stla_id_suspects.json
+
+# data/stla_to_cfts.tsv IS tracked on purpose (Home's spec_id_to_outline.tsv
+# plays the same role): it is the traceability lookup every spec_reference is
+# built from, it carries ids and heading names rather than requirement text,
+# and a diff on it is the signal that the CFTS document moved underneath us.
 
 # Local noise
 __pycache__/
