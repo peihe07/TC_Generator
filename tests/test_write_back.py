@@ -1,4 +1,4 @@
-"""Tests for Step 4 write-back (tcgen_package/scripts/write_back.py).
+"""Tests for Step 4 write-back (mediaHMI/scripts/write_back.py).
 
 The invariants under test are the ones row-level linting cannot see: a row with
 an invented req_id is well-formed, a missing leaf leaves no trace in the file,
@@ -17,8 +17,8 @@ warnings.filterwarnings("ignore")
 openpyxl = pytest.importorskip("openpyxl")
 
 REPO = Path(__file__).resolve().parent.parent
-SCRIPTS = REPO / "tcgen_package" / "scripts"
-PKG = REPO / "tcgen_package"
+SCRIPTS = REPO / "mediaHMI" / "scripts"
+PKG = REPO / "mediaHMI"
 sys.path.insert(0, str(SCRIPTS))
 
 import write_back  # noqa: E402

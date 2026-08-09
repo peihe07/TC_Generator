@@ -192,23 +192,40 @@ Sonnet 4.6 acceptable for B2–B4 (templated, strong HSS exemplars).
 
 ## Step 3 — Lint (hard gate)
 
-`lint_tcs.py` is NOT yet written for Home. When it is, it must read its
-inputs from `feature.yaml` rather than hard-coding them:
-- `lint.popup_ids` for the PU allow-list
-- the workbook `下拉選單` sheet for the Design Method whitelist (9 strings,
-  exact match) — the sheet is the authority, `feature.yaml` only points at
-  the workbook
-- `workbook.columns` for every column index
+```bash
+python scripts/lint_tcs.py generated/ --json-report lint_report.json
+```
 
-It must also implement the A-H08 rule: strip double-quoted spans before the
-ER modal-verb check, so verbatim popup text (`Widget cannot be moved here.`)
-does not fail the gate.
+Exit 0 = clean, 1 = at least one finding, 2 = bad invocation. Authorities are
+read, never hard-coded: `feature.yaml` supplies the column indices, input
+paths and `lint.popup_ids`; the Design Method whitelist comes from the
+workbook's own `下拉選單` sheet (9 strings, exact match).
 
-All Media gates, plus:
-- test_group and test_set cells must be EMPTY (done-region convention)
-- every PU citation resolves against Pop Up List; popup wording verbatim
-- spec_reference resolves through `spec_id_to_outline.tsv`; unresolved → fail
-- B7 rows: BLOCKED format only, no fabricated content
+Gates: `unknown-req-id`, `keys`, `blank-convention`, `blank-column`,
+`priority`, `design-method`, `spec-reference`, `step-count`,
+`step-numbering`, `forbidden-verb`, `er-modal`, `popup-unknown`,
+`popup-citation`, `popup-verbatim`, `popup-token`, `br-tag`.
+
+Home-specific rulings baked in, each because the Media version would fail
+Arif's own compliant rows:
+
+- **No `trailing-period` gate.** 28% of done-region lines end with a period,
+  72% do not — measured, not a convention, so not a rule.
+- **`[...]` / `<...>` are not banned** (A-H10). In Home they are Pop Up List
+  control tokens (`<X>`, `[OK, X]`, `[Reorder]`, present in 20 done-region
+  rows). They are validated against the cited PU row instead. `test_item` is
+  exempt entirely — Profile §3.1 makes it verbatim RD text, and the RD writes
+  `[X]` where the Pop Up List writes `<X>`.
+- **ER modal check strips double-quoted spans first** (A-H08), so
+  `"Widget cannot be moved here."` passes.
+- test_group / test_set must be EMPTY (Profile §2).
+- spec_reference must resolve through `spec_id_to_outline.tsv` AND agree with
+  the 037 section for that req_id. B7 rows use the Last Mode List Item form
+  (A-H03) and are checked against the List Item number instead.
+
+Negative tests live in `tests/test_home_lint_tcs.py` — every gate has a test
+that mutates one field and asserts the rule fires. A gate that never fires is
+indistinguishable from a gate that does not exist.
 
 ## Step 4 — Write-back (STRATEGY CHANGE vs Media)
 

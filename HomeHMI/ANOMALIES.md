@@ -162,6 +162,30 @@ runs; RESOLVED entries record the ruling verbatim.
   unaffected — 020/021 were already in B1.
 - Recorded in `docs/fw036/framework.md` Part II Layer 2/3 table.
 
+## [A-H10] Pop Up List control tokens vs the bracket-label ban — LINT RULE
+
+- Media's linter bans `[...]` and `<...>` in TC text, requiring `"..."` for UI
+  labels. Home's done region uses both: 20 of Arif's 144 rows contain tokens
+  such as `<X>`, `[OK, X]`, `[Reorder]` — all quoted from the Pop Up List
+  (PU0942's message is literally `<X>\nPage added! [Reorder]`).
+- Ruling: the tokens are not a defect, they are cited source text. `lint_tcs.py`
+  validates them against the cited PU row's String/Popup Message and Exit
+  Conditions instead of forbidding them; an unmatched token still fails.
+- **`test_item` is exempt from this check and from the PU-citation check.**
+  Profile §3.1 makes Test Item the requirement's shall-sentence verbatim, and
+  the RD writes its own notation: 033/034's requirement text says
+  `OK and [X] to dismiss` where the Pop Up List says `<OK>` / `<X>`. A
+  requirement may also name a popup that a given TC does not exercise
+  (034-01 tests the allowed swap, not the popup).
+- Same family as A-H08: quoted source text is not the author's prose.
+
+## [A-H11] Media's trailing-period rule does not apply to Home — RECORDED
+
+- Media lints "no line ends with a period". Measured against Home's done
+  region: 369 of 1298 lines end with a period (28%).
+- A 28/72 split is not a convention. The rule is omitted from Home's linter
+  rather than enforced against a majority of Arif's own rows.
+
 ---
 
 ## Assumption markers
