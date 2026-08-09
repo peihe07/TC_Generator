@@ -62,6 +62,13 @@ spec-index/manifest.json
 # Local trash staged for manual deletion
 _to_delete/
 
+# Intake drop zone: customer source documents, same policy as <Feature>/inputs/.
+# Only the human-authored ruling sheets are tracked.
+_intake/*
+!_intake/*/
+_intake/*/*
+!_intake/*/RULINGS.md
+
 # Packaged spec-derived working set (rebuildable, may contain customer spec data)
 # 套件自身的規則見 tcgen_package/.gitignore
 tcgen_package.zip

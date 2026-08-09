@@ -13,6 +13,7 @@ data/sibling_map.json
 data/row_segments.json
 data/exemplars.json
 data/last_mode_items.json
+data/recon.json
 batches/
 lint_report.json
 
