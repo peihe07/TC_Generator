@@ -1,0 +1,32 @@
+{
+  "parent": "SWE1-HMI-HOME-032",
+  "batch": "B1",
+  "reasoning": "HSD8.4（outline 4.8.4）為 HSD8（press and hold 可重排 widget）的例外：CarPlay app 不可 press and hold 重排。驗證的是「不允許的操作被阻擋」，屬 Negative / Invalid Testing 的典型情境（執行不允許操作）。ER 必須同時陳述「press and hold 後未進入拖曳／重排狀態」與「CarPlay app 位置不變」，只寫其中一半無法區分是操作被擋還是操作成功但位置巧合相同。對照組：同頁的 bottom widget 依 HSD8 仍可 press and hold 重排（033/034 涵蓋），故本條步驟不納入對照操作以維持單一驗證標的。優先級：屬 CarPlay template 的操作限制而非主流程，訂 P1。",
+  "keywords": [
+    "CarPlay projection area",
+    "press and hold",
+    "HSD8.4",
+    "rearrange lock"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，037 未拆 sub-id，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-032",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement CarPlay Projection Area Reorder Lock: On the CarPlay app of the CarPlay template, you cannot press and hold to rearrange.\n\n(Press and hold on the CarPlay app of the CarPlay template -> the CarPlay app does not enter the rearrange state and its position is unchanged)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout is set on one Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that uses the CarPlay layout\n2. Press and hold the CarPlay app in the top 50% widget area\n3. Drag the CarPlay app towards the bottom widget position and release\n4. Read the position of the CarPlay app on the CarPlay template",
+      "expected_result": "1. The Home Screen page with the CarPlay layout is displayed\n2. The CarPlay app does not enter the rearrange state\n3. The CarPlay app is not moved to the bottom widget position\n4. The CarPlay app remains displayed in the top 50% widget area",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.8.4",
+      "priority": "P1",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "remarks": ""
+    }
+  ]
+}

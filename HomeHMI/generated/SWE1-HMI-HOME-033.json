@@ -1,0 +1,47 @@
+{
+  "parent": "SWE1-HMI-HOME-033",
+  "batch": "B1",
+  "reasoning": "HSD8.5（outline 4.8.5）含兩個可分離的驗證標的：(1) 將 bottom 50% widget 拖入 CarPlay projection area 會被擋下並顯示 PU1291；(2) PU1291 具 OK 與 [X] 兩個關閉控制與 3 秒逾時。第 (1) 項的「拖曳被擋」與「popup 顯示」是同一觸發的連帶結果，依 §5.7 併為一條、多行 ER。第 (2) 項的 3 秒逾時需要「不操作並等待」這個與 (1) 互斥的執行路徑，無法併入同一條程序，故獨立為 033-02。OK 與 [X] 同屬使用者主動關閉，在 033-01 內以重新觸發的方式各驗一次。popup 文字、按鈕與逾時秒數一律引用 Pop Up List 的 PU1291 欄位原文，不採規格書內的轉述。優先級：拖曳限制屬 CarPlay template 的操作約束，訂 P1；逾時自動關閉屬 popup 行為細節，對主功能影響有限，訂 P2。",
+  "keywords": [
+    "CarPlay template",
+    "50% widget",
+    "drag and drop",
+    "HSD8.5",
+    "PU1291"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "popup dismissal path",
+    "delta": "033-01 user-initiated dismissal (OK / [X]) after the blocked drag; 033-02 unattended 3 second timeout"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-033",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Drag and drop functionality shall not be allowed on the CarPlay template with one 50% widget on the bottom. If the user attempts to drag and drop the bottom 50% widget into the CarPlay projection area, then show popup PU1291. This popup has OK and [X] to dismiss and a 3 second timeout.\n\n(Bottom 50% widget dragged into the CarPlay projection area -> the widget is not moved, PU1291 is displayed, and the popup is dismissed by <OK> and by <X>)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout with one 50% widget on the bottom is set on one Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that uses the CarPlay layout with one 50% widget on the bottom\n2. Press and hold the bottom 50% widget, drag it into the CarPlay projection area and release\n3. Read the popup displayed on the screen\n4. Press <OK> on the popup\n5. Read the position of the bottom 50% widget and of the CarPlay app\n6. Press and hold the bottom 50% widget, drag it into the CarPlay projection area and release\n7. Press <X> on the popup",
+      "expected_result": "1. The Home Screen page with the CarPlay layout and one 50% widget on the bottom is displayed\n2. The bottom 50% widget is not moved into the CarPlay projection area\n3. Popup PU1291 is displayed with the text \"Widget cannot be moved here.\" and the <OK> and <X> controls, as defined by PU1291 String/Popup Message\n4. Popup PU1291 is dismissed\n5. The bottom 50% widget remains in the bottom widget position and the CarPlay app remains in the top 50% widget area\n6. Popup PU1291 is displayed again\n7. Popup PU1291 is dismissed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.8.5",
+      "priority": "P1",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-033",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Drag and drop functionality shall not be allowed on the CarPlay template with one 50% widget on the bottom. If the user attempts to drag and drop the bottom 50% widget into the CarPlay projection area, then show popup PU1291. This popup has OK and [X] to dismiss and a 3 second timeout.\n\n(PU1291 displayed and left unattended -> the popup is dismissed by its 3 second timeout)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout with one 50% widget on the bottom is set on one Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that uses the CarPlay layout with one 50% widget on the bottom\n2. Press and hold the bottom 50% widget, drag it into the CarPlay projection area and release\n3. Wait 3 seconds without pressing any control on the popup\n4. Read the position of the bottom 50% widget",
+      "expected_result": "1. The Home Screen page with the CarPlay layout and one 50% widget on the bottom is displayed\n2. Popup PU1291 is displayed, as defined by PU1291 String/Popup Message\n3. Popup PU1291 is dismissed after the 3 second timeout without any user operation\n4. The bottom 50% widget remains in the bottom widget position",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.8.5",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

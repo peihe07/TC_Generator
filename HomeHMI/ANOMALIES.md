@@ -110,6 +110,34 @@ runs; RESOLVED entries record the ruling verbatim.
   authors to add the missing 035 row.
 - `build_remaining.py` reports it every run under `ORPHAN req_ids`.
 
+## [A-H07] HSD5.6 grey-out clause: CarPlay connection unstated — ASSUMPTION
+
+- HSD5.6 (outline 4.5.6) reads: "…provide two additional layout options …
+  Do not provide these options if Apple CarPlay is not currently connected.
+  Gray out these options if the user already has a CarPlay layout on one of
+  their home screens."
+- The third sentence does not restate whether CarPlay must still be connected.
+  Read literally, "already has a CarPlay layout" + "not connected" is
+  ambiguous: the options are both absent (sentence 2) and greyed out
+  (sentence 3).
+- Assumption taken by `SWE1-HMI-HOME-020` TC-03: sentence 3 modifies the
+  options introduced by sentence 1, so grey-out is only observable while
+  CarPlay is connected. Pre-Condition keeps CarPlay connected.
+- Marked inline as `[ASSUMPTION A-H07]` in that TC's Remarks. Low risk —
+  if the ruling goes the other way only the Pre-Condition changes, not the
+  split. RD-1 candidate if a reviewer wants it settled upstream.
+
+## [A-H08] Verbatim popup text collides with the ER modal-verb ban — LINT RULE
+
+- Profile §3.4 requires popup wording verbatim from the Pop Up List. PU1291's
+  `String/Popup Message` is `Widget cannot be moved here.` — it contains the
+  modal "cannot", which §6 bans from Expected Result.
+- Ruling: the ban applies to the TC author's own prose, not to quoted source
+  text. `lint_tcs.py` must strip double-quoted spans before running the modal
+  check, otherwise every correctly-cited popup TC fails the gate.
+- Affects B1 (033, 034 — PU1291) and every later batch citing PU0091 /
+  PU0942 / PU1274.
+
 ---
 
 ## Assumption markers

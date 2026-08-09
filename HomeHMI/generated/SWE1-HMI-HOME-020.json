@@ -1,0 +1,64 @@
+{
+  "parent": "SWE1-HMI-HOME-020",
+  "batch": "B1",
+  "reasoning": "HSD5.6（outline 4.5.6）由兩個條件決定三種結果：CarPlay 是否連線、以及是否已有 CarPlay layout。條件組合對應不同輸出（提供選項／不提供／灰化），符合 Decision Table Testing 的判定特徵，三條 TC 各對應決策表的一列。037 未將 020 拆 sub-id，依 Profile §4 以 Arif 001-01~03 / 012-05 的先例，同一 leaf 可產多筆並以括號情境標籤區分（distinguishing axis = CarPlay 連線與既有 layout 狀態）。灰化條件（HSD5.6 第三句）在規格上未言明是否要求 CarPlay 連線；本批依 HSD5.6 語序將灰化視為「選項已被提供」之後的狀態，故 020-03 的 Pre-Condition 保留 CarPlay 連線。此判讀已標記為假設。優先級：提供兩個 CarPlay layout 選項是本需求的主流程，訂 P0；未連線不提供與已存在 layout 灰化屬條件變化，訂 P1。",
+  "keywords": [
+    "12\" Portrait",
+    "layout selection screen",
+    "Apple CarPlay",
+    "HSD5.6",
+    "grey out"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "CarPlay connection state x existing CarPlay layout",
+    "delta": "connected + no existing layout -> options provided; not connected -> options absent; connected + existing layout -> options greyed out"
+  },
+  "assumptions": [
+    "[ASSUMPTION A-H07] HSD5.6 does not state whether the grey-out clause also requires Apple CarPlay to be connected. 020-03 assumes it does, reading the third sentence as a modifier on the options introduced by the first sentence."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-020",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement 12\" Portrait Exclusive CarPlay Layout Options: When on the 12\" Portrait layout selection screen and Apple CarPlay is currently connected, provide two additional layout options: \"Apple CarPlay\" text on the top half of the screen with a 50% widget below, and \"Apple CarPlay\" text on the top half of the screen with 2 25% widgets below. Do not provide these options if Apple CarPlay is not currently connected. Gray out these options if the user already has a CarPlay layout on one of their home screens.\n\n(Apple CarPlay connected and no CarPlay layout exists on any Home Screen page -> both additional CarPlay layout options are provided and selectable)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. No CarPlay layout is set on any Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Press the last pagination icon to open the home screen management page\n2. Select \"Add Page\" button\n3. Read the layout options displayed on the layout selection screen\n4. Select the \"Apple CarPlay\" option with a 50% widget below\n5. Return to the layout selection screen and select the \"Apple CarPlay\" option with 2 25% widgets below",
+      "expected_result": "1. The home screen management page is displayed\n2. The 12\" Portrait layout selection screen is displayed\n3. Two additional layout options are displayed: \"Apple CarPlay\" text on the top half of the screen with a 50% widget below, and \"Apple CarPlay\" text on the top half of the screen with 2 25% widgets below\n4. The layout with \"Apple CarPlay\" on the top half and a 50% widget below is applied to the new Home Screen page\n5. The layout with \"Apple CarPlay\" on the top half and 2 25% widgets below is applied to the new Home Screen page",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.5.6",
+      "priority": "P0",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-020",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement 12\" Portrait Exclusive CarPlay Layout Options: When on the 12\" Portrait layout selection screen and Apple CarPlay is currently connected, provide two additional layout options: \"Apple CarPlay\" text on the top half of the screen with a 50% widget below, and \"Apple CarPlay\" text on the top half of the screen with 2 25% widgets below. Do not provide these options if Apple CarPlay is not currently connected. Gray out these options if the user already has a CarPlay layout on one of their home screens.\n\n(Apple CarPlay not connected -> neither additional CarPlay layout option is provided on the layout selection screen)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is not connected",
+      "input_test_data": "",
+      "test_procedure": "1. Press the last pagination icon to open the home screen management page\n2. Select \"Add Page\" button\n3. Read the layout options displayed on the layout selection screen",
+      "expected_result": "1. The home screen management page is displayed\n2. The 12\" Portrait layout selection screen is displayed\n3. The \"Apple CarPlay\" with a 50% widget below option and the \"Apple CarPlay\" with 2 25% widgets below option are not displayed among the layout options",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.5.6",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-020",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement 12\" Portrait Exclusive CarPlay Layout Options: When on the 12\" Portrait layout selection screen and Apple CarPlay is currently connected, provide two additional layout options: \"Apple CarPlay\" text on the top half of the screen with a 50% widget below, and \"Apple CarPlay\" text on the top half of the screen with 2 25% widgets below. Do not provide these options if Apple CarPlay is not currently connected. Gray out these options if the user already has a CarPlay layout on one of their home screens.\n\n(Apple CarPlay connected and a CarPlay layout already exists on a Home Screen page -> both additional CarPlay layout options are greyed out)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout is already set on one Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Press the last pagination icon to open the home screen management page\n2. Select \"Add Page\" button\n3. Read the state of the two \"Apple CarPlay\" layout options on the layout selection screen\n4. Select the \"Apple CarPlay\" option with a 50% widget below",
+      "expected_result": "1. The home screen management page is displayed\n2. The 12\" Portrait layout selection screen is displayed\n3. The \"Apple CarPlay\" with a 50% widget below option and the \"Apple CarPlay\" with 2 25% widgets below option are displayed greyed out\n4. The greyed out option is not selected and the layout selection screen remains displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.5.6",
+      "priority": "P1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "remarks": "[ASSUMPTION A-H07] HSD5.6 does not state whether the grey-out condition also requires CarPlay to be connected"
+    }
+  ]
+}

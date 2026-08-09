@@ -1,0 +1,50 @@
+{
+  "parent": "SWE1-HMI-HOME-034",
+  "batch": "B1",
+  "reasoning": "HSD8.6（outline 4.8.6）含一正一負兩個驗證標的：(1) bottom 兩個 25% widget 之間可互換位置（唯一被允許的拖曳）；(2) 將 25% widget 拖入 CarPlay projection area 會被擋下並顯示 PU1291。兩者觸發動作不同、預期結果相反，不可併為一條，故拆 034-01 / 034-02，distinguishing axis 為拖曳目標（sibling widget vs CarPlay projection area）。PU1291 的 3 秒逾時已由 033-02 涵蓋，且逾時是 PU1291 本身的屬性而非 HSD8.6 特有行為，本 leaf 不重複驗證，避免與 033-02 構成重複測項。popup 文字與控制項引用 Pop Up List PU1291 欄位原文。優先級：25% widget 互換是 CarPlay template 上唯一被允許的拖曳操作，屬該功能的必測主流程，訂 P0；拖入 projection area 被擋屬操作約束，訂 P1。",
+  "keywords": [
+    "CarPlay template",
+    "25% widget",
+    "swap",
+    "HSD8.6",
+    "PU1291"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "drag target",
+    "delta": "034-01 drag onto the sibling 25% widget (allowed, positions swap); 034-02 drag into the CarPlay projection area (blocked, PU1291)"
+  },
+  "coverage_notes": [
+    "PU1291 3 second timeout is verified once, by SWE1-HMI-HOME-033 TC-02; not repeated here to avoid a duplicate test objective."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-034",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Drag and drop functionality is only allowed for the bottom two 25% widgets which shall be able to be swapped on the CarPlay template screen. If user attempts to drag and drop a 25% widget into the CarPlay projection area then show popup PU1291. This popup has OK and [X] to dismiss and a 3 second timeout.\n\n(One bottom 25% widget dragged onto the other bottom 25% widget -> the two widgets exchange positions)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout with two 25% widgets on the bottom is set on one Home Screen page\n5. The two bottom 25% widgets contain different widget content",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that uses the CarPlay layout with two 25% widgets on the bottom\n2. Read the content of the left and the right bottom 25% widgets\n3. Press and hold the left bottom 25% widget, drag it onto the right bottom 25% widget position and release\n4. Read the content of the left and the right bottom 25% widgets",
+      "expected_result": "1. The Home Screen page with the CarPlay layout and two 25% widgets on the bottom is displayed\n2. The content of the left and the right bottom 25% widgets is displayed\n3. The left bottom 25% widget is moved to the right bottom 25% widget position\n4. The two bottom 25% widgets have exchanged positions and the CarPlay app remains in the top 50% widget area",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.8.6",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-034",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Drag and drop functionality is only allowed for the bottom two 25% widgets which shall be able to be swapped on the CarPlay template screen. If user attempts to drag and drop a 25% widget into the CarPlay projection area then show popup PU1291. This popup has OK and [X] to dismiss and a 3 second timeout.\n\n(Bottom 25% widget dragged into the CarPlay projection area -> the widget is not moved and PU1291 is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout with two 25% widgets on the bottom is set on one Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that uses the CarPlay layout with two 25% widgets on the bottom\n2. Press and hold the left bottom 25% widget, drag it into the CarPlay projection area and release\n3. Read the popup displayed on the screen\n4. Press <OK> on the popup\n5. Read the position of the left bottom 25% widget and of the CarPlay app",
+      "expected_result": "1. The Home Screen page with the CarPlay layout and two 25% widgets on the bottom is displayed\n2. The left bottom 25% widget is not moved into the CarPlay projection area\n3. Popup PU1291 is displayed with the text \"Widget cannot be moved here.\" and the <OK> and <X> controls, as defined by PU1291 String/Popup Message\n4. Popup PU1291 is dismissed\n5. The left bottom 25% widget remains in the left bottom widget position and the CarPlay app remains in the top 50% widget area",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.8.6",
+      "priority": "P1",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "remarks": ""
+    }
+  ]
+}

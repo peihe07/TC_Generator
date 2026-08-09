@@ -1,0 +1,33 @@
+{
+  "parent": "SWE1-HMI-HOME-021",
+  "batch": "B1",
+  "reasoning": "HSD5.7（outline 4.5.7）描述單一驗證標的：CarPlay app 在 CarPlay template 上的固定位置與該區域「沒有」的三個控制項（widget title、full screen button、edit button）。四個觀察點同屬「CarPlay 區域的呈現規格」，是同一觸發下的並列可觀察結果，依 §5.7 併為一條 TC、以多行 ER 陳述，不拆四條。否定性質的驗證（沒有標題／沒有按鈕）必須同時陳述「CarPlay app 有顯示在 top 50% 區」與「三項控制項皆未顯示」，只寫其中一半屬不完整結果。方法：驗證畫面元素是否正確顯示，不涉條件邏輯或狀態轉換，屬 Functional based。優先級：CarPlay template 的成立定義即為 CarPlay app 固定在 top 50% 區，屬該功能的必測主流程，訂 P0。",
+  "keywords": [
+    "CarPlay template",
+    "top 50% widget area",
+    "HSD5.7",
+    "no widget title",
+    "no full screen button"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "none",
+    "delta": "單一驗證標的，037 未拆 sub-id，無 sibling"
+  },
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-021",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The CarPlay app shall always be displayed in the top 50% widget area. This CarPlay area shall have no widget title, no full screen button, and no button to edit the widget area itself.\n\n(CarPlay template displayed -> the CarPlay app occupies the top 50% widget area and the area shows no widget title, no full screen button and no edit button)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. The vehicle is equipped with a 12\" Portrait display\n3. Apple CarPlay is connected\n4. A CarPlay layout is set on one Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that uses the CarPlay layout\n2. Read the content displayed in the top 50% widget area\n3. Read the controls displayed within the CarPlay area\n4. Press the last pagination icon to open the home screen management page and select \"My Edit Pages\" button\n5. Read the controls displayed on the CarPlay area in edit mode",
+      "expected_result": "1. The Home Screen page with the CarPlay layout is displayed\n2. The Apple CarPlay app is displayed in the top 50% widget area\n3. No widget title and no full screen button are displayed on the CarPlay area\n4. The edit mode is displayed for the Home Screen page\n5. No button to edit the CarPlay widget area is displayed on the CarPlay area",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_4.5.7",
+      "priority": "P0",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# spec_id_to_outline.tsv — SYS1 Polarion outline mapping
+# spec_id_to_outline.tsv — derived from SYS1 Basic Report; regenerate via build_outline_map.py, do not hand-edit
 # spec_reference format: Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_{outline}
 spec_id	outline	desc
 -	1	Assumptions
@@ -7,9 +7,9 @@ spec_id	outline	desc
 -	1.3	The Change Log for this document is a separate file
 -	1.4	Differences between the radios will be specified.
 -	1.5	Differences between Regions will be specified. If not specified, refer
--	1.6	Unless otherwise specified, the 12" user interface will be a scaled up
--	1.7	Unless otherwise specified, the 12.3" user interface will be a scaled 
--	1.8	Unless otherwise specified, the 14.46" user interface will follow the 
+-	1.6	"Unless otherwise specified, the 12"" user interface will be a scaled up"
+-	1.7	"Unless otherwise specified, the 12.3"" user interface will be a scaled "
+-	1.8	"Unless otherwise specified, the 14.46"" user interface will follow the "
 -	2	Reference Documentation
 -	2.1	Please refer to the table_x000D_ HMI Documents | HMI Documents | Other
 -	3	Anatomy
@@ -34,7 +34,7 @@ HSD5.2	4.5.2	HSD5.2) For New/Blank widgets will display a ‘plus’ symbol and 
 HSD5.3	4.5.3	HSD5.3) A maximum of 5 Home Screen pages is allowed. The “Add Page” bu
 HSD5.4	4.5.4	HSD5.4) Pagination dots to indicate the number of home screen pages an
 HSD5.5	4.5.5	HSD5.5) When on the layout selection screen (only applicable to vehicl
-HSD5.6	4.5.6	HSD5.6) When on the 12" Portrait layout selection screen and Apple Car
+HSD5.6	4.5.6	"HSD5.6) When on the 12"" Portrait layout selection screen and Apple Car"
 HSD5.7	4.5.7	HSD5.7) The CarPlay app will always be displayed in the top 50% widget
 HSD6	4.6	HSD6.) When user selects “Delete Pages” option from the last home scre
 HSD6.1	4.6.1	HSD6.1) While in “Delete Pages” mode from the last home page screen us
@@ -61,7 +61,7 @@ HSD13	4.11	HSD13.) When there is a lower non-articulating screen do not provide 
 HS9	7.2	HS9.) Available widgets
 HS9.0.1	7.2.1	HS9.0.1) Widgets that have a * in the Category column are widgets that
 HS10	7.3	HS10.) User is able to remove widget content within the edit widget. “
-HS11	7.4	HS11.) For 10.1"P screen size, 25% widgets will follow the same logica
+HS11	7.4	"HS11.) For 10.1""P screen size, 25% widgets will follow the same logica"
 HS12	7.5	HS12.) Widget titles are defined in the individual feature logic refer
 -	8	R1 Low 7” Shortcuts Widget
 -	8.1	Please refer to the diagram_x000D_  (image: %E5%9C%96%E7%89%87_1733281
