@@ -283,6 +283,36 @@ runs; RESOLVED entries record the ruling verbatim.
   Remarks record the divergence from the 037 description.
 - RD-1: ask upstream to correct the 056 description.
 
+## [A-H18] SYS1 export drops SW7.1 — RECORDED (affects 061)
+
+- Home PDF p.17 carries `SW7.1) The same behavior will be applied if the
+  shortcut is part of a routine, if applicable (exceptions noted in table)`.
+- SYS1 has no 9.12.1; outline 9.12 stops at SW7, and 037's
+  `SWE1-HMI-HOME-061` description carries the table without SW7.1.
+- Disposition: routine-borne shortcuts are out of scope for 061; recorded in
+  the parent's `coverage_notes`.
+- **Third instance of the same defect class** (A-H12 HSS4, A-H16 HSS6,
+  A-H18 SW7.1). All three are chapter 9. The RD-1 question should be a full
+  re-export of chapter 9 with a diff against the PDF, not three sentence
+  patches — a per-sentence fix leaves the next omission undetected.
+  `data/spec_diff.json` compares item CODES only and cannot see a dropped
+  sentence inside a section that is otherwise present.
+
+## [A-H19] PU1274 String/Popup Message merges both product variants — RECORDED
+
+- The cell reads, line by line: `<X>` / `No Apple CarPlay Android Auto device
+  connected.` / `Do you want to connect or pair a device?` / `<OK><Cancel>` /
+  `For Apple CarPlay, replace "Android Auto" text with "Apple CarPlay"`.
+- Line 2 names both products at once, while the last line is an authoring
+  instruction implying the base string should name only Android Auto. No
+  vehicle will ever display line 2 as written.
+- Disposition for `SWE1-HMI-HOME-059-02`: cite PU1274 by ID and state the
+  popup's content and controls, but do NOT quote the composite string. An ER
+  quoting it verbatim could never pass, which is worse than not quoting.
+  Profile §3.4's verbatim rule presumes a well-formed source row.
+- RD-1: ask upstream to split PU1274 into per-variant rows, or to state the
+  base string and the substitution separately.
+
 ---
 
 ## Assumption markers

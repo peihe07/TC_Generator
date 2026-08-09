@@ -1,0 +1,121 @@
+{
+  "parent": "SWE1-HMI-HOME-061",
+  "batch": "B4",
+  "reasoning": "SW7（outline 9.12）的需求本文就是一張 17 列的動作對照表加一句預設規則。037 未按列拆 sub-id,依 §8.2.2「同一 sub-id 可有多條 TC」在 061 之下產多條,而不是新增 req_id（那會發明需求,framework.md Part I 已記錄過該教訓）。分組依據是 Home 側可觀察的結果,因為那是 Home 規格唯一有權主張的東西：TC-01 停留在 Home Screen 且對應 widget 更新;TC-02 離開 Home Screen 前往 Vehicle Category 分頁;TC-03 在原地逐級切換且狀態同步至所有位置;TC-04 瞬時啟動,僅按下時高亮;TC-05 二元開關;TC-06 啟動 Alexa 工作階段;TC-07 表格未列項目的預設行為。每組以等價劃分取樣,ER 只陳述 Home 側可觀察結果,不主張各車輛功能的內部細節（例如加熱座椅有幾段）——SW7 明文將其交回 Vehicle Category Logic and Flow,屬 §8.4.2 外部規格。PDF 的 SW7.1（routine 內的 shortcut 適用相同行為）未進 SYS1 9.12,故不納入範圍,記入 A-H18。優先級:TC-01 的三項(電話/媒體/導航)是 shortcut 存在的主要理由,訂 P0;離開畫面與狀態同步訂 P1;瞬時、二元、Alexa、預設行為訂 P2。",
+  "keywords": [
+    "SW7",
+    "Actions for Shortcuts",
+    "stays on Home Screen",
+    "Vehicle Category",
+    "default behaviour"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "Home-side observable outcome class",
+    "delta": "TC-01 acts in place + widget updates; TC-02 navigates to Vehicle Category; TC-03 level toggle + status propagation; TC-04 momentary activation; TC-05 binary on/off; TC-06 session start; TC-07 default for unlisted shortcuts"
+  },
+  "coverage_notes": [
+    "SW7.1 (same behaviour when the shortcut is part of a routine) is in the PDF but absent from SYS1 9.12 and from 037; out of scope here (A-H18).",
+    "Per-feature internals (heat level count, side step travel, camera tab content) are owned by the Vehicle Category Logic and Flow (§8.4.2) and are not asserted."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: Make a Call calls the contact in the shortcut, Media Source/Preset changes the source or preset, and Navigation begins a route to the location set in the shortcut; each stays on the Home Screen and updates the corresponding widget if it is available.\n\n(Make a Call, Media Source/Preset and Navigation shortcuts pressed -> the action is performed, the Home Screen remains displayed and the matching widget updates)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A Make a Call shortcut, a Media Source shortcut and a Navigation shortcut are set in the Shortcuts widget\n4. The Phone, Media and Navigation widgets are placed on the same Home Screen page\n5. A phone is paired and connected",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the Make a Call shortcut and read the screen and the Phone widget\n3. End the call, select the Media Source shortcut and read the screen and the Media widget\n4. Select the Navigation shortcut and read the screen and the Navigation widget",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The contact set in the shortcut is called, the Home Screen page remains displayed and the Phone widget displays the Current Call screen\n3. The media source changes to the source set in the shortcut, the Home Screen page remains displayed and the Media widget displays the new source\n4. A route to the location set in the shortcut is started, the Home Screen page remains displayed and the Navigation widget displays the route",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P0",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: Specialty Pages takes the user to the applicable tab in the Vehicle Category and Vehicle Cameras takes the user to the Camera App tab in the Vehicle Category.\n\n(Specialty Pages and Vehicle Cameras shortcuts pressed -> the Home Screen is left for the applicable Vehicle Category tab)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A Specialty Pages shortcut and a Vehicle Cameras shortcut are set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the Specialty Pages shortcut and read the screen displayed\n3. Press \"Home\" on the Main Menu Bar\n4. Select the Vehicle Cameras shortcut and read the screen displayed",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Vehicle Category is displayed on the tab applicable to the shortcut\n3. The Home Screen page with the Shortcuts widget is displayed\n4. The Vehicle Category is displayed on the Camera App tab",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: Driver Heated/Vented Seat, Passenger Heated/Vented Seat and Heated Steering Wheel toggle through the levels of the feature, stay on the Home Screen and update the status in all locations.\n\n(Level-toggling comfort shortcuts pressed -> the level advances, the Home Screen remains displayed and the status is consistent across locations)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A Driver Heated/Vented Seat shortcut, a Passenger Heated/Vented Seat shortcut and a Heated Steering Wheel shortcut are set in the Shortcuts widget\n4. The vehicle is equipped with heated/vented seats and a heated steering wheel\n5. All three features are off",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the Driver Heated/Vented Seat shortcut and read the screen and the shortcut status\n3. Select the Passenger Heated/Vented Seat shortcut and read the shortcut status\n4. Select the Heated Steering Wheel shortcut and read the shortcut status\n5. Open the Climate screen and read the status of the three features",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The driver heated/vented seat advances to its next level, the Home Screen page remains displayed and the shortcut shows the new level\n3. The passenger heated/vented seat advances to its next level and the shortcut shows the new level\n4. The heated steering wheel advances to its next level and the shortcut shows the new level\n5. The Climate screen shows the same level for each of the three features as the shortcuts",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P1",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: Headrest Fold - 2nd Row, Headrest Fold - 3rd Row and Rear Sunshade activate the feature and are only highlighted when pressed.\n\n(Momentary shortcuts pressed -> the feature activates and the shortcut is highlighted only for the duration of the press)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A Headrest Fold - 2nd Row shortcut, a Headrest Fold - 3rd Row shortcut and a Rear Sunshade shortcut are set in the Shortcuts widget\n4. The vehicle is equipped with folding headrests and a rear sunshade",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Press and hold the Headrest Fold - 2nd Row shortcut and read the shortcut state\n3. Release the Headrest Fold - 2nd Row shortcut and read the shortcut state\n4. Press the Headrest Fold - 3rd Row shortcut and read the shortcut state after release\n5. Press the Rear Sunshade shortcut and read the shortcut state after release",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The 2nd row headrest fold feature is activated and the shortcut is highlighted while pressed\n3. The shortcut is no longer highlighted and the Home Screen page remains displayed\n4. The 3rd row headrest fold feature is activated and the shortcut is not highlighted after release\n5. The rear sunshade feature is activated and the shortcut is not highlighted after release",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: Power Side Step deploys or retracts the step, Mirror Dimmer, Screen Off, Passenger Screen Off and Outlet turn their feature on or off.\n\n(Binary shortcuts pressed twice -> the feature alternates between its two states)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A Power Side Step shortcut, a Mirror Dimmer shortcut and an Outlet shortcut are set in the Shortcuts widget\n4. The vehicle is equipped with a power side step, a mirror dimmer and an outlet\n5. All three features are off",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the Power Side Step shortcut and read the feature state\n3. Select the Power Side Step shortcut again and read the feature state\n4. Select the Mirror Dimmer shortcut and read the feature state\n5. Select the Outlet shortcut and read the feature state",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The side step deploys and the Home Screen page remains displayed\n3. The side step retracts and the Home Screen page remains displayed\n4. The mirror dimmer turns on and the shortcut shows the on state\n5. The outlet turns on and the shortcut shows the on state",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P2",
+      "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: Alexa starts an Alexa session.\n\n(Alexa shortcut pressed -> an Alexa session starts)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. An Alexa shortcut is set in the Shortcuts widget\n4. Alexa is available and signed in on the vehicle",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the Alexa shortcut\n3. Read the screen displayed",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. An Alexa session is started\n3. The Alexa session indication is displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-061",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Actions for Shortcuts: any shortcut not included in the actions table defaults to taking the user to the full-screen app, or follows Controls behavior in the Vehicle Category Logic and Flow.\n\n(Shortcut whose type is not listed in the actions table pressed -> the full-screen app is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. An app shortcut whose type is not listed in the actions table is set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the shortcut whose type is not listed in the actions table\n3. Read the screen displayed",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Home Screen page is left\n3. The full-screen app for the selected shortcut is displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.12",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

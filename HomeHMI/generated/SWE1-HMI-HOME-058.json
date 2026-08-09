@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-058",
+  "batch": "B4",
+  "reasoning": "HSS8(outline 9.9)只規定 widget 標題為「Shortcuts」。單一驗證標的,不拆。ER 必須是「標題文字為 Shortcuts」的直接讀取結果,而非「標題正確」——後者不是可觀察陳述。標題在 Home Screen 上的 widget 與 Edit state 的 Shortcuts Layout 畫面都會出現,但 HSS8 只主張 widget 標題,故程序僅讀 widget 本身,不擴及編輯畫面。優先級:屬顯示規格細節,對主功能無影響,訂 P3。",
+  "keywords": ["Shortcuts widget", "HSS8", "widget title"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-058",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement Widget Title Definition: HSS8.) Widget title for this feature is \"Shortcuts\".\n\n(Shortcuts widget displayed on a Home Screen page -> its title reads \"Shortcuts\")",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the title displayed on the Shortcuts widget",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The widget title reads \"Shortcuts\"",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.9",
+      "priority": "P3",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "parent": "SWE1-HMI-HOME-060",
+  "batch": "B4",
+  "reasoning": "HSS10(outline 9.11)規定:使用者刪除已設為 shortcut 的下載 app 時,該 shortcut 從 widget 移除並顯示帶 plus 符號的空 shortcut。「移除」與「顯示空 shortcut」是同一觸發的連帶結果,依 §5.7 併為一條、多行 ER。ER 必須同時陳述兩者——只寫移除無法區分是留下空位還是其餘 shortcut 遞補位置,而規格明確要求前者。觸發動作(刪除 app)發生在 Home Screen 之外,程序需離開再返回 Home Screen 才能觀察結果,故步驟含返回。前置條件要求該 app 為可刪除的下載 app,因為原廠內建 app 不適用本規則。優先級:屬資料一致性清理,失效會留下指向不存在 app 的 shortcut,訂 P1。",
+  "keywords": ["Shortcuts widget", "HSS10", "uninstall app", "empty shortcut", "plus symbol"],
+  "duplicate_of": "",
+  "distinguishing_axis": {"axis": "none", "delta": "單一驗證標的,037 未拆 sub-id"},
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-060",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "The system shall implement App Uninstallation Cleanup: HSS10.) If a user deletes a downloaded app that they added as a shortcut, remove the shortcut from the widget and display an empty shortcut with a plus symbol.\n\n(Downloaded app that is set as a shortcut deleted -> its shortcut is removed and the position becomes an empty shortcut)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. A downloaded app is installed and set as a shortcut in the Shortcuts widget\n4. At least one other shortcut is set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the position of the downloaded app shortcut in the Shortcuts widget\n3. Delete the downloaded app from the vehicle\n4. Navigate to the Home Screen page that contains the Shortcuts widget\n5. Read the position previously occupied by the downloaded app shortcut",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The downloaded app shortcut is displayed in the Shortcuts widget\n3. The downloaded app is removed from the vehicle\n4. The Home Screen page with the Shortcuts widget is displayed\n5. The downloaded app shortcut is no longer displayed and an empty shortcut with a plus symbol is displayed at that position, with the other shortcuts unchanged",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.11",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}

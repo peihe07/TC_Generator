@@ -1,0 +1,79 @@
+{
+  "parent": "SWE1-HMI-HOME-059",
+  "batch": "B4",
+  "reasoning": "HSS9（outline 9.10）是一句話,037 把它拆成四個 sub-id：-01 圖示灰化、-02 按下顯示 PU1274、-03 按 OK 進 Device Manager、-04 按 Cancel 關閉。若 037 未拆,依 §5.7 這是同一觸發鏈應併為一至二條;但 037 已拆 sub-id,§8.2.1 勝出,四條各自持有 TC。-03 與 -04 是 popup 的兩條退出路徑,分別為獨立 sub-id,不併。PU1274 的 String/Popup Message 第 2 行為「No Apple CarPlay Android Auto device connected.」,同時含兩個產品名,而第 7 行又註明「For Apple CarPlay, replace \"Android Auto\" text with \"Apple CarPlay\"」——顯示該欄位混入了兩個變體,實機不可能出現該字串（A-H19）。因此 -02 的 ER 以 ID 引用 PU1274 並敘述其內容與控制項,不逐字引用該複合字串:寫一個永遠不會通過的 ER 比不引用更糟。控制項 <OK>、<Cancel>、<X> 取自 Pop Up List。PU1274 的第三條退出路徑 <X> 沒有對應的 037 sub-id,不擅自補 TC,記於 coverage_notes。優先級:斷線後的復原路徑,-01/-02/-03 訂 P1;-04 單純關閉 popup,訂 P2。",
+  "keywords": [
+    "Shortcuts widget",
+    "HSS9",
+    "Apple CarPlay",
+    "Android Auto",
+    "PU1274",
+    "Device Manager"
+  ],
+  "duplicate_of": "",
+  "distinguishing_axis": {
+    "axis": "037 sub-id",
+    "delta": "-01 greyed icon; -02 popup on press; -03 OK to Device Manager; -04 Cancel dismisses"
+  },
+  "coverage_notes": [
+    "PU1274 also exits via <X> (Pop Up List Exit Conditions: OK, Cancel, X). No 037 sub-id asserts it, so no TC is written for that path."
+  ],
+  "tcs": [
+    {
+      "req_id": "SWE1-HMI-HOME-059-01",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "When a user has added any CP/AA Shortcut and CP/AA is disconnected, the CP/AA icon(s) shall be grayed out.\n\n(Apple CarPlay shortcut set and the device disconnected -> the CarPlay shortcut icon is greyed out)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. Apple CarPlay is connected\n4. An Apple CarPlay shortcut is set in the Shortcuts widget",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the state of the Apple CarPlay shortcut icon\n3. Disconnect the Apple CarPlay device\n4. Read the state of the Apple CarPlay shortcut icon",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Apple CarPlay shortcut icon is displayed without greying\n3. The Apple CarPlay device is disconnected\n4. The Apple CarPlay shortcut icon is displayed greyed out and remains in its position in the Shortcuts widget",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-059-02",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "When pressed shall display popup (PU1274) to inform the user of disconnection and ask if they want to connect or pair a phone.\n\n(Greyed CP/AA shortcut icon pressed -> PU1274 is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. An Apple CarPlay shortcut is set in the Shortcuts widget\n4. No Apple CarPlay or Android Auto device is connected",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Read the state of the Apple CarPlay shortcut icon\n3. Select the greyed out Apple CarPlay shortcut icon\n4. Read the content and controls of the popup displayed on the screen",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. The Apple CarPlay shortcut icon is displayed greyed out\n3. Popup PU1274 is displayed\n4. Popup PU1274 states that no projection device is connected and asks whether to connect or pair a device, and provides the <OK>, <Cancel> and <X> controls, as defined by PU1274 String/Popup Message",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": "PU1274 String/Popup Message merges the CarPlay and Android Auto variants; wording not quoted verbatim (A-H19)"
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-059-03",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Pressing 'OK' shall take the user to Device Manager screen.\n\n(<OK> pressed on PU1274 -> the Device Manager screen is displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. An Apple CarPlay shortcut is set in the Shortcuts widget\n4. No Apple CarPlay or Android Auto device is connected",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the greyed out Apple CarPlay shortcut icon\n3. Press <OK> on the popup\n4. Read the screen displayed",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. Popup PU1274 is displayed, as defined by PU1274 String/Popup Message\n3. Popup PU1274 is closed\n4. The Device Manager screen is displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.10",
+      "priority": "P1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    },
+    {
+      "req_id": "SWE1-HMI-HOME-059-04",
+      "test_group": "",
+      "test_set": "",
+      "test_item": "Pressing 'Cancel' shall dismiss popup.\n\n(<Cancel> pressed on PU1274 -> the popup closes and the Home Screen page remains displayed)",
+      "pre_conditions": "1. The vehicle speed is 0\n2. A Shortcuts widget is placed on a Home Screen page\n3. An Apple CarPlay shortcut is set in the Shortcuts widget\n4. No Apple CarPlay or Android Auto device is connected",
+      "input_test_data": "",
+      "test_procedure": "1. Navigate to the Home Screen page that contains the Shortcuts widget\n2. Select the greyed out Apple CarPlay shortcut icon\n3. Press <Cancel> on the popup\n4. Read the screen displayed",
+      "expected_result": "1. The Home Screen page with the Shortcuts widget is displayed\n2. Popup PU1274 is displayed, as defined by PU1274 String/Popup Message\n3. Popup PU1274 is closed\n4. The Home Screen page with the Shortcuts widget is displayed and the Device Manager screen is not displayed",
+      "specification_reference": "Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_9.10",
+      "priority": "P2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "remarks": ""
+    }
+  ]
+}
