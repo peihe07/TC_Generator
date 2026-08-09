@@ -1,0 +1,107 @@
+# spec_id_to_outline.tsv — SYS1 Polarion outline mapping
+# spec_reference format: Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023)_{outline}
+spec_id	outline	desc
+-	1	Assumptions
+-	1.1	See the READ ME file for all disclaimers, general assumptions, general
+-	1.2	This specification covers the requirements for the_x000D_ ○    R1 Low_
+-	1.3	The Change Log for this document is a separate file
+-	1.4	Differences between the radios will be specified.
+-	1.5	Differences between Regions will be specified. If not specified, refer
+-	1.6	Unless otherwise specified, the 12" user interface will be a scaled up
+-	1.7	Unless otherwise specified, the 12.3" user interface will be a scaled 
+-	1.8	Unless otherwise specified, the 14.46" user interface will follow the 
+-	2	Reference Documentation
+-	2.1	Please refer to the table_x000D_ HMI Documents | HMI Documents | Other
+-	3	Anatomy
+-	3.1	Please refer to the diagram_x000D_  (image: %E5%9C%96%E7%89%87_1160118
+-	4	Home Screen
+HSD1	4.1	HSD1.) The default Home Screen configurations for differing screen siz
+HSD2	4.2	HSD2.) User is able to edit home screen widgets while the vehicle is n
+HSD2.2	4.2.1	HSD2.2) Widget content will be selected from a bank of available conte
+HSD2.3	4.2.2	HSD2.3) After the user selects a widget content type the screen will t
+HSD2.4	4.2.3	HSD2.4) Widget content cannot be duplicated on the same Home screen pa
+HSD2.5	4.2.4	HSD2.5) If the user selects content for a widget that is already on th
+HSD2.6	4.2.5	HSD2.6) If the same widget content is duplicated on multiple Home scre
+HSD2.7	4.2.6	HSD2.7) Changes made within a widget will be applied to the full scree
+HSD2.8	4.2.7	HSD2.8) While in the edit widget content screen there is a preview of 
+HSD2.9	4.2.8	HSD2.9) The Navigation widget cannot be duplicated on more than one ho
+HSD3	4.3	HSD3.) Pressing the full screen icon and widget text title (if availab
+HSD4	4.4	HSD4.) The last home screen ‘page’ (always accessed through the last p
+HSD4.1	4.4.1	HSD4.1) “Delete Pages” (from last home screen ‘page’), “Delete Current
+HSD5	4.5	HSD5.) Selecting “Add Page” takes user to new home screen page with tw
+HSD5.1	4.5.1	HSD5.1) Added home screen pages will be added after (or to the right o
+HSD5.2	4.5.2	HSD5.2) For New/Blank widgets will display a ‘plus’ symbol and “Add Wi
+HSD5.3	4.5.3	HSD5.3) A maximum of 5 Home Screen pages is allowed. The “Add Page” bu
+HSD5.4	4.5.4	HSD5.4) Pagination dots to indicate the number of home screen pages an
+HSD5.5	4.5.5	HSD5.5) When on the layout selection screen (only applicable to vehicl
+HSD5.6	4.5.6	HSD5.6) When on the 12" Portrait layout selection screen and Apple Car
+HSD5.7	4.5.7	HSD5.7) The CarPlay app will always be displayed in the top 50% widget
+HSD6	4.6	HSD6.) When user selects “Delete Pages” option from the last home scre
+HSD6.1	4.6.1	HSD6.1) While in “Delete Pages” mode from the last home page screen us
+HSD7	4.7	HSD7.) Selecting “Reorder Pages” option takes user to a zoomed out “bi
+HSD7.1	4.7.1	HSD7.1) When in “Reorder Pages” selecting “Done” will save changes and
+HSD7.2	4.7.2	HSD7.2) When in “Reorder Pages” selecting “Cancel” will revert home sc
+HSD7.3	4.7.3	HSD7.3) If user is on Reorder Pages screen and navigates to a differen
+HSD8	4.8	HSD8.) User is able to rearrange widgets within a home screen page. Pr
+HSD8.1	4.8.1	HSD8.1) Swapping widgets from 50% to 25% and vice versa will update th
+HSD8.2	4.8.2	HSD8.2) Moving a 50% Shortcuts widget to a 25% widget size will mainta
+HSD8.3	4.8.3	HSD8.3) Moving a 25% Shortcuts widget to a 50% widget size will mainta
+HSD8.4	4.8.4	HSD8.4) On the CarPlay app of the CarPlay template, you cannot press a
+HSD8.5	4.8.5	HSD8.5) Drag and drop functionality is not allowed on the CarPlay temp
+HSD8.6	4.8.6	HSD8.6) Drag and drop functionality is only allowed for the bottom two
+HSD9	4.9	HSD9.) If widget content is not available after a second, display the 
+HSD11	4.10	HSD11.) The widget list is not exhaustive. There may be apps downloade
+HSD13	4.11	HSD13.) When there is a lower non-articulating screen do not provide h
+-	5	Home Screen with Vertical Menu Bar
+-	5.1	Please refer to the diagram_x000D_ Screen Size | Available Widget Size
+-	6	Home Screen with Horizontal Menu Bar
+-	6.1	Please refer to the diagram_x000D_ Screen Size | Available Widget Size
+-	7	Home Screen Widgets
+-	7.1	Available widgets will vary depending on vehicle configuration, screen
+HS9	7.2	HS9.) Available widgets
+HS9.0.1	7.2.1	HS9.0.1) Widgets that have a * in the Category column are widgets that
+HS10	7.3	HS10.) User is able to remove widget content within the edit widget. “
+HS11	7.4	HS11.) For 10.1"P screen size, 25% widgets will follow the same logica
+HS12	7.5	HS12.) Widget titles are defined in the individual feature logic refer
+-	8	R1 Low 7” Shortcuts Widget
+-	8.1	Please refer to the diagram_x000D_  (image: %E5%9C%96%E7%89%87_1733281
+-	9	Shortcuts Widget
+-	9.1	Please refer to the diagram_x000D_  (image: %E5%9C%96%E7%89%87_2019125
+HSS1	9.2	HSS1.) Empty shortcuts will display a ‘plus’ symbol. Selecting an empt
+HSS1.1	9.2.1	HSS1.1) Reference table below for applicable shortcuts per category:_x
+HSS1.6	9.2.2	HSS1.6) User can only add a Projection source (CP/AA) as a Shortcut wh
+HSS1.7	9.2.3	HSS1.7) When projection shortcuts are added from “Apps”, they will be 
+HSS2	9.3	HSS2.) Shortcuts can only be set while the vehicle is not in motion. W
+HSS3	9.4	HSS3.) After a shortcut content type selection is made user is returne
+HSS4	9.5	HSS4.) User is able to select a separate edit button on the Shortcut w
+HSS4.1	9.5.1	HSS4.1) When in editing Shortcuts widget screen selecting “Done” will 
+HSS4.2	9.5.2	HSS4.2) When in editing Shortcuts widget screen selecting “Cancel” wil
+HSS4.3	9.5.3	HSS4.3) If user is on editing Shortcuts widget screen and navigates to
+HSS4.4	9.5.4	HSS4.4) Shortcut Layout edit screen is not available and button is gre
+HSS5	9.6	HSS5.) Grey out a shortcut if it is not available.
+HSS6	9.7	HSS6.) User is not able to set the same shortcut within the same Short
+HSS6.1	9.7.1	HSS6.1) For Controls, Apps, Seats & Wheel, Media, grey out any individ
+HSS6.2	9.7.2	HSS6.2) If a user chooses AA/CP shortcut from either Media or Apps, re
+HSS7	9.8	HSS7.) Any control, app, or comfort control can be a short cut
+HSS8	9.9	HSS8.) Widget title for this feature is “Shortcuts”
+HSS9	9.10	HSS9.) If a user has added any CP/AA Shortcut and CP/AA is disconnecte
+HSS10	9.11	HSS10.) If a user deletes a downloaded app that they added as a shortc
+SW7	9.12	SW7.) Actions for Shortcuts - any shortcut not included in the table b
+-	10	R1 High Setting Navigation Shortcuts
+-	10.1	Please refer to the diagram_x000D_  (image: %E5%9C%96%E7%89%87_1227211
+SNS1	10.2	SNS1.) Navigation widgets allow the user to quickly start a route to a
+SNS2	10.3	SNS2.) The location selection will have Home and Work on the top of th
+SNS3	10.4	SNS3.) If Home or Work addresses have not been previously saved, user 
+SNS3.1	10.4.1	SNS3.1) The user can go back to the home screen shortcuts widget and m
+SNS5	10.5	SNS5.) Once a shortcut is set, pressing it will start the route and pr
+SNS6	10.6	SNS6.) If there is already a route, the notification will tell the cus
+SNS7	10.7	SNS7.) Home or work shortcuts will always use the saved home and work 
+SNS8	10.8	SNS8.) Home and work have specific icons. All other shortcuts use the 
+SNS9	10.9	SNS9.) See Navigation supplier specifications for naming of shortcuts.
+SNS10	10.10	SNS10.) See Navigation supplier specifications for errors notification
+-	11	Brand Specific Pages
+-	11.1	Please refer to the diagram_x000D_  (image: Image_164.jpeg)  (image: I
+BSP1	11.2	BSP1.) Widgets will be in pairs of 50/50 sizes only.
+BSP2	11.3	BSP2.) If a brand specific widget in designated pairing isn't availabl
+BSP3	11.4	BSP3.) If multiple Default Pages are available in a vehicle, multiple 
+BSP4	11.5	BSP4.) The first home screen should be the Default Home Screen (HSD1) 

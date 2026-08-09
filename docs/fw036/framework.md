@@ -1,4 +1,11 @@
-# Test Case Framework — STLA Media HMI (SWE.6)
+# Test Case Framework — STLA FW036 (SWE.6)
+
+Covers Test Groups **Media** (Part I, below) and **Home** (Part II, end of
+file). The cross-cutting rulings in Part I (orphan routing/attribution, lint
+vs traceability, assumption markers, priority, anchors-as-style, blocked-parent
+proportion) apply to ALL Test Groups.
+
+## Part I — Media HMI
 
 Project-wide Test Set definition per docs.md §4.1. Established from the SWE.1
 analysis report (FMWIFSM037A03) and the Media HMI spec section structure
@@ -217,3 +224,63 @@ wb.save("output/FMWIFSM036A01_framework_updated.xlsx")
 
 (The write-back pipeline copies the workbook anyway, so doing this once on the
 source copy is enough.)
+
+---
+
+## Part II — Home HMI
+
+Deliverable workbook: FMWIFSM036A01 `SWQT_Home_20260720`; RD source
+FMWIFSM037A03-N1L-SWE1 Home HMI (140 leaf FRs); spec authority SYS1 export of
+Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023). Execution
+plan: `HomeHMI/RUNBOOK.md`; profile:
+`docs/runtime/profiles/FW036_R1L_Home_Profile.md`.
+
+**Workbook divergence from Media**: the Home done region (144 rows by Arif)
+leaves Test Group / Test Set columns EMPTY and the `Test Case Framework`
+sheet unpopulated. New rows follow that convention — the Test Sets below are
+batching / lint-grouping / coverage vocabulary only and are never written to
+the Home workbook (Profile §2).
+
+### Layer 1 — Test Group
+
+- `Home` (workbook column left blank; framework-internal name)
+
+### Layer 2 / Layer 3 — Test Sets and their spec sections
+
+| Test Set | RD range | Spec sections (Layer 3) | Status |
+|---|---|---|---|
+| Default Layout | 001-01~03, 020, 021 | HSD1, HSD5.6, HSD5.7 | 001 done; 020/021 remaining |
+| Widget Edit | 002~010 series | HSD2.x, HS10 | done region |
+| Page Management | 011~019, 022~031 series | HSD4~HSD7.x | done region |
+| CarPlay Template | 032, 033, 034 | HSD8.4, HSD8.5, HSD8.6 | remaining |
+| Shortcuts Edit | 048-01~06, 049-01/02, 050, 051 | HSS4, HSS4.1~4.3 | remaining |
+| Shortcuts Lockout | 052-01/02, 053 | HSS2, HSS4.4, HSS5 | remaining |
+| Shortcut Exclusion | 054, 055-01~03, 056, 057 | HSS6, HSS6.1, HSS6.2, HSS7 | remaining |
+| Shortcut Availability | 058, 059-01~04, 060 | HSS8, HSS9, HSS10 | remaining |
+| Shortcut Actions | 061 | SW7, SW7.1 (actions table) | remaining |
+| Navigation Shortcuts | 062~071 (incl. 066/-01/-02) | SNS1~SNS10 | remaining |
+| Brand Pages | 072, 073, 074 | BSP1, BSP2, BSP3/BSP4 | remaining |
+| Screen Locking | 075 | (section pending — resolve at batch time) | remaining |
+| Last Mode | 076~090 | Last Mode Table L&F (external spec, §8.4.2) | BLOCKED (A-H03) |
+
+Open attribution question (batching only, no workbook impact): 020/021 sit
+under the layout chapter in RD but describe CarPlay layouts — Pei to rule
+Default Layout vs CarPlay Template before B1.
+
+### Granularity check
+
+Done-region Sets (Widget Edit, Page Management) carry the bulk; remaining
+Sets are small because Home is a smaller module (140 leaves total vs Media's
+450). Single-req Sets (Shortcut Actions, Screen Locking) are genuine
+outliers per §4.2, accepted.
+
+### Home anomalies
+
+A-H01…A-H05 — register and dispositions in `HomeHMI/ANOMALIES.md`.
+B7 (Last Mode, 15 leaves) is blocked on a missing external spec; every other
+Set is generation-ready pending the Step-0 rulings in `HomeHMI/RUNBOOK.md`.
+
+### Workbook sync
+
+None. The Home `Test Case Framework` sheet stays empty by done-region
+convention.
