@@ -15,9 +15,19 @@ paths:
   a03_report: "inputs/SWE1_AMFM_FM-WI-FSM-037-A03 STLA 報告_SWRA STLA Report_SWRA_20260323.xlsx"
   # Superseded candidate, kept on record: inputs/FM-WI-SW-RAD-SWRA-A02.xlsx
   # (57 leaves, SWE-RAD-*, ASIL/FTTI) — its coverage claim is RULINGS C3a.
-  sys1_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"        # null if spec_mode has no export
-  spec_pdf: "inputs/<spec pdf>"            # null if spec_mode E
-  popup_list: "inputs/<Pop Up List xlsx>"  # null if not referenced
+  # intake.py filed the SYS2 safety-analysis report here because it is a
+  # Polarion export; it is NOT a spec-text export (mode A's role for this key).
+  # Recorded below as sysra_export instead.
+  sys1_export: null
+  spec_pdf: null            # mode D: the spec is a Word document, not a PDF
+  popup_list: null          # no Pop Up List in this corpus
+  # Mode D spec source. No pipeline script consumes this key yet — recorded
+  # here so the input is on the record and the gap is visible (Phase 3 item:
+  # spec_reference format for mode D).
+  cfts_doc: "inputs/R1LR_Atl-H_25PI3.5_Multimedia - Radio and Audio_CFTS 024_Specific HU Radio Functions_20250910_1239.docx"
+  # Safety-analysis layer. In the trace chain only if the ruled requirement
+  # source carries a safety attribute — recon answers this.
+  sysra_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"
 
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
 spec_reference_template: "<Spec Filename>_{outline}"

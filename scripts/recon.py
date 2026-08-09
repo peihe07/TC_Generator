@@ -41,6 +41,73 @@ import yaml
 PLACEHOLDER_PROCEDURES = {"test", "tbd", "todo", "na", "n/a", "-"}
 
 
+def norm(v) -> str:
+    """Header text, comparable: lowered, newlines and runs of space collapsed."""
+    return re.sub(r"\s+", " ", str(v or "")).strip().lower()
+
+
+# --- workbook column resolution by header TEXT, not by letter ------------
+#
+# feature.yaml letters are a prior, not the authority. The FM-WI-FSM-036 form
+# has at least two revisions in circulation: revision C (2026-01-21) inserted
+# "Estimated Test Time (mins)" at Q, shifting design_method, functional_safety,
+# the vehicle block, author and remarks one column right. An instance created
+# after that date may still be built on the older layout — the AM/FM
+# CFTS024_Radio workbook (2026-01-29) is, and its ChangeHistory stops at B. So
+# the layout has to be read off the instance in front of us.
+#
+# Each entry is (required tokens, forbidden tokens); a field resolves only on
+# exactly one matching column, because near-duplicate headers are the trap:
+# "Requirement or Design ID" (D) vs "...ID (Polarion)" (C), "Test Case ID" (F)
+# vs "Test Case ID (TestRail)" (E) vs "Test Case Reference ID" (O).
+HEADER_SPEC = {
+    "req_id": (("requirement or design id",), ("polarion",)),
+    "test_group": (("test group",), ()),
+    "test_set": (("test set",), ()),
+    "test_item": (("test item",), ()),
+    "pre_conditions": (("pre-condition",), ()),
+    "input_test_data": (("input test data",), ()),
+    "test_procedure": (("test procedure",), ()),
+    "expected_result": (("expected result",), ()),
+    "spec_reference": (("specification reference",), ()),
+    "tc_ref_id": (("test case reference id",), ()),
+    "priority": (("test case priority",), ()),
+    "design_method": (("test case design", "methods"), ()),
+    "functional_safety": (("functional safety",), ()),
+    "author": (("test case author",), ()),
+    "remarks": (("remarks",), ()),
+    # Revision marker, not a pipeline field: present => rev C layout.
+    "estimated_test_time": (("estimated test time",), ()),
+}
+OPTIONAL_COLUMNS = {"estimated_test_time"}
+
+
+def resolve_columns(header: tuple) -> tuple[dict, list[str]]:
+    """header row values -> {field: 0-based index}, plus unresolved notes."""
+    resolved, notes = {}, []
+    for key, (need, forbid) in HEADER_SPEC.items():
+        hits = [j for j, v in enumerate(header)
+                if all(t in norm(v) for t in need)
+                and not any(t in norm(v) for t in forbid)]
+        if len(hits) == 1:
+            resolved[key] = hits[0]
+        elif not hits and key in OPTIONAL_COLUMNS:
+            continue
+        else:
+            notes.append(f"{key}: {len(hits)} header matches"
+                         + (f" at {[idx_to_letter(h) for h in hits]}" if hits else ""))
+    return resolved, notes
+
+
+def idx_to_letter(idx: int) -> str:
+    """0-based index -> Excel column letter."""
+    s, n = "", idx + 1
+    while n:
+        n, r = divmod(n - 1, 26)
+        s = chr(65 + r) + s
+    return s
+
+
 def col_letter_to_idx(letter: str) -> int:
     """Excel column letter -> 0-based index."""
     n = 0
@@ -76,26 +143,44 @@ def survey_workbook(cfg: dict, wb_path: Path) -> dict:
     ws = wb[wbc["sheet"]]
     rows = list(ws.iter_rows(values_only=True))
 
-    # --- column mapping verification against header text
+    # --- columns resolved FROM the header text; feature.yaml is only a prior
     header = rows[header_row - 1]
-    expect = {
-        "req_id": "Requirement or Design ID", "test_group": "Test Group",
-        "test_set": "Test Set", "test_item": "Test Item",
-        "pre_conditions": "Pre-Condition", "input_test_data": "Input Test Data",
-        "test_procedure": "Test procedure", "expected_result": "Expected Result",
-        "spec_reference": "Specification Reference", "priority": "Priority",
-        "design_method": "Design", "author": "Author",
-    }
-    col_check = {}
-    for key, needle in expect.items():
-        idx = cols.get(key)
-        cell = str(header[idx] or "") if idx is not None and idx < len(header) else ""
-        col_check[key] = needle.lower() in cell.lower().replace("\n", " ")
-    col_ok = sum(col_check.values())
+    resolved, unresolved = resolve_columns(header)
+    if unresolved:
+        sys.exit("cannot resolve workbook columns from the header row "
+                 f"{header_row}: {unresolved}")
+    layout_rev = "C (has Estimated Test Time)" if "estimated_test_time" in \
+        resolved else "A/B (no Estimated Test Time)"
+    # Disagreements are reported, never silently honoured: a stale letter in
+    # feature.yaml is exactly the defect this resolution exists to catch.
+    col_conflicts = []
+    for key, idx in resolved.items():
+        want = cols.get(key)
+        if want is not None and want != idx:
+            col_conflicts.append(
+                f"{key}: feature.yaml says {idx_to_letter(want)}, "
+                f"header says {idx_to_letter(idx)}")
+    cols = {k: v for k, v in resolved.items() if k != "estimated_test_time"}
+    col_check = {k: True for k in cols}
+    col_ok = len(cols)
 
-    # --- row classification
+    # --- who authored the existing rows? The configured value is a prior too;
+    # a fresh feature.yaml carries the previous feature's name.
     dr = cfg["done_region"]
     author_val = dr.get("author_value")
+    seen_authors = {}
+    for r in rows[header_row:]:
+        a = str(r[cols["author"]] or "").strip() if cols["author"] < len(r) else ""
+        if a:
+            seen_authors[a] = seen_authors.get(a, 0) + 1
+    author_note = ""
+    if seen_authors and author_val not in seen_authors:
+        detected = max(seen_authors, key=seen_authors.get)
+        author_note = (f"feature.yaml done_region.author_value={author_val!r} "
+                       f"matches 0 rows; surveying with the dominant author "
+                       f"{detected!r} ({seen_authors[detected]} rows) — "
+                       "Tier 2 must confirm before Phase 4")
+        author_val = detected
     row_class = []  # (excel_row, cls, req) cls in {EMPTY, DONE, DRAFT}
     for i, r in enumerate(rows[header_row:], start=header_row + 1):
         def cell(key):
@@ -176,34 +261,78 @@ def survey_workbook(cfg: dict, wb_path: Path) -> dict:
 
     return {
         "state": state, "col_check": col_check, "col_ok": col_ok,
-        "col_total": len(expect), "segments": segs, "done_segments": done_segs,
+        "col_total": len(cols), "segments": segs, "done_segments": done_segs,
         "draft_segments": draft_segs, "done_rows": sum(s["n"] for s in done_segs),
         "draft_rows": sum(s["n"] for s in draft_segs),
         "done_reqs": done_reqs, "draft_reqs": draft_reqs,
         "ambiguous_rows": ambiguous, "compliance_notes": compliance,
         "design_method_vocab": vocab,
+        "columns": {k: idx_to_letter(v) for k, v in resolved.items()},
+        "col_conflicts": col_conflicts, "layout_rev": layout_rev,
+        "authors": seen_authors, "author_used": author_val,
+        "author_note": author_note,
     }
 
 
 def survey_a03(a03_path: Path) -> dict:
+    """Survey the requirement report — columns located by header text.
+
+    The Analysis Report template is not stable across features: Home's
+    Categorization sits at column 7 and its values read "Functional
+    Requirement"/"Heading"; AM/FM's sits at column 31 (behind 24 review-
+    criteria columns) and reads "Functional" with no Heading rows at all. The
+    old positional read (`row[6] == "Functional Requirement"`) classifies every
+    AM/FM row as a heading and reports zero leaves — silently, since an empty
+    leaf list is a legal state for a workbook that is already complete.
+
+    Safety attributes (ASIL / FTTI) are reported when the template carries
+    them: whether the safety-analysis layer belongs in the trace chain is a
+    property of the ruled requirement source, not of what files are present.
+    """
     wb = openpyxl.load_workbook(a03_path, read_only=True)
     ws = wb["Analysis Report"]
     rows = list(ws.iter_rows(values_only=True))
-    hdr = next(i for i, r in enumerate(rows)
-               if r[0] and "SWE" in str(r[0]) and "ID" in str(r[0]))
+    hdr = next((i for i, r in enumerate(rows)
+                if any("requirement description" in norm(v) for v in r)), None)
+    if hdr is None:
+        sys.exit(f"{a03_path.name}: no header row (no 'Requirement Description'"
+                 " cell) in the Analysis Report sheet")
+    header = rows[hdr]
+
+    def find(*need, forbid=()):
+        hits = [j for j, v in enumerate(header)
+                if all(t in norm(v) for t in need)
+                and not any(t in norm(v) for t in forbid)]
+        return hits[0] if len(hits) == 1 else None
+
+    cat_i = find("categorization", forbid=("sub",))
+    asil_i, ftti_i = find("asil"), find("ftti")
+
     leaves, headings, parent_child = [], [], []
+    safety = {}
     for r in rows[hdr + 1:]:
         if not r[0]:
             continue
-        rid, cat = str(r[0]).strip(), str(r[6] or "").strip()
-        (leaves if cat == "Functional Requirement" else headings).append(rid)
+        rid = str(r[0]).strip()
+        cat = str(r[cat_i] or "").strip() if cat_i is not None else ""
+        # "Functional" (AM/FM) and "Functional Requirement" (Home) are the same
+        # classification written two ways; anything else is a heading/other.
+        (leaves if cat.lower().startswith("functional")
+         else headings).append(rid)
+        if asil_i is not None:
+            val = str(r[asil_i] or "").strip()
+            if val and len(val) < 12:      # skip the template's help text row
+                safety[val] = safety.get(val, 0) + 1
     leafset = set(leaves)
     for rid in leaves:
         if re.search(r"-\d\d$", rid) and rid.rsplit("-", 1)[0] in leafset:
             parent_child.append(rid.rsplit("-", 1)[0])
     wb.close()
     return {"leaves": leaves, "headings": headings,
-            "parent_child_dupes": sorted(set(parent_child))}
+            "parent_child_dupes": sorted(set(parent_child)),
+            "categorization_col": idx_to_letter(cat_i) if cat_i is not None else None,
+            "has_safety_columns": asil_i is not None or ftti_i is not None,
+            "asil_distribution": safety}
 
 
 def survey_spec_text_layer(pdf_path: Path | None) -> str:
@@ -234,6 +363,21 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
     orphan_done = sorted(set(wbres["done_reqs"]) - all_037)
     orphan_draft = sorted(set(wbres["draft_reqs"]) - all_037)
 
+    def cap(items, n=8):
+        """RECON.md is read by a human; recon.json carries the full list."""
+        items = list(items)
+        if len(items) <= n:
+            return str(items) if items else "(none)"
+        return (f"{items[:n]} … +{len(items) - n} more "
+                "(full list in data/recon.json)")
+
+    # A workbook can be FULL and still cover none of the ruled requirement
+    # source — AM/FM 2026-08: 158 authored rows, all tracing a requirement
+    # family that a ruling superseded. The state machine keys on draft rows, so
+    # it cannot see this; naming it here keeps "FULL" from reading as "done".
+    covered_n = len(set(leaves) & set(wbres["done_reqs"]))
+    foreign = (wbres["done_rows"] > 0 and covered_n == 0 and bool(leaves))
+
     seg_lines = "\n".join(
         f"  - rows {s['start']}-{s['end']}: {s['cls']} ({s['n']} rows)"
         for s in wbres["segments"])
@@ -251,7 +395,14 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
 
 ## Workbook
 - workbook_state: **{state}**
-- column mapping: {wbres['col_ok']}/{wbres['col_total']} headers matched
+- form layout revision: {wbres['layout_rev']}
+- column mapping: {wbres['col_ok']} fields resolved from header text
+  (authority; feature.yaml letters are only a prior)
+{chr(10).join(f"  - {k} = {v}" for k, v in wbres['columns'].items())}
+- feature.yaml column conflicts:
+{chr(10).join(f"  - {c}" for c in wbres['col_conflicts']) or "  (none)"}
+- authors present: {wbres['authors'] or '(none)'}
+{("- **author detection**: " + wbres['author_note']) if wbres['author_note'] else ""}
 - design-method vocabulary: {len(wbres['design_method_vocab'])} strings
 - segments:
 {seg_lines}
@@ -261,16 +412,38 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
 - done-region compliance notes (recorded, not fixed):
 {comp_lines}
 
+## Requirement report
+- Categorization column: {a03res['categorization_col'] or 'NOT FOUND'}
+- safety attributes (ASIL/FTTI) in the ruled source: {
+    'PRESENT — ' + str(a03res['asil_distribution'])
+    if a03res['has_safety_columns'] else '**ABSENT**'}
+  - absent means the safety-analysis layer (SYS2/SYSRA) has no attachment
+    point on these leaves and does NOT enter the trace chain. It says nothing
+    about whether the requirements are safety-relevant — only that the ruled
+    source does not claim they are.
+
 ## Coverage (vs 037)
 - 037 leaves: {len(leaves)}; headings: {len(a03res['headings'])}
-- covered by done region: {len(set(leaves) & set(wbres['done_reqs']))}
+- covered by done region: {covered_n}
 - regen targets: **{len(targets)}**
-- covered nowhere (done nor draft): {len(uncovered)} {uncovered if uncovered else ''}
-- parent/child both-leaf duplications: {pc if pc else '(none)'}
+- covered nowhere (done nor draft): {len(uncovered)} {cap(uncovered)}
+- parent/child both-leaf duplications: {cap(pc)}
 - workbook req_ids ABSENT from 037 (traceability orphans, RD-1 candidates):
-  - done region: {orphan_done if orphan_done else '(none)'}
-  - draft region: {orphan_draft if orphan_draft else '(none)'}
-"""
+  - done region: {len(orphan_done)} {cap(orphan_done)}
+  - draft region: {len(orphan_draft)} {cap(orphan_draft)}
+{f'''
+## Requirement-family mismatch — Tier 2
+
+The workbook is **{state}** ({wbres['done_rows']} authored rows, no drafts) yet
+covers **0 of {len(leaves)}** leaves in the ruled requirement source. Every
+authored row traces a req_id the ruled source does not contain
+({len(orphan_done)} distinct). Against the ruled source this workbook is
+effectively BLANK, and "{state}" must not be read as "done".
+
+This is not a state the canon's state machine can express — it keys on draft
+rows, and there are none. Disposition of the existing rows (freeze as a legacy
+region / replace / re-map) is a ruling, not a detection.
+''' if foreign else ''}"""
     (feature_dir / "RECON.md").write_text(recon, encoding="utf-8")
 
     # ---- DECISIONS prefill from per-state strategy bindings (canon §2)
@@ -286,7 +459,16 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
     d.append(f"- source files: [AUTO] {len(hashes)} present (SHA256 in RECON.md)")
     d.append("\n## 2. Workbook survey")
     d.append(f"- workbook_state: [AUTO] {state}")
-    d.append(f"- column mapping: [AUTO] {wbres['col_ok']}/{wbres['col_total']} matched")
+    d.append(f"- form layout revision: [AUTO] {wbres['layout_rev']}")
+    d.append(f"- column mapping: [AUTO] {wbres['col_ok']} fields resolved from"
+             " header text")
+    if wbres["col_conflicts"]:
+        d.append("- feature.yaml column letters: [PEI] "
+                 f"{len(wbres['col_conflicts'])} disagree with the header —"
+                 " update feature.yaml before Phase 4 (see RECON.md)")
+    if wbres["author_note"]:
+        d.append(f"- done_region.author_value: [PROPOSED: {wbres['author_used']}"
+                 f" — feature.yaml value matches 0 rows]")
     if wbres["done_segments"]:
         d.append("- done segments: [AUTO] " + ", ".join(
             f"{s['start']}-{s['end']}" for s in wbres["done_segments"]))
@@ -307,15 +489,32 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
                  " — see RECON.md; register in ANOMALIES if new")
     d.append("\n## 3. Coverage")
     d.append(f"- 037 leaves: [AUTO] {len(leaves)}")
+    if foreign:
+        d.append(f"- requirement-family mismatch: [PEI] the {wbres['done_rows']}"
+                 f" authored rows cover 0 of {len(leaves)} ruled leaves and"
+                 f" trace {len(orphan_done)} req_ids absent from the ruled"
+                 " source. Rule their disposition (freeze as legacy /"
+                 " replace / re-map) BEFORE the write-back strategy — it"
+                 " defines what 'done region' and 'completeness' mean here")
+    if a03res["has_safety_columns"]:
+        d.append(f"- safety attributes: [AUTO] present — "
+                 f"{a03res['asil_distribution']}; safety layer joins the chain")
+    else:
+        d.append("- safety attributes: [PROPOSED: ruled source carries no"
+                 " ASIL/FTTI column, so the SYS2/SYSRA safety layer does NOT"
+                 " enter the trace chain]")
     d.append(f"- regen targets: [AUTO] {len(targets)} (list in recon.json)")
     if uncovered:
-        d.append(f"- covered nowhere: [AUTO] {uncovered} — ANOMALIES entries required")
+        d.append(f"- covered nowhere: [AUTO] {len(uncovered)} {cap(uncovered)}"
+                 " — ANOMALIES entries required")
     if pc:
         d.append(f"- parent/child dupes: [PROPOSED: proportion test per case — {pc}]")
     if orphan_done or orphan_draft:
-        d.append(f"- workbook req_ids absent from 037: [AUTO] done={orphan_done}"
-                 f" draft={orphan_draft} — ANOMALIES + RD-1 required; scope the"
-                 " write-back traceability invariant to regen rows only")
+        d.append(f"- workbook req_ids absent from 037: [AUTO] done="
+                 f"{len(orphan_done)} {cap(orphan_done, 4)} draft="
+                 f"{len(orphan_draft)} {cap(orphan_draft, 4)} — ANOMALIES +"
+                 " RD-1 required; scope the write-back traceability invariant"
+                 " to regen rows only")
     d.append("\n## 4. Style bindings")
     if blank:
         d.append("- style authority: [PROPOSED: fallback chain — no done region]")
@@ -324,7 +523,13 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
         d.append("- exemplar source: [PROPOSED: nearest sibling feature done"
                  " region, cross-feature: style only]")
     else:
-        d.append("- style authority: [AUTO] done region")
+        if foreign:
+            d.append("- style authority: [PROPOSED: the existing rows — they"
+                     " are the workbook's only precedent — but they are NOT"
+                     " the traceability authority; style may be borrowed from"
+                     " rows whose req_ids the ruled source does not contain]")
+        else:
+            d.append("- style authority: [AUTO] done region")
         d.append("- test item shape: [PROPOSED: follow done-region first-row shape"
                  " — verify against profile]")
         d.append("- test group/set columns: [PROPOSED: match done-region"
@@ -354,6 +559,11 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
         "design_method_vocab": wbres["design_method_vocab"],
         "ambiguous_rows": wbres["ambiguous_rows"],
         "compliance_notes": wbres["compliance_notes"],
+        "columns": wbres["columns"], "layout_rev": wbres["layout_rev"],
+        "col_conflicts": wbres["col_conflicts"],
+        "authors": wbres["authors"], "author_used": wbres["author_used"],
+        "has_safety_columns": a03res["has_safety_columns"],
+        "asil_distribution": a03res["asil_distribution"],
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
@@ -380,9 +590,13 @@ def main() -> None:
     feature_dir = Path(args.root).resolve() / args.feature
     cfg = yaml.safe_load((feature_dir / "feature.yaml").read_text("utf-8"))
 
+    # Every declared input is hashed, not just the five the pipeline consumes:
+    # a feature may declare its own (AM/FM's cfts_doc, sysra_export) and an
+    # un-hashed input is one nobody can prove they surveyed.
     paths, hashes = {}, {}
-    for key in ("workbook", "a03_report", "sys1_export", "spec_pdf",
-                "popup_list"):
+    for key in dict.fromkeys(list(cfg["paths"]) + ["workbook", "a03_report",
+                                                   "sys1_export", "spec_pdf",
+                                                   "popup_list"]):
         pat = cfg["paths"].get(key)
         p = resolve_glob(feature_dir, pat) if pat else None
         paths[key] = p

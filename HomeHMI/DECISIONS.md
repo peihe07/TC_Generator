@@ -11,7 +11,8 @@ sign-off = binding as proposed.
 
 ## 2. Workbook survey
 - workbook_state: [AUTO] PARTIAL_INTERLEAVED
-- column mapping: [AUTO] 12/12 matched
+- form layout revision: [AUTO] A/B (no Estimated Test Time)
+- column mapping: [AUTO] 15 fields resolved from header text
 - done segments: [AUTO] 10-86, 91-124, 129-161
 - ambiguous rows: [AUTO] none
 - draft disposition: [PROPOSED: discard & regenerate — lint consistency cheaper than row salvage]
@@ -20,10 +21,11 @@ sign-off = binding as proposed.
 
 ## 3. Coverage
 - 037 leaves: [AUTO] 140
+- safety attributes: [PROPOSED: ruled source carries no ASIL/FTTI column, so the SYS2/SYSRA safety layer does NOT enter the trace chain]
 - regen targets: [AUTO] 62 (list in recon.json)
-- covered nowhere: [AUTO] ['SWE1-HMI-HOME-055-03', 'SWE1-HMI-HOME-066'] — ANOMALIES entries required
+- covered nowhere: [AUTO] 2 ['SWE1-HMI-HOME-055-03', 'SWE1-HMI-HOME-066'] — ANOMALIES entries required
 - parent/child dupes: [PROPOSED: proportion test per case — ['SWE1-HMI-HOME-066']]
-- workbook req_ids absent from 037: [AUTO] done=['SWE1-HMI-HOME-035'] draft=[] — ANOMALIES + RD-1 required; scope the write-back traceability invariant to regen rows only
+- workbook req_ids absent from 037: [AUTO] done=1 ['SWE1-HMI-HOME-035'] draft=0 (none) — ANOMALIES + RD-1 required; scope the write-back traceability invariant to regen rows only
 
 ## 4. Style bindings
 - style authority: [AUTO] done region

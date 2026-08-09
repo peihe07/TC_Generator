@@ -61,3 +61,13 @@ columns) are no longer the coverage target of THIS workbook.
 C2a and C3a block nothing at intake/recon time but MUST be ruled before
 write-back strategy is designed — they define what "done region" and
 "completeness" even mean for this workbook.
+
+## R2 — Workbook base (Pei, 2026-08-09)
+
+**Ruling: 選項 (a)** — the delivered pre-filled instance
+`FM-WI-FSM-036-A01 ..._SWQT_CFTS024_Radio_20260129.xlsx` is the working
+base for recon and write-back, now placed in `inputs/`. The blank form
+(`..._SWQT_20260121.xlsx`, in `forms/`) was considered as an alternative
+bootstrap base and rejected for now; it remains available as the layout
+reference. C2a (disposition of Wilson's 158 rows within this instance)
+stays PENDING and is unaffected by R2.

@@ -10,7 +10,28 @@
 
 ## Workbook
 - workbook_state: **PARTIAL_INTERLEAVED**
-- column mapping: 12/12 headers matched
+- form layout revision: A/B (no Estimated Test Time)
+- column mapping: 15 fields resolved from header text
+  (authority; feature.yaml letters are only a prior)
+  - req_id = D
+  - test_group = G
+  - test_set = H
+  - test_item = I
+  - pre_conditions = J
+  - input_test_data = K
+  - test_procedure = L
+  - expected_result = M
+  - spec_reference = N
+  - tc_ref_id = O
+  - priority = P
+  - design_method = Q
+  - functional_safety = R
+  - author = Z
+  - remarks = AG
+- feature.yaml column conflicts:
+  (none)
+- authors present: {'Arif': 144}
+
 - design-method vocabulary: 9 strings
 - segments:
   - rows 10-86: DONE (77 rows)
@@ -51,6 +72,14 @@
   - row 160: blank priority
   - row 161: blank priority
 
+## Requirement report
+- Categorization column: G
+- safety attributes (ASIL/FTTI) in the ruled source: **ABSENT**
+  - absent means the safety-analysis layer (SYS2/SYSRA) has no attachment
+    point on these leaves and does NOT enter the trace chain. It says nothing
+    about whether the requirements are safety-relevant — only that the ruled
+    source does not claim they are.
+
 ## Coverage (vs 037)
 - 037 leaves: 140; headings: 21
 - covered by done region: 78
@@ -58,5 +87,5 @@
 - covered nowhere (done nor draft): 2 ['SWE1-HMI-HOME-055-03', 'SWE1-HMI-HOME-066']
 - parent/child both-leaf duplications: ['SWE1-HMI-HOME-066']
 - workbook req_ids ABSENT from 037 (traceability orphans, RD-1 candidates):
-  - done region: ['SWE1-HMI-HOME-035']
-  - draft region: (none)
+  - done region: 1 ['SWE1-HMI-HOME-035']
+  - draft region: 0 (none)

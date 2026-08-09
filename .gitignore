@@ -72,3 +72,9 @@ _intake/*/*
 # Packaged spec-derived working set (rebuildable, may contain customer spec data)
 # 套件自身的規則見 tcgen_package/.gitignore
 tcgen_package.zip
+
+# FW form templates: blank/reference form files stay untracked (company
+# documents, same policy as <Feature>/inputs/); only the manifest is tracked.
+forms/*
+!forms/FORMS.md
+!forms/.gitkeep
