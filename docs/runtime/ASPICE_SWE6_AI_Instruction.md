@@ -1,5 +1,5 @@
 ## 0. Purpose
-Balance SWE.6 (deterministic, reproducible, auditable, traceable, no FP) with reviewer needs. Runtime rules + worked examples live in `backend/prompt_builder.py`; this doc is the human summary.
+Balance SWE.6 (deterministic, reproducible, auditable, traceable, no FP) with reviewer needs. Runtime rule authority: `docs/fw036/FEATURE_ONBOARDING.md` (process, tiers, workbook_state) + `docs/runtime/profiles/` (feature [OVERRIDE]/[ADD] clauses); this doc is the TC-content rulebook used at generation and review time. On conflict, a feature profile's cited override wins over the generic rule here.
 
 ## 1. Language
 TC workbook fields: English only. Reasoning fields: Traditional Chinese allowed. No emoji.
@@ -509,7 +509,7 @@ also carries `reasoning` (§10.4) and optional `keywords`, `duplicate_of`,
 `distinguishing_axis`.
 
 ### 10.2 Priority — exactly P0 / P1 / P2 / P3
-Per `docs/TEST_CASE_PRIORITY.md` rubric. Never `High` / `Medium` / `Low` / `NA`.
+Per `docs/runtime/TEST_CASE_PRIORITY.md` rubric. Never `High` / `Medium` / `Low` / `NA`.
 
 | Level | Scope |
 |---|---|
@@ -581,6 +581,8 @@ No HTML / Markdown tables in TC output. Plain numbered text; one item per line; 
 - ✗ `Press <Apps> button` (angle brackets)
 
 Square brackets `[...]` are reserved for placeholder syntax in this document only (e.g. `[Outcome] when [trigger]` in §4.3) and for sibling row markers (e.g. `[row #11]` in §10.6). They MUST NOT appear in TC output fields.
+
+**Exception (profile-scoped)**: tokens quoted verbatim from a cited source — e.g. Pop Up List control notation (`<OK>`, `[OK, X]`) inside ER quote segments (`... as defined by PUxxxx ...`) and inside `test_item` when it carries requirement text — may retain the source's notation when the feature profile says so. The author's own prose (procedure press-targets, non-quoting ER lines) always uses `"..."`. Precedent: Home A-H10 (amended at pilot review); lint validates retained tokens against the cited source row instead of banning them.
 
 ## 12. Design Method (assign AFTER TC finalized, first-match)
 
