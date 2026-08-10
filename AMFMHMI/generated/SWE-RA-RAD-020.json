@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-RAD-020",
+ "batch": "Browse",
+ "reasoning": "驗證目標：preset 清單以 preset 編號順序顯示，且每個 preset 附帶頻率、電台名稱（PS name）與節目類型（genre）——條件是「if this information is available」。關鍵情境條件：資訊可得（FM 且電台廣播 RDS PS/PTY）與資訊不可得（AM 模式，條文 Note 明指）。為什麼這樣切：依 R10-3，帶條件的條文若 ¬X 可達即拆獨立 TC——資訊不可得是條文 Note 明確承認的可達狀態，且觸發狀態不同（波段/廣播內容），不能在同一程序內分支（§5.2）。刻意略過：genre 名稱的對應表屬 RDS Program Type 定義（§1.3.13 RDS Features 批次），本 leaf 只驗欄位是否隨 preset 顯示。037 title 與 CFTS 條文差異（0.894）來自條文末的 AM Note，依 §8.6 以 CFTS 條文為準，該 Note 即 020-02 的依據。",
+ "keywords": [
+  "preset list",
+  "preset number order",
+  "PS name",
+  "genre",
+  "information available"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "mode",
+  "delta": "020-01 於 FM 模式且電台廣播 RDS 資訊時驗證頻率、PS name、genre 三欄皆顯示；020-02 於 AM 模式（條文 Note 指出資訊可能不可得）驗證清單仍以 preset 編號順序顯示、僅頻率可得"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-020",
+   "tc_title": "Preset list shows frequency, station name and genre when available",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "HU shall display the list of presets in the order of preset numbers. HU shall also display the frequency, station call name(PS name) and the corresponding program type (genre) for each of the presets, if this information is available",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 1, preset 2 and preset 3 are set to FM stations broadcasting PS name and program type information",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the Radio Playing page and open the presets browse category\n2. Read the order of the preset entries\n3. Read the fields displayed for the preset 1 entry\n4. Read the fields displayed for the preset 2 and preset 3 entries",
+   "expected_result": "1. The presets browse list is displayed\n2. The preset entries are displayed in ascending preset-number order\n3. The frequency, the station call name and the program type of the station stored in preset 1 are displayed\n4. The frequency, the station call name and the program type are displayed for each of the two entries",
+   "specification_reference": "CFTS024-4872427",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-020",
+   "tc_title": "Preset list omits station name and genre when unavailable",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "HU shall display the list of presets in the order of preset numbers\n\n(Note: This information may not be available in AM mode)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in AM analog tuner mode\n4. Preset 1 and preset 2 are set to receivable AM stations",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the AM Radio Playing page and open the presets browse category\n2. Read the order of the preset entries\n3. Read the fields displayed for the preset 1 entry\n4. Read the fields displayed for the preset 2 entry",
+   "expected_result": "1. The presets browse list is displayed\n2. The preset entries are displayed in ascending preset-number order\n3. The frequency of the station stored in preset 1 is displayed, and the station call name and the program type are not displayed\n4. The frequency of the station stored in preset 2 is displayed, and the station call name and the program type are not displayed",
+   "specification_reference": "CFTS024-4872427",
+   "priority": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

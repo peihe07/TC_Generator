@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-RAD-014",
+ "batch": "Browse",
+ "reasoning": "驗證目標：在 AM/FM 類比調諧模式按下 Browse 後，HU 顯示 presets 瀏覽分類，清單以 preset 編號順序排列且包含尚未設定的 preset；以及在瀏覽清單中刪除 preset 的能力，與「全部刪除後嘗試取用」的結果。關鍵情境條件：清單中同時存在已設定與未設定的 preset（驗「including presets that has not been set」）；全部刪除後的空清單狀態。為什麼這樣切：依 §7 與 R10-3，正常顯示路徑與「全部刪除」後的空清單是不同觸發狀態，且後者是清單內容的下邊界，拆為獨立 TC；014-02 的 rejection tone 是 citing clause 借用 CFTS019 的結果，依 R11 以引用式錨定，不吸收。刻意略過：CFTS019-718 自身的規則面（哪些情況構成 not allowed、tone 的規格）不在本 workbook 覆蓋，屬 Audio Management 交付；preset 的儲存語意由 023 覆蓋；清單捲動由 016/017 覆蓋。同節未配置條款 4872419 為 Description 型（說明 browse 功能並指向 CIP HMI 規格），不含可驗證行為，未依 R10-2 吸收。037 title 與 CFTS 條文差異（0.769）來自條文額外的 HMI 文件指引與跨檔引用，依 §8.6 以 CFTS 條文為準。",
+ "keywords": [
+  "Browse",
+  "browse presets",
+  "numerical order",
+  "delete presets",
+  "rejection tone"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "014-01 以「已設定與未設定 preset 並存」的一般清單驗證顯示與排序；014-02 以「全部 preset 已刪除」的空清單下邊界驗證取用時的 rejection tone"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-014",
+   "tc_title": "Browse presets list shows all preset slots in numerical order",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "When Browse button is pressed in AM & FM analog tuner mode, HU shall display browse category option for presets where the presets are listed in numerical order including presets that has not been set",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 1, preset 3 and preset 5 are set to receivable stations, and the remaining presets are not set",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Radio Playing page\n2. Press \"Browse\" on the Radio Playing page\n3. Read the browse category displayed\n4. Read the preset entries and their order on the list",
+   "expected_result": "1. The FM Radio Playing page is displayed\n2. The browse screen is displayed\n3. The presets browse category is displayed\n4. All preset positions appear in ascending preset-number order, and the positions that are not set appear on the list as empty presets",
+   "specification_reference": "CFTS024-4872420",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-014",
+   "tc_title": "Rejection tone on preset access after all presets are deleted",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While in Browse presets, HU HMI shall also provide the capability to delete presets. If all presets are deleted, HU shall play the rejection tone when user tries to access preset through the HU HMI or steering wheel controls\n\n(All presets deleted — empty list boundary)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Every preset is set to a receivable station before the test starts",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the Radio Playing page\n2. Delete every preset on the presets browse list\n3. Read the presets browse list\n4. Select a preset position on the presets browse list\n5. Press a preset control on the steering wheel",
+   "expected_result": "1. The presets browse category is displayed\n2. Each deleted preset position is displayed as an empty preset\n3. No preset on the list holds a station\n4. The key press rejection tone is played, as defined by CFTS019-718, and no station is tuned\n5. The key press rejection tone is played, as defined by CFTS019-718, and no station is tuned",
+   "specification_reference": "CFTS024-4872420; CFTS019-718",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

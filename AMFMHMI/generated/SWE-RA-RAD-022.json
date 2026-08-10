@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-022",
+ "batch": "Browse",
+ "reasoning": "驗證目標：在 browse presets 畫面對任一 preset 收到 short press 事件時，HU 調諧至該 preset。關鍵情境條件：short press 事件（與 023 的 press and hold 構成同一控制上的兩個事件類）；被按的 preset 已設定電台。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果（調諧至該 preset 並播出），依 §5.7 不拆分；short press 與 press and hold 的對照分屬 022/023 兩個 leaf，切分軸在 leaf 之間。刻意略過：對未設定 preset 的 short press 結果不在 4872429 文字內（全部刪除後的取用結果由 014-02 依引用式覆蓋）；preset 的選取互動能力由 018 覆蓋。",
+ "keywords": [
+  "browse presets",
+  "short press",
+  "tune to preset"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-022",
+   "tc_title": "Short press on a preset tunes to that preset",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While being in the browse presets screen and HU recieves a short press event on any of the presets, HU shall tune to the preset selected",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 4 is set to a receivable station whose frequency differs from the currently tuned frequency\n5. The presets browse list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned frequency\n2. Short press the preset 4 entry on the presets browse list\n3. Read the tuned frequency\n4. Read the audio output",
+   "expected_result": "1. The frequency tuned before the preset is selected is displayed\n2. The preset 4 entry is selected\n3. The HU is tuned to the frequency stored in preset 4\n4. The station stored in preset 4 is played on the Cabin Output Channel",
+   "specification_reference": "CFTS024-4872429",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

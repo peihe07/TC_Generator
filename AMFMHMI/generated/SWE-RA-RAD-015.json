@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-015",
+ "batch": "Browse",
+ "reasoning": "驗證目標：在 AM 與 FM 類比調諧模式按下 Browse 後，HU 提供的瀏覽分類選項中包含 presets。關鍵情境條件：AM 與 FM 兩種調諧模式（條文明列 both）。為什麼這樣切：本 leaf 的規範對象是「分類選項本身」，不是清單內容——清單排序與未設定 preset 的呈現由兄弟 leaf 014 覆蓋，逐列/逐頁捲動由 016/017 覆蓋；一條 TC 內以 AM 與 FM 兩個步驟涵蓋條文明列的兩種模式，依 §5.7 屬同一觸發的兩個必然結果，不拆分。刻意略過：Genre 分類是否同時出現不在本條文內（Genre 由 024 覆蓋，且其市場與波段可用性另有條款）。",
+ "keywords": [
+  "Browse",
+  "browse categories",
+  "presets"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-015",
+   "tc_title": "Browse button offers Presets as a browse category",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "When Browse button is pressed in AM and FM analog tuner mode, HU shall display the following browse categories option- presets",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the FM Radio Playing page\n2. Read the browse categories offered\n3. Return to the Radio Playing page and switch the HU to AM analog tuner mode\n4. Press \"Browse\" on the AM Radio Playing page\n5. Read the browse categories offered",
+   "expected_result": "1. The browse screen is displayed\n2. The presets browse category is offered\n3. The AM Radio Playing page is displayed\n4. The browse screen is displayed\n5. The presets browse category is offered",
+   "specification_reference": "CFTS024-4872421",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

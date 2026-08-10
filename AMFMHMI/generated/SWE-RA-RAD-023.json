@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-023",
+ "batch": "Browse",
+ "reasoning": "驗證目標：在 browse presets 畫面對任一 preset 收到 press and hold 事件時，HU 將該 preset 設為目前調諧的電台。關鍵情境條件：press and hold 事件；目前調諧的電台與該 preset 原內容不同，否則結果不可觀察。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果（該 preset 內容更新為目前電台並顯示於清單），依 §5.7 不拆分；與 022 的 short press 構成同一控制上兩個事件類的對照，切分軸在 leaf 之間。刻意略過：對已設定 preset 的覆寫語意（是否需確認、是否提示）不在 4872430 文字內，未生成——本 TC 以未設定的 preset 位置驗證儲存結果，避免推測未規範的覆寫行為；hold 的時間門檻上游未給值，程序以「press and hold」描述而不寫秒數。",
+ "keywords": [
+  "browse presets",
+  "press and hold",
+  "store preset"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-023",
+   "tc_title": "Press and hold stores the tuned station to a preset",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "If HU recieves a press and hold event on any of the presets while being in the browse presets screen, HU shall set this preset to the currently tuned station",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and tuned to a receivable station\n4. Preset 6 is not set\n5. The presets browse list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned frequency\n2. Read the preset 6 entry on the presets browse list\n3. Press and hold the preset 6 entry\n4. Read the preset 6 entry on the presets browse list",
+   "expected_result": "1. The tuned frequency is displayed\n2. The preset 6 entry is displayed as an empty preset\n3. The press and hold event is accepted on the preset 6 entry\n4. The preset 6 entry holds the frequency the HU was tuned to in step 1",
+   "specification_reference": "CFTS024-4872430",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

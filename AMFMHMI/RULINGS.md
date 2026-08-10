@@ -229,3 +229,23 @@ Pipeline consequences (Claude Code side, done):
 - `make_batch_context.py`: each affected leaf carries the R11 instruction.
 - A-AM15 closes as RESOLVED-BY-RULE; `clause_citation_overrides` stays
   available but is not needed under cite-form.
+
+## R12 — Browse batch review dispositions (chat tier, 2026-08-10)
+
+Four generator-flagged points, all covered by existing canon; ruled at
+chat tier with Pei visibility (override open):
+
+1. **014/015 boundary — keep the carve, no `duplicate_of`.** §8.2.2
+   forbids TC-side consolidation of RD-separated leaves; after the carve
+   (015 = classification options themselves, 014 = list content &
+   ordering) the verification targets no longer overlap, so the
+   duplicate_of threshold (same trigger + outcome + verification target)
+   is not met. Upstream near-subset overlap added to RD-1 Q-AM2 awareness.
+2. **019 sourced from a Description-type artifact — generate.** The
+   leaf's own cited clause is the requirement basis (R1); the artifact-
+   type hygiene issue is upstream's, noted in Q-AM2.
+3. **023 narrow scope confirmed.** Overwrite semantics (confirmation /
+   prompt) are spec-silent; not fabricated per §8.4.1/§8.4.2; exclusion
+   stays a reasoning note, not an RD-1 item.
+4. **021 joins A-AM11.** Monotonic-relation ER per the 026/028 precedent;
+   no step-count fabrication.

@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-021",
+ "batch": "Browse",
+ "reasoning": "驗證目標：在 browse presets 畫面收到 $ICS_KNOB2_DIR$ = [Increment] 或 [Decrement] 時，HU 依 $ICS_KNOB2_VAL$ 計算出的速率上下捲動 preset 清單。關鍵情境條件：方向信號的兩個值類；清單長度足以觀察捲動。為什麼這樣切：$ICS_KNOB2_DIR$ 的兩個值是同一信號的兩個等價類，依 §8.3 以 signal_value 為軸拆兩條 TC；只驗其中一個方向會讓「任何方向都往下捲」的實作通過（§7）。刻意略過：$ICS_KNOB2_VAL$ 數值到捲動列數的對應規則上游未定義（A-AM11），ER 只驗方向與「較大的 $ICS_KNOB2_VAL$ 造成較多列數前進」的單調關係，不驗特定列數；清單首末端的界限行為不在 4872428 文字內。",
+ "keywords": [
+  "$ICS_KNOB2_DIR$",
+  "$ICS_KNOB2_VAL$",
+  "browse presets",
+  "scroll rate"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "signal_value",
+  "delta": "021-01 以 $ICS_KNOB2_DIR$ = [Increment] 驗證清單向上捲動；021-02 以 $ICS_KNOB2_DIR$ = [Decrement] 驗證清單向下捲動"
+ },
+ "assumptions": [
+  "[A-AM11] The mapping from $ICS_KNOB2_VAL$ to a number of list lines is not defined upstream, so the expected result asserts the scroll direction and the monotonic relation between a larger signal value and a larger advance, not a specific line count."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-021",
+   "tc_title": "Knob increment scrolls the presets browse list upward",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "If HU recieves $ICS_KNOB2_DIR$ = [Increment] while being in the browse presets screen, HU shall scroll up the list of presets at the rate calculated based on the $ICS_KNOB2_VAL$ signal value",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The presets browse list is displayed with more entries than fit on one page\n5. The selection is on an entry in the middle of the list",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Increment]\n$ICS_KNOB2_VAL$ = [1]\n$ICS_KNOB2_VAL$ = [63]",
+   "test_procedure": "1. Read the highlighted entry on the presets browse list\n2. Send $ICS_KNOB2_DIR$ = [Increment] with $ICS_KNOB2_VAL$ = [1]\n3. Read the highlighted entry\n4. Send $ICS_KNOB2_DIR$ = [Increment] with $ICS_KNOB2_VAL$ = [63]\n5. Read the highlighted entry",
+   "expected_result": "1. The starting entry is highlighted\n2. The list scrolls up\n3. The highlighted entry moves toward the lower preset numbers\n4. The list scrolls up again\n5. The highlighted entry advances further than it did for the smaller signal value, in the same direction",
+   "specification_reference": "CFTS024-4872428",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-021",
+   "tc_title": "Knob decrement scrolls the presets browse list downward",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "If HU recieves $ICS_KNOB2_DIR$ = [Decrement] while being in the browse presets screen, HU shall scroll down the list of presets at the rate calculated based on the $ICS_KNOB2_VAL$ signal value",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The presets browse list is displayed with more entries than fit on one page\n5. The selection is on an entry in the middle of the list",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Decrement]\n$ICS_KNOB2_VAL$ = [1]\n$ICS_KNOB2_VAL$ = [63]",
+   "test_procedure": "1. Read the highlighted entry on the presets browse list\n2. Send $ICS_KNOB2_DIR$ = [Decrement] with $ICS_KNOB2_VAL$ = [1]\n3. Read the highlighted entry\n4. Send $ICS_KNOB2_DIR$ = [Decrement] with $ICS_KNOB2_VAL$ = [63]\n5. Read the highlighted entry",
+   "expected_result": "1. The starting entry is highlighted\n2. The list scrolls down\n3. The highlighted entry moves toward the higher preset numbers\n4. The list scrolls down again\n5. The highlighted entry advances further than it did for the smaller signal value, in the same direction",
+   "specification_reference": "CFTS024-4872428",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

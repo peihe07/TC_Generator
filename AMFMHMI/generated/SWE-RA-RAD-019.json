@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-RAD-019",
+ "batch": "Browse",
+ "reasoning": "驗證目標：browse presets 在 AM 與 FM 類比調諧模式皆可用，且在 browse presets 畫面中，preset 可經由「按下 tune control knob 的 enter」或「從清單選取」兩種途徑被選取。關鍵情境條件：兩種選取途徑；兩種調諧模式。為什麼這樣切：條文明列兩個選取途徑，屬同一結果的兩個輸入等價類，依 §8.3 以 input_method 為軸拆兩條 TC；同時把條文的「both AM and FM」分配到兩條 TC 上，使波段可用性在不新增 TC 的情況下被覆蓋。刻意略過：選取後的調諧細節（short press 調至該 preset）由 022 覆蓋；knob 的捲動速率由 021 覆蓋。",
+ "keywords": [
+  "browse presets",
+  "tune control knob",
+  "enter",
+  "preset selection"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "input_method",
+  "delta": "019-01 以 tune control knob 的 enter 選取 preset（FM 模式）；019-02 以清單項目選取 preset（AM 模式），兩條同時涵蓋條文明列的兩種調諧模式"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-019",
+   "tc_title": "Preset selected by pressing enter on the tune control knob",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While HU is in Browse presets screen, a preset can be selected either by pressing enter on the tune control knob or by selecting a preset from the list\n\n(Selection by tune control knob enter, FM analog tuner mode)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 2 is set to a receivable FM station",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the Radio Playing page and open the presets browse category\n2. Rotate the tune control knob until the preset 2 entry is highlighted\n3. Press enter on the tune control knob\n4. Read the tuned frequency",
+   "expected_result": "1. The presets browse list is displayed\n2. The preset 2 entry is highlighted\n3. The preset 2 entry is selected\n4. The HU is tuned to the station stored in preset 2 and that station is played",
+   "specification_reference": "CFTS024-4872426",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-019",
+   "tc_title": "Preset selected from the list in AM analog tuner mode",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "Browse presets is available for both AM and FM analog tuner modes\n\n(Selection from the list, AM analog tuner mode)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in AM analog tuner mode\n4. Preset 3 is set to a receivable AM station",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the AM Radio Playing page\n2. Read the browse categories offered\n3. Open the presets browse category and select the preset 3 entry from the list\n4. Read the tuned frequency",
+   "expected_result": "1. The browse screen is displayed\n2. The presets browse category is offered in AM analog tuner mode\n3. The preset 3 entry is selected\n4. The HU is tuned to the station stored in preset 3 and that station is played",
+   "specification_reference": "CFTS024-4872426",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

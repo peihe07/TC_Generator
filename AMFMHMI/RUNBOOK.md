@@ -180,7 +180,9 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 ## Phase 6 — Batch generation (Tier 1)
 
 - [x] **Seek** (003–013, 11 leaves → 22 TCs), 2026-08-10, lint green
-- [ ] Browse · Presets · List Navigation · RDS Features · Station List ·
+- [x] **Browse** (014–024, 11 leaves → 17 TCs), 2026-08-10, lint green —
+      first batch under R11 cite-form (014-02)
+- [ ] Presets · List Navigation · RDS Features · Station List ·
       Market Configuration · Engineering Mode · Diagnostics
 - [ ] write-back invariants pass
 
@@ -188,6 +190,7 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 |---|---|---|---|---|
 | Tuner Availability + Tune (pilot) | 8 | 13 | 0/8/5/0 | Functional 3, EP 4, BVA 4, Decision Table 2 |
 | Seek | 11 | 22 | 0/19/3/0 | Decision Table 8, State Transition 5, Functional 4, BVA 4, EP 1 |
+| Browse | 11 | 17 | 0/15/2/0 | Functional 8, EP 8, BVA 1 |
 
 ### Spec tables are injected, not summarised
 
@@ -240,6 +243,36 @@ Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
 `CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
 trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
 048, `CFTS024-707` → 057.
+
+### Browse batch notes
+
+- **014-02 is the first R11 cite-form TC.** The scenario is 014's (every
+  preset deleted, then an access attempt from the HMI and from the steering
+  wheel); the outcome is borrowed and anchored — `the key press rejection tone
+  is played, as defined by CFTS019-718` — and cited as a second reference.
+  Nothing about CFTS019's own rule surface is tested.
+- **024 absorbs two clauses under R10-2** and cites both: `4872434`, the
+  NAFTA/RBDS twin of the leaf's EMEA/RDS clause (market becomes an EP axis on
+  `$Country_Code$` per R10-1), and `4872433`, "not available in AM, MW analog
+  tuner modes" (R10-3 suppression TC — the Genre category is absent in AM and
+  present in FM within the same TC's steps).
+- **Two clauses deliberately NOT absorbed**, recorded in 024's reasoning and
+  going to RD-1: `4872436` (genre knob scroll / enter to scan) and `4872437`
+  (Genre Scan) carry `ECU:RRM` + `Radio:noSys` scope tags, inconsistent with
+  this batch's `ECU:LTM, ETM, RRM` + `Radio:CTS1_2, allSys` leaves — absorbing
+  them would claim coverage of behaviour whose applicability to this
+  configuration is unsettled. `4872431` (§1.3.3.1) is likewise left as a
+  coverage hole: its entire normative content is eight short-id
+  cross-references (A-AM15), so absorbing it would produce no verifiable ER.
+- **Scope kept off neighbouring batches**: 016/017 verify that the presets
+  browse list scrolls line-by-line and page-by-page, not the general list
+  navigation rules of §1.3.10–1.3.12 (leaves 040–051); 020's genre field is
+  verified as displayed, not as a correct RDS Program Type mapping (§1.3.13).
+- **021 carries A-AM11**: the `$ICS_KNOB2_VAL$` → line-count mapping is
+  undefined upstream, so the ER asserts direction and monotonicity (a larger
+  signal value advances further), never a specific number of lines.
+- **023 tests the unset-preset path only.** Overwrite semantics for an
+  already-set preset are not in `4872430`, and were not invented.
 
 ### Seek batch notes
 

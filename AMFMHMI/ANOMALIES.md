@@ -290,8 +290,9 @@ copy errors; they stay PENDING for per-pair review at their batches.
 - CFTS024 `4872442` / `4872451` require the HU to increment/decrement
   "based on the rate recieved in the $ICS_KNOB2_VAL$ signal value"
   ([1 to 63]) but define no mapping from rate value to frequency steps.
-- Generation (leaves 026/028) asserts a monotonic relation in ER (63 moves
-  further than 1) rather than fabricating a step count (§8.4.1).
+- Generation (leaves 026/028, and 021 per R12-4) asserts a monotonic
+  relation in ER (63 moves further than 1) rather than fabricating a step
+  count (§8.4.1).
 - Candidate RD-1 if a testable mapping is wanted; otherwise the monotonic
   assertion is the strongest spec-sourced check available. Marker
   `[A-AM11]` on affected TCs.

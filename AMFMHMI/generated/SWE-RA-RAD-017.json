@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-RAD-017",
+ "batch": "Browse",
+ "reasoning": "驗證目標：presets 瀏覽分類顯示中，清單可逐頁捲動。關鍵情境條件：presets 數量多於單頁可顯示列數，且足以構成第二頁。為什麼這樣切：與 016（逐列）為同一清單互動能力的另一分區，兩者由不同 leaf 承載，各一條 TC；逐頁的可觀察結果是「顯示的區塊整批更換且順序不變」，屬單一觸發的必然結果，依 §5.7 不拆分。刻意略過：末頁不足一頁時的補齊行為不在 4872423 文字內，未生成；清單導覽的通用分頁規範屬 §1.3.10-1.3.12（List Navigation 批次）。",
+ "keywords": [
+  "browse presets",
+  "page-by-page scrolling"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-017",
+   "tc_title": "Presets browse list scrolls page by page",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While the HU is displaying Presets browse categories, the HU shall allow page-by-page scrolling of the list",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The number of presets on the list fills more than one page",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the Radio Playing page and open the presets browse category\n2. Read the preset entries displayed on the first page\n3. Request a page-by-page scroll down once\n4. Read the preset entries displayed\n5. Request a page-by-page scroll up once",
+   "expected_result": "1. The presets browse list is displayed\n2. The first page of preset entries is displayed\n3. The list advances by one page\n4. The next block of preset entries is displayed, continuing the preset-number order without repeating the previous page\n5. The first page of preset entries is displayed again",
+   "specification_reference": "CFTS024-4872423",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

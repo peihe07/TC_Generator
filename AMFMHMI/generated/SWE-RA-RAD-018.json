@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-018",
+ "batch": "Browse",
+ "reasoning": "驗證目標：presets 瀏覽分類顯示中，清單上的項目可被選取。關鍵情境條件：清單同時存在已設定與未設定的 preset——「allow selection of items on the list」的對象是清單項目本身，未設定的位置也是清單項目。為什麼這樣切：本 leaf 規範的是「可選取」這個互動能力，選取後的調諧結果由兄弟 leaf 022（short press 調至該 preset）覆蓋，兩者不重複驗證；一條 TC 內以已設定與未設定兩種項目涵蓋清單項目的兩個分區，依 §5.7 屬同一觸發的必然結果。刻意略過：選取未設定 preset 之後的後續行為不在 4872424 文字內，未生成（全部刪除後的取用結果由 014-02 依引用式覆蓋）。",
+ "keywords": [
+  "browse presets",
+  "selection",
+  "list item"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-018",
+   "tc_title": "Item on the presets browse list is selectable",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While the HU is displaying Presets browse categories, the HU shall allow selection of items on the list",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 2 is set to a receivable station and preset 4 is not set",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the Radio Playing page and open the presets browse category\n2. Move the selection to the preset 2 entry\n3. Read the highlighted entry\n4. Move the selection to the preset 4 entry\n5. Read the highlighted entry",
+   "expected_result": "1. The presets browse list is displayed\n2. The selection moves to the preset 2 entry\n3. The preset 2 entry is highlighted as the selected item\n4. The selection moves to the preset 4 entry\n5. The preset 4 entry is highlighted as the selected item",
+   "specification_reference": "CFTS024-4872424",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

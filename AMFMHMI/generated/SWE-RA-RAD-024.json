@@ -1,0 +1,67 @@
+{
+ "parent": "SWE-RA-RAD-024",
+ "batch": "Browse",
+ "reasoning": "驗證目標：在 Browse Genre 畫面，HU 顯示可瀏覽的節目類型清單。關鍵情境條件：市場組態決定清單的節目類型體系——leaf 條文 4872435 的 Market 標記為 EMEA / APAC / LATAM / Rest of World（RDS），同節未配置條款 4872434 是同一行為在 NAFTA 市場的 RBDS 版本；另一未配置條款 4872433 指明本功能在 AM、MW 類比調諧模式不可用。為什麼這樣切：依 R10-2 決策測試，4872434 與 4872433 皆為同節、未配置、且直接細化本 leaf 所引條款的行為，予以吸收並多引；市場組態是 $Country_Code$ 的值類覆蓋，依 R10-1 設計方法為等價劃分；AM 模式的不可用性依 R10-3 為可達的 ¬X 分支，觸發狀態不同且不可在同一程序內分支（§5.2），拆為獨立抑制 TC。刻意略過（記為覆蓋缺口，非默默省略）：同節 4872436（knob 捲動 genre 清單與 enter 進入 genre 內掃描）與 4872437（Genre Scan 比照 Scan 功能）未吸收——兩者的 scope 標記為 ECU:RRM 且 Radio:noSys，與本批 leaves 的 ECU:LTM/ETM/RRM、Radio:CTS1_2/allSys 組態不一致，吸收將把不確定適用於本組態的行為納入覆蓋主張；且 Genre Scan 引用的 CFTS024-10 屬 A-AM15 無法解析的短碼引用。兩者提交 RD-1。",
+ "keywords": [
+  "Browse Genre",
+  "RDS Program Types",
+  "RBDS Program Types",
+  "$Country_Code$",
+  "AM analog tuner mode"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "configuration",
+  "delta": "024-01 於 EMEA 市場組態驗證 RDS Program Type 清單；024-02 於 NAFTA 市場組態驗證 RBDS Program Type 清單（吸收 4872434）；024-03 於 AM 類比調諧模式驗證本功能不提供（吸收 4872433）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872434 (the NAFTA/RBDS twin of this leaf's clause) and CFTS024-4872433 (the feature is not available in AM, MW analog tuner modes) are unallocated clauses in the same section that elaborate the cited clause; both are absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-024",
+   "tc_title": "Browse Genre lists RDS Program Types in EMEA markets",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While being in the Browse Genre screen, the HU shall display a browsable list of the RDS Program Types",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with $Country_Code$ set to an EMEA market\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the FM Radio Playing page\n2. Open the Genre browse category\n3. Read the program types displayed on the list\n4. Request a scroll of the list",
+   "expected_result": "1. The browse screen is displayed\n2. The Browse Genre screen is displayed\n3. The RDS Program Types are listed\n4. The list is browsable and the program types stay in their displayed order",
+   "specification_reference": "CFTS024-4872435",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-024",
+   "tc_title": "Browse Genre lists RBDS Program Types in NAFTA markets",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "While being in the Browse Genre screen, the HU shall display a browsable list of the RBDS Program Types\n\n(NAFTA market configuration)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with $Country_Code$ set to a NAFTA market\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the FM Radio Playing page\n2. Open the Genre browse category\n3. Read the program types displayed on the list\n4. Request a scroll of the list",
+   "expected_result": "1. The browse screen is displayed\n2. The Browse Genre screen is displayed\n3. The RBDS Program Types are listed\n4. The list is browsable and the program types stay in their displayed order",
+   "specification_reference": "CFTS024-4872435; CFTS024-4872434",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-024",
+   "tc_title": "Browse Genre is unavailable in AM analog tuner mode",
+   "test_group": "AMFM",
+   "test_set": "Browse",
+   "test_item": "This feature is not available in AM, MW analog tuner modes\n\n(Browse Genre suppressed outside FM)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in AM analog tuner mode",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the AM Radio Playing page\n2. Read the browse categories offered\n3. Switch the HU to FM analog tuner mode and press \"Browse\"\n4. Read the browse categories offered",
+   "expected_result": "1. The browse screen is displayed\n2. The Genre browse category is not offered and the Browse Genre screen is not reachable\n3. The browse screen is displayed on the FM Radio Playing page\n4. The Genre browse category is offered",
+   "specification_reference": "CFTS024-4872435; CFTS024-4872433",
+   "priority": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

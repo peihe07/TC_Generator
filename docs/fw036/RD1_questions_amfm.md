@@ -37,9 +37,15 @@ Questions / findings to report:
    `SWE-RA-RAD-028`. Please correct the 037's id tail to `(4872457)`.
    (TC side already generates against 4872457 per ruling R9.)
 2. Numbering gaps `SWE-RA-RAD-086` and `-088` — deleted or misnumbered?
-3. Same-id variants for awareness (no correction requested yet, per-pair
-   review at batch time): 087/094 share 4942534; 089/095 share 4942540;
-   090/096 near-identical text with distinct ids.
+3. Same-id variants and text-overlap pairs for awareness (no correction
+   requested yet, per-pair review at batch time): 087/094 share 4942534;
+   089/095 share 4942540; 090/096 near-identical text with distinct ids;
+   **014/015 — 015's clause is a near-subset of 014's first sentence**
+   (TC side carved distinct verification targets per R12-1).
+4. Artifact-type hygiene: `SWE-RA-RAD-019`'s source clause `4872426` is an
+   `[Artifact Type: Description]` item used as a requirement. Generated
+   against it per R1 (leaf's own citation); please confirm Description-
+   type items are intended requirement carriers or reissue as SFRs.
 
 Status: DRAFT — send with Q-AM1.
 
