@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-RAD-073",
+ "batch": "Station List",
+ "reasoning": "驗證目標：使用者由 station list 或 preset 選台，若因資料過期而召回失敗，HU 執行 bandscan 尋找該電台；其後若找不到相同 PI code 的電台，HU 調諧到該次召回電台的最後已知頻率。關鍵情境條件：召回失敗（原頻率上已無該電台）；bandscan 後是否找得到相同 PI code 的電台。為什麼這樣切：條文是兩段式流程，第二段的觸發條件（bandscan 後找不到）與第一段不同，且兩種結果互斥，依 §5.2 不可在同一程序內分支、依 R10-3 拆為獨立 TC，以 trigger_state 為軸。刻意略過：037 title 未帶條文中的 See HMI logic & flow for the associated display or popup（相似度 0.854），該顯示或彈出訊息的規格屬外部 HMI 文件，依 §8.4.2 不吸收，ER 不驗其版面；preset 召回時的 PI code 判準與 Station Not Found 彈出訊息由 038 覆蓋——本 leaf 的觸發是資料過期後的 bandscan 路徑，兩者條款不同，不重複驗證。",
+ "keywords": [
+  "stale data",
+  "recall fails",
+  "bandscan",
+  "identical PI code",
+  "last known frequency"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "073-01 於 bandscan 找得到相同 PI code 的電台時，驗證調諧到該電台的新頻率；073-02 於 bandscan 找不到時，驗證調諧到該次召回電台的最後已知頻率"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-073",
+   "tc_title": "Stale recall finds the station by bandscan and tunes to it",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "If user selected a station (either through station list or preset) and the recall fails due to stale data, HU shall perform bandscan to find the station",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list holds an entry for station K, stored with PI code PI-K on frequency F1\n5. Station K is no longer broadcast on F1 and is broadcast on frequency F2 with the same PI code PI-K",
+   "input_test_data": "Stored entry: station K, PI code PI-K, frequency F1\nCurrent broadcast: station K, PI code PI-K, frequency F2",
+   "test_procedure": "1. Read the stored entry for station K on the station list\n2. Select the entry for station K\n3. Read the tuned frequency and the PI code received\n4. Read the audio output",
+   "expected_result": "1. The entry for station K holds frequency F1\n2. The recall of station K on F1 fails and the HU scans the band for the station\n3. The HU is tuned to F2 and the PI code received is PI-K\n4. Station K is played on the Cabin Output Channel",
+   "specification_reference": "CFTS024-4872562",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-073",
+   "tc_title": "Last known frequency is tuned when the bandscan finds nothing",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "Then, if station with identical PI code cannot be found, HU shall tune to the last known frequency of the recalled station\n\n(No station with the stored PI code is receivable)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list holds an entry for station K, stored with PI code PI-K on frequency F1\n5. No station carrying PI code PI-K is broadcast on any frequency of the applicable wave band",
+   "input_test_data": "Stored entry: station K, PI code PI-K, last known frequency F1\nCurrent broadcast: other receivable stations, none carrying PI code PI-K",
+   "test_procedure": "1. Read the stored entry for station K on the station list\n2. Select the entry for station K\n3. Read whether the HU scans the band\n4. Read the tuned frequency once the scan ends",
+   "expected_result": "1. The entry for station K holds the last known frequency F1\n2. The recall of station K on F1 fails\n3. The HU scans the band and no station carrying PI code PI-K is found\n4. The HU is tuned to F1, the last known frequency of the recalled station",
+   "specification_reference": "CFTS024-4872562",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

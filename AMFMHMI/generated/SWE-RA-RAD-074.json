@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-074",
+ "batch": "Station List",
+ "reasoning": "驗證目標：可接收電台數量多於清單長度上限時，清單收錄的是接收品質最高的那些電台。關鍵情境條件：電台數量超過上限，且各電台的接收品質有明確可控的高低分佈——被排除的必須是品質最低的那些，才能區分「依品質取捨」與「依頻率先到先得」的實作（§7）。為什麼這樣切：一條 TC 覆蓋單一觸發（超出上限）的必然結果——高品質者入列、低品質者出列，依 §5.7 併為多條 ER。依 §8.2.1 與兄弟 leaf 劃界：上限數量本身由 072 覆蓋，相同 PI code 的去重由 071 覆蓋（其判準為場強，作用於同一電台的多個頻率），本 leaf 的判準作用於不同電台之間。刻意略過：接收品質的量測定義（場強、訊雜比或其他）未在條文中指定，ER 因此以「品質較高／較低」的相對關係描述，不寫具體門檻值（§8.4.1）。",
+ "keywords": [
+  "maximum length",
+  "highest reception quality",
+  "station selection"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-074",
+   "tc_title": "Stations with the best reception fill the list when it overflows",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "If more stations than the maximum length of the station list are available, the station list shall contain those stations with highest reception quality",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list screen is displayed",
+   "input_test_data": "Group H: 50 receivable stations broadcast at a high reception quality\nGroup L: 5 further receivable stations broadcast at a reception quality clearly below every station of group H, on frequencies interleaved with them",
+   "test_procedure": "1. Set the signal generator to broadcast the stations of group H and group L\n2. Start the station list update from the refresh softkey\n3. Read the entries on the station list once the update completes\n4. Compare the entries with the two groups",
+   "expected_result": "1. All 55 stations are receivable, with group H stronger than group L\n2. The station list update starts\n3. The station list holds the maximum number of entries\n4. Every station of group H is on the list and no station of group L is on it, which places the selection on reception quality rather than on frequency order",
+   "specification_reference": "CFTS024-4872563",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-068",
+ "batch": "Station List",
+ "reasoning": "驗證目標：HU HMI 允許 station list 表格依電台名稱以字母順序排序。關鍵情境條件：清單中電台名稱的字母順序與其他可能排序（如頻率）不一致，否則排序生效與否不可區分。為什麼這樣切：一條 TC 覆蓋單一驗證目標（排序選項可用且套用後順序正確），依 §5.7 不拆分；依 §8.2.1 與兄弟 leaf 劃界：依 Genre 排序由 069 覆蓋，「排序所依據的是可見的 PS 名稱（含無 RDS 電台的頻率轉名稱）」這個判準由 078 覆蓋，本 leaf 只驗依名稱排序這個選項本身。刻意略過：037 title 未帶條文末的 See HMI logic & flow documents（相似度 0.859），該指引指向外部 HMI 文件，依 §8.4.2 不吸收其規則，ER 不驗版面。",
+ "keywords": [
+  "station list",
+  "sort by station name",
+  "alphabetical order"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-068",
+   "tc_title": "Station list is sorted by station name in alphabetical order",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "HU HMI shall allow station list table to be sorted by station name in alphabetical order",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list holds at least three stations whose names in alphabetical order differ from their order by frequency\n5. The station list screen is displayed",
+   "input_test_data": "Station names broadcast: \"Zeta FM\" on the lowest frequency, \"Alpha FM\" on the middle frequency, \"Mira FM\" on the highest frequency",
+   "test_procedure": "1. Read the order of the entries displayed on the station list screen\n2. Select the sorting by station name on the HU HMI\n3. Read the order of the entries displayed\n4. Read the entry names from the top of the list to the bottom",
+   "expected_result": "1. The station list entries are displayed with their names\n2. The sorting by station name is offered and the selection is accepted\n3. The entries are re-ordered on the screen\n4. The names read in ascending alphabetical order, which places \"Alpha FM\" above \"Mira FM\" and \"Mira FM\" above \"Zeta FM\"",
+   "specification_reference": "CFTS024-4872557",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

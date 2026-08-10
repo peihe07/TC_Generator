@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-079",
+ "batch": "Station List",
+ "reasoning": "驗證目標：station list 中每個電台都帶有頻率資料，且 HU 對每個 active 電台顯示頻率、PSN（Program Service Name）與 Genre（PTY）。關鍵情境條件：電台是否帶 RDS 資料——頻率對所有電台皆須可得，而 PSN 與 Genre 只有在電台廣播時才有內容，兩個等價類都要觀察。為什麼這樣切：一條 TC 覆蓋單一驗證目標（清單列的欄位內容），依 §5.7 併為多條 ER，並以帶 RDS 與無 RDS 兩個電台涵蓋兩個等價類。依 §8.2.1 與兄弟 leaf 劃界：無 RDS 電台的名稱形式由 077 覆蓋，排序由 078 覆蓋，preset 清單的同型欄位由 020 覆蓋（不同清單、不同條款）。刻意略過：條文用 active station 而未定義何謂 active，ER 因此以「清單上的每個電台」描述可觀察範圍，不推測 active 的另一種定義（§8.4.1），用語未定義一項送 RD-1。",
+ "keywords": [
+  "frequency",
+  "PSN",
+  "Genre",
+  "station list fields"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-079",
+   "tc_title": "Station list entries show frequency with PSN and Genre",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "The frequency shall be available for each station in the station list and HU shall display the frequency for each active station, along with PSN(Program Service Name) and Genre(PTY)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. The station list screen is displayed",
+   "input_test_data": "Station G1: receivable, broadcasts a PS name and the program type \"News\"\nStation G2: receivable, broadcasts no RDS data",
+   "test_procedure": "1. Set the signal generator to broadcast stations G1 and G2\n2. Start the station list update from the refresh softkey\n3. Read the fields displayed for the entry of station G1\n4. Read the fields displayed for the entry of station G2",
+   "expected_result": "1. Stations G1 and G2 are receivable\n2. The station list holds an entry for each of the two stations\n3. The entry for station G1 displays its frequency, its program service name and its program type\n4. The entry for station G2 displays its frequency, which keeps the frequency available for a station carrying no program service name or program type",
+   "specification_reference": "CFTS024-4872568",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -185,7 +185,8 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 - [x] **Presets** (031–039, 9 leaves → 13 TCs), 2026-08-10, lint green
 - [x] **List Navigation** (040–051, 12 leaves → 16 TCs), 2026-08-10, lint green
 - [x] **RDS Features** (052–063, 12 leaves → 17 TCs), 2026-08-10, lint green
-- [ ] Station List · Market Configuration · Engineering Mode · Diagnostics
+- [x] **Station List** (064–080, 17 leaves → 22 TCs), 2026-08-10, lint green
+- [ ] Market Configuration · Engineering Mode · Diagnostics
 - [ ] write-back invariants pass
 
 | Batch | Leaves | TCs | P0/P1/P2/P3 | Design methods |
@@ -196,6 +197,7 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 | Presets | 9 | 13 | 0/13/0/0 | Functional 7, BVA 3, EP 2, Decision Table 1 |
 | List Navigation | 12 | 16 | 0/16/0/0 | Functional 9, BVA 4, State Transition 2, EP 1 |
 | RDS Features | 12 | 17 | 0/15/2/0 | Functional 9, EP 3, State Transition 2, Decision Table 2, Scenario 1 |
+| Station List | 17 | 22 | 0/21/1/0 | Functional 12, BVA 4, EP 4, State Transition 1, Decision Table 1 |
 
 ### Spec tables are injected, not summarised
 
@@ -248,6 +250,42 @@ Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
 `CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
 trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
 048, `CFTS024-707` → 057.
+
+### Station List batch notes
+
+- **The same CIP worksheet served a second clause.** `4872571` ("refer to the
+  CIP Radio tables for actions that cancel station list update") points at the
+  second block of `TA-PTY31 station list cancel` — the row keyed "Refresh
+  Station list button is pressed; HU is currently updating Station List".
+  Absorbed into 065-03: DIRECT TUNE / PRESET Save / PRESET Recall / knob rotate
+  cancel the update, MUTE/PAUSE does not. The worksheet's own note (this does
+  not apply to a dual tuner radio, whose update runs in the background) fixes
+  the pre-condition to a single tuner.
+- **065 carries four absorbed clauses across three TCs**, the largest
+  absorption in the corpus: `4872553`/`4872554` (the two named softkeys "New
+  List" and "Refresh List"), `4872550` (the update is a bandscan across the
+  applicable wave bands at the hardware-defined sensitivity) and `4872571`.
+- **066 is a §7 pair built from an absorbed opposite.** `4872552` (a dual
+  tuner does not mute) is the other side of 066's own single-tuner clause;
+  without it, an implementation that mutes on every variant passes.
+- **Sensitivity and reception-quality thresholds are never given numbers.**
+  `4872550` says the level is defined in the hardware spec, is software
+  configurable and may change during development, so 065-02, 074 and 076 state
+  relative relations (above / below the threshold, higher / lower quality)
+  instead of dBµV values (§8.4.1).
+- **Three near-identical sorting clauses carved by verification target**: 068
+  (the sort-by-name option exists and applies), 069 (sort by Genre, with an ER
+  that requires the result to differ from the name order), 078 (the sort key is
+  the *visible* PS name, observable only when frequency-derived names from 077
+  are mixed in).
+- **Not absorbed → RD-1**: `4872546` and `4872569` are HD Radio content whose
+  behaviour lives in §1.4, outside this batch's analog scope; `4872544`
+  (section does not apply to NAFTA Refresh Radios) and `4872545` (applies to
+  single and dual tuner in FM mode) are applicability statements, reflected in
+  pre-conditions rather than absorbed.
+- **Undefined term flagged**: 079's clause says "each active station" without
+  defining active; the ER covers every station on the list and the term goes to
+  RD-1 rather than being given a meaning here.
 
 ### RDS Features batch notes
 

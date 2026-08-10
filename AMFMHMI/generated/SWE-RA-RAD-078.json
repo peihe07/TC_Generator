@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-078",
+ "batch": "Station List",
+ "reasoning": "驗證目標：station list 依「可見的 PS 名稱」以字母順序排序——排序鍵是螢幕上實際顯示的名稱，因此無 RDS 電台以其頻率轉換而成的名稱參與同一個排序序列。關鍵情境條件：清單中同時存在帶 RDS 名稱與無 RDS（頻率轉名稱）的電台，且兩者在字母順序中交錯，否則無法區分「以可見名稱排序」與「先排 RDS 電台再排其餘」的實作（§7）。為什麼這樣切：一條 TC 覆蓋單一驗證目標（排序鍵為可見名稱），依 §5.7 不拆分。依 §8.2.1 與兄弟 leaf 劃界：068 驗的是「可依電台名稱排序」這個選項的存在與生效，本 leaf 驗的是排序鍵的定義——排的是可見的 PS 名稱，這一點在混入無 RDS 電台時才有可觀察差異；077 驗的是頻率轉名稱的格式本身。三者條款不同，維持各自的 leaf。刻意略過：條文的 per HMI definition 指向外部 HMI 文件對可見名稱的定義，依 §8.4.2 不吸收其規則，ER 以螢幕上實際顯示的名稱為準。",
+ "keywords": [
+  "sorted alphabetically",
+  "visible PS name",
+  "station list order"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-078",
+   "tc_title": "List order follows the visible PS name including derived names",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "The station list shall be sorted alphabetically by the visible PS name per HMI definition",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list screen is displayed with the sorting by station name selected",
+   "input_test_data": "Station with RDS: PS name \"Alpha FM\"\nStation with RDS: PS name \"Zeta FM\"\nStation without RDS: broadcast on 99.9 MHz, displayed by its derived name\nStation without RDS: broadcast on 100.1 MHz, displayed by its derived name",
+   "test_procedure": "1. Set the signal generator to broadcast the four stations\n2. Start the station list update from the refresh softkey\n3. Read the names displayed for every entry, from the top of the list to the bottom\n4. Compare the order of the entries with the alphabetical order of the names read",
+   "expected_result": "1. The four stations are receivable, two carrying RDS data and two carrying none\n2. The station list holds an entry for each of the four stations\n3. The entries display \"Alpha FM\", \"Zeta FM\" and the two names derived from the frequencies\n4. The entries are ordered alphabetically by the names as displayed, with the derived names placed in the same sequence as the PS names rather than in a separate block",
+   "specification_reference": "CFTS024-4872567",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

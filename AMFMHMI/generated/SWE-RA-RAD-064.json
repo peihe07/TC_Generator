@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-064",
+ "batch": "Station List",
+ "reasoning": "驗證目標：雙調諧器機型在 Body ON HU Audio Mode ON 期間，以次調諧器於背景自動刷新 Station List 資料，週期上限 1200 秒；以及進入 Body ON HU Audio Mode ON 或 TIMED MODE 時自動啟動一次背景更新。關鍵情境條件：裝備為雙調諧器（本條的設備等價類）；週期上限 1200 秒的時間邊界；電源狀態的轉換時點。為什麼這樣切：依 R10-2，同節未配置條款 4872548（雙調諧器於狀態轉換時自動啟動背景更新）與 4872547（同一行為，加上 $ANT_TYP$ = [2h or 3h] 的組態閘）直接細化本 leaf 的自動刷新行為，予以吸收並多引；其觸發是狀態轉換而非週期到期，觸發狀態不同，依 §5.2 不可在同一程序內分支，拆為第二條 TC，設計方法採狀態轉換測試。第一條的驗證對象是週期上限，屬時間邊界，採邊界值分析。刻意略過：單調諧器的更新路徑由 065/066 覆蓋；4872547 與 4872548 對電源定義分別指向 CIP System State Chart 與 CFTS009 兩份不同文件，兩者皆非本專案 inputs，ER 因此以可觀察的模式轉換描述，不引用該兩份文件的定義，差異送 RD-1。",
+ "keywords": [
+  "dual tuner",
+  "background refresh",
+  "1200 seconds",
+  "Body ON HU Audio Mode ON",
+  "TIMED MODE"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "064-01 以週期上限 1200 秒驗證定期自動刷新；064-02 以進入 Body ON HU Audio Mode ON 的狀態轉換驗證更新被自動啟動（吸收 4872548 與 4872547）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872548 and CFTS024-4872547 (a dual tuner HU automatically initiates a background Station List update on the transition to Body ON HU Audio Mode ON or TIMED MODE) are unallocated clauses in the same section elaborating this leaf's automatic refresh; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-064",
+   "tc_title": "Dual tuner refreshes the station list within each 1200 second period",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "While in Body ON HU Audio Mode ON, for HU equipped with dual tuner, HU shall automatically refresh Station List data in the background (utilizing secondary tuner) at least once per each maximum period of 1200 seconds",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a dual tuner\n3. The HU Tuner source is selected on the Cabin Output Channel and the vehicle is in Body ON HU Audio Mode ON\n4. The HU is in FM analog tuner mode\n5. The station list holds the entries of an update that has just completed",
+   "input_test_data": "Observation window: 1200 seconds from the completion of the previous update\nStation Z: receivable station added to the signal generator during the window",
+   "test_procedure": "1. Read the station list contents and note the completion time of the previous update\n2. Add station Z to the signal generator output\n3. Wait without operating the HU until 1200 seconds have elapsed since the previous update completed\n4. Read the station list contents\n5. Read the audio output during the whole window",
+   "expected_result": "1. The station list holds the entries of the previous update and the completion time is known\n2. Station Z is receivable and is not yet on the list\n3. A background refresh is executed within the elapsed period, without user operation\n4. Station Z is on the station list, which places the refresh inside the 1200 second period\n5. The audio plays without interruption for the whole window, which places the refresh on the secondary tuner",
+   "specification_reference": "CFTS024-4872549",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-064",
+   "tc_title": "Entering Audio Mode ON starts a background station list update",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "For a HU equipped with dual tuner, HU shall automatically initiate Station List update in the background (utilizing secondary tuner) when it transitions to Body ON HU Audio Mode ON or TIMED MODE\n\n(State transition into the audio mode)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a dual tuner\n3. The vehicle is configured with $ANT_TYP$ = [2h]\n4. The vehicle is in a state below Body ON HU Audio Mode ON before the test starts\n5. The station list holds entries from an earlier update",
+   "input_test_data": "Station Z: receivable station present in the signal generator output but absent from the stored station list",
+   "test_procedure": "1. Read the station list contents stored from the earlier update\n2. Transition the vehicle to Body ON HU Audio Mode ON\n3. Read whether a station list update is running\n4. Read the station list contents once the update completes\n5. Read the audio output during the update",
+   "expected_result": "1. The stored station list is displayed and station Z is not on it\n2. The vehicle is in Body ON HU Audio Mode ON\n3. A station list update is running in the background without a user request\n4. Station Z is on the station list\n5. The audio plays without interruption during the update",
+   "specification_reference": "CFTS024-4872549; CFTS024-4872548; CFTS024-4872547",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

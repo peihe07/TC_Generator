@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-071",
+ "batch": "Station List",
+ "reasoning": "驗證目標：當多個電台帶相同 PI code 被找到時，station list 只顯示其中場強最高的一個。關鍵情境條件：至少兩個相同 PI code 的可接收電台，且場強有明確高低差；同時需有一個不同 PI code 的電台作為對照，確認去重只作用於相同 PI code 的群組。為什麼這樣切：一條 TC 覆蓋單一觸發（更新時發現重複 PI code）的必然結果——只留一筆、且留下的是場強最高者，兩者為同一驗證目標的兩個面向，依 §5.7 併為多條 ER；只驗「只留一筆」而不驗「留下的是哪一筆」，會讓任意保留其一的實作通過（§7）。刻意略過：清單長度上限下的取捨規則由 074 覆蓋（其判準是接收品質，作用於不同電台之間，與本條的相同 PI code 去重不同）；AF 切換時的相同 PI code 判準由 063 覆蓋。",
+ "keywords": [
+  "identical PI code",
+  "highest field strength",
+  "duplicate removal"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-071",
+   "tc_title": "Only the strongest station of an identical PI code is listed",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "If multiple stations with identical PI code are found, HU shall display only one station with the highest field strength",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list screen is displayed",
+   "input_test_data": "Station M1: PI code PI-A, frequency F1, field strength high\nStation M2: PI code PI-A, frequency F2, field strength clearly lower than M1\nStation N: PI code PI-B, frequency F3, receivable",
+   "test_procedure": "1. Set the signal generator to broadcast M1, M2 and N with the stated field strengths\n2. Start the station list update from the refresh softkey\n3. Read the entries on the station list once the update completes\n4. Read the frequency of the entry carrying PI code PI-A",
+   "expected_result": "1. M1, M2 and N are receivable with M1 stronger than M2\n2. The station list update starts\n3. One entry carries PI code PI-A and one entry carries PI code PI-B, which leaves no second entry for PI-A\n4. The entry for PI-A holds frequency F1, the frequency of the stronger of the two stations",
+   "specification_reference": "CFTS024-4872560",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

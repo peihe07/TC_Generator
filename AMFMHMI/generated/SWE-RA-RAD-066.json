@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-066",
+ "batch": "Station List",
+ "reasoning": "驗證目標：單調諧器且 $ANT_TYP$ = [0h or 1h] 的車輛，因更新期間可能靜音，HU HMI 於 station list 更新過程顯示彈出訊息告知使用者；對照雙調諧器機型則不靜音。關鍵情境條件：調諧器裝備（單／雙）與天線組態。為什麼這樣切：依 R10-2 吸收同節未配置條款 4872552（雙調諧器執行更新時不得靜音音訊），它正是本 leaf 條件的反面分區；依 §7 正負配對，只驗單調諧器會提示，無法排除「所有機型都靜音並提示」的實作。設備組態為值類覆蓋，依 R10-1 設計方法採等價劃分，以 equipment 為軸拆兩條。刻意略過：彈出訊息的版面與 popup id 依條文的 see HMI logic/flow 屬外部 HMI 文件，不在本 workbook 驗證範圍；更新的觸發與取消由 065 覆蓋。",
+ "keywords": [
+  "single tuner",
+  "$ANT_TYP$",
+  "audio mute",
+  "popup",
+  "dual tuner"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "equipment",
+  "delta": "066-01 於單調諧器且 $ANT_TYP$ = [0h] 驗證更新期間顯示告知彈出訊息；066-02 於雙調諧器驗證更新期間音訊不靜音（吸收 4872552）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872552 (a dual tuner HU does not mute audio while executing Station List updates) is an unallocated clause in the same section elaborating the opposite partition of this leaf's equipment condition; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-066",
+   "tc_title": "Single tuner update shows the popup about the muted audio",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "For HU equipped with single tuner and vehicle configured with $ANT_TYP$ = [0h or 1h]; since audio may be muted while updating the station list, HU HMI shall implement a popup during the station list update to indicate this status to the customer",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a single tuner and the vehicle is configured with $ANT_TYP$ = [0h]\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a receivable station\n5. The station list screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the audio output and the HU screen before the update\n2. Start the station list update from the refresh softkey\n3. Read the HU screen while the update runs\n4. Read the HU screen once the update completes",
+   "expected_result": "1. The tuned station is played and no update popup is displayed\n2. The station list update starts\n3. A popup indicating the station list update status is displayed for the duration of the update\n4. The popup is no longer displayed and the tuned station is played again",
+   "specification_reference": "CFTS024-4872555",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-066",
+   "tc_title": "Dual tuner update leaves the audio unmuted",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "For HU equipped with dual tuner, HU shall not mute audio while executing Station List updates\n\n(Opposite equipment partition)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a dual tuner\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a receivable station\n5. The station list screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the audio output before the update\n2. Start the station list update from the refresh softkey\n3. Read the audio output continuously while the update runs\n4. Read the station list once the update completes",
+   "expected_result": "1. The tuned station is played on the Cabin Output Channel\n2. The station list update starts\n3. The audio of the tuned station continues without a mute for the whole update\n4. The station list holds the stations receivable at the time of the update",
+   "specification_reference": "CFTS024-4872555; CFTS024-4872552",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

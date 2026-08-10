@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-070",
+ "batch": "Station List",
+ "reasoning": "驗證目標：Station List 更新在 120 秒內完成。關鍵情境條件：更新的起點與終點必須可觀察——起點為更新啟動、終點為更新進行中的提示結束且清單可用；並以接近清單長度上限的可接收電台數量作為最不利負載，否則在少量電台下通過不代表規格成立。為什麼這樣切：條文給出明確的時間上限，驗證對象是該上限，設計方法採邊界值分析；一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。刻意略過：更新的內容正確性由 065-02 與 067 覆蓋，本 leaf 只驗完成時間；上限以下的分佈（例如是否越快越好）不在條文內，未生成。",
+ "keywords": [
+  "station list update",
+  "120 seconds",
+  "completion time"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-070",
+   "tc_title": "Station list update completes within 120 seconds",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "Station List update shall be completed in less than 120 seconds",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The signal generator broadcasts receivable stations across the applicable wave band in a number that fills the station list to its maximum length\n5. The station list screen is displayed",
+   "input_test_data": "Number of receivable stations: enough to fill the station list to its maximum length\nTime limit under test: 120 seconds from the start of the update",
+   "test_procedure": "1. Start a stopwatch and press the softkey that refreshes the station list at the same moment\n2. Read the HU screen while the update runs\n3. Read the stopwatch at the moment the update ends and the station list becomes available\n4. Read the station list contents",
+   "expected_result": "1. The station list update starts as the stopwatch starts\n2. The update in progress is indicated on the HU screen\n3. The elapsed time at the end of the update is less than 120 seconds\n4. The station list holds the stations receivable at the time of the update",
+   "specification_reference": "CFTS024-4872559",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

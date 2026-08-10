@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-072",
+ "batch": "Station List",
+ "reasoning": "驗證目標：FM station list 的長度上限為 50 筆。關鍵情境條件：可接收電台數量跨越上限——以恰好 50 個與超過 50 個兩種負載觀察，才能同時確認上限值本身可達且不被超過。為什麼這樣切：條文給出明確的數量上限，驗證對象是該上限，設計方法採邊界值分析；一條 TC 內以上限值與上限加一兩個負載涵蓋同一驗證目標，依 §5.7 不拆分。刻意略過：超過上限時保留哪些電台的取捨規則由兄弟 leaf 074 覆蓋（其判準為接收品質），本 leaf 只驗數量不超過 50；AM 波段的清單長度不在條文內（條文明指 FM station list），未生成。",
+ "keywords": [
+  "FM station list",
+  "50 entries",
+  "maximum length"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-072",
+   "tc_title": "FM station list holds at most 50 entries",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "The FM station list shall have a length of 50 entries maximum",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list screen is displayed",
+   "input_test_data": "Load 1: exactly 50 receivable FM stations on distinct frequencies\nLoad 2: 55 receivable FM stations on distinct frequencies",
+   "test_procedure": "1. Set the signal generator to broadcast the 50 stations of load 1\n2. Start the station list update and read the number of entries once it completes\n3. Set the signal generator to broadcast the 55 stations of load 2\n4. Start the station list update and read the number of entries once it completes",
+   "expected_result": "1. The 50 stations of load 1 are receivable\n2. The station list holds 50 entries, which shows the maximum length is reachable\n3. The 55 stations of load 2 are receivable\n4. The station list holds 50 entries and no more, which leaves five receivable stations off the list",
+   "specification_reference": "CFTS024-4872561",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

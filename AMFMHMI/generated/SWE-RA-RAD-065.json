@@ -1,0 +1,68 @@
+{
+ "parent": "SWE-RA-RAD-065",
+ "batch": "Station List",
+ "reasoning": "驗證目標：HU HMI 提供手動刷新 station list 的軟鍵，按下時顯示更新進行中的彈出訊息；更新本身在所有適用波段執行 bandscan 收錄可接收電台；更新進行中發生特定事件時被取消。關鍵情境條件：軟鍵按下（條文所指的兩個具名軟鍵 \"New List\" 與 \"Refresh List\"）；更新進行中的事件類別。為什麼這樣切：依 R10-2 吸收同節三組未配置條款——4872553/4872554（單調諧器且 $ANT_TYP$ = [0h or 1h] 時，兩個具名軟鍵各自觸發更新）細化本 leaf 的軟鍵，併入第一條；4872550（更新即為跨波段 bandscan，靈敏度依硬體規格且可由軟體組態）細化更新內容，成為第二條；4872571（取消 station list update 的動作請參照 CIP Radio tables）指向 `TA-PTY31 station list cancel` 工作表的第二區塊，是取消判準的唯一來源，成為第三條。三者觸發不同（按下軟鍵／更新執行中的內容／更新執行中的外部事件），依 §5.2 不可在同一程序內分支。第三條同時涵蓋取消類與非取消類事件：只驗會取消的事件，無法排除「任何事件都中止更新」的實作（§7）。刻意略過：4872550 明言靈敏度門檻可由軟體組態且開發期間可能變動，ER 因此不寫具體 dBµV 值（§8.4.1）；單調諧器更新期間的靜音提示由 066 覆蓋；工作表註明本取消行為不適用於雙調諧器機型，前置因此指定單調諧器。",
+ "keywords": [
+  "manual refresh",
+  "softkey",
+  "New List",
+  "Refresh List",
+  "bandscan",
+  "cancel station list update"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "065-01 驗證軟鍵按下後的彈出訊息與更新啟動（吸收 4872553/4872554 的兩個具名軟鍵）；065-02 驗證更新內容為跨波段 bandscan 收錄可接收電台（吸收 4872550）；065-03 驗證更新進行中取消類與非取消類事件的判準（吸收 4872571）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872553 and CFTS024-4872554 (the \"New List\" and \"Refresh List\" softkeys update the station list on a single tuner HU with $ANT_TYP$ = [0h or 1h]), CFTS024-4872550 (an initiated Station List function performs a bandscan across all applicable wave bands at the configured sensitivity) and CFTS024-4872571 (the actions that cancel a station list update are held in the CIP Radio tables) are unallocated clauses in the same section elaborating this leaf's manual refresh; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-065",
+   "tc_title": "Refresh softkey starts the update and shows the progress popup",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "HU HMI shall implement a softkey button to manually refresh the station list table. When this softkey button is pressed, HU HMI shall provide popup to indicate the station list update in progress",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a single tuner and the vehicle is configured with $ANT_TYP$ = [0h]\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. The station list screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the softkey buttons offered on the station list screen\n2. Press the softkey that refreshes the station list\n3. Read the HU screen while the update runs\n4. Read the station list once the update completes",
+   "expected_result": "1. A softkey that refreshes the station list table is offered on the station list screen\n2. The station list update starts\n3. A popup indicating that the station list update is in progress is displayed\n4. The popup is no longer displayed and the station list holds the stations receivable at the time of the update",
+   "specification_reference": "CFTS024-4872551; CFTS024-4872553; CFTS024-4872554",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-065",
+   "tc_title": "Station list update scans the applicable wave bands for receivable stations",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "When Station List function is initiated, HU shall perform a bandscan across all applicable wave bands for all receivable stations with the sensitivity specified in the tuner part of the hardware requirement specification of the head unit",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a single tuner and the vehicle is configured with $ANT_TYP$ = [0h]\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. The station list screen is displayed",
+   "input_test_data": "Station A: receivable, at the low end of the applicable FM band plan\nStation B: receivable, at the high end of the applicable FM band plan\nStation C: broadcast at a level below the receiving sensitivity of the head unit",
+   "test_procedure": "1. Set the signal generator to broadcast stations A, B and C\n2. Press the softkey that refreshes the station list\n3. Read the station list once the update completes\n4. Read the frequencies covered by the entries on the list",
+   "expected_result": "1. Stations A and B are receivable and station C is below the receiving sensitivity\n2. The station list update starts\n3. Stations A and B are on the station list and station C is not on it\n4. The entries span the applicable wave band from its low end to its high end, which places the scan across the whole band",
+   "specification_reference": "CFTS024-4872551; CFTS024-4872550",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-065",
+   "tc_title": "Cancel class event ends a station list update in progress",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "HU HMI shall implement a softkey button to manually refresh the station list table\n\n(Events that cancel an update in progress, classified against the CIP Radio tables)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU is equipped with a single tuner and the vehicle is configured with $ANT_TYP$ = [0h]\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. A station list update is running after the refresh softkey was pressed",
+   "input_test_data": "Events for the state \"Refresh Station list button is pressed; HU is currently updating Station List\", from the TA-PTY31 station list cancel worksheet of CIP_Radio_Tables:\nCancel class: DIRECT TUNE, PRESET Save, PRESET Recall / LIST PRESETS, Tune/Scroll Knob Rotate\nContinue class: MUTE/PAUSE, which the worksheet marks as not applicable because the update can continue while it occurs",
+   "test_procedure": "1. Read whether the station list update is running\n2. Request MUTE/PAUSE while the update runs\n3. Read whether the station list update is still running\n4. Repeat the update and open the direct tune entry while it runs\n5. Read whether the station list update is still running",
+   "expected_result": "1. The station list update is running and the progress popup is displayed\n2. The mute or pause request is accepted\n3. The station list update is still running, which leaves the update unaffected by this event class\n4. The direct tune entry is displayed\n5. The station list update is cancelled and the progress popup is no longer displayed",
+   "specification_reference": "CFTS024-4872551; CFTS024-4872571",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

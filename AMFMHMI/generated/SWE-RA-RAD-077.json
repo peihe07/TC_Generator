@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-077",
+ "batch": "Station List",
+ "reasoning": "驗證目標：無 RDS 代碼的電台，其在清單上的名稱由頻率依固定格式轉換而成——小數點前的位數依 100.0 MHz 為界（低於 100.0 MHz 為兩位、高於 99.9 MHz 為三位）、小數點後一位、數字與單位間一個空白、單位為 \"MHz\"。關鍵情境條件：頻率相對於 99.9／100.0 MHz 這個位數切換點的位置。為什麼這樣切：條文以一個明確的數值界線切換格式，驗證對象即該界線，設計方法採邊界值分析；一條 TC 內以界線兩側各一個頻率涵蓋同一驗證目標（格式規則），依 §5.7 不拆分，並在同一條 ER 內逐項核對四個格式細節。刻意略過：名稱在清單排序中的參與由 078 覆蓋；帶 RDS 的電台名稱由 052 的 PS 規則覆蓋。",
+ "keywords": [
+  "station without RDS",
+  "frequency as name",
+  "MHz",
+  "decimal format"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-077",
+   "tc_title": "Station without RDS is named by its formatted frequency",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "The name of a station without RDS code shall be its frequency converted to a name as follows: the frequency shall be converted to a number with two digits before the decimal sign for frequencies below 100.0 MHz; the frequency shall be converted to a number with three digits before the decimal sign for frequencies above 99.9 MHz; there is one digit after the decimal sign; there is one blank between the number and the unit; the unit shall be \"MHz\"",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list screen is displayed",
+   "input_test_data": "Station B1: broadcast on 99.9 MHz with no RDS data, the highest frequency below 100.0 MHz\nStation B2: broadcast on 100.1 MHz with no RDS data, above 99.9 MHz",
+   "test_procedure": "1. Set the signal generator to broadcast stations B1 and B2 without RDS data\n2. Start the station list update from the refresh softkey\n3. Read the name displayed for the entry of station B1\n4. Read the name displayed for the entry of station B2",
+   "expected_result": "1. Stations B1 and B2 are receivable and carry no RDS data\n2. The station list update starts\n3. The entry for station B1 is named \"99.9 MHz\", which holds two digits before the decimal sign, one digit after it, one blank before the unit and the unit \"MHz\"\n4. The entry for station B2 is named \"100.1 MHz\", which holds three digits before the decimal sign and the same decimal, blank and unit format",
+   "specification_reference": "CFTS024-4872566",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

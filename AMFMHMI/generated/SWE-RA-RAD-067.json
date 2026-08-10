@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-067",
+ "batch": "Station List",
+ "reasoning": "驗證目標：HU 提供一個 HMI 畫面，顯示所有可接收電台的清單。關鍵情境條件：可接收電台的集合——畫面內容必須與實際可接收的電台一致，因此測試環境需同時存在可接收與不可接收的電台。為什麼這樣切：一條 TC 覆蓋單一驗證目標（畫面存在且內容為可接收電台清單），依 §5.7 不拆分。依 §8.2.1 與兄弟 leaf 劃界：清單的排序由 068/069/078 覆蓋、欄位內容由 079 覆蓋、長度上限由 072/074 覆蓋、更新機制由 064/065 覆蓋，本 leaf 只驗畫面的提供與其內容範圍。刻意略過：同節未配置條款 4872545（本功能適用於 FM 調諧模式的單／雙調諧器機型）與 4872544（本節要求不適用於 NAFTA 市場的 Refresh Radios）為適用範圍陳述而非可驗證行為，未依 R10-2 吸收，改反映於前置條件的市場與設備設定；4872546（NAFTA 的清單須含 FM HD Radio 電台）與 4872569（配備 HD radio 時 HD 子頻道須列入）屬 HD Radio 範圍，其行為本體在 §1.4，本批 leaves 為類比調諧，未吸收，記為覆蓋缺口送 RD-1。",
+ "keywords": [
+  "station list screen",
+  "receivable stations",
+  "HMI screen"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-067",
+   "tc_title": "Station list screen displays the receivable stations",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "HU shall provide a HMI screen to display the list of all receivable stations",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the station list feature applies\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "Stations A, B and D: receivable on three different frequencies\nStation C: broadcast at a level below the receiving sensitivity of the head unit",
+   "test_procedure": "1. Set the signal generator to broadcast stations A, B, C and D\n2. Open the station list screen on the HU HMI\n3. Read the entries displayed on the screen\n4. Compare the entries with the stations broadcast",
+   "expected_result": "1. Stations A, B and D are receivable and station C is below the receiving sensitivity\n2. The station list screen is displayed\n3. The entries for stations A, B and D are displayed\n4. Every receivable station appears once on the list and station C does not appear",
+   "specification_reference": "CFTS024-4872556",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-069",
+ "batch": "Station List",
+ "reasoning": "驗證目標：HU HMI 允許 station list 表格依 Genre（PTY）排序。關鍵情境條件：清單中至少兩個 genre 且各有電台，並使 genre 順序與名稱順序不一致，否則無法區分是哪一種排序生效。為什麼這樣切：一條 TC 覆蓋單一驗證目標（依 Genre 排序可選且套用後同 genre 的電台相鄰），依 §5.7 不拆分；與 068（依名稱排序）為同一能力的兩個排序鍵，分屬兩個 leaf，只驗其一無法排除「兩個選項都套用同一種排序」的實作（§7），因此本條的 ER 明確要求結果不同於名稱排序。刻意略過：PTY 代碼與 genre 名稱的對應屬 RDS Features 批次（052-063）；037 title 未帶條文末的 HMI 文件指引（相似度 0.813），依 §8.4.2 不吸收外部規則；無 RDS 電台沒有 PTY，其在 genre 排序下的位置不在條文內，未生成。",
+ "keywords": [
+  "station list",
+  "sort by Genre",
+  "PTY"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-069",
+   "tc_title": "Station list is sorted by Genre when that sorting is selected",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "HU HMI shall allow station list table to be sorted by Genre (PTY)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list holds at least four RDS stations covering two program types, arranged so that the two program types interleave when the list is sorted by name\n5. The station list screen is displayed",
+   "input_test_data": "Stations broadcasting program type \"News\": \"Alpha FM\" and \"Mira FM\"\nStations broadcasting program type \"Pop Music\": \"Beta FM\" and \"Nova FM\"",
+   "test_procedure": "1. Select the sorting by station name and read the order of the entries\n2. Select the sorting by Genre on the HU HMI\n3. Read the order of the entries displayed\n4. Read the program type of each entry from the top of the list to the bottom",
+   "expected_result": "1. The entries are ordered by name, which interleaves the two program types\n2. The sorting by Genre is offered and the selection is accepted\n3. The entries are re-ordered and the order differs from the order read in step 1\n4. The entries of one program type are grouped together and the entries of the other program type follow, which places the list in Genre order",
+   "specification_reference": "CFTS024-4872558",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

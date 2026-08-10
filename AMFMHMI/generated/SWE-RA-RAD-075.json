@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-075",
+ "batch": "Station List",
+ "reasoning": "驗證目標：FM station list 收錄所有可接收電台，與該電台是否帶有 program string（PS）或 PI code 無關。關鍵情境條件：電台的 RDS 資料狀態——三個等價類：帶 PS 與 PI、只帶其一、兩者皆無。為什麼這樣切：條文的判準是「與 RDS 資料無關」，一條 TC 內以三個等價類的電台涵蓋同一驗證目標（皆入列），依 §5.7 不拆分；設計方法採等價劃分。依 §8.2.1 與兄弟 leaf 劃界：入列門檻對 RDS 與非 RDS 電台一致這個判準由 076 覆蓋（其驗證對象是門檻的一致性，需以相同接收品質對照），無 RDS 電台的名稱形式由 077 覆蓋，本 leaf 只驗「是否入列」。刻意略過：條文以 program string 稱呼 PS，與同節其他條款的 program service name 用語不一（RD-1 用語一致性項）。",
+ "keywords": [
+  "FM station list",
+  "PS",
+  "PI code",
+  "all available stations"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-075",
+   "tc_title": "Station list includes stations with and without PS or PI",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "The FM station list shall contain all available stations independent of the presence of a program string (PS) or PI code",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The station list screen is displayed",
+   "input_test_data": "Station R1: receivable, broadcasts both a PS name and a PI code\nStation R2: receivable, broadcasts a PI code without a PS name\nStation R3: receivable, broadcasts no RDS data at all",
+   "test_procedure": "1. Set the signal generator to broadcast stations R1, R2 and R3 at comparable reception quality\n2. Start the station list update from the refresh softkey\n3. Read the entries on the station list once the update completes\n4. Read the frequencies covered by the entries",
+   "expected_result": "1. Stations R1, R2 and R3 are receivable\n2. The station list update starts\n3. The station list holds an entry for each of R1, R2 and R3\n4. The frequencies of all three stations are on the list, which leaves no station excluded for missing RDS data",
+   "specification_reference": "CFTS024-4872564",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

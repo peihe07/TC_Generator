@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-080",
+ "batch": "Station List",
+ "reasoning": "驗證目標：station list 畫面同時呈現各電台的 program service name 與一個 Refresh／update Station List 的按鈕——本 leaf 的獨有內容是兩者的並存，即使用者在看到名稱清單的同一個畫面上就能發動更新，不需離開該畫面。關鍵情境條件：畫面上同時存在名稱欄位與更新按鈕，且該按鈕在此畫面可直接操作。為什麼這樣切：一條 TC 覆蓋單一驗證目標（畫面組成），依 §5.7 不拆分。依 §8.2.1 與兄弟 leaf 劃界：按鈕按下後的更新行為與進度彈出訊息由 065 覆蓋、欄位內容由 079 覆蓋，本 leaf 的 ER 因此止於「按鈕存在且可在此畫面發動更新」，不重複驗證更新結果。上游三處條文（4872551、4872568、4872570）對同一畫面分別規範按鈕、欄位與兩者並存，屬近子集重疊，與 Q-AM2 同類，送 RD-1 認知。",
+ "keywords": [
+  "program service name",
+  "Refresh button",
+  "station list screen"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-080",
+   "tc_title": "Station list screen presents names with a refresh control",
+   "test_group": "AMFM",
+   "test_set": "Station List",
+   "test_item": "HU shall present the associated program service name in the station list along with a button to Refresh/update Station List",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the station list feature applies\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. At least two receivable stations broadcast a program service name",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the station list screen on the HU HMI\n2. Read the name displayed for each entry\n3. Read the controls offered on the same screen\n4. Operate the control that refreshes the station list without leaving the screen",
+   "expected_result": "1. The station list screen is displayed\n2. Each entry displays the program service name associated with that station\n3. A control that refreshes the station list is offered on the same screen as the entries\n4. The refresh is accepted from the station list screen, which leaves the entries and the control on one screen",
+   "specification_reference": "CFTS024-4872570",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
