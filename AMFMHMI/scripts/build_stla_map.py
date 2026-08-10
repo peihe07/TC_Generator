@@ -338,6 +338,55 @@ def verify_ids(mapping: dict, paragraphs: dict[int, dict],
     return findings
 
 
+def unallocated_clauses(mapping: dict, sections: list[dict],
+                        paragraphs: dict[int, dict], home_doc: str) -> dict:
+    """Per section: which clause ids no 037 leaf claims (A-AM10, RD-1 Q-AM3).
+
+    R10-2 made absorption a ruled operation with a decision test — unallocated
+    + same section + elaborates the cited clause → absorb and multi-cite;
+    otherwise it is a coverage hole. Both halves need the same input: the list,
+    per section, of what nobody claimed. Producing it by hand per batch is how
+    the Tune batch nearly shipped without wrap-around.
+
+    Only sections the 037 actually uses are reported. A section with no leaf at
+    all is a different question (whole-capability omission) and is counted
+    separately rather than mixed in.
+    """
+    anchors = [s["anchor"] for s in sections]
+    by_num = {s["section"]: s for s in sections}
+
+    def section_of(pid: int) -> str | None:
+        i = bisect.bisect_right(anchors, pid) - 1
+        return sections[i]["section"] if i >= 0 else None
+
+    claimed = {e["stla_id"] for e in mapping.values() if e["doc"] == home_doc}
+    used = {e["section"] for e in mapping.values() if e["section"]}
+
+    out: dict[str, dict] = {}
+    for pid in sorted(paragraphs):
+        sec = section_of(pid)
+        if sec is None or sec not in used:
+            continue
+        meta, text = paragraphs[pid]["metadata"], paragraphs[pid]["text"]
+        kind = ("SFR" if "Subsystem Functional Requirement" in meta
+                else "Description" if "Description" in meta else "other")
+        entry = out.setdefault(sec, {
+            "section_title": by_num[sec]["title"],
+            "claimed": [], "unallocated": []})
+        if pid in claimed:
+            entry["claimed"].append(pid)
+        else:
+            entry["unallocated"].append({
+                "id": pid, "kind": kind,
+                # The scoping tags decide whether a clause is even this ECU's
+                # behaviour; carrying them means the reader classifies without
+                # reopening the docx.
+                "scope": re.sub(r"\s+", " ", meta)[:200],
+                "text": re.sub(r"\s+", " ", text)[:400],
+            })
+    return out
+
+
 def check_batches(mapping: dict, batches_md: Path) -> list[str]:
     """Every leaf in a batch must bracket into one of that batch's sections.
 
@@ -434,6 +483,19 @@ def run(args) -> int:
         print(f"id override   : {o['req_id']} {o['declared']} -> "
               f"{o['corrected']} ({o['ruling']}); agreement "
               f"{o['agreement_declared']} -> {o['agreement_corrected']}")
+    unalloc = unallocated_clauses(mapping, sections, paragraphs, home_doc)
+    (data / "unallocated_clauses.json").write_text(
+        json.dumps(unalloc, ensure_ascii=False, indent=1), encoding="utf-8")
+    n_un = sum(len(v["unallocated"]) for v in unalloc.values())
+    n_sfr = sum(1 for v in unalloc.values() for c in v["unallocated"]
+                if c["kind"] == "SFR")
+    print(f"unallocated   : {n_un} clauses ({n_sfr} SFR) across "
+          f"{len(unalloc)} used sections -> data/unallocated_clauses.json")
+    worst = sorted(unalloc.items(), key=lambda kv: -len(kv[1]["unallocated"]))[:5]
+    for sec, v in worst:
+        print(f"  §{sec:14} {len(v['unallocated']):3} unallocated / "
+              f"{len(v['claimed'])} claimed  {v['section_title'][:40]}")
+
     suspect = verify_ids(mapping, paragraphs)
     if suspect:
         print("\nDECLARED STLA ID DOES NOT MATCH THE CLAUSE (A-AM08 class):",

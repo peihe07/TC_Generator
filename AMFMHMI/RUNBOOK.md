@@ -82,7 +82,8 @@ traceability).
       every build (see below)
 - [x] Pilot generated 2026-08-10: **Tuner Availability (001–002) + Tune
       (025–030) = 8 leaves → 13 TCs**, `generated/SWE-RA-RAD-0*.json`
-- [ ] → Pei review → prompt adjustments recorded here
+- [x] → Pei review 2026-08-10 → **PASS with corrections (R10)**; corrections
+      applied and lint green the same day. Gate closed.
 
 | Leaf | TCs | Split axis | Priority | Design method |
 |---|---|---|---|---|
@@ -109,6 +110,52 @@ files — if the 037 is reissued with a different declared id, or the corrected
 clause no longer matches the leaf better than the declared one, the build
 aborts instead of silently re-pointing a citation. Current run:
 `SWE-RA-RAD-029 4872451 -> 4872457 (R9); agreement 0.036 -> 0.909`.
+
+### R10 corrections applied (2026-08-10)
+
+| Item | Change |
+|---|---|
+| 025-01, 025-02 | multi-cite `CFTS024-4872439; CFTS024-4872440` / `…; CFTS024-4872441`; Remarks cleared |
+| 027-01, 027-02 | multi-cite `CFTS024-4872448; CFTS024-4872449` / `…; CFTS024-4872450`; Remarks cleared |
+| 029 | multi-cite `CFTS024-4872457; CFTS024-4872458`; Remarks rewritten in external language |
+| 026-02, 028-02 | Remarks cleared — the cited clause carries the suppression wording |
+| 001 | step 5 ER softened to `The seek executes` (stop-on-station detail belongs to the Seek leaves) |
+
+**The work order listed three multi-cites; the gate found five.** 025-01 and
+027-01 also absorb a clause — their ER verifies "the tuned frequency is the
+next higher/lower frequency in the band and that station is played", which is
+`4872440` / `4872449`, not the Description clause they cited. Caught by
+`absorption-cite` keying on the ids the `[A-AM10]` marker names rather than on
+a citation count.
+
+Citation separator for multi-cite is `"; "` (most-specific first, §10.7).
+No legacy precedent exists — every Wilson row cites one clause — so this is a
+pilot decision, cheap to change before the Seek batch.
+
+### Phase 3 lint (`scripts/lint_tcs.py`, new 2026-08-10)
+
+```bash
+python AMFMHMI/scripts/lint_tcs.py --feature-dir AMFMHMI --json-report lint_report.json
+```
+
+Exit 0 = clean, 1 = findings. Authorities are read, never hard-coded: Test
+Group and the spec_reference template from `feature.yaml`, the design-method
+vocabulary from the workbook's own `下拉選單`, the legal clause ids from
+`data/stla_to_cfts.json`. Gates: `step-count`, `er-alignment`,
+`trailing-period`, `square-bracket` (source-quoted `$SIGNAL$ = [value]`
+exempt), `er-modal`, `title-modal`, `title-length`, `priority`,
+`design-method`, `test-group`, `test-set`, `spec-reference`,
+`unknown-req-id`, `sibling-distinction`, `distinguishing-axis`, `reasoning`,
+plus the two R10 gates:
+
+- **`absorption-cite` (R10-2a)** — every clause id an `[A-AM10]` assumption
+  names must be cited by some TC under that leaf, and a multi-cite must be
+  explained by such an assumption
+- **`remarks-internal` (R10-4)** — Remarks must not contain `R\d` / `A-AM\d\d`
+  internal identifiers; `R1L`, the program name, is deliberately not matched
+
+`tests/test_amfm_lint_tcs.py` mutates one field per gate and asserts it fires,
+plus an integration test pinning the shipped pilot at 13 TCs clean.
 
 ### Review points this pilot deliberately raises
 

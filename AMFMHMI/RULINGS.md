@@ -165,3 +165,35 @@ vs 0.036 against its declared 4872451), minus exactly the VR wording the
   an upstream id-tail typo; goes to RD-1 (Q-AM2)
 - pipeline: `build_stla_map.py` needs a declared-id override entry for
   029 (Claude Code side) so the map and batch context resolve to 4872457
+
+## R10 — Pilot gate rulings (Pei, 2026-08-10)
+
+**Ruling (verbatim): 「都走你建議的」** — all four pilot-gate points adopt
+the recommended dispositions:
+
+1. **Config-gate design method = EP** (001/002 and generalized): leaves
+   that pairwise/groupwise cover a configuration parameter's value classes
+   are Equivalence Partitioning, not Functional. Applies corpus-wide
+   (e.g. 064 dual-tuner, 066 `$ANT_TYP$`, 081–085 market config).
+   Profile §3.3 amended.
+2. **A-AM10 absorption kept, two hard conditions**: (a) every absorbed
+   clause id enters `specification_reference` (dual/multi cite per §10.7)
+   — 025-02, 027-02, 029 to be fixed; (b) RD-1 Q-AM3 notifies upstream of
+   the full unallocated-clause set. Decision test added to Profile §4:
+   unallocated + same spec section + elaborates the leaf's cited clause →
+   absorb with `[A-AM10]` marker + multi-cite; otherwise → coverage hole
+   in reasoning + RD-1.
+3. **Suppression branch = independent TC** (026-02/028-02 confirmed, and
+   generalized): an "only if X" clause with reachable ¬X yields its own
+   suppression TC (different trigger state; §5.2 forbids in-procedure
+   branching; §7/§8.3 independent partial failures). Profile §4 amended.
+4. **Remarks: external language only**: signed upstream-correction notes
+   are allowed in Remarks, phrased for external readers, never internal
+   ruling ids. 029's remark rewritten; 025-02/027-02 remarks superseded by
+   the (2a) multi-cite; 026-02/028-02 A-AM09 remarks dropped (the cited
+   clause itself carries the wording — nothing to explain externally).
+   Profile §3.6 amended.
+
+Review notes (classification: note, not defect): 001 step 5 ER softened to
+"the seek executes" (seek stop-on-station detail owned by Seek leaves);
+A-AM11 formally registered.

@@ -13,6 +13,7 @@ lint_report.json
 data/stla_to_cfts.json
 data/exemplars.json
 data/stla_id_suspects.json
+data/unallocated_clauses.json
 
 # data/stla_to_cfts.tsv IS tracked on purpose (Home's spec_id_to_outline.tsv
 # plays the same role): it is the traceability lookup every spec_reference is

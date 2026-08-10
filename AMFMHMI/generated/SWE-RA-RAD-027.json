@@ -28,7 +28,7 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Tune Down\" on the Radio Playing page\n3. Read the tuned frequency and listen to the audio output after the tune completes",
    "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The tune request is accepted\n3. The tuned frequency is the next lower frequency in the current wave band relative to the frequency recorded in step 1, and that station is played",
-   "specification_reference": "CFTS024-4872448",
+   "specification_reference": "CFTS024-4872448; CFTS024-4872449",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
@@ -43,10 +43,10 @@
    "input_test_data": "NA",
    "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Tune Down\" on the Radio Playing page\n3. Read the tuned frequency and listen to the audio output after the tune completes",
    "expected_result": "1. The lowest frequency of the current wave band is displayed on the Radio Playing page\n2. The tune request is accepted\n3. The tuned frequency wraps around to the highest frequency in the current wave band, and that station is played",
-   "specification_reference": "CFTS024-4872448",
+   "specification_reference": "CFTS024-4872448; CFTS024-4872450",
    "priority": "P1",
    "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
-   "remarks": "Wrap-around behaviour sourced from CFTS024-4872450 (A-AM10)"
+   "remarks": ""
   }
  ]
 }

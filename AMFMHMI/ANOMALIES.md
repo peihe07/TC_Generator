@@ -238,56 +238,63 @@ copy errors; they stay PENDING for per-pair review at their batches.
     batch context carries the full clause text
   - (029) → **R9**: id-tail typo, spec_reference = `CFTS024-4872457`
 
-## [A-AM10] The 037 leaves only a minority of the CFTS clauses — PENDING
+## [A-AM10] CFTS clauses allocated to no leaf, absorbed by rule — RESOLVED-BY-RULE (R10-2, 2026-08-10)
 
-Found while building the pilot context. Inside the 20 CFTS024 sections the
-037 actually uses, the document holds **180 clauses; 85 are claimed by a
-leaf and 95 are not**. Of the 95 unclaimed, 91 are `Subsystem Functional
-Requirement` (the rest are `Description`), and they split three ways:
+- The 037-A03 allocates leaves against CFTS Description clauses but leaves
+  some same-section Subsystem Functional Requirements unallocated. Known
+  absorptions from the pilot (Tune, §1.3.4–1.3.6): `4872440`/`4872441`
+  → leaf 025; `4872449`/`4872450` → leaf 027; `4872458` → leaf 029.
+- **Full-corpus sweep done (2026-08-10)**: `build_stla_map.py` now emits
+  `data/unallocated_clauses.json` — per used section, the claimed ids and
+  every unallocated one with its `[Artifact Type:…] [ECU:…] [Radio:…]`
+  scope tags and text, so a clause can be classified without reopening the
+  docx. **95 unallocated clauses (91 SFR, 4 Description) across the 20
+  sections the 037 uses.** This is the Q-AM3 attachment.
 
-| class | n | example |
-|---|---|---|
-| behavioural | 35 | `4872441` wrap-around at the band upper end; `4872386` seek reaching the band end; `4872398` seek long-press |
-| signal status | 32 | `TGW_Src_Cab_Stat = [8h: MD_TUNE]` / `[1h: MD_PLAY]` update clauses |
-| other-ECU / `noSys` | 24 | `[ECU:ETM]`, `[Radio:noSys]`-scoped clauses |
+  | § | unallocated | claimed | section |
+  |---|---|---|---|
+  | 1.3.2 | 12 | 5 | Seek Down |
+  | 1.3.1 | 11 | 6 | Seek Up |
+  | 1.3.14 | 11 | 17 | Station List |
+  | 1.3.13.1 | 10 | 3 | Traffic Announcements (TA) & PTY 31 |
+  | 1.12.2.2.1 | 9 | 4 | Head unit Radio Configuration |
+  | 1.3.4 / 1.3.5 / 1.3.6 | 6 / 6 / 5 | 2 / 2 / 2 | Tune Up / Down / Direct Number Input |
+  | 1.3.13 | 5 | 8 | RDS/RBDS Features |
+  | 1.3.3.2 | 4 | 1 | Browse Category- Genre |
+  | 1.3.7 | 4 | 4 | Preset Select/Recall |
+  | 1.3.8, 1.3.10, 1.3.11, 1.3.13.2 | 2 each | 5 / 3 / 3 / 1 | — |
+  | 1.3, 1.3.3, 1.3.3.1, 1.12.1.3.1.5 | 1 each | 2 / 5 / 5 / 1 | — |
+  | 1.3.12 | 0 | 6 | Enter or Item Select |
 
-Two different things are tangled here and only one is ours:
+  Two things the distribution says. **Seek is the heaviest batch by
+  absorption load** — §1.3.1 and §1.3.2 together carry 23 unallocated
+  clauses against 11 claimed, so the R10-2 decision test runs more often
+  there than anywhere else; that is where the rule earns or fails. And
+  §1.3.12 at 0 shows the pattern is not uniform, so "the 037 always skips
+  the SFRs" is not the right story to send upstream — the Q-AM3 wording
+  should ask about the allocation policy, not assert a systematic omission.
+- Absorption is not automatic: the ids in the table are candidates for the
+  R10-2 decision test, not a to-do list. Signal-status clauses
+  (`TGW_Src_Cab_Stat`) and `[ECU:ETM]` / `[Radio:noSys]`-scoped clauses are
+  in the count and mostly fail the "elaborates the leaf's cited clause"
+  half of the test.
+- **Ruling R10-2**: absorption is legitimate iff (a) same spec section and
+  (b) the clause elaborates the leaf's cited clause. On absorption:
+  `[A-AM10]` marker in assumptions AND the absorbed id in
+  `specification_reference` (multi-cite). Failing the test → coverage hole
+  in reasoning + RD-1. Upstream notified via RD-1 Q-AM3 for
+  acknowledgement or reallocation.
 
-1. **Elaborating clauses.** Most of the behavioural 35 sit in the same
-   section as a leaf and elaborate it — §1.3.4's `4872440` (increment to the
-   next higher frequency and play) and `4872441` (wrap-around) elaborate leaf
-   025's Description clause. Profile §4 already rules wrap-around a *boundary
-   TC, not a separate feature*, so these are folded into the leaf they
-   elaborate. The pilot does exactly that: 025-02 and 027-02 are the
-   wrap-around TCs, and each cites its source clause in Remarks.
-   **Without the fold-in the pilot would have under-verified its own leaves**
-   — the 037 Description clause alone says only "will tune to the new Station
-   and Play that Station".
-2. **Possibly uncovered behaviour.** The remainder may be behaviour no leaf
-   reaches at all. Our coverage target is the 037's 102 leaves (R1), so this
-   is an upstream RD-completeness question, not a gap in this deliverable —
-   but it is the question an assessor asks when the CFTS has 91 SFRs and the
-   037 claims 70.
+## [A-AM11] Rate-to-frequency-step mapping undefined — PENDING (upstream definition)
 
-Proposed: keep the fold-in rule for every batch (it is already Profile §4 for
-wrap-around; the pilot generalises it to "unallocated clauses in the leaf's
-own section that elaborate it"), and classify the residue per batch as each
-one is built rather than in one pass. RD-1 candidate once the classification
-across all 20 sections exists. **No leaf is blocked.**
-
-## [A-AM11] `$ICS_KNOB2_VAL$` rate has no defined mapping to frequency steps — PENDING
-
-- `CFTS024-4872442` / `-4872451` require the HU to increment/decrement "based
-  on the rate recieved in the `$ICS_KNOB2_VAL$` signal value", with the range
-  given as `[1 to 63]`. Neither clause, nor §1.3.4/§1.3.5, states how a rate
-  value maps to a number of frequency steps.
-- Consequence for testing: an ER asserting "63 increments the frequency by 63
-  steps" would be invented. Pilot TCs 026-01 / 028-01 instead assert the
-  relation the spec does support — the frequency moves by the number of steps
-  corresponding to the rate, and rate 63 moves further than rate 1.
-- Proposed: RD-1 question, or confirmation that the mapping lives in an ICS /
-  hard-controls document (the Hard Controls HMI L&F deck is identified in
-  DATA_REQUESTS row 5). Not blocking — the current ER is verifiable as written.
+- CFTS024 `4872442` / `4872451` require the HU to increment/decrement
+  "based on the rate recieved in the $ICS_KNOB2_VAL$ signal value"
+  ([1 to 63]) but define no mapping from rate value to frequency steps.
+- Generation (leaves 026/028) asserts a monotonic relation in ER (63 moves
+  further than 1) rather than fabricating a step count (§8.4.1).
+- Candidate RD-1 if a testable mapping is wanted; otherwise the monotonic
+  assertion is the strongest spec-sourced check available. Marker
+  `[A-AM11]` on affected TCs.
 
 ## [A-AM12] "Intelligent entry" is undefined beyond its two dependencies — PENDING
 
@@ -306,4 +313,5 @@ across all 20 sections exists. **No leaf is blocked.**
 
 ## Assumption markers
 
-None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-AMnn]`.
+None registered beyond the above. Inline format in generated JSON
+reasoning/assumptions: `[ASSUMPTION A-AMnn]` or `[A-AMnn]`.

@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-RAD-001",
  "batch": "Tuner Availability",
- "reasoning": "驗證目標：$AM_Presence$ 組態為 [Present] 時，AM_Tuner 與 AM 相關功能確實可用（來源清單可選、選入後可播、AM 功能可執行）。關鍵情境條件：車輛組態 $AM_Presence$ = [Present]，其餘維持預設。為什麼這樣切：單一組態值對應單一可用性結果，一條 TC 足夠；本 leaf 只驗 [Present] 這個等價類，[Absent] 由兄弟 leaf SWE-RA-RAD-002 覆蓋，兩者合起來才是 CFTS 4872375「only ... when」的完整驗證（§8.2.1 窄範圍路線）。刻意略過：AM 各別功能（seek/tune/preset）的行為由 §1.3.1–1.3.8 的各自 leaf 驗證，此處只驗「可用」這一層。",
+ "reasoning": "驗證目標：$AM_Presence$ 組態為 [Present] 時，AM_Tuner 與 AM 相關功能確實可用（來源清單可選、選入後可播、AM 功能可執行）。關鍵情境條件：車輛組態 $AM_Presence$ = [Present]，其餘維持預設。為什麼這樣切：單一組態值對應單一可用性結果，一條 TC 足夠；本 leaf 只驗 [Present] 這個等價類，[Absent] 由兄弟 leaf SWE-RA-RAD-002 覆蓋，兩者合起來才是 CFTS 4872375「only ... when」的完整驗證（§8.2.1 窄範圍路線）。刻意略過：AM 各別功能（seek/tune/preset）的行為由 §1.3.1–1.3.8 的各自 leaf 驗證，此處只驗「可用」這一層；步驟 5 的 ER 因此只確認 seek 有執行，停台行為屬 Seek 集合的 leaves。",
  "keywords": [
   "$AM_Presence$",
   "AM_Tuner",
@@ -24,7 +24,7 @@
    "pre_conditions": "1. The vehicle is configured with $AM_Presence$ = [Present]\n2. An FM/AM signal generator is ready and broadcasting a receivable AM station",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"Media\" button on menu bar\n2. Press \"Source\" tab on Media page\n3. Read the source list displayed on the Source page\n4. Press \"Radio AM\" button on Source page\n5. Request a Seek Up from the AM Radio Playing page",
-   "expected_result": "1. Display Media page\n2. Display Source page\n3. \"Radio AM\" is listed on the Source page and is selectable\n4. Display AM Radio Playing page and the broadcast AM station is played\n5. The seek is executed and the tuner stops on the next available AM station",
+   "expected_result": "1. Display Media page\n2. Display Source page\n3. \"Radio AM\" is listed on the Source page and is selectable\n4. Display AM Radio Playing page and the broadcast AM station is played\n5. The seek executes",
    "specification_reference": "CFTS024-4872375",
    "priority": "P1",
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",
