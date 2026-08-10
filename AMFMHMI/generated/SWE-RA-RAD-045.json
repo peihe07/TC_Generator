@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-045",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：Page Down 請求時，整頁項目被移除，並由來自較低位置的新項目整批取代；以及清單底端的 wrap-around。關鍵情境條件：目前顯示位置在清單中段（一般值）或已在清單底端（邊界值）。為什麼這樣切：與 044 同一處置——依 R10-2 吸收同節未配置的邊界條款 4872503 並多引，以 boundary 為軸拆兩條；兩個方向由 044/045 各自承載，只驗一個方向無法排除「兩個方向翻同一邊」的實作（§7）。刻意略過：分頁粒度由 043 覆蓋；4872503 的 Radio:noSys scope 標記不一致同前，送 RD-1。",
+ "keywords": [
+  "Page Down",
+  "replace all items",
+  "next-lower positions",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "045-01 於清單中段驗證整頁項目替換語意；045-02 於清單底端驗證 wrap-around 至清單頂部（吸收 4872503）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872503 (Page Down at the bottom of the list wraps around to the top) is an unallocated clause in the same section elaborating the boundary of this leaf's cited clause; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-045",
+   "tc_title": "Page Down replaces all displayed items with lower positions",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "When a Page Down function is requested, the all items on the list shall be removed, and the new list items from the next-lower list positions shall replace all previously displayed list items",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on two pages is displayed\n5. The displayed rows start at a position in the middle of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read every displayed item\n2. Read the block of list items held in the next-lower list positions, below the displayed page\n3. Request the Page Down function once\n4. Read every displayed item",
+   "expected_result": "1. A full page of list items is displayed\n2. The block of items in the next-lower list positions is identified\n3. The page request is accepted\n4. The block read in step 2 fills the page and none of the items read in step 1 is displayed",
+   "specification_reference": "CFTS024-4872501",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-045",
+   "tc_title": "Page Down at the bottom of the list wraps to the top",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "If a Page Down is requested and the HU is currently at the bottom of the list, the HU shall wrap-around to the top of the list\n\n(Bottom-of-list boundary)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on two pages is displayed\n5. The last page of the list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the displayed items and confirm the last list item is in the bottom-most position\n2. Read the items held at the start of the list\n3. Request the Page Down function once\n4. Read every displayed item",
+   "expected_result": "1. The last page of the list is displayed\n2. The items at the start of the list are identified\n3. The page request is accepted\n4. The items read in step 2 are displayed, which places the display at the top end of the list",
+   "specification_reference": "CFTS024-4872501; CFTS024-4872503",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

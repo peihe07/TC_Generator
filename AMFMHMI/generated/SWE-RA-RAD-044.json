@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-044",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：Page Up 請求時，整頁項目被移除，並由來自較高位置的新項目整批取代；以及清單頂端的 wrap-around。關鍵情境條件：目前顯示位置在清單中段（一般值）或已在清單頂端（邊界值）。為什麼這樣切：依 R10-2 吸收同節未配置的邊界條款 4872502（Page Up 於清單頂端 wrap-around 至底部）並多引，依 Profile §4 wrap-around 為邊界而非獨立功能，以 boundary 為軸拆兩條（§8.3）。刻意略過：分頁粒度由 043 覆蓋；Page Down 方向由 045 覆蓋；4872502 的 Radio:noSys scope 標記不一致同 041/042，送 RD-1。",
+ "keywords": [
+  "Page Up",
+  "replace all items",
+  "next-higher positions",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "044-01 於清單中段驗證整頁項目替換語意；044-02 於清單頂端驗證 wrap-around 至清單底部（吸收 4872502）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872502 (Page Up at the top of the list wraps around to the bottom) is an unallocated clause in the same section elaborating the boundary of this leaf's cited clause; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-044",
+   "tc_title": "Page Up replaces all displayed items with higher positions",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "When a Page Up function is requested, the all items on the list shall be removed, and the new list items from the next-higher list positions shall replace all previously displayed list items",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on two pages is displayed\n5. The displayed rows start at a position in the middle of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read every displayed item\n2. Read the block of list items held in the next-higher list positions, above the displayed page\n3. Request the Page Up function once\n4. Read every displayed item",
+   "expected_result": "1. A full page of list items is displayed\n2. The block of items in the next-higher list positions is identified\n3. The page request is accepted\n4. The block read in step 2 fills the page and none of the items read in step 1 is displayed",
+   "specification_reference": "CFTS024-4872500",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-044",
+   "tc_title": "Page Up at the top of the list wraps to the bottom",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "If a Page Up is requested and the HU is currently at the top of the list, the HU shall wrap-around to the bottom of the list\n\n(Top-of-list boundary)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on two pages is displayed\n5. The first page of the list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the displayed items and confirm the first list item is in the top-most position\n2. Read the items held at the end of the list\n3. Request the Page Up function once\n4. Read every displayed item",
+   "expected_result": "1. The first page of the list is displayed\n2. The items at the end of the list are identified\n3. The page request is accepted\n4. The items read in step 2 are displayed, which places the display at the bottom end of the list",
+   "specification_reference": "CFTS024-4872500; CFTS024-4872502",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

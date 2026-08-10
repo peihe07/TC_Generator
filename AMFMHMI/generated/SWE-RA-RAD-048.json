@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-048",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：Genre Seek 的行為比照 Seek Up，但只有符合所選 genre 的電台才算有效——本 leaf 可驗的獨有內容是這個「例外」，即 genre 過濾判準。關鍵情境條件：搜尋路徑上同時存在符合與不符合所選 genre 的可接收電台，兩者缺一則過濾不可觀察（§7）。為什麼這樣切：一條 TC 內以「跳過不符 genre 的電台、停在符合 genre 的電台」兩個必然結果驗證同一觸發，依 §5.7 不拆分；電台是否符合 genre 是搜尋標的的等價劃分，設計方法採等價劃分。條文以 `CFTS024-605` 引用 Seek Up 的行為本體——依 R11 為引用式：token 逐字多引，ER 以引用錨定，不吸收、不驗 Seek Up 自身的規則面（搜尋方向、停止判準、兩輪終止）——那些由 §1.3.1 Seek 批次的 leaves 003-008 覆蓋。刻意略過：Genre Seek 的狀態進入由 047 覆蓋；`CFTS024-605` 為 A-AM15 無法解析的短碼引用，未嘗試對應到 7 位條款 id。",
+ "keywords": [
+  "Genre Seek",
+  "Seek Up",
+  "genre match",
+  "valid station"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-048",
+   "tc_title": "Genre Seek stops only on stations matching the selected genre",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-605 with the exception that only stations matching the selected Genre shall be considered valid",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Above the starting frequency, the first receivable station broadcasts a program type other than the one to be selected, and the second receivable station broadcasts the program type to be selected\n5. The Genre List is displayed",
+   "input_test_data": "Station X: receivable, program type other than the selected genre, on the lower of the two frequencies\nStation Y: receivable, program type equal to the selected genre, on the higher frequency",
+   "test_procedure": "1. Read the starting frequency\n2. Select the program type of station Y from the Genre List for a Genre Seek\n3. Read the frequency the HU stops on\n4. Read the program type of the station received",
+   "expected_result": "1. The starting frequency is displayed\n2. The HU enters the Genre Seek state and searches upward from the starting frequency, as defined by CFTS024-605\n3. The HU stops on the frequency of station Y, and the frequency of station X is passed without stopping\n4. The program type received equals the selected genre, and that station is played",
+   "specification_reference": "CFTS024-4872507; CFTS024-605",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-051",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：HU 顯示 Preset List 時，選取其中一個項目，HU 調諧至該 preset。關鍵情境條件：清單中至少兩個 preset 各存不同電台，使對應關係可觀察（§7）。為什麼這樣切：一條 TC 內以兩個 preset 驗證同一觸發的對應關係，依 §5.7 不拆分。與兄弟 leaf 的關係（依 §8.2.2 不做 TC 側合併）：本 leaf 的驗證對象是 Enter / Item Select 這個清單導覽互動作用在 Preset List 上的結果，022 的對象是 browse presets 畫面上的 short press 觸控事件，034 的對象是 preset 按鍵召回記憶體內容的對應關係——三者觸發路徑不同，維持各自的 leaf。上游三處條文高度相近，屬 Q-AM2 同類的近子集重疊，送 RD-1 認知。刻意略過：preset 的儲存與 PI code 判準由 Presets 批次覆蓋。",
+ "keywords": [
+  "Preset List",
+  "item select",
+  "tune to preset"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-051",
+   "tc_title": "Selecting an item on the Preset List tunes to that preset",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a Preset List, and an item is selected, the HU shall tune to the selected preset",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 1 and preset 3 are set to receivable stations on different frequencies\n5. A Preset List is displayed and the HU is tuned to a frequency held in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency and the items on the Preset List\n2. Select the preset 1 item on the list\n3. Read the tuned frequency\n4. Select the preset 3 item on the list\n5. Read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed and the preset items are displayed with their assignments\n2. The selection of the preset 1 item is accepted\n3. The HU is tuned to the frequency held in preset 1 and that station is played\n4. The selection of the preset 3 item is accepted\n5. The HU is tuned to the frequency held in preset 3 and that station is played",
+   "specification_reference": "CFTS024-4872510",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

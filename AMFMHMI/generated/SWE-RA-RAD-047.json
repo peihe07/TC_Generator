@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-047",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：HU 顯示 Genre List 時，選取其中一項作為 Genre Seek，HU 進入 Genre Seek 狀態。關鍵情境條件：畫面處於 Genre List；選取動作被指定為 Genre Seek。為什麼這樣切：本 leaf 的驗證對象是狀態轉換本身（清單顯示狀態 → Genre Seek 狀態），設計方法採狀態轉換測試；進入狀態後的搜尋行為與 genre 過濾判準由兄弟 leaf 048 覆蓋，Genre Scan 的狀態進入由 049 覆蓋，本 leaf 不重複驗證。一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。刻意略過：Genre List 的內容與可用性由 024（Browse Genre）覆蓋，且該功能在 AM 模式不提供。",
+ "keywords": [
+  "Genre List",
+  "Genre Seek",
+  "state entry"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-047",
+   "tc_title": "Selecting a genre for Genre Seek enters the Genre Seek state",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a Genre List, and an item is selected for a Genre Seek, the HU shall enter the Genre Seek state",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. At least one receivable station broadcasts the program type that will be selected\n5. The Genre List is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the program types displayed on the Genre List\n2. Read the state of the HU Tuner source\n3. Select one program type from the list for a Genre Seek\n4. Read the state of the HU Tuner source",
+   "expected_result": "1. The Genre List is displayed with its program types\n2. The HU Tuner source is not in the Genre Seek state\n3. The selection of the program type is accepted\n4. The HU is in the Genre Seek state for the selected program type",
+   "specification_reference": "CFTS024-4872506",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-043",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：清單顯示中，使用者請求 Page Up 或 Page Down 時，HU 以「一次一頁」的粒度更新顯示。關鍵情境條件：清單項目數多於兩頁，否則分頁粒度與捲動粒度不可區分。為什麼這樣切：本 leaf 的驗證對象是更新粒度（一次一頁，對照 040 的一次一列），兩個方向各一次請求即可觀察，依 §5.7 併為一條 TC；整頁項目替換的確切語意與首末端 wrap-around 由兄弟 leaf 044/045 覆蓋。刻意略過：末頁項目不足一頁時的呈現不在 4872499 文字內，未生成。",
+ "keywords": [
+  "Page Up",
+  "Page Down",
+  "page at a time"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-043",
+   "tc_title": "Page request updates the list one page at a time",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "When a list of items is being displayed and the user selects the Page Up or Page Down function the HU will update the display page of items at a time",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on two pages is displayed\n5. The displayed rows start at a position in the middle of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the items displayed and their order\n2. Request the Page Down function once\n3. Read the items displayed\n4. Request the Page Up function once\n5. Read the items displayed",
+   "expected_result": "1. A full page of list items is displayed\n2. The page request is accepted\n3. A different block of list items is displayed and none of the items from step 1 remains on the page\n4. The page request is accepted\n5. The items displayed in step 1 are displayed again in the same order",
+   "specification_reference": "CFTS024-4872499",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

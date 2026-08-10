@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-042",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：Scroll Down 請求時的項目移動語意——最上方項目被移除、其餘項目上移一個位置、來自下一個較低位置的新項目置於最下方；以及清單底端的 wrap-around。關鍵情境條件：目前顯示位置在清單中段（一般值）或已在清單底端（邊界值）。為什麼這樣切：與 041 同一處置——依 R10-2 吸收同節未配置的邊界條款 4872497（Scroll Down 於清單底端 wrap-around 至頂部）並多引，依 Profile §4 以 boundary 為軸拆兩條；兩個方向由 041/042 兩個 leaf 各自承載，只驗一個方向會讓「兩個方向都往同一邊捲」的實作通過（§7）。刻意略過：捲動粒度由 040 覆蓋；4872497 的 Radio:noSys scope 標記不一致同 041，送 RD-1。",
+ "keywords": [
+  "Scroll Down",
+  "item shift",
+  "bottom-most position",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "042-01 於清單中段驗證項目移除與位移語意；042-02 於清單底端驗證 wrap-around 至清單頂部（吸收 4872497）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872497 (Scroll Down at the bottom of the list wraps around to the top) is an unallocated clause in the same section elaborating the boundary of this leaf's cited clause; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-042",
+   "tc_title": "Scroll Down shifts items up and adds the next lower item",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "When a Scroll Down function is requested, the top-most item on the list shall be removed, other items on the list shifted up by one position, and the new list item from the next-lower list position shall be placed in the bottom-most position",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on one page is displayed\n5. The displayed rows start at a position in the middle of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read every displayed item and note the top-most and bottom-most ones\n2. Read the list item held in the next-lower list position, below the displayed page\n3. Request the Scroll Down function once\n4. Read every displayed item and their positions",
+   "expected_result": "1. A full page of list items is displayed\n2. The item in the next-lower list position is identified\n3. The scroll request is accepted\n4. The item read in step 2 occupies the bottom-most position, the items from step 1 each moved up by one position, and the item that was top-most is no longer displayed",
+   "specification_reference": "CFTS024-4872495",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-042",
+   "tc_title": "Scroll Down at the bottom of the list wraps to the top",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "If a Scroll Down is requested and the HU is currently at the bottom of the list, the HU shall wrap-around to the top of the list\n\n(Bottom-of-list boundary)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on one page is displayed\n5. The last item of the list is displayed in the bottom-most position",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the displayed items and confirm the last list item is in the bottom-most position\n2. Read the first item of the list\n3. Request the Scroll Down function once\n4. Read the displayed items and their positions",
+   "expected_result": "1. The bottom of the list is displayed\n2. The first item of the list is identified\n3. The scroll request is accepted\n4. The first item of the list is displayed and the list continues from the top end",
+   "specification_reference": "CFTS024-4872495; CFTS024-4872497",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

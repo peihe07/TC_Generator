@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-041",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：Scroll Up 請求時的項目移動語意——最下方項目被移除、其餘項目下移一個位置、來自下一個較高位置的新項目置於最上方；以及清單頂端的 wrap-around。關鍵情境條件：目前顯示位置在清單中段（一般值）或已在清單頂端（邊界值）。為什麼這樣切：依 R10-2 決策測試，同節未配置條款 4872496（Scroll Up 於清單頂端時 wrap-around 至底部）是本 leaf 所引條款在邊界上的細化，且依 Profile §4「wrap-around 屬 boundary TC 而非獨立功能」，予以吸收並多引，拆為一般值與邊界值兩條 TC（§8.3）。與 Browse 批次未吸收 4872436/4872437 的差別在於：那兩條引入 ECU:RRM 限定的新功能，本條只是本 leaf 既有功能的邊界，ECU 標記為 ALL、EE Architecture 標記即本專案的 Atlantis High。刻意略過：4872496 的 scope 標記 Radio:noSys 與同批已配置條款的 CTS1_2/allSys 不一致，屬上游 scope 標記衛生問題，送 RD-1，不影響本處置。捲動粒度由 040 覆蓋，Scroll Down 方向由 042 覆蓋。",
+ "keywords": [
+  "Scroll Up",
+  "item shift",
+  "top-most position",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "041-01 於清單中段驗證項目移除與位移語意；041-02 於清單頂端驗證 wrap-around 至清單底部（吸收 4872496）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872496 (Scroll Up at the top of the list wraps around to the bottom) is an unallocated clause in the same section elaborating the boundary of this leaf's cited clause; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-041",
+   "tc_title": "Scroll Up shifts items down and adds the next higher item",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "When a Scroll Up function is requested, the bottom-most item on the list shall be removed, other items on the list shifted down by one position, and the new list item from the next-higher list position shall be placed in the top-most position",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on one page is displayed\n5. The displayed rows start at a position in the middle of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read every displayed item and note the top-most and bottom-most ones\n2. Read the list item held in the next-higher list position, above the displayed page\n3. Request the Scroll Up function once\n4. Read every displayed item and their positions",
+   "expected_result": "1. A full page of list items is displayed\n2. The item in the next-higher list position is identified\n3. The scroll request is accepted\n4. The item read in step 2 occupies the top-most position, the items from step 1 each moved down by one position, and the item that was bottom-most is no longer displayed",
+   "specification_reference": "CFTS024-4872494",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-041",
+   "tc_title": "Scroll Up at the top of the list wraps to the bottom",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "If a Scroll Up is requested and the HU is currently at the top of the list, the HU shall wrap-around to the bottom of the list\n\n(Top-of-list boundary)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding more items than fit on one page is displayed\n5. The first item of the list is displayed in the top-most position",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the displayed items and confirm the first list item is in the top-most position\n2. Read the last item of the list\n3. Request the Scroll Up function once\n4. Read the displayed items and their positions",
+   "expected_result": "1. The top of the list is displayed\n2. The last item of the list is identified\n3. The scroll request is accepted\n4. The last item of the list is displayed and the list continues from the bottom end",
+   "specification_reference": "CFTS024-4872494; CFTS024-4872496",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

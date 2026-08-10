@@ -183,8 +183,9 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 - [x] **Browse** (014–024, 11 leaves → 17 TCs), 2026-08-10, lint green —
       first batch under R11 cite-form (014-02)
 - [x] **Presets** (031–039, 9 leaves → 13 TCs), 2026-08-10, lint green
-- [ ] List Navigation · RDS Features · Station List ·
-      Market Configuration · Engineering Mode · Diagnostics
+- [x] **List Navigation** (040–051, 12 leaves → 16 TCs), 2026-08-10, lint green
+- [ ] RDS Features · Station List · Market Configuration ·
+      Engineering Mode · Diagnostics
 - [ ] write-back invariants pass
 
 | Batch | Leaves | TCs | P0/P1/P2/P3 | Design methods |
@@ -193,6 +194,7 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 | Seek | 11 | 22 | 0/19/3/0 | Decision Table 8, State Transition 5, Functional 4, BVA 4, EP 1 |
 | Browse | 11 | 17 | 0/15/2/0 | Functional 8, EP 8, BVA 1 |
 | Presets | 9 | 13 | 0/13/0/0 | Functional 7, BVA 3, EP 2, Decision Table 1 |
+| List Navigation | 12 | 16 | 0/16/0/0 | Functional 9, BVA 4, State Transition 2, EP 1 |
 
 ### Spec tables are injected, not summarised
 
@@ -245,6 +247,35 @@ Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
 `CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
 trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
 048, `CFTS024-707` → 057.
+
+### List Navigation batch notes
+
+- **Four wrap-around clauses absorbed** (`4872496`/`4872497` scroll,
+  `4872502`/`4872503` page), each as the boundary TC of the leaf whose clause
+  it bounds — Profile §4 classifies wrap-around as a boundary, not a function,
+  and the Seek batch set the precedent for the same shape.
+- **The `Radio:noSys` tag was checked, not waved through.** Browse declined to
+  absorb `4872436`/`4872437` partly on that tag, so the disposition here had to
+  be stated as a rule rather than a judgement: those two introduce a *new
+  function* scoped `ECU:RRM`, while these four bound a function this leaf
+  already owns and are scoped `ECU:ALL` with `EE Architecture: Atlantis High`,
+  which is this program. The tag's inconsistency with the allocated clauses'
+  `CTS1_2, allSys` is an upstream scope-hygiene item → RD-1.
+- **048 is the second R11 cite-form TC.** `CFTS024-605` (the Seek Up behaviour
+  Genre Seek inherits) is cited verbatim and anchored in the ER; what 048
+  actually verifies is the clause's *exception* — a station of another genre is
+  passed, a station of the selected genre is stopped on. Seek Up's own rules
+  belong to leaves 003–008.
+- **046 keeps only the menu-navigation branch.** Its clause states two possible
+  outcomes; the "act upon the item" branch is owned concretely by 047, 049, 050
+  and 051, so verifying both here would duplicate four siblings (§8.2.1).
+- **051 vs 022 vs 034 is a three-way near-duplicate upstream** (Enter on a
+  Preset List / short press in browse presets / preset button recall). Carve
+  kept per R12-1: different trigger paths, so no TC-side consolidation
+  (§8.2.2). Recorded for RD-1 as the same class as Q-AM2.
+- **Concrete list used throughout §1.3.10–1.3.11**: the clauses are written for
+  "a list of items" in the abstract, so the Tuner Station List is named in the
+  pre-conditions to make the steps executable without inventing a list.
 
 ### Presets batch notes
 

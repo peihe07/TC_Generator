@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-050",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：HU 顯示 Tuner Station List 時，選取其中一個項目，HU 調諧至該電台。關鍵情境條件：清單中至少兩個不同電台——對應關係唯有在兩個項目之間才可觀察，只選一項無法排除「總是調諧至同一台」的實作（§7）。為什麼這樣切：一條 TC 內以兩個項目驗證同一觸發的對應關係，依 §5.7 屬同一驗證目標。刻意略過：Tuner Station List 的建立、排序與更新屬 §1.3.14（Station List 批次，leaves 064-080），本 leaf 只驗選取後的調諧結果；清單捲動由 040-045 覆蓋。",
+ "keywords": [
+  "Tuner Station List",
+  "item select",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-050",
+   "tc_title": "Selecting an item on the Tuner Station List tunes to it",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a Tuner Station List, and an item is selected, the HU shall tune to the selected station",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. A Tuner Station List holding at least two receivable stations on different frequencies is displayed\n5. The HU is tuned to a frequency that is not the first or the second item of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency and the items on the Tuner Station List\n2. Select the first item on the list\n3. Read the tuned frequency\n4. Select the second item on the list\n5. Read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed and the list items are displayed with their frequencies\n2. The selection of the first item is accepted\n3. The HU is tuned to the frequency of the first list item and that station is played\n4. The selection of the second item is accepted\n5. The HU is tuned to the frequency of the second list item and that station is played",
+   "specification_reference": "CFTS024-4872509",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

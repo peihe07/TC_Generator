@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-046",
+ "batch": "List Navigation",
+ "reasoning": "驗證目標：使用者從顯示中的清單選取項目時，HU 走向兩個結果之一——前往另一個選單項目，或將該項目設為目前被作用的項目。關鍵情境條件：被選取項目的種類決定走哪一個結果。為什麼這樣切：依 §8.2.1 不吸收兄弟 leaf 已擁有的範圍——「設為目前被作用的項目」這一支由 047/049（進入 Genre Seek / Genre Scan 狀態）、050（調諧至選取電台）、051（調諧至選取 preset）四個 leaf 具體覆蓋，本 leaf 只驗另一支「前往另一個選單項目」，以 browse 分類清單選取 Presets 分類、前往 preset 清單為例；兩支若都在此驗證即與四個兄弟 leaf 重複。一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。刻意略過：選單層級的返回行為不在 4872505 文字內，未生成。",
+ "keywords": [
+  "item select",
+  "menu navigation",
+  "list of items"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-046",
+   "tc_title": "Selecting a menu item on a list opens the next menu",
+   "test_group": "AMFM",
+   "test_set": "List Navigation",
+   "test_item": "When the user selects an item from the list of items being diplayed the HU will go to another menu item\n\n(Menu-navigation outcome; the act-upon outcome is covered by the sibling leaves)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. At least one preset is set to a receivable station",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Browse\" on the Radio Playing page\n2. Read the list of browse categories displayed\n3. Select the presets browse category from the list\n4. Read the screen displayed",
+   "expected_result": "1. The browse screen is displayed\n2. The browse categories are displayed as a list of items\n3. The selection of the presets category is accepted\n4. The preset list is displayed in place of the category list, which places the HU on the menu item the selected list item leads to",
+   "specification_reference": "CFTS024-4872505",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
