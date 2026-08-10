@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-RAD-036",
+ "batch": "Presets",
+ "reasoning": "驗證目標：preset 按鍵被持續按住超過兩秒時，HU 觸發 Preset Save 功能。關鍵情境條件：按住時間相對於兩秒門檻的位置。為什麼這樣切：條文給出明確的數值門檻，依 §8.3 以 boundary 為軸拆兩條——門檻上方觸發儲存、門檻下方不觸發儲存；只驗超過兩秒的一側，會讓「任何按壓都儲存」的實作通過測試（§7），而該實作會在使用者每次選台時覆蓋 preset。刻意略過：兩秒以下按壓走 Preset Select 的結果由 033 覆蓋，本 leaf 的 ER 只驗「未觸發儲存」這個本條文的否定面；儲存的內容與非揮發性由 037 覆蓋。",
+ "keywords": [
+  "Preset Save",
+  "press and hold",
+  "two seconds",
+  "threshold"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "036-01 以超過兩秒的按住驗證 Preset Save 被觸發；036-02 以未達兩秒的按住驗證 Preset Save 未被觸發、preset 內容不變"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-036",
+   "tc_title": "Hold beyond two seconds triggers Preset Save",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "HU shall trigger Preset Save function when HU identifies a preset button being pressed and held continously for more than two seconds",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and tuned to a receivable station\n4. Preset 8 is set to a station on a frequency other than the currently tuned one",
+   "input_test_data": "Press and hold duration: 3 seconds",
+   "test_procedure": "1. Read the currently tuned frequency and the content of preset 8\n2. Press and hold the preset 8 button continuously for 3 seconds\n3. Release the preset 8 button\n4. Read the content of preset 8",
+   "expected_result": "1. The tuned frequency is displayed and preset 8 holds its previous station\n2. The Preset Save function is triggered while the button is held\n3. The button release ends the request\n4. Preset 8 holds the frequency tuned in step 1",
+   "specification_reference": "CFTS024-4872475",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-036",
+   "tc_title": "Hold shorter than two seconds does not trigger Preset Save",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "HU shall trigger Preset Save function when HU identifies a preset button being pressed and held continously for more than two seconds\n\n(Below the two second threshold — Preset Save not triggered)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and tuned to a receivable station\n4. Preset 9 is set to a station on a frequency other than the currently tuned one",
+   "input_test_data": "Press and hold duration: 1 second",
+   "test_procedure": "1. Read the currently tuned frequency and the content of preset 9\n2. Press and hold the preset 9 button continuously for 1 second\n3. Release the preset 9 button\n4. Read the content of preset 9",
+   "expected_result": "1. The tuned frequency is displayed and preset 9 holds its previous station\n2. The Preset Save function is not triggered\n3. The button release ends the request\n4. Preset 9 still holds the station it held in step 1, and the frequency tuned in step 1 is not stored to it",
+   "specification_reference": "CFTS024-4872475",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

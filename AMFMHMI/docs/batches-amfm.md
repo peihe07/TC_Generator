@@ -16,7 +16,7 @@ range. The `n` column is cross-checked against the expanded id list.
 | Seek | 1.3.1, 1.3.2 | 11 | 003-013 | CFTS024 §1.3.1 Seek Up / §1.3.2 Seek Down; `[[table:seek_cancel_stop]]` 為 006/007/008/011/012/013 的 cancel-vs-stop 判準來源;`[[table:pi_seek_ordering]]` 為 004 吸收 4872385 的排序規則來源; band split axis (§8.3) |
 | Browse | 1.3.3, 1.3.3.1, 1.3.3.2 | 11 | 014-024 | CFTS024 §1.3.3 + Presets/Genre subsections; 014 的 clause 4872420 引用 `{See CFTS019-718}` (rejection tone) — R11 引用式:多引 `CFTS024-4872420; CFTS019-718`,ER 以 `as defined by CFTS019-718` 錨定,不測 CFTS019 規則面 |
 | Tune | 1.3.4, 1.3.5, 1.3.6 | 6 | 025-030 | CFTS024 §1.3.4-1.3.6; A-AM08 適用 028/029 (共用 4872451) |
-| Presets | 1.3.7, 1.3.8 | 9 | 031-039 | CFTS024 §1.3.7 Select/Recall + §1.3.8 Save; short vs long press |
+| Presets | 1.3.7, 1.3.8 | 9 | 031-039 | CFTS024 §1.3.7 Select/Recall + §1.3.8 Save; short vs long press; `[[table:radio_tuner_configuration]]` 為 039 preset label 的 AF 市場適用性來源 |
 | List Navigation | 1.3.10, 1.3.11, 1.3.12 | 12 | 040-051 | CFTS024 §1.3.10-1.3.12 Scroll / Page / Enter |
 | RDS Features | 1.3.13, 1.3.13.1, 1.3.13.2 | 12 | 052-063 | CFTS024 §1.3.13 + TA/PTY31 + AF subsections |
 | Station List | 1.3.14 | 17 | 064-080 | CFTS024 §1.3.14; largest set, single section |

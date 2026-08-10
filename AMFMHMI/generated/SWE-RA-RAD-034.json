@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-034",
+ "batch": "Presets",
+ "reasoning": "驗證目標：preset 按鍵被選取時，HU 由記憶體召回「該」preset 對應的電台並調諧至該頻率。關鍵情境條件：多個 preset 各存不同電台——對應關係唯有在至少兩個 preset 之間才可觀察，只按一個 preset 無法區分「召回正確對應」與「總是召回同一個」的實作（§7）。為什麼這樣切：一條 TC 內以兩個不同 preset 驗證同一觸發的對應關係，依 §5.7 屬同一驗證目標，不拆分。刻意略過：short press 的觸發識別由 033 覆蓋；非揮發性記憶體的保存由 037 覆蓋；PI code 比對後的召回限制由 038 覆蓋（本 TC 使用不帶 RDS 的可接收電台，避免與 038 的判準重疊）。",
+ "keywords": [
+  "Preset Select",
+  "recall",
+  "memory",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-034",
+   "tc_title": "Each preset recalls its own stored station and frequency",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "When a preset button is selected, the HU shall recall the corresponding preset station from memory, and tune to the new frequency",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 1 is set to a receivable station and preset 4 is set to a different receivable station\n5. The HU is tuned to a third frequency that is stored in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency\n2. Select the preset 1 button\n3. Read the tuned frequency\n4. Select the preset 4 button\n5. Read the tuned frequency",
+   "expected_result": "1. The third frequency is displayed\n2. The station stored in preset 1 is recalled from memory\n3. The HU is tuned to the frequency stored in preset 1 and that station is played\n4. The station stored in preset 4 is recalled from memory\n5. The HU is tuned to the frequency stored in preset 4 and that station is played",
+   "specification_reference": "CFTS024-4872468",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -182,7 +182,8 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 - [x] **Seek** (003–013, 11 leaves → 22 TCs), 2026-08-10, lint green
 - [x] **Browse** (014–024, 11 leaves → 17 TCs), 2026-08-10, lint green —
       first batch under R11 cite-form (014-02)
-- [ ] Presets · List Navigation · RDS Features · Station List ·
+- [x] **Presets** (031–039, 9 leaves → 13 TCs), 2026-08-10, lint green
+- [ ] List Navigation · RDS Features · Station List ·
       Market Configuration · Engineering Mode · Diagnostics
 - [ ] write-back invariants pass
 
@@ -191,6 +192,7 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 | Tuner Availability + Tune (pilot) | 8 | 13 | 0/8/5/0 | Functional 3, EP 4, BVA 4, Decision Table 2 |
 | Seek | 11 | 22 | 0/19/3/0 | Decision Table 8, State Transition 5, Functional 4, BVA 4, EP 1 |
 | Browse | 11 | 17 | 0/15/2/0 | Functional 8, EP 8, BVA 1 |
+| Presets | 9 | 13 | 0/13/0/0 | Functional 7, BVA 3, EP 2, Decision Table 1 |
 
 ### Spec tables are injected, not summarised
 
@@ -243,6 +245,42 @@ Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
 `CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
 trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
 048, `CFTS024-707` → 057.
+
+### Presets batch notes
+
+- **The market configuration table is now an injected spec table.** Leaf 039's
+  clause delegates the AF question to "the tuner configuration worksheet within
+  market configuration table", so `SR24 R1 Market Configuration Table v1.6.xlsx`
+  → `Radio Tuner Configuration` is registered in `spec_tables` and cited from
+  the batch row. That sheet stacks two tables, which needed one new option:
+  `first_row` selects the wanted table's own header (`load_spec_tables` now
+  covered by `tests/test_amfm_batch_context.py`, which the injection mechanism
+  did not have before).
+- **Nine leaves, four overlapping clause families.** §1.3.7 states the same
+  select-and-tune behaviour three times (031 Description, 033 trigger, 034
+  outcome) and §1.3.8 twice (035 Description, 036/037 SFRs). Carve used, per
+  §8.2.1: 031 keeps only what is unique to it (the steering-wheel Preset
+  Advance order and its wrap-around); 033 the trigger identification; 034 the
+  preset→station correspondence, tested across two presets so "always recalls
+  the same one" fails; 035 only the HMI assignment update; 036 the two-second
+  threshold; 037 assignment plus persistence across a power cycle.
+- **036 tests both sides of the threshold.** A hold below two seconds must not
+  save — without the negative side, an implementation that stores on every
+  press passes, and that implementation overwrites a preset each time the user
+  selects one.
+- **037 uses a power cycle as a test step**, the only way to observe
+  non-volatility. `HU is powered on` stays banned as a pre-condition; cycling
+  power inside the procedure is an action, not a setup assumption.
+- **Not absorbed, recorded as coverage holes → RD-1**: `4872469`–`4872472` and
+  `4872479` (TGW / VES `IR1_PST_DSK` signal-status updates) are CAN behaviour
+  rather than HMI behaviour — same disposition as the Seek batch's TGW
+  clauses; `4872480` (associate a new preset with the current driver, "see
+  Memory Seat, Chapter CFTS048-1") delegates to a document that is not in
+  `inputs/`, and the citation is an A-AM15 short id.
+- **031 leaves one branch ungenerated, deliberately**: for "no presets
+  assigned" or "current frequency does not match any preset", the clause says
+  only "follow the behavior defined in HMI" — no observable outcome to write
+  an ER against (§8.4.1).
 
 ### Browse batch notes
 

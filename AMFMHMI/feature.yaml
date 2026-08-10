@@ -36,6 +36,9 @@ paths:
   # Documents CFTS024 clauses cite but that own no 037 leaf. Declared so the
   # cross-reference resolver can rank candidate clauses instead of leaving a
   # cited behaviour (the rejection tone in §1.3.3) with no source at all.
+  # Market/tuner configuration source several CFTS clauses delegate to
+  # (AF applicability per market for the preset label, band plans, step sizes).
+  market_config_table: "inputs/SR24 R1 Market Configuration Table*.xlsx"
   cfts019_doc: "inputs/*CFTS 019_Audio Management*.docx"
   cfts028_doc: "inputs/*CFTS_28 Voice Recognition*.docx"
   sysra_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"
@@ -81,6 +84,14 @@ spec_tables:
     source: "cip_radio_tables"
     sheet: "PI Seek Ordering"
     header_rows: 1
+  # The clause behind leaf 039 delegates to "the tuner configuration worksheet
+  # within market configuration table" for whether AF is supported. That sheet
+  # stacks two tables; `first_row` selects the tuner configuration one.
+  radio_tuner_configuration:
+    source: "market_config_table"
+    sheet: "Radio Tuner Configuration"
+    header_rows: 2
+    first_row: 1
 
 spec_docs:
   primary: "CFTS024"

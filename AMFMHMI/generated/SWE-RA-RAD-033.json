@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-033",
+ "batch": "Presets",
+ "reasoning": "驗證目標：HU 在 preset 按鍵上識別到 short press 事件時觸發 Preset Select 功能。關鍵情境條件：short press 事件本身（時間長度短於 Preset Save 的兩秒門檻）。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果（Select 功能被觸發並可觀察為調諧至該 preset），依 §5.7 不拆分；本 leaf 的驗證對象是觸發識別，被召回電台與 preset 內容的對應關係由兄弟 leaf 034 覆蓋，事件分辨的對照由 032 覆蓋。刻意略過：未設定 preset 上的 short press 結果不在 4872467 文字內，未生成。",
+ "keywords": [
+  "Preset Select",
+  "short press",
+  "preset button"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-033",
+   "tc_title": "Short press on the preset button triggers Preset Select",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "The HU shall trigger Preset Select function when it identifies a short press event on the preset button",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 3 is set to a receivable station whose frequency differs from the currently tuned frequency",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency\n2. Short press the preset 3 button\n3. Read the tuned frequency\n4. Read the content of preset 3",
+   "expected_result": "1. The frequency tuned before the press is displayed\n2. The short press is identified and the Preset Select function starts\n3. The HU is tuned to the frequency stored in preset 3\n4. The content of preset 3 is unchanged by the short press",
+   "specification_reference": "CFTS024-4872467",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-RAD-031",
+ "batch": "Presets",
+ "reasoning": "驗證目標：以方向盤 'Preset Advance' 按鍵請求 Preset Select 時的推進順序——目前頻率確實對應到某個 preset 時，推進到下一個較高編號的 preset，並在最高編號時 wrap-around 回最低編號。關鍵情境條件：目前頻率是否對應到已設定的 preset；目前位置是否在清單最高編號（wrap 邊界）。為什麼這樣切：依 §8.2.1 不吸收兄弟 leaf 已擁有的範圍——HU HMI 選取路徑的「調諧並播放」由 033/034 覆蓋，本 leaf 只驗方向盤路徑特有的推進與 wrap 語意；推進與 wrap 是同一操作的一般值與邊界值，依 §8.3 以 boundary 為軸拆兩條。刻意略過（記為覆蓋缺口）：條文對「無任何 preset 已設定」與「目前頻率不對應任何 preset」兩種情況只寫 'follow the behavior defined in HMI'，未給可觀察結果，依 §8.4.1 不編造 ER，不生成該分支；同節未配置條款 4872469-4872472（TGW_Src_Cab_Stat、TGW_Src1Stat/Src2Stat、IR1/IR2_PST_DSK）描述 CAN 信號更新而非 HMI 行為，與 Seek 批次同類處置，未吸收，送 RD-1。",
+ "keywords": [
+  "Preset Advance",
+  "Steering Wheel Button",
+  "wrap-around",
+  "preset order"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "031-01 由中段 preset 推進，驗證前往下一個較高編號；031-02 由最高編號 preset 推進，驗證 wrap-around 回到最低編號"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-031",
+   "tc_title": "Preset Advance moves to the next higher numbered preset",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Preset using the Steering Wheel 'Preset Advance' button the HU will go to the next higher numbered Preset (if the current frequency does match a preset) and Play that Station",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 1, preset 2 and preset 3 are set to receivable stations on different frequencies\n5. The HU is tuned to the frequency stored in preset 2",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency and the highlighted preset\n2. Press the Steering Wheel \"Preset Advance\" button\n3. Read the tuned frequency and the highlighted preset\n4. Read the audio output",
+   "expected_result": "1. The frequency stored in preset 2 is displayed and preset 2 is indicated as the current preset\n2. The preset advance request is accepted\n3. The frequency stored in preset 3 is displayed and preset 3 is indicated as the current preset\n4. The station stored in preset 3 is played on the Cabin Output Channel",
+   "specification_reference": "CFTS024-4872465",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-031",
+   "tc_title": "Preset Advance wraps from the highest to the lowest preset",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Preset using the Steering Wheel 'Preset Advance' button the HU will go to the next higher numbered Preset with 'wrap-around' from the 'highest numbered preset' to the 'lowest numbered preset' (if the current frequency does match a preset) and Play that Station\n\n(Wrap-around boundary)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Every preset position is set to a receivable station on a different frequency\n5. The HU is tuned to the frequency stored in the highest numbered preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency and the highlighted preset\n2. Press the Steering Wheel \"Preset Advance\" button\n3. Read the tuned frequency and the highlighted preset\n4. Press the Steering Wheel \"Preset Advance\" button again\n5. Read the tuned frequency and the highlighted preset",
+   "expected_result": "1. The frequency stored in the highest numbered preset is displayed and that preset is indicated as the current preset\n2. The preset advance request is accepted\n3. The frequency stored in the lowest numbered preset is displayed, that preset is indicated as the current preset, and that station is played\n4. The preset advance request is accepted\n5. The frequency stored in the second lowest numbered preset is displayed, which confirms the advance continues upward after the wrap",
+   "specification_reference": "CFTS024-4872465",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

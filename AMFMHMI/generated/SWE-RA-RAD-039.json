@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-RAD-039",
+ "batch": "Presets",
+ "reasoning": "驗證目標：preset label 依市場組態的 AF 支援與否顯示不同內容——AF 不支援時顯示頻率，AF 適用時顯示 program service name（PS）。關鍵情境條件：目前市場組態對應的 tuner configuration 是否具備 AF 能力，判準取自市場組態表的 Radio Tuner Configuration 工作表（Tuner with AF Capability / Tuner without AF Capability 兩列）。為什麼這樣切：這是組態參數兩個值類的成對覆蓋，依 R10-1 設計方法為等價劃分，並依 §8.3 以 configuration 為軸拆兩條——只驗其中一側，無法區分「依組態切換」與「永遠顯示同一種標籤」的實作（§7）。刻意略過：AF 功能本身的換頻行為屬 §1.3.13.2（RDS Features 批次），本 leaf 只驗標籤內容隨組態改變；PS name 不可得時的標籤退回行為不在 4872478 文字內，未生成。",
+ "keywords": [
+  "preset label",
+  "AF",
+  "program service name",
+  "market configuration",
+  "tuner configuration"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "configuration",
+  "delta": "039-01 以 AF 不支援的 tuner configuration（如 North America）驗證 preset label 顯示頻率；039-02 以 AF 適用的 tuner configuration（如 Europe，Tuner with AF Capability）驗證 preset label 顯示 PS name"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-039",
+   "tc_title": "Preset label shows the frequency when AF is not supported",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "Preset label shall display frequency if AF feature is not supported for the current market configuration per the tuner configuration worksheet within market configuration table",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with a tuner configuration whose feature set does not include AF, per the Radio Tuner Configuration worksheet\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. Preset 1 is set to a receivable FM station that broadcasts a program service name",
+   "input_test_data": "Tuner configuration: North America, listed under \"Tuner without AF Capability\" feature set in the Radio Tuner Configuration worksheet of the market configuration table",
+   "test_procedure": "1. Read the tuned frequency and the program service name received from the station stored in preset 1\n2. Read the preset 1 label on the HU HMI\n3. Select the preset 1 button\n4. Read the preset 1 label on the HU HMI",
+   "expected_result": "1. The frequency and the program service name of the station are available\n2. The preset 1 label displays the frequency stored in preset 1\n3. The HU is tuned to the station stored in preset 1\n4. The preset 1 label still displays the frequency, and the program service name is not used as the label",
+   "specification_reference": "CFTS024-4872478",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-039",
+   "tc_title": "Preset label shows the program service name when AF applies",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "Preset label shall display program service name (PS) if AF feature is applicable for the current market configuration per the tuner configuration worksheet within market configuration table",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with a tuner configuration whose feature set includes AF, per the Radio Tuner Configuration worksheet\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode\n5. Preset 1 is set to a receivable FM station that broadcasts a program service name",
+   "input_test_data": "Tuner configuration: Europe, listed under \"Tuner with AF Capability\" feature set in the Radio Tuner Configuration worksheet of the market configuration table",
+   "test_procedure": "1. Read the tuned frequency and the program service name received from the station stored in preset 1\n2. Read the preset 1 label on the HU HMI\n3. Select the preset 1 button\n4. Read the preset 1 label on the HU HMI",
+   "expected_result": "1. The frequency and the program service name of the station are available\n2. The preset 1 label displays the program service name of the station stored in preset 1\n3. The HU is tuned to the station stored in preset 1\n4. The preset 1 label still displays the program service name, and the frequency is not used as the label",
+   "specification_reference": "CFTS024-4872478",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

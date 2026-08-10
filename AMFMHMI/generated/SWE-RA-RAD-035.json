@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-035",
+ "batch": "Presets",
+ "reasoning": "驗證目標：使用者經 HU HMI 請求 Save Preset 後，HMI 更新為顯示該 preset 的指派資訊。關鍵情境條件：被指派的 preset 在儲存前後的顯示內容差異——未設定或原本存放其他電台的 preset，才能觀察到指派資訊確實更新。為什麼這樣切：依 §8.2.1 不吸收兄弟 leaf 的範圍——長按觸發條件由 036 覆蓋、指派與非揮發性儲存由 037 覆蓋，本 leaf 只驗條文獨有的「update the HMI to show the Preset assignment information」；一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。刻意略過：preset label 顯示頻率或 PS name 的判準由 039 依市場組態覆蓋，本 TC 的 ER 只驗指派資訊由空白變為已指派，不指定標籤內容形式；同節未配置條款 4872479（IR1/IR2_PST_DSK 信號）為 CAN 信號更新而非 HMI 行為，未吸收，與 4872480（driver profile 關聯，引用未提供的 CFTS048）同送 RD-1。",
+ "keywords": [
+  "Preset Save",
+  "HMI update",
+  "preset assignment"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-035",
+   "tc_title": "HMI shows the preset assignment after a save request",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Save Preset function the HU will store the corresponding Preset Number and the current Tuner Frequency corresponding to that Preset to non-volatile memory and update the HMI to show the Preset assignment information",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and tuned to a receivable station\n4. Preset 7 is not set",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the preset 7 position on the HU HMI\n2. Read the currently tuned frequency\n3. Request the Save Preset function for preset 7 from the HU HMI\n4. Read the preset 7 position on the HU HMI",
+   "expected_result": "1. The preset 7 position is displayed without assignment information\n2. The tuned frequency is displayed\n3. The save request is accepted for preset 7\n4. The preset 7 position displays the assignment information of the station tuned in step 2",
+   "specification_reference": "CFTS024-4872474",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

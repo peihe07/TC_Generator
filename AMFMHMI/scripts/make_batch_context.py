@@ -188,6 +188,16 @@ def load_spec_tables(cfg, root: Path, wanted: list[str]) -> dict:
                 f"{wb.sheetnames}")
         rows = [list(r) for r in wb[sheet].iter_rows(values_only=True)]
         wb.close()
+        # Some worksheets stack several tables (the market configuration sheet
+        # opens with a per-market feature grid, then the tuner configuration
+        # table below it). `first_row` points at the wanted table's own header
+        # instead of forcing a second sheet or a hand-copied extract.
+        first = spec.get("first_row", 0)
+        if first >= len(rows):
+            raise ContextError(
+                f"{path.name}/{sheet}: first_row {first} is past the last row "
+                f"({len(rows)})")
+        rows = rows[first:]
         hdr_rows = spec.get("header_rows", 1)
         banner, header = [], []
         for i in range(hdr_rows):

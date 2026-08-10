@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-RAD-038",
+ "batch": "Presets",
+ "reasoning": "驗證目標：Preset Save 時一併儲存目前電台的 PI code；之後在該 preset 上執行 Select/Recall 時，只調諧到 PI code 相同、播放相同節目內容的電台；若找不到相同的電台，顯示 \"Station Not Found\" 彈出訊息並調諧回該 preset 上次調諧的頻率。關鍵情境條件：召回當下是否存在 PI code 相同的可接收電台。為什麼這樣切：條文的兩個分支觸發狀態不同（相同電台可得／不可得），依 §5.2 不得在同一程序內分支、依 R10-3 拆為獨立 TC；找不到時的彈出訊息與回調頻率是同一觸發的兩個必然結果，依 §5.7 併在同一條 TC 的多條 ER。市場條件依條文的 Market 標記設為 RDS 市場組態（EMEA/LATAM/APAC/Rest of World），北美不在本條適用範圍。刻意略過：AF 換頻的選台規則屬 §1.3.13.2（RDS Features 批次），本 leaf 只驗 PI code 相同性判準；彈出訊息的 popup id 未在本 workbook 的 Pop Up List 對照範圍內，ER 逐字引用條文字串。",
+ "keywords": [
+  "PI code",
+  "PS name",
+  "Preset Select",
+  "Station Not Found",
+  "last tuned frequency"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "038-01 召回時存在 PI code 相同的可接收電台，驗證調諧至該電台；038-02 召回時無 PI code 相同的電台，驗證顯示 \"Station Not Found\" 並調諧回該 preset 上次調諧的頻率"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-038",
+   "tc_title": "Preset recall tunes only to the station with the stored PI code",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "When Preset Save function is triggered, the HU shall also store the PI code of the currently tuned station (PS name) to the requested preset number. When Preset Select/Recall function is initiated on that preset, HU shall only tune to stations with identical PI code, broadcasting same audio content",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where this requirement applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a station broadcasting a known PI code and PS name\n5. Preset 2 is not set",
+   "input_test_data": "Station A: a receivable FM station broadcasting a known PI code and PS name\nStation B: a receivable FM station on another frequency broadcasting a different PI code",
+   "test_procedure": "1. Trigger the Preset Save function for preset 2 while tuned to station A\n2. Read the content of preset 2\n3. Tune the HU to station B\n4. Select the preset 2 button\n5. Read the tuned frequency and the PI code of the received station",
+   "expected_result": "1. The save request is accepted for preset 2\n2. Preset 2 holds station A with its PI code and its station call name\n3. The HU is tuned to station B\n4. The Preset Select function is triggered for preset 2\n5. The HU is tuned to the station whose PI code is identical to the one stored in preset 2, and that station is played",
+   "specification_reference": "CFTS024-4872477",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-038",
+   "tc_title": "Station Not Found popup when no identical PI code is receivable",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "If a Preset Select/Recall funtion is initiated and identical station cannot be found, HU shall then display \"Station Not Found\" popup and tune to the last tuned frequency on that preset\n\n(No station with the stored PI code is receivable)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where this requirement applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a station broadcasting a known PI code and PS name\n5. Preset 2 is not set",
+   "input_test_data": "Station A: a receivable FM station broadcasting a known PI code and PS name\nStation B: a receivable FM station on another frequency broadcasting a different PI code",
+   "test_procedure": "1. Trigger the Preset Save function for preset 2 while tuned to station A and read the frequency stored\n2. Tune the HU to station B\n3. Stop the signal generator from broadcasting station A\n4. Select the preset 2 button\n5. Read the displayed message and the tuned frequency",
+   "expected_result": "1. Preset 2 holds station A with its PI code, and the stored frequency is the frequency of station A\n2. The HU is tuned to station B\n3. No station with the PI code stored in preset 2 is receivable\n4. The Preset Select function is triggered for preset 2\n5. The \"Station Not Found\" popup is displayed and the HU is tuned to the frequency last tuned on preset 2",
+   "specification_reference": "CFTS024-4872477",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

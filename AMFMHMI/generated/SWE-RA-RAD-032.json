@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-RAD-032",
+ "batch": "Presets",
+ "reasoning": "驗證目標：HU 依 preset 按鍵收到的觸控事件信號分辨「選取」與「儲存」——單次按壓走 Preset Select，長按走 Preset Save，且兩者互不觸發。關鍵情境條件：同一個 preset 按鍵上的兩種觸控事件。為什麼這樣切：本 leaf 的驗證對象是「分辨能力」本身，唯有在同一條 TC 內以兩種事件對照才成立——只驗其中一種事件，無法區分「正確分辨」與「兩種事件都做同一件事」的實作（§7）。單一事件各自的觸發條件與結果由兄弟 leaf 033（short press 觸發 Select）、036（長按超過兩秒觸發 Save）、034/037（各自的結果）覆蓋，本 leaf 不重複驗證那些細節。刻意略過：長按時間門檻的邊界值由 036 覆蓋；儲存後的 HMI 更新由 035 覆蓋。",
+ "keywords": [
+  "Preset Select",
+  "Preset Save",
+  "touch event",
+  "short press",
+  "long press"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-032",
+   "tc_title": "Short and long press on a preset trigger different functions",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "Preset Select feature may utilize a single press event while Preset Save feature requires a long press event and HU shall be able to differentiate between selecting and storing a preset based on the touch event signal recieved on the preset button",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Preset 2 is set to a receivable station and preset 5 is set to a different receivable station\n5. The HU is tuned to a receivable station that is stored in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned frequency\n2. Short press the preset 2 button\n3. Read the tuned frequency and the content of preset 2\n4. Press and hold the preset 5 button for more than two seconds\n5. Read the tuned frequency and the content of preset 5",
+   "expected_result": "1. The frequency tuned before the first press is displayed\n2. The short press is identified as a Preset Select request\n3. The HU is tuned to the frequency stored in preset 2, and the content of preset 2 is unchanged\n4. The long press is identified as a Preset Save request\n5. The HU stays tuned to the frequency from step 3, and preset 5 holds that frequency in place of its previous content",
+   "specification_reference": "CFTS024-4872466",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

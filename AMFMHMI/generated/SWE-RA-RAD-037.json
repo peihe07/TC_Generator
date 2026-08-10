@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-037",
+ "batch": "Presets",
+ "reasoning": "驗證目標：Preset Save 被觸發後，HU 將目前調諧的電台指派給被請求的 preset 編號，並將相關值存入非揮發性記憶體。關鍵情境條件：被請求的 preset 編號與其他 preset 的區別（指派是否落在正確編號）；電源循環（非揮發性唯有跨電源循環才可觀察）。為什麼這樣切：一條 TC 覆蓋同一觸發的兩個必然結果——指派到正確編號、且該值在電源循環後仍存在，依 §5.7 屬同一 TC 的多條 ER，不拆分。刻意略過：長按門檻由 036 覆蓋；HMI 指派資訊的更新由 035 覆蓋；PI code 的額外儲存由 038 覆蓋。",
+ "keywords": [
+  "Preset Save",
+  "assign",
+  "non-volatile memory",
+  "preset number"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-037",
+   "tc_title": "Saved preset holds its station across a power cycle",
+   "test_group": "AMFM",
+   "test_set": "Presets",
+   "test_item": "When Preset Save function is triggered, the HU shall assign the currently tuned station to the requested preset number and store the associated values in non-volatile memory",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and tuned to a receivable station\n4. Preset 5 is not set, and the neighbouring presets 4 and 6 are set to other receivable stations",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned frequency and the content of presets 4, 5 and 6\n2. Trigger the Preset Save function for preset 5\n3. Read the content of presets 4, 5 and 6\n4. Cycle the vehicle power off and back on, then select the HU Tuner source on the Cabin Output Channel\n5. Read the content of preset 5",
+   "expected_result": "1. The tuned frequency is displayed, preset 5 holds no station, and presets 4 and 6 hold their own stations\n2. The save request is accepted for preset 5\n3. Preset 5 holds the frequency tuned in step 1, while presets 4 and 6 are unchanged\n4. The HU Tuner source is playing again\n5. Preset 5 still holds the frequency stored in step 2",
+   "specification_reference": "CFTS024-4872476",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
