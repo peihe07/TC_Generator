@@ -25,10 +25,10 @@ section text — the file is not in `inputs/`. They are emitted with the reason
 and the anomaly id, never silently short of context.
 
 Usage:
-    python AMFMHMI/scripts/make_batch_context.py --feature-dir AMFMHMI --list
-    python AMFMHMI/scripts/make_batch_context.py --feature-dir AMFMHMI \\
+    python AMFM/scripts/make_batch_context.py --feature-dir AMFM --list
+    python AMFM/scripts/make_batch_context.py --feature-dir AMFM \\
         --batch "Tuner Availability"
-    python AMFMHMI/scripts/make_batch_context.py --feature-dir AMFMHMI --pilot
+    python AMFM/scripts/make_batch_context.py --feature-dir AMFM --pilot
 """
 from __future__ import annotations
 

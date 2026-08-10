@@ -214,4 +214,4 @@ region covers 0/102 (resolved — R4 freeze); A-AM03 family-overlap evidence
 (resolved-conditional — R5 + RD-1); A-AM05 feature.yaml priors (resolved —
 R3); A-AM06 CFTS011 not in inputs; A-AM07 CFTS004 attribution assumed;
 A-AM08 037-internal duplicate STLA ids + numbering gaps.
-Details and dispositions live in `AMFMHMI/ANOMALIES.md`.
+Details and dispositions live in `AMFM/ANOMALIES.md`.

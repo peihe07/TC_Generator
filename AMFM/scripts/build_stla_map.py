@@ -25,8 +25,8 @@ Outputs (`data/`):
   stla_to_cfts.tsv   the same, greppable, for review
 
 Usage:
-    python AMFMHMI/scripts/build_stla_map.py --feature-dir AMFMHMI
-    python AMFMHMI/scripts/build_stla_map.py --feature-dir AMFMHMI --check-batches
+    python AMFM/scripts/build_stla_map.py --feature-dir AMFM
+    python AMFM/scripts/build_stla_map.py --feature-dir AMFM --check-batches
 """
 from __future__ import annotations
 

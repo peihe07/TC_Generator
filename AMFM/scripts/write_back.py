@@ -30,9 +30,9 @@ reported, never invented), and columns G/H ARE filled on new rows per R7-Q1/Q2,
 unlike Home where the profile bans them.
 
 Usage:
-    python AMFMHMI/scripts/write_back.py --feature-dir AMFMHMI
-    python AMFMHMI/scripts/write_back.py --feature-dir AMFMHMI --init-baseline
-    python AMFMHMI/scripts/write_back.py --feature-dir AMFMHMI --write
+    python AMFM/scripts/write_back.py --feature-dir AMFM
+    python AMFM/scripts/write_back.py --feature-dir AMFM --init-baseline
+    python AMFM/scripts/write_back.py --feature-dir AMFM --write
 
 Exit code 0 = ok, 1 = an invariant failed, 2 = bad invocation.
 """

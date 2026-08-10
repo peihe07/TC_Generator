@@ -29,8 +29,8 @@ deviation must not be learned as style.
 Output: `data/exemplars.json`
 
 Usage:
-    python AMFMHMI/scripts/extract_exemplars.py --feature-dir AMFMHMI
-    python AMFMHMI/scripts/extract_exemplars.py --feature-dir AMFMHMI --per-group 3
+    python AMFM/scripts/extract_exemplars.py --feature-dir AMFM
+    python AMFM/scripts/extract_exemplars.py --feature-dir AMFM --per-group 3
 """
 from __future__ import annotations
 

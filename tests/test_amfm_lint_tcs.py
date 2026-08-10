@@ -1,4 +1,4 @@
-"""Tests for AMFMHMI/scripts/lint_tcs.py.
+"""Tests for AMFM/scripts/lint_tcs.py.
 
 Every gate gets a test that mutates one field and asserts the rule fires. A
 gate that never fires is indistinguishable from a gate that does not exist —
@@ -25,7 +25,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 _spec = importlib.util.spec_from_file_location(
-    "amfm_lint", ROOT / "AMFMHMI" / "scripts" / "lint_tcs.py")
+    "amfm_lint", ROOT / "AMFM" / "scripts" / "lint_tcs.py")
 if _spec is None or _spec.loader is None:
     pytest.skip("AMFM lint_tcs.py not present", allow_module_level=True)
 lint = importlib.util.module_from_spec(_spec)
@@ -203,7 +203,7 @@ def test_the_real_generated_corpus_is_clean(tmp_path):
     The count is asserted as a floor, not an equality: pinning the exact total
     makes every new batch fail a test that is not about the new batch.
     """
-    home = ROOT / "AMFMHMI"
+    home = ROOT / "AMFM"
     if not (home / "data" / "stla_to_cfts.json").exists():
         pytest.skip("AMFM data/ not built")
     if not list((home / "generated").glob("*.json")):

@@ -21,8 +21,8 @@ the failure they catch is invisible in a diff:
 Exit 0 = clean, 1 = at least one finding, 2 = bad invocation.
 
 Usage:
-    python AMFMHMI/scripts/lint_tcs.py --feature-dir AMFMHMI
-    python AMFMHMI/scripts/lint_tcs.py --feature-dir AMFMHMI --json-report lint_report.json
+    python AMFM/scripts/lint_tcs.py --feature-dir AMFM
+    python AMFM/scripts/lint_tcs.py --feature-dir AMFM --json-report lint_report.json
 """
 from __future__ import annotations
 

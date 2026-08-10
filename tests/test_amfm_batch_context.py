@@ -17,7 +17,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 _spec = importlib.util.spec_from_file_location(
-    "amfm_batch_ctx", ROOT / "AMFMHMI" / "scripts" / "make_batch_context.py")
+    "amfm_batch_ctx", ROOT / "AMFM" / "scripts" / "make_batch_context.py")
 if _spec is None or _spec.loader is None:
     pytest.skip("make_batch_context.py not present", allow_module_level=True)
 mbc = importlib.util.module_from_spec(_spec)

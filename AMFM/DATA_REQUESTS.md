@@ -1,7 +1,7 @@
 # DATA REQUESTS — AMFM (FW036)
 
 Files Pei can supply that unblock or upgrade generation. Drop into
-`AMFMHMI/inputs/`; each landing closes or advances the linked anomaly.
+`AMFM/inputs/`; each landing closes or advances the linked anomaly.
 Ordered by when a batch actually needs it. Names are verbatim from the
 citing source where the source gives one; otherwise the expected naming
 pattern is stated and marked (pattern).
@@ -9,7 +9,7 @@ pattern is stated and marked (pattern).
 | # | File — full name | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
 | 1 | **`CIP_Radio_Tables_v6.7.xlsx`** — 已入 `inputs/`（2026-08-10），hash 驗證為 25PI3.5 來源（SHA256 `05e5a1f2…`），與 CFTS024 基線同 release。四 release 內容有差（Default ROW Market Presets、Weather Icons），提醒：若日後基線升版，CIP 要同步換同 release 那份。已驗工作表：`SEEK Cancel_Stop Transitions`、`PI Seek Ordering`、`TA-PTY31 station list cancel e`、Preset Defaults | ✅ 已入 `inputs/` | 005, 006, 010, 011 (+context) | Seek 批 State Transition 狀態列 | A-AM09 | — |
-| 1b | **`SR24 R1 Market Configuration Table v1.6.xlsx`** — 已定位：`…/25PI3.5/Reference Docs/ECU Specific Reference Documents/`（四 release 均 v1.6，位元層未驗）。已驗工作表：`Radio Tuner Configuration`、`R1 Tuner Layout`、`Market Config - R1` | ⚠️ 已定位 — **尚未複製入 `inputs/`**（2026-08-10 盤點缺席） | 081–085 (5) | Market Configuration 批需求內容 | A-AM09 | **Market Configuration 批前** |
+| 1b | **`SR24 R1 Market Configuration Table v1.6.xlsx`** — 已入 `inputs/`（273 KiB / 279,779 bytes；SHA256 `ae4cf0b9…`）。**位元層補驗結果（2026-08-10）：四個 release 都標 v1.6，但四份檔案內容全不同** — 25PI3.5 `ae4cf0b9…`／25PI4.5 `9efae74f…`／26PI1.5 `2e66a6d9…`／26PI2.5 `7e865d55…`。`inputs/` 這份對到 **25PI3.5**，與 CFTS024 基線同 release，正確。版本標籤無法識別內容，升版時必須以 hash 對齊而非檔名（與第 1 列 CIP_Radio_Tables 同一類上游缺陷，兩者合併成一條 RD-1 項目）。已驗工作表：`Radio Tuner Configuration`（039/081/083/085 取值來源，已注入 batch context）、`R1 Tuner Layout`、`Market Config - R1` | ✅ 已入 `inputs/` | 081–085 (5) | Market Configuration 批已生成（6 TCs） | A-AM09 | — |
 | 2 | CFTS004 General Diagnostic Requirements — ✅ 已入 `inputs/`（2026-08-10）：`R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_004_General Diagnostic Requirements_SR26_20250909-1658.docx`（SYS3 引的是較新的 `26PI1.5 Mar Release 20260310`；id 全對得上，Diagnostics 批逐條核對，有 delta 再要 Mar 版） | ✅ 已入 `inputs/` | 097–104 (8) | Diagnostics 批 | A-AM07 RESOLVED | — |
 | 2b | 逐需求附件 `4874050- 4595376- CFTSMV024_CIP_R3_O1965_Excel_Document.xls`（DTC 定義表）；其餘 O 附件在 `…/Reference Docs/CFTS024/`（已全數驗明：9 件天線 DTC 表 + 2 件交通圖示表 + 1 件內嵌註記） | ⚠️ 尚未入 `inputs/` | Diagnostics 批 context | DTC 細節 | A-AM07 | Low — Diagnostics 批前 |
 | 3 | CFTS011 — ✅ 已入 `inputs/`（2026-08-10）：`R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_011_Radio Engineering Mode_SR26_20250909-1658.docx` | ✅ 已入 `inputs/` | 087, 089–096 (9) | Engineering Mode 批 | A-AM06 RESOLVED | — |

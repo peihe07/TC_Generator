@@ -1,5 +1,10 @@
 # FW036 AMFM HMI — TC Generation Runbook
 
+> **2026-08-10: directory renamed `AMFMHMI` → `AMFM`.** Commands and path
+> pointers below are updated; the dated records in RULINGS / DECISIONS /
+> ANOMALIES / RECON keep the old name because they record what was true when
+> they were written.
+
 Process canon: `docs/fw036/FEATURE_ONBOARDING.md` (authority for phases,
 decision tiers, workbook_state strategies). This runbook records only what
 is specific to AMFM.
@@ -32,10 +37,10 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 ## Phase 4 — Data build (Tier 1) — DONE 2026-08-09
 
 ```bash
-python AMFMHMI/scripts/build_stla_map.py --feature-dir AMFMHMI --check-batches
-python AMFMHMI/scripts/extract_exemplars.py --feature-dir AMFMHMI
-python AMFMHMI/scripts/make_batch_context.py --feature-dir AMFMHMI --pilot
-python AMFMHMI/scripts/make_batch_context.py --feature-dir AMFMHMI --batch "<name>"
+python AMFM/scripts/build_stla_map.py --feature-dir AMFM --check-batches
+python AMFM/scripts/extract_exemplars.py --feature-dir AMFM
+python AMFM/scripts/make_batch_context.py --feature-dir AMFM --pilot
+python AMFM/scripts/make_batch_context.py --feature-dir AMFM --batch "<name>"
 ```
 
 - [x] `data/stla_to_cfts.{json,tsv}` — the bracket map, now a script product
@@ -135,7 +140,7 @@ pilot decision, cheap to change before the Seek batch.
 ### Phase 3 lint (`scripts/lint_tcs.py`, new 2026-08-10)
 
 ```bash
-python AMFMHMI/scripts/lint_tcs.py --feature-dir AMFMHMI --json-report lint_report.json
+python AMFM/scripts/lint_tcs.py --feature-dir AMFM --json-report lint_report.json
 ```
 
 Exit 0 = clean, 1 = findings. Authorities are read, never hard-coded: Test
