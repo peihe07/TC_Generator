@@ -13,7 +13,7 @@ range. The `n` column is cross-checked against the expanded id list.
 | Batch / Test Set | CFTS sections | n | Leaf ids | Context 注入來源 |
 |---|---|---|---|---|
 | Tuner Availability | 1.3 | 2 | 001-002 | CFTS024 §1.3 HU Analog Tuner (AM presence gate); SYSAD AMFM_RADIO_APP |
-| Seek | 1.3.1, 1.3.2 | 11 | 003-013 | CFTS024 §1.3.1 Seek Up / §1.3.2 Seek Down; band split axis (§8.3) |
+| Seek | 1.3.1, 1.3.2 | 11 | 003-013 | CFTS024 §1.3.1 Seek Up / §1.3.2 Seek Down; `[[table:seek_cancel_stop]]` 為 006/007/008/011/012/013 的 cancel-vs-stop 判準來源;`[[table:pi_seek_ordering]]` 為 004 吸收 4872385 的排序規則來源; band split axis (§8.3) |
 | Browse | 1.3.3, 1.3.3.1, 1.3.3.2 | 11 | 014-024 | CFTS024 §1.3.3 + Presets/Genre subsections |
 | Tune | 1.3.4, 1.3.5, 1.3.6 | 6 | 025-030 | CFTS024 §1.3.4-1.3.6; A-AM08 適用 028/029 (共用 4872451) |
 | Presets | 1.3.7, 1.3.8 | 9 | 031-039 | CFTS024 §1.3.7 Select/Recall + §1.3.8 Save; short vs long press |

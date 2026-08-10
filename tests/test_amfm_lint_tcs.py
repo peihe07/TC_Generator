@@ -196,8 +196,12 @@ def test_the_program_name_r1l_does_not_trip_the_internal_id_pattern():
 
 # --------------------------------------------------------------- integration
 
-def test_the_real_pilot_output_is_clean(tmp_path, capsys):
-    """The shipped pilot must stay green as the gates grow."""
+def test_the_real_generated_corpus_is_clean(tmp_path):
+    """Everything generated so far must stay green as gates and batches grow.
+
+    The count is asserted as a floor, not an equality: pinning the exact total
+    makes every new batch fail a test that is not about the new batch.
+    """
     home = ROOT / "AMFMHMI"
     if not (home / "data" / "stla_to_cfts.json").exists():
         pytest.skip("AMFM data/ not built")
@@ -209,4 +213,4 @@ def test_the_real_pilot_output_is_clean(tmp_path, capsys):
                                      json_report=str(report)))
     payload = json.loads(report.read_text(encoding="utf-8"))
     assert rc == 0, payload["findings"]
-    assert payload["tcs"] == 13
+    assert payload["tcs"] >= 13, "the pilot's 13 TCs must still be there"

@@ -311,6 +311,42 @@ copy errors; they stay PENDING for per-pair review at their batches.
   Configuration set, `SWE-RA-RAD-081–085`. Revisit 030's ER when that batch
   fixes the vocabulary. Not blocking.
 
+## [A-AM13] Fast seek is specified but reaches no 037 leaf — PENDING (RD-1)
+
+- `CFTS024-4872398` (Seek Up) and `CFTS024-4872416` (Seek Down) define a
+  **fast seek** feature: a long press on the seek button advances continuously
+  through the band rather than stopping on the next station. Neither is
+  allocated to a 037 leaf, and neither passes the R10-2 absorption test —
+  fast seek is a different trigger (long press) driving a different behaviour
+  (continuous advance), not an elaboration of the short-press seek clause the
+  leaves cite. Recorded as a coverage hole in the reasoning of leaves 003/009
+  and raised here.
+- The two clauses are also asymmetric: `4872416` states the threshold
+  (`<Tpress>` greater than 500 milliseconds), `4872398` states none. A tester
+  handed only `4872398` has no press duration to use.
+- The `SEEK Cancel_Stop Transitions` worksheet carries a `Fast SEEK AM / MW /
+  LW / FM` state row alongside the plain `SEEK` row, so the state exists in
+  the companion spec too — this is a real feature, not stray prose.
+- **Not covered by this workbook** unless a ruling says otherwise: with no
+  leaf, generating TCs for it would invent coverage the 037 does not claim.
+  RD-1 candidate (fold into Q-AM3): should fast seek have leaves, and is the
+  500 ms threshold meant to apply in both directions?
+
+## [A-AM14] Seek Up and Seek Down are not decomposed alike upstream — PENDING
+
+- Seek Up has a dedicated leaf for the initiation behaviour —
+  `SWE-RA-RAD-004` cites `4872384` "enter the Seek Up state and begin
+  searching … starting at the next higher frequency". Seek Down has **no
+  equivalent leaf**: `4872402` / `4872403` say the same for the downward
+  direction and are unallocated.
+- Consequence handled, not hidden: 009 absorbs `4872402` / `4872403` under
+  R10-2 and cites them, so the behaviour is verified. But the two directions
+  now have different leaf shapes — Seek Up spends two leaves (003 + 004) on
+  what Seek Down spends one (009) — which a coverage reviewer comparing the
+  two will notice.
+- Same class as A-AM10 and reported with it (Q-AM3): the question upstream is
+  the allocation policy, not this individual pair.
+
 ## Assumption markers
 
 None registered beyond the above. Inline format in generated JSON

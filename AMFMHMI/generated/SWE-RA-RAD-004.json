@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-004",
+ "batch": "Seek",
+ "reasoning": "驗證目標：Seek Up 啟動時 HU 進入 Seek Up 狀態，搜尋自「下一個較高頻率」起並朝頻率遞增方向前進。關鍵情境條件：搜尋方向與起點可由頻率顯示直接觀察；支援 AF 的國際市場另有 PI 排序規則決定停台順序。為什麼這樣切：依 §8.3 以市場組態為等價劃分軸拆兩條——一般市場驗「起點與方向」，支援 AF 的國際市場驗吸收自 4872385 的 PI seek order 排序（規則見 CIP_Radio_Tables 的 PI Seek Ordering 工作表）。刻意略過：搜尋結束後的退出與播放由兄弟 leaf SWE-RA-RAD-005 覆蓋，本 leaf 只驗啟動與搜尋方向。",
+ "keywords": [
+  "Seek Up state",
+  "search direction",
+  "PI seek order",
+  "AF market"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "mode",
+  "delta": "004-01 一般市場，驗搜尋起點為上一個頻率步進且方向遞增；004-02 支援 AF 的國際市場，停台順序改依 PI seek order 序列"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872385 restates this leaf's opening clause for markets supporting AF, replacing 'the next available station' with the PI seek order sequence; absorbed as the market-conditional variant and cited on 004-02.",
+  "[A-AM12] The PI Seek Ordering worksheet gives the grouping rules and a sample sequence rather than a per-market table, so the expected order is derived by the tester from those rules for the configured market rather than stated as literal frequencies."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-004",
+   "tc_title": "Seek Up search starts one step above and rises",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "Upon initiation of a Seek Up function, the HU shall enter the Seek Up state and begin searching for the next available station in the current wave band, starting the search at the next higher frequency and progressing in increasing frequency.\n\n(Search origin and direction)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Receivable stations exist both above and below the tuned frequency in the current wave band",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Seek Up\" on the Radio Playing page\n3. Observe the first frequency shown after the search begins\n4. Observe the sequence of frequencies shown until the search ends",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The HU enters the Seek Up state\n3. The first frequency searched is the next frequency step above the frequency recorded in step 1\n4. The frequencies shown increase throughout the search and no frequency below the recorded one is shown",
+   "specification_reference": "CFTS024-4872384",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-004",
+   "tc_title": "Seek Up stop order follows PI seek ordering in AF market",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "Upon initiation of a Seek Up function, the HU shall enter the Seek Up state and begin searching for the next available station in the current wave band, starting the search at the next higher frequency and progressing in increasing frequency.\n\n(International market supporting AF — stop order follows the PI seek order sequence)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel and the HU is in FM analog tuner mode\n3. The HU is configured for an international market that supports the AF feature\n4. Several RDS stations sharing a PI code and at least one station without RDS are broadcast in the current wave band",
+   "input_test_data": "PI seek order sequence for the stations under test, derived from the PI Seek Ordering rules of the CIP Radio Tables for the configured market",
+   "test_procedure": "1. Read and record the tuned frequency and the PI codes broadcast by the stations under test\n2. Press \"Seek Up\" on the Radio Playing page\n3. Read the station the HU stops on\n4. Press \"Seek Up\" again and read the station the HU stops on",
+   "expected_result": "1. The tuned frequency and the station set under test are recorded\n2. The HU enters the Seek Up state\n3. The HU stops on the station that the PI seek order sequence places next after the recorded frequency\n4. The HU stops on the station that the PI seek order sequence places next after the station reached in step 3",
+   "specification_reference": "CFTS024-4872384; CFTS024-4872385",
+   "priority": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

@@ -40,6 +40,7 @@ import sys
 from pathlib import Path
 
 import docx
+import openpyxl
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "scripts"))
 from feature_config import load_feature_config, resolve_path  # noqa: E402
@@ -47,6 +48,9 @@ from feature_config import load_feature_config, resolve_path  # noqa: E402
 BATCH_ROW = re.compile(r"^\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|\s*(\d+)\s*\|"
                        r"\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|")
 ANOMALY = re.compile(r"A-AM\d\d")
+# A batch cites a spec worksheet as `[[table:NAME]]` in its context note, so
+# membership and its evidence stay in the one batch table.
+TABLE_CITE = re.compile(r"\[\[table:([A-Za-z0-9_.-]+)\]\]")
 HEADING_NUM = re.compile(r"^(\d+(?:\.\d+)*)\s")
 REQ_PREFIX = "SWE-RA-RAD-"
 # Above this the 037 title is a verbatim quote of the CFTS clause (the id tail
@@ -97,6 +101,7 @@ def load_batches(md: Path) -> dict:
                                   if s.strip()],
             "context_note": note.strip(),
             "anomalies": sorted(set(ANOMALY.findall(note))),
+            "spec_tables": sorted(set(TABLE_CITE.findall(note))),
         }
     if not batches:
         raise ContextError(f"no batch rows parsed from {md}")
@@ -151,8 +156,74 @@ def section_texts(docx_path: Path) -> dict[str, dict]:
     return out
 
 
+def load_spec_tables(cfg, root: Path, wanted: list[str]) -> dict:
+    """Inject the spec worksheets a batch cites, as rows rather than prose.
+
+    Mode D's spec is not only the CFTS docx: several clauses delegate their
+    detail to a companion workbook ("See 'CIP_Radio_Tables*', 'SEEK
+    Cancel_Stop Transitions' worksheet"). Those tables ARE the requirement for
+    a State Transition TC — a seek batch generated without the cancel/stop
+    matrix has no source for which event cancels and which stops, and would
+    have to guess.
+
+    Declared per batch in feature.yaml `spec_tables`; a batch that names a
+    sheet which is not in the file fails loud rather than generating without
+    it. Merged header rows are forward-filled, because the event columns are
+    grouped under a banner row and a lone column label loses its group.
+    """
+    out = {}
+    for name in wanted:
+        spec = (cfg.get("spec_tables") or {}).get(name)
+        if spec is None:
+            raise ContextError(
+                f"batch cites spec table {name!r} but feature.yaml "
+                "spec_tables has no such entry")
+        path = resolve_path(cfg, spec["source"])
+        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        sheet = spec["sheet"]
+        if sheet not in wb.sheetnames:
+            wb.close()
+            raise ContextError(
+                f"{path.name} has no worksheet {sheet!r}; present: "
+                f"{wb.sheetnames}")
+        rows = [list(r) for r in wb[sheet].iter_rows(values_only=True)]
+        wb.close()
+        hdr_rows = spec.get("header_rows", 1)
+        banner, header = [], []
+        for i in range(hdr_rows):
+            cells = [str(v).strip().replace("\n", " ") if v else ""
+                     for v in rows[i]]
+            if i < hdr_rows - 1:
+                run = ""
+                filled = []
+                for c in cells:
+                    run = c or run
+                    filled.append(run)
+                banner = filled
+            else:
+                header = cells
+        records = []
+        for r in rows[hdr_rows:]:
+            label = str(r[0]).strip() if r[0] else ""
+            if not label:
+                continue
+            cells = {}
+            for j, v in enumerate(r):
+                if j == 0 or v in (None, ""):
+                    continue
+                key = header[j] if j < len(header) else f"col{j}"
+                if banner and j < len(banner) and banner[j]:
+                    key = f"{banner[j]} / {key}"
+                cells[key] = str(v).replace("\n", " ").strip()
+            records.append({"state": label, "events": cells})
+        out[name] = {"source": path.name, "sheet": sheet,
+                     "row_label": header[0] if header else "",
+                     "rows": records}
+    return out
+
+
 def build(cfg, batch: dict, stla_map: dict, sections: dict,
-          exemplars: dict, spec_docs: dict) -> dict:
+          exemplars: dict, spec_docs: dict, spec_tables: dict | None = None) -> dict:
     primary = spec_docs.get("primary")
     leaves, needed, blocked = [], set(), []
     for rid in batch["req_ids"]:
@@ -218,6 +289,7 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
         "leaves": leaves,
         "spec_sections": spec,
         "siblings": siblings,
+        "spec_tables": spec_tables or {},
         "exemplars": exemplars.get("exemplars", []),
         "exemplar_basis": exemplars.get("basis"),
         "column_conventions": {
@@ -278,12 +350,15 @@ def run(args) -> int:
     for name in wanted:
         if name not in batches:
             raise ContextError(f"unknown batch {name!r}; --list to see them")
-        ctx = build(cfg, batches[name], stla_map, sections, exemplars, spec_docs)
+        tables = load_spec_tables(cfg, root, batches[name]["spec_tables"])
+        ctx = build(cfg, batches[name], stla_map, sections, exemplars,
+                    spec_docs, tables)
         slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
         path = out_dir / f"{slug}.json"
         path.write_text(json.dumps(ctx, ensure_ascii=False, indent=1),
                         encoding="utf-8")
         chars = sum(len(s["text"]) for s in ctx["spec_sections"].values())
+        tbl = ctx.get("spec_tables") or {}
         diverged = [l["req_id"] for l in ctx["leaves"] if "wording_note" in l]
         if diverged:
             print(f"  037 title diverges from the CFTS clause: {diverged} "
@@ -292,6 +367,9 @@ def run(args) -> int:
               f"{len(ctx['spec_sections'])} sections ({chars} chars), "
               f"{len(ctx['siblings'])} siblings, "
               f"{len(ctx['exemplars'])} exemplars"
+              + (", tables " + "+".join(
+                  f"{k}({len(v['rows'])} rows)" for k, v in tbl.items())
+                 if tbl else "")
               + (f", {len(ctx['blocked_section_text'])} without section text"
                  if ctx["blocked_section_text"] else "")
               + f" -> {path}")

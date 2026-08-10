@@ -30,6 +30,9 @@ paths:
   cfts_doc: "inputs/R1LR_Atl-H_25PI3.5_Multimedia - Radio and Audio_CFTS 024_Specific HU Radio Functions_20250910_1239.docx"
   # Safety-analysis layer. In the trace chain only if the ruled requirement
   # source carries a safety attribute — recon answers this.
+  # Companion workbook several CFTS clauses delegate detail to (state tables,
+  # PI seek ordering, preset defaults). Same 25PI3.5 release as CFTS024.
+  cip_radio_tables: "inputs/CIP_Radio_Tables_v6.7.xlsx"
   sysra_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"
 
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
@@ -58,6 +61,21 @@ stla_id_overrides:
       Number Input, §1.3.6) minus the VR wording the 037 systematically
       omits — similarity 0.909, against 0.036 for the declared 4872451,
       which is the ICS tune-down clause correctly owned by 028.
+
+# Spec worksheets a CFTS clause delegates its detail to. A batch cites one by
+# writing `[[table:NAME]]` in its row of docs/batches-amfm.md; the context
+# builder then injects the sheet as rows. `header_rows` > 1 means the column
+# labels sit under a merged banner row, which is forward-filled so a lone
+# label does not lose its group.
+spec_tables:
+  seek_cancel_stop:
+    source: "cip_radio_tables"
+    sheet: "SEEK Cancel_Stop Transitions"
+    header_rows: 2
+  pi_seek_ordering:
+    source: "cip_radio_tables"
+    sheet: "PI Seek Ordering"
+    header_rows: 1
 
 spec_docs:
   primary: "CFTS024"

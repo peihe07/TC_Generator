@@ -1,0 +1,48 @@
+{
+ "parent": "SWE-RA-RAD-011",
+ "batch": "Seek",
+ "reasoning": "驗證目標：Seek Down 進行中發生其他事件時，HU 是否依 SEEK Cancel_Stop Transitions 工作表的分類反應——Stop Seek 類中止搜尋，Continue Seek 類不影響。關鍵情境條件：SEEK AM / MW / LW / FM 狀態列對應的事件欄位值。為什麼這樣切：與 006 對稱，依 §7 正負配對，兩條各對應決策表的一個結果分區。刻意略過：中止後的落點由 012/013 覆蓋。",
+ "keywords": [
+  "Seek Stop",
+  "Continue Seek",
+  "SEEK Cancel_Stop Transitions"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "011-01 以 Stop Seek 類事件（DIRECT TUNE / MORE Source Control Items）驗證搜尋被中止；011-02 以 Continue Seek 類事件（SD Slot Card removed）驗證搜尋不受影響"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-011",
+   "tc_title": "Stop Seek class events end the running Seek Down",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "While the HU Tuner source is in the Seek Down state other events may occur which will request the HU to stop the Seek Down process.\n\n(Events classified Stop Seek)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Receivable stations are far enough apart that the search runs long enough to be interrupted",
+   "input_test_data": "Stop Seek events for the SEEK AM / MW / LW / FM state, from the SEEK Cancel_Stop Transitions worksheet: DIRECT TUNE, MORE Source Control Items",
+   "test_procedure": "1. Press \"Seek Down\" on the Radio Playing page and, while the search is running, open the direct tune entry\n2. Read whether the search is still running\n3. Repeat the seek and, while the search is running, open the MORE source control items\n4. Read whether the search is still running",
+   "expected_result": "1. The HU enters the Seek Down state and then leaves it when the direct tune entry opens\n2. The search is no longer running and the direct tune entry is displayed\n3. The HU leaves the Seek Down state and the source control items are displayed\n4. The search is no longer running",
+   "specification_reference": "CFTS024-4872413",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-011",
+   "tc_title": "Continue Seek class events leave the Seek Down running",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "While the HU Tuner source is in the Seek Down state other events may occur which will request the HU to stop the Seek Down process.\n\n(Events classified Continue Seek — no impact)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Receivable stations are far enough apart that the search runs long enough to be interrupted\n5. An SD card is inserted in the HU before the test starts",
+   "input_test_data": "Continue Seek events for the SEEK AM / MW / LW / FM state, from the SEEK Cancel_Stop Transitions worksheet: SD Slot Card removed",
+   "test_procedure": "1. Press \"Seek Down\" on the Radio Playing page\n2. While the search is running, remove the SD card\n3. Observe the frequency display\n4. Read the tuned frequency once the search ends",
+   "expected_result": "1. The HU enters the Seek Down state\n2. The SD card is removed\n3. The displayed frequency continues to decrease and the HU stays in the Seek Down state\n4. The HU is tuned to the previous available station below the starting frequency and that station is played",
+   "specification_reference": "CFTS024-4872413",
+   "priority": "P2",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

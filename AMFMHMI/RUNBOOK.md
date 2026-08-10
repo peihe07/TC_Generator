@@ -178,7 +178,52 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
    keeping the record in ANOMALIES only.
 
 ## Phase 6 — Batch generation (Tier 1)
-- [ ] Batches generated → lint green → write-back invariants pass
+
+- [x] **Seek** (003–013, 11 leaves → 22 TCs), 2026-08-10, lint green
+- [ ] Browse · Presets · List Navigation · RDS Features · Station List ·
+      Market Configuration · Engineering Mode · Diagnostics
+- [ ] write-back invariants pass
+
+| Batch | Leaves | TCs | P0/P1/P2/P3 | Design methods |
+|---|---|---|---|---|
+| Tuner Availability + Tune (pilot) | 8 | 13 | 0/8/5/0 | Functional 3, EP 4, BVA 4, Decision Table 2 |
+| Seek | 11 | 22 | 0/19/3/0 | Decision Table 8, State Transition 5, Functional 4, BVA 4, EP 1 |
+
+### Spec tables are injected, not summarised
+
+Several CFTS clauses delegate their detail to a companion workbook — Seek's
+cancel/stop behaviour is *only* in `CIP_Radio_Tables_v6.7.xlsx`, worksheet
+`SEEK Cancel_Stop Transitions`. A batch cites one by writing
+`[[table:NAME]]` in its row of `docs/batches-amfm.md`; `feature.yaml`
+`spec_tables` maps the name to a file and sheet, and the context builder
+injects the sheet as `{state, events{}}` records. `header_rows: 2` forward-
+fills the merged banner row, so an event column keeps its group
+(`EVENTS: Steering Wheel Control Hardkeys / A Seek Up`) instead of arriving
+as a bare label. A cited sheet that is not in the file fails the build.
+
+That table is what makes leaves 006/007/008/011/012/013 testable: it is the
+only source for which events cancel a seek (return to the starting frequency)
+and which stop it (remain at the displayed frequency). Generated without it,
+those six leaves would have had to guess the event list.
+
+### Seek batch notes
+
+- **006/011 pair the classes.** Testing only the Stop-class events would let
+  an implementation that aborts the seek on *every* event pass, so each has a
+  second TC on the Continue-class events (USB disconnect, SD card removal)
+  asserting the search is unaffected.
+- **007/008 and 012/013 are the landing-point contrast** — cancel returns to
+  the starting frequency, stop remains at the displayed one. Their titles now
+  name the direction; the first cut had Seek Up and Seek Down mirrors sharing
+  a title, which `sibling-distinction` caught.
+- **9 clauses absorbed under R10-2**, all cited: wrap-around both directions
+  (`4872386`, `4872404`), two-pass termination (`4872387`, `4872405`), state
+  exit (`4872391`, `4872409`), Seek Down initiation (`4872402`, `4872403`),
+  PI seek ordering (`4872385`).
+- **Two clause groups deliberately NOT absorbed**, recorded as coverage holes
+  in reasoning per R10-2: the TGW signal-status clauses (they describe CAN
+  updates, not HMI behaviour) and fast seek (A-AM13 — different trigger,
+  different behaviour, no leaf).
 
 ## Phase 7 — Delivery (Tier 3)
 - [ ] Release tag (xlsx SHA256 ↔ commit) · submission · RD-1 sent

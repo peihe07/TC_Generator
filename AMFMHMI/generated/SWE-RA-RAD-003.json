@@ -1,0 +1,67 @@
+{
+ "parent": "SWE-RA-RAD-003",
+ "batch": "Seek",
+ "reasoning": "驗證目標：Tuner 來源下由 HU HMI 或方向盤按鍵請求 Seek Up，HU 進入 Seek Up 狀態並停在下一個可收聽頻率；波段頂端則 wrap-around 回最低頻率。關鍵情境條件：FM analog tuner mode；起始頻率位於波段中段對比位於頂端且其上無可收聽電台。為什麼這樣切：依 §8.3 拆兩個軸——輸入路徑（HU HMI 對方向盤按鍵，CFTS 明列兩者）與邊界（波段頂端 wrap-around，吸收 4872386）。刻意略過：VR Command 路徑依 R8 委派 CFTS028。本節另有訊號狀態條款（4872388/4872389/4872392/4872393）與 VES IR 分享來源條款（4872394），描述的是 CAN 訊號更新而非 HMI 行為，未通過 R10-2 的「闡述所引條款」判準，本批不吸收，列為覆蓋缺口交 RD-1 Q-AM3。",
+ "keywords": [
+  "Seek Up",
+  "Skip Forward",
+  "Steering Wheel Buttons",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "input_data",
+  "delta": "003-01 由 HU HMI 觸發、003-02 由方向盤按鍵觸發（CFTS 明列兩條輸入路徑）；003-03 起始頻率位於波段頂端，驗證 wrap-around 回最低頻率"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872386 (wrap-around to the lowest frequency when the seek reaches the upper end of the band without stopping) is unallocated in the 037 and elaborates this leaf's own wrap-around wording; absorbed and cited on the boundary TC.",
+  "[R8] The CFTS clause also grants a VR Command trigger path; out of scope for this workbook, delegated to the CFTS028 delivery."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-003",
+   "tc_title": "Seek Up from HU HMI stops on next available station",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "When the Cabin Output Channel has selected the HU Tuner source, the user can request a Seek Up to Next Station in the current Tuner Band function (a.k.a. Skip Forward) using the HU HMI or Steering Wheel Buttons. The HU will enter the Seek Up state and go to the next available Frequency with wrap-around to the lowest Frequency.\n\n(Seek Up requested from the HU HMI)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. At least two receivable stations exist above the tuned frequency in the current wave band",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Seek Up\" on the Radio Playing page\n3. Observe the frequency display while the search runs\n4. Read the tuned frequency and listen to the audio output once the search ends",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The seek request is accepted and the HU enters the Seek Up state\n3. The displayed frequency advances upward from the frequency recorded in step 1\n4. The HU is tuned to the next available station above the recorded frequency and that station is played",
+   "specification_reference": "CFTS024-4872383",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-003",
+   "tc_title": "Seek Up from Steering Wheel Buttons stops on next station",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "When the Cabin Output Channel has selected the HU Tuner source, the user can request a Seek Up to Next Station in the current Tuner Band function (a.k.a. Skip Forward) using the HU HMI or Steering Wheel Buttons. The HU will enter the Seek Up state and go to the next available Frequency with wrap-around to the lowest Frequency.\n\n(Seek Up requested from the Steering Wheel Buttons)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. At least two receivable stations exist above the tuned frequency in the current wave band",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press the Steering Wheel Buttons \"Seek Up\" control\n3. Observe the frequency display while the search runs\n4. Read the tuned frequency and listen to the audio output once the search ends",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The seek request is accepted and the HU enters the Seek Up state\n3. The displayed frequency advances upward from the frequency recorded in step 1\n4. The HU is tuned to the next available station above the recorded frequency and that station is played",
+   "specification_reference": "CFTS024-4872383",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-003",
+   "tc_title": "Seek Up past band upper end wraps to lowest frequency",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "When the Cabin Output Channel has selected the HU Tuner source, the user can request a Seek Up to Next Station in the current Tuner Band function (a.k.a. Skip Forward) using the HU HMI or Steering Wheel Buttons. The HU will enter the Seek Up state and go to the next available Frequency with wrap-around to the lowest Frequency.\n\n(Seek Up from the upper end of the wave band — wrap-around)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The tuned frequency is near the upper end of the current wave band and no receivable station exists between it and the upper end\n5. A receivable station exists near the lower end of the current wave band",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Seek Up\" on the Radio Playing page\n3. Observe the frequency display while the search runs\n4. Read the tuned frequency and listen to the audio output once the search ends",
+   "expected_result": "1. The tuned frequency near the upper end of the band is displayed\n2. The seek request is accepted and the HU enters the Seek Up state\n3. The displayed frequency advances to the upper end of the band and then continues from the lowest frequency of the band\n4. The HU is tuned to the station near the lower end of the band and that station is played",
+   "specification_reference": "CFTS024-4872383; CFTS024-4872386",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

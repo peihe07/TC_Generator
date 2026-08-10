@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-013",
+ "batch": "Seek",
+ "reasoning": "驗證目標：Seek Down 進行中被 Seek Stop 類功能打斷時，HU 離開 Seek Down 並停在當下顯示的頻率。關鍵情境條件：Stop 事件取自 SEEK Cancel_Stop Transitions 的 Stop Seek 類；必須在搜尋已離開起始頻率後才觸發。為什麼這樣切：一條 TC 足夠。與 012 構成 Cancel／Stop 的落點對照，依 §8.2 各自成 TC，不合併。刻意略過：事件分類由 011 覆蓋。",
+ "keywords": [
+  "Seek Stop",
+  "displayed frequency",
+  "Stop Seek"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-013",
+   "tc_title": "Seek Down stop leaves tuner at the displayed frequency",
+   "test_group": "AMFM",
+   "test_set": "Seek",
+   "test_item": "If the Seek Down function is active and another HU function is invoked that requires a Seek Stop, the HU shall exit the Seek Down function and remain at the frequency currently being displayed.",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. Receivable stations are far enough apart that the search runs long enough to be interrupted",
+   "input_test_data": "Stop Seek event for the SEEK AM / MW / LW / FM state, from the SEEK Cancel_Stop Transitions worksheet: DIRECT TUNE",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Seek Down\" and, while the search is running, read the frequency currently displayed\n3. While the search is still running, open the direct tune entry\n4. Dismiss the direct tune entry without entering a frequency and read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The HU is in the Seek Down state and the displayed frequency differs from the frequency recorded in step 1\n3. The HU leaves the Seek Down state and the direct tune entry is displayed\n4. The tuned frequency is the frequency read in step 2, not the frequency recorded in step 1",
+   "specification_reference": "CFTS024-4872415",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}
