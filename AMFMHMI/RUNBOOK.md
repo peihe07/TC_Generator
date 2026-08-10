@@ -488,4 +488,54 @@ trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
   different behaviour, no leaf).
 
 ## Phase 7 — Delivery (Tier 3)
+
+### write_back.py is an APPEND, not a segment rewrite
+
+Home's script rewrites three draft segments interleaved between frozen rows.
+AMFM has no draft rows at all — 158 rows, all Wilson, covering none of the 102
+leaves (A-AM02) — so the 143 rows are appended after the frozen prefix and the
+invariant is stricter: the legacy rows must come out with the same content, the
+same order AND the same row numbers (`moved` check), not merely the same hash.
+
+Baseline: `data/legacy_baseline.json`, written once by `--init-baseline`
+against the pristine workbook. A later upstream edit to the legacy region then
+fails the run instead of being absorbed silently.
+
+Three conventions differ from Home and are pinned by tests, because the shared
+shape invites copying the wrong one:
+- **Column B is a per-row formula** (`=IF(ISBLANK($D168),"",ROW()-9)`). Home's
+  is the constant `=ROW()-9`; using that shape here would point every row's
+  blank-test at `$D9`.
+- **Test Group / Test Set ARE written** (R7-Q1/Q2). Home's profile bans them.
+- **Column F carries its own TC ID series** — `newR1L-AMFM-001…143` per R13,
+  not a continuation of the frozen `newR1L-Radio-001…158`. Collision-guarded
+  against ids already in the sheet. Column O writes `New`, the legacy value,
+  because no dropdown or data validation defines that column.
+
+Dry-run result (2026-08-10, second run — after the R13 F/O rulings), all canon
+§6 checklist fields present:
+
+```
+segments  : LEGACY 10-167 (158 rows)  REGEN 168-310 (143 rows)
+  LEGACY  : 158 -> 158 (+0), rows 10-167 unmoved
+  REGEN   : 0 -> 143 (+143), appended from row 168
+  arith   : 158 + 143 = 301 data rows; last sheet row 167 -> 310
+            (75 template rows reused, 68 inserted)
+legacy    : hash 30d9e4c0719a2929… unchanged, order unchanged
+coverage  : 102 regen req_ids == 102 leaf set, exact match
+placeholders: none
+TC IDs (F): newR1L-AMFM-001 … newR1L-AMFM-143
+TC ref (O): 'New'
+Scope D5  : 'FM-WI-SW-RAD-SWRA-A02' -> the 037-A03 filename (A-AM01)
+```
+
+Observation carried into the summary rather than acted on: the priority
+dropdown's data validation covers `P10:P167` only, so the appended rows have no
+dropdown. Values are lint-checked against P0..P3 regardless; extending the
+validation range is a form-fidelity question, not a correctness one.
+
+Order from FEATURE_ONBOARDING §6 — **dry-run reviewed → commit → `--write` →
+tag**, with a clean working tree at `--write` so the output is derivable from
+exactly one commit.
+
 - [ ] Release tag (xlsx SHA256 ↔ commit) · submission · RD-1 sent

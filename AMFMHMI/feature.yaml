@@ -142,6 +142,8 @@ workbook:
   # column letters, verified by recon header match — do not guess
   columns:
     req_id: "D"
+    tc_id: "F"           # author-side TC ID (canon §10.3); legacy uses
+                         # newR1L-Radio-nnn, new rows use their own series
     test_group: "G"
     test_set: "H"
     test_item: "I"
@@ -174,7 +176,15 @@ write_back:
   # R裁決1 (Pei, 2026-08-09): rows Pei generates → PeiPYHsu; rows fully
   # quoted from another author keep that author's name.
   author_value: "PeiPYHsu"
-  tc_ref_id_value: "NEW"
+  # R13 (Pei, 2026-08-10) — O 欄狀態語彙的大小寫是 style，style authority 是
+  # Wilson 列 (R6)。下拉選單 sheet 只定義 Q 欄的 9 個設計方法，O 欄無表單詞彙
+  # 也無 data validation，所以 legacy 的 "New" 勝出（原 feature.yaml 寫 NEW）。
+  tc_ref_id_value: "New"
+  # R13 — F 欄 TC ID 是作者側編號（canon §10.3, generator handles assignment），
+  # 與客戶端的 Test Case Reference ID 不同構。新列自成一個 {project}-{abbr}
+  # 序列：與 R7-Q1 的 Test Group=AMFM 對齊，且不與 R4 凍結的 Radio 序列耦合
+  # ——legacy 日後若被裁定刪除，AMFM 序列不會產生空洞。
+  tc_id_format: "newR1L-AMFM-{n:03d}"
   # R7-Q1/Q2 + DECISIONS §4 (match done-region convention = columns FILLED):
   # new rows write Test Group = AMFM, Test Set = capability value from
   # framework Part III. Legacy rows keep Radio + band scheme, frozen.

@@ -249,3 +249,34 @@ chat tier with Pei visibility (override open):
    stays a reasoning note, not an RD-1 item.
 4. **021 joins A-AM11.** Monotonic-relation ER per the 026/028 precedent;
    no step-count fabrication.
+
+## R13 — Write-back column conventions (Pei, 2026-08-10)
+
+Two columns the generated rows share with the frozen legacy region, ruled at
+the dry-run gate.
+
+**F (Test Case ID) — `newR1L-AMFM-001` upward.** The TC ID is an *author-side*
+number, not the customer-side Test Case Reference ID, and canon §10.3 puts its
+assignment with the generator; Wilson's 158 ids were author-assigned the same
+way. So numbering is legitimate and only the scheme was open. The new rows form
+their own `{project}-{abbr}` series because:
+- §10.3 asks for monotonicity **within** a series — Radio and AMFM are two
+  series, each monotonic, both compliant;
+- it aligns with R7-Q1 (Test Group = `AMFM`);
+- it stays uncoupled from the R4-frozen region, so if RD-1 later confirms the
+  SWRA-A02 family is obsolete and the legacy rows are removed, the AMFM series
+  has no hole.
+Rejected: continuing `newR1L-Radio-*` (binds new rows to the naming R7-Q1 set
+aside, and couples the sequence to the frozen region); leaving F blank (breaks
+form completeness, and no downstream party has a better basis to number).
+
+**O (Test Case Reference ID) — `New`, matching the legacy rows.** Case is
+style, and style authority is the Wilson region (R6). Condition checked before
+applying: the `下拉選單` sheet defines only column Q's nine design methods, and
+column O carries no data validation (the sheet's validations are AE10:AE14,
+P10:P167, S10:Y229) — so no form vocabulary outranks the legacy value.
+`feature.yaml` `tc_ref_id_value` changed `NEW` -> `New`.
+
+Implemented in `write_back.py` (`assign_tc_ids`, collision-guarded against ids
+already in the sheet) and `feature.yaml`; both re-verified against the canon §6
+checklist in the second dry run.
