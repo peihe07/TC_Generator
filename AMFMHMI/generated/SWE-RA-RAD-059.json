@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-059",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：PTY31（緊急警報）觸發時，HU 提供警報的音訊播放與資訊顯示，且在警報播送期間維持該狀態。關鍵情境條件：PTY31 警報的觸發與結束。為什麼這樣切：本 leaf 的獨有內容是「警報的呈現」——音訊與資訊顯示同時發生，屬同一觸發的兩個必然結果，依 §5.7 併為一條 TC。依 §8.2.1 與兄弟 leaf 劃界：非 FM 來源時暫停原本媒體並切換到 FM 由 061 覆蓋（其條文同時涵蓋 TA 與 PTY31，且帶 disc/VES 共用例外），取消或繼續的彈出訊息由 062 覆蓋，本 leaf 不重複驗證。刻意略過：條文的「HU may provide HMI for the user to turn this feature ON or OFF」為選用（may），依 §8.4.1 不生成——選用行為沒有可判定的通過準則；條文末的 See HMI Logic & flow documents 指向外部 HMI 文件，不在本 workbook 覆蓋範圍。",
+ "keywords": [
+  "PTY31",
+  "emergency alert",
+  "audio broadcast",
+  "information display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-059",
+   "tc_title": "PTY31 alert is broadcast with its information display",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "PTY31: HU shall provide audio broadcast and information display when PTY31 alert (Emergency alerts) is triggered",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a station able to signal PTY31",
+   "input_test_data": "PTY31 emergency alert raised on the tuned station for a bounded duration",
+   "test_procedure": "1. Read the FM Radio Playing page and the audio output before the alert\n2. Trigger the PTY31 emergency alert on the tuned station\n3. Read the audio output on the Cabin Output Channel\n4. Read the information displayed on the HU screen\n5. End the PTY31 alert and read the audio output and the screen",
+   "expected_result": "1. The tuned station is played and no emergency alert information is displayed\n2. The station signals the PTY31 emergency alert\n3. The emergency alert audio is played on the Cabin Output Channel\n4. The emergency alert information is displayed for the duration of the alert\n5. The alert audio ends, the alert information is no longer displayed, and the station read in step 1 is played again",
+   "specification_reference": "CFTS024-4872523",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

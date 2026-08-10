@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-053",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 監看 AF 清單上各替代頻率的信號強度並與目前電台比較，當某個替代頻率品質較佳時切換過去，且切換過程沒有中斷或瞬間靜音。關鍵情境條件：同一節目服務在兩個頻率上播出，且可控制兩者的信號強度使優劣關係反轉。為什麼這樣切：一條 TC 覆蓋單一觸發（替代頻率品質變優）的兩個必然結果——切換發生、且過程不可聽聞，依 §5.7 屬同一 TC 的多條 ER。刻意略過：AF 的開關與 AF Local 的 PI 判準由 063 覆蓋（§1.3.13.2 有其專屬條款），本 leaf 只驗切換判準與無縫性；同節未配置條款 4872542（切換不得靜音、不應被使用者察覺）與本 leaf 條文末句同義，未吸收以免同一行為被雙重計入覆蓋，記於 063 的 reasoning。",
+ "keywords": [
+  "Alternative Frequency",
+  "AF",
+  "signal strength",
+  "seamless switch"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-053",
+   "tc_title": "Radio switches to a better alternative frequency without audible interruption",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "HU shall monitor the signal strength on alternative frequencies and compare it with the current station. If an alternative frequency offers better quality, radio shall switch without any interruptions or momentary audio mutes",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with a tuner configuration whose feature set includes AF\n3. AF is enabled on the HU HMI\n4. The HU Tuner source is selected on the Cabin Output Channel\n5. The same program service is broadcast on frequency F1 and on frequency F2, both carrying the same PI code, and the HU is tuned to F1",
+   "input_test_data": "F1: initial signal level higher than F2\nF2: signal level raised above F1 during the test, carrying the same PI code and program content",
+   "test_procedure": "1. Read the tuned frequency and the program service name\n2. Read the audio output while the HU is tuned to F1\n3. Raise the signal level of F2 above the level of F1\n4. Read the tuned frequency\n5. Read the audio output during and after the change of frequency",
+   "expected_result": "1. The HU is tuned to F1 and the program service name is displayed\n2. The program is played on the Cabin Output Channel\n3. F2 offers the better signal quality of the two frequencies\n4. The HU is tuned to F2 and the program service name stays the same\n5. The audio continues without an interruption and without a momentary mute during the change",
+   "specification_reference": "CFTS024-4872517",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

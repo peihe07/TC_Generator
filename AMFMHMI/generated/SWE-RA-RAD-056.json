@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-056",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：EON 提供其他網路的附加資料，使調諧器能在其他電台上尋找交通報導——本條文為能力描述，其唯一可觀察的形式是「目前電台本身未播交通報導時，仍能經由 EON 連結的其他電台收到報導」。關鍵情境條件：目前調諧的電台帶 EON 資料並連結到另一個播送交通報導的電台。為什麼這樣切：條文沒有給出獨立的 HMI 結果，依 §8.4.1 不編造規格細節，改以情境／用例驗證能力是否成立；一條 TC 覆蓋單一情境的必然結果，依 §5.7 不拆分。依 §8.2.1 與兄弟 leaf 劃界：TA 圖示由 055-01 覆蓋、模式回復由 055-02 覆蓋、暫停與切換由 061 覆蓋——本 leaf 的獨有內容只有「報導來自其他電台而非目前電台」這一點，ER 因此聚焦於此。刻意略過：EON 資料本身的編碼與 IEC 62106 標準符合性不屬本 workbook 驗證範圍。",
+ "keywords": [
+  "Enhanced Other Networks",
+  "EON",
+  "other station",
+  "travel announcement"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-056",
+   "tc_title": "Traffic announcement on an EON linked station is received",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "Enhanced Other Networks (EON): This feature provides a set of additional data about other networks to give the tuner the ability to search for travel announcements on other stations",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. TA is enabled on the HU HMI\n4. The HU is in FM analog tuner mode and tuned to station E, which broadcasts EON data linking to station N and carries no traffic announcement itself\n5. Station N is receivable and broadcasts traffic announcements",
+   "input_test_data": "Station E: EON data referencing station N, no traffic announcement of its own\nStation N: traffic announcement broadcast with the TA flag raised",
+   "test_procedure": "1. Read the tuned frequency and the program service name\n2. Start the traffic announcement on station N with the TA flag raised\n3. Read the audio output on the Cabin Output Channel\n4. End the traffic announcement on station N\n5. Read the tuned frequency and the audio output",
+   "expected_result": "1. The HU is tuned to station E and its program service name is displayed\n2. Station N broadcasts the traffic announcement while station E carries none\n3. The traffic announcement carried by station N is played on the Cabin Output Channel\n4. The announcement on station N ends\n5. The HU plays station E again on the frequency read in step 1",
+   "specification_reference": "CFTS024-4872520",
+   "priority": "P2",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-RAD-061",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：偵測到 TA 或 PTY 31 時，HU 暫停目前的座艙媒體並切換到 FM 播送該報導；但若目前座艙來源是 disc 且與 VES IR1 或 IR2 共用，則不暫停 disc 媒體。關鍵情境條件：目前座艙來源的種類與是否與後座共用。為什麼這樣切：條文的例外句是可達的 ¬X 分支，依 R10-3 拆為獨立的抑制 TC，且其觸發狀態（disc 且共用）與一般情況不同，依 §5.2 不可在同一程序內分支；第二條的判定取決於「來源為 disc」與「與 IR1/IR2 共用」兩個條件的組合，設計方法採決策表。037 title 未帶例外句（相似度 0.619），依 §8.6 以 CFTS 條文為準——061-02 即由該例外句而來，若只依 037 title 生成會整條漏掉。刻意略過：同節未配置條款 4872530/4872531/4872532/4872533（$HUModeStatus$、IR1/IR2_TRK_FILE 等 CAN 信號更新，其中 4872532/4872533 又以 A-AM15 短碼引用其他文件）為 CAN 行為而非 HMI 行為，未吸收，送 RD-1；報導結束後的模式回復由 055-02 覆蓋。",
+ "keywords": [
+  "TA detected",
+  "PTY 31",
+  "pause cabin media",
+  "switch to FM",
+  "disc shared with VES"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "061-01 於一般座艙來源驗證媒體暫停並切換到 FM 播送報導；061-02 於 disc 來源且與 VES IR1/IR2 共用的狀態驗證 disc 媒體不被暫停"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-061",
+   "tc_title": "Detected TA pauses cabin media and switches to FM",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "When TA or PTY 31 is detected, it shall pause the current cabin media and switch to FM mode to broadcast TA or PTY 31",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. TA is enabled on the HU HMI\n4. The Cabin Output Channel is playing a USB media source, not shared with a rear seat output channel\n5. A receivable FM station broadcasts RDS data with the TP flag set",
+   "input_test_data": "Station T: TP flag set, TA flag raised for the duration of a traffic announcement",
+   "test_procedure": "1. Read the source playing on the Cabin Output Channel and the media playback position\n2. Start the traffic announcement on station T with the TA flag raised\n3. Read the source playing on the Cabin Output Channel\n4. Read the state of the USB media playback",
+   "expected_result": "1. The USB media source is playing and its playback position advances\n2. The traffic announcement is broadcast with the TA flag raised\n3. The HU is in FM mode and the traffic announcement is played on the Cabin Output Channel\n4. The USB media playback is paused and its position stays at the point reached in step 1",
+   "specification_reference": "CFTS024-4872529",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-061",
+   "tc_title": "Disc media shared with a rear channel is not paused",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "If the current cabin output channel source is disc mode and it is in shared mode with either VES IR1 or IR2, then HU shall not pause disc media\n\n(Exception branch — disc source shared with a rear seat output channel)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. TA is enabled on the HU HMI\n4. The Cabin Output Channel is playing the disc source and the VES IR1 Output Channel is sharing that source\n5. A receivable FM station broadcasts RDS data with the TP flag set",
+   "input_test_data": "Station T: TP flag set, TA flag raised for the duration of a traffic announcement\nCabin Output Channel source: disc, shared with VES IR1",
+   "test_procedure": "1. Read the source playing on the Cabin Output Channel and the disc playback position\n2. Read the source playing on the VES IR1 Output Channel\n3. Start the traffic announcement on station T with the TA flag raised\n4. Read the state of the disc playback\n5. Read the audio output on the VES IR1 Output Channel",
+   "expected_result": "1. The disc source is playing and its playback position advances\n2. The VES IR1 Output Channel is playing the shared disc source\n3. The traffic announcement is broadcast with the TA flag raised\n4. The disc playback is not paused and its position keeps advancing\n5. The disc audio continues on the VES IR1 Output Channel",
+   "specification_reference": "CFTS024-4872529",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

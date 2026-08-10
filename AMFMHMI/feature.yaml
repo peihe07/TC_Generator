@@ -84,6 +84,14 @@ spec_tables:
     source: "cip_radio_tables"
     sheet: "PI Seek Ordering"
     header_rows: 1
+  # §1.3.13.1 clause 4872538 delegates the cancel actions for an active TA /
+  # PTY31 announcement to the CIP tables; row 0 is blank, so `first_row` puts
+  # the header where the parser expects it.
+  ta_pty31_cancel:
+    source: "cip_radio_tables"
+    sheet: "TA-PTY31 station list cancel e "
+    header_rows: 1
+    first_row: 1
   # The clause behind leaf 039 delegates to "the tuner configuration worksheet
   # within market configuration table" for whether AF is supported. That sheet
   # stacks two tables; `first_row` selects the tuner configuration one.

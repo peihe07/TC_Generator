@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-RAD-057",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：電台支援 RT+ 時，HU 以收到的文字資訊填入 artist 與 song 欄位。關鍵情境條件：電台是否送出 RT+ 標記的曲目資訊——兩個值類都要觀察，只驗有 RT+ 的一側無法排除「欄位以其他來源填入」的實作（§7）。為什麼這樣切：一條 TC 內以支援與不支援 RT+ 的兩個電台涵蓋條文的條件句，依 §5.7 屬同一驗證目標。條文末句「Please refer to CFTS024-707 for HU behavior requirements when radiotext is available」依 R11 為引用式：token 逐字多引、ER 以引用錨定，不驗 CFTS024-707 自身的規則面（radiotext 可得時的顯示規格、捲動與更新時序）。037 title 未帶該引用句（相似度 0.855），依 §8.6 以 CFTS 條文為準，引用因此進入本 leaf。刻意略過：song/audio tagging 的後續動作（標記如何儲存與使用）不在本條文內，未生成。",
+ "keywords": [
+  "Radiotext",
+  "RT+",
+  "artist",
+  "song",
+  "radiotext available"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-057",
+   "tc_title": "Radio Text Plus populates the artist and song fields",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "Radiotext (RT) and Radio Text Plus (RT +): Feature to transmit textual information related to the current station. If the currently tuned station supports RT +, this feature allows HU to populate the artist and song field as well as to enable song/audio tagging",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "Station R: broadcasts radiotext with RT+ tagging carrying a known artist name and song title\nStation S: broadcasts radiotext without RT+ tagging",
+   "test_procedure": "1. Tune the HU to station R\n2. Read the artist and song fields on the FM Radio Playing page\n3. Tune the HU to station S\n4. Read the artist and song fields on the FM Radio Playing page",
+   "expected_result": "1. The HU is tuned to station R and the radiotext is presented as defined by CFTS024-707\n2. The artist field holds the artist name and the song field holds the song title broadcast by station R\n3. The HU is tuned to station S\n4. The artist and song fields are not populated from station S",
+   "specification_reference": "CFTS024-4872521; CFTS024-707",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

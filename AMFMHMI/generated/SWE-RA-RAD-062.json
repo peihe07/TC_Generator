@@ -1,0 +1,53 @@
+{
+ "parent": "SWE-RA-RAD-062",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU HMI 提供彈出訊息讓使用者選擇取消或繼續 TA 與 PTY 31 的音訊報導；以及報導進行中，哪些事件會取消報導、哪些不會。關鍵情境條件：彈出訊息上的兩個選項；報導進行中發生的事件類別。為什麼這樣切：彈出訊息的兩個選項是同一觸發下的兩個結果分區，依 §8.3 以 user_choice 為軸拆兩條。依 R10-2，同節未配置條款 4872538（取消 TA/PTY31 的動作請參照 CIP Radio tables）指向的正是 CIP_Radio_Tables 的 `TA-PTY31 station list cancel` 工作表，該表是取消判準的唯一來源，予以吸收並多引，作為 062-02 的資料來源——與 Seek 批次吸收 cancel/stop 判準表同一形狀。062-02 同時涵蓋取消類與非取消類事件：只驗會取消的事件，無法排除「任何事件都取消報導」的實作（§7）。刻意略過：條文末的 See HMI logic & flow documents 指向外部 HMI 文件，彈出訊息的版面與 popup id 不在本 workbook 驗證範圍（feature.yaml 的 popup_ids 為空，未逐字比對 id）；暫停與切換由 061 覆蓋。",
+ "keywords": [
+  "popup",
+  "cancel",
+  "proceed",
+  "TA",
+  "PTY 31",
+  "TA-PTY31 station list cancel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "user_choice",
+  "delta": "062-01 於彈出訊息選擇繼續，驗證報導音訊播出；062-02 於報導進行中以工作表所列的取消類與非取消類事件驗證取消判準（吸收 4872538）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872538 (the actions that cancel a TA or PTY 31 alert are held in the CIP Radio tables) is an unallocated clause in the same section elaborating this leaf's cancel path; absorbed here and cited, with the `TA-PTY31 station list cancel` worksheet as the source of the event classes."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-062",
+   "tc_title": "Announcement popup proceeds with the TA audio when confirmed",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "HU HMI shall implement a popup that enables user to either cancel or proceed with the audio announcement for TA and PTY 31 alerts\n\n(Proceed branch)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. TA is enabled on the HU HMI\n4. The Cabin Output Channel is playing a USB media source\n5. A receivable FM station broadcasts RDS data with the TP flag set",
+   "input_test_data": "Station T: TP flag set, TA flag raised for the duration of a traffic announcement",
+   "test_procedure": "1. Read the source playing on the Cabin Output Channel\n2. Start the traffic announcement on station T with the TA flag raised\n3. Read the popup displayed on the HU screen\n4. Select the option that proceeds with the announcement\n5. Read the audio output on the Cabin Output Channel",
+   "expected_result": "1. The USB media source is playing\n2. The traffic announcement is broadcast with the TA flag raised\n3. A popup offering to cancel or to proceed with the audio announcement is displayed\n4. The proceed selection is accepted and the popup is dismissed\n5. The traffic announcement is played on the Cabin Output Channel",
+   "specification_reference": "CFTS024-4872536",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-062",
+   "tc_title": "Cancel class event ends the announcement in progress",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "HU HMI shall implement a popup that enables user to either cancel or proceed with the audio announcement for TA and PTY 31 alerts\n\n(Cancel path — events classified against the TA/PTY31 cancel worksheet)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. TA is enabled on the HU HMI\n4. The Cabin Output Channel is playing a USB media source\n5. A traffic announcement is in progress on the Cabin Output Channel",
+   "input_test_data": "Events for the state \"TA/PTY31 audio announcement in progress\", from the TA-PTY31 station list cancel worksheet of CIP_Radio_Tables:\nCancel class: MUTE/PAUSE, PRESET Recall when another preset is selected\nContinue class: DIRECT TUNE, which continues the announcement until the customer selects a station to switch audio",
+   "test_procedure": "1. Read the audio output on the Cabin Output Channel\n2. Request MUTE/PAUSE while the announcement is in progress\n3. Read the audio output on the Cabin Output Channel\n4. Repeat the announcement and open the direct tune entry while it is in progress, without selecting a station\n5. Read the audio output on the Cabin Output Channel",
+   "expected_result": "1. The traffic announcement is played on the Cabin Output Channel\n2. The mute or pause request is accepted\n3. The announcement is ended and the announcement audio is no longer played\n4. The direct tune entry is displayed while no station is selected yet\n5. The announcement audio continues on the Cabin Output Channel",
+   "specification_reference": "CFTS024-4872536; CFTS024-4872538",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

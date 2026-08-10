@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-060",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 提供 HMI 讓使用者啟用或停用 TA；以及啟用 TA 時，若目前電台未帶交通節目旗標，HU 自動執行 TA seek 調諧到有交通資訊的電台。關鍵情境條件：TA 的兩個設定值；啟用當下目前電台是否帶 TP。為什麼這樣切：依 R10-2 決策測試，同節未配置條款 4872528（啟用 TA 且目前電台不帶交通節目時自動 TA seek）直接細化本 leaf 所引條款的啟用動作，予以吸收並多引，成為獨立的第二條 TC——其觸發狀態（啟用當下電台不帶 TP）與單純的設定切換不同，依 §5.2 不可在同一程序內分支。刻意略過：同節未配置條款 4872527（$TA_STAT$ 信號供 VR Commands 使用）為 CAN 信號更新且服務於 VR 路徑，依 R8（VR 不納入本 workbook）與 CAN 條款既有處置，未吸收，送 RD-1；TA 播報時的暫停與切換由 061 覆蓋，圖示由 055 覆蓋。",
+ "keywords": [
+  "TA enable",
+  "TA disable",
+  "TA seek",
+  "traffic program"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "060-01 於一般狀態驗證 TA 的啟用與停用設定；060-02 於啟用當下目前電台不帶 TP 的狀態驗證自動 TA seek（吸收 4872528）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872528 (enabling TA while the current station carries no traffic program starts an automatic TA seek) is an unallocated clause in the same section elaborating the enable action of this leaf's cited clause; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-060",
+   "tc_title": "TA is enabled and disabled from the HU HMI",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "HU shall provide HMI to allow the user to enable or disable TA",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a station broadcasting RDS data with the TP flag set\n5. TA is disabled before the test starts",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the tuner settings on the HU HMI and read the TA setting\n2. Enable TA from the HU HMI\n3. Read the TA setting\n4. Disable TA from the HU HMI\n5. Read the TA setting",
+   "expected_result": "1. The TA setting is offered on the HU HMI and reads as disabled\n2. The enable request is accepted\n3. The TA setting reads as enabled\n4. The disable request is accepted\n5. The TA setting reads as disabled",
+   "specification_reference": "CFTS024-4872526",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-060",
+   "tc_title": "Enabling TA on a station without TP starts a TA seek",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "If the current station does not carry traffic program and user enables TA, HU shall automatically perform TA seek to tune to a station broadcasting traffic information",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a station broadcasting RDS data with the TP flag not set\n5. Another receivable station broadcasts RDS data with the TP flag set\n6. TA is disabled before the test starts",
+   "input_test_data": "Station U: TP flag not set, tuned at the start of the test\nStation T: TP flag set, receivable on another frequency",
+   "test_procedure": "1. Read the tuned frequency and the traffic program icon\n2. Enable TA from the HU HMI\n3. Read the tuned frequency\n4. Read the traffic program icon",
+   "expected_result": "1. The HU is tuned to station U and the traffic program icon is not displayed\n2. The enable request is accepted and the HU starts searching for a station broadcasting traffic information\n3. The HU is tuned to station T\n4. The traffic program icon is displayed",
+   "specification_reference": "CFTS024-4872526; CFTS024-4872528",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

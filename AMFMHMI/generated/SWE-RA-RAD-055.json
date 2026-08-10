@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-RAD-055",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 以圖示指出目前是否有交通報導正在播送（TA 旗標），以及報導結束後回到先前模式。關鍵情境條件：交通報導的播送與結束兩個時點。為什麼這樣切：圖示反映與模式回復是兩個不同觸發（報導開始／報導結束），依 §5.2 不得在同一程序內分支、依 §8.3 以 trigger_state 為軸拆兩條，第二條的驗證對象是狀態回復，設計方法採狀態轉換測試。依 §8.2.1 不吸收兄弟 leaf 範圍：切換至 FM 並暫停原本媒體由 061 覆蓋（含 disc/VES 共用例外），本 leaf 只驗圖示與回復。刻意略過：同節未配置條款 4872534（回到原模式時送出 $HUModeStatus$）為 CAN 信號更新而非 HMI 行為，與 Seek/Presets 批次同處置，未吸收；4872535（TA/PTY31 期間的音訊仲裁指向 CFTS019）委派給另一份交付文件，未吸收，兩者送 RD-1。",
+ "keywords": [
+  "Traffic Announcement",
+  "TA flag",
+  "icon",
+  "revert to previous mode"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "055-01 於交通報導播送中驗證 TA 圖示顯示；055-02 於報導結束時驗證 HU 回到先前模式"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-055",
+   "tc_title": "Traffic Announcement icon appears while an announcement is broadcasting",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "Traffic Announcement Flag (TA): HU shall display an icon indicating whether a traffic announcement is currently broadcasting",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode and tuned to a station broadcasting RDS data with the TP flag set",
+   "input_test_data": "Station T: TP flag set, TA flag raised for the duration of a traffic announcement",
+   "test_procedure": "1. Read the icon area of the FM Radio Playing page before the announcement starts\n2. Start the traffic announcement on station T with the TA flag raised\n3. Read the icon area of the FM Radio Playing page\n4. End the traffic announcement and clear the TA flag\n5. Read the icon area of the FM Radio Playing page",
+   "expected_result": "1. The traffic announcement icon is not displayed\n2. Station T broadcasts the traffic announcement with the TA flag raised\n3. The traffic announcement icon is displayed\n4. The announcement ends and the TA flag is cleared\n5. The traffic announcement icon is no longer displayed",
+   "specification_reference": "CFTS024-4872519",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-055",
+   "tc_title": "Previous mode returns after the traffic announcement ends",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "The TP and TA flag shall be used for automatic switching to traffic announcements if HU is currently in FM station without TA or in non FM mode. This allows customer to listen to the traffic announcement and HU shall revert back to the previous mode after the broadcast",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. TA is enabled on the HU HMI\n4. The Cabin Output Channel is playing a source other than FM\n5. A receivable FM station broadcasts RDS data with the TP flag set",
+   "input_test_data": "Station T: TP flag set, TA flag raised for the duration of a traffic announcement",
+   "test_procedure": "1. Read the source playing on the Cabin Output Channel\n2. Start the traffic announcement on station T with the TA flag raised\n3. Read the source playing on the Cabin Output Channel\n4. End the traffic announcement and clear the TA flag\n5. Read the source playing on the Cabin Output Channel",
+   "expected_result": "1. The source other than FM is playing\n2. The traffic announcement is broadcast with the TA flag raised\n3. The traffic announcement is played on the Cabin Output Channel\n4. The announcement ends and the TA flag is cleared\n5. The source read in step 1 is playing again, at the point the mode was left",
+   "specification_reference": "CFTS024-4872519",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

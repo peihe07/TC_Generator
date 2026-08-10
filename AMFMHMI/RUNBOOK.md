@@ -184,8 +184,8 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
       first batch under R11 cite-form (014-02)
 - [x] **Presets** (031–039, 9 leaves → 13 TCs), 2026-08-10, lint green
 - [x] **List Navigation** (040–051, 12 leaves → 16 TCs), 2026-08-10, lint green
-- [ ] RDS Features · Station List · Market Configuration ·
-      Engineering Mode · Diagnostics
+- [x] **RDS Features** (052–063, 12 leaves → 17 TCs), 2026-08-10, lint green
+- [ ] Station List · Market Configuration · Engineering Mode · Diagnostics
 - [ ] write-back invariants pass
 
 | Batch | Leaves | TCs | P0/P1/P2/P3 | Design methods |
@@ -195,6 +195,7 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 | Browse | 11 | 17 | 0/15/2/0 | Functional 8, EP 8, BVA 1 |
 | Presets | 9 | 13 | 0/13/0/0 | Functional 7, BVA 3, EP 2, Decision Table 1 |
 | List Navigation | 12 | 16 | 0/16/0/0 | Functional 9, BVA 4, State Transition 2, EP 1 |
+| RDS Features | 12 | 17 | 0/15/2/0 | Functional 9, EP 3, State Transition 2, Decision Table 2, Scenario 1 |
 
 ### Spec tables are injected, not summarised
 
@@ -247,6 +248,48 @@ Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
 `CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
 trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
 048, `CFTS024-707` → 057.
+
+### RDS Features batch notes
+
+- **A second CIP worksheet became the source of a decision table.** Clause
+  `4872538` says only "refer to CIP Radio tables for actions that cancel TA or
+  PTY 31 alerts"; that table is `TA-PTY31 station list cancel`, now registered
+  as `ta_pty31_cancel` and absorbed into 062. Same shape as Seek's cancel/stop
+  matrix: without it, 062-02 would have had to guess which events end an
+  announcement (MUTE/PAUSE cancels, DIRECT TUNE continues until the customer
+  picks a station).
+- **061-02 exists only because §8.6 puts the spec above the 037 title.** The
+  037 title for 061 (agreement 0.619) drops the exception sentence entirely —
+  disc source shared with VES IR1/IR2 is NOT paused. Generating from the title
+  alone would have lost a whole suppression branch.
+- **057 is the third R11 cite-form TC** (`CFTS024-707`, radiotext behaviour),
+  and it too reached the batch only via §8.6: the 037 title dropped the
+  reference sentence (agreement 0.855).
+- **Absorbed (R10-2)**: `4872528` → 060 (enabling TA on a station without TP
+  starts a TA seek), `4872538` → 062, `4872541` → 063 (AF Local restricted to
+  identical PI codes).
+- **Not absorbed, and why** — the densest section in the corpus, so the rule
+  had to do the work rather than judgement:
+  - CAN signal clauses (`4872527` `$TA_STAT$`, `4872530`, `4872531`,
+    `4872532`, `4872533`, `4872534`): CAN behaviour, not HMI — the Seek and
+    Presets disposition, held here. `4872527` additionally serves the VR path
+    (R8). `4872532`/`4872533` also cite A-AM15 short ids.
+  - `4872537` (TA/TP icon appearance per the European RDS spec) elaborates
+    054/055, whose clauses are in §1.3.13 — a **different section**, so R10-2's
+    same-section condition fails. Coverage hole, not absorption.
+  - `4872535` delegates audio arbitration to CFTS019 — another delivery.
+  - `4872542` (AF switching inaudible) restates the last sentence of 053's own
+    clause; absorbing it into 063 would count one behaviour twice.
+  - `4872512`–`4872515`, `4872524`: section preamble, IEC 62106 conformance,
+    market-applicability pointer, PI code and PTY/Genre definitions. No leaf
+    claims `4872515`/`4872524` at all → coverage holes → RD-1.
+- **056 (EON) is a capability description with no HMI outcome of its own.**
+  Written as Scenario/Use Case with the ER narrowed to the one thing EON adds
+  that TA switching does not: the announcement arrives from a *different*
+  station of the network. The alternative was fabricating a search interface
+  the clause never describes (§8.4.1).
+- **059 skips its own `may` clause** ("HU may provide HMI to turn this feature
+  ON or OFF") — optional behaviour has no pass criterion.
 
 ### List Navigation batch notes
 

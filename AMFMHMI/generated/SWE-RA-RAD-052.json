@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-052",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 顯示廣播端送出的 Program Service Name——最長八個英數字元，且大小寫皆可呈現。關鍵情境條件：電台送出的 PS 名稱字元組成（含大小寫混用與空白補位，如條文舉例的 \"SWR3____\" 與 \"BBC_4_FM\"）。為什麼這樣切：一條 TC 覆蓋單一觀察對象的必然結果——名稱長度與大小寫如實呈現，依 §5.7 不拆分；條文舉例的兩種樣式在同一條 TC 內以兩個步驟涵蓋。刻意略過：PS 名稱在 preset label 上的取用規則由 039 依市場組態覆蓋；station list 的名稱排序屬 §1.3.14。同節未配置條款 4872512（章節說明，指向 CIP market Configuration 的 Tuner Configurations 工作表）、4872513（遵循 IEC 62106）、4872514（依市場組態支援 RDS 功能集）為外部標準與組態指引，不含本 ECU 可觀察的獨立行為，未依 R10-2 吸收；4872515（PI code 定義）與 4872524（PTY & Genre 定義，scope 標記 ECU:RRM）在 037 未配置給任何 leaf，記為覆蓋缺口送 RD-1——PI code 的實際判準由 038（preset 召回）與 063（AF Local）覆蓋。",
+ "keywords": [
+  "Program Service Name",
+  "PS",
+  "eight characters",
+  "upper and lower case"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-052",
+   "tc_title": "Program Service Name is displayed as broadcast up to eight characters",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "Program Service Name (PS): eight character alpha numeric program service name which may use upper and lower case characters",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "Station P broadcasting the program service name \"SWR3\" padded to eight characters\nStation Q broadcasting the program service name \"BBC 4 FM\" of eight characters mixing upper and lower case",
+   "test_procedure": "1. Tune the HU to station P\n2. Read the program service name displayed\n3. Tune the HU to station Q\n4. Read the program service name displayed",
+   "expected_result": "1. The HU is tuned to station P\n2. The displayed program service name matches the name broadcast by station P, without truncating or padding beyond the eight characters broadcast\n3. The HU is tuned to station Q\n4. The displayed program service name matches the name broadcast by station Q, with the upper and lower case characters as broadcast",
+   "specification_reference": "CFTS024-4872516",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

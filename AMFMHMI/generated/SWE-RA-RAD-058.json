@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-058",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 支援 Enhanced Radio Text，並以 IEC 62106 的擴充字元表 E.2 呈現歐洲廣播區各國語言的字元。關鍵情境條件：eRT 內容中含有僅存在於 E.2 擴充表的字元（例如帶變音符號與非拉丁字母），與僅含基本字元的對照內容。為什麼這樣切：一條 TC 內以「含擴充字元」與「僅基本字元」兩種內容涵蓋同一驗證目標——文字如實呈現而非以替代符號或空白取代，依 §5.7 不拆分。刻意略過：IEC 62106 標準本身的符合性不由本 workbook 驗證（§8.4.2 不吸收其他規格的規則），ER 只驗送出的字元是否如實顯示；一般 radiotext 與 RT+ 欄位由 057 覆蓋。",
+ "keywords": [
+  "Enhanced Radio Text",
+  "eRT",
+  "character table E.2",
+  "national languages"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-058",
+   "tc_title": "Enhanced Radio Text displays national language characters correctly",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "Enhanced Radio Text (eRT): HU shall support this feature as well as the extended RDS character table E.2 defined in the latest IEC 62106 standard, to support all national languages covered by the european broadcasting area",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "Station V: eRT text containing characters that exist only in the extended RDS character table E.2, such as accented and non-Latin letters of the european broadcasting area\nStation W: eRT text containing basic characters only",
+   "test_procedure": "1. Tune the HU to station V\n2. Read the radio text displayed and compare it character by character with the text broadcast\n3. Tune the HU to station W\n4. Read the radio text displayed and compare it with the text broadcast",
+   "expected_result": "1. The HU is tuned to station V\n2. Every character of the broadcast text is displayed as broadcast, with no character replaced by a substitute symbol or a blank\n3. The HU is tuned to station W\n4. The displayed text matches the text broadcast by station W",
+   "specification_reference": "CFTS024-4872522",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

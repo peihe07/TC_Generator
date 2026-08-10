@@ -18,7 +18,7 @@ range. The `n` column is cross-checked against the expanded id list.
 | Tune | 1.3.4, 1.3.5, 1.3.6 | 6 | 025-030 | CFTS024 §1.3.4-1.3.6; A-AM08 適用 028/029 (共用 4872451) |
 | Presets | 1.3.7, 1.3.8 | 9 | 031-039 | CFTS024 §1.3.7 Select/Recall + §1.3.8 Save; short vs long press; `[[table:radio_tuner_configuration]]` 為 039 preset label 的 AF 市場適用性來源 |
 | List Navigation | 1.3.10, 1.3.11, 1.3.12 | 12 | 040-051 | CFTS024 §1.3.10-1.3.12 Scroll / Page / Enter |
-| RDS Features | 1.3.13, 1.3.13.1, 1.3.13.2 | 12 | 052-063 | CFTS024 §1.3.13 + TA/PTY31 + AF subsections |
+| RDS Features | 1.3.13, 1.3.13.1, 1.3.13.2 | 12 | 052-063 | CFTS024 §1.3.13 + TA/PTY31 + AF subsections; `[[table:ta_pty31_cancel]]` 為 4872538 所指的 TA/PTY31 取消動作來源（062 吸收）;057 引用 `CFTS024-707`（R11 引用式) |
 | Station List | 1.3.14 | 17 | 064-080 | CFTS024 §1.3.14; largest set, single section |
 | Market Configuration | 1.12.1.3.1.5, 1.12.2.2.1 | 5 | 081-085 | CFTS024 §1.12 Country_Code / HU Radio Configuration |
 | Engineering Mode | CFTS011 (external) | 9 | 087, 089-096 | A-AM06 檔案未到;037 title 自帶需求原文 (blocked-parent proportion test) |

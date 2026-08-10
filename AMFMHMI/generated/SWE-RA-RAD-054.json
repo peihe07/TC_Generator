@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-054",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 以圖示指出目前調諧的電台是否在一天中的某些時段播送交通報導（TP 旗標）。關鍵情境條件：電台是否帶 TP 旗標——兩個值類都必須觀察，只驗有 TP 的一側無法排除「永遠顯示圖示」的實作（§7）。為什麼這樣切：一條 TC 內以帶 TP 與不帶 TP 的兩個電台涵蓋旗標的兩個等價類，依 §5.7 屬同一驗證目標（圖示如實反映旗標），不拆分。刻意略過：TA 旗標與播報中圖示由 055 覆蓋；圖示的外觀規格屬同節未配置條款 4872537（依歐洲 RDS 規範與 HMI 文件），該條款位於 §1.3.13.1 而本 leaf 條款在 §1.3.13，跨節不符 R10-2 吸收條件，記為覆蓋缺口送 RD-1。",
+ "keywords": [
+  "Traffic Program",
+  "TP flag",
+  "icon"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-054",
+   "tc_title": "Traffic Program icon reflects whether the station carries traffic announcements",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "Traffic Program Flag (TP): HU shall display icon indicating whether the currently tuned station broadcasts traffic announcements at some time in the day",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured for a market where the RDS feature set applies, such as EMEA - Europe\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "Station T broadcasting RDS data with the TP flag set\nStation U broadcasting RDS data with the TP flag not set",
+   "test_procedure": "1. Tune the HU to station T\n2. Read the icon area of the FM Radio Playing page\n3. Tune the HU to station U\n4. Read the icon area of the FM Radio Playing page",
+   "expected_result": "1. The HU is tuned to station T\n2. The traffic program icon is displayed\n3. The HU is tuned to station U\n4. The traffic program icon is not displayed",
+   "specification_reference": "CFTS024-4872518",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

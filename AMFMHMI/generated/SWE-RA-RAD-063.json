@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-063",
+ "batch": "RDS Features",
+ "reasoning": "驗證目標：HU 提供 HMI 讓使用者停用 AF，或啟用 AF Local 與 AF 兩者之一；以及 AF Local 啟用時，只切換到 PI code 相同且播送相同節目內容的替代頻率。關鍵情境條件：AF 設定的三個值類；AF Local 開啟與關閉時對區域變體 PI code 的處理差異。為什麼這樣切：三個設定值是同一參數的值類覆蓋，依 R10-1 設計方法為等價劃分；依 R10-2，同節未配置條款 4872541（AF Local 開啟時只切換到相同 PI code，關閉時可切換到區域變體）直接細化本 leaf 所引條款的其中一個設定值，予以吸收並多引，成為獨立的第二條 TC——其觸發狀態（區域變體電台出現且品質較佳）與單純的設定切換不同（§5.2）。刻意略過：同節未配置條款 4872542（切換不得靜音、不應被使用者察覺）與 053 條文末句同義，該行為已由 053 依其自身條款覆蓋，此處不重複吸收以免同一行為被雙重計入覆蓋，記為交叉說明送 RD-1；AF 的信號強度比較與切換判準由 053 覆蓋。",
+ "keywords": [
+  "AF",
+  "AF Local",
+  "disable AF",
+  "PI code",
+  "regional variant"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "configuration",
+  "delta": "063-01 驗證 HMI 提供並套用停用 AF、AF Local、AF 三個設定值；063-02 於 AF Local 啟用狀態驗證只切換到 PI code 相同的替代頻率、不切換到區域變體（吸收 4872541）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872541 (with AF Local enabled the HU only switches to alternative frequencies carrying an identical PI code, and with AF Local off it may switch to regional variants) is an unallocated clause in the same section elaborating one setting value of this leaf's cited clause; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-063",
+   "tc_title": "AF menu offers disable, AF Local and AF states",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "HU shall provide HMI to allow the user to disable AF or enable either AF Local or AF",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with a tuner configuration whose feature set includes AF\n3. The HU Tuner source is selected on the Cabin Output Channel\n4. The HU is in FM analog tuner mode",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the tuner settings on the HU HMI and read the AF setting values offered\n2. Select the value that disables AF and read the AF setting\n3. Select the value that enables AF Local and read the AF setting\n4. Select the value that enables AF and read the AF setting",
+   "expected_result": "1. The AF setting offers a value that disables AF, a value for AF Local and a value for AF\n2. The AF setting reads as disabled\n3. The AF setting reads as AF Local\n4. The AF setting reads as AF",
+   "specification_reference": "CFTS024-4872540",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-063",
+   "tc_title": "AF Local switches only to identical PI code stations",
+   "test_group": "AMFM",
+   "test_set": "RDS Features",
+   "test_item": "If AF Local is enabled, HU shall only switch to alternative frequencies with identical PI code and broadcasting the same program content. When AF local is off, HU may switch over to stations broadcasting regional variants of the original PI-code",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with a tuner configuration whose feature set includes AF\n3. AF Local is enabled on the HU HMI\n4. The HU Tuner source is selected on the Cabin Output Channel\n5. The HU is tuned to frequency F1, and frequency F2 carries a regional variant of the PI code of F1 while frequency F3 carries the identical PI code and the same program content",
+   "input_test_data": "F1: tuned at the start of the test\nF2: regional variant of the PI code of F1, signal level raised above F1\nF3: identical PI code and same program content as F1, signal level raised above F1",
+   "test_procedure": "1. Read the tuned frequency\n2. Raise the signal level of F2 above the level of F1 and read the tuned frequency\n3. Lower the signal level of F2 back below F1\n4. Raise the signal level of F3 above the level of F1\n5. Read the tuned frequency",
+   "expected_result": "1. The HU is tuned to F1\n2. The HU stays tuned to F1 and does not switch to the regional variant on F2\n3. F2 is no longer the stronger frequency\n4. F3 offers the better signal quality of the two frequencies\n5. The HU is tuned to F3, whose PI code is identical to the one of F1",
+   "specification_reference": "CFTS024-4872540; CFTS024-4872541",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}
