@@ -224,6 +224,63 @@ def test_external_leaves_are_skipped():
     assert bsm.verify_ids(mapping, _paras()) == []
 
 
+# ------------------------------------------------------- declared-id override
+
+def _leaves_for_override():
+    return [{"req_id": "SWE-RA-RAD-029", "stla_id": 4872451,
+             "declared_stla_id": 4872451, "title": CLAUSE_B + " (4872451)",
+             "description": "", "source_components": ""}]
+
+
+OVERRIDE = {"SWE-RA-RAD-029": {"declared": 4872451, "corrected": 4872457,
+                               "ruling": "R9"}}
+
+
+def test_a_ruled_override_repoints_the_leaf():
+    leaves = _leaves_for_override()
+    applied = bsm.apply_overrides(leaves, OVERRIDE, _paras())
+    assert leaves[0]["stla_id"] == 4872457
+    assert leaves[0]["declared_stla_id"] == 4872451, "the 037's own value is kept"
+    assert applied[0]["agreement_corrected"] > applied[0]["agreement_declared"]
+
+
+def test_an_override_is_refused_when_the_037_no_longer_says_what_it_assumed():
+    """A reissued 037 that fixed the typo itself must not be re-pointed by a
+    ruling written against the old file."""
+    leaves = _leaves_for_override()
+    leaves[0]["declared_stla_id"] = leaves[0]["stla_id"] = 4872457
+    with pytest.raises(bsm.BuildError, match="predates this file"):
+        bsm.apply_overrides(leaves, OVERRIDE, _paras())
+
+
+def test_an_override_is_refused_when_it_does_not_improve_agreement():
+    """The evidence that justified the ruling is re-measured, not trusted."""
+    leaves = _leaves_for_override()
+    leaves[0]["title"] = CLAUSE_A + " (4872451)"   # actually describes 4872451
+    with pytest.raises(bsm.BuildError, match="no longer holds"):
+        bsm.apply_overrides(leaves, OVERRIDE, _paras())
+
+
+def test_an_override_onto_a_nonexistent_clause_aborts():
+    leaves = _leaves_for_override()
+    bad = {"SWE-RA-RAD-029": {"declared": 4872451, "corrected": 9999999}}
+    with pytest.raises(bsm.BuildError, match="not\n?\\s*a clause|not a clause"):
+        bsm.apply_overrides(leaves, bad, _paras())
+
+
+def test_an_override_for_an_unknown_leaf_aborts():
+    with pytest.raises(bsm.BuildError, match="not a\n?\\s*037 leaf|not a 037 leaf"):
+        bsm.apply_overrides(_leaves_for_override(),
+                            {"SWE-RA-RAD-999": {"declared": 1, "corrected": 2}},
+                            _paras())
+
+
+def test_no_overrides_is_a_no_op():
+    leaves = _leaves_for_override()
+    assert bsm.apply_overrides(leaves, None, _paras()) == []
+    assert leaves[0]["stla_id"] == 4872451
+
+
 # ----------------------------------------------------------- batch checking
 
 BATCH_MD = """\

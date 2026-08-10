@@ -102,6 +102,7 @@ def load_leaves(a03_path: Path) -> list[dict]:
             ambiguous.append((rid, sorted(set(ids))))
             continue
         leaves.append({"req_id": rid, "stla_id": int(ids[-1]),
+                       "declared_stla_id": int(ids[-1]),
                        "title": title.strip(),
                        "description": str(r[di] or "").strip(),
                        "source_components": str(r[si] or "").strip()})
@@ -239,6 +240,51 @@ def build(leaves, sections, external: dict[str, list[str]], home_doc: str,
     return mapping
 
 
+def apply_overrides(leaves: list[dict], overrides: dict,
+                    paragraphs: dict[int, dict]) -> list[dict]:
+    """Apply ruled declared-id corrections, refusing ones that do not hold up.
+
+    An override rewrites which clause a requirement traces to, so it is checked
+    against the same evidence that justified it: the corrected clause must
+    match the leaf's own text better than the declared one does. A ruling that
+    stops being true of the files — the 037 reissued, the CFTS renumbered —
+    then fails here instead of silently re-pointing a citation.
+    """
+    applied = []
+    by_id = {l["req_id"]: l for l in leaves}
+    for rid, spec in (overrides or {}).items():
+        leaf = by_id.get(rid)
+        if leaf is None:
+            raise BuildError(f"stla_id_overrides names {rid}, which is not a "
+                             "037 leaf")
+        declared, corrected = int(spec["declared"]), int(spec["corrected"])
+        if leaf["declared_stla_id"] != declared:
+            raise BuildError(
+                f"{rid}: override expects declared id {declared}, but the 037 "
+                f"now says {leaf['declared_stla_id']} — the ruling "
+                f"({spec.get('ruling', '?')}) predates this file")
+        if corrected not in paragraphs:
+            raise BuildError(f"{rid}: override target {corrected} is not a "
+                             "clause in the primary document")
+        was = difflib.SequenceMatcher(
+            None, _fold(leaf["title"]),
+            _fold(paragraphs.get(declared, {}).get("text", ""))).ratio()
+        now = difflib.SequenceMatcher(
+            None, _fold(leaf["title"]),
+            _fold(paragraphs[corrected]["text"])).ratio()
+        if now <= was:
+            raise BuildError(
+                f"{rid}: override to {corrected} agrees {now:.3f} with the "
+                f"leaf, no better than the declared {declared} at {was:.3f} — "
+                "the evidence for this ruling no longer holds")
+        leaf["stla_id"] = corrected
+        applied.append({"req_id": rid, "declared": declared,
+                        "corrected": corrected, "ruling": spec.get("ruling"),
+                        "agreement_declared": round(was, 3),
+                        "agreement_corrected": round(now, 3)})
+    return applied
+
+
 def _fold(s: str) -> str:
     s = re.sub(r"[({（]\s*\d{7}\s*[)}）]", " ", str(s or ""))
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9$ ]", " ", s.lower())).strip()
@@ -346,7 +392,11 @@ def run(args) -> int:
     leaves = load_leaves(a03)
     sections, unparsed = load_sections(cfts)
     paragraphs = load_paragraph_anchors(cfts)
+    overrides = apply_overrides(leaves, cfg.get("stla_id_overrides"), paragraphs)
     mapping = build(leaves, sections, external, home_doc, paragraphs)
+    for o in overrides:
+        mapping[o["req_id"]] |= {
+            "declared_stla_id": o["declared"], "id_override": o}
 
     data = root / "data"
     data.mkdir(exist_ok=True)
@@ -380,6 +430,10 @@ def run(args) -> int:
     if coarse:
         print(f"  section-level only (no paragraph anchor for the id): {coarse}")
 
+    for o in overrides:
+        print(f"id override   : {o['req_id']} {o['declared']} -> "
+              f"{o['corrected']} ({o['ruling']}); agreement "
+              f"{o['agreement_declared']} -> {o['agreement_corrected']}")
     suspect = verify_ids(mapping, paragraphs)
     if suspect:
         print("\nDECLARED STLA ID DOES NOT MATCH THE CLAUSE (A-AM08 class):",

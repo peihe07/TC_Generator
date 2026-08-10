@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-002",
+ "batch": "Tuner Availability",
+ "reasoning": "驗證目標：$AM_Presence$ 組態為 [Absent] 時，AM_Tuner 已停用，使用者在任何來源路徑上都取用不到 AM。關鍵情境條件：車輛組態 $AM_Presence$ = [Absent]。為什麼這樣切：一條 TC 涵蓋同一觸發（組態為 Absent）的兩個必然結果——來源清單不列出 AM、來源循環也跳過 AM——依 §5.7 屬同一 TC 的兩條 ER，不拆分。與 SWE-RA-RAD-001 合為 $AM_Presence$ 的等價劃分對。刻意略過：組態切換過程（Absent→Present 的重新啟用）不在 4872378 文字內，未生成。",
+ "keywords": [
+  "$AM_Presence$",
+  "AM_Tuner",
+  "deactivated",
+  "source cycle"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-002",
+   "tc_title": "AM tuner deactivated when $AM_Presence$ = [Absent]",
+   "test_group": "AMFM",
+   "test_set": "Tuner Availability",
+   "test_item": "The AM_Tuner shall be deactivated when $AM_Presence$ = [Absent]",
+   "pre_conditions": "1. The vehicle is configured with $AM_Presence$ = [Absent]\n2. An FM/AM signal generator is ready and broadcasting a receivable AM station",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"Media\" button on menu bar\n2. Press \"Source\" tab on Media page\n3. Read the source list displayed on the Source page\n4. Cycle the audio source with the Steering Wheel Buttons \"Source\" control through the complete source list",
+   "expected_result": "1. Display Media page\n2. Display Source page\n3. \"Radio AM\" is not listed on the Source page\n4. The source cycle returns to the first source without displaying the AM Radio Playing page at any point",
+   "specification_reference": "CFTS024-4872378",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

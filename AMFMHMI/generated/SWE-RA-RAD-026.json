@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-026",
+ "batch": "Tune",
+ "reasoning": "驗證目標：ICS 旋鈕送出 $ICS_KNOB2_DIR$ = [Increment] 與轉速 $ICS_KNOB2_VAL$ 時，HU 依收到的 rate 遞增頻率；且僅在「來源為 tuner」且「畫面非 scroll/list」兩條件同時成立時才執行。關鍵情境條件：Radio Playing page（非清單畫面）對比 Browse 清單畫面；rate 取值域 [1 to 63] 的兩個邊界。為什麼這樣切：依 §7 分支拆兩條——條件成立的執行路徑（以 rate 邊界值驗「依 rate 遞增」）與條件不成立的抑制路徑（決策表的另一列）。刻意略過：rate 值與頻率步進數的換算關係 CFTS024 未定義，ER 以「對應收到的 rate 值」表述，不臆造 1:1 對應（見 A-AM11）。",
+ "keywords": [
+  "$ICS_KNOB2_DIR$",
+  "$ICS_KNOB2_VAL$",
+  "ICS tune rotary knob",
+  "scroll/list display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "026-01 在 Radio Playing page（非清單畫面）條件成立，以 rate 邊界 1 與 63 驗證依 rate 遞增；026-02 在 Browse 清單畫面條件不成立，頻率不得變動"
+ },
+ "assumptions": [
+  "[A-AM11] CFTS024-4872442 requires the HU to increment 'based on the rate recieved in the $ICS_KNOB2_VAL$ signal value' but defines no mapping from rate value to frequency steps. The expected results assert a monotonic relation (63 moves further than 1) rather than a specific step count.",
+  "[A-AM09] The 'shall not be executed if HU is in browse screen' example is present in the CFTS clause and absent from the 037 title; generated from the CFTS per §8.6."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-026",
+   "tc_title": "ICS knob tune up applies the received rotation rate",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "When tune up command is executed via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Increment] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. HU shall perform the tune up function if the cabin output channel is in a tuner source and HU is not in a scroll/list display.\n\n(Rate boundary values 1 and 63 on the Radio Playing page)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and the Radio Playing page is displayed\n4. The tuned frequency is far enough below the upper end of the wave band that 63 increments do not reach it",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Increment]\n$ICS_KNOB2_VAL$ = [1]\n$ICS_KNOB2_VAL$ = [63]",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Send $ICS_KNOB2_DIR$ = [Increment] together with $ICS_KNOB2_VAL$ = [1]\n3. Read and record the tuned frequency\n4. Send $ICS_KNOB2_DIR$ = [Increment] together with $ICS_KNOB2_VAL$ = [63]\n5. Read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The signals are received by the HU\n3. The tuned frequency has increased from the frequency recorded in step 1 by the number of frequency steps corresponding to $ICS_KNOB2_VAL$ = [1]\n4. The signals are received by the HU\n5. The tuned frequency has increased from the frequency recorded in step 3 by the number of frequency steps corresponding to $ICS_KNOB2_VAL$ = [63], and the increase is larger than the increase observed in step 3",
+   "specification_reference": "CFTS024-4872442",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-026",
+   "tc_title": "ICS knob tune up suppressed while browse list is displayed",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "When tune up command is executed via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Increment] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. HU shall perform the tune up function if the cabin output channel is in a tuner source and HU is not in a scroll/list display.\n\n(Scroll/list display shown — tune up suppressed)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Increment]\n$ICS_KNOB2_VAL$ = [10]",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Browse\" tab on the Radio Playing page\n3. Send $ICS_KNOB2_DIR$ = [Increment] together with $ICS_KNOB2_VAL$ = [10]\n4. Press \"Back\" to return to the Radio Playing page and read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The Browse list screen is displayed\n3. The tuned frequency is not changed by the signals\n4. The tuned frequency is the same as recorded in step 1 and the same station is still played",
+   "specification_reference": "CFTS024-4872442",
+   "priority": "P2",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": "Suppression clause wording taken from CFTS024-4872442 (A-AM09)"
+  }
+ ]
+}

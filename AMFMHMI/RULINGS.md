@@ -142,3 +142,26 @@ Verbatim: 「Q1-AMFM Q2 能力制 Q3本來就會有多份，如果需要補上�
 
 The R6 spec_reference placeholder (`<Spec Filename>_{outline}`) is hereby
 refined by R7-Q3 to the per-source `{doc}-{stla_id}` format.
+
+## R8 — VR trigger path out of scope (Pei, 2026-08-10)
+
+**Ruling (verbatim): 「不進去了」** — the VR Command trigger path is NOT
+covered by this workbook. Leaves 003 / 009 / 025 / 027 test the HU HMI
+main path only; the CFTS clauses' "or a VR Command" alternative belongs
+to the CFTS028 (Voice Recognition) delivery. Each affected TC's
+`reasoning` notes the delegation (§8.2.1 pattern). Closes the A-AM09 VR
+class. Consistent with the 037's own systematic omission of VR wording
+(A-AM09 evidence).
+
+## R9 — Leaf 029 spec_reference correction (Pei, 2026-08-10)
+
+**Ruling: 029 → `CFTS024-4872457`.** Evidence: 029's title is the
+verbatim body of clause 4872457 (Direct Number Input; similarity 0.909,
+vs 0.036 against its declared 4872451), minus exactly the VR wording the
+037 systematically omits. The declared id `(4872451)` is a copy error
+(4872451 = ICS tune-down, correctly owned by 028). Consequences:
+- spec_reference for 029 = `CFTS024-4872457` (overrides the declared id)
+- the 028/029 entry in A-AM08 is NOT a duplicate pair — reclassified as
+  an upstream id-tail typo; goes to RD-1 (Q-AM2)
+- pipeline: `build_stla_map.py` needs a declared-id override entry for
+  029 (Claude Code side) so the map and batch context resolve to 4872457

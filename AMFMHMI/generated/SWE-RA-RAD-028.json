@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-028",
+ "batch": "Tune",
+ "reasoning": "驗證目標：ICS 旋鈕送出 $ICS_KNOB2_DIR$ = [Decrement] 與轉速時，HU 依收到的 rate 遞減頻率；且僅在「來源為 tuner」且「當前畫面無 scroll/list」兩條件同時成立時才執行。關鍵情境條件：Radio Playing page 對比 Browse 清單畫面；rate 取值域 [1 to 63] 的兩個邊界。為什麼這樣切：與 026 對稱，依 §7 拆執行路徑與抑制路徑兩條。刻意略過：rate 與頻率步進的換算 CFTS024 未定義（A-AM11），ER 不臆造。",
+ "keywords": [
+  "$ICS_KNOB2_DIR$",
+  "$ICS_KNOB2_VAL$",
+  "ICS tune rotary knob",
+  "scroll/list display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "028-01 在 Radio Playing page 條件成立，以 rate 邊界 1 與 63 驗證依 rate 遞減；028-02 在 Browse 清單畫面條件不成立，頻率不得變動"
+ },
+ "assumptions": [
+  "[A-AM11] The rate-to-frequency-step mapping is undefined in CFTS024; expected results assert a monotonic relation rather than a step count.",
+  "[A-AM09] The browse-screen suppression example is in the CFTS clause and absent from the 037 title; generated from the CFTS per §8.6."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-028",
+   "tc_title": "ICS knob tune down applies the received rotation rate",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "When tune down command is executed via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Decrement] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. HU shall perform the tune down function if the cabin output channel is in a tuner source and the current screen does not have any scroll/list displays.\n\n(Rate boundary values 1 and 63 on the Radio Playing page)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode and the Radio Playing page is displayed\n4. The tuned frequency is far enough above the lower end of the wave band that 63 decrements do not reach it",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Decrement]\n$ICS_KNOB2_VAL$ = [1]\n$ICS_KNOB2_VAL$ = [63]",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Send $ICS_KNOB2_DIR$ = [Decrement] together with $ICS_KNOB2_VAL$ = [1]\n3. Read and record the tuned frequency\n4. Send $ICS_KNOB2_DIR$ = [Decrement] together with $ICS_KNOB2_VAL$ = [63]\n5. Read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The signals are received by the HU\n3. The tuned frequency has decreased from the frequency recorded in step 1 by the number of frequency steps corresponding to $ICS_KNOB2_VAL$ = [1]\n4. The signals are received by the HU\n5. The tuned frequency has decreased from the frequency recorded in step 3 by the number of frequency steps corresponding to $ICS_KNOB2_VAL$ = [63], and the decrease is larger than the decrease observed in step 3",
+   "specification_reference": "CFTS024-4872451",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-028",
+   "tc_title": "ICS knob tune down suppressed while browse list is displayed",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "When tune down command is executed via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Decrement] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. HU shall perform the tune down function if the cabin output channel is in a tuner source and the current screen does not have any scroll/list displays.\n\n(Scroll/list display shown — tune down suppressed)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Decrement]\n$ICS_KNOB2_VAL$ = [10]",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Browse\" tab on the Radio Playing page\n3. Send $ICS_KNOB2_DIR$ = [Decrement] together with $ICS_KNOB2_VAL$ = [10]\n4. Press \"Back\" to return to the Radio Playing page and read the tuned frequency",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The Browse list screen is displayed\n3. The tuned frequency is not changed by the signals\n4. The tuned frequency is the same as recorded in step 1 and the same station is still played",
+   "specification_reference": "CFTS024-4872451",
+   "priority": "P2",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": "Suppression clause wording taken from CFTS024-4872451 (A-AM09)"
+  }
+ ]
+}

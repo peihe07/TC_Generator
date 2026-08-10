@@ -4,6 +4,8 @@ Register of ambiguities, spec gaps, and upstream inconsistencies.
 Marker format: `[A-AMnn]`. PENDING entries block their batch until a
 Pei ruling lands; RESOLVED entries record the ruling verbatim.
 Registration is Tier 1 (record + propose); disposition is Tier 2.
+File-supply gaps additionally get a row in `DATA_REQUESTS.md` — the anomaly
+records the gap, that file asks for the data.
 
 ---
 
@@ -108,33 +110,41 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
   legacy region per R4), `remarks: AG` (header text is authority). Applied
   to feature.yaml 2026-08-09. Authorship principle recorded verbatim in R3.
 
-## [A-AM06] CFTS011 referenced but not in inputs — PENDING (file supply)
+## [A-AM06] CFTS011 referenced but not in inputs — RESOLVED (file supplied, 2026-08-10)
 
 - 9 leaves (`SWE-RA-RAD-087, 089–096`, Engineering Mode display / signal
   strength sampling) carry STLA ids `4942xxx` outside the CFTS024 anchor
   range. SYS3 SYSAD §4.4.2 c.3 explicitly attributes 4942534 to **CFTS011**
-  (antenna connection status display) — the doc association is evidenced,
-  the file is absent from `inputs/`.
-- NOT blocking (R7-Q3): the 037 titles carry self-contained requirement
-  text (blocked-parent proportion test). spec_reference `CFTS011-{id}` is
-  written now; content verification against the CFTS011 text happens when
-  Pei supplies the file. Verify Engineering Mode entry conditions (§3.2 of
-  the profile) at that point.
-- Resolution condition: CFTS011 file lands in `inputs/` and a consistency
-  pass over the 9 leaves finds no wording conflict.
+  (antenna connection status display).
+- **Resolution**: Pei supplied `R1LR_Atl-H_25PI3.5_Activation and
+  Configuration_CFTS_011_Radio Engineering Mode_SR26_20250909-1658.docx`
+  (2026-08-10, via Project files). Title confirms the attribution (Radio
+  Engineering Mode); all 7 unique declared ids verified present
+  (4942534/36/38/40/42/43/45). Residual: original docx to be copied into
+  `AMFMHMI/inputs/` for pipeline access + delivery hash-binding;
+  batch-time consistency pass over the 9 leaves at Engineering Mode batch.
 
-## [A-AM07] CFTS004 attribution is assumed, file absent — PENDING (file supply)
+## [A-AM07] CFTS004 attribution is assumed, file absent — RESOLVED (file supplied, attribution confirmed, 2026-08-10)
 
 - 8 leaves (`SWE-RA-RAD-097–104`, Diagnostic DIDs) carry STLA ids
-  `4939xxx`/`4940xxx` outside CFTS024. SYS3's reference list names
-  `CFTS_004_General Diagnostic Requirements` — attribution is INFERRED,
-  not evidenced per-id (unlike A-AM06).
-- spec_reference `CFTS004-{id}` is written with `[ASSUMPTION A-AM07]` in
-  the reasoning of every affected TC until the file confirms.
-- NOT blocking (R7-Q3, same proportion test). Resolution condition: CFTS004
-  file lands in `inputs/`, attribution confirmed or corrected per id.
+  `4939xxx`/`4940xxx` outside CFTS024. Attribution to CFTS004 was inferred
+  from SYS3's reference list.
+- **Resolution**: Pei supplied `R1LR_Atl-H_25PI3.5_Activation and
+  Configuration_CFTS_004_General Diagnostic Requirements_SR26_20250909-1658.docx`
+  (2026-08-10, via Project files). All 8 declared ids verified present
+  (4939808/09/22/46/49, 4940333/34/37) — attribution CONFIRMED; the
+  `[ASSUMPTION A-AM07]` marker is no longer required on generated TCs
+  (profile §3.5 updated).
+- Version note: SYS3 cites `26PI1.5 Mar Release … 20260310-1509` (newer);
+  supplied file is `25PI3.5 SR26 20250909` (older). Ids match; per-clause
+  wording check at Diagnostics batch; if a delta shows, re-request the
+  Mar release.
+- Residual: original docx into `AMFMHMI/inputs/`; the supplied per-
+  requirement attachment `4874050_4595376_CFTSMV024_CIP_R3_O1965_Excel_
+  Document.xls` (a DTC definition table, Vehicle Configuration Mismatch)
+  also serves this batch.
 
-## [A-AM08] 037-internal duplicate STLA ids and numbering gaps — PENDING (per-pair, Pei)
+## [A-AM08] 037-internal duplicate STLA ids and numbering gaps — PARTIALLY RESOLVED (028/029 per R9; three pairs pending per-pair review)
 
 - Duplicate source ids inside the 037-A03:
   - 087 / 094 share `4942534` (087 lacks the `(Engineering Mode)` tag,
@@ -151,7 +161,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
   pilot/batch review.
 - Candidate RD-1 material if review confirms true duplicates.
 
-### 028 / 029 — resolved as evidence, awaiting Pei's per-pair call
+### 028 / 029 — RESOLVED (R9, Pei, 2026-08-10)
 
 Phase 4 turned this pair from "likely a copy error in one title's id tail"
 into a measurement. Every CFTS024 requirement paragraph carries its own id, so
@@ -174,12 +184,16 @@ clause about a different function — a traceability defect, not a wording one.
 The proposed correction is `CFTS024-4872457`. It does not move 029 between
 batches (Tune already spans §1.3.4–1.3.6).
 
-Nothing is corrected here: R7-Q4 leaves each pair to Pei. The other three
+Nothing was corrected at registration time: R7-Q4 leaves each pair to Pei.
+**R9 (2026-08-10) rules it**: 029 spec_reference = `CFTS024-4872457`; the
+pair is reclassified from duplicate to upstream id-tail typo; RD-1 Q-AM2
+reports the 037 defect. `build_stla_map.py` gets a declared-id override
+for 029 (Claude Code side). The other three
 pairs (087/094, 089/095, 090/096) do not trigger the check — their declared
 ids match their own clauses, so they are genuine same-id variants rather than
-copy errors.
+copy errors; they stay PENDING for per-pair review at their batches.
 
-## [A-AM09] The 037 titles drop clauses the CFTS spec carries — PENDING
+## [A-AM09] The 037 titles drop clauses the CFTS spec carries — RESOLVED (R8 + file supply + §8.6, 2026-08-10)
 
 - The 037 title is meant to quote the CFTS clause verbatim, and for 65 of the
   85 in-corpus leaves it does. **20 diverge**, measured at context-build time
@@ -213,6 +227,82 @@ copy errors.
   the four VR leaves' extra path until Pei answers the scope question; request
   `CIP_Radio_Tables` if State Transition coverage for SEEK is wanted.
 - Per-leaf agreement scores are in each `batches/*.json`.
+- **Resolution (2026-08-10), per class**:
+  - VR Command → **R8 (verbatim: 「不進去了」)**: out of scope for this
+    workbook; 003/009/025/027 test the HU HMI main path only; delegation
+    to CFTS028 noted in each TC's reasoning
+  - Pointers → file supply completed/located (see `DATA_REQUESTS.md`):
+    CIP_Radio_Tables v6.7 + CFTS019 + Pop Up List in `inputs/`; Market
+    Config located; HMI L&F identity resolved (no standalone Radio deck)
+  - Caveats → generate from the CFTS clause per §8.6 (proposed, unopposed);
+    batch context carries the full clause text
+  - (029) → **R9**: id-tail typo, spec_reference = `CFTS024-4872457`
+
+## [A-AM10] The 037 leaves only a minority of the CFTS clauses — PENDING
+
+Found while building the pilot context. Inside the 20 CFTS024 sections the
+037 actually uses, the document holds **180 clauses; 85 are claimed by a
+leaf and 95 are not**. Of the 95 unclaimed, 91 are `Subsystem Functional
+Requirement` (the rest are `Description`), and they split three ways:
+
+| class | n | example |
+|---|---|---|
+| behavioural | 35 | `4872441` wrap-around at the band upper end; `4872386` seek reaching the band end; `4872398` seek long-press |
+| signal status | 32 | `TGW_Src_Cab_Stat = [8h: MD_TUNE]` / `[1h: MD_PLAY]` update clauses |
+| other-ECU / `noSys` | 24 | `[ECU:ETM]`, `[Radio:noSys]`-scoped clauses |
+
+Two different things are tangled here and only one is ours:
+
+1. **Elaborating clauses.** Most of the behavioural 35 sit in the same
+   section as a leaf and elaborate it — §1.3.4's `4872440` (increment to the
+   next higher frequency and play) and `4872441` (wrap-around) elaborate leaf
+   025's Description clause. Profile §4 already rules wrap-around a *boundary
+   TC, not a separate feature*, so these are folded into the leaf they
+   elaborate. The pilot does exactly that: 025-02 and 027-02 are the
+   wrap-around TCs, and each cites its source clause in Remarks.
+   **Without the fold-in the pilot would have under-verified its own leaves**
+   — the 037 Description clause alone says only "will tune to the new Station
+   and Play that Station".
+2. **Possibly uncovered behaviour.** The remainder may be behaviour no leaf
+   reaches at all. Our coverage target is the 037's 102 leaves (R1), so this
+   is an upstream RD-completeness question, not a gap in this deliverable —
+   but it is the question an assessor asks when the CFTS has 91 SFRs and the
+   037 claims 70.
+
+Proposed: keep the fold-in rule for every batch (it is already Profile §4 for
+wrap-around; the pilot generalises it to "unallocated clauses in the leaf's
+own section that elaborate it"), and classify the residue per batch as each
+one is built rather than in one pass. RD-1 candidate once the classification
+across all 20 sections exists. **No leaf is blocked.**
+
+## [A-AM11] `$ICS_KNOB2_VAL$` rate has no defined mapping to frequency steps — PENDING
+
+- `CFTS024-4872442` / `-4872451` require the HU to increment/decrement "based
+  on the rate recieved in the `$ICS_KNOB2_VAL$` signal value", with the range
+  given as `[1 to 63]`. Neither clause, nor §1.3.4/§1.3.5, states how a rate
+  value maps to a number of frequency steps.
+- Consequence for testing: an ER asserting "63 increments the frequency by 63
+  steps" would be invented. Pilot TCs 026-01 / 028-01 instead assert the
+  relation the spec does support — the frequency moves by the number of steps
+  corresponding to the rate, and rate 63 moves further than rate 1.
+- Proposed: RD-1 question, or confirmation that the mapping lives in an ICS /
+  hard-controls document (the Hard Controls HMI L&F deck is identified in
+  DATA_REQUESTS row 5). Not blocking — the current ER is verifiable as written.
+
+## [A-AM12] "Intelligent entry" is undefined beyond its two dependencies — PENDING
+
+- `CFTS024-4872459` (leaf 030) requires intelligent entry "based on the market
+  configuration and the current tuner mode" and defines neither the band plans
+  nor what "intelligent" constrains (digit count? decimal placement? range
+  rejection?).
+- Pilot TCs 030-01 / 030-02 are written against the market configuration the
+  tester holds rather than against literal frequencies, so nothing is
+  invented, and the tuner-mode axis (FM vs AM) is taken from the requirement's
+  own wording.
+- Concrete band plans arrive with `SR24 R1 Market Configuration Table v1.6`
+  (DATA_REQUESTS row 1b, now in `inputs/`) and are verified by the Market
+  Configuration set, `SWE-RA-RAD-081–085`. Revisit 030's ER when that batch
+  fixes the vocabulary. Not blocking.
 
 ## Assumption markers
 

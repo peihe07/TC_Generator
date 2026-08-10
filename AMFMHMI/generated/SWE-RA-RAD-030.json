@@ -1,0 +1,51 @@
+{
+ "parent": "SWE-RA-RAD-030",
+ "batch": "Tune",
+ "reasoning": "驗證目標：直接輸入頻率時，HU 依「市場組態」與「當前 tuner mode」提供智慧輸入（可輸入的位數、小數點位置與可接受頻率範圍隨模式改變）。關鍵情境條件：同一市場組態下分別在 FM 與 AM analog tuner mode 進入直接輸入。為什麼這樣切：依 §8.3 以 tuner mode 為等價劃分軸拆兩條——需求文字明列 'the current tuner mode' 為決定因素，而 FM 與 AM 的頻段規劃不同，同一條 TC 無法同時驗證。刻意略過：跨市場的組態差異（各市場的頻段規劃值）由 Market Configuration 集合的 SWE-RA-RAD-081–085 覆蓋；本 leaf 以受測市場的組態值為基準，不列舉各市場數值。",
+ "keywords": [
+  "intelligent entry",
+  "market configuration",
+  "tuner mode",
+  "direct tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "mode",
+  "delta": "030-01 在 FM analog tuner mode 下驗證輸入格式與可接受範圍依 FM 頻段規劃；030-02 在 AM analog tuner mode 下依 AM 頻段規劃"
+ },
+ "assumptions": [
+  "[A-AM12] CFTS024-4872459 states that intelligent entry depends on the market configuration and tuner mode but defines neither the band plans nor what 'intelligent' constrains. The expected results are written against the market configuration the tester holds rather than against literal frequencies, so no value is invented. Concrete band plans arrive with the SR24 R1 Market Configuration Table (DATA_REQUESTS row 1b) and are verified by SWE-RA-RAD-081–085."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-030",
+   "tc_title": "Direct tune entry follows the FM band plan",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "For frequency selection using direct tune method, HU shall allow intelligent entry based on the market configuration and the current tuner mode.\n\n(FM analog tuner mode)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The market configuration under test is known and its FM band plan is available to the tester",
+   "input_test_data": "FM band plan for the market under test: lowest frequency, highest frequency and frequency step, read from the market configuration",
+   "test_procedure": "1. Open the direct tune entry from the Radio Playing page\n2. Read the entry field format offered before any digit is keyed\n3. Enter the lowest FM frequency of the configured band plan and confirm\n4. Open the direct tune entry again and enter the highest FM frequency of the configured band plan and confirm",
+   "expected_result": "1. The direct tune entry is displayed\n2. The entry field accepts the digit count and decimal placement of the configured FM band plan, and does not offer the AM format\n3. The entry is accepted and the HU tunes to the lowest FM frequency of the configured band plan\n4. The entry is accepted and the HU tunes to the highest FM frequency of the configured band plan",
+   "specification_reference": "CFTS024-4872459",
+   "priority": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-030",
+   "tc_title": "Direct tune entry follows the AM band plan",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "For frequency selection using direct tune method, HU shall allow intelligent entry based on the market configuration and the current tuner mode.\n\n(AM analog tuner mode)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle is configured with $AM_Presence$ = [Present]\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in AM analog tuner mode\n4. The market configuration under test is known and its AM band plan is available to the tester",
+   "input_test_data": "AM band plan for the market under test: lowest frequency, highest frequency and frequency step, read from the market configuration",
+   "test_procedure": "1. Open the direct tune entry from the Radio Playing page\n2. Read the entry field format offered before any digit is keyed\n3. Enter the lowest AM frequency of the configured band plan and confirm\n4. Open the direct tune entry again and enter the highest AM frequency of the configured band plan and confirm",
+   "expected_result": "1. The direct tune entry is displayed\n2. The entry field accepts the digit count and decimal placement of the configured AM band plan, and does not offer the FM format\n3. The entry is accepted and the HU tunes to the lowest AM frequency of the configured band plan\n4. The entry is accepted and the HU tunes to the highest AM frequency of the configured band plan",
+   "specification_reference": "CFTS024-4872459",
+   "priority": "P2",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

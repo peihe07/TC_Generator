@@ -4,6 +4,13 @@ Process canon: `docs/fw036/FEATURE_ONBOARDING.md` (authority for phases,
 decision tiers, workbook_state strategies). This runbook records only what
 is specific to AMFM.
 
+**Standing convention — data-request reminder (Pei, 2026-08-09)**: at every
+session opener (「接手」) and at every batch gate, report the outstanding
+rows of `DATA_REQUESTS.md` (by Urgency) and which upcoming batches the
+missing files degrade or block. A batch gate summary that omits this check
+is incomplete. When a requested file lands in `inputs/`, mark its row
+supplied and advance the linked anomaly.
+
 ## Phase 0 — Intake
 - [x] Source files placed in `inputs/` (workbook, 037, spec, popup list)
 - [x] spec_mode classified: D  (FEATURE_ONBOARDING §3)
@@ -68,16 +75,60 @@ stripped of `req_id`, `spec_reference`, `test_group`, `test_set` and carry
 traceability).
 
 ## Phase 5 — Pilot (Tier 2)
-- [ ] Pilot batch: **Tuner Availability (2) + Tune (6) = 8 leaves** proposed —
-      rationale and the alternative (Seek 003–008) in `docs/batches-amfm.md`.
-      Contexts already built: `batches/tuner_availability.json`,
-      `batches/tune.json`
-- [ ] Blocking on Pei before generation: A-AM08's 029 id correction
-      (`4872451` → `4872457`) — it changes that leaf's spec_reference, and
-      029 is inside the proposed pilot
-- [ ] Non-blocking but in-scope for the pilot: A-AM09's VR Command question
-      (025/027 are in the Tune batch)
+
+- [x] Pre-conditions cleared: R8 (VR out of scope) and R9 (029 →
+      `CFTS024-4872457`) signed 2026-08-10; the R9 correction is implemented as
+      a **ruled** `stla_id_overrides` entry in `feature.yaml`, re-measured on
+      every build (see below)
+- [x] Pilot generated 2026-08-10: **Tuner Availability (001–002) + Tune
+      (025–030) = 8 leaves → 13 TCs**, `generated/SWE-RA-RAD-0*.json`
 - [ ] → Pei review → prompt adjustments recorded here
+
+| Leaf | TCs | Split axis | Priority | Design method |
+|---|---|---|---|---|
+| 001 | 1 | — | P1 | EP |
+| 002 | 1 | — | P1 | EP |
+| 025 | 2 | boundary (mid-band / band upper end) | P1, P1 | Functional, BVA |
+| 026 | 2 | trigger_state (playing page / browse list) | P1, P2 | BVA, Decision Table |
+| 027 | 2 | boundary (mid-band / band lower end) | P1, P1 | Functional, BVA |
+| 028 | 2 | trigger_state (playing page / browse list) | P1, P2 | BVA, Decision Table |
+| 029 | 1 | — | P1 | Functional |
+| 030 | 2 | mode (FM / AM tuner mode) | P2, P2 | EP, EP |
+
+Mechanical self-check clean: 13/13 TCs have ≥2 steps with 1:1 ER alignment, no
+trailing periods, no modals in ER or tc_title, design methods exact-matched
+against 下拉選單, spec_reference equal to the STLA map, no stray square
+brackets outside source-quoted `$SIGNAL$ = [value]`, no duplicate tc_title.
+(AMFM has no `lint_tcs.py` yet — that is Phase 6.)
+
+### Declared-id overrides are ruled, and re-checked
+
+`stla_id_overrides` in `feature.yaml` carries R9's correction with its
+evidence. `build_stla_map.py` refuses an override that stops being true of the
+files — if the 037 is reissued with a different declared id, or the corrected
+clause no longer matches the leaf better than the declared one, the build
+aborts instead of silently re-pointing a citation. Current run:
+`SWE-RA-RAD-029 4872451 -> 4872457 (R9); agreement 0.036 -> 0.909`.
+
+### Review points this pilot deliberately raises
+
+1. **EP vs Functional on 001/002.** The two leaves are the two equivalence
+   classes of `$AM_Presence$`; each TC exercises one. Assigned EP on that
+   reading. If the house reading is "one condition, one feature check", both
+   become Functional — a one-line change across the corpus's configuration
+   gates, so it is worth settling at the pilot.
+2. **Folding unallocated CFTS clauses into the leaf they elaborate** (A-AM10).
+   025-02 / 027-02 are wrap-around TCs sourced from `4872441` / `4872450`,
+   which the 037 allocated to no leaf. Profile §4 authorises this for
+   wrap-around specifically; the pilot generalises it. If that generalisation
+   is not wanted, those two TCs come out and the behaviour goes to RD-1.
+3. **Splitting the suppression branch** (026-02 / 028-02). The
+   "not executed if HU is in a browse screen" clause is in the CFTS and absent
+   from the 037 title (A-AM09 caveat class, §8.6). Generated as its own TC at
+   P2; alternatively it collapses into an extra ER line on the main TC.
+4. **029's Remarks** carries the R9 correction note. Confirm that is the right
+   place for a ruled upstream correction versus leaving Remarks empty and
+   keeping the record in ANOMALIES only.
 
 ## Phase 6 — Batch generation (Tier 1)
 - [ ] Batches generated → lint green → write-back invariants pass

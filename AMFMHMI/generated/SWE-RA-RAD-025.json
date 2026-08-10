@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-025",
+ "batch": "Tune",
+ "reasoning": "驗證目標：Tuner 來源下由 HU HMI 觸發 Tune Up，頻率遞增到波段內下一個較高頻率並播放該電台。關鍵情境條件：Cabin Output Channel 已選 HU Tuner source、FM analog tuner mode；一條在波段中段、一條在波段上緣。為什麼這樣切：依 §8.3 以邊界為軸拆兩條——正常遞增與波段上緣 wrap-around。wrap-around 文字在 CFTS 4872441，037 未配置給任何 leaf，依 Profile §4「wrap-around 屬 boundary TC 而非獨立功能」併入本 leaf（見 A-AM10）。刻意略過：VR Command 觸發路徑依 R8 不納入本 workbook，改由 CFTS028 交付承擔；本 leaf 只測 HU HMI 主路徑。",
+ "keywords": [
+  "Tune Up",
+  "wrap-around",
+  "wave band",
+  "HU HMI"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "025-01 由波段中段遞增至下一個較高頻率；025-02 位於波段上緣，遞增後 wrap-around 回到波段最低頻率"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4872440 (increment to the next higher frequency and play) and CFTS024-4872441 (wrap-around at the band upper end) are Subsystem Functional Requirements in §1.3.4 that the 037-A03 allocated to no leaf. They elaborate this leaf's Description clause, so their behaviour is verified here per Profile §4 rather than left uncovered.",
+  "[R8] The CFTS clause also grants a VR Command trigger path; it is out of scope for this workbook and delegated to the CFTS028 delivery."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-025",
+   "tc_title": "Tune Up increments to next higher station in band",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "When the Cabin Output Channel has selected the HU Tuner source, the user can request a Tune Up to increment the station using the HU HMI. The HU will tune to the new Station and Play that Station.\n\n(Tune Up from mid-band)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The tuned frequency is not at the upper end of the current wave band",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Tune Up\" on the Radio Playing page\n3. Read the tuned frequency and listen to the audio output after the tune completes",
+   "expected_result": "1. The tuned frequency is displayed on the Radio Playing page\n2. The tune request is accepted\n3. The tuned frequency is the next higher frequency in the current wave band relative to the frequency recorded in step 1, and that station is played",
+   "specification_reference": "CFTS024-4872439",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-025",
+   "tc_title": "Tune Up at band upper end wraps to lowest frequency",
+   "test_group": "AMFM",
+   "test_set": "Tune",
+   "test_item": "When the Cabin Output Channel has selected the HU Tuner source, the user can request a Tune Up to increment the station using the HU HMI. The HU will tune to the new Station and Play that Station.\n\n(Tune Up at the upper end of the wave band — wrap-around)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The HU is in FM analog tuner mode\n4. The tuned frequency is the highest frequency of the current wave band",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the tuned frequency shown on the Radio Playing page\n2. Press \"Tune Up\" on the Radio Playing page\n3. Read the tuned frequency and listen to the audio output after the tune completes",
+   "expected_result": "1. The highest frequency of the current wave band is displayed on the Radio Playing page\n2. The tune request is accepted\n3. The tuned frequency wraps around to the lowest frequency in the current wave band, and that station is played",
+   "specification_reference": "CFTS024-4872439",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": "Wrap-around behaviour sourced from CFTS024-4872441 (A-AM10)"
+  }
+ ]
+}
