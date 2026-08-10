@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-090",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：AM Tuner 的 Engineering Mode 畫面上，信號強度的輸入至少每秒取樣一次、畫面至少每秒更新一次。關鍵情境條件：信號強度發生可控的階躍變化，且觀察窗以秒為單位——唯有如此才能區分「每秒更新」與「只在進入畫面時取值一次」的實作（§7）。為什麼這樣切：條文給出明確的頻率下限，驗證對象即該下限，設計方法採邊界值分析；取樣與畫面更新是同一觸發的兩個必然結果，依 §5.7 併為一條 TC 的多條 ER。刻意略過：顯示的四項資訊由 087/094 覆蓋，本 leaf 只驗更新頻率；MW 與 FM 的同型條款各由 089/095 與 096 覆蓋，三個波段的條款 id 不同，不合併（§8.2.1）。037 title 僅在末端補 (Engineering Mode) 標記（相似度 0.950），依 §8.6 以 CFTS 條文為準，語意無差異。",
+ "keywords": [
+  "AM Tuner",
+  "signal strength",
+  "sampled once per second",
+  "display update rate"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-090",
+   "tc_title": "AM signal strength is sampled and displayed once per second",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "For the signal strength, the input shall be sampled at the rate of once per second at a minimum, and update the display at the rate of once per second at a minimum",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting a receivable AM station at a known level\n2. The antenna is connected to the HU\n3. The HU is in the Engineering Mode AM Tuner display\n4. A stopwatch is available",
+   "input_test_data": "Signal level step: from the initial level to a clearly different level, applied in one step\nObservation window: 1 second from the moment the level changes",
+   "test_procedure": "1. Read the signal strength shown and start the stopwatch\n2. Change the signal generator output to the second level in one step\n3. Read the signal strength shown one second after the change\n4. Change the level back to the initial value and read the signal strength shown one second later",
+   "expected_result": "1. The signal strength of the initial level is shown\n2. The broadcast level changes in one step\n3. The signal strength shown corresponds to the second level, which places the sampling and the display update within one second of the change\n4. The signal strength shown corresponds to the initial level again within one second, which repeats the observation in the other direction",
+   "specification_reference": "CFTS011-4942536",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

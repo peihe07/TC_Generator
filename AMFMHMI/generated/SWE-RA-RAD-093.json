@@ -1,0 +1,37 @@
+{
+ "parent": "SWE-RA-RAD-093",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：Engineering Mode 的 FM Tuner 完整顯示條款——區域、目前頻率、AM/FM 與 FM2 合併的信號強度、PS code、TA station、AF status（On / Off / Local）、AM/FM 調諧器量測的目前頻率信號強度、FM2 調諧器量測的目前頻率信號強度；第二調諧器的欄位僅在第二調諧器存在時顯示。關鍵情境條件：車輛是否配備第二調諧器——條文的 Note 直接把它訂為顯示條件；以及電台需廣播 PS code 與 TA 旗標，AF 設定需為可辨識的值。為什麼這樣切：一條 TC 覆蓋單一驗證目標（畫面內容完整），依 §6 最終 ER 必須涵蓋 Test Item 的完整結果，因此八個項目全驗，缺一即為不完整覆蓋。**§8.6 在本 leaf 是實質差異而非措辭差異**：037 title（相似度 0.575，全批最低）把「Signal strength of combined AM/FM and FM2 tuners, measured once per second at a minimum」壓成「Signal strength for current frequency」，並整段漏掉兩個分調諧器的量測欄位與第二調諧器的條件 Note；依 §8.6 以 CFTS 條文為準，這些欄位因此回到覆蓋範圍——只照 037 title 生成會漏掉三個顯示項目。刻意略過：AF 功能本身的換頻行為由 063 覆蓋、TA 判準由 055/060 覆蓋，本 leaf 只驗其狀態是否顯示於工程模式畫面；未配備第二調諧器時的顯示由條文 Note 界定，於前置條件指定為已配備，另一側不生成——條文只說「僅在存在時顯示」，未定義不存在時的欄位呈現方式（§8.4.1）。",
+ "keywords": [
+  "Engineering Mode",
+  "FM Tuner",
+  "combined signal strength",
+  "FM2 tuner",
+  "PS code",
+  "TA station",
+  "AF status"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-093",
+   "tc_title": "FM engineering display shows the full tuner and RDS status set",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "The display shall show the following information: Current configured region, Current frequency, Signal strength of combined AM/FM and FM2 tuners measured once per second at a minimum, PS code, TA station, AF status: On or Off or Local, Signal strength for current frequency as measured AM/FM tuner, Signal strength for current frequency as measured by FM2 tuner (second tuner parameter displayed only if the second tuner is present)",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting a receivable FM station with RDS data\n2. The HU is equipped with a second tuner (FM2)\n3. The vehicle is configured with a known region\n4. The broadcast station carries a PS code and the TA flag, and AF is set to a known state on the HU HMI\n5. The HU is in the Engineering Mode FM Tuner display",
+   "input_test_data": "Broadcast station: known frequency, known PS code, TA flag raised\nAF setting on the HU HMI: Local\nSecond tuner: present",
+   "test_procedure": "1. Read the region and the frequency shown\n2. Read the combined signal strength of the AM/FM and FM2 tuners\n3. Read the PS code and the TA station indication shown\n4. Read the AF status shown\n5. Read the signal strength measured by the AM/FM tuner and the one measured by the FM2 tuner",
+   "expected_result": "1. The region shown is the configured region and the frequency shown is the tuned frequency\n2. A combined signal strength value of the AM/FM and FM2 tuners is shown\n3. The PS code shown is the code broadcast by the station and the TA station indication reflects the raised TA flag\n4. The AF status shown is Local, the value set on the HU HMI\n5. A separate signal strength value is shown for the AM/FM tuner and for the FM2 tuner, which are the second tuner parameters the clause makes conditional on its presence",
+   "specification_reference": "CFTS011-4942543",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

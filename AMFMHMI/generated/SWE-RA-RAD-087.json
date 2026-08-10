@@ -1,0 +1,36 @@
+{
+ "parent": "SWE-RA-RAD-087",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：Engineering Mode 的 AM Tuner 畫面顯示條文列舉的四項資訊——目前設定的區域、目前頻率、信號強度、天線連接狀態。關鍵情境條件：處於 Engineering Mode 的 AM Tuner 畫面；四項資訊各自有可比對的實際值。為什麼這樣切：一條 TC 覆蓋單一驗證目標（畫面內容完整），四項為同一觸發的必然結果，依 §5.7 併為多條 ER；依 §6，最終 ER 必須涵蓋 Test Item 的完整結果，因此四項不可只驗其中幾項。刻意略過：信號強度的取樣與更新頻率由兄弟 leaf 090 覆蓋（其條款 4942536 另有其 id）；天線未連接時的顯示值由 094 覆蓋（見下）。**[A-AM08]** 本 leaf 與 SWE-RA-RAD-094 在 037 內宣告同一個 id `4942534`，兩者引用的是 CFTS011 同一條條款；依 R7-Q4 不合併，各自產生 TC 並互標 duplicate_of，由 Pei 逐對裁定。CFTS011 到位後新增的結構證據：§1.5.5.1 共三條條款（顯示內容 4942534、本地蒐集 4942535、取樣率 4942536）對上三條 leaf（087、090、094），其中 4942535 無 leaf 認領——若 094 原意是指向 4942535，這對就不是重複而是漏指；但兩條 leaf 的 title 都逐字引用顯示內容條款，文字證據不支持該推測，故照重複處理並送 RD-1。同節未配置條款 4942535（The HU shall collect the information locally）描述資訊取得方式而非可由 HMI 觀察的行為，未依 R10-2 吸收，記為覆蓋缺口——三個波段的同型條款（4942535 / 4942539 / 4942544）皆未被認領，屬同一類。",
+ "keywords": [
+  "Engineering Mode",
+  "AM Tuner",
+  "display information",
+  "antenna connection status"
+ ],
+ "duplicate_of": "SWE-RA-RAD-094",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": "與 094 引用同一條 CFTS011 條款 4942534；本 leaf 驗四項資訊的完整顯示，094 驗條款列舉的另一個天線狀態值類（A-AM08，待 Pei 裁定）"
+ },
+ "assumptions": [
+  "[A-AM08] SWE-RA-RAD-087 and SWE-RA-RAD-094 declare the same source id 4942534 in the 037; both quote the same CFTS011 clause. No consolidation per R7-Q4 — each leaf keeps its own TC and the pair is marked for per-pair review."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-087",
+   "tc_title": "AM tuner engineering display shows the four required items",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "The display shall show the following information: Current configured region, Current frequency, Signal strength, Antenna Connection status: connected or not connected",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting a receivable AM station\n2. The vehicle is configured with a known region, for example a NAFTA market\n3. The antenna is connected to the HU\n4. The HU is in the Engineering Mode AM Tuner display",
+   "input_test_data": "Configured region: the market the vehicle is configured for\nTuned AM frequency: a receivable station of known frequency",
+   "test_procedure": "1. Read the region shown on the Engineering Mode AM Tuner display\n2. Read the frequency shown and compare it with the tuned frequency\n3. Read the signal strength shown\n4. Read the antenna connection status shown",
+   "expected_result": "1. The region shown is the region the vehicle is configured for\n2. The frequency shown is the frequency the HU is tuned to\n3. A signal strength value for the tuned station is shown\n4. The antenna connection status is shown as connected, which matches the antenna state of the setup",
+   "specification_reference": "CFTS011-4942534",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

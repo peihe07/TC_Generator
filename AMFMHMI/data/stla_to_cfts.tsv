@@ -84,20 +84,20 @@ SWE-RA-RAD-082	4873903	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragrap
 SWE-RA-RAD-083	4873904	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
 SWE-RA-RAD-084	4873907	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
 SWE-RA-RAD-085	4873908	CFTS024	1.12.2.2.1	Head unit Radio Configuration	paragraph
-SWE-RA-RAD-087	4942534	CFTS011			external-allocation
-SWE-RA-RAD-089	4942540	CFTS011			external-allocation
-SWE-RA-RAD-090	4942536	CFTS011			external-allocation
-SWE-RA-RAD-091	4942538	CFTS011			external-allocation
-SWE-RA-RAD-092	4942542	CFTS011			external-allocation
-SWE-RA-RAD-093	4942543	CFTS011			external-allocation
-SWE-RA-RAD-094	4942534	CFTS011			external-allocation
-SWE-RA-RAD-095	4942540	CFTS011			external-allocation
-SWE-RA-RAD-096	4942545	CFTS011			external-allocation
-SWE-RA-RAD-097	4939949	CFTS004			external-allocation
-SWE-RA-RAD-098	4939946	CFTS004			external-allocation
-SWE-RA-RAD-099	4939809	CFTS004			external-allocation
-SWE-RA-RAD-100	4939822	CFTS004			external-allocation
-SWE-RA-RAD-101	4939808	CFTS004			external-allocation
-SWE-RA-RAD-102	4940337	CFTS004			external-allocation
-SWE-RA-RAD-103	4940334	CFTS004			external-allocation
-SWE-RA-RAD-104	4940333	CFTS004			external-allocation
+SWE-RA-RAD-087	4942534	CFTS011	1.5.5.1	AM Tuner	paragraph
+SWE-RA-RAD-089	4942540	CFTS011	1.5.5.2	MW Tuner	paragraph
+SWE-RA-RAD-090	4942536	CFTS011	1.5.5.1	AM Tuner	paragraph
+SWE-RA-RAD-091	4942538	CFTS011	1.5.5.2	MW Tuner	paragraph
+SWE-RA-RAD-092	4942542	CFTS011	1.5.5.3	FM Tuner	paragraph
+SWE-RA-RAD-093	4942543	CFTS011	1.5.5.3	FM Tuner	paragraph
+SWE-RA-RAD-094	4942534	CFTS011	1.5.5.1	AM Tuner	paragraph
+SWE-RA-RAD-095	4942540	CFTS011	1.5.5.2	MW Tuner	paragraph
+SWE-RA-RAD-096	4942545	CFTS011	1.5.5.3	FM Tuner	paragraph
+SWE-RA-RAD-097	4939949	CFTS004	1.5.1.51	$5009 - Frequency Step Selection (Read)	paragraph
+SWE-RA-RAD-098	4939946	CFTS004	1.5.1.50	$5008 - Seek Status (Read)	paragraph
+SWE-RA-RAD-099	4939809	CFTS004	1.5.1.31	$2841 - X65 Signal Quality Diagnostics (Read)	paragraph
+SWE-RA-RAD-100	4939822	CFTS004	1.5.1.31	$2841 - X65 Signal Quality Diagnostics (Read)	paragraph
+SWE-RA-RAD-101	4939808	CFTS004	1.5.1.31	$2841 - X65 Signal Quality Diagnostics (Read)	paragraph
+SWE-RA-RAD-102	4940337	CFTS004	1.6.1.10	$5009 - Frequency Step Selection	paragraph
+SWE-RA-RAD-103	4940334	CFTS004	1.6.1.9	$5008 - Seek Status	paragraph
+SWE-RA-RAD-104	4940333	CFTS004	1.6.1.9	$5008 - Seek Status	paragraph

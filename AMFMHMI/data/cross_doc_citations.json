@@ -1,14 +1,221 @@
 {
+ "CFTS004-1316": {
+  "doc": "CFTS004",
+  "cited_id": "1316",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4939949,
+    "context": "This DID shall report the frequency step of the currently tuned station. Refer to CFTS004-1316 for the method of determining the frequency step."
+   }
+  ],
+  "req_ids": [
+   "SWE-RA-RAD-097"
+  ],
+  "candidates": [
+   {
+    "clause_id": 4939948,
+    "match_weight": 0.4676,
+    "matched_terms": [
+     "currently",
+     "did",
+     "frequency",
+     "of",
+     "station",
+     "step",
+     "the",
+     "this",
+     "tuned"
+    ],
+    "section": "1.5.1.51",
+    "section_title": "$5009 - Frequency Step Selection (Read)",
+    "text": "This DID reports the frequency step of the currently tuned station."
+   },
+   {
+    "clause_id": 4940352,
+    "match_weight": 0.286,
+    "matched_terms": [
+     "currently",
+     "of",
+     "shall",
+     "station",
+     "the"
+    ],
+    "section": "1.6.1.13",
+    "section_title": "$500C - SDAR Station Selection",
+    "text": "If the new station number is not a valid station under the currently broadcast channel line-up, the radio shall return the \"Request Out of Range\" negative response, code $31."
+   },
+   {
+    "clause_id": 4940350,
+    "match_weight": 0.2597,
+    "matched_terms": [
+     "did",
+     "station",
+     "the",
+     "this",
+     "to"
+    ],
+    "section": "1.6.1.13",
+    "section_title": "$500C - SDAR Station Selection",
+    "text": "The radio changes to a new SDAR station when receiving a command from this DID."
+   }
+  ]
+ },
+ "CFTS004-1415": {
+  "doc": "CFTS004",
+  "cited_id": "1415",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4940453,
+    "context": "When commanded to return routine results, the HU shall respond with the Indication Code that represents the response from the Sirius XM module. Refer to CFTS004-1415 for valid Indication Codes."
+   },
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4940464,
+    "context": "When commanded to return routine results, the HU shall respond with the Indication Code that represents the response from the Sirius XM module. Refer to CFTS004-1415 for valid Indication Codes, excepting that code $10 is inva"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4940454,
+    "match_weight": 0.2219,
+    "matched_terms": [
+     "code",
+     "hu",
+     "indication",
+     "results",
+     "routine",
+     "shall",
+     "the"
+    ],
+    "section": "1.7.1.4",
+    "section_title": "$0307 - X65 MPFA Validate Routine",
+    "text": "If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code ($03, $0D, or $0F) in the routine results."
+   },
+   {
+    "clause_id": 4940465,
+    "match_weight": 0.2219,
+    "matched_terms": [
+     "code",
+     "hu",
+     "indication",
+     "results",
+     "routine",
+     "shall",
+     "the"
+    ],
+    "section": "1.7.1.6",
+    "section_title": "$0309 - X65 MPFA Select Routine",
+    "text": "If retries are performed as shown on the flowchart, and the retries are the result of three identical instances of Indication Codes $03, $0D, or $0F, then the HU shall provide the respective code $03, $0D, or $0F in the routine results."
+   },
+   {
+    "clause_id": 4940455,
+    "match_weight": 0.2219,
+    "matched_terms": [
+     "code",
+     "hu",
+     "indication",
+     "results",
+     "routine",
+     "shall",
+     "the"
+    ],
+    "section": "1.7.1.4",
+    "section_title": "$0307 - X65 MPFA Validate Routine",
+    "text": "If retries are performed as shown on the flowchart, and the retries are the result of differing Indication Codes or as a result of timeout or for another reason, then the HU shall provide the code $FF in the routine results."
+   }
+  ]
+ },
+ "CFTS004-1554": {
+  "doc": "CFTS004",
+  "cited_id": "1554",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4940701,
+    "context": "mmunication may exist and provide information for customer perceivable behavior and make this information available in diagnostic mode. Refer to Figure {Figure CFTS004-1554} to for specific behavior requirements of loss of communica"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4939456,
+    "match_weight": 0.0311,
+    "matched_terms": [
+     "refer",
+     "to"
+    ],
+    "section": "1.4.3",
+    "section_title": "Storing faults",
+    "text": "Refer to [CS-11736]."
+   },
+   {
+    "clause_id": 4939458,
+    "match_weight": 0.0311,
+    "matched_terms": [
+     "refer",
+     "to"
+    ],
+    "section": "1.4.3",
+    "section_title": "Storing faults",
+    "text": "Refer to [CS.00052]."
+   },
+   {
+    "clause_id": 4939459,
+    "match_weight": 0.0311,
+    "matched_terms": [
+     "refer",
+     "to"
+    ],
+    "section": "1.4.3",
+    "section_title": "Storing faults",
+    "text": "Refer to [CS.00099]."
+   }
+  ]
+ },
+ "CFTS009-1766": {
+  "doc": "CFTS009",
+  "cited_id": "1766",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4939927,
+    "context": "View CFTS009-1766 for Suspend to RAM definition."
+   }
+  ],
+  "req_ids": []
+ },
+ "CFTS009-2302": {
+  "doc": "CFTS009",
+  "cited_id": "2302",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4939980,
+    "context": "Refer to CFTS009-2302 for the behavior for this DID."
+   }
+  ],
+  "req_ids": []
+ },
  "CFTS019-494": {
   "doc": "CFTS019",
   "cited_id": "494",
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872714,
     "context": "HU HMI shall also provide the capability to delete presets (see HMI logic & flow documents. If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872898,
     "context": "HMI shall also provide the capability to delete presets (see HMI logic & flow documents) . If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the"
    }
@@ -61,10 +268,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872714,
     "context": "lso provide the capability to delete presets (see HMI logic & flow documents. If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the HU HMI or ste"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872898,
     "context": "o provide the capability to delete presets (see HMI logic & flow documents) . If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the HU HMI or ste"
    }
@@ -117,6 +326,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872420,
     "context": "HU HMI shall also provide the capability to delete presets (see HMI logic & flow documents. If all presets are deleted, HU shall play the rejection tone {See CFTS019-718} when user tries to access preset through the HU HMI or ste"
    }
@@ -171,6 +381,7 @@
   "status": "document-not-supplied",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872939,
     "context": "HU shall also enable Scroll Up/Down function through the list via slider button which shall act as a Press and Move event (see {CFTS020-138}) to scroll Up/Down the list at a faster rate. See HMI logi"
    }
@@ -183,6 +394,7 @@
   "status": "document-not-supplied",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872532,
     "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129}, {CFTS023-352}, and {CFTS024-249}."
    }
@@ -195,10 +407,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872437,
     "context": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872735,
     "context": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected"
    }
@@ -274,10 +488,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872532,
     "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129}, {CFTS023-352}, and {CFTS024-249}."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872533,
     "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129} and{SB 23-352}."
    }
@@ -335,6 +551,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291"
    }
@@ -391,6 +608,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292"
    }
@@ -447,6 +665,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873557,
     "context": "for South Korean DMB HD the HU shall support all the functions included in the section \"HU DAB/DAB+/DMB HMI Controls\" (CFTS024-1473)"
    }
@@ -508,6 +727,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872953,
     "context": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-165 with the exception that only stations matching the selected"
    }
@@ -586,6 +806,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872955,
     "context": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-177 with the exception that only stations matching the selected"
    }
@@ -662,10 +883,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872826,
     "context": "The HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872862,
     "context": "The Buffer playlist shall be browseable with the functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
    }
@@ -717,10 +940,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872826,
     "context": "The HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872862,
     "context": "The Buffer playlist shall be browseable with the functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
    }
@@ -772,10 +997,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872826,
     "context": "HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872862,
     "context": "The Buffer playlist shall be browseable with the functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
    }
@@ -827,6 +1054,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872532,
     "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129}, {CFTS023-352}, and {CFTS024-249}."
    }
@@ -889,6 +1117,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873569,
     "context": "start playing channel \"KBS\" if it exists. If channel \"KBS\" doesn't exist, play the first channel instead. If no channel can be obtained, please refer to clause CFTS024-2564."
    }
@@ -939,6 +1168,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873302,
     "context": "e UXR requirements of SX-9845-0411 - Revision 2.7 for MY22, except the sections 1.1.1.13 and 1.1.1.14. Instead of these excepted sections, HU shall comply with CFTS024-2744"
    }
@@ -992,6 +1222,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284"
    }
@@ -1048,6 +1279,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selectin"
    }
@@ -1104,6 +1336,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293"
    }
@@ -1160,6 +1393,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selecting and storing p"
    }
@@ -1216,6 +1450,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selecting and storing presets under br"
    }
@@ -1272,6 +1507,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872431,
     "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selecting and storing presets under browse presets ca"
    }
@@ -1328,10 +1564,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872895,
     "context": "HU shall tune to the corresponding SAT channel based on the selection made. While HU is tuning, it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873125,
     "context": "ing to a station broadcasting the game (accessed via \" listen now\" softkeys on travel link - sports screens), it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns t"
    }
@@ -1388,10 +1626,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872895,
     "context": "shall tune to the corresponding SAT channel based on the selection made. While HU is tuning, it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned to play mode, it"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873125,
     "context": "broadcasting the game (accessed via \" listen now\" softkeys on travel link - sports screens), it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns to play mode, it"
    }
@@ -1448,10 +1688,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872895,
     "context": "ant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873125,
     "context": "vant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
    }
@@ -1501,10 +1743,12 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872895,
     "context": "based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873125,
     "context": "ased on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
    }
@@ -1552,6 +1796,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872733,
     "context": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-6 with the exception that only stations matching the selected"
    }
@@ -1630,6 +1875,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872582,
     "context": "This section defines requirements for controlling the HU High Definition (HD) Radio Tuner source (covers HD Tuner source. See CFTS024-603 for Analog Tuner)."
    }
@@ -1698,6 +1944,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872507,
     "context": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-605 with the exception that only stations matching the selected"
    }
@@ -1778,6 +2025,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872521,
     "context": "currently tuned station supports RT +, this feature allows HU to populate the artist and song field as well as to enable song/audio tagging. Please refer to CFTS024-707 for HU behavior requirements when radiotext is available."
    }
@@ -1830,6 +2078,7 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872373,
     "context": "This section defines requirements surrounding controls for the HU Analog Tuner source (covers traditional Analog Tuner source. See CFTS024-789 for HD Tuner)."
    }
@@ -1894,42 +2143,52 @@
   "status": "unresolved-scheme-mismatch",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872439,
     "context": "the user can request a Tune Up to increment the station using the HU HMI or a VR Command. The HU will tune to the new Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872448,
     "context": "er can request a Tune Down to decrement the station using the HU ICS HMI or a VR Command. The HU will tune to the new Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872457,
     "context": "r Input) using the HU ICS HMI or a VR Command. When the user has entered the Station Frequency the HU will tune to the Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872584,
     "context": "he Seek Up function the HU will enter the Seek Up state and go to the next available Subchannel or Frequency with wraparound to the lowest Frequency. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872602,
     "context": "the Seek Down function the HU will enter the Seek Down state and go to the previous Subchannel or Frequency with wraparound to the highest Frequency. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872639,
     "context": "ne Up to increment the subchannel/station using the HU HMI or a VR Command. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872650,
     "context": "Down to decrement the subchannel/station using the HU HMI or a VR Command. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872661,
     "context": "umber Input) using the HU HMI or a VR Command. When the user has entered the Station Frequency the HU will tune to the Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873374,
     "context": "he user can request a Tune Up to increment the stations using the tune knob. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873382,
     "context": "user can request a Tune Down to decrement the station using the tune knob. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
    }
@@ -1999,6 +2258,7 @@
   "status": "document-not-supplied",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873346,
     "context": "the HU DAB source, the HU component shall send Metadata information to other components regarding the currently accessed 'Channel' as defined in CFTS033-8 and CFTS033-33."
    }
@@ -2011,8 +2271,22 @@
   "status": "document-not-supplied",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4873346,
     "context": "annel is using the HU DAB source, the HU component shall send Metadata information to other components regarding the currently accessed 'Channel' as defined in CFTS033-8 and CFTS033-33."
+   }
+  ],
+  "req_ids": []
+ },
+ "CFTS044-699": {
+  "doc": "CFTS044",
+  "cited_id": "699",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "citing_doc": "CFTS004",
+    "clause_id": 4940488,
+    "context": "Refer to CFTS044-699 for the HMI for this routine."
    }
   ],
   "req_ids": []
@@ -2023,10 +2297,12 @@
   "status": "document-not-supplied",
   "citing_clauses": [
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872480,
     "context": "When saving a new preset, the HU shall associate the new preset with the current driver (see Memory Seat, Chapter CFTS048-1 for more information)."
    },
    {
+    "citing_doc": "CFTS024",
     "clause_id": 4872688,
     "context": "When saving a new preset, the HU shall associate the new preset with the current driver (see Memory Seat, Chapter CFTS048-1 for more information)."
    }

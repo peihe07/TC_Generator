@@ -188,7 +188,7 @@ def _paras():
 
 
 def _leaf(rid, stla_id, title):
-    return {rid: {"stla_id": stla_id, "title": title,
+    return {rid: {"stla_id": stla_id, "title": title, "doc": "CFTS024",
                   "spec_paragraph": _paras()[stla_id]["text"]}}
 
 
@@ -197,7 +197,7 @@ def test_a_leaf_pointing_at_the_wrong_clause_is_reported():
     hand-typed id tail, invisible to the bracket map because it resolves
     perfectly to the wrong paragraph."""
     mapping = _leaf("SWE-RA-RAD-029", 4872451, CLAUSE_B + " (4872451)")
-    found = bsm.verify_ids(mapping, _paras())
+    found = bsm.verify_ids(mapping, {"CFTS024": _paras()})
     assert len(found) == 1
     assert found[0]["declared_id"] == 4872451
     assert found[0]["better_id"] == 4872457
@@ -206,22 +206,23 @@ def test_a_leaf_pointing_at_the_wrong_clause_is_reported():
 
 def test_a_leaf_pointing_at_its_own_clause_is_not_reported():
     mapping = _leaf("SWE-RA-RAD-028", 4872451, CLAUSE_A + " (4872451)")
-    assert bsm.verify_ids(mapping, _paras()) == []
+    assert bsm.verify_ids(mapping, {"CFTS024": _paras()}) == []
 
 
 def test_a_heavily_paraphrased_leaf_is_not_called_a_wrong_id():
     """Low agreement with everything is paraphrase, not misattribution — the
     check needs a clearly better candidate, not just a poor declared one."""
     mapping = {"SWE-RA-RAD-050": {
-        "stla_id": 4872451, "title": "Totally unrelated wording about presets",
+        "doc": "CFTS024", "stla_id": 4872451, "title": "Totally unrelated wording about presets",
         "spec_paragraph": CLAUSE_A}}
-    assert bsm.verify_ids(mapping, _paras()) == []
+    assert bsm.verify_ids(mapping, {"CFTS024": _paras()}) == []
 
 
 def test_external_leaves_are_skipped():
-    mapping = {"SWE-RA-RAD-097": {"stla_id": 4939946, "title": "t",
+    mapping = {"SWE-RA-RAD-097": {"doc": "CFTS004", "stla_id": 4939946,
+                                  "title": "t",
                                   "spec_paragraph": None}}
-    assert bsm.verify_ids(mapping, _paras()) == []
+    assert bsm.verify_ids(mapping, {"CFTS024": _paras()}) == []
 
 
 # ------------------------------------------------------- declared-id override

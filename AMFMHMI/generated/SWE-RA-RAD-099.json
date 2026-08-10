@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-099",
+ "batch": "Diagnostics",
+ "reasoning": "驗證目標：`$2841` X65 Signal Quality Diagnostics (Read) 這個 DID 被請求時，HU 回報 Tuner status。關鍵情境條件：調諧器處於不同狀態時各請求一次——條文未列舉 Tuner status 的值域，因此可驗的是「有回報且回報隨調諧器狀態改變」，而非特定值。為什麼這樣切：一條 TC 覆蓋單一驗證目標，依 §5.7 不拆分；以兩個明顯不同的調諧器狀態各請求一次，是在條文未給值域的前提下能成立的最強判準——只請求一次無法區分「回報實際狀態」與「回報固定常數」（§7），而指定特定回報值則是為條文未定義的值域編造內容（§8.4.1）。刻意略過：Tuner status 的值域與編碼未在條文內定義，記為 RD-1 項目；信號強度的狀態值由兄弟 leaf 101 覆蓋（該條款有明確的五個列舉值），載波頻率偏移由 100 覆蓋。",
+ "keywords": [
+  "$2841",
+  "X65 Signal Quality Diagnostics",
+  "DID",
+  "Tuner status"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-099",
+   "tc_title": "Signal quality DID reports the tuner status on request",
+   "test_group": "AMFM",
+   "test_set": "Diagnostics",
+   "test_item": "When requested by this DID, the HU shall report the Tuner status",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. A diagnostic tester able to request the $2841 X65 Signal Quality Diagnostics DID is connected to the HU\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in FM analog tuner mode",
+   "input_test_data": "State 1: the HU tuned to a receivable FM station broadcast at a good level\nState 2: the HU tuned to a frequency with no station broadcast on it",
+   "test_procedure": "1. Tune the HU to the receivable station and request the $2841 DID\n2. Read the Tuner status reported in the response\n3. Tune the HU to the empty frequency and request the $2841 DID\n4. Read the Tuner status reported in the response",
+   "expected_result": "1. The HU responds to the request\n2. A Tuner status value is reported for the state of the tuner\n3. The HU responds to the request in the second state\n4. A Tuner status value is reported and it differs from the value reported in step 2, which places the report on the actual tuner state",
+   "specification_reference": "CFTS004-4939809",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

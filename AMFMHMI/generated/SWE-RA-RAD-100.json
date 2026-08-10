@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-100",
+ "batch": "Diagnostics",
+ "reasoning": "驗證目標：`$2841` X65 Signal Quality Diagnostics (Read) 這個 DID 被請求時，HU 回報 Tuner Carrier Freq Offset。關鍵情境條件：廣播載波相對於調諧頻率的偏移量可控——以零偏移與已知非零偏移各請求一次，回報值才可判定。為什麼這樣切：一條 TC 內以兩個偏移量涵蓋同一驗證目標，依 §5.7 不拆分；只在零偏移下請求，無法區分「回報實際偏移」與「固定回報零」的實作（§7）。刻意略過：偏移量的單位與編碼未在條文內定義，ER 因此以「與施加的偏移相符」表述，不指定數值格式（§8.4.1），單位未定義記為 RD-1 項目；同節其他 DID 回報項由 099/101 覆蓋。",
+ "keywords": [
+  "$2841",
+  "Tuner Carrier Freq Offset",
+  "DID",
+  "carrier offset"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-100",
+   "tc_title": "Signal quality DID reports the tuner carrier frequency offset",
+   "test_group": "AMFM",
+   "test_set": "Diagnostics",
+   "test_item": "When requested by this DID, the HU shall report the Tuner Carrier Freq Offset",
+   "pre_conditions": "1. An FM/AM signal generator able to offset its carrier from the nominal frequency is ready\n2. A diagnostic tester able to request the $2841 X65 Signal Quality Diagnostics DID is connected to the HU\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in FM analog tuner mode and tuned to the station",
+   "input_test_data": "Offset 1: the carrier broadcast exactly on the tuned frequency\nOffset 2: the carrier shifted by a known amount from the tuned frequency",
+   "test_procedure": "1. Broadcast the station with no carrier offset and request the $2841 DID\n2. Read the Tuner Carrier Freq Offset reported\n3. Shift the carrier by the known amount and request the $2841 DID\n4. Read the Tuner Carrier Freq Offset reported",
+   "expected_result": "1. The HU responds to the request while the carrier is on the tuned frequency\n2. The reported carrier frequency offset corresponds to no offset\n3. The HU responds to the request while the carrier is shifted\n4. The reported carrier frequency offset corresponds to the shift applied, in the direction it was applied",
+   "specification_reference": "CFTS004-4939822",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

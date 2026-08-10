@@ -41,6 +41,11 @@ paths:
   market_config_table: "inputs/SR24 R1 Market Configuration Table*.xlsx"
   cfts019_doc: "inputs/*CFTS 019_Audio Management*.docx"
   cfts028_doc: "inputs/*CFTS_28 Voice Recognition*.docx"
+  # Documents that OWN leaves (spec_docs.external). Supplied 2026-08-10, closing
+  # A-AM06 / A-AM07. Until they were declared here their 17 leaves resolved to
+  # `external-allocation` and reached the generator with the 037 title only.
+  cfts011_doc: "inputs/*CFTS_011_Radio Engineering Mode*.docx"
+  cfts004_doc: "inputs/*CFTS_004_General Diagnostic Requirements*.docx"
   sysra_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"
 
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
@@ -106,9 +111,15 @@ spec_docs:
   external:
     CFTS011: "087, 089-096"
     CFTS004: "097-104"
-  # Cited-but-not-owning documents: a clause here governs behaviour a leaf's
-  # clause delegates to, but no leaf traces to it. Value = the `paths` key.
-  reference:
+  # Every non-primary document the pipeline reads, doc name -> `paths` key.
+  # One mapping for both roles: a document here OWNS leaves if it appears in
+  # `external` above, and is cited-only otherwise (CFTS019 / CFTS028). Owning
+  # documents are resolved clause-by-clause exactly like the primary, so their
+  # leaves carry section, section title and clause text rather than the 037
+  # title alone.
+  docs:
+    CFTS011: "cfts011_doc"
+    CFTS004: "cfts004_doc"
     CFTS019: "cfts019_doc"
     CFTS028: "cfts028_doc"
 

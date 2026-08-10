@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-RAD-101",
+ "batch": "Diagnostics",
+ "reasoning": "驗證目標：`$2841` X65 Signal Quality Diagnostics (Read) 這個 DID 被請求時，HU 回報信號強度的狀態，其值為條文列舉的五個之一——\"No signal\"、\"Very weak\"、\"Weak signal\"、\"Marginal signal\"、\"Good signal\"。關鍵情境條件：廣播電平跨越這五個分區。為什麼這樣切：條文給出封閉的列舉值域，屬值類覆蓋，設計方法採等價劃分；一條 TC 內由無信號逐級提升到良好信號，涵蓋列舉的兩端與中段，依 §5.7 屬同一驗證目標。刻意略過：五個狀態各自對應的電平門檻未在條文內定義，ER 因此只驗回報值落在列舉集合內、且隨電平單調變化，不指定各級的 dBµV 門檻（§8.4.1）——門檻值未定義記為 RD-1 項目；工程模式畫面上的信號強度數值由 090/095/096 覆蓋，兩者來源與呈現不同，不重複驗證。",
+ "keywords": [
+  "$2841",
+  "Signal Strength status",
+  "DID",
+  "No signal",
+  "Good signal"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-101",
+   "tc_title": "Signal strength DID reports one of the five defined statuses",
+   "test_group": "AMFM",
+   "test_set": "Diagnostics",
+   "test_item": "When requested by this DID, the HU shall report the status of the Signal Strength. The status can be either \"No signal\", \"Very weak\", \"Weak signal\", \"Marginal signal\", or \"Good signal\"",
+   "pre_conditions": "1. An FM/AM signal generator with an adjustable output level is ready\n2. A diagnostic tester able to request the $2841 X65 Signal Quality Diagnostics DID is connected to the HU\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in FM analog tuner mode and tuned to the generator frequency",
+   "input_test_data": "Level A: no broadcast on the tuned frequency\nLevel B: a level just above the receiving threshold\nLevel C: a level well above the threshold, giving good reception",
+   "test_procedure": "1. Set the generator to level A and request the $2841 DID\n2. Raise the generator to level B and request the $2841 DID\n3. Raise the generator to level C and request the $2841 DID\n4. Compare the three reported statuses with the five values the clause defines",
+   "expected_result": "1. The reported signal strength status is \"No signal\"\n2. The reported status is one of \"Very weak\", \"Weak signal\" or \"Marginal signal\", which places it between the two ends of the enumeration\n3. The reported status is \"Good signal\"\n4. Every reported status is one of the five values the clause defines, and the reported status rises as the broadcast level rises",
+   "specification_reference": "CFTS004-4939808",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

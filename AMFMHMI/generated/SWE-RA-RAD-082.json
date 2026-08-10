@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-082",
+ "batch": "Market Configuration",
+ "reasoning": "驗證目標：PROXI download 或 PROXI Realignment 程序成功完成後，HU 更新並將 PROXI 參數值存入非揮發性記憶體。關鍵情境條件：程序完成的時點；非揮發性唯有跨電源循環才可觀察。為什麼這樣切：一條 TC 覆蓋單一觸發（程序成功完成）的兩個必然結果——參數值被更新、且在電源循環後仍在，依 §5.7 屬同一 TC 的多條 ER，與 037（preset 儲存）採同一觀察方式。刻意略過：PROXI 程序本身的執行條件與細節依條文指向 TFO 07323，屬另一份文件的交付，依 §8.4.2 不吸收其規則，程序步驟以「完成 PROXI download」描述而不展開其內部步驟；bus wakeup 時的召回由 083/085 覆蓋。",
+ "keywords": [
+  "PROXI download",
+  "PROXI Realignment",
+  "non volatile memory",
+  "configuration parameters"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-082",
+   "tc_title": "PROXI parameters are stored in NVM after the download completes",
+   "test_group": "AMFM",
+   "test_set": "Market Configuration",
+   "test_item": "Upon a successful completion of the PROXI download procedure or PROXI Realignment procedure, HU shall update and store the PROXI parameter values (defined in Configuration Parameters Table in this VF) in non volatile memory (NVM)",
+   "pre_conditions": "1. The HU holds PROXI parameter values from an earlier configuration\n2. A PROXI download procedure is prepared with at least one parameter value that differs from the stored one, for example $Country_Code$",
+   "input_test_data": "PROXI parameter under observation: $Country_Code$, changed from its previously stored value to a different market value",
+   "test_procedure": "1. Read the PROXI parameter values currently held by the HU\n2. Run the PROXI download procedure to completion\n3. Read the PROXI parameter values held by the HU\n4. Cycle the vehicle power off and back on\n5. Read the PROXI parameter values held by the HU",
+   "expected_result": "1. The previously configured parameter values are held\n2. The PROXI download procedure completes successfully\n3. The parameter values are updated to the values carried by the procedure\n4. The HU starts again after the power cycle\n5. The parameter values read in step 3 are still held, which places them in non volatile memory",
+   "specification_reference": "CFTS024-4873903",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

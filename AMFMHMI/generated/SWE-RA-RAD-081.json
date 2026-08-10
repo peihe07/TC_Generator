@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-081",
+ "batch": "Market Configuration",
+ "reasoning": "驗證目標：$Country_Code$ 用於設定 Radio Tuner 選項——TLM 依 $Country_Code$ 的值設定 Radio Tuner 的操作模式。關鍵情境條件：$Country_Code$ 的兩個值類，且兩者對應到不同的 tuner 組態，否則設定生效與否不可觀察。為什麼這樣切：組態參數的值類覆蓋，依 R10-1 設計方法為等價劃分；一條 TC 內以兩個市場值涵蓋同一驗證目標（操作模式隨值改變且符合對照表），依 §5.7 不拆分。操作模式的判準取自市場組態表的 Radio Tuner Configuration 工作表（Europe 的 AM 頻段 531-1611 kHz、FM 87.5-108.0 MHz；North America 的 AM 530-1710 kHz、FM 87.7-107.9 MHz），不自行推定（§8.4.1）。刻意略過：NVM 儲存與 bus wakeup 的召回流程由 082/083/085 覆蓋；同節未配置條款 4873883（Refer to the CIP Market Configuration Table）為來源指標而非可驗證行為，未依 R10-2 吸收——其所指的工作表已作為本 TC 的資料來源注入。037 title 在 $Country_Code$ 後補了括號說明（相似度 0.945），依 §8.6 以 CFTS 條文為準，語意無差異。",
+ "keywords": [
+  "$Country_Code$",
+  "TLM",
+  "Radio Tuner operating mode",
+  "market configuration"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-081",
+   "tc_title": "Country code sets the radio tuner operating mode",
+   "test_group": "AMFM",
+   "test_set": "Market Configuration",
+   "test_item": "It($Country_Code$) is used by TLM to configure Radio Tuner options. TLM shall set the Radio Tuner operating mode according to $Country_Code$ value",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The HU Tuner source is selected on the Cabin Output Channel\n3. The tuner configuration values per market are taken from the \"Radio Tuner Configuration\" worksheet of the market configuration table",
+   "input_test_data": "$Country_Code$ = [Germany], which selects the Europe tuner configuration: AM 531 - 1611 kHz, FM 87.5 - 108.0 MHz\n$Country_Code$ = [USA], which selects the North America tuner configuration: AM 530 - 1710 kHz, FM 87.7 - 107.9 MHz",
+   "test_procedure": "1. Configure the vehicle with $Country_Code$ = [Germany]\n2. Read the lowest and the highest tunable frequency in AM and in FM analog tuner mode\n3. Configure the vehicle with $Country_Code$ = [USA]\n4. Read the lowest and the highest tunable frequency in AM and in FM analog tuner mode",
+   "expected_result": "1. The vehicle is configured for the Europe market\n2. The tunable range covers 531 to 1611 kHz in AM and 87.5 to 108.0 MHz in FM, which matches the Europe row of the worksheet\n3. The vehicle is configured for the North America market\n4. The tunable range covers 530 to 1710 kHz in AM and 87.7 to 107.9 MHz in FM, which matches the North America row of the worksheet",
+   "specification_reference": "CFTS024-4873882",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

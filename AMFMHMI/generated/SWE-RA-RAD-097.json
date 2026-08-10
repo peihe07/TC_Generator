@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-097",
+ "batch": "Diagnostics",
+ "reasoning": "驗證目標：`$5009` Frequency Step Selection (Read) 這個 DID 被請求時，回報目前調諧電台的頻率步階。關鍵情境條件：市場組態決定步階值——只在單一市場驗證，無法區分「回報實際步階」與「回報固定常數」的實作（§7），因此以兩個步階不同的市場組態對照。步階值取自市場組態表 Radio Tuner Configuration 工作表（Europe 9 kHz、North America 10 kHz），不自行推定（§8.4.1）。為什麼這樣切：一條 TC 內以兩個市場涵蓋同一驗證目標，依 §5.7 不拆分；設計方法採等價劃分。條文末句「Refer to CFTS004-1316 for the method of determining the frequency step」依 R11 為引用式：token 逐字多引、ER 以引用錨定，不驗 CFTS004-1316 自身的規則面（步階如何被決定的演算法）。該引用是接入 CFTS004 後才進入視野的——037 title 未帶此句，且引用掃描原本只掃 primary 文件。刻意略過：DID 的傳輸層與診斷會話管理不屬本 workbook 覆蓋範圍；步階在 seek 與手動調諧的實際套用由 Seek 與 Tune 批次覆蓋。",
+ "keywords": [
+  "$5009",
+  "Frequency Step Selection",
+  "DID",
+  "frequency step"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-097",
+   "tc_title": "Frequency step DID reports the step of the tuned station",
+   "test_group": "AMFM",
+   "test_set": "Diagnostics",
+   "test_item": "This DID shall report the frequency step of the currently tuned station",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. A diagnostic tester able to request the $5009 Frequency Step Selection DID is connected to the HU\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in AM analog tuner mode\n4. The step size per market is taken from the \"Radio Tuner Configuration\" worksheet of the market configuration table",
+   "input_test_data": "$Country_Code$ = [Germany], Europe configuration with an AM seek step of 9 kHz\n$Country_Code$ = [USA], North America configuration with an AM seek step of 10 kHz",
+   "test_procedure": "1. Configure the vehicle with $Country_Code$ = [Germany] and tune the HU to a receivable AM station\n2. Request the $5009 Frequency Step Selection DID and read the reported value\n3. Configure the vehicle with $Country_Code$ = [USA] and tune the HU to a receivable AM station\n4. Request the $5009 Frequency Step Selection DID and read the reported value",
+   "expected_result": "1. The vehicle is configured for the Europe market and the HU is tuned to an AM station\n2. The reported frequency step is 9 kHz, the step of the tuned station as defined by CFTS004-1316\n3. The vehicle is configured for the North America market and the HU is tuned to an AM station\n4. The reported frequency step is 10 kHz, which follows the market configuration rather than staying at the previously reported value",
+   "specification_reference": "CFTS004-4939949; CFTS004-1316",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

@@ -204,7 +204,17 @@ def bracket(sections: list[dict], stla_id: int) -> dict | None:
 
 
 def build(leaves, sections, external: dict[str, list[str]], home_doc: str,
-          paragraphs: dict[int, dict] | None = None):
+          paragraphs: dict[int, dict] | None = None,
+          owning_docs: dict[str, dict] | None = None):
+    """leaf -> its clause, in whichever document owns it.
+
+    `owning_docs` supplies the clause index of each external document, so a
+    leaf allocated to CFTS011 or CFTS004 resolves to a section and a clause the
+    same way a CFTS024 leaf does. Without it those leaves stop at
+    `external-allocation`: the doc is known, the clause is not, and the
+    generator sees only the 037 title — which is how a whole batch ends up with
+    unverifiable spec references.
+    """
     lo, hi = sections[0]["anchor"], sections[-1]["anchor"]
     declared_external = {rid: doc for doc, ids in external.items() for rid in ids}
 
@@ -227,9 +237,22 @@ def build(leaves, sections, external: dict[str, list[str]], home_doc: str,
                       "resolution": "paragraph" if para else "bracket"}
         else:
             doc = declared_external.get(leaf["req_id"])
-            entry |= {"doc": doc, "section": None, "section_title": None,
-                      "anchor": None,
-                      "resolution": "external-allocation" if doc else "UNRESOLVED"}
+            clause = ((owning_docs or {}).get(doc) or {}).get(sid)
+            if clause:
+                entry |= {"doc": doc, "section": clause["section"],
+                          "section_title": clause["section_title"],
+                          "anchor": None,
+                          "spec_paragraph": clause["text"],
+                          "spec_paragraph_metadata": clause["metadata"],
+                          "resolution": "paragraph"}
+            else:
+                entry |= {
+                    "doc": doc, "section": None, "section_title": None,
+                    "anchor": None,
+                    "resolution": ("external-allocation" if doc and
+                                   doc not in (owning_docs or {})
+                                   else "external-clause-not-found" if doc
+                                   else "UNRESOLVED")}
         mapping[leaf["req_id"]] = entry
 
     # The mechanical test (is the id inside this document's anchor range?) and
@@ -297,9 +320,13 @@ def _fold(s: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9$ ]", " ", s.lower())).strip()
 
 
-def verify_ids(mapping: dict, paragraphs: dict[int, dict],
+def verify_ids(mapping: dict, paragraphs: dict[str, dict],
                floor: float = 0.55, margin: float = 0.15) -> list[dict]:
     """Does each leaf's declared id point at the clause the leaf describes?
+
+    `paragraphs` is {document: {clause id: clause}} — the check runs per
+    document, so the 17 leaves owned by CFTS011 / CFTS004 are screened the same
+    way the CFTS024 ones are.
 
     The id is a hand-typed tail on the 037 title, so it is copyable — and
     A-AM08 already records four suspected duplicates. A wrong id is invisible
@@ -315,11 +342,18 @@ def verify_ids(mapping: dict, paragraphs: dict[int, dict],
     A token-overlap prefilter keeps this to a few seconds over ~1400
     paragraphs; difflib then ranks the survivors.
     """
-    index = {pid: (_fold(p["text"]), set(_fold(p["text"]).split()))
-             for pid, p in paragraphs.items()}
+    # One index per document: a leaf is only ever compared against the clauses
+    # of the document that owns it. Comparing across documents would rank a
+    # CFTS004 clause as the "better" match for a CFTS024 leaf, which is not a
+    # finding anyone can act on.
+    by_doc = {}
+    for doc, clauses_ in paragraphs.items():
+        by_doc[doc] = {pid: (_fold(p["text"]), set(_fold(p["text"]).split()))
+                       for pid, p in clauses_.items()}
     findings = []
     for rid, e in mapping.items():
-        if not e.get("spec_paragraph"):
+        index = by_doc.get(e.get("doc"), {})
+        if not e.get("spec_paragraph") or e["stla_id"] not in index:
             continue
         want = _fold(e["title"])
         want_set = set(want.split())
@@ -367,7 +401,13 @@ def unallocated_clauses(mapping: dict, sections: list[dict],
         return sections[i]["section"] if i >= 0 else None
 
     claimed = {e["stla_id"] for e in mapping.values() if e["doc"] == home_doc}
-    used = {e["section"] for e in mapping.values() if e["section"]}
+    # Section numbers are per document and they collide: CFTS011 and CFTS004
+    # both restart at 1 and share 30 / 38 numbers with CFTS024. Filtering to the
+    # primary document's leaves is what stops a CFTS011 section number from
+    # marking the same-numbered CFTS024 section as "used" and dragging its
+    # clauses into this report as unallocated.
+    used = {e["section"] for e in mapping.values()
+            if e["section"] and e["doc"] == home_doc}
 
     out: dict[str, dict] = {}
     for pid in sorted(paragraphs):
@@ -532,7 +572,7 @@ def _apply_citation_ruling(token: str, entry: dict, spec: dict,
               "resolved_text": re.sub(r"\s+", " ", clauses[target]["text"])}
 
 
-def resolve_citations(paragraphs: dict[int, dict], mapping: dict,
+def resolve_citations(clause_sources: dict[str, dict], mapping: dict,
                       references: dict[str, dict], overrides: dict,
                       home_doc: str) -> dict:
     """Every cross-document citation in the spec, and what it does or does not resolve to.
@@ -546,21 +586,28 @@ def resolve_citations(paragraphs: dict[int, dict], mapping: dict,
     per test case; until that ruling exists the status says so, and the
     generator is told not to invent the referenced behaviour.
     """
-    leaves_by_clause: dict[int, list[str]] = {}
+    # Keyed by (document, clause) because clause ids are only unique within a
+    # document, and the sweep now covers every document that owns leaves — a
+    # CFTS004 clause citing `CFTS004-1316` is the same R11 case as a CFTS024
+    # one, and scanning the primary alone would hide it from the batch that
+    # actually tests that leaf.
+    leaves_by_clause: dict[tuple[str, int], list[str]] = {}
     for rid, e in mapping.items():
-        if e["doc"] == home_doc:
-            leaves_by_clause.setdefault(e["stla_id"], []).append(rid)
+        leaves_by_clause.setdefault((e["doc"], e["stla_id"]), []).append(rid)
 
     out: dict[str, dict] = {}
-    for cid in sorted(paragraphs):
-        for hit in find_citations(paragraphs[cid]["text"], home_doc):
-            entry = out.setdefault(hit["token"], {
-                "doc": hit["doc"], "cited_id": hit["cited_id"],
-                "status": "pending", "citing_clauses": [], "req_ids": []})
-            entry["citing_clauses"].append({"clause_id": cid,
-                                            "context": hit["context"]})
-            entry["req_ids"] = sorted(set(entry["req_ids"])
-                                      | set(leaves_by_clause.get(cid, [])))
+    for citing_doc, clauses_ in sorted(clause_sources.items()):
+        for cid in sorted(clauses_):
+            for hit in find_citations(clauses_[cid]["text"], citing_doc):
+                entry = out.setdefault(hit["token"], {
+                    "doc": hit["doc"], "cited_id": hit["cited_id"],
+                    "status": "pending", "citing_clauses": [], "req_ids": []})
+                entry["citing_clauses"].append({"citing_doc": citing_doc,
+                                                "clause_id": cid,
+                                                "context": hit["context"]})
+                entry["req_ids"] = sorted(
+                    set(entry["req_ids"])
+                    | set(leaves_by_clause.get((citing_doc, cid), [])))
 
     for token, entry in out.items():
         clauses = (references.get(entry["doc"]) or {}).get("clauses")
@@ -631,11 +678,25 @@ def run(args) -> int:
     if not home_doc:
         raise BuildError("feature.yaml needs spec_docs.primary (e.g. CFTS024)")
 
+    # Every non-primary document, read once and used for both roles: resolving
+    # the leaves an external document owns, and ranking candidates for the
+    # clauses that cite it.
+    other_docs = {}
+    for doc, key in (spec_cfg.get("docs") or {}).items():
+        if not cfg["paths"].get(key):
+            other_docs[doc] = {"path": None, "clauses": None}
+            continue
+        path = resolve_path(cfg, key)
+        other_docs[doc] = {"path": path.name,
+                           "clauses": load_reference_clauses(path)}
+    owning = {d: v["clauses"] for d, v in other_docs.items()
+              if d in external and v["clauses"]}
+
     leaves = load_leaves(a03)
     sections, unparsed = load_sections(cfts)
     paragraphs = load_paragraph_anchors(cfts)
     overrides = apply_overrides(leaves, cfg.get("stla_id_overrides"), paragraphs)
-    mapping = build(leaves, sections, external, home_doc, paragraphs)
+    mapping = build(leaves, sections, external, home_doc, paragraphs, owning)
     for o in overrides:
         mapping[o["req_id"]] |= {
             "declared_stla_id": o["declared"], "id_override": o}
@@ -661,8 +722,12 @@ def run(args) -> int:
               f"{len(unparsed)}")
     for doc, n in sorted(by_doc.items(), key=lambda kv: -kv[1]):
         print(f"  {doc}: {n} leaves")
-    print(f"distinct {home_doc} sections used: "
-          f"{len({e['section'] for e in mapping.values() if e['section']})}")
+    used_by_doc: dict[str, set] = {}
+    for e in mapping.values():
+        if e["section"]:
+            used_by_doc.setdefault(e["doc"], set()).add(e["section"])
+    print("distinct sections used: " + ", ".join(
+        f"{d}={len(s)}" for d, s in sorted(used_by_doc.items())))
     by_res: dict[str, int] = {}
     for e in mapping.values():
         by_res[e["resolution"]] = by_res.get(e["resolution"], 0) + 1
@@ -696,16 +761,11 @@ def run(args) -> int:
     # (`{See CFTS024-789}`), so it is a citable source like any other — without
     # this those tokens would report as "document not supplied" while the file
     # sits in inputs/.
-    references = {home_doc: {"path": cfts.name,
-                             "clauses": load_reference_clauses(cfts)}}
-    for doc, key in (spec_cfg.get("reference") or {}).items():
-        if not (cfg["paths"].get(key)):
-            references[doc] = {"path": None, "clauses": None}
-            continue
-        path = resolve_path(cfg, key)
-        references[doc] = {"path": path.name,
-                           "clauses": load_reference_clauses(path)}
-    citations = resolve_citations(paragraphs, mapping, references,
+    references = dict(other_docs)
+    references[home_doc] = {"path": cfts.name,
+                            "clauses": load_reference_clauses(cfts)}
+    citation_sources = {home_doc: paragraphs} | owning
+    citations = resolve_citations(citation_sources, mapping, references,
                                   cfg.get("clause_citation_overrides"), home_doc)
     (data / "cross_doc_citations.json").write_text(
         json.dumps({t: {k: v for k, v in e.items()}
@@ -723,7 +783,7 @@ def run(args) -> int:
                 else f"[{e['status']}]")
         print(f"  {token:16} {head:26} {', '.join(e['req_ids'])}")
 
-    suspect = verify_ids(mapping, paragraphs)
+    suspect = verify_ids(mapping, citation_sources)
     if suspect:
         print("\nDECLARED STLA ID DOES NOT MATCH THE CLAUSE (A-AM08 class):",
               file=sys.stderr)

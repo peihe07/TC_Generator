@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-103",
+ "batch": "Diagnostics",
+ "reasoning": "驗證目標：收到 seek status = Not Set 時，收音機停止 seek 功能。關鍵情境條件：命令送達時 seek 必須正在執行，否則「停止」不可觀察——因此前置需先讓搜尋處於執行中。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果（搜尋停止），依 §5.7 不拆分；與兄弟 leaf 104（seek status = Set 啟動 seek）構成同一 DID 兩個值的正負配對，兩者條款 id 不同，依 §8.2.1 分屬各自的 leaf，不合併。刻意略過：停止後停在哪個頻率（displayed 或 starting）由 Seek 批次的 007/008/012/013 依 CIP cancel/stop 判準覆蓋，本 leaf 只驗「搜尋不再執行」這個本條文所述的結果；HMI 路徑的取消事件同樣屬 Seek 批次。",
+ "keywords": [
+  "$5008",
+  "seek status Not Set",
+  "stop seek",
+  "DID command"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-103",
+   "tc_title": "Seek status Not Set stops a running seek",
+   "test_group": "AMFM",
+   "test_set": "Diagnostics",
+   "test_item": "The radio shall stop a seek function when receiving the seek status = Not Set",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. A diagnostic tester able to send the $5008 Seek Status DID is connected to the HU\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in FM analog tuner mode\n4. Receivable stations are far enough apart that a seek runs long enough to be interrupted\n5. A seek is running when the command is sent",
+   "input_test_data": "Commanded value: seek status = Not Set",
+   "test_procedure": "1. Start a seek and read whether the search is running\n2. Send the $5008 Seek Status DID with seek status = Not Set while the search is running\n3. Read whether the search is still running\n4. Request the $5008 Seek Status DID and read the reported status",
+   "expected_result": "1. The HU is in the seek state and the displayed frequency advances\n2. The command is accepted by the HU\n3. The search is no longer running and the displayed frequency stops advancing\n4. The reported status is that the seek function is not active",
+   "specification_reference": "CFTS004-4940334",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

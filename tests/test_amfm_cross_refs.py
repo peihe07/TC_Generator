@@ -110,8 +110,9 @@ MAPPING = {"SWE-RA-RAD-014": {"doc": "CFTS024", "stla_id": 4872420,
 
 
 def resolve(refs, overrides=None, paras=None):
+    """The sweep takes {doc: clauses}: every document that owns leaves."""
     return bsm.resolve_citations(
-        paras or paragraphs((4872420, CITING)), MAPPING, refs,
+        {"CFTS024": paras or paragraphs((4872420, CITING))}, MAPPING, refs,
         overrides or {}, "CFTS024")
 
 
@@ -210,3 +211,24 @@ def test_reference_anchors_need_not_increase(tmp_path):
 
     got = bsm.load_reference_clauses(p)
     assert set(got) == {4866062, 4866063}
+
+
+def test_a_citation_inside_an_owning_document_is_swept_too():
+    """CFTS004's own clause cites `CFTS004-1316`; leaf 097 carries it.
+
+    Sweeping only the primary document would hide the citation from the very
+    batch that tests the leaf — the failure is silent, because the leaf still
+    resolves and still produces test cases.
+    """
+    mapping = {"SWE-RA-RAD-097": {"doc": "CFTS004", "stla_id": 4939949,
+                                  "section": "1.5.1.51"}}
+    sources = {
+        "CFTS024": paragraphs((4872420, "no citation here")),
+        "CFTS004": paragraphs((4939949, "This DID shall report the frequency "
+                                        "step. Refer to CFTS004-1316 for the "
+                                        "method of determining it.")),
+    }
+    got = bsm.resolve_citations(sources, mapping, {}, {}, "CFTS024")
+    entry = got["CFTS004-1316"]
+    assert entry["req_ids"] == ["SWE-RA-RAD-097"]
+    assert entry["citing_clauses"][0]["citing_doc"] == "CFTS004"

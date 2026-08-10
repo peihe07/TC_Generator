@@ -186,7 +186,10 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 - [x] **List Navigation** (040–051, 12 leaves → 16 TCs), 2026-08-10, lint green
 - [x] **RDS Features** (052–063, 12 leaves → 17 TCs), 2026-08-10, lint green
 - [x] **Station List** (064–080, 17 leaves → 22 TCs), 2026-08-10, lint green
-- [ ] Market Configuration · Engineering Mode · Diagnostics
+- [x] **Market Configuration** (081–085, 5 leaves → 6 TCs), 2026-08-10, lint green
+- [x] **Engineering Mode** (087, 089–096, 9 leaves → 9 TCs), 2026-08-10, lint green
+- [x] **Diagnostics** (097–104, 8 leaves → 8 TCs), 2026-08-10, lint green
+- [x] **ALL 102 LEAVES GENERATED — 143 TCs, lint green, no leaf without a file**
 - [ ] write-back invariants pass
 
 | Batch | Leaves | TCs | P0/P1/P2/P3 | Design methods |
@@ -198,6 +201,10 @@ plus an integration test pinning the shipped pilot at 13 TCs clean.
 | List Navigation | 12 | 16 | 0/16/0/0 | Functional 9, BVA 4, State Transition 2, EP 1 |
 | RDS Features | 12 | 17 | 0/15/2/0 | Functional 9, EP 3, State Transition 2, Decision Table 2, Scenario 1 |
 | Station List | 17 | 22 | 0/21/1/0 | Functional 12, BVA 4, EP 4, State Transition 1, Decision Table 1 |
+| Market Configuration | 5 | 6 | 0/6/0/0 | EP 2, Functional 2, State Transition 1, BVA 1 |
+| Engineering Mode | 9 | 9 | 0/9/0/0 | Functional 4, BVA 4, EP 1 |
+| Diagnostics | 8 | 8 | 0/6/2/0 | Functional 5, EP 3 |
+| **TOTAL** | **102** | **143** | **0/129/14/0** | Functional 63, EP 29, BVA 25, Decision Table 14, State Transition 11, Scenario 1 |
 
 ### Spec tables are injected, not summarised
 
@@ -250,6 +257,43 @@ Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
 `CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
 trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
 048, `CFTS024-707` → 057.
+
+### External-document batches (Market Configuration / Engineering Mode / Diagnostics)
+
+- **The three batches ran after CFTS011 / CFTS004 were wired in**, so their 17
+  leaves carry section, section title and clause text like any CFTS024 leaf
+  (`resolution: paragraph` on all 102). Generating them on the old
+  `external-allocation` state would have produced 17 leaves whose acceptance
+  criteria came from the 037 title alone.
+- **093 is the case that justified the wiring on its own.** Its 037 title
+  (agreement 0.575, the corpus low) compresses "Signal strength of combined
+  AM/FM and FM2 tuners, measured once per second at a minimum" into "Signal
+  strength for current frequency" and drops two per-tuner measurement fields
+  plus the second-tuner Note. §8.6 puts the clause above the title, so three
+  display items re-entered coverage that the title had removed.
+- **A-AM08's two Engineering Mode pairs are now evidenced, not suspected.**
+  087/094 both declare `4942534`, 089/095 both declare `4942540`. CFTS011 shows
+  a regular three-clause pattern per band (display content / collect locally /
+  sampling rate), and `4942535`, `4942539`, `4942544` — "The HU shall collect
+  the information locally" — are unclaimed in all three bands. The count fits a
+  mis-pointed id, but both leaves of each pair quote the display clause
+  verbatim, so the text does not support that reading. Handled per R7-Q4: no
+  consolidation, each leaf keeps its TC, `duplicate_of` set both ways, and the
+  pair goes to Pei. Each pair's two TCs take different halves of their shared
+  clause (087 the four items / 094 the antenna-not-connected value class; 089
+  the display-update side / 095 the input-sampling side) so neither TC is
+  content-free — and if a pair is ruled a true duplicate, the marked TC is the
+  removable one.
+- **097 carries the first cite-form citation found outside CFTS024**
+  (`CFTS004-1316`, the method of determining the frequency step). It surfaced
+  only after the citation sweep was extended to every owning document.
+- **Upstream inconsistency for RD-1**: §1.6.1.10 is titled `$5009 - Frequency
+  Step Selection` but its clause (102) requires tuning to a specific frequency;
+  the read-direction `$5009` in §1.5.1.51 (097) does report the frequency step.
+- **Values the clauses never define, left undefined**: Tuner status value range
+  (099), carrier offset unit and encoding (100), the level thresholds behind
+  the five signal-strength statuses (101). Each ER asserts membership or
+  monotonicity instead of a number, and each goes to RD-1.
 
 ### Station List batch notes
 

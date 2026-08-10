@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-092",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：Engineering Mode 的 FM Tuner 畫面顯示條文列舉的三項資訊——目前設定的區域、目前頻率、每秒至少量測一次的信號強度。關鍵情境條件：處於 FM Tuner 畫面；三項各有可比對的實際值。為什麼這樣切：一條 TC 覆蓋單一驗證目標（畫面內容完整），依 §6 最終 ER 涵蓋 Test Item 的完整結果。與兄弟 leaf 093 的界線由條款決定：093 引用的 4942543 是同節另一條更完整的顯示條款（另含 PS code、TA station、AF status 與雙調諧器分別的信號強度），本 leaf 的 4942542 只列三項，ER 不得比照補上（§8.4.1）。刻意略過：取樣與更新頻率的獨立驗證由 096 覆蓋（條款 4942545）；同節未配置條款 4942544（The HU shall collect the information locally）與 AM/MW 的同型條款同屬未認領的覆蓋缺口，未吸收。037 title 將條列改為逗號分隔並補 (Engineering Mode) 標記（相似度 0.945），依 §8.6 以 CFTS 條文為準。",
+ "keywords": [
+  "Engineering Mode",
+  "FM Tuner",
+  "configured region",
+  "signal strength"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-092",
+   "tc_title": "FM tuner engineering display shows region, frequency and strength",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "The display shall show the following information: Current configured region, Current frequency, Signal strength, measured once per second at a minimum",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting a receivable FM station\n2. The vehicle is configured with a known region\n3. The antenna is connected to the HU\n4. The HU is in the Engineering Mode FM Tuner display",
+   "input_test_data": "Configured region: the market the vehicle is configured for\nTuned FM frequency: a receivable station of known frequency and level",
+   "test_procedure": "1. Read the region shown on the Engineering Mode FM Tuner display\n2. Read the frequency shown and compare it with the tuned frequency\n3. Read the signal strength shown\n4. Change the broadcast level in one step and read the signal strength shown one second later",
+   "expected_result": "1. The region shown is the region the vehicle is configured for\n2. The frequency shown is the frequency the HU is tuned to\n3. A signal strength value for the tuned station is shown\n4. The value shown corresponds to the new level, which places the measurement within one second",
+   "specification_reference": "CFTS011-4942542",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

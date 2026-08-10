@@ -1,0 +1,36 @@
+{
+ "parent": "SWE-RA-RAD-095",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：MW Tuner 的 Engineering Mode 畫面上，信號強度的輸入至少每秒取樣一次——以連續多秒的階梯式變化觀察，每一階都被取到，而不是只在畫面重繪時取一次。關鍵情境條件：信號強度以每秒一階的方式連續變化，持續數秒。為什麼這樣切：**[A-AM08]** 本 leaf 與 SWE-RA-RAD-089 在 037 內宣告同一個 id `4942540`，依 R7-Q4 不合併、各自產生 TC 並互標 duplicate_of；條款寫的兩件事由兩條 TC 分別承載——089 驗畫面更新側，本條驗輸入取樣側。以連續階梯而非單一階躍作為輸入，是取樣側特有的觀察方式：單一階躍無法區分「每秒取樣」與「變化時才取樣」，連續階梯則可（§7）。若 Pei 裁定為真重複，兩條可併回一條。刻意略過：顯示內容由 091 覆蓋；AM 與 FM 的同型條款各由 090 與 096 覆蓋。",
+ "keywords": [
+  "MW Tuner",
+  "signal strength",
+  "input sampling rate",
+  "once per second"
+ ],
+ "duplicate_of": "SWE-RA-RAD-089",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": "與 089 引用同一條 CFTS011 條款 4942540（A-AM08）；089 驗畫面更新側，本 leaf 驗輸入取樣側"
+ },
+ "assumptions": [
+  "[A-AM08] SWE-RA-RAD-095 and SWE-RA-RAD-089 declare the same source id 4942540 in the 037; both quote the same CFTS011 clause. Marked for per-pair review under R7-Q4."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-095",
+   "tc_title": "MW signal strength input is sampled every second while changing",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "For the signal strength, the input shall be sampled at the rate of once per second at a minimum, and update the display at the rate of once per second at a minimum\n\n(Input sampling side)",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting a receivable MW station\n2. The antenna is connected to the HU\n3. The HU is in the Engineering Mode MW Tuner display\n4. A stopwatch is available",
+   "input_test_data": "Signal level profile: five distinct levels, one applied per second in a rising staircase\nObservation: the value shown at each one second point",
+   "test_procedure": "1. Read the signal strength shown at the start\n2. Apply the staircase, raising the level to the next step once per second for five seconds\n3. Read the signal strength shown at each one second point during the staircase\n4. Compare the sequence of values shown with the sequence of levels applied",
+   "expected_result": "1. The signal strength of the starting level is shown\n2. The five levels are broadcast one per second\n3. A value is shown for each one second point of the staircase\n4. The values follow the applied levels step by step, which places the input sampling at least once per second rather than only when the display is redrawn",
+   "specification_reference": "CFTS011-4942540",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

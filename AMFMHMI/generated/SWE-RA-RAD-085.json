@@ -1,0 +1,52 @@
+{
+ "parent": "SWE-RA-RAD-085",
+ "batch": "Market Configuration",
+ "reasoning": "驗證目標：bus wakeup 時，Head unit 由匯流排接收 $Country_Code$ 信號連續兩個週期，依 destination code 取得市場，並依 \"Tuner Configuration\" 工作表設定調諧器。關鍵情境條件：信號有效性與連續兩個週期這個門檻。為什麼這樣切：依 R10-2，同節未配置條款 4873905（HU 須待 $EC_ECUCfg3_Stat$ = [PROGAMMED] 才將 ECUCfg3 訊息中的信號視為有效資料）與 4873906（有效訊息且連續兩個週期值相同後才依之設定）正是本 leaf「連續兩個週期」條件的有效性判準，予以吸收並多引；門檻未達成時的行為與達成時是不同的觸發狀態，依 §5.2 不可在同一程序內分支、依 R10-3 拆為獨立 TC，設計方法採邊界值分析（一個週期／兩個週期）。只驗達成門檻的一側，無法排除「收到第一個週期就套用」的實作（§7），而該實作會在信號未穩定時套錯市場。依 §8.2.1 與兄弟 leaf 劃界：083 的來源是 NVM 中已存的值，本 leaf 的來源是匯流排上收到的信號。刻意略過：ECUCfg3 訊息的完整信號集合與其他組態（phase diversity、DAB）由同節其他未配置條款規範，各屬不同功能且無 leaf，記為覆蓋缺口送 RD-1。",
+ "keywords": [
+  "bus wakeup",
+  "$Country_Code$ signal",
+  "two consecutive cycles",
+  "$EC_ECUCfg3_Stat$",
+  "destination code"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "boundary",
+  "delta": "085-01 於連續兩個週期收到相同 $Country_Code$ 值時，驗證市場與調諧器組態被套用；085-02 於只收到一個週期或信號尚未有效時，驗證組態未被套用（吸收 4873905 / 4873906）"
+ },
+ "assumptions": [
+  "[A-AM10] CFTS024-4873905 (the HU waits for $EC_ECUCfg3_Stat$ = [PROGAMMED] before treating ECUCfg3 signals as valid) and CFTS024-4873906 (configuration follows once valid messages match for two consecutive cycles) are unallocated clauses in the same section elaborating the validity gate this leaf's cited clause relies on; absorbed here and cited."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-085",
+   "tc_title": "Two consecutive country code cycles configure the tuner",
+   "test_group": "AMFM",
+   "test_set": "Market Configuration",
+   "test_item": "Upon bus wakeup, Head unit shall receive $Country_Code$ signal for two consecutive cycles, recall market per the destination code, and configure tuner according to the table defined in \"Tuner Configuration\" worksheet within the CIP Market Configuration document",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle bus is asleep before the test starts\n3. The bus simulator is able to send the ECUCfg3 message cycle by cycle\n4. The tuner values per market are taken from the \"Radio Tuner Configuration\" worksheet of the market configuration table",
+   "input_test_data": "$EC_ECUCfg3_Stat$ = [PROGAMMED]\n$Country_Code$ = [USA] sent on two consecutive message cycles, selecting the North America tuner configuration: AM 530 - 1710 kHz with a 10 kHz step",
+   "test_procedure": "1. Wake up the vehicle bus and send $EC_ECUCfg3_Stat$ = [PROGAMMED]\n2. Send $Country_Code$ = [USA] on one message cycle\n3. Send $Country_Code$ = [USA] on the next message cycle\n4. Select the HU Tuner source and read the tunable AM range and the seek step size",
+   "expected_result": "1. The HU starts on bus wakeup and the ECUCfg3 signals are valid data\n2. The first cycle carrying the country code is received\n3. The two cycles carry the same value, which completes the condition the configuration waits for\n4. The AM range covers 530 to 1710 kHz and the seek step is 10 kHz, which matches the North America row of the worksheet",
+   "specification_reference": "CFTS024-4873908",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-RAD-085",
+   "tc_title": "One cycle or invalid signals leave the configuration unapplied",
+   "test_group": "AMFM",
+   "test_set": "Market Configuration",
+   "test_item": "HU shall wait for the $EC_ECUCfg3_Stat$ = [PROGAMMED] before considering the signals in the ECUCfg3 message as valid data. Once valid ECUCfg3 messages are received and the signal values match for two consecutive message cycles, HU shall monitor for the applicable signals and configure behavior accordingly\n\n(Below the two cycle threshold, and before the signals are valid)",
+   "pre_conditions": "1. An FM/AM signal generator is ready\n2. The vehicle bus is asleep before the test starts\n3. The HU holds a Europe market configuration from its previous state\n4. The bus simulator is able to send the ECUCfg3 message cycle by cycle",
+   "input_test_data": "Phase 1: $EC_ECUCfg3_Stat$ = [PROGAMMED] is not sent, while $Country_Code$ = [USA] is sent on two cycles\nPhase 2: $EC_ECUCfg3_Stat$ = [PROGAMMED] is sent, while $Country_Code$ = [USA] is sent on one cycle only",
+   "test_procedure": "1. Wake up the vehicle bus without sending $EC_ECUCfg3_Stat$ = [PROGAMMED], and send $Country_Code$ = [USA] on two cycles\n2. Read the tunable AM range and the seek step size\n3. Send $EC_ECUCfg3_Stat$ = [PROGAMMED] and send $Country_Code$ = [USA] on one cycle only\n4. Read the tunable AM range and the seek step size",
+   "expected_result": "1. The country code is sent while the ECUCfg3 signals are not yet valid data\n2. The AM range covers 531 to 1611 kHz with a 9 kHz step, the Europe configuration held before the test, which leaves the new value unapplied\n3. The signals are valid but only one cycle carries the country code\n4. The Europe configuration is still applied, which leaves the market unchanged until a second matching cycle arrives",
+   "specification_reference": "CFTS024-4873908; CFTS024-4873905; CFTS024-4873906",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

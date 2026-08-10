@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-RAD-091",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：Engineering Mode 的 MW Tuner 畫面顯示條文列舉的兩項資訊——目前頻率與信號強度。關鍵情境條件：處於 MW Tuner 畫面；兩項各有可比對的實際值。為什麼這樣切：一條 TC 覆蓋單一驗證目標（畫面內容完整），依 §6 最終 ER 涵蓋 Test Item 的完整結果，兩項皆驗。與 AM（087/094）的差別由條款本身決定——MW 的條款 4942538 只列兩項，不含區域與天線連接狀態，因此本條的 ER 不得比照 AM 補上那兩項（§8.4.1）。刻意略過：取樣與更新頻率由兄弟 leaf 089/095 覆蓋（條款 4942540）；同節未配置條款 4942539（The HU shall collect the information locally）與 AM/FM 的同型條款同屬未認領的覆蓋缺口，未吸收，送 RD-1。",
+ "keywords": [
+  "Engineering Mode",
+  "MW Tuner",
+  "current frequency",
+  "signal strength"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-091",
+   "tc_title": "MW tuner engineering display shows frequency and signal strength",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "The display shall show the following information: Current frequency, Signal strength",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting two receivable MW stations on different frequencies\n2. The antenna is connected to the HU\n3. The HU is in the Engineering Mode MW Tuner display and tuned to the first station",
+   "input_test_data": "Frequency 1: the MW station tuned at the start of the test\nFrequency 2: the second receivable MW station, broadcast at a different level",
+   "test_procedure": "1. Read the frequency shown and compare it with the tuned frequency\n2. Read the signal strength shown\n3. Tune the HU to the second MW station\n4. Read the frequency and the signal strength shown",
+   "expected_result": "1. The frequency shown is the frequency the HU is tuned to\n2. A signal strength value for the tuned station is shown\n3. The HU is tuned to the second station\n4. The frequency shown is the second frequency and the signal strength shown corresponds to the level of that station",
+   "specification_reference": "CFTS011-4942538",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

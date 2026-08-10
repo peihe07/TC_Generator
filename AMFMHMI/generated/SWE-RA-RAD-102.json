@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-RAD-102",
+ "batch": "Diagnostics",
+ "reasoning": "驗證目標：收到此 DID 的命令時，收音機調諧到指定頻率。關鍵情境條件：命令中的目標頻率與命令前的調諧頻率不同，且至少驗兩個不同目標，否則無法區分「依命令調諧」與「調到固定頻率」的實作（§7）。為什麼這樣切：一條 TC 內以兩個目標頻率涵蓋同一驗證目標，依 §5.7 不拆分。刻意略過：目標頻率超出目前市場波段範圍時的行為不在條文內，未生成（市場波段由 081/083/085 覆蓋）；HMI 路徑的直接輸入調諧由 029 覆蓋，本 leaf 的觸發是診斷命令，路徑不同。**上游標題與條文不一致**：本條款所在節的標題為 `$5009 - Frequency Step Selection`，但條文規範的是「調諧到指定頻率」而非頻率步階選擇；同名 DID 在 §1.5.1.51 的讀取方向確實是回報頻率步階（097）。標題與內容的落差記為 RD-1 項目，本 TC 依條文內容生成（§8.6 以條文為準）。",
+ "keywords": [
+  "$5009",
+  "DID command",
+  "tune to specific frequency"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-102",
+   "tc_title": "Tuning command from the DID tunes the radio to that frequency",
+   "test_group": "AMFM",
+   "test_set": "Diagnostics",
+   "test_item": "The radio shall tune to a specific frequency when receiving a command from this DID",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting two receivable FM stations on different frequencies\n2. A diagnostic tester able to send the $5009 DID command is connected to the HU\n3. The HU Tuner source is selected on the Cabin Output Channel and the HU is in FM analog tuner mode\n4. The HU is tuned to a third frequency, which is neither of the two",
+   "input_test_data": "Target frequency 1: the first receivable FM station\nTarget frequency 2: the second receivable FM station",
+   "test_procedure": "1. Read the tuned frequency before the command\n2. Send the $5009 DID command carrying target frequency 1\n3. Read the tuned frequency and the audio output\n4. Send the $5009 DID command carrying target frequency 2\n5. Read the tuned frequency and the audio output",
+   "expected_result": "1. The HU is tuned to the third frequency\n2. The command is accepted by the HU\n3. The HU is tuned to target frequency 1 and that station is played\n4. The command is accepted by the HU\n5. The HU is tuned to target frequency 2 and that station is played, which follows the commanded value rather than a fixed frequency",
+   "specification_reference": "CFTS004-4940337",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

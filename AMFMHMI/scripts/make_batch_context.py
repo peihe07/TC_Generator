@@ -308,34 +308,38 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
         if refs:
             entry["cross_references"] = refs
         if e["section"]:
-            needed.add(e["section"])
+            needed.add((e["doc"], e["section"]))
         else:
-            reason = ("spec file not in inputs/ — external CFTS document"
+            reason = ("clause not found in the owning document"
                       if e["doc"] else "no document allocated")
             entry["section_text_absent"] = reason
             blocked.append(rid)
         leaves.append(entry)
 
     # Siblings: every other leaf bracketing into a section this batch uses.
-    # They are the split axis made visible, not extra targets.
+    # They are the split axis made visible, not extra targets. Keyed by
+    # (doc, section): CFTS011 §1.5.5.1 and CFTS024 §1.5.5.1 are different
+    # sections of different documents, and matching on the number alone would
+    # hand a batch the siblings of a document it is not testing.
     in_batch = set(batch["req_ids"])
-    siblings = [{"req_id": rid, "section": e["section"],
+    siblings = [{"req_id": rid, "doc": e["doc"], "section": e["section"],
                  "requirement_text": e["title"]}
                 for rid, e in stla_map.items()
-                if e["section"] in needed and rid not in in_batch]
+                if (e["doc"], e["section"]) in needed and rid not in in_batch]
 
-    spec = {}
+    spec: dict[str, dict] = {}
     missing_sections = []
-    for num in sorted(needed):
-        if num in sections:
-            spec[num] = sections[num]
+    for doc, num in sorted(needed):
+        available = sections.get(doc) or {}
+        if num in available:
+            spec.setdefault(doc, {})[num] = available[num]
         else:
-            missing_sections.append(num)
+            missing_sections.append(f"{doc} §{num}")
     if missing_sections:
         raise ContextError(
             f"sections {missing_sections} are cited by the bracket map but "
-            f"absent from the {primary} document — the map and the spec file "
-            "have diverged")
+            "absent from their document — the map and the spec files have "
+            "diverged")
 
     return {
         "feature": cfg["feature"],
@@ -397,8 +401,17 @@ def run(args) -> int:
     if not exemplars:
         print("WARNING: no data/exemplars.json — generating without style "
               "anchors", file=sys.stderr)
-    sections = section_texts(resolve_path(cfg, "cfts_doc"))
     spec_docs = cfg.get("spec_docs") or {}
+    # Section text per document. Keyed by doc because section NUMBERS collide
+    # across the three CFTS files (CFTS011 shares 30 numbers with CFTS024,
+    # CFTS004 shares 38): a flat map would silently hand a leaf the identically
+    # numbered section of the wrong document, which reads as perfectly normal
+    # spec text.
+    sections = {spec_docs.get("primary"): section_texts(
+        resolve_path(cfg, "cfts_doc"))}
+    for doc, key in (spec_docs.get("docs") or {}).items():
+        if doc in (spec_docs.get("external") or {}) and cfg["paths"].get(key):
+            sections[doc] = section_texts(resolve_path(cfg, key))
     cite_path = root / "data" / "cross_doc_citations.json"
     citations = (json.loads(cite_path.read_text(encoding="utf-8"))
                  if cite_path.exists() else {})
@@ -419,7 +432,9 @@ def run(args) -> int:
         path = out_dir / f"{slug}.json"
         path.write_text(json.dumps(ctx, ensure_ascii=False, indent=1),
                         encoding="utf-8")
-        chars = sum(len(s["text"]) for s in ctx["spec_sections"].values())
+        by_doc = ctx["spec_sections"]
+        n_sections = sum(len(v) for v in by_doc.values())
+        chars = sum(len(s["text"]) for v in by_doc.values() for s in v.values())
         tbl = ctx.get("spec_tables") or {}
         diverged = [l["req_id"] for l in ctx["leaves"] if "wording_note" in l]
         cross = [f"{l['req_id']}:{r['token']}" for l in ctx["leaves"]
@@ -431,7 +446,7 @@ def run(args) -> int:
             print(f"  037 title diverges from the CFTS clause: {diverged} "
                   "(§8.6 — spec wins on wording)", file=sys.stderr)
         print(f"{name:22} {len(ctx['leaves'])} leaves, "
-              f"{len(ctx['spec_sections'])} sections ({chars} chars), "
+              f"{n_sections} sections in {len(by_doc)} doc(s) ({chars} chars), "
               f"{len(ctx['siblings'])} siblings, "
               f"{len(ctx['exemplars'])} exemplars"
               + (", tables " + "+".join(

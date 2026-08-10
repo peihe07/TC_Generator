@@ -1,0 +1,36 @@
+{
+ "parent": "SWE-RA-RAD-094",
+ "batch": "Engineering Mode",
+ "reasoning": "驗證目標：Engineering Mode 的 AM Tuner 畫面顯示的資訊反映當下狀態——條文對天線連接狀態明列 connected 與 not connected 兩個值，且「Current frequency」意指目前調諧的頻率。關鍵情境條件：天線由連接改為未連接；頻率改變。為什麼這樣切：**[A-AM08]** 本 leaf 與 SWE-RA-RAD-087 在 037 內宣告同一個 id `4942534`，引用同一條 CFTS011 條款，依 R7-Q4 不合併、各自產生 TC 並互標 duplicate_of。為避免兩條 TC 內容完全相同而使其中一條不帶任何驗證增量，本條取條款自身列舉的另一個值類——天線 not connected——並驗頻率欄位隨調諧改變；兩者都直接來自條款文字，非推測（§8.4.1）。087 驗四項資訊在正常狀態下的完整顯示，本條驗其中兩項的值類與時效性。若 Pei 裁定為真重複，本條可整條移除而不影響 087 的覆蓋。刻意略過：取樣與更新頻率由 090 覆蓋。",
+ "keywords": [
+  "Engineering Mode",
+  "AM Tuner",
+  "antenna not connected",
+  "current frequency"
+ ],
+ "duplicate_of": "SWE-RA-RAD-087",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": "與 087 引用同一條 CFTS011 條款 4942534（A-AM08）；087 驗四項資訊的完整顯示，本 leaf 驗天線狀態的另一個值類與頻率欄位的時效性"
+ },
+ "assumptions": [
+  "[A-AM08] SWE-RA-RAD-094 and SWE-RA-RAD-087 declare the same source id 4942534 in the 037; both quote the same CFTS011 clause. Marked for per-pair review under R7-Q4 — if the pair is ruled a true duplicate, this TC is the removable one."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-RAD-094",
+   "tc_title": "AM engineering display tracks antenna loss and frequency change",
+   "test_group": "AMFM",
+   "test_set": "Engineering Mode",
+   "test_item": "The display shall show the following information: Current configured region, Current frequency, Signal strength, Antenna Connection status: connected or not connected\n\n(Antenna not connected value class, and current frequency after retune)",
+   "pre_conditions": "1. An FM/AM signal generator is ready and broadcasting two receivable AM stations on different frequencies\n2. The antenna is connected to the HU\n3. The HU is in the Engineering Mode AM Tuner display and tuned to the first station",
+   "input_test_data": "Frequency 1: the AM station tuned at the start of the test\nFrequency 2: the second receivable AM station\nAntenna state: connected, then disconnected",
+   "test_procedure": "1. Read the frequency and the antenna connection status shown\n2. Tune the HU to the second AM station\n3. Read the frequency shown\n4. Disconnect the antenna from the HU\n5. Read the antenna connection status shown",
+   "expected_result": "1. The first frequency is shown and the antenna connection status is shown as connected\n2. The HU is tuned to the second station\n3. The frequency shown is the second frequency, which follows the tuned station rather than staying at the first\n4. The antenna is no longer connected to the HU\n5. The antenna connection status is shown as not connected",
+   "specification_reference": "CFTS011-4942534",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}
