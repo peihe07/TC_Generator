@@ -33,6 +33,11 @@ paths:
   # Companion workbook several CFTS clauses delegate detail to (state tables,
   # PI seek ordering, preset defaults). Same 25PI3.5 release as CFTS024.
   cip_radio_tables: "inputs/CIP_Radio_Tables_v6.7.xlsx"
+  # Documents CFTS024 clauses cite but that own no 037 leaf. Declared so the
+  # cross-reference resolver can rank candidate clauses instead of leaving a
+  # cited behaviour (the rejection tone in §1.3.3) with no source at all.
+  cfts019_doc: "inputs/*CFTS 019_Audio Management*.docx"
+  cfts028_doc: "inputs/*CFTS_28 Voice Recognition*.docx"
   sysra_export: "inputs/SYS2_CFTS024_Tuner_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS024_Tuner_V01.xlsx"
 
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
@@ -82,6 +87,24 @@ spec_docs:
   external:
     CFTS011: "087, 089-096"
     CFTS004: "097-104"
+  # Cited-but-not-owning documents: a clause here governs behaviour a leaf's
+  # clause delegates to, but no leaf traces to it. Value = the `paths` key.
+  reference:
+    CFTS019: "cfts019_doc"
+    CFTS028: "cfts028_doc"
+
+# Ruled resolutions of cross-document citations. CFTS024 cites other documents
+# in a SHORT-ID scheme (`{See CFTS019-718}`, `{See CFTS024-789}`) that exists in
+# no supplied file — not even CFTS024's own anchors — so a token cannot be
+# resolved to a clause mechanically. build_stla_map.py ranks candidates from the
+# cited document and stops there; mapping one is a ruling, recorded here with
+# the wording that justifies it. The build refuses a ruling whose target clause
+# no longer carries that wording.
+#   CFTS019-718:
+#     resolved_clause: 4866062
+#     ruling: "R11"
+#     evidence_phrase: "key press rejection tone"
+clause_citation_overrides: {}
 
 workbook:
   sheet: "Test Case Specification&Result"

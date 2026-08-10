@@ -1,9 +1,10 @@
 # Test Case Framework — STLA FW036 (SWE.6)
 
-Covers Test Groups **Media** (Part I, below) and **Home** (Part II, end of
-file). The cross-cutting rulings in Part I (orphan routing/attribution, lint
-vs traceability, assumption markers, priority, anchors-as-style, blocked-parent
-proportion) apply to ALL Test Groups.
+Covers Test Groups **Media** (Part I, below), **Home** (Part II), and
+**AMFM** (Part III, end of file). The cross-cutting rulings in Part I
+(orphan routing/attribution, lint vs traceability, assumption markers,
+priority, anchors-as-style, blocked-parent proportion) apply to ALL Test
+Groups.
 
 ## Part I — Media HMI
 
@@ -315,3 +316,87 @@ resolve to List Items in its table.
 
 None. The Home `Test Case Framework` sheet stays empty by done-region
 convention.
+
+---
+
+## Part III — AMFM (CFTS024 Radio)
+
+Deliverable workbook: FM-WI-FSM-036-A01 `SWQT_CFTS024_Radio_20260129`; RD
+source 037-A03 (102 leaf FRs, `SWE-RA-RAD-*`, per RULINGS R1); spec_mode D
+— spec authority is the CFTS024 docx (R1LR Atl-H 25PI3.5, 20250910) plus
+two external CFTS docs (below); SYS3 SYSAD supplies architecture context.
+Execution plan: `AMFMHMI/RUNBOOK.md`; profile:
+`docs/runtime/profiles/FW036_R1L_AMFM_Profile.md`; rulings R1–R7 in
+`AMFMHMI/RULINGS.md`.
+
+**Layer 2 derivation note (§4.1.2 degenerate case)**: the 037's
+Categorization / Sub-Categorization columns are `Functional / NA` on all
+102 leaves — the RD grouping axis carries zero information, so the
+§4.1.2 intersection degenerates to the spec's own structure. The usable
+axis: every 037 Requirement Title ends with the source STLA id
+`(48xxxxx)`, and CFTS024 headings carry `{id}` anchors monotonic in doc
+order, so each leaf maps mechanically to its bracketing CFTS section.
+85/102 leaves resolve inside CFTS024; 17 resolve to external CFTS docs
+(CFTS011 evidenced by SYS3 §4.4.2 c.3; CFTS004 attribution is an
+assumption until the file arrives — A-AM06/A-AM07).
+
+**Legacy region**: 158 rows by Wilson trace the superseded `SWE-RAD-*`
+family and are FROZEN (R4, option i) — excluded from coverage and
+traceability invariants. Their band-based Test Set scheme (`FM`/`AM`/`USB`)
+is NOT adopted for new rows (R7-Q2); their `Radio` Test Group value stays
+on their own rows only (R7-Q1).
+
+### Layer 1 — Test Group
+
+- `AMFM` (workbook Test Group column value on new rows: `AMFM`; legacy rows
+  keep `Radio`, frozen)
+
+### Layer 2 / Layer 3 — Test Sets and their spec sections
+
+Layer 3 = CFTS section numbers (or external doc tag); framework-internal
+only — NEVER written to the workbook.
+
+| Test Set | Spec sections (Layer 3) | Leaves (SWE-RA-RAD-) | n | Status |
+|---|---|---|---|---|
+| Tuner Availability | CFTS024 1.3 (AM presence gate) | 001–002 | 2 | remaining |
+| Seek | CFTS024 1.3.1, 1.3.2 | 003–013 | 11 | remaining |
+| Browse | CFTS024 1.3.3, 1.3.3.1, 1.3.3.2 | 014–024 | 11 | remaining |
+| Tune | CFTS024 1.3.4, 1.3.5, 1.3.6 | 025–030 | 6 | remaining |
+| Presets | CFTS024 1.3.7, 1.3.8 | 031–039 | 9 | remaining |
+| List Navigation | CFTS024 1.3.10, 1.3.11, 1.3.12 | 040–051 | 12 | remaining |
+| RDS Features | CFTS024 1.3.13, 1.3.13.1, 1.3.13.2 | 052–063 | 12 | remaining |
+| Station List | CFTS024 1.3.14 | 064–080 | 17 | remaining |
+| Market Configuration | CFTS024 1.12.1.3.1.5, 1.12.2.2.1 | 081–085 | 5 | remaining |
+| Engineering Mode | CFTS011 (external — A-AM06) | 087, 089–096 | 9 | remaining |
+| Diagnostics | CFTS004 DIDs (external, attribution assumed — A-AM07) | 097–104 | 8 | remaining |
+
+Total 102 = full leaf set. Numbering gaps 086/088 exist in the 037 itself
+(A-AM08), not in this allocation.
+
+### Granularity check
+
+Sets range 2–17 leaves; all pass the §4.1.3 filter test. `Tuner
+Availability` (2) is a genuine outlier per §4.2 — the AM-presence
+configuration gate shares no setup pattern with any sibling set.
+
+### AMFM notes
+
+1. **Duplicate STLA ids inside the 037** (A-AM08, marked per R7-Q4, Pei
+   judges per pair at review): 087/094 share 4942534; 089/095 share
+   4942540; 090/096 near-identical text; 028/029 share 4872451. Each leaf
+   still receives its own TC (§8.2 — no consolidation); sibling
+   `distinguishing_axis` must name the delta or declare `duplicate_of`.
+2. Leaves 001–080 predominantly apply to BOTH AM and FM bands — band is a
+   split axis (§8.3) inside a TC family, not a Test Set boundary. This is
+   why the legacy band scheme could not carry the capability structure.
+3. External-doc leaves (Engineering Mode, Diagnostics) generate normally:
+   their 037 titles carry self-contained requirement text (blocked-parent
+   proportion test — Part I). Only the spec_reference doc anchor waits on
+   file supply.
+
+### Workbook sync
+
+The AMFM `Test Case Framework` sheet is empty (Wilson convention differs
+from Media: G/H columns filled per row, framework sheet unused). Leave the
+sheet empty; the capability Test Sets live in the H column of new rows and
+in this file.

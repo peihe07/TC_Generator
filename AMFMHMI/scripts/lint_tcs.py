@@ -81,8 +81,18 @@ def load_design_methods(workbook: Path) -> list[str]:
     return out
 
 
+def cited_tokens(citations: dict, req_id: str) -> set[str]:
+    """Cross-document tokens this leaf's own clause writes (R11 cite-form).
+
+    Membership is per leaf, not global: `CFTS019-718` is a legitimate citation
+    for 014, whose clause writes it, and a fabricated one anywhere else.
+    """
+    return {t for t, e in (citations or {}).items()
+            if req_id in e.get("req_ids", [])}
+
+
 def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
-            stla: dict) -> list[dict]:
+            stla: dict, citations: dict | None = None) -> list[dict]:
     f = []
 
     def bad(gate, msg):
@@ -139,9 +149,33 @@ def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
             bad("spec-reference",
                 f"first citation {refs[0]!r} is not the leaf's own clause "
                 f"{primary!r} (§10.7 most-specific first)")
+    # R11: a cross-document citation is quoted in the CITING document's own
+    # short-id scheme (`CFTS019-718`), so it cannot be held to the 7-digit
+    # anchor shape. It is allowed only where the spec actually writes it —
+    # per leaf, from the citation sweep — which is what stops the short form
+    # from becoming a hole in the format check.
+    allowed_tokens = cited_tokens(citations, tc.get("req_id"))
     for r in refs:
-        if not re.fullmatch(r"CFTS\d{3}-\d{7}", r):
+        if re.fullmatch(r"CFTS\d{3}-\d{7}", r) or r in allowed_tokens:
+            continue
+        if re.fullmatch(r"CFTS\d{3}-\d{1,6}", r):
+            bad("cross-reference",
+                f"{r!r} is a cross-document citation, but this leaf's clause "
+                f"does not write it (R11; leaf cites {sorted(allowed_tokens)})")
+        else:
             bad("spec-reference", f"{r!r} does not match CFTSnnn-nnnnnnn")
+
+    # R11 cite-form: the referenced outcome may be asserted, but only anchored
+    # to the citation ("the key press rejection tone is played, as defined by
+    # CFTS019-718"). An unanchored assertion reads as this leaf's own verified
+    # behaviour, which is exactly the absorption R11 declined.
+    er_text = str(tc.get("expected_result") or "")
+    for token in sorted(set(refs) & allowed_tokens):
+        if token not in er_text:
+            bad("cross-reference-anchor",
+                f"{token} is cited but no ER line anchors to it (R11 — write "
+                f"the borrowed outcome 'as defined by {token}', or drop the "
+                "citation)")
 
     # ---- R10-2a: every absorbed clause the marker names must be cited
     # somewhere under this parent, and a multi-cite must be explained by a
@@ -149,7 +183,11 @@ def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
     # exact: a blanket "marked parent => every TC multi-cites" over-fires on a
     # parent where only one TC absorbs, and a blanket count check misses the
     # second absorbed clause entirely.
-    if len(refs) > 1 and not absorbed_ids(doc):
+    # Cite-form cross-references are excluded from the count: R11 rules them
+    # NOT absorption — nothing is taken into this leaf's scope, so demanding an
+    # absorption marker for them would misfile the very distinction R11 draws.
+    absorbing_refs = [r for r in refs if r not in allowed_tokens]
+    if len(absorbing_refs) > 1 and not absorbed_ids(doc):
         bad("absorption-cite",
             f"{len(refs)} clauses cited but the parent has no "
             f"{ABSORPTION_MARKER} assumption naming an absorbed clause (R10-2a)")
@@ -172,6 +210,9 @@ def run(args) -> int:
     if not stla_path.exists():
         raise SystemExit("data/stla_to_cfts.json missing — run build_stla_map.py")
     stla = json.loads(stla_path.read_text(encoding="utf-8"))
+    cite_path = root / "data" / "cross_doc_citations.json"
+    citations = (json.loads(cite_path.read_text(encoding="utf-8"))
+                 if cite_path.exists() else {})
 
     files = sorted((root / args.generated).glob("*.json"))
     if not files:
@@ -204,7 +245,8 @@ def run(args) -> int:
                 findings.append({"tc": tag, "gate": "sibling-distinction",
                                  "message": f"tc_title duplicates {titles[title]}"})
             titles[title] = tag
-            findings.extend(lint_tc(tag, tc, doc, cfg, methods, stla))
+            findings.extend(lint_tc(tag, tc, doc, cfg, methods, stla,
+                                    citations))
         for missing in sorted(absorbed_ids(doc) - cited_here):
             findings.append({
                 "tc": parent, "gate": "absorption-cite",

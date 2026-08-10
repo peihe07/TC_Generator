@@ -62,9 +62,10 @@ def tc(**over):
     return base
 
 
-def gates(tc_dict, doc=None):
+def gates(tc_dict, doc=None, citations=None):
     return {f["gate"] for f in
-            lint.lint_tc("T-01", tc_dict, doc or {}, CFG, METHODS, STLA)}
+            lint.lint_tc("T-01", tc_dict, doc or {}, CFG, METHODS, STLA,
+                         citations)}
 
 
 def test_a_clean_tc_has_no_findings():
@@ -214,3 +215,58 @@ def test_the_real_generated_corpus_is_clean(tmp_path):
     payload = json.loads(report.read_text(encoding="utf-8"))
     assert rc == 0, payload["findings"]
     assert payload["tcs"] >= 13, "the pilot's 13 TCs must still be there"
+
+
+# ------------------------------------------------- R11 cross-doc cite-form
+
+# The spec writes `{See CFTS019-718}` in leaf 025's clause only. Everything
+# below turns on that: the same token is a legitimate citation here and a
+# fabricated one under any other leaf.
+CITATIONS = {"CFTS019-718": {"doc": "CFTS019", "status": "unresolved-scheme-mismatch",
+                             "req_ids": ["SWE-RA-RAD-025"],
+                             "citing_clauses": [{"clause_id": 4872439,
+                                                 "context": "rejection tone"}]}}
+CITE_FORM = dict(
+    specification_reference="CFTS024-4872439; CFTS019-718",
+    expected_result="1. The frequency is displayed\n2. The key press rejection "
+                    "tone is played, as defined by CFTS019-718")
+
+
+def test_a_short_form_cross_doc_token_is_accepted_for_the_leaf_that_cites_it():
+    """`CFTS019-718` is 3-digit — the 7-digit anchor shape must not reject it."""
+    assert gates(tc(**CITE_FORM), citations=CITATIONS) == set()
+
+
+def test_a_cross_doc_token_no_clause_of_this_leaf_writes_is_caught():
+    other = {"CFTS019-718": dict(CITATIONS["CFTS019-718"],
+                                 req_ids=["SWE-RA-RAD-014"])}
+    assert "cross-reference" in gates(tc(**CITE_FORM), citations=other)
+
+
+def test_a_cited_token_with_no_anchoring_er_line_fires():
+    """R11 allows the borrowed outcome only anchored to the citation."""
+    unanchored = dict(CITE_FORM,
+                      expected_result="1. The frequency is displayed\n2. The "
+                                      "key press rejection tone is played")
+    assert "cross-reference-anchor" in gates(tc(**unanchored),
+                                             citations=CITATIONS)
+
+
+def test_cite_form_does_not_demand_an_absorption_marker():
+    """R11 claims no coverage of the cited clause, so R10-2a does not apply."""
+    assert "absorption-cite" not in gates(tc(**CITE_FORM), doc={},
+                                          citations=CITATIONS)
+
+
+def test_absorption_still_needs_its_marker_alongside_a_cross_reference():
+    """The cite-form exemption must not launder a same-document multi-cite."""
+    both = dict(CITE_FORM,
+                specification_reference="CFTS024-4872439; CFTS024-4872440; "
+                                        "CFTS019-718")
+    assert "absorption-cite" in gates(tc(**both), doc={}, citations=CITATIONS)
+
+
+def test_cited_tokens_are_scoped_per_leaf():
+    assert lint.cited_tokens(CITATIONS, "SWE-RA-RAD-025") == {"CFTS019-718"}
+    assert lint.cited_tokens(CITATIONS, "SWE-RA-RAD-014") == set()
+    assert lint.cited_tokens({}, "SWE-RA-RAD-025") == set()

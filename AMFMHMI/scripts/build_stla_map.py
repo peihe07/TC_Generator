@@ -53,6 +53,13 @@ HEADING_RE = re.compile(
 # the requirement sentence is the paragraph(s) that follow it.
 PARA_ANCHOR_RE = re.compile(r"^(\d{7})\s*[:：]\s*(.*)$")
 A03_SHEET = "Analysis Report"
+# Cross-document citations: `HU shall play the rejection tone {See CFTS019-718}`.
+# The docx renders the token with non-breaking spaces inside it (`CFTS0\xa019-718`
+# is the literal run in §1.3.3), so a plain `CFTS019` pattern misses exactly the
+# citations that matter. Repair first, match second.
+CITE_REPAIR_RE = re.compile(r"C\s*F\s*T\s*S\s*(\d)\s*(\d)\s*(\d)\s*[-–]\s*(\d{1,7})")
+CITE_RE = re.compile(r"CFTS(\d{3})-(\d{1,7})")
+HEADING_NUM_RE = re.compile(r"^(\d+(?:\.\d+)*)\s+(.+?)\s*$")
 
 
 class BuildError(RuntimeError):
@@ -387,6 +394,192 @@ def unallocated_clauses(mapping: dict, sections: list[dict],
     return out
 
 
+# ------------------------------------------------- cross-document citations
+
+def repair_citations(text: str) -> str:
+    """Rejoin citation tokens the docx broke apart with non-breaking spaces."""
+    return CITE_REPAIR_RE.sub(r"CFTS\1\2\3-\4", str(text or "").replace("\xa0", " "))
+
+
+def find_citations(text: str, home_doc: str | None = None) -> list[dict]:
+    """`{See CFTS019-718}` occurrences, with the wording that introduces them.
+
+    The surrounding sentence is carried because the cited id is in the citing
+    document's own cross-reference scheme, not the STLA anchor scheme (see
+    `resolve_citations`) — when the token cannot be resolved by id, the phrase
+    it hangs off ("HU shall play the rejection tone") is the only evidence
+    left for finding the clause it means.
+    """
+    fixed = repair_citations(text)
+    out = []
+    for m in CITE_RE.finditer(fixed):
+        doc = f"CFTS{m.group(1)}"
+        out.append({
+            "token": f"{doc}-{m.group(2)}", "doc": doc, "cited_id": m.group(2),
+            "self_reference": doc == home_doc,
+            "context": re.sub(r"\s+", " ",
+                              fixed[max(0, m.start() - 160):m.end() + 60]).strip(),
+        })
+    return out
+
+
+def load_reference_clauses(docx_path: Path) -> dict[int, dict]:
+    """A cited document's clauses, each tagged with the heading it sits under.
+
+    Same anchor convention as the primary document, but read in one pass with
+    the section carried along: a reference doc is consulted by clause, and a
+    bare clause id with no chapter is not something a reviewer can check.
+    Unlike `load_sections` this does not require anchors to increase — nothing
+    brackets into a reference document, so the ordering invariant does not apply.
+    """
+    paras = docx.Document(docx_path).paragraphs
+    out: dict[int, dict] = {}
+    section = ("", "")
+    current: dict | None = None
+    for p in paras:
+        text = p.text.strip()
+        if not text:
+            continue
+        if p.style.name.startswith("Heading"):
+            head = HEADING_RE.match(text) or HEADING_NUM_RE.match(text)
+            if head:
+                num, title = head.group(1), head.group(2)
+                section = (num, title.strip())
+            current = None
+            continue
+        m = PARA_ANCHOR_RE.match(text)
+        if m:
+            current = {"metadata": m.group(2).strip(), "text": "",
+                       "section": section[0], "section_title": section[1]}
+            out[int(m.group(1))] = current
+        elif current is not None:
+            current["text"] = (current["text"] + "\n" + text).strip()
+    return out
+
+
+def lead_phrase(context: str) -> str:
+    """The wording the citation hangs off: `HU shall play the rejection tone`.
+
+    Everything after the token describes the citing feature, not the cited
+    behaviour ("…when user tries to access preset through the HU HMI"), and
+    dragging it into the match pulls every candidate toward radio vocabulary.
+    """
+    before = re.split(r"\{\s*See|CFTS\d{3}-", context)[0]
+    tail = re.split(r"[.;,]", before)[-1].strip()
+    return tail if len(tail) >= 15 else before.strip()
+
+
+def _candidates(context: str, clauses: dict[int, dict], k: int = 3,
+                exclude: set[int] | None = None) -> list[dict]:
+    """Clauses in the cited document that best match the citing phrase.
+
+    Ranked by shared words weighted by how rare each is in the cited document,
+    not by raw overlap: `the HU shall` is in most clauses of every CFTS and
+    scores four unrelated candidates identically, while `rejection` occurs in
+    three. difflib then breaks ties on wording.
+    """
+    want = set(_fold(lead_phrase(context)).split())
+    if not want:
+        return []
+    # A clause citing a document is never the answer to its own citation; left
+    # in, `see Section {CFTS024-605}` ranks the sentence that wrote it first.
+    index = {cid: _fold(c["text"]) for cid, c in clauses.items()
+             if c["text"] and cid not in (exclude or set())}
+    df: dict[str, int] = {}
+    for text in index.values():
+        for w in set(text.split()):
+            df[w] = df.get(w, 0) + 1
+    n = max(len(index), 1)
+
+    def score(cid: str) -> tuple[float, float]:
+        shared = want & set(index[cid].split())
+        weight = sum(1.0 / df.get(w, n) for w in shared)
+        return (round(weight, 4),
+                difflib.SequenceMatcher(None, " ".join(sorted(want)),
+                                        index[cid]).ratio())
+
+    ranked = sorted(index, key=score, reverse=True)[:k]
+    return [{"clause_id": cid, "match_weight": score(cid)[0],
+             "matched_terms": sorted(want & set(index[cid].split())),
+             "section": clauses[cid]["section"],
+             "section_title": clauses[cid]["section_title"],
+             "text": re.sub(r"\s+", " ", clauses[cid]["text"])[:300]}
+            for cid in ranked]
+
+
+def _apply_citation_ruling(token: str, entry: dict, spec: dict,
+                           clauses: dict[int, dict]):
+    """A ruled token -> clause mapping, refused if the file stopped supporting it."""
+    target = int(spec["resolved_clause"])
+    if target not in clauses:
+        raise BuildError(
+            f"clause_citation_overrides[{token}] points at {target}, "
+            f"which is not a clause in {entry['doc']}")
+    phrase = _fold(spec.get("evidence_phrase", ""))
+    if not phrase:
+        raise BuildError(
+            f"clause_citation_overrides[{token}] needs an "
+            "evidence_phrase — the wording that makes this the right clause")
+    if phrase not in _fold(clauses[target]["text"]):
+        raise BuildError(
+            f"clause_citation_overrides[{token}]: clause {target} no "
+            f"longer contains {spec['evidence_phrase']!r} — the evidence for "
+            f"this ruling ({spec.get('ruling', '?')}) does not hold")
+    entry |= {"status": "resolved-by-ruling", "resolved_clause": target,
+              "ruling": spec.get("ruling"),
+              "resolved_section": clauses[target]["section"],
+              "resolved_section_title": clauses[target]["section_title"],
+              "resolved_text": re.sub(r"\s+", " ", clauses[target]["text"])}
+
+
+def resolve_citations(paragraphs: dict[int, dict], mapping: dict,
+                      references: dict[str, dict], overrides: dict,
+                      home_doc: str) -> dict:
+    """Every cross-document citation in the spec, and what it does or does not resolve to.
+
+    The citing scheme is NOT the STLA anchor scheme: CFTS024 writes
+    `{See CFTS019-718}` and `{See CFTS024-789}` — short ids that appear in no
+    supplied document, including CFTS024's own. So a citation is quoted, never
+    renumbered: the token is the reference, exactly as the source writes it.
+    Where the cited document IS supplied, the candidate clauses are ranked so
+    the mapping becomes a one-off ruling per token rather than a judgement call
+    per test case; until that ruling exists the status says so, and the
+    generator is told not to invent the referenced behaviour.
+    """
+    leaves_by_clause: dict[int, list[str]] = {}
+    for rid, e in mapping.items():
+        if e["doc"] == home_doc:
+            leaves_by_clause.setdefault(e["stla_id"], []).append(rid)
+
+    out: dict[str, dict] = {}
+    for cid in sorted(paragraphs):
+        for hit in find_citations(paragraphs[cid]["text"], home_doc):
+            entry = out.setdefault(hit["token"], {
+                "doc": hit["doc"], "cited_id": hit["cited_id"],
+                "status": "pending", "citing_clauses": [], "req_ids": []})
+            entry["citing_clauses"].append({"clause_id": cid,
+                                            "context": hit["context"]})
+            entry["req_ids"] = sorted(set(entry["req_ids"])
+                                      | set(leaves_by_clause.get(cid, [])))
+
+    for token, entry in out.items():
+        clauses = (references.get(entry["doc"]) or {}).get("clauses")
+        spec = (overrides or {}).get(token)
+        if clauses is None:
+            entry["status"] = "document-not-supplied"
+        elif int(entry["cited_id"]) in clauses:
+            entry |= {"status": "resolved-by-anchor",
+                      "resolved_clause": int(entry["cited_id"])}
+        elif spec:
+            _apply_citation_ruling(token, entry, spec, clauses)
+        else:
+            entry["status"] = "unresolved-scheme-mismatch"
+            entry["candidates"] = _candidates(
+                entry["citing_clauses"][0]["context"], clauses,
+                exclude={c["clause_id"] for c in entry["citing_clauses"]})
+    return out
+
+
 def check_batches(mapping: dict, batches_md: Path) -> list[str]:
     """Every leaf in a batch must bracket into one of that batch's sections.
 
@@ -495,6 +688,40 @@ def run(args) -> int:
     for sec, v in worst:
         print(f"  §{sec:14} {len(v['unallocated']):3} unallocated / "
               f"{len(v['claimed'])} claimed  {v['section_title'][:40]}")
+
+    # Documents the spec cites but that own no leaf (CFTS019 Audio Management,
+    # CFTS028 Voice Recognition). Declared in feature.yaml so an absent file is
+    # a stated gap rather than a silent one.
+    # The primary document cites itself in the same short-id scheme
+    # (`{See CFTS024-789}`), so it is a citable source like any other — without
+    # this those tokens would report as "document not supplied" while the file
+    # sits in inputs/.
+    references = {home_doc: {"path": cfts.name,
+                             "clauses": load_reference_clauses(cfts)}}
+    for doc, key in (spec_cfg.get("reference") or {}).items():
+        if not (cfg["paths"].get(key)):
+            references[doc] = {"path": None, "clauses": None}
+            continue
+        path = resolve_path(cfg, key)
+        references[doc] = {"path": path.name,
+                           "clauses": load_reference_clauses(path)}
+    citations = resolve_citations(paragraphs, mapping, references,
+                                  cfg.get("clause_citation_overrides"), home_doc)
+    (data / "cross_doc_citations.json").write_text(
+        json.dumps({t: {k: v for k, v in e.items()}
+                    for t, e in sorted(citations.items())},
+                   ensure_ascii=False, indent=1), encoding="utf-8")
+    in_scope = {t: e for t, e in citations.items() if e["req_ids"]}
+    by_status: dict[str, int] = {}
+    for e in citations.values():
+        by_status[e["status"]] = by_status.get(e["status"], 0) + 1
+    print(f"cross-doc refs: {len(citations)} cited tokens "
+          f"({len(in_scope)} reached by a leaf) -> data/cross_doc_citations.json")
+    print("  status      : " + ", ".join(f"{k}={v}" for k, v in sorted(by_status.items())))
+    for token, e in sorted(in_scope.items()):
+        head = (f"-> {e['resolved_clause']}" if e.get("resolved_clause")
+                else f"[{e['status']}]")
+        print(f"  {token:16} {head:26} {', '.join(e['req_ids'])}")
 
     suspect = verify_ids(mapping, paragraphs)
     if suspect:

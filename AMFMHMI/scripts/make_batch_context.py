@@ -222,8 +222,50 @@ def load_spec_tables(cfg, root: Path, wanted: list[str]) -> dict:
     return out
 
 
+def leaf_citations(citations: dict, req_id: str) -> list[dict]:
+    """Cross-document citations made by this leaf's own clause.
+
+    A leaf whose clause says `HU shall play the rejection tone {See CFTS019-718}`
+    borrows an outcome it does not define. R11 rules this CITE-FORM, not
+    absorption: the outcome is asserted where the citing clause puts it, but
+    anchored to the token, and the cited document's own rule surface stays out
+    of scope. The instruction travels with the leaf because the two failure
+    modes are opposite — silently dropping the outcome under-covers the citing
+    clause, and silently adopting it claims verification of another delivery's
+    requirement.
+    """
+    out = []
+    for token, e in sorted(citations.items()):
+        if req_id not in e.get("req_ids", []):
+            continue
+        item = {"token": token, "doc": e["doc"], "status": e["status"],
+                "cited_in": e["citing_clauses"][0]["context"],
+                "handling": "cite-form (R11) — reference, do not absorb",
+                "instruction": (
+                    f"Cite {token} verbatim as a second citation in "
+                    "specification_reference, after this leaf's own clause. "
+                    "The ER may assert the borrowed outcome, anchored to the "
+                    f"citation — e.g. 'the key press rejection tone is played, "
+                    f"as defined by {token}'. Do NOT test that document's own "
+                    f"rule surface (which conditions qualify, the specification "
+                    f"of the behaviour itself): that is {e['doc']}'s delivery. "
+                    "Verify only that the outcome occurs in the citing "
+                    "clause's scenario."),
+                }
+        if e.get("resolved_text"):
+            item |= {"resolved_clause": e["resolved_clause"],
+                     "resolved_section": e.get("resolved_section"),
+                     "referenced_text": e["resolved_text"],
+                     "ruling": e.get("ruling")}
+        else:
+            item["candidates"] = e.get("candidates", [])
+        out.append(item)
+    return out
+
+
 def build(cfg, batch: dict, stla_map: dict, sections: dict,
-          exemplars: dict, spec_docs: dict, spec_tables: dict | None = None) -> dict:
+          exemplars: dict, spec_docs: dict, spec_tables: dict | None = None,
+          citations: dict | None = None) -> dict:
     primary = spec_docs.get("primary")
     leaves, needed, blocked = [], set(), []
     for rid in batch["req_ids"]:
@@ -252,6 +294,9 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
                 entry["wording_note"] = (
                     "037 title and CFTS clause differ; §8.6 — the source spec "
                     "is authority for wording, the 037 title for scope")
+        refs = leaf_citations(citations or {}, rid)
+        if refs:
+            entry["cross_references"] = refs
         if e["section"]:
             needed.add(e["section"])
         else:
@@ -344,6 +389,13 @@ def run(args) -> int:
               "anchors", file=sys.stderr)
     sections = section_texts(resolve_path(cfg, "cfts_doc"))
     spec_docs = cfg.get("spec_docs") or {}
+    cite_path = root / "data" / "cross_doc_citations.json"
+    citations = (json.loads(cite_path.read_text(encoding="utf-8"))
+                 if cite_path.exists() else {})
+    if not citations:
+        print("WARNING: no data/cross_doc_citations.json — leaves citing "
+              "another CFTS will reach the generator unflagged; run "
+              "build_stla_map.py", file=sys.stderr)
 
     out_dir = root / "batches"
     out_dir.mkdir(exist_ok=True)
@@ -352,7 +404,7 @@ def run(args) -> int:
             raise ContextError(f"unknown batch {name!r}; --list to see them")
         tables = load_spec_tables(cfg, root, batches[name]["spec_tables"])
         ctx = build(cfg, batches[name], stla_map, sections, exemplars,
-                    spec_docs, tables)
+                    spec_docs, tables, citations)
         slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
         path = out_dir / f"{slug}.json"
         path.write_text(json.dumps(ctx, ensure_ascii=False, indent=1),
@@ -360,6 +412,11 @@ def run(args) -> int:
         chars = sum(len(s["text"]) for s in ctx["spec_sections"].values())
         tbl = ctx.get("spec_tables") or {}
         diverged = [l["req_id"] for l in ctx["leaves"] if "wording_note" in l]
+        cross = [f"{l['req_id']}:{r['token']}" for l in ctx["leaves"]
+                 for r in l.get("cross_references", [])]
+        if cross:
+            print(f"  cross-document citations (R11 cite-form, multi-cite + "
+                  f"anchored ER): {cross}", file=sys.stderr)
         if diverged:
             print(f"  037 title diverges from the CFTS clause: {diverged} "
                   "(§8.6 — spec wins on wording)", file=sys.stderr)

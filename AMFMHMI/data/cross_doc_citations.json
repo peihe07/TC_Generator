@@ -1,0 +1,2036 @@
+{
+ "CFTS019-494": {
+  "doc": "CFTS019",
+  "cited_id": "494",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872714,
+    "context": "HU HMI shall also provide the capability to delete presets (see HMI logic & flow documents. If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the"
+   },
+   {
+    "clause_id": 4872898,
+    "context": "HMI shall also provide the capability to delete presets (see HMI logic & flow documents) . If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4866060,
+    "match_weight": 0.2733,
+    "matched_terms": [
+     "hu",
+     "rejection",
+     "shall",
+     "the",
+     "tone"
+    ],
+    "section": "1.3.2.6",
+    "section_title": "Confirmation Tone Generation",
+    "text": "The HU shall not activate another acceptance or rejection tone until the current location on the touchscreen is released."
+   },
+   {
+    "clause_id": 4866062,
+    "match_weight": 0.2715,
+    "matched_terms": [
+     "rejection",
+     "shall",
+     "the",
+     "tone"
+    ],
+    "section": "1.3.2.6",
+    "section_title": "Confirmation Tone Generation",
+    "text": "The key press rejection tone shall be applied for a short press event, if the function associated with the screen press is not allowed."
+   },
+   {
+    "clause_id": 4865971,
+    "match_weight": 0.2696,
+    "matched_terms": [
+     "rejection",
+     "tone"
+    ],
+    "section": "1.3.1.4",
+    "section_title": "Confirmation Tones",
+    "text": "Appropriate confirmation tone examples are as follows: Conf1 - Key Press Normal Tone Conf2 - Key Press Rejection Tone Conf3 - Key Press Set Tone"
+   }
+  ]
+ },
+ "CFTS019-496": {
+  "doc": "CFTS019",
+  "cited_id": "496",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872714,
+    "context": "lso provide the capability to delete presets (see HMI logic & flow documents. If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the HU HMI or ste"
+   },
+   {
+    "clause_id": 4872898,
+    "context": "o provide the capability to delete presets (see HMI logic & flow documents) . If all presets are deleted, HU shall play the rejection tone {See CFTS019-494 & CFTS019-496} when user tries to access preset through the HU HMI or ste"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4866060,
+    "match_weight": 0.2733,
+    "matched_terms": [
+     "hu",
+     "rejection",
+     "shall",
+     "the",
+     "tone"
+    ],
+    "section": "1.3.2.6",
+    "section_title": "Confirmation Tone Generation",
+    "text": "The HU shall not activate another acceptance or rejection tone until the current location on the touchscreen is released."
+   },
+   {
+    "clause_id": 4866062,
+    "match_weight": 0.2715,
+    "matched_terms": [
+     "rejection",
+     "shall",
+     "the",
+     "tone"
+    ],
+    "section": "1.3.2.6",
+    "section_title": "Confirmation Tone Generation",
+    "text": "The key press rejection tone shall be applied for a short press event, if the function associated with the screen press is not allowed."
+   },
+   {
+    "clause_id": 4865971,
+    "match_weight": 0.2696,
+    "matched_terms": [
+     "rejection",
+     "tone"
+    ],
+    "section": "1.3.1.4",
+    "section_title": "Confirmation Tones",
+    "text": "Appropriate confirmation tone examples are as follows: Conf1 - Key Press Normal Tone Conf2 - Key Press Rejection Tone Conf3 - Key Press Set Tone"
+   }
+  ]
+ },
+ "CFTS019-718": {
+  "doc": "CFTS019",
+  "cited_id": "718",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872420,
+    "context": "HU HMI shall also provide the capability to delete presets (see HMI logic & flow documents. If all presets are deleted, HU shall play the rejection tone {See CFTS019-718} when user tries to access preset through the HU HMI or ste"
+   }
+  ],
+  "req_ids": [
+   "SWE-RA-RAD-014"
+  ],
+  "candidates": [
+   {
+    "clause_id": 4866060,
+    "match_weight": 0.2733,
+    "matched_terms": [
+     "hu",
+     "rejection",
+     "shall",
+     "the",
+     "tone"
+    ],
+    "section": "1.3.2.6",
+    "section_title": "Confirmation Tone Generation",
+    "text": "The HU shall not activate another acceptance or rejection tone until the current location on the touchscreen is released."
+   },
+   {
+    "clause_id": 4866062,
+    "match_weight": 0.2715,
+    "matched_terms": [
+     "rejection",
+     "shall",
+     "the",
+     "tone"
+    ],
+    "section": "1.3.2.6",
+    "section_title": "Confirmation Tone Generation",
+    "text": "The key press rejection tone shall be applied for a short press event, if the function associated with the screen press is not allowed."
+   },
+   {
+    "clause_id": 4865971,
+    "match_weight": 0.2696,
+    "matched_terms": [
+     "rejection",
+     "tone"
+    ],
+    "section": "1.3.1.4",
+    "section_title": "Confirmation Tones",
+    "text": "Appropriate confirmation tone examples are as follows: Conf1 - Key Press Normal Tone Conf2 - Key Press Rejection Tone Conf3 - Key Press Set Tone"
+   }
+  ]
+ },
+ "CFTS020-138": {
+  "doc": "CFTS020",
+  "cited_id": "138",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "clause_id": 4872939,
+    "context": "HU shall also enable Scroll Up/Down function through the list via slider button which shall act as a Press and Move event (see {CFTS020-138}) to scroll Up/Down the list at a faster rate. See HMI logi"
+   }
+  ],
+  "req_ids": []
+ },
+ "CFTS023-352": {
+  "doc": "CFTS023",
+  "cited_id": "352",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "clause_id": 4872532,
+    "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129}, {CFTS023-352}, and {CFTS024-249}."
+   }
+  ],
+  "req_ids": []
+ },
+ "CFTS024-10": {
+  "doc": "CFTS024",
+  "cited_id": "10",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872437,
+    "context": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected"
+   },
+   {
+    "clause_id": 4872735,
+    "context": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872955,
+    "match_weight": 0.6702,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "scan",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.15",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-177 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872733,
+    "match_weight": 0.6331,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.14",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-6 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872507,
+    "match_weight": 0.6331,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.12",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-605 with the exception that only stations matching the selected Genre shall be considered valid."
+   }
+  ]
+ },
+ "CFTS024-129": {
+  "doc": "CFTS024",
+  "cited_id": "129",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872532,
+    "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129}, {CFTS023-352}, and {CFTS024-249}."
+   },
+   {
+    "clause_id": 4872533,
+    "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129} and{SB 23-352}."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872530,
+    "match_weight": 0.076,
+    "matched_terms": [
+     "can",
+     "it",
+     "send",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When cabin switches to FM mode to broadcast TA or PTY 31, it shall send the updated CAN signals $HUModeStatus$ = [FM_SEL]"
+   },
+   {
+    "clause_id": 4872534,
+    "match_weight": 0.0653,
+    "matched_terms": [
+     "can",
+     "send",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, HU shall return to the original mode and send the relevant CAN signals. $HUModeStatus$ = [Original Mode]."
+   },
+   {
+    "clause_id": 4873941,
+    "match_weight": 0.0653,
+    "matched_terms": [
+     "can",
+     "send",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.12.2.2.3",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, Head unit shall return to the last mode prior to TA or PTY31 broadcast and send the relevant CAN signals. $HUModeStatus$= [Mode prior to TA or PTY31 broadcast]."
+   }
+  ]
+ },
+ "CFTS024-144": {
+  "doc": "CFTS024",
+  "cited_id": "144",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-145": {
+  "doc": "CFTS024",
+  "cited_id": "145",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-1473": {
+  "doc": "CFTS024",
+  "cited_id": "1473",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4873557,
+    "context": "for South Korean DMB HD the HU shall support all the functions included in the section \"HU DAB/DAB+/DMB HMI Controls\" (CFTS024-1473)"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873775,
+    "match_weight": 1.0051,
+    "matched_terms": [
+     "for",
+     "in",
+     "included",
+     "the"
+    ],
+    "section": "1.12.1.2.1",
+    "section_title": "Diagnosis Table and Recovery Description",
+    "text": "Any other specific diagnosis requirement is included in the “Finalized Diagnosis Requirements” document for the system itself."
+   },
+   {
+    "clause_id": 4873457,
+    "match_weight": 0.3667,
+    "matched_terms": [
+     "dab",
+     "dmb",
+     "for",
+     "hd",
+     "hu",
+     "in",
+     "shall",
+     "south",
+     "support",
+     "the"
+    ],
+    "section": "1.7",
+    "section_title": "HU DAB+ Applications",
+    "text": "The HU shall support HD DMB for South Korea as defined in the reference document \"SmartXess_Device Requirement_DAB\""
+   },
+   {
+    "clause_id": 4873584,
+    "match_weight": 0.3326,
+    "matched_terms": [
+     "dmb",
+     "in",
+     "shall",
+     "south",
+     "support",
+     "the"
+    ],
+    "section": "1.7.9.8",
+    "section_title": "EWS",
+    "text": "The DMB module shall comply with standard TTAK.KO-07.0046/R6, to support the EWS services in South Korea market."
+   }
+  ]
+ },
+ "CFTS024-165": {
+  "doc": "CFTS024",
+  "cited_id": "165",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872953,
+    "context": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-165 with the exception that only stations matching the selected"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872733,
+    "match_weight": 0.5662,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "seek",
+     "shall",
+     "the",
+     "up"
+    ],
+    "section": "1.4.14",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-6 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872507,
+    "match_weight": 0.5662,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "seek",
+     "shall",
+     "the",
+     "up"
+    ],
+    "section": "1.3.12",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-605 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872437,
+    "match_weight": 0.5508,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.3.2",
+    "section_title": "Browse Category- Genre",
+    "text": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected Genre shall be considered valid."
+   }
+  ]
+ },
+ "CFTS024-177": {
+  "doc": "CFTS024",
+  "cited_id": "177",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872955,
+    "context": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-177 with the exception that only stations matching the selected"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872437,
+    "match_weight": 0.5865,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "scan",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.3.2",
+    "section_title": "Browse Category- Genre",
+    "text": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872735,
+    "match_weight": 0.5865,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "scan",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.14",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872733,
+    "match_weight": 0.5508,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.14",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-6 with the exception that only stations matching the selected Genre shall be considered valid."
+   }
+  ]
+ },
+ "CFTS024-193": {
+  "doc": "CFTS024",
+  "cited_id": "193",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872826,
+    "context": "The HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
+   },
+   {
+    "clause_id": 4872862,
+    "context": "The Buffer playlist shall be browseable with the functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873773,
+    "match_weight": 0.0996,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the",
+     "with"
+    ],
+    "section": "1.12.1.2.1",
+    "section_title": "Diagnosis Table and Recovery Description",
+    "text": "In case of systems equipped with diagnosis capabilities, the supplier developed functions shall be compliant with the company standards."
+   },
+   {
+    "clause_id": 4873557,
+    "match_weight": 0.0938,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the"
+    ],
+    "section": "1.7.9",
+    "section_title": "South Korea DMB HD",
+    "text": "for South Korean DMB HD the HU shall support all the functions included in the section \"HU DAB/DAB+/DMB HMI Controls\" (CFTS024-1473)"
+   },
+   {
+    "clause_id": 4872848,
+    "match_weight": 0.0938,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the"
+    ],
+    "section": "1.5.10",
+    "section_title": "Instant Replay",
+    "text": "HU is required to store audio in buffer only during Body ON HU Audio Mode ON where the entertainment functions and controls are required."
+   }
+  ]
+ },
+ "CFTS024-195": {
+  "doc": "CFTS024",
+  "cited_id": "195",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872826,
+    "context": "The HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
+   },
+   {
+    "clause_id": 4872862,
+    "context": "The Buffer playlist shall be browseable with the functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873773,
+    "match_weight": 0.0996,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the",
+     "with"
+    ],
+    "section": "1.12.1.2.1",
+    "section_title": "Diagnosis Table and Recovery Description",
+    "text": "In case of systems equipped with diagnosis capabilities, the supplier developed functions shall be compliant with the company standards."
+   },
+   {
+    "clause_id": 4873557,
+    "match_weight": 0.0938,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the"
+    ],
+    "section": "1.7.9",
+    "section_title": "South Korea DMB HD",
+    "text": "for South Korean DMB HD the HU shall support all the functions included in the section \"HU DAB/DAB+/DMB HMI Controls\" (CFTS024-1473)"
+   },
+   {
+    "clause_id": 4872848,
+    "match_weight": 0.0938,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the"
+    ],
+    "section": "1.5.10",
+    "section_title": "Instant Replay",
+    "text": "HU is required to store audio in buffer only during Body ON HU Audio Mode ON where the entertainment functions and controls are required."
+   }
+  ]
+ },
+ "CFTS024-197": {
+  "doc": "CFTS024",
+  "cited_id": "197",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872826,
+    "context": "HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
+   },
+   {
+    "clause_id": 4872862,
+    "context": "The Buffer playlist shall be browseable with the functions defined in CFTS024-193, CFTS024-195 and CFTS024-197."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873773,
+    "match_weight": 0.0996,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the",
+     "with"
+    ],
+    "section": "1.12.1.2.1",
+    "section_title": "Diagnosis Table and Recovery Description",
+    "text": "In case of systems equipped with diagnosis capabilities, the supplier developed functions shall be compliant with the company standards."
+   },
+   {
+    "clause_id": 4873557,
+    "match_weight": 0.0938,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the"
+    ],
+    "section": "1.7.9",
+    "section_title": "South Korea DMB HD",
+    "text": "for South Korean DMB HD the HU shall support all the functions included in the section \"HU DAB/DAB+/DMB HMI Controls\" (CFTS024-1473)"
+   },
+   {
+    "clause_id": 4872848,
+    "match_weight": 0.0938,
+    "matched_terms": [
+     "functions",
+     "in",
+     "the"
+    ],
+    "section": "1.5.10",
+    "section_title": "Instant Replay",
+    "text": "HU is required to store audio in buffer only during Body ON HU Audio Mode ON where the entertainment functions and controls are required."
+   }
+  ]
+ },
+ "CFTS024-249": {
+  "doc": "CFTS024",
+  "cited_id": "249",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872532,
+    "context": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129}, {CFTS023-352}, and {CFTS024-249}."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872533,
+    "match_weight": 1.1033,
+    "matched_terms": [
+     "as",
+     "can",
+     "defined",
+     "in",
+     "it",
+     "relavant",
+     "send",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "While HU switches to TA mode or PTY 31, it shall send the relavant CAN signals as defined in {CFTS024-129} and{SB 23-352}."
+   },
+   {
+    "clause_id": 4872530,
+    "match_weight": 0.0743,
+    "matched_terms": [
+     "can",
+     "it",
+     "send",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When cabin switches to FM mode to broadcast TA or PTY 31, it shall send the updated CAN signals $HUModeStatus$ = [FM_SEL]"
+   },
+   {
+    "clause_id": 4872534,
+    "match_weight": 0.0638,
+    "matched_terms": [
+     "can",
+     "send",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, HU shall return to the original mode and send the relevant CAN signals. $HUModeStatus$ = [Original Mode]."
+   }
+  ]
+ },
+ "CFTS024-2564": {
+  "doc": "CFTS024",
+  "cited_id": "2564",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4873569,
+    "context": "start playing channel \"KBS\" if it exists. If channel \"KBS\" doesn't exist, play the first channel instead. If no channel can be obtained, please refer to clause CFTS024-2564."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873673,
+    "match_weight": 0.0317,
+    "matched_terms": [
+     "please",
+     "refer",
+     "to"
+    ],
+    "section": "1.9",
+    "section_title": "TMC- Traffic",
+    "text": "Please refer to the DAB-TMC specification for implementation details."
+   },
+   {
+    "clause_id": 4873517,
+    "match_weight": 0.0317,
+    "matched_terms": [
+     "please",
+     "refer",
+     "to"
+    ],
+    "section": "1.7.6",
+    "section_title": "Slideshow",
+    "text": "Please refer to ETSI (TS 101 499) specification for slideshow implementation."
+   },
+   {
+    "clause_id": 4872538,
+    "match_weight": 0.0317,
+    "matched_terms": [
+     "please",
+     "refer",
+     "to"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "Please refer to CIP Radio tables for actions that cancel TA or PTY 31 alerts."
+   }
+  ]
+ },
+ "CFTS024-2744": {
+  "doc": "CFTS024",
+  "cited_id": "2744",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4873302,
+    "context": "e UXR requirements of SX-9845-0411 - Revision 2.7 for MY22, except the sections 1.1.1.13 and 1.1.1.14. Instead of these excepted sections, HU shall comply with CFTS024-2744"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873301,
+    "match_weight": 0.0424,
+    "matched_terms": [
+     "comply",
+     "hu",
+     "shall",
+     "with"
+    ],
+    "section": "1.5.21.1",
+    "section_title": "Functional Requirements",
+    "text": "the HU shall comply with the UXR requirements of SX-9845-0443"
+   },
+   {
+    "clause_id": 4873305,
+    "match_weight": 0.0424,
+    "matched_terms": [
+     "comply",
+     "hu",
+     "shall",
+     "with"
+    ],
+    "section": "1.5.21.1",
+    "section_title": "Functional Requirements",
+    "text": "The HU shall comply with the UXR requirements of SX-9845-0469"
+   },
+   {
+    "clause_id": 4873299,
+    "match_weight": 0.0424,
+    "matched_terms": [
+     "comply",
+     "hu",
+     "shall",
+     "with"
+    ],
+    "section": "1.5.21.1",
+    "section_title": "Functional Requirements",
+    "text": "The HU shall comply with the In-Vehicle System Requirements of SX-9845-0359."
+   }
+  ]
+ },
+ "CFTS024-278": {
+  "doc": "CFTS024",
+  "cited_id": "278",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-284": {
+  "doc": "CFTS024",
+  "cited_id": "284",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selectin"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-285": {
+  "doc": "CFTS024",
+  "cited_id": "285",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-291": {
+  "doc": "CFTS024",
+  "cited_id": "291",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selecting and storing p"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-292": {
+  "doc": "CFTS024",
+  "cited_id": "292",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selecting and storing presets under br"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-293": {
+  "doc": "CFTS024",
+  "cited_id": "293",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872431,
+    "context": "HU shall follow the requirements described in {CFTS024-278}, {CFTS024-144}, {CFTS024-145}, {CFTS024-285}, {CFTS024-284}, {CFTS024-291}, {CFTS024-292}, {CFTS024-293} when selecting and storing presets under browse presets ca"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873016,
+    "match_weight": 0.1816,
+    "matched_terms": [
+     "follow",
+     "in",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.5.18.1",
+    "section_title": "Tabular Weather",
+    "text": "Implementation of the Sirius XM Weather Security Alerts shall follow the requirements contained in SX-9845-0039 \"Protocol Specification for the Weather / Security Alerts Data Service (XM Band)\""
+   },
+   {
+    "clause_id": 4872574,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.15",
+    "section_title": "Station Name",
+    "text": "The HU shall follow the Tuner Station Name Display of Japan Market HMI requirements for AM/FM station name display."
+   },
+   {
+    "clause_id": 4872700,
+    "match_weight": 0.1808,
+    "matched_terms": [
+     "follow",
+     "hu",
+     "requirements",
+     "shall",
+     "the"
+    ],
+    "section": "1.4.9",
+    "section_title": "Info",
+    "text": "HU shall follow the \"HD Radio Image Transfer High Level Reciever Requirements and Overview\" specification for the display of station logos and channel art."
+   }
+  ]
+ },
+ "CFTS024-540": {
+  "doc": "CFTS024",
+  "cited_id": "540",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872895,
+    "context": "HU shall tune to the corresponding SAT channel based on the selection made. While HU is tuning, it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned"
+   },
+   {
+    "clause_id": 4873125,
+    "context": "ing to a station broadcasting the game (accessed via \" listen now\" softkeys on travel link - sports screens), it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns t"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872534,
+    "match_weight": 0.532,
+    "matched_terms": [
+     "can",
+     "relevant",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, HU shall return to the original mode and send the relevant CAN signals. $HUModeStatus$ = [Original Mode]."
+   },
+   {
+    "clause_id": 4873941,
+    "match_weight": 0.532,
+    "matched_terms": [
+     "can",
+     "relevant",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.12.2.2.3",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, Head unit shall return to the last mode prior to TA or PTY31 broadcast and send the relevant CAN signals. $HUModeStatus$= [Mode prior to TA or PTY31 broadcast]."
+   },
+   {
+    "clause_id": 4872530,
+    "match_weight": 0.0426,
+    "matched_terms": [
+     "can",
+     "it",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When cabin switches to FM mode to broadcast TA or PTY 31, it shall send the updated CAN signals $HUModeStatus$ = [FM_SEL]"
+   }
+  ]
+ },
+ "CFTS024-541": {
+  "doc": "CFTS024",
+  "cited_id": "541",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872895,
+    "context": "shall tune to the corresponding SAT channel based on the selection made. While HU is tuning, it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned to play mode, it"
+   },
+   {
+    "clause_id": 4873125,
+    "context": "broadcasting the game (accessed via \" listen now\" softkeys on travel link - sports screens), it shall update the relevant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns to play mode, it"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872534,
+    "match_weight": 0.532,
+    "matched_terms": [
+     "can",
+     "relevant",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, HU shall return to the original mode and send the relevant CAN signals. $HUModeStatus$ = [Original Mode]."
+   },
+   {
+    "clause_id": 4873941,
+    "match_weight": 0.532,
+    "matched_terms": [
+     "can",
+     "relevant",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.12.2.2.3",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When TA or PTY 31 is terminated, Head unit shall return to the last mode prior to TA or PTY31 broadcast and send the relevant CAN signals. $HUModeStatus$= [Mode prior to TA or PTY31 broadcast]."
+   },
+   {
+    "clause_id": 4872530,
+    "match_weight": 0.0426,
+    "matched_terms": [
+     "can",
+     "it",
+     "shall",
+     "signals",
+     "the"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "When cabin switches to FM mode to broadcast TA or PTY 31, it shall send the updated CAN signals $HUModeStatus$ = [FM_SEL]"
+   }
+  ]
+ },
+ "CFTS024-543": {
+  "doc": "CFTS024",
+  "cited_id": "543",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872895,
+    "context": "ant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
+   },
+   {
+    "clause_id": 4873125,
+    "context": "vant CAN signals based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873511,
+    "match_weight": 0.0352,
+    "matched_terms": [
+     "based",
+     "can"
+    ],
+    "section": "1.7.5",
+    "section_title": "Journaline",
+    "text": "The text based information service allows the user to easily navigate through text messages that are hierarchically organized in menus. The listener can access interactively both program related and program independent textual information."
+   },
+   {
+    "clause_id": 4873378,
+    "match_weight": 0.0349,
+    "matched_terms": [
+     "based",
+     "on",
+     "signals"
+    ],
+    "section": "1.6.3",
+    "section_title": "Tune Up",
+    "text": "When tune up command is initiated via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Increment] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. When HU recieves these signals, HU shall perform the tune up function if the cabin output channel is in a tuner "
+   },
+   {
+    "clause_id": 4873386,
+    "match_weight": 0.0349,
+    "matched_terms": [
+     "based",
+     "on",
+     "signals"
+    ],
+    "section": "1.6.4",
+    "section_title": "Tune Down",
+    "text": "When tune down command is executed via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Decrement] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. When HU recieves these signals, HU shall perform the tune down function if the cabin output channel is in a tun"
+   }
+  ]
+ },
+ "CFTS024-544": {
+  "doc": "CFTS024",
+  "cited_id": "544",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872895,
+    "context": "based on CFTS024-540 and CFTS024-541. When HU has completed tuning and returned to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
+   },
+   {
+    "clause_id": 4873125,
+    "context": "ased on CFTS024-540 and CFTS024-541. When HU has completed tuning and returns to play mode, it shall update the relevant CAN signals based on CFTS024-543 and CFTS024-544."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4873918,
+    "match_weight": 0.0213,
+    "matched_terms": [
+     "based",
+     "on"
+    ],
+    "section": "1.12.2.2.2",
+    "section_title": "Configuration parameters description",
+    "text": "The Antenna Type is determined based on Phase Diversity present and Antenna Power."
+   },
+   {
+    "clause_id": 4873197,
+    "match_weight": 0.0213,
+    "matched_terms": [
+     "based",
+     "on"
+    ],
+    "section": "1.5.18.6",
+    "section_title": "Movie Listings",
+    "text": "Based on the current GPS vehicle location, the HU shall display the twenty nearest theatres."
+   },
+   {
+    "clause_id": 4873781,
+    "match_weight": 0.0213,
+    "matched_terms": [
+     "based",
+     "on"
+    ],
+    "section": "1.12.1.2.1.1.1.1",
+    "section_title": "AM_FM1_SW_Detection setting",
+    "text": "TLM Diagnostic algorithm and TLM hardware protection mechanism are based on the following current thresholds:"
+   }
+  ]
+ },
+ "CFTS024-6": {
+  "doc": "CFTS024",
+  "cited_id": "6",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872733,
+    "context": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-6 with the exception that only stations matching the selected"
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872507,
+    "match_weight": 0.5662,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "seek",
+     "shall",
+     "the",
+     "up"
+    ],
+    "section": "1.3.12",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-605 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872953,
+    "match_weight": 0.5662,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "seek",
+     "shall",
+     "the",
+     "up"
+    ],
+    "section": "1.5.15",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-165 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872437,
+    "match_weight": 0.5508,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.3.2",
+    "section_title": "Browse Category- Genre",
+    "text": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected Genre shall be considered valid."
+   }
+  ]
+ },
+ "CFTS024-603": {
+  "doc": "CFTS024",
+  "cited_id": "603",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872582,
+    "context": "This section defines requirements for controlling the HU High Definition (HD) Radio Tuner source (covers HD Tuner source. See CFTS024-603 for Analog Tuner)."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872373,
+    "match_weight": 1.3605,
+    "matched_terms": [
+     "covers",
+     "defines",
+     "for",
+     "hd",
+     "hu",
+     "requirements",
+     "section",
+     "see",
+     "source",
+     "the",
+     "this",
+     "tuner"
+    ],
+    "section": "1.3",
+    "section_title": "HU Analog Tuner",
+    "text": "This section defines requirements surrounding controls for the HU Analog Tuner source (covers traditional Analog Tuner source. See CFTS024-789 for HD Tuner)."
+   },
+   {
+    "clause_id": 4872749,
+    "match_weight": 1.3193,
+    "matched_terms": [
+     "controlling",
+     "defines",
+     "for",
+     "hu",
+     "requirements",
+     "section",
+     "source",
+     "the",
+     "this"
+    ],
+    "section": "1.5",
+    "section_title": "HU Satellite Audio",
+    "text": "This section defines requirements for controlling the HU Satellite Audio source."
+   },
+   {
+    "clause_id": 4873288,
+    "match_weight": 0.3024,
+    "matched_terms": [
+     "defines",
+     "for",
+     "hu",
+     "section",
+     "the",
+     "this"
+    ],
+    "section": "1.5.20",
+    "section_title": "HU Satellite Audio Error Displays",
+    "text": "This section defines all the conditions that require HU to provide informational/ error displays to the customer based on the SDAR status while cabin, passenger or IR1/IR2 output channels in SAT mode. Please refer to the HMI logic and flow screens for the appropriate displays"
+   }
+  ]
+ },
+ "CFTS024-605": {
+  "doc": "CFTS024",
+  "cited_id": "605",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872507,
+    "context": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-605 with the exception that only stations matching the selected"
+   }
+  ],
+  "req_ids": [
+   "SWE-RA-RAD-048"
+  ],
+  "candidates": [
+   {
+    "clause_id": 4872733,
+    "match_weight": 0.5662,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "seek",
+     "shall",
+     "the",
+     "up"
+    ],
+    "section": "1.4.14",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-6 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872953,
+    "match_weight": 0.5662,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "seek",
+     "shall",
+     "the",
+     "up"
+    ],
+    "section": "1.5.15",
+    "section_title": "Enter or Item Select",
+    "text": "The Genre Seek function shall behave in the same manner as the Seek Up function described in Section CFTS024-165 with the exception that only stations matching the selected Genre shall be considered valid."
+   },
+   {
+    "clause_id": 4872437,
+    "match_weight": 0.5508,
+    "matched_terms": [
+     "as",
+     "behave",
+     "described",
+     "function",
+     "genre",
+     "in",
+     "manner",
+     "same",
+     "section",
+     "shall",
+     "the"
+    ],
+    "section": "1.3.3.2",
+    "section_title": "Browse Category- Genre",
+    "text": "The Genre Scan function shall behave in the same manner as the Scan function described in Section CFTS024-10 with the exception that only stations matching the selected Genre shall be considered valid."
+   }
+  ]
+ },
+ "CFTS024-707": {
+  "doc": "CFTS024",
+  "cited_id": "707",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872521,
+    "context": "currently tuned station supports RT +, this feature allows HU to populate the artist and song field as well as to enable song/audio tagging. Please refer to CFTS024-707 for HU behavior requirements when radiotext is available."
+   }
+  ],
+  "req_ids": [
+   "SWE-RA-RAD-057"
+  ],
+  "candidates": [
+   {
+    "clause_id": 4873673,
+    "match_weight": 0.0317,
+    "matched_terms": [
+     "please",
+     "refer",
+     "to"
+    ],
+    "section": "1.9",
+    "section_title": "TMC- Traffic",
+    "text": "Please refer to the DAB-TMC specification for implementation details."
+   },
+   {
+    "clause_id": 4873517,
+    "match_weight": 0.0317,
+    "matched_terms": [
+     "please",
+     "refer",
+     "to"
+    ],
+    "section": "1.7.6",
+    "section_title": "Slideshow",
+    "text": "Please refer to ETSI (TS 101 499) specification for slideshow implementation."
+   },
+   {
+    "clause_id": 4872538,
+    "match_weight": 0.0317,
+    "matched_terms": [
+     "please",
+     "refer",
+     "to"
+    ],
+    "section": "1.3.13.1",
+    "section_title": "Traffic Announcements (TA) & PTY 31",
+    "text": "Please refer to CIP Radio tables for actions that cancel TA or PTY 31 alerts."
+   }
+  ]
+ },
+ "CFTS024-789": {
+  "doc": "CFTS024",
+  "cited_id": "789",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872373,
+    "context": "This section defines requirements surrounding controls for the HU Analog Tuner source (covers traditional Analog Tuner source. See CFTS024-789 for HD Tuner)."
+   }
+  ],
+  "req_ids": [],
+  "candidates": [
+   {
+    "clause_id": 4872582,
+    "match_weight": 1.3943,
+    "matched_terms": [
+     "analog",
+     "covers",
+     "defines",
+     "for",
+     "hu",
+     "requirements",
+     "section",
+     "see",
+     "source",
+     "the",
+     "this",
+     "tuner"
+    ],
+    "section": "1.4",
+    "section_title": "HU HD Tuner",
+    "text": "This section defines requirements for controlling the HU High Definition (HD) Radio Tuner source (covers HD Tuner source. See CFTS024-603 for Analog Tuner)."
+   },
+   {
+    "clause_id": 4872546,
+    "match_weight": 1.0031,
+    "matched_terms": [
+     "for",
+     "the",
+     "traditional"
+    ],
+    "section": "1.3.14",
+    "section_title": "Station List",
+    "text": "For NAFTA, the Station List shall include traditional FM and FM HD Radio stations"
+   },
+   {
+    "clause_id": 4872749,
+    "match_weight": 0.3193,
+    "matched_terms": [
+     "defines",
+     "for",
+     "hu",
+     "requirements",
+     "section",
+     "source",
+     "the",
+     "this"
+    ],
+    "section": "1.5",
+    "section_title": "HU Satellite Audio",
+    "text": "This section defines requirements for controlling the HU Satellite Audio source."
+   }
+  ]
+ },
+ "CFTS028-1": {
+  "doc": "CFTS028",
+  "cited_id": "1",
+  "status": "unresolved-scheme-mismatch",
+  "citing_clauses": [
+   {
+    "clause_id": 4872439,
+    "context": "the user can request a Tune Up to increment the station using the HU HMI or a VR Command. The HU will tune to the new Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872448,
+    "context": "er can request a Tune Down to decrement the station using the HU ICS HMI or a VR Command. The HU will tune to the new Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872457,
+    "context": "r Input) using the HU ICS HMI or a VR Command. When the user has entered the Station Frequency the HU will tune to the Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872584,
+    "context": "he Seek Up function the HU will enter the Seek Up state and go to the next available Subchannel or Frequency with wraparound to the lowest Frequency. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872602,
+    "context": "the Seek Down function the HU will enter the Seek Down state and go to the previous Subchannel or Frequency with wraparound to the highest Frequency. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872639,
+    "context": "ne Up to increment the subchannel/station using the HU HMI or a VR Command. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872650,
+    "context": "Down to decrement the subchannel/station using the HU HMI or a VR Command. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4872661,
+    "context": "umber Input) using the HU HMI or a VR Command. When the user has entered the Station Frequency the HU will tune to the Station and Play that Station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4873374,
+    "context": "he user can request a Tune Up to increment the stations using the tune knob. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
+   },
+   {
+    "clause_id": 4873382,
+    "context": "user can request a Tune Down to decrement the station using the tune knob. The HU will tune to the new Subchannel or Station and Play that station. (Refer to CFTS028-1 for details of VR commands.)"
+   }
+  ],
+  "req_ids": [
+   "SWE-RA-RAD-025",
+   "SWE-RA-RAD-027",
+   "SWE-RA-RAD-029"
+  ],
+  "candidates": [
+   {
+    "clause_id": 4874603,
+    "match_weight": 1.0797,
+    "matched_terms": [
+     "a",
+     "and",
+     "command",
+     "increment",
+     "or",
+     "that",
+     "the",
+     "to",
+     "user",
+     "vr"
+    ],
+    "section": "1.7",
+    "section_title": "On-Board VR Voice Dialog Flow using the \"BACK\" Command",
+    "text": "If a customer uses the \"back\" command in consecutive VR events less or equal to 5 times and then the user says a command that causes the VR flow to go forward again, the number of back commands allowed by the user shall increment by the number of VR events going forward. Example: Initial VR event af"
+   },
+   {
+    "clause_id": 4874498,
+    "match_weight": 0.4359,
+    "matched_terms": [
+     "a",
+     "and",
+     "can",
+     "hu",
+     "or",
+     "station",
+     "that",
+     "the",
+     "to",
+     "will"
+    ],
+    "section": "1.5.3.2",
+    "section_title": "FM Station “Program Service Name” from ECE Market HU (With RDS)",
+    "text": "Note: The FM Tuner will decode the Program Service Name of a station only when the FM Tuner is tuned to that station and the station is sending the “Program Service Name” information via RDS. The HU can add or drop stations from the PSN table while it is scanning for Alternate Frequencies and will s"
+   },
+   {
+    "clause_id": 4874496,
+    "match_weight": 0.4318,
+    "matched_terms": [
+     "a",
+     "new",
+     "station",
+     "the"
+    ],
+    "section": "1.5.3.2",
+    "section_title": "FM Station “Program Service Name” from ECE Market HU (With RDS)",
+    "text": "If the CTM receives a Table of “FM Program Service Name” records, the CTM shall dynamically create a new “[station] select <G2PName_forFMstation>” grammar rule for each FM Program Service Name as it is received."
+   }
+  ]
+ },
+ "CFTS033-33": {
+  "doc": "CFTS033",
+  "cited_id": "33",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "clause_id": 4873346,
+    "context": "the HU DAB source, the HU component shall send Metadata information to other components regarding the currently accessed 'Channel' as defined in CFTS033-8 and CFTS033-33."
+   }
+  ],
+  "req_ids": []
+ },
+ "CFTS033-8": {
+  "doc": "CFTS033",
+  "cited_id": "8",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "clause_id": 4873346,
+    "context": "annel is using the HU DAB source, the HU component shall send Metadata information to other components regarding the currently accessed 'Channel' as defined in CFTS033-8 and CFTS033-33."
+   }
+  ],
+  "req_ids": []
+ },
+ "CFTS048-1": {
+  "doc": "CFTS048",
+  "cited_id": "1",
+  "status": "document-not-supplied",
+  "citing_clauses": [
+   {
+    "clause_id": 4872480,
+    "context": "When saving a new preset, the HU shall associate the new preset with the current driver (see Memory Seat, Chapter CFTS048-1 for more information)."
+   },
+   {
+    "clause_id": 4872688,
+    "context": "When saving a new preset, the HU shall associate the new preset with the current driver (see Memory Seat, Chapter CFTS048-1 for more information)."
+   }
+  ],
+  "req_ids": []
+ }
+}

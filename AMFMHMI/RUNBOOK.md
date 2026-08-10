@@ -206,6 +206,41 @@ only source for which events cancel a seek (return to the starting frequency)
 and which stop it (remain at the displayed frequency). Generated without it,
 those six leaves would have had to guess the event list.
 
+### Cross-document citations are quoted, never resolved by guess (A-AM15)
+
+`build_stla_map.py` now sweeps every CFTS024 clause for `{See CFTSnnn-mmm}`
+tokens, repairing the non-breaking spaces the docx puts *inside* them
+(`CFTS0\xa019-718` — the ASCII pattern silently misses the one citation in
+§1.3.3 that reaches a leaf). Output: `data/cross_doc_citations.json`, keyed by
+token, with the citing clauses, the leaves reached, and — where the cited
+document is declared under `spec_docs.reference` and present in `inputs/` —
+candidate clauses ranked by rarity-weighted overlap with the phrase the
+citation hangs off ("HU shall play the rejection tone"), not by raw wording
+similarity, which ranks `the HU shall` matches first.
+
+The short ids resolve to nothing in the corpus: they are a foreign numbering
+scheme, and CFTS024 uses it even for itself (`{See CFTS024-605}`). So the
+resolver stops at candidates — and under **R11 that is enough**, because the
+handling is cite-form rather than resolution: the token is cited verbatim as a
+second `specification_reference`, the ER asserts the borrowed outcome anchored
+to it (`as defined by CFTS019-718`), and the cited document's own rule surface
+stays with that document's delivery. Each affected leaf carries the instruction
+as `cross_references` in its batch context.
+
+Three lint gates hold the line: `cross-reference` (a short-form token is
+allowed only under the leaf whose clause writes it), `cross-reference-anchor`
+(a cited token with no ER line anchoring to it), and the R10-2a absorption
+count, from which cite-form citations are excluded — they claim no coverage,
+so demanding an `[A-AM10]` marker would erase the distinction R11 draws.
+`clause_citation_overrides` (ruling + `evidence_phrase`, refused when the
+target clause stops carrying it) remains for a token someone later wants
+resolved onto a clause; cite-form needs it for nothing.
+
+Reached by a leaf today: `CFTS019-718` → 014 (Browse, rejection tone),
+`CFTS028-1` → 025/027/029 (Tune — already handled correctly under R8: the VR
+trigger path is out of scope and the generated TCs say so), `CFTS024-605` →
+048, `CFTS024-707` → 057.
+
 ### Seek batch notes
 
 - **006/011 pair the classes.** Testing only the Stop-class events would let

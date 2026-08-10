@@ -347,6 +347,43 @@ copy errors; they stay PENDING for per-pair review at their batches.
 - Same class as A-AM10 and reported with it (Q-AM3): the question upstream is
   the allocation policy, not this individual pair.
 
+## [A-AM15] Cross-document citations use an id scheme no supplied file carries — RESOLVED-BY-RULE (R11, 2026-08-10)
+
+- CFTS024 delegates behaviour to other documents with a short-id token:
+  `{See CFTS019-718}` (§1.3.3, clause `4872420`, reached by
+  **`SWE-RA-RAD-014`**), `{See CFTS028-1}` (§1.3.4/1.3.5/1.3.6 → 025/027/029),
+  `{See CFTS024-605}` (§1.3.12 → 048), `{See CFTS024-707}` (§1.3.13 → 057).
+  37 such tokens exist in the document.
+- **The short ids resolve nowhere.** CFTS019's clauses are 7-digit
+  (`486xxxx`); `718` is not among them, is in none of its 37 tables, and the
+  same holds for CFTS024's citations of *itself* (`CFTS024-789`, `-605`).
+  This is a foreign/legacy numbering, not the STLA anchor scheme — so no
+  mechanical resolution is possible from the corpus we hold.
+- Detection trap, now closed: the docx writes the token with non-breaking
+  spaces inside it (`CFTS0\xa019-718`), so an ASCII pattern finds the two
+  out-of-scope citations in §1.4.11/§1.5.12.1 and misses the one in §1.3.3
+  that actually reaches a leaf.
+- Handling: `build_stla_map.py` emits `data/cross_doc_citations.json` — every
+  token, the clauses citing it, the leaves reached, and (where the cited
+  document is in `inputs/`) ranked candidate clauses. `make_batch_context.py`
+  puts this on the leaf as `cross_references`, carrying the R11 handling in
+  words so the borrowed outcome is neither dropped nor silently adopted.
+- **014 (Browse), in the batch about to run**: the scenario is this leaf's
+  ("all presets deleted → access attempt"), the outcome is borrowed. Under R11
+  the ER states the tone anchored to `CFTS019-718`; the tone's own definition
+  (CFTS019 §1.3.2.6, candidates `4866062` / `4866060` / `4865971`) is not
+  under test here.
+- **Resolution (R11): cite-form, not absorption.** The token is cited verbatim
+  as a second `specification_reference`; the ER states the borrowed outcome
+  anchored to it (`as defined by CFTS019-718`); the cited document's own rule
+  surface is not tested. No clause resolution is required, so the unresolvable
+  short-id scheme stops being a blocker. `clause_citation_overrides` remains
+  available (guarded by an evidence phrase) if a token is ever ruled onto a
+  clause, but cite-form needs it for nothing.
+- Still worth reporting upstream (RD-1): the citation scheme itself. CFTS024
+  cites documents — and itself — with ids that appear in no released file, so
+  no reader can follow a cross-reference mechanically.
+
 ## Assumption markers
 
 None registered beyond the above. Inline format in generated JSON

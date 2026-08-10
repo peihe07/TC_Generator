@@ -197,3 +197,35 @@ the recommended dispositions:
 Review notes (classification: note, not defect): 001 step 5 ER softened to
 "the seek executes" (seek stop-on-station detail owned by Seek leaves);
 A-AM11 formally registered.
+
+## R11 — Cross-document citations are cite-form, not absorption (Pei, 2026-08-10)
+
+**Ruling (verbatim): 「引用式,不吸收。」** Where a leaf's clause borrows an
+outcome from another CFTS (`{See CFTS019-718}` in §1.3.3, reached by
+`SWE-RA-RAD-014`), the outcome IS asserted — anchored to the citation, never
+adopted as this leaf's own verified behaviour. Three parts:
+
+1. **ER anchored to the reference.** 014's ER states the tone in cite-form:
+   `the key press rejection tone is played, as defined by CFTS019-718`.
+2. **Multi-cite.** `specification_reference` = `CFTS024-{citing clause}` +
+   `CFTS019-718`, own clause first (§10.7 already permits cross-file
+   multi-citation; Profile §3.5 `{doc}` set extended to the cited-only
+   documents).
+3. **Scope boundary.** The cited document's own rule surface is NOT tested —
+   which conditions count as "not allowed", the tone's specification — that is
+   the Audio Management delivery. 014 verifies only that the outcome occurs in
+   the citing clause's scenario.
+
+Distinguished from R10-2 absorption, which takes an unallocated **same-document**
+clause into the leaf's coverage and cites its 7-digit anchor. Cite-form claims
+no coverage of the cited requirement, so it needs no `[A-AM10]` marker and does
+not enter the absorption gate.
+
+Pipeline consequences (Claude Code side, done):
+- `lint_tcs.py`: cross-doc tokens are accepted in `specification_reference`
+  only for the leaf whose clause writes them (`cross-reference` gate); a cited
+  token with no anchoring ER line fails (`cross-reference-anchor`); cite-form
+  citations are excluded from the R10-2a absorption count.
+- `make_batch_context.py`: each affected leaf carries the R11 instruction.
+- A-AM15 closes as RESOLVED-BY-RULE; `clause_citation_overrides` stays
+  available but is not needed under cite-form.
