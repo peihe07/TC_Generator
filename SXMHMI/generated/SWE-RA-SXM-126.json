@@ -27,7 +27,7 @@
    "specification_reference": "CFTS024-4872927",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
-   "remarks": ""
+   "remarks": "Same-text sibling: CFTS024-4872930 (category-name entry is the distinguishing token)"
   }
  ]
 }

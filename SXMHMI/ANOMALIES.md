@@ -527,8 +527,8 @@ RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
 
 - Five leaves' cited clauses include a Voice Recognition trigger path
   ("or a VR Command" class wording) that the corresponding 037 titles omit —
-  the A-AM09 one-directional pattern, continued in SXM (n=5; leaf ids per the
-  VR pending register, filled at annotation).
+  the A-AM09 one-directional pattern, continued in SXM (n=5; leaves 002, 003, 006, 014, 030 — backfilled at annotation,
+  2026-08-11).
 - Precondition verified before ruling: none of the five titles mentions VR —
   no title actively claims the VR scope.
 - **[PEI 2026-08-11: R8-equivalent ADOPTED for SXM — by ruling, not
@@ -609,7 +609,7 @@ question — one clause says the long form name is displayed and the other says
 the station name, and only the first is currently being verified as long form.
 
 
-## [A-SX17] Paired browse categories carry word-for-word identical requirement text — REGISTERED (2026-08-11)
+## [A-SX17] Paired browse categories carry word-for-word identical requirement text — RESOLVED: carve as registered (2026-08-11)
 
 Three pairs in the browse sections, each pair two clause ids in the same
 section whose bodies are identical or differ only in the category name:
@@ -642,7 +642,15 @@ renamed and both drafts survived? The delivery currently promises to test four
 Game Zone edit/add paths. If two of them do not exist in the HMI, two TCs will
 fail for a reason that is a document defect, not a software defect.
 
-## [A-SX18] `4872919` restates leaf 120's score-update branch and contradicts it — REGISTERED (2026-08-11)
+- **[PEI 2026-08-11: RESOLVED as registered — 1 照簽.]** Carve on the sole
+  textual difference stands (each TC enters through its own category name).
+  Remarks format ruled: all six rows (115/116, 117/118, 126/129) carry
+  `Same-text sibling: CFTS024-<paired id> (category-name entry is the
+  distinguishing token)` — paired clause id, stable and self-evident inside
+  CFTS024, same rationale as the A-SX04 twin Remarks. RD-1 question as
+  registered (four categories, or two renamed with both drafts surviving).
+
+## [A-SX18] `4872919` restates leaf 120's score-update branch and contradicts it — RESOLVED: 4872918 governs (2026-08-11)
 
 `4872919` (All Score updates, §1.5.12.1.2, unallocated) and leaf 120's clause
 `4872918` both describe the single-match score-update flow, and they disagree
@@ -666,3 +674,14 @@ which is the assertion `4872919` would forbid.
 adjacent in the document, so one is likely a superseded draft of the other.
 Until that is answered, TC-02's negative assertion is the open risk: if
 `4872919` is the live requirement, that assertion is wrong.
+
+- **[PEI 2026-08-11: RESOLVED — 2 照簽.]** TC-02 keeps the negative
+  assertion per the allocated clause `4872918` (a game without a score update
+  is not listed) — §8.6 authority chain: the 037 allocates 4872918, its text
+  governs. The R10-2 condition-(b) failure reading is confirmed (one screen
+  cannot satisfy both listings). `[A-SX18]` marker on leaf 120's affected
+  TC; RD-1 class-2 **expedited** (adjacent ids, likely superseded draft —
+  ask which is live). If upstream answers `4872919`, grep the marker and
+  amend the one assertion line. The weakened positive-only alternative was
+  considered and rejected — it opens a false-pass hole (a list-everything
+  screen would pass).
