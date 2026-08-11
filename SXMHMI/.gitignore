@@ -1,0 +1,34 @@
+# Customer source files - never commit
+inputs/
+
+# Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
+# own data/*.json artefacts here as Step 1 starts emitting them.
+data/recon.json
+batches/
+lint_report.json
+
+# data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
+# one: it is the traceability lookup every spec_reference is linted against,
+# and a diff on it is the signal that the spec export moved underneath us.
+
+# Local noise
+__pycache__/
+*.pyc
+output/
+.DS_Store
+
+# Rendered spec figure pages (25 MB of PNG regenerated from the PDF in
+# inputs/ by build_stla_map/figure render — derived, and customer artwork).
+data/figures/
+
+# Carry customer prose rather than derived structure — same policy as inputs/.
+data/stla_to_cfts.json
+data/exemplars.json
+data/unallocated_clauses.json
+data/stla_id_suspects.json
+data/cross_doc_citations.json
+data/twin_pairs.json
+
+# data/stla_to_cfts.tsv IS tracked on purpose: it is the traceability lookup
+# every spec_reference is built from, and a diff on it is the signal that the
+# CFTS document moved underneath us.

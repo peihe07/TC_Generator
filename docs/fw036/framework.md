@@ -1,7 +1,7 @@
 # Test Case Framework — STLA FW036 (SWE.6)
 
-Covers Test Groups **Media** (Part I, below), **Home** (Part II), and
-**AMFM** (Part III, end of file). The cross-cutting rulings in Part I
+Covers Test Groups **Media** (Part I, below), **Home** (Part II), **AMFM**
+(Part III), and **SXM** (Part IV, end of file). The cross-cutting rulings in Part I
 (orphan routing/attribution, lint vs traceability, assumption markers,
 priority, anchors-as-style, blocked-parent proportion) apply to ALL Test
 Groups.
@@ -325,9 +325,9 @@ Deliverable workbook: FM-WI-FSM-036-A01 `SWQT_CFTS024_Radio_20260129`; RD
 source 037-A03 (102 leaf FRs, `SWE-RA-RAD-*`, per RULINGS R1); spec_mode D
 — spec authority is the CFTS024 docx (R1LR Atl-H 25PI3.5, 20250910) plus
 two external CFTS docs (below); SYS3 SYSAD supplies architecture context.
-Execution plan: `AMFMHMI/RUNBOOK.md`; profile:
+Execution plan: `AMFM/RUNBOOK.md`; profile:
 `docs/runtime/profiles/FW036_R1L_AMFM_Profile.md`; rulings R1–R7 in
-`AMFMHMI/RULINGS.md`.
+`AMFM/RULINGS.md`.
 
 **Layer 2 derivation note (§4.1.2 degenerate case)**: the 037's
 Categorization / Sub-Categorization columns are `Functional / NA` on all
@@ -400,3 +400,150 @@ The AMFM `Test Case Framework` sheet is empty (Wilson convention differs
 from Media: G/H columns filled per row, framework sheet unused). Leave the
 sheet empty; the capability Test Sets live in the H column of new rows and
 in this file.
+
+---
+
+## Part IV — SXM (SiriusXM 360L SAT Only)
+
+Ruled by Pei 2026-08-10 (directive「照簽/改裁」, Phase 3 sign-off): Test
+Group `SXM`; the 14-Set table below including the Instant-Replay/Browse
+no-split and the Favorites/Activation split; batch plan B1–B14 with pilot
+B1; R10-2 absorption ADOPTED for SXM (note 5).
+
+Deliverable workbook: FM-WI-FSM-036-A01 `SWQT_SXM_20260810` (form revision
+C — first feature on it, A-SX05); RD source 037-A03 SXM (202 leaf FRs,
+`SWE-RA-SXM-*`, 20260406); spec_mode D — clause authority is CFTS024
+§1.5.x via the HYBRID ingestion ruling (DECISIONS §1: ReqIF attribute
+direct-read for clause text, docx heading parse for printed section
+numbers, bracket map as fail-loud validator). The SiriusXM 360L SAT Only
+HMI L&F (PDF + SYS1 export) is the figure/flow source (mode C role), not
+the citation source. Execution plan: `SXMHMI/RUNBOOK.md`; profile:
+`docs/runtime/profiles/FW036_R1L_SXM_Profile.md` (to instantiate);
+rulings in `SXMHMI/DECISIONS.md` + `SXMHMI/ANOMALIES.md` (A-SX01–07 all
+RESOLVED).
+
+**Layer 2 derivation note**: same degenerate case as AMFM — the 037's
+Categorization column is `Functional` on all 202 leaves, so the §4.1.2
+intersection collapses to the spec's own §1.5.x structure. The mapping is
+mechanical and total: 202/202 leaf ids land on exact CFTS024 clause
+anchors (A-SX01), leaf ids are near-contiguous within each section, and
+section boundaries are natural batch boundaries
+(`SXMHMI/docs/leaf-sections-sxm.md`).
+
+**Workbook state**: BLANK — no legacy region. Style authority = fallback
+chain; exemplars from the AMFM done region, `cross-feature: style only`,
+every literal re-traced to the SXM spec line (DECISIONS §4).
+
+### Layer 1 — Test Group
+
+- `SXM` (workbook Test Group column value on all rows — BLANK workbook,
+  FILL ruled; value ruled 2026-08-10, matches the 037 prefix `SWE-RA-SXM`)
+
+### Layer 2 / Layer 3 — Test Sets and their spec sections
+
+Layer 3 = CFTS024 printed section numbers; framework-internal only —
+NEVER written to the workbook.
+
+| Test Set | Spec sections (Layer 3) | Leaves (SWE-RA-SXM-) | n | Status |
+|---|---|---|---|---|
+| Source Availability | 1.5 | 001 | 1 | remaining |
+| Seek | 1.5.1, 1.5.2 | 006–021 | 16 | remaining |
+| Tune | 1.5.3, 1.5.4, 1.5.5 | 002, 003, 022–031 | 12 | remaining |
+| Presets | 1.5.6, 1.5.7 | 004, 032–038 | 8 | remaining |
+| Favorites | 1.5.9, 1.5.9.1 | 005, 039–054 | 17 | remaining |
+| Activation | 1.5.9.2 | 055–062 | 8 | remaining |
+| Instant Replay | 1.5.10, 1.5.10.1–1.5.10.4 | 063–092 | 30 | remaining |
+| Browse | 1.5.11, 1.5.12, 1.5.12.1, 1.5.12.1.1–1.5.12.1.4 | 093–131 | 39 | remaining |
+| List Navigation | 1.5.13, 1.5.14, 1.5.15 | 132–150 | 19 | remaining |
+| Traffic & Weather | 1.5.16 | 151–158 | 8 | remaining |
+| Game Alert | 1.5.17 | 159–167 | 9 | remaining |
+| Parental Skip | 1.5.19 | 168–175 | 8 | remaining |
+| Error Displays | 1.5.20 | 176–182 | 7 | remaining |
+| Performance | 1.5.21.2, 1.5.21.2.2–1.5.21.2.7 | 183–202 | 20 | remaining |
+
+Total 202 = full leaf set; count reconciles per section against
+`leaf-sections-sxm.md`.
+
+### Granularity check (§4.1.3)
+
+- All Sets pass the filter test (meaningful cluster, not one TC, not the
+  workbook).
+- `Source Availability` (1) is a genuine outlier per §4.2 — the
+  satellite-source presence gate shares no setup with any sibling (AMFM
+  `Tuner Availability` precedent).
+- **`Instant Replay` (30) and `Browse` (39) are deliberately NOT split.**
+  §4.2: sub-actions of one capability share one Set. The transport buttons
+  (Pause/Play/Rewind/FF) are sub-actions of the replay-buffer capability
+  with one shared setup (live audio → buffer established); the browsed
+  category (All Channels / Presets / Genre / Game Alerts / Traffic–Weather
+  / Favorites) is a data axis (§8.3) inside the Browse capability — the
+  same reasoning as AMFM note 2 (band is a split axis, not a Set
+  boundary). Splitting either by button or by category would be the
+  too-granular anti-pattern. Generation workload is handled at BATCH
+  level instead (below). Watch-rule: if a later RD cycle grows either Set,
+  revisit here first.
+
+### Batch plan (generation batches ≠ Test Sets)
+
+Ruled base (DECISIONS §7): group by spec chapter; pilot = §1.5.10 +
+1.5.10.1 + 1.5.10.4 Instant Replay / Pause / Fast Forward (19 leaves)
+**plus leaf 154** (triple-marked; pilot validates the marker mechanism).
+Large Sets split across batches without splitting the Set:
+
+| Batch | Sections | Leaves | n |
+|---|---|---|---|
+| B1 (pilot) | 1.5.10, 1.5.10.1, 1.5.10.4 (+154) | 063–075, 087–092, 154 | 20 |
+| B2 | 1.5.10.2, 1.5.10.3 | 076–086 | 11 |
+| B3 | 1.5.1, 1.5.2 | 006–021 | 16 |
+| B4 | 1.5.3–1.5.5 | 002, 003, 022–031 | 12 |
+| B5 | 1.5, 1.5.6, 1.5.7 | 001, 004, 032–038 | 9 |
+| B6 | 1.5.9, 1.5.9.1 | 005, 039–054 | 17 |
+| B7 | 1.5.9.2 | 055–062 | 8 |
+| B8 | 1.5.11–1.5.12.1.1 | 093–112 | 20 |
+| B9 | 1.5.12.1.2–1.5.12.1.4 | 113–131 | 19 |
+| B10 | 1.5.13–1.5.15 | 132–150 (154 in B1) | 19 |
+| B11 | 1.5.16 | 151–153, 155–158 | 7 |
+| B12 | 1.5.17 | 159–167 | 9 |
+| B13 | 1.5.19, 1.5.20 | 168–182 | 15 |
+| B14 | 1.5.21.2.x | 183–202 | 20 |
+
+(154 sits in §1.5.16 but generates in B1 per the pilot ruling; B11
+carries the remaining seven Traffic & Weather leaves. B10's count includes
+146–150 §1.5.15.)
+
+### SXM notes
+
+1. **Cross-chapter twins (A-SX04)**: 11 SXM leaves (020, 024, 037, 108,
+   110, 132, 140, 142, 143, 148, 149) are ≥0.95 twins of AMFM §1.3.x
+   clauses — each generates normally against its OWN §1.5.x clause in SAT
+   context; Remarks carry `Analog-chapter twin: CFTS024-<analog id>
+   (covered in the AM/FM deliverable)`. Two pairs (020, 024) differ only
+   in band vocabulary; §8.6 SAT wording applies.
+2. **R11 cite-form leaves (A-SX02)**: 005, 080 (`CFTS024-193/195/197`),
+   107 (`CFTS019-494/496`), 137 (`CFTS020-138`) — token quoted as second
+   spec_reference, borrowed outcome anchored, cited rule surface untested.
+   Upgrade branch CLOSED (four-format negative).
+3. **`(add)` leaves (A-SX03)**: 080, 083, 110, 148, 149, 154–158, 182
+   generate normally with `[A-SX03]` in reasoning. §1.5.16 carries 5 of
+   its 8 leaves on this list — B11 review reads them together.
+4. **Leaf 154 (A-SX07)**: content follows clause `4872962` (Browse entry
+   path); the 037 title is the defect; reasoning stacks `[A-SX03]` +
+   `[A-SX07]`.
+5. **Unallocated clauses**: 38 CFTS024 §1.5.x clauses (32 SFR) reach no
+   leaf (§1.5.8, §1.5.12.1.5+, §1.5.18, §1.5.21.1, §1.5.21.2.1 own
+   whole-section gaps; list in `data/unallocated_clauses.json`).
+   **R10-2 ADOPTED for SXM (Pei, 2026-08-10; A-SX08)**: absorption iff
+   (a) same spec section AND (b) the clause elaborates the leaf's cited
+   clause; on absorption — `[A-SX08]` marker + the absorbed id in
+   specification_reference (multi-cite); failing the test → coverage hole
+   in reasoning + RD-1. Whole-section gaps cannot pass (a) and go to RD-1
+   Q-SX as an allocation-policy question (Q-AM3 wording pattern), never
+   silently absorbed.
+
+### Workbook sync
+
+BLANK workbook, FILL ruled (DECISIONS §4): Test Group `SXM` and the Part
+IV Test Set values go in columns G/H on every generated row. Whether
+revision C carries a `Test Case Framework` sheet is verified at
+feature.yaml wiring (Tier 1); if present, populate it with the 14 Set
+names, else per-row columns suffice (AMFM precedent).
