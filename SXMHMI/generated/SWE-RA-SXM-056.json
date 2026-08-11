@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-056",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：SDAR 為輸出來源時，收音機在背景持續比對現正播送的 artist ID 與 song ID 是否落在最愛清單內。為什麼這樣切：「持續」與「背景」皆不可直接觀察，其可觀察後果是——使用者未主動操作、且不在該頻道上時，仍能對後來才開始播送的最愛產生比對結果（§8.4.1）。以「後來才開始」構造情境，可同時排除「僅在選台當下比對一次」的實作。前置條件明列 SDAR 為輸出來源，因該條件是條款自身的觸發前提。",
+ "keywords": [
+  "background search",
+  "artist ID",
+  "song ID",
+  "continuous"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-056",
+   "tc_title": "Background matching finds a favorite that starts after tuning",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "When the Cabin Output Channel is using the HU Satellite Audio (SDAR) source, the HU shall continuously search in the background for currently broadcasting Artist and Song IDs that match the favorites list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds one artist entry\n5. No channel is currently broadcasting that artist\n6. Another channel is scheduled to start a song by that artist later\n7. The favorites alert settings are enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the HU screen and leave the HU untouched on the tuned channel\n2. Wait until the other channel starts the song by the stored artist\n3. Read the HU screen without operating the HU",
+   "expected_result": "1. No favorites match is indicated\n2. The other channel is broadcasting the stored artist\n3. A favorites match is indicated for the stored artist, without any user operation between step 1 and step 3",
+   "specification_reference": "CFTS024-4872835",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

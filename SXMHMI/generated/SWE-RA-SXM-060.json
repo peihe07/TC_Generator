@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-060",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：選取 FAV ON AIR 後，顯示所有現正播送的最愛，並提供選取其中一筆的方法。為什麼這樣切：條款有兩個 shall，一為清單內容的正確性（現正播送者在內、未播送者不在內），一為可選取；ER 同時涵蓋兩者。內容正確性以「未播送的最愛不得出現」構造反例，否則列出整份最愛清單的實作也會通過。HMI logic & flow 文件為指示性參照，不作判準（§8.4.2）。",
+ "keywords": [
+  "FAV ON AIR",
+  "on-air list",
+  "select favorite"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-060",
+   "tc_title": "FAV ON AIR lists only the favorites currently on air and allows selection",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "When FAV ON AIR is selected, the HU shall display the list of all favorites currently on air and shall provide a method to select one of these favorites",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds four entries\n5. Two of the stored favorites are being broadcast at this moment and the other two are not\n6. The FAV ON AIR flag is presented",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select FAV ON AIR\n2. Read the displayed list\n3. Select one of the displayed favorites",
+   "expected_result": "1. A list of favorites is displayed\n2. The list holds the two favorites that are being broadcast, and neither of the two that are not\n3. The selected favorite is accepted as the selection",
+   "specification_reference": "CFTS024-4872839",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

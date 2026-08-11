@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-059",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：artist ID 搜尋與 PID 搜尋得到相同結果時，只指示一筆命中。為什麼這樣切：條款是去重規則，其唯一可觀察後果是命中筆數；情境必須造成兩路搜尋指向同一節目——即同一演出者的該首歌同時被以演出者與以歌曲儲存。若實作未去重會呈現兩筆，故 ER 以「恰一筆」表述而非「至少一筆」（§8.4.1）。",
+ "keywords": [
+  "duplicate match",
+  "PID",
+  "artist ID",
+  "single indication"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-059",
+   "tc_title": "Artist and PID search hitting the same content indicate one match",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "If the artist ID search and the PID search produce the same results, the HU shall only indicate one match",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. One artist is stored as a favorite artist\n5. One song by that same artist is stored as a favorite song\n6. No channel is currently broadcasting that song\n7. The favorites alert settings are enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the HU screen\n2. Wait until a channel starts broadcasting that stored song by that stored artist\n3. Read the number of matches indicated by the HU",
+   "expected_result": "1. No favorites match is indicated\n2. A channel is broadcasting the stored song by the stored artist\n3. Exactly one match is indicated",
+   "specification_reference": "CFTS024-4872838",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

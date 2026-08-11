@@ -544,3 +544,33 @@ RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
   "titles systematically omit VR wording" pattern (n=5).
 - Implementation: reasoning annotation on the five existing TCs —
   field-level, no regeneration, does not block any batch.
+
+
+## [A-SX15] Two sections state the favorites delete options, and §1.5.9.2's title does not match its content — REGISTERED (2026-08-11)
+
+Two findings from B7, both about §1.5.9.2.
+
+**1. `4872834` (leaf 055) restates `4872827` (leaf 049).** 049, in §1.5.9.1,
+says the 'Fav' button displays the favorites list and that both an individual
+delete and a 'Remove All' are allowed. 055, in §1.5.9.2, says the HU provides
+an option to delete individual entries and a "delete all" function for the
+list. The delete capability is stated twice, in two sections, under two ids.
+
+Unlike A-SX04 this is not a cross-chapter twin: both clauses are SXM's own
+§1.5.9.x, so both leaves belong to this delivery and §8.2.2 forbids TC-side
+consolidation. Carve applied: **049 owns the 'Fav' button entry path** (its
+clause ties the list display to that button), **055 owns the delete options as
+a capability of the list** however it was opened. Each cites its own clause.
+Reported so a reviewer comparing the two rows sees a ruled carve rather than a
+duplication that slipped through.
+
+**2. The section heading is `Activation`; none of its eight clauses is about
+activation.** §1.5.9.2 holds the FAV ON AIR background search, match handling,
+the on-air list and its 10-second timeout — a continuation of §1.5.9.1
+Favorites. The Test Set name in framework Part IV (`Activation`) inherits the
+heading, so the workbook's column H will read `Activation` for eight rows
+whose subject is favorites alerts.
+
+No local action: Layer 2 names come from the ruled Part IV table and the
+heading is the spec's own. Raised for RD-1 — if the heading is a copy error,
+the Test Set name should follow the correction rather than the other way round.

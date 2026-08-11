@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-061",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：末次操作後 10 秒內未做選擇時，回到先前選定的調諧模式。為什麼這樣切：條款給的是逾時門檻，取邊界兩側各一次觀察——9 秒仍在選單、10 秒後已返回；並在 9 秒處插入一次操作以驗證「after the last action」確為重新計時的起點，否則自進入畫面起固定計時的實作也會通過。ER 指名「先前選定的調諧模式」而非任一畫面（§8.4.1）。",
+ "keywords": [
+  "timeout",
+  "10 seconds",
+  "revert",
+  "tuning mode"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-061",
+   "tc_title": "Ten second inactivity reverts to the previously selected tuning mode",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "If a selection is not made within 10 seconds after the last action, the HU will revert to the previously selected tuning mode",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The tuning mode in use before the favorites list is opened is recorded\n5. At least two favorites are currently on air\n6. The FAV ON AIR on-air list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Scroll the on-air list once, wait 9 seconds without further action and read the HU screen\n2. Scroll the on-air list once more, wait 9 seconds without further action and read the HU screen\n3. Wait a further 2 seconds without any action and read the HU screen",
+   "expected_result": "1. The on-air list is still displayed\n2. The on-air list is still displayed, the wait having restarted at the scroll in step 2\n3. The on-air list is no longer displayed and the HU is in the tuning mode recorded in the pre-conditions",
+   "specification_reference": "CFTS024-4872840",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

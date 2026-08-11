@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-058",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：命中多筆時，可從多筆歌曲／演出者中進行選擇。為什麼這樣切：條款述的是「能夠選擇」，其可觀察後果是多筆同時呈現且各筆均可被選中；只呈現最新一筆或只允許選第一筆的實作應失敗。程序涵蓋非第一筆的選取以避免退化通過。與 060 的差別：該 leaf 驗的是 FAV ON AIR 被選取後清單的顯示，本 leaf 驗的是多筆命中情境下的可選性（§8.2.1）。",
+ "keywords": [
+  "multiple matches",
+  "select",
+  "favorites"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-058",
+   "tc_title": "Selecting among multiple simultaneous favorites matches",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "When more than one match is found the HU shall be able to select from the multiple song/artist matches",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds at least three entries\n5. Three different channels are broadcasting three different stored favorites at the same time\n6. The favorites alert settings are enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the presented matches\n2. Select the second presented match\n3. Return to the presented matches and select the third presented match",
+   "expected_result": "1. All three matches are presented at the same time\n2. The second match is accepted as the selection\n3. The third match is accepted as the selection",
+   "specification_reference": "CFTS024-4872837",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

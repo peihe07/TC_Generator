@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-062",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：選定歌曲／演出者後，調諧至該歌曲正在播送的頻道。為什麼這樣切：條款的可觀察後果是調諧結果——輸出頻道等於承載該內容的頻道，且播送內容即為所選；僅切換畫面而未調諧的實作應失敗。情境令所選最愛位於非現行頻道，否則調諧無變化即通過。與 060 的差別：該 leaf 止於選取被接受，本 leaf 驗選取之後的調諧（§8.2.1）。",
+ "keywords": [
+  "tune to channel",
+  "selected favorite",
+  "on air"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-062",
+   "tc_title": "Selecting an on-air favorite tunes to the channel carrying it",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "Once the song/artist is selected the HU shall tune to the channel on which the selected song is playing",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds at least one entry\n5. A channel other than the currently tuned channel is broadcasting a stored favorite\n6. The FAV ON AIR on-air list is displayed and holds that favorite",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Select the favorite that is on air on the other channel\n3. Read the tuned channel and the content being played",
+   "expected_result": "1. The tuned channel is not the channel carrying the selected favorite\n2. The selection is accepted\n3. The tuned channel is the channel that is broadcasting the selected favorite, and that favorite is being played",
+   "specification_reference": "CFTS024-4872841",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-055",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：最愛清單提供逐筆刪除與全部刪除兩個選項。為什麼這樣切：本條款只述能力歸屬於「清單」，未綁定進入路徑；049（§1.5.9.1）的條款則把清單顯示綁在 'Fav' 按鍵上。兩條款分屬不同節、各有 id，§8.2.2 不得於 TC 端合併，故依條款文字切分——049 擁有 'Fav' 進入路徑，055 擁有清單本身的刪除能力（本 TC 由非 'Fav' 路徑進入清單以體現該切分）。重疊已登錄 A-SX15。ER 以刪除後的清單內容表述而非按鍵存在（§8.4.1）。",
+ "keywords": [
+  "delete favorite",
+  "delete all",
+  "favorites list"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-055",
+   "tc_title": "Individual delete and delete all on the favorites list",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "The HU shall provide an option to delete individual entries of favorite song/artist and a delete all function",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds at least three entries, of which at least one is a song and at least one is an artist\n5. The favorites list is open by a path other than the 'Fav' button",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the options offered for a single entry of the list\n2. Delete one song entry and read the list\n3. Delete one artist entry and read the list\n4. Invoke the delete all function and read the list",
+   "expected_result": "1. Deleting that single entry is offered, and deleting the whole list is offered\n2. The deleted song entry is no longer in the list and the remaining entries are unchanged\n3. The deleted artist entry is no longer in the list and the remaining entries are unchanged\n4. The favorites list holds no entries",
+   "specification_reference": "CFTS024-4872834",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

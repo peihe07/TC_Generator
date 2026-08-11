@@ -1,0 +1,48 @@
+{
+ "parent": "SWE-RA-SXM-057",
+ "batch": "B7 — Activation",
+ "reasoning": "驗證目標：找到比對結果時，提示 FAV ON AIR 旗標與確認音；但條款以「if these alert settings were set by the user」為條件。為什麼切兩顆：條件的否定側（使用者未設定提示）可達且由條款文字明示，依 R10-3 需獨立驗證抑制行為，否則「永遠提示」的實作也會通過。兩顆的差別僅在該設定的開關狀態。ER 同時涵蓋視覺旗標與確認音兩個可觀察量，因條款以 and 並列（§8.4.1）。HMI 畫面文件為指示性參照，不作為判準來源。",
+ "keywords": [
+  "FAV ON AIR",
+  "confirmation sound",
+  "alert settings"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "condition",
+  "delta": "Whether the user has set the favorites alert settings. The clause makes the prompt conditional on that setting, so the negative side is a reachable requirement of its own (R10-3): TC-01 verifies the flag and sound appear when the setting is set, TC-02 that neither appears when it is not, while the match itself still occurs."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-057",
+   "tc_title": "FAV ON AIR flag and confirmation sound on a match with alerts enabled",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "When one or multiple matches of Artist ID or Song ID are found, the HU shall prompt the FAV ON AIR flag and the confirmation sound if these alert settings were set by the user",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds one song entry\n5. The favorites alert settings are set by the user to alert\n6. No channel is currently broadcasting that song",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the HU screen\n2. Wait until a channel starts broadcasting the stored song\n3. Read the HU screen and listen to the HU audio output",
+   "expected_result": "1. No FAV ON AIR flag is presented\n2. A channel is broadcasting the stored song\n3. The FAV ON AIR flag is presented and the confirmation sound is heard",
+   "specification_reference": "CFTS024-4872836",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-057",
+   "tc_title": "No alert on a match when the alert settings are not set",
+   "test_group": "SXM",
+   "test_set": "Activation",
+   "test_item": "The FAV ON AIR flag and confirmation sound are prompted only if these alert settings were set by the user",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds one song entry\n5. The favorites alert settings are not set by the user to alert\n6. No channel is currently broadcasting that song",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the HU screen\n2. Wait until a channel starts broadcasting the stored song\n3. Read the HU screen and listen to the HU audio output\n4. Read the favorites list",
+   "expected_result": "1. No FAV ON AIR flag is presented\n2. A channel is broadcasting the stored song\n3. No FAV ON AIR flag is presented and no confirmation sound is heard\n4. The stored song entry is still in the favorites list",
+   "specification_reference": "CFTS024-4872836",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}
