@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-083",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：HU 提供一個方法跳回**前一首**曲目的開頭。關鍵情境條件：緩衝區內至少兩首連續曲目，且播放位置落在後一首之內。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分；與 082 的差別在跳轉標的（前一首 vs 目前這首），兩者條款分列（`4872866` vs `4872865`），依 §8.2.1 各自覆蓋。**[A-SX03]**：本 leaf 帶 `(add)` 標記且 Release Version 與 Requirement Status 皆空，照常生成並留標記。相關記錄見 A-SX10：082 的 037 title 是本 leaf title 的複製，兩者在 037 上無法區分，需回到條款才分得開。刻意略過：曲目資訊不可得時的行為不在條文內，未生成。",
+ "keywords": [
+  "jump",
+  "previous song",
+  "beginning of song"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [
+  "[A-SX03] This leaf entered the 037 outside the release process: a trailing `(add)` after the id, and both Release Version and Requirement Status empty. Generated normally; the marker exists so an upstream withdrawal is a grep rather than an audit."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-083",
+   "tc_title": "Jump returns playback to the start of the previous song",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall provide a method to jump back to the beginning of the previous song",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds two consecutive songs with identifiable boundaries\n5. Playback is positioned part way into the later of the two songs",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the song being played and the playback position within it\n2. Request the jump to the beginning of the previous song\n3. Read the song being played and the playback position\n4. Read the audio output",
+   "expected_result": "1. The later song is playing and the position is part way into it\n2. The jump request is accepted\n3. The earlier song is playing and the position is at its beginning\n4. The earlier song is played from its start",
+   "specification_reference": "CFTS024-4872866",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-077",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：HU 提供緩衝區內所有音訊內容的演出者名稱清單，且目前播放中的演出者名稱以高亮標示。關鍵情境條件：緩衝區內含多首不同演出者的曲目，且播放位置落在其中一首之內——單一曲目無法區分高亮是否跟隨播放位置。為什麼這樣切：一條 TC 覆蓋單一驗證目標（清單內容 + 高亮位置），依 §5.7 併為多條 ER；只驗清單存在而不驗高亮跟隨，無法區分本條與「靜態清單」的實作（§7）。刻意略過：清單的排序由 078 覆蓋、隨新內容更新由 079 覆蓋、瀏覽操作由 080 覆蓋——四條同屬 Buffer playlist，但條款分列，各驗一件事。",
+ "keywords": [
+  "Buffer playlist",
+  "artist names",
+  "currently playing highlighted"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-077",
+   "tc_title": "Buffer playlist lists artists and highlights the current one",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall allow for a list of all artist names of the audio content in the buffer, with the currently playing artist name highlighted",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds at least three songs by different artists\n5. Playback is positioned inside the second of those songs",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the buffer playlist\n2. Read the artist names listed\n3. Read which entry is highlighted\n4. Move playback into the third song and read the highlighted entry again",
+   "expected_result": "1. The buffer playlist is displayed\n2. The artist names of the songs held in the buffer are listed\n3. The artist of the second song is highlighted\n4. The artist of the third song is highlighted and the second is no longer highlighted",
+   "specification_reference": "CFTS024-4872859",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

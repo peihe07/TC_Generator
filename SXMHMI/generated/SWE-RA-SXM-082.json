@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-082",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：HU 提供一個方法跳回**目前**播放曲目的開頭。關鍵情境條件：播放位置落在曲目中段——位於開頭時跳轉結果不可觀察。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。**§8.6 用語分歧（A-SX10）**：本 leaf 的 037 title 與 083 的 title 逐字相同，都寫「previous song」，但其宣告條款 `4872865` 寫的是 **current song**；依 §8.6 條文為用語權威，本 leaf 因此驗「跳回目前曲目開頭」，與 083 的「跳回前一首開頭」分屬兩個行為。若只照 037 title 生成，082 與 083 會產出兩條相同的 TC，而 `4872865` 的行為將無人覆蓋。刻意略過：連續按壓是否會進一步跳到前一首不在條文內，未生成——該行為由 083 依其自身條款覆蓋。",
+ "keywords": [
+  "jump",
+  "current song",
+  "beginning of song"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-082",
+   "tc_title": "Jump returns playback to the start of the current song",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall provide a method to jump back to the beginning of the current song",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds a song whose start point is identifiable\n5. Playback is positioned part way into that song",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the song being played and the playback position within it\n2. Request the jump to the beginning of the current song\n3. Read the song being played and the playback position\n4. Read the audio output",
+   "expected_result": "1. The same song is playing and the position is part way into it\n2. The jump request is accepted\n3. The same song is playing and the position is at its beginning\n4. The song is played from its start",
+   "specification_reference": "CFTS024-4872865",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

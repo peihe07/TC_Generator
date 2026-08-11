@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-081",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：處於 Play 狀態時，HU 的所有功能與調諧在該頻道時相同——條文明列包含緩衝區範圍內的倒轉與快轉。關鍵情境條件：播放位置在緩衝區內，且前後皆有內容可供移動。為什麼這樣切：條文明列的兩項是同一驗證目標（Play 狀態不限縮功能可用性）的兩個必然結果，依 §5.7 併為一條 TC 的多條 ER；依 §6，最終 ER 需涵蓋 Test Item 的完整結果。與兄弟 leaf 073 的關係：073 是 **Paused** 狀態下的同型條款，本 leaf 是 **Play** 狀態，兩者條款分列、狀態不同，依 §8.2.1 各自覆蓋，不合併亦不互引。刻意略過：「所有功能」為開放式表述，本 TC 只驗條文自己列舉的兩項（§8.4.1 不推測未列出的功能）；倒轉與快轉各自的速率規則由 085 與 090 覆蓋。",
+ "keywords": [
+  "Play state",
+  "Rewind",
+  "Fast Forward",
+  "functions unchanged"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-081",
+   "tc_title": "Rewind and fast forward stay available in the play state",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "While in the Play state, all functions of the HU shall function the same as if the HU is tuned to the current channel, including Rewind and Fast Forward within the limits of the buffer",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds several minutes of content\n5. Playback is in the Play state, positioned inside the buffer",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the playback state and the position within the buffer\n2. Request Rewind and read the position within the buffer\n3. Request Fast Forward and read the position within the buffer\n4. Attempt to rewind past the oldest content the buffer holds",
+   "expected_result": "1. The HU is in the Play state at a position inside the buffer\n2. The playback position moves back within the buffer\n3. The playback position moves forward within the buffer\n4. The position stops at the oldest content the buffer holds",
+   "specification_reference": "CFTS024-4872863",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

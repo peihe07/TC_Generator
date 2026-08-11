@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-076",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：處於 Paused 狀態時，HU 允許使用者請求音訊自暫停點恢復播放。關鍵情境條件：暫停期間頻道持續廣播，因此暫停點與即時廣播之間存在一段內容——若無此落差，「自暫停點恢復」與「跳回即時」無法區分。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分；驗證重點在恢復點的精確性與內容的連續性（無跳段），而非恢復動作本身可用。與兄弟 leaf 069 的關係：069 的條款是「允許暫停」，本 leaf 的條款是「暫停中允許請求恢復」；069 的 TC 以恢復作為暫停確實為暫時性的觀察手段，本 leaf 才是恢復行為的覆蓋擁有者——兩者條款分列，依 §8.2.1 不合併。刻意略過：暫停期間的靜音由 070 覆蓋、持續儲存由 071 覆蓋。",
+ "keywords": [
+  "Play",
+  "resume",
+  "paused point",
+  "continuity"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-076",
+   "tc_title": "Resume plays on from the paused point without skipping",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "When in the Paused state, the HU shall allow for the user to request audio resume playing from the Paused point",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Playback is in the Paused state\n5. The channel has continued to broadcast for at least 60 seconds since the pause",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the content at which playback was paused\n2. Request resume\n3. Read the content played immediately after the request\n4. Listen on for one minute and compare the sequence with the broadcast during the pause",
+   "expected_result": "1. The HU is in the Paused state at the noted content\n2. The resume request is accepted\n3. Playback starts at the content noted in step 1\n4. The content broadcast during the pause is played in its original order with no section skipped",
+   "specification_reference": "CFTS024-4872858",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

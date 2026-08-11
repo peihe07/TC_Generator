@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-079",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：緩衝區存入新內容時，Buffer playlist 隨之更新。關鍵情境條件：清單開啟期間或前後，頻道播出可辨識的新曲目。為什麼這樣切：一條 TC 覆蓋單一觸發（新內容進入緩衝區）的必然結果，依 §5.7 不拆分；驗證方式是比對新曲目出現前後的清單，並確認新項目出現在依 078 排序的正確位置。刻意略過：緩衝區滿載時舊項目的移除不在本條文內（汰換由 063/072 覆蓋），ER 只驗新增。",
+ "keywords": [
+  "Buffer playlist",
+  "updated",
+  "new content stored"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-079",
+   "tc_title": "Buffer playlist gains an entry as new content is stored",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The Buffer playlist shall be updated as new content is stored in the buffer",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds at least two songs\n5. The channel is about to broadcast a further identifiable song",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the buffer playlist and note the entries\n2. Let the channel broadcast the next song in full\n3. Read the buffer playlist again\n4. Read the position of the new entry within the list",
+   "expected_result": "1. The buffer playlist is displayed with its entries noted\n2. The next song is broadcast and stored in the buffer\n3. The playlist holds an entry for the newly broadcast song in addition to those noted in step 1\n4. The new entry is the first in the list, ahead of the previously noted entries",
+   "specification_reference": "CFTS024-4872861",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

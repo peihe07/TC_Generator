@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-085",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：倒轉的推進速率依三段階梯遞增——前 3 秒為 10 秒增量（每 0.5 秒 5 秒）、其後 7 秒為 20 秒增量（每 0.5 秒 10 秒）、之後為 60 秒增量（每 0.5 秒 30 秒），直到倒轉結束或到達緩衝區起點。關鍵情境條件：兩個換檔時點（第 3 秒、第 10 秒）。為什麼這樣切：驗證對象是這兩個邊界與三段速率，設計方法採邊界值分析；三段是同一觸發（持續倒轉）的連續結果，依 §5.7 併為一條 TC 的多條 ER。只驗總後退量而不驗分段，無法區分本條與「固定速率倒轉」的實作（§7），因此在每個換檔點量測。推進量的容差取自條文自身：讀取時刻落在 0.5 秒步進之間，誤差上界即該階的單次增量——3 秒時 30±5、10 秒時 170±10、15 秒時 470±30 秒；容差值全部由條文的增量導出，非估計值（§8.4.1）。與 090（快轉）的關係：兩條的速率階梯數值完全相同但方向相反，條款分列（`4872868` vs `4872874`），依 §8.2.1 各自覆蓋。速率階梯已完整寫在 Test Item 內，依 §4.5 不在 Input Test Data 重複。",
+ "keywords": [
+  "Rewind",
+  "10-second increments",
+  "20-second increments",
+  "60-second increments",
+  "rate steps"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-085",
+   "tc_title": "Rewind rate steps up at three and at ten seconds",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall allow Rewinding in 10-second increments (5-second every 0.5 second) in audio content for the first 3 seconds, in 20-second increments (10-second every 0.5 second) for 7 seconds, and in 60-second increments (30-second every 0.5 second) thereafter until the Rewind function is ended or the beginning of the buffer has been reached",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds enough content that rewinding for 15 seconds does not reach the beginning of the buffer\n5. Playback is positioned at a known point inside the buffer",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the playback position and start a stopwatch as Rewind is requested\n2. Read the playback position 3 seconds after the request starts\n3. Read the playback position 10 seconds after the request starts\n4. Read the playback position 15 seconds after the request starts, then release the request",
+   "expected_result": "1. The rewind request is accepted from the known position\n2. The playback position has moved back by 30 seconds of content, within one phase-1 increment (±5 seconds)\n3. The playback position has moved back by 170 seconds of content in total, within one phase-2 increment (±10 seconds)\n4. The playback position has moved back by 470 seconds of content in total, within one phase-3 increment (±30 seconds)",
+   "specification_reference": "CFTS024-4872868",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

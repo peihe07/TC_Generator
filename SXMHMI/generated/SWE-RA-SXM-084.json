@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-084",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：HU 允許持續倒轉直到緩衝區起點；到達起點時發出單一嗶聲（Confirmation tone 2）並開始播放，且不論該處是否為曲目或節目的開頭。關鍵情境條件：由緩衝區內持續倒轉直到追及最舊內容這個邊界。為什麼這樣切：驗證對象是緩衝區起點這個邊界上的行為，設計方法採邊界值分析；一條 TC 覆蓋單一觸發的三個必然結果——停在起點、單一嗶聲、開始播放，依 §5.7 併為多條 ER。條文明寫「regardless of whether it is the beginning of a song or program」，因此前置刻意讓緩衝區起點落在曲目中段，否則該限定條件未被驗到。嗶聲數量與音色（Confirmation tone 2）逐字取自條文，是與 091 兩聲警告的判別點。刻意略過：倒轉的速率階梯由 085 覆蓋；倒轉期間的靜音由 086 覆蓋。",
+ "keywords": [
+  "Rewind",
+  "beginning of buffer",
+  "single beep",
+  "Confirmation tone 2"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-084",
+   "tc_title": "Rewind to the buffer start beeps once and plays on",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall allow Rewinding until reaching beginning of the buffer. When the user reaches the beginning of the buffer, a single beep (Confirmation tone 2) shall sound and the audio shall start to play regardless of whether it is the beginning of a song or program",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer is full and its oldest retained point falls part way into a song, not at a song boundary\n5. Playback is positioned near the newest content in the buffer",
+   "input_test_data": "NA",
+   "test_procedure": "1. Request Rewind and keep it active\n2. Read the playback position as the rewind reaches the oldest retained content\n3. Read the audio output at that moment\n4. Read the content played immediately afterwards",
+   "expected_result": "1. The playback position moves back through the buffer\n2. The playback position stops at the oldest content the buffer holds\n3. One single beep, Confirmation tone 2, is sounded\n4. Audio plays from that point, part way into the song rather than from a song boundary",
+   "specification_reference": "CFTS024-4872867",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

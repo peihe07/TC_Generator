@@ -374,3 +374,28 @@ Disposition: **quote verbatim, never silently correct.** A corrected quotation
 stops matching the source and breaks the reviewer's ability to diff a Test Item
 against its clause. Reported to upstream as one RD-1 FYI covering the class,
 not four separate items.
+
+
+## [A-SX10] Leaves 082 and 083 carry identical 037 titles for different clauses — §8.6 applied (2026-08-11)
+
+Found while building the B2 context; the same shape as A-SX07, second instance.
+
+| leaf | declared clause | 037 title says | clause says | agreement |
+|---|---|---|---|---|
+| 082 | `4872865` | "beginning of the **previous** song" | "beginning of the **current** song" | 0.931 |
+| 083 | `4872866` | "beginning of the **previous** song" | "beginning of the **previous** song" | 0.976 |
+
+- **The two titles are byte-identical**; only the id tail and 083's `(add)`
+  marker differ. Read from the 037 alone the pair looks like a duplication.
+  Read against the clauses it is not: `4872865` is the jump to the start of
+  the song currently playing, `4872866` the jump to the song before it.
+- 082's title is a copy of 083's. Unlike A-SX07 this needs no ruling on which
+  side is right — the declared id is not in question, only the wording, which
+  is the plain §8.6 case: **the clause is authority for wording, the title for
+  scope.** 082 therefore tests the CURRENT song and 083 the PREVIOUS song.
+- Registered rather than merely handled because it changes what 082 verifies,
+  and because two instances make the copy-paste a pattern in this 037 rather
+  than an isolated slip. Goes to RD-1 with A-SX07 as one requirement-set
+  correction item.
+- No `[A-SX10]` marker is emitted in generation: the §8.6 wording note the
+  pipeline already attaches to 082 records the divergence at the row level.

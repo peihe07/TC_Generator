@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-078",
+ "batch": "B2 — Instant Replay",
+ "reasoning": "驗證目標：Buffer playlist 依時間順序排列，且由較新的內容開始。關鍵情境條件：緩衝區內至少三段可辨識先後的內容——兩段無法區分「新到舊」與「舊到新」以外的其他排序。為什麼這樣切：一條 TC 覆蓋單一驗證目標（排序方向），依 §5.7 不拆分；ER 明確要求最新的在最前，而非僅要求「依時間排序」——後者對兩個方向都成立（§7）。刻意略過：清單欄位內容由 077 覆蓋、更新時機由 079 覆蓋。",
+ "keywords": [
+  "Buffer playlist",
+  "chronological order",
+  "newer material first"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-078",
+   "tc_title": "Buffer playlist starts with the newest material",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The Buffer playlist shall be in chronological order beginning with the newer material",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds at least three songs whose broadcast order is known",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the broadcast order of the songs held in the buffer\n2. Open the buffer playlist\n3. Read the entries from the top of the list downwards\n4. Compare the list order with the broadcast order noted in step 1",
+   "expected_result": "1. The broadcast order of the three songs is known\n2. The buffer playlist is displayed\n3. The entries are read from top to bottom\n4. The most recently broadcast song is the first entry and each following entry is older than the one above it",
+   "specification_reference": "CFTS024-4872860",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
