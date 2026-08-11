@@ -322,6 +322,14 @@ Found by the ported `verify_ids` check on the first map build, not by eye.
   unallocated clauses with scope tags; the decision test runs per clause at
   generation, per the AMFM precedent (R10-2 earned its keep in Seek — the
   same load check applies here at §1.5.1/§1.5.2).
+- Checkpoint (chat tier, 2026-08-10): B1 pilot carried NO absorption load —
+  §1.5.10/.1/.4 have zero unallocated clauses; the only 3 in-batch (via 154,
+  §1.5.16) elaborate nothing and were correctly not absorbed. The `[A-SX08]`
+  marker path and the absorption-cite lint gate are therefore UNEXERCISED at
+  pilot gate. Ruled fallback: a targeted absorption-only mini-review runs
+  after B3 (Seek) and again at B5 (§1.5, 14 clauses — heaviest load),
+  scoped to absorption decisions and the gate's first firing; not a full
+  pilot ceremony.
 
 ## Assumption markers
 

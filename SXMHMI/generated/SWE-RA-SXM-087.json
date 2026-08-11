@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-087",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：HU 提供一個方法跳到下一首歌曲的開頭。關鍵情境條件：緩衝區內存在可辨識的曲目邊界——若整段內容無曲目分界，跳轉結果不可判定。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。與 088 的差別在驗證對象：088 是連續前進（Fast Forward），本 leaf 是離散跳轉到曲目邊界，條文分列兩條，依 §8.2.1 不合併。刻意略過：條文寫「jump back to the beginning of the next song」，其中 back 與 next 語意相衝——依 §8.6 以條文為準無法解消，本 TC 以可觀察的結果（播放位置落在下一首的開頭）表述，並將用語矛盾送 RD-1；曲目資訊不可得時的行為不在條文內，未生成。",
+ "keywords": [
+  "jump",
+  "next song",
+  "track boundary"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-087",
+   "tc_title": "Jump moves playback to the start of the next song",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall provide a method to jump back to the beginning of the next song",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds at least two consecutive songs with identifiable boundaries\n5. Playback is positioned within the earlier of the two songs",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the song being played and the playback position\n2. Request the jump to the next song\n3. Read the song being played and the playback position\n4. Read the audio output",
+   "expected_result": "1. The earlier song is playing and the position is inside it\n2. The jump request is accepted\n3. The later song is playing and the position is at its beginning, not part way into it\n4. The later song is played from its start",
+   "specification_reference": "CFTS024-4872871",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

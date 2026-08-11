@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-068",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：HU 只在 Body ON HU Audio Mode ON（娛樂功能與控制為必要的電源狀態）期間儲存音訊到緩衝區。關鍵情境條件：電源狀態的兩個值類——處於該狀態與低於該狀態，兩側都要觀察。為什麼這樣切：條文以電源狀態為儲存的必要條件，屬組態／狀態的值類覆蓋，依 R10-1 設計方法為等價劃分；只驗處於該狀態時有儲存，無法排除「任何狀態都儲存」的實作（§7），而該實作會在整車休眠時持續耗電。刻意略過：條文只說「required to store only during」，未定義離開該狀態時既有緩衝內容是否保留，未生成——這是 RD-1 可問的點。",
+ "keywords": [
+  "Body ON HU Audio Mode ON",
+  "buffer storage",
+  "power state"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-068",
+   "tc_title": "Buffering happens only in Body ON HU Audio Mode ON",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "HU is required to store audio in buffer only during Body ON HU Audio Mode ON where the entertainment functions and controls are required",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The vehicle is in Body ON HU Audio Mode ON at the start of the test",
+   "input_test_data": "Observation period in each power state: 60 seconds",
+   "test_procedure": "1. Stay on the tuned channel for 60 seconds in Body ON HU Audio Mode ON, then rewind and read the audio played\n2. Return to real-time and transition the vehicle below Body ON HU Audio Mode ON for 60 seconds\n3. Return to Body ON HU Audio Mode ON on the same channel\n4. Rewind by the period spent below the state and read the audio played",
+   "expected_result": "1. The content broadcast during the 60 seconds is retrievable from the buffer\n2. The vehicle is below Body ON HU Audio Mode ON\n3. The Satellite Audio source is available again on the same channel\n4. The content broadcast while the vehicle was below the state is not retrievable, which places buffering inside that power state alone",
+   "specification_reference": "CFTS024-4872848",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-092",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：快轉進行中，音訊被靜音，且所有其他衛星音訊功能被暫停。關鍵情境條件：快轉持續進行的期間。為什麼這樣切：一條 TC 覆蓋單一狀態（快轉中）的兩個必然結果——靜音、其他功能暫停，依 §5.7 併為多條 ER；依 §6 最終 ER 需涵蓋完整結果。「所有其他功能」是開放式表述，本 TC 以條文脈絡內可觀察的代表操作（頻道切換與播放控制）驗證其在快轉期間不生效，不逐一枚舉未列出的功能（§8.4.1）。刻意略過：快轉結束後功能恢復的時點不在條文內，未生成——ER 只驗快轉期間的狀態。",
+ "keywords": [
+  "Fast Forward",
+  "audio muted",
+  "functions suspended"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-092",
+   "tc_title": "Fast forward mutes audio and suspends other functions",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "While Fast Forwarding, audio shall be muted and all other Satellite Audio functions shall be suspended",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds several minutes of content ahead of the playback position\n5. Playback is positioned inside the buffer",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the audio output before the request\n2. Request Fast Forward and keep it active\n3. Read the audio output while the request is active\n4. Attempt a channel change while the request is still active and read the tuned channel",
+   "expected_result": "1. The buffered content is played on the Cabin Output Channel\n2. The fast forward request is accepted and the playback position advances\n3. No audio is played while the request is active\n4. The tuned channel is unchanged, which leaves the other Satellite Audio functions suspended for the duration of the request",
+   "specification_reference": "CFTS024-4872876",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

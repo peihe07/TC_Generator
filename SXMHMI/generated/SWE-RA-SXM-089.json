@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-089",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：HU 允許依前述規則快轉直到到達即時廣播；到達即時廣播時發出單一嗶聲並播放即時廣播。關鍵情境條件：由緩衝區內持續快轉直到追上即時廣播這個時點。為什麼這樣切：一條 TC 覆蓋單一觸發（快轉追上即時）的兩個必然結果——單一嗶聲、播放即時廣播，依 §5.7 併為多條 ER；依 §6 最終 ER 需涵蓋 Test Item 的完整結果，兩者都驗。嗶聲數量是可判定的量（單一 vs 091 的兩聲），ER 因此寫明「single」而非僅寫「發出提示音」。刻意略過：快轉的速率階梯由 090 覆蓋；即時廣播下再次嘗試快轉的行為由 091 覆蓋。",
+ "keywords": [
+  "Fast Forward",
+  "real-time broadcast",
+  "single beep"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-089",
+   "tc_title": "Fast forward to real time sounds one beep and plays live",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall allow for fast forwarding according to the above rules until reaching real-time broadcast. When the user reaches real time, a single beep shall sound and the real-time broadcast shall be played",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Playback is positioned inside the buffer, behind the real-time broadcast\n5. The buffer holds content between the playback position and real time",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the playback position relative to the real-time broadcast\n2. Request Fast Forward and keep it active until the playback position reaches real time\n3. Read the audio output at the moment real time is reached\n4. Read the content played after that moment",
+   "expected_result": "1. The playback position is behind the real-time broadcast\n2. The playback position advances through the buffer towards real time\n3. One single beep is sounded as real time is reached\n4. The real-time broadcast is played",
+   "specification_reference": "CFTS024-4872873",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

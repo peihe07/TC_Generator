@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-074",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：若 HU 持續處於 Paused 狀態直到緩衝區幾乎被尚未收聽的內容填滿，HU 在到達緩衝區終點前一分鐘顯示彈出訊息。關鍵情境條件：暫停持續到距離緩衝區終點一分鐘的時點——這是條文給出的明確時間邊界。為什麼這樣切：驗證對象是該時間邊界，設計方法採邊界值分析；一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。只驗彈窗有出現而不驗出現的時點，等於沒有驗到條文真正規範的內容（提前一分鐘），因此程序以計時方式核對。刻意略過：彈出訊息的文字與版面不在條文內，且本 corpus 未引用 Pop Up List，ER 只驗其出現與時點；到達終點後的自動恢復由 075 覆蓋。",
+ "keywords": [
+  "Pause",
+  "buffer almost full",
+  "pop-up",
+  "one minute prior"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-074",
+   "tc_title": "Pop-up warns one minute before the buffer end is reached",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "If the HU remains in the Paused state until the buffer is almost full with yet-to-be-listened to content, a pop-up shall be displayed, one minute prior to reaching the end of the buffer",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer is empty at the start of the test\n5. Playback is placed in the Paused state and left there",
+   "input_test_data": "Buffer capacity: the maximum retention the HU provides on one channel\nWarning point under test: 1 minute before the buffer reaches its end",
+   "test_procedure": "1. Request Pause and start a stopwatch\n2. Leave the HU paused and read the screen while the buffer fills\n3. Read the stopwatch at the moment a pop-up is displayed\n4. Read the remaining time until the buffer reaches its end",
+   "expected_result": "1. The HU is in the Paused state and the buffer starts filling\n2. No pop-up is displayed while the buffer is filling\n3. A pop-up indicating the buffer state is displayed\n4. One minute of buffer capacity remains at the moment the pop-up is displayed",
+   "specification_reference": "CFTS024-4872855",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

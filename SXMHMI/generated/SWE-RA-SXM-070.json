@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-070",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：HU 在 Paused 狀態期間將音訊靜音。關鍵情境條件：進入 Paused 狀態的前後。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。與 069 的差別在驗證對象：069 驗暫停與恢復的動作本身，本 leaf 驗暫停期間音訊輸出的狀態——條文分屬兩條，依 §8.2.1 不合併。刻意略過：靜音是否伴隨畫面提示不在條文內，未生成。",
+ "keywords": [
+  "Pause",
+  "mute",
+  "audio output"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-070",
+   "tc_title": "Audio is muted for the whole paused state",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall mute audio during the Paused state",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The channel is playing in real time",
+   "input_test_data": "Paused duration under observation: 30 seconds",
+   "test_procedure": "1. Read the audio output on the Cabin Output Channel\n2. Request Pause\n3. Read the audio output continuously for 30 seconds\n4. Request Play and read the audio output",
+   "expected_result": "1. The channel audio is played on the Cabin Output Channel\n2. The Pause request is accepted\n3. No audio is played for the whole 30 seconds\n4. Audio is played again from the paused point",
+   "specification_reference": "CFTS024-4872851",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

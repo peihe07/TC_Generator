@@ -13,4 +13,11 @@ requirement source: FM-WI-FSM-037-A03 (R1 - the SWRA-A02 family is out of scope 
 spec sources: CFTS024 (85 leaves), CFTS011 (9), CFTS004 (8)
 write-back: append after the frozen legacy prefix; legacy rows 10-167 unmoved,
   regen rows 168-310; Scope field corrected per A-AM01; ChangeHistory revision C
-reproducible: re-running --write from this commit reproduces the same SHA256
+
+produced at: bf514e2 (feat(amfm): write_back append strategy + R13 column rulings)
+  with a clean working tree, per FEATURE_ONBOARDING §6.
+
+reproducibility: re-running --write with the same --date reproduces this SHA256
+  byte for byte. Verified twice: at bf514e2 (directory AMFMHMI/), and again at
+  394ac19 after the AMFMHMI -> AMFM rename (directory AMFM/). The rename does
+  not enter the output, so either commit re-derives the delivered file.

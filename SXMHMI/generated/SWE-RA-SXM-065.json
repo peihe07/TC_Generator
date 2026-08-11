@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-065",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：調諧到新頻道時，HU 清除前一頻道的緩衝區並開始以新頻道的內容填充；前一頻道的緩衝內容不再可取用。關鍵情境條件：前一頻道已累積可辨識的緩衝內容，否則「被清除」不可觀察。為什麼這樣切：一條 TC 覆蓋單一觸發（調諧到新頻道）的兩個必然結果——新頻道開始填充、舊內容不再可得，依 §5.7 屬同一 TC 的多條 ER。只驗新頻道能倒轉而不驗舊內容已消失，無法區分「清除舊緩衝」與「兩個緩衝並存」的實作（§7）。刻意略過：條文未定義切回原頻道後是否重建緩衝，未生成。",
+ "keywords": [
+  "buffer clear",
+  "new channel",
+  "previous buffer unavailable"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-065",
+   "tc_title": "Tuning a new channel clears the previous channel buffer",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "Upon tuning to a new Channel, the HU shall clear the previous channel's buffer and begin filling the buffer with content from the newly tuned channel. The previous channel's buffer is no longer available",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU has been tuned to channel A long enough to accumulate identifiable buffered content",
+   "input_test_data": "Channel A: the channel tuned at the start of the test\nChannel B: a second receivable Satellite Audio channel",
+   "test_procedure": "1. Rewind on channel A and note the buffered content\n2. Return to real-time and tune the HU to channel B\n3. Attempt to rewind immediately after tuning to channel B\n4. Stay on channel B for a period, then rewind again and read the content played",
+   "expected_result": "1. Buffered content from channel A is played back and identified\n2. The HU is tuned to channel B\n3. No content from channel A is retrievable\n4. The content played back is channel B material broadcast after the tuning, which places the buffer refill on the newly tuned channel",
+   "specification_reference": "CFTS024-4872845",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

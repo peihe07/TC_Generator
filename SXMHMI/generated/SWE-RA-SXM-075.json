@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-075",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：緩衝區到達容量上限時，HU 自動解除暫停並從暫停點開始播放。關鍵情境條件：暫停持續到容量上限這個時點。為什麼這樣切：驗證對象是容量上限這個邊界上的狀態轉換，設計方法採邊界值分析；一條 TC 覆蓋單一觸發的兩個必然結果——狀態由 Paused 轉為 Play、且播放起點是暫停點而非即時廣播，依 §5.7 併為多條 ER。只驗「開始播放」而不驗「從暫停點開始」，無法區分本條與「跳回即時廣播」的實作（§7）。依 §8.2.1 與兄弟 leaf 劃界：一分鐘前的預告彈窗由 074 覆蓋、暫停期間的汰換由 072 覆蓋——三者同屬容量上限前後，但條文分列三條，各驗一件事。",
+ "keywords": [
+  "buffer capacity",
+  "auto unpause",
+  "resume from paused point"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-075",
+   "tc_title": "Reaching buffer capacity unpauses and plays from the paused point",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "Upon reaching the capacity of the buffer, the HU shall then Unpause and resume Play from the Paused point",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer is empty at the start of the test\n5. Playback is placed in the Paused state and left there",
+   "input_test_data": "Reference point A: the content at the moment Pause is requested",
+   "test_procedure": "1. Note the content being broadcast as reference point A and request Pause\n2. Leave the HU paused until the buffer reaches its capacity\n3. Read the playback state at that moment\n4. Read the content played",
+   "expected_result": "1. The HU is in the Paused state at reference point A\n2. The buffer reaches its capacity\n3. The HU leaves the Paused state and plays without a user request\n4. Playback starts from reference point A, not from the real-time broadcast",
+   "specification_reference": "CFTS024-4872856",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

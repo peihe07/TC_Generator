@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-071",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：Paused 狀態期間，音訊仍持續被存入 HU 緩衝區。關鍵情境條件：暫停一段可觀察的時間後恢復播放。為什麼這樣切：一條 TC 覆蓋單一驗證目標，其觀察方式是恢復後仍能取回暫停期間的廣播內容——若期間未儲存，恢復播放時該段內容就不存在。這與 070 的靜音是同一狀態下的兩件不同事實：靜音是輸出端、儲存是緩衝端，條文分列兩條，依 §8.2.1 各自驗證。刻意略過：緩衝滿載時的汰換由 072 覆蓋、滿載後的自動恢復由 075 覆蓋。",
+ "keywords": [
+  "Pause",
+  "buffer storage continues",
+  "paused state"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-071",
+   "tc_title": "Buffering continues while playback is paused",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "During the Paused state, audio shall continue to be stored to the HU buffer",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The channel is playing in real time",
+   "input_test_data": "Paused duration: 60 seconds, during which the broadcast content is identifiable",
+   "test_procedure": "1. Note the content being broadcast and request Pause\n2. Keep the HU paused for 60 seconds while the channel continues to broadcast\n3. Request Play\n4. Read the content played over the following minute",
+   "expected_result": "1. The HU is in the Paused state\n2. No audio is played while the channel keeps broadcasting\n3. Playback resumes from the point at which it was paused\n4. The content broadcast during the 60 second pause is played back in order, which places it in the buffer rather than lost",
+   "specification_reference": "CFTS024-4872852",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -82,8 +82,15 @@ def load_batches(md: Path) -> dict:
         if len(req_ids) != int(count):
             raise ContextError(
                 f"{name}: table says {count} leaves but lists {len(req_ids)}")
+        # The table's first cell is `B1 (pilot) — Instant Replay`: a batch
+        # label AND its Test Set. Column H takes the Test Set only — writing
+        # the batch label there would ship "B1 (pilot) — …" to the customer.
+        # Batches ≠ Test Sets (framework Part IV): B1/B2 are both Instant
+        # Replay, B8/B9 are both Browse.
+        test_set = name.split("—")[-1].strip() if "—" in name else name
         batches[name] = {
-            "test_set": name, "req_ids": req_ids,
+            "batch_label": name,
+            "test_set": test_set, "req_ids": req_ids,
             "declared_sections": [s.strip() for s in re.split(r"[,;]", secs)
                                   if s.strip()],
             "context_note": note.strip(),
@@ -372,7 +379,9 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
     # hand a batch the siblings of a document it is not testing.
     in_batch = set(batch["req_ids"])
     siblings = [{"req_id": rid, "doc": e["doc"], "section": e["section"],
-                 "requirement_text": e["title"]}
+                 "requirement_text": e["title"],
+                 "not_a_target": "reference only — this leaf belongs to "
+                                 "another batch; do NOT generate a TC for it"}
                 for rid, e in stla_map.items()
                 if (e["doc"], e["section"]) in needed and rid not in in_batch]
 
@@ -406,11 +415,18 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
 
     return {
         "feature": cfg["feature"],
-        "batch": batch["test_set"],
+        "batch": batch.get("batch_label", batch["test_set"]),
+        "test_set": batch["test_set"],
         "spec_mode": cfg["spec_mode"],
         "leaves": leaves,
         "spec_sections": spec,
         "siblings": siblings,
+        "siblings_note": (
+            "Siblings are the OTHER leaves that share a section with this "
+            "batch — they exist to make the split axis visible (§8.3) and to "
+            "show what a neighbouring leaf already owns, so this batch does "
+            "not absorb it (§8.2.1). They are NOT generation targets: this "
+            "batch produces test cases for the `leaves` list only."),
         "spec_tables": spec_tables or {},
         "unallocated_clauses": unallocated,
         "absorption_test": (
@@ -427,19 +443,30 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
         "exemplar_basis": exemplars.get("basis"),
         "column_conventions": {
             "test_group": {"value": cfg["test_group"],
-                           "note": "R7-Q1 — new rows write this; the legacy "
-                                   "region's 'Radio' is frozen, not a model"},
+                           "note": "framework Part IV Layer 1 — every generated "
+                                   "row carries this; the workbook is BLANK, so "
+                                   "there is no local precedent to match"},
             "test_set": {"value": batch["test_set"],
-                         "note": "R7-Q2 — capability scheme from framework "
-                                 "Part III; the legacy FM/AM/USB band scheme "
-                                 "is NOT adopted"},
+                         "note": "framework Part IV Layer 2 — the capability "
+                                 "name, NOT the batch label. Batches are a "
+                                 "generation unit; B1 and B2 are both Instant "
+                                 "Replay. Layer 3 (CFTS024 section numbers) is "
+                                 "framework-internal and never written."},
             "author": {"value": cfg["write_back"]["author_value"],
-                       "note": "R3 — rows generated here; rows quoted wholly "
-                               "from another author keep that author"},
+                       "note": "every row is generated here — BLANK workbook, "
+                               "no other author to preserve"},
             "tc_ref_id": {"value": cfg["write_back"]["tc_ref_id_value"]},
             "spec_reference": {
                 "template": cfg["spec_reference_template"],
-                "note": "R7-Q3 — {doc} comes from the STLA map, never guessed"},
+                "note": "profile §3.5 — the id comes from data/stla_to_cfts.json "
+                        "(HYBRID: ReqIF clause, docx printed section), never "
+                        "guessed. Cite-form second tokens per R11 where the "
+                        "leaf's cross_references say so."},
+            "estimated_test_time": {
+                "value": None,
+                "note": "column Q, revision C only — LEFT BLANK. Not a "
+                        "convention: no fill policy is ruled (A-SX05), and "
+                        "estimating without a source is fabrication."},
         },
         "context_note": batch["context_note"],
         "anomalies": batch["anomalies"],

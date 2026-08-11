@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-091",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：在即時廣播狀態下嘗試快轉時，HU 發出兩聲連續嗶聲的警告，且音訊維持在目前頻道。關鍵情境條件：播放位置已在即時廣播——即沒有可前進的緩衝內容。為什麼這樣切：這是快轉功能的否定面，其觸發狀態（已在即時廣播）與 088/089 的正常快轉不同，依 §5.2 不可在同一程序內分支，自成一條 TC，設計方法採負向測試。嗶聲數量是與 089 的判別點（兩聲 vs 一聲），ER 因此寫明數量；只驗「有警告聲」不足以區分兩者。刻意略過：條文未定義連續嘗試多次時警告是否重複，未生成。",
+ "keywords": [
+  "Fast Forward",
+  "real-time",
+  "two beeps",
+  "warning signal"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-091",
+   "tc_title": "Fast forward at real time warns with two beeps and holds",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "If Fast Forward attempted in real-time, the warning signal, 2 consecutive beeps, shall sound, and the audio shall remain on current channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Playback is at the real-time broadcast, with no buffered content ahead of it",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the playback position and the channel being played\n2. Request Fast Forward\n3. Read the audio output at the moment of the request\n4. Read the channel and the playback position after the request",
+   "expected_result": "1. Playback is at the real-time broadcast on the tuned channel\n2. The fast forward request is received\n3. Two consecutive beeps are sounded as the warning signal\n4. The same channel is still played at the real-time broadcast, and the playback position has not advanced",
+   "specification_reference": "CFTS024-4872875",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-067",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：由 SAT 模式切換到其他模式後，HU 仍在背景持續儲存該 SAT 頻道的音訊。關鍵情境條件：切換到非 SAT 來源並停留一段可觀察的時間。為什麼這樣切：一條 TC 覆蓋單一觸發（模式切換）的必然結果，其驗證方式是切回 SAT 後倒轉——能取回切換期間的內容即證明背景儲存成立；設計方法採狀態轉換測試（SAT → 其他模式 → SAT）。只驗切回後仍能播放，而不驗能否取回切換期間的內容，無法區分「背景持續儲存」與「切回時重新開始」的實作（§7）。刻意略過：背景儲存的時間上限不在條文內；電源狀態對儲存的限制由 068 覆蓋。",
+ "keywords": [
+  "mode switch",
+  "background storage",
+  "SAT buffer"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-067",
+   "tc_title": "SAT audio keeps buffering while another mode is playing",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "When switching from SAT mode to another mode, HU shall continously store audio for the SAT channel in the background",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A second audio source, such as USB media, is available on the HU",
+   "input_test_data": "Time spent in the other mode: 60 seconds",
+   "test_procedure": "1. Note the Satellite Audio channel and the content being broadcast\n2. Switch the Cabin Output Channel to the other audio source and stay there for 60 seconds\n3. Switch back to the Satellite Audio source\n4. Rewind by the period spent in the other mode and read the audio played",
+   "expected_result": "1. The Satellite Audio channel is playing and its content is identified\n2. The other source is playing on the Cabin Output Channel\n3. The Satellite Audio source is playing again\n4. The content broadcast while the other mode was playing is retrievable from the buffer, which places the storage as continuous across the mode switch",
+   "specification_reference": "CFTS024-4872847",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

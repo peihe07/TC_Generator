@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-063",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：Instant Replay 的緩衝區以先進先出方式運作——聽眾停留在同一頻道時，最舊的內容被清除、由最新內容取代，且緩衝區內的內容可供倒轉與快轉存取。關鍵情境條件：緩衝區已填滿至容量上限——未達容量時 FIFO 的汰除行為不可觀察。為什麼這樣切：一條 TC 覆蓋單一驗證目標（緩衝區的汰換規則），依 §5.7 不拆分；本 leaf 是 §1.5.10 的能力總述，具體的暫停、倒轉、快轉行為分別由兄弟 leaf 069-075、082-086（B2）、087-092 覆蓋，依 §8.2.1 不在此重複驗證。刻意略過：條文末句「內容僅能由接收機本身存取（不可轉移）」描述的是儲存媒介的性質，非 HMI 可觀察行為，無法由本 workbook 驗證，記為覆蓋缺口。",
+ "keywords": [
+  "Instant Replay",
+  "buffer",
+  "FIFO",
+  "oldest material erased"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-063",
+   "tc_title": "Buffer replaces the oldest content once it is full",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "Instant Replay allows the user to pause the audio programming and resume playing where they left off on the currently tuned channel. The oldest material gets erased and is replaced with the newest material as the listener stays on the same channel, following a simple First In First Out (FIFO) rule",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU has stayed on the tuned channel long enough for the buffer to reach its capacity",
+   "input_test_data": "Buffer capacity: the maximum retention the HU provides on one channel\nReference point A: the oldest content still retrievable when the buffer first reaches capacity",
+   "test_procedure": "1. Rewind to the oldest retrievable point in the buffer and note the content at reference point A\n2. Return to real-time broadcast and stay on the same channel for a further period\n3. Rewind again to the oldest retrievable point\n4. Compare the oldest retrievable content with reference point A",
+   "expected_result": "1. The buffer plays from its oldest retained point and reference point A is identified\n2. The channel stays tuned and new broadcast content continues to be retained\n3. The buffer plays from its oldest retained point again\n4. Reference point A is no longer retrievable and the oldest retained content is newer than it, which places the replacement on a first in first out order",
+   "specification_reference": "CFTS024-4872843",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

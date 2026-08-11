@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-066",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：當任一功能觸發 HU 調諧到另一個頻道時，HU 在調諧後立即開始播放音訊——即使前一頻道處於暫停狀態。關鍵情境條件：調諧由功能觸發而非使用者手動；調諧發生時前一頻道正處於 Paused。為什麼這樣切：本 leaf 的驗證對象是「暫停狀態不會延續到自動調諧之後」，其觸發狀態（暫停中 + 功能觸發調諧）與一般調諧不同，依 §5.2 不可在同一程序內分支，自成一條 TC；設計方法採狀態轉換測試。刻意略過：哪些功能會觸發調諧（如警報、頻道跳轉）由各自的 leaf 規範，本條只驗調諧發生後的播放狀態，程序以其中一種可控觸發代表。",
+ "keywords": [
+  "auto tune",
+  "paused state",
+  "immediate playback"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-066",
+   "tc_title": "Automatic tuning starts playback even from a paused state",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "If any feature triggers the HU to tune to another channel, the HU start playing audio immediately upon tuning, even if the previous channel was Paused",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Playback on the tuned channel is in the Paused state\n5. A feature able to tune the HU to another channel is available and armed",
+   "input_test_data": "Trigger: a feature-initiated tune to another Satellite Audio channel, not a manual channel change",
+   "test_procedure": "1. Read the playback state and the audio output before the trigger\n2. Let the feature trigger a tune to the other channel\n3. Read the audio output immediately after the tuning completes\n4. Read the playback state",
+   "expected_result": "1. The HU is in the Paused state and no audio is played\n2. The HU is tuned to the channel the feature selected\n3. Audio is played immediately, without a user action to resume it\n4. The HU is in the Play state, which leaves no Paused state carried over from the previous channel",
+   "specification_reference": "CFTS024-4872846",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

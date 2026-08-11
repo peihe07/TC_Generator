@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-064",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：HU 一調諧到衛星音訊頻道就立即開始把音訊存入緩衝區，且不需任何使用者操作。關鍵情境條件：調諧完成的時點；使用者不進行任何操作。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分；驗證方式是調諧後靜置一段時間再倒轉——能倒轉即證明期間確實在儲存。「不需使用者操作」以「全程不操作任何控制」的程序條件表達，而非另立 TC。刻意略過：緩衝區容量與汰換規則由 063 覆蓋；跨模式的背景儲存由 067 覆蓋。",
+ "keywords": [
+  "buffer",
+  "automatic storage",
+  "no user interaction",
+  "tuning"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-064",
+   "tc_title": "Buffering starts on tuning without any user action",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "As soon as the HU is tuned to a Satellite Audio channel, the HU shall begin to store the audio in the buffer without any user interaction",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a channel other than the one under test",
+   "input_test_data": "Idle period after tuning: 60 seconds with no user operation",
+   "test_procedure": "1. Tune the HU to the channel under test and start a stopwatch\n2. Leave the HU untouched for 60 seconds, operating no control\n3. Rewind the playback\n4. Read the audio played from the buffer",
+   "expected_result": "1. The HU is tuned to the channel under test\n2. No control is operated during the 60 second period\n3. The playback moves back into the buffer\n4. The audio broadcast during the idle period is played back, which places the start of buffering at the moment of tuning rather than at a user action",
+   "specification_reference": "CFTS024-4872844",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

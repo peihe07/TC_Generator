@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-072",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：暫停期間緩衝區達到容量上限時，HU 清除較舊的內容並存入新內容。關鍵情境條件：暫停持續到緩衝區滿載——未達容量時汰換行為不可觀察。為什麼這樣切：驗證對象是容量上限這個邊界上的行為，設計方法採邊界值分析；一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。與 063 的差別：063 驗的是播放狀態下停留同一頻道的 FIFO，本 leaf 驗的是**暫停狀態下**同一規則仍然適用，條文分列兩條。刻意略過：滿載後的自動恢復播放由 075 覆蓋——本 leaf 只驗汰換，兩者是同一時點的不同結果，條文亦分列。",
+ "keywords": [
+  "Pause",
+  "buffer capacity",
+  "erase past content",
+  "FIFO"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-072",
+   "tc_title": "Paused buffer discards the oldest content at capacity",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "While the HU stores content when in the paused mode, the HU shall erase past content and store new content as the buffer reaches its capacity",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The channel is playing in real time\n5. The buffer is empty at the start of the test",
+   "input_test_data": "Buffer capacity: the maximum retention the HU provides on one channel\nReference point A: the content at the moment Pause is requested",
+   "test_procedure": "1. Note the content being broadcast as reference point A and request Pause\n2. Keep the HU paused until the buffer reaches its capacity\n3. Request Play and read the content played first\n4. Attempt to rewind further back than the content played in step 3",
+   "expected_result": "1. The HU is in the Paused state at reference point A\n2. The buffer reaches its capacity while the channel keeps broadcasting\n3. The content played first is newer than reference point A, which places the oldest content as erased\n4. No content older than the content played in step 3 is retrievable",
+   "specification_reference": "CFTS024-4872853",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

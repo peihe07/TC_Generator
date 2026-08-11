@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-069",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：HU 允許目前頻道的播放被暫時暫停。關鍵情境條件：處於播放中的衛星音訊頻道。為什麼這樣切：本 leaf 的驗證對象是暫停這個動作可用且生效（播放停止且可恢復），一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。依 §8.2.1 與兄弟 leaf 劃界：暫停期間的靜音由 070 覆蓋、期間持續儲存由 071 覆蓋、緩衝滿載的處理由 072/075 覆蓋、期間其他功能的可用性由 073 覆蓋——本 leaf 只驗暫停與恢復本身。",
+ "keywords": [
+  "Pause",
+  "temporarily paused",
+  "playback"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-069",
+   "tc_title": "Playback pauses and resumes from the paused point",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "The HU shall allow for the playback of the current channel to be temporarily Paused",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The channel is playing in real time",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the content being played\n2. Request Pause\n3. Read the playback state\n4. Request Play and read the content played",
+   "expected_result": "1. The channel is playing in real time\n2. The Pause request is accepted\n3. Playback is stopped and the HU is in the Paused state\n4. Playback resumes from the point at which it was paused, not from real time",
+   "specification_reference": "CFTS024-4872850",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

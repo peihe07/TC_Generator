@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-088",
+ "batch": "B1 (pilot) — Instant Replay",
+ "reasoning": "驗證目標：由緩衝區播放時，HU 提供前進音訊內容的方法（Fast Forward）。關鍵情境條件：播放位置在緩衝區內而非即時廣播——條文以「playing from the buffer」為前提。為什麼這樣切：本 leaf 的驗證對象是該方法存在且生效（播放位置前移），一條 TC 覆蓋單一觸發的必然結果。依 §8.2.1 與兄弟 leaf 劃界：前進的速率階梯由 090 覆蓋、到達即時廣播的結束行為由 089 覆蓋、即時廣播下嘗試前進的拒絕行為由 091 覆蓋、期間的靜音與功能暫停由 092 覆蓋——本 leaf 只驗方法本身。",
+ "keywords": [
+  "Fast Forward",
+  "playing from buffer",
+  "advance"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-088",
+   "tc_title": "Fast forward advances playback while playing from the buffer",
+   "test_group": "SXM",
+   "test_set": "Instant Replay",
+   "test_item": "When playing from the buffer, the HU shall provide a method to advance in audio content (Fast Forward)",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds several minutes of content\n5. Playback is positioned inside the buffer, behind the real-time broadcast",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the playback position relative to the real-time broadcast\n2. Request Fast Forward and hold it briefly\n3. Release the Fast Forward request\n4. Read the playback position relative to the real-time broadcast",
+   "expected_result": "1. The playback position is behind the real-time broadcast\n2. The fast forward request is accepted and the playback position advances\n3. The advance stops when the request ends\n4. The playback position is closer to the real-time broadcast than it was in step 1",
+   "specification_reference": "CFTS024-4872872",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
