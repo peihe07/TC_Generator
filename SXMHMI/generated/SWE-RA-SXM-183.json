@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-183",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：360L 效能需求的用意——不出現條款自身列舉的七類異常。為什麼這樣切：本條款無 shall、是意圖陳述，其可判準形式只能是「條款自己列出的清單」作為觀察項；故 ER 逐項對應該七類異常，並綁定一組固定的操作序列使觀察可重複。逐項的細節分屬 188–202 各自的條款，本 leaf 取整體不出現異常這一面（§8.2.1）。門檻與判定主觀性見 A-SX25。",
+ "keywords": [
+  "360L performance",
+  "anomalies",
+  "user experience"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-183",
+   "tc_title": "No listed anomaly appears across the 360L exercise set",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The intent of the SXM 360L performance requirements is a consistent and pleasant user experience without anomalies such as abnormal transition delays, screen flashes, black and blank screens, haptic input response delays, misaligned or improperly sized graphics and text, inconsistent background images, non-harmonized theme implementation and avoidable gaps in audio",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The 360L exercise set is defined and fixed for this test: enter 360L, browse the channel list, open For You, start an On Demand episode, return to live, change channel twice, open Settings and exit 360L\n5. The session is recorded so that the display and audio can be reviewed frame by frame",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out the defined 360L exercise set once and record display and audio throughout\n2. Review the recording for abnormal transition delays, screen flashes, and black or blank screens\n3. Review the recording for haptic input response delays and for misaligned or improperly sized graphics and text\n4. Review the recording for inconsistent background images, non-harmonized theme implementation and gaps in audio",
+   "expected_result": "1. The exercise set completes and the recording covers it from entry to exit\n2. No abnormal transition delay, screen flash, black screen or blank screen is present\n3. No haptic input response delay is present and no graphic or text is misaligned or improperly sized\n4. No background image is inconsistent, no theme element is unharmonized and no gap in audio is present",
+   "specification_reference": "CFTS024-4873309",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

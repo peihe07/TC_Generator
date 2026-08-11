@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-149",
  "batch": "B10 — List Navigation",
- "reasoning": "驗證目標：顯示 Genre List 且選取項目進行 Genre Scan 時，進入 Genre Scan 狀態；且該掃描只以符合所選 Genre 的電台為有效對象。為什麼這樣切：與 148 同型，本 leaf 條款只述進入狀態，同節未配置的 4872955 才是行為定義，且兩者於同一次操作內連續可觀察，依 R10-2 吸收（標記 [A-SX08]）。ER 只斷言其例外規則；「與 Scan 相同」的基礎行為屬 CFTS024-177，依 R11 引用錨定。與 148 的差別：一為 Seek、一為 Scan，條款與被引基礎行為皆不同（§8.2.1）。[A-SX03]。同 148，依必要性門檻判定：4872955 的基礎行為只以引用陳述，故 CFTS024-177 隨吸收進入並受完整 R11 待遇，ER 以 `as defined by` 錨定借得的窮盡性，不驗 Scan 自身的規則面。",
+ "reasoning": "驗證目標：顯示 Genre List 且選取項目進行 Genre Scan 時，進入 Genre Scan 狀態；且該掃描只以符合所選 Genre 的電台為有效對象。為什麼這樣切：與 148 同型，本 leaf 條款只述進入狀態，同節未配置的 4872955 才是行為定義，且兩者於同一次操作內連續可觀察，依 R10-2 吸收（標記 [A-SX08]）。ER 只斷言其例外規則；「與 Scan 相同」的基礎行為屬 CFTS024-177，依 R11 引用錨定。與 148 的差別：一為 Seek、一為 Scan，條款與被引基礎行為皆不同（§8.2.1）。[A-SX03]。同 148，依必要性門檻判定：4872955 的基礎行為只以引用陳述，故 CFTS024-177 隨吸收進入並受完整 R11 待遇，ER 以 `as defined by` 錨定借得的窮盡性，不驗 Scan 自身的規則面。前置條件補列「所選 Genre 內無頻道在跳過清單中」：被跳過的頻道不可被選取（168／169），故本 TC 的「涵蓋該 Genre 每一台」斷言僅在該 Genre 無跳過設定時成立（A-SX23 掃描）。",
  "keywords": [
   "Genre List",
   "Genre Scan",
@@ -22,7 +22,7 @@
    "test_group": "SXM",
    "test_set": "List Navigation",
    "test_item": "While the HU is displaying a Genre List and an item is selected for a Genre Scan, the HU shall enter the Genre Scan state, in which only stations matching the selected Genre are considered valid",
-   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A Genre List is displayed and the receivable channels of each genre are known\n5. At least two genres are represented among the receivable channels and at least two channels belong to the genre to be selected",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A Genre List is displayed and the receivable channels of each genre are known\n5. At least two genres are represented among the receivable channels and at least two channels belong to the genre to be selected\n6. No channel of the selected genre is on the skipped channel list",
    "input_test_data": "NA",
    "test_procedure": "1. Select an item for a Genre Scan and read the HU state\n2. Let the scan run and record each station the HU presents\n3. Continue until the scan has returned to the first station it presented\n4. Compare the recorded stations against the receivable channels of the selected genre",
    "expected_result": "1. The HU is in the Genre Scan state\n2. Each station the HU presents is recorded\n3. The scan has presented every receivable channel of the selected genre, as defined by CFTS024-177\n4. Every station the scan presented belongs to the selected genre, and no station outside that genre was presented",

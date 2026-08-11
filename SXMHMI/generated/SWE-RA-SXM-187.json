@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-187",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：T<OD Response> 時間到期後，360L 元件依 HMI 所示通知使用者發生緩衝事件。為什麼這樣切：本條款只寫「T<OD Response> 到期後」而未給該值，單獨看無通過準則——同節未配置的 4873322 正是該值（2 秒）。依 R10-2 吸收：(a) 同節成立，(b) 同一次緩衝事件即可同時觀察通知與其時點，不需另建情境。吸收後取邊界兩側各一次觀察——1 秒時尚未通知、2 秒後已通知。標記 [A-SX08]。通知的樣式依條款自身指示屬 HMI，ER 只斷言其出現（§8.4.2）。",
+ "keywords": [
+  "buffering event",
+  "T<OD Response>",
+  "notify"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [
+  "[A-SX08] Absorbed CFTS024-4873322 (same section 1.5.21.2.3) into this leaf. 4873324 requires notification after T<OD Response> expires and never states that value; 4873322 is the value, 2 seconds. Without it the clause has no pass criterion and any delay would satisfy it. One buffering event shows both the notification and its timing, so R10-2 condition (b) holds, and the ER reads both sides of the 2 second boundary."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-187",
+   "tc_title": "Buffering is notified after the two second T<OD Response> expires",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The 360L component shall notify the user of a buffering event after T<OD Response> time expires, T<OD Response> being 2 seconds",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. An On Demand selection is available that buffers for longer than 3 seconds\n5. No buffering notification is displayed at the start of the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Start the On Demand selection that buffers\n2. Read the HU screen 1 second after the selection\n3. Read the HU screen 3 seconds after the selection\n4. Wait until buffering completes and read the HU screen",
+   "expected_result": "1. The selection is accepted and the content is buffering\n2. No buffering notification is displayed\n3. A buffering notification is displayed\n4. The buffering notification is no longer displayed and the content plays",
+   "specification_reference": "CFTS024-4873324; CFTS024-4873322",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

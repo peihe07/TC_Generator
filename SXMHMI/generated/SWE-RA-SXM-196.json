@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-196",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：畫面轉換須為直接切換，其間不得顯示任何中間或未完成繪製的畫面。為什麼這樣切：本條款是缺陷不存在型的全稱否定句（shall not／only），其判準只能以固定且可重複的操作組加逐格檢視構成，否則「沒看到」與「沒發生」無從分辨；故前置條件釘住 360L 操作組並要求錄影。條款未給觀察時長或取樣率，已登錄 A-SX25（§8.4.1）。",
+ "keywords": [
+  "360L display",
+  "no defect",
+  "observation"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-196",
+   "tc_title": "Screen transitions show no intermediate or partial screen",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "Screen transitions shall be direct without display of any intermediate or partially rendered screens",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The 360L exercise set is defined and fixed for this test: enter 360L, browse the channel list, open For You, start an On Demand episode, return to live, change channel twice, open Settings and exit 360L\n5. The session is recorded so that the display can be reviewed frame by frame",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out the defined 360L exercise set once and record the display throughout\n2. Review the recording of every screen transition in the exercise set, frame by frame, for any intermediate or partially rendered screen\n3. Carry out the defined 360L exercise set a second time and record the display throughout\n4. Review the recording of every screen transition in the exercise set, frame by frame, for any intermediate or partially rendered screen",
+   "expected_result": "1. The exercise set completes and every screen transition in it is recorded\n2. Each transition goes directly from the outgoing screen to the fully drawn incoming screen, with no intermediate or partially rendered screen in between\n3. The exercise set completes and every screen transition in it is recorded\n4. Each transition goes directly from the outgoing screen to the fully drawn incoming screen, with no intermediate or partially rendered screen in between",
+   "specification_reference": "CFTS024-4873335",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-194",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：360L 運作期間任何時點皆不得出現全黑或空白畫面。條款以 at any time 強調涵蓋轉換瞬間，故逐格檢視而非僅看穩態畫面。為什麼這樣切：本條款是缺陷不存在型的全稱否定句（shall not／only），其判準只能以固定且可重複的操作組加逐格檢視構成，否則「沒看到」與「沒發生」無從分辨；故前置條件釘住 360L 操作組並要求錄影。條款未給觀察時長或取樣率，已登錄 A-SX25（§8.4.1）。",
+ "keywords": [
+  "360L display",
+  "no defect",
+  "observation"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-194",
+   "tc_title": "No black or blank screen appears during 360L operation",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The display screen shall not show black or blank screens at any time during 360L operation",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The 360L exercise set is defined and fixed for this test: enter 360L, browse the channel list, open For You, start an On Demand episode, return to live, change channel twice, open Settings and exit 360L\n5. The session is recorded so that the display can be reviewed frame by frame",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out the defined 360L exercise set once and record the display throughout\n2. Review the recording frame by frame for any black or blank screen\n3. Carry out the defined 360L exercise set a second time and record the display throughout\n4. Review the recording frame by frame for any black or blank screen",
+   "expected_result": "1. The exercise set completes and the recording covers it from entry to exit\n2. No black screen and no blank screen is present in any frame\n3. The exercise set completes and the recording covers it from entry to exit\n4. No black screen and no blank screen is present in any frame",
+   "specification_reference": "CFTS024-4873333",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

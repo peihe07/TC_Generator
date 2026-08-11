@@ -909,3 +909,78 @@ produced a leaf, and therefore a workbook row that verifies almost nothing.
 **For RD-1:** should `4873290` be withdrawn as a note, with leaf 177's coverage
 carried by leaf 176 (`4873289`, the no-subscription message and its contents)?
 The two are adjacent and 176 is the substantive one.
+
+
+## [A-SX25] §1.5.21.2 states 18 requirements with no acceptance criterion — REGISTERED (2026-08-11)
+
+The Performance section is qualitatively different from the rest of CFTS024.
+Of its 20 leaves, **18 state a property with no threshold, tolerance or
+measurement method**, and only two carry a number.
+
+| shape | leaves | what is missing |
+|---|---|---|
+| "without user-perceivable delay" | 188, 189, 190, 191 | no time threshold; "perceivable" is left to the observer |
+| defect-absence over an unbounded window ("shall not flicker", "shall not freeze", "no black screens at any time", "only fully rendered") | 192, 193, 194, 195, 196 | no observation duration, no sampling rate, no operation set |
+| "proper" / "consistent" / "harmonized" relative to other HMI elements | 199, 200, 201, 202 | no tolerance in pixels, ratio or colour distance; no list of theme elements |
+| intent prose and design statements | 183, 185, 186 | 183 has no `shall`; 186's modal is `should`; 185 quantifies over "any radio function" |
+| **has a number** | **197, 198** | — variance not greater than 500 ms, stated in the clause's own NOTE |
+
+**What was done rather than what would have been easy.** No threshold was
+invented. Writing "the transition completes within 200 ms" would have produced
+tidy, objective-looking rows and would have put an unratified acceptance
+criterion into the delivered workbook, where a supplier would be held to it.
+
+Instead each TC fixes what *can* be fixed and leaves the judgement visible:
+
+- a **defined 360L exercise set** is written into the pre-conditions of every
+  qualitative test, identically worded, so two testers exercise the same thing;
+- defect-absence tests require a **recording reviewed frame by frame**, which
+  separates "no defect occurred" from "nobody was watching at that moment";
+- delay tests are **repeated five times and compared against each other**, so
+  "perceivable" has an internal reference instead of resting on one impression;
+- the relative-appearance tests (199–202) capture screens holding both
+  360L-drawn and non-360L-drawn elements **in the same frame**, because the
+  clauses define the property relatively and a 360L-only screenshot cannot
+  decide it;
+- 197 and 198, the two that have a number, are measured and subtracted.
+
+**These rows are honest but weak, and they are weak because the requirements
+are.** A tester can execute all 18 and a defect can still ship, because the
+clauses do not say what failure is.
+
+**For RD-1 — the single highest-value question in this delivery.** Ask for
+acceptance criteria on §1.5.21.2:
+1. What time bounds the four "user-perceivable delay" clauses (188–191)? A
+   number in the clause would make four rows objective at a stroke.
+2. Over what duration and operation set are 192–196 to be observed? Absence
+   claims need a window.
+3. What tolerance applies to "proper", "consistent" and "harmonized"
+   (199–202), and what is the list of theme elements for 202?
+4. Is 186 (`should` be parameterized) a verifiable requirement at all, or a
+   design note? It has no pass criterion of its own and its subject is
+   implementation structure, not observable behaviour.
+
+Without answers, §1.5.21.2's 18 rows are the weakest evidence in the workbook
+and should be flagged as such at delivery rather than presented as equivalent
+to the functional rows.
+
+## [A-SX23 addendum] Completeness-ER sweep run across the whole corpus — CLOSED (2026-08-11)
+
+B13 found that leaf 106's "every available station appears" assertion is true
+only when nothing is skipped, and argued for a sweep before delivery. The sweep
+was run over all 202 leaf files, matching completeness-style ER phrasing.
+
+Seven TCs assert enumeration over a set. Three already carried a
+skipped-channel pre-condition (106 after the B13 fix, 171 and 172, whose
+subject is the skip list itself). Two more needed it and got it:
+
+- **148, 149** — the Genre Seek and Genre Scan tests assert the sweep reaches
+  every receivable channel of the selected genre. A skipped channel cannot be
+  selected at all, so a skip inside the genre would break the assertion. A
+  pre-condition excluding skips from the selected genre was added to both.
+
+Two need nothing: **121 and 153** enumerate *cities* with traffic data, and the
+skip list holds channels, so no interaction exists.
+
+Sweep closed — no completeness assertion in the corpus is now defeatable by the
+skip feature.

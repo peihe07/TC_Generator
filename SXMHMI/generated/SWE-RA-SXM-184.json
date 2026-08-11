@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-184",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：開機時在 SXM 元件送出更新狀態之前，沿用上一次已知的 listener profile、presets 與訂閱資訊。為什麼這樣切：判準是「沿用」而非「空白或預設值」，故前置條件要求關機前的三項值皆為可辨識的非預設值，並在開機後、元件更新前讀取；ER 以三項各自與關機前一致表述（§8.4.1）。第二段讀取用以確認更新到達後值確實被取代，排除「永遠只顯示舊值」的實作。",
+ "keywords": [
+  "boot-up",
+  "last known value",
+  "listener profile",
+  "presets"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-184",
+   "tc_title": "Boot-up shows the last known profile, presets and subscription state",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "At Boot-up, the HU shall use the last known value for listener profile, presets and subscription information until the SXM component provides an updated state",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. A listener profile, a set of presets and a subscription state are in use and all three differ from the delivered defaults, and all three are recorded\n5. The SXM component's update after boot can be delayed and then allowed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Power the HU off and on with the SXM component's update held off\n2. Read the listener profile, the presets and the subscription information shown\n3. Allow the SXM component to provide its updated state\n4. Read the listener profile, the presets and the subscription information shown",
+   "expected_result": "1. The HU has restarted and the SXM component has not yet provided an updated state\n2. The listener profile, presets and subscription information are those recorded before the power off, and none of them is a delivered default\n3. The SXM component has provided an updated state\n4. The values shown are those the SXM component provided",
+   "specification_reference": "CFTS024-4873310",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

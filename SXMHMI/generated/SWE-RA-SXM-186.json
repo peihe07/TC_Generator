@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-186",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：T<OD Response> 的值以參數形式提供，可修改而不需重寫程式邏輯。為什麼這樣切：本條款的助動詞是 should 而非 shall，且其主題是實作的可修改性而非收音機的可觀察行為，本身不帶通過準則（同 045 對 may 的處理）。可判準的最大範圍是：該值確實存在為一個具名參數、修改後行為隨之改變——後者以 187 所驗的緩衝通知時點作為可觀察量。ER 因此以「改值後通知時點隨之改變」表述，不宣稱程式碼結構（§8.4.1）。A-SX25。",
+ "keywords": [
+  "T<OD Response>",
+  "parameterized",
+  "modifiable"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-186",
+   "tc_title": "Changing the T<OD Response> parameter changes when buffering is notified",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "Because the value of T<OD Response> is subject to tuning, the value of T<OD Response> should be parameterized to make it readily modifiable",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. T<OD Response> is at its specified value of 2 seconds\n5. The T<OD Response> parameter can be read and set by the tester without changing any other software\n6. An On Demand selection can be made to buffer for longer than the values used in this test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the T<OD Response> parameter\n2. Start an On Demand selection that buffers, and record how long after the selection the buffering notification appears\n3. Set the T<OD Response> parameter to a different value and read it back\n4. Start the same On Demand selection again and record how long after the selection the buffering notification appears",
+   "expected_result": "1. T<OD Response> is readable as a named parameter and its value is 2 seconds\n2. The buffering notification appears 2 seconds after the selection\n3. The parameter holds the new value, no other software having been changed\n4. The buffering notification appears after the new value, not after 2 seconds",
+   "specification_reference": "CFTS024-4873323",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

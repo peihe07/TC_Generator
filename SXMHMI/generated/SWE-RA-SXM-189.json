@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-189",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：在使用者主動離開 360L 功能時，系統無使用者可感知的延遲即完成轉換。為什麼這樣切：條款未給任何時間門檻（無數值、無「不大於」句），故 ER 不得自行編造秒數——編一個數字等於把未裁的驗收標準寫進交付物。可判準的替代形式是：以固定的 360L 操作組逐項觀察，並要求轉換在同一次使用者動作內完成、其間不出現中間畫面或空白畫面。門檻缺口已登錄 A-SX25 並入 RD-1（§8.4.1）。與 188 的差別：該 leaf 為進入方向，本 leaf 為離開方向，條款分列（§8.2.1）。",
+ "keywords": [
+  "360L",
+  "transition",
+  "no perceivable delay"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-189",
+   "tc_title": "Exiting 360L transitions without a perceivable delay",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "Upon user-initiated action to exit the 360L function, the system shall transition out of the 360L function without user-perceivable delay",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The 360L exercise set is defined and fixed for this test: enter 360L, browse the channel list, open For You, start an On Demand episode, return to live, change channel twice, open Settings and exit 360L\n5. The HU is inside the 360L function at the start of each repetition\n6. The session is recorded so that the display and audio can be reviewed frame by frame",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out the action that exits the 360L function and record the display from the moment of the action\n2. Review the recording from the action to the first fully drawn screen outside 360L\n3. Repeat the exit five times and review each recording\n4. Compare the five exits",
+   "expected_result": "1. The 360L function is exited\n2. The screen outside 360L is drawn within the same user action, with no intermediate screen, blank screen or wait indication shown in between\n3. Each of the five exits shows the same behaviour\n4. No exit takes noticeably longer than the others",
+   "specification_reference": "CFTS024-4873327",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

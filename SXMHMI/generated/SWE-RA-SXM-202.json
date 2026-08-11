@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-202",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：360L HMI 的主題元素在整個 HMI 範圍內協調一致，包含非 360L 繪製的元素。為什麼這樣切：與 199–201 的差別在於判定對象——那三片各驗單一屬性（對齊、尺寸、色彩），本條款驗的是主題作為整體在跨畫面時的一致性，故判準取「同一主題元素在 360L 與非 360L 畫面間不變」，並在切換主題後重測一次，證明協調關係隨主題設定而維持、而非只是恰好相同（§8.2.1）。條款未定義主題元素的清單，已登錄 A-SX25。",
+ "keywords": [
+  "theme",
+  "harmonized",
+  "entire HMI"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-202",
+   "tc_title": "The 360L theme stays harmonized across the whole HMI and after a theme change",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The 360L HMI theme elements shall be harmonized across the entire HMI, including those elements not drawn by 360L",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. More than one HMI theme can be selected\n5. Screens are identified inside and outside the 360L function that share theme elements, and are captured at full display resolution\n6. The theme elements in force are recorded from the HMI theme definition",
+   "input_test_data": "NA",
+   "test_procedure": "1. With the first theme selected, capture the identified screens inside and outside the 360L function\n2. Compare the recorded theme elements between the 360L screens and the screens not drawn by 360L\n3. Select the second theme and capture the same screens again\n4. Compare the recorded theme elements between the 360L screens and the screens not drawn by 360L",
+   "expected_result": "1. The screens inside and outside the 360L function are captured under the first theme\n2. Each recorded theme element is the same on the 360L screens as on the screens not drawn by 360L\n3. The screens are captured under the second theme\n4. Each recorded theme element is the same on the 360L screens as on the screens not drawn by 360L, the harmonization having followed the theme change",
+   "specification_reference": "CFTS024-4873343",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

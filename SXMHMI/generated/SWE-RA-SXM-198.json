@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-198",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：除隨選內容緩衝之外，自觸控選取造成節目變更至音訊實際改變之間的經過時間，變異不大於 500 ms。為什麼這樣切：與 197 同型但量測端點不同——該 leaf 量至 HMI 回應，本 leaf 量至音訊改變，兩者可能相差甚遠且條款分列（§8.2.1）。條款明文排除 OD 緩衝情形，故前置條件排除會觸發緩衝的操作，否則量測會被緩衝時間污染而失去意義。",
+ "keywords": [
+  "audio change",
+  "consistent",
+  "500 ms variance",
+  "except OD buffering"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-198",
+   "tc_title": "Touch to audio change times vary by no more than 500 ms",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "Except for the case of On Demand buffering, the elapsed time from when the user selects an action via the touch screen causing a change in the audio program to when the audio changes shall be consistent across all user operations, consistent meaning no variance greater than 500 ms",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The audio-changing operation set is defined and fixed for this test: change channel by list selection, change channel by preset recall, change channel by direct tune, and return to live from a paused live channel\n5. None of the operations in the set causes On Demand buffering\n6. The elapsed time from touch to audio change can be measured to a resolution finer than 50 ms\n7. Each operation of the set is repeated three times",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out each operation of the defined set three times and measure the elapsed time from touch to the audio changing for each\n2. Record the shortest measured time across all operations\n3. Record the longest measured time across all operations\n4. Subtract the shortest from the longest",
+   "expected_result": "1. Every operation of the set changes the audio and its elapsed time is measured, no operation having caused On Demand buffering\n2. The shortest elapsed time is recorded\n3. The longest elapsed time is recorded\n4. The difference between the longest and the shortest is no greater than 500 ms",
+   "specification_reference": "CFTS024-4873338",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

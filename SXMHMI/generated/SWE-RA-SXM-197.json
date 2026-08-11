@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-197",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：自使用者於觸控螢幕選取動作至 HMI 回應之間的經過時間，在所有使用者操作間保持一致——條款自附的 NOTE 界定「一致」為變異不大於 500 ms。為什麼這樣切：本條款是本節唯一帶明確數值準則者，故判準取實測——對固定操作組各量測回應時間，取最大值與最小值之差與 500 ms 比較。ER 以該差值表述而非以個別絕對值表述，因條款約束的是變異而非絕對延遲（§8.4.1）。這也是 A-SX25 中唯一可客觀判定的一片。",
+ "keywords": [
+  "touch response",
+  "consistent",
+  "500 ms variance"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-197",
+   "tc_title": "Touch to HMI response times vary by no more than 500 ms",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The elapsed time from when the user selects an action via the touch screen to when the HMI responds shall be consistent across all user operations, consistent meaning no variance greater than 500 ms",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The 360L exercise set is defined and fixed for this test: enter 360L, browse the channel list, open For You, start an On Demand episode, return to live, change channel twice, open Settings and exit 360L\n5. The elapsed time from touch to HMI response can be measured to a resolution finer than 50 ms\n6. Each operation of the exercise set is repeated three times",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out each operation of the defined exercise set three times and measure the elapsed time from touch to HMI response for each\n2. Record the shortest measured time across all operations\n3. Record the longest measured time across all operations\n4. Subtract the shortest from the longest",
+   "expected_result": "1. Every operation of the set responds and its elapsed time is measured\n2. The shortest elapsed time is recorded\n3. The longest elapsed time is recorded\n4. The difference between the longest and the shortest is no greater than 500 ms",
+   "specification_reference": "CFTS024-4873337",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

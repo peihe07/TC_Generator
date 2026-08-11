@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-201",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：360L HMI 只得顯示相對於任何其他 HMI 元素在顏色、明暗與透明度上一致的前景與背景圖形與文字。與 199／200 的差別：三者分別為對齊、尺寸與色彩三個相異屬性，條款各自分列（§8.2.1）。為什麼這樣切：條款把判準綁在「相對於其他 HMI 元素，包含非 360L 繪製者」上，故判定必須是比較式而非絕對式——同一畫面內同時取 360L 繪製與非 360L 繪製的元素對照，只看 360L 自身畫面無法判定。條款未給任何容差（像素、比例、色差），已登錄 A-SX25（§8.4.1）。",
+ "keywords": [
+  "360L HMI",
+  "relative to other elements",
+  "the colour, shade and transparency"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-201",
+   "tc_title": "360L colour, shade and transparency match the elements around them",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The 360L HMI shall only display foreground and background graphics and text that is of consistent color, shade and transparency relative to any other HMI element, including those elements not drawn by 360L",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. Screens are identified on which 360L-drawn elements and elements not drawn by 360L are displayed together, including a status bar and a system-level control\n5. The 360L exercise set is defined and fixed as for the other performance tests\n6. Screens are captured at full display resolution",
+   "input_test_data": "NA",
+   "test_procedure": "1. Carry out the defined 360L exercise set and capture every screen on which 360L-drawn and non-360L-drawn elements appear together\n2. On each capture, compare the colour, shade and transparency of the 360L foreground graphics and text against the elements not drawn by 360L\n3. On each capture, compare the colour, shade and transparency of the 360L background graphics against the elements not drawn by 360L\n4. Review the captures taken during screen transitions in the same way",
+   "expected_result": "1. Every screen holding both kinds of element is captured\n2. The colour, shade and transparency are consistent with the elements not drawn by 360L for the 360L foreground graphics and text\n3. The colour, shade and transparency are consistent with the elements not drawn by 360L for the 360L background graphics\n4. The colour, shade and transparency are consistent with the elements not drawn by 360L on the transition captures as well",
+   "specification_reference": "CFTS024-4873342",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

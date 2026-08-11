@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-185",
+ "batch": "B14 — Performance",
+ "reasoning": "驗證目標：360L 元件及其衛星與 IP 串流等外部介面，不得在任何收音機功能上引發異常行為。為什麼這樣切：「任何收音機功能」是全稱句，無法窮舉，故判準退到可重複的形式——在 360L 及其介面處於活動狀態時，逐一執行本交付已涵蓋的核心收音機功能，並與 360L 停用時的同一組操作對照；只在單一情境下觀察無法分辨異常是否由 360L 引發。ER 以兩次觀察結果一致表述。",
+ "keywords": [
+  "360L component",
+  "external interfaces",
+  "no abnormal behavior"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-185",
+   "tc_title": "Radio functions behave the same with 360L and its interfaces active",
+   "test_group": "SXM",
+   "test_set": "Performance",
+   "test_item": "The 360L component, including external interfaces such as those for satellite and IP streaming operations, shall not induce abnormal behavior in any radio function",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active 360L subscription\n2. IP connectivity for 360L streaming is available\n3. The HU Satellite Audio source is selected on the Cabin Output Channel\n4. The radio function set is defined and fixed for this test: seek, direct tune, preset store and recall, browse the channel list, store and recall a favorite, and the traffic and weather jump\n5. The 360L component and its satellite and IP streaming interfaces can be made active and inactive",
+   "input_test_data": "NA",
+   "test_procedure": "1. With the 360L component inactive, carry out each radio function of the defined set and record the outcome of each\n2. Make the 360L component and its satellite and IP streaming interfaces active\n3. Carry out each radio function of the defined set again and record the outcome of each\n4. Compare the two sets of outcomes",
+   "expected_result": "1. Each radio function of the set completes and its outcome is recorded\n2. The 360L component and its interfaces are active\n3. Each radio function of the set completes\n4. Every outcome matches the outcome recorded in step 1",
+   "specification_reference": "CFTS024-4873319",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
