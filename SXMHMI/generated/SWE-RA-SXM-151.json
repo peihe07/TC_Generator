@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-151",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：SiriusXM Jump 讓使用者以最少互動調至 Traffic & Weather 頻道再回到原頻道。為什麼這樣切：本條款是能力句，依 A-SX20 常設切法驗其觸及範圍——判準是「來回」這個往返關係確實成立，且往返各只需一次操作（條款所稱 minimum amount of user interaction 的可判準形式）；157／158 則各驗該往返其中一段的所述細節。往返後的頻道須與出發頻道同一台，故前置條件記下出發頻道。",
+ "keywords": [
+  "SiriusXM Jump",
+  "round trip",
+  "previous channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-151",
+   "tc_title": "SiriusXM Jump reaches Traffic and Weather and returns in one action each way",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "SiriusXM Jump allows the user to tune to one of a number of Traffic & Weather channels and then tune back to the previous channel with the minimum amount of user interaction",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A traffic and weather channel is set for the Jump function\n5. The currently tuned channel is not a traffic and weather channel and is recorded",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Activate the Jump function once and read the tuned channel\n3. Activate the Jump function once more and read the tuned channel",
+   "expected_result": "1. The tuned channel is the recorded channel and is not a traffic and weather channel\n2. A single activation has tuned the HU to the traffic and weather channel set for Jump\n3. A single activation has returned the HU to the channel recorded in step 1",
+   "specification_reference": "CFTS024-4872958",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-157",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：按下 Traffic & Weather 鍵時，調至交通與天氣頻道並重播最新一則交通與天氣播送。為什麼這樣切：條款有兩個並存結果——調諧與重播，ER 各自對應。「re-play the latest」的可判準形式是播放自該則播送的開頭起算而非接上現場進行中的內容，否則單純調台的實作也會通過（§8.4.1）；故前置條件要求該則播送已於背景錄下且現場此刻不在播送同一則。Test Item 依 A-SX09 逐字引用上游拼寫 `taffic`，不逕行更正。[A-SX03]。",
+ "keywords": [
+  "Traffic Weather button",
+  "tune",
+  "replay latest"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-157",
+   "tc_title": "Activating Traffic and Weather tunes and replays the latest broadcast",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "When the Traffic & Weather button is activated, the HU shall tune to the taffic & weather channel and re-play the latest traffic & weather broadcast",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A traffic city ID is set and the Traffic & Weather button is highlighted\n5. The latest traffic and weather broadcast for that city ID has already been received and its content is known\n6. The traffic and weather channel is not currently broadcasting that same item live\n7. The HU is tuned to a channel that is not the traffic and weather channel",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Activate the Traffic & Weather button\n3. Read the tuned channel\n4. Listen to the HU audio output from the moment playback starts",
+   "expected_result": "1. The tuned channel is not the traffic and weather channel\n2. The activation is accepted\n3. The tuned channel is the traffic and weather channel\n4. The known latest traffic and weather broadcast is played from its beginning, not the content the channel is broadcasting live at that moment",
+   "specification_reference": "CFTS024-4872966",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

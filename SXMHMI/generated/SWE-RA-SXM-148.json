@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-148",
  "batch": "B10 — List Navigation",
- "reasoning": "驗證目標：顯示 Genre List 且選取項目進行 Genre Seek 時，進入 Genre Seek 狀態；且該搜尋只以符合所選 Genre 的電台為有效對象。為什麼這樣切：本 leaf 條款只述「進入狀態」，同節未配置的 4872953 才是該狀態的行為定義，兩者於同一次操作內連續可觀察——選取後進入狀態、其後搜尋停靠何處即為下一步觀察，不需另建情境，依 R10-2 吸收 4872953（標記 [A-SX08]）。吸收後 ER 只斷言 4872953 自身的例外規則（僅符合該 Genre 的電台為有效），至於「與 Seek Up 相同」的基礎行為屬 CFTS024-165，依 R11 以引用錨定、不驗其規則面。[A-SX03]。ER 不斷言「涵蓋該 Genre 的每一台」——那屬 CFTS024-165 的 Seek Up 基礎行為；本 leaf 的條款並未書寫該 token，依 R11 不得越界引用（cross-reference gate 已於生成時擋下）。故 ER 只斷言 4872953 自身的貢獻：停靠對象全數屬所選 Genre。",
+ "reasoning": "驗證目標：顯示 Genre List 且選取項目進行 Genre Seek 時，進入 Genre Seek 狀態；且該搜尋只以符合所選 Genre 的電台為有效對象。為什麼這樣切：本 leaf 條款只述「進入狀態」，同節未配置的 4872953 才是該狀態的行為定義，兩者於同一次操作內連續可觀察——選取後進入狀態、其後搜尋停靠何處即為下一步觀察，不需另建情境，依 R10-2 吸收 4872953（標記 [A-SX08]）。吸收後 ER 只斷言 4872953 自身的例外規則（僅符合該 Genre 的電台為有效），至於「與 Seek Up 相同」的基礎行為屬 CFTS024-165，依 R11 以引用錨定、不驗其規則面。[A-SX03]。被吸收條款的引用去留依 2026-08-11 裁決（必要性門檻）判定：4872953 的基礎行為「只」以引用陳述——拿掉 CFTS024-165 之後剩下的是一句沒有本體的例外，無法寫出 ER。故通過門檻，引用隨吸收進入並受完整 R11 待遇：token 逐字入 spec_reference、ER 以 `as defined by` 錨定借得的窮盡性、不驗 Seek Up 自身的規則面。spec_reference 同列被吸收條款 id 與其 token，三跳鏈（leaf→吸收→引用）於交付面可見。",
  "keywords": [
   "Genre List",
   "Genre Seek",
@@ -13,7 +13,7 @@
   "delta": ""
  },
  "assumptions": [
-  "[A-SX08] Absorbed CFTS024-4872953 (same section 1.5.15) into this leaf. 4872952 states only that the HU enters the Genre Seek state; 4872953 is what that state does, and its exception clause (only stations matching the selected Genre are valid) is the whole point of a genre seek. The two are consecutive observations of one operation — select for Genre Seek, the state is entered, the seek proceeds — so R10-2 condition (b) holds. The ER asserts only 4872953's own exception. The base 'same manner as Seek Up' behaviour belongs to CFTS024-165, which this leaf's own clause does not write, so R11 gives no cite-form path to it — the exhaustiveness of the seek is therefore not asserted here."
+  "[A-SX08] Absorbed CFTS024-4872953 (same section 1.5.15) into this leaf. 4872952 states only that the HU enters the Genre Seek state; 4872953 is what that state does, and its exception clause (only stations matching the selected Genre are valid) is the whole point of a genre seek. The two are consecutive observations of one operation — select for Genre Seek, the state is entered, the seek proceeds — so R10-2 condition (b) holds. CFTS024-165 passes the necessity threshold ruled on 2026-08-11: the absorbed clause states its base behaviour only by reference, so removing the token leaves an exception with no body and no writable ER. The citation therefore travels with the absorption and takes full R11 treatment — anchored ER, cited surface not tested — and the reference list carries the whole chain so the borrowing is visible."
  ],
  "tcs": [
   {
@@ -25,8 +25,8 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A Genre List is displayed and the receivable channels of each genre are known\n5. At least two genres are represented among the receivable channels and at least two channels belong to the genre to be selected",
    "input_test_data": "NA",
    "test_procedure": "1. Select an item for a Genre Seek and read the HU state\n2. Let the seek run and record each station the HU stops on\n3. Continue until the HU has returned to the first station it stopped on\n4. Compare the recorded stations against the receivable channels of the selected genre",
-   "expected_result": "1. The HU is in the Genre Seek state\n2. Each station the HU stops on is recorded\n3. The HU has stopped on more than one station and has returned to the first one\n4. Every station the HU stopped on belongs to the selected genre, and no station outside that genre was stopped on",
-   "specification_reference": "CFTS024-4872952; CFTS024-4872953",
+   "expected_result": "1. The HU is in the Genre Seek state\n2. Each station the HU stops on is recorded\n3. The HU has stopped on every receivable channel of the selected genre, as defined by CFTS024-165\n4. Every station the HU stopped on belongs to the selected genre, and no station outside that genre was stopped on",
+   "specification_reference": "CFTS024-4872952; CFTS024-4872953; CFTS024-165",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": "Analog-chapter twin: CFTS024-4872506 (covered in the AM/FM deliverable)"

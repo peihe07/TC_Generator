@@ -779,3 +779,27 @@ travel with it? Two readings, and the choice is not obvious:
 
 Two leaves are affected today (148, 149). No batch is blocked either way — a
 later ruling for "it travels" is an ER line and a reference field on two rows.
+
+
+## [A-SX22] Configuration-gate clauses are unallocated document-wide — REGISTERED (2026-08-11)
+
+Third instance, so recording it as a class rather than per-clause.
+
+| clause | section | gate | consequence when the gate fires |
+|---|---|---|---|
+| 4872750 | 1.5 | source presence | flagged in B5 as the one §1.5 clause worth asking about |
+| 4872960 | 1.5.16 | `$Country_Code$` = [Canada] | the traffic and weather Jump function is not displayed at all |
+
+Both are unallocated, both fail R10-2 (b) for the same structural reason: every
+leaf in their section is exercised under a configuration in which the gated
+feature is present, so no leaf's scenario can observe its absence.
+
+`4872960` is the sharper case — the observable is a whole feature disappearing
+in a market the requirement metadata lists (the scope line on these clauses
+names NAFTA - Canada), not a field changing.
+
+**For RD-1:** is market-configuration behaviour in scope of this workbook? The
+answer is one ruling covering every gate clause, not a decision per clause. If
+it is in scope, these clauses need leaves — 037 provides none. If it is not,
+they should be recorded as out-of-scope rather than as coverage holes, the same
+disposition question the bus-signal clauses raised in B8.

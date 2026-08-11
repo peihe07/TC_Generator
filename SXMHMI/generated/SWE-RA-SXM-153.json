@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-153",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：於 Settings 選單 SiriusXM Setup 內按下 'Jump' 時，顯示全部有交通／天氣資料的城市清單並可選取頻道，且可刪除／取消先前的選取。為什麼這樣切：本條款與已出貨的 154 條款正文相同，界線已裁——**153 為 Jump 入路（Settings → SiriusXM Setup → 'Jump'），154 為 Browse 入路**（A-SX07 讀法 (a)）；故本 TC 的程序自 Settings 進入，並在步驟中明載該路徑，使兩列的失敗條件相異（§8.2.2 不得於 TC 端合併）。刪除與選取於同一次操作鏈內連續可觀察，故置於同一顆。",
+ "keywords": [
+  "Jump button",
+  "SiriusXM Setup",
+  "city list",
+  "cancel selection"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-153",
+   "tc_title": "The Jump button in SiriusXM Setup selects and clears a traffic channel",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "The HU shall display the list of all available cities with traffic/weather data and allow selection of a traffic/weather channel when the 'Jump' button is activated under the 'SiriusXM Setup' feature in the 'Settings' menu, and shall allow the user to delete or cancel a previously selected traffic/weather channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The cities with traffic and weather data available on this subscription are known from an independent source\n5. No traffic and weather channel is currently set for the Jump function",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the 'Settings' menu, open the 'SiriusXM Setup' feature and activate the 'Jump' button\n2. Read the displayed list and compare it against the known cities\n3. Select a traffic/weather channel and read the channel held for the Jump function\n4. Return to the same screen, delete the selected traffic/weather channel and read the channel held for the Jump function",
+   "expected_result": "1. The city list is displayed from the 'Jump' button under 'SiriusXM Setup'\n2. Every city of the known set is listed and no city outside that set is listed\n3. The selected traffic/weather channel is held for the Jump function\n4. No traffic/weather channel is held for the Jump function",
+   "specification_reference": "CFTS024-4872961",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

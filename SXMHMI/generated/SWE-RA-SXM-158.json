@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-158",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：在交通頻道播送播放模式中再次按下 Traffic & Weather 鍵時，回到先前的頻道。為什麼這樣切：條款的判準是回到「先前」那一台而非任意台，故前置條件記下出發頻道並以其身分比對；同時要求該次返回不改變其他狀態（仍為衛星音訊來源）。與 151 的差別：該 leaf 驗整趟往返這項能力，本 leaf 驗回程這一段的觸發與目標（§8.2.1）。[A-SX03]。",
+ "keywords": [
+  "Traffic Weather button",
+  "return",
+  "previous channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-158",
+   "tc_title": "A second activation returns to the channel played before the jump",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "If the Traffic & Weather button is activated again while in traffic channel broadcast play mode, the HU shall return to the previous channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A traffic city ID is set and its latest broadcast is available\n5. The channel tuned before the jump is recorded and is not the traffic and weather channel",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate the Traffic & Weather button and read the tuned channel\n2. While the traffic and weather broadcast is playing, activate the Traffic & Weather button again\n3. Read the tuned channel and the selected source",
+   "expected_result": "1. The tuned channel is the traffic and weather channel and its broadcast is playing\n2. The activation is accepted\n3. The tuned channel is the channel recorded in the pre-conditions and the HU Satellite Audio source is still selected",
+   "specification_reference": "CFTS024-4872967",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

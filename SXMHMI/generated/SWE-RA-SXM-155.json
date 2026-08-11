@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-155",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：未選取任何交通／天氣頻道時按下 Traffic & Weather 鍵，彈出視窗告知尚未設定並提供選取城市的選項；選擇後顯示 Browse-Traffic & Weather 類別並可選取頻道。為什麼這樣切：條款是一條鏈——空狀態的提示、提示上的選項、選項導向的畫面、該畫面上的可選取性；ER 逐段對應。空狀態為前置條件的關鍵，故明列「未設定」。[A-SX03]。與 157 的差別：該 leaf 是已設定情形下按鍵的行為（§8.2.1）。",
+ "keywords": [
+  "no channel set",
+  "pop up",
+  "Browse Traffic Weather"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-155",
+   "tc_title": "Traffic and Weather with nothing set offers to select a city",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "If no traffic/weather channels were selected and the Traffic & Weather button is activated, the HU shall display a pop up to indicate that no traffic/weather channels are set for the Jump feature and provide an option to select a city, and if the user chooses to select a city the HU shall display the Browse-Traffic & Weather category and allow selection of a traffic/weather channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. No traffic/weather channel is set for the Jump feature\n5. At least one city with traffic and weather data is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate the Traffic & Weather button and read the HU screen\n2. Choose the option to select a city and read the HU screen\n3. Select a traffic/weather channel from the displayed category\n4. Read the channel held for the Jump function",
+   "expected_result": "1. A pop up is displayed indicating that no traffic/weather channels are set for the Jump feature, and an option to select a city is offered\n2. The Browse-Traffic & Weather category is displayed\n3. The selection is accepted\n4. The selected traffic/weather channel is held for the Jump function",
+   "specification_reference": "CFTS024-4872963",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

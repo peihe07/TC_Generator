@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-156",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：已設定 traffic city ID 時，收音機在背景持續掃描各頻道 PID 欄位比對該 city ID 並錄下最新的交通與天氣播送；當該 city ID 有播送可用時，Traffic & Weather 鍵依 HMI 定義highlight。為什麼這樣切：「持續」「背景」「錄製」皆非可直接觀察，其可觀察後果是——使用者未操作、且不在該頻道上時，按鍵狀態仍會隨播送可用與否改變；故程序全程不觸碰 HU，於播送前後各讀一次按鍵狀態。highlight 的樣式屬 HMI 定義，ER 只斷言其狀態改變而不指定外觀（§8.4.2）。[A-SX03]。錄製內容的可用性由 157 的重播驗證（§8.2.1）。",
+ "keywords": [
+  "traffic city ID",
+  "PID",
+  "background scan",
+  "button highlight"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-156",
+   "tc_title": "The Traffic and Weather button follows availability without user action",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "If a traffic city ID has been set, the HU shall continuously scan all channels for a matching city ID in the PID field and record the latest traffic & weather feed in the background, and when a traffic/weather broadcast is available for the traffic city ID the Traffic & Weather button shall be highlighted",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A traffic city ID is set for the Jump function\n5. No traffic and weather broadcast is available for that city ID at the start of the test\n6. A broadcast for that city ID will become available during the test\n7. The HU is tuned to a channel that is not the traffic and weather channel",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the state of the Traffic & Weather button and leave the HU untouched\n2. Wait until a traffic and weather broadcast becomes available for the set city ID\n3. Read the state of the Traffic & Weather button without operating the HU\n4. Read the tuned channel",
+   "expected_result": "1. The Traffic & Weather button is not highlighted\n2. A broadcast is available for the set city ID\n3. The Traffic & Weather button is highlighted\n4. The tuned channel is unchanged, the button state having followed the broadcast without any user action",
+   "specification_reference": "CFTS024-4872964",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

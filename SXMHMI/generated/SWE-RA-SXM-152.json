@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-152",
+ "batch": "B11 — Traffic & Weather",
+ "reasoning": "驗證目標：Jump 功能有且只有一個最愛 Traffic & Weather 頻道格位。為什麼這樣切：「一個格位」的可觀察後果是取代——設定第二個城市時第一個不再是 Jump 的目標，而非兩者並存；只驗「可以設定」的實作無法分辨格位數。故程序設定兩次並各以 Jump 實際跳至何處判定，ER 以取代結果表述而非以設定畫面表述（§8.4.1）。",
+ "keywords": [
+  "one slot",
+  "favorite traffic weather channel",
+  "replace"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-152",
+   "tc_title": "Setting a second traffic and weather channel replaces the first",
+   "test_group": "SXM",
+   "test_set": "Traffic & Weather",
+   "test_item": "The HU shall have one favorite Traffic & Weather channel slot available for the SiriusXM Jump function",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least two cities with traffic and weather data are available\n5. No traffic and weather channel is currently set for the Jump function",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the first city's traffic and weather channel for the Jump function, then activate Jump and read the tuned channel\n2. Return to the previous channel, set the second city's traffic and weather channel, then activate Jump and read the tuned channel\n3. Read the traffic and weather channels held for the Jump function",
+   "expected_result": "1. The HU tunes to the first city's traffic and weather channel\n2. The HU tunes to the second city's traffic and weather channel\n3. Exactly one traffic and weather channel is held, that of the second city",
+   "specification_reference": "CFTS024-4872959",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

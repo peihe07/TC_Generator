@@ -97,6 +97,44 @@ def cited_tokens(citations: dict, req_id: str) -> set[str]:
             if req_id in e.get("req_ids", [])}
 
 
+def load_unallocated_texts(root: Path) -> dict[str, str]:
+    """Clause text by 7-digit id for the clauses no leaf carries.
+
+    Needed only by the absorption exception below: to decide whether an
+    absorbed clause licenses a citation, the gate has to read that clause.
+    """
+    path = root / "data" / "unallocated_clauses.json"
+    if not path.exists():
+        return {}
+    out: dict[str, str] = {}
+    for entry in json.loads(path.read_text(encoding="utf-8")).values():
+        for u in entry.get("unallocated", []):
+            if u.get("id") is not None:
+                out[str(u["id"])] = str(u.get("text") or "")
+    return out
+
+
+def absorbed_tokens(refs: list[str], unalloc: dict[str, str]) -> set[str]:
+    """Tokens licensed by an absorbed clause cited in the same reference list.
+
+    Ruled 2026-08-11 (DECISIONS Amendment 7, necessity threshold): an absorbed
+    clause's citation travels with it only when the clause's behaviour cannot
+    be stated without the citation. The verifiable half of that is mechanical
+    and is what this checks — the token is legal if the same
+    specification_reference also lists an absorbed clause whose text writes it,
+    which keeps the three-hop chain (leaf -> absorbed clause -> citation)
+    visible in the delivered row instead of hidden. Necessity itself is a
+    judgement made at generation and recorded in the [A-SX08] assumption.
+    """
+    out: set[str] = set()
+    for r in refs:
+        m = re.fullmatch(r"CFTS\d{3}-(\d{7})", r)
+        if m and m.group(1) in unalloc:
+            text = unalloc[m.group(1)]
+            out |= {t for t in re.findall(r"CFTS\d{3}-\d{1,6}\b", text)}
+    return out
+
+
 def leaf_test_sets(cfg) -> dict[str, str]:
     """req_id -> framework Part IV Test Set, from feature.yaml `test_sets`."""
     out = {}
@@ -117,7 +155,8 @@ def leaf_test_sets(cfg) -> dict[str, str]:
 
 def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
             stla: dict, citations: dict | None = None,
-            set_index: dict | None = None) -> list[dict]:
+            set_index: dict | None = None,
+            unalloc: dict[str, str] | None = None) -> list[dict]:
     f = []
 
     def bad(gate, msg):
@@ -199,13 +238,17 @@ def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
     # per leaf, from the citation sweep — which is what stops the short form
     # from becoming a hole in the format check.
     allowed_tokens = cited_tokens(citations, tc.get("req_id"))
+    # Ruled exception: a token an absorbed clause writes is licensed too, but
+    # only while that clause is cited in this very reference list.
+    allowed_tokens |= absorbed_tokens(refs, unalloc or {})
     for r in refs:
         if re.fullmatch(r"CFTS\d{3}-\d{7}", r) or r in allowed_tokens:
             continue
         if re.fullmatch(r"CFTS\d{3}-\d{1,6}", r):
             bad("cross-reference",
-                f"{r!r} is a cross-document citation, but this leaf's clause "
-                f"does not write it (R11; leaf cites {sorted(allowed_tokens)})")
+                f"{r!r} is a cross-document citation, but neither this leaf's "
+                f"clause nor an absorbed clause cited beside it writes it "
+                f"(R11; licensed here: {sorted(allowed_tokens)})")
         else:
             bad("spec-reference", f"{r!r} does not match CFTSnnn-nnnnnnn")
 
@@ -257,6 +300,7 @@ def run(args) -> int:
     cite_path = root / "data" / "cross_doc_citations.json"
     citations = (json.loads(cite_path.read_text(encoding="utf-8"))
                  if cite_path.exists() else {})
+    unalloc = load_unallocated_texts(root)
 
     set_index = leaf_test_sets(cfg)
     files = sorted((root / args.generated).glob("*.json"))
@@ -291,7 +335,7 @@ def run(args) -> int:
                                  "message": f"tc_title duplicates {titles[title]}"})
             titles[title] = tag
             findings.extend(lint_tc(tag, tc, doc, cfg, methods, stla,
-                                    citations, set_index))
+                                    citations, set_index, unalloc))
         for missing in sorted(absorbed_ids(doc) - cited_here):
             findings.append({
                 "tc": parent, "gate": "absorption-cite",
