@@ -1,0 +1,50 @@
+{
+ "parent": "SWE-RA-SXM-028",
+ "batch": "B4 — Tune",
+ "reasoning": "驗證目標：經 ICS 硬控制（旋鈕）發出 `$ICS_KNOB2_DIR$ = [Decrement]` 與轉動速率 `$ICS_KNOB2_VAL$` 時，HU 在 Satellite Audio 來源且**非**捲動／清單畫面的條件下執行 tune down；處於 browse 等清單畫面時不執行。關鍵情境條件：畫面狀態的兩個值類（一般播放畫面／捲動清單畫面）——這是條文明寫的抑制條件。為什麼這樣切：抑制分支的觸發狀態與正常路徑不同，依 §5.2 不可在同一程序內分支、依 R10-3 拆為獨立 TC，以 trigger_state 為軸；只驗正常路徑，無法排除「任何畫面都執行」的實作（§7），而該實作會讓使用者在瀏覽清單時誤切頻道。**A-SX12**：條文說「依收到的速率遞減」但未定義 `$ICS_KNOB2_VAL$` 值與頻道數的對應，ER 因此只驗方向與單調關係（較大的值前進較多），不寫特定頻道數（§8.4.1）；條文用語為「tuned frequency」而 SAT 為頻道索引來源，Test Item 逐字引用條文，ER 以可觀察的頻道表述。",
+ "keywords": [
+  "tune down",
+  "$ICS_KNOB2_DIR$",
+  "$ICS_KNOB2_VAL$",
+  "scroll/list display",
+  "suppression"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "028-01 於一般播放畫面驗證旋鈕信號執行 tune down；028-02 於 browse 清單畫面驗證同一信號不被執行（抑制分支）"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-028",
+   "tc_title": "Knob decrement tunes down outside a list display",
+   "test_group": "SXM",
+   "test_set": "Tune",
+   "test_item": "When tune down command is initiated via the ICS hardcontrols (tune rotary knob), ICS shall send $ICS_KNOB2_DIR$ = [Decrement] and the rate of rotation in $ICS_KNOB2_VAL$ = [1 to 63] signal. When HU recieves these signals, HU shall perform the tune down function if the cabin output channel is in Satellite Audio source and HU is not in a scroll/list display",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU is showing the Satellite Audio playing screen, not a scroll or list display",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Decrement]\n$ICS_KNOB2_VAL$ = [1]\n$ICS_KNOB2_VAL$ = [63]",
+   "test_procedure": "1. Note the tuned channel number\n2. Send $ICS_KNOB2_DIR$ = [Decrement] with $ICS_KNOB2_VAL$ = [1] and read the tuned channel\n3. Note the channel number, then send $ICS_KNOB2_DIR$ = [Decrement] with $ICS_KNOB2_VAL$ = [63]\n4. Read the tuned channel",
+   "expected_result": "1. The starting channel is playing\n2. The tuned channel has moved lower than the starting channel\n3. The channel reached in step 2 is playing\n4. The tuned channel has moved lower again, and further than it moved for the smaller signal value",
+   "specification_reference": "CFTS024-4872792",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-028",
+   "tc_title": "Knob decrement is ignored while a list display is up",
+   "test_group": "SXM",
+   "test_set": "Tune",
+   "test_item": "HU shall perform the tune down function if the cabin output channel is in Satellite Audio source and HU is not in a scroll/list display (Example: tune down feature shall not be executed if HU is in browse screen)\n\n(Suppression branch — a scroll or list display is up)",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU is showing the SAT browse screen, a scroll/list display",
+   "input_test_data": "$ICS_KNOB2_DIR$ = [Decrement]\n$ICS_KNOB2_VAL$ = [63]",
+   "test_procedure": "1. Note the tuned channel number with the browse screen displayed\n2. Send $ICS_KNOB2_DIR$ = [Decrement] with $ICS_KNOB2_VAL$ = [63]\n3. Read the tuned channel\n4. Leave the browse screen and send the same signals again, then read the tuned channel",
+   "expected_result": "1. The browse screen is displayed and the starting channel is playing\n2. The signals are received by the HU\n3. The tuned channel is unchanged from the starting channel\n4. The tuned channel has moved lower, so the same signals act once the list display is no longer up",
+   "specification_reference": "CFTS024-4872792",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

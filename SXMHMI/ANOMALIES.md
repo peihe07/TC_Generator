@@ -430,3 +430,29 @@ clauses send the reader to find exist only for the **fast** seek state.
   AM/FM row AMFM used.
 - RD-1: ask which row governs a plain SAT seek, and whether `N/A` there means
   "cannot be interrupted" or "not yet specified".
+
+
+## [A-SX12] The ICS knob tune clauses specify a rate with no mapping, and say "frequency" for a channel-indexed source — REGISTERED (2026-08-11)
+
+Leaves 024 and 028 (`4872786` / `4872792`, §1.5.3 / §1.5.4) are the SAT
+counterparts of AMFM's ICS knob clauses. Two upstream gaps, both visible only
+against the clause text:
+
+1. **The rate has no defined mapping.** The clause says the HU "shall
+   increment the tuned frequency **based on the rate** received in the
+   `$ICS_KNOB2_VAL$` signal value", with `$ICS_KNOB2_VAL$ = [1 to 63]`, and
+   nowhere states what a given value maps to in channels. AMFM registered the
+   same gap as **A-AM11** and its TCs assert direction and monotonicity rather
+   than a channel count. SXM does the same: the ER states the tuning moves in
+   the signalled direction and that a larger `$ICS_KNOB2_VAL$` advances
+   further, never a specific number of channels (§8.4.1).
+2. **"tuned frequency" on a channel-indexed source.** SAT Audio tunes
+   channels, not frequencies; the wording is carried over from the analog
+   chapter, where its twin (`4872442`, AMFM leaf 026) says the same thing
+   legitimately. The observable under test is therefore the tuned **channel**.
+   Recorded rather than corrected — the Test Item quotes the clause verbatim
+   (profile §3.1), and only the ER speaks of channels.
+
+Both go to RD-1 with A-SX09 as wording/definition items. No generation is
+blocked: the suppression condition the same clauses carry (the function is not
+executed while a scroll/list display is up) is fully specified and is tested.

@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-002",
+ "batch": "B4 — Tune",
+ "reasoning": "驗證目標：Cabin Output Channel 選定 HU Satellite Audio 來源時，使用者可請求 Tune Up 功能，HU 進入 Tune Up 狀態並前往next個可用頻道。關鍵情境條件：請求來源（ICS HMI 與方向盤按鍵）。為什麼這樣切：本 leaf 是該節的能力總述，獨有內容是**請求路徑**——狀態進入與相鄰頻道調諧由 022 覆蓋、wrap-around 由 023 覆蓋、旋鈕路徑由 024 覆蓋（其信號與抑制條件另有條款），依 §8.2.1 不重複驗證。一條 TC 內以兩個請求路徑涵蓋同一驗證目標，依 §5.7 不拆分。**VR trigger path HELD pending the same chat ruling raised at B3 leaves 006/014 (profile §6, Delta 7): the clause grants the request via HU HMI / ICS HMI, Steering Wheel Buttons **or a VR Command**. AMFM's R8 is explicitly not inherited, so the VR path is neither generated nor declared out of scope; this TC covers the unambiguous paths.** 037 title 相似度 0.708，差異即 037 系統性省略的 VR 用語（§8.6）。",
+ "keywords": [
+  "Tune Up",
+  "ICS HMI",
+  "Steering Wheel Buttons",
+  "request paths"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-002",
+   "tc_title": "Tune Up is requested from the ICS HMI and the steering wheel",
+   "test_group": "SXM",
+   "test_set": "Tune",
+   "test_item": "When the Cabin Output Channel has selected the HU Satellite Audio source, the user can request a Tune Up to Next Channel function using the HU ICS HMI or Steering Wheel Buttons. When the user selects the Tune Up function the HU will enter the Tune Up state and go to the next available Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The tuned channel is not at either end of the channel lineup",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number\n2. Request Tune Up from the ICS HMI and read the tuned channel\n3. Note the new channel number\n4. Request Tune Up from the Steering Wheel Buttons and read the tuned channel",
+   "expected_result": "1. The starting channel is playing\n2. The HU enters the Tune Up state and tunes to the next available channel\n3. The channel reached in step 2 is playing\n4. The HU tunes to the next available channel from there",
+   "specification_reference": "CFTS024-4872783",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

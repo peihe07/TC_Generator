@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-030",
+ "batch": "B4 — Tune",
+ "reasoning": "驗證目標：Cabin Output Channel 選定 HU Satellite Audio 來源時，使用者可直接輸入頻道號碼調諧，HU 調諧到該頻道並播放。關鍵情境條件：輸入的頻道號碼與目前頻道不同。為什麼這樣切：一條 TC 覆蓋單一觸發的兩個必然結果——調諧到輸入的頻道、播放該頻道，依 §5.7 併為多條 ER；程序以兩個不同號碼各驗一次，只驗一次無法區分「依輸入調諧」與「調到固定頻道」的實作（§7）。**VR trigger path HELD**：條文寫 `using the HU HMI or a VR Command`，處置同 B3 的 006/014 與本批的 002/003——VR 路徑既未生成也未宣告 out of scope，等 chat 裁決（profile §6, Delta 7）。刻意略過：無效或未訂閱頻道的拒絕行為由兄弟 leaf 031 覆蓋（§8.2.1）。",
+ "keywords": [
+  "Direct Number Input",
+  "channel number",
+  "tune and play"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-030",
+   "tc_title": "Direct number entry tunes to the channel and plays it",
+   "test_group": "SXM",
+   "test_set": "Tune",
+   "test_item": "When the Cabin Output Channel has selected the HU Satellite Audio source, the user can request to Tune to a Channel by directly entering the Number of the Channel (a.k.a. Direct Number Input) using the HU HMI. When the user has entered the Channel Number the HU will tune to the Channel and Play that Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two valid subscribed channel numbers are known, neither of them the channel tuned at the start",
+   "input_test_data": "Channel number A: a valid subscribed channel\nChannel number B: a second valid subscribed channel",
+   "test_procedure": "1. Note the tuned channel number\n2. Enter channel number A through the direct number input on the HU HMI\n3. Read the tuned channel and the audio output\n4. Enter channel number B and read the tuned channel and the audio output",
+   "expected_result": "1. The starting channel is playing\n2. The entry of channel number A is accepted\n3. The HU is tuned to channel A and channel A is played\n4. The HU is tuned to channel B and channel B is played",
+   "specification_reference": "CFTS024-4872795",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

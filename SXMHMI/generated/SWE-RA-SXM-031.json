@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-031",
+ "batch": "B4 — Tune",
+ "reasoning": "驗證目標：直接輸入調諧時，HU 採用 intelligent entry，因此不允許調諧到無效或未訂閱的 SAT 頻道。關鍵情境條件：輸入號碼的三個等價類——有效且已訂閱、無效（不存在於 lineup）、有效但未訂閱。為什麼這樣切：條文明列兩種不允許的類別，兩者是不同的拒絕理由，需分別驗證；再加一個有效類作為對照，否則無法區分「正確拒絕」與「全部拒絕」的實作（§7）。一條 TC 內以三個等價類涵蓋同一驗證目標，依 §5.7 不拆分；設計方法採負向測試（條文的規範對象是拒絕行為）。刻意略過：條文只說 intelligent entry「不允許」調諧到該兩類頻道，未定義拒絕的呈現方式（是否有提示、輸入是否被擋在鍵入階段），ER 因此只驗結果——頻道未被調諧到——不推測 HMI 表現（§8.4.1）；這與 AMFM 的 A-AM12（intelligent entry 定義不足）同類，記為 RD-1 項目。",
+ "keywords": [
+  "intelligent entry",
+  "non valid channel",
+  "unsubscribed channel",
+  "direct tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-031",
+   "tc_title": "Direct tune refuses invalid and unsubscribed channels",
+   "test_group": "SXM",
+   "test_set": "Tune",
+   "test_item": "For frequency selection using direct tune method, HU shall utilize intelligent entry and therefore shall not allow to tune to a non valid or an unsubscribed SAT channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A valid subscribed channel number, a channel number outside the lineup and a valid but unsubscribed channel number are all known",
+   "input_test_data": "Valid subscribed channel: within the lineup and covered by the subscription\nNon valid channel: a number outside the channel lineup\nUnsubscribed channel: within the lineup but not covered by the subscription",
+   "test_procedure": "1. Enter the valid subscribed channel number through the direct number input and read the tuned channel\n2. Enter the non valid channel number and read the tuned channel\n3. Enter the unsubscribed channel number and read the tuned channel\n4. Read the audio output",
+   "expected_result": "1. The HU is tuned to the valid subscribed channel\n2. The HU is not tuned to the non valid channel and stays on the channel from step 1\n3. The HU is not tuned to the unsubscribed channel and stays on the channel from step 1\n4. The valid subscribed channel is played throughout",
+   "specification_reference": "CFTS024-4872796",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

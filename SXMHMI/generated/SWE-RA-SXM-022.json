@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-022",
+ "batch": "B4 — Tune",
+ "reasoning": "驗證目標：Tune Up 啟動時，HU 進入 Tune Up 狀態並調諧到相鄰的較高頻道。關鍵情境條件：起始頻道不在 lineup 端點。為什麼這樣切：一條 TC 覆蓋單一觸發的兩個必然結果，依 §5.7 併為多條 ER；端點行為由 023 覆蓋、離開狀態由 025 覆蓋（§8.2.1）。與 Seek 的差別在語意而非機制：Tune 逐頻道移動，Seek 亦然，但兩者條款分列於不同節，各自交付覆蓋。",
+ "keywords": [
+  "Tune Up state",
+  "next higher channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-022",
+   "tc_title": "Tune Up enters the state and tunes one channel higher",
+   "test_group": "SXM",
+   "test_set": "Tune",
+   "test_item": "Upon initiation of a Tune Up function, the HU shall enter the Tune Up state and tune to the next higher channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The tuned channel has an available neighbour in both directions",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number and the state of the HU Satellite Audio source\n2. Initiate the Tune Up function\n3. Read the state of the HU Satellite Audio source during the operation\n4. Read the tuned channel once the operation completes",
+   "expected_result": "1. The starting channel is playing and the HU is not in the Tune Up state\n2. The tune request is accepted\n3. The HU is in the Tune Up state\n4. The tuned channel is the next higher available channel, one step from the starting channel",
+   "specification_reference": "CFTS024-4872784",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
