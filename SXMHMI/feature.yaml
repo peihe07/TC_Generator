@@ -128,6 +128,11 @@ write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"     # no legacy rows to inherit case from (cf. AMFM R13)
   fill_test_group_set: true  # canon §2 — true under BLANK
+  # The blank form ships this field EMPTY. Home and AMFM both found it naming
+  # the wrong deliverable; empty is the same defect in a quieter dress, so it
+  # is filled at write-back by the same label-text mechanism.
+  scope_label: "範圍 Scope"
+  scope_source: "a03_report"
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary

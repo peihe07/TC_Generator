@@ -54,3 +54,7 @@ cannot produce a GCI update, and one test cannot observe both messages.
 Unlike the bus and prose cases, nothing about this clause explains why it has no
 leaf. **This is the strongest single-clause allocation gap found in the
 delivery** and is raised for RD-1 accordingly.
+
+**RULED (Pei, 2026-08-11): record the gap, do not self-supply a leaf.**
+Registered as A-SX26; no row is written and no leaf id is invented. See that
+entry for the reasoning.

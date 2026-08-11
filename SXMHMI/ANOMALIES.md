@@ -701,7 +701,7 @@ Until that is answered, TC-02's negative assertion is the open risk: if
   screen would pass).
 
 
-## [A-SX20] "Capability clause plus mechanics clause" is a document-wide pattern, not three incidents — REGISTERED (2026-08-11)
+## [A-SX20] "Capability clause plus mechanics clause" is a document-wide pattern, not three incidents — RULED (2026-08-11)
 
 B10 produced three more same-section overlapping pairs, which makes this the
 fourth batch running to hit the shape. Rolling it up rather than filing a
@@ -741,7 +741,25 @@ questions. Is the capability sentence intended as a separate verifiable
 requirement, or is it section-introductory prose that was allocated an id? If
 the latter, eight delivered rows are testing prose.
 
-## [A-SX21] Absorption and cite-form collide: an absorbed clause's citations have no path — REGISTERED (2026-08-11)
+**RULED (Pei, 2026-08-11) — 照簽, both halves.**
+
+1. **The carve is standing.** Capability clause tested for *reach* (exercised
+   on a second, structurally different instance); mechanics clause tested for
+   its *stated detail*. Applies to every future instance without re-asking.
+2. **Consolidation is rolling.** A new instance of this shape amends this
+   entry's table; it does not open a new anomaly id. The RD-1 stays one
+   question with N instances.
+
+Escape hatch (i) survives the ruling: an instance where the two clauses
+*contradict* rather than overlap is not this shape and returns to chat.
+A-SX23 fired it the same day, which is the evidence the hatch is load-bearing
+rather than decorative.
+
+No regeneration follows from this ruling — B10's rows were already carved this
+way, and the ruling is what makes that the standing rule rather than a
+batch-local choice.
+
+## [A-SX21] Absorption and cite-form collide: an absorbed clause's citations have no path — RULED (2026-08-11)
 
 Found by the `cross-reference` gate during B10 generation, not by review.
 
@@ -779,6 +797,28 @@ travel with it? Two readings, and the choice is not obvious:
 
 Two leaves are affected today (148, 149). No batch is blocked either way — a
 later ruling for "it travels" is an ER line and a reference field on two rows.
+
+**RULED (Pei, 2026-08-11) — 照簽: the citation travels.** An absorbed clause
+brings its citations into the absorbing leaf's reference list, subject to the
+necessity threshold (DECISIONS Amendment 7): the absorbed clause must itself
+write the token, and the token must be necessary to state the behaviour being
+verified. The gate reads the absorbed clause's text to license it, so the
+three-hop chain leaf → absorbed clause → citation stays checkable.
+
+**Already implemented — no rows change now.** The entry above describes the
+B10 state. B11 (`55044b0`) applied the ruled reading ahead of the ruling, when
+Amendment 7 fixed the threshold, and B14 left it in place. Verified against the
+shipped files rather than assumed:
+
+| | B10 (`1ef267d`) | now |
+|---|---|---|
+| 148 reference | `CFTS024-4872952; CFTS024-4872953` | `…; CFTS024-165` |
+| 148 ER line 3 | "has stopped on more than one station and has returned to the first one" | "has stopped on **every receivable channel of the selected genre**, as defined by CFTS024-165" |
+| 149 reference | `CFTS024-4872954; CFTS024-4872955` | `…; CFTS024-177` |
+| 149 ER line 3 | "has presented more than one station and has returned to the first one" | "has presented **every receivable channel of the selected genre**, as defined by CFTS024-177" |
+
+So the "one ER line and a reference field on two rows" this entry predicted is
+exactly what is in the workbook. Nothing to apply before write-back.
 
 
 ## [A-SX22] Configuration-gate clauses are unallocated document-wide — REGISTERED (2026-08-11)
@@ -834,7 +874,7 @@ document in a third citation scheme (neither the 7-digit STLA form nor the
 in any case.
 
 
-## [A-SX23] The skipped-channel table is keyed two ways, and §1.5.19 duplicates twice — A-SX20 ESCAPE HATCH (i) FIRED (2026-08-11)
+## [A-SX23] The skipped-channel table is keyed two ways, and §1.5.19 duplicates twice — PART-RULED: key NOT ruled, goes to RD-1 (2026-08-11)
 
 Three findings in §1.5.19. The first is a content contradiction, so per the
 A-SX20 standing carve's escape hatch (i) it does **not** fold into that class
@@ -861,6 +901,24 @@ two rows do not contradict each other in the delivered workbook.
 **For chat / RD-1:** which key is normative? If it is Service ID, `4873277`'s
 wording should be corrected; if it is the channel number, leaf 175's test is
 wrong as written and its ER needs replacing, not amending.
+
+**RULED (Pei, 2026-08-11) — 不裁鍵.** The identification key is deliberately
+left unruled and goes to RD-1 as an upstream question. This is the correct
+call rather than a deferral: choosing between "channel number" and "Service
+ID" here would be the TC author deciding a parental-control behaviour that the
+requirement document states two ways, and whichever way we chose, half the
+delivered evidence would rest on our choice rather than on the spec.
+
+Consequence for the delivery, and why nothing regenerates: the batch-local
+handling **already assumes no key**. Leaf 168 asserts the table's persistence
+and deliberately does not name the key; leaf 175 asserts the discriminating
+consequence its own clause states. The two rows are consistent with each other
+under either answer, so both stand as written and the workbook ships without
+an unratified key decision embedded in it.
+
+Findings 2 and 3 of this entry (the `Clear All` / `Deselect All` naming carve,
+and 169 restating 168) are the A-SX20 shape and are covered by that entry's
+standing rule — they are not re-ruled here.
 
 **2. `4873279` / `4873280` (leaves 170 / 171) — the same clause with different
 function names.** Both open with the identical sentence about Channel Skip
@@ -963,6 +1021,44 @@ acceptance criteria on §1.5.21.2:
 Without answers, §1.5.21.2's 18 rows are the weakest evidence in the workbook
 and should be flagged as such at delivery rather than presented as equivalent
 to the functional rows.
+
+## [A-SX26] `4873295` is a fully specified display requirement with no leaf — RULED: gap recorded, no leaf invented (2026-08-11)
+
+Found by B13's R10-2 pass over §1.5.20's unallocated clauses, where it was the
+only one of four to fail for a reason other than "not an HU-side observable".
+Recorded here rather than left in `docs/b13-absorption-decisions.md`, because
+RD-1 needs to cite an anomaly entry, not a batch working note.
+
+`4873295` specifies, in one clause: the trigger (a Global Channel Information
+update arriving over the air while satellite audio or Travel Link is playing),
+the message text (`"Updating Channels Please Wait . . ."`), an audio
+consequence (no satellite radio audio during the update), and a persistence
+requirement (the message is maintained across SDARS audio and Travel Link
+screens). Every part of that is HMI-observable. **No leaf carries it.**
+
+It is the structural twin of leaf 182 (`4873296`) — the PSV update message, the
+very next clause in the same section, which does have a leaf. R10-2 (b) fails
+against 182 all the same: a GCI update and a PSV update are different
+over-the-air events, so 182's scenario cannot produce this message and one test
+cannot observe both.
+
+**RULED (Pei, 2026-08-11): record the gap, do not self-supply a leaf.**
+
+No row is written and no leaf id is invented. The delivered coverage claim
+stays exactly 202 of 202 *allocated* leaves. A self-supplied leaf would make
+the workbook claim coverage of a requirement the 037 never allocated — the one
+direction a coverage table must not drift, because a later reconciliation
+against the 037 would find a row tracing an id that does not exist upstream,
+and the reconciler could not tell an invented leaf from a transcription error.
+
+What ships instead is the statement of the gap. Unlike the bus-signal and
+section-prose cases in the same pass, nothing about this clause explains its
+absence — which is what makes it the strongest single-clause allocation gap in
+the delivery, and stronger stated as a gap than papered over with a row.
+
+**For RD-1:** why does `4873295` have no leaf when `4873296`, its neighbour and
+twin, has one? If the omission is an oversight, the 037 needs a leaf and this
+delivery needs one more row.
 
 ## [A-SX23 addendum] Completeness-ER sweep run across the whole corpus — CLOSED (2026-08-11)
 
