@@ -1,0 +1,16 @@
+FW036 AMFM (CFTS024 Radio) regen v1
+
+output: FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_CFTS024_Radio_20260129.xlsx
+sha256: da18b5b0ca9ee5794b67a31ddd317b4a23decf9e0e88380a3717f823e45f3f22
+done-region hash (ordered content, columns D..AG, 158 legacy rows): 30d9e4c0719a2929
+rows: 158 preserved / 143 regen (0 placeholder) / 301 total
+coverage: 102/102 leaves of SWE1_AMFM_FM-WI-FSM-037-A03
+lint: PASS - 143 TCs, 102 leaf files, 0 findings
+tests: 923 passed
+
+source workbook: FM-WI-FSM-036-A01 ..._SWQT_CFTS024_Radio_20260129.xlsx (form revision B)
+requirement source: FM-WI-FSM-037-A03 (R1 - the SWRA-A02 family is out of scope per R1/R5)
+spec sources: CFTS024 (85 leaves), CFTS011 (9), CFTS004 (8)
+write-back: append after the frozen legacy prefix; legacy rows 10-167 unmoved,
+  regen rows 168-310; Scope field corrected per A-AM01; ChangeHistory revision C
+reproducible: re-running --write from this commit reproduces the same SHA256

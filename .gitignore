@@ -14,9 +14,10 @@ venv/
 .pytest_cache/
 
 # Output
-output/*.xlsx
-output/*.db
-output/.workspaces/
+# Whole directory, not just *.xlsx: the write-back sidecar (<name>.sha256)
+# carries the delivery digest, which per FEATURE_ONBOARDING §6 lives in the
+# tag annotation and must never be committed to a tracked file.
+output/
 output-modern/
 
 # Node
