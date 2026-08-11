@@ -13,7 +13,7 @@ the FW036 SWQT Home test case specification (62 leaf FRs from
 FMWIFSM037A03-N1L-SWE1 Home HMI, sourced from the Home Screen HMI Logic and
 Flow spec and the Last Mode Table).
 
-Full detail for every item is in `HomeHMI/ANOMALIES.md` under the same
+Full detail for every item is in `features/home/ANOMALIES.md` under the same
 anomaly id. Dispositions were designed so that a contrary answer changes
 reference strings, not TC content — nothing on our side is waiting on this
 document.

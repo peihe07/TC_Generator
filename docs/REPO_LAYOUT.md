@@ -1,6 +1,6 @@
 # Repo Layout — 每個目錄是什麼、能不能動
 
-最後更新：2026-08-07
+最後更新：2026-08-11
 
 分三種標記：
 **[code]** 程式碼，路徑被設定檔綁死 · **[data]** 資料/產出 · **[rebuild]** 可重建，砍掉不心疼
@@ -18,8 +18,9 @@
 | `docker/` | code | dev / prod / modern 三組 compose | `.dockerignore` 在 root |
 | `config/` | data | `budget.json`、`kpi_thresholds.json`、`domain_packs/` | `scorecard.py` 預設讀 `config/kpi_thresholds.json` |
 | `docs/` | data | 文件；分類見 `docs/README.md` | 五份 runtime 規則文件被 `rules_loader.py` 硬編路徑，不可搬 |
-| `scripts/` | code | 離線工具：`build_spec_index.py`、`translate_xlsx.py` 等 | — |
-| `M1/` | data | M0–M2 里程碑的工作區：設計文件、domain pack、SWE1 需求 JSON、覆蓋率腳本 | **路徑被 code 引用**，詳見 `M1/README.md` |
+| `scripts/` | code | 離線工具：`build_spec_index.py`、`translate_xlsx.py`、feature pipeline 的 `intake.py` / `recon.py` / `new_feature.py`；`scripts/refinement/` 是 2026-05 的一次性精修腳本 | `new_feature.py` / `intake.py` 在 `features/` 底下建目錄（2026-08-11 起） |
+| `features/` | data + code | FW036 各 feature 的自足工作區，一 feature 一目錄（`amfm` `home` `sxm` `media`）。入口是各自的 `PLAYBOOK.md` §6 status board | 2026-08-11 由 root 搬入並統一命名（去 HMI 後綴、全小寫）：`AMFM`→`features/amfm`、`HomeHMI`→`features/home`、`SXMHMI`→`features/sxm`、`mediaHMI`→`features/media`。各 feature 的 `feature.yaml` 內 paths 是相對路徑，不受影響 |
+| `archive/` | data | 已結案、僅供追溯的工作區。目前只有 `archive/M1/`（M0–M2 里程碑：設計文件、domain pack、SWE1 需求 JSON、覆蓋率腳本） | **路徑被 code 引用**，詳見 `archive/M1/README.md`；2026-08-11 由 root `M1/` 搬入 |
 | `tcgen_package/` | data | FW036 remaining TC 的一次性生成包（RUNBOOK / scripts / batches / generated / ANOMALIES） | RD-1 裁決尚未全部落地，隨時要能重跑 write-back；自帶 `.gitignore` |
 | `output/` | data | CLI / job 的執行產物 | `*.xlsx`、`*.db`、`.workspaces/` 已 ignore；`dealer/` `player/` 下有刻意 commit 的樣本 |
 | `spec-index/` | data + rebuild | spec 索引（約 **440 MB**）。`cache/*.xlsx`（2 MB）是 SYS1 匯出**輸入檔**、`sources/*.pdf`（93 MB）是原始 spec —— 兩者都**不是**快取；`cache/*.json`（348 MB）才是 embedding 產物 | 全部 gitignore（含客戶機敏資料）。重建 `*.json` 要跑 `scripts/build_spec_index.py`，**會產生 OpenAI embedding API 費用**，不要當一般快取刪 |
@@ -40,9 +41,10 @@
    `docs/runtime/TEST_CASE_PRIORITY.md` — `backend/rules_loader.py` 以常數路徑載入
 2. `docs/runtime/ASPICE_SWE6_AI_Review.md` — review engine 引用
 3. `docs/runtime/profiles/<stem>.md` — `rules_loader.py` 以 stem 組路徑
-4. `M1/domain_pack_*.json`、`M1/swe1_*_reqs.json`、`M1/spec_coverage_*.json`、
-   `M1/spec_coverage_analysis.py` — `backend/main.py` 的 CLI 說明與
-   `docs/dev/PIPELINE_DESIGN.md` 的指令範例都指這些路徑
+4. `archive/M1/domain_pack_*.json`、`archive/M1/swe1_*_reqs.json`、
+   `archive/M1/spec_coverage_*.json`、`archive/M1/spec_coverage_analysis.py`
+   — `backend/main.py` 的 CLI 說明與 `docs/dev/PIPELINE_DESIGN.md` 的指令
+   範例都指這些路徑（2026-08-11 隨 `M1/`→`archive/M1/` 一併更新）
 5. `backend/` 底下的模組檔名 — `pyproject.toml` 的 `py-modules` 逐一列名
 6. root 的 `start.sh` / `start-modern.sh` / `reset-state.sh` — README 的啟動段落
 
@@ -51,7 +53,7 @@
 這個 repo 同時裝了「產品」與「某次專案的工地」，兩者不要混：
 
 - **產品**：`backend/` `frontend*/` `tests/` `config/` `docs/`（runtime + dev）
-- **工地**：`tcgen_package/`（FW036）、`M1/`（里程碑實驗）、`output/`、`refinement/`（2026-05 一次性腳本，已無人引用）
+- **工地**：`features/`（FW036 各 feature）、`tcgen_package/`（FW036 remaining）、`archive/M1/`（里程碑實驗）、`output/`、`scripts/refinement/`（2026-05 一次性腳本，已無人引用）
 
 新專案要開新的工地目錄，不要把 FW036 的假設（column map、保護區列號、
 Test Set 清單）搬進產品層 —— 這正是 `docs/plans/TCGEN_INTEGRATION_PLAN.md`

@@ -118,7 +118,7 @@ moves five fields; that is why a column map is never reusable unverified.
 #### Provenance warning on the Home reference file
 
 This copy is **not** the Home v2 deliverable and must not be submitted as
-one. Diffed cell-by-cell against `HomeHMI/output/…_Home_20260720.xlsx`
+one. Diffed cell-by-cell against `features/home/output/…_Home_20260720.xlsx`
 (SHA256 `cfc007f3…`, tag `fw036-home-regen-v2`), it is the pre-A-H26 build
 with four editorial passes applied on top:
 

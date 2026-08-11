@@ -114,7 +114,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     p.add_argument(
         "--spec-coverage",
-        help="Path to a spec_coverage_*.json (from M1/spec_coverage_analysis.py). "
+        help="Path to a spec_coverage_*.json (from archive/M1/spec_coverage_analysis.py). "
              "Feeds the L2 `spec_coverage` KPI (SPEC behaviours covered vs the "
              "SPEC original, not just the derived requirements).",
     )

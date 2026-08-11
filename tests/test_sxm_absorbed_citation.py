@@ -21,7 +21,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 _spec = importlib.util.spec_from_file_location(
-    "sxm_lint", ROOT / "SXMHMI" / "scripts" / "lint_tcs.py")
+    "sxm_lint", ROOT / "features" / "sxm" / "scripts" / "lint_tcs.py")
 if _spec is None or _spec.loader is None:
     pytest.skip("SXM lint_tcs.py not present", allow_module_level=True)
 lint = importlib.util.module_from_spec(_spec)

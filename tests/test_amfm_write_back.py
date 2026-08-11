@@ -1,4 +1,4 @@
-"""Tests for AMFM/scripts/write_back.py (Step 4).
+"""Tests for features/amfm/scripts/write_back.py (Step 4).
 
 AMFM appends after a frozen prefix rather than rewriting interleaved segments,
 so the failure modes differ from Home's and each has a test here:
@@ -20,7 +20,7 @@ from pathlib import Path
 import openpyxl
 import pytest
 
-AMFM = Path(__file__).resolve().parent.parent / "AMFM"
+AMFM = Path(__file__).resolve().parent.parent / "features" / "amfm"
 
 _spec = importlib.util.spec_from_file_location(
     "amfm_write_back", AMFM / "scripts" / "write_back.py")

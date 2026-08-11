@@ -1,0 +1,189 @@
+{
+  "project": "Dealer Mode (CFTS012) — SWE1 分析綜整",
+  "glossary": [
+    {
+      "term": "Dealer Mode",
+      "definition": "經銷商診斷/設定模式;螢幕僅英文(DEAL-003)"
+    },
+    {
+      "term": "SDAR",
+      "definition": "衛星數位音訊接收;資訊含 HW/FW 版本 + SiriusXM Radio ID(ESN);僅 NAFTA 市場(DEAL-011)"
+    },
+    {
+      "term": "Showroom Demo Mode",
+      "definition": "展示廳示範模式;上傳/播放示範影片,可鎖定(DEAL-023~030)"
+    },
+    {
+      "term": "ECU ID Certificate",
+      "definition": "ECU 身分憑證;下載 / USB 匯入匯出 / 狀態顯示 / 拒絕無效憑證(DEAL-031~034)"
+    },
+    {
+      "term": "Personal Data Clearing",
+      "definition": "清除個人資料功能(DEAL-027)"
+    }
+  ],
+  "feature_model": [
+    {
+      "feature": "進出 Dealer Mode",
+      "normal": "進入顯示 main menu、不記憶上次位置;若有 'X' 鈕則由 X 退出",
+      "abnormal": "—",
+      "boundary": "進入=main menu(DEAL-004);退出=X 鈕(DEAL-006)"
+    },
+    {
+      "feature": "System Info 顯示",
+      "normal": "顯示系統資訊/控制資料、安全序號、Flash Loader 版本、Navigation 版本",
+      "abnormal": "—",
+      "boundary": "DEAL-001/008/009/013/014"
+    },
+    {
+      "feature": "SDAR Info",
+      "normal": "顯示 HW/FW 版本 + ESN",
+      "abnormal": "—",
+      "boundary": "市場配置分流:NAFTA 與非 NAFTA 是**不同配置,各自寫正向 TC**(非負向)。SDAR 內容=HW/FW 版本+ESN(DEAL-011/012)"
+    },
+    {
+      "feature": "Copy/Restore User Data",
+      "normal": "複製到 SD/USB、從 SD/USB 還原;含 media 與 EQ 設定",
+      "abnormal": "—",
+      "boundary": "DEAL-015/016/017"
+    },
+    {
+      "feature": "Screenshot",
+      "normal": "截圖存檔",
+      "abnormal": "—",
+      "boundary": "格式 BMP/JPEG/PNG(DEAL-021);檔名 yyyymmddhhmmss.<ext>(DEAL-022);timing(DEAL-019/020)"
+    },
+    {
+      "feature": "Showroom Demo",
+      "normal": "上傳影片→播放;可鎖定;播放重置",
+      "abnormal": "非影片檔型不允許上傳;超過上限拒絕",
+      "boundary": "單檔上限 200MB(DEAL-025);僅影片檔型,允許清單見 CFTS018:H.264/H.265(.mp4)、VP8/VP9(.webm/.mkv)、MPEG-2/4、DivX、GIF"
+    },
+    {
+      "feature": "ECU ID Certificate",
+      "normal": "下載 / USB 匯入匯出 / 狀態顯示",
+      "abnormal": "無效憑證須拒絕(依 CFTS084 / CS.00165)",
+      "boundary": "狀態列舉含『Certificate not present』等(DEAL-034)"
+    },
+    {
+      "feature": "Personal Data Clearing",
+      "normal": "清除個人資料",
+      "abnormal": "—",
+      "boundary": "DEAL-027"
+    }
+  ],
+  "interactions": [
+    {
+      "features": [
+        "SDAR Info",
+        "Market Config"
+      ],
+      "rule": "SDAR 依市場配置分流:NAFTA 與非 NAFTA 各為獨立正向情境,各自一組 TC;不要把非 NAFTA 當成負向案例"
+    },
+    {
+      "features": [
+        "Showroom Demo Upload",
+        "Max File Size",
+        "Video Format"
+      ],
+      "rule": "上傳須同時滿足:影片檔型(CFTS018)且 ≤200MB,否則拒絕"
+    }
+  ],
+  "boundaries": [
+    {
+      "name": "Screenshot 格式",
+      "enum": [
+        "BMP",
+        "JPEG",
+        "PNG"
+      ],
+      "source": "DEAL-021"
+    },
+    {
+      "name": "Screenshot 檔名",
+      "enum": [
+        "yyyymmddhhmmss.<ext>"
+      ],
+      "source": "DEAL-022"
+    },
+    {
+      "name": "單檔上限",
+      "enum": [
+        "200MB"
+      ],
+      "source": "DEAL-025"
+    },
+    {
+      "name": "Demo 影片檔型",
+      "enum": [
+        "H.264/H.265(.mp4)",
+        "VP8/VP9(.webm/.mkv)",
+        "MPEG-2/MPEG-4",
+        "DivX 4/5/6",
+        "GIF(.gif)"
+      ],
+      "source": "CFTS018 Media Types and Formats(R1L 影片 codec/容器)"
+    },
+    {
+      "name": "SDAR 適用市場",
+      "enum": [
+        "僅 NAFTA market config"
+      ],
+      "source": "DEAL-011/012"
+    },
+    {
+      "name": "Dealer 螢幕語言",
+      "enum": [
+        "僅英文"
+      ],
+      "source": "DEAL-003"
+    },
+    {
+      "name": "ECU 憑證狀態",
+      "enum": [
+        "Certificate not present",
+        "(其餘狀態見 DEAL-034-01~05)"
+      ],
+      "source": "DEAL-034"
+    }
+  ],
+  "traceability_hints": [
+    {
+      "req": "Screenshot (DEAL-018~022)",
+      "spec_ref": "CFTS012 Dealer Mode"
+    },
+    {
+      "req": "Showroom Demo (DEAL-023~030)",
+      "spec_ref": "CFTS012 + CFTS018(允許影片格式)"
+    },
+    {
+      "req": "ECU Certificate (DEAL-031~034)",
+      "spec_ref": "CFTS084 / CS.00165"
+    },
+    {
+      "req": "__全 71 需求清單__",
+      "spec_ref": "archive/M1/swe1_deal_reqs.json"
+    }
+  ],
+  "open_questions": [
+    {
+      "question": "ID 命名:TC 用 SWE1-DEAL-xxx,SWE1 分析用 NEWR1L-SWRA-DEAL-xxx——已用正規化核心(DEAL-NNN)對應。確認此對應正確。",
+      "context": "跨文件 ID 體系不同",
+      "status": "confirmed",
+      "resolution": "以 DEAL-NNN 核心對應;req_tracer 已支援。"
+    },
+    {
+      "question": "SDAR 僅 NAFTA:非 NAFTA 配置的 TC 應為負向(不顯示)。確認現有 TC 是否涵蓋非 NAFTA 分支。",
+      "context": "DEAL-011/012",
+      "status": "resolved",
+      "resolution": "人工確認(Gate ①):NAFTA / 非 NAFTA 為不同市場配置,各寫獨立正向 TC,不標負向。"
+    },
+    {
+      "question": "Showroom Demo 允許的影片格式清單在 CFTS018(不在 SWE1)。列舉『不允許格式』負向 TC 需該清單。",
+      "context": "DEAL-029",
+      "status": "resolved",
+      "resolution": "CFTS018 已入 SPEC;允許影片格式:H.264/H.265(.mp4)、VP8/VP9(.webm/.mkv)、MPEG-2/4、DivX、GIF。"
+    }
+  ],
+  "reviewed_at": "2026-06-26T07:53:29.659506+00:00"
+}

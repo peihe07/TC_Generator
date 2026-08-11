@@ -1,4 +1,4 @@
-"""Negative tests for HomeHMI/scripts/lint_tcs.py.
+"""Negative tests for features/home/scripts/lint_tcs.py.
 
 A gate that never fires is indistinguishable from a gate that does not exist.
 Each test mutates one field of a known-good TC and asserts the corresponding
@@ -16,9 +16,9 @@ from pathlib import Path
 
 import pytest
 
-HOME = Path(__file__).resolve().parent.parent / "HomeHMI"
+HOME = Path(__file__).resolve().parent.parent / "features" / "home"
 
-# mediaHMI/scripts/lint_tcs.py exists too. Importing this one by bare name
+# features/media/scripts/lint_tcs.py exists too. Importing this one by bare name
 # would put whichever module loads first into sys.modules under `lint_tcs`
 # and hand it to the other project's tests, so load it under a unique name.
 # `scripts/` still goes on sys.path because lint_tcs imports feature_config.
@@ -26,7 +26,7 @@ sys.path.append(str(HOME / "scripts"))
 _spec = importlib.util.spec_from_file_location(
     "home_lint_tcs", HOME / "scripts" / "lint_tcs.py")
 if _spec is None or _spec.loader is None:
-    pytest.skip("HomeHMI linter not present", allow_module_level=True)
+    pytest.skip("features/home linter not present", allow_module_level=True)
 lint_tcs = importlib.util.module_from_spec(_spec)
 sys.modules["home_lint_tcs"] = lint_tcs
 _spec.loader.exec_module(lint_tcs)
@@ -297,13 +297,13 @@ def test_generated_b1_output_passes_the_real_gate():
     data = HOME / "data"
     generated = sorted((HOME / "generated").glob("*.json"))
     if not generated or not (data / "remaining_leaves.json").exists():
-        pytest.skip("HomeHMI data/ or generated/ not built")
+        pytest.skip("features/home data/ or generated/ not built")
     cfg = lint_tcs.load_feature_config(HOME)
     try:
         workbook = lint_tcs.resolve_path(cfg, "workbook")
         popup = lint_tcs.resolve_path(cfg, "popup_list")
     except SystemExit:
-        pytest.skip("HomeHMI inputs/ not present (gitignored)")
+        pytest.skip("features/home inputs/ not present (gitignored)")
     real = {
         "methods": lint_tcs.load_design_methods(workbook),
         "popups": lint_tcs.load_popup_index(popup),

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Scaffold a new FW036 feature directory per FEATURE_ONBOARDING.md.
 
-Creates the standard feature layout (mirroring mediaHMI/HomeHMI), copies the
+Creates the standard feature layout at `features/<name>/` (mirroring
+features/media and features/home), copies the
 DECISIONS.md and feature.yaml templates with the feature name substituted,
 and writes RUNBOOK/ANOMALIES skeletons pointing at the canon.
 
@@ -102,7 +103,10 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-{abbr}nn]`.
 
 
 def scaffold(feature: str, root: Path) -> None:
-    feat_dir = root / f"{feature}HMI"
+    # Directory naming convention (2026-08-11 reorg): all features live under
+    # features/, lowercase, without the HMI suffix. The feature NAME keeps its
+    # own casing — it is what feature.yaml and the profile filename carry.
+    feat_dir = root / "features" / feature.lower()
     if feat_dir.exists():
         sys.exit(f"refusing to scaffold: {feat_dir} already exists")
 

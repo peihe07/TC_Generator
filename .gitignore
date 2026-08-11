@@ -74,6 +74,14 @@ _intake/*/*
 # 套件自身的規則見 tcgen_package/.gitignore
 tcgen_package.zip
 
+# Per-feature lint reports (regenerable; `lint_tcs.py --json-report`). Each
+# feature's own .gitignore already excludes `lint_report.json` and travels with
+# the directory — these two lines are the repo-level backstop for a feature
+# scaffolded without one, and for the pre-2026-08-11 root-level layout.
+lint_report.json
+*/lint_report.json
+features/*/lint_report.json
+
 # FW form templates: blank/reference form files stay untracked (company
 # documents, same policy as <Feature>/inputs/); only the manifest is tracked.
 forms/*

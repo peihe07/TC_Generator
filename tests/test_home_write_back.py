@@ -1,4 +1,4 @@
-"""Tests for HomeHMI/scripts/write_back.py (Step 4).
+"""Tests for features/home/scripts/write_back.py (Step 4).
 
 The invariant that matters is content-based: the 144 Arif rows must survive a
 rewrite that inserts and deletes rows around them. The integration test runs
@@ -14,15 +14,15 @@ from pathlib import Path
 
 import pytest
 
-HOME = Path(__file__).resolve().parent.parent / "HomeHMI"
+HOME = Path(__file__).resolve().parent.parent / "features" / "home"
 
-# mediaHMI/scripts/write_back.py exists too — load this one under a unique
+# features/media/scripts/write_back.py exists too — load this one under a unique
 # module name so the two projects' tests cannot hand each other the wrong one.
 sys.path.append(str(HOME / "scripts"))
 _spec = importlib.util.spec_from_file_location(
     "home_write_back", HOME / "scripts" / "write_back.py")
 if _spec is None or _spec.loader is None:
-    pytest.skip("HomeHMI write_back not present", allow_module_level=True)
+    pytest.skip("features/home write_back not present", allow_module_level=True)
 write_back = importlib.util.module_from_spec(_spec)
 sys.modules["home_write_back"] = write_back
 _spec.loader.exec_module(write_back)
@@ -291,9 +291,9 @@ def test_normalisation_is_idempotent_and_stable(tmp_path):
 def dry_run():
     """Run the real dry run against the real workbook, or skip."""
     if not (HOME / "data" / "row_segments.json").exists():
-        pytest.skip("HomeHMI data/ not built")
+        pytest.skip("features/home data/ not built")
     if not list((HOME / "generated").glob("*.json")):
-        pytest.skip("HomeHMI generated/ empty")
+        pytest.skip("features/home generated/ empty")
     import argparse
     import contextlib
     import io
@@ -309,7 +309,7 @@ def dry_run():
         with contextlib.redirect_stdout(buf):
             rc = write_back.run(args)
     except SystemExit as exc:  # resolve_path could not find the inputs
-        pytest.skip(f"HomeHMI inputs/ not present: {exc}")
+        pytest.skip(f"features/home inputs/ not present: {exc}")
     finally:
         os.chdir(cwd)
     return rc, buf.getvalue()

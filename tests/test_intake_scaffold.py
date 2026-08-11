@@ -44,7 +44,7 @@ def make_drop(tmp_path, names_and_kinds):
     for name, kind in names_and_kinds:
         (folder / name).write_text("x", encoding="utf-8")
         files.append({"file": name, "kind": kind, "note": ""})
-    feat = tmp_path / "AMFMHMI"
+    feat = tmp_path / "features" / "amfm"
     (feat / "inputs").mkdir(parents=True)
     (feat / "feature.yaml").write_text(FEATURE_YAML, encoding="utf-8")
     return folder, files, feat

@@ -13,7 +13,7 @@ The project has two working surfaces:
 The backend is being reworked into a grounded, KPI-measured pipeline. All work
 below currently lives on `feat/m1-stage7-scorecard` and has **not** been merged
 into `main` yet. Backend test baseline: **618 tests collected**. The full
-per-session log lives in [`M1/PROGRESS.md`](M1/PROGRESS.md); this table is the
+per-session log lives in [`archive/M1/PROGRESS.md`](archive/M1/PROGRESS.md); this table is the
 canonical summary.
 
 ### Milestones
@@ -29,7 +29,7 @@ canonical summary.
 
 | Stage | Capability | Status |
 |---|---|---|
-| **Stage 1** — Domain grounding | `backend/domain_pack.py`; Player pack rebuilt from SWE1 analysis (`M1/domain_pack_player.json`) | Done |
+| **Stage 1** — Domain grounding | `backend/domain_pack.py`; Player pack rebuilt from SWE1 analysis (`archive/M1/domain_pack_player.json`) | Done |
 | **Stage 3** — Deep decompose | Single-requirement decomposition grounded in the domain pack | Done |
 | **Stage 6** — Grounded review | Domain-injected review + §7.6 reality-gap rule (`--domain-pack`) | Done |
 | **Stage 7** — KPI scorecard | 7+1 KPIs incl. `tier1_critical_req_rate` and L2 `spec_coverage` | Done |
@@ -241,7 +241,7 @@ calling the LLM.
 
 - `--scorecard`: compute a KPI scorecard from an existing `findings.json`; no LLM calls
 - `--findings`: path to the `findings.json` consumed by `--scorecard`
-- `--spec-coverage`: path to a `spec_coverage_*.json` (from `M1/spec_coverage_analysis.py`) to feed the L2 `spec_coverage` KPI
+- `--spec-coverage`: path to a `spec_coverage_*.json` (from `archive/M1/spec_coverage_analysis.py`) to feed the L2 `spec_coverage` KPI
 
 ### Domain grounding & traceability
 

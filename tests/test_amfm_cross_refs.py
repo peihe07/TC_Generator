@@ -23,7 +23,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 _spec = importlib.util.spec_from_file_location(
-    "amfm_stla_map_refs", ROOT / "AMFM" / "scripts" / "build_stla_map.py")
+    "amfm_stla_map_refs", ROOT / "features" / "amfm" / "scripts" / "build_stla_map.py")
 if _spec is None or _spec.loader is None:
     pytest.skip("build_stla_map.py not present", allow_module_level=True)
 bsm = importlib.util.module_from_spec(_spec)

@@ -18,7 +18,7 @@
 
 Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在
 `feat/m1-stage7-scorecard` 分支，**尚未 merge 進 `main`**。Backend 測試基線
-**618 tests collected**。詳見 [`M1/PROGRESS.md`](../M1/PROGRESS.md)。
+**618 tests collected**。詳見 [`archive/M1/PROGRESS.md`](../archive/M1/PROGRESS.md)。
 
 - **M0/M0b — Provider 抽象**：新增 `backend/providers/`（OpenAI + Anthropic +
   budget + factory）與 `set_provider` seam；`generator._chat` 全走 provider
@@ -29,7 +29,7 @@ Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在
 - **M2 — Budget planner**：`backend/budget_planner.py`，`--preflight` 估算花費/
   時間、`--calibrate` 由 probe run 推導 throughput。
 - **Stage 1 — Domain grounding**：`backend/domain_pack.py`；Player pack 由 SWE1
-  分析重建（`M1/domain_pack_player.json`）。實測拆解誤報 55.6% → 22.2%。
+  分析重建（`archive/M1/domain_pack_player.json`）。實測拆解誤報 55.6% → 22.2%。
 - **Stage 3 — Deep decompose**：單需求拆解注入 domain pack（PLA-030 Repeat
   覆蓋 ~3 → 11 情境、0 幻覺）。
 - **Stage 6 — Grounded review**：review 注入 domain + §7.6 reality-gap 規則
@@ -60,7 +60,7 @@ Backend pipeline 改造為「接地 + KPI 量測」的閉環管線，全部在
 - **ASPICE wording rules**：`ASPICE_SWE6_AI_Instruction.md` 補強 UI label
   必須使用 double quotes、baseline wording、one trigger 多 consequential
   outcomes 不拆 TC 等規則。
-- **Refinement helper**：新增 `refinement/retry_failed.py`，針對 lint_failed
+- **Refinement helper**：新增 `scripts/refinement/retry_failed.py`，針對 lint_failed
   TC 用較強 retry prompt 重跑並要求 step / ER 1:1。
 - **Verification**：modern frontend `npm run typecheck` 通過；
   `npm run test:unit` 為 20 files / 134 tests pass。

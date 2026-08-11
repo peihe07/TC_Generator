@@ -4,7 +4,7 @@ Aggregates Stage 5 structural results + Stage 6 §9 findings into 7 KPIs and
 writes `scorecard.json` (stable schema for trend comparison) + `scorecard.md`
 (human-readable). Pure Python, no AI, zero cost.
 
-Source availability (see M1/RECON_NOTES.md):
+Source availability (see archive/M1/RECON_NOTES.md):
 - first_pass_rate, design_method_accuracy  -> computable from findings alone.
 - traceability_completeness                -> needs `traceability` input.
 - field_completeness                       -> needs `validation` input.

@@ -1,4 +1,4 @@
-"""Tests for the Step 3 TC linter (mediaHMI/scripts/lint_tcs.py)."""
+"""Tests for the Step 3 TC linter (features/media/scripts/lint_tcs.py)."""
 import json
 import sys
 from pathlib import Path
@@ -6,8 +6,8 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parent.parent
-SCRIPTS = REPO / "mediaHMI" / "scripts"
-DATA = REPO / "mediaHMI" / "data"
+SCRIPTS = REPO / "features" / "media" / "scripts"
+DATA = REPO / "features" / "media" / "data"
 sys.path.insert(0, str(SCRIPTS))
 
 import lint_tcs  # noqa: E402

@@ -5,7 +5,7 @@ Column letters are converted to 0-based indices here; path globs resolve to
 exactly one file — an ambiguous or missing input fails loud rather than
 silently picking the first match.
 
-`HomeHMI/scripts/feature_config.py` is the same loader, kept in place so the
+`features/home/scripts/feature_config.py` is the same loader, kept in place so the
 Home pipeline's imports are untouched. New feature scripts import this one.
 """
 from pathlib import Path

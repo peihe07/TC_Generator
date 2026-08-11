@@ -14,7 +14,7 @@
 - Requirement IDs: `SWE1-HMI-HOME-NNN[-NN]` from the 037 report — never
   invented, never renumbered
 - Done region = the 144 rows authored by `Arif` (three interleaved segments;
-  see HomeHMI/RUNBOOK.md). Done region is style authority, NOT factual
+  see features/home/RUNBOOK.md). Done region is style authority, NOT factual
   authority; its content is frozen byte-for-byte.
 
 ## 1. Requirements authority chain [ADD]
@@ -140,4 +140,4 @@ A-H04 BSP struck-through text out of scope; A-H05 done-region 13 rows blank
 priority (recorded, not fixed); A-H06 035 in FW036 but absent from 037;
 A-H07 HSD5.6 grey-out assumption; A-H08 quoted popup text is exempt from the
 ER modal-verb ban; A-H09 020/021 attribute to CarPlay Template.
-Details and dispositions live in `HomeHMI/ANOMALIES.md`.
+Details and dispositions live in `features/home/ANOMALIES.md`.

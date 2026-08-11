@@ -259,7 +259,7 @@ source copy is enough.)
 Deliverable workbook: FMWIFSM036A01 `SWQT_Home_20260720`; RD source
 FMWIFSM037A03-N1L-SWE1 Home HMI (140 leaf FRs); spec authority SYS1 export of
 Home Screen HMI Logic and Flow R1 SR24 Post 2A (March 17 2023). Execution
-plan: `HomeHMI/RUNBOOK.md`; profile:
+plan: `features/home/RUNBOOK.md`; profile:
 `docs/runtime/profiles/FW036_R1L_Home_Profile.md`.
 
 **Workbook divergence from Media**: the Home done region (144 rows by Arif)
@@ -306,7 +306,7 @@ outliers per §4.2, accepted.
 
 ### Home anomalies
 
-A-H01…A-H08 — register and dispositions in `HomeHMI/ANOMALIES.md`.
+A-H01…A-H08 — register and dispositions in `features/home/ANOMALIES.md`.
 **All Step-0 rulings are closed as of 2026-08-09; every Set including Last
 Mode is generation-ready.** A-H03 resolved: the Last Mode spec is present in
 `inputs/` under a different release label, and all 15 leaf `_{n}` suffixes
@@ -325,9 +325,9 @@ Deliverable workbook: FM-WI-FSM-036-A01 `SWQT_CFTS024_Radio_20260129`; RD
 source 037-A03 (102 leaf FRs, `SWE-RA-RAD-*`, per RULINGS R1); spec_mode D
 — spec authority is the CFTS024 docx (R1LR Atl-H 25PI3.5, 20250910) plus
 two external CFTS docs (below); SYS3 SYSAD supplies architecture context.
-Execution plan: `AMFM/RUNBOOK.md`; profile:
+Execution plan: `features/amfm/RUNBOOK.md`; profile:
 `docs/runtime/profiles/FW036_R1L_AMFM_Profile.md`; rulings R1–R7 in
-`AMFM/RULINGS.md`.
+`features/amfm/RULINGS.md`.
 
 **Layer 2 derivation note (§4.1.2 degenerate case)**: the 037's
 Categorization / Sub-Categorization columns are `Functional / NA` on all
@@ -417,9 +417,9 @@ C — first feature on it, A-SX05); RD source 037-A03 SXM (202 leaf FRs,
 direct-read for clause text, docx heading parse for printed section
 numbers, bracket map as fail-loud validator). The SiriusXM 360L SAT Only
 HMI L&F (PDF + SYS1 export) is the figure/flow source (mode C role), not
-the citation source. Execution plan: `SXMHMI/RUNBOOK.md`; profile:
+the citation source. Execution plan: `features/sxm/RUNBOOK.md`; profile:
 `docs/runtime/profiles/FW036_R1L_SXM_Profile.md` (to instantiate);
-rulings in `SXMHMI/DECISIONS.md` + `SXMHMI/ANOMALIES.md` (A-SX01–07 all
+rulings in `features/sxm/DECISIONS.md` + `features/sxm/ANOMALIES.md` (A-SX01–07 all
 RESOLVED).
 
 **Layer 2 derivation note**: same degenerate case as AMFM — the 037's
@@ -428,7 +428,7 @@ intersection collapses to the spec's own §1.5.x structure. The mapping is
 mechanical and total: 202/202 leaf ids land on exact CFTS024 clause
 anchors (A-SX01), leaf ids are near-contiguous within each section, and
 section boundaries are natural batch boundaries
-(`SXMHMI/docs/leaf-sections-sxm.md`).
+(`features/sxm/docs/leaf-sections-sxm.md`).
 
 **Workbook state**: BLANK — no legacy region. Style authority = fallback
 chain; exemplars from the AMFM done region, `cross-feature: style only`,

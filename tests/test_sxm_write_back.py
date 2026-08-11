@@ -1,4 +1,4 @@
-"""Tests for SXMHMI/scripts/write_back.py — the BLANK-workbook write.
+"""Tests for features/sxm/scripts/write_back.py — the BLANK-workbook write.
 
 SXM has no done region and no legacy region, so the invariants Home and AMFM
 rely on (an ordered content hash over frozen rows) have nothing to hold. Two
@@ -24,7 +24,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 
 _spec = importlib.util.spec_from_file_location(
-    "sxm_write_back", ROOT / "SXMHMI" / "scripts" / "write_back.py")
+    "sxm_write_back", ROOT / "features" / "sxm" / "scripts" / "write_back.py")
 if _spec is None or _spec.loader is None:
     pytest.skip("SXM write_back not present", allow_module_level=True)
 wb_mod = importlib.util.module_from_spec(_spec)
@@ -184,7 +184,7 @@ def test_a_missing_scope_label_aborts():
 # --------------------------------------------------------------- integration
 
 def test_the_real_write_holds_every_invariant(tmp_path):
-    home = ROOT / "SXMHMI"
+    home = ROOT / "features" / "sxm"
     if not (home / "data" / "stla_to_cfts.json").exists():
         pytest.skip("SXM data/ not built")
     if not list((home / "generated").glob("*.json")):

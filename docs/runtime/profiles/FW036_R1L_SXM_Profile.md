@@ -7,7 +7,7 @@
 > project-specific additions.
 >
 > Instantiated from `FW036_R1L_AMFM_Profile.md` plus the seven-item delta
-> signed in `SXMHMI/DECISIONS.md` §6. Where a clause below is unchanged from
+> signed in `features/sxm/DECISIONS.md` §6. Where a clause below is unchanged from
 > the AMFM profile it is because the two features share one spec document
 > (CFTS024) and one 037 template family — **not** because it was inherited
 > without checking. Each delta cites its source ruling.
@@ -262,7 +262,7 @@ deltas above are the complete set of adopted decisions.
 
 ## 7. Known anomalies register [ADD]
 
-`SXMHMI/ANOMALIES.md`, A-SX01 … A-SX08, all RESOLVED at Phase 3 sign-off.
+`features/sxm/ANOMALIES.md`, A-SX01 … A-SX08, all RESOLVED at Phase 3 sign-off.
 Batch-time markers are §5 above. New findings are registered there at the
 moment they are found, with the citing leaves named — never after the batch
 that needs them stalls.

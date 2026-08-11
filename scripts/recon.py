@@ -11,7 +11,7 @@ Reads feature.yaml, surveys the FW036 workbook and the 037 report, and emits:
 Tier 0/1 only: this script DETECTS and PROPOSES; it never rules. Ambiguity is
 surfaced with row-level evidence, not resolved.
 
-Regression-validated against HomeHMI (2026-08-09): reproduces the manually
+Regression-validated against features/home (2026-08-09): reproduces the manually
 verified survey exactly — PARTIAL_INTERLEAVED; 140 leaves; 62 regen targets;
 done segments 10-86/91-124/129-161; uncovered {055-03, 066}; parent/child
 dupe {066}; orphan done req {035} (A-H06); 9 design-method strings;
@@ -23,7 +23,7 @@ copy that has been re-rendered elsewhere may probe differently from the
 original — always trust the probe run against the repo inputs/ copy.
 
 Usage:
-    python scripts/recon.py --feature HomeHMI --root .
+    python scripts/recon.py --feature features/home --root .
 """
 
 import argparse

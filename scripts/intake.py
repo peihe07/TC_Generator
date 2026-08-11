@@ -20,8 +20,9 @@ classifying them. This script:
    arbitrates which one is the TC source; the others are flagged for a
    Tier 2 role confirmation.
 4. Proposes spec_mode (A–E per FEATURE_ONBOARDING §3)
-5. With --scaffold, creates <Feature>HMI/ via new_feature.py conventions,
-   moves classified files into inputs/, and pre-fills feature.yaml paths
+5. With --scaffold, creates features/<feature>/ via new_feature.py
+   conventions, moves classified files into inputs/, and pre-fills
+   feature.yaml paths
 
 Regression-validated (2026-08-09) against BOTH template families:
 - Home corpus: all files classified under scrambled names; Last Mode absent
@@ -36,7 +37,7 @@ Tier 3 (Pei).
 
 Usage:
     python scripts/intake.py AMFM                # classify _intake/AMFM/
-    python scripts/intake.py AMFM --scaffold     # + create AMFMHMI/, move files
+    python scripts/intake.py AMFM --scaffold     # + create features/amfm/, move files
 """
 
 import argparse
@@ -412,7 +413,7 @@ KIND_TO_YAML = {
 
 def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
              root: Path, a03_pick: dict | None = None) -> None:
-    """Create <Feature>HMI/, move classified files in, pre-fill feature.yaml.
+    """Create features/<feature>/, move classified files in, pre-fill feature.yaml.
 
     `a03_pick` is the Scope-arbitrated requirement report. It matters when
     several are present: without it every swra_report writes a03_report in
@@ -421,7 +422,7 @@ def scaffold(feature: str, folder: Path, files: list[dict], mode: str,
     report just printed. When the choice was contested the written line is
     annotated so the Tier 2 reviewer sees a decision was made, not a default.
     """
-    feat_dir = root / f"{feature}HMI"
+    feat_dir = root / "features" / feature.lower()
     if not feat_dir.exists():
         import subprocess
         subprocess.run(

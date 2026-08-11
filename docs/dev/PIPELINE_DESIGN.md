@@ -481,11 +481,11 @@ SSE 事件:generate(`job.started`/`req.split`/`row.completed`/`row.added`/`job.c
 ## N. 給 Claude chat 規劃時的已知缺口 / 待決
 
 - ~~Provider 解耦尚未做~~ → **已完成**(`backend/providers/`)。
-- ~~Domain Knowledge Pack(Stage 1)~~ → **已完成**(`domain_pack.py` + `M1/domain_pack_*.json`)。
+- ~~Domain Knowledge Pack(Stage 1)~~ → **已完成**(`domain_pack.py` + `archive/M1/domain_pack_*.json`)。
 - ~~KPI Scorecard(Stage 7)~~ → **已完成**(`scorecard.py`,9 KPI;trace+validation 已接)。
 - ~~Review 強化(Stage 6)~~ → **已完成**(domain pack + content-trace + reality-gap 已餵入)。
 - ~~互動式 vs headless 的 orchestration~~ → **已落地**:見下方 SOP。
-- 待續:L2 SPEC 覆蓋做成 KPI;Stage 3/4 單需求 agent 扇出;補進度條/Shuffle 缺口測項(見 `M1/spec_coverage_gaps_final.md`)。
+- 待續:L2 SPEC 覆蓋做成 KPI;Stage 3/4 單需求 agent 扇出;補進度條/Shuffle 缺口測項(見 `archive/M1/spec_coverage_gaps_final.md`)。
 
 ---
 
@@ -500,7 +500,7 @@ SSE 事件:generate(`job.started`/`req.split`/`row.completed`/`row.added`/`job.c
 # 1) export — 純 Python 產 context 包(regex findings + 每批 prompt),不打 API
 python backend/main.py --export-bundle \
   --input "<TC.xlsx>" --output-dir output/X \
-  --domain-pack M1/domain_pack_<proj>.json --swe1-reqs M1/swe1_<proj>_reqs.json
+  --domain-pack archive/M1/domain_pack_<proj>.json --swe1-reqs archive/M1/swe1_<proj>_reqs.json
 #    → output/X/review_bundle.json(N 批,每批含 user_prompt + answer:null)
 ```
 
@@ -513,7 +513,7 @@ python backend/main.py --export-bundle \
 ```bash
 # 3) assemble — 純 Python 把答案併成最終報告 + scorecard,不打 API
 python backend/main.py --assemble output/X/review_bundle.json \
-  --output-dir output/X --swe1-reqs M1/swe1_<proj>_reqs.json
+  --output-dir output/X --swe1-reqs archive/M1/swe1_<proj>_reqs.json
 #    → findings.json / findings_report.md / scorecard.json / scorecard.md
 ```
 
@@ -542,8 +542,8 @@ python backend/main.py --assemble output/X/review_bundle.json \
 ```bash
 # 1) export — 每需求組 SPEC 接地 context;system_prompt 帶權威規則。不打 API
 python backend/main.py --gen-export-bundle \
-  --swe1-reqs M1/swe1_<proj>_reqs.json --domain-pack M1/domain_pack_<proj>.json \
-  --spec-coverage M1/spec_coverage_<proj>.json \
+  --swe1-reqs archive/M1/swe1_<proj>_reqs.json --domain-pack archive/M1/domain_pack_<proj>.json \
+  --spec-coverage archive/M1/spec_coverage_<proj>.json \
   --req-ids <該家族的 req ids> --output-dir output/gen_<family>
 ```
 ```text
@@ -560,7 +560,7 @@ python backend/main.py --gen-assemble output/gen_<family>/gen_bundle.json \
 # 4) 第二層寫作規則稽核 — 把生成的 xlsx 丟回 review(§8.x)
 python backend/main.py --review --dry-run \
   --input output/gen_<family>/generated_tcs.xlsx \
-  --output-dir output/gen_<family>/audit --swe1-reqs M1/swe1_<proj>_reqs.json
+  --output-dir output/gen_<family>/audit --swe1-reqs archive/M1/swe1_<proj>_reqs.json
 #    → 若 §8.x 有違規(禁用動詞/模糊用語/Final Step),修 procedure/ER 後重跑 3-4
 ```
 

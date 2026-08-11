@@ -1,0 +1,375 @@
+#!/usr/bin/env python3
+"""Step 3 (SXM) — lint the generated TCs against the profile and canon.
+
+Ported from AMFM. Same gates; the SXM differences that matter:
+
+- **Absorption marker is `[A-SX08]`**, not `[A-AM10]` (framework Part IV
+  note 5). A stale marker string would let every multi-cite through unchecked.
+- **Anomaly ids are `A-SXnn`**, so the Remarks external-language gate matches
+  those instead of `A-AMnn`.
+- The workbook is BLANK, so there is no done region and no legacy value to
+  compare Test Group / Test Set against — both are FILLED on every row and the
+  values come from framework Part IV.
+
+Usage:
+    python features/sxm/scripts/lint_tcs.py --feature-dir features/sxm
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+import openpyxl
+
+# Repo root = the nearest ancestor carrying pyproject.toml. Resolved by
+# marker rather than by parent count: the feature directory moved from the
+# repo root to features/ on 2026-08-11, and a hard-coded depth broke.
+REPO_ROOT = next(p for p in Path(__file__).resolve().parents
+                 if (p / "pyproject.toml").is_file())
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from feature_config import load_feature_config, resolve_path  # noqa: E402
+
+PRIORITIES = ("P0", "P1", "P2", "P3")
+MODALS = re.compile(r"\b(shall|will|should|would|must)\b", re.I)
+# Internal identifiers: ruling ids and anomaly markers. Deliberately narrow —
+# "R1L" (the program name) and years must not trip it.
+INTERNAL_ID = re.compile(r"\bA-(?:AM|SX)\d{2}\b|\bR\d{1,2}(?:-Q?\d)?\b(?!L)")
+ABSORPTION_MARKER = "[A-SX08]"
+CITE_SEP = "; "
+# Source-quoted signal values keep the spec's square brackets (Profile §3.4);
+# everything else must use double quotes for UI labels (§11).
+SIGNAL_TOKEN = re.compile(r"\$[A-Za-z0-9_]+\$\s*=\s*\[[^\]]*\]")
+MULTILINE_FIELDS = ("pre_conditions", "input_test_data", "test_procedure",
+                    "expected_result")
+# §6: an ER line states what is observed. An inference about what the
+# observation proves belongs in reasoning. These catch the structural family
+# — comma, then which/thereby plus an inference verb, or its gerund form —
+# rather than any one phrasing, so `which places` and `which leaves` are the
+# same finding and a new variant does not slip through.
+INTERPRETIVE_TAIL = (
+    # The gerunds are spelled out rather than suffixed: `proving` drops the e
+    # from `prove` and `putting` doubles the t, so `(s|d|ing)?` would miss both
+    # and `, thereby proving …` would fall between the two patterns.
+    re.compile(r",\s*(which|thereby)\s+((place|leave|put|show|prove|confirm|"
+               r"indicate|demonstrate|mean|imply)(s|d)?|placing|leaving|"
+               r"putting|showing|proving|confirming|indicating|"
+               r"demonstrating)\b.*$", re.I),
+    re.compile(r",\s*(placing|leaving|putting|showing|proving|confirming|"
+               r"indicating|demonstrating)\b.*$", re.I),
+)
+
+
+def numbered(text: str) -> list[str]:
+    return [l for l in str(text or "").split("\n") if l.strip()]
+
+
+def absorbed_ids(doc: dict) -> set[str]:
+    """The clause ids an `[A-AM10]` assumption names as absorbed.
+
+    R10-2a makes absorption conditional on citing what was absorbed, so the
+    marker has to say WHICH clause — otherwise the condition is unverifiable
+    and the gate degenerates into counting citations.
+    """
+    out: set[str] = set()
+    for a in doc.get("assumptions") or []:
+        text = str(a)
+        if ABSORPTION_MARKER not in text:
+            continue
+        out |= set(re.findall(r"CFTS\d{3}-(\d{7})", text))
+    return out
+
+
+def load_design_methods(workbook: Path) -> list[str]:
+    wb = openpyxl.load_workbook(workbook, read_only=True)
+    if "下拉選單" not in wb.sheetnames:
+        raise SystemExit("workbook has no 下拉選單 sheet")
+    out = [str(r[0].value).strip() for r in wb["下拉選單"].iter_rows()
+           if r and r[0].value]
+    wb.close()
+    return out
+
+
+def cited_tokens(citations: dict, req_id: str) -> set[str]:
+    """Cross-document tokens this leaf's own clause writes (R11 cite-form).
+
+    Membership is per leaf, not global: `CFTS019-718` is a legitimate citation
+    for 014, whose clause writes it, and a fabricated one anywhere else.
+    """
+    return {t for t, e in (citations or {}).items()
+            if req_id in e.get("req_ids", [])}
+
+
+def load_unallocated_texts(root: Path) -> dict[str, str]:
+    """Clause text by 7-digit id for the clauses no leaf carries.
+
+    Needed only by the absorption exception below: to decide whether an
+    absorbed clause licenses a citation, the gate has to read that clause.
+    """
+    path = root / "data" / "unallocated_clauses.json"
+    if not path.exists():
+        return {}
+    out: dict[str, str] = {}
+    for entry in json.loads(path.read_text(encoding="utf-8")).values():
+        for u in entry.get("unallocated", []):
+            if u.get("id") is not None:
+                out[str(u["id"])] = str(u.get("text") or "")
+    return out
+
+
+def absorbed_tokens(refs: list[str], unalloc: dict[str, str]) -> set[str]:
+    """Tokens licensed by an absorbed clause cited in the same reference list.
+
+    Ruled 2026-08-11 (DECISIONS Amendment 7, necessity threshold): an absorbed
+    clause's citation travels with it only when the clause's behaviour cannot
+    be stated without the citation. The verifiable half of that is mechanical
+    and is what this checks — the token is legal if the same
+    specification_reference also lists an absorbed clause whose text writes it,
+    which keeps the three-hop chain (leaf -> absorbed clause -> citation)
+    visible in the delivered row instead of hidden. Necessity itself is a
+    judgement made at generation and recorded in the [A-SX08] assumption.
+    """
+    out: set[str] = set()
+    for r in refs:
+        m = re.fullmatch(r"CFTS\d{3}-(\d{7})", r)
+        if m and m.group(1) in unalloc:
+            text = unalloc[m.group(1)]
+            out |= {t for t in re.findall(r"CFTS\d{3}-\d{1,6}\b", text)}
+    return out
+
+
+def leaf_test_sets(cfg) -> dict[str, str]:
+    """req_id -> framework Part IV Test Set, from feature.yaml `test_sets`."""
+    out = {}
+    for name, spec in (cfg.get("test_sets") or {}).items():
+        for part in str(spec).split(","):
+            part = part.strip()
+            if not part:
+                continue
+            if "-" in part:
+                a, b = (int(x) for x in part.split("-", 1))
+                rng = range(a, b + 1)
+            else:
+                rng = [int(part)]
+            for n in rng:
+                out[f"SWE-RA-SXM-{n:03d}"] = name
+    return out
+
+
+def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
+            stla: dict, citations: dict | None = None,
+            set_index: dict | None = None,
+            unalloc: dict[str, str] | None = None) -> list[dict]:
+    f = []
+
+    def bad(gate, msg):
+        f.append({"tc": tag, "gate": gate, "message": msg})
+
+    proc, er = numbered(tc.get("test_procedure")), numbered(tc.get("expected_result"))
+    if len(proc) < 2:
+        bad("step-count", f"{len(proc)} numbered steps, minimum 2 (§10.5)")
+    if len(proc) != len(er):
+        bad("er-alignment", f"{len(proc)} steps vs {len(er)} ER lines (§6)")
+
+    for field in MULTILINE_FIELDS:
+        for line in str(tc.get(field) or "").split("\n"):
+            if line.strip().endswith((".", "。")):
+                bad("trailing-period", f"{field}: {line.strip()[-40:]!r} (§11)")
+        stripped = SIGNAL_TOKEN.sub("", str(tc.get(field) or ""))
+        if "[" in stripped or "]" in stripped:
+            bad("square-bracket",
+                f"{field}: bracket outside a source-quoted $SIGNAL$ = [value] (§11)")
+
+    if MODALS.search(str(tc.get("expected_result") or "")):
+        bad("er-modal", f"modal verb in expected_result (§6)")
+    for i, line in enumerate(str(tc.get("expected_result") or "").split("\n"), 1):
+        for pat in INTERPRETIVE_TAIL:
+            m = pat.search(line)
+            if m:
+                bad("er-interpretive-tail",
+                    f"ER line {i}: {m.group(0).strip()!r} — interpretive tail "
+                    "clause in ER — state the observation, move the inference "
+                    "to reasoning (§6)")
+                break
+    title = str(tc.get("tc_title") or "")
+    if not title:
+        bad("keys", "tc_title is empty (§4.3)")
+    elif MODALS.search(title):
+        bad("title-modal", f"modal verb in tc_title (§4.3)")
+    elif len(title.split()) > 14:
+        bad("title-length", f"tc_title is {len(title.split())} words, max 14 (§4.3)")
+
+    if tc.get("priority") not in PRIORITIES:
+        bad("priority", f"{tc.get('priority')!r} is not one of {PRIORITIES} (§10.2)")
+    if tc.get("design_method") not in methods:
+        bad("design-method",
+            f"{tc.get('design_method')!r} is not one of the 下拉選單 strings (§12)")
+    if tc.get("test_group") != cfg["test_group"]:
+        bad("test-group",
+            f"{tc.get('test_group')!r} != {cfg['test_group']!r} (R7-Q1)")
+    if not str(tc.get("test_set") or "").strip():
+        bad("test-set", "empty; SXM fills Test Set on every row")
+    elif set_index:
+        # Column H belongs to the LEAF (framework Part IV), not to the batch
+        # that generated it. This gate exists because the first pilot shipped
+        # leaf 154 as `Instant Replay` — right for the batch, wrong for the
+        # leaf, and invisible to every other check.
+        want = set_index.get(tc.get("req_id"))
+        if want and tc["test_set"] != want:
+            bad("test-set",
+                f"{tc['test_set']!r} != framework Part IV Set {want!r} for "
+                f"{tc.get('req_id')} — Test Set follows the leaf, not the batch")
+
+    # ---- spec_reference resolves through the STLA map, every citation
+    refs = [r.strip() for r in str(tc.get("specification_reference") or "").split(";")
+            if r.strip()]
+    if not refs:
+        bad("spec-reference", "empty (§10.7)")
+    entry = stla.get(tc.get("req_id"))
+    if entry is None:
+        bad("unknown-req-id", f"{tc.get('req_id')!r} is not a 037 leaf")
+    else:
+        primary = cfg["spec_reference_template"].format(
+            doc=entry["doc"], stla_id=entry["stla_id"])
+        if refs and refs[0] != primary:
+            bad("spec-reference",
+                f"first citation {refs[0]!r} is not the leaf's own clause "
+                f"{primary!r} (§10.7 most-specific first)")
+    # R11: a cross-document citation is quoted in the CITING document's own
+    # short-id scheme (`CFTS019-718`), so it cannot be held to the 7-digit
+    # anchor shape. It is allowed only where the spec actually writes it —
+    # per leaf, from the citation sweep — which is what stops the short form
+    # from becoming a hole in the format check.
+    allowed_tokens = cited_tokens(citations, tc.get("req_id"))
+    # Ruled exception: a token an absorbed clause writes is licensed too, but
+    # only while that clause is cited in this very reference list.
+    allowed_tokens |= absorbed_tokens(refs, unalloc or {})
+    for r in refs:
+        if re.fullmatch(r"CFTS\d{3}-\d{7}", r) or r in allowed_tokens:
+            continue
+        if re.fullmatch(r"CFTS\d{3}-\d{1,6}", r):
+            bad("cross-reference",
+                f"{r!r} is a cross-document citation, but neither this leaf's "
+                f"clause nor an absorbed clause cited beside it writes it "
+                f"(R11; licensed here: {sorted(allowed_tokens)})")
+        else:
+            bad("spec-reference", f"{r!r} does not match CFTSnnn-nnnnnnn")
+
+    # R11 cite-form: the referenced outcome may be asserted, but only anchored
+    # to the citation ("the key press rejection tone is played, as defined by
+    # CFTS019-718"). An unanchored assertion reads as this leaf's own verified
+    # behaviour, which is exactly the absorption R11 declined.
+    er_text = str(tc.get("expected_result") or "")
+    for token in sorted(set(refs) & allowed_tokens):
+        if token not in er_text:
+            bad("cross-reference-anchor",
+                f"{token} is cited but no ER line anchors to it (R11 — write "
+                f"the borrowed outcome 'as defined by {token}', or drop the "
+                "citation)")
+
+    # ---- R10-2a: every absorbed clause the marker names must be cited
+    # somewhere under this parent, and a multi-cite must be explained by a
+    # marker. Checking the ids the assumption itself names is what makes this
+    # exact: a blanket "marked parent => every TC multi-cites" over-fires on a
+    # parent where only one TC absorbs, and a blanket count check misses the
+    # second absorbed clause entirely.
+    # Cite-form cross-references are excluded from the count: R11 rules them
+    # NOT absorption — nothing is taken into this leaf's scope, so demanding an
+    # absorption marker for them would misfile the very distinction R11 draws.
+    absorbing_refs = [r for r in refs if r not in allowed_tokens]
+    if len(absorbing_refs) > 1 and not absorbed_ids(doc):
+        bad("absorption-cite",
+            f"{len(refs)} clauses cited but the parent has no "
+            f"{ABSORPTION_MARKER} assumption naming an absorbed clause (R10-2a)")
+
+    # ---- R10-4: Remarks is external-facing
+    remarks = str(tc.get("remarks") or "")
+    hit = INTERNAL_ID.search(remarks)
+    if hit:
+        bad("remarks-internal",
+            f"Remarks contains the internal identifier {hit.group(0)!r}; "
+            "Remarks is written for external readers (R10-4)")
+    return f
+
+
+def run(args) -> int:
+    cfg = load_feature_config(args.feature_dir)
+    root = Path(args.feature_dir)
+    methods = load_design_methods(resolve_path(cfg, "workbook"))
+    stla_path = root / "data" / "stla_to_cfts.json"
+    if not stla_path.exists():
+        raise SystemExit("data/stla_to_cfts.json missing — run build_stla_map.py")
+    stla = json.loads(stla_path.read_text(encoding="utf-8"))
+    cite_path = root / "data" / "cross_doc_citations.json"
+    citations = (json.loads(cite_path.read_text(encoding="utf-8"))
+                 if cite_path.exists() else {})
+    unalloc = load_unallocated_texts(root)
+
+    set_index = leaf_test_sets(cfg)
+    files = sorted((root / args.generated).glob("*.json"))
+    if not files:
+        raise SystemExit(f"no generated JSON under {root / args.generated}")
+
+    findings, n_tc, titles = [], 0, {}
+    for path in files:
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        parent = doc.get("parent") or path.stem
+        if not str(doc.get("reasoning") or "").strip():
+            findings.append({"tc": parent, "gate": "reasoning",
+                             "message": "top-level reasoning is empty (§10.4)"})
+        tcs = doc.get("tcs") or []
+        axis = (doc.get("distinguishing_axis") or {}).get("axis")
+        if len(tcs) > 1 and axis in (None, "", "none"):
+            findings.append({"tc": parent, "gate": "distinguishing-axis",
+                             "message": "multiple TCs but axis is none (§4.6)"})
+        cited_here: set[str] = set()
+        for i, tc in enumerate(tcs, 1):
+            tag = f"{parent}-{i:02d}"
+            n_tc += 1
+            cited_here |= set(re.findall(
+                r"CFTS\d{3}-(\d{7})",
+                str(tc.get("specification_reference") or "")))
+            if tc.get("req_id") != parent:
+                findings.append({"tc": tag, "gate": "keys",
+                                 "message": f"req_id {tc.get('req_id')!r} != parent"})
+            title = str(tc.get("tc_title") or "")
+            if title in titles:
+                findings.append({"tc": tag, "gate": "sibling-distinction",
+                                 "message": f"tc_title duplicates {titles[title]}"})
+            titles[title] = tag
+            findings.extend(lint_tc(tag, tc, doc, cfg, methods, stla,
+                                    citations, set_index, unalloc))
+        for missing in sorted(absorbed_ids(doc) - cited_here):
+            findings.append({
+                "tc": parent, "gate": "absorption-cite",
+                "message": f"assumption absorbs CFTS clause {missing} but no "
+                           "TC under this leaf cites it (R10-2a)"})
+
+    print(f"linted {n_tc} TCs from {len(files)} leaf file(s) against "
+          f"{len(methods)} design methods, {len(stla)} leaves")
+    if findings:
+        print(f"\nFAIL — {len(findings)} finding(s):")
+        for f in findings:
+            print(f"  [{f['gate']}] {f['tc']}: {f['message']}")
+    else:
+        print("PASS — no findings")
+    if args.json_report:
+        Path(args.json_report).write_text(json.dumps(
+            {"tcs": n_tc, "files": len(files), "findings": findings},
+            ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"-> {args.json_report}")
+    return 1 if findings else 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--feature-dir", default=".")
+    ap.add_argument("--generated", default="generated")
+    ap.add_argument("--json-report")
+    return run(ap.parse_args())
+
+
+if __name__ == "__main__":
+    sys.exit(main())

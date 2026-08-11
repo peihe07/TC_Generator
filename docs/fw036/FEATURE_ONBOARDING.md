@@ -238,8 +238,12 @@ behaviour, not defects — verify strikethrough before filing.
   (completeness invariant, both directions)
 - One project = one `docs/fw036/framework.md`; features are Parts
 - Profiles live in `docs/runtime/profiles/FW036_R1L_<Feature>_Profile.md`
-- Feature directories live at repo root, self-contained, mirroring
-  `mediaHMI/` layout; scaffold via `scripts/new_feature.py`
+- Feature directories live under `features/`, one per feature, named
+  lowercase without an HMI suffix (`features/amfm`, `features/home`,
+  `features/sxm`, `features/media`; reorganised 2026-08-11 — they used to
+  sit at repo root as `AMFM/`, `HomeHMI/`, …). Self-contained, mirroring
+  `features/media/` layout; scaffold via `scripts/new_feature.py`
+- Entry point per feature: `features/<name>/PLAYBOOK.md` §6 status board
 - **Script sharing model (ruled at Home close-out, 2026-08-09): copy + yaml,
   no shared library extraction.** feature.yaml + the loader already absorb
   the constant-level differences; the residual per-feature differences
