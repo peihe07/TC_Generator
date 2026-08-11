@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-001",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：HU 能為目前調諧的頻道顯示 Channel Art 影像。關鍵情境條件：頻道是否提供 channel art——兩個值類都要觀察，只驗有影像的一側無法區分「依頻道顯示」與「顯示固定圖像」的實作（§7）。為什麼這樣切：一條 TC 覆蓋單一驗證目標（影像隨調諧頻道呈現），依 §5.7 不拆分。刻意略過：條文第二句要求符合 `{SX-9845-0166 - Channel Graphics Service Protocol Specification (XM Band)}`，該文件不在本專案 inputs/，其規則面（影像格式、傳輸協定、更新時序）無從驗證，亦非 HU HMI 可觀察行為；ER 因此只驗影像對應於目前頻道而顯示，不驗協定符合性（§8.4.2）。037 title 相似度 0.616，差異為該協定引用句，依 §8.6 以條文為準。**R10-2 定向審（A-SX14）**：本 leaf 所屬的 §1.5 帶 14 條未配置條款，逐條跑決策測試——條件 (a) 同節全數通過，條件 (b) 全數不通過：那 14 條是型式認證、SXi 協定、EMMA 介面、天線 RF、MFFR 與專輯封面等**供應商規格符合性**要求，無一細化本 leaf 的 Channel Art 條款。全部記為覆蓋缺口，未吸收，未標 `[A-SX08]`。其中 `4872750`（配備 SXM 晶片時提供 SXM 顯示與功能）是可觀察的組態閘、與 AMFM 的 `$AM_Presence$` 同型且無 leaf，單獨於 A-SX14 點名送 RD-1。",
+ "keywords": [
+  "Channel Art",
+  "currently tuned channel",
+  "image display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-001",
+   "tc_title": "Channel art is displayed for the tuned channel",
+   "test_group": "SXM",
+   "test_set": "Source Availability",
+   "test_item": "HU shall be capable of displaying the Channel Art image for the currently tuned channel as required per the HMI specifications",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One channel of the lineup carries channel art and another carries none",
+   "input_test_data": "Channel A: a subscribed channel that carries channel art\nChannel B: a subscribed channel that carries no channel art",
+   "test_procedure": "1. Tune the HU to channel A\n2. Read the channel art area of the Satellite Audio playing screen\n3. Tune the HU to channel B\n4. Read the channel art area again",
+   "expected_result": "1. The HU is tuned to channel A\n2. The channel art of channel A is displayed\n3. The HU is tuned to channel B\n4. The channel art of channel A is no longer displayed",
+   "specification_reference": "CFTS024-4872752",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

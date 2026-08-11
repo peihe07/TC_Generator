@@ -456,3 +456,69 @@ against the clause text:
 Both go to RD-1 with A-SX09 as wording/definition items. No generation is
 blocked: the suppression condition the same clauses carry (the function is not
 executed while a scroll/list display is up) is fully specified and is tested.
+
+
+## [A-SX13] The cited "Pre-defined Presets Algorithm" is an empty worksheet — PENDING
+
+Leaf 036 (`4872804`) is a pointer and nothing else: *HU shall implement the
+pre-defined presets for SDAR mode per "Pre-defined Presets Algorithm" defined
+in 'CIP_ Radio_Tables*'.* Traced through the supplied workbook:
+
+| step | what is there |
+|---|---|
+| `Preset Defaults- VP3&4`, row 13 | "See the corresponding SDARS Predefined Presets worksheet for X65 Sirius/XM chipsets" |
+| ` Predefined Presets -X65 chip  ` | **one cell**: "Note: This applies to all HU (VP1, VP2, VP3, VP4) equipped with X65 Sirius/XM chipset." No table, no algorithm. |
+| `History`, rows 4 and 8 | records that the worksheet was *added* for the X65 chipset and that "SXM predefined default tables" were revised |
+
+So the forwarding chain is intact and terminates in a worksheet with no
+content. The analog `Preset Defaults- R1` sheet is populated (AM 531 kHz,
+FM 87.5 MHz and so on); the SDAR equivalent is not.
+
+- Different failure from A-SX11: there the cited row exists and answers `N/A`;
+  here the cited worksheet exists and is empty.
+- Generated disposition: the TC verifies what the clause states and the file
+  can support — that presets for SDAR mode are pre-populated without the user
+  having stored anything — and **does not assert which channels occupy which
+  preset numbers**, because that is exactly what the missing algorithm would
+  define (§8.4.1). No BLOCKED row: the presence of pre-defined presets is
+  observable even when their content is not specified here.
+- `DATA_REQUESTS` row added. RD-1: supply the SDARS predefined preset table,
+  or confirm the algorithm lives in a document outside the CIP workbook.
+
+## [A-SX14] §1.5's 14 unallocated clauses are supplier-conformance requirements with no leaf — R10-2 test run, all declined (2026-08-11)
+
+The first batch to carry absorption material (B1-B4 had none). The R10-2
+decision test was run per clause, as the A-SX08 checkpoint requires.
+
+Condition (a), same spec section: **passes for all 14** — every one is in
+§1.5, the section leaf 001 cites.
+Condition (b), elaborates the leaf's cited clause: **fails for all 14.**
+Leaf 001's clause (`4872752`) is the Channel Art image display. The 14 are:
+
+| group | clauses | what they bind |
+|---|---|---|
+| Type approval | `4872753`, `4872754` | testing per RX-9835-0011 / SX-9835-0051 |
+| Interface and protocol conformance | `4872755`–`4872759`, `4872761` | X65 receiver PDS, EMMA, SXi message spec, SXi UART link layer, antenna/RF, extended metadata |
+| Product-level conformance | `4872760`, `4872762` | 360L UX, MFFR, Audio Service UI requirements |
+| Album art conformance | `4872763` | four SX album-art documents |
+| Configuration / defaults | `4872750`, `4872751` | SXM display and functionality if the chip is equipped; US as the default region without navigation |
+| Section preamble | `4872749` | Description artifact |
+
+None elaborates the Channel Art clause. `4872763` is the closest — it is also
+about imagery — but it binds **album** art to four supplier specifications,
+which is a parallel conformance requirement, not an elaboration of the channel
+art display. Absorbing it would claim coverage of documents the corpus does
+not hold.
+
+**All 14 recorded as a coverage hole, none absorbed.** Two observations for
+RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
+
+1. The block is coherent: §1.5 allocates one leaf, for Channel Art, and none
+   for the eleven supplier-conformance requirements around it. Whether those
+   are meant to reach SWE.6 at all is the policy question — they bind the
+   implementation to external specifications rather than describing HU
+   behaviour, and the corpus holds none of those specifications.
+2. **`4872750` is the exception worth naming**: "HU shall provide SXM related
+   display and functionality if SXM chip is equipped" is an observable
+   configuration gate, the same shape as AMFM's `$AM_Presence$` leaves, and it
+   has no leaf. If any of the 14 should have one, it is this.

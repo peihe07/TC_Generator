@@ -1,0 +1,79 @@
+{
+ "parent": "SWE-RA-SXM-004",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：使用者可經 HU HMI 或方向盤按鍵請求選取 Preset 頻道；經 HMI 選取時調諧到該 preset 對應的頻道並播放，經方向盤 'Preset Advance' 按鍵時依三種情境分別行動——無任何 preset 已指派則不動作、目前頻道不對應任何 preset 則調到已指派 preset 中編號最小者、目前頻道對應某個 preset 則前往下一個較高編號並在最高處 wrap-around 回最低。關鍵情境條件：'Preset Advance' 的三個情境條件互斥且各有不同結果。為什麼這樣切：條文為 'Preset Advance' 明列三個條件分支，三者觸發狀態不同，依 §5.2 不可在同一程序內分支、依 §8.3 以 trigger_state 為軸拆為獨立 TC；HMI 直接選取路徑則是另一個觸發，合併於第一條。設計方法採決策表——三個分支由「是否有 preset 已指派」與「目前頻道是否對應某 preset」兩個條件的組合決定。與 AMFM 的對照（僅供理解，不影響本 leaf）：AMFM 的同型條款把前兩種情境寫成 'follow the behavior defined in HMI'，因而無可驗結果；SXM 這條把三種情境全部寫明，因此全部可驗。刻意略過：short press 與 long press 的事件分辨由 032/033 覆蓋、召回記憶體內容由 034 覆蓋（§8.2.1）。037 title 相似度 0.389（全批最低），差異為三個分支的完整敘述，依 §8.6 以條文為準——只照 title 生成會漏掉整組分支。",
+ "keywords": [
+  "Preset Select",
+  "Preset Advance",
+  "wrap-around",
+  "lowest numbered preset"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger_state",
+  "delta": "004-01 HMI 直接選取；004-02 目前頻道對應某 preset（前進 + wrap-around）；004-03 目前頻道不對應任何 preset（調到編號最小者）；004-04 無 preset 已指派（不動作）"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-004",
+   "tc_title": "Selecting a preset from the HMI tunes to its channel",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Preset from the HU HMI the HU will tune to the Channel corresponding to that Preset and Play that Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Preset 2 and preset 5 hold different subscribed channels\n5. The HU is tuned to a channel held in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number\n2. Select preset 2 from the HU HMI and read the tuned channel\n3. Select preset 5 from the HU HMI and read the tuned channel\n4. Read the audio output",
+   "expected_result": "1. The starting channel is playing\n2. The HU is tuned to the channel held in preset 2\n3. The HU is tuned to the channel held in preset 5\n4. The channel held in preset 5 is played",
+   "specification_reference": "CFTS024-4872798",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-004",
+   "tc_title": "Preset Advance moves up the presets and wraps around",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Preset using the Steering Wheel 'Preset Advance' button the HU will go to the next higher numbered Preset with 'wrap-around' from the 'highest numbered preset' to the 'lowest numbered preset' (if the current Channel does match a preset) and Play that Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Presets 1, 2 and 3 hold different subscribed channels and no other preset is assigned\n5. The HU is tuned to the channel held in preset 2",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel and the preset it matches\n2. Press the Steering Wheel \"Preset Advance\" button and read the tuned channel\n3. Press it again and read the tuned channel\n4. Press it once more and read the tuned channel",
+   "expected_result": "1. The HU is tuned to the channel held in preset 2\n2. The HU is tuned to the channel held in preset 3\n3. The HU is tuned to the channel held in preset 1, the lowest numbered assigned preset\n4. The HU is tuned to the channel held in preset 2 again",
+   "specification_reference": "CFTS024-4872798",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-004",
+   "tc_title": "Preset Advance from an unmatched channel goes to the lowest preset",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Preset using the Steering Wheel 'Preset Advance' button the HU will tune to the Channel that matches the lowest numbered Preset of the assigned Presets (if the current Channel does not match any preset)\n\n(Current channel matches no preset)",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Presets 3 and 6 hold different subscribed channels and no other preset is assigned\n5. The HU is tuned to a channel held in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel and confirm it matches no assigned preset\n2. Press the Steering Wheel \"Preset Advance\" button\n3. Read the tuned channel\n4. Read the preset number the tuned channel matches",
+   "expected_result": "1. The tuned channel matches none of the assigned presets\n2. The button press is accepted\n3. The HU is tuned to the channel held in preset 3\n4. The matched preset is preset 3, the lowest numbered of the assigned presets",
+   "specification_reference": "CFTS024-4872798",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-004",
+   "tc_title": "Preset Advance does nothing when no preset is assigned",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Preset using the Steering Wheel 'Preset Advance' button the HU will do nothing (if no Presets are currently assigned)\n\n(Suppression branch — no preset assigned)",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. No preset holds a channel",
+   "input_test_data": "NA",
+   "test_procedure": "1. Confirm that no preset holds a channel\n2. Note the tuned channel number\n3. Press the Steering Wheel \"Preset Advance\" button\n4. Read the tuned channel and the audio output",
+   "expected_result": "1. No preset is assigned\n2. The starting channel is playing\n3. The button press is received\n4. The tuned channel is unchanged and the starting channel is still played",
+   "specification_reference": "CFTS024-4872798",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

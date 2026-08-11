@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-038",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：收到把目前頻道存入某 preset 的命令時，HU 將該頻道的 Service ID 與所請求的 preset 編號建立關聯，並把相關值存入非揮發性記憶體。關鍵情境條件：被請求的 preset 編號與相鄰編號的區別（指派是否落在正確編號）；非揮發性需跨電源循環觀察。為什麼這樣切：一條 TC 覆蓋單一觸發的兩個必然結果——指派到正確編號、跨電源循環保留，依 §5.7 併為多條 ER；程序同時讀相鄰 preset，只讀目標編號無法排除「同時覆寫多個 preset」的實作（§7）。與 035 的差別：035 的條款描述使用者請求的整體流程與 Service ID 的用意，本 leaf 的條款描述收到命令後的指派與儲存動作，兩者條款分列（§8.2.1）。",
+ "keywords": [
+  "Preset Save",
+  "Service ID",
+  "association",
+  "non-volatile memory"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-038",
+   "tc_title": "Saving associates the service id with the requested preset only",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "Upon receiving a command to save the current channel to a preset, the HU shall associate the current channel's Service ID with the requested preset number and store the associated values in non-volatile memory",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Preset 5 holds no channel and the neighbouring presets 4 and 6 hold different subscribed channels\n5. The HU is tuned to a subscribed channel held in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel and the contents of presets 4, 5 and 6\n2. Send the command to save the current channel to preset 5\n3. Read the contents of presets 4, 5 and 6\n4. Cycle the vehicle power off and back on, then read the contents of presets 4, 5 and 6",
+   "expected_result": "1. The tuned channel is noted, preset 5 holds no channel and presets 4 and 6 hold their own channels\n2. The save command is accepted for preset 5\n3. Preset 5 holds the channel noted in step 1 and presets 4 and 6 are unchanged\n4. The contents read in step 3 are unchanged after the power cycle",
+   "specification_reference": "CFTS024-4872806",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

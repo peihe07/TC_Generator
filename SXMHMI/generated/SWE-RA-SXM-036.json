@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-036",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：HU 為 SDAR 模式實作預先定義的 preset。關鍵情境條件：使用者尚未儲存任何 preset 的初始狀態。**A-SX13**：條文的全部內容是一個指標——`\"Pre-defined Presets Algorithm\" defined in 'CIP_ Radio_Tables*'`。追查所供 CIP 檔：`Preset Defaults- VP3&4` 第 13 列轉指「See the corresponding SDARS Predefined Presets worksheet for X65 Sirius/XM chipsets」，而該 ` Predefined Presets -X65 chip  ` 工作表**只有一格註記**（適用於配備 X65 晶片的 VP1–VP4），無表格亦無演算法；History 列則記載該工作表確實是為 X65 晶片而新增。類比側的 `Preset Defaults- R1` 有完整內容（AM 531kHz、FM 87.5MHz 等），SDAR 側沒有。因此本 TC 只驗條文陳述且檔案可支撐的部分——SDAR 模式的 preset 在使用者未曾儲存的情況下即已預先填入——**不宣稱哪個 preset 編號對應哪個頻道**，那正是缺失的演算法所要定義的（§8.4.1）。不開 BLOCKED 列：預先填入這件事本身可觀察，即使其內容未被規範。缺件已列 DATA_REQUESTS，送 RD-1。",
+ "keywords": [
+  "pre-defined presets",
+  "SDAR mode",
+  "Pre-defined Presets Algorithm",
+  "CIP_Radio_Tables"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-036",
+   "tc_title": "SDAR presets are pre-populated before any user save",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "HU shall implement the pre-defined presets for SDAR mode per \"Pre-defined Presets Algorithm\" defined in 'CIP_ Radio_Tables*'",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU has been reset to its delivery state, with no preset saved by any user\n3. The HU Satellite Audio source is selected on the Cabin Output Channel",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the preset list for the Satellite Audio source\n2. Read which preset positions hold a channel\n3. Recall one of the pre-populated presets\n4. Read the tuned channel",
+   "expected_result": "1. The preset list for SDAR mode is displayed\n2. Preset positions hold channels although no preset has been saved by a user\n3. The recall request is accepted\n4. The HU is tuned to the channel held in the recalled preset",
+   "specification_reference": "CFTS024-4872804",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

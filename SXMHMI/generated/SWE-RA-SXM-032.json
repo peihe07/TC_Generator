@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-032",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：HU 依 preset 按鍵收到的觸控事件型別分辨「選取」與「儲存」——短按走 Preset Select、長按走 Preset Save，且互不觸發。關鍵情境條件：同一個 preset 按鍵上的兩種事件型別。為什麼這樣切：本 leaf 的驗證對象是分辨能力本身，唯有在同一條 TC 內以兩種事件對照才成立——只驗其中一種，無法區分「正確分辨」與「兩種事件都做同一件事」的實作（§7）。各自的觸發門檻與結果由 033（短按 < 兩秒）、037（長按 > 兩秒）、034/038（各自的結果）覆蓋，本 leaf 不重複驗證（§8.2.1）。",
+ "keywords": [
+  "Preset Select",
+  "Preset Save",
+  "touch event type",
+  "differentiate"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-032",
+   "tc_title": "Short and long press on a preset trigger different functions",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "Preset Select feature may utilize a single press event while Preset Save feature requires a long press event and HU shall be able to differentiate between selecting and storing a preset based on the touch event type recieved on the preset button",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Preset 2 holds a subscribed channel and preset 5 holds a different one\n5. The HU is tuned to a channel held in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number\n2. Short press the preset 2 button\n3. Read the tuned channel and the content of preset 2\n4. Press and hold the preset 5 button for more than two seconds, then read the tuned channel and the content of preset 5",
+   "expected_result": "1. The starting channel is playing\n2. The short press is identified as a Preset Select request\n3. The HU is tuned to the channel held in preset 2 and the content of preset 2 is unchanged\n4. The HU stays on the channel from step 3 and preset 5 now holds that channel in place of its previous content",
+   "specification_reference": "CFTS024-4872799",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

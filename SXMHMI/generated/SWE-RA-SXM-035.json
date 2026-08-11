@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-035",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：使用者經 HU HMI 請求把目前選定的頻道存入指定 preset 編號時，HU 將該 preset 編號與目前頻道的 **Service ID** 存入非揮發性記憶體。關鍵情境條件：非揮發性唯有跨電源循環才可觀察；Service ID 作為儲存鍵的意義，唯有在 SiriusXM 重新指派頻道號碼時才顯現。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果鏈——存入、跨電源循環保留，依 §5.7 併為多條 ER，與 AMFM 037 的觀察方式一致。條文末句說明「使用 Service ID 可讓 preset 在 SiriusXM 日後把頻道重新指派到新編號時仍被保留」——該情境需要 SiriusXM 端重新指派頻道號碼，本測試環境無法產生，ER 因此不宣稱該保留行為，僅驗儲存鍵為 Service ID 之可觀察後果（preset 召回時取得同一節目服務）。該限制記入 RD-1。刻意略過：長按門檻由 037 覆蓋、指派與儲存的結果由 038 覆蓋。",
+ "keywords": [
+  "Preset Save",
+  "Service ID",
+  "non-volatile memory",
+  "channel re-assignment"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-035",
+   "tc_title": "Saved preset survives a power cycle and recalls the same service",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "When the user selects a Save Preset function the HU will store the corresponding Preset Number and the current Satellite Audio Channel #'s Service ID corresponding to that Preset to non-volatile memory",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Preset 7 holds no channel\n5. The HU is tuned to a subscribed channel whose service is identifiable",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number and the service it carries\n2. Request the Save Preset function for preset 7 from the HU HMI\n3. Read the content of preset 7\n4. Cycle the vehicle power off and back on, select the HU Satellite Audio source, then recall preset 7 and read the channel and service",
+   "expected_result": "1. The tuned channel and its service are identified\n2. The save request is accepted for preset 7\n3. Preset 7 holds the channel noted in step 1\n4. Preset 7 recalls the same service as in step 1 after the power cycle",
+   "specification_reference": "CFTS024-4872803",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

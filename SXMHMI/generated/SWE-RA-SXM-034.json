@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-034",
+ "batch": "B5 — Source Availability + Presets",
+ "reasoning": "驗證目標：收到調諧至某 preset 的命令時，HU 自記憶體召回該 preset 對應的頻道並調諧過去。關鍵情境條件：多個 preset 各存不同頻道——對應關係唯有在至少兩個 preset 之間才可觀察，只按一個無法區分「召回正確對應」與「總是召回同一個」的實作（§7）。為什麼這樣切：一條 TC 內以兩個 preset 驗證同一觸發的對應關係，依 §5.7 屬同一驗證目標。與 033 的差別：033 驗觸發識別（短按門檻），本 leaf 驗召回結果與對應正確性，兩者條款分列（§8.2.1）。刻意略過：儲存於非揮發性記憶體的持久性由 038 覆蓋；Service ID 作為儲存鍵的意義亦由 035/038 覆蓋。",
+ "keywords": [
+  "preset recall",
+  "memory",
+  "tune to new channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-034",
+   "tc_title": "Each preset recalls its own stored channel",
+   "test_group": "SXM",
+   "test_set": "Presets",
+   "test_item": "Upon receiving a command to tune to a preset, the HU shall recall the corresponding preset channel from memory, and tune to the new channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Preset 1 holds one subscribed channel and preset 4 holds a different one\n5. The HU is tuned to a third channel held in no preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the tuned channel number\n2. Send the command to tune to preset 1 and read the tuned channel\n3. Send the command to tune to preset 4 and read the tuned channel\n4. Read the audio output",
+   "expected_result": "1. The third channel is playing\n2. The HU is tuned to the channel held in preset 1\n3. The HU is tuned to the channel held in preset 4\n4. The channel held in preset 4 is played",
+   "specification_reference": "CFTS024-4872801",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
