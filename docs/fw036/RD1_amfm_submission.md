@@ -161,6 +161,12 @@
   Each deliverable covers its own chapter's clause. Noted because an
   amendment to one chapter silently leaves its twin stale; the per-pair list
   accompanies the SXM delivery (twin-list attachment).
+- **F4**: source clauses carry recurring spelling errors which our Test
+  Items quote verbatim — `recieve` (36 clauses), `continously` (13),
+  `Fowarding` (4872874), `taffic` (4872966). Quotations are kept faithful
+  so a Test Item can be diffed against its clause; silent correction would
+  break that. No action requested; a spelling pass at the next CFTS
+  revision would be welcome.
 
 ---
 

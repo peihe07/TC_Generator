@@ -117,8 +117,23 @@ using the 7-digit clause ids every export already carries.
 - Upgrade-condition status (2026-08-10, post-probe): **CFTS020 — NOT met**
   (short id `138` absent from `ReqIF.ForeignID` / `Source Id` / `ReqIF.Name`
   across 2,644 objects; third independent format after docx and xlsx tables).
-  CFTS019 and CFTS024 `.reqifz` probes pending — both files exist upstream;
-  cite-form stands unless one of them resolves its tokens.
+  Superseded the same day by the "CLOSED on all three groups" section above:
+  CFTS019 and CFTS024 probed likewise — all three groups NOT met, no format
+  left to test, branch closed, cite-form final.
+
+### B2 checkpoint — first live exercise of the cite-form gates (2026-08-11)
+
+The B1 pilot carried no cite-form leaf, so `cross-reference` and
+`cross-reference-anchor` have never fired on real content: they were proven by
+unit test only. **B2 (076–086) carries leaf 080**, the first R11 citation to
+reach generation (`CFTS024-193/195/197`), and exercises both gates at once —
+the token must be accepted under 080 and refused anywhere else, and the ER
+must anchor to it.
+
+Directed review at B2, in the same shape as the R10-2 checkpoint on A-SX08
+(targeted, not the full ceremony): read 080's `specification_reference`
+ordering (own clause first), its ER anchoring phrase, and confirm nothing in
+the TC tests the cited document's own rule surface.
 
 ## [A-SX03] Eleven leaves carry an `(add)` marker and no Release Version or Status — RESOLVED (2026-08-10)
 
