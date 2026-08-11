@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-052",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：演出者與標題的對應文字也一併被儲存，供 Memory Recall 使用。關鍵情境條件：儲存後跨電源循環——Memory Recall 的用途唯有在重新取用時才可觀察。為什麼這樣切：一條 TC 覆蓋單一驗證目標（文字隨識別鍵一併保存並可再取用），依 §5.7 不拆分。與 041/042 的差別：那兩條規範儲存的**識別鍵**（artist ID / song ID），本 leaf 規範一併儲存的**顯示文字**——兩者都存才能在清單上顯示可讀名稱，條款分列（§8.2.1）。刻意略過：條文未定義 Memory Recall 的觸發方式與範圍，ER 因此以清單重新取用時文字仍在表述，不推測該功能的其他面向（§8.4.1）。",
+ "keywords": [
+  "corresponding text",
+  "artist",
+  "title",
+  "Memory Recall"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-052",
+   "tc_title": "Stored favorites keep their artist and title text",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "The corresponding text for the artist and title shall also be saved for Memory Recall purpose",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list is empty\n5. The tuned channel is playing a song whose artist name and song title are both displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the artist name and song title displayed\n2. Store the current artist and read the favorites list entry\n3. Cycle the vehicle power off and back on, then select the HU Satellite Audio source\n4. Open the favorites list and read the entry",
+   "expected_result": "1. The artist name and the song title are displayed\n2. The list entry shows the artist name as text rather than an identifier\n3. The HU starts again on the Satellite Audio source\n4. The entry still shows the same artist text as in step 2",
+   "specification_reference": "CFTS024-4872830",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

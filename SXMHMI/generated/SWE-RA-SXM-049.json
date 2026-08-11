@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-049",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：'Fav' 按鍵被啟動時，HU 顯示全部最愛清單；並同時提供刪除單筆與 'Remove All' 刪除全部兩種操作。關鍵情境條件：清單內有多筆項目，兩種刪除方式的差別才可觀察。為什麼這樣切：條文明列的兩個刪除選項是同一驗證目標（清單畫面提供的操作）的兩個必然結果，依 §5.7 併為一條 TC 的多條 ER；依 §6，最終 ER 需涵蓋 Test Item 的完整結果，因此兩者都驗。與 005 的差別：該 leaf 規範清單的可瀏覽性與逐筆檢視（引用式），本 leaf 規範 'Fav' 按鍵的開啟路徑與兩種刪除操作（§8.2.1）。刪除前的確認畫面由 050 覆蓋——本 TC 的程序因此包含通過確認的步驟，但不驗確認畫面本身。",
+ "keywords": [
+  "Fav button",
+  "list all favorites",
+  "delete entry",
+  "Remove All"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-049",
+   "tc_title": "Fav button lists favorites and offers both delete paths",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "HU shall display the list all favorites when 'Fav' button is activated. HU shall allow both options of deleting an individual entry of favorite artist/song and 'Remove All' function to delete all Favorite artist/song entries",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds at least three entries",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate the 'Fav' button and read the screen\n2. Delete one individual entry, confirming when prompted, then read the list\n3. Activate the 'Remove All' function, confirming when prompted\n4. Read the favorites list",
+   "expected_result": "1. The favorites list is displayed with all stored entries\n2. The deleted entry is no longer listed and the other entries remain\n3. The Remove All request is accepted\n4. The favorites list holds no entries",
+   "specification_reference": "CFTS024-4872827",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

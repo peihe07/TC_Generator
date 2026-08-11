@@ -522,3 +522,25 @@ RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
    display and functionality if SXM chip is equipped" is an observable
    configuration gate, the same shape as AMFM's `$AM_Presence$` leaves, and it
    has no leaf. If any of the 14 should have one, it is this.
+
+## [A-SX10] Five clauses carry a VR trigger path their 037 titles omit — RESOLVED: R8-equivalent adopted (2026-08-11)
+
+- Five leaves' cited clauses include a Voice Recognition trigger path
+  ("or a VR Command" class wording) that the corresponding 037 titles omit —
+  the A-AM09 one-directional pattern, continued in SXM (n=5; leaf ids per the
+  VR pending register, filled at annotation).
+- Precondition verified before ruling: none of the five titles mentions VR —
+  no title actively claims the VR scope.
+- **[PEI 2026-08-11: R8-equivalent ADOPTED for SXM — by ruling, not
+  inherited.]** The VR trigger path is excluded from this workbook's scope
+  and delegated to the CFTS028 (Voice Recognition) delivery; TCs verify
+  touch / hard-key entry paths only. Each affected TC's reasoning notes the
+  exclusion citing this ruling; the §8.6 wording note applies (clause states
+  it, title omits it).
+- Escape hatch ruled with it: if a leaf's 037 title DOES state VR, that leaf
+  returns to chat individually — the blanket exclusion does not apply to a
+  title-declared scope.
+- RD-1 (Q-SX): one evidence line joins the S3 class — SXM continues the
+  "titles systematically omit VR wording" pattern (n=5).
+- Implementation: reasoning annotation on the five existing TCs —
+  field-level, no regeneration, does not block any batch.

@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-053",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：HU 以時間順序在記憶體中儲存演出者名稱／歌曲標題。關鍵情境條件：至少三筆先後可辨識的儲存動作——兩筆無法區分「時間順序」與其他排序以外的方向。為什麼這樣切：一條 TC 覆蓋單一驗證目標（順序），依 §5.7 不拆分；ER 明確描述順序方向而非僅要求「依時間排序」，後者對兩個方向都成立（§7）。刻意略過：條文只說 chronological order，未指明新項在前或在後，ER 因此以「儲存先後與清單順序一致」表述並在程序中記錄實際方向，不預設方向——方向未定義一項記為 RD-1。與 049 的差別：該 leaf 規範清單的顯示與刪除，本 leaf 規範記憶體中的儲存順序（§8.2.1）。",
+ "keywords": [
+  "chronological order",
+  "memory",
+  "artist name",
+  "song title"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-053",
+   "tc_title": "Favorites are held in the order they were stored",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "The HU shall store the artist name/song title in chronological order in memory",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list is empty\n5. Three distinct storable artists are available in a known sequence",
+   "input_test_data": "Entries to store, in order: artist A, then artist B, then artist C",
+   "test_procedure": "1. Store artist A, then artist B, then artist C, noting the order of the store actions\n2. Open the favorites list\n3. Read the entries from the top of the list downwards\n4. Compare the list order with the order of the store actions",
+   "expected_result": "1. The three store requests are accepted in the order A, B, C\n2. The favorites list is displayed with three entries\n3. The three entries are read in the order the list presents them\n4. The list order corresponds to the order the entries were stored, without interleaving",
+   "specification_reference": "CFTS024-4872831",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

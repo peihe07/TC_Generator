@@ -194,3 +194,12 @@ sign-off = binding as proposed.
   (Test Group SXM, 14 Sets, B1–B14), profile delta list, R10-2 adoption
   (§6 entries; ANOMALIES A-SX08). Phases 0–3 complete; Phase 4 wiring +
   B1 pilot assembly cleared (Tier 1).
+- Amendment (2026-08-11, sixth pass): VR trigger path ruled — R8-equivalent
+  ADOPTED for SXM (A-SX10): VR wording excluded from workbook scope,
+  delegated to the CFTS028 delivery; touch/H-K paths only; title-states-VR
+  escape hatch; five affected TCs get reasoning annotations (field-level,
+  no batch blocked). This supersedes the §6 profile clause "first VR-wording
+  occurrence returns to chat" — the first occurrence returned, and this is
+  the ruling. B5 §1.5 absorption mini-review recorded in A-SX08 follow-on:
+  14/14 not absorbed, coverage holes to RD-1 Q-SX, `4872750` named as the
+  configuration-gate exception.

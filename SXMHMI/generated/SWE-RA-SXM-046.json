@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-046",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：HU 禁止儲存重複項目，並在歌曲或演出者已被儲存時給出指示。關鍵情境條件：同一項目的第二次儲存嘗試。為什麼這樣切：一條 TC 覆蓋單一觸發的兩個必然結果——不新增重複項、給出已儲存的指示，依 §5.7 併為多條 ER；程序先讀清單筆數再重試，只驗有指示而不驗筆數未增，無法排除「提示後仍新增」的實作（§7）。與 047/048 的差別：那兩條處理容量上限與其指示，本 leaf 處理重複（§8.2.1）。",
+ "keywords": [
+  "duplicate entries",
+  "prohibit",
+  "already saved indication"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-046",
+   "tc_title": "Storing an already saved item is refused with an indication",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "The HU shall prohibit the storage of duplicate entries and shall indicate when a song or artist has already been saved",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The artist of the currently playing song is already stored in the favorites list\n5. The number of entries in the favorites list is known",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the favorites list and note the number of entries\n2. Attempt to store the current artist again\n3. Read the HU screen\n4. Read the favorites list and its number of entries",
+   "expected_result": "1. The favorites list holds the artist and its entry count is noted\n2. The store attempt is made\n3. The HU indicates that the artist has already been saved\n4. The entry count is unchanged and no second entry for that artist is present",
+   "specification_reference": "CFTS024-4872823",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

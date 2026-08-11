@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-043",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：以演出者儲存是預設行為。關鍵情境條件：使用者未做任何選擇即執行儲存。為什麼這樣切：一條 TC 覆蓋單一驗證目標（未指定時的落點），依 §5.7 不拆分；ER 以儲存後該筆最愛的行為表現判定其種類——同演出者的其他歌曲亦被辨識，這是 041 已確立的可觀察判準，避免宣稱記憶體欄位（§8.4.1）。刻意略過：條文未定義使用者如何改以歌曲儲存（切換方式、是否有選單），未生成。",
+ "keywords": [
+  "store by artist",
+  "default"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-043",
+   "tc_title": "Storing without a choice stores the artist by default",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "Store by artist shall be the default",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The tuned channel is playing a song whose artist name and song title are both displayed\n5. The favorites list is empty and no storage preference has been set",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the artist name and song title displayed\n2. Request the store action without choosing between artist and song\n3. Read the favorites list\n4. Wait for another channel to play a different song by the same artist and read the HU screen",
+   "expected_result": "1. The artist name and the song title are displayed\n2. The store request is accepted\n3. The favorites list holds an entry naming the artist\n4. An alert is presented for the stored artist, so the default store acted on the artist",
+   "specification_reference": "CFTS024-4872820",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

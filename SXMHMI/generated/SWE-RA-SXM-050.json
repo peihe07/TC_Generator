@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-050",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：刪除最愛清單中的項目前，HU 先顯示確認畫面。關鍵情境條件：確認的兩個結果——同意與取消，兩側都要觀察。為什麼這樣切：確認畫面的意義在於「未確認就不刪除」，只驗同意側等於沒驗到該條款的保護作用（§7）；兩個結果是同一觸發下的兩個分支，依 §8.3 以 user_choice 為軸，但兩者皆由同一次刪除請求引出且互斥，程序以先取消再同意的順序在一條 TC 內涵蓋，依 §5.7 不拆分。與 049 的差別：該 leaf 驗刪除操作存在，本 leaf 驗刪除前的確認關卡（§8.2.1）。",
+ "keywords": [
+  "confirmation screen",
+  "before deleting",
+  "favorites"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-050",
+   "tc_title": "Deleting a favorite asks for confirmation first",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "HU shall prompt confirmation screen before deleting an entry under the list of favorites",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds at least two entries",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the favorites list and note its entries\n2. Request deletion of one entry and read the screen\n3. Decline the confirmation and read the favorites list\n4. Request deletion of the same entry again, accept the confirmation, then read the favorites list",
+   "expected_result": "1. The favorites list is displayed with its entries noted\n2. A confirmation screen is displayed before any entry is removed\n3. The entry is still present in the favorites list\n4. The entry is removed from the favorites list",
+   "specification_reference": "CFTS024-4872828",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

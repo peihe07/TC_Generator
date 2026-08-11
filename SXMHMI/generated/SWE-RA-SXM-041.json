@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-041",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：以演出者儲存時，收音機在記憶體中儲存的是 artist ID。關鍵情境條件：同一演出者的不同歌曲——ID 若被正確儲存，該演出者的另一首歌也應被視為同一筆最愛。為什麼這樣切：ID 本身不可由 HMI 直接讀取，其可觀察後果是「同一演出者的其他內容也被辨識」；ER 因此以該後果表述，不宣稱記憶體內的欄位值（§8.4.1）。與 042 的差別：該 leaf 是以歌曲儲存時的 song ID，兩者條款分列（§8.2.1）。",
+ "keywords": [
+  "artist ID",
+  "store by artist",
+  "memory"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-041",
+   "tc_title": "Storing by artist matches that artist's other songs",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "If storing by artist, the radio shall store the artist ID in memory",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The tuned channel is playing a song by a known artist\n5. Another channel is scheduled to play a different song by the same artist",
+   "input_test_data": "NA",
+   "test_procedure": "1. Store the current artist and read the favorites list\n2. Wait for the other channel to play a different song by the same artist\n3. Read the HU screen\n4. Read which stored entry the alert refers to",
+   "expected_result": "1. The favorites list holds an entry for the artist\n2. The other channel is playing a different song by that artist\n3. An alert is presented for the stored artist\n4. The alert refers to the artist entry stored in step 1, not to a song entry",
+   "specification_reference": "CFTS024-4872818",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

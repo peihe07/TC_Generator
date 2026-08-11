@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-051",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：新增最愛時與 \"Fav On Air\" 提示啟動時，HU 發出確認音。關鍵情境條件：兩個不同的觸發時點（新增、提示啟動）。為什麼這樣切：條文明列兩個觸發，兩者是同一驗證目標（確認音存在）的兩個必然結果，依 §5.7 併為一條 TC 的多條 ER；依 §6 需涵蓋完整結果。刻意略過：條文以 `Please refer to the HMI logic & flow screens for the type of beeps/confirmation sounds` 把音色種類委派給 HMI 文件，該文件的規則面不在本 workbook 驗證範圍（§8.4.2），ER 因此只驗確認音在兩個時點發出，不驗其音色或長度。",
+ "keywords": [
+  "confirmation sound",
+  "Favorites added",
+  "Fav On Air alert"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-051",
+   "tc_title": "Confirmation sound plays on add and on the on-air alert",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "HU shall provide confirmation sound when Favorites are added and \"Fav On Air\" alert is initiated",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list is empty\n5. Another channel is scheduled to play an artist that will be stored during the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the audio output while storing the current artist as a favorite\n2. Read the favorites list\n3. Wait until the other channel plays the stored artist and the \"Fav On Air\" alert is initiated\n4. Read the audio output at the moment the alert is initiated",
+   "expected_result": "1. A confirmation sound is played as the favorite is added\n2. The favorites list holds the stored artist\n3. The \"Fav On Air\" alert is initiated for the stored artist\n4. A confirmation sound is played as the alert is initiated",
+   "specification_reference": "CFTS024-4872829",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

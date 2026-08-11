@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-039",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：Favorites 讓使用者儲存五十筆喜愛的歌曲或演出者，並在任一 SiriusXM 頻道播放到該歌曲或演出者時發出提示；本功能適用於音樂，不適用於現場體育賽事或談話節目。關鍵情境條件：提示的觸發需要「已儲存的最愛在另一個頻道播出」，因此需要可控的節目排程。為什麼這樣切：一條 TC 覆蓋本 leaf 獨有的能力陳述——跨頻道提示，依 §5.7 不拆分。儲存動作本身由 040 覆蓋、容量由 047 覆蓋、提示音由 051 覆蓋（§8.2.1）。刻意略過：條文說本功能「不適用於現場體育或談話廣播」，但未定義 HU 在該類頻道上的可觀察行為（是否禁用 FAV 按鍵、是否僅不提示），ER 因此不宣稱該側行為，記為 RD-1 項目。",
+ "keywords": [
+  "Favorites",
+  "fifty",
+  "alert",
+  "any SiriusXM channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-039",
+   "tc_title": "Stored favorite alerts when it plays on another channel",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "Favorites allows the user to save fifty of their favorite song titles or artists and be alerted when a favorite song or artist are playing on any of the SiriusXM channels",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. One artist is stored in the favorites list\n5. Another subscribed channel is scheduled to play that artist",
+   "input_test_data": "NA",
+   "test_procedure": "1. Confirm the artist is present in the favorites list\n2. Stay tuned to the current channel while the other channel begins playing that artist\n3. Read the HU screen and the audio output\n4. Read the channel the alert refers to",
+   "expected_result": "1. The favorites list holds the artist\n2. The other channel is playing the stored artist\n3. An alert for the stored artist is presented\n4. The alert names the other channel, so the alert covers channels beyond the tuned one",
+   "specification_reference": "CFTS024-4872815",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

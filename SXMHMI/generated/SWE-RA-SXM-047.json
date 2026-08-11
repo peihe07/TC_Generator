@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-047",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：HU 為最愛清單配置至少 50 個記憶位置。關鍵情境條件：50 這個數量下限——條文明給。為什麼這樣切：驗證對象是該下限，設計方法採邊界值分析；程序儲存到第 50 筆確認全數被保留，只驗少量儲存無法驗到條文所定的容量（§7）。與 048 的差別：本 leaf 驗容量本身，該 leaf 驗達到容量時的指示（§8.2.1）。刻意略過：條文寫「最少 50」，未定上限，因此第 51 筆的行為不由本條規範——若實作提供更多位置亦符合條文，ER 因此不宣稱第 51 筆被拒。",
+ "keywords": [
+  "minimum capacity",
+  "50 memory locations",
+  "favorites list"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-047",
+   "tc_title": "Favorites list holds at least fifty entries",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "The HU shall have a minimum capacity of 50 memory locations allotted for the list of favorites",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list is empty\n5. At least fifty distinct storable artists or song titles are available across the subscribed channels",
+   "input_test_data": "Entries to store: 50 distinct artists or song titles",
+   "test_procedure": "1. Store 50 distinct entries one after another\n2. Read the favorites list and count the entries\n3. Read the first entry stored\n4. Read the fiftieth entry stored",
+   "expected_result": "1. Each of the 50 store requests is accepted\n2. The favorites list holds 50 entries\n3. The first stored entry is still present\n4. The fiftieth stored entry is present",
+   "specification_reference": "CFTS024-4872824",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

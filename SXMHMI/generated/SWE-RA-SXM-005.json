@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-005",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：HU 提供可瀏覽的清單，讓使用者檢視並／或刪除已儲存的歌曲標題或演出者，其清單功能由條文引用的 `CFTS024-193`、`CFTS024-195`、`CFTS024-197` 定義。關鍵情境條件：清單長度超過單頁可顯示範圍，瀏覽動作才可觀察。為什麼這樣切：一條 TC 覆蓋單一驗證目標（清單可被瀏覽、可自其中檢視與刪除），依 §5.7 不拆分。**R11 引用式（A-SX02）**：三個短碼在四種已發行格式中皆查無對應，升級分支已關閉；三個 token 逐字列為第二至第四個 `specification_reference`，ER 以 `as defined by` 錨定被借用的結果，**不驗被引條款自身的規則面**（哪些鍵、捲動粒度、選取確認方式）。處置與 leaf 080 完全一致——同一組 token、同樣的錨定語形式、同樣不測被引面。與 049 的差別：該 leaf 規範 'Fav' 按鍵開啟清單與 Remove All 功能，本 leaf 規範清單的可瀏覽性與逐筆檢視／刪除（§8.2.1）。",
+ "keywords": [
+  "browsable list",
+  "review",
+  "delete",
+  "cite-form",
+  "CFTS024-193"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-005",
+   "tc_title": "Favorites list can be browsed and an entry deleted",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "The HU shall provide a browsable list to allow review and/or delete stored song titles or artists, with the list functions defined in CFTS024-193, CFTS024-195 and CFTS024-197",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list holds more entries than the list displays on one screen",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the favorites list\n2. Operate the browse controls to move through the list beyond the first screen\n3. Read the entries displayed after browsing\n4. Delete one entry from the list and read the list",
+   "expected_result": "1. The favorites list is displayed\n2. The list responds to the browse controls, as defined by CFTS024-193, CFTS024-195 and CFTS024-197\n3. Entries that were not on the first screen are displayed\n4. The deleted entry is no longer present and the remaining entries are unchanged",
+   "specification_reference": "CFTS024-4872826; CFTS024-193; CFTS024-195; CFTS024-197",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

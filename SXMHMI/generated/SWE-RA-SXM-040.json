@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-040",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：收聽任何 SDAR 節目時，HU 能儲存目前演出者的名稱或目前歌曲的標題。關鍵情境條件：兩種儲存標的（演出者、歌曲）——條文明列兩者，只驗其一無法涵蓋 Test Item 的完整結果（§6）。為什麼這樣切：一條 TC 內以兩種標的涵蓋同一驗證目標，依 §5.7 不拆分。儲存的識別鍵（artist ID / song ID）由 041/042 覆蓋、預設標的由 043 覆蓋、重複與容量由 046/047 覆蓋（§8.2.1）。",
+ "keywords": [
+  "store artist",
+  "store song title",
+  "SDAR programming"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-040",
+   "tc_title": "Current artist and current song can both be stored",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "While listening to any SDAR programming, the HU shall be able to store the name of the current artist, or the title of the current song",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The tuned channel is playing a song whose artist name and song title are both displayed\n5. The favorites list is empty",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the artist name and song title displayed for the current song\n2. Store the current artist and read the favorites list\n3. Store the current song title and read the favorites list\n4. Compare the stored entries with the values read in step 1",
+   "expected_result": "1. The artist name and the song title are displayed\n2. The favorites list holds an entry for the artist\n3. The favorites list holds a further entry for the song title\n4. Both entries match the artist name and song title read in step 1",
+   "specification_reference": "CFTS024-4872817",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

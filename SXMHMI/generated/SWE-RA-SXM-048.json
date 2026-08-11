@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-048",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：儲存記憶體達到容量時，HU 給出指示。關鍵情境條件：容量上限這個邊界——需先把清單填滿。為什麼這樣切：驗證對象是達到容量的時點，設計方法採邊界值分析；一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。與 047 的差別：該 leaf 驗容量下限為 50，本 leaf 驗達到容量時的指示，兩者條款分列（§8.2.1）。刻意略過：條文未定義指示的形式（彈窗、圖示、文字），ER 只驗使用者得到容量已滿的指示；亦未定義滿載後再儲存的結果（是否拒絕、是否覆蓋最舊），未生成——記為 RD-1 項目。",
+ "keywords": [
+  "storage memory",
+  "capacity reached",
+  "indication"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-048",
+   "tc_title": "Reaching the storage capacity is indicated to the user",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "The HU shall provide an indication if the storage memory has reached it's capacity",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list has been filled to the capacity the HU provides",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the favorites list and confirm it is filled to capacity\n2. Read the HU screen\n3. Attempt to store a further distinct artist\n4. Read the HU screen",
+   "expected_result": "1. The favorites list is filled to capacity\n2. The HU indicates that the storage memory has reached its capacity\n3. The store attempt is made\n4. The capacity indication is presented to the user",
+   "specification_reference": "CFTS024-4872825",
+   "priority": "P2",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

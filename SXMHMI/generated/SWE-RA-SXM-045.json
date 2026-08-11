@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-045",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：在 PDT 尚未可用之前、或 song ID 與 artist ID 兩者皆未填入時，HU 可將 FAV 按鍵變灰，或應向使用者指出該歌曲或演出者無法被儲存。關鍵情境條件：兩者皆不可得的狀態。為什麼這樣切：條文的兩個選項以 `may` / `shall` 分別表述——變灰是選用（may），告知使用者是必要（shall）；依 §8.4.1，選用行為沒有可判定的通過準則，因此 ER 只驗**必要**的那一項：使用者被告知無法儲存。若實作採變灰方式，該灰化本身即構成告知，ER 因此以「使用者得到無法儲存的指示」表述，涵蓋兩種實作。與 044 的差別：該 leaf 是其中之一可得，本 leaf 是兩者皆不可得（§8.2.1）。",
+ "keywords": [
+  "PDT",
+  "not populated",
+  "FAV button",
+  "gray out",
+  "unable to be stored"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-045",
+   "tc_title": "User is told the item cannot be stored when no id exists",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "If attempting to save a song title or artist before PDT becomes accessible or if neither the song ID nor artist ID field is populated, the HU shall indicate to the user that the song title or artist is unable to be stored",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The tuned content carries neither a song ID nor an artist ID\n5. The favorites list is empty",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the artist and song fields on the playing screen\n2. Attempt the store action\n3. Read the HU screen\n4. Read the favorites list",
+   "expected_result": "1. Neither an artist name nor a song title is presented for the current content\n2. The store attempt is made\n3. The HU indicates that the song title or artist cannot be stored\n4. The favorites list holds no new entry",
+   "specification_reference": "CFTS024-4872822",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

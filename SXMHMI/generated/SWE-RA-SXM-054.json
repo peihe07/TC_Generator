@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-054",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：資料儲存完成後，HU 提供確認。關鍵情境條件：儲存成功的時點。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分。與 051 的差別：該 leaf 規範**確認音**（聽覺，且同時涵蓋 Fav On Air 提示），本 leaf 規範儲存完成後的**確認**（條文以 `refer to HMI logic & flow for popup` 指向彈窗），兩者條款分列、感官通道不同（§8.2.1）。刻意略過：彈窗的版面與文字由 HMI 文件規範，不在本 workbook 驗證範圍（§8.4.2），ER 只驗確認在儲存完成後呈現。",
+ "keywords": [
+  "confirmation",
+  "data stored",
+  "popup"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-054",
+   "tc_title": "Storing a favorite is confirmed to the user",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "Once data has been stored, the HU shall provide confirmation",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list is empty\n5. The tuned channel is playing a song with a storable artist",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the HU screen before the store action\n2. Request the store action\n3. Read the HU screen once the entry has been stored\n4. Read the favorites list",
+   "expected_result": "1. No storage confirmation is presented\n2. The store request is accepted\n3. A confirmation that the data has been stored is presented\n4. The favorites list holds the stored entry",
+   "specification_reference": "CFTS024-4872832",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

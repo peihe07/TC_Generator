@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-044",
+ "batch": "B6 — Favorites",
+ "reasoning": "驗證目標：嘗試儲存歌曲標題或演出者時，若 song ID 或 artist ID 其中一個欄位未填入，HU 只就可供顯示與儲存的那一個 ID 動作。關鍵情境條件：兩個缺一的情境（有 artist 無 song、有 song 無 artist）。為什麼這樣切：條文說「只就可得的那一個動作」，兩種缺法是同一規則的兩個等價類，一條 TC 內涵蓋，依 §5.7 不拆分；設計方法採等價劃分。與 045 的差別：該 leaf 處理**兩者皆無**或 PDT 尚未可用的情境，本 leaf 處理**其中之一可得**的情境（§8.2.1）。",
+ "keywords": [
+  "song ID",
+  "artist ID",
+  "not populated",
+  "act on available ID"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-044",
+   "tc_title": "Storing acts on whichever id is populated",
+   "test_group": "SXM",
+   "test_set": "Favorites",
+   "test_item": "If attempting to save a song title or artist and either the song ID or artist ID field is not populated, the HU shall only act on the ID that is available for display and storage purposes",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio music channel\n4. The favorites list is empty",
+   "input_test_data": "Content A: broadcast carries an artist name with no song title\nContent B: broadcast carries a song title with no artist name",
+   "test_procedure": "1. Tune to content A and request the store action, then read the favorites list\n2. Read which field the stored entry carries\n3. Tune to content B and request the store action, then read the favorites list\n4. Read which field the second stored entry carries",
+   "expected_result": "1. The store request is accepted for content A\n2. The stored entry carries the artist name and no song title\n3. The store request is accepted for content B\n4. The stored entry carries the song title and no artist name",
+   "specification_reference": "CFTS024-4872821",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}
