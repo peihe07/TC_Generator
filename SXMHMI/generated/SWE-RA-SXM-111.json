@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-111",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：SAT 模式叫用 Browse Genre 時列出全部 SAT Genres。為什麼這樣切：判準是清單的完整性——可收電台所涵蓋的每個 genre 都在清單中；只列出常見數個的實作應失敗，故以現行可收電台的 genre 集合逐一比對。與 112 的差別：該 leaf 驗選取某 genre 之後的頻道清單與調諧，本 leaf 止於 genre 清單本身（§8.2.1）。",
+ "keywords": [
+  "browse genre",
+  "genre list"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-111",
+   "tc_title": "Browse Genre lists all SAT genres",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Browse Genre function is invoked in SAT mode, the HU shall list all SAT Genres",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The genres represented among the receivable Satellite Audio stations are known from an independent source\n5. More than one genre is represented",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Genre function in SAT mode\n2. Scroll through the whole list and record every genre shown\n3. Compare the recorded genres against the known genres",
+   "expected_result": "1. A list of genres is displayed\n2. The list scrolls to its end\n3. Every known genre appears in the list",
+   "specification_reference": "CFTS024-4872903",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

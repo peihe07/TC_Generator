@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-108",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：在 browse presets 畫面上對任一 preset 短按時，調諧至該 preset。為什麼這樣切：可觀察後果是調諧結果，故前置條件令所選 preset 非現行頻道，否則無變化亦通過；並對第二個 preset 再測一次，排除「一律調到第一個 preset」的實作。與 110 的差別：該 leaf 是長按的設定行為，本 leaf 是短按的調諧行為，條款分列（§8.2.1）。",
+ "keywords": [
+  "short press",
+  "preset",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-108",
+   "tc_title": "Short press on a preset in Browse Presets tunes to it",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "While in the browse presets screen and the HU receives a short press event on any of the presets, the HU shall tune to the preset selected",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three Satellite Audio presets are set, none of which is the currently tuned channel\n5. The browse presets screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Short press the second preset and read the tuned channel\n3. Short press the third preset and read the tuned channel",
+   "expected_result": "1. The tuned channel is not one of the presets\n2. The tuned channel is the channel set to the second preset\n3. The tuned channel is the channel set to the third preset",
+   "specification_reference": "CFTS024-4872899",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": "Analog-chapter twin: CFTS024-4872429 (covered in the AM/FM deliverable)"
+  }
+ ]
+}

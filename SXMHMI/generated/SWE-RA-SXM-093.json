@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-093",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：SDAR 為輸出來源時，使用者可經 HU HMI 要求顯示現正播送的歌曲名稱或演出者的可瀏覽清單。為什麼這樣切：條款以 or 並列兩種清單，兩者皆須可要求，故程序涵蓋兩側；「可瀏覽」的可觀察後果是清單可捲動且不止一列，ER 以此表述而非宣稱內部資料結構（§8.4.1）。與 094 的差別：本 leaf 驗的是「可要求顯示」這個進入點，094 驗的是類別選擇的完整性（§8.2.1）。",
+ "keywords": [
+  "browse",
+  "song titles",
+  "artists"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-093",
+   "tc_title": "Requesting the browsable song title and artist lists",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Cabin Output Channel has selected the HU Satellite Audio source, the user can request to display a browsable list of all Song Titles or Artists currently being played using the HU HMI",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. More than one Satellite Audio channel is receivable and broadcasting content with song title and artist metadata",
+   "input_test_data": "NA",
+   "test_procedure": "1. Request the list of Song Titles currently being played using the HU HMI\n2. Scroll the displayed list\n3. Request the list of Artists currently being played using the HU HMI\n4. Scroll the displayed list",
+   "expected_result": "1. A list of song titles currently being played is displayed\n2. The list scrolls and holds more than one entry\n3. A list of artists currently being played is displayed\n4. The list scrolls and holds more than one entry",
+   "specification_reference": "CFTS024-4872878",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-102",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：做出選擇之後，提供頻道名稱與號碼、演出者名稱與歌曲名稱。為什麼這樣切：條款規定的是選取後畫面的四個資訊項，ER 逐項對應並要求與所選頻道實際播送內容一致，否則顯示前一頻道殘留值的實作也會通過。前置條件令所選頻道非現行頻道以構造該區別。",
+ "keywords": [
+  "after selection",
+  "channel name",
+  "artist",
+  "song title"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-102",
+   "tc_title": "Selection presents channel, artist and song information",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "After a selection has been made, the HU shall provide the channel name and number, the artist name, and the song title",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The Browse feature is open on a list holding a receivable channel other than the currently tuned channel\n5. That channel is broadcasting music with artist and song title metadata",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the channel name and number currently shown\n2. Select the other channel from the list\n3. Read the channel name, channel number, artist name and song title shown",
+   "expected_result": "1. The information shown is that of the currently tuned channel\n2. The selection is accepted\n3. The channel name and number are those of the selected channel, and the artist name and song title are those of the content that channel is broadcasting",
+   "specification_reference": "CFTS024-4872889",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

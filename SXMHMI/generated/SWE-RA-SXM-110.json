@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-110",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：在 browse presets 畫面對任一 preset 長按時，將該 preset 設為現行電台。為什麼這樣切：可觀察後果是該 preset 的內容改變，故程序在長按前後各讀一次該 preset 所指頻道；同時要求其餘 preset 不變，排除「覆寫全部」的實作。[A-SX03]。與 108 的差別：該 leaf 是短按的調諧，本 leaf 是長按的設定（§8.2.1）。",
+ "keywords": [
+  "press and hold",
+  "set preset",
+  "currently tuned"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-110",
+   "tc_title": "Press and hold in Browse Presets stores the tuned station",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If the HU receives a press and hold event on any of the presets while in the browse presets screen, the HU shall set this preset to the currently tuned station",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three Satellite Audio presets are set to three known channels\n5. The currently tuned channel is not set to any preset\n6. The browse presets screen is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the channel set to each of the three presets\n2. Press and hold the second preset\n3. Read the channel set to each of the three presets",
+   "expected_result": "1. The three presets hold their known channels\n2. The press and hold event is accepted\n3. The second preset is set to the channel that was tuned, and the first and third presets still hold their known channels",
+   "specification_reference": "CFTS024-4872901",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": "Analog-chapter twin: CFTS024-4872430 (covered in the AM/FM deliverable)"
+  }
+ ]
+}

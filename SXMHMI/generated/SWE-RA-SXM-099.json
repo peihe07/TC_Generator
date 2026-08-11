@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-099",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：選取 Sports 時，提供各聯盟的清單並可選取 My Game Zone。為什麼這樣切：條款有兩個並列產出——聯盟清單與 My Game Zone 的可選取性；後者是進入 100 的入口，故此處只驗其可被選取，不驗其內容（那是 100 的判準，§8.2.1）。",
+ "keywords": [
+  "sports",
+  "leagues",
+  "My Game Zone"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-099",
+   "tc_title": "Sports offers the league list and My Game Zone",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If Sports is selected the HU shall provide a list of each of the leagues along with the ability to select the My Game Zone feature",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Sports content is available on the subscription\n5. The Browse feature is open",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select Sports\n2. Read the displayed list\n3. Select My Game Zone",
+   "expected_result": "1. Sports is accepted as a selection\n2. A list of leagues is displayed and My Game Zone is offered\n3. My Game Zone is accepted as a selection",
+   "specification_reference": "CFTS024-4872886",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

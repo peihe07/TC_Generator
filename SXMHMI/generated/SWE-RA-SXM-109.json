@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-109",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：在 browse presets 畫面收到 $ICS_KNOB2_DIR$ = [Increment]／[Decrement] 時，依 $ICS_KNOB2_VAL$ 計算的速率上下捲動清單；其後若選取清單項目則調諧至該 preset。為什麼這樣切：條款未給出速率的計算式，故不可斷言特定行數；可判準的是方向正確、以及較大的 $ICS_KNOB2_VAL$ 移動較多列（單調性）。ER 以此表述而非以絕對行數表述（§8.4.1）。捲動與其後的調諧為條款自身以 Then 串接的同一流程，故置於同一顆。",
+ "keywords": [
+  "ICS_KNOB2_DIR",
+  "ICS_KNOB2_VAL",
+  "scroll rate",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-109",
+   "tc_title": "Knob scrolling in Browse Presets and tuning the selected preset",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If the HU receives $ICS_KNOB2_DIR$ = [Increment] or [Decrement] while in the browse presets screen, the HU shall scroll the list of presets at the rate calculated from $ICS_KNOB2_VAL$, and shall tune to the preset selected from the list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Enough Satellite Audio presets are set that the list does not fit on one screen\n5. None of the presets is the currently tuned channel\n6. The browse presets screen is displayed with the list at its first entry",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send $ICS_KNOB2_DIR$ = [Increment] with a low $ICS_KNOB2_VAL$ and read how far the list moves\n2. Send $ICS_KNOB2_DIR$ = [Increment] with a higher $ICS_KNOB2_VAL$ and read how far the list moves\n3. Send $ICS_KNOB2_DIR$ = [Decrement] and read the direction in which the list moves\n4. Select the preset now highlighted and read the tuned channel",
+   "expected_result": "1. The list moves down the presets\n2. The list moves down the presets by more entries than in step 1\n3. The list moves up the presets\n4. The tuned channel is the channel set to the selected preset",
+   "specification_reference": "CFTS024-4872900",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

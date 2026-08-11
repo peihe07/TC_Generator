@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-095",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：Browse 的預設類別為 All Channel Browse。為什麼這樣切：「預設」只在尚無上次瀏覽紀錄時可觀察，故前置條件要求由出廠狀態或設定重置起算，否則 096 的記憶行為會蓋過本條款。ER 指名 All Channel Browse 本身，而非其內容（那是 098／104 的判準）。與 096 的差別：本 leaf 是首次進入的預設，096 是其後的沿用（§8.2.1）。",
+ "keywords": [
+  "default category",
+  "All Channel Browse"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-095",
+   "tc_title": "All Channel Browse is the default category on first entry",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "The default Browse category shall be All Channel Browse",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU settings have been reset to factory state and the Browse feature has not been used since",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse feature\n2. Read which category is presented",
+   "expected_result": "1. The Browse feature opens\n2. The presented category is All Channel Browse",
+   "specification_reference": "CFTS024-4872881",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

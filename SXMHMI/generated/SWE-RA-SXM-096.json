@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-096",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：其後再開啟 Browse 時，提供上次瀏覽的類別。為什麼這樣切：條款是記憶行為，可觀察後果須以「非預設」的類別構造，否則沿用預設的實作也會通過；因此程序先選一個不是 All Channel Browse 的類別，再重新進入。第二次更換類別並再次進入，用以驗證記的是「最後一次」而非「第一次非預設」。",
+ "keywords": [
+  "last browsed category",
+  "persistence"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-096",
+   "tc_title": "Browse reopens on the category last browsed",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "In subsequent selections of the Browse function, the HU shall provide the category that was last browsed",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The Browse feature is closed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke Browse, select the Presets category and close Browse\n2. Invoke Browse again and read which category is presented\n3. Select the Favorites category and close Browse\n4. Invoke Browse again and read which category is presented",
+   "expected_result": "1. The Presets category is presented\n2. The presented category is Presets\n3. The Favorites category is presented\n4. The presented category is Favorites",
+   "specification_reference": "CFTS024-4872882",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

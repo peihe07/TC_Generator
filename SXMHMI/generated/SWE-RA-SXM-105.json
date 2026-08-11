@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-105",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：選取 Genres 時，將全部衛星電台依 Genre 排序後顯示。為什麼這樣切：條款的可觀察後果是次序——同一 genre 的電台相鄰成群；僅加上 genre 欄位而未重排的實作應失敗，故 ER 以分群次序表述而非以欄位存在表述（§8.4.1）。前置條件要求至少兩個 genre 且其中一個有多台，否則任何次序都通過。",
+ "keywords": [
+  "genres",
+  "sort",
+  "satellite stations"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-105",
+   "tc_title": "Selecting Genres orders the station list by genre",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When Genres is selected, the HU shall sort and display the list of all satellite stations by Genre",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least two genres are represented among the receivable satellite stations and at least one genre holds more than one station",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the order of the stations in the list before Genres is selected\n2. Select Genres\n3. Read the order of the stations in the list",
+   "expected_result": "1. The order of the stations is recorded\n2. Genres is accepted as a selection\n3. The stations sharing a genre are grouped together in the list, and every receivable station is present",
+   "specification_reference": "CFTS024-4872894",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

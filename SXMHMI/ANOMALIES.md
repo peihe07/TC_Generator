@@ -574,3 +574,36 @@ whose subject is favorites alerts.
 No local action: Layer 2 names come from the ruled Part IV table and the
 heading is the spec's own. Raised for RD-1 — if the heading is a copy error,
 the Test Set name should follow the correction rather than the other way round.
+
+
+## [A-SX16] Two clauses in one section state the All Channels browse list with different field sets — REGISTERED (2026-08-11)
+
+`4872892` (leaf 104) and `4872896` (leaf 106) are both in §1.5.12, both
+triggered by "When All Channels browse function is selected", and both state
+what the HU displays:
+
+- `4872892`: station number, **long form** station name, **and the genre**
+- `4872896`: station number and station name
+
+The second is the first minus the genre, and differs on the name form. Two ids,
+one section, one trigger — a reviewer reading the workbook will see two rows
+that look like the same test.
+
+Note this is not the A-SX15 shape: there the two clauses were in different
+sections. Here they are siblings, which makes a "which section owns it" carve
+unavailable.
+
+Carve applied, by the only textual difference that carries a testable
+distinction: **104 owns the per-row field content** — that each row shows the
+number, the long form name and the genre, tested on a station whose long and
+short name forms differ. **106 owns list completeness** — that every available
+station appears, tested by comparing the scrolled list against the station set
+obtained independently, which 104's field test does not assert.
+
+§8.2.2 forbids consolidating them on the TC side, so the carve is the available
+move; it is not a claim that the two clauses were meant to differ this way.
+
+**For RD-1:** if `4872896` is a stale earlier draft of `4872892`, it should be
+withdrawn upstream rather than carved. The name form is the substantive
+question — one clause says the long form name is displayed and the other says
+the station name, and only the first is currently being verified as long form.

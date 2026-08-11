@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-103",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：在 Browse 功能中，歌曲更替時頻道資訊（PDT）隨之更新。為什麼這樣切：條款的可觀察後果是「不需離開 Browse 即改變」，故程序全程停留在 Browse 內、不做任何操作，讀取兩首歌之間的資訊變化；要求離開再進入才更新的實作應失敗。ER 以更新後的值與新歌一致表述，而非僅宣稱「有更新」（§8.4.1）。",
+ "keywords": [
+  "PDT",
+  "channel information",
+  "update",
+  "song change"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-103",
+   "tc_title": "Channel information follows the song change inside Browse",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "Channel information (PDT) shall be updated as songs change while in the Browse function",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The Browse feature is open and showing the channel information of a channel that is broadcasting a song\n5. That channel is about to change to a different song",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the channel information shown and leave the HU untouched inside the Browse function\n2. Wait until the channel changes to the next song\n3. Read the channel information shown without leaving the Browse function",
+   "expected_result": "1. The channel information is that of the song being broadcast\n2. The channel is broadcasting the next song\n3. The channel information is that of the next song, having changed without leaving the Browse function",
+   "specification_reference": "CFTS024-4872890",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

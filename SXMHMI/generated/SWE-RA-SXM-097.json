@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-097",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：叫用 Satellite Channel Preset Browse 時，顯示所有目前設為 Preset 的衛星頻道的可瀏覽清單。為什麼這樣切：條款的判準是清單成員資格——設為 preset 的在內、未設的不在內；僅列出「有東西」的實作應失敗，故前置條件同時要求存在未設為 preset 的可收頻道，ER 以雙向斷言表述。與 107 的差別：該 leaf 驗的是 preset 的排列順序與刪除能力，本 leaf 驗成員資格（§8.2.1）。",
+ "keywords": [
+  "preset browse",
+  "preset channels",
+  "list"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-097",
+   "tc_title": "Preset Browse lists exactly the channels set to presets",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Satellite Channel Preset Browse function is invoked, the HU shall display a browsable list of all available Satellite Audio Channels currently set to Presets",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three receivable Satellite Audio channels are set as presets\n5. At least one further receivable Satellite Audio channel is not set as a preset",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Satellite Channel Preset Browse function\n2. Read the displayed list\n3. Scroll the displayed list",
+   "expected_result": "1. A list is displayed\n2. The list holds the three channels set as presets and does not hold the channel that is not set as a preset\n3. The list scrolls",
+   "specification_reference": "CFTS024-4872883",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

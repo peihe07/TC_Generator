@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-100",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：選取 Game Zone 後，提供使用者透過 Game Alert 所選各支主隊的頻道清單。為什麼這樣切：條款把清單來源綁定在 Game Alert 的設定上，故判準是「與該設定一致」——設定內的隊伍在清單中、未設定的不在；只列出全部比賽的實作應失敗。程序在測後變更設定並重讀，用以坐實兩者確有連動。",
+ "keywords": [
+  "Game Zone",
+  "favorite teams",
+  "Game Alert"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-100",
+   "tc_title": "Game Zone lists the channels of the teams set in Game Alert",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If Game Zone has been selected, the HU shall provide a list of the channels of each of the customer's favorite teams selected through Game Alert",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two teams are selected as favorite teams through Game Alert and both are playing\n5. At least one further team is playing and is not selected through Game Alert\n6. The Browse feature is open",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select Game Zone and read the displayed list\n2. Add the further playing team as a favorite team through Game Alert\n3. Select Game Zone again and read the displayed list",
+   "expected_result": "1. The list holds a channel for each of the two favorite teams and does not hold the team that is not a favorite\n2. The team is accepted as a favorite team\n3. The list now also holds a channel for that team",
+   "specification_reference": "CFTS024-4872887",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

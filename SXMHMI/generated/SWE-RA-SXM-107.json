@@ -1,0 +1,48 @@
+{
+ "parent": "SWE-RA-SXM-107",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：叫用 Browse Presets 時依序列出全部 SAT presets 並可刪除；presets 全數刪除後，經 HU HMI 或方向盤控制存取 preset 時播放拒絕音。為什麼切兩顆：條款的第二句以「If all presets are deleted」為前提，是不同的系統狀態，前置條件與第一顆互斥（有 preset ⇄ 無 preset），無法在同一顆內同時觀察。拒絕音本身的規則面屬 CFTS019，依 R11 以引用式處理：specification_reference 本 leaf 條款在前、CFTS019-494 與 CFTS019-496 在後，ER 只斷言在本條款情境下該結果發生並以引用錨定，不驗其適用條件。條款以 or 並列 HMI 與方向盤兩條存取路徑，故兩者各測一次。",
+ "keywords": [
+  "browse presets",
+  "delete presets",
+  "rejection tone"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "state",
+  "delta": "Whether any preset is set. The clause's second sentence is conditioned on all presets having been deleted, which is the mutually exclusive state to the first sentence's list-and-delete scenario, so the two cannot be observed in one run: TC-01 covers the populated list and the delete capability, TC-02 the empty-preset rejection on both access paths."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-107",
+   "tc_title": "Browse Presets lists presets in order and deletes them",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Browse Presets feature is invoked in SAT mode, the HU shall list all SAT presets in order and shall provide the capability to delete presets",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Four Satellite Audio presets are set, in a known preset order\n5. The preset order does not match the ascending channel number order",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Presets feature in SAT mode\n2. Read the order of the listed presets\n3. Delete one preset and read the list\n4. Delete a second preset and read the list",
+   "expected_result": "1. The list of SAT presets is displayed\n2. All four presets are listed in preset order\n3. The deleted preset is no longer listed and the remaining presets keep their preset order\n4. The second deleted preset is no longer listed and two presets remain listed",
+   "specification_reference": "CFTS024-4872898",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-107",
+   "tc_title": "Rejection tone when a preset is accessed with all presets deleted",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If all presets are deleted, the HU shall play the rejection tone when the user tries to access a preset through the HU HMI or the steering wheel controls",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. All Satellite Audio presets have been deleted through the Browse Presets feature\n5. The HU volume is set to an audible level",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Browse Presets list\n2. Try to access a preset through the HU HMI and listen to the HU audio output\n3. Try to access a preset through the steering wheel controls and listen to the HU audio output",
+   "expected_result": "1. The list holds no presets\n2. The rejection tone is heard, as defined by CFTS019-494 and CFTS019-496, and the tuned channel does not change\n3. The rejection tone is heard, as defined by CFTS019-494 and CFTS019-496, and the tuned channel does not change",
+   "specification_reference": "CFTS024-4872898; CFTS019-494; CFTS019-496",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

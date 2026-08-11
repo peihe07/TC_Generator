@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-094",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：SAT 模式下 Browse 可選取全部可用的 Browse 類別。為什麼這樣切：本條款只寫「all possible SAT Browse categories」，未列出是哪些；同節的 4872880 正是該列舉（All channels、Presets、Favorites、Game Zone、Traffic and Weather、Featured）。缺了它，「all possible」無可判準，測不出來。依 R10-2 吸收 4872880：(a) 同節成立，(b) 該條款的可觀察量與本 leaf 完全相同——同一次開啟 Browse 即可同時觀察，不需另建情境。吸收後 ER 逐一點名六個類別並要求各自可選取，同時涵蓋兩條款。標記 [A-SX08]。",
+ "keywords": [
+  "browse categories",
+  "SAT mode",
+  "selection"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [
+  "[A-SX08] Absorbed CFTS024-4872880 (same section 1.5.11) into this leaf. 4872879 requires that all possible SAT Browse categories can be selected but does not say which they are; 4872880 is that enumeration. The two are observable in one and the same act of opening Browse, so R10-2 condition (b) holds and the ER names the six categories rather than testing an unbounded 'all possible'."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-094",
+   "tc_title": "All six SAT Browse categories are offered and selectable",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "Using the Browse feature in SAT mode, the HU shall allow selection of all possible SAT Browse categories, these being All channels, Presets, Favorites, Game Zone, Traffic and Weather and Featured",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least one preset is set, at least one favorite is stored and at least one favorite team is set through Game Alert",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse feature and read the offered categories\n2. Select each of the offered categories in turn and read the HU screen after each",
+   "expected_result": "1. Six categories are offered: All channels, Presets, Favorites, Game Zone, Traffic and Weather and Featured, and no further category is offered\n2. Each of the six is accepted as a selection and the HU presents that category's browse content",
+   "specification_reference": "CFTS024-4872879; CFTS024-4872880",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

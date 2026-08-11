@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-104",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：選取 All Channels 瀏覽時，各列顯示 station number、長式 station name 與 genre 三個欄位。為什麼這樣切：條款以 The following fields 明列欄位，ER 逐欄對應。與 106 的重疊已登錄 A-SX16：兩條款觸發相同、106 的欄位是本條款的子集，故依條文切分——本 leaf 擁有每列的欄位內容（含長式名稱與 genre），106 擁有清單的完整性。長式名稱以「與短式不同」的頻道構造，否則兩種名稱形式無從分辨。",
+ "keywords": [
+  "all channels",
+  "station number",
+  "long form name",
+  "genre"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-104",
+   "tc_title": "All Channels rows carry number, long form name and genre",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the All Channels browse function is selected, the HU shall display for each satellite station the station number, the long form station name and the genre",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least one receivable Satellite Audio station has a long form station name that differs from its short form name",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the All Channels browse function\n2. Read the fields shown for the station whose long form name differs from its short form name\n3. Read the fields shown for two further stations",
+   "expected_result": "1. A list of satellite stations is displayed\n2. The entry shows the station number, the long form station name and the genre\n3. Each entry shows the station number, the long form station name and the genre",
+   "specification_reference": "CFTS024-4872892",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

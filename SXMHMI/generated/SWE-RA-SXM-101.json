@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-101",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：聯盟清單內提供每支出賽隊伍的簡稱與該場比賽所在頻道號。為什麼這樣切：條款規定的是列內容的兩個欄位，ER 逐欄對應；「出賽」是成員資格條件，故前置條件要求同一聯盟內同時存在出賽與未出賽的隊伍，ER 以雙向斷言排除「列出全聯盟」的實作。與 099 的差別：該 leaf 驗聯盟清單存在，本 leaf 驗其列內容（§8.2.1）。",
+ "keywords": [
+  "league list",
+  "team short name",
+  "channel number"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-101",
+   "tc_title": "League entries carry the team short name and channel number",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "Within the list of leagues the HU shall provide the short name of each of the teams playing and the channel number on which the game is being played",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Within one league at least two teams are playing and at least one team is not playing\n5. The list of leagues is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the league in which the games are being played\n2. Read the entry for each team shown\n3. Compare the shown teams against the teams currently playing in that league",
+   "expected_result": "1. The league's content is displayed\n2. Each entry shows the team's short name and the channel number on which that game is being played\n3. The teams currently playing are shown and the team that is not playing is not shown",
+   "specification_reference": "CFTS024-4872888",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-098",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：叫用 Satellite All Channel Browse 時，顯示所有可用衛星頻道、對應 Genre，以及依頻道號與依 genre 排序的能力。為什麼這樣切：條款有三個並列產出，ER 逐項對應；排序「能力」的可觀察後果是排序後的次序確實改變且符合該鍵，故程序在兩種鍵下各讀一次次序。與 104／106 的差別：那兩條在 §1.5.12 各自規定欄位內容與清單完整性，本 leaf 的獨有部分是排序能力（重疊已登錄 A-SX16）。",
+ "keywords": [
+  "all channel browse",
+  "genre",
+  "sort"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-098",
+   "tc_title": "All Channel Browse offers genre and both sort orders",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Satellite All Channel Browse function is invoked, the HU shall display a browsable list of all available Satellite Audio Channels, the associated Genre and the capability to sort stations in numerical order and by genre",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. More than one receivable Satellite Audio channel is available and they do not all share one genre",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Satellite All Channel Browse function\n2. Read the genre shown for each listed channel\n3. Sort the list in numerical order and read the order of the entries\n4. Sort the list by genre and read the order of the entries",
+   "expected_result": "1. A browsable list of the available Satellite Audio channels is displayed\n2. Each listed channel shows its associated genre\n3. Sorting numerically is offered and the entries are ordered by ascending channel number\n4. Sorting by genre is offered and the entries are grouped by genre",
+   "specification_reference": "CFTS024-4872885",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

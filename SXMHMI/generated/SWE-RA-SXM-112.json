@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-112",
+ "batch": "B8 — Browse",
+ "reasoning": "驗證目標：選取某 genre 時，列出該 genre 內全部可用頻道並可調諧至其中任一。為什麼這樣切：條款有兩個並列產出——清單成員資格與可調諧性。成員資格以雙向斷言表述（該 genre 的在內、他 genre 的不在內），可調諧性則以調諧結果表述，且對非清單首列的頻道測一次以排除「只能選第一個」的實作。",
+ "keywords": [
+  "genre selected",
+  "channels within genre",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-112",
+   "tc_title": "Selecting a genre lists its channels and tunes to one",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When a Genre is selected, the HU shall list all available channels within that genre and allow the user to tune to any of those channels listed",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One genre holds at least two receivable Satellite Audio channels\n5. At least one receivable channel belongs to a different genre\n6. None of the channels of that genre is the currently tuned channel\n7. The list of genres is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the genre that holds at least two channels\n2. Read the displayed list\n3. Select the second channel in the list and read the tuned channel",
+   "expected_result": "1. The genre is accepted as a selection\n2. The list holds the channels of that genre and does not hold the channel belonging to the other genre\n3. The tuned channel is the second channel of the list",
+   "specification_reference": "CFTS024-4872904",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
