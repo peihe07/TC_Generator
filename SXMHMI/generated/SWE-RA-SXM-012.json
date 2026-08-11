@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-012",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：處於 Seek Up 狀態時發生其他事件，HU 依 CIP 表所定分類停止 seek 或不受影響。關鍵情境條件：事件的分類——只驗會停止的事件，無法排除「任何事件都停止 seek」的實作（§7），因此同時驗不受影響的一類。**A-SX11**：條文引用的 `'SEEK Cancel_Stop Transitions'` 工作表中，與本條款狀態相符的 `SEEK SAT Audio (US Market)` 列對全部 59 個事件欄皆標 `N/A`，事件分類只存在於 `Fast SEEK SAT Audio (US Market)` 列。本 TC 因此在該表確實有分類的狀態下驗證，Input Test Data 的每個事件皆逐字取自該列，不取自 AMFM 使用的 AM/FM 列。哪一列治理一般 SAT seek、以及 `N/A` 意為「不可中斷」或「尚未規範」，送 RD-1。",
+ "keywords": [
+  "Seek Up state",
+  "Seek Stop events",
+  "SEEK Cancel_Stop Transitions",
+  "Fast SEEK SAT Audio"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-012",
+   "tc_title": "Stop class events end a fast seek up in progress",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "While the HU Satellite Audio source is in the Seek Up state other events may occur which will request the HU to stop the Seek Up process\n\n(Events classified against the SEEK Cancel_Stop Transitions worksheet)",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU is in SAT-A mode\n5. A fast seek is in progress, the state the worksheet classifies for SAT Audio",
+   "input_test_data": "Events for the `Fast SEEK SAT Audio (US Market)` row of the SEEK Cancel_Stop Transitions worksheet:\nStop Seek class: DIRECT TUNE, INFO, AUDIO/ Audio Settings, MORE Source Control Items, Tune/Scroll Knob Rotate\nContinue Seek class, marked no impact: the Radio HU Hardkeys/Softkeys events the same row lists as `Continue Seek- No Impact`",
+   "test_procedure": "1. Start a fast seek up and read the state of the HU Satellite Audio source\n2. Request INFO while the seek is running, then read the state and the tuned channel\n3. Repeat the fast seek and rotate the Tune/Scroll knob while it is running, then read the state\n4. Repeat the fast seek and raise a Continue class event, then read the state",
+   "expected_result": "1. The HU is in the Seek Up state and advancing through channels\n2. The HU leaves the Seek Up state and remains on the channel reached\n3. The HU leaves the Seek Up state a second time, on the event the worksheet also classifies Stop Seek\n4. The HU is still in the Seek Up state and continues to advance",
+   "specification_reference": "CFTS024-4872771",
+   "priority": "P1",
+   "design_method": "決策表 (Decision Table Testing)",
+   "remarks": ""
+  }
+ ]
+}

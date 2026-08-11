@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-010",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：到達新頻道時，HU 離開 Seek Up 狀態。關鍵情境條件：seek 完成的時點。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果，依 §5.7 不拆分；驗證方式是在到達前後各讀一次狀態——只讀到達後的狀態，無法區分「到達即離開」與「從未進入」的實作（§7）。與 009 的差別：該 leaf 覆蓋使用者取消的路徑，本 leaf 覆蓋自然完成的路徑，兩者條款分列（§8.2.1）。",
+ "keywords": [
+  "Seek Up state",
+  "exit state",
+  "new channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-010",
+   "tc_title": "Reaching the new channel exits the Seek Up state",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "Upon reaching the new channel, the HU shall exit the Seek Up state",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The tuned channel has an available neighbour in the seek direction",
+   "input_test_data": "NA",
+   "test_procedure": "1. Initiate Seek Up\n2. Read the state of the HU Satellite Audio source while the seek is in progress\n3. Read the state once the new channel is reached\n4. Read the audio output",
+   "expected_result": "1. The seek request is accepted\n2. The HU is in the Seek Up state\n3. The HU is no longer in the Seek Up state\n4. The new channel is played",
+   "specification_reference": "CFTS024-4872769",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-006",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：Cabin Output Channel 選定 HU Satellite Audio 來源時，使用者可請求 Seek Up 功能，HU 進入 Seek Up 狀態並前往下一個可用頻道。關鍵情境條件：請求來源（HU HMI 與方向盤按鍵）。為什麼這樣切：本 leaf 是 §1.5.1 的能力總述，其獨有內容是**請求路徑**——進入狀態與調諧到較高頻道由 007 覆蓋、wrap-around 由 008 覆蓋，依 §8.2.1 不重複驗證。一條 TC 內以兩個請求路徑涵蓋同一驗證目標，依 §5.7 不拆分。**VR trigger path HELD pending a chat ruling (profile §6, Delta 7): the clause grants the request via HU HMI, Steering Wheel Buttons **or a VR Command**. AMFM ruled its VR path out of scope under R8, and that ruling is explicitly NOT inherited by SXM — this is the first SXM clause to grant one, so it returns to chat rather than being delegated by analogy. This TC covers the HMI and Steering Wheel paths, which are unambiguous; the VR path is neither generated nor declared out of scope.** 037 title 與條文的相似度較低（0.724），差異即為 037 系統性省略的 VR 用語，依 §8.6 以條文為準——這也是本 leaf 觸發停機條款的原因。",
+ "keywords": [
+  "Seek Up",
+  "Skip Forward",
+  "request paths",
+  "Steering Wheel Buttons"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-006",
+   "tc_title": "Seek Up is requested from the HMI and the steering wheel",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "When the Cabin Output Channel has selected the HU Satellite Audio source, the user can request a Seek Up to Next Channel function (a.k.a. Skip Forward) using the HU HMI or Steering Wheel Buttons. When the user selects the Seek Up function the HU will enter the Seek Up state and go to the next available Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The tuned channel is neither the highest nor the lowest channel of the lineup",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number\n2. Request Seek Up from the HU HMI and read the tuned channel\n3. Note the new channel number\n4. Request Seek Up from the Steering Wheel Buttons and read the tuned channel",
+   "expected_result": "1. The starting channel is playing\n2. The HU enters the Seek Up state and tunes to the next available channel\n3. The channel reached in step 2 is playing\n4. The HU enters the Seek Up state again and tunes to the next available channel from there",
+   "specification_reference": "CFTS024-4872765",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

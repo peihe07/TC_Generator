@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-007",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：Seek Up 功能啟動時，HU 進入 Seek Up 狀態並調諧到較高一個頻道。關鍵情境條件：起始頻道不在 lineup 端點，否則調諧結果與 wrap-around 無法區分。為什麼這樣切：一條 TC 覆蓋單一觸發的兩個必然結果——進入狀態、調諧到相鄰頻道，依 §5.7 併為多條 ER。與 006 的差別：該 leaf 驗請求路徑，本 leaf 驗狀態進入與調諧結果；與 008 的差別：端點的 wrap-around 屬邊界，各自條款分列（§8.2.1）。刻意略過：到達後離開狀態由 010 覆蓋。",
+ "keywords": [
+  "Seek Up state",
+  "next higher channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-007",
+   "tc_title": "Seek Up enters the state and tunes one channel higher",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "Upon initiation of a Seek Up function, the HU shall enter the Seek Up state and tune to the next higher channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The tuned channel has an available neighbour in both directions",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number and the state of the HU Satellite Audio source\n2. Initiate the Seek Up function\n3. Read the state of the HU Satellite Audio source during the operation\n4. Read the tuned channel once the operation completes",
+   "expected_result": "1. The starting channel is playing and the HU is not in the Seek Up state\n2. The seek request is accepted\n3. The HU is in the Seek Up state\n4. The tuned channel is the next higher available channel, one step from the starting channel",
+   "specification_reference": "CFTS024-4872766",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

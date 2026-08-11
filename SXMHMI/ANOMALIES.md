@@ -399,3 +399,34 @@ Found while building the B2 context; the same shape as A-SX07, second instance.
   correction item.
 - No `[A-SX10]` marker is emitted in generation: the §8.6 wording note the
   pipeline already attaches to 082 records the divergence at the row level.
+
+
+## [A-SX11] The cited SEEK worksheet classifies Fast Seek SAT, not plain Seek SAT — PENDING
+
+Leaves 009 / 012 / 017 / 020 point at `'CIP_Radio_Tables*'`,
+`'SEEK Cancel_Stop Transitions'` for the events that cancel or stop a SAT
+seek. Read against the worksheet actually supplied:
+
+| worksheet row | event classifications |
+|---|---|
+| `SEEK SAT Audio (US Market)` | **`N/A` on all 59 event columns** (only the four VP columns carry `X`) |
+| `Fast SEEK SAT Audio (US Market)` | fully classified — 9 `Cancel Seek`, 5 `Stop Seek`, 3 `Continue Seek - No Impact`, plus 20 qualified variants |
+
+So the row that matches the citing clauses' state — the plain Seek Up / Seek
+Down state — answers `N/A` for every event, and the classifications the
+clauses send the reader to find exist only for the **fast** seek state.
+
+- 012 and 020 are the sharp case: their entire testable content is the
+  pointer. 009 and 017 also state their own cancel behaviour in prose, so they
+  remain testable from the clause alone.
+- Two readings, and the corpus does not settle it: (a) a plain SAT seek is
+  channel-indexed and completes with no interruptible window, so `N/A` is
+  correct and the classifications belong to fast seek by design; (b) the plain
+  row is unfilled. **Asserting (a) would be an inference about the design
+  (§8.4.1), so it is not asserted.**
+- Generated disposition: 012 and 020 exercise the stop events in the state the
+  worksheet does classify, and say so in reasoning. Every event named in their
+  Input Test Data is quoted from the `Fast SEEK SAT Audio` row, never from the
+  AM/FM row AMFM used.
+- RD-1: ask which row governs a plain SAT seek, and whether `N/A` there means
+  "cannot be interrupted" or "not yet specified".

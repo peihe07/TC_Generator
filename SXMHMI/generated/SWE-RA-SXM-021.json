@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-021",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：HU 收到 Seek Stop 請求時，離開 Seek Down 狀態並停留在目前頻道。關鍵情境條件：請求發生在 seek 進行中；停留的頻道必須與起始頻道不同，否則「停在目前頻道」與「回到原頻道」無法區分——後者是 017 的取消語意。為什麼這樣切：一條 TC 覆蓋單一觸發的兩個必然結果，依 §5.7 併為多條 ER。與 020 的差別：該 leaf 驗哪些事件構成 stop 請求（依 CIP 表分類），本 leaf 驗收到 stop 請求後的結果，兩者條款分列（§8.2.1）。與 017 的對照是本條的判別重點：**stop 停在目前頻道，cancel 回到原頻道**，ER 因此明確比對起始頻道。",
+ "keywords": [
+  "Seek Stop request",
+  "exit Seek Down state",
+  "remain on current channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-021",
+   "tc_title": "Seek Stop leaves the Seek Down state on the current channel",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "If the HU receives a Seek Stop request, the HU shall exit the Seek Down state and remain on the current channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU is in SAT-A mode\n5. The channel lineup is large enough that a seek passes several channels before the stop request",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the starting channel number and start a fast seek down\n2. Send a Seek Stop request once the seek has passed several channels\n3. Read the state of the HU Satellite Audio source\n4. Read the tuned channel against the starting channel",
+   "expected_result": "1. The HU enters the Seek Down state and advances through channels\n2. The Seek Stop request is accepted\n3. The HU is no longer in the Seek Down state\n4. The tuned channel is the one reached when the request arrived, not the starting channel",
+   "specification_reference": "CFTS024-4872781",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

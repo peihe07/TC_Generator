@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-017",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：處於 Seek Down 狀態時，使用者請求取消，HU 回到原本的頻道並恢復 Play 模式。關鍵情境條件：取消發生在 seek 進行中，且原頻道與 seek 目標頻道不同——否則「回到原頻道」不可觀察。為什麼這樣切：條文含兩句，第一句「停在下一個頻道即離開狀態並回到 Play」與 018 的條款同義，依 §8.2.1 由該 leaf 覆蓋；本 leaf 因此專責**取消**路徑，一條 TC 覆蓋單一觸發的兩個必然結果——回到原頻道、恢復 Play，依 §5.7 併為多條 ER。條文引用 `'CIP_Radio_Tables*'` 的 `'SEEK Cancel_Stop Transitions'` 工作表作為取消事件清單，但該表的 `SEEK SAT Audio (US Market)` 列對全部 59 個事件欄皆標 `N/A`（見 A-SX11），因此本 TC 以條文自身敘述的取消語意驗證，取消動作採使用者可直接操作的 seek 反向請求，不從該表挑事件。",
+ "keywords": [
+  "Seek Down state",
+  "cancel",
+  "original channel",
+  "Play mode"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-017",
+   "tc_title": "Cancelling Seek Down returns to the original channel",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "While the HU Satellite Audio source is in the Seek Down state, the user may request to cancel the Seek Down state and the HU will return the to original Channel and resume Play mode",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The channel lineup is large enough that a Seek Down operation is observable before it completes",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the tuned channel number\n2. Initiate Seek Down and request the cancel while the HU is still in the Seek Down state\n3. Read the tuned channel\n4. Read the state of the HU Satellite Audio source and the audio output",
+   "expected_result": "1. The starting channel is playing\n2. The cancel request is accepted while the seek is in progress\n3. The tuned channel is the channel noted in step 1\n4. The HU is in Play mode and the original channel is played",
+   "specification_reference": "CFTS024-4872777",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

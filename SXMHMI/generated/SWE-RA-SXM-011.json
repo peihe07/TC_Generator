@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-011",
+ "batch": "B3 — Seek",
+ "reasoning": "驗證目標：seek up 按鍵的長按事件中 `<Tpress>` 大於 500 毫秒時，HU 執行 fast seek up，以每 200 毫秒一個頻道的速率向上推進；放開按鍵時停在下一個可調諧的頻道。關鍵情境條件：500 毫秒這個按壓時長邊界，以及放開的時點。為什麼這樣切：條文給出明確的時間門檻與速率，驗證對象即該門檻，設計方法採邊界值分析；程序在門檻兩側各按一次——短於 500 毫秒者應走一般 seek（單一頻道），長於者才進入 fast seek，只驗長按側無法排除「任何按壓都快進」的實作（§7）。速率以固定時長的按壓所跨越的頻道數換算，容差取自條文自身的單步（1 個頻道），非估計值。條文標明速率適用於 SAT-A 模式，前置因此指定該模式。",
+ "keywords": [
+  "fast seek up",
+  "<Tpress>",
+  "500 milliseconds",
+  "1 channel per 200ms",
+  "SAT-A"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-011",
+   "tc_title": "Long press beyond 500 ms starts fast seek up",
+   "test_group": "SXM",
+   "test_set": "Seek",
+   "test_item": "If the HU recieves a long press event on the seek up button where the value of <Tpress> is greater than 500 milliseconds, HU shall implement the fast seek up feature where it advances up through the available channels at a ramp up rate of 1 channel per 200ms in SAT-A mode. When seek up button is released, HU shall stop at the next tunable channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU is in SAT-A mode\n5. The channel lineup holds at least fifteen consecutive tunable channels in the seek direction",
+   "input_test_data": "Short press: <Tpress> of 300 milliseconds\nLong press: <Tpress> of 2000 milliseconds, which at 1 channel per 200ms spans about 10 channels",
+   "test_procedure": "1. Note the tuned channel number\n2. Press and release the seek up button with a <Tpress> of 300 milliseconds, then read the tuned channel\n3. Note the channel number, then press and hold the seek up button for 2000 milliseconds\n4. Release the button and read the tuned channel",
+   "expected_result": "1. The starting channel is playing\n2. The HU has moved one channel up, which is the ordinary seek behaviour rather than fast seek\n3. The HU advances through the channels continuously while the button is held\n4. The HU has moved about 10 channels from the channel noted in step 3, within one channel, and is tuned to a tunable channel",
+   "specification_reference": "CFTS024-4872770",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}
