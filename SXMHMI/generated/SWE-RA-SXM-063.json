@@ -24,7 +24,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU has stayed on the tuned channel long enough for the buffer to reach its capacity",
    "input_test_data": "Buffer capacity: the maximum retention the HU provides on one channel\nReference point A: the oldest content still retrievable when the buffer first reaches capacity",
    "test_procedure": "1. Rewind to the oldest retrievable point in the buffer and note the content at reference point A\n2. Return to real-time broadcast and stay on the same channel for a further period\n3. Rewind again to the oldest retrievable point\n4. Compare the oldest retrievable content with reference point A",
-   "expected_result": "1. The buffer plays from its oldest retained point and reference point A is identified\n2. The channel stays tuned and new broadcast content continues to be retained\n3. The buffer plays from its oldest retained point again\n4. Reference point A is no longer retrievable and the oldest retained content is newer than it, which places the replacement on a first in first out order",
+   "expected_result": "1. The buffer plays from its oldest retained point and reference point A is identified\n2. The channel stays tuned and new broadcast content continues to be retained\n3. The buffer plays from its oldest retained point again\n4. Reference point A is no longer retrievable and the oldest retained content is newer than it",
    "specification_reference": "CFTS024-4872843",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",

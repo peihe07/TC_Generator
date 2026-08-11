@@ -23,7 +23,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The vehicle is in Body ON HU Audio Mode ON at the start of the test",
    "input_test_data": "Observation period in each power state: 60 seconds",
    "test_procedure": "1. Stay on the tuned channel for 60 seconds in Body ON HU Audio Mode ON, then rewind and read the audio played\n2. Return to real-time and transition the vehicle below Body ON HU Audio Mode ON for 60 seconds\n3. Return to Body ON HU Audio Mode ON on the same channel\n4. Rewind by the period spent below the state and read the audio played",
-   "expected_result": "1. The content broadcast during the 60 seconds is retrievable from the buffer\n2. The vehicle is below Body ON HU Audio Mode ON\n3. The Satellite Audio source is available again on the same channel\n4. The content broadcast while the vehicle was below the state is not retrievable, which places buffering inside that power state alone",
+   "expected_result": "1. The content broadcast during the 60 seconds is retrievable from the buffer\n2. The vehicle is below Body ON HU Audio Mode ON\n3. The Satellite Audio source is available again on the same channel\n4. The content broadcast while the vehicle was below the state is not retrievable",
    "specification_reference": "CFTS024-4872848",
    "priority": "P1",
    "design_method": "等價劃分 (Equivalence Partitioning, EP)",

@@ -39,6 +39,22 @@ CITE_SEP = "; "
 SIGNAL_TOKEN = re.compile(r"\$[A-Za-z0-9_]+\$\s*=\s*\[[^\]]*\]")
 MULTILINE_FIELDS = ("pre_conditions", "input_test_data", "test_procedure",
                     "expected_result")
+# §6: an ER line states what is observed. An inference about what the
+# observation proves belongs in reasoning. These catch the structural family
+# — comma, then which/thereby plus an inference verb, or its gerund form —
+# rather than any one phrasing, so `which places` and `which leaves` are the
+# same finding and a new variant does not slip through.
+INTERPRETIVE_TAIL = (
+    # The gerunds are spelled out rather than suffixed: `proving` drops the e
+    # from `prove` and `putting` doubles the t, so `(s|d|ing)?` would miss both
+    # and `, thereby proving …` would fall between the two patterns.
+    re.compile(r",\s*(which|thereby)\s+((place|leave|put|show|prove|confirm|"
+               r"indicate|demonstrate|mean|imply)(s|d)?|placing|leaving|"
+               r"putting|showing|proving|confirming|indicating|"
+               r"demonstrating)\b.*$", re.I),
+    re.compile(r",\s*(placing|leaving|putting|showing|proving|confirming|"
+               r"indicating|demonstrating)\b.*$", re.I),
+)
 
 
 def numbered(text: str) -> list[str]:
@@ -124,6 +140,15 @@ def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
 
     if MODALS.search(str(tc.get("expected_result") or "")):
         bad("er-modal", f"modal verb in expected_result (§6)")
+    for i, line in enumerate(str(tc.get("expected_result") or "").split("\n"), 1):
+        for pat in INTERPRETIVE_TAIL:
+            m = pat.search(line)
+            if m:
+                bad("er-interpretive-tail",
+                    f"ER line {i}: {m.group(0).strip()!r} — interpretive tail "
+                    "clause in ER — state the observation, move the inference "
+                    "to reasoning (§6)")
+                break
     title = str(tc.get("tc_title") or "")
     if not title:
         bad("keys", "tc_title is empty (§4.3)")

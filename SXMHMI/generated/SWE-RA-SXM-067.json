@@ -23,7 +23,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A second audio source, such as USB media, is available on the HU",
    "input_test_data": "Time spent in the other mode: 60 seconds",
    "test_procedure": "1. Note the Satellite Audio channel and the content being broadcast\n2. Switch the Cabin Output Channel to the other audio source and stay there for 60 seconds\n3. Switch back to the Satellite Audio source\n4. Rewind by the period spent in the other mode and read the audio played",
-   "expected_result": "1. The Satellite Audio channel is playing and its content is identified\n2. The other source is playing on the Cabin Output Channel\n3. The Satellite Audio source is playing again\n4. The content broadcast while the other mode was playing is retrievable from the buffer, which places the storage as continuous across the mode switch",
+   "expected_result": "1. The Satellite Audio channel is playing and its content is identified\n2. The other source is playing on the Cabin Output Channel\n3. The Satellite Audio source is playing again\n4. The content broadcast while the other mode was playing is retrievable from the buffer",
    "specification_reference": "CFTS024-4872847",
    "priority": "P1",
    "design_method": "狀態轉換 (State Transition Testing)",

@@ -24,7 +24,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds several minutes of content on the tuned channel\n5. Playback is in the Paused state",
    "input_test_data": "NA",
    "test_procedure": "1. Read the playback state\n2. Request Rewind and read the position within the buffer\n3. Request Fast Forward and read the position within the buffer\n4. Attempt to fast forward past the newest content held in the buffer",
-   "expected_result": "1. The HU is in the Paused state\n2. The playback position moves back within the buffer and the rewound content is available\n3. The playback position moves forward within the buffer\n4. The position stops at the newest content the buffer holds, which places both functions inside the buffer limits",
+   "expected_result": "1. The HU is in the Paused state\n2. The playback position moves back within the buffer and the rewound content is available\n3. The playback position moves forward within the buffer\n4. The position stops at the newest content the buffer holds",
    "specification_reference": "CFTS024-4872854",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",

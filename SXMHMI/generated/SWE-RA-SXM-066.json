@@ -23,11 +23,11 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Playback on the tuned channel is in the Paused state\n5. A feature able to tune the HU to another channel is available and armed",
    "input_test_data": "Trigger: a feature-initiated tune to another Satellite Audio channel, not a manual channel change",
    "test_procedure": "1. Read the playback state and the audio output before the trigger\n2. Let the feature trigger a tune to the other channel\n3. Read the audio output immediately after the tuning completes\n4. Read the playback state",
-   "expected_result": "1. The HU is in the Paused state and no audio is played\n2. The HU is tuned to the channel the feature selected\n3. Audio is played immediately, without a user action to resume it\n4. The HU is in the Play state, which leaves no Paused state carried over from the previous channel",
+   "expected_result": "1. The HU is in the Paused state and no audio is played\n2. The HU is tuned to the channel the feature selected\n3. Audio is played immediately, without a user action to resume it\n4. The HU is in the Play state",
    "specification_reference": "CFTS024-4872846",
    "priority": "P1",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "remarks": ""
+   "remarks": "Representative feature-initiated tune trigger: tuning initiated by accepting a Game Alert (CFTS024 §1.5.17) or a Traffic & Weather channel jump (§1.5.16); any spec-defined automatic tune may be used"
   }
  ]
 }

@@ -23,7 +23,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds several minutes of content ahead of the playback position\n5. Playback is positioned inside the buffer",
    "input_test_data": "NA",
    "test_procedure": "1. Read the audio output before the request\n2. Request Fast Forward and keep it active\n3. Read the audio output while the request is active\n4. Attempt a channel change while the request is still active and read the tuned channel",
-   "expected_result": "1. The buffered content is played on the Cabin Output Channel\n2. The fast forward request is accepted and the playback position advances\n3. No audio is played while the request is active\n4. The tuned channel is unchanged, which leaves the other Satellite Audio functions suspended for the duration of the request",
+   "expected_result": "1. The buffered content is played on the Cabin Output Channel\n2. The fast forward request is accepted and the playback position advances\n3. No audio is played while the request is active\n4. The tuned channel is unchanged",
    "specification_reference": "CFTS024-4872876",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",

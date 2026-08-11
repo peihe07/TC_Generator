@@ -20,7 +20,7 @@
    "test_group": "SXM",
    "test_set": "Instant Replay",
    "test_item": "Upon reaching the capacity of the buffer, the HU shall then Unpause and resume Play from the Paused point",
-   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer is empty at the start of the test\n5. Playback is placed in the Paused state and left there",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The channel was tuned just before the test, so the buffer holds only seconds of content\n5. Playback is placed in the Paused state and left there",
    "input_test_data": "Reference point A: the content at the moment Pause is requested",
    "test_procedure": "1. Note the content being broadcast as reference point A and request Pause\n2. Leave the HU paused until the buffer reaches its capacity\n3. Read the playback state at that moment\n4. Read the content played",
    "expected_result": "1. The HU is in the Paused state at reference point A\n2. The buffer reaches its capacity\n3. The HU leaves the Paused state and plays without a user request\n4. Playback starts from reference point A, not from the real-time broadcast",

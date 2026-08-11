@@ -23,7 +23,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU has been tuned to channel A long enough to accumulate identifiable buffered content",
    "input_test_data": "Channel A: the channel tuned at the start of the test\nChannel B: a second receivable Satellite Audio channel",
    "test_procedure": "1. Rewind on channel A and note the buffered content\n2. Return to real-time and tune the HU to channel B\n3. Attempt to rewind immediately after tuning to channel B\n4. Stay on channel B for a period, then rewind again and read the content played",
-   "expected_result": "1. Buffered content from channel A is played back and identified\n2. The HU is tuned to channel B\n3. No content from channel A is retrievable\n4. The content played back is channel B material broadcast after the tuning, which places the buffer refill on the newly tuned channel",
+   "expected_result": "1. Buffered content from channel A is played back and identified\n2. The HU is tuned to channel B\n3. No content from channel A is retrievable\n4. The content played back is channel B material broadcast after the tuning",
    "specification_reference": "CFTS024-4872845",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",

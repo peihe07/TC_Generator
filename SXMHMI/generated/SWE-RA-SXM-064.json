@@ -24,7 +24,7 @@
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a channel other than the one under test",
    "input_test_data": "Idle period after tuning: 60 seconds with no user operation",
    "test_procedure": "1. Tune the HU to the channel under test and start a stopwatch\n2. Leave the HU untouched for 60 seconds, operating no control\n3. Rewind the playback\n4. Read the audio played from the buffer",
-   "expected_result": "1. The HU is tuned to the channel under test\n2. No control is operated during the 60 second period\n3. The playback moves back into the buffer\n4. The audio broadcast during the idle period is played back, which places the start of buffering at the moment of tuning rather than at a user action",
+   "expected_result": "1. The HU is tuned to the channel under test\n2. No control is operated during the 60 second period\n3. The playback moves back into the buffer\n4. The audio broadcast during the idle period is played back",
    "specification_reference": "CFTS024-4872844",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
