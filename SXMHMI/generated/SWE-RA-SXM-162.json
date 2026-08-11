@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-162",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：收音機預載已知隊伍代號（短式隊名，如 DET、NYJ、STL），且對日後新增的隊伍／運動具備監看並儲存新代號的方法。為什麼這樣切：條款兩句的可觀察度不同——預載清單可直接讀取並以條款自身舉的三個代號比對；「日後新增」無法在測試中造出真實的新聯盟，故其判準退到可觀察的形式：出現不在預載清單中的隊伍代號時，該代號仍可被儲存並可用於最愛，而非被丟棄。ER 以此表述，不宣稱監看機制本身（§8.4.1）。",
+ "keywords": [
+  "preloaded team IDs",
+  "short form names",
+  "new IDs"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-162",
+   "tc_title": "Known team IDs are preloaded and an unknown ID can still be stored",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "The HU shall pre load a list of known entities (IDs) in terms of short form sports team names, and for any future additional teams or sports added to the Sirius broadcast the HU shall monitor and provide a method to store new IDs",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The HU is in its delivered software state with no team added by the user\n5. A broadcast carrying a team ID that is not in the preloaded list is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the GameZone team list and search for the short form names DET, NYJ and STL\n2. Read the short form name shown for each of them\n3. Locate the team whose ID is not in the preloaded list and add it to the GameZone favorites\n4. Read the GameZone favorites list",
+   "expected_result": "1. All three are present in the preloaded list\n2. Each is shown in short form sports team name\n3. The team is accepted\n4. The GameZone favorites list holds that team, so an ID outside the preloaded list has been stored rather than discarded",
+   "specification_reference": "CFTS024-4872974",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

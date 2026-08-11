@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-163",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：GameZone Favorites 清單可設定至多十支隊伍。為什麼這樣切：條款給的是容量上限，故取邊界內側觀察——第十支必須被接受且十支同時在清單中；上限外側的拒絕行為屬 164 的條款（§8.2.1），本 leaf 不斷言第十一支被拒，以免兩列的失敗條件重疊。",
+ "keywords": [
+  "maximum ten teams",
+  "GameZone favorites",
+  "capacity"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-163",
+   "tc_title": "Ten teams can be held in the GameZone favorites list",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "The HU shall have the capability to set up to a maximum of ten teams to the GameZone Favorites list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. No team is set as a GameZone favorite\n5. At least ten different teams are available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Add nine different teams to the GameZone favorites and read the list\n2. Add a tenth different team\n3. Read the GameZone favorites list",
+   "expected_result": "1. The list holds nine teams\n2. The tenth team is accepted\n3. The list holds ten teams and all ten are the teams added",
+   "specification_reference": "CFTS024-4872975",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

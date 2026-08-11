@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-166",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：cabin 輸出來源為非 SDARS 模式時，自 game alert 彈窗選取 Switch to Game，收音機切至 SDARS 模式並調至該頻道。為什麼這樣切：條款有兩個並存結果——來源模式的切換與頻道的調諧，ER 各自對應；非 SDARS 起點是條款的前提，故前置條件明列，且末步同時讀來源與頻道，只切模式而未調台（或反之）的實作應失敗（§8.4.1）。",
+ "keywords": [
+  "non SDARS",
+  "Switch to Game",
+  "SDARS mode",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-166",
+   "tc_title": "Switch to Game from a non SDARS source changes mode and tunes",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "If the cabin output channel source is in non SDARS mode and the user selects Switch to Game from the game alert popup window, the HU shall switch to SDARS mode and tune to the channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The Cabin Output Channel is using a source other than the HU Satellite Audio source\n3. One team is set as a GameZone favorite and its game is being broadcast on a known channel\n4. Game alerts are enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the source in use on the Cabin Output Channel\n2. Wait for the game alert popup and select Switch to Game\n3. Read the source in use on the Cabin Output Channel\n4. Read the tuned channel",
+   "expected_result": "1. The source in use is not the HU Satellite Audio source\n2. The selection is accepted\n3. The Cabin Output Channel is using the HU Satellite Audio source\n4. The tuned channel is the channel broadcasting the favorite team's game",
+   "specification_reference": "CFTS024-4872978",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

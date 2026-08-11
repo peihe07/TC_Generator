@@ -803,3 +803,32 @@ answer is one ruling covering every gate clause, not a decision per clause. If
 it is in scope, these clauses need leaves — 037 provides none. If it is not,
 they should be recorded as out-of-scope rather than as coverage holes, the same
 disposition question the bus-signal clauses raised in B8.
+
+
+## [A-SX14 addendum] `Description` typing proves the SFR-typed pointer notes are a defect — MEASURED (2026-08-11)
+
+A-SX14 and the B11 decision record both flagged clauses whose text is a pointer
+("please refer to …") while their ReqIF artifact type reads `Subsystem
+Functional Requirement`. The reading at the time was that this is probably an
+authoring defect, but it could not be separated from a house convention where
+every clause is typed SFR regardless of content.
+
+B12 settles it. `4872971` is a pointer note of exactly the same shape —
+"Please refer to {SX-9845-0008 - SXI Implementation Guide} for more
+implementation details on Game Alerts" — and its artifact type is
+**`Description`**.
+
+So the document does have a prose type and does use it. The SFR typing on
+`4872965`, `4872968` and the A-SX14 clauses is therefore inconsistent with the
+document's own practice, not a blanket convention.
+
+Consequence for the delivery: none of those clauses gains or loses a test —
+they were already recorded as not testable as written. What changes is the RD-1
+framing: the question is no longer "is pointer content meant to be a
+requirement?" but "these specific clauses are mistyped; please retype or
+rewrite them", which is a smaller and more answerable request.
+
+Also recorded from `4872971`: it cites `SX-9845-0008`, a SiriusXM supplier
+document in a third citation scheme (neither the 7-digit STLA form nor the
+`CFTSnnn-n` short form). No leaf clause writes it, so R11 offers no path to it
+in any case.

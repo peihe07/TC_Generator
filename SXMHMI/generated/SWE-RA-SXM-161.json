@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-161",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：GameZone 下未選取任何主隊時，不發起 game alert。為什麼這樣切：條款是抑制規則，其判準必須以「確有比賽正在播出」構造，否則沒有比賽時的靜默也會通過——那不足以證明抑制生效。故前置條件要求多場比賽同時進行且最愛清單為空，ER 斷言全程無提示，並在末步確認清單確實為空以排除設定未生效的偽陰性。",
+ "keywords": [
+  "no favorites",
+  "no game alerts",
+  "suppression"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-161",
+   "tc_title": "No game alert is raised while the GameZone favorites list is empty",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "If no teams were selected as Favorite under GameZone, the HU shall not initiate game alerts",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. No team is set as a GameZone favorite\n5. At least two games are in progress and at least one of them starts during the test\n6. A score change occurs in one of the games during the test\n7. Game alerts are enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the GameZone favorites list\n2. Leave the HU untouched until the further game starts, then read the HU screen\n3. Wait until a score change occurs, then read the HU screen\n4. Read the GameZone favorites list",
+   "expected_result": "1. The GameZone favorites list holds no team\n2. No game alert is presented\n3. No game alert is presented\n4. The GameZone favorites list still holds no team",
+   "specification_reference": "CFTS024-4872973",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-160",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：於 Settings 類別 SiriusSetup 內按下 'Gamezone' 時，顯示隊伍／聯盟清單，可將隊伍加入或自最愛刪除，且可選取多支隊伍。為什麼這樣切：本條款與 §1.5.12.1.2 已出貨的 115／116（Add Teams／Select Teams）、117／118（Edit Teams／Edit Selection）在功能上重疊，但入路不同——那些條款自 Browse 進入，本條款自 Settings → SiriusSetup → 'Gamezone' 進入（A-SX15 型跨節劃界，比照 153／154）。故程序明載 Settings 路徑，使失敗條件相異（§8.2.2）。「多支隊伍」的判準是兩支同時在最愛中，而非「可按兩次」。",
+ "keywords": [
+  "Gamezone button",
+  "SiriusSetup",
+  "add delete team",
+  "multiple teams"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-160",
+   "tc_title": "The Gamezone button in SiriusSetup adds, deletes and holds multiple teams",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "The HU shall display the list of teams/leagues and allow the user to select a team to add or delete to the favorites when the 'Gamezone' button is activated under the 'SiriusSetup' feature in the 'Settings' category, and shall have the capability to select multiple teams",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. No team is currently set as a GameZone favorite\n5. At least three teams are available across at least two leagues",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the 'Settings' category, open the 'SiriusSetup' feature and activate the 'Gamezone' button\n2. Read the displayed list\n3. Add two teams from two different leagues and read the GameZone favorites\n4. Delete one of the two teams and read the GameZone favorites",
+   "expected_result": "1. The team and league list is displayed from the 'Gamezone' button under 'SiriusSetup'\n2. Teams and leagues are listed\n3. Both teams are held in the GameZone favorites at the same time\n4. Only the remaining team is held in the GameZone favorites",
+   "specification_reference": "CFTS024-4872972",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

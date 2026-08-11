@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-165",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：HU Audio Mode 開啟時，在背景持續搜尋符合 gamezone 最愛的隊伍／比賽，並於任一 cabin mode 觸發 Game On Air 旗標／彈窗。為什麼這樣切：「持續」與「背景」不可直接觀察，其後果是——使用者未操作、且不在該比賽頻道上時仍會被提示；「任一 cabin mode」則是條款的觸及面，故在兩種不同的 cabin mode 各觀察一次，只在特定模式下提示的實作應失敗。與 131 的差別：該 leaf 驗 Game Alerts 選項的門檻作用，本 leaf 驗搜尋的持續性與跨 cabin mode 的觸及（§8.2.1）。",
+ "keywords": [
+  "Audio Mode ON",
+  "background search",
+  "Game On Air",
+  "cabin mode"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-165",
+   "tc_title": "Game On Air triggers without user action in more than one cabin mode",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "While HU Audio Mode is ON, the HU shall continuously search in the background for teams/games that match the gamezone favorites list and trigger the Game On Air flag/popup in any cabin mode",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. HU Audio Mode is ON and one team is set as a GameZone favorite\n5. Two games involving that favorite team start at separate times during the test\n6. The HU is tuned to a channel that is not carrying either game\n7. Two different cabin modes are available and can be selected",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the first cabin mode, leave the HU untouched and wait until the first game starts\n2. Read the HU screen\n3. Select the second cabin mode, leave the HU untouched and wait until the second game starts\n4. Read the HU screen and the tuned channel",
+   "expected_result": "1. The first game involving the favorite team has started\n2. The Game On Air flag or popup is triggered\n3. The second game involving the favorite team has started\n4. The Game On Air flag or popup is triggered and the tuned channel is unchanged, no user action having been made",
+   "specification_reference": "CFTS024-4872977",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

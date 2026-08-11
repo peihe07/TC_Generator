@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-159",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：主隊在任一 Sirius 音訊頻道播出時發出通知，且不論目前調至何台皆可切換過去。為什麼這樣切：本條款是能力句，依 A-SX20 常設切法驗其觸及範圍——「regardless of currently tuned channel」正是其觸及面，故程序自兩個結構相異的起點各測一次（一為非體育頻道、一為另一場比賽所在頻道），證明切換能力不繫於出發位置。通知與切換的細部形式分屬 165／167／166 的所述細節（§8.2.1）。",
+ "keywords": [
+  "Game Alert",
+  "notification",
+  "switch to channel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-159",
+   "tc_title": "Game Alert notifies and switches from any tuned channel",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "Game Alert provides notification to the user when a favorite team is currently being broadcast on any Sirius audio channel and allows the ability to switch to that channel regardless of the currently tuned channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One team is set as a GameZone favorite and its game is being broadcast on a known channel\n5. A second game between non-favorite teams is being broadcast on another known channel\n6. Game alerts are enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Tune to a channel that is not carrying either game, wait for the notification and switch to the notified channel\n2. Read the tuned channel\n3. Tune to the channel carrying the second game, wait for the notification and switch to the notified channel\n4. Read the tuned channel",
+   "expected_result": "1. A notification for the favorite team is presented and the switch is accepted\n2. The tuned channel is the channel broadcasting the favorite team\n3. A notification for the favorite team is presented and the switch is accepted\n4. The tuned channel is the channel broadcasting the favorite team",
+   "specification_reference": "CFTS024-4872970",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

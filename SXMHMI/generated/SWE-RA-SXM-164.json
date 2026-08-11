@@ -1,0 +1,48 @@
+{
+ "parent": "SWE-RA-SXM-164",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：清單已達上限時再新增隊伍，彈出視窗告知清單已滿且須先刪除一筆；以及不得加入重複的隊伍。為什麼切兩顆：條款的兩句是不同的拒絕理由——一為容量、一為重複，觸發條件互斥（滿載 vs 未滿載但重複），無法在同一次觀察內同時成立。第一顆的 ER 除彈窗外並斷言清單仍為十支，排除「彈窗照出但已悄悄加入」的實作；第二顆在未滿載狀態下測，才能證明拒絕原因確為重複而非容量（§8.4.1）。",
+ "keywords": [
+  "list full",
+  "popup",
+  "duplicate teams"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger",
+  "delta": "Which rejection rule fires. The full-list popup requires the list to be at ten, the duplicate rejection requires it not to be — testing duplicates on a full list could not tell the two reasons apart, so each rule gets the state that isolates it."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-164",
+   "tc_title": "Adding an eleventh team is refused with a list-full popup",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "If the Gamezone favorites list has reached the maximum limit and the user attempts to add a team, the HU shall display a popup indicating that the list is full and that the user shall delete an entry to add the new team",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The GameZone favorites list holds ten teams\n5. At least one further team that is not in the list is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Attempt to add the further team\n2. Read the HU screen\n3. Read the GameZone favorites list\n4. Delete one entry, add the further team and read the GameZone favorites list",
+   "expected_result": "1. The attempt is not accepted\n2. A popup is displayed indicating that the list is full and directing the user to delete an entry before adding the new team\n3. The list still holds the same ten teams and the further team is not among them\n4. The list holds ten teams including the further team",
+   "specification_reference": "CFTS024-4872976",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-164",
+   "tc_title": "A team already in the list cannot be added twice",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "The HU shall not allow the user to add duplicate teams",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The GameZone favorites list holds three teams and is not at the maximum limit\n5. The team to be added again is one of those three",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the GameZone favorites list\n2. Attempt to add a team that is already in the list\n3. Read the GameZone favorites list",
+   "expected_result": "1. The list holds three teams\n2. The attempt is not accepted\n3. The list still holds three teams and that team appears once",
+   "specification_reference": "CFTS024-4872976",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

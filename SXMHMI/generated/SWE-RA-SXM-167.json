@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-167",
+ "batch": "B12 — Game Alert",
+ "reasoning": "驗證目標：Game On Air 提示發起時提供確認音。為什麼這樣切：條款只規定「提供確認音」，其種類屬 HMI logic & flow 文件，不作判準（§8.4.2）；故 ER 只斷言在提示發起的同一時點聽到確認音，並以「未發起提示時不響」作對照，排除週期性提示音被誤判為確認音的情形。與 119 的差別：該 leaf 驗 Alerts 類別內彈窗開關的生效，本 leaf 驗提示發起時的聽覺輸出（§8.2.1）。",
+ "keywords": [
+  "confirmation sound",
+  "Game On Air",
+  "alert initiated"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-167",
+   "tc_title": "A confirmation sound accompanies the Game On Air alert",
+   "test_group": "SXM",
+   "test_set": "Game Alert",
+   "test_item": "The HU shall provide a confirmation sound when the Game On Air alert is initiated",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One team is set as a GameZone favorite and its game starts during the test\n5. Game alerts are enabled and the HU volume is set to an audible level\n6. No Game On Air alert is active at the start of the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Listen to the HU audio output and read the HU screen before the game starts\n2. Wait until the game involving the favorite team starts\n3. Read the HU screen and listen to the HU audio output at that moment",
+   "expected_result": "1. No Game On Air alert is presented and no confirmation sound is heard\n2. The game involving the favorite team has started\n3. The Game On Air alert is presented and a confirmation sound is heard as it is initiated",
+   "specification_reference": "CFTS024-4872979",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
