@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-154",
  "batch": "B1 (pilot) — Instant Replay",
- "reasoning": "驗證目標：HU 顯示所有具備交通／天氣資料的城市清單，並允許在清單中選取一個交通／天氣頻道——進入路徑是 SiriusXM Browse 功能下的 Traffic & Weather 分類。關鍵情境條件：由 Browse 的 Traffic & Weather 分類進入（而非 Jump 按鈕）；至少兩個城市有資料，選取結果才可觀察。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果（清單顯示 + 可選取），依 §5.7 不拆分。**[A-SX07]**：本 leaf 的 037 title 複製自 153（`4872961`，經 'SiriusXM Setup' 的 'Jump' 按鈕進入），與其宣告的 id `4872962` 所述功能不同；依 §8.6 與 A-SX07 裁決，內容以條文 `4872962` 為準——進入路徑是 SiriusXM Browse 的 Traffic & Weather 分類，**不是** Jump 按鈕。title 額外提到的「刪除／取消已選頻道」不在 `4872962` 條文內，依 §8.4.1 未生成。**[A-SX03]**：本 leaf 帶 `(add)` 標記且 Release Version 與 Requirement Status 皆空，屬繞過發版流程進入 037 的列；照常生成，標記留供上游撤回時檢索。刻意略過：Jump 按鈕路徑由兄弟 leaf 153 覆蓋（B11）；城市資料的來源與更新頻率不在條文內。",
+ "reasoning": "驗證目標：HU 顯示所有具備交通／天氣資料的城市清單，並允許在清單中選取一個交通／天氣頻道——進入路徑是 SiriusXM Browse 功能下的 Traffic & Weather 分類。關鍵情境條件：由 Browse 的 Traffic & Weather 分類進入（而非 Jump 按鈕）；至少兩個城市有資料，選取結果才可觀察。為什麼這樣切：一條 TC 覆蓋單一觸發的必然結果（清單顯示 + 可選取），依 §5.7 不拆分。**[A-SX07]**：本 leaf 的 037 title 複製自 153（`4872961`，經 'SiriusXM Setup' 的 'Jump' 按鈕進入），與其宣告的 id `4872962` 所述功能不同；依 §8.6 與 A-SX07 裁決，內容以條文 `4872962` 為準——進入路徑是 SiriusXM Browse 的 Traffic & Weather 分類，**不是** Jump 按鈕。title 額外提到的「刪除／取消已選頻道」不在 `4872962` 條文內，依 §8.4.1 未生成。**[A-SX03]**：本 leaf 帶 `(add)` 標記且 Release Version 與 Requirement Status 皆空，屬繞過發版流程進入 037 的列；照常生成，標記留供上游撤回時檢索。Test Set 依 framework Part IV 為 **Traffic & Weather**——本 leaf 只是「在 B1 生成」，批次歸屬不改 Set 歸屬（D-1）。刻意略過：Jump 按鈕路徑由兄弟 leaf 153 覆蓋（B11）；城市資料的來源與更新頻率不在條文內。",
  "keywords": [
   "Traffic & Weather",
   "city list",
@@ -22,7 +22,7 @@
    "req_id": "SWE-RA-SXM-154",
    "tc_title": "Browse Traffic and Weather lists cities and allows selection",
    "test_group": "SXM",
-   "test_set": "Instant Replay",
+   "test_set": "Traffic & Weather",
    "test_item": "The HU shall display the list of all available cities with traffic/weather data and allow selection of a traffic/weather channel within the list when Traffic & Weather Category is initiated under SiriusXM Browse function",
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least two cities have traffic and weather data available",
    "input_test_data": "Entry path under test: the Traffic & Weather Category under the SiriusXM Browse function",

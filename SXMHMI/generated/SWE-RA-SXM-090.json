@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-090",
  "batch": "B1 (pilot) — Instant Replay",
- "reasoning": "驗證目標：快轉的推進速率依三段階梯遞增——前 3 秒為 10 秒增量（每 0.5 秒 5 秒）、其後 7 秒為 20 秒增量（每 0.5 秒 10 秒）、之後為 60 秒增量（每 0.5 秒 30 秒），直到快轉結束或到達緩衝區終點。關鍵情境條件：兩個換檔時點（第 3 秒、第 10 秒）——這是條文給出的明確邊界。為什麼這樣切：驗證對象是這兩個邊界與三段速率，設計方法採邊界值分析；三段是同一觸發（持續快轉）的連續結果，依 §5.7 併為一條 TC 的多條 ER。只驗總推進量而不驗分段，無法區分本條與「固定速率快轉」的實作（§7），因此程序在每個換檔點量測。刻意略過：條文的結束條件（快轉結束或到達緩衝區終點）分別由 088 與 089 覆蓋。",
+ "reasoning": "驗證目標：快轉的推進速率依三段階梯遞增——前 3 秒為 10 秒增量（每 0.5 秒 5 秒）、其後 7 秒為 20 秒增量（每 0.5 秒 10 秒）、之後為 60 秒增量（每 0.5 秒 30 秒），直到快轉結束或到達緩衝區終點。關鍵情境條件：兩個換檔時點（第 3 秒、第 10 秒）——這是條文給出的明確邊界。為什麼這樣切：驗證對象是這兩個邊界與三段速率，設計方法採邊界值分析；三段是同一觸發（持續快轉）的連續結果，依 §5.7 併為一條 TC 的多條 ER。只驗總推進量而不驗分段，無法區分本條與「固定速率快轉」的實作（§7），因此程序在每個換檔點量測。推進量的容差取自條文自身：讀取時刻落在 0.5 秒步進之間，誤差上界即該階的單次增量——3 秒時 30±5、10 秒時 170±10、15 秒時 470±30 秒。容差值全部由條文的增量導出，非估計值（§8.4.1）；ER 因此可機械判定，不用「約」這類不可判定的措辭。速率階梯的三段（5/10/30 秒每 0.5 秒）已完整寫在 Test Item 內，依 §4.5 欄位歸屬不在 Input Test Data 重複，該欄為 NA。刻意略過：條文的結束條件（快轉結束或到達緩衝區終點）分別由 088 與 089 覆蓋。",
  "keywords": [
   "Fast Forward",
   "10-second increments",
@@ -23,9 +23,9 @@
    "test_set": "Instant Replay",
    "test_item": "The HU shall allow Fast Fowarding in 10-second increments (5-second every 0.5 second) in audio content for the first 3 seconds, in 20-second increments (10-second every 0.5 second) for 7 seconds, and in 60-second increments (30-second every 0.5 second) thereafter until the Fast Forward function is ended or the end of the buffer has been reached",
    "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The buffer holds enough content that fast forwarding for 15 seconds does not reach real time\n5. Playback is positioned at a known point inside the buffer",
-   "input_test_data": "Rate phase 1: first 3 seconds of the request — 5 seconds of content every 0.5 second\nRate phase 2: the following 7 seconds — 10 seconds of content every 0.5 second\nRate phase 3: after 10 seconds — 30 seconds of content every 0.5 second",
+   "input_test_data": "NA",
    "test_procedure": "1. Note the playback position and start a stopwatch as Fast Forward is requested\n2. Read the playback position 3 seconds after the request starts\n3. Read the playback position 10 seconds after the request starts\n4. Read the playback position 15 seconds after the request starts, then release the request",
-   "expected_result": "1. The fast forward request is accepted from the known position\n2. The playback position has advanced by about 30 seconds of content, the phase 1 rate over 3 seconds\n3. The playback position has advanced by about 170 seconds of content in total, which adds the phase 2 rate over the following 7 seconds\n4. The playback position has advanced by about 470 seconds of content in total, which adds the phase 3 rate over the last 5 seconds",
+   "expected_result": "1. The fast forward request is accepted from the known position\n2. The playback position has advanced by 30 seconds of content, within one phase-1 increment (±5 seconds)\n3. The playback position has advanced by 170 seconds of content in total, within one phase-2 increment (±10 seconds)\n4. The playback position has advanced by 470 seconds of content in total, within one phase-3 increment (±30 seconds)",
    "specification_reference": "CFTS024-4872874",
    "priority": "P1",
    "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",

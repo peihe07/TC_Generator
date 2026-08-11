@@ -81,8 +81,27 @@ def cited_tokens(citations: dict, req_id: str) -> set[str]:
             if req_id in e.get("req_ids", [])}
 
 
+def leaf_test_sets(cfg) -> dict[str, str]:
+    """req_id -> framework Part IV Test Set, from feature.yaml `test_sets`."""
+    out = {}
+    for name, spec in (cfg.get("test_sets") or {}).items():
+        for part in str(spec).split(","):
+            part = part.strip()
+            if not part:
+                continue
+            if "-" in part:
+                a, b = (int(x) for x in part.split("-", 1))
+                rng = range(a, b + 1)
+            else:
+                rng = [int(part)]
+            for n in rng:
+                out[f"SWE-RA-SXM-{n:03d}"] = name
+    return out
+
+
 def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
-            stla: dict, citations: dict | None = None) -> list[dict]:
+            stla: dict, citations: dict | None = None,
+            set_index: dict | None = None) -> list[dict]:
     f = []
 
     def bad(gate, msg):
@@ -122,7 +141,17 @@ def lint_tc(tag: str, tc: dict, doc: dict, cfg: dict, methods: list[str],
         bad("test-group",
             f"{tc.get('test_group')!r} != {cfg['test_group']!r} (R7-Q1)")
     if not str(tc.get("test_set") or "").strip():
-        bad("test-set", "empty; AMFM fills Test Set (R7-Q2)")
+        bad("test-set", "empty; SXM fills Test Set on every row")
+    elif set_index:
+        # Column H belongs to the LEAF (framework Part IV), not to the batch
+        # that generated it. This gate exists because the first pilot shipped
+        # leaf 154 as `Instant Replay` — right for the batch, wrong for the
+        # leaf, and invisible to every other check.
+        want = set_index.get(tc.get("req_id"))
+        if want and tc["test_set"] != want:
+            bad("test-set",
+                f"{tc['test_set']!r} != framework Part IV Set {want!r} for "
+                f"{tc.get('req_id')} — Test Set follows the leaf, not the batch")
 
     # ---- spec_reference resolves through the STLA map, every citation
     refs = [r.strip() for r in str(tc.get("specification_reference") or "").split(";")
@@ -204,6 +233,7 @@ def run(args) -> int:
     citations = (json.loads(cite_path.read_text(encoding="utf-8"))
                  if cite_path.exists() else {})
 
+    set_index = leaf_test_sets(cfg)
     files = sorted((root / args.generated).glob("*.json"))
     if not files:
         raise SystemExit(f"no generated JSON under {root / args.generated}")
@@ -236,7 +266,7 @@ def run(args) -> int:
                                  "message": f"tc_title duplicates {titles[title]}"})
             titles[title] = tag
             findings.extend(lint_tc(tag, tc, doc, cfg, methods, stla,
-                                    citations))
+                                    citations, set_index))
         for missing in sorted(absorbed_ids(doc) - cited_here):
             findings.append({
                 "tc": parent, "gate": "absorption-cite",

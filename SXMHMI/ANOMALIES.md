@@ -335,3 +335,27 @@ Found by the ported `verify_ids` check on the first map build, not by eye.
 
 None registered. Inline format in generated JSON reasoning/assumptions:
 `[ASSUMPTION A-SXnn]` or `[A-SXnn]`.
+
+
+## [A-SX09] Upstream spelling errors are quoted verbatim in Test Item — REGISTERED, RD-1 FYI (2026-08-11)
+
+Pilot review asked whether `Fast Fowarding` in leaf 090's Test Item was a
+transcription slip. It is not: the ReqIF export of clause `4872874` carries
+that spelling, so the Test Item is a faithful quotation and stays as it is.
+
+Checking the corpus rather than the one clause turns a typo into a class:
+
+| spelling | clauses affected |
+|---|---|
+| `recieve` (for *receive*) | **36** |
+| `continously` (for *continuously*) | **13** |
+| `Fowarding` | 1 (`4872874`) |
+| `taffic` | 1 (`4872966`, leaf 157) |
+
+AMFM already quotes `recieve` and `continously` verbatim in its delivered test
+cases for the same reason — Test Item quotes requirement text (profile §3.1).
+
+Disposition: **quote verbatim, never silently correct.** A corrected quotation
+stops matching the source and breaks the reviewer's ability to diff a Test Item
+against its clause. Reported to upstream as one RD-1 FYI covering the class,
+not four separate items.

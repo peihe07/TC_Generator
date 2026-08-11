@@ -56,6 +56,28 @@ spec_docs:
 
 # Spec worksheets a clause delegates its detail to; cited per batch as
 # [[table:NAME]] in the batch table (same mechanism as AMFM).
+# framework Part IV Layer 2 — the SINGLE source of Test Set membership.
+# Column H is derived from the LEAF, never from the batch: batches are a
+# generation unit and several of them cross Set boundaries (B1 carries 154,
+# which is Traffic & Weather; B5 spans Source Availability + Presets; B13
+# spans Parental Skip + Error Displays). Deriving from the batch is right by
+# accident for single-Set batches and wrong for every other one.
+test_sets:
+  "Source Availability": "001"
+  "Seek": "006-021"
+  "Tune": "002, 003, 022-031"
+  "Presets": "004, 032-038"
+  "Favorites": "005, 039-054"
+  "Activation": "055-062"
+  "Instant Replay": "063-092"
+  "Browse": "093-131"
+  "List Navigation": "132-150"
+  "Traffic & Weather": "151-158"
+  "Game Alert": "159-167"
+  "Parental Skip": "168-175"
+  "Error Displays": "176-182"
+  "Performance": "183-202"
+
 # Workbook sync (framework Part IV): revision C has NO `Test Case Framework`
 # sheet — verified 2026-08-10, 9 sheets — so the 14 Set names live in the
 # per-row G/H columns only. Nothing to populate.

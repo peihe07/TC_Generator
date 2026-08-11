@@ -278,6 +278,25 @@ ADD_LEAVES = {"080", "083", "110", "148", "149", "154", "155", "156", "157",
               "158", "182"}
 
 
+def test_set_index(cfg) -> dict[str, str]:
+    """req_id -> framework Part IV Test Set, expanded from feature.yaml.
+
+    Column H belongs to the leaf, not to the batch that happens to generate
+    it. B1 carries leaf 154, whose Set is Traffic & Weather; B5 and B13 each
+    span two Sets outright. A batch-derived value is right only for batches
+    that happen to hold one Set.
+    """
+    out = {}
+    for name, spec in (cfg.get("test_sets") or {}).items():
+        for rid in parse_leaf_selector(spec):
+            if rid in out and out[rid] != name:
+                raise ContextError(
+                    f"{rid} is claimed by two Test Sets: {out[rid]!r} and "
+                    f"{name!r} — framework Part IV must partition the leaves")
+            out[rid] = name
+    return out
+
+
 def leaf_markers(req_id: str, entry: dict) -> list[dict]:
     """The per-leaf instructions no clause text can convey (profile §5).
 
@@ -328,7 +347,8 @@ def leaf_markers(req_id: str, entry: dict) -> list[dict]:
 
 def build(cfg, batch: dict, stla_map: dict, sections: dict,
           exemplars: dict, spec_docs: dict, spec_tables: dict | None = None,
-          citations: dict | None = None, unalloc_index: dict | None = None) -> dict:
+          citations: dict | None = None, unalloc_index: dict | None = None,
+          set_index: dict | None = None) -> dict:
     primary = spec_docs.get("primary")
     leaves, needed, blocked = [], set(), []
     for rid in batch["req_ids"]:
@@ -360,6 +380,11 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
         refs = leaf_citations(citations or {}, rid)
         if refs:
             entry["cross_references"] = refs
+        entry["test_set"] = (set_index or {}).get(rid)
+        if set_index and not entry["test_set"]:
+            raise ContextError(
+                f"{rid} belongs to no Test Set in feature.yaml test_sets — "
+                "framework Part IV must cover every leaf")
         marks = leaf_markers(rid, e)
         if marks:
             entry["markers"] = marks
@@ -446,12 +471,15 @@ def build(cfg, batch: dict, stla_map: dict, sections: dict,
                            "note": "framework Part IV Layer 1 — every generated "
                                    "row carries this; the workbook is BLANK, so "
                                    "there is no local precedent to match"},
-            "test_set": {"value": batch["test_set"],
+            "test_set": {"value": "per leaf — see each leaf's `test_set`",
                          "note": "framework Part IV Layer 2 — the capability "
                                  "name, NOT the batch label. Batches are a "
                                  "generation unit; B1 and B2 are both Instant "
-                                 "Replay. Layer 3 (CFTS024 section numbers) is "
-                                 "framework-internal and never written."},
+                                 "Replay. **Each leaf carries its own Set** — "
+                                 "this batch is not uniform: leaf 154 is "
+                                 "Traffic & Weather. Layer 3 (CFTS024 section "
+                                 "numbers) is framework-internal, never "
+                                 "written."},
             "author": {"value": cfg["write_back"]["author_value"],
                        "note": "every row is generated here — BLANK workbook, "
                                "no other author to preserve"},
@@ -516,6 +544,7 @@ def run(args) -> int:
     ua_path = root / "data" / "unallocated_clauses.json"
     unalloc = (json.loads(ua_path.read_text(encoding="utf-8"))
                if ua_path.exists() else {})
+    set_index = test_set_index(cfg)
     cite_path = root / "data" / "cross_doc_citations.json"
     citations = (json.loads(cite_path.read_text(encoding="utf-8"))
                  if cite_path.exists() else {})
@@ -531,7 +560,7 @@ def run(args) -> int:
             raise ContextError(f"unknown batch {name!r}; --list to see them")
         tables = load_spec_tables(cfg, root, batches[name]["spec_tables"])
         ctx = build(cfg, batches[name], stla_map, sections, exemplars,
-                    spec_docs, tables, citations, unalloc)
+                    spec_docs, tables, citations, unalloc, set_index)
         slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
         path = out_dir / f"{slug}.json"
         path.write_text(json.dumps(ctx, ensure_ascii=False, indent=1),
