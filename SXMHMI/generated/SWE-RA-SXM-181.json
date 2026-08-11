@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-181",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：偵測到衛星音訊天線開路或短路且 $HUModeStatus$ = [SDAR1_SEL] 時，顯示 No Signal See Dealer for Service 並靜音 cabin 音訊；該訊息於衛星音訊與 Travel Link 兩模式皆顯示，並持續至該狀況解除。為什麼這樣切：條款另明定成立條件為「天線故障 AND 輸出端無資料／音訊」兩者同時，故程序先只造成其一以驗證單一條件不足，再兩者兼具；ER 以此雙段表述，否則任一故障即顯示的實作也會通過。開路與短路各測一次，因條款以 or 並列（§8.4.1）。",
+ "keywords": [
+  "antenna open short",
+  "No Signal See Dealer",
+  "mute",
+  "both modes"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-181",
+   "tc_title": "No Signal See Dealer for Service needs both the antenna fault and no output",
+   "test_group": "SXM",
+   "test_set": "Error Displays",
+   "test_item": "When the HU detects a satellite audio antenna open or short circuit condition while $HUModeStatus$ = [SDAR1_SEL], the HU shall display No Signal See Dealer for Service and mute cabin audio, in satellite audio mode and in Travel Link mode, until the condition is cleared",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. $HUModeStatus$ = [SDAR1_SEL] and satellite audio is playing and audible\n5. An antenna open circuit and an antenna short circuit can each be applied and cleared\n6. Travel Link mode is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Apply the antenna open circuit condition while data and audio are still present at the output, then read the HU screen\n2. Remove the data and audio from the output so that both the antenna fault and the absence of output hold, then read the HU screen and listen to the Cabin Output Channel\n3. Change to Travel Link mode and read the HU screen, then return to satellite audio mode\n4. Clear the antenna condition, restore the output, then apply the antenna short circuit condition with no data or audio present and read the HU screen",
+   "expected_result": "1. No Signal See Dealer for Service is not displayed, the antenna fault alone not satisfying the condition\n2. No Signal See Dealer for Service is displayed and the cabin audio is muted\n3. No Signal See Dealer for Service is displayed in Travel Link mode and is still displayed on return to satellite audio mode\n4. No Signal See Dealer for Service is displayed for the short circuit condition as well",
+   "specification_reference": "CFTS024-4873294",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

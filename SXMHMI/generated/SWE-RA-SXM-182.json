@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-182",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：PSV 更新自空中送達時，於衛星音訊或 Travel Link 模式顯示 Subscription Updating Please Wait . . . 至少 3 秒、至多 5 秒，訊息跨畫面轉換維持，且更新期間無衛星收音音訊。為什麼這樣切：條款給的是時長區間，故取區間兩端各一次觀察——2 秒時仍在（不早退）、6 秒時已消失（不逾時）；只驗「有顯示」無法判定區間。跨畫面轉換與靜音為另兩個並存判準，ER 各自對應。[A-SX03]。",
+ "keywords": [
+  "PSV update",
+  "Subscription Updating",
+  "3 to 5 seconds",
+  "no audio"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-182",
+   "tc_title": "The subscription update message holds for three to five seconds across screens",
+   "test_group": "SXM",
+   "test_set": "Error Displays",
+   "test_item": "If a Program Subscription Vector (PSV) update comes over the air from Sirius XM, then Subscription Updating Please Wait . . . shall be displayed while the HU is in satellite audio or Travel Link mode for a minimum of 3 seconds and a maximum of 5 seconds, shall be maintained upon transitions to SDARS audio or Travel Link screens, and no satellite radio audio shall be heard during the subscription update",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Satellite audio is playing and audible on the Cabin Output Channel\n5. Travel Link mode is available\n6. A PSV update can be sent over the air, for example by changing the number of channels received",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send a PSV update over the air and read the HU screen\n2. Read the HU screen 2 seconds after the message appeared and listen to the Cabin Output Channel\n3. Change to the Travel Link screen and back to the SDARS audio screen, then read the HU screen\n4. Read the HU screen 6 seconds after the message appeared",
+   "expected_result": "1. Subscription Updating Please Wait . . . is displayed\n2. The message is still displayed and no satellite radio audio is heard\n3. The message is displayed on the Travel Link screen and on return to the SDARS audio screen\n4. The message is no longer displayed",
+   "specification_reference": "CFTS024-4873296",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

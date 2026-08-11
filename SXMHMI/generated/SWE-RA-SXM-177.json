@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-177",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：訂閱未生效時按下 SAT 鍵會顯示訊息。為什麼這樣切：本條款的全文只是一句指向 HMI logic & flow 文件的指示，未陳述任何收音機行為，可斷言者僅止於「該情境下確有訊息顯示」——訊息文字依條款自身的指示屬 HMI 文件，不作判準（§8.4.2）。這是本交付第一片內容為指向註記的**被配置** leaf（與 B11／B12 那些未配置的指向註記不同，本片必須出 TC），已登錄 A-SX24。ER 以「有訊息且非無反應」表述，並以訂閱生效時的對照排除常駐訊息。",
+ "keywords": [
+  "SAT button",
+  "inactive subscription",
+  "message"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-177",
+   "tc_title": "Pressing SAT with an inactive subscription displays a message",
+   "test_group": "SXM",
+   "test_set": "Error Displays",
+   "test_item": "Please see the HMI logic & flow for the appropriate message to be displayed when the SAT button is pressed while the subscription is inactive",
+   "pre_conditions": "1. A SiriusXM signal source is available\n2. The Sirius audio subscription is inactive\n3. The HU is powered on with a source other than Satellite Audio selected",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the SAT button\n2. Read the HU screen\n3. Activate the subscription, return to the other source and press the SAT button again\n4. Read the HU screen",
+   "expected_result": "1. The press is registered\n2. A message is displayed and the HU does not enter satellite audio playback\n3. The subscription is active and the press is registered\n4. The message displayed in step 2 is no longer displayed",
+   "specification_reference": "CFTS024-4873290",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

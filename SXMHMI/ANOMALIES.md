@@ -832,3 +832,80 @@ Also recorded from `4872971`: it cites `SX-9845-0008`, a SiriusXM supplier
 document in a third citation scheme (neither the 7-digit STLA form nor the
 `CFTSnnn-n` short form). No leaf clause writes it, so R11 offers no path to it
 in any case.
+
+
+## [A-SX23] The skipped-channel table is keyed two ways, and §1.5.19 duplicates twice — A-SX20 ESCAPE HATCH (i) FIRED (2026-08-11)
+
+Three findings in §1.5.19. The first is a content contradiction, so per the
+A-SX20 standing carve's escape hatch (i) it does **not** fold into that class
+and returns to chat.
+
+**1. What the skipped-channel table stores — contradiction.**
+
+- `4873277` (leaf 168): "a table of **skipped channel numbers**"
+- `4873284` (leaf 175): "the HU shall store the **Service ID** of the selected
+  channel to the skipped channel list"
+
+These are different keys with a different observable consequence. If the
+line-up is renumbered — which SiriusXM does — a number-keyed skip stays on the
+slot and a service-keyed skip follows the content. One of the two behaviours is
+wrong, and a parental control that silently unskips explicit content on a
+renumber is the failure mode that matters.
+
+Handling this batch: §8.6 authority chain — each leaf is tested against its own
+allocated clause. Leaf 175 asserts the discriminating consequence (the skip
+follows the service across a renumber). Leaf 168 asserts the table's
+*persistence* and deliberately does **not** assert which key it holds, so the
+two rows do not contradict each other in the delivered workbook.
+
+**For chat / RD-1:** which key is normative? If it is Service ID, `4873277`'s
+wording should be corrected; if it is the channel number, leaf 175's test is
+wrong as written and its ER needs replacing, not amending.
+
+**2. `4873279` / `4873280` (leaves 170 / 171) — the same clause with different
+function names.** Both open with the identical sentence about Channel Skip
+under 'SiriusXM Setup' and individual selection. `4873279` then adds
+`Clear All`; `4873280` adds `Select All` **and** `Deselect All`. `Clear All`
+and `Deselect All` describe the same effect under two names — the A-SX17 shape,
+inside one section. Carve by the function name each clause writes: 170 owns
+`Clear All`, 171 owns `Select All` and `Deselect All`.
+
+**3. `4873278` (leaf 169) restates `4873277` (leaf 168).** Both say the HU
+maintains a table of skipped channels used to prevent cabin selection. Carved
+under the A-SX20 standing rule: 168 takes the table's maintenance (persistence
+across a power cycle), 169 takes the scope of the block (only the skipped SDAR
+channel is refused, other channels of the same source are not).
+
+**Cross-batch consequence, already applied.** Leaf 106 (B8) asserts that the
+All Channels browse list holds *every* available station. Leaf 173 says Browse
+All Channels shall not display skipped channels. 106's assertion is therefore
+true only when nothing is skipped, which its pre-conditions did not say. A
+pre-condition was backfilled to 106 and its reasoning notes the dependency.
+This is the first cross-batch interaction found in this delivery and it argues
+for a sweep of completeness-style ERs before delivery.
+
+## [A-SX24] Leaf 177 is an allocated leaf whose clause is a pointer note — REGISTERED (2026-08-11)
+
+`4873290`, allocated to leaf 177, reads in full:
+
+> Please see the HMI logic & flow for the appropriate message to be displayed
+> when SAT button is pressed while subscription is inactive.
+
+It states no HU behaviour. B11 and B12 met the same content unallocated, where
+the disposition was simply "not testable as written". Here it has a leaf, so
+102-of-102-style coverage requires a row: the delivery cannot silently drop an
+allocated leaf.
+
+Written to the maximum the clause supports: pressing SAT with the subscription
+inactive displays *a* message and does not enter playback, with the
+subscription-active case as the control so a permanently displayed message
+cannot pass. The message text is not asserted — the clause itself delegates it.
+
+Note the artifact type is `Subsystem Functional Requirement`, which is the
+mistyping the A-SX14 addendum identified. This is the first case where that
+mistyping has a delivery consequence rather than only a bookkeeping one: it
+produced a leaf, and therefore a workbook row that verifies almost nothing.
+
+**For RD-1:** should `4873290` be withdrawn as a note, with leaf 177's coverage
+carried by leaf 176 (`4873289`, the no-subscription message and its contents)?
+The two are adjacent and 176 is the substantive one.

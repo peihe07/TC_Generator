@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-173",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：啟動 Browse All Channels 時，不顯示任何被跳過的頻道。為什麼這樣切：判準是成員資格的排除，故前置條件同時要求存在被跳過與未被跳過的可收頻道，ER 以雙向斷言表述。本 leaf 的 037 title 為同一句被重複貼上的匯出殘缺（agr 0.807），非語意分歧；依 §8.6 以條款文字為準，Test Item 取條款原文。注意本 leaf 與已出貨的 106（All Channels 列出全部電台）互為條件：106 的清單完整性只在無跳過頻道時成立，該前置條件已回補（A-SX23）。",
+ "keywords": [
+  "Browse All Channels",
+  "skipped channels",
+  "not displayed"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-173",
+   "tc_title": "Browse All Channels omits the skipped channels",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "When the Browse All Channels function is initiated, the HU shall not display any skipped channels",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two receivable channels are on the skipped channel list\n5. At least two further receivable channels are not on the skipped channel list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Initiate the Browse All Channels function\n2. Scroll through the whole list and record every channel shown\n3. Compare the recorded channels against the skipped channel list\n4. Compare the recorded channels against the channels that are not skipped",
+   "expected_result": "1. The All Channels browse list is displayed\n2. The list scrolls to its end\n3. Neither of the two skipped channels appears in the list\n4. Both channels that are not skipped appear in the list",
+   "specification_reference": "CFTS024-4873282",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

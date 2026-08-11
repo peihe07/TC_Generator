@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-171",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：同一入路下，可逐一選取頻道加入跳過清單，並可以 'Select All' 一次加入全部可用頻道、以 'Deselect All' 一次移除全部。為什麼這樣切：本條款與 170 重疊，切分依各自書寫的功能名——本 leaf 擁有 'Select All' 與 'Deselect All'（A-SX23）。'Select All' 的判準是清單涵蓋全部可用頻道，故以獨立取得的可用頻道集合比對，而非只讀畫面前幾列。",
+ "keywords": [
+  "Channel Skip",
+  "Select All",
+  "Deselect All"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-171",
+   "tc_title": "Select All and Deselect All fill and empty the skipped channel list",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "When Channel Skip is selected from 'SiriusXM Setup' under the 'Settings' category, the HU shall allow the user to individually select each SDAR channel to be added to the Skipped channel list, shall allow a 'Select All' function to add all available channels, and shall allow a 'Deselect All' function to remove all currently skipped channels",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The skipped channel list is empty\n5. The set of available SDAR channels is known from an independent source",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open Channel Skip from 'SiriusXM Setup' under 'Settings' and select one SDAR channel individually\n2. Use the 'Select All' function and read the skipped channel list\n3. Compare the skipped channel list against the known set of available channels\n4. Use the 'Deselect All' function and read the skipped channel list",
+   "expected_result": "1. The skipped channel list holds the selected channel\n2. The 'Select All' function is offered and accepted\n3. Every available channel of the known set is on the skipped channel list\n4. The skipped channel list is empty",
+   "specification_reference": "CFTS024-4873280",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

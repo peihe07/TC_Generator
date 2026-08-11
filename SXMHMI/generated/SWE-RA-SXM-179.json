@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-179",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：無天線故障回報且衛星音訊不存在時，顯示 Acquiring Signal 這則訊號遺失訊息。為什麼這樣切：本條款的獨有內容是「無天線故障」這個條件——它把同一種「沒有聲音」分成兩則不同訊息：無故障時為 Acquiring Signal，有故障時為 181 的 No Signal See Dealer for Service。故 ER 以兩種條件下顯示不同訊息作對照，只驗其一無法證明條件確實生效（§8.4.1）。與 178 的差別：該 leaf 的觸發是模組回報 audio not present 並含靜音要求（§8.2.1）。",
+ "keywords": [
+  "signal loss",
+  "no antenna fault",
+  "Acquiring Signal"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-179",
+   "tc_title": "Acquiring Signal is shown only when no antenna fault is reported",
+   "test_group": "SXM",
+   "test_set": "Error Displays",
+   "test_item": "The signal loss message Acquiring Signal shall be displayed when there is no antenna fault reported and satellite audio is not present",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Satellite audio can be made not present, with and without an antenna fault reported\n5. No antenna fault is reported at the start of the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Make satellite audio not present with no antenna fault reported\n2. Read the HU screen\n3. Restore satellite audio, then make satellite audio not present with an antenna fault reported\n4. Read the HU screen",
+   "expected_result": "1. Satellite audio is not present and no antenna fault is reported\n2. Acquiring Signal is displayed\n3. Satellite audio is not present and an antenna fault is reported\n4. Acquiring Signal is not displayed",
+   "specification_reference": "CFTS024-4873292",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

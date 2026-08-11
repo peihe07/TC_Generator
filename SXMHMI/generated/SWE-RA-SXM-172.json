@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-172",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：選取 Channel Skip 時顯示全部 SiriusXM 頻道，但已跳過者與本次選取待加入者以灰階顯示。為什麼這樣切：條款有兩個並存判準——清單的完整性（全部頻道都在）與狀態的區別（兩類灰階、其餘不灰階）；ER 各自對應，並要求未被跳過也未被選取者維持一般顯示，否則整份灰階的實作也會通過。灰階的視覺樣式屬 HMI，ER 只斷言其與一般顯示有別（§8.4.2）。",
+ "keywords": [
+  "Channel Skip",
+  "all channels shown",
+  "greyed out"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-172",
+   "tc_title": "Channel Skip shows every channel and greys out the skipped ones",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "All SiriusXM channels shall be shown when Channel Skip is selected from 'Sirius Setup', but current skipped channels and channels selected to be added to the Skipped list shall be greyed out",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One receivable channel is already on the skipped channel list\n5. At least two further receivable channels are not on the skipped channel list\n6. The set of available SiriusXM channels is known from an independent source",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open Channel Skip from 'Sirius Setup' and scroll through the whole list\n2. Compare the listed channels against the known set of available channels\n3. Read how the already skipped channel is shown and how the two channels that are not skipped are shown\n4. Select one of the two channels to be added and read how it is shown",
+   "expected_result": "1. The list scrolls to its end\n2. Every available channel of the known set is shown\n3. The already skipped channel is greyed out and the two channels that are not skipped are not greyed out\n4. The channel just selected to be added is greyed out",
+   "specification_reference": "CFTS024-4873281",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

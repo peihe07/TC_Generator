@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-178",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：$HUModeStatus$ = [SDAR1_SEL] 期間 SDARS 模組回報 audio not present 時，顯示 Acquiring Signal Please Wait ... 並靜音 cabin 音訊。為什麼這樣切：條款有兩個並存結果——訊息與靜音，ER 各自對應；靜音須與「原本有聲」對照才可判定，故程序在故障注入前先確認有音訊輸出。訊息文字與顯示行為的細節依條款自身指示屬 HMI 文件，ER 只斷言該訊息出現（§8.4.2）。與 179 的差別：該條款以「無天線故障」為條件區辨同一訊息的成立情形（§8.2.1）。",
+ "keywords": [
+  "audio not present",
+  "SDAR1_SEL",
+  "Acquiring Signal",
+  "mute"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-178",
+   "tc_title": "Audio not present shows Acquiring Signal and mutes the cabin",
+   "test_group": "SXM",
+   "test_set": "Error Displays",
+   "test_item": "When the SDARS module reports an audio status of audio not present while $HUModeStatus$ = [SDAR1_SEL], the HU shall display Acquiring Signal Please Wait ... and mute cabin audio",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. $HUModeStatus$ = [SDAR1_SEL]\n5. Satellite audio is playing and audible on the Cabin Output Channel\n6. The SDARS module can be made to report an audio status of audio not present",
+   "input_test_data": "NA",
+   "test_procedure": "1. Listen to the Cabin Output Channel and read the HU screen\n2. Make the SDARS module report an audio status of audio not present\n3. Read the HU screen\n4. Listen to the Cabin Output Channel",
+   "expected_result": "1. Satellite audio is audible and no error message is displayed\n2. The SDARS module reports audio not present\n3. Acquiring Signal Please Wait ... is displayed\n4. The cabin audio is muted",
+   "specification_reference": "CFTS024-4873291",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

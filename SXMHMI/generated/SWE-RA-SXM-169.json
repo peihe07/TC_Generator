@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-169",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：收音機維護被跳過頻道的表並以之阻止 Cabin 選到被跳過的 SDAR 頻道。為什麼這樣切：本條款把阻擋對象明指為 SDAR 頻道，故判準取「阻擋只及於被跳過者、不波及同來源其他頻道」——全面封鎖 SDAR 選台的實作應失敗。與 168 的差別：該 leaf 驗表的維護與持久，本 leaf 驗阻擋的作用範圍（§8.2.1；重疊已登錄 A-SX23）。",
+ "keywords": [
+  "skipped SDAR channel",
+  "cabin selection",
+  "scope"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-169",
+   "tc_title": "Only the skipped SDAR channels are blocked from cabin selection",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "The HU shall maintain a table of skipped channels which it shall use to prevent the Cabin from selecting the skipped SDAR Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One receivable SDAR channel is on the skipped channel list\n5. At least two further receivable SDAR channels are not on the skipped channel list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the skipped SDAR channel from the Cabin\n2. Read the tuned channel\n3. Select each of the two channels that are not skipped\n4. Read the tuned channel",
+   "expected_result": "1. The selection is not carried out\n2. The tuned channel is not the skipped channel\n3. Each of the two selections is carried out\n4. The tuned channel is the last of the two channels selected",
+   "specification_reference": "CFTS024-4873278",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

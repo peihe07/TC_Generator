@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-170",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：自 Settings 類別 'SiriusXM Setup' 選取 Channel Skip 後，可逐一選取 SDAR 頻道加入跳過清單，並可以 'Clear All' 移除全部。為什麼這樣切：本條款與 171 重疊，171 另有 'Select All' 與 'Deselect All'；三個功能名稱分屬兩條條款，故依條款各自書寫的功能名切分——本 leaf 擁有 'Clear All'（A-SX17／A-SX20 型，重疊已登錄 A-SX23）。逐一選取的判準是「只有被選的進清單」，故以未選頻道作反例。",
+ "keywords": [
+  "Channel Skip",
+  "individual select",
+  "Clear All"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-170",
+   "tc_title": "Channel Skip adds channels individually and clears them with Clear All",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "When Channel Skip is selected from 'SiriusXM Setup' under the 'Settings' category, the HU shall allow the user to individually select each SDAR channel to be added to the Skipped channel list, and shall allow a 'Clear All' function to remove all currently skipped channels",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The skipped channel list is empty\n5. At least three receivable SDAR channels are available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the 'Settings' category, open 'SiriusXM Setup' and select Channel Skip\n2. Select two SDAR channels individually and read the skipped channel list\n3. Use the 'Clear All' function\n4. Read the skipped channel list",
+   "expected_result": "1. The Channel Skip function is displayed from 'SiriusXM Setup'\n2. The skipped channel list holds the two selected channels and does not hold the third channel\n3. The 'Clear All' function is offered and accepted\n4. The skipped channel list is empty",
+   "specification_reference": "CFTS024-4873279",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

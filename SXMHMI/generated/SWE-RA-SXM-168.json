@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-168",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：收音機維護一份被跳過頻道的表，並以之阻止 cabin 選到這些頻道。為什麼這樣切：「維護一份表」的可觀察後果是持久性——跳過設定在電源循環後仍生效；若只驗當下無法選到，重開機即清空的實作也會通過（§8.4.1）。與 169 的差別：該條款以 SDAR 頻道為對象述同一阻擋，本 leaf 取表本身的維護面。本條款寫「skipped channel numbers」而 175 寫 Service ID，識別鍵不一致已登錄 A-SX23，故本 TC 不斷言表以何鍵儲存。",
+ "keywords": [
+  "skipped channel table",
+  "prevent selection",
+  "persistence"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-168",
+   "tc_title": "The skipped channel table survives a power cycle",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "The HU maintains a table of skipped channel numbers which it uses to prevent the cabin from selecting channels",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two receivable channels are on the skipped channel list and one receivable channel is not",
+   "input_test_data": "NA",
+   "test_procedure": "1. Attempt to select each of the two skipped channels from the cabin\n2. Power the HU off and on, then return to the Satellite Audio source\n3. Attempt to select each of the two skipped channels from the cabin\n4. Select the channel that is not skipped",
+   "expected_result": "1. Neither skipped channel is selected\n2. The HU has restarted and the Satellite Audio source is in use\n3. Neither skipped channel is selected, the table having survived the power cycle\n4. The channel that is not skipped is selected",
+   "specification_reference": "CFTS024-4873277",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

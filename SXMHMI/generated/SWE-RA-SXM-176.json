@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-176",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：在無有效訂閱時使用 Sirius 功能，顯示訊息並含三項資訊——無訂閱之指示、該服務的 SXM radio ID、Sirius 客服電話。為什麼這樣切：條款以 and 並列三項內容，ER 逐項對應；radio ID 須與該機實際的 ID 一致，故以獨立取得的值比對，僅顯示佔位字串的實作應失敗（§8.4.1）。與 177 的差別：該條款講的是按下 SAT 鍵時的訊息形式，交由 HMI 文件定義（§8.2.1）。",
+ "keywords": [
+  "no subscription",
+  "SXM radio ID",
+  "call center"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-176",
+   "tc_title": "The no subscription message carries the radio ID and the call centre number",
+   "test_group": "SXM",
+   "test_set": "Error Displays",
+   "test_item": "If the user attempts to use a Sirius function for which no active subscription exists, the HU shall display a message indicating no subscription is available, the service's SXM radio ID and the phone number for the Sirius call center",
+   "pre_conditions": "1. A SiriusXM signal source is available\n2. The vehicle has no active subscription for the Sirius function to be used\n3. The SXM radio ID of this head unit is known from an independent source",
+   "input_test_data": "NA",
+   "test_procedure": "1. Attempt to use a Sirius function for which no active subscription exists\n2. Read the message displayed\n3. Compare the radio ID shown against the known SXM radio ID\n4. Read the phone number shown",
+   "expected_result": "1. The attempt does not start the function\n2. A message is displayed indicating that no subscription is available\n3. The radio ID shown is the known SXM radio ID of this head unit\n4. A phone number for the Sirius call center is shown",
+   "specification_reference": "CFTS024-4873289",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

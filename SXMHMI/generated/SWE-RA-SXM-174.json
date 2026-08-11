@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-174",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：以 Preset Recall 或直接輸入頻道方式請求調至被跳過的頻道時，不調台並顯示 Skipped Channel 彈窗。為什麼這樣切：條款以 or 並列兩條請求路徑，兩者皆須被擋，故各測一次；ER 除彈窗外並斷言調諧頻道未變，把「彈窗有跳出來」與「確實沒調過去」分開（§8.4.1）。彈窗的版面屬 HMI 畫面文件，不作判準。",
+ "keywords": [
+  "Preset Recall",
+  "direct tune",
+  "Skipped Channel popup"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-174",
+   "tc_title": "Preset recall and direct tune to a skipped channel are refused",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "When Preset Recall or direct tune is initiated where the channel requested is a skipped channel, the HU shall not tune to the skipped channel and instead display the Skipped Channel popup",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One receivable channel is on the skipped channel list and is stored as a preset\n5. The currently tuned channel is not that channel and is recorded",
+   "input_test_data": "NA",
+   "test_procedure": "1. Recall the preset holding the skipped channel\n2. Read the HU screen and the tuned channel\n3. Dismiss the popup and tune directly to the skipped channel by entering its channel number\n4. Read the HU screen and the tuned channel",
+   "expected_result": "1. The recall is not carried out\n2. The Skipped Channel popup is displayed and the tuned channel is the recorded channel\n3. The direct tune is not carried out\n4. The Skipped Channel popup is displayed and the tuned channel is the recorded channel",
+   "specification_reference": "CFTS024-4873283",
+   "priority": "P1",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

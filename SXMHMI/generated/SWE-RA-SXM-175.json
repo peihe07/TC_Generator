@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-175",
+ "batch": "B13 — Parental Skip + Error Displays",
+ "reasoning": "驗證目標：選取某頻道加入跳過時，儲存的是該頻道的 Service ID。為什麼這樣切：Service ID 本身不可由 HMI 讀取，其與「頻道號」的可觀察差異在於頻道重新編號之後跳過設定跟著誰——跟著服務則儲存的是 Service ID，跟著號碼則否；ER 以此構造，而非宣稱記憶體欄位（§8.4.1）。168 的條文寫的是 skipped channel numbers，與本條款的識別鍵不一致，屬內容矛盾已登錄 A-SX23 並回裁；本 leaf 依 §8.6 以自身被配置條款為準。",
+ "keywords": [
+  "Service ID",
+  "skipped channel list",
+  "store"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-175",
+   "tc_title": "Skipping stores the service so it survives a channel renumber",
+   "test_group": "SXM",
+   "test_set": "Parental Skip",
+   "test_item": "When a channel is selected to skip, the HU shall store the Service ID of the selected channel to the skipped channel list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The skipped channel list is empty\n5. A receivable service is available at a known channel number\n6. The broadcast line-up can be changed so that the same service is carried at a different channel number\n7. Another service is available at the number the skipped service will move away from",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the service's channel to skip and attempt to select it from the cabin\n2. Change the line-up so that the same service is carried at a different channel number\n3. Attempt to select that service at its new channel number\n4. Attempt to select the other service now carried at the original channel number",
+   "expected_result": "1. The channel is not selected\n2. The service is carried at the new channel number\n3. The service is not selected, the skip having followed the service rather than the channel number\n4. The other service is selected",
+   "specification_reference": "CFTS024-4873284",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

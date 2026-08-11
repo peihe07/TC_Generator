@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-106",
  "batch": "B8 — Browse",
- "reasoning": "驗證目標：選取 All Channels 瀏覽時，全部衛星電台都出現在清單中，各帶 station number 與 station name。為什麼這樣切：與 104 的觸發與欄位重疊已登錄 A-SX16，依條文切分後本 leaf 擁有清單的完整性——判準是「可收的電台一台不缺」，故程序以獨立取得的可收電台清單逐一比對，而非只讀畫面上的前幾列；104 驗欄位內容則不作此比對（§8.2.2 不得於 TC 端合併）。",
+ "reasoning": "驗證目標：選取 All Channels 瀏覽時，全部衛星電台都出現在清單中，各帶 station number 與 station name。為什麼這樣切：與 104 的觸發與欄位重疊已登錄 A-SX16，依條文切分後本 leaf 擁有清單的完整性——判準是「可收的電台一台不缺」，故程序以獨立取得的可收電台清單逐一比對，而非只讀畫面上的前幾列；104 驗欄位內容則不作此比對（§8.2.2 不得於 TC 端合併）。前置條件補列「無頻道在跳過清單中」：173（§1.5.19）規定 Browse All Channels 不顯示被跳過的頻道，本 leaf 的清單完整性斷言僅在無跳過設定時成立，兩條款互為條件（A-SX23）。",
  "keywords": [
   "all channels",
   "list completeness",
@@ -20,7 +20,7 @@
    "test_group": "SXM",
    "test_set": "Browse",
    "test_item": "When the All Channels browse function is selected, the HU shall display the list of all satellite stations along with the station number and the station name",
-   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The set of Satellite Audio stations available to this subscription is known from an independent source\n5. More stations are available than fit on one screen",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The set of Satellite Audio stations available to this subscription is known from an independent source\n5. More stations are available than fit on one screen\n6. No channel is on the skipped channel list",
    "input_test_data": "NA",
    "test_procedure": "1. Select the All Channels browse function\n2. Scroll through the whole list and record every station shown\n3. Compare the recorded stations against the known set of available stations",
    "expected_result": "1. A list of satellite stations is displayed\n2. Every entry shows a station number and a station name\n3. Every station in the known set appears in the list and no station outside that set appears",
