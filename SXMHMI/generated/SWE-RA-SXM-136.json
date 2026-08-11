@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-136",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：以單次 Down Arrow 軟鍵請求 Scroll Down 時，最上一列移除、其餘各列上移一位、來自下一個清單位置的新項目置於最下列。為什麼這樣切：與 135 為方向相反的一對，條款分列且重排方向不同，各自成片（§8.2.1）；ER 同樣逐項對應三個並存結果。",
+ "keywords": [
+  "Down arrow softkey",
+  "bottom-most",
+  "shift up"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-136",
+   "tc_title": "A single Down arrow press rebuilds the list from the next-lower item",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When a Scroll Down function is requested via a single Down Arrow softkey press, the top-most item shall be removed, the other items shifted up by one position, and the item from the next-lower list position placed in the bottom-most position",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose entries are individually identifiable and which is longer than one screen\n5. The list is positioned so that the bottom of the list is not reached during the test\n6. The item at the next-lower list position below the current bottom-most item is known",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the entries shown and their positions\n2. Press the Down Arrow softkey once\n3. Read the entries shown and their positions",
+   "expected_result": "1. The entries and their positions are recorded\n2. The press is accepted\n3. The item that was top-most is no longer shown, every other item recorded in step 1 has moved up by one position, and the bottom-most position holds the item from the next-lower list position",
+   "specification_reference": "CFTS024-4872938",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

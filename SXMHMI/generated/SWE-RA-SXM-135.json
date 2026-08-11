@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-135",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：以單次 Up arrow 軟鍵請求 Scroll Up 時，最下一列移除、其餘各列下移一位、來自上一個清單位置的新項目置於最上列。為什麼這樣切：條款規定的是三個並存的結果，ER 逐項對應；「來自上一個位置」須以清單中該項目的實際身分驗證，故前置條件要求各列可個別辨識。與 132 的差別：該 leaf 驗位移量為一列，本 leaf 驗該次位移的具體重排方式與觸發鍵（§8.2.1）。",
+ "keywords": [
+  "Up arrow softkey",
+  "top-most",
+  "shift down"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-135",
+   "tc_title": "A single Up arrow press rebuilds the list from the next-higher item",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When a Scroll Up function is requested via a single Up arrow softkey press, the bottom-most item shall be removed, the other items shifted down by one position, and the item from the next-higher list position placed in the top-most position",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose entries are individually identifiable and which is longer than one screen\n5. The list is positioned so that the top of the list is not reached during the test\n6. The item at the next-higher list position above the current top-most item is known",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the entries shown and their positions\n2. Press the Up arrow softkey once\n3. Read the entries shown and their positions",
+   "expected_result": "1. The entries and their positions are recorded\n2. The press is accepted\n3. The item that was bottom-most is no longer shown, every other item recorded in step 1 has moved down by one position, and the top-most position holds the item from the next-higher list position",
+   "specification_reference": "CFTS024-4872937",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

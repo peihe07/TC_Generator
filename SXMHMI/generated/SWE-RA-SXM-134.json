@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-134",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：HU 顯示清單時，允許逐列捲動。為什麼這樣切：本條款述的是能力且不限觸發方式，故 TC 以兩種不同型態的清單各測一次，證明該能力屬於「清單顯示」而非某一畫面的特例；132 則綁定 Scroll Up/Down 這條觸發路徑與一列的位移量（重疊已登錄 A-SX20）。",
+ "keywords": [
+  "line-by-line scrolling",
+  "list display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-134",
+   "tc_title": "Line-by-line scrolling is available on any displayed list",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a List, the HU shall allow line-by-line scrolling of the list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two lists of different kinds are reachable, each longer than one screen, for example the all-channel list and the favorites list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Display the first list and scroll it by one line\n2. Read the entries shown\n3. Display the second list and scroll it by one line\n4. Read the entries shown",
+   "expected_result": "1. Scrolling by one line is offered and accepted\n2. The displayed entries have moved by one row\n3. Scrolling by one line is offered and accepted\n4. The displayed entries have moved by one row",
+   "specification_reference": "CFTS024-4872936",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

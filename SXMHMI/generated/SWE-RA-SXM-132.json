@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-132",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：顯示清單時選用 Scroll Up 或 Scroll Down 功能，顯示每次前進一列。為什麼這樣切：判準是「一列」這個位移量，故程序以可辨識的具名項目記錄位移前後的對應關係，僅斷言「畫面有變」的實作不足以通過（§8.4.1）。與 134 的差別：本 leaf 綁定 Scroll Up/Down 功能這條觸發路徑與其位移量，134 述的是清單顯示時逐列捲動這項能力本身，不限觸發方式（重疊已登錄 A-SX20，§8.2.2 不得於 TC 端合併）。",
+ "keywords": [
+  "scroll up",
+  "scroll down",
+  "one row"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-132",
+   "tc_title": "Scroll Up and Scroll Down advance the display one row",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When a list of items is being displayed and the user selects the Scroll Up or Scroll Down function, the HU will update the display one row at a time",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose entries are individually identifiable and which is longer than one screen\n5. The list is positioned so that neither the top nor the bottom of the list is reached during the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the entries shown and their positions\n2. Select the Scroll Down function once and record the entries shown\n3. Select the Scroll Up function once and record the entries shown",
+   "expected_result": "1. The entries and their positions are recorded\n2. The displayed entries have moved by exactly one row towards the end of the list\n3. The displayed entries have moved back by exactly one row and match the entries recorded in step 1",
+   "specification_reference": "CFTS024-4872934",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": "Analog-chapter twin: CFTS024-4872493 (covered in the AM/FM deliverable)"
+  }
+ ]
+}

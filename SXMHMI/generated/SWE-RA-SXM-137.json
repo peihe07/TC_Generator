@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-137",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：滑桿按鍵亦可捲動清單，其作用為 Press and Move 事件且捲動速率較快。為什麼這樣切：Press and Move 事件本身的定義屬 CFTS020，依 R11 以引用式處理——specification_reference 本 leaf 條款在前、CFTS020-138 在後，ER 只斷言在本條款情境下該事件被辨識並產生捲動，不驗該事件的成立條件。「較快」是相對量，故以同一段時間內與逐列捲動的位移列數相比表述，因確切時序與速率屬 HMI 文件（§8.4.2）。",
+ "keywords": [
+  "slider",
+  "press and move",
+  "faster scroll"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-137",
+   "tc_title": "The slider scrolls the list faster than line-by-line scrolling",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "The HU shall enable the Scroll Up/Down function through the list via the slider button, which shall act as a Press and Move event, to scroll up/down the list at a faster rate",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list longer than several screens is displayed and its entries are individually identifiable\n5. The list is positioned at a known entry away from both ends",
+   "input_test_data": "NA",
+   "test_procedure": "1. Scroll the list line by line for a fixed period and record how many entries the list moves\n2. Return the list to the recorded starting entry\n3. Press the slider and move it in the same direction for the same fixed period, then record how many entries the list moves\n4. Press the slider and move it in the opposite direction, then read the list",
+   "expected_result": "1. The number of entries moved is recorded\n2. The list is back at the starting entry\n3. The slider is recognised as a Press and Move event, as defined by CFTS020-138, and the list moves by more entries than in step 1\n4. The list moves in the opposite direction",
+   "specification_reference": "CFTS024-4872939; CFTS020-138",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

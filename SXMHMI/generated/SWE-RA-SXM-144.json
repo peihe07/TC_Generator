@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-144",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：已在清單頂端時請求 Page Up，回捲至清單底端。為什麼這樣切：與 138 的差別在位移單位——該 leaf 是逐列的邊界，本 leaf 是逐頁的邊界，條款分列（§8.2.1）；前置條件置於頂端邊界上，越界前後各讀一次。",
+ "keywords": [
+  "page up",
+  "top of list",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-144",
+   "tc_title": "Page Up at the top of the list wraps to the bottom",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "If a Page Up is requested and the HU is currently at the top of the list, the HU shall wrap-around to the bottom of the list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose first and last entries are known and which is longer than two screens\n5. The list is positioned one page below the top of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Request Page Up once and read the list position\n2. Request Page Up once more and read the list position",
+   "expected_result": "1. The list is at the top of the list and the first entry is shown\n2. The list is at the bottom of the list and the last entry is shown",
+   "specification_reference": "CFTS024-4872947",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

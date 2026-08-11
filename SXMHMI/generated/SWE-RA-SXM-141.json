@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-141",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：HU 顯示清單時，允許逐頁捲動。為什麼這樣切：本條款述的是能力且不限觸發方式，故以兩種不同型態的清單各測一次，證明該能力屬於「清單顯示」而非某一畫面的特例；140 則綁定 Page Up/Down 觸發路徑與一頁的位移量（A-SX20）。",
+ "keywords": [
+  "page-by-page scrolling",
+  "list display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-141",
+   "tc_title": "Page-by-page scrolling is available on any displayed list",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a List, the HU shall allow page-by-page scrolling of the list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two lists of different kinds are reachable, each longer than two screens, for example the all-channel list and the favorites list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Display the first list and scroll it by one page\n2. Read the entries shown\n3. Display the second list and scroll it by one page\n4. Read the entries shown",
+   "expected_result": "1. Scrolling by one page is offered and accepted\n2. A page of entries that were not previously shown is displayed\n3. Scrolling by one page is offered and accepted\n4. A page of entries that were not previously shown is displayed",
+   "specification_reference": "CFTS024-4872944",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

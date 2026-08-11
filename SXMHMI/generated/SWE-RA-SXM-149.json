@@ -1,0 +1,35 @@
+{
+ "parent": "SWE-RA-SXM-149",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：顯示 Genre List 且選取項目進行 Genre Scan 時，進入 Genre Scan 狀態；且該掃描只以符合所選 Genre 的電台為有效對象。為什麼這樣切：與 148 同型，本 leaf 條款只述進入狀態，同節未配置的 4872955 才是行為定義，且兩者於同一次操作內連續可觀察，依 R10-2 吸收（標記 [A-SX08]）。ER 只斷言其例外規則；「與 Scan 相同」的基礎行為屬 CFTS024-177，依 R11 引用錨定。與 148 的差別：一為 Seek、一為 Scan，條款與被引基礎行為皆不同（§8.2.1）。[A-SX03]。ER 不斷言「涵蓋該 Genre 的每一台」——那屬 CFTS024-177 的 Scan 基礎行為，本 leaf 條款未書寫該 token（R11）。ER 只斷言 4872955 自身的貢獻：呈現對象全數屬所選 Genre。",
+ "keywords": [
+  "Genre List",
+  "Genre Scan",
+  "genre restriction"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [
+  "[A-SX08] Absorbed CFTS024-4872955 (same section 1.5.15) into this leaf, on the same reading as leaf 148: 4872954 states only that the Genre Scan state is entered, 4872955 is what that state does and carries the genre restriction. Consecutive observations of one operation, so R10-2 condition (b) holds. The ER asserts only 4872955's own exception. The base 'same manner as Scan' behaviour belongs to CFTS024-177, which this leaf's own clause does not write, so R11 gives no cite-form path to it."
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-149",
+   "tc_title": "Genre Scan enters its state and scans only that genre's stations",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a Genre List and an item is selected for a Genre Scan, the HU shall enter the Genre Scan state, in which only stations matching the selected Genre are considered valid",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A Genre List is displayed and the receivable channels of each genre are known\n5. At least two genres are represented among the receivable channels and at least two channels belong to the genre to be selected",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select an item for a Genre Scan and read the HU state\n2. Let the scan run and record each station the HU presents\n3. Continue until the scan has returned to the first station it presented\n4. Compare the recorded stations against the receivable channels of the selected genre",
+   "expected_result": "1. The HU is in the Genre Scan state\n2. Each station the HU presents is recorded\n3. The scan has presented more than one station and has returned to the first one\n4. Every station the scan presented belongs to the selected genre, and no station outside that genre was presented",
+   "specification_reference": "CFTS024-4872954; CFTS024-4872955",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": "Analog-chapter twin: CFTS024-4872508 (covered in the AM/FM deliverable)"
+  }
+ ]
+}

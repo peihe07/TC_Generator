@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-133",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：於任一清單顯示中收到 $ICS_KNOB2_DIR$ = [Increment]／[Decrement] 時，依 $ICS_KNOB2_VAL$ 計算的速率上下捲動。為什麼這樣切：條款未給速率計算式，可判準者為方向正確與單調性（較大的 $ICS_KNOB2_VAL$ 位移較多列），ER 以此表述而非絕對行數（§8.4.1）。與 109 的差別：該 leaf 的條款限定 browse presets 畫面，本條款適用於任一清單顯示，故本 TC 選用非 preset 的清單以體現該範圍差異（§8.2.1）。",
+ "keywords": [
+  "ICS_KNOB2_DIR",
+  "ICS_KNOB2_VAL",
+  "list scroll rate"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-133",
+   "tc_title": "Knob scrolling in a list follows direction and value",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "If the HU receives $ICS_KNOB2_DIR$ = [Increment] or [Decrement] while in a list display, the HU shall scroll the list at the rate calculated from the $ICS_KNOB2_VAL$ signal value",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A channel list that is not the browse presets list is displayed and is longer than one screen\n5. The list is positioned away from both ends",
+   "input_test_data": "NA",
+   "test_procedure": "1. Send $ICS_KNOB2_DIR$ = [Increment] with a low $ICS_KNOB2_VAL$ and record how far the list moves\n2. Send $ICS_KNOB2_DIR$ = [Increment] with a higher $ICS_KNOB2_VAL$ and record how far the list moves\n3. Send $ICS_KNOB2_DIR$ = [Decrement] and record the direction in which the list moves",
+   "expected_result": "1. The list moves towards the end of the list\n2. The list moves towards the end of the list by more entries than in step 1\n3. The list moves towards the start of the list",
+   "specification_reference": "CFTS024-4872935",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

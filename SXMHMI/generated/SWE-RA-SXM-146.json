@@ -1,0 +1,48 @@
+{
+ "parent": "SWE-RA-SXM-146",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：自清單選取頻道時調諧並播放該頻道；選用 Satellite Category 功能時，只選取符合該類別的衛星頻道。為什麼切兩顆：條款兩句的主詞與觸發皆不同——一為選取頻道後的調諧與播放，一為類別功能對候選集合的限縮；後者的判準是成員資格（非該類別的頻道不得成為候選），與前者的調諧結果無法在同一次觀察內同時判定。第一顆的 ER 同時要求調諧與播放，因條款以 and 並列（§8.4.1）。",
+ "keywords": [
+  "select channel",
+  "tune and play",
+  "Satellite Category"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger",
+  "delta": "Which of the clause's two sentences is exercised. Selecting a channel from the list is verified by the tune-and-play outcome; selecting a Satellite Category function is verified by which channels remain eligible, a membership property that the first scenario cannot show."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-146",
+   "tc_title": "Selecting a channel from the list tunes and plays it",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When the user has selected a Channel from the list the HU will tune to the Channel and Play that Channel",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A channel list is displayed holding at least two receivable channels other than the currently tuned channel\n5. The HU volume is set to an audible level",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Select the second channel in the list\n3. Read the tuned channel and listen to the HU audio output",
+   "expected_result": "1. The tuned channel is not one of the channels to be selected\n2. The selection is accepted\n3. The tuned channel is the selected channel and its audio is playing",
+   "specification_reference": "CFTS024-4872950",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-146",
+   "tc_title": "A Satellite Category restricts selection to its own channels",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When the user selects a Satellite Category function the HU will only select Satellite Channels matching the Selected Satellite Category",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least two Satellite Categories are represented among the receivable channels\n5. At least two receivable channels belong to the first category and at least one belongs to the second",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Satellite Category function for the first category\n2. Read the channels the HU offers for selection\n3. Move through the offered channels to the end and read which channels were reached",
+   "expected_result": "1. The Satellite Category function is accepted\n2. Only channels matching the first category are offered\n3. The channel belonging to the second category is never reached",
+   "specification_reference": "CFTS024-4872950",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

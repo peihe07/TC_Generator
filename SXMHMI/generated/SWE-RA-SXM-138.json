@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-138",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：已在清單頂端時請求 Scroll Up，回捲至清單底端。為什麼這樣切：條款是邊界行為，故前置條件明確置於頂端這個邊界上，並在越界前後各讀一次——邊界前一次仍為一般捲動，邊界上一次為回捲；只在頂端停住不動的實作應失敗。ER 指名「清單底端」而非任意位置（§8.4.1）。",
+ "keywords": [
+  "scroll up",
+  "top of list",
+  "wrap-around"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-138",
+   "tc_title": "Scroll Up at the top of the list wraps to the bottom",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "If a Scroll Up is requested and the HU is currently at the top of the list, the HU shall wrap-around to the bottom of the list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose first and last entries are known and which is longer than one screen\n5. The list is positioned one row below the top of the list",
+   "input_test_data": "NA",
+   "test_procedure": "1. Request Scroll Up once and read the list position\n2. Request Scroll Up once more and read the list position",
+   "expected_result": "1. The list is at the top of the list and the first entry is shown\n2. The list is at the bottom of the list and the last entry is shown",
+   "specification_reference": "CFTS024-4872940",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  }
+ ]
+}

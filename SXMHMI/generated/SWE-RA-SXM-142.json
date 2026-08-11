@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-142",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：請求 Page Up 時，畫面上全部項目移除，並以來自上方清單位置的新項目全數取代。為什麼這樣切：條款要求的是「全部」取代，故 ER 以「原有項目一個不留」與「新項目來自相鄰的上一段」雙向表述；保留一列重疊以利閱讀的實作會被此判準擋下，而該取捨正是需要被明確驗證的點（§8.4.1）。與 140 的差別：該 leaf 驗位移量為一頁，本 leaf 驗該次取代的完整性（§8.2.1）。",
+ "keywords": [
+  "page up",
+  "replace all items",
+  "next-higher"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-142",
+   "tc_title": "Page Up replaces every displayed item with the next-higher page",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When a Page Up function is requested, all items on the list shall be removed and the new list items from the next-higher list positions shall replace all previously displayed list items",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose entries are individually identifiable and which is longer than three screens\n5. The list is positioned so that the top of the list is not reached during the test\n6. The list items occupying the next-higher positions are known",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record every entry shown\n2. Request the Page Up function once\n3. Read every entry shown",
+   "expected_result": "1. The entries are recorded\n2. The request is accepted\n3. None of the entries recorded in step 1 is shown, and every position holds an item from the next-higher list positions",
+   "specification_reference": "CFTS024-4872945",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": "Analog-chapter twin: CFTS024-4872500 (covered in the AM/FM deliverable)"
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-140",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：顯示清單時選用 Page Up 或 Page Down 功能，顯示每次前進一頁。為什麼這樣切：判準是位移量為「一頁」，即新畫面與舊畫面的項目不重疊且相鄰，故 ER 以此表述而非僅斷言畫面改變。與 141 的差別：本 leaf 綁定 Page Up/Down 功能這條觸發路徑與其位移量，141 述的是逐頁捲動這項能力本身（重疊已登錄 A-SX20）。",
+ "keywords": [
+  "page up",
+  "page down",
+  "page at a time"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-140",
+   "tc_title": "Page Up and Page Down advance the display one page",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "When a list of items is being displayed and the user selects the Page Up or Page Down function, the HU will update the display a page of items at a time",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose entries are individually identifiable and which is longer than three screens\n5. The list is positioned so that neither end of the list is reached during the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the entries shown\n2. Select the Page Down function once and record the entries shown\n3. Select the Page Up function once and record the entries shown",
+   "expected_result": "1. The entries are recorded\n2. None of the entries recorded in step 1 is shown, and the entries shown continue directly from the last entry recorded in step 1\n3. The entries shown match those recorded in step 1",
+   "specification_reference": "CFTS024-4872943",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": "Analog-chapter twin: CFTS024-4872499 (covered in the AM/FM deliverable)"
+  }
+ ]
+}

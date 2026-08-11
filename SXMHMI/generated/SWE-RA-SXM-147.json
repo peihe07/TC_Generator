@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-147",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：HU 顯示清單時，允許選取清單上的項目。為什麼這樣切：本條款述的是選取這項能力本身，不限項目型別，故以「非頻道」的項目（例如 genre 條目）測試，證明可選取性不只適用於頻道列；選取之後的調諧結果屬 150 的判準（重疊已登錄 A-SX20，§8.2.2 不得於 TC 端合併）。",
+ "keywords": [
+  "select item",
+  "list display"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-147",
+   "tc_title": "Items on a displayed list can be selected",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a List, the HU shall allow selection of items on the list",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed that holds items which are not themselves channels, for example a genre list\n5. A channel list is also reachable",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select an item on the list that is not a channel\n2. Read the HU screen\n3. Display the channel list and select an item on it\n4. Read the HU screen",
+   "expected_result": "1. The selection is accepted\n2. The HU acts on the selected item and does not remain on the unchanged list\n3. The selection is accepted\n4. The HU acts on the selected item",
+   "specification_reference": "CFTS024-4872951",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

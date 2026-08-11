@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-150",
+ "batch": "B10 — List Navigation",
+ "reasoning": "驗證目標：顯示清單時選取某項目，調諧至該項目所對應的新頻道。為什麼這樣切：條款的關鍵在「associated with」——所選項目本身未必是頻道，其對應關係才是判準，故以 genre 或歌曲條目構造，驗證調諧結果為該條目所繫的頻道而非其清單位置。與 147 的差別：該 leaf 驗選取本身被接受，本 leaf 驗選取後的調諧對應；與 146 的差別：該 leaf 的所選項目即為頻道（§8.2.1）。",
+ "keywords": [
+  "select item",
+  "associated channel",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-150",
+   "tc_title": "Selecting a list item tunes to the channel associated with it",
+   "test_group": "SXM",
+   "test_set": "List Navigation",
+   "test_item": "While the HU is displaying a List and an item is selected, the HU shall tune to the new Channel associated with the selected item",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. A list is displayed whose items are not themselves channels but are each associated with a known channel, for example favorites on air\n5. The channel associated with the item to be selected is not the currently tuned channel and is not the first entry's channel",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Read which channel the second item of the list is associated with\n3. Select the second item of the list\n4. Read the tuned channel",
+   "expected_result": "1. The tuned channel is not the channel to be selected\n2. The associated channel is recorded\n3. The selection is accepted\n4. The tuned channel is the channel recorded in step 2",
+   "specification_reference": "CFTS024-4872956",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

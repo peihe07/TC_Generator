@@ -699,3 +699,83 @@ Until that is answered, TC-02's negative assertion is the open risk: if
   amend the one assertion line. The weakened positive-only alternative was
   considered and rejected — it opens a false-pass hole (a list-everything
   screen would pass).
+
+
+## [A-SX20] "Capability clause plus mechanics clause" is a document-wide pattern, not three incidents — REGISTERED (2026-08-11)
+
+B10 produced three more same-section overlapping pairs, which makes this the
+fourth batch running to hit the shape. Rolling it up rather than filing a
+fourth incident.
+
+| section | pair | leaves | how they overlap |
+|---|---|---|---|
+| 1.5.13 | 4872934 / 4872936 | 132 / 134 | one names the Scroll Up/Down function and the one-row step, the other says line-by-line scrolling is allowed while a List is displayed |
+| 1.5.14 | 4872943 / 4872944 | 140 / 141 | same shape, page granularity |
+| 1.5.15 | 4872951 / 4872956 (and 4872950) | 147 / 150 (146) | one says items may be selected, one says selecting tunes to the associated channel, one says selecting a Channel tunes and plays |
+
+Together with the already-registered instances:
+
+| entry | pairs | shape |
+|---|---|---|
+| A-SX15 | 1 | across sections (§1.5.9.1 / §1.5.9.2) |
+| A-SX16 | 1 | same section, one field set a subset of the other |
+| A-SX17 | 3 | same section, bodies identical but for a category name |
+| A-SX20 | 3 | same section, capability clause beside mechanics clause |
+
+**Eight pairs across five sections.** The recurring authoring habit is a broad
+capability sentence ("the HU shall allow X") filed as its own requirement
+alongside the specific clause that says how X behaves. §8.2.2 forbids
+consolidating them on the TC side, so every instance costs a carve.
+
+Carve rule applied consistently in B10, and worth ruling as the standing one:
+**the capability clause is tested for reach** — it is exercised on a second,
+structurally different instance (another kind of list, an item that is not a
+channel) to show the capability is not the specific clause's special case —
+**and the mechanics clause is tested for its stated detail** (the one-row step,
+the full-page replacement, the tune-and-play outcome). That gives each row a
+distinct failing condition, which is what makes them two tests rather than one
+test written twice.
+
+**For RD-1:** this is a single question with eight instances, not eight
+questions. Is the capability sentence intended as a separate verifiable
+requirement, or is it section-introductory prose that was allocated an id? If
+the latter, eight delivered rows are testing prose.
+
+## [A-SX21] Absorption and cite-form collide: an absorbed clause's citations have no path — REGISTERED (2026-08-11)
+
+Found by the `cross-reference` gate during B10 generation, not by review.
+
+Leaf 148's clause (`4872952`) says only that the HU enters the Genre Seek
+state. The behaviour of that state is in `4872953`, unallocated, same section,
+which was absorbed under R10-2. But `4872953` defines the behaviour *by
+reference*: "shall behave in the same manner as the Seek Up function described
+in Section CFTS024-165, with the exception that only stations matching the
+selected Genre shall be considered valid." Same for `4872955` → `CFTS024-177`
+on leaf 149.
+
+Writing `CFTS024-165` into the TC's specification_reference failed the gate:
+R11's cite-form path is keyed to the tokens **the leaf's own clause writes**,
+and this leaf's clause writes none. The gate is right — allowing it would let
+any absorption drag arbitrary citations into a leaf's reference list, and R11's
+whole point is that a citation is licensed by the citing clause.
+
+Resolved locally by narrowing the ER to the absorbed clause's own contribution:
+the two TCs assert that every station the seek or scan lands on belongs to the
+selected genre, and do **not** assert that it reaches every station of that
+genre — the exhaustiveness is Seek Up's behaviour, reachable only through
+`CFTS024-165`.
+
+What that leaves untested: nothing that was previously covered — before the
+absorption these two clauses had no test at all, and the genre restriction is
+now verified where it was not. But the composition is unruled.
+
+**For chat:** when R10-2 absorbs a clause that itself cites, does the citation
+travel with it? Two readings, and the choice is not obvious:
+- **It travels.** The absorbed clause is now part of this leaf's scope, so its
+  citations are this leaf's citations. Lets the ER anchor the base behaviour.
+- **It does not.** R11 licenses a citation by the *allocated* clause writing
+  it; absorption is a coverage device and should not extend citation authority.
+  This is what the gate currently enforces, and what B10 shipped.
+
+Two leaves are affected today (148, 149). No batch is blocked either way — a
+later ruling for "it travels" is an ER line and a reference field on two rows.
