@@ -1,0 +1,32 @@
+{
+ "parent": "SWE-RA-SXM-123",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：使用者可自清單中為 traffic jump 功能選取城市。為什麼這樣切：條款只述可選取，其可觀察後果是該選取被接受並成為 traffic jump 所用的城市，故 ER 以「其後的交通資訊為所選城市」表述而非僅「該列被反白」（§8.4.1）；並對非首列的城市操作，排除「一律取第一筆」的實作。",
+ "keywords": [
+  "traffic jump",
+  "select city"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-123",
+   "tc_title": "Selecting a city for the traffic jump feature",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "The HU shall allow the user to select a city from the list for the traffic jump feature",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least two cities with traffic information are available\n5. The Browse Jump city list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the second city in the list\n2. Read the HU screen\n3. Read the city to which the traffic jump feature is set",
+   "expected_result": "1. The selection is accepted\n2. The HU leaves the city list\n3. The traffic jump feature is set to the city selected in step 1",
+   "specification_reference": "CFTS024-4872923",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

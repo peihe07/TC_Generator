@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-SXM-124",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：SAT 模式叫用 Browse Favorites 時，預設顯示 ON AIR 類別，列出現正播送的最愛並帶頻道號、演出者與歌曲名稱；若無最愛在播送，則依 HMI 定義給出該訊息。為什麼切兩顆：條款自身明寫否定側且兩狀態的前置條件互斥，依 R10-3 各自成顆。與 113 的差別：該 leaf 是 Game Zone 的 ON AIR，本 leaf 是 Favorites 的 ON AIR，欄位與成員資格皆不同（§8.2.1）。",
+ "keywords": [
+  "Browse Favorites",
+  "ON AIR",
+  "artist",
+  "song title"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "state",
+  "delta": "Whether any favorite is on air. The clause states the empty case in its own sentence and the two states are mutually exclusive preconditions, so R10-3 gives each its own TC: TC-01 the populated ON AIR list and its three fields, TC-02 the indication given when nothing is on air."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-124",
+   "tc_title": "Browse Favorites opens on ON AIR listing the favorites being broadcast",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Browse Favorites function is invoked in SAT mode, the HU shall display the default ON AIR category listing the current favorites on air with the channel number, artist and song title",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two stored favorites are being broadcast at this moment\n5. At least one further stored favorite is not being broadcast",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Favorites function in SAT mode\n2. Read which category is presented\n3. Read the entries listed and the fields on each",
+   "expected_result": "1. The Favorites browse content is displayed\n2. The presented category is ON AIR\n3. The two favorites being broadcast are listed, the favorite that is not being broadcast is not listed, and each listed entry shows the channel number, the artist and the song title",
+   "specification_reference": "CFTS024-4872925",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-124",
+   "tc_title": "Browse Favorites ON AIR indicates when no favorite is on air",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If no favorites are currently on air, the HU shall indicate that information",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least one favorite is stored\n5. None of the stored favorites is being broadcast at this moment",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Favorites function in SAT mode\n2. Read which category is presented\n3. Read the ON AIR content",
+   "expected_result": "1. The Favorites browse content is displayed\n2. The presented category is ON AIR\n3. No favorite is listed and the HU indicates that no favorite is currently on air",
+   "specification_reference": "CFTS024-4872925",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

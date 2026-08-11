@@ -607,3 +607,62 @@ move; it is not a claim that the two clauses were meant to differ this way.
 withdrawn upstream rather than carved. The name form is the substantive
 question — one clause says the long form name is displayed and the other says
 the station name, and only the first is currently being verified as long form.
+
+
+## [A-SX17] Paired browse categories carry word-for-word identical requirement text — REGISTERED (2026-08-11)
+
+Three pairs in the browse sections, each pair two clause ids in the same
+section whose bodies are identical or differ only in the category name:
+
+| pair | ids | leaves | body |
+|---|---|---|---|
+| Add Teams / Select Teams | 4872913 / 4872914 | 115 / 116 | **word for word identical** |
+| Edit Teams / Edit Selection | 4872915 / 4872916 | 117 / 118 | **word for word identical** |
+| Edit Favorites / Edit FAVs | 4872927 / 4872930 | 126 / 129 | same two delete options, 4872930 additionally names the 'Delete All' function |
+
+This is the A-SX16 shape repeated: siblings in one section, so no
+section-ownership carve is available. But it is weaker than A-SX16, because
+there the two clauses at least differed on content (genre, name form). Here
+the *only* difference in the first two pairs is the name of the category the
+user selects.
+
+Carve applied: **each TC enters through its own category name**, which is the
+sole textual difference and therefore the only distinction that can be tested.
+Everything downstream of that entry is necessarily the same, because the
+clauses say the same thing.
+
+What this buys: if Add Teams and Select Teams turn out to be two entry points
+into one screen, both TCs pass and the execution record shows two rows that
+did the same thing from two doors — which is the evidence a reviewer needs.
+Consolidating them on the TC side (§8.2.2 forbids it anyway) would have hidden
+exactly that.
+
+**For RD-1:** are these genuinely four categories, or two categories that were
+renamed and both drafts survived? The delivery currently promises to test four
+Game Zone edit/add paths. If two of them do not exist in the HMI, two TCs will
+fail for a reason that is a document defect, not a software defect.
+
+## [A-SX18] `4872919` restates leaf 120's score-update branch and contradicts it — REGISTERED (2026-08-11)
+
+`4872919` (All Score updates, §1.5.12.1.2, unallocated) and leaf 120's clause
+`4872918` both describe the single-match score-update flow, and they disagree
+on what the resulting screen lists:
+
+- `4872918` (leaf 120): the On Air screen lists **all the games that have score
+  updates**
+- `4872919` (unallocated): the On Air screen lists **all the games that are
+  starting as well as the score updates**
+
+R10-2 condition (a) holds — same section as leaf 120. Condition (b) does not,
+and for an unusual reason: the two are not merely hard to observe together,
+they cannot both be satisfied by one screen. Absorbing `4872919` into leaf 120
+would require the ER to assert two different list contents at once.
+
+Leaf 120's TC-02 therefore tests `4872918` as written — games with score
+updates, and explicitly asserts a game without a score update is not listed,
+which is the assertion `4872919` would forbid.
+
+**For RD-1:** which listing is correct? The two clauses are 1 apart in id and
+adjacent in the document, so one is likely a superseded draft of the other.
+Until that is answered, TC-02's negative assertion is the open risk: if
+`4872919` is the live requirement, that assertion is wrong.

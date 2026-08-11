@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-SXM-131",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：Game Alerts 選項啟用時，於比賽開始或比分更新時提供視覺提示，前提是涉及的隊伍之一已在 gamezone 設為主隊。為什麼切兩顆：條款以 If this option is enabled 起首，停用側可達且是該條款存在的意義所在，依 R10-3 獨立成顆；否則永遠提示的實作也會通過。第一顆同時涵蓋條款以 or 並列的兩個觸發事件，並以非主隊的比賽構造反例，驗證主隊條件確實生效。與 120 的差別：該 leaf 驗提示的形式與其後畫面的內容，本 leaf 驗選項的門檻作用（§8.2.1）。",
+ "keywords": [
+  "Game Alerts option",
+  "visual alert",
+  "game start",
+  "score update"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "state",
+  "delta": "Whether the Game Alerts option is enabled. The clause is conditioned on it, so the disabled side is a requirement of its own (R10-3): TC-01 verifies a visual alert on both stated triggers while enabled, and that a non-favorite team's game raises none, TC-02 that neither trigger raises an alert while disabled."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-131",
+   "tc_title": "Game Alerts enabled raises a visual alert on game start and score update",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If the Game Alerts option is enabled, the HU shall provide a visual alert upon the start of a game and upon score updates, if one of the teams involved was selected as a favorite under gamezone",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One team is selected as a favorite under gamezone and is about to start a game\n5. The score will change in that game during the test\n6. A further game between teams that are not favorites starts during the test\n7. The Game Alerts option is enabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Wait until the game involving the favorite team starts and read the HU screen\n2. Wait until the score changes in that game and read the HU screen\n3. Wait until the game between the non-favorite teams starts and read the HU screen",
+   "expected_result": "1. A visual alert is provided\n2. A visual alert is provided\n3. No visual alert is provided",
+   "specification_reference": "CFTS024-4872932",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-131",
+   "tc_title": "No visual alert while the Game Alerts option is disabled",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "The visual alert on game start and score update is provided only if the Game Alerts option is enabled",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One team is selected as a favorite under gamezone and is about to start a game\n5. The score will change in that game during the test\n6. The Game Alerts option is disabled",
+   "input_test_data": "NA",
+   "test_procedure": "1. Wait until the game involving the favorite team starts and read the HU screen\n2. Wait until the score changes in that game and read the HU screen\n3. Read the favorite teams set under gamezone",
+   "expected_result": "1. No visual alert is provided\n2. No visual alert is provided\n3. The team is still set as a favorite team",
+   "specification_reference": "CFTS024-4872932",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

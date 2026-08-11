@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-SXM-120",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：背景比對到 ID 後的兩條分支——多個 ID 表示比賽開始，彈出 Game Alert，選取後顯示 Browse GameZone - On Air 並列出即將開賽的隊伍 ID 達 10 秒；單一 ID 表示比分變動，顯示 Game Alert 旗標，選取後顯示所有有比分更新的比賽。為什麼切兩顆：條款以收到的 ID 數量分出兩種語意（開賽 vs 比分變動），輸出的畫面內容與提示形式皆不同，且前置事件互斥，無法在同一次觀察內成立。10 秒的顯示時長併入第一顆，於 9 秒與 11 秒各讀一次。與 131 的差別：本 leaf 驗提示與畫面內容，131 驗選項啟用與否的門檻（§8.2.1）。",
+ "keywords": [
+  "Game Alert",
+  "background match",
+  "score update",
+  "On Air"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "trigger",
+  "delta": "How many matching IDs arrive. The clause gives multiple IDs the meaning 'a game is starting' and a single ID the meaning 'a score has changed', with different alert forms and different screen contents, and the two events cannot occur in one observation: TC-01 covers the game-start pop up and its 10 second On Air screen, TC-02 the single-ID score-change flag and the score-update listing."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-120",
+   "tc_title": "Game start pop up shows the On Air screen for ten seconds",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When a match is found, a pop up screen will show Game Alert and if selected it will display the Browse GameZone - On Air screen listing the IDs of teams involved in a game that is just starting, for 10 seconds",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two teams selected as favorites under Game Zone are about to start a game against each other\n5. The game alert pop up is enabled\n6. No score update is due during the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Leave the HU untouched and wait until the game starts\n2. Select the pop up and read the screen\n3. Read the screen 9 seconds after the screen appeared\n4. Read the screen 11 seconds after the screen appeared",
+   "expected_result": "1. A pop up screen showing Game Alert is presented\n2. The Browse GameZone - On Air screen is displayed and lists the IDs of the two teams involved in the game that is starting\n3. The Browse GameZone - On Air screen is still displayed\n4. The Browse GameZone - On Air screen is no longer displayed",
+   "specification_reference": "CFTS024-4872918",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-120",
+   "tc_title": "A single matching ID flags a score change and lists the updates",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If a single matching ID is received it indicates a team score has changed and the HU shall display the Game Alert flag, and if Game Alert is selected the HU shall display the Browse GameZone - On Air screen listing all the games that have score updates",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two teams selected as favorites under Game Zone are playing in two separate games already in progress\n5. The score changes in both games during the test\n6. No further game starts during the test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Leave the HU untouched and wait until the score changes in the first game\n2. Read the HU screen\n3. Select Game Alert and read the screen\n4. Compare the listed games against the games whose score has changed",
+   "expected_result": "1. The score has changed in the first game\n2. The Game Alert flag is displayed\n3. The Browse GameZone - On Air screen is displayed\n4. The screen lists the games whose score has changed and does not list a game whose score has not changed",
+   "specification_reference": "CFTS024-4872918",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

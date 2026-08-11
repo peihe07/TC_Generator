@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-116",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：同 115，但由 Select Teams 類別進入。為什麼這樣切：本條款與 4872913 正文逐字相同，差異僅在類別名稱（A-SX17）。切分依該唯一差異，本 leaf 由 Select Teams 進入；若兩個類別實際上是同一畫面的兩個入口，兩顆皆會通過而該事實會顯示在執行紀錄上，這正是不於 TC 端合併的價值（§8.2.2）。",
+ "keywords": [
+  "Select Teams",
+  "sports leagues",
+  "favorite team"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-116",
+   "tc_title": "Select Teams selects a favorite team through the league list",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Select Teams category is selected, the HU shall list all available sports leagues, and when a sports league is selected shall list all available teams and allow selection to the favorites team",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The Game Zone browse content is displayed\n5. At least one team of the chosen league is not currently a favorite team",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Select Teams category\n2. Read the displayed list\n3. Select one sports league\n4. Read the displayed list\n5. Select a team that is not currently a favorite\n6. Read the current favorite teams",
+   "expected_result": "1. The Select Teams category is accepted as a selection\n2. All available sports leagues are listed\n3. The league is accepted as a selection\n4. All available teams of that league are listed\n5. The team is accepted as a selection\n6. The selected team is among the favorite teams",
+   "specification_reference": "CFTS024-4872914",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

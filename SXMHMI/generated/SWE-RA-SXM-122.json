@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-122",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：SAT 模式叫用 Browse Traffic/Weather 時，顯示全部播送天氣／交通資訊的電台清單。為什麼這樣切：判準同為成員資格，但集合是「電台」而非「城市」——與 121 的區別正在此，兩條款分列（§8.2.1）；故前置條件要求存在不播送天氣／交通的可收電台，ER 以其不得列入作雙向斷言。",
+ "keywords": [
+  "Browse Traffic Weather",
+  "stations",
+  "weather"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-122",
+   "tc_title": "Browse Traffic Weather lists the stations broadcasting that content",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Browse Traffic/Weather function is invoked in SAT mode, the HU shall display the list of all available stations broadcasting weather/traffic information",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. More than one receivable station broadcasts weather or traffic information\n5. At least one receivable station broadcasts neither",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Traffic/Weather function in SAT mode\n2. Scroll through the whole list and record every station shown\n3. Compare the recorded stations against the receivable stations",
+   "expected_result": "1. A list of stations is displayed\n2. The list scrolls to its end\n3. The stations broadcasting weather or traffic information are listed and the station broadcasting neither is not listed",
+   "specification_reference": "CFTS024-4872922",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-126",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：選取 Edit Favorites 類別時，可刪除全部最愛或逐筆刪除演出者／歌曲名稱條目。為什麼這樣切：與 129 的條款內容重疊，差異僅在類別名稱（Edit Favorites 對 Edit FAVs，已登錄 A-SX17），切分依該唯一差異，本 leaf 由 Edit Favorites 進入。逐筆刪除的 ER 斷言其餘最愛未受影響。刪除前的確認畫面不在此驗證，那是 130 的判準（§8.2.1）。",
+ "keywords": [
+  "Edit Favorites",
+  "delete favorite",
+  "delete all"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-126",
+   "tc_title": "Edit Favorites deletes an individual favorite and all of them",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Edit Favorites category is selected, the HU shall enable the user to delete all current favorites or delete individual favorite artist/song title entries",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three favorites are stored, of which at least one is an artist and at least one is a song title\n5. The Favorites browse content is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Edit Favorites category\n2. Delete one individual favorite and read the favorites\n3. Delete all current favorites and read the favorites",
+   "expected_result": "1. The Edit Favorites category is accepted as a selection and both deleting an individual entry and deleting all are offered\n2. The deleted favorite is gone and the other two are unchanged\n3. No favorite remains",
+   "specification_reference": "CFTS024-4872927",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

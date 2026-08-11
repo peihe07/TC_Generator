@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-129",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：選取 Edit FAVs 類別時，可逐筆刪除演出者或歌曲名稱條目，或以 Delete All 一次刪除全部。為什麼這樣切：與 126 的條款內容重疊，差異僅在類別名稱（A-SX17），切分依該唯一差異，本 leaf 由 Edit FAVs 進入；本條款另明白點名 'Delete All' 這個功能名稱，故 ER 以該名稱指涉。刪除前的確認畫面屬 130（§8.2.1）。",
+ "keywords": [
+  "Edit FAVs",
+  "Delete All",
+  "delete entry"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-129",
+   "tc_title": "Edit FAVs deletes an individual entry and offers Delete All",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Edit FAVs category is selected, the HU shall allow selection to either delete an individual entry of favorite artist or song title in the list or a Delete All function to delete all current favorite artist/song titles",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three favorites are stored, of which at least one is an artist and at least one is a song title\n5. The Favorites browse content is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Edit FAVs category and read the offered options\n2. Delete one individual entry and read the favorites\n3. Use the Delete All function and read the favorites",
+   "expected_result": "1. Deleting an individual entry and a Delete All function are both offered\n2. The deleted entry is gone and the other two are unchanged\n3. No favorite remains",
+   "specification_reference": "CFTS024-4872930",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

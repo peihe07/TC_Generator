@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-119",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：選取 Alerts 類別時，可啟用或停用 game alert 的彈出視窗。為什麼這樣切：條款要求的是「可啟用或停用」，其可觀察後果是該設定確實生效於兩個方向，故同一顆內先啟用再停用、各觀察一次比賽開始事件；只讓設定值可改而行為不變的實作應失敗（§8.4.1）。與 131 的差別：該 leaf 驗的是 Game Alerts 選項對視覺提示的門檻作用，本 leaf 驗的是 Alerts 類別內該控制項的存在與生效（§8.2.1）。",
+ "keywords": [
+  "Alerts",
+  "game alert pop up",
+  "enable disable"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-119",
+   "tc_title": "Alerts category enables and disables the game alert pop up",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Alerts category is selected, the HU shall allow the user to enable or disable the pop up for game alerts",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least one team is set as a favorite team under Game Zone\n5. A game involving that team is about to start\n6. The Game Zone browse content is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Alerts category and enable the game alert pop up\n2. Wait until the game involving the favorite team starts and read the HU screen\n3. Select the Alerts category and disable the game alert pop up\n4. Wait until a further game involving a favorite team starts and read the HU screen",
+   "expected_result": "1. Enabling the game alert pop up is offered and accepted\n2. A game alert pop up is presented\n3. Disabling the game alert pop up is offered and accepted\n4. No game alert pop up is presented",
+   "specification_reference": "CFTS024-4872917",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

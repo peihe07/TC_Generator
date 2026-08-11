@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-125",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：在 ON AIR 類別選取演出者、歌曲名稱或頻道時，調諧至對應頻道。為什麼這樣切：條款以 or 並列三種可選取的項目，三者皆須導致調諧，故程序各測一次；前置條件令對應頻道非現行頻道，否則無變化亦通過。與 124 的差別：該 leaf 驗清單內容，本 leaf 驗選取後的調諧（§8.2.1）。",
+ "keywords": [
+  "ON AIR",
+  "select favorite",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-125",
+   "tc_title": "Selecting an artist, song or channel on ON AIR tunes to it",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "The HU shall tune to the corresponding channel when an artist, song title or channel is selected on the ON AIR category",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three stored favorites are being broadcast on three channels other than the currently tuned channel, one stored as an artist and one stored as a song title\n5. The Favorites ON AIR list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the entry stored as an artist and read the tuned channel\n2. Return to the ON AIR list, select the entry stored as a song title and read the tuned channel\n3. Return to the ON AIR list, select the third entry by its channel and read the tuned channel",
+   "expected_result": "1. The tuned channel is the channel shown for the selected artist\n2. The tuned channel is the channel shown for the selected song title\n3. The tuned channel is the channel selected",
+   "specification_reference": "CFTS024-4872926",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

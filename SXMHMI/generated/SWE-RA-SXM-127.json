@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-127",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：Alert Settings 類別內可啟用或停用視覺與聽覺提示，且啟用後於最愛播送時提供 FAV ON AIR 彈出提示與確認音。為什麼這樣切：本條款與 057 的條款（§1.5.9.2）在提示行為上重疊，差異在於本條款規定該控制項所在的類別（A-SX15 型，跨節重疊）；切分後 057 擁有提示行為本身與其條件，本 leaf 擁有 Alert Settings 這個控制位置——判準是「在此類別內改動設定會改變提示行為」，故同一顆內於此類別啟用與停用各觀察一次。確認音的種類屬 HMI 文件，不作判準（§8.4.2）。",
+ "keywords": [
+  "Alert Settings",
+  "visual audible alerts",
+  "FAV ON AIR"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-127",
+   "tc_title": "Alert Settings turns the FAV ON AIR alert on and off",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Alert Settings category is selected, the HU shall allow the user to enable or disable visual and audible alerts, and when enabled shall provide both the FAV ON AIR pop up alert and the confirmation sound when a favorite artist or title is currently broadcasting",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. One favorite is stored and is not currently being broadcast\n5. That favorite will start being broadcast twice during the test\n6. The HU volume is set to an audible level\n7. The Favorites browse content is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Alert Settings category and enable visual and audible alerts\n2. Wait until the stored favorite starts being broadcast, then read the HU screen and listen to the HU audio output\n3. Select the Alert Settings category and disable visual and audible alerts\n4. Wait until the stored favorite starts being broadcast again, then read the HU screen and listen to the HU audio output",
+   "expected_result": "1. Enabling visual and audible alerts is offered in the Alert Settings category and is accepted\n2. The FAV ON AIR pop up alert is presented and the confirmation sound is heard\n3. Disabling visual and audible alerts is offered in the Alert Settings category and is accepted\n4. No FAV ON AIR pop up alert is presented and no confirmation sound is heard",
+   "specification_reference": "CFTS024-4872928",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

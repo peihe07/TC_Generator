@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-130",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：選取項目要刪除時，一律先出示確認刪除畫面，之後才刪除。為什麼這樣切：條款以 always 表述，故判準有兩面——確認畫面必定出現，且在確認前該筆未被刪除；後者以取消路徑構造，取消後該筆仍在最愛中，只出現畫面卻已先行刪除的實作應失敗（§8.4.1）。單筆與多筆選取各測一次，因條款以 item/s 並列。",
+ "keywords": [
+  "confirmation delete screen",
+  "always",
+  "cancel"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-130",
+   "tc_title": "A confirmation screen precedes every deletion and cancelling keeps the entry",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When an item or items is selected for deletion, the HU shall always prompt a confirmation delete screen before deleting the particular artist or song title",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Four favorites are stored\n5. The favorites list is displayed with deletion available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select one favorite for deletion and read the HU screen\n2. Cancel at that screen and read the favorites\n3. Select the same favorite for deletion again, confirm at the screen and read the favorites\n4. Select two favorites for deletion at once and read the HU screen",
+   "expected_result": "1. A confirmation delete screen is prompted\n2. The favorite is still stored and four favorites remain\n3. The favorite is deleted and three favorites remain\n4. A confirmation delete screen is prompted",
+   "specification_reference": "CFTS024-4872931",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

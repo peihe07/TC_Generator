@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-121",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：SAT 模式叫用 Browse Jump 時，顯示全部有交通資訊可用的城市清單。為什麼這樣切：判準是成員資格——有交通資訊的城市在內、無的不在內，故以獨立取得的可用城市集合逐一比對，只顯示前幾筆或顯示全部城市的實作皆應失敗。與 123 的差別：該 leaf 驗由清單中選取城市，本 leaf 止於清單內容（§8.2.1）。",
+ "keywords": [
+  "Browse Jump",
+  "cities",
+  "traffic"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-121",
+   "tc_title": "Browse Jump lists the cities with traffic information",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Browse Jump function is invoked in SAT mode, the HU shall display the list of all available Cities where traffic information is available",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The cities for which traffic information is available on this subscription are known from an independent source\n5. More than one such city is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Jump function in SAT mode\n2. Scroll through the whole list and record every city shown\n3. Compare the recorded cities against the known set",
+   "expected_result": "1. A list of cities is displayed\n2. The list scrolls to its end\n3. Every city of the known set appears in the list and no city outside that set appears",
+   "specification_reference": "CFTS024-4872921",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

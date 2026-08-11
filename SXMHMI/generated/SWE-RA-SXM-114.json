@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-114",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：在 ON AIR 類別選取某場比賽或頻道時，調諧至對應頻道。為什麼這樣切：可觀察後果是調諧結果，前置條件令所選比賽的頻道非現行頻道，否則無變化亦通過；並對清單第二列而非首列操作，排除「一律調到第一列」的實作。與 113 的差別：該 leaf 驗清單內容，本 leaf 驗選取後的調諧（§8.2.1）。",
+ "keywords": [
+  "ON AIR",
+  "select game",
+  "tune"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-114",
+   "tc_title": "Selecting a game on ON AIR tunes to its channel",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "The HU shall tune to the corresponding channel when a game or channel is selected on the ON AIR category",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least two favorite teams' games are on air on channels other than the currently tuned channel\n5. The Game Zone ON AIR list is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the currently tuned channel\n2. Select the second game in the ON AIR list\n3. Read the tuned channel",
+   "expected_result": "1. The tuned channel is not a channel carrying one of the listed games\n2. The selection is accepted\n3. The tuned channel is the channel shown for the selected game",
+   "specification_reference": "CFTS024-4872912",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

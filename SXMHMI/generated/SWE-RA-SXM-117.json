@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-117",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：選取 Edit Teams 類別時，可刪除全部主隊或逐筆刪除主隊。為什麼這樣切：與 118 的條款正文逐字相同，僅類別名稱不同（A-SX17），切分依該唯一差異。逐筆刪除的 ER 同時斷言其餘主隊未受影響，排除「刪一筆即清空」的實作；兩種刪除在同一顆內依序驗證，因第二種的前置狀態正是第一種的結果，無須另建情境。",
+ "keywords": [
+  "Edit Teams",
+  "delete favorite team",
+  "delete all"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-117",
+   "tc_title": "Edit Teams deletes an individual favorite team and all of them",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Edit Teams category is selected, the HU shall enable the user to delete all current favorite teams or delete individual favorite team entries",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Three teams are set as favorite teams\n5. The Game Zone browse content is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Edit Teams category\n2. Delete one individual favorite team and read the favorite teams\n3. Delete all current favorite teams and read the favorite teams",
+   "expected_result": "1. The Edit Teams category is accepted as a selection and both deleting an individual entry and deleting all are offered\n2. The deleted team is no longer a favorite team and the other two are unchanged\n3. No favorite team remains",
+   "specification_reference": "CFTS024-4872915",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

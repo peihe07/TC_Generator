@@ -1,0 +1,33 @@
+{
+ "parent": "SWE-RA-SXM-115",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：選取 Add Teams 類別時列出全部可用運動聯盟，選定聯盟後列出全部可用隊伍並可將隊伍選為主隊。為什麼這樣切：與 116 的條款正文逐字相同，僅類別名稱不同（已登錄 A-SX17）；兩者同節、各有 id，§8.2.2 不得於 TC 端合併，故切分只能落在唯一有差異之處——進入的類別名稱。本 leaf 由 Add Teams 進入。程序在最後一步讀主隊清單，因條款要求的是「選為主隊」而非僅「可點選」（§8.4.1）。",
+ "keywords": [
+  "Add Teams",
+  "sports leagues",
+  "favorite team"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-115",
+   "tc_title": "Add Teams selects a favorite team through the league list",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Add Teams category is selected, the HU shall list all available sports leagues, and when a sports league is selected shall list all available teams and allow selection to the favorites team",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. The Game Zone browse content is displayed\n5. At least one team of the chosen league is not currently a favorite team",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Add Teams category\n2. Read the displayed list\n3. Select one sports league\n4. Read the displayed list\n5. Select a team that is not currently a favorite\n6. Read the current favorite teams",
+   "expected_result": "1. The Add Teams category is accepted as a selection\n2. All available sports leagues are listed\n3. The league is accepted as a selection\n4. All available teams of that league are listed\n5. The team is accepted as a selection\n6. The selected team is among the favorite teams",
+   "specification_reference": "CFTS024-4872913",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

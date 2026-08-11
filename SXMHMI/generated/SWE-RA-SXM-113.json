@@ -1,0 +1,49 @@
+{
+ "parent": "SWE-RA-SXM-113",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：SAT 模式叫用 Browse 'Game Zone' 時，預設顯示 ON AIR 類別，列出現正進行的主隊比賽並帶頻道號、比分與聯盟；若無主隊比賽在進行，則依 HMI 定義給出該訊息。為什麼切兩顆：條款自身明寫「If no team favorites are currently on air」的否定側，該狀態可達且與肯定側的前置條件互斥（有比賽在進行 ⇄ 無），依 R10-3 各自成顆。第一顆的 ER 逐一對應三個欄位並以「非主隊的比賽不得列入」構造雙向斷言；第二顆只斷言「有給出該訊息且非空白畫面」，不指定文案，因文案屬 HMI 定義（§8.4.2）。",
+ "keywords": [
+  "Game Zone",
+  "ON AIR",
+  "score",
+  "league"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "state",
+  "delta": "Whether any favorite team is on air. The clause states the empty case in its own sentence and the two states are mutually exclusive preconditions, so R10-3 gives each its own TC: TC-01 the populated ON AIR list and its three fields, TC-02 the indication given when nothing is on air."
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-113",
+   "tc_title": "Game Zone opens on ON AIR listing the favorite games in progress",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Browse Game Zone function is invoked in SAT mode, the HU shall display the default ON AIR category listing the current favorite games and teams on air along with the channel number, score and league",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two teams selected as favorites under Game Zone are playing at this moment\n5. At least one further game is in progress between teams that are not favorites",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Game Zone function in SAT mode\n2. Read which category is presented\n3. Read the entries listed and the fields on each",
+   "expected_result": "1. The Game Zone browse content is displayed\n2. The presented category is ON AIR\n3. The two favorite teams' games are listed, the game between non-favorite teams is not listed, and each listed entry shows the channel number, the score and the league",
+   "specification_reference": "CFTS024-4872911",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE-RA-SXM-113",
+   "tc_title": "Game Zone ON AIR indicates when no favorite team is on air",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "If no team favorites are currently on air, the HU shall indicate that information",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. At least one team is selected as a favorite under Game Zone\n5. None of the favorite teams is playing at this moment",
+   "input_test_data": "NA",
+   "test_procedure": "1. Invoke the Browse Game Zone function in SAT mode\n2. Read which category is presented\n3. Read the ON AIR content",
+   "expected_result": "1. The Game Zone browse content is displayed\n2. The presented category is ON AIR\n3. No game is listed and the HU indicates that no favorite team is currently on air",
+   "specification_reference": "CFTS024-4872911",
+   "priority": "P2",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "remarks": ""
+  }
+ ]
+}

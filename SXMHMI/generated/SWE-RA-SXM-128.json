@@ -1,0 +1,34 @@
+{
+ "parent": "SWE-RA-SXM-128",
+ "batch": "B9 — Browse",
+ "reasoning": "驗證目標：SAT 模式叫用 Favorites-Browse 時，可選擇以 Artist、以 Song 或兩者併列的方式瀏覽最愛清單，且每列顯示該筆屬演出者或歌曲的圖示。為什麼這樣切：條款有兩個並列產出——三種瀏覽方式的可選取性、以及逐列的類型圖示；ER 各自對應。三種方式以清單成員資格判別（僅演出者、僅歌曲、兩者），只換標題而清單不變的實作應失敗。圖示只驗其隨條目類型而異，不驗其外觀（§8.4.2）。",
+ "keywords": [
+  "Favorites Browse",
+  "by artist",
+  "by song",
+  "icon"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE-RA-SXM-128",
+   "tc_title": "Browsing favorites by artist, by song and by both with type icons",
+   "test_group": "SXM",
+   "test_set": "Browse",
+   "test_item": "When the Favorites-Browse function is invoked in SAT mode, the HU shall allow selection of a browsable list of Favorites by either Artist or Song or by both fields, and shall display the icon for the type of field on each entry",
+   "pre_conditions": "1. A SiriusXM signal source is available and the vehicle has an active subscription\n2. The HU Satellite Audio source is selected on the Cabin Output Channel\n3. The HU is tuned to a receivable Satellite Audio channel\n4. Two favorites are stored as artists and two are stored as song titles\n5. The Favorites browse content is displayed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select browsing by Artist and read the listed entries\n2. Select browsing by Song and read the listed entries\n3. Select browsing by both fields and read the listed entries\n4. Read the icon shown on each entry of the list from step 3",
+   "expected_result": "1. Only the two favorites stored as artists are listed\n2. Only the two favorites stored as song titles are listed\n3. All four favorites are listed\n4. Each entry carries an icon, and the icon on the two artist entries differs from the icon on the two song title entries",
+   "specification_reference": "CFTS024-4872929",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}
