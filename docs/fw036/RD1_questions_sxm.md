@@ -63,7 +63,7 @@ a one-line edit rather than a re-derivation.
 
 Status: DRAFT — expedite ahead of the class-3 items.
 
-## Q-SX3 — VR trigger path: the 037 titles declare it (from A-SX10, VR entry)
+## Q-SX3 — VR trigger path: the 037 titles declare it (from A-SX19)
 
 Context: five leaves' clauses include a Voice Recognition trigger path, and the
 VR scope was ruled out of this workbook and delegated to the CFTS028 delivery,

@@ -523,25 +523,39 @@ RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
    configuration gate, the same shape as AMFM's `$AM_Presence$` leaves, and it
    has no leaf. If any of the 14 should have one, it is this.
 
-## [A-SX10] Five clauses carry a VR trigger path their 037 titles omit — RESOLVED: R8-equivalent adopted (2026-08-11)
+## [A-SX19] Five clauses carry a VR trigger path their 037 titles also declare — RESOLVED: R8-equivalent adopted, premise amended (2026-08-11)
 
 - Five leaves' cited clauses include a Voice Recognition trigger path
-  ("or a VR Command" class wording) that the corresponding 037 titles omit —
-  the A-AM09 one-directional pattern, continued in SXM (n=5; leaves 002, 003, 006, 014, 030 — backfilled at annotation,
-  2026-08-11).
-- Precondition verified before ruling: none of the five titles mentions VR —
-  no title actively claims the VR scope.
+  ("or a VR Command" class wording): leaves 002, 003, 006, 014, 030.
+- **Premise amended 2026-08-11 (measured, then re-ruled).** The entry was
+  filed on the AMFM A-AM09 premise — titles omit the VR wording the clause
+  carries. Measurement over the five leaves contradicts it: **all five 037
+  titles contain `or a VR Command` verbatim** (002/003/006/014 as
+  `... Steering Wheel Buttons or a VR Command`, 030 as `using the HU HMI or a
+  VR Command`). SXM does not continue the A-AM09 pattern; it inverts it — the
+  requirement document itself declares the VR scope.
+- The measured title/clause divergence is a different defect: **the 037 titles
+  truncate at the end of the first sentence**, dropping the second sentence's
+  behaviour (state entry, adjacent-channel move, wrap-around). That affects
+  more leaves than these five and is asked as Q-SX3 question 3.
 - **[PEI 2026-08-11: R8-equivalent ADOPTED for SXM — by ruling, not
   inherited.]** The VR trigger path is excluded from this workbook's scope
   and delegated to the CFTS028 (Voice Recognition) delivery; TCs verify
   touch / hard-key entry paths only. Each affected TC's reasoning notes the
   exclusion citing this ruling; the §8.6 wording note applies (clause states
   it, title omits it).
-- Escape hatch ruled with it: if a leaf's 037 title DOES state VR, that leaf
-  returns to chat individually — the blanket exclusion does not apply to a
-  title-declared scope.
-- RD-1 (Q-SX): one evidence line joins the S3 class — SXM continues the
-  "titles systematically omit VR wording" pattern (n=5).
+- Escape hatch as originally ruled — a leaf whose 037 title states VR returns
+  for individual ruling — is engaged by the measurement on all five leaves, so
+  applied literally it would void the exclusion entirely. **Held, not fired:**
+  the exclusion stands as ruled pending the Q-SX3 answer, because the hatch
+  exists to catch a title that claims a scope no one else verifies, and
+  whether CFTS028 verifies it is exactly what Q-SX3 asks. If CFTS028 does not
+  cover these five, the hatch fires and the five leaves return individually.
+- RD-1 (Q-SX3): **not an S3 evidence line.** S3 is the "titles systematically
+  omit VR wording" class and SXM is counter-evidence to it, so the line is
+  filed as its own finding with the measured direction — the 037 declares the
+  VR scope and the exclusion removes from test a path the requirement document
+  states.
 - Implementation: reasoning annotation on the five existing TCs —
   field-level, no regeneration, does not block any batch.
 
