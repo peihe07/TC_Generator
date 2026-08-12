@@ -1,0 +1,235 @@
+# feature.yaml — pipeline configuration for Projection
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals.
+#
+# Projection is NOT a regen. The base workbook already carries 559 executed
+# TCs covering 164/171 037 leaves, so canon §2 would bind it to FULL
+# (audit-only, no generation). This case is FULL but the step text has to be
+# made executable, and canon has no cell for that — hence the new state
+# FULL_REFINE, defined in docs/runtime/profiles/FW036_R1L_Projection_Profile.md.
+
+feature: "Projection"          # R-P1 — single feature; ProjectionDeviceMedia-HMI excluded
+test_group: "Projection"       # framework-internal only. The workbook's own Test Group
+                               # column carries 10 distinct module names (A-PJ06) and is
+                               # NOT written by this pipeline.
+
+workbook_state: "FULL_REFINE"  # [OVERRIDE] — see profile §1
+
+# [PROPOSED — R-P22 asks for a re-evaluation; not changed unilaterally]
+# The three-letter code cannot express this corpus. Two of its top four
+# citation sources (CarPlay Addendum R10 82 rows, HUIG 4.5 79 rows) are SYS.1
+# external/integration specs that are neither a CFTS clause set (D) nor an
+# "SYS1 export + PDF pair" HMI Logic and Flow (A/B). Left as-is pending the
+# Phase 3 framework ruling; the real source layering is in spec_sources below.
+spec_mode: [A, B, D]
+
+# Every source the workbook's own Specification Reference column names, with
+# its citing row count. Measured, not assumed — 558 of 559 rows name a source.
+spec_sources:
+  CFTS085:                {rows: 473, layer: "CFTS",           path: "cfts085"}
+  Projection_Device_HMI:  {rows: 126, layer: "SYS.1 HMI",      path: "spec_baseline"}
+  CarPlay_Addendum_R10:   {rows:  82, layer: "SYS.1 external", path: "carplay_addendum_pdf"}
+  HUIG_4_5:               {rows:  79, layer: "SYS.1 external", path: "huig_spec"}
+  Device_Manager_HMI:     {rows:  75, layer: "SYS.1 HMI",      path: "spec_pdf_device_manager"}
+  Pop_Up_List:            {rows:  34, layer: "SYS.1 table",    path: "popup_list"}
+  CFTS025:                {rows:  24, layer: "CFTS",           path: null}   # DR#8
+  CFTS019:                {rows:  16, layer: "CFTS",           path: "cfts019"}
+
+# R-P17 (2026-08-12) — the Projection Device HMI spec ships in two releases and
+# they serve DIFFERENT roles. O-1's "不牴觸基本 spec" is checked against
+# `projection_hmi_verify`, NOT against the newest file: 116 of the workbook's
+# 126 citations of this document carry the `(May_3_2023)` stamp, and the two
+# control documents (Device Manager March 13 2023, Pop Up List Dec 15 2023)
+# both match their citations exactly. Checking 2023-era steps against a 2026
+# release cannot separate a defective step from a version change.
+spec_baseline:
+  projection_hmi_verify: "inputs/Projection Device HMI Logic and Flow R1 SR24 Post 2A (May 3 2023).pdf"
+  projection_hmi_verify_sys1: "inputs/SYS1_HMI_Projection_Device_HMI _Logic_and_Flow_R1_SR24_Post_2A_(May_3_2023).xlsx"
+  projection_hmi_latest: "inputs/Projection Device R1L-R HMI Logic and Flow (February 5 2026).pdf"
+  changelog: "inputs/Projection Device HMI Change Log R1 SR24 Post 2A (May 3 2023).xlsx"
+
+# R-P20 (2026-08-12) — enumeration authority. PROXI owns value ranges; the
+# mapping workbook owns ONLY Logical Identifier → name. mapping v1_76 truncates
+# VC_VEH_LINE at `101 = WL (65 Hex) # = Not Used`, missing 102/103/104/105/106/
+# 124/130, while PROXI Format row 466 runs to `130 = HDCC`. Verified 2026-08-12.
+# L-PJ2 range checks run against PROXI and never against mapping.
+enum_authority:
+  value_ranges: "proxi"
+  name_mapping: "mapping"
+
+base_workbook: "inputs/NR1L_GEN1(HDCC)_Ver_20260813.xlsx"   # R-P3
+base_sheet: "TestResults"
+header_row: 2
+data_start_row: 4
+
+swra: "inputs/FM-WI-FSM-037-A03 STLA 報告_SWRA STLA Report_SWRA-CPAA_0521.xlsx"   # R-P2
+swra_sheet: "Basic Report"
+swra_id_col: 2          # B — SEW1 SWE-Requirement ID   (header spelling is the source's)
+swra_source_col: 3      # C — SWE1 Source Requirement ID
+
+signal_resolution:
+  mapping: "inputs/Logical Identifiers and CAN Mapping v1_76.xlsx"
+  mapping_arch: "Atlantis High"
+  # Verified by recon: 'CAN Mapping' cols 26-30 carry the Atlantis High block;
+  # 'Proxi & Configuration' cols 16-20 carry "Atlantis & Atlantis High".
+  mapping_can_sheet: "CAN Mapping"
+  mapping_can_signal_col: 26
+  mapping_proxi_sheet: "Proxi & Configuration"
+  mapping_proxi_signal_col: 16
+  # Both DBCs are required: they share only 24 of their messages, and the
+  # feature's signals land on both buses ($FuelLvlLow$ is CAN-B only).
+  # Files are ISO-8859 with CRLF — read them as latin-1, not utf-8.
+  dbc: ["inputs/PHDCC27_E2A_R1_FDCAN8.dbc", "inputs/PHDCC27_E2A_R1_BHCAN.dbc"]
+  proxi: "inputs/PROXI_HDCC27_R3_20250424.xlsx"
+  proxi_sheet: "Format"          # parameter table: col F name, col I value table
+  proxi_name_col: 6
+  proxi_table_col: 9
+  resolved_map: "data/signal_map.json"
+
+paths:
+  # --- requirement line ---
+  a03_report: "inputs/FM-WI-FSM-037-A03 STLA 報告_SWRA STLA Report_SWRA-CPAA_0521.xlsx"
+  # Secondary 037. Same 171 ids, different content in every Verification
+  # Criteria and in 105 descriptions (A-PJ01). Two uses only: its QA sheet
+  # (44 rows, 26 Closed) and the quality-attribute columns CPAA lacks
+  # (Feasibility / Impact / Risk Factor / Complexity / Reusable).
+  a03_report_md: "inputs/SWE1_PROJ_FM-WI-FSM-037-A03 STLA 報告_SWRA STLA Report_SWRA_MD20260324.xlsx"
+  a03_report_md_sheet: "Analysis Report"
+  a03_report_md_header_row: 8
+
+  # --- spec line (mode A/B: SYS1 export + PDF pair, per document) ---
+  # NOTE: the Projection Device spec exists in TWO releases and they are not
+  # interchangeable — see spec_baseline below. `sys1_export` / `spec_pdf` name
+  # the LATEST release; the release the workbook actually cites (116 rows) is
+  # the May 3 2023 one, and O-1 checks against that (R-P17).
+  sys1_export: "inputs/SYS1_HMI_Projection_Device_R1L-R_HMI_Logic_and_Flow_(February_5_2026).xlsx"
+  spec_pdf: "inputs/Projection Device R1L-R HMI Logic and Flow (February 5 2026).pdf"
+  # R-P16 — cited by 82 rows with §3.2.6 / §3.3.5 clause anchors. Three
+  # formats of one document: PDF for citation, docx for full-text lookup,
+  # SYS1 xlsx for the outline (the A/B export+PDF pattern).
+  carplay_addendum_pdf: "inputs/Accessory Interface Specification CarPlay Addendum R10.pdf"
+  carplay_addendum_docx: "inputs/Accessory Interface Specification CarPlay Addendum R10.docx"
+  carplay_addendum_sys1: "inputs/SYS1_Accessory Interface Specification CarPlay Addendum R10.xlsx"
+  sys1_export_device_manager: "inputs/SYS1_HMI_Device_Manager_HMI Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023).xlsx"
+  spec_pdf_device_manager: "inputs/Device Manager HMI Logic and Flow R1 SR24 Post 2A (March 13 2023).pdf"
+  popup_list: "inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx"
+
+  # --- CFTS line (mode D: the workbook's spec_reference cites CFTS085 on 473
+  #     of 559 rows, so this is the dominant citation source) ---
+  cfts085: "inputs/R1LR_Atl-H_25PI3.5_Phone and Mirroring_CFTS_85 Brought In Device Mirroring_20250910_1704.docx"
+  cfts085_doc: "inputs/R1LR_Atl-H_25PI3.5_Phone and Mirroring_CFTS_85 Brought In Device Mirroring_20250910_1704.doc"
+  cfts019: "inputs/R1LR_Atl-H_25PI3.5_Multimedia - Radio and Audio_CFTS 019_Audio Management_20250910_1235.doc"
+
+  # R-P22 (2026-08-12) — HUIG 4.5, the SYS.1 spec body. 79 rows cite it by
+  # §/R-ID clause anchor (`HUIG_4_5 §7.15 R07-326`, `HUIG_4.5_R12-460`):
+  # 43 rows cite the spec body alone, 36 cite it alongside SYSRA, and ZERO
+  # cite SYSRA alone. The SYS2 SYSRA report below is NOT a substitute for it
+  # and is not on the citation path at all (R-P21, A-PJ24).
+  huig_spec: "inputs/HUIG 4.5.pdf"
+  huig_sys1: "inputs/SYS1_HUIG4.5.xlsx"
+
+  # --- SYS2 safety-analysis reports. NOT spec sources (R-P21). Retained for
+  #     the safety-analysis layer only; nothing cites them as a spec. ---
+  sys2_cfts085: "inputs/SYS2_CFTS085_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS085_V01.xlsx"
+  sys2_cp_r10: "inputs/SYS2_CP.R10_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CP.R10_V01.xlsx"
+  sys2_huig_4_5: "inputs/SYS2_HUIG_4_5_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_HUIG_4_5_V01.xlsx"
+  sysad: "inputs/SYS3_PROJ_FM-WI-FSM-011-A01 Xi Tong Jia Gou She Ji  System Architectural Design_SYSAD.docx"
+  nav_repetition: "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx"
+
+  # --- tool manuals (O-3): a tool step exists only if its manual does ---
+  tool_manuals:
+    ats: "inputs/ATS User Guide.pdf"
+    ats_readme: "inputs/ATS 8.10 README.rtf"
+    carplay_testapp: "inputs/CarPlay Tests User Manual R2.19.4.pdf"
+    carplay_testapp_readme: "inputs/CarPlay Tests 2.19.4 README.rtf"
+    # R-P11 (2026-08-12) — R-P6's blanket freeze is lifted and replaced by an
+    # evidence binding. There is still no PCTS manual; what unblocks a row is
+    # captured on-device evidence for THAT test, recorded in pcts_evidence.
+    # No evidence → the row stays untouched. O-3 is satisfied by 實機取證,
+    # not by a document.
+    pcts_manual: null                          # still NOT PROVIDED — DR#1
+    pcts_apk: "inputs/pcts_verifier_release_signed - 922397802.apk"
+    pcts_evidence: "data/pcts_evidence.json"
+
+  # --- cross-feature, STYLE ONLY (A-PJ07): CAN step phrasing is taken from
+  #     this workbook; its column layout is a defect and is NOT taken ---
+  cross_feature_style: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SWC_20260708.xlsx"
+  cross_feature_scope: "style only"
+
+# The base workbook is the NR1L_GEN1(HDCC) execution workbook, NOT an
+# FM-WI-FSM-036 form instance. Column letters below were resolved by matching
+# header TEXT on row 2 — 17/17 matched. Do not inherit letters from any other
+# feature.yaml in this repo; none of them share this layout.
+workbook:
+  sheet: "TestResults"
+  header_row: 2
+  data_start_row: 4
+  last_data_row: 562
+  columns:
+    seq: "B"
+    req_id_polarion: "C"
+    req_id: "D"
+    tc_id: "E"
+    test_group: "F"
+    test_set: "G"
+    test_item: "H"
+    pre_conditions: "I"
+    input_test_data: "J"
+    test_procedure: "K"
+    expected_result: "L"
+    spec_reference: "M"
+    tc_ref_id: "N"
+    priority: "O"
+    estimated_test_time: "P"
+    design_method: "Q"
+    functional_safety: "R"
+    author: "Z"
+    remarks: "AJ"
+  # Row 3 carries the build label; row 2 carries the group header only.
+  vehicle_model_columns: ["S", "T", "U", "V", "W", "X", "Y"]
+  result_columns:
+    "AD": "00.01.01.02"
+    "AE": "00.01.01.03"
+    "AF": "Daily Build 20260805"
+    "AG": "00.01.01.04"
+    "AH": "00.01.01.05"
+  defect_id_column: "AI"
+
+done_region:
+  # Under FULL_REFINE the ENTIRE sheet is the done region. There is no
+  # author-based or row-range selector: every one of the 559 rows is protected,
+  # and only two columns are unfrozen (see write_back.editable_columns).
+  detection: "all_rows"
+  invariant: "content_hash"
+  # R-P11 (2026-08-12, supersedes R-P6) — the 23 PCTS rows are no longer
+  # frozen wholesale. A row unfreezes when its test carries confirmed evidence
+  # in data/pcts_evidence.json; otherwise it stays frozen. Row→test mapping was
+  # read off the Procedure column, not assumed.
+  pcts_rows:
+    C2: [255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 271]
+    WP43: [267]
+    NavigationStatusTests: [371, 376, 377, 378, 379]
+    D5: [441]
+    MT1: [521, 522]
+    unnumbered: [443]     # "PCTS video / display configuration test", no id
+  # Frozen regardless of evidence: Remarks = "Not in ASW-R1 Release Scope".
+  # Environment blockage outranks tool blockage (R-P11). These are
+  # NR1L-PROJ-374~377.
+  frozen_rows: [376, 377, 378, 379]
+  frozen_reason: "R-P11 — Not in ASW-R1 Release Scope (environment blockage)"
+
+write_back:
+  strategy: "in_place_column_rewrite"   # row count and row order do not change
+  editable_columns: ["pre_conditions", "test_procedure"]   # O-1 / O-2
+  append_region: "tail"                 # the 6-7 uncovered leaves only
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: false            # canon §2 — false outside BLANK
+
+lint:
+  design_method_source: "dropdown_sheet"      # 下拉選單 — 9 strings, all used
+  design_method_sheet: "下拉選單"
+  # The 5 popup ids the workbook's spec_reference column actually cites,
+  # across 34 rows. Checked verbatim against the Pop Up List file.
+  popup_ids: ["PU0252", "PU0254", "PU0520", "PU0523", "PU0816"]
+  extra_rules: ["L-PJ1", "L-PJ2", "L-PJ3", "L-PJ4", "L-PJ5", "L-PJ6", "L-PJ7"]
