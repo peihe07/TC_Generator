@@ -547,3 +547,505 @@ IV Test Set values go in columns G/H on every generated row. Whether
 revision C carries a `Test Case Framework` sheet is verified at
 feature.yaml wiring (Tier 1); if present, populate it with the 14 Set
 names, else per-row columns suffice (AMFM precedent).
+
+---
+
+## Part V — Projection
+
+> Feature: `Projection`（R-P1）· workbook_state: `FULL_REFINE`
+> 起草：分析層 2026-08-12 · 依據 canon §4.1 三層框架
+> 狀態：**可簽版**，其中 §N.2 兩個 Set 為暫定（見 §N.5）
+
+---
+
+## N.0 本 Part 的特殊性
+
+Projection 是本 repo 唯一非 regen 的 feature。`NR1L_GEN1(HDCC)_Ver_20260813.xlsx`
+已有 559 列 TC、涵蓋 171 條 037 leaf 中的 164 條，並在五個 build 上執行過，
+**387/559（69%）至少有一個 build 留有 Pass/Fail 紀錄**。
+
+因此 workbook 的 `Test Group` 與 `Test Set` 兩欄依 profile §6 **全部凍結**，
+可編輯者僅 `Pre-Conditions (I)` 與 `Test procedure (K)`。
+
+**本 Part 記錄的是真實三層結構，不是 workbook 欄位的現狀。** 兩者分岔之處
+以對映表回指，不改欄。這是 `FULL_REFINE` 的必然代價；後人不得將分岔誤讀為
+「框架未清理」。
+
+---
+
+## N.1 Layer 1 — Test Group
+
+**單值：`Projection`**
+
+= spec 文件標題、= R-P1 之 feature 名，canon §4.1.1 無判斷餘地。
+
+workbook `Test Group` 欄現有 10 值，為繼受之凍結產物，**係三個維度被壓進
+一欄**（A-PJ06）：
+
+| 混疊維度 | 欄內值 | 列數 |
+|---|---|---|
+| 功能域 | Device Manager / Audio Management / Media Player / GPS / Touch | 192 / 31 / 23 / 30 / 57 |
+| 投屏協定（實為軸，見 §N.4） | Carplay Wired and Wireless / Android Auto Wired and Wireless | 60 / 58 |
+| 傳輸（實為軸，見 §N.4） | Bluetooth / WiFi | 53 / 51 |
+| 硬體特性標籤 | SSE / ECNR | 4 |
+
+10 × 18 = 180 格僅 46 格非零，稀疏度即維度混疊之結果。**不改欄**。
+
+---
+
+## N.2 Layer 2 — Test Set
+
+### 判準（合併版）
+
+單一指標皆不足以判定。以下三者**滿足其一**即為乾淨叢集：
+
+1. **RD 側集中** — 037 Sub Categorization 主導比例 ≥ 67%
+2. **軸解釋** — 跨 Test Group 之分布可由 §N.4 之軸完全解釋
+3. **Layer 3 同父章或同入口** — R-P24（同父章）或 R-P25（跨父章但共享 UI 入口）
+
+判準存在的理由是 `Connection`：RD 側 57%、Layer 3 主導章 65%，兩個單一指標
+皆不及格，但跨 TG 全由傳輸軸解釋、餘 19 列全在同父章 `.11` 之下——它是乾淨的。
+單用 RD 側指標會誤殺它，單用 TC 側分布會誤放 `HMI Display`。
+
+### 判定表
+
+| 判定 | Test Set | 列 | 依據 |
+|---|---|---|---|
+| ✅ | Knob | 42 | L3 100% `1.3.2.10.1` |
+| ✅ | Voice Recognition | 22 | L3 100% `1.3.2.7` |
+| ✅ | Day/Night Mode | 22 | L3 100% |
+| ✅ | Cluster Navigation | 12 | L3 100% |
+| ✅ | Wireless Coexistence | 4 | L3 100% `1.3.2.11.4` |
+| ✅ | Disconnection | 49 | 排除版本章後 L3 87% `1.3.2.11.5` |
+| ✅ | Projection Apps | 12 | RD 側 83% |
+| ✅ | Pairing | 12 | L3 80% `1.3.2.11.2` |
+| ✅ | Projection Detection | 49 | 跨 1 TG |
+| ✅ | USB Device | 4 | 跨 1 TG |
+| ✅ | Projection Display | 5 | L3 67%（小樣本） |
+| ✅ | **Connection** | 61 | 傳輸軸 + 同父章 `.11`（R-P24） |
+| ✅ | **Projection Launch** | 65 | 86% 集中 Device Manager；逸出 9 列中 6 列由傳輸軸解釋，Media Player 3 列（4.6%）為邊界個案 |
+| ✅ | **Device Manager** | 54 | 共享 UI 入口 96%（52/54）；18 列落 `.11.3` 係 spec 依作用歸章（R-P25） |
+| ✅ | Vehicle Signal Forwarding | 22 | 同父章 Location Data 樹 `.10.2`/`.10.3`（R-P24） |
+| ⬛ | **Performance** | 10 | **橫切狀態叢集** |
+| ✅ | **Projection Audio** | 37 | **乾淨**（R-P33）；涵蓋 97%，CFTS019 `1.3.3.1 Source Priorities` 16 列跨 1 Set + Addendum `3.2.7.2 Audio` 樹 12 列跨 1 Set |
+| ❌ | **HMI Display** | 76 | **確定綑綁**（R-P26）；雙來源同向、合併涵蓋 64%，見 §N.2 子叢集 |
+
+### `Performance` — 橫切，不適用 §4.1.3
+
+L3 100% 對到 `1.3.2.11.4 Active Wireless Projection`。**它驗的是「投屏進行中」
+這個狀態，而非某個功能**——這解釋了為何它散在 WiFi / Media Player /
+Audio Management / Touch 四個 TG 而協定完全一致。
+
+它與其餘 17 個 Set 不同層。**§4.1.3 之「同 Test Set 應共享 setup 與 UI 入口」
+健康判準對它不適用**，不得據此判其為綑綁。profile 以 `[ADD]` 承接此例外。
+
+### `HMI Display` — **確定綑綁**（R-P26），三個子叢集
+
+```
+44 列  協定軸（CarPlay 22 + AA 22 × Wired+Wireless）
+21 列  功能域（Touch 13 + Media Player 8）   ← 42% 逸出，軸解釋不掉
+11 列  傳輸（Bluetooth × Wireless）
+```
+
+判定門檻即 **42%（HMI Display）vs 4.6%（Projection Launch）**——逸出比例是
+綑綁與邊界個案的分界線。
+
+**R-P26（2026-08-12）將本項由暫定收為確定。** 依據為兩份互相獨立的樣本同向：
+CFTS085 側 26 列、主導章 38%、跨 3 章節；HUIG 側 30 列、散在 8 子章、跨 4 個
+頂層章（`7 Video` / `9 Input devices` / `13 Application status` /
+`15 Multi-Display`）。合併涵蓋 49/76 = **64%**，已過半。子叢集拆解維持三分。
+
+子叢集以列號範圍記錄於本 Part，**`Test Set` 欄維持 `HMI Display` 不動**（凍結）。
+
+---
+
+## N.3 Layer 3 — spec 章節分組
+
+**不寫入 workbook**（canon §4.1.5）。推導來源為 workbook 自身的
+`Specification Reference` 欄——558/559 列具名引用，比人工分章可靠。
+
+### 粒度：五碼（R-P23）
+
+四碼會把不同能力壓成一格。兩處必須展開：
+
+```
+1.3.2.11 Wireless Projection (120)
+   .11.2 Pairing to Wireless          27 → Connection 19, Pairing 8
+   .11.3 Connecting to Wireless       55 → Connection 35, Device Manager 18
+   .11.4 Active Wireless              18 → Performance 10, Wireless Coexistence 4, Projection Launch 4
+   .11.5 Disconnecting from Wireless  20 → Disconnection 20 (100%)
+
+1.3.2.10 Vehicle/Location Data (88)
+   .10.1 Vehicle Sensor Data          71 → Knob 42, Day/Night Mode 22
+   .10.2/.3 Location Data             17 → Vehicle Signal Forwarding 100%
+```
+
+四碼相鄰性仍用於 R-P24 之同父章判定。
+
+### 雙閘門結構（R-P31 / R-P32）—— 一半機械、一半人工
+
+Layer 3 的推導單位須通過**兩道互不涵蓋**的閘門：
+
+```
+推導單位 → [結構閘門 R-P29]  → [語意閘門 R-P23 / R-P32] → 進入同構檢驗
+            跨 Set 數 ≥ 6 排除     界線是否沿功能切分
+            機械可算，每輪自動跑    人工讀標題，逐案登記理由
+```
+
+| 閘門 | 量什麼 | 判定方式 | 裁決 |
+|---|---|---|---|
+| 結構 | 界線夠不夠細 | 機械可算 | R-P29 |
+| 語意 | 界線切的方向是否為功能 | 人工判定 | R-P23 / R-P32 |
+
+**兩者不得合併，不得以其一涵蓋其二。** 實測證明互不涵蓋：version-track 五章
+跨 Set 數為 4/1/1/2/1，**全數通過結構閘門**，只有語意閘門攔得住；SYSAD
+`4.6.1`（跨 10 Set）則只有結構閘門抓得到。
+
+> ▎**語意閘門不得自動化**（R-P32）。「標題含 release 標記者排除」之類的字串
+> ▎啟發式會誤傷標題含版本標記的真功能章節，且無法涵蓋未預期的非功能切分
+> ▎維度。一律人工閱讀，逐案登記**章節 id、列數、切分維度、為何該維度非功能**。
+
+後人若見語意閘門「還沒自動化」，那不是待補的缺口，是刻意的設計。
+
+**已登記之語意性排除**：
+
+| 章節 | 列數 | 切分維度 | 為何非功能 |
+|---|---|---|---|
+| CFTS085 `1.3.2.14` ~ `1.3.2.18` | 115 | 時間／release（`SR20+` / `SR21+` / `SR22+`） | 按 release 收錄該版新增之認證需求，橫跨功能是構造使然 |
+
+**鑑別力對照**（說明兩閘門各自的必要性）：
+
+| 推導單位 | 服務列 | 跨 Set | 結構閘門 | 語意閘門 |
+|---|---|---|---|---|
+| CFTS019 `1.3.3.1 Source Priorities` | 16 | **1** | 通過 | 通過 |
+| CFTS085 `1.3.2.14 SR20+ …Changes` | 85 | 4 | **通過** | **排除** |
+| SYSAD `NRL-154702 4.6.1 需求對映` | 190 | **10** | **排除** | — |
+
+第一列與第三列的鑑別力相差三個數量級。**一個 clause 服務一個 Set 的全部
+相關列，就是 Layer 3 該有的形狀。**
+
+
+### 版本沿革章節排除（R-P23）
+
+`1.3.2.14` ~ `1.3.2.18`（115 列 = CFTS085 引用之 24%）按 release 切分，
+必然橫跨功能，**排除於 Layer 2 同構檢驗之外**，另記為 `version-track`。
+
+> ▎ 排除僅在框架推導階段生效。這 115 列的 spec 核對對象仍是那些版本章節。
+> ▎「排除於同構檢驗」不等於「沒有 spec 依據」。
+
+### 涵蓋率
+
+> ▎**本 Part 之引用計數一律以「列」為單位**，非以引用行為單位（A-PJ27）。
+
+| | 列數 | 佔比 |
+|---|---|---|
+| 引 CFTS085 → Layer 3 已解 | 473 | 85% |
+| 未引 CFTS085 → Layer 3 未解 | 85 | 15% |
+
+未解 85 列之來源（**逐列計數**，單列可多引）：
+
+| 來源 | 列數 | 佔 85 列 |
+|---|---|---|
+| **SYS3_PROJ** | **71** | **84%** |
+| CarPlay Addendum | 44 | 52% |
+| HUIG | 39 | 46% |
+| Projection HMI | 11 | 13% |
+| CFTS019 | 10 | 12% |
+
+原稿此處作「HUIG 75」，係逐引用行計數被當作逐列使用；巧合在於 HUIG 的行計數
+75 與 `HMI Display` 50 + `Projection Audio` 25 之列數和相同，使誤用表面自洽
+（A-PJ27）。已依實測更正。
+
+---
+
+## N.4 軸（§8.3 sibling 軸，非層）
+
+| 軸 | 值 | 分布 |
+|---|---|---|
+| 投屏協定 | CarPlay 212 / Android Auto 198 / 兩者 106 / iPod 5 / 無 38 | 抽自 Test Item + Test Group |
+| 傳輸 | Wired / Wireless / 無 | 獨立於協定運作 |
+
+傳輸為獨立軸之證據：`Connection` 固定 `CarPlay+AndroidAuto × Wireless` 那格
+16 列，協定變數鎖死，仍分岔為 Bluetooth 13 / WiFi 3。
+
+`SSE / ECNR`（4 列）登記為**硬體特性標籤**，非軸非層。
+
+---
+
+## N.5 暫定項與待辦
+
+### 現況（2026-08-12，HUIG 與 SYSAD 推導後）
+
+| Set | 總列 | Layer 3 涵蓋 | 判定 |
+|---|---|---|---|
+| HMI Display | 76 | 49（64%，CFTS085 26 + HUIG 30） | ❌ **確定綑綁**（R-P26） |
+| Projection Audio | 37 | **36（97%）**，四來源併用 | ✅ **乾淨**（R-P33） |
+
+**兩者皆已定案，§N.2 無暫定項。** `Projection Audio` 的判定翻過三次
+（暫定乾淨 → 存疑 → 乾淨），三次都不是改判準而是補證據；真正結案的是
+CFTS019 那 16 列落在單一章節，而該來源被 SYSAD 的假集中遮蔽了三輪（A-PJ29）。
+
+**門檻紀律（A-PJ30）**：定案與暫定的分界在**絕對列數**，非百分比。
+`Projection Audio` 暫定時 23 列、定案時 36 列；當初 62% 與 `HMI Display`
+的 64% 只差 2 個百分點，實質差別是 23 列對 49 列。
+
+### 待辦 —— **全數完成（2026-08-12）**
+
+1. ~~HUIG 4.5 Layer 3 推導~~ —— 完成，見 §N.7
+2. ~~SYSAD 推導（R-P28）~~ —— 完成但未能結案（假集中），見 §N.8
+3. ~~`Projection Audio` 結案來源改指~~ —— R-P30，改為四來源併用
+4. ~~CFTS019 / CarPlay Addendum 推導~~ —— 完成，見 §N.9
+5. ~~複驗 §N.2 並關閉 A-PJ06~~ —— **R-P33 定案，A-PJ06 已關閉**
+
+Layer 2 定案：**16 乾淨 + 1 橫切（`Performance`）+ 1 綑綁（`HMI Display`）**。
+
+尚未推導者：Projection HMI（11 列）、Device Manager HMI（75 列）。兩者皆不
+影響 Layer 2 判定，屬 Phase 4 需要時再跑。
+
+---
+
+## N.6 對映表 — 真實三層 ↔ 凍結欄
+
+| 真實結構 | workbook 欄 | 處置 |
+|---|---|---|
+| Layer 1 = `Projection` | `Test Group` 10 值 | 不改欄；混疊維度記於 §N.1 |
+| Layer 2 = **16 乾淨 + 1 橫切 + 1 綑綁** | `Test Set` 18 值 | 不改欄；`HMI Display` 子叢集記於 §N.2 |
+| Layer 3 = CFTS085 五碼 + 其餘來源 | 無對應欄 | canon §4.1.5，本就不寫入 |
+| 協定軸 / 傳輸軸 | 混在 `Test Group` | 不改欄；記於 §N.4 |
+
+**row 562**（`SWE1-PROJ-227` 殘樁，九個 TC 內容欄全空）依 R-P19 刪除，
+資料列 559 → 558。不屬框架議題。
+
+---
+
+## N.7 執行層附註 — HUIG Layer 3 推導結果（2026-08-12）
+
+> 本節由執行層於 Part N 落檔同日追加，記錄 §N.5 待辦第 1 項的執行結果。
+> **§N.2 的兩個 ⚠️ 判定與 §N.5 的優先順序均受此節影響，待分析層複核後更新。**
+
+### 推導方法（與 CFTS085 不同）
+
+HUIG 是 SYS.1 層產物，`inputs/HUIG 4.5.pdf` 為網頁列印版：**15 頁、無 PDF
+outline**，但有完整文字層（389,388 字元、1,926 個 R-ID）。CFTS085 的
+`{clause id}` 錨點法不適用。
+
+改採 **R-ID 前綴為章號權威**：`R06-010` → 第 6 章。純以行內標題推導時章號
+一致性僅 81%（前幾章的圖說被誤判為標題）；改以 R-ID 前綴約束後，
+**1,028 個 R-ID 的章號一致性達 100%**。子章標題僅在章號相符時採用，否則
+退回章層。結果存於 `features/projection/data/huig_sections.json`。
+
+workbook 的 HUIG 引用解析：**62 列命中**，未解 R-ID 僅 `R10-250` 一個。
+
+### 對兩個暫定判定的影響
+
+**`HMI Display` —— HUIG 證據使「綑綁」判定更強，非推翻。** 其 30 列 HUIG
+引用散在 **8 個子章、橫跨 4 個頂層章**：
+
+```
+13.3 Accessing media data 4 · 7 Video 3 · 7.8.2 Reported screen density 3
+7.8.1 Codec resolution support 3 · 9.1 Touchscreen 3 · 13.4 Accessing Telephony data 3
+7.10 Video focus 3 · 15.2 Video Management 3
+→ 頂層章：7 Video / 9 Input devices / 13 Application status and data / 15 Multi-Display
+```
+
+CFTS085 樣本說「3 個章節、主導 38%」，HUIG 樣本說「8 個子章、4 個頂層章」。
+兩份互相獨立的證據同向。
+
+**`Projection Audio` —— 由「暫定乾淨」轉為存疑。** 11 列 HUIG 引用散在
+3 個頂層章：`6 Bluetooth`(5)、`8.2.2 Media stream`(3)、`10.x ASR`(3)。加上
+CFTS085 側的 50% / 3 章節，兩份樣本皆不支持「乾淨」。
+
+### 合併涵蓋率（CFTS085 + HUIG）
+
+| Test Set | 總列 | CFTS085 | HUIG | 合併 | 涵蓋率 |
+|---|---|---|---|---|---|
+| HMI Display | 76 | 26 | 30 | 49 | **64%**（仍未解 27） |
+| Projection Audio | 37 | 12 | 11 | 23 | **62%**（仍未解 14） |
+| Projection Display | 5 | 3 | 0 | 3 | 60% |
+| Pairing | 12 | 10 | 0 | 10 | 83% |
+| Vehicle Signal Forwarding | 22 | 21 | 0 | 21 | 95% |
+| Connection | 61 | 60 | 0 | 60 | 98% |
+| 其餘 12 個 Set | — | — | — | — | **100%** |
+
+### ⚠️ §N.3 與 §N.5 的一個數字需要修正
+
+§N.3 列「未解 85 列之來源：**HUIG 75** / SYS3_PROJ 71 / …」，§N.5 稱
+「兩者未解的 75 列**幾乎全部引 HUIG**」。實測不支持：
+
+| 來源 | 出現於 85 列中 |
+|---|---|
+| **SYS3_PROJ** | **71（84%）** |
+| CarPlay Addendum | 44（52%） |
+| **HUIG** | **39（46%）** |
+| Projection HMI | 11 |
+| CFTS019 | 10 |
+
+逐 Set 看更清楚：`HMI Display` 未解 50 列中 SYS3_PROJ 佔 **41（82%）**、HUIG
+僅 23（46%）；`Projection Audio` 未解 25 列中 SYS3_PROJ 佔 **25（100%）**、
+HUIG 僅 12。「75」應是 `HMI Display 50 + Projection Audio 25` 這個和被誤植
+到 HUIG 一欄。
+
+**因此 §N.5 的待辦順序建議調整**：最大的 Layer 3 缺口是
+`SYS3_PROJ_FM-WI-FSM-011-A01 SYSAD`（71 列），不是 HUIG。HUIG 已推導完畢仍
+留下 27 + 14 列未解，補齊它們要靠 SYSAD 與 CarPlay Addendum。
+此項未自行改寫 §N.5，待分析層裁定。
+
+---
+
+## N.8 執行層附註 — SYSAD Layer 3 推導結果（2026-08-12，R-P28）
+
+> 本節由執行層追加，記錄 R-P28 指定之 SYSAD 優先推導的執行結果。
+> **結論：機械上成功，但未能結案 `Projection Audio`。** 待分析層複核。
+
+### 推導方法（先探測，未預設）
+
+依 R-P28 之提醒，先探測再決定方法。SYSAD 為 `.docx`，探測結果：
+
+- **無 heading 樣式**（pStyle 僅 `a1` / `af5` 兩種匿名樣式，heading-styled
+  段落數 = 0），故 Word outline 法不可用
+- **有純文字 outline**：`4.2.1 設計目標與需求對映 …` 形式，共 82 個章節標題
+- `NRL-xxxxxx` 內嵌於標題段落，形式為
+  `NR1L/NRL-154702NRL-154702 - 4.6.1 設計目標與需求對映`
+
+故採**章節追蹤法**（與 CFTS085 同類），**未套用 HUIG 的 R-ID 前綴法**。
+
+結果：254 個 NRL id 全數對映至章節；workbook 引 SYSAD 之 **500 列中解出 498
+列**，未解 NRL id 26 個。存於 `features/projection/data/sysad_sections.json`。
+
+### ⚠️ 但 SYSAD 不能用於同構檢驗
+
+**SYSAD 的 `NRL-xxxxxx` 是章節 id，一節一個，不是需求 id。** 三份來源的
+id 性質不同類：
+
+| 來源 | id 性質 | 粒度 |
+|---|---|---|
+| CFTS085 | 需求條款 id | 85 個 id / 473 列 |
+| HUIG | 需求 id（前綴即章號） | 1,028 個 id 可用 / 62 列 |
+| **SYSAD** | **章節 id** | **99 個 id / 500 列** |
+
+鑑別力實測 —— 單一個 `NRL-154702`（`4.6.1 設計目標與需求對映`）服務
+**190 列、橫跨 10 個 Test Set**，其中含 `HMI Display` 全部 67 列與
+`Projection Audio` 全部 37 列。前 5 個 id 覆蓋 1,085 次引用中的 391 次。
+
+一個橫跨 10 個 Set 的章節無法用來區分 Set。且 `4.6` 為
+「車輛狀態與導航數據」，與 `HMI Display` / `Projection Audio` 語意亦不相符
+——`設計目標與需求對映` 是需求對映表，表內列舉大量跨領域需求。
+
+### 與 §N.3 version-track 的關係：同類、反向
+
+| | version-track（A-PJ26） | 需求對映表（A-PJ29） |
+|---|---|---|
+| 造成 | **假分散** —— 乾淨叢集看似綑綁 | **假集中** —— 綑綁看似乾淨 |
+| 若不處理 | 誤殺 `Disconnection` | 誤放 `HMI Display` |
+
+**假集中比假分散危險。** 假分散讓人多切一刀，成本可回收；假集中讓綑綁通過
+檢驗，缺陷留在框架裡。若逕採 SYSAD 結果，`HMI Display` 的 SYSAD 側同構度是
+**67/67 = 100% 單一章節**，正好與 R-P26 的定案相反。
+
+### 對 R-P28 前提的影響
+
+R-P28 的前提為「`Projection Audio` 剩餘 14 列的 Layer 3 只可能來自 SYSAD ——
+它是唯一能結案的來源」。**此前提不成立**：SYSAD 對該 Set 的全部證據落在一個
+橫跨 10 Set 的對映表章節，等同無證據。排除該型章節後，SYSAD 對兩個爭議 Set
+的剩餘證據為 `Projection Audio` 4 列（`4.7.2`）、`HMI Display` 0 列。
+
+**`Projection Audio` 的結案來源需重新指定**；CarPlay Addendum（44 列）為
+下一個候選。詳見 A-PJ29，**未自行改寫 §N.5 之待辦順序**，待分析層裁定。
+
+---
+
+## N.9 執行層附註 — R-P29 閘門實測 · CFTS019 / CarPlay Addendum 推導（2026-08-12）
+
+> 本節由執行層追加。**§N.2 的 `Projection Audio` ⚠️ 已具備結案條件，
+> 但未自行改寫，待分析層裁定。**
+
+### R-P29 鑑別力閘門 — 逐 id 實測，未預設黑名單
+
+門檻：單一推導單位橫跨 Test Set 數 ≥ 6 者排除。五份來源全部逐一計算：
+
+| 來源 | 推導單位數 | 排除 | 觸及列數 |
+|---|---|---|---|
+| CFTS085（五碼章節） | 25 | **0** | 0 |
+| HUIG（章節） | 26 | **0** | 0 |
+| CarPlay Addendum（章節） | 18 | **0** | 0 |
+| CFTS019（章節） | 1 | **0** | 0 |
+| **SYSAD（章節）** | 34 | **2** | 277 |
+
+落入者僅 SYSAD 兩章：`4.6.1 設計目標與需求對映`（197 列 / 跨 **10** Set）、
+`4.2.1 設計目標與需求對映`（80 列 / 跨 **6** Set）。
+
+**通則優於黑名單，當場證實**：執行端先前提議排除全部三個
+`設計目標與需求對映` 型章節，實為過度排除 —— 第三個 `4.5.1`（11 列 / 跨
+3 Set）通過閘門且確有鑑別力。排除清單存於
+`features/projection/data/layer3_gate.json`。
+
+### ⚠️ 閘門不涵蓋 §N.3 的 version-track
+
+R-P29 立論「A-PJ26 與 A-PJ29 是同一缺陷的兩種表現」**不成立**。在 R-P23
+裁定的五碼粒度下，version-track 五章全部**通過**閘門（`1.3.2.14` 跨 4 Set、
+其餘 1~2 Set，皆 < 6）。
+
+兩者是不同機制：R-P29 量的是「界線夠不夠細」（結構、機械可算），R-P23 排除
+的是「界線沿著時間而非功能切」（語意、須讀標題）。version-track 確實有鑑別
+力，只是切的方向不對。
+
+**§N.3 的 version-track 排除條款須獨立保留**，不得因 R-P29 上線而撤下 ——
+撤下則 `Disconnection` 等會重新被誤判（主導章佔比由 87% 掉回 41%）。
+詳見 A-PJ31。
+
+### CFTS019 推導（R-P30，先跑）
+
+`.doc` 二進位格式，以 `textutil` 轉純文字後採章節追蹤法（與 CFTS085 同類）。
+234 個章節標題、1,965 個 clause 對映。
+
+workbook 僅引用 **2 個 clause id**（`4866445` / `4866450`），16 列全屬
+`Projection Audio`，且**兩者落在同一章節**：
+
+```
+CFTS019 1.3.3.1  Source Priorities   16 列 / 跨 1 個 Test Set
+```
+
+R-P30 的語意判斷完全命中 —— CFTS019 是 Audio Management 的 CFTS，
+`Source Priorities` 正是 `Projection Audio` 的核心議題。
+
+### CarPlay Addendum 推導
+
+**方法須另擇**：`.docx` 的章節編號存於 `numPr`，文字層取不到（僅 49 個可解
+標題，`3.2.6` 等全部落空）。改用 **PDF 的 320 項 outline**，得 310 個帶編號
+章節。97 列引用解出 **72 列，未解 id 0 個**。
+
+這是第三種方法。三份來源各不相同，皆先探測後決定：
+
+| 來源 | 格式 | 方法 |
+|---|---|---|
+| CFTS085 | `.docx` | 內文 `{clause id}` 錨點 + 章節追蹤 |
+| HUIG | `.pdf`（網頁列印版，無 outline） | **R-ID 前綴為章號權威** |
+| SYSAD | `.docx`（無 heading 樣式） | 純文字 outline + 章節追蹤 |
+| CFTS019 | `.doc` | `textutil` 轉檔 + 章節追蹤 |
+| CarPlay Addendum | `.pdf` | **PDF outline**（docx 不可用） |
+
+### `Projection Audio` — 結案條件已具備
+
+排除 SYSAD 後，Layer 3 涵蓋 **36/37 = 97%**（唯一無證據者為 row 521，屬
+PCTS/MT1 列）。章節分布：
+
+| 來源 · 章節 | 列數 | 跨 Set |
+|---|---|---|
+| **CFTS019 `1.3.3.1 Source Priorities`** | **16** | 1 |
+| Addendum `3.2.7.2 Audio` 樹（Mixing 5 / Ducking 2 / Main Audio 4 支 / Audio 1） | 12 | 1 |
+| Addendum `3.3.3 Resource Management` | 8 | 1 |
+| HUIG `6 Bluetooth` | 5 | 2 |
+| HUIG `8.2.2 Media stream` | 3 | 1 |
+| HUIG `10.x ASR` | 3 | 2 |
+
+依 R-P24（同父章）收斂後，**CFTS019 `1.3.3.1` 16 列 + Addendum `3.2.7.2`
+12 列 = 28 列集中在兩個語意明確的音訊章節**，跨 Set 數皆為 1。
+
+先前判為存疑的依據（CFTS085 側 50%/3 章節、HUIG 側 3 個頂層章）是在
+**32% 樣本**上作出的；現在涵蓋率 97%，且主要來源高度集中。
+
+**建議**：`Projection Audio` 由 ⚠️ 收為 ✅（乾淨）。依 A-PJ30 之門檻檢查，
+絕對列數為 36/37，遠高於當初 23/37 的暫定水位。**未自行改寫 §N.2，待裁。**
+
+若此項收為 ✅，**A-PJ06 即可關閉**，Layer 2 定案為
+**16 乾淨 + 1 橫切（Performance）+ 1 綑綁（HMI Display）**。
