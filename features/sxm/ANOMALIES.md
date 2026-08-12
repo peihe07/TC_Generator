@@ -523,7 +523,7 @@ RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
    configuration gate, the same shape as AMFM's `$AM_Presence$` leaves, and it
    has no leaf. If any of the 14 should have one, it is this.
 
-## [A-SX19] Five clauses carry a VR trigger path their 037 titles also declare — RESOLVED: R8-equivalent adopted, premise amended (2026-08-11)
+## [A-SX19] Five clauses carry a VR trigger path their 037 titles also declare — RESOLVED: R8-equivalent adopted, premise amended (2026-08-11); exclusion RE-RULED with the hatch known to have fired (2026-08-12)
 
 - Five leaves' cited clauses include a Voice Recognition trigger path
   ("or a VR Command" class wording): leaves 002, 003, 006, 014, 030.
@@ -558,6 +558,49 @@ RD-1 (Q-SX, allocation-policy wording, not an assertion of omission):
   states.
 - Implementation: reasoning annotation on the five existing TCs —
   field-level, no regeneration, does not block any batch.
+
+**Escape-hatch measurement and re-ruling (2026-08-12) — DECISIONS Amendment
+11.** The hatch was written to catch an exception; measurement shows it
+catches the whole rule.
+
+| leaf | 037 title carries `or a VR Command` |
+|---|---|
+| SWE-RA-SXM-002 | yes (`… Steering Wheel Buttons or a VR Command`) |
+| SWE-RA-SXM-003 | yes (`… Steering Wheel Buttons or a VR Command`) |
+| SWE-RA-SXM-006 | yes (`… Steering Wheel Buttons or a VR Command`) |
+| SWE-RA-SXM-014 | yes (`… Steering Wheel Buttons or a VR Command`) |
+| SWE-RA-SXM-030 | yes (`using the HU HMI or a VR Command`) |
+| | **5 / 5 — the hatch fires on every leaf it governs** |
+
+Read literally, a hatch that fires 5/5 does not carve an exception out of the
+exclusion; it swallows the exclusion. The five rows therefore shipped under a
+blanket exclusion that, on the hatch's own terms, should not have applied to
+them. That is the finding — not a wrong answer, a rule that was never
+actually tested against its own trigger.
+
+**Re-ruled (Pei, 2026-08-12): the exclusion STANDS, now made knowingly.** The
+basis is unchanged and the new evidence does not overturn it — CFTS028 owns
+the VR requirements, and authoring VR test cases here risks double coverage of
+another delivery's scope. What the re-ruling changes is the record and the
+escalation, not the shipped rows:
+
+1. The hatch is recorded as fired **and considered**, so the exclusion is a
+   decision rather than an unchecked default.
+2. **Q-SX3 is raised to class-2 EXPEDITED.** Its answer can change delivered
+   content — the A-SX18 shape — so it is not a wording item and does not wait
+   with the class-3 questions.
+3. If upstream answers that CFTS028 does not cover these paths, the VR path is
+   verified nowhere and the five rows gain a VR test case. The rework handle
+   is `grep '\[A-SX19\]' features/sxm/generated/` — five leaves, no
+   re-derivation, ER and reasoning scoped to those five.
+
+Two label corrections filed with the re-ruling: `RD1_questions_sxm.md` Q-SX3
+cited `[A-SX10]` for the VR markers, which is stale — `A-SX10` is the 082/083
+title finding and the VR anomaly is this entry, `A-SX19` (the renumbering is
+recorded in Amendment 7's cross-reference correction). And Q-SX3's third
+question — the 037 titles truncate at the end of the first sentence, which
+affects more leaves than these five — is a systemic-class finding, promoted to
+the **S class** in the submission draft, the mirror of AMFM S3.
 
 
 ## [A-SX15] Two sections state the favorites delete options, and §1.5.9.2's title does not match its content — REGISTERED (2026-08-11)
@@ -823,11 +866,17 @@ exactly what is in the workbook. Nothing to apply before write-back.
 
 ## [A-SX22] Configuration-gate clauses are unallocated document-wide — REGISTERED (2026-08-11)
 
-Third instance, so recording it as a class rather than per-clause.
+Second instance of the shape, recorded as a class rather than per-clause
+because the disposition question is one ruling, not one per clause. A sweep of
+`data/unallocated_clauses.json` for configuration-gate wording returns these
+two and no others, so the class is closed at two as of 2026-08-12. (The
+earlier "third instance" wording counted the B8 bus-signal clauses; those are
+a different shape — they share the disposition question below, not the gate
+structure — and are recorded with B8.)
 
 | clause | section | gate | consequence when the gate fires |
 |---|---|---|---|
-| 4872750 | 1.5 | source presence | flagged in B5 as the one §1.5 clause worth asking about |
+| 4872750 | 1.5 | `SXM chip is equipped` — source presence | "HU shall provide SXM related display and functionality if SXM chip is equipped"; flagged in B5 as the one §1.5 clause worth asking about |
 | 4872960 | 1.5.16 | `$Country_Code$` = [Canada] | the traffic and weather Jump function is not displayed at all |
 
 Both are unallocated, both fail R10-2 (b) for the same structural reason: every
@@ -1003,7 +1052,7 @@ for a sweep of completeness-style ERs before delivery.
 
 It states no HU behaviour. B11 and B12 met the same content unallocated, where
 the disposition was simply "not testable as written". Here it has a leaf, so
-102-of-102-style coverage requires a row: the delivery cannot silently drop an
+the 202/202 coverage claim requires a row: the delivery cannot silently drop an
 allocated leaf.
 
 Written to the maximum the clause supports: pressing SAT with the subscription
@@ -1021,19 +1070,42 @@ carried by leaf 176 (`4873289`, the no-subscription message and its contents)?
 The two are adjacent and 176 is the substantive one.
 
 
-## [A-SX25] §1.5.21.2 states 18 requirements with no acceptance criterion — REGISTERED (2026-08-11)
+## [A-SX25] §1.5.21.2 states 16 of its 20 requirements with no acceptance criterion — REGISTERED (2026-08-11); counts re-derived leaf-by-leaf (2026-08-12)
 
 The Performance section is qualitatively different from the rest of CFTS024.
-Of its 20 leaves, **18 state a property with no threshold, tolerance or
-measurement method**, and only two carry a number.
+Of its 20 leaves, **16 state a property with no threshold, tolerance or
+measurement method**, 3 are partial, and exactly 1 is fully determinate.
 
-| shape | leaves | what is missing |
-|---|---|---|
-| "without user-perceivable delay" | 188, 189, 190, 191 | no time threshold; "perceivable" is left to the observer |
-| defect-absence over an unbounded window ("shall not flicker", "shall not freeze", "no black screens at any time", "only fully rendered") | 192, 193, 194, 195, 196 | no observation duration, no sampling rate, no operation set |
-| "proper" / "consistent" / "harmonized" relative to other HMI elements | 199, 200, 201, 202 | no tolerance in pixels, ratio or colour distance; no list of theme elements |
-| intent prose and design statements | 183, 185, 186 | 183 has no `shall`; 186's modal is `should`; 185 quantifies over "any radio function" |
-| **has a number** | **197, 198** | — variance not greater than 500 ms, stated in the clause's own NOTE |
+Counts re-derived clause by clause on 2026-08-12. The first pass said "18 with
+no criterion, 2 with a number", which was wrong in two directions that partly
+cancelled: leaves **184 and 187 were in no row at all**, and the 2 numeric
+leaves (197, 198) were left inside the 18 they were supposed to be excluded
+from. Every leaf of §1.5.21.2 now appears in exactly one row below, and the
+rows sum to 20.
+
+| criterion | shape | leaves | n | what is missing |
+|---|---|---|---:|---|
+| **usable** | concrete behaviour, determinate pass condition | 184 | 1 | nothing — at boot the HU shows the last known profile / presets / subscription until updated; directly observable |
+| **partial** | bound stated, measurement method absent | 197, 198 | 2 | the NOTE fixes variance ≤ 500 ms, but not the operation set variance is computed over, the sample count, or the measurement point |
+| **partial** | threshold named but never valued | 187 | 1 | the buffering notice is due after `T<OD Response>`, and no clause in the section gives that parameter a value — 186 says only that it is tunable |
+| none | "without user-perceivable delay" | 188, 189, 190, 191 | 4 | no time threshold; "perceivable" is left to the observer |
+| none | defect-absence over an unbounded window ("shall not flicker", "shall not freeze", "no black screens at any time", "only fully rendered", "no intermediate screens") | 192, 193, 194, 195, 196 | 5 | no observation duration, no sampling rate, no operation set |
+| none | "proper" / "consistent" / "harmonized" relative to other HMI elements | 199, 200, 201, 202 | 4 | no tolerance in pixels, ratio or colour distance; no list of theme elements |
+| none | intent prose and design statements | 183, 185, 186 | 3 | 183 is typed `Description` and has no `shall`; 185 quantifies over "any radio function"; 186's modal is `should` and its subject is implementation structure |
+| | | **20 leaves** | **20** | **usable 1 · partial 3 · none 16** |
+
+**On 197 and 198 — a number is not an acceptance criterion.** They are the only
+two clauses carrying a value, and it was tempting to count them as satisfied.
+They are not: "no variance greater than 500 ms **across all user operations**"
+fixes the bound and leaves the population undefined. Variance over which
+operations, measured how many times, timed from which event to which? Two
+testers can both comply and produce non-comparable results. Filed as partial,
+not as met — which is why the headline count is 16 and not 18.
+
+**On 187 — the weakest kind of threshold.** It is worse than "no number": it
+names one. A clause that cites `T<OD Response>` reads as though a value exists
+upstream, and 186 confirms only that the value is meant to be tunable. Anyone
+reconciling this section will look for that value and not find it.
 
 **What was done rather than what would have been easy.** No threshold was
 invented. Writing "the transition completes within 200 ms" would have produced
@@ -1052,11 +1124,15 @@ Instead each TC fixes what *can* be fixed and leaves the judgement visible:
   360L-drawn and non-360L-drawn elements **in the same frame**, because the
   clauses define the property relatively and a 360L-only screenshot cannot
   decide it;
-- 197 and 198, the two that have a number, are measured and subtracted.
+- 197 and 198, the two that have a number, are measured and subtracted over
+  the same defined exercise set, which is the repo's answer to the population
+  the clause leaves open — an operating assumption, not a ruled criterion.
 
 **These rows are honest but weak, and they are weak because the requirements
-are.** A tester can execute all 18 and a defect can still ship, because the
-clauses do not say what failure is.
+are.** A tester can execute all 19 non-determinate rows — the 16 with no
+criterion plus the 3 partial ones — and a defect can still ship, because the
+clauses do not say what failure is. Only leaf 184 has a pass condition that
+holds without an upstream answer.
 
 **For RD-1 — the single highest-value question in this delivery.** Ask for
 acceptance criteria on §1.5.21.2:
@@ -1069,10 +1145,17 @@ acceptance criteria on §1.5.21.2:
 4. Is 186 (`should` be parameterized) a verifiable requirement at all, or a
    design note? It has no pass criterion of its own and its subject is
    implementation structure, not observable behaviour.
+5. What is the value of `T<OD Response>` (leaf 187)? The clause makes the
+   buffering notification due after it expires and no clause in the section
+   gives it a value, so the row cannot state when the notice is late.
+6. For 197 and 198, over which set of user operations is the 500 ms variance
+   computed, across how many samples, and timed between which two events? The
+   bound is stated; the population is not.
 
-Without answers, §1.5.21.2's 18 rows are the weakest evidence in the workbook
-and should be flagged as such at delivery rather than presented as equivalent
-to the functional rows.
+Without answers, §1.5.21.2's 19 non-determinate rows are the weakest evidence
+in the workbook and should be flagged as such at delivery rather than presented
+as equivalent to the functional rows. Leaf 184 is excluded from that flag — it
+is an ordinary functional row that happens to sit in this section.
 
 ## [A-SX26] `4873295` is a fully specified display requirement with no leaf — RULED: gap recorded, no leaf invented (2026-08-11)
 

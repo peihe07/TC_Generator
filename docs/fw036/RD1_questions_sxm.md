@@ -68,7 +68,12 @@ Status: DRAFT — expedite ahead of the class-3 items.
 Context: five leaves' clauses include a Voice Recognition trigger path, and the
 VR scope was ruled out of this workbook and delegated to the CFTS028 delivery,
 with an escape hatch — a leaf whose 037 title itself states VR returns for
-individual ruling.
+individual ruling. **The escape hatch fired 5/5** — every one of the five
+titles states VR — so applied literally it would have voided the exclusion
+rather than catching an exception. The exclusion was re-ruled knowingly on
+that measurement (DECISIONS Amendment 11) and stands: CFTS028 owns the VR
+requirements and authoring VR test cases here risks double coverage of
+another delivery's scope.
 
 Evidence line, measured over the five leaves (002, 003, 006, 014, 030):
 
@@ -90,6 +95,8 @@ Questions:
 3. Is the truncation of the 037 titles at the first sentence intended, or an
    export artefact? It affects more than these five leaves.
 
-Status: DRAFT. The five test cases carry the exclusion note and an `[A-SX10]`
+Status: DRAFT — EXPEDITED (class 2), expedite alongside Q-SX2. The answer can
+change delivered content (the A-SX18 shape), so it is not a wording item.
+The five test cases carry the exclusion note and an `[A-SX19]`
 marker; if the answer is that VR belongs here, the amendment is scoped to those
 five reasonings and their expected results.

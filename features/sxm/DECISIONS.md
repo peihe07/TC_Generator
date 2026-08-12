@@ -350,3 +350,26 @@ sign-off = binding as proposed.
   distribution **P0=22, P1=181, P2=12**; the delivered digest is now
   `7b6e760d524fb79e3e4f7cafb43be4b2c945d64b9063abb3974a5e9737538a02` and
   it supersedes `903114576ac0dec7…` everywhere that was recorded.
+- Amendment (2026-08-12, eleventh pass): A-SX19 VR exclusion RE-RULED with
+  the escape hatch known to have fired — directive「(a)」. Amendment 6
+  excluded the VR trigger path and delegated it to the CFTS028 delivery,
+  with an escape hatch: a leaf whose 037 title itself states VR returns for
+  individual ruling. Measurement now shows all five titles (002, 003, 006,
+  014, 030) carry "or a VR Command" verbatim — the hatch fires 5/5, i.e. it
+  swallowed the rule rather than catching an exception, and the five shipped
+  under a blanket exclusion that should not have applied to them.
+  Ruling: the exclusion STANDS, now made knowingly rather than by an
+  unchecked hatch. Basis unchanged and not overturned by the new evidence —
+  CFTS028 owns the VR requirements, and authoring VR test cases here risks
+  double coverage of another delivery's scope. What changes: (i) this
+  amendment records that the hatch fired and was considered; (ii) Q-SX3 is
+  raised to class-2 EXPEDITED — its answer can change delivered content, the
+  A-SX18 shape; (iii) if upstream answers that CFTS028 does not cover these
+  paths, the VR path is verified nowhere and five rows gain a VR test case —
+  grep the [A-SX19] markers, no re-derivation.
+  Corrections filed with it: RD1_questions_sxm.md Q-SX3 cites [A-SX10] for
+  the VR markers — stale label, the VR anomaly is A-SX19 (A-SX10 is the
+  082/083 title finding); and Q-SX3's third question (037 titles truncated
+  at the first sentence, affecting more than these five leaves) is a
+  systemic-class finding, promoted to the S class in the submission draft,
+  the mirror of AMFM S3.
