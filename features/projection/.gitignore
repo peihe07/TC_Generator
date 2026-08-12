@@ -6,10 +6,14 @@ inputs/
 data/recon.json
 lint_report.json
 
-# batches/ IS tracked on purpose (departs from the sxm/amfm precedent): each
-# batch JSON carries the per-row verdict and the reason it was reached. Re-
-# running the Step 2 scripts does not reproduce those verdicts, so this is an
-# audit trail, not a regenerable artefact.
+# batches/ is excluded, and not because it is regenerable — re-running the
+# Step 2 scripts does not reproduce the verdicts. It is excluded because each
+# row embeds the workbook's Pre-conditions and Test Procedure text verbatim as
+# a before/after pair, which is the same content the root-level output/ rule
+# and inputs/ keep out. The audit value lives in _meta plus the row / tc_id /
+# changed fields; emitting those without the prose is the fix if the trail
+# ever needs to be tracked.
+batches/
 
 # Carry customer prose rather than derived structure — same policy as inputs/.
 # sysad_sections.json bleeds SYSAD paragraph body text into its heading field;
