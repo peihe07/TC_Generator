@@ -26,7 +26,7 @@
    "test_procedure": "1. Request Rewind and keep it active\n2. Read the playback position as the rewind reaches the oldest retained content\n3. Read the audio output at that moment\n4. Read the content played immediately afterwards",
    "expected_result": "1. The playback position moves back through the buffer\n2. The playback position stops at the oldest content the buffer holds\n3. One single beep, Confirmation tone 2, is sounded\n4. Audio plays from that point, part way into the song rather than from a song boundary",
    "specification_reference": "CFTS024-4872867",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
    "remarks": ""
   }

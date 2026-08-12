@@ -25,7 +25,7 @@
    "test_procedure": "1. Read the audio output on the Cabin Output Channel\n2. Request Pause\n3. Read the audio output continuously for 30 seconds\n4. Request Play and read the audio output",
    "expected_result": "1. The channel audio is played on the Cabin Output Channel\n2. The Pause request is accepted\n3. No audio is played for the whole 30 seconds\n4. Audio is played again from the paused point",
    "specification_reference": "CFTS024-4872851",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

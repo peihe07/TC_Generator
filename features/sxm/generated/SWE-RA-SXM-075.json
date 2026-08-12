@@ -25,7 +25,7 @@
    "test_procedure": "1. Note the content being broadcast as reference point A and request Pause\n2. Leave the HU paused until the buffer reaches its capacity\n3. Read the playback state at that moment\n4. Read the content played",
    "expected_result": "1. The HU is in the Paused state at reference point A\n2. The buffer reaches its capacity\n3. The HU leaves the Paused state and plays without a user request\n4. Playback starts from reference point A, not from the real-time broadcast",
    "specification_reference": "CFTS024-4872856",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
    "remarks": ""
   }

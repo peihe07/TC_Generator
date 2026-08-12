@@ -168,6 +168,11 @@
   break that. No action requested; a spelling pass at the next CFTS
   revision would be welcome.
 
+- **F5**: this delivery uses `newR1L-AMFM-{NNN}` in the Test Case ID
+  column; subsequent deliveries in the same programme (starting with SXM)
+  use `NR1L-{abbr}-{NNN}`. Same project — the format was revised after this
+  workbook was sealed, and the delivered ids are left unchanged.
+
 ---
 
 Attachments: `unallocated_clauses.json` rendering (Q-AM3);

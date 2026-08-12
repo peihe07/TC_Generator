@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-170",
  "batch": "B13 — Parental Skip + Error Displays",
- "reasoning": "驗證目標：自 Settings 類別 'SiriusXM Setup' 選取 Channel Skip 後，可逐一選取 SDAR 頻道加入跳過清單，並可以 'Clear All' 移除全部。為什麼這樣切：本條款與 171 重疊，171 另有 'Select All' 與 'Deselect All'；三個功能名稱分屬兩條條款，故依條款各自書寫的功能名切分——本 leaf 擁有 'Clear All'（A-SX17／A-SX20 型，重疊已登錄 A-SX23）。逐一選取的判準是「只有被選的進清單」，故以未選頻道作反例。",
+ "reasoning": "驗證目標：自 Settings 類別 'SiriusXM Setup' 選取 Channel Skip 後，可逐一選取 SDAR 頻道加入跳過清單，並可以 'Clear All' 移除全部。為什麼這樣切：本條款與 171 重疊，171 另有 'Select All' 與 'Deselect All'；三個功能名稱分屬兩條條款，故依條款各自書寫的功能名切分——本 leaf 擁有 'Clear All'（A-SX17／A-SX20 型，重疊已登錄 [A-SX23]）。逐一選取的判準是「只有被選的進清單」，故以未選頻道作反例。",
  "keywords": [
   "Channel Skip",
   "individual select",

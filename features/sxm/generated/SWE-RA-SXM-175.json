@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-175",
  "batch": "B13 — Parental Skip + Error Displays",
- "reasoning": "驗證目標：選取某頻道加入跳過時，儲存的是該頻道的 Service ID。為什麼這樣切：Service ID 本身不可由 HMI 讀取，其與「頻道號」的可觀察差異在於頻道重新編號之後跳過設定跟著誰——跟著服務則儲存的是 Service ID，跟著號碼則否；ER 以此構造，而非宣稱記憶體欄位（§8.4.1）。168 的條文寫的是 skipped channel numbers，與本條款的識別鍵不一致，屬內容矛盾已登錄 A-SX23 並回裁；本 leaf 依 §8.6 以自身被配置條款為準。",
+ "reasoning": "驗證目標：選取某頻道加入跳過時，儲存的是該頻道的 Service ID。為什麼這樣切：Service ID 本身不可由 HMI 讀取，其與「頻道號」的可觀察差異在於頻道重新編號之後跳過設定跟著誰——跟著服務則儲存的是 Service ID，跟著號碼則否；ER 以此構造，而非宣稱記憶體欄位（§8.4.1）。168 的條文寫的是 skipped channel numbers，與本條款的識別鍵不一致，屬內容矛盾已登錄 [A-SX23] 並回裁；本 leaf 依 §8.6 以自身被配置條款為準。",
  "keywords": [
   "Service ID",
   "skipped channel list",

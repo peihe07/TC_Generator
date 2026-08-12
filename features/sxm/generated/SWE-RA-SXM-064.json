@@ -26,7 +26,7 @@
    "test_procedure": "1. Tune the HU to the channel under test and start a stopwatch\n2. Leave the HU untouched for 60 seconds, operating no control\n3. Rewind the playback\n4. Read the audio played from the buffer",
    "expected_result": "1. The HU is tuned to the channel under test\n2. No control is operated during the 60 second period\n3. The playback moves back into the buffer\n4. The audio broadcast during the idle period is played back",
    "specification_reference": "CFTS024-4872844",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

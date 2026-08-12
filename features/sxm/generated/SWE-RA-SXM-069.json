@@ -25,7 +25,7 @@
    "test_procedure": "1. Note the content being played\n2. Request Pause\n3. Read the playback state\n4. Request Play and read the content played",
    "expected_result": "1. The channel is playing in real time\n2. The Pause request is accepted\n3. Playback is stopped and the HU is in the Paused state\n4. Playback resumes from the point at which it was paused, not from real time",
    "specification_reference": "CFTS024-4872850",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

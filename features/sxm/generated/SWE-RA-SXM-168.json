@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-168",
  "batch": "B13 — Parental Skip + Error Displays",
- "reasoning": "驗證目標：收音機維護一份被跳過頻道的表，並以之阻止 cabin 選到這些頻道。為什麼這樣切：「維護一份表」的可觀察後果是持久性——跳過設定在電源循環後仍生效；若只驗當下無法選到，重開機即清空的實作也會通過（§8.4.1）。與 169 的差別：該條款以 SDAR 頻道為對象述同一阻擋，本 leaf 取表本身的維護面。本條款寫「skipped channel numbers」而 175 寫 Service ID，識別鍵不一致已登錄 A-SX23，故本 TC 不斷言表以何鍵儲存。",
+ "reasoning": "驗證目標：收音機維護一份被跳過頻道的表，並以之阻止 cabin 選到這些頻道。為什麼這樣切：「維護一份表」的可觀察後果是持久性——跳過設定在電源循環後仍生效；若只驗當下無法選到，重開機即清空的實作也會通過（§8.4.1）。與 169 的差別：該條款以 SDAR 頻道為對象述同一阻擋，本 leaf 取表本身的維護面。本條款寫「skipped channel numbers」而 175 寫 Service ID，識別鍵不一致已登錄 [A-SX23]，故本 TC 不斷言表以何鍵儲存。",
  "keywords": [
   "skipped channel table",
   "prevent selection",

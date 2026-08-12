@@ -285,3 +285,68 @@ sign-off = binding as proposed.
   under this evidence, not softer: artifact-type hierarchy (SFR over
   Description) now backs it alongside §8.6. Evidence table filed in
   ANOMALIES A-SX23.
+- Amendment (2026-08-12, tenth pass): dry-run return — directive「好裁」,
+  three items, taken as adopting the chat recommendations verbatim.
+  (1) Marker notation unified to bracket form [A-SXnn] across the whole
+  workbook. The report showed A-SX23 at 0/9 and A-SX07 at 1/2, while
+  Amendments 7(3)/9 rule that the [A-SX23] marker sits on 175 — the ruled
+  grep handle did not exist. Markers exist to be grepped when upstream
+  answers; mixed notation makes the next reader miss nine rows. Convert all
+  nine A-SX23 rows and leaf 153's A-SX07 to bracket form; this also settles
+  the earlier open question (全域行文 vs 全部轉括號) as 全部轉括號.
+  (2) --date pin recorded as a delivery condition: without --date the writer
+  falls back to date.today() and the output hash drifts daily, silently
+  voiding the reproducibility claim. The delivery cover AND the tag
+  annotation must state that a re-run requires --date 2026-08-12.
+  (3) **WITHDRAWN before execution, premise incorrect — no P0 ruled yet.**
+  The item as drafted raised leaf 001 to P0 on the ground that it is "the
+  satellite-source availability gate". It is not: `CFTS024-4872752` (§1.5)
+  requires the HU to display the **Channel Art image** for the tuned
+  channel, and §1.5 holds that single leaf. The error came in two steps —
+  the clause was not read before drafting, and the framework Part IV Set
+  name `Source Availability` was taken as evidence of content (see the new
+  ANOMALIES entry: the Part IV granularity note calls that Set "the
+  satellite-source presence gate" while the leaf inside it is Channel Art).
+  Withdrawn rather than corrected in place, because the drafted judgement
+  criterion was also wrong: "failure makes the whole batch untestable"
+  describes a **pre-condition**, not §10.2 priority — under it any
+  pre-condition clause would earn P0. The framework's own rule governs
+  instead: *priority follows the verification target, not the feature's
+  importance*, and a chapter may legitimately contain no P0 — rebalancing
+  to "earn" one is expressly forbidden. Replacement route ruled: a
+  directed rubric scan for rows whose ER asserts **audio output** (§10.2),
+  results returned to chat for a per-row decision. Leaf 001 stays P1.
+  (3b) **P0 ruled on the rubric scan (2026-08-12, same pass).** The scan
+  found 96 of 215 rows carrying playback vocabulary in their ER and 70
+  whose clause itself requires playback or audio; those were sorted by
+  what the row actually verifies, and the sort — not a count — is the
+  ruling's basis. **22 rows raised to P0**: the rows whose verification
+  target IS audio output, so that a failure means no audio, audio not
+  muted where the clause requires muting, or playback not resuming at the
+  point the clause fixes. Fourteen are Instant Replay (`SWE-RA-SXM-064`,
+  `066`, `067`, `068`, `069`, `070`, `071`, `075`, `076`, `084`, `086`,
+  `089`, `091`, `092`), and the rest are `062` (tune to the channel
+  carrying the favourite), `146`-01 (select from list → tunes and plays),
+  `157` (replay the latest T&W broadcast), `178` and `181` (cabin audio
+  muted on audio-not-present / antenna fault), and `183`, `190`, `191`
+  (no gap in audio; 360L entry and exit). Deliberately NOT raised, each
+  for a stated reason rather than by omission: **tune-and-play tails**
+  (13 leaves / 18 rows — `002 003 004 006 009 014 017 024 028 030 039 056
+  159`) assert "the channel reached is playing" but verify that the HU
+  tuned to the RIGHT channel; a failure means the wrong station, not
+  silence — the same shape as the framework's `SWE1-MEDIA-INT-022-02`
+  worked example, which is P1. **Tone and confirmation-sound rows**
+  (`051 057 107 127 167`) verify whether an alert should sound, not the
+  audio chain. **Playback-position, playlist and display rows**
+  (`063 073 077 078 079 080 081 085 088 090 093 101 122 156 158 179 182
+  198`) verify displacement in seconds, list contents or a message
+  condition. `146`-02 is excluded although its leaf is raised: that row
+  verifies a Satellite Category selection restriction and asserts no
+  audio. A narrower "audio completely absent" reading (8 rows) was
+  considered and rejected — it is narrower than the rubric's own words
+  and would put Instant Replay's pause/resume outside the core, and
+  narrowing the rubric needs a rubric basis, which does not exist.
+  Consequence: write_back re-run at `--date 2026-08-12`; priority
+  distribution **P0=22, P1=181, P2=12**; the delivered digest is now
+  `7b6e760d524fb79e3e4f7cafb43be4b2c945d64b9063abb3974a5e9737538a02` and
+  it supersedes `903114576ac0dec7…` everywhere that was recorded.

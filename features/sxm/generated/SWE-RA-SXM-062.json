@@ -25,7 +25,7 @@
    "test_procedure": "1. Read the currently tuned channel\n2. Select the favorite that is on air on the other channel\n3. Read the tuned channel and the content being played",
    "expected_result": "1. The tuned channel is not the channel carrying the selected favorite\n2. The selection is accepted\n3. The tuned channel is the channel that is broadcasting the selected favorite, and that favorite is being played",
    "specification_reference": "CFTS024-4872841",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

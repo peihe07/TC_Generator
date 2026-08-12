@@ -25,7 +25,7 @@
    "test_procedure": "1. Power the HU up with 360L as the last used function and record the display and audio\n2. Review the recording from power up to the 360L HMI being displayed and audio resuming\n3. Place and end a phone call while 360L was in use, and record the display and audio\n4. Review the recording from the call ending to the 360L HMI being displayed and audio resuming",
    "expected_result": "1. The HU resumes into the 360L function\n2. The 360L HMI is displayed and audio resumes without an intervening blank screen, wait indication or silent gap beyond the transition itself\n3. The HU resumes into the 360L function after the call ends\n4. The 360L HMI is displayed and audio resumes without an intervening blank screen, wait indication or silent gap beyond the transition itself",
    "specification_reference": "CFTS024-4873328",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

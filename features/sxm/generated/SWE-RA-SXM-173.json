@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-173",
  "batch": "B13 — Parental Skip + Error Displays",
- "reasoning": "驗證目標：啟動 Browse All Channels 時，不顯示任何被跳過的頻道。為什麼這樣切：判準是成員資格的排除，故前置條件同時要求存在被跳過與未被跳過的可收頻道，ER 以雙向斷言表述。本 leaf 的 037 title 為同一句被重複貼上的匯出殘缺（agr 0.807），非語意分歧；依 §8.6 以條款文字為準，Test Item 取條款原文。注意本 leaf 與已出貨的 106（All Channels 列出全部電台）互為條件：106 的清單完整性只在無跳過頻道時成立，該前置條件已回補（A-SX23）。",
+ "reasoning": "驗證目標：啟動 Browse All Channels 時，不顯示任何被跳過的頻道。為什麼這樣切：判準是成員資格的排除，故前置條件同時要求存在被跳過與未被跳過的可收頻道，ER 以雙向斷言表述。本 leaf 的 037 title 為同一句被重複貼上的匯出殘缺（agr 0.807），非語意分歧；依 §8.6 以條款文字為準，Test Item 取條款原文。注意本 leaf 與已出貨的 106（All Channels 列出全部電台）互為條件：106 的清單完整性只在無跳過頻道時成立，該前置條件已回補（[A-SX23]）。",
  "keywords": [
   "Browse All Channels",
   "skipped channels",

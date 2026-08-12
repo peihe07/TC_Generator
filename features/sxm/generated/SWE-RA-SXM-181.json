@@ -26,7 +26,7 @@
    "test_procedure": "1. Apply the antenna open circuit condition while data and audio are still present at the output, then read the HU screen\n2. Remove the data and audio from the output so that both the antenna fault and the absence of output hold, then read the HU screen and listen to the Cabin Output Channel\n3. Change to Travel Link mode and read the HU screen, then return to satellite audio mode\n4. Clear the antenna condition, restore the output, then apply the antenna short circuit condition with no data or audio present and read the HU screen",
    "expected_result": "1. No Signal See Dealer for Service is not displayed, the antenna fault alone not satisfying the condition\n2. No Signal See Dealer for Service is displayed and the cabin audio is muted\n3. No Signal See Dealer for Service is displayed in Travel Link mode and is still displayed on return to satellite audio mode\n4. No Signal See Dealer for Service is displayed for the short circuit condition as well",
    "specification_reference": "CFTS024-4873294",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

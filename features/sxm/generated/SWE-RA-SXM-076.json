@@ -26,7 +26,7 @@
    "test_procedure": "1. Note the content at which playback was paused\n2. Request resume\n3. Read the content played immediately after the request\n4. Listen on for one minute and compare the sequence with the broadcast during the pause",
    "expected_result": "1. The HU is in the Paused state at the noted content\n2. The resume request is accepted\n3. Playback starts at the content noted in step 1\n4. The content broadcast during the pause is played in its original order with no section skipped",
    "specification_reference": "CFTS024-4872858",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

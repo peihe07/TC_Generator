@@ -25,7 +25,7 @@
    "test_procedure": "1. Note the content being broadcast and request Pause\n2. Keep the HU paused for 60 seconds while the channel continues to broadcast\n3. Request Play\n4. Read the content played over the following minute",
    "expected_result": "1. The HU is in the Paused state\n2. No audio is played while the channel keeps broadcasting\n3. Playback resumes from the point at which it was paused\n4. The content broadcast during the 60 second pause is played back in order",
    "specification_reference": "CFTS024-4872852",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

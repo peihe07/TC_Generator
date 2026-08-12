@@ -25,7 +25,7 @@
    "test_procedure": "1. Read the playback state and the audio output before the trigger\n2. Let the feature trigger a tune to the other channel\n3. Read the audio output immediately after the tuning completes\n4. Read the playback state",
    "expected_result": "1. The HU is in the Paused state and no audio is played\n2. The HU is tuned to the channel the feature selected\n3. Audio is played immediately, without a user action to resume it\n4. The HU is in the Play state",
    "specification_reference": "CFTS024-4872846",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
    "remarks": "Representative feature-initiated tune trigger: tuning initiated by accepting a Game Alert (CFTS024 §1.5.17) or a Traffic & Weather channel jump (§1.5.16); any spec-defined automatic tune may be used"
   }

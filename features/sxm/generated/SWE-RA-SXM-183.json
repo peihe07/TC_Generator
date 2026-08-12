@@ -25,7 +25,7 @@
    "test_procedure": "1. Carry out the defined 360L exercise set once and record display and audio throughout\n2. Review the recording for abnormal transition delays, screen flashes, and black or blank screens\n3. Review the recording for haptic input response delays and for misaligned or improperly sized graphics and text\n4. Review the recording for inconsistent background images, non-harmonized theme implementation and gaps in audio",
    "expected_result": "1. The exercise set completes and the recording covers it from entry to exit\n2. No abnormal transition delay, screen flash, black screen or blank screen is present\n3. No haptic input response delay is present and no graphic or text is misaligned or improperly sized\n4. No background image is inconsistent, no theme element is unharmonized and no gap in audio is present",
    "specification_reference": "CFTS024-4873309",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

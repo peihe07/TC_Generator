@@ -25,7 +25,7 @@
    "test_procedure": "1. With 360L in use and its audio playing, raise an incoming call and record the display and audio\n2. Review the recording from the call arriving to the 360L HMI being left and 360L audio being suspended\n3. Repeat the incoming call three times and review each recording\n4. Compare the three exits",
    "expected_result": "1. The HU leaves the 360L function when the call arrives\n2. The 360L HMI is left and the 360L audio is suspended without an intervening blank screen, wait indication or continued 360L audio over the call\n3. Each of the three exits shows the same behaviour\n4. No exit takes noticeably longer than the others",
    "specification_reference": "CFTS024-4873329",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

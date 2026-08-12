@@ -1,7 +1,7 @@
 {
  "parent": "SWE-RA-SXM-171",
  "batch": "B13 — Parental Skip + Error Displays",
- "reasoning": "驗證目標：同一入路下，可逐一選取頻道加入跳過清單，並可以 'Select All' 一次加入全部可用頻道、以 'Deselect All' 一次移除全部。為什麼這樣切：本條款與 170 重疊，切分依各自書寫的功能名——本 leaf 擁有 'Select All' 與 'Deselect All'（A-SX23）。'Select All' 的判準是清單涵蓋全部可用頻道，故以獨立取得的可用頻道集合比對，而非只讀畫面前幾列。",
+ "reasoning": "驗證目標：同一入路下，可逐一選取頻道加入跳過清單，並可以 'Select All' 一次加入全部可用頻道、以 'Deselect All' 一次移除全部。為什麼這樣切：本條款與 170 重疊，切分依各自書寫的功能名——本 leaf 擁有 'Select All' 與 'Deselect All'（[A-SX23]）。'Select All' 的判準是清單涵蓋全部可用頻道，故以獨立取得的可用頻道集合比對，而非只讀畫面前幾列。",
  "keywords": [
   "Channel Skip",
   "Select All",

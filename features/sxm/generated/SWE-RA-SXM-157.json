@@ -25,7 +25,7 @@
    "test_procedure": "1. Read the currently tuned channel\n2. Activate the Traffic & Weather button\n3. Read the tuned channel\n4. Listen to the HU audio output from the moment playback starts",
    "expected_result": "1. The tuned channel is not the traffic and weather channel\n2. The activation is accepted\n3. The tuned channel is the traffic and weather channel\n4. The known latest traffic and weather broadcast is played from its beginning, not the content the channel is broadcasting live at that moment",
    "specification_reference": "CFTS024-4872966",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

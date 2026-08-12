@@ -25,7 +25,7 @@
    "test_procedure": "1. Read the playback position relative to the real-time broadcast\n2. Request Fast Forward and keep it active until the playback position reaches real time\n3. Read the audio output at the moment real time is reached\n4. Read the content played after that moment",
    "expected_result": "1. The playback position is behind the real-time broadcast\n2. The playback position advances through the buffer towards real time\n3. One single beep is sounded as real time is reached\n4. The real-time broadcast is played",
    "specification_reference": "CFTS024-4872873",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

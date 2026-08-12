@@ -26,7 +26,7 @@
    "test_procedure": "1. Listen to the Cabin Output Channel and read the HU screen\n2. Make the SDARS module report an audio status of audio not present\n3. Read the HU screen\n4. Listen to the Cabin Output Channel",
    "expected_result": "1. Satellite audio is audible and no error message is displayed\n2. The SDARS module reports audio not present\n3. Acquiring Signal Please Wait ... is displayed\n4. The cabin audio is muted",
    "specification_reference": "CFTS024-4873291",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   }

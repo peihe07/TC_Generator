@@ -1132,3 +1132,53 @@ skip list holds channels, so no interaction exists.
 
 Sweep closed — no completeness assertion in the corpus is now defeatable by the
 skip feature.
+
+
+## [A-SX27] framework Part IV's `Source Availability` Set is named for a gate its only leaf does not contain — REGISTERED, post-delivery canon item (2026-08-12)
+
+Found while checking the premise of a drafted P0 ruling (DECISIONS Amendment
+10 item 3, withdrawn). The Set name and the granularity note describe one
+thing; the leaf inside describes another.
+
+What Part IV says:
+
+| where | text |
+|---|---|
+| Part IV Set table | `Source Availability \| 1.5 \| 001 \| 1 \| remaining` |
+| Part IV §4.1.3 granularity note | "`Source Availability` (1) is a genuine outlier per §4.2 — **the satellite-source presence gate** shares no setup with any sibling (AMFM `Tuner Availability` precedent)" |
+
+What leaf 001 actually is:
+
+```
+SWE-RA-SXM-001   CFTS024-4872752   §1.5 HU Satellite Audio
+"HU shall be capable of displaying the Channel Art image for the currently
+ tuned channel as required per the HMI specifications. Requirements contained
+ in {SX-9845-0166 - Channel Graphics Service Protocol Specification (XM Band)}
+ shall be complied with unless otherwise specified by Chrysler."
+
+TC title: Channel art is displayed for the tuned channel
+```
+
+§1.5 holds this one leaf and no other, so there is no source-presence clause
+anywhere in the Set. The genuine satellite-presence and signal-loss gates are
+in §1.5.20 Error Displays — `4873289` (no active subscription, leaf 176),
+`4873292` (Acquiring Signal, leaf 179), `4873294` (antenna open/short, leaf
+181) — which is a different Set entirely.
+
+Why this is worth an entry rather than a silent fix: the note did not merely
+mislabel a box, it was **read as evidence about content** and a priority
+ruling was drafted on it. A Set name is a grouping label; it is not authority
+for what a leaf requires. The AMFM `Tuner Availability` precedent the note
+cites is what makes the name plausible, and that is exactly why it misleads.
+
+**Disposition — post-delivery canon item, nothing shipped changes.**
+- The delivered column H value for row 10 stays `Source Availability`. It is
+  the Set the leaf was generated under, it is consistent across the workbook,
+  and re-labelling one row after write-back would break the Part IV ↔ workbook
+  correspondence the Set-gate check verifies (215/215 currently matching).
+- Owed at the canon pass: rename the Set to what §1.5 actually holds, or keep
+  the name and correct the §4.1.3 granularity note so it no longer asserts a
+  presence gate. Either way the note must stop describing content it does not
+  contain.
+- No leaf is invented and no leaf moves Set (§8.2 discipline, A-AM13 / A-SX26
+  precedent).

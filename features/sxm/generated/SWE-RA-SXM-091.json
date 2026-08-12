@@ -26,7 +26,7 @@
    "test_procedure": "1. Read the playback position and the channel being played\n2. Request Fast Forward\n3. Read the audio output at the moment of the request\n4. Read the channel and the playback position after the request",
    "expected_result": "1. Playback is at the real-time broadcast on the tuned channel\n2. The fast forward request is received\n3. Two consecutive beeps are sounded as the warning signal\n4. The same channel is still played at the real-time broadcast, and the playback position has not advanced",
    "specification_reference": "CFTS024-4872875",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "負向測試 (Negative / Invalid)",
    "remarks": ""
   }

@@ -25,7 +25,7 @@
    "test_procedure": "1. Read the currently tuned channel\n2. Select the second channel in the list\n3. Read the tuned channel and listen to the HU audio output",
    "expected_result": "1. The tuned channel is not one of the channels to be selected\n2. The selection is accepted\n3. The tuned channel is the selected channel and its audio is playing",
    "specification_reference": "CFTS024-4872950",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "remarks": ""
   },
