@@ -1,0 +1,213 @@
+{
+  "_meta": {
+    "source": "d7_proc_excerpt_diff.json",
+    "check": "D-7",
+    "stripped": "before/after Procedure 全文",
+    "rows": 29
+  },
+  "updated_rows": [
+    {
+      "row": 151,
+      "tc_id": "NR1L-PROJ-149",
+      "before_chars": 148,
+      "after_chars": 167,
+      "changed": true
+    },
+    {
+      "row": 152,
+      "tc_id": "NR1L-PROJ-150",
+      "before_chars": 160,
+      "after_chars": 172,
+      "changed": true
+    },
+    {
+      "row": 167,
+      "tc_id": "NR1L-PROJ-165",
+      "before_chars": 160,
+      "after_chars": 200,
+      "changed": true
+    },
+    {
+      "row": 168,
+      "tc_id": "NR1L-PROJ-166",
+      "before_chars": 160,
+      "after_chars": 205,
+      "changed": true
+    },
+    {
+      "row": 169,
+      "tc_id": "NR1L-PROJ-167",
+      "before_chars": 160,
+      "after_chars": 380,
+      "changed": true
+    },
+    {
+      "row": 170,
+      "tc_id": "NR1L-PROJ-168",
+      "before_chars": 160,
+      "after_chars": 372,
+      "changed": true
+    },
+    {
+      "row": 171,
+      "tc_id": "NR1L-PROJ-169",
+      "before_chars": 160,
+      "after_chars": 199,
+      "changed": true
+    },
+    {
+      "row": 172,
+      "tc_id": "NR1L-PROJ-170",
+      "before_chars": 160,
+      "after_chars": 199,
+      "changed": true
+    },
+    {
+      "row": 173,
+      "tc_id": "NR1L-PROJ-171",
+      "before_chars": 160,
+      "after_chars": 323,
+      "changed": true
+    },
+    {
+      "row": 174,
+      "tc_id": "NR1L-PROJ-172",
+      "before_chars": 160,
+      "after_chars": 321,
+      "changed": true
+    },
+    {
+      "row": 175,
+      "tc_id": "NR1L-PROJ-173",
+      "before_chars": 160,
+      "after_chars": 248,
+      "changed": true
+    },
+    {
+      "row": 176,
+      "tc_id": "NR1L-PROJ-174",
+      "before_chars": 160,
+      "after_chars": 416,
+      "changed": true
+    },
+    {
+      "row": 177,
+      "tc_id": "NR1L-PROJ-175",
+      "before_chars": 160,
+      "after_chars": 547,
+      "changed": true
+    },
+    {
+      "row": 178,
+      "tc_id": "NR1L-PROJ-176",
+      "before_chars": 160,
+      "after_chars": 418,
+      "changed": true
+    },
+    {
+      "row": 179,
+      "tc_id": "NR1L-PROJ-177",
+      "before_chars": 160,
+      "after_chars": 349,
+      "changed": true
+    },
+    {
+      "row": 180,
+      "tc_id": "NR1L-PROJ-178",
+      "before_chars": 160,
+      "after_chars": 155,
+      "changed": true
+    },
+    {
+      "row": 181,
+      "tc_id": "NR1L-PROJ-179",
+      "before_chars": 160,
+      "after_chars": 151,
+      "changed": true
+    },
+    {
+      "row": 182,
+      "tc_id": "NR1L-PROJ-180",
+      "before_chars": 160,
+      "after_chars": 201,
+      "changed": true
+    },
+    {
+      "row": 183,
+      "tc_id": "NR1L-PROJ-181",
+      "before_chars": 160,
+      "after_chars": 200,
+      "changed": true
+    },
+    {
+      "row": 184,
+      "tc_id": "NR1L-PROJ-182",
+      "before_chars": 160,
+      "after_chars": 325,
+      "changed": true
+    },
+    {
+      "row": 185,
+      "tc_id": "NR1L-PROJ-183",
+      "before_chars": 160,
+      "after_chars": 323,
+      "changed": true
+    },
+    {
+      "row": 186,
+      "tc_id": "NR1L-PROJ-184",
+      "before_chars": 160,
+      "after_chars": 262,
+      "changed": true
+    },
+    {
+      "row": 187,
+      "tc_id": "NR1L-PROJ-185",
+      "before_chars": 160,
+      "after_chars": 431,
+      "changed": true
+    },
+    {
+      "row": 188,
+      "tc_id": "NR1L-PROJ-186",
+      "before_chars": 160,
+      "after_chars": 552,
+      "changed": true
+    },
+    {
+      "row": 189,
+      "tc_id": "NR1L-PROJ-187",
+      "before_chars": 160,
+      "after_chars": 424,
+      "changed": true
+    },
+    {
+      "row": 190,
+      "tc_id": "NR1L-PROJ-188",
+      "before_chars": 160,
+      "after_chars": 350,
+      "changed": true
+    },
+    {
+      "row": 235,
+      "tc_id": "NR1L-PROJ-233",
+      "before_chars": 160,
+      "after_chars": 690,
+      "changed": true
+    },
+    {
+      "row": 270,
+      "tc_id": "NR1L-PROJ-268",
+      "before_chars": 160,
+      "after_chars": 492,
+      "changed": true
+    },
+    {
+      "row": 271,
+      "tc_id": "NR1L-PROJ-269",
+      "before_chars": 160,
+      "after_chars": 419,
+      "changed": true
+    }
+  ]
+}
