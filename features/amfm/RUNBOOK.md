@@ -12,6 +12,15 @@
 > that happened at the old path. Read every `AMFM/…` path in this file as
 > `features/amfm/…`; the current invocation is
 > `python features/amfm/scripts/<script>.py --feature-dir features/amfm`.
+>
+> **2026-08-11 22:19 (+0800): `fw036-amfm-regen-v1` TAGGED by Pei — AMFM
+> delivery chain CLOSED on the repo side.** Annotated tag on `bf514e2` (the
+> Phase 7 write-back commit, pre-rename layout); annotation verified in chat:
+> output SHA256 `da18b5b0…`, done-region hash `30d9e4c0719a2929`, rows
+> 158/143/301, coverage 102/102, lint PASS, 923 tests. Remaining AMFM items
+> are off-repo: RD-1 submission (draft at `docs/fw036/RD1_amfm_submission.md`,
+> Pei to review and send) and the optional strict reproducibility re-run at
+> `bf514e2` (Claude Code, non-blocking).
 > `feature.yaml` paths are relative to the feature directory and were not
 > affected.
 
