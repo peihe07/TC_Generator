@@ -42,6 +42,7 @@ CFG = {
             "remarks": 33},
     "write_back": {"author_value": "PeiPYHsu", "tc_ref_id_value": "NEW",
                    "fill_test_group_set": True,
+                   "tc_id_format": "NR1L-SXM-{n:03d}",
                    "scope_label": "範圍 Scope", "scope_source": "a03_report"},
 }
 
@@ -112,19 +113,27 @@ def test_a_real_row_whose_functional_safety_is_na_is_still_authored():
 
 # ------------------------------------------------------------ residue sweep
 
-WRITTEN = {"req_id", "test_group", "test_set", "test_item", "pre_conditions",
-           "input_test_data", "test_procedure", "expected_result",
-           "spec_reference", "tc_ref_id", "priority", "design_method",
-           "functional_safety", "author", "remarks"}
+WRITTEN = {"req_id", "tc_id", "test_group", "test_set", "test_item",
+           "pre_conditions", "input_test_data", "test_procedure",
+           "expected_result", "spec_reference", "tc_ref_id", "priority",
+           "design_method", "functional_safety", "author", "remarks"}
 
 
-def test_another_features_tc_id_left_in_an_unwritten_column_is_caught():
-    """The one that matters: column F is not written, so nothing overwrites
-    `NR1L-AntiTheft-001` and it would ship on row 10."""
+def test_residue_in_a_column_the_write_does_not_touch_is_caught():
+    """The sweep only earns its keep on columns nothing overwrites, so it is
+    exercised with tc_id held out of the written set."""
     ws = sheet({10: {"req_id": "SWE-RA-SXM-001",
                      "tc_id": "NR1L-AntiTheft-001"}})
-    found = wb_mod.residue_left(ws, CFG, 10, WRITTEN)
+    found = wb_mod.residue_left(ws, CFG, 10, WRITTEN - {"tc_id"})
     assert any("tc_id" in f for f in found)
+
+
+def test_the_ruled_tc_id_series_overwrites_the_sample_row_identifier():
+    """`NR1L-AntiTheft-001` used to survive on row 10 because column F was
+    left alone; the ruled series is what now removes it."""
+    assert "tc_id" in WRITTEN
+    v = wb_mod.cell_values(tc(), CFG, "NR1L-SXM-001")
+    assert v[CFG["col"]["tc_id"]] == "NR1L-SXM-001"
 
 
 def test_our_own_na_in_a_written_column_is_not_reported_as_residue():
@@ -157,10 +166,39 @@ def test_a_missing_test_set_aborts_when_fill_is_on():
         wb_mod.cell_values(tc(test_set=""), CFG)
 
 
-def test_the_tc_id_column_is_never_written():
-    """SXM has no ruled TC ID series (canon §10.3), so the cell is left
-    alone rather than given an invented value."""
+def test_the_tc_id_column_is_left_alone_without_a_ruled_series():
+    """A feature that declares no series gets no invented value."""
     assert CFG["col"]["tc_id"] not in wb_mod.cell_values(tc(), CFG)
+
+
+# ------------------------------------------------------------- TC ID series
+
+def test_the_series_starts_at_one_and_is_monotonic():
+    ids = wb_mod.assign_tc_ids(CFG, [tc()] * 3, set())
+    assert ids == ["NR1L-SXM-001", "NR1L-SXM-002", "NR1L-SXM-003"]
+
+
+def test_the_series_is_unique_across_the_whole_write():
+    ids = wb_mod.assign_tc_ids(CFG, [tc()] * 215, set())
+    assert len(set(ids)) == 215
+    assert ids[-1] == "NR1L-SXM-215"
+
+
+def test_an_id_already_in_the_sheet_aborts_rather_than_duplicating():
+    with pytest.raises(wb_mod.WriteBackError, match="collision"):
+        wb_mod.assign_tc_ids(CFG, [tc()] * 3, {"NR1L-SXM-002"})
+
+
+def test_the_sample_rows_own_id_is_not_a_collision():
+    """`NR1L-AntiTheft-001` is a different series — it is cleared, not
+    collided with."""
+    assert wb_mod.assign_tc_ids(CFG, [tc()], {"NR1L-AntiTheft-001"})
+
+
+def test_a_feature_without_a_declared_format_gets_no_ids():
+    cfg = CFG | {"write_back": {k: v for k, v in CFG["write_back"].items()
+                                if k != "tc_id_format"}}
+    assert wb_mod.assign_tc_ids(cfg, [tc()] * 3, set()) == [None, None, None]
 
 
 # ------------------------------------------------------------- Scope filling

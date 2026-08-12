@@ -127,6 +127,11 @@ done_region:
 write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"     # no legacy rows to inherit case from (cf. AMFM R13)
+  # F 欄 TC ID 是作者側編號（canon §10.3），與客戶端的 Test Case Reference ID
+  # 不同構。BLANK 表單沒有既有序列可續，故自 001 起單調遞增；NR1L 是表單自身的
+  # 專案前綴（樣本列 NR1L-AntiTheft-001，Home 交付亦為 NR1L-HomeHMI-nnn），
+  # abbr 取 test_group = SXM。順帶清掉樣本列殘留的 NR1L-AntiTheft-001。
+  tc_id_format: "NR1L-SXM-{n:03d}"
   fill_test_group_set: true  # canon §2 — true under BLANK
   # The blank form ships this field EMPTY. Home and AMFM both found it naming
   # the wrong deliverable; empty is the same defect in a quieter dress, so it
