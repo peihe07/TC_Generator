@@ -546,21 +546,125 @@ is an RD-1 item, never an edit that satisfies one gate by breaking the other.
 概念（沒有 regen、沒有 segment、done region 是整張表）；done-region hash 一項
 改以「34 個凍結欄逐列雜湊」實作。
 
+### 檢查表 v2（R-P54 / R-P55 / R-P58，2026-08-12）
+
+v1 之 D-1 ~ D-5 依 R-P55、R-P54 修訂，新增 D-6 ~ D-10（原執行層提報之 M-1 ~ M-5）。
+
 | 項 | 通過條件 |
 |---|---|
-| **D-1** | diff 只落在 `Pre-Conditions (I)` 與 `Test procedure (K)`；**L-PJ4 窄口列之 `Expected Result` 變更為授權例外，須見於 `er_narrow_gate.log`** |
-| **D-2** | 34 個凍結欄逐列雜湊不變；唯一例外為 R-P19 之 `Test Case Author` 補列 |
-| **D-3** | 列數 559 → 558、列序不變，唯一刪除為 r562 |
-| **D-4** | 未覆蓋 leaf 補列追加於表尾，通過 L-PJ1 ~ L-PJ10，值域一致 |
-| **D-5** | 每一「正確地不動」列皆指得出至少一個裁決或 DR 編號 |
+| **D-1** | 有變更之欄位 ⊆ `{Pre-Conditions (I), Test procedure (K)}` ∪ `{Expected Result (L) ∩ er_narrow_gate.log 之 6 列}` ∪ `{Remarks (AJ) ∩ remarks_scope_gate.log 之 30 列}`（R-P75）。窄口列（r424–r429）**須逐列附 diff**，並驗證為純刪除、被刪 token ∈ `{correctly, normally, properly, successfully}`。不得僅以「見 log」代替 |
+| **D-2** | `TestResults` 34 個凍結欄逐列雜湊不變，**加上其餘 8 個分頁**。**雙軌（R-P60）**：公式軌（`data_only=False`）8 分頁全部必須不變，含全簿 **775** 個公式；值軌（`data_only=True`）`TestProgress` 之變動為預期行為，其餘 7 分頁不變。**dry-run 階段值軌標「未實測」，不得計為 PASS**（A-PJ56）。兩項授權例外須逐列列出：`Expected Result` 之 r424–r429（R-P12）、`Test Case Author` 之 **40** 列補值（R-P19／R-P54）、`Remarks` 之 **30** 列純附加（R-P75）＝ 共 **76** 列 |
+| **D-3** | 分支 A（227 補列成功）：559 → 558 + 7 補列，末列 r568；分支 B：559 保留 + 6 補列。逐列 index-to-index 比對，**移動即 FAIL，不得視為 merge**。**列身分＝凍結欄逐列雜湊扣除全部『有授權例外之欄』**（`ROW_IDENTITY_COLS` = FROZEN_COLS − {`Expected Result`, `Remarks`, `Test Case Author`}，558 列 558 個相異值）。**凡新增凍結欄窄口必須同步擴充 `IDENTITY_EXCLUDED`**，否則該窄口之列會被誤判為被移動（A-PJ66，已發生兩次）。**不得用 `No.#`** —— 該欄內容為公式 `=ROW()-3`，值恆等於列位置，偵測不到重排（A-PJ57 推翻 R-P66 之指定欄，其意圖不變） |
+| **D-4** | 未覆蓋 leaf 補列追加於表尾，`Test Case Author = PeiPYHsu`、`tc_ref_id = NEW`、不重新編號既有列、通過全部 gate。來源不足以寫出通過 gate 之 TC 者列為未補並開 DR（O-4） |
+| **D-5** | 每一「正確地不動」列皆指得出至少一個裁決或 DR 編號。**以列為單位**上繳（群組間有重疊，加總會對不上） |
+| **D-6** | 補列之獨立驗證。補列**不受 D-1／D-2 保護**——其 34 個凍結欄全為新寫。逐欄驗 `Priority` ∈ {P0–P3}、**`Design Method` ∈ `Reference!$C$4:$C$12`（資料驗證實際強制者，非 `下拉選單` 分頁 —— 兩份「組合測試」拼法不同，A-PJ58）**、`Test Group`／`Test Set` ∈ 既有值域（10／18）、**`Specification Reference` 真解析**（R-P73：逐條對 `data/*_sections.json` 查找，找不到即 FAIL；無 sections 檔之來源標「未解析」，不得計為通過）、`Requirement or Design ID` 存在於 037、**`Test Case ID` 符合 R-P64 續編規則且不與既有重複、**`Input Test Data` 依 canon §4.5 逐條判定（R-P72，不得以既有多數值為由）****、Procedure ↔ ER 行數 1:1、L-PJ1 ~ L-PJ10 全綠 |
+| **D-7** | `er_divergence.json` 之 `proc_excerpt` 須更新為修訂後內容（`er_excerpt` 凍結）。**RD-1 會拿著過期描述去問** |
+| **D-8** | `data/` artifact 逐份標記時效：修訂前快照標 `snapshot_phase` 且不更新，須同步者更新。**兩種語意不得混用於同一欄位**，必要時拆欄 |
+| **D-9** | `Test Case Framework` 分頁實測為**完全空白**（`A1:A1`），原假設其有內容並與 framework Part V 比對之前提不成立。修正為：驗證維持空白且雜湊不變；**寫回後出現內容即 ABORT** |
+| **D-10** | 八項全簿基線。補列納入後之值須一併回報——**補列可能改變基線，若改變須有裁決** |
+| **D-11** | **全簿資料驗證合規**（R-P74）。範圍＝所有具資料驗證之欄；通過條件＝每一非空儲存格之值皆落在該欄 DV 來源之值域內（逐字比對）。**空白不視為違規**；**既有違規凍結欄不動入 RD-1，補列違規即 FAIL**。比對前須正規化數值儲存格 —— Excel 存數值 `1`、DV 寫 `"0,1"`，未正規化會把 Vehicle Model 21 格全部誤報 |
 
 **D-5 是本表存在的主要理由。** regen 型的「未完成」就是缺漏；`FULL_REFINE`
 的未完成多數是**依規則正確地不動**。兩者在 diff 上長得完全一樣 —— 都是
 「這一列沒變」。**唯一的區分方式是清單。**
 
-首次執行（2026-08-12）結果為 **FAIL**，報告見
-`features/projection/docs/dryrun_report.md`，列號對照表見
-`features/projection/data/d5_blocked_rows.json`。
+**D-6 是 v2 補上的最大缺口。** D-1／D-2 驗的是「既有列之凍結欄未變」，補列
+沒有「既有」可比，34 個凍結欄全為新寫。此缺口在 R-P54 將補列由 6 增為 7
+之後影響更大。
+
+#### D-10 基線（修訂後全簿，rows 4–561）
+
+| Gate | 值 | 計數單位 | 掃描範圍 |
+|---|---|---|---|
+| L-PJ5 禁詞 | 1 | 次 | I + K |
+| L-PJ6 模糊語 | 4 | 次 | I + K + L |
+| L-PJ9 泛稱工具 | **17** | 列 | PRE 命中泛稱且 PROC 無具名工具 |
+| L-PJ10 缺陷類 | 5 | **列** | I + K + L |
+| L-PJ10 參數類 | 8 | **列** | I + K + L |
+| 步驟交叉指涉 | 30 | 列 | K |
+| 步數 != ER 例外 | 3 | 列 | K vs L |
+| 前向循環指涉 | 0 | 次 | K |
+
+**單位不一致是刻意的，不是筆誤**：L-PJ6 以次計（r520 一列在 PROC 與 ER 各
+命中一次，算兩次），L-PJ10 以列計（參數類 8 = 8 列，非 8 次）。canon §5a
+第二條要求計數單位隨值一併載明，故此表列出單位欄。**L-PJ10 之掃描範圍必須
+含 `Expected Result`** —— 參數類 8 列中 r60／r61 之 `<Device Name>` 只出現在
+ER，只掃可編輯兩欄會得到 6。
+
+#### 執行記錄
+
+| 輪次 | 日期 | 結果 | 報告 |
+|---|---|---|---|
+| v1 首次 | 2026-08-12 | **FAIL**（D-4 FAIL、D-1／D-2 條件與 R-P12 衝突） | `docs/dryrun_report.md` |
+| v2 | 2026-08-12 | **PASS**（D-1 ~ D-10 全綠，走分支 A） | `docs/dryrun_v2_report.md` |
+| v3 | 2026-08-12 | **PASS**（檢查表 v3；含複本寫入實測） | `docs/dryrun_v3_report.md` |
+| v4 | 2026-08-12 | **PASS**（檢查表 v4；D-1 ~ D-11 + W-1 ~ W-7 複本全過） | `docs/phase7_step1_5_report.md` |
+
+### 凍結欄之例外一律為窄口（R-P12 / R-P75）
+
+本 feature 有兩個凍結欄窄口，**設計形式相同**：白名單 + 固定形式 + 純變更方向
++ 逐列記錄。
+
+| 窄口 | 欄 | 列 | 形式 | log |
+|---|---|---|---|---|
+| **R-P12**（L-PJ4） | `Expected Result` | 6（r424–r429） | **純刪除**，被刪 token ∈ `{correctly, normally, properly, successfully}` | `er_narrow_gate.log.json` |
+| **R-P75** | `Remarks` | 30（Atl-Mid 車型） | **純附加**，固定字串 `Vehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)` | `remarks_scope_gate.log.json` |
+
+**凍結欄之例外一律為窄口，不得為一般授權。** 兩者共同確立此形式。
+
+R-P75 的理由：本簿自身的範圍標記慣例即置於 `Remarks`（77 列先例）。只記於交付
+文件而不入簿，執行者會遇到一個無法解析的 PROXI 前置條件而無任何說明 ——
+**那正是本專案存在的理由所在之缺陷**。
+
+**窄口僅適用既有列**（R-P80）：補列全欄新寫，不受凍結拘束，其 `Remarks` 自由
+填寫不需授權。同一欄兩套規則，依據不同。
+
+## 5b. `[ADD]` Phase 7 寫回動作清單 W-1 ~ W-7（R-P71）
+
+| # | 動作 | 驗證 |
+|---|---|---|
+| W-0 | **備份交付檔**至 `backup/…<ISO8601>.bak.xlsx`，SHA256 須等於寫回前之值（R-P78） | 不符即中止 |
+| W-1 | 保留公式模式載入（**禁 `data_only=True`**） | 公式總數 = 775 + 補列淨增 6 = **781**（R-P77 更正「775 不變」之算術錯誤） |
+| W-2 | 寫入 63 列 71 格 + **Remarks 窄口 30 列純附加**（R-P75） | 變更欄 ⊆ 授權集合；30 列逐列純附加 |
+| W-8 | **`Test Case Author` 40 個空白列補 `PeiPYHsu`**（R-P83，置於 W-4 後、W-7 前） | 寫回後該欄空白 = 0；變更列數 == 40 |
+| W-3 | 刪除 r562（分支 A） | 559 → 558；刪前確認 227 補列已存在 |
+| W-4 | 補列 7 條，ID `NR1L-PROJ-560~566` | D-4 / D-6 |
+| W-5 | **`No.#` 寫公式 `=ROW()-3`** | c2 全欄 565 格皆為公式 |
+| W-6 | **DV 範圍延伸至 r568** | r563–r568 各受控欄皆有下拉 |
+| W-9 | **補列與參照列 r561 同構**（R-P86）：逐欄繼承全部樣式屬性 + 列層級設定 + 自動篩選 `ref` 延伸至 r568 | 7 列 × 36 欄逐屬性比對，不符 0；**逐欄繼承非整列套用** —— r561 之 36 欄實測有 **8 種**相異樣式簽章 |
+| W-7 | 外部重算（`soffice --headless`） | 統計值與**預先算出**之預期一致 |
+
+**W-5 / W-6 / W-9 是本清單存在的理由** —— 其餘各項現行檢查項皆能攔下，這三項
+不能（D-2 比對內容不比對型別，D-6 比對值不比對有無下拉，**D-1 ~ D-11 全部不看
+樣式**）。
+
+三者是**同一缺口的三個表現**：「補列」原本被定義成「寫入儲存格的值」，而不是
+「新增一列使其與既有列同構」（R-P86）。W-6 之所以早於另兩項存在，只因 A-PJ59
+在複本實測時偶然發現了資料驗證那一項。
+
+**W-9 之通過條件為「與參照列在所有可讀屬性上一致」，非「已知的幾項設定正確」** ——
+前者會隨屬性增加自動涵蓋，後者只涵蓋已經想到的。
+
+**驗證順序（R-P78）**：可在記憶體中驗證者（公式數量與內容、儲存格值、型別）
+**一律置於 `save()` 之前**；僅能在落盤後驗者（W-7 外部重算）才置於其後，且其
+失敗即觸發還原。**還原之定義＝以備份檔覆蓋並驗證 SHA256 回到寫回前之值。**
+
+實作於 `features/projection/scripts/writeback.py`，每項自帶驗證，任一不過即
+raise，不留半成品。**預設只在複本執行；對交付用檔案執行須明示放行。**
+
+#### 檢查表 v3 之四項修訂（R-P59 ~ R-P66）
+
+1. **D-2 雙軌**（R-P60）+ dry-run 值軌標「未實測」（A-PJ56 → canon §5a 第十一條）
+2. **D-3 列身分**改為內容導出之雜湊（A-PJ57 推翻 R-P66 指定之 `No.#`）
+3. **D-6 值域**改用資料驗證實際強制者（A-PJ58）+ 新增 `Test Case ID` 欄
+4. **D-9** 由「比對一致性」改為「驗證維持空白」
+
+**新增前置檢查（Phase 7 寫回，R-P59）**：寫回前後全簿 **775** 個公式逐一比對，
+任一消失即 ABORT 並還原。禁止 `data_only=True` 載入後存檔 —— 複本反證實測
+775 → 0，不可逆（A-PJ60）。
+
+列號對照表見 `features/projection/data/d5_blocked_rows.json`，逐項明細見
+`features/projection/data/dryrun_v2.json`。
 
 ## 6. `[ADD]` Column map
 
