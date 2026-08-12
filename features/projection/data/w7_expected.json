@@ -1,0 +1,78 @@
+{
+  "computed": "寫入與重算之前",
+  "expected": {
+    "Bluetooth": {
+      "row": 12,
+      "before": 53,
+      "delta": 0,
+      "expected_after": 53
+    },
+    "Device Manager": {
+      "row": 13,
+      "before": 192,
+      "delta": 2,
+      "expected_after": 194
+    },
+    "Carplay Wired and Wireless": {
+      "row": 14,
+      "before": 60,
+      "delta": 0,
+      "expected_after": 60
+    },
+    "Android Auto Wired and Wireless": {
+      "row": 15,
+      "before": 58,
+      "delta": 0,
+      "expected_after": 58
+    },
+    "Audio Management": {
+      "row": 16,
+      "before": 31,
+      "delta": 1,
+      "expected_after": 32
+    },
+    "Audio Tuning (EQ)": {
+      "row": 17,
+      "before": 0,
+      "delta": 0,
+      "expected_after": 0
+    },
+    "SSE / ECNR": {
+      "row": 18,
+      "before": 4,
+      "delta": 0,
+      "expected_after": 4
+    },
+    "GPS": {
+      "row": 19,
+      "before": 30,
+      "delta": 2,
+      "expected_after": 32
+    },
+    "WiFi": {
+      "row": 20,
+      "before": 51,
+      "delta": 1,
+      "expected_after": 52
+    },
+    "Touch": {
+      "row": 21,
+      "before": 57,
+      "delta": 0,
+      "expected_after": 57
+    },
+    "Media Player": {
+      "row": 22,
+      "before": 23,
+      "delta": 0,
+      "expected_after": 23
+    },
+    "TOTAL": {
+      "row": 23,
+      "before": 559,
+      "delta": 6,
+      "expected_after": 565
+    }
+  },
+  "result_cols": "Pass/Fail/Block/NA/Completed 全部不變；Done% 分母增加而下降"
+}

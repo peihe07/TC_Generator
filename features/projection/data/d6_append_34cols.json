@@ -1,0 +1,280 @@
+{
+  "ruling": "R-P79 + R-P81 + R-P85",
+  "columns": [
+    {
+      "col": 1,
+      "header": "c1",
+      "type": "mostly_blank",
+      "criterion": "得為空",
+      "pass": true,
+      "note": "既有空白 558/558"
+    },
+    {
+      "col": 2,
+      "header": "No.#",
+      "type": "formula",
+      "criterion": "為公式 =ROW()-3",
+      "pass": true,
+      "note": "W-5 已驗，565 格全公式"
+    },
+    {
+      "col": 3,
+      "header": "Requirement or Design",
+      "type": "id",
+      "criterion": "唯一且格式相符",
+      "pass": true,
+      "note": "取自 037，7/7 非空"
+    },
+    {
+      "col": 4,
+      "header": "Requirement or Design ID",
+      "type": "id",
+      "criterion": "唯一且格式相符",
+      "pass": true,
+      "note": "取自 037，7/7 非空"
+    },
+    {
+      "col": 5,
+      "header": "Test Case ID",
+      "type": "id",
+      "criterion": "唯一且格式相符",
+      "pass": true,
+      "note": "560~566，不與既有重複"
+    },
+    {
+      "col": 6,
+      "header": "Test Group",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7/7 非空，全在既有值域"
+    },
+    {
+      "col": 7,
+      "header": "Test Set",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7/7 非空，全在既有值域"
+    },
+    {
+      "col": 8,
+      "header": "Test Item",
+      "type": "freetext",
+      "criterion": "與 done region 慣例一致：反映該 leaf 之需求敘述（實質判準）+ 長度落在既有分布（代理判準）",
+      "pass": true,
+      "note": "7/7 逐字取自 037，實質判準全數滿足。**代理判準（長度）有 2 列低於既有下限**：以空白切詞 564=9／565=9（既有下限 11）；以中文逐字 564=15（既有下限 17）、565=20（通過）。兩列皆為 BLOCKED 佔位，其 037 原文本身即短。加長即編造，為 O-4 與 R-P81 明文所禁 —— **唯一可行動作只有維持逐字**。標記為 A-PJ68，不阻斷交付。",
+      "flag": "A-PJ68"
+    },
+    {
+      "col": 10,
+      "header": "Input Test Data",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7/7 非空，全在既有值域"
+    },
+    {
+      "col": 12,
+      "header": "Expected Result",
+      "type": "freetext",
+      "criterion": "非空（既有多數為空者得為空）",
+      "pass": true,
+      "note": "7/7 非空；既有空白 0/558"
+    },
+    {
+      "col": 13,
+      "header": "Specification Reference ",
+      "type": "anchor",
+      "criterion": "R-P73 真解析",
+      "pass": true,
+      "note": "7 條全解析（2 條標未解析來源）"
+    },
+    {
+      "col": 14,
+      "header": "Test Case Reference ID",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7/7 非空，全在既有值域"
+    },
+    {
+      "col": 15,
+      "header": "Test Case Priority",
+      "type": "dv",
+      "criterion": "值 ∈ DV 值域(4)",
+      "pass": true,
+      "note": "7/7 非空，全部命中"
+    },
+    {
+      "col": 16,
+      "header": "Estimated Test Time (mins)",
+      "type": "mostly_blank",
+      "criterion": "得為空",
+      "pass": true,
+      "note": "既有空白 558/558"
+    },
+    {
+      "col": 17,
+      "header": "Test Case Design Methods",
+      "type": "dv",
+      "criterion": "值 ∈ DV 值域(9)",
+      "pass": true,
+      "note": "7/7 非空，全部命中"
+    },
+    {
+      "col": 18,
+      "header": "Functional Safety",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7/7 非空，全在既有值域"
+    },
+    {
+      "col": 19,
+      "header": "Vehicle Model 車型",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 20,
+      "header": "c20",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 21,
+      "header": "c21",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 22,
+      "header": "c22",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 23,
+      "header": "c23",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 24,
+      "header": "c24",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 25,
+      "header": "c25",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 26,
+      "header": "Test Case Author",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7/7 非空，全在既有值域"
+    },
+    {
+      "col": 27,
+      "header": "Test Vehicle(Bench)",
+      "type": "exec_record",
+      "criterion": "須為空（執行記錄欄，R-P85）",
+      "pass": true,
+      "note": "既有 3 列非空皆屬已執行之 12 列子集，值為台架身分 HDCC27；補列未執行故留空"
+    },
+    {
+      "col": 28,
+      "header": "Test Period",
+      "type": "mostly_blank",
+      "criterion": "得為空",
+      "pass": true,
+      "note": "既有空白 558/558"
+    },
+    {
+      "col": 29,
+      "header": "Tester",
+      "type": "domain",
+      "criterion": "值 ∈ 既有相異值集合",
+      "pass": true,
+      "note": "7 列全空；既有空白 438/558"
+    },
+    {
+      "col": 30,
+      "header": "Test Result 測試結果",
+      "type": "dv",
+      "criterion": "值 ∈ DV 值域(5)",
+      "pass": true,
+      "note": "0/7 非空，全部命中"
+    },
+    {
+      "col": 31,
+      "header": "c31",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 32,
+      "header": "c32",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 33,
+      "header": "c33",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 34,
+      "header": "c34",
+      "type": "result",
+      "criterion": "須為空",
+      "pass": true,
+      "note": "7 列全空"
+    },
+    {
+      "col": 35,
+      "header": "Defect ID",
+      "type": "mostly_blank",
+      "criterion": "得為空",
+      "pass": true,
+      "note": "既有空白 531/558"
+    },
+    {
+      "col": 36,
+      "header": "Remarks",
+      "type": "freetext",
+      "criterion": "非空（既有多數為空者得為空）",
+      "pass": true,
+      "note": "4/7 非空；既有空白 374/558（多數為空→得為空）"
+    }
+  ],
+  "failures": [],
+  "_flag": "c8 長度代理判準 2 列越界，實質判準通過，見 A-PJ68"
+}

@@ -1,0 +1,26 @@
+{
+  "distribution": {
+    "PROXI": 5,
+    "ABORT": 2,
+    "CAN-B": 2,
+    "FD": 27,
+    "VF176": 9
+  },
+  "unresolved": [
+    [
+      151,
+      "HCP_DISP2.Est_Range_BEV"
+    ],
+    [
+      152,
+      "HCP_DISP2.Est_Range_BEV"
+    ]
+  ],
+  "scan_range": "lint_defs.SCAN_RISK 六個文字欄；已移除 $...$ token 內容",
+  "exempt": [
+    "bthci_cmd.opcode",
+    "tone_sin_1KHz.wav",
+    "view.The"
+  ],
+  "proxi_params": 1238
+}

@@ -1,0 +1,188 @@
+{
+  "W-0": {
+    "path": "/Users/peihe/Work_Projects/TC_Generator/features/projection/backup/NR1L_GEN1_HDCC__Ver_20260813.20260812T081932Z.bak.xlsx",
+    "sha256": "11579c9b3b8e56eb9f25a06acd2ce9281409286248a37b327be4732cc0bdede9",
+    "source_sha256": "11579c9b3b8e56eb9f25a06acd2ce9281409286248a37b327be4732cc0bdede9"
+  },
+  "W-1": {
+    "formulas_before": 775,
+    "per_sheet": {
+      "TestProgress": 189,
+      "TestResults": 559,
+      "BugList": 27
+    },
+    "formulas_after": 781,
+    "expected": 781,
+    "other_sheets_identical": true,
+    "testresults": "559 → 565"
+  },
+  "W-2": {
+    "cells": 71,
+    "rows_per_col": {
+      "9": 23,
+      "11": 42,
+      "12": 6,
+      "36": 30
+    },
+    "union_rows": 93
+  },
+  "W-3": {
+    "deleted_row": 562,
+    "stub_leaf": "SWE1-PROJ-227",
+    "replacement": "NR1L-PROJ-566"
+  },
+  "W-4": {
+    "appended": 7,
+    "rows": "r562-r568",
+    "ids": [
+      "NR1L-PROJ-560",
+      "NR1L-PROJ-561",
+      "NR1L-PROJ-562",
+      "NR1L-PROJ-563",
+      "NR1L-PROJ-564",
+      "NR1L-PROJ-565",
+      "NR1L-PROJ-566"
+    ]
+  },
+  "W-8": {
+    "filled": 40,
+    "rows": [
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      367,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      436,
+      560,
+      561
+    ],
+    "blank_after": 0,
+    "value": "PeiPYHsu"
+  },
+  "W-5": {
+    "seq_cells": 565,
+    "literals": 0,
+    "all_formula": true
+  },
+  "W-6": {
+    "extended": [
+      {
+        "from": "Q4:Q152 Q167:Q190 Q219:Q562",
+        "to": "Q4:Q152 Q167:Q190 Q219:Q568"
+      },
+      {
+        "from": "O4:O562",
+        "to": "O4:O568"
+      },
+      {
+        "from": "AD4:AH562",
+        "to": "AD4:AH568"
+      }
+    ],
+    "final": [
+      "Q4:Q152 Q167:Q190 Q219:Q568",
+      "O4:O568",
+      "S4:Y6",
+      "AD4:AH568"
+    ]
+  },
+  "W-7": {
+    "status": "ok",
+    "recalculated": "/var/folders/kk/cq9xqq2d34d27n5dbqg2qttr0000gn/T/tmp4366ta7r/NR1L_GEN1(HDCC)_Ver_20260813.xlsx",
+    "total_items": {
+      "Bluetooth": {
+        "expected": 53,
+        "actual": 53,
+        "match": true
+      },
+      "Device Manager": {
+        "expected": 194,
+        "actual": 194,
+        "match": true
+      },
+      "Carplay Wired and Wireless": {
+        "expected": 60,
+        "actual": 60,
+        "match": true
+      },
+      "Android Auto Wired and Wireless": {
+        "expected": 58,
+        "actual": 58,
+        "match": true
+      },
+      "Audio Management": {
+        "expected": 32,
+        "actual": 32,
+        "match": true
+      },
+      "Audio Tuning (EQ)": {
+        "expected": 0,
+        "actual": 0,
+        "match": true
+      },
+      "SSE / ECNR": {
+        "expected": 4,
+        "actual": 4,
+        "match": true
+      },
+      "GPS": {
+        "expected": 32,
+        "actual": 32,
+        "match": true
+      },
+      "WiFi": {
+        "expected": 52,
+        "actual": 52,
+        "match": true
+      },
+      "Touch": {
+        "expected": 57,
+        "actual": 57,
+        "match": true
+      },
+      "Media Player": {
+        "expected": 23,
+        "actual": 23,
+        "match": true
+      },
+      "TOTAL": {
+        "expected": 565,
+        "actual": 565,
+        "match": true
+      }
+    },
+    "all_match": true
+  }
+}

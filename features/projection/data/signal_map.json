@@ -37,11 +37,12 @@
       "scope": "所有 CAN 送值步驟"
     },
     "enum_authority_rule": "R-P20 — PROXI 之列舉值為權威；`Logical Identifiers and CAN Mapping` 僅供 Logical Identifier → 訊號／配置字名稱之對映，其列舉值不具權威性（v1_76 的 VC_VEH_LINE 截斷於 101 = WL，缺 102/103/104/105/106/124/130；PROXI Format row 466 完整列至 130 = HDCC）。L-PJ2 值域檢查一律對 PROXI 執行，不得對 mapping 執行。",
-    "unresolved_count": 1
+    "unresolved_count": 1,
+    "d8_field_split": "原 workbook_rows 語意混用且未載明掃描範圍（A-PJ55）。依 D-8 拆為三欄，欄名載明範圍：token_rows_prerefine_scanrisk（歷史記錄，凍結，範圍 = lint_defs.SCAN_RISK 六個文字欄，可復現原值 22/15/19/4/2/3/2）、token_rows_postrefine_scanrisk（現況，須同步）、token_rows_postrefine_editable（僅可編輯三欄，供 gate 用）。",
+    "snapshot_phase": "mixed — 見 d8_field_split，逐欄標記"
   },
   "tokens": {
     "$Day_Night_Mode$": {
-      "workbook_rows": 22,
       "resolution": "mapping",
       "lid": "Day_Night_Mode",
       "bus": "FD",
@@ -55,10 +56,12 @@
         "found": true
       },
       "trap": "The mapping table lists TWO spellings in one cell: BCM_FD_27.DAY_LGT_MODE_DISP and BCM_FD_27.DAY_LGT_MD_DISP. Only DAY_LGT_MD_DISP exists in either DBC — DAY_LGT_MODE_DISP resolves in neither. Take DAY_LGT_MD_DISP; writing the other aborts under L-PJ1.",
-      "enum_authority": "DBC VAL_"
+      "enum_authority": "DBC VAL_",
+      "token_rows_prerefine_scanrisk": 22,
+      "token_rows_postrefine_scanrisk": 22,
+      "token_rows_postrefine_editable": 20
     },
     "$VC_Veh_Brand$": {
-      "workbook_rows": 12,
       "aliases": [
         "$VC_VEH_BRAND$"
       ],
@@ -93,10 +96,12 @@
         "proxi": true,
         "found": true
       },
-      "enum_authority": "PROXI"
+      "enum_authority": "PROXI",
+      "token_rows_prerefine_scanrisk": 15,
+      "token_rows_postrefine_scanrisk": 14,
+      "token_rows_postrefine_editable": 2
     },
     "$VC_Veh_Line$": {
-      "workbook_rows": 14,
       "aliases": [
         "$VC_VEH_LINE$",
         "$VC_VEH_Line$"
@@ -155,10 +160,12 @@
       "enum_authority": "PROXI",
       "write_as": "Car_Configuration_15.Vehicle_Line_Configuration = 105 (332)",
       "enum_source": "PROXI Format row 466 col 9",
-      "superseded_ruling": "R-P8 — 原文保留不動，Remarks 註記待確認（2026-08-12 由 R-P8′ 取代）"
+      "superseded_ruling": "R-P8 — 原文保留不動，Remarks 註記待確認（2026-08-12 由 R-P8′ 取代）",
+      "token_rows_prerefine_scanrisk": 19,
+      "token_rows_postrefine_scanrisk": 18,
+      "token_rows_postrefine_editable": 2
     },
     "$HUModeStatus$": {
-      "workbook_rows": 4,
       "resolution": "mapping + ruling R-P10",
       "lid": "HUModeStatus",
       "bus": "FD",
@@ -186,10 +193,12 @@
       },
       "caution": "The DBC labels carry the _Selected suffix (AM_Selected, not AM). L-PJ1 compares against the DBC VAL_ table, so the suffix must be written as the DBC has it.",
       "open": "Leaf SWE1-PROJ-184 requires $HUModeStatus$ = [TGW_USB1_Sel]. That label was NOT confirmed present in the CurrentSource value table during Phase 0 — it must be looked up before any step is written. 184 is one of the 7 uncovered leaves.",
-      "enum_authority": "DBC VAL_"
+      "enum_authority": "DBC VAL_",
+      "token_rows_prerefine_scanrisk": 4,
+      "token_rows_postrefine_scanrisk": 4,
+      "token_rows_postrefine_editable": 4
     },
     "$FuelLvlLow$": {
-      "workbook_rows": 2,
       "resolution": "mapping",
       "lid": "FuelLvlLow",
       "bus": "CAN-B",
@@ -203,10 +212,12 @@
         "found": true
       },
       "note": "CAN-B only — absent from FDCAN8. This token alone makes the BHCAN file non-optional.",
-      "enum_authority": "DBC VAL_"
+      "enum_authority": "DBC VAL_",
+      "token_rows_prerefine_scanrisk": 2,
+      "token_rows_postrefine_scanrisk": 2,
+      "token_rows_postrefine_editable": 2
     },
     "$Screen_Size$": {
-      "workbook_rows": 3,
       "resolution": "dual-source — mapping LID `Head_Unit_Screen_Size` + PROXI `Radio_Display_Type`（R-P7 升格；A-PJ13）",
       "lid": "Head_Unit_Screen_Size",
       "bus": "PROXI",
@@ -230,10 +241,12 @@
       },
       "ruling": "R-P7 — the 6 rows whose Remarks read `only 8.4\"` are written as Radio_Display_Type = 2. Those rows are 425, 426, 428, 429, 430, 431.",
       "enum_authority": "PROXI",
-      "status": "resolved"
+      "status": "resolved",
+      "token_rows_prerefine_scanrisk": 3,
+      "token_rows_postrefine_scanrisk": 2,
+      "token_rows_postrefine_editable": 2
     },
     "$HCP_DISP2.Est_Range_BEV$": {
-      "workbook_rows": 2,
       "resolution": "UNRESOLVED",
       "lid": null,
       "bus": null,
@@ -270,7 +283,10 @@
         }
       ],
       "prohibition": "The three candidates are not equivalent to one another. Choosing any one of them is fabrication and is forbidden. The mapping table carries 9 Est_Range* LIDs and none of them is a BEV variant.",
-      "enum_authority": null
+      "enum_authority": null,
+      "token_rows_prerefine_scanrisk": 2,
+      "token_rows_postrefine_scanrisk": 2,
+      "token_rows_postrefine_editable": 2
     }
   },
   "proxi_preconditions": {

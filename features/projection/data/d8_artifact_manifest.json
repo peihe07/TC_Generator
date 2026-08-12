@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "check": "D-8",
+    "date": "2026-08-12",
+    "rule": "修訂前快照標 snapshot_phase 且不更新；須同步者更新至修訂後狀態",
+    "note": "dryrun_v2.json / d7_proc_excerpt_diff.json / d8_artifact_manifest.json 為本輪產物，不列入 13 份既有 artifact"
+  },
+  "artifacts": {
+    "recon.json": {
+      "class": "pre-refine",
+      "rationale": "Phase 0 全簿實測，歷史證據，不更新",
+      "exists": true,
+      "sha256": "3a74de546388565b"
+    },
+    "pcts_evidence.json": {
+      "class": "pre-refine",
+      "rationale": "adb 實機取證，附時戳，不更新",
+      "exists": true,
+      "sha256": "90f6f9cde2abed0a"
+    },
+    "testgroup_matrix.json": {
+      "class": "stable",
+      "rationale": "Test Group × Test Set 皆為凍結欄，修訂不影響，無需同步",
+      "exists": true,
+      "sha256": "61e6e4c051dd4231"
+    },
+    "cfts085_sections.json": {
+      "class": "source-index",
+      "rationale": "來源文件章節索引，與工作簿修訂無關",
+      "exists": true,
+      "sha256": "df74f6875a0c67a7"
+    },
+    "huig_sections.json": {
+      "class": "source-index",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "c289425efa9d5f2a"
+    },
+    "sysad_sections.json": {
+      "class": "source-index",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "233faf1f08670da3"
+    },
+    "carplay_addendum_sections.json": {
+      "class": "source-index",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "ecfdc4e2c272eb8a"
+    },
+    "protocol_axis.json": {
+      "class": "analysis",
+      "rationale": "A-PJ06 三層框架分析產物，凍結於分析當時",
+      "exists": true,
+      "sha256": "613c7b82965b5600"
+    },
+    "sub_x_testset.json": {
+      "class": "analysis",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "66f133458d6142f1"
+    },
+    "layer2_x_layer3.json": {
+      "class": "analysis",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "854a8903d33471d2"
+    },
+    "layer2_isomorphism.json": {
+      "class": "analysis",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "09211fb096eca65b"
+    },
+    "layer3_gate.json": {
+      "class": "analysis",
+      "rationale": "同上",
+      "exists": true,
+      "sha256": "016d4dc65d180514"
+    },
+    "er_divergence.json": {
+      "class": "must-sync",
+      "rationale": "D-7 已更新 29/35 列之 proc_excerpt；er_excerpt 凍結",
+      "exists": true,
+      "sha256": "a3b7c706c1f920da"
+    },
+    "er_narrow_gate.log.json": {
+      "class": "must-sync",
+      "rationale": "窄口 6 列 diff，已與 D-1 逐列比對一致",
+      "exists": true,
+      "sha256": "a1f5169c5bb0c1a0"
+    },
+    "signal_map.json": {
+      "class": "mixed",
+      "rationale": "D-8 拆欄；prerefine 欄凍結、postrefine 欄已同步",
+      "exists": true,
+      "sha256": "b5ac193c42992307"
+    },
+    "d5_blocked_rows.json": {
+      "class": "must-sync",
+      "rationale": "本輪新增 r177 / r188（R-P56、DR#13）",
+      "exists": true,
+      "sha256": "62c566cc110c2c46"
+    }
+  }
+}

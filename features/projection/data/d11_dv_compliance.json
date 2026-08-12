@@ -1,0 +1,73 @@
+{
+  "check": "D-11",
+  "summary": [
+    {
+      "header": "Test Case Design Methods",
+      "sqref": "Q4:Q152 Q167:Q190 Q219:Q562",
+      "domain": [
+        "功能測試 (Functional based ; no specific technique)",
+        "基礎故障注入 (Fault Injection Lite)",
+        "情境 / 用例 (Scenario / Use Case Testing)",
+        "決策表 (Decision Table Testing)",
+        "狀態轉換 (State Transition Testing)",
+        "等價劃分 (Equivalence Partitioning, EP)",
+        "組合測試 (Combinatorial Testing ; Pair-wise / N-wise)",
+        "負向測試 (Negative / Invalid)",
+        "邊界值分析 (Boundary Value Analysis, BVA)"
+      ],
+      "nonempty": 516,
+      "violations": 2
+    },
+    {
+      "header": "Test Case Priority",
+      "sqref": "O4:O562",
+      "domain": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "nonempty": 558,
+      "violations": 0
+    },
+    {
+      "header": "Vehicle Model 車型",
+      "sqref": "S4:Y6",
+      "domain": [
+        "0",
+        "1"
+      ],
+      "nonempty": 21,
+      "violations": 0
+    },
+    {
+      "header": "Test Result 測試結果",
+      "sqref": "AD4:AH562",
+      "domain": [
+        "Block",
+        "Fail",
+        "NA",
+        "Pass",
+        "Pending"
+      ],
+      "nonempty": 438,
+      "violations": 0
+    }
+  ],
+  "violations_by_row": {
+    "372": [
+      {
+        "col": 17,
+        "value": "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+      }
+    ],
+    "376": [
+      {
+        "col": 17,
+        "value": "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+      }
+    ]
+  },
+  "normalization": "數值儲存格與 DV 字串列舉比對前正規化（Excel 存 1，DV 寫 \"0,1\"）；未正規化會誤報 21 筆",
+  "rule": "空白不視為違規（R-P74）；既有違規凍結欄不動入 RD-1；補列違規即 FAIL"
+}
