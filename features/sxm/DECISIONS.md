@@ -88,6 +88,15 @@ sign-off = binding as proposed.
   instance is `…_SWQT_CFTS024_Radio_20260129`; SXM's spec line is not a single
   CFTS, so the feature name is used. Rename before delivery if the customer
   expects a CFTS-keyed name.
+- F column (test case id): [PEI 2026-08-11: `NR1L-{abbr}-{NNN}` — SXM uses
+  `NR1L-SXM-{NNN}`, zero-padded 3-digit, monotonically increasing within
+  the group (§10.3). Scope ruled (a): the format applies to SXM and all
+  subsequent deliveries; the delivered AMFM workbook keeps
+  `newR1L-AMFM-{NNN}` frozen — its output hash is sealed in tag
+  fw036-amfm-regen-v1 and re-keying would reopen a closed delivery. The
+  prefix difference across the family is recorded in RD-1 as an FYI line.]
+- O column (status): [PEI 2026-08-11: `NEW` — uppercase, per the workbook's
+  dropdown values.]
 - design-method vocabulary: [AUTO] 9 exact strings from 下拉選單
 
 ## 3. Coverage
@@ -203,3 +212,76 @@ sign-off = binding as proposed.
   the ruling. B5 §1.5 absorption mini-review recorded in A-SX08 follow-on:
   14/14 not absorbed, coverage holes to RD-1 Q-SX, `4872750` named as the
   configuration-gate exception.
+- Amendment (2026-08-11, seventh pass): delivery-chain rulings, directive
+  「1 照簽 2 照簽 3 照簽 4 照簽」— (1) A-SX20 standing carve + rolling
+  register; escape hatches: (i) content-contradiction pairs return to chat
+  (fired once: A-SX23 finding 1), (ii) cross-section pairs stay A-SX15-type.
+  (2) A-SX21 citation travels on NECESSITY threshold only — full R11
+  treatment, token co-listed with the absorbed clause id (three-hop chain
+  visible in the deliverable), cross-reference gate exception keyed to that
+  co-listing (A-H10 validation shape); 148/149 threshold evaluation before
+  write-back, expected to pass and gain one ER line + reference pair.
+  (3) A-SX23 key NOT ruled locally — shipped carve stands (168 persistence
+  without asserting the key, 175 per its own clause 4873284), `[A-SX23]`
+  marker on 175, RD-1 class-2 expedited framed by the renumber-unskip
+  failure mode; a contrary answer is grep + wholesale ER replacement on one
+  row. (4) 4873295 coverage hole, NO self-added leaf (§8.2 discipline,
+  A-AM13 precedent), RD-1 Q-AM3 wording. Sequencing ruled: write_back
+  first; RD-1 assembly by chat on final numbers; §1.5.21.2 weakness note +
+  UNRULED_BLANK into the delivery cover. Cross-reference correction: the
+  sixth-pass label "A-SX10" for the VR ruling now lives at A-SX19 after
+  renumbering; A-SX10 is the 082/083 title finding.
+- Amendment (2026-08-11, eighth pass): repo reorganisation RATIFIED after
+  the fact (directive「追認」). The 2026-08-10 rename ruling scoped the
+  change to AMFM only, leaving HomeHMI / mediaHMI / SXMHMI and the
+  `<Feature>HMI` scaffold convention untouched; the reorganisation executed
+  on 2026-08-11 moved all four features to `features/{amfm,home,media,sxm}`
+  and added `archive/`. That exceeded the ruling. Pei ratifies the executed
+  state rather than reverting — the delivery chain is mid-flight and a
+  second move costs more than it returns. Consequences ruled with the
+  ratification: (a) the "AMFM only" scope ruling is SUPERSEDED, not
+  violated-and-standing; (b) the `<Feature>HMI` scaffold convention in
+  `intake.py` / `new_feature.py` is now inconsistent with the on-disk
+  layout — a follow-up canon pass owes the naming and the
+  FEATURE_ONBOARDING wording; (c) reorganisation acceptance evidence is
+  still owed and NOT waived by this ratification: three-category
+  reference-sync grep report, 923 green, and the Project operating-charter
+  path re-sync (its `<Feature>HMI/PLAYBOOK.md` pointers are stale).
+- Amendment (2026-08-11, ninth pass): F/O column rulings recorded in §2
+  above, and A-SX23's RD-1 disposition corrected on new evidence.
+  (1) **F column ruled, scope (a)** — `NR1L-{abbr}-{NNN}`, SXM instance
+  `NR1L-SXM-{NNN}`. Applies to SXM and every subsequent delivery; the
+  delivered AMFM workbook keeps `newR1L-AMFM-{NNN}` frozen because its
+  output hash is sealed in tag `fw036-amfm-regen-v1`. The family-level
+  prefix difference is an RD-1 FYI line, to be added to the AMFM RD-1
+  class F when the SXM submission is issued: *"This delivery uses
+  newR1L-AMFM-{NNN}; subsequent deliveries in the same programme (starting
+  with SXM) use NR1L-{abbr}-{NNN}. Same project, format revised after this
+  workbook was sealed."* Implemented as `write_back.tc_id_format` in
+  `feature.yaml` + `assign_tc_ids` in `write_back.py`; the ruling also
+  removes the `NR1L-AntiTheft-001` template residue from F10, which
+  previously survived only because F was left unwritten.
+  (2) **O column ruled** — `NEW`, uppercase, per the workbook's dropdown
+  values. Already the shipped value (`tc_ref_id_value`); recorded so it is
+  a ruling rather than a default.
+  (3) **A-SX23 — a correction to Amendment 7 (3), not a reversal.** The
+  ruling body stands unchanged: the identification key is still NOT ruled
+  locally, the shipped carve stands (168 asserts persistence without
+  naming the key, 175 asserts its own clause `4873284` through the
+  renumber construction), and the `[A-SX23]` marker stays on 175 — a
+  contrary answer is still a single-row ER replacement, so the mechanism is
+  untouched. What changes is the RD-1 disposition, on evidence read out of
+  the §1.5.19 artifact types after the ruling was made: `4873277` is the
+  section's only **Description**; the seven others are **Subsystem
+  Functional Requirements**, and the normative pair does not conflict —
+  `4873278` says "skipped channels" without naming a key, `4873284` fixes
+  it as Service ID. The contradiction is Description prose against an SFR,
+  not two normative clauses. Consequences: **class-2 expedited → class-3
+  wording confirmation**, and the question is re-put as a wording-alignment
+  request rather than a behavioural one — *"4873277 (Description) says
+  'skipped channel numbers' while the allocated SFR 4873284 stores the
+  Service ID. Please align the Description wording with the SFR, or state
+  which is normative if the difference is intended."* The carve is harder
+  under this evidence, not softer: artifact-type hierarchy (SFR over
+  Description) now backs it alongside §8.6. Evidence table filed in
+  ANOMALIES A-SX23.

@@ -874,7 +874,7 @@ document in a third citation scheme (neither the 7-digit STLA form nor the
 in any case.
 
 
-## [A-SX23] The skipped-channel table is keyed two ways, and §1.5.19 duplicates twice — PART-RULED: key NOT ruled, goes to RD-1 (2026-08-11)
+## [A-SX23] The skipped-channel table is keyed two ways, and §1.5.19 duplicates twice — PART-RULED: key NOT ruled, goes to RD-1 class-3 (2026-08-11)
 
 Three findings in §1.5.19. The first is a content contradiction, so per the
 A-SX20 standing carve's escape hatch (i) it does **not** fold into that class
@@ -915,6 +915,58 @@ and deliberately does not name the key; leaf 175 asserts the discriminating
 consequence its own clause states. The two rows are consistent with each other
 under either answer, so both stand as written and the workbook ships without
 an unratified key decision embedded in it.
+
+**Evidence read after the ruling (2026-08-11, verbatim clause pull) — the
+contradiction is Description prose against an SFR, not two normative clauses
+in conflict.** Both clauses sit in CFTS024 §1.5.19 under the same anchor
+`4873276`, `resolution: reqif`, and neither appears in
+`data/reqif_vs_bracket_diff.json` — the reqif and bracket sides agree, so this
+is not an export artefact.
+
+```
+4873277  The HU maintains a table of skipped channel numbers which it uses
+         to prevent the cabin from selecting channels.
+         [Artifact Type:Description]  ECU: RRM, ETM, LTM  Radio: allSys
+
+4873284  When a channel is selected to skip, the HU shall store the Service
+         ID of the selected channel to the skipped channel list.
+         [Artifact Type:Subsystem Functional Requirement]
+         ECU: ETM, RRM, LTM  Radio: allSys, CTS1_2
+```
+
+Across the whole section, `4873277` is the **only** Description; the other
+seven clauses are Subsystem Functional Requirements:
+
+| leaf | id | artifact type | identification key as written |
+|---|---|---|---|
+| 168 | 4873277 | **Description** | skipped channel **numbers** |
+| 169 | 4873278 | SFR | skipped **channels** (neutral — names no key) |
+| 170 | 4873279 | SFR | not applicable |
+| 171 | 4873280 | SFR | not applicable |
+| 172 | 4873281 | SFR | not applicable |
+| 173 | 4873282 | SFR | not applicable |
+| 174 | 4873283 | SFR | not applicable |
+| 175 | 4873284 | SFR | **Service ID** |
+
+The normative side is therefore consistent: `4873278` maintains a table of
+"skipped channels" without committing to a key, and `4873284` fixes the key as
+Service ID. Nothing normative says "numbers" — only the Description does.
+
+What this changes, and what it does not:
+- **The carve does not move.** 168 still asserts persistence without naming
+  the key, 175 still asserts its own clause `4873284` through the renumber
+  construction. Both are now backed by the artifact-type hierarchy (an SFR
+  outranks a Description) in addition to §8.6, so the handling is firmer than
+  when it was ruled, not looser.
+- **`[A-SX23]` stays on 175.** A contrary answer is still a single-row ER
+  replacement; the failure mechanism is unchanged.
+- **The RD-1 disposition is corrected** — class-2 expedited → **class-3
+  wording confirmation**, and the question becomes a wording-alignment
+  request rather than a behavioural one: *"4873277 (Description) says
+  'skipped channel numbers' while the allocated SFR 4873284 stores the Service
+  ID. Please align the Description wording with the SFR, or state which is
+  normative if the difference is intended."* Ruled in DECISIONS Amendment 9 as
+  a correction to Amendment 7 (3), not a reversal of it.
 
 Findings 2 and 3 of this entry (the `Clear All` / `Deselect All` naming carve,
 and 169 restating 168) are the A-SX20 shape and are covered by that entry's
