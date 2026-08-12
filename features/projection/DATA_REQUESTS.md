@@ -11,7 +11,11 @@ matching ANOMALIES entry; neither exists without the other.
 Rows 1–5 arrived with the Phase 0 下放包 §9. Rows 6–8 were opened by Phase 0
 recon off the workbook's own `Specification Reference` column, which names its
 sources on 558 of 559 rows and is the strongest 缺件 signal in this corpus
-(A-PJ02). Rows 9–11 were opened by the Phase 2 PCTS on-device capture.
+(A-PJ02). Rows 9–11 were opened by the Phase 2 PCTS on-device capture. Rows 12–14 were
+opened during Phase 5 batch work. **Rows 15–19**：15–17 由 Phase 6 D-4／dry-run v3 開立，18 由 DR#14 答覆拆出（Atl-Hi），
+19 由 Phase 7 之 spec_ref 真解析開立。
+**DR 編號由分析層統一指派**——執行層曾將 SYSAD 缺件開為 DR#18 而與本包衝突，
+此後執行層發現新缺件時開 `DR#TBD` 並於上繳包描述，由分析層編號。 —— 兩者皆源自 037 CPAA 之 Verification Criteria 本身，非工作簿。
 
 **Phase 2 結束狀態（2026-08-12，含補裁與 R-P21/R-P22）：11 列中 5 列 CLOSED**
 （#3 #4 #5 #6 #7 —— 其中 **#4 曾於同日重開又關閉**，見該列）、
@@ -41,6 +45,11 @@ sources on 558 of 559 rows and is the strongest 缺件 signal in this corpus
 | **13** | **`Performance` 組 7 列之量測設備規格** —— r110/r113（CarPlay：mode-update 與 audio-setup 響應時間）、r114–r118（Android Auto：video setup latency、input-to-display latency、end-to-end latency、audio output latency、RTT／bandwidth）。現況僅寫 `Test equipment for measuring … is available`。已查 CarPlay Tests User Manual R2.19.4：`Performance Tests > Touch Latency`(p26) 與 `Connectivity Utilities > CarPlay Network Tests`(p36) 存在但**不涵蓋這 7 列**（5 列為 Android Auto，CarPlay App 不適用；2 列無對應功能）。需取得：Android Auto 側之量測工具，及 CarPlay 側 mode-update／audio-setup 之量測方式。**2026-08-12 增補**：B4 另發現 3 列 `trace tool` 型泛稱（r141/r142/r147，Voice Recognition），CarPlay 側之 requestSiri／KEYCODE_SEARCH trace 工具應為 ATS 但簿內未載明（A-PJ44），一併請求 | ❌ 未提供 | 7 + 3 = 10 | A-PJ39 | **列級阻塞（7 列）** —— 依 R-P35 同型邏輯，阻塞的是那 7 列而非批次或階段。`Performance` 批照常結案，7 列列為「正確地不動」 |
 | **12** | **`mobile GAL log` 之操作手冊** —— Android Auto 裝置端 log capture 工具，不在 `inputs/` 三個工具目錄（`ATS 8.10.0` / `PCTS` / `CarPlay TestApp`）內，無任何手冊或 README。需取得：啟動方式、log 檔位置、過濾條件。**併請 `logcat` 之過濾條件依據**（A-PJ35，程度較輕：啟動方式公知，缺的是該以何 tag／關鍵字過濾 Android Auto 位置資料） | ❌ 未提供 | 4（r231–234）+ 3（r222–224） | A-PJ32 / A-PJ35 | **Phase 5 前** —— 此 7 列在取得前無法修訂 |
 | **11** | **MT1 / WP43 / D5 之操作細節** —— adb 唯讀取證無法取得三項：MT1 的「OK 鈕啟動自動量測 + 量測值顯示位置」、WP43 的「提示流程步驟」、D5 的「色深顯示位置」。三者皆須實際開啟測項頁才看得到。**補裁 #4 定為併入首次實跑回填**，不另辦人工確認 —— 這些細節本來就要在真正執行該測項時才看得到，另辦一次是重複勞動 | ⚠️ **併入首次實跑** | 3（267, 521, 522）+ 441 另因 A-PJ20 鎖定 | R-P11 | 隨首次實跑 |
+| **15** | **`SWE1-PROJ-227` 之客戶專屬手機 APP** —— 037 Verification Criteria 逐字要求 `Customer provided dedicated phone APP`，用以建立 EA session（read/write bytestream）。`inputs/` 三個工具目錄內無此 APP，來源亦未指名其名稱、版本或取得途徑。**判定為執行資源阻塞而非撰寫阻塞**（比照 R-P35 之 `Need to test in real car env`）：步驟與判準可依 CarPlay Addendum R10 寫定，執行時需該 APP 到位。補列已產出並通過全部 gate | ❌ 未提供 —— 不阻塞撰寫 | 1（補列 SWE1-PROJ-227） | A-PJ54 相鄰 | 首次實跑前 |
+| **16** | **`SWE1-PROJ-190` / `SWE1-PROJ-195` 之需求有效性確認** —— 兩 leaf 之 037 Verification Criteria 逐字為 `Invalid demand, only need to display TBT` 與 `Mobile phone behavior does not require development.`，**由 RD 端自述無 HU 端可驗證行為**。此非資料不足，是來源明確地說沒有東西可驗。需 RD 確認兩 leaf 是否撤銷；未撤銷則需補充可驗證判準。補列以 BLOCKED 佔位產出，滿足 R-P14 之 every-leaf-gets-a-row 而不違反 O-4 | ❌ 待 RD 確認 | 2（補列 190 / 195） | A-PJ54 | RD-1 |
+| **17** | **BLOCKED 佔位列之統計口徑** —— 190／195 兩條佔位列寫回後會被 `TestProgress` 之公式（`TestResults!$AD$4:$AD$597` 等）計入分母而永無結果，完成率永遠無法達 100%。**R-P63 之事實前提須更正**：`Test Result` 的值域由資料驗證 `AD4:AH562` 強制，實為 `Pass, Fail, Block, NA, Pending` —— **`NA` 與 `Block` 都在值域內**，且該清單是資料驗證的 inline 值而非 `下拉選單` 分頁內容，故「分頁凍結不得新增值」對它不適用。**問法應改為**：佔位列應填 `Block`、`NA`，抑或依 R-P63 留空？本輪依裁決留空 | ❓ 待裁定 | 2（補列 190／195） | A-PJ59 | Phase 7 前 |
+| **18** | **`HDCC27` / `DT27` 之 `27` 後綴語意** —— `PROXI VC_Veh_Line = HDCC27` 與 `= DT27` 不在 `Vehicle_Line_Configuration` 列舉內（列舉僅有 `HDCC = 130`、`DT = 124`）。該 2 車型在範圍內（Atl-Hi），不適用 R-P75／R-P76。三種可能：`27` 為程式代號或年式標記（則依 R-P8′ 更正為 `= 130 (HDCC)`）／值之一部分而列舉不完整（canon §5a 第九條家族）／測試矩陣欄標題之沿用（比照 R-P76 不修訂，另裁標記方式） | ❌ 待答 | 12（Knob） | A-PJ45 | Medium —— 不阻塞寫回，阻塞 A-PJ45 結案 |
+| **19** | **與工作簿引用相符之 SYSAD 版本** —— `Specification Reference` 之 SYSAD 錨點有 **81 列**指向 **26 個** `NRL-nnnnnn` 需求 id，在 `inputs/` 之 `SYS3_PROJ_FM-WI-FSM-011-A01 …_SYSAD.docx` 全文中**不存在**。已排除索引不全：docx 全文抽得 254 個 id，`sysad_sections.json` 已索引 254 個，無缺。同欄同格式之另 481 個錨點全數解析成功，故非引用格式問題，應為版本落差 —— 工作簿引用較新版本。由 R-P73 真解析發現，**格式比對看不到此類缺漏** | ❌ 未提供 —— 不阻塞寫回 | 81 | A-PJ63 | RD-1 |
 
 ---
 
