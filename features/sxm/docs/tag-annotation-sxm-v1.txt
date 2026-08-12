@@ -1,0 +1,51 @@
+FW036 SXM (SiriusXM 360L SAT Only) v1
+
+output: FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SXM_20260810.xlsx
+sha256: 7b6e760d524fb79e3e4f7cafb43be4b2c945d64b9063abb3974a5e9737538a02
+done-region hash: N/A - BLANK workbook. There is no done region and no legacy
+  prefix to protect, so no content hash is held. The invariant that replaces it
+  is the opposite one: the source must contain no authored content at all, and
+  the write aborts if it does. The form's three sample rows (D10/D11 = xxx,
+  F10/G10/S10 = NR1L-AntiTheft-001 / AntiTheft / NA) are cleared, and a residue
+  sweep re-checks every column the write does not touch.
+rows: 0 preserved / 215 new (0 placeholder) / 215 total, rows 10-224 contiguous
+  arithmetic: 50 template rows reused + 165 inserted = 215
+              202 leaves + 13 split rows = 215
+coverage: 202/202 leaves of SWE1_SXM_FM-WI-FSM-037-A03, exact set equality
+  (missing [] extra []), written in 037 document order as a write-time invariant
+priority: P0=22 / P1=181 / P2=12, read from the delivered workbook
+lint: PASS - 215 TCs, 202 leaf files, 9 design methods, 0 findings
+tests: 952 passed
+
+source workbook: FM-WI-FSM-036-A01 ..._SWQT_SXM_20260810.xlsx (form revision C,
+  sha256 cd876c20...) - a scaffold copy of the blank form; no pre-filled FW036
+  workbook for SXM exists anywhere in the project tree (searched 2026-08-10)
+requirement source: FM-WI-FSM-037-A03 (SWE1_SXM, 20260406)
+spec sources: CFTS024 §1.5.x (202 allocated leaves, 7-digit STLA clause ids).
+  Cross-document short-code citations under R11: CFTS024-165/-177/-193/-195/-197,
+  CFTS019-494/-496, CFTS020-138
+spec line: SiriusXM 360L SAT Only HMI Logic and Flow R1 SR24 1A (May 24 2021);
+  the 26PI2.5 reissue is reference-only and does not enter spec_reference
+write-back: BLANK strategy - no frozen prefix, written from the template's first
+  data row (header_row 9 + 1 = row 10); Scope field filled by label text;
+  ChangeHistory revision D; Test Case ID series NR1L-SXM-001..215 (canon §10.3,
+  monotonic, 215 unique); Test Case Reference ID = NEW on every row;
+  Estimated Test Time (column Q) left blank by ruling - UNRULED_BLANK, raised
+  as an RD-1 question rather than filled without a rubric
+
+produced at: da8b38e (docs(sxm): re-derive A-SX25 counts leaf-by-leaf)
+  with features/sxm and tests/ clean, per FEATURE_ONBOARDING §6.
+  Later doc-only commits (Amendment 12, this annotation) do not enter the
+  output and re-derive the same file.
+
+reproducibility: --date MUST be pinned. Re-running --write with
+  --date 2026-08-12 reproduces this SHA256 byte for byte; verified twice at
+  da8b38e. Without --date the writer falls back to date.today(), the
+  ChangeHistory date changes, and the output hash drifts daily - the
+  reproducibility claim is void unless the flag is given. This condition does
+  not appear in the AMFM annotation and is specific to how this delivery was
+  produced.
+
+  canonical re-run:
+    python features/sxm/scripts/write_back.py --feature-dir features/sxm \
+      --date 2026-08-12 --write

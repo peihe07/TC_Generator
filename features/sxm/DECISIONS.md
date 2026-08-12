@@ -373,3 +373,17 @@ sign-off = binding as proposed.
   at the first sentence, affecting more than these five leaves) is a
   systemic-class finding, promoted to the S class in the submission draft,
   the mirror of AMFM S3.
+- Amendment (2026-08-12, twelfth pass): DRY-RUN APPROVED (directive「核准」).
+  Canon §6 checklist verified field by field, no field missing, no
+  reservation: segment arithmetic reconciles three ways (rows 10–224 = 215;
+  50 template + 165 inserted; 202 leaves + 13 splits); done-region hash and
+  count N/A (BLANK workbook); segment order preserved in 037 document order
+  as a write-time invariant; regen req-set equality exact (202/202, missing
+  [] extra []); placeholders enumerated as the empty set, all eight
+  mandatory columns non-blank across 215 rows. Output SHA256
+  7b6e760d524fb79e3e4f7cafb43be4b2c945d64b9063abb3974a5e9737538a02,
+  reproducible only when pinned --date 2026-08-12. Priority 22/181/12 read
+  from the workbook; Set-gate 215/215; markers 6/6 bracket form; lint 0
+  findings; 952 tests. RD-1 submission released for sending by Pei
+  (docs/fw036/RD1_sxm_submission.md — 3 systemic + 9 questions + 7 FYI).
+  Phase 7 closes on the repo side once the tag is cut.
