@@ -254,6 +254,67 @@ behaviour, not defects — verify strikethrough before filing.
 
 ---
 
+## 5a. 數字紀律 (all features, all phases)
+
+**凡涉及數字的裁決或判準，須同時寫明「量什麼」與「以什麼為單位」。**
+
+- **列號**須標明係**實體列號**或 **tc_id 尾碼**
+- **計數**須標明係**逐列**或**逐引用**
+- **門檻**須標明係**絕對量**或**比例**
+- **掃描範圍**須標明涵蓋哪些欄位
+- **文字比對**須標明**是否區分大小寫**與**是否使用詞界**
+
+**字串比對缺陷具傳染性。** 修正任一以字串比對實作之 gate 時，須同時檢查
+所有同類 gate 是否具相同缺陷。
+
+> 實例：L-PJ6 之 `a while` 誤判 `content area while`（A-PJ18）與 L-PJ5 之
+> `inspect` 誤判 `Car Inspector`（A-PJ38），為**同一缺陷、相隔三輪各自
+> 發現**。
+
+**詞彙型 gate 具兩種必然缺陷。** 假陽性源自**詞界不足**，假陰性源自
+**詞彙不全**。兩者皆不可能一次寫全，須以**增補機制**而非一次性設計處理。
+
+> 實例：A-PJ18（`a while` 誤判 `content area while`）、A-PJ38（`inspect`
+> 誤判 `Car Inspector`）為假陽性；A-PJ44（L-PJ9 漏 `trace tool` /
+> `capture tool` / `simulator`）為假陰性。
+
+**樣本大小依賴規則措辭時，不得以該樣本校準該規則。** 須以獨立錨點界定樣本，
+或延後至樣本由其他來源到齊。用規則自身的措辭圈出樣本、再拿那個樣本校準規則，
+是循環論證。
+
+> 實例：L-PJ11 之三種錨定寫法給出 **5／19／16** 三種樣本量
+> （A-PJ41／R-P44）——三個數字都不是錯的，它們量的是三件不同的事。
+
+**引用任何單一來源作為「權威」之前，先確認它的涵蓋範圍是否等同於它的類別。**
+
+> 實例（同一裁決 R-P20 的兩次修正）：
+> `Logical Identifiers and CAN Mapping` 的列舉截斷於 `101 = WL`，被誤當作
+> 完整值域（R-P8′）；`PROXI_HDCC27_R3` 的 Header 為 `HDCC27 - Draft`，
+> 是單車型配置檔，被誤當作全車系配置字典（R-P47）。
+>
+> 兩次的共同形態：**手上唯一的那份 ≠ 該類文件的全部。**
+> 同風險形態亦見於 AMFM 的 `CIP_Radio_Tables`、SXM 的 `CFTS024`。
+
+**單位未言明時，數字自洽不構成正確的證據。** 兩個不同單位的數字可能恰好
+相同，使誤用在表面上完全自洽而不露破綻。
+
+### 三個實例（Projection，2026-08-12）
+
+| 案例 | 未言明的單位 | 後果 |
+|---|---|---|
+| A-PJ19 | 列號慣例：實體列號 vs tc_id 尾碼 | 一份三列清單，兩種讀法各對一半，無法執行 |
+| A-PJ27 | 計數單位：逐列 vs 逐引用行 | 「HUIG 75」被當成列數；巧合在於 HUIG 的行計數 75 恰等於兩個 Test Set 的列數和 50+25，誤用完全自洽 |
+| A-PJ30 | 門檻單位：絕對列數 vs 百分比 | 裁決理由寫百分比、實際依據是列數；後人照理由套用會在小樣本上誤判定案 |
+| A-PJ37 | 大小寫：`\bCAN\b` 加 `re.I` 命中英文助動詞 `can`；於 `TI+PRE+PROC+ER` 範圍下 `HMI Display` 之 CAN 計數由 0 虛增為 17、`Knob` 由 0 虛增為 20 |
+| A-PJ38 | 詞界：`inspect` 子字串命中專有名詞 `Car Inspector`，使 L-PJ5 全簿計數由 5 虛增為 7 |
+| A-PJ18 | 詞界：子字串比對將 `content area while` 誤判為 `a while` |
+| A-PJ36 | 掃描範圍：涵蓋哪些欄位 | 同一指標在不同欄位範圍下數值不同，兩者皆為真而互不相符。L-PJ6 裁定範圍為 Procedure + Expected Result，實測 0；若含 Test Item 則為 2 |
+
+A-PJ27 是本紀律存在的理由最清楚的一例：**沒有任何跡象顯示數字被誤用**，
+兩種單位下 75 都成立，錯誤直到重新逐列實測才浮現。
+
+---
+
 ## 6. Write-back → tag sequence (Phase 6→7 boundary, validated: Home)
 
 Order: **dry-run reviewed → commit → --write → tag**, under two guards:
