@@ -1,0 +1,42 @@
+{
+  "threshold": 6,
+  "rule": "R-P29",
+  "sources": {
+    "CFTS085": {
+      "distinct_ids": 85,
+      "excluded_ids": 0,
+      "excluded_rows_touched": 0,
+      "excluded": []
+    },
+    "HUIG": {
+      "distinct_ids": 45,
+      "excluded_ids": 0,
+      "excluded_rows_touched": 0,
+      "excluded": []
+    },
+    "SYSAD": {
+      "distinct_ids": 99,
+      "excluded_ids": 1,
+      "excluded_rows_touched": 190,
+      "excluded": [
+        {
+          "id": "154702",
+          "rows": 190,
+          "test_sets": 10
+        }
+      ]
+    },
+    "CarPlayAddendum": {
+      "distinct_ids": 19,
+      "excluded_ids": 0,
+      "excluded_rows_touched": 0,
+      "excluded": []
+    },
+    "CFTS019": {
+      "distinct_ids": 2,
+      "excluded_ids": 0,
+      "excluded_rows_touched": 0,
+      "excluded": []
+    }
+  }
+}

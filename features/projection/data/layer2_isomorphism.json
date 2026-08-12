@@ -1,0 +1,207 @@
+{
+  "_meta": {
+    "generated": "2026-08-12",
+    "ruling": "R-P23 / R-P24",
+    "granularity": "CFTS085 五碼章節；四碼僅作相鄰性父層（R-P23）",
+    "isomorphism_rule": "同構度以共同父章節計算，非單一章節主導佔比（R-P24）",
+    "version_track_excluded": [
+      "1.3.2.14",
+      "1.3.2.15",
+      "1.3.2.16",
+      "1.3.2.17",
+      "1.3.2.18"
+    ],
+    "version_track_rows": 115,
+    "WARNING_version_track": "排除僅在框架推導階段生效。這 115 列（佔 CFTS085 引用 24%）在 Phase 4 修訂時的 spec 核對對象仍是那些版本章節；O-1 的『不牴觸基本 spec』照樣以 1.3.2.14~.18 為核對對象。『排除於同構檢驗』不等於『沒有 spec 依據』（R-P23 補充條款）。",
+    "fields": {
+      "rows": "該 Test Set 總列數",
+      "func_rows": "引用功能章節的列數",
+      "rel_rows": "引用 version-track 章節的列數",
+      "sections": "功能章節分布",
+      "top_pct": "主導功能章節佔 func_rows 之比"
+    }
+  },
+  "layer2": {
+    "HMI Display": {
+      "rows": 76,
+      "func_rows": 26,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.5": 10,
+        "1.3.2.1": 10,
+        "1.3.2.9": 6
+      },
+      "top_pct": 0.385
+    },
+    "Projection Launch": {
+      "rows": 65,
+      "func_rows": 17,
+      "rel_rows": 44,
+      "sections": {
+        "1.3.2.8": 10,
+        "1.3.2.11.4": 4,
+        "1.3.2.6": 2,
+        "1.3.2.2": 1
+      },
+      "top_pct": 0.588
+    },
+    "Connection": {
+      "rows": 61,
+      "func_rows": 54,
+      "rel_rows": 6,
+      "sections": {
+        "1.3.2.11.3": 35,
+        "1.3.2.11.2": 19
+      },
+      "top_pct": 0.648
+    },
+    "Device Manager": {
+      "rows": 54,
+      "func_rows": 42,
+      "rel_rows": 12,
+      "sections": {
+        "1.3.2.8": 24,
+        "1.3.2.11.3": 18
+      },
+      "top_pct": 0.571
+    },
+    "Disconnection": {
+      "rows": 49,
+      "func_rows": 23,
+      "rel_rows": 26,
+      "sections": {
+        "1.3.2.11.5": 20,
+        "1.3.2.10.1": 3
+      },
+      "top_pct": 0.87
+    },
+    "Projection Detection": {
+      "rows": 49,
+      "func_rows": 22,
+      "rel_rows": 27,
+      "sections": {
+        "1.3.2": 16,
+        "1.3.2.8": 6
+      },
+      "top_pct": 0.727
+    },
+    "Knob": {
+      "rows": 42,
+      "func_rows": 42,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.10.1": 42
+      },
+      "top_pct": 1.0
+    },
+    "Projection Audio": {
+      "rows": 37,
+      "func_rows": 12,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.1": 6,
+        "1.3.2": 4,
+        "1.3.2.3": 2
+      },
+      "top_pct": 0.5
+    },
+    "Voice Recognition": {
+      "rows": 22,
+      "func_rows": 22,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.7": 22
+      },
+      "top_pct": 1.0
+    },
+    "Vehicle Signal Forwarding": {
+      "rows": 22,
+      "func_rows": 21,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.10.2": 6,
+        "1.3.2.10.2.1": 5,
+        "1.3.2.10.1": 4,
+        "1.3.2.10.3": 4,
+        "1.3.2.10.3.1": 2
+      },
+      "top_pct": 0.286
+    },
+    "Day/Night Mode": {
+      "rows": 22,
+      "func_rows": 22,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.10.1": 22
+      },
+      "top_pct": 1.0
+    },
+    "Pairing": {
+      "rows": 12,
+      "func_rows": 10,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.11.2": 8,
+        "1.3.2.11.3": 2
+      },
+      "top_pct": 0.8
+    },
+    "Cluster Navigation": {
+      "rows": 12,
+      "func_rows": 12,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.12": 12
+      },
+      "top_pct": 1.0
+    },
+    "Projection Apps": {
+      "rows": 12,
+      "func_rows": 12,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2": 10,
+        "1.3.2.1": 2
+      },
+      "top_pct": 0.833
+    },
+    "Performance": {
+      "rows": 10,
+      "func_rows": 10,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.11.4": 10
+      },
+      "top_pct": 1.0
+    },
+    "Projection Display": {
+      "rows": 5,
+      "func_rows": 3,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.4": 2,
+        "1.3.2.5": 1
+      },
+      "top_pct": 0.667
+    },
+    "Wireless Coexistence": {
+      "rows": 4,
+      "func_rows": 4,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.11.4": 4
+      },
+      "top_pct": 1.0
+    },
+    "USB Device": {
+      "rows": 4,
+      "func_rows": 4,
+      "rel_rows": 0,
+      "sections": {
+        "1.3.2.6": 3,
+        "1.3.2.2": 1
+      },
+      "top_pct": 0.75
+    }
+  }
+}

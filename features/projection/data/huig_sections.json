@@ -1,0 +1,4255 @@
+{
+  "clause_to_section": {
+    "R00-010": [
+      "0.6",
+      "Vehicle types"
+    ],
+    "R00-020": [
+      "0.6",
+      "Vehicle types"
+    ],
+    "R00-030": [
+      "0.6",
+      "Vehicle types"
+    ],
+    "R00-060": [
+      "0.6",
+      "Vehicle types"
+    ],
+    "R01-030": [
+      "1.1.1",
+      "Icon states"
+    ],
+    "R01-040": [
+      "1.1.1",
+      "Icon states"
+    ],
+    "R01-060": [
+      "1.1.1",
+      "Icon states"
+    ],
+    "R01-080": [
+      "1.1.2",
+      "Icon labelling"
+    ],
+    "R01-085": [
+      "1.1.3",
+      "Icon placement"
+    ],
+    "R01-087": [
+      "1.1.3",
+      "Icon placement"
+    ],
+    "R01-090": [
+      "1.1.3",
+      "Icon placement"
+    ],
+    "R01-093": [
+      "1.1.3",
+      "Icon placement"
+    ],
+    "R01-095": [
+      "1.1.3",
+      "Icon placement"
+    ],
+    "R01-100": [
+      "1.1.4",
+      "Icon colorization"
+    ],
+    "R01-110": [
+      "1.1.4",
+      "Icon colorization"
+    ],
+    "R01-115": [
+      "1.1.4",
+      "Icon colorization"
+    ],
+    "R01-123": [
+      "1.1.4",
+      "Icon colorization"
+    ],
+    "R01-125": [
+      "1.1.4",
+      "Icon colorization"
+    ],
+    "R01-130": [
+      "1.1.4",
+      "Icon colorization"
+    ],
+    "R01-131": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-132": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-133": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-136": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-137": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-138": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-134": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-139": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R05-514": [
+      "5",
+      "Wireless connection"
+    ],
+    "R01-135": [
+      "1.1.5",
+      "Icon actuation"
+    ],
+    "R01-150": [
+      "1.3",
+      "Icon Usage"
+    ],
+    "R01-160": [
+      "1.3",
+      "Icon Usage"
+    ],
+    "R01-170": [
+      "1.3",
+      "Icon Usage"
+    ],
+    "R01-190": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R01-200": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R01-210": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R01-220": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R01-230": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R01-240": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R01-250": [
+      "1.4",
+      "Vehicle Make Logo Exit Icon"
+    ],
+    "R02-010": [
+      "2",
+      "Receiver Library"
+    ],
+    "R02-030": [
+      "2",
+      "Receiver Library"
+    ],
+    "R02-040": [
+      "2.1.2",
+      "Version compatibility"
+    ],
+    "R03-200": [
+      "3",
+      "USB connection"
+    ],
+    "R03-010": [
+      "3",
+      "USB connection"
+    ],
+    "R03-030": [
+      "3",
+      "USB connection"
+    ],
+    "R03-040": [
+      "3",
+      "USB connection"
+    ],
+    "R03-045": [
+      "3",
+      "USB connection"
+    ],
+    "R03-050": [
+      "3",
+      "USB connection"
+    ],
+    "R03-060": [
+      "3",
+      "USB connection"
+    ],
+    "R03-080": [
+      "3",
+      "USB connection"
+    ],
+    "R03-090": [
+      "3",
+      "USB connection"
+    ],
+    "R03-100": [
+      "3",
+      "USB connection"
+    ],
+    "R03-110": [
+      "3.1.1",
+      "Universal Serial Bus (USB)"
+    ],
+    "R03-120": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-220": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-225": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-230": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-231": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-241": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-242": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-246": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-243": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-247": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-244": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-250": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-251": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-252": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-253": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-254": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-255": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-256": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R05-360": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-375": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-387": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-396": [
+      "5",
+      "Wireless connection"
+    ],
+    "R03-300": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-310": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-313": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-314": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-315": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-320": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-325": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-130": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-311": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-312": [
+      "3.1.2",
+      "Switching MD to AOA mode"
+    ],
+    "R03-165": [
+      "3.2",
+      "Ping timeout"
+    ],
+    "R03-168": [
+      "3.2",
+      "Ping timeout"
+    ],
+    "R03-169": [
+      "3.2",
+      "Ping timeout"
+    ],
+    "R03-170": [
+      "3.3",
+      "Handling USB disconnections"
+    ],
+    "R03-177": [
+      "3.3",
+      "Handling USB disconnections"
+    ],
+    "R03-188": [
+      "3.3",
+      "Handling USB disconnections"
+    ],
+    "R03-191": [
+      "3.3",
+      "Handling USB disconnections"
+    ],
+    "R03-189": [
+      "3.3",
+      "Handling USB disconnections"
+    ],
+    "R03-192": [
+      "3.4",
+      "USB-IF Certification"
+    ],
+    "R03-193": [
+      "3.4",
+      "USB-IF Certification"
+    ],
+    "R04-010": [
+      "4",
+      "Connection and launch process"
+    ],
+    "R04-011": [
+      "4",
+      "Connection and launch process"
+    ],
+    "R04-021": [
+      "4.1",
+      "Connect AAP"
+    ],
+    "R04-020": [
+      "4.1",
+      "Connect AAP"
+    ],
+    "R04-030": [
+      "4.1",
+      "Connect AAP"
+    ],
+    "R04-040": [
+      "4.2",
+      "Authentication"
+    ],
+    "R04-050": [
+      "4.2",
+      "Authentication"
+    ],
+    "R04-060": [
+      "4.2",
+      "Authentication"
+    ],
+    "R04-480": [
+      "4.3",
+      "Service Discovery Request"
+    ],
+    "R04-070": [
+      "4.3",
+      "Service Discovery Request"
+    ],
+    "R04-075": [
+      "4.4",
+      "Service Discovery Response"
+    ],
+    "R04-080": [
+      "4.4",
+      "Service Discovery Response"
+    ],
+    "R04-083": [
+      "4.4",
+      "Service Discovery Response"
+    ],
+    "R04-085": [
+      "4.4",
+      "Service Discovery Response"
+    ],
+    "R04-090": [
+      "4.4.1",
+      "Make"
+    ],
+    "R04-100": [
+      "4.4.1",
+      "Make"
+    ],
+    "R04-110": [
+      "4.4.1",
+      "Make"
+    ],
+    "R04-120": [
+      "4.4.1",
+      "Make"
+    ],
+    "R04-130": [
+      "4.4.2",
+      "Model"
+    ],
+    "R04-140": [
+      "4.4.2",
+      "Model"
+    ],
+    "R04-150": [
+      "4.4.2",
+      "Model"
+    ],
+    "R04-160": [
+      "4.4.2",
+      "Model"
+    ],
+    "R04-170": [
+      "4.4.3",
+      "Year"
+    ],
+    "R04-180": [
+      "4.4.3",
+      "Year"
+    ],
+    "R04-200": [
+      "4.4.4",
+      "Driver position"
+    ],
+    "R04-210": [
+      "4.4.5",
+      "Head Unit Make"
+    ],
+    "R04-220": [
+      "4.4.5",
+      "Head Unit Make"
+    ],
+    "R04-230": [
+      "4.4.5",
+      "Head Unit Make"
+    ],
+    "R04-240": [
+      "4.4.6",
+      "Head Unit Model"
+    ],
+    "R04-250": [
+      "4.4.6",
+      "Head Unit Model"
+    ],
+    "R04-260": [
+      "4.4.7",
+      "Head Unit Software Build"
+    ],
+    "R04-270": [
+      "4.4.7",
+      "Head Unit Software Build"
+    ],
+    "R04-280": [
+      "4.4.7",
+      "Head Unit Software Build"
+    ],
+    "R04-290": [
+      "4.4.8",
+      "Head Unit Software Version"
+    ],
+    "R04-300": [
+      "4.4.8",
+      "Head Unit Software Version"
+    ],
+    "R04-310": [
+      "4.4.9",
+      "Vehicle ID"
+    ],
+    "R04-320": [
+      "4.4.9",
+      "Vehicle ID"
+    ],
+    "R04-330": [
+      "4.4.9",
+      "Vehicle ID"
+    ],
+    "R04-350": [
+      "4.4.10",
+      "Display Name"
+    ],
+    "R04-360": [
+      "4.4.10",
+      "Display Name"
+    ],
+    "R04-370": [
+      "4.4.10",
+      "Display Name"
+    ],
+    "R04-375": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-416": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-419": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-377": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-380": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-385": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-390": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-391": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-392": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-400": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-410": [
+      "4.5",
+      "First run experience"
+    ],
+    "R04-420": [
+      "4.7",
+      "Initial video focus"
+    ],
+    "R04-440": [
+      "4.10",
+      "Disconnecting AAP"
+    ],
+    "R04-450": [
+      "4.10",
+      "Disconnecting AAP"
+    ],
+    "R04-455": [
+      "4.10",
+      "Disconnecting AAP"
+    ],
+    "R04-461": [
+      "4.10",
+      "Disconnecting AAP"
+    ],
+    "R04-462": [
+      "4.10",
+      "Disconnecting AAP"
+    ],
+    "R03-180": [
+      "3",
+      "USB connection"
+    ],
+    "R03-185": [
+      "3",
+      "USB connection"
+    ],
+    "R03-187": [
+      "3",
+      "USB connection"
+    ],
+    "R04-456": [
+      "4.11",
+      "Reconnecting AAP"
+    ],
+    "R04-457": [
+      "4.11",
+      "Reconnecting AAP"
+    ],
+    "R04-458": [
+      "4.11",
+      "Reconnecting AAP"
+    ],
+    "R04-465": [
+      "4.12",
+      "Authentication certificates"
+    ],
+    "R04-467": [
+      "4.12",
+      "Authentication certificates"
+    ],
+    "R04-468": [
+      "4.12",
+      "Authentication certificates"
+    ],
+    "R05-021": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-025": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-027": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-030": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-547": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-063": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-064": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-041": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-042": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-033": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-034": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-036": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-038": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-039": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-045": [
+      "5.1",
+      "Wireless hardware"
+    ],
+    "R05-040": [
+      "5.1.2",
+      "Wireless latency requirements"
+    ],
+    "R05-010": [
+      "5.1.2",
+      "Wireless latency requirements"
+    ],
+    "R05-525": [
+      "5.3.1",
+      "First run experience"
+    ],
+    "R05-447": [
+      "5.3.1",
+      "First run experience"
+    ],
+    "R05-448": [
+      "5.3.1",
+      "First run experience"
+    ],
+    "R05-449": [
+      "5.3.1",
+      "First run experience"
+    ],
+    "R05-460": [
+      "5.3.1",
+      "First run experience"
+    ],
+    "R05-450": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-510": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-511": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-523": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-524": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-521": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-527": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-512": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-513": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-531": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-532": [
+      "5.3.2",
+      "Switching projection sources"
+    ],
+    "R05-050": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-055": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-056": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-057": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-060": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-070": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-075": [
+      "5.4.1",
+      "Bluetooth dependencies for WPP"
+    ],
+    "R05-535": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-551": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-086": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-085": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-098": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-545": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-546": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-548": [
+      "5",
+      "Wireless connection"
+    ],
+    "R06-162": [
+      "6",
+      "Bluetooth"
+    ],
+    "R05-549": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-550": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-552": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-540": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-200": [
+      "5.4.3",
+      "Wi-Fi credentials provisioning on Bluetooth RFCOMM"
+    ],
+    "R05-210": [
+      "5.4.3",
+      "Wi-Fi credentials provisioning on Bluetooth RFCOMM"
+    ],
+    "R05-220": [
+      "5.4.3",
+      "Wi-Fi credentials provisioning on Bluetooth RFCOMM"
+    ],
+    "R05-230": [
+      "5.4.3",
+      "Wi-Fi credentials provisioning on Bluetooth RFCOMM"
+    ],
+    "R05-235": [
+      "5.4.3",
+      "Wi-Fi credentials provisioning on Bluetooth RFCOMM"
+    ],
+    "R05-240": [
+      "5.4.3",
+      "Wi-Fi credentials provisioning on Bluetooth RFCOMM"
+    ],
+    "R05-580": [
+      "5.4.4",
+      "Version negotiation"
+    ],
+    "R05-091": [
+      "5.4.4",
+      "Version negotiation"
+    ],
+    "R05-365": [
+      "5.4.4",
+      "Version negotiation"
+    ],
+    "R05-361": [
+      "5.4.4",
+      "Version negotiation"
+    ],
+    "R05-367": [
+      "5.4.4",
+      "Version negotiation"
+    ],
+    "R05-090": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-340": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-335": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-555": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-384": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-100": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-581": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-125": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-140": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-180": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-170": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-160": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-190": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-110": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-216": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-318": [
+      "5.4.5",
+      "Starting wireless projection"
+    ],
+    "R05-260": [
+      "5.4.6",
+      "Error handling"
+    ],
+    "R05-470": [
+      "5.4.7",
+      "Device attestation"
+    ],
+    "R05-582": [
+      "5.4.7",
+      "Device attestation"
+    ],
+    "R05-475": [
+      "5.4.7",
+      "Device attestation"
+    ],
+    "R05-480": [
+      "5.4.7",
+      "Device attestation"
+    ],
+    "R05-530": [
+      "5.4.8",
+      "Naming MDs in the native connection manager"
+    ],
+    "R05-305": [
+      "5.5",
+      "Wireless connection process: GAL projection channel"
+    ],
+    "R05-310": [
+      "5.5",
+      "Wireless connection process: GAL projection channel"
+    ],
+    "R05-311": [
+      "5.5",
+      "Wireless connection process: GAL projection channel"
+    ],
+    "R05-313": [
+      "5.5",
+      "Wireless connection process: GAL projection channel"
+    ],
+    "R05-314": [
+      "5.5",
+      "Wireless connection process: GAL projection channel"
+    ],
+    "R05-316": [
+      "5.5",
+      "Wireless connection process: GAL projection channel"
+    ],
+    "R05-400": [
+      "5.5.1",
+      "GAL TCP connection monitoring"
+    ],
+    "R05-402": [
+      "5.5.1",
+      "GAL TCP connection monitoring"
+    ],
+    "R05-320": [
+      "5.5.1",
+      "GAL TCP connection monitoring"
+    ],
+    "R05-330": [
+      "5.5.2",
+      "Ending TCP connections"
+    ],
+    "R05-332": [
+      "5.5.2",
+      "Ending TCP connections"
+    ],
+    "R05-405": [
+      "5.5.2",
+      "Ending TCP connections"
+    ],
+    "R05-407": [
+      "5.5.2",
+      "Ending TCP connections"
+    ],
+    "R05-408": [
+      "5.5.2",
+      "Ending TCP connections"
+    ],
+    "R05-409": [
+      "5.5.2",
+      "Ending TCP connections"
+    ],
+    "R05-383": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-385": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-386": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-398": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-518": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-520": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-388": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-391": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-397": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-399": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-410": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-411": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-403": [
+      "5.6",
+      "Wireless connection process: startup edge cases"
+    ],
+    "R05-380": [
+      "5.8.1",
+      "Wireless projection disconnect"
+    ],
+    "R05-390": [
+      "5.8.1",
+      "Wireless projection disconnect"
+    ],
+    "R05-420": [
+      "5.8.2",
+      "AAP BatteryStatusNotification"
+    ],
+    "R05-440": [
+      "5.8.2",
+      "AAP BatteryStatusNotification"
+    ],
+    "R05-445": [
+      "5.8.2",
+      "AAP BatteryStatusNotification"
+    ],
+    "R05-515": [
+      "5.9",
+      "User support content"
+    ],
+    "R05-517": [
+      "5.9",
+      "User support content"
+    ],
+    "R05-519": [
+      "5.9",
+      "User support content"
+    ],
+    "R05-133": [
+      "5.10",
+      "Vehicle Software Update Guidelines"
+    ],
+    "R06-010": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-020": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-026": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-023": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-021": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-024": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-055": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-053": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-027": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-028": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-029": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-031": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-033": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-034": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-054": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-035": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-036": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-037": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-038": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-039": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-046": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-047": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-048": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-049": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-051": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-052": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-025": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-427": [
+      "6",
+      "Bluetooth"
+    ],
+    "R06-030": [
+      "6.1",
+      "Bluetooth service announcement"
+    ],
+    "R06-041": [
+      "6.2.1",
+      "BluetoothPairingRequest"
+    ],
+    "R06-042": [
+      "6.2.1",
+      "BluetoothPairingRequest"
+    ],
+    "R05-522": [
+      "5",
+      "Wireless connection"
+    ],
+    "R06-043": [
+      "6.2.1",
+      "BluetoothPairingRequest"
+    ],
+    "R06-040": [
+      "6.2.1",
+      "BluetoothPairingRequest"
+    ],
+    "R06-050": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-060": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-070": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-080": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-085": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-090": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-095": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-100": [
+      "6.2.2",
+      "BluetoothPairingResponse"
+    ],
+    "R06-110": [
+      "6.2.3",
+      "BluetoothAuthenticationData"
+    ],
+    "R06-115": [
+      "6.2.4",
+      "BluetoothAuthenticationResult"
+    ],
+    "R06-116": [
+      "6.2.4",
+      "BluetoothAuthenticationResult"
+    ],
+    "R06-117": [
+      "6.2.4",
+      "BluetoothAuthenticationResult"
+    ],
+    "R06-118": [
+      "6.2.4",
+      "BluetoothAuthenticationResult"
+    ],
+    "R06-120": [
+      "6.3.1",
+      "Pairing during a call"
+    ],
+    "R06-130": [
+      "6.3.1",
+      "Pairing during a call"
+    ],
+    "R06-140": [
+      "6.3.2",
+      "Pairing when limit of Bluetooth-paired devices is reached"
+    ],
+    "R06-160": [
+      "6.3.2",
+      "Pairing when limit of Bluetooth-paired devices is reached"
+    ],
+    "R06-150": [
+      "6.3.2",
+      "Pairing when limit of Bluetooth-paired devices is reached"
+    ],
+    "R06-165": [
+      "6.3.3",
+      "Pairing during an active AAW session"
+    ],
+    "R06-166": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-167": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-170": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-180": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-190": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-200": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-205": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-208": [
+      "6.4",
+      "HFP connection"
+    ],
+    "R06-210": [
+      "6.5",
+      "Bluetooth audio (A2DP) connection"
+    ],
+    "R06-230": [
+      "6.6",
+      "Bluetooth reconnection"
+    ],
+    "R06-235": [
+      "6.6",
+      "Bluetooth reconnection"
+    ],
+    "R06-240": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-245": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-250": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-260": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-270": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-280": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-285": [
+      "6.7",
+      "Phone calls from other HFP devices or embedded SIMs"
+    ],
+    "R06-290": [
+      "6.8",
+      "Clarifications"
+    ],
+    "R07-010": [
+      "7.1",
+      "Video decoder"
+    ],
+    "R07-020": [
+      "7.1",
+      "Video decoder"
+    ],
+    "R07-030": [
+      "7.1",
+      "Video decoder"
+    ],
+    "R07-040": [
+      "7.1",
+      "Video decoder"
+    ],
+    "R07-050": [
+      "7.1",
+      "Video decoder"
+    ],
+    "R07-500": [
+      "7.2",
+      "Frame rate"
+    ],
+    "R07-510": [
+      "7.2",
+      "Frame rate"
+    ],
+    "R07-121": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-122": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-130": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-140": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-145": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-147": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-150": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-160": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-170": [
+      "7.3",
+      "Display area and screen"
+    ],
+    "R07-290": [
+      "7.4",
+      "Video characteristics"
+    ],
+    "R07-300": [
+      "7.4",
+      "Video characteristics"
+    ],
+    "R07-310": [
+      "7.4",
+      "Video characteristics"
+    ],
+    "R07-460": [
+      "7.5.1",
+      "Flow control"
+    ],
+    "R07-465": [
+      "7.5.1",
+      "Flow control"
+    ],
+    "R07-466": [
+      "7.5.1",
+      "Flow control"
+    ],
+    "R07-468": [
+      "7.5.1",
+      "Flow control"
+    ],
+    "R07-470": [
+      "7.5.2",
+      "Video latency"
+    ],
+    "R07-480": [
+      "7.5.2",
+      "Video latency"
+    ],
+    "R07-486": [
+      "7.5.2",
+      "Video latency"
+    ],
+    "R07-488": [
+      "7.5.2",
+      "Video latency"
+    ],
+    "R07-490": [
+      "7.5.2",
+      "Video latency"
+    ],
+    "R07-491": [
+      "7.5.2",
+      "Video latency"
+    ],
+    "R07-003": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-002": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-007": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-012": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-013": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-014": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-015": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-008": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-006": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-011": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-009": [
+      "7.6",
+      "Integration types"
+    ],
+    "R07-530": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-540": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-545": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-550": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-560": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-570": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-590": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-610": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-620": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-640": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-655": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-660": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-661": [
+      "7.7",
+      "Dynamic resizing and Insets"
+    ],
+    "R07-185": [
+      "7",
+      "Video"
+    ],
+    "R07-190": [
+      "7",
+      "Video"
+    ],
+    "R07-193": [
+      "7",
+      "Video"
+    ],
+    "R07-195": [
+      "7",
+      "Video"
+    ],
+    "R07-200": [
+      "7",
+      "Video"
+    ],
+    "R07-205": [
+      "7",
+      "Video"
+    ],
+    "R07-207": [
+      "7",
+      "Video"
+    ],
+    "R07-210": [
+      "7",
+      "Video"
+    ],
+    "R07-215": [
+      "7",
+      "Video"
+    ],
+    "R07-217": [
+      "7",
+      "Video"
+    ],
+    "R07-220": [
+      "7",
+      "Video"
+    ],
+    "R07-225": [
+      "7",
+      "Video"
+    ],
+    "R07-230": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-240": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-250": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-231": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-241": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-251": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-260": [
+      "7.8.1",
+      "Codec resolution support"
+    ],
+    "R07-280": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-281": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-282": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-283": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-284": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-285": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-286": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-287": [
+      "7.8.2",
+      "Reported screen density"
+    ],
+    "R07-451": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-459": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-461": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-452": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-462": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-454": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-457": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-455": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-456": [
+      "7.9",
+      "Competing functions"
+    ],
+    "R07-320": [
+      "7.10",
+      "Video focus"
+    ],
+    "R07-326": [
+      "7.10",
+      "Video focus"
+    ],
+    "R07-327": [
+      "7.10",
+      "Video focus"
+    ],
+    "R07-328": [
+      "7.10",
+      "Video focus"
+    ],
+    "R07-330": [
+      "7.10",
+      "Video focus"
+    ],
+    "R07-340": [
+      "7.10.1",
+      "Projected video focus"
+    ],
+    "R07-350": [
+      "7.10.1",
+      "Projected video focus"
+    ],
+    "R07-360": [
+      "7.10.2",
+      "Native video focus"
+    ],
+    "R07-375": [
+      "7.10.2",
+      "Native video focus"
+    ],
+    "R07-380": [
+      "7.10.2",
+      "Native video focus"
+    ],
+    "R07-390": [
+      "7.10.3",
+      "Native transient video focus"
+    ],
+    "R07-393": [
+      "7.10.4",
+      "Projected video focus without input"
+    ],
+    "R07-394": [
+      "7.10.4",
+      "Projected video focus without input"
+    ],
+    "R07-395": [
+      "7.10.4",
+      "Projected video focus without input"
+    ],
+    "R07-397": [
+      "7.10.4",
+      "Projected video focus without input"
+    ],
+    "R07-399": [
+      "7.10.4",
+      "Projected video focus without input"
+    ],
+    "R07-400": [
+      "7.10.5",
+      "Overlays"
+    ],
+    "R07-410": [
+      "7.10.5",
+      "Overlays"
+    ],
+    "R07-420": [
+      "7.10.5",
+      "Overlays"
+    ],
+    "R07-421": [
+      "7.10.5",
+      "Overlays"
+    ],
+    "R15-134": [
+      "15",
+      "Multi-Display Projection"
+    ],
+    "R07-430": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R07-700": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R07-702": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R07-431": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R07-440": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R07-450": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R07-701": [
+      "7.10.6",
+      "Video focus requests and notifications"
+    ],
+    "R08-300": [
+      "8.2",
+      "Audio streams"
+    ],
+    "R08-014": [
+      "8.2",
+      "Audio streams"
+    ],
+    "R08-015": [
+      "8.2.1",
+      "Guidance stream"
+    ],
+    "R08-025": [
+      "8.2.2",
+      "Media stream"
+    ],
+    "R08-030": [
+      "8.2.2",
+      "Media stream"
+    ],
+    "R08-040": [
+      "8.2.2",
+      "Media stream"
+    ],
+    "R08-050": [
+      "8.2.2",
+      "Media stream"
+    ],
+    "R08-070": [
+      "8.3",
+      "Audio focus"
+    ],
+    "R08-080": [
+      "8.3",
+      "Audio focus"
+    ],
+    "R08-090": [
+      "8.3",
+      "Audio focus"
+    ],
+    "R08-100": [
+      "8.3",
+      "Audio focus"
+    ],
+    "R08-110": [
+      "8.3",
+      "Audio focus"
+    ],
+    "R08-115": [
+      "8.3.1",
+      "Audio focus requests"
+    ],
+    "R08-116": [
+      "8.3.1",
+      "Audio focus requests"
+    ],
+    "R08-117": [
+      "8.3.1",
+      "Audio focus requests"
+    ],
+    "R08-118": [
+      "8.3.1",
+      "Audio focus requests"
+    ],
+    "R08-120": [
+      "8.3.2",
+      "Audio focus notifications"
+    ],
+    "R08-130": [
+      "8.3.2",
+      "Audio focus notifications"
+    ],
+    "R08-140": [
+      "8.3.2",
+      "Audio focus notifications"
+    ],
+    "R08-150": [
+      "8.3.2",
+      "Audio focus notifications"
+    ],
+    "R08-160": [
+      "8.3.2",
+      "Audio focus notifications"
+    ],
+    "R08-600": [
+      "8.3.3.1.1",
+      "Handling incoming requests from HU when projected media is playing"
+    ],
+    "R08-141": [
+      "8.3.3.1.1",
+      "Handling incoming requests from HU when projected media is playing"
+    ],
+    "R08-142": [
+      "8.3.3.1.1",
+      "Handling incoming requests from HU when projected media is playing"
+    ],
+    "R08-290": [
+      "8.3.3.1.1",
+      "Handling incoming requests from HU when projected media is playing"
+    ],
+    "R08-601": [
+      "8.3.3.1.2",
+      "Handling incoming requests from HU when projected guidance is playing"
+    ],
+    "R08-350": [
+      "8.3.3.1.2",
+      "Handling incoming requests from HU when projected guidance is playing"
+    ],
+    "R08-602": [
+      "8.3.3.1.2",
+      "Handling incoming requests from HU when projected guidance is playing"
+    ],
+    "R08-603": [
+      "8.3.3.1.2",
+      "Handling incoming requests from HU when projected guidance is playing"
+    ],
+    "R08-604": [
+      "8.3.3.1.3",
+      "Handling incoming requests from HU when projected ASR is playing"
+    ],
+    "R08-605": [
+      "8.3.3.1.3",
+      "Handling incoming requests from HU when projected ASR is playing"
+    ],
+    "R08-606": [
+      "8.3.3.1.3",
+      "Handling incoming requests from HU when projected ASR is playing"
+    ],
+    "R08-607": [
+      "8.3.3.1.3",
+      "Handling incoming requests from HU when projected ASR is playing"
+    ],
+    "R08-610": [
+      "8.3.3.2.1",
+      "Handling incoming requests from MD when native media is playing"
+    ],
+    "R08-170": [
+      "8.3.3.2.1",
+      "Handling incoming requests from MD when native media is playing"
+    ],
+    "R08-175": [
+      "8.3.3.2.1",
+      "Handling incoming requests from MD when native media is playing"
+    ],
+    "R08-611": [
+      "8.3.3.2.2",
+      "Handling incoming requests from MD when native navigation is playing"
+    ],
+    "R08-612": [
+      "8.3.3.2.2",
+      "Handling incoming requests from MD when native navigation is playing"
+    ],
+    "R08-613": [
+      "8.3.3.2.3",
+      "Handling incoming requests from MD when native ASR is playing"
+    ],
+    "R08-614": [
+      "8.3.3.2.3",
+      "Handling incoming requests from MD when native ASR is playing"
+    ],
+    "R08-145": [
+      "8.3.4.1",
+      "STATE_GAIN_TRANSIENT/STATE_GAIN_TRANSIENT_GUIDANCE_ONLY -> GAIN"
+    ],
+    "R08-620": [
+      "8.3.4.2",
+      "STATE_GAIN_TRANSIENT_GUIDANCE_ONLY -> GAIN_TRANSIENT"
+    ],
+    "R08-621": [
+      "8.3.4.3",
+      "STATE_LOSS_TRANSIENT/STATE_LOSS_TRANSIENT_CAN_DUCK -> GAIN"
+    ],
+    "R08-180": [
+      "8.3.5.1",
+      "Accepting focus requests"
+    ],
+    "R08-181": [
+      "8.3.5.1",
+      "Accepting focus requests"
+    ],
+    "R08-182": [
+      "8.3.5.1",
+      "Accepting focus requests"
+    ],
+    "R08-184": [
+      "8.3.5.1",
+      "Accepting focus requests"
+    ],
+    "R08-190": [
+      "8.3.5.2",
+      "Rejecting focus requests"
+    ],
+    "R08-200": [
+      "8.3.5.2",
+      "Rejecting focus requests"
+    ],
+    "R08-210": [
+      "8.3.5.2",
+      "Rejecting focus requests"
+    ],
+    "R08-220": [
+      "8.3.5.2",
+      "Rejecting focus requests"
+    ],
+    "R08-335": [
+      "8.3.5.3",
+      "Loss Transient state handling"
+    ],
+    "R08-240": [
+      "8.3.5.4",
+      "Release requests handling"
+    ],
+    "R08-250": [
+      "8.3.5.4",
+      "Release requests handling"
+    ],
+    "R08-260": [
+      "8.3.5.4",
+      "Release requests handling"
+    ],
+    "R08-266": [
+      "8.3.5.4",
+      "Release requests handling"
+    ],
+    "R08-270": [
+      "8.3.5.5",
+      "Automatic speech recognition (ASR) focus"
+    ],
+    "R08-275": [
+      "8.3.5.5",
+      "Automatic speech recognition (ASR) focus"
+    ],
+    "R08-277": [
+      "8.3.5.5",
+      "Automatic speech recognition (ASR) focus"
+    ],
+    "R08-280": [
+      "8.3.5.5",
+      "Automatic speech recognition (ASR) focus"
+    ],
+    "R08-310": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-313": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-315": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-314": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-320": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-321": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-322": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-323": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-326": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-324": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-329": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-325": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-327": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-328": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-330": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-331": [
+      "8.3.6",
+      "Handling phone calls"
+    ],
+    "R08-230": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-370": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-380": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-386": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-387": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-388": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-389": [
+      "8.4.1",
+      "Flow control"
+    ],
+    "R08-390": [
+      "8.4.2",
+      "Audio latency"
+    ],
+    "R08-400": [
+      "8.4.2",
+      "Audio latency"
+    ],
+    "R08-401": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-404": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-402": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-403": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-411": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-416": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-406": [
+      "8.4.3",
+      "Audio buffering"
+    ],
+    "R08-405": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-408": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-409": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-410": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-420": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-425": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-430": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-440": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-450": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-460": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-465": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-468": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-470": [
+      "8.5",
+      "Audio volume"
+    ],
+    "R08-480": [
+      "8.5.1",
+      "Global Mute"
+    ],
+    "R08-485": [
+      "8.5.1",
+      "Global Mute"
+    ],
+    "R08-490": [
+      "8.5.1",
+      "Global Mute"
+    ],
+    "R08-500": [
+      "8.5.1",
+      "Global Mute"
+    ],
+    "R08-510": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-520": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-530": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-540": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-550": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-560": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-561": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R08-570": [
+      "8.5.2",
+      "Source-Specific Mute"
+    ],
+    "R09-005": [
+      "9",
+      "Input devices"
+    ],
+    "R09-010": [
+      "9",
+      "Input devices"
+    ],
+    "R09-015": [
+      "9",
+      "Input devices"
+    ],
+    "R09-020": [
+      "9.1",
+      "Touchscreen"
+    ],
+    "R09-023": [
+      "9.1",
+      "Touchscreen"
+    ],
+    "R09-026": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-022": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-029": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-027": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-028": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-030": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-040": [
+      "9.2",
+      "Touchpad"
+    ],
+    "R09-031": [
+      "9.2.1",
+      "Touchpad feedback"
+    ],
+    "R09-041": [
+      "9.2.2",
+      "Touchpad sensitivity"
+    ],
+    "R09-042": [
+      "9.2.2",
+      "Touchpad sensitivity"
+    ],
+    "R09-045": [
+      "9.2.2",
+      "Touchpad sensitivity"
+    ],
+    "R09-050": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-051": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-052": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-053": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-056": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-057": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-058": [
+      "9.2.3",
+      "Selection Mechanism"
+    ],
+    "R09-060": [
+      "9.3",
+      "Rotary input"
+    ],
+    "R09-080": [
+      "9.3",
+      "Rotary input"
+    ],
+    "R09-095": [
+      "9.3",
+      "Rotary input"
+    ],
+    "R09-065": [
+      "9.3",
+      "Rotary input"
+    ],
+    "R09-110": [
+      "9.4",
+      "Hardware input actions"
+    ],
+    "R09-120": [
+      "9.4",
+      "Hardware input actions"
+    ],
+    "R09-145": [
+      "9.6",
+      "Handling of input actions"
+    ],
+    "R09-150": [
+      "9.6",
+      "Handling of input actions"
+    ],
+    "R09-170": [
+      "9.6",
+      "Handling of input actions"
+    ],
+    "R09-180": [
+      "9.7",
+      "Source input"
+    ],
+    "R09-190": [
+      "9.7",
+      "Source input"
+    ],
+    "R09-200": [
+      "9.7",
+      "Source input"
+    ],
+    "R09-205": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-206": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-266": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-210": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-211": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-215": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-216": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-220": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-225": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-226": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-227": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-228": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-230": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-235": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-245": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-250": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-253": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-255": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-260": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-261": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-262": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-263": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-264": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R09-265": [
+      "9.8",
+      "Keycodes"
+    ],
+    "R10-005": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R10-010": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R10-020": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R10-030": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R10-040": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R10-050": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R10-060": [
+      "10.1",
+      "Native ASR"
+    ],
+    "R10-070": [
+      "10.1",
+      "Native ASR"
+    ],
+    "R10-071": [
+      "10.1",
+      "Native ASR"
+    ],
+    "R10-072": [
+      "10.1",
+      "Native ASR"
+    ],
+    "R10-073": [
+      "10.1",
+      "Native ASR"
+    ],
+    "R10-075": [
+      "10.1",
+      "Native ASR"
+    ],
+    "R10-080": [
+      "10.2",
+      "Initiating ASR"
+    ],
+    "R10-081": [
+      "10.2",
+      "Initiating ASR"
+    ],
+    "R10-082": [
+      "10.2",
+      "Initiating ASR"
+    ],
+    "R10-083": [
+      "10.2",
+      "Initiating ASR"
+    ],
+    "R10-084": [
+      "10.2",
+      "Initiating ASR"
+    ],
+    "R10-090": [
+      "10.2.1",
+      "Short-Press"
+    ],
+    "R10-110": [
+      "10.2.1",
+      "Short-Press"
+    ],
+    "R10-130": [
+      "10.2.2",
+      "Long-Press"
+    ],
+    "R10-140": [
+      "10.2.2",
+      "Long-Press"
+    ],
+    "R10-150": [
+      "10.2.2",
+      "Long-Press"
+    ],
+    "R10-160": [
+      "10.2.2",
+      "Long-Press"
+    ],
+    "R10-170": [
+      "10.2.3",
+      "Cancelling or restarting an ASR session"
+    ],
+    "R10-185": [
+      "10.2.3",
+      "Cancelling or restarting an ASR session"
+    ],
+    "R10-190": [
+      "10.2.3",
+      "Cancelling or restarting an ASR session"
+    ],
+    "R10-194": [
+      "10.3",
+      "ASR and video focus state"
+    ],
+    "R10-195": [
+      "10.3",
+      "ASR and video focus state"
+    ],
+    "R10-191": [
+      "10.3",
+      "ASR and video focus state"
+    ],
+    "R10-192": [
+      "10.3",
+      "ASR and video focus state"
+    ],
+    "R10-196": [
+      "10.3",
+      "ASR and video focus state"
+    ],
+    "R10-200": [
+      "10.4",
+      "Speech audio format"
+    ],
+    "R10-201": [
+      "10.4",
+      "Speech audio format"
+    ],
+    "R10-210": [
+      "10.4.1",
+      "Processing requirements"
+    ],
+    "R10-220": [
+      "10.4.1",
+      "Processing requirements"
+    ],
+    "R10-230": [
+      "10.4.1",
+      "Processing requirements"
+    ],
+    "R10-240": [
+      "10.4.1",
+      "Processing requirements"
+    ],
+    "R10-260": [
+      "10.4.1",
+      "Processing requirements"
+    ],
+    "R10-270": [
+      "10.4.1",
+      "Processing requirements"
+    ],
+    "R10-280": [
+      "10.5",
+      "Branding ASR"
+    ],
+    "R10-285": [
+      "10.5",
+      "Branding ASR"
+    ],
+    "R11-010": [
+      "11",
+      "Navigation"
+    ],
+    "R11-020": [
+      "11",
+      "Navigation"
+    ],
+    "R11-030": [
+      "11",
+      "Navigation"
+    ],
+    "R11-032": [
+      "11",
+      "Navigation"
+    ],
+    "R11-040": [
+      "11.1",
+      "Navigation focus request"
+    ],
+    "R11-050": [
+      "11.1",
+      "Navigation focus request"
+    ],
+    "R11-060": [
+      "11.2",
+      "Navigation focus notification"
+    ],
+    "R11-070": [
+      "11.2",
+      "Navigation focus notification"
+    ],
+    "R11-080": [
+      "11.2",
+      "Navigation focus notification"
+    ],
+    "R12-010": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-020": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-030": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-031": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-032": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-033": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-040": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-045": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-120": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-080": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-085": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-100": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-105": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-110": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-125": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-130": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-140": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-150": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-160": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-170": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-180": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-190": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-203": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-207": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-208": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-209": [
+      "12.1.1",
+      "GNSS"
+    ],
+    "R12-210": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-220": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-223": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-230": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-240": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-250": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-260": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-265": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-270": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-280": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-300": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-310": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-320": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-330": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-340": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-350": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-380": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-390": [
+      "12.1.2",
+      "Other navigation sensors"
+    ],
+    "R12-410": [
+      "12.2.1",
+      "Required data"
+    ],
+    "R12-420": [
+      "12.2.1.1",
+      "Driving Status"
+    ],
+    "R12-430": [
+      "12.2.1.1",
+      "Driving Status"
+    ],
+    "R12-431": [
+      "12.2.1.1",
+      "Driving Status"
+    ],
+    "R12-440": [
+      "12.2.1.1",
+      "Driving Status"
+    ],
+    "R12-441": [
+      "12.2.1.1",
+      "Driving Status"
+    ],
+    "R12-460": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-475": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-501": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-502": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-503": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-504": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-505": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-506": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-507": [
+      "12.2.1.3",
+      "Day/Night Mode"
+    ],
+    "R12-497": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-498": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-499": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-508": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-550": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-551": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-553": [
+      "12.2.1.4",
+      "Fuel Data"
+    ],
+    "R12-491": [
+      "12.2.1.5",
+      "Fuel Type and EV Connector Type"
+    ],
+    "R12-492": [
+      "12.2.1.5",
+      "Fuel Type and EV Connector Type"
+    ],
+    "R12-496": [
+      "12.2.1.5",
+      "Fuel Type and EV Connector Type"
+    ],
+    "R12-493": [
+      "12.2.1.5",
+      "Fuel Type and EV Connector Type"
+    ],
+    "R12-494": [
+      "12.2.1.5",
+      "Fuel Type and EV Connector Type"
+    ],
+    "R12-495": [
+      "12.2.1.5",
+      "Fuel Type and EV Connector Type"
+    ],
+    "R12-500": [
+      "12.2.2",
+      "Optional data"
+    ],
+    "R12-510": [
+      "12.2.2",
+      "Optional data"
+    ],
+    "R12-530": [
+      "12.2.2",
+      "Optional data"
+    ],
+    "R12-520": [
+      "12.2.2",
+      "Optional data"
+    ],
+    "R12-600": [
+      "12.2.2.1",
+      "ETC Icon Display"
+    ],
+    "R12-610": [
+      "12.2.2.1",
+      "ETC Icon Display"
+    ],
+    "R12-620": [
+      "12.2.2.1",
+      "ETC Icon Display"
+    ],
+    "R12-630": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-631": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-632": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-633": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-634": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-640": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-641": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-642": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-643": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R12-644": [
+      "12.3",
+      "Vehicle Energy Model (VEM)"
+    ],
+    "R13-011": [
+      "13",
+      "Application status and data"
+    ],
+    "R13-015": [
+      "13",
+      "Application status and data"
+    ],
+    "R13-001": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-009": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-012": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-013": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-005": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-007": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-006": [
+      "13.1",
+      "Navigation data"
+    ],
+    "R13-008": [
+      "13.1.1",
+      "Navigation subscription"
+    ],
+    "R13-014": [
+      "13.1.1",
+      "Navigation subscription"
+    ],
+    "R13-025": [
+      "13.1.2",
+      "Enhanced navigation data"
+    ],
+    "R13-027": [
+      "13.1.2.2",
+      "Navigation state event"
+    ],
+    "R13-030": [
+      "13.3",
+      "Accessing media data"
+    ],
+    "R13-033": [
+      "13.3",
+      "Accessing media data"
+    ],
+    "R13-034": [
+      "13.3",
+      "Accessing media data"
+    ],
+    "R13-035": [
+      "13.3",
+      "Accessing media data"
+    ],
+    "R13-037": [
+      "13.3",
+      "Accessing media data"
+    ],
+    "R13-040": [
+      "13.3",
+      "Accessing media data"
+    ],
+    "R13-050": [
+      "13.4",
+      "Accessing Telephony data"
+    ],
+    "R14-010": [
+      "14.1",
+      "VEC architecture"
+    ],
+    "R14-020": [
+      "14.1.1",
+      "VEC setup flow"
+    ],
+    "R14-030": [
+      "14.1.2",
+      "VEC security"
+    ],
+    "R14-040": [
+      "14.1.2",
+      "VEC security"
+    ],
+    "R14-050": [
+      "14.1.3",
+      "Using verification certificates"
+    ],
+    "R14-060": [
+      "14.1.3",
+      "Using verification certificates"
+    ],
+    "R14-080": [
+      "14.2.1",
+      "MD implementation"
+    ],
+    "R14-100": [
+      "14.2.1",
+      "MD implementation"
+    ],
+    "R14-120": [
+      "14.2.1.1",
+      "MD implementation for autostart"
+    ],
+    "R14-130": [
+      "14.2.1.2",
+      "MD implementation error handling"
+    ],
+    "R15-010": [
+      "15",
+      "Multi-Display Projection"
+    ],
+    "R15-020": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-030": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-040": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-045": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-050": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-060": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-070": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-080": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-090": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-100": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-110": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-120": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-130": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-135": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-140": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-150": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-160": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-170": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-180": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-185": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-131": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-132": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-133": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-190": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-200": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-205": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-220": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-225": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-221": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-222": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-230": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-240": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-245": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-248": [
+      "15.1",
+      "Declaring Displays"
+    ],
+    "R15-250": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-260": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-270": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-281": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-285": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-287": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-288": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-289": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-290": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-300": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-310": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-320": [
+      "15.2",
+      "Video Management"
+    ],
+    "R15-335": [
+      "15.3",
+      "Secondary display area"
+    ],
+    "R08-415": [
+      "8",
+      "Audio"
+    ],
+    "R05-031": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-165": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-245": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-246": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-247": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-249": [
+      "5",
+      "Wireless connection"
+    ],
+    "R12-047": [
+      "12",
+      "Vehicle data"
+    ],
+    "R07-004": [
+      "7",
+      "Video"
+    ],
+    "R07-547": [
+      "7",
+      "Video"
+    ],
+    "R00-040": [
+      "0",
+      "Introduction"
+    ],
+    "R00-050": [
+      "0",
+      "Introduction"
+    ],
+    "R04-340": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R07-005": [
+      "7",
+      "Video"
+    ],
+    "R07-525": [
+      "7",
+      "Video"
+    ],
+    "R15-280": [
+      "15.3",
+      "Secondary display area"
+    ],
+    "R07-485": [
+      "7",
+      "Video"
+    ],
+    "R07-487": [
+      "7",
+      "Video"
+    ],
+    "R06-300": [
+      "6",
+      "Bluetooth"
+    ],
+    "R12-509": [
+      "12",
+      "Vehicle data"
+    ],
+    "R03-140": [
+      "3",
+      "USB connection"
+    ],
+    "R04-190": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R04-415": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R04-418": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R04-470": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R07-120": [
+      "7",
+      "Video"
+    ],
+    "R07-110": [
+      "7",
+      "Video"
+    ],
+    "R12-360": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-370": [
+      "12",
+      "Vehicle data"
+    ],
+    "R15-330": [
+      "15.3",
+      "Secondary display area"
+    ],
+    "R05-078": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-079": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-458": [
+      "7",
+      "Video"
+    ],
+    "R03-020": [
+      "3",
+      "USB connection"
+    ],
+    "R05-053": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-238": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-393": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-394": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-553": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-556": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-032": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-520": [
+      "7",
+      "Video"
+    ],
+    "R01-180": [
+      "1",
+      "Icons"
+    ],
+    "R04-460": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R05-389": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-516": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-060": [
+      "7",
+      "Video"
+    ],
+    "R08-312": [
+      "8",
+      "Audio"
+    ],
+    "R15-350": [
+      "15.3",
+      "Secondary display area"
+    ],
+    "R15-360": [
+      "15.3",
+      "Secondary display area"
+    ],
+    "R05-092": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-237": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-331": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-255": [
+      "7",
+      "Video"
+    ],
+    "R08-013": [
+      "8",
+      "Audio"
+    ],
+    "R05-080": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-070": [
+      "7",
+      "Video"
+    ],
+    "R01-020": [
+      "1",
+      "Icons"
+    ],
+    "R01-120": [
+      "1",
+      "Icons"
+    ],
+    "R01-140": [
+      "1",
+      "Icons"
+    ],
+    "R01-141": [
+      "1",
+      "Icons"
+    ],
+    "R04-430": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R05-312": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-080": [
+      "7",
+      "Video"
+    ],
+    "R07-090": [
+      "7",
+      "Video"
+    ],
+    "R07-100": [
+      "7",
+      "Video"
+    ],
+    "R07-580": [
+      "7",
+      "Video"
+    ],
+    "R07-600": [
+      "7",
+      "Video"
+    ],
+    "R07-469": [
+      "7",
+      "Video"
+    ],
+    "R07-630": [
+      "7",
+      "Video"
+    ],
+    "R09-160": [
+      "9",
+      "Input devices"
+    ],
+    "R10-180": [
+      "10",
+      "Automatic Speech Recognition"
+    ],
+    "R13-031": [
+      "13",
+      "Application status and data"
+    ],
+    "R13-032": [
+      "13",
+      "Application status and data"
+    ],
+    "R04-012": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R04-013": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R05-028": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-404": [
+      "5",
+      "Wireless connection"
+    ],
+    "R06-203": [
+      "6",
+      "Bluetooth"
+    ],
+    "R07-325": [
+      "7",
+      "Video"
+    ],
+    "R07-650": [
+      "7",
+      "Video"
+    ],
+    "R08-011": [
+      "8",
+      "Audio"
+    ],
+    "R08-385": [
+      "8",
+      "Audio"
+    ],
+    "R13-016": [
+      "13",
+      "Application status and data"
+    ],
+    "R13-017": [
+      "13",
+      "Application status and data"
+    ],
+    "R13-018": [
+      "13",
+      "Application status and data"
+    ],
+    "R15-340": [
+      "15.3",
+      "Secondary display area"
+    ],
+    "R05-395": [
+      "5",
+      "Wireless connection"
+    ],
+    "R08-010": [
+      "8",
+      "Audio"
+    ],
+    "R08-012": [
+      "8",
+      "Audio"
+    ],
+    "R06-220": [
+      "6",
+      "Bluetooth"
+    ],
+    "R07-001": [
+      "7",
+      "Video"
+    ],
+    "R08-435": [
+      "8",
+      "Audio"
+    ],
+    "R03-248": [
+      "3",
+      "USB connection"
+    ],
+    "R03-249": [
+      "3",
+      "USB connection"
+    ],
+    "R05-084": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-087": [
+      "5",
+      "Wireless connection"
+    ],
+    "R03-190": [
+      "3",
+      "USB connection"
+    ],
+    "R05-020": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-029": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-290": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-415": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-270": [
+      "7",
+      "Video"
+    ],
+    "R12-060": [
+      "12",
+      "Vehicle data"
+    ],
+    "R12-070": [
+      "12",
+      "Vehicle data"
+    ],
+    "R03-245": [
+      "3",
+      "USB connection"
+    ],
+    "R03-301": [
+      "3",
+      "USB connection"
+    ],
+    "R05-195": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-309": [
+      "5",
+      "Wireless connection"
+    ],
+    "R12-050": [
+      "12",
+      "Vehicle data"
+    ],
+    "R03-150": [
+      "3",
+      "USB connection"
+    ],
+    "R03-160": [
+      "3",
+      "USB connection"
+    ],
+    "R05-370": [
+      "5",
+      "Wireless connection"
+    ],
+    "R09-070": [
+      "9",
+      "Input devices"
+    ],
+    "R01-143": [
+      "1",
+      "Icons"
+    ],
+    "R03-015": [
+      "3",
+      "USB connection"
+    ],
+    "R03-070": [
+      "3",
+      "USB connection"
+    ],
+    "R08-020": [
+      "8",
+      "Audio"
+    ],
+    "R09-100": [
+      "9",
+      "Input devices"
+    ],
+    "R12-205": [
+      "12",
+      "Vehicle data"
+    ],
+    "R05-453": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-455": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-456": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-473": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-485": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-500": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-507": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-508": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-509": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-560": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-565": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-570": [
+      "5",
+      "Wireless connection"
+    ],
+    "R07-180": [
+      "7",
+      "Video"
+    ],
+    "R12-090": [
+      "12",
+      "Vehicle data"
+    ],
+    "R00-070": [
+      "0",
+      "Introduction"
+    ],
+    "R04-155": [
+      "4",
+      "Wi-Fi connection"
+    ],
+    "R01-145": [
+      "1",
+      "Icons"
+    ],
+    "R02-003": [
+      "2",
+      "Receiver Library"
+    ],
+    "R05-089": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-265": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-315": [
+      "5",
+      "Wireless connection"
+    ],
+    "R09-055": [
+      "9",
+      "Input devices"
+    ],
+    "R05-035": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-088": [
+      "5",
+      "Wireless connection"
+    ],
+    "R08-265": [
+      "8",
+      "Audio"
+    ],
+    "R13-036": [
+      "13",
+      "Application status and data"
+    ],
+    "R03-205": [
+      "3",
+      "USB connection"
+    ],
+    "R03-210": [
+      "3",
+      "USB connection"
+    ],
+    "R05-077": [
+      "5",
+      "Wireless connection"
+    ],
+    "R11-031": [
+      "11",
+      "Navigation"
+    ],
+    "R01-035": [
+      "1",
+      "Icons"
+    ],
+    "R05-120": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-130": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-150": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-250": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-270": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-280": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-300": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-350": [
+      "5",
+      "Wireless connection"
+    ],
+    "R05-430": [
+      "5",
+      "Wireless connection"
+    ],
+    "R01-050": [
+      "1",
+      "Icons"
+    ]
+  },
+  "testset_x_section": {
+    "Disconnection||6.4 HFP connection": [
+      35
+    ],
+    "Disconnection||6.5 Bluetooth audio (A2DP) connection": [
+      39
+    ],
+    "Performance||7.5.2 Video latency": [
+      114,
+      115,
+      116
+    ],
+    "Performance||8.4.2 Audio latency": [
+      117
+    ],
+    "Performance||5.1.2 Wireless latency requirements": [
+      118
+    ],
+    "Wireless Coexistence||6 Bluetooth": [
+      119,
+      120,
+      121,
+      122
+    ],
+    "Wireless Coexistence||6.4 HFP connection": [
+      119,
+      120,
+      121,
+      122
+    ],
+    "Voice Recognition||10 Automatic Speech Recognition": [
+      145
+    ],
+    "Voice Recognition||10.2.2 Long-Press": [
+      145,
+      147
+    ],
+    "Voice Recognition||10.2.1 Short-Press": [
+      147
+    ],
+    "Cluster Navigation||13.1 Navigation data": [
+      376,
+      377,
+      378,
+      379
+    ],
+    "HMI Display||7 Video": [
+      431,
+      433,
+      443
+    ],
+    "HMI Display||7.8.2 Reported screen density": [
+      431,
+      433,
+      435
+    ],
+    "HMI Display||7.8.1 Codec resolution support": [
+      433,
+      435,
+      443
+    ],
+    "HMI Display||9.1 Touchscreen": [
+      437,
+      438,
+      462
+    ],
+    "HMI Display||7.3 Display area and screen": [
+      437,
+      438
+    ],
+    "Projection Launch||6.5 Bluetooth audio (A2DP) connection": [
+      513,
+      514
+    ],
+    "Projection Launch||5.3.2 Switching projection sources": [
+      515,
+      516
+    ],
+    "Projection Audio||8.2.2 Media stream": [
+      517,
+      518,
+      519
+    ],
+    "Projection Audio||10.4 Speech audio format": [
+      520
+    ],
+    "Projection Audio||10.4.1 Processing requirements": [
+      522
+    ],
+    "Projection Audio||10 Automatic Speech Recognition": [
+      523
+    ],
+    "Projection Audio||6 Bluetooth": [
+      524,
+      525,
+      526,
+      527,
+      528
+    ],
+    "HMI Display||13.4 Accessing Telephony data": [
+      529,
+      530,
+      531
+    ],
+    "HMI Display||13.3 Accessing media data": [
+      532,
+      533,
+      534,
+      535
+    ],
+    "HMI Display||7.10 Video focus": [
+      536,
+      537,
+      538
+    ],
+    "HMI Display||1.4 Vehicle Make Logo Exit Icon": [
+      539,
+      540
+    ],
+    "HMI Display||4.10 Disconnecting AAP": [
+      541,
+      542
+    ],
+    "HMI Display||15.2 Video Management": [
+      543,
+      544,
+      545
+    ],
+    "HMI Display||13.1 Navigation data": [
+      546,
+      547,
+      548
+    ],
+    "HMI Display||7.10.2 Native video focus": [
+      557,
+      558,
+      559
+    ]
+  }
+}

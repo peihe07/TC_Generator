@@ -1,0 +1,6554 @@
+{
+  "_meta": {
+    "generated": "2026-08-12",
+    "purpose": "A-PJ06 framework 分析底稿（補裁 #6）。Tier 1 measurement only — 不含任何分組提案。",
+    "source": "inputs/NR1L_GEN1(HDCC)_Ver_20260813.xlsx sheet TestResults rows 4-562 + 037 CPAA_0521 col J",
+    "note": "Test Group 與 Test Set 皆讀自 workbook 現況；sub_categorization_037 由 req_id 對回 037 的 SWE1 Sub Categorization 欄。"
+  },
+  "axes": {
+    "test_group": [
+      "Android Auto Wired and Wireless",
+      "Audio Management",
+      "Bluetooth",
+      "Carplay Wired and Wireless",
+      "Device Manager",
+      "GPS",
+      "Media Player",
+      "SSE / ECNR",
+      "Touch",
+      "WiFi"
+    ],
+    "test_set": [
+      "Cluster Navigation",
+      "Connection",
+      "Day/Night Mode",
+      "Device Manager",
+      "Disconnection",
+      "HMI Display",
+      "Knob",
+      "Pairing",
+      "Performance",
+      "Projection Apps",
+      "Projection Audio",
+      "Projection Detection",
+      "Projection Display",
+      "Projection Launch",
+      "USB Device",
+      "Vehicle Signal Forwarding",
+      "Voice Recognition",
+      "Wireless Coexistence"
+    ],
+    "sub_categorization_037": [
+      "USB设备管理",
+      "导航与TBT",
+      "性能与合规",
+      "投屏会话管理",
+      "显示与UI管理",
+      "蓝牙配对与连接管理",
+      "设备列表与优先级",
+      "语音控制",
+      "车辆信号与信息",
+      "通用功能与HMI",
+      "音视频与显示",
+      "额外来源需求"
+    ]
+  },
+  "cross_tab_tg_x_ts": {
+    "Android Auto Wired and Wireless||Connection": 1,
+    "Android Auto Wired and Wireless||Day/Night Mode": 11,
+    "Android Auto Wired and Wireless||Disconnection": 10,
+    "Android Auto Wired and Wireless||HMI Display": 22,
+    "Android Auto Wired and Wireless||Projection Apps": 3,
+    "Android Auto Wired and Wireless||Projection Display": 1,
+    "Android Auto Wired and Wireless||Vehicle Signal Forwarding": 2,
+    "Android Auto Wired and Wireless||Voice Recognition": 8,
+    "Audio Management||Performance": 3,
+    "Audio Management||Projection Audio": 28,
+    "Bluetooth||Connection": 23,
+    "Bluetooth||HMI Display": 11,
+    "Bluetooth||Pairing": 12,
+    "Bluetooth||Projection Audio": 5,
+    "Bluetooth||Projection Launch": 2,
+    "Carplay Wired and Wireless||(空)": 1,
+    "Carplay Wired and Wireless||Connection": 2,
+    "Carplay Wired and Wireless||Day/Night Mode": 11,
+    "Carplay Wired and Wireless||HMI Display": 22,
+    "Carplay Wired and Wireless||Performance": 1,
+    "Carplay Wired and Wireless||Projection Apps": 5,
+    "Carplay Wired and Wireless||Projection Display": 2,
+    "Carplay Wired and Wireless||Vehicle Signal Forwarding": 2,
+    "Carplay Wired and Wireless||Voice Recognition": 14,
+    "Device Manager||Connection": 17,
+    "Device Manager||Device Manager": 54,
+    "Device Manager||Disconnection": 16,
+    "Device Manager||Projection Detection": 49,
+    "Device Manager||Projection Launch": 56,
+    "GPS||Cluster Navigation": 12,
+    "GPS||Vehicle Signal Forwarding": 18,
+    "Media Player||HMI Display": 8,
+    "Media Player||Performance": 2,
+    "Media Player||Projection Apps": 4,
+    "Media Player||Projection Display": 2,
+    "Media Player||Projection Launch": 3,
+    "Media Player||USB Device": 4,
+    "SSE / ECNR||Projection Audio": 4,
+    "Touch||HMI Display": 13,
+    "Touch||Knob": 42,
+    "Touch||Performance": 2,
+    "WiFi||Connection": 18,
+    "WiFi||Disconnection": 23,
+    "WiFi||Performance": 2,
+    "WiFi||Projection Launch": 4,
+    "WiFi||Wireless Coexistence": 4
+  },
+  "execution_records": {
+    "rows_with_any_result": 387,
+    "total_rows": 559,
+    "per_build": {
+      "00.01.01.02": {
+        "(未執行)": 547,
+        "Pass": 12
+      },
+      "00.01.01.03": {
+        "(未執行)": 521,
+        "Fail": 20,
+        "Pass": 18
+      },
+      "Daily Build 20260805": {
+        "(未執行)": 377,
+        "NA": 88,
+        "Pass": 85,
+        "Fail": 9
+      },
+      "00.01.01.04": {
+        "(未執行)": 365,
+        "NA": 90,
+        "Pass": 67,
+        "Fail": 34,
+        "Block": 3
+      },
+      "00.01.01.05": {
+        "(未執行)": 547,
+        "Pass": 7,
+        "Fail": 5
+      }
+    }
+  },
+  "rows": [
+    {
+      "row": 4,
+      "tc_id": "NR1L-PROJ-001",
+      "req_id": "SWE1-PROJ-071-001",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 5,
+      "tc_id": "NR1L-PROJ-002",
+      "req_id": "SWE1-PROJ-071-001",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 6,
+      "tc_id": "NR1L-PROJ-003",
+      "req_id": "SWE1-PROJ-071-001",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 7,
+      "tc_id": "NR1L-PROJ-004",
+      "req_id": "SWE1-PROJ-071-002",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 8,
+      "tc_id": "NR1L-PROJ-005",
+      "req_id": "SWE1-PROJ-071-002",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Pass"
+      }
+    },
+    {
+      "row": 9,
+      "tc_id": "NR1L-PROJ-006",
+      "req_id": "SWE1-PROJ-071-002",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Pass"
+      }
+    },
+    {
+      "row": 10,
+      "tc_id": "NR1L-PROJ-007",
+      "req_id": "SWE1-PROJ-072-001",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 11,
+      "tc_id": "NR1L-PROJ-008",
+      "req_id": "SWE1-PROJ-072-002",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 12,
+      "tc_id": "NR1L-PROJ-009",
+      "req_id": "SWE1-PROJ-073-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "显示与UI管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 13,
+      "tc_id": "NR1L-PROJ-010",
+      "req_id": "SWE1-PROJ-073-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "显示与UI管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 14,
+      "tc_id": "NR1L-PROJ-011",
+      "req_id": "SWE1-PROJ-073-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "显示与UI管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 15,
+      "tc_id": "NR1L-PROJ-012",
+      "req_id": "SWE1-PROJ-073-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "显示与UI管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 16,
+      "tc_id": "NR1L-PROJ-013",
+      "req_id": "SWE1-PROJ-073-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 17,
+      "tc_id": "NR1L-PROJ-014",
+      "req_id": "SWE1-PROJ-073-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 18,
+      "tc_id": "NR1L-PROJ-015",
+      "req_id": "SWE1-PROJ-073-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 19,
+      "tc_id": "NR1L-PROJ-016",
+      "req_id": "SWE1-PROJ-073-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 20,
+      "tc_id": "NR1L-PROJ-017",
+      "req_id": "SWE1-PROJ-073-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 21,
+      "tc_id": "NR1L-PROJ-018",
+      "req_id": "SWE1-PROJ-073-003",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 22,
+      "tc_id": "NR1L-PROJ-019",
+      "req_id": "SWE1-PROJ-073-003",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 23,
+      "tc_id": "NR1L-PROJ-020",
+      "req_id": "SWE1-PROJ-073-003",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 24,
+      "tc_id": "NR1L-PROJ-021",
+      "req_id": "SWE1-PROJ-073-003",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 25,
+      "tc_id": "NR1L-PROJ-022",
+      "req_id": "SWE1-PROJ-073-003",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 26,
+      "tc_id": "NR1L-PROJ-023",
+      "req_id": "SWE1-PROJ-074-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 27,
+      "tc_id": "NR1L-PROJ-024",
+      "req_id": "SWE1-PROJ-074-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 28,
+      "tc_id": "NR1L-PROJ-025",
+      "req_id": "SWE1-PROJ-074-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 29,
+      "tc_id": "NR1L-PROJ-027",
+      "req_id": "SWE1-PROJ-075-001",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 30,
+      "tc_id": "NR1L-PROJ-028",
+      "req_id": "SWE1-PROJ-075-002",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 31,
+      "tc_id": "NR1L-PROJ-029",
+      "req_id": "SWE1-PROJ-079-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 32,
+      "tc_id": "NR1L-PROJ-030",
+      "req_id": "SWE1-PROJ-079-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 33,
+      "tc_id": "NR1L-PROJ-031",
+      "req_id": "SWE1-PROJ-079-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 34,
+      "tc_id": "NR1L-PROJ-032",
+      "req_id": "SWE1-PROJ-079-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 35,
+      "tc_id": "NR1L-PROJ-035",
+      "req_id": "SWE1-PROJ-079-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 36,
+      "tc_id": "NR1L-PROJ-036",
+      "req_id": "SWE1-PROJ-079-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 37,
+      "tc_id": "NR1L-PROJ-037",
+      "req_id": "SWE1-PROJ-079-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 38,
+      "tc_id": "NR1L-PROJ-038",
+      "req_id": "SWE1-PROJ-079-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 39,
+      "tc_id": "NR1L-PROJ-039",
+      "req_id": "SWE1-PROJ-079-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 40,
+      "tc_id": "NR1L-PROJ-040",
+      "req_id": "SWE1-PROJ-080-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 41,
+      "tc_id": "NR1L-PROJ-041",
+      "req_id": "SWE1-PROJ-080-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 42,
+      "tc_id": "NR1L-PROJ-042",
+      "req_id": "SWE1-PROJ-080-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 43,
+      "tc_id": "NR1L-PROJ-043",
+      "req_id": "SWE1-PROJ-080-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 44,
+      "tc_id": "NR1L-PROJ-044",
+      "req_id": "SWE1-PROJ-081-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 45,
+      "tc_id": "NR1L-PROJ-045",
+      "req_id": "SWE1-PROJ-081-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 46,
+      "tc_id": "NR1L-PROJ-046",
+      "req_id": "SWE1-PROJ-081-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 47,
+      "tc_id": "NR1L-PROJ-047",
+      "req_id": "SWE1-PROJ-081-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 48,
+      "tc_id": "",
+      "req_id": "SWE1-PROJ-081-001",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 49,
+      "tc_id": "NR1L-PROJ-048",
+      "req_id": "SWE1-PROJ-081-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 50,
+      "tc_id": "NR1L-PROJ-049",
+      "req_id": "SWE1-PROJ-081-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 51,
+      "tc_id": "NR1L-PROJ-050",
+      "req_id": "SWE1-PROJ-081-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 52,
+      "tc_id": "NR1L-PROJ-051",
+      "req_id": "SWE1-PROJ-081-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 53,
+      "tc_id": "",
+      "req_id": "SWE1-PROJ-081-002",
+      "test_group": "WiFi",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 54,
+      "tc_id": "NR1L-PROJ-052",
+      "req_id": "SWE1-PROJ-083",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 55,
+      "tc_id": "NR1L-PROJ-053",
+      "req_id": "SWE1-PROJ-083",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 56,
+      "tc_id": "NR1L-PROJ-054",
+      "req_id": "SWE1-PROJ-083",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 57,
+      "tc_id": "NR1L-PROJ-055",
+      "req_id": "SWE1-PROJ-083",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 58,
+      "tc_id": "NR1L-PROJ-056",
+      "req_id": "SWE1-PROJ-083",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 59,
+      "tc_id": "NR1L-PROJ-057",
+      "req_id": "SWE1-PROJ-083",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 60,
+      "tc_id": "NR1L-PROJ-058",
+      "req_id": "SWE1-PROJ-084-001",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 61,
+      "tc_id": "NR1L-PROJ-059",
+      "req_id": "SWE1-PROJ-084-001",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 62,
+      "tc_id": "NR1L-PROJ-060",
+      "req_id": "SWE1-PROJ-084-001",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 63,
+      "tc_id": "NR1L-PROJ-061",
+      "req_id": "SWE1-PROJ-084-001",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 64,
+      "tc_id": "NR1L-PROJ-062",
+      "req_id": "SWE1-PROJ-084-001",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 65,
+      "tc_id": "NR1L-PROJ-063",
+      "req_id": "SWE1-PROJ-084-002",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 66,
+      "tc_id": "NR1L-PROJ-064",
+      "req_id": "SWE1-PROJ-084-002",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 67,
+      "tc_id": "NR1L-PROJ-065",
+      "req_id": "SWE1-PROJ-084-002",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 68,
+      "tc_id": "NR1L-PROJ-066",
+      "req_id": "SWE1-PROJ-084-002",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 69,
+      "tc_id": "NR1L-PROJ-067",
+      "req_id": "SWE1-PROJ-084-002",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 70,
+      "tc_id": "NR1L-PROJ-068",
+      "req_id": "SWE1-PROJ-084-002",
+      "test_group": "Device Manager",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 71,
+      "tc_id": "NR1L-PROJ-069",
+      "req_id": "SWE1-PROJ-085-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 72,
+      "tc_id": "NR1L-PROJ-070",
+      "req_id": "SWE1-PROJ-085-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 73,
+      "tc_id": "NR1L-PROJ-071",
+      "req_id": "SWE1-PROJ-085-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 74,
+      "tc_id": "NR1L-PROJ-072",
+      "req_id": "SWE1-PROJ-085-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 75,
+      "tc_id": "NR1L-PROJ-073",
+      "req_id": "SWE1-PROJ-085-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 76,
+      "tc_id": "NR1L-PROJ-074",
+      "req_id": "SWE1-PROJ-085-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 77,
+      "tc_id": "NR1L-PROJ-075",
+      "req_id": "SWE1-PROJ-087-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 78,
+      "tc_id": "NR1L-PROJ-076",
+      "req_id": "SWE1-PROJ-087-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 79,
+      "tc_id": "NR1L-PROJ-077",
+      "req_id": "SWE1-PROJ-087-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 80,
+      "tc_id": "NR1L-PROJ-078",
+      "req_id": "SWE1-PROJ-087-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 81,
+      "tc_id": "NR1L-PROJ-079",
+      "req_id": "SWE1-PROJ-087-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 82,
+      "tc_id": "NR1L-PROJ-080",
+      "req_id": "SWE1-PROJ-087-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 83,
+      "tc_id": "NR1L-PROJ-081",
+      "req_id": "SWE1-PROJ-088-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 84,
+      "tc_id": "NR1L-PROJ-082",
+      "req_id": "SWE1-PROJ-088-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 85,
+      "tc_id": "NR1L-PROJ-083",
+      "req_id": "SWE1-PROJ-088-001",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 86,
+      "tc_id": "NR1L-PROJ-084",
+      "req_id": "SWE1-PROJ-088-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 87,
+      "tc_id": "NR1L-PROJ-085",
+      "req_id": "SWE1-PROJ-088-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 88,
+      "tc_id": "NR1L-PROJ-086",
+      "req_id": "SWE1-PROJ-088-002",
+      "test_group": "WiFi",
+      "test_set": "Connection",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 89,
+      "tc_id": "NR1L-PROJ-087",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 90,
+      "tc_id": "NR1L-PROJ-088",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 91,
+      "tc_id": "NR1L-PROJ-089",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 92,
+      "tc_id": "NR1L-PROJ-090",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 93,
+      "tc_id": "NR1L-PROJ-091",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Fail"
+      }
+    },
+    {
+      "row": 94,
+      "tc_id": "NR1L-PROJ-092",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.02": "Pass",
+        "00.01.01.03": "Pass",
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 95,
+      "tc_id": "NR1L-PROJ-093",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 96,
+      "tc_id": "NR1L-PROJ-094",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 97,
+      "tc_id": "NR1L-PROJ-095",
+      "req_id": "SWE1-PROJ-089-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 98,
+      "tc_id": "NR1L-PROJ-096",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 99,
+      "tc_id": "NR1L-PROJ-097",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 100,
+      "tc_id": "NR1L-PROJ-098",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 101,
+      "tc_id": "NR1L-PROJ-099",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 102,
+      "tc_id": "NR1L-PROJ-100",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Fail"
+      }
+    },
+    {
+      "row": 103,
+      "tc_id": "NR1L-PROJ-101",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 104,
+      "tc_id": "NR1L-PROJ-102",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 105,
+      "tc_id": "NR1L-PROJ-103",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 106,
+      "tc_id": "NR1L-PROJ-104",
+      "req_id": "SWE1-PROJ-089-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 107,
+      "tc_id": "NR1L-PROJ-105",
+      "req_id": "SWE1-PROJ-090-001",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 108,
+      "tc_id": "NR1L-PROJ-106",
+      "req_id": "SWE1-PROJ-090-002",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 109,
+      "tc_id": "NR1L-PROJ-107",
+      "req_id": "SWE1-PROJ-092-001",
+      "test_group": "WiFi",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 110,
+      "tc_id": "NR1L-PROJ-108",
+      "req_id": "SWE1-PROJ-092-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 111,
+      "tc_id": "NR1L-PROJ-109",
+      "req_id": "SWE1-PROJ-092-001",
+      "test_group": "Media Player",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 112,
+      "tc_id": "NR1L-PROJ-110",
+      "req_id": "SWE1-PROJ-092-001",
+      "test_group": "Audio Management",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 113,
+      "tc_id": "NR1L-PROJ-111",
+      "req_id": "SWE1-PROJ-092-001",
+      "test_group": "Audio Management",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 114,
+      "tc_id": "NR1L-PROJ-112",
+      "req_id": "SWE1-PROJ-092-002",
+      "test_group": "Media Player",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 115,
+      "tc_id": "NR1L-PROJ-113",
+      "req_id": "SWE1-PROJ-092-002",
+      "test_group": "Touch",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 116,
+      "tc_id": "NR1L-PROJ-114",
+      "req_id": "SWE1-PROJ-092-002",
+      "test_group": "Touch",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 117,
+      "tc_id": "NR1L-PROJ-115",
+      "req_id": "SWE1-PROJ-092-002",
+      "test_group": "Audio Management",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 118,
+      "tc_id": "NR1L-PROJ-116",
+      "req_id": "SWE1-PROJ-092-002",
+      "test_group": "WiFi",
+      "test_set": "Performance",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 119,
+      "tc_id": "NR1L-PROJ-117",
+      "req_id": "SWE1-PROJ-093-001",
+      "test_group": "WiFi",
+      "test_set": "Wireless Coexistence",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 120,
+      "tc_id": "NR1L-PROJ-118",
+      "req_id": "SWE1-PROJ-093-001",
+      "test_group": "WiFi",
+      "test_set": "Wireless Coexistence",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 121,
+      "tc_id": "NR1L-PROJ-119",
+      "req_id": "SWE1-PROJ-093-002",
+      "test_group": "WiFi",
+      "test_set": "Wireless Coexistence",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 122,
+      "tc_id": "NR1L-PROJ-120",
+      "req_id": "SWE1-PROJ-093-002",
+      "test_group": "WiFi",
+      "test_set": "Wireless Coexistence",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 123,
+      "tc_id": "NR1L-PROJ-121",
+      "req_id": "SWE1-PROJ-094-001",
+      "test_group": "WiFi",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 124,
+      "tc_id": "NR1L-PROJ-122",
+      "req_id": "SWE1-PROJ-094-001",
+      "test_group": "WiFi",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 125,
+      "tc_id": "NR1L-PROJ-123",
+      "req_id": "SWE1-PROJ-094-002",
+      "test_group": "WiFi",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 126,
+      "tc_id": "NR1L-PROJ-124",
+      "req_id": "SWE1-PROJ-094-002",
+      "test_group": "WiFi",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 127,
+      "tc_id": "NR1L-PROJ-125",
+      "req_id": "SWE1-PROJ-096-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 128,
+      "tc_id": "NR1L-PROJ-126",
+      "req_id": "SWE1-PROJ-096-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 129,
+      "tc_id": "NR1L-PROJ-127",
+      "req_id": "SWE1-PROJ-096-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 130,
+      "tc_id": "NR1L-PROJ-128",
+      "req_id": "SWE1-PROJ-096-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 131,
+      "tc_id": "NR1L-PROJ-129",
+      "req_id": "SWE1-PROJ-096-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Block"
+      }
+    },
+    {
+      "row": 132,
+      "tc_id": "NR1L-PROJ-130",
+      "req_id": "SWE1-PROJ-096-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Block"
+      }
+    },
+    {
+      "row": 133,
+      "tc_id": "NR1L-PROJ-131",
+      "req_id": "SWE1-PROJ-096-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 134,
+      "tc_id": "NR1L-PROJ-132",
+      "req_id": "SWE1-PROJ-096-002",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 135,
+      "tc_id": "NR1L-PROJ-133",
+      "req_id": "SWE1-PROJ-096-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 136,
+      "tc_id": "NR1L-PROJ-134",
+      "req_id": "SWE1-PROJ-096-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 137,
+      "tc_id": "NR1L-PROJ-135",
+      "req_id": "SWE1-PROJ-096-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Block"
+      }
+    },
+    {
+      "row": 138,
+      "tc_id": "NR1L-PROJ-136",
+      "req_id": "SWE1-PROJ-096-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 139,
+      "tc_id": "NR1L-PROJ-137",
+      "req_id": "SWE1-PROJ-097-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 140,
+      "tc_id": "NR1L-PROJ-138",
+      "req_id": "SWE1-PROJ-097-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 141,
+      "tc_id": "NR1L-PROJ-139",
+      "req_id": "SWE1-PROJ-097-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 142,
+      "tc_id": "NR1L-PROJ-140",
+      "req_id": "SWE1-PROJ-097-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 143,
+      "tc_id": "NR1L-PROJ-141",
+      "req_id": "SWE1-PROJ-097-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Pass"
+      }
+    },
+    {
+      "row": 144,
+      "tc_id": "NR1L-PROJ-142",
+      "req_id": "SWE1-PROJ-097-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 145,
+      "tc_id": "NR1L-PROJ-143",
+      "req_id": "SWE1-PROJ-097-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 146,
+      "tc_id": "NR1L-PROJ-144",
+      "req_id": "SWE1-PROJ-097-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 147,
+      "tc_id": "NR1L-PROJ-145",
+      "req_id": "SWE1-PROJ-097-002",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 148,
+      "tc_id": "NR1L-PROJ-146",
+      "req_id": "SWE1-PROJ-097-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Voice Recognition",
+      "sub_categorization_037": "语音控制",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 149,
+      "tc_id": "NR1L-PROJ-147",
+      "req_id": "SWE1-PROJ-099-001",
+      "test_group": "Media Player",
+      "test_set": "Projection Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 150,
+      "tc_id": "NR1L-PROJ-148",
+      "req_id": "SWE1-PROJ-099-002",
+      "test_group": "Media Player",
+      "test_set": "Projection Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 151,
+      "tc_id": "NR1L-PROJ-149",
+      "req_id": "SWE1-PROJ-102-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 152,
+      "tc_id": "NR1L-PROJ-150",
+      "req_id": "SWE1-PROJ-102-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 153,
+      "tc_id": "NR1L-PROJ-151",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 154,
+      "tc_id": "NR1L-PROJ-152",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 155,
+      "tc_id": "NR1L-PROJ-153",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 156,
+      "tc_id": "NR1L-PROJ-154",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 157,
+      "tc_id": "NR1L-PROJ-155",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 158,
+      "tc_id": "NR1L-PROJ-156",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 159,
+      "tc_id": "NR1L-PROJ-157",
+      "req_id": "SWE1-PROJ-103-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 160,
+      "tc_id": "NR1L-PROJ-158",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 161,
+      "tc_id": "NR1L-PROJ-159",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 162,
+      "tc_id": "NR1L-PROJ-160",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 163,
+      "tc_id": "NR1L-PROJ-161",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 164,
+      "tc_id": "NR1L-PROJ-162",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 165,
+      "tc_id": "NR1L-PROJ-163",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 166,
+      "tc_id": "NR1L-PROJ-164",
+      "req_id": "SWE1-PROJ-103-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 167,
+      "tc_id": "NR1L-PROJ-165",
+      "req_id": "SWE1-PROJ-105-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 168,
+      "tc_id": "NR1L-PROJ-166",
+      "req_id": "SWE1-PROJ-105-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 169,
+      "tc_id": "NR1L-PROJ-167",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 170,
+      "tc_id": "NR1L-PROJ-168",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 171,
+      "tc_id": "NR1L-PROJ-169",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 172,
+      "tc_id": "NR1L-PROJ-170",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 173,
+      "tc_id": "NR1L-PROJ-171",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 174,
+      "tc_id": "NR1L-PROJ-172",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 175,
+      "tc_id": "NR1L-PROJ-173",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 176,
+      "tc_id": "NR1L-PROJ-174",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 177,
+      "tc_id": "NR1L-PROJ-175",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 178,
+      "tc_id": "NR1L-PROJ-176",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 179,
+      "tc_id": "NR1L-PROJ-177",
+      "req_id": "SWE1-PROJ-106-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 180,
+      "tc_id": "NR1L-PROJ-178",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 181,
+      "tc_id": "NR1L-PROJ-179",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 182,
+      "tc_id": "NR1L-PROJ-180",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 183,
+      "tc_id": "NR1L-PROJ-181",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 184,
+      "tc_id": "NR1L-PROJ-182",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 185,
+      "tc_id": "NR1L-PROJ-183",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 186,
+      "tc_id": "NR1L-PROJ-184",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 187,
+      "tc_id": "NR1L-PROJ-185",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 188,
+      "tc_id": "NR1L-PROJ-186",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 189,
+      "tc_id": "NR1L-PROJ-187",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 190,
+      "tc_id": "NR1L-PROJ-188",
+      "req_id": "SWE1-PROJ-106-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Day/Night Mode",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 191,
+      "tc_id": "NR1L-PROJ-189",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 192,
+      "tc_id": "NR1L-PROJ-190",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 193,
+      "tc_id": "NR1L-PROJ-191",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 194,
+      "tc_id": "NR1L-PROJ-192",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 195,
+      "tc_id": "NR1L-PROJ-193",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 196,
+      "tc_id": "NR1L-PROJ-194",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 197,
+      "tc_id": "NR1L-PROJ-195",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 198,
+      "tc_id": "NR1L-PROJ-196",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 199,
+      "tc_id": "NR1L-PROJ-197",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 200,
+      "tc_id": "NR1L-PROJ-198",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 201,
+      "tc_id": "NR1L-PROJ-199",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 202,
+      "tc_id": "NR1L-PROJ-200",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 203,
+      "tc_id": "NR1L-PROJ-201",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 204,
+      "tc_id": "NR1L-PROJ-202",
+      "req_id": "SWE1-PROJ-108-001",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 205,
+      "tc_id": "NR1L-PROJ-203",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 206,
+      "tc_id": "NR1L-PROJ-204",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 207,
+      "tc_id": "NR1L-PROJ-205",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 208,
+      "tc_id": "NR1L-PROJ-206",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 209,
+      "tc_id": "NR1L-PROJ-207",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 210,
+      "tc_id": "NR1L-PROJ-208",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 211,
+      "tc_id": "NR1L-PROJ-209",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 212,
+      "tc_id": "NR1L-PROJ-210",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 213,
+      "tc_id": "NR1L-PROJ-211",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 214,
+      "tc_id": "NR1L-PROJ-212",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 215,
+      "tc_id": "NR1L-PROJ-213",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 216,
+      "tc_id": "NR1L-PROJ-214",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 217,
+      "tc_id": "NR1L-PROJ-215",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 218,
+      "tc_id": "NR1L-PROJ-216",
+      "req_id": "SWE1-PROJ-108-002",
+      "test_group": "Touch",
+      "test_set": "Knob",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 219,
+      "tc_id": "NR1L-PROJ-217",
+      "req_id": "SWE1-PROJ-110-001",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 220,
+      "tc_id": "NR1L-PROJ-218",
+      "req_id": "SWE1-PROJ-110-001",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 221,
+      "tc_id": "NR1L-PROJ-219",
+      "req_id": "SWE1-PROJ-110-001",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 222,
+      "tc_id": "NR1L-PROJ-220",
+      "req_id": "SWE1-PROJ-110-002",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 223,
+      "tc_id": "NR1L-PROJ-221",
+      "req_id": "SWE1-PROJ-110-002",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 224,
+      "tc_id": "NR1L-PROJ-222",
+      "req_id": "SWE1-PROJ-110-002",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 225,
+      "tc_id": "NR1L-PROJ-223",
+      "req_id": "SWE1-PROJ-112",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 226,
+      "tc_id": "NR1L-PROJ-224",
+      "req_id": "SWE1-PROJ-113",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 227,
+      "tc_id": "NR1L-PROJ-225",
+      "req_id": "SWE1-PROJ-113",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 228,
+      "tc_id": "NR1L-PROJ-226",
+      "req_id": "SWE1-PROJ-114",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 229,
+      "tc_id": "NR1L-PROJ-227",
+      "req_id": "SWE1-PROJ-115",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 230,
+      "tc_id": "NR1L-PROJ-228",
+      "req_id": "SWE1-PROJ-116",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 231,
+      "tc_id": "NR1L-PROJ-229",
+      "req_id": "SWE1-PROJ-118",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 232,
+      "tc_id": "NR1L-PROJ-230",
+      "req_id": "SWE1-PROJ-118",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 233,
+      "tc_id": "NR1L-PROJ-231",
+      "req_id": "SWE1-PROJ-118",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 234,
+      "tc_id": "NR1L-PROJ-232",
+      "req_id": "SWE1-PROJ-118",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 235,
+      "tc_id": "NR1L-PROJ-233",
+      "req_id": "SWE1-PROJ-120",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 236,
+      "tc_id": "NR1L-PROJ-234",
+      "req_id": "SWE1-PROJ-120",
+      "test_group": "GPS",
+      "test_set": "Vehicle Signal Forwarding",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 237,
+      "tc_id": "NR1L-PROJ-235",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 238,
+      "tc_id": "NR1L-PROJ-236",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 239,
+      "tc_id": "NR1L-PROJ-237",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Pass"
+      }
+    },
+    {
+      "row": 240,
+      "tc_id": "NR1L-PROJ-238",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "Daily Build 20260805": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 241,
+      "tc_id": "NR1L-PROJ-239",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Pass"
+      }
+    },
+    {
+      "row": 242,
+      "tc_id": "NR1L-PROJ-240",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Pass"
+      }
+    },
+    {
+      "row": 243,
+      "tc_id": "NR1L-PROJ-241",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 244,
+      "tc_id": "NR1L-PROJ-242",
+      "req_id": "SWE1-PROJ-121-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 245,
+      "tc_id": "NR1L-PROJ-243",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 246,
+      "tc_id": "NR1L-PROJ-244",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Fail"
+      }
+    },
+    {
+      "row": 247,
+      "tc_id": "NR1L-PROJ-245",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 248,
+      "tc_id": "NR1L-PROJ-246",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 249,
+      "tc_id": "NR1L-PROJ-247",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 250,
+      "tc_id": "NR1L-PROJ-248",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 251,
+      "tc_id": "NR1L-PROJ-249",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 252,
+      "tc_id": "NR1L-PROJ-250",
+      "req_id": "SWE1-PROJ-121-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 253,
+      "tc_id": "NR1L-PROJ-251",
+      "req_id": "SWE1-PROJ-123",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 254,
+      "tc_id": "NR1L-PROJ-252",
+      "req_id": "SWE1-PROJ-123",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 255,
+      "tc_id": "NR1L-PROJ-253",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 256,
+      "tc_id": "NR1L-PROJ-254",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 257,
+      "tc_id": "NR1L-PROJ-255",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 258,
+      "tc_id": "NR1L-PROJ-256",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 259,
+      "tc_id": "NR1L-PROJ-257",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 260,
+      "tc_id": "NR1L-PROJ-258",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 261,
+      "tc_id": "NR1L-PROJ-259",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 262,
+      "tc_id": "NR1L-PROJ-260",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 263,
+      "tc_id": "NR1L-PROJ-261",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 264,
+      "tc_id": "NR1L-PROJ-262",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 265,
+      "tc_id": "NR1L-PROJ-263",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 266,
+      "tc_id": "NR1L-PROJ-264",
+      "req_id": "SWE1-PROJ-125",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 267,
+      "tc_id": "NR1L-PROJ-265",
+      "req_id": "SWE1-PROJ-126",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 268,
+      "tc_id": "NR1L-PROJ-266",
+      "req_id": "SWE1-PROJ-126",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 269,
+      "tc_id": "NR1L-PROJ-267",
+      "req_id": "SWE1-PROJ-126",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 270,
+      "tc_id": "NR1L-PROJ-268",
+      "req_id": "SWE1-PROJ-128",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Connection",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 271,
+      "tc_id": "NR1L-PROJ-269",
+      "req_id": "SWE1-PROJ-128",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Connection",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 272,
+      "tc_id": "NR1L-PROJ-270",
+      "req_id": "SWE1-PROJ-129",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Connection",
+      "sub_categorization_037": "车辆信号与信息",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 273,
+      "tc_id": "NR1L-PROJ-271",
+      "req_id": "SWE1-PROJ-131",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 274,
+      "tc_id": "NR1L-PROJ-272",
+      "req_id": "SWE1-PROJ-131",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 275,
+      "tc_id": "NR1L-PROJ-273",
+      "req_id": "SWE1-PROJ-131",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 276,
+      "tc_id": "NR1L-PROJ-274",
+      "req_id": "SWE1-PROJ-131",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 277,
+      "tc_id": "NR1L-PROJ-275",
+      "req_id": "SWE1-PROJ-132",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 278,
+      "tc_id": "NR1L-PROJ-276",
+      "req_id": "SWE1-PROJ-132",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 279,
+      "tc_id": "NR1L-PROJ-277",
+      "req_id": "SWE1-PROJ-132",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 280,
+      "tc_id": "NR1L-PROJ-278",
+      "req_id": "SWE1-PROJ-132",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 281,
+      "tc_id": "NR1L-PROJ-279",
+      "req_id": "SWE1-PROJ-134",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 282,
+      "tc_id": "NR1L-PROJ-280",
+      "req_id": "SWE1-PROJ-134",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "蓝牙配对与连接管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 283,
+      "tc_id": "NR1L-PROJ-281",
+      "req_id": "SWE1-PROJ-136-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 284,
+      "tc_id": "NR1L-PROJ-282",
+      "req_id": "SWE1-PROJ-136-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 285,
+      "tc_id": "NR1L-PROJ-283",
+      "req_id": "SWE1-PROJ-136-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 286,
+      "tc_id": "NR1L-PROJ-284",
+      "req_id": "SWE1-PROJ-136-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 287,
+      "tc_id": "NR1L-PROJ-285",
+      "req_id": "SWE1-PROJ-136-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 288,
+      "tc_id": "NR1L-PROJ-286",
+      "req_id": "SWE1-PROJ-136-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 289,
+      "tc_id": "NR1L-PROJ-287",
+      "req_id": "SWE1-PROJ-136-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 290,
+      "tc_id": "NR1L-PROJ-288",
+      "req_id": "SWE1-PROJ-136-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 291,
+      "tc_id": "NR1L-PROJ-289",
+      "req_id": "SWE1-PROJ-136-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 292,
+      "tc_id": "NR1L-PROJ-290",
+      "req_id": "SWE1-PROJ-136-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 293,
+      "tc_id": "NR1L-PROJ-291",
+      "req_id": "SWE1-PROJ-136-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 294,
+      "tc_id": "NR1L-PROJ-292",
+      "req_id": "SWE1-PROJ-136-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 295,
+      "tc_id": "NR1L-PROJ-293",
+      "req_id": "SWE1-PROJ-137-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 296,
+      "tc_id": "NR1L-PROJ-294",
+      "req_id": "SWE1-PROJ-137-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 297,
+      "tc_id": "NR1L-PROJ-295",
+      "req_id": "SWE1-PROJ-137-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 298,
+      "tc_id": "NR1L-PROJ-296",
+      "req_id": "SWE1-PROJ-137-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 299,
+      "tc_id": "NR1L-PROJ-297",
+      "req_id": "SWE1-PROJ-137-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 300,
+      "tc_id": "NR1L-PROJ-298",
+      "req_id": "SWE1-PROJ-137-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 301,
+      "tc_id": "NR1L-PROJ-299",
+      "req_id": "SWE1-PROJ-137-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 302,
+      "tc_id": "NR1L-PROJ-300",
+      "req_id": "SWE1-PROJ-137-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 303,
+      "tc_id": "NR1L-PROJ-301",
+      "req_id": "SWE1-PROJ-137-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 304,
+      "tc_id": "NR1L-PROJ-302",
+      "req_id": "SWE1-PROJ-137-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 305,
+      "tc_id": "NR1L-PROJ-303",
+      "req_id": "SWE1-PROJ-138",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 306,
+      "tc_id": "NR1L-PROJ-304",
+      "req_id": "SWE1-PROJ-138",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 307,
+      "tc_id": "NR1L-PROJ-305",
+      "req_id": "SWE1-PROJ-138",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 308,
+      "tc_id": "NR1L-PROJ-306",
+      "req_id": "SWE1-PROJ-138",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 309,
+      "tc_id": "NR1L-PROJ-307",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 310,
+      "tc_id": "NR1L-PROJ-308",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 311,
+      "tc_id": "NR1L-PROJ-309",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 312,
+      "tc_id": "NR1L-PROJ-310",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 313,
+      "tc_id": "NR1L-PROJ-311",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 314,
+      "tc_id": "NR1L-PROJ-312",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 315,
+      "tc_id": "NR1L-PROJ-313",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 316,
+      "tc_id": "NR1L-PROJ-314",
+      "req_id": "SWE1-PROJ-139",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 317,
+      "tc_id": "NR1L-PROJ-315",
+      "req_id": "SWE1-PROJ-140-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 318,
+      "tc_id": "NR1L-PROJ-316",
+      "req_id": "SWE1-PROJ-140-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 319,
+      "tc_id": "NR1L-PROJ-317",
+      "req_id": "SWE1-PROJ-140-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 320,
+      "tc_id": "NR1L-PROJ-318",
+      "req_id": "SWE1-PROJ-140-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 321,
+      "tc_id": "NR1L-PROJ-319",
+      "req_id": "SWE1-PROJ-140-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 322,
+      "tc_id": "NR1L-PROJ-320",
+      "req_id": "SWE1-PROJ-140-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 323,
+      "tc_id": "NR1L-PROJ-321",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 324,
+      "tc_id": "NR1L-PROJ-322",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 325,
+      "tc_id": "NR1L-PROJ-323",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 326,
+      "tc_id": "NR1L-PROJ-324",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 327,
+      "tc_id": "NR1L-PROJ-325",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 328,
+      "tc_id": "NR1L-PROJ-326",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 329,
+      "tc_id": "NR1L-PROJ-327",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 330,
+      "tc_id": "NR1L-PROJ-328",
+      "req_id": "SWE1-PROJ-141",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 331,
+      "tc_id": "NR1L-PROJ-329",
+      "req_id": "SWE1-PROJ-142-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 332,
+      "tc_id": "NR1L-PROJ-330",
+      "req_id": "SWE1-PROJ-142-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 333,
+      "tc_id": "NR1L-PROJ-331",
+      "req_id": "SWE1-PROJ-142-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 334,
+      "tc_id": "NR1L-PROJ-332",
+      "req_id": "SWE1-PROJ-142-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 335,
+      "tc_id": "NR1L-PROJ-333",
+      "req_id": "SWE1-PROJ-142-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 336,
+      "tc_id": "NR1L-PROJ-334",
+      "req_id": "SWE1-PROJ-142-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 337,
+      "tc_id": "NR1L-PROJ-335",
+      "req_id": "SWE1-PROJ-142-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 338,
+      "tc_id": "NR1L-PROJ-336",
+      "req_id": "SWE1-PROJ-142-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 339,
+      "tc_id": "NR1L-PROJ-337",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 340,
+      "tc_id": "NR1L-PROJ-338",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 341,
+      "tc_id": "NR1L-PROJ-339",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 342,
+      "tc_id": "NR1L-PROJ-340",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 343,
+      "tc_id": "NR1L-PROJ-341",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 344,
+      "tc_id": "NR1L-PROJ-342",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 345,
+      "tc_id": "NR1L-PROJ-343",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 346,
+      "tc_id": "NR1L-PROJ-344",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 347,
+      "tc_id": "NR1L-PROJ-345",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 348,
+      "tc_id": "NR1L-PROJ-346",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 349,
+      "tc_id": "NR1L-PROJ-347",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 350,
+      "tc_id": "NR1L-PROJ-348",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 351,
+      "tc_id": "NR1L-PROJ-349",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 352,
+      "tc_id": "NR1L-PROJ-350",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 353,
+      "tc_id": "NR1L-PROJ-351",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 354,
+      "tc_id": "NR1L-PROJ-352",
+      "req_id": "SWE1-PROJ-143",
+      "test_group": "Device Manager",
+      "test_set": "Disconnection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 355,
+      "tc_id": "NR1L-PROJ-353",
+      "req_id": "SWE1-PROJ-144",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 356,
+      "tc_id": "NR1L-PROJ-354",
+      "req_id": "SWE1-PROJ-144",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 357,
+      "tc_id": "NR1L-PROJ-355",
+      "req_id": "SWE1-PROJ-144",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 358,
+      "tc_id": "NR1L-PROJ-356",
+      "req_id": "SWE1-PROJ-144",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 359,
+      "tc_id": "NR1L-PROJ-357",
+      "req_id": "SWE1-PROJ-144",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 360,
+      "tc_id": "NR1L-PROJ-358",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 361,
+      "tc_id": "NR1L-PROJ-359",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 362,
+      "tc_id": "NR1L-PROJ-360",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 363,
+      "tc_id": "NR1L-PROJ-361",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 364,
+      "tc_id": "NR1L-PROJ-362",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 365,
+      "tc_id": "NR1L-PROJ-363",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 366,
+      "tc_id": "NR1L-PROJ-364",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 367,
+      "tc_id": "NR1L-PROJ-365",
+      "req_id": "SWE1-PROJ-145",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 368,
+      "tc_id": "NR1L-PROJ-366",
+      "req_id": "SWE1-PROJ-148-001",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 369,
+      "tc_id": "NR1L-PROJ-367",
+      "req_id": "SWE1-PROJ-148-002",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 370,
+      "tc_id": "NR1L-PROJ-368",
+      "req_id": "SWE1-PROJ-149",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 371,
+      "tc_id": "NR1L-PROJ-369",
+      "req_id": "SWE1-PROJ-149",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 372,
+      "tc_id": "NR1L-PROJ-370",
+      "req_id": "SWE1-PROJ-150",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 373,
+      "tc_id": "NR1L-PROJ-371",
+      "req_id": "SWE1-PROJ-151",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 374,
+      "tc_id": "NR1L-PROJ-372",
+      "req_id": "SWE1-PROJ-152",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 375,
+      "tc_id": "NR1L-PROJ-373",
+      "req_id": "SWE1-PROJ-153",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 376,
+      "tc_id": "NR1L-PROJ-374",
+      "req_id": "SWE1-PROJ-154",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 377,
+      "tc_id": "NR1L-PROJ-375",
+      "req_id": "SWE1-PROJ-155",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 378,
+      "tc_id": "NR1L-PROJ-376",
+      "req_id": "SWE1-PROJ-156",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 379,
+      "tc_id": "NR1L-PROJ-377",
+      "req_id": "SWE1-PROJ-157",
+      "test_group": "GPS",
+      "test_set": "Cluster Navigation",
+      "sub_categorization_037": "导航与TBT",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 380,
+      "tc_id": "NR1L-PROJ-378",
+      "req_id": "SWE1-PROJ-160-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 381,
+      "tc_id": "NR1L-PROJ-379",
+      "req_id": "SWE1-PROJ-160-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 382,
+      "tc_id": "NR1L-PROJ-380",
+      "req_id": "SWE1-PROJ-160-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 383,
+      "tc_id": "NR1L-PROJ-381",
+      "req_id": "SWE1-PROJ-160-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "投屏会话管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 384,
+      "tc_id": "NR1L-PROJ-382",
+      "req_id": "SWE1-PROJ-160-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 385,
+      "tc_id": "NR1L-PROJ-383",
+      "req_id": "SWE1-PROJ-160-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 386,
+      "tc_id": "NR1L-PROJ-384",
+      "req_id": "SWE1-PROJ-160-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 387,
+      "tc_id": "NR1L-PROJ-385",
+      "req_id": "SWE1-PROJ-160-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 388,
+      "tc_id": "NR1L-PROJ-386",
+      "req_id": "SWE1-PROJ-161-001",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 389,
+      "tc_id": "NR1L-PROJ-387",
+      "req_id": "SWE1-PROJ-161-002",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 390,
+      "tc_id": "NR1L-PROJ-388",
+      "req_id": "SWE1-PROJ-162",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 391,
+      "tc_id": "NR1L-PROJ-389",
+      "req_id": "SWE1-PROJ-162",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 392,
+      "tc_id": "NR1L-PROJ-390",
+      "req_id": "SWE1-PROJ-162",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 393,
+      "tc_id": "NR1L-PROJ-391",
+      "req_id": "SWE1-PROJ-162",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 394,
+      "tc_id": "NR1L-PROJ-392",
+      "req_id": "SWE1-PROJ-163-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 395,
+      "tc_id": "NR1L-PROJ-393",
+      "req_id": "SWE1-PROJ-163-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 396,
+      "tc_id": "NR1L-PROJ-394",
+      "req_id": "SWE1-PROJ-165-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 397,
+      "tc_id": "NR1L-PROJ-395",
+      "req_id": "SWE1-PROJ-165-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 398,
+      "tc_id": "NR1L-PROJ-396",
+      "req_id": "SWE1-PROJ-165-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 399,
+      "tc_id": "NR1L-PROJ-397",
+      "req_id": "SWE1-PROJ-165-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 400,
+      "tc_id": "NR1L-PROJ-398",
+      "req_id": "SWE1-PROJ-165-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 401,
+      "tc_id": "NR1L-PROJ-399",
+      "req_id": "SWE1-PROJ-165-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 402,
+      "tc_id": "NR1L-PROJ-400",
+      "req_id": "SWE1-PROJ-166-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 403,
+      "tc_id": "NR1L-PROJ-401",
+      "req_id": "SWE1-PROJ-166-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 404,
+      "tc_id": "NR1L-PROJ-402",
+      "req_id": "SWE1-PROJ-166-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 405,
+      "tc_id": "NR1L-PROJ-403",
+      "req_id": "SWE1-PROJ-166-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 406,
+      "tc_id": "NR1L-PROJ-406",
+      "req_id": "SWE1-PROJ-168",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 407,
+      "tc_id": "NR1L-PROJ-407",
+      "req_id": "SWE1-PROJ-168",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 408,
+      "tc_id": "NR1L-PROJ-408",
+      "req_id": "SWE1-PROJ-168",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 409,
+      "tc_id": "NR1L-PROJ-409",
+      "req_id": "SWE1-PROJ-168",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 410,
+      "tc_id": "NR1L-PROJ-410",
+      "req_id": "SWE1-PROJ-168",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 411,
+      "tc_id": "NR1L-PROJ-411",
+      "req_id": "SWE1-PROJ-168",
+      "test_group": "Device Manager",
+      "test_set": "Projection Detection",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 412,
+      "tc_id": "NR1L-PROJ-412",
+      "req_id": "SWE1-PROJ-169-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 413,
+      "tc_id": "NR1L-PROJ-413",
+      "req_id": "SWE1-PROJ-169-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 414,
+      "tc_id": "NR1L-PROJ-414",
+      "req_id": "SWE1-PROJ-169-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 415,
+      "tc_id": "NR1L-PROJ-415",
+      "req_id": "SWE1-PROJ-169-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 416,
+      "tc_id": "NR1L-PROJ-415",
+      "req_id": "SWE1-PROJ-169-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 417,
+      "tc_id": "NR1L-PROJ-416",
+      "req_id": "SWE1-PROJ-169-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 418,
+      "tc_id": "NR1L-PROJ-417",
+      "req_id": "SWE1-PROJ-170-001",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 419,
+      "tc_id": "NR1L-PROJ-418",
+      "req_id": "SWE1-PROJ-170-002",
+      "test_group": "Device Manager",
+      "test_set": "Device Manager",
+      "sub_categorization_037": "设备列表与优先级",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 420,
+      "tc_id": "NR1L-PROJ-419",
+      "req_id": "SWE1-PROJ-171",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 421,
+      "tc_id": "NR1L-PROJ-420",
+      "req_id": "SWE1-PROJ-171",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 422,
+      "tc_id": "NR1L-PROJ-421",
+      "req_id": "SWE1-PROJ-171",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 423,
+      "tc_id": "NR1L-PROJ-422",
+      "req_id": "SWE1-PROJ-171",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 424,
+      "tc_id": "NR1L-PROJ-423",
+      "req_id": "SWE1-PROJ-173",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 425,
+      "tc_id": "NR1L-PROJ-424",
+      "req_id": "SWE1-PROJ-173",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 426,
+      "tc_id": "NR1L-PROJ-425",
+      "req_id": "SWE1-PROJ-173",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 427,
+      "tc_id": "NR1L-PROJ-426",
+      "req_id": "SWE1-PROJ-173",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 428,
+      "tc_id": "NR1L-PROJ-427",
+      "req_id": "SWE1-PROJ-173",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 429,
+      "tc_id": "NR1L-PROJ-428",
+      "req_id": "SWE1-PROJ-173",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 430,
+      "tc_id": "NR1L-PROJ-429",
+      "req_id": "SWE1-PROJ-175",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "NA"
+      }
+    },
+    {
+      "row": 431,
+      "tc_id": "NR1L-PROJ-430",
+      "req_id": "SWE1-PROJ-175",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 432,
+      "tc_id": "NR1L-PROJ-431",
+      "req_id": "SWE1-PROJ-176",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 433,
+      "tc_id": "NR1L-PROJ-432",
+      "req_id": "SWE1-PROJ-176",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 434,
+      "tc_id": "NR1L-PROJ-433",
+      "req_id": "SWE1-PROJ-177",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 435,
+      "tc_id": "NR1L-PROJ-434",
+      "req_id": "SWE1-PROJ-177",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 436,
+      "tc_id": "NR1L-PROJ-435",
+      "req_id": "SWE1-PROJ-178-001",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 437,
+      "tc_id": "NR1L-PROJ-436",
+      "req_id": "SWE1-PROJ-178-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 438,
+      "tc_id": "NR1L-PROJ-437",
+      "req_id": "SWE1-PROJ-178-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 439,
+      "tc_id": "NR1L-PROJ-438",
+      "req_id": "SWE1-PROJ-179-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 440,
+      "tc_id": "NR1L-PROJ-439",
+      "req_id": "SWE1-PROJ-179-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 441,
+      "tc_id": "NR1L-PROJ-440",
+      "req_id": "SWE1-PROJ-179-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Projection Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 442,
+      "tc_id": "NR1L-PROJ-441",
+      "req_id": "SWE1-PROJ-180-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 443,
+      "tc_id": "NR1L-PROJ-442",
+      "req_id": "SWE1-PROJ-180-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 444,
+      "tc_id": "NR1L-PROJ-443",
+      "req_id": "SWE1-PROJ-181-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 445,
+      "tc_id": "NR1L-PROJ-444",
+      "req_id": "SWE1-PROJ-181-001",
+      "test_group": "Media Player",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 446,
+      "tc_id": "NR1L-PROJ-445",
+      "req_id": "SWE1-PROJ-181-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 447,
+      "tc_id": "NR1L-PROJ-446",
+      "req_id": "SWE1-PROJ-181-001",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 448,
+      "tc_id": "NR1L-PROJ-447",
+      "req_id": "SWE1-PROJ-181-001",
+      "test_group": "Media Player",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 449,
+      "tc_id": "NR1L-PROJ-448",
+      "req_id": "SWE1-PROJ-181-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 450,
+      "tc_id": "NR1L-PROJ-449",
+      "req_id": "SWE1-PROJ-181-002",
+      "test_group": "Media Player",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 451,
+      "tc_id": "NR1L-PROJ-450",
+      "req_id": "SWE1-PROJ-181-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 452,
+      "tc_id": "NR1L-PROJ-451",
+      "req_id": "SWE1-PROJ-181-002",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 453,
+      "tc_id": "NR1L-PROJ-452",
+      "req_id": "SWE1-PROJ-181-002",
+      "test_group": "Media Player",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 454,
+      "tc_id": "NR1L-PROJ-453",
+      "req_id": "SWE1-PROJ-185-001",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 455,
+      "tc_id": "NR1L-PROJ-454",
+      "req_id": "SWE1-PROJ-185-002",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 456,
+      "tc_id": "NR1L-PROJ-455",
+      "req_id": "SWE1-PROJ-187",
+      "test_group": "Media Player",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 457,
+      "tc_id": "NR1L-PROJ-456",
+      "req_id": "SWE1-PROJ-187",
+      "test_group": "Media Player",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 458,
+      "tc_id": "NR1L-PROJ-457",
+      "req_id": "SWE1-PROJ-188",
+      "test_group": "Media Player",
+      "test_set": "USB Device",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 459,
+      "tc_id": "NR1L-PROJ-458",
+      "req_id": "SWE1-PROJ-188",
+      "test_group": "Media Player",
+      "test_set": "USB Device",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 460,
+      "tc_id": "NR1L-PROJ-459",
+      "req_id": "SWE1-PROJ-188",
+      "test_group": "Media Player",
+      "test_set": "USB Device",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 461,
+      "tc_id": "NR1L-PROJ-460",
+      "req_id": "SWE1-PROJ-191-001",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 462,
+      "tc_id": "NR1L-PROJ-461",
+      "req_id": "SWE1-PROJ-191-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 463,
+      "tc_id": "NR1L-PROJ-462",
+      "req_id": "SWE1-PROJ-192-001",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 464,
+      "tc_id": "NR1L-PROJ-463",
+      "req_id": "SWE1-PROJ-192-001",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 465,
+      "tc_id": "NR1L-PROJ-464",
+      "req_id": "SWE1-PROJ-192-001",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 466,
+      "tc_id": "NR1L-PROJ-465",
+      "req_id": "SWE1-PROJ-192-001",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 467,
+      "tc_id": "NR1L-PROJ-466",
+      "req_id": "SWE1-PROJ-192-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 468,
+      "tc_id": "NR1L-PROJ-467",
+      "req_id": "SWE1-PROJ-192-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 469,
+      "tc_id": "NR1L-PROJ-468",
+      "req_id": "SWE1-PROJ-192-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 470,
+      "tc_id": "NR1L-PROJ-469",
+      "req_id": "SWE1-PROJ-192-002",
+      "test_group": "Touch",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "通用功能与HMI",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 471,
+      "tc_id": "NR1L-PROJ-470",
+      "req_id": "SWE1-PROJ-193",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 472,
+      "tc_id": "NR1L-PROJ-471",
+      "req_id": "SWE1-PROJ-193",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "Projection Apps",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 473,
+      "tc_id": "NR1L-PROJ-472",
+      "req_id": "SWE1-PROJ-194-001",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 474,
+      "tc_id": "NR1L-PROJ-473",
+      "req_id": "SWE1-PROJ-194-001",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 475,
+      "tc_id": "NR1L-PROJ-474",
+      "req_id": "SWE1-PROJ-194-001",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 476,
+      "tc_id": "NR1L-PROJ-475",
+      "req_id": "SWE1-PROJ-194-002",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 477,
+      "tc_id": "NR1L-PROJ-476",
+      "req_id": "SWE1-PROJ-194-002",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 478,
+      "tc_id": "NR1L-PROJ-477",
+      "req_id": "SWE1-PROJ-194-002",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "音视频与显示",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 479,
+      "tc_id": "NR1L-PROJ-478",
+      "req_id": "SWE1-PROJ-197",
+      "test_group": "Media Player",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "USB设备管理",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 480,
+      "tc_id": "NR1L-PROJ-479",
+      "req_id": "SWE1-PROJ-198",
+      "test_group": "Media Player",
+      "test_set": "USB Device",
+      "sub_categorization_037": "性能与合规",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 481,
+      "tc_id": "NR1L-PROJ-480",
+      "req_id": "SWE1-PROJ-201",
+      "test_group": "Bluetooth",
+      "test_set": "Connection",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 482,
+      "tc_id": "NR1L-PROJ-481",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 483,
+      "tc_id": "NR1L-PROJ-482",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 484,
+      "tc_id": "NR1L-PROJ-483",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 485,
+      "tc_id": "NR1L-PROJ-484",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 486,
+      "tc_id": "NR1L-PROJ-485",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 487,
+      "tc_id": "NR1L-PROJ-486",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 488,
+      "tc_id": "NR1L-PROJ-487",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "Daily Build 20260805": "Pass"
+      }
+    },
+    {
+      "row": 489,
+      "tc_id": "NR1L-PROJ-488",
+      "req_id": "SWE1-PROJ-202",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 490,
+      "tc_id": "NR1L-PROJ-489",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 491,
+      "tc_id": "NR1L-PROJ-490",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Fail"
+      }
+    },
+    {
+      "row": 492,
+      "tc_id": "NR1L-PROJ-491",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Fail"
+      }
+    },
+    {
+      "row": 493,
+      "tc_id": "NR1L-PROJ-492",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 494,
+      "tc_id": "NR1L-PROJ-493",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 495,
+      "tc_id": "NR1L-PROJ-494",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 496,
+      "tc_id": "NR1L-PROJ-495",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 497,
+      "tc_id": "NR1L-PROJ-496",
+      "req_id": "SWE1-PROJ-203",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 498,
+      "tc_id": "NR1L-PROJ-497",
+      "req_id": "SWE1-PROJ-204",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 499,
+      "tc_id": "NR1L-PROJ-498",
+      "req_id": "SWE1-PROJ-204",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 500,
+      "tc_id": "NR1L-PROJ-499",
+      "req_id": "SWE1-PROJ-204",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 501,
+      "tc_id": "NR1L-PROJ-500",
+      "req_id": "SWE1-PROJ-204",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Fail"
+      }
+    },
+    {
+      "row": 502,
+      "tc_id": "NR1L-PROJ-501",
+      "req_id": "SWE1-PROJ-205",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 503,
+      "tc_id": "NR1L-PROJ-502",
+      "req_id": "SWE1-PROJ-205",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "NA"
+      }
+    },
+    {
+      "row": 504,
+      "tc_id": "NR1L-PROJ-503",
+      "req_id": "SWE1-PROJ-205",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 505,
+      "tc_id": "NR1L-PROJ-504",
+      "req_id": "SWE1-PROJ-205",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 506,
+      "tc_id": "NR1L-PROJ-505",
+      "req_id": "SWE1-PROJ-205",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 507,
+      "tc_id": "NR1L-PROJ-506",
+      "req_id": "SWE1-PROJ-205",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 508,
+      "tc_id": "NR1L-PROJ-507",
+      "req_id": "SWE1-PROJ-207",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "00.01.01.04": "Fail",
+        "00.01.01.05": "Fail"
+      }
+    },
+    {
+      "row": 509,
+      "tc_id": "NR1L-PROJ-508",
+      "req_id": "SWE1-PROJ-207",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail",
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 510,
+      "tc_id": "NR1L-PROJ-509",
+      "req_id": "SWE1-PROJ-207",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 511,
+      "tc_id": "NR1L-PROJ-510",
+      "req_id": "SWE1-PROJ-207",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 512,
+      "tc_id": "NR1L-PROJ-511",
+      "req_id": "SWE1-PROJ-207",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 513,
+      "tc_id": "NR1L-PROJ-512",
+      "req_id": "SWE1-PROJ-208",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 514,
+      "tc_id": "NR1L-PROJ-513",
+      "req_id": "SWE1-PROJ-208",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 515,
+      "tc_id": "NR1L-PROJ-514",
+      "req_id": "SWE1-PROJ-209",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 516,
+      "tc_id": "NR1L-PROJ-515",
+      "req_id": "SWE1-PROJ-209",
+      "test_group": "Device Manager",
+      "test_set": "Projection Launch",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 517,
+      "tc_id": "NR1L-PROJ-516",
+      "req_id": "SWE1-PROJ-210",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 518,
+      "tc_id": "NR1L-PROJ-517",
+      "req_id": "SWE1-PROJ-210",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 519,
+      "tc_id": "NR1L-PROJ-518",
+      "req_id": "SWE1-PROJ-210",
+      "test_group": "Audio Management",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 520,
+      "tc_id": "NR1L-PROJ-519",
+      "req_id": "SWE1-PROJ-211",
+      "test_group": "SSE / ECNR",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 521,
+      "tc_id": "NR1L-PROJ-520",
+      "req_id": "SWE1-PROJ-212",
+      "test_group": "SSE / ECNR",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 522,
+      "tc_id": "NR1L-PROJ-521",
+      "req_id": "SWE1-PROJ-213",
+      "test_group": "SSE / ECNR",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 523,
+      "tc_id": "NR1L-PROJ-522",
+      "req_id": "SWE1-PROJ-214",
+      "test_group": "SSE / ECNR",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 524,
+      "tc_id": "NR1L-PROJ-523",
+      "req_id": "SWE1-PROJ-215",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 525,
+      "tc_id": "NR1L-PROJ-524",
+      "req_id": "SWE1-PROJ-215",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 526,
+      "tc_id": "NR1L-PROJ-525",
+      "req_id": "SWE1-PROJ-215",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 527,
+      "tc_id": "NR1L-PROJ-526",
+      "req_id": "SWE1-PROJ-215",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.03": "Fail"
+      }
+    },
+    {
+      "row": 528,
+      "tc_id": "NR1L-PROJ-527",
+      "req_id": "SWE1-PROJ-215",
+      "test_group": "Bluetooth",
+      "test_set": "Projection Audio",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 529,
+      "tc_id": "NR1L-PROJ-528",
+      "req_id": "SWE1-PROJ-216",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 530,
+      "tc_id": "NR1L-PROJ-529",
+      "req_id": "SWE1-PROJ-216",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 531,
+      "tc_id": "NR1L-PROJ-530",
+      "req_id": "SWE1-PROJ-216",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 532,
+      "tc_id": "NR1L-PROJ-531",
+      "req_id": "SWE1-PROJ-217",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 533,
+      "tc_id": "NR1L-PROJ-532",
+      "req_id": "SWE1-PROJ-217",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 534,
+      "tc_id": "NR1L-PROJ-533",
+      "req_id": "SWE1-PROJ-217",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 535,
+      "tc_id": "NR1L-PROJ-534",
+      "req_id": "SWE1-PROJ-217",
+      "test_group": "Media Player",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 536,
+      "tc_id": "NR1L-PROJ-535",
+      "req_id": "SWE1-PROJ-218",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 537,
+      "tc_id": "NR1L-PROJ-536",
+      "req_id": "SWE1-PROJ-218",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 538,
+      "tc_id": "NR1L-PROJ-537",
+      "req_id": "SWE1-PROJ-218",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 539,
+      "tc_id": "NR1L-PROJ-538",
+      "req_id": "SWE1-PROJ-219",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 540,
+      "tc_id": "NR1L-PROJ-539",
+      "req_id": "SWE1-PROJ-219",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 541,
+      "tc_id": "NR1L-PROJ-540",
+      "req_id": "SWE1-PROJ-220",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 542,
+      "tc_id": "NR1L-PROJ-540",
+      "req_id": "SWE1-PROJ-220",
+      "test_group": "Bluetooth",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 543,
+      "tc_id": "NR1L-PROJ-541",
+      "req_id": "SWE1-PROJ-221",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 544,
+      "tc_id": "NR1L-PROJ-542",
+      "req_id": "SWE1-PROJ-221",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 545,
+      "tc_id": "NR1L-PROJ-543",
+      "req_id": "SWE1-PROJ-221",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 546,
+      "tc_id": "NR1L-PROJ-544",
+      "req_id": "SWE1-PROJ-222",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 547,
+      "tc_id": "NR1L-PROJ-545",
+      "req_id": "SWE1-PROJ-222",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 548,
+      "tc_id": "NR1L-PROJ-546",
+      "req_id": "SWE1-PROJ-222",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 549,
+      "tc_id": "NR1L-PROJ-547",
+      "req_id": "SWE1-PROJ-223",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 550,
+      "tc_id": "NR1L-PROJ-548",
+      "req_id": "SWE1-PROJ-223",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "额外来源需求",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 551,
+      "tc_id": "NR1L-PROJ-549",
+      "req_id": "SWE1-PROJ-224",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 552,
+      "tc_id": "NR1L-PROJ-550",
+      "req_id": "SWE1-PROJ-224",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 553,
+      "tc_id": "NR1L-PROJ-551",
+      "req_id": "SWE1-PROJ-224",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 554,
+      "tc_id": "NR1L-PROJ-552",
+      "req_id": "SWE1-PROJ-224",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 555,
+      "tc_id": "NR1L-PROJ-553",
+      "req_id": "SWE1-PROJ-224",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 556,
+      "tc_id": "NR1L-PROJ-554",
+      "req_id": "SWE1-PROJ-225",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 557,
+      "tc_id": "NR1L-PROJ-555",
+      "req_id": "SWE1-PROJ-225",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 558,
+      "tc_id": "NR1L-PROJ-556",
+      "req_id": "SWE1-PROJ-225",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 559,
+      "tc_id": "NR1L-PROJ-557",
+      "req_id": "SWE1-PROJ-225",
+      "test_group": "Android Auto Wired and Wireless",
+      "test_set": "HMI Display",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    },
+    {
+      "row": 560,
+      "tc_id": "NR1L-PROJ-558",
+      "req_id": "SWE1-PROJ-226",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 561,
+      "tc_id": "NR1L-PROJ-559",
+      "req_id": "SWE1-PROJ-226",
+      "test_group": "Bluetooth",
+      "test_set": "Pairing",
+      "sub_categorization_037": "",
+      "has_result": true,
+      "results": {
+        "00.01.01.04": "Pass"
+      }
+    },
+    {
+      "row": 562,
+      "tc_id": "",
+      "req_id": "SWE1-PROJ-227",
+      "test_group": "Carplay Wired and Wireless",
+      "test_set": "",
+      "sub_categorization_037": "",
+      "has_result": false,
+      "results": {}
+    }
+  ]
+}

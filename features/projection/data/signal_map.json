@@ -1,0 +1,472 @@
+{
+  "_meta": {
+    "feature": "Projection",
+    "phase": "0",
+    "generated": "2026-08-11",
+    "authority": "Every entry below was resolved by lookup against the files named in `sources`, not asserted from the 下放包. `verified` records what the lookup returned; `resolution` records how the target was reached (mapping table, PROXI table, or a Pei ruling).",
+    "arch": "Atlantis High",
+    "sources": {
+      "mapping": "inputs/Logical Identifiers and CAN Mapping v1_76.xlsx",
+      "mapping_can_sheet": "CAN Mapping (Atlantis High block = cols 26-30)",
+      "mapping_proxi_sheet": "Proxi & Configuration (Atlantis & Atlantis High block = cols 16-20)",
+      "dbc_fd": "inputs/PHDCC27_E2A_R1_FDCAN8.dbc",
+      "dbc_bh": "inputs/PHDCC27_E2A_R1_BHCAN.dbc",
+      "proxi": "inputs/PROXI_HDCC27_R3_20250424.xlsx (sheet Format)"
+    },
+    "dbc_survey": {
+      "FDCAN8": {
+        "messages": 244,
+        "signals": 1503,
+        "value_tables": 1052
+      },
+      "BHCAN": {
+        "messages": 123,
+        "signals": 692,
+        "value_tables": 514
+      },
+      "message_overlap": 24,
+      "note": "Both DBCs are required. They share only 24 messages, and $FuelLvlLow$ exists on CAN-B alone."
+    },
+    "lookup_note": "Mapping-table Logical Identifiers are stored UPPER CASE (VC_VEH_LINE, VC_VEH_BRAND). Workbook tokens use three casings of the same id. Lookups must be case-insensitive.",
+    "forbidden_value_labels": {
+      "labels": [
+        "PSD",
+        "NOT_PSD"
+      ],
+      "reason": "R-P15 — 兩份 DBC 皆無此字串。CAN 送值標籤一律以 DBC VAL_ 表為準；Command_02Sts 合法標籤為 Not_Pressed / Pressed / SNA。",
+      "scope": "所有 CAN 送值步驟"
+    },
+    "enum_authority_rule": "R-P20 — PROXI 之列舉值為權威；`Logical Identifiers and CAN Mapping` 僅供 Logical Identifier → 訊號／配置字名稱之對映，其列舉值不具權威性（v1_76 的 VC_VEH_LINE 截斷於 101 = WL，缺 102/103/104/105/106/124/130；PROXI Format row 466 完整列至 130 = HDCC）。L-PJ2 值域檢查一律對 PROXI 執行，不得對 mapping 執行。",
+    "unresolved_count": 1
+  },
+  "tokens": {
+    "$Day_Night_Mode$": {
+      "workbook_rows": 22,
+      "resolution": "mapping",
+      "lid": "Day_Night_Mode",
+      "bus": "FD",
+      "signal": "BCM_FD_27.DAY_LGT_MD_DISP",
+      "value_table": {
+        "0": "Night",
+        "1": "Day"
+      },
+      "verified": {
+        "dbc": "FDCAN8",
+        "found": true
+      },
+      "trap": "The mapping table lists TWO spellings in one cell: BCM_FD_27.DAY_LGT_MODE_DISP and BCM_FD_27.DAY_LGT_MD_DISP. Only DAY_LGT_MD_DISP exists in either DBC — DAY_LGT_MODE_DISP resolves in neither. Take DAY_LGT_MD_DISP; writing the other aborts under L-PJ1.",
+      "enum_authority": "DBC VAL_"
+    },
+    "$VC_Veh_Brand$": {
+      "workbook_rows": 12,
+      "aliases": [
+        "$VC_VEH_BRAND$"
+      ],
+      "alias_rows": {
+        "$VC_Veh_Brand$": 12,
+        "$VC_VEH_BRAND$": 3
+      },
+      "resolution": "mapping",
+      "lid": "VC_VEH_BRAND",
+      "bus": "PROXI",
+      "signal": "Brand_Configuration_2",
+      "proxi_group": "Infotainment_Configuration_13",
+      "value_table": {
+        "0": "Unbranded",
+        "1": "Fiat",
+        "2": "Lancia",
+        "3": "Alfa Romeo",
+        "4": "Fiat Professional",
+        "5": "Abarth",
+        "6": "Maserati",
+        "7": "Ferrari",
+        "8": "Chrysler",
+        "9": "Dodge",
+        "10": "Jeep",
+        "11": "RAM",
+        "12": "SRT",
+        "13": "PSA (Citroen)",
+        "14": "PSA (Peugeot)",
+        "15": "Ford"
+      },
+      "verified": {
+        "proxi": true,
+        "found": true
+      },
+      "enum_authority": "PROXI"
+    },
+    "$VC_Veh_Line$": {
+      "workbook_rows": 14,
+      "aliases": [
+        "$VC_VEH_LINE$",
+        "$VC_VEH_Line$"
+      ],
+      "alias_rows": {
+        "$VC_Veh_Line$": 14,
+        "$VC_VEH_LINE$": 3,
+        "$VC_VEH_Line$": 2
+      },
+      "resolution": "mapping (name) + PROXI (enumeration) — R-P8′",
+      "lid": "VC_VEH_LINE",
+      "bus": "PROXI",
+      "signal": "Car_Configuration_15.Vehicle_Line_Configuration",
+      "proxi_group": "Car_Configuration_15",
+      "value_table": {
+        "0": "Invalid",
+        "51": "343",
+        "52": "327FL",
+        "53": "226",
+        "80": "PF",
+        "81": "KL/K4",
+        "82": "UF",
+        "83": "UT",
+        "84": "334",
+        "85": "520",
+        "86": "551 /M1",
+        "87": "338",
+        "88": "521",
+        "89": "636 VM",
+        "90": "356",
+        "91": "952",
+        "92": "341",
+        "93": "552/MP",
+        "94": "949",
+        "95": "523",
+        "96": "358",
+        "97": "359",
+        "98": "553/M4",
+        "99": "556/M6",
+        "100": "K8",
+        "101": "WL",
+        "102": "281",
+        "103": "363",
+        "104": "WS",
+        "105": "332",
+        "106": "560",
+        "124": "DT",
+        "130": "HDCC"
+      },
+      "verified": {
+        "proxi": true,
+        "found": true
+      },
+      "ruling": "R-P8′ (supersedes R-P8, 2026-08-12) — 保留解除。workbook 的 `$VC_VEH_Line$ = 332` 更正為 `Car_Configuration_15.Vehicle_Line_Configuration = 105 (332)`；332 是代碼 105 的標籤，不是配置值。DR#3 關閉。",
+      "casing": "Three casings appear in the workbook and all denote the same LID. Unifying them is a wording fix under O-1, not a semantic change.",
+      "enum_authority": "PROXI",
+      "write_as": "Car_Configuration_15.Vehicle_Line_Configuration = 105 (332)",
+      "enum_source": "PROXI Format row 466 col 9",
+      "superseded_ruling": "R-P8 — 原文保留不動，Remarks 註記待確認（2026-08-12 由 R-P8′ 取代）"
+    },
+    "$HUModeStatus$": {
+      "workbook_rows": 4,
+      "resolution": "mapping + ruling R-P10",
+      "lid": "HUModeStatus",
+      "bus": "FD",
+      "signal": "TELEMATIC_FD_4.CurrentSource",
+      "value_table_head": {
+        "0": "AM_Selected",
+        "1": "FM_Selected",
+        "2": "MW_Selected",
+        "3": "LW_Selected",
+        "4": "Internal_DISC_Selected",
+        "5": "Internal_HDD_Selected"
+      },
+      "verified": {
+        "dbc": "FDCAN8",
+        "found": true
+      },
+      "equivalent_source": {
+        "bus": "CAN-B",
+        "signal": "STATUS_TELEMATIC.CurrentSource",
+        "verified": {
+          "dbc": "BHCAN",
+          "found": true
+        },
+        "note": "R-P10 — record in Remarks as the equivalent source. The mapping table lists both in one cell; the two DBCs carry identical value tables for this signal."
+      },
+      "caution": "The DBC labels carry the _Selected suffix (AM_Selected, not AM). L-PJ1 compares against the DBC VAL_ table, so the suffix must be written as the DBC has it.",
+      "open": "Leaf SWE1-PROJ-184 requires $HUModeStatus$ = [TGW_USB1_Sel]. That label was NOT confirmed present in the CurrentSource value table during Phase 0 — it must be looked up before any step is written. 184 is one of the 7 uncovered leaves.",
+      "enum_authority": "DBC VAL_"
+    },
+    "$FuelLvlLow$": {
+      "workbook_rows": 2,
+      "resolution": "mapping",
+      "lid": "FuelLvlLow",
+      "bus": "CAN-B",
+      "signal": "STATUS_BH_BCM1.LowFuelWarningSts",
+      "value_table": {
+        "0": "OFF",
+        "1": "ON"
+      },
+      "verified": {
+        "dbc": "BHCAN",
+        "found": true
+      },
+      "note": "CAN-B only — absent from FDCAN8. This token alone makes the BHCAN file non-optional.",
+      "enum_authority": "DBC VAL_"
+    },
+    "$Screen_Size$": {
+      "workbook_rows": 3,
+      "resolution": "dual-source — mapping LID `Head_Unit_Screen_Size` + PROXI `Radio_Display_Type`（R-P7 升格；A-PJ13）",
+      "lid": "Head_Unit_Screen_Size",
+      "bus": "PROXI",
+      "signal": "Radio_Display_Type",
+      "proxi_group": "Infotainment_Configuration_28",
+      "value_table": {
+        "0": "Absent",
+        "1": "7\" 1280x768",
+        "2": "8.4\" 1024x768",
+        "3": "10.1\" 1920x1200",
+        "4": "10.1\" 1200x1920",
+        "5": "10.25\" 1920x720",
+        "6": "12\" 1920x1200",
+        "7": "12\" 1200x1920",
+        "8": "12.3\" 1920x720",
+        "9": "14.5\" 1024x1920"
+      },
+      "verified": {
+        "proxi": true,
+        "found": true
+      },
+      "ruling": "R-P7 — the 6 rows whose Remarks read `only 8.4\"` are written as Radio_Display_Type = 2. Those rows are 425, 426, 428, 429, 430, 431.",
+      "enum_authority": "PROXI",
+      "status": "resolved"
+    },
+    "$HCP_DISP2.Est_Range_BEV$": {
+      "workbook_rows": 2,
+      "resolution": "UNRESOLVED",
+      "lid": null,
+      "bus": null,
+      "signal": null,
+      "value_table": null,
+      "verified": {
+        "mapping": false,
+        "dbc": false,
+        "proxi": false
+      },
+      "ruling": "R-P9 — open RD-1; write the step in observable form per O-4; DO NOT fill a signal.",
+      "near_candidates": [
+        {
+          "signal": "HYBRID_DISPLAY.EstimatedRange",
+          "bus": "FD",
+          "dbc_found": true,
+          "value_table": {
+            "255": "SNA"
+          }
+        },
+        {
+          "signal": "CLUSTER4.Est_Range_Disp",
+          "bus": "FD",
+          "note": "this is what the mapping table's Atlantis High column gives for LID Est_Range_Disp; the 下放包 named IPC_FD_5.Est_Range_Disp, which is a different arch's column. IPC_FD_5.Est_Range_Disp does exist in FDCAN8."
+        },
+        {
+          "signal": "HCP_CHARGING_STAT.Est_Range_FullCharge",
+          "bus": "FD",
+          "dbc_found": true,
+          "value_table": {
+            "2047": "SNA"
+          },
+          "note": "CFTS041"
+        }
+      ],
+      "prohibition": "The three candidates are not equivalent to one another. Choosing any one of them is fabrication and is forbidden. The mapping table carries 9 Est_Range* LIDs and none of them is a BEV variant.",
+      "enum_authority": null
+    }
+  },
+  "proxi_preconditions": {
+    "_note": "PROXI configuration words available for writing vague pre-conditions concretely (O-2 puts these in Pre-Conditions, never in Input Test Data).",
+    "Projection_Mode": {
+      "group": "Infotainment_Configuration_23",
+      "value_table": {
+        "0": "Absent",
+        "1": "Present"
+      },
+      "note": "To disable projection entirely, this parameter — not Projection_Mode_Selection — must be Absent."
+    },
+    "Projection_Mode_Selection": {
+      "group": "Infotainment_Configuration_25",
+      "encoding": "bitfield; each bit set to 1 activates one projection mode, and modes combine by summing",
+      "value_table_hex": {
+        "00": "CarPlay + Android Auto",
+        "01": "CarPlay Only",
+        "02": "Android Auto Only",
+        "04": "CarLife Only"
+      },
+      "bits": {
+        "b0": "CarPlay",
+        "b1": "Android Auto",
+        "b2": "CarLife",
+        "b3-b7": "reserved for future use"
+      },
+      "exception": "Value 0 does NOT mean the modes are disabled. It activates both CarPlay and Android Auto, for backward compatibility with earlier projects.",
+      "verified": {
+        "proxi_sheet": "Projection Mode Selection",
+        "found": true
+      }
+    },
+    "GPS_Presence": {
+      "value_table": {
+        "0": "Absent",
+        "1": "Present"
+      },
+      "verified": true
+    },
+    "NAV_Presence": {
+      "verified": true
+    },
+    "Nav_Repetition": {
+      "value_table": {
+        "0": "Absent",
+        "1": "Present"
+      },
+      "verified": true
+    },
+    "WiFi_2_BT_BLE_External_Antenna_Presence": {
+      "verified": true
+    },
+    "Radio_Display_Type": {
+      "group": "Infotainment_Configuration_28",
+      "see": "$Screen_Size$"
+    }
+  },
+  "can_step_pattern": {
+    "_source": "Shape taken from the SWC workbook (cross-feature, style only — A-PJ07).",
+    "elements": [
+      "PROXI configuration stated in Pre-Conditions",
+      "message.signal = value (enumeration label) in a Procedure step",
+      "an explicit hold duration",
+      "a read-and-compare step after release"
+    ],
+    "example": {
+      "pre_conditions": [
+        "1. PROXI Projection_Mode_Selection = 01 (CarPlay Only)"
+      ],
+      "procedure": [
+        "1. Read the current HU volume and record it as Vol_initial",
+        "2. Send CAN: BCM_FD_14.Command_02Sts = 1 (Pressed)",
+        "3. Hold for 200 ms",
+        "4. Send CAN: BCM_FD_14.Command_02Sts = 0 (Not_Pressed)",
+        "5. Read the HU volume and check that it is lower than Vol_initial"
+      ]
+    },
+    "correction": "The 下放包 §5 wrote the enumeration labels as (PSD) and (NOT_PSD). The FDCAN8 VAL_ table for BCM_FD_14.Command_02Sts is 0 \"Not_Pressed\" / 1 \"Pressed\" / 3 \"SNA\". PSD and NOT_PSD appear in neither DBC, so the pattern as written would ABORT under L-PJ1. The labels above are the DBC's own. See A-PJ12.",
+    "verified": {
+      "dbc": "FDCAN8",
+      "signal_found": true
+    },
+    "value_label_authority": "DBC VAL_ table (R-P15)",
+    "cross_feature_rule": "R-P15 — 取 SWC 範式的**結構**（PROXI 前置 → message.signal = 值 (標籤) → 明確持續時間 → 讀值比對），**不取其字面標籤**。"
+  },
+  "vf176_signals": {
+    "_meta": {
+      "authority": "VF176",
+      "ruling": "R-P51",
+      "date": "2026-08-12",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "source_sha256": "c92cc3ddda2cd87a75f1a0882d011b0b7e36876f6dd99044e1ba7683fa686c3d",
+      "sha256_matches_phase0": true,
+      "extraction": "逐訊號人工登記（R-P51：不建自動萃取管線）。docx 為表格型（11 表、pStyle 分層、無數字編號標題），Direction 之列舉取自訊號定義表，其餘取自 Functional Requirements 段落。",
+      "gate_rule": "L-PJ1 對已登記者放行；**未登記之 VF176 訊號一律 ABORT**",
+      "bus": "B/BH-CAN（VF176 逐字：`\"TELEMATIC_DISPLAY_INFO.Infocode\" B CAN signal`）"
+    },
+    "TELEMATIC_NAV_INFO.Direction": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": {
+        "10": "U turn",
+        "15": "Reached Destination",
+        "16": "Recalculating Route",
+        "19": "North Round About",
+        "21": "East Round About",
+        "22": "West Round About",
+        "23": "North East Round About",
+        "24": "North West Round About",
+        "25": "South East Round About",
+        "26": "South West Round About",
+        "28": "U turn Right",
+        "33": "North Round About Reverse",
+        "35": "East Round About Reverse",
+        "36": "West Round About Reverse",
+        "37": "North East Round About Reverse",
+        "38": "North West Round About Reverse",
+        "39": "South East Round About Reverse",
+        "40": "South West Round About Reverse",
+        "56": "FreeWay",
+        "57": "State Highway",
+        "58": "Ferry",
+        "60": "Go Flag",
+        "61": "Left Turn Fade",
+        "62": "Right Turn Fade",
+        "63": "Left Turn 2nd Road",
+        "64": "Right Turn 2nd Road",
+        "65": "Left Turn 3rd Road",
+        "66": "Right Turn 3rd Road",
+        "67": "Right Exit One Lane",
+        "68": "Left Exit One Lane",
+        "69": "Right Exit Two Lane",
+        "70": "Left Exit Two Lane",
+        "71": "Left Exit Angle",
+        "72": "Right Exit Angle",
+        "73": "Roundabout South Both Direction",
+        "74": "Hook_Sharp Left Turn_TomTom",
+        "75": "Hook_Sharp Right Turn_TomTom",
+        "76": "Straight_TomTom"
+      },
+      "note": "binary code | ID | Navigation Name 三欄表；此處登記 ID → Navigation Name",
+      "writable_level": "value (label)"
+    },
+    "TELEMATIC_NAV_INFO.ResolutionDistToTurn": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": {
+        "One": "整數",
+        "ZeroPointOne": "0.1 解析度",
+        "ZeroPointZeroOne": "0.01 解析度"
+      },
+      "note": "VF176 以標籤陳述（`set to \"One\"` 等），未給數值代碼；IPC 依此除以 1/10/100",
+      "writable_level": "value (label)"
+    },
+    "TELEMATIC_NAV_INFO.DistToTurn": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": null,
+      "note": "連續量 —— 實際距離 = 本值 ÷ (1|10|100)，除數由 ResolutionDistToTurn 決定。無列舉，不得填值",
+      "writable_level": "name only (O-4：無列舉不得填值)"
+    },
+    "TELEMATIC_NAV_INFO.Unit": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": null,
+      "note": "距離量測單位，VF176 僅述「IPC updates the unit of measurement」，未列舉具體值",
+      "writable_level": "name only (O-4：無列舉不得填值)"
+    },
+    "TELEMATIC_DISPLAY_INFO.UTF_Text_1": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": null,
+      "note": "multiframe 文字內容，無列舉",
+      "writable_level": "name only (O-4：無列舉不得填值)"
+    },
+    "TELEMATIC_DISPLAY_INFO.UTF_Text_2": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": null,
+      "note": "同上",
+      "writable_level": "name only (O-4：無列舉不得填值)"
+    },
+    "TELEMATIC_DISPLAY_INFO.UTF_Text_3": {
+      "authority": "VF176",
+      "source_file": "inputs/Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx",
+      "verified_manually": true,
+      "enum": null,
+      "note": "同上",
+      "writable_level": "name only (O-4：無列舉不得填值)"
+    }
+  }
+}

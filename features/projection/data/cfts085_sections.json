@@ -1,0 +1,2473 @@
+{
+  "clause_to_section": {
+    "4935376": [
+      "1",
+      "Brought In Device Mirroring [CFTSMV085_CIP_R2]"
+    ],
+    "4935377": [
+      "1.1",
+      "Revision Notes"
+    ],
+    "4935378": [
+      "1.1",
+      "Revision Notes"
+    ],
+    "4935379": [
+      "1.1",
+      "Revision Notes"
+    ],
+    "4935380": [
+      "1.2",
+      "Introduction"
+    ],
+    "4935381": [
+      "1.2",
+      "Introduction"
+    ],
+    "4935382": [
+      "1.2",
+      "Introduction"
+    ],
+    "4935383": [
+      "1.2",
+      "Introduction"
+    ],
+    "4935384": [
+      "1.3",
+      "Brought In Device Mirroring Requirements"
+    ],
+    "4935385": [
+      "1.3.1",
+      "Functional Objectives"
+    ],
+    "4935386": [
+      "1.3.1",
+      "Functional Objectives"
+    ],
+    "4935387": [
+      "1.3.1",
+      "Functional Objectives"
+    ],
+    "4935388": [
+      "1.3.1",
+      "Functional Objectives"
+    ],
+    "4935389": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935390": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935391": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935392": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935393": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935394": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935395": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935396": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935397": [
+      "1.3.2",
+      "Projection Device Requirements"
+    ],
+    "4935398": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935399": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935400": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935401": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935402": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935403": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935404": [
+      "1.3.2.1",
+      "Apple CarPlay Navigation"
+    ],
+    "4935405": [
+      "1.3.2.2",
+      "Apple CarPlay Interface"
+    ],
+    "4935406": [
+      "1.3.2.2",
+      "Apple CarPlay Interface"
+    ],
+    "4935407": [
+      "1.3.2.2",
+      "Apple CarPlay Interface"
+    ],
+    "4935408": [
+      "1.3.2.3",
+      "Audio Processing"
+    ],
+    "4935409": [
+      "1.3.2.3",
+      "Audio Processing"
+    ],
+    "4935410": [
+      "1.3.2.3",
+      "Audio Processing"
+    ],
+    "4935411": [
+      "1.3.2.4",
+      "Video Processing"
+    ],
+    "4935412": [
+      "1.3.2.4",
+      "Video Processing"
+    ],
+    "4935413": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935414": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935415": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935416": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935417": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935418": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935419": [
+      "1.3.2.5",
+      "Display"
+    ],
+    "4935420": [
+      "1.3.2.6",
+      "Apple CarPlay USB"
+    ],
+    "4935421": [
+      "1.3.2.6",
+      "Apple CarPlay USB"
+    ],
+    "4935422": [
+      "1.3.2.6",
+      "Apple CarPlay USB"
+    ],
+    "4935423": [
+      "1.3.2.7",
+      "Voice Recognition Interface"
+    ],
+    "4935425": [
+      "1.3.2.7",
+      "Voice Recognition Interface"
+    ],
+    "4935427": [
+      "1.3.2.7",
+      "Voice Recognition Interface"
+    ],
+    "4935428": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935429": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935430": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935431": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935432": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935433": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935434": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935435": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935436": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935437": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935438": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935440": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935441": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935442": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935443": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935444": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935445": [
+      "1.3.2.8",
+      "Projection Device Settings"
+    ],
+    "4935447": [
+      "1.3.2.9",
+      "HMI"
+    ],
+    "4935448": [
+      "1.3.2.9",
+      "HMI"
+    ],
+    "4935450": [
+      "1.3.2.10",
+      "Vehicle Data Requirements"
+    ],
+    "4935451": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935452": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935453": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935454": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935455": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935456": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935457": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935458": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935459": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935460": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935461": [
+      "1.3.2.10.1",
+      "Vehicle Sensor Data"
+    ],
+    "4935466": [
+      "1.3.2.10.2",
+      "CarPlay Location Data"
+    ],
+    "4935467": [
+      "1.3.2.10.2",
+      "CarPlay Location Data"
+    ],
+    "4935468": [
+      "1.3.2.10.2",
+      "CarPlay Location Data"
+    ],
+    "4935469": [
+      "1.3.2.10.2.1",
+      "Tables of Required Signals"
+    ],
+    "4935470": [
+      "1.3.2.10.2.1",
+      "Tables of Required Signals"
+    ],
+    "4935471": [
+      "1.3.2.10.2.1",
+      "Tables of Required Signals"
+    ],
+    "4935472": [
+      "1.3.2.10.2.1",
+      "Tables of Required Signals"
+    ],
+    "4935491": [
+      "1.3.2.10.2.1",
+      "Tables of Required Signals"
+    ],
+    "4935493": [
+      "1.3.2.10.3",
+      "Android Auto Location Data"
+    ],
+    "4935494": [
+      "1.3.2.10.3",
+      "Android Auto Location Data"
+    ],
+    "4935495": [
+      "1.3.2.10.3.1",
+      "Table of required signals"
+    ],
+    "4935496": [
+      "1.3.2.10.3.1",
+      "Table of required signals"
+    ],
+    "4935497": [
+      "1.3.2.10.4",
+      "Knobs"
+    ],
+    "4935498": [
+      "1.3.2.10.4",
+      "Knobs"
+    ],
+    "4935499": [
+      "1.3.2.10.4",
+      "Knobs"
+    ],
+    "4935501": [
+      "1.3.2.10.4",
+      "Knobs"
+    ],
+    "4935503": [
+      "1.3.2.11",
+      "Wireless Projection"
+    ],
+    "4935504": [
+      "1.3.2.11",
+      "Wireless Projection"
+    ],
+    "4935505": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935506": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935507": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935508": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935509": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935510": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935511": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935512": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935513": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935514": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935515": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935516": [
+      "1.3.2.11.1",
+      "SR20+ Device Manager"
+    ],
+    "4935517": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935518": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935519": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935520": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935521": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935522": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935523": [
+      "1.3.2.11.2",
+      "Pairing to Wireless Projection"
+    ],
+    "4935524": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935525": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935526": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935527": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935528": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935529": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935530": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935531": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935532": [
+      "1.3.2.11.3",
+      "Connecting to Wireless Projection"
+    ],
+    "4935533": [
+      "1.3.2.11.4",
+      "Active Wireless Projection"
+    ],
+    "4935534": [
+      "1.3.2.11.4",
+      "Active Wireless Projection"
+    ],
+    "4935535": [
+      "1.3.2.11.4",
+      "Active Wireless Projection"
+    ],
+    "4935536": [
+      "1.3.2.11.4",
+      "Active Wireless Projection"
+    ],
+    "4935537": [
+      "1.3.2.11.5",
+      "Disconnecting from Wireless Projection"
+    ],
+    "4935538": [
+      "1.3.2.11.5",
+      "Disconnecting from Wireless Projection"
+    ],
+    "4935539": [
+      "1.3.2.11.5",
+      "Disconnecting from Wireless Projection"
+    ],
+    "4935540": [
+      "1.3.2.11.5",
+      "Disconnecting from Wireless Projection"
+    ],
+    "4935541": [
+      "1.3.2.11.5",
+      "Disconnecting from Wireless Projection"
+    ],
+    "4935542": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935543": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935544": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935545": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935546": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935547": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935548": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935549": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935550": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935551": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935552": [
+      "1.3.2.12",
+      "Projection Turn By Turn Repetition on the Cluster"
+    ],
+    "4935553": [
+      "1.3.2.13",
+      "Siri Commands for Vehicle Control"
+    ],
+    "4935554": [
+      "1.3.2.13",
+      "Siri Commands for Vehicle Control"
+    ],
+    "4935555": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935556": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935557": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935558": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935559": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935560": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935561": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935562": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935563": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935564": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935565": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935566": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935567": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935568": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935569": [
+      "1.3.2.14",
+      "SR20+ Apple Certification Changes"
+    ],
+    "4935570": [
+      "1.3.2.15",
+      "SR21+ Apple Carplay Certification"
+    ],
+    "4935571": [
+      "1.3.2.15",
+      "SR21+ Apple Carplay Certification"
+    ],
+    "4935572": [
+      "1.3.2.15",
+      "SR21+ Apple Carplay Certification"
+    ],
+    "4935573": [
+      "1.3.2.16",
+      "SR21+ Android Auto Certification"
+    ],
+    "4935574": [
+      "1.3.2.16",
+      "SR21+ Android Auto Certification"
+    ],
+    "4935575": [
+      "1.3.2.16",
+      "SR21+ Android Auto Certification"
+    ],
+    "4935576": [
+      "1.3.2.16",
+      "SR21+ Android Auto Certification"
+    ],
+    "4935577": [
+      "1.3.2.16",
+      "SR21+ Android Auto Certification"
+    ],
+    "4935578": [
+      "1.3.2.17",
+      "SR22+ Android Auto Certification"
+    ],
+    "4935579": [
+      "1.3.2.17",
+      "SR22+ Android Auto Certification"
+    ],
+    "4935580": [
+      "1.3.2.17",
+      "SR22+ Android Auto Certification"
+    ],
+    "4935581": [
+      "1.3.2.18",
+      "SR22+ Apple Carplay Certification"
+    ],
+    "4935582": [
+      "1.3.2.18",
+      "SR22+ Apple Carplay Certification"
+    ],
+    "4935585": [
+      "1.3.2.18",
+      "SR22+ Apple Carplay Certification"
+    ],
+    "4935587": [
+      "1.3.2.18",
+      "SR22+ Apple Carplay Certification"
+    ],
+    "4935588": [
+      "1.4",
+      "Baidu CarLife"
+    ],
+    "4935589": [
+      "1.4.1",
+      "Scope"
+    ],
+    "4935590": [
+      "1.4.1",
+      "Scope"
+    ],
+    "4935591": [
+      "1.4.1",
+      "Scope"
+    ],
+    "4935592": [
+      "1.4.1",
+      "Scope"
+    ],
+    "4935593": [
+      "1.4.1",
+      "Scope"
+    ],
+    "4935594": [
+      "1.4.1",
+      "Scope"
+    ],
+    "4935595": [
+      "1.4.2",
+      "Reference Documents"
+    ],
+    "4935596": [
+      "1.4.2",
+      "Reference Documents"
+    ],
+    "4935597": [
+      "1.4.2",
+      "Reference Documents"
+    ],
+    "4935598": [
+      "1.4.3",
+      "Acronyms"
+    ],
+    "4935599": [
+      "1.4.3",
+      "Acronyms"
+    ],
+    "4935600": [
+      "1.4.3",
+      "Acronyms"
+    ],
+    "4935601": [
+      "1.4.4",
+      "Definitions"
+    ],
+    "4935602": [
+      "1.4.4",
+      "Definitions"
+    ],
+    "4935603": [
+      "1.4.5",
+      "CarLife Requirements"
+    ],
+    "4935604": [
+      "1.4.5",
+      "CarLife Requirements"
+    ],
+    "4935605": [
+      "1.4.5",
+      "CarLife Requirements"
+    ],
+    "4935606": [
+      "1.4.5",
+      "CarLife Requirements"
+    ],
+    "4935607": [
+      "1.4.5.1",
+      "HU Hardware"
+    ],
+    "4935608": [
+      "1.4.5.1",
+      "HU Hardware"
+    ],
+    "4935609": [
+      "1.4.5.1",
+      "HU Hardware"
+    ],
+    "4935610": [
+      "1.4.5.2",
+      "PD OS"
+    ],
+    "4935611": [
+      "1.4.5.2",
+      "PD OS"
+    ],
+    "4935612": [
+      "1.4.5.2",
+      "PD OS"
+    ],
+    "4935613": [
+      "1.4.5.3",
+      "Compatibility"
+    ],
+    "4935614": [
+      "1.4.5.3",
+      "Compatibility"
+    ],
+    "4935615": [
+      "1.4.5.3",
+      "Compatibility"
+    ],
+    "4935616": [
+      "1.4.5.4",
+      "USB"
+    ],
+    "4935617": [
+      "1.4.5.4",
+      "USB"
+    ],
+    "4935618": [
+      "1.4.5.4",
+      "USB"
+    ],
+    "4935619": [
+      "1.4.5.4",
+      "USB"
+    ],
+    "4935620": [
+      "1.4.5.4",
+      "USB"
+    ],
+    "4935621": [
+      "1.4.5.4",
+      "USB"
+    ],
+    "4935622": [
+      "1.4.5.5",
+      "Bluetooth"
+    ],
+    "4935623": [
+      "1.4.5.5",
+      "Bluetooth"
+    ],
+    "4935624": [
+      "1.4.5.5",
+      "Bluetooth"
+    ],
+    "4935625": [
+      "1.4.5.5",
+      "Bluetooth"
+    ],
+    "4935626": [
+      "1.4.5.6",
+      "Audio Processing"
+    ],
+    "4935627": [
+      "1.4.5.6",
+      "Audio Processing"
+    ],
+    "4935628": [
+      "1.4.5.6",
+      "Audio Processing"
+    ],
+    "4935629": [
+      "1.4.5.6",
+      "Audio Processing"
+    ],
+    "4935630": [
+      "1.4.5.6",
+      "Audio Processing"
+    ],
+    "4935631": [
+      "1.4.5.6",
+      "Audio Processing"
+    ],
+    "4935632": [
+      "1.4.5.7",
+      "Video Processing"
+    ],
+    "4935633": [
+      "1.4.5.7",
+      "Video Processing"
+    ],
+    "4935634": [
+      "1.4.5.7",
+      "Video Processing"
+    ],
+    "4935635": [
+      "1.4.5.8",
+      "Vehicle Data"
+    ],
+    "4935636": [
+      "1.4.5.8",
+      "Vehicle Data"
+    ],
+    "4935637": [
+      "1.4.5.8",
+      "Vehicle Data"
+    ],
+    "4935638": [
+      "1.4.5.8",
+      "Vehicle Data"
+    ],
+    "4935639": [
+      "1.4.5.8",
+      "Vehicle Data"
+    ],
+    "4935640": [
+      "1.4.5.8",
+      "Vehicle Data"
+    ],
+    "4935641": [
+      "1.4.5.9",
+      "Navigation Data"
+    ],
+    "4935642": [
+      "1.4.5.9",
+      "Navigation Data"
+    ],
+    "4935643": [
+      "1.4.5.9",
+      "Navigation Data"
+    ],
+    "4935644": [
+      "1.4.5.9",
+      "Navigation Data"
+    ],
+    "4935645": [
+      "1.4.5.10",
+      "Music Data"
+    ],
+    "4935646": [
+      "1.4.5.10",
+      "Music Data"
+    ],
+    "4935647": [
+      "1.4.5.10",
+      "Music Data"
+    ],
+    "4935648": [
+      "1.4.5.11",
+      "Others"
+    ],
+    "4935649": [
+      "1.4.5.11",
+      "Others"
+    ],
+    "4935650": [
+      "1.4.5.11",
+      "Others"
+    ],
+    "4935651": [
+      "1.4.5.11",
+      "Others"
+    ],
+    "4935652": [
+      "1.4.5.11",
+      "Others"
+    ],
+    "4935653": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935654": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935655": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935656": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935657": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935658": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935659": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935660": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935661": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935662": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935663": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935664": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935665": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935666": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935667": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935668": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935669": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935670": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935671": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935672": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935673": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935674": [
+      "1.4.5.12",
+      "CarLife Start and Stop"
+    ],
+    "4935675": [
+      "1.4.5.13",
+      "Navigation When CarLife Starts"
+    ],
+    "4935676": [
+      "1.4.5.13",
+      "Navigation When CarLife Starts"
+    ],
+    "4935677": [
+      "1.4.5.13",
+      "Navigation When CarLife Starts"
+    ],
+    "4935678": [
+      "1.4.5.14",
+      "Navigation Switch"
+    ],
+    "4935679": [
+      "1.4.5.14",
+      "Navigation Switch"
+    ],
+    "4935680": [
+      "1.4.5.14",
+      "Navigation Switch"
+    ],
+    "4935681": [
+      "1.4.5.14",
+      "Navigation Switch"
+    ],
+    "4935682": [
+      "1.4.5.15",
+      "CarLife Music"
+    ],
+    "4935683": [
+      "1.4.5.15",
+      "CarLife Music"
+    ],
+    "4935684": [
+      "1.4.5.15",
+      "CarLife Music"
+    ],
+    "4935685": [
+      "1.4.5.15",
+      "CarLife Music"
+    ],
+    "4935686": [
+      "1.4.5.16",
+      "VR"
+    ],
+    "4935687": [
+      "1.4.5.16",
+      "VR"
+    ],
+    "4935688": [
+      "1.4.5.16",
+      "VR"
+    ],
+    "4935689": [
+      "1.4.5.16.1",
+      "Security Authentication"
+    ],
+    "4935690": [
+      "1.4.5.16.1",
+      "Security Authentication"
+    ],
+    "4935691": [
+      "1.4.5.16.2",
+      "Performance"
+    ],
+    "4935692": [
+      "1.4.5.16.2",
+      "Performance"
+    ],
+    "4935693": [
+      "1.4.5.17",
+      "Security Authentication"
+    ],
+    "4935694": [
+      "1.4.5.17",
+      "Security Authentication"
+    ],
+    "4935695": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935696": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935697": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935698": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935699": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935700": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935701": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935702": [
+      "1.4.5.18",
+      "Performance"
+    ],
+    "4935703": [
+      "1.4.5.19",
+      "Certification"
+    ],
+    "4935704": [
+      "1.4.5.19",
+      "Certification"
+    ],
+    "4935705": [
+      "1.4.5.19",
+      "Certification"
+    ],
+    "4935706": [
+      "1.4.5.19",
+      "Certification"
+    ],
+    "4935707": [
+      "1.4.5.20",
+      "CarLife Stop"
+    ],
+    "4935708": [
+      "1.4.5.20",
+      "CarLife Stop"
+    ],
+    "4935709": [
+      "1.4.5.20",
+      "CarLife Stop"
+    ],
+    "4935710": [
+      "1.4.5.20",
+      "CarLife Stop"
+    ],
+    "4935711": [
+      "1.5",
+      "Baidu CarLife for R1"
+    ],
+    "4935712": [
+      "1.5.1",
+      "Overview"
+    ],
+    "4935713": [
+      "1.5.1",
+      "Overview"
+    ],
+    "4935714": [
+      "1.5.1",
+      "Overview"
+    ],
+    "4935715": [
+      "1.5.2",
+      "Abbreviations"
+    ],
+    "4935716": [
+      "1.5.2",
+      "Abbreviations"
+    ],
+    "4935717": [
+      "1.5.3",
+      "Variables"
+    ],
+    "4935718": [
+      "1.5.3",
+      "Variables"
+    ],
+    "4935719": [
+      "1.5.4",
+      "Hardware Requirements"
+    ],
+    "4935720": [
+      "1.5.4",
+      "Hardware Requirements"
+    ],
+    "4935721": [
+      "1.5.4",
+      "Hardware Requirements"
+    ],
+    "4935722": [
+      "1.5.5",
+      "CarLife Device"
+    ],
+    "4935723": [
+      "1.5.5.1",
+      "CarLife Capable Device"
+    ],
+    "4935724": [
+      "1.5.5.1",
+      "CarLife Capable Device"
+    ],
+    "4935725": [
+      "1.5.5.1",
+      "CarLife Capable Device"
+    ],
+    "4935726": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935727": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935728": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935729": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935730": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935731": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935732": [
+      "1.5.5.2",
+      "Device Manager"
+    ],
+    "4935733": [
+      "1.5.6",
+      "CARLIFE CONNECTION"
+    ],
+    "4935734": [
+      "1.5.6",
+      "CARLIFE CONNECTION"
+    ],
+    "4935735": [
+      "1.5.6.1",
+      "Manual Connect"
+    ],
+    "4935736": [
+      "1.5.6.1",
+      "Manual Connect"
+    ],
+    "4935737": [
+      "1.5.6.1",
+      "Manual Connect"
+    ],
+    "4935738": [
+      "1.5.6.1",
+      "Manual Connect"
+    ],
+    "4935739": [
+      "1.5.6.2",
+      "Auto Connect"
+    ],
+    "4935740": [
+      "1.5.6.2",
+      "Auto Connect"
+    ],
+    "4935741": [
+      "1.5.6.2",
+      "Auto Connect"
+    ],
+    "4935742": [
+      "1.5.6.2",
+      "Auto Connect"
+    ],
+    "4935743": [
+      "1.5.6.3",
+      "Connection Process"
+    ],
+    "4935744": [
+      "1.5.6.3",
+      "Connection Process"
+    ],
+    "4935745": [
+      "1.5.6.3",
+      "Connection Process"
+    ],
+    "4935746": [
+      "1.5.6.3",
+      "Connection Process"
+    ],
+    "4935747": [
+      "1.5.6.3",
+      "Connection Process"
+    ],
+    "4935748": [
+      "1.5.6.3",
+      "Connection Process"
+    ],
+    "4935749": [
+      "1.5.6.4",
+      "Connection Lost"
+    ],
+    "4935750": [
+      "1.5.6.4",
+      "Connection Lost"
+    ],
+    "4935751": [
+      "1.5.6.5",
+      "Disconnect"
+    ],
+    "4935752": [
+      "1.5.6.5",
+      "Disconnect"
+    ],
+    "4935753": [
+      "1.5.6.5",
+      "Disconnect"
+    ],
+    "4935754": [
+      "1.5.6.5",
+      "Disconnect"
+    ],
+    "4935755": [
+      "1.5.7",
+      "Resolution"
+    ],
+    "4935756": [
+      "1.5.7",
+      "Resolution"
+    ],
+    "4935757": [
+      "1.5.7",
+      "Resolution"
+    ],
+    "4935758": [
+      "1.5.8",
+      "BLUETOOTH"
+    ],
+    "4935759": [
+      "1.5.8",
+      "BLUETOOTH"
+    ],
+    "4935760": [
+      "1.5.8",
+      "BLUETOOTH"
+    ],
+    "4935761": [
+      "1.5.8",
+      "BLUETOOTH"
+    ],
+    "4935762": [
+      "1.5.8",
+      "BLUETOOTH"
+    ],
+    "4935763": [
+      "1.5.9",
+      "Media"
+    ],
+    "4935764": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935765": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935766": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935767": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935768": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935769": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935770": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935771": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935772": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935773": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935774": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935775": [
+      "1.5.9.1",
+      "CarLife Media Source"
+    ],
+    "4935776": [
+      "1.5.9.2",
+      "Media Information"
+    ],
+    "4935777": [
+      "1.5.9.2",
+      "Media Information"
+    ],
+    "4935778": [
+      "1.5.9.2",
+      "Media Information"
+    ],
+    "4935779": [
+      "1.5.9.2",
+      "Media Information"
+    ],
+    "4935780": [
+      "1.5.10",
+      "Navigation"
+    ],
+    "4935781": [
+      "1.5.10.1",
+      "Navigation Coexistance"
+    ],
+    "4935782": [
+      "1.5.10.1",
+      "Navigation Coexistance"
+    ],
+    "4935783": [
+      "1.5.10.1",
+      "Navigation Coexistance"
+    ],
+    "4935784": [
+      "1.5.10.1",
+      "Navigation Coexistance"
+    ],
+    "4935785": [
+      "1.5.10.1",
+      "Navigation Coexistance"
+    ],
+    "4935786": [
+      "1.5.10.1",
+      "Navigation Coexistance"
+    ],
+    "4935787": [
+      "1.5.10.2",
+      "Vehicle Data"
+    ],
+    "4935788": [
+      "1.5.10.2",
+      "Vehicle Data"
+    ],
+    "4935789": [
+      "1.5.10.2",
+      "Vehicle Data"
+    ],
+    "4935790": [
+      "1.5.10.2",
+      "Vehicle Data"
+    ],
+    "4935791": [
+      "1.5.10.2",
+      "Vehicle Data"
+    ],
+    "4935792": [
+      "1.5.10.3",
+      "Cluster Representation"
+    ],
+    "4935793": [
+      "1.5.10.3",
+      "Cluster Representation"
+    ],
+    "4935794": [
+      "1.5.11",
+      "Voice Recognition"
+    ],
+    "4935795": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935796": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935797": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935798": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935799": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935800": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935801": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935802": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935803": [
+      "1.5.11.1",
+      "CarLife VR"
+    ],
+    "4935804": [
+      "1.5.11.2",
+      "Native VR"
+    ],
+    "4935805": [
+      "1.5.11.2",
+      "Native VR"
+    ],
+    "4935806": [
+      "1.5.12",
+      "Audio Arbitration"
+    ],
+    "4935807": [
+      "1.5.12",
+      "Audio Arbitration"
+    ],
+    "4935808": [
+      "1.5.12",
+      "Audio Arbitration"
+    ],
+    "4935809": [
+      "1.5.12",
+      "Audio Arbitration"
+    ],
+    "4935810": [
+      "1.5.12",
+      "Audio Arbitration"
+    ],
+    "4935811": [
+      "1.5.13",
+      "Back Control"
+    ],
+    "4935812": [
+      "1.5.13.1",
+      "Hard Keys and Knobs"
+    ],
+    "4935813": [
+      "1.5.13.1",
+      "Hard Keys and Knobs"
+    ],
+    "4935814": [
+      "1.5.13.1",
+      "Hard Keys and Knobs"
+    ],
+    "4935815": [
+      "1.5.13.1",
+      "Hard Keys and Knobs"
+    ],
+    "4935816": [
+      "1.5.13.1",
+      "Hard Keys and Knobs"
+    ],
+    "4935817": [
+      "1.5.13.2",
+      "Touch Event"
+    ],
+    "4935818": [
+      "1.5.13.2",
+      "Touch Event"
+    ],
+    "4935819": [
+      "1.5.14",
+      "Compatability Test"
+    ],
+    "4935820": [
+      "1.5.14",
+      "Compatability Test"
+    ],
+    "4935821": [
+      "1.5.15",
+      "Device Authentication"
+    ],
+    "4935822": [
+      "1.5.15",
+      "Device Authentication"
+    ],
+    "4935823": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935824": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935825": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935826": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935827": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935828": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935829": [
+      "1.5.16",
+      "Performance"
+    ],
+    "4935830": [
+      "1.5.17",
+      "Certification"
+    ],
+    "4935831": [
+      "1.5.17",
+      "Certification"
+    ],
+    "4935832": [
+      "1.6",
+      "Baidu Carlife"
+    ],
+    "4935833": [
+      "2",
+      "Project == &quot;SR Releases&quot;"
+    ],
+    "4935834": [
+      "2.1",
+      "CFTS085_CIP_R1_PSR16"
+    ],
+    "4935835": [
+      "2.1.1",
+      "Revision notes"
+    ],
+    "4935836": [
+      "2.1.1",
+      "Revision notes"
+    ],
+    "4935837": [
+      "2.2",
+      "CFTS085_CIP_R1_PSR16.5"
+    ],
+    "4935838": [
+      "2.2.1",
+      "Revision notes"
+    ],
+    "4935839": [
+      "2.2.1",
+      "Revision notes"
+    ],
+    "4935840": [
+      "2.3",
+      "CFTS085_V1_R2_PSR17"
+    ],
+    "4935841": [
+      "2.3.1",
+      "Revision notes"
+    ],
+    "4935842": [
+      "2.3.1",
+      "Revision notes"
+    ],
+    "4935843": [
+      "2.3.1",
+      "Revision notes"
+    ],
+    "4935844": [
+      "2.4",
+      "CFTS085_CIP_R1_PSR17.5"
+    ],
+    "4935845": [
+      "2.4.1",
+      "Revision notes"
+    ],
+    "4935846": [
+      "2.4.1",
+      "Revision notes"
+    ],
+    "4935847": [
+      "2.5",
+      "CFTS085_V1_R4_PSR18"
+    ],
+    "4935848": [
+      "2.5.1",
+      "Revision notes"
+    ],
+    "4935849": [
+      "2.5.1",
+      "Revision notes"
+    ],
+    "4935850": [
+      "2.6",
+      "CFTS085_V2_R1_PSR18"
+    ],
+    "4935851": [
+      "2.6.1",
+      "Revision notes"
+    ],
+    "4935852": [
+      "2.6.1",
+      "Revision notes"
+    ],
+    "4935853": [
+      "2.7",
+      "CFTS085_V1_R2_PSR19"
+    ],
+    "4935854": [
+      "2.7.1",
+      "Revision notes"
+    ],
+    "4935855": [
+      "2.7.1",
+      "Revision notes"
+    ],
+    "4935856": [
+      "2.8",
+      "CFTS085_V2_R2_PSR19"
+    ],
+    "4935857": [
+      "2.8.1",
+      "Revision notes"
+    ],
+    "4935858": [
+      "2.8.1",
+      "Revision notes"
+    ],
+    "4935859": [
+      "2.9",
+      "CFTS085_V1_R3_PSR20"
+    ],
+    "4935860": [
+      "2.9.1",
+      "Revision notes"
+    ],
+    "4935861": [
+      "2.9.1",
+      "Revision notes"
+    ],
+    "4935862": [
+      "2.10",
+      "CFTS085_V1_R1_PSR20"
+    ],
+    "4935863": [
+      "2.10.1",
+      "Revision notes"
+    ],
+    "4935864": [
+      "2.10.1",
+      "Revision notes"
+    ],
+    "4935865": [
+      "2.11",
+      "CFTS085_V2_R2_PSR20"
+    ],
+    "4935866": [
+      "2.11.1",
+      "Revision notes"
+    ],
+    "4935867": [
+      "2.11.1",
+      "Revision notes"
+    ],
+    "4935868": [
+      "2.12",
+      "CFTS085_V1_R6_PSR21"
+    ],
+    "4935869": [
+      "2.12.1",
+      "Revision notes"
+    ],
+    "4935870": [
+      "2.12.1",
+      "Revision notes"
+    ],
+    "4935871": [
+      "2.13",
+      "CFTS085_V2_R4_PSR21"
+    ],
+    "4935872": [
+      "2.13.1",
+      "Revision notes"
+    ],
+    "4935873": [
+      "2.13.1",
+      "Revision notes"
+    ],
+    "4935874": [
+      "2.14",
+      "CFTS085_V1_R5_PSR22"
+    ],
+    "4935875": [
+      "2.14.1",
+      "Revision notes"
+    ],
+    "4935876": [
+      "2.14.1",
+      "Revision notes"
+    ],
+    "4935877": [
+      "2.14.1",
+      "Revision notes"
+    ],
+    "4935878": [
+      "2.15",
+      "CFTS085_V1_R4_PSR23"
+    ],
+    "4935879": [
+      "2.15.1",
+      "Revision notes"
+    ],
+    "4935880": [
+      "2.15.1",
+      "Revision notes"
+    ],
+    "4935881": [
+      "2.16",
+      "CFTS085_V1_R1_PSR24"
+    ],
+    "4935882": [
+      "2.16.1",
+      "Revision notes"
+    ],
+    "4935883": [
+      "2.16.1",
+      "Revision notes"
+    ],
+    "4935884": [
+      "2.17",
+      "CFTS085_V1_R2_PSR22"
+    ],
+    "4935885": [
+      "2.18",
+      "CFTS085_V1_R2_PSR18"
+    ],
+    "4935886": [
+      "2.19",
+      "CFTS085_CIP_R1_PSR18.5"
+    ],
+    "4935887": [
+      "2.19.1",
+      "Revision notes"
+    ],
+    "4935888": [
+      "2.19.1",
+      "Revision notes"
+    ],
+    "4935889": [
+      "2.20",
+      "CFTS085_CIP_R1_PSR19"
+    ],
+    "4935890": [
+      "2.20.1",
+      "Revision notes"
+    ],
+    "4935891": [
+      "2.20.1",
+      "Revision notes"
+    ],
+    "4935892": [
+      "2.21",
+      "CFTS085_CIP_R1_PSR19.5"
+    ],
+    "4935893": [
+      "2.21.1",
+      "Revision notes"
+    ],
+    "4935894": [
+      "2.21.1",
+      "Revision notes"
+    ]
+  },
+  "section_to_rows": {
+    "1.3.2.11.2 Pairing to Wireless Projection": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "1.3.2.11.5 Disconnecting from Wireless Projection": [
+      31,
+      32,
+      33,
+      35,
+      36,
+      37,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "1.3.2.10.1 Vehicle Sensor Data": [
+      34,
+      38,
+      39,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218
+    ],
+    "1.3.2.11.3 Connecting to Wireless Projection": [
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108
+    ],
+    "1.3.2.11.4 Active Wireless Projection": [
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126
+    ],
+    "1.3.2.7 Voice Recognition Interface": [
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148
+    ],
+    "1.3.2.4 Video Processing": [
+      149,
+      150
+    ],
+    "1.3.2.10.2 CarPlay Location Data": [
+      219,
+      220,
+      221,
+      222,
+      223,
+      224
+    ],
+    "1.3.2.10.2.1 Tables of Required Signals": [
+      225,
+      226,
+      227,
+      228,
+      229
+    ],
+    "1.3.2.10.3 Android Auto Location Data": [
+      231,
+      232,
+      233,
+      234
+    ],
+    "1.3.2.10.3.1 Table of required signals": [
+      235,
+      236
+    ],
+    "1.3.2 Projection Device Requirements": [
+      237,
+      238,
+      239,
+      240,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      420,
+      421,
+      422,
+      423,
+      444,
+      445,
+      446,
+      447,
+      448,
+      449,
+      450,
+      451,
+      452,
+      453
+    ],
+    "1.3.2.18 SR22+ Apple Carplay Certification": [
+      253,
+      254
+    ],
+    "1.3.2.17 SR22+ Android Auto Certification": [
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      267,
+      268,
+      269
+    ],
+    "1.3.2.15 SR21+ Apple Carplay Certification": [
+      270,
+      271,
+      272
+    ],
+    "1.3.2.16 SR21+ Android Auto Certification": [
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282
+    ],
+    "1.3.2.14 SR20+ Apple Certification Changes": [
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315,
+      316,
+      317,
+      318,
+      319,
+      320,
+      321,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329,
+      330,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      338,
+      339,
+      340,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      349,
+      350,
+      351,
+      352,
+      353,
+      354,
+      355,
+      356,
+      357,
+      358,
+      359,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      367
+    ],
+    "1.3.2.12 Projection Turn By Turn Repetition on the Cluster": [
+      368,
+      369,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      376,
+      377,
+      378,
+      379
+    ],
+    "1.3.2.8 Projection Device Settings": [
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      387,
+      388,
+      389,
+      390,
+      391,
+      392,
+      393,
+      394,
+      395,
+      396,
+      397,
+      398,
+      399,
+      400,
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419
+    ],
+    "1.3.2.9 HMI": [
+      424,
+      425,
+      426,
+      427,
+      428,
+      429
+    ],
+    "1.3.2.5 Display": [
+      430,
+      431,
+      432,
+      433,
+      434,
+      435,
+      437,
+      438,
+      441,
+      442,
+      443
+    ],
+    "1.3.2.3 Audio Processing": [
+      454,
+      455
+    ],
+    "1.3.2.6 Apple CarPlay USB": [
+      456,
+      457,
+      458,
+      459,
+      460
+    ],
+    "1.3.2.1 Apple CarPlay Navigation": [
+      461,
+      462,
+      463,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470,
+      471,
+      472,
+      473,
+      474,
+      475,
+      476,
+      477,
+      478
+    ],
+    "1.3.2.2 Apple CarPlay Interface": [
+      479,
+      480
+    ]
+  }
+}

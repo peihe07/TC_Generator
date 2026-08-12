@@ -1,0 +1,160 @@
+{
+  "section_to_rows": {
+    "2 Accessory Wi-Fi Information Sharing": [
+      32,
+      45,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      456,
+      457
+    ],
+    "3.2.5.1 Wi-Fi Access Point": [
+      109
+    ],
+    "3.3.7.1 Button Activation from the Accessory": [
+      128,
+      139,
+      141,
+      142
+    ],
+    "3.3.8.11 setNightMode": [
+      169,
+      170,
+      172,
+      173,
+      174,
+      177,
+      178,
+      179
+    ],
+    "3 CarPlay": [
+      171
+    ],
+    "3.3.8.26 uiAppearanceUpdate": [
+      171,
+      172,
+      173,
+      174,
+      176
+    ],
+    "3.3.8.27 mapAppearanceUpdate": [
+      175,
+      176
+    ],
+    "18.3 Route Guidance": [
+      372
+    ],
+    "3.2.7.1 User Interface Streams": [
+      430,
+      432
+    ],
+    "3.3.5.1.4 Single Touch": [
+      436
+    ],
+    "3.3.5.1.1 Touchscreen": [
+      436
+    ],
+    "3.2.2.1 High Resolution Displays": [
+      439,
+      440
+    ],
+    "3.2.7.2 Audio": [
+      454
+    ],
+    "3.3.5 User Input": [
+      461,
+      463,
+      464,
+      465,
+      466,
+      467,
+      468,
+      469,
+      470
+    ],
+    "3.3.7 Activating Siri": [
+      471,
+      472
+    ],
+    "3.2.5.0.1 Accessory CarPlay Bluetooth EIR": [
+      481
+    ],
+    "3.2.7 Media Types and Formats": [
+      482
+    ],
+    "3.2.2.6.2 CarPlay Logo": [
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489
+    ],
+    "3.2.2.6.3 CarPlay Icon": [
+      484,
+      485,
+      486,
+      487,
+      488,
+      489
+    ],
+    "3.2.7.2.1 Main Audio - Entertainment": [
+      490
+    ],
+    "3.2.7.2.15 Ducking": [
+      491,
+      492
+    ],
+    "3.2.7.2.13 Mixing": [
+      491,
+      492,
+      495,
+      496,
+      497
+    ],
+    "3.2.7.2.5 Main Audio - Alert": [
+      493
+    ],
+    "3.2.7.2.4 Main Audio - Speech Recognition": [
+      493
+    ],
+    "3.2.7.2.2 Main Audio - Telephony": [
+      494
+    ],
+    "3.3.3 Resource Management": [
+      495,
+      496,
+      497,
+      508,
+      509,
+      510,
+      511,
+      512
+    ],
+    "3.2.6 Software Clients": [
+      498,
+      499,
+      500,
+      501,
+      502,
+      503,
+      504,
+      505,
+      506,
+      507
+    ],
+    "3.3.2 Setup and Control": [
+      549,
+      550
+    ]
+  },
+  "gate_excluded": []
+}

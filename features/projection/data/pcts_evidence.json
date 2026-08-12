@@ -1,0 +1,251 @@
+{
+  "_meta": {
+    "captured_at": "2026-08-12T08:30:00+08:00",
+    "authority": "R-P11 — 證據綁定。PCTS 相關列的步驟修訂，僅在該測項的操作路徑已由實機取證確認後方得進行。本檔即該證據。status != 'confirmed' 的測項，其相關列在 L-PJ7 下仍為 ABORT。",
+    "method": "adb 唯讀取證（下放包 §6.2 方式 B）。逐頁展開選單 + uiautomator dump；`Last test results` 為唯讀檢視鈕，用於取得結果顯示位置。",
+    "scope_note": "只抓「怎麼到達」，不抓「跑出什麼」。任何測項均未被執行至完成，無任何結果被寫入。",
+    "deviation": {
+      "what": "點擊 MT1 測項列（座標 400,1333）意圖開啟說明頁，該點擊疑似觸發 TestRunnerService 嘗試啟動測項。",
+      "evidence": "logcat 08-12 08:37:10 `E PCTS.SERVICE: Car not connected or lost focus.` → 08:37:20 `E PCTS.SERVICE: Could not restore ReceiverTestActivity on primary display` + `TimeoutException: Waited 10000 milliseconds`，堆疊出自 `pctsverifier.testrunner.TestRunnerService`。時間與該次點擊相符，無法排除因果。",
+      "outcome": "測項未執行。投屏 session 未連線，10 秒後逾時中止；MT1 事後仍無 `Last test results` 鈕，全清單亦無新增結果記錄，logcat 無任何 `Finished`／`PASSED`／`FAILED`。",
+      "boundary": "下放包 §6.2 禁止「執行任何 PCTS 測項本身」。此點擊已觸及該界線，屬逾越授權範圍。",
+      "response": "發現後立即停止點擊任何測項列；其後全部取證改為只展開分類標題與使用 `Last test results` 唯讀鈕。MT1 / D5 / WP43 因此維持 partial，未以推測補足（O-4）。"
+    },
+    "device": {
+      "serial": "56271FDCR003V2",
+      "model": "Pixel 10",
+      "product": "frankel",
+      "android": "16",
+      "sdk": "36"
+    },
+    "head_unit": {
+      "fingerprint_shown_in_app": "Uconnect/R1L/R1L:4.5/R01-01-0/multi",
+      "note": "PCTS 首頁 Fingerprint 欄。C2 歷史記錄另顯示兩種 build：`Uconnect,DT25,4.5,2025,Mitsubishi Electric Corporation,R1L,multi,R01.01.0` 與 `…,DT25,1.7,…,R370.02.3`。回報的 model 為 **DT25**，而本 feature 的目標車型為 HDCC27（workbook 欄 S `HDCC27 Atl-Hi`）。取證台架身分與目標車型不同，僅記錄，未據以推論任何測試結果。"
+    },
+    "package": "com.google.android.projection.gearhead.pctsverifier",
+    "package_version": "5.1-prod.922397802",
+    "package_version_code": 5500,
+    "install_time": "2026-06-22 17:48:49",
+    "apk_sha256": "dd7b26a6a4cd14ceff72eb9424d6ef5ed5eea2175f3c09b77dde3e773dbe2b24",
+    "apk_path": "inputs/pcts_verifier_release_signed - 922397802.apk",
+    "apk_match": "檔名建號 922397802 與裝置上安裝的 versionName `5.1-prod.922397802` 一致。",
+    "launcher_activity": "com.google.android.projection.gearhead.pctsverifier/.shell.TestListActivity",
+    "total_tests_in_app": 431,
+    "categories": [
+      "AudioTests",
+      "BluetoothTests",
+      "CarInfoTests",
+      "ConnectivityReliabilityTests",
+      "DisplayTests",
+      "InputTests",
+      "IntegrationBenchTests",
+      "IntegrationInVehicleTests",
+      "MediaPlaybackTests",
+      "MicrophoneTests",
+      "NavigationStatusTests",
+      "NavigationFocusTests",
+      "PhoneCallTests",
+      "PerformanceTests",
+      "SpeechRecognitionTests",
+      "IgnitionCycleTests",
+      "TouchpadTests",
+      "UsbConnectivityTests",
+      "VideoTests",
+      "VolumeControlTests",
+      "VendorExtensionTests",
+      "VoiceSessionTests",
+      "WifiProjectionTests",
+      "WifiPreconnectProjectionTests"
+    ],
+    "partial_resolution": "補裁 #4（2026-08-12）：MT1 / D5 / WP43 三項 partial 缺的操作細節不另辦人工確認，改為在該測項首次實際執行時一併回填本檔並將 status 改為 confirmed。L-PJ7 讀取本檔的 status，故解鎖不需修改 gate。"
+  },
+  "tests": [
+    {
+      "id": "C2",
+      "status": "confirmed",
+      "full_title": "C2 - Confirm HU Vehicle Information",
+      "menu_path": [
+        "PCTS Verifier (TestListActivity)",
+        "CarInfoTests",
+        "C2 - Confirm HU Vehicle Information"
+      ],
+      "activity": "com.google.android.projection.gearhead.pctsverifier/.shell.TestListActivity",
+      "result_location": "測項列右側的 `Last test results` 鈕（ImageButton，與測項名同列）→ 開啟 `Test History for C2` 畫面 → `Log` 區塊。",
+      "result_field_format": "Log 內每次擷取一行 `Found CarInfo: <make>,<model>,<protocol/ver>,<model year>,<manufacturer>,<HU model>,<multi>,<sw build>`，測項結束時另有一行 `Finished C2: PASSED`。",
+      "result_sample_observed": "Found CarInfo: Uconnect,DT25,4.5,2025,Mitsubishi Electric Corporation,R1L,multi,R01.01.0",
+      "serves_rows": [
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        271
+      ],
+      "ui_dump": [
+        "data/pcts_ui/c2_carinfo.xml",
+        "data/pcts_ui/c2_results.xml"
+      ],
+      "notes": "§6.1 所需三項全部取得：選單層級 ✅、報告顯示位置 ✅、service discovery 回應欄位讀取位置 ✅。這 13 列逐列驗 service discovery response 的個別欄位（Vehicle make 等），而 `Found CarInfo:` 這一行即為全部欄位的來源，逗號分隔。欄位與 workbook 欄位名的逐一對應尚未確認 —— Phase 4 撰寫步驟前須先比對 CarPlay/AA 協定的 CarInfo 欄位順序定義。CarInfoTests 完整清單：C1, C2, C3, C4, C5, C6, C7, C8, C10, C11, C12（無 C9）。"
+    },
+    {
+      "id": "NavigationStatusTests",
+      "status": "confirmed",
+      "full_title": "NavigationStatusTests（分類本身即測項組，非單一測項）",
+      "menu_path": [
+        "PCTS Verifier (TestListActivity)",
+        "NavigationStatusTests"
+      ],
+      "activity": "com.google.android.projection.gearhead.pctsverifier/.shell.TestListActivity",
+      "result_location": "每一個 N 測項列右側各有獨立的 `Last test results` 鈕，15 項全部具備（表示皆曾執行過）。",
+      "member_tests": [
+        "N1 - Head Unit Receives Inactive Navigation Status",
+        "N3 - Confirm Instrument Cluster Parameters",
+        "N5 - Head Unit Receives straight maneuver types for enhanced navigation metadata",
+        "N6 - Head Unit Receives turn maneuver types for enhanced navigation metadata",
+        "N7 - Head Unit Receives on ramp and off ramp maneuver types for enhanced navigation metadata",
+        "N8 - Head Unit Receives roundabout maneuver types for enhanced navigation metadata",
+        "N9 - Head Unit Receives fork, merge and destination maneuver types for enhanced navigation metadata",
+        "N10 - Head Unit Receives unknown maneuver type for enhanced navigation metadata",
+        "N11 - Head Unit Receives long string for enhanced navigation metadata",
+        "N12 - Head Unit handles rerouting navigation status",
+        "N13 - Head Unit Receives multiple maneuver types for enhanced navigation metadata",
+        "N14 - Head Unit displays navigation data",
+        "N15 - Head Unit is subscribed to navigation data updates",
+        "N16 - Head Unit correctly displays unknown navigation data",
+        "N17 - Head Unit with selectable navigation widget sends keycode"
+      ],
+      "n_range_actual": "N1, N3, N5-N17（共 15 項；無 N2、無 N4）",
+      "n_range_claimed_by_workbook": "N1 / N3 / N5-N17",
+      "n_range_match": true,
+      "serves_rows": [
+        371,
+        376,
+        377,
+        378,
+        379
+      ],
+      "ui_dump": [
+        "data/pcts_ui/nav_tests.xml",
+        "data/pcts_ui/nav_status.xml",
+        "data/pcts_ui/nav_status2.xml"
+      ],
+      "notes": "§6.1 兩項全部取得：測項組名稱 ✅、N 編號實際範圍 ✅ —— workbook 所稱的 N1 / N3 / N5–N17 與 app 內實際清單**逐項相符**，無編號不存在的問題。但 5 服務列中的 4 列（376–379，即 NR1L-PROJ-374~377）依 R-P11 因 `Not in ASW-R1 Release Scope` 一律維持不動，實際可修訂者僅 row 371。"
+    },
+    {
+      "id": "MT1",
+      "status": "partial",
+      "full_title": "MT1 - Microphone Sensitivity",
+      "menu_path": [
+        "PCTS Verifier (TestListActivity)",
+        "MicrophoneTests",
+        "MT1 - Microphone Sensitivity"
+      ],
+      "activity": "com.google.android.projection.gearhead.pctsverifier/.shell.TestListActivity",
+      "result_location": null,
+      "serves_rows": [
+        521,
+        522
+      ],
+      "ui_dump": [
+        "data/pcts_ui/mt1_microphone.xml",
+        "data/pcts_ui/mt1_detail.xml"
+      ],
+      "notes": "§6.1 三項中僅取得一項。選單層級 ✅（MicrophoneTests 內含 MT1–MT4，MT1 名為 Microphone Sensitivity，與 row 521/522 的 Test Item「audio input sensitivity 90 dB SPL @ 1000 Hz → RMS 2500 for 16-bit」語意相符）。**「是否確有 OK 鈕啟動自動量測」未取得**、**「量測值顯示位置」未取得** —— MT1 從未被執行過（無 `Last test results` 鈕），而確認 OK 鈕需開啟測項頁，該動作已證實會觸發 TestRunnerService（見 _meta.deviation），故停止。依 O-4 不以推測補足。此兩列在 L-PJ7 下維持 ABORT，待人工確認補足後方可解鎖。 **補裁 #4（2026-08-12）：併入首次實跑回填。**"
+    },
+    {
+      "id": "D5",
+      "status": "partial",
+      "full_title": "D5 - Confirm HU Displays 24-Bit Color",
+      "menu_path": [
+        "PCTS Verifier (TestListActivity)",
+        "DisplayTests",
+        "D5 - Confirm HU Displays 24-Bit Color"
+      ],
+      "activity": "com.google.android.projection.gearhead.pctsverifier/.shell.TestListActivity",
+      "result_location": null,
+      "serves_rows": [
+        441
+      ],
+      "ui_dump": [
+        "data/pcts_ui/d5_display.xml",
+        "data/pcts_ui/d5_display2.xml"
+      ],
+      "notes": "選單層級 ✅。**「color depth 與 refresh rate 顯示位置」未取得** —— D5 從未被執行過（無 `Last test results` 鈕）。更重要的是：**D5 只涵蓋 color depth，不涵蓋 refresh rate**（標題逐字為 Confirm HU Displays 24-Bit Color），而 row 441 的步驟 4/6 要求讀取並確認 60 Hz。DisplayTests 全 17 項（D2–D6, D8–D19，無 D1/D7）中無任何 refresh rate 測項；能對應 60 Hz 者在 VideoTests：`V59 - Video Config 60 FPS` 與 `V8 - 60 FPS Rendering`。見 A-PJ20。 **補裁 #2（2026-08-12）：不指定 V59/V8，row 441 維持不動並入 RD-1（A-PJ20）。色深顯示位置依補裁 #4 併入首次實跑回填。**"
+    },
+    {
+      "id": "WP43",
+      "status": "partial",
+      "full_title": "WP43 - Verify MD can start wireless projection",
+      "menu_path": [
+        "PCTS Verifier (TestListActivity)",
+        "WifiProjectionTests",
+        "WP43 - Verify MD can start wireless projection"
+      ],
+      "activity": "com.google.android.projection.gearhead.pctsverifier/.shell.TestListActivity",
+      "result_location": null,
+      "serves_rows": [
+        267
+      ],
+      "ui_dump": [
+        "data/pcts_ui/wp43_wifiprojection.xml"
+      ],
+      "notes": "選單層級 ✅。測項標題與 row 267 的 Test Item（「HU 收到已連線 BT 裝置發起的無線 Android Auto 連線請求」）語意相符 —— MD 端發起無線投屏。**「提示流程步驟」未取得** —— row 267 步驟 3 寫「Follow all prompts shown by PCTS-WP43 on the phone」，該提示序列只有執行測項才會顯示，逾越 §6.2 授權範圍，故未取得。WifiProjectionTests 同分類另有 WP10/13/17/24/25/26/37/42/47。 **補裁 #4（2026-08-12）：併入首次實跑回填。**"
+    },
+    {
+      "id": "(unnumbered) PCTS video / display configuration test",
+      "status": "not_found",
+      "full_title": null,
+      "menu_path": null,
+      "activity": null,
+      "result_location": null,
+      "serves_rows": [
+        443
+      ],
+      "ui_dump": [
+        "data/pcts_ui/video_tests.xml",
+        "data/pcts_ui/video_tests2.xml",
+        "data/pcts_ui/d5_display.xml",
+        "data/pcts_ui/d5_display2.xml"
+      ],
+      "notes": "row 443（NR1L-PROJ-442）步驟 2 寫「Run the PCTS video / display configuration test」，未帶編號。app 內**無任何測項以此為名**。DisplayTests 17 項與 VideoTests 全清單皆已展開比對。與 row 443 的 Test Item（「All pixels must be visible to the end user. Square pixels are recommended.」）語意最接近者為 **`V45 - Video Config Pixel Aspect Ratio`**；同分類另有 `V46 - Video Config Viewing Distance`、`V47 - Video Config Preferred Resolution`、`V50 - Complex video test`。**未逕行認定** —— 依 O-4，指認測項編號屬填補來源未明述之內容。見 A-PJ21，待 Pei 裁。 **補裁 #3（2026-08-12）：不指定 V45，row 443 比照 leaf 146 維持不動並入 RD-1（A-PJ21）。**"
+    }
+  ],
+  "row_unlock_status": {
+    "_rule": "R-P11 + L-PJ7 — status == 'confirmed' 的測項，其服務列解鎖可修訂；其餘維持 ABORT。frozen_rows 無論取證狀態一律 ABORT。",
+    "unlocked": [
+      255,
+      256,
+      257,
+      258,
+      259,
+      260,
+      261,
+      262,
+      263,
+      264,
+      265,
+      266,
+      271,
+      371
+    ],
+    "still_locked": {
+      "441": "A-PJ20 CLOSED — 補裁 #2 裁定不指定 V59/V8，維持不動並入 RD-1（非待辦，已定案）",
+      "443": "A-PJ21 CLOSED — 補裁 #3 裁定不指定 V45，維持不動並入 RD-1（非待辦，已定案）",
+      "521": "MT1 partial — 補裁 #4：併入首次實跑回填",
+      "522": "MT1 partial — 補裁 #4：併入首次實跑回填",
+      "267": "WP43 partial — 補裁 #4：併入首次實跑回填",
+      "376": "R-P11 環境阻塞：Not in ASW-R1 Release Scope",
+      "377": "R-P11 環境阻塞：Not in ASW-R1 Release Scope",
+      "378": "R-P11 環境阻塞：Not in ASW-R1 Release Scope",
+      "379": "R-P11 環境阻塞：Not in ASW-R1 Release Scope"
+    },
+    "summary": "23 列中解鎖 14 列。其餘 9 列：4 列環境阻塞（376–379，無條件）、3 列待首次實跑回填（267 / 521 / 522）、2 列已定案維持不動並入 RD-1（441 / 443）。"
+  }
+}

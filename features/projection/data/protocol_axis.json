@@ -1,0 +1,3915 @@
+[
+  {
+    "r": 4,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 5,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 6,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 7,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 8,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 9,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 10,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 11,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 12,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 13,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 14,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 15,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 16,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 17,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 18,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 19,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 20,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 21,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 22,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 23,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 24,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 25,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 26,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 27,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 28,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 29,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 30,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 31,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 32,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 33,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 34,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 35,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 36,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 37,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 38,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 39,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 40,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 41,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 42,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 43,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 44,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 45,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 46,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 47,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 48,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 49,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 50,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 51,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 52,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 53,
+    "ts": "Disconnection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 54,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 55,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 56,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 57,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 58,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 59,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 60,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 61,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 62,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 63,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 64,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 65,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 66,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 67,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 68,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 69,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 70,
+    "ts": "Connection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 71,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 72,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 73,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 74,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 75,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 76,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 77,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 78,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 79,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 80,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 81,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 82,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 83,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 84,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 85,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 86,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 87,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 88,
+    "ts": "Connection",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 89,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 90,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 91,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 92,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 93,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 94,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 95,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 96,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 97,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 98,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 99,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 100,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 101,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 102,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 103,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 104,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 105,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 106,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 107,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 108,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 109,
+    "ts": "Performance",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 110,
+    "ts": "Performance",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 111,
+    "ts": "Performance",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 112,
+    "ts": "Performance",
+    "tg": "Audio Management",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 113,
+    "ts": "Performance",
+    "tg": "Audio Management",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 114,
+    "ts": "Performance",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 115,
+    "ts": "Performance",
+    "tg": "Touch",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 116,
+    "ts": "Performance",
+    "tg": "Touch",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 117,
+    "ts": "Performance",
+    "tg": "Audio Management",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 118,
+    "ts": "Performance",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 119,
+    "ts": "Wireless Coexistence",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 120,
+    "ts": "Wireless Coexistence",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 121,
+    "ts": "Wireless Coexistence",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 122,
+    "ts": "Wireless Coexistence",
+    "tg": "WiFi",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 123,
+    "ts": "Projection Launch",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 124,
+    "ts": "Projection Launch",
+    "tg": "WiFi",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 125,
+    "ts": "Projection Launch",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 126,
+    "ts": "Projection Launch",
+    "tg": "WiFi",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 127,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 128,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 129,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 130,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 131,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 132,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 133,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 134,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 135,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 136,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 137,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 138,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 139,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 140,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 141,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 142,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 143,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 144,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 145,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 146,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 147,
+    "ts": "Voice Recognition",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 148,
+    "ts": "Voice Recognition",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 149,
+    "ts": "Projection Display",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 150,
+    "ts": "Projection Display",
+    "tg": "Media Player",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 151,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 152,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 153,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 154,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 155,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 156,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 157,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 158,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 159,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 160,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 161,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 162,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 163,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 164,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 165,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 166,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 167,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 168,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 169,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 170,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 171,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 172,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 173,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 174,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 175,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 176,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 177,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 178,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 179,
+    "ts": "Day/Night Mode",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 180,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 181,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 182,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 183,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 184,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 185,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 186,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 187,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 188,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 189,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 190,
+    "ts": "Day/Night Mode",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 191,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 192,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 193,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 194,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 195,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 196,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 197,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 198,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 199,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 200,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 201,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 202,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 203,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 204,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 205,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 206,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 207,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 208,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 209,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 210,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 211,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 212,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 213,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 214,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 215,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 216,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 217,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 218,
+    "ts": "Knob",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 219,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 220,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 221,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 222,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 223,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 224,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 225,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 226,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 227,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 228,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 229,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 230,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 231,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 232,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 233,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 234,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 235,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 236,
+    "ts": "Vehicle Signal Forwarding",
+    "tg": "GPS",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 237,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 238,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 239,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 240,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 241,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 242,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 243,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 244,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 245,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 246,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 247,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 248,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 249,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 250,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 251,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 252,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 253,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 254,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 255,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 256,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 257,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 258,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 259,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 260,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 261,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 262,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 263,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 264,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 265,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 266,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 267,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 268,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 269,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 270,
+    "ts": "Connection",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 271,
+    "ts": "Connection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 272,
+    "ts": "Connection",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 273,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 274,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 275,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 276,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 277,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 278,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 279,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 280,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 281,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 282,
+    "ts": "Disconnection",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 283,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 284,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 285,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 286,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 287,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 288,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 289,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 290,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 291,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 292,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 293,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 294,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 295,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 296,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 297,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 298,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 299,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 300,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 301,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 302,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 303,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 304,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 305,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 306,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 307,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 308,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 309,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 310,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 311,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 312,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 313,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 314,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 315,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 316,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 317,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 318,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 319,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 320,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 321,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 322,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 323,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 324,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 325,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 326,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 327,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 328,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 329,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 330,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 331,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 332,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 333,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 334,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 335,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 336,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 337,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 338,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 339,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 340,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 341,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 342,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 343,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 344,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 345,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 346,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 347,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 348,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 349,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 350,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 351,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 352,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 353,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 354,
+    "ts": "Disconnection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 355,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+iPod",
+    "transport": "Wired"
+  },
+  {
+    "r": 356,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+iPod",
+    "transport": "Wired"
+  },
+  {
+    "r": 357,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+iPod",
+    "transport": "Wired"
+  },
+  {
+    "r": 358,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+iPod",
+    "transport": "Wired"
+  },
+  {
+    "r": 359,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay+iPod",
+    "transport": "Wired"
+  },
+  {
+    "r": 360,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 361,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 362,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 363,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 364,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 365,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 366,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 367,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 368,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 369,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 370,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 371,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 372,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 373,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 374,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 375,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 376,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 377,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 378,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 379,
+    "ts": "Cluster Navigation",
+    "tg": "GPS",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 380,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 381,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 382,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 383,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 384,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 385,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 386,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 387,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 388,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 389,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 390,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 391,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 392,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 393,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 394,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 395,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 396,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 397,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 398,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 399,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 400,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 401,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 402,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 403,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 404,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 405,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 406,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 407,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 408,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 409,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 410,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 411,
+    "ts": "Projection Detection",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 412,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 413,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 414,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 415,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 416,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 417,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 418,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 419,
+    "ts": "Device Manager",
+    "tg": "Device Manager",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 420,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 421,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 422,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 423,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 424,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 425,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 426,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 427,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 428,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 429,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 430,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 431,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 432,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 433,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 434,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 435,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 436,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 437,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 438,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 439,
+    "ts": "Projection Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 440,
+    "ts": "Projection Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 441,
+    "ts": "Projection Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 442,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 443,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 444,
+    "ts": "Projection Apps",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 445,
+    "ts": "Projection Apps",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 446,
+    "ts": "Projection Apps",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 447,
+    "ts": "Projection Apps",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 448,
+    "ts": "Projection Apps",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 449,
+    "ts": "Projection Apps",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 450,
+    "ts": "Projection Apps",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 451,
+    "ts": "Projection Apps",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 452,
+    "ts": "Projection Apps",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 453,
+    "ts": "Projection Apps",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 454,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 455,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 456,
+    "ts": "Projection Launch",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 457,
+    "ts": "Projection Launch",
+    "tg": "Media Player",
+    "protocol": "CarPlay+AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 458,
+    "ts": "USB Device",
+    "tg": "Media Player",
+    "protocol": "(無)",
+    "transport": "Wired"
+  },
+  {
+    "r": 459,
+    "ts": "USB Device",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 460,
+    "ts": "USB Device",
+    "tg": "Media Player",
+    "protocol": "AndroidAuto",
+    "transport": "Wired"
+  },
+  {
+    "r": 461,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 462,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 463,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 464,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 465,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 466,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 467,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 468,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 469,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 470,
+    "ts": "HMI Display",
+    "tg": "Touch",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 471,
+    "ts": "Projection Apps",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 472,
+    "ts": "Projection Apps",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 473,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 474,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 475,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 476,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 477,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 478,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 479,
+    "ts": "Projection Launch",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 480,
+    "ts": "USB Device",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "Wired"
+  },
+  {
+    "r": 481,
+    "ts": "Connection",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 482,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 483,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 484,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 485,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 486,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 487,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 488,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 489,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 490,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 491,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 492,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 493,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 494,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 495,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 496,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 497,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 498,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 499,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 500,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 501,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 502,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 503,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 504,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 505,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 506,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 507,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 508,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 509,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "(無)"
+  },
+  {
+    "r": 510,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 511,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 512,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "CarPlay",
+    "transport": "Wireless"
+  },
+  {
+    "r": 513,
+    "ts": "Projection Launch",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 514,
+    "ts": "Projection Launch",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 515,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 516,
+    "ts": "Projection Launch",
+    "tg": "Device Manager",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 517,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 518,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 519,
+    "ts": "Projection Audio",
+    "tg": "Audio Management",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 520,
+    "ts": "Projection Audio",
+    "tg": "SSE / ECNR",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 521,
+    "ts": "Projection Audio",
+    "tg": "SSE / ECNR",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 522,
+    "ts": "Projection Audio",
+    "tg": "SSE / ECNR",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 523,
+    "ts": "Projection Audio",
+    "tg": "SSE / ECNR",
+    "protocol": "(無)",
+    "transport": "(無)"
+  },
+  {
+    "r": 524,
+    "ts": "Projection Audio",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 525,
+    "ts": "Projection Audio",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 526,
+    "ts": "Projection Audio",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 527,
+    "ts": "Projection Audio",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 528,
+    "ts": "Projection Audio",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 529,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 530,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 531,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "AndroidAuto",
+    "transport": "Wireless"
+  },
+  {
+    "r": 532,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 533,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 534,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 535,
+    "ts": "HMI Display",
+    "tg": "Media Player",
+    "protocol": "AndroidAuto",
+    "transport": "(無)"
+  },
+  {
+    "r": 536,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 537,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 538,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 539,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 540,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 541,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 542,
+    "ts": "HMI Display",
+    "tg": "Bluetooth",
+    "protocol": "(無)",
+    "transport": "Wireless"
+  },
+  {
+    "r": 543,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 544,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 545,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 546,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 547,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 548,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 549,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 550,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 551,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 552,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 553,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 554,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 555,
+    "ts": "HMI Display",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 556,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 557,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 558,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 559,
+    "ts": "HMI Display",
+    "tg": "Android Auto Wired and Wireless",
+    "protocol": "AndroidAuto",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 560,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 561,
+    "ts": "Pairing",
+    "tg": "Bluetooth",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  },
+  {
+    "r": 562,
+    "ts": "(空)",
+    "tg": "Carplay Wired and Wireless",
+    "protocol": "CarPlay",
+    "transport": "Wired+Wireless"
+  }
+]
