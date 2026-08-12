@@ -2,8 +2,10 @@
 
 > 依 R-P53 檢查表 v2（R-P54 / R-P55 / R-P58 修訂）
 > 執行日期：2026-08-12
-> 腳本：`features/projection/scripts/dryrun_v2.py`
-> 明細：`features/projection/data/dryrun_v2.json`
+> 腳本：`features/projection/scripts/dryrun_v6.py`（本輪為 `dryrun_v2.py`，其後
+> 逐版演進為 v6；中間版未入庫且已刪除）
+> 明細：`features/projection/data/dryrun_v6.audit.json`（本輪產出之 `dryrun_v2.json`
+> 為中間版，含工作簿逐字內容故未入庫，已刪除）
 > **未寫回 xlsx、未執行任何 git 操作。** 修訂後全簿於記憶體組成（原簿 + 11 批次 + 7 補列）。
 
 ## 總結

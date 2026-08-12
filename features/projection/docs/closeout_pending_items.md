@@ -36,7 +36,7 @@
 三份皆為客戶工作簿之完整副本。目錄狀態為 `??`（未被忽略），
 **`git add -A` 會直接提交客戶原始檔**。
 
-### 1.2 `pcts_ui` 改為入庫 + 理由文字更正（R-P90）
+### 1.2 `pcts_ui` 改為入庫 + 理由文字更正（R-P90）· **已執行** (commit `9e190c7`)
 
 ```diff
 @@ 現行第 25–27 行 @@
@@ -198,8 +198,8 @@ feat(projection): add Layer 3 derivations, signal map, and evidence
 
 **4b 逐版中間態（建議只留最終版）**
 
-`data/dryrun_v2.json` ~ `dryrun_v5.json` — 其差異已完整記錄於各版報告，
-最終版為 `dryrun_v6.json`。
+`data/dryrun_v2.json` ~ `dryrun_v5.json` — **已刪除**。其差異完整記錄於各版報告；
+最終版之判定結構以去 prose 之 `dryrun_v6.audit.json` 入庫。
 
 **4c 依現行政策應排除**
 
@@ -216,7 +216,7 @@ feat(projection): centralise lint matchers and measurement conditions (R-P49, R-
 | `scripts/lint_defs.py` | M — 量測條件收編、`FROZEN_EXCEPTIONS`、`SPEC_ANCHOR`、`resolve_spec_anchor` |
 | `scripts/writeback.py` | ?? — W-0 ~ W-9 + 備份還原 |
 | `scripts/dryrun_v6.py` | ?? — **最終版** |
-| `scripts/dryrun_v3.py` / `dryrun_v4.py` | ?? — **建議刪除**（中間版；v5 已改名為 v6） |
+| `scripts/dryrun_v3.py` / `dryrun_v4.py` | **已刪除**（中間版；v5 已改名為 v6） |
 
 > 本組單獨成 commit 之理由（R-P49 / R-P65 的重點就是單一實作，獨立 commit 使
 > 日後 blame 直接指向該裁決）成立且有實測支持：本輪四項過程缺陷全部源於量測條件
@@ -228,7 +228,10 @@ feat(projection): centralise lint matchers and measurement conditions (R-P49, R-
 docs(projection): add Phase 5 batch audit records
 ```
 
-**尚不成立。** `batches/` 現受排除，理由為含逐字 prose（非「可再生」）。
+**已成立** —— `data/batch_audit_trail.json` 已產出並入庫（commit `fa86a27`），565 列 × 12 批之
+verdict / reason / changed，逐字命中 0。以下為原始判斷，保留供追溯：
+
+`batches/` 現受排除，理由為含逐字 prose（非「可再生」）。
 `.gitignore` 已寫出解法：輸出 `_meta` + `row` / `tc_id` / `verdict` / `reason` /
 `changed` 而**不含 `before` / `after` 全文**。
 

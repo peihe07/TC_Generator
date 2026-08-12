@@ -2,8 +2,10 @@
 
 > 依 R-P59 ~ R-P66
 > 執行日期：2026-08-12
-> 腳本：`features/projection/scripts/dryrun_v3.py`
-> 明細：`features/projection/data/dryrun_v3.json`
+> 腳本：`features/projection/scripts/dryrun_v6.py`（本輪為 `dryrun_v3.py`，其後
+> 逐版演進為 v6；中間版未入庫且已刪除）
+> 明細：`features/projection/data/dryrun_v6.audit.json`（本輪產出之 `dryrun_v3.json`
+> 為中間版，含工作簿逐字內容故未入庫，已刪除）
 > **未寫回交付用 xlsx、未執行任何 git 操作。** §1 之寫入實測在 scratchpad 複本上進行。
 
 ## 總結

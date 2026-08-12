@@ -664,7 +664,8 @@ raise，不留半成品。**預設只在複本執行；對交付用檔案執行�
 775 → 0，不可逆（A-PJ60）。
 
 列號對照表見 `features/projection/data/d5_blocked_rows.json`，逐項明細見
-`features/projection/data/dryrun_v2.json`。
+`features/projection/data/dryrun_v6.audit.json`（各版之 `dryrun_vN.json` 為中間版，
+含工作簿逐字內容故未入庫，已刪除）。
 
 ## 6. `[ADD]` Column map
 

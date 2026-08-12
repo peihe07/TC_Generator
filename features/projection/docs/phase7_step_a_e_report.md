@@ -113,7 +113,8 @@ r153 NR1L-PROJ-151
 | `Remarks` 純附加 | **30** | R-P75 |
 | **合計** | **76** | |
 
-逐列清單見 `data/dryrun_v5.json` 之 `D-2.exception_*`。
+逐列清單見 `data/dryrun_v6.audit.json` 之 `D-2.exception_*`（`dryrun_v5.json` 為
+中間版，未入庫且已刪除；其 76 列例外清單與最終版相同）。
 
 ### DR#18 之 12 列現況（上繳第 10 項）
 
