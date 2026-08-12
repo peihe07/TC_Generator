@@ -63,12 +63,28 @@ def vf176_signals(register: dict) -> dict:
             if not k.startswith("_")}
 
 
-def resolve_signal(msg: str, sig: str, dbc_fd, dbc_bh, vf176: dict):
-    """L-PJ1 resolution across BOTH authorities.
+def resolve_signal(msg: str, sig: str, dbc_fd, dbc_bh, vf176: dict, proxi=None):
+    """L-PJ1 resolution, PROXI first (R-P57).
 
-    Returns (authority, value_table) or (None, None) when the signal resolves
-    nowhere — that case ABORTs.
+    Resolution order matters because a PROXI configuration word written in its
+    full formal shape — `Car_Configuration_15.Vehicle_Line_Configuration` —
+    is textually indistinguishable from a CAN `MESSAGE.Signal`. B9 wrote that
+    formal shape into two Procedures and L-PJ1 tried to resolve it against the
+    DBCs, failing. R-P57 rules that the gate adapts, not the wording: writing
+    a less precise form to dodge a regex is the wrong direction.
+
+      1. PROXI parameter table (incl. the `Group.Param` full form)
+         → PROXI configuration word; L-PJ2 owns it, L-PJ1 stands down
+      2. DBC ∪ VF176 register  → CAN / VF176 signal
+      3. neither               → ABORT
+
+    Returns (authority, value_table); authority None means ABORT.
+    `proxi` is {parameter_name: value_table_text}; pass None to skip step 1.
     """
+    if proxi:
+        # Both `Group.Param` and the bare `Param` are legal PROXI spellings.
+        if sig in proxi or f"{msg}.{sig}" in proxi or msg in proxi:
+            return "PROXI", {}
     for label, (msgs, vals) in (("FD", dbc_fd), ("CAN-B", dbc_bh)):
         if msg in msgs and sig in msgs[msg]:
             return label, vals.get(sig, {})
@@ -115,8 +131,10 @@ FROZEN_ROWS = {376, 377, 378, 379}        # feature.yaml done_region.frozen_rows
 BASELINE = {
     "L-PJ5 banned verbs": 5,      # observe 1 (r150), check whether 3 (r89/98/542), inspect 1 (r230)
     "L-PJ6 vague": 10,            # 9 rows, r520 hits in both PROC and ER
-    "L-PJ9 generic tool": 15,     # 7 Performance + 3 Voice Recognition + 5 HMI Display
-                                  # (R-P46 extension #2, 2026-08-12: "A method to")
+    "L-PJ9 generic tool": 17,     # 7 Performance + 3 VR + 5 HMI Display + 2 Day/Night
+                                  # (R-P46 ext#2 "A method to"; R-P56: B2's CAN-step
+                                  # rewrite removed the literal "CAN tool", unmasking
+                                  # r177/r188 — 17 is correct, 15 was masked)
     "L-PJ10 defect placeholders": 5,   # r36, r111, r124, r149, r225
     "L-PJ10 parameter placeholders": 8,  # r60, r61, r317-r322
     "step cross-references": 30,  # all backward; R-P39 leaves them alone

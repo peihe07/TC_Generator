@@ -1443,7 +1443,7 @@ B6 / B7 的禁詞在兩種口徑下**皆為 0**，無批次被誤判；B8 的 2 
 
 ---
 
-### A-PJ49 — VF176 訊號不在兩份 DBC 內：L-PJ1 的權威範圍問題 · **PENDING — 停下** (2026-08-12)
+### A-PJ49 — VF176 訊號不在兩份 DBC 內：L-PJ1 的權威範圍問題 · **CLOSED by R-P51** (2026-08-12)
 
 B10′ 之 `Cluster Navigation` 9 列（r370, r372–r379）的 Procedure 使用
 `TELEMATIC_NAV_INFO.*` 與 `TELEMATIC_DISPLAY_INFO.*`，**兩份 DBC 皆無**。
@@ -1482,13 +1482,24 @@ canon §5a 第九條（單一來源的涵蓋範圍 ≠ 其類別）第三次命�
 
 **處置 —— 9 列全部維持不動**（其中 r376–379 另因 frozen 無論如何不動）。
 
-**Proposed** —— (a) L-PJ1 增列 VF176 為第三解析來源，對 `TELEMATIC_NAV_INFO`
-／`TELEMATIC_DISPLAY_INFO` 前綴之訊號改對該文件驗證；或 (b) 取得 VF176 所屬
-匯流排之 DBC。**未自行擴充 gate**，待 Pei 裁。
+**處置 — CLOSED by R-P51**：採提案 (a)，L-PJ1 權威擴充為 **DBC ∪ VF176
+逐訊號登記表**，7 個訊號已人工登記於
+`signal_map.json → vf176_signals`。負向驗證通過（未登記者仍 ABORT）。
+
+**Pei 補述（逐字）**：
+
+> 來源文件 `Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx` 於 Phase 0 即已落地 `inputs/`，本 anomaly 成因確認為 **L-PJ1 權威清單不完整**，非缺件。不另開 DR。
+
+**這一點的分辨很重要**：前兩次（R-P8′ / R-P47）的處置方向都是**限縮**權威，
+這次是**擴充** —— 因為缺的不是資料而是 gate 的認識範圍。同一條 canon §5a
+第九條，三次命中、兩種相反的修法。
+
+**5 列最終零變更**：它們全是 READ 操作，訊號名稱本就正確；R-P51 解決的是
+gate 會誤 ABORT 它們。
 
 ---
 
-### A-PJ50 — L-PJ9 樣式清單第二次不完備 · **PENDING** (2026-08-12)
+### A-PJ50 — L-PJ9 樣式清單第二次不完備 · **CLOSED by R-P46** (2026-08-12)
 
 r542（HMI Display）之 PRE 第 2 項為
 `A method to read the AAP ByeByeRequest message and ByeByeReason is available`
@@ -1504,8 +1515,46 @@ r542（HMI Display）之 PRE 第 2 項為
 新增命中列」，屬需要重跑全簿的動作，本批不逕行。r542 之 Procedure 已依
 L-PJ5 修訂（`check whether` → 純讀取），PRE 之泛稱維持不動。
 
-**Proposed** —— 下批前將 `A method to` 併入 `lint_defs.GENERIC_TOOL_PATTERNS`
-並重跑全簿更新基線。待 Pei 裁。
+**處置 — CLOSED by R-P46（可增補清單機制第二次生效）**：`A method to` 已併入
+`lint_defs.GENERIC_TOOL_PATTERNS`，全簿重跑，基線 **10 → 15**，新增命中
+**r541 / r542 / r543 / r544 / r545**（皆為 HMI Display 之 AAP ByeByeRequest
+與 video focus state 讀取方法）。
+
+**連帶效應**：r541／r543／r544／r545 原分在 B11′，因此次擴充**重分類**併入
+B10′ —— 屬 gate 擴充導致，非分類條件錯誤。R-P46 之「每次擴充須記錄新增樣式、
+擴充前後命中數、新增命中列」已落於 `DECISIONS.md` §0.16 之擴充記錄表第二筆。
+
+---
+
+### A-PJ51 — 跨輪次進度數字未回頭對帳，`剩餘 173` 連續三輪傳遞 · **CLOSED** (2026-08-12)
+
+裁決逐字：
+
+> 跨輪次沿用之進度數字未回頭與總數對帳，致 `剩餘列數 = 173` 連續三輪傳遞，實際為 195。
+> 責任歸屬：**分析層（下放包數字）與執行層（上繳包數字）共同**。
+> 處置：進度數字每輪須以 `總數 − 已處理 − 阻塞` 重算，不得沿用前輪差值。
+
+**成因** —— 差額 22 為 **B1 之 22 列被重複扣除**。雙方均未察，因**雙方皆沿用
+前輪結論而非自總數重算**。
+
+**正確基數**（本輪起一律以此重算）：
+
+```
+總資料列                    559
+r562 殘樁（R-P19 刪除）      −1  → 558
+已處理 B1–B4, B6–B10′        365
+B5 阻塞                       42
+B11′                        151
+                          ─────
+校驗              365 + 42 + 151 = 558 ✅
+```
+
+**這與前面十一條分析層錯誤都不同型**：A-PJ19／27／30／37 是量測條件未言明，
+A-PJ47 是因果假設錯誤，A-PJ48 是工具實作缺陷 —— **本條沒有任何一方犯錯，
+錯的是「沿用」這個動作本身**。數字第一次算錯之後，每一輪都忠實地把它傳下去，
+而且**每一輪的內部運算都是正確的**（173 − 已處理 = 剩餘，算術無誤）。
+
+**累計錯誤不會自行暴露，只會持續傳遞。** 已升格為 canon §5a 第十條。
 
 ## Assumption markers
 
@@ -1515,7 +1564,7 @@ marker has been emitted. Inline format in generated JSON reasoning:
 
 ## Status summary
 
-49 條登記；**33 條 CLOSED、1 條 RETRACTED、15 條 PENDING**。
+51 條登記；**36 條 CLOSED、1 條 RETRACTED、14 條 PENDING**。
 
 | ID | 狀態 | 阻塞 | 處置 |
 |---|---|---|---|
@@ -1562,8 +1611,9 @@ marker has been emitted. Inline format in generated JSON reasoning:
 | A-PJ42 | **PENDING** | 2 列（r140/r561） | PRE 與 PROC/ER 矛盾；r139 已更正 |
 | A-PJ43 | **PENDING** | 0 | r131/r132 五欄相同；RD-1 |
 | A-PJ44 | **CLOSED by R-P46** | 3 列（併 DR#13） | L-PJ9 改為可增補清單；7→10 列 |
-| **A-PJ49** | **PENDING — 停下** | 9 列（Cluster Navigation） | VF176 訊號不在 DBC；L-PJ1 權威範圍 |
-| A-PJ50 | **PENDING** | 1 列（r542 PRE） | L-PJ9 樣式清單第二次不完備 |
+| A-PJ49 | **CLOSED by R-P51** | 0 | L-PJ1 權威擴充為 DBC ∪ VF176 登記表 |
+| A-PJ50 | **CLOSED by R-P46** | 5 列（併 DR#13） | L-PJ9 樣式增補；基線 10→15 |
+| A-PJ51 | **CLOSED** | 0 | 進度數字跨輪傳遞；canon §5a 第十條 |
 | A-PJ48 | **CLOSED** | 0 | 執行端掃描漏 `re.I`；僅影響 B8，已修訂 |
 | A-PJ47 | **CLOSED** | 0 | 分析層預期錯誤：不得以執行狀態預測步驟品質 |
 | **A-PJ45** | **PENDING — 停下** | **42 列（B5 全批）** | PROXI 值為測試矩陣車型代號，7 值全不在列舉內；DR#14 |

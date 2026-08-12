@@ -237,6 +237,31 @@ Certification Changes` 等），共 **115 列，佔 CFTS085 引用的 24%**。�
 Phase 4 修訂這 115 列時，O-1 的「不牴觸基本 spec」照樣以 `1.3.2.14`~`.18`
 為核對對象。把兩者混為一談會讓 24% 的 CFTS085 引用失去基準。
 
+#### §3e — L-PJ1 的權威來源是兩個，不是一個（R-P51）
+
+兩份 PHDCC27 DBC **不是本簿 CAN 訊號的全部權威**。`Cluster Navigation` 引用
+`TELEMATIC_NAV_INFO.*` / `TELEMATIC_DISPLAY_INFO.*`，定義在 Phase 0 即已落地的
+`Navigation_Repetition_on_IPC-LTM_(R1L)_VF176_V42_R5.docx`（B/BH-CAN 訊號）。
+
+**登記表以人工維護**（R-P51：5 列不值得建萃取管線），存於
+`data/signal_map.json → vf176_signals`，每筆帶 `authority` / `enum` /
+`verified_manually`。**未登記之 VF176 訊號仍 ABORT** —— gate 沒有被繞過，
+只是承認第二個權威。負向驗證已通過（`LastAnnouncement` 有定義但未登記 → ABORT）。
+
+可寫程度由 `enum` 決定：有列舉者可寫 `值 (標籤)`，無列舉者**只能寫名稱**
+（O-4）。`Direction` 38 項、`ResolutionDistToTurn` 3 項有列舉；`DistToTurn`
+（連續量）／`Unit`／`UTF_Text_*`（文字）無。
+
+**這是 canon §5a 第九條的第三次命中，也是唯一一次方向為「擴充」**：
+
+| | 誤當作全部的那份 | 修法 |
+|---|---|---|
+| R-P8′ | mapping 列舉（截斷於 `101 = WL`） | **限縮** |
+| R-P47 | `PROXI_HDCC27_R3`（單車型） | **限縮** |
+| **R-P51** | **兩份 PHDCC27 DBC** | **擴充** |
+
+前兩次缺的是資料，這次缺的是 gate 的認識範圍 —— 同一條紀律，相反的修法。
+
 #### ⚠️ PROXI 是單車型文件（R-P47）
 
 `PROXI_HDCC27_R3_20250424.xlsx` 的 `Header` 分頁第 4 列逐字為
@@ -347,7 +372,7 @@ instead of it.
 
 | ID | 規則 |
 |---|---|
-| **L-PJ1** | Procedure 內每個 `{message}.{signal}` 必須在 `PHDCC27_E2A_R1_FDCAN8.dbc` 或 `PHDCC27_E2A_R1_BHCAN.dbc` **其一**解析成功；送出的值必須存在於該 signal 的 `VAL_` 表 |
+| **L-PJ1** | Procedure 內每個 `{message}.{signal}` 必須在**權威來源**解析成功；送出的值必須存在於該 signal 的值表。**權威 = 兩份 DBC ∪ VF176 逐訊號登記表**（R-P51，2026-08-12）—— 見 §3e。未登記者一律 ABORT |
 | **L-PJ2** | Pre-Conditions 內每個 PROXI 配置字必須存在於 `PROXI_HDCC27_R3_20250424.xlsx`，其值必須落在 **PROXI 的**列舉範圍內。**值域檢查一律對 PROXI 執行，不得對 mapping 執行**（R-P20）。**適用範圍限於 HDCC27**（R-P47）—— 該檔為單車型配置檔（Header `HDCC27 - Draft`），對非 HDCC27 車型**不適用，不得據以判違規亦不得據以放行** |
 | **L-PJ3** | Input Test Data 欄不得出現 `PROXI` 字樣（O-2） |
 | **L-PJ4** | `Expected Result` 欄內容雜湊必須等於基準簿（O-1），違反即 ABORT。**窄口例外見下**（R-P12，2026-08-12） |
@@ -513,6 +538,29 @@ L-PJ4 (Expected Result frozen) and L-PJ6 (vague language must go) collide on
 any row whose vagueness lives in the Expected Result. **L-PJ4 wins.** O-1 says
 Expected Result 不得更改, and that is unconditional. The correct disposition
 is an RD-1 item, never an edit that satisfies one gate by breaking the other.
+
+## 5a. `[OVERRIDE]` dry-run 檢查表（R-P53）
+
+**Displaces**: canon §6 之 dry-run 欄位清單。canon §6 為 **regen 型**設計，
+其 segment 算術、segment 順序、regen req-set 相等三項在 `FULL_REFINE` 無對應
+概念（沒有 regen、沒有 segment、done region 是整張表）；done-region hash 一項
+改以「34 個凍結欄逐列雜湊」實作。
+
+| 項 | 通過條件 |
+|---|---|
+| **D-1** | diff 只落在 `Pre-Conditions (I)` 與 `Test procedure (K)`；**L-PJ4 窄口列之 `Expected Result` 變更為授權例外，須見於 `er_narrow_gate.log`** |
+| **D-2** | 34 個凍結欄逐列雜湊不變；唯一例外為 R-P19 之 `Test Case Author` 補列 |
+| **D-3** | 列數 559 → 558、列序不變，唯一刪除為 r562 |
+| **D-4** | 未覆蓋 leaf 補列追加於表尾，通過 L-PJ1 ~ L-PJ10，值域一致 |
+| **D-5** | 每一「正確地不動」列皆指得出至少一個裁決或 DR 編號 |
+
+**D-5 是本表存在的主要理由。** regen 型的「未完成」就是缺漏；`FULL_REFINE`
+的未完成多數是**依規則正確地不動**。兩者在 diff 上長得完全一樣 —— 都是
+「這一列沒變」。**唯一的區分方式是清單。**
+
+首次執行（2026-08-12）結果為 **FAIL**，報告見
+`features/projection/docs/dryrun_report.md`，列號對照表見
+`features/projection/data/d5_blocked_rows.json`。
 
 ## 6. `[ADD]` Column map
 

@@ -214,7 +214,32 @@ generic P4→P7 regeneration arc: there is nothing to regenerate. P4 onward is a
         名稱層級更正）／正確地不動 1（r267 WP43 partial）／核實無誤 57。
         **L-PJ7 首次雙分支檢驗：放行與攔阻各一，皆正確** ✅。
         R-P49 之 `lint_defs.py` 單一實作啟用，八項基線重現
-  - [ ] B10 … B14（5 批待跑）—— **B6/B7 之 PROXI 經查為不同型
+  - [x] **B10′ 機制批 48 列**（2026-08-12，R-P50 合批）：改對了 21／
+        正確地不動 17／核實無誤 10。含 L-PJ4 窄口 6 列、PROXI 品牌 12 列、
+        VF176 5 列（R-P51 後解析成功）
+  - [x] **B11′ 清查批 147 列**（2026-08-12）：**核實無誤 147、變更 0**。
+        §3.4 防呆：機制洩漏 **0** 列 ✅
+  - **Phase 5 修訂完成**（B5 42 列除外）
+
+### 進度（每輪自總量重算，A-PJ51 / canon §5a 第十條）
+
+```
+總資料列                     559
+r562 殘樁（R-P19 刪除）       −1  → 558
+已修訂完成                    516   （B1–B4, B6–B10′, B11′）
+B5 阻塞（DR#14 (b)）           42
+                           ─────
+校驗                516 + 42 = 558 ✅
+
+累計變更                       63 列（佔已完成 516 之 12%）
+```
+
+- [x] **Phase 6 dry-run 首次執行**（2026-08-12，R-P53）：**FAIL**。
+      D-3／D-5 PASS；D-4 FAIL（r562 刪除使 `SWE1-PROJ-227` 失去追溯）；
+      D-1／D-2 條件與 R-P12 窄口衝突；§3 兩項不符。報告見
+      `docs/dryrun_report.md`，六項待處置
+
+**剩餘阻塞：DR#14 (b) + dry-run 六項待處置** —— Atl-Mid 車型是否在 SWQT 範圍內。—— **B6/B7 之 PROXI 經查為不同型
         （`Projection_Mode` / `Wi-Fi_Cfg` / `USB_Presence`），全部可在 HDCC27
         檔內解析，不受 A-PJ45 牽連，可照常開批**
 - [ ] P6 all batches refined; lint green; placeholders: ____

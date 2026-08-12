@@ -905,6 +905,33 @@ B6／B7 的 PROXI 命中經查為**不同型**，全部可在 HDCC27 檔內解�
 r541／r543／r544／r545 因此由 B11′ **重分類**併入 B10′ —— 屬 **gate 擴充導致**
 之重分類，非分類條件錯誤（原分類時 gate 尚未涵蓋該樣式）。
 
+---
+
+## 0.17 Signed ruling (Pei, 2026-08-12) — R-P53，dry-run 檢查表, 逐字
+
+**R-P53**
+> `FULL_REFINE` 型 feature 之 dry-run 採本表，不套用 canon §6 之欄位清單。
+> canon §6 之 segment 算術、segment 順序、regen req-set 相等三項於本型態無對應概念；done-region hash 一項改以「34 個凍結欄逐列雜湊」實作。
+> 本表為 canon §6 之 `[OVERRIDE]`，寫入 profile。
+
+### 執行結果 —— **FAIL**，詳見 `features/projection/docs/dryrun_report.md`
+
+| 項 | 結果 |
+|---|---|
+| D-1 diff 只落兩欄 | ⚠️ 條件與 R-P12 窄口衝突 |
+| D-2 34 凍結欄雜湊 | ⚠️ 同上；另 `Test Case Author` 待補 **40 非 41** |
+| D-3 列數列序 | ✅ PASS |
+| D-4 補列 | ❌ **FAIL** —— r562 刪除使 `SWE1-PROJ-227` 失去唯一追溯列 |
+| D-5 阻塞列對照 | ✅ PASS —— 73 列，無編號可指者 **0** |
+
+### 尚未送達之條文
+
+`R-P52`（VF176 標籤型列舉）與 `A-PJ52`（gate 擴充回溯改變分批邊界）於下放包
+§6 落檔表被指名，**正文未隨包送達**，故未落檔。編號保留，不代擬。
+
+**這是同一形態第四次**（前三次記於 A-PJ28）：R-P21/R-P22/A-PJ22/A-PJ24 那批、
+R-P25、以及本次。A-PJ28 之處置定為常規（不代擬、回報、編號保留），本次照辦。
+
 ## 1. Intake
 
 - spec_mode: `[AUTO: A, B, D]` — fixed by the `spec_reference` column's own
