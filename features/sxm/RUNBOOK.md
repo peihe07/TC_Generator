@@ -62,13 +62,13 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 | form | revision C, ChangeHistory revision D |
 | repo state | lint 0 findings · 952 tests |
 
-> **DO NOT RUN THE COMMAND BELOW.** `scripts/write_back.py` was quarantined
-> under **R20-3 (2026-08-13)** — it writes via openpyxl's save path and
-> destroys zip members and data validations. The block below is a **dated
-> record of how the delivered file was produced**, not a live instruction.
-> It was followed on 2026-08-13 in ignorance of the quarantine and produced
-> a R20-3 violation; see the 2026-08-13 addendum and **A-SX29**. Any future
-> regeneration goes through `backend/xlsx_surgical.py` (R18-3 rule 1).
+> **The command below is a dated record, not the current one.** It produced
+> the original delivery through openpyxl's save path; that path was
+> quarantined under R20-3 (2026-08-13) and the quarantine was **lifted the
+> same day** once the writer moved to `backend/xlsx_surgical.py`. The command
+> string is unchanged, but what it now does is not what it did here — the
+> current output is the **v2** described in the addendum below, not the
+> `7b6e760d…` file this block records. See A-SX28 / A-SX29 / A-SX30.
 
 **Re-running the delivery requires `--date 2026-08-12`.** Without it the writer
 falls back to `date.today()`, the ChangeHistory date moves and the output hash
@@ -114,9 +114,39 @@ Time Machine。**原件永久滅失。**
 程式碼；兩次執行結果一致，具確定性）。
 
 重產過程違反 R20-3 隔離令與 R18-1 不重產令，**已裁定保留此檔**
-（Pei, 2026-08-13）。tag `fw036-sxm-v1` 之 SHA256 宣稱已無對應實體，
-其處置**未裁**——在裁定前重產件不得視為該 tag 之交付物。
-完整登記見 **A-SX29**。
+（Pei, 2026-08-13）。完整登記見 **A-SX29**。
+
+### v2（2026-08-13）—— Test Item 修正與結構修復
+
+同日再次重產，起因為 Test Item 缺 scenario tag（**A-SX30**）：
+`tc_title` 215 筆全數生成卻從未寫入任何欄位，I 欄僅 6/215 帶 tag。
+依 R18-1 判準 1（內容正確性受影響者必須重產）裁定重產，
+格式定為條文 + 空行 + `(自己產出的 tag)`。
+
+writer 同時遷至 `backend/xlsx_surgical.py`（R18-3 rule 1），
+**A-SX28 的結構缺損因此一併修復**——正是該條 DEFERRED 所等待的時機。
+
+| | 原交付件 | 重產件 v1 | **v2（現行）** |
+|---|---|---|---|
+| SHA256 | `7b6e760d…`（已滅失） | `206a8dd2…` | **`a332a700…`** |
+| bytes | 148,734 | 148,714 | 115,222 |
+| zip members | 47 | 47 | **48**（= 客戶原件） |
+| x14 DV | 0 | 0 | **2**（R 欄下拉復原） |
+| LOST / ADDED | 11 / 10 | 11 / 10 | **0 / 0** |
+| I 欄帶 tag | 6 / 215 | 6 / 215 | **215 / 215** |
+| lint | 0 findings | PASS | PASS |
+| 測試 | 952 | — | 944 passed / 15 skipped |
+
+現行重跑指令（writer 已非 openpyxl save 路徑）：
+
+```
+python features/sxm/scripts/write_back.py --feature-dir features/sxm \
+  --date 2026-08-12 --write
+```
+
+tag `fw036-sxm-v1` 之處置仍**未裁**——該 tag 記載的 `7b6e760d…`
+已無對應實體，而 v2 為第三個雜湊且內容已變。在裁定前
+v2 不得視為 `fw036-sxm-v1` 之交付物。見 A-SX29 PENDING 標的。
 
 Still owed after this: RD-1 sending (above), and the two post-delivery canon
 items — A-SX27 (framework Part IV `Source Availability` Set name vs its

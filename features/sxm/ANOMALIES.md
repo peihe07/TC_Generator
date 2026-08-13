@@ -1266,7 +1266,13 @@ cites is what makes the name plausible, and that is exactly why it misleads.
 - No leaf is invented and no leaf moves Set (§8.2 discipline, A-AM13 / A-SX26
   precedent).
 
-## [A-SX28] 已交付件結構缺損，且 R16 前提「SXM 尚未寫回」與事實不符 — **DEFERRED — 待下次內容變動時一併修復（R18-1）**
+## [A-SX28] 已交付件結構缺損，且 R16 前提「SXM 尚未寫回」與事實不符 — **RESOLVED（2026-08-13）**
+
+> **結案（2026-08-13）**：等待的「下次內容變動」已發生——Test Item 補上
+> scenario tag（見 A-SX30），writer 同時遷至 `backend/xlsx_surgical.py`。
+> 實測：zip members **48 = 48**（LOST 0 / ADDED 0）、**x14 DV 2 = 2**
+> （R 欄「測試用例設計方法」下拉已復原）、classic DV 4 = 4。
+> 本條所登記之缺損全數修復，下方為修復前之原始記錄。
 
 **先更正前提**：R16-2 記載「SXM 尚未寫回，攔得住」。實測
 `features/sxm/output/` **已存在交付件**
@@ -1397,3 +1403,40 @@ tag 的可重現性宣稱在現況下無法成立。此為 R18-1 判準第 2 項
 
 **相關**：A-SX28；R18-1；R20-3；`tests/test_single_write_path.py`
 （R20-2 ratchet，`features/sxm/scripts/write_back.py` 列名其中）。
+
+## [A-SX30] Test Item 缺 scenario tag —— `tc_title` 產出後從未寫入任何欄位 — **RESOLVED（2026-08-13）**
+
+**症狀**：I 欄（Test Item）只有條文原文。canon §4.3 shape (c) 明定
+scenario tag 為 **PREFERRED**（「matches reviewer Excel template，
+The tag IS the distinguishing token」），既有交付件
+`…_SWQT_CFTS012_DealerMode_20260417(done).xlsx` 亦為此形態
+（條文 + 空行 + `(Cold boot)` / `(Power Cycle)`）。
+
+**根因**：`tc_title` 在 215 筆 TC 中**全數已生成**，但
+`feature.yaml` 的 `columns:` 對應表沒有這一項，`write_back.py` 亦
+從未引用該欄位——自己產出的描述整批被丟棄。實測交付件中
+帶 tag 者僅 **6 / 215**，且那 6 個是 AI 直接寫進 `test_item` 內文的
+獨立 tag（`(Suppression branch — …)`），與 `tc_title` 不同來源。
+
+lint 查不到此缺陷：`lint_tcs.py` 檢的是 workbook-facing shape，
+而 I 欄有值、非空、長度合格，形狀上完全合規。缺的是**區別性**，
+不是形狀——`ASPICE_SWE6_AI_Review.md:80` 有對應偵測項，但那條規則
+在 review 側，未進 lint。
+
+**處置 —— 已裁（Pei, 2026-08-13）**：格式定為**條文 + 空行 +
+`(自己產出的 tag)`**，215 筆全數適用。
+
+修法寫在 writer（`compose_test_item()`）而非改 `generated/*.json`：
+後者是 AI 產物，重跑即覆蓋。已帶 tag 的 6 筆以「結尾為 `)` 且含
+`\n\n(`」判定並原樣保留——那 6 個 tag 比其 `tc_title` 更具體。
+
+**實測結果**：帶 tag 列數 **6 → 215 / 215**；lint `PASS — no findings`；
+944 passed / 15 skipped。
+
+**連帶修復**：同次變更將 writer 遷至 `backend/xlsx_surgical.py`
+（R18-3 rule 1），A-SX28 之結構缺損因此結案，R20-3 隔離令解除，
+`tests/test_single_write_path.py` 的 `KNOWN_VIOLATIONS` 由 11 筆
+減為 10 筆（R20-2 clause 4 只縮不增）。
+
+**相關**：A-SX28；A-SX29；canon §4.3 (c)；`ASPICE_SWE6_AI_Review.md`
+§重複偵測；R18-3 rule 1；R20-2。
