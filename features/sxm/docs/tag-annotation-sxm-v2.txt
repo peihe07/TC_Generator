@@ -1,0 +1,71 @@
+FW036 SXM (SiriusXM 360L SAT Only) v2
+
+output: FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_SXM_20260810.xlsx
+sha256: a332a7005a82ab2d32da5119ca2e65fa3027edf6d6f7daaa7610563617fd3759
+supersedes: fw036-sxm-v1 (sha256 7b6e760d...). That artefact was deleted on
+  2026-08-13 together with inputs/ and output/, none of which were ever tracked
+  by git - no remote copy, no snapshot. It is permanently lost and its sha256
+  can no longer be verified against anything. The v1 tag is left in place
+  unchanged: it is the record of what was delivered, and A-SX29 points at it.
+  Same disposition R18-2 gave the AMFM v1 tag.
+
+changes from v1
+  Test Item: clause text + blank line + (scenario tag) on 215/215 rows, was
+    6/215. tc_title was authored for every TC but had no entry in the
+    feature.yaml column map and was never read by the writer, so the
+    self-authored description was discarded and siblings were told apart only
+    by which clause sentence they quoted. Canon §4.3(c) makes the tag the
+    PREFERRED distinguishing token; the delivered DealerMode workbook
+    (..._SWQT_CFTS012_DealerMode_20260417(done).xlsx) is the precedent for the
+    exact shape. Composed in the writer, not in generated/*.json, which is
+    regenerated output. The 6 hand-authored tags already present are more
+    specific than their tc_title and are kept as-is. Registered as A-SX30.
+  write path: backend/xlsx_surgical.py (R18-3 rule 1), replacing openpyxl's
+    save. The R20-3 quarantine on this script is lifted - its cause is gone.
+    tests/test_single_write_path.py KNOWN_VIOLATIONS drops 11 -> 10 (R20-2
+    clause 4: the list only ever shrinks).
+  structure: 48/48 zip members, lost 0 / added 0, classic DV 4 = 4,
+    x14 DV 2 -> 2 (column R "測試用例設計方法" dropdown restored). This closes
+    A-SX28, whose DEFERRED status was waiting for exactly this trigger - the
+    next content change to the deliverable, repaired through the surgical path.
+
+done-region hash: N/A - BLANK workbook, unchanged from v1. There is no done
+  region and no legacy prefix to protect, so no content hash is held. The
+  invariant that replaces it is the opposite one: the source must contain no
+  authored content at all, and the write aborts if it does. The form's sample
+  rows are cleared and a residue sweep re-checks every untouched column.
+rows: 0 preserved / 215 new (0 placeholder) / 215 total, rows 10-224 contiguous
+  arithmetic: 50 template rows reused + 165 inserted = 215
+              202 leaves + 13 split rows = 215
+coverage: 202/202 leaves of SWE1_SXM_FM-WI-FSM-037-A03, exact set equality
+  (missing [] extra []), written in 037 document order as a write-time invariant
+priority: P0=22 / P1=181 / P2=12, read from the delivered workbook
+lint: PASS - 215 TCs, 202 leaf files, 9 design methods, 0 findings
+tests: 944 passed / 15 skipped
+
+source workbook: FM-WI-FSM-036-A01 ..._SWQT_SXM_20260810.xlsx (form revision C,
+  sha256 cd876c20...) - a scaffold copy of the blank form. Restored 2026-08-13
+  from forms/..._SWQT_20260121.xlsx after the original inputs/ was deleted; the
+  copy is byte-identical to the hash feature.yaml recorded, so the source of
+  record is unchanged from v1.
+requirement source: FM-WI-FSM-037-A03 (SWE1_SXM, 20260406), restored from
+  ~/Work/.../SiriusXM/REF/ on 2026-08-13
+spec sources: CFTS024 §1.5.x (202 allocated leaves, 7-digit STLA clause ids),
+  reqifz sha256 325dba60... and docx sha256 e5c12e9e..., both verified against
+  feature.yaml on restore. Cross-document short-code citations under R11:
+  CFTS024-165/-177/-193/-195/-197, CFTS019-494/-496, CFTS020-138
+spec line: SiriusXM 360L SAT Only HMI Logic and Flow R1 SR24 1A (May 24 2021);
+  the 26PI2.5 reissue is reference-only and does not enter spec_reference
+write-back: BLANK strategy - no frozen prefix, written from the template's first
+  data row (header_row 9 + 1 = row 10); Scope field filled by label text
+
+reproducibility: requires --date 2026-08-12. Without it the writer falls back to
+  date.today(), the ChangeHistory date moves and the hash drifts daily.
+
+  python features/sxm/scripts/write_back.py --feature-dir features/sxm \
+    --date 2026-08-12 --write
+
+delivery status: RD-1 not yet sent as of tagging (off-repo, Pei to send). v1
+  therefore never reached the customer, so v2 replaces it with no version
+  ambiguity on their side - R18-1 criterion 2 evaluates to "no" for this
+  regeneration.
