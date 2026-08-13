@@ -28,6 +28,9 @@ Ground truth lives in the repo, read live via the Filesystem MCP:
 - **裁決條文**：一律以可直接貼入之區塊產出，不夾在敘述中；每包末尾附
   「本包產生之新條文清單」自檢表，**以全文掃描新編號產生，不人工列舉**。
 - **索引**：執行層於每次上繳時更新 `INDEX.md`（分析層不寫，避免雙方同寫一檔）。
+- **不限於下放包**：分析層產出之**任何**供落檔文件（charter、canon 節文、
+  應 Pei 要求另行產出之文件），一律 `write_file` 寫入 repo。
+  A-PJ62 僅涵蓋下放包，致 A-PJ78 以「不屬下放包之文件」形態復發。
 
 A ruling not written to the repo did not happen —— **雙向適用**。
 

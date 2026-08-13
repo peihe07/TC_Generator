@@ -175,49 +175,81 @@ Current instance (the only remaining Claude Code task):
       placeholders: **none**; P0/P1/P2/P3 = **0/129/14/0**; design
       methods Functional 63, EP 29, BVA 25, Decision Table 14,
       State Transition 11, Scenario 1
-- [ ] P7 — dry-run run twice (latest 2026-08-10, after the R13 F/O
-      rulings): `LEGACY 10-167 (158 rows, unmoved, hash 30d9e4c0719a2929…
-      unchanged)` + `REGEN 168-310 (143 rows, appended)` = 301 data rows;
-      coverage 102 regen req_ids == 102 leaf set, exact; placeholders
-      none. **Pending: Pei approval → commit → `--write` → tag
-      `fw036-amfm-regen-v1` → controlled-document submission → RD-1 send**
-      (`docs/fw036/RD1_questions_amfm.md`, Q-AM1/Q-AM2/Q-AM3 still DRAFT;
-      `docs/fw036/RD1_amfm_submission.md`)
+- [x] P7 — dry-run run twice (latest 2026-08-10, after the R13 F/O
+      rulings), then approved, written and tagged. **Executed; 追認 by Pei
+      2026-08-13 (R14-C1).** Delivered artefact and its measurements:
+      - output: `output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT
+        STLA Test Case Specification & Result_SWQT_CFTS024_Radio_20260129.xlsx`
+        — **171,631 bytes** (per R14-C7 all file sizes are stated in bytes)
+      - SHA256: `da18b5b0ca9ee5794b67a31ddd317b4a23decf9e0e88380a3717f823e45f3f22`
+        — sidecar / tag annotation / `shasum -a 256` 實測, three-way identical
+      - legacy done-region hash (ordered content, columns D..AG, 158 rows):
+        `30d9e4c0719a2929`
+      - rows: `LEGACY 10-167 (158 preserved, unmoved)` +
+        `REGEN 168-310 (143 appended, 0 placeholder)` = **301 total**
+      - coverage: 102 regen req_ids == 102 leaf set, exact
+      - lint: **PASS** — 143 TCs, 102 leaf files, 0 findings
+      - tag: `fw036-amfm-regen-v1`
+      - the `.sha256` sidecar sits in `output/` and is **not committed**
+        (root `.gitignore:20` excludes `output/`); the authoritative copy of
+        the digest lives in the tag annotation — consistent with Projection
+        R-P94 and `FEATURE_ONBOARDING` §6
+      - **RD-1 送出待 Pei（Tier 3）** — `docs/fw036/RD1_amfm_submission.md`
+        照現稿送出 (R14-C6), with the Q-AM2 item 3 addition made under
+        R14-C4-d; `docs/fw036/RD1_questions_amfm.md` kept in step
 
 ### Open PENDING
 
 Nothing here may be disposed of in Claude Code — all are Tier 2/3.
 
-- **A-AM09 VR class — scope ruling.** `DATA_REQUESTS.md` row 4 carries
-  CFTS028 as 已入 `inputs/` but the VR trigger-path attribution as
-  「範圍裁決待下」 (Urgency: Medium). ANOMALIES records **R8**
-  (verbatim 「不進去了」) as the ruling that puts VR out of scope for this
-  workbook, and 003/009/025/027 were generated on that basis. Confirm R8
-  stands and close the DATA_REQUESTS row, or re-open the four leaves.
-- **087/094 and 089/095 `duplicate_of` — per-pair ruling (A-AM08,
-  R7-Q4).** 087/094 both declare `4942534`, 089/095 both declare
-  `4942540`. Each leaf keeps its own TC, `duplicate_of` is set both ways,
-  and the two TCs of each pair take different halves of the shared clause
-  (087 the four display items / 094 the antenna-not-connected value class;
-  089 the display-update side / 095 the input-sampling side). If a pair is
-  ruled a true duplicate, the marked TC is the removable one.
-  (`090/096` — near-identical text, distinct ids — stays PENDING in the
-  same class per A-AM08.)
+**Closed by R14 (Pei, 2026-08-13)** — R8 stands（Pei 追認 2026-08-13,
+R14-C2），VR 不進本 workbook；DATA_REQUESTS #4 已關列。
+
+- **087/094 and 089/095 `duplicate_of` — ruled per pair 2026-08-13
+  (R14-C4).** Both pairs **keep their two TCs**; the delivered v1 is
+  unchanged.
+  - **087/094 (R14-C4-a)** — 維持雙 TC. `CFTS011-4942534` enumerates the
+    connected / not-connected value classes: 087 verifies the four
+    information items displayed in the normal state (Functional), 094 the
+    not-connected value class and the frequency field following a retune
+    (EP). This is the §8.3 negative / value-class axis, not a manufactured
+    difference. **Closed.**
+  - **089/095 (R14-C4-b)** — 維持現況，不動 v1. The split itself is sound
+    under §8.2.2 (`4942540` binds the sampling side and the update side,
+    two independent partial failures), but it is inconsistent with
+    090/096, which §5.7 keeps as one TC each. The root of that
+    inconsistency is upstream: the 037 allocates two leaves to the MW
+    clause and one each to AM and FM. Either side would force a re-issue
+    of the already-tagged v1, and the correct cut depends on the upstream
+    answer — so it is asked instead (R14-C4-d, Q-AM2 item 3) and revisited
+    for v2. **Deferred to upstream, not pending here.**
 - **A-AM11** rate-to-frequency-step mapping undefined upstream — ER
   asserts monotonicity only (021, 026, 028). PENDING upstream definition.
+  **Status: PENDING → AWAITING_UPSTREAM on the day RD-1 is sent (R14-C5);
+  resolution condition = upstream reply or the delivery deadline,
+  whichever comes first. Not to be changed before Pei confirms the send.**
 - **A-AM12** "intelligent entry" undefined beyond its two dependencies
   (030) — revisit against the Market Configuration vocabulary. Not
-  blocking.
+  blocking. **Same R14-C5 transition as A-AM11.**
 - **A-AM13** fast seek specified but reaching no 037 leaf — coverage hole,
-  RD-1 (folds into Q-AM3).
+  RD-1 (folds into Q-AM3). **Same R14-C5 transition as A-AM11.**
 - **A-AM14** Seek Up / Seek Down decomposed differently upstream —
-  allocation-policy question, reported with Q-AM3.
+  allocation-policy question, reported with Q-AM3. **Same R14-C5
+  transition as A-AM11.**
 - **RD-1, all DRAFT, Tier 3 to send** (`docs/fw036/RD1_questions_amfm.md`):
   - **Q-AM1** SWRA-A02 ↔ 037-A03 lineage (A-AM03/A-AM04): earlier-revision
     authoring, the contiguous `SWE-RAD-040…-045` tail, formal supersession
   - **Q-AM2** 037-A03 internal defects (A-AM08/R9): 029's id tail,
     numbering gaps 086/088, the same-id variant pairs, `SWE-RA-RAD-019`
-    Description-type artifact hygiene
+    Description-type artifact hygiene, and — added under **R14-C4-d** —
+    item 5, the per-band leaf allocation asymmetry (AM `4942536` /
+    MW `4942540` / FM `4942545`: two leaves for MW, one each for AM and
+    FM). **`090/096` belongs here, as FYI rather than a pending ruling**
+    (R14-C4-c): both carry an empty `duplicate_of`, their clause ids
+    differ, and they sit on different bands' leaves, so §8.2.1 forbids
+    merging them across leaves — there is nothing to rule on the TC side.
+    Moved out of the `duplicate_of` per-pair item above; the A-AM08
+    residual is now 087/094 and 089/095 only.
   - **Q-AM3** CFTS clauses allocated to no leaf (A-AM10): confirm the
     absorption reading or reallocate; 95 unallocated clauses across the
     20 sections the 037 uses

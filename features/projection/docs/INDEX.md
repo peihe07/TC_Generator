@@ -30,6 +30,7 @@
 | 19 | 2026-08-12 | 旁檔政策 | [handoff/19_sidecar_policy.md](handoff/19_sidecar_policy.md) | 未落檔 | R-P94 | A-PJ75 | — ‡ |
 | 20 | 2026-08-13 | 封存規範 + Operating Charter | [handoff/20_archive_and_charter.md](handoff/20_archive_and_charter.md) | [upstream/20_archive_and_charter.md](upstream/20_archive_and_charter.md) | R-P95 ~ R-P97 | A-PJ76、A-PJ77 | PASS |
 | 21 | 2026-08-12 | canon §8 補寫 + Charter 收斂 + 自檢表修正 | [handoff/21_canon_s8_and_charter.md](handoff/21_canon_s8_and_charter.md) | [upstream/21_canon_s8_and_charter.md](upstream/21_canon_s8_and_charter.md) | R-P98、R-P99 | A-PJ78；A-PJ76 / A-PJ77 CLOSED | PASS |
+| 22 | 2026-08-12 | R-P99 修訂 + Charter 補正 + git 準備 | [handoff/22_rp99_and_git.md](handoff/22_rp99_and_git.md) | [upstream/22_rp99_and_git.md](upstream/22_rp99_and_git.md) | R-P100 | A-PJ79 | CONDITIONAL（git 待 Pei 裁 A / B）|
 
 ---
 

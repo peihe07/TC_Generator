@@ -280,3 +280,80 @@ P10:P167, S10:Y229) — so no form vocabulary outranks the legacy value.
 Implemented in `write_back.py` (`assign_tc_ids`, collision-guarded against ids
 already in the sheet) and `feature.yaml`; both re-verified against the canon §6
 checklist in the second dry run.
+
+## R14 — AMFM close-out (Pei, 2026-08-13)
+
+Signed 2026-08-13, Pei replying 「照建議」 to C1–C6 including the revised
+C4 per-pair recommendations. Verbatim block below; the heading follows this
+file's convention, the block's text is unaltered.
+
+**R-PV02 (bootstrap 下放包 landing point before scaffold) is NOT covered by
+this signature** — it carried no recommended option and remains PENDING.
+
+```text
+[RULING] R14 — AMFM close-out（Pei 簽署 2026-08-13，回覆「照建議」）
+
+R14-C1  P7 追認
+  實態：tag fw036-amfm-regen-v1 存在；output/ 產出檔 171,631 bytes；
+        sidecar / tag annotation / shasum -a 256 實測三方逐字元相同：
+        da18b5b0ca9ee5794b67a31ddd317b4a23decf9e0e88380a3717f823e45f3f22
+        legacy done-region hash（ordered content, columns D..AG,
+        158 rows）= 30d9e4c0719a2929；rows 158 preserved / 143 regen
+        (0 placeholder) / 301 total；lint PASS - 143 TCs, 102 leaf
+        files, 0 findings。
+  裁：P7 已執行，追認之。補登 PLAYBOOK §6，數量一律以 bytes 表示。
+
+R14-C2  R8 追認
+  裁：R8 stands —— VR 觸發路徑不進本 workbook，003/009/025/027 四葉
+      維持現狀。DATA_REQUESTS #4 關列。
+
+R14-C3  DATA_REQUESTS #2b 拆列
+  裁：主檔 4874050-…CFTSMV024_CIP_R3_O1965_Excel_Document.xls 標
+      「已入 inputs/」關列；其餘 12 件 O 附件（9 件天線 DTC 表 +
+      2 件交通圖示表 + 1 件內嵌註記）另立一列，Urgency Low，
+      用途註明「audit 舉證用，不阻塞任何批次」。
+
+R14-C4  duplicate_of 三對（依讀取 generated/ 原文後之修訂建議）
+  C4-a  087/094 —— 維持雙 TC。
+        理由：CFTS011-4942534 列舉 connected / not connected 兩個值類；
+        087 驗正常狀態四項資訊完整顯示（Functional），094 驗
+        not-connected 值類與換台後頻率欄位跟隨（EP）。屬 §8.3
+        negative / value-class 軸，非人造差異。
+  C4-b  089/095 —— 維持現況，不動 v1。
+        理由：拆分本身合於 §8.2.2（4942540 綁取樣側與更新側兩件事，
+        兩者為獨立部分失效），但與 090/096 依 §5.7 併為一條之處理
+        不一致；不一致之根因在上游（037 對 MW 配置兩片葉子、對 AM
+        與 FM 各一片）。任一側改動皆使已 tag 之 v1 需 re-issue，而
+        正確切法取決於上游答覆。改以 RD-1 提問（見 R14-C4-d），
+        待答覆後再決定 v2 是否統一三波段深度。
+  C4-c  090/096 —— 改分類，非 duplicate_of 議題。
+        理由：兩者 duplicate_of 皆為空字串，條款 id 相異
+        （AM 4942536 / FM 4942545），分屬不同波段之不同 leaf，
+        依 §8.2.1 本不得跨 leaf 合併。TC 側無可裁之事。
+        自 PLAYBOOK §6「duplicate_of 逐對裁決」移出，改列 RD-1
+        Q-AM2 item 3 之 FYI。A-AM08 residual 收斂為 087/094、
+        089/095 兩對。
+  C4-d  新增 RD-1 提問，併入 Q-AM2 item 3（條文見 §2.6）。
+
+R14-C5  A-AM11 / A-AM12 / A-AM13 / A-AM14 狀態轉換
+  裁：RD-1 送出當日，四條由 PENDING 轉 AWAITING_UPSTREAM；
+      resolution condition = 上游回覆到達或交付期限，孰先。
+      轉換由 Pei 通知送出後執行，執行層不得自行提前。
+
+R14-C6  RD-1 送出
+  裁：docs/fw036/RD1_amfm_submission.md 照現稿送出（加入 C4-d 之
+      新增提問後）。送出屬 Tier 3，僅 Pei 執行。
+      送前檢查已完成：四項附件齊備
+        unallocated_clauses.json  features/amfm/data/（48,963 B）
+        stla_id_suspects.json     features/amfm/data/（148 B，內容已驗：
+                                  單筆 SWE-RA-RAD-029，declared 4872451
+                                  agreement 0.036 → better 4872457
+                                  agreement 0.909，即 Q-AM2 item 1 之 extract）
+        family-overlap 表          features/amfm/docs/family_overlap.md
+        version/hash 表            內嵌於 S2
+
+R14-C7  量測口徑
+  裁：檔案大小之陳述一律以 bytes 為單位。KB 之進位基底歧義
+      （171,631 bytes = 167.61 KiB 四捨五入 / 167.60 KiB 捨去）
+      為本次已發生之口徑差，記入 §5a 量測條件紀律。
+```

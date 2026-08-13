@@ -2204,6 +2204,7 @@ Phase 2 結束時，RD-1 已累積下列各項（皆為「來源未明述、不�
 | A-PJ76 | R-P95 援引之 canon handoff contract 不存在 | 落檔時查證發現 |
 | A-PJ77 | 下放包 20 §7 自檢表漏列 R-P97 | 落檔時清點發現 |
 | A-PJ78 | Operating Charter 分歧為兩版，repo 內為舊版 | 分析層自查 |
+| A-PJ79 | `docs/Report/compare/` 已追蹤 15 份客戶工作簿（跨 feature） | 包 22 §2 第 4 項副檔名統計發現 |
 
 兩條都是**下放前可判定、卻等到執行時才浮現**的規則衝突。共同的預防形式：
 下放包成形時檢查「所求資訊是否落在所授權路徑的可達範圍內」、以及「同一份
@@ -2251,6 +2252,41 @@ R-P95 之援引更正為 `canon §8.2`。
 
 **R-P97 於此次換版中經受檢驗**：第一段整份換掉，第二段之逐字元保證不受任何
 影響，且無需人工比對六百行。若當初以轉錄產生，此次換版即為漂移之入口。
+
+### A-PJ79｜`docs/Report/compare/` 已追蹤 15 份客戶工作簿 —— **跨 feature，須 Pei 裁定**
+
+> 下放包 22 §2 第 4 項要求「確認無任何客戶原始檔落在將被 `git add -A` 納入之
+> 集合中——逐檔列出副檔名統計」。**該檢查對 `features/projection/` 之結果為
+> 通過**（見下），但同一次全 repo 副檔名普查發現 projection 範圍外之既有問題。
+
+**量測條件**：`git ls-files`（已追蹤檔案全集，1,239 檔），
+以 `awk -F. '{print tolower($NF)}'` 取末段為副檔名，區分大小寫已正規化為小寫。
+
+| 位置 | 內容 | 大小 | 進入 history |
+|---|---|---|---|
+| `docs/Report/compare/` | **15 份 `FM-WI-FSM-036-A01` 客戶測試用例規範簿**，涵蓋 AntiTheft / HFP / Notification / Player / SWC 五個 feature | 5.8 MB | `a4c013b`（2026-07-18） |
+| `docs/Report/*.pptx` | 3 份簡報（含 `template.pptx` 1.8 MB） | 2.1 MB | 同期 |
+| `archive/M1/baselines/baseline_player_llm/*.xlsx` | 4 份 sample／probe | 572 KB | 較早 |
+
+**與既有政策之關係**：`features/*/inputs/` 於各 feature `.gitignore` 第 2 行
+以「Customer source files - never commit」排除；`docs/Report/compare/` 之 15 份
+為**同一表單族（FM-WI-FSM-036-A01）之客戶工作簿**，僅因不在 `inputs/` 路徑下
+而未被任何規則涵蓋（`git check-ignore` 對該目錄零命中）。
+
+**不可逆性**：已在 `HEAD` 之祖先鏈中（`a4c013b` 為 `HEAD` 之祖先）。
+`.gitignore` 只擋未來，**移除既有 blob 須改寫 history**（`filter-repo` 等），
+屬不可逆操作。
+
+**處置**：**不執行任何動作**。版控政策屬 Tier 3，且移除為不可逆——
+兩項皆明列於 Charter「須 Pei 裁定」。本層僅回報。
+
+**須 Pei 裁定**：
+1. 15 份客戶簿是否比照 `inputs/` 政策排除？
+2. 若排除，既有 blob 是否改寫 history 移除，抑或僅 `.gitignore` 擋未來？
+3. `archive/M1/baselines/*.xlsx` 與 `docs/Report/*.pptx` 是否同案處理？
+
+**此條與 Projection 之交付無關，亦不阻塞任何 commit。** 登記於此係因
+下放包 22 §2 第 4 項之普查為其發現途徑，且該項被明定為「硬性前置」。
 
 ### A-PJ77｜下放包 20 §7 自檢表漏列 R-P97
 

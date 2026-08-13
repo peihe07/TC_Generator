@@ -46,6 +46,18 @@ Questions / findings to report:
    `[Artifact Type: Description]` item used as a requirement. Generated
    against it per R1 (leaf's own citation); please confirm Description-
    type items are intended requirement carriers or reissue as SFRs.
+5. **Per-band leaf allocation asymmetry** (added per R14-C4-d, 2026-08-13).
+   CFTS011 §1.5.5 restates the same sampling / display-update requirement
+   once per band under three distinct ids (AM 4942536, MW 4942540, FM
+   4942545). The 037 allocates TWO leaves to the MW clause
+   (`SWE-RA-RAD-089` and `-095`, both declaring 4942540) but ONE leaf each
+   to the AM and FM clauses (`-090`, `-096`). Our TC side consequently
+   carries 2 TCs for MW (display-update side and input-sampling side)
+   against 1 TC each for AM and FM — the same clause text verified at two
+   different depths. Please confirm whether the MW double allocation is a
+   deliberate sub-division or a duplicate allocation. We have not changed
+   the delivered workbook; the depth will be unified in the next revision
+   once this is answered.
 
 Status: DRAFT — send with Q-AM1.
 

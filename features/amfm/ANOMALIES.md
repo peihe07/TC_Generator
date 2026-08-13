@@ -161,6 +161,43 @@ records the gap, that file asks for the data.
   pilot/batch review.
 - Candidate RD-1 material if review confirms true duplicates.
 
+### Per-pair disposition — RULED (R14-C4, Pei, 2026-08-13)
+
+All three pairs ruled. **No TC is removed; the delivered v1 is unchanged.**
+
+| pair | ruling | status |
+|---|---|---|
+| 087 / 094 | 維持雙 TC (R14-C4-a) | **CLOSED** |
+| 089 / 095 | 維持現況，不動 v1 (R14-C4-b) | **deferred to upstream** |
+| 090 / 096 | 改分類 — 非 `duplicate_of` 議題 (R14-C4-c) | **moved out of A-AM08's ruling scope** |
+
+- **087 / 094 — CLOSED.** `CFTS011-4942534` enumerates the connected /
+  not-connected value classes. 087 verifies the four information items
+  displayed in the normal state (Functional); 094 verifies the
+  not-connected value class and the frequency field following a retune
+  (EP). That is the §8.3 negative / value-class axis, so the two TCs are a
+  real split rather than a manufactured difference. The earlier reading —
+  「087 untagged vs 094 `(Engineering Mode)`」 — was a tag observation, not
+  the axis that actually separates them.
+- **089 / 095 — deferred, v1 untouched.** The split is itself sound under
+  §8.2.2: `4942540` binds the input-sampling side and the display-update
+  side, and those fail independently. But it is inconsistent with 090/096,
+  which §5.7 keeps as one TC each. **The root of the inconsistency is
+  upstream, not here**: the 037 allocates TWO leaves to the MW clause and
+  ONE each to AM and FM. Any change on either side forces a re-issue of
+  the already-tagged v1, and the correct cut depends on the upstream
+  answer — so it is asked (R14-C4-d → Q-AM2 item 5) and the depth is
+  unified in v2 once answered.
+- **090 / 096 — out of scope for this anomaly's ruling.** Both carry an
+  empty `duplicate_of`, their clause ids differ (AM `4942536` /
+  FM `4942545`), and they sit on different bands' leaves — §8.2.1 forbids
+  merging across leaves, so there is nothing to rule on the TC side. Moved
+  to RD-1 Q-AM2 item 3 as FYI and removed from PLAYBOOK §6's per-pair
+  ruling item.
+
+**A-AM08 residual is now 087/094 and 089/095 only** (087/094 closed;
+089/095 awaiting upstream). 028/029 remain RESOLVED per R9 below.
+
 ### 028 / 029 — RESOLVED (R9, Pei, 2026-08-10)
 
 Phase 4 turned this pair from "likely a copy error in one title's id tail"
@@ -404,6 +441,44 @@ copy errors; they stay PENDING for per-pair review at their batches.
   `RUNBOOK.md`, `ANOMALIES.md`, `DATA_REQUESTS.md` and
   `docs/fw036/RD1_questions_amfm.md` — nothing new is asserted. RUNBOOK stays
   the authority; PLAYBOOK §6 is maintained from it.
+
+## [A-AM17] Two same-named, same-sized, byte-different O-attachments in `inputs/` — OPEN (registered per 下放包 01 §3.3, 2026-08-13)
+
+- `features/amfm/inputs/` holds **two** files whose names differ only in the
+  leading requirement id, and which are **identical in size but different in
+  content**:
+
+  | file | bytes | SHA256 (前 16) |
+  |---|---|---|
+  | `4874050- 4595376- CFTSMV024_CIP_R3_O1965_Excel_Document.xls` | 37,376 | `55666213fdbef997` |
+  | `4874049- 4595376- CFTSMV024_CIP_R3_O1965_Excel_Document.xls` | 37,376 | `3fd31f9482b7d660` |
+
+  量測條件：`stat -f%z` 取 bytes，`shasum -a 256` 取雜湊，對 `inputs/` 實際
+  路徑實測（非沙箱副本）。
+- **Why it is registered rather than explained**: 下放包 01 §3.3 required the
+  coexistence be explained from existing records, else filed. A full-text
+  scan of `features/amfm/` and `docs/fw036/` for `4874049` returns **zero
+  hits outside this entry** — `DATA_REQUESTS.md` #2b and `A-AM07`'s residual
+  note both name only `4874050`. **No record accounts for the second file.**
+- **Why the pair is not benign on its face**: the two share a filename body
+  (`4595376- CFTSMV024_CIP_R3_O1965_Excel_Document.xls`) and an exact byte
+  count, which reads as "the same attachment, cited from two requirements".
+  But the hashes differ, so they are **not** the same attachment — and equal
+  size with unequal content is the signature of a same-template, different-
+  data pair, which is precisely the case where picking by filename picks
+  wrong. This is the AMFM/SXM standing rule stated in Projection's
+  `DATA_REQUESTS.md` §跨 feature 同源政策: 「檔名相同」不足以證明「內容相同」.
+- **Consequence if unresolved**: R14-C3 marks `#2b` (the `4874050` DTC
+  definition table) as 已入 `inputs/` and closes it. If the clause actually
+  cited by the Diagnostics batch is the `4874049` one, the closure is
+  attached to the wrong file. **Nothing generated is affected today** — the
+  Diagnostics batch (097–104) is generated, lint green, zero placeholder,
+  and neither file is read by any script; the exposure is to the audit
+  trail, not the corpus.
+- **Not disposed of here**: which of the two the requirement cites, and
+  whether the other should stay, is a scope/source question — Tier 2/3.
+  Execution layer registered and reported only.
+- Related: `A-AM07` (CFTS004 attribution), `DATA_REQUESTS.md` `#2b` / `#2c`.
 
 ## Assumption markers
 
