@@ -19,6 +19,10 @@
 >
 > **本 feature**：已交付件缺 11 個成員、R 欄下拉歸零，**不重產**（R18-1），
 > DEFERRED 至下次內容變動 —— A-SX28。
+>
+> **腳本封存（R20-3, 2026-08-13）**：`scripts/write_back.py` 走 openpyxl
+> 存檔路徑，已加封存標頭，**不得執行**、不改寫。交付件缺損見 A-SX28
+> （DEFERRED，R18-1）。
 
 Copied into every feature directory by `new_feature.py`. This is the
 OPERATIONAL view: who does what, in which tool, with which handoff

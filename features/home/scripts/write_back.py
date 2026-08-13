@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Step 4 — write the generated TCs back into the FW036 Home workbook.
+"""QUARANTINED (R20-3, 2026-08-13) — this script writes via
+openpyxl save and will destroy zip members and data
+validations. It must not be executed. The feature's
+delivered artefact is frozen; see ANOMALIES A-H27 /
+A-SX28 / A-AM18 and RULINGS R18-1.
+
+Step 4 — write the generated TCs back into the FW036 Home workbook.
 
 Home's regen rows are INTERLEAVED between three frozen Arif segments, so the
 Media strategy (freeze a row prefix, truncate, append) does not apply. Each

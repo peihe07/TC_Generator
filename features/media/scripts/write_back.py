@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Step 4 — write generated TCs back into the FW036 workbook.
+"""QUARANTINED (R20-3, 2026-08-13) — this script writes via
+openpyxl save and will destroy zip members and data
+validations. It must not be executed. The feature's
+delivered artefact is frozen; see ANOMALIES A-H27 /
+A-SX28 / A-AM18 and RULINGS R18-1.
+
+Step 4 — write generated TCs back into the FW036 workbook.
 
 Produces `output/FW036_regen.xlsx` from the source workbook plus
 `generated/*.json`:

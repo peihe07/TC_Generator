@@ -19,6 +19,9 @@
 >
 > **本 feature**：對照組，`output/` 與 `inputs/` 位元相同（未經寫回路徑），
 > 零差異不足以支持任何 writer 正面結論 —— A-PJ-R16。
+>
+> **腳本封存（R20-3, 2026-08-13）**：`scripts/writeback.py` 走 openpyxl
+> 存檔路徑，已加封存標頭，**不得執行**、不改寫 —— A-PJ-R16。
 
 Copied into every feature directory by `new_feature.py`. This is the
 OPERATIONAL view: who does what, in which tool, with which handoff

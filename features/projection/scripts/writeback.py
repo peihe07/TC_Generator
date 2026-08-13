@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Phase 7 寫回 — W-1 ~ W-7（R-P71）。
+"""QUARANTINED (R20-3, 2026-08-13) — this script writes via
+openpyxl save and will destroy zip members and data
+validations. It must not be executed. The feature's
+delivered artefact is frozen; see ANOMALIES A-H27 /
+A-SX28 / A-AM18 and RULINGS R18-1.
+
+Phase 7 寫回 — W-1 ~ W-7（R-P71）。
 
 用法：
     python writeback.py <src.xlsx> <dst.xlsx>

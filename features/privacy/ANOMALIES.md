@@ -340,6 +340,51 @@ Time 欄），兩者已完整取代舊版。無任何 DV、公式或 defined nam
 
 ---
 
+## A-PV14 — V6_R2 之 `inputs/` 副本對齊 **DT28**，而 V2_R2 對齊 **HDCC28** — PENDING
+
+**來源**：R22 §2 基準確認（2026-08-13）之副產物。原作業只要求判定
+`inputs/` 檔是否與客戶樹相符（結果全數 `MATCH`），但逐檔列出**所有**同名
+候選之 SHA256 後，浮現一件與判定無關、卻直接影響 spec 引用的事。
+
+A-PV04 已就 `VF651_V2_R2.docx` 裁定：`inputs/` 那份（`d5813bb7…`）與
+`HDCC28_Split` 同源，視為 **HDCC28 平台基線**。本次對 V6_R2 做同樣量測：
+
+| 檔案 | `inputs/` SHA256 | 命中之樹內路徑 |
+|---|---|---|
+| `…VF651_V2_R2.docx` | `d5813bb7…` | 交付夾 ✔ ／ `VF_Split document/**HDCC28_Split**/` ✔ |
+| `…VF651_V6_R2.docx` | `49dd3c31…` | 交付夾 ✔ ／ `VF/**28DT_2A_LTM**/LTM/VF - Functional Requirements/**DT28_split**/` ✔ |
+
+**V6_R2 的 `HDCC28_Split` 副本是 `e20ba7a4…`，與 `inputs/` 這份不同。**
+
+即：同一個交付夾（`10_Reviewing/00_TestCase/ASW-R2/Privacy Mode/`）裡的兩份
+VF651 檔，一份對得上 HDCC28 樹、另一份對得上 DT28 樹。
+
+**候選分布（量測值）**：
+
+| 檔案 | 樹內同名候選數 | 相異內容數 |
+|---|---|---|
+| `…V2_R2.docx` | 7 | 5 |
+| `…V6_R2.docx` | 7 | **6** |
+| `…V3_R3.docx` | 3 | 2 |
+
+**為何重要**：本專案為 HDCC28 平台（A-PV04 之基線判定即據此）。
+若 V6_R2 該引用的是 HDCC28 版而 `inputs/` 放的是 DT28 版，
+則 -007 / -008 / -010（PROF-173/174/176，AMP-present 情境）
+之 `specification_reference` 會指向錯誤平台的文件 —— 而 R-PV01(c)
+簽署納入 V6_R2 的依據是「需求本身要求 AMP-present」，那條依據
+不涉及平台版本，所以簽署時這個問題不可能被發現。
+
+**不判定何者為正**（R22-5：分類承載因果假設時停在原始量測）。
+可能是交付夾備錯、可能是 DT28 版才是本案適用、可能兩版在相關條文上無差異。
+**執行層未做兩版的內容 diff** —— 那會暗示成因，且屬 P2 spec 解析範疇。
+
+**建議處置（Tier 2）**：在 P2 引用 V6_R2 任一條文之前，先裁定平台版本，
+或先做 `e20ba7a4…`（HDCC28）與 `49dd3c31…`（DT28）之全文 diff 再裁。
+在裁定前 V6_R2 **不得列為 `specification_reference`**。
+
+**相關**：A-PV02（R-PV01(c) 簽署納入 V6_R2）、A-PV04（V2_R2 之 HDCC28
+基線判定）、`RULINGS.md` R22 / R15-5（同名檔一律以 hash 認定）。
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-PVnn]`

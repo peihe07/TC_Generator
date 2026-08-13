@@ -690,3 +690,128 @@ R19-7  Privacy A-PV03 → DEFERRED、A-PV09 → CLOSED —— 追認
 `features/privacy/scripts/xlsx_roundtrip_probe.py`（理由：非交付用途，
 刻意產生 LOSSY 對照臂）、`tests/`（理由：非交付用途，fixture 建於
 `tmp_path`）。測試自帶陽性對照，確認白名單內之呼叫不觸發 FAIL。
+
+## R20 — 寫回路徑違規點之處置（分析層自裁，2026-08-13）
+
+```text
+[RULING] R20 — 寫回路徑違規點之處置（分析層自裁部分，2026-08-13）
+
+R20-1  03 包權限標示落差 —— 歸因分析層，補登有效
+  事實：03 包權限標示寫「§1（R17-1 ~ R17-3）為分析層自裁」，
+        但 §1 區塊實際含 R17-4，§5 自檢表亦將四條同列為已簽署。
+        執行層依 R19-2 之「逐字取自 03 §1」補了整個 §1 區塊（含
+        R17-4），落差照實記載，未自裁何者為準 —— 處置正確。
+  裁：**四條同為分析層自裁項**，權限標示之「R17-1 ~ R17-3」為
+        分析層漏寫範圍上界，非有意排除 R17-4。補登有效，全數生效。
+  §5a：條文區塊與其權限標示之範圍必須逐項對齊；標示以列舉而非
+        區間表示時，須與區塊內實際條文數一致。
+
+R20-2  R19-3 之測試以 ratchet 形式入庫 —— 不待違規點清零
+  事實：停手條件 3 觸發（現況即 FAIL，11 個違規呼叫點），執行層
+        未入庫、未動生產程式碼 —— 完全正確。
+  裁：測試改以 **ratchet（棘輪）** 形式入庫，即刻執行：
+        (1) 將現況 11 個呼叫點以「已知既存違規」清單寫入測試，
+            逐點附檔名、行號、性質，作為 grandfathered baseline
+        (2) 測試之通過條件為「掃描結果 ⊆ 白名單 ∪ 既存違規清單」
+        (3) 新增任何不在兩份清單內之呼叫點 → **FAIL**
+        (4) 既存違規清單為**只減不增**；移除一項時同步從清單刪除，
+            清單本身即進度計量
+        (5) 保留執行層已設計之白名單三項與陽性對照
+  理由：規則之價值在於阻止新增，不在於一次清零。以「必須先清零才
+        能入庫」為條件，等於讓最需要防護的期間完全無防護。
+  §5a：**機制之導入不得以「現況已合規」為前提**；現況不合規時，
+        正確作法是凍結現況並禁止惡化，而非延後機制。
+
+R20-3  四支 feature write_back 腳本 —— 封存，不改寫、不得執行
+  事實：features/{home,sxm,media,projection}/scripts/write_back.py
+        （及 writeback.py）仍在 openpyxl 存檔路徑上。四者所屬
+        feature 之交付件皆已產出，缺損已依 R18-1 裁為 DEFERRED。
+  裁：依 R18「做過的都不重產」，**不改寫此四支腳本**。
+        改以封存處置：
+        (1) 四支腳本檔頭加入封存標頭（逐字）：
+            「QUARANTINED (R20-3, 2026-08-13) — this script writes via
+             openpyxl save and will destroy zip members and data
+             validations. It must not be executed. The feature's
+             delivered artefact is frozen; see ANOMALIES A-H27 /
+             A-SX28 / A-AM18 and RULINGS R18-1.」
+        (2) 各 feature PLAYBOOK 加註該腳本已封存
+        (3) 四點自 R20-2 之既存違規清單中另標 `QUARANTINED`，
+            與「仍可被呼叫之違規」區分
+        (4) **不加程式層 guard**（加 guard 屬修改生產程式碼，
+            且該腳本本就不應被執行；標頭與登記已足）
+  Media 附註：features/media 未在 R16/R18 之檢測範圍內，其交付件
+        是否受損**未量**。本包不擴大檢測範圍，僅封存腳本並登記
+        「交付件狀態未量」。
+
+R20-5  Privacy 之 write_back 自始建於 xlsx_surgical
+  裁：Privacy 尚未寫回，**不得複製任一既有 feature 之 write_back
+        腳本作為起點**（四支皆已封存）。其寫回路徑自始建於
+        backend/xlsx_surgical.py，並受 R18-3 之 ABORT 級 invariant
+        拘束。此為 R18-3 規則 1 之首次正向適用。
+
+R20-6  canon 草案落點 —— 追認
+  裁：判準型通則置於 §6a 之末，追認。執行層之理由（前文規範如何
+        不製造缺損，本條規範缺損既成後怎麼辦）正確。
+
+R20-7  A-AM19 之未實測標記內容 —— 追認並嘉許
+  裁：執行層除照條文標註外，另寫明「未驗的具體是什麼」
+        （s= 索引跨列沿用是否對所有欄成立；第 242 列為 template
+        tail 最後一列，其樣式未必等同資料列常態；新增 <row> 屬性後
+        spans 與 customFormat 是否需同步）。
+        追認，並立為體例：**未實測標記須指名待驗之具體命題**，
+        僅寫「未實測」者不合格 —— 無命題者日後無從驗起。
+```
+
+**R20-4（`api_server.py:2410` 就地覆寫）不在本區塊**：該項於下放包 06 §2
+為待裁，隔日同日由 Pei 簽署選項 A，條文見 **R21**。
+
+### 執行層回報（下放包 06，2026-08-13）
+
+- R20-2 之 ratchet 測試已入庫：`tests/test_single_write_path.py`
+- R20-3 之封存標頭已加於四支腳本；**Media 無 `PLAYBOOK.md`**，
+  其加註改置於 `features/media/RUNBOOK.md`，照實回報，未自行建立 PLAYBOOK
+- 作業順序調整：先辦 §3.3（加標頭）再辦 §3.2（入庫測試）。
+  理由為標頭會使行號位移，先入庫則清單行號當場失準。
+  兩項內容不受影響，僅順序對調。
+
+## R21 — api_server.py:2410 就地覆寫之處置（Pei 簽署 2026-08-13）
+
+```text
+[RULING] R21 — api_server.py:2410 就地覆寫之處置（Pei 簽署 2026-08-13）
+
+R21-1  基準稽核（先辦，唯讀）
+  裁：對五個 feature 之 inputs/ 全部檔案計 SHA256，與客戶端來源
+      目錄之對應檔比對，確認是否已有被覆寫者。
+      **全程唯讀** —— 不得移動、改名、覆寫、刪除 inputs/ 或來源目錄
+      之任何檔案。
+
+R21-2  登記
+  裁：R20-2 之既存違規清單中，api_server.py:2410 標為 `HAZARD`，
+      與其餘十點區分。標註須寫明其與他點之性質差異：
+      「overwrites the source file in place; destroys the baseline
+       that all structural comparisons depend on, not merely the
+       output」。
+
+R21-3  程式碼變更 —— 解除覆寫，不解除受損
+  裁：api_server.py:2410 之 wb.save(source_path) 改為寫入新檔並
+      回傳新路徑，**永不覆寫來源**。
+      **明確界定**：本項解除的是「基準被毀」之危害；該路徑仍以
+      openpyxl 存檔，其輸出仍為受損檔，此缺陷**不在本項處置範圍**，
+      續留 R20-2 之既存違規清單內，由該清單之只減不增機制追蹤。
+      不得藉本項順手改為 xlsx_surgical —— 那是另一項變更，
+      需另行裁定（api_server.py:2370 之匯出下載路徑同理，本包不動）。
+```
+
+### 執行層回報（下放包 07，2026-08-13）
+
+**R21-1 已辦（唯讀）**：六個 feature、84 個 `inputs/` 檔全數計 SHA256，
+與 `/Users/peihe/Work/` 客戶樹之全部同名候選逐一比對。
+結果 **MATCH 81 / NO_MATCH 1 / NO_COUNTERPART 2**。
+
+**R21-2 已辦**：`api_server.py:2410` 於 `tests/test_single_write_path.py`
+之 `KNOWN_VIOLATIONS` 標為 `HAZARD`，性質說明逐字照錄。
+
+**R21-3 未辦 —— 停手條件 1 觸發**：稽核出現 `NO_MATCH`
+（`features/media/inputs/` 之 FW036 工作簿），依 07 包 §3.1
+「停止 2.3 之程式碼變更，續行 2.2 之登記，立即回報」。
+`api_server.py` 一字未改。詳見 `docs/upstream/07_baseline_audit.md`。

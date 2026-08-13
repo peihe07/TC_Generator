@@ -1028,3 +1028,35 @@ asserts one where the other applies would be wrong in a way that looks right.
 The generated TCs state which order they verify in the scenario tag.
 
 **Open:** none. Informational, for reviewers.
+
+## A-034 — write_back 腳本已封存；交付件結構狀態**未量**（R20-3, 2026-08-13）
+
+**腳本封存**：`features/media/scripts/write_back.py` 走 openpyxl 存檔路徑，
+依 **R20-3** 加封存標頭、**不得執行**、**不改寫**。該路徑會破壞 zip 成員與
+data validation —— AMFM 實測 lost 21 / added 10、x14 DV 2 → 0
+（見 `features/amfm/ANOMALIES.md` A-AM18、`RULINGS.md` R16 / R18-3）。
+
+**交付件狀態：未量。** Media **不在** R16 / R18 之檢測範圍內
+（R16-3 只點名 Home 與 SXM，Projection 為對照組）。本條**不擴大檢測範圍**，
+僅登記事實：
+
+| 項目 | 狀態 |
+|---|---|
+| write_back 腳本 | 已封存（R20-3），不得執行 |
+| 交付件是否受損 | **未量** —— 未跑過 `xlsx_roundtrip_probe --compare` |
+| 客戶原件是否仍完整 | **未量** |
+
+**「未量」不等於「無損」。** Media 與 Home / SXM 用同一支 openpyxl 存檔
+路徑，先驗機率上受損，但**未經量測不得如此陳述**（R17-3：feature 狀態
+之陳述須以實測為據）。要判定只需一次唯讀比對：
+
+```bash
+python features/privacy/scripts/xlsx_roundtrip_probe.py \
+    --workbook features/media/inputs/<客戶原件> \
+    --compare  <已交付件>
+```
+
+**本包未執行**，因 06 包 §3「不擴大檢測至 Media 交付件」。
+待分析層決定是否納入檢測範圍。
+
+**相關**：`features/amfm/RULINGS.md` R20-3 / R18-1；A-AM18 / A-H27 / A-SX28。

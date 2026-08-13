@@ -1,5 +1,11 @@
 # FW036 Remaining TC Generation — Runbook for Claude Code
 
+> **腳本封存（R20-3, 2026-08-13）**：`scripts/write_back.py` 走 openpyxl
+> 存檔路徑，已加封存標頭，**不得執行**、不改寫。交付件結構狀態
+> **未量**（Media 不在 R16/R18 檢測範圍內）—— 見 `ANOMALIES.md` A-034。
+> 註：Media 無 `PLAYBOOK.md`，故 R20-3(2) 之加註置於本檔。
+
+
 > **2026-08-11: directory moved `mediaHMI` → `features/media`.** Repo-wide reorganisation —
 > all features now live under `features/`, lowercase and without the HMI
 > suffix. Path strings in the body below are NOT rewritten: they are dated

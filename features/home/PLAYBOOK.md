@@ -19,6 +19,11 @@
 >
 > **本 feature**：已交付件缺 14 個 zip 成員，**不重產**（R18-1），
 > DEFERRED 至下次內容變動 —— A-H27。修復前需先擴充寫回路徑（interleaved）。
+>
+> **腳本封存（R20-3, 2026-08-13）**：`scripts/write_back.py` 走 openpyxl
+> 存檔路徑，已加封存標頭，**不得執行**、不改寫。交付件缺損見 A-H27
+> （DEFERRED，R18-1）。日後若裁定重產，需先擴充 `xlsx_surgical` 以支援
+> interleaved 形態 —— 現行路徑只支援 append。
 
 Instantiated retroactively at feature close-out (the template postdates this
 feature's run; Home is the run that produced it). This is the OPERATIONAL
