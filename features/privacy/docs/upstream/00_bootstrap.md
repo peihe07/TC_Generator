@@ -133,6 +133,10 @@ SYS2/SYSRA 安全分析層在這 10 leaves 上無附著點，不進 trace chain
 
 ## §7.6 — 本包是否仍有該驗而未驗者（獨立判斷）
 
+> **2026-08-13 追記**：本節第 5 項（x14 DV 往返實測）已於 Pei 裁示後
+> **當場執行完畢**，結論見文末「附錄 A」。第 1–4 項維持未驗，且 Pei 已據此
+> 將 R-PV01(a)(b)(d) 明示延後至 P2 —— 本節之判斷因此直接影響了裁決分批方式。
+
 **有，五項。**
 
 1. **CFTS022 之 ECU/Radio 適用性掃描未重驗**（handoff §3.2 之 336 / 334 /
@@ -177,6 +181,63 @@ AMFM / Home 之 workbook 該格皆有值故未暴露，空白範本是第一個�
 | `features/privacy/RECON.md` / `DECISIONS.md` / `data/recon.json` | `recon.py` 產出 | Tier 0/1 |
 | `docs/fw036/HANDOFF_privacy_00_bootstrap.md` | `git mv` → `features/privacy/docs/handoff/00_bootstrap.md` | 依 handoff 落點例外說明 |
 
-**未動**：`new_feature.py`（abbr `PR`）、`intake.py`（Scope 誤讀）、
-`recon.py`、範本本體（第 10–11 列殘留樣本未清、舊分頁未刪）、
-V6_R2 未入 `inputs/`。
+**未動**：`new_feature.py`（abbr `PR`，R-PV02 明示不改）、`intake.py`（Scope
+誤讀）、`recon.py`、範本本體（第 10–11 列殘留樣本未清、舊分頁未刪）。
+
+### 2026-08-13 裁決後追加改動
+
+| 檔案 | 改動 | 依據 |
+|---|---|---|
+| `inputs/…VF651_V6_R2.docx` | 複製入庫（SHA256 `49dd3c31…`）| R-PV01(c) SIGNED |
+| `feature.yaml` | `tc_id_format: "NR1L-Privacy-{n:03d}"`；`fill_test_group_set: true`；`author_value: ""`（BLANK 無 done region）；`scope_label` / `scope_source` 比照 SXM | R-PV02 + canon §2 |
+| `scripts/xlsx_roundtrip_probe.py` | 新建，A-PV09 之可複現實測 | Pei「照辦」|
+| `ANOMALIES.md` | A-PV02 / A-PV03 / A-PV06 / A-PV09 改 RESOLVED 或記錄延後理由；A-PV07 清除計畫依實測修訂 | — |
+| `DATA_REQUESTS.md` | #2 關列；#3 改 Not requested；新增「P2 進場前必辦」四項重驗義務 | — |
+| `DECISIONS.md` | 新增 §8 Signed rulings | — |
+
+---
+
+# 附錄 A — x14 DV 往返實測結果（A-PV09）
+
+Pei 指示「照辦，P4 前做」，執行層提前於 Phase 1 完成。
+腳本：`features/privacy/scripts/xlsx_roundtrip_probe.py`（可複現）。
+
+基線：48 個 zip 成員；x14 DV `['R11:R59','R10']`；
+傳統 DV `['P10:Q11','T10:Z11','AF10:AF11']`。
+
+```
+--- openpyxl load/save: LOSSY
+  x14 DV lost      : ['R10', 'R11:R59']
+  classic DV lost  : none
+  zip members lost : xl/calcChain.xml, xl/comments1.xml,
+                     xl/drawings/vmlDrawing1.vml, xl/media/image2.jpeg,
+                     xl/printerSettings/printerSettings1..5.bin,
+                     xl/sharedStrings.xml, xl/worksheets/_rels/sheet8.xml.rels
+  zip members added: xl/comments/comment1.xml, xl/drawings/commentsDrawing1.vml,
+                     xl/media/image2.png, xl/media/image3..9.jpeg
+
+--- zip-level surgical splice: LOSSLESS
+  x14 DV lost      : none
+  classic DV lost  : none
+  zip members lost : none
+  zip members added: none
+
+surgical write read back: I10 = 'round-trip probe'
+verdict: P7 must use the surgical path
+```
+
+**須向分析層強調三點**：
+
+1. **損失範圍遠大於原先預估。** 原本只預期 R 欄下拉消失，實測另丟 5 個
+   printerSettings（列印設定歸零）、VML 註解圖層被重繪、內嵌 JPEG 被重新
+   編碼並複製成 7 份、sharedStrings 整個消失。原先「寫回後把 `<extLst>`
+   補回去」的建議處置**不足以修復**，必須改走外科手術路徑。
+
+2. **這是範本層問題，不是 Privacy 層問題。** 缺陷屬 FM-WI-FSM-036-A01 rev C
+   範本本身。SXM 亦為 BLANK + 同範本家族，應同樣受影響。
+   **建議分析層評估升為 canon 層條文**，而非留在單一 feature 的 anomaly。
+
+3. **順帶解決了 A-PV07 的清除方法。** 檢視 sheet XML 時發現 B10 實為公式
+   `=IF(ISBLANK($D10),"",ROW()-9)` —— 序號自 D 欄推算。原清除計畫寫「清空
+   B10:AH11」會刪掉範本的序號機制；修訂為只清 D10/F10/G10/S10/D11 五格之
+   值、保留 `s=` 樣式屬性，B 欄自動跟隨。已在探針中實測通過。

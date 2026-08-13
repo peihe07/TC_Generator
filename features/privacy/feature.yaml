@@ -37,16 +37,27 @@ workbook:
     remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
 
 done_region:
-  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  # BLANK workbook: there is no done region to protect. The selector is left
+  # empty deliberately — a placeholder author value would silently match zero
+  # rows and make an empty invariant look like a satisfied one (cf. SXM).
   detection: "author"
-  author_value: "Arif"
-  # invariant: "content_hash" (interleaved-safe) or "positional"
+  author_value: ""
   invariant: "content_hash"
 
 write_back:
   author_value: "PeiPYHsu"
-  tc_ref_id_value: "NEW"
-  fill_test_group_set: false     # true only under BLANK per canon §2
+  tc_ref_id_value: "NEW"     # no legacy rows to inherit case from (cf. AMFM R13)
+  # F 欄 TC ID 是作者側編號（canon §10.3），與客戶端的 Test Case Reference ID
+  # 不同構。BLANK 表單沒有既有序列可續，故自 001 起單調遞增。
+  # R-PV02 (2026-08-13)：abbr 取完整 feature 名 `Privacy`，大小寫混合，
+  # 依據是範本第 10 列原廠樣本 `NR1L-AntiTheft-001` 的形態，非兩字母縮寫。
+  # 順帶清掉樣本列殘留的 NR1L-AntiTheft-001（見 A-PV07 清除計畫）。
+  tc_id_format: "NR1L-Privacy-{n:03d}"
+  fill_test_group_set: true  # canon §2 — true under BLANK
+  # 範本這格 ships EMPTY。Home 與 AMFM 都遇到它指向錯的交付件；空白是同一
+  # 缺陷的安靜版本，故於 write-back 以 label-text 機制填入（見 A-PV08）。
+  scope_label: "範圍 Scope"
+  scope_source: "a03_report"
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary
