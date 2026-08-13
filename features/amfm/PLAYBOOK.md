@@ -1,5 +1,25 @@
 # PLAYBOOK — AMFM (FW036 TC Generation)
 
+> ## 寫回常設規則 —— R18-3（2026-08-13，取代 R16-2 凍結令）
+>
+> R16-2 之全 repo 寫回凍結**已解除**。解除依據：探針對 AMFM 客戶原件與
+> FW036 空白範本兩次驗證皆 LOSSLESS，且不再有任何重產動作。
+> 代之以下列常設規則，即刻生效、適用全 feature：
+>
+> 1. `backend/xlsx_surgical.py` 為**唯一**寫回路徑；
+>    openpyxl 存檔路徑不得用於任何交付件產出
+> 2. 寫回後強制比對輸出與輸入之 zip 成員集合、各 sheet 之
+>    classic / x14 DV 計數，不等即 **ABORT**（非 warn）；
+>    允許差異者僅限被寫入之 sheet XML 本身
+> 3. 該 invariant 之違反屬 canon §0 第三項，升 Tier 2，
+>    不得以放寬 invariant 解決
+>
+> 反向測試（R18-4）：`tests/test_xlsx_surgical_invariant.py` —— 兩種
+> 破壞模式皆驗證確實 ABORT。裁決全文：`features/amfm/RULINGS.md` R18。
+>
+> **本 feature**：v1 不重產、tag 不動；v2 保留於 `output/` 不打 tag、
+> 不送出，附掛「尚未經 Excel 實開驗證」標籤（R18-2）—— A-AM18 / A-AM19。
+
 Instantiated at P7 (the feature ran without one — registered as A-AM16).
 This is the OPERATIONAL view: who does what, in which tool, with which
 handoff artifacts, and the core TC-production loop. Rule authority stays
@@ -184,7 +204,15 @@ Current instance (the only remaining Claude Code task):
       - SHA256: `da18b5b0ca9ee5794b67a31ddd317b4a23decf9e0e88380a3717f823e45f3f22`
         — sidecar / tag annotation / `shasum -a 256` 實測, three-way identical
       - legacy done-region hash (ordered content, columns D..AG, 158 rows):
-        `30d9e4c0719a2929`
+        **full length** (R15-4 — the tag annotation carries a 16-char prefix
+        truncation, which is archived as-is and not amended; every later
+        feature records the full digest)
+        `30d9e4c0719a29292ff50123ead1003262652fbb8f301e93bf974fd2ee17f30a`
+        — prefix `30d9e4c0719a2929`, continuation `2ff50123…`.
+        Re-derived 2026-08-13 against the pristine input, v1 and v2: all
+        three agree, and agree with `data/legacy_baseline.json`. Per R15-3
+        this proves the region has not drifted since generation; it does not
+        prove the hash definition itself is right (same definition, re-run).
       - rows: `LEGACY 10-167 (158 preserved, unmoved)` +
         `REGEN 168-310 (143 appended, 0 placeholder)` = **301 total**
       - coverage: 102 regen req_ids == 102 leaf set, exact

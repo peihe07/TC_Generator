@@ -480,6 +480,97 @@ copy errors; they stay PENDING for per-pair review at their batches.
   Execution layer registered and reported only.
 - Related: `A-AM07` (CFTS004 attribution), `DATA_REQUESTS.md` `#2b` / `#2c`.
 
+## [A-AM18] v1 交付件結構缺損 —— 21 個 zip 成員遺失、x14 dropdown 歸零 — **DEFERRED — 待 Pei 完成 Excel 實開驗證後決定交付時點（R18-2）**
+
+**性質**：不是列內容缺陷。v1 的 301 列值全部正確、lint green、legacy
+content hash 相符 —— 而交付出去的檔案已經不是客戶給的那個容器。
+`openpyxl` 的 `Workbook.save()` 不是「存回讀進來的檔」，是「存出 openpyxl
+能描述的檔」；凡在它物件模型之外的 zip 成員，一律丟棄或重建。
+
+**量測**（`features/privacy/scripts/xlsx_roundtrip_probe.py`，執行層 2026-08-13 複現）：
+
+| | 客戶原件 | v1（tag `fw036-amfm-regen-v1`）| v2（本次） |
+|---|---|---|---|
+| bytes | 136,004 | 171,631 | 153,485 |
+| zip members | 59 | 48 | **59** |
+| classic DV / x14 DV | 4 / 2 | 4 / **0** | 4 / **2** |
+| SHA256 | `987cdead3775…` | `da18b5b0ca9e…` | `0daa6f29cecb…` |
+
+v1 相對客戶原件 **lost 21 / added 10**：
+
+```
+LOST  xl/diagrams/{colors1,data1,drawing1,layout1,quickStyle1}.xml   ← SmartArt 整組
+      xl/drawings/drawing7.xml + _rels/drawing7.xml.rels
+      xl/printerSettings/printerSettings1..7.bin                     ← 列印設定
+      xl/sharedStrings.xml, xl/calcChain.xml
+      xl/comments1.xml, xl/drawings/vmlDrawing1.vml                  ← 舊式註解圖層
+      xl/media/image2.jpeg
+      xl/worksheets/_rels/sheet8.xml.rels, sheet9.xml.rels
+ADDED xl/comments/comment1.xml, xl/drawings/commentsDrawing1.vml
+      xl/media/image2.png（原 jpeg 重新編碼）, xl/media/image3..9.jpeg
+```
+
+**處置 —— 已裁（R18-2, Pei, 2026-08-13）**：
+
+> v2 已產出，保留於 `output/`，**不打 tag、不送出、不再加工**。
+> v1 tag `fw036-amfm-regen-v1` 維持不動。
+> v2 附掛未驗標籤：**尚未經 Excel 實開驗證（R17-9）**，
+> 交付前必須先由 Pei 完成該四點確認。時點由 Pei 決定。
+
+v2 實測：zip 成員 59 = 59 零增零減、DV 4/2 完整保留、
+TC 分頁逐格內容與 v1 **零差異**、lint PASS、連跑兩次 SHA256 相同
+（`0daa6f29cecb…`）。
+
+⚠️ **未驗標籤（R17-9，Tier 3，僅 Pei 可解）**：v2 的全部驗證都在程式層。
+外科手術寫的是顯式 `<f>` 公式，而新增的 B243–B310 不在被逐 byte 保留的
+`calcChain.xml` 內。Excel 通常會靜默重建，但這是推論不是實測。
+交付前需人在 Excel 開啟 v2，確認：(a) 無「修復」提示、(b) R/P/AE 下拉可用、
+(c) SmartArt 在、(d) 列印設定在。**此四點未完成前，v2 不得送出。**
+
+狀態為 `DEFERRED` 而非 `PENDING`（R15-2）—— 已裁，等待對象是
+Pei 的 Excel 實開驗證，不是等待裁決。
+
+**§5a 教訓（R16-5）**：lint green 與內容 hash 相符，證明不了交付件結構完整。
+前者量列內容，後者量 zip 結構，兩者正交。R14-C1 之 P7 追認即在此盲區內做出
+——當時所驗七項數值全對，而交付件已缺 21 個 zip 成員。追認不撤回
+（列內容確實正確），但其結論之涵蓋範圍加註本限制。
+
+**相關**：R16 全文見 `RULINGS.md`；跨 feature 檢測結果見
+`docs/upstream/02_integrity.md` §4；Home `A-H27`、SXM `A-SX01`、
+Privacy `A-PV09`、Projection 對照組。
+
+## [A-AM19] 交付件第 243–310 列無儲存格樣式 — **DEFERRED — 待下次內容變動時一併處理（R18-5）**
+
+客戶原件的 template tail 只到第 242 列（`<row r="242" spans="2:33" s="154"
+customFormat="1">`，各格帶 `s=` 樣式索引）。第 243 列起在原件中**不存在**，
+是寫回時新建的列，因此沒有列樣式、格內也沒有 `s=` 屬性：
+
+```
+原件 row 242 : <row r="242" spans="2:33" s="154" customFormat="1">
+                 <c r="B242" s="133" t="str">…  ← 帶樣式
+v1/v2 row 243: <row r="243">
+                 <c r="B243">…                  ← 無樣式
+```
+
+**影響**：交付件下半部 68 列（243–310，即 143 筆 regen 中的後 68 筆）
+沒有框線與儲存格格式。內容正確，僅外觀不一致。
+
+**這不是 R16 結構缺損所致。** 已逐列比對確認 **v1 與 v2 皆然** ——
+v1 是 openpyxl `insert_rows()` 不複製樣式，v2 是外科手術路徑刻意沿用
+v1 行為以保證「只換寫回方法、不夾帶內容變動」（下放包 02 §3.3）。
+兩者同因不同路徑，是一個獨立於 R16 的既有缺陷。
+
+**處置 —— 已裁（R18-5, Pei, 2026-08-13）**：
+
+> 登記為 anomaly，**不修**。v1、v2 皆然，非結構缺損所致。
+> 狀態 DEFERRED — 待下次內容變動時一併處理。
+
+修復方向（記錄備用，不實作）：新建列時自最後一個 template 列
+（第 242 列）繼承 `<row>` 屬性與各欄 `s=` 索引。屬外觀改動，
+會改變交付件位元內容，故不宜與「只換寫回方法」的 v2 混在一起做。
+
+**相關**：A-AM18；`RULINGS.md` R18-5；`docs/upstream/02_integrity.md` §7 末段。
+
 ## Assumption markers
 
 None registered beyond the above. Inline format in generated JSON

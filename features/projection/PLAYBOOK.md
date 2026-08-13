@@ -1,5 +1,25 @@
 # PLAYBOOK — Projection (FW036 TC Generation)
 
+> ## 寫回常設規則 —— R18-3（2026-08-13，取代 R16-2 凍結令）
+>
+> R16-2 之全 repo 寫回凍結**已解除**。解除依據：探針對 AMFM 客戶原件與
+> FW036 空白範本兩次驗證皆 LOSSLESS，且不再有任何重產動作。
+> 代之以下列常設規則，即刻生效、適用全 feature：
+>
+> 1. `backend/xlsx_surgical.py` 為**唯一**寫回路徑；
+>    openpyxl 存檔路徑不得用於任何交付件產出
+> 2. 寫回後強制比對輸出與輸入之 zip 成員集合、各 sheet 之
+>    classic / x14 DV 計數，不等即 **ABORT**（非 warn）；
+>    允許差異者僅限被寫入之 sheet XML 本身
+> 3. 該 invariant 之違反屬 canon §0 第三項，升 Tier 2，
+>    不得以放寬 invariant 解決
+>
+> 反向測試（R18-4）：`tests/test_xlsx_surgical_invariant.py` —— 兩種
+> 破壞模式皆驗證確實 ABORT。裁決全文：`features/amfm/RULINGS.md` R18。
+>
+> **本 feature**：對照組，`output/` 與 `inputs/` 位元相同（未經寫回路徑），
+> 零差異不足以支持任何 writer 正面結論 —— A-PJ-R16。
+
 Copied into every feature directory by `new_feature.py`. This is the
 OPERATIONAL view: who does what, in which tool, with which handoff
 artifacts, and the core TC-production loop. Rule authority stays with

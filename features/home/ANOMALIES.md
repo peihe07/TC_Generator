@@ -496,6 +496,58 @@ tag succession.
 
 ---
 
+## [A-H27] 已交付件結構缺損 —— 14 個 zip 成員遺失 — **DEFERRED — 待下次內容變動時一併修復（R18-1）**
+
+R16-3 回溯檢測，以 `features/privacy/scripts/xlsx_roundtrip_probe.py --compare`
+量測 `inputs/` 客戶原件 vs `output/` 已交付件（tag `fw036-home-regen-v2`）：
+
+| | 客戶原件 | 已交付件 |
+|---|---|---|
+| bytes | 130,571 | 140,537 |
+| zip members | 52 | **48** |
+| classic DV | 0 | 0 |
+| x14 DV | **0** | 0 |
+
+```
+LOST (14)  xl/diagrams/{colors1,data1,drawing1,layout1,quickStyle1}.xml
+           xl/drawings/drawing7.xml + _rels/drawing7.xml.rels
+           xl/drawings/vmlDrawing1.vml, xl/comments1.xml
+           xl/printerSettings/printerSettings1.bin
+           xl/media/image2.jpeg
+           xl/sharedStrings.xml, xl/calcChain.xml
+           xl/worksheets/_rels/sheet7.xml.rels
+ADDED (10) xl/comments/comment1.xml, xl/drawings/commentsDrawing1.vml
+           xl/media/image2.png（原 jpeg 重新編碼）, xl/media/image3..9.jpeg
+```
+
+**與 AMFM 之差別，兩點值得分開陳述**：
+
+1. **Home 原件本來就沒有 x14 dataValidation（0 → 0）。** 所以「下拉選單消失」
+   這個最顯眼的症狀在 Home 不存在。若只驗 DV 會判為無損 —— 實際仍失
+   14 個成員，含整組 SmartArt 與列印設定。**這正是 R16-5 盲區的第二個實例**：
+   換一個正交的量法就看不見。
+2. 失去的成員數（14）少於 AMFM（21），因為 Home 原件本來成員就少
+   （52 vs 59）、printerSettings 只有 1 個。**受損比例相當，不是比較輕。**
+
+**處置 —— 已裁（R18-1, Pei, 2026-08-13）**：
+
+> Home（`fw036-home-regen-v2`）維持現狀，不重產、不改 tag、不動任何一列。
+
+實測數字（R18-1 要求登記者）：**lost 14 / added 10，含整組 SmartArt；
+x14 DV 0 → 0**（該檔本無 DV，DV 判準看不見此缺損）。
+
+狀態為 `DEFERRED`，**不是** `PENDING`（R15-2）。等待對象：
+**下次該交付件有內容變動時**一併修復。
+
+**修復前必須知道的前置條件**：Home 是 interleaved 重寫，不是 append。
+現行外科手術路徑只支援「在最後一列之後 append」，遇中間插列會
+`StructureError`。R17-7 曾提出 whole-sheet splice 作為解法，
+**R18-1 裁定不實作**，僅保留於 `docs/handoff/03_integrity_review.md`
+作為日後修復之已知路徑。屆時要先擴充寫回路徑並重驗，不是一次 `--write`。
+
+**相關**：`features/amfm/RULINGS.md` R16；`features/amfm/ANOMALIES.md` A-AM18；
+`features/amfm/docs/upstream/02_integrity.md` §4。
+
 ## Assumption markers
 
 None yet. Format when needed: inline `[ASSUMPTION A-Hnn]` in the generated

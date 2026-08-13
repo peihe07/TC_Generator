@@ -1265,3 +1265,51 @@ cites is what makes the name plausible, and that is exactly why it misleads.
   contain.
 - No leaf is invented and no leaf moves Set (§8.2 discipline, A-AM13 / A-SX26
   precedent).
+
+## [A-SX28] 已交付件結構缺損，且 R16 前提「SXM 尚未寫回」與事實不符 — **DEFERRED — 待下次內容變動時一併修復（R18-1）**
+
+**先更正前提**：R16-2 記載「SXM 尚未寫回，攔得住」。實測
+`features/sxm/output/` **已存在交付件**
+（`FM-WI-FSM-036-A01 …_SWQT_SXM_20260810.xlsx`，148,734 B，
+與 `.sha256` 併存），tag `fw036-sxm-v1` 亦已存在。寫回**已經發生**，
+凍結令對 SXM 而言不是預防而是回溯。
+
+R16-3 檢測結果（同一探針、同一量法）：
+
+| | 客戶原件 | 已交付件 |
+|---|---|---|
+| bytes | 65,823 | 148,734 |
+| zip members | 48 | **47** |
+| classic DV | 3 | 3 |
+| x14 DV | **2** | **0** |
+
+```
+LOST (11)  xl/calcChain.xml, xl/sharedStrings.xml
+           xl/comments1.xml, xl/drawings/vmlDrawing1.vml
+           xl/media/image2.jpeg
+           xl/printerSettings/printerSettings1..5.bin
+           xl/worksheets/_rels/sheet8.xml.rels
+ADDED (10) xl/comments/comment1.xml, xl/drawings/commentsDrawing1.vml
+           xl/media/image2.png, xl/media/image3..9.jpeg
+```
+
+**x14 DV 2 → 0**：失去的正是 R 欄「測試用例設計方法」下拉
+（`下拉選單!$A$1:$A$9` / `$A$1:$A$11`）。SXM 用的是與 Privacy 同一份
+FM-WI-FSM-036-A01 rev C 空白範本，症狀因此與 Privacy 探針預測完全一致
+（見 `features/privacy/ANOMALIES.md` A-PV09）。
+
+**處置 —— 已裁（R18-1, Pei, 2026-08-13）**：
+
+> SXM（`fw036-sxm-v1`）維持現狀，不重產、不改 tag、不動任何一列。
+
+實測數字（R18-1 要求登記者）：**lost 11 / added 10，x14 DV 2 → 0**
+（R 欄「測試用例設計方法」下拉）。
+
+狀態為 `DEFERRED`，**不是** `PENDING` —— 依 R15-2，已裁而結果為延後者
+不得留在 Open PENDING。等待對象：**下次該交付件有內容變動時**，
+屆時以 `backend/xlsx_surgical.py` 一併修復（SXM 為 append 形態，
+不受 interleaved 限制，成本為一次 `--write`）。
+在那之前本條不需任何動作，也不阻塞任何批次。
+
+**相關**：`features/amfm/RULINGS.md` R16；A-AM18；A-PV09；
+`features/amfm/docs/upstream/02_integrity.md` §4。

@@ -65,7 +65,7 @@ present」為前提，-006 / -009 以「AMP is not present」為前提 —— AM
 **未複製入 `inputs/`**：R-PV01(c) 未簽署，且 canon §6 停手條件（本 feature
 特化）禁止在 5 個變體間自裁取捨。等待裁決後再納入。
 
-## A-PV03 — ETM V3_R3 疑非本專案適用件 — **PENDING（R-PV01(a) 明示延後至 P2）**
+## A-PV03 — ETM V3_R3 疑非本專案適用件 — **DEFERRED — 待 P2 證據重驗（R-PV01(a)）**
 
 證據：CFTS022 之 `R1L-R` × ETM-only artifact = 0 行；SYS.2
 `VF651_Audio_Output_Management/` 8 個子目錄無任何 V3。
@@ -75,6 +75,11 @@ present」為前提，-006 / -009 以「AMP is not present」為前提 —— AM
 > (a) 排除 ETM V3_R3 → 延後到 P2。那五個數是我單方掃描，未經重驗，
 > 而排除是「縮範圍」，錯了會漏驗。V3_R3 就留在 `inputs/` 不引用，零成本。
 > P2 重驗後再簽。
+
+**狀態依 R15-2 更正（下放包 04 §2.5 掃描，2026-08-13）**：本條原標 `PENDING`，
+但 R-PV01(a) 已簽署且結論即為「延後至 P2」—— 屬「已裁而結果為延後」，
+依 R15-2 不得留在 Open PENDING，改標 `DEFERRED — 待 P2 證據重驗`。
+語意未變，只是狀態欄不再假裝這條在等裁決；它等的是重驗。
 
 執行層據此：V3_R3 **留在 `inputs/`**，狀態為「在庫、不引用」——
 不得列為 `specification_reference`，也不得因未列而視為已排除。
@@ -207,7 +212,23 @@ ruled 037 來源識別碼」，即 `SWE1_CFTS_022-Privacy_Features`
 故無法比照 AMFM 填 `FM-WI-SW-xxx-SWRA-Axx` 形式）。
 Reviewer / Purpose / Project Name / Date 一併待 Pei 給值，執行層不自填。
 
-## A-PV09 — openpyxl 寫回會損毀範本 — **已實測，處置已定** RESOLVED
+## A-PV09 — openpyxl 寫回會損毀範本 — **CLOSED，已升格為常設規則 R18-3**（2026-08-13）
+
+> **升格記錄**：本條原為 Privacy 單一 feature 之 anomaly。分析層據其實測
+> 對 AMFM 客戶原件複驗，證實同一缺陷已造成 **AMFM v1 交付件缺 21 個 zip
+> 成員**，遂簽 **R16 凍結令**（全文見 `features/amfm/RULINGS.md`）：
+> 全 repo 寫回凍結、AMFM v1 停止送出、Home/SXM 回溯檢測、升 canon 條文。
+> 執行層已完成 writer 改造（`backend/xlsx_surgical.py`）與四 feature 檢測，
+> 結果見 `features/amfm/docs/upstream/02_integrity.md`。
+> **本條先前建議之「分析層評估是否升為 canon 層條文」已獲採納並執行。**
+>
+> **2026-08-13 後續（R18-3）**：R16-2 之凍結令已解除，代之以三項常設規則
+> —— `xlsx_surgical` 為唯一寫回路徑、zip 成員與 DV 計數不等即 ABORT、
+> 違反者升 Tier 2。反向測試見 `tests/test_xlsx_surgical_invariant.py`。
+> 本條至此 **CLOSED**：Privacy 之 P7 直接適用該常設規則，無須再個別追蹤。
+
+回溯檢測發現 SXM 之已交付件（同一份 rev C 範本）確已失去 R 欄下拉，
+與本條之預測完全一致 —— 見 `features/sxm/ANOMALIES.md` A-SX28。
 
 Pei 2026-08-13 指示「x14 DV 往返實測照辦，P4 前做」——**已於本次執行完畢**。
 可複現腳本：`features/privacy/scripts/xlsx_roundtrip_probe.py`。

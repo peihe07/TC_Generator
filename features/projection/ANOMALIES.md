@@ -2084,6 +2084,33 @@ committed to a tracked file」，而 R-P93 要求旁檔入庫。
 §5a 第十七條「立新規則前須查既有政策」。執行層發現衝突後停下回報而未自行修改
 `.gitignore`（版控政策非 Tier 1，R-P89 同型），處置正確。
 
+## [A-PJ-R16] R16 對照組量測 —— 無差異，但不足以證明 writer 安全（2026-08-13）
+
+R16-3 對照組。`inputs/NR1L_GEN1(HDCC)_Ver_20260813.xlsx` vs
+`output/NR1L_GEN1(HDCC)_Ver_20260813.xlsx`：
+
+| | inputs/ | output/ |
+|---|---|---|
+| bytes | 574,700 | 574,700 |
+| zip members | 30 | 30 |
+| classic DV | 0 | 0 |
+| x14 DV | 0 | 0 |
+
+**LOSSLESS，零差異。**
+
+**但這個結果不得被讀成「writer 安全」**，理由有二，缺一不可：
+
+1. **該工作簿本無 x14 DV**（0 → 0），最顯眼的症狀在此天然不存在
+   —— 與 Home 同型的盲區（見 `features/home/ANOMALIES.md` A-H27）。
+2. 更關鍵：Projection 是本 repo 唯一非 regen 的 feature，其 `output/` 檔
+   **與 inputs/ 位元完全相同（574,700 B 對 574,700 B）**，即該檔根本
+   沒有經過寫回路徑。零差異證明的是「沒被寫過」，不是「寫了沒壞」。
+
+結論：對照組只能用來排除「差異來自量測方法本身」，不能用來支持
+任何關於 writer 的正面結論。
+
+**相關**：`features/amfm/RULINGS.md` R16；A-AM18；A-H27；A-SX28。
+
 ## Assumption markers
 
 None yet. Phase 0 wrote no test-case content, so no `[ASSUMPTION A-PJnn]`

@@ -55,6 +55,9 @@ import openpyxl
 REPO_ROOT = next(p for p in Path(__file__).resolve().parents
                  if (p / "pyproject.toml").is_file())
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
+sys.path.insert(0, str(REPO_ROOT))
+from backend.xlsx_surgical import (  # noqa: E402
+    StructureError, surgical_save, verify_structure)
 from feature_config import load_feature_config, resolve_path  # noqa: E402
 
 HISTORY_SHEET = "ChangeHistory 修訂履歷"
@@ -493,11 +496,32 @@ def run(args) -> int:
                               plan, len(leaf_order), scope)
     out = Path(args.out) if args.out else Path("output") / src.name
     out.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(out)
+    # R16-1/R16-2 — NOT wb.save(). openpyxl's writer regenerates the container
+    # and drops everything outside its object model; on this very workbook it
+    # cost 21 zip members and all six x14 data validations while every row
+    # value stayed correct. The surgical path emits the same cell changes into
+    # a byte-for-byte copy of the customer's file and verifies the structure
+    # before returning (canon §0 item 3 — a violation aborts, never warns).
+    emit = surgical_save(wb, src, out)
+    patched_members = set(emit["members_patched"])
     normalize_for_reproducibility(out)
+    # Re-checked after normalisation, which rewrites every zip entry's
+    # timestamp and stamps docProps/core.xml. That member is therefore an
+    # expected difference — declared here rather than left to widen the
+    # invariant silently.
+    report = verify_structure(src, out,
+                              patched_members | {"docProps/core.xml"})
     digest = sha256_file(out)
     print(f"\nwrote         : {out}")
     print(f"ChangeHistory revision {revision} appended")
+    print(f"structure     : {report['members']} zip members, "
+          f"{len(report['differing'])} member(s) differ from the source "
+          f"({', '.join(report['differing'])})")
+    print("  cells written: " + ", ".join(
+        f"{n} ({k} cells)" for n, k in emit["sheets_patched"].items()))
+    print("  DV preserved : " + ", ".join(
+        f"{m.split('/')[-1]} classic={c} x14={x}"
+        for m, (c, x) in report["dv_counts"].items()))
     print(f"SHA256        : {digest}")
     (out.parent / (out.stem + ".sha256")).write_text(
         f"{digest}  {out.name}\n", encoding="utf-8")
@@ -519,7 +543,7 @@ def main() -> int:
     args = ap.parse_args()
     try:
         return run(args)
-    except WriteBackError as exc:
+    except (WriteBackError, StructureError) as exc:
         print(f"ABORTED: {exc}", file=sys.stderr)
         return 1
 
