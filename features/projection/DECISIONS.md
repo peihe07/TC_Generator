@@ -1533,6 +1533,62 @@ A-PJ68 由本條 CLOSED；執行層「執行並回報而非請示」之處置獲
 
 ---
 
+## 0.26 Signed rulings (Pei, 2026-08-12) — R-P92 / R-P93，交付形式與 hash 旁檔, 逐字
+
+### R-P92｜交付形式
+
+> 本 feature 之交付物為 **`NR1L_GEN1(HDCC)_Ver_20260813.xlsx` 本身**，不轉為
+> FM-WI-FSM-036 表單。
+>
+> 依據：Pei 裁定（2026-08-12）。
+>
+> **連帶認定**：
+> 1. profile §6 所記「本專案之 workbook 並非 FM-WI-FSM-036 表單實例（欄位配置
+>    自 F 欄起與其他 feature 差一格）」為**事實記載**，不構成交付障礙。本 feature
+>    之交付形式與其他 feature 不同，屬 `FULL_REFINE` 型 feature 之特性——修訂
+>    既有工作簿者，其交付形式即該工作簿之形式。
+> 2. 客戶審查目錄內之 `FM-WI-FSM-036-A01 …_SWQT_Projection_20260623.xlsx`
+>    （369 KB）為**不同文件，不在本專案範圍內**，任何步驟皆不得觸及（R-P91）。
+> 3. 檔名維持 `NR1L_GEN1(HDCC)_Ver_20260813.xlsx` 不變——版本識別由 SHA256
+>    承擔，不由檔名承擔。
+
+### R-P93｜交付物之 hash 旁檔 · **SUPERSEDED by R-P94** (2026-08-12)
+
+> 原文保留如下。其中「旁檔須入庫」一句經 R-P94 撤銷；成對產出旁檔之要求續存。
+
+> 交付物一律成對產出 `<檔名>.sha256` 旁檔。
+> 依據：`inputs/` 與 `output/` 皆受 `.gitignore` 排除（客戶檔案政策），交付檔
+> 本身不入版本歷史；**旁檔為文字檔，可入庫，是交付版本與版本歷史之間唯一的
+> 可追溯連結**。
+> 旁檔須入庫，`.gitignore` 之排除規則須確認不涵蓋 `*.sha256`（AMFM 前例中該
+> 旁檔存在於 `output/`，須確認其追蹤狀態）。
+
+### R-P94｜R-P93 修正為「產出旁檔但不入庫」
+
+> R-P93 之「旁檔須入庫」**撤銷**。修正為：
+> - 交付物仍成對產出 `<檔名>.sha256` 旁檔，置於 `output/`
+> - **旁檔不入庫**，隨 `output/` 一併受 `.gitignore:20` 排除
+> - 旁檔之用途為**本機驗證**（送達前後之四處一致性比對、日後重驗交付版本），
+>   非版控追溯
+> - **可追溯性由 tag annotation 單獨承擔**
+>
+> `.gitignore` 與 `FEATURE_ONBOARDING §6` **不修改**。
+>
+> **依據**：
+> 1. 現行政策為既有、刻意、且**已寫明理由**之設計——`.gitignore:20` 上方三行
+>    註解逐字載明「the write-back sidecar carries the delivery digest, which per
+>    FEATURE_ONBOARDING §6 lives in the tag annotation and must never be
+>    committed to a tracked file」。R-P93 係在未查證該政策之情況下提出。
+> 2. **單一真實來源**：digest 若同時存在於 tag annotation 與被追蹤之檔案，兩者
+>    可能分歧——被追蹤之檔案可於日後被修改而 tag 不動，屆時無從判斷何者為交付
+>    當時之值。tag annotation 綁定於特定 commit 且不隨後續變更而改變，是較強
+>    之錨點。
+> 3. R-P93 所援引之 AMFM 前例（`output/…_Radio_20260129.sha256`）**實為
+>    untracked**——以其存在推論「旁檔入庫是慣例」，而未查其追蹤狀態。
+>    **檔案存在 ≠ 檔案被追蹤。**
+>
+> 連帶：A-PJ75、canon §5a 第十七條（立新規則前須查既有政策）。
+
 ### 送達執行結果（2026-08-12，Pei 授權後）
 
 | 步 | 結果 |
@@ -1544,6 +1600,120 @@ A-PJ68 由本條 CLOSED；執行層「執行並回報而非請示」之處置獲
 | 4 還原 | 未觸發 |
 
 **交付檔已送達客戶審查目錄。**
+
+---
+
+## 0.27 Signed rulings (Pei, 2026-08-13) — R-P95 ~ R-P97，封存規範與 Project instruction, 逐字
+
+### R-P95｜上繳包一律落檔 · **援引經 R-P98 更正**（2026-08-12）
+
+> 原文保留如下。末句「依 canon §7.2」中之節號經 R-P98 更正為 **`canon §8.2`**
+> ——該契約補寫時 §7 已為 `RD-1 packaging` 所占用。內容要求不變。
+> 逐字區塊不就地改寫（比照 R-P93 之處置）。
+
+> 執行層之上繳包一律以 `write_file` 寫入
+> `features/<feature>/docs/upstream/NN_<slug>.md`，NN 與其對應之下放包相同。
+> 聊天中之呈現僅為副本。
+>
+> **依據**：Operating Charter「a ruling not written to the repo did not happen」
+> 對雙向同等適用。分析層之違反已登記為 A-PJ28／A-PJ53／A-PJ62；執行層之上繳包
+> 同樣未落檔，至今全部只存在於聊天，**若聊天遺失則無任何稽核軌跡**。
+> ASPICE SWE.6 要求之可追溯性涵蓋往返雙向。
+>
+> 上繳包之必要成分依 canon §7.2，不因落檔而改變。
+
+**首次適用**：`features/projection/docs/upstream/20_archive_and_charter.md`。
+01–19 之上繳包不重建（canon §5a 第十五條），於 `INDEX.md` 標「未落檔」。
+
+### R-P96｜INDEX.md 為往返之單一索引
+
+> 每 feature 維護 `features/<feature>/docs/INDEX.md`，每次往返新增一列，欄位：
+>
+> | NN | 日期 | 主題 | 下放 | 上繳 | 產生之裁決 | 產生之異常 | 結果 |
+> |---|---|---|---|---|---|---|---|
+>
+> - **下放／上繳**欄填相對路徑或 `—`（未落檔者標 `未落檔`）
+> - **產生之裁決／異常**填該次往返新增之編號範圍
+> - **結果**填 `PASS` / `FAIL` / `CONDITIONAL` / `阻塞(<DR#>)` / `—`
+>
+> 索引由**執行層**於每次上繳時更新，分析層於下放時不寫索引
+> （避免兩方同時寫同一檔）。
+
+**建立**：`features/projection/docs/INDEX.md`，含 01–20 全列。
+
+### R-P97｜Project instruction 以串接產生，不以轉錄產生
+
+> `docs/runtime/PROJECT_INSTRUCTION.md` 由兩段**串接**而成，不得由任何一方
+> 憑記憶或複製聊天內容轉錄：
+>
+> ```
+> 第一段  docs/runtime/OPERATING_CHARTER.md            （下放包 20 §4 之內容）
+> 分隔    ---
+> 第二段  docs/runtime/ASPICE_SWE6_AI_Instruction.md   （§0–§13，權威副本）
+> ```
+>
+> **依據**：§0–§13 約六百行，任何轉錄都可能靜默漂移，而漂移不會報錯
+> （canon §5a 第十二條同型）。串接使兩段各自維持單一權威來源。
+>
+> 產生後須驗證：`PROJECT_INSTRUCTION.md` 之第二段與
+> `ASPICE_SWE6_AI_Instruction.md` **逐字元相同**（以雜湊比對，不以目視）。
+>
+> **此後每次 close-out re-sync 重跑串接即可**，不需人工比對兩份。
+
+**串接命令**（可重跑，冪等）：
+
+```sh
+cd docs/runtime
+{ cat OPERATING_CHARTER.md; printf '\n---\n\n'; cat ASPICE_SWE6_AI_Instruction.md; } \
+  > PROJECT_INSTRUCTION.md
+```
+
+**2026-08-13 執行結果**：`PROJECT_INSTRUCTION.md` 680 行（73 + 3 + 604）。
+
+| 比對 | SHA256 | 判定 |
+|---|---|---|
+| 第一段（L1–73） vs `OPERATING_CHARTER.md` | `2b02e588…` | 相同 |
+| `OPERATING_CHARTER.md` vs 下放包 20 §4 fence（L119–191） | `2b02e588…` | 相同 |
+| 第二段（L77–EOF） vs `ASPICE_SWE6_AI_Instruction.md` | `fa9833ae…` | 相同 |
+
+`PROJECT_INSTRUCTION.md` 全檔 SHA256 `b6a2ee0b…`。
+
+> **已被取代**：Charter 於 2026-08-12 更新為 95 行版（A-PJ78），
+> `PROJECT_INSTRUCTION.md` 依 R-P97 重新串接為 702 行，全檔 SHA256 `dd42b6e7…`。
+> 上表第一、二列之 `2b02e588…` 為舊版之紀錄，保留不改。
+> 第三列（第二段 vs ASPICE）`fa9833ae…` 於重新串接後**仍相同**——
+> 此即 R-P97 之設計意圖：第一段可換版，第二段之逐字元保證不受影響。
+
+---
+
+## 0.28 Signed rulings (Pei, 2026-08-12) — R-P98 / R-P99，canon §8 與自檢表, 逐字
+
+### R-P98｜handoff contract 為 canon §8
+
+> 下放包／上繳包契約落於 `FEATURE_ONBOARDING.md` §8，非 §7。
+> **R-P95 之援引更正為「canon §8.2」**；Charter 之援引已更正為「§8 handoff contract」。
+> 凡先前文件援引「canon §7 handoff contract」者，於下次 re-sync 時一併更正，
+> 不逐份回溯改寫。
+
+**執行**：canon §8（§8.0 ~ §8.8）逐字附加至 `docs/fw036/FEATURE_ONBOARDING.md`
+第 467 行起。附加前後 §7 `RD-1 packaging` 內容 SHA256 均為 `b4645149…`，未變。
+§8 全文 SHA256 `22298b9d…`，與下放包 21 §1 之 fence 逐字元相同。
+
+R-P95 之逐字區塊不就地改寫，於其標題下加註更正（比照 R-P93 之處置）。
+
+### R-P99｜自檢表以全文掃描產生
+
+> 「本包產生之新條文清單」不得人工列舉，須以**全文掃描新編號**產生：
+> 掃描全包文字中所有 `R-P\d+`、`A-PJ\d+`、`DR#\d+`、`canon §5a 第.+條` 之出現，
+> 扣除已存在於 `DECISIONS.md` / `ANOMALIES.md` / `DATA_REQUESTS.md` 者，
+> 餘者即為本包新立。
+> 掃描須在**包定稿後**執行；任何以 `edit_file` 之追加，皆須重跑掃描。
+> 此規則已寫入 Charter 之落檔節。
+
+**成因**（A-PJ77）：R-P97 以 `edit_file` 追加至下放包 20 §4.1，而 §7 自檢表
+在追加前已定稿。人工列舉之表無法涵蓋其後之追加。
+
+**首次適用**：`upstream/21_canon_s8_and_charter.md` §7。
 
 ## 1. Intake
 

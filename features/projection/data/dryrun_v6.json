@@ -1,0 +1,1559 @@
+{
+  "D-1": {
+    "changed_distribution": {
+      "Pre-Conditions (I)": [
+        139,
+        151,
+        152,
+        167,
+        168,
+        169,
+        170,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        270,
+        271,
+        272,
+        449
+      ],
+      "Test procedure (K)": [
+        89,
+        98,
+        150,
+        151,
+        152,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        220,
+        221,
+        225,
+        226,
+        227,
+        228,
+        229,
+        235,
+        236,
+        270,
+        271,
+        368,
+        542
+      ],
+      "Expected Result (L)": [
+        424,
+        425,
+        426,
+        427,
+        428,
+        429
+      ],
+      "Test Case Author (Z)": [
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        436,
+        560,
+        561
+      ],
+      "Remarks (AJ)": [
+        153,
+        154,
+        157,
+        158,
+        159,
+        160,
+        161,
+        164,
+        165,
+        166,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218
+      ]
+    },
+    "narrow_gate_diffs": [
+      {
+        "row": 424,
+        "removed": [
+          "correctly"
+        ],
+        "added": [],
+        "pure_deletion": true,
+        "ok": true,
+        "before": "1. The device initiates a CarPlay session with the HU\n2. The CarPlay session is active\n3. The CarPlay home screen is displayed correctly on the 8.4-inch 1024x768 HU screen with no truncation or layout distortion",
+        "after": "1. The device initiates a CarPlay session with the HU\n2. The CarPlay session is active\n3. The CarPlay home screen is displayed on the 8.4-inch 1024x768 HU screen with no truncation or layout distortion"
+      },
+      {
+        "row": 425,
+        "removed": [
+          "correctly"
+        ],
+        "added": [],
+        "pure_deletion": true,
+        "ok": true,
+        "before": "1. The device initiates a CarPlay session with the HU\n2. The CarPlay session is active\n3. The CarPlay home screen is displayed correctly on the 10.1L 1920x1200 HU screen with no truncation or layout distortion",
+        "after": "1. The device initiates a CarPlay session with the HU\n2. The CarPlay session is active\n3. The CarPlay home screen is displayed on the 10.1L 1920x1200 HU screen with no truncation or layout distortion"
+      },
+      {
+        "row": 426,
+        "removed": [
+          "correctly"
+        ],
+        "added": [],
+        "pure_deletion": true,
+        "ok": true,
+        "before": "1. The device initiates a CarPlay session with the HU\n2. The CarPlay session is active\n3. The CarPlay home screen is displayed correctly on the 10.1P 1200x1920 HU screen with no truncation or layout distortion",
+        "after": "1. The device initiates a CarPlay session with the HU\n2. The CarPlay session is active\n3. The CarPlay home screen is displayed on the 10.1P 1200x1920 HU screen with no truncation or layout distortion"
+      },
+      {
+        "row": 427,
+        "removed": [
+          "correctly"
+        ],
+        "added": [],
+        "pure_deletion": true,
+        "ok": true,
+        "before": "1. The device initiates an Android Auto session with the HU\n2. The Android Auto session is active\n3. The Android Auto home screen is displayed correctly on the 8.4-inch 1024x768 HU screen with no truncation or layout distortion",
+        "after": "1. The device initiates an Android Auto session with the HU\n2. The Android Auto session is active\n3. The Android Auto home screen is displayed on the 8.4-inch 1024x768 HU screen with no truncation or layout distortion"
+      },
+      {
+        "row": 428,
+        "removed": [
+          "correctly"
+        ],
+        "added": [],
+        "pure_deletion": true,
+        "ok": true,
+        "before": "1. The device initiates an Android Auto session with the HU\n2. The Android Auto session is active\n3. The Android Auto home screen is displayed correctly on the 10.1L 1920x1200 HU screen with no truncation or layout distortion",
+        "after": "1. The device initiates an Android Auto session with the HU\n2. The Android Auto session is active\n3. The Android Auto home screen is displayed on the 10.1L 1920x1200 HU screen with no truncation or layout distortion"
+      },
+      {
+        "row": 429,
+        "removed": [
+          "correctly"
+        ],
+        "added": [],
+        "pure_deletion": true,
+        "ok": true,
+        "before": "1. The device initiates an Android Auto session with the HU\n2. The Android Auto session is active\n3. The Android Auto home screen is displayed correctly on the 10.1P 1200x1920 HU screen with no truncation or layout distortion",
+        "after": "1. The device initiates an Android Auto session with the HU\n2. The Android Auto session is active\n3. The Android Auto home screen is displayed on the 10.1P 1200x1920 HU screen with no truncation or layout distortion"
+      }
+    ],
+    "illegal_columns": {},
+    "er_outside_narrow": [],
+    "remarks_gate_diffs": [
+      {
+        "row": 153,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 154,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 157,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Vehicle not in Scope",
+        "after": "Vehicle not in Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 158,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Vehicle not in Scope",
+        "after": "Vehicle not in Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 159,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 160,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 161,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 164,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Vehicle not in Scope",
+        "after": "Vehicle not in Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 165,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Vehicle not in Scope",
+        "after": "Vehicle not in Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 166,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 195,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 196,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 197,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 198,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 199,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 200,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 201,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 202,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 203,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 204,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 209,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 210,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 211,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 212,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 213,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 214,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 215,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 216,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 217,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      },
+      {
+        "row": 218,
+        "pure_append": true,
+        "fixed_string": true,
+        "before": "Not in ASW-R1 Release Scope",
+        "after": "Not in ASW-R1 Release Scope\nVehicle line out of R1LR SWQT scope (DR#14, 2026-08-12)"
+      }
+    ],
+    "remarks_outside_whitelist": []
+  },
+  "D-2": {
+    "frozen_col_count": 34,
+    "mismatches": [],
+    "sheet_hash_formula": {
+      "TestProgress": "268f7e93c11867c7",
+      "Cover_old": "7878eb679c538b02",
+      "ChangeHistory_old": "2d0031d3f13b894b",
+      "QS Suggestion": "07b32f80a8f242d1",
+      "下拉選單": "c62aff418dcb1166",
+      "Reference": "bb692a9e09d29ba1",
+      "BugList": "4946cc354ecd6bfd",
+      "Test Case Framework": "e3b0c44298fc1c14",
+      "TestResults": "2f8fa421957b67d1"
+    },
+    "sheet_hash_value": {
+      "TestProgress": "022b49daed9f69ff",
+      "Cover_old": "7878eb679c538b02",
+      "ChangeHistory_old": "2d0031d3f13b894b",
+      "QS Suggestion": "07b32f80a8f242d1",
+      "下拉選單": "c62aff418dcb1166",
+      "Reference": "bb692a9e09d29ba1",
+      "BugList": "247e16107af04dff",
+      "Test Case Framework": "e3b0c44298fc1c14",
+      "TestResults": "b8aca1a5753dbb14"
+    },
+    "formula_count": {
+      "TestProgress": 189,
+      "Cover_old": 0,
+      "ChangeHistory_old": 0,
+      "QS Suggestion": 0,
+      "下拉選單": 0,
+      "Reference": 0,
+      "BugList": 27,
+      "Test Case Framework": 0,
+      "TestResults": 559
+    },
+    "value_track_status": "未實測 —— dry-run 未開寫入（A-PJ56）",
+    "exception_narrow_er": [
+      424,
+      425,
+      426,
+      427,
+      428,
+      429
+    ],
+    "exception_author_rows": [
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      367,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      436,
+      560,
+      561,
+      562
+    ],
+    "exception_remarks_rows": [
+      153,
+      154,
+      157,
+      158,
+      159,
+      160,
+      161,
+      164,
+      165,
+      166,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218
+    ],
+    "exception_author_filled": [
+      272,
+      273,
+      274,
+      275,
+      276,
+      277,
+      278,
+      279,
+      280,
+      281,
+      282,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      360,
+      361,
+      362,
+      363,
+      364,
+      365,
+      366,
+      367,
+      370,
+      371,
+      372,
+      373,
+      374,
+      375,
+      436,
+      560,
+      561
+    ],
+    "exception_total": 76,
+    "author_blank_after": []
+  },
+  "D-3": {
+    "branch": "A",
+    "deleted": [
+      562
+    ],
+    "final_rows": 565,
+    "moved_rows": [],
+    "row_identity": "frozen_hash_minus_authorised_exception_cols",
+    "identity_unique": true,
+    "identity_rejected": {
+      "seq (c2)": "公式 =ROW()-3，值恆等於列位置，偵測不到重排",
+      "polarion_id (c3)": "558 列僅 162 個相異值",
+      "req_id (c4)": "558 列僅 163 個相異值",
+      "tc_id (c5)": "555 個相異值：2 組重複 + 3 列空白"
+    }
+  },
+  "D-4": {
+    "rows": [
+      {
+        "append_index": 1,
+        "row": 562,
+        "leaf": "SWE1-PROJ-133",
+        "req_id_polarion": "NRL-176036",
+        "req_id": "SWE1-PROJ-133",
+        "tc_id": "NR1L-PROJ-560",
+        "test_group": "WiFi",
+        "test_set": "Disconnection",
+        "test_item": "When a wireless Android Auto session is disconnected, and the HU does not receive the \"ByeBye\" message from the device, the HU shall keep the device disconnected, and won't try to reconnect. Device settings won't be affected.\n\n当无线Android Auto会话断开，且HU未收到来自设备的\"ByeBye\"消息时，HU应保持设备断开状态，不尝试重新连接。设备设置不受影响。",
+        "pre_conditions": "1. A phone supporting wireless Android Auto is paired with the HU\n2. A wireless Android Auto session is active on the HU\n3. The phone battery allows a power-off during the test",
+        "input_test_data": "NA",
+        "test_procedure": "1. Power off the phone so that the wireless link drops without a ByeBye message\n2. Read the Android Auto connection state on the HU\n3. Wait 60 seconds and read the Android Auto connection state on the HU again\n4. Open the Android Auto device settings on the HU and read the stored device entry",
+        "expected_result": "1. The phone is powered off and the wireless link is dropped\n2. The HU shows the Android Auto session as disconnected\n3. The HU keeps the device disconnected and does not initiate a reconnection\n4. The stored Android Auto device entry on the HU is unchanged",
+        "spec_reference": "CFTS085-4935517\nSYS3_PROJ_FM-WI-FSM-011-A01_NRL-154702",
+        "tc_ref_id": "NEW",
+        "priority": "P1",
+        "estimated_test_time": "",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "Power-off 為「無 ByeBye 斷線」之具體實現手段，037 未指定實現方式（設計選擇，非來源逐字）",
+        "blocked": false,
+        "seq_formula": "=ROW()-3",
+        "input_test_data_basis": "PRE 之『已配對手機』『無線 session 進行中』『電量足以關機』皆為**環境資料**→ §4.5-1 屬 Pre-Conditions。Procedure 之關機、讀取連線狀態為**互動資料**→ §4.5-2 屬步驟。等待 60 秒為時間參數非資料集。無獨立資料集"
+      },
+      {
+        "append_index": 2,
+        "row": 563,
+        "leaf": "SWE1-PROJ-167-001",
+        "req_id_polarion": "NRL-176075",
+        "req_id": "SWE1-PROJ-167-001",
+        "tc_id": "NR1L-PROJ-561",
+        "test_group": "Device Manager",
+        "test_set": "Device Manager",
+        "test_item": "If the Projection Device list is full and a new Projection enabled device is connected, the HU shall delete the lowest priority device then add the new device to the list.\n\n如果投屏设备列表已满，并且连接了新的启用投屏的设备，则HU应删除优先级最低的设备，然后将新设备添加到列表中。",
+        "pre_conditions": "1. The HU Projection Device list is full (10 devices)\n2. Device A is the lowest priority device in the list\n3. A CarPlay-supporting phone not yet in the list is available",
+        "input_test_data": "NA",
+        "test_procedure": "1. Connect the CarPlay-supporting phone to the HU and start CarPlay projection\n2. Open the Device Manager main screen on the HU\n3. Read the Projection Device list entries on the HU",
+        "expected_result": "1. The CarPlay projection starts on the HU\n2. The Device Manager main screen is displayed on the HU\n3. Device A is deleted from the Projection Device list and the newly connected device is added",
+        "spec_reference": "CFTS085-4935526\nDevice_Manager_HMI_Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_3.2\nSYS3_PROJ_FM-WI-FSM-011-A01_NRL-154533",
+        "tc_ref_id": "NEW",
+        "priority": "P1",
+        "estimated_test_time": "",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "",
+        "blocked": false,
+        "seq_formula": "=ROW()-3",
+        "input_test_data_basis": "『裝置清單已滿（10 台）』『Device A 為最低優先』為**環境資料**→ Pre-Conditions。10 是環境狀態的描述量詞，非受測之邊界值——本列不驗『第 11 台會怎樣』的邊界，驗的是取代行為。無獨立資料集"
+      },
+      {
+        "append_index": 3,
+        "row": 564,
+        "leaf": "SWE1-PROJ-167-002",
+        "req_id_polarion": "NRL-176076",
+        "req_id": "SWE1-PROJ-167-002",
+        "tc_id": "NR1L-PROJ-562",
+        "test_group": "Device Manager",
+        "test_set": "Device Manager",
+        "test_item": "If the Projection Device list is full and a new Projection enabled device is connected, the HU shall delete the lowest priority device then add the new device to the list.\n\n如果投屏设备列表已满，并且连接了新的启用投屏的设备，则HU应删除优先级最低的设备，然后将新设备添加到列表中。",
+        "pre_conditions": "1. The HU Projection Device list is full (10 devices)\n2. Device A is the lowest priority device in the list\n3. An Android Auto-supporting phone not yet in the list is available",
+        "input_test_data": "NA",
+        "test_procedure": "1. Connect the Android Auto-supporting phone to the HU and start Android Auto projection\n2. Open the Device Manager main screen on the HU\n3. Read the Projection Device list entries on the HU",
+        "expected_result": "1. The Android Auto projection starts on the HU\n2. The Device Manager main screen is displayed on the HU\n3. Device A is deleted from the Projection Device list and the newly connected device is added",
+        "spec_reference": "CFTS085-4935526\nDevice_Manager_HMI_Logic_and_Flow_R1_SR24_Post_2A_(March_13_2023)_3.2\nSYS3_PROJ_FM-WI-FSM-011-A01_NRL-154533",
+        "tc_ref_id": "NEW",
+        "priority": "P1",
+        "estimated_test_time": "",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "",
+        "blocked": false,
+        "seq_formula": "=ROW()-3",
+        "input_test_data_basis": "同 561，僅投影協定由 CarPlay 改為 Android Auto"
+      },
+      {
+        "append_index": 4,
+        "row": 565,
+        "leaf": "SWE1-PROJ-184",
+        "req_id_polarion": "NRL-176095",
+        "req_id": "SWE1-PROJ-184",
+        "tc_id": "NR1L-PROJ-563",
+        "test_group": "Audio Management",
+        "test_set": "Projection Audio",
+        "test_item": "The HU shall send $HUModeStatus$ = [TGW_USB1_Sel] when a Projection device is selected as the current audio source\n\nCPAA获取主音频焦点时，应发送$HUModeStatus$=[TGW_USB1_Sel]",
+        "pre_conditions": "1. CarPlay is connected to the HU\n2. A CAN tool is available",
+        "input_test_data": "NA",
+        "test_procedure": "1. Select the Projection device as the current audio source on the HU\n2. Read the TELEMATIC_FD_4.CurrentSource CAN signal with the CAN tool\n3. Check that TELEMATIC_FD_4.CurrentSource equals 19 (TGW_USB1_Selected)",
+        "expected_result": "1. The Projection device is the current audio source on the HU\n2. The TELEMATIC_FD_4.CurrentSource CAN signal is read\n3. TELEMATIC_FD_4.CurrentSource equals 19 (TGW_USB1_Selected)",
+        "spec_reference": "CFTS085-4935397\nSYS3_PROJ_FM-WI-FSM-011-A01_NRL-154702",
+        "tc_ref_id": "NEW",
+        "priority": "P1",
+        "estimated_test_time": "",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "",
+        "blocked": false,
+        "seq_formula": "=ROW()-3",
+        "input_test_data_basis": "**本條是七條中唯一需要辨析的**。步驟含 CAN 訊號值 `TELEMATIC_FD_4.CurrentSource = 19 (TGW_USB1_Selected)`，形似 §4.5-3 之範例 `CAN: VinLockStatus = 0x01`。但該範例是**送入**的值；本列是**讀出並比對**的值——它是判準不是輸入。O-2 亦明定讀值與比對一律寫在 Procedure。填入本欄會使同一值同時出現在 Input Test Data 與 Procedure，違反 §4.5 之『資料只屬於一個欄位』"
+      },
+      {
+        "append_index": 5,
+        "row": 566,
+        "leaf": "SWE1-PROJ-190",
+        "req_id_polarion": "NRL-176100",
+        "req_id": "SWE1-PROJ-190",
+        "tc_id": "NR1L-PROJ-564",
+        "test_group": "GPS",
+        "test_set": "Cluster Navigation",
+        "test_item": "Traffic data shall be displayed on the map.\n\n显示TBT信息即可",
+        "pre_conditions": "BLOCKED - see Remarks",
+        "input_test_data": "NA",
+        "test_procedure": "BLOCKED - see Remarks",
+        "expected_result": "BLOCKED - see Remarks",
+        "spec_reference": "CFTS085-4935546",
+        "tc_ref_id": "NEW",
+        "priority": "P3",
+        "estimated_test_time": "",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "BLOCKED (A-PJ54 / DR#16) - 037 CPAA Verification Criteria 逐字：\"Invalid demand, only need to display TBT\" （引文忠實，含原文拼寫與標點）。來源明確陳述無 HU 端可驗之物，非資料不足；依 O-4 不編造，本列為佔位以滿足 R-P14。Test Result 留空（R-P63）",
+        "blocked": true,
+        "seq_formula": "=ROW()-3",
+        "test_result": "",
+        "input_test_data_basis": "BLOCKED 佔位列。來源明言無可驗之物，無任何資料可歸屬。`NA` 為明示『無資料』而非內容，不牴觸 R-P61『不得填入任何 TC 內容欄』"
+      },
+      {
+        "append_index": 6,
+        "row": 567,
+        "leaf": "SWE1-PROJ-195",
+        "req_id_polarion": "NRL-176108",
+        "req_id": "SWE1-PROJ-195",
+        "tc_id": "NR1L-PROJ-565",
+        "test_group": "GPS",
+        "test_set": "Cluster Navigation",
+        "test_item": "Hybrid and satellite mode shall not be available.\n\n混合模式和卫星模式不可用。",
+        "pre_conditions": "BLOCKED - see Remarks",
+        "input_test_data": "NA",
+        "test_procedure": "BLOCKED - see Remarks",
+        "expected_result": "BLOCKED - see Remarks",
+        "spec_reference": "CFTS085-4935546",
+        "tc_ref_id": "NEW",
+        "priority": "P3",
+        "estimated_test_time": "",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "BLOCKED (A-PJ54 / DR#16) - 037 CPAA Verification Criteria 逐字：\"Mobile phone behavior does not require development.\" （引文忠實，含原文拼寫與標點）。來源明確陳述無 HU 端可驗之物，非資料不足；依 O-4 不編造，本列為佔位以滿足 R-P14。Test Result 留空（R-P63）",
+        "blocked": true,
+        "seq_formula": "=ROW()-3",
+        "test_result": "",
+        "input_test_data_basis": "同 564"
+      },
+      {
+        "append_index": 7,
+        "row": 568,
+        "leaf": "SWE1-PROJ-227",
+        "req_id_polarion": "NRL-537144",
+        "req_id": "SWE1-PROJ-227",
+        "tc_id": "NR1L-PROJ-566",
+        "test_group": "Carplay Wired and Wireless",
+        "test_set": "Projection Apps",
+        "test_item": "The External Accessory (EA) framework provides accessories the means to communicate with one or\nmore apps using EA sessions, providing a read/write bytestream interface. Accessory developers\nspecify a custom protocol between the application and the accessory. \n\n外部配件（EA）框架为配件提供了与一个或多个应用程序进行通信的手段，通过 EA 会话实现通信，并提供读/写字节流接口。配件开发者需在应用程序与配件之间指定自定义协议。",
+        "pre_conditions": "1. A CarPlay-supporting iPhone with CarPlay enabled is available\n2. The customer-provided dedicated phone application is installed on the iPhone",
+        "input_test_data": "NA",
+        "test_procedure": "1. Connect the iPhone to the HU and establish the CarPlay session\n2. Open the customer-provided dedicated application on the iPhone and start its EA session function\n3. Read the projection interface on the HU",
+        "expected_result": "1. The CarPlay session is established between the iPhone and the HU\n2. The dedicated application starts its EA session over the read/write bytestream interface\n3. The projection interface is displayed on the HU without error dialog or session drop",
+        "spec_reference": "CFTS085-4935519\nAccessory_Interface_Specification_CarPlay_Addendum_R10",
+        "tc_ref_id": "NEW",
+        "priority": "P2",
+        "estimated_test_time": "",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "functional_safety": "NA",
+        "author": "PeiPYHsu",
+        "remarks": "Customer provided dedicated phone APP required (DR#15) - 執行資源阻塞，非撰寫阻塞（R-P35 同型）",
+        "blocked": false,
+        "seq_formula": "=ROW()-3",
+        "input_test_data_basis": "PRE 之 iPhone、客戶專屬 APP 為**環境資料**→ Pre-Conditions。Procedure 之連線、開啟 APP、啟動 EA session 為**互動資料**→ 步驟。EA session 之 bytestream 內容由 APP 決定，非測試者提供之資料集"
+      }
+    ]
+  },
+  "D-6": {
+    "rows": [
+      {
+        "leaf": "SWE1-PROJ-133",
+        "blocked": false,
+        "errors": [],
+        "steps": 4,
+        "er_lines": 4
+      },
+      {
+        "leaf": "SWE1-PROJ-167-001",
+        "blocked": false,
+        "errors": [],
+        "steps": 3,
+        "er_lines": 3
+      },
+      {
+        "leaf": "SWE1-PROJ-167-002",
+        "blocked": false,
+        "errors": [],
+        "steps": 3,
+        "er_lines": 3
+      },
+      {
+        "leaf": "SWE1-PROJ-184",
+        "blocked": false,
+        "errors": [],
+        "steps": 3,
+        "er_lines": 3
+      },
+      {
+        "leaf": "SWE1-PROJ-190",
+        "blocked": true,
+        "errors": [],
+        "steps": 0,
+        "er_lines": 0
+      },
+      {
+        "leaf": "SWE1-PROJ-195",
+        "blocked": true,
+        "errors": [],
+        "steps": 0,
+        "er_lines": 0
+      },
+      {
+        "leaf": "SWE1-PROJ-227",
+        "blocked": false,
+        "errors": [],
+        "steps": 3,
+        "er_lines": 3
+      }
+    ],
+    "cols34": {
+      "ruling": "R-P79 + R-P81 + R-P85",
+      "columns": [
+        {
+          "col": 1,
+          "header": "c1",
+          "type": "mostly_blank",
+          "criterion": "得為空",
+          "pass": true,
+          "note": "既有空白 558/558"
+        },
+        {
+          "col": 2,
+          "header": "No.#",
+          "type": "formula",
+          "criterion": "為公式 =ROW()-3",
+          "pass": true,
+          "note": "W-5 已驗，565 格全公式"
+        },
+        {
+          "col": 3,
+          "header": "Requirement or Design",
+          "type": "id",
+          "criterion": "唯一且格式相符",
+          "pass": true,
+          "note": "取自 037，7/7 非空"
+        },
+        {
+          "col": 4,
+          "header": "Requirement or Design ID",
+          "type": "id",
+          "criterion": "唯一且格式相符",
+          "pass": true,
+          "note": "取自 037，7/7 非空"
+        },
+        {
+          "col": 5,
+          "header": "Test Case ID",
+          "type": "id",
+          "criterion": "唯一且格式相符",
+          "pass": true,
+          "note": "560~566，不與既有重複"
+        },
+        {
+          "col": 6,
+          "header": "Test Group",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7/7 非空，全在既有值域"
+        },
+        {
+          "col": 7,
+          "header": "Test Set",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7/7 非空，全在既有值域"
+        },
+        {
+          "col": 8,
+          "header": "Test Item",
+          "type": "freetext",
+          "criterion": "與 done region 慣例一致：反映該 leaf 之需求敘述（實質判準）+ 長度落在既有分布（代理判準）",
+          "pass": true,
+          "note": "7/7 逐字取自 037，實質判準全數滿足。**代理判準（長度）有 2 列低於既有下限**：以空白切詞 564=9／565=9（既有下限 11）；以中文逐字 564=15（既有下限 17）、565=20（通過）。兩列皆為 BLOCKED 佔位，其 037 原文本身即短。加長即編造，為 O-4 與 R-P81 明文所禁 —— **唯一可行動作只有維持逐字**。標記為 A-PJ68，不阻斷交付。",
+          "flag": "A-PJ68"
+        },
+        {
+          "col": 10,
+          "header": "Input Test Data",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7/7 非空，全在既有值域"
+        },
+        {
+          "col": 12,
+          "header": "Expected Result",
+          "type": "freetext",
+          "criterion": "非空（既有多數為空者得為空）",
+          "pass": true,
+          "note": "7/7 非空；既有空白 0/558"
+        },
+        {
+          "col": 13,
+          "header": "Specification Reference ",
+          "type": "anchor",
+          "criterion": "R-P73 真解析",
+          "pass": true,
+          "note": "7 條全解析（2 條標未解析來源）"
+        },
+        {
+          "col": 14,
+          "header": "Test Case Reference ID",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7/7 非空，全在既有值域"
+        },
+        {
+          "col": 15,
+          "header": "Test Case Priority",
+          "type": "dv",
+          "criterion": "值 ∈ DV 值域(4)",
+          "pass": true,
+          "note": "7/7 非空，全部命中"
+        },
+        {
+          "col": 16,
+          "header": "Estimated Test Time (mins)",
+          "type": "mostly_blank",
+          "criterion": "得為空",
+          "pass": true,
+          "note": "既有空白 558/558"
+        },
+        {
+          "col": 17,
+          "header": "Test Case Design Methods",
+          "type": "dv",
+          "criterion": "值 ∈ DV 值域(9)",
+          "pass": true,
+          "note": "7/7 非空，全部命中"
+        },
+        {
+          "col": 18,
+          "header": "Functional Safety",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7/7 非空，全在既有值域"
+        },
+        {
+          "col": 19,
+          "header": "Vehicle Model 車型",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 20,
+          "header": "c20",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 21,
+          "header": "c21",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 22,
+          "header": "c22",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 23,
+          "header": "c23",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 24,
+          "header": "c24",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 25,
+          "header": "c25",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 26,
+          "header": "Test Case Author",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7/7 非空，全在既有值域"
+        },
+        {
+          "col": 27,
+          "header": "Test Vehicle(Bench)",
+          "type": "exec_record",
+          "criterion": "須為空（執行記錄欄，R-P85）",
+          "pass": true,
+          "note": "既有 3 列非空皆屬已執行之 12 列子集，值為台架身分 HDCC27；補列未執行故留空"
+        },
+        {
+          "col": 28,
+          "header": "Test Period",
+          "type": "mostly_blank",
+          "criterion": "得為空",
+          "pass": true,
+          "note": "既有空白 558/558"
+        },
+        {
+          "col": 29,
+          "header": "Tester",
+          "type": "domain",
+          "criterion": "值 ∈ 既有相異值集合",
+          "pass": true,
+          "note": "7 列全空；既有空白 438/558"
+        },
+        {
+          "col": 30,
+          "header": "Test Result 測試結果",
+          "type": "dv",
+          "criterion": "值 ∈ DV 值域(5)",
+          "pass": true,
+          "note": "0/7 非空，全部命中"
+        },
+        {
+          "col": 31,
+          "header": "c31",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 32,
+          "header": "c32",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 33,
+          "header": "c33",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 34,
+          "header": "c34",
+          "type": "result",
+          "criterion": "須為空",
+          "pass": true,
+          "note": "7 列全空"
+        },
+        {
+          "col": 35,
+          "header": "Defect ID",
+          "type": "mostly_blank",
+          "criterion": "得為空",
+          "pass": true,
+          "note": "既有空白 531/558"
+        },
+        {
+          "col": 36,
+          "header": "Remarks",
+          "type": "freetext",
+          "criterion": "非空（既有多數為空者得為空）",
+          "pass": true,
+          "note": "4/7 非空；既有空白 374/558（多數為空→得為空）"
+        }
+      ],
+      "failures": [],
+      "_flag": "c8 長度代理判準 2 列越界，實質判準通過，見 A-PJ68"
+    },
+    "design_method_domain": [
+      "功能測試 (Functional based ; no specific technique)",
+      "基礎故障注入 (Fault Injection Lite)",
+      "情境 / 用例 (Scenario / Use Case Testing)",
+      "決策表 (Decision Table Testing)",
+      "狀態轉換 (State Transition Testing)",
+      "等價劃分 (Equivalence Partitioning, EP)",
+      "組合測試 (Combinatorial Testing ; Pair-wise / N-wise)",
+      "負向測試 (Negative / Invalid)",
+      "邊界值分析 (Boundary Value Analysis, BVA)"
+    ],
+    "design_method_sheet_differs": [
+      "組合測試 (Combinatorial Testing ; Pair-wise / N-wise)",
+      "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+    ],
+    "existing_dv_violations": [
+      372,
+      376
+    ]
+  },
+  "D-5": {
+    "rows": {
+      "36": [
+        "A-PJ40",
+        "R-P43"
+      ],
+      "110": [
+        "A-PJ39"
+      ],
+      "113": [
+        "A-PJ39"
+      ],
+      "114": [
+        "A-PJ39"
+      ],
+      "115": [
+        "A-PJ39"
+      ],
+      "116": [
+        "A-PJ39"
+      ],
+      "117": [
+        "A-PJ39"
+      ],
+      "118": [
+        "A-PJ39"
+      ],
+      "124": [
+        "A-PJ40",
+        "L-PJ10",
+        "R-P43"
+      ],
+      "140": [
+        "A-PJ42",
+        "O-4"
+      ],
+      "141": [
+        "A-PJ44",
+        "L-PJ9",
+        "O-3"
+      ],
+      "142": [
+        "A-PJ44",
+        "L-PJ9",
+        "O-3"
+      ],
+      "147": [
+        "A-PJ44",
+        "L-PJ9",
+        "O-3"
+      ],
+      "149": [
+        "A-PJ40",
+        "L-PJ10",
+        "R-P43"
+      ],
+      "153": [
+        "A-PJ45"
+      ],
+      "154": [
+        "A-PJ45"
+      ],
+      "155": [
+        "A-PJ45"
+      ],
+      "156": [
+        "A-PJ45"
+      ],
+      "157": [
+        "A-PJ45"
+      ],
+      "158": [
+        "A-PJ45"
+      ],
+      "159": [
+        "A-PJ45"
+      ],
+      "160": [
+        "A-PJ45"
+      ],
+      "161": [
+        "A-PJ45"
+      ],
+      "162": [
+        "A-PJ45"
+      ],
+      "163": [
+        "A-PJ45"
+      ],
+      "164": [
+        "A-PJ45"
+      ],
+      "165": [
+        "A-PJ45"
+      ],
+      "166": [
+        "A-PJ45"
+      ],
+      "177": [
+        "DR#13",
+        "R-P56"
+      ],
+      "188": [
+        "DR#13",
+        "R-P56"
+      ],
+      "191": [
+        "A-PJ45"
+      ],
+      "192": [
+        "A-PJ45"
+      ],
+      "193": [
+        "A-PJ45"
+      ],
+      "194": [
+        "A-PJ45"
+      ],
+      "195": [
+        "A-PJ45"
+      ],
+      "196": [
+        "A-PJ45"
+      ],
+      "197": [
+        "A-PJ45"
+      ],
+      "198": [
+        "A-PJ45"
+      ],
+      "199": [
+        "A-PJ45"
+      ],
+      "200": [
+        "A-PJ45"
+      ],
+      "201": [
+        "A-PJ45"
+      ],
+      "202": [
+        "A-PJ45"
+      ],
+      "203": [
+        "A-PJ45"
+      ],
+      "204": [
+        "A-PJ45"
+      ],
+      "205": [
+        "A-PJ45"
+      ],
+      "206": [
+        "A-PJ45"
+      ],
+      "207": [
+        "A-PJ45"
+      ],
+      "208": [
+        "A-PJ45"
+      ],
+      "209": [
+        "A-PJ45"
+      ],
+      "210": [
+        "A-PJ45"
+      ],
+      "211": [
+        "A-PJ45"
+      ],
+      "212": [
+        "A-PJ45"
+      ],
+      "213": [
+        "A-PJ45"
+      ],
+      "214": [
+        "A-PJ45"
+      ],
+      "215": [
+        "A-PJ45"
+      ],
+      "216": [
+        "A-PJ45"
+      ],
+      "217": [
+        "A-PJ45"
+      ],
+      "218": [
+        "A-PJ45"
+      ],
+      "267": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "376": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "377": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "378": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "379": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "434": [
+        "L-PJ4",
+        "L-PJ6",
+        "R-P12"
+      ],
+      "435": [
+        "L-PJ4",
+        "L-PJ6",
+        "R-P12"
+      ],
+      "441": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "443": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "520": [
+        "L-PJ4",
+        "L-PJ6",
+        "R-P12"
+      ],
+      "521": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "522": [
+        "L-PJ7",
+        "R-P11"
+      ],
+      "541": [
+        "A-PJ50",
+        "DR#13",
+        "L-PJ9",
+        "R-P42",
+        "R-P46"
+      ],
+      "543": [
+        "A-PJ50",
+        "DR#13",
+        "L-PJ9",
+        "R-P42",
+        "R-P46"
+      ],
+      "544": [
+        "A-PJ50",
+        "DR#13",
+        "L-PJ9",
+        "R-P42",
+        "R-P46"
+      ],
+      "545": [
+        "A-PJ50",
+        "DR#13",
+        "L-PJ9",
+        "R-P42",
+        "R-P46"
+      ],
+      "561": [
+        "A-PJ42"
+      ]
+    },
+    "no_ref": []
+  },
+  "D-9": {
+    "sheet_hash": "e3b0c44298fc1c14",
+    "non_empty_cells": 0,
+    "layer2_terms_matching_test_set": [],
+    "written": false
+  },
+  "D-11": {
+    "summary": [
+      {
+        "header": "Test Case Design Methods",
+        "sqref": "Q4:Q152 Q167:Q190 Q219:Q562",
+        "domain": 9,
+        "nonempty": 516,
+        "violations": [
+          [
+            372,
+            17,
+            "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+          ],
+          [
+            376,
+            17,
+            "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+          ]
+        ]
+      },
+      {
+        "header": "Test Case Priority",
+        "sqref": "O4:O562",
+        "domain": 4,
+        "nonempty": 558,
+        "violations": []
+      },
+      {
+        "header": "Vehicle Model 車型",
+        "sqref": "S4:Y6",
+        "domain": 2,
+        "nonempty": 21,
+        "violations": []
+      },
+      {
+        "header": "Test Result 測試結果",
+        "sqref": "AD4:AH562",
+        "domain": 5,
+        "nonempty": 438,
+        "violations": []
+      }
+    ],
+    "existing_violations": {
+      "372": [
+        {
+          "col": 17,
+          "value": "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+        }
+      ],
+      "376": [
+        {
+          "col": 17,
+          "value": "組合測試 (Combinatorial Testing ; Pairwise / t-wise)"
+        }
+      ]
+    },
+    "appended_violations": [],
+    "note": "既有違規凍結欄不動入 RD-1；補列違規即 FAIL"
+  },
+  "D-10": {
+    "L-PJ5 禁詞": {
+      "expected": 1,
+      "existing": 1,
+      "with_append": 1,
+      "match": true,
+      "append_shifts": false
+    },
+    "L-PJ6 模糊語": {
+      "expected": 4,
+      "existing": 4,
+      "with_append": 4,
+      "match": true,
+      "append_shifts": false
+    },
+    "L-PJ9 泛稱工具": {
+      "expected": 17,
+      "existing": 17,
+      "with_append": 17,
+      "match": true,
+      "append_shifts": false
+    },
+    "L-PJ10 缺陷類": {
+      "expected": 5,
+      "existing": 5,
+      "with_append": 5,
+      "match": true,
+      "append_shifts": false
+    },
+    "L-PJ10 參數類": {
+      "expected": 8,
+      "existing": 8,
+      "with_append": 8,
+      "match": true,
+      "append_shifts": false
+    },
+    "步驟交叉指涉": {
+      "expected": 30,
+      "existing": 30,
+      "with_append": 30,
+      "match": true,
+      "append_shifts": false
+    },
+    "步數 != ER 例外": {
+      "expected": 3,
+      "existing": 3,
+      "with_append": 3,
+      "match": true,
+      "append_shifts": false
+    },
+    "前向循環指涉": {
+      "expected": 0,
+      "existing": 0,
+      "with_append": 0,
+      "match": true,
+      "append_shifts": false
+    }
+  }
+}

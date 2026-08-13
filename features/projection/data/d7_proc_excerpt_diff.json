@@ -1,0 +1,176 @@
+[
+  {
+    "row": 151,
+    "tc_id": "NR1L-PROJ-149",
+    "before": "1. Send signal $HCP_DISP2.Est_Range_BEV$ = 24 km to trigger the low energy logic\n2. Check that the HU triggers the low fuel notification for CarPlay",
+    "after": "1. Establish the vehicle condition in which the estimated BEV range reads 24 km\n2. Read the CarPlay projection UI and check that the low fuel notification is displayed"
+  },
+  {
+    "row": 152,
+    "tc_id": "NR1L-PROJ-150",
+    "before": "1. Send signal $HCP_DISP2.Est_Range_BEV$ = 24 km on the vehicle CAN bus to trigger the low energy logic\n2. Check that the HU triggers the low fuel notification ",
+    "after": "1. Establish the vehicle condition in which the estimated BEV range reads 24 km\n2. Read the Android Auto projection UI and check that the low fuel notification is displayed"
+  },
+  {
+    "row": 167,
+    "tc_id": "NR1L-PROJ-165",
+    "before": "1. Send signal $FuelLvlLow$ = Active on the vehicle CAN bus to trigger the low fuel indicator\n2. Check that the HU displays the low fuel indicator on the CarPla",
+    "after": "1. Send CAN on CAN-B: STATUS_BH_BCM1.LowFuelWarningSts = 1 (ON) and keep it at 1 (ON) for the remainder of the test\n2. Read the CarPlay projection UI and check that the low fuel indicator is displayed"
+  },
+  {
+    "row": 168,
+    "tc_id": "NR1L-PROJ-166",
+    "before": "1. Send signal $FuelLvlLow$ = Active on the vehicle CAN bus to trigger the low fuel indicator\n2. Check that the HU displays the low fuel indicator on the Androi",
+    "after": "1. Send CAN on CAN-B: STATUS_BH_BCM1.LowFuelWarningSts = 1 (ON) and keep it at 1 (ON) for the remainder of the test\n2. Read the Android Auto projection UI and check that the low fuel indicator is displayed"
+  },
+  {
+    "row": 169,
+    "tc_id": "NR1L-PROJ-167",
+    "before": "1. Initiate a CarPlay session between the phone and the HU\n2. Open the CarPlay Tests App > Utilities > Protocol Validation > Vehicle State Protocol\n3. Trigger $",
+    "after": "1. Initiate a CarPlay session between the phone and the HU\n2. Open the CarPlay Tests App > Utilities > Protocol Validation > Vehicle State Protocol\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n4. Read the night-mode characteristic value listed by Car Inspector\n5. Check that the night-mode characteristic value listed by Car Inspector matches the transmitted 0 (Night) value"
+  },
+  {
+    "row": 170,
+    "tc_id": "NR1L-PROJ-168",
+    "before": "1. Initiate a CarPlay session between the phone and the HU\n2. Open the CarPlay Tests App > Utilities > Protocol Validation > Vehicle State Protocol\n3. Trigger $",
+    "after": "1. Initiate a CarPlay session between the phone and the HU\n2. Open the CarPlay Tests App > Utilities > Protocol Validation > Vehicle State Protocol\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n4. Read the day-mode characteristic value listed by Car Inspector\n5. Check that the day-mode characteristic value listed by Car Inspector matches the transmitted 1 (Day) value"
+  },
+  {
+    "row": 171,
+    "tc_id": "NR1L-PROJ-169",
+    "before": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Trigger $Day_Night_Mode$ = Night via CAN tool\n3. Check that the CarPlay UI on the HU s",
+    "after": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n3. Check that the CarPlay UI on the HU switches from Day theme to Night theme"
+  },
+  {
+    "row": 172,
+    "tc_id": "NR1L-PROJ-170",
+    "before": "1. Confirm the CarPlay home screen is shown in the Night theme on the HU\n2. Trigger $Day_Night_Mode$ = Day via CAN tool \n3. Check that the CarPlay UI on the HU ",
+    "after": "1. Confirm the CarPlay home screen is shown in the Night theme on the HU\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n3. Check that the CarPlay UI on the HU switches from Night theme to Day theme"
+  },
+  {
+    "row": 173,
+    "tc_id": "NR1L-PROJ-171",
+    "before": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Disconnect the CarPlay device from the HU via the HU Device Manager\n3. Trigger $Day_Ni",
+    "after": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Disconnect the CarPlay device from the HU via the HU Device Manager\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n4. Reconnect the same CarPlay device to the HU\n5. Check that the CarPlay home screen is shown in the Night theme upon reconnection"
+  },
+  {
+    "row": 174,
+    "tc_id": "NR1L-PROJ-172",
+    "before": "1. Confirm the CarPlay home screen is shown in the Night theme on the HU\n2. Disconnect the CarPlay device from the HU via the HU Device Manager\n3. Trigger $Day_",
+    "after": "1. Confirm the CarPlay home screen is shown in the Night theme on the HU\n2. Disconnect the CarPlay device from the HU via the HU Device Manager\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n4. Reconnect the same CarPlay device to the HU\n5. Check that the CarPlay home screen is shown in the Day theme upon reconnection"
+  },
+  {
+    "row": 175,
+    "tc_id": "NR1L-PROJ-173",
+    "before": "1. Open the Map application on the CarPlay screen\n2. Trigger $Day_Night_Mode$ = Night via CAN tool and check that the CarPlay Map uses Night Graphics\n3. Trigger",
+    "after": "1. Open the Map application on the CarPlay screen\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night) and check that the CarPlay Map uses Night Graphics\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n4. Check that the CarPlay Map uses Day Graphics"
+  },
+  {
+    "row": 176,
+    "tc_id": "NR1L-PROJ-174",
+    "before": "1. Confirm all reachable CarPlay HMI components (home screen, Map, Now Playing) are shown in the Day theme on the HU\n2. Trigger $Day_Night_Mode$ = Night via CAN",
+    "after": "1. Confirm all reachable CarPlay HMI components (home screen, Map, Now Playing) are shown in the Day theme on the HU\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n3. Check that all reachable CarPlay HMI components display Night theme without mixed Day/Night state\n4. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n5. Check that all reachable CarPlay HMI components display Day theme without mixed Day/Night state"
+  },
+  {
+    "row": 177,
+    "tc_id": "NR1L-PROJ-175",
+    "before": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Start the CAN log and HU screen capture recording\n3. Trigger $Day_Night_Mode$ = Night ",
+    "after": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Start the CAN log and HU screen capture recording\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night), record T1 from the CAN log, record T2 from the screen capture, and compute T2 - T1\n4. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day), record T3 from the CAN log, record T4 from the screen capture, and compute T4 - T3\n5. Repeat steps 3 and 4 until N = 30 samples are collected per direction\n6. Compute the P95 latency for each direction and check that both stay below 200ms"
+  },
+  {
+    "row": 178,
+    "tc_id": "NR1L-PROJ-176",
+    "before": "1. Confirm the CarPlay home screen is shown in the Night theme on the HU\n2. Stop $Day_Night_Mode$ signal transmission on the HU CAN bus via the CAN tool\n3. Wait",
+    "after": "1. Confirm the CarPlay home screen is shown in the Night theme on the HU\n2. Stop BCM_FD_27.DAY_LGT_MD_DISP signal transmission on the HU CAN bus via the CAN tool\n3. Wait at least 5 seconds and check that the CarPlay UI on the HU remains in the Night theme\n4. Resume BCM_FD_27.DAY_LGT_MD_DISP signal transmission with value 1 (Day) via the CAN tool\n5. Check that the CarPlay UI transitions to the Day theme within 200ms"
+  },
+  {
+    "row": 179,
+    "tc_id": "NR1L-PROJ-177",
+    "before": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Rapidly toggle $Day_Night_Mode$ between Day and Night 10 times in succession via CAN t",
+    "after": "1. Confirm the CarPlay home screen is shown in the Day theme on the HU\n2. Rapidly toggle BCM_FD_27.DAY_LGT_MD_DISP between 1 (Day) and 0 (Night) 10 times in succession via CAN tool, ending with 1 (Day)\n3. Check that the CarPlay UI is in the Day theme after the final toggle and no crash popup, freeze popup, or HU reboot occurred during the sequence"
+  },
+  {
+    "row": 180,
+    "tc_id": "NR1L-PROJ-178",
+    "before": "1. Trigger $Day_Night_Mode$ = Night via CAN tool\n2. Read the HU $Day_Night_Mode$ input state via CAN tool\n3. Check that the HU $Day_Night_Mode$ input state is N",
+    "after": "1. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n2. Read BCM_FD_27.DAY_LGT_MD_DISP on the CAN bus\n3. Check that BCM_FD_27.DAY_LGT_MD_DISP reads 0 (Night)"
+  },
+  {
+    "row": 181,
+    "tc_id": "NR1L-PROJ-179",
+    "before": "1. Trigger $Day_Night_Mode$ = Day via CAN tool\n2. Read the HU $Day_Night_Mode$ input state via CAN tool\n3. Check that the HU $Day_Night_Mode$ input state is Day",
+    "after": "1. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n2. Read BCM_FD_27.DAY_LGT_MD_DISP on the CAN bus\n3. Check that BCM_FD_27.DAY_LGT_MD_DISP reads 1 (Day)"
+  },
+  {
+    "row": 182,
+    "tc_id": "NR1L-PROJ-180",
+    "before": "1. Confirm the Android Auto UI is shown in the Day theme on the HU\n2. Trigger $Day_Night_Mode$ = Night via CAN tool and check that the Android Auto UI on the HU",
+    "after": "1. Confirm the Android Auto UI is shown in the Day theme on the HU\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night) and check that the Android Auto UI on the HU switches from Day theme to Night theme"
+  },
+  {
+    "row": 183,
+    "tc_id": "NR1L-PROJ-181",
+    "before": "1. Confirm the Android Auto UI is shown in the Night theme on the HU\n2. Trigger $Day_Night_Mode$ = Day via CAN tool\n3. Check that the Android Auto UI on the HU ",
+    "after": "1. Confirm the Android Auto UI is shown in the Night theme on the HU\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n3. Check that the Android Auto UI on the HU switches from Night theme to Day theme"
+  },
+  {
+    "row": 184,
+    "tc_id": "NR1L-PROJ-182",
+    "before": "1. Confirm the Android Auto UI is shown in the Day theme on the HU\n2. Disconnect the Android Auto device from the HU via the HU Device Manager\n3. Trigger $Day_N",
+    "after": "1. Confirm the Android Auto UI is shown in the Day theme on the HU\n2. Disconnect the Android Auto device from the HU via the HU Device Manager\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n4. Reconnect the same Android Auto device to the HU\n5. Check that the Android Auto UI is shown in the Night theme upon reconnection"
+  },
+  {
+    "row": 185,
+    "tc_id": "NR1L-PROJ-183",
+    "before": "1. Confirm the Android Auto UI is shown in the Night theme on the HU\n2. Disconnect the Android Auto device from the HU via the HU Device Manager\n3. Trigger $Day",
+    "after": "1. Confirm the Android Auto UI is shown in the Night theme on the HU\n2. Disconnect the Android Auto device from the HU via the HU Device Manager\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n4. Reconnect the same Android Auto device to the HU\n5. Check that the Android Auto UI is shown in the Day theme upon reconnection"
+  },
+  {
+    "row": 186,
+    "tc_id": "NR1L-PROJ-184",
+    "before": "1. Open the Map application on the Android Auto screen\n2. Trigger $Day_Night_Mode$ = Night via CAN tool\n3. Check that the Android Auto Map uses Night Graphics\n4",
+    "after": "1. Open the Map application on the Android Auto screen\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n3. Check that the Android Auto Map uses Night Graphics\n4. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n5. Check that the Android Auto Map uses Day Graphics"
+  },
+  {
+    "row": 187,
+    "tc_id": "NR1L-PROJ-185",
+    "before": "1. Confirm all reachable Android Auto HMI components (home screen, Map, Now Playing) are shown in the Day theme on the HU\n2. Trigger $Day_Night_Mode$ = Night vi",
+    "after": "1. Confirm all reachable Android Auto HMI components (home screen, Map, Now Playing) are shown in the Day theme on the HU\n2. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night)\n3. Check that all reachable Android Auto HMI components display Night theme without mixed Day/Night state\n4. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day)\n5. Check that all reachable Android Auto HMI components display Day theme without mixed Day/Night state"
+  },
+  {
+    "row": 188,
+    "tc_id": "NR1L-PROJ-186",
+    "before": "1. Confirm the Android Auto home screen is shown in the Day theme on the HU\n2. Start the CAN log and HU screen capture recording\n3. Trigger $Day_Night_Mode$ = N",
+    "after": "1. Confirm the Android Auto home screen is shown in the Day theme on the HU\n2. Start the CAN log and HU screen capture recording\n3. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 0 (Night), record T1 from the CAN log, record T2 from the screen capture, and compute T2 - T1\n4. Send CAN: BCM_FD_27.DAY_LGT_MD_DISP = 1 (Day), record T3 from the CAN log, record T4 from the screen capture, and compute T4 - T3\n5. Repeat steps 3 and 4 until N = 30 samples are collected per direction\n6. Compute the P95 latency for each direction and check that both stay below 200ms"
+  },
+  {
+    "row": 189,
+    "tc_id": "NR1L-PROJ-187",
+    "before": "1. Confirm the Android Auto UI is shown in the Night theme on the HU\n2. Stop $Day_Night_Mode$ signal transmission on the HU CAN bus via the CAN tool\n3. Wait at ",
+    "after": "1. Confirm the Android Auto UI is shown in the Night theme on the HU\n2. Stop BCM_FD_27.DAY_LGT_MD_DISP signal transmission on the HU CAN bus via the CAN tool\n3. Wait at least 5 seconds and check that the Android Auto UI on the HU remains in the Night theme\n4. Resume BCM_FD_27.DAY_LGT_MD_DISP signal transmission with value 1 (Day) via the CAN tool\n5. Check that the Android Auto UI transitions to the Day theme within 200ms"
+  },
+  {
+    "row": 190,
+    "tc_id": "NR1L-PROJ-188",
+    "before": "1. Confirm the Android Auto UI is shown in the Day theme on the HU\n2. Rapidly toggle $Day_Night_Mode$ between Day and Night 10 times in succession via CAN tool,",
+    "after": "1. Confirm the Android Auto UI is shown in the Day theme on the HU\n2. Rapidly toggle BCM_FD_27.DAY_LGT_MD_DISP between 1 (Day) and 0 (Night) 10 times in succession via CAN tool, ending with 1 (Day)\n3. Check that the Android Auto UI is in the Day theme after the final toggle and no crash popup, freeze popup, or HU reboot occurred during the sequence"
+  },
+  {
+    "row": 235,
+    "tc_id": "NR1L-PROJ-233",
+    "before": "1. Initiate a CarPlay session between the phone and the HU\n2. Open the CarPlay Tests App > Protocol Validation > Location Recorder and tap \"Start\"\n3. Drive the ",
+    "after": "1. Initiate a CarPlay session between the phone and the HU\n2. Open the CarPlay Tests App > Utilities > Protocol Validation > Location Recorder and tap \"Start\"\n3. Drive the vehicle (or simulate motion via CAN tool) so the speed sensor reports a non-zero value\n4. Tap End Recording after at least 30 samples are captured, tap the clock icon on the Location Recorder main screen, select the session, and share the results in CSV format\n5. Read the SensorAidingSpeed column from the CSV and the vehicle speed signal from the CAN log over the same window\n6. Check that SensorAidingSpeed (derived from PASCD) matches the vehicle CAN speed within tolerance, confirming vehicle-sensor-sourced speed"
+  },
+  {
+    "row": 270,
+    "tc_id": "NR1L-PROJ-268",
+    "before": "1. Start ATS log capture on the HU\n2. Connect the phone to the HU via USB cable to initiate the CarPlay session\n3. Wait until the CarPlay session is established",
+    "after": "1. Start ATS log capture on the HU\n2. Connect the phone to the HU via USB cable to initiate the CarPlay session\n3. Wait until the CarPlay session is established and the CarPlay home screen is displayed\n4. Read the captured ATS log and locate the iAP2 ModelIdentifier entry\n5. Check that the ModelIdentifier includes Automotive_Manufacture = \"FCA\", Make matching Brand_Configuration_2, Model matching Car_Configuration_15.Vehicle_Line_Configuration, and Screen Size matching Radio_Display_Type"
+  },
+  {
+    "row": 271,
+    "tc_id": "NR1L-PROJ-269",
+    "before": "1. Open the PCTS app on the phone and select the \"C2\" test case\n2. Run PCTS-C2 to capture the service discovery response from the HU\n3. Read the captured servic",
+    "after": "1. Open the PCTS app on the phone and select the \"C2\" test case\n2. Run PCTS-C2 to capture the service discovery response from the HU\n3. Read the captured service discovery response in the PCTS report\n4. Check that the ModelIdentifier includes Automotive_Manufacture = \"FCA\", Make matching Brand_Configuration_2, Model matching Car_Configuration_15.Vehicle_Line_Configuration, and Screen Size matching Radio_Display_Type"
+  }
+]

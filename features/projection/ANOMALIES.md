@@ -2062,6 +2062,28 @@ inputs/ 寫回後   574,700 bytes  (561.23 KiB)   mtime 2026-08-12 16:40:59
 該敘述**從未寫入 `ANOMALIES.md`**（僅存在於上繳訊息），故無既有記載需要修改；
 本條即為正確之登記。
 
+### A-PJ75 — 立新規則前未查既有政策（R-P93 與 `.gitignore:20` 衝突） · **CLOSED** (2026-08-12)
+
+**R-P93 之提出係在未查證既有政策之情況下進行**，致與 `.gitignore:20` 及
+`FEATURE_ONBOARDING §6` 直接衝突。該三行註解逐字載明 digest「must never be
+committed to a tracked file」，而 R-P93 要求旁檔入庫。
+
+加重情節有二：
+
+1. 同一份下放包援引 AMFM 前例（`output/…_Radio_20260129.sha256`）作為依據，
+   **卻未查該前例之追蹤狀態**——實測為 untracked（`git check-ignore` 命中
+   `.gitignore:20`），該前例恰恰支持相反結論。**檔案存在 ≠ 檔案被追蹤。**
+2. 同一份包之 §3 明文要求執行層「OPEN DR 清單須自 repo 現行記載取得，不得沿用
+   本包之列舉（canon §5a 第十五條）」，**而該包自列之清單即為錯誤**——列了已
+   撤銷之 #9 #10、漏列 OPEN 之 #14。
+
+責任歸屬：分析層。與 A-PJ73（未查證即陳述狀態）、A-PJ74(b)（未查證即接受更正）
+同族，共同缺陷為**未查證**。
+
+處置：R-P94 撤銷「旁檔須入庫」，`.gitignore` 與 canon §6 不修改；新增 canon
+§5a 第十七條「立新規則前須查既有政策」。執行層發現衝突後停下回報而未自行修改
+`.gitignore`（版控政策非 Tier 1，R-P89 同型），處置正確。
+
 ## Assumption markers
 
 None yet. Phase 0 wrote no test-case content, so no `[ASSUMPTION A-PJnn]`
@@ -2070,7 +2092,7 @@ marker has been emitted. Inline format in generated JSON reasoning:
 
 ## Status summary
 
-74 條登記；**57 條 CLOSED、1 條 RETRACTED、16 條 PENDING**。
+75 條登記；**58 條 CLOSED、1 條 RETRACTED、16 條 PENDING**。
 
 A-PJ68 由 R-P87 CLOSED（代理判準不得凌駕實質判準，已升格 canon §5a 第十三條）；
 A-PJ69 由 R-P86 CLOSED（W-9）；A-PJ70 / A-PJ71 為記錄事項。
@@ -2179,7 +2201,71 @@ Phase 2 結束時，RD-1 已累積下列各項（皆為「來源未明述、不�
 |---|---|---|
 | A-PJ19 | R-P12 的列號混用實體列號與 tc_id 兩種慣例 | 執行時比對實測發現 |
 | A-PJ22 | 下放包 §6.1（要三項資訊）與 §6.2（禁執行測項）互斥 | 執行時觸及界線發現 |
+| A-PJ76 | R-P95 援引之 canon handoff contract 不存在 | 落檔時查證發現 |
+| A-PJ77 | 下放包 20 §7 自檢表漏列 R-P97 | 落檔時清點發現 |
+| A-PJ78 | Operating Charter 分歧為兩版，repo 內為舊版 | 分析層自查 |
 
 兩條都是**下放前可判定、卻等到執行時才浮現**的規則衝突。共同的預防形式：
 下放包成形時檢查「所求資訊是否落在所授權路徑的可達範圍內」、以及「同一份
 文件內的列號／識別碼是否採單一慣例」。
+
+---
+
+### A-PJ76｜canon 之 handoff contract 從未存在 · **CLOSED by R-P98**
+
+> R-P95 及 Charter 草案援引之 canon §7 handoff contract 不存在。
+> 根因：下放包 08（handoff 契約）產生於 A-PJ62 更正前，僅以聊天附件交付，未入 repo。
+> 分析層其後於 R-P95、Charter、以及數份下放包中援引該節，均為援引不存在之節號——
+> **違反「立新規則前先查既有政策」之反面：援引既有規則前亦須確認其存在**。
+> 此條已加入 Charter 之數字紀律節。
+
+**執行層之偵測（2026-08-13）**：`FEATURE_ONBOARDING.md` 之 `^## ` 與 `^### `
+標題共 20 列，最末為 `## 7. RD-1 packaging (Phase 7)`（第 444 行），無 §7.2
+亦無任何子節；全檔以 `上繳`、`handoff contract` 逐字掃描（區分大小寫）零命中。
+依 A-PJ28 → A-PJ53 常規處置：**不代擬**，回報，R-P95 依原文落檔。
+
+**結案（R-P98）**：契約補寫為 canon **§8**（§7 已為 RD-1 packaging 所占用），
+§8.0 ~ §8.8 逐字附加至 `FEATURE_ONBOARDING.md` 第 467 行起，SHA256 `22298b9d…`。
+R-P95 之援引更正為 `canon §8.2`。
+
+**此條之意義**：A-PJ62（下放包未落檔）之代價在此完全兌現——
+缺的不只是一份文件，是**其後所有援引它的規則都指向空處**，且四個月無人察覺。
+
+### A-PJ78｜Operating Charter 分歧為兩版 · **CLOSED**
+
+> Operating Charter 分歧為兩版。成因為分析層應 Pei 要求產出擴充版時，
+> 以**聊天附件**交付而未寫入 repo，執行層遂以下放包 20 §4 之較早版本建檔
+> 並據以串接 `PROJECT_INSTRUCTION.md`。
+> **與 A-PJ62 同族第二次**——A-PJ62 之更正（下放包一律 `write_file`）
+> 僅涵蓋「下放包」，未涵蓋「應 Pei 要求產出之其他文件」。
+> **更正**：分析層產出之**任何**供落檔之文件，一律 `write_file` 寫入 repo，
+> 聊天附件僅為副本。不限於下放包。
+
+| 版本 | 行數 | 現狀 |
+|---|---|---|
+| 舊 | 73 | 曾寫入 `docs/runtime/OPERATING_CHARTER.md`，串接為 680 行之 `PROJECT_INSTRUCTION.md` |
+| 新 | 95 | 分析層已直接 `write_file` 覆寫；串接為 702 行 |
+
+**結案**：`PROJECT_INSTRUCTION.md` 已依 R-P97 重新串接，702 行，
+全檔 SHA256 `dd42b6e7…`；第二段仍為 `fa9833ae…`，與 ASPICE 逐字元相同。
+
+**R-P97 於此次換版中經受檢驗**：第一段整份換掉，第二段之逐字元保證不受任何
+影響，且無需人工比對六百行。若當初以轉錄產生，此次換版即為漂移之入口。
+
+### A-PJ77｜下放包 20 §7 自檢表漏列 R-P97
+
+> §7「本包產生之新條文清單（A-PJ53 要求）」僅列 R-P95 / R-P96，
+> 而 R-P97 立於 §4.1，且 §5 第 6 步明載「R-P95 / R-P96 / R-P97 落檔至
+> `DECISIONS.md §0.27`」。同包內兩處不一致。
+
+**意義**：A-PJ53 所設之自檢表，其目的正是攔下「條文被立而未被清點」。
+本次自檢表**自身**漏了一條——該機制**首次於實測中失效**。
+漏列者恰為本包唯一產出檔案之條文（R-P97），若執行層僅依 §7 行事，
+`PROJECT_INSTRUCTION.md` 不會被建立。
+
+**處置**：以 §5 第 6 步為準，R-P95 ~ R-P97 三條全數落檔。
+
+**CLOSED by R-P99**：自檢表改為全文掃描產生，不得人工列舉。
+成因確認為——R-P97 係以 `edit_file` 於下放包 20 定稿後追加至 §4.1，
+而 §7 自檢表在追加前已完成。**人工列舉之表無法涵蓋其後之追加。**
+執行層所提之建議（自全文掃描新編號，與 R-P97「串接而非轉錄」同型）獲採納。
