@@ -10,7 +10,7 @@ disposition is Tier 2.
 
 ---
 
-## A-PV01 — 交付目標 workbook：以空白範本開工 — PENDING (downgraded)
+## A-PV01 — 交付目標 workbook：以空白範本開工 — **RESOLVED（R23-1）**
 
 原始登記（handoff 00 §4）：6 份素材中無任何含 `Test Case Specification` 分頁
 之檔案，`workbook_state` 無法判定，P7 無寫回標的。
@@ -26,6 +26,17 @@ Result_SWQT_20260121.xlsx`（SHA256 `cd876c202c71e74b…`，rev C，2026-01-21�
 TC 分頁之 Scope / Purpose / Reviewer 三格皆空（見 A-PV08）。
 建議處置：Tier 2 確認「以通用範本產生 Privacy 交付件」即為最終交付形態，
 或 Tier 3 另索 Privacy 專屬 workbook。P4 可在此前提下啟動。
+
+
+**裁決 R23-1（Pei, 2026-08-13）逐字**：
+
+> 不另索 Privacy 專屬 workbook。
+> 依據：範本第 10 列原廠樣本為 NR1L-AntiTheft-001，該範本本即供各
+> feature 各自開工之用。
+
+即「以通用範本產生 Privacy 交付件」就是最終交付形態。原登記之殘留問題
+（封面 Author 空、Reviewer 為範本預設）由 **R23-5** 一併處置：
+該區為表單自身之文件管制區，不動。
 
 ## A-PV02 — VF651 變體選擇 — **RESOLVED（Amplified 部分）／PENDING（ANC 部分）**
 
@@ -90,7 +101,7 @@ P2 進場時必須先重驗 handoff §3.2 / §3.4 兩組數（見 §7.6 未驗�
 自足即可立即簽；縮範圍的裁決（(a) 排除 V3_R3）因錯誤代價是「漏驗」而非
 「多驗」，必須等證據重驗完成。兩者不必同批處理。
 
-## A-PV04 — 同名不同內容（VF651_V2_R2）— **已量測，待處置** PENDING
+## A-PV04 — 同名不同內容（VF651_V2_R2）— **RESOLVED（R23-2）**
 
 handoff 00 §4 只有 size 比對（未 hash）。執行層依 §7.4 補算 SHA256，
 全庫掃描 `*VF651_V2_R2.docx` 得 **7 個路徑、5 種內容**：
@@ -110,13 +121,35 @@ handoff 00 §4 只有 size 比對（未 hash）。執行層依 §7.4 補算 SHA2
 另有三種內容，本專案為 HDCC28 平台，暫不列入。
 建議處置：`inputs/` 現有這份（`d5813bb7`）視為 HDCC28 基線，Tier 2 追認。
 
-## A-PV05 — SYSAD 混入 `cfts_doc` 分類 — PENDING
+
+**裁決 R23-2（Pei, 2026-08-13）逐字**：
+
+> `inputs/` 現有之 SHA256 `d5813bb7…`（146,929 bytes）為 **HDCC28 平台
+> 基線**，與 `VF/VF_Split document/HDCC28_Split/` 同源（hash 相同，非僅
+> size 相同）。`28HDCC_2A_LTM/…` 之 `7b5fc875…` 確為不同內容，不得假設
+> 為重存。DT 系列（DT27 / DT28）另三種內容不列入本專案。
+
+**注意本裁決之範圍僅及 V2_R2。** 下放包 01 §2 之基準確認另發現 **V6_R2**
+之 `inputs/` 副本對齊的是 **DT28** 樹而非 HDCC28 —— 該項另立
+**A-PV14**，不因 R23-2 而解決。
+
+## A-PV05 — SYSAD 混入 `cfts_doc` 分類 — **RESOLVED（R23-3）**
 
 `SYS3_PrivacyMode_System Architectural Design_SYSAD_V1.docx` 為 SYS.3 架構
 設計，非 CFTS 規格；`intake.py` 依副檔名把 `.docx` 一律歸 `cfts_doc`，實測
 確已如此分類（見 `_intake` 產出之 `INTAKE.md`）。其角色是背景理解，
 **不得作為 `specification_reference`**（§10.7 禁止引用分析類文件）。
 建議處置：`feature.yaml` 標為 context-only。
+
+
+**裁決 R23-3（Pei, 2026-08-13）逐字**：
+
+> `SYS3_PrivacyMode_System Architectural Design_SYSAD_V1.docx` 於
+> `feature.yaml` 標為 **context-only**。**不得**作為
+> `specification_reference`（§10.7 禁引分析類文件；SYSAD 屬設計非規格）。
+> 其角色限於背景理解。
+
+執行層已辦：`feature.yaml` 之 `paths` 區加 `context_only` 清單並註明依據。
 
 ## A-PV06 — abbr `PR` vs `PV` — **RESOLVED（R-PV02, 2026-08-13）**
 
@@ -146,7 +179,7 @@ handoff 00 §4 只有 size 比對（未 hash）。執行層依 §7.4 補算 SHA2
 
 以下為 **Phase 1 recon 對空白範本實測新增**，handoff 00 未涵蓋。
 
-## A-PV07 — 範本殘留樣本列（第 10–11 列）— PENDING
+## A-PV07 — 範本殘留樣本列（第 10–11 列）— **RESOLVED（R23-4，清除已執行）**
 
 `Test Case Specification 測試用例規範` 分頁第 10–11 列帶範本示例殘留：
 
@@ -186,7 +219,25 @@ handoff 00 §4 只有 size 比對（未 hash）。執行層依 §7.4 補算 SHA2
 BLANK 策略為「append from first data row」＝第 10 列，清乾淨後首筆 TC
 即落第 10 列，`NR1L-Privacy-001` 起算（R-PV02）。
 
-## A-PV08 — Scope / Purpose / Reviewer 三格待填，且 intake 誤讀 Scope — PENDING
+
+**裁決 R23-4（Pei, 2026-08-13）—— 核可修訂版計畫，逐字**：
+
+> (1) 僅清 **D10 / F10 / G10 / S10 / D11** 五格之值
+> (2) 方式為 zip 層就地改寫：
+>     `<c r="D10" s="81" t="s"><v>44</v></c>` → `<c r="D10" s="81"/>`
+>     —— 值清除、`s=` 樣式屬性原地保留
+> (3) **B 欄不清** —— B10 為公式 `=IF(ISBLANK($D10),"",ROW()-9)`，
+>     序號自 D 欄推算，清 D10 後自動空白；手動清 B 欄會刪掉範本之序號機制
+> (4) **不採整列刪除** —— 會使 DV sqref 與 R10 之 x14 DV 移位
+
+**已執行（2026-08-13）**，走 `backend/xlsx_surgical.py`（R18-3 規則 1 之
+首次正向適用）。四組比對全數相符：五格讀回全 `None`、B10 公式完好、
+zip 成員 48→48 零增零減、DV 4/2→4/2。
+
+**輸出未寫入 `inputs/`**：客戶原件 SHA256 `cd876c202c71e74b…` 逐 byte 未動
+（已驗證）。產物於 `features/privacy/output/`。
+
+## A-PV08 — 表頭六格 + intake 誤讀 Scope — **RESOLVED（R23-5，D5 已填）**
 
 TC 分頁表頭區實測：
 
@@ -211,6 +262,38 @@ ruled 037 來源識別碼」，即 `SWE1_CFTS_022-Privacy_Features`
 （該檔 cell AI2 標 `FM-WI-FSM-037-A03`，但檔內未給 037 文件編號，
 故無法比照 AMFM 填 `FM-WI-SW-xxx-SWRA-Axx` 形式）。
 Reviewer / Purpose / Project Name / Date 一併待 Pei 給值，執行層不自填。
+
+
+**裁決 R23-5（Pei, 2026-08-13）—— 含分析層自我更正，逐字**：
+
+> 分析層更正：原建議「D3 Reviewer 與 Cover 封面 Reviewer 由 Pei 給值、
+> 交付件不該帶範本預設人名」**有誤**。
+
+| cell | 欄位 | AMFM 已交付件實測 | Privacy 裁定 |
+|---|---|---|---|
+| D2 | 專案名稱 | `newR1L` | 維持 `newR1L` |
+| D3 | 審查者 Reviewer | **空** | **留空** |
+| D4 | 目的 Purpose | **空** | **留空** |
+| D5 | 範圍 Scope | `FM-WI-SW-RAD-SWRA-A02` | `SWE1_CFTS_022-Privacy_Features` |
+| J5 | 日期 Date | `2026/1/29`（交付日）| 交付日填，現在不預填 |
+
+> Cover 封面之三格（核准者 / 審查者 / 作者）**一律不動**：此為
+> **FM-WI-FSM-036-A01 表單本身之文件管制區**，記錄的是「誰核准了這份
+> 表單」，非「誰審查了本次交付內容」。
+
+**§5a（本裁決所立）**：表單自身之文件管制欄位與交付內容之責任欄位是兩件事；
+判定某欄屬何者，須以同表單之已交付實例為據，**不得由欄位名稱推斷**。
+—— 執行層原提案正是「由欄位名稱推斷」而錯，記為教訓。
+
+**已執行**：D5 = `SWE1_CFTS_022-Privacy_Features`，讀回相符。
+D2 / D3 / D4 / J5 與 Cover 封面四格經比對確認未變。
+
+**intake 誤讀 bug 之實測（本包 §5.5 要求）**：D5 填入後，
+`_workbook_profile` 之輸出由 `'Scope: 日期 Date：; rows trace xxx'`
+變為 `'Scope: SWE1_CFTS_022-Privacy_Features; no data rows'` —— 症狀消失。
+**但 bug 未修**：該函式仍以「壓縮非空儲存格後取下一格」定位 Scope 值，
+只是 D5 有值時該壓縮恰好落點正確。**任何 D5 為空的 workbook 仍會複現。**
+依本包指示未修程式碼。
 
 ## A-PV09 — openpyxl 寫回會損毀範本 — **CLOSED，已升格為常設規則 R18-3**（2026-08-13）
 
@@ -279,7 +362,7 @@ Pei 2026-08-13 指示「x14 DV 往返實測照辦，P4 前做」——**已於�
 的性質。其他以此範本開工的 feature（SXM 亦為 BLANK + 同範本家族）有相同風險，
 建議分析層評估是否升為 canon 層條文。
 
-## A-PV10 — 下拉選單清單範圍與內容不一致 — PENDING
+## A-PV10 — 下拉選單清單範圍與內容不一致 — **RESOLVED（R23-6，處置已定，缺陷續存於上游）**
 
 `下拉選單` 分頁實有 **9** 個詞條（A1:A9），A10 / A11 為空。
 但 R11:R59 的 DV 指向 `$A$1:$A$11`（含 2 個空選項），R10 指向 `$A$1:$A$9`。
@@ -287,7 +370,16 @@ Pei 2026-08-13 指示「x14 DV 往返實測照辦，P4 前做」——**已於�
 建議處置：登記即可，範本瑕疵屬上游；lint 以 A1:A9 之 9 詞條為準
 （`feature.yaml` 之 `lint.design_method_source: dropdown_sheet` 即取此分頁）。
 
-## A-PV11 — `Reference` 分頁與 `下拉選單` 詞條字串不符 — PENDING
+
+**裁決 R23-6（Pei, 2026-08-13）逐字**：
+
+> 範本瑕疵屬上游，**登記即可，不修**。lint 以 `下拉選單!A1:A9` 之 9 詞條
+> 為準。R10 指向 `$A$1:$A$9`、R11:R59 指向 `$A$1:$A$11`（含 2 空項）
+> 之落差不修，隨 RD-1 回報上游。
+
+狀態為 RESOLVED 係指**處置已定**，缺陷本身續存於上游範本。
+
+## A-PV11 — `Reference` 分頁與 `下拉選單` 詞條字串不符 — **RESOLVED（R23-7）**
 
 `lint.design_method_source` 要求 exact-string 比對，兩分頁第 6 條不一致：
 
@@ -297,7 +389,14 @@ Pei 2026-08-13 指示「x14 DV 往返實測照辦，P4 前做」——**已於�
 建議處置：以 `下拉選單` 為 lint 權威（DV 實際引用的是它）；`Reference`
 視為說明性附表，不入 lint。回報上游修正。
 
-## A-PV12 — `Cover_old` / `ChangeHistory_old` 舊版分頁殘留 — PENDING
+
+**裁決 R23-7（Pei, 2026-08-13）逐字**：
+
+> 以 **`下拉選單` 為 lint 權威**（DV 實際引用者）；`Reference` 分頁視為
+> 說明性附表，**不入 lint**。第 6 條之落差
+> （`Pair-wise / N-wise` 對 `Pairwise / t-wise`）隨 RD-1 回報上游。
+
+## A-PV12 — `Cover_old` / `ChangeHistory_old` 舊版分頁殘留 — **RESOLVED（R23-8，案 1 原樣保留）**
 
 範本含 9 個分頁，其中兩個為 2020–2021 年舊版遺留：
 
@@ -322,6 +421,16 @@ Time 欄），兩者已完整取代舊版。無任何 DV、公式或 defined nam
    需動封面頁，同樣屬表單結構修改。
 
 執行層採 **案 1**（不動作）直到 Tier 2 另有裁示。
+
+
+**裁決 R23-8（Pei, 2026-08-13）逐字**：
+
+> 採**案 1 原樣保留**。兩頁不進 lint、不進 trace、不寫回。
+> 理由：刪除屬對公司管制表單之結構性修改，且交付件分頁數與原範本不符時，
+> 稽核反而須解釋「為何少兩頁」。
+> 佐證：AMFM 之已交付件同樣保留 `Cover_old` / `ChangeHistory_old` 兩頁。
+
+執行層原提案即案 1，獲採納；佐證由分析層自 AMFM 已交付件補實測。
 
 ## A-PV13 — scaffold 產出之 `feature.yaml` 欄位字母為 rev C 之前的版本 — RESOLVED (執行層已處置)
 

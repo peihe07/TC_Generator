@@ -12,6 +12,13 @@ paths:
   spec_pdf: null                           # spec_mode D — no PDF carrier
   popup_list: null                         # none supplied at intake
 
+# R23-3 — 素材在 inputs/ 但**不得**作為 specification_reference。
+# intake.py 依副檔名把 .docx 一律歸 cfts_doc，SYSAD 因此被誤併入規格類；
+# 它是 SYS.3 設計文件，canon §10.7 禁止引用分析／設計類文件作為規格參考。
+# 角色限於背景理解 —— lint 應拒絕任何指向此清單之 spec_reference。
+context_only:
+  - "inputs/SYS3_PrivacyMode_System Architectural Design_SYSAD_V1.docx"  # A-PV05 / R23-3
+
 spec_mode: "D"        # A/B/C/D/E per FEATURE_ONBOARDING §3
 spec_reference_template: "<Spec Filename>_{outline}"
 

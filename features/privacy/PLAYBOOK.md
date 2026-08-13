@@ -177,9 +177,35 @@ Remarks = reason + anomaly id.
 - [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
 - [ ] P6 all batches generated; lint green; placeholders: ____
 - [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: **8 條** —— A-PV01 / A-PV04 / A-PV05 / A-PV07 /
-  A-PV08 / A-PV10 / A-PV11 / A-PV12（A-PV14 為本日新登，見下）。
+- Open PENDING rulings: **1 條** —— **A-PV14**（V6_R2 之 `inputs/` 副本
+  對齊 DT28 而非 HDCC28；P2 引用該檔前須先裁定平台版本）。
+  2026-08-13 下放包 02：R23 八條簽署，A-PV01 / 04 / 05 / 07 / 08 / 10 /
+  11 / 12 全數轉 RESOLVED。
   另 DEFERRED 2 條（A-PV02 之 ANC 部分、A-PV03）、CLOSED 1 條（A-PV09）
+- 素材／產出雜湊（2026-08-13 建立）：`BASELINE.sha256`（8 個素材）與
+  `DELIVERY.sha256`（產出摘要）**已納入版控**，`inputs/` 與 `output/`
+  維持 gitignored。**每次 session opener 與每個 batch gate 執行**
+  （自 `features/privacy/` 起）：
+
+  ```bash
+  shasum -a 256 -c BASELINE.sha256                    # 8 OK，exit 0
+  shasum -a 256 -c --ignore-missing DELIVERY.sha256   # exit 0
+  ```
+
+  `DELIVERY.sha256` 為 **append-only 台帳**，逐次追加不覆蓋；舊條目即使
+  其檔案已從 `output/` 清掉仍留著。`--ignore-missing` 因此是必要的 ——
+  不加會讓已清理的舊產出報 `FAILED open or read`。加了之後，
+  內容遭竄改仍 `FAILED` 且 exit 1（已實測），檔案不存在則靜默略過。
+  亦即該指令驗的是「還在磁碟上的產出有沒有被動過」，不是「產出還在不在」。
+
+  任一 `FAILED` 即停手回報 —— 素材或產出在無裁決的情況下變動了。
+  雜湊需要更新時必須連同裁決編號一併更新；**無裁決而需更新，
+  那件事本身就是要回報的**。`BASELINE.sha256` 之更新為就地修正
+  （素材是同一批），`DELIVERY.sha256` 之更新一律為**新增 ENTRY**。
+- 範本準備（R23-4 / R23-5, 2026-08-13）：殘留樣本列五格已清、
+  D5 Scope 已填 `SWE1_CFTS_022-Privacy_Features`。
+  產物 `output/…_SWQT_Privacy_20260813.xlsx`（SHA256 `ed741d8d23f7…`）；
+  **客戶原件 `inputs/` 逐 byte 未動**（`cd876c202c71e74b…`）
 - 基準確認（R22 §2, 2026-08-13）：`inputs/` 8 檔全數 **MATCH**
   `/Users/peihe/Work/02_Project_R1LR/` 樹內同名候選。
   **現在式陳述**（R22-1）：此刻相符，不蘊含「從未被覆寫」

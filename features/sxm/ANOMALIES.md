@@ -1313,3 +1313,87 @@ FM-WI-FSM-036-A01 rev C 空白範本，症狀因此與 Privacy 探針預測完�
 
 **相關**：`features/amfm/RULINGS.md` R16；A-AM18；A-PV09；
 `features/amfm/docs/upstream/02_integrity.md` §4。
+
+## [A-SX29] 已交付件遭刪除並在凍結狀態下重產，違反 R20-3 隔離令 — **PENDING**（tag 對應物之處置未裁）
+
+**事實經過（2026-08-13）**：清理作業誤刪 `features/sxm/` 全樹與 root
+`output/`。`git restore features/` 救回所有受追蹤內容（202 個
+`generated/*.json`、全部 `.md`、`scripts/`），但下列項目因 `.gitignore`
+排除而**從未進入任何 git 物件庫**，本機與 remote 皆無：
+
+- `features/sxm/output/` 全部內容 —— **原交付件 148,734 B 與其 `.sha256`**
+- `features/sxm/inputs/` 全部 15 個來源檔
+- `data/` 中被 gitignore 的 6 個衍生檔
+
+確認無其他還原路徑：`git log --all -- "*SWQT_SXM_20260810*"` 為 0 commits；
+APFS local snapshot 無；Time Machine 未設定 destination；全碟 Spotlight
+搜尋無同名副本。**原交付件已永久滅失。**
+
+**重產經過與 R20-3 違規**：來源檔自 repo 外復原並逐一驗證雜湊——
+空白範本 `cd876c20…`、CFTS024 reqifz `325dba60…`、CFTS024 docx
+`e5c12e9e…`，三者皆與 `feature.yaml` 記載相符。`build_stla_map.py`
+重建 `data/` 四檔後，lint 為 `PASS — no findings`（215 TCs / 202 leaves）。
+
+但 `write_back.py` **在 R20-3 隔離標頭明載「It must not be executed」
+的情況下被執行兩次**。執行者未讀腳本 docstring，僅依 RUNBOOK
+close-out 的重跑指令行事；該指令寫於隔離令之前，兩者未同步。
+R18-1「已交付件一律不重產」亦因此被違反——雖然彼時交付件已滅失，
+「不重產」的前提對象已不存在，但該判斷屬 Tier 2，執行者無權自裁。
+
+**實測數字（R18-1 要求登記者；同一探針、同一量法）**：
+
+| | 客戶原件 | 原交付件（已滅失） | 重產件 |
+|---|---|---|---|
+| bytes | 65,823 | 148,734 | **148,714** |
+| zip members | 48 | 47 | 47 |
+| classic DV | 4 | 4 | 4 |
+| x14 DV | **2** | **0** | **0** |
+
+```
+LOST (11)  xl/calcChain.xml, xl/sharedStrings.xml
+           xl/comments1.xml, xl/drawings/vmlDrawing1.vml
+           xl/media/image2.jpeg
+           xl/printerSettings/printerSettings1..5.bin
+           xl/worksheets/_rels/sheet8.xml.rels
+ADDED (10) xl/comments/comment1.xml, xl/drawings/commentsDrawing1.vml
+           xl/media/image2.png, xl/media/image3..9.jpeg
+```
+
+缺損樣態與 A-SX28 記錄者**逐項相同**（lost 11 / added 10、x14 DV 2 → 0、
+R 欄「測試用例設計方法」下拉遺失）。重產並未加重損害，也未修復損害。
+
+**內容層不變量全數通過**：215 TCs、rows 10–224、202/202 leaves 精確相等、
+P0=22 · P1=181 · P2=12、TC IDs `NR1L-SXM-001..215` 單調唯一、
+ChangeHistory revision D——與 RUNBOOK close-out 記載完全一致。
+
+**雜湊不符，差異未能歸因**：
+
+```
+原交付件（RUNBOOK / tag 記載）  7b6e760d524fb79e3e4f7cafb43be4b2c945d64b9063abb3974a5e9737538a02
+重產件                          206a8dd28095ed47dab54af75125fb8870ed713053057744fe264a3940501bf9
+```
+
+已排除的變因：`stla_to_cfts.json`（重建版與原版 keys 及順序完全相同，
+且 `write_back` 僅取 `list(stla)`）、來源 workbook（雜湊已驗）、
+`--date`（依 RUNBOOK 給 `2026-08-12`）、程式碼（`git diff da8b38e`
+僅有隔離 docstring 七行，邏輯零差異）。兩次獨立執行得到相同雜湊，
+故重產本身具確定性。**剩餘差異 20 bytes，來源不明**，最可能為
+openpyxl 版本差異，未經證實。
+
+**處置 —— 部分已裁（Pei, 2026-08-13）**：
+
+> 保留重產件，登記其為 R20-3 違規產物並載明已知缺損。
+
+**未裁事項（本條 PENDING 之標的）**：tag `fw036-sxm-v1` 的 annotation
+記載 SHA256 `7b6e760d…`，而該雜湊**已無對應實體**。重產件雜湊不同，
+tag 的可重現性宣稱在現況下無法成立。此為 R18-1 判準第 2 項
+（是否已送達客戶或已進管制文件流程）之延伸問題，屬 Tier 2。
+在裁定前，重產件**不得視為 `fw036-sxm-v1` 之交付物**。
+
+**現況與交付當時之差異（一併登記）**：`inputs/` 現有 4 檔（原 15 檔），
+僅含重產所需之 workbook、a03、CFTS024 docx / reqifz；`data/` 現有 6 檔，
+其中 4 檔為 2026-08-13 重建。RD-1 尚未寄送（見 RUNBOOK Phase 7），
+故本次滅失與重產尚未影響客戶端。
+
+**相關**：A-SX28；R18-1；R20-3；`tests/test_single_write_path.py`
+（R20-2 ratchet，`features/sxm/scripts/write_back.py` 列名其中）。

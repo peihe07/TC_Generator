@@ -1,0 +1,33 @@
+# BASELINE — features/privacy/inputs/ 客戶素材基準
+#
+# 為什麼存在：inputs/ 是 gitignored（.gitignore:2），素材本身永遠不進版控。
+# 2026-08-13 實測，amfm / home / media / projection 四個 feature 的 inputs/
+# 已全部清空、sxm 只剩 2 檔（原 15）、repo 根 output/ 整個不見 —— 而
+# git 無從還原，因為那些檔從未被追蹤。tag 還在，指向的產物卻已不存在。
+#
+# 這份清單是那件事之後留下的防線：素材可以消失，雜湊留在版控裡。
+# 任何一個檔被換掉、被覆寫、被「重新下載一份新版」，都會在 git diff 現形。
+#
+# 驗證（自 features/privacy/ 執行）：
+#     shasum -a 256 -c BASELINE.sha256
+# macOS 的 shasum 會對本註解區塊印 "WARNING: N lines are improperly
+# formatted"，那是 perl 版的行為，exit code 仍為 0，逐檔仍印 OK。
+# GNU coreutils 的 sha256sum 會靜默略過 # 開頭的行。
+#
+# 更新時機：素材有增減或經裁決換版時，連同裁決編號一併更新本檔。
+# 未經裁決而此檔需要更新 —— 那本身就是要回報的事。
+#
+# 基準確認：下放包 01 §2（2026-08-13）。8 檔全數 MATCH
+# /Users/peihe/Work/02_Project_R1LR/ 樹內同名候選。
+# R22-1 時態限縮：MATCH 是現在式陳述，不蘊含「從未被覆寫」。
+#
+# 已知未決：V6_R2 之副本對齊 DT28 樹而非 HDCC28（A-PV14）。本檔記錄的是
+# inputs/ 現有的那一份，不預判它是否為正確平台版本。
+c54f700f81c4c70e52b9ccf460a143b341471163c7b6d5e1d5f0b9f00637aa0f  inputs/Audio_Output_Management_-_ETM_Non-Amplified_Audio_System_(Base_Audio)_VF651_V3_R3.docx
+49dd3c31405fb0c34d4cf11048d325d6f047c0d333c10248310e72c57e194fbb  inputs/Audio_Output_Management_-_LTM_ETM_Amplified_Audio_System_VF651_V6_R2.docx
+d5813bb7ccd6f721949c166c60727448193cbbff920d539b79639ebb31461cae  inputs/Audio_Output_Management_-_LTM_Non-Amplified_Audio_System_(Base_Audio)_VF651_V2_R2.docx
+f46d15ca29b6a75d689a1e331a92d2e1286ebe549668936dfe2eec31839c2854  inputs/CFTS022_Privacy_mode-FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA.xlsx
+cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx
+5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78  inputs/R1LR_Atl-H_25PI3.5_Privacy_CFTS_022 Functional Specification_20250910_1708.docx
+190e6f3ebaee5fe7ccc5a79014278777a179730409c9a215e77926f200c8a7fe  inputs/SWE1_CFTS_022-Privacy_Features.xlsx
+e534afa55710547f6fc53de21de3c1830073bf17f162e835668b153c3a93158c  inputs/SYS3_PrivacyMode_System Architectural Design_SYSAD_V1.docx

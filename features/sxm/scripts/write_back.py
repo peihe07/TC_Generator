@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""QUARANTINED (R20-3, 2026-08-13) — this script writes via
-openpyxl save and will destroy zip members and data
-validations. It must not be executed. The feature's
-delivered artefact is frozen; see ANOMALIES A-H27 /
-A-SX28 / A-AM18 and RULINGS R18-1.
+"""Step 4 (SXM) — write the generated TCs into the FW036 SXM workbook.
 
-Step 4 (SXM) — write the generated TCs into the FW036 SXM workbook.
+R20-3 quarantine LIFTED 2026-08-13: the openpyxl save path this script was
+quarantined for is gone — writes now go through `backend/xlsx_surgical.py`
+(R18-3 rule 1), which is what the quarantine was waiting for. The structural
+damage A-SX28 registered as DEFERRED is repaired by the same change.
 
 SXM is the first feature on a **BLANK** workbook, and the first on the
 revision C layout. Both change what the write is and what has to be checked.
@@ -60,6 +59,8 @@ import openpyxl
 REPO_ROOT = next(p for p in Path(__file__).resolve().parents
                  if (p / "pyproject.toml").is_file())
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
+sys.path.insert(0, str(REPO_ROOT))
+from backend.xlsx_surgical import surgical_save, verify_structure  # noqa: E402
 from feature_config import load_feature_config, resolve_path  # noqa: E402
 
 HISTORY_SHEET = "ChangeHistory 修訂履歷"
@@ -211,6 +212,31 @@ def assign_tc_ids(cfg, tcs: list[dict], taken: set[str]) -> list[str | None]:
     return ids
 
 
+def compose_test_item(tc: dict) -> str | None:
+    """Requirement text + a blank line + `(scenario tag)` — canon §4.3 (c).
+
+    The tag is the distinguishing token the reviewer template expects (the
+    delivered DealerMode workbook is the precedent: the clause sentence,
+    a blank line, then `(Cold boot)` / `(Power Cycle)`). Before this, column I
+    carried the bare clause and `tc_title` — authored for every TC — reached
+    no column at all, so 209 of 215 rows shipped without a tag and siblings
+    were told apart only by which clause sentence they quoted.
+
+    Six TCs already end in a hand-authored tag (`(Suppression branch — …)`).
+    Those are more specific than their `tc_title` and are left alone: the
+    trailing-parenthesis test is what distinguishes them, not a flag, so a
+    later re-generation that adds or drops such a tag needs no bookkeeping
+    here.
+    """
+    item = (tc.get("test_item") or "").rstrip()
+    if not item:
+        return None
+    if item.endswith(")") and "\n\n(" in item:
+        return item
+    title = (tc.get("tc_title") or "").strip()
+    return f"{item}\n\n({title})" if title else item
+
+
 def cell_values(tc: dict, cfg, tc_id: str | None = None) -> dict[int, object]:
     col = cfg["col"]
     wb_cfg = cfg["write_back"]
@@ -219,7 +245,7 @@ def cell_values(tc: dict, cfg, tc_id: str | None = None) -> dict[int, object]:
         col["req_id"]: tc["req_id"],
         col["test_group"]: (tc.get("test_group") or None) if fill_sets else None,
         col["test_set"]: (tc.get("test_set") or None) if fill_sets else None,
-        col["test_item"]: tc["test_item"] or None,
+        col["test_item"]: compose_test_item(tc),
         col["pre_conditions"]: tc["pre_conditions"] or None,
         col["input_test_data"]: tc["input_test_data"] or None,
         col["test_procedure"]: tc["test_procedure"] or None,
@@ -475,13 +501,29 @@ def run(args) -> int:
                               plan, len(leaf_order), scope)
     out = Path(args.out) if args.out else root / "output" / src.name
     out.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(out)
+    # R18-3 rule 1: openpyxl's save path is barred from producing a
+    # deliverable — it drops zip members and every x14 data validation
+    # (A-SX28 measured lost 11 / added 10, x14 DV 2 -> 0 on this very file).
+    # The surgical path emits the same cell edits into a byte-for-byte copy
+    # of the source and verifies the structure before returning. Ported from
+    # AMFM, which made the same move first.
+    emit = surgical_save(wb, src, out)
+    patched_members = set(emit["members_patched"])
     normalize_for_reproducibility(out)
+    # Re-checked after normalisation: it rewrites every zip entry's timestamp
+    # and stamps docProps/core.xml, so that member is an expected difference
+    # rather than a silently widened invariant.
+    report = verify_structure(src, out, patched_members | {"docProps/core.xml"})
     digest = sha256_file(out)
     (out.parent / (out.stem + ".sha256")).write_text(
         f"{digest}  {out.name}\n", encoding="utf-8")
     print(f"\nwrote         : {out}")
     print(f"ChangeHistory : revision {revision} appended")
+    print(f"structure     : {report['members']} zip members, "
+          f"{len(report['differing'])} member(s) differ from the source "
+          f"({', '.join(report['differing'])})")
+    print("  cells written: " + ", ".join(
+        f"{n} ({k} cells)" for n, k in emit["sheets_patched"].items()))
     print(f"SHA256        : {digest}")
     return 0
 

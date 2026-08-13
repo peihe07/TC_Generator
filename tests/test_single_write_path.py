@@ -61,10 +61,9 @@ KNOWN_VIOLATIONS = {
         "calls": 1, "lines": [475], "status": "QUARANTINED",
         "nature": "deliverable producer (Home); frozen per R18-1",
     },
-    "features/sxm/scripts/write_back.py": {
-        "calls": 1, "lines": [478], "status": "QUARANTINED",
-        "nature": "deliverable producer (SXM); frozen per R18-1",
-    },
+    # features/sxm/scripts/write_back.py — REMOVED 2026-08-13. Migrated to
+    # surgical_save (the AMFM pattern); the entry goes with the call site,
+    # per R20-2 clause 4. Structure verified 48/48 zip members, x14 DV 2 -> 2.
     "features/media/scripts/write_back.py": {
         "calls": 1, "lines": [349], "status": "QUARANTINED",
         "nature": "deliverable producer (Media); artefact state UNMEASURED",

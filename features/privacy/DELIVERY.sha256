@@ -1,0 +1,42 @@
+# DELIVERY — features/privacy/output/ 產出台帳（append-only）
+# ─────────────────────────────────────────────────────────────────────────
+# 記帳規則：**逐次追加，不覆蓋、不刪除、不改寫既有條目。**
+# 每產出一份 xlsx 就在檔尾新增一個 ENTRY 區塊。舊條目即使其檔案已從
+# output/ 消失，該區塊仍留著 —— 台帳記的是「產出過什麼」，不是「現在有什麼」。
+#
+# 為什麼存在：output/ 是 gitignored（.gitignore:17），產出永遠不進版控。
+# AMFM 的 v1 與 v2 都是這樣消失的 —— tag fw036-amfm-regen-v1 至今還在，
+# 它標註的那份 xlsx 已不在磁碟上，且 v1 不可重產（產生它需要 openpyxl
+# 存檔路徑，而 write_back.py 已改接外科手術路徑，該路徑在檔內已不存在）。
+# 當時沒有台帳，於是「那份交付件到底是什麼」只能從 tag annotation 拼湊。
+#
+# 驗證（自 features/privacy/ 執行）：
+#     shasum -a 256 -c --ignore-missing DELIVERY.sha256
+# **--ignore-missing 是必要的**：台帳會累積已被清理掉的舊產出，
+# 不加該旗標時它們會報 FAILED open or read。加了之後：
+#   內容被竄改 → FAILED，exit 1（實測確認）
+#   檔案不存在 → 靜默略過，exit 0
+# 亦即本檔驗的是「還在磁碟上的產出有沒有被動過」，不是「產出還在不在」。
+# ─────────────────────────────────────────────────────────────────────────
+#
+# ENTRY 001 — 2026-08-13 — 準備完成之工作簿（**非交付件**）
+#   狀態      P7 未進行，無任何 fw036-privacy-* tag。這是供 P4 起寫入 TC
+#             的工作簿，不是交付物。P7 產出交付件後另起 ENTRY 002。
+#   來源      inputs/…_SWQT_20260121.xlsx
+#             SHA256 cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d
+#             （FM-WI-FSM-036-A01 rev C 通用空白範本，2026-01-21）
+#   寫入路徑  backend/xlsx_surgical.py（R18-3 規則 1；R20-5 首次正向適用）
+#   改動      1. R23-4 清除殘留樣本列五格 D10/F10/G10/S10/D11（保留 s= 樣式）
+#             2. R23-5 填入 D5 範圍 Scope = SWE1_CFTS_022-Privacy_Features
+#             其餘一格未動：D2/D3/D4/J5、Cover 封面四格、Cover_old、
+#             ChangeHistory_old、下拉選單、Reference 皆維持原樣
+#   結構驗證  zip 成員 48 → 48（零增零減）；classic DV 4 → 4；x14 DV 2 → 2
+#             差異成員僅 xl/worksheets/sheet6.xml
+#   來源完整  產製後重驗 inputs/ 該檔 SHA256 未變 —— 未就地覆寫
+#   未驗      尚未由人以 Excel 實際開啟確認（同 AMFM v2 之 R17-9）。
+#             P4 開始寫入 TC 之前應完成：無「修復」提示、R/P/AE 下拉可用、
+#             分頁數為 10。**此項未完成前，本條目不得升格為交付件。**
+#   未列入    output/prepared_step1_cleared.xlsx —— 只做清除、未填 Scope 的
+#             中間產物。刻意不記：它是可重現的中間狀態（來源 + 改動 1 即得）。
+#             其去留於上繳包 02 §6.3 列為未裁項，此處採保守處置並回報。
+ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813.xlsx

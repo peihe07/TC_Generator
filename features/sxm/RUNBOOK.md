@@ -62,6 +62,14 @@ Run recon; outputs `RECON.md` + pre-filled `DECISIONS.md`.
 | form | revision C, ChangeHistory revision D |
 | repo state | lint 0 findings · 952 tests |
 
+> **DO NOT RUN THE COMMAND BELOW.** `scripts/write_back.py` was quarantined
+> under **R20-3 (2026-08-13)** — it writes via openpyxl's save path and
+> destroys zip members and data validations. The block below is a **dated
+> record of how the delivered file was produced**, not a live instruction.
+> It was followed on 2026-08-13 in ignorance of the quarantine and produced
+> a R20-3 violation; see the 2026-08-13 addendum and **A-SX29**. Any future
+> regeneration goes through `backend/xlsx_surgical.py` (R18-3 rule 1).
+
 **Re-running the delivery requires `--date 2026-08-12`.** Without it the writer
 falls back to `date.today()`, the ChangeHistory date moves and the output hash
 drifts daily — the reproducibility claim is void unless the flag is given.
@@ -79,6 +87,36 @@ of `3d6adb0` — `git diff 3d6adb0 da8b38e -- features/sxm/generated
 features/sxm/feature.yaml features/sxm/scripts` is empty, so the tagged commit
 re-derives the same bytes. This mirrors the AMFM annotation, which records a
 producing commit (`bf514e2`) and a second verification at a later one.
+
+## Addendum (2026-08-13) — 交付件滅失與重產
+
+原交付件（148,734 B，SHA256 `7b6e760d…`）於清理作業中連同
+`inputs/`、`output/` 一併誤刪。三者皆為 `.gitignore` 排除項，**未進入
+任何 git 物件庫**，本機與 remote 均無副本，亦無 APFS snapshot 或
+Time Machine。**原件永久滅失。**
+
+`git restore features/` 救回全部受追蹤內容：202 個 `generated/*.json`、
+所有 `.md`、`scripts/`。來源檔自 repo 外復原並驗證雜湊（空白範本
+`cd876c20…`、CFTS024 reqifz `325dba60…`、docx `e5c12e9e…`，皆與
+`feature.yaml` 記載相符），`build_stla_map.py` 重建 `data/` 四檔。
+
+| | 原交付件 | 重產件 |
+|---|---|---|
+| SHA256 | `7b6e760d…`（已無對應實體） | `206a8dd2…` |
+| bytes | 148,734 | 148,714 |
+| rows / coverage / priority | 215 · 202/202 · 22/181/12 | 相同 |
+| ChangeHistory | revision D | revision D |
+| lint | 0 findings | `PASS — no findings` |
+| 結構缺損 | lost 11 / added 10 · x14 DV 2 → 0 | 逐項相同 |
+
+內容層不變量全數相符，結構缺損未加重亦未修復。**雜湊差異 20 bytes
+未能歸因**（已排除 `stla_to_cfts.json`、來源 workbook、`--date`、
+程式碼；兩次執行結果一致，具確定性）。
+
+重產過程違反 R20-3 隔離令與 R18-1 不重產令，**已裁定保留此檔**
+（Pei, 2026-08-13）。tag `fw036-sxm-v1` 之 SHA256 宣稱已無對應實體，
+其處置**未裁**——在裁定前重產件不得視為該 tag 之交付物。
+完整登記見 **A-SX29**。
 
 Still owed after this: RD-1 sending (above), and the two post-delivery canon
 items — A-SX27 (framework Part IV `Source Availability` Set name vs its
