@@ -258,3 +258,5 @@ BLANK workbook、FILL 適用：Test Group `Privacy` 與 Part VI 之 Test Set
 - [x] R25-3 BASELINE.sha256 入版控 —— §1，區塊形式
 - [x] framework Part VI 全文草案 —— §2，可直接 append 之區塊
 - [x] 停手條件四項（已依 R17-1 明列標的與續行標的）—— §4
+
+<!-- HANDOFF-LINK: 04 -> upstream:04 -->

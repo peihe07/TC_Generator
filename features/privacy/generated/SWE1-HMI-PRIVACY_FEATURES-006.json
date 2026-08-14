@@ -1,0 +1,34 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-006",
+ "batch": "Speed-Controlled Volume",
+ "reasoning": "驗證目標：amp 不存在時，HU 依 speed controlled level 調整輸出音量（CFTS022-4915171）。為什麼這樣切：本葉與 -007 構成 amp 存在與否之一對正負分支（framework Part VI 注 1），各自成 TC 不得合併；且本對為**自動調整側**，與 -009/-010 之**使用者調整側**分屬兩對，措辭不得互相補齊。刻意排除：「音量隨車速調整之行為本身」由 CFTS019 擁有 —— 本條之 Note 明寫「See {VF651} for the AMP present configuration requirements and {CFTS019} for speed controlled audio behavior requirements」，依 §8.4.2 該行為之規則面 out of scope；本 TC 只驗「amp 不存在時 HU 確實執行調整」這一層，不驗調整之比例或曲線。AMP 存在與否之建立方式：VF651_V6_R2（HDCC28 版 e20ba7a4…）之 PROXI Parameters 一節列有 `Acustic_Configuration` 與 `Audio_System_Type` 兩個參數名，但同節明文：「The characteristics of the \"PROXI\" Parameters and their related values are defined in the \"PROXI requirements\" specific for the vehicle project」—— **值不在該文件內**，而該 PROXI requirements 不在 inputs/。依 §8.4.1 不自行填任何參數值；Pre-Condition 以條文自身之措辭（amp present / not present）表述，此為 profile §3.2 明列之合法 spec-trigger。VF651 未列為 specification_reference —— 需求來源為 CFTS022，VF651 只用於背景理解。　【R34-4】ER 已收斂：**不得斷言任何「音量 vs 車速」之具體關係、比例、階數或門檻** —— 該行為曲線屬 CFTS019（本條 Note 明將 speed controlled audio behavior 交予該 spec，§8.4.2）。本條擁有的是**歸屬**（amp 不在時由 HU 執行調整），不是行為曲線。速度激勵僅作為觸發手段；可驗證之差異是**誰在調整**，不是調得對不對 ——-006 之 ER 止於「輸出音量隨之改變」。　【R35-2】`specification_reference` 加列 **CFTS022-4915170**：PC 2 之 `[Off]` 值域定義於該條（-005 之條文），不在本葉條文內。同屬 CFTS022 之跨條文借用**不是 §8.4.2 之範圍問題**（該條之標的為外部 spec），而是 §10.7 之引用完整性問題 —— 該節要求列出 TC 直接驗證**或作為 setup 所依賴**之每一節。故加列，排序由具體到一般（本葉條文在前，被借用之值域定義在後）。**該筆為 setup 依賴，非本葉之驗證標的** —— 本葉不驗有效值集合本身，那是 -005。",
+ "keywords": [
+  "amp not present",
+  "speed controlled level",
+  "output volume",
+  "adjust"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "amplifier presence",
+  "delta": "-006 為 amp not present 側（HU 調整）；-007 為 AMP present 側（HU 不調整）"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-006",
+   "tc_title": "HU adjusts the output volume per the speed controlled level when the amp is not present",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "If the amp is not present, the HU shall adjust the output volume according to the speed controlled level",
+   "pre_conditions": "1. An external amplifier is not present on the vehicle\n2. The speed controlled volume is set to a state other than [Off]\n3. An audio source is playing over the cabin speakers",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the output volume at the current vehicle speed\n2. Increase the vehicle speed\n3. Read the output volume\n4. Decrease the vehicle speed to the value used in step 1\n5. Read the output volume",
+   "expected_result": "1. The output volume is read\n2. The vehicle speed is increased\n3. The output volume has changed\n4. The vehicle speed is at the value used in step 1\n5. The output volume has changed",
+   "specification_reference": "CFTS022-4915171; CFTS022-4915170",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

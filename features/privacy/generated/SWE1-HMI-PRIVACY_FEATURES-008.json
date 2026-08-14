@@ -1,0 +1,35 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-008",
+ "batch": "Speed-Controlled Volume",
+ "reasoning": "**本葉排除於本交付件之驗證範圍，產出 BLOCKED 列（R34-2 / R34-3）。**依 R34-1 之兩層判準：ECU tag 含本 ECU（`ETM, AMP, RRM, LTM` 含 LTM）為必要條件成立，但充分條件不成立 —— CFTS022-4915173 之 trigger 主詞為 AMP、outcome 主詞為 AMP、條文全文不提 HU，且 HU 在該行為之訊號鏈上無可觀察之一端。四項證據同向，其中 (d) 為十片葉子中**唯一** ECU tag 含 `AMP` 者。**與 -005 之對照**：-005 之 outcome 主詞同為 AMP，但 HU 是 $VolumeSCV$ 之**發送端**，訊號鏈上有可觀察之一端，故留在本交付件（改以輸出集合封閉性驗之，R33-1）；本葉則無此一端 —— 同一判準給出不同結果。**不略去而產出 BLOCKED 列**：交付件若直接少一片葉子，追溯表會出現沒有說明的缺口；BLOCKED 列使缺口可見、可審。上游確認見 A-PV18 / RD-1 #12。",
+ "keywords": [
+  "AMP wakes up",
+  "Interior CAN",
+  "recall",
+  "BLOCKED-ECU"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-008",
+   "placeholder": true,
+   "tc_title": "AMP recalls the speed controlled volume state on Interior CAN wake-up — out of scope for this ECU",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "When the AMP wakes up on the Interior CAN, the AMP shall recall the state of the speed controlled volume",
+   "pre_conditions": "BLOCKED - see Remarks",
+   "input_test_data": "BLOCKED - see Remarks",
+   "test_procedure": "BLOCKED - see Remarks",
+   "expected_result": "BLOCKED - see Remarks",
+   "specification_reference": "CFTS022-4915173",
+   "priority": "",
+   "design_method": "",
+   "remarks": "[BLOCKED-ECU] Out of scope for this deliverable: both the trigger and the outcome of CFTS022-4915173 are performed by the AMP; the HU has no observable behaviour in this clause. Verification belongs to the AMP ECU. Pending upstream confirmation of the leaf allocation (A-PV18 / RD-1 #12)."
+  }
+ ]
+}

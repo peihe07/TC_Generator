@@ -146,3 +146,5 @@ R24-3  Privacy inputs/ 基準之版控保護
 - [ ] P-1 framework 三層 —— §4，**未核可**
 - [ ] P-2 DECISIONS 整份簽核 —— §4，**未簽**
 - [ ] P-3 BASELINE 入版控 —— §4，**未簽**
+
+<!-- HANDOFF-LINK: 03 -> upstream:03 -->

@@ -223,3 +223,5 @@ Leaves served / Batch impact / Anomaly / Urgency）：
       不得自裁範圍
 
 以上 8 項均已以可直接貼入之區塊或表格形式出現，非夾敘於段落中。
+
+<!-- HANDOFF-LINK: 00 -> upstream:00 -->

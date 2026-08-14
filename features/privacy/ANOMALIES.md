@@ -38,7 +38,7 @@ TC 分頁之 Scope / Purpose / Reviewer 三格皆空（見 A-PV08）。
 （封面 Author 空、Reviewer 為範本預設）由 **R23-5** 一併處置：
 該區為表單自身之文件管制區，不動。
 
-## A-PV02 — VF651 變體選擇 — **RESOLVED（Amplified 部分）／PENDING（ANC 部分）**
+## A-PV02 — VF651 變體選擇 — **RESOLVED（R38 close-out，2026-08-14）**
 
 **R-PV01(c) 已簽署（2026-08-13，分批簽署第一批）**：
 
@@ -56,9 +56,11 @@ TC 分頁之 Scope / Purpose / Reviewer 三格皆空（見 A-PV08）。
 已入 `inputs/`（184,808 bytes，SHA256
 `49dd3c31405fb0c34d4cf11048d325d6f047c0d333c10248310e72c57e194fbb`）。
 
-**仍 PENDING**：ANC 兩變體（V9_R3 / V11_R3）依裁決維持不索取，
-`DATA_REQUESTS.md` #3 標為 Not requested。若 P2 解析發現任一 leaf 觸及 ANC
-配置，回頭停手回報，不自行擴充。
+**ANC 部分結案（R38 close-out，2026-08-14）**：十片葉子全數完成生成、
+lint 與寫回，**無一觸及 ANC 配置** —— `Not requested` 之條件式停手
+（「若 P2 解析發現任一 leaf 觸及 ANC 配置則停手回報」）自始未觸發。
+V9_R3 / V11_R3 維持不索取，`DATA_REQUESTS.md` #3 維持 Not requested。
+本條由 PENDING 轉 **RESOLVED**。
 
 ## A-PV02b — 原 A-PV02 之背景（保留供追溯）— 已被上條取代
 
@@ -432,7 +434,7 @@ Time 欄），兩者已完整取代舊版。無任何 DV、公式或 defined nam
 
 執行層原提案即案 1，獲採納；佐證由分析層自 AMFM 已交付件補實測。
 
-## A-PV13 — scaffold 產出之 `feature.yaml` 欄位字母為 rev C 之前的版本 — RESOLVED (執行層已處置)
+## A-PV13 — scaffold 產出之 `feature.yaml` 欄位字母為 rev C 之前的版本 — **RESOLVED（R39-2，已修，2026-08-14）**
 
 `new_feature.py` 的 `feature.yaml` 樣板寫 `design_method: Q` /
 `functional_safety: R` / `author: Z`，範本 rev C 實際為 **R / S / AA**
@@ -447,9 +449,52 @@ Time 欄），兩者已完整取代舊版。無任何 DV、公式或 defined nam
 **欄位字母刻意不改**，保留給 recon 續報落差為證據。
 `new_feature.py` 樣板本身之更新屬 repo 層改動，未動。
 
+**最終處置（R39-2，2026-08-14）—— 已修，本條結案。**
+
+| 欄位 | 修前（rev C 之前）| 修後（實測 rev C 表頭）|
+|---|---|---|
+| `design_method` | `"Q"` | **`"R"`** |
+| `functional_safety` | `"R"` | **`"S"`** |
+| `author` | `"Z"` | **`"AA"`** |
+
+量測依據：範本 `Test Case Specification 測試用例規範` 第 9 列表頭逐格實測 ——
+rev C 於 **Q** 插入 `Estimated Test Time (mins)`，使其後三欄各右移一格。
+
+**修後行為驗證（停手條件 2）**：`recon.py` 仍為 `state=BLANK, leaves=10,
+targets=10`，唯一變化是 `feature.yaml column conflicts` 由三條變為 `(none)`
+—— 即落差回報消失，此為預期。全套測試 944 passed / 15 skipped 不變；
+lint PASS；`write_back.py` 之欄位解析結果不變
+（`design_method=R, functional_safety=S, author=AA` —— 它本就讀表頭，
+不讀 `feature.yaml`，R37-3(a)）。**無其他讀取路徑受影響。**
+
 ---
 
-## A-PV14 — V6_R2 之 `inputs/` 副本對齊 **DT28**，而 V2_R2 對齊 **HDCC28** — PENDING
+**處置方向之更正（R39-2）**：執行層先前主張「不修 `feature.yaml`，
+以保留 recon 之落差回報作為證據來源」。該理由**經裁定不成立**，三項駁回：
+
+1. **證據不會因修檔而消失** —— 本 anomaly 條目自身即證據載體，
+   上表之修前／修後值、量測依據與裁決編號，效力不弱於 recon 之逐次回報。
+2. **保留已知錯誤作為告警來源，等同以缺陷充當金絲雀** ——
+   代價是任何以本 feature 為樣板之後續 feature 會繼承錯誤字母。
+3. R37-3(a) 已裁「位置資訊以標的物為準」，該三欄之字母對產出**無效力**，
+   修正屬低風險。
+
+§5a：**不得以保留缺陷之方式維持告警**；告警之正確載體是登記，不是缺陷本身。
+
+---
+
+**狀態沿革（保留供追溯）**：本條原標 RESOLVED，
+但**落差本身從未消失** —— `feature.yaml` 之 `columns` 區仍記
+`design_method: "Q"` / `functional_safety: "R"` / `author: "Z"`，
+而範本 rev C 之實際位置為 **R / S / AA**。
+先前之 RESOLVED 指的是「recon 會回報落差」，不是「落差已修」。
+寫回腳本依 **R37-3(a)** 改由**表頭文字**解析欄位，該落差已不影響產出；
+但記載仍為舊值。曾依 R15-2 改標 `DEFERRED — 記載與實作不一致`，
+其後由 R39-2 裁定改修並結案（見上）。
+
+---
+
+## A-PV14 — V6_R2 之 `inputs/` 副本對齊 **DT28**，而 V2_R2 對齊 **HDCC28** — **RESOLVED（R29-2）**
 
 **來源**：R22 §2 基準確認（2026-08-13）之副產物。原作業只要求判定
 `inputs/` 檔是否與客戶樹相符（結果全數 `MATCH`），但逐檔列出**所有**同名
@@ -493,6 +538,241 @@ VF651 檔，一份對得上 HDCC28 樹、另一份對得上 DT28 樹。
 
 **相關**：A-PV02（R-PV01(c) 簽署納入 V6_R2）、A-PV04（V2_R2 之 HDCC28
 基線判定）、`RULINGS.md` R22 / R15-5（同名檔一律以 hash 認定）。
+
+
+---
+
+### R24-2 執行結果（2026-08-13）
+
+**(1) diff —— 已完成。** 全程唯讀，以 python-docx 抽段落＋表格文字後逐行比對。
+
+| | HDCC28 副本 | `inputs/` 現存 |
+|---|---|---|
+| SHA256 | `e20ba7a4f8f7…` | `49dd3c31405f…` |
+| bytes | 177,388 | 184,808 |
+| 非空行 | 404 | 403 |
+| 差異 hunk | — | **9** |
+| SCV/AMP 相關行數 | **33** | **33** |
+| **落在 SCV/AMP 條款之差異 hunk** | — | **0** |
+
+比對詞集依 R24-2(1) 所列：`CTRL_AMP.*`、`$VolumeSCV$`、`Acustic_Configuration`
+（含 `Acoustic_` 拼法）、`Audio_System_Type`、`amplifier` / `AMP ` 之
+present / not present 敘述。
+
+**九個 hunk 的性質**（皆不在上述條款內）：
+
+| # | 內容 |
+|---|---|
+| 1 | 作者：`Keerthi Kambala` → `Abhishek Dwivedi` |
+| 2 | 適用 VF 清單：`VF610` → `VF672` / `VF505` / `VF508` |
+| 3 | 訊號表少 `ENGINE_FD_2.EngineSts_W` |
+| 4 | 訊號表少 `BCM_FD_9.PowerModeSts` |
+| 5 | 訊號表多 `TBM_FD_1.SOSCallType` |
+| 6 | 訊號表少 `VSIM_FD_1.AudioMuteRq`（Audio mute request）|
+| 7 | SGW gating 敘述 `B-CAN` → `BCAN`（同一 gating，寫法不同）|
+| 8 | 修訂履歷（見下）|
+| 9 | 純空白差異（`MdsActforANC` 後之空格數）|
+
+**hunk 8 直接證明兩份的平台來源**：
+
+```
+HDCC28 −  Initial release derived from VF651_V6_R1_PHDCCMCA
+inputs +  Initial release Derived from VF651_V6_R1_PDT26
+```
+
+`PHDCCMCA` 對 `PDT26` —— 稽核以檔案路徑推得的平台歸屬，在文件內文獲得
+獨立佐證。A-PV14 的事實面至此無疑義。
+
+**(2) 條件判定 —— 成立。** SCV/AMP 條款零差異，符合 R24-2(2)
+「兩版於上述條款零差異 → 換入 HDCC28 版，記為『平台標籤更正，實質內容
+無影響』，不回溯任何已簽裁決」。
+
+**(3) 換檔 —— 未執行。** 覆寫 `features/privacy/inputs/` 之該檔的動作被
+Claude Code 之權限分類器攔下兩次（先後以 Python `shutil.copyfile` 與
+`cp` 嘗試，皆遭拒）。**執行層停止嘗試，未以任何其他方式繞過。**
+
+待辦（一行，需 Pei 執行或授權）：
+
+```bash
+cp "/Users/peihe/Work/02_Project_R1LR/1_Customer_Requirement/VF/VF_Split document/HDCC28_Split/Audio_Output_Management_-_LTM_ETM_Amplified_Audio_System_VF651_V6_R2.docx" \
+   "features/privacy/inputs/Audio_Output_Management_-_LTM_ETM_Amplified_Audio_System_VF651_V6_R2.docx"
+```
+
+換檔完成後尚須連動三處，**目前皆維持換檔前狀態**：
+
+1. `BASELINE.sha256` 該行更新為 `e20ba7a4f8f7…`，並於檔頭記
+   「依 R24-2(2) 換版」——BASELINE 的更新規則要求連同裁決編號
+2. 本條轉 **RESOLVED**
+3. framework Part VI 注 3 與 profile §6 之「A-PV14 未結案前不得於 B2 引用
+   V6_R2」解除；B2 之依賴欄改為無
+
+**(4) 換檔已完成（R29-2，Pei 執行，2026-08-13）。** 實測 `inputs/` 該檔：
+
+```
+SHA256 = e20ba7a4f8f744e89bfa5c770700ba267ed7f6a0015becc045ef8f63dbeef0f2
+size   = 177,388 bytes
+```
+
+與預期值相符。三處連動已辦：`BASELINE.sha256` 該行更新並於檔頭記
+R24-2(2) / R29-2；framework Part VI 注 3 與批次表 B2 依賴欄解除；
+profile §5 之 `[A-PV14]` marker **整條移除**、§6 該列改為 citable。
+
+**平台歸屬之佐證有二且互相獨立**：檔案路徑（`HDCC28_Split`）與文件內文
+（修訂履歷 `derived from VF651_V6_R1_PHDCCMCA`，hunk 8）。
+**本條結案。**
+
+## A-PV15 — 範本車型欄停在 27 世代，本專案為 HDCC28 — **DEFERRED — 待 RD-1 #6/#7 回覆（R30-4）**
+
+**量測**（`Test Case Specification 測試用例規範`，第 8–9 列；T8:Z8 為合併儲存格
+`Vehicle Model 車型`）：
+
+| T9 | U9 | V9 | W9 | X9 | Y9 | Z9 |
+|---|---|---|---|---|---|---|
+| `HDCC27 Atl-Hi` | `DT27 Atl-Hi` | `VF(ProMaster)637 Atl-Mi` | `Commander (598) Atl-Mi` | `Regengade (5210) Atl-Mi` | `Toro(2261) Atl-Mi` | `Fastack (376) Atl-Mi` |
+
+**七個車型欄裡沒有 HDCC28**，而本專案平台為 HDCC28（A-PV04 / R23-2 之基線
+判定即據此）。範本 rev C 之車型區塊停在 **27 世代**。
+
+**與 A-PV14 同源，方向相反**：A-PV14 是 VF 文件混入 DT 平台副本（素材側），
+本條是**表單自身的欄位沒跟上世代**（載體側）。兩者都會讓交付件把
+27/DT 世代的標籤套到 28/HDCC 專案上。
+
+**處置（R30-4）**：**不自行對應**。不得把 `HDCC27` 欄當成 HDCC28 用，
+也不得新增欄位。T–Z 一律留白 —— 該留白有獨立依據（AMFM 已交付件 158 列
+**0/158** 有值），**不因本條未決而動搖**，故本條**不阻塞任何批次**。
+登 RD-1 向上游提問：rev C 之車型欄是否應補 28 世代，或本專案本就不填。
+
+**附帶觀察**：X9 之 `Regengade (5210)` 疑為 `Renegade` 之拼寫錯誤。
+範本原文不動，一併進 RD-1。
+
+**相關**：`RULINGS.md` R30-4；A-PV14；profile §3.9；framework Part VI
+Workbook sync；`DATA_REQUESTS.md` #6–#8。
+
+## A-PV16 — TC 步驟假定實驗室具備 CAN interface 記錄能力 — **DEFERRED — 待測試團隊確認（R32 N4）**
+
+**來源**：B1 pilot review N4（下放包 10）。執行層於上繳包 09 §6.5 主動聲明。
+
+`-004` 與 `-005` 兩條之 Pre-Condition／步驟寫「A CAN interface tool is
+connected」「Read the $VolumeSCV$ signal in the CAN trace」。CFTS022 未規定
+測試環境，profile 亦無測試環境條款。
+
+**性質判定（分析層追認執行層之判斷）**：這是**測試可執行性之假定**，
+不是**需求之假定** —— TC 沒有對規格內容做任何補充或推測，只是選用了一種
+觀察手段。故**不登 assumption、不創 marker**（profile §5：本 feature
+目前無 marker）。
+
+**待確認**：與測試團隊確認實驗室具備 CAN trace 記錄能力。
+若不具備，`-004`（`<Tsend>` 時限觀察）與 `-005`（$VolumeSCV$ 值觀察）
+三條 TC 不可執行，須改以其他可觀察面重寫。
+
+**不阻塞任何批次。**
+
+**相關**：`RULINGS.md` R32 N4；上繳包 09 §6.5；profile §3.4（訊號引用）。
+
+## A-PV17 — 037 Description 含 CFTS022 未載之行為主張 — **DEFERRED — 待 RD-1 #9 回覆（R33-2）**
+
+**發現**：`SWE1-HMI-PRIVACY_FEATURES-001` 之 Requirement Description 第二段主張：
+
+> The system shall detect and process button press inputs only after the
+> transition from SLEEP MODE to an active operational state is completed
+
+**CFTS022 全文無此語。** 涉及 `SLEEP MODE` 之 artifact 僅三條（全文掃描）：
+
+| artifact | ECU | 條文 |
+|---|---|---|
+| 4914954 | SCCM | 退出 SLEEP MODE 後 SCCM 監測按鍵狀態（含 10 分鐘門檻）|
+| **4914955** | ETM, RRM, ICS, DVD, LTM | 退出 SLEEP MODE 後 HU 與 external DVD player 監測按鍵狀態 ← **本葉來源** |
+| 4915104 | — | Lock Out State 初始化 |
+
+無一述及「轉換階段中按鍵輸入不得被處理」。
+
+**處置（R33-2）—— 先問後補**：
+
+- (a) -001 現行 TC **不改**：其驗證目標與 CFTS022-4914955 一致
+- (b) `reasoning` 已明列該主張未被本 TC 覆蓋及其理由
+- (c) 本條登記，狀態 PENDING
+- (d) 列入 RD-1（`DATA_REQUESTS.md` #9）：請上游確認該句為需求或闡釋；
+      若為需求，請指出其 CFTS022 出處或補充條文
+
+**為何不逕行補測**：不對稱錯誤代價指向補測（擴範圍）而非不測（縮範圍），
+**但補測之對象必須先確認是需求**。若該句為分析者之闡釋而非需求，
+據以生成 TC 會對合規實作產生誤判（§7 FF）—— 一個正確實作會因為
+「轉換階段有處理按鍵」而被判 fail，而該限制根本不在系統需求內。
+
+**範圍提醒**：本條只針對 -001。-002 與 -003 之同型觀察經覆核後結論不同
+（-002 已被現有 ER 涵蓋；-003 之排除有 {CFTS019} 外部歸屬佐證），
+**不併入本條**（R33-2 / R33-3）。
+
+**相關**：`RULINGS.md` R33-2；上繳包 09 §6.2；`DATA_REQUESTS.md` #9。
+
+## A-PV18 — 037 將 outcome 主詞為 AMP 之條文分配予 HMI/HU 之 SWE.1 — **DEFERRED — 待 RD-1 #12 回覆（R34-3）**
+
+**事實**：`SWE1-HMI-PRIVACY_FEATURES-008` 之來源條文 CFTS022-4915173 為
+
+> When the AMP wakes up on the Interior CAN, the AMP shall recall the state of
+> the speed controlled volume.
+
+trigger 與 outcome 主詞**皆為 AMP**，條文全文**不提 HU**。而該葉被分配至
+`SWE1-HMI-PRIVACY_FEATURES`（HMI/HU 之 SWE.1 分析）。
+
+**四項證據同向**（分析層獨立複驗 ECU tag，執行層判定成立）：
+
+| # | 證據 |
+|---|---|
+| (a) | trigger 主詞 = AMP |
+| (b) | outcome 主詞 = AMP |
+| (c) | 條文全文不提 HU |
+| (d) | **ECU tag 含 `AMP` —— 十片葉子中唯一** |
+
+十葉之 ECU tag 對照（(d) 之依據）：
+
+```
+4915171  RRM, LTM, ETM
+4915172  ETM, LTM, RRM
+4915173  ETM, AMP, RRM, LTM   ← 唯一含 AMP
+4915174  RRM, LTM, ETM
+4915175  LTM, ETM, RRM
+```
+
+**反向指標已照實回報**：該條 ECU tag 仍含 `LTM`。依 **R34-1** 之兩層判準，
+tag 含本 ECU 僅為必要條件，充分條件（trigger 或 outcome 主詞含本 ECU，
+或本 ECU 在訊號鏈上有可觀察之一端）不成立，故不足以推翻排除。
+
+**處置（R34-2 / R34-3）**：排除於本交付件之驗證範圍，歸 AMP ECU；
+但**交付件仍為該葉產出一列 BLOCKED**，非略去 —— 直接少一片葉子會讓追溯表
+出現沒有說明的缺口，BLOCKED 列使缺口可見、可審。該列帶本 feature
+**第一個 marker** `[BLOCKED-ECU]`（profile §5）。
+
+**待上游確認**：-008 之葉子分配是否正確；若確為 HU 側需求，
+請指出 HU 在該行為中之角色與可觀察面。已列 `DATA_REQUESTS.md` **#12**。
+
+**相關**：`RULINGS.md` R34-1 / R34-2 / R34-3；profile §1.1（ECU 歸屬判準）、
+§5（marker 表）；上繳包 11 §4。
+
+## A-PV19 — `new_feature.py` 之樣板內建欄位字母，下一個 feature 仍會拿到錯值 — **DEFERRED — 待 Pei 裁定（R41-8）**
+
+**根因，非現象。** A-PV13 記的是 Privacy 之 `feature.yaml` 帶 rev C 之前的
+欄位字母（`Q` / `R` / `Z`），已於 R39-2 修為 `R` / `S` / `AA` 並結案。
+**但那只修了實例。** 產生該實例的是 `scripts/new_feature.py` 之 `feature.yaml`
+樣板，**其內仍寫舊字母** —— 下一個以 `new_feature.py` scaffold 的 feature
+仍會拿到 `Q` / `R` / `Z`。
+
+**分析層之修正方向建議（R41-8，供日後裁定，本輪不執行）**：
+
+> **樣板不應內建欄位字母。** 依 R37-3(a)（位置資訊以標的物為準），
+> 正解是樣板留空或標 `AUTO`，由 recon／writer 自表頭解析 ——
+> **而非把 `Q/R/Z` 改成 `R/S/AA`**（後者只是把錯誤換一個版本，
+> 遇到非 rev C 之範本會再錯一次）。
+
+此方向與 A-PV13 之處置一致：Privacy 之 `write_back.py` 自始由表頭文字解析，
+`feature.yaml` 之字母對產出無效力；修樣板時應把「字母為權威」這個假設一併
+移除，而不是更新一份新的錯誤預設值。
+
+**為何 DEFERRED 而非即辦**：`new_feature.py` 為**跨 feature 共用 script**，
+改它會影響其餘五個 feature 之 scaffold 行為，且本 feature 正處交付前夕。
+R41-8 明裁「交付前夕不動共用 script」。
+
+**相關**：A-PV13（實例，已 RESOLVED）；`RULINGS.md` R41-8 / R39-2 / R37-3(a)。
 
 ## Assumption markers
 

@@ -1,0 +1,34 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-001",
+ "batch": "Input Monitoring",
+ "reasoning": "驗證目標：A&T System 退出 SLEEP MODE 後，HU 對按鍵按壓狀態之監測確實恢復（CFTS022-4914955）。關鍵情境條件：系統先進入 SLEEP MODE，再以正常喚醒路徑退出，於恢復為 active 後操作實體按鍵。為什麼這樣切：條文只陳述「退出 SLEEP MODE 後監測按鍵狀態」一件事，單一觸發對單一結果，一條 TC 足夠。刻意排除兩項：其一，4914956（按壓超過 120 秒 → 設 stuck button DTC 並送 not pressed 值）是另一條 SFR，其門檻、DTC 與 not pressed 值一律不進本 TC（§8.2.1）；其二，條文主詞為 the HU and external DVD player，而 external DVD player 為另一 ECU（該 artifact 之 ECU tag 為 ETM, RRM, ICS, DVD, LTM），本交付件之 ECU 為 LTM，故只驗 HU 側，DVD 播放器之行為屬該 ECU 自身之驗證（§8.4.2）。　【R33-2】037 之 Requirement Description 另主張「轉換階段中按鍵輸入不得被處理，只有在達到 active 狀態後才處理」—— **該主張未被本 TC 覆蓋**。理由：CFTS022 全文中涉及 SLEEP MODE 之 artifact 僅 4914954（SCCM 版）、4914955（HU 版，即本葉來源）、4915104（Lock Out State 初始化），**無一述及該行為**；spec_mode D 之 clause 權威在 CFTS022，據 037 獨有之主張生成 TC，會對合規實作產生誤判（§7 FF）。依不對稱錯誤代價，補測優於不測，但補測之對象須先確認是需求 —— 故先問後補：已登 A-PV17 並列入 RD-1，請上游確認該句為需求或闡釋。本 TC 之驗證目標與 4914955 一致，不改。",
+ "keywords": [
+  "SLEEP MODE",
+  "button pressed status",
+  "monitor",
+  "wake-up"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-001",
+   "tc_title": "Button press monitoring resumes after the A&T System exits SLEEP MODE",
+   "test_group": "Privacy",
+   "test_set": "Input Monitoring",
+   "test_item": "When the A&T System exits 'SLEEP MODE', the HU shall monitor the button pressed status",
+   "pre_conditions": "1. The A&T System is in 'SLEEP MODE'\n2. A CAN interface tool is connected and able to log the button status messages sent by the HU",
+   "input_test_data": "NA",
+   "test_procedure": "1. Trigger the wake-up of the A&T System from 'SLEEP MODE'\n2. Wait until the A&T System has reached the active operational state\n3. Press a hard-key button on the HU\n4. Release the button\n5. Press a different hard-key button on the HU",
+   "expected_result": "1. The A&T System starts to exit 'SLEEP MODE'\n2. The A&T System is in the active operational state\n3. The HU reports the pressed state for the operated button\n4. The HU reports the not pressed state for the released button\n5. The HU reports the pressed state for the second operated button",
+   "specification_reference": "CFTS022-4914955",
+   "priority": "P0",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

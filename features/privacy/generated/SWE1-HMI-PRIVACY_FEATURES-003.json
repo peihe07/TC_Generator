@@ -1,0 +1,35 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-003",
+ "batch": "Speed-Controlled Volume",
+ "reasoning": "驗證目標：HU 於 Interior CAN 上喚醒時，召回 speed controlled volume 之狀態（CFTS022-4915168）。關鍵情境條件：先把 SCV 設為非預設狀態，睡眠後以 Interior CAN 喚醒 HU。為什麼這樣切：本條與兄弟 leaf -004 觸發條件不同、驗證面也不同，不得合併 —— 本條之觸發為 wakes up on Interior CAN（明文限定 Interior CAN），驗的是內部狀態之召回；-004 之觸發為 wakes up（未限定介面），驗的是對外訊號之傳送。兩者照條文原樣寫，不互相補齊。刻意略過：SCV 隨車速調整音量之行為本身不在本條範圍，本條只驗喚醒後狀態被召回這一層。該排除有外部 spec 之歸屬佐證（B1 review N1，執行層獨立複驗）：CFTS022-4915171 與 SYSAD 之 SYS-RA-PROF-172 兩處各有同一 Note ——「See {VF651} for the AMP present configuration requirements and {CFTS019} for speed controlled audio behavior requirements」，即「隨車速調整之音訊行為」由 CFTS019 擁有。依 §8.4.2（僅定義於外部 spec 者out of scope，歸該 spec 之 owner）排除成立。**該 Note 掛在 PROF-172（leaf -006）而非本葉**：-003 自身之條文 4915168 無此 Note，故該佐證為「該行為之歸屬」之一般性陳述，非本葉條文之自帶限定。",
+ "keywords": [
+  "$VolumeSCV$",
+  "speed controlled volume",
+  "Interior CAN",
+  "wake up",
+  "recall"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "verification face",
+  "delta": "-003 驗喚醒後之內部狀態召回（recall）；-004 驗喚醒後之對外訊號傳送（send）"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-003",
+   "tc_title": "Speed controlled volume state is recalled when the HU wakes up on Interior CAN",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "When the HU wakes up on Interior CAN, the HU shall recall the state of the speed controlled volume",
+   "pre_conditions": "1. The speed controlled volume is set to a state other than its default state\n2. The HU is asleep",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the state of the speed controlled volume\n2. Trigger the wake-up of the HU on Interior CAN\n3. Read the state of the speed controlled volume on the HU\n4. Set the speed controlled volume to a state other than the one recorded in step 1\n5. Trigger the HU to sleep\n6. Trigger the wake-up of the HU on Interior CAN\n7. Read the state of the speed controlled volume on the HU",
+   "expected_result": "1. The state of the speed controlled volume is recorded\n2. The HU is awake\n3. The speed controlled volume is in the state recorded in step 1\n4. The speed controlled volume is in the state set in step 4\n5. The HU is asleep\n6. The HU is awake\n7. The speed controlled volume is in the state set in step 4",
+   "specification_reference": "CFTS022-4915168",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

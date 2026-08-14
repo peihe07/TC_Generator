@@ -21,10 +21,19 @@
 # /Users/peihe/Work/02_Project_R1LR/ 樹內同名候選。
 # R22-1 時態限縮：MATCH 是現在式陳述，不蘊含「從未被覆寫」。
 #
-# 已知未決：V6_R2 之副本對齊 DT28 樹而非 HDCC28（A-PV14）。本檔記錄的是
-# inputs/ 現有的那一份，不預判它是否為正確平台版本。
+# 修訂 2026-08-13 —— V6_R2 換版（R24-2(2) / R28-2 / R29-2）：
+#   舊 49dd3c31405fb0c34d4cf11048d325d6f047c0d333c10248310e72c57e194fbb
+#      184,808 B，來自 VF/28DT_2A_LTM/.../DT28_split/（PDT26 衍生）
+#   新 e20ba7a4f8f744e89bfa5c770700ba267ed7f6a0015becc045ef8f63dbeef0f2
+#      177,388 B，來自 VF/VF_Split document/HDCC28_Split/（PHDCCMCA 衍生）
+#   程序：先量後換。兩版於 SCV/AMP 條款零差異（9 個 hunk 全落在條款外），
+#         屬平台標籤更正，不回溯任何已簽裁決。A-PV14 據此 RESOLVED。
+#   本檔為**就地修正**（素材同一批），非新增條目 —— 與 DELIVERY 之
+#   append-only 語意不同（R27-2）。
+# 附帶紀錄：本次換檔先由本檔偵測到 —— 換檔完成而本檔尚未更新時，
+#   shasum -c 立即報 7 OK / 1 FAILED。台帳按設計運作。
 c54f700f81c4c70e52b9ccf460a143b341471163c7b6d5e1d5f0b9f00637aa0f  inputs/Audio_Output_Management_-_ETM_Non-Amplified_Audio_System_(Base_Audio)_VF651_V3_R3.docx
-49dd3c31405fb0c34d4cf11048d325d6f047c0d333c10248310e72c57e194fbb  inputs/Audio_Output_Management_-_LTM_ETM_Amplified_Audio_System_VF651_V6_R2.docx
+e20ba7a4f8f744e89bfa5c770700ba267ed7f6a0015becc045ef8f63dbeef0f2  inputs/Audio_Output_Management_-_LTM_ETM_Amplified_Audio_System_VF651_V6_R2.docx
 d5813bb7ccd6f721949c166c60727448193cbbff920d539b79639ebb31461cae  inputs/Audio_Output_Management_-_LTM_Non-Amplified_Audio_System_(Base_Audio)_VF651_V2_R2.docx
 f46d15ca29b6a75d689a1e331a92d2e1286ebe549668936dfe2eec31839c2854  inputs/CFTS022_Privacy_mode-FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA.xlsx
 cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx

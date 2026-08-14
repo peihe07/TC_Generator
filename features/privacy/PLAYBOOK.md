@@ -169,19 +169,68 @@ Remarks = reason + anomaly id.
 - [x] P1 recon complete; workbook_state: **BLANK**; leaves: **10**;
       targets: **10**（`SWE1-HMI-PRIVACY_FEATURES-001` … `-010`，
       covered nowhere = 10）
-- [ ] P2 DECISIONS signed (date: ____) —— `DECISIONS.md` §8 已有三條簽署
-      裁決（R-PV01(c)、R-PV01(a)(b)(d) 延後、R-PV02），
-      但 sign-off 欄仍空，故不勾
-- [ ] P3 framework Part N + profile approved
-- [ ] P4 data artifacts built
-- [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
-- [ ] P6 all batches generated; lint green; placeholders: ____
-- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: **1 條** —— **A-PV14**（V6_R2 之 `inputs/` 副本
-  對齊 DT28 而非 HDCC28；P2 引用該檔前須先裁定平台版本）。
-  2026-08-13 下放包 02：R23 八條簽署，A-PV01 / 04 / 05 / 07 / 08 / 10 /
-  11 / 12 全數轉 RESOLVED。
-  另 DEFERRED 2 條（A-PV02 之 ANC 部分、A-PV03）、CLOSED 1 條（A-PV09）
+- [x] P2 DECISIONS signed (date: **2026-08-13**) —— Pei 整份簽核，依據
+      **R25-2**。Sign-off 區塊為獨立動作，不因 §8 個別裁決簽署而自動成立
+- [x] P3 framework Part N + profile approved —— framework Part VI 已 append
+      並經 **B1-GATE-1 更正**（R30-1：-001 → 4914955、-002 → 4915158；
+      「offset 恆為 −1」改記為 SCV 區塊之局部規律）；
+      profile **已核可**（R28-1，含 07 包 §2 三項修訂；P-4/P-5 由
+      R30-3/R30-4 定案並寫入 §3.8/§3.9）
+- [x] P4 data artifacts built —— `data/recon.json`（P1 產物）、
+      `data/spec_ref_reviewed.json`（R35-7 之語意覆核凍結紀錄，10 葉）；
+      `features/privacy/scripts/` 之 `lint_tcs.py` 與 `write_back.py`
+- [x] P5 pilot batch **B1**（-001…-005）reviewed;
+      verdict: **不整批退回** —— -001…-004 通過，-005 待 ECU 讀法裁定
+      （下放包 10）; corrections: **D1** -005 TC2 設計方法與程序不相稱
+      （R33-1 改寫）、**D2** 單一步驟綁多動作（-002/-003）、
+      **D3** -004 PC 與步驟重複 —— 三項皆已修
+- [x] P6 all batches generated; lint **green**;
+      placeholders: **1** —— `SWE1-HMI-PRIVACY_FEATURES-008` 之
+      BLOCKED 列（`[BLOCKED-ECU]`，R34-3）。
+      B1 五葉 6 TC + B2 四葉 4 TC + BLOCKED 1 列 = **11 TC / 10 葉**。
+      -008 依 R34-1 之 ECU 歸屬判準排除於驗證範圍，但仍產出一列
+- [x] **P7 完成（Pei Excel 實開確認，2026-08-13，七點全過 —— R38-1）**
+      tag: ____（建議 `fw036-privacy-v1`，Tier 3 未執行）;
+      submitted: ____（Tier 3）; RD-1 sent: ____（#6–#13 八項，Tier 3）
+      - 產出 `output/…_Privacy_20260813_regen-v1.xlsx`
+      - SHA256（**全長**，R15-4 不截斷）
+        `ad595ed0cad24375b64762679487e1e79c714b06f203c0b0c081d6da3b420b7f`
+      - 輸入基準 SHA256
+        `ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4`
+      - **11 TC / 10 葉**，第 10–20 列；`NR1L-Privacy-001…011` 照序不跳號
+        （第 18 列為 -008 之 BLOCKED 列，`NR1L-Privacy-009`）
+      - zip 成員 **48 → 48**（零增零減）；classic DV **3+1**；x14 DV **2**；
+        差異成員僅 `xl/worksheets/sheet6.xml`
+      - 表頭區第 1–9 列逐格未變；其餘 9 分頁逐格相同
+      - lint **PASS**（19 gate 全具雙對照）
+      - **量測條件（R15-3）**：本次結構驗證以 **zip 成員集合與 DV 計數**
+        為據，**非以位元組數**（R37-2 —— 壓縮容器之體積變化不指示內容
+        變化方向）。
+        bytes 之三段鏈（**R42 歸屬更正**）：
+        空白範本 **65,823** → 準備階段（清五格＋填 D5）→ ENTRY 001
+        **59,992**（寫回之真正輸入）→ 寫回 append 11 列 → ENTRY 002
+        **63,001**。
+        主實例為**準備階段**那一對：清五格文字、填一格文字，
+        淨內容變化極小而體積少 **5,831** bytes ——
+        體積變化與內容變化不成比例。
+        跨兩步之 65,823 → 63,001 亦成立（內容增加而體積減少），
+        但**不是寫回那一步**；寫回實為 59,992 → 63,001，變大。
+      輸出位置 **`features/privacy/output/`**（R26-1，維持 gitignored，
+      `.gitignore` 不修改）；身分摘要落於 feature 根之
+      `BASELINE.sha256` / `DELIVERY.sha256`（R26-2，兩者皆進版控）。
+      每次 `--write` 後於 `DELIVERY.sha256` **追加一個 ENTRY**（R26-3）：
+      產出檔名 / SHA256 / bytes / 產製日期 / 對應 tag / lint 結果 /
+      zip 成員數。**`feature.yaml` 目前無寫回輸出路徑欄位**
+      （R26 執行時停手條件 3 觸發，未自行新增）
+- Open PENDING rulings: **0 條**（R38 close-out，2026-08-14）。
+  A-PV02（ANC）轉 RESOLVED —— 十葉全數完成且未觸及 ANC 配置，
+  條件式停手自始未觸發。
+  DEFERRED **6 條**：A-PV03（待 P2 重驗）、A-PV13（記載與實作不一致）、
+  A-PV15 / A-PV17 / A-PV18（待 RD-1 回覆）、A-PV16（待測試團隊確認）。
+  CLOSED 1 條（A-PV09）。其餘 12 條 RESOLVED。
+- **B1 三道前置全部通過**（歷史紀錄）：GATE-1 對映獨立重驗
+  （10/10，兩筆經 R30-1 更正）／GATE-2 Excel 實開確認（R29-1，四點全過）／
+  GATE-3 欄 S 與車型欄政策（R30-3 填 `NA`、R30-4 留白）
 - 素材／產出雜湊（2026-08-13 建立）：`BASELINE.sha256`（8 個素材）與
   `DELIVERY.sha256`（產出摘要）**已納入版控**，`inputs/` 與 `output/`
   維持 gitignored。**每次 session opener 與每個 batch gate 執行**
@@ -197,6 +246,10 @@ Remarks = reason + anomaly id.
   不加會讓已清理的舊產出報 `FAILED open or read`。加了之後，
   內容遭竄改仍 `FAILED` 且 exit 1（已實測），檔案不存在則靜默略過。
   亦即該指令驗的是「還在磁碟上的產出有沒有被動過」，不是「產出還在不在」。
+
+  **台帳綠燈不等於產出俱在（R27-1）**：`--ignore-missing` 讓被清掉的舊條目
+  靜默略過，所以 `DELIVERY` 驗的是「還在磁碟上的產出有沒有被動過」，
+  不是「產出還在不在」。`BASELINE` 不加旗標，故它兩者都驗。
 
   任一 `FAILED` 即停手回報 —— 素材或產出在無裁決的情況下變動了。
   雜湊需要更新時必須連同裁決編號一併更新；**無裁決而需更新，

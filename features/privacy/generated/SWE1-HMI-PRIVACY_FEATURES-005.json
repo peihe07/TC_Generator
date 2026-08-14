@@ -1,0 +1,51 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-005",
+ "batch": "Speed-Controlled Volume",
+ "reasoning": "驗證目標：$VolumeSCV$ 之有效值集合為 [Off] / [level 1] / [level 2] / [level 3]，集合外之值為無效（CFTS022-4915170）。為什麼切兩條：依 §7，列舉之支援項須配至少一條負向 TC；正向側驗「四個等價類各自被正確送出」，負向側驗「集合外之值不出現」，兩者驗證目標不同，不得併為一條（§5.2 禁止程序內分支）。設計方法逐 TC 判定（profile §3.3 修訂 1）：驗劃分本身者為等價劃分，只驗無效側處置者仍適用 §12 第一列之負向測試。本條自足不 BLOCKED —— 有效值表存在於條文內，四個值逐一列出。方括號保留為 source-quoted signal value（profile §3.4 之 §11 例外）。**ECU 範圍已裁（R33-1，讀法 (i)）**：條文之 outcome 主詞為 AMP（considered invalid by the AMP and no action shall be taken），而本交付件之 ECU 為 LTM。維持讀法 (i)（HU 側可觀察者優先）。**TC2 據此改寫為輸出集合封閉性，不再以「無效值處置」為名** —— 其程序未注入任何非法輸入，只觀察輸出集合，不合 §12 第一列 Invalid input / illegal op 之條件，故 design_method 改為功能測試。**真正之負向（向 AMP 注入集合外之值、驗 AMP 不動作）out of scope，歸 AMP ECU 之驗證**（§8.4.2），已列入 RD-1。依 R33-1(d) 之先例：§7 之負向配對要求，當本 ECU 不具備構成該負向之位置時，**以範圍歸屬解除，不得以形式上的 TC 滿足** —— 判準是該非法輸入之注入點是否落在本交付件所驗之 ECU；本葉之注入點在 AMP 輸入側，故不在本葉。",
+ "keywords": [
+  "$VolumeSCV$",
+  "[Off]",
+  "[level 1]",
+  "[level 2]",
+  "[level 3]",
+  "invalid"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "partition side",
+  "delta": "TC1 驗有效值四個等價類之傳送；TC2 驗 HU 輸出集合之封閉性（集合外之值不出現）"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-005",
+   "tc_title": "$VolumeSCV$ carries each of the four valid values",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "Valid signals for the $VolumeSCV$ signal are $VolumeSCV$ = [Off], [level 1], [level 2] and [level 3] — valid value set",
+   "pre_conditions": "1. The HU is awake\n2. A CAN interface tool is connected and able to log the $VolumeSCV$ signal",
+   "input_test_data": "$VolumeSCV$ = [Off]\n$VolumeSCV$ = [level 1]\n$VolumeSCV$ = [level 2]\n$VolumeSCV$ = [level 3]",
+   "test_procedure": "1. Set the speed controlled volume to the state that corresponds to $VolumeSCV$ = [Off]\n2. Read the $VolumeSCV$ signal in the CAN trace\n3. Set the speed controlled volume to the state that corresponds to $VolumeSCV$ = [level 1]\n4. Read the $VolumeSCV$ signal in the CAN trace\n5. Set the speed controlled volume to the state that corresponds to $VolumeSCV$ = [level 2]\n6. Read the $VolumeSCV$ signal in the CAN trace\n7. Set the speed controlled volume to the state that corresponds to $VolumeSCV$ = [level 3]\n8. Read the $VolumeSCV$ signal in the CAN trace",
+   "expected_result": "1. The speed controlled volume is in the state that corresponds to $VolumeSCV$ = [Off]\n2. The $VolumeSCV$ signal carries [Off]\n3. The speed controlled volume is in the state that corresponds to $VolumeSCV$ = [level 1]\n4. The $VolumeSCV$ signal carries [level 1]\n5. The speed controlled volume is in the state that corresponds to $VolumeSCV$ = [level 2]\n6. The $VolumeSCV$ signal carries [level 2]\n7. The speed controlled volume is in the state that corresponds to $VolumeSCV$ = [level 3]\n8. The $VolumeSCV$ signal carries [level 3]",
+   "specification_reference": "CFTS022-4915170",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-005",
+   "tc_title": "$VolumeSCV$ carries no value outside the valid set in any reachable HU state",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "The $VolumeSCV$ signal carries only [Off], [level 1], [level 2] or [level 3] — output set closure",
+   "pre_conditions": "1. The HU is awake\n2. A CAN interface tool is connected",
+   "input_test_data": "NA",
+   "test_procedure": "1. Start the CAN trace\n2. Step through every selectable state of the speed controlled volume on the HU\n3. Trigger the HU to sleep\n4. Trigger the wake-up of the HU\n5. Read every $VolumeSCV$ signal captured in the CAN trace",
+   "expected_result": "1. The CAN trace is running\n2. Every selectable state of the speed controlled volume is reached\n3. The HU is asleep\n4. The HU is awake\n5. Every $VolumeSCV$ signal in the trace carries [Off], [level 1], [level 2] or [level 3], and no other value is present",
+   "specification_reference": "CFTS022-4915170",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "remarks": ""
+  }
+ ]
+}

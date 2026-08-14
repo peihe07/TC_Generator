@@ -175,3 +175,5 @@ R23-8  A-PV12 Cover_old / ChangeHistory_old
 - [x] R23-7 下拉選單為 lint 權威 —— §1，區塊形式
 - [x] R23-8 舊分頁原樣保留 —— §1，區塊形式
 - [x] 停手條件三項（已依 R17-1 明列標的與續行標的）—— §3
+
+<!-- HANDOFF-LINK: 02 -> upstream:02 -->

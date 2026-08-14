@@ -28,9 +28,7 @@
   - remarks = AH
   - estimated_test_time = Q
 - feature.yaml column conflicts:
-  - design_method: feature.yaml says Q, header says R
-  - functional_safety: feature.yaml says R, header says S
-  - author: feature.yaml says Z, header says AA
+  (none)
 - authors present: (none)
 
 - design-method vocabulary: 9 strings

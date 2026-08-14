@@ -1,0 +1,105 @@
+{
+ "_doc": "R35-7 —— spec_reference 語意對應覆核之凍結紀錄。**只增不改**：覆核重做時新增一筆並保留舊筆（同 DELIVERY 台帳之 append-only 語意）。lint gate `spec-ref-reviewed` 比對各葉之 specification_reference 與本檔；不符即 FAIL，訊息指明該葉之語意對應覆核須重做。本檔不重做判斷，只負責偵測判斷何時失效。　各筆另記 `source_sha256` —— 覆核當時所依據之 CFTS022 版本（R36-5）。gate 比對 `BASELINE.sha256` 之現值；不符即 FAIL，訊息為「來源文件已換版，語意對應覆核須重做」。此即把素材完整性台帳與判斷有效性接起來 ——基於某文件所做之人工判斷，其有效性繫於該文件之版本。",
+ "leaves": [
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-001",
+   "artifact_ids": "CFTS022-4914955",
+   "specification_reference": "CFTS022-4914955",
+   "requirement_title": "Input Monitoring – Resume After Sleep Mode Exit",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：退出 'SLEEP MODE' 後 HU 監測按鍵按壓狀態。與 leaf 標題之 Resume After Sleep Mode Exit 對應；驗證目標同為「監測恢復」。DVD 播放器部分依 §8.4.2 歸該 ECU。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-002",
+   "artifact_ids": "CFTS022-4915158",
+   "specification_reference": "CFTS022-4915158",
+   "requirement_title": "Personalization Display – Restore on Interior CAN Wake-Up",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：Interior CAN 每次喚醒時 HU 召回個人化功能之最後狀態以供顯示。與 leaf 標題之 Restore on Interior CAN Wake-Up 逐詞對應。鄰條 4915159（splash screen 計時）已明確排除。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-003",
+   "artifact_ids": "CFTS022-4915168",
+   "specification_reference": "CFTS022-4915168",
+   "requirement_title": "Speed-Controlled Volume – Restore on HU Wake-Up",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：HU 於 Interior CAN 喚醒時召回 SCV 狀態。與 leaf 標題之 Restore on HU Wake-Up 對應。隨車速調整之行為曲線屬 CFTS019，不在本條。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-004",
+   "artifact_ids": "CFTS022-4915169",
+   "specification_reference": "CFTS022-4915169",
+   "requirement_title": "Speed-Controlled Volume Signal – Transmission on HU Wake-Up",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：HU 喚醒時於 <Tsend> 內以 $VolumeSCV$ 送出 SCV 狀態。與 leaf 標題之 Transmission on HU Wake-Up 對應；驗證面為對外傳送，與 -003 之內部召回區分。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-005",
+   "artifact_ids": "CFTS022-4915170",
+   "specification_reference": "CFTS022-4915170",
+   "requirement_title": "Speed-Controlled Volume Signal – Valid Value Handling",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：$VolumeSCV$ 之有效值集合為 [Off]/[level 1]/[level 2]/[level 3]，其餘為無效。與 leaf 標題之 Valid Value Handling 對應。outcome 主詞為 AMP，依 R34-1 因 HU 為發送端而留在本交付件。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-006",
+   "artifact_ids": "CFTS022-4915171; CFTS022-4915170",
+   "specification_reference": "CFTS022-4915171; CFTS022-4915170",
+   "requirement_title": "Speed-Controlled Volume – Local Adjustment Without AMP",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：amp 不存在時 HU 依 speed controlled level 調整輸出音量。與 leaf 標題之 Local Adjustment Without AMP 對應。本條擁有歸屬非行為曲線（R34-4）。setup 依賴 4915170 之值域已加列引用（R35-2）。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-007",
+   "artifact_ids": "CFTS022-4915172; CFTS022-4915170",
+   "specification_reference": "CFTS022-4915172; CFTS022-4915170",
+   "requirement_title": "Speed-Controlled Volume – No Adjustment With AMP Present",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：AMP 存在時 HU 不改變音量 level。與 leaf 標題之 No Adjustment With AMP Present 對應。與 -006 構成 amp 存在與否之一對。setup 依賴 4915170 已加列。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-008",
+   "artifact_ids": "CFTS022-4915173",
+   "specification_reference": "CFTS022-4915173",
+   "requirement_title": "Speed-Controlled Volume – Restore on AMP Wake-Up",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：AMP 於 Interior CAN 喚醒時召回 SCV 狀態。與 leaf 標題之 Restore on AMP Wake-Up **語意完全對應** —— 本葉之爭點為 ECU 歸屬（R34-1/2，產出 BLOCKED 列），**不是對映錯誤**，兩者分開記載（R35-6）。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-009",
+   "artifact_ids": "CFTS022-4915174",
+   "specification_reference": "CFTS022-4915174",
+   "requirement_title": "Speed-Controlled Volume – Update and Store Without AMP",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：無 amp + 使用者改 level → HU 改顯示、改 level、存記憶體供下次 Interior CAN 喚醒。與 leaf 標題之 Update and Store Without AMP 逐項對應（Update=改顯示/改 level，Store=存記憶體）。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  },
+  {
+   "leaf": "SWE1-HMI-PRIVACY_FEATURES-010",
+   "artifact_ids": "CFTS022-4915175",
+   "specification_reference": "CFTS022-4915175",
+   "requirement_title": "Speed-Controlled Volume – Update and Transmit With AMP Present",
+   "reviewed": "2026-08-13",
+   "reviewed_by": "執行層人工覆核（下放包 12 §4.6 / R34-10(b)）",
+   "basis": "條文：有 amp + 使用者改 level → HU 改顯示、於 <Tsend> 內送 $VolumeSCV$。與 leaf 標題之 Update and Transmit With AMP Present 逐項對應（Transmit=送訊號）。本條無「改 level」亦無「存記憶體」，與 -009 不同。",
+   "source_sha256": "5eb0dd739f002fe04e4891ceb9fd7d233b4e128a8b35eadce8ad6a631854dd78"
+  }
+ ]
+}

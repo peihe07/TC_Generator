@@ -10,8 +10,17 @@
 # 存檔路徑，而 write_back.py 已改接外科手術路徑，該路徑在檔內已不存在）。
 # 當時沒有台帳，於是「那份交付件到底是什麼」只能從 tag annotation 拼湊。
 #
+# 記錄單位（R27-2）：**一次 `--write` 的輸入基準、一次 `--write` 的輸出、
+# 任何被送出或被 tag 的產物。** 不入台帳者：同一次操作內的中間檔、探針產物、
+# 對照臂輸出 —— 它們不是一個「工作簿狀態」，記入只會稀釋台帳的檢索價值。
+#
 # 驗證（自 features/privacy/ 執行）：
 #     shasum -a 256 -c --ignore-missing DELIVERY.sha256
+#
+# **旗標的代價（R27-1）**：`--ignore-missing` 使本台帳**無法偵測「產出被刪除」**。
+# 它驗的是「還在磁碟上的產出有沒有被動過」，不驗「產出還在不在」。
+# 這是 append-only 台帳的必然，不是缺陷 —— 但**台帳綠燈不等於產出俱在**，
+# 日後不得如此誤讀。BASELINE 則相反：不加旗標，素材少一個即為停手事由。
 # **--ignore-missing 是必要的**：台帳會累積已被清理掉的舊產出，
 # 不加該旗標時它們會報 FAILED open or read。加了之後：
 #   內容被竄改 → FAILED，exit 1（實測確認）
@@ -37,6 +46,49 @@
 #             P4 開始寫入 TC 之前應完成：無「修復」提示、R/P/AE 下拉可用、
 #             分頁數為 10。**此項未完成前，本條目不得升格為交付件。**
 #   未列入    output/prepared_step1_cleared.xlsx —— 只做清除、未填 Scope 的
-#             中間產物。刻意不記：它是可重現的中間狀態（來源 + 改動 1 即得）。
-#             其去留於上繳包 02 §6.3 列為未裁項，此處採保守處置並回報。
+#             中間產物。**不記入之理由已依 R27-2 更正**：不是「怕清理後
+#             shasum 失敗」（該理由與上方 --ignore-missing 的決定自相矛盾，
+#             被清掉的條目本來就會靜默略過），而是它屬同一次操作內的中間步驟，
+#             不構成一個工作簿狀態，不符本台帳的記錄單位。
 ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813.xlsx
+#   STATUS: 準備完成之工作簿，已經 Excel 確認；為 ENTRY 002 之輸入基準 (R29-1, 2026-08-13)
+#
+# ENTRY 002 — 2026-08-14 — P6／P7 寫回產出（**非交付件**）
+#   狀態      未打 tag、未 commit、未交付。**執行層不宣告 P7 完成** ——
+#             依 R29-1 之先例，外科手術產出須經人以 Excel 實開確認方可升格。
+#   來源基準  ENTRY 001 之工作簿
+#             SHA256 ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4
+#   寫入路徑  features/privacy/scripts/write_back.py（自始建於
+#             backend/xlsx_surgical.py，R20-5；未複製任一既有 write_back）
+#   內容      11 TC / 10 葉，第 10–20 列；tc_id NR1L-Privacy-001…011 照序不跳號。
+#             -008 為 BLOCKED 列（第 18 列，tc_id NR1L-Privacy-009），
+#             帶本 feature 第一個 marker [BLOCKED-ECU]。
+#   欄位政策  欄 S = NA 全 11 列（R30-3）；車型欄 T–Z 全空（R30-4）；
+#             欄 Q 留白（UNRULED_BLANK）；B 欄序號公式逐列重寫。
+#   結構驗證  zip 成員 48 → 48（零增零減）；classic DV 4；x14 DV 2；
+#             差異成員僅 xl/worksheets/sheet6.xml。
+#             另驗：表頭區（第 1–9 列）逐格未變；其餘 9 個分頁逐格相同。
+#   lint      PASS —— 11 TC / 10 檔，19 個 gate 全部具雙對照；
+#             欄 S 與車型欄兩 gate 已由 NOT MEASURED 重標為可實測（R34-6）。
+#   BLOCKED   四項驗證全數相符：placeholder 旗標未進工作簿；
+#             P/R/Q 與 T–Z 確為空；Remarks 288 字元逐字相符無截斷；
+#             字型／填色／框線／wrap／列高與相鄰列一致。
+#   未驗      ~~尚未由人以 Excel 實際開啟確認~~ → **已完成**，見下行。原文保留存軌跡。
+#   Excel確認 Pei, 2026-08-13, 七點全過（R38-1 / 下放包 15 §2）——
+#             1) 無「檔案已損毀，Excel 已修復」提示
+#             2) R 欄設計方法下拉可用，選項為 下拉選單 之 9 條
+#             3) D5 範圍 Scope = SWE1_CFTS_022-Privacy_Features
+#             4) 第 10–20 列共 11 列 TC，其餘列為空
+#             5) B 欄序號顯示 1…11 —— **此為 cached value 問題之首次現場實測**：
+#                11 格皆為公式且無 cached <v>，Excel 開啟時正確重算（R38-2）。
+#                結論限於**機制**：zip 層外科手術寫入之顯式公式，缺 cached <v>
+#                不影響 Excel 正確重算。**AMFM v2 該實例仍未經 Excel 實開**，
+#                本項不得讀為「AMFM v2 已驗證」。
+#             6) 第 18 列 Remarks 288 字元完整顯示，無截斷無亂碼（顯示層）
+#             7) 第 18 列字型／填色／框線與第 17 列一致
+#             **P7 完成。** 本條目自此為交付候選；tag 與 commit 屬 Tier 3。
+#   invariant 寫回腳本兩層自加 invariant 之陽性對照已補（R37-5(a)）：
+#             改動表頭 D5、下拉選單!A1、Cover 封面!D7 三例皆確實 ABORT；
+#             未經破壞之本產出兩層皆通過。三層 invariant 自此為實測有效。
+ad595ed0cad24375b64762679487e1e79c714b06f203c0b0c081d6da3b420b7f  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813_regen-v1.xlsx
+#   STATUS: P7 完成，交付候選；未打 tag、未 commit、未交付 (R38-1, 2026-08-13)

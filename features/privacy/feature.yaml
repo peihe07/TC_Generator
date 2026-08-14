@@ -38,9 +38,13 @@ workbook:
     spec_reference: "N"
     tc_ref_id: "O"
     priority: "P"
-    design_method: "Q"
-    functional_safety: "R"
-    author: "Z"
+    # R39-2 — corrected 2026-08-14 from the pre-revision-C letters
+    # (design_method Q / functional_safety R / author Z). Revision C inserted
+    # `Estimated Test Time` at Q and shifted these three one column right;
+    # measured from the template's own header row. A-PV13.
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
     remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
 
 done_region:

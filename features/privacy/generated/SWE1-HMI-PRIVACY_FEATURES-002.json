@@ -1,0 +1,35 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-002",
+ "batch": "Personalization Display",
+ "reasoning": "驗證目標：Interior CAN 每次喚醒時，HU 對「已組態之個人化功能集合」召回其最後已知狀態並據以顯示（CFTS022-4915158）。關鍵情境條件：先把個人化功能設為非預設值，進入睡眠，再以 Interior CAN 喚醒。為什麼這樣切：條文之觸發（Interior CAN 喚醒）與結果（召回上次狀態以供顯示）為一組，一條 TC 足夠。刻意排除：4915159「features 須在 splash screen 完成時間內備妥顯示」是時序需求，與召回狀態是兩件事，且其 Note 指向 {VF169}；本 TC 不出現任何 splash screen 或時間門檻 —— 該條正是先前對映誤填之 id（R30-1），相鄰且語意相近，特別標記以免被吸收。4915157 為 Description 型（HU 決定車上存在哪些 features），僅供背景理解，不列為 specification_reference。另：條文未給出「configured set of personalization features」之具體清單，依 §8.4.1 不自行列舉功能項，步驟與 ER 一律以 spec 措辭表述。　【B1 review N1 補述】037 之兩項額外主張經覆核**已被現有 ER 涵蓋**，毋須改寫：「不得顯示預設值或錯誤值」由 ER 3 與 ER 6 之「displayed in the state recorded in step 1」涵蓋 —— 若顯示預設值即 fail；「無需使用者互動」由程序本身涵蓋 —— 喚醒後至讀取之間無任何使用者操作步驟。",
+ "keywords": [
+  "Interior CAN",
+  "wake up",
+  "personalization features",
+  "last known state",
+  "recall"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "none",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-002",
+   "tc_title": "Personalization features are recalled to their last known state on Interior CAN wake-up",
+   "test_group": "Privacy",
+   "test_set": "Personalization Display",
+   "test_item": "Each time the Interior CAN wakes up, the HU shall recall the last known state for the configured set of personalization features to be displayed",
+   "pre_conditions": "1. The configured set of personalization features is set to states other than their default states\n2. The Interior CAN is asleep",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the state of each feature in the configured set of personalization features\n2. Trigger the wake-up of the Interior CAN\n3. Read the state of each feature in the configured set of personalization features as displayed by the HU\n4. Trigger the Interior CAN to sleep\n5. Trigger the wake-up of the Interior CAN a second time\n6. Read the state of each feature in the configured set of personalization features as displayed by the HU",
+   "expected_result": "1. The state of each feature in the configured set is recorded\n2. The Interior CAN is awake\n3. Each feature in the configured set is displayed in the state recorded in step 1\n4. The Interior CAN is asleep\n5. The Interior CAN is awake\n6. Each feature in the configured set is displayed in the state recorded in step 1",
+   "specification_reference": "CFTS022-4915158",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}

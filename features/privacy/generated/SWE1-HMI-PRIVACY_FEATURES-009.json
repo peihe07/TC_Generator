@@ -1,0 +1,35 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-009",
+ "batch": "Speed-Controlled Volume",
+ "reasoning": "驗證目標：HU 判定 amplifier 不存在、且使用者選擇改變 speed controlled volume 之 level 時，HU 改變顯示、改變 level、並將新值存入記憶體供下次 Interior CAN 喚醒使用（CFTS022-4915174）。為什麼一條 TC：三個結果同屬一個觸發之後續（§5.7 —— 一個觸發之連帶結果為一條 TC 配多行 ER），不拆為三條。為什麼與 -010 成對而不合併：兩者為使用者調整側之 amp 不存在／存在兩分支（framework Part VI 注 1）。與 -006 之區辨：-006 為自動調整側，觸發是速度變化；本條之觸發是使用者操作，兩者措辭不互相補齊 —— 本條之 outcome 含「存入記憶體」，-006 無此項，不得反向補入。「存入記憶體供下次喚醒」以睡眠後再喚醒並重讀之方式驗證。AMP 存在與否之建立方式：VF651_V6_R2（HDCC28 版 e20ba7a4…）之 PROXI Parameters 一節列有 `Acustic_Configuration` 與 `Audio_System_Type` 兩個參數名，但同節明文：「The characteristics of the \"PROXI\" Parameters and their related values are defined in the \"PROXI requirements\" specific for the vehicle project」—— **值不在該文件內**，而該 PROXI requirements 不在 inputs/。依 §8.4.1 不自行填任何參數值；Pre-Condition 以條文自身之措辭（amp present / not present）表述，此為 profile §3.2 明列之合法 spec-trigger。VF651 未列為 specification_reference —— 需求來源為 CFTS022，VF651 只用於背景理解。　【R34-8】與 -003 之區分：本葉步驟 4–6（睡眠→喚醒→重讀）是借喚醒作為「值已存入」之**觀察手段**，非驗證喚醒時之召回行為。兩葉之觸發不同（本葉為使用者改變 level，-003 為 Interior CAN 喚醒），依 §8.3 之切分判準以觸發為準，故**不標 `duplicate_of`**。duplicate 之判準為 trigger + outcome + input + verification target 四者皆同；**觀察手段之重疊不構成 duplicate**。　【R35-3】條文之觸發含「the HU has determined that the amplifier is not present」——**HU 之內部判定環節**。本 TC 之 Pre-Condition **只設定客觀組態**（amplifier 存在與否），不斷言 HU 之內部狀態。理由是方向而非等同：「HU 已判定」是 HU 自客觀組態導出之內部狀態，測試者無法直接設定，亦無規格指定之可觀察指標；**以客觀組態為起點時，判定環節一併納入受測範圍**—— HU 若判定錯誤，本 TC 即 fail，而那正是應被偵測的失效。此為保守方向（多測而非少測），符合不對稱錯誤代價原則。**PC 禁止寫「The HU has determined…」**，那是對不可觀察內部狀態之斷言。本處置可逆：若日後裁定判定環節須獨立驗證，本 TC 只需擴充中間步驟，不需重寫。已列 RD-1 #13 詢問上游是否有規格指定之可觀察指標。",
+ "keywords": [
+  "amplifier not present",
+  "customer selects",
+  "change the display",
+  "store",
+  "Interior CAN wakeup"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "amplifier presence",
+  "delta": "-009 為使用者調整側之 amp not present 分支（改顯示＋改 level＋存記憶體）；-010 為 present 分支"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-009",
+   "tc_title": "HU changes the display, changes the level and stores the value when the customer changes the speed controlled volume with no amplifier present",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "When the HU has determined that the amplifier is not present and the customer selects to change the level of the speed controlled volume, the HU shall change the display, change the level and store the new value in memory for the next Interior CAN bus wakeup",
+   "pre_conditions": "1. An external amplifier is not present on the vehicle\n2. The speed controlled volume personalization entry is displayed on the HU",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the level of the speed controlled volume displayed on the HU\n2. Select a level of the speed controlled volume other than the one read in step 1\n3. Read the level of the speed controlled volume displayed on the HU\n4. Trigger the HU to sleep\n5. Trigger the wake-up of the HU on Interior CAN\n6. Read the level of the speed controlled volume displayed on the HU",
+   "expected_result": "1. The level of the speed controlled volume is read\n2. The level selected in step 2 is applied\n3. The HU displays the level selected in step 2\n4. The HU is asleep\n5. The HU is awake\n6. The HU displays the level selected in step 2",
+   "specification_reference": "CFTS022-4915174",
+   "priority": "P1",
+   "design_method": "等價劃分 (Equivalence Partitioning, EP)",
+   "remarks": ""
+  }
+ ]
+}

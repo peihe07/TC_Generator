@@ -1,0 +1,35 @@
+{
+ "parent": "SWE1-HMI-PRIVACY_FEATURES-004",
+ "batch": "Speed-Controlled Volume",
+ "reasoning": "驗證目標：HU 喚醒時，於 <Tsend> 內以 $VolumeSCV$ 訊號送出 speed controlled volume 之狀態（CFTS022-4915169）。關鍵情境條件：SCV 先設為已知狀態，HU 睡眠後喚醒，於匯流排上觀察 $VolumeSCV$ 之發送時點與值。為什麼這樣切：與 -003 之區辨軸為「內部召回 vs 對外傳送」，觸發措辭亦不同（本條為 wakes up，未限定 Interior CAN），照條文原樣寫。刻意不填具體時間：<Tsend> 在條文內未定義具體值，依 §8.4.1 保留原符號，步驟與 ER 一律寫 <Tsend>，不填入任何秒數或毫秒數。",
+ "keywords": [
+  "$VolumeSCV$",
+  "<Tsend>",
+  "speed controlled volume",
+  "wake up",
+  "signal transmission"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "verification face",
+  "delta": "-004 驗對外訊號之傳送與時限；-003 驗內部狀態之召回"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PRIVACY_FEATURES-004",
+   "tc_title": "$VolumeSCV$ is sent within <Tsend> when the HU wakes up",
+   "test_group": "Privacy",
+   "test_set": "Speed-Controlled Volume",
+   "test_item": "When the HU wakes up, the HU shall send the status of the speed controlled volume in the $VolumeSCV$ signal within <Tsend>",
+   "pre_conditions": "1. The speed controlled volume is set to a known state\n2. The HU is asleep\n3. A CAN interface tool is connected",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the state of the speed controlled volume\n2. Start the CAN trace\n3. Trigger the wake-up of the HU\n4. Read the first $VolumeSCV$ signal in the CAN trace and its timestamp relative to the wake-up\n5. Read the value carried in that $VolumeSCV$ signal",
+   "expected_result": "1. The state of the speed controlled volume is recorded\n2. The CAN trace is running\n3. The HU is awake\n4. The $VolumeSCV$ signal is sent within <Tsend> of the wake-up\n5. The $VolumeSCV$ signal carries the state recorded in step 1",
+   "specification_reference": "CFTS022-4915169",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "remarks": ""
+  }
+ ]
+}
