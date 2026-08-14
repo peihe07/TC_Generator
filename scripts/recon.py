@@ -191,6 +191,60 @@ def build_outline_map(sys1_path: Path | None) -> tuple[dict, str]:
     return omap, ""
 
 
+# ------------------------------------------------- signed-DECISIONS guard
+
+# A placeholder is the template's own text: empty, or nothing but underscores
+# (the form ships "____", Projection's carries "____________").
+PLACEHOLDER_RE = re.compile(r"^[\s_]*$")
+
+
+def read_signoff(decisions_path: Path) -> dict:
+    """What the EXISTING DECISIONS.md says about its own sign-off state.
+
+    Two accepted shapes, per R-C10: a filled Sign-off block, or SXM-style
+    `- Amendment (date, nth pass): … directive「…」` entries that record the
+    ruling and its directive verbatim. Either is repo evidence that a human
+    signed; neither present means the sign-off state is not knowable from the
+    repo, whatever may have happened in a chat.
+    """
+    if not decisions_path.exists():
+        return {"exists": False, "signed": False, "reviewed_by": "",
+                "date": "", "amendments": 0, "has_proposed": False}
+    text = decisions_path.read_text(encoding="utf-8")
+    m = re.search(r"Reviewed by:\s*(.*?)(?:\s\s+|\s*\|)Date:\s*(.*)", text)
+    who, when = (m.group(1).strip(), m.group(2).strip()) if m else ("", "")
+    who_filled = bool(who) and not PLACEHOLDER_RE.match(who)
+    amendments = len(re.findall(r"^\s*-\s*Amendment\b", text, flags=re.M))
+    return {
+        "exists": True,
+        "signed": who_filled or amendments > 0,
+        "reviewed_by": "" if not who_filled else who,
+        "date": "" if PLACEHOLDER_RE.match(when) else when,
+        "amendments": amendments,
+        "has_proposed": "[PROPOSED" in text,
+    }
+
+
+def write_decisions(feature_dir: Path, body: str, signoff: dict) -> tuple[Path, bool]:
+    """R-C9 — never overwrite a signed decision sheet.
+
+    recon.py rewrites DECISIONS.md whole. That is fine for an unsigned sheet
+    and destructive for a signed one, and it fires for anyone who re-runs
+    recon on an existing feature for any reason — which no amount of
+    remembering-not-to can prevent. So the check is here, in the writer,
+    rather than in a policy someone has to recall.
+
+    Returns (path_written, diverted).
+    """
+    target = feature_dir / "DECISIONS.md"
+    if signoff["signed"]:
+        alt = feature_dir / "DECISIONS.new.md"
+        alt.write_text(body, encoding="utf-8")
+        return alt, True
+    target.write_text(body, encoding="utf-8")
+    return target, False
+
+
 # ---------------------------------------------------------------- assertions
 
 class Assertions:
@@ -257,6 +311,9 @@ def run_assertions(cfg: dict, a03res: dict, omap: dict,
                 "a second stem means the report cites more than one baseline")
 
     # Outline lookup: every cited section must exist in the ruled export.
+    # NOTE the asymmetry, which is the point of A-CF08: a cited section that
+    # is absent from the baseline is an error (assert below), while a baseline
+    # section nobody cites is a coverage question — reported, never asserted.
     misses = []
     if omap:
         misses = [s for s in a03res["distinct_sections"] if s not in omap]
@@ -537,11 +594,64 @@ def survey_spec_text_layer(pdf_path: Path | None) -> str:
     return f"text-layer: {chars} chars" if chars > 500 else "scanned (OCR path)"
 
 
+# -------------------------------------------------- uncited baseline sections
+
+UNCITED_TSV = "sr24_uncited_sections.tsv"
+
+
+def uncited_section_report(feature_dir: Path, a03res: dict, omap: dict) -> str:
+    """Baseline sections the requirement report never cites (A-CF08).
+
+    Computed here so it can never go stale against the export; the four-value
+    classification is produced separately (the judgement rules live in
+    `features/<f>/scripts/classify_uncited_sections.py`) and folded in when
+    its TSV is present. If the TSV is missing the count is still reported —
+    an unclassified gap is a visible state, an omitted section is not.
+
+    This is a coverage OBSERVATION, not a disposition: nothing here generates
+    a TC, enters a denominator, or files an RD item.
+    """
+    if not omap:
+        return "- (no outline map — cannot tell cited from uncited)"
+    uncited = sorted(set(omap) - set(a03res["distinct_sections"]), key=outline_key)
+    lines = [f"- baseline outline entries: {len(omap)}; cited by the leaves: "
+             f"{len(a03res['distinct_sections'])}; **uncited: {len(uncited)}**",
+             "- these sit INSIDE the ruled baseline — a different question from"
+             " content in an out-of-scope revision, and not answered by any"
+             " ruling about that revision"]
+    tsv = feature_dir / "data" / UNCITED_TSV
+    if not tsv.exists():
+        lines.append(f"- classification: **not produced** — `data/{UNCITED_TSV}`"
+                     " absent; run the feature's classify_uncited_sections.py")
+        return "\n".join(lines)
+    rows = [r.split("\t") for r in
+            tsv.read_text(encoding="utf-8").strip().split("\n")[1:]]
+    hdr = tsv.read_text(encoding="utf-8").split("\n")[0].split("\t")
+    ci, oi = hdr.index("classification"), hdr.index("outline")
+    counts = Counter(r[ci] for r in rows)
+    classified = {r[oi] for r in rows}
+    lines.append(f"- classification (`data/{UNCITED_TSV}`, "
+                 f"{len(rows)} rows): "
+                 + "、".join(f"{k} {counts[k]}" for k in
+                             ("container", "assumption", "figure", "substantive")))
+    subs = [r[oi] for r in rows if r[ci] == "substantive"]
+    lines.append(f"- **substantive: {len(subs)}** — {subs}")
+    lines.append("  classify only; disposition of these is a ruling, not a"
+                 " detection (§8.2, §8.4.2)")
+    stale = sorted(set(uncited) ^ classified, key=outline_key)
+    if stale:
+        lines.append(f"- **STALE**: classification covers a different section"
+                     f" set than the current export — symmetric difference"
+                     f" {stale}; re-run the classifier")
+    return "\n".join(lines)
+
+
 # ---------------------------------------------------------------- emit
 
 def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
          textlayer: str, hashes: dict, asserts: "Assertions", omap: dict,
-         misses: list, omap_reason: str = "") -> None:
+         misses: list, omap_reason: str = "",
+         signoff: dict | None = None) -> dict:
     state = wbres["state"]
     leaves = a03res["leaves"]
     targets = sorted(set(leaves) - set(wbres["done_reqs"]))
@@ -588,6 +698,7 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
     # sized by the second.
     sec_hist_line = chapter_hist(a03res["distinct_sections"])
     leaf_hist_line = chapter_hist(a03res["sections"].values())
+    uncited_block = uncited_section_report(feature_dir, a03res, omap)
 
     recon = f"""# RECON — {cfg['feature']} (generated by recon.py)
 
@@ -613,6 +724,9 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
 - leaves by chapter: {leaf_hist_line}
 - map written to `data/spec_id_to_outline.tsv` (tracked — a diff on it is the
   signal that the spec export moved underneath us)
+
+## Uncited baseline sections
+{uncited_block}
 
 ## Workbook
 - workbook_state: **{state}**
@@ -717,7 +831,7 @@ region / replace / re-map) is a ruling, not a detection.
     # is not written — RECON.md and recon.json carry the evidence and the run
     # exits non-zero.
     if asserts.failed:
-        return
+        return {"decisions_written": False, "diverted": False}
 
     # ---- DECISIONS prefill from per-state strategy bindings (canon §2)
     blank = state == "BLANK"
@@ -844,7 +958,10 @@ region / replace / re-map) is a ruling, not a detection.
              " chapter, pilot = smallest coherent batch]")
     d.append("\n---\n\n## Sign-off\n\n- Reviewed by: ____  Date: ____\n"
              "- Overridden items: ____\n- Ruling notes:\n")
-    (feature_dir / "DECISIONS.md").write_text("\n".join(d), encoding="utf-8")
+    written, diverted = write_decisions(
+        feature_dir, "\n".join(d), signoff or {"signed": False})
+    return {"decisions_written": True, "diverted": diverted,
+            "decisions_path": written}
 
 
 # ---------------------------------------------------------------- main
@@ -888,8 +1005,9 @@ def main() -> None:
     textlayer = survey_spec_text_layer(paths["spec_pdf"])
     omap, omap_reason = build_outline_map(paths.get("sys1_export"))
     asserts, misses = run_assertions(cfg, a03res, omap, omap_reason)
-    emit(feature_dir, cfg, wbres, a03res, textlayer, hashes, asserts, omap,
-         misses, omap_reason)
+    signoff = read_signoff(feature_dir / "DECISIONS.md")
+    outcome = emit(feature_dir, cfg, wbres, a03res, textlayer, hashes, asserts,
+                   omap, misses, omap_reason, signoff)
 
     print("\n".join(["assertions:"] + [
         re.sub(r"\*\*|`", "", ln) for ln in asserts.lines()]), file=sys.stderr)
@@ -901,6 +1019,31 @@ def main() -> None:
     if wbres["ambiguous_rows"]:
         print(f"WARNING: {len(wbres['ambiguous_rows'])} ambiguous rows — "
               "Tier 2 review required (see RECON.md)", file=sys.stderr)
+
+    # R-C10 — non-blocking. A sheet full of [PROPOSED] with an untouched
+    # Sign-off block is indistinguishable, in the repo, from one nobody ever
+    # looked at. Say so rather than let the silence read as approval.
+    if (signoff["exists"] and not signoff["signed"]
+            and signoff["has_proposed"] and not outcome["diverted"]):
+        print("WARNING (R-C10): DECISIONS.md carries [PROPOSED] items and its "
+              "Sign-off block is an unfilled placeholder — this feature's "
+              "sign-off state is not knowable from the repo. Not blocking.",
+              file=sys.stderr)
+
+    # R-C9 — blocking. Reported after the survey so the run's evidence is on
+    # screen alongside the refusal.
+    if outcome["diverted"]:
+        sys.exit(
+            "REFUSED (R-C9): "
+            f"{feature_dir / 'DECISIONS.md'} is signed "
+            f"(Reviewed by: {signoff['reviewed_by'] or '—'}"
+            f"{', ' + signoff['date'] if signoff['date'] else ''}"
+            f"{'; ' + str(signoff['amendments']) + ' Amendment entries' if signoff['amendments'] else ''})"
+            " and was NOT overwritten.\n"
+            f"The freshly generated sheet was written to "
+            f"{outcome['decisions_path']} instead — diff the two and merge by "
+            "hand if the new survey should supersede the signed one.")
+
     if asserts.failed:
         sys.exit(f"FAILED: {len(asserts.failed)} ruled-constant assertion(s) do "
                  "not hold against these files. DECISIONS.md was NOT written; "

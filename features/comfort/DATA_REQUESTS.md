@@ -13,6 +13,12 @@ batch gate 都要按 Urgency 回報。
 > 建檔時（2026-08-14 Phase 1）**無已知缺檔** —— 037 所引用之唯一文件
 > （SR24 CR24879）已在 `spec-index/`，129 節逐一查得，miss = 0。本表非空，
 > 但列的是「非檔案」與「環境」兩類請求，不是缺檔。
+>
+> **更新 2026-08-14（下放包 06 §3 判讀後）**：**現有兩項真正的缺檔**
+> —— #6（R1LR ATL-H 機種／螢幕尺寸配置）與 #7（EMEA 市場適用性）。
+> 兩者各自阻擋 6 節與 1 節之適用性判定，合計 7 節維持 `undetermined`。
+> **此為缺料，非判定** —— 依 06 §3，讀不到即 `undetermined`，
+> 不得以讀不到判 `out_of_scope`。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
@@ -20,6 +26,10 @@ batch gate 都要按 Urgency 回報。
 | 2 | Scope / Purpose / Reviewer / Project Name / Date 五格之填入值 | ⏳ **待 Pei 給值** —— 非檔案，屬 Tier 2 賦值。執行層提案 Scope = `FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1`，其餘不自填 | 交付件表頭 | P7 寫回前必須有值 | A-CF07 | **Medium —— P7 之前** |
 | 3 | `pymupdf`（Python 套件，非客戶檔案） | ❌ **未安裝** —— `pip install pymupdf` 即可，無需改碼；裝後重跑 recon 該行自動變為實測值。專案無 requirements 檔宣告此相依 | 0（不阻塞） | 僅在 P4 需自 PDF 取圖說／座標時 | A-CF06 | Low |
 | 4 | 客戶交付夾之 SR24 附件回填 | ⏳ **待 Pei 決定** —— 交付夾現放 SR25（PDF 13.86 MB / SYS1 xlsx 72.80 KB），與 R-C1 基線不一致。**執行層未複測**（該樹於本 session 不可達） | 0（不影響取材） | P7 交付一致性 | A-CF02 | Low（P7 之前） |
+| 5 | CFTS043 —— `SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope.xlsx`（914,043 bytes）＋ `R1LR_Atl-H_25PI3.5_Cabin_CFTS_043 HVAC Controls and Displays _SR26_20250909-1852.doc`（2,469,376 bytes） | ✅ **已入 `inputs/`**（2026-08-14，Pei 放入）—— 20.x 十節之判讀已據此完成 | 10 節（20.1 ~ 20.4.3） | D-C10 裁定 | A-CF08 | ~~High~~ → 已解 |
+| 6 | **R1LR ATL-H 之機種／螢幕尺寸配置來源** —— 能回答「7" 與 10.25" 是否屬本交付範圍」者。預期形態：PROXI／Market Configuration Table，或 R1L-R 之機種配置表（pattern） | ❌ **未入 `inputs/`** —— CFTS043 全篇無 `Comfort Widget`／`Home screen`／`10.25` 字串，**不涵蓋**此判準（非否定）。SR24 §1.1 列有 7" 機種，但「spec 有寫」不等於在交付範圍內（06 §3） | 6 節（18.2–18.4、19.1–19.3） | **D-C10 裁定；Phase 3 Part N** | A-CF08 | **High** |
+| 7 | **EMEA 市場適用性來源** —— 能回答「EMEA ICS CARRYOVER 是否屬本交付範圍」者。預期形態：Market Configuration Table 或含 EMEA 值之 SYS1 對照表（pattern） | ❌ **未入 `inputs/`** —— CFTS043 主檔 442 頁 `EMEA` 命中 **0**，tree view Description 亦 0；其 `Market` 欄全部相異值僅 `All`／`NAFTA`／`NAFTA - Mexico`／`NAFTA - United States, Canada`，**無 EMEA 值可比對** | 1 節（16.1） | **D-C10 裁定** | A-CF08 | **High** |
+| 8 | CFTS043 4803259 之 NOTE 效力確認（非檔案，屬上游釐清） | ⏳ NOTE 稱「only applicable to R1H starting on SR22」，與同 item `Radio` 含 R1L-R 及 `Scope=Yes` 白名單矛盾。本次判讀採結構化欄位，**此為選擇非推導** | 10 節（20.1 ~ 20.4.3） | D-C10 裁定 | A-CF12 | **Medium** |
 
 ## 已量測、無需索取
 

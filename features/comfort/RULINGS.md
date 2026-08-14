@@ -77,6 +77,51 @@ Assumptions 與影像頁後，屬實質需求而 037 未分析者為：
 
 ---
 
+## R-C5-1 —— 下放包 05 §2（分析層訂正自身錯誤，2026-08-14，即時生效）
+
+置於 R-C5 之後（05 §6.1）。**訂正 R-C5，非取代**；R-C5 原文不改寫。
+
+```
+R-C5-1  R-C5 適用範圍之限縮（訂正 R-C5，非取代）
+
+R-C5 列舉之 22 節中，經對 SR24 export 逐節查存，16 節同樣存在於 SR24 基線：
+  18.2 / 18.3 / 18.4
+  19.1 / 19.2 / 19.3
+  20.1 / 20.1.1 / 20.1.2 / 20.1.3 / 20.2 / 20.3 / 20.4 / 20.4.1 / 20.4.2 / 20.4.3
+
+R-C5 之推論鏈為「屬 SR25 → 因基線為 SR24 → out of scope」。對此 16 節，
+第一個前提不成立，故結論不成立。此 16 節自即日起退出 R-C5 之適用範圍，
+併入 A-CF08 之 in-baseline substantive 集合，處置待 D-C10。
+
+R-C5 對其餘 6 節（21.1 / 21.2 / 21.3 / 21.3.1 / 21.4 / 21.5）之結論不變：
+SR24 export 最大 outline 為 20.4.3，無第 21 章，該 6 節確為 SR24 所無。
+
+在 D-C10 裁定前，該 16 節維持：不產 TC、不入 coverage 分母、不列 BLOCKED、
+不補 RD 項目。退出 R-C5 只改變其「為何暫不處置」的理由，不改變其現況。
+```
+
+---
+
+## R-C4-1 —— 下放包 03 §2（分析層自裁，2026-08-14，即時生效）
+
+置於 R-C4 之後（R19-2）。**訂正 R-C4，不取代**；R-C4 之實質規則不變。
+
+```
+R-C4-1  R-C4 之量測母體補標（訂正 R-C4，不取代）
+
+R-C4 原文「共 92 列具此形態」未標母體，違反 §5a「標明量測條件」。訂正：
+
+  母體 = 全部資料列 498（含 95 列 Heading）→ 多行 citation 儲存格 92 列
+  母體 = leaves 403（Functional Requirement）→ 多行 citation 儲存格 57 列
+
+兩數皆經執行層獨立實測復現，不衝突。R-C4 之實質規則（取第一行、相異
+section 數 assert == 129）不變。
+
+凡條文載有計數者，一律同時載明母體；未載母體之計數視為未完成之陳述。
+```
+
+---
+
 ## R-C6 ~ R-C7 —— 下放包 02 補遺（Pei 裁定，2026-08-14）
 
 ```
@@ -98,6 +143,87 @@ NR1L-ComfortHMI 群組內單調遞增。
 
 序號由 generator 指派，LLM 不得自行產生 tc_id（§10.3）。
 本 scheme 自本包起凍結，生成開始後不得變更。
+```
+
+---
+
+## R-C8 ~ R-C10 —— 下放包 04 §1（Pei 裁定，2026-08-14）
+
+**R-C9、R-C10 適用全 feature，非 Comfort 專屬**；其安置位置（是否另立 repo
+層級 canon）於下次 canon re-sync 時處理（04 §4）。
+
+```
+R-C8  既有 feature 之 recon 重跑政策
+
+不因共用腳本改版而重跑既有 feature 之 recon。
+
+理由：recon.py 之修改對 Privacy 之 diff 經實測全為增益（新增 assertion 段、
+outline map 段誠實回報無 Outline Number 欄、[RULED] tc_id、兩處措辭修正），
+無任何數字更正，既有結論之事實基礎未變。重跑之唯一實效為覆蓋
+DECISIONS.md，代價大於收益。
+
+例外：若日後發現某腳本缺陷會改變既有 feature 之「數字」而非「呈現」
+（如 A-CF05 之靜默漏計形態），該 feature 必須重跑，且重跑前先將現行
+DECISIONS.md 另存為 DECISIONS.<date>.superseded.md 保全。
+
+判準為「數字是否改變」，不是「差異是否看起來無害」。
+```
+
+```
+R-C9  已簽 DECISIONS.md 之覆寫防護（機械強制）
+
+recon.py 於寫入 DECISIONS.md 前，必須讀取既有檔之 Sign-off 區塊。
+偵測到已簽署時：拒絕覆寫，改寫 DECISIONS.new.md，以非零碼離開，
+訊息指名兩檔路徑。
+
+簽署偵測之判準（機械可判，非人工閱讀）：
+  Sign-off 區塊之 "Reviewed by:" 欄位值非空且不等於底線佔位字串。
+
+本條為機械強制而非紀律：全檔重寫是 recon.py 之既有性質，任何人在任何時候
+重跑既有 feature 都會觸發，不可能靠「記得不要重跑」防守（R19-3）。
+R-C8 是政策，R-C9 是政策失守時的護欄；兩者不互相取代。
+
+適用於所有 feature，非 Comfort 專屬。
+```
+
+```
+R-C10  簽署標記必須被實際填寫
+
+Phase 2 sign-off 完成時，DECISIONS.md 之 Sign-off 區塊必須填入
+Reviewed by 與 Date；留白之範本佔位不構成簽署。
+
+未填寫者，其簽署狀態於 repo 內不可考，依「A ruling not written to the repo
+did not happen」視為未簽署。
+
+recon.py 於 Phase 2 之後、Phase 4 之前的任何階段，若偵測到
+DECISIONS.md 存在 [PROPOSED] 標記且 Sign-off 為空，須輸出警告
+（非阻塞），指明該 feature 之簽署狀態不可考。
+```
+
+---
+
+## R-C11 —— 下放包 06 §1（Pei 裁定，2026-08-14）
+
+其推廣段（spec 素材一律留在 `spec-index/`）**適用全 feature**；安置位置於
+下次 canon re-sync 時處理（06 §5）。
+
+```
+R-C11  spec 來源之單一性
+
+Comfort 之 SR24 SYS1 export 只保留一份，位於
+spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_
+CR24879_(September_25_2023).xlsx。
+
+features/comfort/inputs/ 下之同名副本刪除。feature.yaml 維持以
+../../spec-index/… 全名相對路徑回指，不改為 inputs/。
+
+理由：R-C1 之遵守目前靠「feature.yaml 寫全名指向唯一檔案」達成機械強制
+（上繳 01 §2）。同一基線存在兩份副本時，該強制降級為「目前取對」——
+兩份副本一旦分歧，無任何機制會報錯。
+
+推廣：spec 素材一律留在 spec-index/，不複製進 feature 之 inputs/。
+inputs/ 只放該 feature 專屬且不屬 spec-index 管轄者（037、036 範本、
+CFTS 等引用文件）。
 ```
 
 ---
@@ -147,3 +273,120 @@ NR1L-ComfortHMI 群組內單調遞增。
 
 `test_group: "Comfort"`；`write_back.tc_id_format: "NR1L-ComfortHMI-{n:03d}"`。
 序號由 generator 指派之約束於 Phase 4 落實，此處僅凍結格式。
+
+---
+
+## 執行層回報（2026-08-14，下放包 03／04）
+
+### R-C4-1 —— 兩個母體皆已實測復現
+
+| 母體 | 多行 citation 儲存格 |
+|---|---|
+| 全部資料列 498（含 95 Heading） | **92** |
+| leaves 403（Functional Requirement） | **57** |
+
+`RECON.md` 之 `citation cells with extra lines…: 57` 一行係 403 母體。
+兩數皆為本機直接量測，非引用。
+
+### R-C9 —— 已實作於 writer，含反向驗證三項
+
+實作位置 `scripts/recon.py`：`read_signoff()` 讀既有檔之 Sign-off 區塊，
+`write_decisions()` 為唯一寫入點 —— 護欄放在 writer 而非呼叫端，是因為條文
+指出的失效形態是「任何人在任何時候重跑」，任何需要呼叫端記得的設計都防不住。
+
+偵測判準除條文所定之 `Reviewed by:` 非佔位外，另接受 SXM 形態之
+`- Amendment (…): … directive「…」` 條目（R-C10 註「兩者擇一即可」）。
+佔位字串以 `^[\s_]*$` 判定，因 Projection 用的是 `____________` 而非 `____`。
+
+**反向驗證（人工填 `Reviewed by: TEST  Date: 2026-08-14` 重跑）**：
+
+| # | 應然 | 實測 | 結果 |
+|---|---|---|---|
+| 1 | 拒絕覆寫 | `DECISIONS.md` sha256 前後皆 `e6283e90a266222c` | **PASS** |
+| 2 | 寫出 `DECISIONS.new.md` | 已寫出，55 行 | **PASS** |
+| 3 | 非零離開 | `exit=1` | **PASS** |
+| 4（自加） | 已簽時不誤發 R-C10 警告 | 該警告 0 次 | **PASS** |
+
+訊息實測指名兩檔絕對路徑。**驗畢已還原**：測試填值復原，
+`diff` 與測試前逐位元組相同，`DECISIONS.new.md` 已刪除，重跑回到正常寫入路徑。
+
+第一次量測曾把第 3 項報成 FAIL —— 係 zsh `pipestatus` 索引自 1 而腳本寫
+`${PIPESTATUS[0]}`，取到空字串，屬**量測腳本之缺陷，非實作失敗**。改以直接
+捕捉 `$?` 重測得 `exit=1`。記此一筆，因為它與 §5a 所戒之形態相同：
+量測工具無聲取到空值，而空值在比較式裡看起來像一個結論。
+
+### R-C10 —— 已實作（非阻塞），且對 04 §2 之前提有一處實測訂正
+
+警告於偵測到「`[PROPOSED]` 存在且 Sign-off 為空」時輸出，不影響離開碼。
+Comfort 本身現即觸發（尚未簽署，屬正確狀態）。
+
+**訂正 04 §2 第 2 點之前提**：該點稱「全部 feature 之該區塊都是空白範本，
+偵測器永遠回報未簽署，護欄形同虛設」。以 `read_signoff()` **唯讀**掃描
+（未重跑任何 recon，R-C8）實測：
+
+| feature | signed | Reviewed by | Date | Amendment | `[PROPOSED]` |
+|---|---|---|---|---|---|
+| home | ✗ | — | — | 0 | 有 |
+| **amfm** | **✓** | PeiPYHsu | 2026-08-09 | 0 | 有 |
+| **sxm** | **✓** | PeiPYHsu | 2026-08-10 | 11 | 有 |
+| projection | ✗ | — | — | 0 | 有 |
+| media | — | （無 `DECISIONS.md`） | | | |
+| privacy | ✗ | — | — | 0 | 有 |
+| comfort | ✗ | — | — | 0 | 有 |
+
+**六個有 `DECISIONS.md` 之 feature 中，兩個已簽。** R-C9 之護欄對 amfm 與
+sxm **今日即為有效**，非「形同虛設」。04 §2 之裁決結論（加 R-C10）不受影響
+——R-C10 仍是必要的，因為另外四個確實是空白範本 —— 但其理由中「一次也不會
+觸發」一句不成立。
+
+此訂正同時使 R-C8 之份量上升：amfm／sxm 若被重跑，覆蓋的是**有 repo 證據
+的簽署**，不只是空白範本。
+
+`media` 無 `DECISIONS.md` —— 既非已簽亦非空白範本，屬 A-CF09 之外的第三種
+狀態，一併記於該條。
+
+---
+
+## 執行層回報（2026-08-14，下放包 05／06）
+
+### R-C5-1 —— 已生效，A-CF08 已更新
+
+該 16 節退出 R-C5 之適用範圍，併入 A-CF08 之 in-baseline substantive 集合。
+**現況未變**：仍不產 TC、不入分母、不列 BLOCKED、不補 RD，待 D-C10。
+改變的是「為何暫不處置」的理由 —— 由「屬 SR25 故 out of scope」改為
+「在基線內，處置待裁」。
+
+### R-C11 —— 已執行刪除，前提逐項確認在先
+
+刪除為不可逆，故先驗後刪，逐項留痕：
+
+| 前提 | 實測 | 結果 |
+|---|---|---|
+| `spec-index/cache/` 該份仍在 | 存在 | ✅ |
+| 大小為 70,040 bytes | 70,040 | ✅ |
+| （自加）與待刪副本內容相同 | 兩者 SHA256 皆 `6982d37db81b36e4…` | ✅ |
+
+第三項為執行層自加。條文只要求確認 `spec-index/` 那份在且大小相符，但
+「大小相同」不蘊含「內容相同」—— 而刪除的正當性取決於後者。兩份 SHA256
+逐位元組相同，故刪除不損失任何內容。若兩者曾分歧，本次比對就是唯一會
+發現它的時機（也正是 R-C11 立條之理由：分歧無任何機制會報錯）。
+
+刪後複測：`spec-index/` 該份仍在且仍為 70,040 bytes；`recon.py` 四個
+assertion 全 PASS（129/129 outline 查得，miss=0），`feature.yaml` 之
+`../../spec-index/…` 路徑照常解析，未改為 `inputs/`。
+
+登記 **A-CF10**，記錄該副本曾存在之事實。
+
+### 06 §3 適用性判讀 —— 10 in_scope／7 undetermined／0 out_of_scope
+
+`data/sr24_substantive_applicability.tsv`，17 節與 A-CF08 之 substantive
+集合對稱差為空。詳見 `docs/upstream/03_applicability.md`。
+
+**一處差點造成誤判，記於此**：SR24 §20 標題作 "LATAM **Alternative** Rear
+Blower"，CFTS043 全篇作 "Altern**ate** Rear Blower"，且從不使用
+"Alternative"、亦不以 LATAM 標示該功能。以客戶自己的用詞搜尋 CFTS043
+得 **0 命中**，若就此收手，10 節會被判成 `out_of_scope`——
+一個有完整依據外觀、方向完全相反的結論。詳 **A-CF11**。
+
+這是下放包 06 §3「讀不到即 undetermined，不得以讀不到判 out_of_scope」所
+防的形態，但實際發生的版本更隱蔽：**不是讀不到，是用錯字串去讀而讀不到**。

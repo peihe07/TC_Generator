@@ -29,6 +29,13 @@ DECISIONS.md written.
 - map written to `data/spec_id_to_outline.tsv` (tracked — a diff on it is the
   signal that the spec export moved underneath us)
 
+## Uncited baseline sections
+- baseline outline entries: 180; cited by the leaves: 129; **uncited: 51**
+- these sit INSIDE the ruled baseline — a different question from content in an out-of-scope revision, and not answered by any ruling about that revision
+- classification (`data/sr24_uncited_sections.tsv`, 51 rows): container 20、assumption 9、figure 5、substantive 17
+- **substantive: 17** — ['16.1', '18.2', '18.3', '18.4', '19.1', '19.2', '19.3', '20.1', '20.1.1', '20.1.2', '20.1.3', '20.2', '20.3', '20.4', '20.4.1', '20.4.2', '20.4.3']
+  classify only; disposition of these is a ruling, not a detection (§8.2, §8.4.2)
+
 ## Workbook
 - workbook_state: **BLANK**
 - form layout revision: C (has Estimated Test Time)

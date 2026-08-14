@@ -1,0 +1,52 @@
+outline	polarion_id	description_80	classification	cited_descendants	total_descendants	why
+1	NRL-153330	Assumptions	container	0	8	heading with descendants, no prose of its own
+1.1	NRL-153331	Th is specification covers the requirements for the R1 Low 7", R1 Low 8.4", R1 L	assumption	0	0	scope/applicability statement, no behavioural claim
+1.2	NRL-153332	Differences between the radios will be specified.	assumption	0	0	scope/applicability statement, no behavioural claim
+1.3	NRL-153333	Differences between Regions will be specified.	assumption	0	0	scope/applicability statement, no behavioural claim
+1.4	NRL-153334	Unless otherwise specified, the 12" Portrait user interface will be a scaled up 	assumption	0	0	scope/applicability statement, no behavioural claim
+1.5	NRL-153335	Unless otherwise specified, the 12.3" user interface will be a scaled up version	assumption	0	0	scope/applicability statement, no behavioural claim
+1.6	NRL-153336	Unless otherwise specified, the 14.46" user interface will follow the 12" Portra	assumption	0	0	scope/applicability statement, no behavioural claim
+1.7	NRL-153337	Reference PDO release for all official graphics and animation examples	assumption	0	0	scope/applicability statement, no behavioural claim
+1.8	NRL-153338	Whenever Driver and Passenger labels are present, they should be mapped coherent	assumption	0	0	scope/applicability statement, no behavioural claim
+2	NRL-153339	Front Comfort/Climate	container	22	22	heading with descendants, no prose of its own
+3	NRL-153363	Climate Main Tri-Modes	container	4	4	heading with descendants, no prose of its own
+4	NRL-153368	7" Comfort/Climate	container	0	1	heading with descendants, no prose of its own
+4.1	NRL-153369	7" Comfort/Climate	figure	0	0	image reference with title-length caption only
+5	NRL-153370	10.25" Comfort/Climate	container	0	1	heading with descendants, no prose of its own
+5.1	NRL-153371	10.25" Comfort/Climate	figure	0	0	image reference with title-length caption only
+6	NRL-153372	12.3" Comfort	container	1	3	heading with descendants, no prose of its own
+6.1	NRL-153373	10.25" and 12.3" HVAC Popups for dual zone climate with dual airflow modes	figure	0	0	image reference with title-length caption only
+6.2	NRL-153374	12.3' with secondary non-foldable lower screen	figure	0	0	image reference with title-length caption only
+7	NRL-153376	Rear Comfort/Climate	container	11	11	heading with descendants, no prose of its own
+8	NRL-153388	Rear Comfort/Climate – TRI-MODES	container	0	1	heading with descendants, no prose of its own
+8.1	NRL-153389	Rear Comfort/Climate – TRI-MODES	figure	0	0	image reference with title-length caption only
+9	NRL-153390	Rear Comfort/Climate – Additional controls	container	5	5	heading with descendants, no prose of its own
+10	NRL-153396	ECO HVAC (BEV only)	container	10	10	heading with descendants, no prose of its own
+11	NRL-153407	R1 Heated/Vented Seats	container	13	13	heading with descendants, no prose of its own
+12	NRL-153421	Heated/Vented Seats - CARRYOVER	container	9	9	heading with descendants, no prose of its own
+13	NRL-153431	Seat Control Tab	container	7	8	heading with descendants, no prose of its own
+13.1	NRL-153432	For vehicles equipped and configured with a lower comfort screen that does not h	assumption	0	0	scope/applicability statement, no behavioural claim
+14	NRL-153440	HVAC Popups	container	22	22	heading with descendants, no prose of its own
+15	NRL-153463	HVAC Pop-ups Chart	container	1	1	heading with descendants, no prose of its own
+16	NRL-153465	ICS CLIMATE EMEA – CARRYOVER	container	18	19	heading with descendants, no prose of its own
+16.1	NRL-153466	EMEA ICS behavior is described in this page. For behaviors not explicitly report	substantive	0	0	deontic verb 'must' in prose
+17	NRL-153485	Home screen - Comfort Widget	container	5	5	heading with descendants, no prose of its own
+18	NRL-153491	10.25" Home screen - Comfort Widget	container	1	4	heading with descendants, no prose of its own
+18.2	NRL-153493	BCW1.) The Climate widget includes: In 33% size: Sync button (Max A/C button in 	substantive	0	0	numbered clause prefix BCW1.)
+18.3	NRL-153494	BCW2.) If the climate is Off the widget (all sizes) will show the title Climate 	substantive	0	0	numbered clause prefix BCW2.)
+18.4	NRL-153495	BCW2.) The second Comfort widget screen includes all Comfort features available 	substantive	0	0	numbered clause prefix BCW2.)
+19	NRL-153496	7" Home screen - Comfort Widget	container	0	3	heading with descendants, no prose of its own
+19.1	NRL-153497	W0.) The Comfort widget will have two screens: Comfort and Seats.	substantive	0	0	numbered clause prefix W0.)
+19.2	NRL-153498	LCW1.) The default screen for the Comfort widget is the Climate screen and inclu	substantive	0	0	numbered clause prefix LCW1.)
+19.3	NRL-153499	LCW2.) The second Comfort widget screen includes all Comfort features available 	substantive	0	0	numbered clause prefix LCW2.)
+20	NRL-153500	LATAM Alternative Rear Blower (See CFTS043 for applicable vehicles)	container	0	10	heading with descendants, no prose of its own
+20.1	NRL-153501	CRB1.) Front Hard controls do not switch to controlling the Rear Blower when on 	substantive	0	3	numbered clause prefix CRB1.)
+20.1.1	NRL-153502	CRB1.1) Rear hard controls changes will not provide climate pop-ups on the front	substantive	0	0	numbered clause prefix CRB1.1)
+20.1.2	NRL-153503	CRB1.2) Unless on the use-case of CRB1.3 and CRB4.2, pressing rear hard controls	substantive	0	0	numbered clause prefix CRB1.2)
+20.1.3	NRL-153504	CRB1.3) If the Rear Blower system is unavailable and if any of the rear hard con	substantive	0	0	numbered clause prefix CRB1.3)
+20.2	NRL-153505	CRB2.) REAR LOCK has on / off state. Rear lock will lockout the rear climate con	substantive	0	0	numbered clause prefix CRB2.)
+20.3	NRL-153506	CRB3.) Fan ranges: 1-4. The status is indicated on TS rear climate screen. When 	substantive	0	0	numbered clause prefix CRB3.)
+20.4	NRL-153507	CRB4.) Rear Blower climate off has on/off state that is indicated on TS (Rear Bl	substantive	0	3	numbered clause prefix CRB4.)
+20.4.1	NRL-153508	CRB4.1) Pressing REAR ON button should activate the system with ventilation on t	substantive	0	0	numbered clause prefix CRB4.1)
+20.4.2	NRL-153509	CRB4.2) If the front ventilation mode is not on front or front+feet grey out REA	substantive	0	0	numbered clause prefix CRB4.2)
+20.4.3	NRL-153510	CRB4.3) If the Rear Blower is turned OFF due to a change on the HVAC mode hard c	substantive	0	0	numbered clause prefix CRB4.3)
