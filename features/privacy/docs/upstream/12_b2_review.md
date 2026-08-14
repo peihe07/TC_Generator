@@ -333,3 +333,5 @@ marker 文字，都還沒有經過 `write_back` 路徑。AMFM 的 writer 對
 placeholder 列有專門的檢查（priority 與 design_method 須空、
 procedure／ER 須為固定字串），但 **Privacy 的寫回腳本尚未建立**（R20-5）。
 BLOCKED 列在寫回時的實際行為未驗。
+
+<!-- UPSTREAM-COVERS: 12 -->

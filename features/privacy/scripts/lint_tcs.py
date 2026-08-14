@@ -309,7 +309,13 @@ def lint_file(path: Path, auth: dict) -> list[tuple[str, str]]:
 
 # ------------------------------------------------- workbook column policy
 
-ENTRY_RE = re.compile(r"^#\s*ENTRY\s+(\d{3})\b")
+# An entry header is `# ENTRY NNN — …`; the em dash is what separates a real
+# header from prose that merely mentions an entry. Without it, a line inside
+# ENTRY 003 reading `#   ENTRY 001 = ed741d8d… / 59,992 B` was parsed as the
+# start of a new entry, which cut the blocks in the wrong places and made the
+# STATUS check read the wrong last lines. Same class as the bare `#`: the
+# standard did not move, the parser was reading too loosely.
+ENTRY_RE = re.compile(r"^#\s?ENTRY\s+(\d{3})\s*\u2014")
 STATUS_RE = re.compile(r"^#\s*STATUS:\s*(.+?)\s*\(([^,]+),\s*([\d-]+)\)\s*$")
 
 

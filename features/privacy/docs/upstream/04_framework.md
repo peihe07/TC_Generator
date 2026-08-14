@@ -540,3 +540,5 @@ and git had nothing to restore because both paths are gitignored.
    但它同時也是 **P4 的前置條件** —— 而 B1 生成（下一包）就會開始往那份
    工作簿寫入。**建議在 B1 下放包之前先完成這次開啟確認**，否則會出現
    「往一份未驗證可開啟的檔案寫入 5 筆 TC」的順序問題。
+
+<!-- UPSTREAM-COVERS: 04 -->

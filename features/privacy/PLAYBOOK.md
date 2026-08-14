@@ -190,8 +190,18 @@ Remarks = reason + anomaly id.
       B1 五葉 6 TC + B2 四葉 4 TC + BLOCKED 1 列 = **11 TC / 10 葉**。
       -008 依 R34-1 之 ECU 歸屬判準排除於驗證範圍，但仍產出一列
 - [x] **P7 完成（Pei Excel 實開確認，2026-08-13，七點全過 —— R38-1）**
-      tag: ____（建議 `fw036-privacy-v1`，Tier 3 未執行）;
-      submitted: ____（Tier 3）; RD-1 sent: ____（#6–#13 八項，Tier 3）
+      tag: **`fw036-privacy-v1`**（annotated，指向 commit `3b54a40`，
+      2026-08-14）; submitted: **2026-08-14**; RD-1 sent: ____（#6–#13 八項）
+      - **交付路徑** `/Users/peihe/Work/02_Project_R1LR/10_Reviewing/
+        00_TestCase/ASW-R2/Privacy Mode/`
+      - **交付檔名** `…_SWQT_Privacy_20260813.xlsx`（去 `_regen-v1`，
+        與 AMFM／SXM 命名一致 —— R40-1(b)）
+      - 交付副本 SHA256 與 ENTRY 002 **逐字元相符**（R40-1(d) 實測）；
+        zip 成員 48、sheet6 DV classic 3 / x14 2 亦複驗相符
+      - `DELIVERY.sha256` **ENTRY 003** 已追加；其雜湊行指向**交付副本本身**
+        （客戶樹絕對路徑），非 repo 內副本 —— 否則該行與 ENTRY 002 重複，
+        成為不可能獨立失敗之檢查
+      - ⚠️ 交付檔名與 ENTRY 001 之 basename 相同而內容不同 —— **A-PV21**
       - 產出 `output/…_Privacy_20260813_regen-v1.xlsx`
       - SHA256（**全長**，R15-4 不截斷）
         `ad595ed0cad24375b64762679487e1e79c714b06f203c0b0c081d6da3b420b7f`

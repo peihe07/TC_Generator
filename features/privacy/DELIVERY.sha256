@@ -52,6 +52,21 @@
 #             不構成一個工作簿狀態，不符本台帳的記錄單位。
 ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813.xlsx
 #   STATUS: 準備完成之工作簿，已經 Excel 確認；為 ENTRY 002 之輸入基準 (R29-1, 2026-08-13)
+#   ── 路徑變更 2026-08-14（R46-3，A-PV21）────────────────────────────
+#   改名前  …_SWQT_Privacy_20260813.xlsx
+#   改名後  …_SWQT_Privacy_20260813_prepared.xlsx
+#   SHA256  ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4
+#           （**不變** —— 只改檔名，內容未動）
+#   理由    交付件採 R40-1(b) 之命名 `…_SWQT_Privacy_20260813.xlsx` 後，
+#           本檔與其 basename 相同而內容不同（A-PV21）。本檔為準備中間檔、
+#           非交付件，改名成本最低；撞名之實害是「有人在 output/ 找交付件，
+#           拿到沒有 TC 的那一份」。
+#   上一行之雜湊行**保留不刪**（append-only，R27-2）：其路徑已不存在，
+#           `--ignore-missing` 會靜默略過。保留是為了讓改名這件事在台帳上
+#           留下痕跡 —— 刪掉它會使改名看起來從未發生（R41-4：紀錄之缺口
+#           應被標記，不應被填補）。下一行為改名後之現行雜湊行。
+ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813_prepared.xlsx
+#   STATUS: 準備工作簿，已改名為 _prepared；為 ENTRY 002 之輸入基準 (R46-3, 2026-08-14)
 #
 # ENTRY 002 — 2026-08-14 — P6／P7 寫回產出（**非交付件**）
 #   狀態      未打 tag、未 commit、未交付。**執行層不宣告 P7 完成** ——
@@ -92,3 +107,30 @@ ed741d8d23f74878a340bbe7f9d437e4d6a73a207f2749af1da88fd85ef5b7e4  output/FM-WI-F
 #             未經破壞之本產出兩層皆通過。三層 invariant 自此為實測有效。
 ad595ed0cad24375b64762679487e1e79c714b06f203c0b0c081d6da3b420b7f  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813_regen-v1.xlsx
 #   STATUS: P7 完成，交付候選；未打 tag、未 commit、未交付 (R38-1, 2026-08-13)
+#
+# ENTRY 003 — 2026-08-14 — **已交付**
+#   交付路徑  /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
+#             ASW-R2/Privacy Mode/
+#   交付檔名  FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case
+#             Specification & Result_SWQT_Privacy_20260813.xlsx
+#             （去 `_regen-v1`，與 AMFM／SXM 命名一致 —— R40-1(b)）
+#   bytes     63,001
+#   交付日期  2026-08-14
+#   內容      **內容同 ENTRY 002，僅檔名與位置不同。**
+#             SHA256 與 ENTRY 002 逐字元相符（R40-1(d) 實測，非推定）；
+#             另複驗 zip 成員 48、sheet6 DV classic 3 / x14 2 —— 皆相同。
+#   tag       fw036-privacy-v1（指向 commit 3b54a40）
+#   ⚠️ 同名不同容  本檔之 basename 與 ENTRY 001 相同
+#             （`…_SWQT_Privacy_20260813.xlsx`）而內容不同：
+#             ENTRY 001 = ed741d8d… / 59,992 B（準備工作簿，於 output/）
+#             ENTRY 003 = ad595ed0… / 63,001 B（交付件，於 10_Reviewing/）
+#             以 basename 索引者會取得兩個候選。依 R15-5 一律以 hash 認定。
+#             登記為 A-PV21。
+#   路徑欄    本條之雜湊行指向**交付副本本身**（客戶樹之絕對路徑），
+#             不指向 repo 內之 ENTRY 002 副本。理由：若指向後者，
+#             本行與 ENTRY 002 之行完全相同，`shasum -c` 會驗兩次同一個檔 ——
+#             一條**不可能獨立失敗**的檢查行，等於沒有（R18-4 / R34-5）。
+#             ENTRY 003 存在的目的正是驗交付出去的那一份。
+#             客戶樹不可及時由 --ignore-missing 靜默略過（R27-1）。
+ad595ed0cad24375b64762679487e1e79c714b06f203c0b0c081d6da3b420b7f  /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/Privacy Mode/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Privacy_20260813.xlsx
+#   STATUS: 已交付至 10_Reviewing/00_TestCase/ASW-R2/Privacy Mode/ (R40-1, 2026-08-14)

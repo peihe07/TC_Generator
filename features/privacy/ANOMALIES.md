@@ -774,6 +774,85 @@ R41-8 明裁「交付前夕不動共用 script」。
 
 **相關**：A-PV13（實例，已 RESOLVED）；`RULINGS.md` R41-8 / R39-2 / R37-3(a)。
 
+## A-PV21 — 為外部素材所立之規則未回頭套用於自有工具 — **RESOLVED（R46-3 / R46-4，2026-08-14）**
+
+> **主述依 R46-4 更正**：本條之核心**不是命名衝突**，而是
+> **R15-5（同名檔一律以 hash 認定）係為外部素材而立，未回頭套用於本 repo
+> 之自有工具** —— 基準稽核腳本正是 basename 索引。命名衝突是其表徵。
+>
+> §5a：**對外部素材所立之規則，須逐條檢查是否同樣適用於自有工具與自有
+> 產物**；「這條是給上游的」不構成豁免。判準：該規則所防範之失效模式，
+> 在自有側是否同樣可能發生。
+
+**表徵**（交付後實測，2026-08-14）：
+
+| 檔案 | 位置 | SHA256 | bytes |
+|---|---|---|---|
+| `…_SWQT_Privacy_20260813.xlsx` | `features/privacy/output/`（ENTRY 001，準備工作簿）| `ed741d8d…` | 59,992 |
+| `…_SWQT_Privacy_20260813.xlsx` | `10_Reviewing/…/Privacy Mode/`（ENTRY 003，**交付件**）| `ad595ed0…` | 63,001 |
+
+**basename 完全相同，內容不同。**
+
+**成因不是疏失，是規則之必然後果。** R40-1 為使交付檔名與 AMFM／SXM 一致
+而去掉 `_regen-v1`，同時 R40-1(a) 令 `output/` 內之準備工作簿維持原名
+`…_Privacy_20260813.xlsx`。兩項規則各自正確，合起來即產生同名不同容。
+
+**這正是 A-PV04 之型**（`VF651_V2_R2.docx` 七路徑五內容），而該案之教訓
+已成 **R15-5：同名檔一律以 hash 認定**。機制上已有防護：
+
+- `DELIVERY.sha256` 三筆各記全長 SHA256，ENTRY 003 明文載
+  「內容同 ENTRY 002，僅檔名與位置不同」並附同名警示
+- ENTRY 003 之雜湊行指向交付副本之**絕對路徑**，與 ENTRY 001 之
+  `output/…` 相對路徑不衝突，`shasum -c` 三筆各自獨立驗證
+
+**殘餘風險**：以 **basename 索引**之工具會取得兩個候選。
+本 repo 之基準稽核腳本（下放包 01 §2 / 07）正是 basename 索引 ——
+日後若對 `10_Reviewing/` 樹做同型稽核，`…_Privacy_20260813.xlsx`
+會同時命中準備工作簿與交付件。
+
+**處置 —— Pei 簽署選項 A（R46-3），已執行**：
+
+| 項 | 結果 |
+|---|---|
+| (a) `output/` 內 ENTRY 001 改名為 `…_SWQT_Privacy_20260813_prepared.xlsx` | ✅ SHA256 `ed741d8d…` **未變**（只改檔名）|
+| (b) `DELIVERY.sha256` 追加路徑變更註記（append，不改寫既有欄位）| ✅ 含改名前後檔名、SHA256、裁決編號、日期，末行為 `STATUS:`（R39-5）|
+| (c) 改名後 `shasum -a 256 -c` 三筆全 OK | ✅ 停手條件 1 未觸發 |
+
+**舊路徑之雜湊行保留不刪**：其路徑已不存在，`--ignore-missing` 靜默略過。
+保留是為了讓改名在台帳上留下痕跡 —— 刪掉會使改名看起來從未發生
+（R41-4：紀錄之缺口應被標記，不應被填補）。
+
+**稽核腳本之設計維持不變**（R46-4）：basename 檢索 + hash 認定。
+該設計**有效** —— A-PV04（`VF651_V2_R2.docx` 七路徑五內容）正是以此抓到。
+須注意的是**不得日後被「簡化」為純 basename 比對**；理由已記於本條與
+`docs/upstream/01_carryover.md` §2.1 之量測條件。
+
+**相關**：`RULINGS.md` R40-1 / R15-5；A-PV04；`DELIVERY.sha256` ENTRY 001／003。
+
+## A-PV20 — AMFM 之下放包 03 亦無對應上繳包（跨 feature 觀察）— **DEFERRED — 待 AMFM 重啟時處理（R44-9）**
+
+**跨 feature 觀察**，記於 Privacy 之 ANOMALIES 因發現於 Privacy 之 parity 作業。
+
+`features/amfm/docs/handoff/` 有四份下放包（01–04），
+`docs/upstream/` 有三份（01、02、04）—— **03 無對應上繳包**。
+
+**與 Privacy 之 08 同型**（應產而未產），且該包正是
+**R17-1 ~ R17-4 遭擱置之來源包** —— 那四條簽署條文因 03 未產上繳包而
+從未寫入 `RULINGS.md`，直到 R19-2 才補正。**同型缺口已造成過一次實害。**
+
+**處置（R44-9）**：**登記，本輪不處理。** 依 Pei 2026-08-13 之裁示
+（「只專心做 Privacy」）與 R18-1（做過的不重產），AMFM 不在現行工作焦點內。
+
+**parity 測試維持僅涵蓋 `features/privacy`**（R41-6）。擴及他 feature 需另裁 ——
+其餘 feature 之往返多未落檔，直接套用會產生大量 `unknown`，
+反而稀釋該機制之訊號。
+
+**重啟 AMFM 時之建議**：先為其 `docs/handoff/` 補 `HANDOFF-LINK` 標記
+並建 `handoff_parity.json`，再擴充測試涵蓋範圍 ——
+順序反過來會先得到一堆 FAIL 而無從逐項認定。
+
+**相關**：`RULINGS.md` R44-9 / R19-2 / R41-4；A-PV21（同屬「規則未回頭套用」之族）。
+
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-PVnn]`

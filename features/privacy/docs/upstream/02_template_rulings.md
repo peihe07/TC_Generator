@@ -211,3 +211,5 @@ RESOLVED 的是「Privacy 這份 workbook 的表頭六格如何處置」，
    `feature.yaml` 有 `scope_label` / `scope_source` 設定、且已交付 ——
    當初是否也把 Cover 封面當成交付責任欄位而動過？**未查**。
    本包範圍限 Privacy，但這條規則是跨 feature 的。
+
+<!-- UPSTREAM-COVERS: 02 -->

@@ -241,3 +241,5 @@ verdict: P7 must use the surgical path
    `=IF(ISBLANK($D10),"",ROW()-9)` —— 序號自 D 欄推算。原清除計畫寫「清空
    B10:AH11」會刪掉範本的序號機制；修訂為只清 D10/F10/G10/S10/D11 五格之
    值、保留 `s=` 樣式屬性，B 欄自動跟隨。已在探針中實測通過。
+
+<!-- UPSTREAM-COVERS: 00 -->

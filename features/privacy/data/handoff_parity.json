@@ -1,0 +1,139 @@
+{
+ "_doc": "R45-3 —— handoff／upstream 對應表之受版控載體。先前此表只存在於上繳包之表格中，而 `20 -> chat-direct:R42` 這類條目**描述的正是「沒有下放包」**，卻只能寄生於下放包檔案 —— 標記之載體不得是其所描述之對象。故改為獨立資料檔。`tests/test_privacy_handoff_parity.py` 讀本檔並與實際檔案雙向比對：檔案有而表無 → FAIL；表有而檔無且狀態非 chat-direct → FAIL；chat-direct 項豁免檔案存在檢查。",
+ "_status_values": {
+  "upstream:<NN>": "本包產出自己的上繳包",
+  "merged into <NN>": "上繳併入他包",
+  "pending:<NN>": "已宣告落點，尚未執行（可認定之未完成態，R44-2）",
+  "chat-direct:<裁決編號>": "該輪由 chat 直下、未產下放包（R44-3）",
+  "no-upstream-required": "設計上不要求上繳包",
+  "no-upstream-produced": "應產而未產（缺口，照實標，R41-4）"
+ },
+ "packages": [
+  {
+   "nn": "00",
+   "status": "upstream:00",
+   "handoff": "00_bootstrap.md"
+  },
+  {
+   "nn": "01",
+   "status": "upstream:01",
+   "handoff": "01_carryover.md"
+  },
+  {
+   "nn": "02",
+   "status": "upstream:02",
+   "handoff": "02_template_rulings.md"
+  },
+  {
+   "nn": "03",
+   "status": "upstream:03",
+   "handoff": "03_platform_baseline.md"
+  },
+  {
+   "nn": "04",
+   "status": "upstream:04",
+   "handoff": "04_framework.md"
+  },
+  {
+   "nn": "05",
+   "status": "merged into 07",
+   "handoff": "05_output_location.md"
+  },
+  {
+   "nn": "06",
+   "status": "merged into 07",
+   "handoff": "06_ledger_semantics.md"
+  },
+  {
+   "nn": "07",
+   "status": "upstream:07",
+   "handoff": "07_profile_approval.md"
+  },
+  {
+   "nn": "08",
+   "status": "no-upstream-produced",
+   "handoff": "08_gate2_swap.md"
+  },
+  {
+   "nn": "09",
+   "status": "upstream:09",
+   "handoff": "09_b1_pilot.md"
+  },
+  {
+   "nn": "10",
+   "status": "no-upstream-required",
+   "handoff": "10_b1_review.md"
+  },
+  {
+   "nn": "11",
+   "status": "upstream:11",
+   "handoff": "11_p6_p7_b2.md"
+  },
+  {
+   "nn": "12",
+   "status": "upstream:12",
+   "handoff": "12_b2_review.md"
+  },
+  {
+   "nn": "13",
+   "status": "upstream:13",
+   "handoff": "13_traceback.md"
+  },
+  {
+   "nn": "14",
+   "status": "upstream:14",
+   "handoff": "14_writeback.md"
+  },
+  {
+   "nn": "15",
+   "status": "merged into 16",
+   "handoff": "15_closeout.md"
+  },
+  {
+   "nn": "16",
+   "status": "upstream:16",
+   "handoff": "16_p7_done.md"
+  },
+  {
+   "nn": "17",
+   "status": "upstream:17",
+   "handoff": "17_predelivery.md"
+  },
+  {
+   "nn": "18",
+   "status": "merged into 17",
+   "handoff": "18_delivery_naming.md"
+  },
+  {
+   "nn": "19",
+   "status": "merged into 17",
+   "handoff": "19_parity.md"
+  },
+  {
+   "nn": "20",
+   "status": "chat-direct:R42",
+   "handoff": null,
+   "note": "該輪由 chat 直下（bytes 歸屬錯誤之更正），未產下放包；編號跳過為分析層疏失（R44-3）。"
+  },
+  {
+   "nn": "21",
+   "status": "merged into 17",
+   "handoff": "21_release.md"
+  },
+  {
+   "nn": "22",
+   "status": "merged into 17",
+   "handoff": "22_final.md"
+  },
+  {
+   "nn": "23",
+   "status": "merged into 17",
+   "handoff": "23_annotation_final.md"
+  },
+  {
+   "nn": "24",
+   "status": "upstream:24",
+   "handoff": "24_closeout.md"
+  }
+ ]
+}

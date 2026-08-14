@@ -432,3 +432,5 @@ annotation 內之 SHA256、bytes、成員數、DV 計數皆取自本輪之產出
 而 AMFM／SXM 之交付件檔名**不帶該後綴**。
 若交付時需改名，**改名會使 `DELIVERY.sha256` 之路徑記載失準**
 （雜湊不變、路徑變）。屆時需追加一筆 ENTRY 或於該筆加註。
+
+<!-- UPSTREAM-COVERS: 15 16 -->

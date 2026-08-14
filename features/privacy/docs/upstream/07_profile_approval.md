@@ -230,3 +230,5 @@ $ git ls-files features/privacy | grep sha256
    我沒有動它任何一個字（連修訂 1 那個與對映無關的 design method 條款
    也沒改），因為部分修訂會讓它更難判斷處於哪一版。
    **這是刻意的保守處置，但代價是修訂 1 也一併延後了。**
+
+<!-- UPSTREAM-COVERS: 05 06 07 -->
