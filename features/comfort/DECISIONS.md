@@ -6,7 +6,7 @@ sign-off = binding as proposed.
 
 ## 1. Intake
 - spec_mode: [AUTO] A
-- spec text layer: [AUTO] unknown (pymupdf not installed)
+- spec text layer: [AUTO] text-layer: 62782 chars (via pdftotext)
 - source files: [AUTO] 4 present (SHA256 in RECON.md)
 - ruled-constant assertions: [AUTO] 4 checked, 4 PASS, 0 FAIL (measured values in RECON.md)
 - spec outline map: [AUTO] 129 cited sections, all found in a 180-entry ruled export; map at data/spec_id_to_outline.tsv

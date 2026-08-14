@@ -1,0 +1,130 @@
+chapter	chapter_title	outline	section_title	leaf_count	req_ids
+2	Front Comfort/Climate	2.1	R1C1.) The comfort category will have up to 4 tabs depending	3	SWE1-HVAC-001
+2	Front Comfort/Climate	2.2	C1.) Whenever changes to the climate system are made via har	8	SWE1-HVAC-002
+2	Front Comfort/Climate	2.3	C2.) AUTO has on/ off state. The fan speed indicator shows A	9	SWE1-HVAC-003
+2	Front Comfort/Climate	2.3.1	C2.1) Some vehicles with dual zone climate with dual airflow	2	SWE1-HVAC-004
+2	Front Comfort/Climate	2.4	C3.) AC has on/ off state. Auto can automatically turn on AC	4	SWE1-HVAC-005
+2	Front Comfort/Climate	2.5	C4.) Recirc has on/ off state. RECIRC is not available in ce	4	SWE1-HVAC-006
+2	Front Comfort/Climate	2.5.1	C4.1) Some vehicles have a configuration for a 3 state toggl	2	SWE1-HVAC-007
+2	Front Comfort/Climate	2.6	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28,	5	SWE1-HVAC-008
+2	Front Comfort/Climate	2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects pa	6	SWE1-HVAC-009
+2	Front Comfort/Climate	2.7	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instea	5	SWE1-HVAC-010
+2	Front Comfort/Climate	2.7.1	C6.1) In some vehicles fan speed ranges for front hvac are: 	1	SWE1-HVAC-011
+2	Front Comfort/Climate	2.8	C7.) Defrost has on/ off state. Defrost can automatically tu	6	SWE1-HVAC-012
+2	Front Comfort/Climate	2.9	C8.) Rear Defrost has on/ off state. REAR DEFROST is not ava	4	SWE1-HVAC-013
+2	Front Comfort/Climate	2.10	C11.) Climate off has on/off state that is indicated on HC, 	6	SWE1-HVAC-014
+2	Front Comfort/Climate	2.11	C12.) SYNC has on/ off state that is indicated on climate sc	5	SWE1-HVAC-015
+2	Front Comfort/Climate	2.12	C13.) There are 4 Airflow Mode displayed in this order (1) F	3	SWE1-HVAC-016
+2	Front Comfort/Climate	2.12.1	C13.0) In some non-tri mode equipment types, airflow modes h	2	SWE1-HVAC-017
+2	Front Comfort/Climate	2.12.2	C13.1) If the Mode hard control is pressed the user will be 	6	SWE1-HVAC-018
+2	Front Comfort/Climate	2.13	C14.) MAX A/C screens/popups are to be used when CCM relays 	3	SWE1-HVAC-019
+2	Front Comfort/Climate	2.14	C15.) MTC screens/popups are to be used when CCM relays MTC 	4	SWE1-HVAC-020
+2	Front Comfort/Climate	2.15	C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. E	2	SWE1-HVAC-021
+2	Front Comfort/Climate	2.16	C18.) If blower reduction occurs automatically due to an act	2	SWE1-HVAC-022
+3	Climate Main Tri-Modes	3.1	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, th	3	SWE1-HVAC-023
+3	Climate Main Tri-Modes	3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replace	8	SWE1-HVAC-024
+3	Climate Main Tri-Modes	3.3	C21.) MAX DEF and REAR DEF are available during climate off.	2	SWE1-HVAC-025
+3	Climate Main Tri-Modes	3.4	C22.) For soft top vehicles such as JL/JT, when configured, 	1	SWE1-HVAC-026
+6	12.3" Comfort	6.3	CM1.) When a vehicle is configured with a non-foldable secon	1	SWE1-HVAC-027
+7	Rear Comfort/Climate	7.1	CR1.) Hard controls do not switch to controlling the rear cl	3	SWE1-HVAC-028
+7	Rear Comfort/Climate	7.1.1	CR1.1) Rear hard controls changes will not provide popups on	3	SWE1-HVAC-029
+7	Rear Comfort/Climate	7.2	CR2.) Rear AUTO has on/ off state. The fan speed indicator s	5	SWE1-HVAC-030
+7	Rear Comfort/Climate	7.3	CR3.) LOCK REAR has on/ off state. Rear lock will lockout th	3	SWE1-HVAC-031
+7	Rear Comfort/Climate	7.4	CR4.) Temperature ranges: LO, 60-84, HI. The status is indic	4	SWE1-HVAC-032
+7	Rear Comfort/Climate	7.5	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO inste	4	SWE1-HVAC-033
+7	Rear Comfort/Climate	7.6	CR6.) Rear climate off has on/off state that is indicated on	5	SWE1-HVAC-034
+7	Rear Comfort/Climate	7.7	CR7.) SYNC has on/ off state that is indicated on climate sc	3	SWE1-HVAC-035
+7	Rear Comfort/Climate	7.8	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face 	5	SWE1-HVAC-036
+7	Rear Comfort/Climate	7.9	CR9.) AC has on/ off state.	1	SWE1-HVAC-037
+7	Rear Comfort/Climate	7.10	CR10.) 4 Zone Climate includes two temperature zones in the 	2	SWE1-HVAC-038
+9	Rear Comfort/Climate – Additional controls	9.1	CR11.) On some vehicles (See CFTS043 for details), there are	1	SWE1-HVAC-039
+9	Rear Comfort/Climate – Additional controls	9.2	CR12.) Alternative fan speed pop up: in these variants, when	2	SWE1-HVAC-040
+9	Rear Comfort/Climate – Additional controls	9.3	C12.1.) The pop up will have text labels, «Front» for front 	1	SWE1-HVAC-041
+9	Rear Comfort/Climate – Additional controls	9.4	CR13.) Alternative Status Bar Dropdown: in these variants, t	3	SWE1-HVAC-042
+9	Rear Comfort/Climate – Additional controls	9.4.1	CR13.1.) The button label will read «Rear».	1	SWE1-HVAC-043
+10	ECO HVAC (BEV only)	10.1	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to	2	SWE1-HVAC-044
+10	ECO HVAC (BEV only)	10.2	EH2.) For BEV vehicles, the AUTO functionality can have 3 st	1	SWE1-HVAC-045
+10	ECO HVAC (BEV only)	10.3	EH3.) Button label will read AUTO ECO.	1	SWE1-HVAC-046
+10	ECO HVAC (BEV only)	10.4	EH4.) When the AUTO function is off and available, the user 	1	SWE1-HVAC-047
+10	ECO HVAC (BEV only)	10.5	EH5.) The second press will switch to AUTO on. A third press	3	SWE1-HVAC-048
+10	ECO HVAC (BEV only)	10.6	EH6.) When AUTO ECO is on, deselect airflow modes as in stan	2	SWE1-HVAC-049
+10	ECO HVAC (BEV only)	10.7	EH7.) HVAC AUTO shall keep the selected setting through igni	1	SWE1-HVAC-050
+10	ECO HVAC (BEV only)	10.8	EH8.) The Comfort main Menu Bar icon shall reflect the AUTO 	1	SWE1-HVAC-051
+10	ECO HVAC (BEV only)	10.9	EH9.) The comfort pop ups triggered by hard controls interac	1	SWE1-HVAC-052
+10	ECO HVAC (BEV only)	10.9.1	EH9.1) When ECO HVAC is equipped on a vehicle, the AUTO pop 	2	SWE1-HVAC-053
+11	R1 Heated/Vented Seats	11.1	HVS1. For Multi-Level Heated/Vented seats, a press of the he	4	SWE1-HVAC-054
+11	R1 Heated/Vented Seats	11.2	HVS2. For Multi-Level Heated/Vented seats, a press of the ve	4	SWE1-HVAC-055
+11	R1 Heated/Vented Seats	11.3	HVS4. When climate is OFF, the status bar should still show 	1	SWE1-HVAC-056
+11	R1 Heated/Vented Seats	11.4	HVS5. Heated seats buttons when activated will be shown red.	2	SWE1-HVAC-057
+11	R1 Heated/Vented Seats	11.5	HVS6. Refer to HMI Settings List for the details on the Auto	1	SWE1-HVAC-058
+11	R1 Heated/Vented Seats	11.6	R1HVS1.) If the independent seat zone feature is available, 	6	SWE1-HVAC-059
+11	R1 Heated/Vented Seats	11.6.1	R1HVS1.1) On vehicles that are equipped with the seat zone f	2	SWE1-HVAC-060
+11	R1 Heated/Vented Seats	11.7	R1HVS1.2.) For independent seat zones soft control, when the	4	SWE1-HVAC-061
+11	R1 Heated/Vented Seats	11.8	W1HVS2.) For Multi-Level Heated steering wheel, a press of t	4	SWE1-HVAC-062
+11	R1 Heated/Vented Seats	11.9	R1HVS2.) For Single-Level heated steering wheel, a press of 	2	SWE1-HVAC-063
+11	R1 Heated/Vented Seats	11.10	R1HVS3.) Heated/vented seat, heated wheel, and seat zone pop	3	SWE1-HVAC-064
+11	R1 Heated/Vented Seats	11.11	R1HVS4.) Heated/vented seat, heated wheel will not be displa	3	SWE1-HVAC-065
+11	R1 Heated/Vented Seats	11.11.1	R1HS4.1.) When comfort controls are not active, they will be	1	SWE1-HVAC-066
+12	Heated/Vented Seats - CARRYOVER	12.1	HVS1. For Multi-Level Heated/Vented seats a press of the hea	4	SWE1-HVAC-067
+12	Heated/Vented Seats - CARRYOVER	12.2	HVS2. For Multi-Level Heated/Vented seats a press of the ven	4	SWE1-HVAC-068
+12	Heated/Vented Seats - CARRYOVER	12.3	HVS3. Active button state text/icon color is white. Inactive	2	SWE1-HVAC-069
+12	Heated/Vented Seats - CARRYOVER	12.4	HVS4. When climate is OFF, the status bar should still show 	1	SWE1-HVAC-070
+12	Heated/Vented Seats - CARRYOVER	12.5	HVS5. Heated seats buttons when activated will be shown red.	2	SWE1-HVAC-071
+12	Heated/Vented Seats - CARRYOVER	12.6	HVS6. Refer to HMI Notes for the details on the Auto Comfort	1	SWE1-HVAC-072
+12	Heated/Vented Seats - CARRYOVER	12.7	HVS7. Whenever pop ups are shown, images should be shown in 	2	SWE1-HVAC-073
+12	Heated/Vented Seats - CARRYOVER	12.8	SHVS1. For Standard Heated/Vented seats a press of the heate	3	SWE1-HVAC-074
+12	Heated/Vented Seats - CARRYOVER	12.9	SHVS2. For Standard Heated/Vented seats a press of the vente	3	SWE1-HVAC-075
+13	Seat Control Tab	13.2	LS1.) When the (-, +) seat control buttons are pressed from 	3	SWE1-HVAC-076
+13	Seat Control Tab	13.2.1	LS1.1) The 4 types of adjustments the user will be able to a	1	SWE1-HVAC-077
+13	Seat Control Tab	13.3	LS2.) When the (-, +) seat control buttons are pressed, it w	2	SWE1-HVAC-078
+13	Seat Control Tab	13.3.1	LS2.1) The user last selected lumbar/bolster selection will 	2	SWE1-HVAC-079
+13	Seat Control Tab	13.4	LS3.) The user will be able to long press on the hard button	2	SWE1-HVAC-080
+13	Seat Control Tab	13.5	LS4.) A short press of the (-, +) button will increase the l	2	SWE1-HVAC-081
+13	Seat Control Tab	13.6	LS5.) Once the minimum or maximum level has been reach, the 	2	SWE1-HVAC-082
+14	HVAC Popups	14.1	HVACP1.) HVAC pop-ups should follow the pop-up list.	1	SWE1-HVAC-083
+14	HVAC Popups	14.1.1	HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop	1	SWE1-HVAC-084
+14	HVAC Popups	14.2	HVACP2.) HVAC pop-ups are not displayed while RVC screen is 	1	SWE1-HVAC-085
+14	HVAC Popups	14.3	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups,	2	SWE1-HVAC-086
+14	HVAC Popups	14.4	HVACP4.) If head unit is in simulated off/idle mode and HVAC	2	SWE1-HVAC-087
+14	HVAC Popups	14.5	HVACP5.) HVAC pop-ups should display over NAV, 3rd Party App	1	SWE1-HVAC-088
+14	HVAC Popups	14.6	HVACP6.) When an HVAC popup is displayed over another popup,	1	SWE1-HVAC-089
+14	HVAC Popups	14.7	HVACP7.) When an HVAC popup is displayed over another popup,	2	SWE1-HVAC-090
+14	HVAC Popups	14.8	HVACP8.) When an HVAC popup is displayed over another popup,	1	SWE1-HVAC-091
+14	HVAC Popups	14.9	HVACP9.) HVAC popups will not be displayed during intro/outr	1	SWE1-HVAC-092
+14	HVAC Popups	14.10	HVACP10.) When head unit is in simulated off/idle mode HVAC 	1	SWE1-HVAC-093
+14	HVAC Popups	14.10.1	HVACP10.1) If Climate is located in the main category bar, f	1	SWE1-HVAC-094
+14	HVAC Popups	14.11	HVACP11.) HVAC pop ups will only be displayed based on direc	2	SWE1-HVAC-095
+14	HVAC Popups	14.12	HVACP12.) The style of HVAC popups should match the type of 	3	SWE1-HVAC-096
+14	HVAC Popups	14.13	HVACP13.) For vehicles with a lower hvac screen, interaction	1	SWE1-HVAC-097
+14	HVAC Popups	14.14	HVACP14.) For vehicles with dual zone climate versions with 	1	SWE1-HVAC-098
+14	HVAC Popups	14.15	HVACSB1.) Available comfort controls (driver/passenger heate	1	SWE1-HVAC-099
+14	HVAC Popups	14.16	HVACSB2.) Driver and Passenger comfort seat features will sh	3	SWE1-HVAC-100
+14	HVAC Popups	14.16.1	HVACSB2.1.) Seat zone will show currently active or last use	3	SWE1-HVAC-101
+14	HVAC Popups	14.17	HVACSB3.) Driver comfort seat feature and Passenger comfort 	1	SWE1-HVAC-102
+14	HVAC Popups	14.18	HVACSB5.) Popup will have a 5 sec timeout and restart with a	2	SWE1-HVAC-103
+14	HVAC Popups	14.19	HVACSB6.) When the Climate widget is shown on the currently 	8	SWE1-HVAC-104
+15	HVAC Pop-ups Chart	15.1	HVACP11.1) For different Climate features (Defrost/Max Defro	2	SWE1-HVAC-105
+16	ICS CLIMATE EMEA – CARRYOVER	16.2	ICE1.) Whenever changes to the climate system are made via h	9	SWE1-HVAC-106
+16	ICS CLIMATE EMEA – CARRYOVER	16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows	9	SWE1-HVAC-107
+16	ICS CLIMATE EMEA – CARRYOVER	16.4	ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have 	1	SWE1-HVAC-108
+16	ICS CLIMATE EMEA – CARRYOVER	16.5	ICE4.) The recirc icon will display the vehicle model specif	2	SWE1-HVAC-109
+16	ICS CLIMATE EMEA – CARRYOVER	16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-2	6	SWE1-HVAC-110
+16	ICS CLIMATE EMEA – CARRYOVER	16.6.1	ICE5.1) If SYNC is ON, adjusting driver temperature affects 	5	SWE1-HVAC-111
+16	ICS CLIMATE EMEA – CARRYOVER	16.7	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label ins	5	SWE1-HVAC-112
+16	ICS CLIMATE EMEA – CARRYOVER	16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow m	12	SWE1-HVAC-113
+16	ICS CLIMATE EMEA – CARRYOVER	16.9	ICE8.) Rear Defrost has on/ off state. Gray out the REAR DEF	2	SWE1-HVAC-114
+16	ICS CLIMATE EMEA – CARRYOVER	16.10	ICE9.) Climate off has on/off state that is indicated on HC,	8	SWE1-HVAC-115
+16	ICS CLIMATE EMEA – CARRYOVER	16.11	ICE10.) SYNC has on/ off state that is indicated on climate 	4	SWE1-HVAC-116
+16	ICS CLIMATE EMEA – CARRYOVER	16.12	ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & 	3	SWE1-HVAC-117
+16	ICS CLIMATE EMEA – CARRYOVER	16.12.1	ICE11.1) If the Mode hard control is pressed the user will b	10	SWE1-HVAC-118
+16	ICS CLIMATE EMEA – CARRYOVER	16.13	ICE12.) If the system supports Max A/C it will be displayed 	12	SWE1-HVAC-119
+16	ICS CLIMATE EMEA – CARRYOVER	16.14	ICE13.) MTC screens/popups are to be used when CCM relays MT	3	SWE1-HVAC-120
+16	ICS CLIMATE EMEA – CARRYOVER	16.15	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.	2	SWE1-HVAC-121
+16	ICS CLIMATE EMEA – CARRYOVER	16.16	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of sea	5	SWE1-HVAC-122
+16	ICS CLIMATE EMEA – CARRYOVER	16.17	C16.) If blower reduction occurs automatically due to an act	1	SWE1-HVAC-123
+17	Home screen - Comfort Widget	17.1	W0.) The Comfort widget will have two screens: Comfort and S	3	SWE1-HVAC-124
+17	Home screen - Comfort Widget	17.2	CW1.) The default screen for the Comfort widget is the Clima	8	SWE1-HVAC-125
+17	Home screen - Comfort Widget	17.3	CW2.) The second Comfort widget screen includes all Comfort 	3	SWE1-HVAC-126
+17	Home screen - Comfort Widget	17.4	CW3.) For 8.4/10.1/12 landscaped screens, there will be a to	2	SWE1-HVAC-127
+17	Home screen - Comfort Widget	17.5	CW4.) For dual zone climate with dual airflow modes equipped	2	SWE1-HVAC-128
+18	10.25" Home screen - Comfort Widget	18.1	W0.) The Comfort widget will have two screens: Comfort and S	3	SWE1-HVAC-129

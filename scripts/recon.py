@@ -30,6 +30,8 @@ import argparse
 import hashlib
 import json
 import re
+import shutil
+import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
@@ -582,16 +584,34 @@ def survey_a03(a03_path: Path) -> dict:
 
 
 def survey_spec_text_layer(pdf_path: Path | None) -> str:
+    """Does this PDF carry a text layer, or is it a scan needing OCR?
+
+    Two extractors, because reporting "unknown" when the answer is sitting on
+    disk is its own defect: pymupdf is preferred, and `pdftotext` (poppler,
+    already present on this machine) is the fallback. Only when NEITHER is
+    available is the answer genuinely unknown, and the message then names
+    both so the reader knows what to install. (A-CF06 / handoff 09 §4.)
+    """
     if not pdf_path or not pdf_path.exists():
         return "no-pdf"
+    chars, how = None, ""
     try:
         import pymupdf as fitz
+        doc = fitz.open(pdf_path)
+        chars = sum(len(p.get_text()) for p in doc)
+        doc.close()
+        how = "pymupdf"
     except ImportError:
-        return "unknown (pymupdf not installed)"
-    doc = fitz.open(pdf_path)
-    chars = sum(len(p.get_text()) for p in doc)
-    doc.close()
-    return f"text-layer: {chars} chars" if chars > 500 else "scanned (OCR path)"
+        exe = shutil.which("pdftotext")
+        if exe:
+            proc = subprocess.run([exe, "-q", str(pdf_path), "-"],
+                                  capture_output=True)
+            if proc.returncode == 0:
+                chars, how = len(proc.stdout.decode("utf-8", "replace")), "pdftotext"
+    if chars is None:
+        return "unknown (neither pymupdf nor pdftotext available)"
+    return (f"text-layer: {chars} chars (via {how})" if chars > 500
+            else f"scanned (OCR path) — {chars} chars via {how}")
 
 
 # -------------------------------------------------- uncited baseline sections

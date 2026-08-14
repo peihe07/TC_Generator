@@ -278,6 +278,74 @@ R-C14  刪除前之同一性確認
 
 ---
 
+## R-C15 ~ R-C16 —— 下放包 09 §2／§3（Pei 裁定，2026-08-14）
+
+**兩條適用全 feature**；安置位置待 canon re-sync（09 §7）。
+R-C15 係回答上繳 04 §6.2 第 3 項所標之界線問題。
+
+```
+R-C15  scope_verdict 之證據判準
+
+判準為「蘊含」，不是「直接」。
+
+證據若為真即蘊含結論者，得記 in_scope，縱其形式為間接。證據為真仍不蘊含
+結論者，記 undetermined，縱其形式為直接聲明。
+
+R-C12 之觸發條件為「來源存在未解之內部矛盾」，不擴及「依據為間接」。
+間接而蘊含者不降級；直接而不蘊含者本就不得升級。
+
+適用於本輪四節：
+- 16.1：037 於 ch16 產出 99 leaves。若 EMEA 不在交付範圍，該 99 leaves
+  不可能存在。為真即蘊含，故 in_scope 成立。
+- 18.2–18.4：037 引用 18.1 得三個 leaf；18.1 與 19.1 條文文字相同，
+  被分析者為 10.25" 實例。執行層已證此結論於兩種解讀下皆成立 ——
+  「於所有可讀解讀下一致」即為蘊含，故 in_scope 成立。
+```
+
+```
+R-C16  引用之單向性，與未引用節之 in_scope 意義
+
+一、037 之引用作為證據具單向性：
+    有引用 → 該事項在 SWE.1 分析範圍內，得為 in_scope 之證據
+    無引用 → 不構成任何方向之證據，不得推出 out_of_scope，亦不得推出
+             in_scope
+    A-CF01／R-C5 之錯誤即違反此單向性（「037 沒引用」被當成「SR24 沒有」）。
+
+二、某節判 in_scope 而 037 未引用之者，其意義為：
+    該節屬交付範圍，而 037 未對其產出需求 —— 即 in-scope 之覆蓋缺口。
+
+    此類節一律列 RD-1，請上游 037 補分析。
+    **不得由 TC 作者自行補成 RD 項目或直接產 TC**（§8.2、§8.4.2）。
+    在 037 補分析並落版前，此類節不入 coverage 分母、不列 BLOCKED、
+    不指派 tc_id。
+
+    16.1、18.2、18.3、18.4 四節依此處置：RD-1 覆蓋缺口項，非 TC 工作項。
+```
+
+---
+
+## R-C17 —— 下放包 10 §1（Pei 裁定，2026-08-14）
+
+```
+R-C17  Home Screen HMI L&F 之定位
+
+Home Screen HMI Logic and Flow（R1 SR24 Post 2A, March 17 2023）於 Comfort
+feature 為外部參照 spec，非本 feature 之驗證來源。
+
+Comfort ch17／ch18 所擁有者，僅「Comfort widget 自身之內容與行為」。
+Home Screen 之首頁管理行為（HSD1–HSD13、HSS、SW、BSP 各條 —— 新增／刪除／
+重排頁面、widget 拖放、Shortcuts 編輯、品牌頁預設配置等）由 Home Screen 之
+SWE 需求擁有，不得寫入 Comfort TC（§8.4.2）。
+
+判定測試：該規則定義於 Comfort spec，或定義於 Home Screen spec？
+定義於後者即 out of scope，縱使 Comfort spec 引用之。
+
+若 Home Screen 於本專案無對應 SWE 需求，該情形為 coverage hole，於
+reasoning 揭露並列 RD-1，不得靜默吸收進 Comfort TC。
+```
+
+---
+
 ## 執行層回報（2026-08-14，Phase 0 → Phase 1）
 
 以下為執行層對上列條文之落實紀錄與實測值，**非條文本身**。

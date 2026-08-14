@@ -53,42 +53,60 @@ python3 features/comfort/scripts/classify_uncited_sections.py
 python3 scripts/recon.py --feature features/comfort --root .
 ```
 
-## Phase 3 — 進場前之未決事項（本包記入，勿留到當下決定）
-**Phase 3 未開始。** 切分母體現況：403 leaves 確定 ＋ 10 節待 D-C10
-＋ 7 節待缺料（DR #6／#7）。
+## Phase 3 — Framework & profile（**進行中**，10 §4 Pei 裁定開始）
 
+**Layer 3 map 已產；Layer 2 待分析層起草（Tier 2）。**
+
+切分母體：**403 leaves 確定**。17 節 in-baseline substantive **不入母體** ——
+4 節依 R-C16 為 RD-1 覆蓋缺口項、10 節 DEFERRED、3 節待 DR #6；但其所屬
+章節須留為可插入之邊界（07 §5）。
+
+### 已完成
 - [x] 甲項已由 **R-C5-1** 處置 —— 16 節退出 R-C5，併入 A-CF08
-- [x] 17 節適用性判讀完成 —— `data/sr24_substantive_applicability.tsv`
-      （含 `pending_on` 欄）。**現行：4 `in_scope`／13 `undetermined`／
-      0 `out_of_scope`**
-      - `in_scope`：16.1、18.2、18.4、18.3 —— 依 037 引用結構（ch16 引
-        18/19 得 99 leaves；ch18 引 18.1 得 3 leaves）
-      - `undetermined`：20.1 ~ 20.4.3（R-C12 降級，pending DR #8）、
-        19.1 ~ 19.3（pending DR #6）
-- [ ] **D-C10 裁定** —— **宜待 A-CF12 釐清**。07 §3 之層級訂正顯示：
-      tree view 是索引層不參與選邊，矛盾是 CFTS043 主檔內部之事，
-      且 canon 重心偏向散文 → 偏向 `out_of_scope`，與先前暫定值**方向相反**
-      （DR #8，單一問句可解）
-- [ ] **DR #6 落位** —— 僅剩 7" 螢幕配置一題（擋 19.1 ~ 19.3）。
-      DR #7 已解；08 §3 之次要候選已先驗且驗不過（DR #10）
-- [ ] **Part N 之邊界預留（07 §5）** —— 403 leaves 可先切，但章 20
-      （Alternate Rear Blower）與 home-screen widget 兩塊須留為**可插入之
-      邊界**，不得切成必須重整才容納得下的形狀
-- [ ] **Phase 3 是否開始待 Pei 裁**（07 §5 明載）
+- [x] 17 節適用性判讀 —— `data/sr24_substantive_applicability.tsv`（六欄）。
+      **4 `in_scope`／13 `undetermined`／0 `out_of_scope`**
+      - `in_scope`：16.1、18.2、18.3、18.4 —— 依 037 引用結構
+        （ch16 引 18/19 得 99 leaves；ch18 引 18.1 得 3 leaves）
+      - `undetermined`：20.1 ~ 20.4.3（DEFERRED）、19.1 ~ 19.3（DR #6）
+- [x] **DR #8 轉 DEFERRED**（10 §2）—— Pei 直接向 RD 反應。依 R15-2 自
+      open PENDING 與「阻塞 D-C10」清單移除。20.x verdict **不因此變動**
+- [x] **四節處置已定**（R-C16）—— 16.1、18.2~18.4 為 **RD-1 覆蓋缺口項，
+      非 TC 工作項**：不入分母、不列 BLOCKED、不指派 tc_id，待上游 037 補分析
+- [x] **Layer 3 map** —— `data/layer3_map.tsv`，129 節 × 六欄，三個 assertion
+      全 PASS（403／129／逐章分布）。結構事實：section ↔ parent 為 **1:1 雙射**
+
+```
+python3 features/comfort/scripts/build_layer3_map.py
+```
+
+### 待辦（Layer 2 屬 Tier 2，執行層不自裁）
+- [ ] **Layer 2 Test Set（Part N）** —— 分析層起草、Pei 簽署。執行層已提供
+      章 2（22 節/92 leaves）與章 16（18 節/99 leaves）明細，合計 47.4%，
+      **未提任何 Test Set 主張**
+- [ ] **起草前宜先覆核**：章 2 與章 16 之逐條語意對應（上繳 05 §9.2 第 1 項）
+      —— 該對應表由標籤與標題前 56 字得出，未讀全文；若 Part N 要利用兩章
+      平行性，需先逐條覆核。屬內容理解非量測，歸屬待分析層明示
+- [ ] **邊界預留（07 §5）** —— 章 20（Alternate Rear Blower）與 home-screen
+      widget 兩塊須留為可插入之邊界，不得切成必須重整才容納得下的形狀
 - [ ] **exemplar source 具名** —— 提案寫「nearest sibling done region」，
       但時序最近的 privacy／sxm 皆 BLANK 無 done region；實有者為
       home（144 列）與 amfm（158 列，其需求族已被裁決取代，僅可借樣式）
-- [ ] **A-CF07 之寫回處置須於 profile 明文**（下放包 03 §5）——
-      BLANK 型 write-back 為「append from first data row」，範本殘留列
-      會位移首資料列
-- [ ] **batch plan 改寫** —— 現提案「依章分組，pilot 取最小」會選到
-      第 6 章 1 個 leaf；且章 2（92）與章 16（99）佔 47%，其切分應由
-      Part N 決定而非沿用依章
-
-## Phase 3 — Framework & profile (Tier 2)
+- [ ] **A-CF07 之寫回處置須於 profile 明文**（03 §5）—— BLANK 型 write-back
+      為「append from first data row」，範本殘留列會位移首資料列
+- [ ] **batch plan 改寫** —— 現提案「依章分組，pilot 取最小」會選到第 6 章
+      1 個 leaf；且章 2 與章 16 佔 47%，其切分應由 Part N 決定
+- [ ] **DR #6** —— 僅剩 7" 螢幕配置一題（擋 19.1 ~ 19.3）。09 §5 已改為
+      **請 Pei 直接指認來源**；10 §3 之 Home Screen spec 亦不關閉本項
 - [ ] `docs/fw036/framework.md` Part N appended
 - [ ] `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` written
 
+### Phase 4 前置（本包記入，勿留到當下決定）
+- [ ] **Home Screen spec 通讀** —— R-C17 之判定測試（該規則定義於 Comfort
+      或 Home Screen？）須逐條施行，只查過三處不足
+- [ ] 引用 Home Screen spec 時比照 R-C11 **寫全名** ——
+      `spec-index/cache/` 同時存有其 **SR25** 版（R-C17 指名 SR24 Post 2A）
+- [ ] ch16 之 TC 以 **outline 節次**為 traceability 依據，不用條款標籤
+      —— `C16.)` 被 2.15 與 16.17 共用（A-CF13）
 ## Phase 4 — Data build (Tier 1)
 - [ ] Data artifacts built per feature.yaml; misses filed to ANOMALIES.md
 

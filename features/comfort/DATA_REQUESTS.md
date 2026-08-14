@@ -30,19 +30,27 @@ batch gate 都要按 Urgency 回報。
 > `spec-index/sources/`，依 08 §3「取用前須先驗其確實承載該資訊」實測
 > —— **驗不過**（見 #10），不採用。前者全 repo 搜尋**不存在**，
 > 若 Pei 判斷其可能承載螢幕配置，需補入（Tier 3）。
+>
+> **更新 2026-08-14（三）（下放包 09／10）**：#8 轉 **DEFERRED**（Pei 對 RD）、
+> #3 **已解**（recon 加 `pdftotext` fallback）、#10 之性質由「不存在」訂正為
+> 「**客戶端存在，待 Tier 3 補入**」（09 §4）。10 §3 之 Home Screen HMI L&F
+> 已在 repo（`spec-index/cache/`），但**不關閉 #6** —— 其機種列舉與
+> `Available Widget Size` 兩表皆為平台配置，非交付範圍宣告。
+> **現行唯一真正缺檔仍為 #6，且 09 §5 已改為請 Pei 直接指認來源**：
+> 分析層兩次指名候選皆驗不過，再猜只是消耗驗證輪次。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
 | 1 | Comfort 之 FM-WI-FSM-036-A01 TC workbook | ⚠️ **以空白通用範本代替** —— `inputs/…_SWQT_20260121.xlsx`，rev C，SHA256 `cd876c202c71e74b…`（與 Privacy 同一份）。`workbook_state` = BLANK，P4 未阻塞。殘留：非 Comfort 專屬，封面／Scope／Purpose／Reviewer 待填；第 10–11 列樣本待清 | 全 403 leaves | P4 起全部批次 | A-CF07 | Low（僅待確認交付形態） |
 | 2 | Scope / Purpose / Reviewer / Project Name / Date 五格之填入值 | ⏳ **待 Pei 給值** —— 非檔案，屬 Tier 2 賦值。執行層提案 Scope = `FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1`，其餘不自填 | 交付件表頭 | P7 寫回前必須有值 | A-CF07 | **Medium —— P7 之前** |
-| 3 | `pymupdf`（Python 套件，非客戶檔案） | ⚠️ **未安裝，但已不必要** —— 2026-08-14 改以已安裝之 `pdftotext` 實測，SR24 PDF **具 text layer**（62,874 bytes 文字）。餘留者僅 `recon.py` 仍只試 `pymupdf`，故 RECON.md 印 `unknown`；加 fallback 即可（未在 07／08 作業範圍內，未動） | 0（不阻塞） | 僅在 P4 需自 PDF 取圖說／座標時 | A-CF06 | ~~Low~~ → 建議層級 |
+| 3 | `pymupdf`（Python 套件，非客戶檔案） | ✅ **已不需要** —— 09 §4 授權後，`recon.py` 之 `survey_spec_text_layer()` 已加 `pdftotext` fallback；RECON.md 現印 `text-layer: 62782 chars (via pdftotext)`。兩者皆不可用時才回報 unknown，且訊息同時指名兩者 | 0（不阻塞） | —— | A-CF06 | 已解 |
 | 4 | 客戶交付夾之 SR24 附件回填 | ⏳ **待 Pei 決定** —— 交付夾現放 SR25（PDF 13.86 MB / SYS1 xlsx 72.80 KB），與 R-C1 基線不一致。**執行層未複測**（該樹於本 session 不可達） | 0（不影響取材） | P7 交付一致性 | A-CF02 | Low（P7 之前） |
 | 5 | CFTS043 —— `SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope.xlsx`（914,043 bytes）＋ `R1LR_Atl-H_25PI3.5_Cabin_CFTS_043 HVAC Controls and Displays _SR26_20250909-1852.doc`（2,469,376 bytes） | ✅ **已入 `inputs/`**（2026-08-14，Pei 放入）—— 20.x 十節之判讀已據此完成 | 10 節（20.1 ~ 20.4.3） | D-C10 裁定 | A-CF08 | ~~High~~ → 已解 |
-| 6 | **R1LR ATL-H 之螢幕配置來源** —— 現已限縮為單一問題：**7" 是否屬本次交付之螢幕配置** | ⚠️ **部分解決** —— 供入之 `SR24 R1 Market Configuration Table v1.6.xlsx`（279,779 bytes，SHA256 gate PASS）**不承載螢幕尺寸軸**（全 8 表 0 命中）。10.25"（18.2–18.4）已由 037 引用 18.1 之結構證據解決；**7" 仍無來源** | ~~6~~ → **3 節**（19.1–19.3） | D-C10 裁定；Phase 3 Part N | A-CF08 | **High** |
+| 6 | **R1LR ATL-H 之螢幕配置來源** —— 單一問題：**7" 是否屬本次交付之螢幕配置**。**09 §5 改為請 Pei 指認來源** —— 分析層兩次指名（Vehicle Category、VINtoArchitecture）皆驗不過 | ⚠️ **未解** —— Market Config Table 不承載螢幕尺寸軸；10 §3 之 Home Screen HMI L&F **亦不關閉本項**（其 Assumptions 與 `Available Widget Size` 兩表皆為平台配置，不宣告本次交付出哪幾種，與 SR24 §1.1 同型） | 3 節（19.1–19.3） | **不阻塞 Phase 3**（占 403 之 0.7%） | A-CF08 | **High（待 Pei 指認）** |
 | 7 | **EMEA 市場適用性來源** | ✅ **已解 —— 但不是靠本項素材** | 1 節（16.1）→ 已判 `in_scope` | —— | A-CF08 | ~~High~~ → 已解 |
 | 9 | `SR24 R1 Market Configuration Table v1.6.xlsx` | ✅ **已入 `inputs/`**（2026-08-14，Pei 放入）—— 279,779 bytes，SHA256 `ae4cf0b929b033ac…`，對 25PI3.5 之 `ae4cf0b9…` **PASS**。**判讀結果：不承載 `R1L-R`（0 命中）、不承載螢幕尺寸（0 命中）**；其 variant 軸為市場別非機型別 | 0（未直接解任何節） | —— | A-CF08 | 已解 |
-| 8 | CFTS043 4803259 之 NOTE 效力確認（非檔案，屬上游釐清） | ⏳ NOTE 稱「only applicable to R1H starting on SR22」，與同 item `Radio` 含 R1L-R 矛盾（**主檔內部**矛盾；tree view 為索引層，依 §8.6 不參與選邊）。10 節現依 R-C12 記 `undetermined` pending 本項。**送出屬 Tier 3**，依 07 §4 併入 Comfort 之 RD-1 草稿，不單獨發函 | 10 節（20.1 ~ 20.4.3） | **D-C10 裁定** | A-CF12 | **High** |
-| 10 | `VINtoArchitecture decoding v3.xlsx`（08 §3 次要候選） | ❌ **全 repo 不存在** —— 未搜到。同節另一候選 `Vehicle Category HMI Logic and Flow R1 SR24 Post 2A`（已在 `spec-index/sources/`）**已先驗且驗不過**：其僅載「文件涵蓋哪些機種」（R1 Low: 7"／8.4"／10.1"／10.25"／12.3"），與 SR24 §1.1 同型，06 §3 已裁此不構成交付範圍證據；且 `R1L-R` 0 命中、`Atlantis` 0 命中、無配置表 | 3 節（19.1–19.3） | D-C10 裁定 | A-CF08 | Medium（僅在 #6 無其他來源時） |
+| 8 | CFTS043 4803259 之 NOTE 效力確認（非檔案，屬上游釐清） | 🔵 **DEFERRED 2026-08-14（10 §2）** —— Pei 直接向 RD 反應，不由本 pipeline 追。依 R15-2（open PENDING 意為「待裁決」非「待外部條件」）自 open PENDING 移出、自「阻塞 D-C10」清單移除。**20.x 十節 verdict 不因 DEFERRED 而變動**，依 R-C12 維持 `undetermined` | 10 節（20.1 ~ 20.4.3） | 不阻塞 | A-CF12 | ~~High~~ → **DEFERRED（Pei 對 RD）** |
+| 10 | `VINtoArchitecture decoding v3.xlsx` | ⏳ **客戶端存在，待 Tier 3 補入**（09 §4 訂正：08 §3 之「同目錄」指客戶端 `25PI3.5/Reference Docs/ECU Specific Reference Documents/`，非 `inputs/`；執行層「全 repo 不存在」之實測正確，性質是**待補入**而非**不存在**）。惟其為 VIN→architecture 解碼表，回答 7" 螢幕問題之可能性低（09 §4） | 3 節（19.1–19.3） | D-C10 裁定 | A-CF08 | Low（09 §5 已改為請 Pei 指認來源）|
 
 ## 已量測、無需索取
 

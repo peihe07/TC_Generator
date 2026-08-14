@@ -15,13 +15,14 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF03 | 結構 | 34 列 parent 形態卻為 Functional Requirement | RESOLVED by R-C3 | 無 |
 | A-CF04 | 工具 | `intake.py` 只掃 drop folder，spec_mode 提案偏低 | OPEN（已知限制，非缺陷） | 無 |
 | A-CF05 | 工具缺陷 | `intake.py` 需求清單靜默漏計 57 列（346 vs 403） | FIXED 2026-08-14 | 無 |
-| A-CF06 | 環境 | `pymupdf` 未安裝，spec PDF text-layer 探測無法執行 | OPEN | 無（spec_mode A 之文字權威為 SYS1 export） |
+| A-CF06 | 環境 | `pymupdf` 未安裝 → recon 改用 `pdftotext` fallback；SR24 PDF 具 text layer | **CLOSED**（09 §4 授權，已實作） | 無 |
 | A-CF07 | 範本殘留 | 空白範本第 10–11 列樣本資料須於 write-back 清除 | OPEN（P4 前處理） | P7 交付 |
-| A-CF08 | 覆蓋缺口 | SR24 **基線內** 51 節未被 037 引用；17 節 substantive 已判讀（10 in_scope／7 undetermined） | OPEN（處置待 D-C10） | 無 |
+| A-CF08 | 覆蓋缺口 | SR24 **基線內** 51 節未被 037 引用；17 節 substantive 已判讀（4 in_scope／13 undetermined），4 節依 R-C16 為 RD-1 覆蓋缺口項 | OPEN（10 節 DEFERRED、3 節待 DR #6） | 無 |
 | A-CF09 | 稽核（跨 feature） | **home／projection／privacy** 三者之 Sign-off 為空白範本（範圍已限縮） | OPEN（另案，不回溯補簽） | 無 |
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
-| A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | OPEN（RD-1 候選，待 D-C10） | 無 |
+| A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
+| A-CF13 | spec 內部標籤 | ch16.17 用 `C16.)` 而該標籤已由 ch2.15 使用；ch17.1／18.1 同為 `W0.)` 且經 037 分析為兩個獨立需求 | OPEN（Part N 之輸入，非阻塞） | 無 |
 
 ---
 
@@ -144,11 +145,20 @@ text layer 有無，不改變 129 節之查得結果 —— 該結果由 export 
 —— 抽出 62,874 bytes 文字。「PDF 具 text layer」自此**可陳述**，前述禁止
 假定之限制解除。
 
-未解者僅剩工具面：`recon.py` 之 `survey_spec_text_layer()` 仍只試
-`pymupdf`，故 `RECON.md` 仍印 `unknown (pymupdf not installed)`。該行**並非
-錯誤陳述**（pymupdf 確實未裝），但已與可得事實不同步。加一個 `pdftotext`
-fallback 是小改動，惟不在下放包 07／08 之作業範圍內，**本輪未動**，
-列為建議。`DATA_REQUESTS.md` #3 之 urgency 相應下修。
+~~未解者僅剩工具面：`recon.py` 仍只試 `pymupdf`……**本輪未動**，列為建議。~~
+
+**更新 2026-08-14（二）（下放包 09 §4 授權）—— CLOSED**：
+`survey_spec_text_layer()` 已加 `pdftotext` fallback：優先 `pymupdf`，
+不可用時改走 poppler 之 `pdftotext`；**兩者皆不可用**時才回報 unknown，
+且訊息同時指名兩者。實測 `RECON.md` 現印
+`text-layer: 62782 chars (via pdftotext)`。
+
+依 R-C8 **未重跑任何既有 feature**（其 `RECON.md` 之 text-layer 行維持原狀，
+下次各自重跑時自然更新）。
+
+註：本條先前記 62,874 bytes（`pdftotext` 寫檔），recon 內測得 62,782 chars
+（stdout 解碼後之字元數）。兩數皆為實測，差異來自「位元組 vs 字元」與
+換行處理，非資料變動。
 
 ## A-CF07 —— 空白範本第 10–11 列樣本資料須清除（範本殘留）
 
@@ -292,6 +302,30 @@ Table，是 037 自身之引用結構**：
 
 **19.1–19.3 維持 `undetermined`**：MCT 無螢幕尺寸軸；08 §3 之次要候選
 已依該節要求先驗後用，**驗不過**（詳 DR #6）。
+
+### 更新 2026-08-14（三）（下放包 09 §3／10 §2）—— 處置類別與 DEFERRED
+
+**四節 `in_scope` 者之處置已依 R-C16 §2 定案**（TSV 加 `disposition` 欄）：
+
+> 16.1、18.2、18.3、18.4 為 **RD-1 覆蓋缺口項，不是 TC 工作項**。
+> 該節屬交付範圍而 037 未對其產出需求 —— 請上游 037 補分析。
+> **不得由 TC 作者自行補成 RD 項目或直接產 TC**（§8.2、§8.4.2）。
+> 037 補分析並落版前：不入 coverage 分母、不列 BLOCKED、不指派 tc_id。
+
+R-C16 同時澄清一件先前未被問到的事：**`in_scope` ≠「我們去寫 TC」**。
+20.x 十節縱使日後解出 `in_scope`，處置亦同 —— 037 未引用者一律回上游。
+
+**20.x 十節之 `pending_on` 改記 DEFERRED**（10 §2）：Pei 裁定 DR #8 由其
+直接向 RD 反應，不由本 pipeline 追。依 R15-2（open PENDING 意為「待裁決」
+非「待外部條件」），DR #8 自 open PENDING 移出、自「阻塞 D-C10」清單移除。
+
+**DEFERRED 不移動 verdict**：矛盾未解這件事不因誰去問而改變，故十節依
+R-C12 維持 `undetermined` —— 不升 `in_scope`，亦不降 `out_of_scope`。
+「把問題交給別人問」不是「問題有了答案」。
+
+**四節之 verdict 依 R-C15 維持 `in_scope`**：09 §2 裁定 R-C12 不擴及
+「依據為間接」，判準是**蘊含**而非**直接**。上繳 04 §6.2 第 3 項所標之
+界線由分析層畫定，執行層先前照條文字面執行並標明界線之處置獲追認。
 
 **Market Configuration Table 未能解答本題，須明記**：該檔（25PI3.5，
 SHA256 gate PASS）全 8 工作表對 `R1L-R` **0 命中**、對任何螢幕尺寸
@@ -492,3 +526,46 @@ export 與原始來源不一致時，**原始來源勝出**。故 `Scope` 欄之
 **RD-1 候選**（不阻塞，待 D-C10 一併處置；**送出屬 Tier 3**，依 07 §4 宜與
 A-CF12 併入 Comfort 之 RD-1 草稿，不單獨發函）：請上游確認 4803259 之 NOTE
 是否仍有效；若有效，`Radio` 屬性與 R1L-R scope 白名單為何含 R1L-R。
+
+## A-CF13 —— spec 內部條款標籤碰撞與同條款重複分析（Part N 之輸入）
+
+Layer 3 map 建立時實測所得，兩件皆與 Part N 之切分直接相關，故登記。
+**非阻塞**；不改任何 spec、不產 TC。
+
+### 一、`C16.)` 標籤被兩節使用，內容不同
+
+| 節 | 標籤 | 內容 |
+|---|---|---|
+| 2.15 | `C16.)` | EXTERIOR REAR-VIEW MIRROR DEFROST has on/off state… |
+| 16.17 | `C16.)` | If blower reduction occurs automatically due to an… |
+
+ch16 其餘 17 節一律用 `ICE` 前綴（ICE1–ICE15），且 16.17 之內容對應
+ch2 的 **`C18.)`**（2.16，同為 blower reduction）。故 16.17 掛 `C16.)`
+最可能是誤植，應為 `ICE16.)` 之類。
+
+**影響**：TC 若於 test item 或 reasoning 引用條款標籤，`C16.)` 會指向兩個
+不同行為，traceability 出現二義。Phase 4 撰寫 ch16 TC 時須以 **outline
+節次**為準、不以條款標籤為準。RD-1 候選（請上游確認標籤）。
+
+### 二、`W0.)` 由三節共用，其中兩節經 037 分析為兩個獨立需求
+
+| 節 | 章 | 037 | 條文 |
+|---|---|---|---|
+| 17.1 | Home screen - Comfort Widget | 引用，3 leaves（`SWE1-HVAC-124`） | W0 + 交叉參照句 |
+| 18.1 | 10.25" Home screen - Comfort Widget | 引用，3 leaves（`SWE1-HVAC-129`） | W0（純句） |
+| 19.1 | 7" Home screen - Comfort Widget | **未引用** | W0（與 18.1 **逐字相同**） |
+
+18.1 與 19.1 之 Description **逐位元組相同**；17.1 多一句交叉參照
+（指向 Front Comfort/Climate 與 Heated/Vented Seats 兩節）。
+
+037 對 17.1 與 18.1 各產出一個 parent 需求，合計 **6 個 leaves 覆蓋同一條
+規範句**（「Comfort widget 有 Comfort 與 Seats 兩個畫面」）。
+
+**影響（Part N）**：若 Layer 2 依章切，ch17 與 ch18 會各得一個 Test Set，
+而兩者的首節測的是同一件事。這是分析層起草 Layer 2 時需要知道的事實。
+**執行層不就此提出任何 Test Set 主張**（Tier 2，10 §4.3）—— 僅陳述量測。
+
+**與 R-C17 之關係**：R-C17 已定 ch17／ch18 所擁有者僅「Comfort widget 自身
+之內容與行為」，首頁管理行為屬 Home Screen spec。本條所指之重複在
+**Comfort 自身兩節之間**，不是 Comfort 與 Home Screen 之間，兩者是不同的
+問題，勿混。

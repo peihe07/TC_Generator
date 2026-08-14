@@ -161,12 +161,29 @@ def load_tree() -> tuple[dict, set]:
 # undetermined can still converge either way once the contradiction is
 # settled. The 20.x evidence below is kept in full (R-C12 requires it) — the
 # downgrade does not retract it, and does not say the conclusion is false.
-RC12_PENDING = "DR #8 — CFTS043 4803259 NOTE vs its own Radio attribute (A-CF12)"
+# Handoff 10 §2 — Pei rules DR #8 directly with RD, not through this pipeline.
+# Per R15-2 an open PENDING means "awaiting a ruling", not "awaiting an
+# external condition", so DR #8 leaves the PENDING list and the D-C10 blocker
+# list. DEFERRED does NOT move the verdict: the contradiction is unresolved
+# either way, so R-C12 still holds these at undetermined — deferring the
+# question is not answering it.
+RC12_PENDING = ("DEFERRED — Pei 直接向 RD 反應（2026-08-14）；原 DR #8 "
+                "CFTS043 4803259 NOTE vs its own Radio attribute (A-CF12)")
+
+# R-C16 §2 — a section that is in_scope but which the 037 never analysed is an
+# in-scope COVERAGE GAP, not a TC work item. It goes to RD-1 for upstream 037
+# analysis; until that lands it enters no coverage denominator, is not marked
+# BLOCKED, and gets no tc_id. Recorded per row so the distinction survives
+# into whatever reads this file next.
+RC16_DISPOSITION = ("RD-1 coverage-gap item (R-C16) — 037 never analysed it; "
+                    "NOT a TC work item, no tc_id, not in the coverage "
+                    "denominator, not BLOCKED, pending upstream 037 analysis")
 
 
 def main() -> None:
     items, allow = load_tree()
-    out = ["outline\tscope_verdict\tbasis\tvariant_condition\tpending_on"]
+    out = ["outline\tscope_verdict\tbasis\tvariant_condition\tpending_on"
+           "\tdisposition"]
     counts = {"in_scope": 0, "out_of_scope": 0, "undetermined": 0}
 
     for outline in sorted(ARB_ITEMS, key=lambda s: [int(x) for x in s.split(".")]):
@@ -210,7 +227,13 @@ def main() -> None:
                      f"items not found in tree view: {missing or 'none'}; "
                      f"not in allow-list: {sorted(set(seen) - set(in_allow))}")
         counts[verdict] += 1
-        out.append("\t".join([outline, verdict, basis, PROXI_GATE, pending]))
+        # Undetermined: no disposition yet — R-C16 §2 applies to in_scope
+        # sections, and these are not in_scope. If DR #8 ever resolves them
+        # to in_scope, R-C16 makes them RD-1 items too (09 §3 says so
+        # explicitly), but that is not today's state and is not recorded as
+        # though it were.
+        out.append("\t".join([outline, verdict, basis, PROXI_GATE, pending,
+                              "—（verdict 未定，尚無處置）"]))
 
     base18, base19 = STRUCTURAL["18.2"], STRUCTURAL["19.1"]
     for outline in ("16.1", "18.2", "18.3", "18.4", "19.1", "19.2", "19.3"):
@@ -220,8 +243,10 @@ def main() -> None:
             spec = (src[0], src[1], src[2] + f" (same basis as {tag})", src[3])
         verdict, pending, basis, variant = spec
         counts[verdict] += 1
+        disposition = (RC16_DISPOSITION if verdict == "in_scope"
+                       else "—（verdict 未定，尚無處置）")
         out.append("\t".join([outline, verdict, " ".join(basis.split()),
-                              variant, pending]))
+                              variant, pending, disposition]))
 
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
     total = sum(counts.values())
