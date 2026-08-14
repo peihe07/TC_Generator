@@ -20,8 +20,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF08 | 覆蓋缺口 | SR24 **基線內** 51 節未被 037 引用；17 節 substantive 已判讀（10 in_scope／7 undetermined） | OPEN（處置待 D-C10） | 無 |
 | A-CF09 | 稽核（跨 feature） | **home／projection／privacy** 三者之 Sign-off 為空白範本（範圍已限縮） | OPEN（另案，不回溯補簽） | 無 |
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
-| A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | OPEN（方法論，供全 feature 參照） | 無 |
-| A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 稱「only applicable to R1H starting on SR22」，與同批 item 之 `Radio` 含 R1L-R 及 `Scope=Yes` 相矛盾 | OPEN（RD-1 候選，待 D-C10 一併處置） | 無 |
+| A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
+| A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | OPEN（RD-1 候選，待 D-C10） | 無 |
 
 ---
 
@@ -137,10 +137,18 @@ SYS3)" —— 與同檔下方 `cited_documents()` 實際採用之欄位互相矛
 Description 欄即條文全文），PDF 之角色為圖面載體。SR24 PDF 6.16 MB 之
 text layer 有無，不改變 129 節之查得結果 —— 該結果由 export 得出，已 PASS。
 
-**未驗事項，不宜當成已驗**：目前**無法**陳述「SR24 PDF 具 text layer」。
-若 Phase 4 需要自 PDF 取圖說或座標，此項先補（`pip install pymupdf` 後重跑
-recon 即可，無需改碼）。專案無 requirements 檔宣告此相依，一併登記於
-`DATA_REQUESTS.md`。
+~~**未驗事項，不宜當成已驗**：目前**無法**陳述「SR24 PDF 具 text layer」。~~
+
+**更新 2026-08-14（下放包 08 判讀期間附帶量測）**：改以 `pdftotext`
+（`/opt/homebrew/bin/pdftotext`，已安裝）實測，**SR24 PDF 具 text layer**
+—— 抽出 62,874 bytes 文字。「PDF 具 text layer」自此**可陳述**，前述禁止
+假定之限制解除。
+
+未解者僅剩工具面：`recon.py` 之 `survey_spec_text_layer()` 仍只試
+`pymupdf`，故 `RECON.md` 仍印 `unknown (pymupdf not installed)`。該行**並非
+錯誤陳述**（pymupdf 確實未裝），但已與可得事實不同步。加一個 `pdftotext`
+fallback 是小改動，惟不在下放包 07／08 之作業範圍內，**本輪未動**，
+列為建議。`DATA_REQUESTS.md` #3 之 urgency 相應下修。
 
 ## A-CF07 —— 空白範本第 10–11 列樣本資料須清除（範本殘留）
 
@@ -219,6 +227,12 @@ out-of-scope 文件（SR25）之內容；本條這 51 節在 **in-scope 的 SR24
 | `undetermined` | **7** | 16.1（EMEA 市場）、18.2–18.4（10.25"）、19.1–19.3（7"） |
 | `out_of_scope` | **0** | —— |
 
+> **上表已被下放包 07／08 取代。現行結果見下方「更新 2026-08-14（二）」。**
+> 摘要：20.x 十節依 **R-C12** 降為 `undetermined`（pending DR #8）；
+> 16.1 與 18.2–18.4 四節依 037 引用結構升為 `in_scope`；19.1–19.3 維持
+> `undetermined`（pending DR #6）。合計 **4 in_scope／13 undetermined／
+> 0 out_of_scope**。
+
 - **20.x 判 `in_scope` 之依據**：SR24 §20 標題自身寫 "See CFTS043 for
   applicable vehicles"；CFTS043 對應節為 §1.3.5.1.22 *Alternate Rear Blower
   Control Softkeys*（items 4803257–4803286），該批於 tree view 自身之
@@ -239,6 +253,52 @@ out-of-scope 文件（SR25）之內容；本條這 51 節在 **in-scope 的 SR24
 
 **仍未做任何 TC 處置**：不產 TC、不入 coverage 分母、不列 BLOCKED、
 不補 RD、未改 R-C5 或 R-C5-1。判讀為量測，非處置（06 §3）。
+
+### 更新 2026-08-14（二）（下放包 07／08）—— 現行判讀結果
+
+`data/sr24_substantive_applicability.tsv`（欄位加 `pending_on`）：
+
+| verdict | 節數 | 節次 | 所待 |
+|---|---|---|---|
+| `in_scope` | **4** | 16.1、18.2、18.3、18.4 | —— |
+| `undetermined` | **13** | 20.1 ~ 20.4.3（10）、19.1 ~ 19.3（3） | DR #8／DR #6 |
+| `out_of_scope` | **0** | —— | —— |
+
+**20.x 十節（降級）**：依 R-C12，來源存在未解矛盾即記 `undetermined`。
+依據全數保留，見上方 A-CF12 之層級訂正。
+
+**16.1 與 18.2–18.4（升為 `in_scope`）—— 依據不是 Market Configuration
+Table，是 037 自身之引用結構**：
+
+| 章 | 標題 | 037 引用 | leaves |
+|---|---|---|---|
+| 16 | ICS CLIMATE EMEA – CARRYOVER | **18 / 19** | **99**（佔全 feature 25%） |
+| 18 | 10.25" Home screen - Comfort Widget | **1 / 4**（18.1） | **3** |
+| 19 | 7" Home screen - Comfort Widget | **0 / 3** | 0 |
+
+- **16.1**：037 不可能在 EMEA 章產出 99 個 leaves 而該市場不在交付範圍內。
+  16.1 是該章唯一未被引用之子節 —— 屬 in-scope 章內之**覆蓋缺口**，
+  非範圍問題。
+- **18.2–18.4**：037 引用 18.1，產出 `SWE1-HVAC-129-01/-02/-03`。
+  注意 **18.1 與 19.1 條文文字相同**（皆為 `W0.)`），037 分析的是 10.25"
+  那個實例。無論該選擇之解讀為「10.25" 是交付螢幕」或「作者對重複條款
+  擇一分析」，**被分析的都是 10.25" 實例**，故本判定對兩種解讀皆成立。
+
+**推論方向是單向的，這一點是關鍵**：
+
+- **有引用 → 是證據**（不在範圍內就產不出那些 leaves）
+- **無引用 → 不是證據** —— 「037 沒引用」正是 A-CF01／R-C5 之錯誤步驟，
+  已由 R-C5-1 訂正。故 ch19 之沉默在任一方向皆不算數。
+
+**19.1–19.3 維持 `undetermined`**：MCT 無螢幕尺寸軸；08 §3 之次要候選
+已依該節要求先驗後用，**驗不過**（詳 DR #6）。
+
+**Market Configuration Table 未能解答本題，須明記**：該檔（25PI3.5，
+SHA256 gate PASS）全 8 工作表對 `R1L-R` **0 命中**、對任何螢幕尺寸
+**0 命中**。其 variant 軸是**市場別**（ROW／ECE／US-CAN／ROW+／CHN／JPN／
+MEX／KOR），非**機型別**；地理分組為 EMEA 149／APAC 37／NAFTA 19／
+LATAM 19 國。它回答「哪個國家屬哪個市場、拿到什麼設定」，不回答
+「本次交付涵蓋哪些螢幕與市場」。依 R-C13，上述 0 命中僅為索引層事實。
 
 ### ⚠️ 與 R-C5 之衝突（須 Pei 裁定，執行層不自裁）
 
@@ -335,6 +395,16 @@ assertion 全 PASS（129/129 outline 查得，miss=0）；`feature.yaml` 之
 
 ## A-CF11 —— "Alternative" vs "Alternate"：以客戶用詞搜尋得 0 命中（判讀陷阱）
 
+> **已升格為條文 R-C13**（下放包 07 §1，Pei 裁定 2026-08-14）。
+> 07 §2 明載：06 §3 所防形態（讀不到 → 判 out_of_scope）**不涵蓋本例**，
+> 條文有洞，以 R-C13 補。R-C13 與 Privacy **R22-2 同構**，合併處置於下次
+> canon re-sync。本條保留為該條文之案例紀錄，適用全 feature。
+>
+> **升格後之再次應用**：2026-08-14 DR #6／#7 判讀時，Market Configuration
+> Table 對 `R1L-R` 與螢幕尺寸皆 0 命中。依 R-C13 換路徑（結構化欄位 →
+> 全表 token 掃描 → 037 引用結構），第三路才得出結論。若依零命中下結論，
+> 7 節會全判 `out_of_scope`。
+
 **方法論條目，登記供全 feature 參照。**
 
 SR24 §20 標題作 `LATAM Alternative Rear Blower (See CFTS043 for applicable
@@ -385,14 +455,40 @@ NOTE: The requirements below are only applicable to R1H starting on SR22.
 散文說只有 R1H，結構化欄位說含 R1L-R 且在 R1L-R scope 內。**兩者不可能同時
 為真。**
 
-**本次判讀採結構化欄位**（`Scope=Yes` + `Radio` 含 R1L-R），理由：`Scope`
-欄是該 workbook 為 R1L-R 專門建立之白名單（sheet `工作表1`，599 筆），是
-本檔對「什麼在 R1L-R 範圍內」最直接的表態；而該 NOTE 之措辭
-（"starting on SR22"）看似是歷史沿革註記，可能未隨 R1L-R 納入而更新。
+### 層級訂正 2026-08-14（下放包 07 §3）—— 上表第三列不得參與選邊
 
-**但這是選擇，不是推導。** 若 NOTE 為準，10 節應為 `out_of_scope`。
-`data/sr24_substantive_applicability.tsv` 之 `in_scope` 判定即繫於此選擇，
-D-C10 裁定前應知悉。
+上繳 03 §3.4 曾以「`Scope` 欄是本檔對『什麼在 R1L-R 範圍內』最直接的表態」
+為由採結構化欄位。**該理由與 §8.6 不合，已訂正。**
 
-**RD-1 候選**（不阻塞，待 D-C10 一併處置）：請上游確認 4803259 之 NOTE
+`SYS1_CFTS043-…Tree view_R1L-R scope.xlsx` 是 **SYS.1 階段之 traceability
+index export**，非原始 spec 來源；CFTS043 主檔 `.doc` 才是。§8.6：index
+export 與原始來源不一致時，**原始來源勝出**。故 `Scope` 欄之地位為
+**索引層佐證**，不得凌駕主檔散文。
+
+排除索引層後，矛盾之正確描述是 **CFTS043 主檔內部之矛盾**：
+
+| 層級 | 來源 | 陳述 |
+|---|---|---|
+| 原始．散文 | 4803259 NOTE | below 之需求只適用 R1H |
+| 原始．屬性 | 同 item `Radio` | `R1L-R, R1L, R1H` |
+| ~~索引層~~ | ~~tree view `Scope`~~ | 佐證，不參與選邊 |
+
+**同一原始來源內「散文 vs 屬性欄」之矛盾，canon 未涵蓋此形態，無既有規則
+可援。**
+
+**後果（07 §3 明載）**：若今日被迫選邊，canon 之重心偏向散文（原始來源之
+明文陳述），即偏向 **`out_of_scope`** —— 與上繳 03 所選方向**相反**。
+故 R-C12 之降級不只是形式上的保守，而是**修正了一個實質上偏錯方向的暫定值**。
+
+執行層之**行動**全部正確（採結構化欄位、標示為選擇、開 DR、建議緩裁），
+判讀結果不必重做；訂正者僅「最直接之表態」一語。
+
+### 現況
+
+10 節 verdict 依 **R-C12** 自 `in_scope` 降為 `undetermined`，
+`pending_on` = DR #8。降級**不推翻依據、不否定其結論可能為真**；
+`basis` 欄原有依據一字未刪。
+
+**RD-1 候選**（不阻塞，待 D-C10 一併處置；**送出屬 Tier 3**，依 07 §4 宜與
+A-CF12 併入 Comfort 之 RD-1 草稿，不單獨發函）：請上游確認 4803259 之 NOTE
 是否仍有效；若有效，`Radio` 屬性與 R1L-R scope 白名單為何含 R1L-R。

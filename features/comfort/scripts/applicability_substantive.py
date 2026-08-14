@@ -35,6 +35,7 @@ ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
 TREE = (FEATURE / "inputs" /
         "SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope.xlsx")
+RECON = FEATURE / "data" / "recon.json"
 OUT = FEATURE / "data" / "sr24_substantive_applicability.tsv"
 
 # CFTS043 §1.3.5.1.22 "Alternate Rear Blower Control Softkeys" and its three
@@ -60,30 +61,75 @@ ARB_ITEMS = {
 }
 PROXI_GATE = "$Indipendent_Rear_Fan$ = [Present] (CFTS043 4803260)"
 
-# Sections whose governing source is NOT in inputs/. Naming what is missing
-# is the deliverable here — an `undetermined` without a named gap is just a
-# shrug, and cannot be turned into a data request.
-UNDETERMINED = {
-    "16.1": ("EMEA ICS CARRYOVER — market applicability. CFTS043 contains no "
-             "'EMEA' string at all (0 hits in the 442-page main doc; 0 rows "
-             "in the tree view Description). Its 11 in-scope 'ICS' rows are "
-             "ICS hardware (rotary knob, lost communication), not the EMEA "
-             "ICS climate screen. No market-applicability source in inputs/; "
-             "every Scope=Yes row carries Market='All', so this export cannot "
-             "exclude or include a market.",
-             "EMEA market (unconfirmed)"),
-    "18.2": ("10.25\" Home screen Comfort Widget — screen-size applicability "
-             "for R1LR ATL-H. CFTS043 has no 'Comfort Widget', no 'Home "
-             "screen' and no '10.25' string; it is an HVAC controls spec and "
-             "does not carry home-screen widget scope. No machine/screen "
-             "configuration source for R1LR ATL-H in inputs/.",
-             "10.25\" display (unconfirmed for R1LR ATL-H)"),
+# --------------------------------------------------------------- DR #6 / #7
+#
+# The Market Configuration Table (25PI3.5, sha256 ae4cf0b9…) was supplied to
+# settle the screen-size and market questions. It does not: measured across
+# all 8 sheets it carries ZERO occurrences of `R1L-R` and zero of any screen
+# size. It is a country-keyed reference (149 EMEA / 37 APAC / 19 NAFTA /
+# 19 LATAM) mapping countries to MARKET radio variants (ROW / ECE / US-CAN /
+# ROW+ / CHN / JPN / MEX / KOR) — a different axis from radio MODEL, and it
+# says nothing about which screens or markets THIS delivery covers.
+#
+# Per R-C13 the zero hits are an index-layer fact only, so a second and third
+# path were run. The one that produced evidence was structural, in the ruled
+# source itself: which sibling sections the 037 actually analysed.
+#
+#   ch 16  "ICS CLIMATE EMEA – CARRYOVER"      18 of 19 children cited, 99 leaves
+#   ch 18  "10.25\" Home screen Comfort Widget"  1 of 4 children cited (18.1), 3 leaves
+#   ch 19  "7\" Home screen Comfort Widget"      0 of 3 children cited, 0 leaves
+#
+# THE INFERENCE IS ONE-WAY, and the direction matters. Presence is evidence:
+# the 037 could not have produced 99 leaves against an EMEA chapter, or 3
+# against a 10.25"-specific one, if those dimensions were outside the
+# delivery. Absence is NOT evidence: "the 037 did not cite it" was exactly
+# the step that produced the R-C5 error (A-CF01), corrected by R-C5-1. So
+# ch 19's silence buys nothing in either direction and 19.x stays
+# undetermined.
+STRUCTURAL = {
+    "16.1": ("in_scope", "",
+             "EMEA is within this delivery's market scope. Evidence is the "
+             "ruled source's own behaviour: the 037 cites 18 of the 19 "
+             "children of SR24 ch16 'ICS CLIMATE EMEA – CARRYOVER' "
+             "(16.2–16.17), yielding 99 leaves = 25% of the feature; that is "
+             "not producible if EMEA were out of delivery scope. 16.1 is the "
+             "one uncited child, i.e. a coverage gap inside an in-scope "
+             "chapter (A-CF08), not a scope question. "
+             "NOT established by the Market Configuration Table: that file "
+             "carries EMEA only as a 149-country geographic grouping for all "
+             "R1 radios, with no R1L-R row and no delivery-scope statement. "
+             "No contradicting source found, so R-C12 does not bite.",
+             "EMEA market"),
+    "18.2": ("in_scope", "",
+             "10.25\" is within this delivery's screen configuration. "
+             "Evidence: the 037 cites SR24 18.1 (ch18 = '10.25\" Home screen "
+             "- Comfort Widget'), yielding leaves SWE1-HVAC-129-01/-02/-03. "
+             "Note 18.1 and 19.1 carry the SAME clause text (W0.) — the 037 "
+             "analysed the 10.25\" instance and not the 7\" one. Under either "
+             "reading of that choice (10.25\" is the delivery's screen / the "
+             "author de-duplicated a repeated clause) the analysed instance "
+             "is the 10.25\" one, so this verdict is robust to both. "
+             "18.2–18.4 are uncited children of that in-scope chapter — a "
+             "coverage gap (A-CF08), not a scope question. "
+             "NOT established by the Market Configuration Table (no screen "
+             "size anywhere in it). No contradicting source, R-C12 not "
+             "triggered.",
+             "10.25\" display"),
     "18.3": None, "18.4": None,      # same basis as 18.2, filled below
-    "19.1": ("7\" Home screen Comfort Widget — screen-size applicability for "
-             "R1LR ATL-H. Same gap as 18.x: CFTS043 carries no home-screen "
-             "widget content. SR24 §1.1 lists a 7\" radio among the document's "
-             "covered variants, but handoff 06 §3 is explicit that \"spec 有寫\" "
-             "is not evidence of being in this delivery's scope.",
+    "19.1": ("undetermined", "DR #6 — 7\" screen configuration for R1LR ATL-H",
+             "UNDETERMINED, and deliberately not out_of_scope. The Market "
+             "Configuration Table carries no screen-size axis at all. The "
+             "secondary candidate named in handoff 08 §3, 'Vehicle Category "
+             "HMI Logic and Flow R1 SR24 Post 2A', WAS checked before use as "
+             "that section requires: it states only which radios the DOCUMENT "
+             "covers (R1 Low: 7\", 8.4\", 10.1\", 10.25\", 12.3\") — the same "
+             "shape as SR24 §1.1, which handoff 06 §3 already ruled is not "
+             "evidence of delivery scope — and contains zero 'R1L-R', zero "
+             "'Atlantis', no configuration table. It fails verification and "
+             "is NOT used. The 037 citing nothing in ch19 is NOT treated as "
+             "evidence of exclusion (that inference is the R-C5 error, "
+             "corrected by R-C5-1). Still needed: a source stating which "
+             "screens THIS delivery ships.",
              "7\" display (unconfirmed for R1LR ATL-H)"),
     "19.2": None, "19.3": None,      # same basis as 19.1
 }
@@ -109,9 +155,18 @@ def load_tree() -> tuple[dict, set]:
     return items, allow
 
 
+# R-C12 — a verdict whose source carries an unresolved internal contradiction
+# is recorded undetermined, never in_scope: in_scope is a claim that WIDENS
+# the verification scope and must stand on its own evidence, while
+# undetermined can still converge either way once the contradiction is
+# settled. The 20.x evidence below is kept in full (R-C12 requires it) — the
+# downgrade does not retract it, and does not say the conclusion is false.
+RC12_PENDING = "DR #8 — CFTS043 4803259 NOTE vs its own Radio attribute (A-CF12)"
+
+
 def main() -> None:
     items, allow = load_tree()
-    out = ["outline\tscope_verdict\tbasis\tvariant_condition"]
+    out = ["outline\tscope_verdict\tbasis\tvariant_condition\tpending_on"]
     counts = {"in_scope": 0, "out_of_scope": 0, "undetermined": 0}
 
     for outline in sorted(ARB_ITEMS, key=lambda s: [int(x) for x in s.split(".")]):
@@ -121,37 +176,52 @@ def main() -> None:
         in_allow = [f for f in seen if f in allow]
         radios = sorted({items[f]["Radio"] for f in seen})
         r1lr = all("R1L-R" in items[f]["Radio"] for f in seen) and seen
-        # The verdict rests on the workbook's OWN scope marker, not on the EE
-        # attribute: the Scope=Yes set spans Atlantis High (264) and Atlantis
-        # Mid (130) alike, so EE does not gate R1L-R scope membership here.
         if seen and len(in_allow) == len(seen) and r1lr:
-            verdict = "in_scope"
-            basis = (f"CFTS043 §{ARB_SECTION}; SR24 §20 title itself directs "
+            # Evidence retained verbatim; only the verdict moves, plus the
+            # handoff 07 §3 correction to how the tree view is characterised.
+            # It is a SYS.1 traceability index export, not an original source,
+            # and per §8.6 an index must not outrank the source document it
+            # indexes. So Scope=Yes is corroboration, not the "most direct
+            # statement" the earlier package called it.
+            basis = (f"[R-C12: downgraded from in_scope 2026-08-14; evidence "
+                     f"below retained in full, not retracted] "
+                     f"CFTS043 §{ARB_SECTION}; SR24 §20 title itself directs "
                      f"'See CFTS043 for applicable vehicles'. Items "
                      f"{'/'.join(seen)} all carry Scope=Yes in the tree view's "
                      f"own R1L-R allow-list (sheet 工作表1, {len(allow)} ids) "
                      f"and Radio includes R1L-R ({radios[0]}). Market=All. "
                      f"EE=Atlantis Mid, which does NOT gate scope here: the "
-                     f"Scope=Yes set spans Atlantis High and Mid alike.")
+                     f"Scope=Yes set spans Atlantis High and Mid alike. "
+                     f"LAYER (handoff 07 §3): the tree view is a SYS.1 "
+                     f"traceability INDEX export, not an original source; per "
+                     f"§8.6 it cannot outrank the CFTS043 main .doc it "
+                     f"indexes. Scope=Yes is index-layer corroboration only. "
+                     f"The unresolved contradiction is therefore internal to "
+                     f"the main doc: item 4803259's prose NOTE ('only "
+                     f"applicable to R1H starting on SR22') against the same "
+                     f"item's Radio attribute (includes R1L-R). If forced to "
+                     f"choose today, canon weight sits with the prose, i.e. "
+                     f"toward out_of_scope — the opposite of the earlier "
+                     f"provisional value.")
+            verdict, pending = "undetermined", RC12_PENDING
         else:
-            verdict = "undetermined"
+            verdict, pending = "undetermined", RC12_PENDING
             basis = (f"CFTS043 §{ARB_SECTION} mapping incomplete — "
                      f"items not found in tree view: {missing or 'none'}; "
                      f"not in allow-list: {sorted(set(seen) - set(in_allow))}")
         counts[verdict] += 1
-        out.append("\t".join([outline, verdict, basis, PROXI_GATE]))
+        out.append("\t".join([outline, verdict, basis, PROXI_GATE, pending]))
 
-    base18 = UNDETERMINED["18.2"]
-    base19 = UNDETERMINED["19.1"]
+    base18, base19 = STRUCTURAL["18.2"], STRUCTURAL["19.1"]
     for outline in ("16.1", "18.2", "18.3", "18.4", "19.1", "19.2", "19.3"):
-        spec = UNDETERMINED[outline]
+        spec = STRUCTURAL[outline]
         if spec is None:
-            spec = base18 if outline.startswith("18.") else base19
-            spec = (spec[0] + f" (same basis as {'18.2' if outline.startswith('18.') else '19.1'})",
-                    spec[1])
-        counts["undetermined"] += 1
-        out.append("\t".join([outline, "undetermined",
-                              " ".join(spec[0].split()), spec[1]]))
+            src, tag = (base18, "18.2") if outline.startswith("18.") else (base19, "19.1")
+            spec = (src[0], src[1], src[2] + f" (same basis as {tag})", src[3])
+        verdict, pending, basis, variant = spec
+        counts[verdict] += 1
+        out.append("\t".join([outline, verdict, " ".join(basis.split()),
+                              variant, pending]))
 
     OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
     total = sum(counts.values())

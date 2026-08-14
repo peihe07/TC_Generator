@@ -58,12 +58,23 @@ python3 scripts/recon.py --feature features/comfort --root .
 ＋ 7 節待缺料（DR #6／#7）。
 
 - [x] 甲項已由 **R-C5-1** 處置 —— 16 節退出 R-C5，併入 A-CF08
-- [x] 17 節適用性判讀完成 —— `data/sr24_substantive_applicability.tsv`，
-      10 `in_scope`／7 `undetermined`／0 `out_of_scope`
-- [ ] **D-C10 裁定** —— 10 節 `in_scope` 者之處置。**宜待 A-CF12 釐清**：
-      該判定繫於「採 CFTS043 結構化欄位而非其散文 NOTE」之選擇，
-      NOTE 若有效則 10 節全部翻面（DR #8，單一問句可解）
-- [ ] **DR #6／#7 落位** —— 7 節 `undetermined` 之解除條件
+- [x] 17 節適用性判讀完成 —— `data/sr24_substantive_applicability.tsv`
+      （含 `pending_on` 欄）。**現行：4 `in_scope`／13 `undetermined`／
+      0 `out_of_scope`**
+      - `in_scope`：16.1、18.2、18.4、18.3 —— 依 037 引用結構（ch16 引
+        18/19 得 99 leaves；ch18 引 18.1 得 3 leaves）
+      - `undetermined`：20.1 ~ 20.4.3（R-C12 降級，pending DR #8）、
+        19.1 ~ 19.3（pending DR #6）
+- [ ] **D-C10 裁定** —— **宜待 A-CF12 釐清**。07 §3 之層級訂正顯示：
+      tree view 是索引層不參與選邊，矛盾是 CFTS043 主檔內部之事，
+      且 canon 重心偏向散文 → 偏向 `out_of_scope`，與先前暫定值**方向相反**
+      （DR #8，單一問句可解）
+- [ ] **DR #6 落位** —— 僅剩 7" 螢幕配置一題（擋 19.1 ~ 19.3）。
+      DR #7 已解；08 §3 之次要候選已先驗且驗不過（DR #10）
+- [ ] **Part N 之邊界預留（07 §5）** —— 403 leaves 可先切，但章 20
+      （Alternate Rear Blower）與 home-screen widget 兩塊須留為**可插入之
+      邊界**，不得切成必須重整才容納得下的形狀
+- [ ] **Phase 3 是否開始待 Pei 裁**（07 §5 明載）
 - [ ] **exemplar source 具名** —— 提案寫「nearest sibling done region」，
       但時序最近的 privacy／sxm 皆 BLANK 無 done region；實有者為
       home（144 列）與 amfm（158 列，其需求族已被裁決取代，僅可借樣式）

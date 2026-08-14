@@ -228,6 +228,56 @@ CFTS 等引用文件）。
 
 ---
 
+## R-C12 ~ R-C14 —— 下放包 07 §1（Pei 裁定，2026-08-14）
+
+**R-C13、R-C14 適用全 feature**；安置位置待 canon re-sync（07 §7）。
+R-C13 與 Privacy R22-2 同構，合併處置於下次 re-sync（條文明載）。
+
+```
+R-C12  適用性判讀之保守原則
+
+scope_verdict 於其依據來源存在未解之內部矛盾時，一律記 undetermined，
+不得記 in_scope。
+
+理由（不對稱錯誤成本）：in_scope 為「擴大驗證範圍」之主張，須自足證據；
+undetermined 為「尚未認定」，可由後續證據往任一方向收斂。矛盾未解時記
+in_scope，等於以未經裁決之單方選擇擴大範圍。
+
+據此，上繳 03 §3.1 之 10 節（20.1 ~ 20.4.3）verdict 自 in_scope 降為
+undetermined，pending DR #8。降級不推翻其依據，亦不否定其結論可能為真。
+
+TSV 之 basis 欄原有依據全部保留不刪，另加 pending_on 欄記其所待。
+```
+
+```
+R-C13  零命中之處置
+
+以字串檢索為手段之查找，零命中只能陳述索引層事實（該字串不出現於該文件），
+不得升格為內容層結論（該文件不涵蓋該事項）。
+
+零命中應觸發換路徑，不應觸發下結論。最少須再走一條不依賴同一字串之路徑
+（語義相關詞全列舉、結構化欄位篩選、章節逐節閱讀）；三路交叉仍無所獲方得
+記 undetermined，即便如此仍不得記 out_of_scope。
+
+來源文件自身給出之名稱亦可能與被引文件用詞不一致（A-CF11：SR24 稱
+Alternative Rear Blower，CFTS043 稱 Alternate Rear Blower，以前者檢索後者
+得零命中）。引用關係中的名稱不是可信的檢索鍵。
+
+與 Privacy R22-2 同構，合併處置於下次 canon re-sync。
+```
+
+```
+R-C14  刪除前之同一性確認
+
+任何以「他處已有同一份」為理由之刪除，須以內容雜湊確認同一性，不得以檔案
+大小、檔名或修改時間代替。大小相同不蘊含內容相同，而刪除之正當性恰取決於
+內容相同。若兩份曾分歧，刪除前之比對是唯一會發現它的時機。
+
+先驗後刪，驗不過即不刪。
+```
+
+---
+
 ## 執行層回報（2026-08-14，Phase 0 → Phase 1）
 
 以下為執行層對上列條文之落實紀錄與實測值，**非條文本身**。
@@ -390,3 +440,46 @@ Blower"，CFTS043 全篇作 "Altern**ate** Rear Blower"，且從不使用
 
 這是下放包 06 §3「讀不到即 undetermined，不得以讀不到判 out_of_scope」所
 防的形態，但實際發生的版本更隱蔽：**不是讀不到，是用錯字串去讀而讀不到**。
+
+---
+
+## 執行層回報（2026-08-14，下放包 07／08）
+
+### R-C12 —— 10 節已降級，依據全數保留
+
+`data/sr24_substantive_applicability.tsv` 加 `pending_on` 欄。
+20.1 ~ 20.4.3 十節 `in_scope` → `undetermined`，`pending_on` =
+「DR #8 — CFTS043 4803259 NOTE vs its own Radio attribute (A-CF12)」。
+
+`basis` 欄**原有依據一字未刪**（機械檢查：10 列全部仍含 `Scope=Yes` 字樣），
+僅前綴 `[R-C12: downgraded from in_scope 2026-08-14; evidence below retained
+in full, not retracted]`，並依 07 §3 追加層級訂正段。
+
+### R-C13 —— A-CF11 已升格，且本輪再次派上用場
+
+A-CF11 已註記升格為 R-C13。**本輪 DR #6／#7 判讀就是 R-C13 的直接應用**：
+Market Configuration Table 對 `R1L-R` 與任何螢幕尺寸皆 **0 命中**，若依
+零命中下結論，7 節會全判 `out_of_scope`。改走三路：
+
+| 路徑 | 作法 | 結果 |
+|---|---|---|
+| 一 | 結構化欄位篩選（radio variant / 地理分組欄之相異值） | 得知該表之 variant 軸是市場別（ROW/ECE/US-CAN…），非機型別，**不承載 R1L-R** |
+| 二 | 全 8 工作表 token 掃描（R1L-R／螢幕尺寸／widget／EMEA／LATAM） | `R1L-R` 0、螢幕尺寸 0、`EMEA` 158、`LATAM` 26 |
+| 三 | **037 自身之引用結構** | ch16 引 18/19（99 leaves）、ch18 引 1/4（3 leaves）、ch19 引 0/3 |
+
+第三路才是決定性的，而它不依賴任何字串檢索。
+
+### R-C14 —— 本輪對 Market Configuration Table 之取用即依此條
+
+08 §1 已警示四個 release 之該檔全標 `v1.6` 而內容互異
+（25PI3.5 `ae4cf0b9…`／25PI4.5 `9efae74f…`／26PI1.5 `2e66a6d9…`／
+26PI2.5 `7e865d55…`）。取用前實測：
+
+| 項 | 值 |
+|---|---|
+| bytes | 279,779（與 08 §1 相符） |
+| SHA256 | `ae4cf0b929b033ac3baabf9d2e6e7497da5539d3f774be30d52d636a67816cfc` |
+| 對 `ae4cf0b9…` | **PASS** |
+
+Gate 通過方進入判讀。R-C14 原文所治為「刪除前」，此處是「取用前」——
+同一命題的另一面：**版本標籤不能識別內容，雜湊才能**。
