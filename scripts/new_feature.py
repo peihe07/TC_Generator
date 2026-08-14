@@ -101,13 +101,48 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-{abbr}nn]`.
 """
 
+# RULINGS.md and DATA_REQUESTS.md were previously left for the operator to
+# create by hand, so a feature could reach Phase 2 with its signed rulings
+# living only in a chat log (the AMFM/Projection gap recorded in their
+# docs/INDEX.md). Both are scaffolded now — an empty register is a visible
+# state, an absent file is not.
+RULINGS_SKELETON = """\
+# RULINGS — {feature} (FW036)
 
-def scaffold(feature: str, root: Path) -> None:
+Pei 之裁決與分析層自裁條文之逐字登記。條文一律照錄（R19-2：原文貼入，
+不改寫、不摘要），執行層之回報另起段落。本檔為 {feature} 之裁決權威；
+跨 feature 條文承接時註明來源包。
+
+---
+
+(no rulings recorded yet)
+"""
+
+DATA_REQUESTS_SKELETON = """\
+# DATA REQUESTS — {feature} (FW036)
+
+Files Pei can supply that unblock or upgrade generation. Drop into
+`features/{slug}/inputs/`; each landing closes or advances the linked
+anomaly. Ordered by when a batch actually needs it. Names are verbatim from
+the citing source where the source gives one; otherwise the expected naming
+pattern is stated and marked (pattern).
+
+**Standing rule（沿用 AMFM／Privacy）**：任何新發現之外部引用，登記 anomaly
+的同時必須新增一列於此表；且每次 session opener 與 batch gate 都要按
+Urgency 回報。
+
+| # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
+|---|---|---|---|---|---|---|
+| — | (none known at scaffold time) | — | — | — | — | — |
+"""
+
+
+def scaffold(feature: str, root: Path, adopt_existing: bool = False) -> None:
     # Directory naming convention (2026-08-11 reorg): all features live under
     # features/, lowercase, without the HMI suffix. The feature NAME keeps its
     # own casing — it is what feature.yaml and the profile filename carry.
     feat_dir = root / "features" / feature.lower()
-    if feat_dir.exists():
+    if feat_dir.exists() and not adopt_existing:
         sys.exit(f"refusing to scaffold: {feat_dir} already exists")
 
     templates = root / "docs" / "fw036" / "templates"
@@ -116,23 +151,36 @@ def scaffold(feature: str, root: Path) -> None:
     playbook_tpl = (templates / "PLAYBOOK.md").read_text(encoding="utf-8")
 
     for d in DIRS:
-        (feat_dir / d).mkdir(parents=True)
+        (feat_dir / d).mkdir(parents=True, exist_ok=adopt_existing)
 
     abbr = feature[:2].upper()
-    (feat_dir / "RUNBOOK.md").write_text(
-        RUNBOOK_SKELETON.format(feature=feature), encoding="utf-8")
-    (feat_dir / "ANOMALIES.md").write_text(
-        ANOMALIES_SKELETON.format(feature=feature, abbr=abbr), encoding="utf-8")
-    (feat_dir / "DECISIONS.md").write_text(
-        decisions_tpl.replace("{FEATURE}", feature), encoding="utf-8")
-    (feat_dir / "feature.yaml").write_text(
-        yaml_tpl.replace("{FEATURE}", feature), encoding="utf-8")
-    (feat_dir / "PLAYBOOK.md").write_text(
-        playbook_tpl.replace("{FEATURE}", feature)
-        .replace("{abbr}", abbr), encoding="utf-8")
-    (feat_dir / ".gitignore").write_text(GITIGNORE, encoding="utf-8")
+    files = {
+        "RUNBOOK.md": RUNBOOK_SKELETON.format(feature=feature),
+        "ANOMALIES.md": ANOMALIES_SKELETON.format(feature=feature, abbr=abbr),
+        "RULINGS.md": RULINGS_SKELETON.format(feature=feature),
+        "DATA_REQUESTS.md": DATA_REQUESTS_SKELETON.format(
+            feature=feature, slug=feature.lower()),
+        "DECISIONS.md": decisions_tpl.replace("{FEATURE}", feature),
+        "feature.yaml": yaml_tpl.replace("{FEATURE}", feature),
+        "PLAYBOOK.md": (playbook_tpl.replace("{FEATURE}", feature)
+                        .replace("{abbr}", abbr)),
+        ".gitignore": GITIGNORE,
+    }
+    # --adopt-existing exists for the case where the analysis layer has already
+    # delivered docs/handoff/ into an otherwise-empty feature dir. It fills the
+    # gaps and NEVER overwrites: a scaffold that clobbered a signed handoff
+    # would destroy the only copy of a ruling.
+    skipped = []
+    for name, body in files.items():
+        target = feat_dir / name
+        if target.exists():
+            skipped.append(name)
+            continue
+        target.write_text(body, encoding="utf-8")
 
     print(f"scaffolded {feat_dir}")
+    if skipped:
+        print(f"  kept existing (not overwritten): {', '.join(sorted(skipped))}")
     print("next steps:")
     print(f"  1. drop source files into {feat_dir / 'inputs'}")
     print(f"  2. fill {feat_dir / 'feature.yaml'} (spec_mode, paths)")
@@ -144,8 +192,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("feature", help="feature name, e.g. Climate")
     ap.add_argument("--root", default=".", help="repo root")
+    ap.add_argument("--adopt-existing", action="store_true",
+                    help="fill gaps in an existing feature dir; never "
+                         "overwrites a file that is already there")
     args = ap.parse_args()
-    scaffold(args.feature, Path(args.root).resolve())
+    scaffold(args.feature, Path(args.root).resolve(), args.adopt_existing)
 
 
 if __name__ == "__main__":

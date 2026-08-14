@@ -111,15 +111,21 @@ def _swra_profile(wb) -> str:
         return "Analysis Report present, header not recognized"
     cols = {str(c).strip(): j for j, c in enumerate(hdr) if c}
     id_col = next((j for h, j in cols.items() if "Requirement ID" in h or h == "ID"), 0)
-    src_col = next((j for h, j in cols.items()
-                    if "Source" in h and "Description" not in h), None)
+    # Same preference order as cited_documents(): a report may carry both an
+    # "HMI Source ID" holding document citations and a "Source Requirement ID"
+    # holding upstream req ids. Describing the wrong one made this summary
+    # contradict the need list computed two functions down.
+    src_col = next((j for h, j in cols.items() if "HMI Source" in h), None)
+    if src_col is None:
+        src_col = next((j for h, j in cols.items()
+                        if "Source" in h and "Description" not in h), None)
     data = [r for r in rows[hdr_i + 1:] if r[id_col]
             and not str(r[id_col]).startswith("<")]
     ids = [str(r[id_col]).strip() for r in data]
     fam = re.sub(r"-?\d+(-\d+)?$", "", ids[0]).rstrip("-") if ids else "?"
     shape = "no source column"
     if src_col is not None and data:
-        sample = str(data[0][src_col] or "")
+        sample = str(data[0][src_col] or "").split("\n")[0]
         if re.search(r"_[\d.]+\s*$", sample) and len(sample) > 20:
             shape = "sources: document citations (need-list derivable)"
         elif re.match(r"[A-Z]+R?\d*L?-\d+", sample.split("\n")[0].strip()):
@@ -273,7 +279,14 @@ def cited_documents(a03_path: Path):
     samples: dict = {}
     for src_col in cand:
         for r in data:
-            s = str(r[src_col] or "").strip()
+            # FIRST LINE ONLY. An HMI Source ID cell may carry the document
+            # citation on line 1 and Polarion item ids on the lines below
+            # (Comfort R-C4; 57 of 403 leaves). Matching the whole cell makes
+            # the `_{n}` suffix test fail on exactly those rows, so the need
+            # list silently undercounts — 346 instead of 403 — while still
+            # naming the right document, which is the shape of undercount
+            # nobody notices.
+            s = str(r[src_col] or "").strip().split("\n")[0].strip()
             # document citation shape: long prefix + _{n} section suffix
             if s and re.search(r"_[\d.]+\s*$", s) and len(s) > 20:
                 stem = doc_stem(s)

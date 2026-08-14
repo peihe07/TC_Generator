@@ -1,0 +1,75 @@
+# feature.yaml — pipeline configuration for Comfort
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+
+feature: "Comfort"
+test_group: "Comfort"          # R-C6 — spec 標題模組名，非交付夾之 "Climate Control Interface"
+
+paths:
+  # BLANK workbook：客戶交付夾無 036 workbook，依 handoff 01 §1 以空白通用
+  # 範本（rev C, 20260121）為 scaffold 母本，比照 Privacy 前例。
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx"
+  a03_report: "inputs/FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1 STLA 報告.xlsx"
+  # R-C1 —— baseline 為 SR24 CR24879。spec 素材不搬入 inputs/，共用語料庫留在
+  # spec-index/；路徑以 feature dir 為起點回指 repo root。SR25 CR29359 同目錄
+  # 存在但 out of scope（R-C5 / A-CF01），故 glob 寫全名而非萬用字元 —— 一個
+  # `SYS1_HMI_Comfort_*` 會同時命中兩份基線。
+  sys1_export: "../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).xlsx"
+  spec_pdf: "../../spec-index/sources/Comfort HMI Logic and Flow R1 SR24 Post 3A CR24879 (September 25 2023).pdf"
+  popup_list: null                         # none supplied at intake
+
+spec_mode: "A"        # A/B/C/D/E per FEATURE_ONBOARDING §3 —— SYS1 export 齊備
+# R-C1：stem 一律用 SR24 檔名，與 037 之 HMI Source ID 完全一致，不得改寫為 SR25。
+spec_reference_template: "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_{outline}"
+
+# Phase 1 recon 之機械 assertion（R-C3 / R-C4）。數字為 handoff 01 §2 所載、
+# 本包重新實測確認者；recon.py 以 PASS/FAIL + 實測值輸出，不符即非零離開。
+# 寫在 feature.yaml 而非腳本裡，是因為它是 Comfort 之裁決常數，不是 pipeline 常數。
+recon_assertions:
+  functional_requirement_count: 403   # R-C3 —— leaf 集合之定義，禁用 ID 後綴判準
+  distinct_spec_sections: 129         # R-C4 —— HMI Source ID 第一行解析後之相異數
+  spec_reference_stem: "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)"
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"
+  header_row: 9
+  # column letters, verified by recon header match — do not guess.
+  # rev C 佈局（Q = Estimated Test Time），故 design_method 起後移一欄；
+  # 比照 Privacy R39-2 / A-PV13。recon 以 header 文字為權威，此處僅為 prior。
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+done_region:
+  # BLANK workbook：無 done region 可保護。選擇器刻意留空 —— 填一個佔位作者值
+  # 會靜默匹配零列，讓空的 invariant 看起來像滿足的 invariant（Privacy 前例）。
+  detection: "author"
+  author_value: ""
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"     # BLANK 表單無既有列可繼承大小寫
+  # R-C7 —— 凍結。序號由 generator 指派，LLM 不得自行產生 tc_id（§10.3）。
+  tc_id_format: "NR1L-ComfortHMI-{n:03d}"
+  fill_test_group_set: true  # canon §2 — true under BLANK
+  scope_label: "範圍 Scope"
+  scope_source: "a03_report"
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # e.g. [PU0091, PU0942] — verbatim check
+  extra_rules: []                          # feature-specific lint hooks

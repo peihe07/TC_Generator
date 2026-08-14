@@ -1,0 +1,404 @@
+req_id	outline	polarion_id	spec_reference	title
+SWE1-HVAC-001-01	2.1	NRL-153340	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configur
+SWE1-HVAC-001-02	2.1	NRL-153340	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configur
+SWE1-HVAC-001-03	2.1	NRL-153340	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configur
+SWE1-HVAC-002-01	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-02	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-03	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-04	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-05	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-06	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-07	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-002-08	2.2	NRL-153341	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2	C1.) Whenever changes to the climate system are made via hard controls or touchs
+SWE1-HVAC-003-01	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-02	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-03	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-04	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-05	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-06	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-07	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-08	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-003-09	2.3	NRL-153342	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3	C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the a
+SWE1-HVAC-004-01	2.3.1	NRL-153343	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3.1	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a con
+SWE1-HVAC-004-02	2.3.1	NRL-153343	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3.1	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a con
+SWE1-HVAC-005-01	2.4	NRL-153344	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4	C3.) AC has on/ off state. Auto can automatically turn on AC. AC will break Auto
+SWE1-HVAC-005-02	2.4	NRL-153344	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4	C3.) AC has on/ off state. Auto can automatically turn on AC. AC will break Auto
+SWE1-HVAC-005-03	2.4	NRL-153344	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4	C3.) AC has on/ off state. Auto can automatically turn on AC. AC will break Auto
+SWE1-HVAC-005-04	2.4	NRL-153344	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4	C3.) AC has on/ off state. Auto can automatically turn on AC. AC will break Auto
+SWE1-HVAC-006-01	2.5	NRL-153345	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5	C4.) Recirc has on/ off state. RECIRC is not available in certain modes. Therefo
+SWE1-HVAC-006-02	2.5	NRL-153345	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5	C4.) Recirc has on/ off state. RECIRC is not available in certain modes. Therefo
+SWE1-HVAC-006-03	2.5	NRL-153345	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5	C4.) Recirc has on/ off state. RECIRC is not available in certain modes. Therefo
+SWE1-HVAC-006-04	2.5	NRL-153345	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5	C4.) Recirc has on/ off state. RECIRC is not available in certain modes. Therefo
+SWE1-HVAC-007-01	2.5.1	NRL-153347	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5.1	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Aut
+SWE1-HVAC-007-02	2.5.1	NRL-153347	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5.1	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Aut
+SWE1-HVAC-008-01	2.6	NRL-153348	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). This s
+SWE1-HVAC-008-02	2.6	NRL-153348	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). This s
+SWE1-HVAC-008-03	2.6	NRL-153348	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). This s
+SWE1-HVAC-008-04	2.6	NRL-153348	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). This s
+SWE1-HVAC-008-05	2.6	NRL-153348	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). This s
+SWE1-HVAC-009-01	2.6.1	NRL-153349	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature,
+SWE1-HVAC-009-02	2.6.1	NRL-153349	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature,
+SWE1-HVAC-009-03	2.6.1	NRL-153349	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature,
+SWE1-HVAC-009-04	2.6.1	NRL-153349	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature,
+SWE1-HVAC-009-05	2.6.1	NRL-153349	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature,
+SWE1-HVAC-009-06	2.6.1	NRL-153349	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.6.1	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature,
+SWE1-HVAC-010-01	2.7	NRL-153350	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is in
+SWE1-HVAC-010-02	2.7	NRL-153350	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is in
+SWE1-HVAC-010-03	2.7	NRL-153350	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is in
+SWE1-HVAC-010-04	2.7	NRL-153350	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is in
+SWE1-HVAC-010-05	2.7	NRL-153350	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is in
+SWE1-HVAC-011	2.7.1	NRL-153351	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7.1	C6.1) In some vehicles fan speed ranges for front hvac are: Off, 1-8.
+SWE1-HVAC-012-01	2.8	NRL-153352	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8	C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not sho
+SWE1-HVAC-012-02	2.8	NRL-153352	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8	C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not sho
+SWE1-HVAC-012-03	2.8	NRL-153352	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8	C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not sho
+SWE1-HVAC-012-04	2.8	NRL-153352	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8	C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not sho
+SWE1-HVAC-012-05	2.8	NRL-153352	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8	C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not sho
+SWE1-HVAC-012-06	2.8	NRL-153352	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8	C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not sho
+SWE1-HVAC-013-01	2.9	NRL-153353	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9	C8.) Rear Defrost has on/ off state. REAR DEFROST is not available in certain mo
+SWE1-HVAC-013-02	2.9	NRL-153353	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9	C8.) Rear Defrost has on/ off state. REAR DEFROST is not available in certain mo
+SWE1-HVAC-013-03	2.9	NRL-153353	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9	C8.) Rear Defrost has on/ off state. REAR DEFROST is not available in certain mo
+SWE1-HVAC-013-04	2.9	NRL-153353	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9	C8.) Rear Defrost has on/ off state. REAR DEFROST is not available in certain mo
+SWE1-HVAC-014-01	2.10	NRL-153354	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10	C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) 
+SWE1-HVAC-014-02	2.10	NRL-153354	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10	C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) 
+SWE1-HVAC-014-03	2.10	NRL-153354	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10	C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) 
+SWE1-HVAC-014-04	2.10	NRL-153354	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10	C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) 
+SWE1-HVAC-014-05	2.10	NRL-153354	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10	C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) 
+SWE1-HVAC-014-06	2.10	NRL-153354	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10	C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) 
+SWE1-HVAC-015-01	2.11	NRL-153355	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11	C12.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-015-02	2.11	NRL-153355	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11	C12.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-015-03	2.11	NRL-153355	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11	C12.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-015-04	2.11	NRL-153355	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11	C12.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-015-05	2.11	NRL-153355	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11	C12.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-016-01	2.12	NRL-153356	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12	C13.) There are 4 Airflow Mode displayed in this order (1) Face, (2) Face plus F
+SWE1-HVAC-016-02	2.12	NRL-153356	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12	C13.) There are 4 Airflow Mode displayed in this order (1) Face, (2) Face plus F
+SWE1-HVAC-016-03	2.12	NRL-153356	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12	C13.) There are 4 Airflow Mode displayed in this order (1) Face, (2) Face plus F
+SWE1-HVAC-017-01	2.12.1	NRL-153357	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.1	C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face,
+SWE1-HVAC-017-02	2.12.1	NRL-153357	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.1	C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face,
+SWE1-HVAC-018-01	2.12.2	NRL-153358	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.2	C13.1) If the Mode hard control is pressed the user will be moved to the next mo
+SWE1-HVAC-018-02	2.12.2	NRL-153358	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.2	C13.1) If the Mode hard control is pressed the user will be moved to the next mo
+SWE1-HVAC-018-03	2.12.2	NRL-153358	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.2	C13.1) If the Mode hard control is pressed the user will be moved to the next mo
+SWE1-HVAC-018-04	2.12.2	NRL-153358	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.2	C13.1) If the Mode hard control is pressed the user will be moved to the next mo
+SWE1-HVAC-018-05	2.12.2	NRL-153358	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.2	C13.1) If the Mode hard control is pressed the user will be moved to the next mo
+SWE1-HVAC-018-06	2.12.2	NRL-153358	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.2	C13.1) If the Mode hard control is pressed the user will be moved to the next mo
+SWE1-HVAC-019-01	2.13	NRL-153359	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13	C14.) MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C 
+SWE1-HVAC-019-02	2.13	NRL-153359	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13	C14.) MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C 
+SWE1-HVAC-019-03	2.13	NRL-153359	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13	C14.) MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C 
+SWE1-HVAC-020-01	2.14	NRL-153360	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14	C15.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC c
+SWE1-HVAC-020-02	2.14	NRL-153360	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14	C15.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC c
+SWE1-HVAC-020-03	2.14	NRL-153360	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14	C15.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC c
+SWE1-HVAC-020-04	2.14	NRL-153360	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14	C15.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC c
+SWE1-HVAC-021-01	2.15	NRL-153361	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.15	C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. EXTERIOR REAR-VIEW MI
+SWE1-HVAC-021-02	2.15	NRL-153361	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.15	C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. EXTERIOR REAR-VIEW MI
+SWE1-HVAC-022-01	2.16	NRL-153362	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.16	C18.) If blower reduction occurs automatically due to an active Voice Recognitio
+SWE1-HVAC-022-02	2.16	NRL-153362	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.16	C18.) If blower reduction occurs automatically due to an active Voice Recognitio
+SWE1-HVAC-023-01	3.1	NRL-153364	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.1	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mo
+SWE1-HVAC-023-02	3.1	NRL-153364	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.1	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mo
+SWE1-HVAC-023-03	3.1	NRL-153364	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.1	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mo
+SWE1-HVAC-024-01	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-02	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-03	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-04	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-05	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-06	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-07	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-024-08	3.2	NRL-153365	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. 
+SWE1-HVAC-025-01	3.3	NRL-153366	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.3	C21.) MAX DEF and REAR DEF are available during climate off.
+SWE1-HVAC-025-02	3.3	NRL-153366	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.3	C21.) MAX DEF and REAR DEF are available during climate off.
+SWE1-HVAC-026	3.4	NRL-153367	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4	C22.) For soft top vehicles such as JL/JT, when configured, the rear defrost but
+SWE1-HVAC-027	6.3	NRL-153375	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3	CM1.) When a vehicle is configured with a non-foldable secondary lower screen th
+SWE1-HVAC-028-01	7.1	NRL-153377	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1	CR1.) Hard controls do not switch to controlling the rear climate when on the re
+SWE1-HVAC-028-02	7.1	NRL-153377	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1	CR1.) Hard controls do not switch to controlling the rear climate when on the re
+SWE1-HVAC-028-03	7.1	NRL-153377	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1	CR1.) Hard controls do not switch to controlling the rear climate when on the re
+SWE1-HVAC-029-01	7.1.1	NRL-153378	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1.1	CR1.1) Rear hard controls changes will not provide popups on the front screen (i
+SWE1-HVAC-029-02	7.1.1	NRL-153378	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1.1	CR1.1) Rear hard controls changes will not provide popups on the front screen (i
+SWE1-HVAC-029-03	7.1.1	NRL-153378	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1.1	CR1.1) Rear hard controls changes will not provide popups on the front screen (i
+SWE1-HVAC-030-01	7.2	NRL-153379	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2	CR2.) Rear AUTO has on/ off state. The fan speed indicator shows Auto instead of
+SWE1-HVAC-030-02	7.2	NRL-153379	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2	CR2.) Rear AUTO has on/ off state. The fan speed indicator shows Auto instead of
+SWE1-HVAC-030-03	7.2	NRL-153379	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2	CR2.) Rear AUTO has on/ off state. The fan speed indicator shows Auto instead of
+SWE1-HVAC-030-04	7.2	NRL-153379	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2	CR2.) Rear AUTO has on/ off state. The fan speed indicator shows Auto instead of
+SWE1-HVAC-030-05	7.2	NRL-153379	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2	CR2.) Rear AUTO has on/ off state. The fan speed indicator shows Auto instead of
+SWE1-HVAC-031-01	7.3	NRL-153380	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.3	CR3.) LOCK REAR has on/ off state. Rear lock will lockout the rear climate contr
+SWE1-HVAC-031-02	7.3	NRL-153380	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.3	CR3.) LOCK REAR has on/ off state. Rear lock will lockout the rear climate contr
+SWE1-HVAC-031-03	7.3	NRL-153380	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.3	CR3.) LOCK REAR has on/ off state. Rear lock will lockout the rear climate contr
+SWE1-HVAC-032-01	7.4	NRL-153381	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.4	CR4.) Temperature ranges: LO, 60-84, HI. The status is indicated on the rear cli
+SWE1-HVAC-032-02	7.4	NRL-153381	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.4	CR4.) Temperature ranges: LO, 60-84, HI. The status is indicated on the rear cli
+SWE1-HVAC-032-03	7.4	NRL-153381	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.4	CR4.) Temperature ranges: LO, 60-84, HI. The status is indicated on the rear cli
+SWE1-HVAC-032-04	7.4	NRL-153381	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.4	CR4.) Temperature ranges: LO, 60-84, HI. The status is indicated on the rear cli
+SWE1-HVAC-033-01	7.5	NRL-153382	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is i
+SWE1-HVAC-033-02	7.5	NRL-153382	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is i
+SWE1-HVAC-033-03	7.5	NRL-153382	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is i
+SWE1-HVAC-033-04	7.5	NRL-153382	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is i
+SWE1-HVAC-034-01	7.6	NRL-153383	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.6	CR6.) Rear climate off has on/off state that is indicated on TS (rear climate sc
+SWE1-HVAC-034-02	7.6	NRL-153383	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.6	CR6.) Rear climate off has on/off state that is indicated on TS (rear climate sc
+SWE1-HVAC-034-03	7.6	NRL-153383	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.6	CR6.) Rear climate off has on/off state that is indicated on TS (rear climate sc
+SWE1-HVAC-034-04	7.6	NRL-153383	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.6	CR6.) Rear climate off has on/off state that is indicated on TS (rear climate sc
+SWE1-HVAC-034-05	7.6	NRL-153383	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.6	CR6.) Rear climate off has on/off state that is indicated on TS (rear climate sc
+SWE1-HVAC-035-01	7.7	NRL-153384	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.7	CR7.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-035-02	7.7	NRL-153384	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.7	CR7.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-035-03	7.7	NRL-153384	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.7	CR7.) SYNC has on/ off state that is indicated on climate screen (highlight butt
+SWE1-HVAC-036-01	7.8	NRL-153385	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.8	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face. ON 
+SWE1-HVAC-036-02	7.8	NRL-153385	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.8	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face. ON 
+SWE1-HVAC-036-03	7.8	NRL-153385	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.8	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face. ON 
+SWE1-HVAC-036-04	7.8	NRL-153385	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.8	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face. ON 
+SWE1-HVAC-036-05	7.8	NRL-153385	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.8	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face. ON 
+SWE1-HVAC-037	7.9	NRL-153386	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.9	CR9.) AC has on/ off state.
+SWE1-HVAC-038-01	7.10	NRL-153387	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.10	CR10.) 4 Zone Climate includes two temperature zones in the rear climate. The re
+SWE1-HVAC-038-02	7.10	NRL-153387	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.10	CR10.) 4 Zone Climate includes two temperature zones in the rear climate. The re
+SWE1-HVAC-039	9.1	NRL-153391	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1	CR11.) On some vehicles (See CFTS043 for details), there are additional Rear Cli
+SWE1-HVAC-040-01	9.2	NRL-153392	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.2	CR12.) Alternative fan speed pop up: in these variants, when the fan speed pop u
+SWE1-HVAC-040-02	9.2	NRL-153392	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.2	CR12.) Alternative fan speed pop up: in these variants, when the fan speed pop u
+SWE1-HVAC-041	9.3	NRL-153393	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.3	C12.1.) The pop up will have text labels, «Front» for front climate and «Rear» f
+SWE1-HVAC-042-01	9.4	NRL-153394	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4	CR13.) Alternative Status Bar Dropdown: in these variants, the driver side clima
+SWE1-HVAC-042-02	9.4	NRL-153394	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4	CR13.) Alternative Status Bar Dropdown: in these variants, the driver side clima
+SWE1-HVAC-042-03	9.4	NRL-153394	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4	CR13.) Alternative Status Bar Dropdown: in these variants, the driver side clima
+SWE1-HVAC-043	9.4.1	NRL-153395	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4.1	CR13.1.) The button label will read «Rear».
+SWE1-HVAC-044-01	10.1	NRL-153397	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate cont
+SWE1-HVAC-044-02	10.1	NRL-153397	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate cont
+SWE1-HVAC-045	10.2	NRL-153398	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.2	EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO
+SWE1-HVAC-046	10.3	NRL-153399	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.3	EH3.) Button label will read AUTO ECO.
+SWE1-HVAC-047	10.4	NRL-153400	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.4	EH4.) When the AUTO function is off and available, the user s first press of the
+SWE1-HVAC-048-01	10.5	NRL-153401	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.5	EH5.) The second press will switch to AUTO on. A third press would go back to AU
+SWE1-HVAC-048-02	10.5	NRL-153401	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.5	EH5.) The second press will switch to AUTO on. A third press would go back to AU
+SWE1-HVAC-048-03	10.5	NRL-153401	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.5	EH5.) The second press will switch to AUTO on. A third press would go back to AU
+SWE1-HVAC-049-01	10.6	NRL-153402	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.6	EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan 
+SWE1-HVAC-049-02	10.6	NRL-153402	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.6	EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan 
+SWE1-HVAC-050	10.7	NRL-153403	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.7	EH7.) HVAC AUTO shall keep the selected setting through ignition cycles.
+SWE1-HVAC-051	10.8	NRL-153404	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.8	EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
+SWE1-HVAC-052	10.9	NRL-153405	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.9	EH9.) The comfort pop ups triggered by hard controls interaction shall reflect t
+SWE1-HVAC-053-01	10.9.1	NRL-153406	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.9.1	EH9.1) When ECO HVAC is equipped on a vehicle, the AUTO pop ups triggered by har
+SWE1-HVAC-053-02	10.9.1	NRL-153406	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.9.1	EH9.1) When ECO HVAC is equipped on a vehicle, the AUTO pop ups triggered by har
+SWE1-HVAC-054-01	11.1	NRL-153408	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1	HVS1. For Multi-Level Heated/Vented seats, a press of the heated seat button ope
+SWE1-HVAC-054-02	11.1	NRL-153408	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1	HVS1. For Multi-Level Heated/Vented seats, a press of the heated seat button ope
+SWE1-HVAC-054-03	11.1	NRL-153408	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1	HVS1. For Multi-Level Heated/Vented seats, a press of the heated seat button ope
+SWE1-HVAC-054-04	11.1	NRL-153408	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1	HVS1. For Multi-Level Heated/Vented seats, a press of the heated seat button ope
+SWE1-HVAC-055-01	11.2	NRL-153409	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.2	HVS2. For Multi-Level Heated/Vented seats, a press of the vented seat button ope
+SWE1-HVAC-055-02	11.2	NRL-153409	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.2	HVS2. For Multi-Level Heated/Vented seats, a press of the vented seat button ope
+SWE1-HVAC-055-03	11.2	NRL-153409	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.2	HVS2. For Multi-Level Heated/Vented seats, a press of the vented seat button ope
+SWE1-HVAC-055-04	11.2	NRL-153409	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.2	HVS2. For Multi-Level Heated/Vented seats, a press of the vented seat button ope
+SWE1-HVAC-056	11.3	NRL-153410	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.3	HVS4. When climate is OFF, the status bar should still show heated/vented seat s
+SWE1-HVAC-057-01	11.4	NRL-153411	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.4	HVS5. Heated seats buttons when activated will be shown red. Vented seat buttons
+SWE1-HVAC-057-02	11.4	NRL-153411	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.4	HVS5. Heated seats buttons when activated will be shown red. Vented seat buttons
+SWE1-HVAC-058	11.5	NRL-153412	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.5	HVS6. Refer to HMI Settings List for the details on the Auto Comfort Settings op
+SWE1-HVAC-059-01	11.6	NRL-153413	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6	R1HVS1.) If the independent seat zone feature is available, when heated or vente
+SWE1-HVAC-059-02	11.6	NRL-153413	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6	R1HVS1.) If the independent seat zone feature is available, when heated or vente
+SWE1-HVAC-059-03	11.6	NRL-153413	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6	R1HVS1.) If the independent seat zone feature is available, when heated or vente
+SWE1-HVAC-059-04	11.6	NRL-153413	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6	R1HVS1.) If the independent seat zone feature is available, when heated or vente
+SWE1-HVAC-059-05	11.6	NRL-153413	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6	R1HVS1.) If the independent seat zone feature is available, when heated or vente
+SWE1-HVAC-059-06	11.6	NRL-153413	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6	R1HVS1.) If the independent seat zone feature is available, when heated or vente
+SWE1-HVAC-060-01	11.6.1	NRL-153414	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6.1	R1HVS1.1) On vehicles that are equipped with the seat zone feature without a har
+SWE1-HVAC-060-02	11.6.1	NRL-153414	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.6.1	R1HVS1.1) On vehicles that are equipped with the seat zone feature without a har
+SWE1-HVAC-061-01	11.7	NRL-153415	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.7	R1HVS1.2.) For independent seat zones soft control, when the heated or vented se
+SWE1-HVAC-061-02	11.7	NRL-153415	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.7	R1HVS1.2.) For independent seat zones soft control, when the heated or vented se
+SWE1-HVAC-061-03	11.7	NRL-153415	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.7	R1HVS1.2.) For independent seat zones soft control, when the heated or vented se
+SWE1-HVAC-061-04	11.7	NRL-153415	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.7	R1HVS1.2.) For independent seat zones soft control, when the heated or vented se
+SWE1-HVAC-062-01	11.8	NRL-153416	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.8	W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering w
+SWE1-HVAC-062-02	11.8	NRL-153416	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.8	W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering w
+SWE1-HVAC-062-03	11.8	NRL-153416	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.8	W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering w
+SWE1-HVAC-062-04	11.8	NRL-153416	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.8	W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering w
+SWE1-HVAC-063-01	11.9	NRL-153417	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.9	R1HVS2.) For Single-Level heated steering wheel, a press of the heated steering 
+SWE1-HVAC-063-02	11.9	NRL-153417	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.9	R1HVS2.) For Single-Level heated steering wheel, a press of the heated steering 
+SWE1-HVAC-064-01	11.10	NRL-153418	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.10	R1HVS3.) Heated/vented seat, heated wheel, and seat zone popup is displayed on f
+SWE1-HVAC-064-02	11.10	NRL-153418	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.10	R1HVS3.) Heated/vented seat, heated wheel, and seat zone popup is displayed on f
+SWE1-HVAC-064-03	11.10	NRL-153418	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.10	R1HVS3.) Heated/vented seat, heated wheel, and seat zone popup is displayed on f
+SWE1-HVAC-065-01	11.11	NRL-153419	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.11	R1HVS4.) Heated/vented seat, heated wheel will not be displayed in the comfort s
+SWE1-HVAC-065-02	11.11	NRL-153419	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.11	R1HVS4.) Heated/vented seat, heated wheel will not be displayed in the comfort s
+SWE1-HVAC-065-03	11.11	NRL-153419	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.11	R1HVS4.) Heated/vented seat, heated wheel will not be displayed in the comfort s
+SWE1-HVAC-066	11.11.1	NRL-153420	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.11.1	R1HS4.1.) When comfort controls are not active, they will be greyed out in the s
+SWE1-HVAC-067-01	12.1	NRL-153422	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.1	HVS1. For Multi-Level Heated/Vented seats a press of the heated seat button turn
+SWE1-HVAC-067-02	12.1	NRL-153422	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.1	HVS1. For Multi-Level Heated/Vented seats a press of the heated seat button turn
+SWE1-HVAC-067-03	12.1	NRL-153422	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.1	HVS1. For Multi-Level Heated/Vented seats a press of the heated seat button turn
+SWE1-HVAC-067-04	12.1	NRL-153422	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.1	HVS1. For Multi-Level Heated/Vented seats a press of the heated seat button turn
+SWE1-HVAC-068-01	12.2	NRL-153423	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.2	HVS2. For Multi-Level Heated/Vented seats a press of the vented seat button turn
+SWE1-HVAC-068-02	12.2	NRL-153423	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.2	HVS2. For Multi-Level Heated/Vented seats a press of the vented seat button turn
+SWE1-HVAC-068-03	12.2	NRL-153423	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.2	HVS2. For Multi-Level Heated/Vented seats a press of the vented seat button turn
+SWE1-HVAC-068-04	12.2	NRL-153423	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.2	HVS2. For Multi-Level Heated/Vented seats a press of the vented seat button turn
+SWE1-HVAC-069-01	12.3	NRL-153424	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.3	HVS3. Active button state text/icon color is white. Inactive button text/icon co
+SWE1-HVAC-069-02	12.3	NRL-153424	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.3	HVS3. Active button state text/icon color is white. Inactive button text/icon co
+SWE1-HVAC-070	12.4	NRL-153425	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.4	HVS4. When climate is OFF, the status bar should still show heated/vented seat s
+SWE1-HVAC-071-01	12.5	NRL-153426	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.5	HVS5. Heated seats buttons when activated will be shown red. Vented seat buttons
+SWE1-HVAC-071-02	12.5	NRL-153426	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.5	HVS5. Heated seats buttons when activated will be shown red. Vented seat buttons
+SWE1-HVAC-072	12.6	NRL-153427	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.6	HVS6. Refer to HMI Notes for the details on the Auto Comfort Settings options fo
+SWE1-HVAC-073-01	12.7	NRL-153428	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.7	HVS7. Whenever pop ups are shown, images should be shown in full, but not direct
+SWE1-HVAC-073-02	12.7	NRL-153428	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.7	HVS7. Whenever pop ups are shown, images should be shown in full, but not direct
+SWE1-HVAC-074-01	12.8	NRL-153429	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.8	SHVS1. For Standard Heated/Vented seats a press of the heated seat button turns 
+SWE1-HVAC-074-02	12.8	NRL-153429	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.8	SHVS1. For Standard Heated/Vented seats a press of the heated seat button turns 
+SWE1-HVAC-074-03	12.8	NRL-153429	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.8	SHVS1. For Standard Heated/Vented seats a press of the heated seat button turns 
+SWE1-HVAC-075-01	12.9	NRL-153430	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.9	SHVS2. For Standard Heated/Vented seats a press of the vented seat button turns 
+SWE1-HVAC-075-02	12.9	NRL-153430	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.9	SHVS2. For Standard Heated/Vented seats a press of the vented seat button turns 
+SWE1-HVAC-075-03	12.9	NRL-153430	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.9	SHVS2. For Standard Heated/Vented seats a press of the vented seat button turns 
+SWE1-HVAC-076-01	13.2	NRL-153433	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2	LS1.) When the (-, +) seat control buttons are pressed from the door control for
+SWE1-HVAC-076-02	13.2	NRL-153433	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2	LS1.) When the (-, +) seat control buttons are pressed from the door control for
+SWE1-HVAC-076-03	13.2	NRL-153433	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2	LS1.) When the (-, +) seat control buttons are pressed from the door control for
+SWE1-HVAC-077	13.2.1	NRL-153434	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2.1	LS1.1) The 4 types of adjustments the user will be able to alter for lumbar/bols
+SWE1-HVAC-078-01	13.3	NRL-153435	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3	LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popu
+SWE1-HVAC-078-02	13.3	NRL-153435	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3	LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popu
+SWE1-HVAC-079-01	13.3.1	NRL-153436	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3.1	LS2.1) The user last selected lumbar/bolster selection will be latching during a
+SWE1-HVAC-079-02	13.3.1	NRL-153436	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3.1	LS2.1) The user last selected lumbar/bolster selection will be latching during a
+SWE1-HVAC-080-01	13.4	NRL-153437	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.4	LS3.) The user will be able to long press on the hard button (-, +) or on the to
+SWE1-HVAC-080-02	13.4	NRL-153437	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.4	LS3.) The user will be able to long press on the hard button (-, +) or on the to
+SWE1-HVAC-081-01	13.5	NRL-153438	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.5	LS4.) A short press of the (-, +) button will increase the lumbar/bolster by a s
+SWE1-HVAC-081-02	13.5	NRL-153438	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.5	LS4.) A short press of the (-, +) button will increase the lumbar/bolster by a s
+SWE1-HVAC-082-01	13.6	NRL-153439	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.6	LS5.) Once the minimum or maximum level has been reach, the system will grey out
+SWE1-HVAC-082-02	13.6	NRL-153439	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.6	LS5.) Once the minimum or maximum level has been reach, the system will grey out
+SWE1-HVAC-083	14.1	NRL-153441	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.1	HVACP1.) HVAC pop-ups should follow the pop-up list._x000D_ (image: %E5%9C%96%E7
+SWE1-HVAC-084	14.1.1	NRL-153442	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.1.1	HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop-up) and user makes 
+SWE1-HVAC-085	14.2	NRL-153443	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.2	HVACP2.) HVAC pop-ups are not displayed while RVC screen is active.
+SWE1-HVAC-086-01	14.3	NRL-153444	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.3	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, m
+SWE1-HVAC-086-02	14.3	NRL-153444	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.3	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, m
+SWE1-HVAC-087-01	14.4	NRL-153445	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.4	HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is tri
+SWE1-HVAC-087-02	14.4	NRL-153445	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.4	HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is tri
+SWE1-HVAC-088	14.5	NRL-153446	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.5	HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection sc
+SWE1-HVAC-089	14.6	NRL-153447	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.6	HVACP6.) When an HVAC popup is displayed over another popup, if user touches are
+SWE1-HVAC-090-01	14.7	NRL-153448	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.7	HVACP7.) When an HVAC popup is displayed over another popup, if user touches a s
+SWE1-HVAC-090-02	14.7	NRL-153448	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.7	HVACP7.) When an HVAC popup is displayed over another popup, if user touches a s
+SWE1-HVAC-091	14.8	NRL-153449	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.8	HVACP8.) When an HVAC popup is displayed over another popup, if the user presses
+SWE1-HVAC-092	14.9	NRL-153450	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.9	HVACP9.) HVAC popups will not be displayed during intro/outro animation or splas
+SWE1-HVAC-093	14.10	NRL-153451	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.10	HVACP10.) When head unit is in simulated off/idle mode HVAC popups should displa
+SWE1-HVAC-094	14.10.1	NRL-153452	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.10.1	HVACP10.1) If Climate is located in the main category bar, fan speed and mode po
+SWE1-HVAC-095-01	14.11	NRL-153453	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.11	HVACP11.) HVAC pop ups will only be displayed based on direct user interaction (
+SWE1-HVAC-095-02	14.11	NRL-153453	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.11	HVACP11.) HVAC pop ups will only be displayed based on direct user interaction (
+SWE1-HVAC-096-01	14.12	NRL-153454	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.12	HVACP12.) The style of HVAC popups should match the type of hard controls. If th
+SWE1-HVAC-096-02	14.12	NRL-153454	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.12	HVACP12.) The style of HVAC popups should match the type of hard controls. If th
+SWE1-HVAC-096-03	14.12	NRL-153454	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.12	HVACP12.) The style of HVAC popups should match the type of hard controls. If th
+SWE1-HVAC-097	14.13	NRL-153455	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.13	HVACP13.) For vehicles with a lower hvac screen, interactions with that screen w
+SWE1-HVAC-098	14.14	NRL-153456	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.14	HVACP14.) For vehicles with dual zone climate versions with dual airflow modes o
+SWE1-HVAC-099	14.15	NRL-153457	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.15	HVACSB1.) Available comfort controls (driver/passenger heated/vented seats, seat
+SWE1-HVAC-100-01	14.16	NRL-153458	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16	HVACSB2.) Driver and Passenger comfort seat features will show currently active 
+SWE1-HVAC-100-02	14.16	NRL-153458	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16	HVACSB2.) Driver and Passenger comfort seat features will show currently active 
+SWE1-HVAC-100-03	14.16	NRL-153458	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16	HVACSB2.) Driver and Passenger comfort seat features will show currently active 
+SWE1-HVAC-101-01	14.16.1	NRL-153459	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16.1	HVACSB2.1.) Seat zone will show currently active or last used state. Press of th
+SWE1-HVAC-101-02	14.16.1	NRL-153459	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16.1	HVACSB2.1.) Seat zone will show currently active or last used state. Press of th
+SWE1-HVAC-101-03	14.16.1	NRL-153459	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16.1	HVACSB2.1.) Seat zone will show currently active or last used state. Press of th
+SWE1-HVAC-102	14.17	NRL-153460	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.17	HVACSB3.) Driver comfort seat feature and Passenger comfort controls are merged 
+SWE1-HVAC-103-01	14.18	NRL-153461	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.18	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+SWE1-HVAC-103-02	14.18	NRL-153461	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.18	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+SWE1-HVAC-104-01	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-02	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-03	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-04	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-05	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-06	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-07	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-104-08	14.19	NRL-153462	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19	HVACSB6.) When the Climate widget is shown on the currently displayed screen and
+SWE1-HVAC-105-01	15.1	NRL-153464	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_15.1	HVACP11.1) For different Climate features (Defrost/Max Defrost, AUTO, etc) when 
+SWE1-HVAC-105-02	15.1	NRL-153464	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_15.1	HVACP11.1) For different Climate features (Defrost/Max Defrost, AUTO, etc) when 
+SWE1-HVAC-106-01	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-02	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-03	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-04	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-05	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-06	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-07	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-08	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-106-09	16.2	NRL-153467	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	ICE1.) Whenever changes to the climate system are made via hard controls or touc
+SWE1-HVAC-107-01	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-02	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-03	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-04	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-05	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-06	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-07	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-08	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-107-09	16.3	NRL-153468	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.3	ICE2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the
+SWE1-HVAC-108	16.4	NRL-153469	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.4	ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state.
+SWE1-HVAC-109-01	16.5	NRL-153470	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.5	ICE4.) The recirc icon will display the vehicle model specific icon as displayed
+SWE1-HVAC-109-02	16.5	NRL-153470	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.5	ICE4.) The recirc icon will display the vehicle model specific icon as displayed
+SWE1-HVAC-110-01	16.6	NRL-153471	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). Temp
+SWE1-HVAC-110-02	16.6	NRL-153471	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). Temp
+SWE1-HVAC-110-03	16.6	NRL-153471	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). Temp
+SWE1-HVAC-110-04	16.6	NRL-153471	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). Temp
+SWE1-HVAC-110-05	16.6	NRL-153471	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). Temp
+SWE1-HVAC-110-06	16.6	NRL-153471	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric). Temp
+SWE1-HVAC-111-01	16.6.1	NRL-153472	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6.1	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperatur
+SWE1-HVAC-111-02	16.6.1	NRL-153472	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6.1	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperatur
+SWE1-HVAC-111-03	16.6.1	NRL-153472	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6.1	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperatur
+SWE1-HVAC-111-04	16.6.1	NRL-153472	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6.1	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperatur
+SWE1-HVAC-111-05	16.6.1	NRL-153472	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6.1	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperatur
+SWE1-HVAC-112-01	16.7	NRL-153473	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.7	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO). 
+SWE1-HVAC-112-02	16.7	NRL-153473	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.7	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO). 
+SWE1-HVAC-112-03	16.7	NRL-153473	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.7	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO). 
+SWE1-HVAC-112-04	16.7	NRL-153473	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.7	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO). 
+SWE1-HVAC-112-05	16.7	NRL-153473	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.7	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO). 
+SWE1-HVAC-113-01	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-02	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-03	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-04	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-05	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-06	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-07	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-08	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-09	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-10	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-11	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-113-12	16.8	NRL-153474	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.8	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, 
+SWE1-HVAC-114-01	16.9	NRL-153475	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.9	ICE8.) Rear Defrost has on/ off state. Gray out the REAR DEFROST button when rea
+SWE1-HVAC-114-02	16.9	NRL-153475	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.9	ICE8.) Rear Defrost has on/ off state. Gray out the REAR DEFROST button when rea
+SWE1-HVAC-115-01	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-02	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-03	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-04	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-05	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-06	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-07	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-115-08	16.10	NRL-153476	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.10	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen)
+SWE1-HVAC-116-01	16.11	NRL-153477	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11	ICE10.) SYNC has on/ off state that is indicated on climate screen (highlight bu
+SWE1-HVAC-116-02	16.11	NRL-153477	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11	ICE10.) SYNC has on/ off state that is indicated on climate screen (highlight bu
+SWE1-HVAC-116-03	16.11	NRL-153477	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11	ICE10.) SYNC has on/ off state that is indicated on climate screen (highlight bu
+SWE1-HVAC-116-04	16.11	NRL-153477	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11	ICE10.) SYNC has on/ off state that is indicated on climate screen (highlight bu
+SWE1-HVAC-117-01	16.12	NRL-153478	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12	ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix 
+SWE1-HVAC-117-02	16.12	NRL-153478	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12	ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix 
+SWE1-HVAC-117-03	16.12	NRL-153478	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12	ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix 
+SWE1-HVAC-118-01	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-02	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-03	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-04	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-05	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-06	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-07	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-08	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-09	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-118-10	16.12.1	NRL-153479	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12.1	ICE11.1) If the Mode hard control is pressed the user will be moved to the next 
+SWE1-HVAC-119-01	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-02	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-03	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-04	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-05	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-06	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-07	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-08	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-09	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-10	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-11	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-119-12	16.13	NRL-153480	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13	ICE12.) If the system supports Max A/C it will be displayed on the screen next t
+SWE1-HVAC-120-01	16.14	NRL-153481	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.14	ICE13.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC
+SWE1-HVAC-120-02	16.14	NRL-153481	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.14	ICE13.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC
+SWE1-HVAC-120-03	16.14	NRL-153481	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.14	ICE13.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC
+SWE1-HVAC-121-01	16.15	NRL-153482	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.15	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. EXTERIOR REAR-VIEWM
+SWE1-HVAC-121-02	16.15	NRL-153482	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.15	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. EXTERIOR REAR-VIEWM
+SWE1-HVAC-122-01	16.16	NRL-153483	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.16	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of seats will depend on sy
+SWE1-HVAC-122-02	16.16	NRL-153483	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.16	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of seats will depend on sy
+SWE1-HVAC-122-03	16.16	NRL-153483	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.16	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of seats will depend on sy
+SWE1-HVAC-122-04	16.16	NRL-153483	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.16	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of seats will depend on sy
+SWE1-HVAC-122-05	16.16	NRL-153483	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.16	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of seats will depend on sy
+SWE1-HVAC-123	16.17	NRL-153484	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.17	C16.) If blower reduction occurs automatically due to an active Voice Recognitio
+SWE1-HVAC-124-01	17.1	NRL-153486	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1	W0.) The Comfort widget will have two screens: Comfort and Seats. (Refer to the 
+SWE1-HVAC-124-02	17.1	NRL-153486	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1	W0.) The Comfort widget will have two screens: Comfort and Seats. (Refer to the 
+SWE1-HVAC-124-03	17.1	NRL-153486	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1	W0.) The Comfort widget will have two screens: Comfort and Seats. (Refer to the 
+SWE1-HVAC-125-01	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-02	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-03	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-04	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-05	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-06	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-07	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-125-08	17.2	NRL-153487	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2	CW1.) The default screen for the Comfort widget is the Climate screen and includ
+SWE1-HVAC-126-01	17.3	NRL-153488	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3	CW2.) The second Comfort widget screen includes all Comfort features available t
+SWE1-HVAC-126-02	17.3	NRL-153488	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3	CW2.) The second Comfort widget screen includes all Comfort features available t
+SWE1-HVAC-126-03	17.3	NRL-153488	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3	CW2.) The second Comfort widget screen includes all Comfort features available t
+SWE1-HVAC-127-01	17.4	NRL-153489	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.4	CW3.) For 8.4/10.1/12 landscaped screens, there will be a toggle button on the 2
+SWE1-HVAC-127-02	17.4	NRL-153489	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.4	CW3.) For 8.4/10.1/12 landscaped screens, there will be a toggle button on the 2
+SWE1-HVAC-128-01	17.5	NRL-153490	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.5	CW4.) For dual zone climate with dual airflow modes equipped vehicles, their wid
+SWE1-HVAC-128-02	17.5	NRL-153490	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.5	CW4.) For dual zone climate with dual airflow modes equipped vehicles, their wid
+SWE1-HVAC-129-01	18.1	NRL-153492	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_18.1	W0.) The Comfort widget will have two screens: Comfort and Seats.
+SWE1-HVAC-129-02	18.1	NRL-153492	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_18.1	W0.) The Comfort widget will have two screens: Comfort and Seats.
+SWE1-HVAC-129-03	18.1	NRL-153492	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_18.1	W0.) The Comfort widget will have two screens: Comfort and Seats.

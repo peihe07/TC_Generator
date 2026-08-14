@@ -31,6 +31,7 @@ import hashlib
 import json
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 import openpyxl
@@ -128,6 +129,153 @@ def numbered_steps(text: str) -> int:
     if not text:
         return 0
     return len(re.findall(r"^\s*\d+[\.\)]", str(text), flags=re.M))
+
+
+def outline_key(s: str) -> tuple:
+    """Sort '10.9.1' after '10.9' and before '10.10' — string sort does not."""
+    return tuple(int(p) if p.isdigit() else -1 for p in str(s).split("."))
+
+
+# ---------------------------------------------------------------- outline map
+
+def build_outline_map(sys1_path: Path | None) -> tuple[dict, str]:
+    """outline number -> {id, title} from a SYS1 Polarion export.
+
+    This is the lookup every spec_reference is linted against under spec_mode
+    A: a cited section that is not in here does not exist in the ruled
+    baseline, whatever a newer revision of the document may contain.
+
+    Returns ({}, reason) when the declared file cannot carry an outline —
+    `sys1_export` does not always mean "SYS1 spec export" (Privacy declares a
+    SYSRA safety-analysis export under that key), and a feature that never
+    cites document sections must not be blocked by a lookup it does not use.
+    Whether the empty map MATTERS is decided by run_assertions, which reports
+    it as a failure for any feature whose leaves do cite sections.
+    """
+    if not sys1_path:
+        return {}, "paths.sys1_export is null"
+    if not sys1_path.exists():
+        return {}, f"{sys1_path.name} does not exist"
+    wb = openpyxl.load_workbook(sys1_path, read_only=True)
+    if "Basic Report" not in wb.sheetnames:
+        wb.close()
+        return {}, f"{sys1_path.name}: no 'Basic Report' sheet — not a SYS1 export"
+    rows = list(wb["Basic Report"].iter_rows(values_only=True))
+    header = rows[0]
+    idx = {norm(v): j for j, v in enumerate(header) if v}
+    out_j = next((j for h, j in idx.items() if "outline number" in h), None)
+    id_j = next((j for h, j in idx.items() if h == "id"), 0)
+    desc_j = next((j for h, j in idx.items() if "description" in h), None)
+    if out_j is None:
+        wb.close()
+        return {}, (f"{sys1_path.name}: no 'Outline Number' column — this "
+                    "export does not carry a document outline")
+    omap, dupes = {}, []
+    for r in rows[1:]:
+        if out_j >= len(r) or not r[out_j]:
+            continue
+        key = str(r[out_j]).strip()
+        title = re.sub(r"\s+", " ", str(r[desc_j] or ""))[:80] if desc_j is not None else ""
+        if key in omap:
+            dupes.append(key)
+            continue
+        omap[key] = {"id": str(r[id_j] or "").strip(), "title": title}
+    wb.close()
+    if dupes:
+        # Not a soft return: a duplicated outline number means the lookup is
+        # not a function, and every spec_reference built from it would be
+        # ambiguous. That is a defect in the export, not a feature that
+        # happens to lack an outline.
+        sys.exit(f"{sys1_path.name}: duplicate outline numbers {sorted(set(dupes))}"
+                 " — the map would not be a function; refusing to build it")
+    return omap, ""
+
+
+# ---------------------------------------------------------------- assertions
+
+class Assertions:
+    """Ruled constants checked mechanically, reported as PASS/FAIL + the
+    MEASURED value.
+
+    A recon that only prints counts leaves the comparison to whoever reads it,
+    and the ruling that says 403 is then enforced by attention rather than by
+    the script (Comfort R-C3 requires the opposite explicitly). Expected values
+    come from feature.yaml `recon_assertions`; a feature that declares none
+    runs with an empty list and no behaviour change.
+    """
+
+    def __init__(self) -> None:
+        self.results: list[dict] = []
+
+    def check(self, name: str, expected, actual, note: str = "") -> bool:
+        ok = expected == actual
+        self.results.append({"name": name, "expected": expected,
+                             "actual": actual, "pass": ok, "note": note})
+        return ok
+
+    @property
+    def failed(self) -> list[dict]:
+        return [r for r in self.results if not r["pass"]]
+
+    def lines(self) -> list[str]:
+        out = []
+        for r in self.results:
+            mark = "PASS" if r["pass"] else "**FAIL**"
+            out.append(f"- {mark} — {r['name']}: expected `{r['expected']}`, "
+                       f"measured `{r['actual']}`"
+                       + (f" — {r['note']}" if r["note"] else ""))
+        return out or ["- (no assertions declared in feature.yaml)"]
+
+
+def run_assertions(cfg: dict, a03res: dict, omap: dict,
+                   omap_reason: str = "") -> tuple[Assertions, list]:
+    """Declared-constant checks + the outline lookup. Returns (results, misses)."""
+    a = Assertions()
+    want = cfg.get("recon_assertions") or {}
+    cat = a03res["categorization_distribution"]
+
+    if "functional_requirement_count" in want:
+        a.check("leaf count == Functional Requirement rows",
+                want["functional_requirement_count"], len(a03res["leaves"]),
+                f"categorization distribution: {cat}; the banned id-suffix "
+                f"criterion would have selected {a03res['naive_leaf_shape_count']} "
+                f"({len(a03res['parent_shape_functional'])} parent-shaped "
+                "requirements dropped)")
+
+    if "distinct_spec_sections" in want:
+        a.check("distinct spec sections after citation parse",
+                want["distinct_spec_sections"], len(a03res["distinct_sections"]),
+                f"{a03res['multiline_citations']} citation cells carry extra "
+                "lines below the section (Polarion item ids), not parsed")
+
+    if "spec_reference_stem" in want:
+        # Sorted, so a second stem fails the check on its presence rather than
+        # on the order the report happened to list them in.
+        stems = sorted(a03res["citation_stems"])
+        a.check("citation stem is the ruled baseline, and only that",
+                [want["spec_reference_stem"]], stems,
+                "a second stem means the report cites more than one baseline")
+
+    # Outline lookup: every cited section must exist in the ruled export.
+    misses = []
+    if omap:
+        misses = [s for s in a03res["distinct_sections"] if s not in omap]
+        a.check("cited sections found in the ruled SYS1 outline",
+                0, len(misses),
+                f"{len(a03res['distinct_sections'])} cited / {len(omap)} "
+                "outline entries in the export"
+                + (f"; missing: {misses[:10]}" if misses else ""))
+    elif a03res["distinct_sections"]:
+        a.check("SYS1 export available for outline lookup", True, False,
+                f"{omap_reason or 'no outline map'} — the "
+                f"{len(a03res['distinct_sections'])} cited sections cannot be "
+                "verified against any baseline")
+
+    if a03res["unparsed_citations"]:
+        a.check("every leaf's citation parses to a section", 0,
+                len(a03res["unparsed_citations"]),
+                f"samples: {a03res['unparsed_citations'][:5]}")
+    return a, misses
 
 
 # ---------------------------------------------------------------- survey
@@ -307,18 +455,43 @@ def survey_a03(a03_path: Path) -> dict:
 
     cat_i = find("categorization", forbid=("sub",))
     asil_i, ftti_i = find("asil"), find("ftti")
+    # Document-citation column. "HMI Source" is checked first because a report
+    # can carry both it and a generic "Source Requirement ID" that holds
+    # upstream req ids rather than document sections.
+    src_i = find("hmi source")
+    if src_i is None:
+        src_i = find("source", forbid=("description", "requirement id"))
 
     leaves, headings, parent_child = [], [], []
     safety = {}
+    cat_dist: Counter = Counter()
+    # R-C4 — the citation cell may carry the document section on line 1 and
+    # Polarion item ids on the lines below. Only line 1 takes part in section
+    # parsing; the rest is audit evidence, kept but never parsed.
+    sections: dict[str, str] = {}
+    stems: Counter = Counter()
+    multiline, unparsed = 0, []
     for r in rows[hdr + 1:]:
         if not r[0]:
             continue
         rid = str(r[0]).strip()
         cat = str(r[cat_i] or "").strip() if cat_i is not None else ""
+        cat_dist[cat or "(blank)"] += 1
         # "Functional" (AM/FM) and "Functional Requirement" (Home) are the same
         # classification written two ways; anything else is a heading/other.
-        (leaves if cat.lower().startswith("functional")
-         else headings).append(rid)
+        is_leaf = cat.lower().startswith("functional")
+        (leaves if is_leaf else headings).append(rid)
+        if is_leaf and src_i is not None:
+            raw = str(r[src_i] or "")
+            if "\n" in raw.strip():
+                multiline += 1
+            first = raw.split("\n")[0].strip()
+            m = re.match(r"^(?P<stem>.+)_(?P<sec>\d+(?:\.\d+)*)$", first)
+            if m:
+                stems[m.group("stem")] += 1
+                sections[rid] = m.group("sec")
+            elif first:
+                unparsed.append((rid, first[:60]))
         if asil_i is not None:
             val = str(r[asil_i] or "").strip()
             if val and len(val) < 12:      # skip the template's help text row
@@ -327,10 +500,26 @@ def survey_a03(a03_path: Path) -> dict:
     for rid in leaves:
         if re.search(r"-\d\d$", rid) and rid.rsplit("-", 1)[0] in leafset:
             parent_child.append(rid.rsplit("-", 1)[0])
+    # R-C3 evidence: the ID-suffix heuristic that the ruling BANS, measured
+    # side by side with the ruled criterion so the gap is a number in the
+    # report rather than a claim in a document. `naive_leaf_shape` counts
+    # leaves whose id carries a -NN child suffix; the difference is the set a
+    # suffix-based selector would silently drop.
+    naive_leaf_shape = [r for r in leaves if re.search(r"-\d\d$", r)]
+    parent_shape_functional = [r for r in leaves if not re.search(r"-\d\d$", r)]
     wb.close()
     return {"leaves": leaves, "headings": headings,
             "parent_child_dupes": sorted(set(parent_child)),
             "categorization_col": idx_to_letter(cat_i) if cat_i is not None else None,
+            "categorization_distribution": dict(cat_dist.most_common()),
+            "source_col": idx_to_letter(src_i) if src_i is not None else None,
+            "sections": sections,
+            "distinct_sections": sorted(set(sections.values()), key=outline_key),
+            "citation_stems": dict(stems),
+            "multiline_citations": multiline,
+            "unparsed_citations": unparsed,
+            "naive_leaf_shape_count": len(naive_leaf_shape),
+            "parent_shape_functional": sorted(parent_shape_functional),
             "has_safety_columns": asil_i is not None or ftti_i is not None,
             "asil_distribution": safety}
 
@@ -351,7 +540,8 @@ def survey_spec_text_layer(pdf_path: Path | None) -> str:
 # ---------------------------------------------------------------- emit
 
 def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
-         textlayer: str, hashes: dict) -> None:
+         textlayer: str, hashes: dict, asserts: "Assertions", omap: dict,
+         misses: list, omap_reason: str = "") -> None:
     state = wbres["state"]
     leaves = a03res["leaves"]
     targets = sorted(set(leaves) - set(wbres["done_reqs"]))
@@ -387,11 +577,42 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
                            for i, why in wbres["compliance_notes"]) or "  (none)"
     pc = a03res["parent_child_dupes"]
 
+    def chapter_hist(values) -> str:
+        h = Counter(str(s).split(".")[0] for s in values)
+        return "、".join(f"{ch}({n})" for ch, n in
+                        sorted(h.items(), key=lambda kv: outline_key(kv[0]))) or "(none)"
+
+    # Two different quantities, both reported because they are easy to
+    # conflate: how many distinct sections each chapter contributes, and how
+    # many leaves cite into it. A batch plan grouped "by spec chapter" is
+    # sized by the second.
+    sec_hist_line = chapter_hist(a03res["distinct_sections"])
+    leaf_hist_line = chapter_hist(a03res["sections"].values())
+
     recon = f"""# RECON — {cfg['feature']} (generated by recon.py)
 
 ## Inputs
 {chr(10).join(f"- {k}: `{v['name']}` sha256={v['sha256'][:16]}…" for k, v in hashes.items())}
 - spec text layer: {textlayer}
+
+## Assertions — ruled constants, checked mechanically
+{chr(10).join(asserts.lines())}
+
+**{len(asserts.failed)} failed / {len(asserts.results)} checked.**
+{"An assertion failure blocks DECISIONS.md; RECON.md is still written because it is the evidence." if asserts.failed else "DECISIONS.md written."}
+
+## Spec outline map
+- ruled export: `{(hashes.get('sys1_export') or {}).get('name', '(none)')}`
+- outline entries in the export: {len(omap)}{f' — no map built: {omap_reason}' if omap_reason else ''}
+- distinct sections cited by the leaves: {len(a03res['distinct_sections'])}
+- cited sections NOT in the ruled export: **{len(misses)}** {misses[:10] if misses else ''}
+- citation column: {a03res['source_col'] or 'NOT FOUND'}; stems: {a03res['citation_stems']}
+- citation cells with extra lines below the section (audit evidence, not
+  parsed): {a03res['multiline_citations']}
+- distinct sections by chapter: {sec_hist_line}
+- leaves by chapter: {leaf_hist_line}
+- map written to `data/spec_id_to_outline.tsv` (tracked — a diff on it is the
+  signal that the spec export moved underneath us)
 
 ## Workbook
 - workbook_state: **{state}**
@@ -414,6 +635,15 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
 
 ## Requirement report
 - Categorization column: {a03res['categorization_col'] or 'NOT FOUND'}
+- Categorization distribution: {a03res['categorization_distribution']}
+- leaf criterion in force: **Categorization == Functional** → {len(a03res['leaves'])} leaves
+{f'''- id-suffix criterion (`-NN` child shape, NOT in force): {a03res['naive_leaf_shape_count']} leaves
+  — it drops {len(a03res['parent_shape_functional'])} parent-shaped rows that
+  are themselves Functional Requirements
+  {cap(a03res['parent_shape_functional'], 6)}'''
+ if a03res['naive_leaf_shape_count'] else
+ "- id-suffix criterion: not applicable — no leaf id in this family carries a "
+ "`-NN` child suffix, so the shape carries no information here"}
 - safety attributes (ASIL/FTTI) in the ruled source: {
     'PRESENT — ' + str(a03res['asil_distribution'])
     if a03res['has_safety_columns'] else '**ABSENT**'}
@@ -446,6 +676,49 @@ region / replace / re-map) is a ruling, not a detection.
 ''' if foreign else ''}"""
     (feature_dir / "RECON.md").write_text(recon, encoding="utf-8")
 
+    # ---- outline map: req_id -> section -> the exact spec_reference string
+    (feature_dir / "data").mkdir(exist_ok=True)
+    tsv = ["req_id\toutline\tpolarion_id\tspec_reference\ttitle"]
+    tpl = cfg.get("spec_reference_template", "{outline}")
+    for rid in sorted(a03res["sections"]):
+        sec = a03res["sections"][rid]
+        hit = omap.get(sec, {})
+        tsv.append("\t".join([rid, sec, hit.get("id", ""),
+                              tpl.replace("{outline}", sec), hit.get("title", "")]))
+    (feature_dir / "data" / "spec_id_to_outline.tsv").write_text(
+        "\n".join(tsv) + "\n", encoding="utf-8")
+
+    (feature_dir / "data" / "recon.json").write_text(json.dumps({
+        "workbook_state": state, "segments": wbres["segments"],
+        "done_reqs": wbres["done_reqs"], "draft_reqs": wbres["draft_reqs"],
+        "leaves": leaves, "regen_targets": targets, "uncovered": uncovered,
+        "parent_child_dupes": pc,
+        "orphan_done_reqs": orphan_done, "orphan_draft_reqs": orphan_draft,
+        "design_method_vocab": wbres["design_method_vocab"],
+        "ambiguous_rows": wbres["ambiguous_rows"],
+        "compliance_notes": wbres["compliance_notes"],
+        "columns": wbres["columns"], "layout_rev": wbres["layout_rev"],
+        "col_conflicts": wbres["col_conflicts"],
+        "authors": wbres["authors"], "author_used": wbres["author_used"],
+        "has_safety_columns": a03res["has_safety_columns"],
+        "asil_distribution": a03res["asil_distribution"],
+        "assertions": asserts.results,
+        "categorization_distribution": a03res["categorization_distribution"],
+        "sections": a03res["sections"],
+        "distinct_sections": a03res["distinct_sections"],
+        "outline_misses": misses,
+        "parent_shape_functional": a03res["parent_shape_functional"],
+        "multiline_citations": a03res["multiline_citations"],
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # A failed assertion means a ruled constant does not hold against the files
+    # in front of us. Pre-filling a decision sheet from that survey would hand
+    # Tier 2 a sheet to sign whose [AUTO] values are known-wrong, so the sheet
+    # is not written — RECON.md and recon.json carry the evidence and the run
+    # exits non-zero.
+    if asserts.failed:
+        return
+
     # ---- DECISIONS prefill from per-state strategy bindings (canon §2)
     blank = state == "BLANK"
     d = []
@@ -457,6 +730,13 @@ region / replace / re-map) is a ruling, not a detection.
     d.append(f"- spec_mode: [AUTO] {cfg.get('spec_mode')}")
     d.append(f"- spec text layer: [AUTO] {textlayer}")
     d.append(f"- source files: [AUTO] {len(hashes)} present (SHA256 in RECON.md)")
+    d.append(f"- ruled-constant assertions: [AUTO] {len(asserts.results)} checked,"
+             f" {len(asserts.results) - len(asserts.failed)} PASS,"
+             f" {len(asserts.failed)} FAIL (measured values in RECON.md)")
+    if omap:
+        d.append(f"- spec outline map: [AUTO] {len(a03res['distinct_sections'])}"
+                 f" cited sections, all found in a {len(omap)}-entry ruled"
+                 " export; map at data/spec_id_to_outline.tsv")
     d.append("\n## 2. Workbook survey")
     d.append(f"- workbook_state: [AUTO] {state}")
     d.append(f"- form layout revision: [AUTO] {wbres['layout_rev']}")
@@ -504,7 +784,15 @@ region / replace / re-map) is a ruling, not a detection.
                  " ASIL/FTTI column, so the SYS2/SYSRA safety layer does NOT"
                  " enter the trace chain]")
     d.append(f"- regen targets: [AUTO] {len(targets)} (list in recon.json)")
-    if uncovered:
+    if uncovered and blank:
+        # Under BLANK every leaf is uncovered by construction — there is no
+        # done region for it to be covered by. Demanding an anomaly per leaf
+        # (the non-BLANK wording) would ask for 403 entries recording that a
+        # blank workbook is blank.
+        d.append(f"- covered nowhere: [AUTO] {len(uncovered)} = all leaves —"
+                 " expected under BLANK, not an anomaly; this is the Phase 4"
+                 " work list, not a gap")
+    elif uncovered:
         d.append(f"- covered nowhere: [AUTO] {len(uncovered)} {cap(uncovered)}"
                  " — ANOMALIES entries required")
     if pc:
@@ -514,7 +802,10 @@ region / replace / re-map) is a ruling, not a detection.
                  f"{len(orphan_done)} {cap(orphan_done, 4)} draft="
                  f"{len(orphan_draft)} {cap(orphan_draft, 4)} — ANOMALIES +"
                  " RD-1 required; scope the write-back traceability invariant"
-                 " to regen rows only")
+                 " to regen rows only"
+                 + (". NOTE: under BLANK these are template sample rows before"
+                    " they are anything else — check the rows themselves"
+                    " before filing an RD-1" if blank else ""))
     d.append("\n## 4. Style bindings")
     if blank:
         d.append("- style authority: [PROPOSED: fallback chain — no done region]")
@@ -537,6 +828,12 @@ region / replace / re-map) is a ruling, not a detection.
         d.append("- exemplar source: [AUTO] own done region")
     d.append(f"- author on new rows: [PROPOSED: {cfg['write_back']['author_value']}]")
     d.append(f"- spec_reference: [PROPOSED: {cfg['spec_reference_template']}]")
+    # A tc_id scheme present in feature.yaml is one a ruling already froze, so
+    # it is marked [RULED], not [PROPOSED]: re-offering it as a proposal
+    # invites a change at sign-off, which is what freezing it forbids.
+    if cfg["write_back"].get("tc_id_format"):
+        d.append(f"- tc_id scheme: [RULED] {cfg['write_back']['tc_id_format']}"
+                 " — frozen per this feature's RULINGS.md, not open at sign-off")
     d.append("\n## 5. Split & scope")
     d.append("- split_mode: [PROPOSED: standard]")
     d.append("\n## 6. Framework & profile")
@@ -548,23 +845,6 @@ region / replace / re-map) is a ruling, not a detection.
     d.append("\n---\n\n## Sign-off\n\n- Reviewed by: ____  Date: ____\n"
              "- Overridden items: ____\n- Ruling notes:\n")
     (feature_dir / "DECISIONS.md").write_text("\n".join(d), encoding="utf-8")
-
-    (feature_dir / "data").mkdir(exist_ok=True)
-    (feature_dir / "data" / "recon.json").write_text(json.dumps({
-        "workbook_state": state, "segments": wbres["segments"],
-        "done_reqs": wbres["done_reqs"], "draft_reqs": wbres["draft_reqs"],
-        "leaves": leaves, "regen_targets": targets, "uncovered": uncovered,
-        "parent_child_dupes": pc,
-        "orphan_done_reqs": orphan_done, "orphan_draft_reqs": orphan_draft,
-        "design_method_vocab": wbres["design_method_vocab"],
-        "ambiguous_rows": wbres["ambiguous_rows"],
-        "compliance_notes": wbres["compliance_notes"],
-        "columns": wbres["columns"], "layout_rev": wbres["layout_rev"],
-        "col_conflicts": wbres["col_conflicts"],
-        "authors": wbres["authors"], "author_used": wbres["author_used"],
-        "has_safety_columns": a03res["has_safety_columns"],
-        "asil_distribution": a03res["asil_distribution"],
-    }, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 # ---------------------------------------------------------------- main
@@ -606,15 +886,25 @@ def main() -> None:
     wbres = survey_workbook(cfg, paths["workbook"])
     a03res = survey_a03(paths["a03_report"])
     textlayer = survey_spec_text_layer(paths["spec_pdf"])
-    emit(feature_dir, cfg, wbres, a03res, textlayer, hashes)
+    omap, omap_reason = build_outline_map(paths.get("sys1_export"))
+    asserts, misses = run_assertions(cfg, a03res, omap, omap_reason)
+    emit(feature_dir, cfg, wbres, a03res, textlayer, hashes, asserts, omap,
+         misses, omap_reason)
 
+    print("\n".join(["assertions:"] + [
+        re.sub(r"\*\*|`", "", ln) for ln in asserts.lines()]), file=sys.stderr)
     print(f"recon complete: state={wbres['state']}, "
           f"leaves={len(a03res['leaves'])}, "
+          f"sections={len(a03res['distinct_sections'])}, "
           f"targets={len(set(a03res['leaves']) - set(wbres['done_reqs']))}",
           file=sys.stderr)
     if wbres["ambiguous_rows"]:
         print(f"WARNING: {len(wbres['ambiguous_rows'])} ambiguous rows — "
               "Tier 2 review required (see RECON.md)", file=sys.stderr)
+    if asserts.failed:
+        sys.exit(f"FAILED: {len(asserts.failed)} ruled-constant assertion(s) do "
+                 "not hold against these files. DECISIONS.md was NOT written; "
+                 "see RECON.md for the measured values.")
 
 
 if __name__ == "__main__":
