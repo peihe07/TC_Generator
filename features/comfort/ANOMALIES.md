@@ -22,7 +22,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
 | A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
-| A-CF13 | spec 內部標籤 | ch16.17 用 `C16.)` 而該標籤已由 ch2.15 使用；ch17.1／18.1 同為 `W0.)` 且經 037 分析為兩個獨立需求 | OPEN（Part N 之輸入，非阻塞） | 無 |
+| A-CF13 | spec 內部標籤 | **三處**條款標籤衝突：`C16.)` 跨 2.15／16.17；`W0.)` 跨 17.1／18.1／19.1；`HVS1/2/4/5/6` 跨 ch11／ch12 | OPEN（RD-1 候選，非阻塞） | 無 |
 
 ---
 
@@ -569,3 +569,32 @@ ch2 的 **`C18.)`**（2.16，同為 blower reduction）。故 16.17 掛 `C16.)`
 之內容與行為」，首頁管理行為屬 Home Screen spec。本條所指之重複在
 **Comfort 自身兩節之間**，不是 Comfort 與 Home Screen 之間，兩者是不同的
 問題，勿混。
+
+### 第三項（新增 2026-08-14，下放包 12 §1）—— `HVS1／HVS2／HVS4／HVS5／HVS6` 跨 ch11／ch12 重複
+
+分析層查證 ch11／ch12 是否合併時實測所得。五個條款標籤跨兩章重複，開頭文字
+近乎逐字相同：
+
+| ch11 R1 Heated/Vented Seats | ch12 Heated/Vented Seats - CARRYOVER |
+|---|---|
+| 11.1 `HVS1.` Multi-Level 加熱座椅按壓 | 12.1 `HVS1.` 同 |
+| 11.2 `HVS2.` 通風 | 12.2 `HVS2.` 同 |
+| 11.3 `HVS4.` climate OFF 時狀態列 | 12.4 `HVS4.` 同 |
+| 11.4 `HVS5.` 加熱鍵亮紅 | 12.5 `HVS5.` 同 |
+| 11.5 `HVS6.` 參照 HMI Settings List | 12.6 `HVS6.` 參照 HMI Notes |
+
+**與前兩項合計，本 feature 共三處條款標籤衝突。** 三者形態一致：**條款標籤
+在 SR24 內不是唯一鍵**，故不可作為 traceability 之引用鍵。
+
+**Part N 之處置（已生效）**：ch11／ch12 **合併**為單一 Test Set
+`Heated Vented Seats`（59 leaves）。合併之副效果為正向 —— 近似重複落於同一
+Test Set，Phase 4 之 sibling 判定（§4.6）與 `duplicate_of` 得以見效；分立
+則兩者分屬兩組，審閱者看不到彼此。
+
+**Phase 4 之一般規則（三項共通）**：TC 之 traceability 一律以 **outline
+節次**為引用鍵，不以條款標籤為引用鍵。`specification_reference` 依 §10.7
+本就用 `{spec_filename}_{section_id}`，故此問題**不影響工作簿輸出**，
+只影響 `reasoning` 與 `test_item` 之敘述（11 §6）。
+
+**RD-1 候選**（不阻塞）：請上游確認三處標籤是否為誤植，特別是 16.17 之
+`C16.)`（該章其餘 17 節皆為 `ICE` 前綴，且其內容對應 ch2 之 `C18.)`）。

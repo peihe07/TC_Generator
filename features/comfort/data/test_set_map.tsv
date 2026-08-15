@@ -1,0 +1,130 @@
+test_group	test_set	outline	leaf_count	section_title
+Comfort	Front Climate Anatomy	2.1	3	R1C1.) The comfort category will have up to 4 tabs depending
+Comfort	Front Climate Anatomy	2.2	8	C1.) Whenever changes to the climate system are made via har
+Comfort	Front Climate Anatomy	6.3	1	CM1.) When a vehicle is configured with a non-foldable secon
+Comfort	Climate Modes	2.3	9	C2.) AUTO has on/ off state. The fan speed indicator shows A
+Comfort	Climate Modes	2.3.1	2	C2.1) Some vehicles with dual zone climate with dual airflow
+Comfort	Climate Modes	2.4	4	C3.) AC has on/ off state. Auto can automatically turn on AC
+Comfort	Climate Modes	2.5	4	C4.) Recirc has on/ off state. RECIRC is not available in ce
+Comfort	Climate Modes	2.5.1	2	C4.1) Some vehicles have a configuration for a 3 state toggl
+Comfort	Climate Modes	2.10	6	C11.) Climate off has on/off state that is indicated on HC, 
+Comfort	Climate Modes	2.11	5	C12.) SYNC has on/ off state that is indicated on climate sc
+Comfort	Climate Modes	2.13	3	C14.) MAX A/C screens/popups are to be used when CCM relays 
+Comfort	Climate Modes	2.14	4	C15.) MTC screens/popups are to be used when CCM relays MTC 
+Comfort	Climate Modes	2.16	2	C18.) If blower reduction occurs automatically due to an act
+Comfort	Temperature and Fan	2.6	5	C5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28,
+Comfort	Temperature and Fan	2.6.1	6	C5.1) If SYNC is ON, adjusting driver temperature affects pa
+Comfort	Temperature and Fan	2.7	5	C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instea
+Comfort	Temperature and Fan	2.7.1	1	C6.1) In some vehicles fan speed ranges for front hvac are: 
+Comfort	Airflow and Defrost	2.8	6	C7.) Defrost has on/ off state. Defrost can automatically tu
+Comfort	Airflow and Defrost	2.9	4	C8.) Rear Defrost has on/ off state. REAR DEFROST is not ava
+Comfort	Airflow and Defrost	2.12	3	C13.) There are 4 Airflow Mode displayed in this order (1) F
+Comfort	Airflow and Defrost	2.12.1	2	C13.0) In some non-tri mode equipment types, airflow modes h
+Comfort	Airflow and Defrost	2.12.2	6	C13.1) If the Mode hard control is pressed the user will be 
+Comfort	Airflow and Defrost	2.15	2	C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. E
+Comfort	Tri-Mode Climate	3.1	3	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, th
+Comfort	Tri-Mode Climate	3.2	8	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replace
+Comfort	Tri-Mode Climate	3.3	2	C21.) MAX DEF and REAR DEF are available during climate off.
+Comfort	Tri-Mode Climate	3.4	1	C22.) For soft top vehicles such as JL/JT, when configured, 
+Comfort	Rear Climate	7.1	3	CR1.) Hard controls do not switch to controlling the rear cl
+Comfort	Rear Climate	7.1.1	3	CR1.1) Rear hard controls changes will not provide popups on
+Comfort	Rear Climate	7.2	5	CR2.) Rear AUTO has on/ off state. The fan speed indicator s
+Comfort	Rear Climate	7.3	3	CR3.) LOCK REAR has on/ off state. Rear lock will lockout th
+Comfort	Rear Climate	7.4	4	CR4.) Temperature ranges: LO, 60-84, HI. The status is indic
+Comfort	Rear Climate	7.5	4	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO inste
+Comfort	Rear Climate	7.6	5	CR6.) Rear climate off has on/off state that is indicated on
+Comfort	Rear Climate	7.7	3	CR7.) SYNC has on/ off state that is indicated on climate sc
+Comfort	Rear Climate	7.8	5	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face 
+Comfort	Rear Climate	7.9	1	CR9.) AC has on/ off state.
+Comfort	Rear Climate	7.10	2	CR10.) 4 Zone Climate includes two temperature zones in the 
+Comfort	Rear Climate	9.1	1	CR11.) On some vehicles (See CFTS043 for details), there are
+Comfort	Rear Climate	9.2	2	CR12.) Alternative fan speed pop up: in these variants, when
+Comfort	Rear Climate	9.3	1	C12.1.) The pop up will have text labels, «Front» for front 
+Comfort	Rear Climate	9.4	3	CR13.) Alternative Status Bar Dropdown: in these variants, t
+Comfort	Rear Climate	9.4.1	1	CR13.1.) The button label will read «Rear».
+Comfort	ECO HVAC	10.1	2	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to
+Comfort	ECO HVAC	10.2	1	EH2.) For BEV vehicles, the AUTO functionality can have 3 st
+Comfort	ECO HVAC	10.3	1	EH3.) Button label will read AUTO ECO.
+Comfort	ECO HVAC	10.4	1	EH4.) When the AUTO function is off and available, the user 
+Comfort	ECO HVAC	10.5	3	EH5.) The second press will switch to AUTO on. A third press
+Comfort	ECO HVAC	10.6	2	EH6.) When AUTO ECO is on, deselect airflow modes as in stan
+Comfort	ECO HVAC	10.7	1	EH7.) HVAC AUTO shall keep the selected setting through igni
+Comfort	ECO HVAC	10.8	1	EH8.) The Comfort main Menu Bar icon shall reflect the AUTO 
+Comfort	ECO HVAC	10.9	1	EH9.) The comfort pop ups triggered by hard controls interac
+Comfort	ECO HVAC	10.9.1	2	EH9.1) When ECO HVAC is equipped on a vehicle, the AUTO pop 
+Comfort	Heated Vented Seats	11.1	4	HVS1. For Multi-Level Heated/Vented seats, a press of the he
+Comfort	Heated Vented Seats	11.2	4	HVS2. For Multi-Level Heated/Vented seats, a press of the ve
+Comfort	Heated Vented Seats	11.3	1	HVS4. When climate is OFF, the status bar should still show 
+Comfort	Heated Vented Seats	11.4	2	HVS5. Heated seats buttons when activated will be shown red.
+Comfort	Heated Vented Seats	11.5	1	HVS6. Refer to HMI Settings List for the details on the Auto
+Comfort	Heated Vented Seats	11.6	6	R1HVS1.) If the independent seat zone feature is available, 
+Comfort	Heated Vented Seats	11.6.1	2	R1HVS1.1) On vehicles that are equipped with the seat zone f
+Comfort	Heated Vented Seats	11.7	4	R1HVS1.2.) For independent seat zones soft control, when the
+Comfort	Heated Vented Seats	11.8	4	W1HVS2.) For Multi-Level Heated steering wheel, a press of t
+Comfort	Heated Vented Seats	11.9	2	R1HVS2.) For Single-Level heated steering wheel, a press of 
+Comfort	Heated Vented Seats	11.10	3	R1HVS3.) Heated/vented seat, heated wheel, and seat zone pop
+Comfort	Heated Vented Seats	11.11	3	R1HVS4.) Heated/vented seat, heated wheel will not be displa
+Comfort	Heated Vented Seats	11.11.1	1	R1HS4.1.) When comfort controls are not active, they will be
+Comfort	Heated Vented Seats	12.1	4	HVS1. For Multi-Level Heated/Vented seats a press of the hea
+Comfort	Heated Vented Seats	12.2	4	HVS2. For Multi-Level Heated/Vented seats a press of the ven
+Comfort	Heated Vented Seats	12.3	2	HVS3. Active button state text/icon color is white. Inactive
+Comfort	Heated Vented Seats	12.4	1	HVS4. When climate is OFF, the status bar should still show 
+Comfort	Heated Vented Seats	12.5	2	HVS5. Heated seats buttons when activated will be shown red.
+Comfort	Heated Vented Seats	12.6	1	HVS6. Refer to HMI Notes for the details on the Auto Comfort
+Comfort	Heated Vented Seats	12.7	2	HVS7. Whenever pop ups are shown, images should be shown in 
+Comfort	Heated Vented Seats	12.8	3	SHVS1. For Standard Heated/Vented seats a press of the heate
+Comfort	Heated Vented Seats	12.9	3	SHVS2. For Standard Heated/Vented seats a press of the vente
+Comfort	Seat Control Tab	13.2	3	LS1.) When the (-, +) seat control buttons are pressed from 
+Comfort	Seat Control Tab	13.2.1	1	LS1.1) The 4 types of adjustments the user will be able to a
+Comfort	Seat Control Tab	13.3	2	LS2.) When the (-, +) seat control buttons are pressed, it w
+Comfort	Seat Control Tab	13.3.1	2	LS2.1) The user last selected lumbar/bolster selection will 
+Comfort	Seat Control Tab	13.4	2	LS3.) The user will be able to long press on the hard button
+Comfort	Seat Control Tab	13.5	2	LS4.) A short press of the (-, +) button will increase the l
+Comfort	Seat Control Tab	13.6	2	LS5.) Once the minimum or maximum level has been reach, the 
+Comfort	Climate Popups	14.1	1	HVACP1.) HVAC pop-ups should follow the pop-up list.
+Comfort	Climate Popups	14.1.1	1	HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop
+Comfort	Climate Popups	14.2	1	HVACP2.) HVAC pop-ups are not displayed while RVC screen is 
+Comfort	Climate Popups	14.3	2	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups,
+Comfort	Climate Popups	14.4	2	HVACP4.) If head unit is in simulated off/idle mode and HVAC
+Comfort	Climate Popups	14.5	1	HVACP5.) HVAC pop-ups should display over NAV, 3rd Party App
+Comfort	Climate Popups	14.6	1	HVACP6.) When an HVAC popup is displayed over another popup,
+Comfort	Climate Popups	14.7	2	HVACP7.) When an HVAC popup is displayed over another popup,
+Comfort	Climate Popups	14.8	1	HVACP8.) When an HVAC popup is displayed over another popup,
+Comfort	Climate Popups	14.9	1	HVACP9.) HVAC popups will not be displayed during intro/outr
+Comfort	Climate Popups	14.10	1	HVACP10.) When head unit is in simulated off/idle mode HVAC 
+Comfort	Climate Popups	14.10.1	1	HVACP10.1) If Climate is located in the main category bar, f
+Comfort	Climate Popups	14.11	2	HVACP11.) HVAC pop ups will only be displayed based on direc
+Comfort	Climate Popups	14.12	3	HVACP12.) The style of HVAC popups should match the type of 
+Comfort	Climate Popups	14.13	1	HVACP13.) For vehicles with a lower hvac screen, interaction
+Comfort	Climate Popups	14.14	1	HVACP14.) For vehicles with dual zone climate versions with 
+Comfort	Climate Popups	14.15	1	HVACSB1.) Available comfort controls (driver/passenger heate
+Comfort	Climate Popups	14.16	3	HVACSB2.) Driver and Passenger comfort seat features will sh
+Comfort	Climate Popups	14.16.1	3	HVACSB2.1.) Seat zone will show currently active or last use
+Comfort	Climate Popups	14.17	1	HVACSB3.) Driver comfort seat feature and Passenger comfort 
+Comfort	Climate Popups	14.18	2	HVACSB5.) Popup will have a 5 sec timeout and restart with a
+Comfort	Climate Popups	14.19	8	HVACSB6.) When the Climate widget is shown on the currently 
+Comfort	Climate Popups	15.1	2	HVACP11.1) For different Climate features (Defrost/Max Defro
+Comfort	ICS Anatomy	16.2	9	ICE1.) Whenever changes to the climate system are made via h
+Comfort	ICS Anatomy	16.16	5	ICE15.) Always show 'Driver' or 'Passenger'. Off icon of sea
+Comfort	ICS Climate Modes	16.3	9	ICE2.) AUTO has on/ off state. The fan speed indicator shows
+Comfort	ICS Climate Modes	16.4	1	ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have 
+Comfort	ICS Climate Modes	16.5	2	ICE4.) The recirc icon will display the vehicle model specif
+Comfort	ICS Climate Modes	16.10	8	ICE9.) Climate off has on/off state that is indicated on HC,
+Comfort	ICS Climate Modes	16.11	4	ICE10.) SYNC has on/ off state that is indicated on climate 
+Comfort	ICS Climate Modes	16.13	12	ICE12.) If the system supports Max A/C it will be displayed 
+Comfort	ICS Climate Modes	16.14	3	ICE13.) MTC screens/popups are to be used when CCM relays MT
+Comfort	ICS Climate Modes	16.17	1	C16.) If blower reduction occurs automatically due to an act
+Comfort	ICS Temperature and Fan	16.6	6	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-2
+Comfort	ICS Temperature and Fan	16.6.1	5	ICE5.1) If SYNC is ON, adjusting driver temperature affects 
+Comfort	ICS Temperature and Fan	16.7	5	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label ins
+Comfort	ICS Airflow and Defrost	16.8	12	ICE7.) MAX DEF automatically turns on A/C, changes airflow m
+Comfort	ICS Airflow and Defrost	16.9	2	ICE8.) Rear Defrost has on/ off state. Gray out the REAR DEF
+Comfort	ICS Airflow and Defrost	16.12	3	ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & 
+Comfort	ICS Airflow and Defrost	16.12.1	10	ICE11.1) If the Mode hard control is pressed the user will b
+Comfort	ICS Airflow and Defrost	16.15	2	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.
+Comfort	Comfort Widget	17.1	3	W0.) The Comfort widget will have two screens: Comfort and S
+Comfort	Comfort Widget	17.2	8	CW1.) The default screen for the Comfort widget is the Clima
+Comfort	Comfort Widget	17.3	3	CW2.) The second Comfort widget screen includes all Comfort 
+Comfort	Comfort Widget	17.4	2	CW3.) For 8.4/10.1/12 landscaped screens, there will be a to
+Comfort	Comfort Widget	17.5	2	CW4.) For dual zone climate with dual airflow modes equipped
+Comfort	Comfort Widget	18.1	3	W0.) The Comfort widget will have two screens: Comfort and S

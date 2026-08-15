@@ -36,8 +36,9 @@ python3 scripts/recon.py   --feature features/comfort --root .
 ## Phase 2 — Rulings (Tier 2)
 - [x] 執行層覆核完成 2026-08-14 —— 9 個 `[PROPOSED]` 逐項意見見
       `docs/upstream/02_phase2_review.md` §7
-- [ ] **DECISIONS.md signed by Pei** —— Sign-off 仍為空白範本，
-      recon 每次跑都會發 R-C10 警告，屬正確狀態
+- [x] **DECISIONS.md signed by Pei** ✅ 2026-08-14（PeiPYHsu）——
+      受 **R-C9** 保護：recon 重跑拒絕覆寫、改寫 `DECISIONS.new.md`、非零離開
+      （實測 sha256 前後不變、exit=1）。R-C10 空簽署警告已停止
 - [x] 51 節分類（A-CF08）：`data/sr24_uncited_sections.tsv`，
       container 20／assumption 9／figure 5／**substantive 17**
 - 已凍結、**不在簽署範圍內**者：`test_group` = `Comfort`（R-C6）、
@@ -53,7 +54,7 @@ python3 features/comfort/scripts/classify_uncited_sections.py
 python3 scripts/recon.py --feature features/comfort --root .
 ```
 
-## Phase 3 — Framework & profile（**進行中**，10 §4 Pei 裁定開始）
+## Phase 3 — Framework & profile（**Part N 完成**；profile 仍未定）
 
 **Layer 3 map 已產；Layer 2 待分析層起草（Tier 2）。**
 
@@ -77,28 +78,34 @@ python3 scripts/recon.py --feature features/comfort --root .
 
 ```
 python3 features/comfort/scripts/build_layer3_map.py
+python3 features/comfort/scripts/verify_partn.py
 ```
 
 ### 待辦（Layer 2 屬 Tier 2，執行層不自裁）
-- [ ] **Layer 2 Test Set（Part N）** —— 分析層起草、Pei 簽署。執行層已提供
-      章 2（22 節/92 leaves）與章 16（18 節/99 leaves）明細，合計 47.4%，
-      **未提任何 Test Set 主張**
-- [ ] **起草前宜先覆核**：章 2 與章 16 之逐條語意對應（上繳 05 §9.2 第 1 項）
-      —— 該對應表由標籤與標題前 56 字得出，未讀全文；若 Part N 要利用兩章
-      平行性，需先逐條覆核。屬內容理解非量測，歸屬待分析層明示
-- [ ] **邊界預留（07 §5）** —— 章 20（Alternate Rear Blower）與 home-screen
-      widget 兩塊須留為可插入之邊界，不得切成必須重整才容納得下的形狀
-- [ ] **exemplar source 具名** —— 提案寫「nearest sibling done region」，
-      但時序最近的 privacy／sxm 皆 BLANK 無 done region；實有者為
-      home（144 列）與 amfm（158 列，其需求族已被裁決取代，僅可借樣式）
+- [x] **Layer 2 Test Set（Part N）** ✅ 已簽署 2026-08-14（下放包 12）——
+      Test Group `Comfort`、**15 個 Test Set**、leaf 區間 12–59（最大 14.6%）。
+      落地 `framework.md`；`scripts/verify_partn.py` 四個 assertion 全 PASS
+- [x] **6.3 落位確認**（12 §3）—— 讀全文後**維持 `Front Climate Anatomy`**。
+      原疑慮「second row」係 60 字截斷把 `secondary` 腰斬所致；全文為
+      `non-foldable secondary lower screen`，與後座無關。**未自行搬移**
+- [x] 章 2／16 逐條覆核 —— **11 §1 裁定不做**：兩章不合併（進入路徑不同），
+      該覆核不在 Part N 關鍵路徑上；鏡像即使個別條文對不齊也不失效
+- [x] **邊界預留（07 §5）** —— 章 20 若日後 in_scope → **新增** Test Set
+      `Rear Blower`（不併入 #6，進入路徑與市場變體不同）；章 19 → 併入 #15
+      `Comfort Widget`。**兩處皆不需重整既有切分**（framework.md §7）
+- [x] **exemplar source 已具名** —— `home` 之 done region（144 列）；
+      **`amfm` 具名排除**（DECISIONS §4，已簽）
 - [ ] **A-CF07 之寫回處置須於 profile 明文**（03 §5）—— BLANK 型 write-back
       為「append from first data row」，範本殘留列會位移首資料列
-- [ ] **batch plan 改寫** —— 現提案「依章分組，pilot 取最小」會選到第 6 章
-      1 個 leaf；且章 2 與章 16 佔 47%，其切分應由 Part N 決定
+- [x] **batch plan 已定** —— pilot = 第 13 章 `Seat Control Tab`（14 leaves）；
+      其餘批次依 Part N 之 15 個 Test Set，不再「依章分組」（DECISIONS §7，已簽）
 - [ ] **DR #6** —— 僅剩 7" 螢幕配置一題（擋 19.1 ~ 19.3）。09 §5 已改為
       **請 Pei 直接指認來源**；10 §3 之 Home Screen spec 亦不關閉本項
-- [ ] `docs/fw036/framework.md` Part N appended
-- [ ] `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` written
+- [x] Part N 落地 —— 寫於 **`features/comfort/framework.md`**（feature 內）
+- [ ] **profile `[OVERRIDE]`** —— **Tier 2，仍未定**，本次簽署不涵蓋。
+      **Phase 4 之硬前置**：至少須明文 A-CF07 之寫回處置（03 §5）——
+      BLANK 型 write-back 為「append from first data row」，範本殘留列會
+      位移首資料列，留到 write-back 當下再決定就晚了
 
 ### Phase 4 前置（本包記入，勿留到當下決定）
 - [ ] **Home Screen spec 通讀** —— R-C17 之判定測試（該規則定義於 Comfort
