@@ -193,8 +193,8 @@ BATCHES = [
                     "adjustment\n"
                     "2. Press \"+\" once on the door seat control",
                 "expected_result":
-                    "1. The lumbar/bolster state shown before the adjustment "
-                    "is recorded\n"
+                    "1. The lumbar/bolster state before the adjustment is "
+                    "shown\n"
                     "2. The popup or the tab change is shown, and the "
                     "adjustment is not reflected",
                 "priority": "P1",
@@ -218,8 +218,8 @@ BATCHES = [
                     "adjustment\n"
                     "2. Press \"+\" a second time on the door seat control",
                 "expected_result":
-                    "1. The lumbar/bolster state shown before the adjustment "
-                    "is recorded\n"
+                    "1. The lumbar/bolster state before the adjustment is "
+                    "shown\n"
                     "2. The adjustment is reflected",
                 "priority": "P1",
                 "design_method": DM_STATE,
@@ -253,10 +253,9 @@ BATCHES = [
                     "2. Run a keycycle\n"
                     "3. Open the Seats tab and read the selected option",
                 "expected_result":
-                    "1. The selected option shown before the keycycle is "
-                    "recorded\n"
+                    "1. The selected option before the keycycle is shown\n"
                     "2. The head unit completes the keycycle\n"
-                    "3. The selected option is the one recorded in step 1",
+                    "3. The selected option is the one shown in step 1",
                 "priority": "P1",
                 "design_method": DM_STATE,
             },
@@ -315,8 +314,8 @@ BATCHES = [
                     "2. Long press \"+\" on the door seat control\n"
                     "3. Release \"+\"",
                 "expected_result":
-                    "1. The lumbar/bolster state shown before the adjustment "
-                    "is recorded\n"
+                    "1. The lumbar/bolster state before the adjustment is "
+                    "shown\n"
                     "2. The lumbar/bolster increases faster than it does for a "
                     "single short press\n"
                     "3. The lumbar/bolster stops increasing",
@@ -325,7 +324,12 @@ BATCHES = [
             },
             {
                 "req_id": "SWE1-HVAC-080-02",
-                "tc_title": "Long press on the touch screen initiates the same fast change",
+                "blocked": "[BLOCKED-SPEC] Long-press logic is defined by HMI "
+                           "Core Logic and Flow requirement N0. With that "
+                           "delegation removed this requirement has no content "
+                           "left that can be verified against the Comfort HMI "
+                           "specification alone",
+                "tc_title": "Long press logic follows HMI Core Logic and Flow",
                 "test_item":
                     "The user will be able to long press on the touch screen "
                     "itself to initiate fast increases/decreases, with the "
@@ -343,28 +347,14 @@ BATCHES = [
                     "2. Long press \"+\" on the door seat control\n"
                     "3. Release \"+\"",
                 "expected_result":
-                    "1. The lumbar/bolster state shown before the adjustment "
-                    "is recorded\n"
+                    "1. The lumbar/bolster state before the adjustment is "
+                    "shown\n"
                     "2. The lumbar/bolster increases faster than it does for a "
                     "single short press\n"
                     "3. The lumbar/bolster stops increasing",
                 "priority": "P2",
                 "design_method": DM_FUNC,
-                "split_flag": True,
-                "split_reason":
-                    "037 將本節拆為兩個 leaf，本 leaf 之區別內容純為委派至外部 "
-                    "spec，於本 feature 範圍內扣除後無餘留。依 20 §2.1 回報停下，"
-                    "待裁；本 TC 之驗證目標暫同其 -01 sibling，不得視為已定案",
                 "duplicate_of": "",
-                "axis": "delegated-only",
-                "delta":
-                    "037 之 -080-02 全文為「The system shall logic as per HMI "
-                    "Core Logic and Flow (requirement N0)」，其 Verification "
-                    "Criteria 之 Action 與 -080-01 相同（Long press (-, +) "
-                    "hard button or touchscreen control）—— **兩個操作面本就"
-                    "同在 -01**。故本 leaf 之區別內容純為委派（Core N0 之"
-                    "長按門檻／速率／加速曲線），扣除後於本 feature 範圍內"
-                    "**無餘留**。依 20 §2.1 回報停下，待裁",
             },
         ],
     },
@@ -396,17 +386,22 @@ BATCHES = [
                     "2. Short press \"+\" on the door seat control\n"
                     "3. Short press \"-\" on the door seat control",
                 "expected_result":
-                    "1. The lumbar/bolster state shown before the adjustment "
-                    "is recorded\n"
+                    "1. The lumbar/bolster state before the adjustment is "
+                    "shown\n"
                     "2. The lumbar/bolster is increased\n"
                     "3. The lumbar/bolster is decreased back to the state "
-                    "recorded in step 1",
+                    "shown in step 1",
                 "priority": "P1",
                 "design_method": DM_FUNC,
             },
             {
                 "req_id": "SWE1-HVAC-081-02",
-                "tc_title": "Short press on the touch screen moves the level by one step",
+                "blocked": "[BLOCKED-SPEC] The equivalence to the previous "
+                           "4-way rocker hard control is defined by CFTS044. "
+                           "With that delegation removed this requirement has "
+                           "no content left that can be verified against the "
+                           "Comfort HMI specification alone",
+                "tc_title": "Short press is equivalent to the previous 4-way rocker",
                 "test_item":
                     "A short press will increase the lumbar/bolster by a small "
                     "set amount, that would be equivalent to a short press of "
@@ -423,27 +418,14 @@ BATCHES = [
                     "2. Short press \"+\" on the door seat control\n"
                     "3. Short press \"-\" on the door seat control",
                 "expected_result":
-                    "1. The lumbar/bolster state shown before the adjustment "
-                    "is recorded\n"
+                    "1. The lumbar/bolster state before the adjustment is "
+                    "shown\n"
                     "2. The lumbar/bolster is increased\n"
                     "3. The lumbar/bolster is decreased back to the state "
-                    "recorded in step 1",
+                    "shown in step 1",
                 "priority": "P2",
                 "design_method": DM_FUNC,
-                "split_flag": True,
-                "split_reason":
-                    "037 將本節拆為兩個 leaf，本 leaf 之區別內容純為委派至外部 "
-                    "spec，於本 feature 範圍內扣除後無餘留。依 20 §2.1 回報停下，"
-                    "待裁；本 TC 之驗證目標暫同其 -01 sibling，不得視為已定案",
                 "duplicate_of": "",
-                "axis": "delegated-only",
-                "delta":
-                    "037 之 -081-02 全文為「The system shall equivalent to "
-                    "short press of previous 4-way rocker hard control」，其 "
-                    "Verification Criteria 之 Action 與 -081-01 相同"
-                    "（Short press (-, +) button）。故本 leaf 之區別內容純為"
-                    "委派（CFTS044 所定之級距量值與等效性），扣除後於本 "
-                    "feature 範圍內**無餘留**。依 20 §2.1 回報停下，待裁",
             },
         ],
     },
@@ -527,6 +509,7 @@ def main() -> None:
         tcs = []
         for tc in b["tcs"]:
             n += 1
+            blocked = tc.get("blocked", "")
             row = {
                 "req_id": tc["req_id"],
                 "tc_id": TC_ID_FMT.format(n=n),
@@ -536,8 +519,8 @@ def main() -> None:
                 "test_item": tc["test_item"],
                 "pre_conditions": tc["pre_conditions"],
                 "input_test_data": tc["input_test_data"],
-                "test_procedure": tc["test_procedure"],
-                "expected_result": tc["expected_result"],
+                "test_procedure": "" if blocked else tc["test_procedure"],
+                "expected_result": "" if blocked else tc["expected_result"],
                 "specification_reference": f"{STEM}_{o}",
                 "priority": tc["priority"],
                 "design_method": tc["design_method"],
@@ -545,7 +528,7 @@ def main() -> None:
                 "split_reason": tc.get("split_reason", ""),
                 "functional_safety": "NA",
                 "estimated_test_time": "",
-                "remarks": "",
+                "remarks": blocked,
             }
             tcs.append(row)
         # distinguishing_axis is driven by the axis/delta keys, NOT by

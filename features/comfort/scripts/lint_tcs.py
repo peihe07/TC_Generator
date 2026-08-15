@@ -56,6 +56,7 @@ REQUIRED_KEYS = ("tc_title", "pre_conditions", "input_test_data",
                  "test_procedure", "expected_result", "specification_reference",
                  "design_method", "priority", "split_flag", "split_reason")
 MIN_STEPS = 2                  # §10.5
+BLOCKED_MARKERS = ("[BLOCKED-SPEC]",)   # profile §5.1 / R-C24
 REASONING_SENTENCES = (2, 5)   # §10.4
 # Chinese full stops are not followed by a space, so a lookahead for
 # whitespace counts a whole paragraph as one sentence — which is how this
@@ -92,6 +93,14 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
 
     all_tcs = [(d, tc) for d in docs for tc in d["tcs"]]
 
+    # R-C24: a BLOCKED row is exempt from the two gates that assume a
+    # procedure exists. The exemption is REPORTED as its own line, never a
+    # silent skip inside a condition — the precedent being the
+    # `and n != "Comfort Widget"` that once hid a real naming defect behind a
+    # green check (upstream 06 §2.1).
+    blocked = [tc["tc_id"] for _, tc in all_tcs
+               if any(m in tc.get("remarks", "") for m in BLOCKED_MARKERS)]
+
     # ---- id gates -------------------------------------------------------
     ids = [tc["tc_id"] for _, tc in all_tcs]
     for tid in ids:
@@ -122,7 +131,14 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         # line is 1:1 and passes. That is how TC-004 reached "25/25 PASS"
         # with a one-step procedure (handoff 20 §1.1).
         steps = len(re.findall(r"^\s*\d+\.", tc["test_procedure"], re.M))
-        if steps < MIN_STEPS:
+        if w in blocked:
+            # A BLOCKED row must be EMPTY, not merely short — a stray step
+            # would mean the row is half-written rather than blocked.
+            if tc["test_procedure"] or tc["expected_result"]:
+                bad("blocked-row-empty",
+                    f"{w}: carries a {BLOCKED_MARKERS[0]} marker but "
+                    "test_procedure/expected_result are not empty (R-C24)")
+        elif steps < MIN_STEPS:
             bad("proc-min-steps",
                 f"{w}: {steps} numbered step(s), §10.5 requires >= {MIN_STEPS} "
                 "(Setup -> Verification)")
@@ -148,7 +164,15 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             bad("functional-safety", f"{w}: S column must be 'NA' (profile §3.8)")
         if tc["estimated_test_time"] != "":
             bad("estimated-time", f"{w}: Q column must be blank (profile §3.7)")
-        if tc["remarks"] != "":
+        if w in blocked:
+            if not tc["remarks"].startswith(BLOCKED_MARKERS[0]):
+                bad("blocked-remarks", f"{w}: {BLOCKED_MARKERS[0]} must be the "
+                                       "leading token of Remarks (R-C24)")
+            if re.search(r"\bA-CF\d+\b|\bR-C\d+\b|§\d", tc["remarks"]):
+                bad("blocked-remarks", f"{w}: Remarks is externally visible and "
+                                       "must not carry an internal ruling id "
+                                       "(AMFM R10-4)")
+        elif tc["remarks"] != "":
             bad("remarks", f"{w}: remarks must be empty for a non-BLOCKED row")
 
         # ---- §11 formatting ---------------------------------------------
@@ -180,7 +204,9 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         # ---- procedure <-> ER 1:1 (§6) ----------------------------------
         np_ = len(re.findall(r"^\s*\d+\.", tc["test_procedure"], re.M))
         ne = len(re.findall(r"^\s*\d+\.", tc["expected_result"], re.M))
-        if np_ != ne or np_ == 0:
+        if w in blocked:
+            pass                      # exempt; reported on its own line
+        elif np_ != ne or np_ == 0:
             bad("proc-er-1to1", f"{w}: {np_} procedure steps vs {ne} ER lines")
 
         # ---- §3.4 (-, +) placement (19 §3) -------------------------------
@@ -215,7 +241,7 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         if (axis == "none") != bool(dup_of):
             bad("sibling-axis", f"{d['parent']}: axis={axis!r} but duplicate_of={dup_of!r} "
                                 "(§4.6 requires axis='none' <=> duplicate_of set)")
-    return out
+    return out, blocked
 
 
 def main() -> int:
@@ -223,7 +249,7 @@ def main() -> int:
     docs = [json.loads(p.read_text(encoding="utf-8"))
             for p in sorted(GEN.glob("*.json"))]
     n_tc = sum(len(d["tcs"]) for d in docs)
-    findings = lint(docs, auth)
+    findings, blocked_ids = lint(docs, auth)
 
     gates = ["tc-id-format", "tc-id-unique", "tc-id-sequence", "req-id-unique",
              "spec-ref-stem", "spec-ref-outline", "spec-ref-sr25", "test-group",
@@ -234,7 +260,9 @@ def main() -> int:
              "fabricated-qty", "sibling-axis",
              # added 2026-08-15 after handoff 20 §1.1's coverage audit
              "required-keys", "proc-min-steps", "reasoning-sentences",
-             "duplicate-of-format"]
+             "duplicate-of-format",
+             # added 2026-08-15 with R-C24's BLOCKED-SPEC marker
+             "blocked-row-empty", "blocked-remarks"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -243,6 +271,9 @@ def main() -> int:
     print("gates:")
     for g in gates:
         print(f"- {'**FAIL**' if g in failed else 'PASS'} — {g}")
+    # R-C24 — the exemption is visible on every run, whether or not it fired.
+    print(f"- PASS — rows exempted as BLOCKED-SPEC "
+          f"(proc-min-steps, proc-er-1to1): {blocked_ids or 'none'}")
     if findings:
         print(f"\n{len(findings)} finding(s):")
         for sev, g, msg in findings:

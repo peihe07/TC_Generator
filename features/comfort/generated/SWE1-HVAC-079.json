@@ -28,7 +28,7 @@
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] A lumbar/bolster adjustment type is currently the selected option (13.3.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Record which lumbar/bolster adjustment type is the selected option\n2. Run a keycycle\n3. Open the Seats tab and read the selected option",
-   "expected_result": "1. The selected option shown before the keycycle is recorded\n2. The head unit completes the keycycle\n3. The selected option is the one recorded in step 1",
+   "expected_result": "1. The selected option before the keycycle is shown\n2. The head unit completes the keycycle\n3. The selected option is the one shown in step 1",
    "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3.1",
    "priority": "P1",
    "design_method": "狀態轉換 (State Transition Testing)",

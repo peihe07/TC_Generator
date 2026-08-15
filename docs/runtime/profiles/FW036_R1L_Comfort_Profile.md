@@ -228,11 +228,51 @@ lint 對照 `section_fulltext.tsv` 之來源列驗證保留 token，**不逕行�
 
 ## 5. Marker vocabulary [ADD]
 
-prefix `A-CF`。**目前無 marker。**
+prefix `A-CF`。
 
-**特別聲明**：16.1、18.2–18.4 四節依 **R-C16** 為 **RD-1 覆蓋缺口項，
-不產生任何 workbook 列**（不同於 Privacy 之 `[BLOCKED-ECU]` 產生 BLOCKED
-列）。不指派 tc_id、不入 coverage 分母、不列 BLOCKED。
+### 5.1 `[BLOCKED-SPEC]`（R-C24，2026-08-15 裁定）
+
+**適用**：某 leaf 之全部內容為對外部 spec 之委派或等效性宣告，扣除該委派後
+於本 feature 範圍內**無任何可獨立驗證之餘留**者。
+
+**產出 BLOCKED row** —— 不省略、不併入 sibling leaf、**不以複製 sibling 之
+procedure 充數**（後者為 §7 之 False Pass：一條會通過但不驗證其 leaf 所要求
+之事的 TC，remarks 之標記不會使它停止通過）。
+
+| 欄 | 值 |
+|---|---|
+| `test_procedure` / `expected_result` | **空** |
+| `specification_reference` | 該 leaf 自身之 outline，照常填 |
+| Remarks | `[BLOCKED-SPEC]` ＋ 擁有該內容之文件名 ＋ 一句說明何以無餘留 |
+| 其餘 | 依 profile 常規 |
+
+Remarks **外部可見**（AMFM R10-4）：不得出現內部 ruling id 或 `A-CF` 編號。
+
+**與 Privacy `[BLOCKED-ECU]` 之區別 —— 不得互相類推**：
+
+| | `[BLOCKED-ECU]`（Privacy） | `[BLOCKED-SPEC]`（本 feature） |
+|---|---|---|
+| 成因 | 行為由**另一 ECU** 執行 | 行為**可觀察**，但其規範內容由**另一份 spec** 擁有 |
+| 本 ECU 有無可觀察端 | **無** | **有**（只是無獨立於 sibling 之內容可驗） |
+| 解除條件 | 該行為改由本 ECU 執行，或取得其可觀察指標 | 外部 spec 之內容納入本 feature 範圍，或該 leaf 經 037 改寫 |
+
+**兩者外觀相同（皆無 procedure），成因不同。** 見到空 procedure 時，
+須讀 Remarks 之 marker 方知其類別。
+
+**lint 之豁免為具名回報行，不得靜默跳過**（前例：上繳 06 §2.1 之
+`and n != "Comfort Widget"`）。`proc-min-steps` 與 `proc-er-1to1` 對
+BLOCKED row 之豁免，每次 lint 皆輸出受豁免之 tc_id 清單。
+
+**目前之 `[BLOCKED-SPEC]` 列**：`SWE1-HVAC-080-02`（HMI Core Logic and
+Flow requirement N0）、`SWE1-HVAC-081-02`（CFTS044）。
+
+### 5.2 不產生 workbook 列者
+
+**16.1、18.2–18.4 四節依 R-C16 為 RD-1 覆蓋缺口項，不產生任何 workbook 列**
+—— 與 `[BLOCKED-SPEC]`／`[BLOCKED-ECU]` **皆不同**：那兩者產生 BLOCKED 列，
+本類**連列都不產**（037 未對其產出需求，故無 leaf 可掛）。
+不指派 tc_id、不入 coverage 分母、不列 BLOCKED。
+
 新增 marker 須先裁決，**生成當下不得自行創造**。
 
 ## 6. 寫回與交付完整性 [繼承 Privacy §9 ＋ 跨 feature 條款]

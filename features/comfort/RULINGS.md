@@ -447,6 +447,54 @@ BLOCKED 保留給「該行為完全由他方執行，本 ECU 無任何可觀察�
 
 ---
 
+## R-C23 ~ R-C24 —— 下放包 21 §3／§1.3（Pei 裁定，2026-08-15）
+
+**R-C23 適用全 feature**；R-C24 之 marker 為 Comfort 專屬（profile §5），
+其原則適用全 feature。安置位置待 canon re-sync（21 §6）。
+
+```
+R-C23  自評不得以工具未報為依據
+
+§9 self-check 之每一項，其依據須獨立於 lint 之涵蓋範圍。
+「lint 未報此項」不構成該項 PASS 之依據。
+
+某項若無獨立依據可具名，標「未實測」，不標 PASS。
+
+理由：rev1 之 §9 自評四項報 PASS 而實際為 FAIL，同時 lint 25/25 全綠 ——
+兩者同時錯且錯在同一處，因為自評複述了 lint 之涵蓋範圍。工具與自評若
+共用同一涵蓋範圍，其中一者即不提供任何額外保障。
+```
+
+```
+R-C24  外部 spec 全權委派之 leaf —— BLOCKED row ＋ [BLOCKED-SPEC]
+
+某 leaf 之全部內容為對外部 spec 之委派或等效性宣告，扣除該委派後於本
+feature 範圍內無任何可獨立驗證之餘留者：**產出 BLOCKED row，不省略、
+不併入 sibling leaf、不以複製 sibling 之 procedure 充數。**
+
+marker：`[BLOCKED-SPEC]`，置於 Remarks 之開頭 token。
+
+BLOCKED row 之內容：
+- `test_procedure` / `expected_result`：空
+- `specification_reference`：該 leaf 自身之 outline，照常填
+- Remarks：`[BLOCKED-SPEC]` ＋ 擁有該內容之文件名 ＋ 一句說明何以無餘留
+  （外部可見，不得出現內部 ruling id 或 A-CF 編號，AMFM R10-4）
+- 其餘欄位依 profile 常規
+
+**與 Privacy `[BLOCKED-ECU]` 之區別須寫入 profile §5**：前者為「行為由
+另一 ECU 執行，本 ECU 無可觀察端」；本條為「行為可觀察，但其規範內容
+由另一份 spec 擁有」。兩者外觀相同（皆無 procedure），成因不同，
+不得互相類推。
+
+**lint 之豁免必須是具名回報項，不得為條件式中之靜默跳過**（前例：
+上繳 06 §2.1 之 `and n != "Comfort Widget"`）。`proc-min-steps`、
+`proc-er-1to1` 對 BLOCKED row 之豁免，須以獨立回報行輸出，形如：
+`- PASS — rows exempted as BLOCKED-SPEC: ['NR1L-ComfortHMI-010', ...]`
+使豁免在每次 lint 輸出中可見。
+```
+
+---
+
 ## 執行層回報（2026-08-14，Phase 0 → Phase 1）
 
 以下為執行層對上列條文之落實紀錄與實測值，**非條文本身**。
