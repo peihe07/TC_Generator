@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-011",
+ "outline": "2.7.1",
+ "batch": "Temperature and Fan",
+ "source_clause": "C6.1) In some vehicles fan speed ranges for front hvac are: Off, 1-8.",
+ "reasoning": "驗證目標：2.7.1（C6.1）規定部分車輛之前排 HVAC 風速範圍為 Off, 1-8，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：取 profile §3.2 **第十四軸「前排 HVAC 風速範圍」**（37 §4 增列），其 R-C28 第一問由本節明文「In some vehicles fan speed ranges for front hvac are: Off, 1-8」對應，標 spec-verbatim；對照值 Off, 1-7 出自 2.7（C6.），依 R-C29 標 (2.7) 並併入 specification_reference —— C6.1 為 C6. 之子條，合讀非推論。依 **R-C34** 可觀察量為 climate screen 之風速段，補第十三軸與 EMEA ICS 之排除（16.7 ICE6 mirrored），第九軸與第十二軸不涉；本節只定出一個值域，無分支可分，且**第十四軸為功能型**，兩值皆不移除介面。刻意略過：條文未述「some vehicles」係由何配置決定，故 PC 以該值域本身為陳述而不寫入其成因（§8.4.1）；亦未述 1-8 之車輛其 AUTO 標示或下界行為是否不同，不擴張（2.7 之 -061／-062 各自成條）。",
+ "keywords": [
+  "fan speed range",
+  "front hvac",
+  "Off, 1-8",
+  "Off, 1-7"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之風速段（fan segments）",
+  "axis_9": "不暴露 —— climate screen 非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 補（3 旋鈕 ICS 車上無 HVAC 畫面，無風速段可數）",
+  "emea_ics": "16.7 ICE6 mirrored → 排除成立（惟 ICE6 只列 Off, 1-7；本節之 1-8 於 ch16 無對應，見 ch16_mirror_map.tsv 之 no-counterpart 列 —— 兩者不衝突：排除的是「用 ch16 介面的車」，而該車之值域由 ICE6 定）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-011",
+   "tc_id": "NR1L-ComfortHMI-065",
+   "tc_title": "Front HVAC fan range runs to 8 on vehicles configured for it",
+   "test_group": "Comfort",
+   "test_set": "Temperature and Fan",
+   "test_item": "In some vehicles the fan speed ranges for front hvac shall be Off, 1-8",
+   "pre_conditions": "1. [spec-verbatim] The vehicle's front hvac fan speed range is Off, 1-8 (2.7.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Raise the fan speed until it stops increasing\n3. Read the number of fan segments on the climate screen",
+   "expected_result": "1. The climate screen shows the current fan speed\n2. The fan speed reaches 8\n3. The climate screen shows 8 fan segments",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2",
+   "priority": "P2",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

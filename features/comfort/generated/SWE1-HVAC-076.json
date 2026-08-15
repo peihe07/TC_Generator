@@ -18,6 +18,13 @@
   "delta": ""
  },
  "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "lower screen Seats tab; -003 另讀 head unit 之 climate section",
+  "axis_9": "-003 暴露（讀 climate section），餘二條之可觀察量在下螢幕，6.3 移除者為 head unit 之 comfort section",
+  "axis_12": "DR #20 未答前不可陳述 —— 13.x 之 full_text 無句支持「本車非僅前排氣候」（R-C28 第一問）",
+  "axis_13": "座椅控制非 HVAC，2.14 之逐字範圍為 no HVAC …；-003 例外，其 climate section 即 HVAC 畫面",
+  "emea_ics": "ch16 十八節無座椅節，13.x 無 ICS 鏡射（ch16_mirror_map.tsv）"
+ },
  "tcs": [
   {
    "req_id": "SWE1-HVAC-076-01",
@@ -66,11 +73,11 @@
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
    "test_item": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is in the stowed position and the user is already in the climate section on the main head unit, the system shall switch the user to the Seats tab",
-   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-verbatim] The lower screen is in the stowed position (13.2)\n4. [spec-verbatim] The user is already in the climate section on the main head unit (13.2)",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-verbatim] The lower screen is in the stowed position (13.2)\n4. [spec-verbatim] The user is already in the climate section on the main head unit (13.2)\n5. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n6. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note which tab is currently shown in the climate section on the head unit\n2. Press \"-\" on the door seat control",
    "expected_result": "1. The tab shown in the climate section is not the Seats tab\n2. The head unit switches to the Seats tab",
-   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
    "priority": "P1",
    "design_method": "決策表 (Decision Table Testing)",
    "split_flag": false,

@@ -17,6 +17,13 @@
   "delta": ""
  },
  "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "lower screen Seats tab",
+  "axis_9": "同上",
+  "axis_12": "同 DR #20",
+  "axis_13": "座椅控制非 HVAC",
+  "emea_ics": "無 ICS 鏡射"
+ },
  "tcs": [
   {
    "req_id": "SWE1-HVAC-080-01",

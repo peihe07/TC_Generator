@@ -1,0 +1,7 @@
+outline	sibling_outline	verdict	reviewed_at	reason
+2.6.1	2.11	sibling	129	C5.1 與 C12 皆述「SYNC 開啟時改駕駛側溫度連動乘客側」與「調整乘客側溫度中斷 SYNC」。037 各給其 leaf，依 §8.2 單位歸 037 不合併；duplicate_of 待 Climate Modes 生成後依 §4.6 回填
+2.6	7.4	sibling	129	**候選產生器 2026-08-15 首次執行所發現。** CR4 逐句重述 C5 之溫度區間、HI/LO 取代度數、Metric 半度增量，以及 temp slider／status bar／temp popup 之一致性 —— 差異軸為**前排 vs 後排 climate screen**。待 Rear Climate 生成後依 §4.6 回填
+2.6.1	7.4	sibling	129	**同上。** CR4 亦逐句重述 C5.1 之箭頭 1 增量、長按快移、滑桿把手判定與 SYNC 連動 —— 差異軸同為前排 vs 後排。CR4 另含 `hold longer that 500 ms` 之明確門檻，而 C5.1 無，此為兩者之實質差異，非僅措辭
+2.6.1	7.7	sibling	129	CR7 述 SYNC 之 on/off 與其連動，並擴及後排（`Fan speed and blower are sync'd front to back`）。與 C5.1 為同一 SYNC 行為之前後排兩面，差異軸為前排 vs 前後排連動
+2.6.1	16.6.1	not-sibling	129	鏡射關係而非 §4.6 sibling —— ICE5.1 為 C5.1 之 EMEA ICS 變體，已由 `ch16_mirror_map.tsv` 記為 mirrored，兩者不會同時出現於同一車輛
+2.6.1	16.11	not-sibling	129	同上，ICE10 為 C12 之 EMEA ICS 變體；其與 2.6.1 之語彙重疊來自 SYNC 一詞，非同一需求之兩處陳述

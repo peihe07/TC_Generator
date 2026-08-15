@@ -55,6 +55,11 @@ DM_FUNC = "功能測試 (Functional based ; no specific technique)"
 DM_STATE = "狀態轉換 (State Transition Testing)"
 DM_DECISION = "決策表 (Decision Table Testing)"
 
+# handoff 30 §1.4. Named on every one of the four rows that carry it, so
+# the split is legible from the workbook alone rather than only from here.
+SPLIT_REASON = (
+    "§8.2.2 control-entity criterion: the four breakers are four different control entities and fail independently, so the leaf splits into four TCs that all trace to it (handoff 30 §1)")
+
 # Axis 3 of profile §3.2. Verbatim: "On vehicles with Tri-Mode climate".
 PC_TRIMODE = ("1. [spec-verbatim] The vehicle is equipped with Tri-Mode "
               "climate (3.1)")
@@ -82,13 +87,62 @@ PC_SOFTTOP = ("1. [spec-verbatim] The vehicle is a soft top vehicle, such as "
 def ref(*outlines):
     return "; ".join(f"{STEM}_{o}" for o in outlines)
 
+# ---- 35 §1 / R-C34 interface-type axes ------------------------------------
+# An interface-type axis removes the surface an observable sits on while the
+# function may still exist. Three of them bite here; each exclusion names the
+# section that states the fact (R-C29), and that section joins spec_ref.
+EX_ICS = ("[spec-derived] The vehicle does not have 3 knob HVAC controls "
+          "with ICS, for which no HVAC screens or pop ups are displayed "
+          "(2.14)")
+EX_EMEA = ("[spec-derived] The vehicle is not an EMEA ICS vehicle, whose "
+           "climate interface is specified separately in chapter 16 (16.2)")
+EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
+            "secondary lower screen containing comfort information, for which "
+            "the comfort section is removed from the head unit (6.3)")
+
+
+def add_exclusions(pre_conditions: str, *lines: str) -> str:
+    n = len([l for l in pre_conditions.split("\n") if l.strip()])
+    out = pre_conditions
+    for line in lines:
+        n += 1
+        out = f"{out}\n{n}. {line}"
+    return out
+
+
+# ---- 36 §6 / R-C34's generation-time duty, recorded per section ----------
+# The duty cannot be machine-checked for correctness, but it can be checked
+# for having been discharged. Each section names the interface its observables
+# sit on and answers all four interface-type axes; the interface-axis-answered
+# gate fails on a missing or empty answer.
+# ---- 37 §5 — one source, four readers -------------------------------------
+# The table lived as four identical literals, one per generator; nothing kept
+# them in step, and a reverse-verification that edited only one copy is what
+# exposed it. A single file makes divergence structurally impossible, which
+# beats adding a gate to compare four copies of something that need not be
+# duplicated.
+def _load_interface_axis_review() -> dict:
+    path = FEATURE / "data" / "interface_axis_review.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return {r.pop("outline"): r
+                for r in csv.DictReader(fh, delimiter="\t")}
+
+
+INTERFACE_AXIS_REVIEW = _load_interface_axis_review()
+
+# 37 §1 — sections whose ch16 counterpart does not exist (mirror map's
+# no-counterpart rows). The EMEA exclusion rested on "ch2/ch3 is mirrored
+# by ch16"; for these that premise is false, so the PC and its 16.2
+# citation both go. The other sections keep theirs — they are `mirrored`.
+NO_CH16_COUNTERPART = {"2.1", "3.1", "3.4"}
+
 BATCHES = [
     # ----------------------------------------------------------------- 3.1
     {
         "parent": "SWE1-HVAC-023",
         "outline": "3.1",
         "reasoning":
-            "驗證目標：3.1（C19）定義 Tri-Mode 之三個 airflow mode 按鈕與 MODE 硬鍵之循環，三個 037 leaf 分別對應「個別 toggle」「單向循環順序」「多向前後移動」，三者之操作元件與失效形態互異，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第三軸「tri-mode 有無」，其 R-C28 第一問由條文首句「On vehicles with Tri-Mode climate」明文對應，標 spec-verbatim；硬鍵之存在由「Pressing the hard control MODE button」一句推得，標 spec-derived。為什麼這樣切：三條之失效可各自獨立發生（個別 toggle 正常而循環順序錯，或循環正常而反向移動錯），合併後無法定位。刻意略過：條文列出七種組合而未定義開機預設模式，故循環之起點由 procedure 第一步建立而非寫入 pre_conditions（§7 FF ＋ R-C28 第三問）；「7 possible distribution modes」之計數本身不另立 TC，它是 -02 循環之結果而非獨立行為。",
+            "驗證目標：3.1（C19）定義 Tri-Mode 之三個 airflow mode 按鈕與 MODE 硬鍵之循環，三個 037 leaf 分別對應「個別 toggle」「單向循環順序」「多向前後移動」，三者之操作元件與失效形態互異，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第三軸「tri-mode 有無」，其 R-C28 第一問由條文首句「On vehicles with Tri-Mode climate」明文對應，標 spec-verbatim；硬鍵之存在由「Pressing the hard control MODE button」一句推得，標 spec-derived。為什麼這樣切：三條之失效可各自獨立發生（個別 toggle 正常而循環順序錯，或循環正常而反向移動錯），合併後無法定位。**EMEA ICS 排除式 PC 已依 37 §1 移除** —— `ch16_mirror_map.tsv` 判 3.1 為 no-counterpart（16.12 ICE11 為 5 states 單選，非 tri-mode 之三鍵組合），原排除建立在「ch2／ch3 於 ch16 有對應」此一對本節為假之前提上。刻意略過：條文列出七種組合而未定義開機預設模式，故循環之起點由 procedure 第一步建立而非寫入 pre_conditions（§7 FF ＋ R-C28 第三問）；「7 possible distribution modes」之計數本身不另立 TC，它是 -02 循環之結果而非獨立行為。",
         "keywords": ["Tri-Mode Climate", "airflow mode", "Windshield",
                      "Face", "Feet", "MODE"],
         "tcs": [
@@ -194,7 +248,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-024",
         "outline": "3.2",
         "reasoning":
-            "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：§8.2.2 之壓力測試對 -02（七項連動）與 -07（四個破壞來源）逐一施加，兩者之部分失效皆可定位到具編號之 ER 行，故以列舉式步驟保持 procedure／ER 1:1 而不拆條 —— 拆條會產生 spec 未區分之 TC，反向合併多 leaf 為一條則自始禁止。刻意略過：「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
+            "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
         "keywords": ["MAX DEF", "FRONT DEF", "REAR DEFROST", "RECIRC",
                      "Sync", "MAX A/C", "AUTO"],
         "tcs": [
@@ -343,38 +397,87 @@ BATCHES = [
             },
             {
                 "req_id": "SWE1-HVAC-024-07",
-                "tc_title": "Temperature, RECIRC, mode and MAX DEF again each break MAX DEF",
+                "tc_title": "Changing the temperature breaks MAX DEF",
                 "test_item":
-                    "Changing temperature, recirculation or mode distribution, "
-                    "or pressing MAX DEF again, shall break MAX DEF, turning "
-                    "MAX DEF off, and the system shall go back to the previous "
-                    "manual mode with the A/C on",
+                    "Changing the temperature shall break MAX DEF, turning MAX DEF off, "
+                    "and the system shall go back to the previous manual mode "
+                    "with the A/C on",
                 "pre_conditions": PC_MAXDEF,
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Press \"MAX DEF\"\n"
-                    "2. Change the temperature setting\n"
-                    "3. Press \"MAX DEF\"\n"
-                    "4. Change RECIRC\n"
-                    "5. Press \"MAX DEF\"\n"
-                    "6. Change the mode distribution\n"
-                    "7. Press \"MAX DEF\"\n"
-                    "8. Press \"MAX DEF\" again",
+                    "2. Change the temperature setting",
                 "expected_result":
                     "1. The \"MAX DEF\" button is active\n"
                     "2. The \"MAX DEF\" button is no longer active and the "
-                    "system is in the previous manual mode with A/C on\n"
-                    "3. The \"MAX DEF\" button is active\n"
-                    "4. The \"MAX DEF\" button is no longer active and the "
-                    "system is in the previous manual mode with A/C on\n"
-                    "5. The \"MAX DEF\" button is active\n"
-                    "6. The \"MAX DEF\" button is no longer active and the "
-                    "system is in the previous manual mode with A/C on\n"
-                    "7. The \"MAX DEF\" button is active\n"
-                    "8. The \"MAX DEF\" button is no longer active and the "
                     "system is in the previous manual mode with A/C on",
                 "priority": "P1",
-                "design_method": DM_DECISION,
+                "design_method": DM_STATE,
+                "split_flag": True,
+                "split_reason": SPLIT_REASON,
+            },
+            {
+                "req_id": "SWE1-HVAC-024-07",
+                "tc_title": "Changing RECIRC breaks MAX DEF",
+                "test_item":
+                    "Changing recirculation shall break MAX DEF, turning MAX DEF off, "
+                    "and the system shall go back to the previous manual mode "
+                    "with the A/C on",
+                "pre_conditions": PC_MAXDEF,
+                "input_test_data": "NA",
+                "test_procedure":
+                    "1. Press \"MAX DEF\"\n"
+                    "2. Change RECIRC",
+                "expected_result":
+                    "1. The \"MAX DEF\" button is active\n"
+                    "2. The \"MAX DEF\" button is no longer active and the "
+                    "system is in the previous manual mode with A/C on",
+                "priority": "P1",
+                "design_method": DM_STATE,
+                "split_flag": True,
+                "split_reason": SPLIT_REASON,
+            },
+            {
+                "req_id": "SWE1-HVAC-024-07",
+                "tc_title": "Changing the mode distribution breaks MAX DEF",
+                "test_item":
+                    "Changing the mode distribution shall break MAX DEF, turning MAX DEF off, "
+                    "and the system shall go back to the previous manual mode "
+                    "with the A/C on",
+                "pre_conditions": PC_MAXDEF,
+                "input_test_data": "NA",
+                "test_procedure":
+                    "1. Press \"MAX DEF\"\n"
+                    "2. Change the mode distribution",
+                "expected_result":
+                    "1. The \"MAX DEF\" button is active\n"
+                    "2. The \"MAX DEF\" button is no longer active and the "
+                    "system is in the previous manual mode with A/C on",
+                "priority": "P1",
+                "design_method": DM_STATE,
+                "split_flag": True,
+                "split_reason": SPLIT_REASON,
+            },
+            {
+                "req_id": "SWE1-HVAC-024-07",
+                "tc_title": "Pressing MAX DEF again breaks MAX DEF",
+                "test_item":
+                    "Pressing MAX DEF again shall break MAX DEF, turning MAX DEF off, "
+                    "and the system shall go back to the previous manual mode "
+                    "with the A/C on",
+                "pre_conditions": PC_MAXDEF,
+                "input_test_data": "NA",
+                "test_procedure":
+                    "1. Press \"MAX DEF\"\n"
+                    "2. Press \"MAX DEF\" again",
+                "expected_result":
+                    "1. The \"MAX DEF\" button is active\n"
+                    "2. The \"MAX DEF\" button is no longer active and the "
+                    "system is in the previous manual mode with A/C on",
+                "priority": "P1",
+                "design_method": DM_STATE,
+                "split_flag": True,
+                "split_reason": SPLIT_REASON,
             },
             {
                 "req_id": "SWE1-HVAC-024-08",
@@ -400,7 +503,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-025",
         "outline": "3.3",
         "reasoning":
-            "驗證目標：3.3（C21）以一句話定出 climate off 期間之可用性例外，兩個 037 leaf 分別對應「MAX DEF 與 REAR DEF 可用」與「其餘 climate 功能不可用」，一葉一 TC（§8.2.1）。關鍵情境條件：本節條文不含任何裝備條件，故兩項裝備前提依 R-C29 標其明文出處 —— MAX DEF 標 (3.2)「On vehicles with MAX DEF」，rear defrost 標 (3.4)「when not present in the vehicle」，兩節一併列入 specification_reference（§10.7 賴以作為 setup 者）；引用其裝備事實不等於驗證該兩節之行為，本批未擴張至 3.2 之 MAX DEF 連動或 3.4 之按鈕隱藏（§8.2.1）。為什麼這樣切：climate off 為 spec 定義之 trigger 但 TC 步驟必須自行建立，依 R-C28 第三問落於 procedure 首步而非 pre_conditions。刻意略過：2.10（C11）同時擁有「grey out remaining buttons」之視覺處置與「按 temp/fan 控制即讓 climate 復電」之行為，兩者皆非本節所定，故 -02 只以本節自身之詞「available」判定，不驗 greyed out、亦不按下任何功能鍵（後者若寫入將與 2.10 明文相牴觸）。",
+            "驗證目標：3.3（C21）以一句話定出 climate off 期間之可用性例外，兩個 037 leaf 分別對應「MAX DEF 與 REAR DEF 可用」與「其餘 climate 功能不可用」，一葉一 TC（§8.2.1）。關鍵情境條件：本節條文不含任何裝備條件，故兩項裝備前提依 R-C29 標其明文出處 —— MAX DEF 標 (3.2)「On vehicles with MAX DEF」，rear defrost 標 (3.4)「when not present in the vehicle」，兩節一併列入 specification_reference（§10.7 賴以作為 setup 者）；引用其裝備事實不等於驗證該兩節之行為，本批未擴張至 3.2 之 MAX DEF 連動或 3.4 之按鈕隱藏（§8.2.1）。為什麼這樣切：climate off 為 spec 定義之 trigger 但 TC 步驟必須自行建立，依 R-C28 第三問落於 procedure 首步而非 pre_conditions。刻意略過：2.10（C11）同時擁有「grey out remaining buttons」之視覺處置與「按 temp/fan 控制即讓 climate 復電」之行為，兩者皆非本節所定，故 -02 只以本節自身之詞「available」判定，不驗 greyed out、亦不按下任何功能鍵（後者若寫入將與 2.10 明文相牴觸）。**「not available」之可觀察外觀由 2.10 擁有，本節未定義**，故其 ER 停在該詞而不描述外觀（A-CF18）。",
         "keywords": ["climate off", "MAX DEF", "REAR DEF", "available"],
         "tcs": [
             {
@@ -450,7 +553,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-026",
         "outline": "3.4",
         "reasoning":
-            "驗證目標：3.4（C22）規定 soft top 車身在未配備 rear defrost 時，該按鈕不出現，單一 037 leaf 對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：兩項前提皆為本節明文，故依 R-C28 第一問通過並標 (3.4)，無跨節取據，specification_reference 僅列本節。第十一軸之措辭以「soft top」為準並以「such as JL/JT」引條文自身之例示 —— 寫成「JL or JT」即把例示讀成窮舉，屬 §8.4.1 之反向造值（29 §2）。為什麼這樣切：本節只定出一個顯示結果，無分支可分。刻意略過：條文之「when configured」未定義其所指之設定項，故不寫入任何配置步驟（§8.4.1）；rear defrost 存在時之按鈕行為本節未述，不作反向配對（§7 之 negative pairing 需條文支撐，此處無）。",
+            "驗證目標：3.4（C22）規定 soft top 車身在未配備 rear defrost 時，該按鈕不出現，單一 037 leaf 對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：兩項前提皆為本節明文，故依 R-C28 第一問通過並標 (3.4)，無跨節取據，specification_reference 僅列本節。第十一軸之措辭以「soft top」為準並以「such as JL/JT」引條文自身之例示 —— 寫成「JL or JT」即把例示讀成窮舉，屬 §8.4.1 之反向造值（29 §2）。為什麼這樣切：本節只定出一個顯示結果，無分支可分。刻意略過：條文之「when configured」未定義其所指之設定項，故不寫入任何配置步驟（§8.4.1）；**EMEA ICS 排除式 PC 亦已依 37 §1 移除**（`ch16_mirror_map.tsv` 判 3.4 為 no-counterpart）；rear defrost 存在時之按鈕行為本節未述，不作反向配對（§7 之 negative pairing 需條文支撐，此處無）。",
         "keywords": ["soft top", "JL", "JT", "rear defrost", "not present"],
         "tcs": [
             {
@@ -501,11 +604,15 @@ def main() -> None:
                 "test_group": TEST_GROUP,
                 "test_set": TEST_SET,
                 "test_item": tc["test_item"],
-                "pre_conditions": tc["pre_conditions"],
+                "pre_conditions": add_exclusions(
+                    tc["pre_conditions"], EX_ICS,
+                    *([] if o in NO_CH16_COUNTERPART else [EX_EMEA])),
                 "input_test_data": tc["input_test_data"],
                 "test_procedure": tc["test_procedure"],
                 "expected_result": tc["expected_result"],
-                "specification_reference": ref(*tc.get("spec_ref", (o,))),
+                "specification_reference": ref(
+                    *tc.get("spec_ref", (o,)), "2.14",
+                    *([] if o in NO_CH16_COUNTERPART else ["16.2"])),
                 "priority": tc["priority"],
                 "design_method": tc["design_method"],
                 "split_flag": tc.get("split_flag", False),
@@ -524,6 +631,7 @@ def main() -> None:
             "duplicate_of": "",
             "distinguishing_axis": {"axis": "see per-TC titles", "delta": ""},
             "assumptions": [],
+            "interface_axis_review": INTERFACE_AXIS_REVIEW[o],
             "tcs": tcs,
         }
         (OUT / f"{b['parent']}.json").write_text(
@@ -533,10 +641,20 @@ def main() -> None:
 
     print(f"\n{total} TCs across {len(BATCHES)} parents; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
-    print(f"\n{total} TCs = all 14 leaves declared for Tri-Mode Climate "
-          f"(3.1:3, 3.2:8, 3.3:2, 3.4:1); nothing withheld")
-    if total != 14:
-        raise SystemExit(f"expected 14 TCs, emitted {total}")
+    # TC count now exceeds leaf count — 024-07 splits four ways (30 §1.4).
+    # Progress is counted in leaves, effort in TCs; the two stopped being
+    # interchangeable here, so both are asserted separately.
+    leaves = len({tc["req_id"] for b in BATCHES for tc in b["tcs"]})
+    print(f"\n{leaves} leaves -> {total} TCs for Tri-Mode Climate "
+          f"(3.1:3, 3.2:8, 3.3:2, 3.4:1 leaves); nothing withheld")
+    split = [tc["req_id"] for b in BATCHES for tc in b["tcs"]
+             if tc.get("split_flag")]
+    print(f"split leaves: "
+          f"{ {r: split.count(r) for r in sorted(set(split))} or 'none'}")
+    if leaves != 14:
+        raise SystemExit(f"expected 14 leaves, emitted {leaves}")
+    if total != 17:
+        raise SystemExit(f"expected 17 TCs, emitted {total}")
 
 
 if __name__ == "__main__":

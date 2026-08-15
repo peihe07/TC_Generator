@@ -3,7 +3,7 @@
  "outline": "3.4",
  "batch": "Tri-Mode Climate",
  "source_clause": "C22.) For soft top vehicles such as JL/JT, when configured, the rear defrost button will not appear when not present in the vehicle.",
- "reasoning": "驗證目標：3.4（C22）規定 soft top 車身在未配備 rear defrost 時，該按鈕不出現，單一 037 leaf 對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：兩項前提皆為本節明文，故依 R-C28 第一問通過並標 (3.4)，無跨節取據，specification_reference 僅列本節。第十一軸之措辭以「soft top」為準並以「such as JL/JT」引條文自身之例示 —— 寫成「JL or JT」即把例示讀成窮舉，屬 §8.4.1 之反向造值（29 §2）。為什麼這樣切：本節只定出一個顯示結果，無分支可分。刻意略過：條文之「when configured」未定義其所指之設定項，故不寫入任何配置步驟（§8.4.1）；rear defrost 存在時之按鈕行為本節未述，不作反向配對（§7 之 negative pairing 需條文支撐，此處無）。",
+ "reasoning": "驗證目標：3.4（C22）規定 soft top 車身在未配備 rear defrost 時，該按鈕不出現，單一 037 leaf 對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：兩項前提皆為本節明文，故依 R-C28 第一問通過並標 (3.4)，無跨節取據，specification_reference 僅列本節。第十一軸之措辭以「soft top」為準並以「such as JL/JT」引條文自身之例示 —— 寫成「JL or JT」即把例示讀成窮舉，屬 §8.4.1 之反向造值（29 §2）。為什麼這樣切：本節只定出一個顯示結果，無分支可分。刻意略過：條文之「when configured」未定義其所指之設定項，故不寫入任何配置步驟（§8.4.1）；**EMEA ICS 排除式 PC 亦已依 37 §1 移除**（`ch16_mirror_map.tsv` 判 3.4 為 no-counterpart）；rear defrost 存在時之按鈕行為本節未述，不作反向配對（§7 之 negative pairing 需條文支撐，此處無）。",
  "keywords": [
   "soft top",
   "JL",
@@ -17,19 +17,26 @@
   "delta": ""
  },
  "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 rear defrost 按鈕",
+  "axis_9": "不暴露",
+  "axis_12": "不暴露",
+  "axis_13": "暴露 → 補",
+  "emea_ics": "**ch16 無對應節（no-counterpart，`ch16_mirror_map.tsv`）** —— ch16 無 comfort category tabs 之對應節。EMEA 排除式 PC 與 16.2 引用已依 37 §1 移除"
+ },
  "tcs": [
   {
    "req_id": "SWE1-HVAC-026",
-   "tc_id": "NR1L-ComfortHMI-028",
+   "tc_id": "NR1L-ComfortHMI-031",
    "tc_title": "Rear defrost button is absent when the vehicle has no rear defrost",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
    "test_item": "For soft top vehicles such as JL/JT, when configured, the rear defrost button shall not appear when not present in the vehicle",
-   "pre_conditions": "1. [spec-verbatim] The vehicle is a soft top vehicle, such as JL/JT (3.4)\n2. [spec-verbatim] Rear defrost is not present in the vehicle (3.4)",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a soft top vehicle, such as JL/JT (3.4)\n2. [spec-verbatim] Rear defrost is not present in the vehicle (3.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the climate screen for the rear defrost button",
    "expected_result": "1. The climate screen is displayed\n2. The rear defrost button does not appear",
-   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "split_flag": false,

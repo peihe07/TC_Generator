@@ -1,0 +1,49 @@
+{
+ "parent": "SWE1-HVAC-001",
+ "outline": "2.1",
+ "batch": "Front Climate Anatomy",
+ "source_clause": "R1C1.) The comfort category will have up to 4 tabs depending on vehicle configuration. Tabs are displayed in the following order: Front, Seats (WS or R1 Low) or Seat & Wheel (Maserati), Massage, Rear. If only Front climate is available in a specific vehicle the tabs will not be displayed. Refer to separate HMI Logic and Flow documentation for Massage Seats logic.",
+ "reasoning": "驗證目標：2.1（R1C1）定出 comfort category 之 tab 數、順序，以及僅前排氣候時不顯示 tab，三個 037 leaf 分別對應之，一葉一 TC（§8.2.1）；本輪只生成 -03，-01／-02 之情形見下。關鍵情境條件：-03 取 profile §3.2 第十二軸「僅前排氣候」，其 R-C28 第一問由本節明文「If only Front climate is available in a specific vehicle the tabs will not be displayed」對應，標 spec-verbatim，出處與所屬節同一故 specification_reference 僅列本節。為什麼這樣切：037 之切分為單位權威（§8.2），未合併未拆分；-01（tab 數）與 -02（順序）**不生成**，因條文只寫「depending on vehicle configuration」而未述何種配置產生何種 tab，任何具體配置之 pre_condition 皆為造值（R-C28 第一問／§8.4.1），此為內容不足而非軸不足，已登 RD-1 待答。**EMEA ICS 排除式 PC 已依 37 §1 移除**（`ch16_mirror_map.tsv` 判 2.1 為 no-counterpart —— ch16 十八節無 comfort category tabs 之對應節）。刻意略過：037 之 -01 寫 up to 3 tabs、-02 之順序無 Massage，而條文為 up to 4 tabs 且順序含 Massage —— 依 **R-C33** 內容以條文為準、單位以 037 為準，該落差已登 A-CF21 並列 RD-1；Massage tab 之**行為**由條文明文委派他份文件，但其**是否顯示**仍屬本節，兩者不混（§8.2.1）。",
+ "keywords": [
+  "comfort category",
+  "tabs",
+  "Front",
+  "Massage",
+  "only Front climate"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "head unit 之 comfort category 與其 tabs",
+  "axis_9": "暴露 → 補（6.3 移除 comfort section）",
+  "axis_12": "本節即該軸之來源節，PC 已正向帶之",
+  "axis_13": "暴露 → 補",
+  "emea_ics": "**ch16 無對應節（no-counterpart，`ch16_mirror_map.tsv`）** —— ch16 十八節無 soft top rear defrost 之對應節。EMEA 排除式 PC 與 16.2 引用已依 37 §1 移除"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-001-03",
+   "tc_id": "NR1L-ComfortHMI-041",
+   "tc_title": "No tabs are displayed when only Front climate is available",
+   "test_group": "Comfort",
+   "test_set": "Front Climate Anatomy",
+   "test_item": "If only Front climate is available in a specific vehicle, the tabs shall not be displayed",
+   "pre_conditions": "1. [spec-verbatim] Only Front climate is available in the vehicle (2.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the comfort category\n2. Read the comfort category for tabs",
+   "expected_result": "1. The comfort category is displayed\n2. No tabs are displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+outline	observable_interface	axis_9	axis_12	axis_13	emea_ics
+2.1	head unit 之 comfort category 與其 tabs	暴露 → 補（6.3 移除 comfort section）	本節即該軸之來源節，PC 已正向帶之	暴露 → 補	**ch16 無對應節（no-counterpart，`ch16_mirror_map.tsv`）** —— ch16 十八節無 soft top rear defrost 之對應節。EMEA 排除式 PC 與 16.2 引用已依 37 §1 移除
+2.2	climate screen／status bar／category button／popup	-034 與 -038 讀 category button → 暴露；餘不暴露	不暴露 —— 不觀察 tab	暴露 → 全數補	16.2 ICE1 mirrored → 排除成立
+2.6	TS climate screen／status bar／溫度 popup	不暴露 —— 非 comfort section	不暴露	暴露 → 全數補	16.6 ICE5 mirrored → 排除成立
+2.6.1	climate screen 之溫度滑桿與 TEMP popup	不暴露	不暴露	暴露 → 全數補	16.6.1 ICE5.1 mirrored → 排除成立
+2.7	TS climate screen 與 main category control	-058 讀 main category control → 暴露；餘不暴露	不暴露	暴露 → 全數補	16.7 ICE6 mirrored → 排除成立
+2.7.1	climate screen 之風速段（fan segments）	不暴露 —— climate screen 非 head unit 之 comfort section	不暴露 —— 不觀察 tab	暴露 → 補（3 旋鈕 ICS 車上無 HVAC 畫面，無風速段可數）	16.7 ICE6 mirrored → 排除成立（惟 ICE6 只列 Off, 1-7；本節之 1-8 於 ch16 無對應，見 ch16_mirror_map.tsv 之 no-counterpart 列 —— 兩者不衝突：排除的是「用 ch16 介面的車」，而該車之值域由 ICE6 定）
+2.14	head unit menu bar／HVAC 畫面／popup	-044/-045/-046 暴露 → 補（見上繳 24 §2.3）	不暴露	-042/-043 暴露 → 補；-044/-045/-046 正向帶該軸值，不加否定式	16.14 ICE13 mirrored → 排除成立
+2.16	climate screen 之風速顯示	不暴露	不暴露	暴露 → 全數補	16.17 mirrored（條文全句相同）→ 排除成立
+3.1	Tri-Mode Climate screen（HVAC 畫面）	不暴露 —— 該畫面非 head unit 之 comfort section	不暴露 —— 不觀察 tab	暴露 → 全數補排除式 PC	**ch16 無對應節（no-counterpart，`ch16_mirror_map.tsv`）** —— 16.12 ICE11 為 5 states 之單選，與 tri-mode 三鍵七組合結構不同。EMEA 排除式 PC 與 16.2 引用已依 37 §1 移除
+3.2	climate screen 之 MAX DEF 按鈕	不暴露	不暴露	暴露 → 全數補	16.8 ICE7 mirrored → 排除成立
+3.3	climate screen 之 MAX DEF／REAR DEF 按鈕	不暴露	不暴露	暴露 → 全數補	16.10 ICE9 **partial**，依 **R-C36** 下放 TC 層逐條判定：-029／-030 之可觀察行為為「climate off 期間 MAX DEF／REAR DEF 之可用性」，而 ICE9 明寫 `grey out remaining buttons except for Front/Max defrost and rear defrost` —— **落在 ch16 涵蓋之部分**，故排除式 PC 成立，維持
+3.4	climate screen 之 rear defrost 按鈕	不暴露	不暴露	暴露 → 補	**ch16 無對應節（no-counterpart，`ch16_mirror_map.tsv`）** —— ch16 無 comfort category tabs 之對應節。EMEA 排除式 PC 與 16.2 引用已依 37 §1 移除
+6.3	head unit menu 之 comfort section	本節即該軸之正向案例，PC 已正向帶之	不暴露	暴露 → 補（3 旋鈕 ICS 車上亦無 HVAC UI，會以錯誤理由通過）	ch16 無 6.3 之對應節 → 未補
+13.2	lower screen Seats tab; -003 另讀 head unit 之 climate section	-003 暴露（讀 climate section），餘二條之可觀察量在下螢幕，6.3 移除者為 head unit 之 comfort section	DR #20 未答前不可陳述 —— 13.x 之 full_text 無句支持「本車非僅前排氣候」（R-C28 第一問）	座椅控制非 HVAC，2.14 之逐字範圍為 no HVAC …；-003 例外，其 climate section 即 HVAC 畫面	ch16 十八節無座椅節，13.x 無 ICS 鏡射（ch16_mirror_map.tsv）
+13.2.1	lower screen Seats tab	同 13.2 之非暴露理由	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
+13.3	lower screen Seats tab 與座椅控制	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
+13.3.1	lower screen 之 selected option	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
+13.4	lower screen Seats tab	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
+13.5	lower screen Seats tab	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
+13.6	lower screen Seats tab 與 error tone	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射

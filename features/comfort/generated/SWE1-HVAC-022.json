@@ -1,0 +1,68 @@
+{
+ "parent": "SWE1-HVAC-022",
+ "outline": "2.16",
+ "batch": "Temperature and Fan",
+ "source_clause": "C18.) If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed is not displayed to the user. After blower reduction, return blower speed to previous speed without showing a change in fan speed.",
+ "reasoning": "驗證目標：2.16（C18）規定語音辨識期間之自動降風量不對使用者顯示，且結束後回復前一風速亦不顯示變化，兩個 037 leaf 分別對應降低時與回復時，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量為 climate screen 上之風速顯示，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；第九軸與第十二軸不涉（不讀 category control、不讀 tab），具名於此。為什麼這樣切：降低時不顯示與回復時不顯示為兩個時點之兩個獨立可失效行為 —— 降低時正確而回復時閃動，或反之，皆可能發生。刻意略過：語音辨識會話之觸發與降風量之幅度屬他處，本節只規定其「不顯示」，故 procedure 以「造成降風量之語音辨識會話」為步驟而不驗其辨識行為（§8.2.1）；條文未給降風量之數值，ER 不寫入任何幅度（R-C22）。",
+ "keywords": [
+  "blower reduction",
+  "Voice Recognition",
+  "fan speed",
+  "not displayed"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之風速顯示",
+  "axis_9": "不暴露",
+  "axis_12": "不暴露",
+  "axis_13": "暴露 → 全數補",
+  "emea_ics": "16.17 mirrored（條文全句相同）→ 排除成立"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-022-01",
+   "tc_id": "NR1L-ComfortHMI-063",
+   "tc_title": "Automatic blower reduction is not shown to the user",
+   "test_group": "Comfort",
+   "test_set": "Temperature and Fan",
+   "test_item": "If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed shall not be displayed to the user",
+   "pre_conditions": "1. [spec-derived] The vehicle supports Voice Recognition sessions that cause automatic blower reduction (2.16)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen and read the fan speed\n2. Start a Voice Recognition session that causes blower reduction",
+   "expected_result": "1. The climate screen shows the current fan speed\n2. The fan speed shown on the climate screen does not change",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.16; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-022-02",
+   "tc_id": "NR1L-ComfortHMI-064",
+   "tc_title": "Blower returns to the previous speed without showing a change",
+   "test_group": "Comfort",
+   "test_set": "Temperature and Fan",
+   "test_item": "After blower reduction, the system shall return the blower speed to the previous speed without showing a change in fan speed",
+   "pre_conditions": "1. [spec-derived] The vehicle supports Voice Recognition sessions that cause automatic blower reduction (2.16)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Start a Voice Recognition session that causes blower reduction\n2. End the Voice Recognition session",
+   "expected_result": "1. The fan speed shown on the climate screen does not change\n2. The blower returns to the previous speed and the fan speed shown on the climate screen does not change",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.16; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

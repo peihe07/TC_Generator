@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-027",
+ "outline": "6.3",
+ "batch": "Front Climate Anatomy",
+ "source_clause": "CM1.) When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information, the comfort section will be removed from the head unit except for comfort popups.",
+ "reasoning": "驗證目標：6.3（CM1）規定車輛配備含 comfort 資訊之 non-foldable secondary lower screen 時，head unit 之 comfort section 移除而 comfort popups 除外，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第九軸 secondary lower screen 之來源節即本節，其 R-C28 第一問由本節自身之句「When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information」明文對應，標 spec-verbatim —— **措辭取自 6.3 自身，不引 13.x**（19 §2.1 明禁跨節套用措辭，且 13.x 之「the lower screen」為另一節之文字）。為什麼這樣切：本節只定出一個移除結果與一個除外項，無分支可分。刻意略過：comfort popup **自身之出現規則**定義於 2.2 與 ch14，本 TC 只驗「移除後 popup 仍在」此一 6.3 明文之事實，不驗 popup 之觸發條件、樣式或逾時（§8.2.1 不得擴張至 sibling Req）；「comfort section」之具體範圍本節未列舉，故 ER 以該詞本身判定而不列舉其子項（§8.4.1）。",
+ "keywords": [
+  "non-foldable secondary lower screen",
+  "comfort section",
+  "head unit",
+  "comfort popups"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "head unit menu 之 comfort section",
+  "axis_9": "本節即該軸之正向案例，PC 已正向帶之",
+  "axis_12": "不暴露",
+  "axis_13": "暴露 → 補（3 旋鈕 ICS 車上亦無 HVAC UI，會以錯誤理由通過）",
+  "emea_ics": "ch16 無 6.3 之對應節 → 未補"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-027",
+   "tc_id": "NR1L-ComfortHMI-040",
+   "tc_title": "Comfort section is removed from the head unit except popups",
+   "test_group": "Comfort",
+   "test_set": "Front Climate Anatomy",
+   "test_item": "When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information, the comfort section shall be removed from the head unit except for comfort popups",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is configured with a non-foldable secondary lower screen that contains comfort information (6.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the head unit menu\n2. Read the head unit menu for the comfort section\n3. Change the fan speed using the fan speed hard control",
+   "expected_result": "1. The head unit menu is displayed\n2. The comfort section is not present on the head unit\n3. A comfort pop-up is shown on the head unit",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

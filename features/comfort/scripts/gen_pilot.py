@@ -50,6 +50,52 @@ PC_SCREEN = ("1. [spec-derived] The vehicle is equipped with a lower screen "
 PC_DOOR = ("2. [spec-derived] The door control carries the seat control "
            "(-, +) buttons for lumbar and bolster (13.2)")
 
+# ---- 35 §1 / R-C34 interface-type axes ------------------------------------
+# An interface-type axis removes the surface an observable sits on while the
+# function may still exist. Three of them bite here; each exclusion names the
+# section that states the fact (R-C29), and that section joins spec_ref.
+EX_ICS = ("[spec-derived] The vehicle does not have 3 knob HVAC controls "
+          "with ICS, for which no HVAC screens or pop ups are displayed "
+          "(2.14)")
+EX_EMEA = ("[spec-derived] The vehicle is not an EMEA ICS vehicle, whose "
+           "climate interface is specified separately in chapter 16 (16.2)")
+EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
+            "secondary lower screen containing comfort information, for which "
+            "the comfort section is removed from the head unit (6.3)")
+
+
+def add_exclusions(pre_conditions: str, *lines: str) -> str:
+    n = len([l for l in pre_conditions.split("\n") if l.strip()])
+    out = pre_conditions
+    for line in lines:
+        n += 1
+        out = f"{out}\n{n}. {line}"
+    return out
+
+
+# Only 076-03 observes the head unit's climate section (34 §1.2).
+ICS_EXPOSED = {"SWE1-HVAC-076-03"}
+
+# ---- 36 §6 / R-C34's generation-time duty, recorded per section ----------
+# The duty cannot be machine-checked for correctness, but it can be checked
+# for having been discharged. Each section names the interface its observables
+# sit on and answers all four interface-type axes; the interface-axis-answered
+# gate fails on a missing or empty answer.
+# ---- 37 §5 — one source, four readers -------------------------------------
+# The table lived as four identical literals, one per generator; nothing kept
+# them in step, and a reverse-verification that edited only one copy is what
+# exposed it. A single file makes divergence structurally impossible, which
+# beats adding a gate to compare four copies of something that need not be
+# duplicated.
+def _load_interface_axis_review() -> dict:
+    path = FEATURE / "data" / "interface_axis_review.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return {r.pop("outline"): r
+                for r in csv.DictReader(fh, delimiter="\t")}
+
+
+INTERFACE_AXIS_REVIEW = _load_interface_axis_review()
+
 BATCHES = [
     # ---------------------------------------------------------------- 13.2
     {
@@ -523,11 +569,15 @@ def main() -> None:
                 "test_group": TEST_GROUP,
                 "test_set": TEST_SET,
                 "test_item": tc["test_item"],
-                "pre_conditions": tc["pre_conditions"],
+                "pre_conditions": (
+                    add_exclusions(tc["pre_conditions"], EX_ICS, EX_LOWER)
+                    if tc["req_id"] in ICS_EXPOSED else tc["pre_conditions"]),
                 "input_test_data": tc["input_test_data"],
                 "test_procedure": "" if blocked else tc["test_procedure"],
                 "expected_result": "" if blocked else tc["expected_result"],
-                "specification_reference": f"{STEM}_{o}",
+                "specification_reference": (
+                    f"{STEM}_{o}; {STEM}_2.14; {STEM}_6.3"
+                    if tc["req_id"] in ICS_EXPOSED else f"{STEM}_{o}"),
                 "priority": tc["priority"],
                 "design_method": tc["design_method"],
                 "split_flag": tc.get("split_flag", False),
@@ -555,6 +605,7 @@ def main() -> None:
                 "delta": axed[0]["delta"] if axed else "",
             },
             "assumptions": [],
+            "interface_axis_review": INTERFACE_AXIS_REVIEW[o],
             "tcs": tcs,
         }
         (OUT / f"{b['parent']}.json").write_text(
