@@ -50,7 +50,7 @@ Test Set → section 之對照存於 `data/test_set_map.tsv`（129 列），
 | 12 | `ICS Climate Modes` | 16.3, 16.4, 16.5, 16.10, 16.11, 16.13, 16.14, 16.17 | 40 | 9.9% |
 | 13 | `ICS Temperature and Fan` | 16.6, 16.6.1, 16.7 | 16 | 4.0% |
 | 14 | `ICS Airflow and Defrost` | 16.8, 16.9, 16.12, 16.12.1, 16.15 | 29 | 7.2% |
-| 15 | `Comfort Widget` | 17.1 ~ 17.5, 18.1 | 21 | 5.2% |
+| 15 | `Home Screen Widget` | 17.1 ~ 17.5, 18.1 | 21 | 5.2% |
 
 **合計 403 leaves ／ 129 sections。** 區間 12–59，最大者佔 **14.6%**。
 
@@ -100,10 +100,18 @@ Title Case、不展開縮寫（`ICS`、`ECO HVAC` 保留原文）、無標點。
 `ICS` 前綴不違反 §4.2：該條禁的是重複 Test Group（`Comfort`），而 `ICS`
 是 UI 進入路徑之限定詞，正是 §4.2 所要的標記。
 
-`Comfort Widget` 一名以 Test Group 之字起首，但**非 Layer 1 前綴** ——
-spec 自身即稱該元件為 "the Comfort widget"（17.1／18.1：`W0.) The Comfort
-widget will have two screens`），故該字指涉受測物件。`verify_partn.py`
-將此列為**明示回報項**而非豁免，見 §5。
+**#15 之更名（13 §2，2026-08-15）**：原簽署名為 `Comfort Widget`，
+已更名為 **`Home Screen Widget`**。
+
+執行層原主張該名非 Layer 1 前綴，理由是 spec 自身稱該元件為 "the Comfort
+widget"（17.1／18.1：`W0.) The Comfort widget will have two screens`）。
+**分析層裁定更名**：§4.2 之範例為 Test Group = `Bluetooth` 時用
+`Connection`／`Pairing` 而非 `Bluetooth Pairing`；spec 同樣稱該功能為
+"Bluetooth pairing"，§4.2 禁的正是這個形態。直接類推即得本組應為
+`Home Screen Widget`。
+
+Layer 3 不變（17.1 ~ 17.5、18.1），leaves 仍 21。更名後**無任何 Test Set
+以 `Comfort` 起首**，`verify_partn.py` 之第四項回報應為空；若非空即為未同步。
 
 ### 3.4 章 6（1 leaf）併入 #1 而非自成一組
 
@@ -163,8 +171,8 @@ spec，R-C17），但撰寫 6.3 之 TC 時應併看，以免前置條件互相�
       15:2、16:99、17:18、18:3
 - PASS — Test Set names: no Misc/General/Unclassified, no stray whitespace,
     no duplicates: expected [], measured [] — 15 names checked
-- PASS — Test Set names starting with the Test Group word: ['Comfort Widget']
-    — 明示回報，非豁免；理由見 §3.3
+- PASS — no Test Set name starts with the Test Group word (§4.2):
+    expected [], measured [] — 15 names checked against prefix 'Comfort'
 ```
 
 Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄或 Layer 3 map
@@ -370,7 +378,7 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | `16.12.1` | ICE11.1) If the Mode hard control is pressed the user will b | 10 |
 | `16.15` | ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. | 2 |
 
-### 15. `Comfort Widget` — 6 sections / 21 leaves
+### 15. `Home Screen Widget` — 6 sections / 21 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
@@ -396,7 +404,7 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | 若日後 in_scope | 插入點 | 是否需重整既有切分 |
 |---|---|---|
 | 章 20 Alternate Rear Blower | **新增** Test Set `Rear Blower` | 否 |
-| 章 19 7" widget | 併入 #15 `Comfort Widget` | 否 |
+| 章 19 7" widget | 併入 #15 `Home Screen Widget` | 否 |
 
 章 20 **不併入 #6 `Rear Climate`** —— 進入路徑與市場變體不同，依 §3.1 之
 同一判準。

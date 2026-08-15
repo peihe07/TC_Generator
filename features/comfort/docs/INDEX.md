@@ -18,10 +18,11 @@
 
 | 05 | 2026-08-14 | R-C15~R-C17 落實 ＋ DR #8 DEFERRED ＋ Layer 3 map | [handoff/09_upstream04_review.md](handoff/09_upstream04_review.md)、[handoff/10_phase3_start.md](handoff/10_phase3_start.md) | [upstream/05_layer3_map.md](upstream/05_layer3_map.md) | R-C15 ~ R-C17 | A-CF13 | PASS |
 | 06 | 2026-08-14 ~ 15 | Part N 定稿 → `framework.md` ＋ `DECISIONS.md` 簽署 | [handoff/11_partN_draft.md](handoff/11_partN_draft.md)、[handoff/12_partN_final.md](handoff/12_partN_final.md) | [upstream/06_framework.md](upstream/06_framework.md) | 無新條文 | A-CF13 第三項 | PASS |
+| 07 | 2026-08-15 | R-C18 ＋ #15 更名 ＋ 129 節全文抽出 | [handoff/13_upstream06_review.md](handoff/13_upstream06_review.md) | [upstream/07_fulltext.md](upstream/07_fulltext.md) | R-C18 | （無新登；A-CF13 相關事實補充） | PASS |
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；
-05／06 合併為上繳 03；07／08 合併為上繳 04；09／10 合併為上繳 05；11／12 合併為上繳 06。
+05／06 合併為上繳 03；07／08 合併為上繳 04；09／10 合併為上繳 05；11／12 合併為上繳 06；13 單獨上繳 07。
 **09 之六項作業於上繳 04 當輪未收到，於上繳 05 補做**（見該包 §0 甲）。
 
 **上繳 04 待知悉 2 項**（詳見該包 §0）：
@@ -50,18 +51,19 @@
 
 | 項目 | 值 |
 |---|---|
-| Phase | **3 完成** —— Part N 定稿落地於 `framework.md`，四個 assertion 全 PASS。**`DECISIONS.md` 已簽署**（PeiPYHsu / 2026-08-14）。**Phase 4 未開始** |
+| Phase | **3 完成** —— Part N 落地 `framework.md`。**`DECISIONS.md` 已簽署**（PeiPYHsu / 2026-08-14）。**Phase 4 未開始**，其開始條件見下 |
 | workbook_state | `BLANK` |
 | spec_mode | `A`（SYS1 export） |
 | baseline | SR24 CR24879（R-C1；SR25 out of scope） |
 | leaves | 403 |
 | open PENDING | **無**（DR #8 已轉 DEFERRED，自阻塞清單移除）|
 | open anomaly | A-CF02、A-CF04、A-CF07、A-CF08、A-CF09、A-CF13（A-CF06／A-CF10 CLOSED；A-CF11 升格 R-C13；A-CF12 DEFERRED）|
-| 真正缺檔 | **1 件**：7" 螢幕配置來源（DR #6，擋 3 節）。DR #7 已解 |
+| 真正缺檔 | **2 件**：7" 螢幕配置來源（DR #6，擋 3 節）；**HMI Pop Up List**（DR #11，關乎 ch11／ch12 合併與否）|
 | 適用性判讀 | **4 `in_scope`／13 `undetermined`／0 `out_of_scope`**（17 節）；4 節依 R-C16 為 **RD-1 覆蓋缺口項，非 TC 工作項** |
 | Layer 3 map | **129 節／403 leaves**，三個 assertion 全 PASS；section↔parent 為 1:1 雙射 |
-| **Part N** | Test Group `Comfort`；**15 個 Test Set**；leaf 區間 12–59，最大者 14.6%；四個 assertion 全 PASS |
-| Phase 4 硬前置 | profile `[OVERRIDE]` 仍 Tier 2 未定 —— A-CF07 之寫回處置**必須於其中明文**（03 §5）|
+| **Part N** | Test Group `Comfort`；**15 個 Test Set**；leaf 區間 12–59，最大者 14.6%。#15 已更名 `Comfort Widget` → **`Home Screen Widget`**（13 §2） |
+| 全文基礎 | `data/section_fulltext.tsv` —— 129 節不截斷全文（R-C18）。長度 min 27／中位 245／max 1232 |
+| Phase 4 開始條件 | ① profile `[OVERRIDE]` 簽署（含 A-CF07 寫回處置明文，03 §5）②`Heated Vented Seats` 一組之 ch11／ch12 複核（13 §7）—— **僅擋該組，不擋 pilot** |
 
 ---
 
@@ -69,11 +71,11 @@
 
 | 檔案 | 內容 |
 |---|---|
-| `RULINGS.md` | R-C1 ~ R-C17 + R-C4-1 + R-C5-1 逐字（19 條），加執行層落實回報 |
+| `RULINGS.md` | R-C1 ~ R-C18 + R-C4-1 + R-C5-1 逐字（20 條），加執行層落實回報 |
 | `DECISIONS.md` | 決策表 —— **已簽署 2026-08-14**，受 R-C9 保護（recon 重跑改寫 `DECISIONS.new.md`）|
 | `RECON.md` | Phase 1 survey + assertion 實測值 + uncited baseline sections |
 | `ANOMALIES.md` | A-CF01 ~ A-CF13（A-CF13 含三項標籤衝突）|
-| `DATA_REQUESTS.md` | #1 ~ #10 + standing rule |
+| `DATA_REQUESTS.md` | #1 ~ #11 + standing rule |
 | `feature.yaml` | pipeline 常數與裁決常數（`recon_assertions`） |
 | `data/spec_id_to_outline.tsv` | 403 leaf → SR24 outline 之查表（追蹤入版控） |
 | `data/sr24_uncited_sections.tsv` | SR24 基線內 51 節未被引用者之四值分類（A-CF08） |
@@ -81,6 +83,7 @@
 | `data/layer3_map.tsv` | **Layer 3 map** —— 129 節 × 六欄，Part N 之輸入 |
 | `framework.md` | **Part N** —— Layer 1/2/3 之定義與對照（Layer 3 不入工作簿）|
 | `data/test_set_map.tsv` | section → Test Set 查表（129 列），Phase 4 用；非工作簿內容 |
+| `data/section_fulltext.tsv` | **129 節不截斷全文**（R-C18）—— 判讀一律以此為據，不用 `layer3_map` 之 60 字標題 |
 | `RUNBOOK.md` | feature 事實之權威 |
 | `PLAYBOOK.md` | 狀態板 |
 

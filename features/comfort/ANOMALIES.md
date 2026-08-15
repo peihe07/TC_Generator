@@ -598,3 +598,30 @@ Test Set，Phase 4 之 sibling 判定（§4.6）與 `duplicate_of` 得以見效�
 
 **RD-1 候選**（不阻塞）：請上游確認三處標籤是否為誤植，特別是 16.17 之
 `C16.)`（該章其餘 17 節皆為 `ICE` 前綴，且其內容對應 ch2 之 `C18.)`）。
+
+### 第三項之後續事實（2026-08-15，上繳 07 §4）—— ch11／ch12 全文差異
+
+13 §3 自承：原「無證據顯示進入路徑不同」之結論係讀 `layer3_map.tsv` 之
+**60 字截斷標題**得出，違反 R-C18，且屬「以缺席為證據」（R-C13 同構）。
+執行層依 13 §4.1 抽出全文並回報事實，**不下結論**：
+
+| 對 | 相似度（`autojunk` 關閉） | 差異 |
+|---|---|---|
+| 11.1 vs 12.1 | 0.9556 | ① `seats,` → `seats` ② **`opens popup and` → （無）** ③ `LEDs.` → `LEDs (.`（孤立左括號，疑錯字） |
+| 11.2 vs 12.2 | 0.9579 | ① `seats,` → `seats` ② **`opens popup and` → （無）** ③ `HI ,` → `HI,` |
+
+**四節之唯一實質差異，是同一個片語 `opens popup and`**：ch11 有、ch12 無。
+其餘皆為標點與空白。
+
+操作元件與顯示位置之描述**逐字相同**：皆為 `a press of the heated/vented
+seat button`（soft button），循環 HI → MED → LO → OFF，按鈕變色並顯示
+arrows/fan 與 LED。**兩者皆未提及任何實體鍵，亦未提及 status bar。**
+
+**判定屬 Tier 2，執行層未判**。`opens popup` 可能表示不同進入路徑（中介
+彈窗）、可能是同一入口下之回饋、也可能是 carryover 章漏寫；三者無法由措辭
+斷定。**關鍵缺料為 HMI Pop Up List**（`paths.popup_list` 為 null），
+已登 `DATA_REQUESTS.md` #11。
+
+若複核後結論翻轉，`Heated Vented Seats`（59 leaves）拆回兩組，屬 Part N
+變更，回分析層重簽（13 §3）。**該項僅阻塞此組，不阻塞 pilot**
+（`Seat Control Tab`）。

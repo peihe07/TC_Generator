@@ -79,6 +79,7 @@ python3 scripts/recon.py --feature features/comfort --root .
 ```
 python3 features/comfort/scripts/build_layer3_map.py
 python3 features/comfort/scripts/verify_partn.py
+python3 features/comfort/scripts/build_section_fulltext.py
 ```
 
 ### 待辦（Layer 2 屬 Tier 2，執行層不自裁）
@@ -92,7 +93,7 @@ python3 features/comfort/scripts/verify_partn.py
       該覆核不在 Part N 關鍵路徑上；鏡像即使個別條文對不齊也不失效
 - [x] **邊界預留（07 §5）** —— 章 20 若日後 in_scope → **新增** Test Set
       `Rear Blower`（不併入 #6，進入路徑與市場變體不同）；章 19 → 併入 #15
-      `Comfort Widget`。**兩處皆不需重整既有切分**（framework.md §7）
+      `Home Screen Widget`。**兩處皆不需重整既有切分**（framework.md §7）
 - [x] **exemplar source 已具名** —— `home` 之 done region（144 列）；
       **`amfm` 具名排除**（DECISIONS §4，已簽）
 - [ ] **A-CF07 之寫回處置須於 profile 明文**（03 §5）—— BLANK 型 write-back
@@ -107,6 +108,15 @@ python3 features/comfort/scripts/verify_partn.py
       BLANK 型 write-back 為「append from first data row」，範本殘留列會
       位移首資料列，留到 write-back 當下再決定就晚了
 
+### Phase 4 開始條件（13 §7）
+- [ ] **profile `[OVERRIDE]` 簽署** —— Tier 2，分析層下一包提出。
+      至少須明文 A-CF07 之寫回處置（03 §5）
+- [ ] **ch11／ch12 複核** —— 依 R-C18，原合併結論係讀 60 字截斷標題得出
+      （13 §3 自承）。全文事實已備（上繳 07 §4）：**唯一實質差異為
+      `opens popup and`，ch11 有、ch12 無**。判定屬 Tier 2。
+      **僅阻塞 `Heated Vented Seats`（59 leaves）一組，不阻塞 pilot**
+- [x] **129 節全文已抽出** —— `data/section_fulltext.tsv`，四個 assertion 全 PASS
+
 ### Phase 4 前置（本包記入，勿留到當下決定）
 - [ ] **Home Screen spec 通讀** —— R-C17 之判定測試（該規則定義於 Comfort
       或 Home Screen？）須逐條施行，只查過三處不足
@@ -114,6 +124,11 @@ python3 features/comfort/scripts/verify_partn.py
       `spec-index/cache/` 同時存有其 **SR25** 版（R-C17 指名 SR24 Post 2A）
 - [ ] ch16 之 TC 以 **outline 節次**為 traceability 依據，不用條款標籤
       —— `C16.)` 被 2.15 與 16.17 共用（A-CF13）
+- [ ] **一律讀 `section_fulltext.tsv` 之全文**（R-C18），不得以
+      `layer3_map.tsv` 之 60 字 `section_title` 做任何判斷
+- [ ] `14.19` 之 8 leaves 對應條文之 8 個 bullet，逐項一一對應；
+      `-02` 含 variant 分歧（`show for R1Low, do not show for R1H`），
+      §8.7.3 variant label 可能適用（上繳 07 §5）
 ## Phase 4 — Data build (Tier 1)
 - [ ] Data artifacts built per feature.yaml; misses filed to ANOMALIES.md
 

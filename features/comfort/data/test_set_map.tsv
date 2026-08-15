@@ -122,9 +122,9 @@ Comfort	ICS Airflow and Defrost	16.9	2	ICE8.) Rear Defrost has on/ off state. Gr
 Comfort	ICS Airflow and Defrost	16.12	3	ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & 
 Comfort	ICS Airflow and Defrost	16.12.1	10	ICE11.1) If the Mode hard control is pressed the user will b
 Comfort	ICS Airflow and Defrost	16.15	2	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.
-Comfort	Comfort Widget	17.1	3	W0.) The Comfort widget will have two screens: Comfort and S
-Comfort	Comfort Widget	17.2	8	CW1.) The default screen for the Comfort widget is the Clima
-Comfort	Comfort Widget	17.3	3	CW2.) The second Comfort widget screen includes all Comfort 
-Comfort	Comfort Widget	17.4	2	CW3.) For 8.4/10.1/12 landscaped screens, there will be a to
-Comfort	Comfort Widget	17.5	2	CW4.) For dual zone climate with dual airflow modes equipped
-Comfort	Comfort Widget	18.1	3	W0.) The Comfort widget will have two screens: Comfort and S
+Comfort	Home Screen Widget	17.1	3	W0.) The Comfort widget will have two screens: Comfort and S
+Comfort	Home Screen Widget	17.2	8	CW1.) The default screen for the Comfort widget is the Clima
+Comfort	Home Screen Widget	17.3	3	CW2.) The second Comfort widget screen includes all Comfort 
+Comfort	Home Screen Widget	17.4	2	CW3.) For 8.4/10.1/12 landscaped screens, there will be a to
+Comfort	Home Screen Widget	17.5	2	CW4.) For dual zone climate with dual airflow modes equipped
+Comfort	Home Screen Widget	18.1	3	W0.) The Comfort widget will have two screens: Comfort and S

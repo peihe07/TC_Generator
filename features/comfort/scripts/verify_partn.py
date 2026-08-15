@@ -73,7 +73,7 @@ PART_N = [
      ["16.6", "16.6.1", "16.7"], 16),
     ("ICS Airflow and Defrost",
      ["16.8", "16.9", "16.12", "16.12.1", "16.15"], 29),
-    ("Comfort Widget",
+    ("Home Screen Widget",
      ["17.1", "17.2", "17.3", "17.4", "17.5", "18.1"], 21),
 ]
 
@@ -176,19 +176,18 @@ def main() -> None:
           "whitespace, no duplicates", [], offences,
           f"{len(names)} names checked")
 
-    # The Test-Group-prefix rule is REPORTED, not silently exempted. One
-    # signed name — "Comfort Widget" — begins with the Test Group word. The
-    # substantive reading is that it is not a prefix at all: the spec itself
-    # calls the element "the Comfort widget" (17.1/18.1: "The Comfort widget
-    # will have two screens"), so the word names the object under test rather
-    # than repeating Layer 1. Recorded here so the analysis layer can
-    # overrule that reading if it disagrees, instead of finding an
-    # undocumented `!= "Comfort Widget"` buried in a condition.
-    c.add("Test Set names starting with the Test Group word", [], [],
-          f"{group_word} — reported, not failed: the spec names this element "
-          f'"the Comfort widget", so the word is the object under test, not a '
-          "Layer 1 prefix (§4.2). Overrule at the analysis layer if disputed"
-          if group_word else "none")
+    # §4.2 bans the Test Group as a name prefix. This is REPORTED as its own
+    # line rather than folded into the offence list, because that is what
+    # surfaced the one case there was: "Comfort Widget" was signed in handoff
+    # 12, reported here rather than exempted in a condition, and renamed to
+    # "Home Screen Widget" by handoff 13 §2. Had the exemption stayed buried
+    # in an `and n != "Comfort Widget"`, the check would have passed and the
+    # rename would never have happened — the PASS would have covered it up.
+    # Expected to be empty from handoff 13 onward; a non-empty list means the
+    # rename did not reach every place, or a new name reintroduced the shape.
+    c.add("no Test Set name starts with the Test Group word (§4.2)",
+          [], group_word,
+          f"{len(names)} names checked against prefix {TEST_GROUP!r}")
 
     c.report()
 

@@ -51,6 +51,7 @@ batch gate 都要按 Urgency 回報。
 | 9 | `SR24 R1 Market Configuration Table v1.6.xlsx` | ✅ **已入 `inputs/`**（2026-08-14，Pei 放入）—— 279,779 bytes，SHA256 `ae4cf0b929b033ac…`，對 25PI3.5 之 `ae4cf0b9…` **PASS**。**判讀結果：不承載 `R1L-R`（0 命中）、不承載螢幕尺寸（0 命中）**；其 variant 軸為市場別非機型別 | 0（未直接解任何節） | —— | A-CF08 | 已解 |
 | 8 | CFTS043 4803259 之 NOTE 效力確認（非檔案，屬上游釐清） | 🔵 **DEFERRED 2026-08-14（10 §2）** —— Pei 直接向 RD 反應，不由本 pipeline 追。依 R15-2（open PENDING 意為「待裁決」非「待外部條件」）自 open PENDING 移出、自「阻塞 D-C10」清單移除。**20.x 十節 verdict 不因 DEFERRED 而變動**，依 R-C12 維持 `undetermined` | 10 節（20.1 ~ 20.4.3） | 不阻塞 | A-CF12 | ~~High~~ → **DEFERRED（Pei 對 RD）** |
 | 10 | `VINtoArchitecture decoding v3.xlsx` | ⏳ **客戶端存在，待 Tier 3 補入**（09 §4 訂正：08 §3 之「同目錄」指客戶端 `25PI3.5/Reference Docs/ECU Specific Reference Documents/`，非 `inputs/`；執行層「全 repo 不存在」之實測正確，性質是**待補入**而非**不存在**）。惟其為 VIN→architecture 解碼表，回答 7" 螢幕問題之可能性低（09 §4） | 3 節（19.1–19.3） | D-C10 裁定 | A-CF08 | Low（09 §5 已改為請 Pei 指認來源）|
+| 11 | **HMI Pop Up List** —— 定義 Comfort 各 popup 之內容與行為者 | ❌ **未入 `inputs/`**，`paths.popup_list` 為 null。**新需求（2026-08-15）**：ch11.1／11.2 之 `opens popup and` 是 ch11 與 ch12 之唯一實質差異，而該 popup 究竟是**進入路徑**（中介畫面）或**回饋**（狀態提示），決定 ch11／ch12 應合併或拆回兩組。僅憑措辭推斷不足 | 59 節（`Heated Vented Seats` 組之存廢） | Phase 4 該組；pilot 不受影響 | A-CF13 | **High** |
 
 ## 已量測、無需索取
 
@@ -67,5 +68,4 @@ batch gate 都要按 Urgency 回報。
 - SYS.2 / SYSRA 安全分析件 —— recon 實測 037 **無 ASIL/FTTI 欄位**，
   安全分析層在本 feature 之 403 leaves 上無附著點，不進 trace chain
   （比照 AMFM R6 / Privacy 前例）。
-- Pop Up List —— 037 未引用；`paths.popup_list` 為 null。若 Phase 4 之條文
-  出現 PU 編號，依 standing rule 當場登記 anomaly 並補列於本表。
+~~- Pop Up List —— 037 未引用；`paths.popup_list` 為 null。~~ **已轉為請求，見 #11。**
