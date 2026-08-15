@@ -19,10 +19,11 @@
 | 05 | 2026-08-14 | R-C15~R-C17 落實 ＋ DR #8 DEFERRED ＋ Layer 3 map | [handoff/09_upstream04_review.md](handoff/09_upstream04_review.md)、[handoff/10_phase3_start.md](handoff/10_phase3_start.md) | [upstream/05_layer3_map.md](upstream/05_layer3_map.md) | R-C15 ~ R-C17 | A-CF13 | PASS |
 | 06 | 2026-08-14 ~ 15 | Part N 定稿 → `framework.md` ＋ `DECISIONS.md` 簽署 | [handoff/11_partN_draft.md](handoff/11_partN_draft.md)、[handoff/12_partN_final.md](handoff/12_partN_final.md) | [upstream/06_framework.md](upstream/06_framework.md) | 無新條文 | A-CF13 第三項 | PASS |
 | 07 | 2026-08-15 | R-C18 ＋ #15 更名 ＋ 129 節全文抽出 | [handoff/13_upstream06_review.md](handoff/13_upstream06_review.md) | [upstream/07_fulltext.md](upstream/07_fulltext.md) | R-C18 | （無新登；A-CF13 相關事實補充） | PASS |
+| 08 | 2026-08-15 | ch11／ch12 合併依據落地 ＋ ch2／ch16 全文 | （Pei 直接指示，無下放包） | [upstream/08_ch2_ch16_fulltext.md](upstream/08_ch2_ch16_fulltext.md) | 無新條文 | A-CF13 第四項 | PASS |
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；
-05／06 合併為上繳 03；07／08 合併為上繳 04；09／10 合併為上繳 05；11／12 合併為上繳 06；13 單獨上繳 07。
+05／06 合併為上繳 03；07／08 合併為上繳 04；09／10 合併為上繳 05；11／12 合併為上繳 06；13 單獨上繳 07；上繳 08 對應 Pei 之直接指示，無下放包編號。
 **09 之六項作業於上繳 04 當輪未收到，於上繳 05 補做**（見該包 §0 甲）。
 
 **上繳 04 待知悉 2 項**（詳見該包 §0）：
@@ -58,12 +59,12 @@
 | leaves | 403 |
 | open PENDING | **無**（DR #8 已轉 DEFERRED，自阻塞清單移除）|
 | open anomaly | A-CF02、A-CF04、A-CF07、A-CF08、A-CF09、A-CF13（A-CF06／A-CF10 CLOSED；A-CF11 升格 R-C13；A-CF12 DEFERRED）|
-| 真正缺檔 | **2 件**：7" 螢幕配置來源（DR #6，擋 3 節）；**HMI Pop Up List**（DR #11，關乎 ch11／ch12 合併與否）|
+| 真正缺檔 | **2 件**：7" 螢幕配置來源（DR #6，擋 3 節）；HMI Pop Up List（DR #11 —— 入口問題已裁，urgency 降為影響 Phase 4 措辭）|
 | 適用性判讀 | **4 `in_scope`／13 `undetermined`／0 `out_of_scope`**（17 節）；4 節依 R-C16 為 **RD-1 覆蓋缺口項，非 TC 工作項** |
 | Layer 3 map | **129 節／403 leaves**，三個 assertion 全 PASS；section↔parent 為 1:1 雙射 |
 | **Part N** | Test Group `Comfort`；**15 個 Test Set**；leaf 區間 12–59，最大者 14.6%。#15 已更名 `Comfort Widget` → **`Home Screen Widget`**（13 §2） |
 | 全文基礎 | `data/section_fulltext.tsv` —— 129 節不截斷全文（R-C18）。長度 min 27／中位 245／max 1232 |
-| Phase 4 開始條件 | ① profile `[OVERRIDE]` 簽署（含 A-CF07 寫回處置明文，03 §5）②`Heated Vented Seats` 一組之 ch11／ch12 複核（13 §7）—— **僅擋該組，不擋 pilot** |
+| Phase 4 開始條件 | ① profile `[OVERRIDE]` 簽署（含 A-CF07 寫回處置明文，03 §5）。~~② ch11／ch12 複核~~ **已完成 2026-08-15：合併維持**（framework.md §3.1.1）|
 
 ---
 

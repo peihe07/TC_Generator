@@ -111,10 +111,11 @@ python3 features/comfort/scripts/build_section_fulltext.py
 ### Phase 4 開始條件（13 §7）
 - [ ] **profile `[OVERRIDE]` 簽署** —— Tier 2，分析層下一包提出。
       至少須明文 A-CF07 之寫回處置（03 §5）
-- [ ] **ch11／ch12 複核** —— 依 R-C18，原合併結論係讀 60 字截斷標題得出
-      （13 §3 自承）。全文事實已備（上繳 07 §4）：**唯一實質差異為
-      `opens popup and`，ch11 有、ch12 無**。判定屬 Tier 2。
-      **僅阻塞 `Heated Vented Seats`（59 leaves）一組，不阻塞 pilot**
+- [x] **ch11／ch12 複核完成 2026-08-15 —— 合併維持** —— 分析層裁定：
+      同一進入路徑，`opens popup` 為輸出回饋非入口。依據寫入
+      `framework.md` §3.1.1。`Heated Vented Seats`（59）維持單一 Test Set。
+      **Phase 4 注意**：該差異應以**預期結果**（是否出現 popup）表達，
+      不得寫成不同的操作步驟或前置條件
 - [x] **129 節全文已抽出** —— `data/section_fulltext.tsv`，四個 assertion 全 PASS
 
 ### Phase 4 前置（本包記入，勿留到當下決定）
@@ -126,6 +127,8 @@ python3 features/comfort/scripts/build_section_fulltext.py
       —— `C16.)` 被 2.15 與 16.17 共用（A-CF13）
 - [ ] **一律讀 `section_fulltext.tsv` 之全文**（R-C18），不得以
       `layer3_map.tsv` 之 60 字 `section_title` 做任何判斷
+- [ ] `12.1` 之 `LEDs (.` 為 spec 原文之孤立左括號（A-CF13 第四項）——
+      逐字引用時**照錄或明示節錄，不得靜默修正**（§8.4.2）
 - [ ] `14.19` 之 8 leaves 對應條文之 8 個 bullet，逐項一一對應；
       `-02` 含 variant 分歧（`show for R1Low, do not show for R1H`），
       §8.7.3 variant label 可能適用（上繳 07 §5）
