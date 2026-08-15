@@ -22,6 +22,12 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
 | A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
+| A-CF22 | note | 3 旋鈕 ICS 車輛之 head unit 是否仍顯示座椅類 popup，spec 未述 | OPEN（**不列 RD-1** —— 在 Comfort spec 範圍外）| 無（`-002` 維持不補）|
+| A-CF21 | 條文衝突 | `2.1` 之 037 leaf（3 tabs，無 Massage）與條文（4 tabs，含 Massage）不符 | **RESOLVED-BY-RULING**（R-C33，2026-08-15）；**DR #18 為其 RD-1 候選** | 內容依條文、單位依 037；`-01`／`-02` 另因 DR #17 未生成 |
+| A-CF20 | note | `SWE1-HVAC-024-07` 拆後四條之 ER 逐字相同，僅 title 與 procedure 相異 | **維持**（32 §3；已知性質，非缺陷）| 無 |
+| A-CF19 | 交付件呈現 | 多節 specification_reference 之儲存格呈現未實測（約 240 字元，列高 14.0） | OPEN（下次寫回時實測）| 無 |
+| A-CF18 | 條文缺口 | `3.3` 未定義 `not available` 之可觀察形態 | OPEN（**RD-1 候選**）| `-030` 之 ER 停在 `are not available` |
+| A-CF17 | 條文缺口 | `3.4` 之 `when configured` 無受詞 | OPEN（**RD-1 候選**）| 無（`-031` 已迴避該詞）|
 | A-CF16 | 交付件呈現 | 14 列全部 `customHeight=True, height=14.0` 而 `wrapText=True` —— 折行但不長高，列表視圖只見首行 | **RESOLVED**（方向 3，Pei 2026-08-15）| 無 |
 | A-CF15 | note（spec 缺口） | ch13 從未說明腰靠／側靠調整量顯示於何處 —— 可觀察量僅間接可得 | OPEN（RD-1 候選，不阻塞） | 無 |
 | A-CF14 | 跨 feature 稽核 | `features/home/feature.yaml` 之 `done_region.author_value` 為 `Arif`，實際 done region 為 `ArifChen` —— 以前者選取得 0 列 | OPEN（另案，不逕改 home） | 無 |
@@ -598,6 +604,20 @@ ch2 的 **`C18.)`**（2.16，同為 blower reduction）。故 16.17 掛 `C16.)`
 不同行為，traceability 出現二義。Phase 4 撰寫 ch16 TC 時須以 **outline
 節次**為準、不以條款標籤為準。RD-1 候選（請上游確認標籤）。
 
+**2026-08-15 由 `ch16_mirror_map.tsv` 獨立復現**（下放包 37 §7）：
+逐節建鏡射表時再次撞見同一撞號 —— 該表以 `16.17 ↔ 2.16` 為 `mirrored`
+（全句逐字相同），而 `16.17` 掛 `C16.` 與 `2.15` 相同。
+**不新登 anomaly**，於此增記。
+
+**復現本身是證據**：同一撞號在**兩條不相干的作業路徑**上各被撞一次
+——第一次由 Layer 3 map 之標籤掃描（下放包 20），第二次由 ch16 鏡射之
+逐節比對（本輪）。表示它不是邊緣情形，**Phase 4 全面展開時會反覆出現**。
+
+故本項之處置（**一律以 outline 節次為引用鍵，不以條款標籤為準**）
+更應被機械強制。**已列為候選 gate；本包不加** —— 目前無任何一條 TC 以
+條款標籤為引用鍵（實測 65 條之 `specification_reference` 皆為
+`{STEM}_{outline}` 形式），無實例違反，加 gate 即為對尚未發生之事設檢查。
+
 ### 二、`W0.)` 由三節共用，其中兩節經 037 分析為兩個獨立需求
 
 | 節 | 章 | 037 | 條文 |
@@ -821,3 +841,181 @@ procedure／ER 之列表視圖只見首行。
 
 重審之觸發者為外部意見，**不由本 feature 自行判斷**；執行層於察覺該類
 意見時登記並回報，不逕行改動。
+
+## A-CF17 —— `3.4` 之 `when configured` 無受詞（條文缺口，RD-1 候選）
+
+**登記依據**：下放包 31 §3.1；來源為執行層上繳 19 §11 第 1 項。
+
+條文（`data/section_fulltext.tsv`，未截斷）：
+
+> C22.) For soft top vehicles such as JL/JT, **when configured**, the rear
+> defrost button will not appear when not present in the vehicle.
+
+**搜尋範圍（R-C30）**：根目錄 `features/comfort/data/section_fulltext.tsv`
+（129 節全文），pattern `configured`，**命中 3 處**：
+
+| 節 | 用法 | 可否還原受詞 |
+|---|---|---|
+| 3.4 | `when **configured**,` | **否 —— 無受詞** |
+| 6.3 | `**configured** with a non-foldable secondary lower screen` | 是（配備該螢幕）|
+| 11.11 | `**configured** with hard buttons for comfort controls` | 是（配備硬鍵）|
+
+另兩處皆為 `configured with X`（配備 X）之形式；3.4 之 `when configured`
+**無受詞**，無法以同一讀法還原。
+
+**處置**：登記，**不推測其所指**。`-031` 之 PC 不寫入任何配置步驟
+（§8.4.1），該 TC 內容不因本項變動 —— 它已迴避該詞。
+
+**RD-1 候選**：若該詞實質改變適用條件（例如「僅在某選配開啟時才適用」），
+本 TC 之適用範圍即需收窄。**不阻塞生成**，但需上游澄清。
+
+## A-CF18 —— `3.3` 未定義 `not available` 之可觀察形態（條文缺口，RD-1 候選）
+
+**登記依據**：下放包 31 §3.2；來源為執行層上繳 19 §11 第 2 項。
+
+`3.3`（C21）全文僅一句，只說 `available`，**未說不可用時之外觀**。
+`greyed out` 之描述在 **2.10**（C11），屬 `Climate Modes` 這個 Test Set，
+依 §8.2.1 不得於 3.3 之 TC 內驗證。
+
+故 `-030` 之 ER 停在 `are not available`，**其判定實際仰賴測試員對
+「不可用」之理解**。
+
+**取捨**：寫得更具體就會踩進 2.10。**越界之害大於措辭之弱** —— 前者是
+驗證了不屬於本節之行為（且 2.10 之明文與初稿之寫法相牴觸，見上繳 19 §3），
+後者是判定粒度不足但範圍正確。
+
+**處置**：登記；`-030` 之 `reasoning` 具名 2.10 為該外觀之擁有者。
+列 RD-1 候選 —— 上游若補明 3.3 之不可用外觀，本 TC 之 ER 即可收緊。
+
+## A-CF19 —— 多節 `specification_reference` 之儲存格呈現未測（交付件呈現）
+
+**登記依據**：下放包 31 §3.3；來源為執行層上繳 19 §11 第 3 項。
+
+`-029`／`-030`（3.3 之兩條）之 N 欄為**三段以 `; ` 分隔、各帶完整 stem**
+之字串，長度約 **240 字元**。而交付件之列高為 `14.0` 且 `wrapText=True`
+（[[A-CF16]]），即折行但不長高。
+
+**本項現為未測，非已測** —— 本批不寫回，故該欄在 Excel 內之實際呈現
+無人看過。R-C29 之多節格式是本輪才出現的，A-CF16 當時之量測不涵蓋它。
+
+**處置**：**於下次寫回時一併實測**該欄之呈現（列高、可見字元數、
+是否須點選儲存格方能讀完），結果併入 A-CF16 之重審依據。
+
+**與 A-CF16 之關係**：A-CF16 之裁定（方向 3，維持現狀）成立於
+「同範本已交付前例受同樣限制且未見評閱方意見」。**本欄比當時量測過的
+任何一欄都長**，故它可能是 A-CF16 重審條件之第一個觸發者。
+
+## A-CF20 —— 拆後四條之 ER 逐字相同（note，維持）
+
+**登記依據**：下放包 32 §3；來源為執行層上繳 20 §11 第 2 項自報。
+
+`SWE1-HVAC-024-07` 依 §8.2.2 之控制實體判準拆為四條
+（`NR1L-ComfortHMI-024` … `-027`）。四條之 `expected_result` **逐字相同**：
+
+```
+1. The "MAX DEF" button is active
+2. The "MAX DEF" button is no longer active and the system is in the
+   previous manual mode with A/C on
+```
+
+**係條文使然** —— 四個破壞源之後果在 C20 為同一句
+（`... breaks MAX DEF (turns MAX DEF off) and the system goes back to the
+previous manual mode with the A/C on`）。
+
+區別由 `tc_title`（帶破壞源 token）與 `test_procedure` 第 2 步承擔。
+
+**不改**：§4.3 之 sibling-distinction 要求 `tc_title` 可區分，已滿足；
+§6 要求 ER 涵蓋完整結果，而結果本就相同。**強行使 ER 相異即為造值**
+（§8.4.1）。
+
+**登記之目的**：供日後**只掃 ER 欄之審閱者**查考 —— 四列 ER 一模一樣，
+在工作簿內看起來像複製貼上的疏漏，實際是條文的形狀。
+
+**相關**：[[A-CF16]]（列高使長欄只見首行）在此處反向作用 —— 四條之 ER
+短且相同，列表視圖反而看得完整，而看得完整正是它容易被誤讀成疏漏的原因。
+
+## A-CF21 —— `2.1` 之 037 leaf 與條文數字不符（條文衝突，RD-1 候選）
+
+**登記依據**：執行層批次 3 實測，上繳 21 §3.2。
+
+| 來源 | 內容 |
+|---|---|
+| 條文（`data/section_fulltext.tsv`，來自 SYS1 export）| `The comfort category will have **up to 4 tabs** …` 順序 `Front, Seats (WS or R1 Low) or Seat & Wheel (Maserati), **Massage**, Rear` |
+| 037 leaf `SWE1-HVAC-001-01` | `up to **3** tabs displayed depending on vehicle configuration` |
+| 037 leaf `SWE1-HVAC-001-02` | `tabs displayed in order: Front, Seats, Rear`（**無 Massage**）|
+
+037 之兩個 leaf **系統性地少了 Massage tab**。
+
+**現行條文未涵蓋此衝突**：§8.6 定「source spec wins over index export」，
+但 **037 不是 index export，它是 SWE.1 之分析報告**，而 R-C1 所定之驗證
+單位正是 037 之 leaf。spec 與其索引之優先序有規則；**spec 與上游分析之
+優先序沒有**。
+
+**執行層未自行取捨**，因為兩種取法產生不同的 TC 數與不同的 `test_item`：
+取條文須驗 4 個 tab 含 Massage，取 leaf 則 3 個。
+
+**條文自身另有一句指向委派**：`Refer to separate HMI Logic and Flow
+documentation for Massage Seats logic` —— Massage 之**邏輯**確實委派他處，
+但 tab **是否存在**是 2.1 自己說的。**委派的是行為，不是存在。**
+
+**阻塞範圍**：`SWE1-HVAC-001` 之 3 個 leaf。該 3 個 leaf 另有一項獨立的
+軸問題（`only Front climate is available` 不在十一軸內，見上繳 21 §3.1），
+**兩者須各自裁定，解其一不足以解除阻塞**。
+
+---
+
+### RESOLVED-BY-RULING（R-C33，2026-08-15；下放包 33 §1）
+
+**處置已定，不再等待答案**：
+
+```
+一、何者算一個需求單位（leaf 之切分、數量、id）—— 037 為權威（§8.2）
+二、該需求說了什麼（數值、列舉、順序、條件）—— spec 條文勝（§8.1），
+    並列 RD-1 呈報該落差
+三、內容依 spec 而 leaf 依 037 時，該 leaf 之 TC 依 spec 內容撰寫，
+    req_id 仍為該 leaf；reasoning 須具名此落差與其 RD-1 編號
+```
+
+**適用於本項**：leaf 維持 `-01`／`-02`／`-03` 三個（037 之切分），
+內容依條文之 **4 tabs 含 Massage**。
+
+**我原判「現行條文未涵蓋」，對 §8.6 而言正確而不完整** —— §8.6 管 spec
+與其索引導出，不管 spec 與上游分析；但 **§8.1「Conflict → Req wins;
+flag RD」**與 §8.2 併讀即得分工，我當時未把兩條併起來讀。
+
+**RD-1 候選為 `DATA_REQUESTS.md` #18**（037 與 spec 對齊），**不阻塞**
+—— 呈報之目的為使兩者對齊，非等待答案才能開工。
+
+### 仍未解者，與本項不同一件事
+
+`-01`／`-02` 之不可生成**不是**本項所致。即使 037 與條文完全一致，
+條文仍只寫 `depending on vehicle configuration` 而未述**何種配置產生
+何種 tab** —— 那是**內容不足**（`DATA_REQUESTS.md` **#17**，High，
+阻塞該 2 leaf），與本項之**內容衝突**是兩回事。
+
+**解 A-CF21 不解 #17。** `-03` 於第十二軸增列後已生成
+（`NR1L-ComfortHMI-041`）。
+
+相關：[[A-CF17]]、[[A-CF18]]（同為條文缺口類）。
+
+## A-CF22 —— 3 旋鈕 ICS 車輛之座椅類 popup，spec 未述（note）
+
+**登記依據**：下放包 35 §3；來源為執行層上繳 23 §1.3(d) 自陳「本次判斷中
+最接近邊界者」。
+
+`NR1L-ComfortHMI-002` 之 ER 為 `The Seat Control Popup is displayed on the
+head unit`。2.14 之逐字範圍為
+`no **HVAC** menu bar icons, no **HVAC** screens and no **HVAC** pop ups`
+—— Seat Control Popup 非 HVAC popup，故 **`-002` 維持不補**。
+
+**把 2.14 讀成「head unit 什麼都不顯示」是反向的範圍造值**（§8.4.2）——
+以外部條文擴張出一個它沒說的限制，與以外部條文擴張測試範圍同性質。
+
+**未述者**：3 旋鈕 ICS 車輛之 head unit 是否仍顯示座椅類 popup。
+spec 未述，本 pipeline 不推測。若日後實機顯示不然，`-002` 須補一行排除式 PC。
+
+**不列 RD-1** —— 該問題屬 head unit 整體行為，在 Comfort spec 範圍外，
+問了也不在 037 之權責內。登記之目的為使該判斷可覆核，非為索取答案。
+
+相關：[[A-CF17]]、[[A-CF18]]（同為 spec 未述類，但那兩者在 Comfort 範圍內
+故列 RD-1）。

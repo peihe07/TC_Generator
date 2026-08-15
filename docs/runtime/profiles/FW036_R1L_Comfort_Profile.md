@@ -138,22 +138,90 @@
 （`spec-verbatim` / `spec-derived` / `test-setup`），**未標者視為未追溯**
 （Privacy R36-4）：
 
+**逐軸之類別（R-C34，35 §1）**：**介面型**者其某值移除的是**承載可觀察量
+之介面**（功能可能仍在），**須逐條檢查**；**功能型**者其某值移除的是**功能
+本身**，既有之「該功能有無」PC 即已排除。**未判類別之軸不得使用。**
+
+| # | 軸 | 類別 | 某值之後果 |
+|---|---|---|---|
+| 1 | ATC / MTC | 功能型 | 缺離散溫度與 Auto 控制（2.14）|
+| 2 | 單區 / 雙區 / 四區 | 功能型 | 無該區之控制 |
+| 3 | tri-mode 有無 | 功能型 | 無 tri-mode 功能 |
+| 4 | MAX A/C 有無 | 功能型 | 無該功能 |
+| 5 | MAX DEF 有無 | 功能型 | 無該功能 |
+| 6 | 独立座椅分區有無 | 功能型 | 無該分區 |
+| 7 | 加熱方向盤 Multi / Single | 功能型 | 層級數不同 |
+| 8 | Standard vs Multi-Level 座椅 | 功能型 | 層級數不同 |
+| 9 | **secondary lower screen 之有無**（19 §2.1）| **介面型** | 非可收合者 → **comfort section 自 head unit 移除**（6.3），僅 comfort popup 留存 |
+| 10 | REAR DEFROST 之有無（29 §2）| 功能型 | 無該功能與其按鈕 |
+| 11 | soft top 車身之有無（29 §2）| 功能型 | 影響 rear defrost 之配備 |
+| 12 | **僅前排氣候**（33 §3）| **介面型** | → **tabs 不顯示**（2.1）|
+| 13 | **HVAC 實體控制型式**（33 §3）| **介面型** | 3 旋鈕 ICS → **無 HVAC menu bar icon／畫面／popup**（2.14）|
+| 14 | 前排 HVAC 風速範圍（37 §4）| 功能型 | `Off, 1-7`（2.7 `C6.`）／`Off, 1-8`（2.7.1 `C6.1`）—— 兩值皆不移除介面，改變者為值域 |
+| — | 機型軸 R1 Low / R1 High | 功能型 | `14.19` 之 `-02` 為唯一含此條件者 |
+| — | **市場／變體軸 EMEA ICS** | **介面型** | **ch16 全章為另一套介面** —— ch2／ch3 之 TC 於該車無對象 |
+
+**生成時之義務（非事後掃描）**：每條 TC 定稿前，指出其可觀察量所在之介面，
+並對**四個介面型軸**各問一次「該軸之某值是否使此介面不存在」。
+答是者補排除式 PC（出處依 R-C29 具名）；答否者於 `reasoning` 或上繳包
+具名理由。
+
 - **設備配置軸**（本 feature 之主軸，逐節出現）：ATC / MTC、單區 / 雙區 /
   四區、tri-mode 有無、MAX A/C 有無、MAX DEF 有無、独立座椅分區有無、
   加熱方向盤 Multi-Level / Single-Level、Standard vs Multi-Level 座椅、
   **secondary lower screen 之有無**（第九軸，19 §2.1）、
   **REAR DEFROST 之有無**（第十軸，29 §2）、
-  **soft top 車身之有無**（第十一軸，29 §2）
+  **soft top 車身之有無**（第十一軸，29 §2）、
+  **僅前排氣候之有無**（第十二軸，33 §3）、
+  **HVAC 實體控制型式**（第十三軸，33 §3）、
+  **前排 HVAC 風速範圍**（第十四軸，37 §4）
 - **機型軸**：R1 Low / R1 High（`14.19` 之 `-02` 為唯一含此條件者）
 - **市場／變體軸**：EMEA ICS（ch16 全章）
 - **禁用**：`HU is powered on`、`Climate is available`（皆為隱含環境前提）
 
+<!-- AXIS-VALUES: machine-read by lint_tcs.py's axis-value-count gate.
+     Do not reformat. Adding a value here without bumping
+     negation-reviewed-at-value-count is a FAIL by design (35 §4). -->
+
+```axis-values
+axis: 13  HVAC 實體控制型式
+values: 3 knob ICS | one zone MTC with push button TEMPERATURE | other
+value-count: 3
+negation-reviewed-at-value-count: 3
+negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-047, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065
+```
+
 **每一條配置條件須具名其來源節次**；不得以「某些車輛有此配置」概括
 （§8.4.1 禁造值）。
+
+> **「On vehicles with X」判別 —— 候選產生器，非判準**（33 §4.2）
+>
+> 條文帶有選擇子（`On vehicles with …`／`For soft top vehicles …`／
+> `When a vehicle is configured with …`）者，**幾乎必然需要一個配置軸**，
+> 故該判別**可用於產生候選**。
+>
+> **不得用於認定不需要**：無選擇子**不得推出無需軸**。
+> 它是**詞彙型代理判準**，§5a 明定代理不得凌駕實質，R-C13 明定陰性結果
+> 只是索引層事實。
+>
+> **本案例**：2.2 全篇無選擇子，執行層據此判其 8 條無需配置類 PC。
+> 但 2.14 明文 `no HVAC screens` —— 3 旋鈕 ICS 之車輛根本沒有氣候觸控畫面，
+> 2.2 之 8 條在該車上無一可執行。**判別產生的候選是空的，而實質答案不是。**
+> 該 8 條已於 33 §4.1 之實質複查後各補一行 PC。
 
 **第十軸 REAR DEFROST 之有無**（29 §2）：來源節 **3.4**（C22 明文
 `when not present in the vehicle`）。**3.3 之條文（C21 一句）不含任何裝備
 條件，不得作為本軸之出處** —— 3.3 之 TC 若需此條件，依 **R-C29** 標 `(3.4)`。
+
+> **逐節判定規則（31 §4）**：全 129 節掃 `rear defrost` 命中 **8 節**
+> —— `2.9`(4)、`2.10`(6)、`3.2`(8)、`3.4`(1)、`16.4`(1)、`16.8`(12)、
+> `16.9`(2)、`16.10`(8)，合計 **42 leaf**。
+> **「提及 rear defrost」不等於「需要 rear defrost 有無之 PC」。**
+> `Climate Modes`（2.9／2.10）與四個 ICS 組（16.4／16.8／16.9／16.10）
+> 生成時，凡欲寫入本軸之 PC 者，**一律逐節走 R-C28 三問 ＋ R-C31**，
+> 第一問須具名**該節自身**之條文相關句。
+> **不得以 3.4 之句子為所有節之出處** —— R-C29 允許跨節取據，
+> 但要求具名**實際**出處，不是允許一句話覆蓋全語料。
 
 **第十一軸 soft top 車身之有無**（29 §2）：來源節 **3.4**（C22 明文
 `For soft top vehicles such as JL/JT`）。與機型軸（R1 Low／R1 High）
@@ -162,6 +230,49 @@
 > **措辭限制**：PC 一律寫「soft top」，**不寫成「JL or JT」**。條文為
 > `such as JL/JT`（**例示**），寫成 JL/JT 即窄於條文 —— 屬 §8.4.1 之
 > **反向造值：把例示讀成窮舉**。JL/JT 得於同句以 `such as` 形式引為例示。
+
+**第十四軸 前排 HVAC 風速範圍**（37 §4）：值 **`Off, 1-7`**（來源節 **2.7**，
+`C6.`）／**`Off, 1-8`**（來源節 **2.7.1**，`C6.1`）。**功能型** —— 兩值皆不
+移除任何介面，風速顯示於 climate screen 與 main category control，
+7 段或 8 段皆在；改變者為值域。
+
+> **兩值分屬兩節而非推論補齊**：`C6.1` 為 `C6.` 之子條，合讀為同一需求之
+> 兩條文字，跨節取據本即 R-C29 所允許。`2.7.1` 之首語 `In some vehicles`
+> 自身即宣告一個配置變數。
+>
+> **既有影響：0 條**（實測 —— 2.7 之 `-058`…`-062` 五條無一之判定依賴
+> 風速上界為 7 或 8）。
+
+**第十二軸 僅前排氣候（Front-only climate）**（33 §3）：來源節 **2.1**
+（明文 `If only Front climate is available in a specific vehicle`）。
+值：僅前排 ／ 含其他氣候區。
+
+**第十三軸 HVAC 實體控制型式**（33 §3）：來源節 **2.14**。
+值：3 旋鈕 ICS（`3 knob HVAC controls`）／ 單區 MTC 附 push button
+TEMPERATURE（`one zone MTC with push button TEMPERATURE`）／ 其他。
+本軸為**控制型式**，與第一軸（ATC／MTC）、第二軸（區數）**正交**，
+三者於 2.14 同時出現且各自獨立。
+
+> **與市場／變體軸之 `EMEA ICS` 不同，不得混用**：後者之範圍寫明
+> **ch16 全章**，指 EMEA 市場之整套 ICS 氣候介面；本軸指 **ch2** 所述之
+> 實體旋鈕配置，其後果為 HVAC 觸控 UI 不顯示。
+> 兩者外觀皆含「ICS」而所指不同 —— 此正是 **R-C18 之同型風險：
+> 措辭正確地屬於別處**。
+>
+> **否定式表述之限制**（34 §4）：本軸有三值，而
+> `does not have 3 knob HVAC controls with ICS` 之寫法把它壓成二值。
+>
+> - 否定式**僅得用於「只需排除某一值」之情形**，且該 PC 須可辨識為排除式
+> - **凡 TC 之行為隨軸值而異者，PC 一律具名該值**，不得用否定式
+>   —— 首個案例為 `NR1L-ComfortHMI-046`，其 PC 明寫
+>   `one zone MTC with push button TEMPERATURE`
+>
+> 理由：**否定式之涵蓋範圍取決於軸現有幾個值，而軸會增值。**
+> 今日正確之否定式，會在增值當日靜默地變成錯誤，且無任何 gate 會報。
+
+> **`MTC has a Climate screen` 不另立軸**（33 §3）：「有無 climate screen」
+> 是本軸之**後果**，不是獨立的配置變數。把後果立成軸，會使同一事實有兩個
+> 來源而無人維護其一致性。
 
 **每一個 `pre_conditions` 行須先通過 R-C28 之三問，出處在最前**（24 §4.3）：
 先問「該事實在其標註來源節之 `full_text` 有無明文對應」，無則停 ——
