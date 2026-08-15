@@ -1,0 +1,62 @@
+{
+ "parent": "SWE1-HVAC-078",
+ "outline": "13.3",
+ "batch": "Seat Control Tab",
+ "source_clause": "LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popup or tab change within climate, and only on the second press will be reflected.",
+ "reasoning": "驗證目標：13.3（LS2.）第一次按壓只觸發 popup 或 tab 切換，調整要到第二次按壓才 reflected。關鍵情境條件：按壓序數為唯一變數，其餘條件兩條 TC 相同。為什麼這樣切：兩個 037 leaf 對應兩個階段，以按壓序數為 distinguishing axis 分兩條（§4.6）。刻意略過：popup 與 tab 切換何者發生由 13.2 之分支決定，本節不重複驗證該分支（§8.2.1 不擴張至 sibling）。ER 錨定條文自身之 reflected，不引入 13.6 才使用之 level（20 §4）。",
+ "keywords": [
+  "first press",
+  "second press",
+  "popup",
+  "tab change",
+  "level"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-078-01",
+   "tc_id": "NR1L-ComfortHMI-005",
+   "tc_title": "First press triggers the popup or tab change only",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "When the (-, +) seat control buttons are pressed, the system shall trigger the popup or tab change within climate, and only on the second press will the adjustment be reflected",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [test-setup] The Seats tab is not currently shown, and the lumbar/bolster level is away from both its minimum and its maximum",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the lumbar/bolster state shown before the adjustment\n2. Press \"+\" once on the door seat control",
+   "expected_result": "1. The lumbar/bolster state shown before the adjustment is recorded\n2. The popup or the tab change is shown, and the adjustment is not reflected",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-078-02",
+   "tc_id": "NR1L-ComfortHMI-006",
+   "tc_title": "Second press applies the lumbar adjustment",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "When the (-, +) seat control buttons are pressed, only on the second press will the adjustment be reflected",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The first press has already triggered the popup or the tab change (13.3)\n4. [test-setup] The lumbar/bolster level is away from both its minimum and its maximum",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the lumbar/bolster state shown before the adjustment\n2. Press \"+\" a second time on the door seat control",
+   "expected_result": "1. The lumbar/bolster state shown before the adjustment is recorded\n2. The adjustment is reflected",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

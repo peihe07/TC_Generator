@@ -1,0 +1,62 @@
+{
+ "parent": "SWE1-HVAC-082",
+ "outline": "13.6",
+ "batch": "Seat Control Tab",
+ "source_clause": "LS5.) Once the minimum or maximum level has been reach, the system will grey out the (-, +) control. So if the user is increasing their lumbar, once the maximum has been reached, pressing the (+) button again will result in error tone being triggered.",
+ "reasoning": "驗證目標：13.6（LS5.）到達上下限後控制被 grey out，以及再按觸發 error tone。關鍵情境條件：本節為 ch13 唯一使用 level 一詞者，故 ER 保留該詞；error tone 照錄條文措辭，其頻率、時長、視覺回饋一律不寫（條文未給）。為什麼這樣切：兩個 037 leaf 對應兩者，distinguishing axis 為 observable channel —— -01 驗視覺（greyed out），-02 驗聽覺加上級距不再變化。刻意略過：不標 BLOCKED（R-C22：值不知道但事件看得見）；設計方法取 BVA 而非負向測試，因於上限再按 (+) 是合法輸入落在邊界，非注入非法值。",
+ "keywords": [
+  "minimum",
+  "maximum",
+  "level",
+  "greyed out",
+  "error tone"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-082-01",
+   "tc_id": "NR1L-ComfortHMI-013",
+   "tc_title": "Control is greyed out at the minimum and maximum level",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "Once the minimum or maximum level has been reach, the system shall grey out the (-, +) control",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [test-setup] The Seats tab is open and the lumbar/bolster level is away from both its minimum and its maximum",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"+\" repeatedly until the lumbar/bolster level stops increasing\n2. Read how the \"+\" control is presented\n3. Press \"-\" repeatedly until the lumbar/bolster level stops decreasing\n4. Read how the \"-\" control is presented",
+   "expected_result": "1. The lumbar/bolster reaches its maximum level and stops changing\n2. The \"+\" control is greyed out\n3. The lumbar/bolster reaches its minimum level and stops changing\n4. The \"-\" control is greyed out",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.6",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-082-02",
+   "tc_id": "NR1L-ComfortHMI-014",
+   "tc_title": "Error tone is played when pressing beyond the maximum level",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "So if the user is increasing their lumbar, once the maximum has been reached, pressing the (+) button again will result in error tone being triggered",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lumbar/bolster level is already at its maximum (13.6)\n4. [test-setup] The cabin is quiet enough for a tone to be heard",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"+\" repeatedly until the lumbar/bolster stops increasing\n2. Press \"+\" once more on the door seat control",
+   "expected_result": "1. The lumbar/bolster is at its maximum level\n2. An error tone is played and the lumbar/bolster stays at its maximum level",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.6",
+   "priority": "P2",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

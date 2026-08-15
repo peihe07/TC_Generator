@@ -96,7 +96,8 @@
 
 ### 3.1 Test Item [OVERRIDE — 取代 §4.3 僅 tc_title]
 
-> **G-1 PASS 2026-08-15**（附 provenance 但書，見下）。本段生效。
+> **G-1 PASS 2026-08-15**（下放包 17 §1）。本段生效。
+> provenance 但書降為腳註，**不再具阻卻效力** —— 見本段末 †。
 
 **繼承 Privacy §3.1 / SXM §3.1（結構性）**：Test Item = 以 spec 語言濃縮之
 需求陳述，**modal 僅此欄允許**（引用需求原文）。泛用 §4.3 之 tc_title
@@ -115,15 +116,21 @@
 
 → 與 §3.1 所述一致，**§3.1 生效**。
 
-> **provenance 但書（必讀）**：`home` 之 RECON 所測檔
+> † **provenance 腳註**（17 §1.1：事實保留，不阻卻判定）：`home` 之 RECON 所測檔
 > （`…_Home_20260720.xlsx`，SHA256 `0e72b1ec…`）與 Home v2
 > （SHA256 `cfc007f3…`）**皆不在 repo**。本次量測對象為
 > `forms/…_Home_20260809.xlsx`（SHA256 `1895fb2a…`），FORMS.md 記其為
 > pre-A-H26 build 加四道編修（**D5 / F / G / K / Z**）。
 > **I 欄（Test Item）不在該四道之列**，此為「內容未受影響」之論據 ——
 > 但該論據來自 FORMS.md 自身之 diff，在 Home v2 缺席下無法交叉驗證。
-> 故 G-1 之 PASS **provisional on 此替代**。若分析層認為替代不可接受，
-> §3.1 回到 pending 並重裁；**執行層不得自行調整 §3.1 以遷就實測**（16 §2）。
+> 17 §1.1 依 **R-C15**（判準為蘊含，非直接）裁定此不改變判定：可設想之風險
+> 為「該副本之 I 欄曾被編修」，然**一次「把 `shall` 引入 144 列中 143 列」
+> 之編修並非可信之情形**。證據為真即蘊含結論，縱其來源鏈有一段未經交叉驗證。
+>
+> **母體選擇器之發現須保留**：`features/home/feature.yaml` 之
+> `done_region.author_value` 為 `Arif`，該副本實為 `ArifChen`；以 `Arif`
+> 選取得 0 列，而 0 列會產出「全數不含 modal」之空集合結論。母體列數
+> assertion 擋下此事 —— 登為 **A-CF14**。
 
 ### 3.2 Pre-Conditions [ADD] —— Comfort 之 spec trigger
 
@@ -133,13 +140,29 @@
 
 - **設備配置軸**（本 feature 之主軸，逐節出現）：ATC / MTC、單區 / 雙區 /
   四區、tri-mode 有無、MAX A/C 有無、MAX DEF 有無、独立座椅分區有無、
-  加熱方向盤 Multi-Level / Single-Level、Standard vs Multi-Level 座椅
+  加熱方向盤 Multi-Level / Single-Level、Standard vs Multi-Level 座椅、
+  **secondary lower screen 之有無**（第九軸，19 §2.1）
 - **機型軸**：R1 Low / R1 High（`14.19` 之 `-02` 為唯一含此條件者）
 - **市場／變體軸**：EMEA ICS（ch16 全章）
 - **禁用**：`HU is powered on`、`Climate is available`（皆為隱含環境前提）
 
 **每一條配置條件須具名其來源節次**；不得以「某些車輛有此配置」概括
 （§8.4.1 禁造值）。
+
+**第九軸之 source class 逐節判定，不得跨節套用措辭**（19 §2.1）：讀該節
+`full_text`，條文有字面表述者標 `spec-verbatim` 並照錄其措辭；由條文推得者標
+`spec-derived`。**不得將 6.3 之 `non-foldable secondary lower screen` 措辭
+套用於 13.x** —— 那是另一節的文字（R-C18 同型風險：措辭正確地屬於別處）。
+
+**lower screen 之 stowed／retracted 為執行期狀態，非配置軸**（19 §2.2）。
+判定測試：
+
+> 該 TC 之驗證目標，是否就是「螢幕處於該狀態時之行為」？
+> 是 → 該狀態為 spec 定義之 trigger condition，入 `pre_conditions`，標 source class
+> 否 → 該狀態係為使測試可執行而設置，入 `test_procedure` 之步驟
+
+不得因「寫在 Pre-Condition 比較省事」而上移；亦不得因「它是狀態」而一律歸
+Pre-Condition —— §4.4 明禁 step-controlled state。
 
 ### 3.3 Design Method [OVERRIDE — 限縮 §12 輸出字串]
 
@@ -159,6 +182,7 @@ SR24 條文含下列原文標記，**引用時照錄，不得改寫為 `"..."`**
 | `15h`、`7/7`、`1-7`、`1-8` | 2.7、16.7、16.8、16.13 |
 | `°F/C` | 2.10、16.10 |
 | `LEDs (.` | 12.1 —— **明顯誤植，仍照錄**；修正 spec 原文非 TC 作者權限（§8.4.2） |
+| `(-, +)` | 13.2 ~ 13.6（6 節）—— 條文自有記法。**依位置分割**（19 §3，不新增例外）：<br>`test_item`（承載需求原文，§3.1）與 ER 中之引用片段 → **照錄 `(-, +)`**<br>`test_procedure` 之按壓目標與非引用之 ER 敘述 → **`"-"` / `"+"`** |
 
 作者自身之敘述（procedure 之按壓目標、非引用之 ER）一律用 `"..."`。
 lint 對照 `section_fulltext.tsv` 之來源列驗證保留 token，**不逕行禁用**。

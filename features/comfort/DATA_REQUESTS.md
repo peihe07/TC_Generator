@@ -38,6 +38,10 @@ batch gate 都要按 Urgency 回報。
 > `Available Widget Size` 兩表皆為平台配置，非交付範圍宣告。
 > **現行唯一真正缺檔仍為 #6，且 09 §5 已改為請 Pei 直接指認來源**：
 > 分析層兩次指名候選皆驗不過，再猜只是消耗驗證輪次。
+>
+> **更新 2026-08-15（下放包 19）**：新增 #12（跨 feature，依 **R-C21** 登於
+> 本帳並具名對象 `home`）、#13／#14（兩份外部 spec，其內容已判 out of scope，
+> **Low，不需補入、不阻塞**）。三者皆不影響 Comfort 之生成。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
@@ -52,6 +56,10 @@ batch gate 都要按 Urgency 回報。
 | 8 | CFTS043 4803259 之 NOTE 效力確認（非檔案，屬上游釐清） | 🔵 **DEFERRED 2026-08-14（10 §2）** —— Pei 直接向 RD 反應，不由本 pipeline 追。依 R15-2（open PENDING 意為「待裁決」非「待外部條件」）自 open PENDING 移出、自「阻塞 D-C10」清單移除。**20.x 十節 verdict 不因 DEFERRED 而變動**，依 R-C12 維持 `undetermined` | 10 節（20.1 ~ 20.4.3） | 不阻塞 | A-CF12 | ~~High~~ → **DEFERRED（Pei 對 RD）** |
 | 10 | `VINtoArchitecture decoding v3.xlsx` | ⏳ **客戶端存在，待 Tier 3 補入**（09 §4 訂正：08 §3 之「同目錄」指客戶端 `25PI3.5/Reference Docs/ECU Specific Reference Documents/`，非 `inputs/`；執行層「全 repo 不存在」之實測正確，性質是**待補入**而非**不存在**）。惟其為 VIN→architecture 解碼表，回答 7" 螢幕問題之可能性低（09 §4） | 3 節（19.1–19.3） | D-C10 裁定 | A-CF08 | Low（09 §5 已改為請 Pei 指認來源）|
 | 11 | **HMI Pop Up List** —— 定義 Comfort 各 popup 之內容與行為者 | ❌ **未入 `inputs/`**，`paths.popup_list` 為 null。**新需求（2026-08-15）**：ch11.1／11.2 之 `opens popup and` 是 ch11 與 ch12 之唯一實質差異，而該 popup 究竟是**進入路徑**（中介畫面）或**回饋**（狀態提示），決定 ch11／ch12 應合併或拆回兩組。僅憑措辭推斷不足 | 59 節（`Heated Vented Seats` 組之存廢） | Phase 4 該組；pilot 不受影響 | A-CF13 | **High** |
+| 12 | **`features/home/feature.yaml` 之 `done_region.author_value`（對象 feature：`home`）** | ❌ 現值 `Arif`，實際 done region 作者為 `ArifChen`（`forms/…_Home_20260809.xlsx` Z 欄，144 列）。以現值選取得 **0 列** —— `build_remaining.py` 與 `write_back.py` 之 content-hash invariant 均會誤選。**依 R-C21 登於 Comfort 帳上並具名對象；home 之任何檔案未動、亦不代建檔** | 0（Comfort 不受影響） | 0 | A-CF14 | Medium |
+| 13 | `HMI Core Logic and Flow`（requirement N0 —— 長按之判定門檻／重複速率／加速曲線） | ⏳ **不需補入**（19 §4.3）—— 其所擁有之內容已判 **out of scope**，取得反而誘使測試越界。列此僅供日後查考 | 0 | 0（不阻塞） | — | **Low** |
+| 14 | `CFTS044`（腰靠／側靠級距之量值，及與舊款 4-way rocker 之等效性） | ⏳ **不需補入**（19 §4.3）—— 同上，已判 out of scope，僅供查考 | 0 | 0（不阻塞） | — | **Low** |
+| 15 | **腰靠／側靠調整狀態之呈現位置**（非檔案，屬上游釐清） | ⏳ ch13 五節皆未提及 —— 已命名之可觀察量（`Seat Control Popup`／`Seats tab`／`selected option`／`level`／`greyed out`／`error tone`）皆不含顯示位置。**與 #14 不同**：CFTS044 擁有的是級距**量值**，非顯示位置 | 4 條 TC 之 ER（011/012/013/014） | 不阻塞（20 §4 之修法已使 ER 不依賴之） | A-CF15 | Medium |
 
 ## 已量測、無需索取
 

@@ -1,0 +1,19 @@
+outline	pattern	sentence
+2.1	depending on vehicle configuration	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configuration.
+2.1	R1 Low / R1 High / R1H	Front, Seats (WS or R1 Low) or Seat & Wheel (Maserati), Massage, Rear.
+2.1	is available	If only Front climate is available in a specific vehicle the tabs will not be displayed.
+2.3.1	Some vehicles	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+2.5	in certain modes	RECIRC is not available in certain modes.
+2.5.1	Some vehicles	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button:
+2.7.1	Some vehicles	C6.1) In some vehicles fan speed ranges for front hvac are:
+2.7.1	In some vehicles	C6.1) In some vehicles fan speed ranges for front hvac are:
+2.9	in certain modes	REAR DEFROST is not available in certain modes.
+2.9	if this feature available	Rear Defrost automatically turns on EXTERIOR REAR-VIEW MIRROR DEFROST if this feature available.
+2.10	depending on vehicle configuration	Climate off affects every climate function with the exception of FRONT /MAX DEFROST (depending on equipment) and REAR DEFROST (and seat/wheel controls).
+7.6	is available	Rear climate is unavailable when front climate is off.
+9.1	Some vehicles	CR11.) On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts.
+11.6	is available	R1HVS1.) If the independent seat zone feature is available, when heated or vented seats are activated the seat zone control will default to both seat back and seat cushion active.
+11.11	if the vehicle is configured	R1HVS4.) Heated/vented seat, heated wheel will not be displayed in the comfort section if the vehicle is configured with hard buttons for comfort controls.
+14.13	For vehicles with	HVACP13.) For vehicles with a lower hvac screen, interactions with that screen will not trigger popups on the head unit (e.g.
+14.14	For vehicles with	HVACP14.) For vehicles with dual zone climate versions with dual airflow modes on 8.4", 10.1" Landscape, 10.25" and 12.3" radios, there will be driver and passenger centric popups.
+14.19	R1 Low / R1 High / R1H	show for R1Low, do not show for R1H.

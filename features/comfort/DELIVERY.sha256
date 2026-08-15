@@ -28,9 +28,10 @@
 #          不刪列（避免位移 DV sqref 與 R10 之 x14 下拉）
 #   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；
 #          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
-#   狀態 : **未經 Excel 確認**。profile §0.1 保留四項確認予 Pei
-#          （無修復提示／R 欄下拉九項可用／D5 Scope 正確／10–11 列已清）。
-#          **Phase 4 於該確認前不開始。**
+#   狀態 : **Excel-confirmed by Pei 2026-08-15（四項）** —— 無修復提示／
+#          R 欄下拉九項可用／D5 Scope 正確／10–11 列已清且無殘留列號。
+#          下放包 18 §1。A-CF07 據此 CLOSED。
+#          （狀態欄更新，非改寫既有記載；本 ENTRY 之 hash 與內容未變動）
 #
 # 輸入基準
 cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx

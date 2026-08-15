@@ -393,6 +393,60 @@ pilot review 時，違反本條者列為 defect（非 style-divergence）。
 
 ---
 
+## R-C20 —— 下放包 17 §2（Pei 裁定，2026-08-15）
+
+**適用全 feature**；安置位置待 canon re-sync（17 §6）。既有 feature 之
+BASELINE 是否補齊屬 Pei 裁定，**另案，本包不自行擴及**（17 §2 末）。
+
+```
+R-C20  BASELINE 之涵蓋範圍以來源為準，不以目錄為準
+
+features/<feature>/BASELINE.sha256 須涵蓋該 feature 賴以生成之全部來源檔，
+不論其位於 inputs/、spec-index/ 或其他路徑。
+
+判準為「此檔若變動或消失，該 feature 之產出是否失去依據」，
+而非「此檔在不在 inputs/」。
+
+理由：目錄型判準會在來源被搬移時靜默失效（R-C11 將 spec 移出 inputs/ 即為
+一例），而 gitignore 之涵蓋範圍與 BASELINE 之涵蓋範圍各自獨立演變，
+兩者之交集無人維護。
+
+Comfort 之 BASELINE 為 8 檔：inputs/ 5 檔 ＋ spec-index/ 之 SR24
+export .xlsx／.json 與 SR24 PDF。
+```
+
+---
+
+## R-C21 ~ R-C22 —— 下放包 19 §1／§5（Pei 裁定，2026-08-15）
+
+**兩條適用全 feature**；安置位置待 canon re-sync（19 §8）。
+
+```
+R-C21  跨 feature 發現之登記位置
+
+於 A feature 之作業中發現 B feature 之缺陷者，登記於 A 之 ANOMALIES.md 與
+A 之 DATA_REQUESTS.md，並於該列具名對象 feature。
+
+不代 B feature 建檔、不改 B 之任何既有檔案。B 之處置由 B 自身之 workstream
+決定。
+
+理由：跨 feature 寫入使「誰在維護這個檔」失去單一答案；而登記之目的是讓
+發現不遺失，該目的在發現者之帳上即已達成。
+```
+
+```
+R-C22  不可量化 ≠ 不可觀察
+
+ER 之判準為「可觀察、可判定」，非「可量化」。條文未給數值者，ER 以條文
+自身命名之可觀察量表述，不得補具體量值（§8.4.1），亦不得因無法量化而
+標 BLOCKED。
+
+BLOCKED 保留給「該行為完全由他方執行，本 ECU 無任何可觀察端」之情形
+（Privacy [BLOCKED-ECU] 前例）。「值不知道但變化看得見」不屬之。
+```
+
+---
+
 ## 執行層回報（2026-08-14，Phase 0 → Phase 1）
 
 以下為執行層對上列條文之落實紀錄與實測值，**非條文本身**。

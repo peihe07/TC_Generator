@@ -1,0 +1,41 @@
+{
+ "parent": "SWE1-HVAC-077",
+ "outline": "13.2.1",
+ "batch": "Seat Control Tab",
+ "source_clause": "LS1.1) The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster.",
+ "reasoning": "驗證目標：13.2.1（LS1.1）所列腰靠／側靠四種可調類型皆可取得。關鍵情境條件：需先開啟 Seats tab —— 該動作為 step-controlled state，依 §4.4 下放為 procedure 第 1 步而非 Pre-Condition（20 §1 修正）。為什麼這樣切：037 對本節僅產出一個 leaf（parent 形態即需求，R-C3），且條文以單句列舉四者，拆成四條會使 Test Set 欄淪為 TC ID 副本。刻意略過：各類型之調整範圍與級距 —— 本節未定義，級距屬 13.5 且其量值由 CFTS044 擁有（19 §4.2）。",
+ "keywords": [
+  "lumbar",
+  "bolster",
+  "adjustment types",
+  "Seats tab"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-077",
+   "tc_id": "NR1L-ComfortHMI-004",
+   "tc_title": "Four lumbar and bolster adjustment types are available",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Seats tab\n2. Read the list of lumbar and bolster adjustment types offered on the Seats tab",
+   "expected_result": "1. The Seats tab is shown\n2. The offered adjustment types are \"Lumbar In/Out\", \"Lumbar Up/Down\", \"Back Bolster\" and \"Thigh Bolster\"",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.2.1",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "parent": "SWE1-HVAC-080",
+ "outline": "13.4",
+ "batch": "Seat Control Tab",
+ "source_clause": "LS3.) The user will be able to long press on the hard button (-, +) or on the touch screen itself to initiate fast increases/decreases. (See HMI Core Logic and Flow, requirement N0.)",
+ "reasoning": "驗證目標：13.4（LS3.）長按 (-, +) 或觸控螢幕啟動快速增減。關鍵情境條件：依 19 §4.1 收窄 —— 長按之判定門檻、重複速率、加速曲線由 HMI Core Logic and Flow requirement N0 擁有，不在本 feature 範圍，不測、不補值，故 procedure 不指定按壓時長、ER 不述速率。為什麼這樣切：037 拆為「快速增減被啟動」與「邏輯依 Core N0」兩個 leaf。刻意略過：-080-02 之區別內容純為上述委派，且其 Verification Criteria 之 Action 與 -01 相同（兩個操作面本就同在 -01），扣除委派後無餘留 —— 依 20 §2.1 回報停下，待裁（見 split_reason）。",
+ "keywords": [
+  "long press",
+  "fast increase",
+  "fast decrease",
+  "level",
+  "delegated"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "delegated-only",
+  "delta": "037 之 -080-02 全文為「The system shall logic as per HMI Core Logic and Flow (requirement N0)」，其 Verification Criteria 之 Action 與 -080-01 相同（Long press (-, +) hard button or touchscreen control）—— **兩個操作面本就同在 -01**。故本 leaf 之區別內容純為委派（Core N0 之長按門檻／速率／加速曲線），扣除後於本 feature 範圍內**無餘留**。依 20 §2.1 回報停下，待裁"
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-080-01",
+   "tc_id": "NR1L-ComfortHMI-009",
+   "tc_title": "Long press initiates fast lumbar level change",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "The user will be able to long press on the hard button (-, +) or on the touch screen itself to initiate fast increases/decreases",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [test-setup] The Seats tab is open and the lumbar/bolster level is away from both its minimum and its maximum",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the lumbar/bolster state shown before the adjustment\n2. Long press \"+\" on the door seat control\n3. Release \"+\"",
+   "expected_result": "1. The lumbar/bolster state shown before the adjustment is recorded\n2. The lumbar/bolster increases faster than it does for a single short press\n3. The lumbar/bolster stops increasing",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.4",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-080-02",
+   "tc_id": "NR1L-ComfortHMI-010",
+   "tc_title": "Long press on the touch screen initiates the same fast change",
+   "test_group": "Comfort",
+   "test_set": "Seat Control Tab",
+   "test_item": "The user will be able to long press on the touch screen itself to initiate fast increases/decreases, with the long-press logic as per HMI Core Logic and Flow (requirement N0)",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [test-setup] The Seats tab is open and the lumbar/bolster level is away from both its minimum and its maximum",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the lumbar/bolster state shown before the adjustment\n2. Long press \"+\" on the door seat control\n3. Release \"+\"",
+   "expected_result": "1. The lumbar/bolster state shown before the adjustment is recorded\n2. The lumbar/bolster increases faster than it does for a single short press\n3. The lumbar/bolster stops increasing",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_13.4",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": true,
+   "split_reason": "037 將本節拆為兩個 leaf，本 leaf 之區別內容純為委派至外部 spec，於本 feature 範圍內扣除後無餘留。依 20 §2.1 回報停下，待裁；本 TC 之驗證目標暫同其 -01 sibling，不得視為已定案",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

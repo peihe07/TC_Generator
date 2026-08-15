@@ -16,12 +16,14 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF04 | 工具 | `intake.py` 只掃 drop folder，spec_mode 提案偏低 | OPEN（已知限制，非缺陷） | 無 |
 | A-CF05 | 工具缺陷 | `intake.py` 需求清單靜默漏計 57 列（346 vs 403） | FIXED 2026-08-14 | 無 |
 | A-CF06 | 環境 | `pymupdf` 未安裝 → recon 改用 `pdftotext` fallback；SR24 PDF 具 text layer | **CLOSED**（09 §4 授權，已實作） | 無 |
-| A-CF07 | 範本殘留 | 空白範本第 10–11 列樣本資料須於 write-back 清除 | OPEN（P4 前處理） | P7 交付 |
+| A-CF07 | 範本殘留 | 空白範本第 10–11 列樣本資料須於 write-back 清除 | **CLOSED 2026-08-15**（Pei 於 Excel 四項確認通過） | 無 |
 | A-CF08 | 覆蓋缺口 | SR24 **基線內** 51 節未被 037 引用；17 節 substantive 已判讀（4 in_scope／13 undetermined），4 節依 R-C16 為 RD-1 覆蓋缺口項 | OPEN（10 節 DEFERRED、3 節待 DR #6） | 無 |
 | A-CF09 | 稽核（跨 feature） | **home／projection／privacy** 三者之 Sign-off 為空白範本（範圍已限縮） | OPEN（另案，不回溯補簽） | 無 |
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
 | A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
+| A-CF15 | note（spec 缺口） | ch13 從未說明腰靠／側靠調整量顯示於何處 —— 可觀察量僅間接可得 | OPEN（RD-1 候選，不阻塞） | 無 |
+| A-CF14 | 跨 feature 稽核 | `features/home/feature.yaml` 之 `done_region.author_value` 為 `Arif`，實際 done region 為 `ArifChen` —— 以前者選取得 0 列 | OPEN（另案，不逕改 home） | 無 |
 | A-CF13 | spec 內部瑕疵 | **四項**：`C16.)` 跨 2.15／16.17；`W0.)` 跨 17.1／18.1／19.1；`HVS1/2/4/5/6` 跨 ch11／ch12；**12.1 之 `LEDs (.` 孤立左括號** | OPEN（RD-1 候選，非阻塞） | 無 |
 
 ---
@@ -667,3 +669,68 @@ arrows/fan 與 LED。**兩者皆未提及任何實體鍵，亦未提及 status b
 
 第 4 項是 R-C18 之另一個佐證：它不在標題裡，任何以截斷欄位為輸入的比對
 都看不到它。前三項可由標籤發現，第四項不能。
+
+## A-CF07 —— CLOSED 2026-08-15
+
+`output/…_SWQT_Comfort_20260815_prepared.xlsx`（SHA256 `b68117a211b08009…`）
+經 **Pei 於 Excel 開啟**，四項確認全數通過（下放包 18 §1）：
+
+1. 無修復提示
+2. R 欄下拉可用且為九項
+3. D5 Scope 正確
+4. 第 10–11 列已清且無殘留列號
+
+程式層檢查（48 members、DV counts、五格清空、B 欄公式完整）已於上繳 09b
+記載，**但那些不能代替 Excel 自身之檔案完整性判定** —— 兩端俱備方為完整。
+此為 Comfort 首次確認 zip-level surgical path 於本 feature 可行。
+
+## A-CF14 —— `features/home/feature.yaml` 之 author_value 與實際不符（跨 feature 稽核）
+
+**登記依據**：下放包 17 §1（G-1 執行時發現）。
+
+| 項 | 值 |
+|---|---|
+| `features/home/feature.yaml` | `done_region.author_value: Arif` |
+| 實際（`forms/…_Home_20260809.xlsx` Z 欄） | **`ArifChen`** |
+| 以 `Arif` 選取 | **0 列** |
+
+**危險形態**：0 列之母體會產出「全數不含 modal」之結論 —— 一個看起來像
+結論的空集合。G-1 之母體列數 assertion（== 144）擋下此事，此為
+「檢查項須確認其在該階段確實可能失敗」之正例。
+
+**FORMS.md 已獨立記載同一事實**（其 provenance warning 第 2 點：
+「`Z` = `ArifChen` breaks the Home done-region selector … 這是 feature.yaml
+變更加上新基準雜湊，不是靜默編輯」）—— 兩處各自發現，結論一致。
+
+**不逕改 home**（17 §5.3）。**執行層另回報一項路徑問題**：17 §5.3 要求
+「於 `features/home/DATA_REQUESTS.md` 開列」，但**該檔不存在**，開列即須
+新建檔案，而同句又要求「不逕改 home 之任何檔案」。兩者衝突，故本輪
+**未動 home 任何檔案**，擬列之內容備於上繳 10 §2.3，待裁示後補。
+
+## A-CF15 —— ch13 未說明腰靠／側靠狀態顯示於何處（note）
+
+**登記依據**：下放包 20 §5。
+
+13.2 ~ 13.6 命名了 `Seat Control Popup`、`Seats tab`、`level`、`greyed out`、
+`error tone`，**但未指明調整量顯示於何處**。
+
+| 已命名之可觀察量 | 出處 |
+|---|---|
+| `Seat Control Popup`、`Seats tab` | 13.2 |
+| `the selected option` | 13.3.1 |
+| `level`、`grey out`、`error tone` | 13.6 |
+| **調整量之顯示位置** | **無任何節提及** |
+
+**與 19 §4.2 之關係**：13.5 之級距**量值**由 CFTS044 擁有（已判 out of
+scope）；本條所指者不同 —— 是**顯示位置**，而該資訊**無任何 spec 明載**，
+CFTS044 亦未被指為其擁有者。
+
+**不阻塞**：20 §4 之修法已使 ER 不依賴該資訊 —— ER 之主詞改用各節自身之
+動詞（13.3 之 `reflected`、13.5 之 `increase`／`decrease`），
+`level` 僅保留於 13.6（該節唯一使用該詞者）。
+
+**RD-1 候選**：請上游確認腰靠／側靠之調整狀態是否有規定之呈現位置。
+
+**界線（R-C22）**：若日後實機驗證顯示確無任何可讀之狀態呈現，
+13.5 方回到 BLOCKED 之候選 —— 屆時之理由才是「本 ECU 無任何可觀察端」，
+而非「值不知道」。
