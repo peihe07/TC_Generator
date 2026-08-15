@@ -11,6 +11,14 @@
 # 記錄單位（R27-2）：**一次 --write 的輸入基準、一次 --write 的輸出、
 # 任何被送出或被 tag 的產物。** 不入台帳者：同一次操作內的中間檔、探針產物。
 #
+# **`type` 欄（29 §5.2）**：每個 ENTRY 標其一，二值不得混用 ——
+#   produced          —— output/ 之產出物。「這份位元組是我們做出來的」
+#   folder-attachment —— 置入客戶交付夾之附件。「這份位元組是我們放過去的」
+# 兩者之差別不是位置而是**責任**：produced 者其內容由本 pipeline 負責，
+# folder-attachment 者其內容來自別處（spec-index），本 pipeline 只負責
+# 「放進去的與來源逐位元組相同」。**一個台帳兩類條目，不另立第二本**
+# （同 R-C21：誰在維護這個檔，只能有一個答案）。
+#
 # 驗證（自 features/comfort/ 執行）：
 #     shasum -a 256 -c --ignore-missing DELIVERY.sha256
 #
@@ -22,6 +30,7 @@
 #
 # ENTRY 001 — 2026-08-15 — 範本清列（A-CF07 / profile §0.1 / R23-4 程序）
 #
+#   type : produced
 #   操作 : features/comfort/scripts/prepare_workbook.py --write
 #   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
 #   內容 : 清空 D10 / F10 / G10 / S10 / D11 五格；B 欄公式與 style 屬性保留；
@@ -40,6 +49,7 @@ b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-F
 #
 # ENTRY 002 — 2026-08-15 — pilot 批寫回（下放包 25 §3）
 #
+#   type : produced
 #   操作 : features/comfort/scripts/write_back.py --write
 #   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
 #   來源 : ENTRY 001 之輸出（b68117a211b08009…），即 Pei 已於 Excel 確認之
@@ -52,15 +62,47 @@ b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-F
 #          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
 #   驗證 : 25 §3.1 前置 gate 5 項全 PASS；§3.3 寫回後 assertion 9 項全 PASS
 #          （皆自產出檔讀回，非自記憶體）
-#   狀態 : **未經 Excel 確認** —— 產出後即停下，等 Pei 執行 profile §0.1 之
-#          四項（無修復提示／R 欄下拉九項可用／D5 Scope 正確／
-#          row 10–23 內容與編號正確）。程式層檢查不能代替 Excel 自身之
-#          檔案完整性判定。
-#   未做 : 不複製至客戶交付路徑（10_Reviewing/…/ComfortHMI/）—— 交付形式、
-#          位置、送達屬 Tier 3，Pei 確認後另裁。prepared 檔未動；
-#          ENTRY 001 未改；git 未執行。
+#   狀態 : **Excel-confirmed by Pei 2026-08-15（四項）** —— 無修復提示／
+#          R 欄下拉九項可用／D5 Scope 正確／row 10–23 內容與編號正確。
+#          下放包 26 §1。程式層與 Excel 自身之判定兩端俱備。
+#          **not delivered（Pei 2026-08-15）** —— 下放包 28 §1：本檔為
+#          14 / 403 條（3.5%），pilot 之目的（定型寫法）已達成，它不是
+#          可供評閱之交付件。留在 output/，不置入交付夾。交付時點為語料
+#          完成或 Pei 指定之里程碑，屆時另行下放。
+#          （狀態欄更新，非改寫既有記載；本 ENTRY 之 hash 與內容未變動）
+#   未做 : 不複製至客戶交付路徑（10_Reviewing/…/ComfortHMI/）。
+#          prepared 檔未動；ENTRY 001 未改；git 未執行。
+#
+#   **本台帳為「已產出」之帳，非「已交付」之帳**（28 §1）。兩者不得混用：
+#   ENTRY 有 hash 只證明該位元組存在過，不證明它送出去了。交付與否一律
+#   讀狀態欄。
 #
 # 輸入基準
 b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
 # 輸出
 b4ad82c2487a38c0206b032ea540ab130c56943b8726e660312fa26be1cc7856  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_pilot.xlsx
+#
+# ENTRY 003 — 2026-08-15 — 交付夾基線一致化：放入 SR24 兩檔（下放包 27 §3）
+#
+#   type : folder-attachment
+#   操作 : 複製（cp），保留原檔名；複製後以 cmp 逐位元組比對來源與目的地
+#          （不以檔名或大小標籤代替，R-C14）。兩檔皆 identical。
+#   依據 : A-CF02，Pei 2026-08-15 裁定選項 1 —— 交付夾之 spec 附件改為
+#          SR24 CR24879，與 037（498 列相異 stem 數 = 1）及工作簿一致。
+#   目的地: ~/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/
+#          Climate Control Interface/ComfortHMI/
+#   來源 : spec-index/sources/ 與 spec-index/cache/（皆在 repo 內，未刪）
+#   內容 : SR24 PDF 6,462,311 bytes；SR24 SYS1 export 70,040 bytes
+#   順序 : **先放後移** —— 任一時點交付夾內至少有一份完整之 spec
+#   待辦 : SR25 兩檔之移除屬 Tier 3，由 Pei 執行（檔名見上繳 17 §3.2）。
+#          移除完成前，交付夾內 SR24 與 SR25 並存。
+#   未做 : 未動交付夾內既有任何檔；未刪 spec-index 之來源；git 未執行。
+#
+#   **本 ENTRY 之 hash 指向 repo 內之來源檔，非交付夾內之副本** ——
+#   交付夾在 repo 外，`shasum -c` 之相對路徑到不了它。故本 ENTRY 驗的是
+#   「來源仍未被動過」，交付夾那一端之相符由當時之 cmp 記錄於此，
+#   **事後不可重驗**。此為跨樹台帳之固有限制，記明以免被讀成已持續驗證。
+#
+# 來源（repo 內；交付夾副本與其於 2026-08-15 逐位元組相同）
+fc5d3cd1d524f4d5e6b2b1125ac4a243847d9dbcc7db2fa40cdc3f3760efb1a1  ../../spec-index/sources/Comfort HMI Logic and Flow R1 SR24 Post 3A CR24879 (September 25 2023).pdf
+6982d37db81b36e4bd3643ca1356c12d3837fb5843ba9cd06c4ee3317a073969  ../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).xlsx

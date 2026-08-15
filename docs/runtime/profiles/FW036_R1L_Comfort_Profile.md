@@ -141,13 +141,27 @@
 - **設備配置軸**（本 feature 之主軸，逐節出現）：ATC / MTC、單區 / 雙區 /
   四區、tri-mode 有無、MAX A/C 有無、MAX DEF 有無、独立座椅分區有無、
   加熱方向盤 Multi-Level / Single-Level、Standard vs Multi-Level 座椅、
-  **secondary lower screen 之有無**（第九軸，19 §2.1）
+  **secondary lower screen 之有無**（第九軸，19 §2.1）、
+  **REAR DEFROST 之有無**（第十軸，29 §2）、
+  **soft top 車身之有無**（第十一軸，29 §2）
 - **機型軸**：R1 Low / R1 High（`14.19` 之 `-02` 為唯一含此條件者）
 - **市場／變體軸**：EMEA ICS（ch16 全章）
 - **禁用**：`HU is powered on`、`Climate is available`（皆為隱含環境前提）
 
 **每一條配置條件須具名其來源節次**；不得以「某些車輛有此配置」概括
 （§8.4.1 禁造值）。
+
+**第十軸 REAR DEFROST 之有無**（29 §2）：來源節 **3.4**（C22 明文
+`when not present in the vehicle`）。**3.3 之條文（C21 一句）不含任何裝備
+條件，不得作為本軸之出處** —— 3.3 之 TC 若需此條件，依 **R-C29** 標 `(3.4)`。
+
+**第十一軸 soft top 車身之有無**（29 §2）：來源節 **3.4**（C22 明文
+`For soft top vehicles such as JL/JT`）。與機型軸（R1 Low／R1 High）
+**為不同維度**：前者為車身型式，後者為主機變體，**不併入機型軸**。
+
+> **措辭限制**：PC 一律寫「soft top」，**不寫成「JL or JT」**。條文為
+> `such as JL/JT`（**例示**），寫成 JL/JT 即窄於條文 —— 屬 §8.4.1 之
+> **反向造值：把例示讀成窮舉**。JL/JT 得於同句以 `such as` 形式引為例示。
 
 **每一個 `pre_conditions` 行須先通過 R-C28 之三問，出處在最前**（24 §4.3）：
 先問「該事實在其標註來源節之 `full_text` 有無明文對應」，無則停 ——

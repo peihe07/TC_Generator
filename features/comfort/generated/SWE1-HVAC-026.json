@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HVAC-026",
+ "outline": "3.4",
+ "batch": "Tri-Mode Climate",
+ "source_clause": "C22.) For soft top vehicles such as JL/JT, when configured, the rear defrost button will not appear when not present in the vehicle.",
+ "reasoning": "驗證目標：3.4（C22）規定 soft top 車身在未配備 rear defrost 時，該按鈕不出現，單一 037 leaf 對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：兩項前提皆為本節明文，故依 R-C28 第一問通過並標 (3.4)，無跨節取據，specification_reference 僅列本節。第十一軸之措辭以「soft top」為準並以「such as JL/JT」引條文自身之例示 —— 寫成「JL or JT」即把例示讀成窮舉，屬 §8.4.1 之反向造值（29 §2）。為什麼這樣切：本節只定出一個顯示結果，無分支可分。刻意略過：條文之「when configured」未定義其所指之設定項，故不寫入任何配置步驟（§8.4.1）；rear defrost 存在時之按鈕行為本節未述，不作反向配對（§7 之 negative pairing 需條文支撐，此處無）。",
+ "keywords": [
+  "soft top",
+  "JL",
+  "JT",
+  "rear defrost",
+  "not present"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-026",
+   "tc_id": "NR1L-ComfortHMI-028",
+   "tc_title": "Rear defrost button is absent when the vehicle has no rear defrost",
+   "test_group": "Comfort",
+   "test_set": "Tri-Mode Climate",
+   "test_item": "For soft top vehicles such as JL/JT, when configured, the rear defrost button shall not appear when not present in the vehicle",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a soft top vehicle, such as JL/JT (3.4)\n2. [spec-verbatim] Rear defrost is not present in the vehicle (3.4)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Read the climate screen for the rear defrost button",
+   "expected_result": "1. The climate screen is displayed\n2. The rear defrost button does not appear",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

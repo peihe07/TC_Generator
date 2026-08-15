@@ -29,6 +29,9 @@
 | 14 | 2026-08-15 | **pilot rev4** ＋ 寫回 **dry-run**（未執行） | [handoff/22_rev3_review.md](handoff/22_rev3_review.md) | [upstream/14_pilot_rev4_and_dryrun.md](upstream/14_pilot_rev4_and_dryrun.md) | R-C25、R-C26 | — | PASS（列高待裁） |
 | 15 | 2026-08-15 | **pilot rev5** —— TC-007 判定、Owner 前置、列高前例量測 | [handoff/23_rev4_review.md](handoff/23_rev4_review.md) | [upstream/15_pilot_rev5.md](upstream/15_pilot_rev5.md) | R-C27 | — | PASS（列高待裁） |
 | 16 | 2026-08-15 | **寫回執行** —— 三段逐驗，止於 Excel 確認前 | [handoff/24_rc28_three_questions.md](handoff/24_rc28_three_questions.md)＋[handoff/25_writeback.md](handoff/25_writeback.md) | [upstream/16_writeback.md](upstream/16_writeback.md) | R-C28 | DELIVERY ENTRY 002 | PASS（gate 5/5、assertion 9/9；**未經 Excel 確認**） |
+| 17 | 2026-08-15 | **A-CF02 交付夾一致化** ＋ 三項待補檢查 | [handoff/26_writeback_review.md](handoff/26_writeback_review.md)＋[handoff/27_acf02_baseline_alignment.md](handoff/27_acf02_baseline_alignment.md) | [upstream/17_acf02_and_gates.md](upstream/17_acf02_and_gates.md) | — | A-CF02 RESOLVED | PASS（lint 32→35，三項皆反向驗證） |
+| 18 | 2026-08-15 | **批次 2 Tri-Mode Climate** —— 11 生成 / 3 停下 | [handoff/28_no_delivery_batch2.md](handoff/28_no_delivery_batch2.md) | [upstream/18_batch2.md](upstream/18_batch2.md) | — | — | PASS（35/35，25 TC；**3.3／3.4 待軸裁定**） |
+| 19 | 2026-08-15 | **批次 2 補齊** —— 第十・十一軸，Tri-Mode Climate 14/14 | [handoff/29_axes_rc29_rc30.md](handoff/29_axes_rc29_rc30.md) | [upstream/19_batch2_complete.md](upstream/19_batch2_complete.md) | R-C29、R-C30 | DELIVERY ENTRY 003 | PASS（35/35，28 TC；spec-ref 改判多節，四項反向驗證） |
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；

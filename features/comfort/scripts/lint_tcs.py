@@ -35,6 +35,8 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 import openpyxl
 import yaml
 
@@ -64,6 +66,24 @@ BLOCKED_MARKERS = ("[BLOCKED-SPEC]",)   # profile §5.1 / R-C24
 MARKER_WHITELIST = {"[BLOCKED-SPEC]": {"NR1L-ComfortHMI-010",
                                        "NR1L-ComfortHMI-012"}}
 OWNER_WINDOW = 60          # R-C27 — chars visible on the clipped first line
+# handoff 26 §4.1 — keys a TC object may carry WITHOUT landing in a column.
+# `COLS` in write_back.py is a hand-kept list; if it loses an entry, nothing
+# shouts. This gate makes the silence audible: every TC key must either map to
+# a column or be named here. Adding to this list is a ruling, not an edit
+# (same reason as MARKER_WHITELIST — a self-issuable whitelist is no whitelist).
+# Extended to the doc level per 29 §5.1: four of the original eight entries
+# (reasoning, keywords, duplicate_of, distinguishing_axis) live on the doc
+# object, not the TC object, so naming them while scanning only TCs named
+# nothing — they were never in the scanned layer.
+NOT_IN_WORKBOOK = {
+    "tc_title",             # canon §4.3 — derivation input, never a column
+    "estimated_test_time",  # no column in revision C
+    "split_flag", "split_reason",
+    "reasoning", "keywords", "duplicate_of", "distinguishing_axis",
+    # doc-level structural keys (29 §5.1)
+    "assumptions", "batch", "outline", "parent", "source_clause", "tcs",
+}
+ANOMALY_ID = re.compile(r"\bA-CF\d+\b")
 REASONING_SENTENCES = (2, 5)   # §10.4
 # Chinese full stops are not followed by a space, so a lookahead for
 # whitespace counts a whole paragraph as one sentence — which is how this
@@ -151,12 +171,30 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                 "(Setup -> Verification)")
 
         # ---- spec reference (R-C1) --------------------------------------
+        # R-C29 lets one TC cite several sections — its own, plus any section
+        # a cross-section pre_condition draws its fact from (§10.7 "relied on
+        # as setup"). Items are "; "-separated and each carries the full stem,
+        # so the stem rule stays per-item rather than being checked once and
+        # assumed for the rest.
         ref = tc["specification_reference"]
-        if not ref.startswith(STEM + "_"):
-            bad("spec-ref-stem", f"{w}: stem is not the ruled SR24 filename (R-C1)")
-        outline = ref[len(STEM) + 1:]
-        if outline not in auth["outlines"]:
-            bad("spec-ref-outline", f"{w}: {outline!r} is not one of the 129 cited sections")
+        refs = [r.strip() for r in ref.split(";") if r.strip()]
+        if len(refs) != len(set(refs)):
+            bad("spec-ref-outline",
+                f"{w}: specification_reference repeats a section: {refs}")
+        for item in refs:
+            if not item.startswith(STEM + "_"):
+                bad("spec-ref-stem",
+                    f"{w}: stem is not the ruled SR24 filename (R-C1) — {item!r}")
+                continue
+            outline = item[len(STEM) + 1:]
+            if outline not in auth["outlines"]:
+                bad("spec-ref-outline",
+                    f"{w}: {outline!r} is not one of the 129 cited sections")
+        if refs and not refs[0].endswith("_" + d["outline"]):
+            # The TC's own section leads; cited-for-setup sections follow.
+            bad("spec-ref-outline",
+                f"{w}: first specification_reference is not the TC's own "
+                f"section {d['outline']!r} (R-C29: own section leads)")
         if "SR25" in ref:
             bad("spec-ref-sr25", f"{w}: reference names SR25 (R-C1 forbids)")
 
@@ -265,6 +303,45 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         if (axis == "none") != bool(dup_of):
             bad("sibling-axis", f"{d['parent']}: axis={axis!r} but duplicate_of={dup_of!r} "
                                 "(§4.6 requires axis='none' <=> duplicate_of set)")
+
+    # ---- handoff 26 §4.1 — every TC key lands in a column or is named ----
+    from write_back import COLS
+    columned = set(COLS.values())
+    scanned = [(tc["tc_id"], tc) for _, tc in all_tcs]
+    scanned += [(f"{d['parent']} (doc)", d) for d in docs]      # 29 §5.1
+    for label, obj in scanned:
+        stray = sorted(set(obj) - columned - NOT_IN_WORKBOOK)
+        if stray:
+            bad("json-key-coverage",
+                f"{label}: key(s) {stray} neither map to a workbook "
+                "column nor appear in NOT_IN_WORKBOOK. Either write_back.py's "
+                "COLS lost an entry, or the key is deliberately not delivered "
+                "and must be named (adding to the list is a ruling)")
+
+    # ---- handoff 26 §4.2 — an anomaly id cited must actually be registered --
+    # A-CF16 was used across two upstream packages while ANOMALIES.md never
+    # carried it. Citing an id and the id existing are two different things,
+    # and the failure is silent: nothing rejects a number that means nothing.
+    registered = ANOMALY_ID.findall((FEATURE / "ANOMALIES.md").read_text("utf-8"))
+    cited = {}
+    for doc in sorted((FEATURE / "docs").rglob("*.md")):
+        for aid in ANOMALY_ID.findall(doc.read_text(encoding="utf-8")):
+            cited.setdefault(aid, doc.relative_to(FEATURE).as_posix())
+    orphans = {a: p for a, p in sorted(cited.items()) if a not in registered}
+    if orphans:
+        bad("anomaly-id-registered",
+            "anomaly id(s) cited in docs/ but absent from ANOMALIES.md: "
+            + ", ".join(f"{a} (first seen {p})" for a, p in orphans.items()))
+
+    # ---- handoff 26 §4.3 — the residue scan must reach max_row -------------
+    # Verified by reading write_back.py's source, not by running it: a fixed
+    # window (24-35) silently stops short of the sheet's real extent (59), so
+    # residue past the window would never be looked at.
+    wb_src = (FEATURE / "scripts" / "write_back.py").read_text("utf-8")
+    if "ws.max_row" not in wb_src or re.search(r"range\(last, last \+ \d+\)", wb_src):
+        bad("residue-scan-window",
+            "write_back.py's post-write residue scan does not run to "
+            "ws.max_row (a fixed-width window leaves the tail unchecked)")
     return out, blocked
 
 
@@ -288,7 +365,10 @@ def main() -> int:
              # added 2026-08-15 with R-C24's BLOCKED-SPEC marker
              "blocked-row-empty", "blocked-remarks",
              # added 2026-08-15 with R-C26
-             "marker-whitelist"]
+             "marker-whitelist",
+             # added 2026-08-15 per handoff 26 §4
+             "json-key-coverage", "anomaly-id-registered",
+             "residue-scan-window"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -302,6 +382,8 @@ def main() -> int:
           f"(proc-min-steps, proc-er-1to1): {blocked_ids or 'none'}")
     print(f"- PASS — marker whitelist (profile §5.1): "
           f"{sorted(MARKER_WHITELIST['[BLOCKED-SPEC]'])}")
+    print(f"- PASS — keys deliberately not in the workbook, TC + doc layer "
+          f"(26 §4.1 / 29 §5.1): {sorted(NOT_IN_WORKBOOK)}")
     if findings:
         print(f"\n{len(findings)} finding(s):")
         for sev, g, msg in findings:

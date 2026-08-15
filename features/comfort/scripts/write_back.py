@@ -205,14 +205,18 @@ def assertions(tcs: list, report: dict) -> bool:
     g("BLOCKED row 之 L／M 為空且 Remarks 首 60 字含 Owner:", [], bad_blk,
       f"rows: {[t['tc_id'] for t in blk]}")
 
-    last = FIRST_ROW + len(tcs)
+    # handoff 26 §4.3 — scan to the sheet's real extent, not a fixed window.
+    # The window used to be 12 rows wide while max_row is 59; residue past
+    # row 35 would never have been looked at.
+    last, end = FIRST_ROW + len(tcs), ws.max_row
     residue = []
-    for r in range(last, last + 12):
+    for r in range(last, end + 1):
         for col in COLS:          # B excluded — its formula is template, not residue
             v = ws[f"{col}{r}"].value
             if v not in (None, ""):
                 residue.append(f"row{r}.{col}={str(v)[:24]!r}")
-    g(f"row {last} 起無殘留內容", [], residue, f"scanned rows {last}–{last + 11}")
+    g(f"row {last} 起至 max_row 無殘留內容", [], residue,
+      f"scanned rows {last}–{end} (ws.max_row={end})")
     wb.close()
     print()
     return ok

@@ -11,7 +11,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | # | 類型 | 標題 | 狀態 | 阻塞 |
 |---|---|---|---|---|
 | A-CF01 | note | SR25 CR29359 含 037 未分析之新章節 | RESOLVED by R-C5 | 無 |
-| A-CF02 | note | 客戶交付夾之 spec 為 SR25，與 R-C1 基線不一致 | OPEN（Tier 3，Pei 決定是否回填） | 無（不影響 pipeline 取材） |
+| A-CF02 | note | 客戶交付夾之 spec 為 SR25，與 R-C1 基線不一致 | **RESOLVED**（選項 1，Pei 2026-08-15）| 無（不影響 pipeline 取材） |
 | A-CF03 | 結構 | 34 列 parent 形態卻為 Functional Requirement | RESOLVED by R-C3 | 無 |
 | A-CF04 | 工具 | `intake.py` 只掃 drop folder，spec_mode 提案偏低 | OPEN（已知限制，非缺陷） | 無 |
 | A-CF05 | 工具缺陷 | `intake.py` 需求清單靜默漏計 57 列（346 vs 403） | FIXED 2026-08-14 | 無 |
@@ -67,9 +67,57 @@ SYS1 xlsx（72.80 KB），與 R-C1 所定之 SR24 基線不一致。
 `sys1_export` / `spec_pdf` 皆寫 SR24 全名（非萬用字元），取到 SR25 在結構上
 不可能發生。交付時之附件一致性須由 Pei 決定是否回填 SR24（Tier 3）。
 
-**執行層未複測**：該交付樹於本 session 之檔案系統不可達（已搜尋，無
-`10_Reviewing` 路徑）。上列兩個檔案大小為分析層之量測，執行層照登而未驗證。
-回填與否之決定不應僅以本條為依據，宜於可觸及交付樹時重測。
+~~**執行層未複測**：該交付樹於本 session 之檔案系統不可達（已搜尋，無
+`10_Reviewing` 路徑）。~~ —— **該判斷為搜尋範圍所致之誤判**，見下 §「零命中之
+成因」。
+
+---
+
+### RESOLVED（選項 1，Pei 裁定 2026-08-15；下放包 27）
+
+**裁定**：交付夾之 spec 附件改為 SR24 CR24879，與 037 及工作簿一致。
+
+037 之 HMI Source ID 於 2026-08-15 重測（`Analysis Report` row 8–505，
+A 欄非空 498 列）：相異檔名 stem **僅 1 個**，即
+`SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)`。
+無 SR25、無空值、無例外。**037 本身沒有模稜兩可**；矛盾只在交付夾之附件。
+
+**執行層已做（增量、可逆）**：複製兩檔至交付夾，保留原檔名，複製後以
+`cmp` **逐位元組**比對來源與目的地（不以檔名或大小標籤代替，R-C14）：
+
+| 檔案 | 來源 | bytes | cmp |
+|---|---|---|---|
+| SR24 PDF | `spec-index/sources/` | 6,462,311 | identical |
+| SR24 SYS1 export | `spec-index/cache/` | 70,040 | identical |
+
+**待 Pei 執行（Tier 3，客戶樹之移除）**：
+
+- `Comfort HMI Logic and Flow R1 SR25 Post 3A CR29359 (Feb 24 2025).pdf`
+- `SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR25_Post_3A_CR29359_(Feb_24_2025).xlsx`
+
+兩份**非資料遺失** —— `spec-index/sources` 與 `cache` 皆留有其副本。
+採**先放後移**：任一時點交付夾內至少有一份完整之 spec。
+
+**`BASELINE.sha256` 不變** —— 其涵蓋範圍為 pipeline 之來源檔（R-C20），
+交付夾附件不在其列。已複驗 8 檔全 OK。
+
+### 零命中之成因（登記供他案參照）
+
+原條目寫「該交付樹於本 session 之檔案系統不可達（已搜尋）」。**該搜尋只掃
+了 repo 內**（`find .` 自 `TC_Generator/`）。交付樹實際位於
+`~/Work/02_Project_R1LR/10_Reviewing/…`，**在 repo 之外**，本輪擴大搜尋範圍
+後一次命中。
+
+**零命中被當成「不存在」，而它其實只是「不在我搜的地方」** —— 與 R-C13
+同一形態。原條目自己寫了「宜於可觸及交付樹時重測」，那句是對的；錯的是
+「不可達」這個結論下得太早。
+
+### 重審條件
+
+**若日後基線改採 SR25**（需先推翻 **R-C1**），本項須同步重做 ——
+交付夾附件、`feature.yaml` 之 `sys1_export`／`spec_pdf`、
+`data/section_fulltext.tsv` 與全批 `specification_reference` 皆須一併換基線。
+本項之處置繫於 R-C1，**不獨立成立**。
 
 ## A-CF03 —— 34 列 parent 形態卻為 Functional Requirement（結構）
 

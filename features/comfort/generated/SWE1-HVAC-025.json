@@ -1,0 +1,61 @@
+{
+ "parent": "SWE1-HVAC-025",
+ "outline": "3.3",
+ "batch": "Tri-Mode Climate",
+ "source_clause": "C21.) MAX DEF and REAR DEF are available during climate off.",
+ "reasoning": "驗證目標：3.3（C21）以一句話定出 climate off 期間之可用性例外，兩個 037 leaf 分別對應「MAX DEF 與 REAR DEF 可用」與「其餘 climate 功能不可用」，一葉一 TC（§8.2.1）。關鍵情境條件：本節條文不含任何裝備條件，故兩項裝備前提依 R-C29 標其明文出處 —— MAX DEF 標 (3.2)「On vehicles with MAX DEF」，rear defrost 標 (3.4)「when not present in the vehicle」，兩節一併列入 specification_reference（§10.7 賴以作為 setup 者）；引用其裝備事實不等於驗證該兩節之行為，本批未擴張至 3.2 之 MAX DEF 連動或 3.4 之按鈕隱藏（§8.2.1）。為什麼這樣切：climate off 為 spec 定義之 trigger 但 TC 步驟必須自行建立，依 R-C28 第三問落於 procedure 首步而非 pre_conditions。刻意略過：2.10（C11）同時擁有「grey out remaining buttons」之視覺處置與「按 temp/fan 控制即讓 climate 復電」之行為，兩者皆非本節所定，故 -02 只以本節自身之詞「available」判定，不驗 greyed out、亦不按下任何功能鍵（後者若寫入將與 2.10 明文相牴觸）。",
+ "keywords": [
+  "climate off",
+  "MAX DEF",
+  "REAR DEF",
+  "available"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-025-01",
+   "tc_id": "NR1L-ComfortHMI-026",
+   "tc_title": "MAX DEF and REAR DEF stay available while climate is off",
+   "test_group": "Comfort",
+   "test_set": "Tri-Mode Climate",
+   "test_item": "MAX DEF and REAR DEF shall be available during climate off",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-verbatim] Rear defrost is present in the vehicle (3.4)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off\n2. Read the \"MAX DEF\" button on the climate screen\n3. Read the \"REAR DEF\" button on the climate screen",
+   "expected_result": "1. The climate system is off\n2. The \"MAX DEF\" button is available\n3. The \"REAR DEF\" button is available",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-025-02",
+   "tc_id": "NR1L-ComfortHMI-027",
+   "tc_title": "Other climate functions are not available while climate is off",
+   "test_group": "Comfort",
+   "test_set": "Tri-Mode Climate",
+   "test_item": "During climate off, the climate functions other than MAX DEF and REAR DEF shall not be available",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-verbatim] Rear defrost is present in the vehicle (3.4)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off\n2. Read the climate functions other than \"MAX DEF\" and \"REAR DEF\" on the climate screen",
+   "expected_result": "1. The climate system is off\n2. The climate functions other than \"MAX DEF\" and \"REAR DEF\" are not available",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}
