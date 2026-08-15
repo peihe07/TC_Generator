@@ -28,6 +28,7 @@
 | 13 | 2026-08-15 | **pilot rev3** —— `[BLOCKED-SPEC]` ＋ 系統性 ER 修正 | [handoff/21_blocked_spec_ruling.md](handoff/21_blocked_spec_ruling.md) | [upstream/13_pilot_rev3.md](upstream/13_pilot_rev3.md) | R-C23、R-C24 | — | PASS（31 gate 全綠） |
 | 14 | 2026-08-15 | **pilot rev4** ＋ 寫回 **dry-run**（未執行） | [handoff/22_rev3_review.md](handoff/22_rev3_review.md) | [upstream/14_pilot_rev4_and_dryrun.md](upstream/14_pilot_rev4_and_dryrun.md) | R-C25、R-C26 | — | PASS（列高待裁） |
 | 15 | 2026-08-15 | **pilot rev5** —— TC-007 判定、Owner 前置、列高前例量測 | [handoff/23_rev4_review.md](handoff/23_rev4_review.md) | [upstream/15_pilot_rev5.md](upstream/15_pilot_rev5.md) | R-C27 | — | PASS（列高待裁） |
+| 16 | 2026-08-15 | **寫回執行** —— 三段逐驗，止於 Excel 確認前 | [handoff/24_rc28_three_questions.md](handoff/24_rc28_three_questions.md)＋[handoff/25_writeback.md](handoff/25_writeback.md) | [upstream/16_writeback.md](upstream/16_writeback.md) | R-C28 | DELIVERY ENTRY 002 | PASS（gate 5/5、assertion 9/9；**未經 Excel 確認**） |
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；

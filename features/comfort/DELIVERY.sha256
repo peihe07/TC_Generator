@@ -37,3 +37,30 @@
 cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx
 # 輸出
 b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+#
+# ENTRY 002 — 2026-08-15 — pilot 批寫回（下放包 25 §3）
+#
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…），即 Pei 已於 Excel 確認之
+#          同一份位元組；splice 前實測相符方進行
+#   內容 : 目標列 row 10–23，共 14 列 —— 12 條 TC ＋ 2 條 [BLOCKED-SPEC] row
+#          （NR1L-ComfortHMI-010 / -012，L／M 為空）
+#          寫入欄 D F G H I J K L M N P R S AH；B 欄不寫入（其公式自算 1–14）
+#          留白 C E O Q T–Z AB–AG；S 欄一律 NA
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；
+#          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
+#   驗證 : 25 §3.1 前置 gate 5 項全 PASS；§3.3 寫回後 assertion 9 項全 PASS
+#          （皆自產出檔讀回，非自記憶體）
+#   狀態 : **未經 Excel 確認** —— 產出後即停下，等 Pei 執行 profile §0.1 之
+#          四項（無修復提示／R 欄下拉九項可用／D5 Scope 正確／
+#          row 10–23 內容與編號正確）。程式層檢查不能代替 Excel 自身之
+#          檔案完整性判定。
+#   未做 : 不複製至客戶交付路徑（10_Reviewing/…/ComfortHMI/）—— 交付形式、
+#          位置、送達屬 Tier 3，Pei 確認後另裁。prepared 檔未動；
+#          ENTRY 001 未改；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+b4ad82c2487a38c0206b032ea540ab130c56943b8726e660312fa26be1cc7856  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_pilot.xlsx

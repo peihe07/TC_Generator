@@ -161,6 +161,13 @@ has no content verifiable against the Comfort HMI specification alone
 
 **home（done region 144 列）**（欄寬 I=51.2 J=34.2 L=52.3 M=41.0 AH=9.0）
 
+> **「需行數」之量測條件與限制（24 §4.4 追記）**
+> 算法：`ceil(len(該欄文字) / 欄寬)` 逐行加總，取 I/J/L/M/AH 之最大。
+> **未計字型、比例字寬、CJK 全形**，故為粗估。
+> **跨檔不可比**：home 之 row 135 估 77 行，其實際列高 78pt（約 5–6 行文字）
+> —— 該檔 I 欄寬 51.2 且內容為英文比例字，等寬假設嚴重高估。
+> 本欄**只能用於同一檔內之相對比較**，不得跨檔比較絕對值。
+
 | row | 估算需行數 | height | customHeight | 可見 |
 |---|---|---|---|---|
 | 135 | **77** | 78.0 | `True` | 1 行 |

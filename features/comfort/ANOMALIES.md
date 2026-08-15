@@ -22,6 +22,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
 | A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
+| A-CF16 | 交付件呈現 | 14 列全部 `customHeight=True, height=14.0` 而 `wrapText=True` —— 折行但不長高，列表視圖只見首行 | **RESOLVED**（方向 3，Pei 2026-08-15）| 無 |
 | A-CF15 | note（spec 缺口） | ch13 從未說明腰靠／側靠調整量顯示於何處 —— 可觀察量僅間接可得 | OPEN（RD-1 候選，不阻塞） | 無 |
 | A-CF14 | 跨 feature 稽核 | `features/home/feature.yaml` 之 `done_region.author_value` 為 `Arif`，實際 done region 為 `ArifChen` —— 以前者選取得 0 列 | OPEN（另案，不逕改 home） | 無 |
 | A-CF13 | spec 內部瑕疵 | **四項**：`C16.)` 跨 2.15／16.17；`W0.)` 跨 17.1／18.1／19.1；`HVS1/2/4/5/6` 跨 ch11／ch12；**12.1 之 `LEDs (.` 孤立左括號** | OPEN（RD-1 候選，非阻塞） | 無 |
@@ -734,3 +735,41 @@ CFTS044 亦未被指為其擁有者。
 **界線（R-C22）**：若日後實機驗證顯示確無任何可讀之狀態呈現，
 13.5 方回到 BLOCKED 之候選 —— 屆時之理由才是「本 ECU 無任何可觀察端」，
 而非「值不知道」。
+
+## A-CF16 —— 交付件列高：列表視圖只見首行（RESOLVED 2026-08-15）
+
+**現象**：目標列 row 10–23 全部 `customHeight=True, height=14.0`，
+而 I／J／L／M／AH 皆 `wrapText=True`。Excel 於此組合下**折行但不長高**，
+故多行內容於列表視圖只見首行。**儲存格值完整，點選即見。**
+
+**成因非本 pipeline** —— 空白範本 `SWQT_20260121` 原本即如此；
+A-CF07 之清列只動五格值，未動列高。
+
+### 判定規則之兩半（23 §2）
+
+| | 內容 | 結果 |
+|---|---|---|
+| 前半（可證，執行層實測） | 既有交付件是否同樣受限 | **是** —— Privacy 與 Comfort 同用空白範本、欄寬完全相同、皆 `height=14.0`。Privacy 之受限檔即其實際交付件（`DELIVERY.sha256` ENTRY 003 標「已交付」，hash 與量測對象逐位元組相符）。home／SXM 起自已調版 instance，不構成反例 |
+| 後半（repo 外，執行層無從驗證） | 是否未見客戶反映 | **是** —— Pei 2026-08-15 答「沒有」：Privacy 交付件交出後，評閱方未曾就列高或內容需點選儲存格方能閱讀提出意見 |
+
+**兩半皆滿足 → 採方向 3（維持現狀）。** 不改動範本列高、不清除
+`customHeight`、不逐列設定顯式高度。
+
+**依據（不對稱錯誤成本）**：方向 1／2 改動範本呈現，影響及於日後所有
+feature，而本案無支撐該擴大之證據；方向 3 之代價為一項已知、已記錄、
+且有同範本已交付前例之可讀性損失。
+
+**R-C27 已消除其中最嚴重的一段**：BLOCKED row 之 Remarks 首行現為
+`[BLOCKED-SPEC] Owner: …`，marker 與擁有者皆在可見範圍內。餘留者為長
+procedure／ER 之列表視圖只見首行。
+
+### ⚠️ 重審條件
+
+**本裁定成立於一個當下為真的事實，非永久性質。**
+
+**若評閱方日後就列高、或就「內容需點選儲存格方能閱讀」提出意見，
+本裁定即需重審** —— 屆時方向 1／2 之取捨須重新衡量，且其影響及於
+所有以空白範本 `SWQT_20260121` 產出之 feature（現含 Privacy 與 Comfort）。
+
+重審之觸發者為外部意見，**不由本 feature 自行判斷**；執行層於察覺該類
+意見時登記並回報，不逕行改動。
