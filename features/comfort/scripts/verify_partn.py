@@ -35,15 +35,20 @@ OUT = FEATURE / "data" / "test_set_map.tsv"
 
 TEST_GROUP = "Comfort"          # Layer 1 (R-C6)
 
-# Layer 2 — transcribed from handoff 12 §2. (name, sections, declared leaves)
+# Layer 2 — transcribed from handoff 12 §2, AMENDED by handoff 14 §1
+# (four sections moved, 2026-08-15). (name, sections, declared leaves)
+#
+# The amendment moved 2.16/16.17 out of the Climate Modes pair into the
+# Temperature and Fan pair, and 2.14/16.14 into the Anatomy pair. Both the
+# section lists and the declared counts below are the AMENDED figures from
+# handoff 14 §1.3 — restated, never recomputed from the data they check.
 PART_N = [
     ("Front Climate Anatomy",
-     ["2.1", "2.2", "6.3"], 12),
+     ["2.1", "2.2", "2.14", "6.3"], 16),
     ("Climate Modes",
-     ["2.3", "2.3.1", "2.4", "2.5", "2.5.1", "2.10", "2.11", "2.13", "2.14",
-      "2.16"], 41),
+     ["2.3", "2.3.1", "2.4", "2.5", "2.5.1", "2.10", "2.11", "2.13"], 35),
     ("Temperature and Fan",
-     ["2.6", "2.6.1", "2.7", "2.7.1"], 17),
+     ["2.6", "2.6.1", "2.7", "2.7.1", "2.16"], 19),
     ("Airflow and Defrost",
      ["2.8", "2.9", "2.12", "2.12.1", "2.12.2", "2.15"], 23),
     ("Tri-Mode Climate",
@@ -66,11 +71,11 @@ PART_N = [
       "14.8", "14.9", "14.10", "14.10.1", "14.11", "14.12", "14.13", "14.14",
       "14.15", "14.16", "14.16.1", "14.17", "14.18", "14.19", "15.1"], 42),
     ("ICS Anatomy",
-     ["16.2", "16.16"], 14),
+     ["16.2", "16.14", "16.16"], 17),
     ("ICS Climate Modes",
-     ["16.3", "16.4", "16.5", "16.10", "16.11", "16.13", "16.14", "16.17"], 40),
+     ["16.3", "16.4", "16.5", "16.10", "16.11", "16.13"], 36),
     ("ICS Temperature and Fan",
-     ["16.6", "16.6.1", "16.7"], 16),
+     ["16.6", "16.6.1", "16.7", "16.17"], 17),
     ("ICS Airflow and Defrost",
      ["16.8", "16.9", "16.12", "16.12.1", "16.15"], 29),
     ("Home Screen Widget",
@@ -125,7 +130,7 @@ def main() -> None:
         measured_per_set[name] = sum(leaves.get(s, 0) for s in sections)
     bad = {n: (d, measured_per_set[n]) for n, _, d in PART_N
            if measured_per_set[n] != d}
-    c.add("each Test Set's leaf_count matches handoff 12 §2",
+    c.add("each Test Set's leaf_count matches handoff 14 §1.3 (amended)",
           "all 15 equal",
           "all 15 equal" if not bad else f"mismatch {bad}",
           "declared vs measured, per set")

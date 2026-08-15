@@ -20,10 +20,11 @@
 | 06 | 2026-08-14 ~ 15 | Part N 定稿 → `framework.md` ＋ `DECISIONS.md` 簽署 | [handoff/11_partN_draft.md](handoff/11_partN_draft.md)、[handoff/12_partN_final.md](handoff/12_partN_final.md) | [upstream/06_framework.md](upstream/06_framework.md) | 無新條文 | A-CF13 第三項 | PASS |
 | 07 | 2026-08-15 | R-C18 ＋ #15 更名 ＋ 129 節全文抽出 | [handoff/13_upstream06_review.md](handoff/13_upstream06_review.md) | [upstream/07_fulltext.md](upstream/07_fulltext.md) | R-C18 | （無新登；A-CF13 相關事實補充） | PASS |
 | 08 | 2026-08-15 | ch11／ch12 合併依據落地 ＋ ch2／ch16 全文 | （Pei 直接指示，無下放包） | [upstream/08_ch2_ch16_fulltext.md](upstream/08_ch2_ch16_fulltext.md) | 無新條文 | A-CF13 第四項 | PASS |
+| 09 | 2026-08-15 | Part N 修正案 ＋ **profile 簽署** ＋ G-1 ＋ A-CF07 備妥 | [handoff/14_partN_amendment.md](handoff/14_partN_amendment.md)、[handoff/15_profile_draft.md](handoff/15_profile_draft.md)、[handoff/16_profile_signed.md](handoff/16_profile_signed.md) | [upstream/09_partN_amendment_and_profile.md](upstream/09_partN_amendment_and_profile.md)（含 [09_partN_amendment.md](upstream/09_partN_amendment.md)） | R-C19、G-1 gate | A-CF07 待結案 | PASS（2 項待裁示） |
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；
-05／06 合併為上繳 03；07／08 合併為上繳 04；09／10 合併為上繳 05；11／12 合併為上繳 06；13 單獨上繳 07；上繳 08 對應 Pei 之直接指示，無下放包編號。
+05／06 合併為上繳 03；07／08 合併為上繳 04；09／10 合併為上繳 05；11／12 合併為上繳 06；13 單獨上繳 07；上繳 08 對應 Pei 之直接指示，無下放包編號；14 單獨上繳 09。
 **09 之六項作業於上繳 04 當輪未收到，於上繳 05 補做**（見該包 §0 甲）。
 
 **上繳 04 待知悉 2 項**（詳見該包 §0）：
@@ -52,7 +53,7 @@
 
 | 項目 | 值 |
 |---|---|
-| Phase | **3 完成** —— Part N 落地 `framework.md`。**`DECISIONS.md` 已簽署**（PeiPYHsu / 2026-08-14）。**Phase 4 未開始**，其開始條件見下 |
+| Phase | **3 完成** —— Part N ＋ **profile 皆已簽署**。`DECISIONS.md` 兩筆 Sign-off（Part N 08-14／profile 08-15）。**Phase 4 未開始** —— 僅差 Pei 之 Excel 確認 |
 | workbook_state | `BLANK` |
 | spec_mode | `A`（SYS1 export） |
 | baseline | SR24 CR24879（R-C1；SR25 out of scope） |
@@ -62,9 +63,9 @@
 | 真正缺檔 | **2 件**：7" 螢幕配置來源（DR #6，擋 3 節）；HMI Pop Up List（DR #11 —— 入口問題已裁，urgency 降為影響 Phase 4 措辭）|
 | 適用性判讀 | **4 `in_scope`／13 `undetermined`／0 `out_of_scope`**（17 節）；4 節依 R-C16 為 **RD-1 覆蓋缺口項，非 TC 工作項** |
 | Layer 3 map | **129 節／403 leaves**，三個 assertion 全 PASS；section↔parent 為 1:1 雙射 |
-| **Part N** | Test Group `Comfort`；**15 個 Test Set**；leaf 區間 12–59，最大者 14.6%。#15 已更名 `Comfort Widget` → **`Home Screen Widget`**（13 §2） |
+| **Part N** | Test Group `Comfort`；**15 個 Test Set**；leaf 區間 **14–59**，最大者 14.6%。兩次修正：#15 更名（13 §2）、**四節改置**（14 §1）。七項 assertion 全 PASS |
 | 全文基礎 | `data/section_fulltext.tsv` —— 129 節不截斷全文（R-C18）。長度 min 27／中位 245／max 1232 |
-| Phase 4 開始條件 | ① profile `[OVERRIDE]` 簽署（含 A-CF07 寫回處置明文，03 §5）。~~② ch11／ch12 複核~~ **已完成 2026-08-15：合併維持**（framework.md §3.1.1）|
+| Phase 4 開始條件 | ① profile 簽署 ✅ ② G-1 PASS ✅（附 provenance 但書）③ **A-CF07 經 Pei 於 Excel 確認四項 ⏳ —— 唯一未達成** |
 
 ---
 
@@ -72,8 +73,8 @@
 
 | 檔案 | 內容 |
 |---|---|
-| `RULINGS.md` | R-C1 ~ R-C18 + R-C4-1 + R-C5-1 逐字（20 條），加執行層落實回報 |
-| `DECISIONS.md` | 決策表 —— **已簽署 2026-08-14**，受 R-C9 保護（recon 重跑改寫 `DECISIONS.new.md`）|
+| `RULINGS.md` | R-C1 ~ R-C19 + R-C4-1 + R-C5-1 逐字（21 條），加執行層落實回報 |
+| `DECISIONS.md` | 決策表 —— **已簽署 2026-08-14**，受 R-C9 保護。§6 含兩次修正案，**Sign-off 未重簽** |
 | `RECON.md` | Phase 1 survey + assertion 實測值 + uncited baseline sections |
 | `ANOMALIES.md` | A-CF01 ~ A-CF13（A-CF13 含三項標籤衝突）|
 | `DATA_REQUESTS.md` | #1 ~ #11 + standing rule |
@@ -85,6 +86,9 @@
 | `framework.md` | **Part N** —— Layer 1/2/3 之定義與對照（Layer 3 不入工作簿）|
 | `data/test_set_map.tsv` | section → Test Set 查表（129 列），Phase 4 用；非工作簿內容 |
 | `data/section_fulltext.tsv` | **129 節不截斷全文**（R-C18）—— 判讀一律以此為據，不用 `layer3_map` 之 60 字標題 |
+| `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` | **profile [OVERRIDE]**，已簽 2026-08-15（15 ＋ 16 §1） |
+| `BASELINE.sha256` | 素材基準 **8 檔** —— inputs/ 5 ＋ spec-index/ SR24 三件（涵蓋範圍為執行層判斷，見上繳 09 §0 乙） |
+| `DELIVERY.sha256` | 產出台帳 append-only —— ENTRY 001 = 範本清列（A-CF07） |
 | `RUNBOOK.md` | feature 事實之權威 |
 | `PLAYBOOK.md` | 狀態板 |
 

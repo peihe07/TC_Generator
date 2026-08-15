@@ -36,9 +36,9 @@ Test Set → section 之對照存於 `data/test_set_map.tsv`（129 列），
 
 | # | Test Set | Layer 3（spec sections） | leaves | 佔比 |
 |---|---|---|---|---|
-| 1 | `Front Climate Anatomy` | 2.1, 2.2, 6.3 | 12 | 3.0% |
-| 2 | `Climate Modes` | 2.3, 2.3.1, 2.4, 2.5, 2.5.1, 2.10, 2.11, 2.13, 2.14, 2.16 | 41 | 10.2% |
-| 3 | `Temperature and Fan` | 2.6, 2.6.1, 2.7, 2.7.1 | 17 | 4.2% |
+| 1 | `Front Climate Anatomy` | 2.1, 2.2, **2.14**, 6.3 | **16** | 4.0% |
+| 2 | `Climate Modes` | 2.3, 2.3.1, 2.4, 2.5, 2.5.1, 2.10, 2.11, 2.13 | **35** | 8.7% |
+| 3 | `Temperature and Fan` | 2.6, 2.6.1, 2.7, 2.7.1, **2.16** | **19** | 4.7% |
 | 4 | `Airflow and Defrost` | 2.8, 2.9, 2.12, 2.12.1, 2.12.2, 2.15 | 23 | 5.7% |
 | 5 | `Tri-Mode Climate` | 3.1 ~ 3.4 | 14 | 3.5% |
 | 6 | `Rear Climate` | 7.1 ~ 7.10, 9.1 ~ 9.4.1 | 46 | 11.4% |
@@ -46,13 +46,16 @@ Test Set → section 之對照存於 `data/test_set_map.tsv`（129 列），
 | 8 | `Heated Vented Seats` | 11.1 ~ 11.11.1, 12.1 ~ 12.9 | 59 | 14.6% |
 | 9 | `Seat Control Tab` | 13.2 ~ 13.6 | 14 | 3.5% |
 | 10 | `Climate Popups` | 14.1 ~ 14.19, 15.1 | 42 | 10.4% |
-| 11 | `ICS Anatomy` | 16.2, 16.16 | 14 | 3.5% |
-| 12 | `ICS Climate Modes` | 16.3, 16.4, 16.5, 16.10, 16.11, 16.13, 16.14, 16.17 | 40 | 9.9% |
-| 13 | `ICS Temperature and Fan` | 16.6, 16.6.1, 16.7 | 16 | 4.0% |
+| 11 | `ICS Anatomy` | 16.2, **16.14**, 16.16 | **17** | 4.2% |
+| 12 | `ICS Climate Modes` | 16.3, 16.4, 16.5, 16.10, 16.11, 16.13 | **36** | 8.9% |
+| 13 | `ICS Temperature and Fan` | 16.6, 16.6.1, 16.7, **16.17** | **17** | 4.2% |
 | 14 | `ICS Airflow and Defrost` | 16.8, 16.9, 16.12, 16.12.1, 16.15 | 29 | 7.2% |
 | 15 | `Home Screen Widget` | 17.1 ~ 17.5, 18.1 | 21 | 5.2% |
 
-**合計 403 leaves ／ 129 sections。** 區間 12–59，最大者佔 **14.6%**。
+**合計 403 leaves ／ 129 sections。** 區間 **14–59**，最大者佔 **14.6%**。
+
+> **2026-08-15 修正案（下放包 14 §1）**：四節改置，理由見 §3.5。
+> Test Set 之數量、名稱與邊界不變；ch2 = 92、ch16 = 99、總計 = 403 皆不變。
 
 §2 之範圍寫法（`7.2 ~ 7.10` 等）於 `scripts/verify_partn.py` 內展開為明列
 節次；展開錯誤會在該腳本之第一個 assertion 失敗，不會靜默改變分組。
@@ -99,9 +102,13 @@ Test Set → section 之對照存於 `data/test_set_map.tsv`（129 列），
 近似重複落於同一組，Phase 4 之 sibling 判定（§4.6）與 `duplicate_of` 得以
 見效 —— 分立則兩者分屬兩組，審閱者看不到彼此。
 
-**Phase 4 之注意**：`opens popup` 既為回饋而非入口，ch11 之該兩節與 ch12
-對應節之差異應以**預期結果**（是否出現 popup）表達，不得寫成不同的操作
-步驟或前置條件。
+**Phase 4 之約束 → 見 `RULINGS.md` R-C19。** 本段原為執行層於上繳 08 §1
+自加之約束（並聲明「非分析層指示，若不同意請駁回」）；下放包 14 §3
+**不駁回，升格為條文**，理由是其一般性不應只以 framework 內一句話存在。
+
+R-C19 之具體適用：11.1／11.2 與 12.1／12.2 之差異一律以 **`expected_result`**
+表達（是否出現 popup），**不得**寫成不同的 `test_procedure` 步驟或不同的
+`pre_conditions`。pilot review 時違反者列為 **defect**（非 style-divergence）。
 
 ### 3.2 章 2 與章 16 刻意鏡像
 
@@ -146,6 +153,87 @@ Layer 3 不變（17.1 ~ 17.5、18.1），leaves 仍 21。更名後**無任何 Te
 
 ---
 
+### 3.5 2026-08-15 修正案 —— 四節改置（下放包 14 §1）
+
+依 **R-C18 末句**（凡以截斷欄位為輸入之既有判斷須以全文複核），分析層對
+ch2（22 節）與 ch16（18 節）逐節複核，改置四節。
+
+**複核範圍之界定**：11 組為整章對應，其章別來自 export 之 `chapter_title`
+（**非**截斷欄位），不在複核範圍；受影響者僅章內切分之 #1–#4、#11–#14。
+
+#### 3.5.1 `2.16` ／ `16.17` → Temperature and Fan 對 —— 截斷造成之誤讀
+
+```
+截斷值：C18.) If blower reduction occurs automatically due to an act
+全文  ：…due to an active Voice Recognition session, the change in fan speed
+        is not displayed to the user. After blower reduction, return blower
+        speed to previous speed without showing a change in fan speed.
+```
+
+**主詞為風量之顯示**。原歸 `Climate Modes` 係因 "blower reduction" 被讀為
+氣候模式行為；揭露主詞之子句位於**第 60 字之後**。與 `6.3` 之 `secondary`
+同型 —— 截斷未產生亂碼，而產生了另一個讀得通但錯誤的語意。
+
+- `2.16`（2 leaves）→ `Temperature and Fan`
+- `16.17`（1 leaf）→ `ICS Temperature and Fan`（維持鏡像）
+
+#### 3.5.2 `2.14` ／ `16.14` → Anatomy 對 —— 分類錯誤，非截斷所致
+
+MTC 為**空調系統型別**（Manual Temperature Control，相對於 ATC），
+非 AUTO／AC／RECIRC 一類之**模式開關**。將系統型別與模式開關同置為類別錯誤。
+
+`2.14` 另有一段僅全文可見：
+
+> For MTC with ICS… certain types of physical knobs (3 knob HVAC controls)…
+> **no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be
+> displayed.**
+
+此與 `6.3`（comfort section will be removed from the head unit）同屬
+**「是否出現、出現哪一套」**之陳述，即 Anatomy 之範疇。
+
+- `2.14`（4 leaves）→ `Front Climate Anatomy`
+- `16.14`（3 leaves）→ `ICS Anatomy`（維持鏡像）
+
+**此項非截斷所致，係原始分類判斷有誤**（14 §1.2 如實記之）。
+
+#### 3.5.3 修正前後對照
+
+| # | Test Set | 原 | 新 |
+|---|---|---|---|
+| 1 | `Front Climate Anatomy` | 12 | **16** |
+| 2 | `Climate Modes` | 41 | **35** |
+| 3 | `Temperature and Fan` | 17 | **19** |
+| 4 | `Airflow and Defrost` | 23 | 23 |
+| 11 | `ICS Anatomy` | 14 | **17** |
+| 12 | `ICS Climate Modes` | 40 | **36** |
+| 13 | `ICS Temperature and Fan` | 16 | **17** |
+| 14 | `ICS Airflow and Defrost` | 29 | 29 |
+
+其餘七組（#5–#10、#15）不變。§3.2 之鏡像結構亦不變 —— 四節係成對移動。
+
+**驗算**：ch2 = 15（#1 扣 ch6 之 6.3）+ 35 + 19 + 23 = **92**；
+ch16 = 17 + 36 + 17 + 29 = **99**；總計 **403**。三者皆與修正前相同。
+
+#### 3.5.4 附帶觀察（14 §1.4）
+
+`Climate Modes` 由 41 降至 35。11 §4.2 曾提可再拆該組而 Pei 裁定不拆，
+事後看為正解：**其問題不在過大，而在混入兩節不屬於它者**。拆為兩組不會
+解決此事，只會把錯置之節分到兩邊。
+
+### 3.6 刻意不動之一處 —— `2.6.1` ／ `2.11`（14 §2）
+
+`2.6.1`（SYNC 開啟時調整駕駛側溫度連動副駕）屬 `Temperature and Fan`；
+`2.11`（SYNC 開關狀態，及同一連動行為）屬 `Climate Modes`。兩節內容明顯
+重疊而分屬兩組，siblings 不相鄰（§4.1.4 第 2 點）。ICS 側之 `16.6.1`／
+`16.11` 同構。
+
+**不改置。** 此非截斷所致之誤讀，而是分組偏好；本輪授權為「依 R-C18 回溯
+複核」，非重開 Part N。
+
+**Phase 4 指示**：撰寫 `2.6.1`／`2.11`（及 `16.6.1`／`16.11`）之 TC 時須
+一併閱讀對造節，依 §4.6 作 sibling 判定，必要時輸出 `duplicate_of`。
+若屆時顯示兩者確不應分置，屬 Part N 變更，回分析層重簽。
+
 ## 4. 6.3 之落位查證（12 §3 指示）
 
 12 §3 將 `6.3` 暫置 `Front Climate Anatomy`，並指出分析層僅憑 60 字截斷判斷，
@@ -181,13 +269,19 @@ spec，R-C17），但撰寫 6.3 之 TC 時應併看，以免前置條件互相�
 ## 5. 驗算（`scripts/verify_partn.py`）
 
 期望值 —— 15 組之 section 清單、各組 leaf 數、逐章分布 —— **全部寫死於腳本**，
-取自下放包 12 §2 與上繳 01 §3，不由 `layer3_map.tsv` 回推。自己導出的期望值
-不可能失敗。
+取自下放包 **14 §1.3（修正後）**與上繳 01 §3，不由 `layer3_map.tsv` 回推。
+自己導出的期望值不可能失敗。
 
 ```
-- PASS — each Test Set's leaf_count matches handoff 12 §2:
+- PASS — each Test Set's leaf_count matches handoff 14 §1.3 (amended):
     expected `all 15 equal`, measured `all 15 equal`
 - PASS — Test Set leaf totals sum to 403: expected 403, measured 403
+    — Front Climate Anatomy:16、Climate Modes:35、Temperature and Fan:19、
+      Airflow and Defrost:23、Tri-Mode Climate:14、Rear Climate:46、
+      ECO HVAC:15、Heated Vented Seats:59、Seat Control Tab:14、
+      Climate Popups:42、ICS Anatomy:17、ICS Climate Modes:36、
+      ICS Temperature and Fan:17、ICS Airflow and Defrost:29、
+      Home Screen Widget:21
 - PASS — all 129 mapped sections assigned: expected 129, measured 129
     — unassigned: none; not in layer3_map: none
 - PASS — no section assigned to two Test Sets: expected {}, measured {}
@@ -201,6 +295,10 @@ spec，R-C17），但撰寫 6.3 之 TC 時應併看，以免前置條件互相�
     expected [], measured [] — 15 names checked against prefix 'Comfort'
 ```
 
+**修正案後之關鍵驗算**：四節改置只在既有 Test Set 之間移動，未新增或刪除
+任何 section，故 ch2 == 92、ch16 == 99、總計 == 403 三者**必須**維持不變 ——
+上列第 2、5 項即為此而設，實測皆成立。
+
 Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄或 Layer 3 map
 有誤 —— 腳本之離開訊息即如此措辭。
 
@@ -211,15 +309,17 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 129 節，與 §2 之範圍寫法等價。機讀版本：`data/test_set_map.tsv`。
 **再次提醒：本表不入工作簿**（§4.1.5）。
 
-### 1. `Front Climate Anatomy` — 3 sections / 12 leaves
+
+### 1. `Front Climate Anatomy` — 4 sections / 16 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
 | `2.1` | R1C1.) The comfort category will have up to 4 tabs depending | 3 |
 | `2.2` | C1.) Whenever changes to the climate system are made via har | 8 |
+| `2.14` | C15.) MTC screens/popups are to be used when CCM relays MTC  | 4 |
 | `6.3` | CM1.) When a vehicle is configured with a non-foldable secon | 1 |
 
-### 2. `Climate Modes` — 10 sections / 41 leaves
+### 2. `Climate Modes` — 8 sections / 35 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
@@ -231,10 +331,8 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | `2.10` | C11.) Climate off has on/off state that is indicated on HC,  | 6 |
 | `2.11` | C12.) SYNC has on/ off state that is indicated on climate sc | 5 |
 | `2.13` | C14.) MAX A/C screens/popups are to be used when CCM relays  | 3 |
-| `2.14` | C15.) MTC screens/popups are to be used when CCM relays MTC  | 4 |
-| `2.16` | C18.) If blower reduction occurs automatically due to an act | 2 |
 
-### 3. `Temperature and Fan` — 4 sections / 17 leaves
+### 3. `Temperature and Fan` — 5 sections / 19 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
@@ -242,6 +340,7 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | `2.6.1` | C5.1) If SYNC is ON, adjusting driver temperature affects pa | 6 |
 | `2.7` | C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instea | 5 |
 | `2.7.1` | C6.1) In some vehicles fan speed ranges for front hvac are:  | 1 |
+| `2.16` | C18.) If blower reduction occurs automatically due to an act | 2 |
 
 ### 4. `Airflow and Defrost` — 6 sections / 23 leaves
 
@@ -366,14 +465,15 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | `14.19` | HVACSB6.) When the Climate widget is shown on the currently  | 8 |
 | `15.1` | HVACP11.1) For different Climate features (Defrost/Max Defro | 2 |
 
-### 11. `ICS Anatomy` — 2 sections / 14 leaves
+### 11. `ICS Anatomy` — 3 sections / 17 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
 | `16.2` | ICE1.) Whenever changes to the climate system are made via h | 9 |
+| `16.14` | ICE13.) MTC screens/popups are to be used when CCM relays MT | 3 |
 | `16.16` | ICE15.) Always show 'Driver' or 'Passenger'. Off icon of sea | 5 |
 
-### 12. `ICS Climate Modes` — 8 sections / 40 leaves
+### 12. `ICS Climate Modes` — 6 sections / 36 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
@@ -383,16 +483,15 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | `16.10` | ICE9.) Climate off has on/off state that is indicated on HC, | 8 |
 | `16.11` | ICE10.) SYNC has on/ off state that is indicated on climate  | 4 |
 | `16.13` | ICE12.) If the system supports Max A/C it will be displayed  | 12 |
-| `16.14` | ICE13.) MTC screens/popups are to be used when CCM relays MT | 3 |
-| `16.17` | C16.) If blower reduction occurs automatically due to an act | 1 |
 
-### 13. `ICS Temperature and Fan` — 3 sections / 16 leaves
+### 13. `ICS Temperature and Fan` — 4 sections / 17 leaves
 
 | outline | section 標題（前 60 字） | leaves |
 |---|---|---|
 | `16.6` | ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-2 | 6 |
 | `16.6.1` | ICE5.1) If SYNC is ON, adjusting driver temperature affects  | 5 |
 | `16.7` | ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label ins | 5 |
+| `16.17` | C16.) If blower reduction occurs automatically due to an act | 1 |
 
 ### 14. `ICS Airflow and Defrost` — 5 sections / 29 leaves
 
@@ -414,8 +513,6 @@ Part N 已簽署，故此處失敗**不代表分組該調整**，而代表轉錄
 | `17.4` | CW3.) For 8.4/10.1/12 landscaped screens, there will be a to | 2 |
 | `17.5` | CW4.) For dual zone climate with dual airflow modes equipped | 2 |
 | `18.1` | W0.) The Comfort widget will have two screens: Comfort and S | 3 |
-
----
 
 ## 7. 未入 Part N 者（12 §4）
 

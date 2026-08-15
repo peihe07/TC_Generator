@@ -216,7 +216,13 @@ def read_signoff(decisions_path: Path) -> dict:
     m = re.search(r"Reviewed by:\s*(.*?)(?:\s\s+|\s*\|)Date:\s*(.*)", text)
     who, when = (m.group(1).strip(), m.group(2).strip()) if m else ("", "")
     who_filled = bool(who) and not PLACEHOLDER_RE.match(who)
-    amendments = len(re.findall(r"^\s*-\s*Amendment\b", text, flags=re.M))
+    # Markdown emphasis is tolerated: SXM writes "- Amendment (date, nth
+    # pass):" plain, Comfort writes "- **Amendment 1（...**". Anchoring on the
+    # bare word would count the second as zero and under-report a feature
+    # whose only sign-off evidence is its amendment trail (R-C10 accepts
+    # either shape).
+    amendments = len(re.findall(r"^\s*[-*]\s*[*_~`]*\s*Amendment\b",
+                                text, flags=re.M | re.I))
     return {
         "exists": True,
         "signed": who_filled or amendments > 0,

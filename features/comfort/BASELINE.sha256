@@ -1,0 +1,37 @@
+# BASELINE — Comfort 素材基準（inputs/ ＋ spec-index/ 之 SR24 三件）
+#
+# 為什麼存在：inputs/ 是 gitignored（.gitignore:2），素材本身永遠不進版控。
+# 2026-08-13 實測，amfm / home / media / projection 四個 feature 的 inputs/
+# 已全部清空 —— 而 git 無從還原，因為那些檔從未被追蹤。tag 還在，指向的
+# 產物卻已不存在。本檔是那件事之後留下的防線：素材可以消失，雜湊留在版控裡。
+#
+# **涵蓋範圍較 Privacy 前例為寬，理由具名如下（執行層之判斷，非裁決）**：
+# R-C11 把 Comfort 之 SR24 spec 移出 inputs/、留在 spec-index/，以確保
+# 單一來源。但 `.gitignore:58` 之 `spec-index/cache/*` 使該處同樣不入版控 ——
+# 若本檔只涵蓋 inputs/，R-C11 之副作用就是「Comfort 唯一之 spec 來源
+# 脫離雜湊保護」，而那不是任何人的本意。故 SR24 export／JSON／PDF 三件
+# 一併列入。若分析層認為不應如此，回報即改。
+#
+# 驗證（自 features/comfort/ 執行）：
+#     shasum -a 256 -c BASELINE.sha256
+# macOS 的 shasum 會對本註解區塊印 "WARNING: N lines are improperly
+# formatted"，那是 perl 版的行為，exit code 仍為 0，逐檔仍印 OK。
+#
+# 更新時機：素材有增減或經裁決換版時，連同裁決編號一併更新本檔。
+# 未經裁決而此檔需要更新 —— 那本身就是要回報的事。
+#
+# R22-1 時態限縮：MATCH 是現在式陳述，不蘊含「從未被覆寫」。
+#
+# 基準確認 2026-08-15（下放包 16 §3.1 第 5 項）。
+# ─────────────────────────────────────────────────────────────────────────
+# inputs/ —— Comfort 專屬素材（5 檔）
+cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx
+a8186089a28c9a31ee69b7ba66a62f88dd95a2f3d2b41a4d73744b317ca079b6  inputs/FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1 STLA 報告.xlsx
+6373bd860fc8eee77d585e7fe931d99eb28fa0fac8dc0ee2531d3947f949f950  inputs/R1LR_Atl-H_25PI3.5_Cabin_CFTS_043 HVAC Controls and Displays _SR26_20250909-1852.doc
+ae4cf0b929b033ac3baabf9d2e6e7497da5539d3f774be30d52d636a67816cfc  inputs/SR24 R1 Market Configuration Table v1.6.xlsx
+cbe747aa139fda4dedceb87c89e9c07c48188e064104dd7d22adaf8be478abbc  inputs/SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope.xlsx
+#
+# spec-index/ —— SR24 基線三件（R-C1／R-C11：唯一來源，不得於 inputs/ 存副本）
+6982d37db81b36e4bd3643ca1356c12d3837fb5843ba9cd06c4ee3317a073969  ../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).xlsx
+c1a2d6e3602dce7a62f25132a9e777d013ac5eece9fe4948a00dddae7aae36a0  ../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).json
+fc5d3cd1d524f4d5e6b2b1125ac4a243847d9dbcc7db2fa40cdc3f3760efb1a1  ../../spec-index/sources/Comfort HMI Logic and Flow R1 SR24 Post 3A CR24879 (September 25 2023).pdf

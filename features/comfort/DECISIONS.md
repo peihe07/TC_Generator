@@ -49,11 +49,29 @@ sign-off = binding as proposed.
 - Test Set table (Part N): [SIGNED 2026-08-14] **已定** —— Test Group `Comfort`、
   **15 個 Test Set**，依下放包 `docs/handoff/12_partN_final.md` §2（Pei 簽署
   2026-08-14）。落地於 `features/comfort/framework.md`；驗算
-  `scripts/verify_partn.py` 四個 assertion 全 PASS（403 leaves／129 節每節恰
+  `scripts/verify_partn.py` 全部 assertion PASS（403 leaves／129 節每節恰
   屬一組／逐章回算相符／命名合規）。Layer 3 **不入工作簿**（§4.1.5）
-- profile [OVERRIDE] clauses: **[PEI — 仍為 Tier 2，維持未定]** ——
-  本次簽署**不涵蓋**此項。Phase 4 之前須另行起草並簽署；
-  至少須明文 A-CF07 之寫回處置（03 §5）
+  - **修正案 1（2026-08-15，下放包 13 §2）**：#15 更名
+    `Comfort Widget` → `Home Screen Widget`（§4.2 之 Test Group 前綴）。
+    Layer 3 與 leaves 不變
+  - **修正案 2（2026-08-15，下放包 14 §1）**：依 R-C18 末句對 ch2／ch16
+    逐節全文複核，**四節改置** —— `2.16`／`16.17` → Temperature and Fan 對
+    （截斷誤讀，主詞為風量顯示）；`2.14`／`16.14` → Anatomy 對
+    （MTC 為系統型別非模式開關，屬原始分類錯誤）。
+    受影響組：#1 12→16、#2 41→35、#3 17→19、#11 14→17、#12 40→36、#13 16→17。
+    **Test Set 之數量、名稱與邊界不變；ch2 = 92、ch16 = 99、總計 = 403 皆不變。**
+    理由見 `framework.md` §3.5
+  - **Sign-off 不重簽**（14 §5）：兩次修正皆未改變 Part N 之結構
+    —— 組數、名稱邊界、母體與逐章數皆同，變更限於四節之組間歸屬與一處命名。
+    執行層覆核此判斷後**同意**，未重簽
+- profile [OVERRIDE] clauses: **[SIGNED 2026-08-15]** —— 依下放包
+  `15_profile_draft.md` 全部條款 ＋ `16_profile_signed.md` §1 之三項裁定
+  （Pei，2026-08-15）。落地於
+  `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md`。
+  三項裁定皆「照建議」：§3.1 Test Item 繼承（**附實測條件，轉為 G-1 gate**）、
+  §3.4 source token 照錄（含 `12.1` 之 `LEDs (.`）、§0.1 之 Excel 實開確認
+  由 Pei 執行。
+  **A-CF07 之寫回處置已於 profile §0.1 明文**（03 §5 之要求已滿足）
 
 ## 7. Execution
 - batch plan: [SIGNED 2026-08-14] pilot = **第 13 章 `Seat Control Tab`**
@@ -99,6 +117,53 @@ sign-off = binding as proposed.
 
 ---
 
+## Sign-off 2 —— profile [OVERRIDE]
+
+> **首筆 Sign-off（Part N，2026-08-14）不覆寫、不改寫。** 本筆為第二次簽署，
+> 對象不同（R-C10：簽署標記須被實際填寫，且須可辨其涵蓋範圍）。
+
+- Reviewed by: PeiPYHsu  Date: 2026-08-15
+- 涵蓋範圍: `DECISIONS.md` §6 之 **profile `[OVERRIDE]` clauses** 一項。
+  **不涵蓋**首筆已簽之 Part N（其狀態不因本筆改變），亦不涵蓋任何
+  `[PROPOSED]` 項。
+- Overridden items: 無 —— 15 §9 三項待裁皆「照建議」，未推翻草案任何條款
+- Ruling notes:
+  - 依據：`docs/handoff/15_profile_draft.md`（草案全部條款）＋
+    `docs/handoff/16_profile_signed.md` §1（三項裁定，Pei「裁的都是是是是」）。
+  - **G-1 為 §3.1 之生效條件，非本簽署之附款**（16 §2）：gate 已執行，
+    **PASS**（143/144 含 modal），惟**附 provenance 但書** —— 量測對象為
+    `forms/…_Home_20260809.xlsx`（SHA256 `1895fb2a…`），非 home RECON 所測檔
+    亦非 Home v2，兩者皆不在 repo。詳 profile §3.1 與上繳 09。
+    若分析層認為該替代不可接受，§3.1 回到 pending 並重裁。
+  - **A-CF07 已依 profile §0.1 備妥，尚未結案**：prepared workbook 已產
+    （`output/…_Comfort_20260815_prepared.xlsx`，SHA256 `b68117a2…`），
+    `BASELINE.sha256`（8 檔）與 `DELIVERY.sha256`（ENTRY 001）已建並驗過。
+    **四項 Excel 確認保留予 Pei**（裁定 3），確認前 A-CF07 不結案。
+  - **Phase 4 起跑條件三者**（16 §3.2）：G-1 PASS ✅ ＋ profile 落檔 ✅ ＋
+    **A-CF07 清列經 Pei 於 Excel 確認 ⏳**。第三項未達成，
+    **Phase 4 未開始**。
+
+---
+
 ## Amendment
 
-（尚無。簽署後之異動追記於此，不改寫上方既有條目。）
+- **Amendment 1（2026-08-15，下放包 13 §2）** —— Part N #15 更名
+  `Comfort Widget` → `Home Screen Widget`。依 §4.2（Test Set 不得以 Test
+  Group 為前綴）。Layer 3 與 leaves 不變；`verify_partn.py` 之前綴檢查由
+  `measured ['Comfort Widget']` 轉為 `measured []`。
+
+- **Amendment 2（2026-08-15，下放包 14 §1）** —— Part N 四節改置：
+  `2.16`／`16.17` → Temperature and Fan 對；`2.14`／`16.14` → Anatomy 對。
+  依 R-C18 末句之回溯複核。受影響組 #1／#2／#3／#11／#12／#13 之 leaf 數
+  變動，**ch2 = 92、ch16 = 99、總計 = 403 皆不變**，組數與名稱邊界不變。
+  `verify_partn.py` 七項檢查以修正後期望值重跑，全 PASS。
+
+- **兩案皆未重簽 Sign-off**（14 §5）：Part N 之結構未變 —— 組數、名稱邊界、
+  母體與逐章數皆同，變更限於四節之組間歸屬與一處命名。執行層覆核此判斷後
+  同意。上方 §6 之條目已就地增記兩案（14 §5 明示「§6 之 Part N 條目增記」），
+  本區為其索引。
+
+> **記法之說明**：本檔表頭原則為「簽署後之異動一律追記於文末 Amendment，
+> 不改寫既有條目」。本次兩案於 §6 條目下**新增子項**而未改寫既有文字 ——
+> 既有之 `[SIGNED 2026-08-14]` 行逐字保留，修正案以子項附加。
+> 就地增記與本區索引並存，是為了讓讀 §6 者不必先讀到文末才知道它已被修正。

@@ -80,12 +80,25 @@ python3 scripts/recon.py --feature features/comfort --root .
 python3 features/comfort/scripts/build_layer3_map.py
 python3 features/comfort/scripts/verify_partn.py
 python3 features/comfort/scripts/build_section_fulltext.py
+python3 features/comfort/scripts/gate_g1_test_item.py
+python3 features/comfort/scripts/prepare_workbook.py --write
+shasum -a 256 -c BASELINE.sha256                      # 自 features/comfort/
+shasum -a 256 -c --ignore-missing DELIVERY.sha256
 ```
 
+### 交付完整性台帳（profile §6）
+- `BASELINE.sha256` —— **8 檔**：inputs/ 5 檔 ＋ spec-index/ 之 SR24 三件。
+      涵蓋 spec-index 之理由：R-C11 把 spec 移出 inputs/，而
+      `.gitignore:58` 使該處同樣不入版控 —— 若不列入，R-C11 之副作用即為
+      「唯一 spec 來源脫離雜湊保護」。**此為執行層判斷，非裁決**，可駁回
+- `DELIVERY.sha256` —— append-only，ENTRY 001 = 範本清列
+
 ### 待辦（Layer 2 屬 Tier 2，執行層不自裁）
-- [x] **Layer 2 Test Set（Part N）** ✅ 已簽署 2026-08-14（下放包 12）——
-      Test Group `Comfort`、**15 個 Test Set**、leaf 區間 12–59（最大 14.6%）。
-      落地 `framework.md`；`scripts/verify_partn.py` 四個 assertion 全 PASS
+- [x] **Layer 2 Test Set（Part N）** ✅ 已簽署 2026-08-14（下放包 12），
+      **兩次修正 2026-08-15**（13 §2 更名、14 §1 四節改置）——
+      Test Group `Comfort`、**15 個 Test Set**、leaf 區間 **14–59**（最大 14.6%）。
+      落地 `framework.md`；`verify_partn.py` **七項** assertion 全 PASS。
+      **Sign-off 未重簽**（結構未變，14 §5）
 - [x] **6.3 落位確認**（12 §3）—— 讀全文後**維持 `Front Climate Anatomy`**。
       原疑慮「second row」係 60 字截斷把 `secondary` 腰斬所致；全文為
       `non-foldable secondary lower screen`，與後座無關。**未自行搬移**
@@ -96,21 +109,29 @@ python3 features/comfort/scripts/build_section_fulltext.py
       `Home Screen Widget`。**兩處皆不需重整既有切分**（framework.md §7）
 - [x] **exemplar source 已具名** —— `home` 之 done region（144 列）；
       **`amfm` 具名排除**（DECISIONS §4，已簽）
-- [ ] **A-CF07 之寫回處置須於 profile 明文**（03 §5）—— BLANK 型 write-back
-      為「append from first data row」，範本殘留列會位移首資料列
+- [x] **A-CF07 之寫回處置已於 profile §0.1 明文**（03 §5）——
+      清 D10/F10/G10/S10/D11 五格、B 欄不動、不刪列。已執行，待 Pei 確認
 - [x] **batch plan 已定** —— pilot = 第 13 章 `Seat Control Tab`（14 leaves）；
       其餘批次依 Part N 之 15 個 Test Set，不再「依章分組」（DECISIONS §7，已簽）
 - [ ] **DR #6** —— 僅剩 7" 螢幕配置一題（擋 19.1 ~ 19.3）。09 §5 已改為
       **請 Pei 直接指認來源**；10 §3 之 Home Screen spec 亦不關閉本項
 - [x] Part N 落地 —— 寫於 **`features/comfort/framework.md`**（feature 內）
-- [ ] **profile `[OVERRIDE]`** —— **Tier 2，仍未定**，本次簽署不涵蓋。
-      **Phase 4 之硬前置**：至少須明文 A-CF07 之寫回處置（03 §5）——
-      BLANK 型 write-back 為「append from first data row」，範本殘留列會
-      位移首資料列，留到 write-back 當下再決定就晚了
+- [x] **profile `[OVERRIDE]`** ✅ 已簽署 2026-08-15 ——
+      `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md`
 
-### Phase 4 開始條件（13 §7）
-- [ ] **profile `[OVERRIDE]` 簽署** —— Tier 2，分析層下一包提出。
-      至少須明文 A-CF07 之寫回處置（03 §5）
+### Phase 4 開始條件（16 §3.2）—— **三者皆備方可產第一條 TC**
+- [x] **profile `[OVERRIDE]` 已簽署 2026-08-15**（15 ＋ 16 §1）——
+      落地 `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md`。
+      A-CF07 之寫回處置已於 §0.1 明文（03 §5 之要求已滿足）
+- [x] **G-1 PASS 2026-08-15** —— `scripts/gate_g1_test_item.py`。
+      home done region 144 列，**143 含 modal（99.3%）**，長度中位 273，
+      形態 `The system shall …` ＋ 情境括號，與 profile §3.1 一致。
+      **附 provenance 但書**：量測對象為 `forms/…_Home_20260809.xlsx`
+      （`1895fb2a…`），非 home RECON 所測檔亦非 Home v2，兩者皆不在 repo
+- [ ] **⏳ A-CF07 清列經 Pei 於 Excel 確認四項** —— **唯一未達成者**。
+      prepared workbook 已備：`output/…_Comfort_20260815_prepared.xlsx`
+      （`b68117a2…`）。待確認：無修復提示／R 欄下拉九項可用／D5 Scope 正確／
+      第 10–11 列已清且無殘留列號。**程式層檢查不能代替 Excel 自身之判定**
 - [x] **ch11／ch12 複核完成 2026-08-15 —— 合併維持** —— 分析層裁定：
       同一進入路徑，`opens popup` 為輸出回饋非入口。依據寫入
       `framework.md` §3.1.1。`Heated Vented Seats`（59）維持單一 Test Set。
@@ -127,6 +148,13 @@ python3 features/comfort/scripts/build_section_fulltext.py
       —— `C16.)` 被 2.15 與 16.17 共用（A-CF13）
 - [ ] **一律讀 `section_fulltext.tsv` 之全文**（R-C18），不得以
       `layer3_map.tsv` 之 60 字 `section_title` 做任何判斷
+- [ ] **R-C19 —— ch11／ch12 之差異以 `expected_result` 表達**（是否出現
+      popup），**不得**寫成不同的 `test_procedure` 步驟或 `pre_conditions`。
+      pilot review 時違反者列為 **defect**（非 style-divergence）
+- [ ] **`2.6.1`／`2.11`（及 `16.6.1`／`16.11`）須一併閱讀對造節**（14 §2）——
+      兩節內容重疊卻分屬 `Temperature and Fan` 與 `Climate Modes`，
+      siblings 不相鄰。依 §4.6 作 sibling 判定，必要時輸出 `duplicate_of`。
+      若顯示確不應分置，屬 Part N 變更，回分析層重簽
 - [ ] `12.1` 之 `LEDs (.` 為 spec 原文之孤立左括號（A-CF13 第四項）——
       逐字引用時**照錄或明示節錄，不得靜默修正**（§8.4.2）
 - [ ] `14.19` 之 8 leaves 對應條文之 8 個 bullet，逐項一一對應；
