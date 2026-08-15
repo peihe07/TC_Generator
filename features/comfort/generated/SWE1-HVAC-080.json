@@ -56,7 +56,7 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "[BLOCKED-SPEC] Long-press logic is defined by HMI Core Logic and Flow requirement N0. With that delegation removed this requirement has no content left that can be verified against the Comfort HMI specification alone"
+   "remarks": "[BLOCKED-SPEC] Owner: HMI Core Logic and Flow requirement N0 — long-press logic is defined there; with that delegation removed this requirement has no content verifiable against the Comfort HMI specification alone"
   }
  ]
 }

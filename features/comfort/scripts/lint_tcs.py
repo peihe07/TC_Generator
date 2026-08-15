@@ -57,6 +57,13 @@ REQUIRED_KEYS = ("tc_title", "pre_conditions", "input_test_data",
                  "design_method", "priority", "split_flag", "split_reason")
 MIN_STEPS = 2                  # §10.5
 BLOCKED_MARKERS = ("[BLOCKED-SPEC]",)   # profile §5.1 / R-C24
+# R-C26 — a marker that grants a lint exemption must not be self-issuable.
+# The whitelist is the named list in profile §5.1; adding to it is a ruling,
+# not an edit. Without this, [BLOCKED-SPEC] is an exemption anyone can take
+# by typing it, which is the same as having no exemption condition at all.
+MARKER_WHITELIST = {"[BLOCKED-SPEC]": {"NR1L-ComfortHMI-010",
+                                       "NR1L-ComfortHMI-012"}}
+OWNER_WINDOW = 60          # R-C27 — chars visible on the clipped first line
 REASONING_SENTENCES = (2, 5)   # §10.4
 # Chinese full stops are not followed by a space, so a lookahead for
 # whitespace counts a whole paragraph as one sentence — which is how this
@@ -164,6 +171,14 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             bad("functional-safety", f"{w}: S column must be 'NA' (profile §3.8)")
         if tc["estimated_test_time"] != "":
             bad("estimated-time", f"{w}: Q column must be blank (profile §3.7)")
+        # ---- R-C26 marker whitelist -------------------------------------
+        for mk, allowed in MARKER_WHITELIST.items():
+            if mk in tc.get("remarks", "") and w not in allowed:
+                bad("marker-whitelist",
+                    f"{w}: carries {mk} but is not in profile §5.1's named "
+                    "whitelist; an exemption-granting marker cannot be "
+                    "self-issued (R-C26)")
+
         if w in blocked:
             if not tc["remarks"].startswith(BLOCKED_MARKERS[0]):
                 bad("blocked-remarks", f"{w}: {BLOCKED_MARKERS[0]} must be the "
@@ -172,6 +187,15 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                 bad("blocked-remarks", f"{w}: Remarks is externally visible and "
                                        "must not carry an internal ruling id "
                                        "(AMFM R10-4)")
+            # R-C27 — the Remarks column clips to one visible line, so the
+            # owner must sit inside that line. Without this the reader sees
+            # the marker and not the thing the marker exists to point at.
+            head = tc["remarks"][:OWNER_WINDOW]
+            if "Owner:" not in head:
+                bad("blocked-remarks",
+                    f"{w}: 'Owner:' must appear within the first "
+                    f"{OWNER_WINDOW} characters of Remarks (R-C27); "
+                    f"measured head = {head[:48]!r}")
         elif tc["remarks"] != "":
             bad("remarks", f"{w}: remarks must be empty for a non-BLOCKED row")
 
@@ -262,7 +286,9 @@ def main() -> int:
              "required-keys", "proc-min-steps", "reasoning-sentences",
              "duplicate-of-format",
              # added 2026-08-15 with R-C24's BLOCKED-SPEC marker
-             "blocked-row-empty", "blocked-remarks"]
+             "blocked-row-empty", "blocked-remarks",
+             # added 2026-08-15 with R-C26
+             "marker-whitelist"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -274,6 +300,8 @@ def main() -> int:
     # R-C24 — the exemption is visible on every run, whether or not it fired.
     print(f"- PASS — rows exempted as BLOCKED-SPEC "
           f"(proc-min-steps, proc-er-1to1): {blocked_ids or 'none'}")
+    print(f"- PASS — marker whitelist (profile §5.1): "
+          f"{sorted(MARKER_WHITELIST['[BLOCKED-SPEC]'])}")
     if findings:
         print(f"\n{len(findings)} finding(s):")
         for sev, g, msg in findings:

@@ -242,20 +242,23 @@ BATCHES = [
                     "The user last selected lumbar/bolster selection will be "
                     "latching during a keycycle, after a keycycle, and after "
                     "the lower screen has been stowed/retracted",
-                "pre_conditions":
-                    f"{PC_SCREEN}\n"
-                    "2. [spec-derived] A lumbar/bolster adjustment type is "
-                    "currently the selected option (13.3.1)",
+                # R-C25 / 23 §1: neither 13.2.1 nor 13.3.1 states that one
+                # adjustment type is always selected, and 13.3.1 says "last
+                # selected", which presupposes a prior selection event. The
+                # old PC2 asserted a state the clauses never grant, i.e. §7
+                # FF's assumed hidden state. The TC's own step establishes it
+                # instead; naming which type is interaction data (§4.5) and
+                # all four names come from 13.2.1, so it is not fabrication.
+                "pre_conditions": PC_SCREEN,
                 "input_test_data": "NA",
                 "test_procedure":
-                    "1. Record which lumbar/bolster adjustment type is the "
-                    "selected option\n"
+                    "1. Select \"Lumbar Up/Down\" on the Seats tab\n"
                     "2. Run a keycycle\n"
                     "3. Open the Seats tab and read the selected option",
                 "expected_result":
-                    "1. The selected option before the keycycle is shown\n"
+                    "1. \"Lumbar Up/Down\" is shown as the selected option\n"
                     "2. The head unit completes the keycycle\n"
-                    "3. The selected option is the one shown in step 1",
+                    "3. The selected option is \"Lumbar Up/Down\"",
                 "priority": "P1",
                 "design_method": DM_STATE,
             },
@@ -324,11 +327,11 @@ BATCHES = [
             },
             {
                 "req_id": "SWE1-HVAC-080-02",
-                "blocked": "[BLOCKED-SPEC] Long-press logic is defined by HMI "
-                           "Core Logic and Flow requirement N0. With that "
-                           "delegation removed this requirement has no content "
-                           "left that can be verified against the Comfort HMI "
-                           "specification alone",
+                "blocked": "[BLOCKED-SPEC] Owner: HMI Core Logic and Flow "
+                           "requirement N0 — long-press logic is defined "
+                           "there; with that delegation removed this "
+                           "requirement has no content verifiable against the "
+                           "Comfort HMI specification alone",
                 "tc_title": "Long press logic follows HMI Core Logic and Flow",
                 "test_item":
                     "The user will be able to long press on the touch screen "
@@ -396,10 +399,10 @@ BATCHES = [
             },
             {
                 "req_id": "SWE1-HVAC-081-02",
-                "blocked": "[BLOCKED-SPEC] The equivalence to the previous "
-                           "4-way rocker hard control is defined by CFTS044. "
-                           "With that delegation removed this requirement has "
-                           "no content left that can be verified against the "
+                "blocked": "[BLOCKED-SPEC] Owner: CFTS044 — the equivalence to "
+                           "the previous 4-way rocker hard control is defined "
+                           "there; with that delegation removed this "
+                           "requirement has no content verifiable against the "
                            "Comfort HMI specification alone",
                 "tc_title": "Short press is equivalent to the previous 4-way rocker",
                 "test_item":
@@ -473,11 +476,14 @@ BATCHES = [
                     "So if the user is increasing their lumbar, once the "
                     "maximum has been reached, pressing the (+) button again "
                     "will result in error tone being triggered",
+                # R-C25: PC3 qualified under §8.5 (13.6's trigger IS the
+                # at-maximum state) but its 落點 is the procedure — step 1
+                # must establish that state anyway (§7 FF: include setup,
+                # don't assume hidden state), so §4.5 puts the fact there and
+                # not in pre_conditions as well. Qualification != placement.
                 "pre_conditions":
                     f"{PC_SCREEN}\n{PC_DOOR}\n"
-                    "3. [spec-derived] The lumbar/bolster level is already at "
-                    "its maximum (13.6)\n"
-                    "4. [test-setup] The cabin is quiet enough for a tone to be "
+                    "3. [test-setup] The cabin is quiet enough for a tone to be "
                     "heard",
                 "input_test_data": "NA",
                 "test_procedure":

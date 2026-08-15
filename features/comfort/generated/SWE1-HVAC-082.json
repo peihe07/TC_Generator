@@ -45,7 +45,7 @@
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
    "test_item": "So if the user is increasing their lumbar, once the maximum has been reached, pressing the (+) button again will result in error tone being triggered",
-   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lumbar/bolster level is already at its maximum (13.6)\n4. [test-setup] The cabin is quiet enough for a tone to be heard",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [test-setup] The cabin is quiet enough for a tone to be heard",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"+\" repeatedly until the lumbar/bolster stops increasing\n2. Press \"+\" once more on the door seat control",
    "expected_result": "1. The lumbar/bolster is at its maximum level\n2. An error tone is played and the lumbar/bolster stays at its maximum level",

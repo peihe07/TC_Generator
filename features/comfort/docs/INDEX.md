@@ -26,6 +26,8 @@
 | 11 | 2026-08-15 | **pilot 14 條** ＋ lint ＋ §9 自評 ＋ 九軸複掃 | [handoff/19_pilot_rulings.md](handoff/19_pilot_rulings.md) | [upstream/11_pilot.md](upstream/11_pilot.md) | R-C21、R-C22 | — | PASS（送 pilot review） |
 | 12 | 2026-08-15 | **pilot rev2** —— 4 defect 修正 ＋ gate 25→29 | [handoff/20_pilot_review.md](handoff/20_pilot_review.md) | [upstream/12_pilot_rev2.md](upstream/12_pilot_rev2.md) | 無新條文 | A-CF15 | **12 條可 review／2 條待裁** |
 | 13 | 2026-08-15 | **pilot rev3** —— `[BLOCKED-SPEC]` ＋ 系統性 ER 修正 | [handoff/21_blocked_spec_ruling.md](handoff/21_blocked_spec_ruling.md) | [upstream/13_pilot_rev3.md](upstream/13_pilot_rev3.md) | R-C23、R-C24 | — | PASS（31 gate 全綠） |
+| 14 | 2026-08-15 | **pilot rev4** ＋ 寫回 **dry-run**（未執行） | [handoff/22_rev3_review.md](handoff/22_rev3_review.md) | [upstream/14_pilot_rev4_and_dryrun.md](upstream/14_pilot_rev4_and_dryrun.md) | R-C25、R-C26 | — | PASS（列高待裁） |
+| 15 | 2026-08-15 | **pilot rev5** —— TC-007 判定、Owner 前置、列高前例量測 | [handoff/23_rev4_review.md](handoff/23_rev4_review.md) | [upstream/15_pilot_rev5.md](upstream/15_pilot_rev5.md) | R-C27 | — | PASS（列高待裁） |
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；
@@ -58,7 +60,7 @@
 
 | 項目 | 值 |
 |---|---|
-| Phase | **4 進行中** —— pilot **rev3**：14 條全部有著落（**12 條 TC ＋ 2 條 `[BLOCKED-SPEC]` row**），lint **31 gate** 全 PASS。未寫回 workbook |
+| Phase | **4 進行中** —— pilot **rev5**：12 條 TC ＋ 2 條 `[BLOCKED-SPEC]` row，lint **32 gate** 全 PASS。**寫回仍未執行** |
 | workbook_state | `BLANK` |
 | spec_mode | `A`（SYS1 export） |
 | baseline | SR24 CR24879（R-C1；SR25 out of scope） |
@@ -75,6 +77,8 @@
 | rev3 之裁定 | TC-010／TC-012 依 **R-C24** 產 `[BLOCKED-SPEC]` row —— 併入 sibling 違反 §8.2.2、維持現狀則為 §7 之 False Pass，故三選一皆不採 |
 | rev2 之 gate 補齊 | §10.1 `required-keys`、§10.4 `reasoning-sentences`、§10.5 `proc-min-steps`、§10.6 `duplicate-of-format` —— **四者當時皆為實際違反**，非預防性 |
 | rev3 之 gate 補齊 | `blocked-row-empty`、`blocked-remarks` ＋ **具名豁免回報行**（R-C24：豁免不得為條件式中之靜默跳過）|
+| rev4 之 gate 補齊 | `marker-whitelist`（R-C26：豁免不可自取）—— 與 R-C24 互補：前者使豁免**可見**，後者使豁免**不可自取** |
+| **寫回待裁** | ⚠️ **列高**：14 列全部 `customHeight=True, height=14.0` 而 `wrapText=True` —— 折行但不長高。**前例已量**：Privacy 之實際交付件（同一空白範本、欄寬完全相同）**同樣受限**；home／SXM 起自已調版 instance，不構成反例。惟判定規則之第二半（客戶未見反映）**執行層無從驗證** |
 
 ---
 
@@ -82,12 +86,13 @@
 
 | 檔案 | 內容 |
 |---|---|
-| `RULINGS.md` | R-C1 ~ R-C22 + R-C4-1 + R-C5-1 逐字（24 條），加執行層落實回報 |
+| `RULINGS.md` | R-C1 ~ R-C27 + R-C4-1 + R-C5-1 逐字（29 條），加執行層落實回報 |
 | `DECISIONS.md` | 決策表 —— **已簽署 2026-08-14**，受 R-C9 保護。§6 含兩次修正案，**Sign-off 未重簽** |
 | `RECON.md` | Phase 1 survey + assertion 實測值 + uncited baseline sections |
 | `ANOMALIES.md` | A-CF01 ~ A-CF15（A-CF13 含四項 spec 內部瑕疵）|
 | `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` §5 | `[BLOCKED-SPEC]` ＋ 與 `[BLOCKED-ECU]`／R-C16 缺口項之三者對照 |
 | `DATA_REQUESTS.md` | #1 ~ #16 + standing rule（#12 跨 feature；#16 為 Core N0／CFTS044 之**涵蓋**問題，與 #13/#14 之「要不要取得」不同）|
+| `RUNBOOK.md` 末段 | **判準 vs 用詞禁令**（22 §4）—— 與 R-C13／R-C18 同源：以表徵為判準者，其失敗形態是靜默的 |
 | `feature.yaml` | pipeline 常數與裁決常數（`recon_assertions`） |
 | `data/spec_id_to_outline.tsv` | 403 leaf → SR24 outline 之查表（追蹤入版控） |
 | `data/sr24_uncited_sections.tsv` | SR24 基線內 51 節未被引用者之四值分類（A-CF08） |
