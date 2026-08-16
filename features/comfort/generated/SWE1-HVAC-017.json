@@ -3,12 +3,12 @@
  "outline": "2.12.1",
  "batch": "Airflow and Defrost",
  "source_clause": "C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).",
- "reasoning": "驗證目標：2.12.1（C13.0）定出非 tri-mode 設備型之五種氣流模式及其於畫面之呈現，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：profile §3.2 **第三軸（前排氣流模式集合）之「5 狀態」值** —— **本節是該軸三值中唯一自帶正面限定語者**（「In some **non-tri mode equipment types**」），故其值可陳述而 `2.12`／`2.12.2` 不可（DR #31）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`-163` 驗五個狀態之順序，`-164` 驗所選狀態之呈現，兩者失效形態不同（順序錯 vs 呈現錯）。刻意略過：**`-164` 不驗按鈕數** —— 其 ch16 對造 ICE11 自身寫 `5 states` 而其呈現句寫 `ON state for the **four** airflow modes`，係條文內部之數字不一致（A-CF13 同型），故本條只驗「所選模式呈現為作用中」；C13.0 未給硬鍵循環之規則（那在 C13.1，屬停下之 `2.12.2`），本節不涉。",
+ "reasoning": "驗證目標：2.12.1（C13.0）定出非 tri-mode 設備型之五種氣流模式及其於畫面之呈現，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：profile §3.2 **第三軸（前排氣流模式集合）之「5 狀態」值** —— **本節是該軸三值中唯一自帶正面限定語者**（「In some **non-tri mode equipment types**」），故其值可陳述而 `2.12`／`2.12.2` 不可（DR #31）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`017-01` 驗五個狀態之順序，`017-02` 驗所選狀態之呈現，兩者失效形態不同（順序錯 vs 呈現錯）。刻意略過：**`017-02` 不驗按鈕數** —— 其 ch16 對造 ICE11 自身寫 `5 states` 而其呈現句寫 `ON state for the **four** airflow modes`，係條文內部之數字不一致（A-CF13 同型），故本條只驗「所選模式呈現為作用中」；C13.0 未給硬鍵循環之規則（那在 C13.1，屬停下之 `2.12.2`），本節不涉。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "profile §3.2 第三軸「前排氣流模式集合」之值",
-  "delta": "`2.12.1` 取 **5 狀態**（C13.0「In some non-tri mode equipment types, airflow modes has 5 states」），`3.1` 取 **tri-mode 3 鍵 7 組合**（C19）。**兩者為同一需求（本車之氣流模式集合與其選取方式）在該軸兩個值上之陳述**，故其 verification target 必然相異 —— `-163` 驗五狀態之循環序，`-015`／`-016` 驗七組合之個別 toggle 與循環序。四項嚴格等價不成立，`duplicate_of` 不填。第三值（4 模式，`2.12`）因 DR #31 未生成，故本軸三值中目前只有兩個有 TC"
+  "delta": "`2.12.1` 取 **5 狀態**（C13.0「In some non-tri mode equipment types, airflow modes has 5 states」），`3.1` 取 **tri-mode 3 鍵 7 組合**（C19）。**兩者為同一需求（本車之氣流模式集合與其選取方式）在該軸兩個值上之陳述**，故其 verification target 必然相異 —— `017-01` 驗五狀態之循環序，`023-01`／`023-02` 驗七組合之個別 toggle 與循環序。四項嚴格等價不成立，`duplicate_of` 不填。第三值（4 模式，`2.12`）因 DR #31 未生成，故本軸三值中目前只有兩個有 TC"
  },
  "assumptions": [],
  "interface_axis_review": {

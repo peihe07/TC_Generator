@@ -3,7 +3,7 @@
  "outline": "16.9",
  "batch": "ICS Airflow and Defrost",
  "source_clause": "ICE8.) Rear Defrost has on/ off state. Gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that .",
- "reasoning": "驗證目標：16.9（ICE8）以兩句定出 Rear Defrost 之 on/off 狀態與 CCM 可用性之灰化，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；**第十軸（REAR DEFROST 有無，出處 3.4）**兩條全補；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：狀態與灰化之觸發不同（按鍵 vs CCM 狀態），可獨立失效。刻意略過：**ICE8 僅兩句，不含 C8 之「independent of any other climate functions」與鏡面除霜之連動** —— 批次 10 之 `-161`／`-162` 已因此得 `no`；本節不驗該二者，亦不得反向以 C8 補之（§8.2.1）。",
+ "reasoning": "驗證目標：16.9（ICE8）以兩句定出 Rear Defrost 之 on/off 狀態與 CCM 可用性之灰化，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；**第十軸（REAR DEFROST 有無，出處 3.4）**兩條全補；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：狀態與灰化之觸發不同（按鍵 vs CCM 狀態），可獨立失效。刻意略過：**ICE8 僅兩句，不含 C8 之「independent of any other climate functions」與鏡面除霜之連動** —— 批次 10 之 `013-03`／`013-04` 已因此得 `no`；本節不驗該二者，亦不得反向以 C8 補之（§8.2.1）。",
  "keywords": [
   "Rear Defrost",
   "gray out",
@@ -12,7 +12,7 @@
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "profile §3.2 第九軸「EMEA ICS 車型」之值（介面型，R-C34）",
-  "delta": "`2.9` 取**非 ICS** 值（ch2 之 climate screen），`16.9` 取 **ICS** 值（ch16 之 ICS climate screen）。**兩節之 TC 於 `test_item`／`test_procedure`／`expected_result` 三欄逐字相同**（`-159`≡`-249`、`-160`≡`-250`，見 pending_sibling 之 `equivalent_tc_pairs`），其唯一差異在 `pre_conditions` 之軸值 —— 此即 §10.6 所謂「另有可區辨之情境條件」，故 **`duplicate_of` 不填**；惟 `2.9` 尚有 `-161`（獨立性）與 `-162`（鏡面除霜連動）二條為 ICE8 所無，兩側不等勢"
+  "delta": "`2.9` 取**非 ICS** 值（ch2 之 climate screen），`16.9` 取 **ICS** 值（ch16 之 ICS climate screen）。**兩節之 TC 於 `test_item`／`test_procedure`／`expected_result` 三欄逐字相同**（`013-01`≡`114-01`、`013-02`≡`114-02`，見 pending_sibling 之 `equivalent_tc_pairs`），其唯一差異在 `pre_conditions` 之軸值 —— 此即 §10.6 所謂「另有可區辨之情境條件」，故 **`duplicate_of` 不填**；惟 `2.9` 尚有 `013-03`（獨立性）與 `013-04`（鏡面除霜連動）二條為 ICE8 所無，兩側不等勢"
  },
  "assumptions": [],
  "interface_axis_review": {

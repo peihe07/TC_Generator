@@ -13,8 +13,8 @@
  ],
  "duplicate_of": "",
  "distinguishing_axis": {
-  "axis": "see per-TC titles",
-  "delta": ""
+  "axis": "節之主題（ICS 畫面解剖 vs ICS 溫度控制）—— 惟其一對 TC 為嚴格等價",
+  "delta": "`16.2`（ICE1）之主題為 ICS climate 畫面之組成與其元素，`16.6`（ICE5）之主題為溫度之控制與呈現。**兩節各有一 leaf 述同一件事**：`106-04` 與 `110-06` 之 `test_item`／`test_procedure`／`expected_result` **與 `pre_conditions` 皆相同**（僅 PC 行序不同），即**同一台車上要跑兩次一模一樣的測試**。**§10.6 四項全同 → 嚴格等價**，惟 `duplicate_of` **不填** —— 該欄為節級（宣稱整節重複，為假）而此處為條級；037 之兩個 leaf 各自存在，§8.2.2 禁本層合併 leaf。已登 **DR #42**，並記於 pending_sibling 之 `equivalent_tc_pairs`。**本對與跨第九軸之等價對不同**：那些兩側互斥（同一車不可能既 ICS 又非 ICS），本對兩側**同章同軸值**，故重複是實在的"
  },
  "assumptions": [],
  "interface_axis_review": {

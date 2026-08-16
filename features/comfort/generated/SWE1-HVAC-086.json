@@ -3,7 +3,7 @@
  "outline": "14.3",
  "batch": "Climate Popups",
  "source_clause": "HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, mode popups)",
- "reasoning": "驗證目標：14.3（HVACP3.1）定出 HVAC popup 具互動性，兩個 037 leaf 分別對應「可互動」與「可自 popup 調整參數」（§8.2.1）。關鍵情境條件：同 14.1.1。為什麼這樣切：`-169` 驗其可被操作，`-170` 驗操作之結果生效，兩者失效形態不同（按下無反應 vs 有反應而值不變）。刻意略過：條文以 `e.g.` 舉三種 popup（Temp／fan speed／mode），本批以 fan popup 為代表而不逐一列舉 —— 三者之互動性為同一需求，逐一產出即同一可觀察量重複（§4.5）。",
+ "reasoning": "驗證目標：14.3（HVACP3.1）定出 HVAC popup 具互動性，兩個 037 leaf 分別對應「可互動」與「可自 popup 調整參數」（§8.2.1）。關鍵情境條件：同 14.1.1。為什麼這樣切：`086-01` 驗其可被操作，`086-02` 驗操作之結果生效，兩者失效形態不同（按下無反應 vs 有反應而值不變）。刻意略過：條文以 `e.g.` 舉三種 popup（Temp／fan speed／mode），本批以 fan popup 為代表而不逐一列舉 —— 三者之互動性為同一需求，逐一產出即同一可觀察量重複（§4.5）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

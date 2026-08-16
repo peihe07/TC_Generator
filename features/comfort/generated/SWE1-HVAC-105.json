@@ -3,7 +3,7 @@
  "outline": "15.1",
  "batch": "Climate Popups",
  "source_clause": "HVACP11.1) For different Climate features (Defrost/Max Defrost, AUTO, etc) when a user enters (starts a function) or exits (breaks a function) that function then the HVAC pop ups displayed will follow the chart below. The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).",
- "reasoning": "驗證目標：15.1（HVACP11.1）之性質**先判再處置**（55 §1.1）：本節**兼具對照表與行為條文兩種性質** —— 其「the HVAC pop ups displayed will follow the chart below」為對照表（該表為圖片，A-CF23），而「all pop ups should display current state of the HVAC systems (not the exact pictures below…)」為可驗之行為條文。**037 已把兩者分開**：其兩個 leaf 皆屬後者（顯示當前狀態／圖為示例），**對照表本身無 leaf**，故本節兩條皆生成，而**對照表之缺口為 R-C16 形態**（037 未產出該 leaf，不產 workbook 列、不入分母），已於上繳 37 §5.2 具名。關鍵情境條件：同 14.1.1。為什麼這樣切：`-201` 驗 popup 顯示當前狀態，`-202` 驗其不依圖片所示，後者以「與圖片不同之值」為輸入，兩者失效形態不同。刻意略過：**不得將表格內容當作行為驗證**（55 §1.1）—— 故無任何一條驗「某功能進入時顯示某 popup」，那正是缺的對照。",
+ "reasoning": "驗證目標：15.1（HVACP11.1）之性質**先判再處置**（55 §1.1）：本節**兼具對照表與行為條文兩種性質** —— 其「the HVAC pop ups displayed will follow the chart below」為對照表（該表為圖片，A-CF23），而「all pop ups should display current state of the HVAC systems (not the exact pictures below…)」為可驗之行為條文。**037 已把兩者分開**：其兩個 leaf 皆屬後者（顯示當前狀態／圖為示例），**對照表本身無 leaf**，故本節兩條皆生成，而**對照表之缺口為 R-C16 形態**（037 未產出該 leaf，不產 workbook 列、不入分母），已於上繳 37 §5.2 具名。關鍵情境條件：同 14.1.1。為什麼這樣切：`105-01` 驗 popup 顯示當前狀態，`105-02` 驗其不依圖片所示，後者以「與圖片不同之值」為輸入，兩者失效形態不同。刻意略過：**不得將表格內容當作行為驗證**（55 §1.1）—— 故無任何一條驗「某功能進入時顯示某 popup」，那正是缺的對照。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

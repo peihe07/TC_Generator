@@ -15,8 +15,8 @@
  ],
  "duplicate_of": "",
  "distinguishing_axis": {
-  "axis": "see per-TC titles",
-  "delta": ""
+  "axis": "所控之氣候區（前排 vs 後排）—— 同一行為在兩區之兩處陳述",
+  "delta": "`2.6` 之主體為**前排**溫度（值域、HI／LO、Metric 半度、slider 與 popup），`7.4` 之主體為**後排**同一溫度（值域、HI／LO、Metric 半度、slider 與 popup）（鏡射表記其為 partial／mirrored）。**§10.6 逐項**：trigger 之操作對象不同（前排控制 vs 後排控制）、outcome 之可觀察量不同（前排溫度顯示 vs 後排溫度顯示）、input 皆 NA、verification target 各為該區之行為。**四項中兩項相異 → 非嚴格等價，`duplicate_of` 不填。** 與 `2.9`↔`16.9` 之四對逐字等價不同：**該對之兩側互斥**（同一車不可能既 ICS 又非 ICS），**本對之兩側並存**（一台四區車同時有前排與後排），故兩條 TC 於同一車上皆須執行"
  },
  "assumptions": [],
  "interface_axis_review": {

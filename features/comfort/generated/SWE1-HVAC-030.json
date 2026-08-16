@@ -1,0 +1,152 @@
+{
+ "parent": "SWE1-HVAC-030",
+ "outline": "7.2",
+ "batch": "Rear Climate",
+ "source_clause": "CR2.) Rear AUTO has on/ off state. The fan speed indicator shows Auto instead of the actual fan speed (this is based on fan speed of 15h rather than the status of AUTO). AUTO affects Fan speed and Modes in order to reach desired temperature as quickly as possible. Auto is mutually exclusive with the three airflow modes. If Auto is turned on, these buttons/statuses are turned off. The fan speed will be transmitted as 15h instead of the actual fan speed. Switching to another airflow mode would break Auto; go from auto mode to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode. Fan breaks Auto for Airflow mode. Any other climate controls do NOT break Auto either.",
+ "reasoning": "驗證目標：7.2（CR2）定出後排 AUTO 之狀態呈現、其對風速與模式之作用、與三種氣流模式之互斥、中斷條件與其落點，以及不中斷之情形，五個 037 leaf 逐句對應之。關鍵情境條件：起始 PC 為 test-setup —— **CR2 未如 C2 般載明「AUTO is not shown in MTC configurations」，故本節不補第一軸**（不以前排條文補後排，§8.2.1）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`030-04`（中斷後落到最接近之手動模式，除非按下特定模式鍵）取狀態轉換法，其失效形態（落錯模式）與 `030-05`（不中斷）相反，二者成正反兩側。刻意略過：**後排是否亦有 `AUTO ECO`（DR #25）** —— ch10 全 9 節對 `rear` 零命中而 CR2 只述兩狀態，故本節之 AUTO 一律以兩狀態驗之，**不引入 ch10 之三狀態**（§8.4.1）。",
+ "keywords": [
+  "AUTO",
+  "15h",
+  "mutually exclusive"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "所控之氣候區（前排 vs 後排）—— 同一行為在兩區之兩處陳述",
+  "delta": "`2.3` 之主體為**前排**AUTO（其狀態、15h 指示、與氣流模式之互斥、中斷條件），`7.2` 之主體為**後排**同一AUTO（其狀態、15h 指示、與氣流模式之互斥、中斷條件）（鏡射表記其為 partial／mirrored）。**§10.6 逐項**：trigger 之操作對象不同（前排控制 vs 後排控制）、outcome 之可觀察量不同（前排風速／模式 vs 後排風速／模式）、input 皆 NA、verification target 各為該區之行為。**四項中兩項相異 → 非嚴格等價，`duplicate_of` 不填。** 與 `2.9`↔`16.9` 之四對逐字等價不同：**該對之兩側互斥**（同一車不可能既 ICS 又非 ICS），**本對之兩側並存**（一台四區車同時有前排與後排），故兩條 TC 於同一車上皆須執行"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "後排 climate screen 之 AUTO 鍵、風速指示與三個氣流模式鍵",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序（`2.1` 之 tab 集合問題見 DR #17）",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 十八節無後排氣候之節（見 DR #41）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-030-01",
+   "tc_id": "NR1L-ComfortHMI-272",
+   "tc_title": "The rear fan speed indicator shows AUTO instead of the actual fan speed",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall fan speed shows AUTO (15h) instead of actual speed",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn rear AUTO on\n2. Read the rear fan speed indicator",
+   "expected_result": "1. The rear AUTO button is highlighted\n2. The rear fan speed indicator shows AUTO instead of the actual fan speed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-030-02",
+   "tc_id": "NR1L-ComfortHMI-273",
+   "tc_title": "Rear AUTO drives fan speed and modes towards the desired temperature",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall AUTO affects fan speed and modes to reach desired temperature",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn rear AUTO on\n2. Set a rear temperature different from the current cabin temperature\n3. Read the rear fan speed and airflow mode",
+   "expected_result": "1. The rear AUTO button is highlighted\n2. The rear temperature is set to the requested value\n3. The rear fan speed and airflow mode change without user input",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-030-03",
+   "tc_id": "NR1L-ComfortHMI-274",
+   "tc_title": "Rear AUTO and the three rear airflow modes are mutually exclusive",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall AUTO mutually exclusive with three airflow modes",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select a rear airflow mode\n2. Turn rear AUTO on\n3. Read the three rear airflow mode buttons",
+   "expected_result": "1. The selected rear airflow mode button is highlighted\n2. The rear AUTO button is highlighted\n3. The three rear airflow mode buttons are turned off",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-030-04",
+   "tc_id": "NR1L-ComfortHMI-275",
+   "tc_title": "Switching the rear airflow mode or fan breaks rear AUTO",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall switching airflow mode or fan breaks AUTO, system goes to manual mode closest to exited AUTO unless specific mode button pressed",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn rear AUTO on\n2. Change the rear fan speed\n3. Turn rear AUTO on again and press a specific rear airflow mode button",
+   "expected_result": "1. The rear AUTO button is highlighted\n2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode\n3. The system is in the pressed rear airflow mode",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-030-05",
+   "tc_id": "NR1L-ComfortHMI-276",
+   "tc_title": "Other rear climate controls do not break rear AUTO",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall other climate controls do not break AUTO",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn rear AUTO on\n2. Change the rear temperature\n3. Read the rear AUTO button",
+   "expected_result": "1. The rear AUTO button is highlighted\n2. The rear temperature changes\n3. The rear AUTO button is still highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  }
+ ]
+}

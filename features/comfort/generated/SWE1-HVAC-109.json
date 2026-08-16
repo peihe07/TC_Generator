@@ -3,7 +3,7 @@
  "outline": "16.5",
  "batch": "ICS Climate Modes",
  "source_clause": "ICE4.) The recirc icon will display the vehicle model specific icon as displayed in the Climate Main page table. If the system cannot detect the vehicle model it will display the generic recirc symbol.",
- "reasoning": "驗證目標：16.5（ICE4）定出 recirc 圖示依車型顯示與偵測不到車型時之通用符號，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：兩者為同一規則之兩個分支（偵測得到／偵測不到），依 §7 各自成條。刻意略過：**本節與 `2.5` 之 `006-04`（已停下）同屬「對照關係未定義」** —— ICE4 云「as displayed in **the Climate Main page table**」，比 C4 之「the table」具體，**仍未給對照**；故 `-212` 之 ER 只驗「圖示為該車型之圖示」而**不指名任何具體圖示**（§8.4.1），其可判性依賴受測車型之已知圖示，該限制已於 `DATA_REQUESTS` #32 具名。",
+ "reasoning": "驗證目標：16.5（ICE4）定出 recirc 圖示依車型顯示與偵測不到車型時之通用符號，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：兩者為同一規則之兩個分支（偵測得到／偵測不到），依 §7 各自成條。刻意略過：**本節與 `2.5` 之 `006-04`（已停下）同屬「對照關係未定義」** —— ICE4 云「as displayed in **the Climate Main page table**」，比 C4 之「the table」具體，**仍未給對照**；故 `109-01` 之 ER 只驗「圖示為該車型之圖示」而**不指名任何具體圖示**（§8.4.1），其可判性依賴受測車型之已知圖示，該限制已於 `DATA_REQUESTS` #32 具名。",
  "keywords": [
   "recirc icon",
   "vehicle model"

@@ -15,7 +15,7 @@
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "which side of SYNC the section owns (2.6.1 vs 2.11)",
-  "delta": "`2.6.1`（C5.1）之主題為**溫度之調整途徑**（箭頭 1 增量、長按快移、滑桿把手、跳值），SYNC 之連動是其中一句；`2.11`（C12）之主題為 **SYNC 這個功能本身**（其高亮指示、單區不顯示、對前後排風速與模式之作用）。**惟 `-053`／`-054` 與 `-150`／`-151` 兩對為嚴格等價**（trigger／outcome／input／verification target 四項皆同）—— 依 R-C33 037 之單位不動，故兩側各自保留其 leaf 與 TC；`duplicate_of` 未設，理由見上方註解"
+  "delta": "`2.6.1`（C5.1）之主題為**溫度之調整途徑**（箭頭 1 增量、長按快移、滑桿把手、跳值），SYNC 之連動是其中一句；`2.11`（C12）之主題為 **SYNC 這個功能本身**（其高亮指示、單區不顯示、對前後排風速與模式之作用）。**惟 `009-01`／`009-02` 與 `015-02`／`015-03` 兩對為嚴格等價**（trigger／outcome／input／verification target 四項皆同）—— 依 R-C33 037 之單位不動，故兩側各自保留其 leaf 與 TC；`duplicate_of` 未設，理由見上方註解"
  },
  "assumptions": [],
  "interface_axis_review": {

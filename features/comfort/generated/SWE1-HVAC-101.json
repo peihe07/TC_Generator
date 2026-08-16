@@ -3,7 +3,7 @@
  "outline": "14.16.1",
  "batch": "Climate Popups",
  "source_clause": "HVACSB2.1.) Seat zone will show currently active or last used state. Press of the icon will toggle through the states of seat zone from (1. both seat back and seat cushion, 2. Seat back only 3. Seat cushion only). Icon will be labelled as Zone . The icon will grey out if the heated and vented seats are off.",
- "reasoning": "驗證目標：14.16.1（HVACSB2.1）定出座椅分區之狀態呈現、三態循環、Zone 標示，以及座椅關閉時之灰化，三個 037 leaf 對應之。關鍵情境條件：同 14.16（第十六軸取有值，出處 14.15）。為什麼這樣切：`-189` 之三態循環取狀態轉換法，其失效形態（順序錯、循環不回頭）與 `-191` 之灰化無關。刻意略過：**本節為 `122-02` 之 R-C39 條件三之候選節之一**（47 §1 之預裁對象）—— 逐句比對之結果見上繳 37 §5.3：本節所述為「座椅關閉時圖示變灰」，**非 configuration 到 icon 之對照**，條件三不成立；惟另一候選節 `12.3` 尚未生成，故 47 §1 之觸發條件（該二節生成後）未齊，**本輪不升 DR #32 之等級**。",
+ "reasoning": "驗證目標：14.16.1（HVACSB2.1）定出座椅分區之狀態呈現、三態循環、Zone 標示，以及座椅關閉時之灰化，三個 037 leaf 對應之。關鍵情境條件：同 14.16（第十六軸取有值，出處 14.15）。為什麼這樣切：`101-01` 之三態循環取狀態轉換法，其失效形態（順序錯、循環不回頭）與 `101-03` 之灰化無關。刻意略過：**本節為 `122-02` 之 R-C39 條件三之候選節之一**（47 §1 之預裁對象）—— 逐句比對之結果見上繳 37 §5.3：本節所述為「座椅關閉時圖示變灰」，**非 configuration 到 icon 之對照**，條件三不成立；惟另一候選節 `12.3` 尚未生成，故 47 §1 之觸發條件（該二節生成後）未齊，**本輪不升 DR #32 之等級**。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

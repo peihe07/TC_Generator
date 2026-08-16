@@ -3,7 +3,7 @@
  "outline": "16.8",
  "batch": "ICS Airflow and Defrost",
  "source_clause": "ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST. MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode. Change in fan speed doesn’t break MAX DEF. Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on. Pressing A/C brakes MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off. Pressing AUTO breaks MAX DEF (turns MAX DEF off) and the system goes to AUTO. Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.",
- "reasoning": "驗證目標：16.8（ICE7）以十二句定出 MAX DEF 對六項氣候參數之設定、自動關閉與回復，以及五種中斷途徑之落點，十二個 037 leaf 逐句對應（§8.2.1）。關鍵情境條件：EMEA 軸取正向值（16.2）；**第五軸（MAX DEF 有無，出處 3.2）十二條全補**；`-242`（Sync）另補第二軸（16.11）、`-243`（REAR DEFROST）另補第十軸（3.4）、`-247`（AUTO）另補第一軸之 ATC 值（16.3）、`-248`（MAX A/C）另補第四軸（16.13）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補。為什麼這樣切：六項參數設定各自成條（`-237`～`-242`），任一項之失效可獨立定位；四種中斷途徑之落點各異（`-245`～`-248`），亦各自成條；`-244`（風速不中斷）為其反例，與 `-245`（其他變更中斷）成正反兩側（§7）。刻意略過：**其對造 `3.2`（C20）已生成而 `2.8`（C7）之 Defrost 為另一控制** —— 鏡射表記 `16.8 ↔ 3.2` 為 mirrored（七項連動逐字相同），故本節與 `3.2` 為鏡射對而非與 `2.8`；`-237`～`-248` 之判定與 `-018`／`-019` 之 TC 對 TC 比對見上繳 39 §6.3（§8.2.1：不因其為鏡射而互相移植）。",
+ "reasoning": "驗證目標：16.8（ICE7）以十二句定出 MAX DEF 對六項氣候參數之設定、自動關閉與回復，以及五種中斷途徑之落點，十二個 037 leaf 逐句對應（§8.2.1）。關鍵情境條件：EMEA 軸取正向值（16.2）；**第五軸（MAX DEF 有無，出處 3.2）十二條全補**；`113-06`（Sync）另補第二軸（16.11）、`113-07`（REAR DEFROST）另補第十軸（3.4）、`113-11`（AUTO）另補第一軸之 ATC 值（16.3）、`113-12`（MAX A/C）另補第四軸（16.13）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補。為什麼這樣切：六項參數設定各自成條（`113-01`～`113-06`），任一項之失效可獨立定位；四種中斷途徑之落點各異（`113-09`～`113-12`），亦各自成條；`113-08`（風速不中斷）為其反例，與 `113-09`（其他變更中斷）成正反兩側（§7）。刻意略過：**其對造 `3.2`（C20）已生成而 `2.8`（C7）之 Defrost 為另一控制** —— 鏡射表記 `16.8 ↔ 3.2` 為 mirrored（七項連動逐字相同），故本節與 `3.2` 為鏡射對而非與 `2.8`；`113-01`～`113-12` 之判定與 `024-01`／`024-02` 之 TC 對 TC 比對見上繳 39 §6.3（§8.2.1：不因其為鏡射而互相移植）。",
  "keywords": [
   "MAX DEF",
   "Windshield",
@@ -13,7 +13,7 @@
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "MAX DEF 之中斷途徑（trigger）與其落點（outcome）",
-  "delta": "四條中斷條各異 —— `-245` 改溫度／recirc／模式或再按 MAX DEF → 回前一手動模式且 A/C **開**；`-246` 按 A/C → 回前一手動模式且 A/C **關**；`-247` 按 AUTO → 系統進入 **AUTO**；`-248` 按 MAX A/C → 系統進入 **MAX A/C**。另 `-244`（改風速）之 outcome 為 **不中斷**，與其餘四條相反。**§10.6 四項中 trigger 於五條全異、outcome 於四條亦異，無一對構成 `duplicate_of`**；其重疊屬 §4.6 而非 §4.5（六條 TC 不在 §4.5 之射程內）"
+  "delta": "四條中斷條各異 —— `113-09` 改溫度／recirc／模式或再按 MAX DEF → 回前一手動模式且 A/C **開**；`113-10` 按 A/C → 回前一手動模式且 A/C **關**；`113-11` 按 AUTO → 系統進入 **AUTO**；`113-12` 按 MAX A/C → 系統進入 **MAX A/C**。另 `113-08`（改風速）之 outcome 為 **不中斷**，與其餘四條相反。**§10.6 四項中 trigger 於五條全異、outcome 於四條亦異，無一對構成 `duplicate_of`**；其重疊屬 §4.6 而非 §4.5（六條 TC 不在 §4.5 之射程內）"
  },
  "assumptions": [],
  "interface_axis_review": {

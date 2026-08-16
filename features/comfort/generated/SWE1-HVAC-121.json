@@ -3,7 +3,7 @@
  "outline": "16.15",
  "batch": "ICS Airflow and Defrost",
  "source_clause": "ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state. EXTERIOR REAR-VIEWMIRROR DEFROST is independent of any other climate functions.",
- "reasoning": "驗證目標：16.15（ICE14）以兩句定出對外後視鏡除霜之 on/off 狀態與其獨立性，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。**DR #40 於本節獨立判定**（59 §1.1：不以 ch2 側之未決為由停下，亦不以其為由生成）：**ICE14 自身無任何配置限定語**，故不補配置式 PC —— 此與 `2.15` 之 `-165`／`-166` 結論相同，**而其依據為本節自身之條文，非承襲 ch2 側之處置**。為什麼這樣切：`-265`（獨立性）之驗證需兩個不同干擾源（AUTO、climate off），因「獨立」之否證只需一個反例。刻意略過：**DR #40 之不對稱於 ch16 側更明顯** —— `16.9`（ICE8）**連引用鏡面除霜都沒有**（C8 尚有「if this feature available」一句），故 ch16 側之語料對該配置**零陳述**；此實測已補入上繳 39 §5。",
+ "reasoning": "驗證目標：16.15（ICE14）以兩句定出對外後視鏡除霜之 on/off 狀態與其獨立性，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。**DR #40 於本節獨立判定**（59 §1.1：不以 ch2 側之未決為由停下，亦不以其為由生成）：**ICE14 自身無任何配置限定語**，故不補配置式 PC —— 此與 `2.15` 之 `021-01`／`021-02` 結論相同，**而其依據為本節自身之條文，非承襲 ch2 側之處置**。為什麼這樣切：`121-02`（獨立性）之驗證需兩個不同干擾源（AUTO、climate off），因「獨立」之否證只需一個反例。刻意略過：**DR #40 之不對稱於 ch16 側更明顯** —— `16.9`（ICE8）**連引用鏡面除霜都沒有**（C8 尚有「if this feature available」一句），故 ch16 側之語料對該配置**零陳述**；此實測已補入上繳 39 §5。",
  "keywords": [
   "mirror defrost",
   "independent"
@@ -11,7 +11,7 @@
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "profile §3.2 第九軸「EMEA ICS 車型」之值（介面型，R-C34）",
-  "delta": "`2.15` 取**非 ICS** 值，`16.15` 取 **ICS** 值。**兩節之 TC 三欄逐字相同**（`-165`≡`-264`、`-166`≡`-265`），差異僅在 `pre_conditions` 之軸值，故 `duplicate_of` 不填而以軸值區辨。**本對是全corpus 中唯一兩側 leaf 數相等且逐條等價者**，故其「兩份 TC 是否應合併為一份並以軸值參數化」之問題最為赤裸 —— 已隨 037 分解案登 DR #38"
+  "delta": "`2.15` 取**非 ICS** 值，`16.15` 取 **ICS** 值。**兩節之 TC 三欄逐字相同**（`021-01`≡`121-01`、`021-02`≡`121-02`），差異僅在 `pre_conditions` 之軸值，故 `duplicate_of` 不填而以軸值區辨。**本對是全corpus 中唯一兩側 leaf 數相等且逐條等價者**，故其「兩份 TC 是否應合併為一份並以軸值參數化」之問題最為赤裸 —— 已隨 037 分解案登 DR #38"
  },
  "assumptions": [],
  "interface_axis_review": {

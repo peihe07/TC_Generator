@@ -1,0 +1,127 @@
+{
+ "parent": "SWE1-HVAC-033",
+ "outline": "7.5",
+ "batch": "Rear Climate",
+ "source_clause": "CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is indicated on TS rear climate screen. When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide. The user shall not be able to turn the FAN off by using the FAN controls on the screen. There would always be one bar highlighted. The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen).",
+ "reasoning": "驗證目標：7.5（CR5）定出後排風速之值域與呈現位置、三種調整途徑、不可自畫面關閉風扇之限制，以及全暗之唯一途徑，四個 037 leaf 對應之。關鍵情境條件：起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`033-01` 取 BVA（Off／1／7／15h 為值域端點）；`033-03`（恆有一格高亮）與 `033-04`（唯一之全暗途徑）為同一限制之兩面，前者為否定式、後者給出其唯一例外（§7）。刻意略過：**前排之第二值域 `Off, 1-8`（2.7.1 C6.1，profile §3.2 第十四軸）不適用於後排** —— CR5 只列一組值域，ch7 無第二值域之節（鏡射表 `no-counterpart`），故本節不補第十四軸。",
+ "keywords": [
+  "fan ranges",
+  "Off, 1-7",
+  "15h"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "所控之氣候區（前排 vs 後排）—— 同一行為在兩區之兩處陳述",
+  "delta": "`2.7` 之主體為**前排**風速（值域、三種調整途徑、不可自畫面關閉之限制），`7.5` 之主體為**後排**同一風速（值域、三種調整途徑、不可自畫面關閉之限制）（鏡射表記其為 partial／mirrored）。**§10.6 逐項**：trigger 之操作對象不同（前排控制 vs 後排控制）、outcome 之可觀察量不同（前排風速格 vs 後排風速格）、input 皆 NA、verification target 各為該區之行為。**四項中兩項相異 → 非嚴格等價，`duplicate_of` 不填。** 與 `2.9`↔`16.9` 之四對逐字等價不同：**該對之兩側互斥**（同一車不可能既 ICS 又非 ICS），**本對之兩側並存**（一台四區車同時有前排與後排），故兩條 TC 於同一車上皆須執行"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "後排 climate screen 之風速格與其高亮",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序（`2.1` 之 tab 集合問題見 DR #17）",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 十八節無後排氣候之節（見 DR #41）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-033-01",
+   "tc_id": "NR1L-ComfortHMI-284",
+   "tc_title": "The rear fan range covers Off, 1 to 7 and 15h shown as AUTO",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall fan ranges: Off, 1-7, 15h (AUTO)",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the rear fan speed to 1\n2. Set the rear fan speed to 7\n3. Turn rear AUTO on",
+   "expected_result": "1. The rear fan speed indicator shows 1\n2. The rear fan speed indicator shows 7\n3. The rear fan speed indicator shows AUTO",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-033-02",
+   "tc_id": "NR1L-ComfortHMI-285",
+   "tc_title": "The rear fan status is indicated on the touchscreen rear climate screen",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall status shown on TS rear climate screen",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the rear fan speed\n2. Read the rear climate screen",
+   "expected_result": "1. The rear fan speed changes\n2. The rear climate screen indicates the current rear fan status",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-033-03",
+   "tc_id": "NR1L-ComfortHMI-286",
+   "tc_title": "The rear fan cannot be switched off from the screen",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall always one bar highlighted; cannot turn off fan using controls",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the rear fan down (minus) button repeatedly until it has no further effect\n2. Read the rear fan bars",
+   "expected_result": "1. The rear fan speed stops at its lowest selectable setting\n2. One rear fan bar is still highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-033-04",
+   "tc_id": "NR1L-ComfortHMI-287",
+   "tc_title": "All rear fan bars grey out only when the climate system is switched off",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall only way to gray out all bars: CLIMATE system OFF",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the rear fan bars while the climate system is on\n2. Press the climate power button on the screen\n3. Read the rear fan bars",
+   "expected_result": "1. At least one rear fan bar is highlighted\n2. The climate system is off\n3. All rear fan bars are greyed out",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  }
+ ]
+}

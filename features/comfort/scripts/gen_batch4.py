@@ -121,6 +121,13 @@ BATCHES = [
     {
         "parent": "SWE1-HVAC-008",
         "outline": "2.6",
+        # 61 §2 — the ch7 twin is now generated, so §4.6 is owed an
+        # answer. Not `see per-TC titles`: the sibling is another
+        # SECTION and the axis below is what separates them.
+        "distinguishing_axis": {
+            "axis": "所控之氣候區（前排 vs 後排）—— 同一行為在兩區之兩處陳述",
+            "delta": "`2.6` 之主體為**前排**溫度（值域、HI／LO、Metric 半度、slider 與 popup），`7.4` 之主體為**後排**同一溫度（值域、HI／LO、Metric 半度、slider 與 popup）（鏡射表記其為 partial／mirrored）。**§10.6 逐項**：trigger 之操作對象不同（前排控制 vs 後排控制）、outcome 之可觀察量不同（前排溫度顯示 vs 後排溫度顯示）、input 皆 NA、verification target 各為該區之行為。**四項中兩項相異 → 非嚴格等價，`duplicate_of` 不填。** 與 `2.9`↔`16.9` 之四對逐字等價不同：**該對之兩側互斥**（同一車不可能既 ICS 又非 ICS），**本對之兩側並存**（一台四區車同時有前排與後排），故兩條 TC 於同一車上皆須執行",
+        },
         "reasoning":
             "驗證目標：2.6（C5）定出溫度之範圍與顯示（度數／HI／LO）、公制之半度增量、非 climate screen 時之 popup，以及四個呈現位置之一致性，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量皆落於 TS climate screen、狀態列與溫度 popup，依 **R-C34** 對四個介面型軸逐一提問 —— 第十三軸（3 旋鈕 ICS）與 EMEA ICS 皆移除該介面，故全數補排除式 PC；第九軸移除之 head unit comfort section 不含 climate screen 與狀態列，第十二軸移除之 tabs 本節不觀察，二者不補並具名於此。-01 另取第一軸 ATC，其第一問由「Temperature will display the current degree value that the user has set it to for ATC systems」明文對應。為什麼這樣切：五者之失效互相獨立（度數正確而 HI／LO 錯、公制切換正確而 popup 不出），且分屬不同觀察位置。刻意略過：條文之溫度區間（60-84／16-28）為 CCM 轉達之狀態，本節未定義其邊界行為，故 -02 以條文自身之詞「highest possible position」「lowest」判定而不寫入數值（R-C22）。",
         "keywords": ["temperature", "HI", "LO", "Metric", "half degree",
@@ -248,7 +255,7 @@ BATCHES = [
             "delta": "`2.6.1`（C5.1）之主題為**溫度之調整途徑**（箭頭 1 增量、長按快移、"
                      "滑桿把手、跳值），SYNC 之連動是其中一句；`2.11`（C12）之主題為 "
                      "**SYNC 這個功能本身**（其高亮指示、單區不顯示、對前後排風速與模式之作用）。"
-                     "**惟 `-053`／`-054` 與 `-150`／`-151` 兩對為嚴格等價**（trigger／outcome／"
+                     "**惟 `009-01`／`009-02` 與 `015-02`／`015-03` 兩對為嚴格等價**（trigger／outcome／"
                      "input／verification target 四項皆同）—— 依 R-C33 037 之單位不動，"
                      "故兩側各自保留其 leaf 與 TC；`duplicate_of` 未設，理由見上方註解",
         },
@@ -380,8 +387,15 @@ BATCHES = [
     {
         "parent": "SWE1-HVAC-010",
         "outline": "2.7",
+        # 61 §2 — the ch7 twin is now generated, so §4.6 is owed an
+        # answer. Not `see per-TC titles`: the sibling is another
+        # SECTION and the axis below is what separates them.
+        "distinguishing_axis": {
+            "axis": "所控之氣候區（前排 vs 後排）—— 同一行為在兩區之兩處陳述",
+            "delta": "`2.7` 之主體為**前排**風速（值域、三種調整途徑、不可自畫面關閉之限制），`7.5` 之主體為**後排**同一風速（值域、三種調整途徑、不可自畫面關閉之限制）（鏡射表記其為 partial／mirrored）。**§10.6 逐項**：trigger 之操作對象不同（前排控制 vs 後排控制）、outcome 之可觀察量不同（前排風速格 vs 後排風速格）、input 皆 NA、verification target 各為該區之行為。**四項中兩項相異 → 非嚴格等價，`duplicate_of` 不填。** 與 `2.9`↔`16.9` 之四對逐字等價不同：**該對之兩側互斥**（同一車不可能既 ICS 又非 ICS），**本對之兩側並存**（一台四區車同時有前排與後排），故兩條 TC 於同一車上皆須執行",
+        },
         "reasoning":
-            "驗證目標：2.7（C6）定出風量之範圍與呈現位置、非 climate screen 時之 popup、climate screen 上之三種調整途徑，以及「風量不可手動關至全暗」此一限制與其唯一例外，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 TS climate screen 與 main category control，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；**-01 另補第九軸** —— 其讀 main category control，而 6.3 使 comfort section 自 head unit 移除，故該介面可能不存在，標 (6.3) 並併入 specification_reference；其餘四條之可觀察量在 climate screen 與 popup，不受第九軸影響。為什麼這樣切：三種調整途徑與兩項限制之失效互相獨立。刻意略過：條文之 `15h` 標示 AUTO 一項語意不明（未見於他節），本批不驗，僅驗 Off 與 1-7 之呈現；-02 與 `NR1L-ComfortHMI-033`（2.2 之 popup）形態相近而 leaf 不同，依 §8.2 各自成條，本條之主詞為風量、該條為一般性狀態變更；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 1 張圖，五條之答**皆為否** —— `fan segment`／`one bar highlighted`／`all FAN bars grayed out`／`main category control`／`pop-up` 五個可觀察量**全部是 C6 自己的字**，ER 未使用任何條文以外之視覺描述。",
+            "驗證目標：2.7（C6）定出風量之範圍與呈現位置、非 climate screen 時之 popup、climate screen 上之三種調整途徑，以及「風量不可手動關至全暗」此一限制與其唯一例外，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 TS climate screen 與 main category control，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；**-01 另補第九軸** —— 其讀 main category control，而 6.3 使 comfort section 自 head unit 移除，故該介面可能不存在，標 (6.3) 並併入 specification_reference；其餘四條之可觀察量在 climate screen 與 popup，不受第九軸影響。為什麼這樣切：三種調整途徑與兩項限制之失效互相獨立。刻意略過：條文之 `15h` 標示 AUTO 一項語意不明（未見於他節），本批不驗，僅驗 Off 與 1-7 之呈現；-02 與 `002-02`（2.2 之 popup）形態相近而 leaf 不同，依 §8.2 各自成條，本條之主詞為風量、該條為一般性狀態變更；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 1 張圖，五條之答**皆為否** —— `fan segment`／`one bar highlighted`／`all FAN bars grayed out`／`main category control`／`pop-up` 五個可觀察量**全部是 C6 自己的字**，ER 未使用任何條文以外之視覺描述。",
         "keywords": ["fan", "main category control", "fan segment",
                      "greyed out", "climate power button"],
         "tcs": [

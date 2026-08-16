@@ -1,0 +1,76 @@
+{
+ "parent": "SWE1-HVAC-038",
+ "outline": "7.10",
+ "batch": "Rear Climate",
+ "source_clause": "CR10.) 4 Zone Climate includes two temperature zones in the rear climate. The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.",
+ "reasoning": "驗證目標：7.10（CR10）定出 4 Zone Climate 之後排兩溫區與其各自之滑桿，兩個 037 leaf 對應之。關鍵情境條件：起始 PC 取 **profile §3.2 第二軸之「四區」值**，其字面即 CR10 自身（「4 Zone Climate includes two temperature zones in the rear climate」）—— **本節是該軸四區值於全 corpus 之唯一正面出處**；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`038-01` 驗兩滑桿之存在，`038-02` 驗其各控其區，後者之失效（兩區連動）不會使前者失效。刻意略過：**本節之 037 描述帶圖**（A-CF23 名單內）—— 五問之答皆為否：圖中之滑桿位置與外觀非條文所定，ER 只驗「兩個獨立滑桿存在且各控其區」，不指名任何版面座標（§8.4.1）；本節於 ch2 為 `no-counterpart`。",
+ "keywords": [
+  "4 Zone Climate",
+  "temperature zones"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "後排駕駛側與乘客側之兩支溫度滑桿",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序（`2.1` 之 tab 集合問題見 DR #17）",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 十八節無後排氣候之節（見 DR #41）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-038-01",
+   "tc_id": "NR1L-ComfortHMI-302",
+   "tc_title": "The rear driver side and rear passenger side have separate temperature controls",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall rear driver and passenger have separate temperature controls",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a 4 Zone Climate vehicle, which includes two temperature zones in the rear climate (7.10)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the rear climate screen\n2. Read the rear temperature controls",
+   "expected_result": "1. The rear climate screen is displayed\n2. The rear driver-side and the rear passenger-side temperature slider bars are displayed separately",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-038-02",
+   "tc_id": "NR1L-ComfortHMI-303",
+   "tc_title": "Each rear temperature slider adjusts its own zone",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall each slider adjusts respective zone",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a 4 Zone Climate vehicle, which includes two temperature zones in the rear climate (7.10)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Move the rear driver-side temperature slider\n2. Read the rear passenger-side temperature\n3. Move the rear passenger-side temperature slider",
+   "expected_result": "1. The rear driver-side temperature changes\n2. The rear passenger-side temperature is unchanged\n3. The rear passenger-side temperature changes",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  }
+ ]
+}

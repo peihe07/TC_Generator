@@ -3,7 +3,7 @@
  "outline": "16.11",
  "batch": "ICS Climate Modes",
  "source_clause": "ICE10.) SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC). Sync is not shown for single zone climate configurations. Sync synchronizes driver and passenger temperatures to the driver temperature. When SYNC is on, changing the driver temperature automatically changes the passenger temperature. Adjusting the passenger temperature via touchscreen or hard control would break SYNC. Adjusting Fan speed and Mode will alter the Front and Rear passengers. If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.",
- "reasoning": "驗證目標：16.11（ICE10）定出 SYNC 之溫度連動、中斷條件、對前後排之作用，以及後排調整之中斷，四個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；**第二軸**（非單區，出處 16.11 自身之「Sync is not shown for single zone climate configurations」）四條全補；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：`-222`（連動）與 `-223`（中斷）為相反方向；`-224`（前後排）與 `-225`（後排中斷）之干擾源不同。刻意略過：**`-224`／`-225` 之可觀察量在後排** —— 批次 9 曾因「車輛是否配備後排氣候不在既有軸內」而停下 `2.11` 之對應二 leaf（`015-04`／`015-05`）。**本批不停** ，因 ICE10 之句子與 C12 逐字相同而 037 對 ch16 側**產出了 leaf**，且其可觀察量之存在由 `16.11` 自身之句子承載；**此不對稱已於上繳 38 §6.2 具名待裁**。",
+ "reasoning": "驗證目標：16.11（ICE10）定出 SYNC 之溫度連動、中斷條件、對前後排之作用，以及後排調整之中斷，四個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；**第二軸**（非單區，出處 16.11 自身之「Sync is not shown for single zone climate configurations」）四條全補；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：`116-01`（連動）與 `116-02`（中斷）為相反方向；`116-03`（前後排）與 `116-04`（後排中斷）之干擾源不同。刻意略過：**`116-03`／`116-04` 之可觀察量在後排** —— 批次 9 曾因「車輛是否配備後排氣候不在既有軸內」而停下 `2.11` 之對應二 leaf（`015-04`／`015-05`）。**本批不停** ，因 ICE10 之句子與 C12 逐字相同而 037 對 ch16 側**產出了 leaf**，且其可觀察量之存在由 `16.11` 自身之句子承載；**此不對稱已於上繳 38 §6.2 具名待裁**。",
  "keywords": [
   "SYNC",
   "driver",

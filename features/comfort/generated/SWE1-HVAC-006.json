@@ -3,7 +3,7 @@
  "outline": "2.5",
  "batch": "Climate Modes",
  "source_clause": "C4.) Recirc has on/ off state. RECIRC is not available in certain modes. Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that. Recirc can automatically turn on AC. The recirc icon will display the vehicle model specific icon as displayed in the table. If the system cannot detect the vehicle model it will display the generic recirc symbol.",
- "reasoning": "驗證目標：2.5（C4）定出 RECIRC 之 on/off 狀態、不可用時之灰化、可自動開啟 A/C，以及車型專屬圖示，四個 037 leaf 對應之，本輪產三條。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-141` 之灰化以 CCM 之可用性狀態為觸發，其失效與 `-140` 之 on/off 無關。刻意略過：**`006-04`（車型專屬 recirc 圖示）停下不產列** —— C4 之「as displayed in **the table**」未指名任何節次，全 129 節亦無該對照表之內容；此與 `16.16` 之座椅 off icon **同型**，併入 `DATA_REQUESTS` #32 之「configuration → icon 對照未定義」類。**16.5（ICE4）逐字重述該句且把表之位置寫成 `Climate Main page table`，仍未給對照** —— 故非 ch16 有而 ch2 無，是兩側皆無。",
+ "reasoning": "驗證目標：2.5（C4）定出 RECIRC 之 on/off 狀態、不可用時之灰化、可自動開啟 A/C，以及車型專屬圖示，四個 037 leaf 對應之，本輪產三條。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`006-02` 之灰化以 CCM 之可用性狀態為觸發，其失效與 `006-01` 之 on/off 無關。刻意略過：**`006-04`（車型專屬 recirc 圖示）停下不產列** —— C4 之「as displayed in **the table**」未指名任何節次，全 129 節亦無該對照表之內容；此與 `16.16` 之座椅 off icon **同型**，併入 `DATA_REQUESTS` #32 之「configuration → icon 對照未定義」類。**16.5（ICE4）逐字重述該句且把表之位置寫成 `Climate Main page table`，仍未給對照** —— 故非 ch16 有而 ch2 無，是兩側皆無。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

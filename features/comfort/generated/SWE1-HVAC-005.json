@@ -3,7 +3,7 @@
  "outline": "2.4",
  "batch": "Climate Modes",
  "source_clause": "C3.) AC has on/ off state. Auto can automatically turn on AC. AC will break Auto. Defrost can automatically turn on AC (Do not show this change). Recirc can automatically turn on AC.",
- "reasoning": "驗證目標：2.4（C3）定出 A/C 之 on/off 狀態與其與 Auto／Defrost／Recirc 之四項連動，四個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-137`（Auto 自動開 A/C）與 `-138`（A/C 中斷 Auto）為相反方向之兩條連動，可各自獨立失效。刻意略過：`-139` 之 ER 以「A/C 按鈕狀態不變」驗「do not show this change」—— 條文所述之隱藏對象為**畫面上之呈現**，非 A/C 之實際開關，故 ER 停在按鈕而不宣稱壓縮機狀態（§6 可觀察性）。**R-C36-1 之逐條答本節四條有三條為 `no`**：ICE3 只述五者之 on/off 而不述任何連動，鏡射表之分界欄已明載。",
+ "reasoning": "驗證目標：2.4（C3）定出 A/C 之 on/off 狀態與其與 Auto／Defrost／Recirc 之四項連動，四個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`005-02`（Auto 自動開 A/C）與 `005-03`（A/C 中斷 Auto）為相反方向之兩條連動，可各自獨立失效。刻意略過：`005-04` 之 ER 以「A/C 按鈕狀態不變」驗「do not show this change」—— 條文所述之隱藏對象為**畫面上之呈現**，非 A/C 之實際開關，故 ER 停在按鈕而不宣稱壓縮機狀態（§6 可觀察性）。**R-C36-1 之逐條答本節四條有三條為 `no`**：ICE3 只述五者之 on/off 而不述任何連動，鏡射表之分界欄已明載。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

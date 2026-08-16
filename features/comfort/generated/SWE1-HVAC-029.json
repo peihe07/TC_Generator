@@ -1,0 +1,101 @@
+{
+ "parent": "SWE1-HVAC-029",
+ "outline": "7.1.1",
+ "batch": "Rear Climate",
+ "source_clause": "CR1.1) Rear hard controls changes will not provide popups on the front screen (i.e. do not do similar to what is done with fan and temp for front seat). To that point, the driver must be on the rear climate screen to see the changes that the rear passenger commanded. Further, if on rear climate screen and user uses front controls, provide fan and temperature popup (showing update to front climate).",
+ "reasoning": "驗證目標：7.1.1（CR1.1）定出後排硬控之變更不在前排畫面顯示、駕駛須進後排畫面方見其變更，以及在後排畫面上操作前排控制時仍出 popup，三個 037 leaf 對應之。關鍵情境條件：起始 PC 依各條之視點而異 —— `029-01`／`029-02` 自**前排**畫面起（其斷言為「前排畫面不顯示」），`029-03` 依條文自帶之條件「if on rear climate screen」自**後排**畫面起；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`029-01`（不顯示）與 `029-03`（顯示）為同一 popup 機制之正反兩側（§7），其否定式一條與正向一條各自成立。刻意略過：**popup 之內容與版面不在本節** —— CR1.1 只述其出現與否，`14.x`（HVAC Popups）方述其內容；本節之 ER 不描述 popup 內部（§8.2.1）。",
+ "keywords": [
+  "popup",
+  "rear climate screen"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "前排畫面之 popup 有無，以及後排畫面上操作前排控制時之 fan／temperature popup",
+  "axis_9": "暴露 → 全數補；本節之 popup 雖為 6.3 之例外，惟 `029-01`／`029-02` 之可觀察量為**前排畫面本身**、`029-03` 之錨為後排 climate screen，皆在 comfort section 內",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序（`2.1` 之 tab 集合問題見 DR #17）",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 十八節無後排氣候之節（見 DR #41）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-029-01",
+   "tc_id": "NR1L-ComfortHMI-269",
+   "tc_title": "Rear hard control changes raise no pop-up on the front screen",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall rear changes not shown on front screen",
+   "pre_conditions": "1. [test-setup] The front climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Display the front climate screen\n2. Change the rear fan speed using the rear hard controls\n3. Read the front screen",
+   "expected_result": "1. The front climate screen is displayed\n2. No pop-up is shown on the front screen\n3. The front screen content is unchanged",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-029-02",
+   "tc_id": "NR1L-ComfortHMI-270",
+   "tc_title": "Rear passenger changes are visible only on the rear climate screen",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall driver must be on rear climate screen to see rear passenger changes",
+   "pre_conditions": "1. [test-setup] The front climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the rear temperature using the rear climate controls while the front climate screen is displayed\n2. Open the rear climate screen\n3. Read the rear temperature",
+   "expected_result": "1. The front climate screen is unchanged\n2. The rear climate screen is displayed\n3. The rear temperature shows the value commanded by the rear passenger",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-029-03",
+   "tc_id": "NR1L-ComfortHMI-271",
+   "tc_title": "Front control changes on the rear screen raise the fan and temperature pop-up",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall front control changes while on rear screen show fan and temperature popup",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the rear climate screen\n2. Change the front fan speed using a front hard control\n3. Change the front temperature using a front hard control",
+   "expected_result": "1. The rear climate screen is displayed\n2. The fan pop-up is displayed showing the updated front fan speed\n3. The temperature pop-up is displayed showing the updated front temperature",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.1.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  }
+ ]
+}

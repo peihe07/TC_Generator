@@ -3,7 +3,7 @@
  "outline": "16.12",
  "batch": "ICS Airflow and Defrost",
  "source_clause": "ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield). ON state for the four airflow modes is shown by highlighting the button and increasing button size. The main category control will display the newly selected airflow mode inside the fan space . Only one airflow mode can be selected at a time.",
- "reasoning": "驗證目標：16.12（ICE11）定出 ICS 之五種氣流模式、其單選性與 ON 態之呈現，三個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。**R-C40 之一問已於生成前作答**（59 §1.1）：其 ch2 對造 `2.12.1` 之句子為「**In some non-tri mode equipment types,** airflow modes has 5 states…」，而 ICE11 **無該配置限定語**，故兩者**非逐字相同**，R-C40 之前件不成立；ch2 側 `2.12` 之停下（DR #31）源於 ch2 有**三個**氣流模式集合而其一（4 模式）無正面適用條件，而 **ch16 只陳述一組**，該問題於此不存在 —— 依 R-C40 屬「章節脈絡」而非「條文性質」，故不一致為實然，兩側各具名理由。為什麼這樣切：單選性、呈現與 main category control 之三者可獨立失效。刻意略過：**ICE11 自身之數字不一致** ——「Airflow Modes has **5** states」而其呈現句寫「ON state for the **four** airflow modes」（A-CF13 同型），故 `-251` 只驗「所選之鍵高亮且變大」而**不驗按鈕數**。",
+ "reasoning": "驗證目標：16.12（ICE11）定出 ICS 之五種氣流模式、其單選性與 ON 態之呈現，三個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。**R-C40 之一問已於生成前作答**（59 §1.1）：其 ch2 對造 `2.12.1` 之句子為「**In some non-tri mode equipment types,** airflow modes has 5 states…」，而 ICE11 **無該配置限定語**，故兩者**非逐字相同**，R-C40 之前件不成立；ch2 側 `2.12` 之停下（DR #31）源於 ch2 有**三個**氣流模式集合而其一（4 模式）無正面適用條件，而 **ch16 只陳述一組**，該問題於此不存在 —— 依 R-C40 屬「章節脈絡」而非「條文性質」，故不一致為實然，兩側各具名理由。為什麼這樣切：單選性、呈現與 main category control 之三者可獨立失效。刻意略過：**ICE11 自身之數字不一致** ——「Airflow Modes has **5** states」而其呈現句寫「ON state for the **four** airflow modes」（A-CF13 同型），故 `117-01` 只驗「所選之鍵高亮且變大」而**不驗按鈕數**。",
  "keywords": [
   "airflow mode",
   "5 states",

@@ -168,6 +168,11 @@ AXIS_TABLE_ROW = re.compile(
 # phrase (axis 13's), so the other four negations had no protection: 34 §4's
 # reason is about what a negation covers, and that does not depend on which
 # axis is negated.
+# 60 §1 — module level so verify_no_tcid_gate.py reads THESE objects
+# rather than a re-typed copy (the lesson from verify_provisional_gate).
+TCID_LONG = re.compile(r"NR1L-ComfortHMI-\d+")
+TCID_SHORT = re.compile(r"`-\d{3}`")
+
 NEGATED_PC = re.compile(r"\bdoes not\b|\bis not\b|\bnot configured\b"
                         r"|\bnot present\b|\bnot currently\b")
 # Negated pre_conditions that are NOT configuration axes: runtime state and
@@ -242,6 +247,24 @@ def load_authorities() -> dict:
     return {"vocab": vocab, "outlines": outlines, "clauses": clauses,
             "test_group": cfg["test_group"],
             "tc_id_re": re.compile(r"^NR1L-ComfortHMI-\d{3}$")}
+
+
+def identical_tc_groups(docs: list) -> list:
+    """61 §2 — corpus-wide scan for TCs identical in the three content fields.
+
+    A MEASUREMENT, not a gate. Found by accident in round 61: four pairs had
+    been recorded as equivalent while NINE more existed, because equivalence
+    had only ever been looked for where a handoff pointed. It does not FAIL —
+    037's decomposition granularity is upstream's fact and §8.2.2 forbids
+    merging leaves — but it prints, so it cannot be unseen again.
+    """
+    ident = {}
+    for d in docs:
+        for tc in d["tcs"]:
+            ident.setdefault(
+                (tc["test_item"], tc["test_procedure"], tc["expected_result"]),
+                []).append((d["outline"], tc["tc_id"], tc["req_id"]))
+    return [g for g in ident.values() if len(g) > 1]
 
 
 def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
@@ -521,6 +544,37 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             emea_no.append((tc["tc_id"], rev.get("verdict"),
                             rev.get("ch16_outline")))
 
+    # ---- 60 §1 — tc_id may not be used to NAME another row in prose ------
+    # This is a PROHIBITION, not a correctness check. A "the cited tc_id
+    # exists and matches its description" gate is mechanically possible for
+    # the first half and useless (after a shift `-227` still exists, it just
+    # points elsewhere) and unmechanisable for the second. R-C7 makes tc_id a
+    # generator-assigned, shifting key; req_id is stable. So prose cites
+    # req_id, full stop, and this gate needs no semantics to be reliable.
+    #
+    # TWO patterns, not one. 60 §1 specifies `NR1L-ComfortHMI-\d+` — measured
+    # across the corpus that form appears TWICE, while the SHORT form
+    # (`-233` in backticks, the house style) appears 132 times and is the
+    # form that actually broke in 58 §2. A gate matching only the spelled-out
+    # form would have passed on the very corpus that motivated it.
+    for d in docs:
+        prose = {"reasoning": d.get("reasoning", ""),
+                 "distinguishing_axis.axis": d.get(
+                     "distinguishing_axis", {}).get("axis", ""),
+                 "distinguishing_axis.delta": d.get(
+                     "distinguishing_axis", {}).get("delta", ""),
+                 "assumptions": " ".join(d.get("assumptions", []) or [])}
+        for tc in d["tcs"]:
+            prose[f"{tc['tc_id']}.split_reason"] = tc.get("split_reason") or ""
+            prose[f"{tc['tc_id']}.remarks"] = tc.get("remarks") or ""
+        for field, text in prose.items():
+            hits = TCID_LONG.findall(text) + TCID_SHORT.findall(text)
+            if hits:
+                bad("no-tcid-in-prose",
+                    f"{d['outline']} ({field}): cites tc_id {sorted(set(hits))} "
+                    f"in prose — profile §3.6 requires req_id, because tc_id "
+                    f"moves (R-C7) and a moved citation still parses")
+
     # ---- 36 §4 — a pending sibling must be resolved once its section lands -
     generated = {d["outline"] for d in docs}
     for outline, sibling in sorted(PENDING_SIBLING):
@@ -768,7 +822,9 @@ def main() -> int:
              # added 2026-08-15 per handoff 42 §1
              "provisional-sibling",
              # added 2026-08-15 per handoff 52 §3
-             "axis-type-reverse-test"]
+             "axis-type-reverse-test",
+             # added 2026-08-16 per handoff 60 §1
+             "no-tcid-in-prose"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -788,6 +844,14 @@ def main() -> int:
     for mk in BLOCKED_MARKERS:
         print(f"- PASS — marker whitelist (profile §5.1/§5.2) {mk}: "
               f"{sorted(MARKER_WHITELIST[mk])}")
+    equivalent_groups = identical_tc_groups(docs)
+    print(f"- PASS — identical-TC scan (61 §2, measurement): "
+          f"{len(equivalent_groups)} group(s) of TCs whose test_item, "
+          f"test_procedure and expected_result are character-identical — "
+          f"037 decomposition artefacts, kept as separate rows (§8.2.2), "
+          f"recorded in pending_sibling's equivalent_tc_pairs")
+    for g in equivalent_groups:
+        print(f"    · {' ≡ '.join(f'{o}:{r}' for o, _, r in g)}")
     if emea_no:
         print(f"- PASS — EMEA exclusions whose per-TC answer is NOT `yes` "
               f"(R-C36-1; over-strict, removal awaits a ruling): "

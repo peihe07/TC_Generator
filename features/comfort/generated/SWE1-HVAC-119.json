@@ -3,7 +3,7 @@
  "outline": "16.13",
  "batch": "ICS Climate Modes",
  "source_clause": "ICE12.) If the system supports Max A/C it will be displayed on the screen next to the A/C button. MAX A/C has an on/off state that is indicated on climate screen (highlight button if on). MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync. Change in fan speed deactivates MAX A/C (un-highlight MAX A/C) while maintaining system in current state with change in fan speed. Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on. Pressing A/C, brakes MAX A/C (turns MAX A/C off) and the system goes back to the previous manual mode with the A/C off. Pressing AUTO brakes MAX A/C (turns MAX A/C off) and the system goes to AUTO. Similarly, pressing MAX DEF turns MAX A/C off (turns MAX A/C off) and the system goes to MAX DEF.",
- "reasoning": "驗證目標：16.13（ICE12）以十二句定出 MAX A/C 之顯示條件、其對六項氣候參數之設定，以及五種退出途徑之各自落點，十二個 037 leaf 逐句對應（§8.2.1）。關鍵情境條件：EMEA 軸取正向值；**第四軸**（MAX A/C 支援，出處 16.13 首句「If the system supports Max A/C」）十二條全補；`-236` 另補第五軸（MAX DEF）；`-230`（Sync）另補第二軸；依 **R-C34** 第九軸與第十三軸暴露 → 全數補。為什麼這樣切：六項參數設定各自成條（`-225`～`-230`），因任一項之失效可獨立發生且可獨立定位；五種退出途徑（風速／溫度等／A-C／AUTO／MAX DEF）之落點各異，亦各自成條。刻意略過：**本節與 `2.13`（C14）之關係值得記** —— 鏡射表記其為 `mirrored`，惟 **C14 把 On/Off 邏輯委派予 VF HVAC 文件而 ICE12 逐項列出**；批次 9 之 `019-02`／`019-03` 正因該委派而停下，本批同一行為**因 ch16 有明文而得以生成**。**不得反向以 ICE12 補 `2.13`**（§8.2.1 跨介面移植），該不對稱見上繳 38 §6.3。",
+ "reasoning": "驗證目標：16.13（ICE12）以十二句定出 MAX A/C 之顯示條件、其對六項氣候參數之設定，以及五種退出途徑之各自落點，十二個 037 leaf 逐句對應（§8.2.1）。關鍵情境條件：EMEA 軸取正向值；**第四軸**（MAX A/C 支援，出處 16.13 首句「If the system supports Max A/C」）十二條全補；`119-12` 另補第五軸（MAX DEF）；`119-06`（Sync）另補第二軸；依 **R-C34** 第九軸與第十三軸暴露 → 全數補。為什麼這樣切：六項參數設定各自成條（`116-04`～`119-06`），因任一項之失效可獨立發生且可獨立定位；五種退出途徑（風速／溫度等／A-C／AUTO／MAX DEF）之落點各異，亦各自成條。刻意略過：**本節與 `2.13`（C14）之關係值得記** —— 鏡射表記其為 `mirrored`，惟 **C14 把 On/Off 邏輯委派予 VF HVAC 文件而 ICE12 逐項列出**；批次 9 之 `019-02`／`019-03` 正因該委派而停下，本批同一行為**因 ch16 有明文而得以生成**。**不得反向以 ICE12 補 `2.13`**（§8.2.1 跨介面移植），該不對稱見上繳 38 §6.3。",
  "keywords": [
   "MAX A/C",
   "Face",
@@ -13,7 +13,7 @@
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "MAX A/C 之退出途徑（trigger）與其落點（outcome）",
-  "delta": "六條之 trigger 各異且其 outcome 亦不全同 —— `-231` 改風速 → MAX A/C 解除而**其餘狀態維持**；`-232` 改溫度／recirc／模式 → 回前一手動模式**除該被改之元素外**；`-233` 按 MAX A/C → 回前一手動模式；`-234` 按 A/C → 回前一手動模式且 **A/C 關閉**；`-235` 按 AUTO → 系統**進入 AUTO**；`-236` 按 MAX DEF → 系統**進入 MAX DEF**。**（本串號為撤下 `-224`／`-225` 後之號，見 58 §2；profile §5.5 之推導欄重算風險於此首次實現）****§10.6 四項（trigger／outcome／input／verification target）中 trigger 於六條全異，outcome 於其中四條亦異，故無一對構成 `duplicate_of`。** 其重疊屬 §4.6 之 sibling 重疊而非 §4.5 之欄位歸屬 —— 六條 TC 不在 §4.5 之射程內"
+  "delta": "六條之 trigger 各異且其 outcome 亦不全同 —— `119-07` 改風速 → MAX A/C 解除而**其餘狀態維持**；`119-08` 改溫度／recirc／模式 → 回前一手動模式**除該被改之元素外**；`119-09` 按 MAX A/C → 回前一手動模式；`119-10` 按 A/C → 回前一手動模式且 **A/C 關閉**；`119-11` 按 AUTO → 系統**進入 AUTO**；`119-12` 按 MAX DEF → 系統**進入 MAX DEF**。**（本串號為撤下 `116-03`／`116-04` 後之號，見 58 §2；profile §5.5 之推導欄重算風險於此首次實現）****§10.6 四項（trigger／outcome／input／verification target）中 trigger 於六條全異，outcome 於其中四條亦異，故無一對構成 `duplicate_of`。** 其重疊屬 §4.6 之 sibling 重疊而非 §4.5 之欄位歸屬 —— 六條 TC 不在 §4.5 之射程內"
  },
  "assumptions": [],
  "interface_axis_review": {

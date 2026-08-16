@@ -392,3 +392,43 @@ b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-F
 b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
 # 輸出
 f94f3ff429ed233f342331704cf962a861b71752e532de84a5e20fdd49966906  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_batch13.xlsx
+
+# ENTRY 011 — 2026-08-16 — 第九次寫回：全量重寫（下放包 46 §3／61 §2.3）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…）；splice 前實測相符方進行
+#   內容 : 目標列 row 10–312，共 303 列 —— 300 條一般 TC
+#          ＋ 2 條 [BLOCKED-SPEC]（`002-06`／`002-08`）
+#          ＋ 1 條 [BLOCKED-NON-HMI]（`044-02`）
+#          ＋ 0 條 [COVERED-BY]
+#          **全量重寫，非追加**（45 §2／§4）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；
+#          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（BASELINE 8/8、DELIVERY 20 OK 0 FAILED、
+#          台帳無 ENTRY 011、來源 hash 相符、lint 44/44 PASS across 303 TCs、
+#          TC 數實測 303 且 tc_id 001–303 連續無缺號）
+#          §3.3 assertion **13 項中 10 PASS、3 FAIL**，三項與 ENTRY 004～010 同源
+#          （B 欄公式止於 row 59 → 253 列無列號；R 欄下拉止於 row 59 → 253 列無下拉；
+#          P 欄 DV 止於 row 11 → 301 列無下拉）
+#
+#   **本檔含 13 組三欄逐字相同之 TC**（61 §2 之全 corpus 掃描，lint 每次列印）：
+#   11 組跨第九軸（兩側互斥，重複只在交付件上），1 組同章同軸值
+#   （`106-04` ≡ `110-06`，連 pre_conditions 亦同 → DR #42），
+#   1 組為 037 分解所致（`009-01`／`009-02` ↔ `015-02`／`015-03`，DR #39）。
+#   **本層不合併**（§8.2.2），僅使其可見。
+#
+#   狀態 : **範本容量待擴充（DR #35 / A-CF26）—— 不可交付**
+#          **not confirmed — pending template extension (DR #35)**
+#          依下放包 46 §3：**不送 Pei 之 Excel 四項確認**。
+#          暴露面 263 → 301 列（線性成長），補救仍為常數一次作業（56 §6）。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001–010 之 hash 與
+#          內容未變動；既有產出檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+2bcb21cffbfcbbed7dc9b4a2f4bc6acbb0ab28917de2fd592c965c96196f12f0  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_batch14.xlsx

@@ -93,10 +93,10 @@ LEAF_PC = {"012-05": (PC_ATC, ("2.3",))}
 LEAF_EXTRA = {"013-04": (PC_MIRROR, ())}
 
 REASONING = {
-"2.8": "驗證目標：2.8（C7）以七句定出 Defrost 之狀態、其對 A/C 與風速之自動作用、與其他氣流模式之互斥、與 AUTO 之互相關閉，以及 Recirc 可用性之灰化，六個 037 leaf 逐句對應，一葉一 TC（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；`-157`（AUTO 與 Defrost 互相關閉）另取第一軸之 ATC 值（C2「AUTO is not shown in MTC configurations」，出處 2.3，併入 spec_ref 依 R-C29）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-157` 之兩個方向（AUTO 關掉 Defrost、Defrost 中斷 AUTO）為 037 之同一 leaf，故合為一條而以兩組步驟涵蓋（§8.2 單位歸 037）；`-158` 之灰化以 CCM 之可用性狀態為觸發，與 `-154` 之 on/off 無關。刻意略過：**不移植 `3.2`（C20）之 MAX DEF 連動** —— 本節之 Defrost 為 C7 之 `FRONT DEF`，與 MAX DEF 為不同控制、不同條文（§8.2.1）；C7 之「Recirc **is may or may not be** available」為條文之語病，本條依其可判之部分（灰化）立 ER，不推斷其可用性規則。",
-"2.9": "驗證目標：2.9（C8）定出 Rear Defrost 之狀態、灰化條件、與其他氣候功能之獨立性，以及對外後視鏡除霜之連動，四個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十軸（REAR DEFROST 有無）—— 起始 PC 取其有值，出處 **3.4**（「the rear defrost button will not appear when not present in the vehicle」，跨節取據 R-C29，3.4 併入 spec_ref）；`-162` 另補 C8 自身之條件「if this feature available」（**條文自帶之情境條件，非新軸** —— R-C28 第一問由 C8 明文滿足，形態同 2.13 之「when CCM relays presence of MAX A/C functionality」）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`-161`（獨立性）以兩個不同的干擾源（AUTO、FRONT DEF）各驗一次，因「獨立」之否證只需一個反例。刻意略過：**不移植 `3.3`（C21）之 climate off 可用性** —— 本節之灰化來自 CCM 之可用性狀態，與 climate off 之狀態無關（§8.2.1）；C8 未定義「certain modes」為哪些模式，故 `-160` 以 CCM 狀態為觸發而不列舉模式（§8.4.1）。",
-"2.12.1": "驗證目標：2.12.1（C13.0）定出非 tri-mode 設備型之五種氣流模式及其於畫面之呈現，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：profile §3.2 **第三軸（前排氣流模式集合）之「5 狀態」值** —— **本節是該軸三值中唯一自帶正面限定語者**（「In some **non-tri mode equipment types**」），故其值可陳述而 `2.12`／`2.12.2` 不可（DR #31）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`-163` 驗五個狀態之順序，`-164` 驗所選狀態之呈現，兩者失效形態不同（順序錯 vs 呈現錯）。刻意略過：**`-164` 不驗按鈕數** —— 其 ch16 對造 ICE11 自身寫 `5 states` 而其呈現句寫 `ON state for the **four** airflow modes`，係條文內部之數字不一致（A-CF13 同型），故本條只驗「所選模式呈現為作用中」；C13.0 未給硬鍵循環之規則（那在 C13.1，屬停下之 `2.12.2`），本節不涉。",
-"2.15": "驗證目標：2.15（C16.）定出對外後視鏡除霜之 on/off 狀態與其獨立性，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：本節之條文**無任何配置限定語**，故不補配置式 PC（與 `2.4`／`2.5` 同例）—— **惟 `2.9`（C8）以「if this feature available」暗示其為可選配備**，該不對稱已於上繳 36 §5.4 呈報；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`-166`（獨立性）之驗證需兩個不同干擾源（AUTO、climate off），因「獨立」之否證只需一個反例。刻意略過：**本節之條款標籤為 `C16.`，與 `16.17` 之 `C16.` 撞號**（A-CF13 第一項），故 traceability 一律以 outline 節次為鍵（profile §1），`specification_reference` 記 2.15 而非條款標籤；C16 未述該功能之操作元件位置，故步驟以功能名稱為目標而不指定按鈕位置（§8.4.1）。",
+"2.8": "驗證目標：2.8（C7）以七句定出 Defrost 之狀態、其對 A/C 與風速之自動作用、與其他氣流模式之互斥、與 AUTO 之互相關閉，以及 Recirc 可用性之灰化，六個 037 leaf 逐句對應，一葉一 TC（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；`012-05`（AUTO 與 Defrost 互相關閉）另取第一軸之 ATC 值（C2「AUTO is not shown in MTC configurations」，出處 2.3，併入 spec_ref 依 R-C29）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`012-05` 之兩個方向（AUTO 關掉 Defrost、Defrost 中斷 AUTO）為 037 之同一 leaf，故合為一條而以兩組步驟涵蓋（§8.2 單位歸 037）；`012-06` 之灰化以 CCM 之可用性狀態為觸發，與 `012-02` 之 on/off 無關。刻意略過：**不移植 `3.2`（C20）之 MAX DEF 連動** —— 本節之 Defrost 為 C7 之 `FRONT DEF`，與 MAX DEF 為不同控制、不同條文（§8.2.1）；C7 之「Recirc **is may or may not be** available」為條文之語病，本條依其可判之部分（灰化）立 ER，不推斷其可用性規則。",
+"2.9": "驗證目標：2.9（C8）定出 Rear Defrost 之狀態、灰化條件、與其他氣候功能之獨立性，以及對外後視鏡除霜之連動，四個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十軸（REAR DEFROST 有無）—— 起始 PC 取其有值，出處 **3.4**（「the rear defrost button will not appear when not present in the vehicle」，跨節取據 R-C29，3.4 併入 spec_ref）；`013-04` 另補 C8 自身之條件「if this feature available」（**條文自帶之情境條件，非新軸** —— R-C28 第一問由 C8 明文滿足，形態同 2.13 之「when CCM relays presence of MAX A/C functionality」）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`013-03`（獨立性）以兩個不同的干擾源（AUTO、FRONT DEF）各驗一次，因「獨立」之否證只需一個反例。刻意略過：**不移植 `3.3`（C21）之 climate off 可用性** —— 本節之灰化來自 CCM 之可用性狀態，與 climate off 之狀態無關（§8.2.1）；C8 未定義「certain modes」為哪些模式，故 `013-02` 以 CCM 狀態為觸發而不列舉模式（§8.4.1）。",
+"2.12.1": "驗證目標：2.12.1（C13.0）定出非 tri-mode 設備型之五種氣流模式及其於畫面之呈現，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：profile §3.2 **第三軸（前排氣流模式集合）之「5 狀態」值** —— **本節是該軸三值中唯一自帶正面限定語者**（「In some **non-tri mode equipment types**」），故其值可陳述而 `2.12`／`2.12.2` 不可（DR #31）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`017-01` 驗五個狀態之順序，`017-02` 驗所選狀態之呈現，兩者失效形態不同（順序錯 vs 呈現錯）。刻意略過：**`017-02` 不驗按鈕數** —— 其 ch16 對造 ICE11 自身寫 `5 states` 而其呈現句寫 `ON state for the **four** airflow modes`，係條文內部之數字不一致（A-CF13 同型），故本條只驗「所選模式呈現為作用中」；C13.0 未給硬鍵循環之規則（那在 C13.1，屬停下之 `2.12.2`），本節不涉。",
+"2.15": "驗證目標：2.15（C16.）定出對外後視鏡除霜之 on/off 狀態與其獨立性，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：本節之條文**無任何配置限定語**，故不補配置式 PC（與 `2.4`／`2.5` 同例）—— **惟 `2.9`（C8）以「if this feature available」暗示其為可選配備**，該不對稱已於上繳 36 §5.4 呈報；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`021-02`（獨立性）之驗證需兩個不同干擾源（AUTO、climate off），因「獨立」之否證只需一個反例。刻意略過：**本節之條款標籤為 `C16.`，與 `16.17` 之 `C16.` 撞號**（A-CF13 第一項），故 traceability 一律以 outline 節次為鍵（profile §1），`specification_reference` 記 2.15 而非條款標籤；C16 未述該功能之操作元件位置，故步驟以功能名稱為目標而不指定按鈕位置（§8.4.1）。",
 }
 
 # 53 §2.1 / §4.6 — `2.12.1 ↔ 3.1` is recorded `sibling` (41 §2, the tri-mode
@@ -112,11 +112,11 @@ REASONING = {
 DIST_AXIS = {
     "2.9": {
         "axis": "profile §3.2 第九軸「EMEA ICS 車型」之值（介面型，R-C34）",
-        "delta": "`2.9` 取**非 ICS** 值（ch2 之 climate screen），`16.9` 取 **ICS** 值（ch16 之 ICS climate screen）。**兩節之 TC 於 `test_item`／`test_procedure`／`expected_result` 三欄逐字相同**（`-159`≡`-249`、`-160`≡`-250`，見 pending_sibling 之 `equivalent_tc_pairs`），其唯一差異在 `pre_conditions` 之軸值 —— 此即 §10.6 所謂「另有可區辨之情境條件」，故 **`duplicate_of` 不填**；惟 `2.9` 尚有 `-161`（獨立性）與 `-162`（鏡面除霜連動）二條為 ICE8 所無，兩側不等勢",
+        "delta": "`2.9` 取**非 ICS** 值（ch2 之 climate screen），`16.9` 取 **ICS** 值（ch16 之 ICS climate screen）。**兩節之 TC 於 `test_item`／`test_procedure`／`expected_result` 三欄逐字相同**（`013-01`≡`114-01`、`013-02`≡`114-02`，見 pending_sibling 之 `equivalent_tc_pairs`），其唯一差異在 `pre_conditions` 之軸值 —— 此即 §10.6 所謂「另有可區辨之情境條件」，故 **`duplicate_of` 不填**；惟 `2.9` 尚有 `013-03`（獨立性）與 `013-04`（鏡面除霜連動）二條為 ICE8 所無，兩側不等勢",
     },
     "2.15": {
         "axis": "profile §3.2 第九軸「EMEA ICS 車型」之值（介面型，R-C34）",
-        "delta": "`2.15` 取**非 ICS** 值，`16.15` 取 **ICS** 值。**兩節之 TC 三欄逐字相同**（`-165`≡`-264`、`-166`≡`-265`），差異僅在 `pre_conditions` 之軸值，故 `duplicate_of` 不填而以軸值區辨。**本對是全corpus 中唯一兩側 leaf 數相等且逐條等價者**，故其「兩份 TC 是否應合併為一份並以軸值參數化」之問題最為赤裸 —— 已隨 037 分解案登 DR #38",
+        "delta": "`2.15` 取**非 ICS** 值，`16.15` 取 **ICS** 值。**兩節之 TC 三欄逐字相同**（`021-01`≡`121-01`、`021-02`≡`121-02`），差異僅在 `pre_conditions` 之軸值，故 `duplicate_of` 不填而以軸值區辨。**本對是全corpus 中唯一兩側 leaf 數相等且逐條等價者**，故其「兩份 TC 是否應合併為一份並以軸值參數化」之問題最為赤裸 —— 已隨 037 分解案登 DR #38",
     },
     "2.12.1": {
         "axis": "profile §3.2 第三軸「前排氣流模式集合」之值",
@@ -125,7 +125,7 @@ DIST_AXIS = {
                  "`3.1` 取 **tri-mode 3 鍵 7 組合**（C19）。"
                  "**兩者為同一需求（本車之氣流模式集合與其選取方式）在該軸"
                  "兩個值上之陳述**，故其 verification target 必然相異 —— "
-                 "`-163` 驗五狀態之循環序，`-015`／`-016` 驗七組合之個別 "
+                 "`017-01` 驗五狀態之循環序，`023-01`／`023-02` 驗七組合之個別 "
                  "toggle 與循環序。四項嚴格等價不成立，`duplicate_of` 不填。"
                  "第三值（4 模式，`2.12`）因 DR #31 未生成，故本軸三值中"
                  "目前只有兩個有 TC",

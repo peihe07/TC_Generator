@@ -230,6 +230,13 @@ def load_table() -> list:
 # against that side's CLAUSE; the day that side is generated, the thing to
 # compare against is a TC. Same verdict, different object. The flag says "look
 # again", not "you were wrong" — re-confirmation may keep the verdict.
+# 60 §1.1 — the column records `req_id:tc_id` on BOTH sides, and the rebuild
+# verifies that each tc_id still resolves to the req_id recorded beside it.
+# Recording tc_id alone has the same failure mode as prose citation: after a
+# shift both ids still exist and both point elsewhere, and nothing notices.
+# Recording req_id ALONE is not enough either — equivalence is TC-level and
+# one leaf may carry several TCs, so req_id cannot single one out. Hence
+# both, plus a mechanical invariant.
 # 52 §1 — `equivalent_tc_pairs` records TC-LEVEL strict equivalence, which
 # §10.6's `duplicate_of` cannot: that field is section-level and carries a
 # workbook row number injected by the tool, so cross-section equivalence is
@@ -303,6 +310,42 @@ def provisional_of(k: tuple, rec: dict, gen: set) -> str:
     if prior in ("true", "false"):
         return prior
     return "false" if (k[0] in gen and k[1] in gen) else "true"
+
+
+EQUIV_CITE = re.compile(r"(\d{3}-\d{2}):(NR1L-ComfortHMI-\d+)")
+
+
+def check_equivalent_pairs(rows: list) -> list:
+    """60 §1.1 — every `req_id:tc_id` in `equivalent_tc_pairs` must still hold.
+
+    Returns a list of complaint strings; empty means the column is intact.
+    The column is hand-maintained and survives every rebuild, so without this
+    a tc_id shift leaves it silently pointing at other rows.
+    """
+    live = {}
+    for p in sorted((FEATURE / "generated").glob("*.json")):
+        for tc in json.loads(p.read_text(encoding="utf-8"))["tcs"]:
+            live[tc["tc_id"]] = tc["req_id"].replace("SWE1-HVAC-", "")
+    out = []
+    for r in rows:
+        cell = r.get("equivalent_tc_pairs", "")
+        if not cell:
+            continue
+        cites = EQUIV_CITE.findall(cell)
+        if not cites:
+            out.append(f"{r['outline']}<->{r['sibling_outline']}: column is "
+                       f"non-empty but carries no `req_id:tc_id` citation")
+            continue
+        for req, tcid in cites:
+            now = live.get(tcid)
+            if now is None:
+                out.append(f"{r['outline']}<->{r['sibling_outline']}: "
+                           f"{tcid} no longer exists (recorded as {req})")
+            elif now != req:
+                out.append(f"{r['outline']}<->{r['sibling_outline']}: "
+                           f"{tcid} now belongs to {now}, recorded as {req} "
+                           f"— the citation moved, the record did not")
+    return out
 
 
 def rebuild(pairs: dict, source: dict, gen: set, n_sections: int) -> None:
@@ -381,6 +424,14 @@ def rebuild(pairs: dict, source: dict, gen: set, n_sections: int) -> None:
     print("  provisional:")
     for v, n in sorted(Counter(r["provisional"] for r in rows).items()):
         print(f"    {v:34} {n}")
+    complaints = check_equivalent_pairs(rows)
+    print(f"  equivalent_tc_pairs invariant (60 §1.1): "
+          f"{len(complaints) or 'OK'} "
+          f"{'complaint(s)' if complaints else '— every req_id:tc_id resolves'}")
+    for c in complaints:
+        print(f"    **FAIL** {c}")
+    if complaints:
+        raise SystemExit(1)
     if stats["carried over (no longer a candidate)"]:
         print("  !! carried-over rows are judgements the current vocabulary no")
         print("  !! longer reproduces; they are kept, not dropped (R-C37)")

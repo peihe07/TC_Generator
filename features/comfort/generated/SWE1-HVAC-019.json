@@ -3,7 +3,7 @@
  "outline": "2.13",
  "batch": "Climate Modes",
  "source_clause": "C14.) MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality. MAX A/C has an on/off state that is indicated on climate screen (highlight button if on). MAX A/C modifies multiple climate parameters. On/Off logic should follow requirements from VF HVAC document.",
- "reasoning": "驗證目標：2.13（C14）定出 MAX A/C 之畫面採用時機、on/off 狀態呈現，以及其對多項氣候參數之修改與 On/Off 邏輯之委派，三個 037 leaf 對應之，本輪產一條。關鍵情境條件：第四軸（MAX A/C 有無）—— C14 首句「MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality」為明文配置條件，故起始 PC 取該軸之有值，出處 2.13；依 **R-C34** 第九軸與第十三軸暴露 → 補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-152` 之可觀察量為按鈕高亮，與被委派之參數修改邏輯無關，故可獨立成條。刻意略過：**`019-02`／`019-03` 停下不產列** —— C14 之「On/Off logic should follow requirements from **VF HVAC document**」為**對外部文件之明文委派**，依 profile §5.3 之判別次序屬 `[BLOCKED-SPEC]`，而該 marker 之白名單增列須經裁定（**R-C26**：豁免不可自取），故停下回報，形態與 `080-02`／`081-02` 相同。**不以 16.13（ICE12）之逐項列舉補之** —— 那是另一套介面之條文，援引即跨介面移植（§8.2.1）。",
+ "reasoning": "驗證目標：2.13（C14）定出 MAX A/C 之畫面採用時機、on/off 狀態呈現，以及其對多項氣候參數之修改與 On/Off 邏輯之委派，三個 037 leaf 對應之，本輪產一條。關鍵情境條件：第四軸（MAX A/C 有無）—— C14 首句「MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality」為明文配置條件，故起始 PC 取該軸之有值，出處 2.13；依 **R-C34** 第九軸與第十三軸暴露 → 補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`019-01` 之可觀察量為按鈕高亮，與被委派之參數修改邏輯無關，故可獨立成條。刻意略過：**`019-02`／`019-03` 停下不產列** —— C14 之「On/Off logic should follow requirements from **VF HVAC document**」為**對外部文件之明文委派**，依 profile §5.3 之判別次序屬 `[BLOCKED-SPEC]`，而該 marker 之白名單增列須經裁定（**R-C26**：豁免不可自取），故停下回報，形態與 `080-02`／`081-02` 相同。**不以 16.13（ICE12）之逐項列舉補之** —— 那是另一套介面之條文，援引即跨介面移植（§8.2.1）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

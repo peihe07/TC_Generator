@@ -3,7 +3,7 @@
  "outline": "14.16",
  "batch": "Climate Popups",
  "source_clause": "HVACSB2.) Driver and Passenger comfort seat features will show currently active or last used state (heated or vented). Press of icon in status bar opens popup and changes level of comfort feature control. User can also press icon within popup to change levels. The heated seats will be labeled as Heat and vented seats labeled as Vent .",
- "reasoning": "驗證目標：14.16（HVACSB2）定出駕駛與乘客座椅舒適功能之狀態呈現、狀態列圖示之按壓行為，以及 Heat／Vent 之標示，三個 037 leaf 對應之。關鍵情境條件：**第十六軸（Comfort Features 有無）取其有值** —— 出處 `14.15`（「Available comfort controls … depend on vehicle configuration」，跨節取據 R-C29，14.15 併入 spec_ref）；依 **R-C34** 第九軸不補（可觀察量為狀態列與 popup）、第十三軸補、EMEA 排除補。為什麼這樣切：三者之可觀察量互異（狀態之呈現／按壓之結果／標籤文字）。刻意略過：條文未定義 level 之級數，故 `-186` 之 ER 停在「級數改變」而不寫入任何數值（§8.4.1）—— 級數屬 ch11／ch12 之範圍（§8.2.1）。",
+ "reasoning": "驗證目標：14.16（HVACSB2）定出駕駛與乘客座椅舒適功能之狀態呈現、狀態列圖示之按壓行為，以及 Heat／Vent 之標示，三個 037 leaf 對應之。關鍵情境條件：**第十六軸（Comfort Features 有無）取其有值** —— 出處 `14.15`（「Available comfort controls … depend on vehicle configuration」，跨節取據 R-C29，14.15 併入 spec_ref）；依 **R-C34** 第九軸不補（可觀察量為狀態列與 popup）、第十三軸補、EMEA 排除補。為什麼這樣切：三者之可觀察量互異（狀態之呈現／按壓之結果／標籤文字）。刻意略過：條文未定義 level 之級數，故 `100-03` 之 ER 停在「級數改變」而不寫入任何數值（§8.4.1）—— 級數屬 ch11／ch12 之範圍（§8.2.1）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

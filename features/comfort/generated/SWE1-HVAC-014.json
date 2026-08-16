@@ -3,12 +3,12 @@
  "outline": "2.10",
  "batch": "Climate Modes",
  "source_clause": "C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) and in status bar. Climate off affects every climate function with the exception of FRONT /MAX DEFROST (depending on equipment) and REAR DEFROST (and seat/wheel controls). When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost. Category button shows fan greyed out and mode oscar replaced with \"OFF\" which will remain until the user turns it back on. Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off. If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel). If the user continues to hold/turn the control, the system will respond in-kind.",
- "reasoning": "驗證目標：2.10（C11）定出 climate off 之畫面、按鈕灰化之例外、category button 與 status bar 之呈現，以及以 temp/fan 控制回復之行為，六個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：`-144` 另補第五軸（MAX DEF 有無，出處 3.2）與第十軸（REAR DEFROST 有無，出處 3.4）—— 該條之 ER 以該二鍵**不灰化**為觀察對象，其不存在即使該觀察無對象；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-147`（回復至上次等級）與 `-148`（持續按住持續變化）為同一操作之兩個階段，其失效可獨立發生（回復了但停在最低／回復正確但不續動）。刻意略過：C11 之「Climate off affects every climate function with the exception of…」為總述句，037 未另給 leaf，故不另立 TC；其可觀察內容已由 `-144` 之灰化例外涵蓋（§4.5：同一可觀察量不得由兩個 leaf 共用）。",
+ "reasoning": "驗證目標：2.10（C11）定出 climate off 之畫面、按鈕灰化之例外、category button 與 status bar 之呈現，以及以 temp/fan 控制回復之行為，六個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：`014-02` 另補第五軸（MAX DEF 有無，出處 3.2）與第十軸（REAR DEFROST 有無，出處 3.4）—— 該條之 ER 以該二鍵**不灰化**為觀察對象，其不存在即使該觀察無對象；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`014-05`（回復至上次等級）與 `014-06`（持續按住持續變化）為同一操作之兩個階段，其失效可獨立發生（回復了但停在最低／回復正確但不續動）。刻意略過：C11 之「Climate off affects every climate function with the exception of…」為總述句，037 未另給 leaf，故不另立 TC；其可觀察內容已由 `014-02` 之灰化例外涵蓋（§4.5：同一可觀察量不得由兩個 leaf 共用）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {
   "axis": "which side of the climate-off exception the section owns (2.10 vs 3.3)",
-  "delta": "`2.10`（C11）自**通則**一側陳述：climate off 時其餘按鈕灰化，而 Front/Max defrost 與 rear defrost 為例外；`3.3`（C21）自**例外**一側陳述：MAX DEF 與 REAR DEF 於 climate off 期間可用。`-144` 之 verification target 為「其餘按鈕變灰」，`-030` 之 target 為「該二者仍可用」—— 四項嚴格等價中 verification target 相異，故不構成 `duplicate_of`；惟兩者共用同一條文事實，記此以免重複驗證"
+  "delta": "`2.10`（C11）自**通則**一側陳述：climate off 時其餘按鈕灰化，而 Front/Max defrost 與 rear defrost 為例外；`3.3`（C21）自**例外**一側陳述：MAX DEF 與 REAR DEF 於 climate off 期間可用。`014-02` 之 verification target 為「其餘按鈕變灰」，`025-02` 之 target 為「該二者仍可用」—— 四項嚴格等價中 verification target 相異，故不構成 `duplicate_of`；惟兩者共用同一條文事實，記此以免重複驗證"
  },
  "assumptions": [],
  "interface_axis_review": {

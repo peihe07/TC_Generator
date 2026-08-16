@@ -1,0 +1,51 @@
+{
+ "parent": "SWE1-HVAC-037",
+ "outline": "7.9",
+ "batch": "Rear Climate",
+ "source_clause": "CR9.) AC has on/ off state.",
+ "reasoning": "驗證目標：7.9（CR9）全節僅一句「A/C has on/ off state.」，其 037 leaf 即本節自身（無子條），故一節一 TC。關鍵情境條件：起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 補，EMEA 排除補並答。為什麼這樣切：條文只給狀態，故 TC 只驗開與關兩態之切換，**不驗任何連動**。刻意略過：**`2.4`（C3）之四項連動（Auto／Defrost／Recirc 可自動開 A/C、A/C 中斷 Auto）於 ch7 全 11 節不存在**（**DR #28** 已具名）—— 以 C3 補之即以前排條文補後排（§8.4.1 造值）；`7.2`（CR2）述後排 AUTO 之中斷條件亦不含 A/C，故此缺口非本層可補。",
+ "keywords": [
+  "A/C",
+  "on/ off state"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "後排 A/C 之 on／off 狀態",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序（`2.1` 之 tab 集合問題見 DR #17）",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 十八節無後排氣候之節（見 DR #41）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-037",
+   "tc_id": "NR1L-ComfortHMI-301",
+   "tc_title": "Rear A/C has an on and off state",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall A/C have an on/off state",
+   "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the rear A/C on\n2. Turn the rear A/C off",
+   "expected_result": "1. The rear A/C is on\n2. The rear A/C is off",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_7.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
+   }
+  }
+ ]
+}

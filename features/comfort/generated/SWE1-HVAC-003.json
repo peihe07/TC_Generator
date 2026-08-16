@@ -3,12 +3,12 @@
  "outline": "2.3",
  "batch": "Climate Modes",
  "source_clause": "C2.) AUTO has on/ off state. The fan speed indicator shows Auto instead of the actual fan speed (this is based on fan speed of 15h rather than the status of AUTO). The main category control is dynamic, and will display Auto with the Mode Man and Fan speed greyed out behind it. AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible. Auto is mutually exclusive with the four airflow modes and front defrost. If Auto is turned on, these buttons/statuses are turned off. Auto can change the state of AC, but do not show this change. Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto. When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode. Any other climate controls do NOT break Auto. (AUTO is not shown in MTC configurations)",
- "reasoning": "驗證目標：2.3（C2）以九句定出 AUTO 之狀態呈現、其對風速／模式／A-C 之作用、互斥對象、中斷條件與中斷後之落點，以及 MTC 之例外，九個 037 leaf 逐句對應，一葉一 TC（§8.2.1）。關鍵情境條件：第一軸（ATC／MTC）—— `-127`～`-134` 取 ATC 值（C2 末句「AUTO is not shown in MTC configurations」蘊含 AUTO 之存在以 ATC 為前提），`-135` 取 MTC 值，出處皆 2.3；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答（R-C36-1），第十二軸不補。為什麼這樣切：九者之失效互相獨立，且中斷條件（`-132`）與中斷後落點（`-133`）分屬兩個失效面 —— 前者「有沒有斷」，後者「斷了以後去哪」。刻意略過：**C2 之「the manual mode that most closely matches the auto mode exited」無可判之對照** —— 條文未給 auto 模式與手動模式之對應表，故 `-133` 只驗其確定之另一半（按下特定模式鍵即進該模式），「最接近」之一半不寫入 ER（§8.4.1 禁造值），該缺口於 reasoning 具名而不吸收（§8.4.2）。",
+ "reasoning": "驗證目標：2.3（C2）以九句定出 AUTO 之狀態呈現、其對風速／模式／A-C 之作用、互斥對象、中斷條件與中斷後之落點，以及 MTC 之例外，九個 037 leaf 逐句對應，一葉一 TC（§8.2.1）。關鍵情境條件：第一軸（ATC／MTC）—— `003-01`～`003-08` 取 ATC 值（C2 末句「AUTO is not shown in MTC configurations」蘊含 AUTO 之存在以 ATC 為前提），`003-09` 取 MTC 值，出處皆 2.3；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答（R-C36-1），第十二軸不補。為什麼這樣切：九者之失效互相獨立，且中斷條件（`003-06`）與中斷後落點（`003-07`）分屬兩個失效面 —— 前者「有沒有斷」，後者「斷了以後去哪」。刻意略過：**C2 之「the manual mode that most closely matches the auto mode exited」無可判之對照** —— 條文未給 auto 模式與手動模式之對應表，故 `003-07` 只驗其確定之另一半（按下特定模式鍵即進該模式），「最接近」之一半不寫入 ER（§8.4.1 禁造值），該缺口於 reasoning 具名而不吸收（§8.4.2）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {
-  "axis": "see per-TC titles",
-  "delta": ""
+  "axis": "所控之氣候區（前排 vs 後排）—— 同一行為在兩區之兩處陳述",
+  "delta": "`2.3` 之主體為**前排**AUTO（其狀態、15h 指示、與氣流模式之互斥、中斷條件），`7.2` 之主體為**後排**同一AUTO（其狀態、15h 指示、與氣流模式之互斥、中斷條件）（鏡射表記其為 partial／mirrored）。**§10.6 逐項**：trigger 之操作對象不同（前排控制 vs 後排控制）、outcome 之可觀察量不同（前排風速／模式 vs 後排風速／模式）、input 皆 NA、verification target 各為該區之行為。**四項中兩項相異 → 非嚴格等價，`duplicate_of` 不填。** 與 `2.9`↔`16.9` 之四對逐字等價不同：**該對之兩側互斥**（同一車不可能既 ICS 又非 ICS），**本對之兩側並存**（一台四區車同時有前排與後排），故兩條 TC 於同一車上皆須執行"
  },
  "assumptions": [],
  "interface_axis_review": {
