@@ -243,6 +243,13 @@ def load_table() -> list:
 # outside its range. Filling it would claim the whole section duplicates.
 FIELDS = ["outline", "sibling_outline", "verdict", "provisional", "source",
           "equivalent_tc_pairs", "reviewed_at", "reason"]
+INTRA_SET_REASON = (
+    "**同組內之候選（64 §4，`source = intra-set`）。** 產生器原排除同組配對，"
+    "63 §1 之實測顯示其代價：Part N 併 ch11／ch12 為一組後，`11.3`↔`12.4`"
+    "（兩節 TC 連 `pre_conditions` 都相同）從未成為候選。**分級判定沿用 40 §3**："
+    "共有語彙 ≥2 者逐對判定；僅共有單一高頻語彙者沿用該詞之類級處置，"
+    "其效力同 41 §4（三對抽樣足以破類、不足以證類）。本列尚未逐對判定，"
+    "故 `deferred`（尚未問），非 `not-sibling`（問過了）")
 DEFERRED_REASON = (
     "**依 41 §3 規則三入表（42 §2 之全量重建）。** 兩節皆未生成，現在判無處可用 —— "
     "sibling 判定之用途是寫 TC 時決定 `duplicate_of`／`distinguishing_axis`（§4.6）。"
@@ -312,7 +319,10 @@ def provisional_of(k: tuple, rec: dict, gen: set) -> str:
     return "false" if (k[0] in gen and k[1] in gen) else "true"
 
 
-EQUIV_CITE = re.compile(r"(\d{3}-\d{2}):(NR1L-ComfortHMI-\d+)")
+# 63 §1 — section-level leaves have no `-NN` suffix (037 gives some
+# sections a single leaf whose id IS the section id), so the citation
+# pattern must accept both. Caught by this very invariant on 11.3<->12.4.
+EQUIV_CITE = re.compile(r"(\d{3}(?:-\d{2})?):(NR1L-ComfortHMI-\d+)")
 
 
 def check_equivalent_pairs(rows: list) -> list:
@@ -380,7 +390,7 @@ def rebuild(pairs: dict, source: dict, gen: set, n_sections: int) -> None:
         old = existing.pop(k, None)
         if old and old["verdict"] != "deferred":
             emit(k, old, "kept", src)
-        elif src == "via-hierarchy" and pairs[(a, b)] <= HIGH_FREQUENCY:
+        elif src.endswith("via-hierarchy") and pairs[(a, b)] <= HIGH_FREQUENCY:
             # 43 §2 — hierarchy-derived pairs are NOT judged pair-by-pair;
             # they inherit the class-level treatment of the high-frequency
             # token they share. A class-level verdict needs a class, so this
@@ -389,13 +399,16 @@ def rebuild(pairs: dict, source: dict, gen: set, n_sections: int) -> None:
                      "reviewed_at": str(n_sections),
                      "reason": hierarchy_reason(a, b, pairs[(a, b)], True)},
                  "new via-hierarchy (class)", src)
-        elif src == "via-hierarchy":
+        elif src.endswith("via-hierarchy"):
             # Shared token is low-frequency, so no class exists to inherit.
             # `deferred` says "not yet asked", which is true; a class verdict
             # here would claim a judgement nobody made.
             emit(k, {"verdict": "deferred", "reviewed_at": str(n_sections),
                      "reason": hierarchy_reason(a, b, pairs[(a, b)], False)},
                  "new via-hierarchy (deferred)", src)
+        elif src == "intra-set":
+            emit(k, {"verdict": "deferred", "reviewed_at": str(n_sections),
+                     "reason": INTRA_SET_REASON}, "new intra-set", src)
         else:
             emit(k, {"verdict": "deferred", "reviewed_at": str(n_sections),
                      "reason": DEFERRED_REASON}, "new deferred", src)
@@ -467,19 +480,30 @@ def main() -> None:
     wide = {o: expand(t) for o, t in tokens.items()}
     pairs, source = {}, {}
     outlines = sorted(sections)
+    # 64 §4 — same-Test-Set pairs are now candidates too. They were excluded
+    # by design until 63 §1 measured what that cost: Part N merged ch11 and
+    # ch12 into one set, so `11.3`↔`12.4` — two sections whose TCs are
+    # character-identical INCLUDING pre_conditions — was never a candidate.
+    # Merging two chapters into one set had silently removed them from
+    # sibling detection. Same-set pairs are marked `source = intra-set` so
+    # the graded judgement (40 §3) can be applied to them as a population.
     for i, a in enumerate(outlines):
         for b in outlines[i + 1:]:
-            if not group[a] or not group[b] or group[a] == group[b]:
+            if not group[a] or not group[b]:
                 continue
+            same_set = group[a] == group[b]
             if args.group and args.group not in (group[a], group[b]):
                 continue
             shared = tokens[a] & tokens[b]
             if shared:
-                pairs[(a, b)], source[(a, b)] = shared, "vocab"
+                pairs[(a, b)] = shared
+                source[(a, b)] = "intra-set" if same_set else "vocab"
                 continue
             shared = wide[a] & wide[b]
             if shared:
-                pairs[(a, b)], source[(a, b)] = shared, "via-hierarchy"
+                pairs[(a, b)] = shared
+                source[(a, b)] = ("intra-set via-hierarchy" if same_set
+                                  else "via-hierarchy")
 
     judged = {(r["outline"], r["sibling_outline"]): r for r in load_table()}
 

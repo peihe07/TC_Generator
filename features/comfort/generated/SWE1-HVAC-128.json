@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-128",
+ "outline": "17.5",
+ "batch": "Home Screen Widget",
+ "source_clause": "CW4.) For dual zone climate with dual airflow modes equipped vehicles, their widget will have driver and passenger temperature along with two sets of airflow modes, one for the driver and one for the passenger.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 「**For dual zone climate with dual airflow modes equipped vehicles**」。驗證目標：CW4 定出該類車 widget 之雙側溫度與兩組氣流模式，兩個 037 leaf 對應之。關鍵情境條件：本節自帶之雙區雙氣流條件（**待軸化候選，與 `2.3.1`／`14.14` 同一條件 —— 依 R-C42 三，同一條件出現於三節而未登記為軸，gate 將 FAIL**，故本輪一併登記，見上繳 42 §5）；依 **R-C34** 三軸暴露 → 補。為什麼這樣切：溫度（`128-01`）與氣流模式（`128-02`）為 widget 上兩個獨立區塊。刻意略過：**DR #38 之否定值仍無字面** —— 惟依 R-C42 二，軸之登記與可生成性無關，本節之 PC 由其自身條文支持。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "Comfort widget 上之雙側溫度與兩組氣流模式",
+  "axis_9": "暴露 → 全數補（同 17.1）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（出處 2.14）",
+  "emea_ics": "補排除 —— 同 17.1，ch16 無 widget 條文"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-128-01",
+   "tc_id": "NR1L-ComfortHMI-380",
+   "tc_title": "The widget shows driver and passenger temperatures",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The system shall show driver and passenger temperature on the widget of dual zone climate with dual airflow modes equipped vehicles",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a dual zone climate with dual airflow modes equipped vehicle (17.5)\n2. [test-setup] The Comfort widget is shown on the home screen\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Comfort widget on the home screen\n2. Read the temperature area of the widget",
+   "expected_result": "1. The Comfort widget is displayed\n2. The widget displays a driver temperature and a passenger temperature",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（Comfort widget 之雙側溫度與兩組氣流模式）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-128-02",
+   "tc_id": "NR1L-ComfortHMI-381",
+   "tc_title": "The widget shows two sets of airflow modes",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The system shall show two sets of airflow modes on the widget, one for the driver and one for the passenger",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a dual zone climate with dual airflow modes equipped vehicle (17.5)\n2. [test-setup] The Comfort widget is shown on the home screen\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Comfort widget\n2. Read the airflow mode controls on the widget",
+   "expected_result": "1. The Comfort widget is displayed\n2. Two sets of airflow modes are shown, one for the driver and one for the passenger",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（Comfort widget 之雙側溫度與兩組氣流模式）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  }
+ ]
+}

@@ -391,7 +391,8 @@ BATCHES = [
                            "requirement N0 — long-press logic is defined "
                            "there; with that delegation removed this "
                            "requirement has no content verifiable against the "
-                           "Comfort HMI specification alone",
+                           "Comfort HMI specification alone. No test case in "
+                           "this delivery covers that logic.",
                 "tc_title": "Long press logic follows HMI Core Logic and Flow",
                 "test_item":
                     "The user will be able to long press on the touch screen "
@@ -463,7 +464,8 @@ BATCHES = [
                            "the previous 4-way rocker hard control is defined "
                            "there; with that delegation removed this "
                            "requirement has no content verifiable against the "
-                           "Comfort HMI specification alone",
+                           "Comfort HMI specification alone. No test case in "
+                           "this delivery covers that equivalence.",
                 "tc_title": "Short press is equivalent to the previous 4-way rocker",
                 "test_item":
                     "A short press will increase the lumbar/bolster by a small "

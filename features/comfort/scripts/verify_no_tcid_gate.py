@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Reverse validation of `no-tcid-in-prose` (handoff 60 §1).
+"""Reverse validation of `no-tcid-in-prose` (60 §1) and
+`prose-reqid-exists` (62 §5) — the two halves of profile §3.6.1.
 
 The gate is green on the corpus the moment it is written, because the
 one-off rewrite happens in the same round. "Green" and "the predicate never
@@ -18,6 +19,9 @@ Directions:
   4. a leaf-style citation (`` `015-04` ``) does NOT fire — that IS a req_id
   5. the corpus is currently clean, and the scan really visited prose (a
      scan of zero fields would also report clean)
+  6. `prose-reqid-exists`: an invented req_id FIRES, a withheld leaf does
+     NOT, and the leaf universe really is 037's 403 (a universe read from
+     the corpus itself could never fail)
 
 Usage:
     python3 features/comfort/scripts/verify_no_tcid_gate.py
@@ -84,28 +88,34 @@ def main() -> int:
           "the scan actually visited prose (a zero-field scan also reports "
           "clean)", f"{scanned} non-empty prose field(s)")
 
-    # --- 6. the req_id citations that REPLACED the tc_ids are real req_ids.
-    # Not the gate's job, but if the rewrite invented ids the gate would sit
-    # green over a corpus that cites nothing.
-    reqs = {tc["req_id"].replace("SWE1-HVAC-", "")
-            for d in docs for tc in d["tcs"]}
+    # --- 6. `prose-reqid-exists` (62 §5). The one-shot check this file ran
+    # in round 60 is now a standing gate; both directions are asserted here
+    # against lint's OWN universe and pattern, not a copy.
+    universe = {r.replace("SWE1-HVAC-", "") for r in L.LEAF_UNIVERSE}
+    check(len(L.LEAF_UNIVERSE) == 403,
+          "the leaf universe is 037's 403 leaves, not something derived from "
+          "the corpus (a self-derived universe can never fail)",
+          f"{len(L.LEAF_UNIVERSE)} leaves")
+
     cited = set()
     for d in docs:
         for text in (d.get("reasoning", ""),
                      d.get("distinguishing_axis", {}).get("delta", "")):
-            cited |= set(re.findall(r"`(\d{3}(?:-\d{2})?)`", text))
-    # Withheld / withdrawn leaves are cited on purpose and have no TC. Read
-    # them from the generators' own WITHHELD lists rather than a hand-kept
-    # list here — a hand-kept list is the same shifting key the gate exists
-    # to abolish. (Measured: the hand-kept version missed 125-08, 127-01,
-    # 127-02, all legitimately cited stop-and-report leaves.)
-    withheld = set()
-    for gen in sorted((FEATURE / "scripts").glob("gen_*.py")):
-        withheld |= {m.replace("SWE1-HVAC-", "") for m in re.findall(
-            r'\("(SWE1-HVAC-\d+-\d+)"', gen.read_text(encoding="utf-8"))}
-    unknown = sorted(c for c in cited if c not in reqs and c not in withheld)
-    check(not unknown, "every req_id cited in prose is a real req_id "
-          "(or a declared withheld leaf)", f"unknown: {unknown}")
+            cited |= set(L.REQ_CITE.findall(text))
+    unknown = sorted(c for c in cited if c not in universe)
+    check(not unknown, "every req_id cited in prose exists in 037",
+          f"unknown: {unknown}" if unknown else f"{len(cited)} distinct cited")
+    check(len(cited) > 50, "prose really does cite req_ids, so the gate is "
+          "not passing over an empty set", f"{len(cited)} distinct req_id(s)")
+
+    invented = sorted(L.REQ_CITE.findall("與 `999-99` 同型"))
+    check(invented and invented[0] not in universe,
+          "an invented req_id would FIRE", f"{invented}")
+    withheld_cited = [c for c in ("128-01", "122-02", "125-08", "016-01")
+                      if c in universe]
+    check(len(withheld_cited) == 4,
+          "STOPPED leaves are inside the universe, so citing them stays "
+          "silent (they are cited on purpose)", f"{withheld_cited}")
 
     if fails:
         print(f"\n**{len(fails)} case(s) FAILED**")

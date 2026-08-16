@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-004",
+ "outline": "2.3.1",
+ "batch": "Climate Modes",
+ "source_clause": "C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 「**Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes**」，故 R-C28 第一問由本節自身滿足，PC 逐字引之並標 `spec-verbatim`。驗證目標：C2.1 定出雙側各一 AUTO 之配置與其指示器之分列，兩個 037 leaf 對應之。關鍵情境條件：本節自帶之 dual AUTO 配置條件（**尚未登記為軸，登為待軸化候選；其與 `14.14`／`17.5` 共用 dual airflow modes 一語，依 R-C42 三須登記**，見上繳 42 §5）；依 **R-C34** 第九／十三軸與 EMEA 暴露 → 補。為什麼這樣切：配置之存在（`004-01`）與指示器之分列（`004-02`）可獨立失效。刻意略過：**C2.1 未定義兩個 AUTO 之互動**（一側開另一側是否受影響），故 ER 只驗其各自存在與分列（§8.4.1）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之雙側 AUTO 控制與其指示器",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-004-01",
+   "tc_id": "NR1L-ComfortHMI-363",
+   "tc_title": "The vehicle offers a dual AUTO mode for each side",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The system shall provide dual AUTO modes, one for the driver side and one for the passenger side",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has dual zone climate with dual airflow mode and a configuration for dual AUTO modes, one for the driver side and passenger side (2.3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Read the AUTO controls",
+   "expected_result": "1. The climate screen is displayed\n2. A driver side AUTO mode and a passenger side AUTO mode are provided",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（dual AUTO 配置）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-004-02",
+   "tc_id": "NR1L-ComfortHMI-364",
+   "tc_title": "The AUTO indicators are displayed separately for each side",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The system shall display the AUTO indicators separately for each side",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has dual zone climate with dual airflow mode and a configuration for dual AUTO modes, one for the driver side and passenger side (2.3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the driver side AUTO on\n2. Read the driver and passenger AUTO indicators",
+   "expected_result": "1. The driver side AUTO is on\n2. The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（dual AUTO 配置）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-063",
+ "outline": "11.9",
+ "batch": "Heated Vented Seats",
+ "source_clause": "R1HVS2.) For Single-Level heated steering wheel, a press of the heated steering wheel button opens popup and turns the wheel heat to ON . The next press turns the heated wheel OFF , the button is no longer highlighted.",
+ "reasoning": "驗證目標：11.9（R1HVS2）以兩句定出 Single-Level 加熱方向盤之開關兩態，兩個 037 leaf 對應之。關鍵情境條件：起始 PC 取第七軸之 Single-Level 值；依 **R-C34** 三軸暴露 → 補。為什麼這樣切：兩態各自成條，其失效（開不了／關不掉）互相獨立。刻意略過：**`063-01` 之 popup 內容不驗**（DR #11）；本節與 `11.8` 為同一功能在第七軸兩值上之陳述，故非重複而為軸值之別（見 `distinguishing_axis`）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "profile §3.2 第七軸「加熱方向盤 Multi / Single」之值（功能型）",
+  "delta": "見 `11.8` 之 delta"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "comfort section 之加熱方向盤軟鍵（單段）",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "**暴露 → 全數補（本組首次以排除式使用第十二軸）** —— 座椅控制位於 comfort category 之 Seats 分頁，2.1 使 tabs 於僅前排氣候之車輛不顯示",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 無加熱／通風座椅之行為節（僅 16.16 之座椅 off icon，其 leaf 已停下），見 DR #41 之形態"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-063-01",
+   "tc_id": "NR1L-ComfortHMI-331",
+   "tc_title": "A press of the single-level wheel button opens the popup and turns it on",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall on a press of the heated steering wheel button open the popup and turn the wheel heat to ON",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has a Single-Level heated steering wheel (11.9)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the heated steering wheel button in the comfort section\n2. Read the heated steering wheel button",
+   "expected_result": "1. The heated steering wheel popup opens\n2. The wheel heat is on and the button is highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-063-02",
+   "tc_id": "NR1L-ComfortHMI-332",
+   "tc_title": "The next press turns the single-level heated wheel off",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall on the next press turn the heated wheel OFF, the button no longer highlighted",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has a Single-Level heated steering wheel (11.9)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the heated steering wheel on\n2. Press the heated steering wheel button",
+   "expected_result": "1. The wheel heat is on\n2. The wheel heat is off and the button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  }
+ ]
+}

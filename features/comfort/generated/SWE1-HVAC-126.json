@@ -73,6 +73,31 @@
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
    }
+  },
+  {
+   "req_id": "SWE1-HVAC-126-02",
+   "tc_id": "NR1L-ComfortHMI-362",
+   "tc_title": "The 50% widget separates the features by side",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The system shall on the 50% widget separate the Comfort features between driver and passenger",
+   "pre_conditions": "1. [spec-verbatim] On the 50% widget, these features are separated between driver and passenger (17.3)\n2. [spec-verbatim] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the second screen of the 50% Comfort widget\n2. Read the Comfort features on that screen",
+   "expected_result": "1. The second Comfort widget screen is shown\n2. The Comfort features are separated between driver and passenger",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
   }
  ]
 }

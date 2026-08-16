@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-007",
+ "outline": "2.5.1",
+ "batch": "Climate Modes",
+ "source_clause": "C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 「**Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open**」，三個狀態亦為逐字原文。驗證目標：C4.1 定出三態切換與其指示，兩個 037 leaf 對應之。關鍵情境條件：本節自帶之三態 recirc 配置（待軸化候選）；依 **R-C34** 三軸暴露 → 補。為什麼這樣切：循環（`007-01`）取狀態轉換法，指示（`007-02`）為其呈現面。刻意略過：**`2.5`（C4）之 recirc 圖示對照仍未定義（DR #32），本節不驗圖示** —— 只驗狀態之名稱與其切換順序，該順序為條文逐字所列。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之三態 RECIRC 鍵與其狀態指示",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-007-01",
+   "tc_id": "NR1L-ComfortHMI-365",
+   "tc_title": "The recirc button cycles through its three states",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The system shall cycle RECIRC through three states: Auto, Manual and Open",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has a configuration for a 3 state toggle recirc button: Auto, Manual, Open (2.5.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the RECIRC button\n2. Press the RECIRC button again\n3. Press the RECIRC button again",
+   "expected_result": "1. RECIRC is in the Auto state\n2. RECIRC is in the Manual state\n3. RECIRC is in the Open state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（三態 recirc 之切換）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`（`16.5` 之 ICE4 僅述 recirc 圖示依車型，不述三態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-007-02",
+   "tc_id": "NR1L-ComfortHMI-366",
+   "tc_title": "The recirc state is indicated on the climate screen",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The system shall indicate the correct RECIRC state on the TS climate screen",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has a configuration for a 3 state toggle recirc button: Auto, Manual, Open (2.5.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set RECIRC to Manual\n2. Read the RECIRC control on the climate screen",
+   "expected_result": "1. RECIRC is in the Manual state\n2. The climate screen indicates the Manual state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（三態 recirc 之切換）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`（`16.5` 之 ICE4 僅述 recirc 圖示依車型，不述三態）"
+   }
+  }
+ ]
+}

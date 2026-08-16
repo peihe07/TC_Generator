@@ -145,7 +145,12 @@ BATCHES = [
                     "requirement states a reduction in climate control system "
                     "power consumption, which no Comfort HMI screen, pop-up or "
                     "status indicator displays, and which no other document "
-                    "is stated to own",
+                    "is stated to own. No test case in this delivery covers "
+                    "that property.",
+                    # 68 §1 — the sentence says only that THIS delivery does
+                    # not cover it. [BLOCKED-NON-HMI] means there is no owner
+                    # at all, so any wording that hints "someone else tests
+                    # it" would contradict the marker itself.
             },
         ],
     },

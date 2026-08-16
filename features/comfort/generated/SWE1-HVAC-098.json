@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-098",
+ "outline": "14.14",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP14.) For vehicles with dual zone climate versions with dual airflow modes on 8.4\", 10.1\" Landscape, 10.25\" and 12.3\" radios, there will be driver and passenger centric popups.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 「**For vehicles with dual zone climate versions with dual airflow modes on 8.4\", 10.1\" Landscape, 10.25\" and 12.3\" radios**」—— 兩個配置條件（雙區雙氣流、螢幕型號）皆為條文逐字所列。驗證目標：HVACP14 一句定出雙側 centric popup，其 037 leaf 即本節自身。關鍵情境條件：上述條件（**待軸化候選：dual airflow modes 與螢幕型號；後者即 DR #6 之對象** —— 惟 **DR #6 問的是「本次交付出哪幾種螢幕」，非「條文有無陳述」**，故不阻卻生成）；依 **R-C34** 三軸暴露 → 補。為什麼這樣切：一葉一 TC，兩側各驗一次。刻意略過：**centric popup 之版面未定義**，ER 只驗其為駕駛側／乘客側之 popup。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "駕駛／乘客 centric popup",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-098",
+   "tc_id": "NR1L-ComfortHMI-377",
+   "tc_title": "Driver and passenger centric pop-ups are shown",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "The system shall show driver and passenger centric popups for vehicles with dual zone climate versions with dual airflow modes on the listed radios",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has a dual zone climate version with dual airflow modes on an 8.4\", 10.1\" Landscape, 10.25\" or 12.3\" radio (14.14)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Trigger a climate popup from the driver side control\n2. Trigger a climate popup from the passenger side control",
+   "expected_result": "1. A driver centric popup is displayed\n2. A passenger centric popup is displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（driver/passenger centric popup）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  }
+ ]
+}

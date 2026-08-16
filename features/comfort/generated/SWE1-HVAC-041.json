@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-041",
+ "outline": "9.3",
+ "batch": "Rear Climate",
+ "source_clause": "C12.1.) The pop up will have text labels, «Front» for front climate and «Rear» for Rear Climate.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 同 `9.2`，其變體條件由 `9.1` 界定。驗證目標：C12.1 一句定出該 popup 之兩個文字標籤，其 037 leaf 即本節自身（無子條）。關鍵情境條件：同 `9.2`；依 **R-C34** 三軸暴露 → 補。為什麼這樣切：一葉一 TC，兩個標籤同屬一句故同條驗之。刻意略過：**本 leaf 帶圖**（A-CF23 名單內）—— 五問之答皆為否：ER 只用條文逐字之 «Front»／«Rear»（profile §3.4 之 source-quoted token），不描述圖中之版面。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "該 popup 之 «Front»／«Rear» 文字標籤",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-041",
+   "tc_id": "NR1L-ComfortHMI-369",
+   "tc_title": "The fan pop-up carries the Front and Rear labels",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall show the text labels «Front» for front climate and «Rear» for Rear Climate in the pop up",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Trigger the fan speed pop up using the hard controls\n2. Read the labels in the pop up",
+   "expected_result": "1. The fan speed pop up is displayed\n2. The pop up shows the label «Front» for front climate and «Rear» for Rear Climate",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   }
+  }
+ ]
+}

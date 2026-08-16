@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-070",
+ "outline": "12.4",
+ "batch": "Heated Vented Seats",
+ "source_clause": "HVS4. When climate is OFF, the status bar should still show heated/vented seat status.",
+ "reasoning": "驗證目標：12.4（HVS4）一句定出 climate 關閉時狀態列仍顯示座椅狀態，其 037 leaf 即本節自身。關鍵情境條件：第十六軸之正向值；依 **R-C34**：可觀察量在狀態列 → 第九軸與第十二軸不補。為什麼這樣切：同 `11.3`。刻意略過：**本節與 `11.3` 逐字相同**（實測 100% 相同），故兩者為本組內之等價對，其判定見 `distinguishing_axis` 與 `pending_sibling` 之 `equivalent_tc_pairs`。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "章之別（ch11 `Heated Vented Seats` vs ch12 之同名條款）",
+  "delta": "見 `11.3` 之 delta —— 同一對，自 ch12 側記之"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "狀態列之加熱／通風座椅狀態",
+  "axis_9": "不暴露 → 不補 —— 可觀察量在**狀態列**，6.3 所移除者為 head unit 之 comfort section",
+  "axis_12": "不暴露 → 不補 —— 2.1 所移除者為 tabs，狀態列不隨之消失",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 無加熱／通風座椅之行為節（僅 16.16 之座椅 off icon，其 leaf 已停下），見 DR #41 之形態"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-070",
+   "tc_id": "NR1L-ComfortHMI-350",
+   "tc_title": "The status bar keeps the seat status while climate is off",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall when climate is OFF still show heated/vented seat status in the status bar",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn a heated seat on\n2. Turn the climate system off\n3. Read the status bar",
+   "expected_result": "1. The heated seat is on\n2. The climate system is off\n3. The status bar still shows the heated/vented seat status",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  }
+ ]
+}

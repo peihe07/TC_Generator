@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-072",
+ "outline": "12.6",
+ "batch": "Heated Vented Seats",
+ "source_clause": "HVS6. Refer to HMI Notes for the details on the Auto Comfort Settings options for heated/vented seats.",
+ "reasoning": "驗證目標：12.6（HVS6）全句為「Refer to **HMI Notes** for the details on the Auto Comfort Settings options for heated/vented seats.」—— 同 `11.5` 之形態（整條外部委派、零餘留），依 DR #43 之裁定產 `[BLOCKED-SPEC]` 列，其 037 leaf 即本節自身。關鍵情境條件：BLOCKED 列不設配置式 PC，僅記其可觀察介面之前提（第十六軸之正向值，出處 17.3）。為什麼這樣切：一節一列，不驗任何行為 —— 其行為之定義不在本 spec 內。刻意略過：**委派對象與 `11.5` 不同**（HMI Notes vs HMI Settings List），**兩節之條款標籤卻同為 `HVS6.`**（A-CF13 第三項）；**看起來一樣而依據不同者，最容易在日後被誤以為可以一起處理** —— 見 DR #43 之條目。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "**無可觀察介面** —— 本節整條委派予外部文件（HMI Notes），產 [BLOCKED-SPEC] 列",
+  "axis_9": "不適用 —— BLOCKED 列不驗行為，無可觀察量可因該軸而消失",
+  "axis_12": "不適用 —— 同上",
+  "axis_13": "補排除式 PC —— 其可觀察介面（若內容補齊）將在 comfort section（2.14）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 答為 `no`：ch16 無 Auto Comfort Settings 之節"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-072",
+   "tc_id": "NR1L-ComfortHMI-383",
+   "tc_title": "Auto Comfort Settings options follow the HMI Notes",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall follow the HMI Notes for the details on the Auto Comfort Settings options for heated/vented seats (HVS6.)",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
+   "input_test_data": "NA",
+   "test_procedure": "",
+   "expected_result": "",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_12.6; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2",
+   "priority": "P3",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "[BLOCKED-SPEC] Owner: HMI Notes — the Auto Comfort Settings options for heated/vented seats are defined there; with that delegation removed this requirement has no content verifiable against the Comfort HMI specification alone. No test case in this delivery covers those options.",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示，**無 Auto Comfort Settings 之節**；本列為 BLOCKED row，其內容之定義不在本 spec 內，故 ch16 亦無對造句（R-C36-1 逐條之答為 `no`）"
+   }
+  }
+ ]
+}

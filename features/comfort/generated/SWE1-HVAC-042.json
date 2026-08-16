@@ -1,0 +1,98 @@
+{
+ "parent": "SWE1-HVAC-042",
+ "outline": "9.4",
+ "batch": "Rear Climate",
+ "source_clause": "CR13.) Alternative Status Bar Dropdown: in these variants, the driver side climate dropdown menu will have an additional Rear Climate button. The button will act as a Rear Climate On / Off shortcut. By pressing it, the user will be able to turn the Rear Climate OFF (change will be reflected in the Rear Climate Tab) and On again following core Rear Climate on / off logics. When the button is highlighted, it means Rear Climate is On.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 同 `9.2`。驗證目標：CR13 定出狀態列下拉之後排捷徑鍵、其對後排分頁之反映，以及高亮之語意，三個 037 leaf 對應之。關鍵情境條件：同 `9.2`；依 **R-C34**：可觀察量在**狀態列之下拉選單**，6.3 移除者為 comfort section → **第九軸仍補**（下拉選單屬 head unit 之氣候介面，其存廢與 comfort section 同源，此判斷為 `[manual]`）；第十三軸與 EMEA 補。為什麼這樣切：切換（`042-01`）取狀態轉換法；`042-02` 之可觀察量在另一畫面（後排分頁），與 `042-03` 之高亮不同。刻意略過：**「following core Rear Climate on / off logics」為對 `7.6` 之委派**，其細節不在本節驗。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "狀態列下拉選單之 Rear Climate 捷徑鍵",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-042-01",
+   "tc_id": "NR1L-ComfortHMI-370",
+   "tc_title": "The status bar dropdown toggles the rear climate on and off",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall provide a Rear Climate button in the driver side climate dropdown menu that turns the Rear Climate OFF and On again",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the driver side climate dropdown menu\n2. Press the Rear Climate button\n3. Press the Rear Climate button again",
+   "expected_result": "1. The dropdown menu shows a Rear Climate button\n2. The Rear Climate is off\n3. The Rear Climate is on",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-042-02",
+   "tc_id": "NR1L-ComfortHMI-371",
+   "tc_title": "The rear climate tab reflects the shortcut change",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall reflect the change in the Rear Climate Tab",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the Rear Climate off using the status bar dropdown button\n2. Open the Rear Climate tab",
+   "expected_result": "1. The Rear Climate is off\n2. The Rear Climate tab shows the rear climate as off",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-042-03",
+   "tc_id": "NR1L-ComfortHMI-372",
+   "tc_title": "A highlighted shortcut button means the rear climate is on",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall highlight the button when the Rear Climate is On",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the Rear Climate on\n2. Read the Rear Climate button in the dropdown menu",
+   "expected_result": "1. The Rear Climate is on\n2. The Rear Climate button is highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   }
+  }
+ ]
+}

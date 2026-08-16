@@ -1,0 +1,123 @@
+{
+ "parent": "SWE1-HVAC-054",
+ "outline": "11.1",
+ "batch": "Heated Vented Seats",
+ "source_clause": "HVS1. For Multi-Level Heated/Vented seats, a press of the heated seat button opens popup and turns the seat on HI, the soft button highlights red and the control displays 3 arrows, HI and/or LEDs. The next button press sets the seat to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs. The third button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED. The next press, turns the heated seat OFF, the button is no longer highlighted and 3 arrows are shown.",
+ "reasoning": "驗證目標：11.1（HVS1）以四句定出 Multi-Level 加熱座椅之四段按壓循環（HI／MED／LO／OFF）及其每段之高亮與指示，四個 037 leaf 逐句對應（§8.2.1）。關鍵情境條件：起始 PC 取 **profile §3.2 第八軸「Standard vs Multi-Level 座椅」之 Multi-Level 值**，其字面即本節首句；依 **R-C34**，第九軸（6.3 移除 comfort section）、第十二軸（2.1 使 tabs 不顯示，座椅控制在 Seats 分頁內）、第十三軸與 EMEA 皆暴露 → 全數補。**第十二軸於本組為首次以排除式使用**。為什麼這樣切：四段之循環取狀態轉換法，任一段之落點錯誤可獨立定位。刻意略過：**`054-01` 之 popup 內容不驗** —— 本節只寫「opens popup」，popup 之內容由未入案之 HMI Pop Up List 定義（**DR #11**），故 ER 只驗其開啟；**DR #11 之答案影響的是 ch11／ch12 是否為同一需求（分組），不是本條之 ER 可否寫出**（63 §1.1 之逐 leaf 判定，見上繳 41 §4.2）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "章之別（ch11 vs ch12）；本對之實質差異為 `opens popup` 片語",
+  "delta": "見 `12.1` 之 delta —— 同一對，自 ch11 側記之。`11.1` 之首句有 `opens popup` 而 `12.1` 無，其餘三段逐字相同，故 `054-02`～`054-04` 與 `067-02`～`067-04` 之 TC 三欄等價（見 `equivalent_tc_pairs`）；**該片語之性質即 DR #11 之問句**，本層不代答，兩份保留、`duplicate_of` 不填"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "comfort section（Seats 分頁）之加熱座椅軟鍵與其指示",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "**暴露 → 全數補（本組首次以排除式使用第十二軸）** —— 座椅控制位於 comfort category 之 Seats 分頁，2.1 使 tabs 於僅前排氣候之車輛不顯示",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答皆為 `no`：ch16 無加熱／通風座椅之行為節（僅 16.16 之座椅 off icon，其 leaf 已停下），見 DR #41 之形態"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-054-01",
+   "tc_id": "NR1L-ComfortHMI-304",
+   "tc_title": "A press of the heated seat button opens the popup and sets HI",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall on a press of the heated seat button open the popup and turn the seat on HI, with the soft button highlighted red and the control displaying 3 arrows, HI and/or LEDs",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has Multi-Level Heated/Vented seats (11.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the heated seat button in the comfort section\n2. Read the heated seat button and its control",
+   "expected_result": "1. The heated/vented seat popup opens\n2. The heated seat is on HI, the button is highlighted red and the control displays 3 arrows, HI and/or LEDs",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-054-02",
+   "tc_id": "NR1L-ComfortHMI-305",
+   "tc_title": "The second press of the heated seat button sets the seat to MED",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall on the next press of the heated seat button set the seat to MED, the button remaining highlighted and displaying 2 arrows, MED and/or LEDs",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has Multi-Level Heated/Vented seats (11.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the heated seat to HI\n2. Press the heated seat button",
+   "expected_result": "1. The heated seat is on HI\n2. The heated seat is set to MED, the button remains highlighted and displays 2 arrows, MED and/or LEDs",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-054-03",
+   "tc_id": "NR1L-ComfortHMI-306",
+   "tc_title": "The third press of the heated seat button sets the seat to LO",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall on the third press of the heated seat button set the seat to LO, the button remaining highlighted and displaying 1 arrow, LO and/or LED",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has Multi-Level Heated/Vented seats (11.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the heated seat to MED\n2. Press the heated seat button",
+   "expected_result": "1. The heated seat is set to MED\n2. The heated seat is set to LO, the button remains highlighted and displays 1 arrow, LO and/or LED",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-054-04",
+   "tc_id": "NR1L-ComfortHMI-307",
+   "tc_title": "The next press turns the heated seat off",
+   "test_group": "Comfort",
+   "test_set": "Heated Vented Seats",
+   "test_item": "The system shall on the next press turn the heated seat OFF, the button no longer highlighted and 3 arrows shown",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has Multi-Level Heated/Vented seats (11.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the heated seat to LO\n2. Press the heated seat button",
+   "expected_result": "1. The heated seat is set to LO\n2. The heated seat is off, the button is no longer highlighted and 3 arrows are shown",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.16",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
+   }
+  }
+ ]
+}

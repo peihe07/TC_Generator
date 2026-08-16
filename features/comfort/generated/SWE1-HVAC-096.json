@@ -1,0 +1,98 @@
+{
+ "parent": "SWE1-HVAC-096",
+ "outline": "14.12",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP12.) The style of HVAC popups should match the type of hard controls. If the hard controls are knobs that turn then the HVAC popups should be radial popups. If the hard controls are UP/DOWN toggles then the HVAC popups should be vertical popups to mirror the physical action of turning UP/DOWN.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 「**If the hard controls are knobs that turn** … **If the hard controls are UP/DOWN toggles** …」—— 兩個值皆為條文自帶之逐字條件。驗證目標：HVACP12 定出 popup 型式須與硬控型態相符，三個 037 leaf 對應之。關鍵情境條件：`096-01`／`096-03` 取旋鈕值、`096-02` 取 UP/DOWN 值，**PC 與 ER 皆逐字引條文，不加「該功能之」等限定**（65 §2）；依 **R-C34** 三軸暴露 → 補。**DR #37 之歧義保留於條文所在之處**：HVACP12 寫「**the hard controls**」為全車之集合語，而同一車上各控制之型態可能不同 —— **於混合型態之車輛上，本條依 14.12 之字面無法判定其適用**，測試員將於該車型撞見此事，而那正是 DR #37 應被回答之證據；**以措辭消解歧義等於替上游作答**（§8.4.1）。為什麼這樣切：兩個型態各自成條，`096-03` 驗其「相符」之通則；**radial／vertical 之外觀未定義**，故 ER 只用條文之詞（§8.4.1，此即本節刻意略過者）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "HVAC popup 之型式（radial／vertical）",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-096-01",
+   "tc_id": "NR1L-ComfortHMI-374",
+   "tc_title": "Knob hard controls produce radial pop-ups",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "The system shall show radial popups if the hard controls are knobs that turn",
+   "pre_conditions": "1. [spec-verbatim] If the hard controls are knobs that turn (14.12)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Operate the hard controls\n2. Read the HVAC popups",
+   "expected_result": "1. The HVAC popups are displayed\n2. The HVAC popups are radial popups",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.12; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "The clause refers to the hard controls collectively. On vehicles whose hard controls are of mixed types, whether radial popups apply cannot be determined from the Comfort HMI specification alone.",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（HVAC popup 之型式與硬控型態之對應）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-096-02",
+   "tc_id": "NR1L-ComfortHMI-375",
+   "tc_title": "UP and DOWN toggle controls produce vertical pop-ups",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "The system shall show vertical popups if the hard controls are UP/DOWN toggles",
+   "pre_conditions": "1. [spec-verbatim] If the hard controls are UP/DOWN toggles (14.12)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Operate the hard controls\n2. Read the HVAC popups",
+   "expected_result": "1. The HVAC popups are displayed\n2. The HVAC popups are vertical popups",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.12; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "The clause refers to the hard controls collectively. On vehicles whose hard controls are of mixed types, whether vertical popups apply cannot be determined from the Comfort HMI specification alone.",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（HVAC popup 之型式與硬控型態之對應）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-096-03",
+   "tc_id": "NR1L-ComfortHMI-376",
+   "tc_title": "The pop-up style mirrors the physical control action",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "The system shall match the style of HVAC popups to the type of hard controls, mirroring the physical action of turning UP/DOWN",
+   "pre_conditions": "1. [spec-verbatim] If the hard controls are knobs that turn (14.12)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Operate the hard controls\n2. Read the style of the HVAC popups",
+   "expected_result": "1. The HVAC popups are displayed\n2. The style of the HVAC popups matches the type of the hard controls and mirrors their physical action",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.12; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "The clause refers to the hard controls collectively. On vehicles whose hard controls are of mixed types, whether the popup style must match every control or only the predominant control type cannot be determined from the Comfort HMI specification alone.",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（HVAC popup 之型式與硬控型態之對應）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
+   }
+  }
+ ]
+}

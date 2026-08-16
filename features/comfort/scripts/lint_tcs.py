@@ -29,6 +29,7 @@ Usage:
 """
 
 import csv
+import difflib
 import hashlib
 import json
 import re
@@ -69,10 +70,39 @@ BLOCKED_MARKERS = ("[BLOCKED-SPEC]", "[BLOCKED-NON-HMI]")
 # can take by typing it, which is the same as having no exemption condition
 # at all.
 MARKER_WHITELIST = {"[BLOCKED-SPEC]": {"NR1L-ComfortHMI-010",
-                                       "NR1L-ComfortHMI-012"},
+                                       "NR1L-ComfortHMI-012",
+                                       # 66 §1 — DR #43 ruled (一): 11.5 and
+                                       # 12.6 delegate their whole content to
+                                       # two DIFFERENT external documents.
+                                       "NR1L-ComfortHMI-382",
+                                       "NR1L-ComfortHMI-383"},
                     # 41 §1.2 — ruled together with R-C38 itself.
                     "[BLOCKED-NON-HMI]": {"NR1L-ComfortHMI-081"}}
 OWNER_WINDOW = 60          # R-C27 — chars visible on the clipped first line
+# 66 §3 / 67 §1 — rows whose Remarks carries a clause ambiguity rather than a
+# marker. This is a REGISTER, not a permit: listing is not authorisation, and
+# an author who meets 66 §3's condition writes the Remarks and registers the
+# row in the same act, with no case-by-case ruling. Its job is identity
+# reconciliation in BOTH directions (registered-but-absent is as wrong as
+# present-but-unregistered), and the CONTENT limits below are enforced by the
+# gate rather than by the register.
+#
+# The contrast with MARKER_WHITELIST is the point: that one EXEMPTS a row from
+# lint, so it must be ruled (R-C26). This one exempts nothing — it reconciles.
+# Same shape, opposite nature: one relaxes, one reconciles.
+# 68 §2 — the value is a fragment that identifies THIS row's ambiguity, not a
+# phrase every row happens to share. A shared phrase reconciles "was the
+# sentence written" and nothing more; the strength of a reconciliation is
+# exactly the distinguishability of what it reconciles.
+AMBIGUITY_REMARKS = {
+    # 14.12 三條 —— HVACP12 之 `the hard controls` 為全車集合語（DR #37）
+    "NR1L-ComfortHMI-374": "whether radial popups apply",
+    "NR1L-ComfortHMI-375": "whether vertical popups apply",
+    "NR1L-ComfortHMI-376": "only the predominant control type",
+}
+# 67 §1 三 — content limits, hard, checked on every registered row.
+REMARKS_FORBIDDEN = ("R-C", "DR #", "A-CF", "§")
+REMARKS_MIN_CHARS = 40
 # R-C38 — [BLOCKED-NON-HMI]'s first visible line must say what is missing,
 # and must NOT name an owner: having no owner IS the classification. An
 # "Owner:" here would be a [BLOCKED-SPEC] wearing the wrong marker.
@@ -170,8 +200,26 @@ AXIS_TABLE_ROW = re.compile(
 # axis is negated.
 # 60 §1 — module level so verify_no_tcid_gate.py reads THESE objects
 # rather than a re-typed copy (the lesson from verify_provisional_gate).
+# 62 §5 — req_id citations in prose. `123-45` and `123` are both legal keys
+# (037 gives some sections a section-level leaf), so both forms are matched.
+REQ_CITE = re.compile(r"`(\d{3}(?:-\d{2})?)`")
+
+
+def _leaf_universe() -> set:
+    recon = json.loads((FEATURE / "data" / "recon.json").read_text(
+        encoding="utf-8"))
+    return set(recon["leaves"])
+
+
 TCID_LONG = re.compile(r"NR1L-ComfortHMI-\d+")
 TCID_SHORT = re.compile(r"`-\d{3}`")
+LEAF_UNIVERSE = _leaf_universe()
+# 62 §1.1 (b) — generators declare stopped leaves as ("SWE1-HVAC-xxx-yy", why)
+WITHHELD_DECL = re.compile(r'\("(SWE1-HVAC-\d+(?:-\d+)?)"')
+FULLTEXT_BY_OUTLINE = {
+    r["outline"]: r["full_text"] for r in csv.DictReader(
+        (FEATURE / "data" / "section_fulltext.tsv").open(encoding="utf-8"),
+        delimiter="\t")}
 
 NEGATED_PC = re.compile(r"\bdoes not\b|\bis not\b|\bnot configured\b"
                         r"|\bnot present\b|\bnot currently\b")
@@ -249,6 +297,49 @@ def load_authorities() -> dict:
             "tc_id_re": re.compile(r"^NR1L-ComfortHMI-\d{3}$")}
 
 
+RC42_QUAL_BLOCK = re.compile(r"```rc42-qualifiers\n(.*?)```", re.S)
+RC42_EXC_BLOCK = re.compile(r"```rc42-disposition\n(.*?)```", re.S)
+# 65 §1 / §4 — the leaves R-C42 unblocked are exactly those with tc numbers
+# >= 361: 63 §1 froze the existing 360, so the boundary is a fact of the
+# corpus rather than a hand-kept list that could drift.
+RC42_FIRST_N = 361
+PENDING_AXIS_BLOCK = re.compile(r"```pending-axis\n(.*?)```", re.S)
+
+MIRROR_MAPS = (("ch16_mirror_map.tsv", "ch16_outline", "ch2_or_ch3_outline"),
+               ("ch2_ch7_mirror_map.tsv", "ch7_outline", "ch2_outline"))
+# 62 §1.1 (b) — "逐字相同" was asserted 18 times across the two mirror maps and
+# never re-measured. R-C40's precondition reads off those labels, so a wrong
+# `mirrored` is not a documentation slip: it decides whether a leaf stops.
+# 40 characters is a proxy for "a shared clause"; per §5a the SEGMENT is
+# printed beside it so the substance, not the number, is what gets read.
+MIRROR_MIN_RUN = 40
+
+
+def _longest_run(a: str, b: str) -> tuple:
+    """Longest verbatim run shared by two texts.
+
+    autojunk=False is REQUIRED. difflib's default heuristic drops characters
+    appearing in >1% of a sequence longer than 200 elements — on section-length
+    English text that is most of the alphabet, and it silently collapsed
+    16.13↔2.13's shared 100-character sentence to a run of 1 (62 §1.1's first
+    measurement). Every earlier ratio taken on long text is suspect for the
+    same reason; see 上繳 41 §3.3.
+    """
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    m = sm.find_longest_match(0, len(a), 0, len(b))
+    return m.size, a[m.a:m.a + m.size]
+
+
+def mirror_map_rows() -> list:
+    out = []
+    for name, ka, kb in MIRROR_MAPS:
+        path = FEATURE / "data" / name
+        with path.open(encoding="utf-8") as fh:
+            for r in csv.DictReader(fh, delimiter="\t"):
+                out.append((name, r[ka], r[kb], r["對應強度"]))
+    return out
+
+
 def identical_tc_groups(docs: list) -> list:
     """61 §2 — corpus-wide scan for TCs identical in the three content fields.
 
@@ -257,14 +348,40 @@ def identical_tc_groups(docs: list) -> list:
     had only ever been looked for where a handoff pointed. It does not FAIL —
     037's decomposition granularity is upstream's fact and §8.2.2 forbids
     merging leaves — but it prints, so it cannot be unseen again.
+
+    62 §2 — `pre_conditions` is REPORTED, never part of the key. Putting it
+    in the key would hide the groups whose PCs differ slightly, and those are
+    the ones most worth seeing (the same behaviour repeated across two sets
+    of circumstances). So the key stays at three fields and each group gets a
+    fourth datum: same / partial / no. `106-04` ≡ `110-06`'s PC identity was
+    measured BY HAND in round 61; this is that hand-check mechanised.
+
+    Returns [(members, pc_verdict)] where members is [(outline, tc_id,
+    req_id)] and pc_verdict is "same" (character-identical), "partial" (same
+    set of lines, different order — still one vehicle, one test) or "no".
     """
     ident = {}
     for d in docs:
         for tc in d["tcs"]:
             ident.setdefault(
                 (tc["test_item"], tc["test_procedure"], tc["expected_result"]),
-                []).append((d["outline"], tc["tc_id"], tc["req_id"]))
-    return [g for g in ident.values() if len(g) > 1]
+                []).append((d["outline"], tc["tc_id"], tc["req_id"],
+                            tc["pre_conditions"]))
+    out = []
+    for members in ident.values():
+        if len(members) < 2:
+            continue
+        pcs = [m[3] for m in members]
+        if len(set(pcs)) == 1:
+            verdict = "same"
+        elif len({frozenset(
+                l.split(". ", 1)[-1] for l in pc.split("\n") if l.strip())
+                for pc in pcs}) == 1:
+            verdict = "partial (same lines, different order)"
+        else:
+            verdict = "no"
+        out.append(([m[:3] for m in members], verdict))
+    return out
 
 
 def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
@@ -424,7 +541,34 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                     f"{OWNER_WINDOW} characters of Remarks (R-C27); "
                     f"measured head = {head[:48]!r}")
         elif tc["remarks"] != "":
-            bad("remarks", f"{w}: remarks must be empty for a non-BLOCKED row")
+            # 66 §3 — a non-BLOCKED row MAY carry Remarks for exactly one
+            # purpose: an ambiguity in the clause that leaves the tester
+            # unable to decide at execution time. reasoning's reader is the
+            # reviewer; Remarks' reader is the tester, and the tester is the
+            # one who walks into it. Everything else stays empty, and the
+            # externally-visible rules still hold (no internal ruling id, no
+            # DR number, no A-CF id — profile §3.6).
+            forbidden = [t for t in REMARKS_FORBIDDEN if t in tc["remarks"]]
+            if forbidden:
+                bad("remarks",
+                    f"{w}: Remarks is externally visible and may not carry "
+                    f"internal identifiers {forbidden} (profile §3.6)")
+            elif tc["tc_id"] not in AMBIGUITY_REMARKS:
+                bad("remarks",
+                    f"{w}: carries Remarks but is not in the ambiguity "
+                    f"register — 66 §3 says an ambiguity the tester cannot "
+                    f"resolve MUST reach Remarks, and 67 §1 says registering "
+                    f"it is part of writing it, not a permission to seek")
+            elif len(tc["remarks"]) < REMARKS_MIN_CHARS:
+                bad("remarks",
+                    f"{w}: registered ambiguity text is {len(tc['remarks'])} "
+                    f"characters — too short to tell a tester what cannot be "
+                    f"determined (67 §1 三)")
+            elif any(ord(ch) > 0x2FF for ch in tc["remarks"]):
+                bad("remarks",
+                    f"{w}: registered ambiguity text must be in the language "
+                    f"the executor reads in this column (English); the row "
+                    f"carries non-Latin characters (67 §1 三)")
 
         # ---- §11 formatting ---------------------------------------------
         for f in LONG_FIELDS:
@@ -574,6 +718,254 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                     f"{d['outline']} ({field}): cites tc_id {sorted(set(hits))} "
                     f"in prose — profile §3.6 requires req_id, because tc_id "
                     f"moves (R-C7) and a moved citation still parses")
+
+    # ---- 67 §1 二 — the register reconciles in BOTH directions ----------
+    # 44 §7.3 named this gap: a row listed in the register whose Remarks was
+    # later emptied leaves the register claiming an ambiguity that no longer
+    # reaches the tester. Same failure mode as moved-leaf-identity: the count
+    # is right and the identity is not.
+    # 68 §2 — two rows may not be reconciled against the same fragment.
+    dupes = [v for v in set(AMBIGUITY_REMARKS.values())
+             if list(AMBIGUITY_REMARKS.values()).count(v) > 1]
+    if dupes:
+        bad("ambiguity-register",
+            f"the register reuses the fragment(s) {dupes} on more than one "
+            f"row — a shared fragment only checks that the sentence exists, "
+            f"never that it is about this row (68 §2)")
+    by_id = {tc["tc_id"]: tc for d in docs for tc in d["tcs"]}
+    for tc_id, phrase in sorted(AMBIGUITY_REMARKS.items()):
+        tc = by_id.get(tc_id)
+        if tc is None:
+            bad("ambiguity-register",
+                f"{tc_id} is in the ambiguity register but no such TC exists")
+        elif phrase not in tc["remarks"]:
+            bad("ambiguity-register",
+                f"{tc_id} is registered as carrying a clause ambiguity, but "
+                f"its Remarks does not contain {phrase!r} — the register "
+                f"would go on asserting an ambiguity the tester never sees")
+
+    # ---- 65 §3 — an R-C42 unblock must quote a QUALIFIED clause ---------
+    # The judgement "this sentence is a condition, not a statement" is
+    # [manual] and has no mechanical criterion. This does not mechanise it;
+    # it makes the gap visible between "I read it as a condition" and "it
+    # appears with a condition's syntax". The contrast case is 2.11's
+    # "Adjusting … will alter the Front and Rear passengers" — an unqualified
+    # statement, whose leaves stayed stopped.
+    prof_txt = PROFILE.read_text(encoding="utf-8")
+    qual_raw = RC42_QUAL_BLOCK.findall(prof_txt)
+    markers = []
+    for raw in qual_raw:
+        for line in raw.strip().split("\n"):
+            if line.startswith("markers:"):
+                markers = [m.strip() for m in line.split(":", 1)[1].split("|")
+                           if m.strip()]
+    if not markers:
+        bad("rc42-condition-marker",
+            "profile carries no ```rc42-qualifiers``` block, so every R-C42 "
+            "unblock would pass unexamined")
+    exceptions = {}
+    rc42_dispositions = []
+    for raw in RC42_EXC_BLOCK.findall(prof_txt):
+        f = {}
+        for line in raw.strip().split("\n"):
+            if ":" in line and not line.startswith(" "):
+                k, v = line.split(":", 1)
+                f[k.strip()] = v.strip()
+        if f.get("req_id"):
+            exceptions[f["req_id"]] = f
+    for d in docs:
+        for tc in d["tcs"]:
+            if int(tc["tc_id"].rsplit("-", 1)[-1]) < RC42_FIRST_N:
+                continue
+            head = tc["pre_conditions"].split("\n")[0]
+            cite = re.search(r"\(([\d.]+)\)\s*$", head)
+            src = cite.group(1) if cite else d["outline"]
+            text = FULLTEXT_BY_OUTLINE.get(src, "")
+            frag = re.sub(r"^\d+\.\s*\[[a-z-]+\]\s*", "", head)
+            frag = re.sub(r"\s*\([\d.]+\)\s*$", "", frag)
+            size, seg = _longest_run(frag, text)
+            key = tc["req_id"].replace("SWE1-HVAC-", "")
+            if size < 15:
+                bad("rc42-condition-marker",
+                    f"{key}: its first pre_condition shares only {size} "
+                    f"character(s) with {src} — an R-C42 unblock must QUOTE "
+                    f"the clause it relies on")
+                continue
+            at = text.find(seg)
+            before = text[max(0, at - 70):at]
+            hit = any(re.search(rf"\b{re.escape(m)}\b", before)
+                      or seg.lstrip().startswith(m) for m in markers)
+            if hit:
+                continue
+            # 66 §2.2 — a miss no longer blocks; it DEMANDS a named
+            # disposition. Blocking would stop a real condition for having
+            # the wrong syntax, which is what happened on this gate's first
+            # run (125-08 / 126-02). Silence still fails.
+            exc = exceptions.get(key)
+            if not exc or not (exc.get("condition")
+                               or exc.get("not-a-condition")):
+                bad("rc42-condition-marker",
+                    f"{key} ({src}): the quoted fragment {seg[:40]!r} is not "
+                    f"introduced by any listed qualifier and carries no named "
+                    f"disposition — profile §3.2.2 requires `condition:` (it "
+                    f"is a condition, with its verbatim fragment) or "
+                    f"`not-a-condition:` (it is not; the leaf goes back to "
+                    f"stopped). Silence is the one answer not available")
+            else:
+                rc42_dispositions.append(
+                    (key, src, "condition" if exc.get("condition")
+                     else "not-a-condition", exc.get("source", "—")))
+
+    # ---- 65 §4 — MOVED_TO_BATCH16 is an identity, not just a count -------
+    # The existing arithmetic (emitted + withheld + moved = framework.md)
+    # only checks the NUMBER. A leaf declared moved that batch 16 never
+    # produced still balances.
+    declared_moved = set()
+    for gen in sorted((FEATURE / "scripts").glob("gen_batch*.py")):
+        text = gen.read_text(encoding="utf-8")
+        m = re.search(r"MOVED_TO_BATCH16 = (\[[^\]]*\])", text)
+        if m:
+            declared_moved |= set(re.findall(r"'(SWE1-HVAC-[\d-]+)'", m.group(1))
+                                  + re.findall(r'"(SWE1-HVAC-[\d-]+)"', m.group(1)))
+    b16 = FEATURE / "scripts" / "gen_batch16.py"
+    produced_16 = set()
+    if b16.exists():
+        b16_leaves = re.findall(r'\("(\d{3}(?:-\d{2})?)",', b16.read_text(
+            encoding="utf-8"))
+        produced_16 = {f"SWE1-HVAC-{x}" for x in b16_leaves}
+    for req in sorted(declared_moved - produced_16):
+        bad("moved-leaf-identity",
+            f"{req} is declared in a MOVED_TO_BATCH16 list but gen_batch16 "
+            f"does not produce it — the count still balances, which is "
+            f"exactly why the count alone is not enough (65 §4)")
+    for req in sorted(produced_16 - declared_moved):
+        bad("moved-leaf-identity",
+            f"{req} is produced by gen_batch16 but no generator declares it "
+            f"moved — its原 batch's leaf arithmetic is silently short")
+
+    # ---- R-C42 三 (64 §1) — a clause-local condition used in >=2 sections
+    # must have a NAMED disposition. R-C42's wording says "register it as an
+    # axis"; two of the four candidates cannot be registered without inventing
+    # a value the spec never states (§8.4.1 — exactly what the three
+    # conditions protect). So the gate demands a disposition, not a
+    # registration: `registered: 第 N 軸` or `deferred: DR #x`. Silence FAILs.
+    # The deviation and its reason are recorded in profile §3.2.1 for ruling.
+    prof = PROFILE.read_text(encoding="utf-8")
+    candidates = []
+    for raw in PENDING_AXIS_BLOCK.findall(prof):
+        f = {}
+        for line in raw.strip().split("\n"):
+            if ":" in line and not line.startswith(" "):
+                k, v = line.split(":", 1)
+                f[k.strip()] = v.strip()
+        candidates.append(f)
+    seen_sections = {}
+    for f in candidates:
+        name = f.get("condition", "?")
+        pattern = f.get("pattern", "")
+        declared = [x.strip() for x in f.get("sections", "").split("|")
+                    if x.strip()]
+        # Reach is measured over the PRE_CONDITIONS actually written, not the
+        # section text: the condition's risk is that two TCs state it
+        # differently, and only a written PC can do that. (First cut measured
+        # section text and mis-declared three of four candidates — 9.2/9.4
+        # never repeat 9.1's sentence, they say "in these variants".)
+        hits = sorted({d["outline"] for d in docs for tc in d["tcs"]
+                       if pattern and pattern.lower()
+                       in tc["pre_conditions"].lower()},
+                      key=lambda s2: [int(x) for x in s2.split(".")])
+        seen_sections[name] = hits
+        if set(hits) != set(declared):
+            bad("axis-candidate-registered",
+                f"pending-axis {name!r}: profile declares sections "
+                f"{declared} but the corpus measures {hits} — a candidate's "
+                f"reach must be measured, not remembered")
+        if len(hits) >= 2 and not f.get("disposition"):
+            bad("axis-candidate-registered",
+                f"pending-axis {name!r} appears in {len(hits)} sections "
+                f"{hits} with no disposition — R-C42 三: once the condition "
+                f"is in two places, the risk of them diverging is real and "
+                f"someone must own it")
+
+    # ---- 63 §1 — an equivalence group's sections must be IN the table ----
+    # sibling_candidates.py excludes same-Test-Set pairs by design (its
+    # `group[a] == group[b]` branch). Part N merged ch11 and ch12 into one
+    # set, so the corpus's strongest equivalences — two sections whose TCs are
+    # character-identical — were never candidates and never judged. Merging
+    # two chapters into one set silently removed them from sibling detection.
+    # The scan finds them; this makes the table carry them.
+    in_table = {frozenset((r["outline"], r["sibling_outline"]))
+                for r in SIBLING_TABLE}
+    for members, _pc in identical_tc_groups(docs):
+        sections = frozenset(m[0] for m in members)
+        if len(sections) > 1 and sections not in in_table:
+            bad("equivalence-in-sibling-table",
+                f"{sorted(sections)} produce character-identical TCs "
+                f"({[m[2] for m in members]}) but the pair is absent from "
+                f"pending_sibling.tsv — §4.6 owes it a verdict, and a pair "
+                f"the candidate generator cannot reach is exactly the pair "
+                f"nobody will notice")
+
+    # ---- 62 §1.1 (b) — the mirror maps' "逐字相同" claims, re-measured ----
+    mirror_measured = []
+    for name, a, b, kind in mirror_map_rows():
+        for o in (a, b):
+            if o != "no-counterpart" and o not in FULLTEXT_BY_OUTLINE:
+                bad("mirror-map-verified",
+                    f"{name}: outline {o} is not in section_fulltext.tsv")
+        if kind != "mirrored" or a == "no-counterpart" or b == "no-counterpart":
+            continue
+        if a not in FULLTEXT_BY_OUTLINE or b not in FULLTEXT_BY_OUTLINE:
+            continue
+        size, seg = _longest_run(FULLTEXT_BY_OUTLINE[a], FULLTEXT_BY_OUTLINE[b])
+        mirror_measured.append((name, a, b, size, seg))
+        if size < MIRROR_MIN_RUN:
+            bad("mirror-map-verified",
+                f"{name}: {a} ↔ {b} is labelled `mirrored`, but the longest "
+                f"verbatim run they share is {size} character(s) "
+                f"({seg[:40]!r}). R-C40 reads this label to decide whether a "
+                f"leaf stops, so an unmeasured `mirrored` is not cosmetic")
+
+    # ---- 62 §1.1 (b) — a leaf is either withheld or produced, never both ----
+    produced = {tc["req_id"] for d in docs for tc in d["tcs"]}
+    declared_withheld = set()
+    for gen in sorted((FEATURE / "scripts").glob("gen_*.py")):
+        declared_withheld |= set(WITHHELD_DECL.findall(
+            gen.read_text(encoding="utf-8")))
+    for req in sorted(declared_withheld & produced):
+        bad("withheld-not-generated",
+            f"{req} is declared in a generator's WITHHELD list AND produced "
+            f"as a TC — a stopped leaf that is also delivered is the one "
+            f"state stop-and-report may never be in")
+    for req in sorted(declared_withheld - set(LEAF_UNIVERSE)):
+        bad("withheld-not-generated",
+            f"{req} is declared withheld but 037 carries no such leaf")
+
+    # ---- 62 §5 — a req_id cited in prose must EXIST -------------------
+    # 60 §1 removed the citation key that MOVES; this removes the failure it
+    # left behind — a key that never pointed anywhere. Verified once by
+    # verify_no_tcid_gate.py in round 60, which is exactly the kind of
+    # one-shot check R-C41 says may not be quoted as "verified" later.
+    #
+    # The universe is 037's own leaf set (403, from recon.json), which already
+    # includes section-level leaves (e.g. SWE1-HVAC-037) and every withheld
+    # leaf — stopped leaves are cited on purpose and must not fail here.
+    valid_reqs = {r.replace("SWE1-HVAC-", "") for r in LEAF_UNIVERSE}
+    for d in docs:
+        prose = {"reasoning": d.get("reasoning", ""),
+                 "distinguishing_axis.delta": d.get(
+                     "distinguishing_axis", {}).get("delta", ""),
+                 "assumptions": " ".join(d.get("assumptions", []) or [])}
+        for tc in d["tcs"]:
+            prose[f"{tc['tc_id']}.split_reason"] = tc.get("split_reason") or ""
+        for field, text in prose.items():
+            cited = set(REQ_CITE.findall(text))
+            missing = sorted(c for c in cited if c not in valid_reqs)
+            if missing:
+                bad("prose-reqid-exists",
+                    f"{d['outline']} ({field}): cites req_id {missing}, "
+                    f"which 037 does not carry — profile §3.6.1's key must "
+                    f"point at a real leaf, or it points nowhere at all")
 
     # ---- 36 §4 — a pending sibling must be resolved once its section lands -
     generated = {d["outline"] for d in docs}
@@ -784,7 +1176,8 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         bad("residue-scan-window",
             "write_back.py's post-write residue scan does not run to "
             "ws.max_row (a fixed-width window leaves the tail unchecked)")
-    return out, blocked, emea_no, fn_axis_report
+    return (out, blocked, emea_no, fn_axis_report, mirror_measured,
+            rc42_dispositions)
 
 
 def main() -> int:
@@ -792,7 +1185,8 @@ def main() -> int:
     docs = [json.loads(p.read_text(encoding="utf-8"))
             for p in sorted(GEN.glob("*.json"))]
     n_tc = sum(len(d["tcs"]) for d in docs)
-    findings, blocked_ids, emea_no, fn_axis = lint(docs, auth)
+    (findings, blocked_ids, emea_no, fn_axis, mirror_rows,
+     rc42_disp) = lint(docs, auth)
 
     gates = ["tc-id-format", "tc-id-unique", "tc-id-sequence", "req-id-unique",
              "spec-ref-stem", "spec-ref-outline", "spec-ref-sr25", "test-group",
@@ -824,7 +1218,19 @@ def main() -> int:
              # added 2026-08-15 per handoff 52 §3
              "axis-type-reverse-test",
              # added 2026-08-16 per handoff 60 §1
-             "no-tcid-in-prose"]
+             "no-tcid-in-prose",
+             # added 2026-08-16 per handoff 62 §5
+             "prose-reqid-exists",
+             # added 2026-08-16 per handoff 62 §1.1 (b)
+             "mirror-map-verified", "withheld-not-generated",
+             # added 2026-08-16 per handoff 63 §1
+             "equivalence-in-sibling-table",
+             # added 2026-08-16 per handoff 64 §1 (R-C42 三)
+             "axis-candidate-registered",
+             # added 2026-08-16 per handoff 65 §3 / §4
+             "rc42-condition-marker", "moved-leaf-identity",
+             # added 2026-08-16 per handoff 67 §1
+             "ambiguity-register"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -844,14 +1250,26 @@ def main() -> int:
     for mk in BLOCKED_MARKERS:
         print(f"- PASS — marker whitelist (profile §5.1/§5.2) {mk}: "
               f"{sorted(MARKER_WHITELIST[mk])}")
+    print("- PASS — mirror maps re-measured (62 §1.1 (b)): "
+          f"{len(mirror_rows)} `mirrored` row(s), longest shared verbatim run "
+          f"per row (threshold {MIRROR_MIN_RUN} chars produces candidates; "
+          f"the segment is the substance, §5a)")
+    for name, a, b, size, seg in mirror_rows:
+        print(f"    · {a:8} ↔ {b:8} {size:4} chars  {seg[:52]!r}")
+    print(f"- PASS — R-C42 unblocks whose quoted fragment does not match a "
+          f"listed qualifier, and their named dispositions (66 §2.2): "
+          f"{len(rc42_disp) or 'none'}")
+    for key, src, kind, why in rc42_disp:
+        print(f"    · {key} ({src}): {kind} — 出處 {why}")
     equivalent_groups = identical_tc_groups(docs)
     print(f"- PASS — identical-TC scan (61 §2, measurement): "
           f"{len(equivalent_groups)} group(s) of TCs whose test_item, "
           f"test_procedure and expected_result are character-identical — "
           f"037 decomposition artefacts, kept as separate rows (§8.2.2), "
           f"recorded in pending_sibling's equivalent_tc_pairs")
-    for g in equivalent_groups:
-        print(f"    · {' ≡ '.join(f'{o}:{r}' for o, _, r in g)}")
+    for g, pc in equivalent_groups:
+        print(f"    · {' ≡ '.join(f'{o}:{r}' for o, _, r in g)}"
+              f"   pre_conditions: {pc}")
     if emea_no:
         print(f"- PASS — EMEA exclusions whose per-TC answer is NOT `yes` "
               f"(R-C36-1; over-strict, removal awaits a ruling): "

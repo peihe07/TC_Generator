@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-040",
+ "outline": "9.2",
+ "batch": "Rear Climate",
+ "source_clause": "CR12.) Alternative fan speed pop up: in these variants, when the fan speed pop up is triggered by the interaction with hard controls, the pop up will show additional information on the Rear Climate fan speed. The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF). The pop up will be touch interactive: by pressing on the Front Fan area, the user will be redirected to the Front climate tab; by pressing on the Rear fan area, the user will be redirected to the Rear climate tab. See «HVAC Popups» chapter and C1.) and C2.) requirements for further information on pop ups logics.",
+ "reasoning": "**本節依 R-C42 解封**（64 §1）：其停下之唯一依據為「該配置軸未登記」，而條文自帶適用條件 —— 其適用範圍由 `9.1`（CR11）「**On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts**」界定，本節以「in these variants」回指之（跨節取據 R-C29）。驗證目標：CR12 定出替代式風速 popup 之內容與其觸控導向，兩個 037 leaf 對應之。關鍵情境條件：上述變體條件（**待軸化候選；DR #41 之問句改為「該變體涵蓋哪些車輛」而非「可否生成」**）；依 **R-C34** 三軸暴露 → 補。為什麼這樣切：popup 之內容（`040-01`）與其互動（`040-02`）失效形態不同；**「See «HVAC Popups» chapter and C1./C2. requirements」為對本 spec 他節之委派**，其 popup 之一般邏輯不在本節驗（§8.2.1，此即本節刻意略過者）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "硬控觸發之替代式風速 popup（前後排風速與其觸控區）",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 無對應句（見各條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-040-01",
+   "tc_id": "NR1L-ComfortHMI-367",
+   "tc_title": "The alternative fan pop-up shows front and rear fan status",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Trigger the fan speed pop up using the hard controls\n2. Read the pop up",
+   "expected_result": "1. The fan speed pop up is displayed\n2. The pop up shows the front fan status and the rear fan status",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-040-02",
+   "tc_id": "NR1L-ComfortHMI-368",
+   "tc_title": "The fan pop-up areas navigate to the front and rear tabs",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "The system shall on pressing the Front Fan area redirect the user to the Front climate tab, and on pressing the Rear fan area redirect the user to the Rear climate tab",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Trigger the fan speed pop up and press the Front Fan area\n2. Trigger the fan speed pop up and press the Rear fan area",
+   "expected_result": "1. The Front climate tab is displayed\n2. The Rear climate tab is displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   }
+  }
+ ]
+}

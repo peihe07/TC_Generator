@@ -62,7 +62,7 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "[BLOCKED-NON-HMI] Not an HMI-observable property — the requirement states a reduction in climate control system power consumption, which no Comfort HMI screen, pop-up or status indicator displays, and which no other document is stated to own"
+   "remarks": "[BLOCKED-NON-HMI] Not an HMI-observable property — the requirement states a reduction in climate control system power consumption, which no Comfort HMI screen, pop-up or status indicator displays, and which no other document is stated to own. No test case in this delivery covers that property."
   }
  ]
 }

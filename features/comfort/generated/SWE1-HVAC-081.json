@@ -64,7 +64,7 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "[BLOCKED-SPEC] Owner: CFTS044 — the equivalence to the previous 4-way rocker hard control is defined there; with that delegation removed this requirement has no content verifiable against the Comfort HMI specification alone"
+   "remarks": "[BLOCKED-SPEC] Owner: CFTS044 — the equivalence to the previous 4-way rocker hard control is defined there; with that delegation removed this requirement has no content verifiable against the Comfort HMI specification alone. No test case in this delivery covers that equivalence."
   }
  ]
 }

@@ -514,6 +514,119 @@ judged-at: 2026-08-15 (52 §3 之補登)
 # 14.19 之 -02 為唯一含此條件者；兩值皆有 widget，差異為某 popup 顯示與否，屬該 leaf 自身之內容
 ```
 
+### 3.2.1 待軸化候選 [ADD]（R-C42 三，下放包 64 §1，2026-08-16）
+
+R-C42 一使「條文自帶條件」得以直接寫成 PC；R-C42 三要求**同一條件出現於
+兩節以上而仍未登記為軸者，gate FAIL** —— 因為屆時「兩節之寫法是否一致」
+由潛在風險變成實在風險。
+
+**執行層之偏離與其理由（請裁）**：R-C42 三之字面要求「登記為軸」，
+而 R-C42 二要求軸之登記仍依既有三條件。**本輪出現兩者相衝之實例**：
+`dual airflow modes` 出現於三節，惟其**否定值於全 129 節無任何字面**
+（DR #38），依三條件不得登記。**逕行登記等於替條文造一個值（§8.4.1）**，
+那正是三條件所防者。
+
+故本層之實作為：**每一個 ≥2 節之候選，須有一個具名之處置** ——
+`registered: 第 N 軸` 或 `deferred: DR #x`，**沉默即 FAIL**。
+這保住了 R-C42 三之目的（不一致之風險不得無人認領），
+而不必為了滿足其字面去造一個值。
+
+### 3.2.2 R-C42 之限定語 [ADD]（下放包 65 §3；**判準式定義：66 §2.2**）
+
+**定義（取代逐詞列舉）**：
+
+> 限定語為**任何限制該句適用範圍之前置成分**，含連接詞（`If`／`When`／
+> `Where`）、限定性名詞片語（`Some vehicles`／`Vehicles equipped with`）、
+> **及介系詞片語（`For …`／`On …`）**。
+> 逐詞清單為其**實例**，非其定義；新形態出現時**擴充清單並記其出處**。
+
+```rc42-qualifiers
+markers: Some vehicles | On some vehicles | In some | If | For | When | Where | Vehicles equipped with | On the
+# 65 §3 立、66 §2.2 擴充（加 Where / Vehicles equipped with / On the）。
+# 清單是實例，定義在上方散文。**新增仍須記其出處**（本行即出處欄）。
+# 66 §2.2 —— 執行層自陳「六個詞是從 21 條反推的，非自語料窮舉」（R-C37：
+# 樣本全取陽性側），故改為判準式定義；逐詞清單只用於機器比對。
+#
+# 對照組（65 §3）：`2.11` 之「Adjusting Fan speed and Mode will alter the
+# Front and Rear passengers」為**無限定語之陳述句**，其 leaf（`015-04`／
+# `015-05`）維持停下 —— 兩側實例俱在。
+```
+
+**gate 之效力（66 §2.2）**：命中失敗**不硬阻**，改為要求該條之作者給出
+**具名之處置** —— `condition:`（此為條件，附其逐字片段）或
+`not-a-condition:`（此非條件，回復停下）。**沉默即 FAIL。**
+理由與 R-C42-1 同：**該 gate 之目的是使「我讀成條件」與「它以條件之語法
+出現」之落差可見，不是替語法作判準**；硬阻會使一個真條件因語法形態而被
+擋下 —— 65 §3 之首次執行即是該例（`125-08`／`126-02`）。
+
+```rc42-disposition
+req_id: 125-08
+section: 17.2
+condition: 12' Portrait 50% widget also includes fan speed
+why: **PC 已於 67 §2 改為逐字引用**（`12' Portrait 50% widget also includes
+     fan speed`，含條文自己的 `12'` 而非 `12"`），惟其範圍仍以**名詞片語**
+     界定，無前置連接詞或介系詞，故逐詞比對仍不命中 —— **這是形態問題，
+     不是引用問題**（對照 `126-02`：改為逐字引 `On the 50% widget,` 後
+     直接命中，其區塊已撤）。依 66 §2.2 之判準式定義，**名詞片語仍是限定
+     該句適用範圍之前置成分**，故判為條件。**其適用性另由 DR #6 管**
+     （R-C42 管可陳述，DR #6 管適用）
+source: 66 §2.1（分析層裁定不回復停下）
+```
+
+```pending-axis
+condition: dual airflow modes
+pattern: dual airflow mode
+sections: 2.3.1 | 14.14 | 17.5
+disposition: deferred: DR #38
+why: 正向值三節逐字；**否定值全語料無字面**，三條件第一項不成立。
+     三節之 PC 皆逐字引其所在節之句子（R-C42 一），故其寫法之一致性
+     目前由 `spec-verbatim` 之逐字要求保證，非由軸保證
+```
+
+```pending-axis
+condition: ch9 變體（additional Rear Climate controls and shortcuts）
+pattern: additional Rear Climate controls
+sections: 9.2 | 9.3 | 9.4 | 9.4.1
+disposition: deferred: DR #41
+why: 正向值於 `9.1` 逐字，`9.2`／`9.4` 以「in these variants」回指；
+     否定值無字面。四節之 PC 皆引 `9.1` 同一句，寫法一致
+```
+
+```pending-axis
+condition: 螢幕尺寸／型號
+pattern: 8.4
+sections: 14.14 | 17.4
+disposition: deferred: DR #6
+why: **四節之值集合互異**（`14.14` 為 8.4/10.1 Landscape/10.25/12.3、
+     `17.4` 為 8.4/10.1/12 landscaped、`17.2` 為 12" Portrait），
+     故它們**不是同一個條件，而是同一個維度**。DR #6 未答之前，
+     其值域無法定義；且該軸若登記將為**介面型**（R-C34），
+     須回填全部 381 條之 `interface_axis_review` —— 該成本不應由一個
+     值域未定之軸觸發
+```
+
+```pending-axis
+condition: widget 尺寸（25% / 50%）
+pattern: 50%
+sections: 17.2 | 17.3
+disposition: deferred: DR #6
+why: 與螢幕尺寸同源（widget 尺寸依螢幕配置），其值域同受 DR #6 所限
+```
+
+```axis-values
+axis: 12  僅前排氣候（→ tabs 不顯示）
+values: 僅前排氣候 (2.1) | 具其他 comfort 分頁（Seats／Massage／Rear，2.1）
+value-count: 2
+negation: is not a front-climate-only vehicle
+scan: 2026-08-16 | pattern `only Front climate|tabs will not be displayed|up to 4 tabs` | 全 129 節 **3 句命中，全在 `2.1`**（`up to 4 tabs`／`only Front climate`／`tabs will not be displayed`）—— **二值為邏輯上之窮盡（是／否），非列舉**；**哪一種配置產生哪一組 tab 仍未定（DR #17），惟本軸只需「tabs 是否顯示」二值，不需該對照**
+negation-reviewed-at-value-count: 2
+negation-users: NR1L-ComfortHMI-304, NR1L-ComfortHMI-305, NR1L-ComfortHMI-306, NR1L-ComfortHMI-307, NR1L-ComfortHMI-308, NR1L-ComfortHMI-309, NR1L-ComfortHMI-310, NR1L-ComfortHMI-311, NR1L-ComfortHMI-313, NR1L-ComfortHMI-314, NR1L-ComfortHMI-315, NR1L-ComfortHMI-316, NR1L-ComfortHMI-317, NR1L-ComfortHMI-318, NR1L-ComfortHMI-319, NR1L-ComfortHMI-320, NR1L-ComfortHMI-321, NR1L-ComfortHMI-322, NR1L-ComfortHMI-323, NR1L-ComfortHMI-324, NR1L-ComfortHMI-325, NR1L-ComfortHMI-326, NR1L-ComfortHMI-327, NR1L-ComfortHMI-328, NR1L-ComfortHMI-329, NR1L-ComfortHMI-330, NR1L-ComfortHMI-331, NR1L-ComfortHMI-332, NR1L-ComfortHMI-333, NR1L-ComfortHMI-334, NR1L-ComfortHMI-335, NR1L-ComfortHMI-336, NR1L-ComfortHMI-340, NR1L-ComfortHMI-341, NR1L-ComfortHMI-342, NR1L-ComfortHMI-343, NR1L-ComfortHMI-344, NR1L-ComfortHMI-345, NR1L-ComfortHMI-346, NR1L-ComfortHMI-347, NR1L-ComfortHMI-348, NR1L-ComfortHMI-349, NR1L-ComfortHMI-351, NR1L-ComfortHMI-352, NR1L-ComfortHMI-353, NR1L-ComfortHMI-354, NR1L-ComfortHMI-355, NR1L-ComfortHMI-356, NR1L-ComfortHMI-357, NR1L-ComfortHMI-358, NR1L-ComfortHMI-359, NR1L-ComfortHMI-360
+# 63 §1 首次以排除式使用：ch11／ch12 之座椅控制位於 comfort category 之
+# Seats 分頁內，2.1 於僅前排氣候之車輛移除全部 tabs，故該介面消失。
+# 狀態列與 temperature/comfort popup 不隨 tabs 消失，故其 TC 不補
+# （interface_axis_review 之 axis_12 欄逐節記其分野）。
+```
+
 ```axis-values
 axis: 16  Comfort Features 有無
 values: equipped (17.3) | not equipped (17.3)
@@ -533,7 +646,7 @@ value-count: 3
 negation: does not have 3 knob HVAC controls with ICS
 negation-reviewed-at-value-count: 3
 scan: 2026-08-15 | pattern `knob|physical control|hard control type|push button|rocker|toggle|ICS\b` | 15 句命中 | 三值互斥且以 `other` 收尾 → **窮盡係由 catch-all 保證，非由列舉**（見下方附註）
-negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065, NR1L-ComfortHMI-066, NR1L-ComfortHMI-067, NR1L-ComfortHMI-068, NR1L-ComfortHMI-069, NR1L-ComfortHMI-070, NR1L-ComfortHMI-071, NR1L-ComfortHMI-072, NR1L-ComfortHMI-073, NR1L-ComfortHMI-074, NR1L-ComfortHMI-075, NR1L-ComfortHMI-076, NR1L-ComfortHMI-077, NR1L-ComfortHMI-078, NR1L-ComfortHMI-079, NR1L-ComfortHMI-080, NR1L-ComfortHMI-081, NR1L-ComfortHMI-082, NR1L-ComfortHMI-083, NR1L-ComfortHMI-084, NR1L-ComfortHMI-085, NR1L-ComfortHMI-086, NR1L-ComfortHMI-087, NR1L-ComfortHMI-088, NR1L-ComfortHMI-089, NR1L-ComfortHMI-090, NR1L-ComfortHMI-091, NR1L-ComfortHMI-092, NR1L-ComfortHMI-093, NR1L-ComfortHMI-098, NR1L-ComfortHMI-099, NR1L-ComfortHMI-100, NR1L-ComfortHMI-101, NR1L-ComfortHMI-102, NR1L-ComfortHMI-103, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-106, NR1L-ComfortHMI-107, NR1L-ComfortHMI-108, NR1L-ComfortHMI-109, NR1L-ComfortHMI-110, NR1L-ComfortHMI-111, NR1L-ComfortHMI-112, NR1L-ComfortHMI-113, NR1L-ComfortHMI-114, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152, NR1L-ComfortHMI-153, NR1L-ComfortHMI-154, NR1L-ComfortHMI-155, NR1L-ComfortHMI-156, NR1L-ComfortHMI-157, NR1L-ComfortHMI-158, NR1L-ComfortHMI-159, NR1L-ComfortHMI-160, NR1L-ComfortHMI-161, NR1L-ComfortHMI-162, NR1L-ComfortHMI-163, NR1L-ComfortHMI-164, NR1L-ComfortHMI-165, NR1L-ComfortHMI-166, NR1L-ComfortHMI-167, NR1L-ComfortHMI-168, NR1L-ComfortHMI-169, NR1L-ComfortHMI-170, NR1L-ComfortHMI-171, NR1L-ComfortHMI-172, NR1L-ComfortHMI-173, NR1L-ComfortHMI-174, NR1L-ComfortHMI-175, NR1L-ComfortHMI-176, NR1L-ComfortHMI-177, NR1L-ComfortHMI-178, NR1L-ComfortHMI-179, NR1L-ComfortHMI-180, NR1L-ComfortHMI-181, NR1L-ComfortHMI-182, NR1L-ComfortHMI-183, NR1L-ComfortHMI-184, NR1L-ComfortHMI-185, NR1L-ComfortHMI-186, NR1L-ComfortHMI-187, NR1L-ComfortHMI-188, NR1L-ComfortHMI-189, NR1L-ComfortHMI-190, NR1L-ComfortHMI-191, NR1L-ComfortHMI-192, NR1L-ComfortHMI-193, NR1L-ComfortHMI-194, NR1L-ComfortHMI-195, NR1L-ComfortHMI-196, NR1L-ComfortHMI-197, NR1L-ComfortHMI-198, NR1L-ComfortHMI-199, NR1L-ComfortHMI-200, NR1L-ComfortHMI-201, NR1L-ComfortHMI-202, NR1L-ComfortHMI-203, NR1L-ComfortHMI-204, NR1L-ComfortHMI-205, NR1L-ComfortHMI-206, NR1L-ComfortHMI-207, NR1L-ComfortHMI-208, NR1L-ComfortHMI-209, NR1L-ComfortHMI-210, NR1L-ComfortHMI-211, NR1L-ComfortHMI-212, NR1L-ComfortHMI-213, NR1L-ComfortHMI-214, NR1L-ComfortHMI-215, NR1L-ComfortHMI-216, NR1L-ComfortHMI-217, NR1L-ComfortHMI-218, NR1L-ComfortHMI-219, NR1L-ComfortHMI-220, NR1L-ComfortHMI-221, NR1L-ComfortHMI-222, NR1L-ComfortHMI-223, NR1L-ComfortHMI-224, NR1L-ComfortHMI-225, NR1L-ComfortHMI-226, NR1L-ComfortHMI-227, NR1L-ComfortHMI-228, NR1L-ComfortHMI-229, NR1L-ComfortHMI-230, NR1L-ComfortHMI-231, NR1L-ComfortHMI-232, NR1L-ComfortHMI-233, NR1L-ComfortHMI-234, NR1L-ComfortHMI-235, NR1L-ComfortHMI-236, NR1L-ComfortHMI-237, NR1L-ComfortHMI-238, NR1L-ComfortHMI-239, NR1L-ComfortHMI-240, NR1L-ComfortHMI-241, NR1L-ComfortHMI-242, NR1L-ComfortHMI-243, NR1L-ComfortHMI-244, NR1L-ComfortHMI-245, NR1L-ComfortHMI-246, NR1L-ComfortHMI-247, NR1L-ComfortHMI-248, NR1L-ComfortHMI-249, NR1L-ComfortHMI-250, NR1L-ComfortHMI-251, NR1L-ComfortHMI-252, NR1L-ComfortHMI-253, NR1L-ComfortHMI-254, NR1L-ComfortHMI-255, NR1L-ComfortHMI-256, NR1L-ComfortHMI-257, NR1L-ComfortHMI-258, NR1L-ComfortHMI-259, NR1L-ComfortHMI-260, NR1L-ComfortHMI-261, NR1L-ComfortHMI-262, NR1L-ComfortHMI-263, NR1L-ComfortHMI-264, NR1L-ComfortHMI-265, NR1L-ComfortHMI-266, NR1L-ComfortHMI-267, NR1L-ComfortHMI-268, NR1L-ComfortHMI-269, NR1L-ComfortHMI-270, NR1L-ComfortHMI-271, NR1L-ComfortHMI-272, NR1L-ComfortHMI-273, NR1L-ComfortHMI-274, NR1L-ComfortHMI-275, NR1L-ComfortHMI-276, NR1L-ComfortHMI-277, NR1L-ComfortHMI-278, NR1L-ComfortHMI-279, NR1L-ComfortHMI-280, NR1L-ComfortHMI-281, NR1L-ComfortHMI-282, NR1L-ComfortHMI-283, NR1L-ComfortHMI-284, NR1L-ComfortHMI-285, NR1L-ComfortHMI-286, NR1L-ComfortHMI-287, NR1L-ComfortHMI-288, NR1L-ComfortHMI-289, NR1L-ComfortHMI-290, NR1L-ComfortHMI-291, NR1L-ComfortHMI-292, NR1L-ComfortHMI-293, NR1L-ComfortHMI-294, NR1L-ComfortHMI-295, NR1L-ComfortHMI-296, NR1L-ComfortHMI-297, NR1L-ComfortHMI-298, NR1L-ComfortHMI-299, NR1L-ComfortHMI-300, NR1L-ComfortHMI-301, NR1L-ComfortHMI-302, NR1L-ComfortHMI-303
+negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065, NR1L-ComfortHMI-066, NR1L-ComfortHMI-067, NR1L-ComfortHMI-068, NR1L-ComfortHMI-069, NR1L-ComfortHMI-070, NR1L-ComfortHMI-071, NR1L-ComfortHMI-072, NR1L-ComfortHMI-073, NR1L-ComfortHMI-074, NR1L-ComfortHMI-075, NR1L-ComfortHMI-076, NR1L-ComfortHMI-077, NR1L-ComfortHMI-078, NR1L-ComfortHMI-079, NR1L-ComfortHMI-080, NR1L-ComfortHMI-081, NR1L-ComfortHMI-082, NR1L-ComfortHMI-083, NR1L-ComfortHMI-084, NR1L-ComfortHMI-085, NR1L-ComfortHMI-086, NR1L-ComfortHMI-087, NR1L-ComfortHMI-088, NR1L-ComfortHMI-089, NR1L-ComfortHMI-090, NR1L-ComfortHMI-091, NR1L-ComfortHMI-092, NR1L-ComfortHMI-093, NR1L-ComfortHMI-098, NR1L-ComfortHMI-099, NR1L-ComfortHMI-100, NR1L-ComfortHMI-101, NR1L-ComfortHMI-102, NR1L-ComfortHMI-103, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-106, NR1L-ComfortHMI-107, NR1L-ComfortHMI-108, NR1L-ComfortHMI-109, NR1L-ComfortHMI-110, NR1L-ComfortHMI-111, NR1L-ComfortHMI-112, NR1L-ComfortHMI-113, NR1L-ComfortHMI-114, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152, NR1L-ComfortHMI-153, NR1L-ComfortHMI-154, NR1L-ComfortHMI-155, NR1L-ComfortHMI-156, NR1L-ComfortHMI-157, NR1L-ComfortHMI-158, NR1L-ComfortHMI-159, NR1L-ComfortHMI-160, NR1L-ComfortHMI-161, NR1L-ComfortHMI-162, NR1L-ComfortHMI-163, NR1L-ComfortHMI-164, NR1L-ComfortHMI-165, NR1L-ComfortHMI-166, NR1L-ComfortHMI-167, NR1L-ComfortHMI-168, NR1L-ComfortHMI-169, NR1L-ComfortHMI-170, NR1L-ComfortHMI-171, NR1L-ComfortHMI-172, NR1L-ComfortHMI-173, NR1L-ComfortHMI-174, NR1L-ComfortHMI-175, NR1L-ComfortHMI-176, NR1L-ComfortHMI-177, NR1L-ComfortHMI-178, NR1L-ComfortHMI-179, NR1L-ComfortHMI-180, NR1L-ComfortHMI-181, NR1L-ComfortHMI-182, NR1L-ComfortHMI-183, NR1L-ComfortHMI-184, NR1L-ComfortHMI-185, NR1L-ComfortHMI-186, NR1L-ComfortHMI-187, NR1L-ComfortHMI-188, NR1L-ComfortHMI-189, NR1L-ComfortHMI-190, NR1L-ComfortHMI-191, NR1L-ComfortHMI-192, NR1L-ComfortHMI-193, NR1L-ComfortHMI-194, NR1L-ComfortHMI-195, NR1L-ComfortHMI-196, NR1L-ComfortHMI-197, NR1L-ComfortHMI-198, NR1L-ComfortHMI-199, NR1L-ComfortHMI-200, NR1L-ComfortHMI-201, NR1L-ComfortHMI-202, NR1L-ComfortHMI-203, NR1L-ComfortHMI-204, NR1L-ComfortHMI-205, NR1L-ComfortHMI-206, NR1L-ComfortHMI-207, NR1L-ComfortHMI-208, NR1L-ComfortHMI-209, NR1L-ComfortHMI-210, NR1L-ComfortHMI-211, NR1L-ComfortHMI-212, NR1L-ComfortHMI-213, NR1L-ComfortHMI-214, NR1L-ComfortHMI-215, NR1L-ComfortHMI-216, NR1L-ComfortHMI-217, NR1L-ComfortHMI-218, NR1L-ComfortHMI-219, NR1L-ComfortHMI-220, NR1L-ComfortHMI-221, NR1L-ComfortHMI-222, NR1L-ComfortHMI-223, NR1L-ComfortHMI-224, NR1L-ComfortHMI-225, NR1L-ComfortHMI-226, NR1L-ComfortHMI-227, NR1L-ComfortHMI-228, NR1L-ComfortHMI-229, NR1L-ComfortHMI-230, NR1L-ComfortHMI-231, NR1L-ComfortHMI-232, NR1L-ComfortHMI-233, NR1L-ComfortHMI-234, NR1L-ComfortHMI-235, NR1L-ComfortHMI-236, NR1L-ComfortHMI-237, NR1L-ComfortHMI-238, NR1L-ComfortHMI-239, NR1L-ComfortHMI-240, NR1L-ComfortHMI-241, NR1L-ComfortHMI-242, NR1L-ComfortHMI-243, NR1L-ComfortHMI-244, NR1L-ComfortHMI-245, NR1L-ComfortHMI-246, NR1L-ComfortHMI-247, NR1L-ComfortHMI-248, NR1L-ComfortHMI-249, NR1L-ComfortHMI-250, NR1L-ComfortHMI-251, NR1L-ComfortHMI-252, NR1L-ComfortHMI-253, NR1L-ComfortHMI-254, NR1L-ComfortHMI-255, NR1L-ComfortHMI-256, NR1L-ComfortHMI-257, NR1L-ComfortHMI-258, NR1L-ComfortHMI-259, NR1L-ComfortHMI-260, NR1L-ComfortHMI-261, NR1L-ComfortHMI-262, NR1L-ComfortHMI-263, NR1L-ComfortHMI-264, NR1L-ComfortHMI-265, NR1L-ComfortHMI-266, NR1L-ComfortHMI-267, NR1L-ComfortHMI-268, NR1L-ComfortHMI-269, NR1L-ComfortHMI-270, NR1L-ComfortHMI-271, NR1L-ComfortHMI-272, NR1L-ComfortHMI-273, NR1L-ComfortHMI-274, NR1L-ComfortHMI-275, NR1L-ComfortHMI-276, NR1L-ComfortHMI-277, NR1L-ComfortHMI-278, NR1L-ComfortHMI-279, NR1L-ComfortHMI-280, NR1L-ComfortHMI-281, NR1L-ComfortHMI-282, NR1L-ComfortHMI-283, NR1L-ComfortHMI-284, NR1L-ComfortHMI-285, NR1L-ComfortHMI-286, NR1L-ComfortHMI-287, NR1L-ComfortHMI-288, NR1L-ComfortHMI-289, NR1L-ComfortHMI-290, NR1L-ComfortHMI-291, NR1L-ComfortHMI-292, NR1L-ComfortHMI-293, NR1L-ComfortHMI-294, NR1L-ComfortHMI-295, NR1L-ComfortHMI-296, NR1L-ComfortHMI-297, NR1L-ComfortHMI-298, NR1L-ComfortHMI-299, NR1L-ComfortHMI-300, NR1L-ComfortHMI-301, NR1L-ComfortHMI-302, NR1L-ComfortHMI-303, NR1L-ComfortHMI-304, NR1L-ComfortHMI-305, NR1L-ComfortHMI-306, NR1L-ComfortHMI-307, NR1L-ComfortHMI-308, NR1L-ComfortHMI-309, NR1L-ComfortHMI-310, NR1L-ComfortHMI-311, NR1L-ComfortHMI-312, NR1L-ComfortHMI-313, NR1L-ComfortHMI-314, NR1L-ComfortHMI-315, NR1L-ComfortHMI-316, NR1L-ComfortHMI-317, NR1L-ComfortHMI-318, NR1L-ComfortHMI-319, NR1L-ComfortHMI-320, NR1L-ComfortHMI-321, NR1L-ComfortHMI-322, NR1L-ComfortHMI-323, NR1L-ComfortHMI-324, NR1L-ComfortHMI-325, NR1L-ComfortHMI-326, NR1L-ComfortHMI-327, NR1L-ComfortHMI-328, NR1L-ComfortHMI-329, NR1L-ComfortHMI-330, NR1L-ComfortHMI-331, NR1L-ComfortHMI-332, NR1L-ComfortHMI-333, NR1L-ComfortHMI-334, NR1L-ComfortHMI-335, NR1L-ComfortHMI-336, NR1L-ComfortHMI-337, NR1L-ComfortHMI-338, NR1L-ComfortHMI-339, NR1L-ComfortHMI-340, NR1L-ComfortHMI-341, NR1L-ComfortHMI-342, NR1L-ComfortHMI-343, NR1L-ComfortHMI-344, NR1L-ComfortHMI-345, NR1L-ComfortHMI-346, NR1L-ComfortHMI-347, NR1L-ComfortHMI-348, NR1L-ComfortHMI-349, NR1L-ComfortHMI-350, NR1L-ComfortHMI-351, NR1L-ComfortHMI-352, NR1L-ComfortHMI-353, NR1L-ComfortHMI-354, NR1L-ComfortHMI-355, NR1L-ComfortHMI-356, NR1L-ComfortHMI-357, NR1L-ComfortHMI-358, NR1L-ComfortHMI-359, NR1L-ComfortHMI-360, NR1L-ComfortHMI-361, NR1L-ComfortHMI-362, NR1L-ComfortHMI-363, NR1L-ComfortHMI-364, NR1L-ComfortHMI-365, NR1L-ComfortHMI-366, NR1L-ComfortHMI-367, NR1L-ComfortHMI-368, NR1L-ComfortHMI-369, NR1L-ComfortHMI-370, NR1L-ComfortHMI-371, NR1L-ComfortHMI-372, NR1L-ComfortHMI-373, NR1L-ComfortHMI-374, NR1L-ComfortHMI-375, NR1L-ComfortHMI-376, NR1L-ComfortHMI-377, NR1L-ComfortHMI-378, NR1L-ComfortHMI-379, NR1L-ComfortHMI-380, NR1L-ComfortHMI-381, NR1L-ComfortHMI-382, NR1L-ComfortHMI-383
 # 值出處：2.14 C15.（3 旋鈕 ICS 例外；one zone MTC with push button TEMPERATURE 之反例外）
 ```
 
@@ -544,7 +657,7 @@ value-count: 2
 negation: is not an EMEA ICS vehicle
 negation-reviewed-at-value-count: 2
 scan: 2026-08-15 | pattern `EMEA|LATAM|market|ICS\b|region` | 5 句命中，**無一句字面出現 `EMEA`** | 值名源自 16.1 之適用性判讀（R-C15／A-CF08），非條文字面；以 `other` 收尾 → 窮盡由 catch-all 保證
-negation-users: NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152, NR1L-ComfortHMI-153, NR1L-ComfortHMI-154, NR1L-ComfortHMI-155, NR1L-ComfortHMI-156, NR1L-ComfortHMI-157, NR1L-ComfortHMI-158, NR1L-ComfortHMI-159, NR1L-ComfortHMI-160, NR1L-ComfortHMI-161, NR1L-ComfortHMI-162, NR1L-ComfortHMI-163, NR1L-ComfortHMI-164, NR1L-ComfortHMI-165, NR1L-ComfortHMI-166, NR1L-ComfortHMI-167, NR1L-ComfortHMI-168, NR1L-ComfortHMI-169, NR1L-ComfortHMI-170, NR1L-ComfortHMI-171, NR1L-ComfortHMI-172, NR1L-ComfortHMI-173, NR1L-ComfortHMI-174, NR1L-ComfortHMI-175, NR1L-ComfortHMI-176, NR1L-ComfortHMI-177, NR1L-ComfortHMI-178, NR1L-ComfortHMI-179, NR1L-ComfortHMI-180, NR1L-ComfortHMI-181, NR1L-ComfortHMI-182, NR1L-ComfortHMI-183, NR1L-ComfortHMI-184, NR1L-ComfortHMI-185, NR1L-ComfortHMI-186, NR1L-ComfortHMI-187, NR1L-ComfortHMI-188, NR1L-ComfortHMI-189, NR1L-ComfortHMI-190, NR1L-ComfortHMI-191, NR1L-ComfortHMI-192, NR1L-ComfortHMI-193, NR1L-ComfortHMI-194, NR1L-ComfortHMI-195, NR1L-ComfortHMI-196, NR1L-ComfortHMI-197, NR1L-ComfortHMI-198, NR1L-ComfortHMI-199, NR1L-ComfortHMI-200, NR1L-ComfortHMI-201, NR1L-ComfortHMI-202, NR1L-ComfortHMI-266, NR1L-ComfortHMI-267, NR1L-ComfortHMI-268, NR1L-ComfortHMI-269, NR1L-ComfortHMI-270, NR1L-ComfortHMI-271, NR1L-ComfortHMI-272, NR1L-ComfortHMI-273, NR1L-ComfortHMI-274, NR1L-ComfortHMI-275, NR1L-ComfortHMI-276, NR1L-ComfortHMI-277, NR1L-ComfortHMI-278, NR1L-ComfortHMI-279, NR1L-ComfortHMI-280, NR1L-ComfortHMI-281, NR1L-ComfortHMI-282, NR1L-ComfortHMI-283, NR1L-ComfortHMI-284, NR1L-ComfortHMI-285, NR1L-ComfortHMI-286, NR1L-ComfortHMI-287, NR1L-ComfortHMI-288, NR1L-ComfortHMI-289, NR1L-ComfortHMI-290, NR1L-ComfortHMI-291, NR1L-ComfortHMI-292, NR1L-ComfortHMI-293, NR1L-ComfortHMI-294, NR1L-ComfortHMI-295, NR1L-ComfortHMI-296, NR1L-ComfortHMI-297, NR1L-ComfortHMI-298, NR1L-ComfortHMI-299, NR1L-ComfortHMI-300, NR1L-ComfortHMI-301, NR1L-ComfortHMI-302, NR1L-ComfortHMI-303
+negation-users: NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152, NR1L-ComfortHMI-153, NR1L-ComfortHMI-154, NR1L-ComfortHMI-155, NR1L-ComfortHMI-156, NR1L-ComfortHMI-157, NR1L-ComfortHMI-158, NR1L-ComfortHMI-159, NR1L-ComfortHMI-160, NR1L-ComfortHMI-161, NR1L-ComfortHMI-162, NR1L-ComfortHMI-163, NR1L-ComfortHMI-164, NR1L-ComfortHMI-165, NR1L-ComfortHMI-166, NR1L-ComfortHMI-167, NR1L-ComfortHMI-168, NR1L-ComfortHMI-169, NR1L-ComfortHMI-170, NR1L-ComfortHMI-171, NR1L-ComfortHMI-172, NR1L-ComfortHMI-173, NR1L-ComfortHMI-174, NR1L-ComfortHMI-175, NR1L-ComfortHMI-176, NR1L-ComfortHMI-177, NR1L-ComfortHMI-178, NR1L-ComfortHMI-179, NR1L-ComfortHMI-180, NR1L-ComfortHMI-181, NR1L-ComfortHMI-182, NR1L-ComfortHMI-183, NR1L-ComfortHMI-184, NR1L-ComfortHMI-185, NR1L-ComfortHMI-186, NR1L-ComfortHMI-187, NR1L-ComfortHMI-188, NR1L-ComfortHMI-189, NR1L-ComfortHMI-190, NR1L-ComfortHMI-191, NR1L-ComfortHMI-192, NR1L-ComfortHMI-193, NR1L-ComfortHMI-194, NR1L-ComfortHMI-195, NR1L-ComfortHMI-196, NR1L-ComfortHMI-197, NR1L-ComfortHMI-198, NR1L-ComfortHMI-199, NR1L-ComfortHMI-200, NR1L-ComfortHMI-201, NR1L-ComfortHMI-202, NR1L-ComfortHMI-266, NR1L-ComfortHMI-267, NR1L-ComfortHMI-268, NR1L-ComfortHMI-269, NR1L-ComfortHMI-270, NR1L-ComfortHMI-271, NR1L-ComfortHMI-272, NR1L-ComfortHMI-273, NR1L-ComfortHMI-274, NR1L-ComfortHMI-275, NR1L-ComfortHMI-276, NR1L-ComfortHMI-277, NR1L-ComfortHMI-278, NR1L-ComfortHMI-279, NR1L-ComfortHMI-280, NR1L-ComfortHMI-281, NR1L-ComfortHMI-282, NR1L-ComfortHMI-283, NR1L-ComfortHMI-284, NR1L-ComfortHMI-285, NR1L-ComfortHMI-286, NR1L-ComfortHMI-287, NR1L-ComfortHMI-288, NR1L-ComfortHMI-289, NR1L-ComfortHMI-290, NR1L-ComfortHMI-291, NR1L-ComfortHMI-292, NR1L-ComfortHMI-293, NR1L-ComfortHMI-294, NR1L-ComfortHMI-295, NR1L-ComfortHMI-296, NR1L-ComfortHMI-297, NR1L-ComfortHMI-298, NR1L-ComfortHMI-299, NR1L-ComfortHMI-300, NR1L-ComfortHMI-301, NR1L-ComfortHMI-302, NR1L-ComfortHMI-303, NR1L-ComfortHMI-304, NR1L-ComfortHMI-305, NR1L-ComfortHMI-306, NR1L-ComfortHMI-307, NR1L-ComfortHMI-308, NR1L-ComfortHMI-309, NR1L-ComfortHMI-310, NR1L-ComfortHMI-311, NR1L-ComfortHMI-312, NR1L-ComfortHMI-313, NR1L-ComfortHMI-314, NR1L-ComfortHMI-315, NR1L-ComfortHMI-316, NR1L-ComfortHMI-317, NR1L-ComfortHMI-318, NR1L-ComfortHMI-319, NR1L-ComfortHMI-320, NR1L-ComfortHMI-321, NR1L-ComfortHMI-322, NR1L-ComfortHMI-323, NR1L-ComfortHMI-324, NR1L-ComfortHMI-325, NR1L-ComfortHMI-326, NR1L-ComfortHMI-327, NR1L-ComfortHMI-328, NR1L-ComfortHMI-329, NR1L-ComfortHMI-330, NR1L-ComfortHMI-331, NR1L-ComfortHMI-332, NR1L-ComfortHMI-333, NR1L-ComfortHMI-334, NR1L-ComfortHMI-335, NR1L-ComfortHMI-336, NR1L-ComfortHMI-337, NR1L-ComfortHMI-338, NR1L-ComfortHMI-339, NR1L-ComfortHMI-340, NR1L-ComfortHMI-341, NR1L-ComfortHMI-342, NR1L-ComfortHMI-343, NR1L-ComfortHMI-344, NR1L-ComfortHMI-345, NR1L-ComfortHMI-346, NR1L-ComfortHMI-347, NR1L-ComfortHMI-348, NR1L-ComfortHMI-349, NR1L-ComfortHMI-350, NR1L-ComfortHMI-351, NR1L-ComfortHMI-352, NR1L-ComfortHMI-353, NR1L-ComfortHMI-354, NR1L-ComfortHMI-355, NR1L-ComfortHMI-356, NR1L-ComfortHMI-357, NR1L-ComfortHMI-358, NR1L-ComfortHMI-359, NR1L-ComfortHMI-360, NR1L-ComfortHMI-361, NR1L-ComfortHMI-362, NR1L-ComfortHMI-363, NR1L-ComfortHMI-364, NR1L-ComfortHMI-365, NR1L-ComfortHMI-366, NR1L-ComfortHMI-367, NR1L-ComfortHMI-368, NR1L-ComfortHMI-369, NR1L-ComfortHMI-370, NR1L-ComfortHMI-371, NR1L-ComfortHMI-372, NR1L-ComfortHMI-373, NR1L-ComfortHMI-374, NR1L-ComfortHMI-375, NR1L-ComfortHMI-376, NR1L-ComfortHMI-377, NR1L-ComfortHMI-378, NR1L-ComfortHMI-379, NR1L-ComfortHMI-380, NR1L-ComfortHMI-381, NR1L-ComfortHMI-382, NR1L-ComfortHMI-383
 # 值出處：16.1 之適用性判讀（R-C15）＋ ch16_mirror_map.tsv；R-C36-1 之逐條問句另行承載
 ```
 
@@ -555,7 +668,7 @@ value-count: 3
 negation: is not configured with a non-foldable secondary lower screen
 negation-reviewed-at-value-count: 3
 scan: 2026-08-15 | pattern `lower screen|secondary screen|stowed|stowable|foldable|second screen` | 6 句命中（6.3／13.2×3／13.3.1×2），13.3.1 之 `stowed/retracted` 仍屬既有第二值 | 未見第四值；以 `other` 收尾 → 窮盡由 catch-all 保證
-negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-034, NR1L-ComfortHMI-039, NR1L-ComfortHMI-042, NR1L-ComfortHMI-045, NR1L-ComfortHMI-046, NR1L-ComfortHMI-047, NR1L-ComfortHMI-059, NR1L-ComfortHMI-077, NR1L-ComfortHMI-082, NR1L-ComfortHMI-083, NR1L-ComfortHMI-089, NR1L-ComfortHMI-091, NR1L-ComfortHMI-092, NR1L-ComfortHMI-093, NR1L-ComfortHMI-094, NR1L-ComfortHMI-095, NR1L-ComfortHMI-096, NR1L-ComfortHMI-097, NR1L-ComfortHMI-098, NR1L-ComfortHMI-099, NR1L-ComfortHMI-100, NR1L-ComfortHMI-102, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-106, NR1L-ComfortHMI-107, NR1L-ComfortHMI-108, NR1L-ComfortHMI-109, NR1L-ComfortHMI-110, NR1L-ComfortHMI-112, NR1L-ComfortHMI-113, NR1L-ComfortHMI-114, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152, NR1L-ComfortHMI-153, NR1L-ComfortHMI-154, NR1L-ComfortHMI-155, NR1L-ComfortHMI-156, NR1L-ComfortHMI-157, NR1L-ComfortHMI-158, NR1L-ComfortHMI-159, NR1L-ComfortHMI-160, NR1L-ComfortHMI-161, NR1L-ComfortHMI-162, NR1L-ComfortHMI-163, NR1L-ComfortHMI-164, NR1L-ComfortHMI-165, NR1L-ComfortHMI-166, NR1L-ComfortHMI-167, NR1L-ComfortHMI-168, NR1L-ComfortHMI-169, NR1L-ComfortHMI-170, NR1L-ComfortHMI-171, NR1L-ComfortHMI-172, NR1L-ComfortHMI-173, NR1L-ComfortHMI-174, NR1L-ComfortHMI-175, NR1L-ComfortHMI-176, NR1L-ComfortHMI-177, NR1L-ComfortHMI-178, NR1L-ComfortHMI-179, NR1L-ComfortHMI-180, NR1L-ComfortHMI-181, NR1L-ComfortHMI-182, NR1L-ComfortHMI-183, NR1L-ComfortHMI-184, NR1L-ComfortHMI-185, NR1L-ComfortHMI-186, NR1L-ComfortHMI-187, NR1L-ComfortHMI-188, NR1L-ComfortHMI-189, NR1L-ComfortHMI-190, NR1L-ComfortHMI-191, NR1L-ComfortHMI-192, NR1L-ComfortHMI-193, NR1L-ComfortHMI-194, NR1L-ComfortHMI-195, NR1L-ComfortHMI-196, NR1L-ComfortHMI-197, NR1L-ComfortHMI-198, NR1L-ComfortHMI-199, NR1L-ComfortHMI-200, NR1L-ComfortHMI-201, NR1L-ComfortHMI-202, NR1L-ComfortHMI-203, NR1L-ComfortHMI-204, NR1L-ComfortHMI-205, NR1L-ComfortHMI-206, NR1L-ComfortHMI-207, NR1L-ComfortHMI-208, NR1L-ComfortHMI-209, NR1L-ComfortHMI-210, NR1L-ComfortHMI-211, NR1L-ComfortHMI-212, NR1L-ComfortHMI-213, NR1L-ComfortHMI-214, NR1L-ComfortHMI-215, NR1L-ComfortHMI-216, NR1L-ComfortHMI-217, NR1L-ComfortHMI-218, NR1L-ComfortHMI-219, NR1L-ComfortHMI-220, NR1L-ComfortHMI-221, NR1L-ComfortHMI-222, NR1L-ComfortHMI-223, NR1L-ComfortHMI-224, NR1L-ComfortHMI-225, NR1L-ComfortHMI-226, NR1L-ComfortHMI-227, NR1L-ComfortHMI-228, NR1L-ComfortHMI-229, NR1L-ComfortHMI-230, NR1L-ComfortHMI-231, NR1L-ComfortHMI-232, NR1L-ComfortHMI-233, NR1L-ComfortHMI-234, NR1L-ComfortHMI-235, NR1L-ComfortHMI-236, NR1L-ComfortHMI-237, NR1L-ComfortHMI-238, NR1L-ComfortHMI-239, NR1L-ComfortHMI-240, NR1L-ComfortHMI-241, NR1L-ComfortHMI-242, NR1L-ComfortHMI-243, NR1L-ComfortHMI-244, NR1L-ComfortHMI-245, NR1L-ComfortHMI-246, NR1L-ComfortHMI-247, NR1L-ComfortHMI-248, NR1L-ComfortHMI-249, NR1L-ComfortHMI-250, NR1L-ComfortHMI-251, NR1L-ComfortHMI-252, NR1L-ComfortHMI-253, NR1L-ComfortHMI-254, NR1L-ComfortHMI-255, NR1L-ComfortHMI-256, NR1L-ComfortHMI-257, NR1L-ComfortHMI-258, NR1L-ComfortHMI-259, NR1L-ComfortHMI-260, NR1L-ComfortHMI-261, NR1L-ComfortHMI-262, NR1L-ComfortHMI-263, NR1L-ComfortHMI-264, NR1L-ComfortHMI-265, NR1L-ComfortHMI-266, NR1L-ComfortHMI-267, NR1L-ComfortHMI-268, NR1L-ComfortHMI-269, NR1L-ComfortHMI-270, NR1L-ComfortHMI-271, NR1L-ComfortHMI-272, NR1L-ComfortHMI-273, NR1L-ComfortHMI-274, NR1L-ComfortHMI-275, NR1L-ComfortHMI-276, NR1L-ComfortHMI-277, NR1L-ComfortHMI-278, NR1L-ComfortHMI-279, NR1L-ComfortHMI-280, NR1L-ComfortHMI-281, NR1L-ComfortHMI-282, NR1L-ComfortHMI-283, NR1L-ComfortHMI-284, NR1L-ComfortHMI-285, NR1L-ComfortHMI-286, NR1L-ComfortHMI-287, NR1L-ComfortHMI-288, NR1L-ComfortHMI-289, NR1L-ComfortHMI-290, NR1L-ComfortHMI-291, NR1L-ComfortHMI-292, NR1L-ComfortHMI-293, NR1L-ComfortHMI-294, NR1L-ComfortHMI-295, NR1L-ComfortHMI-296, NR1L-ComfortHMI-297, NR1L-ComfortHMI-298, NR1L-ComfortHMI-299, NR1L-ComfortHMI-300, NR1L-ComfortHMI-301, NR1L-ComfortHMI-302, NR1L-ComfortHMI-303
+negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-034, NR1L-ComfortHMI-039, NR1L-ComfortHMI-042, NR1L-ComfortHMI-045, NR1L-ComfortHMI-046, NR1L-ComfortHMI-047, NR1L-ComfortHMI-059, NR1L-ComfortHMI-077, NR1L-ComfortHMI-082, NR1L-ComfortHMI-083, NR1L-ComfortHMI-089, NR1L-ComfortHMI-091, NR1L-ComfortHMI-092, NR1L-ComfortHMI-093, NR1L-ComfortHMI-094, NR1L-ComfortHMI-095, NR1L-ComfortHMI-096, NR1L-ComfortHMI-097, NR1L-ComfortHMI-098, NR1L-ComfortHMI-099, NR1L-ComfortHMI-100, NR1L-ComfortHMI-102, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-106, NR1L-ComfortHMI-107, NR1L-ComfortHMI-108, NR1L-ComfortHMI-109, NR1L-ComfortHMI-110, NR1L-ComfortHMI-112, NR1L-ComfortHMI-113, NR1L-ComfortHMI-114, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152, NR1L-ComfortHMI-153, NR1L-ComfortHMI-154, NR1L-ComfortHMI-155, NR1L-ComfortHMI-156, NR1L-ComfortHMI-157, NR1L-ComfortHMI-158, NR1L-ComfortHMI-159, NR1L-ComfortHMI-160, NR1L-ComfortHMI-161, NR1L-ComfortHMI-162, NR1L-ComfortHMI-163, NR1L-ComfortHMI-164, NR1L-ComfortHMI-165, NR1L-ComfortHMI-166, NR1L-ComfortHMI-167, NR1L-ComfortHMI-168, NR1L-ComfortHMI-169, NR1L-ComfortHMI-170, NR1L-ComfortHMI-171, NR1L-ComfortHMI-172, NR1L-ComfortHMI-173, NR1L-ComfortHMI-174, NR1L-ComfortHMI-175, NR1L-ComfortHMI-176, NR1L-ComfortHMI-177, NR1L-ComfortHMI-178, NR1L-ComfortHMI-179, NR1L-ComfortHMI-180, NR1L-ComfortHMI-181, NR1L-ComfortHMI-182, NR1L-ComfortHMI-183, NR1L-ComfortHMI-184, NR1L-ComfortHMI-185, NR1L-ComfortHMI-186, NR1L-ComfortHMI-187, NR1L-ComfortHMI-188, NR1L-ComfortHMI-189, NR1L-ComfortHMI-190, NR1L-ComfortHMI-191, NR1L-ComfortHMI-192, NR1L-ComfortHMI-193, NR1L-ComfortHMI-194, NR1L-ComfortHMI-195, NR1L-ComfortHMI-196, NR1L-ComfortHMI-197, NR1L-ComfortHMI-198, NR1L-ComfortHMI-199, NR1L-ComfortHMI-200, NR1L-ComfortHMI-201, NR1L-ComfortHMI-202, NR1L-ComfortHMI-203, NR1L-ComfortHMI-204, NR1L-ComfortHMI-205, NR1L-ComfortHMI-206, NR1L-ComfortHMI-207, NR1L-ComfortHMI-208, NR1L-ComfortHMI-209, NR1L-ComfortHMI-210, NR1L-ComfortHMI-211, NR1L-ComfortHMI-212, NR1L-ComfortHMI-213, NR1L-ComfortHMI-214, NR1L-ComfortHMI-215, NR1L-ComfortHMI-216, NR1L-ComfortHMI-217, NR1L-ComfortHMI-218, NR1L-ComfortHMI-219, NR1L-ComfortHMI-220, NR1L-ComfortHMI-221, NR1L-ComfortHMI-222, NR1L-ComfortHMI-223, NR1L-ComfortHMI-224, NR1L-ComfortHMI-225, NR1L-ComfortHMI-226, NR1L-ComfortHMI-227, NR1L-ComfortHMI-228, NR1L-ComfortHMI-229, NR1L-ComfortHMI-230, NR1L-ComfortHMI-231, NR1L-ComfortHMI-232, NR1L-ComfortHMI-233, NR1L-ComfortHMI-234, NR1L-ComfortHMI-235, NR1L-ComfortHMI-236, NR1L-ComfortHMI-237, NR1L-ComfortHMI-238, NR1L-ComfortHMI-239, NR1L-ComfortHMI-240, NR1L-ComfortHMI-241, NR1L-ComfortHMI-242, NR1L-ComfortHMI-243, NR1L-ComfortHMI-244, NR1L-ComfortHMI-245, NR1L-ComfortHMI-246, NR1L-ComfortHMI-247, NR1L-ComfortHMI-248, NR1L-ComfortHMI-249, NR1L-ComfortHMI-250, NR1L-ComfortHMI-251, NR1L-ComfortHMI-252, NR1L-ComfortHMI-253, NR1L-ComfortHMI-254, NR1L-ComfortHMI-255, NR1L-ComfortHMI-256, NR1L-ComfortHMI-257, NR1L-ComfortHMI-258, NR1L-ComfortHMI-259, NR1L-ComfortHMI-260, NR1L-ComfortHMI-261, NR1L-ComfortHMI-262, NR1L-ComfortHMI-263, NR1L-ComfortHMI-264, NR1L-ComfortHMI-265, NR1L-ComfortHMI-266, NR1L-ComfortHMI-267, NR1L-ComfortHMI-268, NR1L-ComfortHMI-269, NR1L-ComfortHMI-270, NR1L-ComfortHMI-271, NR1L-ComfortHMI-272, NR1L-ComfortHMI-273, NR1L-ComfortHMI-274, NR1L-ComfortHMI-275, NR1L-ComfortHMI-276, NR1L-ComfortHMI-277, NR1L-ComfortHMI-278, NR1L-ComfortHMI-279, NR1L-ComfortHMI-280, NR1L-ComfortHMI-281, NR1L-ComfortHMI-282, NR1L-ComfortHMI-283, NR1L-ComfortHMI-284, NR1L-ComfortHMI-285, NR1L-ComfortHMI-286, NR1L-ComfortHMI-287, NR1L-ComfortHMI-288, NR1L-ComfortHMI-289, NR1L-ComfortHMI-290, NR1L-ComfortHMI-291, NR1L-ComfortHMI-292, NR1L-ComfortHMI-293, NR1L-ComfortHMI-294, NR1L-ComfortHMI-295, NR1L-ComfortHMI-296, NR1L-ComfortHMI-297, NR1L-ComfortHMI-298, NR1L-ComfortHMI-299, NR1L-ComfortHMI-300, NR1L-ComfortHMI-301, NR1L-ComfortHMI-302, NR1L-ComfortHMI-303, NR1L-ComfortHMI-304, NR1L-ComfortHMI-305, NR1L-ComfortHMI-306, NR1L-ComfortHMI-307, NR1L-ComfortHMI-308, NR1L-ComfortHMI-309, NR1L-ComfortHMI-310, NR1L-ComfortHMI-311, NR1L-ComfortHMI-313, NR1L-ComfortHMI-314, NR1L-ComfortHMI-315, NR1L-ComfortHMI-316, NR1L-ComfortHMI-317, NR1L-ComfortHMI-318, NR1L-ComfortHMI-319, NR1L-ComfortHMI-320, NR1L-ComfortHMI-321, NR1L-ComfortHMI-322, NR1L-ComfortHMI-323, NR1L-ComfortHMI-324, NR1L-ComfortHMI-325, NR1L-ComfortHMI-326, NR1L-ComfortHMI-327, NR1L-ComfortHMI-328, NR1L-ComfortHMI-329, NR1L-ComfortHMI-330, NR1L-ComfortHMI-331, NR1L-ComfortHMI-332, NR1L-ComfortHMI-333, NR1L-ComfortHMI-334, NR1L-ComfortHMI-335, NR1L-ComfortHMI-336, NR1L-ComfortHMI-340, NR1L-ComfortHMI-341, NR1L-ComfortHMI-342, NR1L-ComfortHMI-343, NR1L-ComfortHMI-344, NR1L-ComfortHMI-345, NR1L-ComfortHMI-346, NR1L-ComfortHMI-347, NR1L-ComfortHMI-348, NR1L-ComfortHMI-349, NR1L-ComfortHMI-351, NR1L-ComfortHMI-352, NR1L-ComfortHMI-353, NR1L-ComfortHMI-354, NR1L-ComfortHMI-355, NR1L-ComfortHMI-356, NR1L-ComfortHMI-357, NR1L-ComfortHMI-358, NR1L-ComfortHMI-359, NR1L-ComfortHMI-360, NR1L-ComfortHMI-361, NR1L-ComfortHMI-362, NR1L-ComfortHMI-363, NR1L-ComfortHMI-364, NR1L-ComfortHMI-365, NR1L-ComfortHMI-366, NR1L-ComfortHMI-367, NR1L-ComfortHMI-368, NR1L-ComfortHMI-369, NR1L-ComfortHMI-370, NR1L-ComfortHMI-371, NR1L-ComfortHMI-372, NR1L-ComfortHMI-373, NR1L-ComfortHMI-374, NR1L-ComfortHMI-375, NR1L-ComfortHMI-376, NR1L-ComfortHMI-377, NR1L-ComfortHMI-378, NR1L-ComfortHMI-379, NR1L-ComfortHMI-380, NR1L-ComfortHMI-381
 # 值出處：6.3 CM1.（不可收合者）／13.2 LS1.（stowed position 蘊含可收合者）
 ```
 
@@ -747,6 +860,38 @@ lint 對照 `section_fulltext.tsv` 之來源列驗證保留 token，**不逕行�
 空字串，除非 BLOCKED 列、anomaly 標記或已記錄之 workaround。
 **外部可見**（AMFM R10-4）：不得出現內部 ruling id 或 `A-CF…`。
 
+**增補（下放包 66 §3，2026-08-16）—— 歧義須出現於 Remarks**：
+
+> **凡條文之歧義會使測試員在執行時無法判定者，該歧義須出現於 Remarks。**
+>
+> `reasoning` 之讀者是**覆核者**，Remarks 之讀者是**執行者**，
+> **而撞到它的是後者**。
+
+其措辭須自足：**不得出現內部 ruling id、DR 編號或 `A-CF…`**
+（歧義本身不是內部 id，故此增補與上列限制不衝突）。
+現行實例（`14.12` 三條，`NR1L-ComfortHMI-374`／`-375`／`-376`）：
+
+> The clause refers to the hard controls collectively. On vehicles whose
+> hard controls are of mixed types, this case cannot be determined from the
+> Comfort HMI specification alone.
+
+**該類列須登錄於 `lint_tcs.py` 之 `AMBIGUITY_REMARKS`** ——
+**惟其性質為登錄簿，非許可證**（下放包 67 §1 訂正 66 §4.2 之實作）：
+
+| | marker 白名單（R-C26）| 本登錄簿（67 §1）|
+|---|---|---|
+| 作用 | **豁免 lint** | **不豁免任何檢查，只對帳** |
+| 增列 | 須裁定 | **作者逕行寫入並同時登錄，不需個案裁定** |
+| 理由 | 放寬須有人負責 | 66 §3 是**一般義務**；對義務加審批，其淨效果是那件事不再發生 |
+
+**gate 雙向對帳**（`ambiguity-register`）：Remarks 帶歧義而未登錄 → FAIL；
+已登錄而其 Remarks 無該文字 → FAIL（後者即上繳 44 §7.3 所指之缺口）。
+
+**內容之三項限制為硬性，由 gate 檢查而非由登錄簿把關**：
+（一）無內部 id（`R-C…`／`DR #…`／`A-CF…`／`§`）；
+（二）長度足以說明何者不可判定（現行門檻 40 字元）；
+（三）以執行者於該欄所讀之語言陳述（英文；非拉丁字元即 FAIL）。
+
 ### 3.6.1 散文欄位之引用鍵 [ADD]（下放包 60 §1，2026-08-16）
 
 > **編號說明**：60 §1 指定寫入「§3.6」，惟該編號已為 Remarks 所用，
@@ -778,6 +923,39 @@ gate `no-tcid-in-prose`：散文欄位命中 tc_id → FAIL，指名該條與該
 - **T–Z 欄 Vehicle Model**：一律留白（Privacy R30-4）。
   **A-PV15 同樣適用於 Comfort**：範本七欄止於 27 世代，本專案平台為
   HDCC28，**不得將 27 世代欄位對映至 28 平台**。登為 Comfort 自身 anomaly
+
+### 3.7.1 相似度之量測規約 [ADD]（下放包 64 §2，2026-08-16）
+
+> **編號說明**：64 §2 指定寫入「§3.7」，惟該編號已為繼承 Privacy 之
+> Estimated Test Time 所用（同 §3.6 之情形），故置於其下為 §3.7.1。
+
+```
+相似度之量測一律 `autojunk=False`；長文比對**須同時報共同子字串之長度**，
+不得只報比值。比值為代理，長度為實質（§5a）。
+```
+
+**其由來**（62 §1.1 (b) 之首次執行）：`difflib.SequenceMatcher` 預設之
+`autojunk` 於序列長度 > 200 時，把出現率 > 1% 之元素視為雜訊丟棄 ——
+在英文段落上那是大半個字母表。實測 `16.13` ↔ `2.13` 之共同句 100 字元
+被算成 **1 字元**，`mirror-map-verified` 差點把三個正確之 `mirrored` 判紅。
+
+**其誤差方向為低估**，而低估之後果須寫明：
+**相似度被低估 → 判為「非鏡射」→ 不加排除式 PC → 該 TC 之適用範圍過寬。**
+
+**系統性重測之結果（64 §2，方法 `[machine]`）**：
+
+| 層級 | 受影響？ | 說明 |
+|---|---|---|
+| 節級（`section_fulltext`，86–534 字元）| **否** | 五對節級數字重測後完全相同 |
+| leaf 級（037 描述，61–110 字元）| **否** | 三對重測後完全相同；ch11 全 37 leaf 之最相似對造重測，**0 / 37 改變** |
+| TC 文字級（數千字元）| **是** | `16.8`↔`2.8` 0.097→**0.317**、`16.8`↔`3.2` 0.070→**0.365**、`16.12`↔`2.12.1` 0.211→**0.576** |
+
+**判定是否改變：否。** 三處皆為「相似度低，故不互相移植」之佐證，
+訂正後仍低；惟 `16.8` 之兩對**大小關係翻轉**（訂正後鏡射對較相似），
+該事實反而支持鏡射表之記載。
+
+`lint_tcs.py` 之 `_longest_run()` 已固定 `autojunk=False`，
+`verify_b_gates.py` 第四向把該回歸釘住 —— 若有人改回預設，該向即紅。
 
 ## 4. Split policy [ADD]
 
