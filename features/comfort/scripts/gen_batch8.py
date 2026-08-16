@@ -92,6 +92,12 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
 # source, and R-C17 puts "how it got onto the home screen" in Home Screen's
 # domain, so this is the tester's setup state.
 PC_WIDGET = "1. [test-setup] The Comfort widget is shown on the home screen"
+# Axis 16 (50 §1). 17.3 makes the widget's SECOND page conditional, so any
+# TC whose observable is that page needs the value stated — including the
+# two in 17.1 that merely count or name the screens.
+PC_COMFORT_FEATURES = ("[spec-verbatim] The vehicle is equipped with Comfort "
+                       "features, such as heated/vented seats and a heated "
+                       "steering wheel (17.3)")
 
 WITHHELD = [
     ("SWE1-HVAC-125-08",
@@ -177,9 +183,16 @@ BATCHES = [
             {
                 "req_id": "SWE1-HVAC-124-01",
                 "tc_title": "Comfort widget has two screens",
+                # 52 §3 — caught by axis-type-reverse-test's reverse
+                # validation: this TC counts the widget screens, and 17.3
+                # makes the SECOND one conditional on Comfort Features. Its
+                # observable disappears on a vehicle without them while its
+                # own subject (17.1's two screens) does not — so the axis-16
+                # value has to be stated, or the TC is false on those cars.
                 "test_item":
                     "The Comfort widget shall have two screens",
-                "pre_conditions": PC_WIDGET,
+                "pre_conditions": add_lines(PC_WIDGET, PC_COMFORT_FEATURES),
+                "spec_ref": ("17.1", "17.3"),
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the home screen\n"
@@ -211,10 +224,12 @@ BATCHES = [
             {
                 "req_id": "SWE1-HVAC-124-03",
                 "tc_title": "Second Comfort widget screen is Seats",
+                # 52 §3 — same as -115: the second screen is 17.3-conditional.
                 "test_item":
                     "The second of the two Comfort widget screens shall be "
                     "Seats",
-                "pre_conditions": PC_WIDGET,
+                "pre_conditions": add_lines(PC_WIDGET, PC_COMFORT_FEATURES),
+                "spec_ref": ("17.1", "17.3"),
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the home screen\n"

@@ -1,0 +1,66 @@
+{
+ "parent": "SWE1-HVAC-109",
+ "outline": "16.5",
+ "batch": "ICS Climate Modes",
+ "source_clause": "ICE4.) The recirc icon will display the vehicle model specific icon as displayed in the Climate Main page table. If the system cannot detect the vehicle model it will display the generic recirc symbol.",
+ "reasoning": "驗證目標：16.5（ICE4）定出 recirc 圖示依車型顯示與偵測不到車型時之通用符號，兩個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：兩者為同一規則之兩個分支（偵測得到／偵測不到），依 §7 各自成條。刻意略過：**本節與 `2.5` 之 `006-04`（已停下）同屬「對照關係未定義」** —— ICE4 云「as displayed in **the Climate Main page table**」，比 C4 之「the table」具體，**仍未給對照**；故 `-212` 之 ER 只驗「圖示為該車型之圖示」而**不指名任何具體圖示**（§8.4.1），其可判性依賴受測車型之已知圖示，該限制已於 `DATA_REQUESTS` #32 具名。",
+ "keywords": [
+  "recirc icon",
+  "vehicle model"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "ICS climate screen 之 RECIRC 圖示",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3 使其移除）；**與批次 11 相反**，該批之可觀察量為 comfort popup，正是 6.3 之例外",
+  "axis_12": "不暴露 —— ch16 十八節無 tab 條文",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**不適用（反向）** —— 本節屬 ch16，取**正向**軸值 PC（出處 16.2）而非排除式；R-C36-1 於本側之對應問題為「本條於非 EMEA 車輛上有無對象」，答為無"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-109-01",
+   "tc_id": "NR1L-ComfortHMI-213",
+   "tc_title": "Recirc icon matches the vehicle model",
+   "test_group": "Comfort",
+   "test_set": "ICS Climate Modes",
+   "test_item": "The recirc icon shall display the vehicle model specific icon as displayed in the Climate Main page table",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen on a vehicle whose model the system detects\n2. Read the \"RECIRC\" icon",
+   "expected_result": "1. The climate screen is displayed\n2. The \"RECIRC\" icon is the icon for that vehicle model",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-109-02",
+   "tc_id": "NR1L-ComfortHMI-214",
+   "tc_title": "Generic recirc symbol appears when the model is undetected",
+   "test_group": "Comfort",
+   "test_set": "ICS Climate Modes",
+   "test_item": "If the system cannot detect the vehicle model it shall display the generic recirc symbol",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen on a vehicle whose model the system cannot detect\n2. Read the \"RECIRC\" icon",
+   "expected_result": "1. The climate screen is displayed\n2. The \"RECIRC\" icon is the generic recirc symbol",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

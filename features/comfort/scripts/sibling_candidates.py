@@ -230,8 +230,12 @@ def load_table() -> list:
 # against that side's CLAUSE; the day that side is generated, the thing to
 # compare against is a TC. Same verdict, different object. The flag says "look
 # again", not "you were wrong" — re-confirmation may keep the verdict.
+# 52 §1 — `equivalent_tc_pairs` records TC-LEVEL strict equivalence, which
+# §10.6's `duplicate_of` cannot: that field is section-level and carries a
+# workbook row number injected by the tool, so cross-section equivalence is
+# outside its range. Filling it would claim the whole section duplicates.
 FIELDS = ["outline", "sibling_outline", "verdict", "provisional", "source",
-          "reviewed_at", "reason"]
+          "equivalent_tc_pairs", "reviewed_at", "reason"]
 DEFERRED_REASON = (
     "**依 41 §3 規則三入表（42 §2 之全量重建）。** 兩節皆未生成，現在判無處可用 —— "
     "sibling 判定之用途是寫 TC 時決定 `duplicate_of`／`distinguishing_axis`（§4.6）。"
@@ -320,6 +324,8 @@ def rebuild(pairs: dict, source: dict, gen: set, n_sections: int) -> None:
                      "verdict": rec["verdict"],
                      "provisional": provisional_of(k, rec, gen),
                      "source": src,
+                     # hand-maintained; a rebuild must never drop it
+                     "equivalent_tc_pairs": rec.get("equivalent_tc_pairs", ""),
                      "reviewed_at": rec["reviewed_at"],
                      "reason": rec["reason"]})
         stats[tally] += 1

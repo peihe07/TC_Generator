@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-084",
+ "outline": "14.1.1",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop-up) and user makes additional adjustment to the same HVAC event (e.g. fan adjustment), the new HVAC pop-up timeout will restart (e.g. fan pop-up timeout restarts).",
+ "reasoning": "驗證目標：14.1.1（HVACP1.2）定出同一 HVAC 事件之再次調整使 popup 逾時重新計時，單一 037 leaf 對應之（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34**，可觀察量為 HVAC popup 本身 —— **第九軸不補**：6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`，故 popup 於下螢幕車上仍在（**本批為首次以證據放下該排除，而非沿襲**）；第十三軸補（3 旋鈕 ICS 車無 HVAC popup）；EMEA 排除補並逐條答。為什麼這樣切：條文僅一句一 leaf，不拆。刻意略過：條文未給該 popup 之逾時秒數（`14.18` 之 5 秒為座椅類 popup，屬另一節），故步驟以「就在逾時前」為時點而不寫入秒數（§8.4.1）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "HVAC popup 本身（其顯示、內容與逾時）",
+  "axis_9": "**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-084",
+   "tc_id": "NR1L-ComfortHMI-167",
+   "tc_title": "HVAC pop-up timeout restarts on further adjustment",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "If an HVAC pop-up is displayed and the user makes an additional adjustment to the same HVAC event, the new HVAC pop-up timeout shall restart",
+   "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the fan speed using the fan speed hard control from a screen other than the climate screen\n2. Change the fan speed again just before the pop-up times out\n3. Wait until the pop-up is no longer shown",
+   "expected_result": "1. A fan pop-up is shown\n2. The fan pop-up is still shown\n3. The fan pop-up is no longer shown",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.1.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

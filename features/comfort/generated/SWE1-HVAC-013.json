@@ -1,0 +1,123 @@
+{
+ "parent": "SWE1-HVAC-013",
+ "outline": "2.9",
+ "batch": "Airflow and Defrost",
+ "source_clause": "C8.) Rear Defrost has on/ off state. REAR DEFROST is not available in certain modes. Therefore, gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that. Rear defrost is independent of any other climate functions. Rear Defrost automatically turns on EXTERIOR REAR-VIEW MIRROR DEFROST if this feature available.",
+ "reasoning": "驗證目標：2.9（C8）定出 Rear Defrost 之狀態、灰化條件、與其他氣候功能之獨立性，以及對外後視鏡除霜之連動，四個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十軸（REAR DEFROST 有無）—— 起始 PC 取其有值，出處 **3.4**（「the rear defrost button will not appear when not present in the vehicle」，跨節取據 R-C29，3.4 併入 spec_ref）；`-162` 另補 C8 自身之條件「if this feature available」（**條文自帶之情境條件，非新軸** —— R-C28 第一問由 C8 明文滿足，形態同 2.13 之「when CCM relays presence of MAX A/C functionality」）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`-161`（獨立性）以兩個不同的干擾源（AUTO、FRONT DEF）各驗一次，因「獨立」之否證只需一個反例。刻意略過：**不移植 `3.3`（C21）之 climate off 可用性** —— 本節之灰化來自 CCM 之可用性狀態，與 climate off 之狀態無關（§8.2.1）；C8 未定義「certain modes」為哪些模式，故 `-160` 以 CCM 狀態為觸發而不列舉模式（§8.4.1）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "profile §3.2 第九軸「EMEA ICS 車型」之值（介面型，R-C34）",
+  "delta": "`2.9` 取**非 ICS** 值（ch2 之 climate screen），`16.9` 取 **ICS** 值（ch16 之 ICS climate screen）。**兩節之 TC 於 `test_item`／`test_procedure`／`expected_result` 三欄逐字相同**（`-159`≡`-249`、`-160`≡`-250`，見 pending_sibling 之 `equivalent_tc_pairs`），其唯一差異在 `pre_conditions` 之軸值 —— 此即 §10.6 所謂「另有可區辨之情境條件」，故 **`duplicate_of` 不填**；惟 `2.9` 尚有 `-161`（獨立性）與 `-162`（鏡面除霜連動）二條為 ICE8 所無，兩側不等勢"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 REAR DEFROST 按鈕（含灰化）與對外後視鏡除霜之狀態",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本批 14 條中 **9 條為 `no`**，其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-013-01",
+   "tc_id": "NR1L-ComfortHMI-159",
+   "tc_title": "Rear Defrost has an on and off state",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Rear Defrost shall have an on/off state",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with rear defrost, which is absent on some soft top vehicles (3.4)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"REAR DEFROST\" on the climate screen\n2. Press \"REAR DEFROST\" again",
+   "expected_result": "1. The \"REAR DEFROST\" button is highlighted\n2. The \"REAR DEFROST\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.9",
+    "verdict": "yes",
+    "ch16_sentence": "ICE8「Rear Defrost has on/ off state」逐字相同（鏡射表記 16.9 ↔ 2.9 mirrored）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-013-02",
+   "tc_id": "NR1L-ComfortHMI-160",
+   "tc_title": "Rear Defrost greys out when the CCM reports it unavailable",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "The system shall gray out the REAR DEFROST button when the rear defrost availability status from CCM denotes that",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with rear defrost, which is absent on some soft top vehicles (3.4)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the rear defrost availability status from the CCM to unavailable\n2. Read the \"REAR DEFROST\" button on the climate screen",
+   "expected_result": "1. The climate screen is displayed\n2. The \"REAR DEFROST\" button is greyed out",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.9",
+    "verdict": "yes",
+    "ch16_sentence": "ICE8「Gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that」逐字相同"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-013-03",
+   "tc_id": "NR1L-ComfortHMI-161",
+   "tc_title": "Rear Defrost is independent of the other climate functions",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Rear defrost shall be independent of any other climate functions",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with rear defrost, which is absent on some soft top vehicles (3.4)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"REAR DEFROST\" on from the climate screen\n2. Turn AUTO on and read the \"REAR DEFROST\" button\n3. Turn \"FRONT DEF\" on and read the \"REAR DEFROST\" button",
+   "expected_result": "1. The \"REAR DEFROST\" button is highlighted\n2. The \"REAR DEFROST\" button is still highlighted\n3. The \"REAR DEFROST\" button is still highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.9",
+    "verdict": "no",
+    "ch16_sentence": "**ICE8 僅兩句**（on/off 狀態與灰化），**不含 C8 之「Rear defrost is independent of any other climate functions」** —— 本條所驗者於 ch16 無對應句"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-013-04",
+   "tc_id": "NR1L-ComfortHMI-162",
+   "tc_title": "Rear Defrost turns the exterior mirror defrost on",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Rear Defrost shall automatically turn on EXTERIOR REAR-VIEW MIRROR DEFROST if this feature is available",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with rear defrost, which is absent on some soft top vehicles (3.4)\n2. [spec-verbatim] The exterior rear-view mirror defrost feature is available on the vehicle (2.9)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"REAR DEFROST\" off from the climate screen and read the exterior rear-view mirror defrost state\n2. Turn \"REAR DEFROST\" on and read the exterior rear-view mirror defrost state",
+   "expected_result": "1. The exterior rear-view mirror defrost is off\n2. The exterior rear-view mirror defrost is on",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.9",
+    "verdict": "no",
+    "ch16_sentence": "同 `013-03`：ICE8 僅兩句，不含此連動"
+   }
+  }
+ ]
+}

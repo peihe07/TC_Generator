@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-097",
+ "outline": "14.13",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP13.) For vehicles with a lower hvac screen, interactions with that screen will not trigger popups on the head unit (e.g. temperature popup, fan speed popup, mode popup).",
+ "reasoning": "驗證目標：14.13（HVACP13）定出配備下 HVAC 螢幕之車輛，於該螢幕上之操作不觸發 head unit 之 popup，單一 leaf。關鍵情境條件：**本節之配置條件為第九軸之另一值** —— 條文明文「For vehicles with **a lower hvac screen**」，故 PC 取其**有**值（出處 14.13），與本批其餘各節之「不補第九軸」形成對照：其餘節之可觀察量為 comfort popup（6.3 之明文例外），而本節之主題正是該螢幕本身。依 **R-C34** 第十三軸補、EMEA 排除補。為什麼這樣切：一句一 leaf。刻意略過：條文以 `e.g.` 舉三種 popup，本條以溫度 popup 為代表（同 14.3）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "下 HVAC 螢幕之操作與 head unit 上之 popup（其不出現）",
+  "axis_9": "**取其另一值** —— 條文明文「For vehicles with a lower hvac screen」，故 PC 為**有**下螢幕（出處 14.13）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-097",
+   "tc_id": "NR1L-ComfortHMI-183",
+   "tc_title": "Lower HVAC screen interactions raise no head unit pop-up",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "For vehicles with a lower HVAC screen, interactions with that screen shall not trigger popups on the head unit",
+   "pre_conditions": "1. [spec-verbatim] The vehicle has a lower HVAC screen (14.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the temperature on the lower HVAC screen\n2. Read the head unit for an HVAC pop-up",
+   "expected_result": "1. The lower HVAC screen shows the new temperature\n2. No HVAC pop-up is shown on the head unit",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

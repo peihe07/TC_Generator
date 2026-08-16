@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-017",
+ "outline": "2.12.1",
+ "batch": "Airflow and Defrost",
+ "source_clause": "C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).",
+ "reasoning": "驗證目標：2.12.1（C13.0）定出非 tri-mode 設備型之五種氣流模式及其於畫面之呈現，兩個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：profile §3.2 **第三軸（前排氣流模式集合）之「5 狀態」值** —— **本節是該軸三值中唯一自帶正面限定語者**（「In some **non-tri mode equipment types**」），故其值可陳述而 `2.12`／`2.12.2` 不可（DR #31）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：`-163` 驗五個狀態之順序，`-164` 驗所選狀態之呈現，兩者失效形態不同（順序錯 vs 呈現錯）。刻意略過：**`-164` 不驗按鈕數** —— 其 ch16 對造 ICE11 自身寫 `5 states` 而其呈現句寫 `ON state for the **four** airflow modes`，係條文內部之數字不一致（A-CF13 同型），故本條只驗「所選模式呈現為作用中」；C13.0 未給硬鍵循環之規則（那在 C13.1，屬停下之 `2.12.2`），本節不涉。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "profile §3.2 第三軸「前排氣流模式集合」之值",
+  "delta": "`2.12.1` 取 **5 狀態**（C13.0「In some non-tri mode equipment types, airflow modes has 5 states」），`3.1` 取 **tri-mode 3 鍵 7 組合**（C19）。**兩者為同一需求（本車之氣流模式集合與其選取方式）在該軸兩個值上之陳述**，故其 verification target 必然相異 —— `-163` 驗五狀態之循環序，`-015`／`-016` 驗七組合之個別 toggle 與循環序。四項嚴格等價不成立，`duplicate_of` 不填。第三值（4 模式，`2.12`）因 DR #31 未生成，故本軸三值中目前只有兩個有 TC"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之五個氣流模式按鈕及其作用中呈現",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本批 14 條中 **9 條為 `no`**，其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-017-01",
+   "tc_id": "NR1L-ComfortHMI-163",
+   "tc_title": "Five airflow modes cycle in order on non tri-mode vehicles",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "In some non-tri mode equipment types airflow modes shall have 5 states: Face, Mix of Face and Feet, Feet, Mix of Feet and Windshield, Windshield",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a non-tri mode equipment type whose airflow modes have 5 states (2.12.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Face airflow mode on the climate screen\n2. Move to the next airflow mode four times, reading the mode after each",
+   "expected_result": "1. The Face airflow mode is active\n2. The modes were Mix of Face and Feet, then Feet, then Mix of Feet and Windshield, then Windshield",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.12",
+    "verdict": "yes",
+    "ch16_sentence": "ICE11「Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield)」逐字相同（鏡射表記 16.12 ↔ 2.12.1 mirrored）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-017-02",
+   "tc_id": "NR1L-ComfortHMI-164",
+   "tc_title": "The active airflow mode shows on the climate screen",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "The correct airflow mode state shall be indicated on the TS climate screen",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is a non-tri mode equipment type whose airflow modes have 5 states (2.12.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Feet airflow mode on the climate screen\n2. Select the Windshield airflow mode",
+   "expected_result": "1. The climate screen shows the Feet mode as active\n2. The climate screen shows the Windshield mode as active",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.12.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.12",
+    "verdict": "yes",
+    "ch16_sentence": "ICE11「ON state for the four airflow modes is shown by highlighting the button and increasing button size」—— 惟 **ICE11 自身寫 five states 而其呈現句寫 four**，係條文內部之數字不一致（A-CF13 同型），本條只驗「所選模式呈現為作用中」，不驗按鈕數"
+   }
+  }
+ ]
+}

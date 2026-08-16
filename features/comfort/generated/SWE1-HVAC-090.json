@@ -1,0 +1,73 @@
+{
+ "parent": "SWE1-HVAC-090",
+ "outline": "14.7",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP7.) When an HVAC popup is displayed over another popup, if user touches a selectable item inside the bottom pop-up (e.g. OK or X ) then the action is taken and HVAC pop-up is closed.",
+ "reasoning": "驗證目標：14.7（HVACP7）定出觸碰下層 popup 之可選項時執行其動作且關閉 HVAC popup，兩個 leaf 分別對應「動作被執行」與「HVAC popup 關閉」。關鍵情境條件：同 14.1.1。為什麼這樣切：兩者可獨立失效（動作執行了而 popup 未關、或 popup 關了而動作未執行）。刻意略過：同 14.6，不指名下層 popup。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "HVAC popup 本身（其顯示、內容與逾時）",
+  "axis_9": "**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-090-01",
+   "tc_id": "NR1L-ComfortHMI-175",
+   "tc_title": "Touching a selectable item of the lower pop-up takes its action",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "When an HVAC popup is displayed over another popup, if the user touches a selectable item inside the bottom pop-up then the action shall be taken",
+   "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open a pop-up that has a selectable item, then change the fan speed using the fan speed hard control\n2. Touch the selectable item of the bottom pop-up",
+   "expected_result": "1. The fan pop-up is shown over the other pop-up\n2. The action of the bottom pop-up is taken",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.7; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-090-02",
+   "tc_id": "NR1L-ComfortHMI-176",
+   "tc_title": "The HVAC pop-up closes when the lower pop-up item is taken",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "When the action of the bottom pop-up is taken, the HVAC pop-up shall be closed",
+   "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open a pop-up that has a selectable item, then change the fan speed using the fan speed hard control\n2. Touch the selectable item of the bottom pop-up and read the screen",
+   "expected_result": "1. The fan pop-up is shown over the other pop-up\n2. The fan pop-up is closed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.7; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

@@ -52,7 +52,7 @@ SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # not lose its object).
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260815_batch9.xlsx")
+                            "Comfort_20260815_batch13.xlsx")
 # 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
 # 27 §3), so the second write-back became ENTRY 004. This is the third.
 #
@@ -61,7 +61,7 @@ OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # free and this write takes it. If the extension lands first, this constant
 # moves; the one-shot gate below is what makes a collision loud rather than
 # silent.
-LEDGER_ENTRY = "ENTRY 006"
+LEDGER_ENTRY = "ENTRY 010"
 SHEET = "Test Case Specification 測試用例規範"
 SRC_SHA = "b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d"
 FIRST_ROW = 10

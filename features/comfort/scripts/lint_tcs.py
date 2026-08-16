@@ -29,6 +29,7 @@ Usage:
 """
 
 import csv
+import hashlib
 import json
 import re
 import sys
@@ -135,6 +136,33 @@ PROFILE = ROOT / "docs" / "runtime" / "profiles" / "FW036_R1L_Comfort_Profile.md
 # not a mechanism. Adding a value without re-reviewing the negation users
 # fails, and the failure names them.
 AXIS_BLOCK = re.compile(r"```axis-values\n(.*?)```", re.S)
+# 52 §3, criterion corrected by 54 §1 — `axis-type-reverse-test`.
+#
+# 52 §3 worded the question as "is there a TC whose FUNCTION is governed by
+# this axis, and whose observable sits on the interface the axis removes?"
+# The purpose it was given (35 §1.1) is the opposite case: "an interface-type
+# axis matters because the function survives while ANOTHER TC's observable
+# disappears". The wording is the narrower of the two, and 54 §1 rules the
+# PURPOSE version to be the FAIL criterion:
+#
+#   FAIL  — any TC whose observable sits on an interface some axis value
+#           removes, and which does not state that axis's value.
+#   report— of those, how many also have an axis-governed function (the
+#           wording version). Kept as a named line, not deleted: if the two
+#           ever diverge again, the difference is the finding.
+#
+# Criteria are READ FROM THE PROFILE, never hard-coded (52 §3).
+FN_AXIS_BLOCK = re.compile(r"```function-axis-reverse-test\n(.*?)```", re.S)
+# 56 §4 — the fields that MAKE UP the declaration. `declared-at-tc-count`
+# and `judged-at` are excluded on purpose: they record when, not what.
+HASHED_FIELDS = ("axis", "function-keywords", "removed-interface-keywords",
+                 "axis-pc-keywords", "judged-at-tc-count",
+                 "judged-at-provenance")
+# The profile's axis table, used only to catch a 功能型 axis with NO block —
+# an omission is otherwise silent, which is the failure this gate exists for.
+AXIS_TABLE_ROW = re.compile(
+    r"^\|\s*([0-9]+|—)\s*\|\s*(.+?)\s*\|\s*\*{0,2}(功能型|介面型)\*{0,2}\s*\|",
+    re.M)
 # 43 §4 — one block per axis that uses a negated pre_condition, each carrying
 # its own `negation:` string. Until 43 §4 this gate watched ONE hard-coded
 # phrase (axis 13's), so the other four negations had no protection: 34 §4's
@@ -577,6 +605,76 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                 f"missing {sorted(set(actual) - set(listed))}, "
                 f"extra {sorted(set(listed) - set(actual))}")
 
+    # ---- 52 §3 — axis-type-reverse-test ---------------------------------
+    profile_text = PROFILE.read_text(encoding="utf-8")
+    declared, live, vacuous, worded_hits = {}, 0, 0, []
+    for raw in FN_AXIS_BLOCK.findall(profile_text):
+        f = dict(l.split(":", 1) for l in raw.strip().split("\n")
+                 if ":" in l and not l.lstrip().startswith("#"))
+        axis = f.get("axis", "?").strip().split()[0]
+        declared[axis] = f
+        # 56 §4 — `declared-at-tc-count` records WHEN this declaration was
+        # written, so it may only move when the declaration changes. The
+        # content hash is the gate: recompute it, and a mismatch means the
+        # block was edited without the timestamp following.
+        payload = "\n".join(f"{k}={f.get(k, '').strip()}" for k in HASHED_FIELDS)
+        want = hashlib.sha256(payload.encode()).hexdigest()[:12]
+        got = f.get("content-sha", "").strip()
+        if got != want:
+            bad("axis-type-reverse-test",
+                f"axis {axis}: content-sha is {got or 'missing'} but the "
+                f"block hashes to {want}. The declaration changed without "
+                f"`declared-at-tc-count` (currently "
+                f"{f.get('declared-at-tc-count', '?').strip()}) following it "
+                f"— update both together (56 §4)")
+
+        def terms(key):
+            v = f.get(key, "").strip()
+            return [] if v in ("", "none") else [t.strip() for t in v.split("|")
+                                                 if t.strip()]
+
+        iface, fn = terms("removed-interface-keywords"), terms("function-keywords")
+        pcs = terms("axis-pc-keywords")
+        if not iface:
+            vacuous += 1
+            continue
+        live += 1
+        for _, tc in all_tcs:
+            observable = f"{tc['test_procedure']}\n{tc['expected_result']}"
+            if not any(t in observable for t in iface):
+                continue
+            # A TC that already states this axis's value is confined to one of
+            # them; its observable cannot vanish unexpectedly.
+            if any(t in tc["pre_conditions"] for t in pcs):
+                continue
+            # PURPOSE version (54 §1) — the function filter is NOT applied
+            # here. A TC whose function belongs to some other section is
+            # exactly the case this test exists for.
+            subject = f"{tc['test_item']}\n{observable}"
+            also_worded = bool(fn) and any(t in subject for t in fn)
+            worded_hits.append((axis, tc["tc_id"])) if also_worded else None
+            bad("axis-type-reverse-test",
+                f"axis {axis}: {tc['tc_id']} observes "
+                f"{[t for t in iface if t in observable]!r} — the interface "
+                f"this axis's value removes — and states no value for that "
+                f"axis, so it is false on the value that removes it. Either "
+                f"add the axis pre_condition or re-decide the axis's type "
+                f"(judged at {f.get('judged-at-tc-count', '?').strip()} TCs; "
+                f"54 §1 purpose version)"
+                + ("  [also matches the 52 §3 wording version]"
+                   if also_worded else ""))
+    for num, name, kind in AXIS_TABLE_ROW.findall(profile_text):
+        if kind == "功能型" and num not in declared:
+            bad("axis-type-reverse-test",
+                f"axis {num} ({re.sub(chr(96) + '|[*]', '', name)[:40]}) is "
+                "marked 功能型 but has no ```function-axis-reverse-test``` "
+                "block, so its classification is never re-checked (52 §3). "
+                "Declare it, using `removed-interface-keywords: none` if the "
+                "axis removes no interface — an explicit `none` is a claim; "
+                "a missing block is silence")
+    fn_axis_report = (len(declared), live, vacuous, len(all_tcs),
+                      worded_hits)
+
     # 43 §4 — the part that makes a NEW unprotected negation audible. Without
     # it, adding a negated pre_condition for an axis that has no block is
     # exactly as silent as axis 13's situation was before 34 §4.
@@ -632,7 +730,7 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         bad("residue-scan-window",
             "write_back.py's post-write residue scan does not run to "
             "ws.max_row (a fixed-width window leaves the tail unchecked)")
-    return out, blocked, emea_no
+    return out, blocked, emea_no, fn_axis_report
 
 
 def main() -> int:
@@ -640,7 +738,7 @@ def main() -> int:
     docs = [json.loads(p.read_text(encoding="utf-8"))
             for p in sorted(GEN.glob("*.json"))]
     n_tc = sum(len(d["tcs"]) for d in docs)
-    findings, blocked_ids, emea_no = lint(docs, auth)
+    findings, blocked_ids, emea_no, fn_axis = lint(docs, auth)
 
     gates = ["tc-id-format", "tc-id-unique", "tc-id-sequence", "req-id-unique",
              "spec-ref-stem", "spec-ref-outline", "spec-ref-sr25", "test-group",
@@ -668,7 +766,9 @@ def main() -> int:
              # added 2026-08-15 per handoff 38 §1
              "emea-per-tc-answered",
              # added 2026-08-15 per handoff 42 §1
-             "provisional-sibling"]
+             "provisional-sibling",
+             # added 2026-08-15 per handoff 52 §3
+             "axis-type-reverse-test"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -692,6 +792,15 @@ def main() -> int:
         print(f"- PASS — EMEA exclusions whose per-TC answer is NOT `yes` "
               f"(R-C36-1; over-strict, removal awaits a ruling): "
               f"{[(i, v, o) for i, v, o in emea_no]}")
+    n_decl, n_live, n_vac, n_tc_seen, worded = fn_axis
+    print(f"- PASS — axis-type-reverse-test re-ran on {n_tc_seen} TCs "
+          f"(52 §3, criterion = 54 §1 purpose version): {n_decl} 功能型 axes "
+          f"declared, {n_live} with a removed interface (live test), "
+          f"{n_vac} declaring `none` (vacuous by claim, not by omission)")
+    print(f"- PASS — of the purpose-version hits, those ALSO matching the "
+          f"52 §3 wording version (function governed by the axis): "
+          f"{worded or 'none'} — the two versions are reported separately so "
+          f"a future divergence is visible rather than absorbed")
     print(f"- PASS — pending siblings awaiting their counterpart section "
           f"(36 §4 / 37 §6): {sorted(PENDING_SIBLING)}")
     print("- PASS — the pending-sibling table is produced by lexical overlap "

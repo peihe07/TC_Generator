@@ -1,0 +1,98 @@
+{
+ "parent": "SWE1-HVAC-100",
+ "outline": "14.16",
+ "batch": "Climate Popups",
+ "source_clause": "HVACSB2.) Driver and Passenger comfort seat features will show currently active or last used state (heated or vented). Press of icon in status bar opens popup and changes level of comfort feature control. User can also press icon within popup to change levels. The heated seats will be labeled as Heat and vented seats labeled as Vent .",
+ "reasoning": "驗證目標：14.16（HVACSB2）定出駕駛與乘客座椅舒適功能之狀態呈現、狀態列圖示之按壓行為，以及 Heat／Vent 之標示，三個 037 leaf 對應之。關鍵情境條件：**第十六軸（Comfort Features 有無）取其有值** —— 出處 `14.15`（「Available comfort controls … depend on vehicle configuration」，跨節取據 R-C29，14.15 併入 spec_ref）；依 **R-C34** 第九軸不補（可觀察量為狀態列與 popup）、第十三軸補、EMEA 排除補。為什麼這樣切：三者之可觀察量互異（狀態之呈現／按壓之結果／標籤文字）。刻意略過：條文未定義 level 之級數，故 `-186` 之 ER 停在「級數改變」而不寫入任何數值（§8.4.1）—— 級數屬 ch11／ch12 之範圍（§8.2.1）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "狀態列之舒適座椅圖示與其 popup",
+  "axis_9": "**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-100-01",
+   "tc_id": "NR1L-ComfortHMI-184",
+   "tc_title": "Seat comfort feature shows its active or last used state",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "Driver and Passenger comfort seat features shall show the currently active or last used state",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the driver heated seat on, then turn it off\n2. Read the driver comfort seat feature in the status bar",
+   "expected_result": "1. The driver heated seat is off\n2. The driver comfort seat feature shows the heated state as the last used state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.15; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-100-02",
+   "tc_id": "NR1L-ComfortHMI-185",
+   "tc_title": "Pressing the status bar icon opens the popup and changes the level",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "Press of the icon in the status bar shall open a popup and change the level of the comfort feature control",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Press the icon within the popup",
+   "expected_result": "1. A popup for the comfort feature is shown\n2. The level of the comfort feature changes",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.15; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-100-03",
+   "tc_id": "NR1L-ComfortHMI-186",
+   "tc_title": "Heated and vented seats carry the Heat and Vent labels",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "The heated seats shall be labeled as Heat and the vented seats shall be labeled as Vent",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Read the labels in the popup",
+   "expected_result": "1. A popup for the comfort feature is shown\n2. The heated seat is labeled Heat and the vented seat is labeled Vent",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.16; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.15; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P3",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

@@ -1,0 +1,173 @@
+{
+ "parent": "SWE1-HVAC-012",
+ "outline": "2.8",
+ "batch": "Airflow and Defrost",
+ "source_clause": "C7.) Defrost has on/ off state. Defrost can automatically turn on AC (do not show this change). Defrost automatically changes Fan speed. Defrost is mutually exclusive with other airflow modes. Auto turns Defrost off. Turning Defrost on while in Auto will break Auto and turn it off. When Defrost is active, Recirc is may or may not be available (reflect in recirc availability status). Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.",
+ "reasoning": "驗證目標：2.8（C7）以七句定出 Defrost 之狀態、其對 A/C 與風速之自動作用、與其他氣流模式之互斥、與 AUTO 之互相關閉，以及 Recirc 可用性之灰化，六個 037 leaf 逐句對應，一葉一 TC（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；`-157`（AUTO 與 Defrost 互相關閉）另取第一軸之 ATC 值（C2「AUTO is not shown in MTC configurations」，出處 2.3，併入 spec_ref 依 R-C29）；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-157` 之兩個方向（AUTO 關掉 Defrost、Defrost 中斷 AUTO）為 037 之同一 leaf，故合為一條而以兩組步驟涵蓋（§8.2 單位歸 037）；`-158` 之灰化以 CCM 之可用性狀態為觸發，與 `-154` 之 on/off 無關。刻意略過：**不移植 `3.2`（C20）之 MAX DEF 連動** —— 本節之 Defrost 為 C7 之 `FRONT DEF`，與 MAX DEF 為不同控制、不同條文（§8.2.1）；C7 之「Recirc **is may or may not be** available」為條文之語病，本條依其可判之部分（灰化）立 ER，不推斷其可用性規則。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 FRONT DEF 按鈕、A/C 按鈕、風速與 RECIRC 灰化",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本批 14 條中 **9 條為 `no`**，其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-012-01",
+   "tc_id": "NR1L-ComfortHMI-153",
+   "tc_title": "Defrost has an on and off state",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Defrost shall have an on/off state",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"FRONT DEF\" on the climate screen\n2. Press \"FRONT DEF\" again",
+   "expected_result": "1. The \"FRONT DEF\" button is highlighted\n2. The \"FRONT DEF\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "鏡射表之分界欄明載「涵蓋：MAX DEF 之 on/off 狀態。**未涵蓋：C7 之 Defrost 自動開啟等連動**」；且 ICE3 所述之 on/off 對象為 **MAX DEF**，而本條之對象為 C7 之 Defrost —— 兩者非同一控制"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-012-02",
+   "tc_id": "NR1L-ComfortHMI-154",
+   "tc_title": "Defrost turns A/C on without showing the change",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Defrost shall be able to automatically turn on AC, and the system shall not show this change",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"A/C\" off from the climate screen and note the \"A/C\" button\n2. Turn \"FRONT DEF\" on and read the \"A/C\" button",
+   "expected_result": "1. The \"A/C\" button is not highlighted\n2. The \"A/C\" button is not highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "分界欄明載未涵蓋 C7 之連動"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-012-03",
+   "tc_id": "NR1L-ComfortHMI-155",
+   "tc_title": "Defrost changes the fan speed automatically",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Defrost shall automatically change the Fan speed",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the fan speed on the climate screen\n2. Turn \"FRONT DEF\" on and read the fan speed",
+   "expected_result": "1. The climate screen shows the current fan speed\n2. The fan speed is changed by the system",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "分界欄明載未涵蓋 C7 之連動"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-012-04",
+   "tc_id": "NR1L-ComfortHMI-156",
+   "tc_title": "Defrost excludes the other airflow modes",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Defrost shall be mutually exclusive with other airflow modes",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select an airflow mode on the climate screen\n2. Turn \"FRONT DEF\" on and read the airflow mode buttons",
+   "expected_result": "1. The selected airflow mode is active\n2. No airflow mode button is active",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "分界欄明載未涵蓋 C7 之連動；ICE2 之互斥對象為 MAX A/C 與 MAX DEF，非氣流模式"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-012-05",
+   "tc_id": "NR1L-ComfortHMI-157",
+   "tc_title": "AUTO and Defrost turn each other off",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "Auto shall turn Defrost off, and turning Defrost on while in Auto shall break Auto and turn it off",
+   "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"FRONT DEF\" on from the climate screen, then turn AUTO on\n2. Turn \"FRONT DEF\" on again",
+   "expected_result": "1. The \"FRONT DEF\" button is no longer highlighted and \"AUTO\" is highlighted\n2. The \"FRONT DEF\" button is highlighted and \"AUTO\" is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "分界欄明載未涵蓋 C7 之連動；**且 ICE2 之互斥對象不含 front defrost**（見 `-130` 之判定），故 ch16 無對應句"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-012-06",
+   "tc_id": "NR1L-ComfortHMI-158",
+   "tc_title": "Recirc greys out while Defrost is active",
+   "test_group": "Comfort",
+   "test_set": "Airflow and Defrost",
+   "test_item": "When Defrost is active the system shall gray out the RECIRC button when the recirc availability status from CCM denotes that",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"FRONT DEF\" on from the climate screen\n2. Set the recirc availability status from the CCM to unavailable and read the \"RECIRC\" button",
+   "expected_result": "1. The \"FRONT DEF\" button is highlighted\n2. The \"RECIRC\" button is greyed out",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "分界欄明載未涵蓋 C4 之可用性灰化（`-141` 同因）"
+   }
+  }
+ ]
+}

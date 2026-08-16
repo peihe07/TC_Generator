@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-085",
+ "outline": "14.2",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP2.) HVAC pop-ups are not displayed while RVC screen is active.",
+ "reasoning": "驗證目標：14.2（HVACP2）定出 RVC 畫面作用中時不顯示 HVAC popup，單一 leaf 對應之。關鍵情境條件：同 14.1.1（第九軸不補、第十三軸補、EMEA 排除補）。為什麼這樣切：一句一 leaf。刻意略過：條文未定義 RVC 畫面之進入方式，依 profile §3.2 之「入口或操作方式未定義」清單，照錄用語並具名，併入 `DATA_REQUESTS` #34 之 `entry` 子類，**不自造入口步驟**（§8.4.1）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "HVAC popup 本身（其顯示、內容與逾時）",
+  "axis_9": "**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-085",
+   "tc_id": "NR1L-ComfortHMI-168",
+   "tc_title": "HVAC pop-ups stay hidden while the RVC screen is active",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "HVAC pop-ups shall not be displayed while the RVC screen is active",
+   "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the RVC screen\n2. Change the fan speed using the fan speed hard control",
+   "expected_result": "1. The RVC screen is active\n2. No HVAC pop-up is shown",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

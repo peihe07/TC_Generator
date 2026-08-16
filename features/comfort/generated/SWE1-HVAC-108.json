@@ -1,0 +1,47 @@
+{
+ "parent": "SWE1-HVAC-108",
+ "outline": "16.4",
+ "batch": "ICS Climate Modes",
+ "source_clause": "ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state.",
+ "reasoning": "驗證目標：16.4（ICE3）以**一句**定出五個控制之 on/off 狀態，037 亦只給**一個** leaf，故產一條而非五條（§8.2.2：TC 作者不得拆 037 之單位）。關鍵情境條件：EMEA 軸取正向值；本條同時觸及 MAX A/C（第四軸，16.13）、MAX DEF（第五軸，3.2）與 REAR DEFROST（第十軸，3.4），三者之 PC 皆補並併入 spec_ref（R-C29）；依 **R-C34** 第九軸與第十三軸暴露 → 補。為什麼這樣切：五者之 on/off 為同一句所述之同一性質，其失效形態相同（某鍵不切換），故一條以五組步驟涵蓋。刻意略過：**鏡射表記 16.4 對 2.4／2.5／2.8／2.9／2.13 五個 partial** —— 其分界欄明載 ICE3 只涵蓋各者之 on/off 而不涵蓋任何連動，故本條之 ER 亦只驗 on/off，不驗任何連動（§8.2.1）。",
+ "keywords": [
+  "on/off state",
+  "MAX A/C",
+  "RECIRC"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "ICS climate screen 之 MAX A/C／A/C／RECIRC／MAX DEF／REAR DEFROST 五鍵",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3 使其移除）；**與批次 11 相反**，該批之可觀察量為 comfort popup，正是 6.3 之例外",
+  "axis_12": "不暴露 —— ch16 十八節無 tab 條文",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**不適用（反向）** —— 本節屬 ch16，取**正向**軸值 PC（出處 16.2）而非排除式；R-C36-1 於本側之對應問題為「本條於非 EMEA 車輛上有無對象」，答為無"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-108",
+   "tc_id": "NR1L-ComfortHMI-212",
+   "tc_title": "Five climate controls each have an on and off state",
+   "test_group": "Comfort",
+   "test_set": "ICS Climate Modes",
+   "test_item": "MAX A/C, A/C, RECIRC, MAX DEF and REAR DEFROST shall have an on/off state",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n4. [spec-derived] The vehicle is equipped with rear defrost, which is absent on some soft top vehicles (3.4)\n5. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n6. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press each of \"MAX A/C\", \"A/C\", \"RECIRC\", \"MAX DEF\" and \"REAR DEFROST\" on the climate screen\n2. Press each of them again",
+   "expected_result": "1. Each of the five buttons is highlighted\n2. None of the five buttons is highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

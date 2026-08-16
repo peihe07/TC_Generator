@@ -105,7 +105,7 @@
 | `RECON.md` | Phase 1 survey + assertion 實測值 + uncited baseline sections |
 | `ANOMALIES.md` | A-CF01 ~ A-CF26（A-CF13 含四項 spec 內部瑕疵；A-CF23 含 12 條 TC 之影響清單與 18 leaf 之待辦名單；**A-CF26 為跨 feature —— 範本 DV 涵蓋不足，具名對象 privacy，不代改其檔案**）|
 | `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` §5 | **四類 marker ＋ 判別次序** —— §5.1 `[BLOCKED-SPEC]`（R-C24）、§5.2 `[BLOCKED-NON-HMI]`（R-C38）、§5.2a `[COVERED-BY]`（R-C39，**非缺口**）、§5.3 對照與四出口次序、§5.4 R-C16 不產列者、§5.5 推導欄之重算風險 |
-| `DATA_REQUESTS.md` | #1 ~ #38 + standing rule（#32／#34 為**類項**，同類合併不另開）（#12 跨 feature；#16 為 Core N0／CFTS044 之**涵蓋**問題，與 #13/#14 之「要不要取得」不同；#24 為 `044-02` 之 VM 分類，RD-1 候選）|
+| `DATA_REQUESTS.md` | #1 ~ #40 + standing rule（**#32 對照關係未定義／#34 入口或操作方式未定義**為類項，同類合併不另開；類項標題須隨成員更新，見 `RUNBOOK.md`）（#12 跨 feature；#16 為 Core N0／CFTS044 之**涵蓋**問題，與 #13/#14 之「要不要取得」不同；#24 為 `044-02` 之 VM 分類，RD-1 候選）|
 | `RUNBOOK.md` 末段 | **判準 vs 用詞禁令**（22 §4）—— 與 R-C13／R-C18 同源：以表徵為判準者，其失敗形態是靜默的 |
 | `feature.yaml` | pipeline 常數與裁決常數（`recon_assertions`） |
 | `data/spec_id_to_outline.tsv` | 403 leaf → SR24 outline 之查表（追蹤入版控） |
@@ -118,9 +118,10 @@
 | `data/source_tokens.tsv` | §3.4 窮盡性 —— 189 個相異 token 之全集（17 §3.1） |
 | `data/ch16_mirror_map.tsv` | ch16（EMEA ICS）↔ ch2／ch3 之鏡射表，31 列，含 `partial` 之行為分界（R-C36／R-C36-1）|
 | `data/ch2_ch7_mirror_map.tsv` | **前後排鏡射表**，26 列 —— ch2 全 22 節與 ch7 全 11 節**雙向全列**（含 `no-counterpart`），`partial` 者必填行為分界。231 對之結構解，亦為 `Rear Climate`（46 leaf）生成時之依據 |
-| `data/pending_sibling.tsv` | 跨 Test Set sibling 候選之判定台帳，**1668 列**（`vocab` 1588／`via-hierarchy` 80）。欄位含 `provisional`（42 §1／43 §1）與 `source`（43 §2；44 §4 使階層與等價可組合）。verdict 四值：`sibling`／`not-sibling`／`not-broken-by-3-samples (class)`／`deferred`；另有 `provisional` 欄（42 §1）—— **機器維護，不得手工增修**，以 `sibling_candidates.py --rebuild` 全量重建＋鍵合併（R-C37：本表非完備性證明）|
+| `data/pending_sibling.tsv` | 跨 Test Set sibling 候選之判定台帳，**1668 列**（`vocab` 1588／`via-hierarchy` 80）。欄位含 `provisional`（42 §1／43 §1）、`source`（43 §2／44 §4）與 **`equivalent_tc_pairs`（52 §1 —— 條級嚴格等價，`duplicate_of` 之節級欄位表達不了者）**。verdict 四值：`sibling`／`not-sibling`／`not-broken-by-3-samples (class)`／`deferred`；另有 `provisional` 欄（42 §1）—— **機器維護，不得手工增修**，以 `sibling_candidates.py --rebuild` 全量重建＋鍵合併（R-C37：本表非完備性證明）|
 | `data/image_leaves.json` | 037 之 25 個帶圖 leaf（52 張）之實測名單，含節次、Test Set、是否已生成（A-CF23 / 42 §4）|
 | `scripts/verify_provisional_gate.py` | `provisional-sibling` gate 之**反向驗證** —— 六個方向性案例（含舊觸發會答錯的那一個），證其該響時響、不該響時不響（42 §1／43 §1）|
+| `scripts/verify_axis_type_gate.py` | `axis-type-reverse-test` 之**反向驗證** —— 含「無區塊即失聲」與**目的版檢驗**（其措辭問軸所轄之功能，而其目的是別條 TC 失去觀察端；兩者發散，故兩版皆跑）（52 §3）|
 | `scripts/verify_axis_gate.py` | `axis-value-count` gate 之**反向驗證** —— 五個軸區塊、模擬增值必 FAIL、未受保護之否定式 PC 必觸發（43 §4）；另驗每塊皆有 `scan:` 且載明窮盡之類別（44 §6）|
 | `data/interface_axis_review.tsv` | 每節之四個介面型軸答案（R-C34，36 §6）|
 | `data/emea_ics_per_tc.tsv` | 每條 TC 之 EMEA ICS 排除判定（R-C36-1，38 §1）|
@@ -128,7 +129,7 @@
 | `generated/*.json` | **pilot 14 條**（7 個 parent），含 `source_clause`／`reasoning`／sibling 判定 |
 | `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` | **profile [OVERRIDE]**，已簽 2026-08-15（15 ＋ 16 §1） |
 | `BASELINE.sha256` | 素材基準 **8 檔** —— inputs/ 5 ＋ spec-index/ SR24 三件（涵蓋範圍為執行層判斷，見上繳 09 §0 乙） |
-| `DELIVERY.sha256` | 產出台帳 append-only —— 001 範本清列／002 pilot（superseded）／003 交付夾附件／**004 寫回 114 列**／**005 寫回 126 列**／**006 寫回 152 列** —— 004～006 皆**不可交付**（範本容量，DR #35 / A-CF26）|
+| `DELIVERY.sha256` | 產出台帳 append-only —— 001 範本清列／002 pilot（superseded）／003 交付夾附件／**004–010 為七次全量寫回（114／126／152／166／202／238／265 列）** —— 004～010 皆**不可交付**（範本容量，DR #35 / A-CF26）|
 | `output/STATUS.md` | 產出狀態之可讀摘要（不參與 `shasum -c`；標記寫在檔案旁邊而非檔案裡，改檔即改 hash）|
 | `RUNBOOK.md` | feature 事實之權威 |
 | `PLAYBOOK.md` | 狀態板 |

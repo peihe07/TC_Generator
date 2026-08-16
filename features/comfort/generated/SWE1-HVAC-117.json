@@ -1,0 +1,87 @@
+{
+ "parent": "SWE1-HVAC-117",
+ "outline": "16.12",
+ "batch": "ICS Airflow and Defrost",
+ "source_clause": "ICE11.) Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield). ON state for the four airflow modes is shown by highlighting the button and increasing button size. The main category control will display the newly selected airflow mode inside the fan space . Only one airflow mode can be selected at a time.",
+ "reasoning": "驗證目標：16.12（ICE11）定出 ICS 之五種氣流模式、其單選性與 ON 態之呈現，三個 037 leaf 對應之。關鍵情境條件：EMEA 軸取正向值；依 **R-C34** 第九軸與第十三軸暴露 → 補。**R-C40 之一問已於生成前作答**（59 §1.1）：其 ch2 對造 `2.12.1` 之句子為「**In some non-tri mode equipment types,** airflow modes has 5 states…」，而 ICE11 **無該配置限定語**，故兩者**非逐字相同**，R-C40 之前件不成立；ch2 側 `2.12` 之停下（DR #31）源於 ch2 有**三個**氣流模式集合而其一（4 模式）無正面適用條件，而 **ch16 只陳述一組**，該問題於此不存在 —— 依 R-C40 屬「章節脈絡」而非「條文性質」，故不一致為實然，兩側各具名理由。為什麼這樣切：單選性、呈現與 main category control 之三者可獨立失效。刻意略過：**ICE11 自身之數字不一致** ——「Airflow Modes has **5** states」而其呈現句寫「ON state for the **four** airflow modes」（A-CF13 同型），故 `-251` 只驗「所選之鍵高亮且變大」而**不驗按鈕數**。",
+ "keywords": [
+  "airflow mode",
+  "5 states",
+  "highlight"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "ICS climate screen 之五個氣流模式按鈕與 main category control",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之 comfort section（6.3）",
+  "axis_12": "不暴露 —— ch16 十八節無 tab 條文",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**不適用（反向）** —— 本節屬 ch16，取**正向**軸值 PC（出處 16.2）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-117-01",
+   "tc_id": "NR1L-ComfortHMI-251",
+   "tc_title": "Only one airflow mode is active at a time",
+   "test_group": "Comfort",
+   "test_set": "ICS Airflow and Defrost",
+   "test_item": "Only one airflow mode shall be selected at a time",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Face airflow mode on the climate screen\n2. Select the Feet airflow mode and read the mode buttons",
+   "expected_result": "1. The Face airflow mode is active\n2. The Feet airflow mode is active and the Face airflow mode is not",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-117-02",
+   "tc_id": "NR1L-ComfortHMI-252",
+   "tc_title": "The selected mode button is highlighted and enlarged",
+   "test_group": "Comfort",
+   "test_set": "ICS Airflow and Defrost",
+   "test_item": "The ON state shall be shown by highlighting the button and increasing button size",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the size and highlight of the Feet airflow mode button\n2. Select the Feet airflow mode and read that button",
+   "expected_result": "1. The Feet airflow mode button is not highlighted\n2. The Feet airflow mode button is highlighted and larger than in step 1",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-117-03",
+   "tc_id": "NR1L-ComfortHMI-253",
+   "tc_title": "Main category control shows the newly selected mode",
+   "test_group": "Comfort",
+   "test_set": "ICS Airflow and Defrost",
+   "test_item": "The main category control shall display the newly selected airflow mode inside the fan space",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the Feet airflow mode on the climate screen\n2. Read the main category control",
+   "expected_result": "1. The Feet airflow mode is active\n2. The main category control shows the Feet airflow mode inside the fan space",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.12; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}
