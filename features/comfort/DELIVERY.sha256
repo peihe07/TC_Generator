@@ -702,3 +702,115 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/FM-WI-F
 b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
 # 輸出
 d3244e4fb47a1688ce22cc7ffe054e11c4e2419be59f0c706f44b8c785c5d84d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_sourceclass.xlsx
+
+# ENTRY 019 — 2026-08-16 — 第十七次寫回：全量重寫（下放包 46 §3／70）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…）；splice 前實測相符方進行
+#   內容 : 目標列 row 10–392，共 383 列（列數與 ENTRY 018 相同）
+#          4 條 [BLOCKED-SPEC] ＋ 1 條 [BLOCKED-NON-HMI]
+#          **全量重寫，非追加**（45 §2／§4）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；DV counts 與來源相同
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（DELIVERY 36 OK 0 FAILED、
+#          lint 54/54 PASS across 383 TCs、tc_id 001–383 連續無缺號）
+#          §3.3 assertion **14 項中 11 PASS、3 FAIL**（三項與 ENTRY 004～018 同源）
+#          **本輪新增第 14 項 assertion（70 §1）**：
+#          「J 欄 pre_conditions 之行號自 1 起連續」—— 383 列全數 PASS。
+#          該格式不變式於 JSON 層已由 gate `pc-line-numbering` 驗過，
+#          **此處再驗一次，因為第二次讀的是客戶會讀的那一份**。
+#
+#   **較 ENTRY 018 之差異（5 列之 pre_conditions 首行）**：
+#   `-377`（`098`）、`-378`／`-379`（`127-01`／`-02`）、`-380`／`-381`
+#   （`128-01`／`-02`）改為 **兩段式**（70 §2）：
+#   `<逐字片段> — <可讀之狀態句> (節次)`。其逐字片段以介系詞起首而無主謂，
+#   單獨作為 Pre-Condition 讀來是條文片段而非狀態句；
+#   **gate 檢查之對象仍為 ` — ` 之前，故可驗性不減**。
+#
+#   狀態 : **範本容量待擴充（DR #35 / A-CF26）—— 不可交付**
+#          **not confirmed — pending template extension (DR #35)**
+#          依下放包 46 §3：**不送 Pei 之 Excel 四項確認**。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001–018 之 hash 與
+#          內容未變動；既有產出檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+7d1a275a73d2d34fbe0ab7f8cbee6ca0e3f7382cae4a75974f455f51a409289a  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_readability.xlsx
+
+# ENTRY 020 — 2026-08-16 — 第十八次寫回：全量重寫（下放包 75 §4）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…）；splice 前實測相符方進行
+#   內容 : 目標列 row 10–394，共 **385 列**（較 ENTRY 019 增 2 列）
+#          4 條 [BLOCKED-SPEC] ＋ 1 條 [BLOCKED-NON-HMI]
+#          **全量重寫，非追加**（45 §2／§4）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；DV counts 與來源相同
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（DELIVERY 38 OK 0 FAILED、
+#          lint 54/54 PASS across 385 TCs、tc_id 001–385 連續無缺號）
+#          §3.3 assertion 14 項中 11 PASS、3 FAIL（與 ENTRY 004～019 同源）
+#
+#   **本輪新增二列（`-384`／`-385`）**：`15.1`（HVACP11.1）之條文逐字列舉
+#   兩個觸發 —— `when a user **enters** (starts a function) **or exits**
+#   (breaks a function) that function` —— 而既有二條僅驗「進入」側。
+#   依 75 §1 之判準（**條文列舉之項＝拆分之維度**）補「離開」側，
+#   溯同一 leaf（`105-01`／`105-02`），四條之 `split_flag` 皆為 true，
+#   `split_reason` 引該逐字列舉句。**leaf 數不變（36），TC 數 36 → 38。**
+#
+#   狀態 : **範本容量待擴充（DR #35 / A-CF26）—— 不可交付**
+#          **not confirmed — pending template extension (DR #35)**
+#          依下放包 46 §3：**不送 Pei 之 Excel 四項確認**。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001–019 之 hash 與
+#          內容未變動；既有產出檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+875d5372686e07a6e125ec2d21a4ffd3d9272eab392b414c16c99a9aba730c03  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_split151.xlsx
+
+# ENTRY 021 — 2026-08-16 — 第十九次寫回：全量重寫（下放包 76 §2／§4）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…）；splice 前實測相符方進行
+#   內容 : 目標列 row 10–438，共 **429 列**（較 ENTRY 020 增 44 列）
+#          4 條 [BLOCKED-SPEC] ＋ 1 條 [BLOCKED-NON-HMI]
+#          **全量重寫，非追加**（45 §2／§4）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；DV counts 與來源相同
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（DELIVERY 40 OK 0 FAILED、
+#          lint 54/54 PASS across 429 TCs、tc_id 001–429 連續無缺號）
+#          §3.3 assertion 14 項中 11 PASS、3 FAIL（與 ENTRY 004～020 同源）
+#
+#   **本輪新增 44 列**，來源二者：
+#     (a) **28 個 leaf 之列舉式拆分，+41 列**（76 §2）——
+#         依 75 §1 之判準（**條文列舉之項＝拆分之維度**），每條之
+#         `split_reason` 逐字引其列舉句；引不出者不拆。
+#         其中 `033-01` 經 76 §2.3 之一問判定為**值域之列舉**而非觸發之
+#         列舉，故拆 2 而非 3（`Off` 之唯一觸發即 `033-04` 之 leaf）。
+#         `115-05` 之三條各依 R-C28 第一問增裝備 PC。
+#     (b) **二個 §7／§8.3 缺口，+3 列**（76 §4）——
+#         `007-01`（`2.5.1` 之反向：第四次按壓回到 Auto）、
+#         `040-01`（`9.2` 之三值：level number／AUTO／OFF）。
+#         此二者非拆分，其 `split_reason` 具名其為缺口補列。
+#   **leaf 數不變（373 覆蓋 leaf），TC 數 385 → 429。**
+#
+#   狀態 : **範本容量待擴充（DR #35 / A-CF26）—— 不可交付**
+#          **not confirmed — pending template extension (DR #35)**
+#          依下放包 46 §3：**不送 Pei 之 Excel 四項確認**。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001–020 之 hash 與
+#          內容未變動；既有產出檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+c9fda8f38f9df020698abe17bca0f4c6c328057630ad95b4866b753b2270ebfe  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_enumsplit.xlsx

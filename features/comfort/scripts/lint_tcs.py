@@ -299,10 +299,21 @@ def load_authorities() -> dict:
 
 RC42_QUAL_BLOCK = re.compile(r"```rc42-qualifiers\n(.*?)```", re.S)
 RC42_EXC_BLOCK = re.compile(r"```rc42-disposition\n(.*?)```", re.S)
-# 65 §1 / §4 — the leaves R-C42 unblocked are exactly those with tc numbers
-# >= 361: 63 §1 froze the existing 360, so the boundary is a fact of the
-# corpus rather than a hand-kept list that could drift.
-RC42_FIRST_N = 361
+# 65 §1 / §4 — which leaves R-C42 unblocked. This was a tc-number boundary
+# (">= 361") until 75 §4 appended two unrelated TCs at 384/385 and the gate
+# claimed they were R-C42 unblocks: an inferred boundary is only a fact until
+# the next append. It is now an IDENTITY — the leaves batch 16 produces, plus
+# the two that stayed in batch 8 — derived from the generators themselves.
+def _rc42_leaves() -> set:
+    b16 = FEATURE / "scripts" / "gen_batch16.py"
+    out = {"SWE1-HVAC-125-08", "SWE1-HVAC-126-02"}
+    if b16.exists():
+        out |= {f"SWE1-HVAC-{x}" for x in re.findall(
+            r'\("(\d{3}(?:-\d{2})?)",', b16.read_text(encoding="utf-8"))}
+    return out
+
+
+RC42_LEAVES = _rc42_leaves()
 PENDING_AXIS_BLOCK = re.compile(r"```pending-axis\n(.*?)```", re.S)
 
 MIRROR_MAPS = (("ch16_mirror_map.tsv", "ch16_outline", "ch2_or_ch3_outline"),
@@ -338,6 +349,114 @@ def mirror_map_rows() -> list:
             for r in csv.DictReader(fh, delimiter="\t"):
                 out.append((name, r[ka], r[kb], r["對應強度"]))
     return out
+
+
+STOPWORDS = {
+    "the", "a", "an", "is", "are", "of", "for", "on", "in", "with", "and",
+    "or", "to", "that", "this", "such", "one", "those", "these", "its",
+    "it", "be", "has", "have", "which", "at", "as", "by", "from", "not",
+    # test vocabulary: words that belong to the ACT of testing, not to the
+    # clause. A state clause is allowed to say "the vehicle under test".
+    "vehicle", "vehicles", "under", "test", "system", "screen", "screens",
+}
+
+
+def two_part_state_words(docs: list) -> list:
+    """71 §1 — weak measurement over the readable half of a two-part PC.
+
+    A state clause is by definition a restatement of the verbatim fragment,
+    so its content words should already appear in the cited section. Where
+    they do not, either the clause introduced a fact the section does not
+    carry (§8.4.1) or the restatement used a synonym. Both are worth seeing;
+    only the first is a defect, and telling them apart needs a reader.
+
+    Reported, never FAILed: the false-positive rate is measured this round
+    (71 §1) before anyone decides whether it can carry a gate.
+    """
+    out = []
+    for d in docs:
+        for tc in d["tcs"]:
+            for line in tc["pre_conditions"].split("\n"):
+                if "[spec-verbatim]" not in line or " — " not in line:
+                    continue
+                cite = re.search(r"\(([\d.]+)\)\s*$", line.strip())
+                src = cite.group(1) if cite else d["outline"]
+                body = FULLTEXT_BY_OUTLINE.get(src, "").lower()
+                tail = re.sub(r"\s*\([\d.]+\)\s*$", "",
+                              line.split(" — ", 1)[1])
+                words = [w for w in re.findall(r"[a-zA-Z][a-zA-Z/'-]+",
+                                               tail.lower())
+                         if w not in STOPWORDS and len(w) > 2]
+                missing = [w for w in dict.fromkeys(words) if w not in body]
+                out.append((tc["tc_id"], src, tail.strip(), missing))
+    return out
+
+
+def test_setup_longest(docs: list, n: int = 20) -> list:
+    """71 §3 — the same question as spec_derived_shortest, asked backwards.
+
+    `spec-derived` is suspicious when the shared run is SHORT (it claims a
+    correspondence that may not exist). `test-setup` is suspicious when the
+    run is LONG: it claims the line is ours, and a long verbatim overlap
+    suggests the clause said it first. Labelling something self-written when
+    the spec wrote it is the same class of untruth as labelling a paraphrase
+    verbatim — only pointing the other way (R-C41's principle).
+    """
+    seen = {}
+    for d in docs:
+        for tc in d["tcs"]:
+            for line in tc["pre_conditions"].split("\n"):
+                if "[test-setup]" not in line:
+                    continue
+                cite = re.search(r"\(([\d.]+)\)\s*$", line.strip())
+                src = cite.group(1) if cite else d["outline"]
+                frag = re.sub(r"^\d+\.\s*\[test-setup\]\s*", "", line)
+                frag = re.sub(r"\s*\([\d.]+\)\s*$", "", frag).strip()
+                key = (src, frag)
+                if key in seen:
+                    seen[key][1] += 1
+                    continue
+                size, seg = _longest_run(frag, FULLTEXT_BY_OUTLINE.get(src, ""))
+                seen[key] = [size, 1, tc["tc_id"], seg]
+    rows = [(v[0], src, frag, v[1], v[2], v[3])
+            for (src, frag), v in seen.items()]
+    return sorted(rows, reverse=True)[:n]
+
+
+def spec_derived_shortest(docs: list, n: int = 20) -> list:
+    """70 §3 — a MEASUREMENT over `[spec-derived]` PC lines, never a FAIL.
+
+    A paraphrase may legitimately share almost no wording with its clause, so
+    a threshold here would produce mass false positives, and a gate that cries
+    wolf is a gate nobody reads. What can be done honestly is to SORT: the
+    lines least anchored in their cited section, printed every run, shortest
+    first. If a line ever claims a correspondence that does not exist, this is
+    where it will surface.
+
+    Grouped by (section, wording) rather than printed per TC: the same
+    exclusion line is written on hundreds of rows, and 20 copies of one claim
+    is a list of one. The count travels with each entry so nothing is hidden
+    by the grouping. (Deviation from 70 §3's literal "20 lines", reported.)
+    """
+    seen = {}
+    for d in docs:
+        for tc in d["tcs"]:
+            for line in tc["pre_conditions"].split("\n"):
+                if "[spec-derived]" not in line:
+                    continue
+                cite = re.search(r"\(([\d.]+)\)\s*$", line.strip())
+                src = cite.group(1) if cite else d["outline"]
+                frag = re.sub(r"^\d+\.\s*\[spec-derived\]\s*", "", line)
+                frag = re.sub(r"\s*\([\d.]+\)\s*$", "", frag).strip()
+                key = (src, frag)
+                if key in seen:
+                    seen[key][1] += 1
+                    continue
+                size, seg = _longest_run(frag, FULLTEXT_BY_OUTLINE.get(src, ""))
+                seen[key] = [size, 1, tc["tc_id"], seg]
+    rows = [(v[0], src, frag, v[1], v[2], v[3])
+            for (src, frag), v in seen.items()]
+    return sorted(rows)[:n]
 
 
 def identical_tc_groups(docs: list) -> list:
@@ -757,7 +876,12 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                 cite = re.search(r"\(([\d.]+)\)\s*$", line.strip())
                 src = cite.group(1) if cite else d["outline"]
                 frag = re.sub(r"^\d+\.\s*\[spec-verbatim\]\s*", "", line)
-                frag = _norm_ws(re.sub(r"\s*\([\d.]+\)\s*$", "", frag))
+                frag = re.sub(r"\s*\([\d.]+\)\s*$", "", frag)
+                # 70 §2 — two-part form: `<verbatim> — <readable state>`.
+                # Only what precedes the em dash claims to be the clause's own
+                # words; the state clause after it is ours, and §8.4.1 still
+                # forbids it introducing facts the clause does not carry.
+                frag = _norm_ws(frag.split(" — ")[0])
                 body = _norm_ws(FULLTEXT_BY_OUTLINE.get(src, ""))
                 if not body:
                     bad("source-class-truthful",
@@ -826,7 +950,7 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             exceptions[f["req_id"]] = f
     for d in docs:
         for tc in d["tcs"]:
-            if int(tc["tc_id"].rsplit("-", 1)[-1]) < RC42_FIRST_N:
+            if tc["req_id"] not in RC42_LEAVES:
                 continue
             head = tc["pre_conditions"].split("\n")[0]
             cite = re.search(r"\(([\d.]+)\)\s*$", head)
@@ -1316,6 +1440,29 @@ def main() -> int:
           f"{len(rc42_disp) or 'none'}")
     for key, src, kind, why in rc42_disp:
         print(f"    · {key} ({src}): {kind} — 出處 {why}")
+    state_rows = two_part_state_words(docs)
+    flagged = [r for r in state_rows if r[3]]
+    print(f"- PASS — 兩段式狀態句之實詞（71 §1，量測不 FAIL）："
+          f"{len(state_rows)} 行，其中 {len(flagged)} 行有實詞未見於所引節")
+    for tc_id, src, tail, missing in state_rows:
+        mark = f"未命中 {missing}" if missing else "全部命中"
+        print(f"    · {tc_id} ({src}) {tail[:44]!r} — {mark}")
+
+    longest = test_setup_longest(docs)
+    print(f"- PASS — [test-setup] 之對應強度（71 §3，量測不 FAIL）："
+          f"最長 {len(longest)} 種寫法（依 節×措辭 去重，×n 為其列數）—— "
+          f"長者可能其實有出處而被標成自撰")
+    for size, src, frag, count, tc_id, seg in longest:
+        print(f"    · ({src:8}) run={size:3}/{len(frag):3} ×{count:3} "
+              f"{seg[:22]!r:26} {frag[:46]!r}  e.g. {tc_id}")
+
+    shortest = spec_derived_shortest(docs)
+    print(f"- PASS — [spec-derived] 之對應強度（70 §3，量測不 FAIL）："
+          f"最短 {len(shortest)} 種寫法（依 節×措辭 去重，×n 為其列數），"
+          f"長度為其與所引節之最長共同連續字串")
+    for size, src, frag, count, tc_id, seg in shortest:
+        print(f"    · ({src:8}) run={size:3}/{len(frag):3} ×{count:3} "
+              f"{seg[:16]!r:20} {frag[:56]!r}  e.g. {tc_id}")
     equivalent_groups = identical_tc_groups(docs)
     print(f"- PASS — identical-TC scan (61 §2, measurement): "
           f"{len(equivalent_groups)} group(s) of TCs whose test_item, "

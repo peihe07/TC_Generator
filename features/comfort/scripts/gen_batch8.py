@@ -58,7 +58,11 @@ Usage:
 
 import csv
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -568,7 +572,7 @@ def main() -> None:
                 {"axis": "see per-TC titles", "delta": ""}),
             "assumptions": [],
             "interface_axis_review": INTERFACE_AXIS_REVIEW[o],
-            "tcs": tcs,
+            "tcs": apply_splits(tcs),
         }
         (OUT / f"{b['parent']}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")

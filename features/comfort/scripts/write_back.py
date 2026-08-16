@@ -31,6 +31,7 @@ Usage:
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -52,7 +53,7 @@ SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # not lose its object).
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260815_sourceclass.xlsx")
+                            "Comfort_20260815_enumsplit.xlsx")
 # 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
 # 27 §3), so the second write-back became ENTRY 004. This is the third.
 #
@@ -61,7 +62,7 @@ OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # free and this write takes it. If the extension lands first, this constant
 # moves; the one-shot gate below is what makes a collision loud rather than
 # silent.
-LEDGER_ENTRY = "ENTRY 018"
+LEDGER_ENTRY = "ENTRY 021"
 SHEET = "Test Case Specification 測試用例規範"
 SRC_SHA = "b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d"
 FIRST_ROW = 10
@@ -206,6 +207,24 @@ def assertions(tcs: list, report: dict) -> bool:
                 mismatches.append(f"{tc['tc_id']}.{col}({field})")
     g("row 10–23 逐列全部寫入欄之值與 JSON 一致", [], mismatches,
       f"{len(tcs)} rows x {len(COLS)} columns compared: {''.join(COLS)}")
+
+    # 70 §1 — the same format invariant, re-checked ON THE WORKBOOK. Five TCs
+    # carried an unnumbered second pre_condition line through ENTRY 016 and
+    # 017: the defect existed in the JSON and in the workbook at the same
+    # time, and nothing on either side said so. A format invariant is cheap
+    # enough to assert twice, and the second assertion is the one that reads
+    # what the customer will read.
+    numbering = []
+    for i, tc in enumerate(tcs):
+        r = FIRST_ROW + i
+        cell = ws[f"J{r}"].value or ""
+        lines = [l for l in str(cell).split("\n") if l.strip()]
+        got = [re.match(r"^(\d+)\.\s", l) for l in lines]
+        if not all(got) or [int(m.group(1)) for m in got] != list(
+                range(1, len(lines) + 1)):
+            numbering.append(f"row{r}({tc['tc_id']})")
+    g("J 欄 pre_conditions 之行號自 1 起連續（70 §1）", [], numbering,
+      f"{len(tcs)} rows read back from the workbook")
 
     blanks = []
     for i in range(len(tcs)):

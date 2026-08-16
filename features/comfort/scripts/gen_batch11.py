@@ -37,7 +37,11 @@ Usage:
 
 import csv
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -99,7 +103,7 @@ NO_AXIS9 = True
 REASONING = {
 "14.1.1": "驗證目標：14.1.1（HVACP1.2）定出同一 HVAC 事件之再次調整使 popup 逾時重新計時，單一 037 leaf 對應之（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34**，可觀察量為 HVAC popup 本身 —— **第九軸不補**：6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`，故 popup 於下螢幕車上仍在（**本批為首次以證據放下該排除，而非沿襲**）；第十三軸補（3 旋鈕 ICS 車無 HVAC popup）；EMEA 排除補並逐條答。為什麼這樣切：條文僅一句一 leaf，不拆。刻意略過：條文未給該 popup 之逾時秒數（`14.18` 之 5 秒為座椅類 popup，屬另一節），故步驟以「就在逾時前」為時點而不寫入秒數（§8.4.1）。",
 "14.2": "驗證目標：14.2（HVACP2）定出 RVC 畫面作用中時不顯示 HVAC popup，單一 leaf 對應之。關鍵情境條件：同 14.1.1（第九軸不補、第十三軸補、EMEA 排除補）。為什麼這樣切：一句一 leaf。刻意略過：條文未定義 RVC 畫面之進入方式，依 profile §3.2 之「入口或操作方式未定義」清單，照錄用語並具名，併入 `DATA_REQUESTS` #34 之 `entry` 子類，**不自造入口步驟**（§8.4.1）。",
-"14.3": "驗證目標：14.3（HVACP3.1）定出 HVAC popup 具互動性，兩個 037 leaf 分別對應「可互動」與「可自 popup 調整參數」（§8.2.1）。關鍵情境條件：同 14.1.1。為什麼這樣切：`086-01` 驗其可被操作，`086-02` 驗操作之結果生效，兩者失效形態不同（按下無反應 vs 有反應而值不變）。刻意略過：條文以 `e.g.` 舉三種 popup（Temp／fan speed／mode），本批以 fan popup 為代表而不逐一列舉 —— 三者之互動性為同一需求，逐一產出即同一可觀察量重複（§4.5）。",
+"14.3": "驗證目標：14.3（HVACP3.1）定出 HVAC popup 具互動性，兩個 037 leaf 分別對應「可互動」與「可自 popup 調整參數」（§8.2.1）。關鍵情境條件：同 14.1.1。為什麼這樣切：`086-01` 驗其可被操作，`086-02` 驗操作之結果生效，兩者失效形態不同（按下無反應 vs 有反應而值不變）。刻意略過：條文以 `e.g.` 舉三種 popup（Temp／fan speed／mode），本批以 fan popup 為代表而不逐一列舉 —— 三者之互動性為同一需求，逐一產出即同一可觀察量重複（§4.5）。**其列舉為 `e.g.`（76 §3）**：條文寫 `HVAC popups will be interactive (**e.g.** Temp popups, fan speed popups, mode popups)` —— `e.g.` 明示其為舉例而非窮舉，**是條文自己在挑樣本**，故依 75 §1 之判準**維持一條**，所選之 fan popup 為 interaction data（§4.5）；逐項驗即把例示讀成窮舉，屬 §8.4.1 之反向造值（同 29 §2 之 `such as JL/JT` 不得寫成 JL/JT）。",
 "14.4": "驗證目標：14.4（HVACP4）定出 simulated off/idle 模式下 HVAC popup 之單獨顯示，兩個 leaf 分別對應「只顯示 popup」與「status bar／category bar／brand background 不顯示」。關鍵情境條件：同 14.1.1。為什麼這樣切：兩者為同一畫面之正反兩面（該顯示者顯示、不該顯示者不顯示），依 §7 各自成條。刻意略過：條文未定義如何進入 simulated off/idle 模式 —— 併入 #34 之 `entry` 子類，不自造。",
 "14.5": "驗證目標：14.5（HVACP5）定出 HVAC popup 顯示於 NAV／第三方 App／Projection 之上，單一 leaf。關鍵情境條件：同 14.1.1。為什麼這樣切：一句一 leaf。刻意略過：條文之 `when permitted` 未定義何時為 permitted，故 ER 停在「於該畫面之上顯示」而不宣稱任何許可條件（§8.4.1）；三種畫面取 NAV 與 Projection 兩種為步驟，第三方 App 之進入方式未定義（#34 之 `entry` 子類）。",
 "14.6": "驗證目標：14.6（HVACP6）定出觸碰下層 popup 之非可選區域使 HVAC popup 關閉，單一 leaf。關鍵情境條件：同 14.1.1。為什麼這樣切：一句一 leaf。刻意略過：條文未定義「另一個 popup」為何者，故步驟以「開啟一個 popup」為前置而不指名 —— 指名即造值（§8.4.1）。",
@@ -109,7 +113,7 @@ REASONING = {
 "14.10": "驗證目標：14.10（HVACP10）定出 idle 模式下 popup 之顯示與非 idle 時相同，單一 leaf。關鍵情境條件：同 14.1.1。為什麼這樣切：一句一 leaf；其驗證形態為**前後對照**（§5.6），故首步先於非 idle 建立基線。刻意略過：條文未定義 idle 模式之進入方式（#34 之 `entry` 子類）；本條與 14.4 之界線 —— 14.4 驗「blank 畫面上只有 popup」，本條驗「popup 本身之呈現不變」，兩者可觀察量不同（§4.5）。",
 "14.10.1": "驗證目標：14.10.1（HVACP10.1）定出 Climate 位於主類別列時，風速與模式 popup 於 idle 期間亦自該位置顯示，單一 leaf。關鍵情境條件：同 14.1.1；條文之前件「If Climate is located in the main category bar」為版面配置，**其變異範圍未定義**，故不寫入配置式 PC 而以步驟之觀察對象承載（§8.4.1）。為什麼這樣切：一句一 leaf。刻意略過：條文列 fan speed 與 mode 兩種 popup，本條以 fan popup 為代表（同 14.3 之理由）。",
 "14.11": "驗證目標：14.11（HVACP11）定出 popup 僅由使用者之直接互動觸發，兩個 leaf 分別對應「系統自動變更不顯示」與「直接互動才顯示」。關鍵情境條件：同 14.1.1。為什麼這樣切：兩者為同一規則之正反兩側，依 §7 各自成條 —— 只驗其一即無法區分「永遠不顯示」與「正確地只在互動時顯示」。刻意略過：條文以 ignition cycle 為例，本條照用該例而不擴及其他自動變更 —— 其他情形條文未列舉（§8.4.2）。",
-"14.13": "驗證目標：14.13（HVACP13）定出配備下 HVAC 螢幕之車輛，於該螢幕上之操作不觸發 head unit 之 popup，單一 leaf。關鍵情境條件：**本節之配置條件為第九軸之另一值** —— 條文明文「For vehicles with **a lower hvac screen**」，故 PC 取其**有**值（出處 14.13），與本批其餘各節之「不補第九軸」形成對照：其餘節之可觀察量為 comfort popup（6.3 之明文例外），而本節之主題正是該螢幕本身。依 **R-C34** 第十三軸補、EMEA 排除補。為什麼這樣切：一句一 leaf。刻意略過：條文以 `e.g.` 舉三種 popup，本條以溫度 popup 為代表（同 14.3）。",
+"14.13": "驗證目標：14.13（HVACP13）定出配備下 HVAC 螢幕之車輛，於該螢幕上之操作不觸發 head unit 之 popup，單一 leaf。關鍵情境條件：**本節之配置條件為第九軸之另一值** —— 條文明文「For vehicles with **a lower hvac screen**」，故 PC 取其**有**值（出處 14.13），與本批其餘各節之「不補第九軸」形成對照：其餘節之可觀察量為 comfort popup（6.3 之明文例外），而本節之主題正是該螢幕本身。依 **R-C34** 第十三軸補、EMEA 排除補。為什麼這樣切：一句一 leaf。刻意略過：**其列舉為 `e.g.`（76 §3）** ——條文寫 `will not trigger popups on the head unit (**e.g.** temperature popup, fan speed popup, mode popup)`，同 `14.3`；`e.g.` 為舉例而非窮舉，**維持一條**，所選之溫度 popup 為 interaction data（§4.5），逐項驗即把例示讀成窮舉（§8.4.1）。",
 "14.16": "驗證目標：14.16（HVACSB2）定出駕駛與乘客座椅舒適功能之狀態呈現、狀態列圖示之按壓行為，以及 Heat／Vent 之標示，三個 037 leaf 對應之。關鍵情境條件：**第十六軸（Comfort Features 有無）取其有值** —— 出處 `14.15`（「Available comfort controls … depend on vehicle configuration」，跨節取據 R-C29，14.15 併入 spec_ref）；依 **R-C34** 第九軸不補（可觀察量為狀態列與 popup）、第十三軸補、EMEA 排除補。為什麼這樣切：三者之可觀察量互異（狀態之呈現／按壓之結果／標籤文字）。刻意略過：條文未定義 level 之級數，故 `100-03` 之 ER 停在「級數改變」而不寫入任何數值（§8.4.1）—— 級數屬 ch11／ch12 之範圍（§8.2.1）。",
 "14.16.1": "驗證目標：14.16.1（HVACSB2.1）定出座椅分區之狀態呈現、三態循環、Zone 標示，以及座椅關閉時之灰化，三個 037 leaf 對應之。關鍵情境條件：同 14.16（第十六軸取有值，出處 14.15）。為什麼這樣切：`101-01` 之三態循環取狀態轉換法，其失效形態（順序錯、循環不回頭）與 `101-03` 之灰化無關。刻意略過：**本節為 `122-02` 之 R-C39 條件三之候選節之一**（47 §1 之預裁對象）—— 逐句比對之結果見上繳 37 §5.3：本節所述為「座椅關閉時圖示變灰」，**非 configuration 到 icon 之對照**，條件三不成立；惟另一候選節 `12.3` 尚未生成，故 47 §1 之觸發條件（該二節生成後）未齊，**本輪不升 DR #32 之等級**。",
 "14.17": "驗證目標：14.17（HVACSB3）定出駕駛座椅舒適功能與乘客舒適控制併入車艙溫度且可按壓，按壓後顯示含兩者之 popup，單一 leaf。關鍵情境條件：同 14.16。為什麼這樣切：一句一 leaf；其「併入」與「按壓後之 popup 內容」為同一 leaf 之兩面，故以兩步涵蓋。刻意略過：條文未定義併入後之版面位置，故 ER 停在「顯示為與車艙溫度併合」而不描述版面（§8.4.1）。",
@@ -175,6 +179,36 @@ def ref(*outlines) -> str:
     return "; ".join(f"{STEM}_{o}" for o in dict.fromkeys(outlines))
 
 
+# 75 §4 — 15.1's clause enumerates TWO triggers verbatim:
+#   "when a user **enters** (starts a function) **or exits** (breaks a
+#    function) that function then the HVAC pop ups displayed will follow …"
+# The two existing TCs verify only the entering side. Per 75 §1 an enumerated
+# pair is two test cases, so each leaf splits and the exit side is added here
+# with late tc_ids (65 §1's rule: existing numbering does not move).
+SPLIT_REASON_151 = (
+    "§8.2.2 trigger criterion with 75 §1's enumeration rule: HVACP11.1 lists "
+    "two triggers word for word — \"when a user enters (starts a function) "
+    "or exits (breaks a function) that function\" — so the leaf is two test "
+    "cases, one per enumerated trigger. They fail independently: the pop-up "
+    "may carry the correct state on entry and a stale one on exit."
+)
+EXIT_TCS = [
+    ("105-01", 384, "HVAC pop-up shows the current state when a function is exited",
+     "All pop ups shall display the current state of the HVAC systems",
+     ["1. Turn \"FRONT DEF\" on and set the airflow mode and the fan speed to known values",
+      "2. Turn \"FRONT DEF\" off and read the HVAC pop-up"],
+     ["1. The climate screen shows the values set",
+      "2. The HVAC pop-up shows the current MODE and FAN SPEED of the system"],
+     "P1"),
+    ("105-02", 385, "Pop-up on exit follows the system not the example graphics",
+     "The graphics provided are examples and the pop ups shall show the actual state rather than the pictured state",
+     ["1. Turn \"FRONT DEF\" on and set the fan speed to a value that differs from the one in the example graphic",
+      "2. Turn \"FRONT DEF\" off and read the HVAC pop-up"],
+     ["1. The climate screen shows the fan speed set",
+      "2. The HVAC pop-up shows the fan speed set in step 1"],
+     "P2"),
+]
+
 def main() -> None:
     full = {r["outline"]: r for r in
             csv.DictReader(FULLTEXT.open(encoding="utf-8"), delimiter="\t")}
@@ -182,6 +216,7 @@ def main() -> None:
     iar = _iar()
     OUT.mkdir(parents=True, exist_ok=True)
     n = START_N - 1
+    emitted_leaves = set()
     total = 0
     parents = {"14.1.1": "SWE1-HVAC-084", "14.2": "SWE1-HVAC-085",
                "14.3": "SWE1-HVAC-086", "14.4": "SWE1-HVAC-087",
@@ -212,6 +247,7 @@ def main() -> None:
             pc = "\n".join(pcs)
             pc = add_lines(pc, EX_ICS, EX_EMEA, EX_LOWER)
             refs += ["2.14", "16.2", "6.3"]
+            split = o == "15.1"
             tcs.append({
                 "req_id": f"SWE1-HVAC-{leaf}",
                 "tc_id": TC_ID_FMT.format(n=n),
@@ -226,14 +262,42 @@ def main() -> None:
                 "specification_reference": ref(*refs),
                 "priority": prio,
                 "design_method": DM[dm],
-                "split_flag": False,
-                "split_reason": "",
+                "split_flag": split,
+                "split_reason": SPLIT_REASON_151 if split else "",
                 "functional_safety": "NA",
                 "estimated_test_time": "",
                 "remarks": "",
                 "emea_ics_review": {"ch16_outline": ch16, "verdict": verdict,
                                     "ch16_sentence": sentence},
             })
+        if o == "15.1":
+            for leaf, tc_n, title, item, proc, er, prio in EXIT_TCS:
+                base_pc, extra_ref = LEAF_PC.get(leaf, SECTION_PC[o])
+                pc = add_lines(base_pc, EX_ICS, EX_EMEA, EX_LOWER)
+                src = [x for x in table[o] if x[0] == leaf][0]
+                tcs.append({
+                    "req_id": f"SWE1-HVAC-{leaf}",
+                    "tc_id": TC_ID_FMT.format(n=tc_n),
+                    "tc_title": title,
+                    "test_group": TEST_GROUP,
+                    "test_set": TEST_SET,
+                    "test_item": item,
+                    "pre_conditions": pc,
+                    "input_test_data": "NA",
+                    "test_procedure": "\n".join(proc),
+                    "expected_result": "\n".join(er),
+                    "specification_reference": ref(o, "2.14", "16.2", "6.3"),
+                    "priority": prio,
+                    "design_method": DM["F"],
+                    "split_flag": True,
+                    "split_reason": SPLIT_REASON_151,
+                    "functional_safety": "NA",
+                    "estimated_test_time": "",
+                    "remarks": "",
+                    "emea_ics_review": {"ch16_outline": src[7],
+                                        "verdict": src[8],
+                                        "ch16_sentence": src[9]},
+                })
         doc = {
             "parent": parents[o], "outline": o, "batch": TEST_SET,
             "source_clause": full[o]["full_text"],
@@ -241,14 +305,15 @@ def main() -> None:
             "keywords": [], "duplicate_of": "",
             "distinguishing_axis": DIST_AXIS.get(
                 o, {"axis": "see per-TC titles", "delta": ""}),
-            "assumptions": [], "interface_axis_review": iar[o], "tcs": tcs,
+            "assumptions": [], "interface_axis_review": iar[o], "tcs": apply_splits(tcs),
         }
         (OUT / f"{parents[o]}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
         total += len(tcs)
+        emitted_leaves.update(t['req_id'] for t in tcs)
         print(f"{parents[o]}  {o:8} {len(tcs)} TC")
 
-    leaves = total
+    leaves = len(emitted_leaves)
     print(f"\n{leaves} leaves -> {total} TCs; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
     print("\nWITHHELD — stop-and-report, no row produced:")
@@ -259,9 +324,9 @@ def main() -> None:
     print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
           f"batch 16 (R-C42) = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 42)")
-    if leaves + held + moved != 42 or total != 36:
+    if leaves + held + moved != 42 or total != 38:
         raise SystemExit(
-            f"expected 42 leaves declared / 36 TCs, got "
+            f"expected 42 leaves declared / 38 TCs（36 leaf，其中 15.1 之二 leaf 各拆為二）, got "
             f"{leaves + held + moved} / {total}")
 
 

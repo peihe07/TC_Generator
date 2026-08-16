@@ -56,7 +56,10 @@ def main() -> int:
     mirrored = [(a, b) for _, a, b, k in rows
                 if k == "mirrored" and "no-counterpart" not in (a, b)]
 
-    check(len(mirrored) == 18,
+    # R-C43 — was `== 18`, a count of the population at the time of writing.
+    # The point of the assertion is non-vacuity, so it asks for that and
+    # prints the number instead of freezing it.
+    check(len(mirrored) >= 1,
           "the map really carries `mirrored` rows to measure",
           f"{len(mirrored)} row(s)")
     short = [(a, b, L._longest_run(full[a], full[b])[0]) for a, b in mirrored
@@ -154,7 +157,9 @@ def main() -> int:
     b16 = (FEATURE / "scripts" / "gen_batch16.py").read_text(encoding="utf-8")
     produced16 = {f"SWE1-HVAC-{x}"
                   for x in _re.findall(r'\("(\d{3}(?:-\d{2})?)",', b16)}
-    check(len(declared) == 19 and declared == produced16,
+    # R-C43 — the `== 19` was a count; the identity below is the real check
+    # and survives the next batch.
+    check(bool(declared) and declared == produced16,
           "every moved leaf is declared exactly once and produced exactly "
           "once", f"declared {len(declared)}, produced {len(produced16)}, "
           f"symmetric difference {sorted(declared ^ produced16)}")
@@ -191,7 +196,10 @@ def main() -> int:
     misses = []
     for d in docs:
         for tc in d["tcs"]:
-            if int(tc["tc_id"].rsplit("-", 1)[-1]) < L.RC42_FIRST_N:
+            # 75 §4 — membership is an identity now, not a tc-number range
+            # (two unrelated TCs were appended at 384/385 and the old
+            # boundary swept them in).
+            if tc["req_id"] not in L.RC42_LEAVES:
                 continue
             head = tc["pre_conditions"].split("\n")[0]
             cite = re.search(r"\(([\d.]+)\)\s*$", head)

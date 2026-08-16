@@ -3,7 +3,7 @@
  "outline": "14.13",
  "batch": "Climate Popups",
  "source_clause": "HVACP13.) For vehicles with a lower hvac screen, interactions with that screen will not trigger popups on the head unit (e.g. temperature popup, fan speed popup, mode popup).",
- "reasoning": "驗證目標：14.13（HVACP13）定出配備下 HVAC 螢幕之車輛，於該螢幕上之操作不觸發 head unit 之 popup，單一 leaf。關鍵情境條件：**本節之配置條件為第九軸之另一值** —— 條文明文「For vehicles with **a lower hvac screen**」，故 PC 取其**有**值（出處 14.13），與本批其餘各節之「不補第九軸」形成對照：其餘節之可觀察量為 comfort popup（6.3 之明文例外），而本節之主題正是該螢幕本身。依 **R-C34** 第十三軸補、EMEA 排除補。為什麼這樣切：一句一 leaf。刻意略過：條文以 `e.g.` 舉三種 popup，本條以溫度 popup 為代表（同 14.3）。",
+ "reasoning": "驗證目標：14.13（HVACP13）定出配備下 HVAC 螢幕之車輛，於該螢幕上之操作不觸發 head unit 之 popup，單一 leaf。關鍵情境條件：**本節之配置條件為第九軸之另一值** —— 條文明文「For vehicles with **a lower hvac screen**」，故 PC 取其**有**值（出處 14.13），與本批其餘各節之「不補第九軸」形成對照：其餘節之可觀察量為 comfort popup（6.3 之明文例外），而本節之主題正是該螢幕本身。依 **R-C34** 第十三軸補、EMEA 排除補。為什麼這樣切：一句一 leaf。刻意略過：**其列舉為 `e.g.`（76 §3）** ——條文寫 `will not trigger popups on the head unit (**e.g.** temperature popup, fan speed popup, mode popup)`，同 `14.3`；`e.g.` 為舉例而非窮舉，**維持一條**，所選之溫度 popup 為 interaction data（§4.5），逐項驗即把例示讀成窮舉（§8.4.1）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {

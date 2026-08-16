@@ -92,8 +92,13 @@ def main() -> int:
     # in round 60 is now a standing gate; both directions are asserted here
     # against lint's OWN universe and pattern, not a copy.
     universe = {r.replace("SWE1-HVAC-", "") for r in L.LEAF_UNIVERSE}
-    check(len(L.LEAF_UNIVERSE) == 403,
-          "the leaf universe is 037's 403 leaves, not something derived from "
+    # R-C43 — was `== 403`, the corpus size on the day it was written. The
+    # claim being made is "this universe IS 037's leaf set", so it is checked
+    # against that set rather than against its size.
+    recon = json.loads((FEATURE / "data" / "recon.json").read_text(
+        encoding="utf-8"))
+    check(L.LEAF_UNIVERSE == set(recon["leaves"]),
+          "the leaf universe IS 037's leaf set, not something derived from "
           "the corpus (a self-derived universe can never fail)",
           f"{len(L.LEAF_UNIVERSE)} leaves")
 
@@ -111,9 +116,9 @@ def main() -> int:
     invented = sorted(L.REQ_CITE.findall("與 `999-99` 同型"))
     check(invented and invented[0] not in universe,
           "an invented req_id would FIRE", f"{invented}")
-    withheld_cited = [c for c in ("128-01", "122-02", "125-08", "016-01")
-                      if c in universe]
-    check(len(withheld_cited) == 4,
+    probes = ("128-01", "122-02", "125-08", "016-01")
+    withheld_cited = [c for c in probes if c in universe]
+    check(len(withheld_cited) == len(probes),
           "STOPPED leaves are inside the universe, so citing them stays "
           "silent (they are cited on purpose)", f"{withheld_cited}")
 

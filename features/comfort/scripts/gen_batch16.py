@@ -37,7 +37,11 @@ Usage:
 
 import csv
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -82,13 +86,18 @@ PC_KNOB = ("1. [spec-verbatim] If the hard controls are knobs that turn "
            "(14.12)")
 PC_TOGGLE = ("1. [spec-verbatim] If the hard controls are UP/DOWN toggles "
              "(14.12)")
+# 70 §2 — two-part: the verbatim fragment cannot stand as a sentence (it is
+# preposition-led with no subject or verb), so a readable state clause
+# follows the em dash. The gate checks what precedes it.
 PC_CENTRIC = ("1. [spec-verbatim] For vehicles with dual zone climate "
               "versions with dual airflow modes on 8.4\", 10.1\" Landscape, "
-              "10.25\" and 12.3\" radios (14.14)")
-PC_LANDSCAPE = ("1. [spec-verbatim] For 8.4/10.1/12 landscaped screens "
-                "(17.4)")
+              "10.25\" and 12.3\" radios — the vehicle under test is such a "
+              "vehicle (14.14)")
+PC_LANDSCAPE = ("1. [spec-verbatim] For 8.4/10.1/12 landscaped screens — the "
+                "vehicle has one of those screens (17.4)")
 PC_DUAL_WIDGET = ("1. [spec-verbatim] For dual zone climate with dual "
-                  "airflow modes equipped vehicles (17.5)")
+                  "airflow modes equipped vehicles — the vehicle is such a "
+                  "vehicle (17.5)")
 PC_WIDGET = "2. [test-setup] The Comfort widget is shown on the home screen"
 
 # 66 §3 — the ambiguity must reach the person who executes, not only the
@@ -357,7 +366,7 @@ def main() -> None:
             "duplicate_of": "",
             "distinguishing_axis": DIST_AXIS.get(
                 o, {"axis": "see per-TC titles", "delta": ""}),
-            "assumptions": [], "interface_axis_review": iar[o], "tcs": tcs,
+            "assumptions": [], "interface_axis_review": iar[o], "tcs": apply_splits(tcs),
         }
         (OUT / f"{meta['parent']}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
