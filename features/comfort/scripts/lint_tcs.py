@@ -135,7 +135,25 @@ PROFILE = ROOT / "docs" / "runtime" / "profiles" / "FW036_R1L_Comfort_Profile.md
 # not a mechanism. Adding a value without re-reviewing the negation users
 # fails, and the failure names them.
 AXIS_BLOCK = re.compile(r"```axis-values\n(.*?)```", re.S)
-NEGATION = "does not have 3 knob HVAC controls with ICS"
+# 43 §4 — one block per axis that uses a negated pre_condition, each carrying
+# its own `negation:` string. Until 43 §4 this gate watched ONE hard-coded
+# phrase (axis 13's), so the other four negations had no protection: 34 §4's
+# reason is about what a negation covers, and that does not depend on which
+# axis is negated.
+NEGATED_PC = re.compile(r"\bdoes not\b|\bis not\b|\bnot configured\b"
+                        r"|\bnot present\b|\bnot currently\b")
+# Negated pre_conditions that are NOT configuration axes: runtime state and
+# test setup. Naming them is what lets the coverage check below FAIL on a NEW
+# axis negation instead of quietly ignoring it (same shape as NOT_IN_WORKBOOK
+# — a list nobody has to maintain is a list that protects nothing).
+NON_AXIS_NEGATIONS = {
+    "The lower screen is not in the stowed position":
+        "13.2 之執行期狀態（同一台車兩種狀態），非配置軸",
+    "The user is not in the climate section on the main head unit":
+        "13.2 之執行期畫面位置，非配置軸",
+    "The Seats tab is not currently shown":
+        "test-setup 之起始狀態，非配置軸",
+}
 # §5.1's nine forbidden MAIN verbs, verbatim and nothing else.
 # Authority: canon §5.1, via handoff 31 §1.
 #
@@ -491,60 +509,90 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                 f"duplicate_of/distinguishing_axis is still unset for "
                 f"{unresolved} — §4.6 判定須於對造節生成後回填")
 
-    # ---- 42 §1 — provisional verdicts owed a second look ----------------
-    # A Test Set is "complete" when every one of its sections has emitted TCs.
-    # On that day every provisional row touching the set is due, because the
-    # thing those rows will be compared against has changed from a clause to
-    # a set of TCs.
-    by_set = defaultdict(set)
-    for o, ts in SECTION_TEST_SET.items():
-        by_set[ts].add(o)
-    complete_sets = {ts for ts, outs in by_set.items() if outs <= generated}
+    # ---- 42 §1 / 43 §1 — provisional verdicts owed a second look --------
+    # TRIGGER CORRECTED (43 §1). 42 §1 fired when EITHER side's Test Set
+    # completed — but `provisional` is caused by ONE side having no TCs, and
+    # the side that completes is the side that already had them. The missing
+    # evidence stayed missing, so the re-confirmation had nothing new to look
+    # at: measured 632 rows due, 0 of them with both sides generated.
+    #
+    # 43 §1 names the discriminant outright: `provisional == true` AND both
+    # sides generated <=> the side that was missing has landed. That is the
+    # condition below. It is section-granular rather than Test-Set-granular,
+    # so it fires the moment the evidence exists rather than at the coarser
+    # set boundary — earlier, never later (上繳 32 §1.2).
     due = [r for r in SIBLING_TABLE
            if r.get("provisional") == "true"
-           and (SECTION_TEST_SET.get(r["outline"]) in complete_sets
-                or SECTION_TEST_SET.get(r["sibling_outline"]) in complete_sets)]
+           and r["outline"] in generated
+           and r["sibling_outline"] in generated]
     if due:
         shown = ", ".join(f"{r['outline']}<->{r['sibling_outline']}"
                           f"[{r['verdict']}]" for r in due[:8])
         bad("provisional-sibling",
-            f"{len(due)} provisional row(s) touch a completed Test Set "
-            f"{sorted(complete_sets)} and are owed a re-confirmation "
-            f"(42 §1). Re-confirm — the verdict MAY stand — then set "
-            f"provisional=false. First 8: {shown}"
+            f"{len(due)} provisional row(s) now have BOTH sides generated — "
+            f"the side that was missing when the verdict was reached has "
+            f"landed, so the verdict is owed a re-confirmation against TCs "
+            f"rather than clauses (43 §1). Re-confirm — the verdict MAY "
+            f"stand — then set provisional=false. First 8: {shown}"
             + (f" … and {len(due) - 8} more" if len(due) > 8 else ""))
 
-    # ---- 35 §4 — a negated axis value may not outlive its value count ----
-    block = AXIS_BLOCK.search(PROFILE.read_text(encoding="utf-8"))
-    if not block:
+    # ---- 35 §4 / 43 §4 — every negated axis, not just axis 13 ------------
+    blocks = AXIS_BLOCK.findall(PROFILE.read_text(encoding="utf-8"))
+    if not blocks:
         bad("axis-value-count",
             "profile carries no ```axis-values``` block; a negated "
             "pre_condition cannot be checked against the axis it negates")
-    else:
-        f = dict(l.split(":", 1) for l in block.group(1).strip().split("\n")
-                 if ":" in l)
+    negations = []
+    for raw in blocks:
+        f = dict(l.split(":", 1) for l in raw.strip().split("\n")
+                 if ":" in l and not l.lstrip().startswith("#"))
+        axis = f.get("axis", "?").strip().split()[0]
         values = [v.strip() for v in f.get("values", "").split("|") if v.strip()]
         declared = f.get("value-count", "").strip()
         reviewed = f.get("negation-reviewed-at-value-count", "").strip()
+        negation = f.get("negation", "").strip()
         listed = [v.strip() for v in f.get("negation-users", "").split(",")
                   if v.strip()]
+        if not negation:
+            bad("axis-value-count",
+                f"axis {axis}: block carries no `negation:` field, so the "
+                "gate cannot find the pre_conditions it protects (43 §4)")
+            continue
+        negations.append(negation)
         actual = [tc["tc_id"] for _, tc in all_tcs
-                  if NEGATION in tc["pre_conditions"]]
+                  if negation in tc["pre_conditions"]]
         if declared != str(len(values)):
             bad("axis-value-count",
-                f"profile declares value-count {declared!r} but lists "
-                f"{len(values)} values {values}")
+                f"axis {axis}: profile declares value-count {declared!r} but "
+                f"lists {len(values)} values {values}")
         elif reviewed != declared:
             bad("axis-value-count",
-                f"axis gained a value (now {declared}) but the negated "
+                f"axis {axis}: gained a value (now {declared}) but the negated "
                 f"pre_condition was last reviewed at {reviewed!r}. "
                 f"Re-review these {len(actual)} TCs and then bump "
                 f"negation-reviewed-at-value-count: {sorted(actual)}")
         if sorted(listed) != sorted(actual):
             bad("axis-value-count",
-                f"profile's negation-users list is stale — "
+                f"axis {axis}: negation-users list is stale — "
                 f"missing {sorted(set(actual) - set(listed))}, "
                 f"extra {sorted(set(listed) - set(actual))}")
+
+    # 43 §4 — the part that makes a NEW unprotected negation audible. Without
+    # it, adding a negated pre_condition for an axis that has no block is
+    # exactly as silent as axis 13's situation was before 34 §4.
+    for _, tc in all_tcs:
+        for line in tc["pre_conditions"].split("\n"):
+            if not line.strip() or not NEGATED_PC.search(line):
+                continue
+            if any(n in line for n in negations):
+                continue
+            if any(k in line for k in NON_AXIS_NEGATIONS):
+                continue
+            bad("axis-value-count",
+                f"{tc['tc_id']}: negated pre_condition matches no axis block "
+                f"and is not named in NON_AXIS_NEGATIONS — its coverage "
+                f"changes silently when that axis gains a value (43 §4): "
+                f"{line.strip()[:96]!r}")
 
     # ---- handoff 26 §4.1 — every TC key lands in a column or is named ----
     from write_back import COLS

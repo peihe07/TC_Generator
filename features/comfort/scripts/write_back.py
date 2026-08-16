@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Write the pilot batch into the prepared workbook — handoff 25 §3.
+"""Write ALL current TCs into the prepared workbook — 25 §3 / 45 §2-§3.
+
+45 §1 ruled the cadence: write back after EVERY batch, and write the WHOLE
+corpus each time rather than appending. The reason is measured, not stylistic
+— the pilot's 14 rows in `…_pilot.xlsx` are already stale (EMEA PCs removed
+from 11 TCs, -019 gained a confining PC, -036 was split so 30 tc_ids shifted,
+reasoning revised repeatedly). An append would leave the workbook a mixture of
+generations, and nothing would say which row belonged to which.
 
 Three stages, verified separately and never merged (25 §3):
   §3.1  pre-gates   — any failure stops before the splice
@@ -39,9 +46,22 @@ GEN = FEATURE / "generated"
 SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
                             "Comfort_20260815_prepared.xlsx")
+# 45 §2 — a NEW file. The pilot file is neither overwritten nor deleted:
+# DELIVERY ENTRY 002 is its identity record, and deleting it would leave the
+# ledger pointing at nothing (the converse of R-C14 — a recorded identity may
+# not lose its object).
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260815_pilot.xlsx")
+                            "Comfort_20260815_batch9.xlsx")
+# 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
+# 27 §3), so the second write-back became ENTRY 004. This is the third.
+#
+# 46 §1.2 reserves an ENTRY for the template extension. It is not written yet
+# — the extension is Pei's Tier 3 work and has not happened — so the number is
+# free and this write takes it. If the extension lands first, this constant
+# moves; the one-shot gate below is what makes a collision loud rather than
+# silent.
+LEDGER_ENTRY = "ENTRY 006"
 SHEET = "Test Case Specification 測試用例規範"
 SRC_SHA = "b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d"
 FIRST_ROW = 10
@@ -98,9 +118,22 @@ def pre_gates(tcs: list) -> bool:
 
     r = shasum(["--ignore-missing", "DELIVERY.sha256"])
     d_ok = r.stdout.count(": OK")
-    e2 = "ENTRY 002" in (FEATURE / "DELIVERY.sha256").read_text("utf-8")
-    g("DELIVERY.sha256 OK 且仍 2 筆、無 ENTRY 002", d_ok == 2 and not e2,
-      f"OK={d_ok}, ENTRY002={'present' if e2 else 'absent'}")
+    d_bad = r.stdout.count("FAILED")
+    g("DELIVERY.sha256 --ignore-missing 全數 OK", d_bad == 0 and d_ok > 0,
+      f"OK={d_ok}, FAILED={d_bad}")
+    # The one-shot guard, now keyed to THIS write's entry number. Once the
+    # ledger carries it, --write can no longer run: that is the append-only
+    # ledger working, not a defect.
+    # Match the ENTRY HEADER, not the string anywhere. ENTRY 004's status text
+    # names "ENTRY 005" as the template-extension entry to come, and a bare
+    # substring search read that mention as the entry itself and blocked the
+    # write. A ledger that discusses its own future entries is normal; a gate
+    # that cannot tell a reference from a record is not.
+    already = any(l.lstrip("# ").startswith(LEDGER_ENTRY + " ")
+                  for l in (FEATURE / "DELIVERY.sha256")
+                  .read_text("utf-8").splitlines())
+    g(f"台帳尚無 {LEDGER_ENTRY}（一次性 gate）", not already,
+      "present" if already else "absent")
 
     digest = sha256(SRC) if SRC.exists() else "(missing)"
     g("來源為 A-CF07 經 Pei 確認之同一份位元組", digest == SRC_SHA,
@@ -112,7 +145,12 @@ def pre_gates(tcs: list) -> bool:
     tail = [l for l in r.stdout.strip().split("\n") if "gates PASS" in l]
     g("lint 全數 PASS", lint_ok, tail[-1] if tail else "no summary line")
 
-    g("生成之 TC 數為 14", len(tcs) == 14, f"measured {len(tcs)}")
+    # 45 §2 — the count is MEASURED, never pre-filled. What is asserted is
+    # that it is non-zero, gap-free and matches what lint just counted.
+    nums = [int(t["tc_id"].rsplit("-", 1)[1]) for t in tcs]
+    contiguous = nums == list(range(1, len(nums) + 1))
+    g("TC 數實測且 tc_id 連續無缺號", len(tcs) > 0 and contiguous,
+      f"measured {len(tcs)} TCs, tc_id {nums[0]:03d}–{nums[-1]:03d}")
     print()
     return ok
 
@@ -192,18 +230,65 @@ def assertions(tcs: list, report: dict) -> bool:
     g(f"B 欄 row {FIRST_ROW}–{FIRST_ROW + len(tcs) + 11} 之公式逐列原樣存在",
       [], bad_b, "編號 1–14 由公式自算，未寫入值")
 
-    blk = [t for t in tcs if t["remarks"].startswith("[BLOCKED-SPEC]")]
-    bad_blk = []
-    for t in blk:
-        r = FIRST_ROW + tcs.index(t)
+    # ---- assertion 11 (45 §3.3) — three marker classes, three rules -------
+    # profile §5.1 / §5.2 / §5.2a. Each class's first visible line must carry
+    # what that class exists to point at, and [BLOCKED-NON-HMI] must carry the
+    # OPPOSITE of [BLOCKED-SPEC]: no owner at all.
+    MARKER_RULE = {
+        "[BLOCKED-SPEC]": ("Owner:", True),
+        "[BLOCKED-NON-HMI]": ("Not an HMI-observable property", True),
+        "[COVERED-BY]": ("[COVERED-BY]", True),
+    }
+    marked, bad_blk = {k: [] for k in MARKER_RULE}, []
+    for i, t in enumerate(tcs):
+        rm_json = t["remarks"]
+        mk = next((m for m in MARKER_RULE if rm_json.startswith(m)), None)
+        if mk is None:
+            continue
+        marked[mk].append(t["tc_id"])
+        r = FIRST_ROW + i
         for col in ("L", "M"):
             if ws[f"{col}{r}"].value not in (None,):
                 bad_blk.append(f"{t['tc_id']}.{col}={ws[f'{col}{r}'].value!r}")
         rm = ws[f"AH{r}"].value or ""
-        if "Owner:" not in rm[:60]:
-            bad_blk.append(f"{t['tc_id']}.AH lacks Owner: in first 60 chars")
-    g("BLOCKED row 之 L／M 為空且 Remarks 首 60 字含 Owner:", [], bad_blk,
-      f"rows: {[t['tc_id'] for t in blk]}")
+        needle, must_have = MARKER_RULE[mk]
+        if (needle in rm[:60]) is not must_have:
+            bad_blk.append(f"{t['tc_id']}.AH[:60] {mk} rule: "
+                           f"{needle!r} {'missing' if must_have else 'present'}")
+        if mk == "[BLOCKED-NON-HMI]" and "Owner:" in rm:
+            bad_blk.append(f"{t['tc_id']}.AH names an Owner under "
+                           f"[BLOCKED-NON-HMI] — that is a [BLOCKED-SPEC]")
+    g("三類 marker 列之 L／M 為空且 Remarks 首 60 字元符合各自規則",
+      [], bad_blk,
+      "; ".join(f"{k} {v or 'none'}" for k, v in marked.items()))
+
+    # ---- assertion 10 (45 §3.3) — A-CF19 measured, not assumed ------------
+    # The anomaly is about PRESENTATION, so the check separates the two
+    # questions it was always confusing: is the content complete (yes/no,
+    # checkable) and is it visible (a number, reportable but not a pass/fail).
+    n_bad = [f"{t['tc_id']}"
+             for i, t in enumerate(tcs)
+             if (ws[f"N{FIRST_ROW + i}"].value or "")
+             != t["specification_reference"]]
+    g("N 欄 specification_reference 逐字元與 JSON 相同（A-CF19 之內容側）",
+      [], n_bad, f"{len(tcs)} cells compared")
+    lens = [(len(t["specification_reference"]), t["tc_id"]) for t in tcs]
+    longest, longest_id = max(lens)
+    multi = sum(1 for L, _ in lens if "; " in
+                tcs[[i for i, t in enumerate(tcs)
+                     if len(t["specification_reference"]) == L][0]]
+                ["specification_reference"])
+    width = ws.column_dimensions["N"].width
+    rh = ws.row_dimensions[FIRST_ROW].height
+    wrap = ws[f"N{FIRST_ROW}"].alignment.wrap_text
+    per_line = int(width) if width else 0
+    visible = 1 if (rh or 0) <= 15 else int((rh or 0) // 14)
+    print(f"- MEASURED — A-CF19 之呈現側：N 欄最長 {longest} 字元"
+          f"（{longest_id}）；欄寬 {width}；wrapText={wrap}；"
+          f"列高 {rh} → 可見約 {visible} 行 ≈ {per_line * visible} 字元，"
+          f"即最長者之 {100 * per_line * visible // max(longest, 1)}%。"
+          f"**內容完整而僅首行可見** —— 這是 A-CF19 之實測，非 assertion："
+          f"呈現屬 Tier 3，程式不得自行改列高（26 §2 之方向 3 已裁）")
 
     # handoff 26 §4.3 — scan to the sheet's real extent, not a fixed window.
     # The window used to be 12 rows wide while max_row is 59; residue past
@@ -217,6 +302,49 @@ def assertions(tcs: list, report: dict) -> bool:
                 residue.append(f"row{r}.{col}={str(v)[:24]!r}")
     g(f"row {last} 起至 max_row 無殘留內容", [], residue,
       f"scanned rows {last}–{end} (ws.max_row={end})")
+    # ---- assertion 13 (上繳 33 §9.3) — the template's own provisions must
+    # actually REACH the rows we wrote. The B-formula check below caught this
+    # only because its window happened to extend past row 59; the data
+    # validations were never checked at all, and P/T-Z/AF stop at row 11.
+    # A row outside a DV sqref looks written and is not deliverable: profile
+    # §0.1's confirmation item 2 ("R 欄下拉可用且為九項") is false there.
+    import re as _re
+    import zipfile as _zip
+    from backend.xlsx_surgical import sheet_members as _sm
+    with _zip.ZipFile(OUT) as _z:
+        _xml = _z.read(_sm(OUT)[SHEET]).decode("utf-8")
+
+    def _cover(sqrefs):
+        rows = set()
+        for sq in sqrefs:
+            for part in sq.split():
+                m = _re.match(r"([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?$", part)
+                if m:
+                    rows |= set(range(int(m.group(2)),
+                                      int(m.group(4) or m.group(2)) + 1))
+        return rows
+
+    r_rows = _cover(_re.findall(r"<xm:sqref>([^<]+)</xm:sqref>", _xml))
+    p_rows = _cover([m for m in _re.findall(
+        r'<dataValidation[^>]*sqref="([^"]+)"', _xml) if m.startswith("P")])
+    # (B is checked above through openpyxl — the XML carries SHARED formulas,
+    # where only the master cell holds the <f> text, so a regex over the raw
+    # XML under-counts. Left out deliberately rather than duplicated wrongly.)
+    written = set(range(FIRST_ROW, FIRST_ROW + len(tcs)))
+    g("每一寫入列皆在 R 欄下拉（x14 DV）之涵蓋範圍內",
+      [], sorted(written - r_rows)[:6] + (["…"] if len(written - r_rows) > 6 else []),
+      f"{len(written - r_rows)} row(s) outside; DV covers rows "
+      f"{min(r_rows)}–{max(r_rows)}")
+    g("每一寫入列皆在 P 欄 DV 之涵蓋範圍內",
+      [], sorted(written - p_rows)[:6] + (["…"] if len(written - p_rows) > 6 else []),
+      f"{len(written - p_rows)} row(s) outside; DV covers rows "
+      f"{min(p_rows)}–{max(p_rows)}" if p_rows else "no P DV found")
+
+    # ---- assertion 12 (45 §3.3) — row count == TC count -------------------
+    written = sum(1 for r in range(FIRST_ROW, end + 1)
+                  if ws[f"D{r}"].value not in (None, ""))
+    g("已寫入之列數等於現行 TC 數", len(tcs), written,
+      f"rows {FIRST_ROW}–{FIRST_ROW + len(tcs) - 1}")
     wb.close()
     print()
     return ok
@@ -228,7 +356,7 @@ def main() -> int:
     ap.add_argument("--verify-only", action="store_true",
                     help="re-run §3.3 against the already-emitted file. The "
                          "§3.1 pre-gates are one-shot — gate 2 requires the "
-                         "ledger to NOT yet carry ENTRY 002, so once the "
+                         "ledger to NOT yet carry this write's entry, so once it "
                          "entry is appended --write can no longer run. That "
                          "is the append-only ledger working, not a defect.")
     args = ap.parse_args()
@@ -267,7 +395,8 @@ def main() -> int:
     ok = assertions(tcs, report)
     print(f"output sha256: {sha256(OUT)}\n")
     print("NEXT: Excel 四項確認由 Pei 執行（profile §0.1）—— 無修復提示／"
-          "R 欄下拉九項可用／D5 Scope 正確／row 10–23 內容與編號正確。"
+          f"R 欄下拉九項可用／D5 Scope 正確／row {FIRST_ROW}–"
+          f"{FIRST_ROW + len(tcs) - 1} 內容與編號正確。"
           "程式層檢查不能代替 Excel 自身之檔案完整性判定。")
     print("本腳本到此停下：未複製至客戶交付路徑、未動 prepared 檔、"
           "未改 ENTRY 001、未執行 git。")

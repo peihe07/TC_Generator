@@ -1,0 +1,173 @@
+{
+ "parent": "SWE1-HVAC-014",
+ "outline": "2.10",
+ "batch": "Climate Modes",
+ "source_clause": "C11.) Climate off has on/off state that is indicated on HC, TS (climate screen) and in status bar. Climate off affects every climate function with the exception of FRONT /MAX DEFROST (depending on equipment) and REAR DEFROST (and seat/wheel controls). When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost. Category button shows fan greyed out and mode oscar replaced with \"OFF\" which will remain until the user turns it back on. Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off. If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel). If the user continues to hold/turn the control, the system will respond in-kind.",
+ "reasoning": "驗證目標：2.10（C11）定出 climate off 之畫面、按鈕灰化之例外、category button 與 status bar 之呈現，以及以 temp/fan 控制回復之行為，六個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：`-144` 另補第五軸（MAX DEF 有無，出處 3.2）與第十軸（REAR DEFROST 有無，出處 3.4）—— 該條之 ER 以該二鍵**不灰化**為觀察對象，其不存在即使該觀察無對象；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-147`（回復至上次等級）與 `-148`（持續按住持續變化）為同一操作之兩個階段，其失效可獨立發生（回復了但停在最低／回復正確但不續動）。刻意略過：C11 之「Climate off affects every climate function with the exception of…」為總述句，037 未另給 leaf，故不另立 TC；其可觀察內容已由 `-144` 之灰化例外涵蓋（§4.5：同一可觀察量不得由兩個 leaf 共用）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "which side of the climate-off exception the section owns (2.10 vs 3.3)",
+  "delta": "`2.10`（C11）自**通則**一側陳述：climate off 時其餘按鈕灰化，而 Front/Max defrost 與 rear defrost 為例外；`3.3`（C21）自**例外**一側陳述：MAX DEF 與 REAR DEF 於 climate off 期間可用。`-144` 之 verification target 為「其餘按鈕變灰」，`-030` 之 target 為「該二者仍可用」—— 四項嚴格等價中 verification target 相異，故不構成 `duplicate_of`；惟兩者共用同一條文事實，記此以免重複驗證"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "CLIMATE OFF 畫面、category button、status bar 與硬控回復行為",
+  "axis_9": "暴露 → 全數補 —— 可觀察量皆在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本節之 ch16 對造與其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-014-01",
+   "tc_id": "NR1L-ComfortHMI-143",
+   "tc_title": "Climate off shows the CLIMATE OFF screen",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "When the system is turned off the system shall show the CLIMATE OFF screen with the OFF button turned into an ON button",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the power button",
+   "expected_result": "1. The CLIMATE OFF screen is displayed\n2. The power button reads ON",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button」逐字相同"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-014-02",
+   "tc_id": "NR1L-ComfortHMI-144",
+   "tc_title": "Only the defrost buttons stay available while climate is off",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The system shall grey out the remaining buttons except for Front/max defrost and rear defrost",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is equipped with MAX DEF (3.2) and with rear defrost, which is absent on some soft top vehicles (3.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the \"MAX DEF\" and \"REAR DEFROST\" buttons\n3. Read the remaining climate buttons",
+   "expected_result": "1. The CLIMATE OFF screen is displayed\n2. \"MAX DEF\" and \"REAR DEFROST\" are not greyed out\n3. The remaining climate buttons are greyed out",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「grey out remaining buttons except for Front/Max defrost and rear defrost」逐字相同"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-014-03",
+   "tc_id": "NR1L-ComfortHMI-145",
+   "tc_title": "Category button shows fan greyed and OFF in place of the mode",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The category button shall show the fan greyed out and the mode oscar replaced with \"OFF\" until the user turns it back on",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the category button",
+   "expected_result": "1. The CLIMATE OFF screen is displayed\n2. The category button shows the fan greyed out and \"OFF\" in place of the mode",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「The Main category control shows fan speed segments off and mode Oscar replaced with \"OFF\"」"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-014-04",
+   "tc_id": "NR1L-ComfortHMI-146",
+   "tc_title": "Status bar shows dashes while climate is off",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "Temperatures and units in the status bar shall be substituted by dashes in all modes when climate is off",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the status bar",
+   "expected_result": "1. The CLIMATE OFF screen is displayed\n2. The status bar shows dashes in place of the temperatures and the units",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off」逐字相同"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-014-05",
+   "tc_id": "NR1L-ComfortHMI-147",
+   "tc_title": "A temp or fan control turns climate back on at its last level",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "If a user presses a temp/fan control to turn climate back on, the system shall reinstate the last level of that feature",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Note the fan speed, then turn the climate system off using the climate power button on the climate screen\n2. Press the fan speed hard control up",
+   "expected_result": "1. The CLIMATE OFF screen is displayed\n2. The climate system is on and the fan speed is at the level noted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「If a user presses a temp/fan hard control to turn climate back on, the system reinstates to the last level of that feature」"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-014-06",
+   "tc_id": "NR1L-ComfortHMI-148",
+   "tc_title": "Holding the control keeps changing the level in kind",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "If the user continues to hold or turn the control, the system shall respond in-kind",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Press and hold the fan speed hard control up",
+   "expected_result": "1. The CLIMATE OFF screen is displayed\n2. The climate system is on and the fan speed keeps increasing while the control is held",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.10; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「If the user continues to hold/turn the control, the system will respond in-kind」逐字相同"
+   }
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "parent": "SWE1-HVAC-124",
+ "outline": "17.1",
+ "batch": "Home Screen Widget",
+ "source_clause": "W0.) The Comfort widget will have two screens: Comfort and Seats. (Refer to the Comfort – Front Comfort/Climate and Comfort – Heated/Vented Seats HMI sections for complete logic.)",
+ "reasoning": "驗證目標：17.1（W0）定出 Comfort widget 具兩個畫面 —— Comfort 與 Seats，三個 037 leaf 分別對應「有兩個畫面」「其一為 Comfort」「其二為 Seats」，一葉一 TC（§8.2.1）。關鍵情境條件：依 **R-C34**，可觀察量為首頁上之 Comfort widget，第九軸暴露（6.3 使 comfort section 自 head unit 移除，widget 即在 head unit 首頁）→ 補；第十三軸暴露（3 旋鈕 ICS 車無 HVAC 畫面）→ 補；EMEA 排除補（ch16 十八節無任何 widget 條文，`ch16_mirror_map.tsv` 之 ch17 側全無列 —— 惟依 **R-C36-1** 該判定不因節級而免除，本節逐條之答為「ch16 無對應句」故排除成立）；第十二軸不補（不觀察 tab）。為什麼這樣切：三者之失效可各自獨立發生（畫面數對而內容錯、或 Seats 頁缺）。刻意略過：**條文之括號「(Refer to the Comfort – Front Comfort/Climate and Comfort – Heated/Vented Seats HMI sections for complete logic.)」為對本 spec 其他節之委派** —— 依 profile §5.3 之判別次序，委派對象為本 spec 之節故指向 `[COVERED-BY]`，惟 **R-C39 條件四不成立**：扣除該委派後仍有獨立餘留（「widget 有兩個畫面且其一為 Comfort、其二為 Seats」本身可驗），故**不標 marker、正常生成**，且本三條**只驗兩個畫面之存在與其名稱，不驗其內容**（內容即被委派者，§8.2.1）；另依 **R-C17**，首頁之頁面管理行為（新增／刪除／重排、widget 拖放）定義於 Home Screen spec，不寫入本批。",
+ "keywords": [
+  "Comfort widget",
+  "two screens",
+  "Comfort",
+  "Seats"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "verification target within 17.1 (W0)",
+  "delta": "-115 = 畫面之數目（two）；-116 = 第一頁之身分（Comfort）；-117 = 第二頁之身分（Seats）。§10.6 之嚴格等價四項（trigger／outcome／input／verification target）中verification target 相異，故不構成 duplicate_of"
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "head unit 首頁上之 Comfort widget（其兩個畫面之存在與名稱）",
+  "axis_9": "暴露 → 全數補 —— 6.3 使 comfort section 自 head unit 移除，而 widget 即在 head unit 首頁",
+  "axis_12": "不暴露 —— 不觀察 tab；2.1 之 tabs 屬 climate 主類別，非首頁 widget",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除 —— ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）；依 R-C36-1 逐條之答為「ch16 無對應句」，已記於各 TC 之 `emea_ics_review`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-124-01",
+   "tc_id": "NR1L-ComfortHMI-115",
+   "tc_title": "Comfort widget has two screens",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Comfort widget shall have two screens",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the home screen\n2. Move through the Comfort widget screens until the first screen is shown again",
+   "expected_result": "1. The Comfort widget is displayed\n2. Two widget screens were shown",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-124-02",
+   "tc_id": "NR1L-ComfortHMI-116",
+   "tc_title": "First Comfort widget screen is Comfort",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The first of the two Comfort widget screens shall be Comfort",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the home screen\n2. Read the first Comfort widget screen",
+   "expected_result": "1. The Comfort widget is displayed\n2. The first widget screen is the Comfort screen",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-124-03",
+   "tc_id": "NR1L-ComfortHMI-117",
+   "tc_title": "Second Comfort widget screen is Seats",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The second of the two Comfort widget screens shall be Seats",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the home screen\n2. Move to the second Comfort widget screen",
+   "expected_result": "1. The Comfort widget is displayed\n2. The second widget screen is the Seats screen",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+ "parent": "SWE1-HVAC-015",
+ "outline": "2.11",
+ "batch": "Climate Modes",
+ "source_clause": "C12.) SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC). Sync is not shown for single zone climate configurations. Sync synchronizes driver and passenger temperatures to the driver temperature. When SYNC is on, changing the driver temperature automatically changes the passenger temperature. Adjusting the passenger temperature via touchscreen or hard control would break SYNC. Adjusting Fan speed and Mode will alter the Front and Rear passengers. If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.",
+ "reasoning": "驗證目標：2.11（C12）定出 SYNC 之狀態呈現與其雙側溫度連動、中斷條件，以及其對前後排之作用，五個 037 leaf 對應之，本輪產三條。關鍵情境條件：第二軸（單區／雙區／四區）—— C12 明文「Sync is not shown for single zone climate configurations」，故起始 PC 即取該軸之非單區值，出處 2.11；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-150`（連動）與 `-151`（中斷）為 SYNC 之兩個相反方向。刻意略過：**`015-04`／`015-05` 停下不產列** —— 兩者之可觀察量皆在**後排**（「alter the Front and Rear passengers」「rear fan speed, mode, or temp」），而「車輛是否配備後排氣候」**不在 profile §3.2 之十六軸內**，其來源即 `2.1` 之 tab 集合問題（`DATA_REQUESTS` #17，未解）。**本節與已生成之 `2.6.1` 重疊之判定**：C5.1 與 C12 皆述 SYNC 之溫度連動與中斷，`pending_sibling.tsv` 已記 `2.6.1 ↔ 2.11` 為 `sibling`，兩側今皆有 TC，其 `duplicate_of` 判定見上繳 35 §8.4。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 SYNC 按鈕與雙側溫度",
+  "axis_9": "暴露 → 全數補 —— 可觀察量皆在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本節之 ch16 對造與其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-015-01",
+   "tc_id": "NR1L-ComfortHMI-149",
+   "tc_title": "SYNC is highlighted on the climate screen when on",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "SYNC shall have an on/off state that is indicated on the climate screen by highlighting the button",
+   "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"SYNC\" on the climate screen\n2. Press \"SYNC\" again",
+   "expected_result": "1. The \"SYNC\" button is highlighted\n2. The \"SYNC\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.11",
+    "verdict": "yes",
+    "ch16_sentence": "ICE10「SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC)」逐字相同"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-015-02",
+   "tc_id": "NR1L-ComfortHMI-150",
+   "tc_title": "Driver temperature drives passenger temperature when synced",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "When SYNC is on, changing the driver temperature shall automatically change the passenger temperature",
+   "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Change the driver temperature",
+   "expected_result": "1. The \"SYNC\" button is highlighted\n2. The passenger temperature follows the driver temperature",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.11",
+    "verdict": "yes",
+    "ch16_sentence": "ICE10「When SYNC is on, changing the driver temperature automatically changes the passenger temperature」逐字相同"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-015-03",
+   "tc_id": "NR1L-ComfortHMI-151",
+   "tc_title": "Adjusting passenger temperature breaks SYNC",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "Adjusting the passenger temperature via touchscreen or hard control shall break SYNC",
+   "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Change the passenger temperature",
+   "expected_result": "1. The \"SYNC\" button is highlighted\n2. The \"SYNC\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.11",
+    "verdict": "yes",
+    "ch16_sentence": "ICE10「Adjusting the passenger temperature via touchscreen or hard control would break SYNC」逐字相同"
+   }
+  }
+ ]
+}

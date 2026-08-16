@@ -65,6 +65,14 @@ PC_TRIMODE = ("1. [spec-verbatim] The vehicle is equipped with Tri-Mode "
               "climate (3.1)")
 # Axis 5 of profile §3.2. Verbatim: "On vehicles with MAX DEF".
 PC_MAXDEF = "1. [spec-verbatim] The vehicle is equipped with MAX DEF (3.2)"
+# 43 §5 / DR #29 — C20 hard-codes MAX DEF's top fan speed as "(7/7)", but
+# C6.1 states that some vehicles run Off, 1-8, where the top is 8. The ER
+# cannot be rewritten (8/8 would be fabricated, "the highest setting" would
+# be weaker than the clause), so the TC is CONFINED instead: axis 14 is the
+# configuration variable, and naming its value makes the existing ER true.
+# The Off,1-8 side stays uncovered and is tracked by DR #29, not absorbed.
+PC_FAN_1_7 = ("[spec-verbatim] The front HVAC fan range of the vehicle is "
+              "Off, 1-7 (2.7)")
 # Same fact, same marker — but here it is a CROSS-section citation, because
 # 3.3\u0027s own clause states no equipment condition (R-C29).
 PC_MAXDEF_X = PC_MAXDEF
@@ -262,7 +270,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-024",
         "outline": "3.2",
         "reasoning":
-            "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：**ch10（ECO HVAC）未述其與本節之差異** —— 實測 ch10 全章對 `MAX DEF`／`defrost`／`break` **零命中**，故依 39 §3 分支二，`-022`（按 AUTO 中斷 MAX DEF）**不補排除式 PC、不改 ER**，3.2 之字面於 BEV 亦成立，惟**配備 ECO HVAC 之 BEV 上「進入 AUTO」究為 AUTO ECO 抑或 AUTO ON，兩側條文皆未述，已依 §8.4.2 呈報為 coverage hole（`DATA_REQUESTS` #22）**；「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
+            "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：**ch10（ECO HVAC）未述其與本節之差異** —— 實測 ch10 全章對 `MAX DEF`／`defrost`／`break` **零命中**，故依 39 §3 分支二，`-022`（按 AUTO 中斷 MAX DEF）**不補排除式 PC、不改 ER**，3.2 之字面於 BEV 亦成立，惟**配備 ECO HVAC 之 BEV 上「進入 AUTO」究為 AUTO ECO 抑或 AUTO ON，兩側條文皆未述，已依 §8.4.2 呈報為 coverage hole（`DATA_REQUESTS` #22）**；「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）；**`-02`（`NR1L-ComfortHMI-019`）依 43 §5 增一行限定式 PC**：C20 把最高風速寫死 `(7/7)`，而 C6.1 明載某些車輛之前排風速值域為 `Off, 1-8`（其最高為 8），故該 ER 於該類車輛為假 —— **ER 不改**（寫 8/8 為造值、寫「最高設定」弱於條文，皆違 §8.4.1），改以 profile §3.2 **第十四軸**之值（前排風速範圍 `Off, 1-7`，出處 2.7 `C6.` 之逐字，2.7 併入 specification_reference 依 R-C29）限定本條之適用車輛，使既有 ER 在其可陳述之範圍內為真；**`Off, 1-8` 車輛上 MAX DEF 所設之風速未經條文界定，本 TC 不涵蓋**，該缺口由 `DATA_REQUESTS` #29 追，不吸收（§8.4.2）。",
         "keywords": ["MAX DEF", "FRONT DEF", "REAR DEFROST", "RECIRC",
                      "Sync", "MAX A/C", "AUTO"],
         "tcs": [
@@ -286,6 +294,8 @@ BATCHES = [
             },
             {
                 "req_id": "SWE1-HVAC-024-02",
+                "confine": PC_FAN_1_7,          # 43 §5 / DR #29
+                "spec_ref": ("3.2", "2.7"),
                 "tc_title": "MAX DEF sets seven climate states when turned on",
                 "test_item":
                     "MAX DEF shall automatically turn on A/C, change airflow "
@@ -618,8 +628,15 @@ def main() -> None:
                 "test_group": TEST_GROUP,
                 "test_set": TEST_SET,
                 "test_item": tc["test_item"],
+                # 43 §5 — a `confine` line is NOT an exclusion: it selects a
+                # value of an axis so that an ER already written stays true,
+                # rather than removing an interface. It is ordered before the
+                # exclusions because it belongs to the requirement, not to the
+                # interface bookkeeping.
                 "pre_conditions": add_exclusions(
-                    tc["pre_conditions"], EX_ICS,
+                    tc["pre_conditions"],
+                    *([tc["confine"]] if tc.get("confine") else []),
+                    EX_ICS,
                     *([] if o in NO_CH16_COUNTERPART else [EX_EMEA])),
                 "input_test_data": tc["input_test_data"],
                 "test_procedure": tc["test_procedure"],

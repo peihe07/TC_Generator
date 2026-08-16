@@ -45,7 +45,8 @@ TABLE = FEATURE / "data" / "pending_sibling.tsv"
 # SYNC 20, Sync 8, sync 6 — the split was real, not hypothetical.
 VOCAB = re.compile(
     r"\b(SYNC|MAX A/?C|MAX DEFROST|MAX DEF|RECIRC\w*|AUTO ECO|ECO HVAC|"
-    r"AUTO|REAR DEFROST|REAR DEF|FRONT ?/? ?MAX DEFROST|FRONT DEF|DEFROST|"
+    r"AUTO|REAR DEFROST|REAR DEF|FRONT ?/? ?MAX DEFROST|FRONT DEFROST|"
+    r"FRONT DEF|DEFROST|"
     r"CLIMATE OFF|HVAC|MODE|TEMPERATURE|FAN|A/?C|LO|HI|ICS)\b", re.I)
 # 39 §4.1 — these pair almost everything with everything. They used to be
 # DROPPED, and that silent drop is what produced Front Climate Anatomy's "0
@@ -63,10 +64,66 @@ SYNONYMS = {
     "FRONT /MAX DEFROST": "MAX DEF",   # 1
     "FRONT/MAX DEFROST": "MAX DEF",
     "REAR DEFROST": "REAR DEF",        # 7 vs 1
+    # 44 §4 — measured, same shape as the two DEF pairs above: DEF and DEFROST
+    # are the same word inside a compound name (MAX DEF 32 / MAX DEFROST 2;
+    # REAR DEFROST 19 / REAR DEF 1), and bare `DEF` never occurs in the 129
+    # sections. `FRONT DEFROST` x2 (2.3) vs `FRONT DEF` x1 (3.2) completes the
+    # set. Before this, "front defrost" fell through to the bare `DEFROST`
+    # alternative and the FRONT was silently dropped.
+    "FRONT DEFROST": "FRONT DEF",      # 2 vs 1
     "MAX AC": "MAX A/C",               # MAX A/C 23
     "AC": "A/C",                       # AC 11 vs A/C 44
     "RECIRCULATION": "RECIRC",         # RECIRC 7
 }
+
+
+# 43 §2 — HIERARCHY is NOT a synonym group and must not be merged into one.
+# A synonym group says "these strings denote the same thing", so its members
+# are interchangeable in both directions. `AUTO ECO` and `AUTO` are not:
+# every AUTO ECO is an AUTO, no AUTO is necessarily an AUTO ECO. Collapsing
+# them would make 10.3 ("Button label will read AUTO ECO") pair as though it
+# said AUTO, and would also erase AUTO ECO from every place it is the precise
+# term. The map is therefore one-way and its output is MARKED (`via-hierarchy`)
+# rather than folded into the lexical result.
+#
+# Derived by measurement over all 129 sections, not by intuition. Rule: a
+# canonical token T maps to G when some ATTESTED surface form of T is a
+# multi-word phrase one of whose words is exactly G, and G is itself attested
+# STANDALONE somewhere in the corpus. Measured counts in comments.
+HIERARCHY = {
+    "AUTO ECO": "AUTO",      # `AUTO ECO` x9   -> `AUTO` standalone x82
+    "ECO HVAC": "HVAC",      # `ECO HVAC` x2   -> `HVAC` standalone x34
+    "MAX A/C": "A/C",        # `MAX A/C` x26   -> `A/C` standalone x18 (+AC x11)
+    "MAX DEF": "DEFROST",    # `MAX DEFROST` x2 / `FRONT/MAX DEFROST` x4
+                             #                 -> `DEFROST` standalone x17
+    "REAR DEF": "DEFROST",   # `REAR DEFROST` x19 -> `DEFROST` standalone x17
+    # 44 §4 — reached by COMPOSING two measured facts, not by ruling and not by
+    # inference: (a) `FRONT DEF` = `FRONT DEFROST` is an equivalence measured
+    # in SYNONYMS above; (b) `FRONT DEFROST`'s last word is `DEFROST`, attested
+    # standalone x15. 32 §2.1 reported this edge as unreachable because the
+    # rule was applied to surface forms WITHOUT first normalising them. The fix
+    # is the composition, not a hand-added row.
+    "FRONT DEF": "DEFROST",  # via `FRONT DEFROST` x2 -> `DEFROST` x15
+}
+# !! INCOMPLETE by construction (R-C37): the table is derived from attested
+# !! surface forms, so a specialisation whose generic never appears inside any
+# !! of its own surface forms cannot be reached. Currently empty — 32 §2.1's
+# !! only entry (`FRONT DEF`) was closed by 44 §4's composition, and the reason
+# !! it looked unreachable was that the rule ran before normalisation, not that
+# !! the evidence was missing.
+HIERARCHY_GAPS = {}
+
+
+def expand(tokens: set) -> set:
+    """Canonical tokens plus the generic each specialisation implies.
+
+    44 §4 — the hierarchy's OUTPUT is passed through the equivalence groups
+    again. Today that is a no-op (every generic is already canonical), and it
+    is written anyway: the failure it prevents is silent, and the two tables
+    are maintained independently, so the day a generic gains a variant nothing
+    would shout.
+    """
+    return normalise(tokens | {HIERARCHY[t] for t in tokens if t in HIERARCHY})
 
 
 def normalise(tokens: set) -> set:
@@ -173,13 +230,29 @@ def load_table() -> list:
 # against that side's CLAUSE; the day that side is generated, the thing to
 # compare against is a TC. Same verdict, different object. The flag says "look
 # again", not "you were wrong" — re-confirmation may keep the verdict.
-FIELDS = ["outline", "sibling_outline", "verdict", "provisional",
+FIELDS = ["outline", "sibling_outline", "verdict", "provisional", "source",
           "reviewed_at", "reason"]
 DEFERRED_REASON = (
     "**依 41 §3 規則三入表（42 §2 之全量重建）。** 兩節皆未生成，現在判無處可用 —— "
     "sibling 判定之用途是寫 TC 時決定 `duplicate_of`／`distinguishing_axis`（§4.6）。"
     "其所屬組生成之日連同其他候選一併判定。**`deferred` 不是 `not-sibling`**：前者是"
     "「尚未問」，後者是「問過了，答案是否」")
+
+
+def hierarchy_reason(a: str, b: str, shared: set, has_class: bool) -> str:
+    edges = ", ".join(f"`{k}` → `{v}`" for k, v in sorted(HIERARCHY.items()))
+    head = (f"**本對僅因階層關係而成為候選（43 §2，`source = via-hierarchy`）。** "
+            f"`{a}` 與 `{b}` 之詞彙集**無交集**；其共有語彙 {sorted(shared)} "
+            f"係由特化詞導出之泛化詞（表：{edges}）。**階層不是等價** —— "
+            f"每個 AUTO ECO 都是 AUTO，但 AUTO 不必然是 AUTO ECO，"
+            f"故本表單向且其輸出另標來源，不併入等價組。")
+    if has_class:
+        return head + ("依 43 §2，**不逐對**，沿用該高頻詞之類級處置；"
+                       "其效力同 41 §4：三對抽樣足以破類、不足以證類，"
+                       "所屬節生成之日轉為逐對判定。")
+    return head + ("共有語彙為**低頻詞**，無既有類級判定可沿用，"
+                   "故記 `deferred`（尚未問）而非類級 verdict —— "
+                   "對一個沒有類的詞給類級 verdict，等於宣稱一個沒有人做過的判定。")
 
 
 def generated_outlines() -> set:
@@ -204,18 +277,31 @@ NEVER_FINAL = {"deferred", "not-broken-by-3-samples (class)"}
 
 
 def provisional_of(k: tuple, rec: dict, gen: set) -> str:
-    """42 §1. Monotone in one direction only: once a human clears a row by
-    writing `false`, a later rebuild must not set it back to `true` — the
-    clearing IS the re-confirmation the gate asked for. Recomputing it would
-    make the gate un-satisfiable and the work invisible."""
+    """42 §1 / 43 §1. A RECORDED flag is never recomputed — in either
+    direction. Two failures are being avoided at once:
+
+      true -> false : the rebuild would clear the flag the moment the missing
+                      side landed, which is the exact instant the gate is
+                      supposed to ASK about. The machine would be stamping the
+                      rubber stamp itself, and the re-confirmation would never
+                      happen. (Measured: batch 6 generated 16.2/16.14/16.16 and
+                      16 rows cleared themselves before anyone looked.)
+      false -> true : a human's re-confirmation would be undone by the next
+                      rebuild, so the work would leave no trace and the gate
+                      could never be satisfied.
+
+    The flag is therefore computed ONCE, when the row is first written, and
+    changed only by hand thereafter.
+    """
     if rec["verdict"] in NEVER_FINAL:
         return "true"
-    if rec.get("provisional") == "false":
-        return "false"
+    prior = rec.get("provisional")
+    if prior in ("true", "false"):
+        return prior
     return "false" if (k[0] in gen and k[1] in gen) else "true"
 
 
-def rebuild(pairs: dict, group: dict, gen: set, n_sections: int) -> None:
+def rebuild(pairs: dict, source: dict, gen: set, n_sections: int) -> None:
     """42 §2 — full rebuild with key merge. The table is machine-maintained:
     every candidate pair appears, judged or not, so that "not in the table"
     stops meaning "not yet reachable" and starts meaning "not a candidate".
@@ -229,10 +315,11 @@ def rebuild(pairs: dict, group: dict, gen: set, n_sections: int) -> None:
     for r in load_table():
         existing[key(r["outline"], r["sibling_outline"])] = r
 
-    def emit(k, rec, tally):
+    def emit(k, rec, tally, src):
         rows.append({"outline": k[0], "sibling_outline": k[1],
                      "verdict": rec["verdict"],
                      "provisional": provisional_of(k, rec, gen),
+                     "source": src,
                      "reviewed_at": rec["reviewed_at"],
                      "reason": rec["reason"]})
         stats[tally] += 1
@@ -240,18 +327,36 @@ def rebuild(pairs: dict, group: dict, gen: set, n_sections: int) -> None:
     rows, stats = [], Counter()
     for (a, b) in sorted(pairs, key=lambda p: key(*p)):
         k = key(a, b)
+        src = source[(a, b)]
         old = existing.pop(k, None)
         if old and old["verdict"] != "deferred":
-            emit(k, old, "kept")
+            emit(k, old, "kept", src)
+        elif src == "via-hierarchy" and pairs[(a, b)] <= HIGH_FREQUENCY:
+            # 43 §2 — hierarchy-derived pairs are NOT judged pair-by-pair;
+            # they inherit the class-level treatment of the high-frequency
+            # token they share. A class-level verdict needs a class, so this
+            # branch is conditional on there being one.
+            emit(k, {"verdict": "not-broken-by-3-samples (class)",
+                     "reviewed_at": str(n_sections),
+                     "reason": hierarchy_reason(a, b, pairs[(a, b)], True)},
+                 "new via-hierarchy (class)", src)
+        elif src == "via-hierarchy":
+            # Shared token is low-frequency, so no class exists to inherit.
+            # `deferred` says "not yet asked", which is true; a class verdict
+            # here would claim a judgement nobody made.
+            emit(k, {"verdict": "deferred", "reviewed_at": str(n_sections),
+                     "reason": hierarchy_reason(a, b, pairs[(a, b)], False)},
+                 "new via-hierarchy (deferred)", src)
         else:
             emit(k, {"verdict": "deferred", "reviewed_at": str(n_sections),
-                     "reason": DEFERRED_REASON}, "new deferred")
+                     "reason": DEFERRED_REASON}, "new deferred", src)
 
     # A judged row whose pair is no longer a candidate is NOT dropped — the
     # judgement was human work and its disappearance would be silent. It is
     # carried over and reported (R-C24's shape: exemptions are named lines).
     for k, old in sorted(existing.items()):
-        emit(k, old, "carried over (no longer a candidate)")
+        emit(k, old, "carried over (no longer a candidate)",
+             old.get("source", "vocab"))
 
     rows.sort(key=lambda r: key(r["outline"], r["sibling_outline"]))
     with TABLE.open("w", encoding="utf-8", newline="") as fh:
@@ -300,7 +405,10 @@ def main() -> None:
     tokens = {o: normalise(set(VOCAB.findall(txt)))
               for o, txt in sections.items()}
 
-    pairs = defaultdict(set)
+    # 43 §2 — lexical overlap first; the hierarchy only ever ADDS pairs, and
+    # a pair it adds is marked, never silently mixed with the lexical ones.
+    wide = {o: expand(t) for o, t in tokens.items()}
+    pairs, source = {}, {}
     outlines = sorted(sections)
     for i, a in enumerate(outlines):
         for b in outlines[i + 1:]:
@@ -310,7 +418,11 @@ def main() -> None:
                 continue
             shared = tokens[a] & tokens[b]
             if shared:
-                pairs[(a, b)] = shared
+                pairs[(a, b)], source[(a, b)] = shared, "vocab"
+                continue
+            shared = wide[a] & wide[b]
+            if shared:
+                pairs[(a, b)], source[(a, b)] = shared, "via-hierarchy"
 
     judged = {(r["outline"], r["sibling_outline"]): r for r in load_table()}
 
@@ -319,7 +431,13 @@ def main() -> None:
     print(f"high-frequency tokens are MARKED, not excluded (39 §4.1): "
           f"{sorted(HIGH_FREQUENCY)}")
     print(f"synonym groups applied (measured from the corpus, 39 §4.2): "
-          f"{ {k: v for k, v in SYNONYMS.items() if k != v} }\n")
+          f"{ {k: v for k, v in SYNONYMS.items() if k != v} }")
+    print(f"hierarchy applied, ONE-WAY and marked `via-hierarchy` (43 §2): "
+          f"{HIERARCHY}")
+    print(f"hierarchy gaps, named not hidden (R-C37): {HIERARCHY_GAPS}")
+    n_hier = sum(1 for k in pairs if source[k] == "via-hierarchy")
+    print(f"pairs by source: vocab {len(pairs) - n_hier}, "
+          f"via-hierarchy {n_hier}\n")
 
     unjudged = []
     for (a, b), shared in sorted(pairs.items()):
@@ -328,8 +446,9 @@ def main() -> None:
         if not rec:
             unjudged.append((a, b, sorted(shared)))
         hf = " high-frequency" if shared <= HIGH_FREQUENCY else ""
+        src = "" if source[(a, b)] == "vocab" else "  via-hierarchy"
         print(f"- {a:8} [{group[a]:22}] <-> {b:8} [{group[b]:22}] "
-              f"{sorted(shared)}  {mark}{hf}")
+              f"{sorted(shared)}  {mark}{hf}{src}")
 
     print(f"\n{len(pairs) - len(unjudged)} judged, {len(unjudged)} unjudged")
     print("\n!! NOT a completeness proof (R-C37): this list comes from lexical")
@@ -339,7 +458,7 @@ def main() -> None:
     print("!! candidate by this method', never 'no siblings remain'.")
 
     if args.rebuild:
-        rebuild(pairs, group, generated_outlines(), len(sections))
+        rebuild(pairs, source, generated_outlines(), len(sections))
         return
 
     for r in load_table():

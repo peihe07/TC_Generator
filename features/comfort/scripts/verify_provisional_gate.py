@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Reverse validation of the `provisional-sibling` gate (handoff 42 §1).
+"""Reverse validation of the `provisional-sibling` gate (42 §1, trigger
+corrected by 43 §1).
 
 A gate that has never been seen to FAIL has not been shown to work — a
 mis-wired condition and a satisfied condition print the same green line.
@@ -10,11 +11,17 @@ It does not shell out to lint_tcs.py. It imports the module and reuses the
 real `SECTION_TEST_SET` map and the real generated/ scan, so what is tested is
 the shipped predicate and not a re-implementation of it.
 
+The five cases were rewritten with the trigger. The OLD trigger ("either
+side's Test Set is complete") passed all five of its own cases while being
+wrong — because every case asserted what the predicate did, and none asserted
+what the flag MEANS. Case 5 below is the one that would have caught it: a row
+whose completed side is the generated side, and whose counterpart is still
+missing, must NOT fire.
+
 Usage:
     python3 features/comfort/scripts/verify_provisional_gate.py
 """
 
-import csv
 import json
 import sys
 from collections import defaultdict
@@ -27,75 +34,76 @@ import lint_tcs as L
 FEATURE = Path(__file__).resolve().parents[1]
 
 
-def completed_sets() -> set:
+def state() -> tuple:
     generated = {json.loads(p.read_text(encoding="utf-8"))["outline"]
                  for p in sorted((FEATURE / "generated").glob("*.json"))}
     by_set = defaultdict(set)
     for outline, test_set in L.SECTION_TEST_SET.items():
         by_set[test_set].add(outline)
-    return {ts for ts, outs in by_set.items() if outs <= generated}, generated
+    complete = {ts for ts, outs in by_set.items() if outs <= generated}
+    return generated, complete
 
 
-def due(rows: list, complete: set) -> list:
-    """The gate's predicate, verbatim from lint_tcs.py's gate body."""
+def due(rows: list, generated: set) -> list:
+    """The gate's predicate, verbatim from lint_tcs.py's gate body (43 §1)."""
     return [r for r in rows
             if r.get("provisional") == "true"
-            and (L.SECTION_TEST_SET.get(r["outline"]) in complete
-                 or L.SECTION_TEST_SET.get(r["sibling_outline"]) in complete)]
+            and r["outline"] in generated
+            and r["sibling_outline"] in generated]
 
 
 def main() -> int:
-    complete, generated = completed_sets()
+    generated, complete = state()
     rows = L.SIBLING_TABLE
     print(f"completed Test Sets: {sorted(complete)}")
     print(f"generated sections : {len(generated)} / {len(L.SECTION_TEST_SET)}")
 
-    # A section inside a completed set, and one that is not in any completed
-    # set — both taken from the live map so the test cannot drift from it.
-    inside = next(o for o, ts in sorted(L.SECTION_TEST_SET.items())
-                  if ts in complete)
-    outside = next(o for o, ts in sorted(L.SECTION_TEST_SET.items())
-                   if ts not in complete)
+    # Taken from the live state so the test cannot drift from it.
+    gen_a = sorted(generated)[0]
+    gen_b = sorted(generated)[-1]
+    ungen = next(o for o in sorted(L.SECTION_TEST_SET) if o not in generated)
+    # A generated section whose Test Set is COMPLETE — the old trigger's hook.
+    gen_in_complete = next(o for o in sorted(generated)
+                           if L.SECTION_TEST_SET.get(o) in complete)
 
     cases = [
-        # (label, row, expected-to-fire)
-        ("provisional row touching a completed set",
-         {"outline": inside, "sibling_outline": outside,
+        ("both sides generated, flag still true -> due",
+         {"outline": gen_a, "sibling_outline": gen_b,
           "verdict": "not-sibling", "provisional": "true"}, True),
-        ("same row, provisional cleared by re-confirmation",
-         {"outline": inside, "sibling_outline": outside,
+        ("same row, flag cleared by re-confirmation -> silent",
+         {"outline": gen_a, "sibling_outline": gen_b,
           "verdict": "not-sibling", "provisional": "false"}, False),
-        ("provisional row touching NO completed set",
-         {"outline": outside, "sibling_outline": outside,
+        ("neither side generated -> silent (nothing landed yet)",
+         {"outline": ungen, "sibling_outline": ungen,
           "verdict": "deferred", "provisional": "true"}, False),
-        ("sibling verdict is not exempt — the flag, not the verdict, decides",
-         {"outline": inside, "sibling_outline": outside,
+        ("verdict is irrelevant — the FLAG decides, sibling included",
+         {"outline": gen_a, "sibling_outline": gen_b,
           "verdict": "sibling", "provisional": "true"}, True),
-        ("the completed set may be on EITHER side",
-         {"outline": outside, "sibling_outline": inside,
-          "verdict": "not-sibling", "provisional": "true"}, True),
+        # 43 §1 — the case the old trigger got wrong.
+        ("generated side's set is COMPLETE but counterpart still missing "
+         "-> silent (the old trigger fired here, on unchanged evidence)",
+         {"outline": gen_in_complete, "sibling_outline": ungen,
+          "verdict": "not-sibling", "provisional": "true"}, False),
+        ("order does not matter — missing side may be on either side",
+         {"outline": ungen, "sibling_outline": gen_in_complete,
+          "verdict": "not-sibling", "provisional": "true"}, False),
     ]
 
     failures = []
     for label, row, expect in cases:
-        fired = bool(due([row], complete))
+        fired = bool(due([row], generated))
         ok = fired == expect
         print(f"  {'PASS' if ok else '**FAIL**'} — {label}: "
               f"fired={fired}, expected={expect}")
         if not ok:
             failures.append(label)
 
-    # The live table, measured rather than asserted.
-    live = due(rows, complete)
-    both = [r for r in live
-            if r["outline"] in generated and r["sibling_outline"] in generated]
+    live = due(rows, generated)
     print(f"\nlive table: {len(rows)} rows, {len(live)} due for "
           f"re-confirmation")
-    print(f"  of those, {len(both)} have BOTH sides generated")
-    print("  ^ this number is the point: re-confirmation can only use "
-          "evidence\n    it previously lacked when the OTHER side has "
-          "landed. Where it is 0,\n    the gate is asking for a second look "
-          "at unchanged evidence (上繳 31 §1.3)")
+    print("  every due row has BOTH sides generated by construction — that "
+          "is now\n  the trigger, so 'due' and 'has new evidence' are the "
+          "same set (43 §1)")
 
     if failures:
         print(f"\n**{len(failures)} case(s) FAILED**: {failures}")

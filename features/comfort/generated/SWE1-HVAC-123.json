@@ -1,0 +1,47 @@
+{
+ "parent": "SWE1-HVAC-123",
+ "outline": "16.17",
+ "batch": "ICS Temperature and Fan",
+ "source_clause": "C16.) If blower reduction occurs automatically due to an active Voice Recognition session , the change in fan speed is not displayed to the user.",
+ "reasoning": "驗證目標：16.17 定出語音辨識期間之自動風機降速**不顯示**於使用者，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：EMEA 軸取正向值（16.2，R-C29）；依 **R-C34** 第十三軸補（可觀察量為風速指示，屬 HVAC 畫面），第九軸補（風速指示在 head unit 之 comfort section），第十二軸不補。為什麼這樣切：本節僅一句一 leaf，不拆；其驗證形態為**否定式**（變化不顯示），故步驟以「降速前後各讀一次風速指示」建立基線與對照（§5.6），末步持驗證（§5.5）。刻意略過：**條文未給降速之幅度與其觸發之語音操作**，故步驟以「啟動語音辨識工作階段」為觸發而不指定任何語音指令內容，亦不寫入任何風速數值（§8.4.1 禁造值）；**本節之條款 id 標為 `C16.)`，與 `2.15` 之 `C16.)` 相撞**，屬 A-CF13 已登之四項之一，traceability 一律以 outline 為鍵（profile §1），故本條之 spec_ref 記 16.17 而非條款標籤。",
+ "keywords": [
+  "blower reduction",
+  "Voice Recognition",
+  "fan speed"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "ICS climate screen 之風速指示（本條驗其**不變**）",
+  "axis_9": "暴露 → 補（風速指示在 head unit 之 comfort section）",
+  "axis_12": "不暴露 —— 同 16.6",
+  "axis_13": "暴露 → 補（出處 2.14）",
+  "emea_ics": "**不適用（反向）** —— 取正向軸值 PC，出處 16.2"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-123",
+   "tc_id": "NR1L-ComfortHMI-114",
+   "tc_title": "Blower reduction during voice recognition is not shown",
+   "test_group": "Comfort",
+   "test_set": "ICS Temperature and Fan",
+   "test_item": "If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed shall not be displayed to the user",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen and read the fan speed indicator\n2. Start a Voice Recognition session and read the fan speed indicator\n3. End the Voice Recognition session and read the fan speed indicator",
+   "expected_result": "1. The climate screen shows the current fan speed\n2. The fan speed indicator is unchanged\n3. The fan speed indicator is unchanged",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.17; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

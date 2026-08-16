@@ -1,0 +1,98 @@
+{
+ "parent": "SWE1-HVAC-006",
+ "outline": "2.5",
+ "batch": "Climate Modes",
+ "source_clause": "C4.) Recirc has on/ off state. RECIRC is not available in certain modes. Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that. Recirc can automatically turn on AC. The recirc icon will display the vehicle model specific icon as displayed in the table. If the system cannot detect the vehicle model it will display the generic recirc symbol.",
+ "reasoning": "驗證目標：2.5（C4）定出 RECIRC 之 on/off 狀態、不可用時之灰化、可自動開啟 A/C，以及車型專屬圖示，四個 037 leaf 對應之，本輪產三條。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-141` 之灰化以 CCM 之可用性狀態為觸發，其失效與 `-140` 之 on/off 無關。刻意略過：**`006-04`（車型專屬 recirc 圖示）停下不產列** —— C4 之「as displayed in **the table**」未指名任何節次，全 129 節亦無該對照表之內容；此與 `16.16` 之座椅 off icon **同型**，併入 `DATA_REQUESTS` #32 之「configuration → icon 對照未定義」類。**16.5（ICE4）逐字重述該句且把表之位置寫成 `Climate Main page table`，仍未給對照** —— 故非 ch16 有而 ch2 無，是兩側皆無。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 RECIRC 按鈕（含灰化）",
+  "axis_9": "暴露 → 全數補 —— 可觀察量皆在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本節之 ch16 對造與其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-006-01",
+   "tc_id": "NR1L-ComfortHMI-140",
+   "tc_title": "RECIRC has an on and off state",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "Recirc shall have an on/off state",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"RECIRC\" on the climate screen\n2. Press \"RECIRC\" again",
+   "expected_result": "1. The \"RECIRC\" button is highlighted\n2. The \"RECIRC\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "yes",
+    "ch16_sentence": "ICE3 之 RECIRC 側（鏡射表 partial：涵蓋 RECIRC 之 on/off 狀態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-006-02",
+   "tc_id": "NR1L-ComfortHMI-141",
+   "tc_title": "RECIRC greys out when the CCM reports it unavailable",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The system shall gray out the RECIRC button when the recirc availability status from CCM denotes that RECIRC is not available",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the recirc availability status from the CCM to unavailable\n2. Read the \"RECIRC\" button on the climate screen",
+   "expected_result": "1. The climate screen is displayed\n2. The \"RECIRC\" button is greyed out",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "鏡射表之分界欄明載「未涵蓋：C4 之可用性灰化（gray out when recirc availability status from CCM denotes that）」"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-006-03",
+   "tc_id": "NR1L-ComfortHMI-142",
+   "tc_title": "RECIRC turns A/C on automatically",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "Recirc shall be able to automatically turn on AC",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"A/C\" off and \"RECIRC\" off from the climate screen\n2. Turn \"RECIRC\" on and read the \"A/C\" button",
+   "expected_result": "1. Neither \"A/C\" nor \"RECIRC\" is highlighted\n2. The \"A/C\" button is highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "鏡射表之分界欄明載「未涵蓋：… 與 recirc 可自動開啟 AC」"
+   }
+  }
+ ]
+}

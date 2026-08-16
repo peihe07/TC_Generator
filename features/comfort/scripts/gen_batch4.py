@@ -229,6 +229,29 @@ BATCHES = [
     # --------------------------------------------------------------- 2.6.1
     {
         "parent": "SWE1-HVAC-009",
+        # 51 §2.1 / §4.6 — 2.11 (C12) is now generated, so this doc's sibling
+        # judgement has to be backfilled. It is NOT `see per-TC titles`: the
+        # sibling is another SECTION, and what separates the two is the axis
+        # below. §10.6's strict-equivalence test on the overlapping pair:
+        #   -053 vs -150  trigger: SYNC on + change driver temp
+        #                 outcome: passenger temp follows        -> IDENTICAL
+        #   -054 vs -151  trigger: SYNC on + change passenger temp
+        #                 outcome: SYNC turns off                -> IDENTICAL
+        # Those two pairs ARE strictly equivalent. duplicate_of is NOT set,
+        # for a reason worth stating rather than hiding: §10.6's field is
+        # DOC-level and a digits-only workbook row, while the duplication here
+        # is per-TC (2 of 6 here, 2 of 3 there). Setting it would claim the
+        # whole section duplicates the other, which is false. Reported in
+        # 上繳 35 §8.4 as a granularity question for the analysis layer.
+        "distinguishing_axis": {
+            "axis": "which side of SYNC the section owns (2.6.1 vs 2.11)",
+            "delta": "`2.6.1`（C5.1）之主題為**溫度之調整途徑**（箭頭 1 增量、長按快移、"
+                     "滑桿把手、跳值），SYNC 之連動是其中一句；`2.11`（C12）之主題為 "
+                     "**SYNC 這個功能本身**（其高亮指示、單區不顯示、對前後排風速與模式之作用）。"
+                     "**惟 `-053`／`-054` 與 `-150`／`-151` 兩對為嚴格等價**（trigger／outcome／"
+                     "input／verification target 四項皆同）—— 依 R-C33 037 之單位不動，"
+                     "故兩側各自保留其 leaf 與 TC；`duplicate_of` 未設，理由見上方註解",
+        },
         "outline": "2.6.1",
         "reasoning":
             "驗證目標：2.6.1（C5.1）定出 SYNC 下之驅動關係，以及溫度之四種調整途徑（箭頭、長按、滑桿跳值／語音、滑桿把手），六個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 climate screen 之溫度滑桿與 TEMP popup，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；-01／-02 另取第二軸，其事實出處為 **2.11**「Sync is not shown for single zone climate configurations」，依 R-C29 標 (2.11) 並併入 specification_reference。**與 2.11 之 sibling 關係**：2.11（`Climate Modes` 組，尚未生成）亦述「changing the driver temperature automatically changes the passenger temperature」與「Adjusting the passenger temperature … would break SYNC」，與本節 -01／-02 為同一行為之兩處陳述；依 §8.2 單位歸 037，本節之 leaf 為 `SWE1-HVAC-009-01`／`-02`，`duplicate_of` 因 2.11 尚無列號而暫空，該組生成時須依 §4.6 回填（見上繳 24 §6）。為什麼這樣切：四種調整途徑之操作元件互異，失效可各自發生。刻意略過：語音命令之辨識行為屬他份文件，本節只驗其結果為溫度跳至該值（§8.2.1）。",
@@ -620,7 +643,9 @@ def main() -> None:
             "reasoning": b["reasoning"],
             "keywords": b["keywords"],
             "duplicate_of": "",
-            "distinguishing_axis": {"axis": "see per-TC titles", "delta": ""},
+            "distinguishing_axis": b.get(
+                "distinguishing_axis",
+                {"axis": "see per-TC titles", "delta": ""}),
             "assumptions": [],
             "interface_axis_review": INTERFACE_AXIS_REVIEW[o],
             "tcs": tcs,

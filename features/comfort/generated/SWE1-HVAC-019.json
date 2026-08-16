@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-019",
+ "outline": "2.13",
+ "batch": "Climate Modes",
+ "source_clause": "C14.) MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality. MAX A/C has an on/off state that is indicated on climate screen (highlight button if on). MAX A/C modifies multiple climate parameters. On/Off logic should follow requirements from VF HVAC document.",
+ "reasoning": "驗證目標：2.13（C14）定出 MAX A/C 之畫面採用時機、on/off 狀態呈現，以及其對多項氣候參數之修改與 On/Off 邏輯之委派，三個 037 leaf 對應之，本輪產一條。關鍵情境條件：第四軸（MAX A/C 有無）—— C14 首句「MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality」為明文配置條件，故起始 PC 取該軸之有值，出處 2.13；依 **R-C34** 第九軸與第十三軸暴露 → 補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-152` 之可觀察量為按鈕高亮，與被委派之參數修改邏輯無關，故可獨立成條。刻意略過：**`019-02`／`019-03` 停下不產列** —— C14 之「On/Off logic should follow requirements from **VF HVAC document**」為**對外部文件之明文委派**，依 profile §5.3 之判別次序屬 `[BLOCKED-SPEC]`，而該 marker 之白名單增列須經裁定（**R-C26**：豁免不可自取），故停下回報，形態與 `080-02`／`081-02` 相同。**不以 16.13（ICE12）之逐項列舉補之** —— 那是另一套介面之條文，援引即跨介面移植（§8.2.1）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 MAX A/C 按鈕",
+  "axis_9": "暴露 → 全數補 —— 可觀察量皆在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本節之 ch16 對造與其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-019-01",
+   "tc_id": "NR1L-ComfortHMI-152",
+   "tc_title": "MAX A/C is highlighted on the climate screen when on",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "MAX A/C shall have an on/off state that is indicated on the climate screen by highlighting the button",
+   "pre_conditions": "1. [spec-derived] The vehicle has MAX A/C functionality, whose presence the CCM relays (2.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Press \"MAX A/C\" again",
+   "expected_result": "1. The \"MAX A/C\" button is highlighted\n2. The \"MAX A/C\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.13",
+    "verdict": "yes",
+    "ch16_sentence": "ICE12「MAX A/C has an on/off state that is indicated on climate screen (highlight button if on)」逐字相同"
+   }
+  }
+ ]
+}

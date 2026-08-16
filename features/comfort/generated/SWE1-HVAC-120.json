@@ -1,0 +1,88 @@
+{
+ "parent": "SWE1-HVAC-120",
+ "outline": "16.14",
+ "batch": "ICS Anatomy",
+ "source_clause": "ICE13.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature.",
+ "reasoning": "驗證目標：16.14（ICE13）以兩句定出 MTC 於 ICS 介面之適用與其與 ATC 之差異，三個 037 leaf 分別對應「MTC 畫面與 popup 被採用」「無離散溫度設定」「無對設定溫度之 AUTO 控制」，一葉一 TC（§8.2.1）。關鍵情境條件：EMEA 軸取正向值（`PC_EMEA`）；`CCM relays MTC functionality` 為條文明文之配置條件，標 spec-verbatim；依 **R-C34** 第十三軸全數補（本節之可觀察量正是 HVAC 畫面與 popup，而 C15 之 3 旋鈕例外恰以「MTC **with ICS**」為前件），第九軸全數補（可觀察量在 head unit 之 comfort section），第十二軸不補（ch16 無 tab 條文）。為什麼這樣切：`-02` 與 `-03` 是同一句之兩個並列否定（`lack of discrete temperature settings` 與 `\"Auto\" control over the set temperature`），037 各給其 leaf，依 §8.2 單位歸 037 不合併，且兩者之可觀察元件不同。刻意略過：**鏡射表反向使用之關鍵結果** —— `ch16_mirror_map.tsv` 記 `16.14 ↔ 2.14` 為 `mirrored`，惟 **ICE13 全文僅 C15 之首二句，C15 之 3 旋鈕 ICS 整段於 ch16 不存在**，故本節之 TC **不驗**該例外行為（§8.2.1），只以其為第十三軸之出處而引 2.14（R-C29）；此即 `RUNBOOK.md`「節級看開頭，TC 級看那一句」之反向應用。",
+ "keywords": [
+  "MTC",
+  "ATC",
+  "CCM",
+  "discrete temperature settings"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "ICS 之 MTC climate screen 與 MTC temperature popup",
+  "axis_9": "暴露 → 全數補（可觀察量在 head unit 之 comfort section）",
+  "axis_12": "不暴露 —— 同 16.2，ch16 無 tab 條文",
+  "axis_13": "暴露 → 全數補；C15 之例外前件為「MTC **with ICS**」，與本節之前件（CCM relays MTC）直接相交，故本節尤須補。**惟不驗該例外行為** —— ICE13 僅 C15 之首二句，3 旋鈕整段於 ch16 不存在（§8.2.1）",
+  "emea_ics": "**不適用（反向）** —— 取正向軸值 PC，出處 16.2"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-120-01",
+   "tc_id": "NR1L-ComfortHMI-091",
+   "tc_title": "MTC screens and pop-ups are used when CCM relays MTC",
+   "test_group": "Comfort",
+   "test_set": "ICS Anatomy",
+   "test_item": "MTC screens and popups shall be used when CCM relays MTC functionality",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-verbatim] The CCM relays MTC functionality (16.14)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Change the temperature using the temperature hard control from a screen other than the climate screen",
+   "expected_result": "1. The MTC climate screen is displayed\n2. The MTC temperature pop-up is displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-120-02",
+   "tc_id": "NR1L-ComfortHMI-092",
+   "tc_title": "MTC offers no discrete temperature settings",
+   "test_group": "Comfort",
+   "test_set": "ICS Anatomy",
+   "test_item": "MTC climate shall be differentiated from ATC by the lack of discrete temperature settings",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-verbatim] The CCM relays MTC functionality (16.14)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Read the temperature control on the climate screen",
+   "expected_result": "1. The MTC climate screen is displayed\n2. No discrete temperature setting is shown on the temperature control",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-120-03",
+   "tc_id": "NR1L-ComfortHMI-093",
+   "tc_title": "MTC offers no AUTO control over the set temperature",
+   "test_group": "Comfort",
+   "test_set": "ICS Anatomy",
+   "test_item": "MTC climate shall be differentiated from ATC by the lack of \"Auto\" control over the set temperature",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-verbatim] The CCM relays MTC functionality (16.14)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Read the climate screen for an \"AUTO\" control over the set temperature",
+   "expected_result": "1. The MTC climate screen is displayed\n2. No \"AUTO\" control over the set temperature is shown",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

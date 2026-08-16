@@ -22,6 +22,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
 | A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
+| A-CF26 | **跨 feature（範本）** | 通用空白範本 `SWQT_20260121` 之資料工作表，**P 欄下拉（優先級）之 DV `sqref` 僅 `P10:Q11`**，`T–Z` 與 `AF` 同；B 欄編號公式與 R 欄下拉止於 row 59。**非 Comfort 之產物，凡以該範本為母本者皆然** —— **privacy 以同一份範本交付 11 條（row 10–20），其 row 12–20 之 P 欄同樣無下拉約束，且該檔已交付** | OPEN（**RD-1 候選**，DATA_REQUESTS #36，**High**）；依 R-C21 登於本帳並具名對象。**privacy 側已於 2026-08-15 唯讀實測**（`ad595ed0…`，11 列，`P10:Q11`，row 12–20 受影響），**未寫入該 feature 任何檔案** | Comfort：DR #35 之同源，寫回產物於範本擴充前不可交付。privacy：**處置由 Pei 決定是否回溯**，本 pipeline 未動其任何檔案 |
+| A-CF25 | spec 內部瑕疵 | `16.2`（ICE1）之「with the exception of the recirculation led in climate off (**see ICE11.**)」—— **ICE11 為 `16.12`（Airflow Modes has 5 states），不含 recirculation LED 之任何規則**；該規則實在 **ICE9（`16.10`）**「When climate is OFF, the recirculation LED of the hard control is on」。**條文之交叉引用指錯節** | OPEN（**不列 RD-1** —— 與 A-CF13 同類之 spec 內部瑕疵，不阻塞）| `NR1L-ComfortHMI-083` 只驗 ICE1 自身所述之例外（畫面不反映該變更），不依該誤引取用 16.10 之內容（§8.2.1） |
 | A-CF24 | 量測範圍 | 上繳 30 §5.3 以 `find . -maxdepth 3` 於 repo root 找 037 得零命中，據以記「不可達」；實際路徑 `features/comfort/inputs/…` 深度為 4。**pattern 對，深度不足** | **RESOLVED**（42 §4，037 已讀，名單已重建）| A-CF23 之 18 leaf 清單延後一輪；無 TC 受影響 |
 | A-CF23 | 讀取能力 | **037** 之 Requirement Description 內含 52 個圖片標記（25 個 leaf），內容不可讀；SYS1 export 之 `section_fulltext.tsv` 則 0 命中 | OPEN（**不列 RD-1**；DR #23 為工具需求，Low）| 已生成之 7 條逐條複查完畢，見本條之影響清單；其餘 18 leaf 之檢查落為 `RUNBOOK.md` 生成時必答項 |
 | A-CF22 | note | 3 旋鈕 ICS 車輛之 head unit 是否仍顯示座椅類 popup，spec 未述 | OPEN（**不列 RD-1** —— 在 Comfort spec 範圍外）| 無（`-002` 維持不補）|
@@ -1131,3 +1133,104 @@ ER 雖以「toggled ON」／「active」陳述，**其判讀依據不在條文�
 `feature.yaml` 之 `paths` 以 feature dir 為起點，我卻在 repo root 執行
 `ls inputs/`。**R-C30 要求載明搜尋範圍，本例即其價值**：範圍寫下來了，
 所以錯在哪一眼就看得出來，不必重猜。登為 **A-CF24**。
+
+## A-CF26 —— 通用空白範本之 DV 涵蓋不足（跨 feature）
+
+**發現於**：第二次寫回（ENTRY 004）之 assertion 13（上繳 33 §9.3）。
+
+### 實測
+
+對象：`inputs/FM-WI-FSM-036-A01 …_SWQT_20260121.xlsx`（SHA256
+`cd876c202c71e74b…`）之資料工作表，以及自其產出之 prepared 檔
+（`b68117a2…`）—— 兩者於此性質上相同。
+
+| 項 | 涵蓋範圍 | 缺口 |
+|---|---|---|
+| B 欄編號公式 | row 10–59 | row 60 起無列號 |
+| R 欄 x14 下拉（design_method 九項）| `R10` ＋ `R11:R59` | row 60 起無下拉 |
+| **P 欄 DV（priority）** | **`P10:Q11`** | **row 12 起無下拉** |
+| `T–Z` DV | `T10:Z11` | row 12 起無下拉 |
+| `AF` DV | `AF10:AF11` | row 12 起無下拉 |
+
+### 為何是跨 feature —— **已實測，不再是轉述**
+
+**該範本是通用空白母本，不是 Comfort 產生的。** 凡以其為母本者，
+其交付件於 row 12 之後皆無 P 欄下拉約束。
+
+**privacy 側之實測（50 §5 授權唯讀量測；本 pipeline 未寫入該 feature 任何檔案）**：
+
+| 項 | 實測值 |
+|---|---|
+| 檔 | `features/privacy/output/…_Privacy_20260813_regen-v1.xlsx`（63,001 bytes）|
+| SHA256 | `ad595ed0cad24375b64762679487e1e79c714b06f203c0b0c081d6da3b420b7f` |
+| 身分 | 與 privacy `DELIVERY.sha256` 所記**已置入客戶交付夾**之副本 hash 相同 |
+| 資料工作表 | `Test Case Specification 測試用例規範`，`dimension A1:AH59` |
+| **已填列** | **row 10–20，共 11 列**（`NR1L-Privacy-001` ～ `-011`）|
+| **P 欄 DV `sqref`** | **`P10:Q11`** |
+| R 欄 x14 `sqref` | `R10` ＋ `R11:R59` —— **11 列全在範圍內**，故 design_method 側無缺口 |
+| `T–Z` / `AF` DV | `T10:Z11` / `AF10:AF11` |
+
+**故 privacy 已交付件之 `row 12–20`（9 列）確實無 P 欄下拉約束，
+且其 R 欄下拉完好。** 上繳 34 §9.6 自陳該句為「轉述分析層陳述」，
+本輪已改為實測，數字與 46 §2 所述相符。
+
+> **一份未經實測之 anomaly 陳述，正是本 pipeline 反覆指出的問題**（50 §5）。
+> R-C21 禁的是代他 feature 建檔與修改其既有檔案，**唯讀量測不在其列**。
+
+### 性質 —— 內容正確而約束缺失
+
+**已寫入之值不受影響**：priority 由 generator 產出並經 lint 之
+`priority` gate 檢查（`P0`–`P3`），故交付件之**內容不是錯的**。
+缺的是**下拉約束**，其作用在於保護**後續之人工編輯** ——
+評閱者或測試員於 Excel 內改 P 欄時，row 12 之後不會有任何阻擋。
+
+**故本項不是「已交付之內容有誤」，是「已交付之防呆缺一段」。**
+兩者之緊急度不同，處置亦不同，記明以免被讀成前者。
+
+### 處置
+
+依 **R-C21**（跨 feature 之發現登於發現者之帳並具名對象）：
+登於 Comfort 之 `ANOMALIES.md` 與 `DATA_REQUESTS.md` **#36（High）**，
+具名對象為 **privacy** 及其他以 `SWQT_20260121` 為母本之 feature。
+
+**不代改 privacy 之任何檔案** —— 是否回溯由 Pei 決定。
+本 pipeline 於本輪未讀寫 `features/privacy/` 之任何檔案。
+
+**為何當初沒被發現**：ENTRY 002 之 pilot 寫 14 列（row 10–23），
+其 assertion 九項**完全沒有檢查 DV 涵蓋**；profile §0.1 之 Excel 四項確認
+問「R 欄下拉可用且為九項」，而 **R10 恰在範圍內**，故人與程式兩端都通過了。
+**一個檢查沒問的問題，不會因為別的檢查通過而變成已答**（上繳 33 §9.3）。
+今已補為 assertion 13。
+
+---
+
+## A-CF25 —— `ICE1` 之交叉引用指向錯誤條款（spec 內部瑕疵）
+
+**發現於**：批次 6（`ICS Anatomy`）生成時逐句讀 `16.2`。
+
+`ICE1` 末於其例外子句附一個具名引用：
+
+> these changes are reflected in both locations **with the exception of the
+> recirculation led in climate off (see ICE11.)**
+
+實測三節：
+
+| 條款 | 節次 | 內容 | 含 recirculation LED 規則？ |
+|---|---|---|---|
+| **ICE11** | `16.12` | `Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet …)` | **否** —— 全句無 `recirc` 字樣 |
+| **ICE9** | `16.10` | `When climate is OFF, the recirculation LED of the hard control is on. Action on the recirculation hard control will not turn system back on; it simply opens the recirculation and turns led off.` | **是** |
+
+**故 ICE1 之 `see ICE11.` 應為 `see ICE9.`。**
+
+**與 A-CF13 同類**（條款標籤之可靠性問題），但形態相反：A-CF13 之四項是
+**同一標籤跨多節**（`C16.)` 跨 2.15／16.17 等），本項是**引用指向錯誤標籤**。
+兩者合看，同一結論再次成立 —— **條款標籤不是唯一鍵，traceability 一律以
+outline 節次為鍵**（profile §1）。
+
+**處置**：`NR1L-ComfortHMI-083`（`SWE1-HVAC-106-02`）只驗 ICE1 自身所述之
+例外（climate off 時該變更不反映於畫面），**不依該誤引去取用 16.10 之
+LED 規則**（§8.2.1：引用另一節之事實不等於驗證另一節之行為）。
+`16.10` 亦未列入該條之 `specification_reference`。
+
+**不列 RD-1**：spec 內部之引用錯誤，不影響本 feature 之取材，且該行為之
+正確規則在本 feature 範圍內（`16.10`，`ICS Climate Modes` 組，尚未生成）。

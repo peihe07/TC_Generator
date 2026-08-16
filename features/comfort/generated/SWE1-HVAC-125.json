@@ -1,0 +1,203 @@
+{
+ "parent": "SWE1-HVAC-125",
+ "outline": "17.2",
+ "batch": "Home Screen Widget",
+ "source_clause": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes. 12' Portrait 50% widget also includes fan speed.",
+ "reasoning": "驗證目標：17.2（CW1）定出 Comfort widget 之預設畫面為 Climate 畫面，並列出其所含之六類元素，八個 037 leaf 分別對應「預設畫面」「畫面包含以下」與六個元素，一葉一 TC（§8.2.1）；其中 `-02`「screen includes:」為冒號引導句，**其可觀察量即該六元素之同時呈現**，故以一條驗六者俱在，與各元素之單獨條不重疊（§4.5：前者驗集合、後者驗個別元素之可操作性）。關鍵情境條件：依 **R-C34**，第九軸與第十三軸暴露 → 全數補；EMEA 排除補（ch16 無 widget 條文）；`-06`（MAX A/C）另補第四軸（MAX A/C 有無，出處 2.13），`-05`（SYNC）另補第二軸（非單區，出處 2.11）。為什麼這樣切：六個元素之失效互相獨立（AUTO 在而 SYNC 缺）。刻意略過：**`-08`（12\" Portrait 50% widget 之風速）停下不產列** —— 螢幕尺寸與 widget 尺寸**不在 profile §3.2 之十五軸內**，依該節「配置軸不在既有軸內即停」；其來源問題即 **DR #6**（本次交付出哪幾種螢幕配置），未解。",
+ "keywords": [
+  "Comfort widget",
+  "Climate screen",
+  "default screen",
+  "widget elements"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "Comfort widget 之 Climate 畫面及其六類元素（雙側溫度／auto／sync／Max A/C／氣流模式）",
+  "axis_9": "暴露 → 全數補（同 17.1）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（出處 2.14）",
+  "emea_ics": "補排除 —— ch16 無 widget 條文；逐條答見各 TC 之 `emea_ics_review`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-125-01",
+   "tc_id": "NR1L-ComfortHMI-118",
+   "tc_title": "Comfort widget defaults to the Climate screen",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The default screen for the Comfort widget shall be the Climate screen",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Move the Comfort widget to its second screen and leave the home screen\n2. Open the home screen",
+   "expected_result": "1. The home screen is no longer displayed\n2. The Comfort widget shows the Climate screen",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-125-02",
+   "tc_id": "NR1L-ComfortHMI-119",
+   "tc_title": "Climate widget screen shows all its listed elements",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Climate screen of the Comfort widget shall include driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is equipped with MAX A/C, whose screens are used when CCM relays its presence (2.13)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n5. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n6. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the home screen\n2. Read the Climate screen of the Comfort widget",
+   "expected_result": "1. The Comfort widget shows the Climate screen\n2. The driver temperature, the passenger temperature, the auto button, the sync button, Max A/C and the airflow modes are all shown",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-125-03",
+   "tc_id": "NR1L-ComfortHMI-120",
+   "tc_title": "Widget shows driver and passenger temperature",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Climate screen of the Comfort widget shall include driver and passenger temperature controls",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the driver temperature on the Comfort widget\n2. Change the driver temperature from the Comfort widget",
+   "expected_result": "1. The Comfort widget shows the driver temperature and the passenger temperature\n2. The Comfort widget shows the new driver temperature",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-125-04",
+   "tc_id": "NR1L-ComfortHMI-121",
+   "tc_title": "Widget shows the AUTO button",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Climate screen of the Comfort widget shall include the auto button",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Comfort widget for the auto button\n2. Press the auto button on the Comfort widget",
+   "expected_result": "1. The Comfort widget shows the auto button\n2. The auto button changes state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-125-05",
+   "tc_id": "NR1L-ComfortHMI-122",
+   "tc_title": "Widget shows the SYNC button",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Climate screen of the Comfort widget shall include the sync button",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Comfort widget for the sync button\n2. Press the sync button on the Comfort widget",
+   "expected_result": "1. The Comfort widget shows the sync button\n2. The sync button changes state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-125-06",
+   "tc_id": "NR1L-ComfortHMI-123",
+   "tc_title": "Widget shows the Max A/C button",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Climate screen of the Comfort widget shall include Max A/C",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is equipped with MAX A/C, whose screens are used when CCM relays its presence (2.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Comfort widget for the Max A/C button\n2. Press the Max A/C button on the Comfort widget",
+   "expected_result": "1. The Comfort widget shows the Max A/C button\n2. The Max A/C button changes state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-125-07",
+   "tc_id": "NR1L-ComfortHMI-124",
+   "tc_title": "Widget shows the airflow modes",
+   "test_group": "Comfort",
+   "test_set": "Home Screen Widget",
+   "test_item": "The Climate screen of the Comfort widget shall include airflow modes",
+   "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Comfort widget for the airflow modes\n2. Select an airflow mode on the Comfort widget",
+   "expected_result": "1. The Comfort widget shows the airflow modes\n2. The selected airflow mode is shown as active",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   }
+  }
+ ]
+}

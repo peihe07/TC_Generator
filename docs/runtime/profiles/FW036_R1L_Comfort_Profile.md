@@ -146,7 +146,7 @@
 |---|---|---|---|
 | 1 | ATC / MTC | 功能型 | 缺離散溫度與 Auto 控制（2.14）|
 | 2 | 單區 / 雙區 / 四區 | 功能型 | 無該區之控制 |
-| 3 | tri-mode 有無 | 功能型 | 無 tri-mode 功能 |
+| 3 | **前排氣流模式集合**（43 §3 換軸，原為「tri-mode 有無」）—— 三值：**4 模式**（2.12 `C13.`）／**5 狀態**（2.12.1 `C13.0`）／**tri-mode 3 鍵 7 組合**（3.1 `C19`）| 功能型 | 三值互斥：某值移除的不是「tri-mode 功能」，而是**另外兩組模式集合**。原二值軸無位置可放 `C13.0` 之 5 狀態（它是「非 tri-mode」之細分，非其並列項）|
 | 4 | MAX A/C 有無 | 功能型 | 無該功能 |
 | 5 | MAX DEF 有無 | 功能型 | 無該功能 |
 | 6 | 独立座椅分區有無 | 功能型 | 無該分區 |
@@ -159,16 +159,84 @@
 | 13 | **HVAC 實體控制型式**（33 §3）| **介面型** | 3 旋鈕 ICS → **無 HVAC menu bar icon／畫面／popup**（2.14）|
 | 14 | 前排 HVAC 風速範圍（37 §4）| 功能型 | `Off, 1-7`（2.7 `C6.`）／`Off, 1-8`（2.7.1 `C6.1`）—— 兩值皆不移除介面，改變者為值域 |
 | 15 | **動力系統（EV／BEV vs 非 EV）**（39 §2）| **功能型** | 非 EV 車輛無 `ECO HVAC` 這組能力；AUTO 鍵、Menu Bar icon 與 comfort popup **仍在**（10.5 引 `standard ICE AUTO logics`、10.9.1 對照 `the standard ICE AUTO pop up`）|
+| 16 | **Comfort Features 有無**（50 §1）—— 二值：**equipped**（17.3「all Comfort features **available to the vehicle** (i.e. Heated/Vented seats, Heated steering wheel)」）／**not equipped**（17.3「If the vehicle is **not equipped with Comfort Features** this widget page will not be shown」）| **功能型** | 無值移除的是**功能本身**（車上沒有加熱／通風座椅與加熱方向盤），widget 第二頁之消失是其**後果**而非另一個介面之移除；既有之「該功能有無」PC 即已排除。判定依據見下方附註 |
 | — | 機型軸 R1 Low / R1 High | 功能型 | `14.19` 之 `-02` 為唯一含此條件者 |
 | — | **市場／變體軸 EMEA ICS** | **介面型** | **ch16 全章為另一套介面** —— ch2／ch3 之 TC 於該車無對象 |
+
+> **第十六軸之類別判定（50 §1，2026-08-15）—— 功能型，其依據**
+>
+> R-C34 之判準為：某值移除的是**承載可觀察量之介面**（功能仍在）＝介面型；
+> 抑或**功能本身**＝功能型。
+>
+> 逐一比對既有之三個介面型軸，其共同形態是**功能還在，只是換了地方看或看不到**：
+> 第九軸（comfort section 移到下螢幕，氣候功能仍運作）、
+> 第十二軸（tabs 不顯示，各分頁之功能仍在）、
+> 第十三軸（3 旋鈕 ICS 無 HVAC 畫面，氣候仍可由旋鈕操作）。
+>
+> **第十六軸不是這個形態**：車輛若未配備 Comfort Features，
+> 加熱／通風座椅與加熱方向盤**本身就不存在**，不是「功能在而看不到」。
+> `17.3` 之「this widget page will not be shown」是**功能不存在之後果**，
+> 不是另一個介面之移除。
+>
+> **反面檢驗**（決定性）：介面型軸須逐條問「該軸之某值是否使**此介面**不存在」，
+> 其價值在於**功能仍在而別條 TC 之可觀察量消失**。
+> 實測全 124 條已生成 TC：**無一條之可觀察量位於 widget 第二頁**
+> （`17.3` 之二 leaf 已停下），亦**無一條之功能是 Comfort Features 而其
+> 可觀察量在別處**。故該軸不產生「功能仍在而觀察端消失」之情形。
+>
+> **結論：功能型 → 不進 `interface_axis_review` 之鍵，既有 124 條不回填。**
+> 其使用方式為正向或否定式 PC（如 `17.3` 之二 leaf），出處具名 `17.3`。
+
+> **第三軸換軸之附註（43 §3，2026-08-15）—— 值一之適用條件無條文**
+>
+> 三值皆逐字出現於條文，且全 129 節掃描（pattern `airflow mode|Airflow
+> Mode|distribution mode|mode buttons|states`，逐一命中判讀）無第四個前排值。
+> 惟 **`C13.` 陳述「There are 4 Airflow Mode」時未附任何配置條件** ——
+> 它是無限定之一般句，`C13.0` 才以 `In some non-tri mode equipment types`
+> 把 5 狀態切出來。
+>
+> 故**值一（4 模式）之適用條件只能由排除得出**（非 tri-mode、且非 5 狀態那類），
+> 而條文從未正面陳述它。這與 `2.1` 之 tab 集合同型（`DATA_REQUESTS` #17：
+> 條文說「depending on vehicle configuration」而不說哪種配置產生哪一組）。
+>
+> **後果，於 `Airflow and Defrost` 生成時必然遇到**：`2.12` 與 `2.12.2`
+> 之 TC 寫不出一句有出處的肯定式 PC 來選定值一。已登 `DATA_REQUESTS` #31。
+> `2.12.1`（值二）與 `3.1`（值三）不受影響 —— 兩者之條文各自帶正面限定語。
 
 **生成時之義務（非事後掃描）**：每條 TC 定稿前，指出其可觀察量所在之介面，
 並對**四個介面型軸**各問一次「該軸之某值是否使此介面不存在」。
 答是者補排除式 PC（出處依 R-C29 具名）；答否者於 `reasoning` 或上繳包
 具名理由。
 
+**生成時檢查清單之二：入口未定義**（48 §1，2026-08-15）——
+本項為 §8.4.1 與 R-C30 之**組合適用，非新規則**，故不另立 R-Cnn：
+條文已 39 條，每多一條即多一份被引錯或被遺忘的機會，能以既有條文組合
+表述者不另立。
+
+```
+生成時，若 procedure 之操作目標為條文所命名之畫面或功能，而其入口於本
+feature 之全部 spec 節內未定義：
+
+  一、照錄條文用語，不自造入口步驟（§8.4.1）
+  二、reasoning 具名該入口未定義
+  三、開 DR，歸入「入口未定義」類；同類合併為一項，逐例列其節次與詞
+  四、不阻塞
+
+判定「未定義」須具名搜尋範圍（R-C30）。
+```
+
+**現有二例**（`DATA_REQUESTS` #34 為該類之單一項）：
+`16.16` 之 `controls screen`（全 129 節 pattern `controls screen` 僅 1 命中，
+即該節自身）、`16.17` 之 `Voice Recognition session`
+（pattern `Voice Recognition|voice command` 命中 4 節，無一節定義如何啟動）。
+
+**此檢查與介面型軸之檢查不同**：軸問「這條在哪種車上跑不起來」，
+本項問「**這條的第一步做不做得到**」。兩者皆非 lint 可判，
+故同樣寫成生成時之必答項。
+
 - **設備配置軸**（本 feature 之主軸，逐節出現）：ATC / MTC、單區 / 雙區 /
-  四區、tri-mode 有無、MAX A/C 有無、MAX DEF 有無、独立座椅分區有無、
+  四區、**前排氣流模式集合（三值，第三軸，43 §3）**、MAX A/C 有無、
+  MAX DEF 有無、独立座椅分區有無、
   加熱方向盤 Multi-Level / Single-Level、Standard vs Multi-Level 座椅、
   **secondary lower screen 之有無**（第九軸，19 §2.1）、
   **REAR DEFROST 之有無**（第十軸，29 §2）、
@@ -176,22 +244,109 @@
   **僅前排氣候之有無**（第十二軸，33 §3）、
   **HVAC 實體控制型式**（第十三軸，33 §3）、
   **前排 HVAC 風速範圍**（第十四軸，37 §4）、
-  **動力系統（EV／BEV vs 非 EV）**（第十五軸，39 §2）
+  **動力系統（EV／BEV vs 非 EV）**（第十五軸，39 §2）、
+  **Comfort Features 有無**（第十六軸，50 §1，功能型）
 - **機型軸**：R1 Low / R1 High（`14.19` 之 `-02` 為唯一含此條件者）
 - **市場／變體軸**：EMEA ICS（ch16 全章）
 - **禁用**：`HU is powered on`、`Climate is available`（皆為隱含環境前提）
 
 <!-- AXIS-VALUES: machine-read by lint_tcs.py's axis-value-count gate.
      Do not reformat. Adding a value here without bumping
-     negation-reviewed-at-value-count is a FAIL by design (35 §4). -->
+     negation-reviewed-at-value-count is a FAIL by design (35 §4).
+
+     43 §4 — ONE BLOCK PER AXIS THAT USES A NEGATED pre_condition.
+     Until 43 §4 this existed for axis 13 alone, so the other four
+     negations (116 of the 181 negated PC lines) had no protection at
+     all. 34 §4's reason — a negated PC silently covers whatever values
+     the axis happens to have — does not depend on the axis number.
+
+     A negated PC whose phrase matches no block below, and is not named
+     in lint_tcs.py's NON_AXIS_NEGATIONS, is a FAIL. That is the part
+     that makes a NEW unprotected negation audible instead of silent.
+
+     44 §6 — `value-count` 之語意已改。原為「已知之值數」，現為
+     **「經 129 節全語料掃描，未見第 N+1 個值」**，每塊以 `scan:` 欄
+     具名其日期、pattern 與逐句判讀結果（R-C30）。無 `scan:` 欄者，
+     其 value-count 未經證明。
+
+     兩類窮盡，強度不同，`scan:` 欄一律載明係哪一類：
+       列舉窮盡   —— 值全部具名，無 catch-all（軸 2、軸 10）。
+                     gate 之 value-count 檢查在此類上是**活的**。
+       catch-all —— 值列以 `other` 收尾（軸 13、EMEA、軸 9）。
+                     此類**由構造保證窮盡**，故 value-count 永不會
+                     合法增加，gate 對它只能偵測「有人改了清單」，
+                     偵測不到「清單本來就漏了一個值」。
+                     這不是缺陷，是該檢查在此類軸上的能力上限，
+                     記之以免把它的綠燈讀成比實際更強的保證。
+-->
+
+```axis-values
+axis: 16  Comfort Features 有無
+values: equipped (17.3) | not equipped (17.3)
+value-count: 2
+negation: is not equipped with Comfort Features
+scan: 2026-08-15 | pattern `Comfort [Ff]eatures?` | 全 129 節 3 句命中：14.16 之 `comfort feature control`（指單一控制，非配備集合，不計）、17.3 之正向與否定兩句 | **二值為邏輯上之窮盡（有／無），非列舉**；類別判定為功能型，見 §3.2 之附註
+negation-reviewed-at-value-count: 2
+negation-users: NR1L-ComfortHMI-126
+# 值出處：17.3 CW2.（`all Comfort features available to the vehicle` /
+# `If the vehicle is not equipped with Comfort Features`）
+```
 
 ```axis-values
 axis: 13  HVAC 實體控制型式
 values: 3 knob ICS | one zone MTC with push button TEMPERATURE | other
 value-count: 3
+negation: does not have 3 knob HVAC controls with ICS
 negation-reviewed-at-value-count: 3
-negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065, NR1L-ComfortHMI-066, NR1L-ComfortHMI-067, NR1L-ComfortHMI-068, NR1L-ComfortHMI-069, NR1L-ComfortHMI-070, NR1L-ComfortHMI-071, NR1L-ComfortHMI-072, NR1L-ComfortHMI-073, NR1L-ComfortHMI-074, NR1L-ComfortHMI-075, NR1L-ComfortHMI-076, NR1L-ComfortHMI-077, NR1L-ComfortHMI-078, NR1L-ComfortHMI-079, NR1L-ComfortHMI-080, NR1L-ComfortHMI-081
+scan: 2026-08-15 | pattern `knob|physical control|hard control type|push button|rocker|toggle|ICS\b` | 15 句命中 | 三值互斥且以 `other` 收尾 → **窮盡係由 catch-all 保證，非由列舉**（見下方附註）
+negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065, NR1L-ComfortHMI-066, NR1L-ComfortHMI-067, NR1L-ComfortHMI-068, NR1L-ComfortHMI-069, NR1L-ComfortHMI-070, NR1L-ComfortHMI-071, NR1L-ComfortHMI-072, NR1L-ComfortHMI-073, NR1L-ComfortHMI-074, NR1L-ComfortHMI-075, NR1L-ComfortHMI-076, NR1L-ComfortHMI-077, NR1L-ComfortHMI-078, NR1L-ComfortHMI-079, NR1L-ComfortHMI-080, NR1L-ComfortHMI-081, NR1L-ComfortHMI-082, NR1L-ComfortHMI-083, NR1L-ComfortHMI-084, NR1L-ComfortHMI-085, NR1L-ComfortHMI-086, NR1L-ComfortHMI-087, NR1L-ComfortHMI-088, NR1L-ComfortHMI-089, NR1L-ComfortHMI-090, NR1L-ComfortHMI-091, NR1L-ComfortHMI-092, NR1L-ComfortHMI-093, NR1L-ComfortHMI-098, NR1L-ComfortHMI-099, NR1L-ComfortHMI-100, NR1L-ComfortHMI-101, NR1L-ComfortHMI-102, NR1L-ComfortHMI-103, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-106, NR1L-ComfortHMI-107, NR1L-ComfortHMI-108, NR1L-ComfortHMI-109, NR1L-ComfortHMI-110, NR1L-ComfortHMI-111, NR1L-ComfortHMI-112, NR1L-ComfortHMI-113, NR1L-ComfortHMI-114, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152
+# 值出處：2.14 C15.（3 旋鈕 ICS 例外；one zone MTC with push button TEMPERATURE 之反例外）
 ```
+
+```axis-values
+axis: EMEA  市場／變體軸 EMEA ICS
+values: EMEA ICS (ch16 之另一套介面) | other
+value-count: 2
+negation: is not an EMEA ICS vehicle
+negation-reviewed-at-value-count: 2
+scan: 2026-08-15 | pattern `EMEA|LATAM|market|ICS\b|region` | 5 句命中，**無一句字面出現 `EMEA`** | 值名源自 16.1 之適用性判讀（R-C15／A-CF08），非條文字面；以 `other` 收尾 → 窮盡由 catch-all 保證
+negation-users: NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152
+# 值出處：16.1 之適用性判讀（R-C15）＋ ch16_mirror_map.tsv；R-C36-1 之逐條問句另行承載
+```
+
+```axis-values
+axis: 9  secondary lower screen 之有無
+values: non-foldable secondary lower screen containing comfort information (6.3) | lower screen that can be stowed (13.2) | other
+value-count: 3
+negation: is not configured with a non-foldable secondary lower screen
+negation-reviewed-at-value-count: 3
+scan: 2026-08-15 | pattern `lower screen|secondary screen|stowed|stowable|foldable|second screen` | 6 句命中（6.3／13.2×3／13.3.1×2），13.3.1 之 `stowed/retracted` 仍屬既有第二值 | 未見第四值；以 `other` 收尾 → 窮盡由 catch-all 保證
+negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-034, NR1L-ComfortHMI-039, NR1L-ComfortHMI-042, NR1L-ComfortHMI-045, NR1L-ComfortHMI-046, NR1L-ComfortHMI-047, NR1L-ComfortHMI-059, NR1L-ComfortHMI-077, NR1L-ComfortHMI-082, NR1L-ComfortHMI-083, NR1L-ComfortHMI-089, NR1L-ComfortHMI-091, NR1L-ComfortHMI-092, NR1L-ComfortHMI-093, NR1L-ComfortHMI-094, NR1L-ComfortHMI-095, NR1L-ComfortHMI-096, NR1L-ComfortHMI-097, NR1L-ComfortHMI-098, NR1L-ComfortHMI-099, NR1L-ComfortHMI-100, NR1L-ComfortHMI-102, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-106, NR1L-ComfortHMI-107, NR1L-ComfortHMI-108, NR1L-ComfortHMI-109, NR1L-ComfortHMI-110, NR1L-ComfortHMI-112, NR1L-ComfortHMI-113, NR1L-ComfortHMI-114, NR1L-ComfortHMI-115, NR1L-ComfortHMI-116, NR1L-ComfortHMI-117, NR1L-ComfortHMI-118, NR1L-ComfortHMI-119, NR1L-ComfortHMI-120, NR1L-ComfortHMI-121, NR1L-ComfortHMI-122, NR1L-ComfortHMI-123, NR1L-ComfortHMI-124, NR1L-ComfortHMI-125, NR1L-ComfortHMI-126, NR1L-ComfortHMI-127, NR1L-ComfortHMI-128, NR1L-ComfortHMI-129, NR1L-ComfortHMI-130, NR1L-ComfortHMI-131, NR1L-ComfortHMI-132, NR1L-ComfortHMI-133, NR1L-ComfortHMI-134, NR1L-ComfortHMI-135, NR1L-ComfortHMI-136, NR1L-ComfortHMI-137, NR1L-ComfortHMI-138, NR1L-ComfortHMI-139, NR1L-ComfortHMI-140, NR1L-ComfortHMI-141, NR1L-ComfortHMI-142, NR1L-ComfortHMI-143, NR1L-ComfortHMI-144, NR1L-ComfortHMI-145, NR1L-ComfortHMI-146, NR1L-ComfortHMI-147, NR1L-ComfortHMI-148, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151, NR1L-ComfortHMI-152
+# 值出處：6.3 CM1.（不可收合者）／13.2 LS1.（stowed position 蘊含可收合者）
+```
+
+```axis-values
+axis: 2  單區 / 雙區 / 四區
+values: single zone (2.11) | dual zone (2.6) | 4 zone (7.10)
+value-count: 3
+negation: is not a single zone climate configuration
+negation-reviewed-at-value-count: 3
+scan: 2026-08-15 | pattern `single zone|dual zone|4 Zone|four zone|tri zone|zone climate|zones` | 10 句命中，逐句判讀：2.11／16.11 = single、2.6／2.3.1／14.14／17.5 = dual、7.10×2 = 4 zone、11.6／11.7 之 `seat zones` 為座椅分區非氣候分區（同形異義，不計） | **未見第四值，無 catch-all，係列舉窮盡**
+negation-users: NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-085, NR1L-ComfortHMI-103, NR1L-ComfortHMI-104, NR1L-ComfortHMI-105, NR1L-ComfortHMI-119, NR1L-ComfortHMI-122, NR1L-ComfortHMI-149, NR1L-ComfortHMI-150, NR1L-ComfortHMI-151
+# 值出處：2.11 C12.（single zone climate configurations）／2.6 C5.（driver 與 passenger）／7.10 CR10.（4 Zone Climate）
+```
+
+```axis-values
+axis: 10  REAR DEFROST 之有無
+values: rear defrost present | not present in the vehicle (3.4)
+value-count: 2
+negation: Rear defrost is not present in the vehicle
+negation-reviewed-at-value-count: 2
+scan: 2026-08-15 | pattern `rear defrost|REAR DEF\b|defrost button|not present` | 18 句命中，唯一陳述配置者為 3.4「the rear defrost button will not appear when not present in the vehicle」 | **二值為邏輯上之窮盡（有／無），非列舉**
+negation-users: NR1L-ComfortHMI-031
+# 值出處：3.4 C22.（the rear defrost button will not appear when not present in the vehicle）
+```
+
 
 **每一條配置條件須具名其來源節次**；不得以「某些車輛有此配置」概括
 （§8.4.1 禁造值）。
@@ -461,10 +616,55 @@ Result 無任何 UI 可觀察量者，係上游之分類問題（見 DATA_REQUES
 **三者外觀相同（皆無 procedure），成因不同。** 見到空 procedure 時，
 須讀 Remarks 之 marker 方知其類別。
 
-**判別次序**：先問「條文有無委派字面」——
-有 → `[BLOCKED-SPEC]`；無 → 再問「本 feature 內有無可觀察端」——
-無 → `[BLOCKED-NON-HMI]`；有 → 不是 BLOCKED，正常生成。
+**判別次序**（44 §2 增第四類出口）：
+
+```
+條文有無委派字面（see / as per / refer to / 具名文件或節）？
+├─ 有 → 委派對象是外部文件，抑或本 spec 之節？
+│   ├─ 外部文件        → [BLOCKED-SPEC]（§5.1）
+│   └─ 本 spec 之節    → [COVERED-BY]（§5.2a，R-C39）
+│                        對象節尚未生成 → 不得先標，該 leaf 記 deferred
+└─ 無 → 本 feature 內有無可觀察端？
+    ├─ 無              → [BLOCKED-NON-HMI]（§5.2）
+    └─ 有              → 不是 BLOCKED，正常生成
+```
+
 **037 未產出該 leaf 者不進入本次序**，屬 §5.4 之覆蓋缺口。
+
+**上繳 32 §7.5 之診斷**：次序原本「能告訴我不是前兩類，但它的終點是
+『正常生成』，而這一個生成不了」—— 缺的正是本節新增之第四類出口。
+
+### 5.2a `[COVERED-BY]`（R-C39，2026-08-15 裁定）
+
+**適用**：某 leaf 之內容全部委派予**同一 spec 之另一節**，而該節之 leaf
+**已於本交付件產出 TC**。
+
+**與前三類之根本差異 —— 不得混用**：
+
+> `[BLOCKED-ECU]`／`[BLOCKED-SPEC]`／`[BLOCKED-NON-HMI]` 三者皆為
+> **「本交付件不涵蓋」**；`[COVERED-BY]` 是 **「本交付件涵蓋，但在別的列上」**。
+> 標成任何一種 BLOCKED，等於向評閱方宣告一個實際上已被涵蓋的缺口。
+
+| 欄 | 值 |
+|---|---|
+| `test_procedure` / `expected_result` | **空** |
+| `specification_reference` | 該 leaf 自身之 outline，照常填 |
+| Remarks | `[COVERED-BY] <涵蓋之 req_id>` ＋ 一句說明。R-C27 首 60 字元內須見該 req_id |
+| 其餘 | 依 profile 常規 |
+
+**五項使用條件**（R-C39，缺一即回報停下）：一、委派對象為本 spec 之節；
+二、該對象節之 leaf 已產出 TC，具名其 tc_id；三、該 TC 之 `expected_result`
+**確實涵蓋**本 leaf 之內容，須**逐句比對並具名**，不得以「兩者述及同一事」
+代替；四、扣除委派後無獨立餘留；五、tc_id 經白名單增列（R-C26）。
+
+**第二項未滿足時**（對象節尚未生成）：**不得先標**，該 leaf 記 `deferred`，
+於對象節生成後再判。
+
+**lint 之具名回報行須與 BLOCKED 分列** —— 兩者於統計上意義相反：
+BLOCKED 是缺口，`[COVERED-BY]` 不是。合併輸出會使 coverage 讀錯。
+
+**目前之 `[COVERED-BY]` 列**：無。
+（`SWE1-HVAC-122-02` 之第二項未滿足，記 `deferred`，見 DATA_REQUESTS #32。）
 
 **lint 之豁免為具名回報行，不得靜默跳過**（前例：上繳 06 §2.1 之
 `and n != "Comfort Widget"`）。`proc-min-steps` 與 `proc-er-1to1` 對
@@ -483,6 +683,32 @@ BLOCKED row 之豁免，每次 lint 皆輸出受豁免之 tc_id 清單，**三�
 —— 那正是 BLOCKED row 機制存在的理由（可見、可稽核的缺口，而非無聲的）。
 
 新增 marker 須先裁決，**生成當下不得自行創造**。
+
+### 5.5 推導欄之重算風險 [ADD]（44 §1，2026-08-15）
+
+**凡「由狀態推導、且會被機器每輪重算」之欄位，新增時須一併檢查其重算方向。**
+
+前例（上繳 32 §1.5）：`data/pending_sibling.tsv` 之 `provisional` 欄。
+42 §1 只寫了「`false` 不可被改回 `true`」（避免人工複核被抹除），
+**單向不夠** —— 缺的那一側一落地，重建就把 `true` 改成 `false`，
+而**那正是 gate 要問問題的那一刻**。機器自己蓋了橡皮圖章，
+重新確認永遠不會發生，且 lint 全綠。
+
+| 方向 | 失效樣態 |
+|---|---|
+| `true → false` | 旗標在該問問題的瞬間自行消失；gate 永遠不問 |
+| `false → true` | 人工複核被下一次重建抹除；gate 永遠無法被滿足 |
+
+**正解為「已記錄之值一律不重算」** —— 只在首次寫入時計算，其後僅由人手變更。
+
+**新增任何推導欄時之三問**：
+
+1. 這個值會不會被下一次重建覆蓋？
+2. 覆蓋的那一刻，是不是恰好是它應該被人看見的那一刻？
+3. 人改過的值，重建之後還在嗎？
+
+第 2 問是關鍵：**推導欄之危險不在它會變，而在它變的時機
+往往正好是它該被凍住的時機。**
 
 ## 6. 寫回與交付完整性 [繼承 Privacy §9 ＋ 跨 feature 條款]
 

@@ -65,6 +65,10 @@ b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-F
 #   狀態 : **Excel-confirmed by Pei 2026-08-15（四項）** —— 無修復提示／
 #          R 欄下拉九項可用／D5 Scope 正確／row 10–23 內容與編號正確。
 #          下放包 26 §1。程式層與 Excel 自身之判定兩端俱備。
+#          **superseded by ENTRY 004（45 §2）** —— 其 14 列已與現行 JSON 不同
+#          （EMEA PC 移除 11 條、-019 補 PC、-036 拆條致 30 條順移、reasoning 多輪更新）。
+#          **檔案保留不刪** —— 本 ENTRY 為其身分記錄，刪除會使台帳指向不存在之檔。
+#          （狀態欄更新，非改寫既有記載；本 ENTRY 之 hash 與內容未變動）
 #          **not delivered（Pei 2026-08-15）** —— 下放包 28 §1：本檔為
 #          14 / 403 條（3.5%），pilot 之目的（定型寫法）已達成，它不是
 #          可供評閱之交付件。留在 output/，不置入交付夾。交付時點為語料
@@ -106,3 +110,134 @@ b4ad82c2487a38c0206b032ea540ab130c56943b8726e660312fa26be1cc7856  output/FM-WI-F
 # 來源（repo 內；交付夾副本與其於 2026-08-15 逐位元組相同）
 fc5d3cd1d524f4d5e6b2b1125ac4a243847d9dbcc7db2fa40cdc3f3760efb1a1  ../../spec-index/sources/Comfort HMI Logic and Flow R1 SR24 Post 3A CR24879 (September 25 2023).pdf
 6982d37db81b36e4bd3643ca1356c12d3837fb5843ba9cd06c4ee3317a073969  ../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).xlsx
+#
+# ENTRY 004 — 2026-08-15 — 第二次寫回：全量重寫（下放包 45 §2／§3）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…），即 Pei 已於 Excel 確認之
+#          同一份位元組；splice 前實測相符方進行
+#   內容 : 目標列 row 10–123，共 114 列 —— 110 條一般 TC ＋ 2 條 [BLOCKED-SPEC]
+#          （-010／-012）＋ 1 條 [BLOCKED-NON-HMI]（-081）＋ 0 條 [COVERED-BY]
+#          **全量重寫，非追加**（45 §2）：pilot 之 14 列已與現行 JSON 不同
+#          寫入欄 D F G H I J K L M N P R S AH；B 欄不寫入
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；
+#          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
+#
+#   **編號 : ENTRY 004 而非下放包 45 §3.4 所寫之「ENTRY 003」** ——
+#   003 已由 27 §3 之交付夾附件佔用。append-only 台帳之編號若重複，
+#   它就不再是索引。以次一可用號記之，並於上繳 33 §9.2 回報。
+#
+#   驗證 : §3.1 前置 gate 5 項全 PASS（BASELINE 8/8、DELIVERY 6 OK 0 FAILED、
+#          台帳無 ENTRY 004、來源 hash 相符、lint 42/42 PASS、
+#          TC 數實測 114 且 tc_id 001–114 連續無缺號）
+#          §3.3 assertion **13 項中 10 PASS、3 FAIL** ——
+#
+#   狀態 : **未經 Excel 確認，且不送交 Pei 確認** ——
+#          **本檔不可交付**，成因為範本容量，非本次寫入之錯誤：
+#
+#            範本之資料工作表僅備 **50 列**（row 10–59，max_row=59），而
+#            本次寫入 114 列。逐項實測：
+#              - B 欄編號公式        涵蓋 row 10–59  → row 60–123 **無列號**
+#              - R 欄 x14 下拉（設計方法） sqref `R10` ＋ `R11:R59`
+#                                     → **64 列無下拉**，profile §0.1 之
+#                                       確認項 2「R 欄下拉九項可用」於該 64 列為假
+#              - P 欄 DV（優先級）    sqref `P10:Q11` → **112 列無下拉**；
+#                                       **此缺陷於 ENTRY 002 之 pilot（row 12–23）
+#                                       即已存在，當時之 assertion 未檢查 DV 涵蓋**
+#            擴充範本（下拉 sqref、公式、樣式往下延伸）屬**結構性變更**，
+#            比照 R23-4 須先裁決並經 Pei 於 Excel 確認，**執行層不自取**。
+#            已登 DATA_REQUESTS #35。**下放包 46 §1 裁定：由 Pei 於 Excel 擴充**
+#            （擇 Excel 而非 xlsx_surgical.py —— 在最可能損壞檔案的一次改動上
+#            放棄 Excel 自身之完整性判定，方向相反）。擴充後另立 ENTRY 005
+#            （`type: template-extension`）。
+#            **另登 A-CF26／DR #36（跨 feature）** —— P 欄 DV 僅至 row 11 是
+#            範本自身之性質，非 Comfort 之產物；privacy 已交付件之 row 12–20
+#            同樣無下拉約束。不代改 privacy 任何檔案。
+#
+#            **not confirmed — pending template extension (DR #35)**
+#            （下放包 46 §3）—— 不送 Pei 之 Excel 四項確認：該確認之對象
+#            應為擴充後範本所產者，於現行範本上確認一次，擴充後仍須重做。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001／002／003 之
+#          hash 與內容未變動；pilot 檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+0bbe5892e365c6e164b0a2efb3e8ef2a61c36cfb7e3ed393caa3323bed3c289d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_batch7.xlsx
+#
+# ENTRY 005 — 2026-08-15 — 第三次寫回：全量重寫（下放包 46 §3／49 §3）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…）；splice 前實測相符方進行
+#   內容 : 目標列 row 10–133，共 124 列 —— 121 條一般 TC
+#          ＋ 2 條 [BLOCKED-SPEC]（-010／-012）
+#          ＋ 1 條 [BLOCKED-NON-HMI]（-081）
+#          ＋ 0 條 [COVERED-BY]
+#          **全量重寫，非追加**（45 §2／§4）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；
+#          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（BASELINE 8/8、DELIVERY 8 OK 0 FAILED、
+#          台帳無 ENTRY 005、來源 hash 相符、lint 42/42 PASS across 124 TCs、
+#          TC 數實測 124 且 tc_id 001–124 連續無缺號）
+#          §3.3 assertion **13 項中 10 PASS、3 FAIL**，三項與 ENTRY 004 完全同源
+#          （B 欄公式止於 row 59 → 74 列無列號；R 欄下拉止於 row 59 → 74 列無下拉；
+#          P 欄 DV 止於 row 11 → 122 列無下拉）
+#
+#   **一次性 gate 於本次首度誤擋，已修**：其判斷為對台帳全文之子字串搜尋，
+#   而 ENTRY 004 之狀態欄提及「另立 ENTRY 005」，該**提及**被讀成 ENTRY 存在。
+#   改為比對 ENTRY 標頭行。台帳談論自己未來的條目是正常的；
+#   一個分不出「引用」與「紀錄」的 gate 不是。
+#
+#   狀態 : **範本容量待擴充（DR #35 / A-CF26）—— 不可交付**
+#          **not confirmed — pending template extension (DR #35)**
+#          依下放包 46 §3：寫回照常執行，產出檔標「範本容量待擴充」，
+#          **不送 Pei 之 Excel 四項確認** —— 該確認之對象應為擴充後範本所產者。
+#          可讀摘要見 output/STATUS.md。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001–004 之 hash 與
+#          內容未變動；pilot 檔與 batch7 檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+3dc7b42119d4327f5a84f298fefe392460e9ad0e99af4ec5f7e91fabbbfdb163  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_batch8.xlsx
+#
+# ENTRY 006 — 2026-08-15 — 第四次寫回：全量重寫（下放包 46 §3／51 §2.2）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   路徑 : backend/xlsx_surgical.py（profile §6 / R18-3 之唯一寫入路徑）
+#   來源 : ENTRY 001 之輸出（b68117a211b08009…）；splice 前實測相符方進行
+#   內容 : 目標列 row 10–161，共 152 列 —— 149 條一般 TC
+#          ＋ 2 條 [BLOCKED-SPEC]（-010／-012）
+#          ＋ 1 條 [BLOCKED-NON-HMI]（-081）
+#          ＋ 0 條 [COVERED-BY]
+#          **全量重寫，非追加**（45 §2／§4）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；
+#          DV counts sheet5 (1,0) / sheet6 (3,2) —— 與來源相同
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（BASELINE 8/8、DELIVERY 10 OK 0 FAILED、
+#          台帳無 ENTRY 006、來源 hash 相符、lint 42/42 PASS across 152 TCs、
+#          TC 數實測 152 且 tc_id 001–152 連續無缺號）
+#          §3.3 assertion **13 項中 10 PASS、3 FAIL**，三項與 ENTRY 004／005 完全同源
+#          （B 欄公式止於 row 59 → 102 列無列號；R 欄下拉止於 row 59 → 102 列無下拉；
+#          P 欄 DV 止於 row 11 → 150 列無下拉）
+#
+#   狀態 : **範本容量待擴充（DR #35 / A-CF26）—— 不可交付**
+#          **not confirmed — pending template extension (DR #35)**
+#          依下放包 46 §3：寫回照常執行、標「範本容量待擴充」、
+#          **不送 Pei 之 Excel 四項確認**。可讀摘要見 output/STATUS.md。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔未動；ENTRY 001–005 之 hash 與
+#          內容未變動；既有產出檔未刪；git 未執行。
+#
+# 輸入基準
+b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_prepared.xlsx
+# 輸出
+2341b8ae407eaae53badf0ef13f6b13cae4626757e70bb64868b4ea1dbda760f  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260815_batch9.xlsx

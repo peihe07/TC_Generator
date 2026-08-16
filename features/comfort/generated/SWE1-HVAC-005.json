@@ -1,0 +1,123 @@
+{
+ "parent": "SWE1-HVAC-005",
+ "outline": "2.4",
+ "batch": "Climate Modes",
+ "source_clause": "C3.) AC has on/ off state. Auto can automatically turn on AC. AC will break Auto. Defrost can automatically turn on AC (Do not show this change). Recirc can automatically turn on AC.",
+ "reasoning": "驗證目標：2.4（C3）定出 A/C 之 on/off 狀態與其與 Auto／Defrost／Recirc 之四項連動，四個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：本節無配置條件，起始 PC 為 test-setup；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`-137`（Auto 自動開 A/C）與 `-138`（A/C 中斷 Auto）為相反方向之兩條連動，可各自獨立失效。刻意略過：`-139` 之 ER 以「A/C 按鈕狀態不變」驗「do not show this change」—— 條文所述之隱藏對象為**畫面上之呈現**，非 A/C 之實際開關，故 ER 停在按鈕而不宣稱壓縮機狀態（§6 可觀察性）。**R-C36-1 之逐條答本節四條有三條為 `no`**：ICE3 只述五者之 on/off 而不述任何連動，鏡射表之分界欄已明載。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 A/C 按鈕",
+  "axis_9": "暴露 → 全數補 —— 可觀察量皆在 head unit 之 comfort section（6.3 使其移除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見各 TC 之 `emea_ics_review`**（R-C36-1）—— 本節之 ch16 對造與其分界見 `ch16_mirror_map.tsv`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-005-01",
+   "tc_id": "NR1L-ComfortHMI-136",
+   "tc_title": "A/C has an on and off state",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "AC shall have an on/off state",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press \"A/C\" on the climate screen\n2. Press \"A/C\" again",
+   "expected_result": "1. The \"A/C\" button is highlighted\n2. The \"A/C\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "yes",
+    "ch16_sentence": "ICE3「MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state」之 A/C 側（鏡射表記為 partial，涵蓋 A/C 之 on/off 狀態）"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-005-02",
+   "tc_id": "NR1L-ComfortHMI-137",
+   "tc_title": "AUTO turns A/C on automatically",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "Auto shall be able to automatically turn on AC",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"A/C\" off and AUTO off from the climate screen\n2. Turn AUTO on and read the \"A/C\" button",
+   "expected_result": "1. Neither \"A/C\" nor \"AUTO\" is highlighted\n2. The \"A/C\" button is highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "**ICE3 只述五者之 on/off 狀態，不述任何連動** —— 鏡射表之分界欄明載「未涵蓋：C3 之『Auto can automatically turn on AC』等連動邏輯」"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-005-03",
+   "tc_id": "NR1L-ComfortHMI-138",
+   "tc_title": "Pressing A/C breaks AUTO",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "AC shall break Auto",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn AUTO on from the climate screen\n2. Press \"A/C\"",
+   "expected_result": "1. The \"AUTO\" button is highlighted\n2. The \"AUTO\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "同 `-137`：ICE3 不述連動；且 ICE2 之 A/C 分支為「Manually selecting A/C keeps the system in AUTO without compressor usage」—— **與 C3 語意相反**，故 ch16 無對應句"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-005-04",
+   "tc_id": "NR1L-ComfortHMI-139",
+   "tc_title": "Defrost and Recirc turn A/C on without showing it",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "Defrost and Recirc shall be able to automatically turn on AC, and the system shall not show this change",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"A/C\" off from the climate screen and note the \"A/C\" button\n2. Turn \"FRONT DEF\" on and read the \"A/C\" button\n3. Turn \"RECIRC\" on and read the \"A/C\" button",
+   "expected_result": "1. The \"A/C\" button is not highlighted\n2. The \"A/C\" button is not highlighted\n3. The \"A/C\" button is not highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.4",
+    "verdict": "no",
+    "ch16_sentence": "同 `-137`：ICE3 不述連動"
+   }
+  }
+ ]
+}
