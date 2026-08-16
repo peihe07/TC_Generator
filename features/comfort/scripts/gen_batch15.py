@@ -103,28 +103,28 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
 EX_TABS = ("[spec-derived] The vehicle is not a front-climate-only vehicle, "
            "for which the comfort tabs are not displayed (2.1)")
 
-PC_SEAT_MULTI = ("1. [spec-verbatim] The vehicle has Multi-Level "
+PC_SEAT_MULTI = ("1. [spec-derived] The vehicle has Multi-Level "
                  "Heated/Vented seats (11.1)")
-PC_SEAT_MULTI12 = ("1. [spec-verbatim] The vehicle has Multi-Level "
+PC_SEAT_MULTI12 = ("1. [spec-derived] The vehicle has Multi-Level "
                    "Heated/Vented seats (12.1)")
-PC_SEAT_STD = ("1. [spec-verbatim] The vehicle has Standard Heated/Vented "
+PC_SEAT_STD = ("1. [spec-derived] The vehicle has Standard Heated/Vented "
                "seats (12.8)")
-PC_WHEEL_MULTI = ("1. [spec-verbatim] The vehicle has a Multi-Level heated "
+PC_WHEEL_MULTI = ("1. [spec-derived] The vehicle has a Multi-Level heated "
                   "steering wheel (11.8)")
-PC_WHEEL_SINGLE = ("1. [spec-verbatim] The vehicle has a Single-Level heated "
+PC_WHEEL_SINGLE = ("1. [spec-derived] The vehicle has a Single-Level heated "
                    "steering wheel (11.9)")
-PC_ZONE = ("1. [spec-verbatim] The independent seat zone feature is available "
+PC_ZONE = ("1. [spec-derived] The independent seat zone feature is available "
            "on the vehicle (11.6)")
-PC_ZONE_SOFT = ("1. [spec-verbatim] The vehicle is equipped with the seat "
+PC_ZONE_SOFT = ("1. [spec-derived] The vehicle is equipped with the seat "
                 "zone feature without a hard control or capacitive control, "
                 "for which a soft button controls it (11.6.1)")
 PC_COMFORT = ("1. [spec-derived] The vehicle is equipped with Comfort "
               "features, such as heated/vented seats and a heated steering "
               "wheel (17.3)")
 # 11.11's own conditional — a §8.5 clause-local trigger, NOT a profile axis.
-PC_HARDBTN = ("1. [spec-verbatim] The vehicle is configured with hard buttons "
+PC_HARDBTN = ("1. [spec-derived] The vehicle is configured with hard buttons "
               "for comfort controls (11.11)")
-PC_HAPTIC = ("1. [spec-verbatim] The vehicle program has haptic "
+PC_HAPTIC = ("1. [spec-derived] The vehicle program has haptic "
              "heated/vented seat and heated steering wheel buttons placed on "
              "the side of the radio (11.11)")
 

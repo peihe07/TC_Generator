@@ -70,7 +70,7 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
 LOWER_EXPOSED = {"SWE1-HVAC-051"}          # reads the main Menu Bar icon
 
 # Axis 15. 10.1 states the scope of the whole chapter, so every TC carries it.
-PC_EV = ("1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC "
+PC_EV = ("1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC "
          "is used (10.1)")
 
 

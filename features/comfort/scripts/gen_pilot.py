@@ -130,7 +130,7 @@ BATCHES = [
                     "tab on the lower screen to the Seats tab",
                 "pre_conditions":
                     f"{PC_SCREEN}\n{PC_DOOR}\n"
-                    "3. [spec-verbatim] The lower screen is not in the stowed "
+                    "3. [spec-derived] The lower screen is not in the stowed "
                     "position (13.2)",
                 "input_test_data": "NA",
                 "test_procedure":
@@ -153,7 +153,7 @@ BATCHES = [
                     "out after 5 seconds of not interaction",
                 "pre_conditions":
                     f"{PC_SCREEN}\n{PC_DOOR}\n"
-                    "3. [spec-verbatim] The lower screen is in the stowed "
+                    "3. [spec-derived] The lower screen is in the stowed "
                     "position (13.2)\n"
                     "4. [spec-derived] The user is not in the climate section "
                     "on the main head unit (13.2)",
@@ -178,9 +178,9 @@ BATCHES = [
                     "switch the user to the Seats tab",
                 "pre_conditions":
                     f"{PC_SCREEN}\n{PC_DOOR}\n"
-                    "3. [spec-verbatim] The lower screen is in the stowed "
+                    "3. [spec-derived] The lower screen is in the stowed "
                     "position (13.2)\n"
-                    "4. [spec-verbatim] The user is already in the climate "
+                    "4. [spec-derived] The user is already in the climate "
                     "section on the main head unit (13.2)",
                 "input_test_data": "NA",
                 "test_procedure":
@@ -333,7 +333,7 @@ BATCHES = [
                     "selected option",
                 "pre_conditions":
                     f"{PC_SCREEN}\n{PC_DOOR}\n"
-                    "3. [spec-verbatim] The lower screen displayed the last "
+                    "3. [spec-derived] The lower screen displayed the last "
                     "selected option as Back Bolster (13.3.1)",
                 "input_test_data": "NA",
                 "test_procedure":

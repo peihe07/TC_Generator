@@ -72,14 +72,14 @@ PC_REARDEF = ("1. [spec-derived] The vehicle is equipped with rear defrost, "
               "which is absent on some soft top vehicles (3.4)")
 # C13.0 carries its own qualifier, so the third axis's value is statable here
 # — the one section of this Test Set that DR #31 does not reach.
-PC_5STATE = ("1. [spec-verbatim] The vehicle is a non-tri mode equipment type "
+PC_5STATE = ("1. [spec-derived] The vehicle is a non-tri mode equipment type "
              "whose airflow modes have 5 states (2.12.1)")
 # C8's own conditional. R-C28 Q1 is satisfied by the clause itself, so this is
 # a clause-local trigger condition (§8.5), NOT a new profile axis — the same
 # shape as 2.13's "when CCM relays presence of MAX A/C functionality". Whether
 # "exterior mirror defrost present/absent" should also be registered as an
 # axis is raised in 上繳 36 §5.4 rather than decided here.
-PC_MIRROR = ("2. [spec-verbatim] The exterior rear-view mirror defrost feature "
+PC_MIRROR = ("2. [spec-derived] The exterior rear-view mirror defrost feature "
              "is available on the vehicle (2.9)")
 
 # Per-section starting pre_condition and the extra spec_ref sections it cites.

@@ -66,7 +66,7 @@ LOWER_EXPOSED = {"SWE1-HVAC-010-01"}      # reads the main category control
 EMEA_REMOVED_REQ_IDS = {"SWE1-HVAC-022-02", "SWE1-HVAC-011"}
 
 
-PC_ATC = "1. [spec-verbatim] The climate system is ATC (2.6)"
+PC_ATC = "1. [spec-derived] The climate system is ATC (2.6)"
 # 2.11 states Sync is not shown for single zone configurations; the fact is
 # cited there, not invented here (R-C29).
 PC_DUAL = ("1. [spec-derived] The vehicle is not a single zone climate "
@@ -579,7 +579,7 @@ BATCHES = [
                     "In some vehicles the fan speed ranges for front hvac "
                     "shall be Off, 1-8",
                 "pre_conditions":
-                    "1. [spec-verbatim] The vehicle's front hvac fan speed "
+                    "1. [spec-derived] The vehicle's front hvac fan speed "
                     "range is Off, 1-8 (2.7.1)",
                 "input_test_data": "NA",
                 "test_procedure":

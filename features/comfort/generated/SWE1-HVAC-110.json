@@ -52,7 +52,7 @@
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
    "test_item": "When at the highest possible position the system shall display HI, and when at the lowest shall display LO, instead of a degree value",
-   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-verbatim] The vehicle has an ATC climate system (16.6)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle has an ATC climate system (16.6)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Adjust the temperature to its highest position on the climate screen\n2. Adjust the temperature to its lowest position",
    "expected_result": "1. The climate screen shows HI instead of a degree value\n2. The climate screen shows LO instead of a degree value",

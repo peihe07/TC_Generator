@@ -719,6 +719,57 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                     f"in prose — profile §3.6 requires req_id, because tc_id "
                     f"moves (R-C7) and a moved citation still parses")
 
+    # ---- 69 §2 (執行層自加，已報備) — pre_conditions lines are numbered ----
+    # Found while reading a source-class-truthful FAIL message: five TCs had an
+    # unnumbered line 2 while lines 3-5 were numbered, because a generator
+    # joined one extra line by hand instead of through add_lines. Both ends
+    # looked right; the middle was wrong. Cheap to check, and the numbering is
+    # what the workbook's reader counts by.
+    for d in docs:
+        for tc in d["tcs"]:
+            lines = [l for l in tc["pre_conditions"].split("\n") if l.strip()]
+            got = [re.match(r"^(\d+)\.\s", l) for l in lines]
+            if not all(got) or [int(m.group(1)) for m in got] != list(
+                    range(1, len(lines) + 1)):
+                shown = [l[:30] for l in lines]
+                bad("pc-line-numbering",
+                    f"{tc['tc_id']}: pre_conditions lines are not numbered "
+                    f"1..n — {shown}")
+
+    # ---- 69 §1.2 — a source class is a CLAIM about provenance -----------
+    # 68 §4 declined to make "the PC must quote verbatim" a corpus-wide
+    # obligation, and that still holds. This is the other thing: whatever the
+    # author claims must be true. A line labelled [spec-verbatim] that is a
+    # paraphrase leaves its reader unable to tell whether the sentence is the
+    # spec's or ours — R-C41's principle, applied to provenance instead of to
+    # method. Measured 69 §1: 150 of 155 such lines were paraphrases.
+    #
+    # Checked LINE BY LINE (69 §1.3): the label is per line, so a first-line
+    # check would leave every later [spec-verbatim] unexamined for ever.
+    def _norm_ws(t: str) -> str:
+        return re.sub(r"\s+", " ", t).strip()
+
+    for d in docs:
+        for tc in d["tcs"]:
+            for line in tc["pre_conditions"].split("\n"):
+                if "[spec-verbatim]" not in line:
+                    continue
+                cite = re.search(r"\(([\d.]+)\)\s*$", line.strip())
+                src = cite.group(1) if cite else d["outline"]
+                frag = re.sub(r"^\d+\.\s*\[spec-verbatim\]\s*", "", line)
+                frag = _norm_ws(re.sub(r"\s*\([\d.]+\)\s*$", "", frag))
+                body = _norm_ws(FULLTEXT_BY_OUTLINE.get(src, ""))
+                if not body:
+                    bad("source-class-truthful",
+                        f"{tc['tc_id']}: a [spec-verbatim] line cites {src}, "
+                        f"which has no full_text to be verbatim against")
+                elif frag not in body:
+                    bad("source-class-truthful",
+                        f"{tc['tc_id']}: line labelled [spec-verbatim] is not "
+                        f"a contiguous quotation of {src} — {frag[:56]!r}. "
+                        f"Paraphrasing is allowed; calling it verbatim is not "
+                        f"(69 §1.2: label [spec-derived] instead, or quote)")
+
     # ---- 67 §1 二 — the register reconciles in BOTH directions ----------
     # 44 §7.3 named this gap: a row listed in the register whose Remarks was
     # later emptied leaves the register claiming an ambiguity that no longer
@@ -1230,7 +1281,11 @@ def main() -> int:
              # added 2026-08-16 per handoff 65 §3 / §4
              "rc42-condition-marker", "moved-leaf-identity",
              # added 2026-08-16 per handoff 67 §1
-             "ambiguity-register"]
+             "ambiguity-register",
+             # added 2026-08-16 per handoff 69 §1.2
+             "source-class-truthful",
+             # added 2026-08-16 (執行層自加，見上繳 47 §2.2)
+             "pc-line-numbering"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "

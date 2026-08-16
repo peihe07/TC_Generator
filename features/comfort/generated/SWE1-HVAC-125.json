@@ -205,7 +205,7 @@
    "tc_title": "The 12 inch Portrait 50% widget also shows fan speed",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The system shall for the 12\" Portrait 50% widget also display fan speed on the Climate screen of the Comfort widget",
+   "test_item": "The system shall for the 12' Portrait 50% widget also display fan speed on the Climate screen of the Comfort widget",
    "pre_conditions": "1. [spec-verbatim] 12' Portrait 50% widget also includes fan speed (17.2)\n2. [test-setup] The Comfort widget is shown on the home screen\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Climate screen of the Comfort widget\n2. Read the fan speed on the Comfort widget",

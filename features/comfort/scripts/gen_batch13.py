@@ -91,7 +91,7 @@ MULTIZONE_EXPOSED = {"SWE1-HVAC-113-05"}
 # ICE2's own last line is "(AUTO is not shown in MTC configurations)".
 PC_ATC = ("[spec-derived] The vehicle has an ATC climate system, in which "
           "AUTO is shown (16.3)")
-PC_MTC = "[spec-verbatim] The vehicle is in an MTC configuration (16.3)"
+PC_MTC = "[spec-derived] The vehicle is in an MTC configuration (16.3)"
 ATC_LEAVES = {"SWE1-HVAC-113-11"}
 # Axis 4 — 16.13 is the MAX A/C section and 16.3's -05/-06 press it.
 PC_MAXAC = ("[spec-derived] The system supports Max A/C, which is then "

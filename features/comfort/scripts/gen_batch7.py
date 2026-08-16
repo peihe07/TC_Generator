@@ -150,7 +150,7 @@ BATCHES = [
                     "instead of a degree value",
                 "pre_conditions": add_lines(
                     PC_EMEA,
-                    "[spec-verbatim] The vehicle has an ATC climate system "
+                    "[spec-derived] The vehicle has an ATC climate system "
                     "(16.6)"),
                 "input_test_data": "NA",
                 "test_procedure":

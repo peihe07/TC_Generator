@@ -29,7 +29,7 @@
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
    "test_item": "The button label shall read AUTO ECO",
-   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Read the label on the AUTO button",
    "expected_result": "1. The AUTO ECO mode is active\n2. The button label reads AUTO ECO",

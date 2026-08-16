@@ -130,8 +130,8 @@ PC_NOT_ICS = ("2. [spec-derived] The vehicle does not have 3 knob HVAC "
               "controls with ICS, for which no HVAC screens or pop ups are "
               "displayed (2.14)")
 # Axis 1 of profile §3.2.
-PC_ATC = "2. [spec-verbatim] The climate system is ATC (2.2)"
-PC_MTC = "2. [spec-verbatim] The climate system is MTC (2.2)"
+PC_ATC = "2. [spec-derived] The climate system is ATC (2.2)"
+PC_MTC = "2. [spec-derived] The climate system is MTC (2.2)"
 
 # ---- 36 §6 / R-C34's generation-time duty, recorded per section ----------
 # The duty cannot be machine-checked for correctness, but it can be checked
@@ -323,7 +323,7 @@ BATCHES = [
                     "shall change as the user alters the temp",
                 "pre_conditions":
                     f"{PC_CONTROLS}\n{PC_MTC}\n"
-                    "3. [spec-verbatim] The MTC has a Climate screen (2.2)",
+                    "3. [spec-derived] The MTC has a Climate screen (2.2)",
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open a screen outside the climate main category\n"
@@ -403,7 +403,7 @@ BATCHES = [
                     "the comfort section shall be removed from the head unit "
                     "except for comfort popups",
                 "pre_conditions":
-                    "1. [spec-verbatim] The vehicle is configured with a "
+                    "1. [spec-derived] The vehicle is configured with a "
                     "non-foldable secondary lower screen that contains comfort "
                     "information (6.3)",
                 "input_test_data": "NA",
@@ -436,7 +436,7 @@ BATCHES = [
                     "If only Front climate is available in a specific vehicle, "
                     "the tabs shall not be displayed",
                 "pre_conditions":
-                    "1. [spec-verbatim] Only Front climate is available in the "
+                    "1. [spec-derived] Only Front climate is available in the "
                     "vehicle (2.1)",
                 "input_test_data": "NA",
                 "test_procedure":
@@ -466,7 +466,7 @@ BATCHES = [
                     "MTC climate shall be differentiated from ATC by the lack "
                     "of discrete temperature settings",
                 "pre_conditions":
-                    "1. [spec-verbatim] The climate system is MTC (2.14)",
+                    "1. [spec-derived] The climate system is MTC (2.14)",
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the climate screen\n"
@@ -484,7 +484,7 @@ BATCHES = [
                     "MTC climate shall be differentiated from ATC by the lack "
                     "of \"Auto\" control over the set temperature",
                 "pre_conditions":
-                    "1. [spec-verbatim] The climate system is MTC (2.14)",
+                    "1. [spec-derived] The climate system is MTC (2.14)",
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the climate screen\n"
@@ -505,8 +505,8 @@ BATCHES = [
                     "with the screen for 3 knob HVAC controls, in order to "
                     "prevent a mismatch between the soft and hard controls",
                 "pre_conditions":
-                    "1. [spec-verbatim] The climate system is MTC (2.14)\n"
-                    "2. [spec-verbatim] The vehicle has 3 knob HVAC controls "
+                    "1. [spec-derived] The climate system is MTC (2.14)\n"
+                    "2. [spec-derived] The vehicle has 3 knob HVAC controls "
                     "with ICS (2.14)",
                 "input_test_data": "NA",
                 "test_procedure":
@@ -528,8 +528,8 @@ BATCHES = [
                     "bar icons, no HVAC screens and no HVAC pop ups shall be "
                     "displayed",
                 "pre_conditions":
-                    "1. [spec-verbatim] The climate system is MTC (2.14)\n"
-                    "2. [spec-verbatim] The vehicle has 3 knob HVAC controls "
+                    "1. [spec-derived] The climate system is MTC (2.14)\n"
+                    "2. [spec-derived] The vehicle has 3 knob HVAC controls "
                     "with ICS (2.14)",
                 "input_test_data": "NA",
                 "test_procedure":
@@ -554,8 +554,8 @@ BATCHES = [
                     "controls, the exception shall not apply, and the HVAC "
                     "menu bar icons, screens and pop ups shall be displayed",
                 "pre_conditions":
-                    "1. [spec-verbatim] The climate system is MTC (2.14)\n"
-                    "2. [spec-verbatim] The vehicle is one zone MTC with push "
+                    "1. [spec-derived] The climate system is MTC (2.14)\n"
+                    "2. [spec-derived] The vehicle is one zone MTC with push "
                     "button TEMPERATURE and hard controls that would not "
                     "create a mismatch between hard controls (2.14)",
                 "input_test_data": "NA",

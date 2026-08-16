@@ -31,7 +31,7 @@
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
    "test_item": "In some vehicles the fan speed ranges for front hvac shall be Off, 1-8",
-   "pre_conditions": "1. [spec-verbatim] The vehicle's front hvac fan speed range is Off, 1-8 (2.7.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "pre_conditions": "1. [spec-derived] The vehicle's front hvac fan speed range is Off, 1-8 (2.7.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Raise the fan speed until it stops increasing\n3. Read the number of fan segments on the climate screen",
    "expected_result": "1. The climate screen shows the current fan speed\n2. The fan speed reaches 8\n3. The climate screen shows 8 fan segments",

@@ -30,7 +30,7 @@
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
    "test_item": "When the AUTO function is off and available, the user's first press of the AUTO button shall activate the AUTO ECO functionality",
-   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until AUTO is off\n2. Press the AUTO button once",
    "expected_result": "1. The AUTO state is AUTO OFF\n2. The AUTO ECO functionality is activated",

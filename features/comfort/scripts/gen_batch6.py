@@ -252,7 +252,7 @@ BATCHES = [
                     "degree increments for Celsius) being set",
                 "pre_conditions": add_lines(
                     PC_EMEA,
-                    "[spec-verbatim] The vehicle has an ATC climate system "
+                    "[spec-derived] The vehicle has an ATC climate system "
                     "(16.2)"),
                 "input_test_data": "NA",
                 "test_procedure":
@@ -275,7 +275,7 @@ BATCHES = [
                     "arrow pointing to the current setting",
                 "pre_conditions": add_lines(
                     PC_EMEA,
-                    "[spec-verbatim] The vehicle has an MTC climate system "
+                    "[spec-derived] The vehicle has an MTC climate system "
                     "(16.2)"),
                 "input_test_data": "NA",
                 "test_procedure":
@@ -347,7 +347,7 @@ BATCHES = [
                     "functionality",
                 "pre_conditions": add_lines(
                     PC_EMEA,
-                    "[spec-verbatim] The CCM relays MTC functionality (16.14)"),
+                    "[spec-derived] The CCM relays MTC functionality (16.14)"),
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the climate screen\n"
@@ -367,7 +367,7 @@ BATCHES = [
                     "of discrete temperature settings",
                 "pre_conditions": add_lines(
                     PC_EMEA,
-                    "[spec-verbatim] The CCM relays MTC functionality (16.14)"),
+                    "[spec-derived] The CCM relays MTC functionality (16.14)"),
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the climate screen\n"
@@ -387,7 +387,7 @@ BATCHES = [
                     "of \"Auto\" control over the set temperature",
                 "pre_conditions": add_lines(
                     PC_EMEA,
-                    "[spec-verbatim] The CCM relays MTC functionality (16.14)"),
+                    "[spec-derived] The CCM relays MTC functionality (16.14)"),
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open the climate screen\n"

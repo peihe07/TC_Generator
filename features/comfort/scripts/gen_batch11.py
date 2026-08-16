@@ -69,7 +69,7 @@ PC_PLAIN = "1. [test-setup] The head unit is on and the climate system is on"
 # observable is a head-unit pop-up, which 6.3 keeps ("except for comfort
 # popups"), so axis 9 is not exposed at all in this batch — the first batch
 # where that exclusion is dropped on evidence rather than carried by habit.
-PC_LOWER_PRESENT = ("1. [spec-verbatim] The vehicle has a lower HVAC screen "
+PC_LOWER_PRESENT = ("1. [spec-derived] The vehicle has a lower HVAC screen "
                     "(14.13)")
 # Axis 16 — the seat-comfort sections observe comfort controls, which exist
 # only on vehicles equipped with them.
@@ -77,10 +77,10 @@ PC_COMFORT = ("1. [spec-derived] The vehicle is equipped with Comfort "
               "features, whose available comfort controls depend on vehicle "
               "configuration (14.15)")
 # 機型軸. 14.19 states the R1Low/R1H split itself; only -104-02 turns on it.
-PC_R1LOW = ("2. [spec-verbatim] The vehicle is an R1Low vehicle, for which "
+PC_R1LOW = ("2. [spec-derived] The vehicle is an R1Low vehicle, for which "
             "the FAN Speed Pop-up is shown (14.19)")
 # 14.19's whole clause is conditioned on the widget being on screen.
-PC_WIDGET_SHOWN = ("1. [spec-verbatim] The Climate widget is shown on the "
+PC_WIDGET_SHOWN = ("1. [spec-derived] The Climate widget is shown on the "
                    "currently displayed screen (14.19)")
 
 # Per-section starting pre_condition and the extra spec_ref sections it cites.

@@ -61,17 +61,17 @@ SPLIT_REASON = (
     "§8.2.2 control-entity criterion: the four breakers are four different control entities and fail independently, so the leaf splits into four TCs that all trace to it (handoff 30 §1)")
 
 # Axis 3 of profile §3.2. Verbatim: "On vehicles with Tri-Mode climate".
-PC_TRIMODE = ("1. [spec-verbatim] The vehicle is equipped with Tri-Mode "
+PC_TRIMODE = ("1. [spec-derived] The vehicle is equipped with Tri-Mode "
               "climate (3.1)")
 # Axis 5 of profile §3.2. Verbatim: "On vehicles with MAX DEF".
-PC_MAXDEF = "1. [spec-verbatim] The vehicle is equipped with MAX DEF (3.2)"
+PC_MAXDEF = "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)"
 # 43 §5 / DR #29 — C20 hard-codes MAX DEF's top fan speed as "(7/7)", but
 # C6.1 states that some vehicles run Off, 1-8, where the top is 8. The ER
 # cannot be rewritten (8/8 would be fabricated, "the highest setting" would
 # be weaker than the clause), so the TC is CONFINED instead: axis 14 is the
 # configuration variable, and naming its value makes the existing ER true.
 # The Off,1-8 side stays uncovered and is tracked by DR #29, not absorbed.
-PC_FAN_1_7 = ("[spec-verbatim] The front HVAC fan range of the vehicle is "
+PC_FAN_1_7 = ("[spec-derived] The front HVAC fan range of the vehicle is "
               "Off, 1-7 (2.7)")
 # Same fact, same marker — but here it is a CROSS-section citation, because
 # 3.3\u0027s own clause states no equipment condition (R-C29).
@@ -83,12 +83,12 @@ PC_MODE_HC = ("2. [spec-derived] The vehicle has a hard control MODE "
 # Axis 10 (29 §2). Sourced to 3.4, NOT to 3.3 — C21 is a single sentence with
 # no equipment condition in it at all, so marking this (3.3) would fail
 # R-C28's first question. R-C29 is what makes the (3.4) marker legal.
-PC_REARDEF = ("2. [spec-verbatim] Rear defrost is present in the "
+PC_REARDEF = ("2. [spec-derived] Rear defrost is present in the "
               "vehicle (3.4)")
 # Axis 11 (29 §2). "soft top" is the criterion; JL/JT is the clause's own
 # example and is carried as one — writing "JL or JT" narrows an illustration
 # into an enumeration, which is §8.4.1 run backwards.
-PC_SOFTTOP = ("1. [spec-verbatim] The vehicle is a soft top vehicle, such as "
+PC_SOFTTOP = ("1. [spec-derived] The vehicle is a soft top vehicle, such as "
               "JL/JT (3.4)")
 # 3.3 and 3.4 cite sections beyond their own (R-C29 obligation 1). The TC's
 # own section leads; the sections a pre_condition draws its fact from follow.
@@ -243,7 +243,7 @@ BATCHES = [
                     "DOWN (or LEFT) shall move backwards through the cycle",
                 "pre_conditions":
                     f"{PC_TRIMODE}\n"
-                    "2. [spec-verbatim] The MODE button is a multi-directional "
+                    "2. [spec-derived] The MODE button is a multi-directional "
                     "toggle or a hard control that allows 2 controls (UP/DOWN "
                     "or RIGHT/LEFT) (3.1)",
                 "input_test_data": "NA",
@@ -589,7 +589,7 @@ BATCHES = [
                     "the vehicle",
                 "pre_conditions":
                     f"{PC_SOFTTOP}\n"
-                    "2. [spec-verbatim] Rear defrost is not present in the "
+                    "2. [spec-derived] Rear defrost is not present in the "
                     "vehicle (3.4)",
                 "input_test_data": "NA",
                 "test_procedure":

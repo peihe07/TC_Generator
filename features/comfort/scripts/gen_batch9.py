@@ -61,7 +61,7 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
             "the comfort section is removed from the head unit (6.3)")
 PC_ATC = ("1. [spec-derived] The vehicle has an ATC climate system, in which "
           "AUTO is shown (2.3)")
-PC_MTC = "1. [spec-verbatim] The vehicle is in an MTC configuration (2.3)"
+PC_MTC = "1. [spec-derived] The vehicle is in an MTC configuration (2.3)"
 PC_PLAIN = "1. [test-setup] The climate screen is open and the climate system is on"
 PC_MULTIZONE = ("1. [spec-derived] The vehicle is not a single zone climate "
                 "configuration, for which Sync is not shown (2.11)")

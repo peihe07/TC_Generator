@@ -31,7 +31,7 @@
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
    "test_item": "The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states",
-   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active, then change the fan speed using the fan speed hard control\n2. Press the AUTO button once, then change the fan speed using the fan speed hard control",
    "expected_result": "1. The comfort pop up reflects the AUTO ECO state\n2. The comfort pop up reflects the AUTO ON state",

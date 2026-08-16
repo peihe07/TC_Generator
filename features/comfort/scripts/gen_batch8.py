@@ -95,7 +95,7 @@ PC_WIDGET = "1. [test-setup] The Comfort widget is shown on the home screen"
 # Axis 16 (50 §1). 17.3 makes the widget's SECOND page conditional, so any
 # TC whose observable is that page needs the value stated — including the
 # two in 17.1 that merely count or name the screens.
-PC_COMFORT_FEATURES = ("[spec-verbatim] The vehicle is equipped with Comfort "
+PC_COMFORT_FEATURES = ("[spec-derived] The vehicle is equipped with Comfort "
                        "features, such as heated/vented seats and a heated "
                        "steering wheel (17.3)")
 
@@ -382,8 +382,11 @@ BATCHES = [
                 "req_id": "SWE1-HVAC-125-08",
                 "tc_n": 361,
                 "tc_title": "The 12 inch Portrait 50% widget also shows fan speed",
+                # 69 §2 — 17.2 writes 12' (apostrophe). The PC was corrected
+                # in 67 §2 and this field was not, leaving one TC carrying two
+                # spellings of the same identifier.
                 "test_item":
-                    "The system shall for the 12\" Portrait 50% widget also "
+                    "The system shall for the 12' Portrait 50% widget also "
                     "display fan speed on the Climate screen of the Comfort "
                     "widget",
                 # 67 §2 — quoted verbatim, including the spec's own
@@ -422,7 +425,7 @@ BATCHES = [
                     "Comfort features available to the vehicle",
                 "pre_conditions": add_lines(
                     PC_WIDGET,
-                    "[spec-verbatim] The vehicle is equipped with Comfort "
+                    "[spec-derived] The vehicle is equipped with Comfort "
                     "features, such as heated/vented seats and a heated "
                     "steering wheel (17.3)"),
                 "input_test_data": "NA",
@@ -444,7 +447,7 @@ BATCHES = [
                     "this widget page shall not be shown",
                 "pre_conditions": add_lines(
                     PC_WIDGET,
-                    "[spec-verbatim] The vehicle is not equipped with Comfort "
+                    "[spec-derived] The vehicle is not equipped with Comfort "
                     "Features (17.3)"),
                 "input_test_data": "NA",
                 "test_procedure":
@@ -470,7 +473,10 @@ BATCHES = [
                 "pre_conditions":
                     "1. [spec-verbatim] On the 50% widget, these features "
                     "are separated between driver and passenger (17.3)\n"
-                    "2. [spec-verbatim] The vehicle is equipped with Comfort "
+                    # 69 §1.1 — a paraphrase of CW2's "all Comfort features
+                    # available to the vehicle (i.e. …)"; the correspondence
+                    # is real, the wording is ours, so the label is derived.
+                    "2. [spec-derived] The vehicle is equipped with Comfort "
                     "features, such as heated/vented seats and a heated "
                     "steering wheel (17.3)",
                 "input_test_data": "NA",

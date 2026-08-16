@@ -63,13 +63,17 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
             "the comfort section is removed from the head unit (6.3)")
 
 # --- the clause-local trigger conditions R-C42 unblocks, quoted verbatim ----
-PC_DUAL_AUTO = ("1. [spec-verbatim] The vehicle has dual zone climate with "
-                "dual airflow mode and a configuration for dual AUTO modes, "
-                "one for the driver side and passenger side (2.3.1)")
-PC_RECIRC3 = ("1. [spec-verbatim] The vehicle has a configuration for a 3 "
-              "state toggle recirc button: Auto, Manual, Open (2.5.1)")
-PC_CH9 = ("1. [spec-verbatim] The vehicle is one of the vehicles that have "
-          "additional Rear Climate controls and shortcuts (9.1)")
+# 69 §1.1 — these six were paraphrases wearing a [spec-verbatim] label. R-C42
+# 一 requires the clause's own words, so the TEXT was fixed, not the label
+# (the opposite choice from every other line in the corpus, and the reason is
+# that here the verbatim quotation is the rule, not the labelling).
+PC_DUAL_AUTO = ("1. [spec-verbatim] Some vehicles with dual zone climate "
+                "with dual airflow mode can have a configuration for dual "
+                "AUTO modes (2.3.1)")
+PC_RECIRC3 = ("1. [spec-verbatim] Some vehicles have a configuration for a "
+              "3 state toggle recirc button: Auto, Manual, Open (2.5.1)")
+PC_CH9 = ("1. [spec-verbatim] On some vehicles (See CFTS043 for details), "
+          "there are additional Rear Climate controls and shortcuts (9.1)")
 # 65 §2 — quoted verbatim. The earlier wording said "the hard controls FOR
 # THIS FUNCTION", which quietly picked one reading of HVACP12 — the per-control
 # one — and that reading is precisely what DR #37 is still asking. §8.4.1: an
@@ -78,13 +82,13 @@ PC_KNOB = ("1. [spec-verbatim] If the hard controls are knobs that turn "
            "(14.12)")
 PC_TOGGLE = ("1. [spec-verbatim] If the hard controls are UP/DOWN toggles "
              "(14.12)")
-PC_CENTRIC = ("1. [spec-verbatim] The vehicle has a dual zone climate version "
-              "with dual airflow modes on an 8.4\", 10.1\" Landscape, 10.25\" "
-              "or 12.3\" radio (14.14)")
-PC_LANDSCAPE = ("1. [spec-verbatim] The vehicle has an 8.4/10.1/12 landscaped "
-                "screen (17.4)")
-PC_DUAL_WIDGET = ("1. [spec-verbatim] The vehicle is a dual zone climate with "
-                  "dual airflow modes equipped vehicle (17.5)")
+PC_CENTRIC = ("1. [spec-verbatim] For vehicles with dual zone climate "
+              "versions with dual airflow modes on 8.4\", 10.1\" Landscape, "
+              "10.25\" and 12.3\" radios (14.14)")
+PC_LANDSCAPE = ("1. [spec-verbatim] For 8.4/10.1/12 landscaped screens "
+                "(17.4)")
+PC_DUAL_WIDGET = ("1. [spec-verbatim] For dual zone climate with dual "
+                  "airflow modes equipped vehicles (17.5)")
 PC_WIDGET = "2. [test-setup] The Comfort widget is shown on the home screen"
 
 # 66 §3 — the ambiguity must reach the person who executes, not only the

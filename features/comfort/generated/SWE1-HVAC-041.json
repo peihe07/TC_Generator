@@ -26,7 +26,7 @@
    "test_group": "Comfort",
    "test_set": "Rear Climate",
    "test_item": "The system shall show the text labels «Front» for front climate and «Rear» for Rear Climate in the pop up",
-   "pre_conditions": "1. [spec-verbatim] The vehicle is one of the vehicles that have additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Trigger the fan speed pop up using the hard controls\n2. Read the labels in the pop up",
    "expected_result": "1. The fan speed pop up is displayed\n2. The pop up shows the label «Front» for front climate and «Rear» for Rear Climate",

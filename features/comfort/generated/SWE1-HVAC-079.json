@@ -52,7 +52,7 @@
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
    "test_item": "If the lower screen displayed the last selected option as Back Bolster , then the user retracts the lower screen, the next time they press the door (-, +) buttons or enter the seat tab on the HU, Back Bolster will still be the selected option",
-   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-verbatim] The lower screen displayed the last selected option as Back Bolster (13.3.1)",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lower screen displayed the last selected option as Back Bolster (13.3.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Retract the lower screen\n2. Press \"+\" on the door seat control\n3. Read the selected option",
    "expected_result": "1. The lower screen is retracted\n2. The Seat Control Popup or the Seats tab is shown\n3. The selected option is \"Back Bolster\"",

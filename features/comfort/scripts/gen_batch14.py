@@ -109,14 +109,14 @@ PC_PLAIN = ("1. [test-setup] The rear climate screen is open and the climate "
 PC_FRONT = ("1. [test-setup] The front climate screen is open and the climate "
             "system is on")
 # Axis 2, value 四區 — 7.10's own sentence is the literal for that value.
-PC_4ZONE = ("1. [spec-verbatim] The vehicle is a 4 Zone Climate vehicle, "
+PC_4ZONE = ("1. [spec-derived] The vehicle is a 4 Zone Climate vehicle, "
             "which includes two temperature zones in the rear climate (7.10)")
 # Axis 2, non-single-zone — SYNC is not shown for single zone configurations
 # (2.11, cross-section source per R-C29).
 PC_MULTIZONE = ("[spec-derived] The vehicle is not a single zone climate "
                 "configuration, for which Sync is not shown (2.11)")
 # Axis 1, ATC — CR4 says the current degree is displayed "for ATC systems".
-PC_ATC = ("[spec-verbatim] The vehicle has an ATC climate system, for which "
+PC_ATC = ("[spec-derived] The vehicle has an ATC climate system, for which "
           "the temperature displays the current degree (7.4)")
 
 SECTION_PC = {"7.1": PC_PLAIN, "7.1.1": PC_FRONT, "7.2": PC_PLAIN,
@@ -248,12 +248,17 @@ def main() -> None:
              ch16, verdict, sentence) in table[o]:
             n += 1
             refs = [o]
-            pcs = [LEAF_PC.get(leaf, SECTION_PC[o])]
+            # 69 §2 — LEAF_EXTRA lines are appended THROUGH add_lines so they
+            # get their line number. Joining them by hand left line 2 unnumbered
+            # on five TCs while lines 3–5 were numbered — the numbering looked
+            # right at both ends and was wrong in the middle.
+            extra = []
             if leaf in LEAF_EXTRA:
                 line, more = LEAF_EXTRA[leaf]
-                pcs.append(line)
+                extra.append(line)
                 refs += list(more)
-            pc = add_lines("\n".join(pcs), EX_ICS, EX_EMEA, EX_LOWER)
+            pc = add_lines(LEAF_PC.get(leaf, SECTION_PC[o]),
+                           *extra, EX_ICS, EX_EMEA, EX_LOWER)
             refs += ["2.14", "16.2", "6.3"]
             tcs.append({
                 "req_id": f"SWE1-HVAC-{leaf}",
