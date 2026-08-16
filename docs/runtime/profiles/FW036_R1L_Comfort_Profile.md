@@ -158,6 +158,7 @@
 | 12 | **僅前排氣候**（33 §3）| **介面型** | → **tabs 不顯示**（2.1）|
 | 13 | **HVAC 實體控制型式**（33 §3）| **介面型** | 3 旋鈕 ICS → **無 HVAC menu bar icon／畫面／popup**（2.14）|
 | 14 | 前排 HVAC 風速範圍（37 §4）| 功能型 | `Off, 1-7`（2.7 `C6.`）／`Off, 1-8`（2.7.1 `C6.1`）—— 兩值皆不移除介面，改變者為值域 |
+| 15 | **動力系統（EV／BEV vs 非 EV）**（39 §2）| **功能型** | 非 EV 車輛無 `ECO HVAC` 這組能力；AUTO 鍵、Menu Bar icon 與 comfort popup **仍在**（10.5 引 `standard ICE AUTO logics`、10.9.1 對照 `the standard ICE AUTO pop up`）|
 | — | 機型軸 R1 Low / R1 High | 功能型 | `14.19` 之 `-02` 為唯一含此條件者 |
 | — | **市場／變體軸 EMEA ICS** | **介面型** | **ch16 全章為另一套介面** —— ch2／ch3 之 TC 於該車無對象 |
 
@@ -174,7 +175,8 @@
   **soft top 車身之有無**（第十一軸，29 §2）、
   **僅前排氣候之有無**（第十二軸，33 §3）、
   **HVAC 實體控制型式**（第十三軸，33 §3）、
-  **前排 HVAC 風速範圍**（第十四軸，37 §4）
+  **前排 HVAC 風速範圍**（第十四軸，37 §4）、
+  **動力系統（EV／BEV vs 非 EV）**（第十五軸，39 §2）
 - **機型軸**：R1 Low / R1 High（`14.19` 之 `-02` 為唯一含此條件者）
 - **市場／變體軸**：EMEA ICS（ch16 全章）
 - **禁用**：`HU is powered on`、`Climate is available`（皆為隱含環境前提）
@@ -188,7 +190,7 @@ axis: 13  HVAC 實體控制型式
 values: 3 knob ICS | one zone MTC with push button TEMPERATURE | other
 value-count: 3
 negation-reviewed-at-value-count: 3
-negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-047, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065
+negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, NR1L-ComfortHMI-017, NR1L-ComfortHMI-018, NR1L-ComfortHMI-019, NR1L-ComfortHMI-020, NR1L-ComfortHMI-021, NR1L-ComfortHMI-022, NR1L-ComfortHMI-023, NR1L-ComfortHMI-024, NR1L-ComfortHMI-025, NR1L-ComfortHMI-026, NR1L-ComfortHMI-027, NR1L-ComfortHMI-028, NR1L-ComfortHMI-029, NR1L-ComfortHMI-030, NR1L-ComfortHMI-031, NR1L-ComfortHMI-032, NR1L-ComfortHMI-033, NR1L-ComfortHMI-034, NR1L-ComfortHMI-035, NR1L-ComfortHMI-036, NR1L-ComfortHMI-037, NR1L-ComfortHMI-038, NR1L-ComfortHMI-039, NR1L-ComfortHMI-040, NR1L-ComfortHMI-041, NR1L-ComfortHMI-042, NR1L-ComfortHMI-043, NR1L-ComfortHMI-044, NR1L-ComfortHMI-048, NR1L-ComfortHMI-049, NR1L-ComfortHMI-050, NR1L-ComfortHMI-051, NR1L-ComfortHMI-052, NR1L-ComfortHMI-053, NR1L-ComfortHMI-054, NR1L-ComfortHMI-055, NR1L-ComfortHMI-056, NR1L-ComfortHMI-057, NR1L-ComfortHMI-058, NR1L-ComfortHMI-059, NR1L-ComfortHMI-060, NR1L-ComfortHMI-061, NR1L-ComfortHMI-062, NR1L-ComfortHMI-063, NR1L-ComfortHMI-064, NR1L-ComfortHMI-065, NR1L-ComfortHMI-066, NR1L-ComfortHMI-067, NR1L-ComfortHMI-068, NR1L-ComfortHMI-069, NR1L-ComfortHMI-070, NR1L-ComfortHMI-071, NR1L-ComfortHMI-072, NR1L-ComfortHMI-073, NR1L-ComfortHMI-074, NR1L-ComfortHMI-075, NR1L-ComfortHMI-076, NR1L-ComfortHMI-077, NR1L-ComfortHMI-078, NR1L-ComfortHMI-079, NR1L-ComfortHMI-080, NR1L-ComfortHMI-081
 ```
 
 **每一條配置條件須具名其來源節次**；不得以「某些車輛有此配置」概括
@@ -230,6 +232,29 @@ negation-users: NR1L-ComfortHMI-003, NR1L-ComfortHMI-015, NR1L-ComfortHMI-016, N
 > **措辭限制**：PC 一律寫「soft top」，**不寫成「JL or JT」**。條文為
 > `such as JL/JT`（**例示**），寫成 JL/JT 即窄於條文 —— 屬 §8.4.1 之
 > **反向造值：把例示讀成窮舉**。JL/JT 得於同句以 `such as` 形式引為例示。
+
+**第十五軸 動力系統（EV／BEV vs 非 EV）**（39 §2）：來源節 **10.1**
+（`ECO HVAC is an HVAC Mode, used on **EV Vehicles only**`）與 **10.2**
+（`**For BEV vehicles**, the AUTO functionality can have 3 states`）。
+
+> **判為一軸而非二軸**（39 §2 之判準）：ch10 內僅 10.9.1 另用
+> `When ECO HVAC is equipped on a vehicle`，而該句係重述本章之適用範圍，
+> **未使「配備 ECO HVAC」成為可獨立取值之第二性質**（實測 ch10 全章
+> `configured` 0 命中、無任何 `if … ECO` 型條件句）。
+> `AUTO ECO`／`AUTO ON` 之切換為**執行期狀態**（10.4／10.5 之按壓循環），
+> 依 R-C28 第三問落 `test_procedure`，非配置軸。
+>
+> **判為功能型而非介面型**：非 EV 車輛是**沒有 ECO HVAC 這組能力**，
+> 而非「有能力而無介面」—— AUTO 鍵、Menu Bar icon、comfort popup 於
+> ICE 車上皆存在（10.5 引 `standard ICE AUTO logics`、10.9.1 對照
+> `the standard ICE AUTO pop up`）。
+>
+> **與 EMEA ICS 形狀相似而類別相反**（R-C18）：ch16 是**另一套介面**實現
+> 同一批能力，故為介面型；ch10 是**多出來的一組能力**，故為功能型。
+> 兩者皆為「整章繫於一個車輛屬性」，**不得以形狀類推**。
+>
+> **既有影響**：本軸為功能型，故不進 `interface_axis_review` 之鍵，
+> 既有 66 條不需逐條補答。
 
 **第十四軸 前排 HVAC 風速範圍**（37 §4）：值 **`Off, 1-7`**（來源節 **2.7**，
 `C6.`）／**`Off, 1-8`**（來源節 **2.7.1**，`C6.1`）。**功能型** —— 兩值皆不
@@ -397,12 +422,65 @@ BLOCKED row 之豁免，每次 lint 皆輸出受豁免之 tc_id 清單。
 **目前之 `[BLOCKED-SPEC]` 列**：`SWE1-HVAC-080-02`（HMI Core Logic and
 Flow requirement N0）、`SWE1-HVAC-081-02`（CFTS044）。
 
-### 5.2 不產生 workbook 列者
+### 5.2 `[BLOCKED-NON-HMI]`（R-C38，2026-08-15 裁定）
+
+**適用**：某 leaf 之內容**既未委派予外部文件，亦非任何介面可觀察之行為**，
+於本 feature 全部 spec 內無可觀察端者。
+
+**產出 BLOCKED row** —— 與 `[BLOCKED-SPEC]` 同形（procedure／ER 空、
+spec ref 照填），差別在 Remarks **不得填擁有者**：沒有擁有者正是本類之定義。
+
+| 欄 | 值 |
+|---|---|
+| `test_procedure` / `expected_result` | **空** |
+| `specification_reference` | 該 leaf 自身之 outline，照常填 |
+| Remarks | `[BLOCKED-NON-HMI]` ＋ `Not an HMI-observable property` ＋ 一句說明何以無可觀察端。**不填擁有者** |
+| 其餘 | 依 profile 常規 |
+
+**使用條件五項（R-C38，缺一即回報停下）**：一、條文內無任何委派字面
+（`see`／`as per`／`refer to`／具名文件）；二、037 確實產出該 leaf；
+三、於本 feature 全部 spec 節內無可觀察端，須具名已查之節與搜尋範圍
+（R-C30）；四、其可能之替代觀察量若已由其他 leaf 涵蓋，須具名該 leaf
+（§4.5）；五、tc_id 經白名單增列（R-C26）。
+
+**須同時列 RD-1**：037 對該 leaf 標 `Manual UI Testing` 而其 Expected
+Result 無任何 UI 可觀察量者，係上游之分類問題（見 DATA_REQUESTS #24）。
+
+**目前之 `[BLOCKED-NON-HMI]` 列**：`SWE1-HVAC-044-02`（ECO HVAC 之降耗）。
+
+### 5.3 三類 BLOCKED marker 之對照 —— 不得互相類推
+
+| | `[BLOCKED-ECU]`（Privacy） | `[BLOCKED-SPEC]`（本 feature） | `[BLOCKED-NON-HMI]`（本 feature，R-C38） |
+|---|---|---|---|
+| 成因 | 行為由**另一 ECU** 執行 | 行為**可觀察**，但其規範內容由**另一份 spec** 擁有 | **無外部擁有者**，且其內容**不是介面行為** |
+| 條文有無委派字面 | 不必然 | **有**（具名文件／具名硬體控制）| **無** |
+| 本 ECU／本 feature 有無可觀察端 | **無**（在別的 ECU）| **有**（只是無獨立於 sibling 之內容可驗）| **無**（不是任何介面上的量）|
+| Remarks 之擁有者欄 | 具名該 ECU | 具名該文件（R-C27 首行可見）| **不得填** —— 寫不出擁有者即本類之判準 |
+| 解除條件 | 該行為改由本 ECU 執行，或取得其可觀察指標 | 外部 spec 之內容納入本 feature 範圍，或該 leaf 經 037 改寫 | 037 改寫該 leaf 使其具可觀察量，或上游確認其驗證方法非 `Manual UI Testing` |
+
+**三者外觀相同（皆無 procedure），成因不同。** 見到空 procedure 時，
+須讀 Remarks 之 marker 方知其類別。
+
+**判別次序**：先問「條文有無委派字面」——
+有 → `[BLOCKED-SPEC]`；無 → 再問「本 feature 內有無可觀察端」——
+無 → `[BLOCKED-NON-HMI]`；有 → 不是 BLOCKED，正常生成。
+**037 未產出該 leaf 者不進入本次序**，屬 §5.4 之覆蓋缺口。
+
+**lint 之豁免為具名回報行，不得靜默跳過**（前例：上繳 06 §2.1 之
+`and n != "Comfort Widget"`）。`proc-min-steps` 與 `proc-er-1to1` 對
+BLOCKED row 之豁免，每次 lint 皆輸出受豁免之 tc_id 清單，**三類合併輸出**。
+
+### 5.4 不產生 workbook 列者
 
 **16.1、18.2–18.4 四節依 R-C16 為 RD-1 覆蓋缺口項，不產生任何 workbook 列**
-—— 與 `[BLOCKED-SPEC]`／`[BLOCKED-ECU]` **皆不同**：那兩者產生 BLOCKED 列，
-本類**連列都不產**（037 未對其產出需求，故無 leaf 可掛）。
-不指派 tc_id、不入 coverage 分母、不列 BLOCKED。
+—— 與 `[BLOCKED-SPEC]`／`[BLOCKED-ECU]`／`[BLOCKED-NON-HMI]` **皆不同**：
+那三者產生 BLOCKED 列，本類**連列都不產**（037 未對其產出需求，故無 leaf
+可掛）。不指派 tc_id、不入 coverage 分母、不列 BLOCKED。
+
+**本類與 `[BLOCKED-NON-HMI]` 之界線（R-C38 使用條件第二項）**：
+差別**不在該 leaf 可不可驗，而在 037 有沒有產出它**。037 產出者若以本類
+處置，該 leaf 在工作簿中不留任何痕跡，評閱方比對 037 與工作簿時它憑空消失
+—— 那正是 BLOCKED row 機制存在的理由（可見、可稽核的缺口，而非無聲的）。
 
 新增 marker 須先裁決，**生成當下不得自行創造**。
 

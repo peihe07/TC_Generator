@@ -3,7 +3,7 @@
  "outline": "2.14",
  "batch": "Front Climate Anatomy",
  "source_clause": "C15.) MTC screens/popups are to be used when CCM relays MTC functionality. MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature. For MTC with ICS, there will be no redundant interaction with the screen for certain types of physical knobs (3 knob HVAC controls) in order to prevent a mismatch between the soft and hard controls. In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed. For one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls then this exception does not apply.",
- "reasoning": "驗證目標：2.14（C15）定出 MTC 相對 ATC 之兩項缺項（無離散溫度設定、無 Auto 控制），以及 3 旋鈕 ICS 車輛之 HVAC 觸控 UI 不顯示，四個 037 leaf 分別對應之，一葉一 TC（§8.2.1）。關鍵情境條件：-01／-02 取第一軸 MTC，其第一問由「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature」對應；-03／-04 另取 profile §3.2 第十三軸「3 旋鈕 ICS」，其第一問由「For MTC with ICS … certain types of physical knobs (3 knob HVAC controls)」對應，**該軸指 ch2 之實體旋鈕配置，非市場／變體軸之 EMEA ICS（ch16 全章）**，兩者外觀皆含 ICS 而所指不同（33 §3）。為什麼這樣切：-03 驗機制（螢幕無重複互動），-04 驗其三項具體後果（無 menu bar icon、無畫面、無 popup），037 給了兩個 leaf 故不合併（§8.2）；**-03 之 037 描述「no mismatch occurs」係條文之目的子句「in order to prevent a mismatch」，目的不是可觀察量，故被驗證者為其機制句**（R-C22；且 3 旋鈕 ICS 車上無螢幕，mismatch 於該配置本就無從觀察，以它為 ER 將產生永遠無法判定之 TC）。-04 依 §8.2.2「independent partial failures」與 §7（列舉之支援項須配負向對照）拆為主情形與例外二條，同溯該 leaf。刻意略過：ICS 自身之行為（旋鈕如何運作、ICS 畫面之內容）屬 ICS Anatomy 與 ICS Climate Modes 兩組，本批只驗 head unit 上之**缺席**此一 2.14 明文之事實，觀察位置不同（§8.2.1）；-04 之例外情形「one zone MTC with push button TEMPERATURE」為另一種車輛配置，無法與主情形共用 pre_conditions，本批未生成其 TC，已於上繳 22 §5.3 列為覆蓋缺口待裁。",
+ "reasoning": "驗證目標：2.14（C15）定出 MTC 相對 ATC 之兩項缺項（無離散溫度設定、無 Auto 控制），以及 3 旋鈕 ICS 車輛之 HVAC 觸控 UI 不顯示，四個 037 leaf 分別對應之，一葉一 TC（§8.2.1）。關鍵情境條件：-01／-02 取第一軸 MTC，其第一問由「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature」對應；-03／-04 另取 profile §3.2 第十三軸「3 旋鈕 ICS」，其第一問由「For MTC with ICS … certain types of physical knobs (3 knob HVAC controls)」對應，**該軸指 ch2 之實體旋鈕配置，非市場／變體軸之 EMEA ICS（ch16 全章）**，兩者外觀皆含 ICS 而所指不同（33 §3）。為什麼這樣切：-03 驗機制（螢幕無重複互動），-04 驗其三項具體後果（無 menu bar icon、無畫面、無 popup），037 給了兩個 leaf 故不合併（§8.2）；**-03 之 037 描述「no mismatch occurs」係條文之目的子句「in order to prevent a mismatch」，目的不是可觀察量，故被驗證者為其機制句**（R-C22；且 3 旋鈕 ICS 車上無螢幕，mismatch 於該配置本就無從觀察，以它為 ER 將產生永遠無法判定之 TC）。-04 依 §8.2.2「independent partial failures」與 §7（列舉之支援項須配負向對照）拆為主情形與例外二條，同溯該 leaf。刻意略過：ICS 自身之行為（旋鈕如何運作、ICS 畫面之內容）屬 ICS Anatomy 與 ICS Climate Modes 兩組，本批只驗 head unit 上之**缺席**此一 2.14 明文之事實，觀察位置不同（§8.2.1）；**-03／-04 之 EMEA 排除式 PC 與 16.2 引用已依 39 §1.1 移除**，因 ICE13 全文僅兩句而不含 C15 之 3 旋鈕 ICS 段落，-01／-02 之排除則因落在 ICE13 第二句內而維持；-04 之例外情形「one zone MTC with push button TEMPERATURE」為另一種車輛配置，無法與主情形共用 pre_conditions，本批未生成其 TC，已於上繳 22 §5.3 列為覆蓋缺口待裁。",
  "keywords": [
   "MTC",
   "ATC",
@@ -29,7 +29,7 @@
  "tcs": [
   {
    "req_id": "SWE1-HVAC-020-01",
-   "tc_id": "NR1L-ComfortHMI-042",
+   "tc_id": "NR1L-ComfortHMI-043",
    "tc_title": "MTC shows no discrete temperature setting",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
@@ -45,11 +45,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.14",
+    "ch16_outline": "16.14",
+    "verdict": "yes",
+    "ch16_sentence": "ICE13「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-020-02",
-   "tc_id": "NR1L-ComfortHMI-043",
+   "tc_id": "NR1L-ComfortHMI-044",
    "tc_title": "MTC offers no Auto control over the set temperature",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
@@ -65,67 +71,91 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.14",
+    "ch16_outline": "16.14",
+    "verdict": "yes",
+    "ch16_sentence": "同句之「and \"Auto\" control over the set temperature」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-020-03",
-   "tc_id": "NR1L-ComfortHMI-044",
+   "tc_id": "NR1L-ComfortHMI-045",
    "tc_title": "Screen offers no redundant interaction with the 3 knob controls",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
    "test_item": "For MTC with ICS, there shall be no redundant interaction with the screen for 3 knob HVAC controls, in order to prevent a mismatch between the soft and hard controls",
-   "pre_conditions": "1. [spec-verbatim] The climate system is MTC (2.14)\n2. [spec-verbatim] The vehicle has 3 knob HVAC controls with ICS (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "pre_conditions": "1. [spec-verbatim] The climate system is MTC (2.14)\n2. [spec-verbatim] The vehicle has 3 knob HVAC controls with ICS (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the head unit menu\n2. Read the head unit menu for an HVAC interaction that duplicates the 3 knob HVAC controls",
    "expected_result": "1. The head unit menu is displayed\n2. The head unit offers no interaction that duplicates the 3 knob HVAC controls",
-   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "split_flag": false,
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
-  },
-  {
-   "req_id": "SWE1-HVAC-020-04",
-   "tc_id": "NR1L-ComfortHMI-045",
-   "tc_title": "No HVAC icons screens or pop-ups with 3 knob ICS controls",
-   "test_group": "Comfort",
-   "test_set": "Front Climate Anatomy",
-   "test_item": "For MTC with ICS and 3 knob HVAC controls, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups shall be displayed",
-   "pre_conditions": "1. [spec-verbatim] The climate system is MTC (2.14)\n2. [spec-verbatim] The vehicle has 3 knob HVAC controls with ICS (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
-   "input_test_data": "NA",
-   "test_procedure": "1. Open the head unit menu\n2. Read the menu bar for HVAC icons\n3. Change the temperature using the HVAC knob",
-   "expected_result": "1. The head unit menu is displayed\n2. No HVAC menu bar icon is displayed\n3. No HVAC screen and no HVAC pop up is displayed",
-   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
-   "priority": "P1",
-   "design_method": "功能測試 (Functional based ; no specific technique)",
-   "split_flag": true,
-   "split_reason": "(§8.2.2 independent partial failures + §7 negative pairing) the main case and the exception are different vehicle configurations with opposite results and can fail independently, so 020-04 splits into two TCs that both trace to it (handoff 34 §2)",
-   "functional_safety": "NA",
-   "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.14",
+    "ch16_outline": "16.14",
+    "verdict": "no",
+    "ch16_sentence": "**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「螢幕無重複互動之機制」於 ch16 無對應句"
+   }
   },
   {
    "req_id": "SWE1-HVAC-020-04",
    "tc_id": "NR1L-ComfortHMI-046",
-   "tc_title": "HVAC UI is shown for one zone MTC with push button temperature",
+   "tc_title": "No HVAC icons screens or pop-ups with 3 knob ICS controls",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "For one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls, the exception shall not apply, and the HVAC menu bar icons, screens and pop ups shall be displayed",
-   "pre_conditions": "1. [spec-verbatim] The climate system is MTC (2.14)\n2. [spec-verbatim] The vehicle is one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "test_item": "For MTC with ICS and 3 knob HVAC controls, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups shall be displayed",
+   "pre_conditions": "1. [spec-verbatim] The climate system is MTC (2.14)\n2. [spec-verbatim] The vehicle has 3 knob HVAC controls with ICS (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
-   "test_procedure": "1. Open the head unit menu\n2. Read the menu bar for HVAC icons\n3. Change the temperature using the push button TEMPERATURE hard control",
-   "expected_result": "1. The head unit menu is displayed\n2. An HVAC menu bar icon is displayed\n3. An HVAC pop up is displayed",
-   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "test_procedure": "1. Open the head unit menu\n2. Read the menu bar for HVAC icons\n3. Change the temperature using the HVAC knob",
+   "expected_result": "1. The head unit menu is displayed\n2. No HVAC menu bar icon is displayed\n3. No HVAC screen and no HVAC pop up is displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "split_flag": true,
    "split_reason": "(§8.2.2 independent partial failures + §7 negative pairing) the main case and the exception are different vehicle configurations with opposite results and can fail independently, so 020-04 splits into two TCs that both trace to it (handoff 34 §2)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.14",
+    "ch16_outline": "16.14",
+    "verdict": "no",
+    "ch16_sentence": "**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「三項 HVAC UI 不顯示」於 ch16 無對應句"
+   }
+  },
+  {
+   "req_id": "SWE1-HVAC-020-04",
+   "tc_id": "NR1L-ComfortHMI-047",
+   "tc_title": "HVAC UI is shown for one zone MTC with push button temperature",
+   "test_group": "Comfort",
+   "test_set": "Front Climate Anatomy",
+   "test_item": "For one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls, the exception shall not apply, and the HVAC menu bar icons, screens and pop ups shall be displayed",
+   "pre_conditions": "1. [spec-verbatim] The climate system is MTC (2.14)\n2. [spec-verbatim] The vehicle is one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the head unit menu\n2. Read the menu bar for HVAC icons\n3. Change the temperature using the push button TEMPERATURE hard control",
+   "expected_result": "1. The head unit menu is displayed\n2. An HVAC menu bar icon is displayed\n3. An HVAC pop up is displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": true,
+   "split_reason": "(§8.2.2 independent partial failures + §7 negative pairing) the main case and the exception are different vehicle configurations with opposite results and can fail independently, so 020-04 splits into two TCs that both trace to it (handoff 34 §2)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.14",
+    "ch16_outline": "16.14",
+    "verdict": "no",
+    "ch16_sentence": "**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「單區 MTC 附 push button TEMPERATURE 之例外」於 ch16 無對應句"
+   }
   }
  ]
 }

@@ -1,0 +1,47 @@
+tc_id	outline	ch16_outline	verdict	ch16_sentence
+NR1L-ComfortHMI-018	3.2	16.8	yes	ICE7 全句與 C20 逐字相同，其首句即述 MAX DEF 之存在與連動；ICE6 另載 MAX DEF 於 ICS 介面上之位置
+NR1L-ComfortHMI-019	3.2	16.8	yes	ICE7「MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature … at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST」
+NR1L-ComfortHMI-020	3.2	16.8	yes	ICE7「MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode」
+NR1L-ComfortHMI-021	3.2	16.8	yes	ICE7「Pressing A/C brakes MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off」
+NR1L-ComfortHMI-022	3.2	16.8	yes	ICE7「Pressing AUTO breaks MAX DEF (turns MAX DEF off) and the system goes to AUTO」
+NR1L-ComfortHMI-023	3.2	16.8	yes	ICE7「Similarly, pressing MAX A/C turns MAX DEF off … and the system goes to MAX A/C」
+NR1L-ComfortHMI-024	3.2	16.8	yes	ICE7「Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF … with the A/C on」之 temperature 一項
+NR1L-ComfortHMI-025	3.2	16.8	yes	同上句之 recirculation 一項
+NR1L-ComfortHMI-026	3.2	16.8	yes	同上句之 mode distribution 一項
+NR1L-ComfortHMI-027	3.2	16.8	yes	同上句之 pressing again MAX DEF 一項
+NR1L-ComfortHMI-028	3.2	16.8	yes	ICE7「Change in fan speed doesn’t break MAX DEF」
+NR1L-ComfortHMI-029	3.3	16.10	yes	ICE9「grey out remaining buttons except for Front/Max defrost and rear defrost」—— 例外項即 MAX DEF 與 rear defrost 之可用性
+NR1L-ComfortHMI-030	3.3	16.10	yes	同句之「grey out remaining buttons」—— 例外以外之功能不可用
+NR1L-ComfortHMI-032	2.2	16.2	yes	ICE1「Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations」
+NR1L-ComfortHMI-033	2.2	16.2	yes	ICE1「according pop-ups are shown if NOT on climate screen (timeout after 3 sec)」
+NR1L-ComfortHMI-034	2.2	16.2	yes	ICE1「changes are reflected in status bar/ status indicator on category button」
+NR1L-ComfortHMI-035	2.2	16.2	yes	ICE1「When sync'd, do not show slider pop-up on passenger side when adjusting driver slider」
+NR1L-ComfortHMI-036	2.2	16.2	yes	ICE1「for ATC it will display the degree (**or half degree increments for Celsius**) being set」—— 拆條後本條只驗攝氏側，落在 ICE1 涵蓋之部分（39 §1.2）
+NR1L-ComfortHMI-037	2.2	16.2	no	**ICE1 無 C1 之「and for Fahrenheit do not show half degrees」一句** —— 拆條後本條只驗華氏側，於 ch16 無對應句（39 §1.2）
+NR1L-ComfortHMI-038	2.2	16.2	yes	ICE1「for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp」
+NR1L-ComfortHMI-039	2.2	16.2	yes	ICE1「If on climate screen, status changes are indicated directly on touchscreen buttons / status indicator on category button and will not be shown in the status bar」
+NR1L-ComfortHMI-040	2.2	16.2	yes	ICE1「If changes are made on climate screen, LEDs on hard controls reflect new status」
+NR1L-ComfortHMI-043	2.14	16.14	yes	ICE13「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings」
+NR1L-ComfortHMI-044	2.14	16.14	yes	"同句之「and ""Auto"" control over the set temperature」"
+NR1L-ComfortHMI-045	2.14	16.14	no	**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「螢幕無重複互動之機制」於 ch16 無對應句
+NR1L-ComfortHMI-046	2.14	16.14	no	**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「三項 HVAC UI 不顯示」於 ch16 無對應句
+NR1L-ComfortHMI-047	2.14	16.14	no	**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「單區 MTC 附 push button TEMPERATURE 之例外」於 ch16 無對應句
+NR1L-ComfortHMI-048	2.6	16.6	yes	ICE5「Temperature will display the current degree value the user has set it to for ATC systems」＋「The status is indicated on TS climate screen and in status bar」
+NR1L-ComfortHMI-049	2.6	16.6	yes	ICE5「when at the Highest possible position display HI when at the lowest display LO instead of a degree value」
+NR1L-ComfortHMI-050	2.6	16.6	yes	ICE5「When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments」
+NR1L-ComfortHMI-051	2.6	16.6	yes	ICE5「Show pop-up when status is changed via hard control and currently shown screen is not climate screen」
+NR1L-ComfortHMI-052	2.6	16.6	yes	ICE5「The temperature within the temp slider, status bar, temp slider popup, and temp popup will reflect this change in temperature increments」
+NR1L-ComfortHMI-053	2.6.1	16.6.1	yes	ICE5.1「If SYNC is ON, adjusting driver temperature affects passenger temperature」
+NR1L-ComfortHMI-054	2.6.1	16.6.1	yes	ICE5.1「adjusting passenger temperature would break SYNC and turn it off」
+NR1L-ComfortHMI-055	2.6.1	16.6.1	yes	ICE5.1「Change temperature on climate screen by using arrows (move 1 increment up/ down per press」
+NR1L-ComfortHMI-056	2.6.1	16.6.1	yes	ICE5.1「long press = fast move」＋「Long press = fast move shall also work for temperature HARD CONTROLS」
+NR1L-ComfortHMI-057	2.6.1	16.6.1	yes	ICE5.1「The system can jump to a value as well via a slider bar touch or voice command」
+NR1L-ComfortHMI-058	2.6.1	16.6.1	yes	ICE5.1「User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press」
+NR1L-ComfortHMI-059	2.7	16.7	yes	ICE6「The status is indicated on TS climate screen and in main category control」
+NR1L-ComfortHMI-060	2.7	16.7	yes	ICE6「Show pop-up when status is changed via hard control and currently shown screen is not climate screen」
+NR1L-ComfortHMI-061	2.7	16.7	yes	ICE6「When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」
+NR1L-ComfortHMI-062	2.7	16.7	yes	ICE6「The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control. There would always be one bar highlighted」
+NR1L-ComfortHMI-063	2.7	16.7	yes	ICE6「The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control)」
+NR1L-ComfortHMI-064	2.16	16.17	yes	16.17 全句「If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed is not displayed to the user」
+NR1L-ComfortHMI-065	2.16	16.17	no	**16.17 僅一句**，**不含 C18 之第二句「After blower reduction, return blower speed to previous speed without showing a change in fan speed」** —— 本條所驗之回復行為於 ch16 無對應句
+NR1L-ComfortHMI-066	2.7.1	16.7	no	**ICE6 只列「Fan ranges: Off, 1-7」** —— 本條所驗之 Off, 1-8 於 ch16 無對應句；鏡射表亦已將 2.7.1 記為 no-counterpart

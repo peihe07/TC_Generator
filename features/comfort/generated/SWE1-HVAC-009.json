@@ -28,7 +28,7 @@
  "tcs": [
   {
    "req_id": "SWE1-HVAC-009-01",
-   "tc_id": "NR1L-ComfortHMI-052",
+   "tc_id": "NR1L-ComfortHMI-053",
    "tc_title": "Driver temperature drives passenger temperature when SYNC is on",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -44,11 +44,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6.1",
+    "ch16_outline": "16.6.1",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5.1「If SYNC is ON, adjusting driver temperature affects passenger temperature」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-009-02",
-   "tc_id": "NR1L-ComfortHMI-053",
+   "tc_id": "NR1L-ComfortHMI-054",
    "tc_title": "Adjusting the passenger temperature breaks SYNC",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -64,11 +70,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6.1",
+    "ch16_outline": "16.6.1",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5.1「adjusting passenger temperature would break SYNC and turn it off」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-009-03",
-   "tc_id": "NR1L-ComfortHMI-054",
+   "tc_id": "NR1L-ComfortHMI-055",
    "tc_title": "Arrow press moves the temperature by one increment",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -84,11 +96,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6.1",
+    "ch16_outline": "16.6.1",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5.1「Change temperature on climate screen by using arrows (move 1 increment up/ down per press」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-009-04",
-   "tc_id": "NR1L-ComfortHMI-055",
+   "tc_id": "NR1L-ComfortHMI-056",
    "tc_title": "Long press gives a fast move on screen and hard controls",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -104,11 +122,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6.1",
+    "ch16_outline": "16.6.1",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5.1「long press = fast move」＋「Long press = fast move shall also work for temperature HARD CONTROLS」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-009-05",
-   "tc_id": "NR1L-ComfortHMI-056",
+   "tc_id": "NR1L-ComfortHMI-057",
    "tc_title": "Temperature jumps to a value by slider touch or voice",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -124,11 +148,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6.1",
+    "ch16_outline": "16.6.1",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5.1「The system can jump to a value as well via a slider bar touch or voice command」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-009-06",
-   "tc_id": "NR1L-ComfortHMI-057",
+   "tc_id": "NR1L-ComfortHMI-058",
    "tc_title": "Only the slider handle moves the slider position",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -144,7 +174,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6.1",
+    "ch16_outline": "16.6.1",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5.1「User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press」"
+   }
   }
  ]
 }

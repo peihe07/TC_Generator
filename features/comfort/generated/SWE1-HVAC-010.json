@@ -3,7 +3,7 @@
  "outline": "2.7",
  "batch": "Temperature and Fan",
  "source_clause": "C6.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead). The status is indicated on TS climate screen and in main category control. Show pop-up when status is changed via hard control and currently shown screen is not climate screen. When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control. The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control. There would always be one bar highlighted. The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).",
- "reasoning": "驗證目標：2.7（C6）定出風量之範圍與呈現位置、非 climate screen 時之 popup、climate screen 上之三種調整途徑，以及「風量不可手動關至全暗」此一限制與其唯一例外，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 TS climate screen 與 main category control，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；**-01 另補第九軸** —— 其讀 main category control，而 6.3 使 comfort section 自 head unit 移除，故該介面可能不存在，標 (6.3) 並併入 specification_reference；其餘四條之可觀察量在 climate screen 與 popup，不受第九軸影響。為什麼這樣切：三種調整途徑與兩項限制之失效互相獨立。刻意略過：條文之 `15h` 標示 AUTO 一項語意不明（未見於他節），本批不驗，僅驗 Off 與 1-7 之呈現；-02 與 `NR1L-ComfortHMI-033`（2.2 之 popup）形態相近而 leaf 不同，依 §8.2 各自成條，本條之主詞為風量、該條為一般性狀態變更。",
+ "reasoning": "驗證目標：2.7（C6）定出風量之範圍與呈現位置、非 climate screen 時之 popup、climate screen 上之三種調整途徑，以及「風量不可手動關至全暗」此一限制與其唯一例外，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 TS climate screen 與 main category control，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；**-01 另補第九軸** —— 其讀 main category control，而 6.3 使 comfort section 自 head unit 移除，故該介面可能不存在，標 (6.3) 並併入 specification_reference；其餘四條之可觀察量在 climate screen 與 popup，不受第九軸影響。為什麼這樣切：三種調整途徑與兩項限制之失效互相獨立。刻意略過：條文之 `15h` 標示 AUTO 一項語意不明（未見於他節），本批不驗，僅驗 Off 與 1-7 之呈現；-02 與 `NR1L-ComfortHMI-033`（2.2 之 popup）形態相近而 leaf 不同，依 §8.2 各自成條，本條之主詞為風量、該條為一般性狀態變更；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 1 張圖，五條之答**皆為否** —— `fan segment`／`one bar highlighted`／`all FAN bars grayed out`／`main category control`／`pop-up` 五個可觀察量**全部是 C6 自己的字**，ER 未使用任何條文以外之視覺描述。",
  "keywords": [
   "fan",
   "main category control",
@@ -27,7 +27,7 @@
  "tcs": [
   {
    "req_id": "SWE1-HVAC-010-01",
-   "tc_id": "NR1L-ComfortHMI-058",
+   "tc_id": "NR1L-ComfortHMI-059",
    "tc_title": "Fan speed shows on the climate screen and category control",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -43,11 +43,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.7",
+    "ch16_outline": "16.7",
+    "verdict": "yes",
+    "ch16_sentence": "ICE6「The status is indicated on TS climate screen and in main category control」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-010-02",
-   "tc_id": "NR1L-ComfortHMI-059",
+   "tc_id": "NR1L-ComfortHMI-060",
    "tc_title": "Fan pop-up appears off the climate screen",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -63,11 +69,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.7",
+    "ch16_outline": "16.7",
+    "verdict": "yes",
+    "ch16_sentence": "ICE6「Show pop-up when status is changed via hard control and currently shown screen is not climate screen」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-010-03",
-   "tc_id": "NR1L-ComfortHMI-060",
+   "tc_id": "NR1L-ComfortHMI-061",
    "tc_title": "Fan is adjustable by buttons touch or slide on screen",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -83,11 +95,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.7",
+    "ch16_outline": "16.7",
+    "verdict": "yes",
+    "ch16_sentence": "ICE6「When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-010-04",
-   "tc_id": "NR1L-ComfortHMI-061",
+   "tc_id": "NR1L-ComfortHMI-062",
    "tc_title": "Fan cannot be turned off from the screen or hard control",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -103,11 +121,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.7",
+    "ch16_outline": "16.7",
+    "verdict": "yes",
+    "ch16_sentence": "ICE6「The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control. There would always be one bar highlighted」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-010-05",
-   "tc_id": "NR1L-ComfortHMI-062",
+   "tc_id": "NR1L-ComfortHMI-063",
    "tc_title": "All fan bars grey out only when the climate system is off",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -123,7 +147,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.7",
+    "ch16_outline": "16.7",
+    "verdict": "yes",
+    "ch16_sentence": "ICE6「The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control)」"
+   }
   }
  ]
 }

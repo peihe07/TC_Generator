@@ -130,6 +130,20 @@ def _load_interface_axis_review() -> dict:
 
 INTERFACE_AXIS_REVIEW = _load_interface_axis_review()
 
+# ---- 38 §1 / R-C36-1 — per-TC EMEA judgement -----------------------------
+# Section-level `mirrored` was standing in for a per-TC answer, and it hid
+# five over-strict exclusions: 16.14 is two sentences where 2.14 is a
+# paragraph, and 16.17 is one where 2.16 is two. Each row names the ch16
+# sentence its verdict rests on, so "mirrored" is never the whole answer.
+def _load_emea_per_tc() -> dict:
+    path = FEATURE / "data" / "emea_ics_per_tc.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return {r.pop("tc_id"): r for r in csv.DictReader(fh, delimiter="\t")}
+
+
+EMEA_PER_TC = _load_emea_per_tc()
+
+
 # 37 §1 — sections whose ch16 counterpart does not exist (mirror map's
 # no-counterpart rows). The EMEA exclusion rested on "ch2/ch3 is mirrored
 # by ch16"; for these that premise is false, so the PC and its 16.2
@@ -142,7 +156,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-023",
         "outline": "3.1",
         "reasoning":
-            "驗證目標：3.1（C19）定義 Tri-Mode 之三個 airflow mode 按鈕與 MODE 硬鍵之循環，三個 037 leaf 分別對應「個別 toggle」「單向循環順序」「多向前後移動」，三者之操作元件與失效形態互異，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第三軸「tri-mode 有無」，其 R-C28 第一問由條文首句「On vehicles with Tri-Mode climate」明文對應，標 spec-verbatim；硬鍵之存在由「Pressing the hard control MODE button」一句推得，標 spec-derived。為什麼這樣切：三條之失效可各自獨立發生（個別 toggle 正常而循環順序錯，或循環正常而反向移動錯），合併後無法定位。**EMEA ICS 排除式 PC 已依 37 §1 移除** —— `ch16_mirror_map.tsv` 判 3.1 為 no-counterpart（16.12 ICE11 為 5 states 單選，非 tri-mode 之三鍵組合），原排除建立在「ch2／ch3 於 ch16 有對應」此一對本節為假之前提上。刻意略過：條文列出七種組合而未定義開機預設模式，故循環之起點由 procedure 第一步建立而非寫入 pre_conditions（§7 FF ＋ R-C28 第三問）；「7 possible distribution modes」之計數本身不另立 TC，它是 -02 循環之結果而非獨立行為。",
+            "驗證目標：3.1（C19）定義 Tri-Mode 之三個 airflow mode 按鈕與 MODE 硬鍵之循環，三個 037 leaf 分別對應「個別 toggle」「單向循環順序」「多向前後移動」，三者之操作元件與失效形態互異，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第三軸「tri-mode 有無」，其 R-C28 第一問由條文首句「On vehicles with Tri-Mode climate」明文對應，標 spec-verbatim；硬鍵之存在由「Pressing the hard control MODE button」一句推得，標 spec-derived。為什麼這樣切：三條之失效可各自獨立發生（個別 toggle 正常而循環順序錯，或循環正常而反向移動錯），合併後無法定位。**EMEA ICS 排除式 PC 已依 37 §1 移除** —— `ch16_mirror_map.tsv` 判 3.1 為 no-counterpart（16.12 ICE11 為 5 states 單選，非 tri-mode 之三鍵組合），原排除建立在「ch2／ch3 於 ch16 有對應」此一對本節為假之前提上。刻意略過：條文列出七種組合而未定義開機預設模式，故循環之起點由 procedure 第一步建立而非寫入 pre_conditions（§7 FF ＋ R-C28 第三問）；「7 possible distribution modes」之計數本身不另立 TC，它是 -02 循環之結果而非獨立行為；**A-CF23 之逐條複查（41 §5）**：037 對本 leaf 之描述帶 6 張圖，逐條問「所驗行為是否依賴圖片所載內容」——`-01` 之個別 toggle 邏輯、`-02` 之七組合循環順序、`-03` 之前後移動方向**皆由 C19 之文字明載**，該三者不依賴圖；**惟三條之 ER 皆以「toggled ON」／「active」陳述狀態，而 tri-mode 三鍵之 ON 態如何呈現，C19 全句未定義**（C13 之 highlighting the button and increasing button size 屬 2.12 之四模式，於 tri-mode 車不適用），該呈現形式現無涵蓋，已記入 A-CF23 之影響清單。",
         "keywords": ["Tri-Mode Climate", "airflow mode", "Windshield",
                      "Face", "Feet", "MODE"],
         "tcs": [
@@ -248,7 +262,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-024",
         "outline": "3.2",
         "reasoning":
-            "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
+            "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：**ch10（ECO HVAC）未述其與本節之差異** —— 實測 ch10 全章對 `MAX DEF`／`defrost`／`break` **零命中**，故依 39 §3 分支二，`-022`（按 AUTO 中斷 MAX DEF）**不補排除式 PC、不改 ER**，3.2 之字面於 BEV 亦成立，惟**配備 ECO HVAC 之 BEV 上「進入 AUTO」究為 AUTO ECO 抑或 AUTO ON，兩側條文皆未述，已依 §8.4.2 呈報為 coverage hole（`DATA_REQUESTS` #22）**；「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
         "keywords": ["MAX DEF", "FRONT DEF", "REAR DEFROST", "RECIRC",
                      "Sync", "MAX A/C", "AUTO"],
         "tcs": [
@@ -620,6 +634,8 @@ def main() -> None:
                 "functional_safety": "NA",
                 "estimated_test_time": "",
                 "remarks": "",
+                **({"emea_ics_review": EMEA_PER_TC[_tid]}
+                   if (_tid := TC_ID_FMT.format(n=n)) in EMEA_PER_TC else {}),
             })
         doc = {
             "parent": b["parent"],

@@ -1,0 +1,89 @@
+{
+ "parent": "SWE1-HVAC-048",
+ "outline": "10.5",
+ "batch": "ECO HVAC",
+ "source_clause": "EH5.) The second press will switch to AUTO on. A third press would go back to AUTO ECO. The user will not be able to exit AUTO mode by pressing the AUTO button again. AUTO mode will only be broken by acting on other buttons e.g. fan speed, airflow mode etc (see standard ICE AUTO logics).",
+ "reasoning": "驗證目標：10.5（EH5）定出第二次按壓切至 AUTO ON、第三次回到 AUTO ECO，以及 AUTO 模式無法由再按 AUTO 鍵退出而僅能由其他按鍵中斷，三個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1)；起始狀態由 procedure 建立（R-C28 第三問）；依 R-C34 補第十三軸排除，EMEA ICS 不補。為什麼這樣切：三者之失效互相獨立 —— 第二次按壓正確而第三次未回到 AUTO ECO，或循環正確而 AUTO 可被按鍵退出，皆可能發生。刻意略過：條文之「acting on other buttons e.g. fan speed, airflow mode etc (see standard ICE AUTO logics)」把中斷條件之完整清單委派予 standard ICE AUTO 邏輯，故 -03 只驗其列舉之二例（fan speed 與 airflow mode）而不擴張（§8.2.1）。",
+ "keywords": [
+  "second press",
+  "third press",
+  "AUTO ON",
+  "AUTO ECO",
+  "broken by other buttons"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 AUTO 狀態",
+  "axis_9": "不暴露 —— 可觀察量為 climate screen 之 AUTO 控制，非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-048-01",
+   "tc_id": "NR1L-ComfortHMI-071",
+   "tc_title": "Second AUTO press switches to AUTO ON",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "The second press shall switch to AUTO on",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Press the AUTO button once",
+   "expected_result": "1. The AUTO state is AUTO ECO\n2. The AUTO state is AUTO ON",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-048-02",
+   "tc_id": "NR1L-ComfortHMI-072",
+   "tc_title": "Third AUTO press returns to AUTO ECO",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "A third press shall go back to AUTO ECO",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ON state is active\n2. Press the AUTO button once",
+   "expected_result": "1. The AUTO state is AUTO ON\n2. The AUTO state is AUTO ECO",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-048-03",
+   "tc_id": "NR1L-ComfortHMI-073",
+   "tc_title": "AUTO is broken by other buttons not by AUTO itself",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "The user shall not be able to exit AUTO mode by pressing the AUTO button again, and AUTO mode shall only be broken by acting on other buttons such as fan speed or airflow mode",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Press the AUTO button repeatedly\n3. Change the fan speed\n4. Press the AUTO button until the AUTO ECO mode is active, then change the airflow mode",
+   "expected_result": "1. The AUTO state is AUTO ECO\n2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO\n3. AUTO is broken\n4. AUTO is broken",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

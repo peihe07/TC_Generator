@@ -1,0 +1,177 @@
+[
+ {
+  "leaf": "SWE1-HVAC-055",
+  "images": 5,
+  "outline": "11.2",
+  "test_set": "Heated Vented Seats",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-100",
+  "images": 4,
+  "outline": "14.16",
+  "test_set": "Climate Popups",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-083",
+  "images": 3,
+  "outline": "14.1",
+  "test_set": "Climate Popups",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-127",
+  "images": 3,
+  "outline": "17.4",
+  "test_set": "Home Screen Widget",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-007",
+  "images": 2,
+  "outline": "2.5.1",
+  "test_set": "Climate Modes",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-054",
+  "images": 2,
+  "outline": "11.1",
+  "test_set": "Heated Vented Seats",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-067",
+  "images": 2,
+  "outline": "12.1",
+  "test_set": "Heated Vented Seats",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-098",
+  "images": 2,
+  "outline": "14.14",
+  "test_set": "Climate Popups",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-125",
+  "images": 2,
+  "outline": "17.2",
+  "test_set": "Home Screen Widget",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-004",
+  "images": 1,
+  "outline": "2.3.1",
+  "test_set": "Climate Modes",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-017",
+  "images": 1,
+  "outline": "2.12.1",
+  "test_set": "Airflow and Defrost",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-038",
+  "images": 1,
+  "outline": "7.10",
+  "test_set": "Rear Climate",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-041",
+  "images": 1,
+  "outline": "9.3",
+  "test_set": "Rear Climate",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-042",
+  "images": 1,
+  "outline": "9.4",
+  "test_set": "Rear Climate",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-060",
+  "images": 1,
+  "outline": "11.6.1",
+  "test_set": "Heated Vented Seats",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-074",
+  "images": 1,
+  "outline": "12.8",
+  "test_set": "Heated Vented Seats",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-097",
+  "images": 1,
+  "outline": "14.13",
+  "test_set": "Climate Popups",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-105",
+  "images": 1,
+  "outline": "15.1",
+  "test_set": "Climate Popups",
+  "generated": false
+ },
+ {
+  "leaf": "SWE1-HVAC-023",
+  "images": 6,
+  "outline": "3.1",
+  "test_set": "Tri-Mode Climate",
+  "generated": true
+ },
+ {
+  "leaf": "SWE1-HVAC-001",
+  "images": 3,
+  "outline": "2.1",
+  "test_set": "Front Climate Anatomy",
+  "generated": true
+ },
+ {
+  "leaf": "SWE1-HVAC-044",
+  "images": 3,
+  "outline": "10.1",
+  "test_set": "ECO HVAC",
+  "generated": true
+ },
+ {
+  "leaf": "SWE1-HVAC-045",
+  "images": 3,
+  "outline": "10.2",
+  "test_set": "ECO HVAC",
+  "generated": true
+ },
+ {
+  "leaf": "SWE1-HVAC-010",
+  "images": 1,
+  "outline": "2.7",
+  "test_set": "Temperature and Fan",
+  "generated": true
+ },
+ {
+  "leaf": "SWE1-HVAC-053",
+  "images": 1,
+  "outline": "10.9.1",
+  "test_set": "ECO HVAC",
+  "generated": true
+ },
+ {
+  "leaf": "SWE1-HVAC-076",
+  "images": 1,
+  "outline": "13.2",
+  "test_set": "Seat Control Tab",
+  "generated": true
+ }
+]

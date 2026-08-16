@@ -32,7 +32,7 @@ import csv
 import json
 import re
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -58,14 +58,24 @@ REQUIRED_KEYS = ("tc_title", "pre_conditions", "input_test_data",
                  "test_procedure", "expected_result", "specification_reference",
                  "design_method", "priority", "split_flag", "split_reason")
 MIN_STEPS = 2                  # §10.5
-BLOCKED_MARKERS = ("[BLOCKED-SPEC]",)   # profile §5.1 / R-C24
+# profile §5.1 / §5.2 — R-C24's [BLOCKED-SPEC] and R-C38's [BLOCKED-NON-HMI].
+# Both produce an empty row; they differ in WHY, and the Remarks gate below
+# is what keeps them from collapsing into one another.
+BLOCKED_MARKERS = ("[BLOCKED-SPEC]", "[BLOCKED-NON-HMI]")
 # R-C26 — a marker that grants a lint exemption must not be self-issuable.
-# The whitelist is the named list in profile §5.1; adding to it is a ruling,
-# not an edit. Without this, [BLOCKED-SPEC] is an exemption anyone can take
-# by typing it, which is the same as having no exemption condition at all.
+# The whitelist is the named list in profile §5.1/§5.2; adding to it is a
+# ruling, not an edit. Without this, a BLOCKED marker is an exemption anyone
+# can take by typing it, which is the same as having no exemption condition
+# at all.
 MARKER_WHITELIST = {"[BLOCKED-SPEC]": {"NR1L-ComfortHMI-010",
-                                       "NR1L-ComfortHMI-012"}}
+                                       "NR1L-ComfortHMI-012"},
+                    # 41 §1.2 — ruled together with R-C38 itself.
+                    "[BLOCKED-NON-HMI]": {"NR1L-ComfortHMI-081"}}
 OWNER_WINDOW = 60          # R-C27 — chars visible on the clipped first line
+# R-C38 — [BLOCKED-NON-HMI]'s first visible line must say what is missing,
+# and must NOT name an owner: having no owner IS the classification. An
+# "Owner:" here would be a [BLOCKED-SPEC] wearing the wrong marker.
+NON_HMI_PHRASE = "Not an HMI-observable property"
 # handoff 26 §4.1 — keys a TC object may carry WITHOUT landing in a column.
 # `COLS` in write_back.py is a hand-kept list; if it loses an entry, nothing
 # shouts. This gate makes the silence audible: every TC key must either map to
@@ -82,8 +92,85 @@ NOT_IN_WORKBOOK = {
     "reasoning", "keywords", "duplicate_of", "distinguishing_axis",
     # doc-level structural keys (29 §5.1)
     "assumptions", "batch", "outline", "parent", "source_clause", "tcs",
+    "interface_axis_review",          # 36 §6 — R-C34's duty, recorded
+    "emea_ics_review",                # 38 §1 — R-C36-1's per-TC answer
 }
+# 36 §6 — the four interface-type axes must each carry a non-empty answer.
+# Correctness cannot be machine-checked; having been asked can.
+IFACE_KEYS = ("observable_interface", "axis_9", "axis_12", "axis_13",
+              "emea_ics")
+# 36 §4 — a sibling whose counterpart section is not generated yet leaves
+# duplicate_of empty. Legal while the counterpart is missing, a defect the
+# day it lands. The table turns "remember to backfill" into a condition.
+# Read from data/pending_sibling.tsv so the gate and the candidate generator
+# share one table (37 §6). Only `sibling` verdicts are watched.
+def _load_sibling_table() -> list:
+    path = FEATURE / "data" / "pending_sibling.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return list(csv.DictReader(fh, delimiter="\t"))
+
+
+SIBLING_TABLE = _load_sibling_table()
+PENDING_SIBLING = [(r["outline"], r["sibling_outline"])
+                   for r in SIBLING_TABLE if r["verdict"] == "sibling"]
+# 42 §1 — a `provisional` verdict was reached against a section that had no
+# TCs. The day that section's Test Set is complete, the verdict must be
+# looked at again and the flag cleared by hand. Re-confirmation MAY keep the
+# verdict; what it may not do is stay silent.
+TEST_SET_MAP = FEATURE / "data" / "test_set_map.tsv"
+
+
+def _load_test_sets() -> dict:
+    with TEST_SET_MAP.open(encoding="utf-8") as fh:
+        return {r["outline"]: r["test_set"]
+                for r in csv.DictReader(fh, delimiter="\t")}
+
+
+SECTION_TEST_SET = _load_test_sets()
 ANOMALY_ID = re.compile(r"\bA-CF\d+\b")
+PROFILE = ROOT / "docs" / "runtime" / "profiles" / "FW036_R1L_Comfort_Profile.md"
+# 35 §4 — a negated pre_condition ("the vehicle does NOT have X") covers
+# whatever values the axis happens to have today, and axes gain values. The
+# profile records the limit; this gate is the mechanism, because a record is
+# not a mechanism. Adding a value without re-reviewing the negation users
+# fails, and the failure names them.
+AXIS_BLOCK = re.compile(r"```axis-values\n(.*?)```", re.S)
+NEGATION = "does not have 3 knob HVAC controls with ICS"
+# §5.1's nine forbidden MAIN verbs, verbatim and nothing else.
+# Authority: canon §5.1, via handoff 31 §1.
+#
+# `locate` was in this list for one batch and is now OUT (32 §2): canon §5.6
+# uses it in a POSITIVE example — "Locate the phone and record its A2DP and
+# HFP status shown in the list". It is a positioning action and defers no
+# judgement to the tester, so the gate had mechanically forbidden a wording
+# the canon recommends.
+#
+# Rule this cost us: an entry with no cited authority does not go in the
+# list. A habit from hand-checking swayed one judgement; inside a gate it
+# would have swayed every batch after it.
+# Listed one-for-one against §5.1 so the two can be diffed by eye — nine
+# entries, nine in the canon. `observe whether` is subsumed by `observe` as
+# a matcher, but a list that silently carries eight where the canon says
+# nine cannot be checked against its own authority.
+FORBIDDEN_VERBS = ("observe whether", "observe", "see if", "check whether",
+                   "confirm whether", "verify", "watch", "monitor", "inspect")
+# Anchored at the step's own start — "1." then optional whitespace then the
+# verb. §5.1 explicitly ALLOWS `verify` inside a purpose clause
+# ("... to verify that ..."), so a substring test would fail legal usage, and
+# a gate that fails legal usage teaches authors to route around it rather
+# than to fix anything (31 §1).
+# Longest-first, so the reported verb is the fullest phrase that matched
+# ("check whether", not "check") rather than whichever came first in the list.
+STEP_HEAD = re.compile(
+    r"^\s*\d+\.\s*("
+    + "|".join(sorted(FORBIDDEN_VERBS, key=len, reverse=True))
+    + r")\b", re.I | re.M)
+# A SAFETY NET, NOT THE CRITERION (31 §2). The criterion is §6 — the ER's
+# subject must be something the system does — and it stays human-reviewed.
+# rev1 shipped `is readable` and rev2 shipped `is recorded`: the same error
+# changed words and survived, which is exactly why a word list cannot be
+# promoted to a criterion. §9 item 10 may not cite this gate as its basis.
+ER_SUBJECT_NET = ("is recorded", "is readable", "is noted", "can be read")
 REASONING_SENTENCES = (2, 5)   # §10.4
 # Chinese full stops are not followed by a space, so a lookahead for
 # whitespace counts a whole paragraph as one sentence — which is how this
@@ -139,10 +226,26 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
     nums = sorted(int(i.rsplit("-", 1)[1]) for i in ids)
     if nums != list(range(1, len(nums) + 1)):
         bad("tc-id-sequence", f"tc_id numbers are not 1..{len(nums)} gap-free: {nums}")
+    # §8.2.2 lets one leaf produce several TCs, so a repeated req_id is legal
+    # — but ONLY when every row carrying it declares the split. An accidental
+    # duplicate and a declared split look identical in the id column; the
+    # split_flag is what tells them apart, so the gate reads it rather than
+    # dropping the uniqueness check altogether.
     rids = [tc["req_id"] for _, tc in all_tcs]
-    rdup = [i for i, n in Counter(rids).items() if n > 1]
-    if rdup:
-        bad("req-id-unique", f"duplicate req_ids {rdup}")
+    for rid, n in sorted(Counter(rids).items()):
+        if n == 1:
+            continue
+        rows = [tc for _, tc in all_tcs if tc["req_id"] == rid]
+        undeclared = [tc["tc_id"] for tc in rows if not tc.get("split_flag")]
+        if undeclared:
+            bad("req-id-unique",
+                f"req_id {rid!r} appears on {n} TCs but {undeclared} do not "
+                "set split_flag — a split must be declared on every row it "
+                "produces (§8.2.2), otherwise this is a duplicate")
+        elif not all(tc.get("split_reason") for tc in rows):
+            bad("req-id-unique",
+                f"req_id {rid!r} is split {n} ways but a row has an empty "
+                "split_reason (§10.1)")
 
     for d, tc in all_tcs:
         w = tc["tc_id"]
@@ -163,7 +266,7 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             # would mean the row is half-written rather than blocked.
             if tc["test_procedure"] or tc["expected_result"]:
                 bad("blocked-row-empty",
-                    f"{w}: carries a {BLOCKED_MARKERS[0]} marker but "
+                    f"{w}: carries a BLOCKED marker but "
                     "test_procedure/expected_result are not empty (R-C24)")
         elif steps < MIN_STEPS:
             bad("proc-min-steps",
@@ -218,18 +321,35 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                     "self-issued (R-C26)")
 
         if w in blocked:
-            if not tc["remarks"].startswith(BLOCKED_MARKERS[0]):
-                bad("blocked-remarks", f"{w}: {BLOCKED_MARKERS[0]} must be the "
-                                       "leading token of Remarks (R-C24)")
+            mark = next((m for m in BLOCKED_MARKERS
+                         if tc["remarks"].startswith(m)), None)
+            if mark is None:
+                bad("blocked-remarks",
+                    f"{w}: one of {list(BLOCKED_MARKERS)} must be the leading "
+                    "token of Remarks (R-C24 / R-C38)")
             if re.search(r"\bA-CF\d+\b|\bR-C\d+\b|§\d", tc["remarks"]):
                 bad("blocked-remarks", f"{w}: Remarks is externally visible and "
                                        "must not carry an internal ruling id "
                                        "(AMFM R10-4)")
-            # R-C27 — the Remarks column clips to one visible line, so the
-            # owner must sit inside that line. Without this the reader sees
-            # the marker and not the thing the marker exists to point at.
+            # R-C27 — the Remarks column clips to one visible line, so what
+            # the marker exists to point at must sit inside that line. For
+            # [BLOCKED-SPEC] that is the owner; for [BLOCKED-NON-HMI] it is
+            # the absence of one, which is why the two checks are opposites
+            # rather than one shared check (R-C38: the missing owner is the
+            # classification, so a lenient "either is fine" gate would let a
+            # delegated leaf hide under the wrong marker).
             head = tc["remarks"][:OWNER_WINDOW]
-            if "Owner:" not in head:
+            if mark == "[BLOCKED-NON-HMI]":
+                if NON_HMI_PHRASE not in head:
+                    bad("blocked-remarks",
+                        f"{w}: {NON_HMI_PHRASE!r} must appear within the first "
+                        f"{OWNER_WINDOW} characters of Remarks (R-C38); "
+                        f"measured head = {head[:48]!r}")
+                if "Owner:" in tc["remarks"]:
+                    bad("blocked-remarks",
+                        f"{w}: [BLOCKED-NON-HMI] must not name an owner "
+                        "(R-C38) — a leaf with an owner is [BLOCKED-SPEC]")
+            elif "Owner:" not in head:
                 bad("blocked-remarks",
                     f"{w}: 'Owner:' must appear within the first "
                     f"{OWNER_WINDOW} characters of Remarks (R-C27); "
@@ -304,6 +424,128 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             bad("sibling-axis", f"{d['parent']}: axis={axis!r} but duplicate_of={dup_of!r} "
                                 "(§4.6 requires axis='none' <=> duplicate_of set)")
 
+    # ---- §5.1 forbidden main verbs (31 §1) ------------------------------
+    for _, tc in all_tcs:
+        for m in STEP_HEAD.finditer(tc["test_procedure"]):
+            step = tc["test_procedure"][m.start():].split("\n", 1)[0]
+            bad("forbidden-verb",
+                f"{tc['tc_id']}: step leads with the forbidden main verb "
+                f"{m.group(1)!r} (§5.1) — {step[:64]!r}")
+
+    # ---- ER subject safety net (31 §2) ----------------------------------
+    for _, tc in all_tcs:
+        for phrase in ER_SUBJECT_NET:
+            if phrase in tc["expected_result"].lower():
+                bad("er-subject-net",
+                    f"{tc['tc_id']}: expected_result contains {phrase!r}, "
+                    "which puts the observer in the subject position (§6). "
+                    "This gate is a net, not the criterion — passing it does "
+                    "not mean the ER subjects were checked")
+
+    # ---- 36 §6 — R-C34's generation-time duty was discharged ------------
+    for d in docs:
+        rev = d.get("interface_axis_review")
+        if not isinstance(rev, dict):
+            bad("interface-axis-answered",
+                f"{d['parent']} ({d['outline']}): no interface_axis_review; "
+                "R-C34 requires naming the observable's interface and "
+                "answering each interface-type axis")
+            continue
+        blank = [k for k in IFACE_KEYS if not str(rev.get(k, "")).strip()]
+        if blank:
+            bad("interface-axis-answered",
+                f"{d['parent']} ({d['outline']}): interface_axis_review is "
+                f"missing or empty for {blank}")
+
+    # ---- 38 §1 / R-C36-1 — every EMEA exclusion carries a per-TC answer ---
+    # The gate fails only on a MISSING answer. A "no" verdict is reported on
+    # its own named line instead: removal is a ruling, not something lint may
+    # force, and a red build would push the executor into removing it unilaterally.
+    emea_no = []
+    for _, tc in all_tcs:
+        if "not an EMEA ICS" not in tc["pre_conditions"]:
+            continue
+        rev = tc.get("emea_ics_review")
+        if not isinstance(rev, dict) or not str(rev.get("ch16_sentence", "")).strip():
+            bad("emea-per-tc-answered",
+                f"{tc['tc_id']}: carries the EMEA exclusion but has no "
+                "per-TC judgement pointing at a ch16 sentence (R-C36-1); "
+                "section-level `mirrored` is not an answer")
+        elif rev.get("verdict") != "yes":
+            emea_no.append((tc["tc_id"], rev.get("verdict"),
+                            rev.get("ch16_outline")))
+
+    # ---- 36 §4 — a pending sibling must be resolved once its section lands -
+    generated = {d["outline"] for d in docs}
+    for outline, sibling in sorted(PENDING_SIBLING):
+        doc = next((d for d in docs if d["outline"] == outline), None)
+        if doc is None or sibling not in generated:
+            continue
+        unresolved = [tc["tc_id"] for tc in doc["tcs"]
+                      if not doc.get("duplicate_of")
+                      and doc["distinguishing_axis"]["axis"] in
+                      ("", "see per-TC titles")]
+        if unresolved:
+            bad("pending-sibling",
+                f"{outline}'s sibling {sibling} is now generated, but "
+                f"duplicate_of/distinguishing_axis is still unset for "
+                f"{unresolved} — §4.6 判定須於對造節生成後回填")
+
+    # ---- 42 §1 — provisional verdicts owed a second look ----------------
+    # A Test Set is "complete" when every one of its sections has emitted TCs.
+    # On that day every provisional row touching the set is due, because the
+    # thing those rows will be compared against has changed from a clause to
+    # a set of TCs.
+    by_set = defaultdict(set)
+    for o, ts in SECTION_TEST_SET.items():
+        by_set[ts].add(o)
+    complete_sets = {ts for ts, outs in by_set.items() if outs <= generated}
+    due = [r for r in SIBLING_TABLE
+           if r.get("provisional") == "true"
+           and (SECTION_TEST_SET.get(r["outline"]) in complete_sets
+                or SECTION_TEST_SET.get(r["sibling_outline"]) in complete_sets)]
+    if due:
+        shown = ", ".join(f"{r['outline']}<->{r['sibling_outline']}"
+                          f"[{r['verdict']}]" for r in due[:8])
+        bad("provisional-sibling",
+            f"{len(due)} provisional row(s) touch a completed Test Set "
+            f"{sorted(complete_sets)} and are owed a re-confirmation "
+            f"(42 §1). Re-confirm — the verdict MAY stand — then set "
+            f"provisional=false. First 8: {shown}"
+            + (f" … and {len(due) - 8} more" if len(due) > 8 else ""))
+
+    # ---- 35 §4 — a negated axis value may not outlive its value count ----
+    block = AXIS_BLOCK.search(PROFILE.read_text(encoding="utf-8"))
+    if not block:
+        bad("axis-value-count",
+            "profile carries no ```axis-values``` block; a negated "
+            "pre_condition cannot be checked against the axis it negates")
+    else:
+        f = dict(l.split(":", 1) for l in block.group(1).strip().split("\n")
+                 if ":" in l)
+        values = [v.strip() for v in f.get("values", "").split("|") if v.strip()]
+        declared = f.get("value-count", "").strip()
+        reviewed = f.get("negation-reviewed-at-value-count", "").strip()
+        listed = [v.strip() for v in f.get("negation-users", "").split(",")
+                  if v.strip()]
+        actual = [tc["tc_id"] for _, tc in all_tcs
+                  if NEGATION in tc["pre_conditions"]]
+        if declared != str(len(values)):
+            bad("axis-value-count",
+                f"profile declares value-count {declared!r} but lists "
+                f"{len(values)} values {values}")
+        elif reviewed != declared:
+            bad("axis-value-count",
+                f"axis gained a value (now {declared}) but the negated "
+                f"pre_condition was last reviewed at {reviewed!r}. "
+                f"Re-review these {len(actual)} TCs and then bump "
+                f"negation-reviewed-at-value-count: {sorted(actual)}")
+        if sorted(listed) != sorted(actual):
+            bad("axis-value-count",
+                f"profile's negation-users list is stale — "
+                f"missing {sorted(set(actual) - set(listed))}, "
+                f"extra {sorted(set(listed) - set(actual))}")
+
     # ---- handoff 26 §4.1 — every TC key lands in a column or is named ----
     from write_back import COLS
     columned = set(COLS.values())
@@ -342,7 +584,7 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         bad("residue-scan-window",
             "write_back.py's post-write residue scan does not run to "
             "ws.max_row (a fixed-width window leaves the tail unchecked)")
-    return out, blocked
+    return out, blocked, emea_no
 
 
 def main() -> int:
@@ -350,7 +592,7 @@ def main() -> int:
     docs = [json.loads(p.read_text(encoding="utf-8"))
             for p in sorted(GEN.glob("*.json"))]
     n_tc = sum(len(d["tcs"]) for d in docs)
-    findings, blocked_ids = lint(docs, auth)
+    findings, blocked_ids, emea_no = lint(docs, auth)
 
     gates = ["tc-id-format", "tc-id-unique", "tc-id-sequence", "req-id-unique",
              "spec-ref-stem", "spec-ref-outline", "spec-ref-sr25", "test-group",
@@ -368,7 +610,17 @@ def main() -> int:
              "marker-whitelist",
              # added 2026-08-15 per handoff 26 §4
              "json-key-coverage", "anomaly-id-registered",
-             "residue-scan-window"]
+             "residue-scan-window",
+             # added 2026-08-15 per handoff 31 §1 / §2
+             "forbidden-verb", "er-subject-net",
+             # added 2026-08-15 per handoff 35 §4
+             "axis-value-count",
+             # added 2026-08-15 per handoff 36 §4 / §6
+             "pending-sibling", "interface-axis-answered",
+             # added 2026-08-15 per handoff 38 §1
+             "emea-per-tc-answered",
+             # added 2026-08-15 per handoff 42 §1
+             "provisional-sibling"]
     failed = {g for _, g, _ in findings}
 
     print(f"files: {len(docs)}   TCs: {n_tc}   "
@@ -376,12 +628,30 @@ def main() -> int:
           f"valid outlines: {len(auth['outlines'])}\n")
     print("gates:")
     for g in gates:
+        # er-subject-net prints its own self-qualifying line below; a plain
+        # "PASS — er-subject-net" alongside it would read as a second, equal
+        # claim, which is the exact impression 31 §2 forbids.
+        if g == "er-subject-net" and g not in failed:
+            continue
         print(f"- {'**FAIL**' if g in failed else 'PASS'} — {g}")
     # R-C24 — the exemption is visible on every run, whether or not it fired.
-    print(f"- PASS — rows exempted as BLOCKED-SPEC "
-          f"(proc-min-steps, proc-er-1to1): {blocked_ids or 'none'}")
-    print(f"- PASS — marker whitelist (profile §5.1): "
-          f"{sorted(MARKER_WHITELIST['[BLOCKED-SPEC]'])}")
+    print(f"- PASS — rows exempted as BLOCKED, all markers "
+          f"(proc-min-steps, proc-er-1to1): {sorted(blocked_ids) or 'none'}")
+    for mk in BLOCKED_MARKERS:
+        print(f"- PASS — marker whitelist (profile §5.1/§5.2) {mk}: "
+              f"{sorted(MARKER_WHITELIST[mk])}")
+    if emea_no:
+        print(f"- PASS — EMEA exclusions whose per-TC answer is NOT `yes` "
+              f"(R-C36-1; over-strict, removal awaits a ruling): "
+              f"{[(i, v, o) for i, v, o in emea_no]}")
+    print(f"- PASS — pending siblings awaiting their counterpart section "
+          f"(36 §4 / 37 §6): {sorted(PENDING_SIBLING)}")
+    print("- PASS — the pending-sibling table is produced by lexical overlap "
+          "and is NOT a completeness proof (R-C37); run "
+          "scripts/sibling_candidates.py when a Test Set completes")
+    if "er-subject-net" not in failed:
+        print("- PASS — er-subject-net (a safety net, not the criterion; "
+              "the criterion is §6 and is human-reviewed)")
     print(f"- PASS — keys deliberately not in the workbook, TC + doc layer "
           f"(26 §4.1 / 29 §5.1): {sorted(NOT_IN_WORKBOOK)}")
     if findings:

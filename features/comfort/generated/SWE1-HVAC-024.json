@@ -3,7 +3,7 @@
  "outline": "3.2",
  "batch": "Tri-Mode Climate",
  "source_clause": "C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button. MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed to highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST. MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode. Change in fan speed does not break MAX DEF. Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on. Pressing A/C breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off. Pressing AUTO brakes MAX DEF (turns MAX DEF off) and the system goes to AUTO. Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.",
- "reasoning": "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
+ "reasoning": "驗證目標：3.2（C20）定義 MAX DEF 之取代關係、開啟時之連動設定、自動關閉，以及六種「破壞／不破壞」之區別，八個 037 leaf 逐一對應，故一葉一 TC（§8.2.1）。關鍵情境條件：配置軸取 profile §3.2 第五軸「MAX DEF 有無」，其 R-C28 第一問由條文首句「On vehicles with MAX DEF」明文對應，標 spec-verbatim；-06 另需第四軸「MAX A/C 有無」，其第一問由「Similarly, pressing MAX A/C turns MAX DEF off」一句推得該功能存在，標 spec-derived。為什麼這樣切：-02（七項連動）為一個 trigger 之七個 outcome，依 §5.7 保持一條並以列舉式步驟維持 procedure／ER 1:1；-07（溫度／RECIRC／mode／再按 MAX DEF）為四個不同控制實體且各自獨立可失效，依 §8.2.2 之控制實體判準拆為四條並同溯該 leaf，其 design_method 於拆後由決策表改為狀態轉換（拆後各為單一狀態遷移，§12）；-08（風速改變不破壞）維持一條，其 §7 negative 配對對象為拆後之四條全體，非其中任一條。刻意略過：**ch10（ECO HVAC）未述其與本節之差異** —— 實測 ch10 全章對 `MAX DEF`／`defrost`／`break` **零命中**，故依 39 §3 分支二，`-022`（按 AUTO 中斷 MAX DEF）**不補排除式 PC、不改 ER**，3.2 之字面於 BEV 亦成立，惟**配備 ECO HVAC 之 BEV 上「進入 AUTO」究為 AUTO ECO 抑或 AUTO ON，兩側條文皆未述，已依 §8.4.2 呈報為 coverage hole（`DATA_REQUESTS` #22）**；「switches off automatically after a set time」條文未給數值，故 -03 之步驟以可觀察量（MAX DEF 不再作用）為終止條件，不寫入任何秒數（R-C22 ／ §8.4.1）；A/C、AUTO、溫度等基本控制非配置軸，不寫入 pre_conditions（profile §3.2 禁「Climate is available」型隱含前提）。",
  "keywords": [
   "MAX DEF",
   "FRONT DEF",
@@ -45,7 +45,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7 全句與 C20 逐字相同，其首句即述 MAX DEF 之存在與連動；ICE6 另載 MAX DEF 於 ICS 介面上之位置"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-02",
@@ -65,7 +71,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature … at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-03",
@@ -85,7 +97,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-04",
@@ -105,7 +123,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「Pressing A/C brakes MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-05",
@@ -125,7 +149,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「Pressing AUTO breaks MAX DEF (turns MAX DEF off) and the system goes to AUTO」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-06",
@@ -145,7 +175,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「Similarly, pressing MAX A/C turns MAX DEF off … and the system goes to MAX A/C」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -165,7 +201,13 @@
    "split_reason": "§8.2.2 control-entity criterion: the four breakers are four different control entities and fail independently, so the leaf splits into four TCs that all trace to it (handoff 30 §1)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF … with the A/C on」之 temperature 一項"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -185,7 +227,13 @@
    "split_reason": "§8.2.2 control-entity criterion: the four breakers are four different control entities and fail independently, so the leaf splits into four TCs that all trace to it (handoff 30 §1)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "同上句之 recirculation 一項"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -205,7 +253,13 @@
    "split_reason": "§8.2.2 control-entity criterion: the four breakers are four different control entities and fail independently, so the leaf splits into four TCs that all trace to it (handoff 30 §1)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "同上句之 mode distribution 一項"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -225,7 +279,13 @@
    "split_reason": "§8.2.2 control-entity criterion: the four breakers are four different control entities and fail independently, so the leaf splits into four TCs that all trace to it (handoff 30 §1)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "同上句之 pressing again MAX DEF 一項"
+   }
   },
   {
    "req_id": "SWE1-HVAC-024-08",
@@ -245,7 +305,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.2",
+    "ch16_outline": "16.8",
+    "verdict": "yes",
+    "ch16_sentence": "ICE7「Change in fan speed doesn’t break MAX DEF」"
+   }
   }
  ]
 }

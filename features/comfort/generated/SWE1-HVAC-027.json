@@ -26,7 +26,7 @@
  "tcs": [
   {
    "req_id": "SWE1-HVAC-027",
-   "tc_id": "NR1L-ComfortHMI-040",
+   "tc_id": "NR1L-ComfortHMI-041",
    "tc_title": "Comfort section is removed from the head unit except popups",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",

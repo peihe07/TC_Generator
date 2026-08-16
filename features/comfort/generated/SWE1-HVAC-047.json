@@ -1,0 +1,47 @@
+{
+ "parent": "SWE1-HVAC-047",
+ "outline": "10.4",
+ "batch": "ECO HVAC",
+ "source_clause": "EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.",
+ "reasoning": "驗證目標：10.4（EH4）定出 AUTO 關閉且可用時之第一次按壓啟動 AUTO ECO，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1)；「AUTO 關閉且可用」為 spec 定義之 trigger，惟 TC 自身之步驟即可建立，依 **R-C28 第三問**落 test_procedure 而不入 pre_conditions；依 R-C34 補第十三軸排除，EMEA ICS 不補。為什麼這樣切：本節只定出第一次按壓之結果，第二、三次按壓由 10.5 各自成條。刻意略過：條文之「available」未定義其不可用之條件，故不寫入任何可用性判定（§8.4.1）。",
+ "keywords": [
+  "AUTO ECO",
+  "first press",
+  "AUTO off"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 AUTO 狀態",
+  "axis_9": "不暴露 —— 可觀察量為 climate screen 之 AUTO 控制，非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-047",
+   "tc_id": "NR1L-ComfortHMI-070",
+   "tc_title": "First AUTO press activates AUTO ECO",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "When the AUTO function is off and available, the user's first press of the AUTO button shall activate the AUTO ECO functionality",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until AUTO is off\n2. Press the AUTO button once",
+   "expected_result": "1. The AUTO state is AUTO OFF\n2. The AUTO ECO functionality is activated",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

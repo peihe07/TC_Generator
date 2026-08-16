@@ -53,6 +53,10 @@ DM_FUNC = "功能測試 (Functional based ; no specific technique)"
 DM_STATE = "狀態轉換 (State Transition Testing)"
 DM_DECISION = "決策表 (Decision Table Testing)"
 
+# 39 §1.2 — named on both rows so the split reads from the workbook alone.
+SPLIT_REASON_002_05 = (
+    "§8.3 input_data axis: the temperature unit takes two values with different expected results and they fail independently — Celsius half degrees can be right while Fahrenheit wrongly shows them. 39 §1.2; the EMEA verdict split is what made it visible, not the cause")
+
 # Named on both rows so the split is legible from the workbook alone.
 SPLIT_REASON_020_04 = (
     "(§8.2.2 independent partial failures + §7 negative pairing) the main case and the exception are different vehicle configurations with opposite results and can fail independently, so 020-04 splits into two TCs that both trace to it (handoff 34 §2)")
@@ -74,6 +78,12 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
 # no ICS mirror and are left alone.
 # 37 §1 — 2.1 dropped: the mirror map has no ch16 counterpart for it.
 EMEA_EXPOSED_SECTIONS = {"2.2", "2.14"}
+# 39 §1.1 — per-TC removals, not section-level: the ch16 counterpart covers
+# some rows of these sections and not others. 16.14 (ICE13) is two sentences
+# where 2.14 (C15) is a paragraph, so 020-01/-02 keep the exclusion while
+# 020-03/-04 lose it; likewise 16.17 is one sentence where 2.16 is two.
+EMEA_REMOVED_REQ_IDS = {"SWE1-HVAC-020-03", "SWE1-HVAC-020-04"}
+
 # 6.3 removes the head unit's comfort section except for comfort popups.
 # Only TCs whose observable IS that section or its category button are
 # exposed; a popup-based observable survives 6.3 by the clause's own words.
@@ -143,13 +153,27 @@ def _load_interface_axis_review() -> dict:
 
 INTERFACE_AXIS_REVIEW = _load_interface_axis_review()
 
+# ---- 38 §1 / R-C36-1 — per-TC EMEA judgement -----------------------------
+# Section-level `mirrored` was standing in for a per-TC answer, and it hid
+# five over-strict exclusions: 16.14 is two sentences where 2.14 is a
+# paragraph, and 16.17 is one where 2.16 is two. Each row names the ch16
+# sentence its verdict rests on, so "mirrored" is never the whole answer.
+def _load_emea_per_tc() -> dict:
+    path = FEATURE / "data" / "emea_ics_per_tc.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return {r.pop("tc_id"): r for r in csv.DictReader(fh, delimiter="\t")}
+
+
+EMEA_PER_TC = _load_emea_per_tc()
+
+
 BATCHES = [
     # ----------------------------------------------------------------- 2.2
     {
         "parent": "SWE1-HVAC-002",
         "outline": "2.2",
         "reasoning":
-            "驗證目標：2.2（C1）定義硬鍵與觸控之狀態互相反映，以及使用者在／不在 climate screen 時之呈現差異，八個 037 leaf 分別對應鏡射、popup、狀態列、Sync 抑制、ATC 呈現、MTC 呈現、在 climate screen 之呈現、LED 回饋，一葉一 TC（§8.2.1）。關鍵情境條件：硬鍵與觸控之存在依 R-C31 為句子之執行前提，標 spec-derived 並具名「Whenever changes to the climate system are made via hard controls or touchscreen」；另依 33 §4.1 之實質複查補第十三軸之排除項，標 (2.14) 並具名「no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed」——3 旋鈕 ICS 之車輛無氣候觸控畫面，本節八條於該車皆不可執行，故 2.14 依 R-C29 併入 specification_reference，僅取其裝備事實而不驗其行為（§8.2.1）；-05／-06 另取 profile §3.2 第一軸 ATC／MTC，其第一問由「for ATC it will display the degree」「for MTC (if the MTC has a Climate screen)」兩句明文對應；-04 之 passenger side 蘊含雙區以上，取第二軸。為什麼這樣切：八者之失效互相獨立（狀態列正確而 popup 逾時錯、ATC 呈現正確而 MTC 呈現錯），且分屬不同觀察位置，合併後無法定位。刻意略過：「timeout after 3 sec」之秒數為條文明載故照用（R-C22 不適用），而 popup 之樣式、尺寸與動畫本節未定義，不寫入；-06 之「if the MTC has a Climate screen」為條文自身之限定語，照錄為 pre_condition，其非獨立配置變數而為第十三軸之後果，依 33 §3 不另立軸。",
+            "驗證目標：2.2（C1）定義硬鍵與觸控之狀態互相反映，以及使用者在／不在 climate screen 時之呈現差異，八個 037 leaf 分別對應鏡射、popup、狀態列、Sync 抑制、ATC 呈現、MTC 呈現、在 climate screen 之呈現、LED 回饋，一葉一 TC（§8.2.1）。關鍵情境條件：硬鍵與觸控之存在依 R-C31 為句子之執行前提，標 spec-derived 並具名「Whenever changes to the climate system are made via hard controls or touchscreen」；另依 33 §4.1 之實質複查補第十三軸之排除項，標 (2.14) 並具名「no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed」——3 旋鈕 ICS 之車輛無氣候觸控畫面，本節八條於該車皆不可執行，故 2.14 依 R-C29 併入 specification_reference，僅取其裝備事實而不驗其行為（§8.2.1）；-05／-06 另取 profile §3.2 第一軸 ATC／MTC，其第一問由「for ATC it will display the degree」「for MTC (if the MTC has a Climate screen)」兩句明文對應；-04 之 passenger side 蘊含雙區以上，取第二軸。為什麼這樣切：八者之失效互相獨立（狀態列正確而 popup 逾時錯、ATC 呈現正確而 MTC 呈現錯），且分屬不同觀察位置，合併後無法定位。**-05 依 39 §1.2 拆為攝氏、華氏二條**（§8.3 之 input_data 軸，兩值之預期結果不同且各自獨立可失效），拆後 design_method 由決策表改為功能測試（單一單位下之顯示檢查，R-C19）；**華氏條之 EMEA 排除式 PC 已移除** —— ICE1 有「or half degree increments for Celsius」而**無 C1 之「and for Fahrenheit do not show half degrees」**，攝氏條之排除則維持。刻意略過：「timeout after 3 sec」之秒數為條文明載故照用（R-C22 不適用），而 popup 之樣式、尺寸與動畫本節未定義，不寫入；-06 之「if the MTC has a Climate screen」為條文自身之限定語，照錄為 pre_condition，其非獨立配置變數而為第十三軸之後果，依 33 §3 不另立軸。",
         "keywords": ["hard controls", "touchscreen", "pop-up", "status bar",
                      "Sync", "ATC", "MTC", "LED"],
         "tcs": [
@@ -241,35 +265,52 @@ BATCHES = [
             },
             {
                 "req_id": "SWE1-HVAC-002-05",
-                "tc_title": "ATC pop-up shows the degree with unit-dependent half degrees",
+                "tc_title": "ATC pop-up shows half degree increments for Celsius",
                 "test_item":
                     "If the user is outside of the climate main category and "
                     "the temperature is changed through hard controls, for ATC "
-                    "the pop-up shall display the degree being set, in half "
-                    "degree increments for Celsius, and for Fahrenheit it "
-                    "shall not show half degrees",
+                    "the pop-up shall display the degree being set, in half degree increments for Celsius",
                 "pre_conditions": f"{PC_CONTROLS}\n{PC_ATC}",
                 "input_test_data": "NA",
                 "test_procedure":
                     "1. Open a screen outside the climate main category\n"
                     "2. Set the temperature unit to Celsius\n"
                     "3. Change the temperature using the temperature hard "
-                    "control\n"
-                    "4. Set the temperature unit to Fahrenheit\n"
-                    "5. Change the temperature using the temperature hard "
                     "control",
                 "expected_result":
                     "1. The climate main category is not displayed\n"
                     "2. The temperature unit is Celsius\n"
-                    "3. A pop-up comes down from the temperature in the status "
-                    "bar and displays the degree being set, in half degree "
-                    "increments\n"
-                    "4. The temperature unit is Fahrenheit\n"
-                    "5. A pop-up comes down from the temperature in the status "
-                    "bar and displays the degree being set, without half "
-                    "degrees",
+                    "3. A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments",
                 "priority": "P1",
-                "design_method": DM_DECISION,
+                "spec_ref": ("2.2",),
+                "design_method": DM_FUNC,
+                "split_flag": True,
+                "split_reason": SPLIT_REASON_002_05,
+            },
+            {
+                "req_id": "SWE1-HVAC-002-05",
+                "tc_title": "ATC pop-up shows no half degrees for Fahrenheit",
+                "no_emea": True,   # 39 §1.2 — ICE1 lacks the Fahrenheit sentence
+                "test_item":
+                    "If the user is outside of the climate main category and "
+                    "the temperature is changed through hard controls, for ATC "
+                    "the pop-up shall display the degree being set, and for Fahrenheit it shall not show half degrees",
+                "pre_conditions": f"{PC_CONTROLS}\n{PC_ATC}",
+                "input_test_data": "NA",
+                "test_procedure":
+                    "1. Open a screen outside the climate main category\n"
+                    "2. Set the temperature unit to Fahrenheit\n"
+                    "3. Change the temperature using the temperature hard "
+                    "control",
+                "expected_result":
+                    "1. The climate main category is not displayed\n"
+                    "2. The temperature unit is Fahrenheit\n"
+                    "3. A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees",
+                "priority": "P1",
+                "spec_ref": ("2.2",),
+                "design_method": DM_FUNC,
+                "split_flag": True,
+                "split_reason": SPLIT_REASON_002_05,
             },
             {
                 "req_id": "SWE1-HVAC-002-06",
@@ -384,7 +425,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-001",
         "outline": "2.1",
         "reasoning":
-            "驗證目標：2.1（R1C1）定出 comfort category 之 tab 數、順序，以及僅前排氣候時不顯示 tab，三個 037 leaf 分別對應之，一葉一 TC（§8.2.1）；本輪只生成 -03，-01／-02 之情形見下。關鍵情境條件：-03 取 profile §3.2 第十二軸「僅前排氣候」，其 R-C28 第一問由本節明文「If only Front climate is available in a specific vehicle the tabs will not be displayed」對應，標 spec-verbatim，出處與所屬節同一故 specification_reference 僅列本節。為什麼這樣切：037 之切分為單位權威（§8.2），未合併未拆分；-01（tab 數）與 -02（順序）**不生成**，因條文只寫「depending on vehicle configuration」而未述何種配置產生何種 tab，任何具體配置之 pre_condition 皆為造值（R-C28 第一問／§8.4.1），此為內容不足而非軸不足，已登 RD-1 待答。**EMEA ICS 排除式 PC 已依 37 §1 移除**（`ch16_mirror_map.tsv` 判 2.1 為 no-counterpart —— ch16 十八節無 comfort category tabs 之對應節）。刻意略過：037 之 -01 寫 up to 3 tabs、-02 之順序無 Massage，而條文為 up to 4 tabs 且順序含 Massage —— 依 **R-C33** 內容以條文為準、單位以 037 為準，該落差已登 A-CF21 並列 RD-1；Massage tab 之**行為**由條文明文委派他份文件，但其**是否顯示**仍屬本節，兩者不混（§8.2.1）。",
+            "驗證目標：2.1（R1C1）定出 comfort category 之 tab 數、順序，以及僅前排氣候時不顯示 tab，三個 037 leaf 分別對應之，一葉一 TC（§8.2.1）；本輪只生成 -03，-01／-02 之情形見下。關鍵情境條件：-03 取 profile §3.2 第十二軸「僅前排氣候」，其 R-C28 第一問由本節明文「If only Front climate is available in a specific vehicle the tabs will not be displayed」對應，標 spec-verbatim，出處與所屬節同一故 specification_reference 僅列本節。為什麼這樣切：037 之切分為單位權威（§8.2），未合併未拆分；-01（tab 數）與 -02（順序）**不生成**，因條文只寫「depending on vehicle configuration」而未述何種配置產生何種 tab，任何具體配置之 pre_condition 皆為造值（R-C28 第一問／§8.4.1），此為內容不足而非軸不足，已登 RD-1 待答。**EMEA ICS 排除式 PC 已依 37 §1 移除**（`ch16_mirror_map.tsv` 判 2.1 為 no-counterpart —— ch16 十八節無 comfort category tabs 之對應節）。刻意略過：037 之 -01 寫 up to 3 tabs、-02 之順序無 Massage，而條文為 up to 4 tabs 且順序含 Massage —— 依 **R-C33** 內容以條文為準、單位以 037 為準，該落差已登 A-CF21 並列 RD-1；Massage tab 之**行為**由條文明文委派他份文件，但其**是否顯示**仍屬本節，兩者不混（§8.2.1）；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 3 張圖，`-03` 所驗者為「tab 一個都不顯示」，其判讀只需認得 tab 之有無而不需知其外觀，故**不依賴圖片所載內容** —— **惟未生成之 `-01`（tab 數）與 `-02`（順序）恰恰相反**，那兩者所缺的正是「哪一種配置產生哪一組 tab」（DATA_REQUESTS #17），而圖片極可能載之，故該二 leaf 解封時須先讀圖。",
         "keywords": ["comfort category", "tabs", "Front", "Massage",
                      "only Front climate"],
         "tcs": [
@@ -414,7 +455,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-020",
         "outline": "2.14",
         "reasoning":
-            "驗證目標：2.14（C15）定出 MTC 相對 ATC 之兩項缺項（無離散溫度設定、無 Auto 控制），以及 3 旋鈕 ICS 車輛之 HVAC 觸控 UI 不顯示，四個 037 leaf 分別對應之，一葉一 TC（§8.2.1）。關鍵情境條件：-01／-02 取第一軸 MTC，其第一問由「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature」對應；-03／-04 另取 profile §3.2 第十三軸「3 旋鈕 ICS」，其第一問由「For MTC with ICS … certain types of physical knobs (3 knob HVAC controls)」對應，**該軸指 ch2 之實體旋鈕配置，非市場／變體軸之 EMEA ICS（ch16 全章）**，兩者外觀皆含 ICS 而所指不同（33 §3）。為什麼這樣切：-03 驗機制（螢幕無重複互動），-04 驗其三項具體後果（無 menu bar icon、無畫面、無 popup），037 給了兩個 leaf 故不合併（§8.2）；**-03 之 037 描述「no mismatch occurs」係條文之目的子句「in order to prevent a mismatch」，目的不是可觀察量，故被驗證者為其機制句**（R-C22；且 3 旋鈕 ICS 車上無螢幕，mismatch 於該配置本就無從觀察，以它為 ER 將產生永遠無法判定之 TC）。-04 依 §8.2.2「independent partial failures」與 §7（列舉之支援項須配負向對照）拆為主情形與例外二條，同溯該 leaf。刻意略過：ICS 自身之行為（旋鈕如何運作、ICS 畫面之內容）屬 ICS Anatomy 與 ICS Climate Modes 兩組，本批只驗 head unit 上之**缺席**此一 2.14 明文之事實，觀察位置不同（§8.2.1）；-04 之例外情形「one zone MTC with push button TEMPERATURE」為另一種車輛配置，無法與主情形共用 pre_conditions，本批未生成其 TC，已於上繳 22 §5.3 列為覆蓋缺口待裁。",
+            "驗證目標：2.14（C15）定出 MTC 相對 ATC 之兩項缺項（無離散溫度設定、無 Auto 控制），以及 3 旋鈕 ICS 車輛之 HVAC 觸控 UI 不顯示，四個 037 leaf 分別對應之，一葉一 TC（§8.2.1）。關鍵情境條件：-01／-02 取第一軸 MTC，其第一問由「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature」對應；-03／-04 另取 profile §3.2 第十三軸「3 旋鈕 ICS」，其第一問由「For MTC with ICS … certain types of physical knobs (3 knob HVAC controls)」對應，**該軸指 ch2 之實體旋鈕配置，非市場／變體軸之 EMEA ICS（ch16 全章）**，兩者外觀皆含 ICS 而所指不同（33 §3）。為什麼這樣切：-03 驗機制（螢幕無重複互動），-04 驗其三項具體後果（無 menu bar icon、無畫面、無 popup），037 給了兩個 leaf 故不合併（§8.2）；**-03 之 037 描述「no mismatch occurs」係條文之目的子句「in order to prevent a mismatch」，目的不是可觀察量，故被驗證者為其機制句**（R-C22；且 3 旋鈕 ICS 車上無螢幕，mismatch 於該配置本就無從觀察，以它為 ER 將產生永遠無法判定之 TC）。-04 依 §8.2.2「independent partial failures」與 §7（列舉之支援項須配負向對照）拆為主情形與例外二條，同溯該 leaf。刻意略過：ICS 自身之行為（旋鈕如何運作、ICS 畫面之內容）屬 ICS Anatomy 與 ICS Climate Modes 兩組，本批只驗 head unit 上之**缺席**此一 2.14 明文之事實，觀察位置不同（§8.2.1）；**-03／-04 之 EMEA 排除式 PC 與 16.2 引用已依 39 §1.1 移除**，因 ICE13 全文僅兩句而不含 C15 之 3 旋鈕 ICS 段落，-01／-02 之排除則因落在 ICE13 第二句內而維持；-04 之例外情形「one zone MTC with push button TEMPERATURE」為另一種車輛配置，無法與主情形共用 pre_conditions，本批未生成其 TC，已於上繳 22 §5.3 列為覆蓋缺口待裁。",
         "keywords": ["MTC", "ATC", "discrete temperature", "Auto",
                      "3 knob HVAC controls", "ICS", "menu bar icons"],
         "tcs": [
@@ -564,7 +605,9 @@ def main() -> None:
             if tc["req_id"] not in ICS_EXEMPT_REQ_IDS:
                 ex.append(EX_ICS)
                 refs.append("2.14")
-            if o in EMEA_EXPOSED_SECTIONS:
+            if (o in EMEA_EXPOSED_SECTIONS
+                    and tc["req_id"] not in EMEA_REMOVED_REQ_IDS
+                    and not tc.get("no_emea")):
                 ex.append(EX_EMEA)
                 refs.append("16.2")
             if tc["req_id"] in LOWER_EXPOSED:
@@ -591,6 +634,8 @@ def main() -> None:
                 "functional_safety": "NA",
                 "estimated_test_time": "",
                 "remarks": "",
+                **({"emea_ics_review": EMEA_PER_TC[_tid]}
+                   if (_tid := TC_ID_FMT.format(n=n)) in EMEA_PER_TC else {}),
             })
         doc = {
             "parent": b["parent"],
@@ -621,8 +666,8 @@ def main() -> None:
           f"declared for {TEST_SET} (framework.md: 16)")
     if leaves + held != 16:
         raise SystemExit(f"expected 16 leaves declared, got {leaves + held}")
-    if total != 15:
-        raise SystemExit(f"expected 15 TCs, emitted {total}")
+    if total != 16:
+        raise SystemExit(f"expected 16 TCs, emitted {total}")
 
 
 if __name__ == "__main__":

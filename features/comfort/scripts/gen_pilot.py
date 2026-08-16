@@ -96,13 +96,27 @@ def _load_interface_axis_review() -> dict:
 
 INTERFACE_AXIS_REVIEW = _load_interface_axis_review()
 
+# ---- 38 §1 / R-C36-1 — per-TC EMEA judgement -----------------------------
+# Section-level `mirrored` was standing in for a per-TC answer, and it hid
+# five over-strict exclusions: 16.14 is two sentences where 2.14 is a
+# paragraph, and 16.17 is one where 2.16 is two. Each row names the ch16
+# sentence its verdict rests on, so "mirrored" is never the whole answer.
+def _load_emea_per_tc() -> dict:
+    path = FEATURE / "data" / "emea_ics_per_tc.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return {r.pop("tc_id"): r for r in csv.DictReader(fh, delimiter="\t")}
+
+
+EMEA_PER_TC = _load_emea_per_tc()
+
+
 BATCHES = [
     # ---------------------------------------------------------------- 13.2
     {
         "parent": "SWE1-HVAC-076",
         "outline": "13.2",
         "reasoning":
-            "驗證目標：13.2（LS1.）以 lower screen 是否 stowed、使用者是否已在 climate section 兩條件分出三個分支，三個 037 leaf 恰對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：第九軸之措辭取自本節自身「the lower screen」而非 6.3 之「non-foldable secondary lower screen」，故標 spec-derived；stowed／retracted 依 19 §2.2 判定測試入 pre_conditions，因三條之驗證目標即該狀態下之行為。為什麼這樣切：條文之三分支互斥且各有獨立結果，合併會使任一分支失敗都無法定位。刻意略過：popup 樣式與 Seats tab 內容本節未定義，寫入即造值（§8.4.1）；5 秒 timeout 為條文明載，照用。",
+            "驗證目標：13.2（LS1.）以 lower screen 是否 stowed、使用者是否已在 climate section 兩條件分出三個分支，三個 037 leaf 恰對應之，故一葉一 TC（§8.2.1）。關鍵情境條件：第九軸之措辭取自本節自身「the lower screen」而非 6.3 之「non-foldable secondary lower screen」，故標 spec-derived；stowed／retracted 依 19 §2.2 判定測試入 pre_conditions，因三條之驗證目標即該狀態下之行為。為什麼這樣切：條文之三分支互斥且各有獨立結果，合併會使任一分支失敗都無法定位。刻意略過：popup 樣式與 Seats tab 內容本節未定義，寫入即造值（§8.4.1）；5 秒 timeout 為條文明載，照用；**A-CF23 之逐條複查（41 §5）**：037 對本 leaf 之描述帶 1 張圖，逐條問「所驗行為是否依賴圖片所載內容」之答為**否** ——`-01`／`-03` 所驗者為分頁之切換（`Seats tab` 由 LS1 文字具名）、`-02` 所驗者為 popup 之出現與 5 秒無互動後消失（皆為 LS1 明載之事件），三條之 ER 不驗任何視覺呈現，故不依賴圖片所載內容。",
         "keywords": ["lower screen", "stowed", "Seats tab",
                      "Seat Control Popup", "lumbar", "bolster"],
         "tcs": [
@@ -585,6 +599,8 @@ def main() -> None:
                 "functional_safety": "NA",
                 "estimated_test_time": "",
                 "remarks": blocked,
+                **({"emea_ics_review": EMEA_PER_TC[_tid]}
+                   if (_tid := TC_ID_FMT.format(n=n)) in EMEA_PER_TC else {}),
             }
             tcs.append(row)
         # distinguishing_axis is driven by the axis/delta keys, NOT by

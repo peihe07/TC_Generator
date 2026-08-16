@@ -42,7 +42,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.3",
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "ICE9「grey out remaining buttons except for Front/Max defrost and rear defrost」—— 例外項即 MAX DEF 與 rear defrost 之可用性"
+   }
   },
   {
    "req_id": "SWE1-HVAC-025-02",
@@ -62,7 +68,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "3.3",
+    "ch16_outline": "16.10",
+    "verdict": "yes",
+    "ch16_sentence": "同句之「grey out remaining buttons」—— 例外以外之功能不可用"
+   }
   }
  ]
 }

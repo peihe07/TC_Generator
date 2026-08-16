@@ -39,6 +39,9 @@
 | 24 | 2026-08-15 | **批次 4 Temperature and Fan** ＋ 介面型軸補掃 | [handoff/35_rc34_batch4.md](handoff/35_rc34_batch4.md) | [upstream/24_batch4.md](upstream/24_batch4.md) | R-C34 | A-CF22 | PASS（38/38，60 leaf / **64 TC**；2.7.1 待第十四軸裁定）|
 | 25 | 2026-08-15 | **ch16 鏡射表** ＋ interface-axis-answered／pending-sibling | [handoff/36_rc35_mirror_gates.md](handoff/36_rc35_mirror_gates.md) | [upstream/25_mirror_and_gates.md](upstream/25_mirror_and_gates.md) | R-C35 | DR #20 | PASS（40/40，60 leaf / 64 TC；**5 條 EMEA 排除過嚴待裁**）|
 | 26 | 2026-08-15 | **移除 5 條過嚴 PC**、第十四軸、單一來源、sibling 候選 | [handoff/37_mirror_fixes.md](handoff/37_mirror_fixes.md) | [upstream/26_mirror_fixes.md](upstream/26_mirror_fixes.md) | R-C36、R-C37 | A-CF13 增記 | PASS（40/40，61 leaf / **65 TC**；Temperature and Fan 19/19）|
+| 27 | 2026-08-15 | **R-C36-1 逐條補答** ＋ 批次 5 全停（ECO HVAC）| [handoff/38_rc36_1_batch5.md](handoff/38_rc36_1_batch5.md) | [upstream/27_batch5.md](upstream/27_batch5.md) | R-C36-1 | DR #21 | PASS（41/41，61 leaf / 65 TC；**5 條過嚴 ＋ 1 條判不出待裁；ch10 待第十五軸**）|
+| 28 | 2026-08-15 | **第十五軸 ＋ 批次 5 ECO HVAC**；移除 6 條過嚴 PC | [handoff/39_emea_removals_axis15.md](handoff/39_emea_removals_axis15.md) | [upstream/28_batch5_axis15.md](upstream/28_batch5_axis15.md) | — | — | PASS（41/41，75 leaf / **80 TC**；044-02 待白名單裁定）|
+| 29 | 2026-08-15 | **044-02 補證** ＋ 686 對候選分級判定 ＋ 等價組擴充 | [handoff/40_evidence_and_candidates.md](handoff/40_evidence_and_candidates.md) | [upstream/29_candidates_and_evidence.md](upstream/29_candidates_and_evidence.md) | — | A-CF23／DR #22／#23 | PASS（41/41，75 leaf / 80 TC；**AUTO 與 MODE 兩類判定失效，231 對待逐對**）|
 **編號說明**：下放包 02 為 01 之補遺（補其 open PENDING P-C1／P-C2），
 兩者於同一次往返內處理，故上繳只有一份，02 不另編往返序。下放包 03（覆核
 ＋ Phase 2 指示）與 04（D-C8/D-C9 裁決）同屬第二次往返，合併上繳為 02；
@@ -100,9 +103,9 @@
 | `RULINGS.md` | R-C1 ~ R-C27 + R-C4-1 + R-C5-1 逐字（29 條），加執行層落實回報 |
 | `DECISIONS.md` | 決策表 —— **已簽署 2026-08-14**，受 R-C9 保護。§6 含兩次修正案，**Sign-off 未重簽** |
 | `RECON.md` | Phase 1 survey + assertion 實測值 + uncited baseline sections |
-| `ANOMALIES.md` | A-CF01 ~ A-CF15（A-CF13 含四項 spec 內部瑕疵）|
-| `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` §5 | `[BLOCKED-SPEC]` ＋ 與 `[BLOCKED-ECU]`／R-C16 缺口項之三者對照 |
-| `DATA_REQUESTS.md` | #1 ~ #16 + standing rule（#12 跨 feature；#16 為 Core N0／CFTS044 之**涵蓋**問題，與 #13/#14 之「要不要取得」不同）|
+| `ANOMALIES.md` | A-CF01 ~ A-CF24（A-CF13 含四項 spec 內部瑕疵；A-CF23 含 12 條 TC 之影響清單與 18 leaf 之待辦名單）|
+| `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` §5 | **三類 BLOCKED marker** —— §5.1 `[BLOCKED-SPEC]`（R-C24）、§5.2 `[BLOCKED-NON-HMI]`（R-C38）、§5.3 三者對照與判別次序、§5.4 R-C16 之不產列者 |
+| `DATA_REQUESTS.md` | #1 ~ #30 + standing rule（#12 跨 feature；#16 為 Core N0／CFTS044 之**涵蓋**問題，與 #13/#14 之「要不要取得」不同；#24 為 `044-02` 之 VM 分類，RD-1 候選）|
 | `RUNBOOK.md` 末段 | **判準 vs 用詞禁令**（22 §4）—— 與 R-C13／R-C18 同源：以表徵為判準者，其失敗形態是靜默的 |
 | `feature.yaml` | pipeline 常數與裁決常數（`recon_assertions`） |
 | `data/spec_id_to_outline.tsv` | 403 leaf → SR24 outline 之查表（追蹤入版控） |
@@ -113,6 +116,13 @@
 | `data/test_set_map.tsv` | section → Test Set 查表（129 列），Phase 4 用；非工作簿內容 |
 | `data/section_fulltext.tsv` | **129 節不截斷全文**（R-C18）—— 判讀一律以此為據，不用 `layer3_map` 之 60 字標題 |
 | `data/source_tokens.tsv` | §3.4 窮盡性 —— 189 個相異 token 之全集（17 §3.1） |
+| `data/ch16_mirror_map.tsv` | ch16（EMEA ICS）↔ ch2／ch3 之鏡射表，31 列，含 `partial` 之行為分界（R-C36／R-C36-1）|
+| `data/ch2_ch7_mirror_map.tsv` | **前後排鏡射表**，26 列 —— ch2 全 22 節與 ch7 全 11 節**雙向全列**（含 `no-counterpart`），`partial` 者必填行為分界。231 對之結構解，亦為 `Rear Climate`（46 leaf）生成時之依據 |
+| `data/pending_sibling.tsv` | 跨 Test Set sibling 候選之判定台帳，**1592 列（42 §2 全量重建）**。verdict 四值：`sibling`／`not-sibling`／`not-broken-by-3-samples (class)`／`deferred`；另有 `provisional` 欄（42 §1）—— **機器維護，不得手工增修**，以 `sibling_candidates.py --rebuild` 全量重建＋鍵合併（R-C37：本表非完備性證明）|
+| `data/image_leaves.json` | 037 之 25 個帶圖 leaf（52 張）之實測名單，含節次、Test Set、是否已生成（A-CF23 / 42 §4）|
+| `scripts/verify_provisional_gate.py` | `provisional-sibling` gate 之**反向驗證** —— 五個方向性案例，證其該響時響、不該響時不響（42 §1）|
+| `data/interface_axis_review.tsv` | 每節之四個介面型軸答案（R-C34，36 §6）|
+| `data/emea_ics_per_tc.tsv` | 每條 TC 之 EMEA ICS 排除判定（R-C36-1，38 §1）|
 | `data/config_axis_candidates.tsv` | §3.2 窮盡性 —— 18 筆軸候選（17 §3.2；**115 節無匹配 ≠ 無配置條件**，R-C13） |
 | `generated/*.json` | **pilot 14 條**（7 個 parent），含 `source_clause`／`reasoning`／sibling 判定 |
 | `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` | **profile [OVERRIDE]**，已簽 2026-08-15（15 ＋ 16 §1） |

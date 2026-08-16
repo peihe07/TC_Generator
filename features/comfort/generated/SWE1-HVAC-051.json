@@ -1,0 +1,47 @@
+{
+ "parent": "SWE1-HVAC-051",
+ "outline": "10.8",
+ "batch": "ECO HVAC",
+ "source_clause": "EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.",
+ "reasoning": "驗證目標：10.8（EH8）定出 Comfort main Menu Bar icon 反映 AUTO ECO 與 AUTO 狀態，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1)；依 **R-C34**，本條之可觀察量為 **main Menu Bar icon**，落於 head unit 之 comfort section，故**另補第九軸之排除**（6.3 使該 section 自 head unit 移除），標 (6.3) 並併入 specification_reference —— 本組唯一暴露於第九軸者；第十三軸照補，EMEA ICS 不補。為什麼這樣切：本節只定出一項反映關係，兩個狀態於同一條內以兩步驟驗證。刻意略過：條文未給 icon 之具體圖樣，ER 以「反映該狀態」判定而不描述圖形（R-C22）。",
+ "keywords": [
+  "Menu Bar icon",
+  "AUTO ECO",
+  "AUTO states"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "**head unit 之 Comfort main Menu Bar icon**",
+  "axis_9": "**暴露 → 補**（6.3 使 comfort section 自 head unit 移除）—— 本組唯一者",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-051",
+   "tc_id": "NR1L-ComfortHMI-077",
+   "tc_title": "Menu Bar icon reflects the AUTO ECO and AUTO states",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon\n2. Press the AUTO button once, then read the Comfort main Menu Bar icon",
+   "expected_result": "1. The Comfort main Menu Bar icon reflects the AUTO ECO state\n2. The Comfort main Menu Bar icon reflects the AUTO ON state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.8; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

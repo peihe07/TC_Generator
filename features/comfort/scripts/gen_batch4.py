@@ -44,7 +44,7 @@ TEST_SET = "Temperature and Fan"
 STEM = ("SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_"
         "(September_25_2023)")
 TC_ID_FMT = "NR1L-ComfortHMI-{n:03d}"
-START_N = 47
+START_N = 48
 
 DM_FUNC = "功能測試 (Functional based ; no specific technique)"
 DM_STATE = "狀態轉換 (State Transition Testing)"
@@ -59,6 +59,12 @@ EX_LOWER = ("[spec-derived] The vehicle is not configured with a non-foldable "
             "secondary lower screen containing comfort information, for which "
             "the comfort section is removed from the head unit (6.3)")
 LOWER_EXPOSED = {"SWE1-HVAC-010-01"}      # reads the main category control
+# 39 §1.1 — per-TC removals, not section-level: the ch16 counterpart covers
+# some rows of these sections and not others. 16.14 (ICE13) is two sentences
+# where 2.14 (C15) is a paragraph, so 020-01/-02 keep the exclusion while
+# 020-03/-04 lose it; likewise 16.17 is one sentence where 2.16 is two.
+EMEA_REMOVED_REQ_IDS = {"SWE1-HVAC-022-02", "SWE1-HVAC-011"}
+
 
 PC_ATC = "1. [spec-verbatim] The climate system is ATC (2.6)"
 # 2.11 states Sync is not shown for single zone configurations; the fact is
@@ -95,6 +101,20 @@ def _load_interface_axis_review() -> dict:
 
 
 INTERFACE_AXIS_REVIEW = _load_interface_axis_review()
+
+# ---- 38 §1 / R-C36-1 — per-TC EMEA judgement -----------------------------
+# Section-level `mirrored` was standing in for a per-TC answer, and it hid
+# five over-strict exclusions: 16.14 is two sentences where 2.14 is a
+# paragraph, and 16.17 is one where 2.16 is two. Each row names the ch16
+# sentence its verdict rests on, so "mirrored" is never the whole answer.
+def _load_emea_per_tc() -> dict:
+    path = FEATURE / "data" / "emea_ics_per_tc.tsv"
+    with path.open(encoding="utf-8") as fh:
+        return {r.pop("tc_id"): r for r in csv.DictReader(fh, delimiter="\t")}
+
+
+EMEA_PER_TC = _load_emea_per_tc()
+
 
 BATCHES = [
     # ----------------------------------------------------------------- 2.6
@@ -338,7 +358,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-010",
         "outline": "2.7",
         "reasoning":
-            "驗證目標：2.7（C6）定出風量之範圍與呈現位置、非 climate screen 時之 popup、climate screen 上之三種調整途徑，以及「風量不可手動關至全暗」此一限制與其唯一例外，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 TS climate screen 與 main category control，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；**-01 另補第九軸** —— 其讀 main category control，而 6.3 使 comfort section 自 head unit 移除，故該介面可能不存在，標 (6.3) 並併入 specification_reference；其餘四條之可觀察量在 climate screen 與 popup，不受第九軸影響。為什麼這樣切：三種調整途徑與兩項限制之失效互相獨立。刻意略過：條文之 `15h` 標示 AUTO 一項語意不明（未見於他節），本批不驗，僅驗 Off 與 1-7 之呈現；-02 與 `NR1L-ComfortHMI-033`（2.2 之 popup）形態相近而 leaf 不同，依 §8.2 各自成條，本條之主詞為風量、該條為一般性狀態變更。",
+            "驗證目標：2.7（C6）定出風量之範圍與呈現位置、非 climate screen 時之 popup、climate screen 上之三種調整途徑，以及「風量不可手動關至全暗」此一限制與其唯一例外，五個 037 leaf 逐一對應，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量落於 TS climate screen 與 main category control，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；**-01 另補第九軸** —— 其讀 main category control，而 6.3 使 comfort section 自 head unit 移除，故該介面可能不存在，標 (6.3) 並併入 specification_reference；其餘四條之可觀察量在 climate screen 與 popup，不受第九軸影響。為什麼這樣切：三種調整途徑與兩項限制之失效互相獨立。刻意略過：條文之 `15h` 標示 AUTO 一項語意不明（未見於他節），本批不驗，僅驗 Off 與 1-7 之呈現；-02 與 `NR1L-ComfortHMI-033`（2.2 之 popup）形態相近而 leaf 不同，依 §8.2 各自成條，本條之主詞為風量、該條為一般性狀態變更；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 1 張圖，五條之答**皆為否** —— `fan segment`／`one bar highlighted`／`all FAN bars grayed out`／`main category control`／`pop-up` 五個可觀察量**全部是 C6 自己的字**，ER 未使用任何條文以外之視覺描述。",
         "keywords": ["fan", "main category control", "fan segment",
                      "greyed out", "climate power button"],
         "tcs": [
@@ -455,7 +475,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-022",
         "outline": "2.16",
         "reasoning":
-            "驗證目標：2.16（C18）規定語音辨識期間之自動降風量不對使用者顯示，且結束後回復前一風速亦不顯示變化，兩個 037 leaf 分別對應降低時與回復時，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量為 climate screen 上之風速顯示，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；第九軸與第十二軸不涉（不讀 category control、不讀 tab），具名於此。為什麼這樣切：降低時不顯示與回復時不顯示為兩個時點之兩個獨立可失效行為 —— 降低時正確而回復時閃動，或反之，皆可能發生。刻意略過：語音辨識會話之觸發與降風量之幅度屬他處，本節只規定其「不顯示」，故 procedure 以「造成降風量之語音辨識會話」為步驟而不驗其辨識行為（§8.2.1）；條文未給降風量之數值，ER 不寫入任何幅度（R-C22）。",
+            "驗證目標：2.16（C18）規定語音辨識期間之自動降風量不對使用者顯示，且結束後回復前一風速亦不顯示變化，兩個 037 leaf 分別對應降低時與回復時，一葉一 TC（§8.2.1）。關鍵情境條件：可觀察量為 climate screen 上之風速顯示，依 **R-C34** 補第十三軸與 EMEA ICS 之排除；第九軸與第十二軸不涉（不讀 category control、不讀 tab），具名於此。為什麼這樣切：降低時不顯示與回復時不顯示為兩個時點之兩個獨立可失效行為 —— 降低時正確而回復時閃動，或反之，皆可能發生。**-02 之 EMEA 排除式 PC 與 16.2 引用已依 39 §1.1 移除** —— 16.17 全文僅一句（降風量不顯示），**不含 C18 之第二句「After blower reduction, return blower speed to previous speed without showing a change in fan speed」**，故本條所驗之回復行為於 ch16 無對應句；-01 之排除維持。刻意略過：語音辨識會話之觸發與降風量之幅度屬他處，本節只規定其「不顯示」，故 procedure 以「造成降風量之語音辨識會話」為步驟而不驗其辨識行為（§8.2.1）；條文未給降風量之數值，ER 不寫入任何幅度（R-C22）。",
         "keywords": ["blower reduction", "Voice Recognition", "fan speed",
                      "not displayed"],
         "tcs": [
@@ -511,7 +531,7 @@ BATCHES = [
         "parent": "SWE1-HVAC-011",
         "outline": "2.7.1",
         "reasoning":
-            "驗證目標：2.7.1（C6.1）規定部分車輛之前排 HVAC 風速範圍為 Off, 1-8，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：取 profile §3.2 **第十四軸「前排 HVAC 風速範圍」**（37 §4 增列），其 R-C28 第一問由本節明文「In some vehicles fan speed ranges for front hvac are: Off, 1-8」對應，標 spec-verbatim；對照值 Off, 1-7 出自 2.7（C6.），依 R-C29 標 (2.7) 並併入 specification_reference —— C6.1 為 C6. 之子條，合讀非推論。依 **R-C34** 可觀察量為 climate screen 之風速段，補第十三軸與 EMEA ICS 之排除（16.7 ICE6 mirrored），第九軸與第十二軸不涉；本節只定出一個值域，無分支可分，且**第十四軸為功能型**，兩值皆不移除介面。刻意略過：條文未述「some vehicles」係由何配置決定，故 PC 以該值域本身為陳述而不寫入其成因（§8.4.1）；亦未述 1-8 之車輛其 AUTO 標示或下界行為是否不同，不擴張（2.7 之 -061／-062 各自成條）。",
+            "驗證目標：2.7.1（C6.1）規定部分車輛之前排 HVAC 風速範圍為 Off, 1-8，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：取 profile §3.2 **第十四軸「前排 HVAC 風速範圍」**（37 §4 增列），其 R-C28 第一問由本節明文「In some vehicles fan speed ranges for front hvac are: Off, 1-8」對應，標 spec-verbatim；對照值 Off, 1-7 出自 2.7（C6.），依 R-C29 標 (2.7) 並併入 specification_reference —— C6.1 為 C6. 之子條，合讀非推論。依 **R-C34** 可觀察量為 climate screen 之風速段，補第十三軸與 EMEA ICS 之排除（16.7 ICE6 mirrored），第九軸與第十二軸不涉；本節只定出一個值域，無分支可分，且**第十四軸為功能型**，兩值皆不移除介面。刻意略過：條文未述「some vehicles」係由何配置決定，故 PC 以該值域本身為陳述而不寫入其成因（§8.4.1）；亦未述 1-8 之車輛其 AUTO 標示或下界行為是否不同，不擴張；**EMEA 排除式 PC 與 16.2 引用已依 39 §1.1 移除**，因 ICE6 只列「Fan ranges: Off, 1-7」，本條所驗之 Off, 1-8 於 ch16 無對應句（鏡射表亦記 2.7.1 為 no-counterpart）。",
         "keywords": ["fan speed range", "front hvac", "Off, 1-8",
                      "Off, 1-7"],
         "tcs": [
@@ -560,8 +580,10 @@ def main() -> None:
         tcs = []
         for tc in b["tcs"]:
             n += 1
-            ex = [EX_ICS, EX_EMEA]
-            refs = list(tc.get("spec_ref", (o,))) + ["2.14", "16.2"]
+            ex, refs = [EX_ICS], list(tc.get("spec_ref", (o,))) + ["2.14"]
+            if tc["req_id"] not in EMEA_REMOVED_REQ_IDS:
+                ex.append(EX_EMEA)
+                refs.append("16.2")
             if "(2.11)" in tc["pre_conditions"]:
                 refs.append("2.11")
             if tc["req_id"] in LOWER_EXPOSED:
@@ -587,6 +609,8 @@ def main() -> None:
                 "functional_safety": "NA",
                 "estimated_test_time": "",
                 "remarks": "",
+                **({"emea_ics_review": EMEA_PER_TC[_tid]}
+                   if (_tid := TC_ID_FMT.format(n=n)) in EMEA_PER_TC else {}),
             })
         doc = {
             "parent": b["parent"],

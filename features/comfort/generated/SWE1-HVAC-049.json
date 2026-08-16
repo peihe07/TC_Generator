@@ -1,0 +1,67 @@
+{
+ "parent": "SWE1-HVAC-049",
+ "outline": "10.6",
+ "batch": "ECO HVAC",
+ "source_clause": "EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.",
+ "reasoning": "驗證目標：10.6（EH6）定出 AUTO ECO 作用中時 airflow modes 之取消選取（同標準 AUTO）與風速指示反映 AUTO ECO，兩個 037 leaf 分別對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1)；AUTO ECO 之啟動由 procedure 建立；依 R-C34 補第十三軸排除，EMEA ICS 不補。為什麼這樣切：airflow mode 之取消與風速指示為兩個不同位置之可觀察量，失效可各自發生。刻意略過：條文之「as in standard AUTO mode」把取消選取之細節委派予標準 AUTO（2.3，屬 `Climate Modes` 組，尚未生成），故 -01 只驗「airflow modes 被取消選取」此一本節明文之結果，不驗其動畫或順序（§8.2.1）；「fan speed indication should denote that AUTO ECO is active」未給具體樣式，ER 以該詞本身判定（R-C22）。",
+ "keywords": [
+  "AUTO ECO",
+  "deselect airflow modes",
+  "fan speed indication"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 airflow mode 選取狀態與風速指示",
+  "axis_9": "不暴露 —— 可觀察量為 climate screen 之 AUTO 控制，非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-049-01",
+   "tc_id": "NR1L-ComfortHMI-074",
+   "tc_title": "AUTO ECO deselects the airflow modes",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "When AUTO ECO is on, the system shall deselect airflow modes as in standard AUTO mode",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select an airflow mode on the climate screen\n2. Press the AUTO button until the AUTO ECO mode is active",
+   "expected_result": "1. The selected airflow mode is shown as selected\n2. The airflow modes are deselected",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.6; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-049-02",
+   "tc_id": "NR1L-ComfortHMI-075",
+   "tc_title": "Fan speed indication denotes AUTO ECO is active",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "When AUTO ECO is on, the fan speed indication shall denote that AUTO ECO is active",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Read the fan speed indication on the climate screen",
+   "expected_result": "1. The AUTO ECO mode is active\n2. The fan speed indication denotes that AUTO ECO is active",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.6; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

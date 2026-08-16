@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-052",
+ "outline": "10.9",
+ "batch": "ECO HVAC",
+ "source_clause": "EH9.) The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states.",
+ "reasoning": "驗證目標：10.9（EH9）定出由硬鍵互動觸發之 comfort popup 反映 AUTO ECO 與 AUTO 狀態，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1)；依 R-C34 補第十三軸排除（3 旋鈕 ICS 車上無 HVAC popup），EMEA ICS 不補；popup 於 6.3 之車輛仍存（`except for comfort popups`），故第九軸不暴露。為什麼這樣切：本節只定出一項反映關係。刻意略過：popup 之觸發規則本身定義於 2.2 與 ch14，本條只驗其**內容反映該狀態**，不驗其出現時機或逾時（§8.2.1）；附加提示文字另由 10.9.1 各自成條。",
+ "keywords": [
+  "comfort pop ups",
+  "hard controls",
+  "AUTO ECO",
+  "AUTO states"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "硬鍵觸發之 comfort popup",
+  "axis_9": "不暴露 —— 6.3 明寫 `except for comfort popups`，popup 仍存",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-052",
+   "tc_id": "NR1L-ComfortHMI-078",
+   "tc_title": "Comfort pop-ups reflect the AUTO ECO and AUTO states",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active, then change the fan speed using the fan speed hard control\n2. Press the AUTO button once, then change the fan speed using the fan speed hard control",
+   "expected_result": "1. The comfort pop up reflects the AUTO ECO state\n2. The comfort pop up reflects the AUTO ON state",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.9; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

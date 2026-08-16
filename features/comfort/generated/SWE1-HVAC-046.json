@@ -1,0 +1,46 @@
+{
+ "parent": "SWE1-HVAC-046",
+ "outline": "10.3",
+ "batch": "ECO HVAC",
+ "source_clause": "EH3.) Button label will read AUTO ECO.",
+ "reasoning": "驗證目標：10.3（EH3）定出按鈕標籤顯示為 AUTO ECO，單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1) 並將該節併入 specification_reference；依 R-C34 補第十三軸排除，EMEA ICS 不補。為什麼這樣切：本節只定出一個顯示字串，無分支可分。刻意略過：條文未述該標籤於何種狀態下顯示（AUTO ECO 作用中或恆常），故 procedure 以「進入 AUTO ECO」為步驟而 ER 只判標籤文字，不判其出現時機（§8.4.1）。",
+ "keywords": [
+  "AUTO ECO",
+  "button label"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "AUTO 按鈕之標籤文字",
+  "axis_9": "不暴露 —— 可觀察量為 climate screen 之 AUTO 控制，非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-046",
+   "tc_id": "NR1L-ComfortHMI-069",
+   "tc_title": "Button label reads AUTO ECO",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "The button label shall read AUTO ECO",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Read the label on the AUTO button",
+   "expected_result": "1. The AUTO ECO mode is active\n2. The button label reads AUTO ECO",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

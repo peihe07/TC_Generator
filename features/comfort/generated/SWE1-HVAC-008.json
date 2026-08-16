@@ -29,7 +29,7 @@
  "tcs": [
   {
    "req_id": "SWE1-HVAC-008-01",
-   "tc_id": "NR1L-ComfortHMI-047",
+   "tc_id": "NR1L-ComfortHMI-048",
    "tc_title": "Temperature shows on the climate screen and the status bar",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -45,11 +45,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6",
+    "ch16_outline": "16.6",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5「Temperature will display the current degree value the user has set it to for ATC systems」＋「The status is indicated on TS climate screen and in status bar」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-008-02",
-   "tc_id": "NR1L-ComfortHMI-048",
+   "tc_id": "NR1L-ComfortHMI-049",
    "tc_title": "HI and LO replace the degree value at the extremes",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -65,11 +71,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6",
+    "ch16_outline": "16.6",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5「when at the Highest possible position display HI when at the lowest display LO instead of a degree value」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-008-03",
-   "tc_id": "NR1L-ComfortHMI-049",
+   "tc_id": "NR1L-ComfortHMI-050",
    "tc_title": "Metric readout switches to half degree increments",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -85,11 +97,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6",
+    "ch16_outline": "16.6",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5「When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-008-04",
-   "tc_id": "NR1L-ComfortHMI-050",
+   "tc_id": "NR1L-ComfortHMI-051",
    "tc_title": "Temperature pop-up appears off the climate screen",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -105,11 +123,17 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6",
+    "ch16_outline": "16.6",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5「Show pop-up when status is changed via hard control and currently shown screen is not climate screen」"
+   }
   },
   {
    "req_id": "SWE1-HVAC-008-05",
-   "tc_id": "NR1L-ComfortHMI-051",
+   "tc_id": "NR1L-ComfortHMI-052",
    "tc_title": "Slider status bar and pop-ups follow the increment change",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
@@ -125,7 +149,13 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "emea_ics_review": {
+    "outline": "2.6",
+    "ch16_outline": "16.6",
+    "verdict": "yes",
+    "ch16_sentence": "ICE5「The temperature within the temp slider, status bar, temp slider popup, and temp popup will reflect this change in temperature increments」"
+   }
   }
  ]
 }

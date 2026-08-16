@@ -1,0 +1,68 @@
+{
+ "parent": "SWE1-HVAC-053",
+ "outline": "10.9.1",
+ "batch": "ECO HVAC",
+ "source_clause": "EH9.1) When ECO HVAC is equipped on a vehicle, the AUTO pop ups triggered by hard controls will have an additional info text compared to the standard ICE AUTO pop up. When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»",
+ "reasoning": "驗證目標：10.9.1（EH9.1）定出配備 ECO HVAC 之車輛其 AUTO popup 較標準 ICE AUTO popup 多一段提示文字，並給出兩種狀態下之逐字文字，兩個 037 leaf 分別對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸依 R-C29 標 (10.1)；依 R-C34 補第十三軸排除，EMEA ICS 不補；popup 於 6.3 車輛仍存，第九軸不暴露。為什麼這樣切：兩段文字對應兩個不同狀態，失效可各自發生（進入 AUTO ECO 之文字正確而標準 AUTO 之文字錯，是可能的）。刻意略過：條文以「compared to the standard ICE AUTO pop up」作對照，而標準 ICE popup 屬 ch2／ch14，本條只驗本節所給之兩段文字逐字出現，不驗其與標準 popup 之差異集合（§8.2.1）；文字照條文之書名號內容逐字引用，不改寫（R-C33：內容以條文為準）；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 1 張圖，兩條之答**皆為否** —— ER 所驗者為 EH9.1 書名號內之兩段文字**逐字出現**，該文字在條文內，圖片所載之 popup 版面與圖示不在本條驗證範圍。",
+ "keywords": [
+  "AUTO pop ups",
+  "additional info text",
+  "Press again to improve climate performance",
+  "Press again for lower battery consumption"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "AUTO popup 之附加提示文字",
+  "axis_9": "不暴露 —— 同 10.9",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-053-01",
+   "tc_id": "NR1L-ComfortHMI-079",
+   "tc_title": "AUTO ECO pop-up shows the climate performance text",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "When entering the AUTO ECO mode, the AUTO pop up text shall read \"Press again to improve climate performance\"",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until AUTO is off\n2. Press the AUTO button once and read the AUTO pop up",
+   "expected_result": "1. The AUTO state is AUTO OFF\n2. The AUTO pop up reads \"Press again to improve climate performance\"",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-053-02",
+   "tc_id": "NR1L-ComfortHMI-080",
+   "tc_title": "Standard AUTO pop-up shows the battery consumption text",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "When standard AUTO is activated, the AUTO pop up text shall read \"Press again for lower battery consumption\"",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Press the AUTO button once and read the AUTO pop up",
+   "expected_result": "1. The AUTO state is AUTO ECO\n2. The AUTO pop up reads \"Press again for lower battery consumption\"",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "parent": "SWE1-HVAC-044",
+ "outline": "10.1",
+ "batch": "ECO HVAC",
+ "source_clause": "EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.",
+ "reasoning": "驗證目標：10.1（EH1）定出 ECO HVAC 為一種 HVAC Mode、限用於 EV 車輛、其目的為降低氣候系統耗電，兩個 037 leaf 分別對應「可被選取為一種模式」與「降低耗電」，一葉一 TC（§8.2.1）。關鍵情境條件：取 profile §3.2 **第十五軸（39 §2 增列）**，其 R-C28 第一問由本節明文「used on EV Vehicles only」對應，標 spec-verbatim；依 **R-C34**，可觀察量為 climate screen 之 AUTO 控制，補第十三軸之排除，而 **EMEA ICS 不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據。為什麼這樣切：兩者之可觀察量不同 —— 前者為模式可被選取，後者為耗電變化。刻意略過：**-02 之「降低耗電」條文未給任何可於 HMI 觀察之量**，且 10.1 **未指名任何外部擁有者**，故其非 `[BLOCKED-SPEC]`（該類之判準為條文把內容委派到別的文件）而屬 **R-C38** 之第三類 `[BLOCKED-NON-HMI]`——內容不是介面行為，依 41 §1.2 產 BLOCKED row 並經白名單增列；**不採 R-C16 覆蓋缺口**，因 R-C16 治「037 未對其產出需求」而 037 確實產出了本 leaf，以 R-C16 處置會使它在工作簿中不留任何痕跡；替代觀察量之排除已具名兩處 —— AUTO ECO 之降耗機制（取消 airflow mode 選取、風速指示）為 **10.6 之 leaf**（已由 `-075`／`-076` 涵蓋），而全 129 節中唯一於介面上出現耗電字樣者為 **10.9.1 之 pop-up 文字**「Press again for lower battery consumption」，那是該文字之顯示（10.9.1 自身之 leaf，已由 `-080` 涵蓋）而非耗電量本身，取用任一者皆違 §4.5；搜尋範圍（R-C30）為 `data/section_fulltext.tsv` 全 129 節、pattern `power|consumption|energy|batter` 不分大小寫，命中 5 節：2.7／7.5／16.7 之 `climate power button`（電源鍵，非耗電量）、10.1（本節）、10.9.1（前述 pop-up 文字）；**A-CF23 之逐條複查（42 §4 之名單重建）**：037 對本 leaf 之描述帶 3 張圖，`-01` 之答為**否** —— 其 ER 之「AUTO ECO 模式為作用中」之判讀依據在 **10.3（EH3「Button label will read AUTO ECO」，已由 `-069` 涵蓋）**，是條文而非圖片；`-02` 為 BLOCKED row，procedure 與 ER 皆空，無可依賴。",
+ "keywords": [
+  "ECO HVAC",
+  "HVAC Mode",
+  "EV Vehicles",
+  "power consumption"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 AUTO 控制（-02 依 R-C38 為 [BLOCKED-NON-HMI]，無可觀察端）",
+  "axis_9": "不暴露 —— 可觀察量為 climate screen 之 AUTO 控制，非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-044-01",
+   "tc_id": "NR1L-ComfortHMI-067",
+   "tc_title": "ECO HVAC is selectable as an HVAC mode",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "ECO HVAC shall be an HVAC Mode, used on EV Vehicles only",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Press the AUTO button",
+   "expected_result": "1. The climate screen shows the AUTO control\n2. The AUTO ECO mode is active",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-044-02",
+   "tc_id": "NR1L-ComfortHMI-081",
+   "tc_title": "ECO HVAC reduces climate system power consumption",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "The system shall reduce climate control system power consumption",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "",
+   "expected_result": "",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "[BLOCKED-NON-HMI] Not an HMI-observable property — the requirement states a reduction in climate control system power consumption, which no Comfort HMI screen, pop-up or status indicator displays, and which no other document is stated to own"
+  }
+ ]
+}

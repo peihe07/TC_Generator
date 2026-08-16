@@ -22,6 +22,8 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF10 | 來源重複 | `inputs/` 曾存在 SR24 export 副本，依 R-C11 刪除 | CLOSED（已刪，已留痕） | 無 |
 | A-CF11 | 判讀陷阱 | SR24 作 "Alternative"、CFTS043 作 "Alternate" —— 以客戶用詞搜尋得 0 命中，差點誤判 10 節為 out_of_scope | **已升格 R-C13**（案例保留） | 無 |
 | A-CF12 | 上游矛盾 | CFTS043 4803259 之 NOTE 與同 item `Radio` 屬性矛盾（**主檔內部**矛盾；tree view 為索引層，不參與選邊） | **DEFERRED**（10 §2，Pei 直接向 RD 反應） | 無 |
+| A-CF24 | 量測範圍 | 上繳 30 §5.3 以 `find . -maxdepth 3` 於 repo root 找 037 得零命中，據以記「不可達」；實際路徑 `features/comfort/inputs/…` 深度為 4。**pattern 對，深度不足** | **RESOLVED**（42 §4，037 已讀，名單已重建）| A-CF23 之 18 leaf 清單延後一輪；無 TC 受影響 |
+| A-CF23 | 讀取能力 | **037** 之 Requirement Description 內含 52 個圖片標記（25 個 leaf），內容不可讀；SYS1 export 之 `section_fulltext.tsv` 則 0 命中 | OPEN（**不列 RD-1**；DR #23 為工具需求，Low）| 已生成之 7 條逐條複查完畢，見本條之影響清單；其餘 18 leaf 之檢查落為 `RUNBOOK.md` 生成時必答項 |
 | A-CF22 | note | 3 旋鈕 ICS 車輛之 head unit 是否仍顯示座椅類 popup，spec 未述 | OPEN（**不列 RD-1** —— 在 Comfort spec 範圍外）| 無（`-002` 維持不補）|
 | A-CF21 | 條文衝突 | `2.1` 之 037 leaf（3 tabs，無 Massage）與條文（4 tabs，含 Massage）不符 | **RESOLVED-BY-RULING**（R-C33，2026-08-15）；**DR #18 為其 RD-1 候選** | 內容依條文、單位依 037；`-01`／`-02` 另因 DR #17 未生成 |
 | A-CF20 | note | `SWE1-HVAC-024-07` 拆後四條之 ER 逐字相同，僅 title 與 procedure 相異 | **維持**（32 §3；已知性質，非缺陷）| 無 |
@@ -1019,3 +1021,113 @@ spec 未述，本 pipeline 不推測。若日後實機顯示不然，`-002` 須�
 
 相關：[[A-CF17]]、[[A-CF18]]（同為 spec 未述類，但那兩者在 Comfort 範圍內
 故列 RD-1）。
+
+## A-CF23 —— SYS1 export 之圖片內容不可讀（讀取能力）
+
+**登記依據**：下放包 40 §5；來源為執行層上繳 28 §10.5。
+
+**登記時須先訂正一項事實**：上繳 28 §10.5 與下放包 40 §5 皆記為
+「`10.2` 之三張圖片於 `section_fulltext.tsv` 僅存檔名」。**實測不然** ——
+
+| 來源 | `(image:` 命中 |
+|---|---|
+| `data/section_fulltext.tsv`（SYS1 export 導出）| **0** |
+| **037 之 Requirement Description**（`SWE1-HVAC-045` 等）| **52 個標記，分布於 25 個 leaf** |
+
+**圖片標記在 037（SWRA 分析報告）內，不在 SYS1 export 之條文內。**
+我當初讀到那三個檔名是在 037 之 leaf 描述裡，卻寫成 `section_fulltext`
+—— 兩份文件混記。**現況為 037 之圖片內容不可讀。**
+
+**影響**：`NR1L-ComfortHMI-068` 只驗三狀態之存在與循環，**不驗其視覺呈現**。
+若圖片載有各狀態之圖示規格（如 AUTO ECO 之圖形與 AUTO ON 之差異），
+**該部分現無任何 TC 涵蓋**。
+
+**不得以「圖片可能只是示意」為由略過** —— 那是未經查證之假定。
+現況為**不可讀**，如實記之（下放包 40 §5 明示此點）。
+
+**不列 RD-1** —— 圖片存在於 spec 內，**非上游遺漏**；問題在本 pipeline 之
+讀取能力。列 `DATA_REQUESTS` **#23**（Low）：SR24 PDF 之圖片擷取工具。
+
+**範圍已實測**：037 全 403 leaf 掃 `(image:` —— **25 個 leaf、52 個標記**，
+遠不止 `10.2` 之三張。命中最多者為 `SWE1-HVAC-023`（6）、`-055`（5）、
+`-001`／`-044`／`-045`／`-083`（各 3）。
+
+**其中已生成者，登記時記為 2 個（`-023`／`-076`），42 §4 重測為 7 個**
+（`-001`／`-010`／`-023`／`-044`／`-045`／`-053`／`-076`）—— 即現有 TC 中
+已有 12 條，其上游 leaf 描述帶有讀不到的圖片。此範圍遠大於登記時所知。
+**圖片標記位於 037 之 129 個 parent 列**（section 級 Requirement
+Description），與 outline 節次 1:1。
+
+### 影響清單（41 §5 之逐條複查，名單於 42 §4 重建）
+
+問句：**該 TC 所驗之行為，是否有任何部分依賴圖片所載之內容？**
+
+> **事實訂正（2026-08-15）**：上繳 29 §5 與 30 §5 皆記為「已生成者為
+> `-023` 與 `-076` 兩個」。**實測不然：已生成者為 7 個**（下表）。
+> 037 於本 session 已可讀（路徑見本條末），25 個帶圖 leaf 之名單已重建，
+> 其中 `-001`／`-010`／`-044`／`-045`／`-053` 五個先前未被列入複查對象。
+> 本輪補齊，全 12 條 TC 逐條複查完畢。
+
+| TC | leaf | 節 | 答 | 依據 |
+|---|---|---|---|---|
+| `NR1L-ComfortHMI-015` | `SWE1-HVAC-023-01` | 3.1 | **部分為是** | 個別 toggle 之邏輯由 C19 明載；**ON 態之呈現形式未定義** |
+| `NR1L-ComfortHMI-016` | `SWE1-HVAC-023-02` | 3.1 | **部分為是** | 七組合之循環順序由 C19 逐項列出；**「active」之判讀方式未定義** |
+| `NR1L-ComfortHMI-017` | `SWE1-HVAC-023-03` | 3.1 | **部分為是** | UP/RIGHT 前進、DOWN/LEFT 後退由 C19 明載；同上之判讀缺口 |
+| `NR1L-ComfortHMI-068` | `SWE1-HVAC-045` | 10.2 | **部分為是** | 三狀態之存在與循環由 EH2 明載；各狀態之圖示規格未定義 |
+| `NR1L-ComfortHMI-042` | `SWE1-HVAC-001-03` | 2.1 | 否 | 所驗者為「tab 一個都不顯示」，判讀只需認得 tab 之有無 |
+| `NR1L-ComfortHMI-059`…`-063` | `SWE1-HVAC-010-01`…`-05` | 2.7 | 否 | `fan segment`／`one bar highlighted`／`all FAN bars grayed out`／`main category control`／`pop-up` 五個可觀察量**全是 C6 自己的字** |
+| `NR1L-ComfortHMI-067` | `SWE1-HVAC-044-01` | 10.1 | 否 | 「AUTO ECO 為作用中」之判讀依據在 **10.3**（EH3「Button label will read AUTO ECO」），是條文非圖片 |
+| `NR1L-ComfortHMI-081` | `SWE1-HVAC-044-02` | 10.1 | 不適用 | `[BLOCKED-NON-HMI]` row，procedure 與 ER 皆空 |
+| `NR1L-ComfortHMI-079`／`-080` | `SWE1-HVAC-053-01`／`-02` | 10.9.1 | 否 | ER 驗 EH9.1 書名號內兩段文字**逐字出現**，文字在條文內 |
+| `NR1L-ComfortHMI-001`…`-003` | `SWE1-HVAC-076-01`…`-03` | 13.2 | 否 | 分頁切換與 popup 之出現／逾時，皆為 LS1 明載之事件 |
+
+**新增之具體缺口（tri-mode）**：C19 未定義三個 airflow mode 按鈕之 ON 態
+如何呈現。C13（`2.12`）之「highlighting the button and increasing button
+size」屬四模式配置，於 tri-mode 車不適用。故 `-015`／`-016`／`-017` 三條之
+ER 雖以「toggled ON」／「active」陳述，**其判讀依據不在條文內**。
+
+**形態值得記**：同一 leaf 之三條 TC，**行為邏輯不依賴圖，而狀態之判讀方式
+依賴圖**。問句若寫成「這條依不依賴圖」只會得到一個是非；寫成「**哪一部分**
+依賴圖」才會得到一個分界。
+
+**`-042` 之答另有一層**：`2.1` 之三張圖對**已生成**之 `-03` 不構成依賴，
+但對**未生成**之 `-01`（tab 數）與 `-02`（順序）極可能是關鍵 ——
+那兩者所缺的正是「哪一種配置產生哪一組 tab」（`DATA_REQUESTS` #17）。
+**圖片之影響不隨 leaf 均勻分布，同一節內即可分歧。**
+
+### 其餘 18 個未生成之帶圖 leaf —— 名單已重建（42 §4）
+
+| leaf | 圖 | 節 | Test Set |
+|---|---|---|---|
+| `SWE1-HVAC-055` | 5 | `11.2` | Heated Vented Seats |
+| `SWE1-HVAC-100` | 4 | `14.16` | Climate Popups |
+| `SWE1-HVAC-083` | 3 | `14.1` | Climate Popups |
+| `SWE1-HVAC-127` | 3 | `17.4` | Home Screen Widget |
+| `SWE1-HVAC-007` | 2 | `2.5.1` | Climate Modes |
+| `SWE1-HVAC-054` | 2 | `11.1` | Heated Vented Seats |
+| `SWE1-HVAC-067` | 2 | `12.1` | Heated Vented Seats |
+| `SWE1-HVAC-098` | 2 | `14.14` | Climate Popups |
+| `SWE1-HVAC-125` | 2 | `17.2` | Home Screen Widget |
+| `SWE1-HVAC-004` | 1 | `2.3.1` | Climate Modes |
+| `SWE1-HVAC-017` | 1 | `2.12.1` | Airflow and Defrost |
+| `SWE1-HVAC-038` | 1 | `7.10` | Rear Climate |
+| `SWE1-HVAC-041` | 1 | `9.3` | Rear Climate |
+| `SWE1-HVAC-042` | 1 | `9.4` | Rear Climate |
+| `SWE1-HVAC-060` | 1 | `11.6.1` | Heated Vented Seats |
+| `SWE1-HVAC-074` | 1 | `12.8` | Heated Vented Seats |
+| `SWE1-HVAC-097` | 1 | `14.13` | Climate Popups |
+| `SWE1-HVAC-105` | 1 | `15.1` | Climate Popups |
+
+共 **34 張**圖分布於 18 個 leaf（25 個帶圖 leaf 扣除已生成之 7 個）。
+生成時之必答項見 `RUNBOOK.md`。清單由
+`features/comfort/inputs/FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1 STLA 報告.xlsx`
+（143,292 bytes）之 `Analysis Report` 工作表實測重建，
+另存 `data/image_leaves.json`（25 筆，含已生成者）。
+
+**先前「不可達」之成因（R-C30）**：上繳 30 §5.3 記
+`find . -maxdepth 3 -name "*037-A03*"` 於 repo root 零命中。
+**該 pattern 正確，深度不足** —— 實際路徑為
+`./features/comfort/inputs/…`，深度 4。
+`feature.yaml` 之 `paths` 以 feature dir 為起點，我卻在 repo root 執行
+`ls inputs/`。**R-C30 要求載明搜尋範圍，本例即其價值**：範圍寫下來了，
+所以錯在哪一眼就看得出來，不必重猜。登為 **A-CF24**。

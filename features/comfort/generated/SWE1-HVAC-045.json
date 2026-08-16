@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-045",
+ "outline": "10.2",
+ "batch": "ECO HVAC",
+ "source_clause": "EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.",
+ "reasoning": "驗證目標：10.2（EH2）定出 BEV 車輛之 AUTO 具三狀態（AUTO ECO／AUTO ON／AUTO OFF），單一 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：第十五軸之出處於本節為「For BEV vehicles」，惟軸之來源節記於 10.1（`used on EV Vehicles only` 為整章之適用界定），故 PC 標 (10.1)，本節併入 specification_reference（R-C29）；依 R-C34 補第十三軸排除，EMEA ICS 不補（ch16 無 ECO HVAC 之對應節）。為什麼這樣切：三狀態之存在為單一事實，其**循環順序**另由 10.4／10.5 各自成條，本條不重複驗（§4.5）。刻意略過：條文附三張圖片而 `section_fulltext` 僅存其檔名，圖片內容不可讀，故不以圖推斷狀態之視覺呈現（R-C18 同型：讀不到者不得用於判讀）。",
+ "keywords": [
+  "BEV",
+  "AUTO ECO",
+  "AUTO ON",
+  "AUTO OFF"
+ ],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "climate screen 之 AUTO 狀態",
+  "axis_9": "不暴露 —— 可觀察量為 climate screen 之 AUTO 控制，非 head unit 之 comfort section",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車上無 HVAC 畫面／popup）",
+  "emea_ics": "**不補** —— ch16 十八節無 ECO HVAC 之對應節（`ch16_mirror_map.tsv` 之 ch10 側全無列），排除即無所依據；本組非 no-counterpart 之「已列而無對造」，而是 ch10 從未進入該表之比對範圍，理由相同：ch16 不承載此章之能力"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-045",
+   "tc_id": "NR1L-ComfortHMI-068",
+   "tc_title": "AUTO has three states on BEV vehicles",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "For BEV vehicles, the AUTO functionality shall have 3 states: AUTO ECO, AUTO ON, AUTO OFF",
+   "pre_conditions": "1. [spec-verbatim] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the AUTO button until AUTO is off\n2. Press the AUTO button\n3. Press the AUTO button",
+   "expected_result": "1. The AUTO state is AUTO OFF\n2. The AUTO state is AUTO ECO\n3. The AUTO state is AUTO ON",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": ""
+  }
+ ]
+}
