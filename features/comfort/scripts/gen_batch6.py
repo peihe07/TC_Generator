@@ -57,6 +57,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from test_item import apply_test_item   # Pei 2026-08-17 —— 上半照抄條文、下半情境
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
+from gap_tcs import append_gap, gap_for   # 97／98 —— 122-02，tc_id 462
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -114,14 +115,13 @@ ICS_NOT_EXPOSED = {"SWE1-HVAC-122-01", "SWE1-HVAC-122-02", "SWE1-HVAC-122-03",
 #                                       12.3 / 14.16 / 14.16.1 / 16.5 / 16.16）
 # 座椅類候選僅 12.3（Heated Vented Seats）與 14.16.1（Climate Popups），
 # 兩組皆未生成，且**條文本身未指名任何一節** —— 「Climate section」不是節次。
-WITHHELD = [
-    ("SWE1-HVAC-122-02",
-     "R-C39 五條件之**第二項未滿足**（對象節未生成），依其明文標 `deferred`、"
-     "不得先標 `[COVERED-BY]`。且「Climate section」**未指名任何節次**，"
-     "實測全 129 節僅 16.16 自身含 `off icon`；座椅類候選 12.3／14.16.1 皆未生成，"
-     "且兩者所述為顏色與熄滅時之灰化，**皆非「configuration → icon」之對照**，"
-     "故第三項於該二節生成後仍可能不成立。見 DATA_REQUESTS #32"),
-]
+# 97 §2.8 —— `122-02` 解封。其停下之依據為 R-C39 之第二項（`[COVERED-BY]`
+# 之對象節未生成），**而 97 §2.8 使該判別次序不再適用**：本 leaf 不再被讀成
+# 「其內容全部委派予 Climate section」，而是可獨立驗證之「顯示之圖示與該車
+# 配置相符」——「有圖示且與該車配置相符」為測試員對照實車可判之事，
+# **ER 不寫是哪個圖示**（那屬 PDO，仍為 DR #32 之問句）。
+# 故本 leaf 自 `deferred` 轉為正常生成，`[COVERED-BY]` 清單維持為空。
+WITHHELD = []
 
 
 def add_lines(pre_conditions: str, *lines: str) -> str:
@@ -534,6 +534,7 @@ def main() -> None:
                 "estimated_test_time": "",
                 "remarks": "",
             })
+        tcs = append_gap(tcs, b["parent"])
         doc = {
             "parent": b["parent"],
             "outline": o,
@@ -556,7 +557,8 @@ def main() -> None:
         total += len(tcs)
         print(f"{b['parent']}  {o:8} {len(tcs)} TC  -> generated/{b['parent']}.json")
 
-    leaves = len({tc["req_id"] for b in BATCHES for tc in b["tcs"]})
+    leaves = len({tc["req_id"] for b in BATCHES for tc in b["tcs"]}
+                 | {r["req_id"] for r in gap_for("SWE1-HVAC-" + "122")})
     print(f"\n{leaves} leaves -> {total} TCs; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
     print("\nWITHHELD — stop-and-report, no row produced:")
@@ -565,9 +567,10 @@ def main() -> None:
     held = len(WITHHELD)
     print(f"\n{leaves} emitted + {held} withheld = {leaves + held} leaves "
           f"declared for {TEST_SET} (framework.md: 17)")
-    if leaves + held != 17 or total != 16:
+    if leaves + held != 17 or total != 17:
         raise SystemExit(
-            f"expected 17 leaves declared / 16 TCs, got {leaves + held} / {total}")
+            f"expected 17 leaves declared / 17 TCs（16 ＋ 97／98 之 1）, got "
+            f"{leaves + held} / {total}")
 
 
 if __name__ == "__main__":

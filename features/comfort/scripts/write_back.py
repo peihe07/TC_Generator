@@ -54,9 +54,11 @@ SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # DELIVERY ENTRY 002 is its identity record, and deleting it would leave the
 # ledger pointing at nothing (the converse of R-C14 — a recorded identity may
 # not lose its object).
+# 45 §2 —— 每次寫回產一份**新檔**，不覆寫前一份。本次為 96 §1 之列序改版
+# 併 97／98 之 31 條補產，故檔名以 `rowsort` 標其性質。
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260817_merged.xlsx")
+                            "Comfort_20260817_rowsort.xlsx")
 # 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
 # 27 §3), so the second write-back became ENTRY 004. This is the third.
 #
@@ -65,7 +67,7 @@ OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # free and this write takes it. If the extension lands first, this constant
 # moves; the one-shot gate below is what makes a collision loud rather than
 # silent.
-LEDGER_ENTRY = "ENTRY 034"
+LEDGER_ENTRY = "ENTRY 035"
 SHEET = "Test Case Specification 測試用例規範"
 SRC_SHA = "6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c"
 FIRST_ROW = 10
@@ -92,11 +94,99 @@ def sha256(p: Path) -> str:
     return h.hexdigest()
 
 
+# ---------------------------------------------------------------- 96 §1
+# 列序與缺列之規則（下放包 96，Pei 裁定 2026-08-17）：
+#
+#     一、列序依 `Requirement or Design ID`（即 037 之 leaf id）遞增，
+#         不依批次順序、不依 Test Set 順序。
+#     二、未產出 TC 之 leaf 仍佔一列 —— 其 req_id 照填，其餘欄留空。
+#
+# 其目的：**工作簿由上而下即為 037 之 leaf 全集，其缺漏一眼可見。**
+# 96 §3 記其代價之解除 —— 交付說明為此建立之一整套外部機制（79 §2.2 起）
+# 本來就被既有規則解掉了：缺口在工作簿自身即可見，不需要一份文件去說明它。
+#
+# 037 之列序實測即 leaf id 之遞增（本檔 `verify_row_order_gates.py` 之第一向），
+# 故「依 037」與「依 id 遞增」在本語料上是同一件事，不必二選一。
+LEAF_KEY = re.compile(r"SWE1-HVAC-(\d+)(?:-(\d+))?$")
+
+
+def leaf_sort_key(req_id: str) -> tuple:
+    m = LEAF_KEY.match(req_id)
+    return (int(m.group(1)), int(m.group(2) or 0))
+
+
+def leaf_universe() -> list:
+    """037 之 403 個 leaf，依 id 遞增。來源同 lint 之 LEAF_UNIVERSE。"""
+    recon = json.loads((FEATURE / "data" / "recon.json").read_text(
+        encoding="utf-8"))
+    return sorted(recon["leaves"], key=leaf_sort_key)
+
+
 def load_tcs() -> list:
     docs = [json.loads(p.read_text(encoding="utf-8"))
             for p in sorted(GEN.glob("*.json"))]
     tcs = [t for d in docs for t in d["tcs"]]
     return sorted(tcs, key=lambda t: int(t["tc_id"].rsplit("-", 1)[1]))
+
+
+BLANK = "__BLANK__"
+
+
+def row_plan(tcs: list) -> list:
+    """96 §1 之列序：037 之 leaf 全集，逐 leaf 展開其 TC，無 TC 者一列留空。
+
+    回傳之每一項為 dict：TC 列即該 TC 本身；留空列為
+    `{"req_id": …, BLANK: True}`，其餘欄由 `cell_of()` 一律給空。
+    同一 leaf 之多條 TC 依其 tc_id 遞增排列（其相對次序即生成之次序）。
+    """
+    by_leaf = {}
+    for t in tcs:
+        by_leaf.setdefault(t["req_id"], []).append(t)
+    for v in by_leaf.values():
+        v.sort(key=lambda t: int(t["tc_id"].rsplit("-", 1)[1]))
+    plan = []
+    for leaf in leaf_universe():
+        if leaf in by_leaf:
+            plan.extend(by_leaf[leaf])
+        else:
+            plan.append({"req_id": leaf, BLANK: True})
+    return plan
+
+
+# ---------------------------------------------------------------- 96 §4.1
+# **F 欄之 tc_id 依列位重編，JSON 之 tc_id 不動**（Pei 裁定 2026-08-17）。
+#
+# 96 §4.1 要求「tc_id 須依新列序重新指派」，而 65 §1 立「既有編號不移動」——
+# **兩條直接衝突**，其衝突至今未被解決，因為 96 §7 原定由 Pei 自行改工作簿。
+#
+# 裁定取**只改匯出側**，其依據為 §10.3 之所在：它列於
+# 「## 10. Tool-Specific Output Contract (workbook export, not ASPICE rules)」
+# 之下，且明寫「the generator handles assignment」—— **tc_id 是匯出側之物**。
+# 故 F 欄寫列位編號（001…466，含留空列），語料之 tc_id 維持其生成時之值。
+#
+# **其代價須講明，不得靜默**：
+#   一、**工作簿 F 欄與 JSON 之 tc_id 自此不同**。ENTRY 025 那種「逐格與
+#       generated/*.json 比對」之複驗，其 F 欄一項須改以**列位**比對，
+#       否則會報 465 格不符 —— 那不是內容變了，是兩側各自為政。
+#   二、台帳與往返包引用 tc_id 時須講明是哪一側。**語料側為準**
+#       （60 §1 之 `no-tcid-in-prose` gate 管的是語料）。
+#   三、**留空列之 F 欄為空，且不佔一個編號** —— §10.3 要 tc_id 單調遞增，
+#       既有之 `tc-id-sequence` gate 另要其連續無缺號；把一個號碼發給一個
+#       沒有 TC 的列，會在 F 欄上開一個洞。故 F 為「**TC 於列序上之次序**」
+#       （001–465），不是列位。兩者只差在留空列那一格，而那一格正是分野。
+FMT_ROW_TCID = "NR1L-ComfortHMI-{n:03d}"
+
+
+def cell_of(row: dict, field: str, row_no: int = 0) -> str:
+    """留空列除 req_id 外一律空（96 §1 之二、其 `blank-row-shape`）。
+
+    `tc_id` 為例外：其值取**列位**（96 §4.1），非語料之 tc_id。
+    """
+    if field == "tc_id":
+        return "" if row.get(BLANK) else FMT_ROW_TCID.format(n=row_no)
+    if row.get(BLANK):
+        return row["req_id"] if field == "req_id" else ""
+    return render(field, row[field])
 
 
 # 83 §1 — the ledger check, without `--ignore-missing`.
@@ -280,20 +370,33 @@ def _compact_refs(value: str) -> str:
     return "; ".join(parts)
 
 
-def splice(tcs: list) -> dict:
+def tcid_sequence(plan: list) -> list:
+    """F 欄之號碼：TC 列依列序遞增 1…N，留空列給 0（其 F 欄為空）。"""
+    seq, n = [], 0
+    for row in plan:
+        if row.get(BLANK):
+            seq.append(0)
+        else:
+            n += 1
+            seq.append(n)
+    return seq
+
+
+def splice(plan: list) -> dict:
     wb = openpyxl.load_workbook(SRC)
     ws = wb[SHEET]
-    for i, tc in enumerate(tcs):
+    seq = tcid_sequence(plan)
+    for i, row in enumerate(plan):
         r = FIRST_ROW + i
         for col, field in COLS.items():
-            v = render(field, tc[field])
+            v = cell_of(row, field, seq[i])
             ws[f"{col}{r}"] = v if v != "" else None
     return surgical_save(wb, SRC, OUT)
 
 
 # ------------------------------------------------- §3.3 post-write assertions
 
-def assertions(tcs: list, report: dict) -> bool:
+def assertions(plan: list, report: dict) -> bool:
     """Every check reads the EMITTED file, never the in-memory workbook."""
     print("## §3.3 寫回後 assertion（自產出檔讀回）\n")
     ok = True
@@ -320,21 +423,58 @@ def assertions(tcs: list, report: dict) -> bool:
 
     wb = openpyxl.load_workbook(OUT)
     ws = wb[SHEET]
+    tcs = [x for x in plan if not x.get(BLANK)]
+    blanks_plan = [x for x in plan if x.get(BLANK)]
+    seq = tcid_sequence(plan)
     mismatches = []
-    for i, tc in enumerate(tcs):
+    for i, row in enumerate(plan):
         r = FIRST_ROW + i
+        who = row.get("tc_id") or f"BLANK:{row['req_id']}"
         for col, field in COLS.items():
             got = ws[f"{col}{r}"].value
             got = "" if got is None else str(got)
-            if got != render(field, tc[field]):
-                mismatches.append(f"{tc['tc_id']}.{col}({field})")
+            if got != cell_of(row, field, seq[i]):
+                mismatches.append(f"{who}.{col}({field})")
     g("逐列全部寫入欄之值與 JSON（經 render 後）一致", [], mismatches,
-      f"{len(tcs)} rows x {len(COLS)} columns compared: {''.join(COLS)}")
+      f"{len(plan)} rows x {len(COLS)} columns compared: {''.join(COLS)}")
+
+    # ---- 96 §6 之三道 gate，讀回產出檔 --------------------------------------
+    col_d = [ws[f"D{FIRST_ROW + i}"].value or "" for i in range(len(plan))]
+    # **判準為「嚴格倒退」而非「未遞增」** —— 一個 leaf 拆出多條 TC 時，
+    # 那幾列之 D 欄本來就相同（40 個 leaf 如此，最多一葉五列）。
+    # 第一版寫 `<=`，被 `verify_row_order_gates.py` 之第一向當場抓出：
+    # **乾淨之列序自己就會觸發**。一道對正確資料轉紅的檢查，比沒有還糟。
+    first_bad = next((f"row{FIRST_ROW + i}: {col_d[i]} 在 {col_d[i - 1]} 之後"
+                      for i in range(1, len(col_d))
+                      if leaf_sort_key(col_d[i]) < leaf_sort_key(col_d[i - 1])),
+                     None)
+    g("row-order-by-reqid：D 欄自上而下為 037 之 leaf 序（96 §1 一）",
+      None, first_bad, f"{len(plan)} 列讀回；不符即指名首個逆序之列")
+
+    universe = leaf_universe()
+    missing = sorted(set(universe) - set(col_d), key=leaf_sort_key)
+    g("all-leaves-present：037 之 403 個 leaf 每一個皆於 D 欄出現至少一次",
+      [], missing,
+      f"037 leaf {len(universe)}；D 欄相異值 {len(set(col_d))}")
+
+    bad_blank = []
+    for i, row in enumerate(plan):
+        if not row.get(BLANK):
+            continue
+        r = FIRST_ROW + i
+        for col, field in COLS.items():
+            if field == "req_id":
+                continue
+            if ws[f"{col}{r}"].value not in (None, ""):
+                bad_blank.append(f"row{r}.{col}")
+    g("blank-row-shape：留空列除 D 欄外各欄皆空（96 §1 二）", [], bad_blank,
+      f"{len(blanks_plan)} 個留空列：" +
+      ", ".join(x["req_id"] for x in blanks_plan))
 
     # 94 §2.3 — the gate this case says was missing: nothing ever asked
     # whether a cell the customer reads carries our own vocabulary.
     labelled = []
-    for i, tc in enumerate(tcs):
+    for i, tc in enumerate(plan):
         cell = ws[f"J{FIRST_ROW + i}"].value or ""
         for m in SOURCE_CLASS_IN_CELL.finditer(str(cell)):
             labelled.append(f"{tc['tc_id']}:{m.group(0).strip()}")
@@ -348,7 +488,9 @@ def assertions(tcs: list, report: dict) -> bool:
     # enough to assert twice, and the second assertion is the one that reads
     # what the customer will read.
     numbering = []
-    for i, tc in enumerate(tcs):
+    for i, tc in enumerate(plan):
+        if tc.get(BLANK):
+            continue
         r = FIRST_ROW + i
         cell = ws[f"J{r}"].value or ""
         lines = [l for l in str(cell).split("\n") if l.strip()]
@@ -360,27 +502,29 @@ def assertions(tcs: list, report: dict) -> bool:
       f"{len(tcs)} rows read back from the workbook")
 
     blanks = []
-    for i in range(len(tcs)):
+    for i in range(len(plan)):
         r = FIRST_ROW + i
         for col in ("Q",) + tuple("TUVWXYZ"):
             if ws[f"{col}{r}"].value not in (None, ""):
                 blanks.append(f"row{r}.{col}")
     g("Q 與 T–Z 留白（profile §3.7／§3.9）", [], blanks)
-    bad_s = [f"row{FIRST_ROW + i}" for i in range(len(tcs))
-             if ws[f"S{FIRST_ROW + i}"].value != "NA"]
-    g("S 欄一律 NA（profile §3.8）", [], bad_s)
+    bad_s = [f"row{FIRST_ROW + i}" for i, x in enumerate(plan)
+             if not x.get(BLANK) and ws[f"S{FIRST_ROW + i}"].value != "NA"]
+    g("S 欄一律 NA（profile §3.8；留空列不適用）", [], bad_s)
 
     # B must still hold its formula, not a value openpyxl substituted. The
     # template carries the same formula well past the target range, so the
     # check runs on rows 10-35 — row 24+ renders empty only because D is
     # empty, and that is the mechanism, not residue.
     bad_b = []
-    for r in range(FIRST_ROW, FIRST_ROW + len(tcs) + 12):
+    for r in range(FIRST_ROW, FIRST_ROW + len(plan) + 12):
         v = ws[f"B{r}"].value
         if v != f'=IF(ISBLANK($D{r}),"",ROW()-9)':
             bad_b.append(f"row{r}={v!r}")
-    g(f"B 欄 row {FIRST_ROW}–{FIRST_ROW + len(tcs) + 11} 之公式逐列原樣存在",
-      [], bad_b, "編號 1–14 由公式自算，未寫入值")
+    g(f"B 欄 row {FIRST_ROW}–{FIRST_ROW + len(plan) + 11} 之公式逐列原樣存在",
+      [], bad_b,
+      "96 §4.2 —— 留空列之 D 欄非空（照填 req_id），故 B 欄仍會給它一個編號；"
+      "B 欄之編號自此等於**列數**，不等於 TC 數")
 
     # ---- assertion 11 (45 §3.3) — three marker classes, three rules -------
     # profile §5.1 / §5.2 / §5.2a. Each class's first visible line must carry
@@ -392,7 +536,9 @@ def assertions(tcs: list, report: dict) -> bool:
         "[COVERED-BY]": ("[COVERED-BY]", True),
     }
     marked, bad_blk = {k: [] for k in MARKER_RULE}, []
-    for i, t in enumerate(tcs):
+    for i, t in enumerate(plan):
+        if t.get(BLANK):
+            continue
         rm_json = t["remarks"]
         mk = next((m for m in MARKER_RULE if rm_json.startswith(m)), None)
         if mk is None:
@@ -425,11 +571,13 @@ def assertions(tcs: list, report: dict) -> bool:
     # 節次以「、」相連且去 `SYS1_` 前綴。**節次一個不少**是這道 assertion
     # 現在要證的事 —— 故另驗其節次集合與 JSON 相同（下方 n_lost）。
     n_bad = [f"{t['tc_id']}"
-             for i, t in enumerate(tcs)
-             if (ws[f"N{FIRST_ROW + i}"].value or "")
+             for i, t in enumerate(plan)
+             if not t.get(BLANK) and (ws[f"N{FIRST_ROW + i}"].value or "")
              != render("specification_reference", t["specification_reference"])]
     n_lost = []
-    for i, t in enumerate(tcs):
+    for i, t in enumerate(plan):
+        if t.get(BLANK):
+            continue
         cell = ws[f"N{FIRST_ROW + i}"].value or ""
         want = set(re.findall(r"_(\d+(?:\.\d+)*)(?=[;、]|$)",
                               t["specification_reference"]))
@@ -437,7 +585,7 @@ def assertions(tcs: list, report: dict) -> bool:
         if want - got:
             n_lost.append(f"{t['tc_id']}:{sorted(want - got)}")
     g("N 欄之節次一個不少（縮寫後仍涵蓋 JSON 所列之全部節次）", [], n_lost,
-      f"{len(tcs)} cells compared")
+      f"{len(tcs)} cells compared（留空列不計）")
     g("N 欄 specification_reference 與 JSON（經 render 後）相同（A-CF19 之內容側）",
       [], n_bad, f"{len(tcs)} cells compared")
     lens = [(len(t["specification_reference"]), t["tc_id"]) for t in tcs]
@@ -461,7 +609,7 @@ def assertions(tcs: list, report: dict) -> bool:
     # handoff 26 §4.3 — scan to the sheet's real extent, not a fixed window.
     # The window used to be 12 rows wide while max_row is 59; residue past
     # row 35 would never have been looked at.
-    last, end = FIRST_ROW + len(tcs), ws.max_row
+    last, end = FIRST_ROW + len(plan), ws.max_row
     residue = []
     for r in range(last, end + 1):
         for col in COLS:          # B excluded — its formula is template, not residue
@@ -498,7 +646,7 @@ def assertions(tcs: list, report: dict) -> bool:
     # (B is checked above through openpyxl — the XML carries SHARED formulas,
     # where only the master cell holds the <f> text, so a regex over the raw
     # XML under-counts. Left out deliberately rather than duplicated wrongly.)
-    written = set(range(FIRST_ROW, FIRST_ROW + len(tcs)))
+    written = set(range(FIRST_ROW, FIRST_ROW + len(plan)))
     g("每一寫入列皆在 R 欄下拉（x14 DV）之涵蓋範圍內",
       [], sorted(written - r_rows)[:6] + (["…"] if len(written - r_rows) > 6 else []),
       f"{len(written - r_rows)} row(s) outside; DV covers rows "
@@ -511,8 +659,9 @@ def assertions(tcs: list, report: dict) -> bool:
     # ---- assertion 12 (45 §3.3) — row count == TC count -------------------
     written = sum(1 for r in range(FIRST_ROW, end + 1)
                   if ws[f"D{r}"].value not in (None, ""))
-    g("已寫入之列數等於現行 TC 數", len(tcs), written,
-      f"rows {FIRST_ROW}–{FIRST_ROW + len(tcs) - 1}")
+    g("已寫入之列數等於 TC 數 ＋ 留空列數（96 §4.3）", len(plan), written,
+      f"rows {FIRST_ROW}–{FIRST_ROW + len(plan) - 1}；"
+      f"{len(tcs)} TC ＋ {len(blanks_plan)} 留空列")
     wb.close()
     print()
     return ok
@@ -586,13 +735,14 @@ def main() -> int:
     args = ap.parse_args()
 
     tcs = load_tcs()
+    plan = row_plan(tcs)          # 96 §1 —— 037 之 leaf 全集，缺列留空
     if args.verify_only:
         import zipfile
         with zipfile.ZipFile(SRC) as a, zipfile.ZipFile(OUT) as b:
             differing = sorted(m for m in a.namelist() if a.read(m) != b.read(m))
         from backend.xlsx_surgical import _dv_counts
         report = {"differing": differing, "dv_counts": _dv_counts(OUT)}
-        ok = assertions(tcs, report)
+        ok = assertions(plan, report)
         print(f"output sha256: {sha256(OUT)}")
         return 0 if ok else 1
 
@@ -607,16 +757,18 @@ def main() -> int:
     print("## §3.2 splice\n")
     print(f"- source : {SRC.name}")
     print(f"- target : {OUT.name}")
-    print(f"- rows   : {FIRST_ROW}–{FIRST_ROW + len(tcs) - 1}")
+    print(f"- rows   : {FIRST_ROW}–{FIRST_ROW + len(plan) - 1}"
+          f"  （{len(tcs)} TC ＋ "
+          f"{len(plan) - len(tcs)} 留空列，96 §1）")
     print(f"- 未寫入欄: {NEVER_WRITE}\n")
     try:
-        report = splice(tcs)
+        report = splice(plan)
     except StructureError as exc:
         print(f"ABORTED (structure invariant): {exc}", file=sys.stderr)
         return 1
     print(f"- surgical report: {report}\n")
 
-    ok = assertions(tcs, report)
+    ok = assertions(plan, report)
     print(f"output sha256: {sha256(OUT)}")
     if ok:
         archive_previous()

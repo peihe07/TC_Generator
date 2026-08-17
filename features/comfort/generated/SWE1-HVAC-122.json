@@ -108,6 +108,27 @@
    "estimated_test_time": "",
    "remarks": "",
    "test_item_authored": "When entering the controls screen the current state of the buttons shall be displayed"
+  },
+  {
+   "req_id": "SWE1-HVAC-122-02",
+   "tc_id": "NR1L-ComfortHMI-462",
+   "tc_title": "The seat off icon matches the system configuration",
+   "test_group": "Comfort",
+   "test_set": "ICS Anatomy",
+   "test_item": "Off icon of seats will depend on system configuration (see Climate section).\n\n(read the off icon of the seat controls -> An off icon is shown for the seat controls and it matches this vehicle's system configuration)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the controls screen\n2. Read the off icon of the seat controls",
+   "expected_result": "1. The controls screen is displayed\n2. An off icon is shown for the seat controls and it matches this vehicle's system configuration",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.16; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "test_item_authored": "The off icon of seats shall depend on system configuration"
   }
  ]
 }

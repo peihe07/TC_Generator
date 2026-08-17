@@ -1304,6 +1304,67 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
 # 輸出
 25fbfc7a84824df2d3c15728994cfdf89d756f7c0999e910747d911c7ed681f1  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_merged.xlsx
+#   archived : output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_merged.xlsx  （hash 與內容未變，見文末「歸檔後之可驗路徑」）
+
+# ============================================================
+# ENTRY 035 — 2026-08-17 — 第二十五次寫回：96 §1 之列序改版 ＋ 97／98 之 31 條補產
+#
+#   type : produced
+#   來源 : ENTRY 022 之擴充後母本（6d53056e559bd0c1…）
+#   內容 : row 10–475，共 **466 列** = **465 條 TC ＋ 1 個留空列**
+#
+#   **本輪為四件之合併寫回**（94 §3 定兩件合併，其後 95／96 各加一件）:
+#     94  J 欄無 source class 標籤（連節次括號，依 ENTRY 032 之編修）
+#     95  I 欄兩段式：上半條文原文逐字、空行、下半該條之測項定義
+#     96  **列序依 req_id 遞增、缺列留空**（本輪之新事）
+#     97／98  20 個 leaf 之補產，**31 條**，語料 434 -> 465
+#
+#   **列序（96 §1）** : D 欄自上而下即 037 之 leaf 全集，其順序與 037 一致。
+#     037 之列序實測即 leaf id 之遞增（`verify_row_order_gates.py` 之第一向），
+#     故「依 037」與「依 id 遞增」在本語料上是同一件事。
+#     **缺漏一眼可見** —— 交付說明為此建立之整套外部機制（79 §2.2 起）
+#     本來就被既有規則解掉了。
+#
+#   **留空列 1 個**（96 §1 二）: `SWE1-HVAC-019-03` —— D 欄照填，其餘 13 個
+#     寫入欄皆空。其內容為對 VF HVAC document 之委派，扣除後無獨立餘留
+#     （比照 `080-02`，97 §2.4）。**403 個 leaf 現全數在表上。**
+#
+#   **F 欄之 tc_id 依列序重編，JSON 之 tc_id 不動**（Pei 裁定 2026-08-17）:
+#     96 §4.1 要求重編，65 §1 立「既有編號不移動」—— 兩條直接衝突。
+#     裁定取**只改匯出側**，其依據為 §10.3 之所在（「Tool-Specific Output
+#     Contract (workbook export, not ASPICE rules)」，且明寫 generator 指派）。
+#     F 欄為 **TC 於列序上之次序 001–465**（留空列之 F 為空且不佔號碼 ——
+#     發一個號碼給一個沒有 TC 的列，會在 F 欄上開一個洞）。
+#     **代價，不得靜默** : 工作簿 F 欄與 JSON 之 tc_id 自此**不同**。
+#     ENTRY 025 那種「逐格與 generated/*.json 比對」之複驗，其 F 欄一項
+#     須改以**列位**比對，否則會報 465 格不符 —— 那不是內容變了，
+#     是兩側各自為政。台帳與往返包引用 tc_id 時須講明是哪一側，**語料側為準**
+#     （60 §1 之 `no-tcid-in-prose` gate 管的是語料）。
+#
+#   **B 欄之連帶，與 96 §4.2 所寫者相反** : 96 §4.2 推論「留空列之 D 欄為空，
+#     故其自動不編號」，而 96 §1 二定 D 欄**照填** req_id ——
+#     兩段自相矛盾。實測以 §1 為準：留空列之 D 非空，**B 欄照樣給它編號**，
+#     故 B 欄之編號等於**列數（466）**，不等於 TC 數（465）。
+#
+#   驗證 : 前置 gate 6 項全 PASS；lint **57 / 57 PASS across 465 TCs**；
+#          §3.3 assertion **19 項全數 PASS**（新增 96 §6 之三道）；
+#          `verify_row_order_gates.py` **13 / 13 directional cases PASS**
+#
+#   **反向驗證當場抓到本層自己的錯** : `row-order-by-reqid` 第一版寫 `<=`，
+#     致**乾淨之列序自己就會觸發** —— 一個 leaf 拆出多條 TC 時那幾列之
+#     D 欄本來就相同（實測 63 處）。判準已改為「嚴格倒退」（`<`）。
+#     **一道對正確資料轉紅的檢查，比沒有還糟**，而它是被那道反向驗證抓到的，
+#     不是被人看出來的。
+#
+#   狀態 : **未經 Excel 確認；未交付。**
+#
+#   未做 : 不複製至客戶交付路徑；ENTRY 001–034 之內容未變動；
+#          RD-1 未動；git 未執行。
+#
+# 輸入基準（ENTRY 022 之擴充後母本）
+6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
+# 輸出
+235f2ca73d3b345fc4b4e0df171ac9c167a6e6443412a84c90e83766e360a6f4  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_rowsort.xlsx
 
 # ============================================================
 # 已知不存在（下放包 83 §2，2026-08-17）
@@ -1379,3 +1440,5 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemfmt.xlsx
 
 2f87c5e854b490a0c8f28b5a4f53d7476d80177e93cade22ef9c7a351aa14c36  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemdef.xlsx
+
+25fbfc7a84824df2d3c15728994cfdf89d756f7c0999e910747d911c7ed681f1  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_merged.xlsx

@@ -156,9 +156,14 @@ DIST_AXIS = {
 # not look like a leaf that vanished.
 MOVED_TO_BATCH16 = ['SWE1-HVAC-096-01', 'SWE1-HVAC-096-02', 'SWE1-HVAC-096-03', 'SWE1-HVAC-098']
 
-WITHHELD = [
- ("SWE1-HVAC-099", "`14.15`（HVACSB1）「Available comfort controls … **depend on vehicle configuration**」—— **陳述有對照關係而不給對照**，形態同 `DATA_REQUESTS` #32 之三個成員，本輪併入該類為第四個成員。**注意**：本節雖停下，其句子仍**被引為第十六軸之出處**（14.16～14.18 之 PC）—— 一個 leaf 停下，不代表該節之句子不可作為他條之出處（R-C29）"),
-]
+# 97 §1 之判準訂正（「條文說了什麼，就驗什麼」）使下列 leaf 之停下理由失效。
+# 它們現由 `gen_batch17.py` 產出（其 parent 此前無檔，故 owner 為新檔 ——
+# 同批次 16 之前例：一個 JSON 只有一個 owner）。**仍列於本檔之算式內**，
+# 使該 Test Set 之 leaf 數仍與 framework.md 相符 ——
+# **一個搬走之 leaf，不得看起來像一個消失之 leaf**。
+MOVED_TO_BATCH17 = ['SWE1-HVAC-099']
+
+WITHHELD = []
 
 
 
@@ -366,9 +371,9 @@ def main() -> None:
     for req, why in WITHHELD:
         print(f"- {req}: {why}")
     held = len(WITHHELD)
-    moved = len(MOVED_TO_BATCH16)
+    moved = len(MOVED_TO_BATCH16) + len(MOVED_TO_BATCH17)
     print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
-          f"batch 16 (R-C42) = {leaves + held + moved} leaves "
+          f"batches 16／17 = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 42)")
     if leaves + held + moved != 42 or total != 39:
         raise SystemExit(

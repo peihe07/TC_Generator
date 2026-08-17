@@ -156,10 +156,14 @@ CH9_WHY = (
 # not look like a leaf that vanished.
 MOVED_TO_BATCH16 = ['SWE1-HVAC-040-01', 'SWE1-HVAC-040-02', 'SWE1-HVAC-041', 'SWE1-HVAC-042-01', 'SWE1-HVAC-042-02', 'SWE1-HVAC-042-03', 'SWE1-HVAC-043']
 
-WITHHELD = [
-    ("SWE1-HVAC-039", CH9_WHY + "。**本節自身即 leaf**（037 無子條），"
-     "其內容只有「某些車輛另有附加控制」一句，**無可觀察之行為**"),
-]
+# 97 §1 之判準訂正（「條文說了什麼，就驗什麼」）使下列 leaf 之停下理由失效。
+# 它們現由 `gen_batch17.py` 產出（其 parent 此前無檔，故 owner 為新檔 ——
+# 同批次 16 之前例：一個 JSON 只有一個 owner）。**仍列於本檔之算式內**，
+# 使該 Test Set 之 leaf 數仍與 framework.md 相符 ——
+# **一個搬走之 leaf，不得看起來像一個消失之 leaf**。
+MOVED_TO_BATCH17 = ['SWE1-HVAC-039']
+
+WITHHELD = []
 
 REASONING = {
 "7.1": "驗證目標：7.1（CR1）定出「在後排氣候畫面上，前排硬控仍控制前排」此一通則及其兩個例示（風扇旋鈕、駕駛／乘客溫度控制），三個 037 leaf 對應之，一葉一 TC（§8.2.1）。關鍵情境條件：起始 PC 為 test-setup（後排畫面已開）—— **本節無配置限定語**；依 **R-C34** 第九軸與第十三軸暴露 → 全數補，EMEA 排除補並逐條答。為什麼這樣切：通則（`028-01`）與兩個具名控制（`028-02` 風扇、`028-03` 溫度）之失效可各自發生，且後二者之可觀察量分屬不同控制。刻意略過：**其 ch2 對造 `2.12.2` 已停下（DR #31），本節不受其影響** —— 依 **R-C40** 之一問，`2.12.2` 之停下源於前排四模式集合之適用條件（章節脈絡），而 CR1 與 C13.1 末句為 `partial` 而非逐字相同，前件不成立（61 §2.1）。",
@@ -307,9 +311,9 @@ def main() -> None:
     for req, why in WITHHELD:
         print(f"- {req}: {why[:90]}…")
     held = len(WITHHELD)
-    moved = len(MOVED_TO_BATCH16)
+    moved = len(MOVED_TO_BATCH16) + len(MOVED_TO_BATCH17)
     print(f"\n{total} emitted + {held} withheld + {moved} moved to "
-          f"batch 16 (R-C42) = {total + held + moved} leaves "
+          f"batches 16／17 = {total + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 46)")
     if total + held + moved != 46 or total != 38:
         raise SystemExit(

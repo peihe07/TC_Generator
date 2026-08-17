@@ -111,14 +111,14 @@ PC_COMFORT_FEATURES = ("[spec-derived] The vehicle is equipped with Comfort "
 # not look like a leaf that vanished.
 MOVED_TO_BATCH16 = ['SWE1-HVAC-127-01', 'SWE1-HVAC-127-02', 'SWE1-HVAC-128-01', 'SWE1-HVAC-128-02']
 
-WITHHELD = [
-    ("SWE1-HVAC-129-01",
-     "`18.1` 全句與 `17.1` **逐字相同**，唯一區辨者為章標題「10.25\" Home screen」——"
-     "**章標題不是條文**，故螢幕尺寸之 PC 連出處都沒有（R-C28 第一問先於軸之問題失敗）；"
-     "不補該 PC 而生成，即產出與 `17.1` 完全相同之一組 TC（§4.5／§4.6）"),
-    ("SWE1-HVAC-129-02", "同 `129-01`"),
-    ("SWE1-HVAC-129-03", "同 `129-01`"),
-]
+# 97 §1 之判準訂正（「條文說了什麼，就驗什麼」）使下列 leaf 之停下理由失效。
+# 它們現由 `gen_batch17.py` 產出（其 parent 此前無檔，故 owner 為新檔 ——
+# 同批次 16 之前例：一個 JSON 只有一個 owner）。**仍列於本檔之算式內**，
+# 使該 Test Set 之 leaf 數仍與 framework.md 相符 ——
+# **一個搬走之 leaf，不得看起來像一個消失之 leaf**。
+MOVED_TO_BATCH17 = ['SWE1-HVAC-129-01', 'SWE1-HVAC-129-02', 'SWE1-HVAC-129-03']
+
+WITHHELD = []
 
 
 def add_lines(pre_conditions: str, *lines: str) -> str:
@@ -587,9 +587,9 @@ def main() -> None:
     for req, why in WITHHELD:
         print(f"- {req}: {why}")
     held = len(WITHHELD)
-    moved = len(MOVED_TO_BATCH16)
+    moved = len(MOVED_TO_BATCH16) + len(MOVED_TO_BATCH17)
     print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
-          f"batch 16 (R-C42) = {leaves + held + moved} leaves "
+          f"batches 16／17 = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 21)")
     if leaves + held + moved != 21 or total != 14:
         raise SystemExit(

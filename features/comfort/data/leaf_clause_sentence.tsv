@@ -1,435 +1,466 @@
 tc_id	req_id	outline	score	sent_idx	clause_verbatim
 NR1L-ComfortHMI-042	SWE1-HVAC-001-03	2.1	1.00	2	If only Front climate is available in a specific vehicle the tabs will not be displayed.
-NR1L-ComfortHMI-032	SWE1-HVAC-002-01	2.2	0.95	0	C1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations.
-NR1L-ComfortHMI-033	SWE1-HVAC-002-02	2.2	0.77	1	Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.
-NR1L-ComfortHMI-034	SWE1-HVAC-002-03	2.2	0.59	1	Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.
-NR1L-ComfortHMI-035	SWE1-HVAC-002-04	2.2	0.76	2	When sync'd, do not show slider pop-up on passenger side when adjusting driver slider.
-NR1L-ComfortHMI-036	SWE1-HVAC-002-05	2.2	0.59	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
-NR1L-ComfortHMI-037	SWE1-HVAC-002-05	2.2	0.59	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
-NR1L-ComfortHMI-038	SWE1-HVAC-002-06	2.2	0.67	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+NR1L-ComfortHMI-435	SWE1-HVAC-001-01	2.1	1.00	0	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configuration.
+NR1L-ComfortHMI-436	SWE1-HVAC-001-01	2.1	1.00	0	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configuration.
+NR1L-ComfortHMI-437	SWE1-HVAC-001-01	2.1	1.00	0	R1C1.) The comfort category will have up to 4 tabs depending on vehicle configuration.
+NR1L-ComfortHMI-438	SWE1-HVAC-001-02	2.1	1.00	1	Tabs are displayed in the following order: Front, Seats (WS or R1 Low) or Seat & Wheel (Maserati), Massage, Rear.
+NR1L-ComfortHMI-032	SWE1-HVAC-002-01	2.2	1.00	0	C1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations.
+NR1L-ComfortHMI-033	SWE1-HVAC-002-02	2.2	1.00	1	Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.
+NR1L-ComfortHMI-034	SWE1-HVAC-002-03	2.2	1.00	1	Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.
+NR1L-ComfortHMI-035	SWE1-HVAC-002-04	2.2	1.00	2	When sync'd, do not show slider pop-up on passenger side when adjusting driver slider.
+NR1L-ComfortHMI-036	SWE1-HVAC-002-05	2.2	1.00	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+NR1L-ComfortHMI-037	SWE1-HVAC-002-05	2.2	1.00	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+NR1L-ComfortHMI-038	SWE1-HVAC-002-06	2.2	1.00	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
 NR1L-ComfortHMI-039	SWE1-HVAC-002-07	2.2	1.00	4	If on climate screen, status changes are indicated directly on touchscreen buttons / status indicator on category button and will not be shown in the status bar.
 NR1L-ComfortHMI-040	SWE1-HVAC-002-08	2.2	1.00	5	If changes are made on climate screen, LEDs on hard controls reflect new status.
-NR1L-ComfortHMI-127	SWE1-HVAC-003-01	2.3	0.49	1	The fan speed indicator shows Auto instead of the actual fan speed (this is based on fan speed of 15h rather than the status of AUTO).
-NR1L-ComfortHMI-128	SWE1-HVAC-003-02	2.3	0.93	2	The main category control is dynamic, and will display Auto with the Mode Man and Fan speed greyed out behind it.
-NR1L-ComfortHMI-129	SWE1-HVAC-003-03	2.3	0.88	3	AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
-NR1L-ComfortHMI-130	SWE1-HVAC-003-04	2.3	0.73	4	Auto is mutually exclusive with the four airflow modes and front defrost.
-NR1L-ComfortHMI-131	SWE1-HVAC-003-05	2.3	0.61	6	Auto can change the state of AC, but do not show this change.
-NR1L-ComfortHMI-132	SWE1-HVAC-003-06	2.3	0.93	7	Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
-NR1L-ComfortHMI-386	SWE1-HVAC-003-06	2.3	0.93	7	Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
-NR1L-ComfortHMI-387	SWE1-HVAC-003-06	2.3	0.93	7	Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
-NR1L-ComfortHMI-133	SWE1-HVAC-003-07	2.3	0.49	8	When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
-NR1L-ComfortHMI-134	SWE1-HVAC-003-08	2.3	0.91	9	Any other climate controls do NOT break Auto.
+NR1L-ComfortHMI-127	SWE1-HVAC-003-01	2.3	1.00	1	The fan speed indicator shows Auto instead of the actual fan speed (this is based on fan speed of 15h rather than the status of AUTO).
+NR1L-ComfortHMI-128	SWE1-HVAC-003-02	2.3	1.00	2	The main category control is dynamic, and will display Auto with the Mode Man and Fan speed greyed out behind it.
+NR1L-ComfortHMI-129	SWE1-HVAC-003-03	2.3	1.00	3	AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+NR1L-ComfortHMI-130	SWE1-HVAC-003-04	2.3	1.00	4	Auto is mutually exclusive with the four airflow modes and front defrost.
+NR1L-ComfortHMI-131	SWE1-HVAC-003-05	2.3	1.00	6	Auto can change the state of AC, but do not show this change.
+NR1L-ComfortHMI-132	SWE1-HVAC-003-06	2.3	1.00	7	Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
+NR1L-ComfortHMI-386	SWE1-HVAC-003-06	2.3	1.00	7	Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
+NR1L-ComfortHMI-387	SWE1-HVAC-003-06	2.3	1.00	7	Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
+NR1L-ComfortHMI-133	SWE1-HVAC-003-07	2.3	1.00	8	When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+NR1L-ComfortHMI-134	SWE1-HVAC-003-08	2.3	1.00	9	Any other climate controls do NOT break Auto.
 NR1L-ComfortHMI-135	SWE1-HVAC-003-09	2.3	1.00	10	(AUTO is not shown in MTC configurations)
-NR1L-ComfortHMI-363	SWE1-HVAC-004-01	2.3.1	0.53	0	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
-NR1L-ComfortHMI-364	SWE1-HVAC-004-02	2.3.1	0.14	0	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
-NR1L-ComfortHMI-136	SWE1-HVAC-005-01	2.4	0.38	0	C3.) AC has on/ off state.
-NR1L-ComfortHMI-137	SWE1-HVAC-005-02	2.4	0.70	1	Auto can automatically turn on AC. AC will break Auto.
-NR1L-ComfortHMI-138	SWE1-HVAC-005-03	2.4	0.66	1	Auto can automatically turn on AC. AC will break Auto.
-NR1L-ComfortHMI-139	SWE1-HVAC-005-04	2.4	0.70	2	Defrost can automatically turn on AC (Do not show this change).
-NR1L-ComfortHMI-140	SWE1-HVAC-006-01	2.5	0.37	0	C4.) Recirc has on/ off state.
-NR1L-ComfortHMI-141	SWE1-HVAC-006-02	2.5	0.86	2	Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.
-NR1L-ComfortHMI-142	SWE1-HVAC-006-03	2.5	0.79	3	Recirc can automatically turn on AC.
-NR1L-ComfortHMI-365	SWE1-HVAC-007-01	2.5.1	0.35	0	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
-NR1L-ComfortHMI-388	SWE1-HVAC-007-01	2.5.1	0.35	0	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
-NR1L-ComfortHMI-366	SWE1-HVAC-007-02	2.5.1	0.17	0	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
-NR1L-ComfortHMI-048	SWE1-HVAC-008-01	2.6	0.62	2	Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-049	SWE1-HVAC-008-02	2.6	0.75	2	Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-389	SWE1-HVAC-008-02	2.6	0.75	2	Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-050	SWE1-HVAC-008-03	2.6	0.89	4	When the user sets the climate system temperature ranges to Metric the readout switches to half degree increments.
-NR1L-ComfortHMI-051	SWE1-HVAC-008-04	2.6	0.97	5	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
+NR1L-ComfortHMI-363	SWE1-HVAC-004-01	2.3.1	1.00	0	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+NR1L-ComfortHMI-364	SWE1-HVAC-004-02	2.3.1	1.00	0	C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+NR1L-ComfortHMI-136	SWE1-HVAC-005-01	2.4	1.00	0	C3.) AC has on/ off state.
+NR1L-ComfortHMI-137	SWE1-HVAC-005-02	2.4	1.00	1	Auto can automatically turn on AC. AC will break Auto.
+NR1L-ComfortHMI-138	SWE1-HVAC-005-03	2.4	1.00	1	Auto can automatically turn on AC. AC will break Auto.
+NR1L-ComfortHMI-139	SWE1-HVAC-005-04	2.4	1.00	2	Defrost can automatically turn on AC (Do not show this change).
+NR1L-ComfortHMI-140	SWE1-HVAC-006-01	2.5	1.00	0	C4.) Recirc has on/ off state.
+NR1L-ComfortHMI-141	SWE1-HVAC-006-02	2.5	1.00	2	Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.
+NR1L-ComfortHMI-142	SWE1-HVAC-006-03	2.5	1.00	3	Recirc can automatically turn on AC.
+NR1L-ComfortHMI-439	SWE1-HVAC-006-04	2.5	1.00	4	The recirc icon will display the vehicle model specific icon as displayed in the table.
+NR1L-ComfortHMI-365	SWE1-HVAC-007-01	2.5.1	1.00	0	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+NR1L-ComfortHMI-388	SWE1-HVAC-007-01	2.5.1	1.00	0	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+NR1L-ComfortHMI-366	SWE1-HVAC-007-02	2.5.1	1.00	0	C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+NR1L-ComfortHMI-048	SWE1-HVAC-008-01	2.6	1.00	2	Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-049	SWE1-HVAC-008-02	2.6	1.00	2	Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-389	SWE1-HVAC-008-02	2.6	1.00	2	Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-050	SWE1-HVAC-008-03	2.6	1.00	4	When the user sets the climate system temperature ranges to Metric the readout switches to half degree increments.
+NR1L-ComfortHMI-051	SWE1-HVAC-008-04	2.6	1.00	5	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
 NR1L-ComfortHMI-052	SWE1-HVAC-008-05	2.6	1.00	7	The temperature within the temp slider, status bar, temp slider popup, and temp popup will reflect this change in temperature increments.
-NR1L-ComfortHMI-053	SWE1-HVAC-009-01	2.6.1	0.51	0	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
-NR1L-ComfortHMI-054	SWE1-HVAC-009-02	2.6.1	0.72	0	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
-NR1L-ComfortHMI-055	SWE1-HVAC-009-03	2.6.1	0.50	1	Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).
-NR1L-ComfortHMI-390	SWE1-HVAC-009-03	2.6.1	0.50	1	Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).
+NR1L-ComfortHMI-053	SWE1-HVAC-009-01	2.6.1	1.00	0	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
+NR1L-ComfortHMI-054	SWE1-HVAC-009-02	2.6.1	1.00	0	C5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
+NR1L-ComfortHMI-055	SWE1-HVAC-009-03	2.6.1	1.00	1	Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).
+NR1L-ComfortHMI-390	SWE1-HVAC-009-03	2.6.1	1.00	1	Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).
 NR1L-ComfortHMI-056	SWE1-HVAC-009-04	2.6.1	1.00	2	Long press = fast move shall also work for temperature HARD CONTROLS.
-NR1L-ComfortHMI-057	SWE1-HVAC-009-05	2.6.1	0.87	5	The system can jump to a value as well via touching a spot in a slider bar or voice command.
-NR1L-ComfortHMI-391	SWE1-HVAC-009-05	2.6.1	0.87	5	The system can jump to a value as well via touching a spot in a slider bar or voice command.
-NR1L-ComfortHMI-058	SWE1-HVAC-009-06	2.6.1	0.70	6	The user can also press slider handle to move temperature slider position; if user initially presses slider area outside of handle (i.e. to the left or right of the slider handle), ignore the press.
-NR1L-ComfortHMI-392	SWE1-HVAC-009-06	2.6.1	0.70	6	The user can also press slider handle to move temperature slider position; if user initially presses slider area outside of handle (i.e. to the left or right of the slider handle), ignore the press.
-NR1L-ComfortHMI-059	SWE1-HVAC-010-01	2.7	0.96	1	The status is indicated on TS climate screen and in main category control.
-NR1L-ComfortHMI-060	SWE1-HVAC-010-02	2.7	0.94	2	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
-NR1L-ComfortHMI-061	SWE1-HVAC-010-03	2.7	0.85	3	When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-393	SWE1-HVAC-010-03	2.7	0.85	3	When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-394	SWE1-HVAC-010-03	2.7	0.85	3	When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-062	SWE1-HVAC-010-04	2.7	0.74	4	The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control.
-NR1L-ComfortHMI-395	SWE1-HVAC-010-04	2.7	0.74	4	The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control.
+NR1L-ComfortHMI-057	SWE1-HVAC-009-05	2.6.1	1.00	5	The system can jump to a value as well via touching a spot in a slider bar or voice command.
+NR1L-ComfortHMI-391	SWE1-HVAC-009-05	2.6.1	1.00	5	The system can jump to a value as well via touching a spot in a slider bar or voice command.
+NR1L-ComfortHMI-058	SWE1-HVAC-009-06	2.6.1	1.00	6	The user can also press slider handle to move temperature slider position; if user initially presses slider area outside of handle (i.e. to the left or right of the slider handle), ignore the press.
+NR1L-ComfortHMI-392	SWE1-HVAC-009-06	2.6.1	1.00	6	The user can also press slider handle to move temperature slider position; if user initially presses slider area outside of handle (i.e. to the left or right of the slider handle), ignore the press.
+NR1L-ComfortHMI-059	SWE1-HVAC-010-01	2.7	1.00	1	The status is indicated on TS climate screen and in main category control.
+NR1L-ComfortHMI-060	SWE1-HVAC-010-02	2.7	1.00	2	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
+NR1L-ComfortHMI-061	SWE1-HVAC-010-03	2.7	1.00	3	When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-393	SWE1-HVAC-010-03	2.7	1.00	3	When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-394	SWE1-HVAC-010-03	2.7	1.00	3	When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-062	SWE1-HVAC-010-04	2.7	1.00	4	The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control.
+NR1L-ComfortHMI-395	SWE1-HVAC-010-04	2.7	1.00	4	The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control.
 NR1L-ComfortHMI-063	SWE1-HVAC-010-05	2.7	1.00	6	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).
-NR1L-ComfortHMI-066	SWE1-HVAC-011	2.7.1	0.90	0	C6.1) In some vehicles fan speed ranges for front hvac are: Off, 1-8.
-NR1L-ComfortHMI-153	SWE1-HVAC-012-01	2.8	0.33	0	C7.) Defrost has on/ off state.
-NR1L-ComfortHMI-154	SWE1-HVAC-012-02	2.8	0.74	1	Defrost can automatically turn on AC (do not show this change).
-NR1L-ComfortHMI-155	SWE1-HVAC-012-03	2.8	0.77	2	Defrost automatically changes Fan speed.
-NR1L-ComfortHMI-156	SWE1-HVAC-012-04	2.8	0.88	3	Defrost is mutually exclusive with other airflow modes. Auto turns Defrost off.
+NR1L-ComfortHMI-066	SWE1-HVAC-011	2.7.1	1.00	0	C6.1) In some vehicles fan speed ranges for front hvac are: Off, 1-8.
+NR1L-ComfortHMI-153	SWE1-HVAC-012-01	2.8	1.00	0	C7.) Defrost has on/ off state.
+NR1L-ComfortHMI-154	SWE1-HVAC-012-02	2.8	1.00	1	Defrost can automatically turn on AC (do not show this change).
+NR1L-ComfortHMI-155	SWE1-HVAC-012-03	2.8	1.00	2	Defrost automatically changes Fan speed.
+NR1L-ComfortHMI-156	SWE1-HVAC-012-04	2.8	1.00	3	Defrost is mutually exclusive with other airflow modes. Auto turns Defrost off.
 NR1L-ComfortHMI-157	SWE1-HVAC-012-05	2.8	1.00	4	Turning Defrost on while in Auto will break Auto and turn it off.
 NR1L-ComfortHMI-396	SWE1-HVAC-012-05	2.8	1.00	4	Turning Defrost on while in Auto will break Auto and turn it off.
-NR1L-ComfortHMI-158	SWE1-HVAC-012-06	2.8	0.82	6	Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.
-NR1L-ComfortHMI-159	SWE1-HVAC-013-01	2.9	0.41	0	C8.) Rear Defrost has on/ off state.
-NR1L-ComfortHMI-160	SWE1-HVAC-013-02	2.9	0.90	2	Therefore, gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that.
+NR1L-ComfortHMI-158	SWE1-HVAC-012-06	2.8	1.00	6	Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.
+NR1L-ComfortHMI-159	SWE1-HVAC-013-01	2.9	1.00	0	C8.) Rear Defrost has on/ off state.
+NR1L-ComfortHMI-160	SWE1-HVAC-013-02	2.9	1.00	2	Therefore, gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that.
 NR1L-ComfortHMI-161	SWE1-HVAC-013-03	2.9	1.00	3	Rear defrost is independent of any other climate functions.
-NR1L-ComfortHMI-162	SWE1-HVAC-013-04	2.9	0.91	4	Rear Defrost automatically turns on EXTERIOR REAR-VIEW MIRROR DEFROST if this feature available.
-NR1L-ComfortHMI-143	SWE1-HVAC-014-01	2.10	0.58	2	When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost.
-NR1L-ComfortHMI-144	SWE1-HVAC-014-02	2.10	0.78	2	When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost.
-NR1L-ComfortHMI-145	SWE1-HVAC-014-03	2.10	0.83	3	"Category button shows fan greyed out and mode oscar replaced with ""OFF"" which will remain until the user turns it back on."
-NR1L-ComfortHMI-146	SWE1-HVAC-014-04	2.10	0.93	4	Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off.
-NR1L-ComfortHMI-147	SWE1-HVAC-014-05	2.10	0.59	5	If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel).
-NR1L-ComfortHMI-148	SWE1-HVAC-014-06	2.10	0.77	6	If the user continues to hold/turn the control, the system will respond in-kind.
-NR1L-ComfortHMI-149	SWE1-HVAC-015-01	2.11	0.48	0	C12.) SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC).
-NR1L-ComfortHMI-150	SWE1-HVAC-015-02	2.11	0.86	3	When SYNC is on, changing the driver temperature automatically changes the passenger temperature.
-NR1L-ComfortHMI-151	SWE1-HVAC-015-03	2.11	0.94	4	Adjusting the passenger temperature via touchscreen or hard control would break SYNC.
+NR1L-ComfortHMI-162	SWE1-HVAC-013-04	2.9	1.00	4	Rear Defrost automatically turns on EXTERIOR REAR-VIEW MIRROR DEFROST if this feature available.
+NR1L-ComfortHMI-143	SWE1-HVAC-014-01	2.10	1.00	2	When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost.
+NR1L-ComfortHMI-144	SWE1-HVAC-014-02	2.10	1.00	2	When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost.
+NR1L-ComfortHMI-145	SWE1-HVAC-014-03	2.10	1.00	3	"Category button shows fan greyed out and mode oscar replaced with ""OFF"" which will remain until the user turns it back on."
+NR1L-ComfortHMI-146	SWE1-HVAC-014-04	2.10	1.00	4	Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off.
+NR1L-ComfortHMI-147	SWE1-HVAC-014-05	2.10	1.00	5	If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel).
+NR1L-ComfortHMI-148	SWE1-HVAC-014-06	2.10	1.00	6	If the user continues to hold/turn the control, the system will respond in-kind.
+NR1L-ComfortHMI-149	SWE1-HVAC-015-01	2.11	1.00	0	C12.) SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC).
+NR1L-ComfortHMI-150	SWE1-HVAC-015-02	2.11	1.00	3	When SYNC is on, changing the driver temperature automatically changes the passenger temperature.
+NR1L-ComfortHMI-151	SWE1-HVAC-015-03	2.11	1.00	4	Adjusting the passenger temperature via touchscreen or hard control would break SYNC.
 NR1L-ComfortHMI-430	SWE1-HVAC-015-04	2.11	1.00	5	Adjusting Fan speed and Mode will alter the Front and Rear passengers.
-NR1L-ComfortHMI-431	SWE1-HVAC-015-05	2.11	0.77	6	If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.
-NR1L-ComfortHMI-163	SWE1-HVAC-017-01	2.12.1	0.90	0	C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).
-NR1L-ComfortHMI-164	SWE1-HVAC-017-02	2.12.1	0.12	0	C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).
-NR1L-ComfortHMI-152	SWE1-HVAC-019-01	2.13	0.73	1	MAX A/C has an on/off state that is indicated on climate screen (highlight button if on).
-NR1L-ComfortHMI-043	SWE1-HVAC-020-01	2.14	0.80	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
-NR1L-ComfortHMI-044	SWE1-HVAC-020-02	2.14	0.83	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
-NR1L-ComfortHMI-045	SWE1-HVAC-020-03	2.14	0.87	2	For MTC with ICS, there will be no redundant interaction with the screen for certain types of physical knobs (3 knob HVAC controls) in order to prevent a mismatch between the soft and hard controls.
-NR1L-ComfortHMI-046	SWE1-HVAC-020-04	2.14	0.72	3	In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed.
-NR1L-ComfortHMI-047	SWE1-HVAC-020-04	2.14	0.72	3	In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed.
-NR1L-ComfortHMI-165	SWE1-HVAC-021-01	2.15	0.67	0	C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.
+NR1L-ComfortHMI-431	SWE1-HVAC-015-05	2.11	1.00	6	If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.
+NR1L-ComfortHMI-440	SWE1-HVAC-016-01	2.12	1.00	1	ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+NR1L-ComfortHMI-441	SWE1-HVAC-016-01	2.12	1.00	1	ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+NR1L-ComfortHMI-442	SWE1-HVAC-016-01	2.12	1.00	1	ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+NR1L-ComfortHMI-443	SWE1-HVAC-016-01	2.12	1.00	1	ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+NR1L-ComfortHMI-444	SWE1-HVAC-016-02	2.12	1.00	2	The main category control will display the newly selected airflow mode inside the fan space.
+NR1L-ComfortHMI-445	SWE1-HVAC-016-03	2.12	1.00	3	Only one airflow mode can be selected at a time.
+NR1L-ComfortHMI-163	SWE1-HVAC-017-01	2.12.1	1.00	0	C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).
+NR1L-ComfortHMI-164	SWE1-HVAC-017-02	2.12.1	1.00	0	C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).
+NR1L-ComfortHMI-446	SWE1-HVAC-018-01	2.12.2	0.67	0	C13.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet plus Windshield > then repeat loop.
+NR1L-ComfortHMI-447	SWE1-HVAC-018-01	2.12.2	0.67	0	C13.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet plus Windshield > then repeat loop.
+NR1L-ComfortHMI-448	SWE1-HVAC-018-01	2.12.2	0.67	0	C13.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet plus Windshield > then repeat loop.
+NR1L-ComfortHMI-449	SWE1-HVAC-018-01	2.12.2	0.67	0	C13.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet plus Windshield > then repeat loop.
+NR1L-ComfortHMI-450	SWE1-HVAC-018-01	2.12.2	0.67	0	C13.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet plus Windshield > then repeat loop.
+NR1L-ComfortHMI-451	SWE1-HVAC-018-02	2.12.2	1.00	1	Defrost will not be included in the loop) press and hold of the control will only move one mode over, it will not continue to move through modes.
+NR1L-ComfortHMI-452	SWE1-HVAC-018-03	2.12.2	1.00	2	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted.
+NR1L-ComfortHMI-453	SWE1-HVAC-018-04	2.12.2	1.00	3	If the user is not on Climate main when pressing the Mode hard control a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-454	SWE1-HVAC-018-04	2.12.2	1.00	3	If the user is not on Climate main when pressing the Mode hard control a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-455	SWE1-HVAC-018-04	2.12.2	1.00	3	If the user is not on Climate main when pressing the Mode hard control a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	2.12.2	1.00	4	In both cases the main category label will be updated.
+NR1L-ComfortHMI-457	SWE1-HVAC-018-06	2.12.2	1.00	5	While in Rear Climate screen the Mode Hard Control button will alter the front Mode.
+NR1L-ComfortHMI-152	SWE1-HVAC-019-01	2.13	1.00	1	MAX A/C has an on/off state that is indicated on climate screen (highlight button if on).
+NR1L-ComfortHMI-458	SWE1-HVAC-019-02	2.13	1.00	2	MAX A/C modifies multiple climate parameters.
+NR1L-ComfortHMI-043	SWE1-HVAC-020-01	2.14	1.00	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
+NR1L-ComfortHMI-044	SWE1-HVAC-020-02	2.14	1.00	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
+NR1L-ComfortHMI-045	SWE1-HVAC-020-03	2.14	1.00	2	For MTC with ICS, there will be no redundant interaction with the screen for certain types of physical knobs (3 knob HVAC controls) in order to prevent a mismatch between the soft and hard controls.
+NR1L-ComfortHMI-046	SWE1-HVAC-020-04	2.14	1.00	3	In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed.
+NR1L-ComfortHMI-047	SWE1-HVAC-020-04	2.14	1.00	3	In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed.
+NR1L-ComfortHMI-165	SWE1-HVAC-021-01	2.15	1.00	0	C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.
 NR1L-ComfortHMI-166	SWE1-HVAC-021-02	2.15	1.00	1	EXTERIOR REAR-VIEW MIRROR DEFROST is independent of any other climate functions.
-NR1L-ComfortHMI-064	SWE1-HVAC-022-01	2.16	0.95	0	C18.) If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed is not displayed to the user.
-NR1L-ComfortHMI-065	SWE1-HVAC-022-02	2.16	0.97	1	After blower reduction, return blower speed to previous speed without showing a change in fan speed.
-NR1L-ComfortHMI-015	SWE1-HVAC-023-01	3.1	0.64	0	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.
-NR1L-ComfortHMI-397	SWE1-HVAC-023-01	3.1	0.64	0	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.
-NR1L-ComfortHMI-398	SWE1-HVAC-023-01	3.1	0.64	0	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.
-NR1L-ComfortHMI-016	SWE1-HVAC-023-02	3.1	0.59	2	Pressing the hard control MODE button will cycle through all MODE combinations (repeating the process so it loops at the end of each cycle).
-NR1L-ComfortHMI-017	SWE1-HVAC-023-03	3.1	0.62	5	Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle.
-NR1L-ComfortHMI-399	SWE1-HVAC-023-03	3.1	0.62	5	Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle.
-NR1L-ComfortHMI-018	SWE1-HVAC-024-01	3.2	0.58	0	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button.
-NR1L-ComfortHMI-019	SWE1-HVAC-024-02	3.2	0.81	1	MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed to highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-020	SWE1-HVAC-024-03	3.2	0.83	2	MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode.
-NR1L-ComfortHMI-021	SWE1-HVAC-024-04	3.2	0.71	5	Pressing A/C breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off.
-NR1L-ComfortHMI-022	SWE1-HVAC-024-05	3.2	0.56	6	Pressing AUTO brakes MAX DEF (turns MAX DEF off) and the system goes to AUTO.
-NR1L-ComfortHMI-023	SWE1-HVAC-024-06	3.2	0.63	7	Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.
-NR1L-ComfortHMI-024	SWE1-HVAC-024-07	3.2	0.61	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-025	SWE1-HVAC-024-07	3.2	0.61	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-026	SWE1-HVAC-024-07	3.2	0.61	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-027	SWE1-HVAC-024-07	3.2	0.61	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-028	SWE1-HVAC-024-08	3.2	0.89	3	Change in fan speed does not break MAX DEF.
-NR1L-ComfortHMI-029	SWE1-HVAC-025-01	3.3	0.87	0	C21.) MAX DEF and REAR DEF are available during climate off.
-NR1L-ComfortHMI-030	SWE1-HVAC-025-02	3.3	0.66	0	C21.) MAX DEF and REAR DEF are available during climate off.
-NR1L-ComfortHMI-031	SWE1-HVAC-026	3.4	0.95	0	C22.) For soft top vehicles such as JL/JT, when configured, the rear defrost button will not appear when not present in the vehicle.
-NR1L-ComfortHMI-041	SWE1-HVAC-027	6.3	0.96	0	CM1.) When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information, the comfort section will be removed from the head unit except for comfort popups.
-NR1L-ComfortHMI-266	SWE1-HVAC-028-01	7.1	0.46	0	CR1.) Hard controls do not switch to controlling the rear climate when on the rear climate screen.
-NR1L-ComfortHMI-267	SWE1-HVAC-028-02	7.1	0.52	1	For example, fan knob will always control the fan speed and driver/passenger temperature controls will always control the front driver/pass temperature.
-NR1L-ComfortHMI-268	SWE1-HVAC-028-03	7.1	0.38	1	For example, fan knob will always control the fan speed and driver/passenger temperature controls will always control the front driver/pass temperature.
-NR1L-ComfortHMI-269	SWE1-HVAC-029-01	7.1.1	0.29	1	To that point, the driver must be on the rear climate screen to see the changes that the rear passenger commanded.
-NR1L-ComfortHMI-270	SWE1-HVAC-029-02	7.1.1	0.77	1	To that point, the driver must be on the rear climate screen to see the changes that the rear passenger commanded.
-NR1L-ComfortHMI-271	SWE1-HVAC-029-03	7.1.1	0.37	2	Further, if on rear climate screen and user uses front controls, provide fan and temperature popup (showing update to front climate).
-NR1L-ComfortHMI-272	SWE1-HVAC-030-01	7.2	0.71	5	The fan speed will be transmitted as 15h instead of the actual fan speed.
-NR1L-ComfortHMI-273	SWE1-HVAC-030-02	7.2	0.76	2	AUTO affects Fan speed and Modes in order to reach desired temperature as quickly as possible.
-NR1L-ComfortHMI-274	SWE1-HVAC-030-03	7.2	0.95	3	Auto is mutually exclusive with the three airflow modes.
-NR1L-ComfortHMI-275	SWE1-HVAC-030-04	7.2	0.57	6	Switching to another airflow mode would break Auto; go from auto mode to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
-NR1L-ComfortHMI-276	SWE1-HVAC-030-05	7.2	0.76	8	Any other climate controls do NOT break Auto either.
-NR1L-ComfortHMI-277	SWE1-HVAC-031-01	7.3	0.32	1	Rear lock will lockout the rear climate controls.
-NR1L-ComfortHMI-400	SWE1-HVAC-031-01	7.3	0.32	1	Rear lock will lockout the rear climate controls.
-NR1L-ComfortHMI-278	SWE1-HVAC-031-02	7.3	0.42	2	The text for LOCK REAR will change to UNLOCK REAR text and Lock graphic when Rear Climate is locked to indicate the state of being locked or unlocked (While unlocked = Lock Rear text with unlocked Lock icon, While locked = Unlock Rear text with the Lock icon).
-NR1L-ComfortHMI-279	SWE1-HVAC-031-03	7.3	0.16	2	The text for LOCK REAR will change to UNLOCK REAR text and Lock graphic when Rear Climate is locked to indicate the state of being locked or unlocked (While unlocked = Lock Rear text with unlocked Lock icon, While locked = Unlock Rear text with the Lock icon).
-NR1L-ComfortHMI-280	SWE1-HVAC-032-01	7.4	0.19	2	Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-401	SWE1-HVAC-032-01	7.4	0.19	2	Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-402	SWE1-HVAC-032-01	7.4	0.19	2	Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-281	SWE1-HVAC-032-02	7.4	0.25	3	Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move ((hold longer that 500 ms)) or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).
-NR1L-ComfortHMI-282	SWE1-HVAC-032-03	7.4	0.64	7	When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments.
-NR1L-ComfortHMI-283	SWE1-HVAC-032-04	7.4	0.54	6	If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
-NR1L-ComfortHMI-403	SWE1-HVAC-032-04	7.4	0.54	6	If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
-NR1L-ComfortHMI-284	SWE1-HVAC-033-01	7.5	0.52	0	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
-NR1L-ComfortHMI-404	SWE1-HVAC-033-01	7.5	0.52	0	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
-NR1L-ComfortHMI-285	SWE1-HVAC-033-02	7.5	0.74	1	The status is indicated on TS rear climate screen.
-NR1L-ComfortHMI-286	SWE1-HVAC-033-03	7.5	0.51	4	There would always be one bar highlighted.
-NR1L-ComfortHMI-287	SWE1-HVAC-033-04	7.5	0.61	5	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen).
-NR1L-ComfortHMI-288	SWE1-HVAC-034-01	7.6	0.31	2	When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.
-NR1L-ComfortHMI-289	SWE1-HVAC-034-02	7.6	0.25	2	When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.
-NR1L-ComfortHMI-290	SWE1-HVAC-034-03	7.6	0.64	2	When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.
-NR1L-ComfortHMI-291	SWE1-HVAC-034-04	7.6	0.45	3	If the user turns off the front climate while the head unit is showing the rear climate screen, transition to the front climate off screen with the REAR CLIMATE button blanked.
-NR1L-ComfortHMI-292	SWE1-HVAC-034-05	7.6	0.93	4	Rear climate is unavailable when front climate is off.
-NR1L-ComfortHMI-293	SWE1-HVAC-035-01	7.7	0.34	3	When SYNC is on, changing the driver temperature, mode or fan speed automatically changes the rear climate.
-NR1L-ComfortHMI-294	SWE1-HVAC-035-02	7.7	0.31	4	Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.
-NR1L-ComfortHMI-295	SWE1-HVAC-035-03	7.7	0.70	2	Fan speed and blower are sync'd front to back.
-NR1L-ComfortHMI-296	SWE1-HVAC-036-01	7.8	0.58	0	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face.
-NR1L-ComfortHMI-405	SWE1-HVAC-036-01	7.8	0.58	0	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face.
-NR1L-ComfortHMI-406	SWE1-HVAC-036-01	7.8	0.58	0	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face.
-NR1L-ComfortHMI-297	SWE1-HVAC-036-02	7.8	0.10	1	ON state for the three airflow modes is shown by highlighting the button and increasing button size. AUTO breaks Airflow Modes.
-NR1L-ComfortHMI-298	SWE1-HVAC-036-03	7.8	0.57	2	If Auto is turned on, these buttons are turned off.
-NR1L-ComfortHMI-299	SWE1-HVAC-036-04	7.8	0.65	3	Only one mode can be selected at a time.
-NR1L-ComfortHMI-300	SWE1-HVAC-036-05	7.8	0.57	4	If the Rear Mode hard control is pressed the user will be moved to the next mode available in the loop the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
-NR1L-ComfortHMI-407	SWE1-HVAC-036-05	7.8	0.57	4	If the Rear Mode hard control is pressed the user will be moved to the next mode available in the loop the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
-NR1L-ComfortHMI-301	SWE1-HVAC-037	7.9	0.15	0	CR9.) AC has on/ off state.
-NR1L-ComfortHMI-302	SWE1-HVAC-038-01	7.10	0.50	1	The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.
-NR1L-ComfortHMI-303	SWE1-HVAC-038-02	7.10	0.35	1	The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.
-NR1L-ComfortHMI-367	SWE1-HVAC-040-01	9.2	0.97	1	The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
-NR1L-ComfortHMI-408	SWE1-HVAC-040-01	9.2	0.97	1	The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
-NR1L-ComfortHMI-409	SWE1-HVAC-040-01	9.2	0.97	1	The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
-NR1L-ComfortHMI-368	SWE1-HVAC-040-02	9.2	0.60	2	The pop up will be touch interactive: by pressing on the Front Fan area, the user will be redirected to the Front climate tab; by pressing on the Rear fan area, the user will be redirected to the Rear climate tab.
-NR1L-ComfortHMI-369	SWE1-HVAC-041	9.3	0.76	0	C12.1.) The pop up will have text labels, «Front» for front climate and «Rear» for Rear Climate.
-NR1L-ComfortHMI-370	SWE1-HVAC-042-01	9.4	0.48	0	CR13.) Alternative Status Bar Dropdown: in these variants, the driver side climate dropdown menu will have an additional Rear Climate button.
-NR1L-ComfortHMI-371	SWE1-HVAC-042-02	9.4	0.33	2	By pressing it, the user will be able to turn the Rear Climate OFF (change will be reflected in the Rear Climate Tab) and On again following core Rear Climate on / off logics.
-NR1L-ComfortHMI-372	SWE1-HVAC-042-03	9.4	0.41	3	When the button is highlighted, it means Rear Climate is On.
-NR1L-ComfortHMI-373	SWE1-HVAC-043	9.4.1	0.57	0	CR13.1.) The button label will read «Rear».
-NR1L-ComfortHMI-067	SWE1-HVAC-044-01	10.1	0.65	0	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
-NR1L-ComfortHMI-081	SWE1-HVAC-044-02	10.1	0.58	0	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
-NR1L-ComfortHMI-068	SWE1-HVAC-045	10.2	0.87	0	EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.
-NR1L-ComfortHMI-069	SWE1-HVAC-046	10.3	0.86	0	EH3.) Button label will read AUTO ECO.
-NR1L-ComfortHMI-070	SWE1-HVAC-047	10.4	0.82	0	EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
-NR1L-ComfortHMI-071	SWE1-HVAC-048-01	10.5	0.83	0	EH5.) The second press will switch to AUTO on.
-NR1L-ComfortHMI-072	SWE1-HVAC-048-02	10.5	0.92	1	A third press would go back to AUTO ECO.
-NR1L-ComfortHMI-073	SWE1-HVAC-048-03	10.5	0.60	2	The user will not be able to exit AUTO mode by pressing the AUTO button again.
-NR1L-ComfortHMI-074	SWE1-HVAC-049-01	10.6	0.61	0	EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
-NR1L-ComfortHMI-075	SWE1-HVAC-049-02	10.6	0.65	0	EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
-NR1L-ComfortHMI-076	SWE1-HVAC-050	10.7	0.92	0	EH7.) HVAC AUTO shall keep the selected setting through ignition cycles.
-NR1L-ComfortHMI-077	SWE1-HVAC-051	10.8	0.92	0	EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
-NR1L-ComfortHMI-078	SWE1-HVAC-052	10.9	0.93	0	EH9.) The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states.
-NR1L-ComfortHMI-079	SWE1-HVAC-053-01	10.9.1	0.74	1	When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
-NR1L-ComfortHMI-080	SWE1-HVAC-053-02	10.9.1	0.74	1	When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
-NR1L-ComfortHMI-304	SWE1-HVAC-054-01	11.1	0.60	1	For Multi-Level Heated/Vented seats, a press of the heated seat button opens popup and turns the seat on HI, the soft button highlights red and the control displays 3 arrows, HI and/or LEDs.
-NR1L-ComfortHMI-305	SWE1-HVAC-054-02	11.1	0.63	2	The next button press sets the seat to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.
-NR1L-ComfortHMI-306	SWE1-HVAC-054-03	11.1	0.64	3	The third button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
-NR1L-ComfortHMI-307	SWE1-HVAC-054-04	11.1	0.88	4	The next press, turns the heated seat OFF, the button is no longer highlighted and 3 arrows are shown.
-NR1L-ComfortHMI-308	SWE1-HVAC-055-01	11.2	0.63	1	For Multi-Level Heated/Vented seats, a press of the vented seat button opens popup and turns the seat on HI , the soft button highlights blue and control displays a large fan, HI and/or 3 LEDs.
-NR1L-ComfortHMI-309	SWE1-HVAC-055-02	11.2	0.66	2	The next button press sets the seat to MED, button remains highlighted and displays a medium fan, MED and/or 2 LEDs.
-NR1L-ComfortHMI-310	SWE1-HVAC-055-03	11.2	0.66	3	The third button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.
-NR1L-ComfortHMI-311	SWE1-HVAC-055-04	11.2	0.89	4	The next press, turns the vented seat OFF, the button is no longer highlighted and no arrows are shown.
-NR1L-ComfortHMI-312	SWE1-HVAC-056	11.3	0.88	1	When climate is OFF, the status bar should still show heated/vented seat status.
-NR1L-ComfortHMI-313	SWE1-HVAC-057-01	11.4	0.82	1	Heated seats buttons when activated will be shown red.
-NR1L-ComfortHMI-314	SWE1-HVAC-057-02	11.4	0.82	2	Vented seat buttons when activated will be shown blue.
-NR1L-ComfortHMI-382	SWE1-HVAC-058	11.5	0.86	1	Refer to HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats.
-NR1L-ComfortHMI-315	SWE1-HVAC-059-01	11.6	0.81	0	R1HVS1.) If the independent seat zone feature is available, when heated or vented seats are activated the seat zone control will default to both seat back and seat cushion active.
-NR1L-ComfortHMI-316	SWE1-HVAC-059-02	11.6	0.85	1	Seat zone popup is not displayed when user is interacting with heated and vented seat controls.
-NR1L-ComfortHMI-317	SWE1-HVAC-059-03	11.6	0.93	2	While both seat zones (cushion and back) are active an additional press of seat zone button will maintain seat back active only.
-NR1L-ComfortHMI-318	SWE1-HVAC-059-04	11.6	0.95	3	An additional press will activate seat cushion only.
-NR1L-ComfortHMI-319	SWE1-HVAC-059-05	11.6	0.72	4	User cannot turn seat zone off by using the seat zone button.
-NR1L-ComfortHMI-320	SWE1-HVAC-059-06	11.6	0.84	5	Seat zone button will be shown in an off state when heated/vented seats are not active.
-NR1L-ComfortHMI-321	SWE1-HVAC-060-01	11.6.1	0.65	1	There are 3 states (1. both seat back and seat cushion, 2. Seat back only 3.
-NR1L-ComfortHMI-322	SWE1-HVAC-060-02	11.6.1	0.72	2	Seat cushion only), plus a greyed out state in case heated and vented seats are off.
-NR1L-ComfortHMI-323	SWE1-HVAC-061-01	11.7	0.81	0	R1HVS1.2.) For independent seat zones soft control, when the heated or vented seat is turned on for the first time in a key cycle, the seat zone button will default to back and cushion.
-NR1L-ComfortHMI-324	SWE1-HVAC-061-02	11.7	0.63	1	A press of the seat zone button opens the pop up and moves to the next available state in the cycle (back and cushion, back, cushion etc.).
-NR1L-ComfortHMI-325	SWE1-HVAC-061-03	11.7	0.83	2	The pop up will have a «Driver Seat Zone» label for the driver and «Passenger Seat Zone» label for the passenger.
-NR1L-ComfortHMI-326	SWE1-HVAC-061-04	11.7	0.96	3	The pop up will not open if the user presses the greyed out button.
-NR1L-ComfortHMI-327	SWE1-HVAC-062-01	11.8	0.66	0	W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering wheel button opens popup and turns the wheel heat on HI , the soft button highlights red and the control displays 3 arrows, HI and/or LEDs.
-NR1L-ComfortHMI-328	SWE1-HVAC-062-02	11.8	0.66	1	The next button press sets the wheel to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.
-NR1L-ComfortHMI-329	SWE1-HVAC-062-03	11.8	0.68	2	The third button press sets the wheel to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
-NR1L-ComfortHMI-330	SWE1-HVAC-062-04	11.8	0.89	3	The next press, turns the heated wheel OFF, the button is no longer highlighted and 3 arrows are shown.
-NR1L-ComfortHMI-331	SWE1-HVAC-063-01	11.9	0.59	0	R1HVS2.) For Single-Level heated steering wheel, a press of the heated steering wheel button opens popup and turns the wheel heat to ON .
-NR1L-ComfortHMI-332	SWE1-HVAC-063-02	11.9	0.87	1	The next press turns the heated wheel OFF , the button is no longer highlighted.
-NR1L-ComfortHMI-333	SWE1-HVAC-064-01	11.10	0.79	1	The first press will open popup and change level of heated/vented seat, wheel, or seat zone.
-NR1L-ComfortHMI-334	SWE1-HVAC-064-02	11.10	0.81	3	If an item in the popup is selected the timer will restart.
-NR1L-ComfortHMI-335	SWE1-HVAC-064-03	11.10	0.97	4	Additional presses of the heated/vented seat, heated wheel, or seat zone icon will change the level of heated/vented seat, heated wheel, or seat zone area.
-NR1L-ComfortHMI-336	SWE1-HVAC-065-01	11.11	0.83	0	R1HVS4.) Heated/vented seat, heated wheel will not be displayed in the comfort section if the vehicle is configured with hard buttons for comfort controls.
-NR1L-ComfortHMI-337	SWE1-HVAC-065-02	11.11	0.81	1	Comfort controls will still exist within the status bar and temperature/comfort popup.
-NR1L-ComfortHMI-338	SWE1-HVAC-065-03	11.11	0.80	2	For vehicle programs such as WS that have haptic heated/vented seat/heated steering wheel buttons placed on the side of the radio, those controls will not be displayed in the status bar.
-NR1L-ComfortHMI-339	SWE1-HVAC-066	11.11.1	0.73	0	R1HS4.1.) When comfort controls are not active, they will be greyed out in the status bar combined temperature/comfort top left/right corners.
-NR1L-ComfortHMI-340	SWE1-HVAC-067-01	12.1	0.63	1	For Multi-Level Heated/Vented seats a press of the heated seat button turns the seat on HI, the soft button highlights red and the control displays 3 arrows, HI and/or LEDs (.
-NR1L-ComfortHMI-341	SWE1-HVAC-067-02	12.1	0.63	2	The next button press sets the seat to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.
-NR1L-ComfortHMI-342	SWE1-HVAC-067-03	12.1	0.64	3	The third button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
-NR1L-ComfortHMI-343	SWE1-HVAC-067-04	12.1	0.88	4	The next press, turns the heated seat OFF, the button is no longer highlighted and 3 arrows are shown.
-NR1L-ComfortHMI-344	SWE1-HVAC-068-01	12.2	0.66	1	For Multi-Level Heated/Vented seats a press of the vented seat button turns the seat on HI, the soft button highlights blue and control displays a large fan, HI and/or 3 LEDs.
-NR1L-ComfortHMI-345	SWE1-HVAC-068-02	12.2	0.66	2	The next button press sets the seat to MED, button remains highlighted and displays a medium fan, MED and/or 2 LEDs.
-NR1L-ComfortHMI-346	SWE1-HVAC-068-03	12.2	0.66	3	The third button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.
-NR1L-ComfortHMI-347	SWE1-HVAC-068-04	12.2	0.89	4	The next press, turns the vented seat OFF, the button is no longer highlighted and no arrows are shown.
-NR1L-ComfortHMI-348	SWE1-HVAC-069-01	12.3	0.90	1	Active button state text/icon color is white.
-NR1L-ComfortHMI-349	SWE1-HVAC-069-02	12.3	0.89	2	Inactive button text/icon color is grey.
-NR1L-ComfortHMI-350	SWE1-HVAC-070	12.4	0.88	1	When climate is OFF, the status bar should still show heated/vented seat status.
-NR1L-ComfortHMI-351	SWE1-HVAC-071-01	12.5	0.82	1	Heated seats buttons when activated will be shown red.
-NR1L-ComfortHMI-352	SWE1-HVAC-071-02	12.5	0.82	2	Vented seat buttons when activated will be shown blue.
-NR1L-ComfortHMI-383	SWE1-HVAC-072	12.6	0.86	1	Refer to HMI Notes for the details on the Auto Comfort Settings options for heated/vented seats.
-NR1L-ComfortHMI-353	SWE1-HVAC-073-01	12.7	0.55	1	Whenever pop ups are shown, images should be shown in full, but not directly above the button as to not cutoff the popup image.
-NR1L-ComfortHMI-354	SWE1-HVAC-073-02	12.7	0.67	1	Whenever pop ups are shown, images should be shown in full, but not directly above the button as to not cutoff the popup image.
-NR1L-ComfortHMI-355	SWE1-HVAC-074-01	12.8	0.65	1	For Standard Heated/Vented seats a press of the heated seat button turns the seat on HI, the soft button highlights red and the control displays 2 arrows, HI and/or LEDs.
-NR1L-ComfortHMI-356	SWE1-HVAC-074-02	12.8	0.66	2	The next button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
-NR1L-ComfortHMI-357	SWE1-HVAC-074-03	12.8	0.90	3	The next press, turns the heated seat OFF, the button is no longer highlighted and 2 arrows are shown un-highlighted.
-NR1L-ComfortHMI-358	SWE1-HVAC-075-01	12.9	0.68	1	For Standard Heated/Vented seats a press of the vented seat button turns the seat on HI, the soft button highlights blue and control displays a large fan, HI and/or 2 LEDs.
-NR1L-ComfortHMI-359	SWE1-HVAC-075-02	12.9	0.67	2	The next button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.
-NR1L-ComfortHMI-360	SWE1-HVAC-075-03	12.9	0.90	3	The next press, turns the vented seat OFF, the button is no longer highlighted and a unhighlighted fan is shown.
-NR1L-ComfortHMI-001	SWE1-HVAC-076-01	13.2	0.94	0	LS1.) When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, switch the tab on the lower screen to the Seats tab.
-NR1L-ComfortHMI-002	SWE1-HVAC-076-02	13.2	0.73	1	If the lower screen is in the stowed position, display the Seat Control Popup on the head unit (popup times out after 5 seconds of not interaction).
-NR1L-ComfortHMI-003	SWE1-HVAC-076-03	13.2	0.77	0	LS1.) When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, switch the tab on the lower screen to the Seats tab.
-NR1L-ComfortHMI-004	SWE1-HVAC-077	13.2.1	0.95	0	LS1.1) The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster.
-NR1L-ComfortHMI-005	SWE1-HVAC-078-01	13.3	0.88	0	LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popup or tab change within climate, and only on the second press will be reflected.
-NR1L-ComfortHMI-006	SWE1-HVAC-078-02	13.3	0.62	0	LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popup or tab change within climate, and only on the second press will be reflected.
-NR1L-ComfortHMI-007	SWE1-HVAC-079-01	13.3.1	0.96	0	LS2.1) The user last selected lumbar/bolster selection will be latching during a keycycle, after a keycycle, and after the lower screen has been stowed/retracted.
+NR1L-ComfortHMI-064	SWE1-HVAC-022-01	2.16	1.00	0	C18.) If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed is not displayed to the user.
+NR1L-ComfortHMI-065	SWE1-HVAC-022-02	2.16	1.00	1	After blower reduction, return blower speed to previous speed without showing a change in fan speed.
+NR1L-ComfortHMI-015	SWE1-HVAC-023-01	3.1	1.00	0	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.
+NR1L-ComfortHMI-397	SWE1-HVAC-023-01	3.1	1.00	0	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.
+NR1L-ComfortHMI-398	SWE1-HVAC-023-01	3.1	1.00	0	C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.
+NR1L-ComfortHMI-016	SWE1-HVAC-023-02	3.1	1.00	2	Pressing the hard control MODE button will cycle through all MODE combinations (repeating the process so it loops at the end of each cycle).
+NR1L-ComfortHMI-017	SWE1-HVAC-023-03	3.1	0.84	5	Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle.
+NR1L-ComfortHMI-399	SWE1-HVAC-023-03	3.1	0.84	5	Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle.
+NR1L-ComfortHMI-018	SWE1-HVAC-024-01	3.2	1.00	0	C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button.
+NR1L-ComfortHMI-019	SWE1-HVAC-024-02	3.2	1.00	1	MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed to highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-020	SWE1-HVAC-024-03	3.2	1.00	2	MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode.
+NR1L-ComfortHMI-021	SWE1-HVAC-024-04	3.2	1.00	5	Pressing A/C breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off.
+NR1L-ComfortHMI-022	SWE1-HVAC-024-05	3.2	1.00	6	Pressing AUTO brakes MAX DEF (turns MAX DEF off) and the system goes to AUTO.
+NR1L-ComfortHMI-023	SWE1-HVAC-024-06	3.2	1.00	7	Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.
+NR1L-ComfortHMI-024	SWE1-HVAC-024-07	3.2	1.00	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-025	SWE1-HVAC-024-07	3.2	1.00	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-026	SWE1-HVAC-024-07	3.2	1.00	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-027	SWE1-HVAC-024-07	3.2	1.00	4	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-028	SWE1-HVAC-024-08	3.2	1.00	3	Change in fan speed does not break MAX DEF.
+NR1L-ComfortHMI-029	SWE1-HVAC-025-01	3.3	1.00	0	C21.) MAX DEF and REAR DEF are available during climate off.
+NR1L-ComfortHMI-030	SWE1-HVAC-025-02	3.3	1.00	0	C21.) MAX DEF and REAR DEF are available during climate off.
+NR1L-ComfortHMI-031	SWE1-HVAC-026	3.4	1.00	0	C22.) For soft top vehicles such as JL/JT, when configured, the rear defrost button will not appear when not present in the vehicle.
+NR1L-ComfortHMI-041	SWE1-HVAC-027	6.3	1.00	0	CM1.) When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information, the comfort section will be removed from the head unit except for comfort popups.
+NR1L-ComfortHMI-266	SWE1-HVAC-028-01	7.1	1.00	0	CR1.) Hard controls do not switch to controlling the rear climate when on the rear climate screen.
+NR1L-ComfortHMI-267	SWE1-HVAC-028-02	7.1	1.00	1	For example, fan knob will always control the fan speed and driver/passenger temperature controls will always control the front driver/pass temperature.
+NR1L-ComfortHMI-268	SWE1-HVAC-028-03	7.1	1.00	1	For example, fan knob will always control the fan speed and driver/passenger temperature controls will always control the front driver/pass temperature.
+NR1L-ComfortHMI-269	SWE1-HVAC-029-01	7.1.1	1.00	1	To that point, the driver must be on the rear climate screen to see the changes that the rear passenger commanded.
+NR1L-ComfortHMI-270	SWE1-HVAC-029-02	7.1.1	1.00	1	To that point, the driver must be on the rear climate screen to see the changes that the rear passenger commanded.
+NR1L-ComfortHMI-271	SWE1-HVAC-029-03	7.1.1	1.00	2	Further, if on rear climate screen and user uses front controls, provide fan and temperature popup (showing update to front climate).
+NR1L-ComfortHMI-272	SWE1-HVAC-030-01	7.2	1.00	5	The fan speed will be transmitted as 15h instead of the actual fan speed.
+NR1L-ComfortHMI-273	SWE1-HVAC-030-02	7.2	1.00	2	AUTO affects Fan speed and Modes in order to reach desired temperature as quickly as possible.
+NR1L-ComfortHMI-274	SWE1-HVAC-030-03	7.2	1.00	3	Auto is mutually exclusive with the three airflow modes.
+NR1L-ComfortHMI-275	SWE1-HVAC-030-04	7.2	1.00	6	Switching to another airflow mode would break Auto; go from auto mode to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+NR1L-ComfortHMI-276	SWE1-HVAC-030-05	7.2	1.00	8	Any other climate controls do NOT break Auto either.
+NR1L-ComfortHMI-277	SWE1-HVAC-031-01	7.3	1.00	1	Rear lock will lockout the rear climate controls.
+NR1L-ComfortHMI-400	SWE1-HVAC-031-01	7.3	1.00	1	Rear lock will lockout the rear climate controls.
+NR1L-ComfortHMI-278	SWE1-HVAC-031-02	7.3	1.00	2	The text for LOCK REAR will change to UNLOCK REAR text and Lock graphic when Rear Climate is locked to indicate the state of being locked or unlocked (While unlocked = Lock Rear text with unlocked Lock icon, While locked = Unlock Rear text with the Lock icon).
+NR1L-ComfortHMI-279	SWE1-HVAC-031-03	7.3	1.00	2	The text for LOCK REAR will change to UNLOCK REAR text and Lock graphic when Rear Climate is locked to indicate the state of being locked or unlocked (While unlocked = Lock Rear text with unlocked Lock icon, While locked = Unlock Rear text with the Lock icon).
+NR1L-ComfortHMI-280	SWE1-HVAC-032-01	7.4	1.00	2	Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-401	SWE1-HVAC-032-01	7.4	1.00	2	Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-402	SWE1-HVAC-032-01	7.4	1.00	2	Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-281	SWE1-HVAC-032-02	7.4	1.00	3	Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move ((hold longer that 500 ms)) or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).
+NR1L-ComfortHMI-282	SWE1-HVAC-032-03	7.4	1.00	7	When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments.
+NR1L-ComfortHMI-283	SWE1-HVAC-032-04	7.4	1.00	6	If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
+NR1L-ComfortHMI-403	SWE1-HVAC-032-04	7.4	1.00	6	If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
+NR1L-ComfortHMI-284	SWE1-HVAC-033-01	7.5	1.00	0	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
+NR1L-ComfortHMI-404	SWE1-HVAC-033-01	7.5	1.00	0	CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
+NR1L-ComfortHMI-285	SWE1-HVAC-033-02	7.5	1.00	1	The status is indicated on TS rear climate screen.
+NR1L-ComfortHMI-286	SWE1-HVAC-033-03	7.5	1.00	4	There would always be one bar highlighted.
+NR1L-ComfortHMI-287	SWE1-HVAC-033-04	7.5	1.00	5	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen).
+NR1L-ComfortHMI-288	SWE1-HVAC-034-01	7.6	1.00	2	When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.
+NR1L-ComfortHMI-289	SWE1-HVAC-034-02	7.6	1.00	2	When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.
+NR1L-ComfortHMI-290	SWE1-HVAC-034-03	7.6	1.00	2	When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.
+NR1L-ComfortHMI-291	SWE1-HVAC-034-04	7.6	1.00	3	If the user turns off the front climate while the head unit is showing the rear climate screen, transition to the front climate off screen with the REAR CLIMATE button blanked.
+NR1L-ComfortHMI-292	SWE1-HVAC-034-05	7.6	1.00	4	Rear climate is unavailable when front climate is off.
+NR1L-ComfortHMI-293	SWE1-HVAC-035-01	7.7	1.00	3	When SYNC is on, changing the driver temperature, mode or fan speed automatically changes the rear climate.
+NR1L-ComfortHMI-294	SWE1-HVAC-035-02	7.7	1.00	4	Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.
+NR1L-ComfortHMI-295	SWE1-HVAC-035-03	7.7	1.00	2	Fan speed and blower are sync'd front to back.
+NR1L-ComfortHMI-296	SWE1-HVAC-036-01	7.8	1.00	0	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face.
+NR1L-ComfortHMI-405	SWE1-HVAC-036-01	7.8	1.00	0	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face.
+NR1L-ComfortHMI-406	SWE1-HVAC-036-01	7.8	1.00	0	CR8.) The Rear Airflow Modes has 3 states: 1) Feet, 2) Face + Feet, 3) Face.
+NR1L-ComfortHMI-297	SWE1-HVAC-036-02	7.8	1.00	1	ON state for the three airflow modes is shown by highlighting the button and increasing button size. AUTO breaks Airflow Modes.
+NR1L-ComfortHMI-298	SWE1-HVAC-036-03	7.8	1.00	2	If Auto is turned on, these buttons are turned off.
+NR1L-ComfortHMI-299	SWE1-HVAC-036-04	7.8	1.00	3	Only one mode can be selected at a time.
+NR1L-ComfortHMI-300	SWE1-HVAC-036-05	7.8	1.00	4	If the Rear Mode hard control is pressed the user will be moved to the next mode available in the loop the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+NR1L-ComfortHMI-407	SWE1-HVAC-036-05	7.8	1.00	4	If the Rear Mode hard control is pressed the user will be moved to the next mode available in the loop the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+NR1L-ComfortHMI-301	SWE1-HVAC-037	7.9	1.00	0	CR9.) AC has on/ off state.
+NR1L-ComfortHMI-302	SWE1-HVAC-038-01	7.10	1.00	1	The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.
+NR1L-ComfortHMI-303	SWE1-HVAC-038-02	7.10	1.00	1	The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.
+NR1L-ComfortHMI-459	SWE1-HVAC-039	9.1	1.00	0	CR11.) On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts.
+NR1L-ComfortHMI-367	SWE1-HVAC-040-01	9.2	1.00	1	The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+NR1L-ComfortHMI-408	SWE1-HVAC-040-01	9.2	1.00	1	The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+NR1L-ComfortHMI-409	SWE1-HVAC-040-01	9.2	1.00	1	The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+NR1L-ComfortHMI-368	SWE1-HVAC-040-02	9.2	1.00	2	The pop up will be touch interactive: by pressing on the Front Fan area, the user will be redirected to the Front climate tab; by pressing on the Rear fan area, the user will be redirected to the Rear climate tab.
+NR1L-ComfortHMI-369	SWE1-HVAC-041	9.3	1.00	0	C12.1.) The pop up will have text labels, «Front» for front climate and «Rear» for Rear Climate.
+NR1L-ComfortHMI-370	SWE1-HVAC-042-01	9.4	1.00	0	CR13.) Alternative Status Bar Dropdown: in these variants, the driver side climate dropdown menu will have an additional Rear Climate button.
+NR1L-ComfortHMI-371	SWE1-HVAC-042-02	9.4	1.00	2	By pressing it, the user will be able to turn the Rear Climate OFF (change will be reflected in the Rear Climate Tab) and On again following core Rear Climate on / off logics.
+NR1L-ComfortHMI-372	SWE1-HVAC-042-03	9.4	1.00	3	When the button is highlighted, it means Rear Climate is On.
+NR1L-ComfortHMI-373	SWE1-HVAC-043	9.4.1	1.00	0	CR13.1.) The button label will read «Rear».
+NR1L-ComfortHMI-067	SWE1-HVAC-044-01	10.1	1.00	0	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
+NR1L-ComfortHMI-081	SWE1-HVAC-044-02	10.1	1.00	0	EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
+NR1L-ComfortHMI-068	SWE1-HVAC-045	10.2	1.00	0	EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.
+NR1L-ComfortHMI-069	SWE1-HVAC-046	10.3	1.00	0	EH3.) Button label will read AUTO ECO.
+NR1L-ComfortHMI-070	SWE1-HVAC-047	10.4	1.00	0	EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+NR1L-ComfortHMI-460	SWE1-HVAC-047	10.4	1.00	0	EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+NR1L-ComfortHMI-071	SWE1-HVAC-048-01	10.5	1.00	0	EH5.) The second press will switch to AUTO on.
+NR1L-ComfortHMI-072	SWE1-HVAC-048-02	10.5	1.00	1	A third press would go back to AUTO ECO.
+NR1L-ComfortHMI-073	SWE1-HVAC-048-03	10.5	1.00	2	The user will not be able to exit AUTO mode by pressing the AUTO button again.
+NR1L-ComfortHMI-074	SWE1-HVAC-049-01	10.6	1.00	0	EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
+NR1L-ComfortHMI-075	SWE1-HVAC-049-02	10.6	1.00	0	EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
+NR1L-ComfortHMI-076	SWE1-HVAC-050	10.7	1.00	0	EH7.) HVAC AUTO shall keep the selected setting through ignition cycles.
+NR1L-ComfortHMI-077	SWE1-HVAC-051	10.8	1.00	0	EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
+NR1L-ComfortHMI-078	SWE1-HVAC-052	10.9	1.00	0	EH9.) The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states.
+NR1L-ComfortHMI-079	SWE1-HVAC-053-01	10.9.1	1.00	1	When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+NR1L-ComfortHMI-080	SWE1-HVAC-053-02	10.9.1	1.00	1	When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+NR1L-ComfortHMI-304	SWE1-HVAC-054-01	11.1	1.00	1	For Multi-Level Heated/Vented seats, a press of the heated seat button opens popup and turns the seat on HI, the soft button highlights red and the control displays 3 arrows, HI and/or LEDs.
+NR1L-ComfortHMI-305	SWE1-HVAC-054-02	11.1	1.00	2	The next button press sets the seat to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.
+NR1L-ComfortHMI-306	SWE1-HVAC-054-03	11.1	1.00	3	The third button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
+NR1L-ComfortHMI-307	SWE1-HVAC-054-04	11.1	1.00	4	The next press, turns the heated seat OFF, the button is no longer highlighted and 3 arrows are shown.
+NR1L-ComfortHMI-308	SWE1-HVAC-055-01	11.2	1.00	1	For Multi-Level Heated/Vented seats, a press of the vented seat button opens popup and turns the seat on HI , the soft button highlights blue and control displays a large fan, HI and/or 3 LEDs.
+NR1L-ComfortHMI-309	SWE1-HVAC-055-02	11.2	1.00	2	The next button press sets the seat to MED, button remains highlighted and displays a medium fan, MED and/or 2 LEDs.
+NR1L-ComfortHMI-310	SWE1-HVAC-055-03	11.2	1.00	3	The third button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.
+NR1L-ComfortHMI-311	SWE1-HVAC-055-04	11.2	1.00	4	The next press, turns the vented seat OFF, the button is no longer highlighted and no arrows are shown.
+NR1L-ComfortHMI-312	SWE1-HVAC-056	11.3	1.00	1	When climate is OFF, the status bar should still show heated/vented seat status.
+NR1L-ComfortHMI-313	SWE1-HVAC-057-01	11.4	1.00	1	Heated seats buttons when activated will be shown red.
+NR1L-ComfortHMI-314	SWE1-HVAC-057-02	11.4	1.00	2	Vented seat buttons when activated will be shown blue.
+NR1L-ComfortHMI-382	SWE1-HVAC-058	11.5	1.00	1	Refer to HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats.
+NR1L-ComfortHMI-315	SWE1-HVAC-059-01	11.6	1.00	0	R1HVS1.) If the independent seat zone feature is available, when heated or vented seats are activated the seat zone control will default to both seat back and seat cushion active.
+NR1L-ComfortHMI-316	SWE1-HVAC-059-02	11.6	1.00	1	Seat zone popup is not displayed when user is interacting with heated and vented seat controls.
+NR1L-ComfortHMI-317	SWE1-HVAC-059-03	11.6	1.00	2	While both seat zones (cushion and back) are active an additional press of seat zone button will maintain seat back active only.
+NR1L-ComfortHMI-318	SWE1-HVAC-059-04	11.6	1.00	3	An additional press will activate seat cushion only.
+NR1L-ComfortHMI-319	SWE1-HVAC-059-05	11.6	1.00	4	User cannot turn seat zone off by using the seat zone button.
+NR1L-ComfortHMI-320	SWE1-HVAC-059-06	11.6	1.00	5	Seat zone button will be shown in an off state when heated/vented seats are not active.
+NR1L-ComfortHMI-321	SWE1-HVAC-060-01	11.6.1	0.49	1	There are 3 states (1. both seat back and seat cushion, 2. Seat back only 3.
+NR1L-ComfortHMI-322	SWE1-HVAC-060-02	11.6.1	1.00	2	Seat cushion only), plus a greyed out state in case heated and vented seats are off.
+NR1L-ComfortHMI-323	SWE1-HVAC-061-01	11.7	1.00	0	R1HVS1.2.) For independent seat zones soft control, when the heated or vented seat is turned on for the first time in a key cycle, the seat zone button will default to back and cushion.
+NR1L-ComfortHMI-324	SWE1-HVAC-061-02	11.7	1.00	1	A press of the seat zone button opens the pop up and moves to the next available state in the cycle (back and cushion, back, cushion etc.).
+NR1L-ComfortHMI-325	SWE1-HVAC-061-03	11.7	1.00	2	The pop up will have a «Driver Seat Zone» label for the driver and «Passenger Seat Zone» label for the passenger.
+NR1L-ComfortHMI-326	SWE1-HVAC-061-04	11.7	1.00	3	The pop up will not open if the user presses the greyed out button.
+NR1L-ComfortHMI-327	SWE1-HVAC-062-01	11.8	1.00	0	W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering wheel button opens popup and turns the wheel heat on HI , the soft button highlights red and the control displays 3 arrows, HI and/or LEDs.
+NR1L-ComfortHMI-328	SWE1-HVAC-062-02	11.8	1.00	1	The next button press sets the wheel to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.
+NR1L-ComfortHMI-329	SWE1-HVAC-062-03	11.8	1.00	2	The third button press sets the wheel to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
+NR1L-ComfortHMI-330	SWE1-HVAC-062-04	11.8	1.00	3	The next press, turns the heated wheel OFF, the button is no longer highlighted and 3 arrows are shown.
+NR1L-ComfortHMI-331	SWE1-HVAC-063-01	11.9	1.00	0	R1HVS2.) For Single-Level heated steering wheel, a press of the heated steering wheel button opens popup and turns the wheel heat to ON .
+NR1L-ComfortHMI-332	SWE1-HVAC-063-02	11.9	1.00	1	The next press turns the heated wheel OFF , the button is no longer highlighted.
+NR1L-ComfortHMI-333	SWE1-HVAC-064-01	11.10	1.00	1	The first press will open popup and change level of heated/vented seat, wheel, or seat zone.
+NR1L-ComfortHMI-334	SWE1-HVAC-064-02	11.10	1.00	3	If an item in the popup is selected the timer will restart.
+NR1L-ComfortHMI-335	SWE1-HVAC-064-03	11.10	1.00	4	Additional presses of the heated/vented seat, heated wheel, or seat zone icon will change the level of heated/vented seat, heated wheel, or seat zone area.
+NR1L-ComfortHMI-336	SWE1-HVAC-065-01	11.11	1.00	0	R1HVS4.) Heated/vented seat, heated wheel will not be displayed in the comfort section if the vehicle is configured with hard buttons for comfort controls.
+NR1L-ComfortHMI-337	SWE1-HVAC-065-02	11.11	1.00	1	Comfort controls will still exist within the status bar and temperature/comfort popup.
+NR1L-ComfortHMI-338	SWE1-HVAC-065-03	11.11	1.00	2	For vehicle programs such as WS that have haptic heated/vented seat/heated steering wheel buttons placed on the side of the radio, those controls will not be displayed in the status bar.
+NR1L-ComfortHMI-339	SWE1-HVAC-066	11.11.1	1.00	0	R1HS4.1.) When comfort controls are not active, they will be greyed out in the status bar combined temperature/comfort top left/right corners.
+NR1L-ComfortHMI-340	SWE1-HVAC-067-01	12.1	1.00	1	For Multi-Level Heated/Vented seats a press of the heated seat button turns the seat on HI, the soft button highlights red and the control displays 3 arrows, HI and/or LEDs (.
+NR1L-ComfortHMI-341	SWE1-HVAC-067-02	12.1	1.00	2	The next button press sets the seat to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.
+NR1L-ComfortHMI-342	SWE1-HVAC-067-03	12.1	1.00	3	The third button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
+NR1L-ComfortHMI-343	SWE1-HVAC-067-04	12.1	1.00	4	The next press, turns the heated seat OFF, the button is no longer highlighted and 3 arrows are shown.
+NR1L-ComfortHMI-344	SWE1-HVAC-068-01	12.2	1.00	1	For Multi-Level Heated/Vented seats a press of the vented seat button turns the seat on HI, the soft button highlights blue and control displays a large fan, HI and/or 3 LEDs.
+NR1L-ComfortHMI-345	SWE1-HVAC-068-02	12.2	1.00	2	The next button press sets the seat to MED, button remains highlighted and displays a medium fan, MED and/or 2 LEDs.
+NR1L-ComfortHMI-346	SWE1-HVAC-068-03	12.2	1.00	3	The third button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.
+NR1L-ComfortHMI-347	SWE1-HVAC-068-04	12.2	1.00	4	The next press, turns the vented seat OFF, the button is no longer highlighted and no arrows are shown.
+NR1L-ComfortHMI-348	SWE1-HVAC-069-01	12.3	1.00	1	Active button state text/icon color is white.
+NR1L-ComfortHMI-349	SWE1-HVAC-069-02	12.3	1.00	2	Inactive button text/icon color is grey.
+NR1L-ComfortHMI-350	SWE1-HVAC-070	12.4	1.00	1	When climate is OFF, the status bar should still show heated/vented seat status.
+NR1L-ComfortHMI-351	SWE1-HVAC-071-01	12.5	1.00	1	Heated seats buttons when activated will be shown red.
+NR1L-ComfortHMI-352	SWE1-HVAC-071-02	12.5	1.00	2	Vented seat buttons when activated will be shown blue.
+NR1L-ComfortHMI-383	SWE1-HVAC-072	12.6	1.00	1	Refer to HMI Notes for the details on the Auto Comfort Settings options for heated/vented seats.
+NR1L-ComfortHMI-353	SWE1-HVAC-073-01	12.7	1.00	1	Whenever pop ups are shown, images should be shown in full, but not directly above the button as to not cutoff the popup image.
+NR1L-ComfortHMI-354	SWE1-HVAC-073-02	12.7	1.00	1	Whenever pop ups are shown, images should be shown in full, but not directly above the button as to not cutoff the popup image.
+NR1L-ComfortHMI-355	SWE1-HVAC-074-01	12.8	1.00	1	For Standard Heated/Vented seats a press of the heated seat button turns the seat on HI, the soft button highlights red and the control displays 2 arrows, HI and/or LEDs.
+NR1L-ComfortHMI-356	SWE1-HVAC-074-02	12.8	1.00	2	The next button press sets the seat to LO, button remains highlighted and displays 1 arrow, LO and/or LED.
+NR1L-ComfortHMI-357	SWE1-HVAC-074-03	12.8	1.00	3	The next press, turns the heated seat OFF, the button is no longer highlighted and 2 arrows are shown un-highlighted.
+NR1L-ComfortHMI-358	SWE1-HVAC-075-01	12.9	1.00	1	For Standard Heated/Vented seats a press of the vented seat button turns the seat on HI, the soft button highlights blue and control displays a large fan, HI and/or 2 LEDs.
+NR1L-ComfortHMI-359	SWE1-HVAC-075-02	12.9	1.00	2	The next button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.
+NR1L-ComfortHMI-360	SWE1-HVAC-075-03	12.9	1.00	3	The next press, turns the vented seat OFF, the button is no longer highlighted and a unhighlighted fan is shown.
+NR1L-ComfortHMI-001	SWE1-HVAC-076-01	13.2	1.00	0	LS1.) When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, switch the tab on the lower screen to the Seats tab.
+NR1L-ComfortHMI-002	SWE1-HVAC-076-02	13.2	1.00	1	If the lower screen is in the stowed position, display the Seat Control Popup on the head unit (popup times out after 5 seconds of not interaction).
+NR1L-ComfortHMI-003	SWE1-HVAC-076-03	13.2	1.00	0	LS1.) When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, switch the tab on the lower screen to the Seats tab.
+NR1L-ComfortHMI-004	SWE1-HVAC-077	13.2.1	1.00	0	LS1.1) The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster.
+NR1L-ComfortHMI-005	SWE1-HVAC-078-01	13.3	1.00	0	LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popup or tab change within climate, and only on the second press will be reflected.
+NR1L-ComfortHMI-006	SWE1-HVAC-078-02	13.3	1.00	0	LS2.) When the (-, +) seat control buttons are pressed, it will trigger the popup or tab change within climate, and only on the second press will be reflected.
+NR1L-ComfortHMI-007	SWE1-HVAC-079-01	13.3.1	1.00	0	LS2.1) The user last selected lumbar/bolster selection will be latching during a keycycle, after a keycycle, and after the lower screen has been stowed/retracted.
 NR1L-ComfortHMI-008	SWE1-HVAC-079-02	13.3.1	1.00	1	If the lower screen displayed the last selected option as Back Bolster , then the user retracts the lower screen, the next time they press the door (-, +) buttons or enter the seat tab on the HU, Back Bolster will still be the selected option.
-NR1L-ComfortHMI-009	SWE1-HVAC-080-01	13.4	0.94	0	LS3.) The user will be able to long press on the hard button (-, +) or on the touch screen itself to initiate fast increases/decreases.
-NR1L-ComfortHMI-010	SWE1-HVAC-080-02	13.4	0.70	0	LS3.) The user will be able to long press on the hard button (-, +) or on the touch screen itself to initiate fast increases/decreases.
-NR1L-ComfortHMI-011	SWE1-HVAC-081-01	13.5	0.61	0	LS4.) A short press of the (-, +) button will increase the lumbar/bolster by a small set amount, that would be equivalent to a short press of the previous 4-way rocker hard control (See CFTS044).
-NR1L-ComfortHMI-012	SWE1-HVAC-081-02	13.5	0.87	0	LS4.) A short press of the (-, +) button will increase the lumbar/bolster by a small set amount, that would be equivalent to a short press of the previous 4-way rocker hard control (See CFTS044).
-NR1L-ComfortHMI-013	SWE1-HVAC-082-01	13.6	0.94	0	LS5.) Once the minimum or maximum level has been reach, the system will grey out the (-, +) control.
+NR1L-ComfortHMI-009	SWE1-HVAC-080-01	13.4	1.00	0	LS3.) The user will be able to long press on the hard button (-, +) or on the touch screen itself to initiate fast increases/decreases.
+NR1L-ComfortHMI-010	SWE1-HVAC-080-02	13.4	1.00	0	LS3.) The user will be able to long press on the hard button (-, +) or on the touch screen itself to initiate fast increases/decreases.
+NR1L-ComfortHMI-011	SWE1-HVAC-081-01	13.5	1.00	0	LS4.) A short press of the (-, +) button will increase the lumbar/bolster by a small set amount, that would be equivalent to a short press of the previous 4-way rocker hard control (See CFTS044).
+NR1L-ComfortHMI-012	SWE1-HVAC-081-02	13.5	1.00	0	LS4.) A short press of the (-, +) button will increase the lumbar/bolster by a small set amount, that would be equivalent to a short press of the previous 4-way rocker hard control (See CFTS044).
+NR1L-ComfortHMI-013	SWE1-HVAC-082-01	13.6	1.00	0	LS5.) Once the minimum or maximum level has been reach, the system will grey out the (-, +) control.
 NR1L-ComfortHMI-014	SWE1-HVAC-082-02	13.6	1.00	1	So if the user is increasing their lumbar, once the maximum has been reached, pressing the (+) button again will result in error tone being triggered.
-NR1L-ComfortHMI-434	SWE1-HVAC-083	14.1	0.83	0	HVACP1.) HVAC pop-ups should follow the pop-up list.
-NR1L-ComfortHMI-167	SWE1-HVAC-084	14.1.1	0.87	0	HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop-up) and user makes additional adjustment to the same HVAC event (e.g. fan adjustment), the new HVAC pop-up timeout will restart (e.g. fan pop-up timeout restarts).
-NR1L-ComfortHMI-168	SWE1-HVAC-085	14.2	0.90	0	HVACP2.) HVAC pop-ups are not displayed while RVC screen is active.
-NR1L-ComfortHMI-169	SWE1-HVAC-086-01	14.3	0.60	0	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, mode popups)
-NR1L-ComfortHMI-170	SWE1-HVAC-086-02	14.3	0.00	0	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, mode popups)
-NR1L-ComfortHMI-171	SWE1-HVAC-087-01	14.4	0.80	0	HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is triggered only the HVAC pop-up will be displayed on the blank screen (status bar, category bar, and brand background are not displayed).
-NR1L-ComfortHMI-172	SWE1-HVAC-087-02	14.4	0.70	0	HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is triggered only the HVAC pop-up will be displayed on the blank screen (status bar, category bar, and brand background are not displayed).
-NR1L-ComfortHMI-173	SWE1-HVAC-088	14.5	0.92	0	HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection screens when permitted.
-NR1L-ComfortHMI-174	SWE1-HVAC-089	14.6	0.93	0	HVACP6.) When an HVAC popup is displayed over another popup, if user touches area inside the bottom pop-up which is not a selectable item (e.g. text area) the HVAC pop-up will close.
-NR1L-ComfortHMI-175	SWE1-HVAC-090-01	14.7	0.89	0	HVACP7.) When an HVAC popup is displayed over another popup, if user touches a selectable item inside the bottom pop-up (e.g. OK or X ) then the action is taken and HVAC pop-up is closed.
-NR1L-ComfortHMI-176	SWE1-HVAC-090-02	14.7	0.53	0	HVACP7.) When an HVAC popup is displayed over another popup, if user touches a selectable item inside the bottom pop-up (e.g. OK or X ) then the action is taken and HVAC pop-up is closed.
-NR1L-ComfortHMI-177	SWE1-HVAC-091	14.8	0.95	0	HVACP8.) When an HVAC popup is displayed over another popup, if the user presses an external area outside of both the pop-ups then both pop-ups will close.
-NR1L-ComfortHMI-178	SWE1-HVAC-092	14.9	0.93	0	HVACP9.) HVAC popups will not be displayed during intro/outro animation or splash screens.
-NR1L-ComfortHMI-179	SWE1-HVAC-093	14.10	0.93	0	HVACP10.) When head unit is in simulated off/idle mode HVAC popups should display as they normally would when idle mode is not applied.
-NR1L-ComfortHMI-180	SWE1-HVAC-094	14.10.1	0.95	0	HVACP10.1) If Climate is located in the main category bar, fan speed and mode popups display from this position as well during idle mode.
-NR1L-ComfortHMI-181	SWE1-HVAC-095-01	14.11	0.65	0	HVACP11.) HVAC pop ups will only be displayed based on direct user interaction (not automatic system changes to Climate).
-NR1L-ComfortHMI-182	SWE1-HVAC-095-02	14.11	0.78	0	HVACP11.) HVAC pop ups will only be displayed based on direct user interaction (not automatic system changes to Climate).
-NR1L-ComfortHMI-374	SWE1-HVAC-096-01	14.12	0.74	1	If the hard controls are knobs that turn then the HVAC popups should be radial popups.
-NR1L-ComfortHMI-375	SWE1-HVAC-096-02	14.12	0.57	2	If the hard controls are UP/DOWN toggles then the HVAC popups should be vertical popups to mirror the physical action of turning UP/DOWN.
-NR1L-ComfortHMI-376	SWE1-HVAC-096-03	14.12	0.60	0	HVACP12.) The style of HVAC popups should match the type of hard controls.
-NR1L-ComfortHMI-183	SWE1-HVAC-097	14.13	0.81	0	HVACP13.) For vehicles with a lower hvac screen, interactions with that screen will not trigger popups on the head unit (e.g. temperature popup, fan speed popup, mode popup).
-NR1L-ComfortHMI-377	SWE1-HVAC-098	14.14	0.68	0	"HVACP14.) For vehicles with dual zone climate versions with dual airflow modes on 8.4"", 10.1"" Landscape, 10.25"" and 12.3"" radios, there will be driver and passenger centric popups."
-NR1L-ComfortHMI-184	SWE1-HVAC-100-01	14.16	0.87	0	HVACSB2.) Driver and Passenger comfort seat features will show currently active or last used state (heated or vented).
-NR1L-ComfortHMI-185	SWE1-HVAC-100-02	14.16	0.79	1	Press of icon in status bar opens popup and changes level of comfort feature control.
+NR1L-ComfortHMI-434	SWE1-HVAC-083	14.1	1.00	0	HVACP1.) HVAC pop-ups should follow the pop-up list.
+NR1L-ComfortHMI-167	SWE1-HVAC-084	14.1.1	1.00	0	HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop-up) and user makes additional adjustment to the same HVAC event (e.g. fan adjustment), the new HVAC pop-up timeout will restart (e.g. fan pop-up timeout restarts).
+NR1L-ComfortHMI-168	SWE1-HVAC-085	14.2	1.00	0	HVACP2.) HVAC pop-ups are not displayed while RVC screen is active.
+NR1L-ComfortHMI-169	SWE1-HVAC-086-01	14.3	1.00	0	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, mode popups)
+NR1L-ComfortHMI-170	SWE1-HVAC-086-02	14.3	1.00	0	HVACP3.1) HVAC popups will be interactive (e.g. Temp popups, fan speed popups, mode popups)
+NR1L-ComfortHMI-171	SWE1-HVAC-087-01	14.4	1.00	0	HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is triggered only the HVAC pop-up will be displayed on the blank screen (status bar, category bar, and brand background are not displayed).
+NR1L-ComfortHMI-172	SWE1-HVAC-087-02	14.4	1.00	0	HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is triggered only the HVAC pop-up will be displayed on the blank screen (status bar, category bar, and brand background are not displayed).
+NR1L-ComfortHMI-173	SWE1-HVAC-088	14.5	1.00	0	HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection screens when permitted.
+NR1L-ComfortHMI-174	SWE1-HVAC-089	14.6	1.00	0	HVACP6.) When an HVAC popup is displayed over another popup, if user touches area inside the bottom pop-up which is not a selectable item (e.g. text area) the HVAC pop-up will close.
+NR1L-ComfortHMI-175	SWE1-HVAC-090-01	14.7	1.00	0	HVACP7.) When an HVAC popup is displayed over another popup, if user touches a selectable item inside the bottom pop-up (e.g. OK or X ) then the action is taken and HVAC pop-up is closed.
+NR1L-ComfortHMI-176	SWE1-HVAC-090-02	14.7	1.00	0	HVACP7.) When an HVAC popup is displayed over another popup, if user touches a selectable item inside the bottom pop-up (e.g. OK or X ) then the action is taken and HVAC pop-up is closed.
+NR1L-ComfortHMI-177	SWE1-HVAC-091	14.8	1.00	0	HVACP8.) When an HVAC popup is displayed over another popup, if the user presses an external area outside of both the pop-ups then both pop-ups will close.
+NR1L-ComfortHMI-178	SWE1-HVAC-092	14.9	1.00	0	HVACP9.) HVAC popups will not be displayed during intro/outro animation or splash screens.
+NR1L-ComfortHMI-179	SWE1-HVAC-093	14.10	1.00	0	HVACP10.) When head unit is in simulated off/idle mode HVAC popups should display as they normally would when idle mode is not applied.
+NR1L-ComfortHMI-180	SWE1-HVAC-094	14.10.1	1.00	0	HVACP10.1) If Climate is located in the main category bar, fan speed and mode popups display from this position as well during idle mode.
+NR1L-ComfortHMI-181	SWE1-HVAC-095-01	14.11	1.00	0	HVACP11.) HVAC pop ups will only be displayed based on direct user interaction (not automatic system changes to Climate).
+NR1L-ComfortHMI-182	SWE1-HVAC-095-02	14.11	1.00	0	HVACP11.) HVAC pop ups will only be displayed based on direct user interaction (not automatic system changes to Climate).
+NR1L-ComfortHMI-374	SWE1-HVAC-096-01	14.12	1.00	1	If the hard controls are knobs that turn then the HVAC popups should be radial popups.
+NR1L-ComfortHMI-375	SWE1-HVAC-096-02	14.12	1.00	2	If the hard controls are UP/DOWN toggles then the HVAC popups should be vertical popups to mirror the physical action of turning UP/DOWN.
+NR1L-ComfortHMI-376	SWE1-HVAC-096-03	14.12	1.00	0	HVACP12.) The style of HVAC popups should match the type of hard controls.
+NR1L-ComfortHMI-183	SWE1-HVAC-097	14.13	1.00	0	HVACP13.) For vehicles with a lower hvac screen, interactions with that screen will not trigger popups on the head unit (e.g. temperature popup, fan speed popup, mode popup).
+NR1L-ComfortHMI-377	SWE1-HVAC-098	14.14	1.00	0	"HVACP14.) For vehicles with dual zone climate versions with dual airflow modes on 8.4"", 10.1"" Landscape, 10.25"" and 12.3"" radios, there will be driver and passenger centric popups."
+NR1L-ComfortHMI-461	SWE1-HVAC-099	14.15	1.00	0	HVACSB1.) Available comfort controls (driver/passenger heated/vented seats, seat zones and heated wheel) depend on vehicle configuration.
+NR1L-ComfortHMI-184	SWE1-HVAC-100-01	14.16	1.00	0	HVACSB2.) Driver and Passenger comfort seat features will show currently active or last used state (heated or vented).
+NR1L-ComfortHMI-185	SWE1-HVAC-100-02	14.16	1.00	1	Press of icon in status bar opens popup and changes level of comfort feature control.
 NR1L-ComfortHMI-186	SWE1-HVAC-100-03	14.16	1.00	3	The heated seats will be labeled as Heat and vented seats labeled as Vent .
-NR1L-ComfortHMI-187	SWE1-HVAC-101-01	14.16.1	0.96	1	Press of the icon will toggle through the states of seat zone from (1. both seat back and seat cushion, 2. Seat back only 3. Seat cushion only).
-NR1L-ComfortHMI-188	SWE1-HVAC-101-02	14.16.1	0.92	2	Icon will be labelled as Zone .
-NR1L-ComfortHMI-189	SWE1-HVAC-101-03	14.16.1	0.89	3	The icon will grey out if the heated and vented seats are off.
-NR1L-ComfortHMI-190	SWE1-HVAC-102	14.17	0.76	0	HVACSB3.) Driver comfort seat feature and Passenger comfort controls are merged with the cabin temperature, and are pressable.
-NR1L-ComfortHMI-191	SWE1-HVAC-103-01	14.18	0.63	0	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
-NR1L-ComfortHMI-192	SWE1-HVAC-103-02	14.18	0.74	0	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
-NR1L-ComfortHMI-410	SWE1-HVAC-103-02	14.18	0.74	0	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
-NR1L-ComfortHMI-193	SWE1-HVAC-104-01	14.19	0.39	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-194	SWE1-HVAC-104-02	14.19	0.25	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-195	SWE1-HVAC-104-03	14.19	0.28	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-196	SWE1-HVAC-104-04	14.19	0.19	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-197	SWE1-HVAC-104-05	14.19	0.17	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-198	SWE1-HVAC-104-06	14.19	0.41	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-199	SWE1-HVAC-104-07	14.19	0.42	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-200	SWE1-HVAC-104-08	14.19	0.45	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
-NR1L-ComfortHMI-201	SWE1-HVAC-105-01	15.1	0.49	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
-NR1L-ComfortHMI-202	SWE1-HVAC-105-02	15.1	0.38	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
-NR1L-ComfortHMI-384	SWE1-HVAC-105-01	15.1	0.49	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
-NR1L-ComfortHMI-385	SWE1-HVAC-105-02	15.1	0.38	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
-NR1L-ComfortHMI-082	SWE1-HVAC-106-01	16.2	0.76	0	ICE1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations with the exception of the recirculation led in climate off (see ICE11.).
-NR1L-ComfortHMI-083	SWE1-HVAC-106-02	16.2	0.61	0	ICE1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations with the exception of the recirculation led in climate off (see ICE11.).
-NR1L-ComfortHMI-084	SWE1-HVAC-106-03	16.2	0.32	1	Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.
-NR1L-ComfortHMI-085	SWE1-HVAC-106-04	16.2	0.91	2	When sync'd, do not show slider pop-up on passenger side when adjusting driver slider.
-NR1L-ComfortHMI-086	SWE1-HVAC-106-05	16.2	0.57	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
-NR1L-ComfortHMI-087	SWE1-HVAC-106-06	16.2	0.43	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
-NR1L-ComfortHMI-088	SWE1-HVAC-106-07	16.2	0.41	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+NR1L-ComfortHMI-187	SWE1-HVAC-101-01	14.16.1	1.00	1	Press of the icon will toggle through the states of seat zone from (1. both seat back and seat cushion, 2. Seat back only 3. Seat cushion only).
+NR1L-ComfortHMI-188	SWE1-HVAC-101-02	14.16.1	1.00	2	Icon will be labelled as Zone .
+NR1L-ComfortHMI-189	SWE1-HVAC-101-03	14.16.1	1.00	3	The icon will grey out if the heated and vented seats are off.
+NR1L-ComfortHMI-190	SWE1-HVAC-102	14.17	1.00	0	HVACSB3.) Driver comfort seat feature and Passenger comfort controls are merged with the cabin temperature, and are pressable.
+NR1L-ComfortHMI-191	SWE1-HVAC-103-01	14.18	1.00	0	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+NR1L-ComfortHMI-192	SWE1-HVAC-103-02	14.18	1.00	0	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+NR1L-ComfortHMI-410	SWE1-HVAC-103-02	14.18	1.00	0	HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+NR1L-ComfortHMI-193	SWE1-HVAC-104-01	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-194	SWE1-HVAC-104-02	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-195	SWE1-HVAC-104-03	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-196	SWE1-HVAC-104-04	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-197	SWE1-HVAC-104-05	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-198	SWE1-HVAC-104-06	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-199	SWE1-HVAC-104-07	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-200	SWE1-HVAC-104-08	14.19	1.00	0	HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+NR1L-ComfortHMI-201	SWE1-HVAC-105-01	15.1	1.00	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
+NR1L-ComfortHMI-202	SWE1-HVAC-105-02	15.1	1.00	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
+NR1L-ComfortHMI-384	SWE1-HVAC-105-01	15.1	1.00	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
+NR1L-ComfortHMI-385	SWE1-HVAC-105-02	15.1	1.00	1	The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
+NR1L-ComfortHMI-082	SWE1-HVAC-106-01	16.2	1.00	0	ICE1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations with the exception of the recirculation led in climate off (see ICE11.).
+NR1L-ComfortHMI-083	SWE1-HVAC-106-02	16.2	1.00	0	ICE1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations with the exception of the recirculation led in climate off (see ICE11.).
+NR1L-ComfortHMI-084	SWE1-HVAC-106-03	16.2	1.00	1	Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.
+NR1L-ComfortHMI-085	SWE1-HVAC-106-04	16.2	1.00	2	When sync'd, do not show slider pop-up on passenger side when adjusting driver slider.
+NR1L-ComfortHMI-086	SWE1-HVAC-106-05	16.2	1.00	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+NR1L-ComfortHMI-087	SWE1-HVAC-106-06	16.2	1.00	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+NR1L-ComfortHMI-088	SWE1-HVAC-106-07	16.2	1.00	3	If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
 NR1L-ComfortHMI-089	SWE1-HVAC-106-08	16.2	1.00	4	If on climate screen, status changes are indicated directly on touchscreen buttons / status indicator on category button and will not be shown in the status bar.
 NR1L-ComfortHMI-090	SWE1-HVAC-106-09	16.2	1.00	5	If changes are made on climate screen, LEDs on hard controls reflect new status.
-NR1L-ComfortHMI-203	SWE1-HVAC-107-01	16.3	0.61	1	The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
-NR1L-ComfortHMI-204	SWE1-HVAC-107-02	16.3	0.59	1	The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
+NR1L-ComfortHMI-203	SWE1-HVAC-107-01	16.3	1.00	1	The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
+NR1L-ComfortHMI-204	SWE1-HVAC-107-02	16.3	1.00	1	The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
 NR1L-ComfortHMI-205	SWE1-HVAC-107-03	16.3	1.00	2	The main category control will display Auto with the Mode Man and Fan speed greyed out behind it.
-NR1L-ComfortHMI-206	SWE1-HVAC-107-04	16.3	0.88	3	AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
-NR1L-ComfortHMI-207	SWE1-HVAC-107-05	16.3	0.74	4	Auto is mutually exclusive with MAX A/C and MAX DEF.
-NR1L-ComfortHMI-208	SWE1-HVAC-107-06	16.3	0.79	5	Pressing MAX DEF or Max A/C the system goes to that function.
-NR1L-ComfortHMI-411	SWE1-HVAC-107-06	16.3	0.79	5	Pressing MAX DEF or Max A/C the system goes to that function.
-NR1L-ComfortHMI-209	SWE1-HVAC-107-07	16.3	0.86	9	Manually changing airflow mode, or changing fan speeds breaks Auto.
-NR1L-ComfortHMI-412	SWE1-HVAC-107-07	16.3	0.86	9	Manually changing airflow mode, or changing fan speeds breaks Auto.
-NR1L-ComfortHMI-210	SWE1-HVAC-107-08	16.3	0.84	8	Manually selecting A/C keeps the system in AUTO without compressor usage (A/C off).
+NR1L-ComfortHMI-206	SWE1-HVAC-107-04	16.3	1.00	3	AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+NR1L-ComfortHMI-207	SWE1-HVAC-107-05	16.3	1.00	4	Auto is mutually exclusive with MAX A/C and MAX DEF.
+NR1L-ComfortHMI-208	SWE1-HVAC-107-06	16.3	1.00	5	Pressing MAX DEF or Max A/C the system goes to that function.
+NR1L-ComfortHMI-411	SWE1-HVAC-107-06	16.3	1.00	5	Pressing MAX DEF or Max A/C the system goes to that function.
+NR1L-ComfortHMI-209	SWE1-HVAC-107-07	16.3	1.00	9	Manually changing airflow mode, or changing fan speeds breaks Auto.
+NR1L-ComfortHMI-412	SWE1-HVAC-107-07	16.3	1.00	9	Manually changing airflow mode, or changing fan speeds breaks Auto.
+NR1L-ComfortHMI-210	SWE1-HVAC-107-08	16.3	1.00	8	Manually selecting A/C keeps the system in AUTO without compressor usage (A/C off).
 NR1L-ComfortHMI-211	SWE1-HVAC-107-09	16.3	1.00	12	(AUTO is not shown in MTC configurations)
-NR1L-ComfortHMI-212	SWE1-HVAC-108	16.4	0.90	0	ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state.
-NR1L-ComfortHMI-213	SWE1-HVAC-109-01	16.5	0.94	0	ICE4.) The recirc icon will display the vehicle model specific icon as displayed in the Climate Main page table.
+NR1L-ComfortHMI-212	SWE1-HVAC-108	16.4	1.00	0	ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state.
+NR1L-ComfortHMI-213	SWE1-HVAC-109-01	16.5	1.00	0	ICE4.) The recirc icon will display the vehicle model specific icon as displayed in the Climate Main page table.
 NR1L-ComfortHMI-214	SWE1-HVAC-109-02	16.5	1.00	1	If the system cannot detect the vehicle model it will display the generic recirc symbol.
-NR1L-ComfortHMI-098	SWE1-HVAC-110-01	16.6	0.89	0	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric).
-NR1L-ComfortHMI-413	SWE1-HVAC-110-01	16.6	0.89	0	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric).
-NR1L-ComfortHMI-099	SWE1-HVAC-110-02	16.6	0.75	1	Temperature will display the current degree value the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
-NR1L-ComfortHMI-100	SWE1-HVAC-110-03	16.6	0.94	2	The status is indicated on TS climate screen and in status bar.
-NR1L-ComfortHMI-101	SWE1-HVAC-110-04	16.6	0.97	3	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
-NR1L-ComfortHMI-102	SWE1-HVAC-110-05	16.6	0.70	5	When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments .
-NR1L-ComfortHMI-103	SWE1-HVAC-110-06	16.6	0.91	4	(when sync'd, do not show slider pop-up on passenger side when adjusting driver slider).
-NR1L-ComfortHMI-104	SWE1-HVAC-111-01	16.6.1	0.51	0	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
-NR1L-ComfortHMI-105	SWE1-HVAC-111-02	16.6.1	0.72	0	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
-NR1L-ComfortHMI-106	SWE1-HVAC-111-03	16.6.1	0.64	3	The system can jump to a value as well via the slider or voice command.
-NR1L-ComfortHMI-414	SWE1-HVAC-111-03	16.6.1	0.64	3	The system can jump to a value as well via the slider or voice command.
-NR1L-ComfortHMI-415	SWE1-HVAC-111-03	16.6.1	0.64	3	The system can jump to a value as well via the slider or voice command.
+NR1L-ComfortHMI-098	SWE1-HVAC-110-01	16.6	1.00	0	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric).
+NR1L-ComfortHMI-413	SWE1-HVAC-110-01	16.6	1.00	0	ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric).
+NR1L-ComfortHMI-099	SWE1-HVAC-110-02	16.6	1.00	1	Temperature will display the current degree value the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.
+NR1L-ComfortHMI-100	SWE1-HVAC-110-03	16.6	1.00	2	The status is indicated on TS climate screen and in status bar.
+NR1L-ComfortHMI-101	SWE1-HVAC-110-04	16.6	1.00	3	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
+NR1L-ComfortHMI-102	SWE1-HVAC-110-05	16.6	1.00	5	When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments .
+NR1L-ComfortHMI-103	SWE1-HVAC-110-06	16.6	1.00	4	(when sync'd, do not show slider pop-up on passenger side when adjusting driver slider).
+NR1L-ComfortHMI-104	SWE1-HVAC-111-01	16.6.1	1.00	0	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
+NR1L-ComfortHMI-105	SWE1-HVAC-111-02	16.6.1	1.00	0	ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.
+NR1L-ComfortHMI-106	SWE1-HVAC-111-03	16.6.1	1.00	3	The system can jump to a value as well via the slider or voice command.
+NR1L-ComfortHMI-414	SWE1-HVAC-111-03	16.6.1	1.00	3	The system can jump to a value as well via the slider or voice command.
+NR1L-ComfortHMI-415	SWE1-HVAC-111-03	16.6.1	1.00	3	The system can jump to a value as well via the slider or voice command.
 NR1L-ComfortHMI-107	SWE1-HVAC-111-04	16.6.1	1.00	2	Long press = fast move shall also work for temperature HARD CONTROLS .
-NR1L-ComfortHMI-108	SWE1-HVAC-111-05	16.6.1	0.98	4	User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press.
-NR1L-ComfortHMI-416	SWE1-HVAC-111-05	16.6.1	0.98	4	User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press.
-NR1L-ComfortHMI-109	SWE1-HVAC-112-01	16.7	0.90	0	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).
-NR1L-ComfortHMI-110	SWE1-HVAC-112-02	16.7	0.96	1	The status is indicated on TS climate screen and in main category control.
-NR1L-ComfortHMI-111	SWE1-HVAC-112-03	16.7	0.97	2	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
-NR1L-ComfortHMI-112	SWE1-HVAC-112-04	16.7	0.89	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-417	SWE1-HVAC-112-04	16.7	0.89	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-418	SWE1-HVAC-112-04	16.7	0.89	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-419	SWE1-HVAC-112-04	16.7	0.89	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
-NR1L-ComfortHMI-113	SWE1-HVAC-112-05	16.7	0.85	6	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).
-NR1L-ComfortHMI-420	SWE1-HVAC-112-05	16.7	0.85	6	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).
-NR1L-ComfortHMI-237	SWE1-HVAC-113-01	16.8	0.38	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-238	SWE1-HVAC-113-02	16.8	0.29	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-239	SWE1-HVAC-113-03	16.8	0.39	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-240	SWE1-HVAC-113-04	16.8	0.35	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-241	SWE1-HVAC-113-05	16.8	0.16	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-242	SWE1-HVAC-113-06	16.8	0.18	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
-NR1L-ComfortHMI-243	SWE1-HVAC-113-07	16.8	0.83	1	MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode.
-NR1L-ComfortHMI-244	SWE1-HVAC-113-08	16.8	0.85	2	Change in fan speed doesn’t break MAX DEF.
-NR1L-ComfortHMI-245	SWE1-HVAC-113-09	16.8	0.82	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-421	SWE1-HVAC-113-09	16.8	0.82	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-422	SWE1-HVAC-113-09	16.8	0.82	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-423	SWE1-HVAC-113-09	16.8	0.82	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
-NR1L-ComfortHMI-246	SWE1-HVAC-113-10	16.8	0.75	4	Pressing A/C brakes MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off.
-NR1L-ComfortHMI-247	SWE1-HVAC-113-11	16.8	0.58	5	Pressing AUTO breaks MAX DEF (turns MAX DEF off) and the system goes to AUTO.
-NR1L-ComfortHMI-248	SWE1-HVAC-113-12	16.8	0.63	6	Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.
-NR1L-ComfortHMI-249	SWE1-HVAC-114-01	16.9	0.41	0	ICE8.) Rear Defrost has on/ off state.
-NR1L-ComfortHMI-250	SWE1-HVAC-114-02	16.9	0.97	1	Gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that .
-NR1L-ComfortHMI-215	SWE1-HVAC-115-01	16.10	0.80	0	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen) and in status bar.
-NR1L-ComfortHMI-216	SWE1-HVAC-115-02	16.10	0.81	1	When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/Max defrost and rear defrost.
-NR1L-ComfortHMI-217	SWE1-HVAC-115-03	16.10	0.69	2	"The Main category control shows fan speed segments off and mode Oscar replaced with ""OFF"" which will remain until the user turns it back on."
-NR1L-ComfortHMI-218	SWE1-HVAC-115-04	16.10	0.93	3	Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off.
-NR1L-ComfortHMI-219	SWE1-HVAC-115-05	16.10	0.83	4	Actions on rear defrost, heated/vented seats or heated wheel don t reactivate climate (climate still off).
-NR1L-ComfortHMI-424	SWE1-HVAC-115-05	16.10	0.83	4	Actions on rear defrost, heated/vented seats or heated wheel don t reactivate climate (climate still off).
-NR1L-ComfortHMI-425	SWE1-HVAC-115-05	16.10	0.83	4	Actions on rear defrost, heated/vented seats or heated wheel don t reactivate climate (climate still off).
-NR1L-ComfortHMI-220	SWE1-HVAC-115-06	16.10	0.90	5	Actions on any other climate hard controls turns system back on.
-NR1L-ComfortHMI-221	SWE1-HVAC-115-07	16.10	0.70	7	Action on the recirculation hard control will not turn system back on; it simply opens the recirculation and turns led off.
-NR1L-ComfortHMI-222	SWE1-HVAC-115-08	16.10	0.77	9	If the user continues to hold/turn the control, the system will respond in-kind.
-NR1L-ComfortHMI-223	SWE1-HVAC-116-01	16.11	0.86	3	When SYNC is on, changing the driver temperature automatically changes the passenger temperature.
-NR1L-ComfortHMI-224	SWE1-HVAC-116-02	16.11	0.94	4	Adjusting the passenger temperature via touchscreen or hard control would break SYNC.
-NR1L-ComfortHMI-432	SWE1-HVAC-116-03	16.11	0.90	5	Adjusting Fan speed and Mode will alter the Front and Rear passengers.
-NR1L-ComfortHMI-433	SWE1-HVAC-116-04	16.11	0.77	6	If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.
-NR1L-ComfortHMI-251	SWE1-HVAC-117-01	16.12	0.93	3	Only one airflow mode can be selected at a time.
-NR1L-ComfortHMI-252	SWE1-HVAC-117-02	16.12	0.80	1	ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+NR1L-ComfortHMI-108	SWE1-HVAC-111-05	16.6.1	1.00	4	User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press.
+NR1L-ComfortHMI-416	SWE1-HVAC-111-05	16.6.1	1.00	4	User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press.
+NR1L-ComfortHMI-109	SWE1-HVAC-112-01	16.7	1.00	0	ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).
+NR1L-ComfortHMI-110	SWE1-HVAC-112-02	16.7	1.00	1	The status is indicated on TS climate screen and in main category control.
+NR1L-ComfortHMI-111	SWE1-HVAC-112-03	16.7	1.00	2	Show pop-up when status is changed via hard control and currently shown screen is not climate screen.
+NR1L-ComfortHMI-112	SWE1-HVAC-112-04	16.7	1.00	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-417	SWE1-HVAC-112-04	16.7	1.00	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-418	SWE1-HVAC-112-04	16.7	1.00	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-419	SWE1-HVAC-112-04	16.7	1.00	3	When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.
+NR1L-ComfortHMI-113	SWE1-HVAC-112-05	16.7	1.00	6	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).
+NR1L-ComfortHMI-420	SWE1-HVAC-112-05	16.7	1.00	6	The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).
+NR1L-ComfortHMI-237	SWE1-HVAC-113-01	16.8	1.00	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-238	SWE1-HVAC-113-02	16.8	0.97	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-239	SWE1-HVAC-113-03	16.8	1.00	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-240	SWE1-HVAC-113-04	16.8	1.00	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-241	SWE1-HVAC-113-05	16.8	1.00	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-242	SWE1-HVAC-113-06	16.8	1.00	0	ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+NR1L-ComfortHMI-243	SWE1-HVAC-113-07	16.8	1.00	1	MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode.
+NR1L-ComfortHMI-244	SWE1-HVAC-113-08	16.8	1.00	2	Change in fan speed doesn’t break MAX DEF.
+NR1L-ComfortHMI-245	SWE1-HVAC-113-09	16.8	1.00	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-421	SWE1-HVAC-113-09	16.8	1.00	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-422	SWE1-HVAC-113-09	16.8	1.00	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-423	SWE1-HVAC-113-09	16.8	1.00	3	Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+NR1L-ComfortHMI-246	SWE1-HVAC-113-10	16.8	1.00	4	Pressing A/C brakes MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off.
+NR1L-ComfortHMI-247	SWE1-HVAC-113-11	16.8	1.00	5	Pressing AUTO breaks MAX DEF (turns MAX DEF off) and the system goes to AUTO.
+NR1L-ComfortHMI-248	SWE1-HVAC-113-12	16.8	1.00	6	Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.
+NR1L-ComfortHMI-249	SWE1-HVAC-114-01	16.9	1.00	0	ICE8.) Rear Defrost has on/ off state.
+NR1L-ComfortHMI-250	SWE1-HVAC-114-02	16.9	1.00	1	Gray out the REAR DEFROST button when rear defrost availability status from CCM denotes that .
+NR1L-ComfortHMI-215	SWE1-HVAC-115-01	16.10	1.00	0	ICE9.) Climate off has on/off state that is indicated on HC, TS (climate screen) and in status bar.
+NR1L-ComfortHMI-216	SWE1-HVAC-115-02	16.10	1.00	1	When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/Max defrost and rear defrost.
+NR1L-ComfortHMI-217	SWE1-HVAC-115-03	16.10	1.00	2	"The Main category control shows fan speed segments off and mode Oscar replaced with ""OFF"" which will remain until the user turns it back on."
+NR1L-ComfortHMI-218	SWE1-HVAC-115-04	16.10	1.00	3	Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off.
+NR1L-ComfortHMI-219	SWE1-HVAC-115-05	16.10	1.00	4	Actions on rear defrost, heated/vented seats or heated wheel don t reactivate climate (climate still off).
+NR1L-ComfortHMI-424	SWE1-HVAC-115-05	16.10	1.00	4	Actions on rear defrost, heated/vented seats or heated wheel don t reactivate climate (climate still off).
+NR1L-ComfortHMI-425	SWE1-HVAC-115-05	16.10	1.00	4	Actions on rear defrost, heated/vented seats or heated wheel don t reactivate climate (climate still off).
+NR1L-ComfortHMI-220	SWE1-HVAC-115-06	16.10	1.00	5	Actions on any other climate hard controls turns system back on.
+NR1L-ComfortHMI-221	SWE1-HVAC-115-07	16.10	1.00	7	Action on the recirculation hard control will not turn system back on; it simply opens the recirculation and turns led off.
+NR1L-ComfortHMI-222	SWE1-HVAC-115-08	16.10	1.00	9	If the user continues to hold/turn the control, the system will respond in-kind.
+NR1L-ComfortHMI-223	SWE1-HVAC-116-01	16.11	1.00	3	When SYNC is on, changing the driver temperature automatically changes the passenger temperature.
+NR1L-ComfortHMI-224	SWE1-HVAC-116-02	16.11	1.00	4	Adjusting the passenger temperature via touchscreen or hard control would break SYNC.
+NR1L-ComfortHMI-432	SWE1-HVAC-116-03	16.11	1.00	5	Adjusting Fan speed and Mode will alter the Front and Rear passengers.
+NR1L-ComfortHMI-433	SWE1-HVAC-116-04	16.11	1.00	6	If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.
+NR1L-ComfortHMI-251	SWE1-HVAC-117-01	16.12	1.00	3	Only one airflow mode can be selected at a time.
+NR1L-ComfortHMI-252	SWE1-HVAC-117-02	16.12	1.00	1	ON state for the four airflow modes is shown by highlighting the button and increasing button size.
 NR1L-ComfortHMI-253	SWE1-HVAC-117-03	16.12	1.00	2	The main category control will display the newly selected airflow mode inside the fan space .
-NR1L-ComfortHMI-254	SWE1-HVAC-118-01	16.12.1	0.69	0	ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
-NR1L-ComfortHMI-255	SWE1-HVAC-118-02	16.12.1	0.55	0	ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
-NR1L-ComfortHMI-256	SWE1-HVAC-118-03	16.12.1	0.29	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-257	SWE1-HVAC-118-04	16.12.1	0.35	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-258	SWE1-HVAC-118-05	16.12.1	0.29	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-259	SWE1-HVAC-118-06	16.12.1	0.49	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-260	SWE1-HVAC-118-07	16.12.1	0.61	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-426	SWE1-HVAC-118-07	16.12.1	0.61	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-261	SWE1-HVAC-118-08	16.12.1	0.36	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
-NR1L-ComfortHMI-262	SWE1-HVAC-118-09	16.12.1	0.63	2	In both cases the main category label will be updated.
-NR1L-ComfortHMI-263	SWE1-HVAC-118-10	16.12.1	0.97	3	While in Rear Climate screen the Mode Hard Control button will alter the front Mode.
-NR1L-ComfortHMI-225	SWE1-HVAC-119-01	16.13	0.18	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
-NR1L-ComfortHMI-226	SWE1-HVAC-119-02	16.13	0.35	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
-NR1L-ComfortHMI-227	SWE1-HVAC-119-03	16.13	0.33	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
-NR1L-ComfortHMI-228	SWE1-HVAC-119-04	16.13	0.44	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
-NR1L-ComfortHMI-229	SWE1-HVAC-119-05	16.13	0.38	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
-NR1L-ComfortHMI-230	SWE1-HVAC-119-06	16.13	0.17	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
-NR1L-ComfortHMI-231	SWE1-HVAC-119-07	16.13	0.82	3	Change in fan speed deactivates MAX A/C (un-highlight MAX A/C) while maintaining system in current state with change in fan speed.
-NR1L-ComfortHMI-232	SWE1-HVAC-119-08	16.13	0.58	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
-NR1L-ComfortHMI-427	SWE1-HVAC-119-08	16.13	0.58	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
-NR1L-ComfortHMI-428	SWE1-HVAC-119-08	16.13	0.58	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
-NR1L-ComfortHMI-429	SWE1-HVAC-119-08	16.13	0.58	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
-NR1L-ComfortHMI-233	SWE1-HVAC-119-09	16.13	0.58	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
-NR1L-ComfortHMI-234	SWE1-HVAC-119-10	16.13	0.73	5	Pressing A/C, brakes MAX A/C (turns MAX A/C off) and the system goes back to the previous manual mode with the A/C off.
-NR1L-ComfortHMI-235	SWE1-HVAC-119-11	16.13	0.61	6	Pressing AUTO brakes MAX A/C (turns MAX A/C off) and the system goes to AUTO.
-NR1L-ComfortHMI-236	SWE1-HVAC-119-12	16.13	0.63	7	Similarly, pressing MAX DEF turns MAX A/C off (turns MAX A/C off) and the system goes to MAX DEF.
-NR1L-ComfortHMI-091	SWE1-HVAC-120-01	16.14	0.69	0	ICE13.) MTC screens/popups are to be used when CCM relays MTC functionality.
-NR1L-ComfortHMI-092	SWE1-HVAC-120-02	16.14	0.80	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
-NR1L-ComfortHMI-093	SWE1-HVAC-120-03	16.14	0.83	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
-NR1L-ComfortHMI-264	SWE1-HVAC-121-01	16.15	0.67	0	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.
-NR1L-ComfortHMI-265	SWE1-HVAC-121-02	16.15	0.79	1	EXTERIOR REAR-VIEWMIRROR DEFROST is independent of any other climate functions.
-NR1L-ComfortHMI-094	SWE1-HVAC-122-01	16.16	0.37	0	ICE15.) Always show 'Driver' or 'Passenger'.
+NR1L-ComfortHMI-254	SWE1-HVAC-118-01	16.12.1	1.00	0	ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+NR1L-ComfortHMI-255	SWE1-HVAC-118-02	16.12.1	1.00	0	ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+NR1L-ComfortHMI-256	SWE1-HVAC-118-03	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-257	SWE1-HVAC-118-04	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-258	SWE1-HVAC-118-05	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-259	SWE1-HVAC-118-06	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-260	SWE1-HVAC-118-07	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-426	SWE1-HVAC-118-07	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-261	SWE1-HVAC-118-08	16.12.1	1.00	1	When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+NR1L-ComfortHMI-262	SWE1-HVAC-118-09	16.12.1	1.00	2	In both cases the main category label will be updated.
+NR1L-ComfortHMI-263	SWE1-HVAC-118-10	16.12.1	1.00	3	While in Rear Climate screen the Mode Hard Control button will alter the front Mode.
+NR1L-ComfortHMI-225	SWE1-HVAC-119-01	16.13	1.00	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
+NR1L-ComfortHMI-226	SWE1-HVAC-119-02	16.13	1.00	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
+NR1L-ComfortHMI-227	SWE1-HVAC-119-03	16.13	0.96	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
+NR1L-ComfortHMI-228	SWE1-HVAC-119-04	16.13	1.00	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
+NR1L-ComfortHMI-229	SWE1-HVAC-119-05	16.13	1.00	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
+NR1L-ComfortHMI-230	SWE1-HVAC-119-06	16.13	1.00	2	MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.
+NR1L-ComfortHMI-231	SWE1-HVAC-119-07	16.13	1.00	3	Change in fan speed deactivates MAX A/C (un-highlight MAX A/C) while maintaining system in current state with change in fan speed.
+NR1L-ComfortHMI-232	SWE1-HVAC-119-08	16.13	1.00	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+NR1L-ComfortHMI-427	SWE1-HVAC-119-08	16.13	1.00	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+NR1L-ComfortHMI-428	SWE1-HVAC-119-08	16.13	1.00	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+NR1L-ComfortHMI-429	SWE1-HVAC-119-08	16.13	1.00	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+NR1L-ComfortHMI-233	SWE1-HVAC-119-09	16.13	1.00	4	Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+NR1L-ComfortHMI-234	SWE1-HVAC-119-10	16.13	1.00	5	Pressing A/C, brakes MAX A/C (turns MAX A/C off) and the system goes back to the previous manual mode with the A/C off.
+NR1L-ComfortHMI-235	SWE1-HVAC-119-11	16.13	1.00	6	Pressing AUTO brakes MAX A/C (turns MAX A/C off) and the system goes to AUTO.
+NR1L-ComfortHMI-236	SWE1-HVAC-119-12	16.13	1.00	7	Similarly, pressing MAX DEF turns MAX A/C off (turns MAX A/C off) and the system goes to MAX DEF.
+NR1L-ComfortHMI-091	SWE1-HVAC-120-01	16.14	1.00	0	ICE13.) MTC screens/popups are to be used when CCM relays MTC functionality.
+NR1L-ComfortHMI-092	SWE1-HVAC-120-02	16.14	1.00	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
+NR1L-ComfortHMI-093	SWE1-HVAC-120-03	16.14	1.00	1	"MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and ""Auto"" control over the set temperature."
+NR1L-ComfortHMI-264	SWE1-HVAC-121-01	16.15	1.00	0	ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.
+NR1L-ComfortHMI-265	SWE1-HVAC-121-02	16.15	1.00	1	EXTERIOR REAR-VIEWMIRROR DEFROST is independent of any other climate functions.
+NR1L-ComfortHMI-094	SWE1-HVAC-122-01	16.16	1.00	0	ICE15.) Always show 'Driver' or 'Passenger'.
 NR1L-ComfortHMI-095	SWE1-HVAC-122-03	16.16	1.00	2	Active state text color is white.
 NR1L-ComfortHMI-096	SWE1-HVAC-122-04	16.16	1.00	3	Inactive state text color is gray.
 NR1L-ComfortHMI-097	SWE1-HVAC-122-05	16.16	1.00	4	When entering the controls screen the current state of the buttons will be displayed.
-NR1L-ComfortHMI-114	SWE1-HVAC-123	16.17	0.95	0	C16.) If blower reduction occurs automatically due to an active Voice Recognition session , the change in fan speed is not displayed to the user.
-NR1L-ComfortHMI-115	SWE1-HVAC-124-01	17.1	0.82	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
-NR1L-ComfortHMI-116	SWE1-HVAC-124-02	17.1	0.66	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
-NR1L-ComfortHMI-117	SWE1-HVAC-124-03	17.1	0.73	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
-NR1L-ComfortHMI-118	SWE1-HVAC-125-01	17.2	0.46	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-119	SWE1-HVAC-125-02	17.2	0.77	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-120	SWE1-HVAC-125-03	17.2	0.47	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-121	SWE1-HVAC-125-04	17.2	0.39	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-122	SWE1-HVAC-125-05	17.2	0.42	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-123	SWE1-HVAC-125-06	17.2	0.44	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-124	SWE1-HVAC-125-07	17.2	0.44	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
-NR1L-ComfortHMI-361	SWE1-HVAC-125-08	17.2	0.77	1	12' Portrait 50% widget also includes fan speed.
-NR1L-ComfortHMI-125	SWE1-HVAC-126-01	17.3	0.64	0	CW2.) The second Comfort widget screen includes all Comfort features available to the vehicle (i.e. Heated/Vented seats, Heated steering wheel).
+NR1L-ComfortHMI-462	SWE1-HVAC-122-02	16.16	1.00	1	Off icon of seats will depend on system configuration (see Climate section).
+NR1L-ComfortHMI-114	SWE1-HVAC-123	16.17	1.00	0	C16.) If blower reduction occurs automatically due to an active Voice Recognition session , the change in fan speed is not displayed to the user.
+NR1L-ComfortHMI-115	SWE1-HVAC-124-01	17.1	1.00	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
+NR1L-ComfortHMI-116	SWE1-HVAC-124-02	17.1	1.00	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
+NR1L-ComfortHMI-117	SWE1-HVAC-124-03	17.1	1.00	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
+NR1L-ComfortHMI-118	SWE1-HVAC-125-01	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-119	SWE1-HVAC-125-02	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-120	SWE1-HVAC-125-03	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-121	SWE1-HVAC-125-04	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-122	SWE1-HVAC-125-05	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-123	SWE1-HVAC-125-06	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-124	SWE1-HVAC-125-07	17.2	1.00	0	CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.
+NR1L-ComfortHMI-361	SWE1-HVAC-125-08	17.2	1.00	1	12' Portrait 50% widget also includes fan speed.
+NR1L-ComfortHMI-125	SWE1-HVAC-126-01	17.3	1.00	0	CW2.) The second Comfort widget screen includes all Comfort features available to the vehicle (i.e. Heated/Vented seats, Heated steering wheel).
 NR1L-ComfortHMI-126	SWE1-HVAC-126-03	17.3	1.00	2	If the vehicle is not equipped with Comfort Features this widget page will not be shown.
-NR1L-ComfortHMI-362	SWE1-HVAC-126-02	17.3	0.70	1	On the 50% widget, these features are separated between driver and passenger.
-NR1L-ComfortHMI-378	SWE1-HVAC-127-01	17.4	0.57	0	CW3.) For 8.4/10.1/12 landscaped screens, there will be a toggle button on the 25% widget to switch between either Heat or Vent, which will toggle between the two different control types.
-NR1L-ComfortHMI-379	SWE1-HVAC-127-02	17.4	0.40	0	CW3.) For 8.4/10.1/12 landscaped screens, there will be a toggle button on the 25% widget to switch between either Heat or Vent, which will toggle between the two different control types.
-NR1L-ComfortHMI-380	SWE1-HVAC-128-01	17.5	0.66	0	CW4.) For dual zone climate with dual airflow modes equipped vehicles, their widget will have driver and passenger temperature along with two sets of airflow modes, one for the driver and one for the passenger.
-NR1L-ComfortHMI-381	SWE1-HVAC-128-02	17.5	0.55	0	CW4.) For dual zone climate with dual airflow modes equipped vehicles, their widget will have driver and passenger temperature along with two sets of airflow modes, one for the driver and one for the passenger.
+NR1L-ComfortHMI-362	SWE1-HVAC-126-02	17.3	1.00	1	On the 50% widget, these features are separated between driver and passenger.
+NR1L-ComfortHMI-378	SWE1-HVAC-127-01	17.4	1.00	0	CW3.) For 8.4/10.1/12 landscaped screens, there will be a toggle button on the 25% widget to switch between either Heat or Vent, which will toggle between the two different control types.
+NR1L-ComfortHMI-379	SWE1-HVAC-127-02	17.4	1.00	0	CW3.) For 8.4/10.1/12 landscaped screens, there will be a toggle button on the 25% widget to switch between either Heat or Vent, which will toggle between the two different control types.
+NR1L-ComfortHMI-380	SWE1-HVAC-128-01	17.5	1.00	0	CW4.) For dual zone climate with dual airflow modes equipped vehicles, their widget will have driver and passenger temperature along with two sets of airflow modes, one for the driver and one for the passenger.
+NR1L-ComfortHMI-381	SWE1-HVAC-128-02	17.5	1.00	0	CW4.) For dual zone climate with dual airflow modes equipped vehicles, their widget will have driver and passenger temperature along with two sets of airflow modes, one for the driver and one for the passenger.
+NR1L-ComfortHMI-463	SWE1-HVAC-129-01	18.1	1.00	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
+NR1L-ComfortHMI-464	SWE1-HVAC-129-02	18.1	1.00	0	W0.) The Comfort widget will have two screens: Comfort and Seats.
+NR1L-ComfortHMI-465	SWE1-HVAC-129-03	18.1	1.00	0	W0.) The Comfort widget will have two screens: Comfort and Seats.

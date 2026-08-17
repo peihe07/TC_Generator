@@ -61,7 +61,14 @@ def main() -> int:
     # Taken from the live state so the test cannot drift from it.
     gen_a = sorted(generated)[0]
     gen_b = sorted(generated)[-1]
-    ungen = next(o for o in sorted(L.SECTION_TEST_SET) if o not in generated)
+    # 97／98 之補產使**全部 129 節皆已生成**，故語料內再無「未生成之節」可借。
+    # 原式 `next(o for o in … if o not in generated)` 於此拋 StopIteration ——
+    # **反向驗證會因為語料變完整而停止運作**，那正是它最不該停的時候。
+    # 改以一個**不存在於語料**之節次充當否定側：本檔驗的是 gate 之判準
+    # （`provisional == true` 且兩側皆已生成），不是那個節次本身。
+    ungen = next(o for o in sorted(L.SECTION_TEST_SET) if o not in generated) \
+        if any(o not in generated for o in L.SECTION_TEST_SET) else "99.99"
+    assert ungen not in generated, "否定側之節次必須是未生成者"
     # A generated section whose Test Set is COMPLETE — the old trigger's hook.
     gen_in_complete = next(o for o in sorted(generated)
                            if L.SECTION_TEST_SET.get(o) in complete)

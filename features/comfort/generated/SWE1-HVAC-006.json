@@ -96,6 +96,32 @@
     "ch16_sentence": "鏡射表之分界欄明載「未涵蓋：… 與 recirc 可自動開啟 AC」"
    },
    "test_item_authored": "Recirc shall be able to automatically turn on AC"
+  },
+  {
+   "req_id": "SWE1-HVAC-006-04",
+   "tc_id": "NR1L-ComfortHMI-439",
+   "tc_title": "The RECIRC icon matches the vehicle configuration",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "The recirc icon will display the vehicle model specific icon as displayed in the table.\n\n(read the RECIRC icon -> A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected)",
+   "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Read the RECIRC icon",
+   "expected_result": "1. The climate screen is displayed\n2. A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.5",
+    "verdict": "yes",
+    "ch16_sentence": "ICE4「The recirc icon will display the vehicle model specific icon」與 C4 之同一句逐字相同（其表寫作 `Climate Main page table`）—— EMEA ICS 車輛由 16.5 自行規範，排除成立"
+   },
+   "test_item_authored": "The recirc icon shall display the vehicle model specific icon as displayed in the table"
   }
  ]
 }

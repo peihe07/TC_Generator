@@ -40,6 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from external_docs import append_external   # 81 §2 — R-C45 解封
 from test_item import apply_test_item   # Pei 2026-08-17 —— 上半照抄條文、下半情境
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
+from gap_tcs import append_gap, gap_for   # 97／98 —— 006-04（439）與 019-02（458）
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -129,10 +130,17 @@ DIST_AXIS = {
 # not look like a leaf that vanished.
 MOVED_TO_BATCH16 = ['SWE1-HVAC-004-01', 'SWE1-HVAC-004-02', 'SWE1-HVAC-007-01', 'SWE1-HVAC-007-02']
 
+# 97 §1 之判準訂正解封二葉，98 §1 定其為各一條（見 `gap_tcs.py`）：
+#   `006-04`  圖示與配置相符 —— 97 §2.8：ER 寫「相符」而**不寫是哪個圖示**
+#             （那才是 DR #32 所缺之對照），相符本身測試員對照實車可判
+#   `019-02`  「modifies multiple climate parameters」之**前半可驗** ——
+#             97 §2.4：只驗「有改變」，**ER 不得引 16.13 之逐項清單**
+#             （§8.2.1 禁跨章移植）；其尾「according to VF HVAC logic」
+#             與 `019-03` 之委派同入 DR #5
+# `019-03` **維持不產** —— 其全部內容即為對外部文件之委派（比照 `080-02`），
+# 其列為 96 §1 之留空列，故仍列於此。
 WITHHELD = [
- ("SWE1-HVAC-006-04", "「The recirc icon will display the vehicle model specific icon **as displayed in the table**」—— **未指名任何節次**，全 129 節無該對照表之內容；與 `16.16` 之座椅 off icon 同型，併入 `DATA_REQUESTS` #32 之「configuration → icon 對照未定義」類。**16.5（ICE4）逐字重述且把表寫成 `Climate Main page table`，仍未給對照** —— 兩側皆無"),
- ("SWE1-HVAC-019-02", "「MAX A/C modifies multiple climate parameters」—— C14 未列出任何一項參數，其內容由次句委派予 **VF HVAC document**（外部文件）；依 profile §5.3 屬 `[BLOCKED-SPEC]`，白名單增列須經裁定（**R-C26**）"),
- ("SWE1-HVAC-019-03", "「On/Off logic should follow requirements from **VF HVAC document**」—— 同 `019-02`，明文外部委派"),
+ ("SWE1-HVAC-019-03", "「On/Off logic should follow requirements from **VF HVAC document**」—— **全部內容即為委派**，扣除後無獨立餘留，比照 `080-02` 之前例維持不產；其列依 96 §1 為留空列（`Requirement or Design ID` 照填、其餘欄空）。DR #5 具名 VF HVAC document"),
 ]
 
 
@@ -162,6 +170,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     n = START_N - 1
     total = 0
+    emitted_leaves = set()
     parents = {"2.3": "SWE1-HVAC-003", "2.4": "SWE1-HVAC-005",
                "2.5": "SWE1-HVAC-006", "2.10": "SWE1-HVAC-014",
                "2.11": "SWE1-HVAC-015", "2.13": "SWE1-HVAC-019"}
@@ -203,6 +212,7 @@ def main() -> None:
                 "emea_ics_review": {"ch16_outline": ch16, "verdict": verdict,
                                     "ch16_sentence": sentence},
             })
+        emitted_leaves.update(t["req_id"] for t in tcs)
         if o == "2.11":
             # 81 §2.1 — R-C45：後排氣候之配置條件由 CFTS043 承載，
             # 其 PC 走本節之同一組裝路徑（base + 外部條件 + 三項排除）。
@@ -222,6 +232,8 @@ def main() -> None:
                                       "verdict": "yes",
                                       "ch16_sentence": "ICE10 與 C12 逐字相同"}},
                 {r: refs for r in EXT_LEAVES_211})
+        tcs = append_gap(tcs, parents[o])
+        emitted_leaves.update(x["req_id"] for x in tcs)
         doc = {
             "parent": parents[o], "outline": o, "batch": TEST_SET,
             "source_clause": full[o]["full_text"],
@@ -236,7 +248,7 @@ def main() -> None:
         total += len(tcs)
         print(f"{parents[o]}  {o:8} {len(tcs)} TC")
 
-    leaves = total
+    leaves = len(emitted_leaves)   # 本組每葉一條，故其值等於 total
     print(f"\n{leaves} leaves -> {total} TCs; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
     print("\nWITHHELD — stop-and-report, no row produced:")
@@ -247,9 +259,9 @@ def main() -> None:
     print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
           f"batch 16 (R-C42) = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 35)")
-    if leaves + held + moved != 35 or total != 28:
+    if leaves + held + moved != 35 or total != 30:
         raise SystemExit(
-            f"expected 35 leaves declared / 26 TCs, got "
+            f"expected 35 leaves declared / 30 TCs（28 ＋ 97／98 之 2）, got "
             f"{leaves + held + moved} / {total}")
 
 

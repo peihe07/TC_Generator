@@ -37,12 +37,33 @@
    "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
    "priority": "P1",
    "design_method": "功能測試 (Functional based ; no specific technique)",
-   "split_flag": false,
-   "split_reason": "",
+   "split_flag": true,
+   "split_reason": "§8.3 之軸拆分：`10.4`（EH4）之「When the AUTO function is off **and available**」以可用性為其前提，而 profile §3.2 第一軸（ATC／MTC）之 MTC 值使該前提不成立 —— 「(AUTO is not shown in MTC configurations)」為 `2.3`／`16.3` 之逐字括號（跨節取據 R-C29）。兩個軸值之預期結果相反且各自可失效：ATC 車上首按進入 AUTO ECO 而 MTC 車上不進入，任一側錯皆不使另一側錯。**「not shown 是否等於 not available」屬測試員於實車上之觀察，不屬條文之缺口**（97 §2.6，RD-1 第 7 問據此移除）。",
    "functional_safety": "NA",
    "estimated_test_time": "",
    "remarks": "",
    "test_item_authored": "When the AUTO function is off and available, the user's first press of the AUTO button shall activate the AUTO ECO functionality"
+  },
+  {
+   "req_id": "SWE1-HVAC-047",
+   "tc_id": "NR1L-ComfortHMI-460",
+   "tc_title": "Pressing AUTO does not activate AUTO ECO in an MTC configuration",
+   "test_group": "Comfort",
+   "test_set": "ECO HVAC",
+   "test_item": "EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.\n\n(press the position at which the AUTO button is shown in an ATC configuration -> The AUTO ECO functionality is not activated)",
+   "pre_conditions": "1. [spec-derived] The climate system is MTC (2.3)\n2. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the climate screen\n2. Press the position at which the AUTO button is shown in an ATC configuration",
+   "expected_result": "1. The climate screen is displayed and no AUTO button is shown\n2. The AUTO ECO functionality is not activated",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.4; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_10.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": true,
+   "split_reason": "§8.3 之軸拆分：`10.4`（EH4）之「When the AUTO function is off **and available**」以可用性為其前提，而 profile §3.2 第一軸（ATC／MTC）之 MTC 值使該前提不成立 —— 「(AUTO is not shown in MTC configurations)」為 `2.3`／`16.3` 之逐字括號（跨節取據 R-C29）。兩個軸值之預期結果相反且各自可失效：ATC 車上首按進入 AUTO ECO 而 MTC 車上不進入，任一側錯皆不使另一側錯。**「not shown 是否等於 not available」屬測試員於實車上之觀察，不屬條文之缺口**（97 §2.6，RD-1 第 7 問據此移除）。",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "test_item_authored": "AUTO is not shown in MTC configurations, so the first press of the AUTO button shall not activate the AUTO ECO functionality"
   }
  ]
 }

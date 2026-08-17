@@ -41,6 +41,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from test_item import apply_test_item   # Pei 2026-08-17 —— 上半照抄條文、下半情境
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
+from gap_tcs import append_gap   # 97／98 —— 2.1 之四條補產，tc_id 435–438
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -584,18 +585,20 @@ BATCHES = [
 
 # Named on every run so the stop is visible rather than being an absence
 # nobody notices (R-C24's principle applied to scope, as in batch 2).
-WITHHELD = [
-    ("2.1", "SWE1-HVAC-001-01", 1,
-     "條文只寫 depending on vehicle configuration，未述何種配置產生何種 tab"),
-    ("2.1", "SWE1-HVAC-001-02", 1,
-     "同上 —— 順序無法在不知配置之下設定；另 037 之順序與條文不符（A-CF21）"),
-]
+# 97 §1 之判準訂正使兩者之停下理由失效 ——「不知道誰適用」與「不知道有哪些」
+# 是兩件事：條文把四個 tab 逐字列出、順序給定、上界給定，未給者僅「哪台車給
+# 哪一組」，而那是測試員面對實車時看得見的事。98 §A／§B 依 **R-C33** 定其
+# 內容取條文（4 tabs、順序含 Massage），落差為 RD-1 既有記載 A-CF21。
+# 兩葉之列見 `gap_tcs.py`（tc_id 435–438），本清單因而為空。
+WITHHELD = []
 
 
 def main() -> None:
     full = {r["outline"]: r for r in
             csv.DictReader(FULLTEXT.open(encoding="utf-8"), delimiter="\t")}
     OUT.mkdir(parents=True, exist_ok=True)
+    from gap_tcs import gap_for
+    gap_rows = gap_for("SWE1-HVAC-" + "001")   # 字串組出：見 gen_batch17.py 之 PARENT()
     n = START_N - 1
     total = 0
 
@@ -642,6 +645,7 @@ def main() -> None:
                 **({"emea_ics_review": EMEA_PER_TC[_tid]}
                    if (_tid := TC_ID_FMT.format(n=n)) in EMEA_PER_TC else {}),
             })
+        tcs = append_gap(tcs, b["parent"])
         doc = {
             "parent": b["parent"],
             "outline": o,
@@ -660,7 +664,8 @@ def main() -> None:
         total += len(tcs)
         print(f"{b['parent']}  {o:8} {len(tcs)} TC  -> generated/{b['parent']}.json")
 
-    leaves = len({tc["req_id"] for b in BATCHES for tc in b["tcs"]})
+    leaves = len({tc["req_id"] for b in BATCHES for tc in b["tcs"]}
+                 | {r["req_id"] for r in gap_rows})
     print(f"\n{leaves} leaves -> {total} TCs; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
     print("\nWITHHELD — stop-and-report, no row produced (28 §2.1(b)):")
@@ -671,8 +676,8 @@ def main() -> None:
           f"declared for {TEST_SET} (framework.md: 16)")
     if leaves + held != 16:
         raise SystemExit(f"expected 16 leaves declared, got {leaves + held}")
-    if total != 16:
-        raise SystemExit(f"expected 16 TCs, emitted {total}")
+    if total != 20:
+        raise SystemExit(f"expected 20 TCs（16 ＋ 97／98 之 4）, emitted {total}")
 
 
 if __name__ == "__main__":

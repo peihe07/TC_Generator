@@ -44,6 +44,32 @@
     "ch16_sentence": "ICE12「MAX A/C has an on/off state that is indicated on climate screen (highlight button if on)」逐字相同"
    },
    "test_item_authored": "MAX A/C shall have an on/off state that is indicated on the climate screen by highlighting the button"
+  },
+  {
+   "req_id": "SWE1-HVAC-019-02",
+   "tc_id": "NR1L-ComfortHMI-458",
+   "tc_title": "MAX A/C changes more than one climate parameter",
+   "test_group": "Comfort",
+   "test_set": "Climate Modes",
+   "test_item": "MAX A/C modifies multiple climate parameters.\n\n(turn MAX A/C on and read the climate parameters again -> More than one of the climate parameters read in step 1 has changed)",
+   "pre_conditions": "1. [spec-derived] The vehicle has MAX A/C functionality, whose presence the CCM relays (2.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the climate parameters shown on the climate screen\n2. Turn MAX A/C on and read the climate parameters again",
+   "expected_result": "1. The climate screen shows the current climate parameters\n2. More than one of the climate parameters read in step 1 has changed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "16.13",
+    "verdict": "no",
+    "ch16_sentence": "ICE12 之 MAX A/C 於 ch16 側**逐項列出**其所改之參數，C14 則只說「multiple climate parameters」—— 兩側之涵蓋範圍不同，故本條之排除為過嚴側（R-C36-1，removal 待裁）；**ER 不得引 16.13 之逐項清單**（§8.2.1 禁跨章移植），只驗「有改變」"
+   },
+   "test_item_authored": "MAX A/C shall modify multiple climate parameters"
   }
  ]
 }

@@ -137,17 +137,14 @@ DIST_AXIS = {
     },
 }
 
-WITHHELD = [
- ("SWE1-HVAC-016-01", "`2.12`（C13）全節之主體為 **4 模式配置**（「There are 4 Airflow Mode displayed in this order」），而 **DR #31**：該值於條文中無正面之適用條件（C13 為無限定之一般句），只能由排除得出。本 leaf 之「ON state … highlighting the button and increasing button size」明寫 `for the four airflow modes`，於 5 狀態與 tri-mode 車上不成立，故無可陳述之 PC"),
- ("SWE1-HVAC-016-02", "同 `016-01`：main category control 顯示所選模式，其模式集合即 C13 之四者"),
- ("SWE1-HVAC-016-03", "同 `016-01`；且「Only one airflow mode can be selected at a time」**於 tri-mode 車為假**（C19 之三鍵可個別 toggle），故尤須先能陳述本車之值"),
- ("SWE1-HVAC-018-01", "`2.12.2`（C13.1）之循環序 `Face > Face/Feet > Feet > Feet plus Windshield` 即 C13 之四模式集合，同受 **DR #31** 所阻"),
- ("SWE1-HVAC-018-02", "同 `018-01`：長按只跳一格，其「一格」之定義依該循環序"),
- ("SWE1-HVAC-018-03", "同 `018-01`"),
- ("SWE1-HVAC-018-04", "同 `018-01`"),
- ("SWE1-HVAC-018-05", "同 `018-01`"),
- ("SWE1-HVAC-018-06", "同 `018-01`；本 leaf 另涉後排畫面（`ch2_ch7_mirror_map.tsv` 記 7.1 ↔ 2.12.2 partial），惟其停下之主因仍為 DR #31"),
-]
+# 97 §1 之判準訂正（「條文說了什麼，就驗什麼」）使下列 leaf 之停下理由失效。
+# 它們現由 `gen_batch17.py` 產出（其 parent 此前無檔，故 owner 為新檔 ——
+# 同批次 16 之前例：一個 JSON 只有一個 owner）。**仍列於本檔之算式內**，
+# 使該 Test Set 之 leaf 數仍與 framework.md 相符 ——
+# **一個搬走之 leaf，不得看起來像一個消失之 leaf**。
+MOVED_TO_BATCH17 = ['SWE1-HVAC-016-01', 'SWE1-HVAC-016-02', 'SWE1-HVAC-016-03', 'SWE1-HVAC-018-01', 'SWE1-HVAC-018-02', 'SWE1-HVAC-018-03', 'SWE1-HVAC-018-04', 'SWE1-HVAC-018-05', 'SWE1-HVAC-018-06']
+
+WITHHELD = []
 
 
 
@@ -238,11 +235,14 @@ def main() -> None:
     for req, why in WITHHELD:
         print(f"- {req}: {why}")
     held = len(WITHHELD)
-    print(f"\n{leaves} emitted + {held} withheld = {leaves + held} leaves "
+    moved = len(MOVED_TO_BATCH17)
+    print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
+          f"batch 17 (97 §1) = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 23)")
-    if leaves + held != 23 or total != 14:
+    if leaves + held + moved != 23 or total != 14:
         raise SystemExit(
-            f"expected 23 leaves declared / 14 TCs, got {leaves + held} / {total}")
+            f"expected 23 leaves declared / 14 TCs, got "
+            f"{leaves + held + moved} / {total}")
 
 
 if __name__ == "__main__":

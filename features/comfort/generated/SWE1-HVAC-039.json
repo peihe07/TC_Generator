@@ -1,0 +1,49 @@
+{
+ "parent": "SWE1-HVAC-039",
+ "outline": "9.1",
+ "batch": "Rear Climate",
+ "source_clause": "CR11.) On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts.",
+ "reasoning": "驗證目標：9.1（CR11）一句定出某些車輛另有後排氣候之附加控制與捷徑，其 037 leaf 即本節自身（無子條）；**本節此前停下**（批次 14，理由為「其內容只有『某些車輛另有附加控制』一句，無可觀察之行為」），而 97 §1 裁定該理由錯 ——「那些控制存在」本身即測試員對照實車可判之事，「是哪些」則由該車之配置回答。關鍵情境條件：本節之句子逐字為 PC 並標 `spec-verbatim`；依 **R-C34** 第九／十三軸與 EMEA 暴露 → 補，EMEA 之逐條答為 `no`（ch16 十八節無後排氣候之節）。為什麼這樣切：一葉一 TC，兩個步驟各覆條文所列之一類（controls 與 shortcuts）；**現行之不一致於此修正**（97 §2.5）—— `9.2`／`9.3`／`9.4`／`9.4.1` 之七條**以本句為 PC**，而本句自身之 leaf 此前無列，即七條引一個在工作簿上不存在的條件。刻意略過：**「See CFTS043 for details」為對外部文件之指引** —— 其內容（哪些車、哪些控制）不在本條之 ER 內（§8.2.1）；CFTS043 雖已列 profile §1.1，惟本條所引者僅為條文自身之句子，不引該文件之清單",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "後排氣候分頁上之附加控制，與狀態列下拉選單內之後排捷徑",
+  "axis_9": "暴露 → 全數補 —— 可觀察量在 head unit 之氣候介面（6.3）",
+  "axis_12": "不暴露 —— 本節不涉 tab 之存在或順序",
+  "axis_13": "暴露 → 全數補（出處 2.14 C15，跨節取據 R-C29）",
+  "emea_ics": "**排除補並逐條答（R-C36-1）** —— 逐條之答為 `no`：ch16 十八節無後排氣候之節（見該條之 `emea_ics_review`）"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-039",
+   "tc_id": "NR1L-ComfortHMI-459",
+   "tc_title": "The additional Rear Climate controls and shortcuts are present",
+   "test_group": "Comfort",
+   "test_set": "Rear Climate",
+   "test_item": "CR11.) On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts.\n\n(open the driver side climate dropdown menu in the status bar -> The dropdown menu shows the additional Rear Climate shortcut this vehicle is configured with)",
+   "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Rear Climate tab\n2. Open the driver side climate dropdown menu in the status bar",
+   "expected_result": "1. The Rear Climate tab shows the additional Rear Climate controls this vehicle is configured with\n2. The dropdown menu shows the additional Rear Climate shortcut this vehicle is configured with",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_9.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
+   },
+   "test_item_authored": "On some vehicles there shall be additional Rear Climate controls and shortcuts"
+  }
+ ]
+}

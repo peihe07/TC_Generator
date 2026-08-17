@@ -50,6 +50,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from test_item import apply_test_item   # Pei 2026-08-17 —— 上半照抄條文、下半情境
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
+from gap_tcs import append_gap, gap_for, SPLIT_047   # 97／98 —— 10.4 之第二條
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features" / "comfort"
@@ -240,6 +241,8 @@ BATCHES = [
                 "priority": "P1",
                 "design_method": DM_FUNC,
                 "spec_ref": ("10.4", "10.1"),
+                "split_flag": True,
+                "split_reason": SPLIT_047,
             },
         ],
     },
@@ -558,6 +561,7 @@ def main() -> None:
                 "estimated_test_time": "",
                 "remarks": blocked,
             })
+        tcs = append_gap(tcs, b["parent"])
         doc = {
             "parent": b["parent"],
             "outline": o,
@@ -585,9 +589,14 @@ def main() -> None:
     held = len(WITHHELD)
     print(f"\n{leaves} emitted + {held} withheld = {leaves + held} leaves "
           f"declared for {TEST_SET} (framework.md: 15)")
-    if leaves + held != 15 or total != 15:
+    # 97 §2.6 —— `047` 得第二條：`2.3`／`16.3` 逐字之「(AUTO is not shown in
+    # MTC configurations)」為其 PC 之出處（跨節取據 R-C29），ER 驗按 AUTO 不
+    # 進入 AUTO ECO。**RD-1 第 7 問（not shown 是否等於 not available）不再
+    # 阻塞** —— 該判斷屬測試員於實車上之觀察，不屬條文之缺口。
+    if leaves + held != 15 or total != 16:
         raise SystemExit(
-            f"expected 15 leaves declared / 15 TCs, got {leaves + held} / {total}")
+            f"expected 15 leaves declared / 16 TCs（15 ＋ 97／98 之 1）, got "
+            f"{leaves + held} / {total}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,49 @@
+{
+ "parent": "SWE1-HVAC-099",
+ "outline": "14.15",
+ "batch": "Climate Popups",
+ "source_clause": "HVACSB1.) Available comfort controls (driver/passenger heated/vented seats, seat zones and heated wheel) depend on vehicle configuration.",
+ "reasoning": "驗證目標：14.15（HVACSB1）一句定出可用之舒適控制隨車輛配置而異，其 037 leaf 即本節自身。**本節此前停下**（批次 11，理由為「陳述有對照關係而不給對照」，併入 DR #32）—— **97 §2.8 裁定其可驗**：ER 寫「顯示之控制與該車配置相符」，**不寫是哪一組控制**（那才是缺的對照），而「有控制且與該車配置相符」為測試員對照實車可判之事。關鍵情境條件：本節之句子為 14.16～14.18 三節之 PC 出處（R-C29），本條回取其自身；依 **R-C34** 三軸暴露 → 補，其組裝與所引之三節同形。為什麼這樣切：一葉一 TC。刻意略過：**DR #32 不撤** —— 它問的仍是「哪一種配置給哪一組控制」，本條不回答該問，只驗兩者相符（§8.4.1：不寫條文沒給的值 ≠ 不寫測試）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "狀態列之舒適控制（其提供與否隨車輛配置）",
+  "axis_9": "暴露 → 補 —— 與其所引之 14.16～14.18 各條同組裝（該三節之列亦帶此排除）",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 全數補（3 旋鈕 ICS 車無 HVAC 畫面／popup，出處 2.14）",
+  "emea_ics": "補排除；**逐條答見該 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 ch14 側全無列，故為 `no-counterpart` 而 verdict `yes`"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-099",
+   "tc_id": "NR1L-ComfortHMI-461",
+   "tc_title": "The comfort controls offered match the vehicle configuration",
+   "test_group": "Comfort",
+   "test_set": "Climate Popups",
+   "test_item": "HVACSB1.) Available comfort controls (driver/passenger heated/vented seats, seat zones and heated wheel) depend on vehicle configuration.\n\n(read the comfort controls offered -> The comfort controls offered match the comfort features this vehicle is configured with, and no control is offered for a feature the vehicle does not have)",
+   "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the comfort controls from the status bar\n2. Read the comfort controls offered",
+   "expected_result": "1. The comfort controls are displayed\n2. The comfort controls offered match the comfort features this vehicle is configured with, and no control is offered for a feature the vehicle does not have",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.15; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "no-counterpart",
+    "verdict": "yes",
+    "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
+   },
+   "test_item_authored": "The available comfort controls (driver/passenger heated/vented seats, seat zones and heated wheel) shall depend on vehicle configuration"
+  }
+ ]
+}
