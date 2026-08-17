@@ -73,6 +73,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from external_docs import unblock_11_5   # 81 §2.3 — R-C45 解封
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -217,7 +218,7 @@ REASONING["11.5"] = ("驗證目標：11.5（HVS6）全句為「Refer to **HMI Se
  "與白名單既有二例（`080-02` → HMI Core Logic and Flow、`081-02` → CFTS044）同型；"
  "`[BLOCKED-NON-HMI]` 不適用（內容若給了是 HMI 可觀察之設定選項），`[COVERED-BY]` 不適用"
  "（委派對象非本 spec 之節）。為什麼這樣切：BLOCKED 列不驗行為，其 `test_procedure` 與 "
- "`expected_result` 留白（R-C24），Remarks 於首 60 字元內具名 owner（R-C27）。"
+ "`expected_result` 留白（R-C24），Remarks 以 marker 起首並緊接 owner（R-C27；其可見範圍實測約 11 字元，依 R-C27-1 其可達目標為可辨識其已被標記）。"
  "刻意略過：**其 ch12 對造 `12.6` 委派之對象為 HMI Notes，與本節不同一份文件** —— "
  "實測共同連續字串 78 字元，在 `HMI ` 之後即分歧，故 R-C40 之前件不成立，"
  "**兩者之解封條件不同**，該後果已逐字寫入 DR #43。")
@@ -403,6 +404,9 @@ def main() -> None:
                 "ch16_outline": "16.16", "verdict": "no",
                 "ch16_sentence": S16_BLOCKED},
         }
+        # 81 §2.3 — 11.5 之列依 R-C45 就地轉為正常 TC（tc_id 不變）。
+        # 12.6 之列不動：其委派對象 HMI Notes 於客戶目錄查無此件。
+        tc = unblock_11_5(tc)
         doc = {
             "parent": parent, "outline": o, "batch": TEST_SET,
             "source_clause": full[o]["full_text"],

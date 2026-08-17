@@ -96,7 +96,10 @@ def main() -> int:
     for gen in sorted((FEATURE / "scripts").glob("gen_*.py")):
         withheld |= set(L.WITHHELD_DECL.findall(
             gen.read_text(encoding="utf-8")))
-    check(len(withheld) >= 20,
+    # 81 §2 — was `>= 20`, a floor set when 25 leaves were withheld. R-C45
+    # released six of them and the floor started failing on a corpus that had
+    # got BETTER. What the case is for is non-vacuity, so it asks for that.
+    check(len(withheld) >= 1,
           "generators really do declare withheld leaves, so the gate is not "
           "scanning an empty set", f"{len(withheld)} declared")
     check(not (withheld & produced),

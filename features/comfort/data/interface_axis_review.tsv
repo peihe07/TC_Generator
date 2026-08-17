@@ -78,6 +78,7 @@ outline	observable_interface	axis_9	axis_12	axis_13	emea_ics
 13.4	lower screen Seats tab	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
 13.5	lower screen Seats tab	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
 13.6	lower screen Seats tab 與 error tone	同上	同 DR #20	座椅控制非 HVAC	無 ICS 鏡射
+14.1	HVAC pop-up（其識別與內容由 Pop Up List 承載）	不暴露 —— 其可觀察量為 comfort pop-up，6.3 之明文例外	不暴露 —— 不觀察 tab	暴露 → 補（3 旋鈕 ICS 車不顯示 HVAC 畫面與 pop up）	ch16 無對應節 —— HVACP1 之 pop-up list 委派於 ch16 無對造；排除式 PC 照補
 14.1.1	HVAC popup 本身（其顯示、內容與逾時）	**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）	不暴露 —— 不觀察 tab	暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）	補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`
 14.2	HVAC popup 本身（其顯示、內容與逾時）	**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）	不暴露 —— 不觀察 tab	暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）	補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`
 14.3	HVAC popup 本身（其顯示、內容與逾時）	**不補** —— 6.3 之移除對象為 head unit 之 comfort section，而其明文例外正是 `except for comfort popups`；本節之可觀察量即 popup，故下螢幕車上仍在（**本批首次以證據放下該排除**）	不暴露 —— 不觀察 tab	暴露 → 全數補（3 旋鈕 ICS 車無 HVAC popup，出處 2.14）	補排除；**逐條答見各 TC 之 `emea_ics_review`** —— `ch16_mirror_map.tsv` 之 **ch14 側全無列**（ch16 十八節無 popup 專章），故全批皆為 `no-counterpart` 而 verdict `yes`

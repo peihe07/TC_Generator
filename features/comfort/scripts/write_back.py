@@ -44,16 +44,19 @@ from backend.xlsx_surgical import StructureError, surgical_save  # noqa: E402
 
 FEATURE = ROOT / "features" / "comfort"
 GEN = FEATURE / "generated"
+# 78 §3 — the source is now the EXTENDED template (ENTRY 022). The 20260815
+# prepared file remains untouched as ENTRY 001's object; it is no longer the
+#母本 because its DV and B-column formulas stop at row 59.
 SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260815_prepared.xlsx")
+                            "Comfort_20260816_prepared_ext.xlsx")
 # 45 §2 — a NEW file. The pilot file is neither overwritten nor deleted:
 # DELIVERY ENTRY 002 is its identity record, and deleting it would leave the
 # ledger pointing at nothing (the converse of R-C14 — a recorded identity may
 # not lose its object).
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260815_enumsplit.xlsx")
+                            "Comfort_20260816_extdocs.xlsx")
 # 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
 # 27 §3), so the second write-back became ENTRY 004. This is the third.
 #
@@ -62,9 +65,9 @@ OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # free and this write takes it. If the extension lands first, this constant
 # moves; the one-shot gate below is what makes a collision loud rather than
 # silent.
-LEDGER_ENTRY = "ENTRY 021"
+LEDGER_ENTRY = "ENTRY 026"
 SHEET = "Test Case Specification 測試用例規範"
-SRC_SHA = "b68117a211b080093a4f845a32601e678b6279331fc4b26e6a81484e8b5e700d"
+SRC_SHA = "6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c"
 FIRST_ROW = 10
 
 # profile §0 — revision C letters, verified against the header at recon.
@@ -137,7 +140,7 @@ def pre_gates(tcs: list) -> bool:
       "present" if already else "absent")
 
     digest = sha256(SRC) if SRC.exists() else "(missing)"
-    g("來源為 A-CF07 經 Pei 確認之同一份位元組", digest == SRC_SHA,
+    g("來源為 ENTRY 022 之擴充後母本（78 §3）", digest == SRC_SHA,
       f"measured {digest[:16]}…, expected {SRC_SHA[:16]}…")
 
     r = subprocess.run([sys.executable, str(FEATURE / "scripts" / "lint_tcs.py")],
@@ -277,7 +280,10 @@ def assertions(tcs: list, report: dict) -> bool:
         if mk == "[BLOCKED-NON-HMI]" and "Owner:" in rm:
             bad_blk.append(f"{t['tc_id']}.AH names an Owner under "
                            f"[BLOCKED-NON-HMI] — that is a [BLOCKED-SPEC]")
-    g("三類 marker 列之 L／M 為空且 Remarks 首 60 字元符合各自規則",
+    # 80 §1 / R-C27-1 — the 60 is this check's own inspection window, not
+    # a claim about what a reader can see. Measured visibility is ~11
+    # characters; the reachable goal is that the row reads as MARKED.
+    g("三類 marker 列之 L／M 為空且 Remarks 前綴（檢查窗口 60 字元）符合各自規則",
       [], bad_blk,
       "; ".join(f"{k} {v or 'none'}" for k, v in marked.items()))
 
@@ -369,6 +375,62 @@ def assertions(tcs: list, report: dict) -> bool:
     return ok
 
 
+# ------------------------------------------------- §3.4 歷史產出之歸檔（Pei 追加，2026-08-16）
+
+# `output/` 只保留三份：ENTRY 001 之 prepared（台帳之對象）、現行母本、
+# 本次產出。其餘產出檔搬入 `output/archive/`。
+#
+# 台帳為 append-only：既有之 checksum 行**一字不改**，只
+#   (a) 在該行之後插入一行 `#   archived : …` 註記，
+#   (b) 於文末之「歸檔後之可驗路徑」段落追加該檔於新路徑之 checksum 行。
+# (b) 不可省 —— 只做 (a) 的話，舊路徑於 `shasum -c --ignore-missing` 下
+# 會被**靜靜跳過**，而「仍可驗」就只是一句宣稱（R-C43）。
+KEEP_IN_OUTPUT = {SRC.name, OUT.name,
+                  "FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test "
+                  "Case Specification & Result_SWQT_Comfort_20260815_"
+                  "prepared.xlsx"}
+ARCHIVE_HEADER = "# 歸檔後之可驗路徑（2026-08-16）"
+
+
+def archive_previous() -> list:
+    """Move superseded outputs into output/archive/ and annotate the ledger."""
+    out_dir = FEATURE / "output"
+    arc = out_dir / "archive"
+    arc.mkdir(exist_ok=True)
+    moved = []
+    for f in sorted(out_dir.glob("*.xlsx")):
+        if f.name in KEEP_IN_OUTPUT:
+            continue
+        f.rename(arc / f.name)
+        moved.append(f.name)
+    if not moved:
+        return moved
+
+    led = FEATURE / "DELIVERY.sha256"
+    before = led.read_text(encoding="utf-8").split("\n")
+    out, annotated = [], []
+    for line in before:
+        out.append(line)
+        m = re.match(r"^([0-9a-f]{64})  output/(.+)$", line)
+        if m and m.group(2) in moved:
+            out.append(f"#   archived : output/archive/{m.group(2)}"
+                       "  （hash 與內容未變，見文末「歸檔後之可驗路徑」）")
+            annotated.append(m.group(2))
+    tail = [f"{sha256(arc / n)}  output/archive/{n}" for n in moved]
+    if ARCHIVE_HEADER not in "\n".join(before):
+        out += ["", "# " + "=" * 58, ARCHIVE_HEADER, "# " + "=" * 58]
+    led.write_text("\n".join(out + tail) + "\n", encoding="utf-8")
+
+    # append-only 之驗證：既有行必須原樣留存且順序不變
+    after = led.read_text(encoding="utf-8").split("\n")
+    kept = [l for l in after if l in before]
+    assert [l for l in before if l] == [l for l in kept if l], \
+        "DELIVERY.sha256 lost or reordered an existing line — append-only 破壞"
+    print(f"\n## §3.4 歸檔\n\n- 搬入 output/archive/: {len(moved)} 檔")
+    print(f"- 台帳增 archived 註記 {len(annotated)} 行、"
+          f"新路徑 checksum {len(tail)} 行；既有行 0 處變動")
+    return moved
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--write", action="store_true")
@@ -412,7 +474,13 @@ def main() -> int:
     print(f"- surgical report: {report}\n")
 
     ok = assertions(tcs, report)
-    print(f"output sha256: {sha256(OUT)}\n")
+    print(f"output sha256: {sha256(OUT)}")
+    if ok:
+        archive_previous()
+    else:
+        print("\n## §3.4 歸檔\n\n- **未執行** —— assertion 未全數 PASS，"
+              "前一份產出檔留在 output/ 以便逐項比對")
+    print()
     print("NEXT: Excel 四項確認由 Pei 執行（profile §0.1）—— 無修復提示／"
           f"R 欄下拉九項可用／D5 Scope 正確／row {FIRST_ROW}–"
           f"{FIRST_ROW + len(tcs) - 1} 內容與編號正確。"

@@ -129,7 +129,7 @@
 | `generated/*.json` | **pilot 14 條**（7 個 parent），含 `source_clause`／`reasoning`／sibling 判定 |
 | `docs/runtime/profiles/FW036_R1L_Comfort_Profile.md` | **profile [OVERRIDE]**，已簽 2026-08-15（15 ＋ 16 §1） |
 | `BASELINE.sha256` | 素材基準 **8 檔** —— inputs/ 5 ＋ spec-index/ SR24 三件（涵蓋範圍為執行層判斷，見上繳 09 §0 乙） |
-| `DELIVERY.sha256` | 產出台帳 append-only —— 001 範本清列／002 pilot（superseded）／003 交付夾附件／**004–021 為十八次全量寫回（…／383 × 5／385／429）** —— 004～021 皆**不可交付**（範本容量，DR #35 / A-CF26）|
+| `DELIVERY.sha256` | 產出台帳 append-only —— 001 範本清列／002 pilot（superseded）／003 交付夾附件／**004–021 為十八次全量寫回（…／383 × 5／385／429）／**022 範本擴充驗證**／**023 首次自擴充後母本之寫回（429 列，14/14 PASS）**／**024–025 該檔被 Excel 重存之實測與歸檔**／**026 R-C45 解封後之寫回（434 列，14/14 PASS）** —— 004～021 皆**不可交付**（範本容量，DR #35 / A-CF26）；**023 之阻塞已解除，待 Excel 四項確認**|
 | `output/STATUS.md` | 產出狀態之可讀摘要（不參與 `shasum -c`；標記寫在檔案旁邊而非檔案裡，改檔即改 hash）|
 | `RUNBOOK.md` | feature 事實之權威 |
 | `PLAYBOOK.md` | 狀態板 |

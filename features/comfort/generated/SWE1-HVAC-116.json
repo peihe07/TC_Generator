@@ -62,6 +62,48 @@
    "functional_safety": "NA",
    "estimated_test_time": "",
    "remarks": ""
+  },
+  {
+   "req_id": "SWE1-HVAC-116-03",
+   "tc_id": "NR1L-ComfortHMI-432",
+   "tc_title": "ICS fan and mode adjustments alter front and rear passengers",
+   "test_group": "Comfort",
+   "test_set": "EMEA ICS Interface",
+   "test_item": "Adjusting Fan speed and Mode on the ICS shall alter the Front and Rear passengers (ICE10.)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)\n3. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)\n4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"SYNC\" on from the ICS climate screen\n2. Change the fan speed on the ICS\n3. Change the airflow mode on the ICS",
+   "expected_result": "1. The \"SYNC\" button is highlighted\n2. The fan speed changes for the front and the rear passengers\n3. The airflow mode changes for the front and the rear passengers",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {}
+  },
+  {
+   "req_id": "SWE1-HVAC-116-04",
+   "tc_id": "NR1L-ComfortHMI-433",
+   "tc_title": "Rear climate adjustment breaks SYNC on the ICS",
+   "test_group": "Comfort",
+   "test_set": "EMEA ICS Interface",
+   "test_item": "Adjusting the rear fan speed, mode or temperature from the touchscreen or the rear climate controls shall break SYNC and turn it off (ICE10.)",
+   "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)\n3. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)\n4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Turn \"SYNC\" on from the ICS climate screen\n2. Change the rear temperature from the rear climate controls",
+   "expected_result": "1. The \"SYNC\" button is highlighted\n2. The \"SYNC\" button is no longer highlighted",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {}
   }
  ]
 }

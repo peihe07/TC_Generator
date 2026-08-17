@@ -1,0 +1,48 @@
+{
+ "parent": "SWE1-HVAC-083",
+ "outline": "14.1",
+ "batch": "Climate Popups",
+ "source_clause": "HVACP1.) HVAC pop-ups should follow the pop-up list.",
+ "reasoning": "驗證目標：14.1（HVACP1.）以一句把 HVAC pop-up 之內容全部委派予 pop-up list，單一 037 leaf。關鍵情境條件：第十三軸暴露 → 補（3 旋鈕 ICS 車不顯示 HVAC 畫面與 pop up）；第九軸不暴露 —— 其可觀察量為 comfort pop-up，屬 6.3 之明文例外；EMEA 排除照補。為什麼這樣切：一句一 leaf，其兩個步驟各驗 pop-up list 所列之一種 HVAC pop-up。刻意略過：**本條之外部出處為 `Pop Up List HMI R1 SR24 Post 2A`（R-C45，已列 profile §1.1）** —— 本 leaf 曾因該文件不在素材內而停下，其停下之搜尋範圍只到 `inputs/` 與 `spec-index/`；該文件實在客戶目錄內，且其 `Main` 工作表之 HVAC 列回指 Comfort HMI Logic and Flow，兩份文件互指。**所引者為 pop-up 之識別與其觸發條件之對應（版本無關），非該 pop-up 之行為** —— 行為仍以本 spec 為驗證對象（R-C45 第二項）。",
+ "keywords": [],
+ "duplicate_of": "",
+ "distinguishing_axis": {
+  "axis": "see per-TC titles",
+  "delta": ""
+ },
+ "assumptions": [],
+ "interface_axis_review": {
+  "observable_interface": "HVAC pop-up（其識別與內容由 Pop Up List 承載）",
+  "axis_9": "不暴露 —— 其可觀察量為 comfort pop-up，6.3 之明文例外",
+  "axis_12": "不暴露 —— 不觀察 tab",
+  "axis_13": "暴露 → 補（3 旋鈕 ICS 車不顯示 HVAC 畫面與 pop up）",
+  "emea_ics": "ch16 無對應節 —— HVACP1 之 pop-up list 委派於 ch16 無對造；排除式 PC 照補"
+ },
+ "tcs": [
+  {
+   "req_id": "SWE1-HVAC-083",
+   "tc_id": "NR1L-ComfortHMI-434",
+   "tc_title": "HVAC pop-ups follow the pop-up list",
+   "test_group": "Comfort",
+   "test_set": "HVAC Pop-ups",
+   "test_item": "HVAC pop-ups shall follow the pop-up list (HVACP1.)",
+   "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the HVAC hard key for the driver temperature\n2. Set the climate off using the hard key while the head unit is not on the climate screen",
+   "expected_result": "1. The temperature pop-up listed for HVAC in the pop-up list is displayed\n2. The Climate Comfort pop-up listed for that condition in the pop-up list is displayed",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.1; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3; Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023)_Main",
+   "priority": "P2",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "emea_ics_review": {
+    "ch16_outline": "—",
+    "verdict": "no",
+    "ch16_sentence": "ch16 十八節無 pop-up list 之對造（`ch16_mirror_map.tsv` 之 no-counterpart）—— 排除式 PC 照補"
+   }
+  }
+ ]
+}

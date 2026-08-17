@@ -37,6 +37,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from external_docs import append_external   # 81 §2 — R-C45 解封
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -129,8 +130,6 @@ MOVED_TO_BATCH16 = ['SWE1-HVAC-004-01', 'SWE1-HVAC-004-02', 'SWE1-HVAC-007-01', 
 
 WITHHELD = [
  ("SWE1-HVAC-006-04", "「The recirc icon will display the vehicle model specific icon **as displayed in the table**」—— **未指名任何節次**，全 129 節無該對照表之內容；與 `16.16` 之座椅 off icon 同型，併入 `DATA_REQUESTS` #32 之「configuration → icon 對照未定義」類。**16.5（ICE4）逐字重述且把表寫成 `Climate Main page table`，仍未給對照** —— 兩側皆無"),
- ("SWE1-HVAC-015-04", "「Adjusting Fan speed and Mode will alter the **Front and Rear** passengers」—— 可觀察量在後排，而「車輛是否配備後排氣候」**不在十六軸內**；其來源即 `2.1` 之 tab 集合問題（`DATA_REQUESTS` #17，未解）"),
- ("SWE1-HVAC-015-05", "「If the **rear** fan speed, mode, or temp are adjust … will break SYNC」—— 同 `015-04`"),
  ("SWE1-HVAC-019-02", "「MAX A/C modifies multiple climate parameters」—— C14 未列出任何一項參數，其內容由次句委派予 **VF HVAC document**（外部文件）；依 profile §5.3 屬 `[BLOCKED-SPEC]`，白名單增列須經裁定（**R-C26**）"),
  ("SWE1-HVAC-019-03", "「On/Off logic should follow requirements from **VF HVAC document**」—— 同 `019-02`，明文外部委派"),
 ]
@@ -203,6 +202,25 @@ def main() -> None:
                 "emea_ics_review": {"ch16_outline": ch16, "verdict": verdict,
                                     "ch16_sentence": sentence},
             })
+        if o == "2.11":
+            # 81 §2.1 — R-C45：後排氣候之配置條件由 CFTS043 承載，
+            # 其 PC 走本節之同一組裝路徑（base + 外部條件 + 三項排除）。
+            # 不用 ("…", "…") 之字面：`withheld-not-generated` 以該形態
+            # 辨識 WITHHELD 之宣告，寫成 tuple 會被讀成「這兩葉被停下」。
+            from external_docs import PC_REAR_HVAC, EXT_LEAVES_211
+            pc = add_lines(SECTION_PC[o][0], PC_REAR_HVAC,
+                           EX_ICS, EX_EMEA, EX_LOWER)
+            refs = [o, "2.14", "16.2", "6.3"]
+            tcs = append_external(
+                tcs, parents[o],
+                {r: pc for r in EXT_LEAVES_211},
+                {"SWE1-HVAC-015-04": {"ch16_outline": "16.11",
+                                      "verdict": "yes",
+                                      "ch16_sentence": "ICE10 與 C12 逐字相同"},
+                 "SWE1-HVAC-015-05": {"ch16_outline": "16.11",
+                                      "verdict": "yes",
+                                      "ch16_sentence": "ICE10 與 C12 逐字相同"}},
+                {r: refs for r in EXT_LEAVES_211})
         doc = {
             "parent": parents[o], "outline": o, "batch": TEST_SET,
             "source_clause": full[o]["full_text"],
@@ -228,7 +246,7 @@ def main() -> None:
     print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
           f"batch 16 (R-C42) = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 35)")
-    if leaves + held + moved != 35 or total != 26:
+    if leaves + held + moved != 35 or total != 28:
         raise SystemExit(
             f"expected 35 leaves declared / 26 TCs, got "
             f"{leaves + held + moved} / {total}")

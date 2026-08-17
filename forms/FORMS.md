@@ -204,3 +204,51 @@ Capture rules this produced, now implemented in `scripts/recon.py`:
 6. If the file is a pre-filled instance rather than a blank form, diff it
    against the known-good deliverable and record the provenance
 7. Commit the manifest change (xlsx stays untracked)
+
+---
+
+## `…_SWQT_20260816_ext.xlsx` —— 容量擴充版（2026-08-16）
+
+| | |
+|---|---|
+| 檔名 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260816_ext.xlsx` |
+| SHA256 | `6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c` |
+| bytes | 123,717 |
+| 來源 | `…_SWQT_20260121.xlsx`（`cd876c202c71e74b…`）→ Comfort 之 ENTRY 001 清列 → **Pei 於 Excel 擴充**（Comfort ENTRY 022 驗證通過）|
+| 原範本 | **未覆寫**，仍在 `forms/`，仍為 `BASELINE.sha256` 之對象 |
+
+### 擴充範圍（資料工作表 `Test Case Specification 測試用例規範`）
+
+| 項 | `20260121` | **`20260816_ext`** |
+|---|---|---|
+| B 欄編號公式 `=IF(ISBLANK($Dn),"",ROW()-9)` | row 10–59 | **row 10–601** |
+| R 欄 design_method 下拉（x14 DV）| `R10` ＋ `R11:R59` | **`R10:R601`** |
+| P 欄 priority DV | `P10:Q11` | **`P10:Q601`** |
+| T–Z DV | `T10:Z11` | **`T10:Z601`** |
+| AF DV（測試結果）| `AF10:AF11` | **`AF10:AF601`** |
+
+R 欄之下拉來源亦統一為 `下拉選單!$A$1:$A$9`（原 `R11:R59` 指向 `$A$1:$A$11`，
+多含兩個空選項）。zip member 48 = 48。
+
+### 與原範本之逐格差異 —— 547 格，逐項具名
+
+| 差異 | 格數 | 說明 |
+|---|---|---|
+| B 欄 row 60–601 之編號公式 | 542 | **即擴充本身**（601 − 60 + 1 = 542）|
+| `D10`／`D11` = `xxx`，`F10` = `NR1L-AntiTheft-001`，`G10` = `AntiTheft`，`S10` = `NA` | 5 | **原範本所帶之他 feature 範例列**，於本版為空 |
+
+**feature 專屬之值：0 格。** 全檔（9 個工作表）搜尋 `Comfort`／`HVAC`／
+`AntiTheft` 等字樣**無任何命中**；`D5`（範圍 Scope）之值格於兩版皆為空
+（`C5` 之標籤 `範圍 Scope：` 兩版相同）；`D2` = `newR1L` 為原範本既有之值，
+非 Comfort 所填。
+
+**該 5 格為本版唯一之非擴充性差異，且方向是「更空」而非「更滿」** ——
+其來源是 Comfort 之 ENTRY 001 清列步驟，清掉的是 AntiTheft 之範例資料。
+若日後認為空白範本應保留該範例列，**還原為單一動作**（填回上表五格之值）。
+
+### 用法
+
+新 feature 以本版為母本，即免去範本容量之處置（Comfort 之 DR #35 / A-CF26
+歷 19 次寫回、三項 assertion 持續 FAIL 之成因即此）。
+**privacy 等既有 feature 之已交付件不因本版而改變** —— 一份新版範本不會回頭
+修好已經交出去的檔（DR #36）。

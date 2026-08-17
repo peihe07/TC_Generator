@@ -41,6 +41,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from external_docs import append_external   # 81 §2 — R-C45 解封
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -155,10 +156,24 @@ DIST_AXIS = {
 MOVED_TO_BATCH16 = ['SWE1-HVAC-096-01', 'SWE1-HVAC-096-02', 'SWE1-HVAC-096-03', 'SWE1-HVAC-098']
 
 WITHHELD = [
- ("SWE1-HVAC-083", "`14.1`（HVACP1.）「HVAC pop-ups should **follow the pop-up list**」—— 委派對象為 **HMI Pop Up List**，一份**外部文件**且**從未入 `inputs/`**（`DATA_REQUESTS` #11，`paths.popup_list` 為 null）。依 profile §5.3 之判別次序屬 `[BLOCKED-SPEC]`，而該 marker 之白名單增列須經裁定（**R-C26**：豁免不可自取），故停下回報，形態同 `080-02`／`081-02`。**本 leaf 另帶 3 個圖片標記**（A-CF23）"),
  ("SWE1-HVAC-099", "`14.15`（HVACSB1）「Available comfort controls … **depend on vehicle configuration**」—— **陳述有對照關係而不給對照**，形態同 `DATA_REQUESTS` #32 之三個成員，本輪併入該類為第四個成員。**注意**：本節雖停下，其句子仍**被引為第十六軸之出處**（14.16～14.18 之 PC）—— 一個 leaf 停下，不代表該節之句子不可作為他條之出處（R-C29）"),
 ]
 
+
+
+# 81 §2.2 — 14.1 之 reasoning。其外部出處依 R-C45 第三項於此具名。
+REASONING_141 = (
+    "驗證目標：14.1（HVACP1.）以一句把 HVAC pop-up 之內容全部委派予 pop-up "
+    "list，單一 037 leaf。關鍵情境條件：第十三軸暴露 → 補（3 旋鈕 ICS 車不顯示 "
+    "HVAC 畫面與 pop up）；第九軸不暴露 —— 其可觀察量為 comfort pop-up，"
+    "屬 6.3 之明文例外；EMEA 排除照補。為什麼這樣切：一句一 leaf，"
+    "其兩個步驟各驗 pop-up list 所列之一種 HVAC pop-up。"
+    "刻意略過：**本條之外部出處為 `Pop Up List HMI R1 SR24 Post 2A`"
+    "（R-C45，已列 profile §1.1）** —— 本 leaf 曾因該文件不在素材內而停下，"
+    "其停下之搜尋範圍只到 `inputs/` 與 `spec-index/`；該文件實在客戶目錄內，"
+    "且其 `Main` 工作表之 HVAC 列回指 Comfort HMI Logic and Flow，"
+    "兩份文件互指。**所引者為 pop-up 之識別與其觸發條件之對應（版本無關），"
+    "非該 pop-up 之行為** —— 行為仍以本 spec 為驗證對象（R-C45 第二項）。")
 
 
 def add_lines(pre_conditions: str, *lines: str) -> str:
@@ -313,6 +328,36 @@ def main() -> None:
         emitted_leaves.update(t['req_id'] for t in tcs)
         print(f"{parents[o]}  {o:8} {len(tcs)} TC")
 
+    # 81 §2.2 — 14.1 之 leaf（`083`）此前無列，其 parent 檔亦不存在。
+    # R-C45 解封後於此單獨產出：它不在 TCTABLE 內（本就沒有列可讀），
+    # 其內容全部來自 external_docs.py。
+    pc = add_lines(PC_PLAIN, EX_ICS, EX_EMEA, EX_LOWER)
+    ext_tcs = append_external([], "SWE1-HVAC-083",
+                              {"SWE1-HVAC-083": pc},
+                              {"SWE1-HVAC-083": {
+                                  "ch16_outline": "—",
+                                  "verdict": "no",
+                                  "ch16_sentence":
+                                      "ch16 十八節無 pop-up list 之對造"
+                                      "（`ch16_mirror_map.tsv` 之 "
+                                      "no-counterpart）—— 排除式 PC 照補"}},
+                              {"SWE1-HVAC-083": ["14.1", "2.14", "16.2",
+                                                 "6.3"]})
+    doc = {
+        "parent": "SWE1-HVAC-083", "outline": "14.1", "batch": TEST_SET,
+        "source_clause": full["14.1"]["full_text"],
+        "reasoning": REASONING_141,
+        "keywords": [], "duplicate_of": "",
+        "distinguishing_axis": {"axis": "see per-TC titles", "delta": ""},
+        "assumptions": [], "interface_axis_review": iar["14.1"],
+        "tcs": ext_tcs,
+    }
+    (OUT / "SWE1-HVAC-083.json").write_text(
+        json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+    total += len(ext_tcs)
+    emitted_leaves.update(t["req_id"] for t in ext_tcs)
+    print(f"SWE1-HVAC-083  14.1     {len(ext_tcs)} TC  (R-C45)")
+
     leaves = len(emitted_leaves)
     print(f"\n{leaves} leaves -> {total} TCs; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
@@ -324,9 +369,9 @@ def main() -> None:
     print(f"\n{leaves} emitted + {held} withheld + {moved} moved to "
           f"batch 16 (R-C42) = {leaves + held + moved} leaves "
           f"declared for {TEST_SET} (framework.md: 42)")
-    if leaves + held + moved != 42 or total != 38:
+    if leaves + held + moved != 42 or total != 39:
         raise SystemExit(
-            f"expected 42 leaves declared / 38 TCs（36 leaf，其中 15.1 之二 leaf 各拆為二）, got "
+            f"expected 42 leaves declared / 39 TCs（37 leaf：15.1 之二 leaf 各拆為二，14.1 依 R-C45 解封）, got "
             f"{leaves + held + moved} / {total}")
 
 

@@ -52,7 +52,20 @@ STEM = ("SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_"
         "(September_25_2023)")
 LONG_FIELDS = ["pre_conditions", "input_test_data", "test_procedure",
                "expected_result"]
-SOURCE_CLASSES = ("spec-verbatim", "spec-derived", "test-setup")
+# 81 §2 / R-C45 — `ext-verbatim` 為**外部文件**之逐字引用。另立一類而非借用
+# `spec-verbatim`：後者之意義是「本 spec 該節之原話」，而 source-class-truthful
+# 正是對照該節查證的。把外部句子標成 spec-verbatim，會使那道 gate 查一個
+# 它查不到的東西而 FAIL —— 或更糟，查得到而讀者以為它出自本 spec。
+# R-C45 —— 已認可之外部出處。**匯入**而非在此另抄一份，亦不以正規式重建：
+# 兩份清單會分岔，一份不會（R-C43 之同一理由 —— 以身分界定，且身分只有一個）。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import external_docs as _ext                                    # noqa: E402
+
+EXTERNAL_REFS = {v for k, v in vars(_ext).items()
+                 if k.startswith("EXT_") and isinstance(v, str)}
+
+SOURCE_CLASSES = ("spec-verbatim", "spec-derived", "test-setup",
+                  "ext-verbatim")
 PRIORITIES = {"P0", "P1", "P2", "P3"}
 MODALS = re.compile(r"\b(shall|must|should|will|would)\b", re.I)
 # §10.1 — every TC object must carry all ten keys.
@@ -74,7 +87,13 @@ MARKER_WHITELIST = {"[BLOCKED-SPEC]": {"NR1L-ComfortHMI-010",
                                        # 66 §1 — DR #43 ruled (一): 11.5 and
                                        # 12.6 delegate their whole content to
                                        # two DIFFERENT external documents.
-                                       "NR1L-ComfortHMI-382",
+                                       # 81 §2.3 — 11.5's row (-382) LEFT the
+                                       # whitelist: the HMI Settings List was
+                                       # found and carries the options, so the
+                                       # row became a real TC. Removal is a
+                                       # ruling too (R-C26), and 81 §2.3 is it.
+                                       # 12.6's -383 stays: HMI Notes does not
+                                       # exist in the customer tree.
                                        "NR1L-ComfortHMI-383"},
                     # 41 §1.2 — ruled together with R-C38 itself.
                     "[BLOCKED-NON-HMI]": {"NR1L-ComfortHMI-081"}}
@@ -590,9 +609,12 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             bad("spec-ref-outline",
                 f"{w}: specification_reference repeats a section: {refs}")
         for item in refs:
+            if item in EXTERNAL_REFS:      # R-C45 三 —— 已認可之外部出處
+                continue
             if not item.startswith(STEM + "_"):
                 bad("spec-ref-stem",
-                    f"{w}: stem is not the ruled SR24 filename (R-C1) — {item!r}")
+                    f"{w}: stem is not the ruled SR24 filename (R-C1), nor an "
+                    f"approved external source (R-C45) — {item!r}")
                 continue
             outline = item[len(STEM) + 1:]
             if outline not in auth["outlines"]:

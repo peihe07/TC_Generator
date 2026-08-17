@@ -63,6 +63,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from external_docs import append_external   # 81 §2 — R-C45 解封
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -137,20 +138,13 @@ EXTRA_PC = [(ATC_LEAVES, PC_ATC, ("16.3",)),
             (MULTIZONE_EXPOSED, PC_MULTIZONE, ("16.11",)),
             (COMFORT_LEAVES, PC_COMFORT, ("17.3",))]
 
-WITHHELD = [
- ("SWE1-HVAC-116-03",
-  "**依 R-C40 撤下**（58 §1）。ICE10 之「Adjusting Fan speed and Mode will alter "
-  "the Front and Rear passengers」與 C12（`2.11`）之同句**逐字相同**（實測 `in` 比對，"
-  "兩節皆命中）。批次 9 停下 ch2 側之 `015-04` 之依據為「**車輛是否配備後排氣候不在既有"
-  "十六軸內**，其來源即 DR #17」—— **該依據為條文本身之性質**（兩處條文皆指涉後排，"
-  "而該軸在兩處同樣未登記），**非 ch2 所特有之脈絡**。故依 R-C40 兩側皆停，"
-  "已生成之 ch16 側撤下。**反面之考量已檢查**：ch16 十八節無後排專章（ch7 不屬 ICS 側），"
-  "若論脈絡，ch16 側之後排介面比 ch2 側**更**未定義，該考量只會加強撤下而非反對之"),
- ("SWE1-HVAC-116-04",
-  "同 `116-03`：ICE10 之「If the rear fan speed, mode, or temp are adjust from either "
-  "the touchscreen or rear climate controls will break SYNC and turn it off」與 C12 之"
-  "同句逐字相同；ch2 側之 `015-05` 已停"),
-]
+WITHHELD = []   # 81 §2.1 — 兩條依 R-C45 解封，見 external_docs.py
+# 其列不由本表產出，而由 external_docs 以**後號**追加 —— 自表中產出會使
+# 本批其後之 tc_id 各進二，與 batch13 之 START_N 相撞（65 §1：既有列不重編號）。
+SKIP_TABLE = {"SWE1-HVAC-116-03", "SWE1-HVAC-116-04"}
+# 撤下之原因（58 §1，R-C40）不改：ICE10 與 C12 逐字相同，兩側同進退。
+# 今日兩側**同時**解封，該對稱因此維持 —— 解封之依據是 CFTS043 之
+# `$Rear_HVAC_cfg$ = [Present]`，它對 ch2 與 ch16 一樣成立。
 
 
 def add_lines(pre_conditions: str, *lines: str) -> str:
@@ -241,11 +235,12 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     n = START_N - 1
     total = 0
+    emitted_leaves = set()   # 76 §2 — 拆分後 TC 數 ≠ leaf 數，故以身分計數（R-C43）
 
     for o in ["16.3", "16.4", "16.5", "16.10", "16.11", "16.13"]:
         tcs = []
         for leaf, title, item, proc, er, prio, dm in table[o]:
-            if f"SWE1-HVAC-{leaf}" in {w for w, _ in WITHHELD}:
+            if f"SWE1-HVAC-{leaf}" in ({w for w, _ in WITHHELD} | SKIP_TABLE):
                 continue
             n += 1
             req = f"SWE1-HVAC-{leaf}"
@@ -285,6 +280,14 @@ def main() -> None:
                 "estimated_test_time": "",
                 "remarks": "",
             })
+        if o == "16.11":
+            from external_docs import PC_REAR_HVAC
+            pc = add_lines(PC_EMEA, PC_MULTIZONE, PC_REAR_HVAC,
+                           EX_ICS, EX_LOWER)
+            refs = [o, "16.2", "2.14", "6.3"]
+            leaves = sorted(SKIP_TABLE)
+            tcs = append_external(tcs, PARENTS[o], {r: pc for r in leaves},
+                                  {}, {r: refs for r in leaves})
         doc = {
             "parent": PARENTS[o], "outline": o, "batch": TEST_SET,
             "source_clause": full[o]["full_text"],
@@ -298,15 +301,17 @@ def main() -> None:
         (OUT / f"{PARENTS[o]}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
         total += len(tcs)
+        emitted_leaves.update(t["req_id"] for t in tcs)
         print(f"{PARENTS[o]}  {o:8} {len(tcs)} TC")
 
-    print(f"\n{total} leaves -> {total} TCs; "
+    leaves = len(emitted_leaves)
+    print(f"\n{leaves} leaves -> {total} TCs; "
           f"tc_id {TC_ID_FMT.format(n=START_N)} … {TC_ID_FMT.format(n=n)}")
-    print(f"{total} emitted + {len(WITHHELD)} withheld = "
-          f"{total + len(WITHHELD)} leaves declared for {TEST_SET} "
+    print(f"{leaves} emitted + {len(WITHHELD)} withheld = "
+          f"{leaves + len(WITHHELD)} leaves declared for {TEST_SET} "
           f"(framework.md: 36)")
-    if total + len(WITHHELD) != 36 or total != 34:
-        raise SystemExit(f"expected 36 / 34, got {total + len(WITHHELD)} / {total}")
+    if leaves + len(WITHHELD) != 36 or leaves != 36:
+        raise SystemExit(f"expected 36 / 36, got {leaves + len(WITHHELD)} / {leaves}")
 
 
 if __name__ == "__main__":

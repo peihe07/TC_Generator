@@ -11,7 +11,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | # | 類型 | 標題 | 狀態 | 阻塞 |
 |---|---|---|---|---|
 | A-CF01 | note | SR25 CR29359 含 037 未分析之新章節 | RESOLVED by R-C5 | 無 |
-| A-CF02 | note | 客戶交付夾之 spec 為 SR25，與 R-C1 基線不一致 | **RESOLVED**（選項 1，Pei 2026-08-15）| 無（不影響 pipeline 取材） |
+| A-CF02 | note | 客戶交付夾之 spec 為 SR25，與 R-C1 基線不一致 | **已知不一致，以交付說明標示基線**（Pei 2026-08-16 追加裁定：**SR25 兩檔不移除**，推翻 79 §3 之「移除」；**不轉 RESOLVED**）| 無（不影響 pipeline 取材）；夾內同時存在 SR24 與 SR25，其分辨由交付說明承載 |
 | A-CF03 | 結構 | 34 列 parent 形態卻為 Functional Requirement | RESOLVED by R-C3 | 無 |
 | A-CF04 | 工具 | `intake.py` 只掃 drop folder，spec_mode 提案偏低 | OPEN（已知限制，非缺陷） | 無 |
 | A-CF05 | 工具缺陷 | `intake.py` 需求清單靜默漏計 57 列（346 vs 403） | FIXED 2026-08-14 | 無 |
@@ -83,7 +83,27 @@ SYS1 xlsx（72.80 KB），與 R-C1 所定之 SR24 基線不一致。
 
 ---
 
-### RESOLVED（選項 1，Pei 裁定 2026-08-15；下放包 27）
+### 現況（Pei 追加裁定，2026-08-16）—— **不轉 RESOLVED**
+
+79 §3 曾裁「移除交付夾內之 SR25 兩檔」，執行層據以回報其檔名與 bytes
+（`…SR25 Post 3A CR29359 (Feb 24 2025).pdf` 14,538,298；
+`SYS1_…_SR25_…xlsx` 74,545）。**該裁定於 2026-08-16 被推翻：兩檔不移除。**
+同夾之 `Device Manager HMI Logic and Flow R1 SR24 Post 2A (March 13 2023).pdf`
+（3,560,705 bytes）亦留置。
+
+故本項**不轉 RESOLVED**，改記為 **「已知不一致，以交付說明標示基線」**：
+夾內同時存在 SR24 與 SR25，而**本次交付之基線是 SR24 CR24879
+(September 25 2023)** —— 該事實由交付說明之一句承載，
+使評閱方不必自檔名推測（見 `docs/Comfort_HMI_delivery_note.md`）。
+
+**其重審條件不變**：若日後基線改採 SR25，須先推翻 R-C1。
+
+**為何不是 RESOLVED**：不一致仍在，只是**被標示了**。
+把「已標示」記成「已解決」，會使下一個讀這一列的人以為夾裡只有 SR24。
+
+---
+
+### 前次裁定（選項 1，Pei 2026-08-15；下放包 27）—— 已被上節部分推翻
 
 **裁定**：交付夾之 spec 附件改為 SR24 CR24879，與 037 及工作簿一致。
 
@@ -1137,6 +1157,15 @@ ER 雖以「toggled ON」／「active」陳述，**其判讀依據不在條文�
 ## A-CF26 —— 通用空白範本之 DV 涵蓋不足（跨 feature）
 
 **發現於**：第二次寫回（ENTRY 004）之 assertion 13（上繳 33 §9.3）。
+
+**Comfort 側 RESOLVED（2026-08-16）**：母本已由 Pei 擴充至 row 601
+（`…_20260816_prepared_ext.xlsx`，ENTRY 022），五項涵蓋逐項實測通過；
+ENTRY 023 之 assertion 14 項全數 PASS。
+**跨 feature 之本體仍 OPEN** —— 修的是 Comfort 這一份母本之副本，
+**通用空白範本 `SWQT_20260121` 本身未變**，故 privacy 已交付之 9 列
+與日後任何以該範本為母本之 feature 仍受同一性質影響（DR #36）。
+**一份被修好的副本不會使原件變好** —— 記此以免日後把 ENTRY 022
+讀成本項已全案結案。
 
 ### 實測
 
