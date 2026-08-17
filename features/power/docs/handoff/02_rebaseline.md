@@ -67,7 +67,7 @@
         裁決者 Pei，逐字依據：「照你的建議」（回應 Q6）。
 ```
 
-（以上七條裁決條文，抄入 RULINGS.md 時須逐字保留，
+（以上六條裁決條文，抄入 RULINGS.md 時須逐字保留，
  每條以獨立區塊呈現，不得夾於敘述中。）
 
 ## B. 素材台帳 —— 由執行層實測填入
@@ -178,7 +178,7 @@ G5b 為新增：CFTS010 域是全案唯一跨文件分支，風險最高而 01 �
   5. 依 §C 重跑抽取，產出 leaf → (CFTS, 章節號, 章節標題) 對照表
   6. 以 §D 自驗（G8/G9 為填空，其餘為比對）
   7. 依 §E 重算 Test Set leaf 分布並與 64/24/16/7/3 比對
-  8. §A 七條裁決逐字抄入 RULINGS.md；§F 入 ANOMALIES.md；
+  8. §A 六條裁決逐字抄入 RULINGS.md；§F 入 ANOMALIES.md；
      §G 入 DATA_REQUESTS.md
   9. 填 DECISIONS.md 之 [AUTO] 項
  10. 上繳 features/power/docs/upstream/02_rebaseline.md，更新 docs/INDEX.md

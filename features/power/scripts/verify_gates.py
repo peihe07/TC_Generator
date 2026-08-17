@@ -1,4 +1,4 @@
-"""02 包 §D 閃點自驗與 §E leaf 分布重算。
+"""§D 閃點自驗（03 包版）與 §E leaf 分布重算。
 
 前置：先跑 features/power/scripts/extract_textlayer.py 產出
       features/power/data/item_to_chapter.json
@@ -142,7 +142,7 @@ def main() -> None:
 
     # G3 / G5b：完整錨點鏈
     chapters = json.loads((DATA / "item_to_chapter.json").read_text(encoding="utf-8"))
-    s9 = sys2_map(find("SYS2_CFTS_009"), 338)
+    s9 = sys2_map(find("SYS2_CFTS_009"), 339)
     s10 = sys2_map(find("SYS2_CFTS_010"), 74)
     resolved, failed = {}, []
     for lid, src, _ in rows:
