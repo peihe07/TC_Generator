@@ -133,3 +133,39 @@ recon_assertions:
   generation_population: 180           # R-U4 明文，不變
   # 閘以外之對照輸出（不作判定）
   naive_leaf_shape_reference: 182      # ID 前綴形態；R-U8 明定不作閘
+
+# ---------------------------------------------------------------- R-U20
+# Layer 2 定案（Pei 2026-08-17，採 B 案）。八組，合計 180 —— **逐組實測相符**
+# （04 輪，以 037 之 180 個 Functional Requirement 列依章別歸組）。
+#
+# **命名判準**（R-U20 解執行層 03 輪自陳之不一致）：canon §4.2 禁止的是重複
+# Test Group 之**整體** —— 即不得出現 "User Profiles xxx"；單一詞 `Profile`
+# 在承載能力語義時允許。故 `Profile List` 成立；`ch6` 取 `Defaults`、
+# `ch7` 取 `Welcome Flow`（去 `Screen`／`Popup` 之 UI widget 名）。
+layer2:
+  ruling: R-U20
+  total_leaves: 180
+  sets:
+    - {name: Preference Storage, chapters: [4],        leaves: 28}
+    - {name: Profile List,       chapters: [5],        leaves: 40}
+    - {name: Defaults,           chapters: [6],        leaves: 11}
+    - {name: Welcome Flow,       chapters: [7],        leaves: 14}
+    - {name: Setup Flow,         chapters: [8],        leaves: 25}
+    - {name: Editing,            chapters: [9, 10],    leaves: 25}
+    - {name: Connected Account,  chapters: [11],       leaves: 6}
+    - {name: Valet Mode,         chapters: [12, 13, 14], leaves: 31}
+
+# ---------------------------------------------------------------- R-U19
+# 兩個集合分立，**不得互相取代；引用時一律具名是哪一個**。
+cited_sections:
+  # 「037 引用了哪些」—— 該記載正確，不改
+  file: data/expected_cited_sections.tsv
+  count: 135
+generation_sections:
+  # 「哪些進生成」—— 覆蓋率分母與 batch 排程依據
+  file: data/generation_sections.tsv
+  count: 133
+  excluded:
+    # 該二 outline 之唯一引用者為 R-U4 排除之 leaf
+    - {outline: "4.7",  cited_only_by: SWE1-HMI-PROF-017}
+    - {outline: "5.11", cited_only_by: SWE1-HMI-PROF-035}

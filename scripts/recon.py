@@ -193,6 +193,61 @@ def build_outline_map(sys1_path: Path | None) -> tuple[dict, str]:
     return omap, ""
 
 
+# --------------------------------------------- no silent overwrite (R-G4)
+
+def write_data_file(path: Path, content: str) -> None:
+    """Write, unless that would silently replace a file we did not write.
+
+    R-G4: "腳本不得無聲覆寫既存之 tracked 檔，偵測到即中止並報告，
+    不自行備份、不自行還原."
+
+    The check is on CONTENT, not on git: a script must not need version
+    control to know it is about to destroy something. Identical content is a
+    no-op re-run and passes; different content stops the run and names both
+    shapes, so the operator decides. **Nothing is backed up and nothing is
+    restored here** — R-G5 puts both of those with Pei, and a script that
+    quietly stashes a copy is just a slower version of the same surprise.
+    """
+    if path.exists():
+        old = path.read_text(encoding="utf-8")
+        if old != content:
+            def parts(s: str):
+                cm = [l for l in s.splitlines() if l.startswith("#")]
+                data = [l for l in s.splitlines() if not l.startswith("#")]
+                return cm, data
+
+            old_cm, old_rows = parts(old)
+            new_cm, new_rows = parts(content)
+
+            def shape(cm, rows) -> str:
+                head = rows[0] if rows else "(empty)"
+                return (f"{len(rows) - 1} data rows, {len(cm)} comment lines, "
+                        f"columns: {head}")
+
+            # Say WHICH kind of difference it is. "different content" alone
+            # sent a reader looking for a different table when the data was
+            # identical and only a hand-written header had been added.
+            if old_rows == new_rows:
+                why = ("the DATA IS IDENTICAL — only comment lines differ, so "
+                       "this file has been annotated by hand since it was "
+                       "generated. Re-running would silently drop that "
+                       "annotation.")
+            elif old_rows and new_rows and old_rows[0] != new_rows[0]:
+                why = ("the COLUMNS DIFFER — the file on disk is a different "
+                       "table that happens to share this name. That is the "
+                       "defect R-G4 exists for: rename one of them.")
+            else:
+                why = "the DATA DIFFERS — the source it was built from moved."
+            sys.exit(
+                f"ABORT — {path} already exists and would be overwritten;\n"
+                f"  {why}\n"
+                f"  on disk : {shape(old_cm, old_rows)}\n"
+                f"  would be: {shape(new_cm, new_rows)}\n"
+                f"Refusing to overwrite it (R-G4). Nothing was written, "
+                f"nothing was backed up, nothing was restored (R-G5).")
+    path.write_text(content, encoding="utf-8")
+
+
 # ------------------------------------------------- signed-DECISIONS guard
 
 # A placeholder is the template's own text: empty, or nothing but underscores
@@ -748,7 +803,7 @@ def emit(feature_dir: Path, cfg: dict, wbres: dict, a03res: dict,
   parsed): {a03res['multiline_citations']}
 - distinct sections by chapter: {sec_hist_line}
 - leaves by chapter: {leaf_hist_line}
-- map written to `data/spec_id_to_outline.tsv` (tracked — a diff on it is the
+- map written to `data/recon_leaf_to_section.tsv` (tracked — a diff on it is the
   signal that the spec export moved underneath us)
 
 ## Uncited baseline sections
@@ -825,8 +880,27 @@ region / replace / re-map) is a ruling, not a detection.
         hit = omap.get(sec, {})
         tsv.append("\t".join([rid, sec, hit.get("id", ""),
                               tpl.replace("{outline}", sec), hit.get("title", "")]))
-    (feature_dir / "data" / "spec_id_to_outline.tsv").write_text(
-        "\n".join(tsv) + "\n", encoding="utf-8")
+    # R-G4 (2026-08-17) — this table is the leaf->section map and is written
+    # under its own name. It used to be written as `spec_id_to_outline.tsv`,
+    # which belongs to each feature's `build_outline_map.py` and holds a
+    # DIFFERENT table (the spec-side index). On user_profiles the spec index
+    # was built BEFORE recon ran — the reverse of home/comfort — and recon
+    # overwrote it. `git status` showed a plain "M"; nothing said the file had
+    # become another table.
+    #
+    # What the two readers in features/home actually take (verified before
+    # this change, per R-G4's precondition):
+    #   lint_tcs.load_outlines          -> r[1], i.e. column 2 = outline
+    #   make_batch_context.load_outline_to_chapter
+    #                                   -> CHAPTER_RE `^([A-Z]{2,4})` on
+    #                                      column 1, mapping column 2 -> chapter
+    # Home's file is `spec_id / outline / desc` with column 1 holding `HSD1`,
+    # `HSS4` and the like. Under recon's schema column 1 holds `SWE1-HMI-…`,
+    # which **still matches** that regex and yields the chapter "SWE" for every
+    # outline — a silently WRONG answer rather than a crash. So the rename is
+    # not merely safe here, it removes a live hazard.
+    write_data_file(feature_dir / "data" / "recon_leaf_to_section.tsv",
+                    "\n".join(tsv) + "\n")
 
     (feature_dir / "data" / "recon.json").write_text(json.dumps({
         "workbook_state": state, "segments": wbres["segments"],
@@ -876,7 +950,7 @@ region / replace / re-map) is a ruling, not a detection.
     if omap:
         d.append(f"- spec outline map: [AUTO] {len(a03res['distinct_sections'])}"
                  f" cited sections, all found in a {len(omap)}-entry ruled"
-                 " export; map at data/spec_id_to_outline.tsv")
+                 " export; map at data/recon_leaf_to_section.tsv")
     d.append("\n## 2. Workbook survey")
     d.append(f"- workbook_state: [AUTO] {state}")
     d.append(f"- form layout revision: [AUTO] {wbres['layout_rev']}")

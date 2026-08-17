@@ -196,3 +196,371 @@ R-U12 歸檔三檔之雜湊保護
   於 ANOMALIES.md 該條內。
 - **R-U12**：`archive/forms_superseded/BASELINE.sha256` 已建（3 檔），
   `shasum -a 256 -c` **3/3 OK**，輸出見上繳包 §4。
+
+---
+
+## 第三／四輪條文
+
+來源包：`docs/handoff/04a_rulings.md`（R-U13～R-U17，02／03 輪聊天提出，本輪首次落檔）
+與 `docs/handoff/04b_rulings.md`（R-U18～R-U20、R-G4～R-G6，03 輪覆核所生）。
+**R-G4／R-G5／R-G6 為全域條文**，另依既有慣例登錄於全域規則處（見本檔 §全域條文）。
+
+```text
+R-U13 .gitignore 之 archive/forms_superseded/BASELINE.sha256 例外
+      —— 追認（內容成立），程序補正。
+      追認範圍僅限本次已作之單行例外與其註解改寫，不及其他。
+      明訂：版控政策一律先裁後改；執行層不得以「某條裁決之必然結果」
+      推導出對 .gitignore／入庫範圍／tag 之授權。
+      成因兼含分析層起草不全（R-U12 未處理追蹤狀態），一併留檔。
+
+R-U14 A-UP09 之解除條件
+      文字修補不構成 RESOLVED。解除條件 = 機器檢查存在且實跑：
+      對產出檔驗 x14:dataValidation 節點數與 zip member 集合，
+      比對來源母本（可借 Comfort write_back §3.3 之同型 assertion）。
+      **該 gate 立起並實跑前，本 feature 之寫回實作不得開工。**
+      A-UP09 維持 PENDING。
+
+R-U15 DR #4（PU1087／PU1088）之阻斷範圍
+      非 Phase 1 阻斷，recon 與 framework 不受其擋。
+      阻斷範圍限於 spec 4.1.1（Profile Setup）之 popup 引用：
+      該章相關 TC 於 DR #4 到齊前不生成，不得以鄰近 PU id 推定內容
+      （§8.4.1 禁止捏造）。
+      索取標的：載有 PU1087／PU1088 之 Pop Up List 版本。
+      現有 SR24 Post 2A (Dec 15, 2023) 已驗為正確文件家族、
+      兩缺者落在編號區間內（PU0001–PU1578，空號 248）——
+      即「不是版本不對，是這一版沒有這兩列」。
+
+R-U16 037 採認
+      inputs/ 之 037（SHA 9d176dde…）為本 feature 之權威需求來源。
+      Phase 0 之全部 037 側數字係分析層於 Project 附件副本上量得，
+      未與本檔比對雜湊，一律重測不沿用。
+      BASELINE.sha256 依 R-C20 比照更新，涵蓋 inputs/ 全部檔案。
+      （執行層 03 輪已完成，6/6 OK。）
+
+R-U17 inputs/ 之 spec 副本處置
+      兩份 R1L-R 已驗為逐位元組相同（SHA 368d5874…）。
+      依 Comfort R-C11 單一來源原則：由 Pei 刪除 inputs/ 副本，
+      spec 引用路徑維持 spec-index/。刪除屬不可逆，執行層不得代勞。
+      **反對意見已記錄**：執行層於 03 包 §5 主張兩份各自受檢
+      正是日後任一份被改動時會出聲的機制，合併會關掉該能力。
+      該意見未被採納；若日後改採雙份併存，須以新條文取代本條，
+      不得以「當時有人反對過」為由逕行回退。
+
+R-U18 A-UP04 → RESOLVED
+      037 已落 inputs/，SHA 9d176dde… 入 BASELINE，
+      三閘 180／25／2 相符，表頭列實得 row 7。
+      **記載限制（永久）**：Project 附件副本不在 repo，
+      其與 inputs/ 這份之同源性永不可證。
+      故 Phase 0 之 037 側數字非「被複驗」，是「被取代」；
+      日後不得以「Phase 0 已驗過」為由跳過重測。
+
+R-U19 135 / 133 分立
+      data/expected_cited_sections.tsv 維持 135 列
+      （記「037 引用了哪些」，該記載正確，不改）。
+      另立生成集合 133（扣 4.7、5.11 —— 該二 outline 之唯一引用者
+      為 R-U4 排除之 PROF-017／035），作為覆蓋率分母與 batch 排程依據。
+      兩數不得互相取代；引用時一律具名是哪一個。
+      R-U3 之證據行「135 個 section id 缺漏 0」仍為真，
+      但它不是覆蓋率的分子。
+
+R-U20 Layer 2 定案 —— 採 B 案，8 個 Test Set
+      Preference Storage (ch4, 28)
+      Profile List        (ch5, 40)
+      Defaults            (ch6, 11)
+      Welcome Flow        (ch7, 14)
+      Setup Flow          (ch8, 25)
+      Editing             (ch9+ch10, 25)
+      Connected Account   (ch11, 6)
+      Valet Mode          (ch12+ch13+ch14, 31)
+      合計 180。
+      **命名判準**（解執行層自陳之不一致）：§4.2 禁止的是重複
+      Test Group 之「整體」—— 即不得出現 "User Profiles xxx"；
+      單一詞 Profile 在承載能力語義時允許。
+      故 Profile List 成立；ch6 取 Defaults、ch7 取 Welcome Flow
+      （去 Screen／Popup 之 UI widget 名）。
+```
+
+### 全域條文（R-G4～R-G6，於本包首次落檔）
+
+```text
+R-G4  recon.py 之輸出檔名歸屬（全域）
+      recon.py 之 leaf→section 產物一律寫
+      data/recon_leaf_to_section.tsv；不得寫 spec_id_to_outline.tsv
+      （後者歸 build_outline_map.py，內容為 spec 側索引，兩者不同物）。
+      並加前置檢查：腳本不得無聲覆寫既存之 tracked 檔，
+      偵測到即中止並報告，不自行備份、不自行還原。
+      **改動 recon.py 前**須先查 features/home 之 lint_tcs.py 與
+      make_batch_context.py 實際讀的是哪一種內容，確認後才動。
+      成因：本 feature 先建 spec 側索引才跑 recon，順序與
+      home／comfort 相反，後者遂無聲覆蓋前者，git status 僅顯示 M。
+
+R-G5  git 禁令之正面條款（全域，重申並擴充）
+      「全部 git 操作屬 Pei」包含還原、回退、checkout、restore、
+      stash、clean。
+      追認 03 輪已作之 git checkout（結果正確，被丟棄者已另存為
+      data/recon_leaf_to_section.tsv）；追認範圍僅限本次單一檔案。
+      **遇覆寫事故之正確作法**：兩版皆保留（改名並存）、上報、停手，
+      不自行還原。理由：checkout 丟棄工作區變更且不可救回，
+      執行層無從確知該檔是否另有未提交之他人變更。
+      本條與 R-U13 為同一失效模式之第二次發生（前次為 .gitignore）：
+      以「某條裁決之必然結果」自推授權。
+
+R-G6  上繳包之記載一致性
+      03 包 §7.1 記「git checkout 還原」而 §8 記「git 未執行」，
+      同份文件互相矛盾。§8「本包所動之檔」須含 git 動作，據實更正。
+      往後「未執行 git」一語須與全文動作清單逐項對得起來；
+      摘要與內文不符者退回，不予核可。
+```
+
+**執行層回報（04 輪，2026-08-17）**
+
+- **R-U13／R-U15／R-U16／R-U17**：追認與範圍已知悉。**R-U17 之刪除未執行**
+  —— 屬 Pei，執行層不代勞（04c §不在授權範圍）。`inputs/` 之 spec 副本仍在，
+  BASELINE 之該列亦未動。
+- **R-U14**：A-UP09 維持 PENDING；**寫回實作本輪未開工**，x14 DV gate 未立。
+- **R-U18**：A-UP04 已改 RESOLVED，其**永久記載限制已照錄**於該條內。
+- **R-U19**：已另立 `data/generation_sections.tsv`（133 列），
+  `expected_cited_sections.tsv` **未改**（仍 135 列）。
+- **R-U20**：八個 Test Set 已落 `feature.yaml` 之 `layer2`；合計實測 180。
+- **R-G4**：前置查證已完成（見上繳 04 §7），`scripts/recon.py` 已改名並加
+  「不得無聲覆寫既存 tracked 檔」之前置檢查。
+- **R-G5**：**本輪全程未執行任何 git 指令**，含 checkout／restore／stash／clean。
+- **R-G6**：`docs/upstream/03_recon.md` §8 已據實更正，§7.1 未動。
+
+---
+
+## 第五輪條文
+
+來源包：`docs/handoff/05a_rulings.md`（Pei 2026-08-17 裁定，04 輪覆核所生）。
+**R-G7 為全域條文**。
+
+```text
+R-U21 Service 欄之地位
+      Sub Categorization == "Service" 不作為阻斷判準。
+      22 條全數納入生成母體。
+      判讀依據：R-C38 之判準為「無任何介面可觀察端」，而 22 條全部
+      有可觀察端（直接可觀察 9、需來回一趟 13），C 群為 0。
+      Comfort 之唯一成員 044-02 為物理量而非介面量，本 feature 無同形者。
+      B 群 13 條之測法採「設定 → key cycle／切換 → 讀回」結構，
+      依 §5.6 建立 baseline 與比較步驟。
+      **此為測法之形狀，非阻斷** —— 03 輪所擔心之「一整章返工」不成立。
+
+R-U22 PROF-001-01（PLP 表）之處置 —— 先驗可讀性，不逕列阻斷
+      該 leaf 本文即寫 "listed in PLP table"，即 Req 自身引用該表，
+      故 spec 3.1–3.5 屬其 in-scope 依據（§8.6 原始 spec 優先），
+      不受 A-UP02「037 未引用」所限 —— **037 沒引用不等於 spec 沒寫**。
+      先查 spec 3.1–3.5 之文字可讀性：
+        可讀   → 該 TC 正常生成，specification_reference 併列 4.1 與 3.x，
+                 偏好清單以 spec 原文為據，不列舉未載之項（§8.4.1）
+        不可讀 → 才進 DR
+      並據此重估 A-UP02 之性質：若 3.1–3.5 可讀，
+      其為「spec 有而 SWE 未涵蓋」，非「內容不存在」。兩者處置不同。
+
+R-U23 spec 8.2 之處置 —— 先驗抽取能力，再決定 DR
+      「完全依賴圖」之判讀依據為 outline_map 之文字欄僅含 (image: …)
+      標記，而本層未嘗試自 xlsx 抽出內嵌圖片。
+      Comfort A-CF23 之結論為「不是缺件，是缺讀取能力」。
+      故先試抽 8.2 之內嵌圖：抽得出且可判讀則不開 DR，
+      抽不出或判讀不能才開。同一作法適用於「部分依賴」5 節
+      （4.6、6.2、9.1、10.2、11.4）。
+
+R-U24 跨 feature 之 spec_id_to_outline.tsv 現況掃描
+      授權對 comfort／sxm／amfm／projection 之該檔作**唯讀**掃描
+      （欄名、列數、第一欄形態），判斷是否已被 recon 形狀污染。
+      唯讀 —— 不得寫入他 feature 任何檔案。
+      發現污染者逐一具名上報，處置另裁。
+      home 之實跑驗證：以 **repo 外複本**進行（複製 features/home 至
+      tempfile 目錄後跑 recon），不得對 repo 內之 home 執行。
+```
+
+### 全域條文（R-G7，於本包首次落檔）
+
+```text
+R-G7  反向驗證之對照組（全域慣例）
+      任何注入式反向驗證須含一個「什麼都沒做」之對照向 ——
+      即「複製並以同一工具重存但不改任何資料，檢查仍全綠」。
+      缺此向者，其餘各向之紅燈無法區分係注入所致或工具所致，
+      **該組驗證不予採認**。
+      來源：執行層 04 包 §4 之自陳（該向原不在其設計內，
+      寫到一半才意識到沒有它另外三向證明不了任何事）。
+```
+
+**執行層回報（05 輪，2026-08-17）**
+
+- **R-U21**：已知悉，22 條納入生成母體；`generation_sections.tsv` 之分母不因此改變
+  （該檔以 section 為單位，非以 leaf）。
+- **R-U22**：**PLP 表可讀**（spec 3.1–3.5 之逐項清單於 PDF 文字層完整抽出）。
+  故 `PROF-001-01` 正常生成，A-UP02 之性質重估為「spec 有而 SWE 未涵蓋」。
+- **R-U23**：**抽取能力有，且 6 節中 5 節改判**。詳見上繳 05 §4，
+  含 04 包 §6 分類之前後對照。
+- **R-U24**：四個 feature 唯讀掃畢，**未寫入他 feature 任何檔**。
+  **comfort 為 recon 形態但非污染**（其從未有 build_outline_map，
+  且全部文件一致記載為 403 leaf 查表）。
+  home 之 recon 實跑**做不到** —— 其 `inputs/` 不存在（R-G2 條文自身所記之事實）；
+  改以「直接餵兩種形態給 home 三個讀者」觀察，危害已由推導變為觀察。
+- **R-G7**：本輪之讀者實驗含兩個對照向（原檔逐字、原檔重寫），兩者一致。
+
+---
+
+## 第六輪條文
+
+來源包：`docs/handoff/06a_rulings.md`（Pei 2026-08-17 裁定，05 輪覆核所生）。
+
+```text
+R-U25 spec 基線之修訂 —— xlsx 為結構、PDF 為內文
+      R-U3 之證據（Source ID namespace 一致、135 id 缺漏 0）證明的是
+      **結構完整**，非**內文完整**。兩者當時被合為一件，於此分開。
+      spec 基線改為：xlsx 提供 outline 結構與 Source ID，
+      PDF 提供條文內文與圖形內容；兩者為同一基線之兩面，
+      皆已在 BASELINE.sha256 內。
+      **前置作業（優先於 framework 定稿）**：對 169 條逐節比對
+      xlsx Description 與 PDF 文字層，量出 export 之掉句率與形態。
+      若為系統性掉句，outline_map.json 須以 PDF 重建，
+      且 04／05 輪之全部判讀須標示其依據面。
+      成因：05 輪 §7 第 2 項自陳——PDF 之條文比 xlsx export 完整，
+      而本 feature 自 recon 至 framework 之全部判斷皆建於 xlsx 側。
+
+R-U26 spec_popup_ids 之擴充
+      由 20 擴為 32，加 `source` 欄標 `xlsx_text`／`pdf_only`。
+      原 20 列之記載不刪 —— 它記的是「xlsx Description 欄掃得者」，
+      該記載正確，只是涵蓋範圍小於其類別。
+      12 個 pdf_only id（PU0575–0579、0586、0587、0609、0612、0614、
+      1497、1511）須逐一定位其所屬 section；05 輪只比了集合差。
+
+R-U27 R-U15 之阻斷範圍收窄
+      spec PDF p6 已載 PU1087／PU1088 之觸發條件，
+      DR #4 所缺者僅為 Pop Up List 中該二列之 popup **內文**。
+      故 4.1.1 相關 TC **得以生成**：觸發條件、顯示與否、流程分支皆可驗；
+      **僅 popup 內文之逐字 ER 不寫**，該處以 spec 原文之描述為據，
+      不推定內容（§8.4.1）。
+      PROF-002-03 據此解除阻斷。DR #4 降為 MEDIUM，不再擋章節。
+
+R-U28 A-UP02 / DR #3 之性質重估
+      3.1–3.5 有內容且可讀 → A-UP02 非「內容不存在」，
+      而是「spec 有而 SWE 未涵蓋」，形態同 Comfort R-C16。
+      處置分兩支：
+        3.1–3.5      依 R-U22 得作為 PROF-001-01 之 in-scope 依據，
+                     不另生成獨立 TC（我方不自造需求）
+        10.1/11.1/11.2  變體覆寫條款且無任何 SWE 需求，不生成 TC，
+                     列 RD-1 之上游覆蓋缺口
+      DR #3 仍送出，性質改為「上游覆蓋缺口」而非「索取缺件」。
+
+R-U29 PLP3（Memory Seat Module）再試一次
+      p5 有 11 張點陣圖，PLP3 之列項可能在點陣圖內而非向量文字層。
+      以 pdfimages 抽該頁圖後視覺判讀，再定可讀與否；
+      仍不可讀才進 DR。
+      理由：Memory Seat 連動屬 R-U21 之 B 群測法，
+      該清單缺項會直接影響 PROF-001-01 之 ER 範圍。
+
+R-U30 comfort 孤兒檔之處置 —— 延後，登記不動手
+      R-G4 生效後 comfort 若重跑 recon，產物將落新名，
+      而其 RUNBOOK／INDEX／RULINGS／DECISIONS 四處仍指舊名。
+      comfort 已交付，實務上不會重跑，故不於本輪動它。
+      登記為跨 feature note，待 Comfort 下次開輪次一併清。
+      **本 feature 不得寫入 comfort 任何檔。**
+```
+
+### R-G4-1 —— R-G4 之修訂（**R-G4 原文不改，保留其漏數之痕跡**）
+
+> **06b 作業項 1 明文**：不得逕行改寫 R-G4 原文 ——
+> 其「兩個讀者」是當時的記載，**保留才看得出漏數發生過**。
+> 故 R-G4 之區塊維持原樣（見本檔第三／四輪條文段），本條列於其後。
+
+```text
+R-G4-1 R-G4 之修訂 —— 讀者為三個
+      `spec_id_to_outline.tsv` 之讀者除 `lint_tcs.py`、
+      `make_batch_context.py` 外，尚有
+      `features/home/scripts/extract_exemplars.py:97`，
+      其用法同 make_batch_context（load_outline_to_chapter → chapter_of），
+      受同一危害。原條文之「兩個讀者」為漏數，據實更正。
+```
+
+**執行層回報（06 輪，2026-08-17）**
+
+- **R-U25**：169 條全掃完成，**判定為系統性 → 依 06b 作業 3 停手上報，
+  未重建 `outline_map.json`**。逐節結果落 `data/xlsx_pdf_audit.tsv`。
+- **R-U26**：`spec_popup_ids.tsv` 已擴為 **32 列**，加 `source` 欄；
+  原 20 列之 `refs`／`sections` 記載未改。
+- **R-U27**：`PROF-002-03` 之阻斷已解除；DR #4 降 MEDIUM 並改寫索取標的。
+- **R-U28**：A-UP02 已改記，兩支處置分列；DR #3 性質改為上游覆蓋缺口。
+- **R-U29**：**PLP3 可讀，且不需 `pdfimages`** —— 其列項一直在 PDF 文字層，
+  05 輪未定位到是因版面順序使其落在 `3.5` 之段落內。
+- **R-U30**：已登為本 feature `ANOMALIES.md` 之跨 feature note，
+  **comfort 一個檔都沒動**。
+- **R-G4-1**：已置於 R-G4 之後，R-G4 原文未改。
+
+---
+
+## 第七輪條文
+
+來源包：`docs/handoff/07a_rulings.md`（Pei 2026-08-17 裁定，06 輪覆核所生）。
+**R-G8 為全域條文。** 06 輪之停手判定成立，未重建為正確。
+
+```text
+R-U31 outline_map.json 之處置 —— 增欄，不取代
+      **駁回整份以 PDF 重建。** 理由為執行層自身之證據：
+      PDF 切段已證實會誤吃相鄰內容（3.1–3.5 並排表、11.5 之 Table CPA2、
+      10.3.1 吃進 10.1 全文），且 PLP3 之列項排在其標籤**之前** ——
+      文字層順序不等於 outline 順序。
+      以一個已知會誤切之來源整份取代一個已知會少句之來源，
+      是換一種錯法，不是修好。
+      作法：
+        1. outline_map.json 增 `pdf_text` 與 `divergence` 兩欄；
+           原 `text` 欄（xlsx 側）保留不動
+        2. 判讀基準依 R-U25 以 PDF 為準，xlsx 側供追溯與比對
+        3. 另立 `data/xlsx_missing_clauses.tsv` 補句表，逐條登記真掉句
+           （現為 9.8、9.3.2、9.1、11.4 四條），欄含 outline、掉句原文、
+           查證方式（全 169 節語料查無）、影響之判讀
+        4. **全量列出 PDF 中 10 條 `**` 起首之註記**，逐條標示 xlsx 側
+           有無（現測 6 有 4 無），四條缺者一併入補句表
+      第 4 項之必要性：9.3.2 所掉者為 "Stellantis Account" →
+      "Connected Account" 之變體覆寫，屬 §8.7.3 直接管轄；
+      掉了就會寫出錯的 label。故不得只補已發現之四條。
+
+R-U32 Service 22 條之 PDF 複查
+      R-U21 裁定「22 條全數納入生成母體」，其判讀全建於 xlsx
+      Description，而 06 輪證明該側可能少句。
+      22 條逐條以 PDF 文字層複查其可觀察端是否仍成立。
+      任一條之分群因此改變者具名上報；
+      R-U21 之結論視結果修訂或維持，**不預設維持**。
+
+R-U33 29 個無標籤之節納入比對
+      該 29 節不入分母，故自始未被檢查過。
+      以章節位置（而非條款標籤）定位其 PDF 段落，
+      量其有無內容、有無掉句。其中含章 3（PLP 表章）與各章標題。
+
+R-U34 「條款不跨頁」之假設須反向驗證
+      該假設之依據為 140 個標籤全數與 xlsx 起首相符 ——
+      **那證明的是起首，不是結尾。**
+      若有條款跨頁，其續頁部分會被當成下一節之殘留而不計入掉句，
+      故 2.9% 現為**下界**而非量值。
+      驗法：取每節 xlsx Description 之結尾句，
+      查其是否出現於 PDF 之次頁頁首；有命中者即為跨頁條款，
+      掉句率須重算並重報三個比率（含各自之分子定義，見 R-G8）。
+```
+
+### 全域條文（R-G8，於本包首次落檔）
+
+```text
+R-G8  比率之判準揭示（全域慣例）
+      任何以比率呈現之量測，須同時載明「它把什麼算成分子」。
+      06 輪同一份資料先後得 17.1%／9.3%／2.9%，三者皆非計算錯誤，
+      而是三種分子定義（無頁界切段／加頁界／逐條查證後之真掉句）。
+      **缺判準之比率不予採認，等同未量測。**
+      來源：執行層 06 包 §7 之自陳。
+```
+
+**執行層回報（07 輪，2026-08-17）**
+
+- **R-U34（最優先）**：跨頁反向驗證完成，**未發現任何跨頁條款**。
+  唯一候選 `5.1` 經查為**重複標籤**所致之定位錯（`PRACC7.` 被 `4.7` 與
+  `5.1` 共用），非跨頁。另補一道與 xlsx 無關之盲點檢查（頁末斷句 ＋ 次頁小寫續起），
+  **0 / 20 個頁界命中**。故 2.9% **不再是下界**；訂正後之三個比率見上繳 07 §2。
+- **R-U31**：`outline_map.json` 已增 `pdf_text`／`divergence` 兩欄，
+  **原 `text` 欄逐字未動**（實測：`text` 鍵仍在，169 節齊）。
+  補句表 `data/xlsx_missing_clauses.tsv`（7 列）與
+  `**` 註記全量表 `data/pdf_starred_notes.tsv`（10 條，**6 有 4 無**，與下放包所測相符）已落檔。
+- **R-U32**：22 條逐條以 PDF 複查，**18 相同、4 標點/空白差異、0 條落在掉句清單**。
+  **R-U21 之結論維持** —— 而其依據面自此為 PDF 側，不再是未量之邊。
+- **R-U33**：29 節全數比對完成，26 節於 PDF 命中、3 節查無（`2.1`／`10.1`／`11.2`）。
+- **R-G8**：本輪之每個比率皆附其分子定義。

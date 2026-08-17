@@ -1,12 +1,3 @@
-# recon_leaf_to_section.tsv — `scripts/recon.py` 之產物（03 輪 2026-08-17）。
-#
-# **recon.py 原將本表寫成 `data/spec_id_to_outline.tsv`，與本 feature 之
-# `scripts/build_outline_map.py` 之產物同名而不同物**：
-#   build_outline_map.py  spec 側索引  169 列  section_id/outline_number/polarion_id/phys_row/chars
-#   recon.py              037 leaf 對映 180 列  req_id/outline/polarion_id/spec_reference/title
-# 前者已由 01 輪落檔並見於 docs/INDEX.md §3；後者於 03 輪被 recon 覆寫上去。
-# 本層已還原前者，並把 recon 之產物改置本檔，**兩者皆不遺失**。
-# 檔名之歸屬屬 Tier 2（見上繳 03 §7 第 6 項），本層不改 recon.py。
 req_id	outline	polarion_id	spec_reference	title
 SWE1-HMI-PROF-001-01	4.1	NRL-145450	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1	PRACC1.) The system will store and recall each unique Driver Profile’s preferenc
 SWE1-HMI-PROF-001-02	4.1	NRL-145450	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1	PRACC1.) The system will store and recall each unique Driver Profile’s preferenc

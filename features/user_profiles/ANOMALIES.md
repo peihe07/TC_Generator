@@ -20,14 +20,34 @@ A-UP01～A-UP03 由下放包 `docs/handoff/01_intake.md` §Anomalies 播種
 一份 Personal Account spec，`Basic Report` 資料列 169，與下放包一致。
 Personal Assistant 誤件不在 repo 內。維持 RESOLVED。
 
-## A-UP02 — 8 條無 SWE 覆蓋之 spec 條文（PENDING）
+## A-UP02 — 8 條無 SWE 覆蓋之 spec 條文（PENDING，**性質經 R-U28 重估**）
 
 spec 3.1–3.5（PLP1–PLP5）、10.1、11.1、11.2 共 8 條實質條文無任何 SWE
 需求覆蓋，其中 PROF-001-01 之 Verification Criteria 本身即引用 PLP 表。
 RD-1 候選；依 §8.4.2 不得自行吸收進 TC。
 
-**處置**：RD-1，Tier 3 由 Pei 送出（下放包 01b §未決）。本輪不動。
+**處置**：RD-1，Tier 3 由 Pei 送出（下放包 01b §未決）。
 Layer 3 骨架依 01b 作業項 5 取 spec 章 4–14，章 1–3 不入生成範圍。
+
+**性質重估（R-U28，Pei 2026-08-17）—— 非「內容不存在」**
+
+05 輪查明 `3.1`–`3.5`（PLP 表）**有內容且可讀**（PDF p5 之文字層載其逐項清單）。
+故本條之性質為 **「spec 有而 SWE 未涵蓋」**，**形態同 Comfort R-C16**
+（037 未對已存在之條文產出需求），**不是**「索取缺件」。
+
+**兩支處置，不得混為一談**：
+
+| 條 | 性質 | 處置 |
+|---|---|---|
+| `3.1`–`3.5`（PLP 表）| spec 有內容，037 未產 leaf | 依 **R-U22** 作為 `PROF-001-01` 之 in-scope 依據；**不另生成獨立 TC**（我方不自造需求，§8.2）|
+| `10.1`／`11.1`／`11.2` | **變體覆寫條款**且無任何 SWE 需求 | **不生成 TC**，列 RD-1 之上游覆蓋缺口 |
+
+**06 輪之補充實測**：`10.1` 之 xlsx Description 全文即
+`R1 High Only: for the "Connected Account" category title (if applicable) the
+Description is the following: "Save your preferences to the cloud and access
+them from vehicle to vehicle."` —— **確為變體覆寫條款**，R-U28 之歸類由資料證實。
+
+**DR #3 仍送出**，性質改為「上游覆蓋缺口」。
 
 ## A-UP03 — FORMS.md `20260816_ext` 條目與磁碟脫鉤（RESOLVED，2026-08-17 執行層）
 
@@ -43,7 +63,7 @@ SHA256 `6d53056e…`，實測 200,654 bytes、mtime 2026-08-17 09:45:54。
 **脫鉤之成因未查明**（原記載之 123,717-byte 檔在 repo 內已不存在，
 git 亦未追蹤 xlsx），此點列為 A-UP05。
 
-## A-UP04 — 037 Analysis Report 不在 repo 內（PENDING，執行層新開）
+## A-UP04 — 037 Analysis Report 不在 repo 內（**RESOLVED**，R-U18）
 
 下放包 `01_intake.md` §素材 指名 037：
 `FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx`。
@@ -58,9 +78,31 @@ repo 內既有之 037 檔僅 power／comfort／sxm 三個 feature 的，非本 f
 182 列、R-U4 之兩條 Out of scope、Sub Categorization、Priority 分布
 亦無法複驗。
 
-**處置**：依 canon §0 升級條件第 1 條（missing file）停下並回報，
+**處置（當時）**：依 canon §0 升級條件第 1 條（missing file）停下並回報，
 不改判準、不以 spec 側數字代替。已登記於 `DATA_REQUESTS.md` 第 1 列。
-037 到齊後 recon 一次跑完即可解除。
+
+**解除（R-U18，Pei 2026-08-17 裁定，逐字）**
+
+> R-U18 A-UP04 → RESOLVED
+>       037 已落 inputs/，SHA 9d176dde… 入 BASELINE，
+>       三閘 180／25／2 相符，表頭列實得 row 7。
+>       **記載限制（永久）**：Project 附件副本不在 repo，
+>       其與 inputs/ 這份之同源性永不可證。
+>       故 Phase 0 之 037 側數字非「被複驗」，是「被取代」；
+>       日後不得以「Phase 0 已驗過」為由跳過重測。
+
+**永久記載限制，照錄後另加一段其效力**：
+
+> **Phase 0 之 037 側數字沒有被複驗過，也永遠不會被複驗。**
+> 那些數字量的對象是一份 Project 附件副本，該副本不在 repo，
+> 本層無從對它算雜湊 —— **「大小相同」不是「內容相同」**。
+> 03 輪所做的是**在一個有雜湊的物件上重新量一次**，
+> 其結果恰好與 Phase 0 相符，**而「恰好相符」不等於「同一份檔」**。
+> 日後任何人不得以「Phase 0 已驗過」為由跳過重測。
+
+**實測依據（03 輪）**：SHA `9d176ddef6d013539bd33e8a74e8b67d01fba232486aaac9eedad109a783eedb`
+已入 `BASELINE.sha256`（6/6 OK）；三閘 180／25／2 相符；
+表頭列以 `Requirement Description` 逐格定位，唯一命中 (row 7, col 5)。
 
 ## A-UP05 — `20260816_ext` 之 manifest 記載與磁碟檔非同源（**RESOLVED**，R-U11）
 
@@ -205,7 +247,7 @@ Categorization 欄之逐列計數為單位 —— `functional_requirement_count 
 
 **附帶**：該節之範例程式碼為 `openpyxl` + `wb.save()`，與 A-UP09 直接衝突。
 
-## A-UP09 — openpyxl 存回會摧毀母本 R 欄 design_method 下拉（PENDING → **本輪修補完成，待覆核**）
+## A-UP09 — openpyxl 存回會摧毀母本 R 欄 design_method 下拉（**PENDING**，解除條件見 R-U14）
 
 **實測（2026-08-17，scratchpad 複本，repo 外；母本與 `inputs/` 複本均未被寫入，
 母本 SHA `6372fb6b…` 前後一致）**：對母本複本執行
@@ -239,9 +281,19 @@ removed` 並丟棄之，存回時不再寫出。
 - **R-G3 之 canon 修補已完成（第二輪，2026-08-17）**：
   `docs/fw036/framework.md` §Workbook sync 已加禁用警示（含本條之實測表）
   並將範例改寫為 `xlsx_surgical` splice。
-  **02b 作業項 5 定本條「保持 PENDING 直至 R-G3 修補完成」** ——
-  修補已完成，惟其**狀態變更屬 Tier 2**，本層不自行改判 RESOLVED，
-  於此記明並請覆核。
+- **解除條件（R-U14，Pei 2026-08-17 裁定，逐字）—— 文字修補不算**：
+
+  > R-U14 A-UP09 之解除條件
+  >       文字修補不構成 RESOLVED。解除條件 = 機器檢查存在且實跑：
+  >       對產出檔驗 x14:dataValidation 節點數與 zip member 集合，
+  >       比對來源母本（可借 Comfort write_back §3.3 之同型 assertion）。
+  >       **該 gate 立起並實跑前，本 feature 之寫回實作不得開工。**
+  >       A-UP09 維持 PENDING。
+
+  **本層 02 輪之獨立判斷於此得到裁定確認**：02 包 §6 第 1 項自陳
+  「現行防線是一段散文，沒有一道機器檢查會在有人再次 `wb.save()` 時出聲」
+  —— R-U14 把那句話變成了解除條件本身。
+  **04 輪未立該 gate、未開工寫回**（04c §不在授權範圍）。
 - **檢查條件（依 canon §5a 第 14 條，寫成自我完備形式）**：
   寫回後之產出須「與寫回前之母本在所有可讀屬性上一致，除資料列之內容欄
   與 `No.#` 公式外」—— 涵蓋 x14 extLst、legacy DV、zip member 集合、
@@ -252,3 +304,25 @@ removed` 並丟棄之，存回時不再寫出。
 ## Assumption markers
 
 None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-UPnn]`.
+
+---
+
+## N-XF01 — comfort 之 `spec_id_to_outline.tsv` 孤兒檔（跨 feature note，R-U30）
+
+**本項不是本 feature 之異常，是 R-G4 於他 feature 之連帶。**
+登記於此**而不寫入 comfort**（R-U24／R-U30 明文）。
+
+**實測（05 輪，唯讀）**：`features/comfort/data/spec_id_to_outline.tsv` 為
+**recon 形態**（`req_id / outline / polarion_id / spec_reference / title`，403 資料列，
+第一欄 403/403 命中 `^[A-Z]{2,4}` 之 `SWE`）。
+
+**它不是被污染** —— comfort 從無 `build_outline_map.py`，其四份文件
+（`RUNBOOK.md:27`、`docs/INDEX.md:111`、`RULINGS.md:1195`、`DECISIONS.md:18`）
+**一致記載為「403 leaf → SR24 outline 之查表」**，記載與內容相符，且無任何讀者
+（三個讀者皆在 `features/home/scripts/`，只讀 home 之 `data/`）。
+
+**R-G4 之連帶**：R-G4 生效後，comfort 若重跑 recon，產物將落
+`recon_leaf_to_section.tsv`，而舊檔留著不再更新、四份文件仍指舊名。
+
+**處置（R-U30）**：**延後，登記不動手。** comfort 已交付，實務上不會重跑；
+待 Comfort 下次開輪次一併清。**本 feature 不得寫入 comfort 任何檔** —— 已遵守。

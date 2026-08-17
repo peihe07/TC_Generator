@@ -9,7 +9,7 @@ sign-off = binding as proposed.
 - spec text layer: [AUTO] text-layer: 39242 chars (via pymupdf)
 - source files: [AUTO] 4 present (SHA256 in RECON.md)
 - ruled-constant assertions: [AUTO] 2 checked, 2 PASS, 0 FAIL (measured values in RECON.md)
-- spec outline map: [AUTO] 133 cited sections, all found in a 169-entry ruled export; map at data/spec_id_to_outline.tsv
+- spec outline map: [AUTO] 133 cited sections, all found in a 169-entry ruled export; map at data/recon_leaf_to_section.tsv
 
 ## 2. Workbook survey
 - workbook_state: [AUTO] BLANK

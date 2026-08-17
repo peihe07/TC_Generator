@@ -24,7 +24,7 @@ DECISIONS.md written.
   parsed): 0
 - distinct sections by chapter: 4(16)、5(27)、6(10)、7(9)、8(20)、9(21)、10(3)、11(4)、12(18)、13(3)、14(2)
 - leaves by chapter: 4(28)、5(40)、6(11)、7(14)、8(25)、9(22)、10(3)、11(6)、12(25)、13(4)、14(2)
-- map written to `data/spec_id_to_outline.tsv` (tracked — a diff on it is the
+- map written to `data/recon_leaf_to_section.tsv` (tracked — a diff on it is the
   signal that the spec export moved underneath us)
 
 ## Uncited baseline sections

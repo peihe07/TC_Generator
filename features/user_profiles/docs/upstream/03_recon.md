@@ -391,10 +391,32 @@ recon 之產物改置 `data/recon_leaf_to_section.tsv` 並於檔頭記明來由 
 | `features/user_profiles/docs/INDEX.md` | 新增第 03 列與現況更新 |
 
 **未動**：`inputs/` 任何檔（未刪未搬）、`spec-index/`、
-**`data/spec_id_to_outline.tsv`（已還原至 01 輪之版本）**、
 `data/outline_map.json`、`data/expected_cited_sections.tsv`、
 `data/spec_popup_ids.tsv`、`ANOMALIES.md`（A-UP04 之解除屬 Tier 2，見 §9）、
-`RULINGS.md`、`scripts/recon.py`、他 feature 之任何檔案。**git 未執行。**
+`RULINGS.md`、`scripts/recon.py`、他 feature 之任何檔案。
+
+### 8.1 git 動作 —— 據實更正（R-G6，04 輪補正）
+
+> **本節原寫「git 未執行」，該陳述與本包 §7.1 互相矛盾，為誤。**
+> R-G6 裁定「往後『未執行 git』一語須與全文動作清單逐項對得起來」，
+> 據此更正如下。**§7.1 之敘述本身是對的，未動。**
+
+| git 動作 | 對象 | 何時 | 結果 |
+|---|---|---|---|
+| `git checkout <path>` | `features/user_profiles/data/spec_id_to_outline.tsv` | §7.1 所述之覆寫事故發生後 | 還原至 01 輪之版本；被丟棄之 recon 產物已另存為 `data/recon_leaf_to_section.tsv` |
+| `git status` / `git diff` / `git show` | 多處 | 全程 | 唯讀，不改工作區 |
+
+**故本包正確之陳述為**：**執行了一次 `git checkout`（單一檔案）**，
+未執行 `commit`／`push`／`add`／`reset`／`stash`／`clean`。
+
+**該次 checkout 已由 R-G5 追認**（追認範圍僅限該單一檔案），
+並同時裁定**其作法為錯**：遇覆寫事故之正確作法是**兩版皆保留（改名並存）、
+上報、停手，不自行還原** —— 理由是 checkout 丟棄工作區變更且不可救回，
+而執行層無從確知該檔是否另有未提交之他人變更。
+
+> **本層當時之推理是「還原是那條裁決之必然結果」** ——
+> R-G5 明文指出這與 R-U13（`.gitignore` 那次）是**同一失效模式之第二次發生**：
+> **以某條裁決之必然結果自推授權。** 兩次都不是內容錯，是程序錯。
 
 ---
 

@@ -14,8 +14,8 @@ Urgency 回報。
 |---|---|---|---|---|---|---|
 | 1 | `FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx` | **MISSING** | 全部（180 母體之唯一來源）| **Phase 1 recon 完全停擺**；作業項 3 不可跑、作業項 4 之 135-id 命中不可驗、作業項 5 之 Layer 2 交集不可取 | A-UP04 | **BLOCKING（最高）** |
 | 2 | `HMI Pop Up List`（pattern：`Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` 或其 R1L-R 對應版）| **部分到齊 18/20**，見第 4 列 | spec 8.3 明文「Specific popups can be found in the HMI Pop Up List」；spec 全文另有 PU0585／PU0626／PU1573 等 PU id | Phase 3 profile 之 popup 詞彙表與 lint `popup_ids` 無來源；引用 PU 字面值之 TC 無法回溯 | A-UP06 | 高（Phase 3 前）|
-| 4 | **載有 `PU1087`／`PU1088` 之 Pop Up List 版本**（pattern：Personal Account 之 R1L-R 對應版，或較 `SR24 Post 2A (Dec 15, 2023)` 為新之 SR24／SR25 版）| **MISSING（本輪新開）** | `PROF` 之 `4.1.1`（Profile Setup 之兩個 popup）| 該二 popup 之字面值無來源；其餘 18 個 id 已可回溯 | A-UP06 | 高（Phase 3 前）|
-| 3 | spec 3.1–3.5（PLP1–PLP5）等 8 條無覆蓋條文之上游釐清 | 未送出 | 0（現況無 leaf 對應）| 不阻擋生成；PROF-001-01 之 Verification Criteria 引用 PLP 表，該表本身無 SWE 覆蓋 | A-UP02 | 中（RD-1，Tier 3 由 Pei 送出）|
+| 4 | **Pop Up List 中 `PU1087`／`PU1088` 兩列之 popup 內文**（非整份版本 —— **索取標的已於 06 輪依 R-U27 收窄**）| MISSING | `PROF-002-03`（`4.1.1`）| **不再擋章節**：spec PDF p6 已載該二 popup 之**觸發條件**，故觸發、顯示與否、流程分支皆可驗；**僅其 popup 內文之逐字 ER 不寫**（§8.4.1 不推定內容）| A-UP06 | **MEDIUM**（原 高；R-U27 降級）|
+| 3 | spec `3.1`–`3.5`（PLP1–PLP5）等 8 條之上游釐清 —— **性質已改為「上游覆蓋缺口」**（R-U28），非索取缺件 | 未送出 | 0（現況無 leaf 對應）| 不阻擋生成。`3.1`–`3.5` 有內容且可讀 → 依 R-U22 作 `PROF-001-01` 之 in-scope 依據；`10.1`／`11.1`／`11.2` 為變體覆寫條款且無 SWE 需求 → 列 RD-1 | A-UP02 | 中（RD-1，Tier 3 由 Pei 送出）|
 
 ## 第 1 列之實測依據（2026-08-17）
 
@@ -78,3 +78,20 @@ A 欄非空 1341）。
 > **不以 18/20 充當到齊**：缺的那兩個正是 Profile Setup 之 popup，
 > 而 spec 8.3 明文「The Profile Setup processes is a series of popups」——
 > **缺口不在邊陲，在該功能的正中央。**
+
+
+## 第 3／4 列之性質變更（06 輪，R-U27／R-U28）
+
+**DR #4 之索取標的收窄**：原列「載有 PU1087／PU1088 之 Pop Up List 版本」，
+**現改為「該二列之 popup 內文」**。依據：spec PDF p6 逐字載
+
+> `PU1087` is displayed when users confirm Setting restore to default by
+> pressing Yes in pop-up `PU_0118`. `PU1088` is displayed when settings have
+> been successfully restored to default.
+
+**即觸發條件 spec 自己給了，缺的只是那兩個 popup 上寫什麼。**
+故 `4.1.1` 之 TC 得以生成，`PROF-002-03` 解除阻斷，本列由 HIGH 降 **MEDIUM**。
+
+**DR #3 之性質改變**：由「索取缺件」改為「**上游覆蓋缺口**」——
+`3.1`–`3.5` 之內容**存在且可讀**（05 輪自 PDF p5 抽出逐項清單），
+037 只是沒有為它們產出 leaf。形態同 Comfort **R-C16**。

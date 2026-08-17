@@ -1,0 +1,23 @@
+# xlsx_missing_clauses.tsv — R-U31 第 3／4 項之補句表（07 輪）
+#
+# **登記「PDF 有而全部 169 節之 xlsx Description 皆無」之內容。**
+# 查證方式一律相同：取 PDF 側片段，查全 169 節之 xlsx Description 語料；查無方入表。
+#
+# 兩類：
+#   真掉句        逐節比對所得（5 條，涉 4 個成因：段落句／變體覆寫／中段句／表格）
+#   `**` 註記缺   R-U31 第 4 項之全量掃描所得，其全量表見 data/pdf_starred_notes.tsv
+#                （10 條中 xlsx 有 6、無 4；其中 2 條已含於上列真掉句，故此處只列另 2 條）
+#
+# outline 欄為節次；`p<N>` 者為註記之所在頁，其歸屬節次未逐一定位。
+#
+# **R-U31 第 4 項之理由（逐字）**：9.3.2 所掉者為 "Stellantis Account" →
+# "Connected Account" 之變體覆寫，屬 §8.7.3 直接管轄；掉了就會寫出錯的 label。
+# 故不得只補已發現之四條。
+outline	kind	text	shape	impact
+9.8	真掉句	If a setting linked to the Profile is changed, a popup will indicate that it has been changed for the active Profile (PU0609).	段落型條文（含 PU id）	EDPR9 之一整條可驗行為遺失；PU0609 亦因此未入 xlsx 側之 PU 清單
+9.3.2	真掉句	****R1 High Only: "Stellantis Account" to be replaced with "Connected Account"	變體覆寫註記（§8.7.3）	R1 High 機型之 label 覆寫 —— 掉了就會寫出錯的 label
+9.1	真掉句	there will be a circled number 1 next to Resume Tutorials. It will be removed as a list item once the user has completed setup assistant (See Tutorials HMI)	條文中段之句	Table EDPR1 之 Resume Tutorials 列有數字標記與其移除條件，ER 會漏
+11.4	真掉句	Table CPA2.) Connected Account vs Local Profile	表格標題	11.4 之「See table CPA2 for list items」因而指向一個 xlsx 側不存在的表
+11.5	真掉句	Connected FCA Account | Local Profile | Personalization | Presets, Menu Bar Order, App Drawer Favorites | App Store Download | Marketplace | Connected Navigation | Personalized Favorites, Recents, Predictive Navigation	表格列項	CPA2 表之逐列內容 —— 影響 11.4 之 ER 列舉範圍
+p17	`**` 註記缺	Connected Navigation Personalized Favorites, Recents, and Predictive Navigation	表格列項（同 11.5）	同上
+p14	`**` 註記缺	“ Stellantis Account” “Memory Seat” (If applicable) “Welcome Pop Up” “Delete Profile” “What is linked to my Profile?”	Table EDPR1 之列項	9.1 之列項順序；05 輪已自 PDF 讀出，xlsx 側無

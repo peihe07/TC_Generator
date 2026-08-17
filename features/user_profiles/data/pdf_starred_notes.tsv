@@ -1,0 +1,18 @@
+# pdf_starred_notes.tsv — R-U31 第 4 項：PDF 中 `**` 起首註記之**全量**（07 輪）
+#
+# pattern: `\*{2,}\s*([^\n*]{8,220})` 掃 21 頁文字層，得相異 10 條。
+# **下放包記為 10 條，本輪測得 10 條** —— 條數隨 pattern 而變（下限長度、
+# 上限長度、是否跨行），故 pattern 一併載明；差異非計算錯誤。
+# in_xlsx 之判定：以該註記之前 60／45／35 字元三段前綴查全 169 節之 xlsx
+# Description 語料，任一命中即為「有」（`**` 前綴與空白差異會造成假陰性）。
+page	text	kind	in_xlsx
+p10	Connected Account	圖／表內標籤	有
+p17	Connected Navigation	表格標題／列項	**無**
+p17	For China market only: do not show this content	變體覆寫註記	有
+p12	NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen on	圖／表內標籤	有
+p9	NOPR0.) R1 High	圖／表內標籤	有
+p14	R1 High Only: "Stellantis Account" to	變體覆寫註記	**無**
+p17	R1 High Only: This table (Table CPA2) is not applicable. There will	變體覆寫註記	有
+p16	R1 High Only: for the "Connected Account" category title (if	變體覆寫註記	有
+p17	Table CPA2.) Connected Account vs Local Profile	表格標題／列項	**無**
+p14	“ Stellantis Account”	圖／表內標籤	**無**

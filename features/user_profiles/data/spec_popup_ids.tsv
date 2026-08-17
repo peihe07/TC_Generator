@@ -1,21 +1,41 @@
-popup_id	refs	sections
-PU0091	1	12.2.1
-PU0118	1	4.1.1
-PU0129	1	5.13.2
-PU0394	1	14.2
-PU0580	1	5.3.1
-PU0584	1	5.2
-PU0585	1	6.4.1
-PU0588	2	5.10.1,9.6
-PU0611	1	7.1.1
-PU0626	1	5.13.2
-PU0832	1	12.8.1
-PU0833	1	12.8.1
-PU0841	1	7.1.1
-PU0934	1	13.2
-PU1087	1	4.1.1
-PU1088	2	4.1.1,4.1.1
-PU1089	1	5.13.2
-PU1090	1	5.13.2
-PU1091	1	5.13.2
-PU1573	1	13.3
+# spec_popup_ids.tsv — R-U26（06 輪）：由 20 擴為 32，加 source 欄。
+#
+# source=xlsx_text  自 xlsx Description 欄掃得（01 輪之 20 個，其 refs/sections 記載不改）
+# source=pdf_only   僅出現於 PDF 之圖／表文字層（12 個，本輪新增）
+#
+# **原 20 列之記載正確，只是涵蓋範圍小於其類別** —— 它記的是「xlsx 掃得者」。
+# pdf_only 之 sections 欄為該 id 所在頁之條款節次（版面歸屬），非引用關係。
+# 量測條件：PDF 21 頁文字層，pattern `PU[\s_]?(\d{3,4})`，正規化為 PU%04d。
+popup_id	refs	sections	source
+PU0091	1	12.2.1	xlsx_text
+PU0118	1	4.1.1	xlsx_text
+PU0129	1	5.13.2	xlsx_text
+PU0394	1	14.2	xlsx_text
+PU0575	1	6.1	pdf_only
+PU0576	1	6.1	pdf_only
+PU0577	1	7.1,7.1.1,7.2,7.2.1	pdf_only
+PU0578	1	7.1,7.1.1,7.2,7.2.1	pdf_only
+PU0579	1	7.1,7.1.1,7.2,7.2.1	pdf_only
+PU0580	1	5.3.1	xlsx_text
+PU0584	1	5.2	xlsx_text
+PU0585	1	6.4.1	xlsx_text
+PU0586	2	6.1	pdf_only
+PU0587	1	8.1,8.2,8.3,8.3.1	pdf_only
+PU0588	2	5.10.1,9.6	xlsx_text
+PU0609	1	9.4,9.4.1,9.4.2,9.5	pdf_only
+PU0611	1	7.1.1	xlsx_text
+PU0612	1	8.1,8.2,8.3,8.3.1	pdf_only
+PU0614	1	12.1,12.1.1,12.2,12.2.1	pdf_only
+PU0626	1	5.13.2	xlsx_text
+PU0832	1	12.8.1	xlsx_text
+PU0833	1	12.8.1	xlsx_text
+PU0841	1	7.1.1	xlsx_text
+PU0934	1	13.2	xlsx_text
+PU1087	1	4.1.1	xlsx_text
+PU1088	2	4.1.1,4.1.1	xlsx_text
+PU1089	1	5.13.2	xlsx_text
+PU1090	1	5.13.2	xlsx_text
+PU1091	1	5.13.2	xlsx_text
+PU1497	1	3.1,3.2,3.3,3.4	pdf_only
+PU1511	1	3.1,3.2,3.3,3.4	pdf_only
+PU1573	1	13.3	xlsx_text

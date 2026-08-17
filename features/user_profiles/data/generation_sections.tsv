@@ -1,0 +1,148 @@
+# generation_sections.tsv — R-U19 之生成集合（133 條）。
+#
+# **與 data/expected_cited_sections.tsv（135 列）分立，兩數不得互相取代。**
+#   expected_cited_sections.tsv  記「037 引用了哪些」—— 135，該記載正確，不改
+#   本檔                          記「哪些進生成」—— 133，覆蓋率分母與 batch 排程依據
+#
+# 扣除之二條，其唯一引用者為 R-U4 排除之 leaf：
+#   4.7   <- SWE1-HMI-PROF-017 (Out of scope)
+#   5.11  <- SWE1-HMI-PROF-035 (Out of scope)
+#
+# R-U3 之證據行「135 個 section id 缺漏 0」仍為真，但它不是覆蓋率的分子（R-U19）。
+# test_set 欄依 R-U20 之八組（B 案）由章別導出。
+#
+# 量測條件：由 expected_cited_sections.tsv 扣除上列二條；長度取 outline_map.json 之 len。
+section_id	chapter	chars	test_set
+4.1	4	190	Preference Storage
+4.1.1	4	518	Preference Storage
+4.2	4	191	Preference Storage
+4.3	4	261	Preference Storage
+4.3.1	4	126	Preference Storage
+4.4	4	179	Preference Storage
+4.5	4	464	Preference Storage
+4.5.1	4	329	Preference Storage
+4.5.2	4	147	Preference Storage
+4.5.3	4	515	Preference Storage
+4.5.3.1	4	163	Preference Storage
+4.5.4	4	161	Preference Storage
+4.6	4	294	Preference Storage
+4.6.1	4	263	Preference Storage
+4.6.2	4	97	Preference Storage
+4.6.3	4	206	Preference Storage
+5.1	5	489	Profile List
+5.1.1	5	231	Profile List
+5.1.2	5	399	Profile List
+5.2	5	499	Profile List
+5.3	5	188	Profile List
+5.3.1	5	249	Profile List
+5.3.2	5	192	Profile List
+5.3.3	5	89	Profile List
+5.4	5	275	Profile List
+5.5	5	583	Profile List
+5.6	5	304	Profile List
+5.6.1	5	209	Profile List
+5.7	5	213	Profile List
+5.8	5	207	Profile List
+5.9	5	217	Profile List
+5.10	5	197	Profile List
+5.10.1	5	728	Profile List
+5.12	5	151	Profile List
+5.12.1	5	129	Profile List
+5.12.2	5	89	Profile List
+5.13	5	109	Profile List
+5.13.1	5	100	Profile List
+5.13.2	5	596	Profile List
+5.14	5	162	Profile List
+5.15	5	145	Profile List
+5.15.1	5	146	Profile List
+5.16	5	195	Profile List
+6.1	6	281	Defaults
+6.2	6	264	Defaults
+6.2.1	6	214	Defaults
+6.3	6	242	Defaults
+6.3.1	6	351	Defaults
+6.3.2	6	159	Defaults
+6.4	6	165	Defaults
+6.4.1	6	153	Defaults
+6.5	6	100	Defaults
+6.6	6	121	Defaults
+7.1	7	158	Welcome Flow
+7.1.1	7	223	Welcome Flow
+7.2	7	195	Welcome Flow
+7.2.1	7	411	Welcome Flow
+7.2.2	7	210	Welcome Flow
+7.3	7	242	Welcome Flow
+7.4	7	225	Welcome Flow
+7.4.1	7	80	Welcome Flow
+7.5	7	209	Welcome Flow
+8.1	8	280	Setup Flow
+8.2	8	194	Setup Flow
+8.3	8	112	Setup Flow
+8.3.1	8	240	Setup Flow
+8.4	8	352	Setup Flow
+8.4.1	8	88	Setup Flow
+8.5	8	68	Setup Flow
+8.6	8	90	Setup Flow
+8.7	8	343	Setup Flow
+8.7.1	8	227	Setup Flow
+8.7.2	8	82	Setup Flow
+8.8	8	360	Setup Flow
+8.8.1	8	138	Setup Flow
+8.8.2	8	255	Setup Flow
+8.9	8	271	Setup Flow
+8.10	8	138	Setup Flow
+8.10.1	8	160	Setup Flow
+8.10.2	8	95	Setup Flow
+8.11	8	245	Setup Flow
+8.12	8	192	Setup Flow
+9.1	9	419	Editing
+9.1.1	9	193	Editing
+9.1.2	9	90	Editing
+9.2	9	252	Editing
+9.3	9	230	Editing
+9.3.1	9	172	Editing
+9.3.2	9	186	Editing
+9.4	9	189	Editing
+9.4.1	9	137	Editing
+9.4.2	9	67	Editing
+9.5	9	145	Editing
+9.5.1	9	226	Editing
+9.5.2	9	274	Editing
+9.5.3	9	158	Editing
+9.6	9	348	Editing
+9.6.1	9	233	Editing
+9.7	9	156	Editing
+9.7.1	9	114	Editing
+9.7.2	9	143	Editing
+9.8	9	237	Editing
+9.9	9	85	Editing
+10.2	10	333	Editing
+10.3	10	124	Editing
+10.3.1	10	337	Editing
+11.3	11	193	Connected Account
+11.3.1	11	203	Connected Account
+11.4	11	712	Connected Account
+11.5	11	306	Connected Account
+12.1	12	236	Valet Mode
+12.1.1	12	216	Valet Mode
+12.2	12	157	Valet Mode
+12.2.1	12	191	Valet Mode
+12.3	12	80	Valet Mode
+12.3.1	12	74	Valet Mode
+12.3.2	12	144	Valet Mode
+12.3.3	12	91	Valet Mode
+12.4	12	169	Valet Mode
+12.5	12	105	Valet Mode
+12.6	12	196	Valet Mode
+12.7	12	143	Valet Mode
+12.8	12	463	Valet Mode
+12.8.1	12	348	Valet Mode
+12.8.2	12	150	Valet Mode
+12.9	12	166	Valet Mode
+12.10	12	217	Valet Mode
+12.10.1	12	65	Valet Mode
+13.1	13	225	Valet Mode
+13.2	13	282	Valet Mode
+13.3	13	96	Valet Mode
+14.1	14	351	Valet Mode
+14.2	14	219	Valet Mode
