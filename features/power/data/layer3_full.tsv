@@ -1,0 +1,141 @@
+leaf	cfts	chapter_num	chapter_title	hit_count	item_ids	tokens
+SWE-PM-001	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-001	009	1.6.2.1.1	Full-Operation	3	4941357,4941358,4941360	Sys-RA-PM-0016
+SWE-PM-001	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-002	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-002	009	1.6.2.1.2	Idle	7	4941364,4941365,4941366,4941369,4941371,4941372,4941373	Sys-RA-PM-0018,Sys-RA-PM-0019,Sys-RA-PM-0020,Sys-RA-PM-0022,Sys-RA-PM-0023,Sys-RA-PM-0024
+SWE-PM-002	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-003	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-003	009	1.6.2.1.3	Partial Operation	5	4941391,4941392,4941393,4941394,4941396	Sys-RA-PM-0029,Sys-RA-PM-0030
+SWE-PM-003	009	1.6.2.1.4	Stolen Vehicle Mode	1	4941400	Sys-RA-PM-0031
+SWE-PM-003	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-004	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-004	009	1.6.2.1.5	Timed	5	4941402,4941403,4941404,4941406,4941407	Sys-RA-PM-0033
+SWE-PM-004	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-004	009	1.6.2.1.15.1	ICS Wakeup Reasons by POWER Button Pressed	1	4941663	Sys-RA-PM-0131
+SWE-PM-005	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-005	009	1.6.2.1.6	Standby	4	4941410,4941411,4941412,4941413	Sys-RA-PM-0035
+SWE-PM-005	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-006	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-006	009	1.6.2.1.7	Sleep	4	4941416,4941417,4941418,4941419	Sys-RA-PM-0037
+SWE-PM-006	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-007	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-007	009	1.6.2.1.8	Bench	2	4941422,4941423	Sys-RA-PM-0039
+SWE-PM-007	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-008	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-008	009	1.6.2.1.9	Logistic Idle	3	4941426,4941427,4941428	Sys-RA-PM-0041
+SWE-PM-008	009	1.6.2.1.10	Logistic Standby	2	4941431,4941432	Sys-RA-PM-0043
+SWE-PM-008	009	1.6.2.1.11	Logistic Sleep	2	4941434,4941435	Sys-RA-PM-0045
+SWE-PM-008	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-008	009	1.6.7.1	TLM algorithm requirements	4	4941755,4941756,4941757,4941758	Sys-RA-PM-0184,Sys-RA-PM-0185,Sys-RA-PM-0186,Sys-RA-PM-0187
+SWE-PM-009	009	1.6.2.1	TLM algorithm requirements	2	4941354,4941355	Sys-RA-PM-0013,Sys-RA-PM-0014
+SWE-PM-009	009	1.6.2.1.13	TLM initialization: Init state	8	4941441,4941442,4941443,4941445,4941446,4941447,4941449,4941450	Sys-RA-PM-0049,Sys-RA-PM-0050,Sys-RA-PM-0051,Sys-RA-PM-0052,Sys-RA-PM-0053
+SWE-PM-009	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	1	4941453	Sys-RA-PM-0056
+SWE-PM-010	009	1.9.12	Suspend to RAM	7	4941989,4941990,4941992,4941994,4941995,4941996,4941997	Sys-RA-PM-0299,Sys-RA-PM-0300,Sys-RA-PM-0301,Sys-RA-PM-0302,Sys-RA-PM-0303,Sys-RA-PM-0304,Sys-RA-PM-0305
+SWE-PM-011	009	1.6.2.1.2	Idle	8	4941375,4941376,4941383,4941384,4941385,4941386,4941387,4941388	Sys-RA-PM-0025,Sys-RA-PM-0026,Sys-RA-PM-0027
+SWE-PM-012	009	1.6.2.1.13	TLM initialization: Init state	2	4941449,4941450	Sys-RA-PM-0053
+SWE-PM-013	009	1.6.2.1.3	Partial Operation	4	4941391,4941392,4941393,4941394	Sys-RA-PM-0029
+SWE-PM-014	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	8	4941504,4941505,4941506,4941507,4941508,4941510,4941511,4941512	Sys-RA-PM-0065,Sys-RA-PM-0066,Sys-RA-PM-0068
+SWE-PM-015	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	4	4941540,4941541,4941542,4941543	Sys-RA-PM-0069,Sys-RA-PM-0070,Sys-RA-PM-0071,Sys-RA-PM-0072
+SWE-PM-016	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941544	Sys-RA-PM-0073
+SWE-PM-017	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941545	Sys-RA-PM-0074
+SWE-PM-018	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941548	Sys-RA-PM-0076
+SWE-PM-019	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	6	4941552,4941553,4941554,4941555,4941556,4941557	Sys-RA-PM-0078,Sys-RA-PM-0079
+SWE-PM-020	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	2	4941558,4941559	Sys-RA-PM-0080
+SWE-PM-021	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941560	Sys-RA-PM-0081
+SWE-PM-022	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941562	Sys-RA-PM-0083
+SWE-PM-023	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941565	Sys-RA-PM-0084
+SWE-PM-024	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941566	Sys-RA-PM-0085
+SWE-PM-025	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	6	4941569,4941570,4941571,4941572,4941573,4941574	Sys-RA-PM-0086,Sys-RA-PM-0087
+SWE-PM-026	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	3	4941575,4941576,4941577	Sys-RA-PM-0088
+SWE-PM-027	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	2	4941579,4941642	Sys-RA-PM-0090,Sys-RA-PM-0120
+SWE-PM-028	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	3	4941580,4941581,4941582	Sys-RA-PM-0091
+SWE-PM-029	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	4	4941586,4941587,4941588,4941589	Sys-RA-PM-0095
+SWE-PM-030	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941600	Sys-RA-PM-0101
+SWE-PM-031	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941615	Sys-RA-PM-0107
+SWE-PM-032	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941630	Sys-RA-PM-0117
+SWE-PM-033	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	2	4941634,4941635	Sys-RA-PM-0118
+SWE-PM-034	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	3	4941638,4941639,4941641	Sys-RA-PM-0119
+SWE-PM-035	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	4	4941649,4941650,4941651,4941652	Sys-RA-PM-0124
+SWE-PM-036	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941654	Sys-RA-PM-0126
+SWE-PM-037	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941655	Sys-RA-PM-0127
+SWE-PM-038	009	1.6.4.1	TLM algorithm requirements	13	4941722,4941723,4941724,4941725,4941726,4941727,4941728,4941729,4941730,4941731,4941732,4941735,4941736	Sys-RA-PM-0170,Sys-RA-PM-0171,Sys-RA-PM-0172,Sys-RA-PM-0173,Sys-RA-PM-0174,Sys-RA-PM-0175
+SWE-PM-039	009	1.7.1.1.1	ID 1.0 description	4	4941768,4941773,4941774,4941775	Sys-RA-PM-0192
+SWE-PM-040	009	1.9.12	Suspend to RAM	1	4941990	Sys-RA-PM-0300
+SWE-PM-041	009	1.6.2.1.6	Standby	4	4941410,4941411,4941412,4941413	Sys-RA-PM-0035
+SWE-PM-042	009	1.6.2.1.7	Sleep	4	4941416,4941417,4941418,4941419	Sys-RA-PM-0037
+SWE-PM-043	009	1.9.5	STANDBY MODE	1	4941895	Sys-RA-PM-0272
+SWE-PM-044	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	2	4941578,4941584	Sys-RA-PM-0089,Sys-RA-PM-0093
+SWE-PM-045	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941585	Sys-RA-PM-0094
+SWE-PM-046	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941601	Sys-RA-PM-0102
+SWE-PM-047	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941602	Sys-RA-PM-0103
+SWE-PM-048	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	5	4941603,4941605,4941608,4941610,4941611	Sys-RA-PM-0104
+SWE-PM-049	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941623	Sys-RA-PM-0112
+SWE-PM-050	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941624	Sys-RA-PM-0113
+SWE-PM-051	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941643	Sys-RA-PM-0121
+SWE-PM-052	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941648	Sys-RA-PM-0123
+SWE-PM-053	009	1.6.2.1.16	Splash Screen logo visualization	1	4941668	Sys-RA-PM-0135
+SWE-PM-054	009	1.6.2.1.16	Splash Screen logo visualization	4	4941673,4941674,4941675,4941676	Sys-RA-PM-0137,Sys-RA-PM-0138,Sys-RA-PM-0139,Sys-RA-PM-0140
+SWE-PM-055	009	1.6.2.1.16	Splash Screen logo visualization	1	4941678	Sys-RA-PM-0141
+SWE-PM-056	009	1.6.2.1.16	Splash Screen logo visualization	1	4941680	Sys-RA-PM-0143
+SWE-PM-057	009	1.6.2.1.17	Proxi Parameters management	3	4941692,4941693,4941695	Sys-RA-PM-0146,Sys-RA-PM-0147,Sys-RA-PM-0148
+SWE-PM-057	009	1.6.3.1.1	SwitchOff_Timeout_Setting.Req management	3	4941706,4941707,4941708	Sys-RA-PM-0158
+SWE-PM-057	009	1.8.1.1.1	ID 1 Description	3	4941814,4941815,4941817	Sys-RA-PM-0216,Sys-RA-PM-0217,Sys-RA-PM-0218
+SWE-PM-058	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	1	4941509	Sys-RA-PM-0067
+SWE-PM-059	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	2	4941616,4941617	Sys-RA-PM-0108
+SWE-PM-060	009	1.6.3.1	TLM algorithm requirements	1	4941702	Sys-RA-PM-0155
+SWE-PM-061	009	1.6.3.1	TLM algorithm requirements	1	4941703	Sys-RA-PM-0156
+SWE-PM-062	009	1.6.3.1.2	Auto_SwitchOn_Setting.Req management	1	4941710	Sys-RA-PM-0160
+SWE-PM-063	009	1.6.4.1	TLM algorithm requirements	1	4941715	Sys-RA-PM-0164
+SWE-PM-064	009	1.6.4.1	TLM algorithm requirements	1	4941718	Sys-RA-PM-0167
+SWE-PM-065	009	1.6.4.1	TLM algorithm requirements	2	4941720,4941721	Sys-RA-PM-0169
+SWE-PM-066	009	1.9.4	IDLE MODE	1	4941873	Sys-RA-PM-0261
+SWE-PM-067	009	1.9.4	IDLE MODE	1	4941874	Sys-RA-PM-0262
+SWE-PM-068	009	1.9.4	IDLE MODE	1	4941876	Sys-RA-PM-0264
+SWE-PM-069	009	1.9.4	IDLE MODE	1	4941877	Sys-RA-PM-0265
+SWE-PM-070	009	1.9.4	IDLE MODE	1	4941878	Sys-RA-PM-0266
+SWE-PM-071	010	1.7.1.1.1	TLM Boot	1	4942337	Sys-RA-PD_014
+SWE-PM-072	010	1.7.1.1.1	TLM Boot	1	4942338	Sys-RA-PD_015
+SWE-PM-073	010	1.7.2	Load Shed	1	4942354	Sys-RA-PD_019
+SWE-PM-074	009	1.9.10	FOTA Pop-up	1	4941976	Sys-RA-PM-0296
+SWE-PM-075	009	1.9.10	FOTA Pop-up	1	4941977	Sys-RA-PM-0297
+SWE-PM-076	009	1.9.3	Power Button Reset	4	4941858,4941860,4941861,4941867	Sys-RA-PM-0251,Sys-RA-PM-0256
+SWE-PM-077	009	1.9.15.1	Theme	1	4942013	Sys-RA-PM-0309
+SWE-PM-078	009	1.9.15.1	Theme	1	4942014	Sys-RA-PM-0310
+SWE-PM-079	009	1.9.15.1	Theme	1	4942015	Sys-RA-PM-0311
+SWE-PM-080	009	1.9.15.1	Theme	1	4942017	Sys-RA-PM-0312
+SWE-PM-081	009	1.9.15.1.1	Branded Font	1	4942019	Sys-RA-PM-0314
+SWE-PM-082	009	1.9.15.1.4	Branded APP Icon	1	4942025	Sys-RA-PM-0320
+SWE-PM-083	009	1.9.15.1.5	Branded Profile Avatars	1	4942027	Sys-RA-PM-0322
+SWE-PM-084	009	1.9.15.1.6	Branded Recirc Icon	1	4942029	Sys-RA-PM-0324
+SWE-PM-085	009	1.9.15.1.7	Settings Seat Graphic	1	4942033	Sys-RA-PM-0326
+SWE-PM-086	009	1.9.15.1.7.1.1	Theme	1	4942041	Sys-RA-PM-0327
+SWE-PM-087	009	1.9.15.1.7.1.1.6	Settings Seat Graphic	1	4942054	Sys-RA-PM-0328
+SWE-PM-088	009	1.9.15.1.10	Performance Gauges	1	4942064	Sys-RA-PM-0331
+SWE-PM-090	009	1.9.17	Day/Night Theme	1	4942104	Sys-RA-PM-0343
+SWE-PM-091	009	1.9.17	Day/Night Theme	1	4942105	Sys-RA-PM-0344
+SWE-PM-092	009	1.9.17	Day/Night Theme	1	4942107	Sys-RA-PM-0345
+SWE-PM-093	009	1.3.5	Start-Up and Shut Down Animations	1	4941301	Sys-RA-PM-0007
+SWE-PM-093	009	1.9.8	Startup Animation	1	4941941	Sys-RA-PM-0274
+SWE-PM-094	009	1.9.8	Startup Animation	1	4941942	Sys-RA-PM-0275
+SWE-PM-095	009	1.7.1.1.1	ID 1.0 description	1	4941784	Sys-RA-PM-0194
+SWE-PM-096	009	1.9.16	Contextual Theme	4	4942091,4942096,4942092,4942093	Sys-RA-PM-0336
+SWE-PM-097	009	1.6.2.1.16	Splash Screen logo visualization	1	4941680	Sys-RA-PM-0143
+SWE-PM-098	009	1.9.8	Startup Animation	1	4941943	Sys-RA-PM-0276
+SWE-PM-099	009	1.9.8	Startup Animation	2	4941944,4941945	Sys-RA-PM-0277
+SWE-PM-100	009	1.9.8	Startup Animation	1	4941947	Sys-RA-PM-0279
+SWE-PM-101	009	1.6.2.1.16	Splash Screen logo visualization	4	4941673,4941674,4941675,4941676	Sys-RA-PM-0137,Sys-RA-PM-0138,Sys-RA-PM-0139,Sys-RA-PM-0140
+SWE-PM-102	009	1.6.2.1.16	Splash Screen logo visualization	1	4941678	Sys-RA-PM-0141
+SWE-PM-103	009	1.6.2.1.2	Idle	2	4941364,4941365	Sys-RA-PM-0018
+SWE-PM-104	009	1.9.9	Splash and disclaimer screen	2	4941950,4941952	Sys-RA-PM-0282,Sys-RA-PM-0284
+SWE-PM-105	009	1.9.9	Splash and disclaimer screen	1	4941951	Sys-RA-PM-0283
+SWE-PM-106	009	1.9.9	Splash and disclaimer screen	1	4941955	Sys-RA-PM-0285
+SWE-PM-107	009	1.9.9	Splash and disclaimer screen	1	4941956	Sys-RA-PM-0286
+SWE-PM-108	009	1.9.9	Splash and disclaimer screen	1	4941958	Sys-RA-PM-0287
+SWE-PM-109	009	1.9.9	Splash and disclaimer screen	1	4941962	Sys-RA-PM-0288
+SWE-PM-110	009	1.9.9	Splash and disclaimer screen	1	4941963	Sys-RA-PM-0289
+SWE-PM-111	009	1.9.9	Splash and disclaimer screen	1	4941964	Sys-RA-PM-0290
+SWE-PM-112	009	1.9.9	Splash and disclaimer screen	1	4941967	Sys-RA-PM-0293
+SWE-PM-113	009	1.9.9	Splash and disclaimer screen	1	4941968	Sys-RA-PM-0294
+SWE-PM-114	009	1.9.4	IDLE MODE	1	4941876	Sys-RA-PM-0264
+SWE-PM-115	009	1.9.4	IDLE MODE	1	4941878	Sys-RA-PM-0266
