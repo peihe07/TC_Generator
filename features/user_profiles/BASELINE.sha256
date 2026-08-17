@@ -54,3 +54,11 @@
 # ---- 03 輪新增（2026-08-17）----
 9d176ddef6d013539bd33e8a74e8b67d01fba232486aaac9eedad109a783eedb  inputs/FM-WI-FSM-037-A03-N1L-SWE1-PersonalAccount-HMI-V0.1 STLA 報告.xlsx
 368d5874aa23e49c007251ece84de8901f873a7f51ab09b788122b164d365b05  inputs/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).xlsx
+
+# ---- 10 輪新增（2026-08-17，R-U45）----
+# **data/outline_map.json 自本輪起納入版控並受本檔保護。**
+# 其何以不再是「可重建之衍生物」：該檔含 `pdf_text`（生成階段之判讀基準，
+# R-U25／R-U35(a)）、`divergence`（07 輪逐節稽核之結果）與 `__meta__` ——
+# **三者皆非 build_outline_map.py 所能產出**，重建成本為 07／08 兩輪之工作量。
+# `.gitignore` 之例外依 R-U13「先裁後改」由 R-U45 授權後方加。
+a70f21817c2d93c49429a4bcc23f2e39b769f901669c9581efacc46e0a8cfa98  data/outline_map.json

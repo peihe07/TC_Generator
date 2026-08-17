@@ -4,9 +4,21 @@ inputs/
 # Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
 # own data/*.json artefacts here as Step 1 starts emitting them.
 data/recon.json
-# data/outline_map.json — 169 條 Description 全文，可由 build_outline_map.py 重建。
+# data/outline_map.json — **自 07／08 輪起不再可由 build_outline_map.py 重建**，
+# 故 R-U45（Pei 2026-08-17）裁定納入版控。原註解與 pattern 保留於下，
+# 其後之 `!` 例外使該檔實際被追蹤 —— 保留原 pattern 是為了看得出這條改過。
+#
+# 原理由（已失效）：169 條 Description 全文，可由 build_outline_map.py 重建。
+# 其失效之處：該檔現含 `pdf_text`（**生成階段之判讀基準**，R-U25／R-U35(a)）、
+# `divergence`（07 輪逐節稽核之結果）與 `__meta__`（判讀依據之標註）——
+# **三者皆非 build_outline_map.py 所能產出**，其重建成本為 07／08 兩輪之工作量。
+#
+# canon §9.1 第 9 項（保住檔案與保住雜湊是兩件事）為本 feature 所提，
+# 而該問題當時在本 feature 自己身上還開著。
+#
 # 註解必須自成一行：git 不剝除行尾註解，寫在 pattern 同一行會使該 pattern 失效。
 data/outline_map.json
+!data/outline_map.json
 batches/
 lint_report.json
 

@@ -1,0 +1,1530 @@
+{
+ "__meta__": {
+  "ruling": "R-U25 / R-U35",
+  "text": "**xlsx 側，追溯用，非判讀依據。** 逐字未動（R-U31 明文）。已知會少句（07 輪測得真掉句 5 節 / 3.6%），且含 4 處字內斷字（`aft er`／`know n`／`program med`／`spa ces`，08 輪測得，PDF 側 0 處）。",
+  "pdf_text": "**生成階段之判讀基準**（R-U35 (a)）。定位法：行首標籤 ＋ 等長窗口之相似度消歧 ＋ 頁界截斷。29 個無標籤之節為空。",
+  "divergence": "該節之 xlsx／PDF 形態分類，見 data/xlsx_pdf_audit.tsv。",
+  "known_exception": "`2.1`（Reference Documentation 表）為**唯一 xlsx 較 PDF 完整**之節 —— 其表於 PDF 為圖。R-U38 登記為 R-U25 分工原則之已知例外，不試抽。"
+ },
+ "1": {
+  "row": 2,
+  "polarion_id": "NRL-145430",
+  "outline": "1",
+  "text": "Assumptions",
+  "len": 11,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.1": {
+  "row": 3,
+  "polarion_id": "NRL-145431",
+  "outline": "1.1",
+  "text": "See the READ ME file for all disclaimers, general assumptions, general acronyms, general anatomy, general reference documents",
+  "len": 125,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.2": {
+  "row": 4,
+  "polarion_id": "NRL-145432",
+  "outline": "1.2",
+  "text": "This specification covers the requirements for the_x000D_\n○    R1 Low_x000D_\n■    7\", 8.4\", 10.1\" Landscape, 10.1\" Portrait, 10.25\", 12.3”_x000D_\n○    R1 High_x000D_\n■    10.1\" Landscape, 10.25\", 12\", 12\" Portrait, 12.3\", 14.46\" Portrait_x000D_\n○    Passenger Display_x000D_\n○    RSE",
+  "len": 283,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.3": {
+  "row": 5,
+  "polarion_id": "NRL-145433",
+  "outline": "1.3",
+  "text": "The Change Log for this document is a separate file",
+  "len": 51,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.4": {
+  "row": 6,
+  "polarion_id": "NRL-145434",
+  "outline": "1.4",
+  "text": "Differences between the radios will be specified.",
+  "len": 49,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.5": {
+  "row": 7,
+  "polarion_id": "NRL-145435",
+  "outline": "1.5",
+  "text": "Differences between Regions will be specified. If not specified, refer to the Market Config Table.",
+  "len": 98,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.6": {
+  "row": 8,
+  "polarion_id": "NRL-145436",
+  "outline": "1.6",
+  "text": "Unless otherwise specified, the 12\" user interface will be a scaled up version of the 10.1\".",
+  "len": 92,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.7": {
+  "row": 9,
+  "polarion_id": "NRL-145437",
+  "outline": "1.7",
+  "text": "Unless otherwise specified, the 12.3\" user interface will be a scaled up version of the 10.25\".",
+  "len": 95,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.8": {
+  "row": 10,
+  "polarion_id": "NRL-145438",
+  "outline": "1.8",
+  "text": "Unless called out as “Cloud/Connected Profile”, all requirements are for a local, non-connected Driver Profile. A user does not need to connect a Profile but has the option to (if available on the vehicle or in the region).",
+  "len": 223,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.9": {
+  "row": 11,
+  "polarion_id": "NRL-145439",
+  "outline": "1.9",
+  "text": "Specific Vehicle Settings linked to Personal Account will be called out in a separate document.",
+  "len": 95,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.10": {
+  "row": 12,
+  "polarion_id": "NRL-145440",
+  "outline": "1.10",
+  "text": "Unless otherwise specified, the 14.46\" user interface will follow the 12\" Portrait logic.",
+  "len": 89,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "1.11": {
+  "row": 13,
+  "polarion_id": "NRL-399545",
+  "outline": "1.11",
+  "text": "Requirements related to native navigation, navigation VR and native VR do not apply to radios without those features._x000D_",
+  "len": 124,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "2": {
+  "row": 14,
+  "polarion_id": "NRL-145441",
+  "outline": "2",
+  "text": "Reference Documentation",
+  "len": 23,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "2.1": {
+  "row": 15,
+  "polarion_id": "NRL-145442",
+  "outline": "2.1",
+  "text": "Please refer to the table\n\n\n  \n    \n\n      HMI Documents | \n      HMI Documents | \n      Other Documents\n    \n    \n\n      Core HMI Logic and Flow | \n      One Button Press Experience (Display Sync) HMI Logic and Flow | \n      \n    \n    \n\n      HMI Settings List | \n      Active Driving Assist Pages L2 and L2+ HMI Logicand Flow | \n      \n    \n    \n\n      Last Mode Table | \n      BEV HMI Logic and Flow | \n      \n    \n    \n\n      HMI Pop up List | \n      Autonomy Pages L3 (R1H) (w/o DRV) HMI Logic and Flow | \n      \n    \n    \n\n      Menu Bar and App Drawer HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Driver Lockout HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Home Screen HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Passenger Screen HMI Logic and Flow | \n       | \n      \n    \n    \n\n      RSE HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Hard Controls HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Keyboard HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Phone HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Projection HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Steering Wheel Controls HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Arabic Mirroring HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Connected Personal Account HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Tutorials HMI Logic and Flow | \n       | \n      \n    \n    \n\n      Ev Sound Generator 1.0 HMI Logic and Flow | \n       | \n      \n    \n    \n\n      App Store Logic and Flow | \n       |",
+  "len": 1568,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "3": {
+  "row": 16,
+  "polarion_id": "NRL-145443",
+  "outline": "3",
+  "text": "Profile Linked Preferences",
+  "len": 26,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "3.1": {
+  "row": 17,
+  "polarion_id": "NRL-145444",
+  "outline": "3.1",
+  "text": "PLP1.) Profile Linked Preferences -Radio\n (image: 24-screenshot-20260327-160127-4.png)",
+  "len": 86,
+  "pdf_text": "PLP1.) Profile Linked Preferences - Radio Cluster Low High Cluster Screen setup Last Screen Speed Warning Speed Units Cluster Home screen Cluster Layouts HUD settings",
+  "divergence": "其他不一致"
+ },
+ "3.2": {
+  "row": 18,
+  "polarion_id": "NRL-145445",
+  "outline": "3.2",
+  "text": "PLP2.) Profile Linked Preferences Cluster_x000D_\n  (image: image3.png)",
+  "len": 70,
+  "pdf_text": "PLP2.) Profile Linked Preferences - Cluster SiriusXM Low High SiriusXM 360L Listener Profile (last known)",
+  "divergence": "其他不一致"
+ },
+ "3.3": {
+  "row": 19,
+  "polarion_id": "NRL-145446",
+  "outline": "3.3",
+  "text": "PLP3.) Profile Linked Preferences -Memory Seat Module_x000D_\n (image: image4.png)",
+  "len": 81,
+  "pdf_text": "PLP3.) Profile Linked Preferences - Memory Seat Module",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "3.4": {
+  "row": 20,
+  "polarion_id": "NRL-145447",
+  "outline": "3.4",
+  "text": "PLP4.) Profile Linked Preferences -SiriusXM_x000D_\n (image: image5.png)",
+  "len": 71,
+  "pdf_text": "PLP4.) Profile Linked Preferences - SiriusXM Navigation Low High Nav Settings determined by TomTom Nav Recent Destinations determined by TomTom Nav Saved destinations determined by TomTom",
+  "divergence": "其他不一致"
+ },
+ "3.5": {
+  "row": 21,
+  "polarion_id": "NRL-145448",
+  "outline": "3.5",
+  "text": "PLP5.) Profile Linked Preferences -Navigation_x000D_\n (image: image6.png)",
+  "len": 73,
+  "pdf_text": "PLP5.) Profile Linked Preferences - Navigation Memory Seat Module Low High Memory Profiles (Seats, mirrors, steering wheel) Massage seat preferences (linked to memory seat positions)",
+  "divergence": "其他不一致"
+ },
+ "4": {
+  "row": 22,
+  "polarion_id": "NRL-145449",
+  "outline": "4",
+  "text": "Profile Overview",
+  "len": 16,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "4.1": {
+  "row": 23,
+  "polarion_id": "NRL-145450",
+  "outline": "4.1",
+  "text": "PRACC1.) The system will store and recall each unique Driver Profile’s preferences: see list of linked content above. If a feature is unavailable for a vehicle or region, ignore requirement.",
+  "len": 190,
+  "pdf_text": "PRACC1.) The system will store and recall each unique Driver Profile’s preferences: see list of linked content above. If a feature is unavailable for a vehicle or region, ignore requirement.",
+  "divergence": "相同"
+ },
+ "4.1.1": {
+  "row": 24,
+  "polarion_id": "NRL-145451",
+  "outline": "4.1.1",
+  "text": "PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, only restore the active Profile’s settings to default state (do not reset all Profiles’ settings to default). “Restore Settings to Default” will not delete profile username or avatar. PU1087 is displayed when users confirm Setting restore to default by pressing Yes in pop-up PU_0118. PU1088 is displayed when settings have been successfully restored to default. PU1088 is displayed if HU or TBM do not confirm complete default restoring.",
+  "len": 518,
+  "pdf_text": "PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, only restore the active Profile’s settings to default state (do not reset all Profiles’ settings to default). “Restore Settings to Default” will not delete profile username or avatar. PU1087 is displayed when users confirm Setting restore to default by pressing Yes in pop-up PU_0118. PU1088 is displayed when settings have been successfully restored to default. PU1088 is displayed if HU or TBM do not confirm complete default restoring.",
+  "divergence": "相同"
+ },
+ "4.2": {
+  "row": 25,
+  "polarion_id": "NRL-145452",
+  "outline": "4.2",
+  "text": "PRACC2.) A user can set up or customize a profile by inputting a username and avatar choice., but Profile setup/customization will not be required in order to use/interact with the head unit.",
+  "len": 191,
+  "pdf_text": "PRACC2.) A user can set up or customize a profile by inputting a username and avatar choice., but Profile setup/customization will not be required in order to use/interact with the head unit.",
+  "divergence": "相同"
+ },
+ "4.3": {
+  "row": 26,
+  "polarion_id": "NRL-145453",
+  "outline": "4.3",
+  "text": "PRACC3.) All user preferences associated with a Profile will be stored by the system and remembered over key cycles. Profile preferences will be restored when the Profile is activated/chosen to be used (e.g., through memory seat buttons, key fob, or Head Unit).",
+  "len": 261,
+  "pdf_text": "PRACC3.) All user preferences associated with a Profile will be stored by the system and remembered over key cycles. Profile preferences will be restored when the Profile is activated/chosen to be used (e.g., through memory seat buttons, key fob, or Head Unit).",
+  "divergence": "相同"
+ },
+ "4.3.1": {
+  "row": 27,
+  "polarion_id": "NRL-145454",
+  "outline": "4.3.1",
+  "text": "PRACC3.1) If a Profile is switched within a key cycle, any changed preferences will be saved before the new Profile is loaded.",
+  "len": 126,
+  "pdf_text": "PRACC3.1) If a Profile is switched within a key cycle, any changed preferences will be saved before the new Profile is loaded.",
+  "divergence": "相同"
+ },
+ "4.4": {
+  "row": 28,
+  "polarion_id": "NRL-145455",
+  "outline": "4.4",
+  "text": "PRACC4.) At the start of a new key cycle, Head Unit will load last know n Profile unless a different Profile is detected or initiated (through the key fob or memory seat buttons).",
+  "len": 179,
+  "pdf_text": "PRACC4.) At the start of a new key cycle, Head Unit will load last known Profile unless a different Profile is detected or initiated (through the key fob or memory seat buttons).",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "4.5": {
+  "row": 29,
+  "polarion_id": "NRL-145456",
+  "outline": "4.5",
+  "text": "PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will always be a default, non-connected profile in the vehicle. For first time use this default is called “Driver 1”. If Driver 1 Profile was customized (even if the name was maintained as Driver 1) and then all profiles have been deleted from the Head Unit, the default “Driver 1” Profile will return as the single profile in the vehicle (unless there are 2 or more memory seat buttons).",
+  "len": 464,
+  "pdf_text": "PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will always be a default, non-connected profile in the vehicle. For first time use this default is called “Driver 1”. If Driver 1 Profile was customized (even if the name was maintained as Driver 1) and then all profiles have been deleted from the Head Unit, the default “Driver 1” Profile will return as the single profile in the vehicle (unless there are 2 or more memory seat buttons).",
+  "divergence": "相同"
+ },
+ "4.5.1": {
+  "row": 30,
+  "polarion_id": "NRL-145457",
+  "outline": "4.5.1",
+  "text": "PRACC5.1) If there are memory seat buttons, there will be a default Driver Profile for each memory seat position/button (e.g., if there are 2 memory seat buttons there will be two default Profiles: memory seat button 1 defaults as linked to “Driver 1” Profile, and memory seat button two defaults as linked to “Driver 2” Profile)",
+  "len": 329,
+  "pdf_text": "PRACC5.1) If there are memory seat buttons, there will be a default Driver Profile for each memory seat position/button (e.g., if there are 2 memory seat buttons there will be two default Profiles: memory seat button 1 defaults as linked to “Driver 1” Profile, and memory seat button two defaults as linked to “Driver 2” Profile)",
+  "divergence": "相同"
+ },
+ "4.5.2": {
+  "row": 31,
+  "polarion_id": "NRL-145458",
+  "outline": "4.5.2",
+  "text": "PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, but there will always be one Driver Profile per memory seat position.",
+  "len": 147,
+  "pdf_text": "PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, but there will always be one Driver Profile per memory seat position.",
+  "divergence": "相同"
+ },
+ "4.5.3": {
+  "row": 32,
+  "polarion_id": "NRL-145459",
+  "outline": "4.5.3",
+  "text": "PRACC5.3) If a Profile linked to a memory seat position is attempted to be deleted, and there is one or more other Profiles available without memory seats linked to it/them, automatically reassign that memory seat to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab). If there are no Profile’s available to link a memory seat position to, a default Profile associated with that seat position will be automatically created/restored by the system.",
+  "len": 515,
+  "pdf_text": "PRACC5.3) If a Profile linked to a memory seat position is attempted to be deleted, and there is one or more other Profiles available without memory seats linked to it/them, automatically reassign that memory seat to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab). If there are no Profile’s available to link a memory seat position to, a default Profile associated with that seat position will be automatically created/restored by the system.",
+  "divergence": "相同"
+ },
+ "4.5.3.1": {
+  "row": 33,
+  "polarion_id": "NRL-145460",
+  "outline": "4.5.3.1",
+  "text": "PRACC5.3.1) If a Profile linked to a memory seat position is deleted, the new active profile will be the profile that is now assigned to the current seat position.",
+  "len": 163,
+  "pdf_text": "PRACC5.3.1) If a Profile linked to a memory seat position is deleted, the new active profile will be the profile that is now assigned to the current seat position.",
+  "divergence": "相同"
+ },
+ "4.5.4": {
+  "row": 34,
+  "polarion_id": "NRL-145461",
+  "outline": "4.5.4",
+  "text": "PRACC5.4) When default Driver 1-2 Profiles are restored, all Profile linked preferences are restored to the default state (as if the vehicle was just purchased).",
+  "len": 161,
+  "pdf_text": "PRACC5.4) When default Driver 1-2 Profiles are restored, all Profile linked preferences are restored to the default state (as if the vehicle was just purchased).",
+  "divergence": "相同"
+ },
+ "4.6": {
+  "row": 35,
+  "polarion_id": "NRL-145462",
+  "outline": "4.6",
+  "text": "PRACC6.) The Profile feature will have a button defaulted in the status bar (but status bar can be customized to remove it). The button icon will change depending on which profile is logged in._x000D_\n (image: %E5%9C%96%E7%89%87_1610819271.png) _x000D_\n (image: %E5%9C%96%E7%89%87_19752790.png)",
+  "len": 294,
+  "pdf_text": "PRACC6.) The Profile feature will have a button defaulted in the status bar (but status bar can be customized to remove it). The button icon will change depending on which profile is logged in.",
+  "divergence": "相同"
+ },
+ "4.6.1": {
+  "row": 36,
+  "polarion_id": "NRL-145463",
+  "outline": "4.6.1",
+  "text": "PRACC6.1) When a customized Profile is active, the Profile button icon will indicate which profile is logged in (with avatar – if the avatar is just a color, the first character of the username will display in the center of the colored circle), as pictured above.",
+  "len": 263,
+  "pdf_text": "PRACC6.1) When a customized Profile is active, the Profile button icon will indicate which profile is logged in (with avatar – if the avatar is just a color, the first character of the username will display in the center of the colored circle), as pictured above.",
+  "divergence": "相同"
+ },
+ "4.6.2": {
+  "row": 37,
+  "polarion_id": "NRL-145464",
+  "outline": "4.6.2",
+  "text": "PRACC6.2) When the Profile section is open, the button will be in the active state (highlighted).",
+  "len": 97,
+  "pdf_text": "PRACC6.2) When the Profile section is open, the button will be in the active state (highlighted).",
+  "divergence": "相同"
+ },
+ "4.6.3": {
+  "row": 38,
+  "polarion_id": "NRL-145465",
+  "outline": "4.6.3",
+  "text": "PRACC6.3) If the Profile button is removed from the status bar (through status bar customization), the highlight states of the button still apply to it in the Status bar edit mode drawer and the app drawer.",
+  "len": 206,
+  "pdf_text": "PRACC6.3) If the Profile button is removed from the status bar (through status bar customization), the highlight states of the button still apply to it in the Status bar edit mode drawer and the app drawer.",
+  "divergence": "相同"
+ },
+ "4.7": {
+  "row": 39,
+  "polarion_id": "NRL-145466",
+  "outline": "4.7",
+  "text": "PRACC7.) On profile switch with an active navigation route- calculate a route on the new profile using the remaining waypoints and destinations. Cancel route on the previous profile.",
+  "len": 182,
+  "pdf_text": "PRACC7.) On profile switch with an active navigation route - calculate a route on the new profile using the remaining waypoints and destinations. Cancel route on the previous profile.",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "5": {
+  "row": 40,
+  "polarion_id": "NRL-145467",
+  "outline": "5",
+  "text": "All Profiles Tab",
+  "len": 16,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "5.1": {
+  "row": 41,
+  "polarion_id": "NRL-145468",
+  "outline": "5.1",
+  "text": "PRACC7.) When in the Profile section, there will be two tabs; “All Profiles” and “Edit Profile”. The default tab is the “All Profiles” tab, but the system will latch on whichever tab was last used within and over key cycles, per Profile, when entered through pushing the Profile button. While in the Profile section and the user presses the Profile button again, the user will be taken to the All Profiles tab, if not already on that tab._x000D_\n (image: %E5%9C%96%E7%89%87_1814880533.png)",
+  "len": 489,
+  "pdf_text": "PRACC7.) When in the Profile section, there will be two tabs; “All Profiles” and “Edit Profile”. The default tab is the “All Profiles” tab, but the system will latch on whichever tab was last used within and over key cycles, per Profile, when entered through pushing the Profile button. While in the Profile section and the user presses the Profile button again, the user will be taken to the All Profiles tab, if not already on that tab.",
+  "divergence": "相同"
+ },
+ "5.1.1": {
+  "row": 42,
+  "polarion_id": "NRL-145469",
+  "outline": "5.1.1",
+  "text": "PRACC7.1) When on the “All Profiles” tab, all available users will be shown. The active user will be highlighted and larger than the others. There will be options to add new Profiles, switch active Profiles, and go into Valet Mode.",
+  "len": 231,
+  "pdf_text": "PRACC7.1) When on the “All Profiles” tab, all available users will be shown. The active user will be highlighted and larger than the others. There will be options to add new Profiles, switch active Profiles, and go into Valet Mode.",
+  "divergence": "相同"
+ },
+ "5.1.2": {
+  "row": 43,
+  "polarion_id": "NRL-145470",
+  "outline": "5.1.2",
+  "text": "PRACC7.2) An icon and the following string will always show in the “All Profiles” screen: “This icon is associated to settings that are specific to your profile and are not shared across the vehicle”. All settings that are tied to the profile and are inside the settings screen will show this icon (both inside the My Profile tab and all the other tabs). This logic is not applicable for 7” screens.",
+  "len": 399,
+  "pdf_text": "PRACC7.2) An icon and the following string will always show in the “All Profiles” screen: “This icon is associated to settings that are specific to your profile and are not shared across the vehicle”. All settings that are tied to the profile and are inside the settings screen will show this icon (both inside the My Profile tab and all the other tabs). This logic is not applicable for 7” screens.",
+  "divergence": "相同"
+ },
+ "5.2": {
+  "row": 44,
+  "polarion_id": "NRL-145471",
+  "outline": "5.2",
+  "text": "PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile. When the Maximum number of Profiles (5) is reached,: the Add New Profile button will not be present, and the icon and the string described in note PRACC7.2 will not be present either. A text will be displayed instead informing the user they must first delete a Profile before creating a new one: “Max Profiles reached. Delete to create a new one.” (PU0584)_x000D_\n (image: %E5%9C%96%E7%89%87_859790937.png)",
+  "len": 499,
+  "pdf_text": "PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile. When the Maximum number of Profiles (5) is reached,: the Add New Profile button will not be present, and the icon and the string described in note PRACC7.2 will not be present either. A text will be displayed instead informing the user they must first delete a Profile before creating a new one: “Max Profiles reached. Delete to create a new one.” (PU0584)",
+  "divergence": "相同"
+ },
+ "5.3": {
+  "row": 45,
+  "polarion_id": "NRL-145472",
+  "outline": "5.3",
+  "text": "PRACC9.) When on the “All Profiles” tab, selecting another Profile username or avatar will switch system to that Profile and the newly active Profile will then be in the highlighted state.",
+  "len": 188,
+  "pdf_text": "PRACC9.) When on the “All Profiles” tab, selecting another Profile username or avatar will switch system to that Profile and the newly active Profile will then be in the highlighted state.",
+  "divergence": "相同"
+ },
+ "5.3.1": {
+  "row": 46,
+  "polarion_id": "NRL-145473",
+  "outline": "5.3.1",
+  "text": "PRACC9.1) When switched, the Profile loading (new message) will be shown, then the Welcome popup message for the newly selected Profile will show (if turned on for that Profile) for 5 seconds (which is different than on vehicle entry)(popup PU0580).",
+  "len": 249,
+  "pdf_text": "PRACC9.1) When switched, the Profile loading (new message) will be shown, then the Welcome popup message for the newly selected Profile will show (if turned on for that Profile) for 5 seconds (which is different than on vehicle entry)(popup PU0580).",
+  "divergence": "相同"
+ },
+ "5.3.2": {
+  "row": 47,
+  "polarion_id": "NRL-145474",
+  "outline": "5.3.2",
+  "text": "PRACC9.2) If a Profile is switched while in the “All Profiles” tab, the screen will remain in the All Profiles tab (even if last known Profile tab was “Edit Profile” for newly active Profile).",
+  "len": 192,
+  "pdf_text": "PRACC9.2) If a Profile is switched while in the “All Profiles” tab, the screen will remain in the All Profiles tab (even if last known Profile tab was “Edit Profile” for newly active Profile).",
+  "divergence": "相同"
+ },
+ "5.3.3": {
+  "row": 48,
+  "polarion_id": "NRL-145475",
+  "outline": "5.3.3",
+  "text": "PRACC9.3.) While a new Profile is loading, the user cannot try to select another profile.",
+  "len": 89,
+  "pdf_text": "PRACC9.3.) While a new Profile is loading, the user cannot try to select another profile.",
+  "divergence": "相同"
+ },
+ "5.4": {
+  "row": 49,
+  "polarion_id": "NRL-145476",
+  "outline": "5.4",
+  "text": "PRACC10.) Editing a Profile is only available for the active Profile, in the “Edit Profile” tab. When on the All Profile Tab, pressing on the active Profile avatar or username after that Profile is already active and highlighted, will take the user to the “Edit Profile” tab.",
+  "len": 275,
+  "pdf_text": "PRACC10.) Editing a Profile is only available for the active Profile, in the “Edit Profile” tab. When on the All Profile Tab, pressing on the active Profile avatar or username after that Profile is already active and highlighted, will take the user to the “Edit Profile” tab.",
+  "divergence": "相同"
+ },
+ "5.5": {
+  "row": 50,
+  "polarion_id": "NRL-145477",
+  "outline": "5.5",
+  "text": "PRACC11.) The Memory seat status displayed under each applicable Profile avatar will show which memory seat number is program med to which Profile. The number of Memory seats will be vehicle dependent (currently up to 3). When the number of Profiles exceeds the number of Memory seats on a vehicle, the New Profile(s) will not be linked to any memory seats unless the user initiates a swap of Memory seat preferences (at least two out of the five profiles will not be associated with a Memory seat preference). Valet Mode Profile will not be allowed to link to Memory seat positions.",
+  "len": 583,
+  "pdf_text": "PRACC11.) The Memory seat status displayed under each applicable Profile avatar will show which memory seat number is programmed to which Profile. The number of Memory seats will be vehicle dependent (currently up to 3). When the number of Profiles exceeds the number of Memory seats on a vehicle, the New Profile(s) will not be linked to any memory seats unless the user initiates a swap of Memory seat preferences (at least two out of the five profiles will not be associated with a Memory seat preference). Valet Mode Profile will not be allowed to link to Memory seat positions.",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "5.6": {
+  "row": 51,
+  "polarion_id": "NRL-145478",
+  "outline": "5.6",
+  "text": "PRACC12.) Choosing the “Add New” text or the “+” icon will initiate the new Profile setup process. Completing a new Profile Setup means that the new Profile becomes the active Profile. Adding a new Profile from the “All Profiles” tab will return the user to the All Profiles tab aft er setup is complete.",
+  "len": 304,
+  "pdf_text": "PRACC12.) Choosing the “Add New” text or the “+” icon will initiate the new Profile setup process. Completing a new Profile Setup means that the new Profile becomes the active Profile. Adding a new Profile from the “All Profiles” tab will return the user to the All Profiles tab after setup is complete.",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "5.6.1": {
+  "row": 52,
+  "polarion_id": "NRL-145479",
+  "outline": "5.6.1",
+  "text": "PRACC12.1) The “Add New” text or the “+” icon will be greyed out while the vehicle is in motion. If selected, a bonk tone will be played along with the message “Function not available while vehicle in Motion.”",
+  "len": 209,
+  "pdf_text": "PRACC12.1) The “Add New” text or the “+” icon will be greyed out while the vehicle is in motion. If selected, a bonk tone will be played along with the message “Function not available while vehicle in Motion.”",
+  "divergence": "相同"
+ },
+ "5.7": {
+  "row": 53,
+  "polarion_id": "NRL-145480",
+  "outline": "5.7",
+  "text": "PRACC13.) Linking a Profile to a memory seat can only be done through the Edit Profile screen (unless it is linked by default ). If the seat position is saved, it will not automatically save to the active Profile.",
+  "len": 213,
+  "pdf_text": "PRACC13.) Linking a Profile to a memory seat can only be done through the Edit Profile screen (unless it is linked by default). If the seat position is saved, it will not automatically save to the active Profile.",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "5.8": {
+  "row": 54,
+  "polarion_id": "NRL-145481",
+  "outline": "5.8",
+  "text": "PRACC14.) If the Profile is switched while the vehicle is in motion, the memory seat position will not change. A popup will indicate to the user that the seat could not adjust while the vehicle is in motion.",
+  "len": 207,
+  "pdf_text": "PRACC14.) If the Profile is switched while the vehicle is in motion, the memory seat position will not change. A popup will indicate to the user that the seat could not adjust while the vehicle is in motion.",
+  "divergence": "相同"
+ },
+ "5.9": {
+  "row": 55,
+  "polarion_id": "NRL-145482",
+  "outline": "5.9",
+  "text": "PRACC15.) Pushing the memory seat set/save hard or soft controls is not required to save any of the Driver Profile linked preferences. The Driver Profile Preferences will be saved locally to the vehicle automatically.",
+  "len": 217,
+  "pdf_text": "PRACC15.) Pushing the memory seat set/save hard or soft controls is not required to save any of the Driver Profile linked preferences. The Driver Profile Preferences will be saved locally to the vehicle automatically.",
+  "divergence": "相同"
+ },
+ "5.10": {
+  "row": 56,
+  "polarion_id": "NRL-145483",
+  "outline": "5.10",
+  "text": "PRACC16.) Saving a new seat position through the memory seat set/save hard or soft controls will save that seat position to whichever Driver Profile is already linked to the associated memory seat.",
+  "len": 197,
+  "pdf_text": "PRACC16.) Saving a new seat position through the memory seat set/save hard or soft controls will save that seat position to whichever Driver Profile is already linked to the associated memory seat.",
+  "divergence": "相同"
+ },
+ "5.10.1": {
+  "row": 57,
+  "polarion_id": "NRL-145484",
+  "outline": "5.10.1",
+  "text": "PRACC16.1) If a new seat position is saved to a Profile that is not currently active, a popup will prompt the user if they would like to switch their seat preference to the newly saved memory seat number (PU0588). If the user chooses yes, the previous Profile linked to this seat position will move to “None”, and if there is no seat position already linked to the active Profile the new seat preference will save for that Profile. If the active user chooses yes, and if they already have a memory seat position associated with their Profile, the original seat assignment for the active Profile will move to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab).",
+  "len": 728,
+  "pdf_text": "PRACC16.1) If a new seat position is saved to a Profile that is not currently active, a popup will prompt the user if they would like to switch their seat preference to the newly saved memory seat number (PU0588). If the user chooses yes, the previous Profile linked to this seat position will move to “None”, and if there is no seat position already linked to the active Profile the new seat preference will save for that Profile. If the active user chooses yes, and if they already have a memory seat position associated with their Profile, the original seat assignment for the active Profile will move to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab).",
+  "divergence": "相同"
+ },
+ "5.11": {
+  "row": 58,
+  "polarion_id": "NRL-145485",
+  "outline": "5.11",
+  "text": "PRACC17.) The system will recall the last known SiriusXM 360L Listener Profile for each Driver Profile. If that Listener Profile is not available, the system will just go to SiriusXM 360L with the default Listener Profile logged in. Refer to the SiriusXM Logic & Flow for SiriusXM Listener Profiles and their relationship to Stellantis Vehicle Profiles.",
+  "len": 353,
+  "pdf_text": "PRACC17.) The system will recall the last known SiriusXM 360L Listener Profile for each Driver Profile. If that Listener Profile is not available, the system will just go to SiriusXM 360L with the default Listener Profile logged in. Refer to the SiriusXM Logic & Flow for SiriusXM Listener Profiles and their relationship to Stellantis Vehicle Profiles.",
+  "divergence": "相同"
+ },
+ "5.12": {
+  "row": 59,
+  "polarion_id": "NRL-145486",
+  "outline": "5.12",
+  "text": "ALLPR1.) Profile order will default based on the order in which the Profiles have been added (defaults to the left and new Profiles added to the right)",
+  "len": 151,
+  "pdf_text": "ALLPR1.) Profile order will default based on the order in which the Profiles have been added (defaults to the left and new Profiles added to the right)",
+  "divergence": "相同"
+ },
+ "5.12.1": {
+  "row": 60,
+  "polarion_id": "NRL-145487",
+  "outline": "5.12.1",
+  "text": "ALLPR1.1) Default Profiles will be in order of memory seat link (Ex: mem seat 1 + Driver 1 will be the first Profile on the left)",
+  "len": 129,
+  "pdf_text": "ALLPR1.1) Default Profiles will be in order of memory seat link (Ex: mem seat 1 + Driver 1 will be the first Profile on the left)",
+  "divergence": "相同"
+ },
+ "5.12.2": {
+  "row": 61,
+  "polarion_id": "NRL-145488",
+  "outline": "5.12.2",
+  "text": "ALLPR1.2) Editing memory seat preferences/links will not change the order of the Profiles",
+  "len": 89,
+  "pdf_text": "ALLPR1.2) Editing memory seat preferences/links will not change the order of the Profiles",
+  "divergence": "相同"
+ },
+ "5.13": {
+  "row": 62,
+  "polarion_id": "NRL-145489",
+  "outline": "5.13",
+  "text": "ALLPR2.) If Default Profiles are restored (without clearing all Profiles) add restored Defaults to the right.",
+  "len": 109,
+  "pdf_text": "ALLPR2.) If Default Profiles are restored (without clearing all Profiles) add restored Defaults to the right.",
+  "divergence": "相同"
+ },
+ "5.13.1": {
+  "row": 63,
+  "polarion_id": "NRL-145490",
+  "outline": "5.13.1",
+  "text": "ALLPR2.1) If all Profiles are cleared and the default Profiles are restored, return to default order",
+  "len": 100,
+  "pdf_text": "ALLPR2.1) If all Profiles are cleared and the default Profiles are restored, return to default order",
+  "divergence": "相同"
+ },
+ "5.13.2": {
+  "row": 64,
+  "polarion_id": "NRL-145491",
+  "outline": "5.13.2",
+  "text": "ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0626) will delete all profiles from the vehicle and restore the defaults. The new active profile will be associated with the current memory seat position (ex: if memory seat 2 is active, go to Driver 2 default profile). If there are no memory seats, Driver 1 should be the new active profile. PU1089 is displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129. PU1090 is displayed when data have been successfully cleared. PU1091 is displayed if HU or TBM do not confirm complete data clearing.",
+  "len": 596,
+  "pdf_text": "ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0626) will delete all profiles from the vehicle and restore the defaults. The new active profile will be associated with the current memory seat position (ex: if memory seat 2 is active, go to Driver 2 default profile). If there are no memory seats, Driver 1 should be the new active profile. PU1089 is displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129. PU1090 is displayed when data have been successfully cleared. PU1091 is displayed if HU or TBM do not confirm complete data clearing.",
+  "divergence": "相同"
+ },
+ "5.14": {
+  "row": 65,
+  "polarion_id": "NRL-145492",
+  "outline": "5.14",
+  "text": "ALLPR3.) Pressing and holding the Avatar of any Profile will allow for dragging and reordering the Profiles (and will not res ult in that Profile being activated)",
+  "len": 162,
+  "pdf_text": "ALLPR3.) Pressing and holding the Avatar of any Profile will allow for dragging and reordering the Profiles (and will not result in that Profile being activated)",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "5.15": {
+  "row": 66,
+  "polarion_id": "NRL-145493",
+  "outline": "5.15",
+  "text": "ALLPR5.) Usernames displayed on the All Profiles tab should be center justified under the associated avatar and not overlap with other usernames.",
+  "len": 145,
+  "pdf_text": "ALLPR5.) Usernames displayed on the All Profiles tab should be center justified under the associated avatar and not overlap with other usernames.",
+  "divergence": "相同"
+ },
+ "5.15.1": {
+  "row": 67,
+  "polarion_id": "NRL-145494",
+  "outline": "5.15.1",
+  "text": "ALLPR5.1) If the username is too long to be displayed within the All Profiles username space, follow the Core HMI Logic and Flow truncation rules.",
+  "len": 146,
+  "pdf_text": "ALLPR5.1) If the username is too long to be displayed within the All Profiles username space, follow the Core HMI Logic and Flow truncation rules.",
+  "divergence": "相同"
+ },
+ "5.16": {
+  "row": 68,
+  "polarion_id": "NRL-145495",
+  "outline": "5.16",
+  "text": "ALLPR6.) A cloud icon will show next to the profile avatar on the All Profiles tab and Edit Profile tab if the profile is connected with an Connected account (See Connected Personal Account HMI).",
+  "len": 195,
+  "pdf_text": "ALLPR6.) A cloud icon will show next to the profile avatar on the All Profiles tab and Edit Profile tab if the profile is connected with an Connected account (See Connected Personal Account HMI).",
+  "divergence": "相同"
+ },
+ "6": {
+  "row": 69,
+  "polarion_id": "NRL-145496",
+  "outline": "6",
+  "text": "Default Profiles - No Custom Profiles",
+  "len": 37,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "6.1": {
+  "row": 70,
+  "polarion_id": "NRL-145497",
+  "outline": "6.1",
+  "text": "NOPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen only. Therefore, after choosing the avatar, the system will keep current preferences and will begin Tutorials (refer to Tutorials L&F)",
+  "len": 281,
+  "pdf_text": "NOPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen only. Therefore, after choosing the avatar, the system will keep current preferences and will begin Tutorials (refer to Tutorials L&F)",
+  "divergence": "相同"
+ },
+ "6.2": {
+  "row": 71,
+  "polarion_id": "NRL-145498",
+  "outline": "6.2",
+  "text": "NOPR1.) At vehicle entry or initiation of a newly active Profile, there will be a Welcome popup. There will be prompts for the user to customize the default Profile(s) within the default Welcome Popup (see above)._x000D_\n (image: %E5%9C%96%E7%89%87_1670526527.png)",
+  "len": 264,
+  "pdf_text": "NOPR1.) At vehicle entry or initiation of a newly active Profile, there will be a Welcome popup. There will be prompts for the user to customize the default Profile(s) within the default Welcome Popup (see above).",
+  "divergence": "相同"
+ },
+ "6.2.1": {
+  "row": 72,
+  "polarion_id": "NRL-145499",
+  "outline": "6.2.1",
+  "text": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
+  "len": 214,
+  "pdf_text": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
+  "divergence": "相同"
+ },
+ "6.3": {
+  "row": 73,
+  "polarion_id": "NRL-145500",
+  "outline": "6.3",
+  "text": "NOPR2.) Until popups are turned off, there will be a popup upon vehicle entry to informed the user which Profile is in use, with a button to switch users, and, for default Profile(s), a button to “Get Started” to customize the active Profile.",
+  "len": 242,
+  "pdf_text": "NOPR2.) Until popups are turned off, there will be a popup upon vehicle entry to informed the user which Profile is in use, with a button to switch users, and, for default Profile(s), a button to “Get Started” to customize the active Profile.",
+  "divergence": "相同"
+ },
+ "6.3.1": {
+  "row": 74,
+  "polarion_id": "NRL-145501",
+  "outline": "6.3.1",
+  "text": "NOPR2.1) Selecting “X” on the default Welcome popup will lead to another popup with options of “Remind me Later” and “Don’t Show me Again”. Selecting “Remind me Later” will close the popup until the next time that Profile is activated. Clicking outside the Welcome popup will close the popup without asking “Remind me Later” and “Don’t Show me Again”.",
+  "len": 351,
+  "pdf_text": "NOPR2.1) Selecting “X” on the default Welcome popup will lead to another popup with options of “Remind me Later” and “Don’t Show me Again”. Selecting “Remind me Later” will close the popup until the next time that Profile is activated. Clicking outside the Welcome popup will close the popup without asking “Remind me Later” and “Don’t Show me Again”.",
+  "divergence": "相同"
+ },
+ "6.3.2": {
+  "row": 75,
+  "polarion_id": "NRL-145502",
+  "outline": "6.3.2",
+  "text": "NOPR2.2) Selecting “Don’t Show me Again” will turn off the setting for the “Welcome” popup for that Profile (which could be any Default or customized Profile).",
+  "len": 159,
+  "pdf_text": "NOPR2.2) Selecting “Don’t Show me Again” will turn off the setting for the “Welcome” popup for that Profile (which could be any Default or customized Profile).",
+  "divergence": "相同"
+ },
+ "6.4": {
+  "row": 76,
+  "polarion_id": "NRL-145503",
+  "outline": "6.4",
+  "text": "NOPR3.) Pressing “Get Started” will initiate the New Profile Setup (but carry-over all current preferences linked to the active Profile, without a popup to confirm).",
+  "len": 165,
+  "pdf_text": "NOPR3.) Pressing “Get Started” will initiate the New Profile Setup (but carry-over all current preferences linked to the active Profile, without a popup to confirm).",
+  "divergence": "相同"
+ },
+ "6.4.1": {
+  "row": 77,
+  "polarion_id": "NRL-145504",
+  "outline": "6.4.1",
+  "text": "NOPR3.1) If vehicle is not equipped with connectivity, pressing “Get Started” will show PU0585 and will not show Connected Account Login/Register Screen.",
+  "len": 153,
+  "pdf_text": "NOPR3.1) If vehicle is not equipped with connectivity, pressing “Get Started” will show PU0585 and will not show Connected Account Login/Register Screen.",
+  "divergence": "相同"
+ },
+ "6.5": {
+  "row": 78,
+  "polarion_id": "NRL-145505",
+  "outline": "6.5",
+  "text": "NOPR4.) Pressing “Switch Users” will take the user to the “All Profiles” tab in the Profile Section.",
+  "len": 100,
+  "pdf_text": "NOPR4.) Pressing “Switch Users” will take the user to the “All Profiles” tab in the Profile Section.",
+  "divergence": "相同"
+ },
+ "6.6": {
+  "row": 79,
+  "polarion_id": "NRL-145506",
+  "outline": "6.6",
+  "text": "NOPR5.) Pressing the Avatar or “Welcome [username]” text will take the user to the last known tab in the Profile section.",
+  "len": 121,
+  "pdf_text": "NOPR5.) Pressing the Avatar or “Welcome [username]” text will take the user to the last known tab in the Profile section.",
+  "divergence": "相同"
+ },
+ "7": {
+  "row": 80,
+  "polarion_id": "NRL-145507",
+  "outline": "7",
+  "text": "Welcome Screen (Custom Profile)",
+  "len": 31,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "7.1": {
+  "row": 81,
+  "polarion_id": "NRL-145508",
+  "outline": "7.1",
+  "text": "PRWEL1.) Unless user has selected to turn off welcome popups, the Head Unit will display a “welcome” popup at ignition on and any time a Profile is activated.",
+  "len": 158,
+  "pdf_text": "PRWEL1.) Unless user has selected to turn off welcome popups, the Head Unit will display a “welcome” popup at ignition on and any time a Profile is activated.",
+  "divergence": "相同"
+ },
+ "7.1.1": {
+  "row": 82,
+  "polarion_id": "NRL-145509",
+  "outline": "7.1.1",
+  "text": "PRWEL1.1) If the active Profile has not completed the Tutorials, and has not chosen to exit Tutorials, show “welcome” popup PU0841. Pressing X will show popup PU0611 giving the option to remind me later or don’t show again.",
+  "len": 223,
+  "pdf_text": "PRWEL1.1) If the active Profile has not completed the Tutorials, and has not chosen to exit Tutorials, show “welcome” popup PU0841. Pressing X will show popup PU0611 giving the option to remind me later or don’t show again.",
+  "divergence": "相同"
+ },
+ "7.2": {
+  "row": 83,
+  "polarion_id": "NRL-145510",
+  "outline": "7.2",
+  "text": "PRWEL2.) The small welcome popup will show the active (logged in) Profile username and avatar, with options to switch users, or close the popup._x000D_\n (image: %E5%9C%96%E7%89%87_1746377947.png)",
+  "len": 195,
+  "pdf_text": "PRWEL2.) The small welcome popup will show the active (logged in) Profile username and avatar, with options to switch users, or close the popup.",
+  "divergence": "相同"
+ },
+ "7.2.1": {
+  "row": 84,
+  "polarion_id": "NRL-145511",
+  "outline": "7.2.1",
+  "text": "PRWEL2.1) The large welcome popup will show the active (logged in) Profile username and avatar, and display other available profiles, including avatar, username, and memory seat assignment if applicable. Choosing “More Options” will take user to Edit Profile tab. If a different Profile is selected, show the applicable welcome popup for the new active profile._x000D_\n (image: %E5%9C%96%E7%89%87_446769776.png)",
+  "len": 411,
+  "pdf_text": "PRWEL2.1) The large welcome popup will show the active (logged in) Profile username and avatar, and display other available profiles, including avatar, username, and memory seat assignment if applicable. Choosing “More Options” will take user to Edit Profile tab. If a different Profile is selected, show the applicable welcome popup for the new active profile.",
+  "divergence": "相同"
+ },
+ "7.2.2": {
+  "row": 85,
+  "polarion_id": "NRL-145512",
+  "outline": "7.2.2",
+  "text": "PRWEL2.2) Closing the popup will not have the prompts from the default Welcome popup for “Remind me Later” and “Don’t Show me Again”. Pressing X in the custom Welcome popup will be treated as “Remind me Later”.",
+  "len": 210,
+  "pdf_text": "PRWEL2.2) Closing the popup will not have the prompts from the default Welcome popup for “Remind me Later” and “Don’t Show me Again”. Pressing X in the custom Welcome popup will be treated as “Remind me Later”.",
+  "divergence": "相同"
+ },
+ "7.3": {
+  "row": 86,
+  "polarion_id": "NRL-145513",
+  "outline": "7.3",
+  "text": "PRWEL3.) Pressing “Switch Users” on the Welcome popup will take the user to the All Profiles tab of the Profiles section. Pressing on the avatar of the text “Welcome [username]” will take the user to the last known tab in the Profile Section.",
+  "len": 242,
+  "pdf_text": "PRWEL3.) Pressing “Switch Users” on the Welcome popup will take the user to the All Profiles tab of the Profiles section. Pressing on the avatar of the text “Welcome [username]” will take the user to the last known tab in the Profile Section.",
+  "divergence": "相同"
+ },
+ "7.4": {
+  "row": 87,
+  "polarion_id": "NRL-145514",
+  "outline": "7.4",
+  "text": "PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is in motion or after 30 seconds or if the user interacts with the screen (whichever comes first) and not return until that Profile gets reactivated.",
+  "len": 225,
+  "pdf_text": "PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is in motion or after 30 seconds or if the user interacts with the screen (whichever comes first) and not return until that Profile gets reactivated.",
+  "divergence": "相同"
+ },
+ "7.4.1": {
+  "row": 88,
+  "polarion_id": "NRL-145515",
+  "outline": "7.4.1",
+  "text": "PRWEL4.1) The 30 seconds should not include when the vehicle is in remote start.",
+  "len": 80,
+  "pdf_text": "PRWEL4.1) The 30 seconds should not include when the vehicle is in remote start.",
+  "divergence": "相同"
+ },
+ "7.5": {
+  "row": 89,
+  "polarion_id": "NRL-145516",
+  "outline": "7.5",
+  "text": "PRWEL5.) The Valet Mode welcome popup will have the same clear/timeout behavior as the other welcome popups. See Valet Mode section for additional information._x000D_\n (image: %E5%9C%96%E7%89%87_503778562.png)",
+  "len": 209,
+  "pdf_text": "PRWEL5.) The Valet Mode welcome popup will have the same clear/timeout behavior as the other welcome popups. See Valet Mode section for additional information.",
+  "divergence": "相同"
+ },
+ "8": {
+  "row": 90,
+  "polarion_id": "NRL-145517",
+  "outline": "8",
+  "text": "New Profile Setup",
+  "len": 17,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "8.1": {
+  "row": 91,
+  "polarion_id": "NRL-145518",
+  "outline": "8.1",
+  "text": "NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen only. Therefore, after step 4, the system will follow the request for preferences and will begin Tutorials (refer to Tutorials L&F).",
+  "len": 280,
+  "pdf_text": "NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen only. Therefore, after step 4, the system will follow the request for preferences and will begin Tutorials (refer to Tutorials L&F).",
+  "divergence": "相同"
+ },
+ "8.2": {
+  "row": 92,
+  "polarion_id": "NRL-145519",
+  "outline": "8.2",
+  "text": "NEWPR1.) See flow for setting up a New Profile above. Connecting an account or downloading an existing Connected account are not pictured here._x000D_\n (image: %E5%9C%96%E7%89%87_1102096521.png)",
+  "len": 194,
+  "pdf_text": "NEWPR1.) See flow for setting up a New Profile above. Connecting an account or downloading an existing Connected account are not pictured here.",
+  "divergence": "相同"
+ },
+ "8.3": {
+  "row": 93,
+  "polarion_id": "NRL-145520",
+  "outline": "8.3",
+  "text": "NEWPR2.) The Profile Setup processes is a series of popups. Specific popups can be found in the HMI Pop Up List.",
+  "len": 112,
+  "pdf_text": "NEWPR2.) The Profile Setup processes is a series of popups. Specific popups can be found in the HMI Pop Up List.",
+  "divergence": "相同"
+ },
+ "8.3.1": {
+  "row": 94,
+  "polarion_id": "NRL-145521",
+  "outline": "8.3.1",
+  "text": "NEWPR2.1) Pressing any other button (on main menu bar or status bar) while within the New Profile Setup will be treated the same as “Cancel” or “X” and give another popup asking if the user is sure they can to discard the New Profile setup.",
+  "len": 240,
+  "pdf_text": "NEWPR2.1) Pressing any other button (on main menu bar or status bar) while within the New Profile Setup will be treated the same as “Cancel” or “X” and give another popup asking if the user is sure they can to discard the New Profile setup.",
+  "divergence": "相同"
+ },
+ "8.4": {
+  "row": 95,
+  "polarion_id": "NRL-145522",
+  "outline": "8.4",
+  "text": "NEWPR3.) Choosing an avatar will only show available options. When selecting an avatar, a default choice will be highlighted (the next available default – not used by another user) so that the user does not need to make a choice before saving/completing setup. No two Profile’s can use the same Avatar._x000D_\n (image: %E5%9C%96%E7%89%87_455769507.png)",
+  "len": 352,
+  "pdf_text": "NEWPR3.) Choosing an avatar will only show available options. When selecting an avatar, a default choice will be highlighted (the next available default – not used by another user) so that the user does not need to make a choice before saving/completing setup. No two Profile’s can use the same Avatar.",
+  "divergence": "相同"
+ },
+ "8.4.1": {
+  "row": 96,
+  "polarion_id": "NRL-145523",
+  "outline": "8.4.1",
+  "text": "NEWPR3.1) After entering username and choosing avatar, the system will save the profile.",
+  "len": 88,
+  "pdf_text": "NEWPR3.1) After entering username and choosing avatar, the system will save the profile.",
+  "divergence": "相同"
+ },
+ "8.5": {
+  "row": 97,
+  "polarion_id": "NRL-145524",
+  "outline": "8.5",
+  "text": "NEWPR4.) The same username can be used for multiple Driver Profiles.",
+  "len": 68,
+  "pdf_text": "NEWPR4.) The same username can be used for multiple Driver Profiles. Add New Continue Save & Continue Cancel/”X” Cancel/”X” Yes/Cancel No/Go Back No Yes Yes, Keep Changes Restore default preferences",
+  "divergence": "句尾截斷"
+ },
+ "8.6": {
+  "row": 98,
+  "polarion_id": "NRL-145525",
+  "outline": "8.6",
+  "text": "NEWPR5.) For connected vehicles, New Profile setup Step 1: create new or download existing",
+  "len": 90,
+  "pdf_text": "NEWPR5.) For connected vehicles, New Profile setup Step 1: create new or download existing",
+  "divergence": "相同"
+ },
+ "8.7": {
+  "row": 99,
+  "polarion_id": "NRL-145526",
+  "outline": "8.7",
+  "text": "NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a username is ~12 characters, and the keyboard will not allow typing more. The minimum number of characters is 1 and the Next button will not be available until one character is typed. Username can be alphanumeric with spa ces (spaces count toward the character limit).",
+  "len": 343,
+  "pdf_text": "NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a username is ~12 characters, and the keyboard will not allow typing more. The minimum number of characters is 1 and the Next button will not be available until one character is typed. Username can be alphanumeric with spaces (spaces count toward the character limit).",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "8.7.1": {
+  "row": 100,
+  "polarion_id": "NRL-145527",
+  "outline": "8.7.1",
+  "text": "NEWPR6.1) Options to “Save” (which takes user to Step 3 – if in New Profile Setup Process), Cancel (which prompts a confirmation popup), and Back (only available if there was a previous step for downloading a connected Profile)",
+  "len": 227,
+  "pdf_text": "NEWPR6.1) Options to “Save” (which takes user to Step 3 – if in New Profile Setup Process), Cancel (which prompts a confirmation popup), and Back (only available if there was a previous step for downloading a connected Profile)",
+  "divergence": "相同"
+ },
+ "8.7.2": {
+  "row": 101,
+  "polarion_id": "NRL-145528",
+  "outline": "8.7.2",
+  "text": "NEWPR6.2) The username can have numbers and/or letters, but no special characters.",
+  "len": 82,
+  "pdf_text": "NEWPR6.2) The username can have numbers and/or letters, but no special characters.",
+  "divergence": "相同"
+ },
+ "8.8": {
+  "row": 102,
+  "polarion_id": "NRL-145529",
+  "outline": "8.8",
+  "text": "NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose a different avatar it will become highlighted instead. The selected avatar will show above the “Save & Continue” button on 8.4\" screens and larger and the selected avatar will show next to the save button on 7\" screens. Pushing the Save button will complete the Avatar selection.",
+  "len": 360,
+  "pdf_text": "NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose a different avatar it will become highlighted instead. The selected avatar will show above the “Save & Continue” button on 8.4\" screens and larger and the selected avatar will show next to the save button on 7\" screens. Pushing the Save button will complete the Avatar selection.",
+  "divergence": "相同"
+ },
+ "8.8.1": {
+  "row": 103,
+  "polarion_id": "NRL-145530",
+  "outline": "8.8.1",
+  "text": "NEWPR7.1) There will be at least 10 Avatars initially. As avatars are in use, they will not be shown as options for other users to choose.",
+  "len": 138,
+  "pdf_text": "NEWPR7.1) There will be at least 10 Avatars initially. As avatars are in use, they will not be shown as options for other users to choose.",
+  "divergence": "相同"
+ },
+ "8.8.2": {
+  "row": 104,
+  "polarion_id": "NRL-145531",
+  "outline": "8.8.2",
+  "text": "NEWPR7.2) Avatars will be sorted into at least 3 categories. Pushing a category button will show the respective grouping of avatars. Categories apply to all screen sizes, 7\" will have a separate screen for category selection, an example is pictured above.",
+  "len": 255,
+  "pdf_text": "NEWPR7.2) Avatars will be sorted into at least 3 categories. Pushing a category button will show the respective grouping of avatars. Categories apply to all screen sizes, 7\" will have a separate screen for category selection, an example is pictured above.",
+  "divergence": "相同"
+ },
+ "8.9": {
+  "row": 105,
+  "polarion_id": "NRL-145532",
+  "outline": "8.9",
+  "text": "NEWPR8.) The final step (for New Profile setup only) is prompting the user to choose to “Create from Current Preferences or Create from Default?”. If the user chooses to keep current preferences, carry-over all of the previously active Profile’s preferences and settings.",
+  "len": 271,
+  "pdf_text": "NEWPR8.) The final step (for New Profile setup only) is prompting the user to choose to “Create from Current Preferences or Create from Default?”. If the user chooses to keep current preferences, carry-over all of the previously active Profile’s preferences and settings.",
+  "divergence": "相同"
+ },
+ "8.10": {
+  "row": 106,
+  "polarion_id": "NRL-145533",
+  "outline": "8.10",
+  "text": "NEWPR9.) When New Profile setup is complete, the screen will return to the “All Profiles” tab. The new Profile will be the active Profile.",
+  "len": 138,
+  "pdf_text": "NEWPR9.) When New Profile setup is complete, the screen will return to the “All Profiles” tab. The new Profile will be the active Profile.",
+  "divergence": "相同"
+ },
+ "8.10.1": {
+  "row": 107,
+  "polarion_id": "NRL-145534",
+  "outline": "8.10.1",
+  "text": "NEWPR9.1) Editing an existing Profile (from the Edit Profile screen) will return the user to the page of the “Edit Profile” tab they initiated the editing from.",
+  "len": 160,
+  "pdf_text": "NEWPR9.1) Editing an existing Profile (from the Edit Profile screen) will return the user to the page of the “Edit Profile” tab they initiated the editing from.",
+  "divergence": "相同"
+ },
+ "8.10.2": {
+  "row": 108,
+  "polarion_id": "NRL-145535",
+  "outline": "8.10.2",
+  "text": "NEWPR9.2) The icon in the status bar Profile button will update to match the new active Profile",
+  "len": 95,
+  "pdf_text": "NEWPR9.2) The icon in the status bar Profile button will update to match the new active Profile",
+  "divergence": "相同"
+ },
+ "8.11": {
+  "row": 109,
+  "polarion_id": "NRL-145536",
+  "outline": "8.11",
+  "text": "NEWPR10.) If only the username or avatar are edited (initiated from the “Edit Profile” screen). Only show the relevant popup (ex: select edit Avatar, only give Avatar selection popup). In this case, the back arrow would be the same as canceling.",
+  "len": 245,
+  "pdf_text": "NEWPR10.) If only the username or avatar are edited (initiated from the “Edit Profile” screen). Only show the relevant popup (ex: select edit Avatar, only give Avatar selection popup). In this case, the back arrow would be the same as canceling.",
+  "divergence": "相同"
+ },
+ "8.12": {
+  "row": 110,
+  "polarion_id": "NRL-145537",
+  "outline": "8.12",
+  "text": "NEWPR11.) In the New Profile setup Process, the back arrow will take the user to the previous step (if applicable) and store any selections for when they go to that step again (until canceled)",
+  "len": 192,
+  "pdf_text": "NEWPR11.) In the New Profile setup Process, the back arrow will take the user to the previous step (if applicable) and store any selections for when they go to that step again (until canceled) Avatars/icons are placeholders for final graphics Enter/Edit Username Choose/Edit Avatar - 7 inch Choose/Edit Avatar - 8.4 10.1 10.25 12 inch Category Selection Screen - 7 inch",
+  "divergence": "句尾截斷"
+ },
+ "9": {
+  "row": 111,
+  "polarion_id": "NRL-145538",
+  "outline": "9",
+  "text": "Editing a Profile",
+  "len": 17,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "9.1": {
+  "row": 112,
+  "polarion_id": "NRL-145539",
+  "outline": "9.1",
+  "text": "EDPR1.) When on the “Edit Profile” tab, options pertaining to the active Profile will be listed in the order according to Table EDPR1. Tutorials will be a list item in the Edit Profile tab. Connected Account will link to Connected Profile app, “More Settings” will link to “My Profile” Vehicle Settings, Tutorials will link to Tutorials (see Tutorials Logic and Flow)._x000D_\n (image: %E5%9C%96%E7%89%87_1221906037.png)",
+  "len": 419,
+  "pdf_text": "EDPR1.) When on the “Edit Profile” tab, options pertaining to the active Profile will be listed in the order according to Table EDPR1. Tutorials will be a list item in the Edit Profile tab and there will be a circled number 1 next to Resume Tutorials. It will be removed as a line item once the user has completed setup assistant (See Tutorials HMI) Stellantis Connected Account will link to Connected Profile app, “More Settings” will link to “My Profile” Vehicle Settings, Tutorials will link to Tutorials (see Tutorials Logic and Flow).",
+  "divergence": "其他不一致"
+ },
+ "9.1.1": {
+  "row": 113,
+  "polarion_id": "NRL-145540",
+  "outline": "9.1.1",
+  "text": "EDPR1.1) 8.4inch screen size will not show the username and avatar to the left of the Edit Profile List (8.4\" will show the username in the Edit Username line like “Edit username: [username]”).",
+  "len": 193,
+  "pdf_text": "EDPR1.1) 8.4inch screen size will not show the username and avatar to the left of the Edit Profile List (8.4\" will show the username in the Edit Username line like “Edit username: [username]”).",
+  "divergence": "相同"
+ },
+ "9.1.2": {
+  "row": 114,
+  "polarion_id": "NRL-145541",
+  "outline": "9.1.2",
+  "text": "EDPR1.2) Memory seat status is not available if vehicle is not equipped with memory seats.",
+  "len": 90,
+  "pdf_text": "EDPR1.2) Memory seat status is not available if vehicle is not equipped with memory seats.",
+  "divergence": "相同"
+ },
+ "9.2": {
+  "row": 115,
+  "polarion_id": "NRL-145542",
+  "outline": "9.2",
+  "text": "EDPR2.) Don’t show the Connected Profile options/info or Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Connected Account button if the vehicle does not support the connected profile feature.",
+  "len": 252,
+  "pdf_text": "EDPR2.) Don’t show the Connected Profile options/info or Stellantis Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Stellantis Connected Account button if the vehicle does not support the connected profile feature.",
+  "divergence": "其他不一致"
+ },
+ "9.3": {
+  "row": 116,
+  "polarion_id": "NRL-145543",
+  "outline": "9.3",
+  "text": "EDPR3.) While vehicle is in motion, the following will be greyed out and cannot be selected/completed: Deleting a Profile, editing username, editing avatar, Tutorials, Resume Setup, and viewing info of what is linked to a Profile.",
+  "len": 230,
+  "pdf_text": "EDPR3.) While vehicle is in motion, the following will be greyed out and cannot be selected/completed: Deleting a Profile, editing username, editing avatar, Tutorials, Resume Setup, and viewing info of what is linked to a Profile.",
+  "divergence": "相同"
+ },
+ "9.3.1": {
+  "row": 117,
+  "polarion_id": "NRL-145544",
+  "outline": "9.3.1",
+  "text": "EDPR3.1) If any items listed above are selected while vehicle in motion, a bonk tone will be played along with the message “Function not available while vehicle in Motion.”",
+  "len": 172,
+  "pdf_text": "EDPR3.1) If any items listed above are selected while vehicle in motion, a bonk tone will be played along with the message “Function not available while vehicle in Motion.”",
+  "divergence": "相同"
+ },
+ "9.3.2": {
+  "row": 118,
+  "polarion_id": "NRL-145545",
+  "outline": "9.3.2",
+  "text": "EDPR3.2) If user is in the process of viewing/doing any of the above listed items, system should return to previous available page and play the bonk and show the message specified above.",
+  "len": 186,
+  "pdf_text": "EDPR3.2) If user is in the process of viewing/doing any of the above listed items, system should return to previous available page and play the bonk and show the message specified above. ****R1 High Only: \"Stellantis Account\" to be replaced with \"Connected Account\"",
+  "divergence": "句尾截斷"
+ },
+ "9.4": {
+  "row": 119,
+  "polarion_id": "NRL-145546",
+  "outline": "9.4",
+  "text": "EDPR5.) Pressing anywhere on the avatar or anywhere on the “Change Avatar” line will initiate a screen that allows the user to choose a new Avatar (similar to popup during New Profile Setup",
+  "len": 189,
+  "pdf_text": "EDPR5.) Pressing anywhere on the avatar or anywhere on the “Change Avatar” line will initiate a screen that allows the user to choose a new Avatar (similar to popup during New Profile Setup",
+  "divergence": "相同"
+ },
+ "9.4.1": {
+  "row": 120,
+  "polarion_id": "NRL-145547",
+  "outline": "9.4.1",
+  "text": "EDPR5.1) The screen will show the currently selected Avatar highlighted and provide the option to choose from all other available avatars",
+  "len": 137,
+  "pdf_text": "EDPR5.1) The screen will show the currently selected Avatar highlighted and provide the option to choose from all other available avatars",
+  "divergence": "相同"
+ },
+ "9.4.2": {
+  "row": 121,
+  "polarion_id": "NRL-145548",
+  "outline": "9.4.2",
+  "text": "EDPR5.2) Exiting without saving will not result in an Avatar change",
+  "len": 67,
+  "pdf_text": "EDPR5.2) Exiting without saving will not result in an Avatar change",
+  "divergence": "相同"
+ },
+ "9.5": {
+  "row": 122,
+  "polarion_id": "NRL-145549",
+  "outline": "9.5",
+  "text": "EDPR6.) Swapping memory seat preference means the active Profile will be linked to that memory seat button/position until another change is made.",
+  "len": 145,
+  "pdf_text": "EDPR6.) Swapping memory seat preference means the active Profile will be linked to that memory seat button/position until another change is made.",
+  "divergence": "相同"
+ },
+ "9.5.1": {
+  "row": 123,
+  "polarion_id": "NRL-145550",
+  "outline": "9.5.1",
+  "text": "EDPR6.1) If the active Profile was previously linked to any memory seat position, swap the active Profile’s previous seat preference with the other Profile that was previously linked to the active Profiles new seat preference.",
+  "len": 226,
+  "pdf_text": "EDPR6.1) If the active Profile was previously linked to any memory seat position, swap the active Profile’s previous seat preference with the other Profile that was previously linked to the active Profiles new seat preference.",
+  "divergence": "相同"
+ },
+ "9.5.2": {
+  "row": 124,
+  "polarion_id": "NRL-145551",
+  "outline": "9.5.2",
+  "text": "EDPR6.2) If the active Profile was not previously linked to any memory seat position, just take the newly selected memory seat position from the previous user and link it to the active user. The previously linked Profile will no longer be linked to any memory seat position.",
+  "len": 274,
+  "pdf_text": "EDPR6.2) If the active Profile was not previously linked to any memory seat position, just take the newly selected memory seat position from the previous user and link it to the active user. The previously linked Profile will no longer be linked to any memory seat position.",
+  "divergence": "相同"
+ },
+ "9.5.3": {
+  "row": 125,
+  "polarion_id": "NRL-145552",
+  "outline": "9.5.3",
+  "text": "EDPR6.3) Choosing “none” as a memory seat option will not be available and will be greyed out until the number of Profiles exceeds the number of Memory Seats.",
+  "len": 158,
+  "pdf_text": "EDPR6.3) Choosing “none” as a memory seat option will not be available and will be greyed out until the number of Profiles exceeds the number of Memory Seats.",
+  "divergence": "相同"
+ },
+ "9.6": {
+  "row": 126,
+  "polarion_id": "NRL-145553",
+  "outline": "9.6",
+  "text": "EDPR7.) Change the memory seat position and then pushing save will update the seat position for whichever Profile is linked to that seat. If the memory seat that is being saved is not linked to the active profile, a popup message (PU0588) will come up when the memory seat is saved which will inform the user of which Profile the seat was saved to.",
+  "len": 348,
+  "pdf_text": "EDPR7.) Change the memory seat position and then pushing save will update the seat position for whichever Profile is linked to that seat. If the memory seat that is being saved is not linked to the active profile, a popup message (PU0588) will come up when the memory seat is saved which will inform the user of which Profile the seat was saved to.",
+  "divergence": "相同"
+ },
+ "9.6.1": {
+  "row": 127,
+  "polarion_id": "NRL-145554",
+  "outline": "9.6.1",
+  "text": "EDPR7.1) The Welcome Popup size setting will default on small. If turned off, do not show welcome popup for that Profile when it becomes active. The Large popup will be a full screen popup. See Welcome Screen section for more detail.",
+  "len": 233,
+  "pdf_text": "EDPR7.1) The Welcome Popup size setting will default on small. If turned off, do not show welcome popup for that Profile when it becomes active. The Large popup will be a full screen popup. See Welcome Screen section for more detail.",
+  "divergence": "相同"
+ },
+ "9.7": {
+  "row": 128,
+  "polarion_id": "NRL-145555",
+  "outline": "9.7",
+  "text": "EDPR8.) If the Delete Profile option is selected, a verification popup message will confirm the delete (previous to the memory seat selection confirmation).",
+  "len": 156,
+  "pdf_text": "EDPR8.) If the Delete Profile option is selected, a verification popup message will confirm the delete (previous to the memory seat selection confirmation).",
+  "divergence": "相同"
+ },
+ "9.7.1": {
+  "row": 129,
+  "polarion_id": "NRL-145556",
+  "outline": "9.7.1",
+  "text": "EDPR8.1) After a Profile is deleted through the Edit Profile tab, they will be taken back to the All Profiles tab.",
+  "len": 114,
+  "pdf_text": "EDPR8.1) After a Profile is deleted through the Edit Profile tab, they will be taken back to the All Profiles tab.",
+  "divergence": "相同"
+ },
+ "9.7.2": {
+  "row": 130,
+  "polarion_id": "NRL-145557",
+  "outline": "9.7.2",
+  "text": "EDPR8.2) If a Profile not linked to a memory seat is deleted, “User 1” or the last known Profile, prior to the deleted one, will become active.",
+  "len": 143,
+  "pdf_text": "EDPR8.2) If a Profile not linked to a memory seat is deleted, “User 1” or the last known Profile, prior to the deleted one, will become active.",
+  "divergence": "相同"
+ },
+ "9.8": {
+  "row": 131,
+  "polarion_id": "NRL-145558",
+  "outline": "9.8",
+  "text": "EDPR9.) The Vehicle “More Settings” button will link directly to the “My Profile” Settings section. Once in the Settings section, the user has now left the Profile section and will not have a back button to return to the Profile section.",
+  "len": 237,
+  "pdf_text": "EDPR9.) The Vehicle “More Settings” button will link directly to the “My Profile” Settings section. Once in the Settings section, the user has now left the Profile section and will not have a back button to return to the Profile section. If a setting linked to the Profile is changed, a popup will indicate that it has been changed for the active Profile (PU0609).",
+  "divergence": "句尾截斷"
+ },
+ "9.9": {
+  "row": 132,
+  "polarion_id": "NRL-145559",
+  "outline": "9.9",
+  "text": "EDPR10.) The Edit Profile tab will have a maximum of 6 lines of information per page.",
+  "len": 85,
+  "pdf_text": "EDPR10.) The Edit Profile tab will have a maximum of 6 lines of information per page.",
+  "divergence": "相同"
+ },
+ "10": {
+  "row": 133,
+  "polarion_id": "NRL-145560",
+  "outline": "10",
+  "text": "Profile Info Page",
+  "len": 17,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "10.1": {
+  "row": 134,
+  "polarion_id": "NRL-145561",
+  "outline": "10.1",
+  "text": "R1 High Only: for the \"Connected Account\" category title (if applicable) the Description is the following: \"Save your preferences to the cloud and access them from vehicle to vehicle.\"",
+  "len": 184,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "10.2": {
+  "row": 135,
+  "polarion_id": "NRL-145562",
+  "outline": "10.2",
+  "text": "PRINFO1.) Choosing anywhere on the line for “What is linked to my Profile”, including the “i\" will show a page of general info of what is linked to a Driver Profile (see example above. Remove “Memory Seat” section for all vehicles._x000D_\n (image: %E5%9C%96%E7%89%87_1995084064.png) _x000D_\n (image: %E5%9C%96%E7%89%87_684296759.png)",
+  "len": 333,
+  "pdf_text": "PRINFO1.) Choosing anywhere on the line for “What is linked to my Profile”, including the “i\" will show a page of general info of what is linked to a Driver Profile (see example above. Remove “Memory Seat” section for all vehicles.",
+  "divergence": "相同"
+ },
+ "10.3": {
+  "row": 136,
+  "polarion_id": "NRL-145563",
+  "outline": "10.3",
+  "text": "PRINFO2.) The Info button will also be visible on the All Profiles tab and show the same page as from the Edit Profiles tab.",
+  "len": 124,
+  "pdf_text": "PRINFO2.) The Info button will also be visible on the All Profiles tab and show the same page as from the Edit Profiles tab.",
+  "divergence": "相同"
+ },
+ "10.3.1": {
+  "row": 137,
+  "polarion_id": "NRL-145564",
+  "outline": "10.3.1",
+  "text": "PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the info in the chart above, when applicable (i.e., if a vehicle does not have Navigation, do not show the Navigation examples).",
+  "len": 337,
+  "pdf_text": "PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the info in the chart above, when applicable (i.e., if a vehicle does not have Navigation, do not show the Navigation examples). Edit Profile List Profile Info Page ****R1 High Only: for the \"Connected Account\" category title (if applicable) the Description is the following: \"Save your preferences to the cloud and access them from vehicle to vehicle.",
+  "divergence": "句尾截斷"
+ },
+ "11": {
+  "row": 138,
+  "polarion_id": "NRL-145565",
+  "outline": "11",
+  "text": "Connected Profile App",
+  "len": 21,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "11.1": {
+  "row": 139,
+  "polarion_id": "NRL-145566",
+  "outline": "11.1",
+  "text": "For China market only: do not show this content",
+  "len": 47,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "11.2": {
+  "row": 140,
+  "polarion_id": "NRL-145567",
+  "outline": "11.2",
+  "text": "R1 High Only: This table (Table CPA2) is not applicable. There will be no info button showed next to the Connected Account button.",
+  "len": 130,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "11.3": {
+  "row": 141,
+  "polarion_id": "NRL-145568",
+  "outline": "11.3",
+  "text": "CPA1.) The Connected Account line item will always be displayed on the “Edit Profile” tab if the vehicle is equipped with connectivity. Do not show if the vehicle does not support connectivity.",
+  "len": 193,
+  "pdf_text": "CPA1.) The Connected Account line item will always be displayed on the “Edit Profile” tab if the vehicle is equipped with connectivity. Do not show if the vehicle does not support connectivity.",
+  "divergence": "相同"
+ },
+ "11.3.1": {
+  "row": 142,
+  "polarion_id": "NRL-145569",
+  "outline": "11.3.1",
+  "text": "CPA1.2) Pushing the Connected Account on the “Edit Profile” tab will bring the user to the Connected Account App that will allow user to connect to an online account, save and download from account, etc.",
+  "len": 203,
+  "pdf_text": "CPA1.2) Pushing the Connected Account on the “Edit Profile” tab will bring the user to the Connected Account App that will allow user to connect to an online account, save and download from account, etc.",
+  "divergence": "相同"
+ },
+ "11.4": {
+  "row": 143,
+  "polarion_id": "NRL-145570",
+  "outline": "11.4",
+  "text": "CPA2.) [This whole note is not applicable for R1H] Clicking on the info icon next to Connected Account in the Edit Profile tab will bring up the Local vs Connected Profile screen. It will be titled “What are the benefits of creating an Connected account?” and will show two columns labeled Connected account and Local Profile. Under Connected Account it will say “Synchronize your profile between multiple vehicles. The cloud will remember your preferences”. Under Local Profile it will say “Create a profile specific to this vehicle. The vehicle will remember your preferences”. See table CPA2 for list items._x000D_\n (image: %E5%9C%96%E7%89%87_1473800597.png) _x000D_\n (image: %E5%9C%96%E7%89%87_397248475.png)",
+  "len": 712,
+  "pdf_text": "CPA2.) [This whole note is not applicable for R1 H] Clicking on the info icon next to Connected Account in the Edit Profile tab will bring up the Local vs Connected Profile screen. It will be titled “What are the benefits of creating an Connected account?” and will show two columns labeled Connected account and Local Profile. Under Connected Account it will say “Synchronize your profile between multiple vehicles. The cloud will remember your preferences”. Under Local Profile it will say “Create a profile specific to this vehicle. The vehicle will remember your preferences”. See table CPA2 for list items.",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "11.5": {
+  "row": 144,
+  "polarion_id": "NRL-145571",
+  "outline": "11.5",
+  "text": "CPA3.) If an App Store app is deleted, it would only be deleted for the user who has uninstalled it. If an App store app is updated, it would update for all users who have installed it locally. If an App Store app is installed it should only appear in the app tray for the local user that has installed it.",
+  "len": 306,
+  "pdf_text": "CPA3.) If an App Store app is deleted, it would only be deleted for the user who has uninstalled it. If an App store app is updated, it would update for all users who have installed it locally. If an App Store app is installed it should only appear in the app tray for the local user that has installed it. Connected FCA Account Local Profile Personalization Presets, Menu Bar Order, App Drawer Favorites, and more App Store Download Marketplace Access to Marketplace ****Connected Navigation Personalized Favorites, Recents, and Predictive Navigation **Table CPA2.) Connected Account vs Local Profile Connected Profile App (See Connected Personal Account HMI) ****For China market only: do not show this content **R1 High Only: This table (Table CPA2) is not applicable. There will be no info button showed nextto the Connected Account button.",
+  "divergence": "句尾截斷"
+ },
+ "12": {
+  "row": 145,
+  "polarion_id": "NRL-145572",
+  "outline": "12",
+  "text": "Valet Mode",
+  "len": 10,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "12.1": {
+  "row": 146,
+  "polarion_id": "NRL-145573",
+  "outline": "12.1",
+  "text": "PVAL1.) The system should store any updated preferences until Valet Mode is exited. The system should treat Exiting Valet Mode like deleting the profile and activating Valet Mode like creating a new Profile from the default preferences.",
+  "len": 236,
+  "pdf_text": "PVAL1.) The system should store any updated preferences until Valet Mode is exited. The system should treat Exiting Valet Mode like deleting the profile and activating Valet Mode like creating a new Profile from the default preferences.",
+  "divergence": "相同"
+ },
+ "12.1.1": {
+  "row": 147,
+  "polarion_id": "NRL-145574",
+  "outline": "12.1.1",
+  "text": "PVAL1.1) Status bar will always need to return to the default status bar setup when Valet Mode is active so the Profile icon is always visible. Reference Core HMI Logic and Flow for Status Bar default specifications.",
+  "len": 216,
+  "pdf_text": "PVAL1.1) Status bar will always need to return to the default status bar setup when Valet Mode is active so the Profile icon is always visible. Reference Core HMI Logic and Flow for Status Bar default specifications.",
+  "divergence": "相同"
+ },
+ "12.2": {
+  "row": 148,
+  "polarion_id": "NRL-145575",
+  "outline": "12.2",
+  "text": "PVAL2.) Valet Mode can only be activated through the button on the All Profiles tab of the Profile section._x000D_\n (image: %E5%9C%96%E7%89%87_919753979.png)",
+  "len": 157,
+  "pdf_text": "PVAL2.) Valet Mode can only be activated through the button on the All Profiles tab of the Profile section.",
+  "divergence": "相同"
+ },
+ "12.2.1": {
+  "row": 149,
+  "polarion_id": "NRL-145576",
+  "outline": "12.2.1",
+  "text": "PVAL2.1) Valet Mode button is greyed out while the vehicle is in motion. If the button is pushed while greyed out, a popup will indicate that the function is not available (Pop-up ID PU0091).",
+  "len": 191,
+  "pdf_text": "PVAL2.1) Valet Mode button is greyed out while the vehicle is in motion. If the button is pushed while greyed out, a popup will indicate that the function is not available (Pop-up ID PU0091).",
+  "divergence": "相同"
+ },
+ "12.3": {
+  "row": 150,
+  "polarion_id": "NRL-145577",
+  "outline": "12.3",
+  "text": "PVAL3.) To activate Valet Mode a 4 digit one-time PIN is required to be entered.",
+  "len": 80,
+  "pdf_text": "PVAL3.) To activate Valet Mode a 4 digit one-time PIN is required to be entered.",
+  "divergence": "相同"
+ },
+ "12.3.1": {
+  "row": 151,
+  "polarion_id": "NRL-145578",
+  "outline": "12.3.1",
+  "text": "PVAL3.1) To get out of Valet Mode the same 4 digit PIN needs to be entered",
+  "len": 74,
+  "pdf_text": "PVAL3.1) To get out of Valet Mode the same 4 digit PIN needs to be entered",
+  "divergence": "相同"
+ },
+ "12.3.2": {
+  "row": 152,
+  "polarion_id": "NRL-145579",
+  "outline": "12.3.2",
+  "text": "PVAL3.2) Disconnecting the battery will override and reset Valet mode and the system will load the last known Driver Profile at the next key on.",
+  "len": 144,
+  "pdf_text": "PVAL3.2) Disconnecting the battery will override and reset Valet mode and the system will load the last known Driver Profile at the next key on.",
+  "divergence": "相同"
+ },
+ "12.3.3": {
+  "row": 153,
+  "polarion_id": "NRL-145580",
+  "outline": "12.3.3",
+  "text": "PVAL3.3) The system should return to previous Profile after exiting/deactivating Valet Mode",
+  "len": 91,
+  "pdf_text": "PVAL3.3) The system should return to previous Profile after exiting/deactivating Valet Mode",
+  "divergence": "相同"
+ },
+ "12.4": {
+  "row": 154,
+  "polarion_id": "NRL-145581",
+  "outline": "12.4",
+  "text": "PVAL4) If during the initiation of Valet Mode, and/or activation/deactivation of the Valet PIN the user presses another portion of the screen, treat as a cancel command.",
+  "len": 169,
+  "pdf_text": "PVAL4) If during the initiation of Valet Mode, and/or activation/deactivation of the Valet PIN the user presses another portion of the screen, treat as a cancel command.",
+  "divergence": "相同"
+ },
+ "12.5": {
+  "row": 155,
+  "polarion_id": "NRL-145582",
+  "outline": "12.5",
+  "text": "PVAL5.) Valet Mode will be indicated in the status bar with a lock symbol combined with the Profile icon.",
+  "len": 105,
+  "pdf_text": "PVAL5.) Valet Mode will be indicated in the status bar with a lock symbol combined with the Profile icon.",
+  "divergence": "相同"
+ },
+ "12.6": {
+  "row": 156,
+  "polarion_id": "NRL-145583",
+  "outline": "12.6",
+  "text": "PVAL6.) When Valet Mode is active and the user pushes the Profile button in the status bar, a popup will indicate “Function not available while in Valet Mode. Do you want to deactivate Valet Mode”",
+  "len": 196,
+  "pdf_text": "PVAL6.) When Valet Mode is active and the user pushes the Profile button in the status bar, a popup will indicate “Function not available while in Valet Mode. Do you want to deactivate Valet Mode”",
+  "divergence": "相同"
+ },
+ "12.7": {
+  "row": 157,
+  "polarion_id": "NRL-145584",
+  "outline": "12.7",
+  "text": "PVAL7.) When in Valet mode, pushing the memory seat buttons will only change the seat position but will not load the associated Driver Profile.",
+  "len": 143,
+  "pdf_text": "PVAL7.) When in Valet mode, pushing the memory seat buttons will only change the seat position but will not load the associated Driver Profile.",
+  "divergence": "相同"
+ },
+ "12.8": {
+  "row": 158,
+  "polarion_id": "NRL-145585",
+  "outline": "12.8",
+  "text": "PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Projection mode and native HFP will be disabled. VR will not be active and the following areas will be locked out: Home Screen, Apps Drawer, Phone, Vehicle category, Navigation. It will not be possible to interact with the Status Bar with the exception of the Valet Profile and HVAC icons. In Media, the Device Manager will be locked out. All non interactable items will be greyed out.",
+  "len": 463,
+  "pdf_text": "PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Projection mode and native HFP will be disabled. VR will not be active and the following areas will be locked out: Home Screen, Apps Drawer, Phone, Vehicle category, Navigation. It will not be possible to interact with the Status Bar with the exception of the Valet Profile and HVAC icons. In Media, the Device Manager will be locked out. All non interactable items will be greyed out.",
+  "divergence": "相同"
+ },
+ "12.8.1": {
+  "row": 159,
+  "polarion_id": "NRL-145586",
+  "outline": "12.8.1",
+  "text": "PVAL8.1) Valet Mode will enable “electronic” Glove Box Lock. If vehicle is equipped with Glove Box Lock, show PU0832 when prompting to enter Valet Mode. Glove Box Lock button is greyed out when Valet Mode is activated. If the Glove Box Lock button is pushed while greyed out, PU0833 will indicate that function is not available while in Valet Mode.",
+  "len": 348,
+  "pdf_text": "PVAL8.1) Valet Mode will enable “electronic” Glove Box Lock. If vehicle is equipped with Glove Box Lock, show PU0832 when prompting to enter Valet Mode. Glove Box Lock button is greyed out when Valet Mode is activated. If the Glove Box Lock button is pushed while greyed out, PU0833 will indicate that function is not available while in Valet Mode.",
+  "divergence": "相同"
+ },
+ "12.8.2": {
+  "row": 160,
+  "polarion_id": "NRL-145587",
+  "outline": "12.8.2",
+  "text": "PVAL8.2) If the glove box is unlocked/locked prior to activating Valet Mode, the glove box will return to its last state upon deactivating Valet Mode.",
+  "len": 150,
+  "pdf_text": "PVAL8.2) If the glove box is unlocked/locked prior to activating Valet Mode, the glove box will return to its last state upon deactivating Valet Mode.",
+  "divergence": "相同"
+ },
+ "12.9": {
+  "row": 161,
+  "polarion_id": "NRL-145588",
+  "outline": "12.9",
+  "text": "PVAL9.) For activation and deactivation, the user will have 10 attempts to type a 4 digit PIN before system cancels the deactivation. The user can try again in 30min.",
+  "len": 166,
+  "pdf_text": "PVAL9.) For activation and deactivation, the user will have 10 attempts to type a 4 digit PIN before system cancels the deactivation. The user can try again in 30min.",
+  "divergence": "相同"
+ },
+ "12.10": {
+  "row": 162,
+  "polarion_id": "NRL-145589",
+  "outline": "12.10",
+  "text": "PVAL10.) For activation and deactivation, when on the PIN entry popup, grey out the Go button until 4 digits are entered. If Go is pressed while greyed out, play Bonk tone and display the popup “PIN must be 4 digits”.",
+  "len": 217,
+  "pdf_text": "PVAL10.) For activation and deactivation, when on the PIN entry popup, grey out the Go button until 4 digits are entered. If Go is pressed while greyed out, play Bonk tone and display the popup “PIN must be 4 digits”.",
+  "divergence": "相同"
+ },
+ "12.10.1": {
+  "row": 163,
+  "polarion_id": "NRL-145590",
+  "outline": "12.10.1",
+  "text": "PVAL10.1) Once 4 digits are entered grey out all numeric buttons.",
+  "len": 65,
+  "pdf_text": "PVAL10.1) Once 4 digits are entered grey out all numeric buttons.",
+  "divergence": "相同"
+ },
+ "13": {
+  "row": 164,
+  "polarion_id": "NRL-145591",
+  "outline": "13",
+  "text": "Valet Mode - SPAAK",
+  "len": 18,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "13.1": {
+  "row": 165,
+  "polarion_id": "NRL-145592",
+  "outline": "13.1",
+  "text": "PVALSPK1.) When Valet mode is enabled by SPAAK, no PIN code will be required to enter or exit Valet Mode. For the SPAAK scenario, Valet Mode will automatically activate when it detects a SPAAK key with Valet Mode permissions.",
+  "len": 225,
+  "pdf_text": "PVALSPK1.) When Valet mode is enabled by SPAAK, no PIN code will be required to enter or exit Valet Mode. For the SPAAK scenario, Valet Mode will automatically activate when it detects a SPAAK key with Valet Mode permissions.",
+  "divergence": "相同"
+ },
+ "13.2": {
+  "row": 166,
+  "polarion_id": "NRL-145593",
+  "outline": "13.2",
+  "text": "PVALSPK2.) The SPAAK user cannot exit Valet Mode from the head unit. Only the owner can deactivate Valet Mode remotely via app or website or other supported methods (not on the head unit). Any screens or popups that may allow a user to exit Valet Mode must be blocked (PU0934, etc.)",
+  "len": 282,
+  "pdf_text": "PVALSPK2.) The SPAAK user cannot exit Valet Mode from the head unit. Only the owner can deactivate Valet Mode remotely via app or website or other supported methods (not on the head unit). Any screens or popups that may allow a user to exit Valet Mode must be blocked (PU0934, etc).",
+  "divergence": "標點/空白差異（不算掉句）"
+ },
+ "13.3": {
+  "row": 167,
+  "polarion_id": "NRL-145594",
+  "outline": "13.3",
+  "text": "PVALSPK3.) If the SPAAK user presses the Profiles icon with the lock, popup PU1573 will display.",
+  "len": 96,
+  "pdf_text": "PVALSPK3.) If the SPAAK user presses the Profiles icon with the lock, popup PU1573 will display.",
+  "divergence": "相同"
+ },
+ "14": {
+  "row": 168,
+  "polarion_id": "NRL-145595",
+  "outline": "14",
+  "text": "Valet Mode - Exit",
+  "len": 17,
+  "pdf_text": "",
+  "divergence": "無標籤，未定位（R-U33 另表）"
+ },
+ "14.1": {
+  "row": 169,
+  "polarion_id": "NRL-145596",
+  "outline": "14.1",
+  "text": "PVALEX1.) When Valet Mode is active the welcome popup will indicate the vehicle is in Valet mode, with a button to deactivate it. Pressing the Valet Profile icon in the status bar or pressing on “Exit Valet Mode” button on the Valet Mode welcome popup will initiate the Exit Valet Mode process above. _x000D_\n (image: %E5%9C%96%E7%89%87_712088772.png)",
+  "len": 351,
+  "pdf_text": "PVALEX1.) When Valet Mode is active the welcome popup will indicate the vehicle is in Valet mode, with a button to deactivate it. Pressing the Valet Profile icon in the status bar or pressing on “Exit Valet Mode” button on the Valet Mode welcome popup will initiate the Exit Valet Mode process above.",
+  "divergence": "相同"
+ },
+ "14.2": {
+  "row": 170,
+  "polarion_id": "NRL-145597",
+  "outline": "14.2",
+  "text": "PVALEX2.) Valet Mode cannot be deactivated while the vehicle is in motion. If Profile section is attempted to be accessed while in Valet Mode while the vehicle is in motion, the user will see a popup (Pop-up ID PU0394).",
+  "len": 219,
+  "pdf_text": "PVALEX2.) Valet Mode cannot be deactivated while the vehicle is in motion. If Profile section is attempted to be accessed while in Valet Mode while the vehicle is in motion, the user will see a popup (Pop-up ID PU0394). OK OK Yes Yes No No “X”",
+  "divergence": "句尾截斷"
+ }
+}

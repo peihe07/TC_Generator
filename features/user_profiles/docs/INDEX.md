@@ -18,6 +18,9 @@
 | 06 | 2026-08-17 | 基線稽核：169 條逐節比對 xlsx vs PDF；PLP3；PU id 擴充；R-U27／R-U28 落地 | [handoff/06a_rulings.md](handoff/06a_rulings.md)＋[06b_tasks.md](handoff/06b_tasks.md) | [upstream/06_baseline_audit.md](upstream/06_baseline_audit.md) | R-U25 ~ R-U30；**R-G4-1**（R-G4 之修訂，原文保留）| A-UP02 性質重估落地；**N-XF01 跨 feature note 新開** | **判定系統性掉句 → 停手上報，未重建 outline_map.json。掉句率三個數：17.1%（上界）／9.3%（加頁界）／**2.9% 真掉句**。PLP3 可讀且不需抽圖。framework 未定稿** |
 | 07 | 2026-08-17 | 基線稽核（二）：跨頁反向驗證／29 無標籤節／outline_map 增欄與補句表／Service 22 條 PDF 複查 | [handoff/07a_rulings.md](handoff/07a_rulings.md)＋[07b_tasks.md](handoff/07b_tasks.md) | [upstream/07_baseline_audit_2.md](upstream/07_baseline_audit_2.md) | R-U31 ~ R-U34；**R-G8（全域）** | —（無新開；補句表登記 7 條）| **0 個跨頁條款 → 2.9% 不再是下界。對照向揪出 06 輪之定位器缺陷（重複標籤 `PRACC7.` 被兩節共用）。三比率重報 17.1%／9.3%／**3.6%**。Service 22 條 0 條改變 → R-U21 維持。framework 仍未定稿** |
 | 08 | 2026-08-17 | **Phase 1 收尾**：字內斷字全量掃／消歧反向驗證／R-U35 落地與 lint 實跑／framework 定稿 | [handoff/08a_rulings.md](handoff/08a_rulings.md)＋[08b_tasks.md](handoff/08b_tasks.md) | [upstream/08_phase1_close.md](upstream/08_phase1_close.md) | R-U35 ~ R-U38；**R-G7-1**（R-G7 之修訂，原文保留）| —（無新開）| **兩個作業都推翻了自己的前提**：R-U36 之「PDF 側有斷字」為 07 輪誤述（實在 xlsx 側，C 組終值維持 3.6%）；R-U37 之注入抓到判準缺陷，改判準後 8/8。lint 實跑 7/7。**framework 定稿待覆核**。Phase 1 收尾清單：已清 18／待清 8／永久 8 |
+| 11 | 2026-08-17 | **R-U46 落地 ＋ 10 輪補落檔**：PLP 聯集判準／位置指涉盲區 17 條人工判讀／must_carry 追蹤登記 | [handoff/11a_rulings.md](handoff/11a_rulings.md)＋[11b_tasks.md](handoff/11b_tasks.md) | [upstream/11_plp_and_pilot_prep.md](upstream/11_plp_and_pilot_prep.md)＋[upstream/10_pilot.md](upstream/10_pilot.md)（補落檔）| R-U46 ~ R-U48；**R-G11（全域）** | —（無新開）| **`PLP_ENABLED = True`；聯集 4 ＋ 人工 2 = 6。盲區掃描命中 17／未命中 163／餘數 0，其中 3 條指向 PLP 表。兩項具名回報：`001-02`／`001-03` 同節連坐、must_carry 實為「覆蓋 4／未覆蓋 3」（R-U47 前提為 3／4）。發現 `p17` 掛不回任何節之缺陷，未自行修改。自檢 6/6（第 6 項已加對照向）。未生成 TC** |
+| 10 | 2026-08-17 | **Phase 2 開工前置**（上繳於 11 輪補落檔，R-U48）：標記修正／R-U45 落地／組裝自檢／pilot 取樣／PLP 前置掃描 | [handoff/10a_rulings.md](handoff/10a_rulings.md)＋[10b_tasks.md](handoff/10b_tasks.md) | [upstream/10_pilot.md](upstream/10_pilot.md) | R-U42 ~ R-U45；**R-G10（全域）** | —（無新開）| **前置 1–3 完成：六條標記改訖（`[SUPERSEDED]` 全稱用例 0）、`outline_map.json` 納入版控且 `shasum -c` 7/7、自檢 6/6（第 1 項判準改三版）。取樣 16 leaf 餘數 0（PROF-045 → 048）。PLP 掃描三讀法：甲 2／乙 4／聯集 4 → **停下待裁**，未生成 TC** |
+| 09 | 2026-08-17 | **條文收斂**（Phase 2 開工前）：A 類升 canon／C 類標 superseded／AUTO 範圍明列 | [handoff/09a_rulings.md](handoff/09a_rulings.md)＋[09b_tasks.md](handoff/09b_tasks.md) | [upstream/09_ruling_consolidation.md](upstream/09_ruling_consolidation.md) | R-U39 ~ R-U41；**R-G9（全域）** | —（無新開）| **canon 新增 §9（十一項通則＋R-G 集中）。異議兩項：C 類三條只有一部分被取代、A 類升格單位應為「原則」。**第四類有 1 條：R-U8**。未生成 TC** |
 
 ---
 
@@ -39,6 +42,46 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第十一輪已完成（2026-08-17）—— **R-U46 落地，仍未生成 TC**
+
+- **10 輪之上繳補落檔**（R-U48）：`docs/upstream/10_pilot.md`，
+  全部內容**自實際產物重出**（`grep` 讀條文、重跑 `--selfcheck`、重跑 PLP 掃描），
+  **未以聊天貼文為據**；完整未截斷之 git 指令清單見該檔 §2.4。
+- **R-U46 落地**：`PLP_ENABLED = True`；
+  `PLP_LEAVES_AUTO`（甲∪乙，4 條）與 `PLP_LEAVES_MANUAL`（人工，2 條）**分列**。
+- **盲區掃描**（R-G11）：180 leaf 全掃位置指涉，**命中 17／未命中 163／餘數 0**；
+  逐條人工判讀記 `DECISIONS.md` D-UP11-01 —— **3 條指向 PLP 表，14 條不是**。
+- **兩項具名回報**：
+  1. `PROF-001-02`／`001-03` 與 `001-01` 同屬 sec 4.1 同一句，
+     自動判準只抓得到 `001-01`；併列理由三條相同 → 一併列入。
+  2. must_carry 實測為**覆蓋 4（9.3.2／9.8／11.4／11.5）、未覆蓋 3**，
+     與 R-U47 所載之「3／4」不符。
+- **新發現之缺陷（未自行修改）**：`must_carry_for()` 對 `p17` 之掛回條件
+  以 `impact` 含節次字樣為準，而 `p17` 之 `impact` 為「同上」——
+  **現況生成任何節次皆不會注入 `p17`**。待裁。
+- **自檢 6/6**，第 6 項改為「已啟用」並**加入對照向**（非 PLP 之 14 條不得含 `3.x`，實測為空）。
+
+### 第九輪已完成（2026-08-17）—— **條文收斂**
+
+- **canon 新增 §9**：十一項通則（逐項附來源條號）＋ R-G1～R-G9 集中
+  ＋ §9.3「一條裁決只管一件事」。**升格之單位為「原則」不是「條文」** ——
+  `R-U6`／`R-U25`／`R-U16`／`R-U14`／`R-U35` 同時含 feature 事實，只升前者。
+- **Tier 0 之 AUTO 三項已明列，各配一個反例** —— 只寫「可以做什麼」的清單，
+  讀起來永遠比它實際的範圍寬。共同界線：**AUTO 管「怎麼做」，
+  不管「做什麼」與「做出來對不對」；一旦選擇會改變結論，它就不是技術選擇。**
+- **異議兩項具名**：
+  (1) **C 類三條只有一部分被取代** —— `R-U3` 之 `spec_mode = A`、
+      `R-U15` 之三項判讀、`R-U22` 之「037 沒引用不等於 spec 沒寫」
+      **現仍生效且被其取代者本身引用**。整條標 `[SUPERSEDED]` 與事實不符。
+      依 09b 照辦並附「仍然生效者」對照表，**請裁是否改 `[PARTIALLY SUPERSEDED]`**。
+      `R-G7` 尤其 —— 它是**增補**不是取代。
+  (2) A 類之升格單位（已逕行調整為「原則」，理由與請指正併陳）。
+- **第四類有 1 條：`R-U8`** —— 其值為 feature-specific（歸 B），
+  其通則部分之權威在 Comfort `R-C3`（引用而非重複升格）。
+  **它為什麼會漏**：草案 B 類逐號列舉，而 `R-U8` 之相鄰兩號都在清單裡。
+- **第 11 項通則是從這兩項異議歸納出來的**，不在任何下放包內 ——
+  **收斂之副產品比收斂本身值錢**。
 
 ### 第八輪已完成（2026-08-17）—— **Phase 1 收尾**
 
