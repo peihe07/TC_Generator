@@ -24,6 +24,43 @@ Rules:
 
 ---
 
+## 036 母本條文（R-G1／R-G2，Pei 2026-08-17 裁定，全域）
+
+```text
+R-G1  036 母本（全域，跨 feature）
+      自 2026-08-17 起，所有新 feature 一律以
+      forms/…_SWQT_20260817_ext.xlsx 為 036 母本，不再逐 feature 詢問。
+      母本選擇自此為 Tier 0 AUTO；既有 feature 之已交付件不因本條改變。
+      執行層須將本條寫入 FORMS.md 與 FEATURE_ONBOARDING.md。
+```
+
+```text
+R-G2  forms/ 舊檔處置（全域，Pei 2026-08-17 裁定：歸檔）
+      forms/ 只保留 …_SWQT_20260817_ext.xlsx。其餘三份
+      （…_SWQT_20260121.xlsx、…_SWQT_20260816_ext.xlsx、
+      …_SWQT_Home_20260809.xlsx）以 mv 移入
+      archive/forms_superseded/，**不得刪除**。
+      移動前後各記錄 shasum -a 256，證明內容未變。
+      歸檔後 FORMS.md 之各條目須改指 archive/ 路徑，條目本身保留。
+```
+
+條文全文見 `features/user_profiles/RULINGS.md`（含 R-G2 之理由段）。
+
+**執行狀態（2026-08-17，user_profiles Phase 0）**：三份舊檔已以 `mv` 移入
+`archive/forms_superseded/`，移前移後 SHA256 各記錄一次且完全一致，
+未使用 `rm`。`forms/` 現僅餘 `…_SWQT_20260817_ext.xlsx` ＋ 本 manifest
+＋ `.gitkeep`。以下各條目之 File／Reference file 路徑已依 R-G2 改指
+`archive/forms_superseded/`，條目本身未刪。
+
+| 檔 | SHA256（移前 = 移後）| bytes | 現位置 |
+|---|---|---|---|
+| `…_SWQT_20260121.xlsx` | `cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d` | 65,823 | `archive/forms_superseded/` |
+| `…_SWQT_20260816_ext.xlsx` | `4b3d447051f914eb41cc9754abaa5ed89bc0f06251baf01681a18bf884b6bcf7` | 200,654 | `archive/forms_superseded/` |
+| `…_SWQT_Home_20260809.xlsx` | `1895fb2a2b44f06c46147e5c24731d2d1adf0f2eea80c7ec6f8900a679f24d72` | 119,885 | `archive/forms_superseded/` |
+| **`…_SWQT_20260817_ext.xlsx`（母本）** | `6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2` | 200,650 | **`forms/`（留置）** |
+
+---
+
 ## Form: FM-WI-FSM-036-A01 (Test Case Specification & Result)
 
 The form's own revision letter lives in the `ChangeHistory 修訂履歷` sheet
@@ -32,11 +69,14 @@ and the form id in the header row-5 cell at the far right of the data block.
 date — tells them apart. Revision C inserted one column mid-table, which
 moves five fields; that is why a column map is never reusable unverified.
 
-### Revision C — with Estimated Test Time (the current blank form)
+### Revision C — with Estimated Test Time (the original blank form)
 
-- File: `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case
+- File: **`archive/forms_superseded/`**`FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case
   Specification & Result_SWQT_20260121.xlsx`
+  （2026-08-17 依 R-G2 歸檔；原位置 `forms/`。**已非母本** —— 母本見本檔
+  末節 `…_SWQT_20260817_ext.xlsx`）
 - SHA256: `cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d`
+  （歸檔前後各實測一次，一致）
 - Captured: 2026-08-09 (blank form, 3 template rows at 10–12)
 - Sheet: **`Test Case Specification 測試用例規範`** — note: NOT the
   `…&Result` name the instances use
@@ -73,9 +113,14 @@ moves five fields; that is why a column map is never reusable unverified.
 
 ### Revision A/B — no Estimated Test Time (every instance in the repo)
 
-- Reference file: `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test
+- Reference file: **`archive/forms_superseded/`**`FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test
   Case Specification & Result_SWQT_Home_20260809.xlsx`
+  （2026-08-17 依 R-G2 歸檔；原位置 `forms/`。R-G2 之理由具名此檔為
+  Home 225 列工作簿在 repo 內之唯一載體、R-U6 style authority
+  （Arif 144 列 done region）之唯一來源、rev A/B 版面 A–AG 之唯一結構參照，
+  **故歸檔而不刪除**）
 - SHA256: `1895fb2a2b44f06c46147e5c24731d2d1adf0f2eea80c7ec6f8900a679f24d72`
+  （歸檔前後各實測一次，一致）
 - Captured: 2026-08-09 (pre-filled Home instance, 225 rows — see the
   provenance warning below before treating it as a reference)
 - Sheet: `Test Case Specification&Result` · header row `9` · A–**AG** (33)
@@ -209,13 +254,29 @@ Capture rules this produced, now implemented in `scripts/recon.py`:
 
 ## `…_SWQT_20260816_ext.xlsx` —— 容量擴充版（2026-08-16）
 
+> **A-UP03／A-UP05（2026-08-17，user_profiles Phase 0）：本節以下之結構數值，
+> 其量測對象在 repo 內已不存在。**
+> 本節原記 123,717 bytes／`6d53056e…`／B 欄公式 row 10–601。2026-08-17 對
+> 同檔名之磁碟檔實測為 **200,654 bytes／`4b3d447051f914eb41cc9754abaa5ed89bc0f06251baf01681a18bf884b6bcf7`／
+> B 欄公式 row 10–1411**、DV 至 1411。**601 與 1411 是兩份不同的檔**，
+> 非同一檔之記載誤差；原 123,717-byte 檔已不在磁碟上，xlsx 未入 git，無從還原。
+> 故「與原範本之逐格差異 547 格」等數值一律視為**歷史記載**，
+> 不得引為現行磁碟檔或現行母本之屬性。正式裁定待 Pei（A-UP05，Tier 2）。
+>
+> 磁碟檔已依 R-G2 移入 `archive/forms_superseded/`（移前移後 SHA 一致）。
+
+| | 原 manifest 記載（量測對象已不存在） | **2026-08-17 磁碟實測** |
+|---|---|---|
+| 檔名 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260816_ext.xlsx` | 同（位於 `archive/forms_superseded/`）|
+| SHA256 | `6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c` | `4b3d447051f914eb41cc9754abaa5ed89bc0f06251baf01681a18bf884b6bcf7` |
+| bytes | 123,717 | 200,654 |
+| mtime | （未記）| 2026-08-17 09:45:54 |
+| B 欄公式範圍 | row 10–601 | **row 10–1411** |
+
 | | |
 |---|---|
-| 檔名 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260816_ext.xlsx` |
-| SHA256 | `6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c` |
-| bytes | 123,717 |
 | 來源 | `…_SWQT_20260121.xlsx`（`cd876c202c71e74b…`）→ Comfort 之 ENTRY 001 清列 → **Pei 於 Excel 擴充**（Comfort ENTRY 022 驗證通過）|
-| 原範本 | **未覆寫**，仍在 `forms/`，仍為 `BASELINE.sha256` 之對象 |
+| 原範本 | `…_SWQT_20260121.xlsx` **未覆寫**，2026-08-17 依 R-G2 移入 `archive/forms_superseded/`。註：Comfort 之 `BASELINE.sha256` 所涵蓋者為 `features/comfort/inputs/` 內之另一份複本（同 SHA `cd876c20…`），非 `forms/` 這一份；歸檔後之三檔目前不在任何 `BASELINE.sha256` 涵蓋範圍內，其雜湊僅記於本 manifest |
 
 ### 擴充範圍（資料工作表 `Test Case Specification 測試用例規範`）
 
@@ -252,3 +313,136 @@ R 欄之下拉來源亦統一為 `下拉選單!$A$1:$A$9`（原 `R11:R59` 指向
 歷 19 次寫回、三項 assertion 持續 FAIL 之成因即此）。
 **privacy 等既有 feature 之已交付件不因本版而改變** —— 一份新版範本不會回頭
 修好已經交出去的檔（DR #36）。
+
+---
+
+## `…_SWQT_20260817_ext.xlsx` —— **現行 036 母本**（R-G1，2026-08-17）
+
+依 R-G1，自 2026-08-17 起所有新 feature 一律以本檔為母本。以下全部欄位
+為 2026-08-17 於 `forms/` 實測（唯讀探測；**全程未執行 openpyxl save**，
+母本未被覆寫，R16/R18-3）。首個採用者：`features/user_profiles/`。
+
+| | |
+|---|---|
+| 檔名 | `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx` |
+| 位置 | `forms/`（母本）；複本於 `features/user_profiles/inputs/`，同 SHA |
+| SHA256 | `6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2` |
+| bytes | 200,650 |
+| mtime | 2026-08-17 09:46:09（`dcterms:modified` 2026-08-17T01:46:09Z）|
+| zip members | 48 |
+| 工作表 | **9**：`Cover_old`／`ChangeHistory_old`／`Cover 封面`／`ChangeHistory 修訂履歷`／`Product Document 記錄封面頁`／**`Test Case Specification 測試用例規範`**／`Reference`／`QS Suggestion`／`下拉選單` |
+| `Test Case Framework` 分頁 | **absent**（與 rev C `20260121` 同，rev A/B 之 10 分頁版面才有）|
+| ChangeHistory 修訂履歷 | A (2025-10-20)／B (2025-12-08)／**C (2026-01-21)** —— 修訂人 張愷霏 ErinKFChang，核准 劉安哲 AllenACLiu。**版面 = revision C** |
+| 表單 id 格 | `AH5` = `FM-WI-FSM-036-A01` |
+
+### 資料工作表 `Test Case Specification 測試用例規範`
+
+| 項 | 實測 |
+|---|---|
+| dimensions | `A1:AH1411` |
+| 表頭列 | **9**（`B9`=`No.#/序號` 起，共 33 個非空表頭格；A 欄無表頭）|
+| 資料列起點 | **10** |
+| 欄範圍 | A–**AH**（34 欄）|
+| `D2` 專案名稱 | `newR1L`（原範本既有之值）|
+| `C5` 範圍 Scope 標籤 | `範圍 Scope：`；**值格 `D5` 為空** |
+| `J5` 日期 | `2025/10/17` |
+| workbook_state | **BLANK** —— Test Item(`I`) 或 Test Case ID(`F`) 非空之列 = **0**；資料區（row ≥ 10）除 B 欄公式外之非空格 = **0**（掃描 A–AH 全 34 欄）|
+
+### 欄位對映（依表頭列 9 之表頭文字實測，A–AH）
+
+| Field | Col | | Field | Col |
+|---|---|---|---|---|
+| No.# 序號 | B | | Estimated Test Time (mins) | Q |
+| req_id (Polarion) | C | | design_method | R |
+| req_id | D | | functional_safety | S |
+| tc_id (TestRail) | E | | HDCC27 Atl-Hi | T |
+| tc_id | F | | DT27 Atl-Hi | U |
+| test_group | G | | VF(ProMaster)637 Atl-Mi | V |
+| test_set | H | | Commander (598) Atl-Mi | W |
+| test_item | I | | Regengade (5210) Atl-Mi | X |
+| pre_conditions | J | | Toro(2261) Atl-Mi | Y |
+| input_test_data | K | | Fastack (376) Atl-Mi | Z |
+| test_procedure | L | | author | AA |
+| expected_result | M | | test_version | AB |
+| spec_reference | N | | test_vehicle (Bench) | AC |
+| tc_ref_id | O | | test_period | AD |
+| priority | P | | tester | AE |
+| | | | test_result | AF |
+| | | | defect_id | AG |
+| | | | remarks | AH |
+
+車型 7 欄（T–Z）順序與 rev A/B 相同。**與 rev A/B 之差異僅 Q 欄插入**，
+其後各欄整體右移一格（rev A/B 之 remarks 為 AG，本版為 AH）。
+
+### B 欄編號公式
+
+- 範圍：**`B10`–`B1411`**，連續無斷點，共 **1402** 格
+- 式樣：`=IF(ISBLANK($D10),"",ROW()-9)`（逐列相對位移，末列
+  `=IF(ISBLANK($D1411),"",ROW()-9)`）
+
+### 資料驗證（DV）範圍
+
+| 欄 | 型別 | 來源／清單 | 範圍 |
+|---|---|---|---|
+| P（priority）| list | 內嵌 `"P0,P1,P2,P3"` | `P10:Q1411` |
+| R（design_method）| list（**x14 擴充**）| `下拉選單!$A$1:$A$9` | **`R10:R1411`** |
+| T–Z（車型）| list | 內嵌 `"0,1"` | `T10:Z1411` |
+| AF（test_result）| list | 內嵌 `"Pass, Fail, Pending,Block,NA"` | `AF10:AF1411` |
+
+**R 欄之 DV 為 x14 擴充**，openpyxl 讀取時會發出
+`Data Validation extension is not supported and will be removed` 並丟棄之。
+其範圍係自 `xl/worksheets/sheet6.xml` 之 `<x14:dataValidation>` 直接讀出。
+
+**任何以 openpyxl 開啟並存回本版之操作，都會摧毀 R 欄下拉 —— 已實測，
+非推論**（2026-08-17，於 repo 外之 scratchpad 複本上；母本 SHA 前後一致）：
+
+| 項 | 存回前 | 存回後 |
+|---|---|---|
+| `<x14:dataValidation>` 節點數 | **1**（`R10:R1411`）| **0** |
+| legacy DV（P／T–Z／AF）| 3 | **3，存活** |
+| zip members | **48** | **47** |
+| 工作表數／B 欄公式末列 | 9／1411 | 9／1411（不變）|
+
+損壞是**選擇性**的，且工作表數、列數、公式、其他 DV 全部不變、
+zip member 只少 1 —— **表面上像無害的重新封裝，任何只比對這些項目的檢查
+都會全綠**。這是母本禁止覆寫（R16/R18-3）之外的第二個獨立理由，
+亦是寫回實作之硬約束（見 `features/user_profiles/ANOMALIES.md` A-UP09）。
+
+**注意**：本檔 Part I 之 `framework.md` §`Workbook sync` 節所示範例即
+`openpyxl` + `wb.save()`。該範例跑在 rev A/B 版面上（無 x14 DV），
+**照抄到本母本會摧毀 R 欄下拉**。
+
+### 設計方法詞彙（`下拉選單` A1:A9，9 條逐字）
+
+1. `功能測試 (Functional based ; no specific technique)`
+2. `狀態轉換 (State Transition Testing)`
+3. `決策表 (Decision Table Testing)`
+4. `等價劃分 (Equivalence Partitioning, EP)`
+5. `邊界值分析 (Boundary Value Analysis, BVA)`
+6. `組合測試 (Combinatorial Testing ; Pairwise / t-wise)`
+7. `情境 / 用例 (Scenario / Use Case Testing)`
+8. `負向測試 (Negative / Invalid)`
+9. `基礎故障注入 (Fault Injection Lite)`
+
+`下拉選單` 工作表 dimensions 為 `A1:A11`，但 **A10／A11 為空** ——
+DV 來源已為 `$A$1:$A$9`，不含空選項。
+
+### 與 `20260816_ext`（磁碟版）之關係 —— 逐格差異 0
+
+`20260817_ext` 是磁碟上 `20260816_ext` 之一次「另存新檔」：
+
+| 比對項 | 結果 |
+|---|---|
+| 逐格值比對（34 欄 × 1411 列 = 47,974 格，含公式字串）| **差異 0 格** |
+| 工作表名稱與順序 | 相同（9 分頁）|
+| dimensions | 兩版皆 `A1:AH1411` |
+| B 欄公式末列 | 兩版皆 1411 |
+| DV 範圍（P／T–Z／AF）| 兩版相同 |
+| zip members | 48 = 48 |
+| 差異之 zip member | **僅 2 個**：`xl/workbook.xml`（Excel `documentId` GUID）、`docProps/core.xml`（`dcterms:modified` 01:45:54Z → 01:46:09Z，相隔 15 秒）|
+| bytes | 200,654 → 200,650（差 4 bytes，全部來自上列兩個 metadata member）|
+
+**故本版相對於磁碟上之 `20260816_ext` 無任何結構或內容變更。**
+本版之實質差異是相對於 **rev C 原範本 `20260121`**（B 欄 row 10–59、
+DV 至 59）之容量擴充至 1411 列 —— 但 FORMS.md 原記載之「601 列」版本
+在 repo 內已不存在（A-UP05），故本節不沿用該中間版之任何數值。

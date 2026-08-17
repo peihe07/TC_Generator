@@ -21,6 +21,18 @@ escalate one tier up — never down.
   037 from the start and was only noticed mid-pipeline). Label-variant
   matches are flagged for confirmation (A-H03 pattern). Obtaining the files
   stays Tier 3.
+- **036 母本選擇（R-G1，Pei 2026-08-17，全域）**：自 2026-08-17 起所有新
+  feature 一律以 `forms/…_SWQT_20260817_ext.xlsx` 為 036 母本，不再逐
+  feature 詢問。既有 feature 之已交付件不因本條改變。結構事實見
+  `forms/FORMS.md` §`…_SWQT_20260817_ext.xlsx`。配套之 R-G2 已將其餘三份
+  036 檔以`mv` 移入 `archive/forms_superseded/`（不刪除）。
+  註：該母本 R 欄 design_method 之 DV 為 x14 擴充，openpyxl 讀取即丟棄 ——
+  **任何以 openpyxl 存回母本之操作都會摧毀該下拉**（R16/R18-3 之外的獨立理由）。
+  已實測（2026-08-17，repo 外複本）：`<x14:dataValidation>` 1 → 0、
+  zip members 48 → 47，而三條 legacy DV（P／T–Z／AF）存活、工作表數與 B 欄
+  公式範圍不變 —— **損壞是選擇性的，只比對列數／公式／工作表數的檢查會全綠**。
+  §`Workbook sync`（framework.md Part I）之 `wb.save()` 範例跑在 rev A/B 版面
+  （無 x14 DV），照抄到本母本即為此缺陷。見 user_profiles A-UP09。
 - `workbook_state` detection when segmentation is unambiguous
 - Column mapping via header-text match (report match count, e.g. 32/32)
 - Design-method vocabulary extraction from the 下拉選單 sheet

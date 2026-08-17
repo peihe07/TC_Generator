@@ -1,0 +1,32 @@
+# BASELINE — User Profiles 素材基準（inputs/ ＋ spec-index/ 之 Personal Account 三件）
+#
+# 為什麼存在：inputs/ 是 gitignored（本 feature .gitignore:2），素材本身永遠
+# 不進版控。2026-08-13 實測，amfm / home / media / projection 四個 feature 的
+# inputs/ 已全部清空，而 git 無從還原（那些檔從未被追蹤）。本檔是那件事之後
+# 留下的防線：素材可以消失，雜湊留在版控裡。
+#
+# 涵蓋範圍依 01b 作業項 2 明示之 **R-C20（Comfort）比照**：
+# 「涵蓋以來源為準，『還沒用到』不是不保護的理由。」故本檔涵蓋 inputs/ 之
+# 全部檔案，加上 spec-index 之 Personal Account 三件（xlsx export / JSON /
+# PDF）—— 後者因 `.gitignore` 之 `spec-index/cache/*` 同樣不入版控，
+# 而 R-U3 已裁定該 export 為本 feature 之 spec 基線，是唯一之 spec 來源。
+#
+# 量測條件：SHA256（`shasum -a 256`），對整個檔案位元組流，非工作表內容雜湊。
+# 路徑相對於 `features/user_profiles/`。
+#
+# 驗證（自 features/user_profiles/ 執行）：
+#     shasum -a 256 -c BASELINE.sha256
+# macOS 的 shasum 會對本註解區塊印 "WARNING: N lines are improperly
+# formatted"，那是 perl 版的行為，exit code 仍為 0，逐檔仍印 OK。
+#
+# 更新時機：素材有增減或經裁決換版時，連同裁決編號一併更新本檔。
+#
+# **2026-08-17 建檔（Phase 0，下放包 01b 作業項 2）**：
+# inputs/ 現為 **1 檔** —— 依 R-G1／R-U7 置入之 036 母本複本。
+# 母本本身留在 `forms/`，未被覆寫（本輪全程未執行 openpyxl save）。
+# **037 Analysis Report 尚未到齊**（A-UP04），到齊後須連同本檔一併更新。
+
+6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx
+368d5874aa23e49c007251ece84de8901f873a7f51ab09b788122b164d365b05  ../../spec-index/cache/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).xlsx
+920b2cbca378a1c851bb0521711f1b076fdfdb68939337d3faf30c81a869c48e  ../../spec-index/cache/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).json
+25553b9b5c63834eb916c82db2f6951982c5e8123410c9a221b46e5da2eb37a7  ../../spec-index/sources/Personal Account HMI Logic and Flow R1L-R (February 10 2023).pdf

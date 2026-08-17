@@ -1,0 +1,126 @@
+# feature.yaml — pipeline configuration for User Profiles
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+#
+# Phase 0（2026-08-17）填入。每一欄位之來源如下：
+#   - 欄位字母：2026-08-17 對 036 母本 20260817_ext 之表頭列 9 逐格實測
+#     （**revision C 版面，A–AH 34 欄**，非 scaffold 預設之 rev A/B 版面）
+#   - 命名值：R-U1／R-U2（下放包 01a_rulings.md 逐字）
+#   - workbook_state 相關：R-U6
+#   - 母本選擇：R-G1
+# 未實測者一律留 TBD／null，不猜（FORMS.md Rules）。
+
+feature: "User Profiles"
+slug: "user_profiles"                # R-U2
+test_group: "User Profiles"          # R-U1：037 FROP 欄實測值（182 列一致，
+                                     # 本輪未複驗 —— 037 不在 repo 內，A-UP04）
+tc_id_pattern: "NR1L-UserProfiles-{NNN}"   # R-U2
+
+paths:
+  # R-G1 母本之複本；SHA 6372fb6b…（BASELINE.sha256）
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
+  # A-UP04：037 尚未到齊。檔名為下放包 01_intake.md §素材 所指名者，
+  # 路徑為到齊後之預定位置 —— **目前不存在**，recon 不可跑。
+  a03_report: null   # 預定：inputs/FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx
+  # R-U3 spec 基線。留在 spec-index/ 以維持單一來源（比照 Comfort R-C11），
+  # 雜湊保護見 BASELINE.sha256。
+  sys1_export: "../../spec-index/cache/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).xlsx"
+  spec_pdf: "../../spec-index/sources/Personal Account HMI Logic and Flow R1L-R (February 10 2023).pdf"
+  popup_list: null    # spec 8.3 引用 HMI Pop Up List；檔案未到齊，見 DATA_REQUESTS.md
+
+spec_mode: "A"        # R-U3；證據：Source ID 欄 169 列單一 stem，0 unparsed
+# R-U1：一律用 spec 之 SYSRE_HMI_Source ID 字串，不改寫為 User Profiles，
+# 亦不使用檔名之 R1L-R (February_10_2023) 形式。stem 為 169 列實測唯一值。
+spec_reference_template: "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_{outline}"
+
+workbook:
+  sheet: "Test Case Specification 測試用例規範"   # 實測；非 rev A/B 之 "…&Result"
+  header_row: 9
+  first_data_row: 10
+  last_capacity_row: 1411      # B 欄公式與各 DV 之實測上界
+  # column letters, verified by header-text probe of the 20260817_ext master
+  # （rev C：Q 欄 Estimated Test Time 插入，其後各欄較 rev A/B 右移一格）
+  columns:
+    req_id_polarion: "C"
+    req_id: "D"
+    tc_id_testrail: "E"
+    tc_id: "F"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    estimated_test_time: "Q"   # rev C 新增
+    design_method: "R"         # rev A/B 為 Q
+    functional_safety: "S"     # rev A/B 為 R
+    vehicle_models: "T:Z"
+    author: "AA"               # rev A/B 為 Z
+    test_version: "AB"
+    test_vehicle: "AC"
+    test_period: "AD"
+    tester: "AE"
+    test_result: "AF"
+    defect_id: "AG"
+    remarks: "AH"              # rev A/B 為 AG
+  data_validation:             # 實測範圍，寫回不得逸出
+    priority: {range: "P10:Q1411", values: ["P0", "P1", "P2", "P3"]}
+    design_method: {range: "R10:R1411", source: "下拉選單!$A$1:$A$9", ext: "x14"}
+    vehicle_models: {range: "T10:Z1411", values: ["0", "1"]}
+    test_result: {range: "AF10:AF1411", values: ["Pass", " Fail", " Pending", "Block", "NA"]}
+
+# R-U6：workbook_state = BLANK。實測佐證：母本資料區（row ≥ 10）除 B 欄公式外
+# 之非空格 = 0（掃描 A–AH 全 34 欄）；Test Item(I) 或 tc_id(F) 非空之列 = 0。
+workbook_state: "BLANK"
+
+done_region:
+  # BLANK：本 feature 無 done region。style authority 為 Home 之 done region
+  # （Arif 之 144 列），標記 cross-feature: style only（R-U6）。
+  detection: null
+  author_value: null
+  invariant: null
+  style_authority:
+    source: "archive/forms_superseded/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Home_20260809.xlsx"
+    marker: "cross-feature: style only"
+    author_value: "ArifChen"   # FORMS.md provenance warning：此複本為 ArifChen
+                               # 而非 Arif；選取器須用實測值，不得沿用 Arif
+    note: "借用之任何字面值一律重新回溯本 feature spec，以 lint 規則強制（R-U6）"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: true      # R-U6：BLANK → Test Group／Test Set = FILL
+  mode: "append_from_first_data_row"   # R-U6
+  # R16/R18-3：母本不得覆寫；openpyxl save 全 repo 禁用。
+  # 另一獨立理由（本輪實測）：R 欄 DV 為 x14 擴充，openpyxl 讀取即丟棄，
+  # 存回會摧毀該下拉。寫回實作須以 zip member 級操作或非 openpyxl 途徑。
+  forbid_openpyxl_save: true
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary，9 條
+  # spec 全文唯一 PU id **20 個**，與下放包 01_intake.md 記載相符。
+  # 量測條件：掃描 data/outline_map.json 之 169 條 Description 欄全文
+  # （不含 Outline Number／ID 欄）；比對式 `PU[\s_]?(\d{3,4})`，
+  # 大小寫不敏感結果相同；正規化為 PU + 4 位零填補。
+  # 逐引用次數 22（PU0588、PU1088 各 2 次），逐唯一 id 20 —— 兩者單位不同。
+  # 逐 section 對映見 data/spec_popup_ids.tsv。
+  popup_ids: [PU0091, PU0118, PU0129, PU0394, PU0580, PU0584, PU0585, PU0588,
+              PU0611, PU0626, PU0832, PU0833, PU0841, PU0934, PU1087, PU1088,
+              PU1089, PU1090, PU1091, PU1573]
+  extra_rules: []
+
+recon_assertions:
+  # 下放包 01b 作業項 3 之預期值。**兩者量測單位不同，見上繳包 §3**：
+  #   leaf_count 182 係以「ID 非任何其他 ID 之前綴」量得（下放包 01_intake.md）
+  #   functional_requirement_count 180 係以 Categorization 量得
+  # 01b 所裁定之判準為後者。故 182 在該判準下不可能成立，本欄暫不填期望值，
+  # 待 Tier 2 釐清（不自行調和，canon §8.5）。
+  header_row: 7
+  functional_requirement_count: TBD    # 候選 180；見上繳包 §3
+  heading_count: TBD                   # 候選 25（Categorization == "Heading"）
+  out_of_scope_count: 2                # R-U4：PROF-017、PROF-035
+  generation_population: 180           # R-U4 明文

@@ -1,0 +1,21 @@
+# Customer source files - never commit
+inputs/
+
+# Regenerable artifacts (rebuilt by the Step 1 scripts). Add this feature's
+# own data/*.json artefacts here as Step 1 starts emitting them.
+data/recon.json
+# data/outline_map.json — 169 條 Description 全文，可由 build_outline_map.py 重建。
+# 註解必須自成一行：git 不剝除行尾註解，寫在 pattern 同一行會使該 pattern 失效。
+data/outline_map.json
+batches/
+lint_report.json
+
+# data/spec_id_to_outline.tsv IS tracked on purpose where a feature builds
+# one: it is the traceability lookup every spec_reference is linted against,
+# and a diff on it is the signal that the spec export moved underneath us.
+
+# Local noise
+__pycache__/
+*.pyc
+output/
+.DS_Store

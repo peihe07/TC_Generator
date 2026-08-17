@@ -87,3 +87,13 @@ features/*/lint_report.json
 forms/*
 !forms/FORMS.md
 !forms/.gitkeep
+
+# R-G2 (2026-08-17) moved three superseded 036 forms here with `mv`. The move
+# must not change their TRACKING status: they are the same company documents
+# that `forms/*` above keeps out of git, so the same rule extends here.
+# Their SHA256 stays in forms/FORMS.md, which is tracked.
+# NOTE: archiving preserves the FILES, not their hashes-in-git — the three are
+# currently outside every BASELINE.sha256 (see features/user_profiles/
+# docs/upstream/01_intake.md §2.4). That gap is Tier 2, not settled here.
+archive/forms_superseded/*
+!archive/forms_superseded/.gitkeep
