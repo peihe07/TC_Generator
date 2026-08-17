@@ -21,7 +21,11 @@ paths:
   workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx"
   # A-UP04：037 尚未到齊。檔名為下放包 01_intake.md §素材 所指名者，
   # 路徑為到齊後之預定位置 —— **目前不存在**，recon 不可跑。
-  a03_report: null   # 預定：inputs/FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx
+  # 03 輪填入。**實得檔名與 DR #1 所列者不同**（DR 列 `FM-WI-FSM-037-A03 N1L
+  # SWE1 Personal Account HMI V0.1 STLA 報告.xlsx`，實得以連字號分隔且
+  # `PersonalAccount` 無空白）。檔名為 DR 之 pattern，非其身分 ——
+  # 身分由 SHA256 `9d176dde…` 承擔，見 BASELINE.sha256。
+  a03_report: inputs/FM-WI-FSM-037-A03-N1L-SWE1-PersonalAccount-HMI-V0.1 STLA 報告.xlsx
   # R-U3 spec 基線。留在 spec-index/ 以維持單一來源（比照 Comfort R-C11），
   # 雜湊保護見 BASELINE.sha256。
   sys1_export: "../../spec-index/cache/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).xlsx"

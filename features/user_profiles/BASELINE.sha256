@@ -25,8 +25,32 @@
 # inputs/ 現為 **1 檔** —— 依 R-G1／R-U7 置入之 036 母本複本。
 # 母本本身留在 `forms/`，未被覆寫（本輪全程未執行 openpyxl save）。
 # **037 Analysis Report 尚未到齊**（A-UP04），到齊後須連同本檔一併更新。
+#
+# **2026-08-17 更新（03 輪，下放包 03 作業項 1／4）—— inputs/ 由 1 檔增為 3 檔**：
+#   ＋ 037 Analysis Report（DR #1 到齊，A-UP04 之解除依據）
+#   ＋ SYS1 Personal Account spec 之 inputs/ 副本
+#
+# **037 之採認前置**：Phase 0 之全部 037 側數字係分析層於 **Project 附件副本**
+# 上量得，**未比雜湊**（下放包 03 §素材現況自陳）。本輪一律以 `inputs/` 這份
+# 重新實測，不沿用 —— 其 SHA256 為 `9d176dde…`，**於本檔首次落錨**。
+# 大小相同不等於內容相同；在有雜湊之前，那兩份是兩個未經比對的物件。
+#
+# **037 之檔名與 DR #1 所列者不同**：DR 列
+# `FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx`，
+# 實得者以連字號分隔且 `PersonalAccount` 無空白。**檔名是 DR 之 pattern，
+# 不是該檔之身分** —— 身分由下方之 SHA256 承擔。
+#
+# **兩份 spec 之同一性（03 作業項 5，只驗不處置）**：
+# `inputs/` 與 `spec-index/cache/` 之 R1L-R export **SHA256 完全相同**
+# （`368d5874…`）。**兩者皆列於本檔**，各自以其路徑受檢 ——
+# 相同不是合併的理由，處置屬 Tier 2／3（R-U17 提案），本輪不刪不搬不改引用。
+# R-U3 之 spec 基線引用路徑維持 `spec-index/`。
 
 6372fb6be02f48dc3a3e091a60d2e2b3cf26d8704c27e25d79b7c9516fb825b2  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260817_ext.xlsx
 368d5874aa23e49c007251ece84de8901f873a7f51ab09b788122b164d365b05  ../../spec-index/cache/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).xlsx
 920b2cbca378a1c851bb0521711f1b076fdfdb68939337d3faf30c81a869c48e  ../../spec-index/cache/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).json
 25553b9b5c63834eb916c82db2f6951982c5e8123410c9a221b46e5da2eb37a7  ../../spec-index/sources/Personal Account HMI Logic and Flow R1L-R (February 10 2023).pdf
+
+# ---- 03 輪新增（2026-08-17）----
+9d176ddef6d013539bd33e8a74e8b67d01fba232486aaac9eedad109a783eedb  inputs/FM-WI-FSM-037-A03-N1L-SWE1-PersonalAccount-HMI-V0.1 STLA 報告.xlsx
+368d5874aa23e49c007251ece84de8901f873a7f51ab09b788122b164d365b05  inputs/SYS1_HMI_Personal_Account_HMI_Logic_and_Flow_R1L-R_(February_10_2023).xlsx

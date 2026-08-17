@@ -1,0 +1,815 @@
+anchor_id	cfts	chapter_num	chapter_title	chapter_touched	risk_tier
+4941009	009	1.1	Revision Notes	False	3
+4941018	009	1.2	Introduction	False	3
+4941019	009	1.2	Introduction	False	3
+4941022	009	1.3.1	A&T System Power Definitions	False	3
+4941024	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941025	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941026	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941027	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941028	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941029	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941030	009	1.3.1.1	BODY OFF and BODY ON MODE GROUPS	False	3
+4941032	009	1.3.1.2	SLEEP MODE	False	3
+4941033	009	1.3.1.2	SLEEP MODE	False	3
+4941034	009	1.3.1.2	SLEEP MODE	False	3
+4941035	009	1.3.1.2	SLEEP MODE	False	3
+4941037	009	1.3.1.3	STANDBY MODE	False	3
+4941039	009	1.3.1.4	IDLE MODE	False	3
+4941040	009	1.3.1.4	IDLE MODE	False	3
+4941042	009	1.3.1.5	FULL OPERATION MODE	False	3
+4941044	009	1.3.1.6	PARTIAL OPERATION MODE	False	3
+4941045	009	1.3.1.6	PARTIAL OPERATION MODE	False	3
+4941046	009	1.3.1.6	PARTIAL OPERATION MODE	False	3
+4941047	009	1.3.1.6	PARTIAL OPERATION MODE	False	3
+4941048	009	1.3.1.6	PARTIAL OPERATION MODE	False	3
+4941049	009	1.3.1.6	PARTIAL OPERATION MODE	False	3
+4941051	009	1.3.1.7	STOLEN VEHICLE MODE	False	3
+4941052	009	1.3.1.7	STOLEN VEHICLE MODE	False	3
+4941054	009	1.3.1.8	TIMED MODE	False	3
+4941055	009	1.3.1.8	TIMED MODE	False	3
+4941056	009	1.3.1.8	TIMED MODE	False	3
+4941057	009	1.3.1.8	TIMED MODE	False	3
+4941058	009	1.3.1.8	TIMED MODE	False	3
+4941059	009	1.3.1.8	TIMED MODE	False	3
+4941061	009	1.3.1.9	BENCH MODE	False	3
+4941063	009	1.3.1.10	LOGISTICS MODE	False	3
+4941064	009	1.3.1.10	LOGISTICS MODE	False	3
+4941065	009	1.3.1.10	LOGISTICS MODE	False	3
+4941068	009	1.3.1.11.1	HU State Chart	False	3
+4941070	009	1.3.1.11.2	RESET MODE	False	3
+4941072	009	1.3.1.11.3	NORMAL OPERATION MODE GROUP	False	3
+4941075	009	1.3.1.11.3.1.1	SLEEP MODE	False	3
+4941077	009	1.3.1.11.3.1.2	STANDBY MODE	False	3
+4941079	009	1.3.1.11.3.1.3	TIMED MODE	False	3
+4941082	009	1.3.1.11.3.2.1	FULL OPERATION MODE	False	3
+4941084	009	1.3.1.11.3.2.2	IDLE MODE	False	3
+4941086	009	1.3.1.12	Asynchronous CAN network operation	False	3
+4941089	009	1.3.1.13.1	SW watchdog	False	3
+4941090	009	1.3.1.13.1	SW watchdog	False	3
+4941092	009	1.3.1.13.2	HW watchdog	False	3
+4941093	009	1.3.1.13.2	HW watchdog	False	3
+4941095	009	1.3.2	ECU CAN Architecture Configuration (If Equipped)	False	3
+4941097	009	1.3.3	System Wake Up and Power Up Conditions	False	3
+4941098	009	1.3.3	System Wake Up and Power Up Conditions	False	3
+4941100	009	1.3.3.1	STANDBY MODE	False	3
+4941101	009	1.3.3.1	STANDBY MODE	False	3
+4941102	009	1.3.3.1	STANDBY MODE	False	3
+4941103	009	1.3.3.1	STANDBY MODE	False	3
+4941104	009	1.3.3.1	STANDBY MODE	False	3
+4941105	009	1.3.3.1	STANDBY MODE	False	3
+4941106	009	1.3.3.1	STANDBY MODE	False	3
+4941107	009	1.3.3.1	STANDBY MODE	False	3
+4941108	009	1.3.3.1	STANDBY MODE	False	3
+4941110	009	1.3.3.1.1	Radios	False	3
+4941111	009	1.3.3.1.1	Radios	False	3
+4941112	009	1.3.3.1.1	Radios	False	3
+4941113	009	1.3.3.1.1	Radios	False	3
+4941114	009	1.3.3.1.1	Radios	False	3
+4941115	009	1.3.3.1.1	Radios	False	3
+4941116	009	1.3.3.1.1	Radios	False	3
+4941117	009	1.3.3.1.1	Radios	False	3
+4941119	009	1.3.3.1.2	Amp	False	3
+4941120	009	1.3.3.1.2	Amp	False	3
+4941121	009	1.3.3.1.2	Amp	False	3
+4941122	009	1.3.3.1.2	Amp	False	3
+4941123	009	1.3.3.1.2	Amp	False	3
+4941125	009	1.3.3.1.3	Integrated Center Stack (ICS)	False	3
+4941127	009	1.3.3.1.4	VES3	False	3
+4941128	009	1.3.3.1.4	VES3	False	3
+4941129	009	1.3.3.1.4	VES3	False	3
+4941130	009	1.3.3.1.4	VES3	False	3
+4941131	009	1.3.3.1.4	VES3	False	3
+4941133	009	1.3.3.1.5	VES2	False	3
+4941134	009	1.3.3.1.5	VES2	False	3
+4941135	009	1.3.3.1.5	VES2	False	3
+4941136	009	1.3.3.1.5	VES2	False	3
+4941137	009	1.3.3.1.5	VES2	False	3
+4941138	009	1.3.3.1.5	VES2	False	3
+4941140	009	1.3.3.1.6	External CD Player	False	3
+4941141	009	1.3.3.1.6	External CD Player	False	3
+4941142	009	1.3.3.1.6	External CD Player	False	3
+4941143	009	1.3.3.1.6	External CD Player	False	3
+4941145	009	1.3.3.1.7	DTV	False	3
+4941146	009	1.3.3.1.7	DTV	False	3
+4941147	009	1.3.3.1.7	DTV	False	3
+4941148	009	1.3.3.1.7	DTV	False	3
+4941150	009	1.3.3.1.8	ANC	False	3
+4941151	009	1.3.3.1.8	ANC	False	3
+4941153	009	1.3.3.1.9	Disassociated Center Stack Display (DCSD)	False	3
+4941155	009	1.3.3.1.10	Telematics Box Module	False	3
+4941156	009	1.3.3.1.10	Telematics Box Module	False	3
+4941157	009	1.3.3.1.10	Telematics Box Module	False	3
+4941158	009	1.3.3.1.10	Telematics Box Module	False	3
+4941160	009	1.3.3.2	Body ON Mode	False	3
+4941162	009	1.3.3.2.1	Radio	False	3
+4941163	009	1.3.3.2.1	Radio	False	3
+4941164	009	1.3.3.2.1	Radio	False	3
+4941165	009	1.3.3.2.1	Radio	False	3
+4941166	009	1.3.3.2.1	Radio	False	3
+4941167	009	1.3.3.2.1	Radio	False	3
+4941168	009	1.3.3.2.1	Radio	False	3
+4941170	009	1.3.3.2.2	Disassociated Center Stack Display (DCSD)	False	3
+4941171	009	1.3.3.2.2	Disassociated Center Stack Display (DCSD)	False	3
+4941172	009	1.3.3.2.2	Disassociated Center Stack Display (DCSD)	False	3
+4941174	009	1.3.3.2.3	Integrated Center Stack (ICS)	False	3
+4941176	009	1.3.3.2.4	Amp	False	3
+4941177	009	1.3.3.2.4	Amp	False	3
+4941178	009	1.3.3.2.4	Amp	False	3
+4941180	009	1.3.3.2.5	VES3	False	3
+4941181	009	1.3.3.2.5	VES3	False	3
+4941182	009	1.3.3.2.5	VES3	False	3
+4941183	009	1.3.3.2.5	VES3	False	3
+4941185	009	1.3.3.2.6	VES2	False	3
+4941186	009	1.3.3.2.6	VES2	False	3
+4941187	009	1.3.3.2.6	VES2	False	3
+4941188	009	1.3.3.2.6	VES2	False	3
+4941190	009	1.3.3.2.7	Remote DVD Player	False	3
+4941191	009	1.3.3.2.7	Remote DVD Player	False	3
+4941192	009	1.3.3.2.7	Remote DVD Player	False	3
+4941193	009	1.3.3.2.7	Remote DVD Player	False	3
+4941194	009	1.3.3.2.7	Remote DVD Player	False	3
+4941195	009	1.3.3.2.7	Remote DVD Player	False	3
+4941197	009	1.3.3.2.8	DTV	False	3
+4941198	009	1.3.3.2.8	DTV	False	3
+4941199	009	1.3.3.2.8	DTV	False	3
+4941201	009	1.3.3.2.9	ANC	False	3
+4941203	009	1.3.3.2.10	Telematic Box Module (TBM)	False	3
+4941204	009	1.3.3.2.10	Telematic Box Module (TBM)	False	3
+4941206	009	1.3.3.3	General Sleep and Wakeup Requirements for CAN-I	False	3
+4941207	009	1.3.3.3	General Sleep and Wakeup Requirements for CAN-I	False	3
+4941209	009	1.3.3.3.1	ICS Wakeup Reasons	False	3
+4941210	009	1.3.3.3.1	ICS Wakeup Reasons	False	3
+4941212	009	1.3.3.3.2	HU Wakeup using Power Button	False	3
+4941214	009	1.3.3.3.3	HU Wakeup from Ecall/Assist call	False	3
+4941216	009	1.3.3.3.4	HU Wakeup By Door Lock/Unlock	False	3
+4941218	009	1.3.3.3.5	Other HU Wakeup Requirements	False	3
+4941220	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941221	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941222	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941223	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941224	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941225	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941226	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941227	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941228	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941229	009	1.3.3.3.5.1	HU Wakeup to Report Status of Charge for xEV	False	3
+4941231	009	1.3.3.3.6	HUs with CAN-C Connection	False	3
+4941233	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941234	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941235	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941236	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941237	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941238	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941239	009	1.3.3.4	Body Remote Start Mode (PARTIAL OPERATION MODE)	False	3
+4941241	009	1.3.3.5	Power up Sequence	False	3
+4941242	009	1.3.3.5	Power up Sequence	False	3
+4941243	009	1.3.3.5	Power up Sequence	False	3
+4941244	009	1.3.3.5	Power up Sequence	False	3
+4941245	009	1.3.3.5	Power up Sequence	False	3
+4941246	009	1.3.3.5	Power up Sequence	False	3
+4941247	009	1.3.3.5	Power up Sequence	False	3
+4941248	009	1.3.3.5	Power up Sequence	False	3
+4941249	009	1.3.3.5	Power up Sequence	False	3
+4941250	009	1.3.3.5	Power up Sequence	False	3
+4941251	009	1.3.3.5	Power up Sequence	False	3
+4941252	009	1.3.3.5	Power up Sequence	False	3
+4941253	009	1.3.3.5	Power up Sequence	False	3
+4941254	009	1.3.3.5	Power up Sequence	False	3
+4941255	009	1.3.3.5	Power up Sequence	False	3
+4941256	009	1.3.3.5	Power up Sequence	False	3
+4941257	009	1.3.3.5	Power up Sequence	False	3
+4941258	009	1.3.3.5	Power up Sequence	False	3
+4941259	009	1.3.3.5	Power up Sequence	False	3
+4941260	009	1.3.3.5	Power up Sequence	False	3
+4941261	009	1.3.3.5	Power up Sequence	False	3
+4941262	009	1.3.3.5	Power up Sequence	False	3
+4941263	009	1.3.3.5	Power up Sequence	False	3
+4941266	009	1.3.3.5.1.1	Theme	False	3
+4941267	009	1.3.3.5.1.1	Theme	False	3
+4941268	009	1.3.3.5.1.1	Theme	False	3
+4941269	009	1.3.3.5.1.1	Theme	False	3
+4941270	009	1.3.3.5.1.1	Theme	False	3
+4941271	009	1.3.3.5.1.1	Theme	False	3
+4941273	009	1.3.3.5.1.1.1	Branded Font	False	3
+4941275	009	1.3.3.5.1.1.2	Branded Map Theme	False	3
+4941277	009	1.3.3.5.1.1.3	Branded Turn by Turn Glow	False	3
+4941279	009	1.3.3.5.1.1.4	Branded APP Icon	False	3
+4941281	009	1.3.3.5.1.1.5	Branded Recirc Icon	False	3
+4941283	009	1.3.3.5.1.1.6	Settings Seat Graphic	False	3
+4941284	009	1.3.3.5.1.1.6	Settings Seat Graphic	False	3
+4941286	009	1.3.3.5.1.1.7	Performance Gauges	False	3
+4941288	009	1.3.3.5.1.1.8	Launch Mode Vehicle Graphic	False	3
+4941290	009	1.3.4	Shipping Mode/Logistics Mode	False	3
+4941291	009	1.3.4	Shipping Mode/Logistics Mode	False	3
+4941292	009	1.3.4	Shipping Mode/Logistics Mode	False	3
+4941294	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941295	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941296	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941297	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941298	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941299	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941300	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941302	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941303	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941304	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941305	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941306	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941307	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941308	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941309	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941310	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941311	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941312	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941313	009	1.3.5	Start-Up and Shut Down Animations	True	2
+4941315	009	1.3.6	Resume Mode	False	3
+4941316	009	1.3.6	Resume Mode	False	3
+4941317	009	1.3.6	Resume Mode	False	3
+4941318	009	1.3.6	Resume Mode	False	3
+4941322	009	1.4.2	General Diagnostic Requirements	False	3
+4941324	009	1.4.2.1	Ignition Cycle Counter	False	3
+4941325	009	1.4.2.1	Ignition Cycle Counter	False	3
+4941326	009	1.4.2.1	Ignition Cycle Counter	False	3
+4941327	009	1.4.2.1	Ignition Cycle Counter	False	3
+4941328	009	1.4.2.1	Ignition Cycle Counter	False	3
+4941331	009	1.4.2.2.1	DTC Enable Criteria	False	3
+4941332	009	1.4.2.2.1	DTC Enable Criteria	False	3
+4941333	009	1.4.2.2.1	DTC Enable Criteria	False	3
+4941334	009	1.4.2.2.1	DTC Enable Criteria	False	3
+4941335	009	1.4.2.2.1	DTC Enable Criteria	False	3
+4941337	009	1.4.2.2.2	DTC Maturation Criteria	False	3
+4941341	009	1.4.2.2.2.1.1.1	CAN-I/CAN-BH Loss of Communication	False	3
+4941344	009	1.5.1	Configuration parameters	False	3
+4941346	009	1.5.1.1	Configuration parameters description	False	3
+4941349	009	1.6.1	Introduction	False	3
+4941350	009	1.6.1	Introduction	False	3
+4941351	009	1.6.1	Introduction	False	3
+4941359	009	1.6.2.1.1	Full-Operation	True	1
+4941361	009	1.6.2.1.1	Full-Operation	True	1
+4941362	009	1.6.2.1.1	Full-Operation	True	1
+4941367	009	1.6.2.1.2	Idle	True	1
+4941368	009	1.6.2.1.2	Idle	True	1
+4941370	009	1.6.2.1.2	Idle	True	1
+4941374	009	1.6.2.1.2	Idle	True	1
+4941377	009	1.6.2.1.2	Idle	True	1
+4941378	009	1.6.2.1.2	Idle	True	1
+4941379	009	1.6.2.1.2	Idle	True	1
+4941380	009	1.6.2.1.2	Idle	True	1
+4941381	009	1.6.2.1.2	Idle	True	1
+4941382	009	1.6.2.1.2	Idle	True	1
+4941389	009	1.6.2.1.2	Idle	True	1
+4941395	009	1.6.2.1.3	Partial Operation	True	1
+4941397	009	1.6.2.1.3	Partial Operation	True	1
+4941399	009	1.6.2.1.4	Stolen Vehicle Mode	True	1
+4941405	009	1.6.2.1.5	Timed	True	1
+4941408	009	1.6.2.1.5	Timed	True	1
+4941414	009	1.6.2.1.6	Standby	True	1
+4941420	009	1.6.2.1.7	Sleep	True	1
+4941424	009	1.6.2.1.8	Bench	True	1
+4941429	009	1.6.2.1.9	Logistic Idle	True	1
+4941437	009	1.6.2.1.12	Init	False	3
+4941438	009	1.6.2.1.12	Init	False	3
+4941439	009	1.6.2.1.12	Init	False	3
+4941444	009	1.6.2.1.13	TLM initialization: Init state	True	1
+4941448	009	1.6.2.1.13	TLM initialization: Init state	True	1
+4941452	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941454	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941455	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941456	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941457	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941458	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941459	009	1.6.2.1.14	TLM modules and functionalities depending on operative state	True	1
+4941461	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941462	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941463	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941464	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941465	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941466	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941467	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941468	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941469	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941470	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941471	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941472	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941473	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941474	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941475	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941476	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941477	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941478	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941479	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941480	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941481	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941482	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941483	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941484	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941485	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941486	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941487	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941488	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941489	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941490	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941491	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941492	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941493	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941494	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941495	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941496	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941497	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941498	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941499	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941500	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941501	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941502	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941503	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941513	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941514	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941515	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941516	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941517	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941518	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941519	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941520	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941521	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941522	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941523	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941524	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941525	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941526	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941527	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941528	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941529	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941530	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941531	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941532	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941533	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941534	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941535	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941536	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941537	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941538	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941539	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941546	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941547	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941549	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941550	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941551	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941561	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941563	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941564	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941567	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941568	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941583	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941590	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941591	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941592	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941593	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941594	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941595	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941596	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941597	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941598	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941599	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941604	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941606	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941607	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941609	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941612	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941613	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941614	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941618	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941619	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941620	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941621	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941622	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941625	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941626	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941627	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941628	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941629	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941631	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941632	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941633	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941636	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941637	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941640	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941644	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941645	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941646	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941647	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941653	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941656	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941657	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941658	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941659	009	1.6.2.1.15	TLM_Status.Info and $Telematic_Power$ signal setting	True	1
+4941661	009	1.6.2.1.15.1	ICS Wakeup Reasons by POWER Button Pressed	True	1
+4941662	009	1.6.2.1.15.1	ICS Wakeup Reasons by POWER Button Pressed	True	1
+4941665	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941666	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941667	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941669	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941670	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941671	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941672	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941677	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941679	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941681	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941682	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941683	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941684	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941685	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941686	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941687	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941688	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941689	009	1.6.2.1.16	Splash Screen logo visualization	True	1
+4941691	009	1.6.2.1.17	Proxi Parameters management	True	1
+4941694	009	1.6.2.1.17	Proxi Parameters management	True	1
+4941697	009	1.6.2.1.18	Timeout1 Management	False	3
+4941699	009	1.6.2.1.19	TLM Front Panel Mapping	False	3
+4941704	009	1.6.3.1	TLM algorithm requirements	True	2
+4941711	009	1.6.3.1.2	Auto_SwitchOn_Setting.Req management	True	1
+4941714	009	1.6.4.1	TLM algorithm requirements	True	2
+4941716	009	1.6.4.1	TLM algorithm requirements	True	2
+4941717	009	1.6.4.1	TLM algorithm requirements	True	2
+4941719	009	1.6.4.1	TLM algorithm requirements	True	2
+4941733	009	1.6.4.1	TLM algorithm requirements	True	2
+4941734	009	1.6.4.1	TLM algorithm requirements	True	2
+4941737	009	1.6.4.1	TLM algorithm requirements	True	2
+4941738	009	1.6.4.1	TLM algorithm requirements	True	2
+4941739	009	1.6.4.1	TLM algorithm requirements	True	2
+4941740	009	1.6.4.1	TLM algorithm requirements	True	2
+4941741	009	1.6.4.1	TLM algorithm requirements	True	2
+4941742	009	1.6.4.1	TLM algorithm requirements	True	2
+4941745	009	1.6.5.1	TLM algorithm management	False	3
+4941746	009	1.6.5.1	TLM algorithm management	False	3
+4941747	009	1.6.5.1	TLM algorithm management	False	3
+4941749	009	1.6.6	Resume Mode (if equipped)	False	3
+4941750	009	1.6.6	Resume Mode (if equipped)	False	3
+4941751	009	1.6.6	Resume Mode (if equipped)	False	3
+4941752	009	1.6.6	Resume Mode (if equipped)	False	3
+4941759	009	1.6.7.1	TLM algorithm requirements	True	2
+4941760	009	1.6.7.1	TLM algorithm requirements	True	2
+4941761	009	1.6.7.1	TLM algorithm requirements	True	2
+4941762	009	1.6.7.1	TLM algorithm requirements	True	2
+4941763	009	1.6.7.1	TLM algorithm requirements	True	2
+4941769	009	1.7.1.1.1	ID 1.0 description	True	2
+4941770	009	1.7.1.1.1	ID 1.0 description	True	2
+4941771	009	1.7.1.1.1	ID 1.0 description	True	2
+4941772	009	1.7.1.1.1	ID 1.0 description	True	2
+4941776	009	1.7.1.1.1	ID 1.0 description	True	2
+4941777	009	1.7.1.1.1	ID 1.0 description	True	2
+4941778	009	1.7.1.1.1	ID 1.0 description	True	2
+4941779	009	1.7.1.1.1	ID 1.0 description	True	2
+4941780	009	1.7.1.1.1	ID 1.0 description	True	2
+4941781	009	1.7.1.1.1	ID 1.0 description	True	2
+4941782	009	1.7.1.1.1	ID 1.0 description	True	2
+4941783	009	1.7.1.1.1	ID 1.0 description	True	2
+4941785	009	1.7.1.1.1	ID 1.0 description	True	2
+4941786	009	1.7.1.1.1	ID 1.0 description	True	2
+4941787	009	1.7.1.1.1	ID 1.0 description	True	2
+4941789	009	1.7.1.1.2	ID 2.0 description	False	3
+4941790	009	1.7.1.1.2	ID 2.0 description	False	3
+4941791	009	1.7.1.1.2	ID 2.0 description	False	3
+4941792	009	1.7.1.1.2	ID 2.0 description	False	3
+4941793	009	1.7.1.1.2	ID 2.0 description	False	3
+4941794	009	1.7.1.1.2	ID 2.0 description	False	3
+4941795	009	1.7.1.1.2	ID 2.0 description	False	3
+4941796	009	1.7.1.1.2	ID 2.0 description	False	3
+4941797	009	1.7.1.1.2	ID 2.0 description	False	3
+4941798	009	1.7.1.1.2	ID 2.0 description	False	3
+4941799	009	1.7.1.1.2	ID 2.0 description	False	3
+4941801	009	1.7.2	Diagnostic Requirements	False	3
+4941802	009	1.7.2	Diagnostic Requirements	False	3
+4941803	009	1.7.2	Diagnostic Requirements	False	3
+4941804	009	1.7.2	Diagnostic Requirements	False	3
+4941805	009	1.7.2	Diagnostic Requirements	False	3
+4941806	009	1.7.2	Diagnostic Requirements	False	3
+4941807	009	1.7.2	Diagnostic Requirements	False	3
+4941808	009	1.7.2	Diagnostic Requirements	False	3
+4941813	009	1.8.1.1.1	ID 1 Description	True	2
+4941816	009	1.8.1.1.1	ID 1 Description	True	2
+4941819	009	1.8.1.1.2	ID 2 Description	False	3
+4941821	009	1.8.1.1.3	ID 3 Description	False	3
+4941823	009	1.8.1.1.4	ID 4 Description	False	3
+4941825	009	1.8.1.1.5	ID 5 Description	False	3
+4941826	009	1.8.1.1.5	ID 5 Description	False	3
+4941828	009	1.8.1.1.6	ID 6 Description	False	3
+4941830	009	1.8.1.1.7	ID 7 Description	False	3
+4941832	009	1.8.1.1.8	ID 8 Description	False	3
+4941834	009	1.8.1.1.9	ID 9 Description	False	3
+4941836	009	1.8.1.1.10	ID 10 Description	False	3
+4941838	009	1.8.1.1.11	ID 11 Description	False	3
+4941840	009	1.8.1.1.12	ID 12 Description	False	3
+4941841	009	1.8.1.1.12	ID 12 Description	False	3
+4941843	009	1.8.1.1.13	ID 15 Description	False	3
+4941846	009	1.9.1	Loss of Communication Behavior	False	3
+4941847	009	1.9.1	Loss of Communication Behavior	False	3
+4941848	009	1.9.1	Loss of Communication Behavior	False	3
+4941849	009	1.9.1	Loss of Communication Behavior	False	3
+4941850	009	1.9.1	Loss of Communication Behavior	False	3
+4941851	009	1.9.1	Loss of Communication Behavior	False	3
+4941852	009	1.9.1	Loss of Communication Behavior	False	3
+4941853	009	1.9.1	Loss of Communication Behavior	False	3
+4941855	009	1.9.2	ECU CAN Architecture Configuration	False	3
+4941856	009	1.9.2	ECU CAN Architecture Configuration	False	3
+4941859	009	1.9.3	Power Button Reset	True	2
+4941862	009	1.9.3	Power Button Reset	True	2
+4941863	009	1.9.3	Power Button Reset	True	2
+4941864	009	1.9.3	Power Button Reset	True	2
+4941865	009	1.9.3	Power Button Reset	True	2
+4941866	009	1.9.3	Power Button Reset	True	2
+4941869	009	1.9.4	IDLE MODE	True	2
+4941870	009	1.9.4	IDLE MODE	True	2
+4941871	009	1.9.4	IDLE MODE	True	2
+4941872	009	1.9.4	IDLE MODE	True	2
+4941875	009	1.9.4	IDLE MODE	True	2
+4941879	009	1.9.4	IDLE MODE	True	2
+4941880	009	1.9.4	IDLE MODE	True	2
+4941881	009	1.9.4	IDLE MODE	True	2
+4941882	009	1.9.4	IDLE MODE	True	2
+4941884	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941885	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941886	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941887	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941888	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941889	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941890	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941891	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941892	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941893	009	1.9.4.1	IDLE Mode wake up for APPS	False	3
+4941896	009	1.9.5	STANDBY MODE	True	2
+4941898	009	1.9.6	Shipping/Logistic Mode for Yard Wake	False	3
+4941899	009	1.9.6	Shipping/Logistic Mode for Yard Wake	False	3
+4941900	009	1.9.6	Shipping/Logistic Mode for Yard Wake	False	3
+4941902	009	1.9.7	Passenger Display Power Moding	False	3
+4941903	009	1.9.7	Passenger Display Power Moding	False	3
+4941904	009	1.9.7	Passenger Display Power Moding	False	3
+4941905	009	1.9.7	Passenger Display Power Moding	False	3
+4941907	009	1.9.7.1	Operational mode	False	3
+4941908	009	1.9.7.1	Operational mode	False	3
+4941909	009	1.9.7.1	Operational mode	False	3
+4941910	009	1.9.7.1	Operational mode	False	3
+4941911	009	1.9.7.1	Operational mode	False	3
+4941912	009	1.9.7.1	Operational mode	False	3
+4941913	009	1.9.7.1	Operational mode	False	3
+4941915	009	1.9.7.2	Dormant	False	3
+4941916	009	1.9.7.2	Dormant	False	3
+4941917	009	1.9.7.2	Dormant	False	3
+4941918	009	1.9.7.2	Dormant	False	3
+4941919	009	1.9.7.2	Dormant	False	3
+4941920	009	1.9.7.2	Dormant	False	3
+4941921	009	1.9.7.2	Dormant	False	3
+4941922	009	1.9.7.2	Dormant	False	3
+4941924	009	1.9.7.3	Passenger Display Off	False	3
+4941925	009	1.9.7.3	Passenger Display Off	False	3
+4941926	009	1.9.7.3	Passenger Display Off	False	3
+4941927	009	1.9.7.3	Passenger Display Off	False	3
+4941928	009	1.9.7.3	Passenger Display Off	False	3
+4941929	009	1.9.7.3	Passenger Display Off	False	3
+4941930	009	1.9.7.3	Passenger Display Off	False	3
+4941931	009	1.9.7.3	Passenger Display Off	False	3
+4941933	009	1.9.8	Startup Animation	True	2
+4941934	009	1.9.8	Startup Animation	True	2
+4941935	009	1.9.8	Startup Animation	True	2
+4941936	009	1.9.8	Startup Animation	True	2
+4941937	009	1.9.8	Startup Animation	True	2
+4941938	009	1.9.8	Startup Animation	True	2
+4941939	009	1.9.8	Startup Animation	True	2
+4941940	009	1.9.8	Startup Animation	True	2
+4941946	009	1.9.8	Startup Animation	True	2
+4941948	009	1.9.8	Startup Animation	True	2
+4941953	009	1.9.9	Splash and disclaimer screen	True	2
+4941954	009	1.9.9	Splash and disclaimer screen	True	2
+4941957	009	1.9.9	Splash and disclaimer screen	True	2
+4941959	009	1.9.9	Splash and disclaimer screen	True	2
+4941960	009	1.9.9	Splash and disclaimer screen	True	2
+4941961	009	1.9.9	Splash and disclaimer screen	True	2
+4941965	009	1.9.9	Splash and disclaimer screen	True	2
+4941966	009	1.9.9	Splash and disclaimer screen	True	2
+4941969	009	1.9.9	Splash and disclaimer screen	True	2
+4941970	009	1.9.9	Splash and disclaimer screen	True	2
+4941971	009	1.9.9	Splash and disclaimer screen	True	2
+4941972	009	1.9.9	Splash and disclaimer screen	True	2
+4941973	009	1.9.9	Splash and disclaimer screen	True	2
+4941975	009	1.9.10	FOTA Pop-up	True	2
+4941978	009	1.9.10	FOTA Pop-up	True	2
+4941979	009	1.9.10	FOTA Pop-up	True	2
+4941980	009	1.9.10	FOTA Pop-up	True	2
+4941982	009	1.9.11	Remote Vehicle Status	False	3
+4941983	009	1.9.11	Remote Vehicle Status	False	3
+4941985	009	1.9.12	Suspend to RAM	True	2
+4941986	009	1.9.12	Suspend to RAM	True	2
+4941987	009	1.9.12	Suspend to RAM	True	2
+4941988	009	1.9.12	Suspend to RAM	True	2
+4941991	009	1.9.12	Suspend to RAM	True	2
+4941993	009	1.9.12	Suspend to RAM	True	2
+4941999	009	1.9.13	VRM Resume Mode	False	3
+4942000	009	1.9.13	VRM Resume Mode	False	3
+4942001	009	1.9.13	VRM Resume Mode	False	3
+4942002	009	1.9.13	VRM Resume Mode	False	3
+4942004	009	1.9.14	Cluster Theme Syncronization	False	3
+4942006	009	1.9.15	PDO Theme Elements	False	3
+4942007	009	1.9.15	PDO Theme Elements	False	3
+4942008	009	1.9.15	PDO Theme Elements	False	3
+4942010	009	1.9.15.1	Theme	True	2
+4942011	009	1.9.15.1	Theme	True	2
+4942012	009	1.9.15.1	Theme	True	2
+4942016	009	1.9.15.1	Theme	True	2
+4942021	009	1.9.15.1.2	Branded Map Theme	False	3
+4942023	009	1.9.15.1.3	Branded Turn by Turn Glow	False	3
+4942030	009	1.9.15.1.6	Branded Recirc Icon	True	1
+4942031	009	1.9.15.1.6	Branded Recirc Icon	True	1
+4942034	009	1.9.15.1.7	Settings Seat Graphic	True	1
+4942037	009	1.9.15.1.7.1.1	Theme	True	2
+4942038	009	1.9.15.1.7.1.1	Theme	True	2
+4942039	009	1.9.15.1.7.1.1	Theme	True	2
+4942040	009	1.9.15.1.7.1.1	Theme	True	2
+4942043	009	1.9.15.1.7.1.1.1	Branded Font	False	3
+4942045	009	1.9.15.1.7.1.1.2	Branded Map Theme	False	3
+4942047	009	1.9.15.1.7.1.1.3	Branded Turn by Turn Glow	False	3
+4942049	009	1.9.15.1.7.1.1.4	Branded APP Icon	False	3
+4942051	009	1.9.15.1.7.1.1.5	Branded Recirc Icon	False	3
+4942053	009	1.9.15.1.7.1.1.6	Settings Seat Graphic	True	1
+4942056	009	1.9.15.1.7.1.1.7	Performance Gauges	False	3
+4942058	009	1.9.15.1.7.1.1.8	Launch Mode Vehicle Graphic	False	3
+4942060	009	1.9.15.1.8	Settings STFA Graphic	False	3
+4942061	009	1.9.15.1.8	Settings STFA Graphic	False	3
+4942066	009	1.9.15.1.11	Launch Mode Vehicle Graphic	False	3
+4942067	009	1.9.15.1.11	Launch Mode Vehicle Graphic	False	3
+4942069	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942070	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942071	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942072	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942073	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942074	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942075	009	1.9.15.1.12	Vehicle Graphics Control.	False	3
+4942077	009	1.9.15.1.13	Passenger Display Theme	False	3
+4942079	009	1.9.16	Contextual Theme	True	2
+4942080	009	1.9.16	Contextual Theme	True	2
+4942081	009	1.9.16	Contextual Theme	True	2
+4942082	009	1.9.16	Contextual Theme	True	2
+4942083	009	1.9.16	Contextual Theme	True	2
+4942084	009	1.9.16	Contextual Theme	True	2
+4942085	009	1.9.16	Contextual Theme	True	2
+4942086	009	1.9.16	Contextual Theme	True	2
+4942089	009	1.9.16	Contextual Theme	True	2
+4942090	009	1.9.16	Contextual Theme	True	2
+4942094	009	1.9.16	Contextual Theme	True	2
+4942095	009	1.9.16	Contextual Theme	True	2
+4942097	009	1.9.16	Contextual Theme	True	2
+4942098	009	1.9.16	Contextual Theme	True	2
+4942099	009	1.9.16	Contextual Theme	True	2
+4942100	009	1.9.16	Contextual Theme	True	2
+4942103	009	1.9.17	Day/Night Theme	True	2
+4942106	009	1.9.17	Day/Night Theme	True	2
+4942109	009	1.9.18	Ignition Cycles	False	3
+4942111	009	1.9.19	TBM High Priority Wakeup	False	3
+4942112	009	1.9.19	TBM High Priority Wakeup	False	3
+4942113	009	1.9.19	TBM High Priority Wakeup	False	3
+4942114	009	1.9.19	TBM High Priority Wakeup	False	3
+4942115	009	1.9.19	TBM High Priority Wakeup	False	3
+4942194	010	1.1	Revision Notes	False	3
+4942195	010	1.1	Revision Notes	False	3
+5423094	010	1.1	Revision Notes	False	3
+4942197	010	1.2	Introduction	False	3
+4942198	010	1.2	Introduction	False	3
+4942200	010	1.3	Functional Requirements	False	3
+4942204	010	1.4.1.1	Voltage Level Behavior	False	3
+4942205	010	1.4.1.1	Voltage Level Behavior	False	3
+4942206	010	1.4.1.1	Voltage Level Behavior	False	3
+4942208	010	1.4.1.2	Low Voltage Behavior	False	3
+4942210	010	1.4.1.2.1	Low Voltage Measured by the System	False	3
+4942211	010	1.4.1.2.1	Low Voltage Measured by the System	False	3
+4942212	010	1.4.1.2.1	Low Voltage Measured by the System	False	3
+4942213	010	1.4.1.2.1	Low Voltage Measured by the System	False	3
+4942215	010	1.4.1.2.2	Battery Cutoff Switch State	False	3
+4942216	010	1.4.1.2.2	Battery Cutoff Switch State	False	3
+4942217	010	1.4.1.2.2	Battery Cutoff Switch State	False	3
+4942218	010	1.4.1.2.2	Battery Cutoff Switch State	False	3
+4942219	010	1.4.1.2.2	Battery Cutoff Switch State	False	3
+4942221	010	1.4.1.2.3	Powernet Limp-Home Cutoff State	False	3
+4942222	010	1.4.1.2.3	Powernet Limp-Home Cutoff State	False	3
+4942224	010	1.4.1.3	High Voltage Behavior	False	3
+4942225	010	1.4.1.3	High Voltage Behavior	False	3
+4942226	010	1.4.1.3	High Voltage Behavior	False	3
+4942228	010	1.4.1.3	High Voltage Behavior	False	3
+4942229	010	1.4.1.3	High Voltage Behavior	False	3
+4942230	010	1.4.1.3	High Voltage Behavior	False	3
+4942231	010	1.4.1.3	High Voltage Behavior	False	3
+4942233	010	1.4.1.3	High Voltage Behavior	False	3
+4942234	010	1.4.1.3	High Voltage Behavior	False	3
+4942235	010	1.4.1.3	High Voltage Behavior	False	3
+4942236	010	1.4.1.3	High Voltage Behavior	False	3
+4942239	010	1.4.1.3	High Voltage Behavior	False	3
+4942241	010	1.4.1.3	High Voltage Behavior	False	3
+4942242	010	1.4.1.3	High Voltage Behavior	False	3
+4942243	010	1.4.1.3	High Voltage Behavior	False	3
+4942244	010	1.4.1.3	High Voltage Behavior	False	3
+4942245	010	1.4.1.3	High Voltage Behavior	False	3
+4942246	010	1.4.1.3	High Voltage Behavior	False	3
+4942247	010	1.4.1.3	High Voltage Behavior	False	3
+4942248	010	1.4.1.3	High Voltage Behavior	False	3
+4942249	010	1.4.1.3	High Voltage Behavior	False	3
+4942250	010	1.4.1.3	High Voltage Behavior	False	3
+4942252	010	1.4.1.4	System Voltage Out-Of-Range Behavior for Different Modes	False	3
+4942253	010	1.4.1.4	System Voltage Out-Of-Range Behavior for Different Modes	False	3
+4942254	010	1.4.1.4	System Voltage Out-Of-Range Behavior for Different Modes	False	3
+4942255	010	1.4.1.4	System Voltage Out-Of-Range Behavior for Different Modes	False	3
+4942258	010	1.4.1.5.1	High temperature of the disk drives and HDD drives	False	3
+4942259	010	1.4.1.5.1	High temperature of the disk drives and HDD drives	False	3
+4942261	010	1.4.1.6	Load Shed	False	3
+4942262	010	1.4.1.6	Load Shed	False	3
+4942263	010	1.4.1.6	Load Shed	False	3
+4942264	010	1.4.1.6	Load Shed	False	3
+4942265	010	1.4.1.6	Load Shed	False	3
+4942266	010	1.4.1.6	Load Shed	False	3
+4942267	010	1.4.1.6	Load Shed	False	3
+4942268	010	1.4.1.6	Load Shed	False	3
+4942269	010	1.4.1.6	Load Shed	False	3
+4942270	010	1.4.1.6	Load Shed	False	3
+4942272	010	1.4.2	System Power Down Conditions	False	3
+4942273	010	1.4.2	System Power Down Conditions	False	3
+4942274	010	1.4.2	System Power Down Conditions	False	3
+4942275	010	1.4.2	System Power Down Conditions	False	3
+4942276	010	1.4.2	System Power Down Conditions	False	3
+4942277	010	1.4.2	System Power Down Conditions	False	3
+4942278	010	1.4.2	System Power Down Conditions	False	3
+4942279	010	1.4.2	System Power Down Conditions	False	3
+4942280	010	1.4.2	System Power Down Conditions	False	3
+4942281	010	1.4.2	System Power Down Conditions	False	3
+4942282	010	1.4.2	System Power Down Conditions	False	3
+4942283	010	1.4.2	System Power Down Conditions	False	3
+4942284	010	1.4.2	System Power Down Conditions	False	3
+4942286	010	1.4.3	System Power Down Conditions	False	3
+4942287	010	1.4.3	System Power Down Conditions	False	3
+4942288	010	1.4.3	System Power Down Conditions	False	3
+4942289	010	1.4.3	System Power Down Conditions	False	3
+4942290	010	1.4.3	System Power Down Conditions	False	3
+4942291	010	1.4.3	System Power Down Conditions	False	3
+4942292	010	1.4.3	System Power Down Conditions	False	3
+4942293	010	1.4.3	System Power Down Conditions	False	3
+4942294	010	1.4.3	System Power Down Conditions	False	3
+4942295	010	1.4.3	System Power Down Conditions	False	3
+4942296	010	1.4.3	System Power Down Conditions	False	3
+4942297	010	1.4.3	System Power Down Conditions	False	3
+4942302	010	1.5.2.1	DTC Enable Criteria	False	3
+4942304	010	1.5.2.2	DTC Maturation Criteria	False	3
+4942307	010	1.5.2.2.1.1	System Voltage	False	3
+4942308	010	1.5.2.2.1.1	System Voltage	False	3
+4942310	010	1.5.2.2.1.2	ECU Local Voltage	False	3
+4942311	010	1.5.2.2.1.2	ECU Local Voltage	False	3
+4942314	010	1.5.3.1	DTC Enable Criteria	False	3
+4942316	010	1.5.3.2	DTC Maturation Criteria	False	3
+4942319	010	1.5.3.2.1.1	System Voltage	False	3
+4942320	010	1.5.3.2.1.1	System Voltage	False	3
+4942321	010	1.5.3.2.1.1	System Voltage	False	3
+4942322	010	1.5.3.2.1.1	System Voltage	False	3
+4942324	010	1.5.3.2.1.2	ECU Local Voltage	False	3
+4942325	010	1.5.3.2.1.2	ECU Local Voltage	False	3
+4942328	010	1.6.1	Configuration parameters	False	3
+4942334	010	1.7.1.1.1	TLM Boot	True	2
+4942335	010	1.7.1.1.1	TLM Boot	True	2
+4942336	010	1.7.1.1.1	TLM Boot	True	2
+4942340	010	1.7.1.1.2	TLM Shutdown	False	3
+4942341	010	1.7.1.1.2	TLM Shutdown	False	3
+4942342	010	1.7.1.1.2	TLM Shutdown	False	3
+4942343	010	1.7.1.1.2	TLM Shutdown	False	3
+4942344	010	1.7.1.1.2	TLM Shutdown	False	3
+4942345	010	1.7.1.1.2	TLM Shutdown	False	3
+4942346	010	1.7.1.1.2	TLM Shutdown	False	3
+4942347	010	1.7.1.1.2	TLM Shutdown	False	3
+4942348	010	1.7.1.1.2	TLM Shutdown	False	3
+4942349	010	1.7.1.1.2	TLM Shutdown	False	3
+4942350	010	1.7.1.1.2	TLM Shutdown	False	3
+4942351	010	1.7.1.1.2	TLM Shutdown	False	3
+4942353	010	1.7.2	Load Shed	True	2
+4942360	010	1.8.2.1.1	System Voltage	False	3
+4942361	010	1.8.2.1.1	System Voltage	False	3
+4942363	010	1.8.2.1.2	ECU Local Voltage	False	3
+4942364	010	1.8.2.1.2	ECU Local Voltage	False	3
+4942370	010	2.1.1	Revision notes	False	3
+4942373	010	2.2.1	Revision notes	False	3
+4942376	010	2.3.1	Revision notes	False	3
+4942379	010	2.4.1	Revision notes	False	3
+4942382	010	2.5.1	Revision notes	False	3
+4942385	010	2.6.1	Revision notes	False	3
+4942389	010	2.7.1.1	Revision notes	False	3
+4942391	010	2.7.2	Revision notes	False	3
+4942394	010	2.8.1	Revision notes	False	3
+4942397	010	2.9.1	Revision notes	False	3
+4942400	010	2.10.1	Revision notes	False	3
+4942403	010	2.11.1	Revision notes	False	3
+4942406	010	2.12.1	Revision notes	False	3
+4942409	010	2.13.1	Revision notes	False	3
+4942412	010	2.14.1	Revision notes	False	3
+4942415	010	2.15.1	Revision notes	False	3
+4942418	010	2.16.1	Revision notes	False	3
+4942421	010	2.17.1	Revision notes	False	3
+4942424	010	2.18.1	Revision notes	False	3
+4942427	010	2.19.1	Revision notes	False	3
+4942429	010	3	Introduction	False	3
+4942430	010	3	Introduction	False	3
+4942431	010	3	Introduction	False	3
+4942433	010	4	Introduction	False	3
+4942434	010	4	Introduction	False	3
+4942435	010	4	Introduction	False	3

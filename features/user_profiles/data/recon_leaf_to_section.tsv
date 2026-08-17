@@ -1,0 +1,190 @@
+# recon_leaf_to_section.tsv — `scripts/recon.py` 之產物（03 輪 2026-08-17）。
+#
+# **recon.py 原將本表寫成 `data/spec_id_to_outline.tsv`，與本 feature 之
+# `scripts/build_outline_map.py` 之產物同名而不同物**：
+#   build_outline_map.py  spec 側索引  169 列  section_id/outline_number/polarion_id/phys_row/chars
+#   recon.py              037 leaf 對映 180 列  req_id/outline/polarion_id/spec_reference/title
+# 前者已由 01 輪落檔並見於 docs/INDEX.md §3；後者於 03 輪被 recon 覆寫上去。
+# 本層已還原前者，並把 recon 之產物改置本檔，**兩者皆不遺失**。
+# 檔名之歸屬屬 Tier 2（見上繳 03 §7 第 6 項），本層不改 recon.py。
+req_id	outline	polarion_id	spec_reference	title
+SWE1-HMI-PROF-001-01	4.1	NRL-145450	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1	PRACC1.) The system will store and recall each unique Driver Profile’s preferenc
+SWE1-HMI-PROF-001-02	4.1	NRL-145450	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1	PRACC1.) The system will store and recall each unique Driver Profile’s preferenc
+SWE1-HMI-PROF-001-03	4.1	NRL-145450	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1	PRACC1.) The system will store and recall each unique Driver Profile’s preferenc
+SWE1-HMI-PROF-002-01	4.1.1	NRL-145451	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1	PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, 
+SWE1-HMI-PROF-002-02	4.1.1	NRL-145451	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1	PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, 
+SWE1-HMI-PROF-002-03	4.1.1	NRL-145451	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1	PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, 
+SWE1-HMI-PROF-003	4.2	NRL-145452	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.2	PRACC2.) A user can set up or customize a profile by inputting a username and av
+SWE1-HMI-PROF-004-01	4.3	NRL-145453	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3	PRACC3.) All user preferences associated with a Profile will be stored by the sy
+SWE1-HMI-PROF-004-02	4.3	NRL-145453	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3	PRACC3.) All user preferences associated with a Profile will be stored by the sy
+SWE1-HMI-PROF-004-03	4.3	NRL-145453	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3	PRACC3.) All user preferences associated with a Profile will be stored by the sy
+SWE1-HMI-PROF-004-04	4.3	NRL-145453	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3	PRACC3.) All user preferences associated with a Profile will be stored by the sy
+SWE1-HMI-PROF-005	4.3.1	NRL-145454	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3.1	PRACC3.1) If a Profile is switched within a key cycle, any changed preferences w
+SWE1-HMI-PROF-006-01	4.4	NRL-145455	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.4	PRACC4.) At the start of a new key cycle, Head Unit will load last know n Profil
+SWE1-HMI-PROF-006-02	4.4	NRL-145455	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.4	PRACC4.) At the start of a new key cycle, Head Unit will load last know n Profil
+SWE1-HMI-PROF-006-03	4.4	NRL-145455	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.4	PRACC4.) At the start of a new key cycle, Head Unit will load last know n Profil
+SWE1-HMI-PROF-007-01	4.5	NRL-145456	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5	PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will
+SWE1-HMI-PROF-007-02	4.5	NRL-145456	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5	PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will
+SWE1-HMI-PROF-007-03	4.5	NRL-145456	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5	PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will
+SWE1-HMI-PROF-008	4.5.1	NRL-145457	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.1	PRACC5.1) If there are memory seat buttons, there will be a default Driver Profi
+SWE1-HMI-PROF-009	4.5.2	NRL-145458	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.2	PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, bu
+SWE1-HMI-PROF-010-01	4.5.3	NRL-145459	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.3	PRACC5.3) If a Profile linked to a memory seat position is attempted to be delet
+SWE1-HMI-PROF-010-02	4.5.3	NRL-145459	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.3	PRACC5.3) If a Profile linked to a memory seat position is attempted to be delet
+SWE1-HMI-PROF-011	4.5.3.1	NRL-145460	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.3.1	PRACC5.3.1) If a Profile linked to a memory seat position is deleted, the new ac
+SWE1-HMI-PROF-012	4.5.4	NRL-145461	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.4	PRACC5.4) When default Driver 1-2 Profiles are restored, all Profile linked pref
+SWE1-HMI-PROF-013	4.6	NRL-145462	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6	PRACC6.) The Profile feature will have a button defaulted in the status bar (but
+SWE1-HMI-PROF-014	4.6.1	NRL-145463	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6.1	PRACC6.1) When a customized Profile is active, the Profile button icon will indi
+SWE1-HMI-PROF-015	4.6.2	NRL-145464	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6.2	PRACC6.2) When the Profile section is open, the button will be in the active sta
+SWE1-HMI-PROF-016	4.6.3	NRL-145465	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6.3	PRACC6.3) If the Profile button is removed from the status bar (through status b
+SWE1-HMI-PROF-018-01	5.1	NRL-145468	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1	PRACC7.) When in the Profile section, there will be two tabs; “All Profiles” and
+SWE1-HMI-PROF-018-02	5.1	NRL-145468	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1	PRACC7.) When in the Profile section, there will be two tabs; “All Profiles” and
+SWE1-HMI-PROF-018-03	5.1	NRL-145468	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1	PRACC7.) When in the Profile section, there will be two tabs; “All Profiles” and
+SWE1-HMI-PROF-019	5.1.1	NRL-145469	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.1	PRACC7.1) When on the “All Profiles” tab, all available users will be shown. The
+SWE1-HMI-PROF-020-01	5.1.2	NRL-145470	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.2	PRACC7.2) An icon and the following string will always show in the “All Profiles
+SWE1-HMI-PROF-020-02	5.1.2	NRL-145470	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.2	PRACC7.2) An icon and the following string will always show in the “All Profiles
+SWE1-HMI-PROF-021-01	5.2	NRL-145471	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.2	PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet M
+SWE1-HMI-PROF-021-02	5.2	NRL-145471	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.2	PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet M
+SWE1-HMI-PROF-021-03	5.2	NRL-145471	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.2	PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet M
+SWE1-HMI-PROF-022	5.3	NRL-145472	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3	PRACC9.) When on the “All Profiles” tab, selecting another Profile username or a
+SWE1-HMI-PROF-023	5.3.1	NRL-145473	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3.1	PRACC9.1) When switched, the Profile loading (new message) will be shown, then t
+SWE1-HMI-PROF-024	5.3.2	NRL-145474	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3.2	PRACC9.2) If a Profile is switched while in the “All Profiles” tab, the screen w
+SWE1-HMI-PROF-025	5.3.3	NRL-145475	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3.3	PRACC9.3.) While a new Profile is loading, the user cannot try to select another
+SWE1-HMI-PROF-026	5.4	NRL-145476	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.4	PRACC10.) Editing a Profile is only available for the active Profile, in the “Ed
+SWE1-HMI-PROF-027-01	5.5	NRL-145477	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.5	PRACC11.) The Memory seat status displayed under each applicable Profile avatar 
+SWE1-HMI-PROF-027-02	5.5	NRL-145477	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.5	PRACC11.) The Memory seat status displayed under each applicable Profile avatar 
+SWE1-HMI-PROF-027-03	5.5	NRL-145477	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.5	PRACC11.) The Memory seat status displayed under each applicable Profile avatar 
+SWE1-HMI-PROF-028	5.6	NRL-145478	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.6	PRACC12.) Choosing the “Add New” text or the “+” icon will initiate the new Prof
+SWE1-HMI-PROF-029	5.6.1	NRL-145479	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.6.1	PRACC12.1) The “Add New” text or the “+” icon will be greyed out while the vehic
+SWE1-HMI-PROF-030-01	5.7	NRL-145480	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.7	PRACC13.) Linking a Profile to a memory seat can only be done through the Edit P
+SWE1-HMI-PROF-030-02	5.7	NRL-145480	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.7	PRACC13.) Linking a Profile to a memory seat can only be done through the Edit P
+SWE1-HMI-PROF-031	5.8	NRL-145481	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.8	PRACC14.) If the Profile is switched while the vehicle is in motion, the memory 
+SWE1-HMI-PROF-032	5.9	NRL-145482	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.9	PRACC15.) Pushing the memory seat set/save hard or soft controls is not required
+SWE1-HMI-PROF-033	5.10	NRL-145483	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10	PRACC16.) Saving a new seat position through the memory seat set/save hard or so
+SWE1-HMI-PROF-034-01	5.10.1	NRL-145484	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10.1	PRACC16.1) If a new seat position is saved to a Profile that is not currently ac
+SWE1-HMI-PROF-034-02	5.10.1	NRL-145484	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10.1	PRACC16.1) If a new seat position is saved to a Profile that is not currently ac
+SWE1-HMI-PROF-034-03	5.10.1	NRL-145484	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10.1	PRACC16.1) If a new seat position is saved to a Profile that is not currently ac
+SWE1-HMI-PROF-036	5.12	NRL-145486	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12	ALLPR1.) Profile order will default based on the order in which the Profiles hav
+SWE1-HMI-PROF-037	5.12.1	NRL-145487	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12.1	ALLPR1.1) Default Profiles will be in order of memory seat link (Ex: mem seat 1 
+SWE1-HMI-PROF-038	5.12.2	NRL-145488	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12.2	ALLPR1.2) Editing memory seat preferences/links will not change the order of the
+SWE1-HMI-PROF-039	5.13	NRL-145489	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13	ALLPR2.) If Default Profiles are restored (without clearing all Profiles) add re
+SWE1-HMI-PROF-040	5.13.1	NRL-145490	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.1	ALLPR2.1) If all Profiles are cleared and the default Profiles are restored, ret
+SWE1-HMI-PROF-041-01	5.13.2	NRL-145491	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2	ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0
+SWE1-HMI-PROF-041-02	5.13.2	NRL-145491	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2	ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0
+SWE1-HMI-PROF-041-03	5.13.2	NRL-145491	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2	ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0
+SWE1-HMI-PROF-041-04	5.13.2	NRL-145491	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2	ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0
+SWE1-HMI-PROF-042	5.14	NRL-145492	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.14	ALLPR3.) Pressing and holding the Avatar of any Profile will allow for dragging 
+SWE1-HMI-PROF-043	5.15	NRL-145493	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.15	ALLPR5.) Usernames displayed on the All Profiles tab should be center justified 
+SWE1-HMI-PROF-044	5.15.1	NRL-145494	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.15.1	ALLPR5.1) If the username is too long to be displayed within the All Profiles us
+SWE1-HMI-PROF-045	5.16	NRL-145495	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.16	ALLPR6.) A cloud icon will show next to the profile avatar on the All Profiles t
+SWE1-HMI-PROF-046	6.1	NRL-145497	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.1	NOPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not 
+SWE1-HMI-PROF-047	6.2	NRL-145498	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.2	NOPR1.) At vehicle entry or initiation of a newly active Profile, there will be 
+SWE1-HMI-PROF-048	6.2.1	NRL-145499	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.2.1	NOPR1.1) The user does not need to customize the Default Profile(s) before creat
+SWE1-HMI-PROF-049	6.3	NRL-145500	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3	NOPR2.) Until popups are turned off, there will be a popup upon vehicle entry to
+SWE1-HMI-PROF-050-01	6.3.1	NRL-145501	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3.1	NOPR2.1) Selecting “X” on the default Welcome popup will lead to another popup w
+SWE1-HMI-PROF-050-02	6.3.1	NRL-145501	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3.1	NOPR2.1) Selecting “X” on the default Welcome popup will lead to another popup w
+SWE1-HMI-PROF-051	6.3.2	NRL-145502	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3.2	NOPR2.2) Selecting “Don’t Show me Again” will turn off the setting for the “Welc
+SWE1-HMI-PROF-052	6.4	NRL-145503	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.4	NOPR3.) Pressing “Get Started” will initiate the New Profile Setup (but carry-ov
+SWE1-HMI-PROF-053	6.4.1	NRL-145504	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.4.1	NOPR3.1) If vehicle is not equipped with connectivity, pressing “Get Started” wi
+SWE1-HMI-PROF-054	6.5	NRL-145505	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.5	NOPR4.) Pressing “Switch Users” will take the user to the “All Profiles” tab in 
+SWE1-HMI-PROF-055	6.6	NRL-145506	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.6	NOPR5.) Pressing the Avatar or “Welcome [username]” text will take the user to t
+SWE1-HMI-PROF-056	7.1	NRL-145508	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.1	PRWEL1.) Unless user has selected to turn off welcome popups, the Head Unit will
+SWE1-HMI-PROF-057	7.1.1	NRL-145509	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.1.1	PRWEL1.1) If the active Profile has not completed the Tutorials, and has not cho
+SWE1-HMI-PROF-058	7.2	NRL-145510	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2	PRWEL2.) The small welcome popup will show the active (logged in) Profile userna
+SWE1-HMI-PROF-059-01	7.2.1	NRL-145511	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1	PRWEL2.1) The large welcome popup will show the active (logged in) Profile usern
+SWE1-HMI-PROF-059-02	7.2.1	NRL-145511	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1	PRWEL2.1) The large welcome popup will show the active (logged in) Profile usern
+SWE1-HMI-PROF-059-03	7.2.1	NRL-145511	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1	PRWEL2.1) The large welcome popup will show the active (logged in) Profile usern
+SWE1-HMI-PROF-060	7.2.2	NRL-145512	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.2	PRWEL2.2) Closing the popup will not have the prompts from the default Welcome p
+SWE1-HMI-PROF-061	7.3	NRL-145513	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.3	PRWEL3.) Pressing “Switch Users” on the Welcome popup will take the user to the 
+SWE1-HMI-PROF-062-01	7.4	NRL-145514	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4	PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is i
+SWE1-HMI-PROF-062-02	7.4	NRL-145514	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4	PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is i
+SWE1-HMI-PROF-062-03	7.4	NRL-145514	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4	PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is i
+SWE1-HMI-PROF-062-04	7.4	NRL-145514	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4	PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is i
+SWE1-HMI-PROF-063	7.4.1	NRL-145515	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4.1	PRWEL4.1) The 30 seconds should not include when the vehicle is in remote start.
+SWE1-HMI-PROF-064	7.5	NRL-145516	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.5	PRWEL5.) The Valet Mode welcome popup will have the same clear/timeout behavior 
+SWE1-HMI-PROF-065	8.1	NRL-145518	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.1	NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not
+SWE1-HMI-PROF-066	8.2	NRL-145519	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.2	NEWPR1.) See flow for setting up a New Profile above. Connecting an account or d
+SWE1-HMI-PROF-067	8.3	NRL-145520	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.3	NEWPR2.) The Profile Setup processes is a series of popups. Specific popups can 
+SWE1-HMI-PROF-068	8.3.1	NRL-145521	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.3.1	NEWPR2.1) Pressing any other button (on main menu bar or status bar) while withi
+SWE1-HMI-PROF-069-01	8.4	NRL-145522	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.4	NEWPR3.) Choosing an avatar will only show available options. When selecting an 
+SWE1-HMI-PROF-069-02	8.4	NRL-145522	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.4	NEWPR3.) Choosing an avatar will only show available options. When selecting an 
+SWE1-HMI-PROF-070	8.4.1	NRL-145523	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.4.1	NEWPR3.1) After entering username and choosing avatar, the system will save the 
+SWE1-HMI-PROF-071	8.5	NRL-145524	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.5	NEWPR4.) The same username can be used for multiple Driver Profiles.
+SWE1-HMI-PROF-072	8.6	NRL-145525	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.6	NEWPR5.) For connected vehicles, New Profile setup Step 1: create new or downloa
+SWE1-HMI-PROF-073-01	8.7	NRL-145526	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7	NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a user
+SWE1-HMI-PROF-073-02	8.7	NRL-145526	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7	NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a user
+SWE1-HMI-PROF-073-03	8.7	NRL-145526	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7	NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a user
+SWE1-HMI-PROF-074	8.7.1	NRL-145527	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7.1	NEWPR6.1) Options to “Save” (which takes user to Step 3 – if in New Profile Setu
+SWE1-HMI-PROF-075	8.7.2	NRL-145528	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7.2	NEWPR6.2) The username can have numbers and/or letters, but no special character
+SWE1-HMI-PROF-076-01	8.8	NRL-145529	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8	NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose
+SWE1-HMI-PROF-076-02	8.8	NRL-145529	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8	NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose
+SWE1-HMI-PROF-076-03	8.8	NRL-145529	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8	NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose
+SWE1-HMI-PROF-077	8.8.1	NRL-145530	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8.1	NEWPR7.1) There will be at least 10 Avatars initially. As avatars are in use, th
+SWE1-HMI-PROF-078	8.8.2	NRL-145531	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8.2	NEWPR7.2) Avatars will be sorted into at least 3 categories. Pushing a category 
+SWE1-HMI-PROF-079	8.9	NRL-145532	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.9	NEWPR8.) The final step (for New Profile setup only) is prompting the user to ch
+SWE1-HMI-PROF-080	8.10	NRL-145533	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.10	NEWPR9.) When New Profile setup is complete, the screen will return to the “All 
+SWE1-HMI-PROF-081	8.10.1	NRL-145534	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.10.1	NEWPR9.1) Editing an existing Profile (from the Edit Profile screen) will return
+SWE1-HMI-PROF-082	8.10.2	NRL-145535	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.10.2	NEWPR9.2) The icon in the status bar Profile button will update to match the new
+SWE1-HMI-PROF-083	8.11	NRL-145536	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.11	NEWPR10.) If only the username or avatar are edited (initiated from the “Edit Pr
+SWE1-HMI-PROF-084	8.12	NRL-145537	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.12	NEWPR11.) In the New Profile setup Process, the back arrow will take the user to
+SWE1-HMI-PROF-085	9.1	NRL-145539	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.1	EDPR1.) When on the “Edit Profile” tab, options pertaining to the active Profile
+SWE1-HMI-PROF-086	9.1.1	NRL-145540	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.1.1	EDPR1.1) 8.4inch screen size will not show the username and avatar to the left o
+SWE1-HMI-PROF-087	9.1.2	NRL-145541	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.1.2	EDPR1.2) Memory seat status is not available if vehicle is not equipped with mem
+SWE1-HMI-PROF-088	9.2	NRL-145542	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.2	EDPR2.) Don’t show the Connected Profile options/info or Connected Account butto
+SWE1-HMI-PROF-089	9.3	NRL-145543	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3	EDPR3.) While vehicle is in motion, the following will be greyed out and cannot 
+SWE1-HMI-PROF-090	9.3.1	NRL-145544	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.1	EDPR3.1) If any items listed above are selected while vehicle in motion, a bonk 
+SWE1-HMI-PROF-091-01	9.3.2	NRL-145545	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.2	EDPR3.2) If user is in the process of viewing/doing any of the above listed item
+SWE1-HMI-PROF-091-02	9.3.2	NRL-145545	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.2	EDPR3.2) If user is in the process of viewing/doing any of the above listed item
+SWE1-HMI-PROF-092	9.4	NRL-145546	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.4	EDPR5.) Pressing anywhere on the avatar or anywhere on the “Change Avatar” line 
+SWE1-HMI-PROF-093	9.4.1	NRL-145547	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.4.1	EDPR5.1) The screen will show the currently selected Avatar highlighted and prov
+SWE1-HMI-PROF-094	9.4.2	NRL-145548	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.4.2	EDPR5.2) Exiting without saving will not result in an Avatar change
+SWE1-HMI-PROF-095	9.5	NRL-145549	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.5	EDPR6.) Swapping memory seat preference means the active Profile will be linked 
+SWE1-HMI-PROF-096	9.5.1	NRL-145550	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.5.1	EDPR6.1) If the active Profile was previously linked to any memory seat position
+SWE1-HMI-PROF-097	9.5.2	NRL-145551	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.5.2	EDPR6.2) If the active Profile was not previously linked to any memory seat posi
+SWE1-HMI-PROF-098	9.5.3	NRL-145552	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.5.3	EDPR6.3) Choosing “none” as a memory seat option will not be available and will 
+SWE1-HMI-PROF-099	9.6	NRL-145553	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.6	EDPR7.) Change the memory seat position and then pushing save will update the se
+SWE1-HMI-PROF-100	9.6.1	NRL-145554	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.6.1	EDPR7.1) The Welcome Popup size setting will default on small. If turned off, do
+SWE1-HMI-PROF-101	9.7	NRL-145555	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.7	EDPR8.) If the Delete Profile option is selected, a verification popup message w
+SWE1-HMI-PROF-102	9.7.1	NRL-145556	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.7.1	EDPR8.1) After a Profile is deleted through the Edit Profile tab, they will be t
+SWE1-HMI-PROF-103	9.7.2	NRL-145557	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.7.2	EDPR8.2) If a Profile not linked to a memory seat is deleted, “User 1” or the la
+SWE1-HMI-PROF-104	9.8	NRL-145558	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.8	EDPR9.) The Vehicle “More Settings” button will link directly to the “My Profile
+SWE1-HMI-PROF-105	9.9	NRL-145559	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.9	EDPR10.) The Edit Profile tab will have a maximum of 6 lines of information per 
+SWE1-HMI-PROF-106	10.2	NRL-145562	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_10.2	PRINFO1.) Choosing anywhere on the line for “What is linked to my Profile”, incl
+SWE1-HMI-PROF-107	10.3	NRL-145563	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_10.3	PRINFO2.) The Info button will also be visible on the All Profiles tab and show 
+SWE1-HMI-PROF-108	10.3.1	NRL-145564	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_10.3.1	PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will rem
+SWE1-HMI-PROF-109	11.3	NRL-145568	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.3	CPA1.) The Connected Account line item will always be displayed on the “Edit Pro
+SWE1-HMI-PROF-110	11.3.1	NRL-145569	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.3.1	CPA1.2) Pushing the Connected Account on the “Edit Profile” tab will bring the u
+SWE1-HMI-PROF-111	11.4	NRL-145570	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.4	CPA2.) [This whole note is not applicable for R1H] Clicking on the info icon nex
+SWE1-HMI-PROF-112-01	11.5	NRL-145571	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.5	CPA3.) If an App Store app is deleted, it would only be deleted for the user who
+SWE1-HMI-PROF-112-02	11.5	NRL-145571	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.5	CPA3.) If an App Store app is deleted, it would only be deleted for the user who
+SWE1-HMI-PROF-112-03	11.5	NRL-145571	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.5	CPA3.) If an App Store app is deleted, it would only be deleted for the user who
+SWE1-HMI-PROF-113	12.1	NRL-145573	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.1	PVAL1.) The system should store any updated preferences until Valet Mode is exit
+SWE1-HMI-PROF-114	12.1.1	NRL-145574	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.1.1	PVAL1.1) Status bar will always need to return to the default status bar setup w
+SWE1-HMI-PROF-115	12.2	NRL-145575	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.2	PVAL2.) Valet Mode can only be activated through the button on the All Profiles 
+SWE1-HMI-PROF-116	12.2.1	NRL-145576	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.2.1	PVAL2.1) Valet Mode button is greyed out while the vehicle is in motion. If the 
+SWE1-HMI-PROF-117	12.3	NRL-145577	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3	PVAL3.) To activate Valet Mode a 4 digit one-time PIN is required to be entered.
+SWE1-HMI-PROF-118	12.3.1	NRL-145578	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.1	PVAL3.1) To get out of Valet Mode the same 4 digit PIN needs to be entered
+SWE1-HMI-PROF-119	12.3.2	NRL-145579	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.2	PVAL3.2) Disconnecting the battery will override and reset Valet mode and the sy
+SWE1-HMI-PROF-120	12.3.3	NRL-145580	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.3	PVAL3.3) The system should return to previous Profile after exiting/deactivating
+SWE1-HMI-PROF-121	12.4	NRL-145581	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.4	PVAL4) If during the initiation of Valet Mode, and/or activation/deactivation of
+SWE1-HMI-PROF-122	12.5	NRL-145582	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.5	PVAL5.) Valet Mode will be indicated in the status bar with a lock symbol combin
+SWE1-HMI-PROF-123	12.6	NRL-145583	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.6	PVAL6.) When Valet Mode is active and the user pushes the Profile button in the 
+SWE1-HMI-PROF-124	12.7	NRL-145584	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.7	PVAL7.) When in Valet mode, pushing the memory seat buttons will only change the
+SWE1-HMI-PROF-125-01	12.8	NRL-145585	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8	PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Pr
+SWE1-HMI-PROF-125-02	12.8	NRL-145585	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8	PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Pr
+SWE1-HMI-PROF-125-03	12.8	NRL-145585	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8	PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Pr
+SWE1-HMI-PROF-125-04	12.8	NRL-145585	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8	PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Pr
+SWE1-HMI-PROF-126-01	12.8.1	NRL-145586	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8.1	PVAL8.1) Valet Mode will enable “electronic” Glove Box Lock. If vehicle is equip
+SWE1-HMI-PROF-126-02	12.8.1	NRL-145586	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8.1	PVAL8.1) Valet Mode will enable “electronic” Glove Box Lock. If vehicle is equip
+SWE1-HMI-PROF-126-03	12.8.1	NRL-145586	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8.1	PVAL8.1) Valet Mode will enable “electronic” Glove Box Lock. If vehicle is equip
+SWE1-HMI-PROF-127	12.8.2	NRL-145587	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8.2	PVAL8.2) If the glove box is unlocked/locked prior to activating Valet Mode, the
+SWE1-HMI-PROF-128-01	12.9	NRL-145588	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.9	PVAL9.) For activation and deactivation, the user will have 10 attempts to type 
+SWE1-HMI-PROF-128-02	12.9	NRL-145588	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.9	PVAL9.) For activation and deactivation, the user will have 10 attempts to type 
+SWE1-HMI-PROF-128-03	12.9	NRL-145588	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.9	PVAL9.) For activation and deactivation, the user will have 10 attempts to type 
+SWE1-HMI-PROF-129	12.10	NRL-145589	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.10	PVAL10.) For activation and deactivation, when on the PIN entry popup, grey out 
+SWE1-HMI-PROF-130	12.10.1	NRL-145590	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.10.1	PVAL10.1) Once 4 digits are entered grey out all numeric buttons.
+SWE1-HMI-PROF-131	13.1	NRL-145592	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.1	PVALSPK1.) When Valet mode is enabled by SPAAK, no PIN code will be required to 
+SWE1-HMI-PROF-132-01	13.2	NRL-145593	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.2	PVALSPK2.) The SPAAK user cannot exit Valet Mode from the head unit. Only the ow
+SWE1-HMI-PROF-132-02	13.2	NRL-145593	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.2	PVALSPK2.) The SPAAK user cannot exit Valet Mode from the head unit. Only the ow
+SWE1-HMI-PROF-133	13.3	NRL-145594	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.3	PVALSPK3.) If the SPAAK user presses the Profiles icon with the lock, popup PU15
+SWE1-HMI-PROF-134	14.1	NRL-145596	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_14.1	PVALEX1.) When Valet Mode is active the welcome popup will indicate the vehicle 
+SWE1-HMI-PROF-135	14.2	NRL-145597	Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_14.2	PVALEX2.) Valet Mode cannot be deactivated while the vehicle is in motion. If Pr

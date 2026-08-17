@@ -12,6 +12,7 @@
 |---|---|---|---|---|---|---|---|
 | 01 | 2026-08-17 | Phase 0 intake（開案）：scaffold／R-G1 R-G2 R-U7 form 處置／recon／outline map／framework 草案 | [handoff/01_intake.md](handoff/01_intake.md)＋[01a_rulings.md](handoff/01a_rulings.md)＋[01b_tasks.md](handoff/01b_tasks.md) | [upstream/01_intake.md](upstream/01_intake.md) | R-G1、R-G2（全域，本包首次落檔）；R-U1 ~ R-U7（本 feature） | A-UP01 ~ A-UP03（下放包播種，A-UP03 本輪 RESOLVED）；**A-UP04 ~ A-UP09 新開** | **作業項 1／2／4(spec 側)／5(草案)／6 完成；作業項 3 停下 —— 037 不在 repo（A-UP04）＋ 預期值單位不一致（A-UP07）。相符 18／不符 4／未實測 12（4 項待裁）** |
 | 02 | 2026-08-17 | 02a 裁決之落地：R-U8 三閘／R-U9 PU 涵蓋驗證／R-G3＋R-U10 canon 修補／R-U12 歸檔雜湊／異常狀態 | [handoff/02a_rulings.md](handoff/02a_rulings.md)＋[02b_tasks.md](handoff/02b_tasks.md) | [upstream/02_rulings_execution.md](upstream/02_rulings_execution.md) | R-U8、R-U9、**R-G3（全域）**、R-U10、R-U11、R-U12 | A-UP05／07／08 **RESOLVED**；A-UP09 修補完成待覆核；**A-UP06 不結案** | **作業 1–5 完成；6–8 未執行（DR #1）。R-U9 涵蓋率 18/20 → 不採用、開 DR #4** |
+| 03 | 2026-08-17 | Recon 開工（DR #1 到齊）：037 採認前置／R-U8 三閘／037 側複驗／BASELINE／spec 同一性／Layer 2 草案二版 | [handoff/03_recon_start.md](handoff/03_recon_start.md) | [upstream/03_recon.md](upstream/03_recon.md) | （未產生新裁決；R-U13 ~ R-U17 仍待裁）| A-UP02 於 **037 側首次證實**；A-UP04 解除條件已滿足**待裁** | **作業 1–6 全部完成。三閘 180／25／2 相符；集合對集合 135＝135 差集皆空；BASELINE 6/6 OK；兩份 spec SHA 相同（未處置）** |
 
 ---
 
@@ -34,6 +35,31 @@
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
 
+### 第三輪已完成（2026-08-17）
+
+- **037 已到齊並落錨**：SHA `9d176dde…` 首次進 BASELINE。Phase 0 之 037 側
+  數字係在 **Project 附件副本**上量得且未比雜湊，本輪全部重測 ——
+  **不是複驗，是取代**（該副本不在 repo，無從對它算雜湊）。
+- **R-U8 三閘全數相符**：`Functional Requirement` **180**／`Heading` **25**／
+  `Out of scope` **2**，合計 207 = 資料列數。未調整任何判準。
+- **對照輸出 182 = 180 ＋ 2 Out of scope** —— A-UP07 之診斷由資料證實。
+  另記 `recon.py` 之第三個數（被禁判準會選 **72**）：三個數並列，
+  使日後無人再把其中兩個相減。
+- **集合對集合 135 = 135，兩側差集皆空**；並查明 `recon.py` 之 133 與 135
+  之分野 —— `4.7`／`5.11` **只被兩個 Out of scope leaf 引用**。
+- **表頭列實得 row 7**；FROP 欄 `User Profiles` **182** 列，R-U1 首次複驗成立。
+- **A-UP02 之 8 條於 037 側首次證實**（未被引之 34 條中含 `10.1`／`11.1`／
+  `11.2` 與 `3.1`–`3.5`）。
+- **BASELINE 4 列 → 6 列，`shasum -c` 6/6 OK**。
+- **兩份 spec SHA256 相同**（`368d5874…`）—— **只驗未處置**，
+  未刪未搬未改引用路徑；兩份皆列入 BASELINE 各自受檢。
+- **Layer 2 草案第二版**：037 之 25 個 Heading 與章別分布到齊，
+  出 11／8／6 三案，§4.2 三項命名問題逐項提案（Tier 2，不自裁）。
+- **本層在本輪犯了一個錯並已處置**：跑 `recon.py` 前未查它會寫哪些檔，
+  其產物覆蓋了 01 輪之 `data/spec_id_to_outline.tsv`（**同名而不同物**）。
+  已還原，recon 之產物改置 `data/recon_leaf_to_section.tsv`，兩者皆不遺失。
+  檔名歸屬屬 Tier 2（`features/home` 亦有讀者）。
+
 ### 第二輪已完成（2026-08-17）
 
 - **R-U8 三閘落地**：`recon_assertions` 由 `TBD` 改填 **180／25／2**，
@@ -50,6 +76,9 @@
 
 | 項 | 內容 | 阻擋什麼 |
 |---|---|---|
+| **A-UP04** | 037 已到齊、三閘已過，**解除條件表面已滿足**；狀態變更屬 Tier 2，本層不自裁 | 不阻擋 |
+| **135 vs 133** | 生成相關之被引 section 為 133；`expected_cited_sections.tsv` 仍 135（未改）| Phase 3 之覆蓋率分母 |
+| **`spec_id_to_outline.tsv` 之檔名** | 兩個生產者同名而不同物（全域）| 不阻擋；再跑 recon 會再覆蓋一次 |
 | **A-UP06** | **R-U9 之涵蓋驗證結果為 18/20**，缺 `PU1087`／`PU1088`（皆出自 spec `4.1.1` Profile Setup）。依 02b 明文不以近似版本替代 | Phase 3 之 popup 詞彙表；**已開 DR #4** |
 | A-UP09 | R-G3 之修補已完成，**惟現行防線只是一段散文，無機器檢查** | 不阻擋；建議下一包立 gate（見上繳 02 §6 第 1 項）|
 | Layer 2 | Test Set 邊界三草案（7／11／6 個 Set），**037 分群不可得，草案為 spec 單邊**；§4.2 之三項命名問題待併 | Phase 3 framework Part N |

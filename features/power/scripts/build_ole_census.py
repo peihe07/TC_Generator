@@ -30,6 +30,11 @@ ENDOFCHAIN = 0xFFFFFFFE
 NOSTREAM = 0xFFFFFFFF
 ENTRY_TYPES = {0: "empty", 1: "storage", 2: "stream", 5: "root"}
 
+# R-P55 回歸斷言（06 包 G30 基線）
+EXPECTED_ENTRIES = 14
+EXPECTED_OBJECT_POOL = False
+EXPECTED_OLE_MARKERS = 0
+
 
 def read_directory(path: Path) -> tuple[list[dict], dict]:
     """解析 CFB 標頭與目錄鏈，回傳目錄項清單與標頭資訊。"""
@@ -171,6 +176,19 @@ def main() -> None:
     print(f"  ObjectPool: {'有' if pool else '無'}；_ 起始 storage {len(obj_like)}；"
           f"\\x01Ole 標記 {len(ole_marker)}")
     print(f"  上界 {upper} vs 05 包下界 15 → 差額 {upper - 15:+d}")
+
+    # R-P55 回歸斷言
+    problems = []
+    if len(entries) != EXPECTED_ENTRIES:
+        problems.append(f"目錄項 {len(entries)} ≠ 期望 {EXPECTED_ENTRIES}")
+    if bool(pool) != EXPECTED_OBJECT_POOL:
+        problems.append(f"ObjectPool 存在={bool(pool)} ≠ 期望 {EXPECTED_OBJECT_POOL}")
+    if len(ole_marker) != EXPECTED_OLE_MARKERS:
+        problems.append(f"\\x01Ole 標記 {len(ole_marker)} ≠ 期望 {EXPECTED_OLE_MARKERS}")
+    if problems:
+        print("\n**回歸斷言失敗（R-P55）**：" + "；".join(problems))
+        raise SystemExit(1)
+    print("回歸斷言（R-P55）：PASS")
 
 
 if __name__ == "__main__":

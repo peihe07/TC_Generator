@@ -27,7 +27,13 @@ ROOT = Path(__file__).resolve().parents[3]
 IN = ROOT / "features/power/inputs"
 DATA = ROOT / "features/power/data"
 
-WRAPPER_RE = re.compile(r"(\S+\.rtf)\s+WrapperResource")
+WRAPPER_RE = re.compile(r"(\S+?\.(?:rtf|xlsx|xls|docx|doc))\s+WrapperResource", re.I)
+
+# R-P55 回歸斷言（06 包 G29 基線）
+EXPECTED_HITS = 31
+EXPECTED_CHAPTERS = 16
+EXPECTED_ANCHORS = 2
+EXPECTED_LEAVES = 9
 
 
 def find(pattern: str) -> Path:
@@ -154,6 +160,19 @@ def main() -> None:
           f"受影響被引用錨點 {len(affected_anchors)}、leaf {len(affected_leaves)} / 114")
     print(f"  Test Set 分布：{dict(ts_dist)}")
     print(f"  受影響 leaf：{sorted(affected_leaves, key=leaf_key)}")
+
+    # R-P55 回歸斷言
+    problems = []
+    for label, got, want in [("處數", len(hits), EXPECTED_HITS),
+                             ("章節數", len(per_chapter), EXPECTED_CHAPTERS),
+                             ("受影響被引用錨點", len(affected_anchors), EXPECTED_ANCHORS),
+                             ("受影響 leaf", len(affected_leaves), EXPECTED_LEAVES)]:
+        if got != want:
+            problems.append(f"{label} {got} ≠ 期望 {want}")
+    if problems:
+        print("\n**回歸斷言失敗（R-P55）**：" + "；".join(problems))
+        raise SystemExit(1)
+    print("\n回歸斷言（R-P55）：PASS")
 
 
 if __name__ == "__main__":

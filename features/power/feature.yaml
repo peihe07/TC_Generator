@@ -3,38 +3,59 @@
 # and contain no per-feature literals. Regenerate nothing by editing code.
 
 feature: "Power"
-test_group: "Power"          # framework-internal; workbook write per profile
+test_group: "Power Management"   # R-P2 — workbook Test Group 欄之值
 
+# 七份素材之 SHA256 全 64 碼見 docs/upstream/02_rebaseline.md §二（G0 前置閘之權威）
 paths:
-  workbook: "inputs/<FW036 xlsx>"
-  a03_report: "inputs/<037 xlsx>"
-  sys1_export: "inputs/<SYS1 xlsx>"        # null if spec_mode has no export
-  spec_pdf: "inputs/<spec pdf>"            # null if spec_mode E
-  popup_list: "inputs/<Pop Up List xlsx>"  # null if not referenced
+  workbook: "inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_PowerManagement_20260816.xlsx"
+  a03_report: "inputs/Power_Management_FM-WI-FSM-037-A03_STLA_Report_SWRA.xlsx"
+  sys2_cfts009: "inputs/SYS2_CFTS_009_Wake_Up_and_Power_Up_Polarion_uploaded_All_Accepted_04_13_2026.xlsx"
+  sys2_cfts010: "inputs/SYS2_CFTS_010_Power_down_Polarion_uploaded_All_Accepted_04_13_2026.xlsx"
+  spec_cfts009: "inputs/R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658.docx"
+  spec_cfts010: "inputs/R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658.doc"
+  sys3_sysad: "inputs/SYS3_CFTS_009_Power_Management_FM-WI-FSM-011-A01_System Architectural Design_SYSAD_v1.1.0.docx"
+  sys1_export: null      # 本 feature 無 SYS1 匯出
+  spec_pdf: null
+  popup_list: null
 
-spec_mode: "A"        # A/B/C/D/E per FEATURE_ONBOARDING §3
-spec_reference_template: "<Spec Filename>_{outline}"
+spec_mode: "D"        # R-P9 / R-P3′ — 二進位文件抽取（原 scaffold 值 "A" 為誤）
+spec_reference_template: "{spec_filename}_{section_id}"   # §10.7 / G45
+
+# R-P2 — tc_id 方案。lint 之權威仍取自裁決條文（R-P69(b)）；
+# G46 驗本檔與條文一致，以偵測漂移。
+tc_id_format: "NR1L-PowerManagement-{NNN}"
 
 workbook:
   sheet: "Test Case Specification&Result"
   header_row: 9
   # column letters, verified by recon header match — do not guess
+  # 09 包 B2 實測自 FW036 之 r9 表頭（A-PW37）。
+  # **scaffold 之原值自 priority 起全部錯位** —— 原記 priority P /
+  # design_method Q / functional_safety R / author Z / remarks AH，
+  # 且無 tc_id 欄。本 workbook 之 r9 實測有**兩個** `Estimated Test Time`
+  # 欄（P 與 R），較 Privacy / Comfort 之修訂版（A-PV13 / R39-2 所訂正者）
+  # 又多插入一欄，故其後每一欄再右移一格。
   columns:
-    req_id: "D"
-    test_group: "G"
-    test_set: "H"
-    test_item: "I"
-    pre_conditions: "J"
-    input_test_data: "K"
-    test_procedure: "L"
-    expected_result: "M"
-    spec_reference: "N"
-    tc_ref_id: "O"
-    priority: "P"
-    design_method: "Q"
-    functional_safety: "R"
-    author: "Z"
-    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+    req_id: "D"           # Requirement or Design ID 需求/設計 ID
+    tc_id: "F"            # Test Case ID 測試用例ID（scaffold 無此欄）
+    test_group: "G"       # Test Group 測試組
+    test_set: "H"         # Test Set 測試集
+    test_item: "I"        # Test Item 測試項目
+    pre_conditions: "J"   # Pre-Conditions 先前條件
+    input_test_data: "K"  # Input Test Data 輸入條件
+    test_procedure: "L"   # Test procedure 測試程序
+    expected_result: "M"  # Expected Result 預期結果
+    spec_reference: "N"   # Specification Reference 規格參考
+    tc_ref_id: "O"        # Test Case Reference ID 測項參考ID
+    estimated_time: "P"   # Estimated Test Time（第一個）
+    priority: "Q"         # Test Case Priority 測試用例優先級別（scaffold 記 P，誤）
+    # R 為第二個 Estimated Test Time —— 同一標頭出現兩次，見 A-PW38
+    design_method: "S"    # Test Case Design Methods（scaffold 記 Q，誤）
+    functional_safety: "T"  # Functional Safety 功能安全（scaffold 記 R，誤）
+    # U–AA 為七個車型欄（HDCC27/DT27 Atl-Hi；VF637/Commander/Regengade/Toro/Fastack Atl-Mi）
+    # 依 R30-3 / R30-4 留白，R-P54 維持
+    author: "AB"          # Test Case Author 測試案例作者（scaffold 記 Z，誤）
+    remarks: "AI"         # Remarks 備註（scaffold 記 AH，誤 —— AH 實為 Defect ID）
 
 done_region:
   # detection: "author" (author-cell match) or "rows" (explicit ranges)

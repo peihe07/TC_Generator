@@ -31,68 +31,59 @@ ROOT = Path(__file__).resolve().parents[3]
 IN = ROOT / "features/power/inputs"
 DATA = ROOT / "features/power/data"
 
-# 具體性訊號 —— 明列，可逐條檢驗
+# 純領域縮寫 —— 命名了一個域或總線，但未陳述任何可設定之條件。
+# 依 G28 判準，「Vehicle equiped with CAN」為不可執行之反例，故此類不得單獨成為訊號。
+DOMAIN_ONLY_ACRONYMS = {"CAN", "SW", "HW", "UI", "EE", "OEM"}
+
+# 具體性訊號 —— 明列，可逐條檢驗。
+# 07 包 B4 依 037 之 VC/VM 全欄 token 形態分布重新推導（R-P57）：
+#   全大寫 2–3 字 324、點號分隔 308、$SIGNAL$ 105、底線 72、全大寫 4+ 43、
+#   CamelCase 18、字母尾接數字 15（Timeout1 13 / M240 3 / Case1-3）、
+#   點號後接數字 1（CS.00244）
+# 調校前之識別式漏掉最後三類，故 4 筆偽陰性。
 SIGNALS: list[tuple[str, re.Pattern]] = [
     ("具名訊號／參數", re.compile(
-        r"\$[A-Za-z_]+\$"                     # $Telematic_Power$
-        r"|\b[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+\b"   # SwitchOff_Timeout_Setting
-        r"|\b[A-Z][A-Za-z0-9]*\.[A-Za-z][A-Za-z0-9_.]*\b"  # STATUS_BH_BCM1.PowerModeSts
-        r"|\b[A-Z]{4,}\b"                     # PROXI / CAN / TLM
+        r"\$[A-Za-z_]+\$"                                  # $Telematic_Power$
+        r"|\b[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+\b"      # SwitchOff_Timeout_Setting
+        r"|\b[A-Za-z][A-Za-z0-9]*\.[A-Za-z0-9][A-Za-z0-9_.]*\b"  # STATUS_BH_BCM1.PowerModeSts / CS.00244
+        r"|\b[A-Z]{4,}\b"                                  # PROXI
     )),
+    ("具名參數（字母尾接數字）", re.compile(r"\b[A-Za-z]{3,}\d+\b")),  # Timeout1 / Case1 / M240
     ("具體數值", re.compile(r"\b\d+\s*(?:min|minutes|sec|seconds|s|ms|V|volts?|%)\b", re.I)),
     ("引號字面值", re.compile(r"[\"“”'][^\"“”']{2,}[\"“”']")),
     ("具名元件／畫面", re.compile(
-        r"\b(?:button|screen|menu|display|icon|splash|panel|HMI|HU|TLM|ICS|AMP|FPDM|DCSD)\b", re.I)),
+        r"\b(?:button|screen|menu|display|icon|splash|panel"
+        r"|HMI|HU|TLM|ICS|AMP|FPDM|DCSD|HIL|RVC|TBM|PDO|SOS)\b", re.I)),
     ("具名狀態", re.compile(
         r"\b(?:Ignition\s+(?:On|Off|Cranking|Pre[_\s-]?Start|Pre\s+Off)"
         r"|Full[-\s]?Operation|Partial\s+Operation|Standby|Sleep|Idle|Timed|Bench"
         r"|Logistic|suspend[-\s]?resume)\b", re.I)),
     ("操作動詞", re.compile(
-        r"\b(?:press|change|set|select|switch|send|apply|trigger|navigate|enter|exit|reboot)\b",
-        re.I)),
+        r"\b(?:press|change|set|select|switch|send|apply|trigger|navigate|enter|exit|reboot"
+        r"|perform|observe|disconnect|log)\b", re.I)),
 ]
 
-# 邊界個案人工覆寫：leaf -> (欄位, 判定, 理由)。欄位為 'vc' / 'vm' / 'pair'。
-OVERRIDES: dict[tuple[str, str], tuple[str, str]] = {
+# 07 包 B4 調校後，**純正則結果與人工覆寫完全相同**，故 OVERRIDES 清空 ——
+# 覆寫率由 5.2%（6/115）降為 **0%（0/115）**（R-P57 / G35）。
+OVERRIDES: dict[tuple[str, str], tuple[str, str]] = {}
+
+# 判讀紀錄（**不影響判定**，僅供覆核）：兩筆 VC 之不可執行判定，
+# 調校後由 DOMAIN_ONLY_ACRONYMS 之排除規則自動得出，不再需要人工覆寫。
+NOTES: dict[tuple[str, str], str] = {
     ("SWE-PM-007", "vc"): (
-        "不可執行",
-        "「Vehicle not equiped with CAN or engineering line is active」—— "
-        "`CAN` 雖為全大寫 token 而命中「具名訊號／參數」，但此處僅為總線之泛稱，"
-        "非可設定之訊號；「engineering line is active」亦無具名訊號或設定值。"
-        "全句無任何可操作之條件，與判準所舉之反例同型。",
-    ),
-    ("SWE-PM-009", "vm"): (
-        "可執行",
-        "「Perform voltag spike / drop EMC test as per CS.00244 and observe the behavior」——"
-        "`CS.00244` 為具名之外部測試標準（拼字 `voltag` 為原文錯字，不影響可執行性）。"
-        "正則未命中係因 `CS.00244` 之點號後為數字，不符「具名訊號」之識別式；為偽陰性。",
-    ),
-    ("SWE-PM-065", "vm"): (
-        "可執行",
-        "「Make a phone call / Disconnect phone call before Timeout1 expiration / "
-        "Audio source prior to Phone Call shall be restored」——"
-        "含操作動作（撥打、掛斷）與具名參數 `Timeout1`。"
-        "正則未命中係因 `Timeout1` 無底線且非全大寫；為偽陰性。",
-    ),
-    ("SWE-PM-071", "vm"): (
-        "可執行",
-        "「Log timestamp checks / HIL boot test / Visual boot inspection」——"
-        "`HIL` 為具名測試環境（Hardware-in-the-Loop）。"
-        "正則未命中係因全大寫識別式要求 4 字元以上；為偽陰性。"
-        "併觀其 VC（`SplashScreen_Time`、`StandardScreen_Time` 兩個具名參數）更為明確。",
-    ),
-    ("SWE-PM-072", "vm"): (
-        "可執行",
-        "「Log analysis / HIL test triggering events during boot / State-machine validation / "
-        "Event-queue stress testing」—— `HIL` 同上為具名測試環境。"
-        "併觀其 VC（`TLM_Status` 具名訊號）更為明確。",
+        "「Vehicle not equiped with CAN or engineering line is active」——"
+        "`CAN` 為總線泛稱（DOMAIN_ONLY_ACRONYMS），"
+        "「engineering line is active」亦無具名訊號或設定值。"
     ),
     ("SWE-PM-008", "vc"): (
-        "不可執行",
-        "「Vehicle equiped with CAN」—— **判準所舉之反例本身**。"
-        "`CAN` 為總線泛稱，全句無任何可操作條件。",
+        "「Vehicle equiped with CAN」—— **G28 判準所舉之反例本身**。"
     ),
 }
+
+# R-P55 回歸斷言（若 B4 改變基線，以新值為準）
+EXPECTED_BAD_VC = 2
+EXPECTED_BAD_VM = 0
+EXPECTED_BAD_PAIR = 0
 
 
 def find(pattern: str) -> Path:
@@ -100,12 +91,14 @@ def find(pattern: str) -> Path:
 
 
 def signals_of(text: str) -> list[tuple[str, str]]:
-    """回傳 [(訊號名, 依據字串)]。"""
+    """回傳 [(訊號名, 依據字串)]。純領域縮寫之單獨命中不計（見 DOMAIN_ONLY_ACRONYMS）。"""
     hits = []
     for name, rx in SIGNALS:
-        m = rx.search(text)
-        if m:
+        for m in rx.finditer(text):
+            if m.group(0).upper() in DOMAIN_ONLY_ACRONYMS:
+                continue
             hits.append((name, m.group(0)))
+            break
     return hits
 
 
@@ -118,7 +111,7 @@ def verdict(leaf: str, field: str, text: str) -> tuple[str, list[tuple[str, str]
         return "空", [], "（G19 已證零空值，不應出現）"
     if hits:
         return "可執行", hits, ""
-    return "不可執行", [], "無任何具體性訊號命中"
+    return "不可執行", [], NOTES.get((leaf, field), "無任何具體性訊號命中")
 
 
 def main() -> None:
@@ -207,6 +200,20 @@ def main() -> None:
         print(f"  VC 不可執行 {r['leaf']} ({r['ts']}): {r['vc'][:60]!r}")
     for r in bad_vm:
         print(f"  VM 不可執行 {r['leaf']} ({r['ts']}): {r['vm'][:60]!r}")
+    print(f"  人工覆寫率（R-P57 / G35）：{len(OVERRIDES)} / {len(rows)}"
+          f" = {100 * len(OVERRIDES) / len(rows):.1f}%")
+
+    # R-P55 回歸斷言
+    problems = []
+    for label, got, want in [("VC 不可執行", len(bad_vc), EXPECTED_BAD_VC),
+                             ("VM 不可執行", len(bad_vm), EXPECTED_BAD_VM),
+                             ("二欄合觀不可執行", len(bad_pair), EXPECTED_BAD_PAIR)]:
+        if got != want:
+            problems.append(f"{label} {got} ≠ 期望 {want}")
+    if problems:
+        print("\n**回歸斷言失敗（R-P55）**：" + "；".join(problems))
+        raise SystemExit(1)
+    print("回歸斷言（R-P55）：PASS")
 
 
 if __name__ == "__main__":
