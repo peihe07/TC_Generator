@@ -114,13 +114,18 @@ lint:
   extra_rules: []
 
 recon_assertions:
-  # 下放包 01b 作業項 3 之預期值。**兩者量測單位不同，見上繳包 §3**：
-  #   leaf_count 182 係以「ID 非任何其他 ID 之前綴」量得（下放包 01_intake.md）
-  #   functional_requirement_count 180 係以 Categorization 量得
-  # 01b 所裁定之判準為後者。故 182 在該判準下不可能成立，本欄暫不填期望值，
-  # 待 Tier 2 釐清（不自行調和，canon §8.5）。
+  # **R-U8（Pei 2026-08-17）取代 01b 作業項 3 之預期值。** 三個閘一律以
+  # Categorization 欄之逐列計數為單位 —— 單位一致是本條之要點：01b 同時寫入
+  # 兩個單位不同的判準（ID 前綴形態之 182 與 Categorization 之 180），
+  # 而在其所裁之判準下 182 不可能量得（A-UP07）。
+  #
+  # 182 降為**對照輸出，不作閘** —— 依據 Comfort R-C3 逐字禁止以 ID 形態
+  # 判定 leaf，`scripts/recon.py` 已把該啟發式標為
+  # "the heuristic that the ruling BANS"；canon §5a 第 17 條「既有政策優先」。
   header_row: 7
-  functional_requirement_count: TBD    # 候選 180；見上繳包 §3
-  heading_count: TBD                   # 候選 25（Categorization == "Heading"）
+  functional_requirement_count: 180    # R-U8；Categorization 欄逐列計數
+  heading_count: 25                    # R-U8；欄值 == "Heading"，非 len(headings)=27
   out_of_scope_count: 2                # R-U4：PROF-017、PROF-035
-  generation_population: 180           # R-U4 明文
+  generation_population: 180           # R-U4 明文，不變
+  # 閘以外之對照輸出（不作判定）
+  naive_leaf_shape_reference: 182      # ID 前綴形態；R-U8 明定不作閘

@@ -92,8 +92,16 @@ forms/*
 # must not change their TRACKING status: they are the same company documents
 # that `forms/*` above keeps out of git, so the same rule extends here.
 # Their SHA256 stays in forms/FORMS.md, which is tracked.
-# NOTE: archiving preserves the FILES, not their hashes-in-git — the three are
-# currently outside every BASELINE.sha256 (see features/user_profiles/
-# docs/upstream/01_intake.md §2.4). That gap is Tier 2, not settled here.
+# NOTE (superseded by R-U12, 2026-08-17): archiving preserved the FILES, not
+# their hashes-in-git — the three sat outside every BASELINE.sha256 for a whole
+# round and nothing said so (see features/user_profiles/docs/upstream/
+# 01_intake.md §2.4, and 02_rulings_execution.md §4). R-U12 closes that gap:
+# BASELINE.sha256 now covers the three and is EXEMPTED below.
+#
+# The xlsx stay untracked (company documents, same rule as forms/* above); the
+# checksum file must not — a hash kept only on disk protects nothing, which is
+# the very thing R-U12 says: keeping the file and keeping its hash are two
+# different things.
 archive/forms_superseded/*
 !archive/forms_superseded/.gitkeep
+!archive/forms_superseded/BASELINE.sha256

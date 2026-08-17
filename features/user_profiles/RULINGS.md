@@ -116,3 +116,83 @@ R-U7  036 母本採用前置（承 R-G1）
 - R-U7：已完成 forms/ 四檔 SHA256、`20260817_ext` 結構探測、FORMS.md
   新增條目並修復 A-UP03、母本複本置於 `inputs/` 且母本未被覆寫
   （openpyxl save 全 repo 未執行）。
+
+---
+
+## 第二輪條文
+
+來源包：`features/user_profiles/docs/handoff/02a_rulings.md`
+（Pei 2026-08-17 裁定）。**R-G3 為全域條文**（跨 feature 缺陷，非本 feature 專屬）；
+其餘為本 feature 條文。
+
+> **supersede 註記**：**R-U8 取代 `01b_tasks.md` 作業項 3 之預期值。**
+> 01 輪之下放包**不改寫**（已結輪次不回溯編輯），其原文留存；
+> 讀 01b 作業項 3 者，其預期值以本條為準。
+
+```text
+R-U8  Recon 閘值與判準（取代 01b_tasks.md 作業項 3 之預期值）
+      三個閘一律以 Categorization 欄之逐列計數為單位：
+        functional_requirement_count == 180
+        heading_count == 25（欄值等於 "Heading" 者，非 len(headings)=27）
+        out_of_scope_count == 2
+      葉節點 182 之 ID 前綴形態值降為對照輸出，不作閘。
+      依據：Comfort R-C3 逐字禁止以 ID 形態判定 leaf，
+      recon.py:568 已將其標為 "the heuristic that the ruling BANS"；
+      canon §5a 第 17 條「既有政策優先」。
+      生成母體維持 180，不變。
+      **本條之成因為下放包之誤**：01b 同時寫入「leaf = Categorization
+      以 Functional 起始」與「葉節點 182、扣 2 得 180」，兩者單位不同，
+      在該判準下 182 不可能量得。A-UP07 判定成立，執行層停下為正確。
+
+R-U9  Pop Up List 來源
+      以 features/comfort/inputs/Pop Up List HMI R1 SR24 Post 2A
+      (Dec 15, 2023).xlsx（SHA b0827f02…，見 Comfort BASELINE.sha256）
+      為候選，先驗本 feature 引用之 20 個 PU id 之涵蓋率再採用。
+      採用後比照 Comfort R-C11 移入 spec-index/ 作單一來源，
+      不在各 feature inputs/ 各留一份。涵蓋不全才轉 DR 索取。
+      A-UP06 之處置以本條為準：素材未必缺，先驗再說。
+
+R-G3  framework.md §Workbook sync 之範例程式碼（全域）
+      該節範例為 openpyxl + wb.save()，對 rev C 工作簿會摧毀 R 欄
+      x14 dataValidation（A-UP09 實測：節點 1→0、zip members 48→47、
+      而 P／T–Z／AF 三條 legacy DV 存活，表面像無害重封裝）。
+      須於該節加禁用警示，並將範例改寫為 xlsx_surgical splice。
+      屬跨 feature 缺陷，非 User Profiles 專屬。
+
+R-U10 A-UP08 —— 採 (b)
+      rev C 起 `Test Case Framework` 分頁不列為交付要求；
+      framework.md §Workbook sync 之該項改標「rev A/B only」。
+      理由：rev C 為現行官方表單且無該分頁，該分頁係 Media 時期
+      工作流產物，非 STLA 表單要求。不因此產生新 DR。
+
+R-U11 A-UP05 —— 結案為「歷史記載失效」
+      20260816_ext 之 mtime 2026-08-17 09:45:54，15 秒後另存為
+      20260817_ext；容量擴充（B 欄 601→1411）發生於 FORMS.md 記載之後，
+      故原記載之量測對象已不存在。FORMS.md 維持雙欄並列，原記載留為歷史。
+      **記載限制**：本條依 Pei 裁定結案，**非經成因查證確認**。
+      兩者不同，不得日後被引為「成因已查明」。
+
+R-U12 歸檔三檔之雜湊保護
+      於 archive/forms_superseded/ 建 BASELINE.sha256，涵蓋三檔。
+      理由：R-G2 保住了檔案，雜湊卻只記於 FORMS.md；
+      而 R-U6 之 style authority（Home 225 列工作簿）正倚賴其中一份。
+      保住檔案與保住雜湊是兩件事。
+```
+
+**執行層回報（第二輪，2026-08-17）**
+
+- **R-U8**：`feature.yaml` 之 `recon_assertions` 三閘已由 `TBD` 改填
+  180／25／2；182 之 ID 前綴形態值標為對照輸出。**recon 本身未跑** ——
+  037 仍不在 repo（DR #1），作業項 6 之前置未成立。
+- **R-U9**：涵蓋率實測 **18 / 20**，缺 `PU1087`、`PU1088`。
+  依 02b 作業項 2 之明文「不足 → 具名列出缺哪幾個 id，轉 DR，
+  **不以近似版本替代**」——**未移入 `spec-index/`、未更新 BASELINE、
+  A-UP06 不結案**，已開 **DR #4**。量測條件見上繳包 §2。
+- **R-G3**：`docs/fw036/framework.md` §Workbook sync 已加禁用警示
+  （引 A-UP09 實測表）並將範例改寫為 `xlsx_surgical` splice。
+- **R-U10**：同節之 `Test Case Framework` 分頁項已改標 **rev A/B only**。
+  A-UP08 RESOLVED，未產生新 DR。
+- **R-U11**：A-UP05 RESOLVED，**其「非經成因查證」之記載限制已照錄**
+  於 ANOMALIES.md 該條內。
+- **R-U12**：`archive/forms_superseded/BASELINE.sha256` 已建（3 檔），
+  `shasum -a 256 -c` **3/3 OK**，輸出見上繳包 §4。

@@ -233,20 +233,67 @@ All within target.
 
 ## Workbook sync
 
-`Test Case Framework` sheet (single column A, values at rows 5–14) must gain:
+> ### ⛔ NEVER `openpyxl` + `wb.save()` on a form workbook (R-G3, global)
+>
+> `openpyxl` silently **drops the `x14` data-validation extension** on load
+> ("Data Validation extension is not supported and will be removed") and does
+> not write it back. On a rev C workbook that extension IS the `design_method`
+> dropdown on column R.
+>
+> Measured on the 036 master `…_SWQT_20260817_ext.xlsx` (A-UP09, 2026-08-17,
+> on a copy outside the repo; the master's SHA was identical before and after):
+>
+> | | before save | after save |
+> |---|---|---|
+> | `<x14:dataValidation>` nodes | **1** | **0** |
+> | its `<xm:sqref>` | `R10:R1411` | *(gone)* |
+> | legacy DV (`P10:Q1411`, `T10:Z1411`, `AF10:AF1411`) | 3 | **3, survive** |
+> | zip members | **48** | **47** |
+> | sheet count | 9 | 9 |
+> | column B formula, last row | 1411 | 1411 |
+>
+> **The damage is selective, and that is what makes it dangerous**: sheet
+> count, row count, formula ranges and the other three DVs are all unchanged
+> and exactly one zip member disappears — it reads as a harmless repackage,
+> and any check that compares sheets / rows / formulas stays green. A
+> workbook that has lost its R-column dropdown still opens, still looks
+> right, and fails the reviewer's confirmation (profile §0.1 item 2).
+>
+> **Use `backend/xlsx_surgical.py`, which patches the sheet XML in place and
+> leaves every other zip member byte-identical.** Its `surgical_save` reports
+> the differing members and the DV counts, so "nothing else moved" is
+> measured rather than assumed.
+
+**`Test Case Framework` sheet — rev A/B only (R-U10).** rev C, the current
+official form, has no such sheet (9 sheets; rev A/B have 10). The sheet was a
+Media-era workflow artefact, not an STLA form requirement, so on rev C the
+Test Set vocabulary lives in column H alone and this section's sync step does
+not apply. Keep the step for rev A/B workbooks.
+
+For a rev A/B workbook, the sheet (single column A, values at rows 5–14) must
+gain:
 
 - A15: `Preset Management`
 - A16: `Media Widget`
 
-Either edit the two cells by hand, or run:
+Either edit the two cells by hand, or splice them:
 
 ```python
 import openpyxl
-wb = openpyxl.load_workbook("FMWIFSM036A01_..._MediaHMI_20260625.xlsx")
+from backend.xlsx_surgical import surgical_save
+
+src = "FMWIFSM036A01_..._MediaHMI_20260625.xlsx"
+out = "output/FMWIFSM036A01_framework_updated.xlsx"
+
+wb = openpyxl.load_workbook(src)          # load is fine; it is save that destroys
 ws = wb["Test Case Framework"]
 ws["A15"] = "Preset Management"
 ws["A16"] = "Media Widget"
-wb.save("output/FMWIFSM036A01_framework_updated.xlsx")
+
+report = surgical_save(wb, src, out)      # patches sheet XML only
+assert report["differing"] == [           # every other member byte-identical
+    m for m in report["differing"] if m.endswith(".xml")]
+print(report["dv_counts"])                # DV counts must match the source
 ```
 
 (The write-back pipeline copies the workbook anyway, so doing this once on the

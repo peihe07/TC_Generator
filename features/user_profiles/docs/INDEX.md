@@ -11,6 +11,7 @@
 | NN | 日期 | 主題 | 下放 | 上繳 | 產生之裁決 | 產生之異常 | 結果 |
 |---|---|---|---|---|---|---|---|
 | 01 | 2026-08-17 | Phase 0 intake（開案）：scaffold／R-G1 R-G2 R-U7 form 處置／recon／outline map／framework 草案 | [handoff/01_intake.md](handoff/01_intake.md)＋[01a_rulings.md](handoff/01a_rulings.md)＋[01b_tasks.md](handoff/01b_tasks.md) | [upstream/01_intake.md](upstream/01_intake.md) | R-G1、R-G2（全域，本包首次落檔）；R-U1 ~ R-U7（本 feature） | A-UP01 ~ A-UP03（下放包播種，A-UP03 本輪 RESOLVED）；**A-UP04 ~ A-UP09 新開** | **作業項 1／2／4(spec 側)／5(草案)／6 完成；作業項 3 停下 —— 037 不在 repo（A-UP04）＋ 預期值單位不一致（A-UP07）。相符 18／不符 4／未實測 12（4 項待裁）** |
+| 02 | 2026-08-17 | 02a 裁決之落地：R-U8 三閘／R-U9 PU 涵蓋驗證／R-G3＋R-U10 canon 修補／R-U12 歸檔雜湊／異常狀態 | [handoff/02a_rulings.md](handoff/02a_rulings.md)＋[02b_tasks.md](handoff/02b_tasks.md) | [upstream/02_rulings_execution.md](upstream/02_rulings_execution.md) | R-U8、R-U9、**R-G3（全域）**、R-U10、R-U11、R-U12 | A-UP05／07／08 **RESOLVED**；A-UP09 修補完成待覆核；**A-UP06 不結案** | **作業 1–5 完成；6–8 未執行（DR #1）。R-U9 涵蓋率 18/20 → 不採用、開 DR #4** |
 
 ---
 
@@ -33,21 +34,33 @@
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
 
-### 停下待裁（4 項 Tier 2）
+### 第二輪已完成（2026-08-17）
+
+- **R-U8 三閘落地**：`recon_assertions` 由 `TBD` 改填 **180／25／2**，
+  182 降為對照輸出。**閘未跑** —— 037 仍不在 repo。
+- **R-G3＋R-U10 canon 修補**：`docs/fw036/framework.md` §Workbook sync
+  加 openpyxl 禁用警示（引 A-UP09 實測表）、範例改 `xlsx_surgical` splice、
+  `Test Case Framework` 分頁項標 **rev A/B only**。
+- **R-U12**：`archive/forms_superseded/BASELINE.sha256`（3 檔），
+  `shasum -c` **3/3 OK、0 警告**。該目錄在此之前**不受任何雜湊保護**。
+- **A-UP05／A-UP07／A-UP08 RESOLVED**；A-UP09 修補完成但**狀態變更屬 Tier 2**，
+  本層不自裁，標為待覆核。
+
+### 停下待裁 / 待覆核
 
 | 項 | 內容 | 阻擋什麼 |
 |---|---|---|
-| **A-UP07** | 作業項 3 預期值單位不一致：182（ID 前綴形態）vs 180（Categorization）。01b 之判準下 182 不可能成立 | **Phase 1 recon 之 assertion 無合法期望值。037 到齊亦不解除** |
-| A-UP05 | `20260816_ext` 之 manifest 記載與磁碟檔非同源（601 列 vs 1411 列），量測對象已不存在 | 不阻擋；FORMS.md 記載之正式處置 |
-| A-UP08 | 母本無 `Test Case Framework` 分頁，而 framework.md §Workbook sync 依賴它 | 不阻擋 Phase 0；交付慣例待確認 |
-| Layer 2 | Test Set 邊界三草案（7／11／6 個 Set），**037 分群不可得，草案為 spec 單邊** | Phase 3 framework Part N |
+| **A-UP06** | **R-U9 之涵蓋驗證結果為 18/20**，缺 `PU1087`／`PU1088`（皆出自 spec `4.1.1` Profile Setup）。依 02b 明文不以近似版本替代 | Phase 3 之 popup 詞彙表；**已開 DR #4** |
+| A-UP09 | R-G3 之修補已完成，**惟現行防線只是一段散文，無機器檢查** | 不阻擋；建議下一包立 gate（見上繳 02 §6 第 1 項）|
+| Layer 2 | Test Set 邊界三草案（7／11／6 個 Set），**037 分群不可得，草案為 spec 單邊**；§4.2 之三項命名問題待併 | Phase 3 framework Part N |
 
 ### 阻擋中（素材，Tier 3 由 Pei 送出／取得）
 
 | DR | 檔 | Urgency |
 |---|---|---|
 | #1 | `FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx`（A-UP04）| **BLOCKING** —— recon 全停 |
-| #2 | HMI Pop Up List（A-UP06）| 高（Phase 3 前）|
+| #2 | HMI Pop Up List（A-UP06）—— **部分到齊 18/20**，見 #4 | 高（Phase 3 前）|
+| #4 | **載有 `PU1087`／`PU1088` 之 Pop Up List 版本**（本輪新開）| 高（Phase 3 前）|
 | #3 | A-UP02 之 8 條無覆蓋條文 RD-1 | 中 |
 
 ### 實作約束（已實測，非待裁）
@@ -59,10 +72,16 @@
 
 ### 下一包之前置
 
-1. **先裁 A-UP07**，再跑 recon —— 順序反了就會變成用實測值改期望值（§8.5）。
-2. 037 到齊後：跑 `scripts/recon.py`、更新 `BASELINE.sha256`、
-   以 `data/expected_cited_sections.tsv` 做 135 條**集合對集合**命中驗證。
-3. Layer 2 定版後方可附 `docs/fw036/framework.md` Part（本輪刻意未附）。
+1. ~~先裁 A-UP07~~ **已裁（R-U8）**，期望值已填。**037 到齊即可跑 recon。**
+2. 037 到齊後：跑 `scripts/recon.py`（三閘 180／25／2，182 為對照輸出）、
+   更新 `BASELINE.sha256`（**須加入 037**）、以
+   `data/expected_cited_sections.tsv` 做 135 條**集合對集合**命中驗證，
+   並補 01 輪列為未實測之五項（header row 7、FROP 欄 182 列值、
+   PROF-017／035 之 Out of scope 身分、Sub Categorization 與 Priority 分布）。
+3. Layer 2 定版後方可附 `docs/fw036/framework.md` Part（仍未附）。
+4. **建議立一道 gate 保住 R-G3** —— 現行防線是散文，而 A-UP09 自己說了
+   「靜態讀取驗不到只在寫入時才成立的性質」。Comfort `write_back` §3.3 之
+   `x14`／zip-member assertion 可直接借用。
 
 ---
 

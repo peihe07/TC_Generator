@@ -1,0 +1,22 @@
+# BASELINE — archive/forms_superseded/（R-U12，2026-08-17）
+#
+# R-G2 把三份被取代之 036 表單自 forms/ 移入本目錄（**未刪除**）。
+# R-U12：**保住檔案與保住雜湊是兩件事** —— R-G2 保住了檔案，其雜湊卻只
+# 記於 forms/FORMS.md，而 FORMS.md 是散文，不是可執行之檢查。
+#
+# 其中 `…_Home_20260809.xlsx` 為 **R-U6 之 style authority**（Arif 之 144 列
+# done region）在 repo 內之**唯一載體**，亦為 rev A/B 版面（A–AG）之唯一
+# 結構參照。它一旦被改動而無人出聲，User Profiles 之 style 依據即失其物。
+#
+# 用法：cd archive/forms_superseded && shasum -a 256 -c BASELINE.sha256
+#
+# 建立：2026-08-17　涵蓋 3 檔
+# FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx
+#   bytes 65823　mtime 2026-08-09 22:21:38
+cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx
+# FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260816_ext.xlsx
+#   bytes 200654　mtime 2026-08-17 09:45:54
+4b3d447051f914eb41cc9754abaa5ed89bc0f06251baf01681a18bf884b6bcf7  FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260816_ext.xlsx
+# FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Home_20260809.xlsx
+#   bytes 119885　mtime 2026-08-09 22:22:37
+1895fb2a2b44f06c46147e5c24731d2d1adf0f2eea80c7ec6f8900a679f24d72  FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Home_20260809.xlsx

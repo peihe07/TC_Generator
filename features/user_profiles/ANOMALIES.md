@@ -62,7 +62,7 @@ repo 內既有之 037 檔僅 power／comfort／sxm 三個 feature 的，非本 f
 不改判準、不以 spec 側數字代替。已登記於 `DATA_REQUESTS.md` 第 1 列。
 037 到齊後 recon 一次跑完即可解除。
 
-## A-UP05 — `20260816_ext` 之 manifest 記載與磁碟檔非同源（PENDING，執行層新開）
+## A-UP05 — `20260816_ext` 之 manifest 記載與磁碟檔非同源（**RESOLVED**，R-U11）
 
 A-UP03 之殘留問題。FORMS.md 記 123,717 bytes／SHA256 `6d53056e…`、
 B 欄公式 row 10–601、各 DV 範圍至 601；磁碟上該檔名之檔案實測為
@@ -82,10 +82,24 @@ DV `P10:Q1411`／`T10:Z1411`／`AF10:AF1411`／`R10:R1411`（x14）。
 各 DV 範圍、與原範本之 547 格差異）**其量測對象已不可得**，
 該些數值不得再被引用為現行磁碟檔或現行母本之屬性。
 
-**提議處置（Tier 2，不自裁）**：(a) 承認 `20260816_ext` 之 manifest
-數值為歷史記載，於條目標示「量測對象已不存在」；(b) 現行母本
-`20260817_ext` 之結構事實一律以本輪實測條目為準。已於 FORMS.md 依 (a)
-標示，(b) 之實測條目已寫入；正式裁定仍待 Pei。
+**處置（R-U11，Pei 2026-08-17 裁定，逐字）**：
+
+> R-U11 A-UP05 —— 結案為「歷史記載失效」
+>       20260816_ext 之 mtime 2026-08-17 09:45:54，15 秒後另存為
+>       20260817_ext；容量擴充（B 欄 601→1411）發生於 FORMS.md 記載之後，
+>       故原記載之量測對象已不存在。FORMS.md 維持雙欄並列，原記載留為歷史。
+>       **記載限制**：本條依 Pei 裁定結案，**非經成因查證確認**。
+>       兩者不同，不得日後被引為「成因已查明」。
+
+**記載限制，照錄並自陳其效力（02b 作業項 5 明文要求）**：
+
+> **本條之結案依據為裁定，不是查證。** 「123,717-byte 之檔到哪裡去了」
+> 這個問題**至今沒有答案** —— 該檔在 repo 內不存在、xlsx 未被 git 追蹤、
+> 無從還原。**「已結案」與「成因已查明」是兩件事**，
+> 日後任何人引用本條時不得把前者讀成後者。
+
+FORMS.md 依裁定維持雙欄並列（manifest 原記載 ／ 本輪實測），
+原記載留為歷史，不刪除。
 
 ## A-UP06 — HMI Pop Up List 未到齊（PENDING，執行層新開）
 
@@ -102,7 +116,28 @@ spec 正文、又無 Pop Up List，**任何 popup 文字都只能引 PU id 而�
 **處置**：已登記 `DATA_REQUESTS.md` 第 2 列。本輪不生成，無實際阻擋；
 Phase 3 前須到齊或另裁。
 
-## A-UP07 — 下放包 01b 作業項 3 之預期值單位不一致（PENDING，執行層新開）
+**第二輪之進展（R-U9 之涵蓋驗證，2026-08-17）—— 仍 PENDING**
+
+R-U9 裁定「素材未必缺，先驗再說」，並指定
+`features/comfort/inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx`
+為候選。**實測 18 / 20 命中，缺 `PU1087`、`PU1088`**（四種抽取式結論相同，
+量測條件見 `DATA_REQUESTS.md` 之第 4 列實測依據）。
+
+依 02b 作業項 2 之明文「不足 → 具名列出缺哪幾個 id，轉 DR，
+**不以近似版本替代**」：**未移入 `spec-index/`、未更新 BASELINE、本條不結案**，
+已開 **DR #4**。
+
+**該候選確為正確之文件家族**（`Module` 欄含 `Profiles`、
+`Profile Setup Assistant`、`Personal Account/Driver Profiles`），
+兩個缺者亦落在其編號區間內（區間共 248 個空號）—— **不是版本不對，
+是這一版就沒有那兩列**。
+
+> **缺口之位置須記**：`PU1087`／`PU1088` 皆出自 spec **`4.1.1`**
+> （Profile Setup），而 spec 8.3 明文「The Profile Setup processes is a
+> series of popups」—— **缺的不在邊陲，在該功能的正中央。**
+> 故 18/20 不得充當到齊，18 個可回溯亦不使 Phase 3 之 popup 詞彙表成立。
+
+## A-UP07 — 下放包 01b 作業項 3 之預期值單位不一致（**RESOLVED**，R-U8）
 
 01b 明定判準為「leaf = Categorization 以 `Functional` 起始者」，
 預期值為「葉節點 **182**、扣除 Out of scope 2 後母體 **180**、Heading 25」。
@@ -126,16 +161,23 @@ feature 已被明文禁用；本 feature 之 182 正出自同類判準。
 `functional_requirement_count` 與 `heading_count` 暫留 `TBD`，
 不代擬期望值。需 Tier 2 釐清後方可跑 recon。
 
-**提議（供裁決參考，非自裁）**：assertion 採
-`functional_requirement_count == 180`、`heading_count == 25`、
-`out_of_scope_count == 2`（三者皆為 Categorization 欄之逐列計數，同一單位），
-並將 182 記為「ID 前綴形態之對照值」輸出而不作為閘 —— 即 recon.py 現行對
-`naive_leaf_shape` 之處理方式。**此提議未經裁決，未寫入任何 assertion。**
+**處置（R-U8，Pei 2026-08-17 裁定）**：**依提議裁定。** 三閘一律以
+Categorization 欄之逐列計數為單位 —— `functional_requirement_count == 180`、
+`heading_count == 25`（欄值等於 `"Heading"` 者，**非** `len(headings)=27`）、
+`out_of_scope_count == 2`；**182 之 ID 前綴形態值降為對照輸出，不作閘**。
+生成母體維持 180，不變。
+
+裁定並明記**本項之成因為下放包之誤**，且**執行層停下為正確** ——
+01b 同時寫入兩個單位不同的判準，182 在其所裁之判準下不可能量得。
+
+**執行層落地**：`feature.yaml` 之 `recon_assertions` 三閘已由 `TBD` 改填
+180／25／2。**recon 本身仍未跑** —— 037 不在 repo（A-UP04／DR #1），
+作業項 6 之前置未成立。
 
 **注意**：本項為判準層之不一致，與 A-UP04（037 不在 repo）**互相獨立**。
 037 到齊亦不會使 182 在該判準下成立。
 
-## A-UP08 — 母本無 `Test Case Framework` 分頁，而 framework.md 之流程依賴它（PENDING，執行層新開）
+## A-UP08 — 母本無 `Test Case Framework` 分頁，而 framework.md 之流程依賴它（**RESOLVED**，R-U10）
 
 **實測**：036 母本 `20260817_ext`（rev C）共 **9 個工作表**，
 **無 `Test Case Framework` 分頁**。rev A/B（Home 之 225 列版，
@@ -151,14 +193,19 @@ feature 已被明文禁用；本 feature 之 182 正出自同類判準。
 但若交付慣例另要求該分頁列出本 feature 之 Test Set 清單，
 **本 feature 之母本無該載體**。
 
-**提議處置（Tier 2，不自裁）**：(a) 確認 rev C 版面下該分頁是否仍為交付
-要求 —— 若是，須向上游索取含該分頁之 rev C 母本，或裁定以 H 欄逐列值為
-唯一載體；(b) 若裁為不需要，於 framework.md §Workbook sync 註明該節僅適用
-rev A/B 版面。**本輪未動 framework.md。**
+**處置（R-U10，Pei 2026-08-17 裁定）**：**採 (b)。** rev C 起
+`Test Case Framework` 分頁**不列為交付要求**；`framework.md` §Workbook sync
+之該項改標「**rev A/B only**」。理由：rev C 為現行官方表單且無該分頁，
+該分頁係 Media 時期之工作流產物，**非 STLA 表單要求**。
+**不因此產生新 DR。**
+
+**執行層落地**：`docs/fw036/framework.md` §Workbook sync 已加 rev A/B only
+之限定段落，rev C 之 Test Set 詞彙以 H 欄逐列值為唯一載體
+（與 R-U6 之 `Test Set = FILL` 一致）。
 
 **附帶**：該節之範例程式碼為 `openpyxl` + `wb.save()`，與 A-UP09 直接衝突。
 
-## A-UP09 — openpyxl 存回會摧毀母本 R 欄 design_method 下拉（PENDING，執行層新開）
+## A-UP09 — openpyxl 存回會摧毀母本 R 欄 design_method 下拉（PENDING → **本輪修補完成，待覆核**）
 
 **實測（2026-08-17，scratchpad 複本，repo 外；母本與 `inputs/` 複本均未被寫入，
 母本 SHA `6372fb6b…` 前後一致）**：對母本複本執行
@@ -189,6 +236,12 @@ removed` 並丟棄之，存回時不再寫出。
 - **Phase 6 寫回實作不得以 openpyxl 存回**；須以 zip member 級操作
   （只替換 `sheet*.xml` 之列資料，保留 extLst）或其他保全 x14 之途徑。
   此為實作約束，非裁決事項，但因其影響交付件正確性，登記待 Pei 知悉。
+- **R-G3 之 canon 修補已完成（第二輪，2026-08-17）**：
+  `docs/fw036/framework.md` §Workbook sync 已加禁用警示（含本條之實測表）
+  並將範例改寫為 `xlsx_surgical` splice。
+  **02b 作業項 5 定本條「保持 PENDING 直至 R-G3 修補完成」** ——
+  修補已完成，惟其**狀態變更屬 Tier 2**，本層不自行改判 RESOLVED，
+  於此記明並請覆核。
 - **檢查條件（依 canon §5a 第 14 條，寫成自我完備形式）**：
   寫回後之產出須「與寫回前之母本在所有可讀屬性上一致，除資料列之內容欄
   與 `No.#` 公式外」—— 涵蓋 x14 extLst、legacy DV、zip member 集合、
