@@ -25,7 +25,7 @@
    "tc_title": "Temperature pop-up shows only on the status bar with the widget",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Temperature Pop-up shall be shown only on the status bar and the drop down menu shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the status bar and the area below it)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Change the temperature using the temperature hard control\n2. Read the status bar and the area below it",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Temperature Pop-up shall be shown only on the status bar and the drop down menu shall not be shown"
   },
   {
    "req_id": "SWE1-HVAC-104-02",
@@ -50,7 +51,7 @@
    "tc_title": "Fan speed pop-up shows on R1 Low",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the FAN Speed Pop-up shall be shown for R1Low",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; The vehicle is an R1Low vehicle; read the screen for a fan speed pop-up)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle is an R1Low vehicle, for which the FAN Speed Pop-up is shown (14.19)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Change the fan speed using the fan speed hard control\n2. Read the screen for a fan speed pop-up",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the FAN Speed Pop-up shall be shown for R1Low"
   },
   {
    "req_id": "SWE1-HVAC-104-03",
@@ -75,7 +77,7 @@
    "tc_title": "Airflow mode pop-up stays hidden with the widget",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Air Flow Mode Pop-up shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the screen for an airflow mode pop-up)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Change the airflow mode using the mode hard control\n2. Read the screen for an airflow mode pop-up",
@@ -92,7 +94,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Air Flow Mode Pop-up shall not be shown"
   },
   {
    "req_id": "SWE1-HVAC-104-04",
@@ -100,7 +103,7 @@
    "tc_title": "Climate on off pop-up stays hidden with the widget",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Climate On/Off Pop-up shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the screen for a climate on/off pop-up)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power hard control\n2. Read the screen for a climate on/off pop-up",
@@ -117,7 +120,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Climate On/Off Pop-up shall not be shown"
   },
   {
    "req_id": "SWE1-HVAC-104-05",
@@ -125,7 +129,7 @@
    "tc_title": "AUTO pop-up stays hidden with the widget",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Auto Pop-up shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the screen for an AUTO pop-up)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on using the AUTO hard control\n2. Read the screen for an AUTO pop-up",
@@ -142,7 +146,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Auto Pop-up shall not be shown"
   },
   {
    "req_id": "SWE1-HVAC-104-06",
@@ -150,7 +155,7 @@
    "tc_title": "Heated seats pop-up shows only on the status bar",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Heated Seats Pop-up shall be shown only on the status bar and the drop down menu shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the status bar and the area below it)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the heated seat on using its hard control\n2. Read the status bar and the area below it",
@@ -167,7 +172,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Heated Seats Pop-up shall be shown only on the status bar and the drop down menu shall not be shown"
   },
   {
    "req_id": "SWE1-HVAC-104-07",
@@ -175,7 +181,7 @@
    "tc_title": "Vented seats pop-up shows only on the status bar",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Vented Seats Pop-up shall be shown only on the status bar and the drop down menu shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the status bar and the area below it)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the vented seat on using its hard control\n2. Read the status bar and the area below it",
@@ -192,7 +198,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Vented Seats Pop-up shall be shown only on the status bar and the drop down menu shall not be shown"
   },
   {
    "req_id": "SWE1-HVAC-104-08",
@@ -200,7 +207,7 @@
    "tc_title": "Heated steering wheel pop-up shows only on the status bar",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When the Climate widget is shown, the Heated Steering Wheel Pop-up shall be shown only on the status bar and the drop down menu shall not be shown",
+   "test_item": "HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\\n-Temperature Pop-up: only on status bar (do not show drop down menu)\\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\\n-Auto Pop-up: do not show (feedback is already on widget)\\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)\n\n(The Climate widget is shown on the currently displayed screen; read the status bar and the area below it)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the heated steering wheel on using its hard control\n2. Read the status bar and the area below it",
@@ -217,7 +224,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When the Climate widget is shown, the Heated Steering Wheel Pop-up shall be shown only on the status bar and the drop down menu shall not be shown"
   }
  ]
 }

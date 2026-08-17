@@ -74,6 +74,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from external_docs import unblock_11_5   # 81 §2.3 — R-C45 解封
+from test_item import apply_test_item   # Pei 2026-08-17 —— 上半照抄條文、下半情境
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -372,7 +373,7 @@ def main() -> None:
             "duplicate_of": "",
             "distinguishing_axis": DIST_AXIS.get(
                 o, {"axis": "see per-TC titles", "delta": ""}),
-            "assumptions": [], "interface_axis_review": iar[o], "tcs": apply_splits(tcs),
+            "assumptions": [], "interface_axis_review": iar[o], "tcs": apply_test_item(apply_splits(tcs)),
         }
         (OUT / f"{PARENTS[o]}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -413,7 +414,7 @@ def main() -> None:
             "reasoning": REASONING[o], "keywords": [],
             "duplicate_of": "",
             "distinguishing_axis": {"axis": "see per-TC titles", "delta": ""},
-            "assumptions": [], "interface_axis_review": iar[o], "tcs": [tc],
+            "assumptions": [], "interface_axis_review": iar[o], "tcs": apply_test_item([tc]),
         }
         (OUT / f"{parent}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")

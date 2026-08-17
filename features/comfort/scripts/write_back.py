@@ -56,7 +56,7 @@ SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # not lose its object).
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260816_extdocs.xlsx")
+                            "Comfort_20260817_itemfmt.xlsx")
 # 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
 # 27 §3), so the second write-back became ENTRY 004. This is the third.
 #
@@ -65,7 +65,7 @@ OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # free and this write takes it. If the extension lands first, this constant
 # moves; the one-shot gate below is what makes a collision loud rather than
 # silent.
-LEDGER_ENTRY = "ENTRY 026"
+LEDGER_ENTRY = "ENTRY 030"
 SHEET = "Test Case Specification 測試用例規範"
 SRC_SHA = "6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c"
 FIRST_ROW = 10
@@ -228,13 +228,30 @@ def pre_gates(tcs: list) -> bool:
 
 # ------------------------------------------------------------ §3.2 splice
 
+# 94 §2 — source class labels are an INTERNAL field of generated/*.json. They
+# stay there (R-C28 Q1's evidence) and never reach the workbook: nobody ever
+# asked whether `[spec-derived]` belongs in a cell the customer reads. The
+# section reference in brackets DOES stay — that is the clause's provenance,
+# not our vocabulary, and the reader needs it to locate the condition.
+SOURCE_CLASS_IN_CELL = re.compile(
+    r"\[(?:spec-verbatim|spec-derived|test-setup|ext-verbatim)\]\s*")
+
+
+def render(field: str, value: str) -> str:
+    """What goes in the cell, as opposed to what the JSON carries."""
+    if field == "pre_conditions":
+        return SOURCE_CLASS_IN_CELL.sub("", value)
+    return value
+
+
 def splice(tcs: list) -> dict:
     wb = openpyxl.load_workbook(SRC)
     ws = wb[SHEET]
     for i, tc in enumerate(tcs):
         r = FIRST_ROW + i
         for col, field in COLS.items():
-            ws[f"{col}{r}"] = tc[field] if tc[field] != "" else None
+            v = render(field, tc[field])
+            ws[f"{col}{r}"] = v if v != "" else None
     return surgical_save(wb, SRC, OUT)
 
 
@@ -273,10 +290,20 @@ def assertions(tcs: list, report: dict) -> bool:
         for col, field in COLS.items():
             got = ws[f"{col}{r}"].value
             got = "" if got is None else str(got)
-            if got != tc[field]:
+            if got != render(field, tc[field]):
                 mismatches.append(f"{tc['tc_id']}.{col}({field})")
-    g("row 10–23 逐列全部寫入欄之值與 JSON 一致", [], mismatches,
+    g("逐列全部寫入欄之值與 JSON（經 render 後）一致", [], mismatches,
       f"{len(tcs)} rows x {len(COLS)} columns compared: {''.join(COLS)}")
+
+    # 94 §2.3 — the gate this case says was missing: nothing ever asked
+    # whether a cell the customer reads carries our own vocabulary.
+    labelled = []
+    for i, tc in enumerate(tcs):
+        cell = ws[f"J{FIRST_ROW + i}"].value or ""
+        for m in SOURCE_CLASS_IN_CELL.finditer(str(cell)):
+            labelled.append(f"{tc['tc_id']}:{m.group(0).strip()}")
+    g("no-source-class-in-workbook：J 欄無 source class 標籤（94 §2.3）",
+      [], labelled, f"{len(tcs)} 列之 J 欄逐格掃描")
 
     # 70 §1 — the same format invariant, re-checked ON THE WORKBOOK. Five TCs
     # carried an unnumbered second pre_condition line through ENTRY 016 and

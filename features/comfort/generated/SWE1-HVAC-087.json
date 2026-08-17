@@ -25,7 +25,7 @@
    "tc_title": "Only the HVAC pop-up shows on the blank idle screen",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "If the head unit is in simulated off/idle mode and an HVAC pop-up event is triggered, only the HVAC pop-up shall be displayed on the blank screen",
+   "test_item": "HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is triggered only the HVAC pop-up will be displayed on the blank screen (status bar, category bar, and brand background are not displayed).\n\n(change the fan speed using the fan speed hard control)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Put the head unit into simulated off/idle mode\n2. Change the fan speed using the fan speed hard control",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "If the head unit is in simulated off/idle mode and an HVAC pop-up event is triggered, only the HVAC pop-up shall be displayed on the blank screen"
   },
   {
    "req_id": "SWE1-HVAC-087-02",
@@ -50,7 +51,7 @@
    "tc_title": "Status bar category bar and brand background stay hidden in idle mode",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The status bar, category bar and brand background shall not be displayed when an HVAC pop-up is shown in simulated off/idle mode",
+   "test_item": "HVACP4.) If head unit is in simulated off/idle mode and HVAC pop-up event is triggered only the HVAC pop-up will be displayed on the blank screen (status bar, category bar, and brand background are not displayed).\n\n(change the fan speed using the fan speed hard control and read the screen)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Put the head unit into simulated off/idle mode\n2. Change the fan speed using the fan speed hard control and read the screen",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The status bar, category bar and brand background shall not be displayed when an HVAC pop-up is shown in simulated off/idle mode"
   }
  ]
 }

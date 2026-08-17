@@ -28,7 +28,7 @@
    "tc_title": "With SYNC on, front changes propagate to the rear climate",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall SYNC ON: front changes propagate to rear",
+   "test_item": "When SYNC is on, changing the driver temperature, mode or fan speed automatically changes the rear climate.\n\n(The rear climate screen is open and the climate system is on; The vehicle is not a single zone climate configuration; read the rear temperature)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on\n2. Change the driver temperature\n3. Read the rear temperature",
@@ -45,7 +45,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall SYNC ON: front changes propagate to rear"
   },
   {
    "req_id": "SWE1-HVAC-035-02",
@@ -53,7 +54,7 @@
    "tc_title": "Adjusting front or rear passenger settings breaks SYNC",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall adjusting passenger settings breaks SYNC",
+   "test_item": "Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.\n\n(The rear climate screen is open and the climate system is on; The vehicle is not a single zone climate configuration; read the SYNC button)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on\n2. Change the rear passenger temperature using the rear climate controls\n3. Read the SYNC button",
@@ -70,7 +71,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall adjusting passenger settings breaks SYNC"
   },
   {
    "req_id": "SWE1-HVAC-035-03",
@@ -78,7 +80,7 @@
    "tc_title": "Fan speed and blower are synchronised front to back",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall fan speed and blower front to back synchronized",
+   "test_item": "Fan speed and blower are sync'd front to back.\n\n(The rear climate screen is open and the climate system is on; The vehicle is not a single zone climate configuration; read the rear fan speed)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on\n2. Change the front fan speed\n3. Read the rear fan speed",
@@ -95,7 +97,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall fan speed and blower front to back synchronized"
   }
  ]
 }

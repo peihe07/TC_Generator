@@ -29,7 +29,7 @@
    "tc_title": "Mode hard control steps through the five mode loop",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "If the Mode hard control is pressed the user shall be moved to the next mode available in the loop: Face, Face/Feet, Feet, Feet/Windshield, Windshield",
+   "test_item": "ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.\n\n(press the Mode hard control four times, reading the mode after each press)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the Face airflow mode on the climate screen\n2. Press the Mode hard control four times, reading the mode after each press",
@@ -41,7 +41,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the Mode hard control is pressed the user shall be moved to the next mode available in the loop: Face, Face/Feet, Feet, Feet/Windshield, Windshield"
   },
   {
    "req_id": "SWE1-HVAC-118-02",
@@ -49,7 +50,7 @@
    "tc_title": "Press and hold moves only one mode",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "Press and hold of the control shall only move one mode over and shall not continue to move through modes",
+   "test_item": "ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.\n\n(press and hold the Mode hard control and read the airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the Face airflow mode on the climate screen\n2. Press and hold the Mode hard control and read the airflow mode",
@@ -61,7 +62,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Press and hold of the control shall only move one mode over and shall not continue to move through modes"
   },
   {
    "req_id": "SWE1-HVAC-118-03",
@@ -69,7 +71,7 @@
    "tc_title": "Mode hard control works while on Climate main",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "When the Mode hard control is pressed and the user is on Climate main, the mode shall move",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(press the Mode hard control and read the airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open Climate main on the climate screen\n2. Press the Mode hard control and read the airflow mode",
@@ -81,7 +83,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the Mode hard control is pressed and the user is on Climate main, the mode shall move"
   },
   {
    "req_id": "SWE1-HVAC-118-04",
@@ -89,7 +92,7 @@
    "tc_title": "Newly selected mode button is highlighted on Climate main",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "When the user is on Climate main the new mode button shall be shown highlighted",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(press the Mode hard control and read the mode buttons)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open Climate main on the climate screen\n2. Press the Mode hard control and read the mode buttons",
@@ -101,7 +104,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the user is on Climate main the new mode button shall be shown highlighted"
   },
   {
    "req_id": "SWE1-HVAC-118-05",
@@ -109,7 +113,7 @@
    "tc_title": "Mode hard control works off Climate main",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "When the Mode hard control is pressed and the user is not on Climate main, the mode shall move",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(press the Mode hard control and read the airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than Climate main\n2. Press the Mode hard control and read the airflow mode",
@@ -121,7 +125,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the Mode hard control is pressed and the user is not on Climate main, the mode shall move"
   },
   {
    "req_id": "SWE1-HVAC-118-06",
@@ -129,7 +134,7 @@
    "tc_title": "Small pop-up appears above the category control off Climate main",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "If the user is not on Climate main a small pop-up shall appear above the Climate main category control",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(press the Mode hard control and read the area above the Climate main category control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than Climate main\n2. Press the Mode hard control and read the area above the Climate main category control",
@@ -141,7 +146,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the user is not on Climate main a small pop-up shall appear above the Climate main category control"
   },
   {
    "req_id": "SWE1-HVAC-118-07",
@@ -149,7 +155,7 @@
    "tc_title": "The mode pop-up times out after three seconds",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "The pop-up shall time out after 3 seconds of inactivity or as soon as another button except Mode HC is pressed",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(wait 3 seconds without further interaction)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Mode hard control from a screen other than Climate main\n2. Wait 3 seconds without further interaction",
@@ -161,7 +167,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed」—— 故一觸發一條。兩個關閉途徑各自可失效：逾時關得掉而按他鍵關不掉，是一種失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The pop-up shall time out after 3 seconds of inactivity or as soon as another button except Mode HC is pressed"
   },
   {
    "req_id": "SWE1-HVAC-118-07",
@@ -169,7 +176,7 @@
    "tc_title": "Pressing another button closes the mode pop-up",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "The pop-up shall time out after 3 seconds of inactivity or as soon as another button except Mode HC is pressed",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(press the fan speed hard control and read the screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Mode hard control from a screen other than Climate main\n2. Press the fan speed hard control and read the screen",
@@ -181,7 +188,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed」—— 故一觸發一條。兩個關閉途徑各自可失效：逾時關得掉而按他鍵關不掉，是一種失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The pop-up shall time out after 3 seconds of inactivity or as soon as another button except Mode HC is pressed"
   },
   {
    "req_id": "SWE1-HVAC-118-08",
@@ -189,7 +197,7 @@
    "tc_title": "User is not moved to Climate main by the Mode hard control",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "The user shall not be shifted to climate main when the Mode hard control is pressed off Climate main",
+   "test_item": "When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.\n\n(press the Mode hard control and read the displayed screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than Climate main\n2. Press the Mode hard control and read the displayed screen",
@@ -201,7 +209,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user shall not be shifted to climate main when the Mode hard control is pressed off Climate main"
   },
   {
    "req_id": "SWE1-HVAC-118-09",
@@ -209,7 +218,7 @@
    "tc_title": "Main category label follows the new mode",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "The main category label shall be updated to reflect the new mode",
+   "test_item": "In both cases the main category label will be updated.\n\n(press the Mode hard control and read the main category label)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the main category label on the climate screen\n2. Press the Mode hard control and read the main category label",
@@ -221,7 +230,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The main category label shall be updated to reflect the new mode"
   },
   {
    "req_id": "SWE1-HVAC-118-10",
@@ -229,7 +239,7 @@
    "tc_title": "Mode hard control alters the front mode from the rear climate screen",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "While in the Rear Climate screen the Mode Hard Control shall alter the front Mode",
+   "test_item": "While in Rear Climate screen the Mode Hard Control button will alter the front Mode.\n\n(press the Mode hard control and read the front airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Rear Climate screen and note the front airflow mode\n2. Press the Mode hard control and read the front airflow mode",
@@ -241,7 +251,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "While in the Rear Climate screen the Mode Hard Control shall alter the front Mode"
   }
  ]
 }

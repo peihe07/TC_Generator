@@ -30,7 +30,7 @@
    "tc_title": "The rear temperature shows the set degree inside the range",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall temperature displays current value, HI/LO at extremes",
+   "test_item": "Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The rear climate screen is open and the climate system is on; The vehicle has an ATC climate system; read the rear climate screen)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle has an ATC climate system, for which the temperature displays the current degree (7.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the rear temperature to a value inside the range\n2. Read the rear climate screen",
@@ -47,7 +47,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall temperature displays current value, HI/LO at extremes"
   },
   {
    "req_id": "SWE1-HVAC-032-01",
@@ -55,7 +56,7 @@
    "tc_title": "HI replaces the rear degree value at the highest position",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall temperature displays current value, HI/LO at extremes",
+   "test_item": "Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The rear climate screen is open and the climate system is on; The vehicle has an ATC climate system; read the rear climate screen)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle has an ATC climate system, for which the temperature displays the current degree (7.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the rear temperature to the highest possible position\n2. Read the rear climate screen",
@@ -72,7 +73,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall temperature displays current value, HI/LO at extremes"
   },
   {
    "req_id": "SWE1-HVAC-032-01",
@@ -80,7 +82,7 @@
    "tc_title": "LO replaces the rear degree value at the lowest position",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall temperature displays current value, HI/LO at extremes",
+   "test_item": "Temperature will display the current degree (or half degree increments for Celsius) the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The rear climate screen is open and the climate system is on; The vehicle has an ATC climate system; read the rear climate screen)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle has an ATC climate system, for which the temperature displays the current degree (7.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the rear temperature to the lowest possible position\n2. Read the rear climate screen",
@@ -97,7 +99,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall temperature displays current value, HI/LO at extremes"
   },
   {
    "req_id": "SWE1-HVAC-032-02",
@@ -105,7 +108,7 @@
    "tc_title": "A temperature pop-up is shown next to the rear slider while it is touched",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall pop-up shows next to slider when touching",
+   "test_item": "Change temperature on climate screen by using arrows (move 1 increment up/down per press, long press = fast move ((hold longer that 500 ms)) or slider (TEMP pop-up next to slider when touching it so that finger does not cover number).\n\n(The rear climate screen is open and the climate system is on; read the area next to the slider)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press and hold the rear temperature slider handle\n2. Read the area next to the slider",
@@ -122,7 +125,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall pop-up shows next to slider when touching"
   },
   {
    "req_id": "SWE1-HVAC-032-03",
@@ -130,7 +134,7 @@
    "tc_title": "The rear temperature moves in half degree increments in Metric",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall half-degree increments in Metric",
+   "test_item": "When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments.\n\n(The rear climate screen is open and the climate system is on; read the temperature in the temp slider, the status bar, the temp slider pop-up and the temp pop-up)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the climate system temperature range to Metric\n2. Move the rear temperature one increment up\n3. Read the temperature in the temp slider, the status bar, the temp slider pop-up and the temp pop-up",
@@ -147,7 +151,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall half-degree increments in Metric"
   },
   {
    "req_id": "SWE1-HVAC-032-04",
@@ -155,7 +160,7 @@
    "tc_title": "With SYNC on the driver temperature drives the passenger",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall SYNC ON: driver temp affects passenger, adjusting passenger breaks SYNC",
+   "test_item": "If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.\n\n(The rear climate screen is open and the climate system is on; The vehicle is not a single zone climate configuration; change the driver temperature)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on\n2. Change the driver temperature",
@@ -172,7 +177,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall SYNC ON: driver temp affects passenger, adjusting passenger breaks SYNC"
   },
   {
    "req_id": "SWE1-HVAC-032-04",
@@ -180,7 +186,7 @@
    "tc_title": "Adjusting the passenger temperature breaks SYNC",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall SYNC ON: driver temp affects passenger, adjusting passenger breaks SYNC",
+   "test_item": "If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.\n\n(The rear climate screen is open and the climate system is on; The vehicle is not a single zone climate configuration; change the passenger temperature)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on\n2. Change the passenger temperature",
@@ -197,7 +203,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall SYNC ON: driver temp affects passenger, adjusting passenger breaks SYNC"
   }
  ]
 }

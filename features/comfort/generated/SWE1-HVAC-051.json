@@ -29,7 +29,7 @@
    "tc_title": "Menu Bar icon reflects the AUTO ECO and AUTO states",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states",
+   "test_item": "EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; press the AUTO button once, then read the Comfort main Menu Bar icon)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon\n2. Press the AUTO button once, then read the Comfort main Menu Bar icon",
@@ -41,7 +41,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states"
   }
  ]
 }

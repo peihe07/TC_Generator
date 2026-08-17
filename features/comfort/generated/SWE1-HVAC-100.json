@@ -25,7 +25,7 @@
    "tc_title": "Seat comfort feature shows its active or last used state",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "Driver and Passenger comfort seat features shall show the currently active or last used state",
+   "test_item": "HVACSB2.) Driver and Passenger comfort seat features will show currently active or last used state (heated or vented).\n\n(The vehicle is equipped with Comfort features; read the driver comfort seat feature in the status bar)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the driver heated seat on, then turn it off\n2. Read the driver comfort seat feature in the status bar",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "Driver and Passenger comfort seat features shall show the currently active or last used state"
   },
   {
    "req_id": "SWE1-HVAC-100-02",
@@ -50,7 +51,7 @@
    "tc_title": "Pressing the status bar icon opens the popup and changes the level",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "Press of the icon in the status bar shall open a popup and change the level of the comfort feature control",
+   "test_item": "Press of icon in status bar opens popup and changes level of comfort feature control.\n\n(The vehicle is equipped with Comfort features; press the icon within the popup)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Press the icon within the popup",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "Press of the icon in the status bar shall open a popup and change the level of the comfort feature control"
   },
   {
    "req_id": "SWE1-HVAC-100-03",
@@ -75,7 +77,7 @@
    "tc_title": "Heated and vented seats carry the Heat and Vent labels",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The heated seats shall be labeled as Heat and the vented seats shall be labeled as Vent",
+   "test_item": "The heated seats will be labeled as Heat and vented seats labeled as Vent .\n\n(The vehicle is equipped with Comfort features; read the labels in the popup)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Read the labels in the popup",
@@ -92,7 +94,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The heated seats shall be labeled as Heat and the vented seats shall be labeled as Vent"
   }
  ]
 }

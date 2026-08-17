@@ -25,7 +25,7 @@
    "tc_title": "Activating a seat defaults the seat zone to back and cushion",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall when heated or vented seats are activated default the seat zone control to both seat back and seat cushion active",
+   "test_item": "R1HVS1.) If the independent seat zone feature is available, when heated or vented seats are activated the seat zone control will default to both seat back and seat cushion active.\n\n(The independent seat zone feature is available on the vehicle; The vehicle is not a front-climate-only vehicle; read the seat zone control)",
    "pre_conditions": "1. [spec-derived] The independent seat zone feature is available on the vehicle (11.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the heated seat on\n2. Read the seat zone control",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall when heated or vented seats are activated default the seat zone control to both seat back and seat cushion active"
   },
   {
    "req_id": "SWE1-HVAC-059-02",
@@ -50,7 +51,7 @@
    "tc_title": "The seat zone popup is not displayed while using the seat controls",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall not display the seat zone popup when the user is interacting with heated and vented seat controls",
+   "test_item": "Seat zone popup is not displayed when user is interacting with heated and vented seat controls.\n\n(The independent seat zone feature is available on the vehicle; The vehicle is not a front-climate-only vehicle; read the screen for a seat zone popup)",
    "pre_conditions": "1. [spec-derived] The independent seat zone feature is available on the vehicle (11.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the heated seat button\n2. Read the screen for a seat zone popup",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall not display the seat zone popup when the user is interacting with heated and vented seat controls"
   },
   {
    "req_id": "SWE1-HVAC-059-03",
@@ -75,7 +77,7 @@
    "tc_title": "An additional seat zone press keeps the seat back active only",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on an additional press of the seat zone button while both seat zones are active maintain seat back active only",
+   "test_item": "While both seat zones (cushion and back) are active an additional press of seat zone button will maintain seat back active only.\n\n(The independent seat zone feature is available on the vehicle; The vehicle is not a front-climate-only vehicle; press the seat zone button)",
    "pre_conditions": "1. [spec-derived] The independent seat zone feature is available on the vehicle (11.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Activate the heated seat so that both seat zones are active\n2. Press the seat zone button",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on an additional press of the seat zone button while both seat zones are active maintain seat back active only"
   },
   {
    "req_id": "SWE1-HVAC-059-04",
@@ -100,7 +103,7 @@
    "tc_title": "A further seat zone press activates the seat cushion only",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on an additional press activate seat cushion only",
+   "test_item": "An additional press will activate seat cushion only.\n\n(The independent seat zone feature is available on the vehicle; The vehicle is not a front-climate-only vehicle; press the seat zone button)",
    "pre_conditions": "1. [spec-derived] The independent seat zone feature is available on the vehicle (11.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the seat zone to seat back only\n2. Press the seat zone button",
@@ -117,7 +120,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on an additional press activate seat cushion only"
   },
   {
    "req_id": "SWE1-HVAC-059-05",
@@ -125,7 +129,7 @@
    "tc_title": "The seat zone cannot be turned off with the seat zone button",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall not allow the user to turn seat zone off by using the seat zone button",
+   "test_item": "User cannot turn seat zone off by using the seat zone button.\n\n(The independent seat zone feature is available on the vehicle; The vehicle is not a front-climate-only vehicle; read the seat zone control)",
    "pre_conditions": "1. [spec-derived] The independent seat zone feature is available on the vehicle (11.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the seat zone to seat cushion only\n2. Press the seat zone button\n3. Read the seat zone control",
@@ -142,7 +146,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall not allow the user to turn seat zone off by using the seat zone button"
   },
   {
    "req_id": "SWE1-HVAC-059-06",
@@ -150,7 +155,7 @@
    "tc_title": "The seat zone button shows an off state when the seats are off",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall show the seat zone button in an off state when heated/vented seats are not active",
+   "test_item": "Seat zone button will be shown in an off state when heated/vented seats are not active.\n\n(The independent seat zone feature is available on the vehicle; The vehicle is not a front-climate-only vehicle; read the seat zone button)",
    "pre_conditions": "1. [spec-derived] The independent seat zone feature is available on the vehicle (11.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the heated and vented seats off\n2. Read the seat zone button",
@@ -167,7 +172,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall show the seat zone button in an off state when heated/vented seats are not active"
   }
  ]
 }

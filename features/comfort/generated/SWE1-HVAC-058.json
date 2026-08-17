@@ -25,7 +25,7 @@
    "tc_title": "Auto Comfort Settings options follow the HMI Settings List",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall follow the HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats (HVS6.)",
+   "test_item": "Refer to HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats.\n\n(The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel; read the options offered for the driver and for the passenger)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Auto Comfort Settings for the heated and vented seats\n2. Read the options offered for the driver and for the passenger",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示，**無 Auto Comfort Settings 之節**；本列為 BLOCKED row，其內容之定義不在本 spec 內，故 ch16 亦無對造句（R-C36-1 逐條之答為 `no`）"
-   }
+   },
+   "test_item_authored": "The system shall follow the HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats (HVS6.)"
   }
  ]
 }

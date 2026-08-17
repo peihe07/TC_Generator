@@ -102,6 +102,27 @@ def main() -> int:
     check(len(withheld) >= 1,
           "generators really do declare withheld leaves, so the gate is not "
           "scanning an empty set", f"{len(withheld)} declared")
+    # Pei 2026-08-17 — test_item 之兩段式。三向：改一個字、換一句、拿掉情境。
+    sample = sorted(L.CLAUSE_MAP)[0]
+    clause = L.CLAUSE_MAP[sample]
+    tampered = clause[:-1] + "X" if clause else "X"
+    check(tampered != clause and tampered not in L.CLAUSE_MAP.values(),
+          "a one-character change to the quoted clause is not equal to any "
+          "mapped clause — the verbatim check is byte-level, not fuzzy",
+          f"{sample}: …{clause[-24:]!r} vs …{tampered[-24:]!r}")
+    others = [c for t, c in L.CLAUSE_MAP.items() if c != clause]
+    check(bool(others) and clause not in others,
+          "the mapped clause of one TC is not silently shared with every "
+          "other TC (a map that returns the same string for everything would "
+          "pass the substring test and mean nothing)",
+          f"{len(set(L.CLAUSE_MAP.values()))} distinct clauses over "
+          f"{len(L.CLAUSE_MAP)} TCs")
+    no_sit = clause + "\n\n"
+    head, sep, tail = no_sit.partition("\n\n")
+    check(bool(sep) and not tail.strip().startswith("("),
+          "a test_item with the blank line but no `(…)` block is detected as "
+          "missing its situation", repr(no_sit[-8:]))
+
     # 89 §3 — the SR25 gate was narrowed so an approved external document may
     # carry SR25 in its own name. Both directions, because a narrowed gate is
     # only safe if the thing it was narrowed away from still fires.

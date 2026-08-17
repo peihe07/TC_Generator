@@ -25,7 +25,7 @@
    "tc_title": "RECIRC has an on and off state",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Recirc shall have an on/off state",
+   "test_item": "C4.) Recirc has on/ off state.\n\n(The climate screen is open and the climate system is on; press \"RECIRC\" again)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"RECIRC\" on the climate screen\n2. Press \"RECIRC\" again",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.4",
     "verdict": "yes",
     "ch16_sentence": "ICE3 之 RECIRC 側（鏡射表 partial：涵蓋 RECIRC 之 on/off 狀態）"
-   }
+   },
+   "test_item_authored": "Recirc shall have an on/off state"
   },
   {
    "req_id": "SWE1-HVAC-006-02",
@@ -50,7 +51,7 @@
    "tc_title": "RECIRC greys out when the CCM reports it unavailable",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "The system shall gray out the RECIRC button when the recirc availability status from CCM denotes that RECIRC is not available",
+   "test_item": "Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.\n\n(The climate screen is open and the climate system is on; read the \"RECIRC\" button on the climate screen)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the recirc availability status from the CCM to unavailable\n2. Read the \"RECIRC\" button on the climate screen",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.4",
     "verdict": "no",
     "ch16_sentence": "鏡射表之分界欄明載「未涵蓋：C4 之可用性灰化（gray out when recirc availability status from CCM denotes that）」"
-   }
+   },
+   "test_item_authored": "The system shall gray out the RECIRC button when the recirc availability status from CCM denotes that RECIRC is not available"
   },
   {
    "req_id": "SWE1-HVAC-006-03",
@@ -75,7 +77,7 @@
    "tc_title": "RECIRC turns A/C on automatically",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Recirc shall be able to automatically turn on AC",
+   "test_item": "Recirc can automatically turn on AC.\n\n(The climate screen is open and the climate system is on; turn \"RECIRC\" on and read the \"A/C\" button)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"A/C\" off and \"RECIRC\" off from the climate screen\n2. Turn \"RECIRC\" on and read the \"A/C\" button",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.4",
     "verdict": "no",
     "ch16_sentence": "鏡射表之分界欄明載「未涵蓋：… 與 recirc 可自動開啟 AC」"
-   }
+   },
+   "test_item_authored": "Recirc shall be able to automatically turn on AC"
   }
  ]
 }

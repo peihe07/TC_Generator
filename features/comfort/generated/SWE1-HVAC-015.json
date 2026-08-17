@@ -25,7 +25,7 @@
    "tc_title": "SYNC is highlighted on the climate screen when on",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "SYNC shall have an on/off state that is indicated on the climate screen by highlighting the button",
+   "test_item": "C12.) SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC).\n\n(The vehicle is not a single zone climate configuration; press \"SYNC\" again)",
    "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"SYNC\" on the climate screen\n2. Press \"SYNC\" again",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.11",
     "verdict": "yes",
     "ch16_sentence": "ICE10「SYNC has on/ off state that is indicated on climate screen (highlight button if SYNC)」逐字相同"
-   }
+   },
+   "test_item_authored": "SYNC shall have an on/off state that is indicated on the climate screen by highlighting the button"
   },
   {
    "req_id": "SWE1-HVAC-015-02",
@@ -50,7 +51,7 @@
    "tc_title": "Driver temperature drives passenger temperature when synced",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "When SYNC is on, changing the driver temperature shall automatically change the passenger temperature",
+   "test_item": "When SYNC is on, changing the driver temperature automatically changes the passenger temperature.\n\n(The vehicle is not a single zone climate configuration; change the driver temperature)",
    "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Change the driver temperature",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.11",
     "verdict": "yes",
     "ch16_sentence": "ICE10「When SYNC is on, changing the driver temperature automatically changes the passenger temperature」逐字相同"
-   }
+   },
+   "test_item_authored": "When SYNC is on, changing the driver temperature shall automatically change the passenger temperature"
   },
   {
    "req_id": "SWE1-HVAC-015-03",
@@ -75,7 +77,7 @@
    "tc_title": "Adjusting passenger temperature breaks SYNC",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Adjusting the passenger temperature via touchscreen or hard control shall break SYNC",
+   "test_item": "Adjusting the passenger temperature via touchscreen or hard control would break SYNC.\n\n(The vehicle is not a single zone climate configuration; change the passenger temperature)",
    "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Change the passenger temperature",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.11",
     "verdict": "yes",
     "ch16_sentence": "ICE10「Adjusting the passenger temperature via touchscreen or hard control would break SYNC」逐字相同"
-   }
+   },
+   "test_item_authored": "Adjusting the passenger temperature via touchscreen or hard control shall break SYNC"
   },
   {
    "req_id": "SWE1-HVAC-015-04",
@@ -100,7 +103,7 @@
    "tc_title": "Fan speed and Mode adjustments alter front and rear passengers",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Adjusting Fan speed and Mode shall alter the Front and Rear passengers (C12.)",
+   "test_item": "Adjusting Fan speed and Mode will alter the Front and Rear passengers.\n\n(The vehicle is not a single zone climate configuration; The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate; change the airflow mode from the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Change the fan speed from the climate screen\n3. Change the airflow mode from the climate screen",
@@ -117,7 +120,8 @@
     "ch16_outline": "16.11",
     "verdict": "yes",
     "ch16_sentence": "ICE10 與 C12 逐字相同"
-   }
+   },
+   "test_item_authored": "Adjusting Fan speed and Mode shall alter the Front and Rear passengers (C12.)"
   },
   {
    "req_id": "SWE1-HVAC-015-05",
@@ -125,7 +129,7 @@
    "tc_title": "Rear climate adjustment breaks SYNC",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Adjusting the rear fan speed, mode or temperature from the touchscreen or the rear climate controls shall break SYNC and turn it off (C12.)",
+   "test_item": "If the rear fan speed, mode, or temp are adjust from either the touchscreen or rear climate controls will break SYNC and turn it off.\n\n(The vehicle is not a single zone climate configuration; The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate; change the rear fan speed from the rear climate controls)",
    "pre_conditions": "1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n2. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Change the rear fan speed from the rear climate controls",
@@ -142,7 +146,8 @@
     "ch16_outline": "16.11",
     "verdict": "yes",
     "ch16_sentence": "ICE10 與 C12 逐字相同"
-   }
+   },
+   "test_item_authored": "Adjusting the rear fan speed, mode or temperature from the touchscreen or the rear climate controls shall break SYNC and turn it off (C12.)"
   }
  ]
 }

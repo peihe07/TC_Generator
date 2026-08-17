@@ -25,7 +25,7 @@
    "tc_title": "Climate off shows the CLIMATE OFF screen",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "When the system is turned off the system shall show the CLIMATE OFF screen with the OFF button turned into an ON button",
+   "test_item": "When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost.\n\n(The climate screen is open and the climate system is on; read the power button)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the power button",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button」逐字相同"
-   }
+   },
+   "test_item_authored": "When the system is turned off the system shall show the CLIMATE OFF screen with the OFF button turned into an ON button"
   },
   {
    "req_id": "SWE1-HVAC-014-02",
@@ -50,7 +51,7 @@
    "tc_title": "Only the defrost buttons stay available while climate is off",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "The system shall grey out the remaining buttons except for Front/max defrost and rear defrost",
+   "test_item": "When the system is turned off, show the CLIMATE OFF screen with the OFF button turned into an ON button and grey out remaining buttons except for Front/max defrost and rear defrost.\n\n(The climate screen is open and the climate system is on; The vehicle is equipped with MAX DEF (3.2) and with rear defrost, which is absent on some soft top vehicles; read the remaining climate buttons)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle is equipped with MAX DEF (3.2) and with rear defrost, which is absent on some soft top vehicles (3.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the \"MAX DEF\" and \"REAR DEFROST\" buttons\n3. Read the remaining climate buttons",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「grey out remaining buttons except for Front/Max defrost and rear defrost」逐字相同"
-   }
+   },
+   "test_item_authored": "The system shall grey out the remaining buttons except for Front/max defrost and rear defrost"
   },
   {
    "req_id": "SWE1-HVAC-014-03",
@@ -75,7 +77,7 @@
    "tc_title": "Category button shows fan greyed and OFF in place of the mode",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "The category button shall show the fan greyed out and the mode oscar replaced with \"OFF\" until the user turns it back on",
+   "test_item": "Category button shows fan greyed out and mode oscar replaced with \"OFF\" which will remain until the user turns it back on.\n\n(The climate screen is open and the climate system is on; read the category button)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the category button",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「The Main category control shows fan speed segments off and mode Oscar replaced with \"OFF\"」"
-   }
+   },
+   "test_item_authored": "The category button shall show the fan greyed out and the mode oscar replaced with \"OFF\" until the user turns it back on"
   },
   {
    "req_id": "SWE1-HVAC-014-04",
@@ -100,7 +103,7 @@
    "tc_title": "Status bar shows dashes while climate is off",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Temperatures and units in the status bar shall be substituted by dashes in all modes when climate is off",
+   "test_item": "Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off.\n\n(The climate screen is open and the climate system is on; read the status bar)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Read the status bar",
@@ -117,7 +120,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「Temperatures and units (°F/C) in status bar are substituted by dashes in all modes when climate is off」逐字相同"
-   }
+   },
+   "test_item_authored": "Temperatures and units in the status bar shall be substituted by dashes in all modes when climate is off"
   },
   {
    "req_id": "SWE1-HVAC-014-05",
@@ -125,7 +129,7 @@
    "tc_title": "A temp or fan control turns climate back on at its last level",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "If a user presses a temp/fan control to turn climate back on, the system shall reinstate the last level of that feature",
+   "test_item": "If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel).\n\n(The climate screen is open and the climate system is on; press the fan speed hard control up)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed, then turn the climate system off using the climate power button on the climate screen\n2. Press the fan speed hard control up",
@@ -142,7 +146,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「If a user presses a temp/fan hard control to turn climate back on, the system reinstates to the last level of that feature」"
-   }
+   },
+   "test_item_authored": "If a user presses a temp/fan control to turn climate back on, the system shall reinstate the last level of that feature"
   },
   {
    "req_id": "SWE1-HVAC-014-06",
@@ -150,7 +155,7 @@
    "tc_title": "Holding the control keeps changing the level in kind",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "If the user continues to hold or turn the control, the system shall respond in-kind",
+   "test_item": "If the user continues to hold/turn the control, the system will respond in-kind.\n\n(The climate screen is open and the climate system is on; press and hold the fan speed hard control up)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Press and hold the fan speed hard control up",
@@ -167,7 +172,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「If the user continues to hold/turn the control, the system will respond in-kind」逐字相同"
-   }
+   },
+   "test_item_authored": "If the user continues to hold or turn the control, the system shall respond in-kind"
   }
  ]
 }

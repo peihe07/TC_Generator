@@ -29,7 +29,7 @@
    "tc_title": "AUTO ECO deselects the airflow modes",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "When AUTO ECO is on, the system shall deselect airflow modes as in standard AUTO mode",
+   "test_item": "EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; press the AUTO button until the AUTO ECO mode is active)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Select an airflow mode on the climate screen\n2. Press the AUTO button until the AUTO ECO mode is active",
@@ -41,7 +41,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When AUTO ECO is on, the system shall deselect airflow modes as in standard AUTO mode"
   },
   {
    "req_id": "SWE1-HVAC-049-02",
@@ -49,7 +50,7 @@
    "tc_title": "Fan speed indication denotes AUTO ECO is active",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "When AUTO ECO is on, the fan speed indication shall denote that AUTO ECO is active",
+   "test_item": "EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; read the fan speed indication on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Read the fan speed indication on the climate screen",
@@ -61,7 +62,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When AUTO ECO is on, the fan speed indication shall denote that AUTO ECO is active"
   }
  ]
 }

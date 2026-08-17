@@ -30,7 +30,7 @@
    "tc_title": "Fan range runs Off to 7 and shows AUTO when in AUTO",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "Fan ranges shall be Off, 1-7, denoting to show the AUTO label instead when in AUTO",
+   "test_item": "ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).\n\n(turn AUTO on)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Adjust the fan speed across its whole range on the climate screen\n2. Turn AUTO on",
@@ -42,7 +42,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Fan ranges shall be Off, 1-7, denoting to show the AUTO label instead when in AUTO"
   },
   {
    "req_id": "SWE1-HVAC-112-02",
@@ -50,7 +51,7 @@
    "tc_title": "Fan status shows on the screen and category control",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The fan status shall be indicated on the TS climate screen and in the main category control",
+   "test_item": "The status is indicated on TS climate screen and in main category control.\n\n(read the main category control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Change the fan speed on the climate screen\n3. Read the main category control",
@@ -62,7 +63,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The fan status shall be indicated on the TS climate screen and in the main category control"
   },
   {
    "req_id": "SWE1-HVAC-112-03",
@@ -70,7 +72,7 @@
    "tc_title": "Fan pop-up appears off the climate screen",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The system shall show a pop-up when the status is changed via hard control and the currently shown screen is not the climate screen",
+   "test_item": "Show pop-up when status is changed via hard control and currently shown screen is not climate screen.\n\n(change the fan speed using the fan speed hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than the climate screen\n2. Change the fan speed using the fan speed hard control",
@@ -82,7 +84,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The system shall show a pop-up when the status is changed via hard control and the currently shown screen is not the climate screen"
   },
   {
    "req_id": "SWE1-HVAC-112-04",
@@ -90,7 +93,7 @@
    "tc_title": "The fan up button increases the fan speed",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control",
+   "test_item": "When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(press the fan up button on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Press the fan up button on the climate screen",
@@ -102,7 +105,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」—— 故一觸發一條。四條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control"
   },
   {
    "req_id": "SWE1-HVAC-112-04",
@@ -110,7 +114,7 @@
    "tc_title": "Touching a fan segment jumps the fan speed to it",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control",
+   "test_item": "When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(touch a fan segment on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Touch a fan segment on the climate screen",
@@ -122,7 +126,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」—— 故一觸發一條。四條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control"
   },
   {
    "req_id": "SWE1-HVAC-112-04",
@@ -130,7 +135,7 @@
    "tc_title": "Sliding across the fan segments follows the slide",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control",
+   "test_item": "When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(slide across the fan segments on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Slide across the fan segments on the climate screen",
@@ -142,7 +147,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」—— 故一觸發一條。四條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control"
   },
   {
    "req_id": "SWE1-HVAC-112-04",
@@ -150,7 +156,7 @@
    "tc_title": "The fan hard control changes the fan speed",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control",
+   "test_item": "When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(change the fan speed using the fan speed hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Change the fan speed using the fan speed hard control",
@@ -162,7 +168,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」—— 故一觸發一條。四條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When on the climate screen, the user shall be able to use the Fan up/down buttons, directly touch a fan segment to jump, or slide, or use the Hard Control"
   },
   {
    "req_id": "SWE1-HVAC-112-05",
@@ -170,7 +177,7 @@
    "tc_title": "The screen fan controls cannot turn the fan off",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and the only way to have all FAN bars grayed out shall be by shutting the CLIMATE system OFF",
+   "test_item": "The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).\n\n(press the fan down button on the climate screen repeatedly until the fan speed stops decreasing)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Press the fan down button on the climate screen repeatedly until the fan speed stops decreasing",
@@ -182,7 +189,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control」—— 故一觸發一條。兩個控制面各自可失效；其唯一例外（關閉 CLIMATE 系統）由同節之另一句所述，見 `112-05` 之第三步原為該例外。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and the only way to have all FAN bars grayed out shall be by shutting the CLIMATE system OFF"
   },
   {
    "req_id": "SWE1-HVAC-112-05",
@@ -190,7 +198,7 @@
    "tc_title": "The fan hard control cannot turn the fan off",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and the only way to have all FAN bars grayed out shall be by shutting the CLIMATE system OFF",
+   "test_item": "The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).\n\n(turn the fan speed hard control down repeatedly until the fan speed stops decreasing)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Turn the fan speed hard control down repeatedly until the fan speed stops decreasing",
@@ -202,7 +210,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control」—— 故一觸發一條。兩個控制面各自可失效；其唯一例外（關閉 CLIMATE 系統）由同節之另一句所述，見 `112-05` 之第三步原為該例外。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and the only way to have all FAN bars grayed out shall be by shutting the CLIMATE system OFF"
   }
  ]
 }

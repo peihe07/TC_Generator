@@ -32,7 +32,7 @@
    "tc_title": "The Face mode button toggles independently",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "On vehicles with Tri-Mode climate, each of the three airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen shall be pressable to individually toggle that mode ON / OFF",
+   "test_item": "C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.\n\n(The vehicle is equipped with Tri-Mode climate; press the \"Face\" mode button again)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Tri-Mode climate (3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Tri-Mode Climate screen\n2. Press the \"Face\" mode button\n3. Press the \"Face\" mode button again",
@@ -44,7 +44,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「there are 3 airflow mode buttons (Windshield, Face, Feet) … Each Mode button can be pressed to individually toggle ON / OFF」—— 故一觸發一條。三個鍵各自可失效，且條文明寫 `Each … individually`。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "On vehicles with Tri-Mode climate, each of the three airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen shall be pressable to individually toggle that mode ON / OFF"
   },
   {
    "req_id": "SWE1-HVAC-023-01",
@@ -52,7 +53,7 @@
    "tc_title": "The Feet mode button toggles independently",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "On vehicles with Tri-Mode climate, each of the three airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen shall be pressable to individually toggle that mode ON / OFF",
+   "test_item": "C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.\n\n(The vehicle is equipped with Tri-Mode climate; press the \"Feet\" mode button again)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Tri-Mode climate (3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Tri-Mode Climate screen\n2. Press the \"Feet\" mode button\n3. Press the \"Feet\" mode button again",
@@ -64,7 +65,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「there are 3 airflow mode buttons (Windshield, Face, Feet) … Each Mode button can be pressed to individually toggle ON / OFF」—— 故一觸發一條。三個鍵各自可失效，且條文明寫 `Each … individually`。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "On vehicles with Tri-Mode climate, each of the three airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen shall be pressable to individually toggle that mode ON / OFF"
   },
   {
    "req_id": "SWE1-HVAC-023-01",
@@ -72,7 +74,7 @@
    "tc_title": "The Windshield mode button toggles independently",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "On vehicles with Tri-Mode climate, each of the three airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen shall be pressable to individually toggle that mode ON / OFF",
+   "test_item": "C19) Tri-Mode Climate: On vehicles with Tri-Mode climate, there are 3 airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen.\n\n(The vehicle is equipped with Tri-Mode climate; press the \"Windshield\" mode button again)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Tri-Mode climate (3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Tri-Mode Climate screen\n2. Press the \"Windshield\" mode button\n3. Press the \"Windshield\" mode button again",
@@ -84,7 +86,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「there are 3 airflow mode buttons (Windshield, Face, Feet) … Each Mode button can be pressed to individually toggle ON / OFF」—— 故一觸發一條。三個鍵各自可失效，且條文明寫 `Each … individually`。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "On vehicles with Tri-Mode climate, each of the three airflow mode buttons (Windshield, Face, Feet) on the Tri-Mode Climate screen shall be pressable to individually toggle that mode ON / OFF"
   },
   {
    "req_id": "SWE1-HVAC-023-02",
@@ -92,7 +95,7 @@
    "tc_title": "MODE hard control cycles the airflow combinations in order",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "On vehicles with Tri-Mode climate, pressing the hard control MODE button shall cycle through all MODE combinations in the order Face, Face & Feet, Feet, Windshield & Feet, Windshield, Windshield & Face, Windshield & Face & Feet, and shall loop at the end of each cycle",
+   "test_item": "Pressing the hard control MODE button will cycle through all MODE combinations (repeating the process so it loops at the end of each cycle).\n\n(The vehicle is equipped with Tri-Mode climate; The vehicle has a hard control MODE button; press the hard control MODE button)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Tri-Mode climate (3.1)\n2. [spec-derived] The vehicle has a hard control MODE button (3.1)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the hard control MODE button repeatedly until the Face mode alone is active\n2. Press the hard control MODE button\n3. Press the hard control MODE button\n4. Press the hard control MODE button\n5. Press the hard control MODE button\n6. Press the hard control MODE button\n7. Press the hard control MODE button\n8. Press the hard control MODE button",
@@ -104,7 +107,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "On vehicles with Tri-Mode climate, pressing the hard control MODE button shall cycle through all MODE combinations in the order Face, Face & Feet, Feet, Windshield & Feet, Windshield, Windshield & Face, Windshield & Face & Feet, and shall loop at the end of each cycle"
   },
   {
    "req_id": "SWE1-HVAC-023-03",
@@ -112,7 +116,7 @@
    "tc_title": "Toggling the MODE control up moves forward in the order",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "If the MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT), toggling UP (or RIGHT) shall move forward in the order of airflow mode combinations and toggling DOWN (or LEFT) shall move backwards through the cycle",
+   "test_item": "Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle.\n\n(The vehicle is equipped with Tri-Mode climate; The MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT); toggle the MODE control UP (or RIGHT))",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Tri-Mode climate (3.1)\n2. [spec-derived] The MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT) (3.1)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Toggle the MODE control repeatedly until the Face mode alone is active\n2. Toggle the MODE control UP (or RIGHT)\n3. Toggle the MODE control UP (or RIGHT)",
@@ -124,7 +128,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle」—— 故一觸發一條。兩個方向各自可失效：向前正確而向後跳兩格，是一種失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT), toggling UP (or RIGHT) shall move forward in the order of airflow mode combinations and toggling DOWN (or LEFT) shall move backwards through the cycle"
   },
   {
    "req_id": "SWE1-HVAC-023-03",
@@ -132,7 +137,7 @@
    "tc_title": "Toggling the MODE control down moves backwards in the order",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "If the MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT), toggling UP (or RIGHT) shall move forward in the order of airflow mode combinations and toggling DOWN (or LEFT) shall move backwards through the cycle",
+   "test_item": "Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle.\n\n(The vehicle is equipped with Tri-Mode climate; The MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT); toggle the MODE control DOWN (or LEFT))",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Tri-Mode climate (3.1)\n2. [spec-derived] The MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT) (3.1)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Toggle the MODE control repeatedly until the Feet mode alone is active\n2. Toggle the MODE control DOWN (or LEFT)\n3. Toggle the MODE control DOWN (or LEFT)",
@@ -144,7 +149,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Toggling UP (or RIGHT) moves forward in the order and toggling DOWN (or LEFT) moves backwards through the cycle」—— 故一觸發一條。兩個方向各自可失效：向前正確而向後跳兩格，是一種失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the MODE button is a multi-directional toggle or a hard control that allows 2 controls (UP/DOWN or RIGHT/LEFT), toggling UP (or RIGHT) shall move forward in the order of airflow mode combinations and toggling DOWN (or LEFT) shall move backwards through the cycle"
   }
  ]
 }

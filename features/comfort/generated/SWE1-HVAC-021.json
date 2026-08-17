@@ -25,7 +25,7 @@
    "tc_title": "Exterior mirror defrost has an on and off state",
    "test_group": "Comfort",
    "test_set": "Airflow and Defrost",
-   "test_item": "EXTERIOR REAR-VIEW MIRROR DEFROST shall have an on/off state",
+   "test_item": "C16.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.\n\n(The climate screen is open and the climate system is on; turn the exterior rear-view mirror defrost off)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the exterior rear-view mirror defrost on\n2. Turn the exterior rear-view mirror defrost off",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.15",
     "verdict": "yes",
     "ch16_sentence": "ICE14「EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state」逐字相同（鏡射表記 16.15 ↔ 2.15 mirrored）"
-   }
+   },
+   "test_item_authored": "EXTERIOR REAR-VIEW MIRROR DEFROST shall have an on/off state"
   },
   {
    "req_id": "SWE1-HVAC-021-02",
@@ -50,7 +51,7 @@
    "tc_title": "Exterior mirror defrost is independent of the other climate functions",
    "test_group": "Comfort",
    "test_set": "Airflow and Defrost",
-   "test_item": "EXTERIOR REAR-VIEW MIRROR DEFROST shall be independent of any other climate functions",
+   "test_item": "EXTERIOR REAR-VIEW MIRROR DEFROST is independent of any other climate functions.\n\n(The climate screen is open and the climate system is on; turn the climate system off and read the exterior rear-view mirror defrost state)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the exterior rear-view mirror defrost on\n2. Turn AUTO on and read the exterior rear-view mirror defrost state\n3. Turn the climate system off and read the exterior rear-view mirror defrost state",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.15",
     "verdict": "no",
     "ch16_sentence": "**ICE14 僅一句**（on/off 狀態），**不含 C16 之「is independent of any other climate functions」** —— 本條所驗者於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "EXTERIOR REAR-VIEW MIRROR DEFROST shall be independent of any other climate functions"
   }
  ]
 }

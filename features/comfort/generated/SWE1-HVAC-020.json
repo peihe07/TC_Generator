@@ -33,7 +33,7 @@
    "tc_title": "MTC shows no discrete temperature setting",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "MTC climate shall be differentiated from ATC by the lack of discrete temperature settings",
+   "test_item": "MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature.\n\n(read the temperature control on the climate screen)",
    "pre_conditions": "1. [spec-derived] The climate system is MTC (2.14)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the temperature control on the climate screen",
@@ -51,7 +51,8 @@
     "ch16_outline": "16.14",
     "verdict": "yes",
     "ch16_sentence": "ICE13「MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings」"
-   }
+   },
+   "test_item_authored": "MTC climate shall be differentiated from ATC by the lack of discrete temperature settings"
   },
   {
    "req_id": "SWE1-HVAC-020-02",
@@ -59,7 +60,7 @@
    "tc_title": "MTC offers no Auto control over the set temperature",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "MTC climate shall be differentiated from ATC by the lack of \"Auto\" control over the set temperature",
+   "test_item": "MTC climate is primarily differentiated from ATC by the lack of discrete temperature settings and \"Auto\" control over the set temperature.\n\n(read the climate screen for an \"Auto\" control over the set temperature)",
    "pre_conditions": "1. [spec-derived] The climate system is MTC (2.14)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the climate screen for an \"Auto\" control over the set temperature",
@@ -77,7 +78,8 @@
     "ch16_outline": "16.14",
     "verdict": "yes",
     "ch16_sentence": "同句之「and \"Auto\" control over the set temperature」"
-   }
+   },
+   "test_item_authored": "MTC climate shall be differentiated from ATC by the lack of \"Auto\" control over the set temperature"
   },
   {
    "req_id": "SWE1-HVAC-020-03",
@@ -85,7 +87,7 @@
    "tc_title": "Screen offers no redundant interaction with the 3 knob controls",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "For MTC with ICS, there shall be no redundant interaction with the screen for 3 knob HVAC controls, in order to prevent a mismatch between the soft and hard controls",
+   "test_item": "For MTC with ICS, there will be no redundant interaction with the screen for certain types of physical knobs (3 knob HVAC controls) in order to prevent a mismatch between the soft and hard controls.\n\n(read the head unit menu for an HVAC interaction that duplicates the 3 knob HVAC controls)",
    "pre_conditions": "1. [spec-derived] The climate system is MTC (2.14)\n2. [spec-derived] The vehicle has 3 knob HVAC controls with ICS (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the head unit menu\n2. Read the head unit menu for an HVAC interaction that duplicates the 3 knob HVAC controls",
@@ -103,7 +105,8 @@
     "ch16_outline": "16.14",
     "verdict": "no",
     "ch16_sentence": "**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「螢幕無重複互動之機制」於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "For MTC with ICS, there shall be no redundant interaction with the screen for 3 knob HVAC controls, in order to prevent a mismatch between the soft and hard controls"
   },
   {
    "req_id": "SWE1-HVAC-020-04",
@@ -111,7 +114,7 @@
    "tc_title": "No HVAC icons screens or pop-ups with 3 knob ICS controls",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "For MTC with ICS and 3 knob HVAC controls, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups shall be displayed",
+   "test_item": "In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed.\n\n(change the temperature using the HVAC knob)",
    "pre_conditions": "1. [spec-derived] The climate system is MTC (2.14)\n2. [spec-derived] The vehicle has 3 knob HVAC controls with ICS (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the head unit menu\n2. Read the menu bar for HVAC icons\n3. Change the temperature using the HVAC knob",
@@ -129,7 +132,8 @@
     "ch16_outline": "16.14",
     "verdict": "no",
     "ch16_sentence": "**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「三項 HVAC UI 不顯示」於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "For MTC with ICS and 3 knob HVAC controls, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups shall be displayed"
   },
   {
    "req_id": "SWE1-HVAC-020-04",
@@ -137,7 +141,7 @@
    "tc_title": "HVAC UI is shown for one zone MTC with push button temperature",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "For one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls, the exception shall not apply, and the HVAC menu bar icons, screens and pop ups shall be displayed",
+   "test_item": "In these cases, no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed.\n\n(change the temperature using the push button TEMPERATURE hard control)",
    "pre_conditions": "1. [spec-derived] The climate system is MTC (2.14)\n2. [spec-derived] The vehicle is one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the head unit menu\n2. Read the menu bar for HVAC icons\n3. Change the temperature using the push button TEMPERATURE hard control",
@@ -155,7 +159,8 @@
     "ch16_outline": "16.14",
     "verdict": "no",
     "ch16_sentence": "**ICE13 僅兩句**（MTC screens/popups 之使用時機、與 ATC 之差異），**完全不含 C15 之 3 旋鈕 ICS 段落** —— 本條所驗之「單區 MTC 附 push button TEMPERATURE 之例外」於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "For one zone MTC with push button TEMPERATURE and hard controls that would not create a mismatch between hard controls, the exception shall not apply, and the HVAC menu bar icons, screens and pop ups shall be displayed"
   }
  ]
 }

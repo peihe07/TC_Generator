@@ -25,7 +25,7 @@
    "tc_title": "The vehicle offers a dual AUTO mode for each side",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "The system shall provide dual AUTO modes, one for the driver side and one for the passenger side",
+   "test_item": "C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.\n\n(Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes; read the AUTO controls)",
    "pre_conditions": "1. [spec-verbatim] Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes (2.3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the AUTO controls",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（dual AUTO 配置）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
-   }
+   },
+   "test_item_authored": "The system shall provide dual AUTO modes, one for the driver side and one for the passenger side"
   },
   {
    "req_id": "SWE1-HVAC-004-02",
@@ -50,7 +51,7 @@
    "tc_title": "The AUTO indicators are displayed separately for each side",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "The system shall display the AUTO indicators separately for each side",
+   "test_item": "C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.\n\n(Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes; read the driver and passenger AUTO indicators)",
    "pre_conditions": "1. [spec-verbatim] Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes (2.3.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the driver side AUTO on\n2. Read the driver and passenger AUTO indicators",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節無對應句 —— 本節之主體（dual AUTO 配置）於 ch16 全章無任何陳述；EMEA 排除依 R-C36-1 逐條答為 `no`"
-   }
+   },
+   "test_item_authored": "The system shall display the AUTO indicators separately for each side"
   }
  ]
 }

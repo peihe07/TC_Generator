@@ -48,6 +48,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from test_item import apply_test_item   # Pei 2026-08-17 —— 上半照抄條文、下半情境
 from splits import apply_splits   # 76 §2 — 依 75 §1（今併入 R-C44 第一問）之列舉判準拆分
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -568,7 +569,7 @@ def main() -> None:
             "distinguishing_axis": {"axis": "see per-TC titles", "delta": ""},
             "assumptions": [],
             "interface_axis_review": INTERFACE_AXIS_REVIEW[o],
-            "tcs": apply_splits(tcs),
+            "tcs": apply_test_item(apply_splits(tcs)),
         }
         (OUT / f"{b['parent']}.json").write_text(
             json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")

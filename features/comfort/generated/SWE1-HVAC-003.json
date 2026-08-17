@@ -25,7 +25,7 @@
    "tc_title": "AUTO shows on the indicator and the fan speed area",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "AUTO shall have an on/off state, and the fan speed indicator shall show Auto instead of the actual fan speed",
+   "test_item": "The fan speed indicator shows Auto instead of the actual fan speed (this is based on fan speed of 15h rather than the status of AUTO).\n\n(The vehicle has an ATC climate system; read the fan speed indicator)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Read the fan speed indicator",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「AUTO has on/ off state. The fan speed indicator shows Auto instead of the actual fan speed」"
-   }
+   },
+   "test_item_authored": "AUTO shall have an on/off state, and the fan speed indicator shall show Auto instead of the actual fan speed"
   },
   {
    "req_id": "SWE1-HVAC-003-02",
@@ -50,7 +51,7 @@
    "tc_title": "Main category control shows Auto with mode and fan greyed",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "The main category control shall display Auto with the Mode Man and Fan speed greyed out behind it",
+   "test_item": "The main category control is dynamic, and will display Auto with the Mode Man and Fan speed greyed out behind it.\n\n(The vehicle has an ATC climate system; read the main category control)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Read the main category control",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「The main category control will display Auto with the Mode Man and Fan speed greyed out behind it」"
-   }
+   },
+   "test_item_authored": "The main category control shall display Auto with the Mode Man and Fan speed greyed out behind it"
   },
   {
    "req_id": "SWE1-HVAC-003-03",
@@ -75,7 +77,7 @@
    "tc_title": "AUTO drives fan speed modes and A/C",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "AUTO shall affect Fan speed, Modes and AC in order to reach the desired temperature as quickly as possible",
+   "test_item": "AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.\n\n(The vehicle has an ATC climate system; turn AUTO on and read the fan speed and the airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set a fan speed and an airflow mode from the climate screen with AUTO off\n2. Turn AUTO on and read the fan speed and the airflow mode",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible」"
-   }
+   },
+   "test_item_authored": "AUTO shall affect Fan speed, Modes and AC in order to reach the desired temperature as quickly as possible"
   },
   {
    "req_id": "SWE1-HVAC-003-04",
@@ -100,7 +103,7 @@
    "tc_title": "AUTO is mutually exclusive with airflow modes and front defrost",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "AUTO shall be mutually exclusive with the four airflow modes and front defrost, and if Auto is turned on those buttons and statuses shall be turned off",
+   "test_item": "Auto is mutually exclusive with the four airflow modes and front defrost.\n\n(The vehicle has an ATC climate system; turn AUTO on)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select an airflow mode and turn front defrost on from the climate screen\n2. Turn AUTO on",
@@ -117,7 +120,8 @@
     "ch16_outline": "16.3",
     "verdict": "no",
     "ch16_sentence": "**ICE2 之互斥對象為 MAX A/C 與 MAX DEF**（「Auto is mutually exclusive with MAX A/C and MAX DEF」），**不含四氣流模式與 front defrost** —— 本條所驗者於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "AUTO shall be mutually exclusive with the four airflow modes and front defrost, and if Auto is turned on those buttons and statuses shall be turned off"
   },
   {
    "req_id": "SWE1-HVAC-003-05",
@@ -125,7 +129,7 @@
    "tc_title": "AUTO changes A/C without showing the change",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Auto shall be able to change the state of AC, and the system shall not show this change",
+   "test_item": "Auto can change the state of AC, but do not show this change.\n\n(The vehicle has an ATC climate system; turn AUTO on and read the \"A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the state of the \"A/C\" button on the climate screen with AUTO off\n2. Turn AUTO on and read the \"A/C\" button",
@@ -142,7 +146,8 @@
     "ch16_outline": "16.3",
     "verdict": "no",
     "ch16_sentence": "**ICE2 無 C2 之「Auto can change the state of AC, but do not show this change」一句** —— ICE2 改寫為「In Auto the A/C button is highlighted」，語意相反，於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "Auto shall be able to change the state of AC, and the system shall not show this change"
   },
   {
    "req_id": "SWE1-HVAC-003-06",
@@ -150,7 +155,7 @@
    "tc_title": "Pressing A/C breaks AUTO",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Manually selecting A/C, switching to another airflow mode including front defrost, or changing fan speeds shall break Auto",
+   "test_item": "Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.\n\n(The vehicle has an ATC climate system; press \"A/C\")",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Press \"A/C\"",
@@ -167,7 +172,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「Manually changing airflow mode, or changing fan speeds breaks Auto」（惟 ICE2 之 A/C 分支相異，見 `-131` 之判定）"
-   }
+   },
+   "test_item_authored": "Manually selecting A/C, switching to another airflow mode including front defrost, or changing fan speeds shall break Auto"
   },
   {
    "req_id": "SWE1-HVAC-003-06",
@@ -175,7 +181,7 @@
    "tc_title": "Selecting another airflow mode breaks AUTO",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Manually selecting A/C, switching to another airflow mode including front defrost, or changing fan speeds shall break Auto",
+   "test_item": "Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.\n\n(The vehicle has an ATC climate system; select another airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Select another airflow mode",
@@ -192,7 +198,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「Manually changing airflow mode, or changing fan speeds breaks Auto」（惟 ICE2 之 A/C 分支相異，見 `-131` 之判定）"
-   }
+   },
+   "test_item_authored": "Manually selecting A/C, switching to another airflow mode including front defrost, or changing fan speeds shall break Auto"
   },
   {
    "req_id": "SWE1-HVAC-003-06",
@@ -200,7 +207,7 @@
    "tc_title": "Changing the fan speed breaks AUTO",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Manually selecting A/C, switching to another airflow mode including front defrost, or changing fan speeds shall break Auto",
+   "test_item": "Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.\n\n(The vehicle has an ATC climate system; change the fan speed)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Change the fan speed",
@@ -217,7 +224,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「Manually changing airflow mode, or changing fan speeds breaks Auto」（惟 ICE2 之 A/C 分支相異，見 `-131` 之判定）"
-   }
+   },
+   "test_item_authored": "Manually selecting A/C, switching to another airflow mode including front defrost, or changing fan speeds shall break Auto"
   },
   {
    "req_id": "SWE1-HVAC-003-07",
@@ -225,7 +233,7 @@
    "tc_title": "Pressing a mode button while in AUTO goes to that mode",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "When breaking Auto the system shall go to the mode button that is pressed",
+   "test_item": "When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.\n\n(The vehicle has an ATC climate system; press the \"Feet\" airflow mode button)",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Press the \"Feet\" airflow mode button",
@@ -242,7 +250,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「unless a specific mode button is pressed, in which case the system would go to that mode」"
-   }
+   },
+   "test_item_authored": "When breaking Auto the system shall go to the mode button that is pressed"
   },
   {
    "req_id": "SWE1-HVAC-003-08",
@@ -250,7 +259,7 @@
    "tc_title": "Other climate controls do not break AUTO",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Any other climate controls shall NOT break Auto",
+   "test_item": "Any other climate controls do NOT break Auto.\n\n(The vehicle has an ATC climate system; press \"REAR DEFROST\")",
    "pre_conditions": "1. [spec-derived] The vehicle has an ATC climate system, in which AUTO is shown (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Press \"REAR DEFROST\"",
@@ -267,7 +276,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「Any other climate controls do NOT break Auto」"
-   }
+   },
+   "test_item_authored": "Any other climate controls shall NOT break Auto"
   },
   {
    "req_id": "SWE1-HVAC-003-09",
@@ -275,7 +285,7 @@
    "tc_title": "AUTO is not shown on MTC vehicles",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "AUTO shall not be shown in MTC configurations",
+   "test_item": "(AUTO is not shown in MTC configurations)\n\n(The vehicle is in an MTC configuration; read the climate screen for an \"AUTO\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is in an MTC configuration (2.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the climate screen for an \"AUTO\" button",
@@ -292,7 +302,8 @@
     "ch16_outline": "16.3",
     "verdict": "yes",
     "ch16_sentence": "ICE2「(AUTO is not shown in MTC configurations)」逐字相同"
-   }
+   },
+   "test_item_authored": "AUTO shall not be shown in MTC configurations"
   }
  ]
 }

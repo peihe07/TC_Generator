@@ -29,7 +29,7 @@
    "tc_title": "Only one airflow mode is active at a time",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "Only one airflow mode shall be selected at a time",
+   "test_item": "Only one airflow mode can be selected at a time.\n\n(select the Feet airflow mode and read the mode buttons)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the Face airflow mode on the climate screen\n2. Select the Feet airflow mode and read the mode buttons",
@@ -41,7 +41,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Only one airflow mode shall be selected at a time"
   },
   {
    "req_id": "SWE1-HVAC-117-02",
@@ -49,7 +50,7 @@
    "tc_title": "The selected mode button is highlighted and enlarged",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "The ON state shall be shown by highlighting the button and increasing button size",
+   "test_item": "ON state for the four airflow modes is shown by highlighting the button and increasing button size.\n\n(select the Feet airflow mode and read that button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the size and highlight of the Feet airflow mode button\n2. Select the Feet airflow mode and read that button",
@@ -61,7 +62,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The ON state shall be shown by highlighting the button and increasing button size"
   },
   {
    "req_id": "SWE1-HVAC-117-03",
@@ -69,7 +71,7 @@
    "tc_title": "Main category control shows the newly selected mode",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "The main category control shall display the newly selected airflow mode inside the fan space",
+   "test_item": "The main category control will display the newly selected airflow mode inside the fan space .\n\n(read the main category control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the Feet airflow mode on the climate screen\n2. Read the main category control",
@@ -81,7 +83,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The main category control shall display the newly selected airflow mode inside the fan space"
   }
  ]
 }

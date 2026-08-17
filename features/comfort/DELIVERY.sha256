@@ -993,6 +993,7 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
 # 輸出
 0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_extdocs.xlsx
+#   archived : output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_extdocs.xlsx  （hash 與內容未變，見文末「歸檔後之可驗路徑」）
 
 # ENTRY 027 — 2026-08-17 — 交付前之備妥與其對象之確認（下放包 84 §2）
 #
@@ -1108,6 +1109,91 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 # 交付夾內之交付說明（路徑在客戶樹下，不納入本檔之 shasum -c 對象）
 #   71ac5a94c481e2ddf971157d…  <交付夾>/Comfort_HMI_delivery_note.md
 
+# ENTRY 030 — 2026-08-17 — 第二十二次寫回：J 欄去標籤 ＋ I 欄兩段式（Pei 2026-08-17）
+#
+#   type : produced
+#   操作 : features/comfort/scripts/write_back.py --write
+#   來源 : ENTRY 022 之擴充後母本（6d53056e559bd0c1…）
+#   內容 : row 10–443，共 **434 列**（語料筆數未變，變的是兩個欄之內容）
+#   結構 : 48 zip members，僅 xl/worksheets/sheet6.xml 差異；DV counts 與來源相同
+#
+#   **本輪之三項改動**（Pei 2026-08-17，下放包 94 及其後續）:
+#     一、**J 欄移除 source class 標籤**（`[spec-verbatim]`／`[spec-derived]`／
+#        `[test-setup]`／`[ext-verbatim]`）。**JSON 保留**（R-C28 第一問之依據），
+#        僅寫入路徑移除（`write_back.render`）。**節次括號保留** —— 那是條文
+#        出處，非我方語彙。實測：JSON 434/434 帶標籤，工作簿 0 格帶標籤。
+#     二、**I 欄上半改為條文原文逐字照抄** —— 原為改寫（`The system shall …`）。
+#        其單位為**該 leaf 對應之那一句**（Pei 選定）。對應表
+#        `data/leaf_clause_sentence.tsv`（434 列）由 `scripts/clause_map.py`
+#        產出，**434/434 經驗證為該節 full_text 之連續子字串**。
+#     三、**I 欄下半括號改為該條 TC 之情境**（配置條件 ＋ 觸發步驟）。
+#        037 把同一句切成多個 leaf 者（14.19 之 8 條、16.13 與 16.8 各 6 條），
+#        **上半相同而下半各異 —— 那正是下半存在的理由**。
+#
+#   驗證 : §3.1 前置 gate 6 項全 PASS（BASELINE 11 OK、DELIVERY 驗過 68／
+#          已知不存在 1／問題 0、lint **55 / 55 PASS across 434 TCs**、
+#          tc_id 001–434 連續無缺號）
+#          §3.3 assertion **15 項全數 PASS**（14 項照舊 ＋ 新增
+#          `no-source-class-in-workbook`：J 欄 434 格逐格掃描，0 命中）
+#
+#   gate 之異動 : `item-modal` **退場** —— 照抄之句不可能被要求帶 `shall`；
+#          改為 `test-item-verbatim`（逐字等於對應表之句，且為該節全文之
+#          連續子字串）與 `test-item-situation`（須有空行 ＋ `(…)`）。
+#          三向反向驗證已加入 `verify_b_gates.py`（改一個字／與他條共用同一句／
+#          缺情境）。lint 自 54 道增為 **55 道**。
+#
+#   狀態 : **未經 Excel 確認** —— 待 Pei 之四項（profile §0.1）。
+#          **本檔尚未交付**：交付夾內仍為 ENTRY 026 之 `03663159…`。
+#
+#   附帶 : ENTRY 028 之 corpus-divergence 於本輪**消解** —— 該差異為 `-382` 之
+#          N 欄版本名，本輪之全量重寫已帶入 SR25。惟其消解要到本檔交付後才成立。
+#
+#   未做 : 不複製至客戶交付路徑；prepared 檔與 ext 母本未動；
+#          ENTRY 001–029 之內容未變動；git 未執行。
+#
+# 輸入基準（ENTRY 022 之擴充後母本）
+6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
+# 輸出
+97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemfmt.xlsx
+
+# ENTRY 031 — 2026-08-17 — **交付（第二版）**：I/J 兩欄改版之工作簿與交付說明
+#
+#   type : delivered
+#   交付日 : 2026-08-17（Pei 指示「確認覆蓋過去」；複製由執行層執行，
+#            **移除舊檔未執行** —— 見下「一項未竟」）
+#   目的地 : /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
+#            ASW-R2/Climate Control Interface/ComfortHMI/
+#
+#   交付物之實測（於交付夾內逐位元組取 hash）:
+#     工作簿 …_SWQT_Comfort_20260817_itemfmt.xlsx  175,236 bytes
+#            97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb
+#            **與 ENTRY 030 所記相符**
+#     交付說明 Comfort_HMI_delivery_note.md  6,551 bytes
+#            122b666ccee342ff…（其 Workbook 一行已改指本版檔名）
+#
+#   內容摘要 : 434 列；383 / 403 個驗證單位；marker 列 4 條
+#              本版之差異：J 欄去 source class 標籤、I 欄改兩段式
+#              （上半照抄條文原句、下半該條 TC 之情境）
+#
+#   **一項未竟**：前一版之工作簿
+#     `…_SWQT_Comfort_20260816_extdocs.xlsx`（170,047 bytes，03663159…）
+#     **仍在交付夾內**。客戶樹之移除屬 Tier 3（Pei），本層不自行刪除。
+#     **故夾內現有兩份工作簿**，而交付說明指向 20260817 之版本 ——
+#     **待 Pei 移除舊檔，移除後本層唯讀驗證並登一筆記其取代。**
+#
+#   ENTRY 028 之 corpus-divergence : **至此消解** —— 該差異為 `-382` 之 N 欄
+#     版本名（SR24 vs SR25），本版已帶入 SR25 且已交付。
+#
+#   **未經 Excel 四項確認之交付**：Pei 於 2026-08-17 指示逕行覆蓋。
+#     profile §0.1 之四項確認對本版**未執行**，此記於此，
+#     使日後不被讀成「確認過才送的」。
+#
+#   未做 : 未移除交付夾任何檔案；未改 ENTRY 001–030 之內容；git 由 Pei 指示執行。
+#
+# 交付夾內之交付物（路徑在客戶樹下，不納入本檔之 shasum -c 對象）
+#   97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb  <交付夾>/…_Comfort_20260817_itemfmt.xlsx
+#   122b666ccee342ff…                                                  <交付夾>/Comfort_HMI_delivery_note.md
+
 # ============================================================
 # 已知不存在（下放包 83 §2，2026-08-17）
 #
@@ -1176,3 +1262,5 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 重存後之位元組（歸檔）
 8d17cecae6ccf9c522b0427d273c200d5a45e05c4b2e7da68c7b73917954e73f  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816.xlsx
+
+0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_extdocs.xlsx

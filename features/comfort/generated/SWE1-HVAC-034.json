@@ -29,7 +29,7 @@
    "tc_title": "Turning the rear climate off shows the REAR CLIMATE OFF screen",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall REAR CLIMATE OFF screen displayed",
+   "test_item": "When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.\n\n(The rear climate screen is open and the climate system is on; read the screen)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the rear climate off on the rear climate screen\n2. Read the screen",
@@ -46,7 +46,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall REAR CLIMATE OFF screen displayed"
   },
   {
    "req_id": "SWE1-HVAC-034-02",
@@ -54,7 +55,7 @@
    "tc_title": "The REAR OFF button becomes a REAR ON button",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall REAR OFF button becomes REAR ON",
+   "test_item": "When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.\n\n(The rear climate screen is open and the climate system is on; read the button)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the button while the rear climate is on\n2. Press \"REAR OFF\"\n3. Read the button",
@@ -71,7 +72,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall REAR OFF button becomes REAR ON"
   },
   {
    "req_id": "SWE1-HVAC-034-03",
@@ -79,7 +81,7 @@
    "tc_title": "The other rear climate buttons are blanked except rear lock and front climate",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall other rear climate buttons blanked except rear lock and front climate",
+   "test_item": "When the rear climate system is turned off, show the REAR CLIMATE OFF screen with the REAR OFF button turned into an REAR ON button and blank other rear climate buttons except rear lock and front climate.\n\n(The rear climate screen is open and the climate system is on; read the rear climate buttons)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the rear climate off\n2. Read the rear climate buttons",
@@ -96,7 +98,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall other rear climate buttons blanked except rear lock and front climate"
   },
   {
    "req_id": "SWE1-HVAC-034-04",
@@ -104,7 +107,7 @@
    "tc_title": "Turning the front climate off shows the front climate off screen",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall transition to front climate off screen if front climate OFF",
+   "test_item": "If the user turns off the front climate while the head unit is showing the rear climate screen, transition to the front climate off screen with the REAR CLIMATE button blanked.\n\n(The rear climate screen is open and the climate system is on; read the REAR CLIMATE button)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the rear climate screen\n2. Turn the front climate off\n3. Read the REAR CLIMATE button",
@@ -121,7 +124,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall transition to front climate off screen if front climate OFF"
   },
   {
    "req_id": "SWE1-HVAC-034-05",
@@ -129,7 +133,7 @@
    "tc_title": "The rear climate is unavailable while the front climate is off",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall rear climate unavailable when front climate OFF",
+   "test_item": "Rear climate is unavailable when front climate is off.\n\n(The rear climate screen is open and the climate system is on; attempt to operate the rear climate)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the front climate off\n2. Attempt to operate the rear climate",
@@ -146,7 +150,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall rear climate unavailable when front climate OFF"
   }
  ]
 }

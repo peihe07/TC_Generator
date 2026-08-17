@@ -31,7 +31,7 @@
    "tc_title": "Rear defrost button is absent when the vehicle has no rear defrost",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "For soft top vehicles such as JL/JT, when configured, the rear defrost button shall not appear when not present in the vehicle",
+   "test_item": "C22.) For soft top vehicles such as JL/JT, when configured, the rear defrost button will not appear when not present in the vehicle.\n\n(The vehicle is a soft top vehicle, such as JL/JT; Rear defrost is not present in the vehicle; read the climate screen for the rear defrost button)",
    "pre_conditions": "1. [spec-derived] The vehicle is a soft top vehicle, such as JL/JT (3.4)\n2. [spec-derived] Rear defrost is not present in the vehicle (3.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the climate screen for the rear defrost button",
@@ -43,7 +43,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "For soft top vehicles such as JL/JT, when configured, the rear defrost button shall not appear when not present in the vehicle"
   }
  ]
 }

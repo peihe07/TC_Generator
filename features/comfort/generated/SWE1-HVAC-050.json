@@ -29,7 +29,7 @@
    "tc_title": "AUTO setting survives an ignition cycle",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "HVAC AUTO shall keep the selected setting through ignition cycles",
+   "test_item": "EH7.) HVAC AUTO shall keep the selected setting through ignition cycles.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; read the AUTO state on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Run an ignition cycle\n3. Read the AUTO state on the climate screen",
@@ -41,7 +41,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "HVAC AUTO shall keep the selected setting through ignition cycles"
   }
  ]
 }

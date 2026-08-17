@@ -28,7 +28,7 @@
    "tc_title": "Exterior mirror defrost has an on and off state",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "EXTERIOR REAR-VIEW MIRROR DEFROST shall have an on/off state",
+   "test_item": "ICE14.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off state.\n\n(turn the exterior rear-view mirror defrost off)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the exterior rear-view mirror defrost on\n2. Turn the exterior rear-view mirror defrost off",
@@ -40,7 +40,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "EXTERIOR REAR-VIEW MIRROR DEFROST shall have an on/off state"
   },
   {
    "req_id": "SWE1-HVAC-121-02",
@@ -48,7 +49,7 @@
    "tc_title": "Exterior mirror defrost is independent of the other climate functions",
    "test_group": "Comfort",
    "test_set": "ICS Airflow and Defrost",
-   "test_item": "EXTERIOR REAR-VIEW MIRROR DEFROST shall be independent of any other climate functions",
+   "test_item": "EXTERIOR REAR-VIEWMIRROR DEFROST is independent of any other climate functions.\n\n(turn the climate system off and read the exterior rear-view mirror defrost state)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the exterior rear-view mirror defrost on\n2. Turn AUTO on and read the exterior rear-view mirror defrost state\n3. Turn the climate system off and read the exterior rear-view mirror defrost state",
@@ -60,7 +61,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "EXTERIOR REAR-VIEW MIRROR DEFROST shall be independent of any other climate functions"
   }
  ]
 }

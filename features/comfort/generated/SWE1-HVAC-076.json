@@ -32,7 +32,7 @@
    "tc_title": "Seats tab opens on the lower screen when it is not stowed",
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
-   "test_item": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, the system shall switch the tab on the lower screen to the Seats tab",
+   "test_item": "LS1.) When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, switch the tab on the lower screen to the Seats tab.\n\n(The vehicle is equipped with a lower screen that provides seat controls; The door control carries the seat control (-, +) buttons for lumbar and bolster; The lower screen is not in the stowed position; press \"-\" on the door seat control)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lower screen is not in the stowed position (13.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Note which tab is currently shown on the lower screen\n2. Press \"-\" on the door seat control",
@@ -44,7 +44,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, the system shall switch the tab on the lower screen to the Seats tab"
   },
   {
    "req_id": "SWE1-HVAC-076-02",
@@ -52,7 +53,7 @@
    "tc_title": "Seat Control Popup appears on the head unit when the lower screen is stowed",
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
-   "test_item": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is in the stowed position, the system shall display the Seat Control Popup on the head unit, and the popup shall time out after 5 seconds of not interaction",
+   "test_item": "If the lower screen is in the stowed position, display the Seat Control Popup on the head unit (popup times out after 5 seconds of not interaction).\n\n(The vehicle is equipped with a lower screen that provides seat controls; The door control carries the seat control (-, +) buttons for lumbar and bolster; The lower screen is in the stowed position; The user is not in the climate section on the main head unit; do not interact with the head unit for 5 seconds)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lower screen is in the stowed position (13.2)\n4. [spec-derived] The user is not in the climate section on the main head unit (13.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"-\" on the door seat control\n2. Do not interact with the head unit for 5 seconds",
@@ -64,7 +65,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is in the stowed position, the system shall display the Seat Control Popup on the head unit, and the popup shall time out after 5 seconds of not interaction"
   },
   {
    "req_id": "SWE1-HVAC-076-03",
@@ -72,7 +74,7 @@
    "tc_title": "Seats tab is opened when the user is already in the climate section",
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
-   "test_item": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is in the stowed position and the user is already in the climate section on the main head unit, the system shall switch the user to the Seats tab",
+   "test_item": "LS1.) When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is not in the stowed position, switch the tab on the lower screen to the Seats tab.\n\n(The vehicle is equipped with a lower screen that provides seat controls; The door control carries the seat control (-, +) buttons for lumbar and bolster; The lower screen is in the stowed position; The user is already in the climate section on the main head unit; press \"-\" on the door seat control)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lower screen is in the stowed position (13.2)\n4. [spec-derived] The user is already in the climate section on the main head unit (13.2)\n5. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n6. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note which tab is currently shown in the climate section on the head unit\n2. Press \"-\" on the door seat control",
@@ -84,7 +86,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the (-, +) seat control buttons are pressed from the door control for lumbar & bolster, if the lower screen is in the stowed position and the user is already in the climate section on the main head unit, the system shall switch the user to the Seats tab"
   }
  ]
 }

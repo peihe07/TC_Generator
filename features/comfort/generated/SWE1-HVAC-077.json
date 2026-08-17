@@ -30,7 +30,7 @@
    "tc_title": "Four lumbar and bolster adjustment types are available",
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
-   "test_item": "The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster",
+   "test_item": "LS1.1) The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster.\n\n(The vehicle is equipped with a lower screen that provides seat controls; read the list of lumbar and bolster adjustment types offered on the Seats tab)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Seats tab\n2. Read the list of lumbar and bolster adjustment types offered on the Seats tab",
@@ -42,7 +42,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The 4 types of adjustments the user will be able to alter for lumbar/bolster will be: Lumbar In/Out, Lumbar Up/Down, Back Bolster, Thigh Bolster"
   }
  ]
 }

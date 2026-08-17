@@ -33,7 +33,7 @@
    "tc_title": "Temperature shows on the climate screen and the status bar",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "For ATC systems, the temperature shall display the current degree value that the user has set it to, indicated on the TS climate screen and in the status bar",
+   "test_item": "Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The climate system is ATC; read the temperature in the status bar)",
    "pre_conditions": "1. [spec-derived] The climate system is ATC (2.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Set the temperature to a degree value within the range\n3. Read the temperature in the status bar",
@@ -51,7 +51,8 @@
     "ch16_outline": "16.6",
     "verdict": "yes",
     "ch16_sentence": "ICE5「Temperature will display the current degree value the user has set it to for ATC systems」＋「The status is indicated on TS climate screen and in status bar」"
-   }
+   },
+   "test_item_authored": "For ATC systems, the temperature shall display the current degree value that the user has set it to, indicated on the TS climate screen and in the status bar"
   },
   {
    "req_id": "SWE1-HVAC-008-02",
@@ -59,7 +60,7 @@
    "tc_title": "HI replaces the degree value at the highest position",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "When at the highest possible position the system shall display HI, and when at the lowest it shall display LO, instead of a degree value",
+   "test_item": "Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The climate system is ATC; read the temperature on the climate screen)",
    "pre_conditions": "1. [spec-derived] The climate system is ATC (2.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the temperature to the highest possible position\n2. Read the temperature on the climate screen",
@@ -77,7 +78,8 @@
     "ch16_outline": "16.6",
     "verdict": "yes",
     "ch16_sentence": "ICE5「when at the Highest possible position display HI when at the lowest display LO instead of a degree value」"
-   }
+   },
+   "test_item_authored": "When at the highest possible position the system shall display HI, and when at the lowest it shall display LO, instead of a degree value"
   },
   {
    "req_id": "SWE1-HVAC-008-02",
@@ -85,7 +87,7 @@
    "tc_title": "LO replaces the degree value at the lowest position",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "When at the highest possible position the system shall display HI, and when at the lowest it shall display LO, instead of a degree value",
+   "test_item": "Temperature will display the current degree value that the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The climate system is ATC; read the temperature on the climate screen)",
    "pre_conditions": "1. [spec-derived] The climate system is ATC (2.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the temperature to the lowest position\n2. Read the temperature on the climate screen",
@@ -103,7 +105,8 @@
     "ch16_outline": "16.6",
     "verdict": "yes",
     "ch16_sentence": "ICE5「when at the Highest possible position display HI when at the lowest display LO instead of a degree value」"
-   }
+   },
+   "test_item_authored": "When at the highest possible position the system shall display HI, and when at the lowest it shall display LO, instead of a degree value"
   },
   {
    "req_id": "SWE1-HVAC-008-03",
@@ -111,7 +114,7 @@
    "tc_title": "Metric readout switches to half degree increments",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "When the user sets the climate system temperature ranges to Metric, the readout shall switch to half degree increments",
+   "test_item": "When the user sets the climate system temperature ranges to Metric the readout switches to half degree increments.\n\n(The climate system is ATC; change the temperature by one increment)",
    "pre_conditions": "1. [spec-derived] The climate system is ATC (2.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the climate system temperature ranges to Metric\n2. Change the temperature by one increment",
@@ -129,7 +132,8 @@
     "ch16_outline": "16.6",
     "verdict": "yes",
     "ch16_sentence": "ICE5「When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments」"
-   }
+   },
+   "test_item_authored": "When the user sets the climate system temperature ranges to Metric, the readout shall switch to half degree increments"
   },
   {
    "req_id": "SWE1-HVAC-008-04",
@@ -137,7 +141,7 @@
    "tc_title": "Temperature pop-up appears off the climate screen",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The system shall show a pop-up when the status is changed via hard control and the currently shown screen is not the climate screen",
+   "test_item": "Show pop-up when status is changed via hard control and currently shown screen is not climate screen.\n\n(The climate system is ATC; change the temperature using the temperature hard control)",
    "pre_conditions": "1. [spec-derived] The climate system is ATC (2.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than the climate screen\n2. Change the temperature using the temperature hard control",
@@ -155,7 +159,8 @@
     "ch16_outline": "16.6",
     "verdict": "yes",
     "ch16_sentence": "ICE5「Show pop-up when status is changed via hard control and currently shown screen is not climate screen」"
-   }
+   },
+   "test_item_authored": "The system shall show a pop-up when the status is changed via hard control and the currently shown screen is not the climate screen"
   },
   {
    "req_id": "SWE1-HVAC-008-05",
@@ -163,7 +168,7 @@
    "tc_title": "Slider status bar and pop-ups follow the increment change",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The temperature within the temp slider, status bar, temp slider popup, and temp popup shall reflect the change in temperature increments",
+   "test_item": "The temperature within the temp slider, status bar, temp slider popup, and temp popup will reflect this change in temperature increments.\n\n(The climate system is ATC; touch the temp slider and read the temp slider popup)",
    "pre_conditions": "1. [spec-derived] The climate system is ATC (2.6)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the climate system temperature ranges to Metric\n2. Read the temperature in the temp slider and in the status bar\n3. Touch the temp slider and read the temp slider popup",
@@ -181,7 +186,8 @@
     "ch16_outline": "16.6",
     "verdict": "yes",
     "ch16_sentence": "ICE5「The temperature within the temp slider, status bar, temp slider popup, and temp popup will reflect this change in temperature increments」"
-   }
+   },
+   "test_item_authored": "The temperature within the temp slider, status bar, temp slider popup, and temp popup shall reflect the change in temperature increments"
   }
  ]
 }

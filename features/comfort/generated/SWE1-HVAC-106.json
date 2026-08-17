@@ -31,7 +31,7 @@
    "tc_title": "Hard control changes are reflected on the ICS climate screen",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "Whenever changes to the climate system are made via hard controls or touchscreen, these changes shall be reflected in both locations",
+   "test_item": "ICE1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations with the exception of the recirculation led in climate off (see ICE11.).\n\n(change the fan speed using the fan speed hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Change the fan speed using the fan speed hard control",
@@ -43,7 +43,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Whenever changes to the climate system are made via hard controls or touchscreen, these changes shall be reflected in both locations"
   },
   {
    "req_id": "SWE1-HVAC-106-02",
@@ -51,7 +52,7 @@
    "tc_title": "Recirculation LED change is not reflected while climate is off",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "Changes shall be reflected in both locations with the exception of the recirculation LED in climate off",
+   "test_item": "ICE1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations with the exception of the recirculation led in climate off (see ICE11.).\n\n(press the recirculation hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Press the recirculation hard control",
@@ -63,7 +64,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Changes shall be reflected in both locations with the exception of the recirculation LED in climate off"
   },
   {
    "req_id": "SWE1-HVAC-106-03",
@@ -71,7 +73,7 @@
    "tc_title": "Fan pop-up appears off the climate screen and times out",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "According pop-ups shall be shown if NOT on climate screen (timeout after 3 sec)",
+   "test_item": "Whenever fan speed or temperature hard controls are used (even if at highest/lowest setting), according pop-ups are shown if NOT on climate screen (timeout after 3 sec), and changes are reflected in status bar/ status indicator on category button.\n\n(wait 3 seconds without further interaction)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than the climate screen\n2. Change the fan speed using the fan speed hard control\n3. Wait 3 seconds without further interaction",
@@ -83,7 +85,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "According pop-ups shall be shown if NOT on climate screen (timeout after 3 sec)"
   },
   {
    "req_id": "SWE1-HVAC-106-04",
@@ -91,7 +94,7 @@
    "tc_title": "No passenger slider pop-up while synced",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "When sync'd, the system shall not show the slider pop-up on the passenger side when adjusting the driver slider",
+   "test_item": "When sync'd, do not show slider pop-up on passenger side when adjusting driver slider.\n\n(The vehicle is not a single zone climate configuration; adjust the driver temperature slider)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on from the climate screen\n2. Adjust the driver temperature slider",
@@ -103,7 +106,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When sync'd, the system shall not show the slider pop-up on the passenger side when adjusting the driver slider"
   },
   {
    "req_id": "SWE1-HVAC-106-05",
@@ -111,7 +115,7 @@
    "tc_title": "Temperature pop-up comes down from the status bar",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up shall be shown coming down from that temperature in the status bar",
+   "test_item": "If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.\n\n(change the temperature using the temperature hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen outside the climate main category\n2. Change the temperature using the temperature hard control",
@@ -123,7 +127,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up shall be shown coming down from that temperature in the status bar"
   },
   {
    "req_id": "SWE1-HVAC-106-06",
@@ -131,7 +136,7 @@
    "tc_title": "ATC pop-up displays the degree being set",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "For ATC the pop-up shall display the degree (or half degree increments for Celsius) being set",
+   "test_item": "If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.\n\n(change the temperature using the temperature hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle has an ATC climate system (16.2)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the temperature units to Celsius and open a screen outside the climate main category\n2. Change the temperature using the temperature hard control",
@@ -143,7 +148,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "For ATC the pop-up shall display the degree (or half degree increments for Celsius) being set"
   },
   {
    "req_id": "SWE1-HVAC-106-07",
@@ -151,7 +157,7 @@
    "tc_title": "MTC pop-up displays a slider bar with an arrow",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "For MTC the pop-up shall display a slider bar with the arrow pointing to the current setting",
+   "test_item": "If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.\n\n(change the temperature using the temperature hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle has an MTC climate system (16.2)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen outside the climate main category\n2. Change the temperature using the temperature hard control",
@@ -163,7 +169,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "For MTC the pop-up shall display a slider bar with the arrow pointing to the current setting"
   },
   {
    "req_id": "SWE1-HVAC-106-08",
@@ -171,7 +178,7 @@
    "tc_title": "On the climate screen status is not shown in the status bar",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "If on climate screen, status changes shall be indicated directly on touchscreen buttons and on the status indicator on the category button, and shall not be shown in the status bar",
+   "test_item": "If on climate screen, status changes are indicated directly on touchscreen buttons / status indicator on category button and will not be shown in the status bar.\n\n(read the status bar)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Change the fan speed using the fan speed control on the climate screen\n3. Read the status bar",
@@ -183,7 +190,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If on climate screen, status changes shall be indicated directly on touchscreen buttons and on the status indicator on the category button, and shall not be shown in the status bar"
   },
   {
    "req_id": "SWE1-HVAC-106-09",
@@ -191,7 +199,7 @@
    "tc_title": "Hard control LEDs follow changes made on the screen",
    "test_group": "Comfort",
    "test_set": "ICS Anatomy",
-   "test_item": "If changes are made on climate screen, LEDs on hard controls shall reflect the new status",
+   "test_item": "If changes are made on climate screen, LEDs on hard controls reflect new status.\n\n(change the fan speed using the fan speed control on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the fan speed LED on the hard controls\n2. Change the fan speed using the fan speed control on the climate screen",
@@ -203,7 +211,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If changes are made on climate screen, LEDs on hard controls shall reflect the new status"
   }
  ]
 }

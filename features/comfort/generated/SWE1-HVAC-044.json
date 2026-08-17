@@ -30,7 +30,7 @@
    "tc_title": "ECO HVAC is selectable as an HVAC mode",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "ECO HVAC shall be an HVAC Mode, used on EV Vehicles only",
+   "test_item": "EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; press the AUTO button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Press the AUTO button",
@@ -42,7 +42,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "ECO HVAC shall be an HVAC Mode, used on EV Vehicles only"
   },
   {
    "req_id": "SWE1-HVAC-044-02",
@@ -50,7 +51,7 @@
    "tc_title": "ECO HVAC reduces climate system power consumption",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "The system shall reduce climate control system power consumption",
+   "test_item": "EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "",
@@ -62,7 +63,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "[BLOCKED-NON-HMI] Not an HMI-observable property — the requirement states a reduction in climate control system power consumption, which no Comfort HMI screen, pop-up or status indicator displays, and which no other document is stated to own. No test case in this delivery covers that property."
+   "remarks": "[BLOCKED-NON-HMI] Not an HMI-observable property — the requirement states a reduction in climate control system power consumption, which no Comfort HMI screen, pop-up or status indicator displays, and which no other document is stated to own. No test case in this delivery covers that property.",
+   "test_item_authored": "The system shall reduce climate control system power consumption"
   }
  ]
 }

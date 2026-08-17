@@ -30,7 +30,7 @@
    "tc_title": "Front HVAC fan range runs to 8 on vehicles configured for it",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "In some vehicles the fan speed ranges for front hvac shall be Off, 1-8",
+   "test_item": "C6.1) In some vehicles fan speed ranges for front hvac are: Off, 1-8.\n\n(The vehicle's front hvac fan speed range is Off, 1-8; read the number of fan segments on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle's front hvac fan speed range is Off, 1-8 (2.7.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Raise the fan speed until it stops increasing\n3. Read the number of fan segments on the climate screen",
@@ -48,7 +48,8 @@
     "ch16_outline": "16.7",
     "verdict": "no",
     "ch16_sentence": "**ICE6 只列「Fan ranges: Off, 1-7」** —— 本條所驗之 Off, 1-8 於 ch16 無對應句；鏡射表亦已將 2.7.1 記為 no-counterpart"
-   }
+   },
+   "test_item_authored": "In some vehicles the fan speed ranges for front hvac shall be Off, 1-8"
   }
  ]
 }

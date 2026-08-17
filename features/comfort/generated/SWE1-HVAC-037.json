@@ -28,7 +28,7 @@
    "tc_title": "Rear A/C has an on and off state",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall A/C have an on/off state",
+   "test_item": "CR9.) AC has on/ off state.\n\n(The rear climate screen is open and the climate system is on; turn the rear A/C off)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the rear A/C on\n2. Turn the rear A/C off",
@@ -45,7 +45,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall A/C have an on/off state"
   }
  ]
 }

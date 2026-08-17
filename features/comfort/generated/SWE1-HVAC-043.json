@@ -25,7 +25,7 @@
    "tc_title": "The rear climate shortcut button is labelled Rear",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall label the button «Rear»",
+   "test_item": "CR13.1.) The button label will read «Rear».\n\n(On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts; read the Rear Climate button label)",
    "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the driver side climate dropdown menu\n2. Read the Rear Climate button label",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
-   }
+   },
+   "test_item_authored": "The system shall label the button «Rear»"
   }
  ]
 }

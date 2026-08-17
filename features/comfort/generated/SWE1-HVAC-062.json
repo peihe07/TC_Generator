@@ -25,7 +25,7 @@
    "tc_title": "A press of the heated wheel button opens the popup and sets HI",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on a press of the heated steering wheel button open the popup and turn the wheel heat on HI, with the soft button highlighted red and the control displaying 3 arrows, HI and/or LEDs",
+   "test_item": "W1HVS2.) For Multi-Level Heated steering wheel, a press of the heated steering wheel button opens popup and turns the wheel heat on HI , the soft button highlights red and the control displays 3 arrows, HI and/or LEDs.\n\n(The vehicle has a Multi-Level heated steering wheel; The vehicle is not a front-climate-only vehicle; read the heated steering wheel button and its control)",
    "pre_conditions": "1. [spec-derived] The vehicle has a Multi-Level heated steering wheel (11.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the heated steering wheel button in the comfort section\n2. Read the heated steering wheel button and its control",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on a press of the heated steering wheel button open the popup and turn the wheel heat on HI, with the soft button highlighted red and the control displaying 3 arrows, HI and/or LEDs"
   },
   {
    "req_id": "SWE1-HVAC-062-02",
@@ -50,7 +51,7 @@
    "tc_title": "The second press sets the heated wheel to MED",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on the next press set the wheel to MED, the button remaining highlighted and displaying 2 arrows, MED and/or LEDs",
+   "test_item": "The next button press sets the wheel to MED, button remains highlighted and displays 2 arrows, MED and/or LEDs.\n\n(The vehicle has a Multi-Level heated steering wheel; The vehicle is not a front-climate-only vehicle; press the heated steering wheel button)",
    "pre_conditions": "1. [spec-derived] The vehicle has a Multi-Level heated steering wheel (11.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the heated steering wheel to HI\n2. Press the heated steering wheel button",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on the next press set the wheel to MED, the button remaining highlighted and displaying 2 arrows, MED and/or LEDs"
   },
   {
    "req_id": "SWE1-HVAC-062-03",
@@ -75,7 +77,7 @@
    "tc_title": "The third press sets the heated wheel to LO",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on the third press set the wheel to LO, the button remaining highlighted and displaying 1 arrow, LO and/or LED",
+   "test_item": "The third button press sets the wheel to LO, button remains highlighted and displays 1 arrow, LO and/or LED.\n\n(The vehicle has a Multi-Level heated steering wheel; The vehicle is not a front-climate-only vehicle; press the heated steering wheel button)",
    "pre_conditions": "1. [spec-derived] The vehicle has a Multi-Level heated steering wheel (11.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the heated steering wheel to MED\n2. Press the heated steering wheel button",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on the third press set the wheel to LO, the button remaining highlighted and displaying 1 arrow, LO and/or LED"
   },
   {
    "req_id": "SWE1-HVAC-062-04",
@@ -100,7 +103,7 @@
    "tc_title": "The next press turns the heated wheel off",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on the next press turn the heated wheel OFF, the button no longer highlighted and 3 arrows shown",
+   "test_item": "The next press, turns the heated wheel OFF, the button is no longer highlighted and 3 arrows are shown.\n\n(The vehicle has a Multi-Level heated steering wheel; The vehicle is not a front-climate-only vehicle; press the heated steering wheel button)",
    "pre_conditions": "1. [spec-derived] The vehicle has a Multi-Level heated steering wheel (11.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the heated steering wheel to LO\n2. Press the heated steering wheel button",
@@ -117,7 +120,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on the next press turn the heated wheel OFF, the button no longer highlighted and 3 arrows shown"
   }
  ]
 }

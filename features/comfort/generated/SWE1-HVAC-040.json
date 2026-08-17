@@ -25,7 +25,7 @@
    "tc_title": "The fan pop-up shows the front and rear level numbers",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up",
+   "test_item": "The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).\n\n(On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts; trigger the fan speed pop up using the hard controls)",
    "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the front and rear fan speeds to known level numbers\n2. Trigger the fan speed pop up using the hard controls",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
-   }
+   },
+   "test_item_authored": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up"
   },
   {
    "req_id": "SWE1-HVAC-040-01",
@@ -50,7 +51,7 @@
    "tc_title": "The fan pop-up shows AUTO for a fan in AUTO",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up",
+   "test_item": "The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).\n\n(On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts; trigger the fan speed pop up using the hard controls)",
    "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on for the front climate\n2. Trigger the fan speed pop up using the hard controls",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
-   }
+   },
+   "test_item_authored": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up"
   },
   {
    "req_id": "SWE1-HVAC-040-01",
@@ -75,7 +77,7 @@
    "tc_title": "The fan pop-up shows OFF for a fan that is off",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up",
+   "test_item": "The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).\n\n(On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts; trigger the fan speed pop up using the hard controls)",
    "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the rear climate off\n2. Trigger the fan speed pop up using the hard controls",
@@ -92,7 +94,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
-   }
+   },
+   "test_item_authored": "The system shall show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF) in the fan speed pop up"
   },
   {
    "req_id": "SWE1-HVAC-040-02",
@@ -100,7 +103,7 @@
    "tc_title": "The fan pop-up areas navigate to the front and rear tabs",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall on pressing the Front Fan area redirect the user to the Front climate tab, and on pressing the Rear fan area redirect the user to the Rear climate tab",
+   "test_item": "The pop up will be touch interactive: by pressing on the Front Fan area, the user will be redirected to the Front climate tab; by pressing on the Rear fan area, the user will be redirected to the Rear climate tab.\n\n(On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts; trigger the fan speed pop up and press the Rear fan area)",
    "pre_conditions": "1. [spec-verbatim] On some vehicles (See CFTS043 for details), there are additional Rear Climate controls and shortcuts (9.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Trigger the fan speed pop up and press the Front Fan area\n2. Trigger the fan speed pop up and press the Rear fan area",
@@ -117,7 +120,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節**無後排氣候之節**（DR #41 之實測），亦無 status bar dropdown 之後排捷徑，故本條之 EMEA 排除無 ch16 對造句可依"
-   }
+   },
+   "test_item_authored": "The system shall on pressing the Front Fan area redirect the user to the Front climate tab, and on pressing the Rear fan area redirect the user to the Rear climate tab"
   }
  ]
 }

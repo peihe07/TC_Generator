@@ -25,7 +25,7 @@
    "tc_title": "Seat zone icon toggles through its three states",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "Press of the seat zone icon shall toggle through the states of seat zone: both seat back and seat cushion, seat back only, seat cushion only",
+   "test_item": "Press of the icon will toggle through the states of seat zone from (1. both seat back and seat cushion, 2. Seat back only 3. Seat cushion only).\n\n(The vehicle is equipped with Comfort features; press the seat zone icon)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the seat zone icon until both seat back and seat cushion are active\n2. Press the seat zone icon\n3. Press the seat zone icon\n4. Press the seat zone icon",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "Press of the seat zone icon shall toggle through the states of seat zone: both seat back and seat cushion, seat back only, seat cushion only"
   },
   {
    "req_id": "SWE1-HVAC-101-02",
@@ -50,7 +51,7 @@
    "tc_title": "Seat zone icon carries the Zone label",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The seat zone icon shall be labelled as Zone",
+   "test_item": "Icon will be labelled as Zone .\n\n(The vehicle is equipped with Comfort features; read the seat zone icon label)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the comfort popup\n2. Read the seat zone icon label",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The seat zone icon shall be labelled as Zone"
   },
   {
    "req_id": "SWE1-HVAC-101-03",
@@ -75,7 +77,7 @@
    "tc_title": "Seat zone icon greys out when the seats are off",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The seat zone icon shall grey out if the heated and vented seats are off",
+   "test_item": "The icon will grey out if the heated and vented seats are off.\n\n(The vehicle is equipped with Comfort features; read the seat zone icon)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the heated and vented seats off\n2. Read the seat zone icon",
@@ -92,7 +94,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The seat zone icon shall grey out if the heated and vented seats are off"
   }
  ]
 }

@@ -30,7 +30,7 @@
    "tc_title": "Comfort widget has two screens",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Comfort widget shall have two screens",
+   "test_item": "W0.) The Comfort widget will have two screens: Comfort and Seats.\n\n(The Comfort widget is shown on the home screen; The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel; move through the Comfort widget screens until the first screen is shown again)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the home screen\n2. Move through the Comfort widget screens until the first screen is shown again",
@@ -47,7 +47,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Comfort widget shall have two screens"
   },
   {
    "req_id": "SWE1-HVAC-124-02",
@@ -55,7 +56,7 @@
    "tc_title": "First Comfort widget screen is Comfort",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The first of the two Comfort widget screens shall be Comfort",
+   "test_item": "W0.) The Comfort widget will have two screens: Comfort and Seats.\n\n(The Comfort widget is shown on the home screen; read the first Comfort widget screen)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the home screen\n2. Read the first Comfort widget screen",
@@ -72,7 +73,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The first of the two Comfort widget screens shall be Comfort"
   },
   {
    "req_id": "SWE1-HVAC-124-03",
@@ -80,7 +82,7 @@
    "tc_title": "Second Comfort widget screen is Seats",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The second of the two Comfort widget screens shall be Seats",
+   "test_item": "W0.) The Comfort widget will have two screens: Comfort and Seats.\n\n(The Comfort widget is shown on the home screen; The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel; move to the second Comfort widget screen)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the home screen\n2. Move to the second Comfort widget screen",
@@ -97,7 +99,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The second of the two Comfort widget screens shall be Seats"
   }
  ]
 }

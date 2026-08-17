@@ -31,7 +31,7 @@
    "tc_title": "The English temperature range runs LO, 60 to 84, HI",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "Temperature ranges shall be LO, 60-84, HI (English) and LO, 16-28, HI (Metric)",
+   "test_item": "ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric).\n\n(adjust the temperature across its whole range)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the temperature units to English and open the climate screen\n2. Adjust the temperature across its whole range",
@@ -43,7 +43,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric)」—— 故一觸發一條。兩個單位制為兩組不同之值域，其換算與顯示各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Temperature ranges shall be LO, 60-84, HI (English) and LO, 16-28, HI (Metric)"
   },
   {
    "req_id": "SWE1-HVAC-110-01",
@@ -51,7 +52,7 @@
    "tc_title": "The Metric temperature range runs LO, 16 to 28, HI",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "Temperature ranges shall be LO, 60-84, HI (English) and LO, 16-28, HI (Metric)",
+   "test_item": "ICE5.) Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric).\n\n(adjust the temperature across its whole range)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the temperature units to Metric and open the climate screen\n2. Adjust the temperature across its whole range",
@@ -63,7 +64,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Temperature ranges: LO, 60-84, HI (English), LO, 16-28, HI (Metric)」—— 故一觸發一條。兩個單位制為兩組不同之值域，其換算與顯示各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Temperature ranges shall be LO, 60-84, HI (English) and LO, 16-28, HI (Metric)"
   },
   {
    "req_id": "SWE1-HVAC-110-02",
@@ -71,7 +73,7 @@
    "tc_title": "HI and LO replace the degree value at the extremes",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When at the highest possible position the system shall display HI, and when at the lowest shall display LO, instead of a degree value",
+   "test_item": "Temperature will display the current degree value the user has set it to for ATC systems, when at the Highest possible position display HI when at the lowest display LO instead of a degree value.\n\n(The vehicle has an ATC climate system; adjust the temperature to its lowest position)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle has an ATC climate system (16.6)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Adjust the temperature to its highest position on the climate screen\n2. Adjust the temperature to its lowest position",
@@ -83,7 +85,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When at the highest possible position the system shall display HI, and when at the lowest shall display LO, instead of a degree value"
   },
   {
    "req_id": "SWE1-HVAC-110-03",
@@ -91,7 +94,7 @@
    "tc_title": "Temperature status shows on the screen and status bar",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The temperature status shall be indicated on the TS climate screen and in the status bar",
+   "test_item": "The status is indicated on TS climate screen and in status bar.\n\n(read the status bar)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Adjust the temperature on the climate screen\n3. Read the status bar",
@@ -103,7 +106,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The temperature status shall be indicated on the TS climate screen and in the status bar"
   },
   {
    "req_id": "SWE1-HVAC-110-04",
@@ -111,7 +115,7 @@
    "tc_title": "Temperature pop-up appears off the climate screen",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The system shall show a pop-up when the status is changed via hard control and the currently shown screen is not the climate screen",
+   "test_item": "Show pop-up when status is changed via hard control and currently shown screen is not climate screen.\n\n(change the temperature using the temperature hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than the climate screen\n2. Change the temperature using the temperature hard control",
@@ -123,7 +127,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The system shall show a pop-up when the status is changed via hard control and the currently shown screen is not the climate screen"
   },
   {
    "req_id": "SWE1-HVAC-110-05",
@@ -131,7 +136,7 @@
    "tc_title": "Metric switches every temperature readout to half degrees",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When the user sets the climate system temperature ranges to Metric, the temp slider, status bar, temp slider popup and temp popup shall reflect half degree increments",
+   "test_item": "When the user sets the climate system temperature ranges to Metric the CCM switches to half degree increments .\n\n(change the temperature using the temperature hard control from a screen other than the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the climate system temperature ranges to Metric\n2. Adjust the temperature using the temp slider and read the temp slider popup\n3. Read the status bar\n4. Change the temperature using the temperature hard control from a screen other than the climate screen",
@@ -143,7 +148,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When the user sets the climate system temperature ranges to Metric, the temp slider, status bar, temp slider popup and temp popup shall reflect half degree increments"
   },
   {
    "req_id": "SWE1-HVAC-110-06",
@@ -151,7 +157,7 @@
    "tc_title": "No passenger slider pop-up while synced",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "When sync'd, the system shall not show the slider pop-up on the passenger side when adjusting the driver slider",
+   "test_item": "(when sync'd, do not show slider pop-up on passenger side when adjusting driver slider).\n\n(The vehicle is not a single zone climate configuration; adjust the driver temperature slider)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on from the climate screen\n2. Adjust the driver temperature slider",
@@ -163,7 +169,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "When sync'd, the system shall not show the slider pop-up on the passenger side when adjusting the driver slider"
   }
  ]
 }

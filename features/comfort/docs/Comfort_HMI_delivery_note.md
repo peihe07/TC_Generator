@@ -3,7 +3,7 @@
 **Feature**: Comfort HMI (newR1L)
 **Requirement under test**: `SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)`
 **Analysis document**: `FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1`
-**Workbook**: `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_extdocs.xlsx`
+**Workbook**: `FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemfmt.xlsx`
 **Date**: 2026-08-17
 **Baseline**: the requirement baseline for this delivery is **SR24 CR24879
 (September 25 2023)**. The folder also contains an SR25 revision of the same

@@ -30,7 +30,7 @@
    "tc_title": "Comfort widget defaults to the Climate screen",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The default screen for the Comfort widget shall be the Climate screen",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; open the home screen)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Move the Comfort widget to its second screen and leave the home screen\n2. Open the home screen",
@@ -47,7 +47,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The default screen for the Comfort widget shall be the Climate screen"
   },
   {
    "req_id": "SWE1-HVAC-125-02",
@@ -55,7 +56,7 @@
    "tc_title": "Climate widget screen shows all its listed elements",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Climate screen of the Comfort widget shall include driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; The vehicle is equipped with MAX A/C; The vehicle is not a single zone climate configuration; read the Climate screen of the Comfort widget)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is equipped with MAX A/C, whose screens are used when CCM relays its presence (2.13)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n5. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n6. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the home screen\n2. Read the Climate screen of the Comfort widget",
@@ -72,7 +73,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Climate screen of the Comfort widget shall include driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes"
   },
   {
    "req_id": "SWE1-HVAC-125-03",
@@ -80,7 +82,7 @@
    "tc_title": "Widget shows driver and passenger temperature",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Climate screen of the Comfort widget shall include driver and passenger temperature controls",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; change the driver temperature from the Comfort widget)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the driver temperature on the Comfort widget\n2. Change the driver temperature from the Comfort widget",
@@ -97,7 +99,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Climate screen of the Comfort widget shall include driver and passenger temperature controls"
   },
   {
    "req_id": "SWE1-HVAC-125-04",
@@ -105,7 +108,7 @@
    "tc_title": "Widget shows the AUTO button",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Climate screen of the Comfort widget shall include the auto button",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; press the auto button on the Comfort widget)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Comfort widget for the auto button\n2. Press the auto button on the Comfort widget",
@@ -122,7 +125,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Climate screen of the Comfort widget shall include the auto button"
   },
   {
    "req_id": "SWE1-HVAC-125-05",
@@ -130,7 +134,7 @@
    "tc_title": "Widget shows the SYNC button",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Climate screen of the Comfort widget shall include the sync button",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; The vehicle is not a single zone climate configuration; press the sync button on the Comfort widget)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Comfort widget for the sync button\n2. Press the sync button on the Comfort widget",
@@ -147,7 +151,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Climate screen of the Comfort widget shall include the sync button"
   },
   {
    "req_id": "SWE1-HVAC-125-06",
@@ -155,7 +160,7 @@
    "tc_title": "Widget shows the Max A/C button",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Climate screen of the Comfort widget shall include Max A/C",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; The vehicle is equipped with MAX A/C; press the Max A/C button on the Comfort widget)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle is equipped with MAX A/C, whose screens are used when CCM relays its presence (2.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Comfort widget for the Max A/C button\n2. Press the Max A/C button on the Comfort widget",
@@ -172,7 +177,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Climate screen of the Comfort widget shall include Max A/C"
   },
   {
    "req_id": "SWE1-HVAC-125-07",
@@ -180,7 +186,7 @@
    "tc_title": "Widget shows the airflow modes",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The Climate screen of the Comfort widget shall include airflow modes",
+   "test_item": "CW1.) The default screen for the Comfort widget is the Climate screen and includes driver and passenger temperature, auto button, sync button, Max A/C, and airflow modes.\n\n(The Comfort widget is shown on the home screen; select an airflow mode on the Comfort widget)",
    "pre_conditions": "1. [test-setup] The Comfort widget is shown on the home screen\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Comfort widget for the airflow modes\n2. Select an airflow mode on the Comfort widget",
@@ -197,7 +203,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The Climate screen of the Comfort widget shall include airflow modes"
   },
   {
    "req_id": "SWE1-HVAC-125-08",
@@ -205,7 +212,7 @@
    "tc_title": "The 12 inch Portrait 50% widget also shows fan speed",
    "test_group": "Comfort",
    "test_set": "Home Screen Widget",
-   "test_item": "The system shall for the 12' Portrait 50% widget also display fan speed on the Climate screen of the Comfort widget",
+   "test_item": "12' Portrait 50% widget also includes fan speed.\n\n(12' Portrait 50% widget also includes fan speed; The Comfort widget is shown on the home screen; read the fan speed on the Comfort widget)",
    "pre_conditions": "1. [spec-verbatim] 12' Portrait 50% widget also includes fan speed (17.2)\n2. [test-setup] The Comfort widget is shown on the home screen\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the Climate screen of the Comfort widget\n2. Read the fan speed on the Comfort widget",
@@ -222,7 +229,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 widget 條文（`ch16_mirror_map.tsv` 之 ch17 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The system shall for the 12' Portrait 50% widget also display fan speed on the Climate screen of the Comfort widget"
   }
  ]
 }

@@ -29,7 +29,7 @@
    "tc_title": "Five climate controls each have an on and off state",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C, A/C, RECIRC, MAX DEF and REAR DEFROST shall have an on/off state",
+   "test_item": "ICE3.) MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state.\n\n(The system supports Max A/C; The vehicle is equipped with MAX DEF; The vehicle is equipped with rear defrost, which is absent on some soft top vehicles; press each of them again)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n4. [spec-derived] The vehicle is equipped with rear defrost, which is absent on some soft top vehicles (3.4)\n5. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n6. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press each of \"MAX A/C\", \"A/C\", \"RECIRC\", \"MAX DEF\" and \"REAR DEFROST\" on the climate screen\n2. Press each of them again",
@@ -41,7 +41,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C, A/C, RECIRC, MAX DEF and REAR DEFROST shall have an on/off state"
   }
  ]
 }

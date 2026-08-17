@@ -30,7 +30,7 @@
    "tc_title": "Automatic blower reduction is not shown to the user",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed shall not be displayed to the user",
+   "test_item": "C18.) If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed is not displayed to the user.\n\n(The vehicle supports Voice Recognition sessions that cause automatic blower reduction; start a Voice Recognition session that causes blower reduction)",
    "pre_conditions": "1. [spec-derived] The vehicle supports Voice Recognition sessions that cause automatic blower reduction (2.16)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen and read the fan speed\n2. Start a Voice Recognition session that causes blower reduction",
@@ -48,7 +48,8 @@
     "ch16_outline": "16.17",
     "verdict": "yes",
     "ch16_sentence": "16.17 全句「If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed is not displayed to the user」"
-   }
+   },
+   "test_item_authored": "If blower reduction occurs automatically due to an active Voice Recognition session, the change in fan speed shall not be displayed to the user"
   },
   {
    "req_id": "SWE1-HVAC-022-02",
@@ -56,7 +57,7 @@
    "tc_title": "Blower returns to the previous speed without showing a change",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "After blower reduction, the system shall return the blower speed to the previous speed without showing a change in fan speed",
+   "test_item": "After blower reduction, return blower speed to previous speed without showing a change in fan speed.\n\n(The vehicle supports Voice Recognition sessions that cause automatic blower reduction; end the Voice Recognition session)",
    "pre_conditions": "1. [spec-derived] The vehicle supports Voice Recognition sessions that cause automatic blower reduction (2.16)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Start a Voice Recognition session that causes blower reduction\n2. End the Voice Recognition session",
@@ -74,7 +75,8 @@
     "ch16_outline": "16.17",
     "verdict": "no",
     "ch16_sentence": "**16.17 僅一句**，**不含 C18 之第二句「After blower reduction, return blower speed to previous speed without showing a change in fan speed」** —— 本條所驗之回復行為於 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "After blower reduction, the system shall return the blower speed to the previous speed without showing a change in fan speed"
   }
  ]
 }

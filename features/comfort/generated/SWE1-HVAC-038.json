@@ -28,7 +28,7 @@
    "tc_title": "The rear driver side and rear passenger side have separate temperature controls",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall rear driver and passenger have separate temperature controls",
+   "test_item": "The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.\n\n(The vehicle is a 4 Zone Climate vehicle, which includes two temperature zones in the rear climate; read the rear temperature controls)",
    "pre_conditions": "1. [spec-derived] The vehicle is a 4 Zone Climate vehicle, which includes two temperature zones in the rear climate (7.10)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the rear climate screen\n2. Read the rear temperature controls",
@@ -45,7 +45,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall rear driver and passenger have separate temperature controls"
   },
   {
    "req_id": "SWE1-HVAC-038-02",
@@ -53,7 +54,7 @@
    "tc_title": "Each rear temperature slider adjusts its own zone",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall each slider adjusts respective zone",
+   "test_item": "The rear driver-side and rear-passenger side have separate temperature slider bars to control each respective TEMP zones.\n\n(The vehicle is a 4 Zone Climate vehicle, which includes two temperature zones in the rear climate; move the rear passenger-side temperature slider)",
    "pre_conditions": "1. [spec-derived] The vehicle is a 4 Zone Climate vehicle, which includes two temperature zones in the rear climate (7.10)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Move the rear driver-side temperature slider\n2. Read the rear passenger-side temperature\n3. Move the rear passenger-side temperature slider",
@@ -70,7 +71,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall each slider adjusts respective zone"
   }
  ]
 }

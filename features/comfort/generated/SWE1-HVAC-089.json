@@ -25,7 +25,7 @@
    "tc_title": "Touching a non selectable area of the lower pop-up closes the HVAC pop-up",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "When an HVAC popup is displayed over another popup, if the user touches an area inside the bottom pop-up which is not a selectable item the HVAC pop-up shall close",
+   "test_item": "HVACP6.) When an HVAC popup is displayed over another popup, if user touches area inside the bottom pop-up which is not a selectable item (e.g. text area) the HVAC pop-up will close.\n\n(touch the text area of the bottom pop-up)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a pop-up, then change the fan speed using the fan speed hard control\n2. Touch the text area of the bottom pop-up",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "When an HVAC popup is displayed over another popup, if the user touches an area inside the bottom pop-up which is not a selectable item the HVAC pop-up shall close"
   }
  ]
 }

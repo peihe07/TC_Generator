@@ -30,7 +30,7 @@
    "tc_title": "MAX A/C turns A/C on",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C shall automatically turn on A/C",
+   "test_item": "MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.\n\n(The system supports Max A/C; press \"MAX A/C\" and read the \"A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"A/C\" off from the climate screen\n2. Press \"MAX A/C\" and read the \"A/C\" button",
@@ -42,7 +42,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C shall automatically turn on A/C"
   },
   {
    "req_id": "SWE1-HVAC-119-02",
@@ -50,7 +51,7 @@
    "tc_title": "MAX A/C switches the airflow mode to Face",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C shall change the airflow modes to Face",
+   "test_item": "MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.\n\n(The system supports Max A/C; press \"MAX A/C\" and read the airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select an airflow mode other than Face on the climate screen\n2. Press \"MAX A/C\" and read the airflow mode",
@@ -62,7 +63,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C shall change the airflow modes to Face"
   },
   {
    "req_id": "SWE1-HVAC-119-03",
@@ -70,7 +72,7 @@
    "tc_title": "MAX A/C raises the fan to its highest setting",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C shall increase the fan speed to the highest setting (7/7)",
+   "test_item": "MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.\n\n(The system supports Max A/C; press \"MAX A/C\" and read the fan speed)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the fan speed below its highest setting on the climate screen\n2. Press \"MAX A/C\" and read the fan speed",
@@ -82,7 +84,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C shall increase the fan speed to the highest setting (7/7)"
   },
   {
    "req_id": "SWE1-HVAC-119-04",
@@ -90,7 +93,7 @@
    "tc_title": "MAX A/C sets the temperature to its lowest value",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C shall set the temperature (driver and passenger if available) at the lowest setting (LO)",
+   "test_item": "MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.\n\n(The system supports Max A/C; press \"MAX A/C\" and read both temperatures)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the driver and passenger temperatures above their lowest setting\n2. Press \"MAX A/C\" and read both temperatures",
@@ -102,7 +105,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C shall set the temperature (driver and passenger if available) at the lowest setting (LO)"
   },
   {
    "req_id": "SWE1-HVAC-119-05",
@@ -110,7 +114,7 @@
    "tc_title": "MAX A/C closes recirculation",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C shall change RECIRC to closed with the LED on",
+   "test_item": "MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.\n\n(The system supports Max A/C; press \"MAX A/C\" and read the \"RECIRC\" state and its LED)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set RECIRC to open on the climate screen\n2. Press \"MAX A/C\" and read the \"RECIRC\" state and its LED",
@@ -122,7 +126,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C shall change RECIRC to closed with the LED on"
   },
   {
    "req_id": "SWE1-HVAC-119-06",
@@ -130,7 +135,7 @@
    "tc_title": "MAX A/C turns Sync on",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "MAX A/C shall turn on Sync",
+   "test_item": "MAX A/C automatically turns on A/C, changes airflow modes to Face, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at lowest setting (LO), change RECIRC to closed (led on), and turns on Sync.\n\n(The system supports Max A/C; The vehicle is not a single zone climate configuration; press \"MAX A/C\" and read the \"SYNC\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)\n4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"SYNC\" off from the climate screen\n2. Press \"MAX A/C\" and read the \"SYNC\" button",
@@ -142,7 +147,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "MAX A/C shall turn on Sync"
   },
   {
    "req_id": "SWE1-HVAC-119-07",
@@ -150,7 +156,7 @@
    "tc_title": "A fan change deactivates MAX A/C but keeps the state",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "A change in fan speed shall deactivate MAX A/C and un-highlight it while maintaining the system in its current state with the change in fan speed",
+   "test_item": "Change in fan speed deactivates MAX A/C (un-highlight MAX A/C) while maintaining system in current state with change in fan speed.\n\n(The system supports Max A/C; change the fan speed and read the \"MAX A/C\" button, the airflow mode and the temperature)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Change the fan speed and read the \"MAX A/C\" button, the airflow mode and the temperature",
@@ -162,7 +168,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "A change in fan speed shall deactivate MAX A/C and un-highlight it while maintaining the system in its current state with the change in fan speed"
   },
   {
    "req_id": "SWE1-HVAC-119-08",
@@ -170,7 +177,7 @@
    "tc_title": "Changing the temperature turns MAX A/C off",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off",
+   "test_item": "Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.\n\n(The system supports Max A/C; change the temperature and read the \"MAX A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Change the temperature and read the \"MAX A/C\" button",
@@ -182,7 +189,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off」—— 故一觸發一條。四個觸發各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off"
   },
   {
    "req_id": "SWE1-HVAC-119-08",
@@ -190,7 +198,7 @@
    "tc_title": "Changing recirculation turns MAX A/C off",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off",
+   "test_item": "Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.\n\n(The system supports Max A/C; change RECIRC and read the \"MAX A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Change RECIRC and read the \"MAX A/C\" button",
@@ -202,7 +210,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off」—— 故一觸發一條。四個觸發各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off"
   },
   {
    "req_id": "SWE1-HVAC-119-08",
@@ -210,7 +219,7 @@
    "tc_title": "Changing the mode distribution turns MAX A/C off",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off",
+   "test_item": "Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.\n\n(The system supports Max A/C; select another airflow mode and read the \"MAX A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Select another airflow mode and read the \"MAX A/C\" button",
@@ -222,7 +231,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off」—— 故一觸發一條。四個觸發各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off"
   },
   {
    "req_id": "SWE1-HVAC-119-08",
@@ -230,7 +240,7 @@
    "tc_title": "Pressing MAX A/C again turns MAX A/C off",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off",
+   "test_item": "Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.\n\n(The system supports Max A/C; press \"MAX A/C\" again and read the button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Press \"MAX A/C\" again and read the button",
@@ -242,7 +252,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off」—— 故一觸發一條。四個觸發各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Changing temperature, recirculation, mode distribution, or pressing MAX A/C again shall turn MAX A/C off"
   },
   {
    "req_id": "SWE1-HVAC-119-09",
@@ -250,7 +261,7 @@
    "tc_title": "MAX A/C exit restores the previous mode except the changed element",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "On turning MAX A/C off the system shall go back to the previous manual mode except for the element changed, and shall keep the A/C on",
+   "test_item": "Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.\n\n(The system supports Max A/C; change the temperature and read the airflow mode and the \"A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set a known airflow mode and temperature, then press \"MAX A/C\"\n2. Change the temperature and read the airflow mode and the \"A/C\" button",
@@ -262,7 +273,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "On turning MAX A/C off the system shall go back to the previous manual mode except for the element changed, and shall keep the A/C on"
   },
   {
    "req_id": "SWE1-HVAC-119-10",
@@ -270,7 +282,7 @@
    "tc_title": "Pressing A/C exits MAX A/C with A/C off",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Pressing A/C shall turn MAX A/C off and the system shall go back to the previous manual mode with the A/C off",
+   "test_item": "Pressing A/C, brakes MAX A/C (turns MAX A/C off) and the system goes back to the previous manual mode with the A/C off.\n\n(The system supports Max A/C; press \"A/C\" and read the \"MAX A/C\" button, the airflow mode and the \"A/C\" button)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Set a known airflow mode, then press \"MAX A/C\"\n2. Press \"A/C\" and read the \"MAX A/C\" button, the airflow mode and the \"A/C\" button",
@@ -282,7 +294,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Pressing A/C shall turn MAX A/C off and the system shall go back to the previous manual mode with the A/C off"
   },
   {
    "req_id": "SWE1-HVAC-119-11",
@@ -290,7 +303,7 @@
    "tc_title": "Pressing AUTO exits MAX A/C into AUTO",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Pressing AUTO shall turn MAX A/C off and the system shall go to AUTO",
+   "test_item": "Pressing AUTO brakes MAX A/C (turns MAX A/C off) and the system goes to AUTO.\n\n(The system supports Max A/C; press \"AUTO\" and read the \"MAX A/C\" and \"AUTO\" buttons)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Press \"AUTO\" and read the \"MAX A/C\" and \"AUTO\" buttons",
@@ -302,7 +315,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Pressing AUTO shall turn MAX A/C off and the system shall go to AUTO"
   },
   {
    "req_id": "SWE1-HVAC-119-12",
@@ -310,7 +324,7 @@
    "tc_title": "Pressing MAX DEF exits MAX A/C into MAX DEF",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "Pressing MAX DEF shall turn MAX A/C off and the system shall go to MAX DEF",
+   "test_item": "Similarly, pressing MAX DEF turns MAX A/C off (turns MAX A/C off) and the system goes to MAX DEF.\n\n(The system supports Max A/C; The vehicle is equipped with MAX DEF; press \"MAX DEF\" and read the \"MAX A/C\" and \"MAX DEF\" buttons)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The system supports Max A/C, which is then displayed on the screen next to the A/C button (16.13)\n3. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Press \"MAX DEF\" and read the \"MAX A/C\" and \"MAX DEF\" buttons",
@@ -322,7 +336,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Pressing MAX DEF shall turn MAX A/C off and the system shall go to MAX DEF"
   }
  ]
 }

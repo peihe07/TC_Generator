@@ -30,7 +30,7 @@
    "tc_title": "Driver temperature drives passenger temperature when synced",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "If SYNC is ON, adjusting the driver temperature shall affect the passenger temperature",
+   "test_item": "ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.\n\n(The vehicle is not a single zone climate configuration; adjust the driver temperature)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on from the climate screen\n2. Adjust the driver temperature",
@@ -42,7 +42,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If SYNC is ON, adjusting the driver temperature shall affect the passenger temperature"
   },
   {
    "req_id": "SWE1-HVAC-111-02",
@@ -50,7 +51,7 @@
    "tc_title": "Adjusting passenger temperature breaks SYNC",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "Adjusting the passenger temperature shall break SYNC and turn it off",
+   "test_item": "ICE5.1) If SYNC is ON, adjusting driver temperature affects passenger temperature, adjusting passenger temperature would break SYNC and turn it off.\n\n(The vehicle is not a single zone climate configuration; adjust the passenger temperature)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn SYNC on from the climate screen\n2. Adjust the passenger temperature",
@@ -62,7 +63,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Adjusting the passenger temperature shall break SYNC and turn it off"
   },
   {
    "req_id": "SWE1-HVAC-111-03",
@@ -70,7 +72,7 @@
    "tc_title": "The arrows move the temperature one increment",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user shall be able to change the temperature on the climate screen by using arrows or the slider, and the system shall be able to jump to a value via the slider or voice command",
+   "test_item": "The system can jump to a value as well via the slider or voice command.\n\n(press the temperature up arrow on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the temperature shown on the climate screen\n2. Press the temperature up arrow on the climate screen",
@@ -82,7 +84,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Change temperature on climate screen by using arrows … or slider … The system can jump to a value as well via … or voice command」—— 故一觸發一條。三條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user shall be able to change the temperature on the climate screen by using arrows or the slider, and the system shall be able to jump to a value via the slider or voice command"
   },
   {
    "req_id": "SWE1-HVAC-111-03",
@@ -90,7 +93,7 @@
    "tc_title": "The slider moves the temperature and shows the TEMP pop-up",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user shall be able to change the temperature on the climate screen by using arrows or the slider, and the system shall be able to jump to a value via the slider or voice command",
+   "test_item": "The system can jump to a value as well via the slider or voice command.\n\n(touch the slider handle and drag it to another value)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the temperature shown on the climate screen\n2. Touch the slider handle and drag it to another value",
@@ -102,7 +105,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Change temperature on climate screen by using arrows … or slider … The system can jump to a value as well via … or voice command」—— 故一觸發一條。三條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user shall be able to change the temperature on the climate screen by using arrows or the slider, and the system shall be able to jump to a value via the slider or voice command"
   },
   {
    "req_id": "SWE1-HVAC-111-03",
@@ -110,7 +114,7 @@
    "tc_title": "The temperature jumps to a value given by voice",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user shall be able to change the temperature on the climate screen by using arrows or the slider, and the system shall be able to jump to a value via the slider or voice command",
+   "test_item": "The system can jump to a value as well via the slider or voice command.\n\n(set the temperature to a value by voice command)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the temperature shown on the climate screen\n2. Set the temperature to a value by voice command",
@@ -122,7 +126,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「Change temperature on climate screen by using arrows … or slider … The system can jump to a value as well via … or voice command」—— 故一觸發一條。三條輸入路徑各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user shall be able to change the temperature on the climate screen by using arrows or the slider, and the system shall be able to jump to a value via the slider or voice command"
   },
   {
    "req_id": "SWE1-HVAC-111-04",
@@ -130,7 +135,7 @@
    "tc_title": "Long press moves the temperature fast on screen and hard control",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "Long press shall be a fast move, and shall also work for temperature HARD CONTROLS",
+   "test_item": "Long press = fast move shall also work for temperature HARD CONTROLS .\n\n(press and hold the temperature hard control in the up direction)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press and hold the temperature up arrow on the climate screen\n2. Press and hold the temperature hard control in the up direction",
@@ -142,7 +147,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "Long press shall be a fast move, and shall also work for temperature HARD CONTROLS"
   },
   {
    "req_id": "SWE1-HVAC-111-05",
@@ -150,7 +156,7 @@
    "tc_title": "A press outside the slider handle is ignored",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user must press the slider handle to move the temperature slider position; if the user initially presses the slider area outside of the handle, the system shall ignore the press",
+   "test_item": "User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press.\n\n(read the temperature slider position)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the slider area to the left of the slider handle\n2. Read the temperature slider position",
@@ -162,7 +168,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle …, ignore the press」—— 故一觸發一條。正向與否定側各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user must press the slider handle to move the temperature slider position; if the user initially presses the slider area outside of the handle, the system shall ignore the press"
   },
   {
    "req_id": "SWE1-HVAC-111-05",
@@ -170,7 +177,7 @@
    "tc_title": "The slider handle moves the temperature slider position",
    "test_group": "Comfort",
    "test_set": "ICS Temperature and Fan",
-   "test_item": "The user must press the slider handle to move the temperature slider position; if the user initially presses the slider area outside of the handle, the system shall ignore the press",
+   "test_item": "User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle, ignore the press.\n\n(press the slider handle and drag it)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the temperature slider position\n2. Press the slider handle and drag it",
@@ -182,7 +189,8 @@
    "split_reason": "§8.2.2 之拆分，依 75 §1 之判準（**條文列舉之項即拆分之維度**）：本節之條文逐字列舉其觸發 —— 「User must press slider handle to move temperature slider position; if user initially presses slider area outside of handle …, ignore the press」—— 故一觸發一條。正向與否定側各自可失效。 （**判準之反面**：條文以泛稱表述而由作者挑樣者不拆，其樣本為 interaction data，§4.5。）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user must press the slider handle to move the temperature slider position; if the user initially presses the slider area outside of the handle, the system shall ignore the press"
   }
  ]
 }

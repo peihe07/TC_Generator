@@ -25,7 +25,7 @@
    "tc_title": "HVAC pop-ups follow the pop-up list",
    "test_group": "Comfort",
    "test_set": "HVAC Pop-ups",
-   "test_item": "HVAC pop-ups shall follow the pop-up list (HVACP1.)",
+   "test_item": "HVACP1.) HVAC pop-ups should follow the pop-up list.\n\n(set the climate off using the hard key while the head unit is not on the climate screen)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the HVAC hard key for the driver temperature\n2. Set the climate off using the hard key while the head unit is not on the climate screen",
@@ -42,7 +42,8 @@
     "ch16_outline": "—",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節無 pop-up list 之對造（`ch16_mirror_map.tsv` 之 no-counterpart）—— 排除式 PC 照補"
-   }
+   },
+   "test_item_authored": "HVAC pop-ups shall follow the pop-up list (HVACP1.)"
   }
  ]
 }

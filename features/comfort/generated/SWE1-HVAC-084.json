@@ -25,7 +25,7 @@
    "tc_title": "HVAC pop-up timeout restarts on further adjustment",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "If an HVAC pop-up is displayed and the user makes an additional adjustment to the same HVAC event, the new HVAC pop-up timeout shall restart",
+   "test_item": "HVACP1.2) If there is an HVAC pop-up displayed (e.g. fan pop-up) and user makes additional adjustment to the same HVAC event (e.g. fan adjustment), the new HVAC pop-up timeout will restart (e.g. fan pop-up timeout restarts).\n\n(wait until the pop-up is no longer shown)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Change the fan speed using the fan speed hard control from a screen other than the climate screen\n2. Change the fan speed again just before the pop-up times out\n3. Wait until the pop-up is no longer shown",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "If an HVAC pop-up is displayed and the user makes an additional adjustment to the same HVAC event, the new HVAC pop-up timeout shall restart"
   }
  ]
 }

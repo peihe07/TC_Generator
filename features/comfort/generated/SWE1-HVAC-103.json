@@ -25,7 +25,7 @@
    "tc_title": "Comfort popup times out after five seconds",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The popup shall have a 5 sec timeout",
+   "test_item": "HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.\n\n(The vehicle is equipped with Comfort features; wait 5 seconds without further interaction)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Wait 5 seconds without further interaction",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The popup shall have a 5 sec timeout"
   },
   {
    "req_id": "SWE1-HVAC-103-02",
@@ -50,7 +51,7 @@
    "tc_title": "The comfort popup times out after five seconds",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The popup timeout shall restart with additional presses",
+   "test_item": "HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.\n\n(The vehicle is equipped with Comfort features; wait 5 seconds without further interaction)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Wait 5 seconds without further interaction",
@@ -67,7 +68,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The popup timeout shall restart with additional presses"
   },
   {
    "req_id": "SWE1-HVAC-103-02",
@@ -75,7 +77,7 @@
    "tc_title": "An additional press restarts the popup timeout",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "The popup timeout shall restart with additional presses",
+   "test_item": "HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.\n\n(The vehicle is equipped with Comfort features; wait 5 seconds without further interaction)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the driver comfort seat icon in the status bar\n2. Press the icon again just before the popup times out\n3. Wait 5 seconds without further interaction",
@@ -92,7 +94,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "The popup timeout shall restart with additional presses"
   }
  ]
 }

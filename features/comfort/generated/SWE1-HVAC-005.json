@@ -25,7 +25,7 @@
    "tc_title": "A/C has an on and off state",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "AC shall have an on/off state",
+   "test_item": "C3.) AC has on/ off state.\n\n(The climate screen is open and the climate system is on; press \"A/C\" again)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"A/C\" on the climate screen\n2. Press \"A/C\" again",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.4",
     "verdict": "yes",
     "ch16_sentence": "ICE3「MAX A/C, A/C, RECIRC, MAX DEF, and REAR DEFROST have on/off state」之 A/C 側（鏡射表記為 partial，涵蓋 A/C 之 on/off 狀態）"
-   }
+   },
+   "test_item_authored": "AC shall have an on/off state"
   },
   {
    "req_id": "SWE1-HVAC-005-02",
@@ -50,7 +51,7 @@
    "tc_title": "AUTO turns A/C on automatically",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Auto shall be able to automatically turn on AC",
+   "test_item": "Auto can automatically turn on AC. AC will break Auto.\n\n(The climate screen is open and the climate system is on; turn AUTO on and read the \"A/C\" button)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"A/C\" off and AUTO off from the climate screen\n2. Turn AUTO on and read the \"A/C\" button",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.4",
     "verdict": "no",
     "ch16_sentence": "**ICE3 只述五者之 on/off 狀態，不述任何連動** —— 鏡射表之分界欄明載「未涵蓋：C3 之『Auto can automatically turn on AC』等連動邏輯」"
-   }
+   },
+   "test_item_authored": "Auto shall be able to automatically turn on AC"
   },
   {
    "req_id": "SWE1-HVAC-005-03",
@@ -75,7 +77,7 @@
    "tc_title": "Pressing A/C breaks AUTO",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "AC shall break Auto",
+   "test_item": "Auto can automatically turn on AC. AC will break Auto.\n\n(The climate screen is open and the climate system is on; press \"A/C\")",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn AUTO on from the climate screen\n2. Press \"A/C\"",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.4",
     "verdict": "no",
     "ch16_sentence": "同 `-137`：ICE3 不述連動；且 ICE2 之 A/C 分支為「Manually selecting A/C keeps the system in AUTO without compressor usage」—— **與 C3 語意相反**，故 ch16 無對應句"
-   }
+   },
+   "test_item_authored": "AC shall break Auto"
   },
   {
    "req_id": "SWE1-HVAC-005-04",
@@ -100,7 +103,7 @@
    "tc_title": "Defrost and Recirc turn A/C on without showing it",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "Defrost and Recirc shall be able to automatically turn on AC, and the system shall not show this change",
+   "test_item": "Defrost can automatically turn on AC (Do not show this change).\n\n(The climate screen is open and the climate system is on; turn \"RECIRC\" on and read the \"A/C\" button)",
    "pre_conditions": "1. [test-setup] The climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn \"A/C\" off from the climate screen and note the \"A/C\" button\n2. Turn \"FRONT DEF\" on and read the \"A/C\" button\n3. Turn \"RECIRC\" on and read the \"A/C\" button",
@@ -117,7 +120,8 @@
     "ch16_outline": "16.4",
     "verdict": "no",
     "ch16_sentence": "同 `-137`：ICE3 不述連動"
-   }
+   },
+   "test_item_authored": "Defrost and Recirc shall be able to automatically turn on AC, and the system shall not show this change"
   }
  ]
 }

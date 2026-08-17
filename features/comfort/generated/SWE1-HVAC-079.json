@@ -31,7 +31,7 @@
    "tc_title": "Last selected adjustment latches across a keycycle",
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
-   "test_item": "The user last selected lumbar/bolster selection will be latching during a keycycle, after a keycycle, and after the lower screen has been stowed/retracted",
+   "test_item": "LS2.1) The user last selected lumbar/bolster selection will be latching during a keycycle, after a keycycle, and after the lower screen has been stowed/retracted.\n\n(The vehicle is equipped with a lower screen that provides seat controls; open the Seats tab and read the selected option)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Select \"Lumbar Up/Down\" on the Seats tab\n2. Run a keycycle\n3. Open the Seats tab and read the selected option",
@@ -43,7 +43,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The user last selected lumbar/bolster selection will be latching during a keycycle, after a keycycle, and after the lower screen has been stowed/retracted"
   },
   {
    "req_id": "SWE1-HVAC-079-02",
@@ -51,7 +52,7 @@
    "tc_title": "Back Bolster stays selected after the lower screen is retracted",
    "test_group": "Comfort",
    "test_set": "Seat Control Tab",
-   "test_item": "If the lower screen displayed the last selected option as Back Bolster , then the user retracts the lower screen, the next time they press the door (-, +) buttons or enter the seat tab on the HU, Back Bolster will still be the selected option",
+   "test_item": "If the lower screen displayed the last selected option as Back Bolster , then the user retracts the lower screen, the next time they press the door (-, +) buttons or enter the seat tab on the HU, Back Bolster will still be the selected option.\n\n(The vehicle is equipped with a lower screen that provides seat controls; The door control carries the seat control (-, +) buttons for lumbar and bolster; The lower screen displayed the last selected option as Back Bolster; read the selected option)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with a lower screen that provides seat controls (13.2)\n2. [spec-derived] The door control carries the seat control (-, +) buttons for lumbar and bolster (13.2)\n3. [spec-derived] The lower screen displayed the last selected option as Back Bolster (13.3.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Retract the lower screen\n2. Press \"+\" on the door seat control\n3. Read the selected option",
@@ -63,7 +64,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the lower screen displayed the last selected option as Back Bolster , then the user retracts the lower screen, the next time they press the door (-, +) buttons or enter the seat tab on the HU, Back Bolster will still be the selected option"
   }
  ]
 }

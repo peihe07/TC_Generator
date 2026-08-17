@@ -25,7 +25,7 @@
    "tc_title": "Five airflow modes cycle in order on non tri-mode vehicles",
    "test_group": "Comfort",
    "test_set": "Airflow and Defrost",
-   "test_item": "In some non-tri mode equipment types airflow modes shall have 5 states: Face, Mix of Face and Feet, Feet, Mix of Feet and Windshield, Windshield",
+   "test_item": "C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).\n\n(The vehicle is a non-tri mode equipment type; move to the next airflow mode four times, reading the mode after each)",
    "pre_conditions": "1. [spec-derived] The vehicle is a non-tri mode equipment type whose airflow modes have 5 states (2.12.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the Face airflow mode on the climate screen\n2. Move to the next airflow mode four times, reading the mode after each",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.12",
     "verdict": "yes",
     "ch16_sentence": "ICE11「Airflow Modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield)」逐字相同（鏡射表記 16.12 ↔ 2.12.1 mirrored）"
-   }
+   },
+   "test_item_authored": "In some non-tri mode equipment types airflow modes shall have 5 states: Face, Mix of Face and Feet, Feet, Mix of Feet and Windshield, Windshield"
   },
   {
    "req_id": "SWE1-HVAC-017-02",
@@ -50,7 +51,7 @@
    "tc_title": "The active airflow mode shows on the climate screen",
    "test_group": "Comfort",
    "test_set": "Airflow and Defrost",
-   "test_item": "The correct airflow mode state shall be indicated on the TS climate screen",
+   "test_item": "C13.0) In some non-tri mode equipment types, airflow modes has 5 states (1.Face, 2.Mix of Face & Feet, 3.Feet, 4.Mix of Feet & Windshield, 5. Windshield).\n\n(The vehicle is a non-tri mode equipment type; select the Windshield airflow mode)",
    "pre_conditions": "1. [spec-derived] The vehicle is a non-tri mode equipment type whose airflow modes have 5 states (2.12.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Select the Feet airflow mode on the climate screen\n2. Select the Windshield airflow mode",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.12",
     "verdict": "yes",
     "ch16_sentence": "ICE11「ON state for the four airflow modes is shown by highlighting the button and increasing button size」—— 惟 **ICE11 自身寫 five states 而其呈現句寫 four**，係條文內部之數字不一致（A-CF13 同型），本條只驗「所選模式呈現為作用中」，不驗按鈕數"
-   }
+   },
+   "test_item_authored": "The correct airflow mode state shall be indicated on the TS climate screen"
   }
  ]
 }

@@ -30,7 +30,7 @@
    "tc_title": "MAX DEF and REAR DEF stay available while climate is off",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "MAX DEF and REAR DEF shall be available during climate off",
+   "test_item": "C21.) MAX DEF and REAR DEF are available during climate off.\n\n(The vehicle is equipped with MAX DEF; Rear defrost is present in the vehicle; read the \"REAR DEF\" button on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] Rear defrost is present in the vehicle (3.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off\n2. Read the \"MAX DEF\" button on the climate screen\n3. Read the \"REAR DEF\" button on the climate screen",
@@ -48,7 +48,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "ICE9「grey out remaining buttons except for Front/Max defrost and rear defrost」—— 例外項即 MAX DEF 與 rear defrost 之可用性"
-   }
+   },
+   "test_item_authored": "MAX DEF and REAR DEF shall be available during climate off"
   },
   {
    "req_id": "SWE1-HVAC-025-02",
@@ -56,7 +57,7 @@
    "tc_title": "Other climate functions are not available while climate is off",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "During climate off, the climate functions other than MAX DEF and REAR DEF shall not be available",
+   "test_item": "C21.) MAX DEF and REAR DEF are available during climate off.\n\n(The vehicle is equipped with MAX DEF; Rear defrost is present in the vehicle; read the climate functions other than \"MAX DEF\" and \"REAR DEF\" on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] Rear defrost is present in the vehicle (3.4)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off\n2. Read the climate functions other than \"MAX DEF\" and \"REAR DEF\" on the climate screen",
@@ -74,7 +75,8 @@
     "ch16_outline": "16.10",
     "verdict": "yes",
     "ch16_sentence": "同句之「grey out remaining buttons」—— 例外以外之功能不可用"
-   }
+   },
+   "test_item_authored": "During climate off, the climate functions other than MAX DEF and REAR DEF shall not be available"
   }
  ]
 }

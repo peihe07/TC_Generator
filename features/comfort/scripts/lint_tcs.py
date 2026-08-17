@@ -61,6 +61,16 @@ LONG_FIELDS = ["pre_conditions", "input_test_data", "test_procedure",
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import external_docs as _ext                                    # noqa: E402
 
+# Pei 2026-08-17 — leaf → 條文原句之對應（scripts/clause_map.py 之產物）。
+def _clause_map() -> dict:
+    p = FEATURE / "data" / "leaf_clause_sentence.tsv"
+    with p.open(encoding="utf-8") as fh:
+        return {r["tc_id"]: r["clause_verbatim"]
+                for r in csv.DictReader(fh, delimiter="\t")}
+
+
+CLAUSE_MAP = _clause_map()
+
 EXTERNAL_REFS = {v for k, v in vars(_ext).items()
                  if k.startswith("EXT_") and isinstance(v, str)}
 
@@ -142,6 +152,10 @@ NOT_IN_WORKBOOK = {
     "reasoning", "keywords", "duplicate_of", "distinguishing_axis",
     # doc-level structural keys (29 §5.1)
     "assumptions", "batch", "outline", "parent", "source_clause", "tcs",
+    # Pei 2026-08-17 — test_item's upper half became the clause verbatim; the
+    # sentence its author wrote is kept here because it is the record of how
+    # that leaf was read. Doc layer, never a column.
+    "test_item_authored",
     "interface_axis_review",          # 36 §6 — R-C34's duty, recorded
     "emea_ics_review",                # 38 §1 — R-C36-1's per-TC answer
 }
@@ -736,9 +750,29 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         if MODALS.search(tc["tc_title"]):
             bad("title-modal", f"{w}: tc_title contains a modal (§4.3)")
 
-        # ---- test_item is the ONLY field allowed a modal (profile §3.1) --
-        if not MODALS.search(tc["test_item"]):
-            bad("item-modal", f"{w}: test_item carries no modal (profile §3.1)")
+        # ---- test_item：上半照抄條文，下半為該條之情境 -------------------
+        # Pei 2026-08-17 之裁定取代了 profile §3.1 之 modal 要求：**照抄之句
+        # 不可能被要求帶 shall**。改驗其更強之性質 —— 上半必須逐字等於
+        # 該 leaf 之條文原句，而該原句必須是該節 full_text 之連續子字串。
+        # `item-modal` 因此退場：它問的是「我們寫得夠不夠規範」，
+        # 而這一格現在有一半不是我們寫的。
+        head, sep, tail = tc["test_item"].partition("\n\n")
+        expect = CLAUSE_MAP.get(tc["tc_id"])
+        if expect is None:
+            bad("test-item-verbatim",
+                f"{w}: no clause sentence mapped (data/leaf_clause_sentence.tsv)")
+        elif head != expect:
+            bad("test-item-verbatim",
+                f"{w}: test_item's first block is not the mapped clause "
+                f"verbatim — {head[:60]!r}")
+        elif head not in " ".join(d["source_clause"].split()):
+            bad("test-item-verbatim",
+                f"{w}: the quoted clause is not a contiguous substring of "
+                f"section {d['outline']}'s full_text")
+        if not sep or not tail.strip().startswith("("):
+            bad("test-item-situation",
+                f"{w}: test_item has no situation block — expected a blank "
+                f"line then `(…)`")
         if MODALS.search(tc["expected_result"]):
             bad("er-modal", f"{w}: expected_result contains a modal (§6)")
 
@@ -1399,7 +1433,8 @@ def main() -> int:
              "spec-ref-stem", "spec-ref-outline", "spec-ref-sr25", "test-group",
              "design-method", "priority", "functional-safety", "estimated-time",
              "remarks", "trailing-period", "ui-bracket", "title-length",
-             "title-modal", "item-modal", "er-modal", "source-class",
+             "title-modal", "test-item-verbatim", "test-item-situation",
+             "er-modal", "source-class",
              "proc-er-1to1", "token-placement", "token-source",
              "fabricated-qty", "sibling-axis",
              # added 2026-08-15 after handoff 20 §1.1's coverage audit

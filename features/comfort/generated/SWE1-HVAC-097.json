@@ -25,7 +25,7 @@
    "tc_title": "Lower HVAC screen interactions raise no head unit pop-up",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "For vehicles with a lower HVAC screen, interactions with that screen shall not trigger popups on the head unit",
+   "test_item": "HVACP13.) For vehicles with a lower hvac screen, interactions with that screen will not trigger popups on the head unit (e.g. temperature popup, fan speed popup, mode popup).\n\n(The vehicle has a lower HVAC screen; read the head unit for an HVAC pop-up)",
    "pre_conditions": "1. [spec-derived] The vehicle has a lower HVAC screen (14.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Change the temperature on the lower HVAC screen\n2. Read the head unit for an HVAC pop-up",
@@ -42,7 +42,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "yes",
     "ch16_sentence": "ch16 十八節無任何 HVAC popup 之專章（`ch16_mirror_map.tsv` 之 ch14 側全無列）—— 逐條之答為「ch16 無對應句」，故 EMEA ICS 車輛上本條無對象，排除成立"
-   }
+   },
+   "test_item_authored": "For vehicles with a lower HVAC screen, interactions with that screen shall not trigger popups on the head unit"
   }
  ]
 }

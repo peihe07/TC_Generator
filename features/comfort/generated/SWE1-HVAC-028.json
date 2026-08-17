@@ -28,7 +28,7 @@
    "tc_title": "Front hard controls keep controlling front climate on the rear climate screen",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall front hard controls remain controlling front climate",
+   "test_item": "CR1.) Hard controls do not switch to controlling the rear climate when on the rear climate screen.\n\n(The rear climate screen is open and the climate system is on; read the front climate values)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the rear climate screen\n2. Change the climate setting using a front hard control\n3. Read the front climate values",
@@ -45,7 +45,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall front hard controls remain controlling front climate"
   },
   {
    "req_id": "SWE1-HVAC-028-02",
@@ -53,7 +54,7 @@
    "tc_title": "The fan knob controls the front fan speed while on the rear climate screen",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall fan knob controls front fan speed",
+   "test_item": "For example, fan knob will always control the fan speed and driver/passenger temperature controls will always control the front driver/pass temperature.\n\n(The rear climate screen is open and the climate system is on; read the front and the rear fan speed)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the rear climate screen\n2. Turn the fan knob\n3. Read the front and the rear fan speed",
@@ -70,7 +71,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall fan knob controls front fan speed"
   },
   {
    "req_id": "SWE1-HVAC-028-03",
@@ -78,7 +80,7 @@
    "tc_title": "Driver and passenger temperature controls affect the front temperatures only",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall driver/passenger temp controls affect front driver/passenger temperature only",
+   "test_item": "For example, fan knob will always control the fan speed and driver/passenger temperature controls will always control the front driver/pass temperature.\n\n(The rear climate screen is open and the climate system is on; read the front driver and the rear temperatures)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the rear climate screen\n2. Change the driver temperature using the driver temperature hard control\n3. Read the front driver and the rear temperatures",
@@ -95,7 +97,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall driver/passenger temp controls affect front driver/passenger temperature only"
   }
  ]
 }

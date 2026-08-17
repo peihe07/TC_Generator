@@ -31,7 +31,7 @@
    "tc_title": "No tabs are displayed when only Front climate is available",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "If only Front climate is available in a specific vehicle, the tabs shall not be displayed",
+   "test_item": "If only Front climate is available in a specific vehicle the tabs will not be displayed.\n\n(Only Front climate is available in the vehicle; read the comfort category for tabs)",
    "pre_conditions": "1. [spec-derived] Only Front climate is available in the vehicle (2.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the comfort category\n2. Read the comfort category for tabs",
@@ -43,7 +43,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If only Front climate is available in a specific vehicle, the tabs shall not be displayed"
   }
  ]
 }

@@ -31,7 +31,7 @@
    "tc_title": "Fan speed shows on the climate screen and category control",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The fan status shall be indicated on the TS climate screen and in the main category control",
+   "test_item": "The status is indicated on TS climate screen and in main category control.\n\n(The head unit provides a main category control for climate; read the main category control)",
    "pre_conditions": "1. [spec-derived] The head unit provides a main category control for climate (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Change the fan speed\n3. Read the main category control",
@@ -49,7 +49,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「The status is indicated on TS climate screen and in main category control」"
-   }
+   },
+   "test_item_authored": "The fan status shall be indicated on the TS climate screen and in the main category control"
   },
   {
    "req_id": "SWE1-HVAC-010-02",
@@ -57,7 +58,7 @@
    "tc_title": "Fan pop-up appears off the climate screen",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The system shall show a pop-up when the fan status is changed via hard control and the currently shown screen is not the climate screen",
+   "test_item": "Show pop-up when status is changed via hard control and currently shown screen is not climate screen.\n\n(The vehicle has a fan speed hard control; change the fan speed using the fan speed hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle has a fan speed hard control (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a screen other than the climate screen\n2. Change the fan speed using the fan speed hard control",
@@ -75,7 +76,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「Show pop-up when status is changed via hard control and currently shown screen is not climate screen」"
-   }
+   },
+   "test_item_authored": "The system shall show a pop-up when the fan status is changed via hard control and the currently shown screen is not the climate screen"
   },
   {
    "req_id": "SWE1-HVAC-010-03",
@@ -83,7 +85,7 @@
    "tc_title": "The fan up button increases the fan speed",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "When on climate screen, the user shall be able to either use the Fan up/down buttons, directly touch a fan segment to jump, or slide",
+   "test_item": "When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(The climate screen provides fan up and down buttons and fan segments; press the fan up button on the climate screen)",
    "pre_conditions": "1. [spec-derived] The climate screen provides fan up and down buttons and fan segments (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Press the fan up button on the climate screen",
@@ -101,7 +103,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」"
-   }
+   },
+   "test_item_authored": "When on climate screen, the user shall be able to either use the Fan up/down buttons, directly touch a fan segment to jump, or slide"
   },
   {
    "req_id": "SWE1-HVAC-010-03",
@@ -109,7 +112,7 @@
    "tc_title": "Touching a fan segment jumps the fan speed to it",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "When on climate screen, the user shall be able to either use the Fan up/down buttons, directly touch a fan segment to jump, or slide",
+   "test_item": "When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(The climate screen provides fan up and down buttons and fan segments; touch a fan segment on the climate screen)",
    "pre_conditions": "1. [spec-derived] The climate screen provides fan up and down buttons and fan segments (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Touch a fan segment on the climate screen",
@@ -127,7 +130,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」"
-   }
+   },
+   "test_item_authored": "When on climate screen, the user shall be able to either use the Fan up/down buttons, directly touch a fan segment to jump, or slide"
   },
   {
    "req_id": "SWE1-HVAC-010-03",
@@ -135,7 +139,7 @@
    "tc_title": "Sliding across the fan segments follows the slide",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "When on climate screen, the user shall be able to either use the Fan up/down buttons, directly touch a fan segment to jump, or slide",
+   "test_item": "When on climate screen, user can either use Fan up/down (minus/plus) buttons, directly touch a fan segment to jump or slide, or use Hard Control.\n\n(The climate screen provides fan up and down buttons and fan segments; slide across the fan segments on the climate screen)",
    "pre_conditions": "1. [spec-derived] The climate screen provides fan up and down buttons and fan segments (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Slide across the fan segments on the climate screen",
@@ -153,7 +157,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「When on climate screen, user can either use Fan up/down buttons, directly touch a fan segment to jump or slide, or use Hard Control」"
-   }
+   },
+   "test_item_authored": "When on climate screen, the user shall be able to either use the Fan up/down buttons, directly touch a fan segment to jump, or slide"
   },
   {
    "req_id": "SWE1-HVAC-010-04",
@@ -161,7 +166,7 @@
    "tc_title": "The screen fan controls cannot turn the fan off",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and there shall always be one bar highlighted",
+   "test_item": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control.\n\n(The vehicle has a fan speed hard control; press the fan down button on the climate screen repeatedly until the fan speed stops decreasing)",
    "pre_conditions": "1. [spec-derived] The vehicle has a fan speed hard control (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Press the fan down button on the climate screen repeatedly until the fan speed stops decreasing",
@@ -179,7 +184,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control. There would always be one bar highlighted」"
-   }
+   },
+   "test_item_authored": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and there shall always be one bar highlighted"
   },
   {
    "req_id": "SWE1-HVAC-010-04",
@@ -187,7 +193,7 @@
    "tc_title": "The fan hard control cannot turn the fan off",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and there shall always be one bar highlighted",
+   "test_item": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control.\n\n(The vehicle has a fan speed hard control; turn the fan speed hard control down repeatedly until the fan speed stops decreasing)",
    "pre_conditions": "1. [spec-derived] The vehicle has a fan speed hard control (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Note the fan speed shown on the climate screen\n2. Turn the fan speed hard control down repeatedly until the fan speed stops decreasing",
@@ -205,7 +211,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control. There would always be one bar highlighted」"
-   }
+   },
+   "test_item_authored": "The user shall not be able to turn the FAN off by using the FAN controls on the screen or the FAN hard control, and there shall always be one bar highlighted"
   },
   {
    "req_id": "SWE1-HVAC-010-05",
@@ -213,7 +220,7 @@
    "tc_title": "All fan bars grey out only when the climate system is off",
    "test_group": "Comfort",
    "test_set": "Temperature and Fan",
-   "test_item": "The only way to have all FAN bars grayed out shall be by shutting the CLIMATE system OFF, using the climate power button on the screen or the hard control",
+   "test_item": "The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control).\n\n(The vehicle has a climate power hard control; turn the climate system off using the climate power hard control)",
    "pre_conditions": "1. [spec-derived] The vehicle has a climate power hard control (2.7)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the climate system off using the climate power button on the climate screen\n2. Turn the climate system on again\n3. Turn the climate system off using the climate power hard control",
@@ -231,7 +238,8 @@
     "ch16_outline": "16.7",
     "verdict": "yes",
     "ch16_sentence": "ICE6「The only way to have all FAN bars grayed out is by shutting the CLIMATE system OFF (using climate power button on the screen or hard control)」"
-   }
+   },
+   "test_item_authored": "The only way to have all FAN bars grayed out shall be by shutting the CLIMATE system OFF, using the climate power button on the screen or the hard control"
   }
  ]
 }

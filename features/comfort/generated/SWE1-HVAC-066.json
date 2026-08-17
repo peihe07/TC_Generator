@@ -25,7 +25,7 @@
    "tc_title": "Inactive comfort controls are greyed out in the status bar",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall grey out comfort controls in the status bar combined temperature/comfort top left and right corners when they are not active",
+   "test_item": "R1HS4.1.) When comfort controls are not active, they will be greyed out in the status bar combined temperature/comfort top left/right corners.\n\n(The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel; read the top left and top right corners of the status bar)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn the comfort controls off\n2. Read the top left and top right corners of the status bar",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall grey out comfort controls in the status bar combined temperature/comfort top left and right corners when they are not active"
   }
  ]
 }

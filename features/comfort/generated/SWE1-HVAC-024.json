@@ -33,7 +33,7 @@
    "tc_title": "MAX DEF replaces the FRONT DEF button",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "On vehicles with MAX DEF, MAX DEF shall replace the FRONT DEF button",
+   "test_item": "C20.) MAX DEFROST: On vehicles with MAX DEF, MAX DEF replaces FRONT DEF button.\n\n(The vehicle is equipped with MAX DEF; read the front defrost control label on the climate screen)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen\n2. Read the front defrost control label on the climate screen",
@@ -51,7 +51,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7 全句與 C20 逐字相同，其首句即述 MAX DEF 之存在與連動；ICE6 另載 MAX DEF 於 ICS 介面上之位置"
-   }
+   },
+   "test_item_authored": "On vehicles with MAX DEF, MAX DEF shall replace the FRONT DEF button"
   },
   {
    "req_id": "SWE1-HVAC-024-02",
@@ -59,7 +60,7 @@
    "tc_title": "MAX DEF sets seven climate states when turned on",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "MAX DEF shall automatically turn on A/C, change airflow modes to Windshield, increase fan speed to the highest setting (7/7), set the temperature (driver and passenger if available) at the highest setting (HI), change RECIRC to open (LED off), turn on Sync and activate the REAR DEFROST",
+   "test_item": "MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed to highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.\n\n(The vehicle is equipped with MAX DEF; The front HVAC fan range of the vehicle is Off, 1-7; read the REAR DEFROST state)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The front HVAC fan range of the vehicle is Off, 1-7 (2.7)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen with MAX DEF not active\n2. Press \"MAX DEF\"\n3. Read the A/C state\n4. Read the airflow mode\n5. Read the fan speed\n6. Read the temperature setting for the driver and, if available, the passenger\n7. Read the RECIRC state and its LED\n8. Read the Sync state\n9. Read the REAR DEFROST state",
@@ -77,7 +78,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature … at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST」"
-   }
+   },
+   "test_item_authored": "MAX DEF shall automatically turn on A/C, change airflow modes to Windshield, increase fan speed to the highest setting (7/7), set the temperature (driver and passenger if available) at the highest setting (HI), change RECIRC to open (LED off), turn on Sync and activate the REAR DEFROST"
   },
   {
    "req_id": "SWE1-HVAC-024-03",
@@ -85,7 +87,7 @@
    "tc_title": "MAX DEF switches off automatically and restores the manual mode",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "MAX DEF shall switch off automatically after a set time, after which the system shall go back to the previous manual mode",
+   "test_item": "MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode.\n\n(The vehicle is equipped with MAX DEF; leave the climate controls untouched until the \"MAX DEF\" button is no longer active)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the climate system to a manual mode with a known airflow mode, fan speed and temperature setting\n2. Press \"MAX DEF\"\n3. Leave the climate controls untouched until the \"MAX DEF\" button is no longer active",
@@ -103,7 +105,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「MAX DEF switches off automatically after a set time after which the system goes back to the previous manual mode」"
-   }
+   },
+   "test_item_authored": "MAX DEF shall switch off automatically after a set time, after which the system shall go back to the previous manual mode"
   },
   {
    "req_id": "SWE1-HVAC-024-04",
@@ -111,7 +114,7 @@
    "tc_title": "Pressing A/C breaks MAX DEF and leaves A/C off",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Pressing A/C shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C off",
+   "test_item": "Pressing A/C breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off.\n\n(The vehicle is equipped with MAX DEF; press \"A/C\")",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the climate system to a manual mode with a known airflow mode, fan speed and temperature setting\n2. Press \"MAX DEF\"\n3. Press \"A/C\"",
@@ -129,7 +132,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「Pressing A/C brakes MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C off」"
-   }
+   },
+   "test_item_authored": "Pressing A/C shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C off"
   },
   {
    "req_id": "SWE1-HVAC-024-05",
@@ -137,7 +141,7 @@
    "tc_title": "Pressing AUTO breaks MAX DEF and enters AUTO",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Pressing AUTO shall break MAX DEF, turning MAX DEF off, and the system shall go to AUTO",
+   "test_item": "Pressing AUTO brakes MAX DEF (turns MAX DEF off) and the system goes to AUTO.\n\n(The vehicle is equipped with MAX DEF; press \"AUTO\")",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Press \"AUTO\"",
@@ -155,7 +159,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「Pressing AUTO breaks MAX DEF (turns MAX DEF off) and the system goes to AUTO」"
-   }
+   },
+   "test_item_authored": "Pressing AUTO shall break MAX DEF, turning MAX DEF off, and the system shall go to AUTO"
   },
   {
    "req_id": "SWE1-HVAC-024-06",
@@ -163,7 +168,7 @@
    "tc_title": "Pressing MAX A/C breaks MAX DEF and enters MAX A/C",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Pressing MAX A/C shall turn MAX DEF off, and the system shall go to MAX A/C",
+   "test_item": "Similarly, pressing MAX A/C turns MAX DEF off (turns MAX DEF off) and the system goes to MAX A/C.\n\n(The vehicle is equipped with MAX DEF; The vehicle is equipped with MAX A/C; press \"MAX A/C\")",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle is equipped with MAX A/C (3.2)\n3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Press \"MAX A/C\"",
@@ -181,7 +186,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「Similarly, pressing MAX A/C turns MAX DEF off … and the system goes to MAX A/C」"
-   }
+   },
+   "test_item_authored": "Pressing MAX A/C shall turn MAX DEF off, and the system shall go to MAX A/C"
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -189,7 +195,7 @@
    "tc_title": "Changing the temperature breaks MAX DEF",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Changing the temperature shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on",
+   "test_item": "Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.\n\n(The vehicle is equipped with MAX DEF; change the temperature setting)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Change the temperature setting",
@@ -207,7 +213,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF … with the A/C on」之 temperature 一項"
-   }
+   },
+   "test_item_authored": "Changing the temperature shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on"
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -215,7 +222,7 @@
    "tc_title": "Changing RECIRC breaks MAX DEF",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Changing recirculation shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on",
+   "test_item": "Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.\n\n(The vehicle is equipped with MAX DEF; change RECIRC)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Change RECIRC",
@@ -233,7 +240,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "同上句之 recirculation 一項"
-   }
+   },
+   "test_item_authored": "Changing recirculation shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on"
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -241,7 +249,7 @@
    "tc_title": "Changing the mode distribution breaks MAX DEF",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Changing the mode distribution shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on",
+   "test_item": "Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.\n\n(The vehicle is equipped with MAX DEF; change the mode distribution)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Change the mode distribution",
@@ -259,7 +267,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "同上句之 mode distribution 一項"
-   }
+   },
+   "test_item_authored": "Changing the mode distribution shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on"
   },
   {
    "req_id": "SWE1-HVAC-024-07",
@@ -267,7 +276,7 @@
    "tc_title": "Pressing MAX DEF again breaks MAX DEF",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "Pressing MAX DEF again shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on",
+   "test_item": "Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.\n\n(The vehicle is equipped with MAX DEF; press \"MAX DEF\" again)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Press \"MAX DEF\" again",
@@ -285,7 +294,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "同上句之 pressing again MAX DEF 一項"
-   }
+   },
+   "test_item_authored": "Pressing MAX DEF again shall break MAX DEF, turning MAX DEF off, and the system shall go back to the previous manual mode with the A/C on"
   },
   {
    "req_id": "SWE1-HVAC-024-08",
@@ -293,7 +303,7 @@
    "tc_title": "A fan speed change does not break MAX DEF",
    "test_group": "Comfort",
    "test_set": "Tri-Mode Climate",
-   "test_item": "A change in fan speed shall not break MAX DEF",
+   "test_item": "Change in fan speed does not break MAX DEF.\n\n(The vehicle is equipped with MAX DEF; change the fan speed)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX DEF\"\n2. Change the fan speed",
@@ -311,7 +321,8 @@
     "ch16_outline": "16.8",
     "verdict": "yes",
     "ch16_sentence": "ICE7「Change in fan speed doesn’t break MAX DEF」"
-   }
+   },
+   "test_item_authored": "A change in fan speed shall not break MAX DEF"
   }
  ]
 }

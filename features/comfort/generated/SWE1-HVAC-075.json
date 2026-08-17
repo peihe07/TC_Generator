@@ -25,7 +25,7 @@
    "tc_title": "A press of the standard vented seat button sets the seat to HI",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on a press of the vented seat button turn the seat on HI, with the soft button highlighted blue and the control displaying a large fan, HI and/or 2 LEDs",
+   "test_item": "For Standard Heated/Vented seats a press of the vented seat button turns the seat on HI, the soft button highlights blue and control displays a large fan, HI and/or 2 LEDs.\n\n(The vehicle has Standard Heated/Vented seats; The vehicle is not a front-climate-only vehicle; read the vented seat button and its control)",
    "pre_conditions": "1. [spec-derived] The vehicle has Standard Heated/Vented seats (12.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the vented seat button in the comfort section\n2. Read the vented seat button and its control",
@@ -42,7 +42,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on a press of the vented seat button turn the seat on HI, with the soft button highlighted blue and the control displaying a large fan, HI and/or 2 LEDs"
   },
   {
    "req_id": "SWE1-HVAC-075-02",
@@ -50,7 +51,7 @@
    "tc_title": "The second press of the standard vented seat button sets LO",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on the next button press set the seat to LO, the button remaining highlighted and displaying a small fan, LO and/or 1 LED",
+   "test_item": "The next button press sets the seat to LO, button remains highlighted and displays a small fan, LO and/or 1 LED.\n\n(The vehicle has Standard Heated/Vented seats; The vehicle is not a front-climate-only vehicle; press the vented seat button)",
    "pre_conditions": "1. [spec-derived] The vehicle has Standard Heated/Vented seats (12.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the vented seat to HI\n2. Press the vented seat button",
@@ -67,7 +68,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on the next button press set the seat to LO, the button remaining highlighted and displaying a small fan, LO and/or 1 LED"
   },
   {
    "req_id": "SWE1-HVAC-075-03",
@@ -75,7 +77,7 @@
    "tc_title": "The third press turns the standard vented seat off",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "The system shall on the next press turn the vented seat OFF, the button no longer highlighted and an unhighlighted fan shown",
+   "test_item": "The next press, turns the vented seat OFF, the button is no longer highlighted and a unhighlighted fan is shown.\n\n(The vehicle has Standard Heated/Vented seats; The vehicle is not a front-climate-only vehicle; press the vented seat button)",
    "pre_conditions": "1. [spec-derived] The vehicle has Standard Heated/Vented seats (12.8)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)\n5. [spec-derived] The vehicle is not a front-climate-only vehicle, for which the comfort tabs are not displayed (2.1)",
    "input_test_data": "NA",
    "test_procedure": "1. Set the vented seat to LO\n2. Press the vented seat button",
@@ -92,7 +94,8 @@
     "ch16_outline": "16.16",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節中僅 `16.16`（ICE15）提及座椅圖示（「Off icon of seats will depend on system configuration」，其 leaf `122-02` 已停下），**無一節定義加熱／通風座椅、加熱方向盤或座椅分區之按壓循環、層級呈現或其 popup**；故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側（同 DR #41 之形態）"
-   }
+   },
+   "test_item_authored": "The system shall on the next press turn the vented seat OFF, the button no longer highlighted and an unhighlighted fan shown"
   }
  ]
 }

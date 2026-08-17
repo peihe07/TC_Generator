@@ -129,6 +129,14 @@
 
 ### 3.1 Test Item [OVERRIDE — 取代 §4.3 僅 tc_title]
 
+> **Pei 2026-08-17 之裁定改寫本節之形態**（見 §3.1.1）：Test Item **上半為
+> 條文原文之逐字照抄**，下半括號為該條 TC 之情境。
+> **modal 之要求隨之退場** —— 照抄之句不可能被要求帶 `shall`。
+> 以下 G-1 之量測與 `home` 之對照**保留為紀錄**（它們是當時判定之依據），
+> 其結論已被上述裁定取代。
+
+
+
 > **G-1 PASS 2026-08-15**（下放包 17 §1）。本段生效。
 > provenance 但書降為腳註，**不再具阻卻效力** —— 見本段末 †。
 
@@ -165,7 +173,56 @@
 > 選取得 0 列，而 0 列會產出「全數不含 modal」之空集合結論。母體列數
 > assertion 擋下此事 —— 登為 **A-CF14**。
 
+### 3.1.1 Test Item 之兩段式 [OVERRIDE]（Pei 裁定，2026-08-17）
+
+```
+<該 leaf 對應之條文原句，逐字照抄>
+
+(<該條 TC 之情境>)
+```
+
+**上半 —— 照抄，不改寫**：其單位為**該 leaf 對應之那一句**（Pei 選定）。
+037 把同一句切成多個 leaf 時（`14.19` 之 8 條、`16.13` 之 6 條、
+`16.8` 之 6 條），**那幾條之上半相同** —— 這正是下半存在的理由。
+
+**下半 —— 該條之情境**：其配置條件（軸 PC，去除三個排除式 PC）＋ 其觸發步驟。
+**拆分出來之 TC 各自不同**：
+
+```
+MAX A/C automatically turns on A/C, changes airflow modes to Face, increases
+fan speed at highest setting (7/7), sets temperature ... and turns on Sync.
+
+(The system supports Max A/C; press "MAX A/C" and read the airflow mode)
+(The system supports Max A/C; press "MAX A/C" and read the fan speed)
+(The system supports Max A/C; press "MAX A/C" and read both temperatures)
+```
+
+**對應表**：`data/leaf_clause_sentence.tsv`，由 `scripts/clause_map.py` 產出
+（IDF 詞彙重疊 ＋ 前後鄰葉修補 ＋ 逐條具名之 `OVERRIDES`）。
+
+**可證與不可證，須分開講**：
+
+| 性質 | 誰保證 |
+|---|---|
+| **「照抄」** | **機器可證** —— `test-item-verbatim` gate 驗其逐字等於對應表之句，且該句為該節 `full_text` 之連續子字串（434/434 實測通過）|
+| **「選對句」** | **機器不可證** —— 低分列已逐條讀過，訂正記於 `clause_map.py` 之 `OVERRIDES` 並各附一句理由 |
+
+**原作者所寫之 test_item 不丟棄**，移入 `test_item_authored`（doc 層，
+`NOT_IN_WORKBOOK`）—— 它是當初判讀該 leaf 之依據，日後複判時需要它。
+
+**`item-modal` gate 退場**，改為 `test-item-verbatim` ＋ `test-item-situation`
+（三向反向驗證於 `verify_b_gates.py`：改一個字、與他條共用同一句、缺情境）。
+
+---
+
 ### 3.2 Pre-Conditions [ADD] —— Comfort 之 spec trigger
+
+> **Pei 2026-08-17（下放包 94）**：source class 標籤為 `generated/*.json` 之
+> **內部欄位，不寫入工作簿 J 欄** —— 「這個標籤要不要出現在交給客戶的那一格
+> 裡」，這個問題從未被問過。**節次括號保留**（那是條文出處，非我方語彙）。
+> 標籤仍須標、仍受 `source-class-truthful` 等 gate 檢查，只是不外露；
+> 移除於寫入路徑（`write_back.render`），並由 `no-source-class-in-workbook`
+> assertion 逐格驗其未外露。
 
 以下為 §8.5 例外之合法 Pre-Condition 類別，**每一句須標 source class**
 （`spec-verbatim` / `spec-derived` / `test-setup`），**未標者視為未追溯**

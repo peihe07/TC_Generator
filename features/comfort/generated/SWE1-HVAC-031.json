@@ -29,7 +29,7 @@
    "tc_title": "LOCK REAR locks out the rear climate controls",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall rear climate controls locked/unlocked accordingly",
+   "test_item": "Rear lock will lockout the rear climate controls.\n\n(The rear climate screen is open and the climate system is on; operate a rear climate control)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"LOCK REAR\"\n2. Operate a rear climate control",
@@ -46,7 +46,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall rear climate controls locked/unlocked accordingly"
   },
   {
    "req_id": "SWE1-HVAC-031-01",
@@ -54,7 +55,7 @@
    "tc_title": "UNLOCK REAR restores the rear climate controls",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall rear climate controls locked/unlocked accordingly",
+   "test_item": "Rear lock will lockout the rear climate controls.\n\n(The rear climate screen is open and the climate system is on; operate a rear climate control)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"LOCK REAR\", then press \"UNLOCK REAR\"\n2. Operate a rear climate control",
@@ -71,7 +72,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall rear climate controls locked/unlocked accordingly"
   },
   {
    "req_id": "SWE1-HVAC-031-02",
@@ -79,7 +81,7 @@
    "tc_title": "The LOCK REAR text changes to UNLOCK REAR when the rear climate is locked",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall text changes: LOCK REAR to UNLOCK REAR",
+   "test_item": "The text for LOCK REAR will change to UNLOCK REAR text and Lock graphic when Rear Climate is locked to indicate the state of being locked or unlocked (While unlocked = Lock Rear text with unlocked Lock icon, While locked = Unlock Rear text with the Lock icon).\n\n(The rear climate screen is open and the climate system is on; read the button text)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the button text while the rear climate is unlocked\n2. Press the button\n3. Read the button text",
@@ -96,7 +98,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall text changes: LOCK REAR to UNLOCK REAR"
   },
   {
    "req_id": "SWE1-HVAC-031-03",
@@ -104,7 +107,7 @@
    "tc_title": "The lock graphic reflects the locked and unlocked state",
    "test_group": "Comfort",
    "test_set": "Rear Climate",
-   "test_item": "The system shall icon reflects lock/unlock state",
+   "test_item": "The text for LOCK REAR will change to UNLOCK REAR text and Lock graphic when Rear Climate is locked to indicate the state of being locked or unlocked (While unlocked = Lock Rear text with unlocked Lock icon, While locked = Unlock Rear text with the Lock icon).\n\n(The rear climate screen is open and the climate system is on; read the lock icon)",
    "pre_conditions": "1. [test-setup] The rear climate screen is open and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the lock icon while the rear climate is unlocked\n2. Press \"LOCK REAR\"\n3. Read the lock icon",
@@ -121,7 +124,8 @@
     "ch16_outline": "no-counterpart",
     "verdict": "no",
     "ch16_sentence": "ch16 十八節（ICE1–ICE16）**無後排氣候之節** —— 實測 pattern `rear` 於 ch16 僅命中 `16.9`（ICE8 之 Rear Defrost，為後窗除霜）與 `16.11`（ICE10 於 SYNC 連動中提及 Front and Rear passengers），**無一句定義後排氣候畫面之控制**。故本條之 EMEA 排除**無 ch16 對造句可依**，屬 R-C36-1 之過嚴側，已登 DR #41"
-   }
+   },
+   "test_item_authored": "The system shall icon reflects lock/unlock state"
   }
  ]
 }

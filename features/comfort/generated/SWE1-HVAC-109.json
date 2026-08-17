@@ -28,7 +28,7 @@
    "tc_title": "Recirc icon matches the vehicle model",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "The recirc icon shall display the vehicle model specific icon as displayed in the Climate Main page table",
+   "test_item": "ICE4.) The recirc icon will display the vehicle model specific icon as displayed in the Climate Main page table.\n\n(read the \"RECIRC\" icon)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen on a vehicle whose model the system detects\n2. Read the \"RECIRC\" icon",
@@ -40,7 +40,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "The recirc icon shall display the vehicle model specific icon as displayed in the Climate Main page table"
   },
   {
    "req_id": "SWE1-HVAC-109-02",
@@ -48,7 +49,7 @@
    "tc_title": "Generic recirc symbol appears when the model is undetected",
    "test_group": "Comfort",
    "test_set": "ICS Climate Modes",
-   "test_item": "If the system cannot detect the vehicle model it shall display the generic recirc symbol",
+   "test_item": "If the system cannot detect the vehicle model it will display the generic recirc symbol.\n\n(read the \"RECIRC\" icon)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the climate screen on a vehicle whose model the system cannot detect\n2. Read the \"RECIRC\" icon",
@@ -60,7 +61,8 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": ""
+   "remarks": "",
+   "test_item_authored": "If the system cannot detect the vehicle model it shall display the generic recirc symbol"
   }
  ]
 }
