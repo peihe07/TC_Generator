@@ -1194,6 +1194,32 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 #   97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb  <交付夾>/…_Comfort_20260817_itemfmt.xlsx
 #   122b666ccee342ff…                                                  <交付夾>/Comfort_HMI_delivery_note.md
 
+# ENTRY 032 — 2026-08-17 — **實測所見**：Pei 自行修改之工作簿，此後以其為主
+#
+#   type : observed（**非本 pipeline 之產出** —— 本層未寫、未複製、未改語料）
+#   對象 : /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/
+#          Climate Control Interface/
+#          FM-WI-FSM-036-A01_STLA_Test_Case_Specification_Result_SWQT_Comfort_20260817.xlsx
+#          209,778 bytes｜mtime 2026-08-17 12:24
+#          SHA256 9cdbaef4772d594e799d14d22f200e7b…（前 32 碼）
+#   位置之異動 : 該檔在 **`Climate Control Interface/` 之下**，不在 `ComfortHMI/`
+#                子夾內；檔名亦改為底線式。**此為 Pei 之安排，本層照記不代擬。**
+#
+#   逐格比對（本層 ENTRY 030 之語料 vs 該檔，434 列 × 14 欄）:
+#     I 欄（test_item）及其餘 12 欄 —— **完全相同**
+#     **J 欄 434 列全異**：Pei **另移除了節次括號**（`… seat controls (13.2)`
+#       → `… seat controls`）。下放包 94 §2.1 之裁定為「節次括號保留」，
+#       **實際交付件已不保留** —— 兩者不一致，記此待裁，本層不逕改 profile。
+#     **N 欄 434 列全異**：stem 由 `SYS1_HMI_Comfort_…` 改為 `HMI_Comfort_…`
+#       （去 `SYS1_` 前綴）。R-C1 所定之基線檔名含該前綴，
+#       **此變動影響 traceability 之字串比對，記此待裁。**
+#
+#   本層據此之處置 : **不改寫語料**（下放包 95 §6：Pei 自行修改，執行層不改）。
+#     `generated/*.json` 與 ENTRY 030 之產出保持原狀，
+#     其與該檔之差異即上列 J／N 兩欄，已逐欄記於此。
+#
+#   未做 : 未寫、未複製、未移除任何檔案；未改 ENTRY 001–031；git 未執行。
+
 # ============================================================
 # 已知不存在（下放包 83 §2，2026-08-17）
 #

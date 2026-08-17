@@ -102,26 +102,51 @@ def main() -> int:
     check(len(withheld) >= 1,
           "generators really do declare withheld leaves, so the gate is not "
           "scanning an empty set", f"{len(withheld)} declared")
-    # Pei 2026-08-17 — test_item 之兩段式。三向：改一個字、換一句、拿掉情境。
-    sample = sorted(L.CLAUSE_MAP)[0]
-    clause = L.CLAUSE_MAP[sample]
-    tampered = clause[:-1] + "X" if clause else "X"
-    check(tampered != clause and tampered not in L.CLAUSE_MAP.values(),
-          "a one-character change to the quoted clause is not equal to any "
-          "mapped clause — the verbatim check is byte-level, not fuzzy",
-          f"{sample}: …{clause[-24:]!r} vs …{tampered[-24:]!r}")
-    others = [c for t, c in L.CLAUSE_MAP.items() if c != clause]
-    check(bool(others) and clause not in others,
-          "the mapped clause of one TC is not silently shared with every "
-          "other TC (a map that returns the same string for everything would "
-          "pass the substring test and mean nothing)",
-          f"{len(set(L.CLAUSE_MAP.values()))} distinct clauses over "
-          f"{len(L.CLAUSE_MAP)} TCs")
-    no_sit = clause + "\n\n"
-    head, sep, tail = no_sit.partition("\n\n")
-    check(bool(sep) and not tail.strip().startswith("("),
-          "a test_item with the blank line but no `(…)` block is detected as "
-          "missing its situation", repr(no_sit[-8:]))
+    # 95 §5 — test_item 之四道 gate，逐道反向驗證。
+    # 每道皆造一個**應當 FAIL** 之輸入，確認其偵得；再給一個乾淨輸入，
+    # 確認其不誤報。gate 之實作在 lint_tcs.lint()，此處以同一判準複製檢查
+    # （複製之風險已知：判準若在 lint 改而未在此改，本案會靜靜通過 ——
+    # 故每道之字面條件都寫在案子的敘述裡，改動時讀得到）。
+    import re as _re
+    clause = "AC has on/ off state."
+    good = clause + "\n\n(ATC vehicle; press A/C and read the button)"
+    for name, bad_item, why in (
+        ("test-item-two-parts", clause + " (ATC vehicle; press A/C)",
+         "只有一段、無空行"),
+        ("test-item-two-parts", clause + "\n\nATC vehicle; press A/C",
+         "下半未以括號起首"),
+        ("test-item-two-parts", clause + "\n\n(a)\n\n(b)",
+         "三段"),
+    ):
+        parts = bad_item.split("\n\n")
+        fires = (len(parts) != 2 or not parts[1].strip().startswith("(")
+                 or not parts[1].strip().endswith(")"))
+        check(fires, f"{name} fires on {why}", repr(bad_item[-30:]))
+    parts = good.split("\n\n")
+    check(len(parts) == 2 and parts[1].startswith("(")
+          and parts[1].endswith(")"),
+          "test-item-two-parts does NOT fire on a well-formed item", good[-32:])
+
+    body = "C3.) AC has on/ off state. Auto can automatically turn on AC."
+    check(clause in body and "AC has an on/off state." not in body,
+          "test-item-upper-verbatim distinguishes the clause from a rewrite "
+          "of it — `AC has an on/off state.` is not in the section",
+          "改寫即不是連續子字串")
+
+    low = [("t1", "(read the fan speed)"), ("t2", "(read the fan speed)")]
+    dup = len({l for _, l in low}) < len(low)
+    check(dup, "test-item-lower-distinct fires when two rows of one leaf "
+               "carry the same lower block", str(low))
+    check(len({l for _, l in [("t1", "(read the fan speed)"),
+                              ("t2", "(read the mode)")]}) == 2,
+          "test-item-lower-distinct does NOT fire when they differ", "")
+
+    REF = _re.compile(r"\([A-Z]+\d*\.?\)|\(\d+(?:\.\d+)*\)")
+    for lower, should in (("(HVS6.)", True), ("(11.5)", True),
+                          ("(ATC vehicle; press A/C)", False)):
+        check(bool(_re.fullmatch(REF, lower)) == should,
+              f"test-item-lower-not-a-reference {'fires' if should else 'is silent'} "
+              f"on {lower}", lower)
 
     # 89 §3 — the SR25 gate was narrowed so an approved external document may
     # carry SR25 in its own name. Both directions, because a narrowed gate is

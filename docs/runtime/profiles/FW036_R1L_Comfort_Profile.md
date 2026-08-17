@@ -129,19 +129,29 @@
 
 ### 3.1 Test Item [OVERRIDE — 取代 §4.3 僅 tc_title]
 
-> **Pei 2026-08-17 之裁定改寫本節之形態**（見 §3.1.1）：Test Item **上半為
-> 條文原文之逐字照抄**，下半括號為該條 TC 之情境。
-> **modal 之要求隨之退場** —— 照抄之句不可能被要求帶 `shall`。
+> **本節之「濃縮」二字為誤**（下放包 95 §3.1，Pei 裁定 2026-08-17）。
+> 規則自始為：**Test Item 上半＝條文原文，原封不動**
+> —— 不改寫、不濃縮、不加主詞、不換句型；下半為一組括號，
+> 內含**作者所理解之測項定義**。詳見 §3.1.1。
+> **modal 之要求隨之退場** —— 照抄之句不可能被要求帶 `shall`；
+> `home` 之 modal 本來就來自條文原文（RD 語言用 `shall`／`will`），
+> 不是作者加上去的。
+>
+> **誤實作之成因（95 §3.1）**：G-1（下放包 16 §2）量了 `home` 之 Test Item
+> 欄，得「143/144 含 modal、中位 273 字元」，據以認定本節之 override 有據。
+> **該量測量了「有沒有 modal」與「多長」，未量「是原文還是改寫」。**
+> **量對了指標，答錯了問題。**
+>
 > 以下 G-1 之量測與 `home` 之對照**保留為紀錄**（它們是當時判定之依據），
-> 其結論已被上述裁定取代。
+> 其結論已被上述訂正取代。
 
 
 
 > **G-1 PASS 2026-08-15**（下放包 17 §1）。本段生效。
 > provenance 但書降為腳註，**不再具阻卻效力** —— 見本段末 †。
 
-**繼承 Privacy §3.1 / SXM §3.1（結構性）**：Test Item = 以 spec 語言濃縮之
-需求陳述，**modal 僅此欄允許**（引用需求原文）。泛用 §4.3 之 tc_title
+~~**繼承 Privacy §3.1 / SXM §3.1（結構性）**：Test Item = 以 spec 語言**濃縮**之
+需求陳述~~ —— **「濃縮」為誤，見上**。Test Item 上半為**條文原文原封不動**，**modal 僅此欄允許**（引用需求原文）。泛用 §4.3 之 tc_title
 （無 modal）仍產出於 JSON 供 lint 與 sibling 判別。ER 一律無 modal（§6）。
 
 **G-1 實測結果**（`features/comfort/scripts/gate_g1_test_item.py`，可重跑）：
@@ -185,7 +195,16 @@
 037 把同一句切成多個 leaf 時（`14.19` 之 8 條、`16.13` 之 6 條、
 `16.8` 之 6 條），**那幾條之上半相同** —— 這正是下半存在的理由。
 
-**下半 —— 該條之情境**：其配置條件（軸 PC，去除三個排除式 PC）＋ 其觸發步驟。
+**下半 —— 作者所理解之測項定義**（95 §2）：在什麼條件下、做了什麼、
+預期看到什麼。**不是**條款編號（`HVS6.`）、**不是**節次（`11.5`）、
+**不是**文件名 —— 出處另有其欄（`specification_reference`），不由此欄承擔。
+
+**其功能是拆分之區分**（95 §2.1）：一個 leaf 拆為多條時，各條之上半**完全
+相同**，差別全數落在下半 —— **下半是那幾條在 test_item 欄上唯一可分辨之處**。
+
+本 feature 現行之下半為「配置條件 ＋ 觸發步驟」，形態合規；
+**其中 11 條經 `test-item-lower-distinct` 測出兩兩相同**（見上繳 74 §3）。
+
 **拆分出來之 TC 各自不同**：
 
 ```
@@ -210,14 +229,31 @@ fan speed at highest setting (7/7), sets temperature ... and turns on Sync.
 **原作者所寫之 test_item 不丟棄**，移入 `test_item_authored`（doc 層，
 `NOT_IN_WORKBOOK`）—— 它是當初判讀該 leaf 之依據，日後複判時需要它。
 
-**`item-modal` gate 退場**，改為 `test-item-verbatim` ＋ `test-item-situation`
-（三向反向驗證於 `verify_b_gates.py`：改一個字、與他條共用同一句、缺情境）。
+**gate（95 §5，四道，皆已反向驗證於 `verify_b_gates.py`）**：
+
+| gate | 所驗 |
+|---|---|
+| `test-item-two-parts` | 恰為一個空行分隔之兩部分，下半 `(` 起 `)` 止 |
+| `test-item-upper-verbatim` | 上半為該節 `full_text` 之連續子字串（空白正規化後）|
+| `test-item-lower-distinct` | 同一 `req_id` 之多條 TC，其下半兩兩不得相同 |
+| `test-item-lower-not-a-reference` | 下半不得僅由條款編號／節次構成 |
+
+**`item-modal` 退場。** 第三道之必要性由本案自證：51 條拆分列之下半曾全為
+同一個條款編號，**而至交付為止無任何檢查問過這件事** ——
+§4.3 守住了 `tc_title`，沒人察覺 test_item 承擔同一功能。
 
 ---
 
 ### 3.2 Pre-Conditions [ADD] —— Comfort 之 spec trigger
 
-> **Pei 2026-08-17（下放包 94）**：source class 標籤為 `generated/*.json` 之
+> **§3.2 之 J 欄格式（下放包 94 §2.1，Pei 裁定 2026-08-17）**
+>
+> ```
+> 1. The vehicle is equipped with Comfort features, such as heated/vented
+>    seats and a heated steering wheel (17.3)
+> ```
+>
+> **J 欄只寫條件本文與其節次括號。** source class 標籤為 `generated/*.json` 之
 > **內部欄位，不寫入工作簿 J 欄** —— 「這個標籤要不要出現在交給客戶的那一格
 > 裡」，這個問題從未被問過。**節次括號保留**（那是條文出處，非我方語彙）。
 > 標籤仍須標、仍受 `source-class-truthful` 等 gate 檢查，只是不外露；

@@ -539,6 +539,7 @@ def identical_tc_groups(docs: list) -> list:
 def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
     """-> [(severity, gate, message)]"""
     out = []
+    LOWER_BY_LEAF = {}   # 95 §5 第三道：req_id -> [(tc_id, 下半)]
 
     def bad(gate, msg):
         out.append(("FAIL", gate, msg))
@@ -750,29 +751,33 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         if MODALS.search(tc["tc_title"]):
             bad("title-modal", f"{w}: tc_title contains a modal (§4.3)")
 
-        # ---- test_item：上半照抄條文，下半為該條之情境 -------------------
-        # Pei 2026-08-17 之裁定取代了 profile §3.1 之 modal 要求：**照抄之句
-        # 不可能被要求帶 shall**。改驗其更強之性質 —— 上半必須逐字等於
-        # 該 leaf 之條文原句，而該原句必須是該節 full_text 之連續子字串。
-        # `item-modal` 因此退場：它問的是「我們寫得夠不夠規範」，
-        # 而這一格現在有一半不是我們寫的。
-        head, sep, tail = tc["test_item"].partition("\n\n")
-        expect = CLAUSE_MAP.get(tc["tc_id"])
-        if expect is None:
-            bad("test-item-verbatim",
-                f"{w}: no clause sentence mapped (data/leaf_clause_sentence.tsv)")
-        elif head != expect:
-            bad("test-item-verbatim",
-                f"{w}: test_item's first block is not the mapped clause "
-                f"verbatim — {head[:60]!r}")
-        elif head not in " ".join(d["source_clause"].split()):
-            bad("test-item-verbatim",
-                f"{w}: the quoted clause is not a contiguous substring of "
-                f"section {d['outline']}'s full_text")
-        if not sep or not tail.strip().startswith("("):
-            bad("test-item-situation",
-                f"{w}: test_item has no situation block — expected a blank "
-                f"line then `(…)`")
+        # ---- test_item 之兩部分（下放包 95 §1／§5）----------------------
+        # 上半＝條文原文原封不動；下半＝作者所理解之測項定義。
+        # 該規則自始存在（`features/home` 之既有產出即其實例），
+        # 分析層於 Comfort 誤實作 —— profile §3.1 之「濃縮」二字即錯之所在。
+        # 四道 gate 依 95 §5：
+        parts = tc["test_item"].split("\n\n")
+        if len(parts) != 2 or not parts[1].strip().startswith("(") \
+                or not parts[1].strip().endswith(")"):
+            bad("test-item-two-parts",
+                f"{w}: test_item is not exactly two blocks separated by one "
+                f"blank line with the lower one in brackets — "
+                f"{tc['test_item'][:60]!r}")
+        else:
+            upper, lower = parts[0].strip(), parts[1].strip()
+            body = " ".join(d["source_clause"].split())
+            if " ".join(upper.split()) not in body:
+                bad("test-item-upper-verbatim",
+                    f"{w}: the upper block is not a contiguous quotation of "
+                    f"section {d['outline']}'s full_text — {upper[:60]!r}")
+            # 下半不得只是出處：出處另有其欄（95 §2）
+            if re.fullmatch(r"\([A-Z]+\d*\.?\)|\(\d+(?:\.\d+)*\)", lower):
+                bad("test-item-lower-not-a-reference",
+                    f"{w}: the lower block is only a clause label or section "
+                    f"number — that belongs in specification_reference "
+                    f"({lower})")
+            LOWER_BY_LEAF.setdefault(tc["req_id"], []).append((tc["tc_id"], lower))
+
         if MODALS.search(tc["expected_result"]):
             bad("er-modal", f"{w}: expected_result contains a modal (§6)")
 
@@ -1167,6 +1172,22 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
                 f"({seg[:40]!r}). R-C40 reads this label to decide whether a "
                 f"leaf stops, so an unmeasured `mirrored` is not cosmetic")
 
+    # 95 §5 第三道 —— 同一 leaf 拆出之多條 TC，其下半兩兩不得相同。
+    # **其必要性由本案自證**：51 條拆分列之下半曾全為同一個條款編號，
+    # 而至交付為止無任何檢查問過這件事。§4.3 守住了 tc_title，
+    # 沒人察覺 test_item 承擔同一功能。
+    for leaf, items in sorted(LOWER_BY_LEAF.items()):
+        if len(items) < 2:
+            continue
+        seen = {}
+        for tc_id, low in items:
+            if low in seen:
+                bad("test-item-lower-distinct",
+                    f"{leaf}: {seen[low]} and {tc_id} carry the same lower "
+                    f"block — the split's two rows are indistinguishable in "
+                    f"test_item ({low[:60]})")
+            seen[low] = tc_id
+
     # ---- 62 §1.1 (b) — a leaf is either withheld or produced, never both ----
     produced = {tc["req_id"] for d in docs for tc in d["tcs"]}
     declared_withheld = set()
@@ -1433,7 +1454,8 @@ def main() -> int:
              "spec-ref-stem", "spec-ref-outline", "spec-ref-sr25", "test-group",
              "design-method", "priority", "functional-safety", "estimated-time",
              "remarks", "trailing-period", "ui-bracket", "title-length",
-             "title-modal", "test-item-verbatim", "test-item-situation",
+             "title-modal", "test-item-two-parts", "test-item-upper-verbatim",
+             "test-item-lower-distinct", "test-item-lower-not-a-reference",
              "er-modal", "source-class",
              "proc-er-1to1", "token-placement", "token-source",
              "fabricated-qty", "sibling-axis",
