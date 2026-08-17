@@ -1,0 +1,4214 @@
+{
+ "cfts009": {
+  "4941009": [
+   "1.1",
+   "Revision Notes"
+  ],
+  "4941018": [
+   "1.2",
+   "Introduction"
+  ],
+  "4941019": [
+   "1.2",
+   "Introduction"
+  ],
+  "4941022": [
+   "1.3.1",
+   "A&T System Power Definitions"
+  ],
+  "4941024": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941025": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941026": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941027": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941028": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941029": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941030": [
+   "1.3.1.1",
+   "BODY OFF and BODY ON MODE GROUPS"
+  ],
+  "4941032": [
+   "1.3.1.2",
+   "SLEEP MODE"
+  ],
+  "4941033": [
+   "1.3.1.2",
+   "SLEEP MODE"
+  ],
+  "4941034": [
+   "1.3.1.2",
+   "SLEEP MODE"
+  ],
+  "4941035": [
+   "1.3.1.2",
+   "SLEEP MODE"
+  ],
+  "4941037": [
+   "1.3.1.3",
+   "STANDBY MODE"
+  ],
+  "4941039": [
+   "1.3.1.4",
+   "IDLE MODE"
+  ],
+  "4941040": [
+   "1.3.1.4",
+   "IDLE MODE"
+  ],
+  "4941042": [
+   "1.3.1.5",
+   "FULL OPERATION MODE"
+  ],
+  "4941044": [
+   "1.3.1.6",
+   "PARTIAL OPERATION MODE"
+  ],
+  "4941045": [
+   "1.3.1.6",
+   "PARTIAL OPERATION MODE"
+  ],
+  "4941046": [
+   "1.3.1.6",
+   "PARTIAL OPERATION MODE"
+  ],
+  "4941047": [
+   "1.3.1.6",
+   "PARTIAL OPERATION MODE"
+  ],
+  "4941048": [
+   "1.3.1.6",
+   "PARTIAL OPERATION MODE"
+  ],
+  "4941049": [
+   "1.3.1.6",
+   "PARTIAL OPERATION MODE"
+  ],
+  "4941051": [
+   "1.3.1.7",
+   "STOLEN VEHICLE MODE"
+  ],
+  "4941052": [
+   "1.3.1.7",
+   "STOLEN VEHICLE MODE"
+  ],
+  "4941054": [
+   "1.3.1.8",
+   "TIMED MODE"
+  ],
+  "4941055": [
+   "1.3.1.8",
+   "TIMED MODE"
+  ],
+  "4941056": [
+   "1.3.1.8",
+   "TIMED MODE"
+  ],
+  "4941057": [
+   "1.3.1.8",
+   "TIMED MODE"
+  ],
+  "4941058": [
+   "1.3.1.8",
+   "TIMED MODE"
+  ],
+  "4941059": [
+   "1.3.1.8",
+   "TIMED MODE"
+  ],
+  "4941061": [
+   "1.3.1.9",
+   "BENCH MODE"
+  ],
+  "4941063": [
+   "1.3.1.10",
+   "LOGISTICS MODE"
+  ],
+  "4941064": [
+   "1.3.1.10",
+   "LOGISTICS MODE"
+  ],
+  "4941065": [
+   "1.3.1.10",
+   "LOGISTICS MODE"
+  ],
+  "4941068": [
+   "1.3.1.11.1",
+   "HU State Chart"
+  ],
+  "4941070": [
+   "1.3.1.11.2",
+   "RESET MODE"
+  ],
+  "4941072": [
+   "1.3.1.11.3",
+   "NORMAL OPERATION MODE GROUP"
+  ],
+  "4941075": [
+   "1.3.1.11.3.1.1",
+   "SLEEP MODE"
+  ],
+  "4941077": [
+   "1.3.1.11.3.1.2",
+   "STANDBY MODE"
+  ],
+  "4941079": [
+   "1.3.1.11.3.1.3",
+   "TIMED MODE"
+  ],
+  "4941082": [
+   "1.3.1.11.3.2.1",
+   "FULL OPERATION MODE"
+  ],
+  "4941084": [
+   "1.3.1.11.3.2.2",
+   "IDLE MODE"
+  ],
+  "4941086": [
+   "1.3.1.12",
+   "Asynchronous CAN network operation"
+  ],
+  "4941089": [
+   "1.3.1.13.1",
+   "SW watchdog"
+  ],
+  "4941090": [
+   "1.3.1.13.1",
+   "SW watchdog"
+  ],
+  "4941092": [
+   "1.3.1.13.2",
+   "HW watchdog"
+  ],
+  "4941093": [
+   "1.3.1.13.2",
+   "HW watchdog"
+  ],
+  "4941095": [
+   "1.3.2",
+   "ECU CAN Architecture Configuration (If Equipped)"
+  ],
+  "4941097": [
+   "1.3.3",
+   "System Wake Up and Power Up Conditions"
+  ],
+  "4941098": [
+   "1.3.3",
+   "System Wake Up and Power Up Conditions"
+  ],
+  "4941100": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941101": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941102": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941103": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941104": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941105": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941106": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941107": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941108": [
+   "1.3.3.1",
+   "STANDBY MODE"
+  ],
+  "4941110": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941111": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941112": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941113": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941114": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941115": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941116": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941117": [
+   "1.3.3.1.1",
+   "Radios"
+  ],
+  "4941119": [
+   "1.3.3.1.2",
+   "Amp"
+  ],
+  "4941120": [
+   "1.3.3.1.2",
+   "Amp"
+  ],
+  "4941121": [
+   "1.3.3.1.2",
+   "Amp"
+  ],
+  "4941122": [
+   "1.3.3.1.2",
+   "Amp"
+  ],
+  "4941123": [
+   "1.3.3.1.2",
+   "Amp"
+  ],
+  "4941125": [
+   "1.3.3.1.3",
+   "Integrated Center Stack (ICS)"
+  ],
+  "4941127": [
+   "1.3.3.1.4",
+   "VES3"
+  ],
+  "4941128": [
+   "1.3.3.1.4",
+   "VES3"
+  ],
+  "4941129": [
+   "1.3.3.1.4",
+   "VES3"
+  ],
+  "4941130": [
+   "1.3.3.1.4",
+   "VES3"
+  ],
+  "4941131": [
+   "1.3.3.1.4",
+   "VES3"
+  ],
+  "4941133": [
+   "1.3.3.1.5",
+   "VES2"
+  ],
+  "4941134": [
+   "1.3.3.1.5",
+   "VES2"
+  ],
+  "4941135": [
+   "1.3.3.1.5",
+   "VES2"
+  ],
+  "4941136": [
+   "1.3.3.1.5",
+   "VES2"
+  ],
+  "4941137": [
+   "1.3.3.1.5",
+   "VES2"
+  ],
+  "4941138": [
+   "1.3.3.1.5",
+   "VES2"
+  ],
+  "4941140": [
+   "1.3.3.1.6",
+   "External CD Player"
+  ],
+  "4941141": [
+   "1.3.3.1.6",
+   "External CD Player"
+  ],
+  "4941142": [
+   "1.3.3.1.6",
+   "External CD Player"
+  ],
+  "4941143": [
+   "1.3.3.1.6",
+   "External CD Player"
+  ],
+  "4941145": [
+   "1.3.3.1.7",
+   "DTV"
+  ],
+  "4941146": [
+   "1.3.3.1.7",
+   "DTV"
+  ],
+  "4941147": [
+   "1.3.3.1.7",
+   "DTV"
+  ],
+  "4941148": [
+   "1.3.3.1.7",
+   "DTV"
+  ],
+  "4941150": [
+   "1.3.3.1.8",
+   "ANC"
+  ],
+  "4941151": [
+   "1.3.3.1.8",
+   "ANC"
+  ],
+  "4941153": [
+   "1.3.3.1.9",
+   "Disassociated Center Stack Display (DCSD)"
+  ],
+  "4941155": [
+   "1.3.3.1.10",
+   "Telematics Box Module"
+  ],
+  "4941156": [
+   "1.3.3.1.10",
+   "Telematics Box Module"
+  ],
+  "4941157": [
+   "1.3.3.1.10",
+   "Telematics Box Module"
+  ],
+  "4941158": [
+   "1.3.3.1.10",
+   "Telematics Box Module"
+  ],
+  "4941160": [
+   "1.3.3.2",
+   "Body ON Mode"
+  ],
+  "4941162": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941163": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941164": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941165": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941166": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941167": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941168": [
+   "1.3.3.2.1",
+   "Radio"
+  ],
+  "4941170": [
+   "1.3.3.2.2",
+   "Disassociated Center Stack Display (DCSD)"
+  ],
+  "4941171": [
+   "1.3.3.2.2",
+   "Disassociated Center Stack Display (DCSD)"
+  ],
+  "4941172": [
+   "1.3.3.2.2",
+   "Disassociated Center Stack Display (DCSD)"
+  ],
+  "4941174": [
+   "1.3.3.2.3",
+   "Integrated Center Stack (ICS)"
+  ],
+  "4941176": [
+   "1.3.3.2.4",
+   "Amp"
+  ],
+  "4941177": [
+   "1.3.3.2.4",
+   "Amp"
+  ],
+  "4941178": [
+   "1.3.3.2.4",
+   "Amp"
+  ],
+  "4941180": [
+   "1.3.3.2.5",
+   "VES3"
+  ],
+  "4941181": [
+   "1.3.3.2.5",
+   "VES3"
+  ],
+  "4941182": [
+   "1.3.3.2.5",
+   "VES3"
+  ],
+  "4941183": [
+   "1.3.3.2.5",
+   "VES3"
+  ],
+  "4941185": [
+   "1.3.3.2.6",
+   "VES2"
+  ],
+  "4941186": [
+   "1.3.3.2.6",
+   "VES2"
+  ],
+  "4941187": [
+   "1.3.3.2.6",
+   "VES2"
+  ],
+  "4941188": [
+   "1.3.3.2.6",
+   "VES2"
+  ],
+  "4941190": [
+   "1.3.3.2.7",
+   "Remote DVD Player"
+  ],
+  "4941191": [
+   "1.3.3.2.7",
+   "Remote DVD Player"
+  ],
+  "4941192": [
+   "1.3.3.2.7",
+   "Remote DVD Player"
+  ],
+  "4941193": [
+   "1.3.3.2.7",
+   "Remote DVD Player"
+  ],
+  "4941194": [
+   "1.3.3.2.7",
+   "Remote DVD Player"
+  ],
+  "4941195": [
+   "1.3.3.2.7",
+   "Remote DVD Player"
+  ],
+  "4941197": [
+   "1.3.3.2.8",
+   "DTV"
+  ],
+  "4941198": [
+   "1.3.3.2.8",
+   "DTV"
+  ],
+  "4941199": [
+   "1.3.3.2.8",
+   "DTV"
+  ],
+  "4941201": [
+   "1.3.3.2.9",
+   "ANC"
+  ],
+  "4941203": [
+   "1.3.3.2.10",
+   "Telematic Box Module (TBM)"
+  ],
+  "4941204": [
+   "1.3.3.2.10",
+   "Telematic Box Module (TBM)"
+  ],
+  "4941206": [
+   "1.3.3.3",
+   "General Sleep and Wakeup Requirements for CAN-I"
+  ],
+  "4941207": [
+   "1.3.3.3",
+   "General Sleep and Wakeup Requirements for CAN-I"
+  ],
+  "4941209": [
+   "1.3.3.3.1",
+   "ICS Wakeup Reasons"
+  ],
+  "4941210": [
+   "1.3.3.3.1",
+   "ICS Wakeup Reasons"
+  ],
+  "4941212": [
+   "1.3.3.3.2",
+   "HU Wakeup using Power Button"
+  ],
+  "4941214": [
+   "1.3.3.3.3",
+   "HU Wakeup from Ecall/Assist call"
+  ],
+  "4941216": [
+   "1.3.3.3.4",
+   "HU Wakeup By Door Lock/Unlock"
+  ],
+  "4941218": [
+   "1.3.3.3.5",
+   "Other HU Wakeup Requirements"
+  ],
+  "4941220": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941221": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941222": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941223": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941224": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941225": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941226": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941227": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941228": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941229": [
+   "1.3.3.3.5.1",
+   "HU Wakeup to Report Status of Charge for xEV"
+  ],
+  "4941231": [
+   "1.3.3.3.6",
+   "HUs with CAN-C Connection"
+  ],
+  "4941233": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941234": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941235": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941236": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941237": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941238": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941239": [
+   "1.3.3.4",
+   "Body Remote Start Mode (PARTIAL OPERATION MODE)"
+  ],
+  "4941241": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941242": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941243": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941244": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941245": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941246": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941247": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941248": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941249": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941250": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941251": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941252": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941253": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941254": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941255": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941256": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941257": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941258": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941259": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941260": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941261": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941262": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941263": [
+   "1.3.3.5",
+   "Power up Sequence"
+  ],
+  "4941266": [
+   "1.3.3.5.1.1",
+   "Theme"
+  ],
+  "4941267": [
+   "1.3.3.5.1.1",
+   "Theme"
+  ],
+  "4941268": [
+   "1.3.3.5.1.1",
+   "Theme"
+  ],
+  "4941269": [
+   "1.3.3.5.1.1",
+   "Theme"
+  ],
+  "4941270": [
+   "1.3.3.5.1.1",
+   "Theme"
+  ],
+  "4941271": [
+   "1.3.3.5.1.1",
+   "Theme"
+  ],
+  "4941273": [
+   "1.3.3.5.1.1.1",
+   "Branded Font"
+  ],
+  "4941275": [
+   "1.3.3.5.1.1.2",
+   "Branded Map Theme"
+  ],
+  "4941277": [
+   "1.3.3.5.1.1.3",
+   "Branded Turn by Turn Glow"
+  ],
+  "4941279": [
+   "1.3.3.5.1.1.4",
+   "Branded APP Icon"
+  ],
+  "4941281": [
+   "1.3.3.5.1.1.5",
+   "Branded Recirc Icon"
+  ],
+  "4941283": [
+   "1.3.3.5.1.1.6",
+   "Settings Seat Graphic"
+  ],
+  "4941284": [
+   "1.3.3.5.1.1.6",
+   "Settings Seat Graphic"
+  ],
+  "4941286": [
+   "1.3.3.5.1.1.7",
+   "Performance Gauges"
+  ],
+  "4941288": [
+   "1.3.3.5.1.1.8",
+   "Launch Mode Vehicle Graphic"
+  ],
+  "4941290": [
+   "1.3.4",
+   "Shipping Mode/Logistics Mode"
+  ],
+  "4941291": [
+   "1.3.4",
+   "Shipping Mode/Logistics Mode"
+  ],
+  "4941292": [
+   "1.3.4",
+   "Shipping Mode/Logistics Mode"
+  ],
+  "4941294": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941295": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941296": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941297": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941298": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941299": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941300": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941301": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941302": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941303": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941304": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941305": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941306": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941307": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941308": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941309": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941310": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941311": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941312": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941313": [
+   "1.3.5",
+   "Start-Up and Shut Down Animations"
+  ],
+  "4941315": [
+   "1.3.6",
+   "Resume Mode"
+  ],
+  "4941316": [
+   "1.3.6",
+   "Resume Mode"
+  ],
+  "4941317": [
+   "1.3.6",
+   "Resume Mode"
+  ],
+  "4941318": [
+   "1.3.6",
+   "Resume Mode"
+  ],
+  "4941322": [
+   "1.4.2",
+   "General Diagnostic Requirements"
+  ],
+  "4941324": [
+   "1.4.2.1",
+   "Ignition Cycle Counter"
+  ],
+  "4941325": [
+   "1.4.2.1",
+   "Ignition Cycle Counter"
+  ],
+  "4941326": [
+   "1.4.2.1",
+   "Ignition Cycle Counter"
+  ],
+  "4941327": [
+   "1.4.2.1",
+   "Ignition Cycle Counter"
+  ],
+  "4941328": [
+   "1.4.2.1",
+   "Ignition Cycle Counter"
+  ],
+  "4941331": [
+   "1.4.2.2.1",
+   "DTC Enable Criteria"
+  ],
+  "4941332": [
+   "1.4.2.2.1",
+   "DTC Enable Criteria"
+  ],
+  "4941333": [
+   "1.4.2.2.1",
+   "DTC Enable Criteria"
+  ],
+  "4941334": [
+   "1.4.2.2.1",
+   "DTC Enable Criteria"
+  ],
+  "4941335": [
+   "1.4.2.2.1",
+   "DTC Enable Criteria"
+  ],
+  "4941337": [
+   "1.4.2.2.2",
+   "DTC Maturation Criteria"
+  ],
+  "4941341": [
+   "1.4.2.2.2.1.1.1",
+   "CAN-I/CAN-BH Loss of Communication"
+  ],
+  "4941344": [
+   "1.5.1",
+   "Configuration parameters"
+  ],
+  "4941346": [
+   "1.5.1.1",
+   "Configuration parameters description"
+  ],
+  "4941349": [
+   "1.6.1",
+   "Introduction"
+  ],
+  "4941350": [
+   "1.6.1",
+   "Introduction"
+  ],
+  "4941351": [
+   "1.6.1",
+   "Introduction"
+  ],
+  "4941354": [
+   "1.6.2.1",
+   "TLM algorithm requirements"
+  ],
+  "4941355": [
+   "1.6.2.1",
+   "TLM algorithm requirements"
+  ],
+  "4941357": [
+   "1.6.2.1.1",
+   "Full-Operation"
+  ],
+  "4941358": [
+   "1.6.2.1.1",
+   "Full-Operation"
+  ],
+  "4941359": [
+   "1.6.2.1.1",
+   "Full-Operation"
+  ],
+  "4941360": [
+   "1.6.2.1.1",
+   "Full-Operation"
+  ],
+  "4941361": [
+   "1.6.2.1.1",
+   "Full-Operation"
+  ],
+  "4941362": [
+   "1.6.2.1.1",
+   "Full-Operation"
+  ],
+  "4941364": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941365": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941366": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941367": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941368": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941369": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941370": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941371": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941372": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941373": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941374": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941375": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941376": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941377": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941378": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941379": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941380": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941381": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941382": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941383": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941384": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941385": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941386": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941387": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941388": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941389": [
+   "1.6.2.1.2",
+   "Idle"
+  ],
+  "4941391": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941392": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941393": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941394": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941395": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941396": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941397": [
+   "1.6.2.1.3",
+   "Partial Operation"
+  ],
+  "4941399": [
+   "1.6.2.1.4",
+   "Stolen Vehicle Mode"
+  ],
+  "4941400": [
+   "1.6.2.1.4",
+   "Stolen Vehicle Mode"
+  ],
+  "4941402": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941403": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941404": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941405": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941406": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941407": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941408": [
+   "1.6.2.1.5",
+   "Timed"
+  ],
+  "4941410": [
+   "1.6.2.1.6",
+   "Standby"
+  ],
+  "4941411": [
+   "1.6.2.1.6",
+   "Standby"
+  ],
+  "4941412": [
+   "1.6.2.1.6",
+   "Standby"
+  ],
+  "4941413": [
+   "1.6.2.1.6",
+   "Standby"
+  ],
+  "4941414": [
+   "1.6.2.1.6",
+   "Standby"
+  ],
+  "4941416": [
+   "1.6.2.1.7",
+   "Sleep"
+  ],
+  "4941417": [
+   "1.6.2.1.7",
+   "Sleep"
+  ],
+  "4941418": [
+   "1.6.2.1.7",
+   "Sleep"
+  ],
+  "4941419": [
+   "1.6.2.1.7",
+   "Sleep"
+  ],
+  "4941420": [
+   "1.6.2.1.7",
+   "Sleep"
+  ],
+  "4941422": [
+   "1.6.2.1.8",
+   "Bench"
+  ],
+  "4941423": [
+   "1.6.2.1.8",
+   "Bench"
+  ],
+  "4941424": [
+   "1.6.2.1.8",
+   "Bench"
+  ],
+  "4941426": [
+   "1.6.2.1.9",
+   "Logistic Idle"
+  ],
+  "4941427": [
+   "1.6.2.1.9",
+   "Logistic Idle"
+  ],
+  "4941428": [
+   "1.6.2.1.9",
+   "Logistic Idle"
+  ],
+  "4941429": [
+   "1.6.2.1.9",
+   "Logistic Idle"
+  ],
+  "4941431": [
+   "1.6.2.1.10",
+   "Logistic Standby"
+  ],
+  "4941432": [
+   "1.6.2.1.10",
+   "Logistic Standby"
+  ],
+  "4941434": [
+   "1.6.2.1.11",
+   "Logistic Sleep"
+  ],
+  "4941435": [
+   "1.6.2.1.11",
+   "Logistic Sleep"
+  ],
+  "4941437": [
+   "1.6.2.1.12",
+   "Init"
+  ],
+  "4941438": [
+   "1.6.2.1.12",
+   "Init"
+  ],
+  "4941439": [
+   "1.6.2.1.12",
+   "Init"
+  ],
+  "4941441": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941442": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941443": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941444": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941445": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941446": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941447": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941448": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941449": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941450": [
+   "1.6.2.1.13",
+   "TLM initialization: Init state"
+  ],
+  "4941452": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941453": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941454": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941455": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941456": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941457": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941458": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941459": [
+   "1.6.2.1.14",
+   "TLM modules and functionalities depending on operative state"
+  ],
+  "4941461": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941462": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941463": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941464": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941465": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941466": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941467": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941468": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941469": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941470": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941471": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941472": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941473": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941474": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941475": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941476": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941477": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941478": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941479": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941480": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941481": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941482": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941483": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941484": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941485": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941486": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941487": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941488": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941489": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941490": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941491": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941492": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941493": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941494": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941495": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941496": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941497": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941498": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941499": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941500": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941501": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941502": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941503": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941504": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941505": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941506": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941507": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941508": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941509": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941510": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941511": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941512": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941513": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941514": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941515": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941516": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941517": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941518": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941519": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941520": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941521": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941522": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941523": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941524": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941525": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941526": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941527": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941528": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941529": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941530": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941531": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941532": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941533": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941534": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941535": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941536": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941537": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941538": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941539": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941540": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941541": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941542": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941543": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941544": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941545": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941546": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941547": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941548": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941549": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941550": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941551": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941552": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941553": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941554": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941555": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941556": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941557": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941558": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941559": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941560": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941561": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941562": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941563": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941564": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941565": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941566": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941567": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941568": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941569": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941570": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941571": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941572": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941573": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941574": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941575": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941576": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941577": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941578": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941579": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941580": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941581": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941582": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941583": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941584": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941585": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941586": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941587": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941588": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941589": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941590": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941591": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941592": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941593": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941594": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941595": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941596": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941597": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941598": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941599": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941600": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941601": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941602": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941603": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941604": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941605": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941606": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941607": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941608": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941609": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941610": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941611": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941612": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941613": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941614": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941615": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941616": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941617": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941618": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941619": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941620": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941621": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941622": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941623": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941624": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941625": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941626": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941627": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941628": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941629": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941630": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941631": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941632": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941633": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941634": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941635": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941636": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941637": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941638": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941639": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941640": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941641": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941642": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941643": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941644": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941645": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941646": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941647": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941648": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941649": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941650": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941651": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941652": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941653": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941654": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941655": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941656": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941657": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941658": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941659": [
+   "1.6.2.1.15",
+   "TLM_Status.Info and $Telematic_Power$ signal setting"
+  ],
+  "4941661": [
+   "1.6.2.1.15.1",
+   "ICS Wakeup Reasons by POWER Button Pressed"
+  ],
+  "4941662": [
+   "1.6.2.1.15.1",
+   "ICS Wakeup Reasons by POWER Button Pressed"
+  ],
+  "4941663": [
+   "1.6.2.1.15.1",
+   "ICS Wakeup Reasons by POWER Button Pressed"
+  ],
+  "4941665": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941666": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941667": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941668": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941669": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941670": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941671": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941672": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941673": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941674": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941675": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941676": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941677": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941678": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941679": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941680": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941681": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941682": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941683": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941684": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941685": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941686": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941687": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941688": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941689": [
+   "1.6.2.1.16",
+   "Splash Screen logo visualization"
+  ],
+  "4941691": [
+   "1.6.2.1.17",
+   "Proxi Parameters management"
+  ],
+  "4941692": [
+   "1.6.2.1.17",
+   "Proxi Parameters management"
+  ],
+  "4941693": [
+   "1.6.2.1.17",
+   "Proxi Parameters management"
+  ],
+  "4941694": [
+   "1.6.2.1.17",
+   "Proxi Parameters management"
+  ],
+  "4941695": [
+   "1.6.2.1.17",
+   "Proxi Parameters management"
+  ],
+  "4941697": [
+   "1.6.2.1.18",
+   "Timeout1 Management"
+  ],
+  "4941699": [
+   "1.6.2.1.19",
+   "TLM Front Panel Mapping"
+  ],
+  "4941702": [
+   "1.6.3.1",
+   "TLM algorithm requirements"
+  ],
+  "4941703": [
+   "1.6.3.1",
+   "TLM algorithm requirements"
+  ],
+  "4941704": [
+   "1.6.3.1",
+   "TLM algorithm requirements"
+  ],
+  "4941706": [
+   "1.6.3.1.1",
+   "SwitchOff_Timeout_Setting.Req management"
+  ],
+  "4941707": [
+   "1.6.3.1.1",
+   "SwitchOff_Timeout_Setting.Req management"
+  ],
+  "4941708": [
+   "1.6.3.1.1",
+   "SwitchOff_Timeout_Setting.Req management"
+  ],
+  "4941710": [
+   "1.6.3.1.2",
+   "Auto_SwitchOn_Setting.Req management"
+  ],
+  "4941711": [
+   "1.6.3.1.2",
+   "Auto_SwitchOn_Setting.Req management"
+  ],
+  "4941714": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941715": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941716": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941717": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941718": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941719": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941720": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941721": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941722": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941723": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941724": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941725": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941726": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941727": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941728": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941729": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941730": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941731": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941732": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941733": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941734": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941735": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941736": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941737": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941738": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941739": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941740": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941741": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941742": [
+   "1.6.4.1",
+   "TLM algorithm requirements"
+  ],
+  "4941745": [
+   "1.6.5.1",
+   "TLM algorithm management"
+  ],
+  "4941746": [
+   "1.6.5.1",
+   "TLM algorithm management"
+  ],
+  "4941747": [
+   "1.6.5.1",
+   "TLM algorithm management"
+  ],
+  "4941749": [
+   "1.6.6",
+   "Resume Mode (if equipped)"
+  ],
+  "4941750": [
+   "1.6.6",
+   "Resume Mode (if equipped)"
+  ],
+  "4941751": [
+   "1.6.6",
+   "Resume Mode (if equipped)"
+  ],
+  "4941752": [
+   "1.6.6",
+   "Resume Mode (if equipped)"
+  ],
+  "4941755": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941756": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941757": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941758": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941759": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941760": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941761": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941762": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941763": [
+   "1.6.7.1",
+   "TLM algorithm requirements"
+  ],
+  "4941768": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941769": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941770": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941771": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941772": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941773": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941774": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941775": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941776": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941777": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941778": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941779": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941780": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941781": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941782": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941783": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941784": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941785": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941786": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941787": [
+   "1.7.1.1.1",
+   "ID 1.0 description"
+  ],
+  "4941789": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941790": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941791": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941792": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941793": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941794": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941795": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941796": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941797": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941798": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941799": [
+   "1.7.1.1.2",
+   "ID 2.0 description"
+  ],
+  "4941801": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941802": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941803": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941804": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941805": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941806": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941807": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941808": [
+   "1.7.2",
+   "Diagnostic Requirements"
+  ],
+  "4941813": [
+   "1.8.1.1.1",
+   "ID 1 Description"
+  ],
+  "4941814": [
+   "1.8.1.1.1",
+   "ID 1 Description"
+  ],
+  "4941815": [
+   "1.8.1.1.1",
+   "ID 1 Description"
+  ],
+  "4941816": [
+   "1.8.1.1.1",
+   "ID 1 Description"
+  ],
+  "4941817": [
+   "1.8.1.1.1",
+   "ID 1 Description"
+  ],
+  "4941819": [
+   "1.8.1.1.2",
+   "ID 2 Description"
+  ],
+  "4941821": [
+   "1.8.1.1.3",
+   "ID 3 Description"
+  ],
+  "4941823": [
+   "1.8.1.1.4",
+   "ID 4 Description"
+  ],
+  "4941825": [
+   "1.8.1.1.5",
+   "ID 5 Description"
+  ],
+  "4941826": [
+   "1.8.1.1.5",
+   "ID 5 Description"
+  ],
+  "4941828": [
+   "1.8.1.1.6",
+   "ID 6 Description"
+  ],
+  "4941830": [
+   "1.8.1.1.7",
+   "ID 7 Description"
+  ],
+  "4941832": [
+   "1.8.1.1.8",
+   "ID 8 Description"
+  ],
+  "4941834": [
+   "1.8.1.1.9",
+   "ID 9 Description"
+  ],
+  "4941836": [
+   "1.8.1.1.10",
+   "ID 10 Description"
+  ],
+  "4941838": [
+   "1.8.1.1.11",
+   "ID 11 Description"
+  ],
+  "4941840": [
+   "1.8.1.1.12",
+   "ID 12 Description"
+  ],
+  "4941841": [
+   "1.8.1.1.12",
+   "ID 12 Description"
+  ],
+  "4941843": [
+   "1.8.1.1.13",
+   "ID 15 Description"
+  ],
+  "4941846": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941847": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941848": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941849": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941850": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941851": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941852": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941853": [
+   "1.9.1",
+   "Loss of Communication Behavior"
+  ],
+  "4941855": [
+   "1.9.2",
+   "ECU CAN Architecture Configuration"
+  ],
+  "4941856": [
+   "1.9.2",
+   "ECU CAN Architecture Configuration"
+  ],
+  "4941858": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941859": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941860": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941861": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941862": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941863": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941864": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941865": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941866": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941867": [
+   "1.9.3",
+   "Power Button Reset"
+  ],
+  "4941869": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941870": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941871": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941872": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941873": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941874": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941875": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941876": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941877": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941878": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941879": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941880": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941881": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941882": [
+   "1.9.4",
+   "IDLE MODE"
+  ],
+  "4941884": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941885": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941886": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941887": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941888": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941889": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941890": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941891": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941892": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941893": [
+   "1.9.4.1",
+   "IDLE Mode wake up for APPS"
+  ],
+  "4941895": [
+   "1.9.5",
+   "STANDBY MODE"
+  ],
+  "4941896": [
+   "1.9.5",
+   "STANDBY MODE"
+  ],
+  "4941898": [
+   "1.9.6",
+   "Shipping/Logistic Mode for Yard Wake"
+  ],
+  "4941899": [
+   "1.9.6",
+   "Shipping/Logistic Mode for Yard Wake"
+  ],
+  "4941900": [
+   "1.9.6",
+   "Shipping/Logistic Mode for Yard Wake"
+  ],
+  "4941902": [
+   "1.9.7",
+   "Passenger Display Power Moding"
+  ],
+  "4941903": [
+   "1.9.7",
+   "Passenger Display Power Moding"
+  ],
+  "4941904": [
+   "1.9.7",
+   "Passenger Display Power Moding"
+  ],
+  "4941905": [
+   "1.9.7",
+   "Passenger Display Power Moding"
+  ],
+  "4941907": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941908": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941909": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941910": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941911": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941912": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941913": [
+   "1.9.7.1",
+   "Operational mode"
+  ],
+  "4941915": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941916": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941917": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941918": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941919": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941920": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941921": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941922": [
+   "1.9.7.2",
+   "Dormant"
+  ],
+  "4941924": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941925": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941926": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941927": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941928": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941929": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941930": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941931": [
+   "1.9.7.3",
+   "Passenger Display Off"
+  ],
+  "4941933": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941934": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941935": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941936": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941937": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941938": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941939": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941940": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941941": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941942": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941943": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941944": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941945": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941946": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941947": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941948": [
+   "1.9.8",
+   "Startup Animation"
+  ],
+  "4941950": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941951": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941952": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941953": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941954": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941955": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941956": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941957": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941958": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941959": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941960": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941961": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941962": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941963": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941964": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941965": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941966": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941967": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941968": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941969": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941970": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941971": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941972": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941973": [
+   "1.9.9",
+   "Splash and disclaimer screen"
+  ],
+  "4941975": [
+   "1.9.10",
+   "FOTA Pop-up"
+  ],
+  "4941976": [
+   "1.9.10",
+   "FOTA Pop-up"
+  ],
+  "4941977": [
+   "1.9.10",
+   "FOTA Pop-up"
+  ],
+  "4941978": [
+   "1.9.10",
+   "FOTA Pop-up"
+  ],
+  "4941979": [
+   "1.9.10",
+   "FOTA Pop-up"
+  ],
+  "4941980": [
+   "1.9.10",
+   "FOTA Pop-up"
+  ],
+  "4941982": [
+   "1.9.11",
+   "Remote Vehicle Status"
+  ],
+  "4941983": [
+   "1.9.11",
+   "Remote Vehicle Status"
+  ],
+  "4941985": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941986": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941987": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941988": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941989": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941990": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941991": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941992": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941993": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941994": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941995": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941996": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941997": [
+   "1.9.12",
+   "Suspend to RAM"
+  ],
+  "4941999": [
+   "1.9.13",
+   "VRM Resume Mode"
+  ],
+  "4942000": [
+   "1.9.13",
+   "VRM Resume Mode"
+  ],
+  "4942001": [
+   "1.9.13",
+   "VRM Resume Mode"
+  ],
+  "4942002": [
+   "1.9.13",
+   "VRM Resume Mode"
+  ],
+  "4942004": [
+   "1.9.14",
+   "Cluster Theme Syncronization"
+  ],
+  "4942006": [
+   "1.9.15",
+   "PDO Theme Elements"
+  ],
+  "4942007": [
+   "1.9.15",
+   "PDO Theme Elements"
+  ],
+  "4942008": [
+   "1.9.15",
+   "PDO Theme Elements"
+  ],
+  "4942010": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942011": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942012": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942013": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942014": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942015": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942016": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942017": [
+   "1.9.15.1",
+   "Theme"
+  ],
+  "4942019": [
+   "1.9.15.1.1",
+   "Branded Font"
+  ],
+  "4942021": [
+   "1.9.15.1.2",
+   "Branded Map Theme"
+  ],
+  "4942023": [
+   "1.9.15.1.3",
+   "Branded Turn by Turn Glow"
+  ],
+  "4942025": [
+   "1.9.15.1.4",
+   "Branded APP Icon"
+  ],
+  "4942027": [
+   "1.9.15.1.5",
+   "Branded Profile Avatars"
+  ],
+  "4942029": [
+   "1.9.15.1.6",
+   "Branded Recirc Icon"
+  ],
+  "4942030": [
+   "1.9.15.1.6",
+   "Branded Recirc Icon"
+  ],
+  "4942031": [
+   "1.9.15.1.6",
+   "Branded Recirc Icon"
+  ],
+  "4942033": [
+   "1.9.15.1.7",
+   "Settings Seat Graphic"
+  ],
+  "4942034": [
+   "1.9.15.1.7",
+   "Settings Seat Graphic"
+  ],
+  "4942037": [
+   "1.9.15.1.7.1.1",
+   "Theme"
+  ],
+  "4942038": [
+   "1.9.15.1.7.1.1",
+   "Theme"
+  ],
+  "4942039": [
+   "1.9.15.1.7.1.1",
+   "Theme"
+  ],
+  "4942040": [
+   "1.9.15.1.7.1.1",
+   "Theme"
+  ],
+  "4942041": [
+   "1.9.15.1.7.1.1",
+   "Theme"
+  ],
+  "4942043": [
+   "1.9.15.1.7.1.1.1",
+   "Branded Font"
+  ],
+  "4942045": [
+   "1.9.15.1.7.1.1.2",
+   "Branded Map Theme"
+  ],
+  "4942047": [
+   "1.9.15.1.7.1.1.3",
+   "Branded Turn by Turn Glow"
+  ],
+  "4942049": [
+   "1.9.15.1.7.1.1.4",
+   "Branded APP Icon"
+  ],
+  "4942051": [
+   "1.9.15.1.7.1.1.5",
+   "Branded Recirc Icon"
+  ],
+  "4942053": [
+   "1.9.15.1.7.1.1.6",
+   "Settings Seat Graphic"
+  ],
+  "4942054": [
+   "1.9.15.1.7.1.1.6",
+   "Settings Seat Graphic"
+  ],
+  "4942056": [
+   "1.9.15.1.7.1.1.7",
+   "Performance Gauges"
+  ],
+  "4942058": [
+   "1.9.15.1.7.1.1.8",
+   "Launch Mode Vehicle Graphic"
+  ],
+  "4942060": [
+   "1.9.15.1.8",
+   "Settings STFA Graphic"
+  ],
+  "4942061": [
+   "1.9.15.1.8",
+   "Settings STFA Graphic"
+  ],
+  "4942064": [
+   "1.9.15.1.10",
+   "Performance Gauges"
+  ],
+  "4942066": [
+   "1.9.15.1.11",
+   "Launch Mode Vehicle Graphic"
+  ],
+  "4942067": [
+   "1.9.15.1.11",
+   "Launch Mode Vehicle Graphic"
+  ],
+  "4942069": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942070": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942071": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942072": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942073": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942074": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942075": [
+   "1.9.15.1.12",
+   "Vehicle Graphics Control."
+  ],
+  "4942077": [
+   "1.9.15.1.13",
+   "Passenger Display Theme"
+  ],
+  "4942079": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942080": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942081": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942082": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942083": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942084": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942085": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942086": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942089": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942090": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942091": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942092": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942093": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942094": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942095": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942096": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942097": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942098": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942099": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942100": [
+   "1.9.16",
+   "Contextual Theme"
+  ],
+  "4942103": [
+   "1.9.17",
+   "Day/Night Theme"
+  ],
+  "4942104": [
+   "1.9.17",
+   "Day/Night Theme"
+  ],
+  "4942105": [
+   "1.9.17",
+   "Day/Night Theme"
+  ],
+  "4942106": [
+   "1.9.17",
+   "Day/Night Theme"
+  ],
+  "4942107": [
+   "1.9.17",
+   "Day/Night Theme"
+  ],
+  "4942109": [
+   "1.9.18",
+   "Ignition Cycles"
+  ],
+  "4942111": [
+   "1.9.19",
+   "TBM High Priority Wakeup"
+  ],
+  "4942112": [
+   "1.9.19",
+   "TBM High Priority Wakeup"
+  ],
+  "4942113": [
+   "1.9.19",
+   "TBM High Priority Wakeup"
+  ],
+  "4942114": [
+   "1.9.19",
+   "TBM High Priority Wakeup"
+  ],
+  "4942115": [
+   "1.9.19",
+   "TBM High Priority Wakeup"
+  ]
+ },
+ "cfts010": {
+  "4942194": [
+   "1.1",
+   "Revision Notes"
+  ],
+  "4942195": [
+   "1.1",
+   "Revision Notes"
+  ],
+  "5423094": [
+   "1.1",
+   "Revision Notes"
+  ],
+  "4942197": [
+   "1.2",
+   "Introduction"
+  ],
+  "4942198": [
+   "1.2",
+   "Introduction"
+  ],
+  "4942200": [
+   "1.3",
+   "Functional Requirements"
+  ],
+  "4942204": [
+   "1.4.1.1",
+   "Voltage Level Behavior"
+  ],
+  "4942205": [
+   "1.4.1.1",
+   "Voltage Level Behavior"
+  ],
+  "4942206": [
+   "1.4.1.1",
+   "Voltage Level Behavior"
+  ],
+  "4942208": [
+   "1.4.1.2",
+   "Low Voltage Behavior"
+  ],
+  "4942210": [
+   "1.4.1.2.1",
+   "Low Voltage Measured by the System"
+  ],
+  "4942211": [
+   "1.4.1.2.1",
+   "Low Voltage Measured by the System"
+  ],
+  "4942212": [
+   "1.4.1.2.1",
+   "Low Voltage Measured by the System"
+  ],
+  "4942213": [
+   "1.4.1.2.1",
+   "Low Voltage Measured by the System"
+  ],
+  "4942215": [
+   "1.4.1.2.2",
+   "Battery Cutoff Switch State"
+  ],
+  "4942216": [
+   "1.4.1.2.2",
+   "Battery Cutoff Switch State"
+  ],
+  "4942217": [
+   "1.4.1.2.2",
+   "Battery Cutoff Switch State"
+  ],
+  "4942218": [
+   "1.4.1.2.2",
+   "Battery Cutoff Switch State"
+  ],
+  "4942219": [
+   "1.4.1.2.2",
+   "Battery Cutoff Switch State"
+  ],
+  "4942221": [
+   "1.4.1.2.3",
+   "Powernet Limp-Home Cutoff State"
+  ],
+  "4942222": [
+   "1.4.1.2.3",
+   "Powernet Limp-Home Cutoff State"
+  ],
+  "4942224": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942225": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942226": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942228": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942229": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942230": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942231": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942233": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942234": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942235": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942236": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942239": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942241": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942242": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942243": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942244": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942245": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942246": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942247": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942248": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942249": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942250": [
+   "1.4.1.3",
+   "High Voltage Behavior"
+  ],
+  "4942252": [
+   "1.4.1.4",
+   "System Voltage Out-Of-Range Behavior for Different Modes"
+  ],
+  "4942253": [
+   "1.4.1.4",
+   "System Voltage Out-Of-Range Behavior for Different Modes"
+  ],
+  "4942254": [
+   "1.4.1.4",
+   "System Voltage Out-Of-Range Behavior for Different Modes"
+  ],
+  "4942255": [
+   "1.4.1.4",
+   "System Voltage Out-Of-Range Behavior for Different Modes"
+  ],
+  "4942258": [
+   "1.4.1.5.1",
+   "High temperature of the disk drives and HDD drives"
+  ],
+  "4942259": [
+   "1.4.1.5.1",
+   "High temperature of the disk drives and HDD drives"
+  ],
+  "4942261": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942262": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942263": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942264": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942265": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942266": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942267": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942268": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942269": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942270": [
+   "1.4.1.6",
+   "Load Shed"
+  ],
+  "4942272": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942273": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942274": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942275": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942276": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942277": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942278": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942279": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942280": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942281": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942282": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942283": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942284": [
+   "1.4.2",
+   "System Power Down Conditions"
+  ],
+  "4942286": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942287": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942288": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942289": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942290": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942291": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942292": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942293": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942294": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942295": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942296": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942297": [
+   "1.4.3",
+   "System Power Down Conditions"
+  ],
+  "4942302": [
+   "1.5.2.1",
+   "DTC Enable Criteria"
+  ],
+  "4942304": [
+   "1.5.2.2",
+   "DTC Maturation Criteria"
+  ],
+  "4942307": [
+   "1.5.2.2.1.1",
+   "System Voltage"
+  ],
+  "4942308": [
+   "1.5.2.2.1.1",
+   "System Voltage"
+  ],
+  "4942310": [
+   "1.5.2.2.1.2",
+   "ECU Local Voltage"
+  ],
+  "4942311": [
+   "1.5.2.2.1.2",
+   "ECU Local Voltage"
+  ],
+  "4942314": [
+   "1.5.3.1",
+   "DTC Enable Criteria"
+  ],
+  "4942316": [
+   "1.5.3.2",
+   "DTC Maturation Criteria"
+  ],
+  "4942319": [
+   "1.5.3.2.1.1",
+   "System Voltage"
+  ],
+  "4942320": [
+   "1.5.3.2.1.1",
+   "System Voltage"
+  ],
+  "4942321": [
+   "1.5.3.2.1.1",
+   "System Voltage"
+  ],
+  "4942322": [
+   "1.5.3.2.1.1",
+   "System Voltage"
+  ],
+  "4942324": [
+   "1.5.3.2.1.2",
+   "ECU Local Voltage"
+  ],
+  "4942325": [
+   "1.5.3.2.1.2",
+   "ECU Local Voltage"
+  ],
+  "4942328": [
+   "1.6.1",
+   "Configuration parameters"
+  ],
+  "4942334": [
+   "1.7.1.1.1",
+   "TLM Boot"
+  ],
+  "4942335": [
+   "1.7.1.1.1",
+   "TLM Boot"
+  ],
+  "4942336": [
+   "1.7.1.1.1",
+   "TLM Boot"
+  ],
+  "4942337": [
+   "1.7.1.1.1",
+   "TLM Boot"
+  ],
+  "4942338": [
+   "1.7.1.1.1",
+   "TLM Boot"
+  ],
+  "4942340": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942341": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942342": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942343": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942344": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942345": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942346": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942347": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942348": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942349": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942350": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942351": [
+   "1.7.1.1.2",
+   "TLM Shutdown"
+  ],
+  "4942353": [
+   "1.7.2",
+   "Load Shed"
+  ],
+  "4942354": [
+   "1.7.2",
+   "Load Shed"
+  ],
+  "4942360": [
+   "1.8.2.1.1",
+   "System Voltage"
+  ],
+  "4942361": [
+   "1.8.2.1.1",
+   "System Voltage"
+  ],
+  "4942363": [
+   "1.8.2.1.2",
+   "ECU Local Voltage"
+  ],
+  "4942364": [
+   "1.8.2.1.2",
+   "ECU Local Voltage"
+  ],
+  "4942370": [
+   "2.1.1",
+   "Revision notes"
+  ],
+  "4942373": [
+   "2.2.1",
+   "Revision notes"
+  ],
+  "4942376": [
+   "2.3.1",
+   "Revision notes"
+  ],
+  "4942379": [
+   "2.4.1",
+   "Revision notes"
+  ],
+  "4942382": [
+   "2.5.1",
+   "Revision notes"
+  ],
+  "4942385": [
+   "2.6.1",
+   "Revision notes"
+  ],
+  "4942389": [
+   "2.7.1.1",
+   "Revision notes"
+  ],
+  "4942391": [
+   "2.7.2",
+   "Revision notes"
+  ],
+  "4942394": [
+   "2.8.1",
+   "Revision notes"
+  ],
+  "4942397": [
+   "2.9.1",
+   "Revision notes"
+  ],
+  "4942400": [
+   "2.10.1",
+   "Revision notes"
+  ],
+  "4942403": [
+   "2.11.1",
+   "Revision notes"
+  ],
+  "4942406": [
+   "2.12.1",
+   "Revision notes"
+  ],
+  "4942409": [
+   "2.13.1",
+   "Revision notes"
+  ],
+  "4942412": [
+   "2.14.1",
+   "Revision notes"
+  ],
+  "4942415": [
+   "2.15.1",
+   "Revision notes"
+  ],
+  "4942418": [
+   "2.16.1",
+   "Revision notes"
+  ],
+  "4942421": [
+   "2.17.1",
+   "Revision notes"
+  ],
+  "4942424": [
+   "2.18.1",
+   "Revision notes"
+  ],
+  "4942427": [
+   "2.19.1",
+   "Revision notes"
+  ],
+  "4942429": [
+   "3",
+   "Introduction"
+  ],
+  "4942430": [
+   "3",
+   "Introduction"
+  ],
+  "4942431": [
+   "3",
+   "Introduction"
+  ],
+  "4942433": [
+   "4",
+   "Introduction"
+  ],
+  "4942434": [
+   "4",
+   "Introduction"
+  ],
+  "4942435": [
+   "4",
+   "Introduction"
+  ]
+ }
+}
