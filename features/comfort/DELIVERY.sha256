@@ -949,6 +949,7 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 #
 # 現況檔（Excel 重存後）
 8d17cecae6ccf9c522b0427d273c200d5a45e05c4b2e7da68c7b73917954e73f  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816.xlsx
+#   archived : output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816.xlsx  （83 §1：其位元組確在，只是換了路徑；與 ENTRY 023 之「確實不存在」不同類）
 
 # ENTRY 026 — 2026-08-16 — 第二十一次寫回：R-C45 解封後之全量重寫（下放包 81 §2）
 #
@@ -992,6 +993,113 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
 # 輸出
 0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_extdocs.xlsx
+
+# ENTRY 027 — 2026-08-17 — 交付前之備妥與其對象之確認（下放包 84 §2）
+#
+#   type : delivery-prepared
+#
+#   **本條不是 `delivered`，而複製尚未發生。** 84 §4 指示登一筆
+#   `type: delivered`；本層先登本條，待 Pei 複製、執行層唯讀驗證後再登。
+#   理由：`delivered` 是一個關於**世界**的陳述（那個檔案到了那個資料夾），
+#   而此刻它還沒到。**一個在事情發生前寫下的完成紀錄，其可信度為零** ——
+#   台帳之全部價值在於它只記已實測者。
+#
+#   §2 之複驗（交付前第一件事，因 ENTRY 023 之教訓）:
+#     對象 : output/…_SWQT_Comfort_20260816_extdocs.xlsx
+#     實測 SHA256 = 0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7
+#     **與 ENTRY 026 所記相符** —— Pei 於 2026-08-17 之 Excel 四項確認
+#     **未使該檔被重存**（與 ENTRY 023 之情形不同），故不需 82 §1 之處置，
+#     交付物即 ENTRY 026 之對象本身。
+#
+#   §3.1 之基線句 : 交付說明**已載明**，逐字為
+#     「Baseline: the requirement baseline for this delivery is SR24 CR24879
+#      (September 25 2023). The folder also contains an SR25 revision of the
+#      same document for reference; it is not the baseline for these test
+#      cases.」
+#
+#   待複製（Tier 3，由 Pei 執行）:
+#     1) output/…_SWQT_Comfort_20260816_extdocs.xlsx（170,047 bytes）
+#     2) docs/Comfort_HMI_delivery_note.md（6,470 bytes，5f243457…）
+#     目的地 : /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
+#              ASW-R2/Climate Control Interface/ComfortHMI/
+#
+#   交付物之內容摘要 : 434 列；涵蓋 383 / 403 個驗證單位；marker 列 4 條
+#                      （3 條 [BLOCKED-SPEC]、1 條 [BLOCKED-NON-HMI]）
+#
+#   未做 : **未複製任何檔案**；未移除交付夾任何檔案（SR25 兩檔與
+#          Device Manager PDF 依 Pei 裁定留置）；git 未執行。
+#
+# 交付物（現仍在 output/，其 checksum 行見 ENTRY 026）
+
+# ENTRY 028 — 2026-08-17 — **交付**（下放包 85）
+#
+#   type : delivered
+#   交付日 : 2026-08-17（複製由 Pei 執行；本條為執行層之唯讀實測）
+#   目的地 : /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/
+#            ASW-R2/Climate Control Interface/ComfortHMI/
+#
+#   交付物之實測（於**交付夾內**逐位元組取 hash）:
+#     工作簿 FM-WI-FSM-036-A01 …_SWQT_Comfort_20260816_extdocs.xlsx
+#            170,047 bytes
+#            0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7
+#            **與 ENTRY 026 所記逐位元組相符**
+#     交付說明 Comfort_HMI_delivery_note.md  6,470 bytes
+#            5f243457d3fe728d36054b05…（與複製當時之 docs/ 版相符）
+#
+#   **modified 與 created 相差 30 秒之判讀**：該差異為複製工具之行為，
+#   **不是內容之證據**。判定一律以 hash 為之 —— 兩者相符，故該檔自寫回以來
+#   未被改動。**時間戳說「有人動過這個檔案」，hash 說「內容是不是同一份」；
+#   只有後者是我們要的答案。**
+#
+#   交付物之內容摘要 : **434 列**；涵蓋 **383 / 403** 個驗證單位；
+#                      marker 列 **4 條**（3 [BLOCKED-SPEC]、1 [BLOCKED-NON-HMI]）
+#
+#   **一項未竟**：交付說明第 5 行原帶 `<date>` 佔位符（`…_SWQT_Comfort_<date>.xlsx`），
+#   本輪已改為實際檔名並更新其日期為 2026-08-17。
+#   **修正後之版本尚未複製至交付夾** —— 夾內現為修正前之 5f243457…。
+#   修正後 : docs/Comfort_HMI_delivery_note.md  6,551 bytes
+#            71ac5a94c481e2ddf971157d…
+#   待 Pei 重新複製，執行層驗過後另登 ENTRY 記其取代。
+#   **本條不記未發生之事**：夾內現在是哪一份，本條就記哪一份。
+#
+#   **增註（2026-08-17，下放包 90 §2.2 —— append，本條之 hash 與原內容不動）**：
+#     corpus-divergence: -382 (SWE1-HVAC-058) specification_reference cites
+#     SR24 Post 2A; corpus cites SR25 R1L-R since 2026-08-17. Sections 30/31
+#     verified identical between the two revisions. Delivered artefact is the
+#     product of the corpus as of ENTRY 026, not of the current corpus.
+#
+#     一句話：**現行交付物不是現行語料之產物，而是其前一版。**
+#     其差異為一列一欄之出處版本名，所指之事實逐格相同，故內容不因此為錯；
+#     待下一次因他故重寫回時一併帶入（90 §2 取 (b)）。
+#     **(b) 之正當性繫於「重新交付會發生」** —— 若 RD-1 長期無覆而遲無下次
+#     交付，該裁定須重審，否則 (b) 成永久不一致。
+#
+#   A-CF02 : 維持「已知不一致，以交付說明標示基線」——
+#            夾內 SR24 與 SR25 兩套並存，其分辨由交付說明之 Baseline 句承載。
+#
+#   未做 : 未移除交付夾任何檔案；既有六檔未動；git 未執行。
+#
+# 交付夾內之交付物（其路徑在客戶樹下，不納入本檔之 shasum -c 對象）
+#   0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7  <交付夾>/…_Comfort_20260816_extdocs.xlsx
+#   5f243457d3fe728d36054b05…                                          <交付夾>/Comfort_HMI_delivery_note.md
+
+# ============================================================
+# 已知不存在（下放包 83 §2，2026-08-17）
+#
+#   本段列出**其位元組已確定不在磁碟上**之台帳列。列於此者，
+#   `write_back.py` 之前置 gate 視其缺席為**預期**而非失敗；
+#   **未列於此而缺席者一律 FAIL**。
+#
+#   何以要有這一段：先前該 gate 以 `--ignore-missing` 執行 ——
+#   它把「不存在」與「不必檢查」當成同一件事，而**兩者只有一個是我知道的**。
+#   一份被誤刪之產出檔與 ENTRY 023 之位元組，在 `--ignore-missing` 之下
+#   看起來完全一樣：都是靜靜地不出現在計數裡。
+#
+#   格式：`# absent: <路徑>  —— <理由>（<記其成因之 ENTRY>）`
+#   **列入此段須有一個 ENTRY 記其成因** —— 缺席之事實與缺席之理由分開存放，
+#   而理由那一份不可以只是這一行。
+# ============================================================
+# absent: output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816.xlsx  —— 該路徑之檔案於 2026-08-16 被 Excel 就地重存，ENTRY 023 所記之位元組（c37e572f…）未留副本；重存後之位元組已歸檔並可驗（ENTRY 024／025）
 
 # ============================================================
 # 歸檔後之可驗路徑（2026-08-16）

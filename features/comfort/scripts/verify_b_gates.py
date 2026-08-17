@@ -102,6 +102,19 @@ def main() -> int:
     check(len(withheld) >= 1,
           "generators really do declare withheld leaves, so the gate is not "
           "scanning an empty set", f"{len(withheld)} declared")
+    # 89 §3 — the SR25 gate was narrowed so an approved external document may
+    # carry SR25 in its own name. Both directions, because a narrowed gate is
+    # only safe if the thing it was narrowed away from still fires.
+    sr25_stem = f"{L.STEM}_2.11".replace("SR24", "SR25")
+    check("SR25" in sr25_stem and sr25_stem not in L.EXTERNAL_REFS,
+          "a Comfort-stem reference naming SR25 is NOT on the approved list, "
+          "so it still reaches the check", sr25_stem[:60])
+    ext_sr25 = [r for r in L.EXTERNAL_REFS if "SR25" in r]
+    check(len(ext_sr25) == 1,
+          "exactly one approved external source carries SR25 in its own name "
+          "(the HMI Settings List) — the exemption is that narrow",
+          str(ext_sr25))
+
     check(not (withheld & produced),
           "no leaf is both withheld and produced",
           f"both: {sorted(withheld & produced)}")

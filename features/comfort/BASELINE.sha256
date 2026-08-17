@@ -18,20 +18,26 @@
 # formatted"，那是 perl 版的行為，exit code 仍為 0，逐檔仍印 OK。
 #
 # 更新時機：素材有增減或經裁決換版時，連同裁決編號一併更新本檔。
-# 未經裁決而此檔需要更新 —— 那本身就是要回報的事。
 #
-# R22-1 時態限縮：MATCH 是現在式陳述，不蘊含「從未被覆寫」。
-#
-# 基準確認 2026-08-15（下放包 16 §3.1 第 5 項）。
-# ─────────────────────────────────────────────────────────────────────────
-# inputs/ —— Comfort 專屬素材（5 檔）
+# **2026-08-17 更新（下放包 87 §4）**：`inputs/` 自 5 檔增為 **8 檔** ——
+# Pei 補入 `HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`、
+# `Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` 與
+# `SYS2_CFTS043 … 技術安全需求分析報告 … V01.xlsx`。
+# **R-C20：涵蓋以來源為準** —— 本檔涵蓋 `inputs/` 之**全部**檔案，
+# 不論其是否已被引用；一份放進素材夾而未列入雜湊者，
+# 其消失與被替換皆不出聲。**「還沒用到」不是不保護它的理由。**
+# 補入之三檔中，兩檔已為 R-C45 之已認可外部文件（profile §1.1），
+# 一檔（SYS2 SYSRA 報告）**判為不得引為事實出處**（上繳 66 §3.2）——
+# **列入本檔與可否引用是兩件事**：前者管它會不會消失，後者管它能不能當依據。
+
 cd876c202c71e74b0eca92dd7b4454af1879ac9a700744d5fe448687f7a9287d  inputs/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_20260121.xlsx
 a8186089a28c9a31ee69b7ba66a62f88dd95a2f3d2b41a4d73744b317ca079b6  inputs/FM-WI-FSM-037-A03-N1L-SWE1-Comfort-HMI-V0.1 STLA 報告.xlsx
+c706071ffab31464f5276db44395edef05bde1a3964ef4e950c485ead3159b3c  inputs/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx
+b0827f02c1a0a69b266fd92287557326b4e565942616dc49cca31672e4afa30b  inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx
 6373bd860fc8eee77d585e7fe931d99eb28fa0fac8dc0ee2531d3947f949f950  inputs/R1LR_Atl-H_25PI3.5_Cabin_CFTS_043 HVAC Controls and Displays _SR26_20250909-1852.doc
 ae4cf0b929b033ac3baabf9d2e6e7497da5539d3f774be30d52d636a67816cfc  inputs/SR24 R1 Market Configuration Table v1.6.xlsx
 cbe747aa139fda4dedceb87c89e9c07c48188e064104dd7d22adaf8be478abbc  inputs/SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope.xlsx
-#
-# spec-index/ —— SR24 基線三件（R-C1／R-C11：唯一來源，不得於 inputs/ 存副本）
+1c0b2abf659f4911412577356623d0760193a4c19badb5cea8265aadd586a4e6  inputs/SYS2_CFTS043_FM-WI-FSM-035-A02 STLA 技術安全需求分析報告_SYSRA STLA Technical Safety Requirement Analysis Report_SYSRA_CFTS043_V01.xlsx
 6982d37db81b36e4bd3643ca1356c12d3837fb5843ba9cd06c4ee3317a073969  ../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).xlsx
 c1a2d6e3602dce7a62f25132a9e777d013ac5eece9fe4948a00dddae7aae36a0  ../../spec-index/cache/SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023).json
 fc5d3cd1d524f4d5e6b2b1125ac4a243847d9dbcc7db2fa40cdc3f3760efb1a1  ../../spec-index/sources/Comfort HMI Logic and Flow R1 SR24 Post 3A CR24879 (September 25 2023).pdf

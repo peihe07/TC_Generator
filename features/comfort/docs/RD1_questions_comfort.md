@@ -3,7 +3,7 @@
 **Feature**: Comfort HMI (newR1L, SR24 CR24879)
 **Source under test**: `SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)`
 **Date**: 2026-08-16
-**Status of this document**: draft prepared by the test-design side; not yet issued.
+**Status of this document**: **final** (2026-08-17). Prepared by the test-design side; not yet issued — the recipient and reply route are still to be filled in below.
 **Please send replies to**: _______________________________________________
 （回覆去向由 Pei 填寫：收件人／信箱／彙整方式）
 
@@ -40,8 +40,8 @@ been able to read.
 | 3 | Which PDO release carries the vehicle-specific recirculation and seat icons? | 3 |
 | 4 | Which vehicles have the additional rear-climate controls? | 1 |
 | 5 | Is the VF climate document we have the one the MAX A/C clause delegates to? | 2 |
-| 6 | What distinguishes chapter 18 from chapter 17? | 3 |
-| 7 | When is AUTO unavailable? | 1 |
+| 6 | What distinguishes section 18.1 from section 17.1? | 3 |
+| 7 | Does "not shown in MTC configurations" mean AUTO is unavailable? | 1 |
 | 8 | Does a document named "HMI Notes" exist for this programme? | 1 |
 | 9 | Which document defines whether comfort **settings** survive an ignition cycle? | 0 |
 | | **Total** | **22 of 403 verification units with an open question** (question 9 blocks none; 20 of the 22 have no test case, items 7 and 8 have a row that does not fully test them) |
@@ -97,8 +97,14 @@ specification does state a condition for the five-mode set —
 
 but in the export scoped to this vehicle line, all four rows carrying that
 sentence have **Scope = None** and **Radio = R1M, R1H** — that is, they are
-marked as not applying here. The four-mode set (C13) still carries no condition
-of its own anywhere we have looked.
+marked as not applying here.
+
+The four-mode set (C13) carries no condition of its own in what we have read:
+**all 129 sections of this requirement** (the four sentences mentioning four
+airflow modes state the modes and how they are highlighted, not who has them),
+the vehicle-controls export **scoped to this vehicle line**, and the market
+configuration table (which covers markets and countries, not climate
+equipment).
 
 **What is missing**: two things, and the second matters more.
 
@@ -205,7 +211,7 @@ two units are delivered as rows stating the owning document.
 
 ---
 
-## 6. What distinguishes chapter 18 from chapter 17?
+## 6. What distinguishes section 18.1 from section 17.1?
 
 **Units blocked**: 3 — `SWE1-HVAC-129-01` … `-03` (section 18.1)
 
@@ -213,22 +219,32 @@ two units are delivered as rows stating the owning document.
 
 > W0.) The Comfort widget will have two screens: Comfort and Seats.
 
-**What is missing**: this sentence is **word-for-word identical** to section
-17.1. The only difference between the two chapters is the chapter heading
-(17 is titled for one screen size, 18 for another) — and a heading is not a
-requirement we can quote in a pre-condition.
+**What is missing**: this sentence is **word-for-word identical** to the one in
+section 17.1, and nothing in section 18.1 says which vehicle it applies to.
 
-**What we have done**: chapter 17's three units are tested. Chapter 18's three
-are not, because the test cases would be identical to chapter 17's with
+Two things we can state precisely, because both were measured rather than
+assumed:
+
+- Section 17.1 carries **one sentence more** than 18.1 — a pointer to the
+  front-climate and heated/vented-seat sections "for complete logic". It is a
+  cross-reference, not a distinguishing requirement, so it does not tell a
+  tester which chapter applies to the vehicle in front of them.
+- **We cannot compare the two chapters as wholes.** Only 18.1 appears in the
+  requirement analysis; sections 18.2 to 18.4 produced no verification units,
+  so we have not read them as requirements. The comparison above is between
+  **18.1 and 17.1**, not between chapter 18 and chapter 17.
+
+**What we have done**: chapter 17's three units are tested. Section 18.1's
+three are not, because the test cases would be identical to 17.1's with
 nothing to tell a tester which vehicle each applies to.
 
-**Once answered**: if the two chapters differ by screen size, the screen size
-is stated as a pre-condition and three test cases are written. If chapter 18
-is a duplicate, the three units are recorded as covered by chapter 17.
+**Once answered**: if the two differ by screen size, the screen size is stated
+as a pre-condition and three test cases are written. If 18.1 is a duplicate of
+17.1, the three units are recorded as covered by chapter 17.
 
 ---
 
-## 7. When is AUTO unavailable?
+## 7. Does "not shown in MTC configurations" mean AUTO is unavailable?
 
 **Units blocked**: 1 — `SWE1-HVAC-047` (section 10.4)
 
@@ -237,16 +253,31 @@ is a duplicate, the three units are recorded as covered by chapter 17.
 > EH4.) When the AUTO function is off **and available**, the user's first
 > press of the AUTO button will activate the AUTO ECO functionality.
 
-**What is missing**: the clause makes the behaviour conditional on AUTO being
-"available", and **no section in the document says when AUTO is unavailable**.
-We can test the available case, which we have; we cannot test the other side,
-and we cannot tell a tester how to put the vehicle in it.
+**What we found**: two sections state one condition under which AUTO is not
+shown —
+
+> C2.) / ICE2.) … **(AUTO is not shown in MTC configurations)** — sections 2.3
+> and 16.3
+
+and that configuration is already a pre-condition in this delivery: test cases
+exist for both the automatic-climate and the manual-climate case.
+
+**What is missing**: whether "not shown" is what EH4 means by "not
+**available**". The document uses the two phrases in different places and never
+relates them. If they mean the same thing, the negative case can be set up
+today by putting a manual-climate vehicle on the bench. If they do not, we
+still have no way to make AUTO unavailable.
+
+**We are not assuming they are the same.** Treating "not shown" as "not
+available" would put our reading in place of a sentence the requirement never
+wrote.
 
 **What we have done**: the available case is covered. The unavailable case has
 no test case.
 
-**Once answered**: one test case is written for the unavailable case, with the
-condition stated as a pre-condition.
+**Once answered**: if the two mean the same, one test case is written with the
+manual-climate configuration as its pre-condition. If not, please state when
+AUTO is unavailable.
 
 ---
 
@@ -297,9 +328,21 @@ owner, so we are not asking about it.**
 **What is missing**: the other half. Of the verification units we examined,
 **at most 222 describe a state the user sets** (an upper bound — the count was
 taken by a keyword rule that errs towards including) — AUTO on or off, fan
-speed, airflow mode, seat heating level — **and no document we have says
-whether any of those values is retained after an ignition cycle or a cold
-boot**. The Last Mode Table restores the screen, not the setting.
+speed, airflow mode, seat heating level — **and none of the documents we have
+read states whether any of those values is retained after an ignition cycle or
+a cold boot**. The Last Mode Table restores the screen, not the setting.
+
+**One nearby document does state it, for a different feature.** The Massage
+Seats HMI Logic and Flow says:
+
+> M6.) The Massage feature will be Off after an ignition cycle, regardless of
+> the previous state.
+
+We record this only as a fact about how this family of documents is written:
+the behaviour after an ignition cycle is something these specifications do
+state when it applies. Whether its absence from the Comfort document is an
+omission, a deliberate silence, or a behaviour owned elsewhere is what we are
+asking.
 
 We checked the power-management specifications (CFTS009 Wake-up and Power-up,
 CFTS010 Power Down) before asking. They state that climate pop-ups are shown

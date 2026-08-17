@@ -99,6 +99,67 @@ def load_tcs() -> list:
     return sorted(tcs, key=lambda t: int(t["tc_id"].rsplit("-", 1)[1]))
 
 
+# 83 §1 — the ledger check, without `--ignore-missing`.
+#
+# That flag conflated "this file is not there" with "this file need not be
+# checked". Only one of those is something we know. A produced file deleted by
+# accident and ENTRY 023's overwritten bytes looked identical under it: both
+# simply never appeared in the count.
+#
+# So absence is now DECLARED, by path, in DELIVERY.sha256's `# absent:` block,
+# and the check reports three numbers instead of one. Both directions fail:
+#   - missing and NOT declared absent  -> FAIL (something vanished)
+#   - declared absent but PRESENT      -> FAIL (the declaration is stale, or
+#                                         the object came back and nobody said)
+ABSENT_DECL = re.compile(r"^# absent: (.+?)\s+——", re.M)
+
+
+def check_ledger(ledger: Path) -> tuple:
+    """Return (ok, verified, absent_declared, problems)."""
+    text = ledger.read_text(encoding="utf-8")
+    declared_absent = set(ABSENT_DECL.findall(text))
+    # A row may carry `#   archived : <new path>` on the line after it: the
+    # bytes still exist, they moved. That is a different thing from absence,
+    # and it is checked rather than excused — the digest is verified at the
+    # new path.
+    rows = []
+    for m in re.finditer(r"^([0-9a-f]{64})  (.+)$", text, re.M):
+        tail = text[m.end():m.end() + 400]
+        moved = re.match(r"\n#   archived : (.+?)(?:  （|\n)", tail)
+        rows.append((m.group(1), m.group(2),
+                     moved.group(1).strip() if moved else None))
+    verified, absent, problems = 0, 0, []
+    for digest, rel, moved in rows:
+        path = FEATURE / rel
+        if not path.exists():
+            if moved:
+                mp = FEATURE / moved
+                if not mp.exists():
+                    problems.append(f"archived path missing: {moved}")
+                elif sha256(mp) != digest:
+                    problems.append(f"MISMATCH at archived path: {moved}")
+                else:
+                    verified += 1
+                continue
+            if rel in declared_absent:
+                absent += 1
+            else:
+                problems.append(f"MISSING (not declared): {rel}")
+            continue
+        if rel in declared_absent:
+            problems.append(f"declared absent but PRESENT: {rel}")
+            continue
+        if sha256(path) != digest:
+            problems.append(f"MISMATCH: {rel}")
+            continue
+        verified += 1
+    # a declaration with no ledger row is a dangling permit
+    listed = {rel for _, rel, _ in rows}
+    for rel in sorted(declared_absent - listed):
+        problems.append(f"declared absent but no ledger row: {rel}")
+    return (not problems), verified, absent, problems
+
+
 # ------------------------------------------------------------ §3.1 pre-gates
 
 def pre_gates(tcs: list) -> bool:
@@ -115,16 +176,22 @@ def pre_gates(tcs: list) -> bool:
         return subprocess.run(["shasum", "-a", "256", "-c"] + args,
                               cwd=FEATURE, capture_output=True, text=True)
 
+    # 87 §4 — was `n_ok == 8`, the number of baseline files on the day it was
+    # written. `inputs/` went from 5 files to 8 and the count moved with it;
+    # what the gate is for is "every listed file verifies", which is
+    # `FAILED == 0` plus non-vacuity (R-C43 — the same defect as
+    # `len(withheld) >= 20`, found the same way: the corpus grew).
     r = shasum(["BASELINE.sha256"])
     n_ok = r.stdout.count(": OK")
-    g("BASELINE.sha256 8 檔全數 OK", n_ok == 8 and "FAILED" not in r.stdout,
-      f"OK={n_ok}, FAILED={r.stdout.count('FAILED')}")
+    n_bad = r.stdout.count("FAILED")
+    g("BASELINE.sha256 逐檔全數 OK", n_bad == 0 and n_ok > 0,
+      f"OK={n_ok}, FAILED={n_bad}")
 
-    r = shasum(["--ignore-missing", "DELIVERY.sha256"])
-    d_ok = r.stdout.count(": OK")
-    d_bad = r.stdout.count("FAILED")
-    g("DELIVERY.sha256 --ignore-missing 全數 OK", d_bad == 0 and d_ok > 0,
-      f"OK={d_ok}, FAILED={d_bad}")
+    ok, n_ver, n_abs, problems = check_ledger(FEATURE / "DELIVERY.sha256")
+    g("DELIVERY.sha256 逐列（不用 --ignore-missing）",
+      ok and n_ver > 0,
+      f"驗過 {n_ver}, 已知不存在 {n_abs}, 有問題 {len(problems)}"
+      + (f" — {problems[:3]}" if problems else ""))
     # The one-shot guard, now keyed to THIS write's entry number. Once the
     # ledger carries it, --write can no longer run: that is the append-only
     # ledger working, not a defect.

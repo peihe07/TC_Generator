@@ -25,7 +25,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CF26 | **跨 feature（範本）** | 通用空白範本 `SWQT_20260121` 之資料工作表，**P 欄下拉（優先級）之 DV `sqref` 僅 `P10:Q11`**，`T–Z` 與 `AF` 同；B 欄編號公式與 R 欄下拉止於 row 59。**非 Comfort 之產物，凡以該範本為母本者皆然** —— **privacy 以同一份範本交付 11 條（row 10–20），其 row 12–20 之 P 欄同樣無下拉約束，且該檔已交付** | OPEN（**RD-1 候選**，DATA_REQUESTS #36，**High**）；依 R-C21 登於本帳並具名對象。**privacy 側已於 2026-08-15 唯讀實測**（`ad595ed0…`，11 列，`P10:Q11`，row 12–20 受影響），**未寫入該 feature 任何檔案** | Comfort：DR #35 之同源，寫回產物於範本擴充前不可交付。privacy：**處置由 Pei 決定是否回溯**，本 pipeline 未動其任何檔案 |
 | A-CF25 | spec 內部瑕疵 | `16.2`（ICE1）之「with the exception of the recirculation led in climate off (**see ICE11.**)」—— **ICE11 為 `16.12`（Airflow Modes has 5 states），不含 recirculation LED 之任何規則**；該規則實在 **ICE9（`16.10`）**「When climate is OFF, the recirculation LED of the hard control is on」。**條文之交叉引用指錯節** | OPEN（**不列 RD-1** —— 與 A-CF13 同類之 spec 內部瑕疵，不阻塞）| `NR1L-ComfortHMI-083` 只驗 ICE1 自身所述之例外（畫面不反映該變更），不依該誤引取用 16.10 之內容（§8.2.1） |
 | A-CF24 | 量測範圍 | 上繳 30 §5.3 以 `find . -maxdepth 3` 於 repo root 找 037 得零命中，據以記「不可達」；實際路徑 `features/comfort/inputs/…` 深度為 4。**pattern 對，深度不足** | **RESOLVED**（42 §4，037 已讀，名單已重建）| A-CF23 之 18 leaf 清單延後一輪；無 TC 受影響 |
-| A-CF23 | 讀取能力 | **037** 之 Requirement Description 內含 52 個圖片標記（25 個 leaf），內容不可讀；SYS1 export 之 `section_fulltext.tsv` 則 0 命中 | OPEN（**不列 RD-1**；DR #23 為工具需求，Low）| 已生成之 7 條逐條複查完畢，見本條之影響清單；其餘 18 leaf 之檢查落為 `RUNBOOK.md` 生成時必答項 |
+| A-CF23 | 讀取能力 | **spec 內以圖承載之內容，本 pipeline 讀不到**（標題與範圍 2026-08-17 擴充，88 §6）：**037** 之 52 個圖片標記（25 leaf）；SYS1 export 之 `section_fulltext.tsv` 0 命中；**`15.1` 之 `chart below`**（profile §5.4 第五項成員）| OPEN（**不列 RD-1**；DR #23 為工具需求，Low）| 已生成之 7 條逐條複查完畢，見本條之影響清單；其餘 18 leaf 之檢查落為 `RUNBOOK.md` 生成時必答項 |
 | A-CF22 | note | 3 旋鈕 ICS 車輛之 head unit 是否仍顯示座椅類 popup，spec 未述 | OPEN（**不列 RD-1** —— 在 Comfort spec 範圍外）| 無（`-002` 維持不補）|
 | A-CF21 | 條文衝突 | `2.1` 之 037 leaf（3 tabs，無 Massage）與條文（4 tabs，含 Massage）不符 | **RESOLVED-BY-RULING**（R-C33，2026-08-15）；**DR #18 為其 RD-1 候選** | 內容依條文、單位依 037；`-01`／`-02` 另因 DR #17 未生成 |
 | A-CF20 | note | `SWE1-HVAC-024-07` 拆後四條之 ER 逐字相同，僅 title 與 procedure 相異 | **維持**（32 §3；已知性質，非缺陷）| 無 |
@@ -1044,7 +1044,28 @@ spec 未述，本 pipeline 不推測。若日後實機顯示不然，`-002` 須�
 相關：[[A-CF17]]、[[A-CF18]]（同為 spec 未述類，但那兩者在 Comfort 範圍內
 故列 RD-1）。
 
-## A-CF23 —— SYS1 export 之圖片內容不可讀（讀取能力）
+## A-CF23 —— **spec 內以圖承載之內容，本 pipeline 讀不到**（讀取能力）
+
+**標題與範圍於 2026-08-17 擴充（下放包 88 §6）**。原標題為
+「SYS1 export 之圖片內容不可讀」，其字面只涵蓋 037／export 之圖片標記。
+盤點 129 節之外部參照時（上繳 67 §1.4）冒出第四種情形 ——
+`15.1` 之 `follow the **chart below**` 指向**本 spec 內之圖**，
+既非「外部文件未取得」，亦非「遍尋不著」，原標題容不下它。
+
+**現行範圍**：
+
+| 成員 | 內容 |
+|---|---|
+| 037 之 Requirement Description | **52 個圖片標記，涉 25 個 leaf** |
+| `section_fulltext.tsv`（SYS1 export）| 圖片標記 **0 個** —— 圖根本沒有進到文字裡 |
+| **`15.1` 之 chart** | 條文明寫 `follow the chart below`，該 chart 為圖；其對照（某功能進入／退出 → 顯示哪一個 popup）**無任何 TC 驗證**，且不得由 TC 作者自行補（profile §5.4 之第五項成員，56 §3 已記）|
+| `12.7` | `images should be shown in full…` —— **呈現要求而非對照表**，不構成缺口 |
+
+**其性質與「外部文件缺件」相反，此區分須明記**：
+東西就在我方所引之 spec 裡，**缺的是讀取能力而非文件**。
+不記這一句，它會被誤讀為又一件缺件，而缺件是上游之事、讀不到是我方之事。
+
+
 
 **登記依據**：下放包 40 §5；來源為執行層上繳 28 §10.5。
 

@@ -625,8 +625,18 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
             bad("spec-ref-outline",
                 f"{w}: first specification_reference is not the TC's own "
                 f"section {d['outline']!r} (R-C29: own section leads)")
-        if "SR25" in ref:
-            bad("spec-ref-sr25", f"{w}: reference names SR25 (R-C1 forbids)")
+        # R-C1 forbids SR25 **as the Comfort baseline**. 89 §3 approved citing
+        # an external document whose own version happens to be SR25 (the HMI
+        # Settings List), so the check is now per-segment and exempts approved
+        # external sources by identity — not by "does the string contain SR25
+        # anywhere", which conflated two different documents' version numbers.
+        for item in refs:
+            if item in EXTERNAL_REFS:
+                continue
+            if "SR25" in item:
+                bad("spec-ref-sr25",
+                    f"{w}: a Comfort-spec reference names SR25 (R-C1 forbids) "
+                    f"— {item!r}")
 
         # ---- fixed columns ----------------------------------------------
         if tc["test_group"] != auth["test_group"]:

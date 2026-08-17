@@ -82,18 +82,27 @@
 `BASELINE.sha256` 之 spec 項，其變動不觸發本 feature 之重驗；
 其副本之 hash 記於 `DATA_REQUESTS` 之各列。
 
-| 文件 | 版本 | 路徑（客戶目錄）| 得引之事實類別 | 版本落差 |
+| 文件 | 版本 | **引用對象之路徑**（以受 `BASELINE.sha256` 保護者為準）| 得引之事實類別 | 版本落差 |
 |---|---|---|---|---|
 | **CFTS043 SYS1 tree view（R1L-R scope）** | 25PI3.5，同基線 release | `features/comfort/inputs/SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope.xlsx` | 配置條件（`$Rear_HVAC_cfg$ = [Present]`）、`Scope`／`Radio` 欄之範圍事實 | 無 |
-| **Pop Up List HMI** | R1 SR24 Post 2A (Dec 15 2023) | `1_Customer_Requirement/R1LR SR26 ATL-H/26PI2.5/HMI/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` | popup 之識別與其所載內容 | 與基線同為 SR24 |
-| **HMI Settings List** | **R1 SR24 Post 2A (June 15 2023)** | `…/25PI3.5/HMI/HMI Settings List R1 SR24 Post 2A (June 15 2023).xlsx` | Auto Comfort Settings 之選項名稱 | **另有 SR25 Post R1L-R (Feb 13 2026) 版，本 feature 不引**，其差異登記於 DR |
-| **Last Mode Table HMI L&F** | R1 SR24 1A (August 2 2021) | `…/25PI3.5/HMI/Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021).xlsx` | COMFORT 三列之畫面回復對照 | 2021 年版，**引用時須具名其版本無關性** |
-| **Hard Controls HMI L&F** | **R1L-R (2026-02-12)** | `…/26PI2.5/HMI/Hard Controls HMI Logic and Flow R1L-R (February 12 2026).pdf` | **僅「硬控型態隨配置而變」此一事實**（版本無關）| **跨版本 —— 其具體硬控清單不得引**（行為性內容，R-C45 第二項）|
+| **Pop Up List HMI** | R1 SR24 Post 2A (Dec 15 2023) | **`features/comfort/inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx`**〔原始出處：`1_Customer_Requirement/R1LR SR26 ATL-H/26PI2.5/HMI/` 之同名檔〕| popup 之識別與其所載內容 | 與基線同為 SR24 |
+| **HMI Settings List** | **R1 SR25 Post R1L-R (Feb 13 2026)** —— **換版於 2026-08-17**（89 §3）| `features/comfort/inputs/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx`〔引用原發生於：`1_Customer_Requirement/R1LR SR26 ATL-H/25PI3.5/HMI/HMI Settings List R1 SR24 Post 2A (June 15 2023).xlsx`〕| Auto Comfort Settings 之選項名稱 | **兩版之 30／31 節經逐格比對完全相同**（各 7 列，2026-08-17 實測，上繳 68 §1）—— 落入 88 §2 判準二第一分支故得換版；**換版之依據是該量測，非版本之新舊**（R-C1 之精神：與所引一致，而非與最新一致）|
+| **Last Mode Table HMI L&F** | SR24 1A (August 2 2021) | `1_Customer_Requirement/R1LR SR26 ATL-H/25PI3.5/HMI/Last Mode Table HMI Logic and Flow R1 SR24 1A (August 2 2021).xlsx` | COMFORT 三列之畫面回復對照 | 2021 年版，**引用時須具名其版本無關性** |
+| **Hard Controls HMI L&F** | **R1L-R (2026-02-12)** | `1_Customer_Requirement/R1LR SR26 ATL-H/26PI2.5/HMI/Hard Controls HMI Logic and Flow R1L-R (February 12 2026).pdf` | **僅「硬控型態隨配置而變」此一事實**（版本無關）| **跨版本 —— 其具體硬控清單不得引**（行為性內容，R-C45 第二項）|
+
+**路徑之規約（88 §4）**：**引用之路徑指向會被檢查的那一份位元組** ——
+即 `inputs/` 之副本（每輪受 `shasum -c`）；客戶目錄之原始出處以〔〕附註保留。
+**來源可考，依據可驗，兩者都要。**
+客戶目錄不在本 pipeline 控制下，**其被替換時無人出聲** —— **上表五件現已全部指向 `inputs/` 或客戶目錄之可複驗副本**；
+若日後有一列之引用對象不在 `inputs/`，以 ⚠ 標明 —— 該標記即
+「這一列現在還不可複驗」。
 
 **未認可（列此以免日後誤以為漏查）**：
 
 | 文件 | 何以不認可 |
 |---|---|
+| **`SYS2_CFTS043 … 技術安全需求分析報告 … V01.xlsx`**（在 `inputs/`，受 BASELINE 保護）| **我方自己之 SYS.2 工作產品**，其內容轉述 CFTS043 —— 以衍生物代替來源，等於把另一個流程之產出當成需求。**且該文件自己說了它不是行為之依據**：`SYS-RA-HVAC-007` —— `In the case of conflict between this document and the HMI requirements, the HMI requirements shall have precedence.` 得作**唯讀之對照與導覽**（同 R-C18 對 `layer3_map` 之處置：可看，不可據以判讀）|
+| **`Massage Seats HMI Logic and Flow R1 SR24 Post 2A CR20339 (January 24 2022).pdf`** | **已查而不解**（88 §7，2026-08-17 唯讀查證）：`2.1` 指向它，而它**不載配置 → tab 組之對照**；所載為 Massage tab 之切換時機（M1／M3）與 back/cushion 之配備條件（M5）。DR #17 之問句不變 |
 | `CFTS044`（26PI 版）| 13.5 之短按等效基準**餘留仍空**（`rocker`／`4-way` 0 命中），本輪不引 |
 | `VF727 Climate_Controls_2_Zone` | **其身分未定**（是否即 2.13 之「VF HVAC document」），待 RD-1 |
 | `Core HMI Logic and Flow` | 13.4 具名之 `N0` 未查得（SYS1 export 僅 169 列且 `N0` 0 命中；PDF 無文字層）—— **未查得不等於不存在**（R-C13），待 RD-1 |
@@ -1222,6 +1231,12 @@ popup）**無任何 TC 驗證**，且**不得由 TC 作者自行補**（55 §1.1
 > **此形態須單獨標記**：先前四項皆為「整節未被引用」，本項為「**節被引用，
 > 而節內之一部分未被引用**」。**日後以節為單位掃描缺口者，找不到它** ——
 > `15.1` 有 leaf、有 TC、在 coverage 分母內，掃描只會看見一個已涵蓋的節。
+
+**其成因歸 A-CF23（2026-08-17，88 §6）**：該 chart 讀不到**不是缺件而是缺讀取能力**
+—— 它就在我方所引之 SR24 spec 裡。A-CF23 之標題已一併擴充，
+使本項歸得進去（原標題只講 037／export 之圖片標記）。
+**外部參照盤點之三分類（已在手上／客戶目錄有／遍尋不著）容不下本項** ——
+盤點以「文件在哪」為軸，而本項之問題是「文件在手上而我方讀不到那一頁」。
 
 **本類與 `[BLOCKED-NON-HMI]` 之界線（R-C38 使用條件第二項）**：
 差別**不在該 leaf 可不可驗，而在 037 有沒有產出它**。037 產出者若以本類

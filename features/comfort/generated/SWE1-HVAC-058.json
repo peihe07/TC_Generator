@@ -30,7 +30,7 @@
    "input_test_data": "NA",
    "test_procedure": "1. Open the Auto Comfort Settings for the heated and vented seats\n2. Read the options offered for the driver and for the passenger",
    "expected_result": "1. The Auto Comfort Settings are displayed\n2. The options listed in the HMI Settings List for Auto-On Driver and Auto-On Passenger are offered",
-   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; HMI Settings List R1 SR24 Post 2A (June 15 2023)_Settings",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.5; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026)_Settings",
    "priority": "P2",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "split_flag": false,

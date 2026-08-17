@@ -24,10 +24,26 @@ STEM = ("SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_"
 DM = "功能測試 (Functional based ; no specific technique)"
 
 # --- 外部出處之引用字串（R-C45 第三項：不併入 Comfort stem）-----------------
+#
+# 88 §4 — 引用之對象**指向會被檢查的那一份位元組**，即 `inputs/` 之副本
+# （每輪受 `shasum -c`）。客戶目錄之原始出處記在括號裡：來源可考，依據可驗。
+# 下列字串本身是**文件名 ＋ 其內之 section**，不含路徑；路徑之權威在
+# profile §1.1 之表。改字串即改 workbook 之 N 欄，故版本名一旦寫下，
+# 換版就是換依據（88 §2 判準一），不是改一行常數。
+#
+#   EXT_CFTS043  → inputs/SYS1_CFTS043-…Tree view_R1L-R scope.xlsx
+#   EXT_POPUP    → inputs/Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx
+#                  （原始出處：客戶目錄 26PI2.5/HMI/ 之同名檔）
+#   EXT_SETTINGS → inputs/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx
+#                  **換版（89 §3）**：引用原發生於客戶目錄之 SR24 Post 2A
+#                  (June 15 2023)。兩版之 30／31 節經**逐格比對完全相同**
+#                  （各 7 列，2026-08-17 實測），落入 88 §2 判準二之第一分支，
+#                  故改引 `inputs/` 現放之 SR25 版 —— 它在 BASELINE 保護內，
+#                  判準三於此即已滿足。**換版依據是量測，不是「新版比較好」。**
 EXT_CFTS043 = ("SYS1_CFTS043-HVAC Controls and Displays_Tree view_R1L-R "
                "scope_NEWR1L-53677")
 EXT_POPUP = "Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023)_Main"
-EXT_SETTINGS = "HMI Settings List R1 SR24 Post 2A (June 15 2023)_Settings"
+EXT_SETTINGS = "HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026)_Settings"
 
 # CFTS043 之逐字配置條件 —— R-C28 第一問所要之明文。
 # 標 `[ext-verbatim]`（非 `spec-verbatim`）：它是外部文件之原話，
@@ -144,6 +160,11 @@ UNBLOCK_382 = dict(
        "`30.2 Heated Steering Wheel`／`30.3 Vented Seat`）與 "
        "`31 Auto-On Passenger`（`31.1`／`31.2`）—— **餘留不為空**。"
        "所引者為選項之名稱（版本無關），非其行為。"
+       "**引用之版本（89 §3）**：原引客戶目錄之 SR24 Post 2A (June 15 2023)，"
+       "今改引 `inputs/` 之 SR25 Post R1L-R (Feb 13 2026) —— "
+       "兩版之 30／31 節經逐格比對**完全相同**（各 7 列，實測），"
+       "而後者在 `BASELINE.sha256` 之保護內；"
+       "**換版之依據是該量測，非版本之新舊**。"
        "**`12.6` 之對造仍為 BLOCKED** —— 其委派對象 `HMI Notes` 於客戶目錄"
        "查無此件，兩條之差別自此不再是同一句話（R-C40 之前件已不成立）。"))
 
