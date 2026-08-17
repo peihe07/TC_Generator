@@ -60,14 +60,17 @@ workbook:
 done_region:
   # detection: "author" (author-cell match) or "rows" (explicit ranges)
   detection: "author"
-  author_value: "Arif"
+  # R-P77(a) —— 由 scaffold 樣板值 "Arif" 改為空。Comfort 於同為 BLANK 之情形
+  # 已踩過此坑：填佔位作者值會**靜默匹配零列**，使空的 invariant 看起來像已滿足。
+  author_value: ""
   # invariant: "content_hash" (interleaved-safe) or "positional"
   invariant: "content_hash"
 
 write_back:
   author_value: "PeiPYHsu"
   tc_ref_id_value: "NEW"
-  fill_test_group_set: false     # true only under BLANK per canon §2
+  # R-P77(b) —— 本 workbook 實測為 BLANK（G10），依註解所述之條件應為 true
+  fill_test_group_set: true      # true only under BLANK per canon §2
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary

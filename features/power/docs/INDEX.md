@@ -18,7 +18,10 @@
 | 06 | 2026-08-17 | 錨點層範圍上界與懸空參照 DR | [handoff/06_scope_boundary.md](handoff/06_scope_boundary.md) | [upstream/06_scope_boundary.md](upstream/06_scope_boundary.md) | R-P42 ~ R-P51（**R-P42 錨點層範圍上界**） | A-PW26 ~ A-PW29 | **PASS —— 十二步全完成，G28–G31 無 MISMATCH；發 DR-PW5/6/7（6 項待裁）** |
 | 07 | 2026-08-17 | Phase 4 前置閘門與量測工具強化 | [handoff/07_phase4_gates.md](handoff/07_phase4_gates.md) | [upstream/07_phase4_gates.md](upstream/07_phase4_gates.md) | R-P52 ~ R-P59（**R-P52 R-P42 執行期閘門**） | A-PW30 ~ A-PW32 | **PASS —— 九步全完成，G32–G36 無 MISMATCH；lint 就位（6 項待裁）** |
 | 08 | 2026-08-17 | lint 閘門補齊與偽陽性量測 | [handoff/08_lint_parity.md](handoff/08_lint_parity.md) | [upstream/08_lint_parity.md](upstream/08_lint_parity.md) | R-P60 ~ R-P65（**R-P65 Phase 4 開始條件**） | A-PW33 ~ A-PW36 | **PASS —— 九步全完成，G37–G44 無 MISMATCH；lint 五閘就位（7 項待裁）** |
-| 09 | 2026-08-17 | 補閘與 Phase 4 首批 | [handoff/09_phase4_batch1.md](handoff/09_phase4_batch1.md) | [upstream/09_phase4_batch1.md](upstream/09_phase4_batch1.md) | R-P66 ~ R-P72 | A-PW37 ~ A-PW39 | **部分完成 —— B1/B2/B3 完成；B4 首批 TC 暫停（下放包於 §B4 中斷，§C–§J 全缺）（7 項待裁）** |
+| 09 | 2026-08-17 | 補閘與 **Phase 4 首批** | [handoff/09_phase4_batch1.md](handoff/09_phase4_batch1.md) | [upstream/09_phase4_batch1.md](upstream/09_phase4_batch1.md) | R-P66 ~ R-P72 | A-PW37 ~ A-PW42 | **PASS —— 九步全完成；首批 9 條 TC 產出、真實檔案 lint 全閘 PASS（8 項待裁）** |
+| 10 | 2026-08-17 | 欄位對應交叉驗證與首批 pilot 回覆 | [handoff/10_column_verify.md](handoff/10_column_verify.md) | [upstream/10_column_verify.md](upstream/10_column_verify.md) | R-P73 ~ R-P78 | A-PW43 ~ A-PW47 | **PASS —— 九步全完成；A-PW40 經第二來源佐證成立；首批 9→10 條全閘 PASS（8 項待裁）** |
+| 11 | 2026-08-17 | 範本全屬性比對與首批全文覆核 | [handoff/11_template_verify.md](handoff/11_template_verify.md) | [upstream/11_template_verify.md](upstream/11_template_verify.md) | R-P79 ~ R-P85 | A-PW48 ~ A-PW52 | **PASS —— 十步全完成；Power DV 座標正確；查出 B 欄無編號公式（8 項待裁）** |
+| 12 | 2026-08-17 | pilot 修正與閘門補強 | [handoff/12_pilot_fixes.md](handoff/12_pilot_fixes.md) | [upstream/12_pilot_fixes.md](upstream/12_pilot_fixes.md) | R-P86 ~ R-P95 | A-PW53 ~ A-PW58 | **PASS —— 十二步全完成；`Test Case Framework` 分頁實測為空、不與 §E 衝突；十條四項系統性違規全修；新增 G63–G72，G67 覆蓋率 88%** |
 
 ---
 
@@ -64,56 +67,108 @@ PASS：G0–G16、G13b、G18、G19、G20、**G21、G22、G23、G27**
 
 **無 MISMATCH。**
 
-### lint 現況 —— 七閘（09 包）
+### Phase 4 —— 首批已產出並已修正（10 條）
 
-`scripts/lint_tcs.py`，`--self-test` 之 **22 個 TC fixture ＋ G46 全數如期**（全為合成）：
+`features/power/generated/batch_001_power_down.json` —— **10 條 TC，3 個 leaf**
+（`SWE-PM-071/072/073`，Test Set `Power Down`），tc_id `001`–`010` 連號。
 
-| 閘 | 條文 | 檢查 |
+依 §8.2.2 拆分：071→**4**（F1 後 Standby / Bench 再拆）、072→2、073→4。
+priority **P0 ×3 / P1 ×5 / P2 ×2**（依測項內容判定，R-P8）。
+
+**12 包四項修正（R-P86 ~ R-P89），修正前之違規率**：
+`req_id` 加後綴 **10/10**、Procedure↔ER 不符 **10/10**、
+環境穩定性前提 **6/10**、`input_test_data` 跨欄重複 **5/10**（A-PW53 / A-PW54）。
+現全數修正：`req_id` 去後綴（G69 **10/10**）、proc↔ER 全 1:1、
+六條移除環境前提、五條改 `NA`。TC 數與 leaf 數不變（修正非拆分，G70）。
+**真實檔案 lint：`exit=0`、阻斷類 PASS、R-P42(b) 0 觸發，0.22 秒。**
+
+**惟：十條之技術正確性（是否真的測到 071/072/073 所要求之行為）迄今無人覆核。**
+本包所修四項皆為形式規則。見 [upstream/12_pilot_fixes.md](upstream/12_pilot_fixes.md) §七之一。
+
+### 範本全屬性 —— 已比對（R-P79）
+
+10 包已以 Comfort + Privacy 之已交付件佐證 `workbook.columns`（A-PW40 成立）。
+11 包再比對 r9 以外之六項屬性：
+
+- **DV：Power 之四條逐條落在自身正確欄位**（`Q` priority、`U–AA` 車型、
+  x14 `S` design_method、`AG` Test Result）—— **未沿用 Comfort 座標**
+- **公式：Power 0 / Comfort 592 / Privacy 11** ——
+  **Power 之 B 欄無自動編號公式**（另二者帶 `IF(ISBLANK($D10),"",ROW()-9)`）。
+  寫回時 No.# 欄不會自動填入 → **寫回前唯一須先裁者**
+- Power 獨有：多一個 `Test Case Framework` 分頁、合併 `D5:F5`、
+  條件式格式 `H10:H145` colorScale
+- A-PW52：Power 之 DV 覆蓋不齊（三欄僅 2–4 列）
+
+### A-PW46 之前提有誤（11 包 B2）
+
+Comfort **並未決定填車型欄**：其 profile §3.9 明訂「T–Z 一律留白（Privacy R30-4）」、
+`write_back.py` 將 T–Z 列入 `NEVER_WRITE`、baseline 該欄非空數為 0、
+全 Comfort 腳本無一呼叫 `.save()`。
+**已交付件之 466 個 `1` 非由其管線產生**（A-PW51，來源不明）。
+二 feature 之政策實為一致（皆留白）。Power 依 R-P54 / R-P81 維持留白。
+
+### Power profile 已建立（R-P82）
+
+`docs/runtime/profiles/FW036_R1L_Power_Profile.md` ——
+Power 原為八個 feature 中唯一無 profile 者（A-PW49）。
+G50 之方括號豁免已改為**引用 profile §3.1 / §3.2**，
+並以 `PROFILE_PATH.exists()` 為條件；G59 雙向實測。
+
+### lint 現況 —— 十五閘
+
+G33（R-P42 a/b）、G37（R-P1）、G38（R-P2）、G39（R-P8）、G40（R-P35）、
+G45（§10.7）、G46（feature.yaml）、G50（§11，12 包併入表格檢查）、G51（§4.4）、
+**G63（§6 Procedure↔ER 1:1）、G64（§4.4/§8.5 環境穩定性前提）、
+G65（§4.5 input_test_data 歸屬）、G66（B 欄非空列數 = TC 列數，僅合成驗證）、
+G71（workbook.columns 對 r9 實測標頭）、G72（profile §2/§3.3/§3.4/§3.7）**。
+
+G64 之詞彙依 R-P88 取自 canon 逐字原文（§4.4 之 `HU is powered on.`、§8.5），
+非憑印象；偽陽性 0。G71 使 A-PW40 之人工盤點升格為機械檢查。
+
+**G51 之動詞判準已改以經驗基礎導出**（R-P83）：自 Comfort + Privacy 之已交付
+`test_procedure` 取行首動詞，人工清單漏列 12 個；對 1823 行已交付 `pre_conditions`
+之偽陽性**二者皆為 0**，故採聯集（32 個動詞）。
+
+**findings 已分流**（R-P76）：R-P42(b) 之觸發列為「待人工裁決類」，**不使 exit=1**。
+`--self-test`：**35 個 TC fixture ＋ G46 皆如期**。
+
+**G67 profile 條款閘門覆蓋率 = 15 / 17 = 88%**（20 條中 3 條不可機械檢查）。
+未覆蓋之 2 項（§3.6 estimated_time 留白、§3.8 車型欄留白）**須待寫回方能檢查**。
+
+### 寫回狀態 —— 已知阻斷條件全部解除
+
+R-P73（欄位對應）、R-P79（範本全屬性）、**R-P92（`Test Case Framework` 分頁）**
+之阻斷條件皆已解除；R-P90（B 欄）已明寫裁定、G66 已實作。
+**執行層回報：本包未再發現任何新的寫回阻斷條件；開放與否為分析層之裁決。**
+
+寫回包設計提醒（非阻斷）：G66 迄今僅合成驗證；G67 未覆蓋之 2 項恰只能在寫回時補齊；
+Power 之 `NEVER_WRITE` 須與 `feature.yaml` 逐欄對讀，勿重蹈 Comfort O 欄之矛盾（A-PW57）。
+
+### DATA_REQUESTS（live 5 張，皆不阻斷首批）
+
+DR-PW1（High）、DR-PW5（High）、DR-PW6（Medium）、DR-PW3（Medium）、DR-PW7（Low）。
+
+### 11 包 8 項待裁 —— 12 包已結 6 項
+
+| # | 事項 | 12 包處置 |
 |---|---|---|
-| G33 | R-P42(a)(b) | spec_reference 命中黑名單／內容逐字引用特徵字串 |
-| G37 | R-P1 | `SWE-PM-089` 不得有 TC |
-| G38 | R-P2 | tc_id 格式、唯一、單調遞增、無跳號 |
-| G39 | R-P8 | priority 值域、不得與 037 Priority 一對一映射 |
-| G40 | R-P35 | **（R-P68 改）** 上界每批驗、逐 leaf 驗、114 齊備時驗相等 |
-| **G45** | §10.7（R-P66） | `specification_reference` 非空且符 `{spec_filename}_{section_id}` |
-| **G46** | R-P69(c) | `feature.yaml` 與裁決條文一致 |
+| Q1 | `B` 欄之處置 | **已裁（R-P90）**，G66 已實作（僅合成驗證）|
+| Q2 | `Test Case Framework` 分頁未讀 | **已讀（R-P92 / G68）—— 非空儲存格 0，不衝突** |
+| Q3 | colorScale `H10:H145` 之語義 | **未查**，依 R-P95 登記不阻斷，可與寫回並行 |
+| Q4 | A-PW51 是否回報 Comfort | **已回報（R-P94）** —— `features/comfort/ANOMALIES.md` A-CF-EXT-01 |
+| Q5 | §11 表格檢查補入 G50 | **已補（R-P93）**，fixture 實際觸發 |
+| Q6 | profile 條款無閘門對應 | **已補 G71 / G72（R-P91）**，覆蓋率 88% |
+| Q7 | Power 範本 DV 覆蓋不齊 | **登記不阻斷（R-P95）** —— 三欄依 profile 皆留空 |
+| Q8 | 首批 10 條之全文覆核 | **形式面已覆核並修正；技術正確性仍未覆核**（見下）|
 
-黑名單 `data/unreferenced_anchors.tsv` 814 列（tier 182 / 133 / 499，R-P70 追認）。
+### 12 包新提之待驗（執行層獨立判斷，見 [upstream/12_pilot_fixes.md](upstream/12_pilot_fixes.md) §七）
 
-### Phase 4 狀態 —— **暫停，非阻斷於閘門**
-
-R-P65 之三項開始條件**已齊備**（08 包 ACCEPT 滿足 (c)）。
-**首批未執行，原因為 09 下放包於 §B4 句中中斷、§C–§J 與「上繳包必附」全缺**
-（A-PW39）。§A 之七條完整無缺，已逐字抄錄；B1/B2/B3 照做，B4 暫停。
-補發後可立即執行。
-
-### `feature.yaml` 已更新（R-P69）
-
-`spec_mode` A→**D**、`test_group` Power→**Power Management**、
-`paths.*` 七份素材實際檔名全數填入、新增 `tc_id_format`。
-
-**盤點另查出 A-PW37**：`workbook.columns` 自 `priority` 起全部錯位 ——
-應為 priority **Q**、design_method **S**、functional_safety **T**、
-author **AB**、remarks **AI**，且原本**完全沒有 `tc_id` 欄**（應為 **F**）。
-成因：本 workbook 有兩個 `Estimated Test Time` 欄（A-PW38），
-較 Privacy 之 A-PV13 修訂版又多插入一欄。已依實測更新。
-
-### DATA_REQUESTS（live 5 張）
-
-DR-PW1（High，阻斷 `SWE-PM-089`）、DR-PW5（High）、DR-PW6（Medium）、
-DR-PW3（Medium）、DR-PW7（Low）。
-
-### 待裁 7 項（見 [upstream/09_phase4_batch1.md](upstream/09_phase4_batch1.md) §七）
-
-- **Q1（阻斷 Phase 4）請補發 09 下放包之 §B4 後半與 §C–§J**
-- **Q2（Phase 4 寫回前必須解決）應補設 `workbook.columns` 與 FW036 r9 之一致性閘**
-  —— 本次錯位靠盤點偶然查出，非靠閘門；寫回不可逆
-- Q3 A-PW37 之欄位更新請覆核
-- Q4 A-PW38：兩個標頭逐字相同之 `Estimated Test Time` 欄，何者為權威
-- Q5 `done_region.author_value: "Arif"` 是否改為留空（Comfort 之作法）
-- Q6 `write_back.fill_test_group_set` 與其註解矛盾
-- **Q7 `specification_reference` 之 `{spec_filename}` 實際寫法為何** ——
-  G45 繫於此；若猜錯會把每一條合法 TC 判 FAIL
+- **十條之技術正確性從未被任何人覆核** —— 本包所修四項全為形式規則，這是最大缺口
+- **G66 從未真正失敗過**（僅合成），依 G33 標準其「可能失敗」未獲證明
+- **G64 詞彙之完備性未驗** —— 有 canon 基礎，但未證明無第三類形態
+- `Test Case Framework` 為何存在、為何 Power 獨有 —— 未查，不臆測
+- **A-PW58 為第四次「合成 fixture 過而真實資料抓到問題」**（首次方向為誤殺）——
+  新增五閘中僅 G63 / G65 見過真實資料
 
 ### 長期已知限制（非待辦）
 

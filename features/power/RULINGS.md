@@ -1048,10 +1048,6 @@ G42 之句式獨立性較高但屬不同規格領域，碰撞率天然偏低。
 
 ## 第九輪 — 下放包 09（`docs/handoff/09_phase4_batch1.md` §A）
 
-> **本下放包於 §B4 中斷** —— §C–§J、「上繳包必附」全缺。
-> §A 之七條完整無缺，逐字照錄如下。執行範圍限於 B1 / B2 / B3。
-> 見 `docs/upstream/09_phase4_batch1.md` §一。
-
 ```
 [R-P66] **§10.7 之閘門補設（G45）。**
         R-P62「不調 `MIN_FINGERPRINT`」之安全論證載明：
@@ -1067,13 +1063,12 @@ G42 之句式獨立性較高但屬不同規格領域，碰撞率天然偏低。
         R-P62 依 R-P36 原文不改，於其下加註指向本條。
         裁決者 Pei，逐字依據：「出」（回應 08 Q2）。
 ```
-**執行層回報：G45 已就位並通過 fixture。** `check_s107_spec_reference` ——
-`specification_reference` 非空、每項符 `{spec_filename}_{section_id}` 形態
-（section_id 為點分隔數字串，多項以 `;` 分隔）。三個 fixture 如期。
+**執行層回報：G45 已就位，並於真實檔案上立刻證明其必要與其初版之錯。**
+閘門 `check_s107_spec_reference` —— 非空 ＋ 每項符 `{spec_filename}_{section_id}`。
 R-P62 已依 R-P36 加註，原文 SHA256 `ed8fe3a5…91a1` 前後同值。
-**併記**：本條指出之「論證前提不成立」較修飾語誤述嚴重之判斷，執行層同意 ——
-該缺口是我在 08 §七第 3 項自行查出並回報的，但當時只寫「依賴一個不存在的閘門」，
-**未指出其嚴重性層級**；分析層之分級較我的表述精確。
+**併記**：本條指出之「論證前提不成立」層級判斷，執行層同意 ——
+該缺口係我於 08 §七第 3 項自行查出，但當時僅寫「依賴一個不存在的閘門」，
+**未指出其層級高於修飾語誤述**；分析層之分級較我的表述精確。
 
 ```
 [R-P67] **偽陽性之量測形態改變（取代事前估計）。**
@@ -1089,10 +1084,9 @@ R-P62 已依 R-P36 加註，原文 SHA256 `ed8fe3a5…91a1` 前後同值。
         即：以真資料之持續量測，取代造不出來之事前估計。
         裁決者 Pei，逐字依據：「出」（回應 08 Q1）。
 ```
-**執行層回報：已落實於實作。** `--self-test` 之 R-P42(b) 觸發仍為 FAIL（fixture 用），
-但對真實 TC 之執行將依本條**不自動判 FAIL**，改為列出待人工裁決。
-**惟本包未產生任何 TC**（B4 暫停，見 §一），故尚無真實觸發可登記。
-人工裁決之登記格式與統計，俟首批實際產出後建立。
+**執行層回報：已落實，且首批無觸發。** 真實檔案 lint 之 R-P42(b) **未觸發任何一次**，
+故本包無人工裁決可登記。9 條 TC 之偽陽性樣本數為 0/9 ——
+樣本過小，尚不足以據以再議 R-P62 之門檻。
 
 ```
 [R-P68] **G40 分布檢查改為子集檢查**（不追認 08 §1.2 之原讀法）。
@@ -1105,12 +1099,10 @@ R-P62 已依 R-P36 加註，原文 SHA256 `ed8fe3a5…91a1` 前後同值。
         （a）可攔下「整批一致地歸錯」——原讀法攔不下。
         裁決者 Pei，逐字依據：「出」（回應 08 Q3、Q6）。
 ```
-**執行層回報：G40 已改為子集檢查，並以 fixture 驗證新增之攔截能力。**
-（a）上界檢查已實作 —— 新增 fixture「整批一致地歸錯」（4 個 leaf 全記 `Power Down`，
-定版僅 3）**實際觸發**，證明原讀法攔不下之情形現已攔得下。
-（b）逐 leaf 檢查全程有效（原即如此）。
-（c）114 齊備時再驗相等 —— 以 114 條合成全集 fixture 驗證。
-另新增「部分批次 3 條 Power Down」之 PASS fixture，確認未達上界時不誤報。
+**執行層回報：已改為子集檢查，並於首批實測生效。**
+首批 9 條 TC 涵蓋 3 個 `Power Down` leaf，上界檢查（≤ 3）**每批皆驗且通過**。
+原讀法在此情形下完全不判定（3 ≠ 114）。
+fixture 另證「4 個 leaf 全記 Power Down」會實際觸發。
 
 ```
 [R-P69] **`feature.yaml` 更新，lint 權威仍取自裁決條文，另設一致性閘。**
@@ -1126,18 +1118,12 @@ R-P62 已依 R-P36 加註，原文 SHA256 `ed8fe3a5…91a1` 前後同值。
              `spec_reference_template` 等其餘欄位是否與實測相符
         裁決者 Pei，逐字依據：「出」（回應 08 Q4）。
 ```
-**執行層回報：（a）（c）已落實，（d）盤點查出一項重大錯誤。**
-（a）`feature.yaml` 已更新：`spec_mode` A→**D**、`test_group` Power→**Power Management**、
-`paths.*` 七份素材實際檔名全數填入、新增 `tc_id_format`。
-（b）lint 權威仍取自裁決條文，未改為讀該檔。
-（c）G46 已就位並 PASS。
-（d）**`workbook.columns` 自 `priority` 起全部錯位** —— 見 A-PW37。
-scaffold 記 priority `P` / design_method `Q` / functional_safety `R` / author `Z` /
-remarks `AH`，實測應為 **Q / S / T / AB / AI**，且**無 tc_id 欄**（應為 `F`）。
-成因：本 workbook 之 r9 有**兩個** `Estimated Test Time` 欄（P 與 R），
-較 Privacy / Comfort 之修訂版（A-PV13 / R39-2 所訂正者）又多插入一欄。
-**若未查出，Phase 4 寫回會把 priority 寫進預估工時欄、author 寫進車型欄、
-remarks 寫進 Defect ID 欄。**
+**執行層回報：（a）（b）（c）已落實，（d）之盤點查出一項重大錯誤。**
+`feature.yaml` 已更新：`spec_mode` A→**D**、`test_group` Power→**Power Management**、
+`paths.*` 七份素材實際檔名全數填入、新增 `tc_id_format`、
+`spec_reference_template` 改為 `{spec_filename}_{section_id}`。
+G46 已就位，含**合成之漂移 yaml** 違規 fixture（不以 repo 現況為對照）。
+（d）**`workbook.columns` 自 `priority` 起全部錯位** —— 見 A-PW40。
 
 ```
 [R-P70] R-P63 之「同章且同一父節」讀法**追認**
@@ -1148,8 +1134,8 @@ remarks 寫進 Defect ID 欄。**
         裁決者 Pei，逐字依據：「出」（回應 08 Q5）。
 ```
 **執行層回報：已追認並登記。** tier 1 = 182 / tier 2 = 133 / tier 3 = 499 定案。
-分層有效性無資料可驗一事登記為已知限制（A-PW27 狀態欄），
-待 Phase 4 產生實際誤納樣本後回頭檢視。
+分層有效性無資料可驗一事登記為已知限制。
+首批 9 條 TC 之 R-P42(b) 未觸發，故尚無誤納樣本可供回頭檢視。
 
 ```
 [R-P71] **首批上繳前須以真實檔案執行完整 lint 並回報。**
@@ -1159,9 +1145,15 @@ remarks 寫進 Defect ID 欄。**
         07 包之 `\b` bug 即「邏輯看似正確而實際不觸發」之先例。
         裁決者 Pei，逐字依據：「出」（回應 08 Q7）。
 ```
-**執行層回報：本包無法執行 —— `generated/` 仍不存在。**
-B4（首批 TC）因下放包中斷而暫停（見 §一），故無真實檔案可跑。
-本條之義務**移轉至首批實際產出之包次**，未落空、未放棄。
+**執行層回報：已執行，且該條當場證明其價值 —— 抓到一個會使 G45 全面誤殺之 bug。**
+首次對真實檔案執行：**9 條 TC 全部 FAIL**。
+成因：`SPEC_REF_ITEM_RE` 初版寫 `^\S+_\d+(\.\d+)*$`，要求檔名不含空白；
+而真實規格檔名含空格（§10.7 自身之範例
+`Menu Bar and App Drawer HMI Logic and Flow R1 SR24 3A (September 11 2023)_2.5` 亦然）。
+**23 個合成 fixture 全數通過，卻在第一次碰到真實檔名時全滅** ——
+正是本條所述「fixture 驗證了邏輯正確，未驗證能讀真實檔案」。
+已改為 `^.+_\d+(?:\.\d+)*$`，並補一個含空格與括號之 fixture 鎖住此回歸。
+修正後重跑：**9 條全 PASS，0.22 秒，無任何 `load_tcs()` 解析問題**。
 
 ```
 [R-P72] **Phase 4 首批範圍：`Power Down`（3 leaf）。**
@@ -1176,22 +1168,444 @@ B4（首批 TC）因下放包中斷而暫停（見 §一），故無真實檔案
         首批**不得擴大範圍**；後續批次之切分於 10 包另議。
         裁決者 Pei，逐字依據：「出」。
 ```
-**執行層回報：範圍已確認，但本包未執行。**
-`SWE-PM-071` / `072` / `073` 三者於 `data/leaf_testset.tsv` 皆為 `Power Down`，
-與條文相符；G5b 所驗之解析章節（§1.7.1.1.1 ×2、§1.7.2 ×1）亦相符。
-條文之四項理由經覆核**皆成立**（（d）已由 06 包 B1 之 leaf 層交叉佐證：
-懸空參照之影響面限於 §1.6.2.1，屬 Power State）。
-**惟 §B4 之規格於句中中斷，且 §C–§J 全缺**，故不撰寫任何 TC。
+**執行層回報：已產出，範圍未擴大。**
+`SWE-PM-071` / `072` / `073` 三個 leaf，共 **9 條 TC**（依 §8.2.2 拆分，見上繳包 §四）。
+條文之四項理由經覆核皆成立；（d）另由本包實測佐證 ——
+首批之 R-P42(b) 未觸發任何一次。
+
+---
+
+---
+
+## 第十輪 — 下放包 10（`docs/handoff/10_column_verify.md` §A）
+
+```
+[R-P73] **`workbook.columns` 之欄位對應須有第二來源佐證，
+        且為寫回之阻斷條件。**
+        A-PW40 係執行層依 FW036 r9 自行推導，
+        分析層**無法獨立實測**（沙箱之 Project 附件已更換，
+        Power 之 FW036 不在其中），故現況為單一來源。
+        追認一個未經第二來源佐證之欄位對應，與 R-P62
+        「論證前提不成立」為同型錯誤。
+        交叉方法：取 **Comfort 與 Privacy 之已交付工作簿**
+        （已交付、已驗收，屬已知 good）之 r9 逐欄比對。
+        （a）若三者 r9 一致 → 錯位者為 scaffold，A-PW40 成立
+        （b）若 Power 之 r9 與二者有異 → 差異本身即為證據，
+             須逐欄列出並重新判定何者為權威
+        寫回於本條取得結論前**一律不開放**。
+        裁決者 Pei，逐字依據：「出」（回應 09 Q1、Q5）。
+```
+**執行層回報：已取得第二來源佐證，(a) 成立，寫回可開放（就本條而言）。**
+G52：三者 r9 之 **A–O 十五欄逐字相同**；自 **P 起二十欄** Power 與另二者不同，
+形態為**整體右移一格**。**Comfort 與 Privacy 之 r9 完全一致**（皆 34 欄，末欄 AH）。
+附帶查得**分頁名亦不同**：Power `Test Case Specification&Result`，
+另二者 `Test Case Specification 測試用例規範` —— 為不同範本版本。
+**scaffold 之錯為兩層疊加**：其值為 A-PV13 / R39-2 **訂正前**之版本
+（Privacy 已訂正而 Power 從未套用），Power 之範本又多插入一欄。
+09 包所填之對應與本次交叉結果**完全一致**，A-PW40 成立。
+
+```
+[R-P74] **兩個逐字相同之 `Estimated Test Time` 欄（P 與 R）
+        之權威判定，併入 R-P73 一併查明。**
+        判準：已交付之 Comfort / Privacy 工作簿實際填寫哪一欄。
+        另一欄之處置（留空或同值）依實測結果裁定。
+        裁決者 Pei，逐字依據：「出」（回應 09 Q6）。
+```
+**執行層回報：權威問題在實務上不存在。**
+Comfort 466 列、Privacy 11 列之 `Estimated Test Time` 欄**非空數皆為 0**——
+該欄於已交付件中從未被填寫。故 Power 之 P 與 R **二者皆留空**。
+語義上 Power 之 R 對應另二者之 Q（右移後之原欄），P 為新插入者，
+但因一律不填，此區分不影響寫回。
+
+```
+[R-P75] **§11 與 §4.4 入 lint（G50 / G51）。**
+        二者皆為零判斷成分之字串規則，靠人工自查即靠紀律。
+        G50（§11）：四個長欄位無 trailing period；
+          UI 標籤用雙引號不用方括號、單引號、角括號；
+          方括號僅得用於逐字引自來源之訊號值，須於 `reasoning` 說明
+        G51（§4.4）：`pre_conditions` 不得含動作
+          （以動詞偵測；`insert` / `press` / `connect` / `check` /
+           `confirm` / `verify` / `open` / `select` 等為主要動詞即 FAIL）
+        二閘皆須合成 fixture，違規案例須**實際觸發**。
+        裁決者 Pei，逐字依據：「出」（回應 09 Q2）。
+```
+**執行層回報：G50 / G51 已就位，五個 fixture 全數如期。**
+G50（§11）：trailing period 一例、方括號 UI 標籤一例，皆**實際觸發**。
+G51（§4.4）：Pre-Condition 含動作一例，**實際觸發**。
+**一項例外須登記**：G50 初版把 `[spec-derived]` 之 source-class 標記判為違規，
+致既有 fixture 全滅。查 Comfort 之已交付 TC 即以 `1. [spec-derived] …` 書寫，
+該為 §3.2 之既有慣例，故於 G50 明文豁免行首之 source-class 標記。
+
+```
+[R-P76] **lint 之 findings 分流為兩類。**
+        （a）**阻斷類** —— 所有閘門，使 exit=1
+        （b）**待人工裁決類** —— 僅 R-P42(b) 之觸發，
+             **不使 exit=1**，另列一節輸出，須逐條人工裁決
+             （判為「真違規」或「偽陽性」及其依據）並登記
+        R-P67 明令 R-P42(b) 之觸發不得自動判 FAIL；
+        現行實作使其與其他閘門混在同一份 findings 且同樣 exit=1，
+        該條文因此僅存於紙上。
+        裁決者 Pei，逐字依據：「出」（回應 09 Q3）。
+```
+**執行層回報：已分流，G54 實測生效。**
+`run_all_gates()` 回傳 (阻斷類, 待人工裁決類)；R-P42(b) 之觸發**不計入 exit code**。
+合成 fixture 實測：阻斷類 0 項、待裁決類 1 項、**exit 仍為 0**。
+首批 10 條 TC 之實際執行：R-P42(b) **0 觸發**，故無待裁項。
+
+```
+[R-P77] **`feature.yaml` 兩項可疑值訂正。**
+        （a）`done_region.author_value: "Arif"` → **改為空值**。
+             Comfort 於同為 BLANK 之情形已踩過此坑並留下結論：
+             填佔位作者值會**靜默匹配零列，使空的 invariant
+             看起來像已滿足**。此為既有政策，依 §5a 第 17 條優先。
+        （b）`write_back.fill_test_group_set: false` → **改為 `true`**。
+             其自身註解為「true only under BLANK」，
+             而本 workbook 實測即為 BLANK（G10）。
+        二項皆須納入 G46 之一致性檢查。
+        裁決者 Pei，逐字依據：「出」（回應 09 Q7）。
+```
+**執行層回報：二項已訂正並納入 G46。**
+`done_region.author_value` `"Arif"` → **空**；`write_back.fill_test_group_set` `false` → **`true`**。
+G46 之 `YAML_EXPECTED` 已擴為五項，repo 現況通過。
+**過程中修正 G46 一個 bug**：其欄位正則 `[^"#\n]+?` 要求至少一字元，
+無法匹配 `author_value: ""` 之空值 —— 若不修，訂正後之正確值反而會被判 FAIL。
+
+```
+[R-P78] anomaly 編號重整**追認**。
+        執行層將其原有三條改編為 A-PW40/41/42，
+        09 §F 指定之兩條取用 A-PW37/38，G45 bug 取 A-PW39；
+        現 A-PW01–A-PW42 連續無缺。
+        處理方式符「撤回列不刪、不重編號」之精神。
+        裁決者 Pei，逐字依據：「出」（回應 09 Q8）。
+```
+**執行層回報：已追認並記錄。** A-PW01–A-PW46 現連續無缺。
+
+---
+
+---
+
+## 第十一輪 — 下放包 11（`docs/handoff/11_template_verify.md` §A）
+
+```
+[R-P79] **範本之 r9 以外屬性須比對，且為寫回之新阻斷條件。**
+        R-P73 之結論僅及於「r9 標頭」一個屬性。
+        Power 與 Comfort / Privacy 為不同範本版本（A-PW47：
+        分頁名不同、35 欄 vs 34 欄）。
+        資料驗證範圍、公式、其他分頁、儲存格格式皆**未比對**。
+        Comfort 之 `DELIVERY.sha256` 載其 DV 範圍為
+        `P10:Q601` / `T10:Z601` / `AF10:AF601` —— 該等欄字母
+        係 Comfort 之座標，Power 整體右移一格；
+        若 Power 之 DV 以 Comfort 座標設定，寫回將落於錯誤欄位。
+        另：既有 **R-G3** 已記載 openpyxl + `wb.save()`
+        會破壞 rev C 工作簿之 R 欄 x14 dataValidation ——
+        DV 為本管線已知會出事之處。
+        比對範圍見 §B1。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q2、Q8）。
+```
+**執行層回報：已比對，結論為「Power 之 DV 設在 Power 自己的座標上，未沿用 Comfort 座標」。**
+G56 實測四條 DV：`Q10:Q221 R10:R11 P10:P11`（priority＋est time）、`U10:AA221`（車型欄）、
+x14 `S10:S221`（design_method）、`AG10:AG13`（Test Result）——
+**逐條皆與 Power 自身之欄位語義相符**。Comfort 對應者為 `P10:Q601` / `T10:Z601` /
+x14 `R10:R601` / `AF10:AF601`，語義相同而座標各依其自身版本。
+**條文所憂之「Power 之 DV 以 Comfort 座標設定」未發生。**
+G57 另查出三項 Power 獨有差異，其中一項具寫回影響：
+**Power 之 B 欄完全無公式**，而 Comfort / Privacy 之範本帶
+`IF(ISBLANK($D10),"",ROW()-9)` 自動編號。詳見上繳包 §一。
+
+```
+[R-P80] **「已交付」作為權威之限度**（跨 feature 通則，canon 候選）。
+        已交付件僅於「該 feature 曾明文裁決之屬性」上具權威。
+        未經裁決之屬性上：二份已交付件一致僅為巧合，
+        不一致則證明其根本不構成權威來源。
+        依據：A-PW46 —— Comfort 七個車型欄逐列填 `1`（466/466）、
+        Privacy 全數留空（0/11），二份「已知 good」做法相反。
+        R-P73 之交叉方法即建立於「已交付＝已知 good」之整體假設上，
+        該假設在 r9 標頭成立（二者一致）、在資料內容不成立。
+        故 R-P73 之結論**不得外推至標頭以外之任何屬性**。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q3）。
+```
+**執行層回報：已落實，且本包再添一例佐證其必要。**
+B2 之查證顯示 A-PW46 之前提本身有誤 —— Comfort 並未「決定填 `1`」：
+其 profile §3.9 明訂 T–Z 一律留白、`write_back.py` 將 T–Z 列入 `NEVER_WRITE`、
+其 baseline 工作簿該欄非空數為 0。**該等值非由 Comfort 管線產生。**
+即「已交付件之內容」不但不具權威，**甚至不必然反映該 feature 之裁決**。
+
+```
+[R-P81] **A-PW46 之處置：先查證，不投票。**
+        查 Comfort 之 `RULINGS.md` 有無「車型欄填 `1`」之明文裁決。
+        （a）**有** → 屬 feature-scoped override，
+             R30-3 / R30-4 仍為預設，Power 依 R-P54 維持留白
+        （b）**無** → Comfort 為未登記之偏離且已交付，
+             登為跨 feature anomaly，Power 仍依 R-P54 維持留白
+        二種情形下 Power 之處置皆為留白 —— 故本條**不阻斷寫回**。
+        **不得以「兩個樣本中一個這樣做」為由改變 Power 之處置** ——
+        該即 R-P80 所禁之「已交付即權威」之錯用。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q1）。
+```
+**執行層回報：查證結果為 (a) 之變體 —— Comfort 有明文裁決，且其裁決與 Privacy 相同（留白）。**
+逐字引用：Comfort profile draft §3「**T–Z 欄 Vehicle Model：一律留白（Privacy R30-4）**」；
+`write_back.py` `NEVER_WRITE = ["B","C","E","O","Q","T","U","V","W","X","Y","Z", …]`；
+全 Comfort 腳本**無一呼叫 `.save()`**，僅 `write_back.py` 提及 T 且在禁寫清單內。
+**Power 之處置維持留白，未因查證改變**（本即二種情形之共同結果）。
+
+```
+[R-P82] **建立 Power 之 runtime profile。**
+        `docs/runtime/profiles/` 現有七個 feature 之 profile，
+        獨缺 Power。§11 之 profile-scoped 例外因此懸空 ——
+        首批 TC 中之 `[1h]` / `[0h]` 訊號值方括號現靠 G50 之
+        硬編碼豁免，非靠 profile 條款。
+        profile 須至少載明：
+          §11 之逐字引用 token 例外（訊號值方括號）
+          §3.2 之 source-class 標記慣例（`[spec-derived]` 等）
+          spec_mode = D 及其讀取方式（R-P3′）
+          Test Set 定版清單與分布（R-P35）
+        檔名比照既有慣例 `FW036_R1L_Power_Profile.md`。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q4）。
+```
+**執行層回報：已建立 `docs/runtime/profiles/FW036_R1L_Power_Profile.md`。**
+涵蓋 R-P82 所列四項，另補欄位對應（§0.1）、範本自身限制（§0.2）、
+拆分準則（§4）、已知限制（§6）、不繼承自 Privacy 者（§7）。
+G50 之兩項方括號豁免**已改為引用 profile §3.1 / §3.2**，不再硬編碼 ——
+並以 `PROFILE_PATH.exists()` 為條件：**profile 不存在即無豁免依據**。
+G59 雙向實測：有 profile → 0 findings；無 profile → 2 findings（訊號值與 source-class 皆被攔）；
+而不當之 UI 方括號 fixture 兩種情形下皆被攔。
+
+```
+[R-P83] **G51 之動詞判準改以經驗基礎導出。**
+        現行 20 個動詞為執行層自行列舉，無來源佐證：
+        漏列者不被攔下、誤列者誤殺，二者皆未量測。
+        改為：自**已交付 TC 之 `test_procedure` 欄**取動詞聯集
+        （該欄內容依定義即為動作），作為動作動詞之經驗基礎；
+        再以**已交付之 `pre_conditions` 欄**量測偽陽性率。
+        來源為 Comfort 與 Privacy 之已交付件；
+        依 R-P80，此處僅用其「procedure 欄含動作、
+        pre_conditions 欄不含動作」之結構性事實，
+        不引用其任何內容裁決。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q5）。
+```
+**執行層回報：已重導，G60 之結果出乎預期地清楚。**
+自 Comfort + Privacy 之已交付 `test_procedure` 取行首動詞（出現 ≥ 3 次）得 **20 個**。
+與 09 包人工清單對照：**人工漏列 12 個**（`adjust` / `change` / `count` / `do` /
+`move` / `note` / `operate` / `put` / `toggle` / `touch` / `turn` / `wait`），
+皆實際出現於已交付 procedure。另 13 個人工列舉者未見於該語料 —— **非誤列，僅未經佐證**。
+**偽陽性：對 1823 行已交付 `pre_conditions`，人工清單與經驗清單皆為 0。**
+因二者偽陽性同為零，G51 改採**聯集**（32 個動詞）以最大化涵蓋而無已量測之代價。
+
+```
+[R-P84] **F3 之走查須於 CFTS010 全文確認 Load Shed 是否被命名為 status。**
+        現行走查所據之 TLM status 清單係自 CFTS009 §1.6.2.1.1–.13 讀出；
+        若 CFTS010 另有定義 Load Shed 為一個 status，該論證即不成立，
+        `006` / `008` 之 design_method 須重判。
+        執行層已於 10 §7.2 第 5 項自行指出此缺口。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q6）。
+```
+**執行層回報：已補查，F3 之走查確認成立。**
+搜尋條件：CFTS010 依 R-P3′ 抽出之文字層全文（78,976 字元），
+正則 `\bload\s*shed\b`，**大小寫不敏感、含詞界**，掃描範圍為全文不限章節。
+結果：**出現 29 次**；與 `status` / `state` / `mode` 於 60 字元內之共現 **0 處**；
+作為章節標題者二處（§1.4.1.6 `Load Shed`、§1.7.2 `Load Shed`）——
+皆為條件／功能名，**非 TLM status**。
+故 `007` / `009` 之決策表判定維持，**未重判、未重跑**。
+
+```
+[R-P85] **pilot review 須以 TC 全文為之，摘要表不足。**
+        分析層前次之 F1 / F2 / F3 三項發現**全部僅基於
+        `tc_title` / `priority` / `design_method` 之摘要表**；
+        `pre_conditions` / `test_procedure` / `expected_result`
+        三個主要欄位一字未讀。
+        依 canon §1.2，該不構成 pilot review。
+        往後任何批次之 pilot review，上繳包須附該批 TC 之**全文**
+        （十條以內全附；逾十條依 canon §1.2 分層取樣並註明取樣法）。
+        裁決者 Pei，逐字依據：「好」（回應 10 Q7）。
+```
+**執行層回報：已附全文（上繳包 §六）。** 10 條 × 13 欄，逐條含該 leaf 之 `reasoning`，
+未節錄、未省略換行、未以摘要代替。G62：**13 欄 × 10 條無任何空值**。
+
+---
+
+---
+
+## 第十二輪 — 下放包 12（`docs/handoff/12_pilot_fixes.md` §A）
+
+```
+[R-P86] **`req_id` 不得加後綴，違反 §8.2.2。**
+        首批十條之 `req_id` 寫為 `SWE-PM-071-01` / `-02` 等。
+        §8.2.2 明文：「when one RD sub-id yields multiple TCs,
+        both TCs list the **same** `Requirement or Design ID`」。
+        `-01` / `-02` 後綴**發明了 037 中不存在之 ID**，
+        寫入工作簿 Requirement 欄即為斷裂之追溯 ——
+        客戶以 037 比對將無法對應。
+        十條之 `req_id` 一律改為 `SWE-PM-071` / `SWE-PM-072` / `SWE-PM-073`；
+        區分由 `tc_id` 承擔，不由 `req_id` 承擔。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q8 之 F4）。
+```
+**執行層回報：已修正，G69 PASS。** 十條之 `req_id` 已去後綴，現為
+`SWE-PM-071` ×4、`SWE-PM-072` ×2、`SWE-PM-073` ×4。區分由 `tc_id` 承擔。
+**執行層接受本條之判斷** —— §8.2.2 逐字為「both TCs list the **same**
+`Requirement or Design ID`」，後綴確為發明 037 中不存在之 ID。
+
+```
+[R-P87] **Procedure ↔ ER 須 1:1（G63）。**
+        `001` 之 procedure 為 3 步而 ER 為 2 行；`002` 同。
+        §6 要求「1:1 aligned with steps」，§9 第 10 項列為自查項。
+        十條全數檢查並修正。
+        補設閘門 G63：`test_procedure` 之編號步驟數
+        須等於 `expected_result` 之編號行數。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q8 之 F5）。
+```
+**執行層回報：G63 已就位，十條全數修正。**
+**十條原本全部不符**（proc 3–4 步而 ER 2–4 行，無一 1:1）。
+已逐條重寫 ER 使其與 procedure 逐步對應。fixture 兩案如期。
+
+```
+[R-P88] **`pre_conditions` 不得含系統預設與環境穩定性前提（G64）。**
+        `001` / `002` 之第 1 項「The TLM is powered from a stable supply」
+        違反 §4.4（禁 system defaults，其範例逐字為 `HU is powered on.`）
+        與 §8.5（禁環境穩定性前提，「testers naturally ensure
+        the environment is stable」）。
+        第 2 項「A suspend-resume boot sequence is available on the bench」
+        屬 hardware / peripheral，**合格，不得一併刪除**。
+        十條全數檢查；補設閘門 G64 —— 以判準偵測
+        「供電／電源／連線穩定」類之泛稱環境陳述。
+        判準之詞彙來源須有經驗基礎（比照 R-P83 之作法），
+        不得由執行層憑印象列舉。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q8 之 F6）。
+```
+**執行層回報：G64 已就位，十條中六條含違規項並已移除。**
+詞彙之經驗基礎依 R-P88 取自 **canon 原文本身**，非憑印象：
+§4.4 Forbidden 之逐字範例 `HU is powered on.`（system defaults）、
+§8.5 逐字「testers naturally ensure the environment is stable」。
+由該二處導出兩類形態（供電／開機、穩定性）並寫入程式碼註解。
+「A suspend-resume boot sequence is available on the bench」等
+hardware / peripheral 項**未一併刪除**，符條文明令。
+
+```
+[R-P89] **`input_test_data` 之欄位歸屬須符 §4.5（G65）。**
+        `002` 之 `input_test_data` 為 `Boot target status: Standby`，
+        而其 procedure 第 1 步為「Set the boot target status to Standby」——
+        同一值跨欄重複，§4.5 明文禁止。
+        此為 interaction data，歸 Procedure；
+        `input_test_data` 應為 `NA`（§4.5 明訂 `NA` 為合法且不違自查）。
+        十條全數檢查；補設閘門 G65 —— `input_test_data` 之內容
+        若逐字或近似出現於 `test_procedure` 或 `pre_conditions`，FAIL。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q8 之 F7）。
+```
+**執行層回報：G65 已就位，五條之 `input_test_data` 改為 `NA`。**
+`002` / `003`（Boot target status）、`001` / `004`（*Screen_Time 參數名）、
+`008`（停止廣播 —— 為動作非資料）共五條改 `NA`。
+`005` / `006`（事件叢發）、`007` / `009` / `010`（CAN 訊號值與量測窗）
+屬 §4.5 之獨立資料集，保留並將 procedure 改為「listed in Input Test Data」之指涉。
+**真實 lint 當場抓出該閘之一個盲點**：token 規則 `{3,}` 會排除兩位數值 `25`，
+致「值未重複而僅措詞重複」被誤判。已改為「詞（≥3 字元）**或任何數字串**」。
+
+```
+[R-P90] **B 欄明寫序號，並自 `NEVER_WRITE` 移除。**
+        Comfort / Privacy 將 B 列入禁寫係因**其範本帶自動編號公式**
+        （`IF(ISBLANK($D10),"",ROW()-9)`）；
+        Power 之 B10 起實測為純空儲存格，無公式無值。
+        照抄 Comfort 之設定將交出序號全空之檔 ——
+        此與 A-PW40 同型：照抄他人設定即出錯，
+        差別在於這次錯的是**行為**而非座標。
+        寫回時 B 欄明寫連續序號（自 1 起）。
+        補設閘門 G66：寫回後 B 欄非空列數須等於 TC 列數。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q1）。
+```
+**執行層回報：G66 已實作（合成驗證），寫回時方能實測。**
+閘門邏輯：`b_filled == rows_written` 否則 FAIL。
+合成驗證：相等時 0 findings、B 欄全空時 1 finding。
+`NEVER_WRITE` 之調整待寫回包實作。
+
+```
+[R-P91] **profile 條款須有閘門對應（G67）。**
+        11 §9.2 第 5 項自陳：profile 之 §2 Test Set 清單、
+        §3.3 status 清單、§3.4 檔名、§3.5 priority、
+        §3.6–3.8 欄位留白皆無閘門，現為「寫下來的紀律」。
+        該形態於本管線已反覆失敗（08 包批評、10 包補二閘、
+        11 包再現）。
+        可機械檢查者一律補閘，且**優先於第二批之產出**。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q6）。
+```
+**執行層回報：已補二閘，G67 覆蓋率 88%。**
+盤點 profile 共 **20 條**條款：可機械檢查 **17**、不可機械檢查 3
+（§3.3 之 first-match 走查、§4 拆分準則含判斷成分；§6 為限制登記非規則）。
+新增 **G71**（`workbook.columns` 對 FW036 r9 實測標頭 —— 使 A-PW40 之人工盤點成為機械檢查）
+與 **G72**（§2 test_group、§3.3 design_method 九詞條、§3.4 檔名、§3.7 functional_safety）。
+**已有閘門 15 / 17 = 88%**；未有者二項（§3.6 estimated_time 留白、§3.8 車型欄留白）
+**須待寫回方能檢查**，非缺漏。
+
+```
+[R-P92] **`Test Case Framework` 分頁須判讀，為寫回之新阻斷條件。**
+        該分頁為 Power 獨有（Comfort / Privacy 皆無），
+        其名稱直指 Test Group / Test Set。
+        若其載有期望值而與 §E 定版（63/24/16/8/3）不符，
+        則該分頁為**藏於交付標的自身內之權威來源**，
+        其位階高於任何外部佐證 —— 它就在客戶要收的那份檔案裡。
+        11 包僅比對分頁**清單**，未讀其內容。
+        判讀範圍見 §B1。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q2）。
+```
+**執行層回報：已判讀，G68 —— 該分頁為空，不構成與 §E 衝突之權威來源。**
+`xl/worksheets/sheet8.xml` 全長 **1,024 bytes**，`<dimension ref="A1"/>`、
+`<sheetData/>` 為空元素、**非空儲存格 0**、無 `_rels`、無繪圖、無 DV。
+分頁狀態為 `visible`。Comfort / Privacy 複驗**確無同名分頁**（各 9 分頁）。
+**§E 未動。**
+
+```
+[R-P93] **§11 之「no HTML / Markdown tables」補入 G50；
+        「blank line between fields」不補。**
+        採納執行層 11 §9.1 之判斷逐字：
+        前者為純字串規則且 `|` 分隔之表格會直接破壞工作簿儲存格內容；
+        後者描述之為**工作簿呈現**，而本管線之 TC 以 JSON 獨立鍵儲存，
+        欄位間不存在「空行」之概念，於 JSON 層強制等同發明
+        規格未要求之約束。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q5）。
+```
+**執行層回報：已補入 G50，fixture 實際觸發。**
+偵測 `|` 分隔之 Markdown 表格與 HTML `<table>` / `<tr>` / `<td>` / `<th>`。
+「blank line between fields」依條文**未補**。
+
+```
+[R-P94] **A-PW51 回報 Comfort，範圍限定。**
+        Comfort 已交付件之 466 個車型欄 `1` 非由其管線產生
+        （其 profile、`write_back.py` 之 `NEVER_WRITE`、
+        baseline 工作簿三者一致指向留白）。
+        （a）於 `features/comfort/ANOMALIES.md` 登記此事
+        （b）**範圍限定**：僅查 Comfort `write_back.py` 之
+             `NEVER_WRITE` 所列各欄於已交付件中是否有值 ——
+             此為最小且最直接之判準
+        （c）**不得擴大為全欄位稽核**，不得修改 Comfort 之任何交付物
+        裁決者 Pei，逐字依據：「是」（回應 11 Q4）。
+```
+**執行層回報：已回報並登記於 `features/comfort/ANOMALIES.md`（A-CF-EXT-01）。**
+範圍限定於 `NEVER_WRITE` 十八欄：**九欄帶值**——
+B（466，**可解釋**：範本自帶編號公式）、O（466，全為 `NEW`，
+**與 `feature.yaml` 之 `tc_ref_id_value` 相符但與 `NEVER_WRITE` 矛盾**）、
+T–Z 七欄（466，全為 `1`，即 A-PW51）；其餘九欄皆 0。
+**未擴大為全欄位稽核，未修改 Comfort 之任何交付物。**
+
+```
+[R-P95] A-PW52（Power 範本 DV 覆蓋不齊，三欄僅涵蓋 2–4 列）
+        **登記不阻斷**。涉及之 estimated_time 與 Test Result 三欄
+        依 profile §3.6 / §0.2 皆留空。
+        條件式格式 `H10:H145` colorScale 之語義查明
+        （含列上界 145 與 037 資料列末 r145 之關係）
+        **可與寫回並行**，非阻斷 —— colorScale 為顯示層，
+        最壞情形為著色不當，非資料錯誤。
+        裁決者 Pei，逐字依據：「是」（回應 11 Q3、Q7）。
+```
+**執行層回報：已登記不阻斷。** A-PW52 之三欄依 profile §3.6 / §0.2 皆留空。
+colorScale 之語義查明**未於本包進行**（條文明訂可與寫回並行），
+登記為待辦而非阻斷。
 
 ---
 
 ## 待裁
 
-- **09 下放包之 §B4 後半與 §C–§J 缺漏，請補發**（09 上繳包 §一）。
-  Phase 4 首批因此暫停 —— R-P65 三項條件已齊備，阻斷者為下放內容不完整。
-- **A-PW37：`feature.yaml` 之 `workbook.columns` 自 `priority` 起全部錯位**，
-  已依實測更新（Q / S / T / AB / AI ＋ 新增 `tc_id: F`）。請覆核。
-- **A-PW38：FW036 之 r9 有兩個 `Estimated Test Time` 欄**（P 與 R），
-  標頭逐字相同。是否登為 workbook 缺陷並向上游回報。
-- **DR-PW1**（High，阻斷 `SWE-PM-089`）、**DR-PW5**（High）、
-  DR-PW6 / DR-PW3（Medium）、DR-PW7（Low）。
+- **寫回之開放** —— R-P92 已取得結論（`Test Case Framework` 分頁為空，無衝突）。
+  R-P90 之 B 欄明寫已裁定，G66 已實作。**執行層認為寫回之阻斷條件已全部解除。**
+- **A-PW57：Comfort 之 `NEVER_WRITE` 與 `feature.yaml` 矛盾**（O 欄列於禁寫，
+  而 `tc_ref_id_value: "NEW"` 意圖寫入，已交付件該欄 466 列皆為 `NEW`）——
+  已於 Comfort ANOMALIES 登記，是否另行處置。
+- **A-PW58：G65 初版之 token 規則排除兩位數值**，由真實 lint 當場抓到。
+- **colorScale `H10:H145` 之語義未查**（R-P95 允許與寫回並行）。
+- **DR-PW1**（High）、**DR-PW5**（High）、DR-PW6 / DR-PW3（Medium）、DR-PW7（Low）。

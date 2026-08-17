@@ -1,0 +1,270 @@
+{
+ "batch": "batch_001_power_down",
+ "test_group": "Power Management",
+ "test_set": "Power Down",
+ "leaves": [
+  {
+   "parent": "SWE-PM-071",
+   "source_anchor": "4942337",
+   "section": "1.7.1.1.1",
+   "source_clause": "TLM boot requires following timings: After SplashScreen_Time the splash screen is loaded and shown on TLM display (only if TLM has not to pass to Standby status nor to Bench status: in these cases no splash screen has to be shown); After StandardScreen_Time the standard screen is visualized on TLM screen",
+   "reasoning": "驗證目標：CFTS010 §1.7.1.1.1 之 `4942337` 所定之兩個開機時序點與兩個抑制條件。關鍵情境條件：suspend-resume 開機序列，並以目標狀態為 Standby 或 Bench 分支。為什麼這樣切：依 §8.2.2 之壓力測試拆為四條 —— splash 顯示、Standby 抑制、Bench 抑制、standard screen。**Standby 與 Bench 於 10 包 pilot review（F1）後再拆** ——依 §5.7「不同 trigger 即拆分」，二者為不同觸發而非同一觸發之兩個後果；§8.3 壓力測試亦成立：Standby 抑制正確而 Bench 誤顯示時，原合併之一條無法給出明確判讀。刻意略過：`4942337` 未述 SplashScreen_Time 與 StandardScreen_Time 之數值，依 §8.4 不造值，procedure 以「與設定值比對」表述。"
+  },
+  {
+   "parent": "SWE-PM-072",
+   "source_anchor": "4942338",
+   "section": "1.7.1.1.1",
+   "source_clause": "Any event occurring during the boot must be recognized by TLM and then TLM has to behave and process it according to the transitions described in par. “TLM_Status.Info setting” while the boot is still completing. TLM must buffer the events and process them as soon as possible, depending on boot timings.",
+   "reasoning": "驗證目標：開機期間到達之事件須被緩衝且於開機完成後處理。關鍵情境條件：開機序列進行中注入事件叢發。為什麼這樣切：緩衝面（不遺失）與處理面（開機後依 TLM_Status 轉換處理）為兩個獨立部分失效 —— 緩衝成功而處理未發生仍屬失敗，反之亦然，依 §8.2.2 拆為兩條。刻意略過：`4942338` 引用之 “TLM_Status.Info setting” 章節屬 CFTS009 §1.6.2.1.15，非本 leaf 所引用之錨點，依 **R-P42** 不納入測試範圍，僅於 ER 引其轉換順序之存在。"
+  },
+  {
+   "parent": "SWE-PM-073",
+   "source_anchor": "4942354",
+   "section": "1.7.2",
+   "source_clause": "When STATUS_LIN.PN14_LS_Actv=[1h] and STATUS_LIN.PN14_LS_Lvl7=[1h] signals are received by the TLM, the TLM shall immediately reduce the maximum volume level to 20 ... While in BODY ON or BODY OFF-TIMED mode, when TLM receives STATUS_LIN.Batt_ST_Crit=[1h], the TLM shall mimimize current withdraw ...",
+   "reasoning": "驗證目標：CFTS010 §1.7.2 之 `4942354` 所定之 Load Shed 與 Battery Critical 兩組條件及其動作與回復。關鍵情境條件：以 LIN 訊號注入分別觸發二者。為什麼這樣切：二者為**不同控制實體**（PN14_LS 訊號組 vs Batt_ST_Crit），依 §8.2.2 之「不同控制實體則拆分」拆為獨立 TC；各自之故障分支（訊號消失之回退）與回復分支（10 秒後恢復）亦為獨立部分失效，再各拆一條，共四條。刻意略過：037 描述所載之「Load Shed 適用 Atlantis High」為 037 之範圍註記，已置於 pre_condition；`4942354` 之 EE Architecture 欄為 Atlantis Mid, Atlantis High，二者不衝突。車型欄依 R30-3 / R30-4 留白，未依 A-PW29 填寫（R-P54）。"
+  }
+ ],
+ "tcs": [
+  {
+   "req_id": "SWE-PM-071",
+   "tc_id": "NR1L-PowerManagement-001",
+   "tc_title": "Splash screen shown after SplashScreen_Time on normal boot",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Splash screen shown after SplashScreen_Time on normal boot",
+   "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
+   "input_test_data": "NA",
+   "test_procedure": "1. Start the suspend-resume boot sequence\n2. Record the elapsed time from boot start until the TLM display changes\n3. Compare the recorded time with SplashScreen_Time and check that the splash screen is loaded",
+   "expected_result": "1. The boot sequence starts and the TLM display stays blank\n2. The elapsed time is recorded from boot start\n3. The recorded time equals SplashScreen_Time and the splash screen is shown",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash"
+   }
+  },
+  {
+   "req_id": "SWE-PM-071",
+   "tc_id": "NR1L-PowerManagement-002",
+   "tc_title": "No splash screen when TLM passes to Standby",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "No splash screen when TLM passes to Standby",
+   "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the boot target status to Standby\n2. Start the suspend-resume boot sequence\n3. Read the TLM display through SplashScreen_Time and check that no splash screen is loaded",
+   "expected_result": "1. The boot target status is Standby\n2. The boot sequence starts\n3. No splash screen is shown on the TLM display through SplashScreen_Time",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
+   "priority": "P2",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗轉入 Standby 之抑制分支。依 §5.7「不同 trigger 即拆分」，轉入 Standby 與轉入 Bench 為兩個不同觸發，非同一觸發之兩個後果",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件"
+   }
+  },
+  {
+   "req_id": "SWE-PM-071",
+   "tc_id": "NR1L-PowerManagement-003",
+   "tc_title": "No splash screen when TLM passes to Bench",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "No splash screen when TLM passes to Bench",
+   "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
+   "input_test_data": "NA",
+   "test_procedure": "1. Set the boot target status to Bench\n2. Start the suspend-resume boot sequence\n3. Read the TLM display through SplashScreen_Time and check that no splash screen is loaded",
+   "expected_result": "1. The boot target status is Bench\n2. The boot sequence starts\n3. No splash screen is shown on the TLM display through SplashScreen_Time",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
+   "priority": "P2",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗轉入 Bench 之抑制分支，與轉入 Standby 為不同觸發（§5.7 / §8.3）",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件"
+   }
+  },
+  {
+   "req_id": "SWE-PM-071",
+   "tc_id": "NR1L-PowerManagement-004",
+   "tc_title": "Standard screen shown after StandardScreen_Time",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Standard screen shown after StandardScreen_Time",
+   "pre_conditions": "1. A suspend-resume boot sequence is available on the bench",
+   "input_test_data": "NA",
+   "test_procedure": "1. Start the suspend-resume boot sequence and let it progress normally\n2. Record the elapsed time until the TLM screen content changes again\n3. Compare the recorded time with StandardScreen_Time and check that the standard screen is visualized",
+   "expected_result": "1. The boot sequence progresses without an intermediate error screen\n2. The elapsed time is recorded from boot start\n3. The recorded time equals StandardScreen_Time and the standard screen is visualized",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗第二個時序點：StandardScreen_Time 之後顯示 standard screen，與 -01 之 SplashScreen_Time 為獨立部分失效",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "本條驗第二個時序點：StandardScreen_Time 之後顯示 standard screen，與 -01 之 SplashScreen_Time 為獨立部分失效"
+   }
+  },
+  {
+   "req_id": "SWE-PM-072",
+   "tc_id": "NR1L-PowerManagement-005",
+   "tc_title": "Events during boot are buffered without loss",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Events during boot are buffered without loss",
+   "pre_conditions": "1. An event injection tool is connected to the bench",
+   "input_test_data": "Event burst: 20 events injected at 100 ms intervals during boot",
+   "test_procedure": "1. Start the TLM boot sequence\n2. Inject the event burst listed in Input Test Data while the boot is still completing\n3. Read the TLM event log and compare the recorded count with the injected count",
+   "expected_result": "1. The TLM boot sequence starts\n2. Every injected event reaches the TLM during boot\n3. The buffered event count equals the injected event count with no event dropped",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
+   "priority": "P0",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": true,
+   "split_reason": "本條驗緩衝面：開機期間到達之事件不得遺失。與 -02 之處理面為兩個獨立部分失效（§8.2.2）",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "input_data",
+    "delta": "本條驗緩衝面：開機期間到達之事件不得遺失。與 -02 之處理面為兩個獨立部分失效（§8.2.2）"
+   }
+  },
+  {
+   "req_id": "SWE-PM-072",
+   "tc_id": "NR1L-PowerManagement-006",
+   "tc_title": "Buffered events processed after boot completes",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Buffered events processed after boot completes",
+   "pre_conditions": "1. An event injection tool is connected to the bench",
+   "input_test_data": "Event burst: 20 events injected at 100 ms intervals during boot",
+   "test_procedure": "1. Start the TLM boot sequence\n2. Inject the event burst listed in Input Test Data while the boot is still completing\n3. Wait for the boot sequence to complete\n4. Read the TLM_Status transitions and check that every buffered event is processed",
+   "expected_result": "1. The TLM boot sequence starts\n2. The injected events are buffered during boot\n3. The boot sequence reaches completion\n4. Every buffered event is processed and the TLM_Status transitions follow the injected order",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.1.1.1",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗處理面：緩衝之事件於開機完成後依 TLM_Status.Info setting 之轉換處理",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "本條驗處理面：緩衝之事件於開機完成後依 TLM_Status.Info setting 之轉換處理"
+   }
+  },
+  {
+   "req_id": "SWE-PM-073",
+   "tc_id": "NR1L-PowerManagement-007",
+   "tc_title": "Load Shed limits volume and mutes TLM",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Load Shed limits volume and mutes TLM",
+   "pre_conditions": "1. The bench is an Atlantis High configuration\n2. A LIN and CAN simulation tool is connected\n3. Ecall, ACN and chimes modes are inactive",
+   "input_test_data": "STATUS_LIN.PN14_LS_Actv = [1h]\nSTATUS_LIN.PN14_LS_Lvl7 = [1h]\nStarting volume level: 25",
+   "test_procedure": "1. Set the TLM volume level to the starting value listed in Input Test Data\n2. Send the two Load Shed signals listed in Input Test Data\n3. Read the AUD_LVL signal, the audio output state and the ICS module power state",
+   "expected_result": "1. The TLM volume level is at the starting value\n2. The Load Shed condition is detected by the TLM\n3. The maximum volume is reduced to 20, AUD_LVL carries the updated level, the TLM is muted and the ICS module powers down",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
+   "priority": "P0",
+   "design_method": "決策表 (Decision Table Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗 Load Shed 之偵測與四項動作。與 -03 之 Battery Critical 為不同觸發訊號、不同控制實體，依 §8.2.2 拆分",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本條驗 Load Shed 之偵測與四項動作。與 -03 之 Battery Critical 為不同觸發訊號、不同控制實體，依 §8.2.2 拆分"
+   }
+  },
+  {
+   "req_id": "SWE-PM-073",
+   "tc_id": "NR1L-PowerManagement-008",
+   "tc_title": "Load Shed signals lost: last values retained",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Load Shed signals lost: last values retained",
+   "pre_conditions": "1. The bench is an Atlantis High configuration\n2. A LIN and CAN simulation tool is connected\n3. The Load Shed condition is already active",
+   "input_test_data": "NA",
+   "test_procedure": "1. Stop the broadcast of the two Load Shed signals on the bus\n2. Read the AUD_LVL signal and the audio output state\n3. Keep the broadcast stopped for the remainder of the ignition cycle and read the audio output state again",
+   "expected_result": "1. The two Load Shed signals are absent from the bus\n2. The TLM uses the last valid Load Shed signal values\n3. The Load Shed action is maintained for the rest of the current ignition key cycle",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
+   "priority": "P1",
+   "design_method": "基礎故障注入 (Fault Injection Lite)",
+   "split_flag": true,
+   "split_reason": "本條驗故障分支：Load Shed 訊號於匯流排上消失時之回退行為，與 -01 之正常偵測路徑為獨立部分失效",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本條驗故障分支：Load Shed 訊號於匯流排上消失時之回退行為，與 -01 之正常偵測路徑為獨立部分失效"
+   }
+  },
+  {
+   "req_id": "SWE-PM-073",
+   "tc_id": "NR1L-PowerManagement-009",
+   "tc_title": "Battery Critical minimizes draw and keeps ACN active",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Battery Critical minimizes draw and keeps ACN active",
+   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in BODY ON mode\n3. Ecall, ACN and chimes modes are inactive",
+   "input_test_data": "STATUS_LIN.Batt_ST_Crit = [1h]\nStarting volume level: 25",
+   "test_procedure": "1. Set the TLM volume level to the starting value listed in Input Test Data\n2. Send the Battery Critical signal listed in Input Test Data\n3. Read the display state, the HVAC controls, the ACN phone state and the AUD_LVL signal",
+   "expected_result": "1. The TLM volume level is at the starting value\n2. The Battery Critical condition is detected by the TLM\n3. The display stays on, HVAC controls and ACN phone stay active, the maximum volume is reduced to 20 and the TLM is muted",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
+   "priority": "P0",
+   "design_method": "決策表 (Decision Table Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "trigger_state",
+    "delta": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER"
+   }
+  },
+  {
+   "req_id": "SWE-PM-073",
+   "tc_id": "NR1L-PowerManagement-010",
+   "tc_title": "Normal operation resumes 10 seconds after recovery",
+   "test_group": "Power Management",
+   "test_set": "Power Down",
+   "test_item": "Normal operation resumes 10 seconds after recovery",
+   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The Battery Critical condition is already active",
+   "input_test_data": "STATUS_LIN.Batt_ST_Crit = [0h]\nMeasurement window: 10 seconds",
+   "test_procedure": "1. Send the recovery signal listed in Input Test Data\n2. Start a timer at the moment the signal changes\n3. Read the volume limit and the audio output state at the end of the measurement window",
+   "expected_result": "1. The recovery signal is received by the TLM\n2. The timer runs from the moment the signal changes\n3. The TLM stays in the Battery Critical state until the measurement window elapses and then resumes normal operation",
+   "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
+   "priority": "P1",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "split_flag": true,
+   "split_reason": "本條驗回復分支，與 -03 之進入分支為獨立部分失效。**10 秒之出處**：`4942354` 逐字為「shall go back to normal behavior 10 seconds after STATUS_LIN.Batt_ST_Crit becomes [0h]」—— 非造值（§8.4.1）",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "distinguishing_axis": {
+    "axis": "timing",
+    "delta": "本條驗回復分支：Batt_ST_Crit 回到 [0h] 後之 10 秒時序，與 -03 之進入分支為獨立部分失效"
+   }
+  }
+ ]
+}

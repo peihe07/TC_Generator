@@ -142,32 +142,110 @@ R-P65(c) 就此滿足，**Phase 4 起跑條件三項齊備**。
         **不得**自 037 `Priority` 欄推導（R-P8）
   §10.7 `specification_reference` 須列該 TC 直接驗證之全部章節，
         格式 `{spec_filename}_{section_id}`；
-        三條皆源自 CFTS010，檔名以 `inputs/`
+        三條皆源自 CFTS010，檔名以 `inputs/` 內之實際檔名為準
+  §12 design_method 於 procedure 定稿後指派，
+      值須為 `下拉選單!A1:A9` 九詞條之一（A-PV10 / R23-6）
+  §11 無 trailing period；UI 標籤用雙引號不用方括號
+  §5.1 禁用 `observe` / `verify` 等主動詞
+  §10.5 至少兩個編號步驟
+  **R-P42：不得測試未被引用之錨點**
 
----
+輸出至 `features/power/generated/batch_001_power_down.json`。
 
-> ## 執行層登記：**本下放包於此處中斷**
->
-> 上一行「檔名以 `inputs/`」為分析層下放內容之**最後一個字元**，句子未完成。
-> 自該處起，以下章節**全部缺漏**：
->
-> - §B4 之其餘要求（`specification_reference` 檔名規則之後半、
->   以及 §B4 可能尚有之其他項目）
-> - **§C 抽取規格**
-> - **§D 閃點**（G45 / G46 之期望值、本包之全表）
-> - **§E framework**
-> - **§F Anomaly 異動**
-> - **§G DATA_REQUESTS**
-> - **§H 作業指示**（步驟清單）
-> - **§I 禁區**
-> - **§J 本包產生之新條文清單（自檢）**
-> - 「=== 建立 09 包後，依其 §H 執行 ===」之指示
-> - 「=== 上繳包必附 ===」之清單
->
-> 執行層**未補寫任何缺漏章節** —— 依前八包一貫之原則，
-> 不得自行猜測下放內容。§A 之七條裁決條文完整無缺，已逐字照錄。
->
-> **本包之執行範圍因此限於 B1 / B2 / B3**（規格完整者），
-> **B4（首批 TC）暫停**，理由見 `docs/upstream/09_phase4_batch1.md` §一。
->
-> 自檢（就已收到之部分）：§A 區塊數 = **7**，與 §A 末句「以上七條」相符。
+### B5. 真實檔案 lint（R-P71）
+
+  對 B4 之產出執行完整 lint（含 G33、G37–G40、G45、G46）
+  回報：各閘結果、執行時間、任何 `load_tcs()` 之解析問題
+  若 R-P42(b) 觸發，依 R-P67 **不得自動判 FAIL**，
+    須人工裁決並登記（真違規 / 偽陽性 ＋ 依據）
+
+## C. 抽取規格
+
+  §C rule 1 / 2 / 3 / 4 正則不變。
+  R-P17 文字層定義不變。
+  `MIN_FINGERPRINT = 40` 不變（R-P62）。
+
+## D. 閃點
+
+G0 為前置閘。G0–G16、G13b、G18–G44 沿用（G17 已移除），期望值不變。
+G40 依 R-P68 改為三項子集檢查。
+
+| # | 項目 | 期望值 |
+|---|---|---|
+| **G45** | §10.7 閘門（R-P66） | fixture 正常 PASS、違規實際 FAIL（空值一例、格式錯誤一例） |
+| **G46** | `feature.yaml` 一致性（R-P69(c)） | fixture 正常 PASS、違規實際 FAIL |
+| **G47** | 首批 TC 數與 leaf 涵蓋 | 3 個 leaf（`SWE-PM-071/072/073`）；TC 數 ≥ 3（依 §8.2.2 得 > 3） |
+| **G48** | 首批 lint 全閘 | 全數 PASS；R-P42(b) 若觸發，依 R-P67 人工裁決後登記 |
+| **G49** | 首批 `specification_reference` | 全部指向 CFTS010，且所引章節皆在 §1.7.1 / §1.7.2 之內 |
+
+G45 / G46 之驗證條件同 G33：**須確認其在該階段確實可能失敗**。
+
+## E. framework
+
+§E 已定版（R-P35），本包不動。
+
+## F. Anomaly 異動
+
+  A-PW33 → 依 R-P66 更新：其安全論證所依賴之 §10.7 閘門已補設
+  A-PW36 → 依 R-P69 處置，`feature.yaml` 已更新
+  新增 A-PW37：R-P62 之安全論證前提不成立（§10.7 無閘門），
+               為分析層首次**論證前提**層級之錯誤，
+               有別於 A-PW30 之修飾語誤述
+  新增 A-PW38：G43 分層之有效性無資料可驗，
+               待 Phase 4 實際誤納樣本後回頭檢視（R-P70）
+
+## G. DATA_REQUESTS
+
+  DR-PW1 → live，High（`SWE-PM-089` 留空，不影響首批）
+  DR-PW3 → live，Medium
+  DR-PW5 → live，High（影響 `SWE-PM-003`，屬 Power State，不影響首批）
+  DR-PW6 → live，Medium（影響面限 §1.6.2.1，不影響首批）
+  DR-PW7 → live，Low
+  DR-PW2、DR-PW4 → 維持撤回
+
+  **五張 live DR 皆不阻斷首批** —— 此為 R-P72 擇 `Power Down` 之附帶效益。
+
+## H. 作業指示
+
+  1. G0 前置閘
+  2. 依 R-P66 補 G45，依 R-P68 改 G40，依 R-P69(c) 補 G46；fixture 驗證
+  3. 依 R-P69(a)(d) 更新並盤點 `feature.yaml`
+  4. 依 R-P66 為 R-P62 加註（B3），驗雜湊未變
+  5. 依 R-P72 產出首批 3 leaf 之 TC（B4）
+  6. 依 R-P71 對真實檔案執行完整 lint（B5），驗 G48
+  7. 以 §D 全表自驗
+  8. §A 七條裁決逐字抄入 RULINGS.md；§F 入 ANOMALIES.md
+  9. 上繳 features/power/docs/upstream/09_phase4_batch1.md，更新 docs/INDEX.md
+
+## I. 禁區
+
+  不得寫回 FW036 workbook（首批僅產出 JSON，寫回於後續包另議）
+  不得執行任何 git 操作（全數屬 Pei）
+  不得以 openpyxl save 寫任何 xlsx（R16 凍結）
+  不得補齊 SWE-PM-089（R-P1）
+  不得沿用純文字衍生物之任何數字（R-P10）
+  不得自行調整 §C 正則
+  不得修改任何已落檔裁決條文之內文（R-P36）
+  不得測試未被引用之錨點（R-P42）
+  不得解析任何 RTF 或 OLE stream 之內容（R-P39、R-P48）
+  不得續行章節層反向缺口調查（R-P37）
+  不得變更 §E 之分布數字（R-P35）
+  不得以 A-PW29 之存在逕行填寫車型欄（R-P54）
+  不得調整 `MIN_FINGERPRINT`（R-P62）
+  **不得擴大首批範圍超出 `Power Down` 3 leaf（R-P72）**
+  **R-P42(b) 之觸發不得自動判 FAIL（R-P67）**
+  **不得以 repo 現況作為任何 fixture 之測試對照**
+  素材補入超出 features/power/inputs/ 需 Pei 裁定
+
+## J. 本包產生之新條文清單（自檢）
+
+  R-P66 §10.7 補閘（G45）；R-P62 論證前提不成立
+  R-P67 偽陽性改為 Phase 4 期間之持續量測，(b) 觸發須人工裁決
+  R-P68 G40 改為子集檢查，每批有效
+  R-P69 `feature.yaml` 更新，lint 權威仍取自裁決條文，另設 G46
+  R-P70 R-P63 分層讀法追認；有效性登記為無資料可驗
+  R-P71 首批上繳前須以真實檔案執行完整 lint
+  R-P72 首批範圍 = `Power Down` 3 leaf，不得擴大
+
+  逐條確認：**七條**，皆以獨立區塊呈現於 §A，未夾於敘述中。
+  自檢：§A 區塊數 = 7、§J 列數 = 7、§H 步驟 8 寫「七條」，三處一致。

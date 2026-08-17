@@ -1284,3 +1284,38 @@ LED 規則**（§8.2.1：引用另一節之事實不等於驗證另一節之行�
 
 **不列 RD-1**：spec 內部之引用錯誤，不影響本 feature 之取材，且該行為之
 正確規則在本 feature 範圍內（`16.10`，`ICS Climate Modes` 組，尚未生成）。
+
+---
+
+## A-CF-EXT-01 — 已交付件之 `NEVER_WRITE` 欄位帶值（由 Power feature 回報）
+
+> **來源**：Power feature 之 11 / 12 包（`features/power/docs/upstream/11_template_verify.md` §二、
+> `12_pilot_fixes.md`）。依 Power R-P94 回報，**範圍限定於
+> `write_back.py` 之 `NEVER_WRITE` 所列各欄**，未做全欄位稽核，
+> **未修改 Comfort 之任何交付物**。
+
+**事實**：`FM-WI-FSM-036-A01 …_SWQT_Comfort_20260817.xlsx`（已交付，466 資料列）
+之 `NEVER_WRITE` 十八欄中，**九欄帶值**：
+
+| 欄 | 標頭 | 非空 / 466 | 研判 |
+|---|---|---|---|
+| B | No.# 序號 | 466 | **可解釋** —— 範本自帶公式 `IF(ISBLANK($D10),"",ROW()-9)`；`NEVER_WRITE` 之註解即說明此機制 |
+| O | Test Case Reference ID | 466（全為 `NEW`） | **與設定矛盾** —— 值恰為 `feature.yaml` 之 `write_back.tc_ref_id_value: "NEW"`，即意圖是寫入，卻同時列於 `NEVER_WRITE` |
+| T–Z | 七個 Vehicle Model 欄 | 466（全為 `1`） | **無法解釋** —— 見下 |
+| C / E / Q / AB–AG | 其餘九欄 | 0 | 符合 `NEVER_WRITE` |
+
+**T–Z 之三項反證**（三者一致指向「應留白」）：
+
+1. Comfort profile draft §3 逐字：「**T–Z 欄 Vehicle Model：一律留白（Privacy R30-4）**。
+   **A-PV15 同樣適用於 Comfort**：範本七欄止於 27 世代，本專案平台為 HDCC28，
+   **不得將 27 世代欄位對映至 28 平台**。」
+2. `scripts/write_back.py`：`NEVER_WRITE = ["B","C","E","O","Q","T","U","V","W","X","Y","Z", …]`
+3. `features/comfort/inputs/` 之 baseline 工作簿：T 欄非空數 **0**
+
+另：全 Comfort 腳本**無一呼叫 `.save()`**（`grep -rln '\.save('` 結果為空）。
+
+**結論**：T–Z 之 466 個 `1` **非由 Comfort 管線產生**，來源不明
+（可能為客戶端或人工於管線外填入）。O 欄之 `NEW` 則指向
+`NEVER_WRITE` 與 `feature.yaml` 之設定互相矛盾。
+
+**本回報不含處置建議** —— 交由 Comfort 自行判斷。
