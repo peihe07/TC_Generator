@@ -1,9 +1,27 @@
-# FW036 User Profiles — Framework Part（**草案**，定稿待覆核）
+# FW036 User Profiles — Framework Part（**定稿**，仍待分析層覆核方為定案）
 
-- 產出層：執行層｜2026-08-17（05 輪，下放包 05b 作業項 6）
-- **狀態：草案。** Layer 2 已由 **R-U20** 定案；Layer 3 之對映與生成分母為本層所擬，待分析層覆核
-- 依據：`RULINGS.md` R-U1（Test Group）、R-U4（母體 180）、R-U19（135／133 分立）、R-U20（八組）
+- 產出層：執行層｜2026-08-17（08 輪定稿，下放包 08b 作業項 6；草案出於 05 輪）
+- **狀態：定稿，待覆核。** Layer 2 由 **R-U20** 定案；Layer 3 之對映與生成分母為本層所擬。
+  **08b 明文：定稿後回報，仍待分析層覆核方為定案。**
+- 依據：`RULINGS.md` R-U1（Test Group）、R-U4（母體 180）、R-U19（135／133 分立）、R-U20（八組）、R-U25／R-U35（判讀依據面）
 - 母體：**180 leaf ／ 133 生成 section**（見 §4 之兩數之別）
+
+## 0. 判讀依據面（R-U25／R-U35）—— 定稿之前提
+
+本表之數字分兩類來源，**不可互推**：
+
+| 數 | 來源 | 說明 |
+|---|---|---|
+| leaf 數（180）、章別分布、Test Set 之 leaf 分配 | **037** | 與 spec 內文無關；三閘 180／25／2 已驗 |
+| 生成 section（133）、section 之內文 | **spec** | **其判讀基準為 `outline_map.json` 之 `pdf_text`（PDF 側）**，非 `text`（xlsx 側）|
+
+**xlsx 側已知會少句**：07／08 輪測得真掉句 **5 節／3.6% 節數／2.1% 字元**
+（分子定義：該節 PDF 側有、而全 169 節之 xlsx Description 皆無之片段）。
+其七條補句登記於 `data/xlsx_missing_clauses.tsv`，**全部 must_carry**。
+
+**已知例外（R-U38）**：`2.1`（Reference Documentation 表）為**唯一 xlsx 較 PDF
+完整**之節 —— 其表於 PDF 為圖。該節屬章 2，不入生成範圍。
+**故「PDF 為內文之準」不是無例外之通則。**
 
 ---
 
@@ -133,7 +151,19 @@ Functional Requirement` 之 180 列，依其 `HMI Source ID` 之章別歸組）�
 
 ---
 
-## 6. 待覆核之處（本層不自裁）
+## 6. 生成階段之強制事項（Phase 2 起適用）
+
+| # | 事項 | 依據 |
+|---|---|---|
+| 1 | spec 內文一律取 `outline_map.json` 之 **`pdf_text`**；`text` 僅供追溯 | R-U35 (a) |
+| 2 | 補句表七條為 **must_carry** —— 其所屬 outline 生成時強制入 prompt context | R-U35 (b) |
+| 3 | **R1 High 之 TC 字面值不得出現 `Stellantis Account`**（應為 `Connected Account`）| R-U35 (c)、§8.7.3；lint `lint_variant_labels.py` |
+| 4 | Table CPA2（PDF p17）／Table EDPR1（PDF p14）為 ER 列舉之來源，生成時回查 | R-U35 (d) |
+| 5 | **spec `4.1.1` 之 popup 內文不寫逐字 ER**（觸發、顯示與否、分支可驗）| R-U15／R-U27 |
+| 6 | `3.1`–`3.5`（PLP 表）僅作 `PROF-001-01` 之 in-scope 依據，**不另生成獨立 TC** | R-U22／R-U28 |
+| 7 | **寫回不得開工** —— A-UP09 之 x14 DV gate 未立且未實跑 | R-U14 |
+
+## 7. 待覆核之處（本層不自裁）
 
 1. **ch9／ch10 之合併**與 **ch12–14 之合併**（§2.2）—— R-U20 已定 Test Set，
    本表之 Layer 3 逐章對映為本層所擬。

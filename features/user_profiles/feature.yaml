@@ -169,3 +169,21 @@ generation_sections:
     # 該二 outline 之唯一引用者為 R-U4 排除之 leaf
     - {outline: "4.7",  cited_only_by: SWE1-HMI-PROF-017}
     - {outline: "5.11", cited_only_by: SWE1-HMI-PROF-035}
+
+# ---------------------------------------------------------------- R-U35 (c)
+# variant 之 label 覆寫。**其來源只存在於 PDF** —— xlsx Description 側掉句
+# （見 data/xlsx_missing_clauses.tsv 之 9.3.2）。若生成階段只讀 xlsx，
+# `9.2` 之條文寫 `Stellantis Connected Account`，TC 會照抄，
+# 而 R1 High 車上那個 label 是 `Connected Account`。
+#
+# §8.7.3 管轄 —— **字面值錯誤，非風格分歧**，違反者為 defect。
+# lint：scripts/lint_variant_labels.py（反向驗證 7/7 PASS，含 R1 Low 之不誤報向）
+variant_label_overrides:
+  - variant: R1 High
+    forbidden: Stellantis Account
+    replacement: Connected Account
+    source: spec 9.3.2 (PDF p14)
+    ruling: R-U35 (c)
+    scope_note: >
+      僅 R1 High。R1 Low 車上之 label 確為 `Stellantis Account`，
+      對其轉紅即為誤報 —— 該向已納入反向驗證。

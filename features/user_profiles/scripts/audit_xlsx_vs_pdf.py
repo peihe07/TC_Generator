@@ -168,8 +168,12 @@ def main() -> int:
             continue
         x = norm(by[o]["text"])
         import difflib
+        # 08 輪訂正（R-U37 之注入所揭）：窗口長度須與 `x` 相同。
+        # 固定 600 字元之窗口會把後一個候選之文字吃進前一個候選之窗口，
+        # ratio（2M/T）被 T 撐大而降低 —— 落在前面的正確候選因而落選。
         best = max(cands, key=lambda c: difflib.SequenceMatcher(
-            None, x[:300], norm(full[c:c + 600])[:300], autojunk=False).ratio())
+            None, x, norm(full[c:c + len(x) + 40])[:len(x)],
+            autojunk=False).ratio())
         pos[o] = best
         ambiguous.append((o, tg, len(cands)))
 

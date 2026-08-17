@@ -17,6 +17,7 @@
 | 05 | 2026-08-17 | 跨 feature 掃描（唯讀）／home 讀者實驗／抽圖能力／PLP 表／framework 草案 | [handoff/05a_rulings.md](handoff/05a_rulings.md)＋[05b_tasks.md](handoff/05b_tasks.md) | [upstream/05_framework_draft.md](upstream/05_framework_draft.md) | R-U21 ~ R-U24；**R-G7（全域）** | A-UP02 之性質重估待裁（spec 有而 SWE 未涵蓋）| **作業 1–6 完成。無污染；危害由推導變觀察（chapter 6 種→1 種 `SWE`）；**圖在 PDF 不在 xlsx**，6 節中 5 節改判、完全依賴歸零；PLP 表可讀；framework 草案落檔** |
 | 06 | 2026-08-17 | 基線稽核：169 條逐節比對 xlsx vs PDF；PLP3；PU id 擴充；R-U27／R-U28 落地 | [handoff/06a_rulings.md](handoff/06a_rulings.md)＋[06b_tasks.md](handoff/06b_tasks.md) | [upstream/06_baseline_audit.md](upstream/06_baseline_audit.md) | R-U25 ~ R-U30；**R-G4-1**（R-G4 之修訂，原文保留）| A-UP02 性質重估落地；**N-XF01 跨 feature note 新開** | **判定系統性掉句 → 停手上報，未重建 outline_map.json。掉句率三個數：17.1%（上界）／9.3%（加頁界）／**2.9% 真掉句**。PLP3 可讀且不需抽圖。framework 未定稿** |
 | 07 | 2026-08-17 | 基線稽核（二）：跨頁反向驗證／29 無標籤節／outline_map 增欄與補句表／Service 22 條 PDF 複查 | [handoff/07a_rulings.md](handoff/07a_rulings.md)＋[07b_tasks.md](handoff/07b_tasks.md) | [upstream/07_baseline_audit_2.md](upstream/07_baseline_audit_2.md) | R-U31 ~ R-U34；**R-G8（全域）** | —（無新開；補句表登記 7 條）| **0 個跨頁條款 → 2.9% 不再是下界。對照向揪出 06 輪之定位器缺陷（重複標籤 `PRACC7.` 被兩節共用）。三比率重報 17.1%／9.3%／**3.6%**。Service 22 條 0 條改變 → R-U21 維持。framework 仍未定稿** |
+| 08 | 2026-08-17 | **Phase 1 收尾**：字內斷字全量掃／消歧反向驗證／R-U35 落地與 lint 實跑／framework 定稿 | [handoff/08a_rulings.md](handoff/08a_rulings.md)＋[08b_tasks.md](handoff/08b_tasks.md) | [upstream/08_phase1_close.md](upstream/08_phase1_close.md) | R-U35 ~ R-U38；**R-G7-1**（R-G7 之修訂，原文保留）| —（無新開）| **兩個作業都推翻了自己的前提**：R-U36 之「PDF 側有斷字」為 07 輪誤述（實在 xlsx 側，C 組終值維持 3.6%）；R-U37 之注入抓到判準缺陷，改判準後 8/8。lint 實跑 7/7。**framework 定稿待覆核**。Phase 1 收尾清單：已清 18／待清 8／永久 8 |
 
 ---
 
@@ -38,6 +39,25 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第八輪已完成（2026-08-17）—— **Phase 1 收尾**
+
+- **R-U36：本條之前提有誤，據實更正。** 字內斷字**全在 xlsx 側**（4 個形態），
+  **PDF 側 0 個** —— 07 輪本層寫「PDF 文字層有」是誤述。
+  四者所在之 4 節皆已落「標點/空白差異」，**對 C 組影響 0**；
+  **C 組終值維持 3.6% 節數／2.1% 字元**，補句表七條不增不減。
+  判準之偽陽性風險四項已列（含詞庫不完整之漏抓下界）。
+- **R-U37：注入抓到判準之缺陷。** 相似度比對之窗口長度不等，
+  落在前面之候選其窗口吃進後一個候選之文字，ratio 被稀釋 ——
+  兩個注入向因此選錯。**依 R-U37 改判準（等長窗口）不改案例** → 8/8 PASS，
+  且稽核表逐位元組未變（**真實語料剛好不踩，故非注入驗不出來**）。
+- **R-U35 四項落地**；`variant_label_overrides` 進 `feature.yaml`，
+  lint **實跑 7/7** —— 含造假 TC 之三向，**另加一組本層自訂之「範圍向」**
+  （R1 Low 用同一字串不得轉紅）：**一條只證明「會 FAIL」的規則，
+  可能是一條對所有東西都 FAIL 的規則。**
+- **`framework.md` 定稿**（仍待覆核），新增 §0 判讀依據面與 §6 生成階段之
+  七條強制事項。
+- **Phase 1 收尾清單**：已清 18／待清 8／永久 8。**Phase 2 起不再回頭翻前七包。**
 
 ### 第七輪已完成（2026-08-17）
 
