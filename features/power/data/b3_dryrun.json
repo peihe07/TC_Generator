@@ -1,0 +1,395 @@
+{
+  "src_sha256": "ce93174794d0d43c03d25dcd577c2811b85a8ebb2fd754a5201e5d6979297eda",
+  "base_sha256": "ce93174794d0d43c03d25dcd577c2811b85a8ebb2fd754a5201e5d6979297eda",
+  "out_sha256": "99c1ad9373aa5f384016bf253f234a05d24ecc7780561d847f0ad67b38c4d3a0",
+  "src_untouched": true,
+  "surgical_report": {
+    "sheets_patched": {
+      "Test Case Specification&Result": 170
+    },
+    "members_patched": [
+      "xl/worksheets/sheet6.xml"
+    ],
+    "members": 42,
+    "differing": [
+      "xl/worksheets/sheet6.xml"
+    ],
+    "dv_counts": {
+      "xl/worksheets/sheet5.xml": [
+        1,
+        0
+      ],
+      "xl/worksheets/sheet6.xml": [
+        3,
+        1
+      ]
+    }
+  },
+  "dv_before": [
+    [
+      "main",
+      "B7:C7",
+      "list"
+    ],
+    [
+      "main",
+      "AG10:AG13",
+      "list"
+    ],
+    [
+      "main",
+      "Q10:Q221 R10:R11 P10:P11",
+      "list"
+    ],
+    [
+      "main",
+      "U10:AA221",
+      "list"
+    ],
+    [
+      "x14",
+      "S10:S221",
+      "list"
+    ]
+  ],
+  "dv_after": [
+    [
+      "main",
+      "B7:C7",
+      "list"
+    ],
+    [
+      "main",
+      "AG10:AG13",
+      "list"
+    ],
+    [
+      "main",
+      "Q10:Q221 R10:R11 P10:P11",
+      "list"
+    ],
+    [
+      "main",
+      "U10:AA221",
+      "list"
+    ],
+    [
+      "x14",
+      "S10:S221",
+      "list"
+    ]
+  ],
+  "dv_identical": true,
+  "structure_identical": {
+    "members": true,
+    "sheets": true,
+    "merges": true,
+    "cf": true
+  },
+  "measure": {
+    "g66": {
+      "b_filled": 10,
+      "rows": 10,
+      "pass": true
+    },
+    "g71": [
+      {
+        "key": "req_id",
+        "col": "D",
+        "cell": "D10",
+        "header": "Requirement or Design ID / 需求/設計 ID",
+        "written": "SWE-PM-071",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "tc_id",
+        "col": "F",
+        "cell": "F10",
+        "header": "Test Case ID / 測試用例ID",
+        "written": "NR1L-PowerManagement-001",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "test_group",
+        "col": "G",
+        "cell": "G10",
+        "header": "Test Group / 測試組",
+        "written": "Power Management",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "test_set",
+        "col": "H",
+        "cell": "H10",
+        "header": "Test Set / 測試集",
+        "written": "Power Down",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "test_item",
+        "col": "I",
+        "cell": "I10",
+        "header": "Test Item / 測試項目",
+        "written": "Splash screen shown after SplashScreen_Time ",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "pre_conditions",
+        "col": "J",
+        "cell": "J10",
+        "header": "Pre-Conditions / 先前條件",
+        "written": "1. A suspend-resume boot sequence is availab",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "input_test_data",
+        "col": "K",
+        "cell": "K10",
+        "header": "Input Test Data / 輸入條件",
+        "written": "NA",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "test_procedure",
+        "col": "L",
+        "cell": "L10",
+        "header": "Test procedure / 測試程序",
+        "written": "1. Start the suspend-resume boot sequence\n2.",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "expected_result",
+        "col": "M",
+        "cell": "M10",
+        "header": "Expected Result / 預期結果",
+        "written": "1. The TLM display stays blank while the boo",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "spec_reference",
+        "col": "N",
+        "cell": "N10",
+        "header": "Specification Reference  / 規格參考",
+        "written": "R1LR_Atl-H_25PI3.5_Activation and Configurat",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "tc_ref_id",
+        "col": "O",
+        "cell": "O10",
+        "header": "Test Case Reference ID / 測項參考ID",
+        "written": "NEW",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "estimated_time",
+        "col": "P",
+        "cell": "P10",
+        "header": "Estimated Test Time (mins) / 預估測試時間 / （分鐘）",
+        "written": "",
+        "expect_blank": true,
+        "pass": true
+      },
+      {
+        "key": "priority",
+        "col": "Q",
+        "cell": "Q10",
+        "header": "Test Case Priority / 測試用例優先級別",
+        "written": "P1",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "design_method",
+        "col": "S",
+        "cell": "S10",
+        "header": "Test Case Design  / Methods / 測試用例設計方法",
+        "written": "狀態轉換 (State Transition Testing)",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "functional_safety",
+        "col": "T",
+        "cell": "T10",
+        "header": "Functional Safety / 功能安全",
+        "written": "NA",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "author",
+        "col": "AB",
+        "cell": "AB10",
+        "header": "Test Case Author / 測試案例作者",
+        "written": "PeiPYHsu",
+        "expect_blank": false,
+        "pass": true
+      },
+      {
+        "key": "remarks",
+        "col": "AI",
+        "cell": "AI10",
+        "header": "Remarks / 備註",
+        "written": "",
+        "expect_blank": true,
+        "pass": true
+      }
+    ],
+    "g72": [
+      {
+        "row": 10,
+        "test_group": "Power Management",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 11,
+        "test_group": "Power Management",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 12,
+        "test_group": "Power Management",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 13,
+        "test_group": "Power Management",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 14,
+        "test_group": "Power Management",
+        "design_method": "功能測試 (Functional based ; no specific technique)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 15,
+        "test_group": "Power Management",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 16,
+        "test_group": "Power Management",
+        "design_method": "決策表 (Decision Table Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 17,
+        "test_group": "Power Management",
+        "design_method": "基礎故障注入 (Fault Injection Lite)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 18,
+        "test_group": "Power Management",
+        "design_method": "決策表 (Decision Table Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      },
+      {
+        "row": 19,
+        "test_group": "Power Management",
+        "design_method": "狀態轉換 (State Transition Testing)",
+        "spec_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Pow",
+        "functional_safety": "NA"
+      }
+    ],
+    "grid_cells": 194
+  },
+  "fail_proof": {
+    "blank_b": {
+      "b_filled": 0,
+      "rows": 10,
+      "pass": false
+    },
+    "shift_one": [
+      {
+        "key": "req_id",
+        "col": "D",
+        "cell": "D10",
+        "header": "Requirement or Design ID / 需求/設計 ID",
+        "written": "",
+        "expect_blank": false,
+        "pass": false
+      },
+      {
+        "key": "tc_id",
+        "col": "F",
+        "cell": "F10",
+        "header": "Test Case ID / 測試用例ID",
+        "written": "",
+        "expect_blank": false,
+        "pass": false
+      },
+      {
+        "key": "estimated_time",
+        "col": "P",
+        "cell": "P10",
+        "header": "Estimated Test Time (mins) / 預估測試時間 / （分鐘）",
+        "written": "NEW",
+        "expect_blank": true,
+        "pass": false
+      },
+      {
+        "key": "priority",
+        "col": "Q",
+        "cell": "Q10",
+        "header": "Test Case Priority / 測試用例優先級別",
+        "written": "",
+        "expect_blank": false,
+        "pass": false
+      },
+      {
+        "key": "design_method",
+        "col": "S",
+        "cell": "S10",
+        "header": "Test Case Design  / Methods / 測試用例設計方法",
+        "written": "",
+        "expect_blank": false,
+        "pass": false
+      },
+      {
+        "key": "author",
+        "col": "AB",
+        "cell": "AB10",
+        "header": "Test Case Author / 測試案例作者",
+        "written": "",
+        "expect_blank": false,
+        "pass": false
+      }
+    ],
+    "shift_one_g72": {
+      "row": 10,
+      "test_group": "NR1L-PowerManagement-001",
+      "design_method": null,
+      "spec_reference": "1. The TLM display stays blank while the boot sequence runs\n",
+      "functional_safety": "狀態轉換 (State Transition Testing)"
+    }
+  },
+  "tc_count": 10
+}

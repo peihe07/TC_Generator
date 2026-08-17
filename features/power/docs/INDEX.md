@@ -22,6 +22,10 @@
 | 10 | 2026-08-17 | 欄位對應交叉驗證與首批 pilot 回覆 | [handoff/10_column_verify.md](handoff/10_column_verify.md) | [upstream/10_column_verify.md](upstream/10_column_verify.md) | R-P73 ~ R-P78 | A-PW43 ~ A-PW47 | **PASS —— 九步全完成；A-PW40 經第二來源佐證成立；首批 9→10 條全閘 PASS（8 項待裁）** |
 | 11 | 2026-08-17 | 範本全屬性比對與首批全文覆核 | [handoff/11_template_verify.md](handoff/11_template_verify.md) | [upstream/11_template_verify.md](upstream/11_template_verify.md) | R-P79 ~ R-P85 | A-PW48 ~ A-PW52 | **PASS —— 十步全完成；Power DV 座標正確；查出 B 欄無編號公式（8 項待裁）** |
 | 12 | 2026-08-17 | pilot 修正與閘門補強 | [handoff/12_pilot_fixes.md](handoff/12_pilot_fixes.md) | [upstream/12_pilot_fixes.md](upstream/12_pilot_fixes.md) | R-P86 ~ R-P95 | A-PW53 ~ A-PW58 | **PASS —— 十二步全完成；`Test Case Framework` 分頁實測為空、不與 §E 衝突；十條四項系統性違規全修；新增 G63–G72，G67 覆蓋率 88%** |
+| 13 | 2026-08-17 | ER 品質修正與首批覆核完成 | [handoff/13_er_quality.md](handoff/13_er_quality.md) | [upstream/13_er_quality.md](upstream/13_er_quality.md) | R-P96 ~ R-P100 | A-PW59 ~ A-PW63 | **PASS —— 十步全完成；十條 ER 複述與時間相等表述全修；G73 / G74 具「合成＋真實」證據；**惟 G73 之判準與已交付件衝突，不得為阻斷閘** |
+| 14 | 2026-08-17 | Final Step 驗證意圖與首批覆核收尾 | [handoff/14_final_step_intent.md](handoff/14_final_step_intent.md) | [upstream/14_final_step_intent.md](upstream/14_final_step_intent.md) | R-P101 ~ R-P106 | A-PW64 ~ A-PW68 | **PASS —— 十二步全完成；G77 修正前 9/10 FAIL；`006` 確係時序誤讀已改寫；`source_clause` 立為常規（G79）** |
+| 15 | 2026-08-17 | 首批覆核收尾與誤讀清除 | [handoff/15_batch1_closeout.md](handoff/15_batch1_closeout.md) | [upstream/15_batch1_closeout.md](upstream/15_batch1_closeout.md) | R-P107 ~ R-P112 | A-PW69 ~ A-PW74 | **PASS —— 十一步全完成；`006` 殘留實為四處（分析層指出一處）；刪除無據之順序斷言；`source_clause` 補為完整原文；Arif 素材備妥待 Pei 裁定 Q3** |
+| 16 | 2026-08-17 | 寫回排序規則與 dry-run | [handoff/16_write_order.md](handoff/16_write_order.md) | [upstream/16_write_order.md](upstream/16_write_order.md) | R-P113 ~ R-P117 | A-PW75 ~ A-PW79 | **PASS —— 九步全完成；dry-run 使 G66/G71/G72 升為「合成＋真實」；**DV 五條全數存活（含 x14）**；`SWE-PM-073` 補測五條（4→9）** |
 
 ---
 
@@ -67,10 +71,12 @@ PASS：G0–G16、G13b、G18、G19、G20、**G21、G22、G23、G27**
 
 **無 MISMATCH。**
 
-### Phase 4 —— 首批已產出並已修正（10 條）
+### Phase 4 —— 首批已產出並已修正（**15 條**）
 
-`features/power/generated/batch_001_power_down.json` —— **10 條 TC，3 個 leaf**
-（`SWE-PM-071/072/073`，Test Set `Power Down`），tc_id `001`–`010` 連號。
+`features/power/generated/batch_001_power_down.json` —— **15 條 TC，3 個 leaf**
+（`SWE-PM-071/072/073`，Test Set `Power Down`），臨時 tc_id `001`–`015` 連號
+（**`tc_id_status: provisional`**，R-P113(b)）。
+16 包依 R-P117 補測五條（`011`–`015`），`SWE-PM-073` 由 4 增為 9。
 
 依 §8.2.2 拆分：071→**4**（F1 後 Standby / Bench 再拆）、072→2、073→4。
 priority **P0 ×3 / P1 ×5 / P2 ×2**（依測項內容判定，R-P8）。
@@ -82,8 +88,37 @@ priority **P0 ×3 / P1 ×5 / P2 ×2**（依測項內容判定，R-P8）。
 六條移除環境前提、五條改 `NA`。TC 數與 leaf 數不變（修正非拆分，G70）。
 **真實檔案 lint：`exit=0`、阻斷類 PASS、R-P42(b) 0 觸發，0.22 秒。**
 
-**惟：十條之技術正確性（是否真的測到 071/072/073 所要求之行為）迄今無人覆核。**
-本包所修四項皆為形式規則。見 [upstream/12_pilot_fixes.md](upstream/12_pilot_fixes.md) §七之一。
+**13 包二次修正（R-P96 / R-P97）**：12 包為湊 1:1 而將 procedure 動作複述為 ER，
+修正前 G73 tier1 觸發 **7** 條、tier2 **4** 條（含分析層所舉之全部五例，
+另發現 `006` / `010` 亦命中）；`001` / `004` 之 ER 寫「time **equals** …Time」，
+嚴格執行必然 fail（A-PW60）。現全數修正 —— 複述行改為可觀察結果**或合併該步驟**
+（procedure 步數 3–4 降為 **2–3**，G63 之 1:1 仍 10/10，§10.5 未違），
+`equals` 改為「到期前不顯示 / 到期後顯示」之行為描述，**未造任何容差值**。
+
+**14 包三度修正（R-P101 / R-P102 / R-P103）**：13 包之合併步驟**剝除了 Final Step 之
+驗證意圖**，末步僅剩「Read the TLM display through SplashScreen_Time」——
+所讀者為**載體**而非**標的**。G77 對 13 包版實測 **9 / 10 FAIL**，
+而 **G63 / G73 / G70 當時全綠**（A-PW64，「閘門覆蓋不等於品質」之直接實例）。
+現十條末步皆含 §5.2B 之驗證意圖，14–18 字。
+
+**`006` 確係時序誤讀（A-PW68）**：`4942338` 逐字為「process it ... **while the boot is
+still completing**」，而 13 包作「processed **after boot completes**」。
+`tc_title` / procedure / ER 三欄與 **leaf `reasoning`（誤讀源頭）**已一併改正。
+**該誤讀自 09 包首批產出即存在，歷經兩輪修正與多次 lint 全綠而未被察覺** ——
+語義錯誤無任何閘門可及，查出它的是 `source_clause` 原文比對。
+
+**分析層首批覆核進度 8 / 10**（`001`–`007`、`010`）。
+**剩 `008` / `009` 兩條**（R-P112）—— 已置於 15 包上繳最前。
+R-P98 / R-P105 / R-P112 為現行寫回阻斷條件。
+
+**15 包三項清除**：
+（一）**`006` 之誤讀殘留實為四處**（`test_item` / `split_reason` / `expected_result` /
+`distinguishing_axis.delta`）—— 分析層指出一處，執行層全欄掃描另查出三處（A-PW69）。
+R-P107 所列之十三欄清單**不足以涵蓋 JSON 之實際欄位**，故 G81 改為掃全部欄位（A-PW73）。
+（二）**`006` 之 ER 曾斷言處理順序而規格未載** —— `4942338` 完整原文僅二句，
+載「as soon as possible」，**未載按注入順序**。依 R-P108 (a) 刪除（A-PW70）。
+（三）**`SWE-PM-073` 之 `source_clause` 截斷恰好蓋住 mute / ICS / 故障 / 回復四款** ——
+即 `007` / `008` / `010` 之 ER 所斷言者。已補為 `4942354` 完整原文 1,568 字元（A-PW71）。
 
 ### 範本全屬性 —— 已比對（R-P79）
 
@@ -114,13 +149,73 @@ Power 原為八個 feature 中唯一無 profile 者（A-PW49）。
 G50 之方括號豁免已改為**引用 profile §3.1 / §3.2**，
 並以 `PROFILE_PATH.exists()` 為條件；G59 雙向實測。
 
-### lint 現況 —— 十五閘
+### 寫回排序 —— R-P113 已裁定（選項 B）
+
+**A-PW75**：工作簿列序與 tc_id 對 SWE-PM ID 之關係，**自 01 包至 15 包止未被任何裁決涵蓋**
+—— 分批依 Test Set（R-P72）而 §10.3 僅規範 tc_id 單調遞增，二者組合會使
+`SWE-PM-001` 落於工作簿後段。現況**已寫回 0 列，重新指派無代價**。
+
+| 階段 | tc_id | 效力 |
+|---|---|---|
+| 產出（依 Test Set 分批）| 批次內**臨時**編號 | 無最終效力；批次檔頭載 `tc_id_status: provisional` |
+| 寫回（114 leaf 完成後，**單次**）| 依 `(SWE-PM ID, split_index)` 序自 001 連號 | 最終值；**工作簿列序即此序** |
+
+`split_index`（R-P115，**分析層自裁**）= 同一 leaf 內依規格原文子句出現序，不寫入工作簿。
+腳本 `assign_final_tc_id.py`（G85 五案如期，**只產對照表不改寫 JSON**）。
+
+**A-PW78**：若逕以排序鍵重排 JSON 陣列，**G38 / §10.3 實測 3 項 FAIL** ——
+故 JSON 陣列序與寫回列序**刻意分離**，未放寬 G38。
+
+### dry-run 寫回 —— 三閘升為「合成＋真實」，R-G3 首度實測（16 包 B3）
+
+沙箱 `features/power/sandbox/`（不入版控）；**來源 SHA256 前後相同，未被觸碰**；
+路徑為 `backend/xlsx_surgical.py` 之 `surgical_save()`，**全程無 `Workbook.save()`**。
+
+| 閘 | 實測 | 失敗證明 |
+|---|---|---|
+| **G66** | B 欄 **10 / 10** | B 欄留空 → 0 / 10 FAIL |
+| **G71** | **17 / 17** 欄落點正確 | 右移一格 → 6 欄 FAIL |
+| **G72** | 十列逐列相符 | 右移一格 → `design_method` 變 `None` |
+| **G86** | **五條 DV（含 x14 `S10:S221`）逐字相同，全數存活** | —— |
+| **G87** | **僅 `xl/worksheets/sheet6.xml` 相異**；members/sheets/merges/cf 皆同 | —— |
+
+**A-PW77 之區辨（不得混稱）**：DV 存活**不表示 R-G3 之缺陷不存在** ——
+`surgical_save` 之設計正為繞開它（不呼叫 `save()`，改以貼回原始 sheet XML
+＋ 其餘 member 位元組照抄）。**本次證明繞道有效，未證明 `save()` 可安全使用。**
+
+§3.6 / §3.8 之留白檢查（14 包 G67 所稱「須待寫回方能檢查」之二項）本包一併完成。
+
+### `SWE-PM-073` 涵蓋缺口補測（R-P117）—— TC 由 4 增為 9
+
+`4942354` 完整原文之 **13 項行為**逐項對照，三項未測：
+（a）Load Shed **回復分支**（`008` 僅測不恢復側）→ `011`
+（b）**通話轉移**（Load Shed 段與 Battery Critical 段**兩處皆未測**）→ `012` / `013`
+（c）**BODY OFF-TIMED**（`009` 僅 BODY ON）與 **voltage out of range**
+（`010` 僅測 10 秒逾時）→ `014` / `015`
+
+**leaf 數仍為 3**，未構成 R-P72 所禁之範圍擴大。
+`071` 4/4、`072` 4/4（其中一項受 R-P42 限縮）—— **無同型缺口**。
+
+**A-PW79**：`015` 所測之 `voltage out of range`，**該錨點未載電壓門檻值** ——
+依 §8.4.1 不造值、依 R-P42 不得赴他錨點取值，
+**該條在取得門檻前不可實際執行**。是否開 DR 待分析層裁定。
+
+**此三項缺口在閘門覆蓋率 100% 之今日依然無任何閘門會發現** ——
+查出它們的是人讀規格原文逐句對照。**規格 → TC 之反向涵蓋檢查尚未成為閘門。**
+
+### lint 現況 —— 二十一閘
 
 G33（R-P42 a/b）、G37（R-P1）、G38（R-P2）、G39（R-P8）、G40（R-P35）、
 G45（§10.7）、G46（feature.yaml）、G50（§11，12 包併入表格檢查）、G51（§4.4）、
 **G63（§6 Procedure↔ER 1:1）、G64（§4.4/§8.5 環境穩定性前提）、
 G65（§4.5 input_test_data 歸屬）、G66（B 欄非空列數 = TC 列數，僅合成驗證）、
-G71（workbook.columns 對 r9 實測標頭）、G72（profile §2/§3.3/§3.4/§3.7）**。
+G71（workbook.columns 對 r9 實測標頭）、G72（profile §2/§3.3/§3.4/§3.7）、
+G73（§6 ER 複述偵測，**待人工裁決類**）、G74（§8.4.1 時間量測 ER 不得寫數值相等）、
+G77（§5.2B/§5.5 Final Step 驗證意圖，**阻斷類**）、G79（R-P104 `source_clause` 必附）、
+G81（R-P107 誤讀關鍵詞全欄掃描，**個案型**）、G82（R-P109 ER 標的須見於 `source_clause`）**。
+
+G79 / G81 / G82 為**批次層**閘門（以 `leaves` ＋ `tcs` 整批為單位），
+由 `run_batch_gates()` 併入阻斷類。
 
 G64 之詞彙依 R-P88 取自 canon 逐字原文（§4.4 之 `HU is powered on.`、§8.5），
 非憑印象；偽陽性 0。G71 使 A-PW40 之人工盤點升格為機械檢查。
@@ -129,17 +224,74 @@ G64 之詞彙依 R-P88 取自 canon 逐字原文（§4.4 之 `HU is powered on.`
 `test_procedure` 取行首動詞，人工清單漏列 12 個；對 1823 行已交付 `pre_conditions`
 之偽陽性**二者皆為 0**，故採聯集（32 個動詞）。
 
-**findings 已分流**（R-P76）：R-P42(b) 之觸發列為「待人工裁決類」，**不使 exit=1**。
+**findings 已分流**（R-P76）：R-P42(b) **與 R-P96(a)/(b)** 之觸發列為「待人工裁決類」，
+**不使 exit=1**。
 `--self-test`：**35 個 TC fixture ＋ G46 皆如期**。
 
 **G67 profile 條款閘門覆蓋率 = 15 / 17 = 88%**（20 條中 3 條不可機械檢查）。
 未覆蓋之 2 項（§3.6 estimated_time 留白、§3.8 車型欄留白）**須待寫回方能檢查**。
 
-### 寫回狀態 —— 已知阻斷條件全部解除
+### G73 之判準與已交付件衝突（13 包 B3）—— 待裁
 
-R-P73（欄位對應）、R-P79（範本全屬性）、**R-P92（`Test Case Framework` 分頁）**
+G73 之判準以 Comfort + Privacy 已交付件之 **1076 組 (procedure 步驟, ER 行)** 語料導出。
+套用該判準於同一語料：**tier1 觸發 69（6.4%）、tier2 觸發 120（11.2%）**，
+形如「Select the rear Feet mode → The rear Feet mode is selected」——
+即 §6 之「prove condition established」狀態回讀。
+**已交付 Privacy 之 ER 更含「The output volume is read」、
+「The state of the speed controlled volume is recorded」，與 R-P96 所舉之 `001` ER2 同形。**
+
+故 G73 **全部列為待人工裁決類，不得阻斷**（A-PW62）。
+若分析層認為該 6.4% / 11.2% 亦屬缺陷，結論相反，且影響及於已交付件 —— **須分析層裁定**。
+
+### 閘門證據型別（R-P99(c)）
+
+| 閘 | 證據 |
+|---|---|
+| G73 / G74 | **合成＋真實**（修正前 tier1 7 / tier2 4 / G74 2 → 修正後 0 / 0 / 0）|
+| G64 | 合成＋真實（已交付 `pre_conditions` 1823 行，偽陽性 **0**）—— 惟**完備性在原理上不可驗**（A-PW63）|
+| G66 / G71 / G72 | **僅合成**（A-PW61）—— 依 R-P99(b) 於寫回包一次補齊 |
+| G77 / G79 | **合成＋真實**（G77 修正前 9/10 → 修正後 0；G79 3/3）|
+| G81 / G82 | **合成＋真實**（G81 修正前 4 → 0；G82 補齊前 2 → 0）|
+| **G66 / G71 / G72** | **合成＋真實**（16 包 dry-run；A-PW76 已結）|
+| G85 | 合成（真實批次已跑但無斷言 —— 須待 114 leaf 完成）|
+| G86 / G87 | **真實**（dry-run）|
+
+### Q3 —— Final Step 措詞（15 包 B5 素材已備妥，**Pei 尚未裁定**）
+
+**三個母體之實測，指向兩個不同的事實：**
+
+| 母體 | 末步條數 | `check` 出現 | §5.2B 完整措詞命中 |
+|---|---|---|---|
+| **Arif done region（Home）** | 144 | **77（53.5%）**，且 77 條以 `Check` 起首 | **18（12.5%）** |
+| Comfort + Privacy 已交付 | 472 | 0 | **0（0.0%）** |
+
+即：**驗證意圖確為 Arif 之慣例，但其形態為祈使句 `Check the ...` 而非 `check that ...`。**
+**現行 G77 之正則要求完整措詞，對 Arif 之 59 條祈使式末步亦會判 FAIL。**
+執行層依 15 §I **未據此改動 G77 或任何 TC**。素材：`features/power/data/b5_arif_final_step.md`。
+
+**一項一般性警訊**：本專案多次以 Comfort + Privacy **兩個母體**推論「全案慣例」
+（G51 動詞、G64 詞彙、G73 判準、G77 語料皆然）。
+B5 一加入 Home，G77 之結論即從「0 / 472」翻轉為「53.5% 有驗證意圖」。
+**其餘各閘之語料是否也會因加入第三個母體而翻轉，尚未驗。**
+
+### Final Step 慣例之分歧（14 包 B4）—— 併入 Q3
+
+§5.2B 之驗證意圖措詞（`check that` / `to verify` / `confirm that`）
+於 Comfort + Privacy 已交付之 **472 條末步中命中 0**
+（`check` 0、`verify` 0、`confirm` 0、`ensure` 0、`observe` 0）；
+其慣例為「Read <具體可觀察標的>」（`read` 243，51.5%）。
+
+Power 依 R-P101 採 canon 措詞並列**阻斷類** —— 與 G73 不同，
+此處判準明確可機械判定，非「無法與合法回讀區分」。
+**惟 Power 之末步慣例將與該二 feature 分歧**（A-PW67），須由分析層知悉並認可。
+
+### 寫回狀態 —— 現行阻斷為 R-P98 / R-P105 / R-P112
+
+R-P73（欄位對應）、R-P79（範本全屬性）、R-P92（`Test Case Framework` 分頁）
 之阻斷條件皆已解除；R-P90（B 欄）已明寫裁定、G66 已實作。
-**執行層回報：本包未再發現任何新的寫回阻斷條件；開放與否為分析層之裁決。**
+**現行阻斷條件為 R-P98 / R-P105 / R-P112 —— 分析層須完成 `008` / `009` 之覆核**（已覆核 8 / 10）。
+R-P96 / R-P97（13 包）、R-P101 ~ R-P104（14 包）、R-P107 ~ R-P111（15 包）之處置皆已完成。
+**執行層無其他新增阻斷條件。Q3 待 Pei 裁定，素材已備妥而實作未動。**
 
 寫回包設計提醒（非阻斷）：G66 迄今僅合成驗證；G67 未覆蓋之 2 項恰只能在寫回時補齊；
 Power 之 `NEVER_WRITE` 須與 `feature.yaml` 逐欄對讀，勿重蹈 Comfort O 欄之矛盾（A-PW57）。
@@ -161,14 +313,67 @@ DR-PW1（High）、DR-PW5（High）、DR-PW6（Medium）、DR-PW3（Medium）、
 | Q7 | Power 範本 DV 覆蓋不齊 | **登記不阻斷（R-P95）** —— 三欄依 profile 皆留空 |
 | Q8 | 首批 10 條之全文覆核 | **形式面已覆核並修正；技術正確性仍未覆核**（見下）|
 
-### 12 包新提之待驗（執行層獨立判斷，見 [upstream/12_pilot_fixes.md](upstream/12_pilot_fixes.md) §七）
+### 12 包八項待驗 —— 13 包已分派
 
-- **十條之技術正確性從未被任何人覆核** —— 本包所修四項全為形式規則，這是最大缺口
-- **G66 從未真正失敗過**（僅合成），依 G33 標準其「可能失敗」未獲證明
-- **G64 詞彙之完備性未驗** —— 有 canon 基礎，但未證明無第三類形態
-- `Test Case Framework` 為何存在、為何 Power 獨有 —— 未查，不臆測
-- **A-PW58 為第四次「合成 fixture 過而真實資料抓到問題」**（首次方向為誤殺）——
-  新增五閘中僅 G63 / G65 見過真實資料
+| 12 §七 | 事項 | 13 包處置 |
+|---|---|---|
+| (甲)1 | 十條技術正確性無人覆核 | **R-P98** —— 分析層須完成覆核，寫回於完成前不開放 |
+| (甲)2 | G66 從未真正失敗過 | **R-P99(b)** —— 與 G71 / G72 於寫回包一次補齊 |
+| (甲)3 | G64 完備性未驗 | **R-P99(a)** —— 已補測：偽陽性 0 / 1823；**完備性不可驗**（A-PW63）|
+| (甲)4 | `Test Case Framework` 之來由 | **R-P100** —— 登記不阻斷，維持不臆測 |
+| (甲)5 | colorScale 語義 | **R-P100 / R-P95** —— 登記不阻斷 |
+| (乙)6 | B6 範圍限定之代價 | **R-P100** —— 接受並明載，不擴大範圍 |
+| (乙)7 | 合成證據不足 | **R-P99** —— 逐字採納；往後須標明證據型別 |
+| (丙)8 | 作業瑕疵 | 無 |
+
+### 13 包七項待驗 —— 14 包已分派
+
+R-P101（Final Step）、R-P105（`006`–`009` 覆核）、R-P106（其餘六項之處置：
+「對著閘門改」與「先看答案再定門檻」登記為**結構性限制，不另設機制**；
+G73 判準衝突登記不阻斷；G75 維持「不可驗」；G74 維持強度明載）。
+
+### 15 包新提之待驗（執行層獨立判斷，見 [upstream/15_batch1_closeout.md](upstream/15_batch1_closeout.md) §七）
+
+- **`Test Case Framework` 分頁並非 Power 獨有 —— Home 亦有（A-PW74）**。
+  12 包之「獨有」判定母體只有兩個 feature。R-P92 之結論不受影響（建立於實測 0 非空儲存格），
+  但 A-PW56 之敘述本身有誤。**兩母體推論全案慣例之風險，本包已有第二個實例。**
+- **`005` 之「count equals」等量斷言，規格同樣未逐字載明** ——
+  執行層判其為 `buffer` 之必然蘊含，惟該區分之強度與當初判 `006` 無誤時相同
+- **G81 為個案型，其黑名單只涵蓋已知的兩次誤讀** ——
+  下一次語義誤讀，G81 依然零觸發；本包新增之二閘對「查出下一個誤讀」貢獻接近零
+- **`071` / `072` 之 `source_clause` 若抄漏以一般措詞表述之句子，本包方法查不到**
+- **`distinguishing_axis.delta` 與 `split_reason` 為同一句話存兩份** ——
+  即 A-PW69 得以發生的結構原因；本包未去重（超出下放包範圍）
+- **B5 之前提「Arif 144 列為全案格式權威」執行層無法從資料驗證**
+- **`make_tc` 至今仍產生後綴式 `req_id`（`SWE-PM-073-01`）** ——
+  對合成 fixture 無害，惟任何以 `req_id` 對 leaf 之新閘門，其 fixture 都會踩到同一個坑
+
+### 14 包新提之待驗（執行層獨立判斷，見 [upstream/14_final_step_intent.md](upstream/14_final_step_intent.md) §七）
+
+- **`006` 之誤讀說明「多輪閘門全綠」不能作為任何品質證據** ——
+  它不是邊角，是整條 TC 在測錯的東西；查出它的是人讀規格，不是閘門
+- **同型誤讀是否只有 `006` 一處，本包未能證明** ——
+  比對者與寫出誤讀者為同一判斷來源，R-P105 之獨立覆核是唯一能否證它的機制
+- **`007` / `009` 之步數在 13 / 14 兩包間來回一次（3→2→3）** ——
+  兩次都是為了讓閘門歸零，而非對測試設計有新的認識
+- **§5.2B 之 18 字上限已有三條頂到上限** —— 若後續驗證標的更多，
+  18 字與「末步須揭示所檢查者」會直接衝突，為可預見之下一個結構性問題
+- **`reasoning_note` 為執行層自行新增之欄位**，非裁決條文所定介面，須分析層明示
+- **G77 之判準來自 canon 而非語料**（語料實測結果與之相反，0 / 472）——
+  非 R-P101 所要求之「經驗導出」，已明說而未混稱
+- **G79 只驗欄位存在，不驗 `source_clause` 抄得對不對**
+
+### 13 包新提之待驗（執行層獨立判斷，見 [upstream/13_er_quality.md](upstream/13_er_quality.md) §七）
+
+- **步驟合併使十條之技術正確性覆核更為必要** —— 本包主動改動 procedure 結構，
+  合併後是否仍完整測到該 leaf 之行為，**只有執行層一人判斷過**
+- **`008` 之 procedure 未變更，且 G73 前後皆 0 觸發** —— 該條品質完全靠人工判斷
+- **`007` / `009` 之 ER1 改過兩次才使 tier2 歸零** ——
+  「對著閘門改而非對著規則改」之風險，改動與歸零為同一次，無法互相佐證
+- **G74 之形態基礎僅兩個實例**（R-P97 所引），四種形態中兩種為執行層擴充，
+  **非經驗導出**，強度低於 G73 / G64 / G51
+- **G73 之門檻調整過三次**（0.833 → 0.75 → 0.50）——
+  過程確為「先看答案再定門檻」，三次數字皆留於 B3 與程式碼註解供檢驗
 
 ### 長期已知限制（非待辦）
 

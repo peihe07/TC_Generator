@@ -1,0 +1,16 @@
+row	final_tc_id	provisional_tc_id	req_id	split_index	file	is_provisional
+1	NR1L-PowerManagement-001	NR1L-PowerManagement-001	SWE-PM-071	1	batch_001_power_down.json	True
+2	NR1L-PowerManagement-002	NR1L-PowerManagement-002	SWE-PM-071	2	batch_001_power_down.json	True
+3	NR1L-PowerManagement-003	NR1L-PowerManagement-003	SWE-PM-071	3	batch_001_power_down.json	True
+4	NR1L-PowerManagement-004	NR1L-PowerManagement-004	SWE-PM-071	4	batch_001_power_down.json	True
+5	NR1L-PowerManagement-005	NR1L-PowerManagement-005	SWE-PM-072	1	batch_001_power_down.json	True
+6	NR1L-PowerManagement-006	NR1L-PowerManagement-006	SWE-PM-072	2	batch_001_power_down.json	True
+7	NR1L-PowerManagement-007	NR1L-PowerManagement-007	SWE-PM-073	1	batch_001_power_down.json	True
+8	NR1L-PowerManagement-008	NR1L-PowerManagement-008	SWE-PM-073	2	batch_001_power_down.json	True
+9	NR1L-PowerManagement-009	NR1L-PowerManagement-011	SWE-PM-073	3	batch_001_power_down.json	True
+10	NR1L-PowerManagement-010	NR1L-PowerManagement-012	SWE-PM-073	4	batch_001_power_down.json	True
+11	NR1L-PowerManagement-011	NR1L-PowerManagement-009	SWE-PM-073	5	batch_001_power_down.json	True
+12	NR1L-PowerManagement-012	NR1L-PowerManagement-014	SWE-PM-073	6	batch_001_power_down.json	True
+13	NR1L-PowerManagement-013	NR1L-PowerManagement-013	SWE-PM-073	7	batch_001_power_down.json	True
+14	NR1L-PowerManagement-014	NR1L-PowerManagement-015	SWE-PM-073	8	batch_001_power_down.json	True
+15	NR1L-PowerManagement-015	NR1L-PowerManagement-010	SWE-PM-073	9	batch_001_power_down.json	True

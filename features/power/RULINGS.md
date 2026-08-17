@@ -1457,6 +1457,11 @@ G59 雙向實測：有 profile → 0 findings；無 profile → 2 findings（訊
 **十條原本全部不符**（proc 3–4 步而 ER 2–4 行，無一 1:1）。
 已逐條重寫 ER 使其與 procedure 逐步對應。fixture 兩案如期。
 
+**註記（R-P96，13 包）：本條僅規定 procedure 步數 = ER 行數，
+未規定補出之 ER 行須為可觀察結果，致 12 包之修正引入新缺陷 ——
+五條已讀 TC 中五條將 procedure 動作複述為 ER。
+判讀價值之要求已由 R-P96 補足。原文保留。**
+
 ```
 [R-P88] **`pre_conditions` 不得含系統預設與環境穩定性前提（G64）。**
         `001` / `002` 之第 1 項「The TLM is powered from a stable supply」
@@ -1599,13 +1604,638 @@ colorScale 之語義查明**未於本包進行**（條文明訂可與寫回並�
 
 ---
 
+---
+
+## 第十三輪 — 下放包 13（`docs/handoff/13_er_quality.md` §A）
+
+```
+[R-P96] **ER 之每一行須為可觀察且可判讀之結果，
+        不得為 procedure 動作之複述（G73）。**
+        R-P87 僅規定「procedure 步數 = ER 行數」，
+        未規定補出之行須具判讀價值，致修正引入新缺陷：
+
+          `001` ER2「The elapsed time is recorded from boot start」
+          `002` ER1「The boot target status is Standby」
+          `003` ER1（同 002）
+          `004` ER2（同 001）
+          `005` ER1「The TLM boot sequence starts」
+
+        該等行**永遠為真** —— 只要測試員執行了該步驟即成立，
+        不構成任何判準，違反 §6「observable, judgeable」。
+
+        §6 明訂 setup / transition 之 ER 係為
+        「prove condition established」—— 證明條件已建立，
+        **非複述執行者做了什麼**。
+
+        判準：若某 ER 行在「該步驟被執行」之外不含任何額外資訊，
+        即為複述，FAIL。
+        若某步驟確無可觀察結果，**應合併該步驟**，
+        不得為湊 1:1 而造 ER。
+
+        十條全查。補設閘門 G73 —— 偵測 ER 行與其對應 procedure 步驟
+        之複述關係（詞彙重疊率 ＋ 無新增可觀察標的）。
+        判準之詞彙基礎須有經驗來源（比照 R-P83 / R-P88），
+        不得憑印象列舉。
+
+        **R-P87 依 R-P36 原文不改**，於其下加註指向本條。
+        裁決者 Pei，逐字依據：「是」（回應 12 Q1）。
+```
+**執行層回報：已修正十條，G73 已就位 —— 惟本閘無法機械化為阻斷閘。**
+十條之複述行全數改為可觀察結果，或依條文明令**合併該 procedure 步驟**
+（procedure 步數由 3–4 降為 2–3，G63 之 1:1 仍成立，§10.5「至少 2 步」未違）。
+
+**一項須回報之實測**：G73 之判準以 Comfort / Privacy 已交付件之 1076 組
+(步驟, ER 行) 語料量測，**tier 1 觸發 69 組（6.4%）、tier 2 觸發 120 組（11.2%）**。
+其形態為「Select the rear Feet mode → The rear Feet mode is selected」，
+即 §6 所稱之「prove condition established」狀態回讀。
+**更甚者，已交付 Privacy 之 ER 含「The output volume is read」、
+「The state of the speed controlled volume is recorded」，與本條所舉五例同形。**
+故 G73 **全部列為待人工裁決類**（比照 R-P76），不使 exit=1。
+真實實測：本包修正前 tier1 **7** / tier2 **4**，再修正後 **0 / 0**。
+
+**註記（R-P101，14 包）：本條令『無可觀察結果之步驟應合併』，
+未規定合併後之 Final Step 仍須符 §5.2B / §5.5，
+致 12 包原有之 `and check that ...` 子句於 13 包合併時被剝除，
+六條已讀 TC 中五條之 Final Step 無 check target。
+驗證意圖之要求已由 R-P101 補足。原文保留。**
+
+```
+[R-P97] **時間量測之 ER 不得寫數值相等。**
+        `001` ER3 與 `004` ER3 寫「The recorded time **equals**
+        SplashScreen_Time / StandardScreen_Time」。
+        實測時間不會精確等於配置值，該 ER 嚴格執行必然 fail（§7 之 FF）。
+        §8.4.1 禁止造容差值，故不得改寫為「±100ms」等。
+        正確做法為描述**觀察到之行為**：到期前不顯示、到期後顯示。
+        現成範式即本批 `002` / `003` 之
+        「through SplashScreen_Time」寫法。
+        裁決者 Pei，逐字依據：「是」（回應 12 Q2）。
+```
+**執行層回報：已修正，G74 已就位，受影響 2 條。**
+`001` / `004` 之 ER3 之 `equals` 表述已刪除，改為 R-P97 所指之行為描述 ——
+「到期前不顯示 / 到期後顯示」，即本批 `002` / `003` 之現成範式。
+**未造任何容差值**（§8.4.1）。G74 對十條實測：修正前 2 項、修正後 0 項。
+
+```
+[R-P98] **首批覆核須完成十條，分析層現僅讀五條。**
+        12 包上繳之逐條差異全文中，分析層讀畢 `001`–`005`，
+        `006`–`010` 未讀（MCP 讀取上限）。
+        T1 於已讀五條中五條命中，推測全批皆然 ——
+        **但推測不等於實測**（R-P64）。
+        本包上繳須附 `006`–`010` 之修正後全文，
+        並附 `001`–`005` 之再修正後全文供對照。
+        寫回於分析層完成十條覆核前不開放。
+        裁決者 Pei，逐字依據：「是」（回應 12 Q3、Q4）。
+```
+**執行層回報：已依序輸出。** 上繳包 §五之十條全文以
+**`006`–`010` 在前、`001`–`005` 在後**排列，十三欄逐條齊備，含各 leaf 之 `reasoning`，
+未節錄、未省略換行。**執行層理解寫回於分析層完成十條覆核前不開放。**
+
+```
+[R-P99] **合成 fixture 通過不足以佐證閘門正確 —— 逐字採納執行層之結論。**
+        12 §七(乙) 第 7 項：四次「合成 fixture 過、真實資料出問題」
+        （A-PW35 `\b` bug、A-PW39 檔名空格、A-PW50 `[spec-derived]`、
+        A-PW58 誤殺）之後，該結論已具實證基礎，且第四次方向首次相反。
+        現況：G64 / G66 / G71 / G72 四閘**僅有合成證據**。
+        （a）G64 依 R-P83 之作法補經驗語料
+             （Comfort / Privacy 已交付之 `pre_conditions`），
+             量測其完備性與偽陽性
+        （b）G66 / G71 / G72 之真實實測**須於寫回包一次補齊**，
+             與 12 §七(甲) 第 2 項合併處理
+        （c）往後任何新閘之上繳，須標明其證據為
+             「合成」或「合成＋真實」，不得混稱 PASS
+        裁決者 Pei，逐字依據：「是」（回應 12 Q5）。
+```
+**執行層回報：(a) 已補測，(b) 已登記待寫回包，(c) 已即刻適用於本包。**
+(a) G64 以已交付 `pre_conditions` **1823 行**為語料，
+    `ENV_STABILITY_RE` **觸發 0 行，偽陽性率 0.00%**。
+    **完備性則未能證明** —— 0 觸發只說明無誤殺，
+    不說明不存在第三類形態；語料中若本就無環境穩定性前提（此正為
+    R-P80 所據之結構性事實），則該語料**在原理上無法檢驗完備性**。
+    此為執行層之獨立判斷，見上繳包 §七。
+(b) G66 / G71 / G72 之真實實測登記於寫回包。
+(c) 本包新增之 G73 / G74 皆標明證據型別為**「合成＋真實」** ——
+    二者皆有合成 fixture 與對本批十條之前後實測。
+
+```
+[R-P100] 12 §七之其餘各項處置：
+        （甲）第 4 項（`Test Case Framework` 為何存在、為何獨有）
+              **登記不阻斷**。執行層已誠實標為「無資料可判別，不臆測」，
+              該處置正確，不強令臆測。
+        （甲）第 5 項（colorScale `H10:H145` 語義）
+              **登記不阻斷**，依 R-P95 可與寫回並行。
+        （乙）第 6 項（B6 範圍限定致看不見全貌）
+              **接受該代價並明載**：R-P94 之窄範圍為刻意選擇，
+              Comfort O 欄之矛盾係於該窄範圍內偶然撞見；
+              其餘欄位若有同型問題，本方法查不到。
+              此限制登記，不擴大範圍。
+        裁決者 Pei，逐字依據：「是」（回應 12 Q5）。
+```
+**執行層回報：三項處置均已登記，未擴大範圍。**
+（甲）4 —— `Test Case Framework` 之來由登記不阻斷，維持「不臆測」。
+（甲）5 —— colorScale 語義登記不阻斷。
+（乙）6 —— B6 之範圍限定代價已明載於本包上繳 §七，未擴大稽核範圍。
+
+---
+
+---
+
+## 第十四輪 — 下放包 14（`docs/handoff/14_final_step_intent.md` §A）
+
+```
+[R-P101] **Final Step 須含驗證意圖，合併步驟不得剝除之（G77）。**
+        R-P96 令「無可觀察結果之步驟應合併」，
+        未規定合併後之 Final Step 仍須符 §5.2B / §5.5，
+        致 12 包原有之 `and check that ...` 子句於 13 包被剝除：
+
+          `001` `Read the TLM display through SplashScreen_Time and again after SplashScreen_Time has elapsed`
+          `002` `Read the TLM display through SplashScreen_Time`
+          `003` 同 `002`
+          `004` `Read the TLM screen content through StandardScreen_Time and again after StandardScreen_Time has elapsed`
+          `010` `Read the volume limit and the audio output state before the measurement window elapses and again at the end of the measurement window`
+
+        五條之 Final Step **皆無 check target**。
+        §5.5 要求 Final Step 自身即揭示所檢查者；
+        §5.2B 要求含 `check that ...` / `to verify ...` / `... to check ...`，
+        且長度得延伸至 ≤ 18 字以承載該子句。
+        12 包版本原有 `... and check that the splash screen is loaded`，
+        合併時遺失。
+
+        十條全查並修正。補設閘門 G77 ——
+        `test_procedure` 之最末步驟須含 §5.2B 所列之驗證意圖措詞。
+        判準詞彙須有經驗來源（比照 R-P83 / R-P88 / R-P96），
+        以 Comfort / Privacy 已交付之 `test_procedure` 末步為語料。
+
+        **R-P96 依 R-P36 原文不改**，於其下加註指向本條。
+        裁決者 Pei，逐字依據：「出」（回應 13 Q1）。
+```
+**執行層回報：已修正十條，G77 已就位 —— 修正前實測 9 / 10。**
+G77 對 13 包版實測 **9 條 FAIL**（唯 `006` 之末步原已含 `and check that ...` 而通過），
+高於 §D 之停止門檻 5，**分析層之判定與本閘之判準一致**。修正後 **0**。
+末步字數 14–18 字，皆在 §5.2B 之 18 字上限內。
+G63 仍 10 / 10、G73 仍 0、§10.5 未違（最少 2 步）。
+
+**一項須回報之語料實測**：依本條明令以已交付 `test_procedure` **末步**為語料，
+共 **472** 條，**§5.2B 之措詞命中 0**（`check` 0 / `verify` 0 / `confirm` 0 /
+`ensure` 0 / `observe` 0）；其慣例為「Read <具體可觀察標的>」，佔 `read` 243（51.5%）。
+**執行層之判別：本條所指之缺陷成立** —— 13 包末步「Read the TLM display through
+SplashScreen_Time」所讀者為**載體**（display）而非**標的**（splash screen），
+連已交付慣例之標準都未達。故本閘依明令實作並列**阻斷類**。
+**惟 Power 之末步慣例將因此與 Comfort / Privacy 分歧，已登記 A-PW67。**
+
+```
+[R-P102] **時序需求之下界斷言為刻意選擇，須於 `reasoning` 明載。**
+        `4942337` 原文僅載 `After SplashScreen_Time the splash screen
+        is loaded`，**未載在此之前不得顯示**；
+        而 `001` / `004` 之 ER 依 R-P97 所建議之形態，
+        斷言「到期前不顯示」。
+
+        兩難為真：僅驗「有顯示」則時序需求形同未測（`T=0` 亦通過）；
+        加驗「到期前不顯示」則斷言規格未載之事，
+        實作若提早顯示將 false fail（§7）。
+
+        **裁定：保留下界斷言**，但其依據**不是**「規格禁止提早顯示」，
+        而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽。
+        此推理須於各該 TC 之 `reasoning` **逐字記載**，
+        使 reviewer 得見其為刻意選擇而非誤讀。
+        不得於 ER 中暗示規格明文禁止。
+        裁決者 Pei，逐字依據：「出」（回應 13 Q2）。
+```
+**執行層回報：已逐字補入 `001` / `004` 之 `reasoning_note` 與 leaf `SWE-PM-071` 之 `reasoning`。**
+補入之逐字內容為：下界斷言之依據**不是規格明文禁止提早顯示**，
+而是**時序需求之可驗證性要求** —— 不設下界則該需求無法被證偽（T=0 即顯示亦會通過）。
+ER 措詞僅描述觀察到之行為（「No splash screen appears before SplashScreen_Time has
+elapsed, and the splash screen is loaded once it has」），**未暗示規格明文禁止**。
+
+```
+[R-P103] **`006` 之時序表述須查證。**
+        `4942338` 原文為
+        `process it according to the transitions ... **while the boot is
+        still completing**` 及 `process them as soon as possible,
+        depending on boot timings`。
+        而 `006` 之 `tc_title` 為
+        `Buffered events processed **after boot completes**`。
+        規格所載為「開機期間即依轉換處理、儘快處理」，
+        非「開機完成後才處理」。
+        查證 `006` 全文；若確為誤讀，`tc_title`、`test_procedure`、
+        `expected_result` 一併改為與原文相符之表述。
+        裁決者 Pei，逐字依據：「出」（回應 13 Q3）。
+```
+**執行層回報：查證結果為「確係誤讀」，已修正三欄。**
+`4942338` 逐字（`source_clause` 原文）：
+「Any event occurring during the boot must be recognized by TLM and then TLM has to
+behave and process it according to the transitions described in par. "TLM_Status.Info
+setting" **while the boot is still completing**. TLM must buffer the events and
+**process them as soon as possible, depending on boot timings**.」
+規格所載為**開機期間即處理**，13 包之 `tc_title`「processed **after boot completes**」、
+procedure 之「Wait for the boot sequence to complete」、
+ER 之「The boot sequence reaches completion」皆為誤讀。
+已改為 during-boot 之表述，procedure 由 3 步降為 2 步（該等待步驟本身即誤讀之產物）。
+**leaf `SWE-PM-072` 之 `reasoning` 亦一併更正並附查證記錄** ——
+原文寫「於開機完成後處理」，該誤讀源頭在 reasoning 而非僅在 TC。
+
+```
+[R-P104] **`source_clause` 欄位立為常規。**
+        13 包之 `batch_001_power_down.json` 於 `leaves` 陣列中
+        附各 leaf 之 `source_clause`（規格原文子句）。
+        該欄位**使技術覆核成為可能** —— 無之則覆核者僅能檢視
+        TC 自我證明之一致性，無法判斷其是否忠於規格。
+        往後每批之產出 JSON **必附**此欄位，逐 leaf 給出
+        其被引用錨點之規格原文（不得節錄至失去語意；
+        若過長，須以 `...` 標明截斷處並另附全文檔）。
+        寫入 Power profile。
+        裁決者 Pei，逐字依據：「出」（回應 13 Q6）。
+```
+**執行層回報：已寫入 profile §4.1，G79 已就位，3 / 3 皆有非空 `source_clause`。**
+**可機械檢查者**：該欄存在且非空（G79）。
+**不可機械檢查者**：「是否忠於規格」本身 —— 該判斷須人讀規格原文與 TC 對照。
+**G79 只保證覆核所需之材料存在，不保證覆核已做**，此點已逐字寫入 profile §4.1。
+本包即為該欄位之價值實證：`006` 之誤讀正是靠 `source_clause` 原文比對才查出。
+
+**註記（R-P109，15 包）：本條令 `source_clause` 得截斷，
+未規定截斷不得落在待查證處，致 `007` 之 `source_clause` 之 `...`
+恰好蓋住 mute 與 ICS 兩款 —— 即其 ER 所斷言者，
+使本條之立意落空。截斷之界線已由 R-P109 補足。原文保留。**
+
+```
+[R-P105] **首批覆核之進度與剩餘範圍。**
+        分析層已覆核 `001`–`005`、`010`，共 **6 / 10**，
+        並以三條 leaf 之 `source_clause` 原文對照。
+        **已確認之正面結論**：
+          `SWE-PM-071` 之四項規格行為由 `001`–`004` 一一對應，
+          無遺漏、無擴張（§8.2.1 / §8.2.2 通過）
+          `010` 之「20」與「10 秒」皆有逐字規格出處（§8.4.1 通過）
+        **剩餘**：`006` / `007` / `008` / `009` 四條未讀。
+        本包上繳須附該四條全文，順序置於最前。
+        R-P98 於分析層完成十條覆核前維持有效。
+        裁決者 Pei，逐字依據：「出」（回應 13 Q4、Q5）。
+```
+**執行層回報：`006`–`009` 四條全文已置於上繳包最前**（§一），
+逐條含十三欄、`reasoning`、`reasoning_note`（如有）與該 leaf 之 `source_clause`。
+**執行層理解 R-P98 於分析層完成十條覆核前維持有效，寫回不開放。**
+另須提請注意：`006` 因 R-P103 已實質改寫，
+**其內容與分析層先前所見者不同**，覆核時應以本包版本為準。
+
+```
+[R-P106] 13 §七之其餘各項處置：
+        （甲）第 2 項（`008` 未經 G73 任何觸發，品質全靠人工判斷）
+              —— 屬 R-P105 之覆核範圍，本包由分析層補讀
+        （甲）第 3 項（對著閘門改而非對著規則改）
+        （丙）第 7 項（先看答案再定門檻）
+              —— **二者登記為結構性限制，不另設機制**。
+              執行層已將三次門檻實測值留於報告與程式碼註解，
+              使該選擇可被後續檢驗，此處置正確。
+              二者無法以更多自我檢查解決 —— 其解方即為
+              分析層之獨立覆核（T3 於閘門 0 觸發之情形下由分析層抓出，
+              即為此機制生效之實證）。
+        （甲）第 4 項（G73 判準與已交付實務不一致）
+              —— **登記不阻斷**。依 R-P94 執行層不得判定
+              Comfort / Privacy 之交付件有無缺陷；
+              G73 觸發時之人工裁決由分析層承擔。
+        （乙）第 5 項（G75 完備性原理上不可驗）
+              —— **接受「不可驗」之標示**，不得改標 PASS。
+        （乙）第 6 項（G74 形態基礎僅二實例）
+              —— **接受並明載其強度低於 G73 / G64 / G51**。
+        裁決者 Pei，逐字依據：「出」（回應 13 Q5）。
+```
+**執行層回報：六項處置均已登記。**
+（甲）2 —— `008` 由分析層補讀，執行層無異議。
+（甲）3 ／（丙）7 —— 接受「登記為結構性限制，不另設機制」之處置。
+**本包再度為該機制生效之實證**：G63 / G73 / G70 於 13 包全綠，
+而 §5.5 之違反由分析層讀 `source_clause` 原文抓出（A-PW64）。
+（甲）4 —— G73 之人工裁決由分析層承擔，執行層不判定 Comfort / Privacy 有無缺陷。
+（乙）5 —— G75 維持「不可驗」之標示，未改標 PASS。
+（乙）6 —— G74 之強度低於 G73 / G64 / G51，維持明載。
+
+---
+
+---
+
+## 第十五輪 — 下放包 15（`docs/handoff/15_batch1_closeout.md` §A）
+
+```
+[R-P107] **誤讀之修正須掃全部十三欄，不得只改主要欄位（G81）。**
+        14 包依 R-P103 修正 `006` 之時序誤讀，
+        已改 `tc_title`、`test_procedure`、`expected_result`
+        及 leaf `reasoning` 四處，
+        **而 `split_reason` 仍載「緩衝之事件於開機完成後依
+        TLM_Status.Info setting 之轉換處理」** ——
+        誤讀殘留於一個**會寫進工作簿之欄位**。
+        改四處、漏第五處。
+
+        往後任何語義層修正，須逐欄掃描全部十三欄
+        （`tc_title` / `test_item` / `pre_conditions` /
+         `input_test_data` / `test_procedure` / `expected_result` /
+         `specification_reference` / `design_method` / `priority` /
+         `split_flag` / `split_reason` / `functional_safety` / `remarks`）
+        加上 leaf 層之 `reasoning` 與 `reasoning_note`，
+        並逐欄回報「已檢查 / 已修正 / 無涉」。
+
+        補設閘門 G81 —— 以本次誤讀之關鍵詞
+        （`after boot completes` / `開機完成後` 等）為黑名單，
+        掃全部欄位。此閘為**個案型**，其價值在於證明修正確已完成，
+        不宣稱可攔下未來之其他誤讀。
+        裁決者 Pei，逐字依據：「出 15 包」（回應 14 Q1 之 T6）。
+```
+**執行層回報：已清除，G81 已就位 —— 惟殘留不只 `split_reason` 一處。**
+全欄掃描實測 `006` **共四處殘留**：
+`test_item`（`after boot completes`）、`split_reason`（`開機完成後`）、
+`expected_result`（`follow the injected order`）、
+**`distinguishing_axis.delta`（`開機完成後`）**。
+分析層指出一處，執行層全欄掃描另查出三處。四處皆已修正，G81 修正後 0。
+其餘九條全欄掃描**無同型殘留**。
+
+**一項須回報者：本條所列之十三欄清單不足以涵蓋本 JSON 之實際欄位。**
+`distinguishing_axis` 不在該清單內，而它確實帶有誤讀且會影響 sibling 判別。
+故 G81 實作為**掃全部欄位**（`for field in tc.items()`）而非掃指定十三欄 ——
+清單式列舉之閘門會隨資料結構演進而失效。
+
+```
+[R-P108] **`006` 之 ER 不得斷言處理順序。**
+        ER2 載「the TLM_Status transitions follow the injected order」，
+        而 `4942338` 原文僅載
+        `process them as soon as possible, depending on boot timings` ——
+        **未載按注入順序處理**。FIFO 為推論，非規格。
+        且 `TLM_Status.Info setting` 之轉換定義位於 CFTS009 §1.6.2.1.15，
+        依 R-P42 不在本 leaf 之範圍內。
+        （a）刪除該順序斷言；或
+        （b）若 `4942338` 之完整原文確載順序，逐字引出並保留
+        二擇一，須附依據。
+        裁決者 Pei，逐字依據：「出 15 包」（回應 14 Q1 之 T7）。
+```
+**執行層回報：依 (a) 刪除順序斷言。**
+`4942338` **完整原文**（`anchor_bodies()` 直取，未截斷，全文見上繳包 §三）為：
+「Any event occurring during the boot must be recognized by TLM and then TLM has to
+behave and process it according to the transitions described in par. "TLM_Status.Info
+setting" while the boot is still completing. TLM must buffer the events and process
+them as soon as possible, depending on boot timings.」
+**全文僅此二句，無第三句、無其他段落** —— **確未載處理順序**。
+ER2 改為「Every buffered event is processed before the boot sequence completes
+and none remains pending at boot completion」，以「無事件於開機完成時仍未處理」
+之可觀察判準取代 FIFO 推論。刪除依據已逐字記入該條之 `reasoning_note`。
+
+```
+[R-P109] **`source_clause` 之截斷不得遮蔽該 TC 所斷言之內容（R-P104 補述）。**
+        `007` 之 ER3 斷言「the TLM is muted and the ICS module powers down」，
+        而其 `source_clause` 之 `...` **恰好蓋住 mute 與 ICS 之條款**。
+        截斷落在最需查證處，使 R-P104 之立意落空。
+        規則：`source_clause` 得截斷，但**該 TC 之 `expected_result`
+        所斷言之每一項行為，其規格依據必須完整出現於 `source_clause` 中**。
+        若因此過長，須另附全文檔並於 `source_clause` 標明檔名與位移。
+        **R-P104 依 R-P36 原文不改**，於其下加註指向本條。
+        補設閘門 G82（若可機械化）：`expected_result` 中之關鍵名詞
+        是否於 `source_clause` 有對應；不可機械化者明列理由。
+        裁決者 Pei，逐字依據：「出 15 包」（回應 14 Q2）。
+```
+**執行層回報：已加註（G84 UNCHANGED），`source_clause` 已補為完整原文，G82 已就位。**
+`SWE-PM-073` 之 `source_clause` 原以 `...` 截斷，**恰好蓋住**
+「If Ecall/ACN/chimes mode is not active, TLM shall be muted. ICS module shall power
+down.」與故障／回復兩款 —— 即 `007` / `008` / `010` 之 ER 所斷言者。
+已改為 `4942354` **完整原文（1,568 字元，不截斷）**，未另附全文檔。
+G82 實測：補齊前 **2 項**（`007` / `008` 之 `AUD_LVL`）、補齊後 **0**。
+
+**可機械化程度之實測回報**：G82 只能檢查 ER 之**專有標的**
+（訊號名、`_Time` 類參數、全大寫識別子、數值）是否見於 `source_clause`。
+**ER 之一般英文措詞與規格之對應不可機械檢查** —— 措詞本就不會逐字相同。
+故 G82 攔得住「截斷蓋掉具名標的」，**攔不住「截斷蓋掉某項以一般措詞表述之行為」**。
+此限制已逐字寫入 profile §4.4。
+
+```
+[R-P110] **`reasoning_note` 欄位追認並定義。**
+        R-P102 令「於各該 TC 之 `reasoning` 逐字記載」，
+        而 TC 層原無 `reasoning` 欄（僅 leaf 層有），
+        執行層自行新增 `reasoning_note` 並同時寫入 leaf `reasoning`。
+        該處置合理，**追認**，但須有名分：
+        寫入 Power profile，定義其用途為
+        「TC 層之個案判斷記錄，補 leaf 層 `reasoning` 之不足；
+         不寫入工作簿，僅供覆核」。
+        並明訂其與 `split_reason` 之分工：
+        `split_reason` 述拆分理由（寫入工作簿），
+        `reasoning_note` 述判斷依據（不寫入工作簿）。
+        裁決者 Pei，逐字依據：「出 15 包」（回應 14 §七(甲)5）。
+```
+**執行層回報：已寫入 profile §4.3，含與 `split_reason` 之分工表。**
+定義為「TC 層之個案判斷記錄，補 leaf 層 `reasoning` 之不足；不寫入工作簿，僅供覆核」。
+分工：`split_reason` 述拆分理由（**寫入**工作簿）、
+`reasoning_note` 述判斷依據（**不寫入**工作簿）。
+現有用例三處：`001` / `004` 之時序下界斷言依據（R-P102）、`006` 之順序斷言刪除依據（R-P108）。
+
+```
+[R-P111] **18 字上限與「末步須揭示所檢查者」之衝突登記為
+        可預見之結構問題，不預先開例外。**
+        十條中 `006` / `008` / `010` 三條已頂到 §5.2B 之 18 字上限。
+        若後續 leaf 之驗證標的更多，該上限將與 §5.5 直接衝突。
+        **本包不預設例外條款** —— 待實際撞上時，
+        以該具體案例為據裁定，避免以假想情境放寬 canon。
+        裁決者 Pei，逐字依據：「出 15 包」（回應 14 §七(甲)4）。
+```
+**執行層接受，未開任何例外。**
+十條現況：`006` / `008` / `010` 三條為 18 字（頂到上限），其餘 14–17 字。
+本包未新增例外條款、未放寬 G77 之 18 字檢查。
+
+```
+[R-P112] **首批覆核之剩餘範圍：`008` / `009`。**
+        分析層已覆核 `001`–`007`、`010`，共 8 / 10。
+        本包上繳須附 `008` / `009` 全文，**置於最前**。
+        R-P98 / R-P105 於分析層完成十條覆核前維持有效。
+        另記 14 §七(甲)2 之自陳：`005` 判無誤者與寫出 `006` 誤讀者
+        為同一判斷來源 —— 該風險由分析層之獨立覆核承擔，
+        T6 / T7 即為其生效之實證。
+        裁決者 Pei，逐字依據：「出 15 包」（回應 14 Q4）。
+```
+**執行層回報：`008` / `009` 全文已置於上繳包最前**（§一），
+含十三欄、`reasoning_note` 與 leaf `source_clause`（已依 R-P109 補為完整原文）。
+**R-P98 / R-P105 之阻斷效力，執行層理解為仍然有效。**
+另接受 14 §七(甲)2 之風險由分析層獨立覆核承擔之處置 ——
+**本包再度為其實證**：`006` 之四處殘留中，分析層指出一處，
+若無該次指出，執行層不會啟動全欄掃描，另三處將續存。
+
+---
+
+---
+
+## 第十六輪 — 下放包 16（`docs/handoff/16_write_order.md` §A ＋ 追加條文）
+
+```
+[R-P113] **寫回排序規則（選項 B）。**
+        （a）**產出**仍依 Test Set 分批 ——
+             §4.1.3 之價值（同一 Test Set 共用 setup 與 UI 進入路徑）
+             於撰寫階段成立，不放棄。
+        （b）**tc_id 於各批產出時為「批次內臨時編號」**，
+             格式仍為 `NR1L-PowerManagement-{NNN}`，
+             但**不具最終效力**，JSON 內須以
+             `tc_id_provisional` 標明，或於批次檔頭註明其為臨時值。
+        （c）**最終 tc_id 於寫回時一次指派**，
+             依 **SWE-PM ID 遞增序**排列全部 TC 後，自 001 起連號。
+        （d）**寫回為單次操作**，於全部 114 leaf 之 TC 產出完成後為之；
+             不分批寫回。
+        （e）工作簿列序即最終 tc_id 序，亦即 SWE-PM ID 序。
+        裁決者 Pei，逐字依據：「當然是B」。
+```
+**執行層回報：已依 (a)–(e) 落實，並查出一項與既有閘門之衝突。**
+批次檔頭已增設 `"tc_id_status": "provisional"` 與 `tc_id_note`；
+十條之 001–010 值未動（dry-run 需用）；profile §4.5 已載兩階段指派表。
+`assign_final_tc_id.py` **只產對照表，不改寫任何批次 JSON**（(c) 明訂於 114 leaf 完成後）。
+
+**衝突（實測）**：若逕以 `(SWE-PM ID, split_index)` 重排 JSON 陣列，
+**G38 / §10.3 會判「tc_id 未單調遞增」—— 實測 3 項 FAIL**。
+故 **JSON 陣列序維持臨時 tc_id 遞增序，寫回列序另由排序鍵決定，二者刻意分離**，
+已載於 profile §4.5 與批次檔頭之 `tc_id_note`。
+
+```
+[R-P114] **首批 dry-run 寫回（沙箱副本）。**
+        G66（B 欄非空列數 = TC 列數）、G71（`workbook.columns` 對實測標頭）、
+        G72（profile §2/§3.3/§3.4/§3.7）三閘**至今僅有合成證據**，
+        而 07 / 09 / 10 / 12 已四次證明「合成 fixture 過、真實資料壞」
+        （A-PW35 / A-PW39 / A-PW50 / A-PW58）。
+        R-P113(d) 之單次寫回會使該三閘之真實實測推遲至最後，
+        風險不可接受。
+
+        故：以首批 10 條對 **FW036 之沙箱副本**執行一次 dry-run 寫回，
+        專為實測該三閘。
+
+        （a）副本置於 `features/power/sandbox/`，**不入版控**
+        （b）**客戶樹與 `inputs/` 之原始檔一律不得觸碰**
+        （c）寫回路徑須為 `xlsx_surgical.py`（唯一授權之寫回路徑）；
+             **不得以 openpyxl `save()` 為之**（R16 / R-G3）
+        （d）dry-run 後須驗證副本之 DV（含 x14）是否存活 ——
+             此即 R-G3 所載之已知缺陷，本次為首度實測
+        （e）dry-run 之 tc_id 使用臨時編號 001–010，
+             不代表最終指派（R-P113(b)）
+        裁決者 Pei，逐字依據：「當然是B」（配套）。
+```
+**執行層回報：dry-run 已執行，三閘證據型別升為「合成＋真實」，R-G3 首度實測。**
+沙箱 `features/power/sandbox/`（`.gitignore` 為 `*`，不入版控）；
+來源以位元組複製，**寫回前後 SHA256 相同 —— 來源未被觸碰**；
+寫回路徑為 `backend/xlsx_surgical.py` 之 `surgical_save()`，
+**本次全程無任何 `Workbook.save()` 呼叫**。
+
+**G86 —— R-G3 之首度實測結果：DV 全數存活。**
+五條 DV（四條 main ＋ **一條 x14 `S10:S221`**）之 `sqref` 與 `type`
+寫回前後**逐字相同**。
+**須明白區辨**：此非「R-G3 之缺陷不存在」，而是
+**`surgical_save` 之設計正是為繞開該缺陷**（它不呼叫 `save()`，
+而是把儲存格差異貼回原始 sheet XML、其餘 zip member 位元組照抄）。
+本次實測所證明者為「該繞道確實有效」，**未證明 openpyxl `save()` 已可安全使用**。
+
+G66 **10 / 10（真實）**；G71 **17 / 17（真實）**；G72 逐列相符。
+失敗證明皆成立：B 欄留空 → G66 判 0/10 FAIL；欄位右移一格 → G71 六欄 FAIL、
+G72 首列之 `design_method` 變 `None` 而 `functional_safety` 承載了 design method。
+
+```
+[R-P115] **同一 leaf 內多條 TC 之次序 —— 分析層自裁。**
+        依 charter，「批次排序與分批邊界」屬分析層得自裁之範圍，
+        且本項為技術性確定性選擇，非 R-P15 所禁之
+        「模糊指派之演算法 tie-break」。
+
+        規則：同一 `req_id` 之多條 TC，依其**規格原文子句出現序**排列；
+        該序即產出時之拆分序，記於 `split_index`（自 1 起）。
+        `split_index` 不寫入工作簿，僅供排序與稽核。
+
+        排序鍵為 `(SWE-PM ID 數值, split_index)`，二者皆為整數，
+        全序且可重現。
+
+        本條為分析層自裁，**Pei 得隨時推翻**；
+        推翻時依 R-P36 加註，不改原文。
+        裁決者：分析層自裁（charter §觸點與自裁界線）。
+```
+**【分析層自裁 —— Pei 得隨時推翻；推翻時依 R-P36 加註，不改原文】**
+
+**執行層回報：已落實，G85 五案全數如期。**
+十五條之 `split_index` 已依規格原文子句出現序指派：
+`071` 1–4、`072` 1–2、`073` 1–9。
+`assign_final_tc_id.py` 之排序鍵為 `(int(SWE-PM 數字), split_index)`，
+G85 以**合成亂序資料**驗證（不以 repo 現況為對照）：
+排序結果、各 leaf 內連號、final_tc_id 自 001 連號、
+**缺 `split_index` 須報錯而非預設 0**、**帶後綴之 `req_id` 須報錯（R-P86）** —— 五案皆如期。
+
+```
+[R-P116] **`SWE-PM-089` 於工作簿中佔不佔列 —— 待 Pei 裁定。**
+        該 leaf 依 R-P1 留空待 DR-PW1。
+        其 ID 位於 088 與 090 之間，故有二種處置：
+          （甲）保留一列空白（僅填 `req_id`），維持 ID 序之連續性
+          （乙）整列跳過，工作簿無其痕跡
+        二者影響列數、B 欄序號、以及客戶比對 037 時之觀感。
+        **屬交付形式，分析層不自裁。**
+        本包**不實作任何一種**，僅備妥素材（見 §B4）。
+        裁決者：**待 Pei**。
+```
+**【待 Pei 裁定 —— 執行層未實作任何一種、未提出建議】**
+
+**執行層回報：素材已備妥於 `features/power/data/b4_089_row_material.md`。**
+三項實測：
+（一）Comfort 已交付件之 466 列中，「僅 `D` 欄有值、其餘 33 欄全空」者 **0** —— 無此形態之先例。
+（二）037 之 `089`：`Source Requirement ID` 為 **`SWE1-PM-ANT-008`**（非 `Sys-RA-*`，
+      此即 §C rule 1 錨點鏈於此斷開、依 R-P1 留空之原因）；
+      其 `Categorization` / `Sub Categorization` 與 088 / 090 **完全相同** ——
+      **從 037 之分類欄看不出 089 有任何特殊性**。
+（三）二種處置對列數、`B` 欄序號、tc_id 與列號之對應、客戶比對觀感之逐項影響已列表。
+**二者皆不影響 §E**（§E 為 leaf 數，非 TC 數）。
+
+```
+[R-P117] **`SWE-PM-073` 之涵蓋缺口補測。**
+        R-P109 補齊 `4942354` 完整原文後，
+        分析層以其 13 項行為與現有四條 TC 對照，發現三項未測：
+        （a）**Load Shed 之回復分支** —— 原文載
+             `the last values ... shall be used until load shed signal
+             broadcast resumes`，而 `008` 僅測「不恢復→維持整個
+             ignition key cycle」，未測「恢復→回正常」。
+             對照 Battery Critical 有 `009`（進入）與 `010`（回復），
+             Load Shed 有進入、有故障、**無回復**。
+        （b）**通話轉移** —— 原文於 Load Shed 與 Battery Critical
+             兩處皆載 `The TLM shall transfer the call
+             (not-Ecall/ACN call) to the head set in case a continuing
+             call is still active`，**兩處皆未測**。
+        （c）**BODY OFF-TIMED 與 voltage out of range** ——
+             原文載 `While in BODY ON **or BODY OFF-TIMED** mode`，
+             而 `009` 之 pre-condition 僅 `BODY ON`；
+             原文之回復條件為 `until either **voltage out of range**
+             conditions are satisfied or ... 10 seconds after ...`，
+             而 `010` 僅測後者。
+
+        依 §7（獨立分支須拆）與 §8.3（mode 為拆分軸）補測。
+        補出之 TC 沿用臨時 tc_id，接續 011 起編（R-P113(b)）。
+        `SWE-PM-073` 之 TC 數因此增加，**leaf 數仍為 3，
+        不構成 R-P72 所禁之範圍擴大**。
+
+        另記：此三項於 14 包不可見 —— 當時 `source_clause` 之 `...`
+        恰好蓋住相關條款。R-P109 之實際效用因此超出其立條理由
+        （立條理由為「ER 斷言之依據須可查」，
+         實際另用於「查出規格說了而 TC 沒測者」），
+        比照 A-PW31 登記。
+        裁決者 Pei，逐字依據：「看一下上繳 確認之後我一起下放16」。
+```
+**執行層回報：三項缺口確認，已補五條（011–015）；`071` / `072` 無同型缺口。**
+以 `4942354` 完整原文逐句拆出 **13 項行為**（與分析層之計數相同），
+逐項對照後補測：
+`011` Load Shed 回復分支、`012` Load Shed 側通話轉移、
+`013` Battery Critical 側通話轉移、`014` BODY OFF-TIMED、
+`015` voltage out of range 回復條件。
+`SWE-PM-073` 之 TC 由 4 條增為 **9 條**；**leaf 數仍為 3**。
+
+**`071` / `072` 之同型對照結果：無缺口。**
+`071` 之 4 項行為由 `001`–`004` 一一對應；
+`072` 之 4 項中，「依 TLM_Status 轉換處理」所指之轉換定義位於
+CFTS009 §1.6.2.1.15，**依 R-P42 不在本 leaf 範圍**，其餘皆已覆蓋。
+
+**一項執行層須明報之限制**：`015` 所測之 `voltage out of range` ——
+**該錨點未載電壓門檻值**，依 §8.4.1 不造值、依 R-P42 不得赴其他未被引用之錨點取值，
+故 procedure 以「套用該條件」表述而非給定電壓。
+**該條在取得門檻值前不可實際執行**，是否開 DR 請分析層裁定（見上繳 §七）。
+
+---
+
 ## 待裁
 
-- **寫回之開放** —— R-P92 已取得結論（`Test Case Framework` 分頁為空，無衝突）。
-  R-P90 之 B 欄明寫已裁定，G66 已實作。**執行層認為寫回之阻斷條件已全部解除。**
-- **A-PW57：Comfort 之 `NEVER_WRITE` 與 `feature.yaml` 矛盾**（O 欄列於禁寫，
-  而 `tc_ref_id_value: "NEW"` 意圖寫入，已交付件該欄 466 列皆為 `NEW`）——
-  已於 Comfort ANOMALIES 登記，是否另行處置。
-- **A-PW58：G65 初版之 token 規則排除兩位數值**，由真實 lint 當場抓到。
+- **R-P116 —— `SWE-PM-089` 佔不佔列**（待 Pei）。素材見 `data/b4_089_row_material.md`。
+- **`015` 之 `voltage out of range` 門檻值不在該錨點內** ——
+  該條在取得門檻前不可實際執行。是否開 DR，待分析層裁定。
+- **Q3 —— Final Step 措詞**（待 Pei）。Arif 144 條末步 `check` 53.5%，
+  §5.2B 完整措詞僅 12.5%；Comfort + Privacy 472 條 0%。素材見 `data/b5_arif_final_step.md`。
+- **A-PW75 ~ A-PW77 之編號**：16 §F 所擬之 A-PW73 / 74 / 75 與 15 包既有者衝突，
+  依「不重編號」原則順延為 **A-PW75 / A-PW76 / A-PW77**。
+- **寫回之開放** —— R-P113(d) 已裁定為「全部 114 leaf 完成後單次寫回」，
+  故現階段不存在「開放與否」之問題；R-P98 / R-P105 / R-P112 之覆核義務不受影響。
+- **G73 之型別**（R-P106（甲）4 登記不阻斷）、**G64 完備性不可驗**（A-PW63）。
+- **A-PW57：Comfort 之 `NEVER_WRITE` 與 `feature.yaml` 矛盾**（O 欄）。
 - **colorScale `H10:H145` 之語義未查**（R-P95 允許與寫回並行）。
-- **DR-PW1**（High）、**DR-PW5**（High）、DR-PW6 / DR-PW3（Medium）、DR-PW7（Low）。
+- **DR-PW1**（High，併 R-P116）、**DR-PW5**（High）、DR-PW6 / DR-PW3（Medium）、DR-PW7（Low）。

@@ -49,8 +49,7 @@
         "axis": "trigger_state",
         "delta": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash"
       },
-      "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。",
-      "split_index": 1
+      "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。"
     },
     {
       "req_id": "SWE-PM-071",
@@ -74,8 +73,7 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件"
-      },
-      "split_index": 2
+      }
     },
     {
       "req_id": "SWE-PM-071",
@@ -99,8 +97,7 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件"
-      },
-      "split_index": 3
+      }
     },
     {
       "req_id": "SWE-PM-071",
@@ -125,8 +122,7 @@
         "axis": "timing",
         "delta": "本條驗第二個時序點：StandardScreen_Time 之後顯示 standard screen，與 -01 之 SplashScreen_Time 為獨立部分失效"
       },
-      "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。",
-      "split_index": 4
+      "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。"
     },
     {
       "req_id": "SWE-PM-072",
@@ -150,8 +146,7 @@
       "distinguishing_axis": {
         "axis": "input_data",
         "delta": "本條驗緩衝面：開機期間到達之事件不得遺失。與 -02 之處理面為兩個獨立部分失效（§8.2.2）"
-      },
-      "split_index": 1
+      }
     },
     {
       "req_id": "SWE-PM-072",
@@ -176,8 +171,7 @@
         "axis": "timing",
         "delta": "本條驗處理面：緩衝之事件於開機仍在進行時即依 TLM_Status.Info setting 之轉換儘快處理"
       },
-      "reasoning_note": "**R-P108（15 包）**：13/14 包之 ER2 曾斷言「the TLM_Status transitions follow the injected order」。`4942338` **完整原文**（未截斷）僅載 「process them as soon as possible, depending on boot timings」，**未載「按注入順序處理」** —— FIFO 為推論而非規格。且 `TLM_Status.Info setting` 之轉換定義位於 CFTS009 §1.6.2.1.15，依 R-P42 不在本 leaf 範圍。**依 R-P108 (a) 刪除該順序斷言**，改以「無事件於開機完成時仍未處理」之可觀察判準取代。",
-      "split_index": 2
+      "reasoning_note": "**R-P108（15 包）**：13/14 包之 ER2 曾斷言「the TLM_Status transitions follow the injected order」。`4942338` **完整原文**（未截斷）僅載 「process them as soon as possible, depending on boot timings」，**未載「按注入順序處理」** —— FIFO 為推論而非規格。且 `TLM_Status.Info setting` 之轉換定義位於 CFTS009 §1.6.2.1.15，依 R-P42 不在本 leaf 範圍。**依 R-P108 (a) 刪除該順序斷言**，改以「無事件於開機完成時仍未處理」之可觀察判準取代。"
     },
     {
       "req_id": "SWE-PM-073",
@@ -201,8 +195,7 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Load Shed 之偵測與四項動作。與 -03 之 Battery Critical 為不同觸發訊號、不同控制實體，依 §8.2.2 拆分"
-      },
-      "split_index": 1
+      }
     },
     {
       "req_id": "SWE-PM-073",
@@ -226,8 +219,7 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗故障分支：Load Shed 訊號於匯流排上消失時之回退行為，與 -01 之正常偵測路徑為獨立部分失效"
-      },
-      "split_index": 2
+      }
     },
     {
       "req_id": "SWE-PM-073",
@@ -251,8 +243,7 @@
       "distinguishing_axis": {
         "axis": "trigger_state",
         "delta": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER"
-      },
-      "split_index": 5
+      }
     },
     {
       "req_id": "SWE-PM-073",
@@ -276,140 +267,7 @@
       "distinguishing_axis": {
         "axis": "timing",
         "delta": "本條驗回復分支：Batt_ST_Crit 回到 [0h] 後之 10 秒時序，與 -03 之進入分支為獨立部分失效"
-      },
-      "split_index": 9
-    },
-    {
-      "req_id": "SWE-PM-073",
-      "tc_id": "NR1L-PowerManagement-011",
-      "tc_title": "Load Shed recovers: normal volume and audio restored",
-      "test_group": "Power Management",
-      "test_set": "Power Down",
-      "test_item": "Load Shed recovers: normal volume and audio restored",
-      "pre_conditions": "1. The bench is an Atlantis High configuration\n2. A LIN and CAN simulation tool is connected\n3. The Load Shed condition is already active",
-      "input_test_data": "STATUS_LIN.PN14_LS_Actv = [0h]\nSTATUS_LIN.PN14_LS_Lvl7 = [0h]",
-      "test_procedure": "1. Stop the broadcast of the two Load Shed signals on the bus\n2. Resume the broadcast with the recovery values listed in Input Test Data\n3. Read the volume limit and the audio output state to check that Load Shed ends",
-      "expected_result": "1. The two Load Shed signals are absent from the bus trace\n2. The TLM accepts the resumed broadcast without a bus error\n3. The volume limit returns to its normal maximum and the audio output is unmuted",
-      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
-      "priority": "P1",
-      "design_method": "決策表 (Decision Table Testing)",
-      "split_flag": true,
-      "split_reason": "本條驗 Load Shed 之回復分支：訊號廣播恢復後 Load Shed 動作結束",
-      "functional_safety": "NA",
-      "remarks": "",
-      "distinguishing_axis": {
-        "axis": "behaviour",
-        "delta": "本條驗 Load Shed 之回復分支：訊號廣播恢復後 Load Shed 動作結束"
-      },
-      "reasoning_note": "**R-P117(a)（16 包）**：`4942354` 載「the last values ... shall be used **until load shed signal broadcast resumes**」。`008` 僅測「不恢復 → 維持整個 ignition key cycle」，**未測 `until ... resumes` 之回復側**。對照 Battery Critical 有 `009`（進入）與 `010`（回復），Load Shed 原有進入（`007`）、故障（`008`）而**無回復**。本條補之。",
-      "estimated_test_time": "",
-      "split_index": 3
-    },
-    {
-      "req_id": "SWE-PM-073",
-      "tc_id": "NR1L-PowerManagement-012",
-      "tc_title": "Continuing call transferred to head set under Load Shed",
-      "test_group": "Power Management",
-      "test_set": "Power Down",
-      "test_item": "Continuing call transferred to head set under Load Shed",
-      "pre_conditions": "1. The bench is an Atlantis High configuration\n2. A LIN and CAN simulation tool is connected\n3. A non-Ecall non-ACN call is active and continuing",
-      "input_test_data": "STATUS_LIN.PN14_LS_Actv = [1h]\nSTATUS_LIN.PN14_LS_Lvl7 = [1h]",
-      "test_procedure": "1. Send the two Load Shed signals listed in Input Test Data\n2. Read the call audio routing to check that the call moved to the head set",
-      "expected_result": "1. The TLM accepts both Load Shed signals without a bus error\n2. The continuing call is routed to the head set and is not dropped",
-      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
-      "priority": "P1",
-      "design_method": "決策表 (Decision Table Testing)",
-      "split_flag": true,
-      "split_reason": "本條驗通話轉移分支（Load Shed 側）：進行中之非 Ecall/ACN 通話轉至 head set",
-      "functional_safety": "NA",
-      "remarks": "",
-      "distinguishing_axis": {
-        "axis": "behaviour",
-        "delta": "本條驗通話轉移分支（Load Shed 側）：進行中之非 Ecall/ACN 通話轉至 head set"
-      },
-      "reasoning_note": "**R-P117(b)（16 包）**：`4942354` 於 Load Shed 段載「The TLM shall transfer the call(not-Ecall/ACN call)  to the head set in case a continuing call is still active」，13 / 14 / 15 包之四條 TC **皆未測**。本條補之。",
-      "estimated_test_time": "",
-      "split_index": 4
-    },
-    {
-      "req_id": "SWE-PM-073",
-      "tc_id": "NR1L-PowerManagement-013",
-      "tc_title": "Continuing call transferred to head set under Battery Critical",
-      "test_group": "Power Management",
-      "test_set": "Power Down",
-      "test_item": "Continuing call transferred to head set under Battery Critical",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in BODY ON mode\n3. A non-Ecall non-ACN call is active and continuing",
-      "input_test_data": "STATUS_LIN.Batt_ST_Crit = [1h]",
-      "test_procedure": "1. Send the Battery Critical signal listed in Input Test Data\n2. Read the call audio routing to check that the call moved to the head set",
-      "expected_result": "1. The TLM accepts the Battery Critical signal without a bus error\n2. The continuing call is routed to the head set and is not dropped",
-      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
-      "priority": "P1",
-      "design_method": "決策表 (Decision Table Testing)",
-      "split_flag": true,
-      "split_reason": "本條驗通話轉移分支（Battery Critical 側）：進行中之非 Ecall/ACN 通話轉至 head set",
-      "functional_safety": "NA",
-      "remarks": "",
-      "distinguishing_axis": {
-        "axis": "behaviour",
-        "delta": "本條驗通話轉移分支（Battery Critical 側）：進行中之非 Ecall/ACN 通話轉至 head set"
-      },
-      "reasoning_note": "**R-P117(b)（16 包）**：`4942354` 於 Battery Critical 段另載同一句通話轉移要求。**兩處各為獨立觸發**（Load Shed 訊號組 vs `Batt_ST_Crit`），依 §5.7「不同觸發即拆分」與 profile §4 拆為 `012` / `013` 兩條，非重複。",
-      "estimated_test_time": "",
-      "split_index": 7
-    },
-    {
-      "req_id": "SWE-PM-073",
-      "tc_id": "NR1L-PowerManagement-014",
-      "tc_title": "Battery Critical minimizes draw in BODY OFF-TIMED mode",
-      "test_group": "Power Management",
-      "test_set": "Power Down",
-      "test_item": "Battery Critical minimizes draw in BODY OFF-TIMED mode",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The TLM is in BODY OFF-TIMED mode\n3. Ecall, ACN and chimes modes are inactive",
-      "input_test_data": "STATUS_LIN.Batt_ST_Crit = [1h]\nStarting volume level: 25",
-      "test_procedure": "1. Set the TLM volume level to the starting value listed in Input Test Data\n2. Send the Battery Critical signal listed in Input Test Data\n3. Read the display, HVAC controls, ACN phone state and AUD_LVL to check the current minimization",
-      "expected_result": "1. The TLM volume indicator shows the starting level and the audio output is unmuted\n2. The TLM accepts the Battery Critical signal without a bus error\n3. The display stays on, HVAC controls and ACN phone stay active, the maximum volume is reduced to 20 and the TLM is muted",
-      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
-      "priority": "P1",
-      "design_method": "決策表 (Decision Table Testing)",
-      "split_flag": true,
-      "split_reason": "本條驗 mode 分支：Battery Critical 於 BODY OFF-TIMED 模式下之行為（`009` 為 BODY ON）",
-      "functional_safety": "NA",
-      "remarks": "",
-      "distinguishing_axis": {
-        "axis": "behaviour",
-        "delta": "本條驗 mode 分支：Battery Critical 於 BODY OFF-TIMED 模式下之行為（`009` 為 BODY ON）"
-      },
-      "reasoning_note": "**R-P117(c)（16 包）**：`4942354` 載「While in BODY ON **or BODY OFF-TIMED** mode」，而 `009` 之 pre-condition 僅 `BODY ON`。依 §8.3「mode 為拆分軸」補 BODY OFF-TIMED 一條。",
-      "estimated_test_time": "",
-      "split_index": 6
-    },
-    {
-      "req_id": "SWE-PM-073",
-      "tc_id": "NR1L-PowerManagement-015",
-      "tc_title": "Battery Critical exits on voltage out of range condition",
-      "test_group": "Power Management",
-      "test_set": "Power Down",
-      "test_item": "Battery Critical exits on voltage out of range condition",
-      "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. The Battery Critical condition is already active\n3. The vehicle voltage out of range condition can be applied on the bench",
-      "input_test_data": "STATUS_LIN.Batt_ST_Crit = [1h] (held)",
-      "test_procedure": "1. Keep the Battery Critical signal at the value listed in Input Test Data\n2. Apply the voltage out of range condition on the bench\n3. Read the volume limit and the audio output state to check that the state is left",
-      "expected_result": "1. The TLM stays in the Battery Critical state while the signal is held\n2. The TLM registers the voltage out of range condition\n3. The TLM leaves the Battery Critical state without waiting for the signal to clear",
-      "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_010_Power Down _SR26_20250909-1658_1.7.2",
-      "priority": "P2",
-      "design_method": "決策表 (Decision Table Testing)",
-      "split_flag": true,
-      "split_reason": "本條驗回復條件之第一分支：voltage out of range（`010` 驗第二分支之 10 秒逾時）",
-      "functional_safety": "NA",
-      "remarks": "",
-      "distinguishing_axis": {
-        "axis": "behaviour",
-        "delta": "本條驗回復條件之第一分支：voltage out of range（`010` 驗第二分支之 10 秒逾時）"
-      },
-      "reasoning_note": "**R-P117(c)（16 包）**：`4942354` 之回復條件為「until **either voltage out of range conditions are satisfied** or shall go back to normal behavior 10 seconds after ...」，`010` 僅測後者。本條補前者。\n**執行層須明報之限制**：該錨點**未載 voltage out of range 之電壓門檻值**，依 §8.4.1 不造值、依 R-P42 不得赴其他未被引用之錨點取值，故 procedure 以「套用該條件」表述而非給定電壓。**此條在取得門檻值前不可實際執行** —— 已於上繳包 §七提請分析層裁定是否開 DR。",
-      "estimated_test_time": "",
-      "split_index": 8
+      }
     }
-  ],
-  "tc_id_status": "provisional",
-  "tc_id_note": "R-P113(b)：本批之 `tc_id` 為**批次內臨時編號**，不具最終效力。最終 tc_id 於全部 114 leaf 產出完成後，依 (SWE-PM ID, split_index) 序一次指派（R-P113(c)）。 JSON 陣列序維持臨時 tc_id 之遞增序（§10.3 / G38）；寫回列序另由 `split_index` 與 SWE-PM ID 決定（R-P115），二者刻意分離。"
+  ]
 }

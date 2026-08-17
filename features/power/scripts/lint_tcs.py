@@ -191,6 +191,100 @@ DATA_TOKEN_RE = re.compile(r"[A-Za-z_.$][A-Za-z0-9_.$]{2,}|\d+")
 # G50 之表格偵測（§11 / R-P93）：`|` 分隔之 Markdown 表格或 HTML <table>
 TABLE_RE = re.compile(r"\|[^|\n]*\|[^|\n]*\||<\s*(?:table|tr|td|th)\b", re.I)
 
+# G81 / R-P107：個案型誤讀關鍵詞黑名單，掃**全部**欄位。
+#
+# **本閘為個案型** —— 其價值在於證明 `006` 之時序誤讀確已清除，
+# **不宣稱可攔下未來之其他誤讀**（R-P107 明訂）。
+# 關鍵詞取自該次誤讀之實際字串，非憑印象列舉。
+MISREAD_TERMS = [
+    ("after boot completes", "R-P103：規格載 while the boot is still completing"),
+    ("after the boot completes", "同上"),
+    ("開機完成後", "同上"),
+    ("follow the injected order", "R-P108：4942338 未載按注入順序處理"),
+    ("按注入順序", "同上"),
+]
+# 掃描對象：TC 之全部欄位（含 13 欄以外者）＋ leaf 之 reasoning / reasoning_note。
+# **`source_clause` 為規格原文，不納入黑名單掃描** —— 原文若含該詞即為事實。
+TC_SCAN_SKIP = {"source_clause"}
+# 查證記錄本身須引述被否定之措詞。引號內之出現視為**引述**，不判違。
+QUOTED_SPAN_RE = re.compile(r"「[^」]*」|`[^`]*`|“[^”]*”")
+
+# G82 / R-P109：ER 所斷言之行為，其規格依據須完整出現於 source_clause。
+# 判準：ER 之**專有標的**（訊號名、全大寫識別子、_Time 類參數、數值）
+# 須於 source_clause 出現。一般英文詞不納入 —— 措詞本就不會逐字相同。
+ER_PROPER_RE = re.compile(
+    r"\b(?:[A-Z][A-Za-z]*(?:_[A-Za-z0-9]+)+|[A-Z]{3,}(?:\.[A-Za-z0-9_]+)?|\d+)\b")
+# 非規格標的之常見誤命中（測試環境用語與本 TC 自身編號）
+ER_PROPER_SKIP = {"TLM", "NA", "AUD", "LVL", "ICS", "HVAC", "ACN", "CAN", "LIN"}
+
+
+# G77 / §5.2B + §5.5（R-P101）：`test_procedure` 之末步須含驗證意圖措詞。
+#
+# **語料實測（14 包 B4，R-P101 令以已交付 `test_procedure` 末步為語料）**——
+# Comfort + Privacy 已交付共 **472** 條之末步：
+#   `check` **0** / `verify` **0** / `confirm` **0** / `ensure` **0** / `observe` **0**
+#   `read`  **243（51.5%）**；無任何驗證措詞者 **232（49.2%）**
+#
+# **即 §5.2B 之措詞在已交付實務中 0 / 472 attested。**
+# 已交付件之末步慣例為「Read <具體可觀察標的>」——
+# 以「所讀之標的」滿足 §5.5「Final Step 自身即揭示所檢查者」，不另加子句。
+# 本閘依 R-P101 之明令仍要求 §5.2B 措詞（其判準明確、可機械判定，
+# 與 G73 之「無法與合法回讀區分」性質不同），
+# 惟**須明載：Power 之末步慣例將因此與 Comfort / Privacy 分歧**（A-PW67）。
+FINAL_STEP_INTENT_RE = re.compile(
+    r"\b(?:check(?:s|ed)?\s+(?:that|whether)|to\s+check|and\s+check|"
+    r"verif(?:y|ies|ied)\s+that|to\s+verify|and\s+verify|"
+    r"confirm(?:s|ed)?\s+that|to\s+confirm|and\s+confirm)\b", re.I)
+
+
+# G73 / §6（R-P96）：ER 行不得為 procedure 動作之複述。
+#
+# **判準之經驗基礎**（R-P96 禁憑印象列舉，比照 R-P83 / R-P88）——
+# 13 包 B3 自 Comfort + Privacy 之已交付件取 proc 與 ER 皆 1:1 對齊者，
+# 得 **1076 組 (步驟, ER 行)** 語料（含輕量字尾正規化），量測
+# `overlap = |ER 實詞 ∩ proc 實詞| / |ER 實詞|`：
+#   P50 0.500 / P75 0.667 / P80 0.750 / P90 1.000 / 最大 1.000
+# 門檻取 **P50 = 0.50**：本閘為非阻斷之待裁類，recall 重於 precision ——
+# 取 P80（0.75）會漏掉 R-P96 所舉之 `004` ER2（overlap 0.60）。
+#   overlap = 1.00 者 **120 組（11.2%）**
+#
+# **實測結論（決定本閘之型別）：R-P96 之判準無法機械化為阻斷閘。**
+#   tier 1（動作述語 ＋ overlap ≥ P50）於已交付語料觸發 **69 / 1076（6.4%）**
+#   tier 2（overlap = 1.00）觸發 **120 / 1076（11.2%）**
+# 其形態為「Select the rear Feet mode → The rear Feet mode is selected」，
+# 即 §6 所稱之「prove condition established」狀態回讀 —— 可失敗、具判讀價值。
+# 更甚者，已交付 Privacy 之 ER 含「The output volume is read」、
+# 「The state of the speed controlled volume is recorded」，
+# **與 R-P96 所舉之五例同形**。
+# 故 G73 **全部列為待人工裁決類**（比照 R-P76 之 R-P42(b)），不使 exit=1。
+ER_OVERLAP_P50 = 0.50
+# 功能詞（標準停用詞，非本判準之發明）
+ER_STOPWORDS = {
+    "the", "a", "an", "is", "are", "was", "were", "be", "been", "and", "or",
+    "of", "to", "in", "on", "at", "for", "from", "with", "by", "that", "this",
+    "it", "its", "as", "into", "until", "while", "then", "again", "still",
+    "no", "not", "all", "any", "each", "every", "both", "same", "other",
+    "shall", "should", "will", "can", "may", "must", "has", "have", "had",
+    "there", "which", "when", "if", "so", "than", "up", "out", "over",
+}
+ER_WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9_.$'-]*")
+# 執行者動作之述語形態：`is/are <verb>ed`、`<verb>s`、`<verb>ing`
+ER_ACTOR_RE = re.compile(
+    r"\b(?:is|are)\s+(?:" + "|".join(v + "(?:e?d)?" for v in PRECOND_ACTION_VERBS) + r")\b"
+    r"|\b(?:" + "|".join(v + "s" for v in PRECOND_ACTION_VERBS) + r")\b",
+    re.I,
+)
+
+# G74 / §8.4.1（R-P97）：時間量測之 ER 不得寫數值相等。
+# 形態取自 R-P97 所引之兩處實例（`001` / `004` 之 ER3）：
+#   「The recorded time **equals** SplashScreen_Time」
+# 即「時間類名詞 … equals/is equal to/matches/is exactly … 時間類識別子」。
+TIME_TOKEN_RE = re.compile(
+    r"\b(?:elapsed\s+time|recorded\s+time|measured\s+time|duration|timer|"
+    r"\w*_?Time\b|\d+\s*(?:ms|milliseconds?|s|seconds?|min|minutes?))\b", re.I)
+TIME_EQUALITY_RE = re.compile(
+    r"\b(?:equals?|is\s+equal\s+to|are\s+equal\s+to|matches|is\s+exactly)\b", re.I)
+
 PRECOND_ACTION_RE = re.compile(
     r"^\s*\d+\.\s*(?:\[[^\]]*\]\s*)?(" + "|".join(PRECOND_ACTION_VERBS) + r")\b",
     re.I,
@@ -575,14 +669,18 @@ def run_all_gates(tcs: list[dict], blacklist: dict, fingerprints: dict,
         + check_s11_formatting(tcs)
         + check_s44_precondition(tcs)
         + check_s6_proc_er_parity(tcs)
+        + check_s6_er_restatement(tcs)
+        + check_s841_time_equality(tcs)
+        + check_s52b_final_step_intent(tcs)
         + check_s44_env_stability(tcs)
         + check_s45_data_ownership(tcs)
         + check_profile_clauses(tcs)
         + check_feature_yaml_consistency()
         + check_workbook_columns()
     )
-    blocking = [f for f in all_findings if f["rule"] != "R-P42(b)"]
-    adjudicate = [f for f in all_findings if f["rule"] == "R-P42(b)"]
+    ADJUDICATE_RULES = {"R-P42(b)", "R-P96(a)", "R-P96(b)"}
+    blocking = [f for f in all_findings if f["rule"] not in ADJUDICATE_RULES]
+    adjudicate = [f for f in all_findings if f["rule"] in ADJUDICATE_RULES]
     return blocking, adjudicate
 
 
@@ -599,6 +697,165 @@ def check_s6_proc_er_parity(tcs: list[dict]) -> list[dict]:
                 "rule": "§6", "tc_id": tc_id,
                 "detail": f"procedure {steps} 步 ≠ expected_result {ers} 行 —— §6 要求 1:1",
             })
+    return findings
+
+
+def _stem(w: str) -> str:
+    """輕量字尾正規化 —— 使 `start` 與 `starts`、`record` 與 `recorded` 對齊。
+    僅去 -ing / -ed / -es / -s，長度 > 4 者方去，不做詞形還原。"""
+    for suf in ("ing", "ed", "es", "s"):
+        if w.endswith(suf) and len(w) - len(suf) >= 3:
+            return w[: -len(suf)]
+    return w
+
+def _er_words(line: str) -> set[str]:
+    """取實詞（去編號、去 source-class 標記、去停用詞、輕量字尾正規化）。"""
+    body = re.sub(r"^\s*\d+[.)]\s*(?:\[[a-z-]+\]\s*)?", "", line).strip()
+    ws = {w.lower() for w in ER_WORD_RE.findall(body)} - ER_STOPWORDS
+    return {_stem(w) for w in ws}
+
+
+def check_s6_er_restatement(tcs: list[dict]) -> list[dict]:
+    """G73 / §6（R-P96）：ER 行不得為 procedure 動作之複述。
+
+    僅對 1:1 對齊者逐行比對（不對齊者由 G63 攔下）。
+    (a) 阻斷類：ER 行述及執行者自身之動作，且 overlap ≥ P90。
+    (b) 待人工裁決類（`rule` 為 `R-P96(b)`）：overlap = 1.00 且無新增標的。
+    """
+    findings = []
+    num = re.compile(r"^\s*\d+\.")
+    for tc in tcs:
+        tc_id = tc.get("tc_id") or tc.get("req_id") or "(無 id)"
+        steps = [l for l in str(tc.get("test_procedure", "")).split("\n") if num.match(l)]
+        ers = [l for l in str(tc.get("expected_result", "")).split("\n") if num.match(l)]
+        if len(steps) != len(ers):
+            continue
+        for i, (p_line, e_line) in enumerate(zip(steps, ers), 1):
+            pw, ew = _er_words(p_line), _er_words(e_line)
+            if not ew:
+                continue
+            overlap = len(ew & pw) / len(ew)
+            actor = ER_ACTOR_RE.search(e_line)
+            if actor and overlap >= ER_OVERLAP_P50:
+                findings.append({
+                    "rule": "R-P96(a)", "tc_id": tc_id,
+                    "detail": f"ER 第 {i} 行為 procedure 動作之複述"
+                              f"（述語 `{actor.group(0)}`，overlap {overlap:.2f}）："
+                              f"「{e_line.strip()[:56]}」—— R-P96",
+                })
+            elif overlap >= 1.0:
+                findings.append({
+                    "rule": "R-P96(b)", "tc_id": tc_id,
+                    "detail": f"ER 第 {i} 行之實詞全數見於 procedure 步驟，"
+                              f"無新增可觀察標的：「{e_line.strip()[:56]}」"
+                              f"—— 已交付語料同型 101 組，須人工判別",
+                })
+    return findings
+
+
+def check_s52b_final_step_intent(tcs: list[dict]) -> list[dict]:
+    """G77 / §5.2B + §5.5（R-P101）：末步須含驗證意圖措詞，且 ≤ 18 字。"""
+    findings = []
+    num = re.compile(r"^\s*\d+\.")
+    for tc in tcs:
+        tc_id = tc.get("tc_id") or tc.get("req_id") or "(無 id)"
+        steps = [l for l in str(tc.get("test_procedure", "")).split("\n") if num.match(l)]
+        if not steps:
+            continue
+        body = re.sub(r"^\s*\d+\.\s*(?:\[[a-z-]+\]\s*)?", "", steps[-1]).strip()
+        if not FINAL_STEP_INTENT_RE.search(body):
+            findings.append({
+                "rule": "§5.2B", "tc_id": tc_id,
+                "detail": f"Final Step 無驗證意圖措詞（check that / to verify / …）："
+                          f"「{body[:60]}」—— R-P101",
+            })
+        elif len(body.split()) > 18:
+            findings.append({
+                "rule": "§5.2B", "tc_id": tc_id,
+                "detail": f"Final Step {len(body.split())} 字，逾 §5.2B 之 18 字上限："
+                          f"「{body[:60]}」",
+            })
+    return findings
+
+
+def check_misread_terms(batch: dict) -> list[dict]:
+    """G81 / R-P107：誤讀關鍵詞掃全部欄位（個案型）。"""
+    findings = []
+    for tc in batch.get("tcs", []):
+        tc_id = tc.get("tc_id") or "(無 id)"
+        for field, value in tc.items():
+            if field in TC_SCAN_SKIP:
+                continue
+            text = json.dumps(value, ensure_ascii=False) if isinstance(value, (dict, list)) else str(value)
+            text = QUOTED_SPAN_RE.sub(" ", text)
+            for term, why in MISREAD_TERMS:
+                if term.lower() in text.lower():
+                    findings.append({
+                        "rule": "R-P107", "tc_id": tc_id,
+                        "detail": f"欄位 `{field}` 殘留誤讀關鍵詞「{term}」—— {why}",
+                    })
+    for leaf in batch.get("leaves", []):
+        for field in ("reasoning", "reasoning_note"):
+            text = QUOTED_SPAN_RE.sub(" ", str(leaf.get(field, "")))
+            for term, why in MISREAD_TERMS:
+                if term.lower() in text.lower():
+                    findings.append({
+                        "rule": "R-P107", "tc_id": leaf.get("parent", "?"),
+                        "detail": f"leaf `{field}` 殘留誤讀關鍵詞「{term}」—— {why}",
+                    })
+    return findings
+
+
+def check_er_clause_coverage(batch: dict) -> list[dict]:
+    """G82 / R-P109：ER 之專有標的須出現於該 leaf 之 `source_clause`。"""
+    findings = []
+    clause = {l.get("parent"): str(l.get("source_clause", "")) for l in batch.get("leaves", [])}
+    for tc in batch.get("tcs", []):
+        src = clause.get(tc.get("req_id"), "")
+        tc_id = tc.get("tc_id") or "(無 id)"
+        er = "\n".join(re.sub(r"^\s*\d+\.\s*", "", ln)
+                       for ln in str(tc.get("expected_result", "")).split("\n"))
+        for tok in sorted(set(ER_PROPER_RE.findall(er))):
+            if tok in ER_PROPER_SKIP:
+                continue
+            if tok not in src:
+                findings.append({
+                    "rule": "R-P109", "tc_id": tc_id,
+                    "detail": f"ER 之標的 `{tok}` 未見於該 leaf 之 `source_clause` —— "
+                              f"截斷不得遮蔽 ER 所斷言之內容",
+                })
+    return findings
+
+
+def check_source_clause(batch: dict) -> list[dict]:
+    """G79 / R-P104：`leaves` 陣列每筆須附非空之 `source_clause`。"""
+    findings = []
+    for leaf in batch.get("leaves", []):
+        if not str(leaf.get("source_clause", "")).strip():
+            findings.append({
+                "rule": "R-P104", "tc_id": leaf.get("parent", "(無 parent)"),
+                "detail": "leaf 缺 `source_clause`（規格原文子句）—— 無之則技術覆核"
+                          "僅能檢視 TC 之自我一致性",
+            })
+    return findings
+
+
+def check_s841_time_equality(tcs: list[dict]) -> list[dict]:
+    """G74 / §8.4.1（R-P97）：時間量測之 ER 不得寫數值相等。"""
+    findings = []
+    for tc in tcs:
+        tc_id = tc.get("tc_id") or tc.get("req_id") or "(無 id)"
+        for line in str(tc.get("expected_result", "")).split("\n"):
+            if not line.strip():
+                continue
+            eq = TIME_EQUALITY_RE.search(line)
+            if eq and TIME_TOKEN_RE.search(line):
+                findings.append({
+                    "rule": "§8.4.1", "tc_id": tc_id,
+                    "detail": f"時間量測之 ER 寫數值相等（`{eq.group(0)}`）："
+                              f"「{line.strip()[:56]}」—— 嚴格執行必然 fail，"
+                              f"應改為行為描述（R-P97）",
+                })
     return findings
 
 
@@ -727,6 +984,22 @@ def load_tcs(directory: Path) -> list[dict]:
             tc.setdefault("_file", path.name)
             tcs.append(tc)
     return tcs
+
+
+def load_batches(directory: Path) -> list[dict]:
+    """批次層（`leaves` ＋ `tcs`）—— G79 / G81 / G82 以整批為單位檢查。"""
+    return [json.loads(p.read_text(encoding="utf-8"))
+            for p in sorted(directory.glob("*.json"))]
+
+
+def run_batch_gates(batches: list[dict]) -> list[dict]:
+    """批次層閘門：G79（R-P104）、G81（R-P107）、G82（R-P109）。"""
+    findings = []
+    for b in batches:
+        findings += check_source_clause(b)
+        findings += check_misread_terms(b)
+        findings += check_er_clause_coverage(b)
+    return findings
 
 
 def make_tc(n: int, leaf: str, test_set: str, **over) -> dict:
@@ -1031,6 +1304,137 @@ def self_test(blacklist: dict, fingerprints: dict) -> int:
     print(f"          相等時 findings 0；B 欄全空時 findings "
           f"{len(check_b_column_numbering(10, 0))}")
 
+    # G73 / R-P96 —— ER 複述偵測。
+    # 依 G46 / G71 / G72 之既有慣例，**不併入 per-fixture 聚合** ——
+    # 多數既有 fixture 之 ER 為「The boot sequence starts」形態，
+    # 本閘依設計即應標記之，併入會使無關 fixture 全數變動。
+    er_ok = [make_tc(1, "SWE-PM-071", "Power Down",
+                     test_procedure="1. Start the suspend-resume boot sequence\n"
+                                    "2. Read the TLM display through SplashScreen_Time",
+                     expected_result="1. The TLM display stays blank while the boot "
+                                     "sequence runs\n"
+                                     "2. No splash screen is shown through SplashScreen_Time")]
+    er_bad = [make_tc(1, "SWE-PM-071", "Power Down",
+                      test_procedure="1. Start the suspend-resume boot sequence\n"
+                                     "2. Record the elapsed time from boot start",
+                      expected_result="1. The boot sequence starts\n"
+                                      "2. The elapsed time is recorded from boot start")]
+    for label, tcs_, want in [("應 PASS —— ER 皆為可觀察結果", er_ok, 0),
+                              ("應 FAIL —— ER 複述 procedure 動作", er_bad, 2)]:
+        got = check_s6_er_restatement(tcs_)
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G73 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        for f in got[:3]:
+            print(f"          → {f['rule']} {f['detail'][:84]}")
+
+    # G74 / R-P97 —— 時間量測之 ER 不得寫數值相等
+    t74_ok = [make_tc(1, "SWE-PM-071", "Power Down",
+                      expected_result="1. The TLM display stays blank\n"
+                                      "2. No splash screen is shown through "
+                                      "SplashScreen_Time")]
+    t74_bad = [make_tc(1, "SWE-PM-071", "Power Down",
+                       expected_result="1. The TLM display stays blank\n"
+                                       "2. The recorded time equals SplashScreen_Time")]
+    for label, tcs_, want in [("應 PASS —— 以行為描述取代數值相等", t74_ok, 0),
+                              ("應 FAIL —— ER 寫「equals SplashScreen_Time」", t74_bad, 1)]:
+        got = check_s841_time_equality(tcs_)
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G74 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        for f in got[:2]:
+            print(f"          → {f['rule']} {f['detail'][:84]}")
+
+    # G77 / R-P101 —— Final Step 驗證意圖。
+    fs_ok = [make_tc(1, "SWE-PM-071", "Power Down",
+                     test_procedure="1. Start the suspend-resume boot sequence\n"
+                                    "2. Read the TLM display before and after "
+                                    "SplashScreen_Time to check that the splash "
+                                    "screen is loaded")]
+    fs_bad = [make_tc(1, "SWE-PM-071", "Power Down",
+                      test_procedure="1. Start the suspend-resume boot sequence\n"
+                                     "2. Read the TLM display through SplashScreen_Time")]
+    fs_long = [make_tc(1, "SWE-PM-071", "Power Down",
+                       test_procedure="1. Start the suspend-resume boot sequence\n"
+                                      "2. Read the TLM display carefully and slowly "
+                                      "before and after SplashScreen_Time has fully "
+                                      "elapsed to check that the splash screen is "
+                                      "loaded and shown")]
+    for label, tcs_, want in [("應 PASS —— 末步含 `to check that ...`", fs_ok, 0),
+                              ("應 FAIL —— 末步無 check target", fs_bad, 1),
+                              ("應 FAIL —— 末步逾 §5.2B 之 18 字上限", fs_long, 1)]:
+        got = check_s52b_final_step_intent(tcs_)
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G77 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        for f in got[:2]:
+            print(f"          → {f['rule']} {f['detail'][:84]}")
+
+    # G79 / R-P104 —— leaves 之 source_clause 必附
+    for label, batch, want in [
+            ("應 PASS —— 三 leaf 皆有 source_clause",
+             {"leaves": [{"parent": f"SWE-PM-07{i}", "source_clause": "spec text"}
+                         for i in (1, 2, 3)]}, 0),
+            ("應 FAIL —— 一 leaf 之 source_clause 為空",
+             {"leaves": [{"parent": "SWE-PM-071", "source_clause": "spec text"},
+                         {"parent": "SWE-PM-072", "source_clause": ""}]}, 1)]:
+        got = check_source_clause(batch)
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G79 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+
+    # G81 / R-P107 —— 誤讀關鍵詞全欄掃描（個案型）。
+    mis_ok = {"tcs": [make_tc(1, "SWE-PM-072", "Power Down",
+                              test_item="Buffered events processed as soon as possible",
+                              split_reason="本條驗處理面：開機仍在進行時即處理")],
+              "leaves": [{"parent": "SWE-PM-072", "source_clause": "while the boot is still completing"}]}
+    mis_bad = {"tcs": [make_tc(1, "SWE-PM-072", "Power Down",
+                               test_item="Buffered events processed after boot completes",
+                               split_reason="本條驗處理面：緩衝之事件於開機完成後處理")],
+               "leaves": [{"parent": "SWE-PM-072", "source_clause": "while the boot is still completing"}]}
+    mis_quoted = {"tcs": [make_tc(1, "SWE-PM-072", "Power Down",
+                                  split_reason="查證記錄：規格未載「開機完成後」處理")],
+                  "leaves": []}
+    for label, batch, want in [("應 PASS —— 無誤讀關鍵詞", mis_ok, 0),
+                               ("應 FAIL —— test_item 與 split_reason 殘留", mis_bad, 2),
+                               ("應 PASS —— 引號內之引述不判違", mis_quoted, 0)]:
+        got = check_misread_terms(batch)
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G81 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        for f in got[:2]:
+            print(f"          → {f['detail'][:80]}")
+
+    # G82 / R-P109 —— ER 之標的須見於 source_clause
+    cov_ok = {"tcs": [make_tc(1, "SWE-PM-073", "Power Down",
+                              req_id="SWE-PM-073",
+                              expected_result="1. AUD_LVL carries the updated level\n"
+                                              "2. The TLM is muted")],
+              "leaves": [{"parent": "SWE-PM-073",
+                          "source_clause": "send the AUD_LVL signal with the updated volume "
+                                           "level. If Ecall mode is not active, TLM shall be muted."}]}
+    cov_bad = {"tcs": [make_tc(1, "SWE-PM-073", "Power Down",
+                               req_id="SWE-PM-073",
+                               expected_result="1. AUD_LVL carries the updated level\n"
+                                               "2. The TLM is muted")],
+               "leaves": [{"parent": "SWE-PM-073",
+                           "source_clause": "the TLM shall immediately reduce the maximum "
+                                            "volume level to 20 ..."}]}
+    for label, batch, want in [("應 PASS —— ER 之標的皆見於 source_clause", cov_ok, 0),
+                               ("應 FAIL —— `...` 遮蔽 AUD_LVL 條款", cov_bad, 1)]:
+        got = check_er_clause_coverage(batch)
+        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        failures += not ok
+        print(f"\n  [{'PASS' if ok else '**FAIL**'}] G82 {label}")
+        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        for f in got[:2]:
+            print(f"          → {f['detail'][:80]}")
+
     # G54 / R-P76 —— findings 分流：R-P42(b) 觸發時「待裁決」節有內容而 exit 仍為 0
     triage_tc = [make_tc(1, "SWE-PM-071", "Power Down",
                          design_method="狀態轉換 (State Transition Testing)",
@@ -1038,8 +1442,9 @@ def self_test(blacklist: dict, fingerprints: dict) -> int:
                              "R1LR_Atl-H_25PI3.5_Activation and Configuration_"
                              "CFTS_010_Power Down _SR26_20250909-1658_1.7.2"),
                          test_procedure=f"1. {fingerprint} on the bench\n"
-                                        f"2. Read the reported state",
-                         expected_result="1. The step completes\n2. The state is read")]
+                                        f"2. Read the reported state to check that it changed",
+                         expected_result="1. The step completes\n"
+                                         "2. The reported state differs from its initial value")]
     blocking, adjudicate = run_all_gates(
         triage_tc, blacklist, fingerprints, leaf_testset, leaf_priority)
     ok = len(adjudicate) >= 1 and not blocking
@@ -1106,6 +1511,7 @@ def main() -> None:
     tcs = load_tcs(GENERATED)
     blocking, adjudicate = run_all_gates(
         tcs, blacklist, fingerprints, load_leaf_testset(), load_037_priority())
+    blocking += run_batch_gates(load_batches(GENERATED))
 
     print(f"檢查 {len(tcs)} 個 TC")
     print(f"\n【阻斷類】{'PASS' if not blocking else f'**{len(blocking)} 項 FAIL**'}")
