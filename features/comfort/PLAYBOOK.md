@@ -132,14 +132,41 @@ Remarks = reason + anomaly id.
 > P6 其餘批次 / A-Hnn 工單}。遇到六條停下條款就登記並停,PENDING 的
 > 子決策({列出}) 不得自行處置。完成後回報{對應上繳包}。
 
-## 6. Status board — Comfort
+## 6. Status board — Comfort — **CLOSED**
 
-- [ ] P0 intake complete; INTAKE.md reviewed; missing files: ____
-- [ ] P1 recon complete; workbook_state: ____; leaves: ____; targets: ____
-- [ ] P2 DECISIONS signed (date: ____)
-- [ ] P3 framework Part N + profile approved
-- [ ] P4 data artifacts built
-- [ ] P5 pilot batch ____ reviewed; verdict: ____; corrections: ____
-- [ ] P6 all batches generated; lint green; placeholders: ____
-- [ ] P7 dry-run approved → v__ tag: ____; submitted: ____; RD-1 sent: ____
-- Open PENDING rulings: ____
+**結案裁定：Pei，2026-08-17** —— 「交付了就這樣結束 不要繼續了」。
+分析層與執行層皆不再開新作業。
+
+### 6.1 結案之狀態（下放包 93 §4）
+
+| | |
+|---|---|
+| 交付物 | `…_Comfort_20260816_extdocs.xlsx`（`03663159…`，170,047 bytes），在 `ComfortHMI/` 夾內 |
+| 交付說明 | `Comfort_HMI_delivery_note.md`（**`71ac5a94…`，6,551 bytes**），同夾 —— 訂正版已於 2026-08-17 09:24 就位，實測相符（**ENTRY 029**）|
+| 台帳 | `DELIVERY.sha256` 至 **ENTRY 029**（028 為 `delivered`，029 為 `delivered-amended`）|
+| 語料 | **434 列 / 383 之 403（95.0%）**；marker 列 **4 條** |
+| 未涵蓋 | **20 個單位無列、2 個有列而未全測** |
+| 未答問題 | **22 個**（RD-1，final 2026-08-17，回覆去向留白；**其送達屬 Pei，非本 pipeline 之待辦**）|
+| 基線 | **SR24 CR24879**，交付說明已標明；夾內 SR25 兩檔依 Pei 裁定留置 |
+| lint | **54 道全綠，0 finding** |
+| 條文 | **R-C1 ～ R-C45**（含修訂共 **50** 條）|
+| 往返 | **handoff 93 ／ upstream 72** |
+
+### 6.2 已知而未處理者（供日後查考，**不再動作**）
+
+1. **交付物與語料差一欄**：`-382` 之 `specification_reference` 版本名
+   （SR24 vs SR25），兩版該節內容逐格相同，已登記於 ENTRY 028 之
+   `corpus-divergence`。**其原訂收束途徑為「下次因他故重寫回時帶入」，
+   而本 feature 已結案 —— 那個「下次」不會來了。**
+2. **`019-02`／`-03` 之缺口理由於交付說明中偏粗**：實為「**找到而不得用**」
+   （`16.13` 逐項列出，而 §8.2.1 禁跨章移植），說明中寫成「找不到」。
+3. **A-CF23**：spec 內以圖承載之內容讀不到（037 之 52 處、`15.1` 之 chart）。
+4. **DR #36**：通用空白範本本體未擴充；Comfort 用之 ext 母本已擴充
+   （`forms/…_SWQT_20260816_ext.xlsx`）。
+
+### 6.3 結案前之階段紀錄（存查）
+
+- [x] P0 intake ／ P1 recon ／ P2 DECISIONS ／ P3 framework ＋ profile
+- [x] P4 data artifacts ／ P5 pilot ／ P6 全批次生成，lint green
+- [x] P7 寫回 ENTRY 004–026、Excel 四項確認（Pei，2026-08-17）、
+      交付 ENTRY 027–029
