@@ -30,7 +30,7 @@
    "tc_title": "Comfort section is removed from the head unit except popups",
    "test_group": "Comfort",
    "test_set": "Front Climate Anatomy",
-   "test_item": "CM1.) When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information, the comfort section will be removed from the head unit except for comfort popups.\n\n(change the fan speed using the fan speed hard control)",
+   "test_item": "CM1.) When a vehicle is configured with a non-foldable secondary lower screen that contains comfort information, the comfort section will be removed from the head unit except for comfort popups.\n\n(change the fan speed using the fan speed hard control -> A comfort pop-up is shown on the head unit)",
    "pre_conditions": "1. [spec-derived] The vehicle is configured with a non-foldable secondary lower screen that contains comfort information (6.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the head unit menu\n2. Read the head unit menu for the comfort section\n3. Change the fan speed using the fan speed hard control",

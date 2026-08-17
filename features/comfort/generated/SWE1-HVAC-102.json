@@ -25,7 +25,7 @@
    "tc_title": "Comfort controls merge with cabin temperature and open a joint popup",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "HVACSB3.) Driver comfort seat feature and Passenger comfort controls are merged with the cabin temperature, and are pressable.\n\n(The vehicle is equipped with Comfort features; press the driver comfort control)",
+   "test_item": "HVACSB3.) Driver comfort seat feature and Passenger comfort controls are merged with the cabin temperature, and are pressable.\n\n(press the driver comfort control -> A popup is shown with both the cabin temperature and the driver comfort controls)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, whose available comfort controls depend on vehicle configuration (14.15)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Read the driver comfort control in the status bar\n2. Press the driver comfort control",

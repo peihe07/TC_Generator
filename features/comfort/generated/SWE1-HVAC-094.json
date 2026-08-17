@@ -25,7 +25,7 @@
    "tc_title": "Fan and mode pop-ups display from the category bar in idle mode",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "HVACP10.1) If Climate is located in the main category bar, fan speed and mode popups display from this position as well during idle mode.\n\n(change the fan speed using the fan speed hard control and read where the pop-up appears)",
+   "test_item": "HVACP10.1) If Climate is located in the main category bar, fan speed and mode popups display from this position as well during idle mode.\n\n(change the fan speed using the fan speed hard control and read where the pop-up appears -> The fan pop-up appears from the position of Climate in the main category bar)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Put the head unit into simulated off/idle mode\n2. Change the fan speed using the fan speed hard control and read where the pop-up appears",

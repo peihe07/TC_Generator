@@ -25,7 +25,7 @@
    "tc_title": "The status bar keeps the seat status while climate is off",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "When climate is OFF, the status bar should still show heated/vented seat status.\n\n(The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel; read the status bar)",
+   "test_item": "When climate is OFF, the status bar should still show heated/vented seat status.\n\n(read the status bar -> The status bar still shows the heated/vented seat status)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Turn a heated seat on\n2. Turn the climate system off\n3. Read the status bar",

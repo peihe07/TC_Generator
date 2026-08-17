@@ -25,7 +25,7 @@
    "tc_title": "Auto Comfort Settings options follow the HMI Settings List",
    "test_group": "Comfort",
    "test_set": "Heated Vented Seats",
-   "test_item": "Refer to HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats.\n\n(The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel; read the options offered for the driver and for the passenger)",
+   "test_item": "Refer to HMI Settings List for the details on the Auto Comfort Settings options for heated/vented seats.\n\n(read the options offered for the driver and for the passenger -> The options listed in the HMI Settings List for Auto-On Driver and Auto-On Passenger are offered)",
    "pre_conditions": "1. [spec-derived] The vehicle is equipped with Comfort features, such as heated/vented seats and a heated steering wheel (17.3)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Auto Comfort Settings for the heated and vented seats\n2. Read the options offered for the driver and for the passenger",

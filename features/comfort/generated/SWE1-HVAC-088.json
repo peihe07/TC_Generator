@@ -25,7 +25,7 @@
    "tc_title": "HVAC pop-ups display over NAV apps and Projection",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection screens when permitted.\n\n(open a Projection screen and change the fan speed using the fan speed hard control)",
+   "test_item": "HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection screens when permitted.\n\n(open a Projection screen and change the fan speed using the fan speed hard control -> The fan pop-up is shown over the Projection screen)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open a NAV screen and change the fan speed using the fan speed hard control\n2. Open a Projection screen and change the fan speed using the fan speed hard control",

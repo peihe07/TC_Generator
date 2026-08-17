@@ -29,7 +29,7 @@
    "tc_title": "First AUTO press activates AUTO ECO",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; press the AUTO button once)",
+   "test_item": "EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.\n\n(press the AUTO button once -> The AUTO ECO functionality is activated)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until AUTO is off\n2. Press the AUTO button once",

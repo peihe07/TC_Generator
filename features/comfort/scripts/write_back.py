@@ -56,7 +56,7 @@ SRC = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # not lose its object).
 OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT "
                             "STLA Test Case Specification & Result_SWQT_"
-                            "Comfort_20260817_itemfmt.xlsx")
+                            "Comfort_20260817_merged.xlsx")
 # 45 §3.4 said "ENTRY 003", which was TAKEN (the folder-attachment entry from
 # 27 §3), so the second write-back became ENTRY 004. This is the third.
 #
@@ -65,7 +65,7 @@ OUT = FEATURE / "output" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果_
 # free and this write takes it. If the extension lands first, this constant
 # moves; the one-shot gate below is what makes a collision loud rather than
 # silent.
-LEDGER_ENTRY = "ENTRY 030"
+LEDGER_ENTRY = "ENTRY 034"
 SHEET = "Test Case Specification 測試用例規範"
 SRC_SHA = "6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c"
 FIRST_ROW = 10
@@ -237,11 +237,47 @@ SOURCE_CLASS_IN_CELL = re.compile(
     r"\[(?:spec-verbatim|spec-derived|test-setup|ext-verbatim)\]\s*")
 
 
+# Pei 2026-08-17 — 其自行編修之交付件（ENTRY 032）另有兩項，本層據以併入
+# **寫入路徑**（JSON 不動，理由同 source class：內部依據與外部呈現分離）：
+#   J 欄：連**節次括號**一併去除（94 §2.1 曾裁「保留」，Pei 之編修不保留）
+#   N 欄：Comfort stem 去 `SYS1_` 前綴
+# 後者之影響須明講：`specification_reference` 是 traceability 之字串比對
+# 對象，工作簿內之 stem 自此與 R-C1 所定之基線檔名**差一個前綴**。
+# JSON 內仍為全名，`spec-ref-stem` gate 驗的是 JSON，故未失效。
+SECTION_BRACKET = re.compile(r"\s*\((\d+(?:\.\d+)*)\)\s*$", re.M)
+SYS1_STEM = ("SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_"
+             "CR24879_(September_25_2023)")
+
+
 def render(field: str, value: str) -> str:
     """What goes in the cell, as opposed to what the JSON carries."""
     if field == "pre_conditions":
-        return SOURCE_CLASS_IN_CELL.sub("", value)
+        return SECTION_BRACKET.sub("", SOURCE_CLASS_IN_CELL.sub("", value))
+    if field == "specification_reference":
+        return _compact_refs(value)
     return value
+
+
+def _compact_refs(value: str) -> str:
+    """Pei 之 N 欄寫法：stem 只寫一次，其節次以「、」相連；外部出處另段。
+
+    JSON 內每一節各寫一次完整 stem（R-C29：本節在前，引用節在後），
+    工作簿內重複 12 次同一個 600 字元之 stem 對讀者毫無用處。
+    `SYS1_` 前綴一併去除（Comfort stem 與 CFTS043 皆然）。
+    """
+    stem_short = SYS1_STEM[len("SYS1_"):]
+    outlines, others = [], []
+    for seg in [x.strip() for x in value.split(";") if x.strip()]:
+        seg = seg[len("SYS1_"):] if seg.startswith("SYS1_") else seg
+        if seg.startswith(stem_short + "_"):
+            outlines.append(seg[len(stem_short) + 1:])
+        else:
+            others.append(seg)
+    parts = []
+    if outlines:
+        parts.append(f"{stem_short}_" + "、".join(outlines))
+    parts.extend(others)
+    return "; ".join(parts)
 
 
 def splice(tcs: list) -> dict:
@@ -385,11 +421,24 @@ def assertions(tcs: list, report: dict) -> bool:
     # The anomaly is about PRESENTATION, so the check separates the two
     # questions it was always confusing: is the content complete (yes/no,
     # checkable) and is it visible (a number, reportable but not a pass/fail).
+    # 對照 render 後之值：Pei 2026-08-17 之編修使 N 欄之 stem 只寫一次、
+    # 節次以「、」相連且去 `SYS1_` 前綴。**節次一個不少**是這道 assertion
+    # 現在要證的事 —— 故另驗其節次集合與 JSON 相同（下方 n_lost）。
     n_bad = [f"{t['tc_id']}"
              for i, t in enumerate(tcs)
              if (ws[f"N{FIRST_ROW + i}"].value or "")
-             != t["specification_reference"]]
-    g("N 欄 specification_reference 逐字元與 JSON 相同（A-CF19 之內容側）",
+             != render("specification_reference", t["specification_reference"])]
+    n_lost = []
+    for i, t in enumerate(tcs):
+        cell = ws[f"N{FIRST_ROW + i}"].value or ""
+        want = set(re.findall(r"_(\d+(?:\.\d+)*)(?=[;、]|$)",
+                              t["specification_reference"]))
+        got = set(re.findall(r"[_、](\d+(?:\.\d+)*)(?=[;、]|$)", cell))
+        if want - got:
+            n_lost.append(f"{t['tc_id']}:{sorted(want - got)}")
+    g("N 欄之節次一個不少（縮寫後仍涵蓋 JSON 所列之全部節次）", [], n_lost,
+      f"{len(tcs)} cells compared")
+    g("N 欄 specification_reference 與 JSON（經 render 後）相同（A-CF19 之內容側）",
       [], n_bad, f"{len(tcs)} cells compared")
     lens = [(len(t["specification_reference"]), t["tc_id"]) for t in tcs]
     longest, longest_id = max(lens)

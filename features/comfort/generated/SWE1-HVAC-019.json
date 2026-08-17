@@ -25,7 +25,7 @@
    "tc_title": "MAX A/C is highlighted on the climate screen when on",
    "test_group": "Comfort",
    "test_set": "Climate Modes",
-   "test_item": "MAX A/C has an on/off state that is indicated on climate screen (highlight button if on).\n\n(The vehicle has MAX A/C functionality; press \"MAX A/C\" again)",
+   "test_item": "MAX A/C has an on/off state that is indicated on climate screen (highlight button if on).\n\n(press \"MAX A/C\" again -> The \"MAX A/C\" button is no longer highlighted)",
    "pre_conditions": "1. [spec-derived] The vehicle has MAX A/C functionality, whose presence the CCM relays (2.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Press \"MAX A/C\" again",

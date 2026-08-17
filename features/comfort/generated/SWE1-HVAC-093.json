@@ -25,7 +25,7 @@
    "tc_title": "Idle mode does not change how HVAC pop-ups display",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "HVACP10.) When head unit is in simulated off/idle mode HVAC popups should display as they normally would when idle mode is not applied.\n\n(put the head unit into simulated off/idle mode and change the fan speed again)",
+   "test_item": "HVACP10.) When head unit is in simulated off/idle mode HVAC popups should display as they normally would when idle mode is not applied.\n\n(put the head unit into simulated off/idle mode and change the fan speed again -> The fan pop-up is shown as it was in step 1)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Change the fan speed using the fan speed hard control with idle mode not applied and read the fan pop-up\n2. Put the head unit into simulated off/idle mode and change the fan speed again",

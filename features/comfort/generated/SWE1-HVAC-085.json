@@ -25,7 +25,7 @@
    "tc_title": "HVAC pop-ups stay hidden while the RVC screen is active",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "HVACP2.) HVAC pop-ups are not displayed while RVC screen is active.\n\n(change the fan speed using the fan speed hard control)",
+   "test_item": "HVACP2.) HVAC pop-ups are not displayed while RVC screen is active.\n\n(change the fan speed using the fan speed hard control -> No HVAC pop-up is shown)",
    "pre_conditions": "1. [test-setup] The head unit is on and the climate system is on\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Open the RVC screen\n2. Change the fan speed using the fan speed hard control",

@@ -25,7 +25,7 @@
    "tc_title": "Driver and passenger centric pop-ups are shown",
    "test_group": "Comfort",
    "test_set": "Climate Popups",
-   "test_item": "HVACP14.) For vehicles with dual zone climate versions with dual airflow modes on 8.4\", 10.1\" Landscape, 10.25\" and 12.3\" radios, there will be driver and passenger centric popups.\n\n(For vehicles with dual zone climate versions with dual airflow modes on 8.4\", 10.1\" Landscape, 10.25\" and 12.3\" radios — the vehicle under test is such a vehicle; trigger a climate popup from the passenger side control)",
+   "test_item": "HVACP14.) For vehicles with dual zone climate versions with dual airflow modes on 8.4\", 10.1\" Landscape, 10.25\" and 12.3\" radios, there will be driver and passenger centric popups.\n\n(trigger a climate popup from the passenger side control -> A passenger centric popup is displayed)",
    "pre_conditions": "1. [spec-verbatim] For vehicles with dual zone climate versions with dual airflow modes on 8.4\", 10.1\" Landscape, 10.25\" and 12.3\" radios — the vehicle under test is such a vehicle (14.14)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
    "test_procedure": "1. Trigger a climate popup from the driver side control\n2. Trigger a climate popup from the passenger side control",

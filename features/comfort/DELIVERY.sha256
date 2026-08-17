@@ -1155,6 +1155,7 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
 # 輸出
 97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemfmt.xlsx
+#   archived : output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemfmt.xlsx  （hash 與內容未變，見文末「歸檔後之可驗路徑」）
 
 # ENTRY 031 — 2026-08-17 — **交付（第二版）**：I/J 兩欄改版之工作簿與交付說明
 #
@@ -1219,6 +1220,90 @@ c37e572f63250bc144e65ed86b57bca3cc4ca48bbf333295c4d21cf016588b75  output/FM-WI-F
 #     其與該檔之差異即上列 J／N 兩欄，已逐欄記於此。
 #
 #   未做 : 未寫、未複製、未移除任何檔案；未改 ENTRY 001–031；git 未執行。
+
+# ENTRY 033 — 2026-08-17 — 第二十三次寫回：test_item 下半改為「觸發 → 觀察點」
+#
+#   type : produced
+#   來源 : ENTRY 022 之擴充後母本（6d53056e559bd0c1…）
+#   內容 : row 10–443，共 **434 列**（僅 I 欄之下半改動）
+#
+#   **起因**：Pei 指出「有好多 () 內容超級長」。實測證實，且其毛病有三：
+#     下半長度中位 97、**最長 356**、>250 字元者 12 條；
+#     (a) 同一句配置被寫兩次（`-425` 之 Comfort features 出現兩遍）
+#     (b) 理由子句一併抄入（`…, which is absent on some soft top vehicles`）
+#     (c) **根本上抄錯了東西** —— 它把 J 欄之 pre_conditions 複述一遍，
+#         而 J 欄就在旁邊。95 §2 要的是「這一條驗什麼」，
+#         不是「這一條的前提是什麼」。
+#
+#   **改法**：下半改為「**做了什麼 → 預期看到什麼**」（末步之觸發 → 末項之 ER），
+#     配置條件不再複述（其位置在 J 欄）。
+#
+#   實測之改善:
+#     長度      中位 97 → **95**；最長 **356 → 223**；>200 字元者 12 → **2**
+#     可分辨性  拆分列中下半相同者 **11 → 0**
+#     相異之下半 353 → **393 / 434**
+#
+#   兩類例外，逐條具名:
+#     **4 條 marker 列**（`-010`／`-012`／`-081`／`-383`，L／M 刻意留白）
+#       其 procedure 與 ER 皆空，合成無素材。改寫其**為何無測項**：
+#       非 HMI 者一式、委派他文件者一式。**下半不可空** ——
+#       空的話該格只剩一段條文，讀者無從知道這一列為何沒有步驟。
+#     **2 條手寫**（`-192`／`-410`，`103-02` 之逾時與重計）：
+#       **其分別在步驟之中段而非末步**，而合成器只讀末步 ——
+#       這是它的界線，不是它的錯。
+#
+#   驗證 : 前置 gate 6 項全 PASS；lint **57 / 57 PASS across 434 TCs**；
+#          §3.3 assertion **15 項全數 PASS**
+#
+#   狀態 : **未經 Excel 確認；未交付。**
+#          **注意**：Pei 手上之 `…_Comfort_20260817.xlsx`（ENTRY 032）另有
+#          J 欄去節次括號、N 欄去 `SYS1_` 前綴之編修，**本檔不含該二項** ——
+#          兩者之併合由 Pei 決定，本層不代擬。
+#
+#   未做 : 不複製至客戶交付路徑；ENTRY 001–032 之內容未變動；git 未執行。
+#
+# 輸入基準（ENTRY 022 之擴充後母本）
+6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
+# 輸出
+2f87c5e854b490a0c8f28b5a4f53d7476d80177e93cade22ef9c7a351aa14c36  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemdef.xlsx
+#   archived : output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemdef.xlsx  （hash 與內容未變，見文末「歸檔後之可驗路徑」）
+
+# ENTRY 034 — 2026-08-17 — 第二十四次寫回：併入 Pei 之編修（J／N 兩欄）
+#
+#   type : produced
+#   來源 : ENTRY 022 之擴充後母本（6d53056e559bd0c1…）
+#   內容 : row 10–443，共 **434 列**
+#
+#   **本輪併入 Pei 於 ENTRY 032 所作之三項編修**（實測自其檔案得出，非其口述）:
+#     J 欄 — 連**節次括號**一併去除（94 §2.1 曾裁「保留」，其編修不保留）
+#     N 欄 — Comfort stem **只寫一次**，其節次以「、」相連；
+#            並去 `SYS1_` 前綴（Comfort stem 與 CFTS043 皆然）
+#            → N 欄最長由 600 字元降為 **165**
+#   三項皆實作於**寫入路徑**（`write_back.render`），**JSON 不動** ——
+#   理由同 source class：內部依據與外部呈現分離，兩者皆存在。
+#
+#   **與 ENTRY 032（Pei 之檔）逐格比對：14 欄中 13 欄完全相同，
+#   僅 I 欄 434 列相異** —— 該相異即本輪之改良（test_item 下半改為
+#   「觸發 → 觀察點」，ENTRY 033），非未併入之編修。
+#
+#   N 欄之影響須明講 : `specification_reference` 為 traceability 之字串比對
+#     對象，工作簿內之 stem 自此與 R-C1 所定之基線檔名**差一個前綴**，
+#     且同節次不再逐項重複全名。**JSON 內仍為全名**，`spec-ref-stem` 驗的是
+#     JSON，故未失效。新增 assertion「**N 欄之節次一個不少**」——
+#     縮寫之風險是掉字，那道 assertion 就是問這件事（434 格，0 掉字）。
+#
+#   驗證 : 前置 gate 6 項全 PASS；lint **57 / 57 PASS across 434 TCs**；
+#          §3.3 assertion **16 項全數 PASS**（新增 N 欄節次不掉字一項）
+#
+#   狀態 : **未經 Excel 確認；未交付。** 本檔為「Pei 之編修 ＋ 本層之 I 欄改良」
+#          之併合結果，可直接取代 ENTRY 032 之檔。
+#
+#   未做 : 不複製至客戶交付路徑；ENTRY 001–033 之內容未變動；git 未執行。
+#
+# 輸入基準（ENTRY 022 之擴充後母本）
+6d53056e559bd0c13d26d38f16754536ede0230a5ce69c8596cce8e8b28b9d4c  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_prepared_ext.xlsx
+# 輸出
+25fbfc7a84824df2d3c15728994cfdf89d756f7c0999e910747d911c7ed681f1  output/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_merged.xlsx
 
 # ============================================================
 # 已知不存在（下放包 83 §2，2026-08-17）
@@ -1290,3 +1375,7 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 8d17cecae6ccf9c522b0427d273c200d5a45e05c4b2e7da68c7b73917954e73f  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816.xlsx
 
 0366315926ed9eef016dac9d80112cb785316eff7de0fc876e2b2a252bb02ab7  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260816_extdocs.xlsx
+
+97e469fee8e4d18b805cca6453aaba88508d4c9b800a183218ec74344b24aacb  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemfmt.xlsx
+
+2f87c5e854b490a0c8f28b5a4f53d7476d80177e93cade22ef9c7a351aa14c36  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemdef.xlsx

@@ -28,7 +28,7 @@
    "tc_title": "Button label reads AUTO ECO",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "EH3.) Button label will read AUTO ECO.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; read the label on the AUTO button)",
+   "test_item": "EH3.) Button label will read AUTO ECO.\n\n(read the label on the AUTO button -> The button label reads AUTO ECO)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until the AUTO ECO mode is active\n2. Read the label on the AUTO button",

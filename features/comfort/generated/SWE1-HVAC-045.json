@@ -30,7 +30,7 @@
    "tc_title": "AUTO has three states on BEV vehicles",
    "test_group": "Comfort",
    "test_set": "ECO HVAC",
-   "test_item": "EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.\n\n(The vehicle is an EV vehicle, on which ECO HVAC is used; press the AUTO button)",
+   "test_item": "EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.\n\n(press the AUTO button -> The AUTO state is AUTO ON)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EV vehicle, on which ECO HVAC is used (10.1)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)",
    "input_test_data": "NA",
    "test_procedure": "1. Press the AUTO button until AUTO is off\n2. Press the AUTO button\n3. Press the AUTO button",

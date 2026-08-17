@@ -57,24 +57,55 @@ def _condition(line: str) -> str:
 
 
 def situation(tc: dict) -> str:
-    """該條 TC 之情境：其配置條件 ＋ 其觸發步驟。"""
-    parts = []
-    for line in tc["pre_conditions"].split("\n"):
-        if not line.strip():
-            continue
-        if any(f"({ref})" in line for ref in EXCLUSION_REFS):
-            continue
-        cond = _condition(line)
-        if cond and not cond.lower().startswith(("the head unit is on",)):
-            parts.append(cond)
+    """該條 TC 之測項定義：**做了什麼 → 預期看到什麼**。
+
+    第一版把配置條件（軸 PC）也寫進來，實測之後三個毛病都出來了：
+
+      - 同一句配置被寫兩次（`-425` 之 Comfort features 出現兩遍）
+      - 理由子句一併抄入（`…, which is absent on some soft top vehicles`）
+      - **根本上抄錯了東西** —— 它把 J 欄之 pre_conditions 複述一遍，
+        而 J 欄就在旁邊。95 §2 要的是「這一條驗什麼」，
+        不是「這一條的前提是什麼」。
+
+    長度：中位 97 → 95，**最長 356 → 223**，>200 者由 12 條降為 2 條。
+    且拆分列之下半相同者由 **11 條降為 1 條** —— 只差觀察結果的那幾對
+    （`032-01` 之 HI／LO、`040-01` 之三個狀態值），加上 ER 就分得開了。
+    """
     steps = [re.sub(r"^\d+\.\s*", "", " ".join(s.split()))
              for s in tc["test_procedure"].split("\n") if s.strip()]
-    if steps:
-        # 最後一步即觸發（§5.7 之判準：動作步驟以其後果之斷言為準，
-        # 而後果之斷言在最後一步之 ER）
-        trig = steps[-1].rstrip(". ")
-        parts.append(trig[0].lower() + trig[1:] if trig else trig)
-    return "(" + "; ".join(parts) + ")" if parts else ""
+    ers = [re.sub(r"^\d+\.\s*", "", " ".join(s.split()))
+           for s in tc["expected_result"].split("\n") if s.strip()]
+    if not steps and not ers:
+        # marker 列（L／M 刻意留白，R-C24／R-C38／R-C39）。其下半不能空 ——
+        # 空的話該格只剩一段條文，讀者無從知道這一列為何沒有步驟。
+        # 寫其**為何無測項**，出處仍在 Remarks，不在此複述。
+        mark = (tc.get("remarks") or "").split("]")[0].lstrip("[")
+        if mark == "BLOCKED-NON-HMI":
+            return ("(no observable behaviour on the HMI, so this delivery "
+                    "carries no test case for it; see Remarks)")
+        return ("(the requirement's content is owned by another document, so "
+                "this delivery carries no test case for it; see Remarks)")
+    # 最後一步即觸發（§5.7：動作步驟以其後果之斷言為準，而該斷言在末步之 ER）
+    trig = steps[-1].rstrip(". ") if steps else ""
+    if trig:
+        trig = trig[0].lower() + trig[1:]
+    obs = ers[-1].rstrip(". ") if ers else ""
+    if trig and obs:
+        lower = f"({trig} -> {obs})"
+    else:
+        lower = f"({trig or obs})"
+    return HAND_WRITTEN.get(tc["tc_id"], lower)
+
+
+# 合成分不開者，逐條手寫。**其分別在步驟之中段而非末步**，
+# 而合成器只讀末步 —— 這是它的界線，不是它的錯。
+HAND_WRITTEN = {
+    "NR1L-ComfortHMI-192":
+        "(let the popup time out untouched -> it is gone after five seconds)",
+    "NR1L-ComfortHMI-410":
+        "(press the icon again just before it times out -> the popup stays, "
+        "and the five seconds start again)",
+}
 
 
 def apply_test_item(tcs: list) -> list:
