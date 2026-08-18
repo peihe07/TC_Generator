@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-134",
+ "outline": "14.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVALEX1.) When Valet Mode is active the welcome popup will indicate the vehicle is in Valet mode, with a button to deactivate it. Pressing the Valet Profile icon in the status bar or pressing on “Exit Valet Mode” button on the Valet Mode welcome popup will initiate the Exit Valet Mode process above.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVALEX1.) When Valet Mode is active the welcome popup will indicate the vehicle is in Valet mode, with a button to deactivate it. Pressing the Valet Profile icon in the status bar or pressing on “Exit Valet Mode” button on the Valet Mode welcome popup will initiate the Exit Valet Mode process above. (image: %E5%9C%96%E7%89%87_712088772.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：14.1（PVALEX1）—— Valet Mode 中之 welcome popup 須指出車輛處於 Valet Mode 並提供停用按鈕，按下後進入退出流程。關鍵情境條件：ER3 之「退出流程」以 12.3.1 之 PIN 輸入為其可觀察形態；**該指涉之複位為本輪之查證結果**（R-U51 之判讀首次受檢）。為什麼這樣切：狀態列圖示亦可觸發同一流程（條文並列），本 TC 取 popup 之按鈕一側；圖示側之觸發屬 12.6 之 leaf。",
+ "keywords": [
+  "welcome popup",
+  "Valet Mode",
+  "Exit Valet Mode",
+  "deactivate"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-134",
+   "tc_id": "NR1L-UserProfiles-072",
+   "tc_title": "Valet welcome popup indicates Valet Mode with an exit button",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Valet welcome popup indicates Valet Mode with an exit button",
+   "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Trigger the welcome popup\n2. Read the popup and check its Valet indication and button\n3. Press the “Exit Valet Mode” button and check that the PIN entry for deactivation is displayed",
+   "expected_result": "1. The welcome popup is displayed\n2. The popup indicates that the vehicle is in Valet mode and shows a button to deactivate it\n3. The 4 digit PIN entry for deactivating Valet Mode is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_14.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.1",
+   "priority": "P1",
+   "priority_basis": "Valet welcome popup 之內容與退出入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之「the Exit Valet Mode process **above**」其指涉對象**不在 ch14**（ch14 僅 14.1／14.2，本節即首條）—— 複位後為 12.3.1（同一 PIN 退出）與 12.6（停用詢問），故併列該二節。見上繳 19 §4",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

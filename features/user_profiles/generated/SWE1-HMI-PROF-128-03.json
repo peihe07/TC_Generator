@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-128-03",
+ "outline": "12.9",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL9.) For activation and deactivation, the user will have 10 attempts to type a 4 digit PIN before system cancels the deactivation. The user can try again in 30min.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "After the 30-minute lockout period has fully elapsed, the system must automatically lift the restriction, allowing the user to try entering the PIN again. The attempt counter must be reset.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.9（PVAL9）末句 —— 30 分鐘後可再試。關鍵情境條件：以 29 分（仍鎖定）與 30 分（可再試）構成邊界前後（§5.6）。**來源標示（J-4）**：ER2「29 分鐘時仍不受理」之權威為 **§5.6 之 BVA 界前基準線**，非條文 —— 12.9 只寫「30 分鐘後可再試」。為什麼這樣切：鎖定之生效屬 128-02，本條驗其屆滿與計數重置（ER4 以正確 PIN 成功退出證明計數已重置）。",
+ "keywords": [
+  "lockout",
+  "30 minutes",
+  "elapsed",
+  "PIN",
+  "restored"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-128-03",
+   "tc_id": "NR1L-UserProfiles-066",
+   "tc_title": "PIN entry restored after the 30-minute lockout elapses",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "PIN entry restored after the 30-minute lockout elapses",
+   "pre_conditions": "1. Valet Mode is active and a 4-digit PIN is set\n2. The vehicle is stationary and can remain powered for the duration of the test",
+   "input_test_data": "Elapsed time after the tenth incorrect attempt: 29 min, 30 min",
+   "test_procedure": "1. Enter an incorrect 4-digit PIN ten times to trigger the lockout\n2. Attempt a PIN entry after 29 minutes\n3. Attempt a PIN entry after 30 minutes\n4. Enter the correct PIN and check that Valet Mode is no longer active",
+   "expected_result": "1. The lockout is in effect after the tenth incorrect attempt\n2. The PIN entry is not accepted at 29 minutes\n3. The PIN entry is accepted at 30 minutes\n4. Valet Mode is no longer active",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.9",
+   "priority": "P1",
+   "priority_basis": "鎖定屆滿後之可用性回復",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**執行成本：本 TC 需 30 分鐘等待**（J-8：照寫、不縮時、不刪除）。縮時屬測試實作之手段（bench 上如何撥時鐘），非 TC 內容之決定；排程時須計入。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-125-01",
+ "outline": "12.8",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Projection mode and native HFP will be disabled. VR will not be active and the following areas will be locked out: Home Screen, Apps Drawer, Phone, Vehicle category, Navigation. It will not be possible to interact with the Status Bar with the exception of the Valet Profile and HVAC icons. In Media, the Device Manager will be locked out. All non interactable items will be greyed out.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When Valet Mode is active, only the HVAC (Climate) and Media sections shall remain accessible to the user. However, as an explicit exception within the Media section, the \"Device Manager\" feature must be completely locked out.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.8（PVAL8）之 Media 例外 —— Media 區可用，惟其中之 Device Manager 被鎖住。關鍵情境條件：ER1 併驗 Media 本身可用 —— **那是本條之對照組**（§7）：若整個 Media 都打不開，Device Manager 打不開就沒有意義。為什麼這樣切：037 為 12.8 切出四個 leaf，本條依其 description 之單位（Device Manager 之例外）生成；**該 leaf 之標題與描述錯位，見 A-UP11**。",
+ "keywords": [
+  "Device Manager",
+  "Media",
+  "locked out",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-125-01",
+   "tc_id": "NR1L-UserProfiles-057",
+   "tc_title": "Device Manager locked out inside Media in Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Device Manager locked out inside Media in Valet Mode",
+   "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Media section\n2. Select Device Manager\n3. Read the screen and check that Device Manager is locked out",
+   "expected_result": "1. The Media section is available in Valet Mode\n2. The Device Manager entry is greyed out\n3. Device Manager cannot be opened",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8",
+   "priority": "P1",
+   "priority_basis": "Valet 下之可用範圍限制（Device Manager）",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

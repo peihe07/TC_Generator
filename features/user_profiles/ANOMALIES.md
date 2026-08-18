@@ -362,3 +362,40 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-UPnn]`.
 **再犯之防線**：**R-G12**（git commit 一律帶 pathspec），已升全域並寫入
 `docs/fw036/FEATURE_ONBOARDING.md`。**本項不因該防線改記 RESOLVED** ——
 防線防的是下一次，不是這一次。
+
+---
+
+## A-UP11 — 037 之 12.8／12.8.1 leaf **標題與描述錯位**（PENDING，執行層新開）
+
+**發現於**：19 輪第二批生成時（ch12–14）。
+
+**事實**：037 對 `12.8`（PVAL8）切四個 leaf、對 `12.8.1`（PVAL8.1）切三個，
+其 **Requirement Title 與 Description 不對應**：
+
+| req_id | 037 標題 | 037 描述之實際內容 | 相符 |
+|---|---|---|---|
+| `125-01` | Device Manager Disabled in Valet Mode | HVAC／Media 可用；Media 內 Device Manager 鎖住 | ✓ |
+| `125-02` | Disable Projection, HFP, and VR | Projection／HFP 停用、VR 不啟動 | ✓ |
+| `125-03` | **Glove Box Lock Prompt on Valet Mode Entry** | **狀態列互動限制**（僅 Valet Profile 與 HVAC 例外）| **✗** |
+| `125-04` | **Glove Box Lock Button Greyed Out** | **所有不可互動項變灰** | **✗** |
+| `126-01` | **Lock Out Specific Menu Areas** | **PU0832 手套箱鎖之進入提示** | **✗** |
+| `126-02` | **Status Bar Restrictions and Grey Out** | **手套箱鎖按鈕變灰** | **✗** |
+| `126-03` | Electronic Glove Box Lock Logic | 按下已變灰之手套箱鎖按鈕 → PU0833 | 部分 |
+
+**形狀**：標題相對於描述**整體位移** —— `125-03`／`125-04` 之標題內容
+落在 `126-01`／`126-02` 之描述上，反之亦然。
+
+**判定依據**：以 spec `pdf_text` 複核，**Description 與條文對齊，Title 不對齊**。
+`12.8`（PVAL8）之條文依序為：HVAC/Media 可用 → Projection/HFP/VR 停用 →
+狀態列互動限制 → Media 內 Device Manager 鎖住 → 全部不可互動項變灰；
+`12.8.1`（PVAL8.1）為：啟用手套箱鎖 → PU0832 提示 → 按鈕變灰 → PU0833。
+
+**本輪之處置**：**依 Description 生成**（§8.2「037 為單位權威」，
+而**單位之內容以其 Description 為準** —— 標題不是內容）。
+七條 TC 之標題由執行層依描述另擬，037 標題僅留作索引。
+
+**未做**：未改 037（**素材不得改**）；未推及其他章節之 leaf ——
+**本輪只複核了 12.8／12.8.1 七條**，是否另有錯位者未全量掃描。
+
+**建議**：(1) 全量掃描 037 之 title 與 description 是否對齊；
+(2) 該落差是否須回報上游（同 DR #3 之形態）。**屬 Pei 之裁定。**

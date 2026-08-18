@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-114",
+ "outline": "12.1.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL1.1) Status bar will always need to return to the default status bar setup when Valet Mode is active so the Profile icon is always visible. Reference Core HMI Logic and Flow for Status Bar default specifications.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL1.1) Status bar will always need to return to the default status bar setup when Valet Mode is active so the Profile icon is always visible. Reference Core HMI Logic and Flow for Status Bar default specifications.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.1.1（PVAL1.1）—— Valet Mode 啟用時狀態列須回到預設版面，使 Profile 圖示恆可見。關鍵情境條件：pre-condition 要求狀態列先偏離預設，否則「回到預設」與「本來就是預設」無從分辨。為什麼這樣切：預設版面之細節條文委派 Core HMI Logic and Flow，本 TC 只驗其回到預設且 Profile 圖示可見（§8.4.1 不代擬他份文件之內容）。",
+ "keywords": [
+  "status bar",
+  "default",
+  "Profile icon",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-114",
+   "tc_id": "NR1L-UserProfiles-046",
+   "tc_title": "Status bar returns to its default setup in Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Status bar returns to its default setup in Valet Mode",
+   "pre_conditions": "1. The status bar is configured away from its default setup\n2. Valet Mode is not active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the current status bar setup\n2. Activate Valet Mode\n3. Read the status bar and check that it shows the default setup with the Profile icon visible",
+   "expected_result": "1. The current status bar setup is recorded\n2. Valet Mode is active\n3. The status bar shows the default setup and the Profile icon is visible",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.1.1",
+   "priority": "P2",
+   "priority_basis": "狀態列之預設版面；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

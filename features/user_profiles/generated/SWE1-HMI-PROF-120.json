@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-120",
+ "outline": "12.3.3",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL3.3) The system should return to previous Profile after exiting/deactivating Valet Mode",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL3.3) The system should return to previous Profile after exiting/deactivating Valet Mode",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.3.3（PVAL3.3）—— 退出 Valet Mode 後回到先前之 profile。關鍵情境條件：以步驟 1 之記錄為基準線（§5.6）。為什麼這樣切：Valet Mode 期間之偏好處置屬 12.1，本條只驗退出後之 profile 接續。",
+ "keywords": [
+  "Valet Mode",
+  "exit",
+  "previous Profile",
+  "restore"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-120",
+   "tc_id": "NR1L-UserProfiles-052",
+   "tc_title": "Previous Profile restored after Valet Mode is exited",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Previous Profile restored after Valet Mode is exited",
+   "pre_conditions": "1. Driver Profile A is active and Valet Mode is not active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the active Profile\n2. Activate Valet Mode\n3. Deactivate Valet Mode\n4. Read the active Profile and check that it matches the one recorded in step 1",
+   "expected_result": "1. Driver Profile A is recorded as active\n2. Valet Mode is active\n3. Valet Mode is deactivated\n4. Driver Profile A is active again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.3",
+   "priority": "P1",
+   "priority_basis": "退出後之 profile 接續",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

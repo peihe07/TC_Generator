@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-133",
+ "outline": "13.3",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVALSPK3.) If the SPAAK user presses the Profiles icon with the lock, popup PU1573 will display.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVALSPK3.) If the SPAAK user presses the Profiles icon with the lock, popup PU1573 will display.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：13.3（PVALSPK3）—— SPAAK 使用者按下帶鎖之 Profiles 圖示時顯示 PU1573。關鍵情境條件：帶鎖之圖示即 12.5 所述之呈現，本條以其為操作對象。為什麼這樣切：非 SPAAK 情境下按同一圖示之行為屬 12.6（PU 不同），兩者之 pre-condition 互斥。刻意略過：PU1573 之內文未載於 spec，本 TC 只驗其顯示（同 R-U27 之處置）。",
+ "keywords": [
+  "SPAAK",
+  "PU1573",
+  "Profiles icon",
+  "lock"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-133",
+   "tc_id": "NR1L-UserProfiles-071",
+   "tc_title": "PU1573 shown when the SPAAK user presses the locked icon",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "PU1573 shown when the SPAAK user presses the locked icon",
+   "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the Profiles icon with the lock in the status bar\n2. Read the screen and check that PU1573 is displayed",
+   "expected_result": "1. The Profiles icon with the lock is pressed\n2. PU1573 is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.3",
+   "priority": "P2",
+   "priority_basis": "SPAAK 下按 Profile 圖示之提示（PU1573）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

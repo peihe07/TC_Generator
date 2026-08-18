@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-125-02",
+ "outline": "12.8",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Projection mode and native HFP will be disabled. VR will not be active and the following areas will be locked out: Home Screen, Apps Drawer, Phone, Vehicle category, Navigation. It will not be possible to interact with the Status Bar with the exception of the Valet Profile and HVAC icons. In Media, the Device Manager will be locked out. All non interactable items will be greyed out.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "During Valet Mode, Projection mode (e.g., CarPlay/Android Auto) and native HFP (Hands-Free Profile / Bluetooth Calling) must be disabled. Furthermore, VR (Voice Recognition) must not be active, and the following specific HMI areas must be strictly locked out: Home Screen, Apps Drawer, Phone, Vehicle category, and Navigation.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.8（PVAL8）—— Valet Mode 中 Projection、native HFP 停用，VR 不啟動。關鍵情境條件：三者為條文並列之停用項，同一條件下之三個結果，依 §5.7 併為一條 TC 之三條 ER。為什麼這樣切：**ER4 為 §7 之對照** —— 以「Media 仍可用」證明本條測到的是選擇性停用，而非整機不可用。**未另切負向 TC**：對照置於同一 TC（§5.6），理由見上繳 19 §6。",
+ "keywords": [
+  "Projection",
+  "HFP",
+  "VR",
+  "disabled",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-125-02",
+   "tc_id": "NR1L-UserProfiles-058",
+   "tc_title": "Projection, native HFP and VR disabled in Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Projection, native HFP and VR disabled in Valet Mode",
+   "pre_conditions": "1. A projection-capable device is connected to the head unit\n2. Valet Mode is active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Attempt to start projection mode from the head unit\n2. Attempt to place a call over native HFP\n3. Press the voice recognition control\n4. Open the Media section and check that it is available",
+   "expected_result": "1. Projection mode is disabled and does not start\n2. Native HFP is disabled and no call is placed\n3. Voice recognition is not active\n4. The Media section is available",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8",
+   "priority": "P1",
+   "priority_basis": "Valet 下之功能停用（Projection／HFP／VR）",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

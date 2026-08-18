@@ -38,13 +38,19 @@ OUT = FEATURE / "generated"
 SAMPLE_TSV = FEATURE / "data" / "batch01_sample.tsv"
 TC_START = 17
 
+# J-10（19 包）：每筆之第二欄為 `provides` —— 該節提供之字面值，G17 驗其確在 TC 內。
 REF_EXTRA = {
     # 9.3.1 之受限項目清單出自 9.3（EDPR3），該清單即本 TC 之受測對象
-    "SWE1-HMI-PROF-090": ["9.3"],
+    # provides 由 `cannot be selected` 改為 `Delete Profile`：
+    # 本 TC 之步驟 1 選的正是 9.3 清單裡的那一項，而 ER 寫的是
+    # 「selection is not accepted」—— **登記時寫的字面值不是 TC 裡的字面值**，
+    # G17 之 provides 驗證抓出此事（J-10）。
+    "SWE1-HMI-PROF-090": [("9.3", "Delete Profile")],
     # 9.3.2 之 "the message specified above" 指 9.3.1（同 pilot 之 091-01）
-    "SWE1-HMI-PROF-091-02": ["9.3.1"],
+    "SWE1-HMI-PROF-091-02": [("9.3.1",
+                              "Function not available while vehicle in Motion.")],
     # 10.3 之「show the same page as from the Edit Profiles tab」指 10.2 之頁面
-    "SWE1-HMI-PROF-107": ["10.2"],
+    "SWE1-HMI-PROF-107": [("10.2", "linked info page")],
 }
 
 # 037 先驗 → R-U5 rubric（**逐條具名**；D-UP16-01 之 tie-break 於下方註明）
@@ -167,13 +173,23 @@ TCS = {
                   "A Driver Profile is active"),
         data="NA",
         proc=steps("Open the “Edit Profile” tab",
-                   "Read the option list and check that no Connected "
-                   "Account button or Connected Profile info is shown"),
+                   "Read the option list and check that no account button "
+                   "or Connected Profile info is shown"),
+        # J-5（18 包）：ER 之 label 改回**本節之逐字**。
+        # 原寫 `Connected Account`，那是 R1 High 之覆寫形式，而該覆寫在版面上
+        # 掛於 Table EDPR1 之一列（列級）；9.2 自己的字是
+        # `Stellantis Connected Account`。**用別節的變體形式寫本節的 label，
+        # 既非逐字也未宣告變體。**
         er=steps("The “Edit Profile” tab is displayed",
-                 "No Connected Profile options or info and no Connected "
-                 "Account button are shown"),
-        remarks="R1 High：label 為 Connected Account（spec 本節寫 "
-                "Stellantis Connected Account）—— R-U35 (c)",
+                 "No Connected Profile options or info and no Stellantis "
+                 "Connected Account button are shown"),
+        # J-7（19 包）：維持逐字，並註明兩形式指同一按鈕。
+        # 本 TC 驗的是**缺席**，不是 label 內容 ——
+        # 把 label 形式當判定條件才會產生假失敗。
+        remarks="label 逐字取自 9.2。R1 High 車上該按鈕之 label 可能顯示為 "
+                "Connected Account；**兩者指同一個按鈕**，"
+                "本 TC 驗其**不顯示**，label 形式不影響判定（J-7）。"
+                "該覆寫是否及於本節已列 RD 查詢（併 DR #3 送出）",
         reasoning=(
             "驗證目標：9.2（EDPR2）—— 無 <Brand> app 之區域不顯示 Connected "
             "Profile 之選項／資訊與 Connected Account 按鈕。"
@@ -239,7 +255,13 @@ TCS = {
     "SWE1-HMI-PROF-091-02": dict(
         title="Bonk tone and message accompany the interruption in motion",
         design=STATE,
-        pre=steps("The vehicle is an R1 High variant",
+        # J-5（18 包）：**原本列了「R1 High」前提，本輪移除。**
+        # 9.3.2 之 `****R1 High Only` 覆寫在 PDF p14 上掛於 Table EDPR1 之
+        # `****“ Stellantis Account”` **那一列**（列級），
+        # 而本 TC 之 ER 根本不含任何帳號 label —— 它驗的是 bonk 與訊息。
+        # 把列級覆寫當成整條 TC 之條件，等於**無故把本 TC 限縮到 R1 High 車上**。
+        pre=steps("A Driver Profile is active and the Edit Profile tab is "
+                  "available",
                   "The vehicle is stationary on a test track and can be "
                   "brought into motion"),
         data="NA",
@@ -252,10 +274,10 @@ TCS = {
                  "The vehicle is in motion and the task is interrupted",
                  "A bonk tone is played and “Function not available "
                  "while vehicle in Motion.” is displayed"),
-        remarks="R1 High：label 依 9.3.2 之變體覆寫採 Connected Account"
-                "（R-U35 (c)）。sibling 軸：本條驗**回饋**，"
-                "091-01 驗**返回前一頁** —— 同一觸發之兩個結果，"
-                "分屬兩個 037 leaf（§8.2.1）",
+        remarks="sibling 軸：本條驗**回饋**，091-01 驗**返回前一頁** —— "
+                "同一觸發之兩個結果，分屬兩個 037 leaf（§8.2.1）。"
+                "9.3.2 之變體覆寫為**列級**（Table EDPR1 之該列），"
+                "本 TC 不含帳號 label，故不設變體前提",
         reasoning=(
             "驗證目標：9.3.2（EDPR3.2）之回饋部分 —— 進行中被中斷時播 bonk "
             "並顯示訊息。"
@@ -392,7 +414,10 @@ TCS = {
             "關鍵情境條件：pre-condition 明訂兩個 profile 各有連結，"
             "否則「互換」無從成立 —— 這也是本條與 9.5.2 之唯一分野。"
             "為什麼這樣切：前置未連結之情形由 9.5.2 承擔，"
-            "兩者之 pre-condition 互斥，不會重複覆蓋。"),
+            "兩者之 pre-condition 互斥，不會重複覆蓋。"
+            "**來源標示（J-12）**：`memory seat 1`／`2` 之編號為**測試設置** ——"
+            "條文只說 `memory seat position`，編號是為使本 TC 可執行而設，"
+            "**不承載驗證**（與 R-U21 指定之觀察點不同類）。"),
         kw=["memory seat", "swap", "previously linked", "two Profiles"],
     ),
 
@@ -419,7 +444,8 @@ TCS = {
             "關鍵情境條件：pre-condition 明訂 Profile A 無連結 ——"
             "此即與 9.5.1 之分野；兩條之其餘設置刻意保持相同，"
             "使失敗時可歸因於前置狀態而非別的差異。"
-            "為什麼這樣切：037 已為兩個前置狀態各切一 leaf。"),
+            "為什麼這樣切：037 已為兩個前置狀態各切一 leaf。"
+            "**來源標示（J-12）**：`memory seat 2` 之編號為測試設置，非 spec 之值。"),
         kw=["memory seat", "unlink", "not previously linked"],
     ),
 
@@ -445,6 +471,8 @@ TCS = {
             "之前不可用。"
             "關鍵情境條件：以 2 vs 2（相等，仍不可用）與 3 vs 2（超過，可用）"
             "構成邊界前後（§5.6），故取邊界值分析；"
+            "**來源標示（J-12）**：座椅數 2 與 profile 數 2→3 為**測試設置** ——"
+            "條文只給關係（profile 數超過座椅數），未給具體數字；"
             "條文之「exceeds」為嚴格大於，相等時仍不可用即為本 TC 之界前基準線。"
             "為什麼這樣切：座椅連結之交換規則屬 9.5–9.5.2，本 leaf 只管該選項之可用性。"),
         kw=["none", "greyed out", "memory seats", "Profile count"],
@@ -473,6 +501,7 @@ TCS = {
             "關鍵情境條件：pre-condition 令現用者為 A 而該座椅連 B，"
             "否則 PU0588 之觸發條件不成立。"
             "為什麼這樣切：兩項為同一觸發（按儲存）之兩個結果，依 §5.7 併為一條 TC。"
+            "**來源標示（J-12）**：`memory seat 2` 之編號為測試設置，非 spec 之值。"
             "刻意略過：座椅連結之變更屬 9.5.x，本條之連結關係固定不動。"),
         kw=["memory seat", "save", "PU0588", "linked Profile"],
     ),
@@ -826,7 +855,7 @@ def build() -> list:
         ctx = B.assemble(req_id, rows[req_id])
         spec = TCS[req_id]
         refs = ctx["specification_reference"]
-        for extra in REF_EXTRA.get(req_id, []):
+        for extra, _provides in REF_EXTRA.get(req_id, []):
             refs += f"; {B.SPEC_STEM}_{extra}"
         prio, why = PRIORITY[req_id]
         out.append(_rec(req_id, ctx, spec, refs, prio, why, n))

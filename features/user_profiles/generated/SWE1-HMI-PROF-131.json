@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-131",
+ "outline": "13.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PVALSPK1.) When Valet mode is enabled by SPAAK, no PIN code will be required to enter or exit Valet Mode. For the SPAAK scenario, Valet Mode will automatically activate when it detects a SPAAK key with Valet Mode permissions.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVALSPK1.) When Valet mode is enabled by SPAAK, no PIN code will be required to enter or exit Valet Mode. For the SPAAK scenario, Valet Mode will automatically activate when it detects a SPAAK key with Valet Mode permissions.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：13.1（PVALSPK1）—— SPAAK 啟用之 Valet Mode 不需 PIN，偵測到具 Valet 權限之 SPAAK 鑰匙時自動啟用。關鍵情境條件：ER2 明寫「未要求 PIN」——只驗「已啟用」，一個仍要求 PIN 之實作也會通過。為什麼這樣切：SPAAK 下之退出限制屬 13.2，提示屬 13.3。",
+ "keywords": [
+  "SPAAK",
+  "Valet Mode",
+  "no PIN",
+  "auto activate"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-131",
+   "tc_id": "NR1L-UserProfiles-069",
+   "tc_title": "SPAAK key activates Valet Mode without a PIN",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "SPAAK key activates Valet Mode without a PIN",
+   "pre_conditions": "1. A SPAAK key with Valet Mode permissions is available\n2. Valet Mode is not active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Present the SPAAK key with Valet Mode permissions to the vehicle\n2. Read the screen and check that Valet Mode is active without a PIN entry",
+   "expected_result": "1. The SPAAK key with Valet Mode permissions is detected\n2. Valet Mode is active and no PIN entry was requested",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.1",
+   "priority": "P0",
+   "priority_basis": "SPAAK 之自動啟用（免 PIN）—— Valet 進出",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

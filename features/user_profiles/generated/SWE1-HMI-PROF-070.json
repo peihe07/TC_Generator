@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "NEWPR3.1) After entering username and choosing avatar, the system will save the profile.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：8.4.1（NEWPR3.1）—— 輸入 username 並選定 avatar 後系統儲存該 profile。關鍵情境條件：「已儲存」之可觀察形態取 ignition cycle 後仍列於 Profile List（Service B 群之設定 → key cycle → 讀回，R-U21），不以畫面停留與否推定儲存。為什麼這樣切：setup flow 之前後步驟（Get Started、記憶座椅指派等）屬 ch8 之其他 leaf，本 TC 只驗儲存這一件事。",
+ "reasoning": "驗證目標：8.4.1（NEWPR3.1）—— 輸入 username 並選定 avatar 後系統儲存該 profile。關鍵情境條件：「已儲存」之可觀察形態取 ignition cycle 後仍列於 Profile List，不以畫面停留與否推定儲存。**來源標示（J-4）**：ER3 之 ignition cycle 其權威為 **R-U21**，spec 未提及；ER5 之「列於 Profile List」出自 **5.1.1**（8.4.1 只說系統會儲存），該節已於 17 輪補列於引用欄。為什麼這樣切：setup flow 之前後步驟（Get Started、記憶座椅指派等）屬 ch8 之其他 leaf，本 TC 只驗儲存這一件事。",
  "keywords": [
   "Profile setup",
   "username",

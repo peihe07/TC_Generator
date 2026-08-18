@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：5.2（PRACC8）之上限 —— 五個 Driver Profile 為邊界，達到時 Add New Profile 按鈕與 PRACC7.2 之圖示字串消失並改顯 PU0584。關鍵情境條件：以 4 個為基準線、第 5 個為邊界值，同一 TC 內取前後兩讀（§5.6），故 design method 為邊界值分析。為什麼這樣切：Valet Mode Profile 不計入該五個之內，其存在列為 pre-condition 而非受測項，避免把兩個計數混為一談。刻意略過：刪除既有 profile 後按鈕是否回復，屬 5.2 之其他 leaf。",
+ "reasoning": "驗證目標：5.2（PRACC8）之上限 —— 五個 Driver Profile 為邊界，達到時 Add New Profile 按鈕與 PRACC7.2 之圖示字串消失並改顯 PU0584。關鍵情境條件：以 4 個為基準線、第 5 個為邊界值，同一 TC 內取前後兩讀（§5.6），故 design method 為邊界值分析。**來源標示（J-4）**：ER1「未達上限時按鈕在」之權威為 **§5.6 之 BVA 界前基準線**，非條文 —— 5.2 只寫「達上限時不在」，未寫其反面。為什麼這樣切：Valet Mode Profile 不計入該五個之內，其存在列為 pre-condition 而非受測項，避免把兩個計數混為一談。刻意略過：刪除既有 profile 後按鈕是否回復，屬 5.2 之其他 leaf。",
  "keywords": [
   "Driver Profile",
   "maximum",

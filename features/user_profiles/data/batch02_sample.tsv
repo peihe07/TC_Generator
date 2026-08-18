@@ -1,0 +1,38 @@
+# data/batch02_sample.tsv — 第二批（19 包 J-13 核可）
+#
+# 範圍：framework Layer 3 之 ch12 → ch13 → ch14，**29 leaf**。
+# 批界：本批做完 Valet Mode 這個 Test Set 100% 完成（31 leaf 中 pilot 已 2）。
+#
+# **12.8／12.8.1 之 037 leaf 標題與描述錯位**（見上繳 19 §5）——
+# 本批一律依 **description** 生成（其與條文對齊），標題僅供索引。
+#
+req_id	section	test_set	sub_categorization	priority_prior_037	leaf_title
+SWE1-HMI-PROF-113	12.1	Valet Mode	HMI	High	Valet Mode Preferences Store and Reset Logic
+SWE1-HMI-PROF-114	12.1.1	Valet Mode	HMI	Medium	Restore Default Status Bar in Valet Mode
+SWE1-HMI-PROF-115	12.2	Valet Mode	HMI	High	Activate Valet Mode Only via All Profiles Tab
+SWE1-HMI-PROF-116	12.2.1	Valet Mode	HMI	High	Disable Valet Mode Activation in Motion
+SWE1-HMI-PROF-117	12.3	Valet Mode	HMI	High	4-Digit PIN Required to Activate Valet Mode
+SWE1-HMI-PROF-118	12.3.1	Valet Mode	HMI	High	Same 4-Digit PIN to Deactivate Valet Mode
+SWE1-HMI-PROF-119	12.3.2	Valet Mode	Service	Medium	Disconnecting Battery Resets Valet Mode
+SWE1-HMI-PROF-120	12.3.3	Valet Mode	HMI	High	Return to Previous Profile After Valet Mode Exit
+SWE1-HMI-PROF-121	12.4	Valet Mode	HMI	Low	Press Elsewhere to Cancel Valet PIN Entry
+SWE1-HMI-PROF-122	12.5	Valet Mode	HMI	High	Status Bar Shows Lock Icon for Valet Mode
+SWE1-HMI-PROF-123	12.6	Valet Mode	HMI	Medium	Prompt to Deactivate on Valet Icon Press
+SWE1-HMI-PROF-124	12.7	Valet Mode	Service	High	Seat Buttons Change Pos. but Don't Load Profile in Valet Mode
+SWE1-HMI-PROF-125-01	12.8	Valet Mode	HMI	High	Device Manager Disabled in Valet Mode
+SWE1-HMI-PROF-125-02	12.8	Valet Mode	HMI	High	Disable Projection, HFP, and VR in Valet Mode
+SWE1-HMI-PROF-125-03	12.8	Valet Mode	HMI	High	Glove Box Lock Prompt on Valet Mode Entry
+SWE1-HMI-PROF-125-04	12.8	Valet Mode	HMI	Medium	Glove Box Lock Button Greyed Out in Valet Mode
+SWE1-HMI-PROF-126-01	12.8.1	Valet Mode	HMI	Medium	Lock Out Specific Menu Areas in Valet Mode
+SWE1-HMI-PROF-126-02	12.8.1	Valet Mode	HMI	Medium	Status Bar Restrictions and Grey Out in Valet Mode
+SWE1-HMI-PROF-126-03	12.8.1	Valet Mode	HMI	Medium	Electronic Glove Box Lock Logic in Valet Mode
+SWE1-HMI-PROF-127	12.8.2	Valet Mode	Service	Medium	Restore Glove Box State on Valet Mode Deactivation
+SWE1-HMI-PROF-128-02	12.9	Valet Mode	HMI	High	PIN Entry Blocked During 30-Minute Lockout
+SWE1-HMI-PROF-128-03	12.9	Valet Mode	HMI	High	Restore PIN Entry After 30-Minute Lockout
+SWE1-HMI-PROF-129	12.10	Valet Mode	HMI	Medium	Grey Out Go Button Until 4 Digits & Bonk on Press
+SWE1-HMI-PROF-130	12.10.1	Valet Mode	HMI	Low	Grey Out Numeric Buttons After 4 Digits Entered
+SWE1-HMI-PROF-131	13.1	Valet Mode	Service	High	(SPAAK) Auto-Activate Valet Mode Without PIN
+SWE1-HMI-PROF-132-01	13.2	Valet Mode	HMI	High	(SPAAK) Block All Head Unit Valet Exit Options
+SWE1-HMI-PROF-133	13.3	Valet Mode	HMI	Medium	(SPAAK) PU1573 on Valet Profile Icon Press
+SWE1-HMI-PROF-134	14.1	Valet Mode	HMI	High	Welcome Popup Shows Valet Mode and Deactivate Button
+SWE1-HMI-PROF-135	14.2	Valet Mode	HMI	High	Cannot Deactivate Valet Mode While in Motion

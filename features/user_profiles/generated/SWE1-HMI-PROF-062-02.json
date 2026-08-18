@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "If no other actions are taken, the Welcome Popup (both Default and custom) must automatically clear after exactly 30 seconds.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：7.4（PRWEL4）之三個清除條件中之逾時條件 —— 無其他動作時 Welcome Popup 於 30 秒後清除。關鍵情境條件：條文為「行車中／30 秒／使用者觸碰，三者先到者為準」，故 pre-condition 令車輛靜止、步驟 2 明訂不觸碰，把另外兩個條件排除，使 30 秒確為本次之生效條件。為什麼這樣切：29 秒與 30 秒兩讀構成邊界前後（§5.6），故取邊界值分析；行車中清除與觸碰清除屬 7.4 之其他 leaf，本 TC 不代測。",
+ "reasoning": "驗證目標：7.4（PRWEL4）之三個清除條件中之逾時條件 —— 無其他動作時 Welcome Popup 於 30 秒後清除。關鍵情境條件：條文為「行車中／30 秒／使用者觸碰，三者先到者為準」，故 pre-condition 令車輛靜止、步驟 2 明訂不觸碰，把另外兩個條件排除，使 30 秒確為本次之生效條件。**來源標示（J-4）**：ER2「29 秒時仍在」之權威為 **§5.6 之 BVA 界前基準線**，非條文 —— 7.4 只寫「30 秒後清除」，該句亦可讀為「不遲於 30 秒」，故界前之真值由方法要求而非條文明述。為什麼這樣切：29 秒與 30 秒兩讀構成邊界前後（§5.6），故取邊界值分析；行車中清除與觸碰清除屬 7.4 之其他 leaf，本 TC 不代測。",
  "keywords": [
   "Welcome Popup",
   "30 seconds",

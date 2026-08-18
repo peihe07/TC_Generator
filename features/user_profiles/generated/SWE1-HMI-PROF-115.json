@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-115",
+ "outline": "12.2",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL2.) Valet Mode can only be activated through the button on the All Profiles tab of the Profile section.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL2.) Valet Mode can only be activated through the button on the All Profiles tab of the Profile section. (image: %E5%9C%96%E7%89%87_919753979.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.2（PVAL2）—— Valet Mode 只能經 All Profiles 分頁之按鈕啟用。關鍵情境條件：「只能」之驗證須同時看兩側 ——別處沒有（步驟 1、2）與該處有（步驟 3）；**只驗該處有，一個到處都能啟用之實作也會通過**（§7）。為什麼這樣切：受檢之他處取 Edit Profile 分頁與車輛設定兩個最可能之位置；**窮舉所有畫面不可行**，此為抽樣，已於上繳具名。",
+ "keywords": [
+  "Valet Mode",
+  "All Profiles tab",
+  "activation",
+  "only"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-115",
+   "tc_id": "NR1L-UserProfiles-047",
+   "tc_title": "Valet Mode activates only from the All Profiles tab",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Valet Mode activates only from the All Profiles tab",
+   "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab and read the option list\n2. Open the vehicle settings and read the option list\n3. Open the “All Profiles” tab and check that the Valet Mode button is present there",
+   "expected_result": "1. No Valet Mode activation control is present on the “Edit Profile” tab\n2. No Valet Mode activation control is present in the vehicle settings\n3. The Valet Mode button is present on the “All Profiles” tab",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.2",
+   "priority": "P1",
+   "priority_basis": "啟用入口之限制；非主路徑分支",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

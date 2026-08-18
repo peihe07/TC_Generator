@@ -50,9 +50,19 @@ VARIANT_LABEL_OVERRIDES = {
     ],
 }
 
-# 受檢之欄位 —— 字面值會被測試員讀到的那些
+# 受檢之欄位 —— 字面值會被測試員讀到的那些（**含 remarks，14 輪之判定不變**）
 CHECKED_FIELDS = ("tc_title", "test_item", "pre_conditions",
                   "test_procedure", "expected_result", "remarks")
+
+# J-11（19 包）—— **variant 之判定**只掃條件陳述之欄位。
+#
+# 兩件事拆開：
+#   判定「這條 TC 適用哪個變體」→ 只看 `pre_conditions`／`test_procedure`
+#   判定「哪些欄位不得出現禁用字串」→ 仍為 CHECKED_FIELDS（含 remarks）
+#
+# 成因：TC-020 之 remarks 以中文討論「R1 High 之覆寫是否及於本節」，
+# 被判為 R1 High —— **說明散文不是條件陳述**。
+VARIANT_SCAN_FIELDS = ("pre_conditions", "test_procedure")
 
 
 # N-1（14 包）—— 否定之排除。
@@ -73,7 +83,7 @@ def variant_of(tc: dict) -> str:
     """
     if tc.get("variant"):
         return tc["variant"]
-    blob = " ".join(str(tc.get(f, "")) for f in CHECKED_FIELDS)
+    blob = " ".join(str(tc.get(f, "")) for f in VARIANT_SCAN_FIELDS)
     stripped = NEG_R1H.sub(" ", blob)
     return "R1 High" if POS_R1H.search(stripped) else ""
 
@@ -152,12 +162,23 @@ def reverse_verify() -> int:
         "tc_id": "SCOPE-001", "variant": "R1 Low",
         "expected_result": "1. The Stellantis Account item is listed",
     }, expect_fail=False)
+    case("**remarks 之中文討論**提到 R1 High → **不得**改變 variant 判定（J-11）", {
+        "tc_id": "SCOPE-004",
+        "pre_conditions": "1. The vehicle is in a region without the brand app",
+        "remarks": "R1 High 之覆寫是否及於本節之 label 未定 —— 見上繳 18 §2.3",
+        "expected_result": "1. No Stellantis Account button is shown",
+    }, expect_fail=False)
+    case("判定為 R1 High 後，**remarks** 之禁用字串仍轉紅（J-11 之另一半）", {
+        "tc_id": "FAKE-005",
+        "pre_conditions": "1. The vehicle is an R1 High variant",
+        "remarks": "label 用 Stellantis Account",
+    }, expect_fail=True)
     case("variant 未指明且文字未提 R1 High → 不得轉紅", {
         "tc_id": "SCOPE-002",
         "expected_result": "1. The Stellantis Account item is listed",
     }, expect_fail=False)
 
-    n = 9
+    n = 11
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

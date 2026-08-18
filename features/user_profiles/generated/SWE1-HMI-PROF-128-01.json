@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "For both Valet Mode activation and deactivation, the system must allow a maximum of 10 incorrect 4-digit PIN entry attempts. Upon exactly the 10th consecutive incorrect attempt, the system must immediately cancel the current activation or deactivation process and initiate the lockout.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：12.9（PVAL9）—— 錯誤 PIN 之次數上限為 10，第 10 次錯誤時系統取消該次停用程序。關鍵情境條件：第 9 次（仍可續試）與第 10 次（取消）構成邊界前後（§5.6），故取邊界值分析。為什麼這樣切：條文之 activation 與 deactivation 共用同一上限，本 TC 取 deactivation 一側，activation 一側屬 12.9 之 sibling leaf。刻意略過：30 分鐘後可再試之驗證需等待 30 分鐘，其觸發為時間到期而非第 10 次錯誤，已具名記於 remarks。",
+ "reasoning": "驗證目標：12.9（PVAL9）—— 錯誤 PIN 之次數上限為 10，第 10 次錯誤時系統取消該次停用程序。關鍵情境條件：第 9 次（仍可續試）與第 10 次（取消）構成邊界前後（§5.6），故取邊界值分析。**來源標示（J-4）**：ER3「第 9 次後仍受理」之權威為 **§5.6 之 BVA 界前基準線**，非條文 —— 12.9 只寫「10 次後取消」。為什麼這樣切：條文之 activation 與 deactivation 共用同一上限，本 TC 取 deactivation 一側，activation 一側屬 12.9 之 sibling leaf。刻意略過：30 分鐘後可再試之驗證需等待 30 分鐘，其觸發為時間到期而非第 10 次錯誤，已具名記於 remarks。",
  "keywords": [
   "Valet Mode",
   "PIN",

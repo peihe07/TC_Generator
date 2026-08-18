@@ -95,3 +95,31 @@ A 欄非空 1341）。
 **DR #3 之性質改變**：由「索取缺件」改為「**上游覆蓋缺口**」——
 `3.1`–`3.5` 之內容**存在且可讀**（05 輪自 PDF p5 抽出逐項清單），
 037 只是沒有為它們產出 leaf。形態同 Comfort **R-C16**。
+
+---
+
+## RD #5 —— R1 High 之 label 覆寫，其範圍是否及於全章（19 輪，J-7）
+
+**問題**：`****R1 High Only: "Stellantis Account" to be replaced with
+"Connected Account"` 之覆寫，**在版面上為列級** —— 其 `****` 標記與
+PDF p14 之 Table EDPR1 中 `****“ Stellantis Account”` 那一列對應
+（座標複位：註記於 x=101.4／y=275.9–286.7，該列於 y=289.8；表中其餘列無 `****`）。
+
+**其是否推及全章之同名 label，版面無從判定。** 具體受影響者：
+
+| 節 | 該節自己的字 | 若覆寫及於本節則應為 |
+|---|---|---|
+| 9.2（EDPR2）| `Stellantis Connected Account button` | `Connected Account button` |
+| 9.1（EDPR1）| `Stellantis Connected Account will link to Connected Profile app` | `Connected Account will link to…` |
+
+**現行處置（J-7）**：ER 維持各節之逐字；`PROF-088`（TC-020）之 remarks
+註明兩形式指同一按鈕，且該 TC 驗的是**缺席**而非 label 內容，故不影響判定。
+
+**索取標的**：該覆寫之適用範圍 —— 僅 Table EDPR1 之該列，或及於 ch9 全章之同名 label。
+
+**若答案為「及於全章」**，須連帶處理：`lint_variant_labels` 之
+`VARIANT_LABEL_OVERRIDES` 適用範圍、`PROF-085`（TC-017）之列項字面值
+（現已用 Connected Account，屆時無須改）、以及 9.1／9.2 之 ER 逐字。
+
+**性質**：spec 之歧義，非我方判準問題（§8.4.1「ambiguous source → preserve
+ambiguity」）。**併 DR #3 之上游問題群送出。**

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-129",
+ "outline": "12.10",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL10.) For activation and deactivation, when on the PIN entry popup, grey out the Go button until 4 digits are entered. If Go is pressed while greyed out, play Bonk tone and display the popup “PIN must be 4 digits”.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL10.) For activation and deactivation, when on the PIN entry popup, grey out the Go button until 4 digits are entered. If Go is pressed while greyed out, play Bonk tone and display the popup “PIN must be 4 digits”.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.10（PVAL10）—— 未滿 4 碼前 Go 鍵變灰；此時按下播 Bonk 並顯示指定 popup。關鍵情境條件：ER4 為對照 —— 輸滿 4 碼後 Go 須可用，否則「未滿時變灰」與「永遠變灰」分不出（§7）。**來源標示（J-12）**：3 碼為測試設置（條文只說「未滿 4 碼」）。為什麼這樣切：兩個結果同屬「未滿 4 碼」此一條件，依 §5.7 併為一條。",
+ "keywords": [
+  "Go button",
+  "greyed out",
+  "4 digits",
+  "Bonk"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-129",
+   "tc_id": "NR1L-UserProfiles-067",
+   "tc_title": "Go button greyed out until four digits are entered",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Go button greyed out until four digits are entered",
+   "pre_conditions": "1. The Valet Mode PIN entry popup is displayed\n2. The vehicle is stationary",
+   "input_test_data": "PIN digits entered: 3, then 4",
+   "test_procedure": "1. Enter three digits and read the Go button\n2. Press the Go button while it is greyed out\n3. Read the screen and check the tone and the popup\n4. Enter a fourth digit and read the Go button",
+   "expected_result": "1. The Go button is greyed out with three digits entered\n2. The press is not accepted\n3. A Bonk tone is played and the popup “PIN must be 4 digits” is displayed\n4. The Go button is available with four digits entered",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.10",
+   "priority": "P2",
+   "priority_basis": "Go 鍵之可用性與其提示",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

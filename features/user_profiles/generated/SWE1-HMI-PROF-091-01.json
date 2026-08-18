@@ -32,7 +32,7 @@
    "test_group": "User Profiles",
    "test_set": "Editing",
    "test_item": "Restricted Profile action interrupted when vehicle starts moving",
-   "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is stationary on a test track and can be brought into motion",
+   "pre_conditions": "1. A Driver Profile is active and the Edit Profile tab is available\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the previous available page is displayed",
    "expected_result": "1. The username editing page is displayed\n2. The vehicle is in motion\n3. The previous available page is displayed, the bonk tone is played, and “Function not available while vehicle in Motion.” is displayed",
@@ -42,7 +42,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "R1 High 之 label 為 Connected Account —— spec 9.3.2 之變體覆寫（PDF p14，xlsx 側掉句），R-U35 (c)／§8.7.3",
+   "remarks": "9.3.2 之變體覆寫為**列級**（PDF p14 之 Table EDPR1 該列），本 TC 不含帳號 label，故不設變體前提（J-5）",
    "split_flag": false,
    "split_reason": ""
   }

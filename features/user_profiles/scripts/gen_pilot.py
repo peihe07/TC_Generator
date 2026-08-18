@@ -33,16 +33,20 @@ FEATURE = Path(__file__).resolve().parent.parent
 OUT = FEATURE / "generated"
 
 # 逐條之 specification_reference 增列（**須具名理由**，不得無故擴張）
+# J-10（19 包）：每筆增 **`provides`** —— 該節提供給本 TC 之字面值。
+# G17 會驗**該字面值確實出現在該 TC 之欄位內**；
+# 登記一個不相干的節即轉紅。**「有登記」與「登記得對」是兩件事。**
 REF_EXTRA = {
     # 9.3.2 之 "show the message specified above" 指 9.3.1 之 bonk 與訊息字串；
     # 該字串為本 TC 之 ER 內容，故其出處一併列入（§10.7）。
-    "SWE1-HMI-PROF-091-01": ["9.3.1"],
+    "SWE1-HMI-PROF-091-01": [("9.3.1",
+                              "Function not available while vehicle in Motion.")],
     # 作業 B 之發現（17 包）：8.4.1 只說「系統會儲存該 profile」，
     # **沒說它會出現在 Profile List 裡**。本 TC 之 ER5 以「列於 Profile List」
     # 作為「已儲存」之觀察點，而該行為出自 5.1.1
     # （"When on the All Profiles tab, all available users will be shown"）。
     # 依 F-1 之判準（驗證**或倚為 setup／觀察點**者須引用），補列 5.1.1。
-    "SWE1-HMI-PROF-070": ["5.1.1"],
+    "SWE1-HMI-PROF-070": [("5.1.1", "Profile List")],
     # F-1（16 包）：**已移除 `11.5`。**
     # 併列之原理由為「該表印在 p17，而 p17 也掛 11.5」—— 那是**頁面共置**，
     # 不是章節歸屬（§10.7）。Table CPA2 屬 11.4（CPA2 為其引用者與所有者），
@@ -50,7 +54,9 @@ REF_EXTRA = {
     # must_carry 之 `p17 → ["11.4","11.5"]` 多節掛回**不動** —— 那管的是
     # context 注入，與追溯欄是兩個不同的問題。
     # D-3：PRACC7.2 之圖示與字串出自 5.1.2，本節（5.2）以註記號指之。
-    "SWE1-HMI-PROF-021-01": ["5.1.2"],
+    "SWE1-HMI-PROF-021-01": [
+        ("5.1.2", "This icon is associated to settings that are specific to "
+                  "your profile and are not shared across the vehicle")],
 }
 
 # 037 之先驗 Priority 與 R-U5 之對映（**逐條具名，不機械換算**）
@@ -203,6 +209,9 @@ TCS = {
             "達到時 Add New Profile 按鈕與 PRACC7.2 之圖示字串消失並改顯 PU0584。"
             "關鍵情境條件：以 4 個為基準線、第 5 個為邊界值，"
             "同一 TC 內取前後兩讀（§5.6），故 design method 為邊界值分析。"
+            "**來源標示（J-4）**：ER1「未達上限時按鈕在」之權威為 "
+            "**§5.6 之 BVA 界前基準線**，非條文 —— 5.2 只寫「達上限時不在」，"
+            "未寫其反面。"
             "為什麼這樣切：Valet Mode Profile 不計入該五個之內，"
             "其存在列為 pre-condition 而非受測項，避免把兩個計數混為一談。"
             "刻意略過：刪除既有 profile 後按鈕是否回復，屬 5.2 之其他 leaf。"),
@@ -234,7 +243,10 @@ TCS = {
             "驗證目標：5.9（PRACC15）—— 儲存 Driver Profile linked preferences "
             "不需按記憶座椅之 set／save 控制，且會自動存於車端。"
             "關鍵情境條件：其可驗形態為「不做那個動作也要存得住」，"
-            "故以 ignition cycle 後讀回作為「已存於車端」之觀察點（Service B 群，R-U21）。"
+            "故以 ignition cycle 後讀回作為「已存於車端」之觀察點。"
+            "**來源標示（J-4）**：ER4 之 ignition cycle **spec 從未提及**，"
+            "其權威為 **R-U21**（Service B 群之設定→key cycle→讀回）。"
+            "「已儲存」是狀態不是事件，觀察方式由裁決指定，不是條文給的。"
             "為什麼這樣切：本 leaf 只斷言儲存不依賴該控制，"
             "記憶座椅位置本身之回復屬 3.5 之 PLP 項目與其對應 leaf，不在此測。"),
         kw=["memory seat", "set", "save", "auto-save", "ignition cycle"],
@@ -347,6 +359,9 @@ TCS = {
             "關鍵情境條件：條文為「行車中／30 秒／使用者觸碰，三者先到者為準」，"
             "故 pre-condition 令車輛靜止、步驟 2 明訂不觸碰，"
             "把另外兩個條件排除，使 30 秒確為本次之生效條件。"
+            "**來源標示（J-4）**：ER2「29 秒時仍在」之權威為 **§5.6 之 BVA "
+            "界前基準線**，非條文 —— 7.4 只寫「30 秒後清除」，"
+            "該句亦可讀為「不遲於 30 秒」，故界前之真值由方法要求而非條文明述。"
             "為什麼這樣切：29 秒與 30 秒兩讀構成邊界前後（§5.6），故取邊界值分析；"
             "行車中清除與觸碰清除屬 7.4 之其他 leaf，本 TC 不代測。"),
         kw=["Welcome Popup", "30 seconds", "clear", "stationary"],
@@ -403,9 +418,11 @@ TCS = {
             "is listed"),
         reasoning=(
             "驗證目標：8.4.1（NEWPR3.1）—— 輸入 username 並選定 avatar 後系統儲存該 profile。"
-            "關鍵情境條件：「已儲存」之可觀察形態取 ignition cycle 後仍列於 Profile List"
-            "（Service B 群之設定 → key cycle → 讀回，R-U21），"
+            "關鍵情境條件：「已儲存」之可觀察形態取 ignition cycle 後仍列於 Profile List，"
             "不以畫面停留與否推定儲存。"
+            "**來源標示（J-4）**：ER3 之 ignition cycle 其權威為 **R-U21**，spec 未提及；"
+            "ER5 之「列於 Profile List」出自 **5.1.1**（8.4.1 只說系統會儲存），"
+            "該節已於 17 輪補列於引用欄。"
             "為什麼這樣切：setup flow 之前後步驟（Get Started、記憶座椅指派等）"
             "屬 ch8 之其他 leaf，本 TC 只驗儲存這一件事。"),
         kw=["Profile setup", "username", "avatar", "save", "Profile List"],
@@ -414,8 +431,11 @@ TCS = {
     "SWE1-HMI-PROF-091-01": dict(
         title="Restricted Profile action interrupted when vehicle starts moving",
         design=STATE,
+        # J-5（18 包）：**原本列了「R1 High」前提，本輪移除。**
+        # 理由同 TC-023：該覆寫為列級（Table EDPR1 之 `Stellantis Account` 列），
+        # 而本 TC 之 ER 不含帳號 label。
         pre=steps(
-            "The vehicle is an R1 High variant",
+            "A Driver Profile is active and the Edit Profile tab is available",
             "The vehicle is stationary on a test track and can be brought "
             "into motion"),
         data="NA",
@@ -430,8 +450,8 @@ TCS = {
             "The previous available page is displayed, the bonk tone is "
             "played, and “Function not available while vehicle in "
             "Motion.” is displayed"),
-        remarks="R1 High 之 label 為 Connected Account —— spec 9.3.2 之變體覆寫"
-                "（PDF p14，xlsx 側掉句），R-U35 (c)／§8.7.3",
+        remarks="9.3.2 之變體覆寫為**列級**（PDF p14 之 Table EDPR1 該列），"
+                "本 TC 不含帳號 label，故不設變體前提（J-5）",
         reasoning=(
             "驗證目標：9.3.2（EDPR3.2）—— 使用者正在進行受限項目時車輛轉為行進，"
             "系統須返回前一個可用頁面並播 bonk 與顯示訊息。"
@@ -589,6 +609,8 @@ TCS = {
             "第 10 次錯誤時系統取消該次停用程序。"
             "關鍵情境條件：第 9 次（仍可續試）與第 10 次（取消）構成邊界前後（§5.6），"
             "故取邊界值分析。"
+            "**來源標示（J-4）**：ER3「第 9 次後仍受理」之權威為 "
+            "**§5.6 之 BVA 界前基準線**，非條文 —— 12.9 只寫「10 次後取消」。"
             "為什麼這樣切：條文之 activation 與 deactivation 共用同一上限，"
             "本 TC 取 deactivation 一側，activation 一側屬 12.9 之 sibling leaf。"
             "刻意略過：30 分鐘後可再試之驗證需等待 30 分鐘，"
@@ -657,7 +679,7 @@ def build() -> list:
         ctx = B.assemble(req_id, rows[req_id])
         spec = TCS[req_id]
         refs = ctx["specification_reference"]
-        for extra in REF_EXTRA.get(req_id, []):
+        for extra, _provides in REF_EXTRA.get(req_id, []):
             refs += f"; {B.SPEC_STEM}_{extra}"
         prio, prio_why = PRIORITY[req_id]
         tc = {

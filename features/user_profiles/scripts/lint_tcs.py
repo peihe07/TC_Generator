@@ -22,6 +22,8 @@ feature-specific 白名單（`[BLOCKED-SPEC]` 標記、HVAC 之 tc_id 集合）�
 | G11 `specification_reference` 之 stem 與節次形態 | R-U1、canon §10.7 |
 | G12 `priority` ∈ {P0..P3} | 工作簿 DV（feature.yaml）|
 | G13 `test_group`／`test_set` 逐字 | R-U1、framework §2 |
+| G17 **多引**：引用欄之每一節須登記；**且其 `provides` 之字面值須真在該 TC 內** | J-6／**J-10**（19 包）|
+| G18 **少引**：ER 之字面值（**引號、數字、PU id、狀態值**）須溯得到某一被引之節或登記之來源 | J-6／**J-10**（19 包）|
 | G16 `feature.yaml` 之 popup_ids 與現測 `pdf_text` 一致 | D-5（14 包）|
 | G15 步驟長度：一般 ≤12 詞、最終步／intent 步 ≤18 詞 | canon §5.2 |
 | G14 PU id 須屬 spec 之 PU 全集（**現測 `pdf_text`**，21 個）| R-U35 (a)；feature.yaml 之 20 個為 xlsx 側，見 `known_pu()` |
@@ -121,6 +123,85 @@ def known_pu() -> set:
 
 KNOWN_PU = known_pu()
 RULED_PU = {f"PU{int(x[2:]):04d}" for x in CFG["lint"]["popup_ids"]}
+
+
+# ---- J-6 雙向自檢（18 包）之來源登記 ----
+#
+# **這兩閘只做機械可判定的那一半。** 「該節是否真被驗證」與
+# 「這個觀察點出自哪一節」終究要人讀，但兩件事可以機器擋：
+#   G17 引用欄出現了**沒有登記理由**的節 → 那正是 TC-013 之 11.5 的形狀
+#   G18 ER 裡的**引號字面值**溯不到任何被引之節 → 那正是 5.1.1 的形狀
+#        （少引之句子，其字面值會落在引用欄之外）
+
+def _ref_allowlist() -> dict:
+    """每個 req_id 之 `REF_EXTRA`：{req_id: [(節次, provides, 出處模組), …]}。"""
+    mods = []
+    for name in ("gen_pilot", "gen_batch01", "gen_batch02"):
+        try:
+            mods.append((__import__(name), name + ".REF_EXTRA"))
+        except ImportError:
+            pass          # 該批尚未存在
+    out = {}
+    for mod, tag in mods:
+        for k, v in mod.REF_EXTRA.items():
+            out.setdefault(k, []).extend((sec, prov, tag) for sec, prov in v)
+    return out
+
+
+# **測試設置**（J-12 之第四類）—— 為使 TC 可執行而設之數值，非 spec 之值。
+# 條文只說 `memory seat position`，編號是我們擺的；`Profile A/B` 亦然。
+# G18 掃到這些數字時不轉紅，**但它們必須登記在此，不得默默通過**。
+# **方法**（J-4 之第二類）—— 由測試方法本身要求之數值。
+# BVA 之界前讀值（29 秒、11 字元）不在條文裡：條文只給邊界（30／12），
+# 界前之值是 §5.6 要求「同一 TC 內取前後兩讀」才產生的。
+# **與測試設置不同**：它承載驗證（界前須成立），只是其權威是方法而非條文。
+METHOD_NUMERALS = {
+    "NR1L-UserProfiles-008": ["29"],   # §5.6 界前讀值（邊界 30 秒）
+    "NR1L-UserProfiles-066": ["29"],   # §5.6 界前讀值（邊界 30 分鐘）
+    "NR1L-UserProfiles-009": ["11"],   # §5.6 界前讀值（邊界 12 字元）
+}
+
+TEST_SETUP_NUMERALS = {
+    "NR1L-UserProfiles-028": ["1", "2"],   # memory seat 編號
+    "NR1L-UserProfiles-029": ["2"],
+    "NR1L-UserProfiles-031": ["2"],
+    "NR1L-UserProfiles-030": ["2", "3"],   # profile 數與座椅數之邊界設置
+    "NR1L-UserProfiles-056": ["1"],        # memory seat 編號（12.7 只說 the buttons）
+}
+
+# 狀態值 —— 其字面須溯得到被引之節
+STATE_VALUES = ("Small", "Off", "On", "None")
+
+
+# ER 之字面值溯源時，除被引之節之 `pdf_text` 外，另允許之來源。
+# **逐項具名，不得以「其他」概括。**
+LITERAL_EXTRA_SOURCES = {
+    # Table CPA2 之列名與欄別出自 PDF p17 之**版面**，文字層已攤平（16 輪 F-2）
+    "NR1L-UserProfiles-013": "PDF p17 版面（render_spec_region.py --regression 7/7）",
+    "NR1L-UserProfiles-044": "PDF p17 之表級註記（R1 High Only）",
+    # Table EDPR1 之列項出自 PDF p14 之 must_carry（補句表）
+    "NR1L-UserProfiles-017": "PDF p14 之 Table EDPR1（must_carry）",
+}
+
+# **UI 定位詞**之來源登記。
+#
+# G18 首跑對 `“Edit Profile”` 轉紅 5 條 —— 那是真陽性，但屬另一類：
+# 它是**跨批重複出現之分頁名**，其來源是 5.1（Profile 區有兩個分頁），
+# 而各該 TC 只是把它當導覽起點。若逐條把 5.1 灌進引用欄，
+# **每一條 ch9 之 TC 都會引用 5.1**，引用欄就變成導覽紀錄而非追溯。
+#
+# 故改為**一次登記於此**，並由 G18 自己驗證這張表沒說謊：
+# 每個定位詞須確實出現在其登記節次之 `pdf_text` 裡，否則轉紅。
+UI_LOCATORS = {
+    "Edit Profile": "5.1",     # PRACC7.) …two tabs; “All Profiles” and “Edit Profile”
+    "All Profiles": "5.1",     # 同上
+}
+
+QUOTED_RE = re.compile(r"[“\"]([^”\"]{4,})[”\"]")
+
+
+def _norm(t: str) -> str:
+    return " ".join((t or "").split())
 
 
 def _lines(v: str) -> list:
@@ -241,6 +322,80 @@ def gate_corpus(tcs: list) -> list:
                    f"pdf_text（{len(KNOWN_PU)}）不符 —— "
                    f"yaml 多：{sorted(RULED_PU - KNOWN_PU)}；"
                    f"現測多：{sorted(KNOWN_PU - RULED_PU)}")
+
+    # G17／G18 —— J-6 之雙向自檢（18 包）
+    import build_batch_context as _B
+    allow = _ref_allowlist()
+    outline = _B._outline()
+    for t in tcs:
+        tid, rid = t["tc_id"], t.get("req_id", "")
+        cited = [x.strip().replace(STEM + "_", "")
+                 for x in str(t.get("specification_reference", "")).split("; ")]
+        own = cited[0] if cited else ""
+        registered = {own} | set(_B.PLP_SECTIONS if rid in _B.PLP_LEAVES
+                                 else set()) | {a for a, _p, _t in allow.get(rid, [])}
+        for sec in cited:
+            if sec not in registered:
+                out.append(f"G17 {tid}: 引用欄之 `{sec}` 未登記理由"
+                           f"（非本節、非 PLP 併列、不在 REF_EXTRA）")
+        # J-10：`provides` 之字面值須真的出現在該 TC 之欄位內 ——
+        # **登記一個不相干的節，G17 舊版是綠的。**
+        blob = _norm(" ".join(str(t.get(f, "")) for f in
+                              ("tc_title", "pre_conditions", "test_procedure",
+                               "expected_result", "remarks")))
+        for sec, prov, tag in allow.get(rid, []):
+            if sec in cited and _norm(prov) not in blob:
+                out.append(f"G17 {tid}: `REF_EXTRA` 登記 `{sec}` 提供 "
+                           f"「{prov[:40]}」，但該字面值不在本 TC 之欄位內"
+                           f"（{tag}）")
+
+        body = " ".join(_B.spec_body(s) or "" for s in cited)
+        mc = " ".join(m["text"] for m in _B.must_carry_for(own))
+        pool = _norm(body + " " + mc)
+        er_raw = str(t.get("expected_result", ""))
+        for lit in QUOTED_RE.findall(er_raw):
+            if _norm(lit) in pool:
+                continue
+            if lit.strip() in UI_LOCATORS:
+                continue
+            if tid in LITERAL_EXTRA_SOURCES:
+                continue
+            out.append(f"G18 {tid}: ER 之字面值 「{lit[:48]}」 "
+                       f"溯不到被引之節（{', '.join(cited)}）亦不在 must_carry")
+
+        # J-10（19 包）—— 擴及**未加引號**之字面值。
+        # 掃描前先移除：行首編號、`step N` 之互參、引號內（上面已查過）。
+        body = QUOTED_RE.sub(" ", re.sub(r"^\s*\d+\.", " ", er_raw,
+                                         flags=re.M))
+        # `step 2`／`steps 1 and 2`／`step 1 and 2` 皆為**步驟互參**，非字面值。
+        # v1 只寫 `step\s+\d+`，於是 `steps 1 and 2` 之 `2` 被當成字面值（TC-010）。
+        body = re.sub(r"\bsteps?\s+\d+(?:\s*(?:and|,|-|to)\s*\d+)*",
+                      " ", body, flags=re.I)
+        setup_ok = (set(TEST_SETUP_NUMERALS.get(tid, []))
+                    | set(METHOD_NUMERALS.get(tid, [])))
+        for pu in set(re.findall(r"PU[_\s]?\d{3,4}", body)):
+            if _norm(pu.replace("_", "").replace(" ", "")) not in \
+                    _norm(pool).replace("_", "").replace(" ", ""):
+                out.append(f"G18 {tid}: ER 之 `{pu}` 溯不到被引之節")
+        for num in set(re.findall(r"(?<![\w.])\d+(?![\w.])", body)):
+            if num in setup_ok or num in pool:
+                continue
+            out.append(f"G18 {tid}: ER 之數值 `{num}` 溯不到被引之節，"
+                       f"亦未登記為測試設置（J-12）")
+        # 狀態值以**大小寫不敏感**比對：spec 以散文寫（`default on small`、
+        # `If turned off`），UI 以首字大寫顯示（`Small`／`Off`）。
+        # **大小寫之差是呈現形式，不是字面值不同** —— 若以大小寫敏感比對，
+        # 這條閘會把「spec 有寫」誤報成「溯不到」。
+        pool_l = _norm(pool).lower()
+        for sv in STATE_VALUES:
+            if re.search(rf"\b{sv}\b", body) and sv.lower() not in pool_l:
+                out.append(f"G18 {tid}: ER 之狀態值 `{sv}` 溯不到被引之節")
+
+    # UI 定位詞之登記表自我查核 —— **這張表不得只是宣稱**
+    for lit, sec in UI_LOCATORS.items():
+        if _norm(lit) not in _norm(_B.spec_body(sec) or ""):
+            out.append(f"G18: UI 定位詞登記表有誤 —— 「{lit}」不在 {sec} 之 "
+                       f"pdf_text 內")
 
     seen = {}
     for t in tcs:
@@ -437,6 +592,117 @@ def self_test() -> int:
             print(f"      └ {b}")
     g["RULED_PU"] = _orig
 
+    print("\n## G17／G18 —— J-6 之雙向自檢（18 包）\n")
+    g = globals()
+    stem = STEM
+
+    def corpus_case(name, tc, expect, gate):
+        nonlocal ok
+        bad = [b for b in gate_corpus([tc]) if b.startswith(gate)]
+        good = bool(bad) == expect
+        ok &= good
+        print(f"  {'PASS' if good else '**FAIL**'} — {name}: "
+              f"{'紅' if bad else '綠'}")
+        for b in bad:
+            print(f"      └ {b}")
+
+    # G17 多引 —— TC-013 之 11.5 即此形狀（F-1）
+    corpus_case("G17 注入：引用未登記之節（TC-013 之 11.5 形狀）",
+                _ok_tc(req_id="SWE1-HMI-PROF-111",
+                       specification_reference=f"{stem}_11.4; {stem}_11.5",
+                       expected_result="1. a\n2. b"),
+                True, "G17")
+    # **本案例隨 J-10 更新。** 18 輪版本之 ER 為 `1. a / 2. b` —— 那時 G17 只問
+    # 「有沒有登記」，故綠；J-10 加了「`provides` 之字面值須真在 TC 內」之後，
+    # 同一個 fixture 會紅。**它測的性質已被擴充，不是它壞了。**
+    # 補上該字面值，使其仍測「已登記之節不得轉紅」這一半。
+    corpus_case("G17 範圍：REF_EXTRA 已登記之節（9.3.1）→ 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-091-01",
+                       specification_reference=f"{stem}_9.3.2; {stem}_9.3.1",
+                       expected_result="1. a\n2. “Function not available "
+                                       "while vehicle in Motion.” is shown"),
+                False, "G17")
+    corpus_case("G17 範圍：PLP leaf 併列 3.x → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-001-01",
+                       specification_reference="; ".join(
+                           [f"{stem}_4.1"] + [f"{stem}_{x}" for x in
+                                              ("3.1", "3.2", "3.3", "3.4",
+                                               "3.5")]),
+                       expected_result="1. a\n2. b"),
+                False, "G17")
+
+    # G18 少引 —— 5.1.1 即此形狀
+    corpus_case("G18 注入：ER 之字面值溯不到被引之節",
+                _ok_tc(req_id="SWE1-HMI-PROF-070",
+                       specification_reference=f"{stem}_8.4.1",
+                       expected_result="1. a\n2. The “All available users "
+                                       "are shown on this tab” text appears"),
+                True, "G18")
+    corpus_case("G18 範圍：字面值確在被引之節內 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-053",
+                       specification_reference=f"{stem}_6.4.1",
+                       expected_result="1. a\n2. PU0585 and the “Get "
+                                       "Started” button"),
+                False, "G18")
+    corpus_case("G18 範圍：UI 定位詞已登記 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-087",
+                       specification_reference=f"{stem}_9.1.2",
+                       expected_result="1. a\n2. The “Edit Profile” tab "
+                                       "is displayed"),
+                False, "G18")
+
+    # 登記表自我查核之對照向：把某定位詞改成不存在之節，須紅
+    _orig_loc = dict(g["UI_LOCATORS"])
+    g["UI_LOCATORS"] = {"Edit Profile": "12.9"}    # 12.9 講 PIN，無此字串
+    bad = [b for b in gate_corpus([_ok_tc()]) if "登記表有誤" in b]
+    ok &= bool(bad)
+    print(f"  {'PASS' if bad else '**FAIL**'} — "
+          f"登記表說謊（Edit Profile → 12.9）→ {'紅' if bad else '綠'}")
+    for b in bad:
+        print(f"      └ {b}")
+    g["UI_LOCATORS"] = _orig_loc
+
+    print("\n## J-10 —— G17 之 provides 與 G18 之未加引號字面值（19 包）\n")
+    stem2 = STEM
+    corpus_case("G17 注入：`provides` 之字面值不在 TC 內 → 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-091-01",
+                       specification_reference=f"{stem2}_9.3.2; {stem2}_9.3.1",
+                       expected_result="1. a\n2. The page is displayed"),
+                True, "G17")
+    corpus_case("G17 範圍：`provides` 之字面值確在 TC 內 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-091-01",
+                       specification_reference=f"{stem2}_9.3.2; {stem2}_9.3.1",
+                       expected_result="1. a\n2. “Function not available "
+                                       "while vehicle in Motion.” is shown"),
+                False, "G17")
+    corpus_case("G18 注入：ER 之 PU id 溯不到被引之節 → 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-053",
+                       specification_reference=f"{stem2}_6.4.1",
+                       expected_result="1. a\n2. PU0091 is displayed"),
+                True, "G18")
+    corpus_case("G18 注入：ER 之數值溯不到且未登記 → 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-053",
+                       specification_reference=f"{stem2}_6.4.1",
+                       expected_result="1. a\n2. 7 items are listed"),
+                True, "G18")
+    corpus_case("G18 範圍：`step 2`／`steps 1 and 2` 之互參不算字面值 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-053",
+                       specification_reference=f"{stem2}_6.4.1",
+                       expected_result="1. a\n2. The value from steps 1 and 2 "
+                                       "is shown"),
+                False, "G18")
+    corpus_case("G18 範圍：數值已登記為測試設置（J-12）→ 綠",
+                _ok_tc(tc_id="NR1L-UserProfiles-029",
+                       req_id="SWE1-HMI-PROF-097",
+                       specification_reference=f"{stem2}_9.5.2",
+                       expected_result="1. a\n2. Memory seat 2 is linked"),
+                False, "G18")
+    corpus_case("G18 範圍：狀態值大小寫不同（spec `small` / UI `Small`）→ 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-100",
+                       specification_reference=f"{stem2}_9.6.1",
+                       expected_result="1. a\n2. The setting reads Small"),
+                False, "G18")
+
     print("\n## 跨條之閘（G2 單調／G5 雷同）\n")
     for name, tcs, expect in [
         ("遞增且相異 → 綠",
@@ -473,7 +739,7 @@ def self_test() -> int:
         for b in bad:
             print(f"      └ {b}")
 
-    n = 1 + len(cases) + len(scope) + 8
+    n = 1 + len(cases) + len(scope) + 22
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

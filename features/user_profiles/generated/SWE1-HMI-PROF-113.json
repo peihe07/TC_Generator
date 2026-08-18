@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-113",
+ "outline": "12.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL1.) The system should store any updated preferences until Valet Mode is exited. The system should treat Exiting Valet Mode like deleting the profile and activating Valet Mode like creating a new Profile from the default preferences.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL1.) The system should store any updated preferences until Valet Mode is exited. The system should treat Exiting Valet Mode like deleting the profile and activating Valet Mode like creating a new Profile from the default preferences.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.1（PVAL1）—— 啟用 Valet Mode 視同以預設偏好建立新 profile，退出視同刪除該 profile；期間之變更只存到退出為止。關鍵情境條件：須有一個已客製化之 profile 作為基準線，否則「預設 vs 客製」分不出來（§5.6）。為什麼這樣切：進入與退出雖為兩個觸發，但條文以「像建立／像刪除」成對定義，**只驗一半則另一半之語意不成立** —— 同 13.2 之處置（§5.7 之例外，具名）。",
+ "keywords": [
+  "Valet Mode",
+  "default preferences",
+  "exit",
+  "store"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-113",
+   "tc_id": "NR1L-UserProfiles-045",
+   "tc_title": "Valet Mode starts from defaults and restores on exit",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Valet Mode starts from defaults and restores on exit",
+   "pre_conditions": "1. A Driver Profile with customized preferences is active\n2. Valet Mode is not active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the preferences of the active Profile\n2. Activate Valet Mode\n3. Read the preferences and change one of them\n4. Exit Valet Mode\n5. Read the preferences and check that they match those recorded in step 1",
+   "expected_result": "1. The preferences of the active Profile are recorded\n2. Valet Mode is active and its preferences are the default ones, not those recorded in step 1\n3. The changed preference is stored while Valet Mode is active\n4. Valet Mode is exited\n5. The preferences match those recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.1",
+   "priority": "P0",
+   "priority_basis": "Valet 進出時之偏好儲存與重設 —— 核心五類之二者交會",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

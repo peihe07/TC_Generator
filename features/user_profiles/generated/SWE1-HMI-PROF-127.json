@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-127",
+ "outline": "12.8.2",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL8.2) If the glove box is unlocked/locked prior to activating Valet Mode, the glove box will return to its last state upon deactivating Valet Mode.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL8.2) If the glove box is unlocked/locked prior to activating Valet Mode, the glove box will return to its last state upon deactivating Valet Mode.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.8.2（PVAL8.2）—— 手套箱於退出 Valet Mode 後回到進入前之狀態。關鍵情境條件：pre-condition 取「未上鎖」，使 ER2 之「Valet 中變為上鎖」與 ER4 之「回到未上鎖」皆可觀察；若進入前即上鎖，整條 TC 之三個狀態相同，什麼都驗不到。為什麼這樣切：Valet Mode 啟用手套箱鎖之行為屬 12.8.1，本條驗其還原。",
+ "keywords": [
+  "glove box",
+  "restore",
+  "state",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-127",
+   "tc_id": "NR1L-UserProfiles-064",
+   "tc_title": "Glove box returns to its previous state after Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Glove box returns to its previous state after Valet Mode",
+   "pre_conditions": "1. The vehicle is equipped with an electronic Glove Box Lock\n2. The glove box is unlocked\n3. Valet Mode is not active\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the glove box lock state\n2. Activate Valet Mode\n3. Deactivate Valet Mode\n4. Read the glove box lock state and check that it matches the state recorded in step 1",
+   "expected_result": "1. The glove box is recorded as unlocked\n2. Valet Mode is active and the glove box is locked\n3. Valet Mode is deactivated\n4. The glove box is unlocked again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8.2",
+   "priority": "P1",
+   "priority_basis": "手套箱狀態之還原；退出後之狀態接續",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

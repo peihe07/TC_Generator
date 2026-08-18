@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-125-03",
+ "outline": "12.8",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Projection mode and native HFP will be disabled. VR will not be active and the following areas will be locked out: Home Screen, Apps Drawer, Phone, Vehicle category, Navigation. It will not be possible to interact with the Status Bar with the exception of the Valet Profile and HVAC icons. In Media, the Device Manager will be locked out. All non interactable items will be greyed out.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "In Valet Mode, user interaction with the Status Bar must be strictly limited. It shall not be possible to interact with any items on the Status Bar, with the sole exception of the Valet Profile icon and the HVAC icons.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.8（PVAL8）—— Valet Mode 中狀態列不可互動，**惟 Valet Profile 與 HVAC 圖示為例外**。關鍵情境條件：ER3 為 §7 之對照 —— 例外項須仍可用，否則「不可互動」與「整條狀態列壞掉」分不出。為什麼這樣切：本條依 037 之 description 生成（狀態列互動限制）；**該 leaf 之標題寫的是手套箱提示，與描述錯位，見 A-UP11**。",
+ "keywords": [
+  "status bar",
+  "interaction",
+  "Valet Profile",
+  "HVAC"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-125-03",
+   "tc_id": "NR1L-UserProfiles-059",
+   "tc_title": "Status bar interaction limited to Valet Profile and HVAC",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Status bar interaction limited to Valet Profile and HVAC",
+   "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press a status bar item other than Valet Profile or HVAC\n2. Read the screen and check that the item does not respond\n3. Press the HVAC icon in the status bar and check that it responds",
+   "expected_result": "1. The other status bar item is pressed\n2. The item does not respond and no screen change occurs\n3. The HVAC icon responds",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8",
+   "priority": "P1",
+   "priority_basis": "Valet 下之狀態列互動限制",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

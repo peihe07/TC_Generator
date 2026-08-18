@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-132-01",
+ "outline": "13.2",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVALSPK2.) The SPAAK user cannot exit Valet Mode from the head unit. Only the owner can deactivate Valet Mode remotely via app or website or other supported methods (not on the head unit). Any screens or popups that may allow a user to exit Valet Mode must be blocked (PU0934, etc).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When Valet Mode is activated via SPAAK, the SPAAK user must not be able to exit Valet Mode from the head unit. Any screens, buttons, or popups (such as PU0934) that normally allow a user to exit Valet Mode must be strictly blocked or suppressed on the head unit.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：13.2（PVALSPK2）之阻擋側 —— SPAAK 使用者無法自主機退出。關鍵情境條件：本條之單位是「**所有**主機路徑」，故步驟逐一走過狀態列圖示與 All Profiles 分頁兩個入口。為什麼這樣切：037 為 13.2 切出兩個 leaf —— 本條（阻擋）與 pilot 之 132-02（車主遠端停用）；一葉一 TC（§8.2.1）。刻意略過：**入口之窮舉不可能完備** —— 取兩個最可能者，已具名。",
+ "keywords": [
+  "SPAAK",
+  "head unit",
+  "exit",
+  "blocked",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-132-01",
+   "tc_id": "NR1L-UserProfiles-070",
+   "tc_title": "All head unit Valet exit paths blocked for the SPAAK user",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "All head unit Valet exit paths blocked for the SPAAK user",
+   "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the Valet Profile icon in the status bar\n2. Open the “All Profiles” tab and look for a deactivation control\n3. Read the screen and check that no head unit path exits Valet Mode",
+   "expected_result": "1. The Valet Profile icon does not open a deactivation flow\n2. No deactivation control is available on the “All Profiles” tab\n3. Valet Mode is still active and any popup that would allow an exit is blocked",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.2",
+   "priority": "P0",
+   "priority_basis": "SPAAK 下主機退出之全面阻擋 —— 隔離被繞過即失效",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "sibling 軸：本條驗**主機各入口皆被阻擋**（窮舉入口）；pilot 之 TC-016 驗**車主遠端停用可行**（同節之另一 leaf）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "EDPR7.) Change the memory seat position and then pushing save will update the seat position for whichever Profile is linked to that seat. If the memory seat that is being saved is not linked to the active profile, a popup message (PU0588) will come up when the memory seat is saved which will inform the user of which Profile the seat was saved to.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：9.6（EDPR7）—— 儲存座椅位置會更新**該座椅所連 profile** 之位置；若該座椅非現用 profile 所連，儲存時顯示 PU0588 告知存到誰。關鍵情境條件：pre-condition 令現用者為 A 而該座椅連 B，否則 PU0588 之觸發條件不成立。為什麼這樣切：兩項為同一觸發（按儲存）之兩個結果，依 §5.7 併為一條 TC。刻意略過：座椅連結之變更屬 9.5.x，本條之連結關係固定不動。",
+ "reasoning": "驗證目標：9.6（EDPR7）—— 儲存座椅位置會更新**該座椅所連 profile** 之位置；若該座椅非現用 profile 所連，儲存時顯示 PU0588 告知存到誰。關鍵情境條件：pre-condition 令現用者為 A 而該座椅連 B，否則 PU0588 之觸發條件不成立。為什麼這樣切：兩項為同一觸發（按儲存）之兩個結果，依 §5.7 併為一條 TC。**來源標示（J-12）**：`memory seat 2` 之編號為測試設置，非 spec 之值。刻意略過：座椅連結之變更屬 9.5.x，本條之連結關係固定不動。",
  "keywords": [
   "memory seat",
   "save",

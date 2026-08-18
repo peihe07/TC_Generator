@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-135",
+ "outline": "14.2",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVALEX2.) Valet Mode cannot be deactivated while the vehicle is in motion. If Profile section is attempted to be accessed while in Valet Mode while the vehicle is in motion, the user will see a popup (Pop-up ID PU0394). OK OK Yes Yes No No “X”",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVALEX2.) Valet Mode cannot be deactivated while the vehicle is in motion. If Profile section is attempted to be accessed while in Valet Mode while the vehicle is in motion, the user will see a popup (Pop-up ID PU0394).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：14.2（PVALEX2）—— 行車中不得停用 Valet Mode；行車中嘗試進入 Profile 區時顯示 PU0394。關鍵情境條件：受測動作為行進中之停用嘗試，屬不被允許之操作（§12 首匹配 → 負向測試）。為什麼這樣切：ER3 併驗「Valet Mode 仍啟用」——只驗 popup 出現，一個顯示 popup 卻仍解除之實作會通過（§7）。**本條之失效後果為行進中 Valet 可被解除** —— R-U5 之 rubric 無安全帶，依 D-UP16-01 就近判 P0，見上繳 19 §7。",
+ "keywords": [
+  "Valet Mode",
+  "in motion",
+  "deactivate",
+  "PU0394"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-135",
+   "tc_id": "NR1L-UserProfiles-073",
+   "tc_title": "Valet Mode cannot be deactivated while the vehicle moves",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Valet Mode cannot be deactivated while the vehicle moves",
+   "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary on a test track and can be brought into motion",
+   "input_test_data": "NA",
+   "test_procedure": "1. Bring the vehicle into motion\n2. Attempt to access the Profile section\n3. Read the screen and check that the unavailability popup is displayed and Valet Mode is still active",
+   "expected_result": "1. The vehicle is in motion\n2. The Profile section is not accessible\n3. PU0394 is displayed and Valet Mode is still active",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_14.2",
+   "priority": "P0",
+   "priority_basis": "**行車中不得停用** —— 失效即 Valet 可於行進中被解除",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

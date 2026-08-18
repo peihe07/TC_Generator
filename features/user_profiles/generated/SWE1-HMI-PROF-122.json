@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-122",
+ "outline": "12.5",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL5.) Valet Mode will be indicated in the status bar with a lock symbol combined with the Profile icon.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL5.) Valet Mode will be indicated in the status bar with a lock symbol combined with the Profile icon.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.5（PVAL5）—— Valet Mode 於狀態列以鎖頭圖示結合 Profile 圖示表示。關鍵情境條件：以啟用前之圖示為基準線（§5.6），否則「有鎖頭」與「本來就有」分不出。為什麼這樣切：狀態列之預設版面屬 12.1.1，本條只驗該指示。",
+ "keywords": [
+  "status bar",
+  "lock symbol",
+  "Profile icon",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-122",
+   "tc_id": "NR1L-UserProfiles-054",
+   "tc_title": "Lock symbol shown with the Profile icon in Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Lock symbol shown with the Profile icon in Valet Mode",
+   "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the Profile icon in the status bar\n2. Activate Valet Mode\n3. Read the status bar and check that the lock symbol is combined with the Profile icon",
+   "expected_result": "1. The Profile icon is shown without a lock symbol\n2. Valet Mode is active\n3. The status bar shows a lock symbol combined with the Profile icon",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.5",
+   "priority": "P2",
+   "priority_basis": "狀態列之 Valet 指示；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

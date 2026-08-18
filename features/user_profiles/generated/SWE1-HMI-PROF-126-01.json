@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-126-01",
+ "outline": "12.8.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL8.1) Valet Mode will enable “electronic” Glove Box Lock. If vehicle is equipped with Glove Box Lock, show PU0832 when prompting to enter Valet Mode. Glove Box Lock button is greyed out when Valet Mode is activated. If the Glove Box Lock button is pushed while greyed out, PU0833 will indicate that function is not available while in Valet Mode.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If the vehicle is equipped with an electronic Glove Box Lock, the system must display popup PU0832 when prompting the user to enter Valet Mode, informing them that the glove box will be locked.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.8.1（PVAL8.1）—— 配備電子手套箱鎖之車輛，在提示進入 Valet Mode 時顯示 PU0832。關鍵情境條件：車輛配置為條文明列之條件，列 pre-condition。為什麼這樣切：未配備手套箱鎖之車輛不顯示該提示，其對照未生成（取樣單位為 leaf，§8.4.2）。**本條依 037 之 description 生成；標題與描述錯位，見 A-UP11。**",
+ "keywords": [
+  "Glove Box Lock",
+  "PU0832",
+  "Valet Mode",
+  "prompt"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-126-01",
+   "tc_id": "NR1L-UserProfiles-061",
+   "tc_title": "PU0832 shown when prompting to enter Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "PU0832 shown when prompting to enter Valet Mode",
+   "pre_conditions": "1. The vehicle is equipped with an electronic Glove Box Lock\n2. Valet Mode is not active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and press the Valet Mode button\n2. Read the prompt and check that PU0832 is displayed",
+   "expected_result": "1. The Valet Mode entry prompt is displayed\n2. PU0832 informs the user that the glove box will be locked",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8.1",
+   "priority": "P2",
+   "priority_basis": "手套箱鎖之進入提示（PU0832）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "EDPR6.2) If the active Profile was not previously linked to any memory seat position, just take the newly selected memory seat position from the previous user and link it to the active user. The previously linked Profile will no longer be linked to any memory seat position.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：9.5.2（EDPR6.2）—— 現用 profile 原無連結時，直接接管該座椅，原持有者變為無連結。關鍵情境條件：pre-condition 明訂 Profile A 無連結 ——此即與 9.5.1 之分野；兩條之其餘設置刻意保持相同，使失敗時可歸因於前置狀態而非別的差異。為什麼這樣切：037 已為兩個前置狀態各切一 leaf。",
+ "reasoning": "驗證目標：9.5.2（EDPR6.2）—— 現用 profile 原無連結時，直接接管該座椅，原持有者變為無連結。關鍵情境條件：pre-condition 明訂 Profile A 無連結 ——此即與 9.5.1 之分野；兩條之其餘設置刻意保持相同，使失敗時可歸因於前置狀態而非別的差異。為什麼這樣切：037 已為兩個前置狀態各切一 leaf。**來源標示（J-12）**：`memory seat 2` 之編號為測試設置，非 spec 之值。",
  "keywords": [
   "memory seat",
   "unlink",

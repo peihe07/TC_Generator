@@ -31,7 +31,7 @@
    "test_group": "User Profiles",
    "test_set": "Editing",
    "test_item": "Bonk tone and message accompany the interruption in motion",
-   "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is stationary on a test track and can be brought into motion",
+   "pre_conditions": "1. A Driver Profile is active and the Edit Profile tab is available\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the bonk tone and the message are presented",
    "expected_result": "1. The username editing page is displayed\n2. The vehicle is in motion and the task is interrupted\n3. A bonk tone is played and “Function not available while vehicle in Motion.” is displayed",
@@ -41,7 +41,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "R1 High：label 依 9.3.2 之變體覆寫採 Connected Account（R-U35 (c)）。sibling 軸：本條驗**回饋**，091-01 驗**返回前一頁** —— 同一觸發之兩個結果，分屬兩個 037 leaf（§8.2.1）",
+   "remarks": "sibling 軸：本條驗**回饋**，091-01 驗**返回前一頁** —— 同一觸發之兩個結果，分屬兩個 037 leaf（§8.2.1）。9.3.2 之變體覆寫為**列級**（Table EDPR1 之該列），本 TC 不含帳號 label，故不設變體前提",
    "split_flag": false,
    "split_reason": ""
   }

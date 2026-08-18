@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-125-04",
+ "outline": "12.8",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL8.) Only HVAC and Media sections will be available when Valet Mode is on. Projection mode and native HFP will be disabled. VR will not be active and the following areas will be locked out: Home Screen, Apps Drawer, Phone, Vehicle category, Navigation. It will not be possible to interact with the Status Bar with the exception of the Valet Profile and HVAC icons. In Media, the Device Manager will be locked out. All non interactable items will be greyed out.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "To provide clear system status to the user, all items, icons, and buttons that are rendered non-interactable or locked out due to Valet Mode restrictions must be visually displayed in a \"greyed out\" state.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.8（PVAL8）末句 —— 所有不可互動之項目一律變灰。關鍵情境條件：本條驗的是**呈現之一致性**，不是哪些項目被鎖（那屬 125-01～03）。為什麼這樣切：依 037 之 description 生成；**標題與描述錯位，見 A-UP11**。",
+ "keywords": [
+  "greyed out",
+  "non interactable",
+  "Valet Mode"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-125-04",
+   "tc_id": "NR1L-UserProfiles-060",
+   "tc_title": "Non-interactable items greyed out in Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Non-interactable items greyed out in Valet Mode",
+   "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open a screen that contains locked-out items\n2. Read the locked-out items and check that they are greyed out",
+   "expected_result": "1. The screen with locked-out items is displayed\n2. All non-interactable items are greyed out",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.8",
+   "priority": "P2",
+   "priority_basis": "不可互動項之變灰呈現",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

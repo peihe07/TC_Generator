@@ -27,15 +27,15 @@
    "test_item": "Connected Account hidden for unsupported regions",
    "pre_conditions": "1. The vehicle is in a region without the brand app\n2. A Driver Profile is active",
    "input_test_data": "NA",
-   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no Connected Account button or Connected Profile info is shown",
-   "expected_result": "1. The “Edit Profile” tab is displayed\n2. No Connected Profile options or info and no Connected Account button are shown",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no account button or Connected Profile info is shown",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. No Connected Profile options or info and no Stellantis Connected Account button are shown",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.2",
    "priority": "P1",
    "priority_basis": "區域／車型配置之非主路徑分支",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "R1 High：label 為 Connected Account（spec 本節寫 Stellantis Connected Account）—— R-U35 (c)",
+   "remarks": "label 逐字取自 9.2（`Stellantis Connected Account`）。**R1 High 之覆寫是否及於本節之 label 未定** —— 其標記在版面上為列級（Table EDPR1），見上繳 18 §2.3 之待裁項",
    "split_flag": false,
    "split_reason": ""
   }

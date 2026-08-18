@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-117",
+ "outline": "12.3",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL3.) To activate Valet Mode a 4 digit one-time PIN is required to be entered.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL3.) To activate Valet Mode a 4 digit one-time PIN is required to be entered.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.3（PVAL3）—— 啟用 Valet Mode 須輸入 4 位一次性 PIN。關鍵情境條件：ER2 明寫「在啟用之前」要求 PIN ——若寫成「輸入 PIN 後啟用」，一個先啟用再問 PIN 之實作也會通過（§7）。為什麼這樣切：停用側之同一 PIN 屬 12.3.1，PIN 錯誤之次數上限屬 12.9，皆不在本條。",
+ "keywords": [
+  "Valet Mode",
+  "4 digit PIN",
+  "one-time",
+  "activate"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-117",
+   "tc_id": "NR1L-UserProfiles-049",
+   "tc_title": "Four-digit PIN required to activate Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Four-digit PIN required to activate Valet Mode",
+   "pre_conditions": "1. Valet Mode is not active\n2. The vehicle is stationary",
+   "input_test_data": "PIN: a 4-digit one-time PIN chosen at activation",
+   "test_procedure": "1. Open the “All Profiles” tab and press the Valet Mode button\n2. Read the screen and check that a 4-digit PIN entry is required\n3. Enter a 4-digit PIN and confirm\n4. Read the screen and check that Valet Mode is active",
+   "expected_result": "1. The Valet Mode activation is started\n2. A 4-digit PIN entry is requested before activation\n3. The 4-digit PIN is accepted\n4. Valet Mode is active",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3",
+   "priority": "P0",
+   "priority_basis": "啟用之 PIN —— Valet Mode 之防護本身",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "EDPR6.3) Choosing “none” as a memory seat option will not be available and will be greyed out until the number of Profiles exceeds the number of Memory Seats.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：9.5.3（EDPR6.3）——「none」在 profile 數超過記憶座椅數之前不可用。關鍵情境條件：以 2 vs 2（相等，仍不可用）與 3 vs 2（超過，可用）構成邊界前後（§5.6），故取邊界值分析；條文之「exceeds」為嚴格大於，相等時仍不可用即為本 TC 之界前基準線。為什麼這樣切：座椅連結之交換規則屬 9.5–9.5.2，本 leaf 只管該選項之可用性。",
+ "reasoning": "驗證目標：9.5.3（EDPR6.3）——「none」在 profile 數超過記憶座椅數之前不可用。關鍵情境條件：以 2 vs 2（相等，仍不可用）與 3 vs 2（超過，可用）構成邊界前後（§5.6），故取邊界值分析；**來源標示（J-12）**：座椅數 2 與 profile 數 2→3 為**測試設置** ——條文只給關係（profile 數超過座椅數），未給具體數字；條文之「exceeds」為嚴格大於，相等時仍不可用即為本 TC 之界前基準線。為什麼這樣切：座椅連結之交換規則屬 9.5–9.5.2，本 leaf 只管該選項之可用性。",
  "keywords": [
   "none",
   "greyed out",

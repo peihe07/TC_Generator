@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-123",
+ "outline": "12.6",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL6.) When Valet Mode is active and the user pushes the Profile button in the status bar, a popup will indicate “Function not available while in Valet Mode. Do you want to deactivate Valet Mode”",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL6.) When Valet Mode is active and the user pushes the Profile button in the status bar, a popup will indicate “Function not available while in Valet Mode. Do you want to deactivate Valet Mode”",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.6（PVAL6）—— Valet Mode 中按狀態列之 Profile 鍵時，以 popup 告知功能不可用並詢問是否停用。關鍵情境條件：popup 文字逐字取自條文，含其未加問號之原樣（§8.4.1）。為什麼這樣切：按下「是」之後續退出流程屬 12.3.1／12.9，本條只驗該提示。",
+ "keywords": [
+  "Profile button",
+  "Valet Mode",
+  "popup",
+  "deactivate"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-123",
+   "tc_id": "NR1L-UserProfiles-055",
+   "tc_title": "Profile button in Valet Mode offers to deactivate",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Profile button in Valet Mode offers to deactivate",
+   "pre_conditions": "1. Valet Mode is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the Profile button in the status bar\n2. Read the popup and check that it offers to deactivate Valet Mode",
+   "expected_result": "1. The Profile button is pressed\n2. A popup indicates “Function not available while in Valet Mode. Do you want to deactivate Valet Mode”",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.6",
+   "priority": "P2",
+   "priority_basis": "Valet 中按 Profile 鍵之提示",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

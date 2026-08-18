@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-130",
+ "outline": "12.10.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PVAL10.1) Once 4 digits are entered grey out all numeric buttons.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL10.1) Once 4 digits are entered grey out all numeric buttons.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.10.1（PVAL10.1）—— 輸滿 4 碼後所有數字鍵變灰。關鍵情境條件：以 3 碼時可用為基準線（§5.6）。**來源標示（J-12）**：3 碼為測試設置。為什麼這樣切：Go 鍵之可用性屬 12.10，本條只管數字鍵。",
+ "keywords": [
+  "numeric buttons",
+  "greyed out",
+  "4 digits",
+  "PIN"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-130",
+   "tc_id": "NR1L-UserProfiles-068",
+   "tc_title": "Numeric buttons greyed out once four digits are entered",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Numeric buttons greyed out once four digits are entered",
+   "pre_conditions": "1. The Valet Mode PIN entry popup is displayed\n2. The vehicle is stationary",
+   "input_test_data": "PIN digits entered: 4",
+   "test_procedure": "1. Enter three digits and read the numeric buttons\n2. Enter a fourth digit\n3. Read the numeric buttons and check that they are greyed out",
+   "expected_result": "1. The numeric buttons are available with three digits entered\n2. The fourth digit is entered\n3. All numeric buttons are greyed out",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.10.1",
+   "priority": "P3",
+   "priority_basis": "輸滿 4 碼後數字鍵變灰 —— 呈現細節",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

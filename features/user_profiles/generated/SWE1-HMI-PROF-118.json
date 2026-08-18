@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-118",
+ "outline": "12.3.1",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL3.1) To get out of Valet Mode the same 4 digit PIN needs to be entered",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL3.1) To get out of Valet Mode the same 4 digit PIN needs to be entered",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.3.1（PVAL3.1）—— 退出 Valet Mode 須輸入**與啟用時相同**之 PIN。關鍵情境條件：「相同」之驗證須有一個不同之 PIN 作對照（§7）——只驗正確 PIN 可退出，一個任何 4 位數都接受之實作也會通過。為什麼這樣切：錯誤次數之上限屬 12.9，本條只驗「須相同」。",
+ "keywords": [
+  "Valet Mode",
+  "same PIN",
+  "deactivate",
+  "4 digit"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-118",
+   "tc_id": "NR1L-UserProfiles-050",
+   "tc_title": "Same four-digit PIN required to leave Valet Mode",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Same four-digit PIN required to leave Valet Mode",
+   "pre_conditions": "1. Valet Mode is active and was activated with a known 4-digit PIN\n2. The vehicle is stationary",
+   "input_test_data": "PIN: the same 4-digit PIN used at activation; one differing 4-digit PIN",
+   "test_procedure": "1. Start the Valet Mode deactivation\n2. Enter a 4-digit PIN that differs from the activation PIN\n3. Enter the same 4-digit PIN used at activation\n4. Read the screen and check that Valet Mode is no longer active",
+   "expected_result": "1. The PIN entry for deactivation is displayed\n2. The differing PIN is rejected and Valet Mode is still active\n3. The same PIN as at activation is accepted\n4. Valet Mode is no longer active",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.1",
+   "priority": "P0",
+   "priority_basis": "停用之 PIN —— 同上",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

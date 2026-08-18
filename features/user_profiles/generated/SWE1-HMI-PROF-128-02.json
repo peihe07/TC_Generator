@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-128-02",
+ "outline": "12.9",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL9.) For activation and deactivation, the user will have 10 attempts to type a 4 digit PIN before system cancels the deactivation. The user can try again in 30min.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "Once the 10-attempt limit is reached, the system must strictly enforce a 30-minute lockout period. During this time, the user cannot attempt to enter a PIN to activate or deactivate Valet Mode.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.9（PVAL9）之鎖定側 —— 10 次錯誤後之 30 分鐘內不受理 PIN。關鍵情境條件：本條刻意只驗「立刻再試不受理」，**不涉時間長度**，故無須等待 30 分鐘；長度之驗證由 128-03 承擔。為什麼這樣切：第 10 次取消本身屬 pilot 之 TC-015（12.9），本條為其後之狀態。",
+ "keywords": [
+  "lockout",
+  "30 minutes",
+  "PIN",
+  "blocked"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-128-02",
+   "tc_id": "NR1L-UserProfiles-065",
+   "tc_title": "PIN entry blocked during the 30-minute lockout",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "PIN entry blocked during the 30-minute lockout",
+   "pre_conditions": "1. Valet Mode is active and a 4-digit PIN is set\n2. The vehicle is stationary",
+   "input_test_data": "PIN attempts: 10 incorrect attempts, then a further attempt",
+   "test_procedure": "1. Open the Valet Mode deactivation screen\n2. Enter an incorrect 4-digit PIN ten times\n3. Attempt to enter a PIN again immediately\n4. Read the screen and check that the PIN entry is not accepted",
+   "expected_result": "1. The Valet Mode deactivation screen is displayed\n2. The tenth incorrect attempt cancels the deactivation\n3. A further PIN entry is attempted\n4. The PIN entry is not accepted and Valet Mode is still active",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.9",
+   "priority": "P0",
+   "priority_basis": "鎖定期間不得輸入 PIN —— 防暴力嘗試之機制本身",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "鎖定期為 30 分鐘；本 TC 只驗**鎖定生效**（不需等待），屆滿後之回復屬 128-03（需 30 分鐘等待）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

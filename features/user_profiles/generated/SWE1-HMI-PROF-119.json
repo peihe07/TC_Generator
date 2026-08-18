@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-119",
+ "outline": "12.3.2",
+ "batch": "batch02",
+ "test_set": "Valet Mode",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PVAL3.2) Disconnecting the battery will override and reset Valet mode and the system will load the last known Driver Profile at the next key on.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PVAL3.2) Disconnecting the battery will override and reset Valet mode and the system will load the last known Driver Profile at the next key on.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.3.2（PVAL3.2）—— 斷開電瓶會覆寫並重設 Valet Mode，下次 key on 時載入最後已知之 Driver Profile。關鍵情境條件：斷電為可模擬之故障（§12 首匹配 → 基礎故障注入）；「最後已知 profile」須於 pre-condition 先記錄，否則無比對對象。**來源標示（J-4）**：`key on` 之觀察點與 `ignition cycle` 同屬 **R-U21** 之「設定→key cycle→讀回」形態，惟本條之 key on 為**條文明述**（`at the next key on`），故其權威為 spec 而非裁決。",
+ "keywords": [
+  "battery",
+  "disconnect",
+  "reset",
+  "Valet Mode",
+  "key on"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-119",
+   "tc_id": "NR1L-UserProfiles-051",
+   "tc_title": "Battery disconnect resets Valet Mode at the next key on",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Battery disconnect resets Valet Mode at the next key on",
+   "pre_conditions": "1. Valet Mode is active\n2. The last known Driver Profile before Valet Mode is recorded\n3. The vehicle is stationary and the battery can be disconnected on the bench",
+   "input_test_data": "Fault injected: battery disconnected while Valet Mode is active",
+   "test_procedure": "1. Disconnect the vehicle battery\n2. Reconnect the battery and switch the key on\n3. Read the active Profile and check that Valet Mode is no longer active",
+   "expected_result": "1. The battery is disconnected\n2. The vehicle powers up at key on\n3. Valet Mode is not active and the last known Driver Profile is loaded",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.3.2",
+   "priority": "P1",
+   "priority_basis": "斷電後之重設與 profile 接續；spec 明訂之行為，非漏洞",
+   "design_method": "基礎故障注入 (Fault Injection Lite)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

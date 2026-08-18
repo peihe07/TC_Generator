@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "PRACC15.) Pushing the memory seat set/save hard or soft controls is not required to save any of the Driver Profile linked preferences. The Driver Profile Preferences will be saved locally to the vehicle automatically.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：5.9（PRACC15）—— 儲存 Driver Profile linked preferences 不需按記憶座椅之 set／save 控制，且會自動存於車端。關鍵情境條件：其可驗形態為「不做那個動作也要存得住」，故以 ignition cycle 後讀回作為「已存於車端」之觀察點（Service B 群，R-U21）。為什麼這樣切：本 leaf 只斷言儲存不依賴該控制，記憶座椅位置本身之回復屬 3.5 之 PLP 項目與其對應 leaf，不在此測。",
+ "reasoning": "驗證目標：5.9（PRACC15）—— 儲存 Driver Profile linked preferences 不需按記憶座椅之 set／save 控制，且會自動存於車端。關鍵情境條件：其可驗形態為「不做那個動作也要存得住」，故以 ignition cycle 後讀回作為「已存於車端」之觀察點。**來源標示（J-4）**：ER4 之 ignition cycle **spec 從未提及**，其權威為 **R-U21**（Service B 群之設定→key cycle→讀回）。「已儲存」是狀態不是事件，觀察方式由裁決指定，不是條文給的。為什麼這樣切：本 leaf 只斷言儲存不依賴該控制，記憶座椅位置本身之回復屬 3.5 之 PLP 項目與其對應 leaf，不在此測。",
  "keywords": [
   "memory seat",
   "set",
