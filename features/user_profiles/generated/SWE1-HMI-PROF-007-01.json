@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-007-01",
+ "outline": "4.5",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will always be a default, non-connected profile in the vehicle. For first time use this default is called “Driver 1”. If Driver 1 Profile was customized (even if the name was maintained as Driver 1) and then all profiles have been deleted from the Head Unit, the default “Driver 1” Profile will return as the single profile in the vehicle (unless there are 2 or more memory seat buttons).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "System shall create default Driver1 profile when no custom profiles exist.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5（PRACC5）首句 —— 未設定任何自訂 profile 時，車上恆有一個預設、非連網之 profile，首次使用時名為 “Driver 1”。關鍵情境條件：座椅鍵少於 2 個 —— 否則 4.5.1 會使預設 profile 有多個，與本條之「單一預設」情境混淆。為什麼這樣切：037 對 4.5 切三個 leaf；本 leaf 之單位為**預設之存在**。刻意略過：刪除後之重建屬 `SWE1-HMI-PROF-007-02`；重建後之單一形態屬 `SWE1-HMI-PROF-007-03`。",
+ "keywords": [
+  "default Profile",
+  "Driver 1",
+  "non-connected",
+  "first time use"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-007-01",
+   "tc_id": "NR1L-UserProfiles-092",
+   "tc_title": "Default non-connected Profile present when none is set up",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Default non-connected Profile present when none is set up",
+   "pre_conditions": "1. The vehicle has no custom Driver Profile set up\n2. The vehicle has fewer than 2 memory seat buttons",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the Profile list and check that a default Profile named “Driver 1” is present",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. A default Profile named “Driver 1” is present and it is not a connected Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5",
+   "priority": "P0",
+   "priority_basis": "預設 profile 之存在保證 —— profile 建立之底線",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 併驗 non-connected** —— 條文寫的是 a default, non-connected profile；只驗「有一個叫 Driver 1 的 profile」，一個把它建成連網 profile 之實作會通過。座椅數之 pre-condition 為排除 4.5.1 之多預設情形。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

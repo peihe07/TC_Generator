@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-004-02",
+ "outline": "4.3",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC3.) All user preferences associated with a Profile will be stored by the system and remembered over key cycles. Profile preferences will be restored when the Profile is activated/chosen to be used (e.g., through memory seat buttons, key fob, or Head Unit).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "System shall restore profile preferences when the Profile is activated via HU selection.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.3（PRACC3）之回復側，途徑為**自主機選取 profile**。關鍵情境條件：pre-condition 要求兩個 profile 之該偏好**值不同** ——值相同則「有回復」與「沒動過」無從分辨。為什麼這樣切：**ER3 併驗「與步驟 1 所記之值不同」** ——只驗「等於 B 之值」，一個根本不切換 profile 之實作若兩值恰同也會通過。刻意略過：另二途徑屬 `SWE1-HMI-PROF-004-03`（記憶座椅鍵）與 `SWE1-HMI-PROF-004-04`（key fob）。",
+ "keywords": [
+  "restore",
+  "head unit selection",
+  "profile switch",
+  "PLP"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-004-02",
+   "tc_id": "NR1L-UserProfiles-085",
+   "tc_title": "Preferences restored when a Profile is chosen on the head unit",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Preferences restored when a Profile is chosen on the head unit",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a different value of the preference under test\n2. The vehicle is stationary",
+   "input_test_data": "Preference under test: Cluster Home screen (3.1)",
+   "test_procedure": "1. Activate Driver Profile A and record the preference\n2. Activate Driver Profile B from the “All Profiles” tab\n3. Read the preference and check that it matches Driver Profile B's own value",
+   "expected_result": "1. Driver Profile A is active and its preference is recorded\n2. Driver Profile B is active\n3. The preference matches Driver Profile B's own value and differs from the value recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3",
+   "priority": "P0",
+   "priority_basis": "自主機選取後之回復 —— 回復機制本身",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "三條回復途徑（主機選取／記憶座椅鍵／key fob）為 037 之三個 leaf，分屬 `SWE1-HMI-PROF-004-02`／`-03`／`-04`；本條為**主機選取**一途。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-015",
+ "outline": "4.6.2",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRACC6.2) When the Profile section is open, the button will be in the active state (highlighted).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC6.2) When the Profile section is open, the button will be in the active state (highlighted).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.6.2（PRACC6.2）—— Profile 區開啟時，按鈕為 active （highlighted）狀態。關鍵情境條件：pre-condition 明訂 Profile 區起始為關閉，使開啟前後之對照成立。為什麼這樣切：**步驟 1 之基準線是必要的** ——無基準線則「highlight」與「本來就 highlight」無從分辨（§5.6）。刻意略過：按鈕被移除後之 highlight 屬 `SWE1-HMI-PROF-016`。",
+ "keywords": [
+  "highlight",
+  "active state",
+  "Profile section",
+  "status bar"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-015",
+   "tc_id": "NR1L-UserProfiles-103",
+   "tc_title": "Profile button highlighted while the Profile section is open",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Profile button highlighted while the Profile section is open",
+   "pre_conditions": "1. The status bar is at its default configuration\n2. The Profile section is closed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the status bar Profile button and record its state\n2. Open the Profile section\n3. Read the Profile button and check that it is in the active state",
+   "expected_result": "1. The Profile button state is recorded\n2. The Profile section is open\n3. The Profile button is highlighted",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6.2",
+   "priority": "P3",
+   "priority_basis": "開啟時之 highlight 狀態；UI 強化",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "以關閉狀態為基準線（§5.6）—— 只讀開啟後之狀態，一個永遠 highlight 之實作會通過。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

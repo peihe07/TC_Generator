@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-007-03",
+ "outline": "4.5",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will always be a default, non-connected profile in the vehicle. For first time use this default is called “Driver 1”. If Driver 1 Profile was customized (even if the name was maintained as Driver 1) and then all profiles have been deleted from the Head Unit, the default “Driver 1” Profile will return as the single profile in the vehicle (unless there are 2 or more memory seat buttons).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The default “Driver 1” Profile will return as the single profile in the vehicle (unless there are 2 or more memory seat buttons).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5（PRACC5）第三句之後半 —— 重建之 “Driver 1” 為車上**唯一**之 profile。關鍵情境條件：條文自帶之例外（座椅鍵 ≥ 2）以 pre-condition 排除，使「唯一」之斷言成立。為什麼這樣切：與 `SWE1-HMI-PROF-007-02` 之分野在斷言對象 ——-02 驗**重建發生**，本條驗**重建後只有一個**。**ER2 為缺席斷言（無其他 profile）**，只驗 Driver 1 在，一個留下殘餘 profile 之實作會通過。",
+ "keywords": [
+  "single Profile",
+  "Driver 1",
+  "memory seat buttons",
+  "default"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-007-03",
+   "tc_id": "NR1L-UserProfiles-094",
+   "tc_title": "Recreated Driver 1 is the single Profile on the vehicle",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Recreated Driver 1 is the single Profile on the vehicle",
+   "pre_conditions": "1. Every Profile has been deleted from the head unit\n2. The vehicle has fewer than 2 memory seat buttons",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the Profile list and check that “Driver 1” is the only Profile present",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. “Driver 1” is present and no other Driver Profile is listed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5",
+   "priority": "P1",
+   "priority_basis": "重建後之單一 profile 形態；其座椅數條件為分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之 `(unless there are 2 or more memory seat buttons)` 為**適用條件**，以 pre-condition 固定為少於 2 個；座椅鍵 ≥ 2 之情形由 `SWE1-HMI-PROF-008`（4.5.1）承擔。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-059-02",
+ "outline": "7.2.1",
+ "batch": "batch03",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL2.1) The large welcome popup will show the active (logged in) Profile username and avatar, and display other available profiles, including avatar, username, and memory seat assignment if applicable. Choosing “More Options” will take user to Edit Profile tab. If a different Profile is selected, show the applicable welcome popup for the new active profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "Choosing the “More Options” button from the large welcome popup must navigate the user directly to the \"Edit Profile\" tab of the active profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.2.1（PRWEL2.1）之 `Choosing “More Options” will take user to Edit Profile tab`。關鍵情境條件：須為**大型** welcome popup —— 小型 popup（7.2）無此按鈕。為什麼這樣切：037 對 7.2.1 切三個 leaf，本 leaf 之單位即此一導向；popup 之內容屬 `SWE1-HMI-PROF-059-01`（`NR1L-UserProfiles-007`）。",
+ "keywords": [
+  "More Options",
+  "Edit Profile",
+  "welcome popup",
+  "navigate"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-059-02",
+   "tc_id": "NR1L-UserProfiles-107",
+   "tc_title": "More Options on the welcome popup opens the Edit Profile tab",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "More Options on the welcome popup opens the Edit Profile tab",
+   "pre_conditions": "1. The large welcome popup is displayed for the active Driver Profile\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press “More Options” on the large welcome popup\n2. Read the screen and check that the “Edit Profile” tab of the active Profile is displayed",
+   "expected_result": "1. The “More Options” button is pressed\n2. The “Edit Profile” tab of the active Driver Profile is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1",
+   "priority": "P2",
+   "priority_basis": "自 welcome popup 進入 Edit Profile 之導向；呈現層之入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**A-UP13 行為 2**：23 輪記為「無人覆蓋」，25 輪查 037 後更正 —— 本行為有專屬 leaf （`SWE1-HMI-PROF-059-02`），當時只是尚未取樣。**ER2 併驗「現用 profile 之」分頁** —— 只驗「Edit Profile 開了」，一個開到別的 profile 之實作會通過。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

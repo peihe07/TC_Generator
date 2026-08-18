@@ -167,6 +167,10 @@ TEST_SETUP_NUMERALS = {
     "NR1L-UserProfiles-031": ["2"],
     "NR1L-UserProfiles-030": ["2", "3"],   # profile 數與座椅數之邊界設置
     "NR1L-UserProfiles-056": ["1"],        # memory seat 編號（12.7 只說 the buttons）
+    # 第三批（28 包）—— 4.4／4.5.2 之條文只寫 memory seat buttons／position，
+    # **未給編號**；編號為測試設置之選擇（J-12），已於各該 remarks 具名。
+    "NR1L-UserProfiles-091": ["1"],        # 4.4 覆寫側，座椅鍵編號
+    "NR1L-UserProfiles-105": ["1"],        # 4.5.2 反向，座椅位置編號
 }
 
 # 狀態值 —— 其字面須溯得到被引之節

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-002-02",
+ "outline": "4.1.1",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, only restore the active Profile’s settings to default state (do not reset all Profiles’ settings to default). “Restore Settings to Default” will not delete profile username or avatar. PU1087 is displayed when users confirm Setting restore to default by pressing Yes in pop-up PU_0118. PU1088 is displayed when settings have been successfully restored to default. PU1088 is displayed if HU or TBM do not confirm complete default restoring.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When user pressing Yes in pop-up PU_0118, PU1087 is displayed. PU1088 shows when restore completes.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.1.1 之後三句 —— 於 PU0118 按 Yes 後顯示 PU1087，回復完成後顯示 PU1088。關鍵情境條件：須有可回復之設定，否則流程不會被觸發。為什麼這樣切：本 leaf 之單位為**流程提示**，回復之實際效果屬 `SWE1-HMI-PROF-002-01`。**寫作限制（R-U27）**：popup 之內文未到齊，本 TC 只驗其顯示與時序，**不驗其文字** —— 已於 remarks 具名。刻意略過：條文另有「HU 或 TBM 未確認完成時亦顯示 PU1088」一句，其觸發為**異常路徑**，需注入未確認之情境（§12 之故障注入），與本條之正常路徑不同觸發（§5.7），037 未為其另切 leaf ——依 R-U56 為 OUT-OF-SCOPE，不列缺口。",
+ "keywords": [
+  "PU1087",
+  "PU1088",
+  "PU0118",
+  "restore progress"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-002-02",
+   "tc_id": "NR1L-UserProfiles-082",
+   "tc_title": "Progress popups shown during Restore Settings to Default",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Progress popups shown during Restore Settings to Default",
+   "pre_conditions": "1. A Driver Profile is active with at least one setting changed from its default\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select “Restore Settings to Default”\n2. Press Yes on the confirmation popup and check that PU1087 is displayed\n3. Wait for the restore to end and check that PU1088 is displayed",
+   "expected_result": "1. The confirmation popup PU0118 is displayed\n2. PU1087 is displayed\n3. PU1088 is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1",
+   "priority": "P2",
+   "priority_basis": "回復進度之提示（PU1087／PU1088）；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**本批唯一帶上游未決事項生成者（R-U27）**：DR #4 所缺為 `PU1087`／`PU1088` 之 popup **內文**，而其**觸發條件**已載於 spec（p6）。故本 TC 之 ER 只斷言該二 popup **顯示**，**不寫其上之文字** —— 不得以鄰近 PU id 推定內容（§8.4.1）。DR #4 到齊後，ER 得補其逐字內容。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

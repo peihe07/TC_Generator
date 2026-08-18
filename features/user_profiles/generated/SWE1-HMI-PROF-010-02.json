@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-010-02",
+ "outline": "4.5.3",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC5.3) If a Profile linked to a memory seat position is attempted to be deleted, and there is one or more other Profiles available without memory seats linked to it/them, automatically reassign that memory seat to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab). If there are no Profile’s available to link a memory seat position to, a default Profile associated with that seat position will be automatically created/restored by the system.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If there are no Profile’s available to link a memory seat position to, a default Profile associated with that seat position will be automatically created/restored by the system.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5.3（PRACC5.3）後半 —— 無可用 profile 可連該座椅位置時，系統自動建立或回復一個與該位置關聯之預設 profile。關鍵情境條件：**車上只有一個 profile 且已連座椅** ——此為使條件成立之最小情境。為什麼這樣切：與 `SWE1-HMI-PROF-010-01` 構成 §7 之配對，兩者之 pre-condition 互斥。",
+ "keywords": [
+  "default Profile",
+  "auto create",
+  "memory seat",
+  "delete"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-010-02",
+   "tc_id": "NR1L-UserProfiles-098",
+   "tc_title": "Default Profile created when no Profile can take the seat",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Default Profile created when no Profile can take the seat",
+   "pre_conditions": "1. One Driver Profile exists and it is linked to a memory seat position\n2. No other Driver Profile is available on the vehicle",
+   "input_test_data": "NA",
+   "test_procedure": "1. Delete the Profile linked to the memory seat position\n2. Open the “All Profiles” tab\n3. Read the Profile list and check that a default Profile for that seat position is present",
+   "expected_result": "1. The linked Profile is deleted\n2. The “All Profiles” tab is displayed\n3. A default Profile associated with that seat position is present",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.3",
+   "priority": "P1",
+   "priority_basis": "無可用 profile 時之預設自動建立",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "§7 之列舉配對：正向為 `SWE1-HMI-PROF-010-01`（有可用 profile 則改派）。兩條之 pre-condition 互斥（有／無其他可用 profile），不重複覆蓋。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

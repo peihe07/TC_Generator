@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-004-01",
+ "outline": "4.3",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC3.) All user preferences associated with a Profile will be stored by the system and remembered over key cycles. Profile preferences will be restored when the Profile is activated/chosen to be used (e.g., through memory seat buttons, key fob, or Head Unit).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "System shall store and remember all user preferences associated with a Profile over key cycles.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.3（PRACC3）之儲存側 —— 偏好跨 key cycle 保留。關鍵情境條件：**同一 profile 全程作用中** —— 若中途切換 profile，測到的會是 4.3.1 之切換前儲存，不是跨 key cycle。為什麼這樣切：037 對 4.3 切四個 leaf，本 leaf（-01）之單位為**跨 key cycle 之保留**；三條回復途徑分屬 -02／-03／-04。來源標示：`key cycle` 之操作定義出自 **R-U21（裁決）**，非 spec（J-4）。",
+ "keywords": [
+  "key cycle",
+  "preferences",
+  "remembered",
+  "PLP"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-004-01",
+   "tc_id": "NR1L-UserProfiles-084",
+   "tc_title": "Profile preferences remembered across a key cycle",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Profile preferences remembered across a key cycle",
+   "pre_conditions": "1. A Driver Profile is active\n2. The vehicle is stationary",
+   "input_test_data": "Preference under test: Cluster Home screen (3.1)",
+   "test_procedure": "1. Set the preference under test to a new value and record it\n2. Switch the ignition off and then on again\n3. Read the preference and check that it matches the recorded value",
+   "expected_result": "1. The preference accepts the new value and it is recorded\n2. The ignition is off and then on again with the same Driver Profile active\n3. The preference matches the value recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3",
+   "priority": "P0",
+   "priority_basis": "偏好跨 key cycle 之儲存 —— 核心五類之一",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "`key cycle` 之操作定義取 R-U21（設定 → key cycle → 讀回）——**其權威為裁決而非 spec**；4.3 之條文只寫 remembered over key cycles，未定義該循環之操作方式。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-007-02",
+ "outline": "4.5",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC5.) If no custom Profile is set up, or all profiles are deleted, there will always be a default, non-connected profile in the vehicle. For first time use this default is called “Driver 1”. If Driver 1 Profile was customized (even if the name was maintained as Driver 1) and then all profiles have been deleted from the Head Unit, the default “Driver 1” Profile will return as the single profile in the vehicle (unless there are 2 or more memory seat buttons).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If Driver1 was customized and delected, system shall recreate default Driver1.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5（PRACC5）第三句 —— 客製過之 Driver 1 於全部 profile 被刪除後，預設 “Driver 1” 重新出現。關鍵情境條件：**pre-condition 明訂該預設曾被客製** ——條文特別寫 even if the name was maintained as Driver 1，即「名稱沒變」不等於「沒被客製」。為什麼這樣切：本 leaf 之單位為**重建**；重建後只有一個 profile 之形態屬 `SWE1-HMI-PROF-007-03`。",
+ "keywords": [
+  "delete all",
+  "default Driver 1",
+  "recreate",
+  "customized"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-007-02",
+   "tc_id": "NR1L-UserProfiles-093",
+   "tc_title": "Default Driver 1 recreated after all Profiles are deleted",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Default Driver 1 recreated after all Profiles are deleted",
+   "pre_conditions": "1. The default Profile has been customized and its name is still “Driver 1”\n2. The vehicle has fewer than 2 memory seat buttons",
+   "input_test_data": "NA",
+   "test_procedure": "1. Delete every Profile from the head unit\n2. Open the “All Profiles” tab\n3. Read the Profile list and check that a default “Driver 1” Profile is present again",
+   "expected_result": "1. Every Profile is deleted\n2. The “All Profiles” tab is displayed\n3. A default “Driver 1” Profile is present and its preferences are at their default values",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5",
+   "priority": "P0",
+   "priority_basis": "全部刪除後之預設重建 —— 資料遺失後之回復",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 併驗「偏好為預設值」** —— 條文之 default 指的是**重建出一個預設 profile**，不是把原客製 profile 改名留下；只驗名稱，一個保留原客製內容之實作會通過。回復之範圍細節屬 `SWE1-HMI-PROF-012`（4.5.4）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

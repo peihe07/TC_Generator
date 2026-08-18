@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-009",
+ "outline": "4.5.2",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, but there will always be one Driver Profile per memory seat position.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, but there will always be one Driver Profile per memory seat position.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5.2（PRACC5.2）前半 —— 記憶座椅偏好可於 profile 間互換。關鍵情境條件：兩 profile 各有其座椅位置，互換之效果方可觀察。為什麼這樣切：條文有兩個斷言（可互換／每位置恆只有一個），**後者為全稱且為限制**，其失效形態與前者相反 ——併於一條則失敗時分不出是哪一個沒生效（§7）。反向由 `NR1L-UserProfiles-104` 承擔。",
+ "keywords": [
+  "swap",
+  "memory seat",
+  "Driver Profile",
+  "link"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-009",
+   "tc_id": "NR1L-UserProfiles-096",
+   "tc_title": "Memory seat preferences swapped between Driver Profiles",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Memory seat preferences swapped between Driver Profiles",
+   "pre_conditions": "1. Two Driver Profiles exist, each linked to its own memory seat position\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record which Profile is linked to each memory seat position\n2. Swap the memory seat preferences between the two Profiles\n3. Read the links and check that each Profile now holds the other's seat position",
+   "expected_result": "1. The two Profile-to-seat links are recorded\n2. The swap is accepted\n3. Each Profile is linked to the seat position recorded for the other Profile in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.2",
+   "priority": "P1",
+   "priority_basis": "記憶座椅偏好之互換；主要功能之進階操作",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "§7 之列舉配對：反向為 `NR1L-UserProfiles-104`（同一座椅位置不得連上第二個 profile）。條文之後半「**永遠只有一個** Driver Profile per memory seat position」為全稱，**只驗互換成功不足以證之** —— 故另立反向。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

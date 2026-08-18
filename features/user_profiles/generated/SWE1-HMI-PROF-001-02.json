@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-001-02",
+ "outline": "4.1",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC1.) The system will store and recall each unique Driver Profile’s preferences: see list of linked content above. If a feature is unavailable for a vehicle or region, ignore requirement.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "system shall recall stored preferences when profile is activated.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.1（PRACC1）之回復側 —— profile 啟用時回復其已儲存之偏好。關鍵情境條件：受測偏好取自 PLP 表 3.1／3.2 之逐字列項，非自擬（§8.4.1）；條文之「feature 不可用則忽略」以 pre-condition 限定該二項在本車可用。為什麼這樣切：037 對 4.1 切三個 leaf，本 leaf（-02）之單位為**啟用時之回復**，一葉一 TC（§8.2.1）。**中間切至 Profile B 是必要的** —— 若不切走，「回復」與「值本來就在畫面上」無從分辨。刻意略過：不可用項目之略過屬 `SWE1-HMI-PROF-001-03`；儲存側屬 `SWE1-HMI-PROF-001-01`。",
+ "keywords": [
+  "recall",
+  "profile activation",
+  "PLP",
+  "preferences"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-001-02",
+   "tc_id": "NR1L-UserProfiles-079",
+   "tc_title": "Stored preferences recalled when a Driver Profile is activated",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Stored preferences recalled when a Driver Profile is activated",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The features carrying the preferences under test are available for the vehicle and the region",
+   "input_test_data": "Preferences under test: Cluster Home screen (3.1), SiriusXM 360L Listener Profile (3.2)",
+   "test_procedure": "1. Activate Driver Profile A and record the two preferences\n2. Activate Driver Profile B\n3. Activate Driver Profile A and check that the two preferences match the values recorded in step 1",
+   "expected_result": "1. Driver Profile A is active and the two preference values are recorded\n2. Driver Profile B is active\n3. Driver Profile A is active and the two preferences match the values recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.3; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.4; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.5",
+   "priority": "P0",
+   "priority_basis": "偏好之回復機制本身 —— R-U5 核心五類之一",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 本 leaf 之單位為**啟用時之回復**；儲存側由 `SWE1-HMI-PROF-001-01` 承擔（pilot 之 TC-001）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

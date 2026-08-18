@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-002-01",
+ "outline": "4.1.1",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, only restore the active Profile’s settings to default state (do not reset all Profiles’ settings to default). “Restore Settings to Default” will not delete profile username or avatar. PU1087 is displayed when users confirm Setting restore to default by pressing Yes in pop-up PU_0118. PU1088 is displayed when settings have been successfully restored to default. PU1088 is displayed if HU or TBM do not confirm complete default restoring.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "Restore active Profile's default values, but do not delete username & avatar.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.1.1（PRACC1.2）—— 「Restore Settings to Default」只回復現用 profile 之設定，不重設其他 profile，且不刪 username 與 avatar。關鍵情境條件：pre-condition 要求**兩個** profile 皆有偏離預設之設定 ——**只有一個 profile 時，「不重設全部」無從觀察**。為什麼這樣切：三個斷言同屬一次操作之結果（§5.7）；**若只驗「A 回到預設」，一個把全部 profile 都重設之實作會通過**。刻意略過：回復過程之提示 popup 屬 `SWE1-HMI-PROF-002-02`。",
+ "keywords": [
+  "Restore Settings to Default",
+  "active Profile",
+  "username",
+  "avatar"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-002-01",
+   "tc_id": "NR1L-UserProfiles-081",
+   "tc_title": "Restore Settings to Default affects only the active Profile",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Restore Settings to Default affects only the active Profile",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a username and an avatar\n2. Both Profiles have at least one vehicle setting changed from its default",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate Driver Profile A and record its setting, username and avatar\n2. Select “Restore Settings to Default” and confirm it\n3. Read Driver Profile A and check its setting, username and avatar\n4. Activate Driver Profile B and check that its setting is unchanged",
+   "expected_result": "1. Driver Profile A is active and its values are recorded\n2. The restore completes for Driver Profile A\n3. The setting of Driver Profile A is back to default while its username and avatar are unchanged\n4. The setting of Driver Profile B is unchanged",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1",
+   "priority": "P0",
+   "priority_basis": "回復預設時**不得波及他 profile 與 username／avatar** —— 資料遺失風險項",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文有三個斷言：只回復現用 profile、不重設全部 profile、不刪 username 與 avatar —— **三者為同一操作之三個結果**，依 §5.7 併為一條 TC。步驟 4 之 Profile B 即「不重設全部」之觀察點。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

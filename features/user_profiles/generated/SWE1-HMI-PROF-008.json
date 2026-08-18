@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-008",
+ "outline": "4.5.1",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC5.1) If there are memory seat buttons, there will be a default Driver Profile for each memory seat position/button (e.g., if there are 2 memory seat buttons there will be two default Profiles: memory seat button 1 defaults as linked to “Driver 1” Profile, and memory seat button two defaults as linked to “Driver 2” Profile)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC5.1) If there are memory seat buttons, there will be a default Driver Profile for each memory seat position/button (e.g., if there are 2 memory seat buttons there will be two default Profiles: memory seat button 1 defaults as linked to “Driver 1” Profile, and memory seat button two defaults as linked to “Driver 2” Profile)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5.1（PRACC5.1）—— 有記憶座椅鍵時，每個座椅位置各有一個預設 Driver Profile。關鍵情境條件：座椅鍵數以條文之例（2）固定，且無自訂 profile —— 否則預設之數目會被自訂者干擾。為什麼這樣切：**ER 逐一指名兩個連結**（Driver 1 ↔ 鍵 1、Driver 2 ↔ 鍵 2）；只驗「有兩個預設 profile」，一個把兩者都連到同一鍵之實作會通過。刻意略過：座椅鍵三個以上之情形條文未述（§8.4.1 保留）。",
+ "keywords": [
+  "memory seat button",
+  "default Profile",
+  "Driver 2",
+  "link"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-008",
+   "tc_id": "NR1L-UserProfiles-095",
+   "tc_title": "One default Profile per memory seat button",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "One default Profile per memory seat button",
+   "pre_conditions": "1. The vehicle has 2 memory seat buttons\n2. No custom Driver Profile is set up on the vehicle",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the seat links and check that each button has its own default Profile",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. Two default Profiles are present: “Driver 1” linked to memory seat button 1 and “Driver 2” linked to memory seat button 2",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.1",
+   "priority": "P1",
+   "priority_basis": "每個記憶座椅位置之預設 profile；配置相依之分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文以「2 個座椅鍵」為例（e.g.），本 TC 以其為 pre-condition ——**該數字取自條文之例，非自擬**。座椅鍵 ≥ 3 之情形條文未述，依 §8.4.1 不推定。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-005",
+ "outline": "4.3.1",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC3.1) If a Profile is switched within a key cycle, any changed preferences will be saved before the new Profile is loaded.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC3.1) If a Profile is switched within a key cycle, any changed preferences will be saved before the new Profile is loaded.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.3.1（PRACC3.1）—— 同一 key cycle 內切換 profile 時，已變更之偏好**在新 profile 載入之前**先行儲存。關鍵情境條件：兩 profile 之該偏好值不同，且步驟 1 之新值與 B 之值不同。為什麼這樣切：**條文之重點是「先後」，而先後不能只用「回來還在」證明** ——「A 回來還在」（ER3）與「存在載入之前」相容，也與「載入之後才存」相容。**能分開兩者的是 ER2**：若實作在 B 載入後才寫入，那筆變更會被寫進 B（或覆蓋 B 之值）；故 ER2 斷言 **B 顯示的是 B 自己的值，不是步驟 1 所記之值**。兩條 ER 併存才構成順序之斷言 —— 這是本條與 4.3 之 -01 的分野。來源標示：受測偏好取自 PLP 表 3.1（§8.4.1）。",
+ "keywords": [
+  "save before load",
+  "profile switch",
+  "key cycle",
+  "ordering"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-005",
+   "tc_id": "NR1L-UserProfiles-088",
+   "tc_title": "Changed preferences saved before the next Profile loads",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Changed preferences saved before the next Profile loads",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a recorded value of the preference under test\n2. The two recorded values are different from each other",
+   "input_test_data": "Preference under test: Cluster Home screen (3.1)",
+   "test_procedure": "1. Activate Driver Profile A and change the preference to a new value, then record it\n2. Activate Driver Profile B and read the preference\n3. Activate Driver Profile A and check that the preference matches the value recorded in step 1",
+   "expected_result": "1. Driver Profile A is active and the changed value is recorded\n2. Driver Profile B is active and its preference is its own value, not the value recorded in step 1\n3. Driver Profile A is active and the preference matches the value recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.3; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.4; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.5",
+   "priority": "P0",
+   "priority_basis": "切換前先存 —— 失效即已變更之偏好遺失（資料遺失風險）",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 **ER2 是順序之判別點**：若儲存發生在 Profile B 載入**之後**，A 之變更會落到 B 上 —— ER2 即在排除該實作。ER3 單獨只能證「有存到」，證不了「存在載入之前」。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

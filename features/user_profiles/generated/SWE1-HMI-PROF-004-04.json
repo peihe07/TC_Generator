@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-004-04",
+ "outline": "4.3",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC3.) All user preferences associated with a Profile will be stored by the system and remembered over key cycles. Profile preferences will be restored when the Profile is activated/chosen to be used (e.g., through memory seat buttons, key fob, or Head Unit).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "System shall restore profile preferences when the Profile is activated via key fob detection.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.3（PRACC3）之回復側，途徑為 **key fob 偵測**。關鍵情境條件：兩 profile 各關聯一支 key fob 且偏好值不同。為什麼這樣切：三途徑各為一 leaf；本條不代測另二者。刻意略過：key fob 關聯之建立流程 spec 於本節未述，不推定（§8.4.1）。",
+ "keywords": [
+  "key fob",
+  "detection",
+  "restore",
+  "PLP"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-004-04",
+   "tc_id": "NR1L-UserProfiles-087",
+   "tc_title": "Preferences restored when a Profile is detected by key fob",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Preferences restored when a Profile is detected by key fob",
+   "pre_conditions": "1. Two Driver Profiles exist, each associated with a different key fob\n2. The two Profiles hold different values of the preference under test",
+   "input_test_data": "Preference under test: Cluster Home screen (3.1)",
+   "test_procedure": "1. Activate Driver Profile A and record the preference\n2. Present the key fob associated with Driver Profile B\n3. Read the preference and check that it matches Driver Profile B's own value",
+   "expected_result": "1. Driver Profile A is active and its preference is recorded\n2. Driver Profile B is active\n3. The preference matches Driver Profile B's own value and differs from the value recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.3",
+   "priority": "P1",
+   "priority_basis": "key fob 偵測之回復途徑；主要功能之另一入口",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "key fob 與 profile 之關聯機制 spec 未於本節詳述，本條以其為 pre-condition；**其建立方式不在本 TC 之範圍**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

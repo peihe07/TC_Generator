@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-009-neg",
+ "outline": "4.5.2",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, but there will always be one Driver Profile per memory seat position.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC5.2) The memory seat preferences can be swapped between Driver Profiles, but there will always be one Driver Profile per memory seat position.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5.2（PRACC5.2）後半之全稱限制 ——每個記憶座椅位置**恆只有一個** Driver Profile。關鍵情境條件：該位置已被 A 佔用，B 另有其位 ——使「再連一個」成為明確之非法操作。為什麼這樣切：**全稱之限制只能以反向證之** ——正向（互換成功）與「允許一位置連兩個」相容，故 `SWE1-HMI-PROF-009` 之正向不足以擋下該實作（§7）。**ER3 斷言「恰好一個」而非「B 沒連上」** ——後者容許實作把 A 踢掉再連 B，那同樣違反條文。",
+ "keywords": [
+  "memory seat position",
+  "single Profile",
+  "refused",
+  "always one"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-009",
+   "tc_id": "NR1L-UserProfiles-105",
+   "tc_title": "Second Profile refused on an occupied memory seat position",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Second Profile refused on an occupied memory seat position",
+   "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is linked to memory seat position 1\n2. Driver Profile B is linked to another seat position",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record which Profile holds memory seat position 1\n2. Attempt to link Driver Profile B to memory seat position 1 as well\n3. Read the seat links and check that position 1 still holds exactly one Profile",
+   "expected_result": "1. Memory seat position 1 is recorded as linked to Driver Profile A\n2. The attempt is not accepted as an additional link\n3. Memory seat position 1 is linked to exactly one Driver Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.2",
+   "priority": "P1",
+   "priority_basis": "同一座椅位置不得連上第二個 profile —— 全稱限制之反向",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "§7 之列舉配對：正向為 `NR1L-UserProfiles-096`（`SWE1-HMI-PROF-009`，互換成功）。條文之「**there will always be one** Driver Profile per memory seat position」為全稱限制 —— **只驗互換成功不足以證之**，故另立本條。座椅位置編號（1）為測試設置（J-12）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ],
+ "note": "與 `SWE1-HMI-PROF-009` 同一 leaf，**非新 leaf**；檔名加 `-neg` 以免覆寫該 leaf 之既有產物"
+}

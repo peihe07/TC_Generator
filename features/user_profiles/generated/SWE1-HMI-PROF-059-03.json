@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-059-03",
+ "outline": "7.2.1",
+ "batch": "batch03",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRWEL2.1) The large welcome popup will show the active (logged in) Profile username and avatar, and display other available profiles, including avatar, username, and memory seat assignment if applicable. Choosing “More Options” will take user to Edit Profile tab. If a different Profile is selected, show the applicable welcome popup for the new active profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If the user selects a different profile from the list of available profiles on the large welcome popup, the system must switch to that selected profile and subsequently display the applicable welcome popup for the newly active profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.2.1（PRWEL2.1）之 `If a different Profile is selected, show the applicable welcome popup for the new active profile`。關鍵情境條件：popup 須列出另一個 profile，否則選取無從發生。為什麼這樣切：**條文之 applicable 指其形態由別處決定** ——ER 照錄該不確定性，不推定為大型或小型（§8.4.1）。刻意略過：welcome popup 之尺寸判準屬 7.2／7.2.1 之其他斷言。",
+ "keywords": [
+  "switch Profile",
+  "welcome popup",
+  "applicable",
+  "select"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-059-03",
+   "tc_id": "NR1L-UserProfiles-108",
+   "tc_title": "Selecting another Profile switches and shows its welcome popup",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Selecting another Profile switches and shows its welcome popup",
+   "pre_conditions": "1. The large welcome popup is displayed for Driver Profile A and lists Driver Profile B\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the active Profile shown on the large welcome popup\n2. Select Driver Profile B from the list on the popup\n3. Read the screen and check that Driver Profile B is active with its own welcome popup",
+   "expected_result": "1. Driver Profile A is recorded as the active Profile\n2. Driver Profile B is selected\n3. Driver Profile B is the active Profile and the applicable welcome popup for it is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1",
+   "priority": "P1",
+   "priority_basis": "自 welcome popup 切換 profile 並顯示新 popup —— 切換路徑之一",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**A-UP13 行為 3**：同行為 2，有專屬 leaf （`SWE1-HMI-PROF-059-03`）而尚未取樣，25 輪更正記載。**ER3 併驗「切換」與「新 popup」兩者** —— 只驗 popup 換了，一個顯示 B 之 popup 卻未真正切換之實作會通過。popup 之尺寸取決於 7.2／7.2.1 之條件，故 ER 寫 the applicable welcome popup，不指定大小。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

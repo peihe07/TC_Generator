@@ -71,11 +71,19 @@ FORM_RULES = {
                                              r"characters|attempts)?\s*(?:→|->|,)",
                                              tc["input_test_data"]))
                    or "→" in tc["input_test_data"]),
+    # **詞表補過一次（R-U37，28 包）。** 第三批之三條真狀態轉換被判紅：
+    #   `011`（刪除 profile → 現用者改變）、`048-del`（客製化 → 不再是預設）、
+    #   `059-03`（自 popup 選另一 profile → 切換）
+    # 三者皆造成**持續存在之系統狀態**改變，只是動作詞不在表內。
+    # **未把 `open`／`read` 收進來** —— 那些不改變狀態；
+    # 同輪之 `SWE1-HMI-PROF-015`（按鈕 highlight 隨區段開闔）即據此**改判為功能測試**，
+    # 而非為了轉綠而放寬詞表。
     "狀態轉換": ("A→B 之狀態變化（procedure 內有造成狀態改變之步驟）",
                  lambda tc: bool(re.search(
                      r"\b(bring the vehicle into motion|activate|deactivate|"
                      r"exit|switch the ignition|disconnect|select memory seat|"
-                     r"swap)\b", tc["test_procedure"], re.I))),
+                     r"swap|delete|customize|select driver profile)\b",
+                     tc["test_procedure"], re.I))),
     # v1 只掃 procedure 之關鍵詞，漏掉「選取一個已鎖定之項目」這種寫法
     # （TC-022 之 `Select the greyed-out “Delete Profile” item`、
     #  TC-057 之 `Select Device Manager`）—— 動作本身讀不出它非法，
@@ -298,6 +306,16 @@ SELF_CASES = [
      _tc(design_method="負向測試 (Negative Testing)",
          test_procedure="1. Select the greyed-out “Delete Profile” item",
          expected_result="1. The selection is not accepted"), False),
+    ("**TC-099 之形狀**：刪除驅動之狀態遷移 → **須綠**（28 包補詞表）", "k4a",
+     _tc(design_method="狀態轉換 (State Transition Testing)",
+         test_procedure="1. Delete Driver Profile A\n"
+                        "2. Read the active Profile and check that it changed"),
+     False),
+    ("**護欄**：只有開啟／讀取之 procedure 標狀態轉換 → **仍須紅**", "k4a",
+     _tc(design_method="狀態轉換 (State Transition Testing)",
+         test_procedure="1. Open the Profile section\n"
+                        "2. Read the button and check that it is highlighted"),
+     True),
     ("狀態轉換而 procedure 無造成狀態改變之步驟 → **須紅**", "k4a",
      _tc(design_method="狀態轉換 (State Transition Testing)",
          test_procedure="1. Read the screen\n2. Check the label"), True),

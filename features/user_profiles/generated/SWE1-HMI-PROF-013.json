@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-013",
+ "outline": "4.6",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC6.) The Profile feature will have a button defaulted in the status bar (but status bar can be customized to remove it). The button icon will change depending on which profile is logged in.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC6.) The Profile feature will have a button defaulted in the status bar (but status bar can be customized to remove it). The button icon will change depending on which profile is logged in. (image: %E5%9C%96%E7%89%87_1610819271.png) (image: %E5%9C%96%E7%89%87_19752790.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.6（PRACC6）—— Profile 按鈕預設存在於狀態列，且其圖示隨作用中之 profile 改變。關鍵情境條件：兩 profile 之 avatar 不同，否則「圖示改變」無從觀察。為什麼這樣切：兩個斷言（預設存在／圖示隨 profile 變）為同一節之兩個結果，依 §5.7 併為一條之兩段。**ER3 以「與步驟 1 所讀不同」表述** —— 圖示之具體內容屬 4.6.1，本條只斷言其**改變**。",
+ "keywords": [
+  "status bar",
+  "Profile button",
+  "icon",
+  "default"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-013",
+   "tc_id": "NR1L-UserProfiles-101",
+   "tc_title": "Profile button present in the status bar by default",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Profile button present in the status bar by default",
+   "pre_conditions": "1. The status bar is at its default configuration\n2. Two Driver Profiles exist with different avatars",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the status bar and check that a Profile button is present\n2. Activate the other Driver Profile\n3. Read the status bar button and check that its icon changed with the active Profile",
+   "expected_result": "1. A Profile button is present in the status bar\n2. The other Driver Profile is active\n3. The Profile button icon differs from the icon read in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6",
+   "priority": "P2",
+   "priority_basis": "狀態列按鈕之預設存在與其圖示變化；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之括號句（狀態列可被客製以移除該按鈕）為**另一觸發**，其行為由 `SWE1-HMI-PROF-016`（4.6.3）承擔；本條驗預設狀態。圖示之**內容**（avatar／首字母）屬 `SWE1-HMI-PROF-014`（4.6.1）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-012",
+ "outline": "4.5.4",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC5.4) When default Driver 1-2 Profiles are restored, all Profile linked preferences are restored to the default state (as if the vehicle was just purchased).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC5.4) When default Driver 1-2 Profiles are restored, all Profile linked preferences are restored to the default state (as if the vehicle was just purchased).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5.4（PRACC5.4）—— 預設 Driver 1–2 profile 被回復時，所有 profile-linked 偏好回到預設狀態。關鍵情境條件：**兩個預設 profile 皆須有偏離預設之值** ——否則「回到預設」與「本來就是預設」無從分辨。為什麼這樣切：**ER3 併驗「無一項仍持步驟 1 所記之值」** ——只驗「等於預設值」，一個把預設值也改掉之實作可能仍通過。**代價聲明**：本條驗三項 PLP 列項，**非全部** ——全稱以單例驗證之限制見 D-UP16-02，其分母不得以引用欄推定（J-1）。",
+ "keywords": [
+  "restore defaults",
+  "PLP",
+  "Driver 1",
+  "Driver 2"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-012",
+   "tc_id": "NR1L-UserProfiles-100",
+   "tc_title": "All linked preferences reset when default Profiles are restored",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "All linked preferences reset when default Profiles are restored",
+   "pre_conditions": "1. The vehicle has 2 memory seat buttons with the default “Driver 1-2” Profiles\n2. Both default Profiles have several profile-linked preferences changed from their defaults",
+   "input_test_data": "Preferences under test: Cluster Home screen (3.1), SiriusXM 360L Listener Profile (3.2), Nav Saved destinations (3.4)",
+   "test_procedure": "1. Record the changed values of the three preferences for both default Profiles\n2. Restore the default Driver Profiles\n3. Read the three preferences for both Profiles and check that each is at its default value",
+   "expected_result": "1. The changed values are recorded for both default Profiles\n2. The default Profiles are restored\n3. The three preferences of both Profiles are at their default values and none holds a value recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.4; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.3; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.4; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.5",
+   "priority": "P0",
+   "priority_basis": "預設回復時全部偏好歸零 —— 資料遺失風險項",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 條文之 as if the vehicle was just purchased 為**程度描述**，本 TC 以「三項 PLP 偏好皆回到預設值」為其可觀察之形式；**未宣稱已驗盡全部 PLP 列項**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-010-01",
+ "outline": "4.5.3",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRACC5.3) If a Profile linked to a memory seat position is attempted to be deleted, and there is one or more other Profiles available without memory seats linked to it/them, automatically reassign that memory seat to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab). If there are no Profile’s available to link a memory seat position to, a default Profile associated with that seat position will be automatically created/restored by the system.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If a Profile linked to a memory seat position is attempted to be deleted, and there is one or more other Profiles available without memory seats linked to it/them, automatically reassign that memory seat to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.5.3（PRACC5.3）前半 —— 刪除已連座椅之 profile 時，該座椅自動改派給下一個可用 profile，順序由左至右。關鍵情境條件：**須有兩個以上未連座椅之 profile** ——只有一個時，「由左至右」之優先順序無從觀察。為什麼這樣切：本 leaf 之單位為**有可用 profile 時之改派**；無可用 profile 之情形屬 `SWE1-HMI-PROF-010-02`。",
+ "keywords": [
+  "reassign",
+  "memory seat",
+  "delete",
+  "left to right"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-010-01",
+   "tc_id": "NR1L-UserProfiles-097",
+   "tc_title": "Memory seat reassigned to the next available Profile on delete",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Memory seat reassigned to the next available Profile on delete",
+   "pre_conditions": "1. Three Driver Profiles exist and only one of them is linked to a memory seat position\n2. The two unlinked Profiles are ordered left to right on the “All Profiles” tab",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the order of the unlinked Profiles\n2. Delete the Profile linked to the memory seat position\n3. Read the seat link and check that it moved to the leftmost unlinked Profile",
+   "expected_result": "1. The order of the unlinked Profiles is recorded\n2. The linked Profile is deleted\n3. The memory seat position is linked to the leftmost unlinked Profile recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.5.3",
+   "priority": "P1",
+   "priority_basis": "刪除時之座椅自動改派；非主路徑分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之優先順序為 prioritizing from left to right based on the order of the Profiles on the All Profiles Tab —— **ER 指名「最左」而非「任一」**：只驗「改派給某個 profile」，一個隨機挑選之實作會通過。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

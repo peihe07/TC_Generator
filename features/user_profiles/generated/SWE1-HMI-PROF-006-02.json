@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-006-02",
+ "outline": "4.4",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC4.) At the start of a new key cycle, Head Unit will load last known Profile unless a different Profile is detected or initiated (through the key fob or memory seat buttons).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If key fob profile detected, override last active profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.4（PRACC4）之覆寫側，觸發為 **key fob 偵測**。關鍵情境條件：上次作用中之 profile 與 key fob 所指者**必須不同** ——相同則覆寫與否無從分辨。為什麼這樣切：與 `SWE1-HMI-PROF-006-01` 構成 §7 之配對。刻意略過：記憶座椅鍵之覆寫屬 `SWE1-HMI-PROF-006-03`。",
+ "keywords": [
+  "key fob",
+  "override",
+  "key-on",
+  "last known Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-006-02",
+   "tc_id": "NR1L-UserProfiles-090",
+   "tc_title": "Key fob detection overrides the last known Profile at key-on",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Key fob detection overrides the last known Profile at key-on",
+   "pre_conditions": "1. Two Driver Profiles exist and Driver Profile B was the last active one\n2. A key fob associated with Driver Profile A is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Switch the ignition off\n2. Present the key fob for Driver Profile A and switch on\n3. Read the active Profile and check that it is Driver Profile A rather than the last known one",
+   "expected_result": "1. The ignition is off with Driver Profile B as the last known Profile\n2. The ignition is on and the key fob is detected\n3. Driver Profile A is active",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.4",
+   "priority": "P1",
+   "priority_basis": "key fob 之覆寫分支",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "§7 之列舉配對：正向為 `SWE1-HMI-PROF-006-01`（無覆寫則載入上次）。**兩條並存才擋得住一個永遠載入上次之實作**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

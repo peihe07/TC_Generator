@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-048-del",
+ "outline": "6.2.1",
+ "batch": "batch03",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.2.1（NOPR1.1）之後半 —— 預設 profile 留在車上，**直到使用者將其客製化或刪除**。關鍵情境條件：起始須為純預設狀態，且**保留另一個未被客製之預設**作為對照（ER3 之後半）。為什麼這樣切：**ER3 併驗「其餘預設仍在」** ——只驗「被客製者不再是預設」，一個把全部預設都清掉之實作會通過。本條與 `NR1L-UserProfiles-005` 同屬 `SWE1-HMI-PROF-048`，分驗該 description 之前後兩半。",
+ "keywords": [
+  "default Profile",
+  "customize",
+  "no longer default",
+  "remain"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-048",
+   "tc_id": "NR1L-UserProfiles-106",
+   "tc_title": "Default Profile no longer default after it is customized",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Default Profile no longer default after it is customized",
+   "pre_conditions": "1. The vehicle is on its default Profiles with no custom Profile set up\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and record the default Profiles present\n2. Customize one default Profile with a username and an avatar\n3. Read the Profile list and check that the customized one is no longer listed as a default",
+   "expected_result": "1. The default Profiles present are recorded\n2. The chosen Profile carries the entered username and avatar\n3. The customized Profile is no longer a default Profile while the other recorded defaults remain",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.2.1",
+   "priority": "P1",
+   "priority_basis": "預設 profile 於客製或刪除後之消失 —— 預設之生命週期",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**A-UP13 行為 1（23 包 M-2 掃出，25 包定歸屬）**：6.2.1 之條文為 `Driver 1 and any other default Profiles will remain on the vehicle **until a user customizes or deletes it**`，而 `NR1L-UserProfiles-005` 只驗其前半（未客製化前仍在）。本條驗其後半 —— **兩條同一 leaf**。**不得與 `SWE1-HMI-PROF-007-02`（4.5）混淆**：該 leaf 驗「刪除全部後 Driver 1 重建」，本條驗「客製後該 profile 不再是預設」—— 兩件事。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ],
+ "note": "與 `SWE1-HMI-PROF-048` 同一 leaf，**非新 leaf**；檔名加 `-del` 以免覆寫該 leaf 之既有產物"
+}

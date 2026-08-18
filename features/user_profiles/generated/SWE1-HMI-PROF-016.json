@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-016",
+ "outline": "4.6.3",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRACC6.3) If the Profile button is removed from the status bar (through status bar customization), the highlight states of the button still apply to it in the Status bar edit mode drawer and the app drawer.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC6.3) If the Profile button is removed from the status bar (through status bar customization), the highlight states of the button still apply to it in the Status bar edit mode drawer and the app drawer.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.6.3（PRACC6.3）—— Profile 按鈕自狀態列移除後，其 highlight 狀態仍適用於 status bar edit mode drawer 與 app drawer。關鍵情境條件：**按鈕須先被移除**（§8.7.3），否則本條與 4.6.2 同情境。為什麼這樣切：條文指名兩個位置，ER 逐一斷言。刻意略過：狀態列客製化之操作流程屬他 feature（Home），本條以其結果為前提。",
+ "keywords": [
+  "removed",
+  "edit mode drawer",
+  "app drawer",
+  "highlight"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-016",
+   "tc_id": "NR1L-UserProfiles-104",
+   "tc_title": "Highlight states kept after the Profile button is removed",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Highlight states kept after the Profile button is removed",
+   "pre_conditions": "1. The Profile button has been removed from the status bar through status bar customization\n2. The Profile section is closed",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the status bar edit mode drawer and record its state\n2. Open the Profile section from the app drawer\n3. Read the Profile button in both the edit mode drawer and the app drawer and check its highlight",
+   "expected_result": "1. The Profile button is shown in the status bar edit mode drawer\n2. The Profile section is open\n3. The Profile button is highlighted in the status bar edit mode drawer and in the app drawer",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6.3",
+   "priority": "P3",
+   "priority_basis": "移除後 highlight 於他處之保留；罕用情境",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文指名**兩個**位置（status bar edit mode drawer 與 app drawer），故 ER3 兩處併驗 —— 只驗其一，另一處失效不會被發現。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

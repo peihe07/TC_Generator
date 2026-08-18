@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-014",
+ "outline": "4.6.1",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC6.1) When a customized Profile is active, the Profile button icon will indicate which profile is logged in (with avatar – if the avatar is just a color, the first character of the username will display in the center of the colored circle), as pictured above.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC6.1) When a customized Profile is active, the Profile button icon will indicate which profile is logged in (with avatar – if the avatar is just a color, the first character of the username will display in the center of the colored circle), as pictured above.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.6.1（PRACC6.1）—— 客製 profile 作用中時，狀態列按鈕圖示指出登入者；avatar 為純色時，username 之首字元顯示於色圈中央。關鍵情境條件：**avatar 須為純色** —— 那是條文唯一給出具體呈現之分支。為什麼這樣切：**取條文最具體之一側** ——圖像 avatar 之呈現條文未述，寫進 ER 會是推定（§8.4.1）。刻意略過：按鈕之存在與圖示會變屬 `SWE1-HMI-PROF-013`。",
+ "keywords": [
+  "avatar",
+  "first character",
+  "coloured circle",
+  "icon"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-014",
+   "tc_id": "NR1L-UserProfiles-102",
+   "tc_title": "Profile button icon shows the active customized Profile",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Profile button icon shows the active customized Profile",
+   "pre_conditions": "1. A customized Driver Profile is active\n2. The avatar of that Profile is a plain colour with no picture",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the status bar Profile button\n2. Read the button icon and check that it carries the first character of the username",
+   "expected_result": "1. The status bar Profile button is displayed\n2. The button icon shows the coloured circle with the first character of the username in its centre",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.6.1",
+   "priority": "P2",
+   "priority_basis": "客製 profile 之圖示內容；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文有兩種 avatar 形態（圖像／純色）；**本 TC 取純色一側**，因其斷言最具體（首字母置中）。圖像 avatar 之情形條文只寫 with avatar，未另述其呈現，依 §8.4.1 不推定，故不另立 TC。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

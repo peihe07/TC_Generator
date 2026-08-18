@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-003",
+ "outline": "4.2",
+ "batch": "batch03",
+ "test_set": "Preference Storage",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC2.) A user can set up or customize a profile by inputting a username and avatar choice., but Profile setup/customization will not be required in order to use/interact with the head unit.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC2.) A user can set up or customize a profile by inputting a username and avatar choice., but Profile setup/customization will not be required in order to use/interact with the head unit.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.2（PRACC2）—— 使用者**得**以 username 與 avatar 設定 profile，但設定**非**使用主機之前提。關鍵情境條件：pre-condition 明訂尚未輸入 username 與 avatar，否則「非必要」無從觀察。為什麼這樣切：**只驗「可設定」則條文之重點（非必要）未被測** ——而那一半才是會被實作漏掉的。來源標示：Media 與 Climate 為**測試設置**（J-12），非 spec 指定。",
+ "keywords": [
+  "optional setup",
+  "username",
+  "avatar",
+  "head unit"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-003",
+   "tc_id": "NR1L-UserProfiles-083",
+   "tc_title": "Head unit usable without setting up a Profile",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Head unit usable without setting up a Profile",
+   "pre_conditions": "1. The vehicle is on its default Profile with no username or avatar entered\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Profile section and read the setup entry point\n2. Leave the Profile section without entering a username or an avatar\n3. Operate Media and Climate and check that both respond without a profile setup prompt",
+   "expected_result": "1. An entry point for entering a username and an avatar is available\n2. The Profile section is left with no setup performed\n3. Media and Climate respond and no setup prompt blocks them",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.2",
+   "priority": "P1",
+   "priority_basis": "未設定 profile 仍可使用主機 —— 主要功能之可用性",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之兩半（可設定／設定非必要）為同一節之正反兩面，**併為一條**：ER1 驗其可設定，ER3 驗其非必要。受測之兩個功能（Media、Climate）為**測試設置之選擇**（J-12），非條文所指定 —— 條文寫的是 use/interact with the head unit。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}
