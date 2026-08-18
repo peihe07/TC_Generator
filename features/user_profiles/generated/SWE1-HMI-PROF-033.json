@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-033",
+ "outline": "5.10",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC16.) Saving a new seat position through the memory seat set/save hard or soft controls will save that seat position to whichever Driver Profile is already linked to the associated memory seat.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC16.) Saving a new seat position through the memory seat set/save hard or soft controls will save that seat position to whichever Driver Profile is already linked to the associated memory seat.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.10（PRACC16）—— 以記憶座椅之 set/save 控制儲存新位置時，存到**已連結該座椅**之 profile。關鍵情境條件：現用者與該座椅之連結者相同，使本條與 5.10.1 之詢問流程不重疊。為什麼這樣切：與 `SWE1-HMI-PROF-030-02` 之分野 ——該條驗**沒存到現用者**，本條驗**存到了連結者**。",
+ "keywords": [
+  "save seat position",
+  "linked Profile",
+  "memory seat"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-033",
+   "tc_id": "NR1L-UserProfiles-130",
+   "tc_title": "Saved seat position goes to the Profile linked to that seat",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Saved seat position goes to the Profile linked to that seat",
+   "pre_conditions": "1. Driver Profile B is linked to a memory seat position\n2. Driver Profile B is the active Profile",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the seat position and record the new position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Read the seat position stored for Driver Profile B and check that it matches",
+   "expected_result": "1. The new seat position is recorded\n2. The position is saved to the memory seat linked to Driver Profile B\n3. The seat position stored for Driver Profile B matches the position recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10",
+   "priority": "P1",
+   "priority_basis": "存座椅位置之歸屬；儲存機制之對象判定",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "本條以**現用者即該座椅之連結者**為前提 ——現用者非連結者之情形屬 5.10.1（`SWE1-HMI-PROF-034-01`～`-03`），其行為不同（會先詢問）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

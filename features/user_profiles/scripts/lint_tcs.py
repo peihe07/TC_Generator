@@ -136,14 +136,16 @@ RULED_PU = {f"PU{int(x[2:]):04d}" for x in CFG["lint"]["popup_ids"]}
 def _ref_allowlist() -> dict:
     """每個 req_id 之 `REF_EXTRA`：{req_id: [(節次, provides, 出處模組), …]}。"""
     mods = []
-    for name in ("gen_pilot", "gen_batch01", "gen_batch02"):
+    for name in ("gen_pilot", "gen_batch01", "gen_batch02",
+                 "gen_batch03", "gen_batch04"):
         try:
             mods.append((__import__(name), name + ".REF_EXTRA"))
         except ImportError:
             pass          # 該批尚未存在
     out = {}
     for mod, tag in mods:
-        for k, v in mod.REF_EXTRA.items():
+        # 並非每一批都有 REF_EXTRA（第三批即無）
+        for k, v in getattr(mod, "REF_EXTRA", {}).items():
             out.setdefault(k, []).extend((sec, prov, tag) for sec, prov in v)
     return out
 

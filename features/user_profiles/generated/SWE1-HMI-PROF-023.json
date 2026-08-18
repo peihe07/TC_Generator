@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-023",
+ "outline": "5.3.1",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC9.1) When switched, the Profile loading (new message) will be shown, then the Welcome popup message for the newly selected Profile will show (if turned on for that Profile) for 5 seconds (which is different than on vehicle entry)(popup PU0580).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC9.1) When switched, the Profile loading (new message) will be shown, then the Welcome popup message for the newly selected Profile will show (if turned on for that Profile) for 5 seconds (which is different than on vehicle entry)(popup PU0580).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.3.1（PRACC9.1）—— 切換後先顯示載入訊息，再顯示該 profile 之 welcome popup，持續 5 秒。關鍵情境條件：目標 profile 之 welcome popup 須為開啟狀態。為什麼這樣切：**兩個顯示之先後是條文明載者**，故 ER 分兩條依序斷言；併為一條會失去順序（同 `TC-088` 之理由）。刻意略過：條文之 `which is different than on vehicle entry` 為對照說明，其另一情境屬 ch7 之 welcome flow。",
+ "keywords": [
+  "loading message",
+  "welcome popup",
+  "PU0580",
+  "5 seconds"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-023",
+   "tc_id": "NR1L-UserProfiles-118",
+   "tc_title": "Loading message then welcome popup shown after a switch",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Loading message then welcome popup shown after a switch",
+   "pre_conditions": "1. Two Driver Profiles exist and the welcome popup is turned on for Driver Profile B\n2. Driver Profile A is active and the vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and select Driver Profile B\n2. Read the screen and check that the Profile loading message is shown\n3. Read the screen after loading and check the welcome popup and how long it stays",
+   "expected_result": "1. Driver Profile B is selected\n2. The Profile loading message is shown\n3. The welcome popup PU0580 for Driver Profile B is shown for 5 seconds",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3.1",
+   "priority": "P2",
+   "priority_basis": "切換過程之載入訊息與 welcome popup",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之 `(if turned on for that Profile)` 為適用條件，以 pre-condition 固定為已開啟 —— 否則 popup 不出現而本條假失敗。**順序為條文所載**（loading **then** welcome），ER2／ER3 依序斷言。`5 seconds` 與 `PU0580` 逐字引自 5.3.1。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

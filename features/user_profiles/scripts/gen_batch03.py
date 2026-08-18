@@ -201,9 +201,17 @@ TCS = {
                    "PU1087 is displayed",
                    "Wait for the restore to end and check that PU1088 is "
                    "displayed"),
+        # **U-1（31 包）**：ER3 原為 `PU1088 is displayed` —— 而 4.1.1 有**兩句**
+        # 都指向 PU1088（成功回復／HU 或 TBM 未確認）。**同一個 popup，兩個分支。**
+        # 本 leaf（`002-02`）之 description 為 `PU1088 shows when restore
+        # completes`，其單位是**成功分支**；只驗 popup 顯示，
+        # **一個根本沒回復成功、只是未確認而顯示 PU1088 之實作會通過**（§7）。
+        # 併驗「該設定確已回到預設」以綁定成功分支 ——
+        # pre-condition 已有「至少一項設定偏離預設」，該觀察點取得到。
         er=steps("The confirmation popup PU0118 is displayed",
                  "PU1087 is displayed",
-                 "PU1088 is displayed"),
+                 "PU1088 is displayed and the setting under test is back to "
+                 "its default value"),
         remarks="**本批唯一帶上游未決事項生成者（R-U27）**：DR #4 所缺為 "
                 "`PU1087`／`PU1088` 之 popup **內文**，而其**觸發條件**已載於 "
                 "spec（p6）。故本 TC 之 ER 只斷言該二 popup **顯示**，"
@@ -466,16 +474,31 @@ TCS = {
                   "last active one",
                   "Driver Profile A is linked to memory seat button 1"),
         data="NA",
-        proc=steps("Switch the ignition off and then on again",
-                   "Select memory seat button 1",
+        # **V-1（32 包）之序列更正。** 原序列為「熄火 → 開機（**B 已載入**）→
+        # 按座椅鍵」—— **覆寫在 ER1 那一刻就已經沒有發生**；
+        # 其後所測到的是「按座椅鍵可切換 profile」，
+        # 而那是 `SWE1-HMI-PROF-004-03`（`TC-086`）已覆蓋之行為。
+        # 4.4 之覆寫發生點為 **key cycle 之起始**，故座椅鍵之操作
+        # **不得晚於 key-on**。改為與 key-on 同時，比照同節之 `TC-090`（key fob）。
+        proc=steps("Switch the ignition off",
+                   "Select memory seat button 1 and switch the ignition on",
                    "Read the active Profile and check that it is Driver "
                    "Profile A rather than the last known one"),
-        er=steps("The ignition is off and then on again with Driver Profile "
-                 "B active",
-                 "Memory seat button 1 is pressed",
-                 "Driver Profile A is active"),
+        er=steps("The ignition is off with Driver Profile B as the last "
+                 "known Profile",
+                 "Memory seat button 1 is pressed and the ignition is on",
+                 "Driver Profile A is the Profile loaded at key-on and "
+                 "Driver Profile B is not loaded"),
         remarks="§7 之列舉配對：正向為 `SWE1-HMI-PROF-006-01`。"
-                "座椅鍵編號（1）為**測試設置**（J-12）—— 4.4 只寫 memory seat buttons。",
+                "座椅鍵編號（1）為**測試設置**（J-12）—— 4.4 只寫 memory seat buttons。"
+                "**V-1（32 包）**：原序列先開機再按鍵，**B 已被載入，覆寫遂無從發生**；"
+                "現要求座椅鍵之操作**不晚於 key-on**，ER3 斷言 A 為該 key cycle "
+                "之**起始** profile，而非「B 載入後被切走」。"
+                "**實車限制之聲明**：若該車之記憶座椅鍵僅能於 ignition on **之後**"
+                "按下，則「A 為起始 profile」**在該車上不可觀察** —— "
+                "屆時須回報該不可觀察性，**不得以「先開機再按」充當覆寫之驗證**"
+                "（那正是本次所修正之形態）。"
+                "本 TC **不假定**該鍵可於 key-on 前按，只要求其操作不晚於 key-on。",
         reasoning=(
             "驗證目標：4.4（PRACC4）之覆寫側，觸發為**記憶座椅鍵**。"
             "關鍵情境條件：上次作用中者與座椅鍵所連者不同。"
@@ -546,18 +569,34 @@ TCS = {
     "SWE1-HMI-PROF-007-03": dict(
         title="Recreated Driver 1 is the single Profile on the vehicle",
         design=FUNCTIONAL,
-        pre=steps("Every Profile has been deleted from the head unit",
+        # **W-1（33 包）**：pre-condition 原為 `Every Profile has been deleted`
+        # —— **4.5 逐字載「全部刪除後系統恆有一個預設 profile」**，
+        # 故測試開始那一刻該狀態**已經是假的**（Driver 1 早已被重建）。
+        # 它描述了一個系統不允許存在之穩態，且其蘊含之結果（車上只剩 Driver 1）
+        # **正是本 TC 要驗的東西** —— §4.4 禁止以受測特性為前提。
+        # 刪除移入 procedure（比照 `SWE1-HMI-PROF-007-02`），
+        # pre-condition 改述刪除**前**之狀態。
+        pre=steps("The default Profile has been customized and its name is "
+                  "still “Driver 1”",
                   "The vehicle has fewer than 2 memory seat buttons"),
         data="NA",
-        proc=steps("Open the “All Profiles” tab",
+        proc=steps("Delete every Profile from the head unit",
+                   "Open the “All Profiles” tab",
                    "Read the Profile list and check that “Driver 1” is the "
                    "only Profile present"),
-        er=steps("The “All Profiles” tab is displayed",
+        er=steps("Every Profile is deleted",
+                 "The “All Profiles” tab is displayed",
                  "“Driver 1” is present and no other Driver Profile is "
                  "listed"),
         remarks="條文之 `(unless there are 2 or more memory seat buttons)` "
                 "為**適用條件**，以 pre-condition 固定為少於 2 個；"
-                "座椅鍵 ≥ 2 之情形由 `SWE1-HMI-PROF-008`（4.5.1）承擔。",
+                "座椅鍵 ≥ 2 之情形由 `SWE1-HMI-PROF-008`（4.5.1）承擔。"
+                "**W-1（33 包）**：刪除動作原置於 pre-condition，"
+                "而 4.5 明載全部刪除後**系統立即重建預設** —— "
+                "該前提所述之穩態不存在，且其蘊含之結果即本條之 ER。"
+                "已移入 procedure（比照 `SWE1-HMI-PROF-007-02`）。"
+                "**與該 leaf 之分野不變**：`007-02` 驗**重建發生**"
+                "（且其偏好為預設值），本條驗**重建後只有一個**。",
         reasoning=(
             "驗證目標：4.5（PRACC5）第三句之後半 —— 重建之 “Driver 1” 為車上"
             "**唯一**之 profile。"
@@ -862,13 +901,19 @@ TCS = {
                    "Open the Profile section from the app drawer",
                    "Read the Profile button in both the edit mode drawer and "
                    "the app drawer and check its highlight"),
+        # **U-2（31 包）**：步驟 1 記錄了按鈕狀態，而原 ER **從未引用它** ——
+        # 判為 **ER 漏斷言**，非多餘步驟：該記錄是 §5.6 之基準線，
+        # **缺了它，一個「永遠 highlight」之實作會通過**（同 `103` 之理由）。
         er=steps("The Profile button is shown in the status bar edit mode "
-                 "drawer",
+                 "drawer and its highlight state is recorded",
                  "The Profile section is open",
                  "The Profile button is highlighted in the status bar edit "
-                 "mode drawer and in the app drawer"),
+                 "mode drawer and in the app drawer, differing from the "
+                 "state recorded in step 1"),
         remarks="條文指名**兩個**位置（status bar edit mode drawer 與 app drawer），"
-                "故 ER3 兩處併驗 —— 只驗其一，另一處失效不會被發現。",
+                "故 ER3 兩處併驗 —— 只驗其一，另一處失效不會被發現。"
+                "**U-2（31 包）**：步驟 1 之記錄原無任一 ER 引用，"
+                "已於 ER1 補其記錄、ER3 補其比對 —— **基準線與比較須成對**（§5.6）。",
         reasoning=(
             "驗證目標：4.6.3（PRACC6.3）—— Profile 按鈕自狀態列移除後，"
             "其 highlight 狀態仍適用於 status bar edit mode drawer 與 app drawer。"

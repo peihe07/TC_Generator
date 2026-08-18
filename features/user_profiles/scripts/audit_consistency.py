@@ -75,6 +75,10 @@ FORM_RULES = {
     #   `011`（刪除 profile → 現用者改變）、`048-del`（客製化 → 不再是預設）、
     #   `059-03`（自 popup 選另一 profile → 切換）
     # 三者皆造成**持續存在之系統狀態**改變，只是動作詞不在表內。
+    # **34 包再補三種**：`save`（存座椅位置改變其歸屬）、
+    # `select … Driver Profile`（以 username／avatar 選取即切換）——
+    # 三條被判紅之 TC（`117`／`132`／`133`）皆為**真狀態遷移**，
+    # 其所改變者為**持續存在之連結或現用者**，只是動作詞不在表內。
     # **未把 `open`／`read` 收進來** —— 那些不改變狀態；
     # 同輪之 `SWE1-HMI-PROF-015`（按鈕 highlight 隨區段開闔）即據此**改判為功能測試**，
     # 而非為了轉綠而放寬詞表。
@@ -82,8 +86,10 @@ FORM_RULES = {
                  lambda tc: bool(re.search(
                      r"\b(bring the vehicle into motion|activate|deactivate|"
                      r"exit|switch the ignition|disconnect|select memory seat|"
-                     r"swap|delete|customize|select driver profile)\b",
-                     tc["test_procedure"], re.I))),
+                     r"swap|delete|customize|save)\b",
+                     tc["test_procedure"], re.I))
+                 or bool(re.search(r"\bselect[^.\n]{0,25}driver profile\b",
+                                   tc["test_procedure"], re.I))),
     # v1 只掃 procedure 之關鍵詞，漏掉「選取一個已鎖定之項目」這種寫法
     # （TC-022 之 `Select the greyed-out “Delete Profile” item`、
     #  TC-057 之 `Select Device Manager`）—— 動作本身讀不出它非法，
@@ -234,6 +240,160 @@ def t1_step_refs(rows) -> list:
     return bad
 
 
+# ── U-1（31 包）—— ER 斷言之 popup 若有多個觸發條件，其分支是否被綁住
+#
+# `4.1.1` 有**兩句**都指向 `PU1088`：
+#   `PU1088 is displayed when settings have been **successfully restored**`
+#   `PU1088 is displayed **if HU or TBM do not confirm** complete restoring`
+# **同一個 popup，成功與未確認都會出現。**
+# 故一條只寫 `PU1088 is displayed` 之 ER，**兩個分支皆通過**（§7 false pass）。
+#
+# ## 為何列為「待判」而非直接判紅
+#
+# 綁定分支之方式不只一種：`TC-082` 靠**同一句**併驗回復結果；
+# `TC-002` 靠**另一條 ER**（`The head unit does not receive the completion
+# confirmation`）＋ procedure 之情境注入。
+# **機械判準無法斷定「哪一條 ER 綁住了哪一個分支」** ——
+# 若硬判，`TC-002` 那種正確作法會轉紅。故本掃描只負責**縮小人工範圍**：
+# 把「ER 斷言了多觸發 popup」者列出來，逐條由人判。
+PU_IN_TEXT = re.compile(r"PU[_ ]?(\d{3,4})")
+
+
+def _pu_triggers() -> dict:
+    """spec 全文中每個 PU id 之觸發句（節次, 句）。"""
+    import json as _json
+    m = _json.loads((FEATURE / "data" / "outline_map.json")
+                    .read_text(encoding="utf-8"))
+    out = {}
+    for sec, v in m.items():
+        if sec == "__meta__":
+            continue
+        for snt in re.split(r"(?<=\.)\s+", v.get("pdf_text") or ""):
+            for g in set(PU_IN_TEXT.findall(snt)):
+                out.setdefault(f"PU{int(g):04d}", []).append(
+                    (sec, " ".join(snt.split())[:120]))
+    return out
+
+
+def u1_multi_trigger(rows) -> list:
+    trig = _pu_triggers()
+    hits = []
+    for sec, t in rows:
+        for g in set(PU_IN_TEXT.findall(str(t.get("expected_result", "")))):
+            pid = f"PU{int(g):04d}"
+            if len(trig.get(pid, [])) > 1:
+                hits.append((t["tc_id"], sec, pid, len(trig[pid])))
+    return sorted(set(hits))
+
+
+# ── U-2（31 包）—— **T-1 之反向**：步驟記錄了某物而無任一 ER 引用它
+#
+# 30 輪自陳：T-1 抓「ER 引用步驟而該步驟未建立基準線」，
+# **抓不到反向**（步驟建立了基準線而 ER 從未用它）。本掃描補之。
+#
+# 命中者有兩種，**處置不同**：
+#   **多餘步驟** —— 該記錄本就不必要 → 刪步驟
+#   **ER 漏斷言** —— 該記錄是基準線而 ER 忘了比對 → 補 ER
+# 掃描只負責找出來；**兩者之分辨要讀條文**（該斷言需不需要基準線）。
+#
+# **判準寫過一次即錯（R-U37）**：v1 以 `\brecord` 比對，
+# 於是把**比較步驟**（`check that it matches the value **recorded** in step 1`）
+# 也當成記錄步驟，得 14 處假紅。
+# `recorded in step N` 是**回指**，不是記錄動作。v2 排除 `recorded`。
+REC_VERB = re.compile(r"\brecord\b(?!ed)", re.I)
+REC_OBJ = re.compile(r"\brecord\b(?!ed)\s+(.{2,70}?)"
+                     r"(?:$|,|\s+and\s+check|\s+and\s+read)", re.I)
+REC_STOP = {"the", "a", "an", "its", "it", "which", "that", "and", "of",
+            "for", "two", "three", "them", "was", "is", "are", "both",
+            "each", "present", "shown", "under", "test", "new"}
+
+
+def u2_unused_record(rows) -> list:
+    bad = []
+    for sec, t in rows:
+        proc = [x for x in str(t.get("test_procedure", "")).splitlines()
+                if x.strip()]
+        er = str(t.get("expected_result", "")).lower()
+        for i, line in enumerate(proc, 1):
+            if not REC_VERB.search(line):
+                continue
+            m = REC_OBJ.search(line)
+            obj = m.group(1).strip() if m else ""
+            nouns = [w for w in re.findall(r"[A-Za-z][A-Za-z-]{2,}", obj)
+                     if w.lower() not in REC_STOP]
+            if re.search(rf"\bstep\s+{i}\b", er):
+                continue
+            if any(_sing(w.lower()) in er for w in nouns):
+                continue
+            bad.append((t["tc_id"], sec, i, obj[:40], line.strip()[:70]))
+    return bad
+
+
+# ── V-1（32 包）—— 條文含時序語者，其 procedure 之動作順序須與之一致
+#
+# `4.4` 逐字：`**At the start of a new key cycle**, Head Unit will load last
+# known Profile **unless** a different Profile is detected or initiated`。
+# 覆寫之發生點是 **key cycle 之起始**。
+#
+# `TC-091` 原序列為「熄火 → 開機（ER1 已斷言 **B active**）→ 按座椅鍵」——
+# **覆寫在 ER1 那一刻就已經沒有發生**；其後測到的是「按座椅鍵可切換 profile」，
+# 而那是 `004-03` 已覆蓋之行為。**同節之 `TC-090`（key fob）序列是對的。**
+#
+# ## 為何是「待判」而非「紅」
+#
+# 順序是否與條文一致，**需讀條文**：
+#   `9.7.2` 之 `prior to the deleted one` 是**位置**，不是時間
+#   `5.2` 之 `before creating a new one` 在 **popup 文字**裡，不約束測試順序
+#   `12.8.2` 之 `prior to activating Valet Mode` 才真的要求「先記錄後啟用」
+# **同一個詞，三種身分。** 機械判準分不出來 ——
+# 硬判會把 `035`／`003` 那種正確的判成紅。
+# 故本掃描只負責**縮小人工範圍**：把被引之節含時序語者列出，逐條由人判。
+TIMING = re.compile(
+    r"\b(at the start of|before|upon|prior to|as soon as|at the next)\b", re.I)
+
+
+def v1_timing(rows) -> list:
+    import build_batch_context as _B
+    hits = []
+    for sec, t in rows:
+        cited = [x.strip().replace(_B.SPEC_STEM + "_", "")
+                 for x in str(t.get("specification_reference", "")).split("; ")]
+        body = _B.spec_body(cited[0]) or ""
+        words = sorted({m.group(0).lower() for m in TIMING.finditer(body)})
+        if words:
+            hits.append((t["tc_id"], sec, words))
+    return sorted(hits)
+
+
+# ── W-1（33 包）—— pre-condition 以完成式描述動作結果者
+#
+# `TC-094` 之 pre-condition 原為 `Every Profile **has been deleted**`，
+# 而 4.5 逐字載「全部刪除後車上**恆有**一個預設 profile」——
+# **測試開始那一刻該狀態已經是假的**（Driver 1 早已被重建），
+# 且其蘊含之結果（車上只剩 Driver 1）**正是該 TC 要驗的東西**。
+# §4.4 禁止以受測特性為前提。
+#
+# ## 為何是「待判」而非「紅」
+#
+# 完成式之 pre-condition **多數是正當的**，它們描述的是**測試前之佈署**：
+#   `093`：`The default Profile has been customized` —— 使刪除後之重建有意義
+#   `104`：`The Profile button has been removed` —— 4.6.3 之適用條件本身
+#   `005`：`No default Profile has been customized or deleted` —— 起始狀態
+# **循環與否，取決於「該狀態是不是本 TC 的 ER 要斷言的東西」** ——
+# 那要讀條文與 ER 才知道。硬判會把上列三條正確的判紅。
+PERFECT_PRE = re.compile(r"\b(?:has|have|had)\s+been\s+(?:[a-z]+ed|[a-z]+n)\b",
+                         re.I)
+
+
+def w1_perfect_pre(rows) -> list:
+    hits = []
+    for sec, t in rows:
+        for ln in str(t.get("pre_conditions", "")).splitlines():
+            if PERFECT_PRE.search(ln):
+                hits.append((t["tc_id"], sec, ln.strip()[:78]))
+    return hits
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -363,6 +523,12 @@ SELF_CASES = [
          test_procedure="1. Delete Driver Profile A\n"
                         "2. Read the active Profile and check that it changed"),
      False),
+    ("**TC-132 之形狀**：save 改變座椅歸屬 → **須綠**（34 包補詞表）", "k4a",
+     _tc(design_method="狀態轉換 (State Transition Testing)",
+         test_procedure="1. Change the seat position and save it to the "
+                        "memory seat linked to Driver Profile B\n"
+                        "2. Read the seat links and check where it belongs"),
+     False),
     ("**護欄**：只有開啟／讀取之 procedure 標狀態轉換 → **仍須紅**", "k4a",
      _tc(design_method="狀態轉換 (State Transition Testing)",
          test_procedure="1. Open the Profile section\n"
@@ -382,6 +548,48 @@ SELF_CASES = [
      _tc(design_method="基礎故障注入 (Fault Injection)",
          test_procedure="1. Open the tab\n2. Read the screen",
          input_test_data="NA"), True),
+
+    # ---- W-1：完成式 pre-condition 列入人工判讀（33 包）
+    ("W-1：pre 以完成式述動作結果（`has been deleted`）→ **須列入待判**", "w1",
+     _tc(pre_conditions="1. Every Profile has been deleted from the head unit"),
+     True),
+    ("**護欄**：pre 為狀態描述而非完成式（`is active`／`exists`）→ **不得列入**",
+     "w1",
+     _tc(pre_conditions="1. Two Driver Profiles exist on the vehicle\n"
+                        "2. A Driver Profile is active"), False),
+
+    # ---- V-1：被引之節含時序語者列入人工判讀（32 包）
+    ("V-1：被引之節含 `at the start of` → **須列入待判**", "v1",
+     _tc(specification_reference=(
+         "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+         "(October_03_2023)_4.4")), True),
+    ("**護欄**：被引之節無時序語 → **不得列入**（否則清單等於全語料）", "v1",
+     _tc(specification_reference=(
+         "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+         "(October_03_2023)_4.2")), False),
+
+    # ---- U-2：步驟記錄之物須被 ER 引用（31 包，T-1 之反向）
+    ("**TC-104 之原形**：步驟記錄 state 而 ER 從未引用 → **須紅**", "u2",
+     _tc(test_procedure="1. Open the drawer and record its state\n"
+                        "2. Open the Profile section\n"
+                        "3. Read the button and check its highlight",
+         expected_result="1. The button is shown in the drawer\n2. The "
+                         "section is open\n3. The button is highlighted"), True),
+    ("**其修正後之形**：ER1 記錄、ER3 比對 → **須綠**", "u2",
+     _tc(test_procedure="1. Open the drawer and record its state\n"
+                        "2. Open the Profile section\n"
+                        "3. Read the button and check its highlight",
+         expected_result="1. The button is shown and its highlight state is "
+                         "recorded\n2. The section is open\n3. The button is "
+                         "highlighted, differing from the state recorded in "
+                         "step 1"), False),
+    ("**護欄**：比較步驟之 `recorded in step N` 不得被當成記錄步驟 → **須綠**",
+     "u2",
+     _tc(test_procedure="1. Activate Profile A and record the preference\n"
+                        "2. Read the preference and check that it matches "
+                        "the value recorded in step 1",
+         expected_result="1. The preference is recorded\n2. The preference "
+                         "matches the value recorded in step 1"), False),
 
     # ---- T-1：ER 引用之步驟須確有該物之記錄（30 包）
     ("**TC-101 之原形**：ER 比對「步驟 1 所讀之 icon」而該步驟只查按鈕在否 → **須紅**",
@@ -435,7 +643,9 @@ SELF_CASES = [
 ]
 
 SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
-         "q1": q1_unquoted, "t1": t1_step_refs}
+         "q1": q1_unquoted, "t1": t1_step_refs,
+         "u2": u2_unused_record, "v1": v1_timing,
+         "w1": w1_perfect_pre}
 
 
 def self_test() -> int:
@@ -482,6 +692,26 @@ if __name__ == "__main__":
     print(f"\n## K-4a —— design_method ↔ 實際形態：{len(b)} 處待判\n")
     for tid, sec, key, want in b:
         print(f"  {tid} ({sec}) {key} —— 缺 {want}")
+
+    w1 = w1_perfect_pre(rows)
+    print(f"\n## W-1 —— pre-condition 以完成式描述動作結果：{len(w1)} 處待判\n")
+    for tid, sec, ln in w1:
+        print(f"  {tid} ({sec}) 「{ln}」—— 須人判該狀態是否即本 TC 之 ER 所斷言者")
+
+    v1 = v1_timing(rows)
+    print(f"\n## V-1 —— 被引之節含時序語：{len(v1)} 處待判\n")
+    for tid, sec, w in v1:
+        print(f"  {tid} ({sec}) {w} —— 須人判 procedure 之順序與條文一致否")
+
+    u2 = u2_unused_record(rows)
+    print(f"\n## U-2 —— 步驟記錄之物無任一 ER 引用：{len(u2)} 處\n")
+    for tid, sec, i, obj, line in u2:
+        print(f"  {tid} ({sec}) 步驟 {i} 記錄「{obj}」而 ER 未引用 → 「{line}」")
+
+    u1 = u1_multi_trigger(rows)
+    print(f"\n## U-1 —— ER 斷言之 popup 有多個觸發條件：{len(u1)} 處待判\n")
+    for tid, sec, pid, n in u1:
+        print(f"  {tid} ({sec}) {pid}（spec 內 {n} 句觸發）—— 須人判其 ER 綁不綁得住分支")
 
     tr = t1_step_refs(rows)
     print(f"\n## T-1 —— ER 引用之步驟未建立基準線：{len(tr)} 處\n")

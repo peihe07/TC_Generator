@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-031",
+ "outline": "5.8",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC14.) If the Profile is switched while the vehicle is in motion, the memory seat position will not change. A popup will indicate to the user that the seat could not adjust while the vehicle is in motion.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC14.) If the Profile is switched while the vehicle is in motion, the memory seat position will not change. A popup will indicate to the user that the seat could not adjust while the vehicle is in motion.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.8（PRACC14）—— 行車中切換 profile 時座椅位置不變，並以 popup 告知無法調整。關鍵情境條件：兩 profile 各連**不同**座椅位置 ——位置相同則「座椅未動」與「本來就一樣」無從分辨。**判級 P0**：行車中座椅不得移動為安全防線，其成立本身之斷言落在 ER3 前半（D-UP16-01 附二）。",
+ "keywords": [
+  "in motion",
+  "seat unchanged",
+  "popup",
+  "switch Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-031",
+   "tc_id": "NR1L-UserProfiles-129",
+   "tc_title": "Seat does not move when the Profile switches during motion",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Seat does not move when the Profile switches during motion",
+   "pre_conditions": "1. Two Driver Profiles exist, each linked to a different memory seat position\n2. Driver Profile A is active and the vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read and record the current seat position\n2. Bring the vehicle into motion\n3. Switch to Driver Profile B and check that the seat position is unchanged",
+   "expected_result": "1. The current seat position is recorded\n2. The vehicle is in motion\n3. The seat position matches the position recorded in step 1 and a popup indicates that the seat could not adjust while the vehicle is in motion",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.8",
+   "priority": "P0",
+   "priority_basis": "行車中座椅不得移動 —— **防線成立本身**（§10.2 safety）",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 併驗「座椅未動」與「提示」兩者** —— 前者為防線本身（§8.7.4 之分野），後者為其呈現；**只驗提示，一個顯示提示卻仍移動座椅之實作會通過**。popup 之 PU id 條文未給，故 ER 只述其**內容要旨**，不寫 PU 編號（§8.4.1 不推定）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

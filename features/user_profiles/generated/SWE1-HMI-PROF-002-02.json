@@ -28,7 +28,7 @@
    "pre_conditions": "1. A Driver Profile is active with at least one setting changed from its default\n2. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Select “Restore Settings to Default”\n2. Press Yes on the confirmation popup and check that PU1087 is displayed\n3. Wait for the restore to end and check that PU1088 is displayed",
-   "expected_result": "1. The confirmation popup PU0118 is displayed\n2. PU1087 is displayed\n3. PU1088 is displayed",
+   "expected_result": "1. The confirmation popup PU0118 is displayed\n2. PU1087 is displayed\n3. PU1088 is displayed and the setting under test is back to its default value",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1",
    "priority": "P2",
    "priority_basis": "回復進度之提示（PU1087／PU1088）；呈現層",

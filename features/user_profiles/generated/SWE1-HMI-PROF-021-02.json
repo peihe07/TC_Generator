@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-021-02",
+ "outline": "5.2",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile. When the Maximum number of Profiles (5) is reached,: the Add New Profile button will not be present, and the icon and the string described in note PRACC7.2 will not be present either. A text will be displayed instead informing the user they must first delete a Profile before creating a new one: “Max Profiles reached. Delete to create a new one.” (PU0584)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When the Maximum number of Profiles (5) is reached,: the Add New Profile button will not be present, and the icon and the string described in note PRACC7.2 will not be present either.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.2（PRACC8）之中段 —— 達 5 個 profile 上限時，新增按鈕與 PRACC7.2 之圖示／字串皆不顯示。關鍵情境條件：螢幕須大於 7 吋 —— **這一點是本條之關鍵**：7 吋螢幕上該圖示本來就不顯示（5.1.2），屆時「圖示不在」證不了任何事。為什麼這樣切：037 對 5.2 切三個 leaf；上限之**數目**屬 `SWE1-HMI-PROF-021-01`（`NR1L-UserProfiles-003`），替代文字屬 `SWE1-HMI-PROF-021-03`。",
+ "keywords": [
+  "max profiles",
+  "Add New",
+  "icon hidden",
+  "five"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-021-02",
+   "tc_id": "NR1L-UserProfiles-115",
+   "tc_title": "Add New button and icon hidden at the maximum Profile count",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Add New button and icon hidden at the maximum Profile count",
+   "pre_conditions": "1. Five Driver Profiles exist on the vehicle\n2. The vehicle screen is larger than 7 inches",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the screen and check that the Add New Profile button and the icon are absent",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. No Add New Profile button is present and neither the icon nor the string “This icon is associated to settings that are specific to your profile and are not shared across the vehicle” is shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.2",
+   "priority": "P1",
+   "priority_basis": "達上限時新增入口之隱藏；上限管理之分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER 併驗按鈕與圖示／字串兩者** —— 條文寫的是`the Add New Profile button will not be present, **and** the icon and the string described in note PRACC7.2 will not be present either`。螢幕尺寸之 pre-condition 為使「圖示原本會在」成立（5.1.2 於 7 吋不適用）—— **否則圖示不在是因為螢幕，不是因為上限**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

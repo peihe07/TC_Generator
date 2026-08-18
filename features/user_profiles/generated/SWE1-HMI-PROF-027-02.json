@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-027-02",
+ "outline": "5.5",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC11.) The Memory seat status displayed under each applicable Profile avatar will show which memory seat number is programmed to which Profile. The number of Memory seats will be vehicle dependent (currently up to 3). When the number of Profiles exceeds the number of Memory seats on a vehicle, the New Profile(s) will not be linked to any memory seats unless the user initiates a swap of Memory seat preferences (at least two out of the five profiles will not be associated with a Memory seat preference). Valet Mode Profile will not be allowed to link to Memory seat positions.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The number of memory seats is vehicle-dependent (up to 3). When the total number of created Profiles exceeds the available physical memory seats, any newly created Profile(s) shall default to having NO memory seat linked. To link a seat to these new profiles, the user must explicitly initiate a \"swap\" of memory seat preferences.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.5（PRACC11）中段 —— profile 數超過車上記憶座椅數時，新建之 profile 預設不連任何座椅。關鍵情境條件：**全部座椅皆已被連走**，否則新 profile 不連座椅可能只是因為還有空位。為什麼這樣切：本 leaf 之單位為**新 profile 之預設不連結**；互換之途徑屬他節，具名不代測。",
+ "keywords": [
+  "memory seats",
+  "exceed",
+  "no link",
+  "new Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-027-02",
+   "tc_id": "NR1L-UserProfiles-123",
+   "tc_title": "New Profile gets no memory seat when seats are outnumbered",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "New Profile gets no memory seat when seats are outnumbered",
+   "pre_conditions": "1. The vehicle has 3 memory seats and each is linked to a Driver Profile\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Create one more Driver Profile\n2. Open the “All Profiles” tab\n3. Read the area under the new Profile avatar and check its memory seat status",
+   "expected_result": "1. The new Driver Profile is created\n2. The “All Profiles” tab is displayed\n3. No memory seat is linked to the new Driver Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.5",
+   "priority": "P1",
+   "priority_basis": "profile 數超過座椅數時之預設不連結",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "座椅數（3）取自條文之 `currently up to 3`，非自擬。條文另載 `unless the user initiates a swap of Memory seat preferences` —— 該互換屬 9.5.x 之 leaf，本條不代測。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

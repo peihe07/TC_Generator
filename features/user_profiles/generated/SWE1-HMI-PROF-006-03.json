@@ -27,15 +27,15 @@
    "test_item": "Memory seat button overrides the last known Profile at key-on",
    "pre_conditions": "1. Two Driver Profiles exist and Driver Profile B was the last active one\n2. Driver Profile A is linked to memory seat button 1",
    "input_test_data": "NA",
-   "test_procedure": "1. Switch the ignition off and then on again\n2. Select memory seat button 1\n3. Read the active Profile and check that it is Driver Profile A rather than the last known one",
-   "expected_result": "1. The ignition is off and then on again with Driver Profile B active\n2. Memory seat button 1 is pressed\n3. Driver Profile A is active",
+   "test_procedure": "1. Switch the ignition off\n2. Select memory seat button 1 and switch the ignition on\n3. Read the active Profile and check that it is Driver Profile A rather than the last known one",
+   "expected_result": "1. The ignition is off with Driver Profile B as the last known Profile\n2. Memory seat button 1 is pressed and the ignition is on\n3. Driver Profile A is the Profile loaded at key-on and Driver Profile B is not loaded",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.4",
    "priority": "P1",
    "priority_basis": "記憶座椅鍵之覆寫分支",
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "§7 之列舉配對：正向為 `SWE1-HMI-PROF-006-01`。座椅鍵編號（1）為**測試設置**（J-12）—— 4.4 只寫 memory seat buttons。",
+   "remarks": "§7 之列舉配對：正向為 `SWE1-HMI-PROF-006-01`。座椅鍵編號（1）為**測試設置**（J-12）—— 4.4 只寫 memory seat buttons。**V-1（32 包）**：原序列先開機再按鍵，**B 已被載入，覆寫遂無從發生**；現要求座椅鍵之操作**不晚於 key-on**，ER3 斷言 A 為該 key cycle 之**起始** profile，而非「B 載入後被切走」。**實車限制之聲明**：若該車之記憶座椅鍵僅能於 ignition on **之後**按下，則「A 為起始 profile」**在該車上不可觀察** —— 屆時須回報該不可觀察性，**不得以「先開機再按」充當覆寫之驗證**（那正是本次所修正之形態）。本 TC **不假定**該鍵可於 key-on 前按，只要求其操作不晚於 key-on。",
    "split_flag": false,
    "split_reason": ""
   }

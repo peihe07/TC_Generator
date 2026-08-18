@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-020-01",
+ "outline": "5.1.2",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC7.2) An icon and the following string will always show in the “All Profiles” screen: “This icon is associated to settings that are specific to your profile and are not shared across the vehicle”. All settings that are tied to the profile and are inside the settings screen will show this icon (both inside the My Profile tab and all the other tabs). This logic is not applicable for 7” screens.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "For screens larger than 7\", the “All Profiles” screen must permanently display a specific profile settings icon alongside the exact string: “This icon is associated to settings that are specific to your profile and are not shared across the vehicle”.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.1.2（PRACC7.2）前半 —— “All Profiles” 畫面**恆**顯示該圖示與其字串。關鍵情境條件：螢幕大於 7 吋，否則本條不適用。為什麼這樣切：037 對 5.1.2 切兩個 leaf —— 本 leaf 為 **All Profiles 畫面上之常駐**，設定畫面內之標示屬 `SWE1-HMI-PROF-020-02`。",
+ "keywords": [
+  "icon",
+  "string",
+  "All Profiles",
+  "7 inch"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-020-01",
+   "tc_id": "NR1L-UserProfiles-113",
+   "tc_title": "Profile-specific settings icon and string always on All Profiles",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Profile-specific settings icon and string always on All Profiles",
+   "pre_conditions": "1. The vehicle screen is larger than 7 inches\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the screen and check the icon and its string",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. An icon is shown together with the string “This icon is associated to settings that are specific to your profile and are not shared across the vehicle”",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.2",
+   "priority": "P2",
+   "priority_basis": "profile 專屬設定圖示與其說明字串之常駐",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文末句 `This logic is not applicable for 7” screens` 為**適用條件**（M-3 之三分法，非覆寫），故以 pre-condition 排除 7 吋。037 之 leaf 標題亦已載 `Large Screens`。字串逐字引自 5.1.2，未改寫（§8.4.1）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

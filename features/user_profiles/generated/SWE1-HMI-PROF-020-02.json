@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-020-02",
+ "outline": "5.1.2",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC7.2) An icon and the following string will always show in the “All Profiles” screen: “This icon is associated to settings that are specific to your profile and are not shared across the vehicle”. All settings that are tied to the profile and are inside the settings screen will show this icon (both inside the My Profile tab and all the other tabs). This logic is not applicable for 7” screens.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "For screens larger than 7\", any setting that is tied to a user profile must be marked with the aforementioned specific icon. This applies globally inside the settings screen, including both the “My Profile” tab and all other applicable tabs.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.1.2（PRACC7.2）後半 —— 設定畫面內所有繫於 profile 之設定項皆標該圖示，涵蓋 “My Profile” 分頁與其他分頁。關鍵情境條件：pre-condition 要求兩個分頁**各有**一個 profile 專屬設定，否則「其他分頁」一側無從觀察。為什麼這樣切：與 `SWE1-HMI-PROF-020-01` 之分野在**位置** ——前者為 All Profiles 畫面之常駐，本條為設定畫面內之逐項標示。",
+ "keywords": [
+  "icon",
+  "settings",
+  "My Profile",
+  "profile-tied"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-020-02",
+   "tc_id": "NR1L-UserProfiles-114",
+   "tc_title": "Profile-tied settings marked with the icon in the settings screen",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Profile-tied settings marked with the icon in the settings screen",
+   "pre_conditions": "1. The vehicle screen is larger than 7 inches\n2. At least one profile-tied setting exists in the “My Profile” tab and one in another tab",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the settings screen and the “My Profile” tab\n2. Read the profile-tied setting and check for the icon\n3. Open another settings tab and check that its profile-tied setting carries the icon",
+   "expected_result": "1. The settings screen is displayed on the “My Profile” tab\n2. The profile-tied setting carries the icon\n3. The profile-tied setting in the other tab also carries the icon",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.2",
+   "priority": "P2",
+   "priority_basis": "設定畫面內各 profile 專屬項之圖示標示",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文明言 `both inside the My Profile tab **and all the other tabs**` —— **ER 兩處併驗**：只驗 My Profile 一處，一個只在該分頁標圖示之實作會通過。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

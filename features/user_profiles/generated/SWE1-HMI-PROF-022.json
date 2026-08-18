@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-022",
+ "outline": "5.3",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC9.) When on the “All Profiles” tab, selecting another Profile username or avatar will switch system to that Profile and the newly active Profile will then be in the highlighted state.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC9.) When on the “All Profiles” tab, selecting another Profile username or avatar will switch system to that Profile and the newly active Profile will then be in the highlighted state.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.3（PRACC9）—— 於 All Profiles 分頁選取另一 profile，系統切換至該 profile 且其進入 highlight 狀態。關鍵情境條件：步驟 1 記錄原本被 highlight 者，使「highlight 移轉」而非「本來就 highlight」可分辨（§5.6）。為什麼這樣切：切換之**後續呈現**（載入訊息與 welcome popup）屬 `SWE1-HMI-PROF-023`；分頁停留屬 `SWE1-HMI-PROF-024`。",
+ "keywords": [
+  "switch Profile",
+  "highlighted",
+  "All Profiles",
+  "select"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-022",
+   "tc_id": "NR1L-UserProfiles-117",
+   "tc_title": "Selecting another Profile switches to it and highlights it",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Selecting another Profile switches to it and highlights it",
+   "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and record which Profile is highlighted\n2. Select the username of Driver Profile B\n3. Read the tab and check that Driver Profile B is active and highlighted",
+   "expected_result": "1. Driver Profile A is highlighted and recorded as the active Profile\n2. Driver Profile B is selected\n3. Driver Profile B is the active Profile and is highlighted instead of the Profile recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3",
+   "priority": "P0",
+   "priority_basis": "自 All Profiles 分頁切換 profile —— R-U5 核心五類之一",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之選取對象為 `Profile username **or** avatar` ——本 TC 取 username 一側；avatar 一側之觸發相同而**入口不同**，條文以 or 並列，**未另切 leaf**，故不另生成（§8.2.1）。**ER3 併驗「不再是步驟 1 所記者」** —— 只驗 B 被 highlight，一個把兩者都 highlight 之實作會通過。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

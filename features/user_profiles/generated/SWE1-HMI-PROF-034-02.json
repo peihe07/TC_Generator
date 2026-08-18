@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-034-02",
+ "outline": "5.10.1",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC16.1) If a new seat position is saved to a Profile that is not currently active, a popup will prompt the user if they would like to switch their seat preference to the newly saved memory seat number (PU0588). If the user chooses yes, the previous Profile linked to this seat position will move to “None”, and if there is no seat position already linked to the active Profile the new seat preference will save for that Profile. If the active user chooses yes, and if they already have a memory seat position associated with their Profile, the original seat assignment for the active Profile will move to the next available Profile (prioritizing from left to right based on the order of the Profiles on the All Profiles Tab).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If the user chooses \"Yes\" on PU0588, and the active Profile does not currently have a memory seat linked, the new seat preference will save to the active Profile, and the previous Profile linked to this seat position will have its seat status moved to \"None\".",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.10.1（PRACC16.1）中段 —— 使用者選 Yes 且現用 profile 原本沒有連座椅時，該座椅改連現用 profile，原連結者變為 “None”。關鍵情境條件：現用者原本**無**座椅 —— 那是本 leaf 與 `-03` 之分界。為什麼這樣切：兩個結果（A 得到、B 變 None）為同一次選擇之兩面，依 §5.7 併於一條 ER。",
+ "keywords": [
+  "PU0588",
+  "Yes",
+  "None",
+  "seat reassign"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-034-02",
+   "tc_id": "NR1L-UserProfiles-132",
+   "tc_title": "Yes on PU0588 moves the seat to an unlinked active Profile",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Yes on PU0588 moves the seat to an unlinked active Profile",
+   "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. Driver Profile B is linked to the memory seat position under test",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the seat position and save it to the memory seat linked to Driver Profile B\n2. Select Yes on PU0588\n3. Read the seat links of both Profiles and check where the seat now belongs",
+   "expected_result": "1. PU0588 is displayed\n2. Yes is selected on PU0588\n3. The memory seat position is linked to Driver Profile A and the seat status of Driver Profile B is “None”",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10.1",
+   "priority": "P1",
+   "priority_basis": "改派後之座椅歸屬（現用 profile 原無座椅）",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 併驗兩側** —— A 得到該座椅、**且** B 之狀態變為 “None”；只驗 A 得到，一個讓兩個 profile 同時連著該座椅之實作會通過。`“None”` 逐字引自 5.10.1。與 `SWE1-HMI-PROF-034-03` 之分野：本條之現用者**原無**座椅。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

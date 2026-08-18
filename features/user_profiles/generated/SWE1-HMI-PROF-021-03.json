@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-021-03",
+ "outline": "5.2",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile. When the Maximum number of Profiles (5) is reached,: the Add New Profile button will not be present, and the icon and the string described in note PRACC7.2 will not be present either. A text will be displayed instead informing the user they must first delete a Profile before creating a new one: “Max Profiles reached. Delete to create a new one.” (PU0584)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When the Maximum number of Profiles (5) is reached,:A text will be displayed instead informing the user they must first delete a Profile before creating a new one: “Max Profiles reached. Delete to create a new one.” (PU0584)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.2（PRACC8）末句 —— 達上限時改顯示一段告知使用者須先刪除之文字。關鍵情境條件：五個 profile 已存在（上限本身）。為什麼這樣切：**只驗「按鈕不見了」，一個什麼都不顯示之實作會通過** ——條文要求的是**替代顯示**，故本條必須獨立於 `021-02`。",
+ "keywords": [
+  "PU0584",
+  "Max Profiles reached",
+  "text",
+  "five"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-021-03",
+   "tc_id": "NR1L-UserProfiles-116",
+   "tc_title": "Max Profiles reached text shown in place of the Add New entry",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Max Profiles reached text shown in place of the Add New entry",
+   "pre_conditions": "1. Five Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the screen and check the text shown in place of the Add New entry",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. The text “Max Profiles reached. Delete to create a new one.” (PU0584) is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.2",
+   "priority": "P2",
+   "priority_basis": "達上限時之替代文字（PU0584）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "字串與 PU id 逐字引自 5.2。與 `SWE1-HMI-PROF-021-02` 之分野：該條驗**什麼不見了**，本條驗**取而代之顯示了什麼** —— 兩者為同一情境之兩個斷言，037 切兩個 leaf 故不合併（§8.2.1）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-024",
+ "outline": "5.3.2",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRACC9.2) If a Profile is switched while in the “All Profiles” tab, the screen will remain in the All Profiles tab (even if last known Profile tab was “Edit Profile” for newly active Profile).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC9.2) If a Profile is switched while in the “All Profiles” tab, the screen will remain in the All Profiles tab (even if last known Profile tab was “Edit Profile” for newly active Profile).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.3.2（PRACC9.2）—— 於 All Profiles 分頁切換 profile 後，畫面仍停留在 All Profiles 分頁。關鍵情境條件：新 profile 之 latch 分頁**須為 Edit Profile** ——那是條文括號所指之情形，**也是唯一能證明本條之情境**：若 B 之上次分頁本來就是 All Profiles，停留與 latch 之結果相同。為什麼這樣切：本條與 `SWE1-HMI-PROF-018-02` 為**互相衝突之兩條規則**，037 各切一個 leaf；本條驗的是「切換情境下 5.3.2 勝過 latch」。",
+ "keywords": [
+  "All Profiles",
+  "stay",
+  "switch",
+  "latch"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-024",
+   "tc_id": "NR1L-UserProfiles-119",
+   "tc_title": "Screen stays on All Profiles after switching Profile",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Screen stays on All Profiles after switching Profile",
+   "pre_conditions": "1. Two Driver Profiles exist and the last used tab of Driver Profile B is the “Edit Profile” tab\n2. Driver Profile A is active and the vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and select Driver Profile B\n2. Read the screen and check that the “All Profiles” tab is shown",
+   "expected_result": "1. Driver Profile B is the active Profile\n2. The “All Profiles” tab is still shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3.2",
+   "priority": "P2",
+   "priority_basis": "切換後之分頁停留",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**pre-condition 之「B 之上次分頁為 Edit Profile」是本條之關鍵** ——條文括號明言 `even if last known Profile tab was “Edit Profile” for newly active Profile`；不設此前提，本條與 latch（`SWE1-HMI-PROF-018-02`）之結果無從分辨。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

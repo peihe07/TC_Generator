@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-019",
+ "outline": "5.1.1",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC7.1) When on the “All Profiles” tab, all available users will be shown. The active user will be highlighted and larger than the others. There will be options to add new Profiles, switch active Profiles, and go into Valet Mode.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC7.1) When on the “All Profiles” tab, all available users will be shown. The active user will be highlighted and larger than the others. There will be options to add new Profiles, switch active Profiles, and go into Valet Mode.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.1.1（PRACC7.1）—— All Profiles 分頁顯示全部使用者、現用者放大並 highlight，並提供三個入口。關鍵情境條件：至少三個 profile，使「其他人」為複數，`larger than the others` 方為可觀察之比較。為什麼這樣切：三個入口為同一畫面之並列斷言，依 §5.7 併為一條之 ER3。刻意略過：各入口按下後之行為分屬 5.3／5.6／12.x，本條只驗其**存在**。",
+ "keywords": [
+  "All Profiles",
+  "highlighted",
+  "larger",
+  "options"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-019",
+   "tc_id": "NR1L-UserProfiles-112",
+   "tc_title": "All Profiles tab shows every user and the three options",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "All Profiles tab shows every user and the three options",
+   "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the user list and check that every Profile is shown\n3. Read the screen and check the three options offered",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. All three Driver Profiles are shown and the active one is highlighted and larger than the others\n3. Options to add a new Profile, to switch the active Profile and to enter Valet Mode are present",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1.1",
+   "priority": "P1",
+   "priority_basis": "All Profiles 主畫面之內容與三個入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 併驗 highlighted 與 larger 兩者** —— 條文寫的是`highlighted **and** larger than the others`；只驗其一，另一半失效不會被發現。profile 數（3）為**測試設置**（J-12）：條文只寫 all available users，未指定數目；取 3 是為使「其他人」為複數。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

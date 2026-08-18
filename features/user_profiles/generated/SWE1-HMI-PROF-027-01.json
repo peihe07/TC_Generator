@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-027-01",
+ "outline": "5.5",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC11.) The Memory seat status displayed under each applicable Profile avatar will show which memory seat number is programmed to which Profile. The number of Memory seats will be vehicle dependent (currently up to 3). When the number of Profiles exceeds the number of Memory seats on a vehicle, the New Profile(s) will not be linked to any memory seats unless the user initiates a swap of Memory seat preferences (at least two out of the five profiles will not be associated with a Memory seat preference). Valet Mode Profile will not be allowed to link to Memory seat positions.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The system must display the programmed memory seat number under each applicable Profile's avatar to indicate which seat position is linked to that specific Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.5（PRACC11）首句 —— 每個適用 profile 之 avatar 下方顯示其所連之記憶座椅編號。關鍵情境條件：至少一個 profile 已連座椅，否則無可顯示者。為什麼這樣切：037 對 5.5 切三個 leaf —— 本 leaf 為**呈現**；超出座椅數之預設不連結屬 `SWE1-HMI-PROF-027-02`，Valet 之限制屬 `SWE1-HMI-PROF-027-03`。",
+ "keywords": [
+  "memory seat number",
+  "avatar",
+  "linked",
+  "display"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-027-01",
+   "tc_id": "NR1L-UserProfiles-122",
+   "tc_title": "Memory seat number shown under the linked Profile avatar",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Memory seat number shown under the linked Profile avatar",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Driver Profile A is linked to a memory seat position",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the area under the avatar of Driver Profile A and check the memory seat number shown",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. The memory seat number linked to Driver Profile A is shown under its avatar",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.5",
+   "priority": "P2",
+   "priority_basis": "記憶座椅編號於 avatar 下之呈現",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "ER 不寫座椅編號之數值 —— 條文只述「顯示哪一個座椅編號連到哪一個 profile」，**未指定編號**；寫死數值會使本 TC 只能在特定佈署上跑。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

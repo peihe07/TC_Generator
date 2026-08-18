@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-026",
+ "outline": "5.4",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC10.) Editing a Profile is only available for the active Profile, in the “Edit Profile” tab. When on the All Profile Tab, pressing on the active Profile avatar or username after that Profile is already active and highlighted, will take the user to the “Edit Profile” tab.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC10.) Editing a Profile is only available for the active Profile, in the “Edit Profile” tab. When on the All Profile Tab, pressing on the active Profile avatar or username after that Profile is already active and highlighted, will take the user to the “Edit Profile” tab.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.4（PRACC10）後半 —— 於 All Profiles 分頁按下**已作用中且已 highlight** 之 profile，進入 “Edit Profile” 分頁。關鍵情境條件：條文明言 `after that Profile is already active and highlighted`，故 pre-condition 固定之。為什麼這樣切：**「只能編輯現用 profile」之限制不另立 TC** ——按非現用者之行為由 5.3 定義為切換，`SWE1-HMI-PROF-022` 已驗其確實切換而非進入編輯。",
+ "keywords": [
+  "Edit Profile",
+  "active Profile",
+  "avatar",
+  "press"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-026",
+   "tc_id": "NR1L-UserProfiles-121",
+   "tc_title": "Pressing the active Profile opens the Edit Profile tab",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Pressing the active Profile opens the Edit Profile tab",
+   "pre_conditions": "1. Driver Profile A is active and highlighted on the “All Profiles” tab\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the avatar of the active Driver Profile\n2. Read the screen and check which tab is shown",
+   "expected_result": "1. The avatar of the active Driver Profile is pressed\n2. The “Edit Profile” tab is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.4",
+   "priority": "P2",
+   "priority_basis": "自現用 profile 進入 Edit Profile 之入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文首句 `Editing a Profile is **only** available for the active Profile` 為**全稱限制**。其反向由 `SWE1-HMI-PROF-022` 承擔 —— 該 leaf 驗「選取另一個 profile 會 switch system to that Profile」，即「不進入編輯」之另一面。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

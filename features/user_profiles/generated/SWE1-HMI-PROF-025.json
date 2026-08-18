@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-025",
+ "outline": "5.3.3",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC9.3.) While a new Profile is loading, the user cannot try to select another profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC9.3.) While a new Profile is loading, the user cannot try to select another profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.3.3（PRACC9.3）—— 一個 profile 載入期間，使用者不能再選另一個。關鍵情境條件：須有第三個 profile 作為被擋之對象，否則「再選一個」與「重選同一個」混淆。為什麼這樣切：受測動作為載入期間之選取（§12 首匹配 → 負向測試）。刻意略過：載入之時長條文未述，本條不對其設限（§8.4.1）。",
+ "keywords": [
+  "loading",
+  "blocked",
+  "select",
+  "another Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-025",
+   "tc_id": "NR1L-UserProfiles-120",
+   "tc_title": "Selecting another Profile blocked while one is loading",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Selecting another Profile blocked while one is loading",
+   "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. Driver Profile A is active and the vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and select Driver Profile B\n2. Attempt to select Driver Profile C while Driver Profile B is still loading\n3. Read the screen and check which Profile becomes active",
+   "expected_result": "1. Driver Profile B is selected and starts loading\n2. The attempt to select Driver Profile C is not accepted\n3. Driver Profile B is the active Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.3.3",
+   "priority": "P1",
+   "priority_basis": "載入中不得再選另一 profile；避免載入競態",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 併驗「最後作用中者為 B」** —— 只驗「C 之選取不被接受」，一個把選取吞掉卻仍切到 C 之實作會通過。三個 profile 為**測試設置**（J-12）：條文只寫 another profile，取三個是為使「載入中之目標」與「被擋之目標」為不同兩者。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

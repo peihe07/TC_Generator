@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-027-03",
+ "outline": "5.5",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC11.) The Memory seat status displayed under each applicable Profile avatar will show which memory seat number is programmed to which Profile. The number of Memory seats will be vehicle dependent (currently up to 3). When the number of Profiles exceeds the number of Memory seats on a vehicle, the New Profile(s) will not be linked to any memory seats unless the user initiates a swap of Memory seat preferences (at least two out of the five profiles will not be associated with a Memory seat preference). Valet Mode Profile will not be allowed to link to Memory seat positions.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "Valet Mode Profile will not be allowed to link to Memory seat positions.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.5（PRACC11）末句 —— Valet Mode Profile 不得連結記憶座椅位置。關鍵情境條件：須有未被連走之座椅，否則「不得連」與「沒得連」混淆。為什麼這樣切：受測動作為一個**不被允許之連結**（§12 首匹配 → 負向）。**ER3 為全稱形式**：該 profile 之座椅連結數恆為零。",
+ "keywords": [
+  "Valet Mode Profile",
+  "memory seat",
+  "not allowed",
+  "link"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-027-03",
+   "tc_id": "NR1L-UserProfiles-124",
+   "tc_title": "Valet Mode Profile cannot be linked to a memory seat",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Valet Mode Profile cannot be linked to a memory seat",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. A Valet Mode Profile is present and at least one memory seat is unlinked",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” screen for the Valet Mode Profile\n2. Attempt to link the unlinked memory seat to the Valet Mode Profile\n3. Read the seat links and check that the Valet Mode Profile holds none",
+   "expected_result": "1. The Valet Mode Profile screen is displayed\n2. The attempt is not accepted\n3. No memory seat position is linked to the Valet Mode Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.5",
+   "priority": "P1",
+   "priority_basis": "Valet Mode Profile 不得連結座椅位置",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 斷言「一個都沒有」而非「這一個沒連上」** ——後者容許實作改連到別的座椅位置，那同樣違反條文（同 `NR1L-UserProfiles-105` 之形狀）。若該畫面根本不提供連結入口，步驟 2 之「嘗試」即為「找不到入口」，ER2 仍成立 —— **條文說的是不得連結，未規定以何種方式阻止**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-029",
+ "outline": "5.6.1",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC12.1) The “Add New” text or the “+” icon will be greyed out while the vehicle is in motion. If selected, a bonk tone will be played along with the message “Function not available while vehicle in Motion.”",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC12.1) The “Add New” text or the “+” icon will be greyed out while the vehicle is in motion. If selected, a bonk tone will be played along with the message “Function not available while vehicle in Motion.”",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.6.1（PRACC12.1）—— 行車中 “Add New” 變灰；若被選取則播 bonk 並顯示不可用訊息。關鍵情境條件：步驟 1 之基準線使「變灰」與「本來就不可選」可分辨（§5.6）。為什麼這樣切：受測動作為對已變灰項目之按壓（§12 首匹配 → 負向測試）。**判級 P0**：行車中不得新增 profile 為分心防線，其**成立本身**（按下不生效）之斷言落在 ER3 前半（D-UP16-01 附二）。",
+ "keywords": [
+  "Add New",
+  "greyed out",
+  "bonk",
+  "in motion"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-029",
+   "tc_id": "NR1L-UserProfiles-126",
+   "tc_title": "Add New greyed out and blocked while the vehicle moves",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Add New greyed out and blocked while the vehicle moves",
+   "pre_conditions": "1. Fewer than five Driver Profiles exist on the vehicle\n2. The “All Profiles” tab is open",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the “Add New” text and record whether it is selectable\n2. Bring the vehicle into motion\n3. Select the greyed-out “Add New” text and check that a bonk tone and a message are given",
+   "expected_result": "1. The “Add New” text is selectable and its state is recorded\n2. The vehicle is in motion and the “Add New” text is greyed out\n3. The selection is not accepted, a bonk tone is played and the message “Function not available while vehicle in Motion.” is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.6.1",
+   "priority": "P0",
+   "priority_basis": "行車中不得新增 profile —— **防線成立本身**（§10.2 safety；D-UP16-01 附二）",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 併驗「不被接受」與「提示」兩者** —— 依 P-1 之分野（§8.7.4：視覺狀態不蘊含不可操作），**變灰本身不是防線**；**防線是「按下不生效」**，故其斷言不可省。訊息字串逐字引自 5.6.1。基準線（行車前可選）為 §5.6 之要求。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

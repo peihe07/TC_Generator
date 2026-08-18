@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-028",
+ "outline": "5.6",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC12.) Choosing the “Add New” text or the “+” icon will initiate the new Profile setup process. Completing a new Profile Setup means that the new Profile becomes the active Profile. Adding a new Profile from the “All Profiles” tab will return the user to the All Profiles tab after setup is complete.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC12.) Choosing the “Add New” text or the “+” icon will initiate the new Profile setup process. Completing a new Profile Setup means that the new Profile becomes the active Profile. Adding a new Profile from the “All Profiles” tab will return the user to the All Profiles tab aft er setup is complete.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.6（PRACC12）—— 自 All Profiles 分頁啟動新 profile 設定，完成後新 profile 成為現用者，且畫面回到 All Profiles 分頁。關鍵情境條件：profile 數須未達上限，否則入口不存在（5.2）。為什麼這樣切：**ER3 與 ER4 缺一不可** ——只驗「回到分頁」，一個沒把新 profile 設為現用之實作會通過；只驗「成為現用」，一個停在設定畫面之實作會通過。",
+ "keywords": [
+  "Add New",
+  "setup",
+  "active Profile",
+  "All Profiles"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-028",
+   "tc_id": "NR1L-UserProfiles-125",
+   "tc_title": "New Profile setup from All Profiles ends on that tab",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "New Profile setup from All Profiles ends on that tab",
+   "pre_conditions": "1. Fewer than five Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and press the “Add New” text\n2. Complete the new Profile setup process\n3. Read the active Profile and check that it is the new one\n4. Read the screen and check that the “All Profiles” tab is shown",
+   "expected_result": "1. The new Profile setup process is initiated\n2. The new Profile setup is completed\n3. The new Driver Profile is the active Profile\n4. The “All Profiles” tab is shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.6",
+   "priority": "P0",
+   "priority_basis": "自 All Profiles 分頁建立新 profile —— 核心五類之一",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文三句為**同一次流程之三個結果**（啟動／成為現用／回到該分頁），依 §5.7 併為一條；其跨越四個步驟與兩個功能（建立與導覽），故 design_method 取情境／用例（§12）。`“Add New”` 與 `“+”` 為條文並列之兩個入口，本 TC 取前者；後者之觸發相同，**037 未另切 leaf**，故不另生成。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

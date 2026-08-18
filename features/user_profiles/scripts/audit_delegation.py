@@ -111,14 +111,31 @@ def phrase_of(sentence: str) -> str:
     `does not support the connected profile feature` 共用三個詞。
     v3 取最長連續英文詞串整串比對；串長 < 3 者無法判 → 落黃。
     """
+    # **v4（34 包）—— v3 之抽取會把詞串中間的短詞丟掉。**
+    #
+    # v3 只收 ≥4 字母之詞（`TERM`），而把 1–3 字母之詞（`to`／`the`／`not`／`of`）
+    # 既不收進詞串、也不當成斷點 —— **於是 `switch system to that Profile`
+    # 被抽成 `switch system that Profile`**，再拿去逐字比對節文，
+    # 節文裡當然沒有，遂誤報為假委派（`TC-121`）。
+    #
+    # **這個 bug 讓 D-3 之判別力有一部分是意外得來的**：
+    # 22 包那個要抓的案例（`does not support the connected profile feature`）
+    # 之所以轉紅，**有一半是因為詞串被 v3 打斷**，不全是因為內容不符。
+    # v4 修正後複驗：該案例仍紅（`does not support connectivity` 確實不含它），
+    # **但這次是為對的理由紅的**。
+    #
+    # v4：短詞在詞串**已開始**時併入（保持連續），但不得作為詞串之起點。
     runs, cur = [], []
     for tok in re.split(r"([A-Za-z][A-Za-z0-9.'’\-]*)", sentence):
         w = tok.strip()
-        if TERM.fullmatch(w or "") and not w.startswith(("SWE1", "NR1L", "PROF")):
-            if w.lower() in STOP and not cur:
-                continue
+        if not w:
+            continue
+        is_word = bool(re.fullmatch(r"[A-Za-z][A-Za-z0-9.'’\-]*", w))
+        if is_word and not w.startswith(("SWE1", "NR1L", "PROF")):
+            if not cur and (len(w) < 4 or w.lower() in STOP):
+                continue          # 不以短詞或停用詞起首
             cur.append(w)
-        elif w and not w.isspace() and not re.fullmatch(r"[A-Za-z]{1,3}", w):
+        elif not w.isspace():
             if cur:
                 runs.append(cur)
                 cur = []

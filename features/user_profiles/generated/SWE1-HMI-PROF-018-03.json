@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-018-03",
+ "outline": "5.1",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRACC7.) When in the Profile section, there will be two tabs; “All Profiles” and “Edit Profile”. The default tab is the “All Profiles” tab, but the system will latch on whichever tab was last used within and over key cycles, per Profile, when entered through pushing the Profile button. While in the Profile section and the user presses the Profile button again, the user will be taken to the All Profiles tab, if not already on that tab.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "While in the Profile section and the user presses the Profile button again, the user will be taken to the All Profiles tab, if not already on that tab.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.1（PRACC7）末句 —— 於 Profile 區內再按 Profile 鍵，回到 “All Profiles” 分頁。關鍵情境條件：起始須**不在**該分頁（§8.7.3 之條件本身）。為什麼這樣切：本 leaf 之單位為**再按之回位**；首次進入之分頁判定屬 `SWE1-HMI-PROF-018-01` 與 `SWE1-HMI-PROF-018-02`。",
+ "keywords": [
+  "Profile button",
+  "All Profiles",
+  "return",
+  "tab"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-018-03",
+   "tc_id": "NR1L-UserProfiles-111",
+   "tc_title": "Pressing the Profile button again returns to All Profiles",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Pressing the Profile button again returns to All Profiles",
+   "pre_conditions": "1. The Profile section is open on the “Edit Profile” tab\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the Profile button in the status bar\n2. Read the Profile section and check that the “All Profiles” tab is shown",
+   "expected_result": "1. The Profile button is pressed while the “Edit Profile” tab is open\n2. The “All Profiles” tab is shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.1",
+   "priority": "P3",
+   "priority_basis": "再按 Profile 鍵之回位；罕用導覽",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之 `if not already on that tab` 為適用條件；本 TC 以 pre-condition 固定為「不在該分頁」，使回位可觀察。已在該分頁時再按之行為條文未述，依 §8.4.1 不推定。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

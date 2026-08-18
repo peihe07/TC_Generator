@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-030-02",
+ "outline": "5.7",
+ "batch": "batch04",
+ "test_set": "Profile List",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRACC13.) Linking a Profile to a memory seat can only be done through the Edit Profile screen (unless it is linked by default). If the seat position is saved, it will not automatically save to the active Profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If a memory seat position is saved, the system must not automatically save or link that seat position to the currently active Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.7（PRACC13）末句 —— 儲存座椅位置時，不會自動把該位置連到現用 profile。關鍵情境條件：現用 profile 原本**無**座椅連結，使「自動連過去」若發生即可見。為什麼這樣切：與 `SWE1-HMI-PROF-033` 之分野在斷言方向 ——該條驗**存到誰**（原連結者），本條驗**沒存到誰**（現用者）。",
+ "keywords": [
+  "save seat",
+  "not automatic",
+  "active Profile",
+  "link"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-030-02",
+   "tc_id": "NR1L-UserProfiles-128",
+   "tc_title": "Saving a seat position does not link it to the active Profile",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Saving a seat position does not link it to the active Profile",
+   "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. A memory seat position is linked to Driver Profile B",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the seat position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Read the seat links and check that Driver Profile A still has none",
+   "expected_result": "1. The seat position is changed\n2. The position is saved to the memory seat linked to Driver Profile B\n3. No memory seat is linked to Driver Profile A",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.7",
+   "priority": "P1",
+   "priority_basis": "存座椅位置不得自動連到現用 profile",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之 `it will not automatically save to the active Profile` 為**缺席斷言**；其正向（存到原本連結之 profile）屬 `SWE1-HMI-PROF-033`（5.10）。本條之 pre-condition 使 A（現用）原本無座椅 ——**若 A 本來就有座椅，「沒有自動連過去」無從觀察**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}
