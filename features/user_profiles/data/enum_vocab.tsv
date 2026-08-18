@@ -1,0 +1,35 @@
+# enum_vocab.tsv — 枚舉型判準之對照登記（G-B，42 包 §二）
+#
+# `lint_tcs` 有四張清單：`KNOWN_PU`（現測）、`DESIGN_METHODS`（現測）、
+# `STATE_VALUES`（**寫死四個**）、`UI_LOCATORS`（**寫死兩個**）。
+# 前兩者每次執行都自來源重算，錯了會自己叫；**後兩者不會**。
+#
+# 分辨依據為「該清單是寫死的還是量出來的」，不是「它有沒有出過錯」——
+# 40 輪之 X-1 詞表就是在沒出過錯的狀態下漏了六輪。
+#
+# 本檔為後兩者之對照：`audit_enums.py` 自 **spec 側**與**語料側**各自重算
+# 候選集合，凡候選而未登記者，其掃描結果不予採認。
+#
+# 欄：
+#   kind    state_value / ui_locator
+#   value   逐字
+#   status  registered      —— 確為該類，且已在 lint_tcs 之清單內
+#           not-a-state-value / not-a-locator —— 形態相似而不屬該類，具名理由
+#   note    理由（**不得空白**）
+kind	value	status	note
+state_value	Small	registered	5.1.2 之 `default on small screens` —— 螢幕尺寸之設定值
+state_value	Off	registered	多節之 `turned off`（welcome popup 設定等）之顯示值
+state_value	On	registered	同上之另一側
+state_value	None	registered	9.5.1 之座椅連結顯示值（未連結時顯示 None）
+state_value	X	not-a-state-value	popup 之**關閉鍵**（`Selecting “X”`），是可點元素不是設定值
+state_value	Welcome	not-a-state-value	popup 之**名稱**（`“welcome” popup`），非設定值
+state_value	Cancel	not-a-state-value	按鍵名（8.7.1 之三個選項之一）
+state_value	Save	not-a-state-value	按鍵名（8.8 之 `Save` / `Save & Continue`）
+state_value	i	not-a-state-value	PDF 文字層之切字殘留（`“i”`），非語意 token
+state_value	electronic	not-a-state-value	散文中之形容詞，引號為 spec 之強調用法
+ui_locator	Edit Profile	registered	5.1 之兩個分頁之一；跨 28 節作為導覽起點出現
+ui_locator	All Profiles	registered	同上
+ui_locator	Function not available while vehicle in Motion.	not-a-locator	**顯示訊息之逐字內容**，其每一次出現都是該 TC 之斷言標的，各自溯源於其被引之節（9.3.1／12.x）
+ui_locator	Driver 1	not-a-locator	預設 profile 之**名稱**，非畫面位置；各節自載
+ui_locator	This icon is associated to settings that are specific to your profile and are not shared across the vehicle	not-a-locator	5.1.2 之說明字串；其跨節出現係 `REF_EXTRA` 之併列（J-10），非導覽
+ui_locator	My Profile	not-a-locator	設定畫面內之**項目名**，非分頁；出現於 4.1.1 與 9.x 各自之條文

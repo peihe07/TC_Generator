@@ -1,0 +1,63 @@
+# pending_judgements.tsv — 待判之判定登記（G-A，42 包 §二）
+#
+# **這張表不是豁免名單。** 每一列都帶 `digest`（該 TC 之 pre_conditions／
+# test_procedure／expected_result／remarks／specification_reference／
+# design_method 之 sha1 前 12 碼）。**該 TC 一被改動，digest 即不符，
+# 它自動回到待判清單**（`audit_pending.py` 之 PJ-2）。
+#
+# 欄：
+#   scan          掃描代號
+#   tc_id         條號
+#   verdict       成立 / 不成立
+#   disposition   judged-closed（已判定並登記）；空白且逾三輪 → G-A 逾期（PJ-3）
+#   digest        受檢欄位之摘要，由程式產生**不得手填**
+#   carried_at_42 立案於 42 輪時已帶之輪數（記錄用，非判準）
+#   reason        **逐條之理由，不得以「同上」帶過**
+#
+# 42 輪之全量判定：43 條全部判為「不成立」。
+# 其意義**不是**「這五支掃描沒有用」，而是「它們縮小之範圍已被讀完一次」——
+# 其後之價值全在 digest：**改動即回列**。
+scan	tc_id	verdict	disposition	digest	carried_at_42	reason
+Y-1	NR1L-UserProfiles-121	不成立	judged-closed	af9b72bc9497	7	跨節委派而**已具名被指者之 ER 序號**（`SWE1-HMI-PROF-022` 之 ER3 後半）並附其逐字句 —— 36 輪已據此修正 TC-117，此為修正後之形
+W-1	NR1L-UserProfiles-005	不成立	judged-closed	d908427fdf17	10	`No default Profile has been customized or deleted` 是**起始狀態之否定陳述**，本條 ER 斷言的是 6.2.1 之「不必先客製化」，兩者不同
+W-1	NR1L-UserProfiles-093	不成立	judged-closed	a976c4e0d4bc	10	`has been customized` 為佈署 —— 使刪除後之重建有意義；本條 ER 斷言的是重建後之 profile 身分，非「被客製化過」
+W-1	NR1L-UserProfiles-094	不成立	judged-closed	b4ed6558e8a4	10	同 `093`。**33 輪 W-1 已把刪除動作移入 procedure**，留在 pre-condition 的是客製化，而 ER 斷言的是重建後只有一個
+W-1	NR1L-UserProfiles-104	不成立	judged-closed	8e026a5b756a	10	`The Profile button has been removed` 為 4.6.3 之**適用條件本身**（按鈕已被移除時之行為），非 ER 所斷言者
+V-1	NR1L-UserProfiles-003	不成立	judged-closed	a21c4b59d2a5	11	`before creating a new one` 在 **PU0584 之 popup 文字**內，是給使用者看的句子，不約束測試步驟之順序
+V-1	NR1L-UserProfiles-005	不成立	judged-closed	d908427fdf17	11	`before creating a different new Profile` 陳述的是**不必要性**（不需先客製化），非時序要求
+V-1	NR1L-UserProfiles-015	不成立	judged-closed	70bfb0570d8a	11	`before system cancels` 為**次數用盡之後果**（10 次），本條之 procedure 依次數而非時刻推進，順序一致
+V-1	NR1L-UserProfiles-035	不成立	judged-closed	b56481157c21	11	`prior to the deleted one` 是**清單位置**（前一個 profile），不是時間 —— 同一個詞之另一種身分
+V-1	NR1L-UserProfiles-051	不成立	judged-closed	1bb0093cb72d	11	`at the next key on` 為載入之時點，本條之 procedure 確於下一次 key on 讀取，順序一致
+V-1	NR1L-UserProfiles-064	不成立	judged-closed	b480a69ca6fe	11	`prior to activating Valet Mode` 與 `upon deactivating` **確為時序要求**，而本條之步驟即「先記錄手套箱狀態 → 啟用 → 停用 → 比對」，順序一致
+V-1	NR1L-UserProfiles-065	不成立	judged-closed	61c358e39c92	11	`before system cancels` 為**次數用盡之後果**（10 次），本條之 procedure 依次數而非時刻推進，順序一致
+V-1	NR1L-UserProfiles-066	不成立	judged-closed	27c8181a9c1c	11	`before system cancels` 為**次數用盡之後果**（10 次），本條之 procedure 依次數而非時刻推進，順序一致
+V-1	NR1L-UserProfiles-088	不成立	judged-closed	80af61cc1d12	11	`saved before the new Profile is loaded` **確為時序要求**，本條 ER2 即斷言 B 之值不是 A 所改之值 —— 順序已由該斷言承載
+V-1	NR1L-UserProfiles-089	不成立	judged-closed	0a6b25ad33ed	11	`At the start of a new key cycle` **確為時序要求**，本條之 procedure 於 key-on 之時讀取現用 profile，順序一致（32 輪 V-1 之 TC-091 即為此類，已修正）
+V-1	NR1L-UserProfiles-090	不成立	judged-closed	04645cdeab37	11	`At the start of a new key cycle` **確為時序要求**，本條之 procedure 於 key-on 之時讀取現用 profile，順序一致（32 輪 V-1 之 TC-091 即為此類，已修正）
+V-1	NR1L-UserProfiles-091	不成立	judged-closed	bceff55b5971	11	`At the start of a new key cycle` **確為時序要求**，本條之 procedure 於 key-on 之時讀取現用 profile，順序一致（32 輪 V-1 之 TC-091 即為此類，已修正）
+V-1	NR1L-UserProfiles-106	不成立	judged-closed	b06485f21005	11	`before creating a different new Profile` 陳述的是**不必要性**（不需先客製化），非時序要求
+V-1	NR1L-UserProfiles-115	不成立	judged-closed	43b661f74202	9	`before creating a new one` 在 **PU0584 之 popup 文字**內，是給使用者看的句子，不約束測試步驟之順序
+V-1	NR1L-UserProfiles-116	不成立	judged-closed	822d06e78278	9	`before creating a new one` 在 **PU0584 之 popup 文字**內，是給使用者看的句子，不約束測試步驟之順序
+V-1	NR1L-UserProfiles-150	不成立	judged-closed	d4609f99165a	3	`upon vehicle entry` 為顯示之時點，本條步驟 1 即 ignition on 後讀取，順序一致
+V-1	NR1L-UserProfiles-171	不成立	judged-closed	2378c77a4634	2	`before saving/completing setup` 陳述的是**不必先選**（自動 highlight 之目的），非時序要求；本條之 procedure 不依賴該順序
+V-1	NR1L-UserProfiles-172	不成立	judged-closed	7389c9f64986	2	`before saving/completing setup` 陳述的是**不必先選**（自動 highlight 之目的），非時序要求；本條之 procedure 不依賴該順序
+U-1	NR1L-UserProfiles-002	不成立	judged-closed	8afda289a1bd	12	PU1088 之兩個觸發皆為「回復預設之確認」，本條 pre-condition 已固定其一（4.1.1 之現用 profile 側），ER 綁得住
+U-1	NR1L-UserProfiles-031	不成立	judged-closed	238dcb4ba4d5	12	PU0588 之兩句觸發同為「存到他人所連之座椅」，9.6 與 5.10.1 為同一行為之兩處記載，分支唯一
+U-1	NR1L-UserProfiles-082	不成立	judged-closed	0369ab81261d	12	同 `002` —— 4.1.1 之另一個 leaf，pre-condition 同樣固定了分支
+U-1	NR1L-UserProfiles-128	不成立	judged-closed	19c117a75d97	9	本條 procedure **明寫於 PU0588 選 No**（35 輪 X-1 所補），分支已由該步驟綁定
+U-1	NR1L-UserProfiles-131	不成立	judged-closed	b0014c440ca8	9	pre-condition 固定「現用者非該座椅之連結者」，即 PU0588 兩個觸發中之一側
+U-1	NR1L-UserProfiles-132	不成立	judged-closed	0c63543dd2f7	9	同 `131`，另加「現用 profile 原無座椅」之分支條件
+U-1	NR1L-UserProfiles-133	不成立	judged-closed	4363ec62f45e	9	同 `131`，另加「現用 profile 原有座椅」之分支條件
+Q-1	NR1L-UserProfiles-013	不成立	judged-closed	84aa5ae60ee2	18	Table CPA2 之欄名逐列轉錄，其形態已由子層列舉標示（Q-1 之界線本身）
+Q-1	NR1L-UserProfiles-018	不成立	judged-closed	6f69ea3b3be1	18	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-021	不成立	judged-closed	29edb039be82	18	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-037	不成立	judged-closed	6c7fed103b5b	18	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-054	不成立	judged-closed	48c5312d463c	18	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-062	不成立	judged-closed	1b5316eb9f0d	18	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-063	不成立	judged-closed	ea10895632ba	18	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-098	不成立	judged-closed	f42f7c08bee1	15	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-104	不成立	judged-closed	8e026a5b756a	15	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-129	不成立	judged-closed	3d7100f690b3	9	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-131	不成立	judged-closed	b0014c440ca8	9	ER 逐字沿用被引之節之措辭 —— **§8.4.1 要求不自擬**，而該節之用語即最精確之表達；本條之 ER 行仍為可觀察之結果句，非條文之整句照抄
+Q-1	NR1L-UserProfiles-139	不成立	judged-closed	b44f5b25407a	3	`all Profiles are cleared and the default Profiles are restored` 為 5.13.1 之**適用條件**，改寫會使該條件之範圍改變
+Q-1	NR1L-UserProfiles-146	不成立	judged-closed	00c240142772	3	`the Core HMI Logic and Flow truncation rules` 為**外部文件之專名**，改寫即失其指涉
