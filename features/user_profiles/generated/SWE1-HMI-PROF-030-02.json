@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "If a memory seat position is saved, the system must not automatically save or link that seat position to the currently active Profile.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：5.7（PRACC13）末句 —— 儲存座椅位置時，不會自動把該位置連到現用 profile。關鍵情境條件：現用 profile 原本**無**座椅連結，使「自動連過去」若發生即可見。為什麼這樣切：與 `SWE1-HMI-PROF-033` 之分野在斷言方向 ——該條驗**存到誰**（原連結者），本條驗**沒存到誰**（現用者）。",
+ "reasoning": "驗證目標：5.7（PRACC13）末句 —— 儲存座椅位置時，不會自動把該位置連到現用 profile。關鍵情境條件：現用 profile 原本**無**座椅連結，使「自動連過去」若發生即可見。為什麼這樣切：與 `SWE1-HMI-PROF-033` 之分野在斷言方向 ——該條驗**存到誰**（原連結者），本條驗**沒存到誰**（現用者）。**PU0588 之處理（X-1）**：本條之情境同時滿足 5.10.1 之觸發，故必須明確答 No —— **5.7 說的是「不經詢問即自動發生」，而非「詢問後也不發生」**；答 Yes 之路徑屬 5.10.1，不在本條。",
  "keywords": [
   "save seat",
   "not automatic",
@@ -27,15 +27,15 @@
    "test_item": "Saving a seat position does not link it to the active Profile",
    "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. A memory seat position is linked to Driver Profile B",
    "input_test_data": "NA",
-   "test_procedure": "1. Change the seat position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Read the seat links and check that Driver Profile A still has none",
-   "expected_result": "1. The seat position is changed\n2. The position is saved to the memory seat linked to Driver Profile B\n3. No memory seat is linked to Driver Profile A",
-   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.7",
+   "test_procedure": "1. Change the seat position\n2. Save the position to the memory seat linked to Driver Profile B\n3. Select No on PU0588\n4. Read the seat links and check that Driver Profile A still has none",
+   "expected_result": "1. The seat position is changed\n2. The position is saved to the memory seat linked to Driver Profile B and PU0588 is displayed\n3. No is selected on PU0588\n4. No memory seat is linked to Driver Profile A",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.7; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.10.1",
    "priority": "P1",
    "priority_basis": "存座椅位置不得自動連到現用 profile",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "條文之 `it will not automatically save to the active Profile` 為**缺席斷言**；其正向（存到原本連結之 profile）屬 `SWE1-HMI-PROF-033`（5.10）。本條之 pre-condition 使 A（現用）原本無座椅 ——**若 A 本來就有座椅，「沒有自動連過去」無從觀察**。",
+   "remarks": "條文之 `it will not automatically save to the active Profile` 為**缺席斷言**；其正向（存到原本連結之 profile）屬 `SWE1-HMI-PROF-033`（5.10）。本條之 pre-condition 使 A（現用）原本無座椅 ——**若 A 本來就有座椅，「沒有自動連過去」無從觀察**。**X-1（35 包）**：步驟 2 會觸發 5.10.1 之 **PU0588**，故 procedure 明確選 **No** —— 其 Yes 之後果由 `SWE1-HMI-PROF-034-02` 驗。**不處理該 popup，本條之結果取決於測試者按了什麼**（§2）。引用欄併列 **5.10.1**：PU0588 之字面值出現於本 TC，依 J-10 須登記其來源節。",
    "split_flag": false,
    "split_reason": ""
   }

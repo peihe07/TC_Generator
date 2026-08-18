@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "Unless it is linked by default, manually linking a Profile to a memory seat can only be done through the \"Edit Profile\" screen.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：5.7（PRACC13）之 `only` —— 記憶座椅之連結**不得**經 Edit Profile 以外之途徑完成。關鍵情境條件：A 無座椅且有空位，使「連上了」若發生即可見。為什麼這樣切：**全稱之限制只能以反向證之** ——正向（自 Edit Profile 連得成）與「他處也連得成」相容，故 `SWE1-HMI-PROF-030-01` 之正向不足以擋下該實作（§7）。**ER3 斷言「一個都沒連上」** 而非「這一次沒成功」，以排除連到別的座椅之實作。",
+ "reasoning": "驗證目標：5.7（PRACC13）之 `only` —— 記憶座椅之連結**不得**經 Edit Profile 以外之途徑完成。關鍵情境條件：A 無座椅且有空位，使「連上了」若發生即可見。為什麼這樣切：**全稱之限制只能以反向證之** ——正向（自 Edit Profile 連得成）與「他處也連得成」相容，故 `SWE1-HMI-PROF-030-01` 之正向不足以擋下該實作（§7）。**ER3 斷言「一個都沒連上」** 而非「這一次沒成功」，以排除連到別的座椅之實作。**受檢畫面為抽樣（X-2，35 包）**：「Edit Profile 以外」之位置**不可窮舉** —— 本條取兩個最可能提供該操作者（All Profiles 分頁、車輛設定），比照 `NR1L-UserProfiles-047` 之作法。**未涵蓋之其他入口，其結果不由本條保證。**",
  "keywords": [
   "only",
   "Edit Profile",
@@ -27,7 +27,7 @@
    "test_item": "Memory seat link refused outside the Edit Profile screen",
    "pre_conditions": "1. Driver Profile A is active and has no memory seat linked\n2. At least one memory seat position is unlinked",
    "input_test_data": "NA",
-   "test_procedure": "1. Open the “All Profiles” tab and read its entries\n2. Attempt to link the unlinked memory seat position from outside the “Edit Profile” screen\n3. Read the seat links and check that Driver Profile A still has none",
+   "test_procedure": "1. Open the “All Profiles” tab and read its entries\n2. Attempt to link the memory seat position from the “All Profiles” tab and from vehicle settings\n3. Read the seat links and check that Driver Profile A still has none",
    "expected_result": "1. The “All Profiles” tab is displayed\n2. The attempt is not accepted\n3. No memory seat position is linked to Driver Profile A",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.7",
    "priority": "P1",
@@ -35,7 +35,7 @@
    "design_method": "負向測試 (Negative / Invalid)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "§7 之列舉配對：正向為 `NR1L-UserProfiles-127`（`SWE1-HMI-PROF-030-01`，自 Edit Profile 連得成）。條文之 `can **only** be done through the Edit Profile screen` 為全稱限制 —— **只驗正向不足以證之**，故另立本條（同 `009`／`105` 之形狀）。**若他處根本不提供連結入口，步驟 2 即為「找不到入口」，ER2 仍成立** —— 條文說的是不得自他處連結，未規定以何種方式阻止。",
+   "remarks": "§7 之列舉配對：正向為 `NR1L-UserProfiles-127`（`SWE1-HMI-PROF-030-01`，自 Edit Profile 連得成）。條文之 `can **only** be done through the Edit Profile screen` 為全稱限制 —— **只驗正向不足以證之**，故另立本條（同 `009`／`105` 之形狀）。**若該畫面根本不提供連結入口，步驟 2 即為「找不到入口」，ER2 仍成立** —— 條文說的是不得自他處連結，未規定以何種方式阻止。**受檢之兩個畫面為抽樣（X-2）**，非窮舉；見 reasoning。",
    "split_flag": false,
    "split_reason": ""
   }

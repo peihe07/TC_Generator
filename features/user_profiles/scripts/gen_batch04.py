@@ -87,6 +87,9 @@ ICON_STRING = ("This icon is associated to settings that are specific to your "
 # 且 J-10 要求該節之 `provides` 字面值確實出現在該 TC 內 —— 此處即 ICON_STRING。
 REF_EXTRA = {
     "SWE1-HMI-PROF-021-02": [("5.1.2", ICON_STRING)],
+    # X-1（35 包）：`030-02` 之 procedure 須處理 5.10.1 之 PU0588，
+    # 該字面值遂出現於本 TC —— 依 J-10 登記其來源節。
+    "SWE1-HMI-PROF-030-02": [("5.10.1", "PU0588")],
 }
 
 TCS = {
@@ -634,27 +637,45 @@ TCS = {
         pre=steps("Driver Profile A is active and has no memory seat linked",
                   "A memory seat position is linked to Driver Profile B"),
         data="NA",
+        # **X-1（35 包）**：步驟 2 之動作正是 5.10.1 之觸發條件 ——
+        # 存到**非現用 profile 所連**之座椅時 **PU0588 會跳出來問**。
+        # 原 procedure 完全沒提它，測試者會撞上未預期之 popup，
+        # **而結果取決於他按了什麼**（選 Yes 則該座椅就會連到 A，與 ER3 相反）。
+        # 兩條條文不衝突：5.7 之 `not **automatically**` 是「不經詢問即發生」，
+        # 5.10.1 是「問過且答 Yes 才發生」—— **衝突的是 TC 之寫法**。
+        # 加一步明確選 No，「不自動」方為**被觀察到的**而非碰運氣。
         proc=steps("Change the seat position",
                    "Save the position to the memory seat linked to Driver "
                    "Profile B",
+                   "Select No on PU0588",
                    "Read the seat links and check that Driver Profile A still "
                    "has none"),
         er=steps("The seat position is changed",
                  "The position is saved to the memory seat linked to Driver "
-                 "Profile B",
+                 "Profile B and PU0588 is displayed",
+                 "No is selected on PU0588",
                  "No memory seat is linked to Driver Profile A"),
         remarks="條文之 `it will not automatically save to the active Profile` "
                 "為**缺席斷言**；其正向（存到原本連結之 profile）屬 "
                 "`SWE1-HMI-PROF-033`（5.10）。"
                 "本條之 pre-condition 使 A（現用）原本無座椅 ——"
-                "**若 A 本來就有座椅，「沒有自動連過去」無從觀察**。",
+                "**若 A 本來就有座椅，「沒有自動連過去」無從觀察**。"
+                "**X-1（35 包）**：步驟 2 會觸發 5.10.1 之 **PU0588**，"
+                "故 procedure 明確選 **No** —— 其 Yes 之後果由 "
+                "`SWE1-HMI-PROF-034-02` 驗。"
+                "**不處理該 popup，本條之結果取決於測試者按了什麼**（§2）。"
+                "引用欄併列 **5.10.1**：PU0588 之字面值出現於本 TC，"
+                "依 J-10 須登記其來源節。",
         reasoning=(
             "驗證目標：5.7（PRACC13）末句 —— 儲存座椅位置時，"
             "不會自動把該位置連到現用 profile。"
             "關鍵情境條件：現用 profile 原本**無**座椅連結，"
             "使「自動連過去」若發生即可見。"
             "為什麼這樣切：與 `SWE1-HMI-PROF-033` 之分野在斷言方向 ——"
-            "該條驗**存到誰**（原連結者），本條驗**沒存到誰**（現用者）。"),
+            "該條驗**存到誰**（原連結者），本條驗**沒存到誰**（現用者）。"
+            "**PU0588 之處理（X-1）**：本條之情境同時滿足 5.10.1 之觸發，"
+            "故必須明確答 No —— **5.7 說的是「不經詢問即自動發生」，"
+            "而非「詢問後也不發生」**；答 Yes 之路徑屬 5.10.1，不在本條。"),
         kw=["save seat", "not automatic", "active Profile", "link"],
     ),
 
@@ -828,9 +849,13 @@ EXTRAS = [
                       "linked",
                       "At least one memory seat position is unlinked"),
             data="NA",
+            # **X-2（35 包）**：原步驟 2 寫 `from outside the “Edit Profile”
+            # screen` —— **「outside」不是一個測試者能執行的位置**。
+            # 比照 `NR1L-UserProfiles-047` 之作法：逐一指名實際受檢之畫面，
+            # 並於 reasoning 具名其為抽樣。
             proc=steps("Open the “All Profiles” tab and read its entries",
-                       "Attempt to link the unlinked memory seat position "
-                       "from outside the “Edit Profile” screen",
+                       "Attempt to link the memory seat position from the "
+                       "“All Profiles” tab and from vehicle settings",
                        "Read the seat links and check that Driver Profile A "
                        "still has none"),
             er=steps("The “All Profiles” tab is displayed",
@@ -841,9 +866,10 @@ EXTRAS = [
                     "條文之 `can **only** be done through the Edit Profile "
                     "screen` 為全稱限制 —— **只驗正向不足以證之**，"
                     "故另立本條（同 `009`／`105` 之形狀）。"
-                    "**若他處根本不提供連結入口，步驟 2 即為「找不到入口」，"
+                    "**若該畫面根本不提供連結入口，步驟 2 即為「找不到入口」，"
                     "ER2 仍成立** —— 條文說的是不得自他處連結，"
-                    "未規定以何種方式阻止。",
+                    "未規定以何種方式阻止。"
+                    "**受檢之兩個畫面為抽樣（X-2）**，非窮舉；見 reasoning。",
             reasoning=(
                 "驗證目標：5.7（PRACC13）之 `only` —— 記憶座椅之連結"
                 "**不得**經 Edit Profile 以外之途徑完成。"
@@ -852,7 +878,12 @@ EXTRAS = [
                 "正向（自 Edit Profile 連得成）與「他處也連得成」相容，"
                 "故 `SWE1-HMI-PROF-030-01` 之正向不足以擋下該實作（§7）。"
                 "**ER3 斷言「一個都沒連上」** 而非「這一次沒成功」，"
-                "以排除連到別的座椅之實作。"),
+                "以排除連到別的座椅之實作。"
+                "**受檢畫面為抽樣（X-2，35 包）**：「Edit Profile 以外」之位置"
+                "**不可窮舉** —— 本條取兩個最可能提供該操作者"
+                "（All Profiles 分頁、車輛設定），"
+                "比照 `NR1L-UserProfiles-047` 之作法。"
+                "**未涵蓋之其他入口，其結果不由本條保證。**"),
             kw=["only", "Edit Profile", "refused", "memory seat"],
         ),
     ),

@@ -394,6 +394,68 @@ def w1_perfect_pre(rows) -> list:
     return hits
 
 
+# ── X-1（35 包）—— procedure 之動作會觸發**他節所定義**之 popup 而未處理
+#
+# `TC-128`（5.7）之步驟 2 存座椅位置到**非現用 profile 所連之座椅** ——
+# 那正是 5.10.1 之觸發條件，**PU0588 會跳出來問**。
+# 而其 procedure 完全沒提 PU0588：測試者會撞上一個未預期之 popup，
+# **結果取決於他按了什麼**（選 Yes 則該座椅就會連到現用 profile，與 ER3 相反）。
+# §2 之確定性與可重現性不成立。
+#
+# **兩條條文並不衝突**：5.7 之 `not **automatically**` 是「不經詢問即發生」，
+# 5.10.1 是「問過且答 Yes 才發生」。**衝突的是 TC 之寫法。**
+#
+# ## 判準之收斂（**v1 得 60 處，等於沒有範圍**）
+#
+# v1 以「popup 觸發句之關鍵詞與 procedure 重疊 ≥3」比對，得 **60 處** ——
+# 絕大多數只是**主題重疊**（`valet`／`mode`／`vehicle`／`popup`）。
+# **一份 60 筆的待判清單不是縮小範圍，是噪音**；而噪音清單會被略過（R-G9）。
+#
+# v2 改為**登記表**：逐個 popup 登記其**觸發動作**之 regex 與**成立條件**，
+# 兩者皆命中方列待判。登記表是人工的 —— **其盲區即未登記之 popup**（見下）。
+POPUP_TRIGGERS = [
+    # (popup, 定義節, 觸發動作 regex（掃 procedure）, 成立條件 regex（掃 pre＋proc）, 說明)
+    ("PU0588", {"5.10.1", "9.6"},
+     r"\bsav\w+\b[^.\n]{0,60}\bmemory seat\b|\bmemory seat\b[^.\n]{0,40}\bsav\w+",
+     None, "存座椅位置到非現用 profile 所連之座椅"),
+    ("PU0584", {"5.2"}, r"\bcreate\b[^.\n]{0,60}\bProfile\b",
+     r"\bfive\b|\bmaximum\b|\bmax\b", "已達 5 個上限時建立 profile"),
+    ("PU0626", {"5.13.2"}, r"Clear Personal Data", None, "確認清除個人資料"),
+    ("PU0118", {"4.1.1"}, r"Restore Settings to Default", None, "選取回復預設"),
+    ("PU0091", {"12.2.1"}, r"Valet Mode button", r"\bmotion\b",
+     "行車中按 Valet 鍵"),
+    ("PU0833", {"12.8.1"}, r"greyed[- ]out .{0,25}Glove Box Lock", None,
+     "按已變灰之手套箱鎖按鈕"),
+    ("PU0832", {"12.8.1"}, r"\benter\w*\b[^.\n]{0,30}Valet Mode|Valet Mode button",
+     r"Glove Box", "具手套箱鎖之車輛進入 Valet 之提示"),
+    ("PU0580", {"5.3.1"}, r"\bselect\b[^.\n]{0,40}Driver Profile\b", None,
+     "切換 profile 後之 welcome popup"),
+    ("PU0934", {"13.2"}, r"exit Valet Mode|deactivation control", r"SPAAK",
+     "SPAAK 情境下自主機嘗試退出"),
+]
+
+
+def x1_unhandled_popup(rows) -> list:
+    import build_batch_context as _B
+    hits = []
+    for sec, t in rows:
+        cited = {x.strip().replace(_B.SPEC_STEM + "_", "")
+                 for x in str(t.get("specification_reference", "")).split("; ")}
+        proc = str(t.get("test_procedure", ""))
+        scope = proc + " " + str(t.get("pre_conditions", ""))
+        seen = (proc + " " + str(t.get("expected_result", "")) + " "
+                + str(t.get("remarks", "")))
+        for pid, secs, action, cond, why in POPUP_TRIGGERS:
+            if pid in seen or (secs & cited):
+                continue          # 已處理，或本來就是該 popup 之 leaf
+            if not re.search(action, proc, re.I):
+                continue
+            if cond and not re.search(cond, scope, re.I):
+                continue          # 觸發條件不成立
+            hits.append((t["tc_id"], sec, pid, sorted(secs)[0], why))
+    return hits
+
+
 def tcs() -> list:
     out = []
     for p in sorted((FEATURE / "generated").glob("*.json")):
@@ -549,6 +611,30 @@ SELF_CASES = [
          test_procedure="1. Open the tab\n2. Read the screen",
          input_test_data="NA"), True),
 
+    # ---- X-1：跨節 popup 之未處理（35 包）
+    ("**TC-128 之原形**：存座椅到他人所連之座椅而未提 PU0588 → **須列入待判**",
+     "x1",
+     _tc(specification_reference=(
+             "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+             "(October_03_2023)_5.7"),
+         test_procedure="1. Change the seat position\n2. Save the position to "
+                        "the memory seat linked to Driver Profile B\n"
+                        "3. Read the seat links and check"), True),
+    ("其修正後之形：procedure 已處理 PU0588 → **不得列入**", "x1",
+     _tc(specification_reference=(
+             "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+             "(October_03_2023)_5.7"),
+         test_procedure="1. Change the seat position\n2. Save the position to "
+                        "the memory seat linked to Driver Profile B\n"
+                        "3. Select No on PU0588\n4. Read the seat links"), False),
+    ("**護欄**：觸發條件不成立（未達上限而建立 profile）→ **不得列入**", "x1",
+     _tc(specification_reference=(
+             "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+             "(October_03_2023)_5.5"),
+         pre_conditions="1. Two Driver Profiles exist on the vehicle",
+         test_procedure="1. Create one more Driver Profile\n"
+                        "2. Read the list and check"), False),
+
     # ---- W-1：完成式 pre-condition 列入人工判讀（33 包）
     ("W-1：pre 以完成式述動作結果（`has been deleted`）→ **須列入待判**", "w1",
      _tc(pre_conditions="1. Every Profile has been deleted from the head unit"),
@@ -645,7 +731,7 @@ SELF_CASES = [
 SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
          "q1": q1_unquoted, "t1": t1_step_refs,
          "u2": u2_unused_record, "v1": v1_timing,
-         "w1": w1_perfect_pre}
+         "w1": w1_perfect_pre, "x1": x1_unhandled_popup}
 
 
 def self_test() -> int:
@@ -692,6 +778,12 @@ if __name__ == "__main__":
     print(f"\n## K-4a —— design_method ↔ 實際形態：{len(b)} 處待判\n")
     for tid, sec, key, want in b:
         print(f"  {tid} ({sec}) {key} —— 缺 {want}")
+
+    x1 = x1_unhandled_popup(rows)
+    print(f"\n## X-1 —— 動作會觸發他節之 popup 而 procedure 未處理："
+          f"{len(x1)} 處待判\n")
+    for tid, sec, pid, psec, why in x1:
+        print(f"  {tid} ({sec}) → {pid}（定義於 {psec}）：{why}")
 
     w1 = w1_perfect_pre(rows)
     print(f"\n## W-1 —— pre-condition 以完成式描述動作結果：{len(w1)} 處待判\n")
