@@ -18,6 +18,8 @@
 | 06 | 2026-08-17 | 基線稽核：169 條逐節比對 xlsx vs PDF；PLP3；PU id 擴充；R-U27／R-U28 落地 | [handoff/06a_rulings.md](handoff/06a_rulings.md)＋[06b_tasks.md](handoff/06b_tasks.md) | [upstream/06_baseline_audit.md](upstream/06_baseline_audit.md) | R-U25 ~ R-U30；**R-G4-1**（R-G4 之修訂，原文保留）| A-UP02 性質重估落地；**N-XF01 跨 feature note 新開** | **判定系統性掉句 → 停手上報，未重建 outline_map.json。掉句率三個數：17.1%（上界）／9.3%（加頁界）／**2.9% 真掉句**。PLP3 可讀且不需抽圖。framework 未定稿** |
 | 07 | 2026-08-17 | 基線稽核（二）：跨頁反向驗證／29 無標籤節／outline_map 增欄與補句表／Service 22 條 PDF 複查 | [handoff/07a_rulings.md](handoff/07a_rulings.md)＋[07b_tasks.md](handoff/07b_tasks.md) | [upstream/07_baseline_audit_2.md](upstream/07_baseline_audit_2.md) | R-U31 ~ R-U34；**R-G8（全域）** | —（無新開；補句表登記 7 條）| **0 個跨頁條款 → 2.9% 不再是下界。對照向揪出 06 輪之定位器缺陷（重複標籤 `PRACC7.` 被兩節共用）。三比率重報 17.1%／9.3%／**3.6%**。Service 22 條 0 條改變 → R-U21 維持。framework 仍未定稿** |
 | 08 | 2026-08-17 | **Phase 1 收尾**：字內斷字全量掃／消歧反向驗證／R-U35 落地與 lint 實跑／framework 定稿 | [handoff/08a_rulings.md](handoff/08a_rulings.md)＋[08b_tasks.md](handoff/08b_tasks.md) | [upstream/08_phase1_close.md](upstream/08_phase1_close.md) | R-U35 ~ R-U38；**R-G7-1**（R-G7 之修訂，原文保留）| —（無新開）| **兩個作業都推翻了自己的前提**：R-U36 之「PDF 側有斷字」為 07 輪誤述（實在 xlsx 側，C 組終值維持 3.6%）；R-U37 之注入抓到判準缺陷，改判準後 8/8。lint 實跑 7/7。**framework 定稿待覆核**。Phase 1 收尾清單：已清 18／待清 8／永久 8 |
+| 13 | 2026-08-18 | **Pilot 生成 16 條 ＋ p17 ＋ 052f67d（同輪）** | [handoff/13_pilot_run.md](handoff/13_pilot_run.md) | [upstream/13_pilot_generated.md](upstream/13_pilot_generated.md) | —（本包無裁決條文，屬分析層自裁）| —（無新開）| **首次生成：`generated/` 16 檔 / 16 條 TC，`NR1L-UserProfiles-001…016`。lint 全綠：`lint_tcs`（本輪新建）語料 0 違規、self-test **28/28**；`lint_variant_labels` 反向 7/7、語料 0（並證其對 TC-011 確實生效，非空過）；`--selfcheck` 8/8。判準歧義 **6 次依門檻續行**並具名。發現 3 項缺陷：**`feature.yaml` 之 PU 清單為 xlsx 側（PU0609 誤報）**、9.8 之 PU0609 無 037 leaf、`variant_of()` 不處理否定。lint 判準改三次（G6／G2／G14），皆改判準不改案例。`052f67d` 其後提交 4 → **5**，時效性成立** |
+| 12 | 2026-08-17 | **p17 掛回（先紅後綠）／AUTO 集可重算性／`052f67d` 三案重述** | [handoff/12a_rulings.md](handoff/12a_rulings.md)＋[12b_tasks.md](handoff/12b_tasks.md) | [upstream/12_p17_and_commit.md](upstream/12_p17_and_commit.md) | R-U49 ~ R-U54 | —（無新開）| **R-U49 四步俱附輸出：第 7 項自檢先紅（`p17` 無歸宿，exit=1）→ 改 `PAGE_TO_SECTION` → 8/8 PASS。連帶 T-3 已解，待追蹤剩 T-1／T-2。R-U52 之對照向 drop／add 兩向皆紅。**`052f67d` 三案查無包號節次 —— 提於 power session 之聊天，從未落檔，故與 R-U41 相符、非分析層漏回應**；且該 commit **已推送**＋其後 4 個提交，案 2／3 之代價已變。未生成 TC** |
 | 11 | 2026-08-17 | **R-U46 落地 ＋ 10 輪補落檔**：PLP 聯集判準／位置指涉盲區 17 條人工判讀／must_carry 追蹤登記 | [handoff/11a_rulings.md](handoff/11a_rulings.md)＋[11b_tasks.md](handoff/11b_tasks.md) | [upstream/11_plp_and_pilot_prep.md](upstream/11_plp_and_pilot_prep.md)＋[upstream/10_pilot.md](upstream/10_pilot.md)（補落檔）| R-U46 ~ R-U48；**R-G11（全域）** | —（無新開）| **`PLP_ENABLED = True`；聯集 4 ＋ 人工 2 = 6。盲區掃描命中 17／未命中 163／餘數 0，其中 3 條指向 PLP 表。兩項具名回報：`001-02`／`001-03` 同節連坐、must_carry 實為「覆蓋 4／未覆蓋 3」（R-U47 前提為 3／4）。發現 `p17` 掛不回任何節之缺陷，未自行修改。自檢 6/6（第 6 項已加對照向）。未生成 TC** |
 | 10 | 2026-08-17 | **Phase 2 開工前置**（上繳於 11 輪補落檔，R-U48）：標記修正／R-U45 落地／組裝自檢／pilot 取樣／PLP 前置掃描 | [handoff/10a_rulings.md](handoff/10a_rulings.md)＋[10b_tasks.md](handoff/10b_tasks.md) | [upstream/10_pilot.md](upstream/10_pilot.md) | R-U42 ~ R-U45；**R-G10（全域）** | —（無新開）| **前置 1–3 完成：六條標記改訖（`[SUPERSEDED]` 全稱用例 0）、`outline_map.json` 納入版控且 `shasum -c` 7/7、自檢 6/6（第 1 項判準改三版）。取樣 16 leaf 餘數 0（PROF-045 → 048）。PLP 掃描三讀法：甲 2／乙 4／聯集 4 → **停下待裁**，未生成 TC** |
 | 09 | 2026-08-17 | **條文收斂**（Phase 2 開工前）：A 類升 canon／C 類標 superseded／AUTO 範圍明列 | [handoff/09a_rulings.md](handoff/09a_rulings.md)＋[09b_tasks.md](handoff/09b_tasks.md) | [upstream/09_ruling_consolidation.md](upstream/09_ruling_consolidation.md) | R-U39 ~ R-U41；**R-G9（全域）** | —（無新開）| **canon 新增 §9（十一項通則＋R-G 集中）。異議兩項：C 類三條只有一部分被取代、A 類升格單位應為「原則」。**第四類有 1 條：R-U8**。未生成 TC** |
@@ -42,6 +44,48 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第十三輪已完成（2026-08-18）—— **Phase 2 首批 TC 落地**
+
+- **16 條 TC 生成**：`generated/<req_id>.json` 16 檔，`NR1L-UserProfiles-001…016`；
+  生成器 `scripts/gen_pilot.py` 為單一來源、可重跑。**未寫回工作簿**（R-U14）。
+- **lint**：`scripts/lint_tcs.py`（**本輪新建**，14 閘）語料 **0 違規**、
+  `--self-test` **28/28**；`lint_variant_labels` 反向 7/7、語料 0 違規；
+  `build_batch_context --selfcheck` 8/8（含兩向 tamper 皆紅）。
+- **停手門檻改用**（13 包自裁）：判準歧義 **6 次取最保守解讀續行並具名**，
+  未再逐項停等 —— 含 `~12` 取 12、不加 §7 負向配對、不用 `[spec-derived]` 標記、
+  PU0609 不入 TC-012 之 ER、13.2 兩半不拆、11.5 之 CPA2 列項不入 ER。
+- **三項缺陷（生成過程中發現）**：
+  1. **`feature.yaml` 之 `lint.popup_ids` 為 xlsx 側量得（20 個）**，
+     以 `pdf_text` 現測為 21 個 —— 多的 `PU0609` 正落在 9.8 之掉句裡。
+     **以 xlsx 側清單檢查以 PDF 側生成之 TC，必然誤報。** lint 改現測，yaml 未動，待裁。
+  2. 9.8 之 PU0609 句在 037 **無對應 leaf** —— 上游覆蓋缺口（同 DR #3 形態）。
+  3. `variant_of()` **不處理否定**：pre-condition 寫「not an R1 High variant」
+     仍被判為 R1 High（本批無害，具名待裁）。
+- **lint 判準本輪改三次**（G6 pre-condition 誤報、G2 驗錯對象、G14 基準面不一致），
+  **皆改判準不改案例**；G2 之對照案例隨判準更換為「重複／跳號」，G6 之誤報案例留作回歸。
+- **`052f67d`**：其後提交數 4 → **5**（power 又疊一個），案 2／3 之 rebase 成本遞增。
+  三案查無包號節次（提於 power session 之聊天，從未落檔）。**未自行處置。**
+
+### 第十二輪已完成（2026-08-17）—— **p17 修好，三案重述，仍未生成 TC**
+
+- **R-U49 四步**（順序不可調換，輸出俱附）：補第 7 項自檢 → **證明其紅**
+  （`無歸宿者 = ['p17']`，exit=1）→ 改 `PAGE_TO_SECTION` 顯式對照表 →
+  **8/8 PASS**。`impact` 散文欄自此不再參與任何比對。
+- **連帶效果**：`p17` 現隨 sec 11.5 注入，而 `PROF-112-01` 在 pilot 取樣內 ——
+  **T-3 已解**，待追蹤由三條減為兩條（T-1 9.1／T-2 p14）。
+- **R-U52**：`plp_scan_union()` 收進自檢第 8 項，重算所得與常數逐條相符；
+  對照向 `--selfcheck-tamper drop｜add` **兩向皆紅**（漏一條、多一條都抓得到）。
+- **R-U50／R-U51** 寫入 `DECISIONS.md`：同節連坐四條件（**盲區：第 4 項無可測形式**）、
+  判讀口徑採「指涉所指之物」，`PROF-106`／`PROF-108` 定案為否並記其代價。
+- **`052f67d` 重述（R-U54）**：污染內容為**歸屬不準**（`feat(power)` 夾帶
+  user_profiles 8 檔，內容本身完整）；成因為裸 `git commit` 提交整個 index。
+  **三案查無包號節次** —— 提於 power session 之聊天回覆，從未落檔，
+  **故分析層覆核記錄無此項與 R-U41 相符，非漏回應**；
+  11 輪「三案已於前輪提出」之措辭經自查更正。
+  **現況：已推送，其後 4 個提交** → 案 2／3 已需 rebase ＋ force push。**未自行處置。**
+- **據實記載**：11 輪上繳後依 Pei 明確指示執行過一次 `add`／`commit`（`f653cb0`），
+  以 pathspec 限定且逐檔驗證無他 feature 混入；未 push。
 
 ### 第十一輪已完成（2026-08-17）—— **R-U46 落地，仍未生成 TC**
 

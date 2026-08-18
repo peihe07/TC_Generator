@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-021-01",
+ "outline": "5.2",
+ "batch": "pilot",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC8.) There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile. When the Maximum number of Profiles (5) is reached,: the Add New Profile button will not be present, and the icon and the string described in note PRACC7.2 will not be present either. A text will be displayed instead informing the user they must first delete a Profile before creating a new one: “Max Profiles reached. Delete to create a new one.” (PU0584)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "There can be up to five (5) Driver Profiles per vehicle, plus a Valet Mode Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.2（PRACC8）之上限 —— 五個 Driver Profile 為邊界，達到時 Add New Profile 按鈕與 PRACC7.2 之圖示字串消失並改顯 PU0584。關鍵情境條件：以 4 個為基準線、第 5 個為邊界值，同一 TC 內取前後兩讀（§5.6），故 design method 為邊界值分析。為什麼這樣切：Valet Mode Profile 不計入該五個之內，其存在列為 pre-condition 而非受測項，避免把兩個計數混為一談。刻意略過：刪除既有 profile 後按鈕是否回復，屬 5.2 之其他 leaf。",
+ "keywords": [
+  "Driver Profile",
+  "maximum",
+  "Add New Profile",
+  "PU0584",
+  "PRACC7.2"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-021-01",
+   "tc_id": "NR1L-UserProfiles-003",
+   "tc_title": "Add New Profile removed at the five-Profile maximum",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Add New Profile removed at the five-Profile maximum",
+   "pre_conditions": "1. Four Driver Profiles exist on the vehicle\n2. A Valet Mode Profile is present on the vehicle",
+   "input_test_data": "Driver Profile count: 4 (below the maximum) → 5 (at the maximum)",
+   "test_procedure": "1. Open the Profile List and read the Add New Profile button\n2. Create one more Driver Profile so that five Driver Profiles exist\n3. Open the Profile List and check that the Add New Profile button is not present and the maximum-reached text is displayed",
+   "expected_result": "1. The Add New Profile button is present while four Driver Profiles exist\n2. The fifth Driver Profile is created\n3. The Add New Profile button is not present, the icon and the string described in note PRACC7.2 are not present, and “Max Profiles reached. Delete to create a new one.” (PU0584) is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.2",
+   "priority": "P1",
+   "priority_basis": "profile 建立之上限邊界 —— R-U5 定邊界為 P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

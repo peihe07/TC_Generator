@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-059-01",
+ "outline": "7.2.1",
+ "batch": "pilot",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL2.1) The large welcome popup will show the active (logged in) Profile username and avatar, and display other available profiles, including avatar, username, and memory seat assignment if applicable. Choosing “More Options” will take user to Edit Profile tab. If a different Profile is selected, show the applicable welcome popup for the new active profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The large welcome popup must display the active (logged-in) Profile's username and avatar. Additionally, it must display a list of other available profiles, which must include their respective avatars, usernames, and memory seat assignments (if applicable).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.2.1（PRWEL2.1）之大型 welcome popup 內容 —— 現用 profile 之 username 與 avatar，以及其他可用 profile 之 avatar、username 與記憶座椅指派。關鍵情境條件：記憶座椅指派為條件式（if applicable），故 pre-condition 明訂兩個 profile 皆有指派，使該欄位確實可觀察。為什麼這樣切：條文另有「More Options 進 Edit Profile tab」與「選了別的 profile 則顯示新的 welcome popup」兩項行為，屬不同觸發，依 §5.7 不併入本 TC，由 7.2 之 sibling leaf 承擔。",
+ "keywords": [
+  "large welcome popup",
+  "username",
+  "avatar",
+  "memory seat assignment"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-059-01",
+   "tc_id": "NR1L-UserProfiles-007",
+   "tc_title": "Large welcome popup lists active and other Profiles",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Large welcome popup lists active and other Profiles",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a username, an avatar and a memory seat assignment\n2. Driver Profile A is the active Profile",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate Driver Profile A so that the large welcome popup is displayed\n2. Read the popup and check that Driver Profile A’s username and avatar and the other available Profiles are displayed",
+   "expected_result": "1. The large welcome popup is displayed\n2. Driver Profile A’s username and avatar are displayed, and the other available Profile is displayed with its avatar, username and memory seat assignment",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1",
+   "priority": "P2",
+   "priority_basis": "welcome popup 之內容展示",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

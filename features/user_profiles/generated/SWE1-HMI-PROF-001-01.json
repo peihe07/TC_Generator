@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-001-01",
+ "outline": "4.1",
+ "batch": "pilot",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC1.) The system will store and recall each unique Driver Profile’s preferences: see list of linked content above. If a feature is unavailable for a vehicle or region, ignore requirement.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "system shall store all profile-linked preferences listed in PLP table.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.1（PRACC1）要求系統對每個 Driver Profile 分別儲存並回復其 profile-linked preferences，本 TC 以「設值 → 切走 → 切回 → 讀回」驗其儲存與回復。關鍵情境條件：受測之三項偏好取自 PLP 表 3.1／3.2／3.4 之逐字列項，非自擬（§8.4.1）；條文之「feature 不可用則忽略」以 pre-condition 限定為該三項在本車與本區域可用。為什麼這樣切：037 對 4.1 切出三個 leaf，本 leaf（-01）之單位為「儲存與回復」，一葉一 TC（§8.2.1），未合併未拆分。刻意略過：-02（啟用時回復）與 -03（不可用之項目跳過）之行為由該二 sibling leaf 承擔，本 TC 不代測。",
+ "keywords": [
+  "Driver Profile",
+  "profile-linked preferences",
+  "PLP table",
+  "store",
+  "recall"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-001-01",
+   "tc_id": "NR1L-UserProfiles-001",
+   "tc_title": "Profile-linked preferences stored and recalled per Driver Profile",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "Profile-linked preferences stored and recalled per Driver Profile",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The features carrying the preferences under test are available for the vehicle and the region",
+   "input_test_data": "Preferences under test: Cluster Home screen (3.1), SiriusXM 360L Listener Profile (3.2), Nav Saved destinations (3.4)",
+   "test_procedure": "1. Activate Driver Profile A\n2. Set the three preferences listed in Input Test Data to values different from their current ones\n3. Record the values set in step 2\n4. Activate Driver Profile B, then activate Driver Profile A again\n5. Read the three preferences and check that they match the values recorded in step 3",
+   "expected_result": "1. Driver Profile A is active\n2. The three preferences accept the new values\n3. The values set in step 2 are recorded\n4. Driver Profile A is active again\n5. The three preferences match the values recorded in step 3",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.3; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.4; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.5",
+   "priority": "P0",
+   "priority_basis": "偏好之儲存與回復 —— R-U5 核心五類之一",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

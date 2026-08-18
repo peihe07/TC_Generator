@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-128-01",
+ "outline": "12.9",
+ "batch": "pilot",
+ "test_set": "Valet Mode",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PVAL9.) For activation and deactivation, the user will have 10 attempts to type a 4 digit PIN before system cancels the deactivation. The user can try again in 30min.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "For both Valet Mode activation and deactivation, the system must allow a maximum of 10 incorrect 4-digit PIN entry attempts. Upon exactly the 10th consecutive incorrect attempt, the system must immediately cancel the current activation or deactivation process and initiate the lockout.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：12.9（PVAL9）—— 錯誤 PIN 之次數上限為 10，第 10 次錯誤時系統取消該次停用程序。關鍵情境條件：第 9 次（仍可續試）與第 10 次（取消）構成邊界前後（§5.6），故取邊界值分析。為什麼這樣切：條文之 activation 與 deactivation 共用同一上限，本 TC 取 deactivation 一側，activation 一側屬 12.9 之 sibling leaf。刻意略過：30 分鐘後可再試之驗證需等待 30 分鐘，其觸發為時間到期而非第 10 次錯誤，已具名記於 remarks。",
+ "keywords": [
+  "Valet Mode",
+  "PIN",
+  "10 attempts",
+  "cancel",
+  "lockout"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-128-01",
+   "tc_id": "NR1L-UserProfiles-015",
+   "tc_title": "Valet Mode deactivation cancelled on the tenth incorrect PIN",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "Valet Mode deactivation cancelled on the tenth incorrect PIN",
+   "pre_conditions": "1. Valet Mode is active and a 4-digit PIN is set\n2. No PIN lockout is in effect",
+   "input_test_data": "PIN attempts: 9 incorrect attempts → 10th incorrect attempt",
+   "test_procedure": "1. Open the Valet Mode deactivation screen and enter an incorrect 4-digit PIN nine times\n2. Read the deactivation screen after the ninth attempt\n3. Enter an incorrect 4-digit PIN a tenth time and check that the deactivation is cancelled",
+   "expected_result": "1. Each of the nine incorrect PIN entries is rejected\n2. The deactivation screen still accepts a further PIN entry after the ninth attempt\n3. The deactivation is cancelled on the tenth incorrect attempt and a further PIN entry is not accepted",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.9",
+   "priority": "P0",
+   "priority_basis": "Valet Mode 進出 —— R-U5 核心五類之一",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之「30 分鐘後可再試」需 30 分鐘等待，本 TC 只驗第 10 次即取消且當下不再受理，未驗 30 分鐘後之解鎖",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "parent": "SWE1-HMI-PROF-104",
+ "outline": "9.8",
+ "batch": "pilot",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR9.) The Vehicle “More Settings” button will link directly to the “My Profile” Settings section. Once in the Settings section, the user has now left the Profile section and will not have a back button to return to the Profile section. If a setting linked to the Profile is changed, a popup will indicate that it has been changed for the active Profile (PU0609).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR9.) The Vehicle “More Settings” button will link directly to the “My Profile” Settings section. Once in the Settings section, the user has now left the Profile section and will not have a back button to return to the Profile section.",
+ "must_carry_injected": [
+  {
+   "text": "If a setting linked to the Profile is changed, a popup will indicate that it has been changed for the active Profile (PU0609).",
+   "affected_field": "ER 列舉 ＋ PU 清單",
+   "pdf_source": "PDF p15"
+  }
+ ],
+ "reasoning": "驗證目標：9.8（EDPR9）—— More Settings 直接連往 My Profile 設定區，且進入後不提供返回 Profile 區之返回鍵。關鍵情境條件：兩項為同一觸發之兩個結果，依 §5.7 併為一條 TC 之兩條 ER。為什麼這樣切：同節尚有一句「設定變更時以 popup 提示已對現用 profile 變更（PU0609）」—— 該句為 xlsx 側掉句（補句表 must_carry），其觸發為「變更設定」而非「按 More Settings」，屬不同觸發（§5.7），且 037 未為其切出 leaf。本 TC 不代測，該缺口具名上報。",
+ "keywords": [
+  "More Settings",
+  "My Profile",
+  "back button",
+  "Settings section"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-104",
+   "tc_id": "NR1L-UserProfiles-012",
+   "tc_title": "More Settings opens My Profile without a back button",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "More Settings opens My Profile without a back button",
+   "pre_conditions": "1. A Driver Profile is active\n2. The Profile section is reachable from the vehicle menu",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Profile section and press the vehicle “More Settings” button\n2. Read the displayed page and check that the “My Profile” Settings section is displayed without a back button to the Profile section",
+   "expected_result": "1. The “My Profile” Settings section is displayed\n2. No back button to the Profile section is present on the “My Profile” Settings section",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.8",
+   "priority": "P2",
+   "priority_basis": "設定入口之導向；輔助功能",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "9.8 之 PU0609 句（設定變更時提示已對現用 profile 變更）在 037 無對應 leaf —— 未納入本 TC，已列上繳 13 之覆蓋缺口",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

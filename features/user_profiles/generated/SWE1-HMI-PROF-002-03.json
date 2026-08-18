@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-002-03",
+ "outline": "4.1.1",
+ "batch": "pilot",
+ "test_set": "Preference Storage",
+ "sub_categorization": "Service",
+ "priority_prior_037": "Low",
+ "source_clause": "PRACC1.2) For the “Restore Settings to Default” vehicle setting, when selected, only restore the active Profile’s settings to default state (do not reset all Profiles’ settings to default). “Restore Settings to Default” will not delete profile username or avatar. PU1087 is displayed when users confirm Setting restore to default by pressing Yes in pop-up PU_0118. PU1088 is displayed when settings have been successfully restored to default. PU1088 is displayed if HU or TBM do not confirm complete default restoring.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PU1088 is displayed if HU or TBM do not confirm complete default restoring",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：4.1.1（PRACC1.2）之未確認分支 —— HU 或 TBM 未確認完成回復預設時顯示 PU1088，本 TC 以注入「不回覆確認」驗之。關鍵情境條件：須先走完 PU_0118 之 Yes 與 PU1087，故該兩者列為前段 ER；缺的只是確認訊號，屬可模擬之故障（§12 首匹配 → 基礎故障注入）。為什麼這樣切：037 對 4.1.1 切出之 -03 專指未確認之分支，成功回復之路徑屬 -01／-02，本 TC 不代測。刻意略過：**PU1088 之 popup 內文不寫**（R-U27）—— spec 給了觸發條件但未給內文，寫出來即造值（§8.4.1）；DR #4 待答。",
+ "keywords": [
+  "Restore Settings to Default",
+  "PU1087",
+  "PU1088",
+  "TBM",
+  "confirmation"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-002-03",
+   "tc_id": "NR1L-UserProfiles-002",
+   "tc_title": "PU1088 displayed when default restoring is not confirmed",
+   "test_group": "User Profiles",
+   "test_set": "Preference Storage",
+   "test_item": "PU1088 displayed when default restoring is not confirmed",
+   "pre_conditions": "1. A Driver Profile is active\n2. The TBM confirmation path can be interrupted on the test bench",
+   "input_test_data": "Fault injected: the completion confirmation from HU or TBM is withheld",
+   "test_procedure": "1. Open the vehicle settings and select “Restore Settings to Default”\n2. Press “Yes” in PU_0118 to confirm the restore\n3. Withhold the completion confirmation from HU and TBM\n4. Read the popup shown on the head unit and check that PU1088 is displayed",
+   "expected_result": "1. PU_0118 is displayed\n2. PU1087 is displayed\n3. The head unit does not receive the completion confirmation\n4. PU1088 is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_4.1.1",
+   "priority": "P2",
+   "priority_basis": "回復預設之未確認分支；非主路徑，037 先驗 Low",
+   "design_method": "基礎故障注入 (Fault Injection Lite)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "PU1087／PU1088 之 popup 內文未載於 spec（DR #4）—— 本 TC 僅驗其是否顯示，不寫內文（R-U15／R-U27）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

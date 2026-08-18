@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-048",
+ "outline": "6.2.1",
+ "batch": "pilot",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.2.1（NOPR1.1）之兩項斷言 —— 建新 profile 不需先客製化預設 profile，且 Driver 1 與其他預設 profile 會留在車上直到被客製化或刪除。關鍵情境條件：兩者為同一觸發（建立新 profile）之兩個結果，依 §5.7 併於一條 TC 之兩條 ER，不拆。為什麼這樣切：以步驟 1 之記錄作為基準線，步驟 3 比對其存續（§5.6）。刻意略過：客製化或刪除後預設 profile 之消失，屬其反面條件，由 6.2 之其他 leaf 承擔。",
+ "keywords": [
+  "default Profile",
+  "Driver 1",
+  "create",
+  "customize"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-048",
+   "tc_id": "NR1L-UserProfiles-005",
+   "tc_title": "Default Profiles remain after a new Profile is created",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Default Profiles remain after a new Profile is created",
+   "pre_conditions": "1. The vehicle carries its default Profiles, including Driver 1\n2. No default Profile has been customized or deleted",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Profile List and record the default Profiles present\n2. Create a new Driver Profile without customizing any default Profile\n3. Open the Profile List and check that the default Profiles recorded in step 1 are still present",
+   "expected_result": "1. The default Profiles, including Driver 1, are recorded\n2. The new Driver Profile is created and no default Profile is customized\n3. The default Profiles recorded in step 1 are still present",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.2.1",
+   "priority": "P2",
+   "priority_basis": "預設 profile 之存續條件；輔助行為",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

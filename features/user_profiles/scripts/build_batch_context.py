@@ -95,6 +95,39 @@ def spec_body(section: str) -> str:
     return (_outline().get(section, {}) or {}).get("pdf_text", "")
 
 
+PLP_RE = re.compile(r"PLP|Profile[\s ]+Linked[\s ]+Preferences", re.I)
+
+
+def plp_scan_union() -> set:
+    """甲 ∪ 乙 之掃描（R-U46 之自動判準）—— 可重跑，不是註解。
+
+    甲：該 leaf 所引 spec section 之 `pdf_text` 含 PLP 字樣
+    乙：該 leaf 自身之 037 Description／Verification Criteria 含 PLP 字樣
+
+    **不含盲區之人工判讀結果**（R-U46：不併入自動判準）。
+    """
+    out = set()
+    for req_id, m in leaf_rows().items():
+        jia = bool(PLP_RE.search(spec_body(m["section"]) or ""))
+        yi = bool(PLP_RE.search((m.get("desc") or "") + " "
+                                + (m.get("vc") or "")))
+        if jia or yi:
+            out.add(req_id)
+    return out
+
+
+# R-U49 —— `p<N>` 之顯式歸屬對照表。
+#
+# **廢除以 `impact` 散文欄作掛回鍵之設計**：`p14` 之所以掛得回 9.1，
+# 是因為它的說明文字**剛好**寫了「9.1 之列項順序」；`p17` 之說明是「同上」，
+# 於是它掛不回任何節，且無聲無息 —— 那是巧合，不是設計。
+# 人看的說明欄不該同時當機器用的外鍵。
+PAGE_TO_SECTION = {
+    "p14": "9.1",    # Table EDPR1 之列項
+    "p17": "11.5",   # Connected Navigation 之列項（同 11.5 之表）
+}
+
+
 def must_carry_for(section: str) -> list:
     """補句表中歸屬該 outline 之 must_carry 條目（R-U35(b)）。"""
     out = []
@@ -106,11 +139,9 @@ def must_carry_for(section: str) -> list:
                 continue
             if r["outline"] == section:
                 out.append(r)
-            # `p14`／`p17` 之條目其歸屬節次未逐一定位（07 輪），
-            # 以 affected_field 之描述掛回其相關 outline。
+            # `p<N>` 之條目其歸屬節次未逐一定位（07 輪），以顯式對照表掛回。
             elif r["outline"].startswith("p"):
-                if section in ("9.1", "11.4", "11.5") and \
-                        r["impact"].find(section) >= 0:
+                if PAGE_TO_SECTION.get(r["outline"]) == section:
                     out.append(r)
     return out
 
@@ -277,7 +308,49 @@ def selfcheck(sample_ids: list) -> int:
          f"{[r for r in plp_off if '_3.' in ctxs[r]['specification_reference']]}"
          f"（須為空）"])
 
-    print(f"\n{'6' if ok else '<6'} / 6 self-check items "
+    # 7 —— must_carry 七條是否**皆有歸宿**（R-U49 步驟 1）
+    #
+    # 第 2 項驗的是「**有注入者是否正確**」，驗不到「**七條是否都掛得上某節**」。
+    # 一條掛不回任何節之 must_carry，在第 2 項眼中不存在 —— 這正是 `p17` 之形狀。
+    all_mc, homed, orphan = [], {}, []
+    with MISSING.open(encoding="utf-8") as fh:
+        for r in csv.DictReader((l for l in fh if not l.startswith("#")),
+                                delimiter="\t"):
+            if r.get("must_carry") == "yes":
+                all_mc.append(r["outline"])
+    # 全 169 節逐節問一次：這條 must_carry 掛得上嗎
+    for mc in all_mc:
+        hosts = [sec for sec in _outline()
+                 if any(x["outline"] == mc for x in must_carry_for(sec))]
+        if hosts:
+            homed[mc] = hosts
+        else:
+            orphan.append(mc)
+    chk("7. must_carry 七條**皆有歸宿**（非只驗已注入者是否正確）",
+        not orphan and len(all_mc) == 7,
+        [f"must_carry 條目數 = {len(all_mc)}（須為 7）",
+         *[f"    {mc} → 掛回 {homed[mc]}" for mc in all_mc if mc in homed],
+         f"**無歸宿者 = {orphan}**（須為空）",
+         f"餘數：{len(homed)} 有歸宿 ＋ {len(orphan)} 無歸宿 = {len(all_mc)}"])
+
+    # 8 —— `PLP_LEAVES_AUTO` 之可重算性（R-U52）
+    #
+    # 該集合宣稱「重跑掃描即可重算得出」。**在此之前那只是一句註解。**
+    # 此處把甲∪乙之掃描實跑一次，與常數比對 —— 使其成為可重跑之斷言。
+    # `PLP_LEAVES_MANUAL` **不納入**（R-U46：人工判讀不併入自動判準）。
+    recomputed = plp_scan_union()
+    drift_missing = sorted(PLP_LEAVES_AUTO - recomputed)   # 常數有、掃描無
+    drift_extra = sorted(recomputed - PLP_LEAVES_AUTO)     # 掃描有、常數無
+    chk("8. `PLP_LEAVES_AUTO` 可由甲∪乙之掃描重算得出（R-U52）",
+        recomputed == PLP_LEAVES_AUTO,
+        [f"重算所得（{len(recomputed)}）= {sorted(recomputed)}",
+         f"常數所載（{len(PLP_LEAVES_AUTO)}）= {sorted(PLP_LEAVES_AUTO)}",
+         f"常數有而掃描無：{drift_missing}（須為空）",
+         f"掃描有而常數無：{drift_extra}（須為空）",
+         f"MANUAL 集 {sorted(PLP_LEAVES_MANUAL)} **不納入本斷言**",
+         "對照向（R-G7）：以 `--selfcheck-tamper` 竄改 AUTO 集，本項須紅"])
+
+    print(f"\n{'8' if ok else '<8'} / 8 self-check items "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1
 
@@ -285,8 +358,16 @@ def selfcheck(sample_ids: list) -> int:
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--selfcheck", action="store_true")
+    # 對照向（R-G7／R-U52）：竄改 AUTO 集，第 8 項須紅。
+    # **不是註解，是可重跑的一條指令。**
+    ap.add_argument("--selfcheck-tamper", choices=["drop", "add"],
+                    help="竄改 PLP_LEAVES_AUTO 以證明第 8 項會失敗")
     ap.add_argument("--leaf")
     a = ap.parse_args()
+    if a.selfcheck_tamper == "drop":
+        PLP_LEAVES_AUTO = PLP_LEAVES_AUTO - {"SWE1-HMI-PROF-012"}
+    elif a.selfcheck_tamper == "add":
+        PLP_LEAVES_AUTO = PLP_LEAVES_AUTO | {"SWE1-HMI-PROF-999"}
     if a.leaf:
         rows = leaf_rows()
         print(json.dumps(assemble(a.leaf, rows[a.leaf]),

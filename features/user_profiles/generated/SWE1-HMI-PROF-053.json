@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-053",
+ "outline": "6.4.1",
+ "batch": "pilot",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NOPR3.1) If vehicle is not equipped with connectivity, pressing “Get Started” will show PU0585 and will not show Connected Account Login/Register Screen.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR3.1) If vehicle is not equipped with connectivity, pressing “Get Started” will show PU0585 and will not show Connected Account Login/Register Screen.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.4.1（NOPR3.1）—— 無連網配置之車輛按下 Get Started 時顯示 PU0585，且不顯示 Connected Account 之登入／註冊畫面。關鍵情境條件：車輛配置（無連網）為條件本身，故列 pre-condition；正反兩個觀察點（顯示 PU0585／不顯示登入畫面）為同一觸發之兩個結果，併為兩條 ER。為什麼這樣切：有連網之對應行為屬 6.4 之另一 leaf，本 TC 不代測，亦不自行擴充為配置對照組。",
+ "keywords": [
+  "connectivity",
+  "Get Started",
+  "PU0585",
+  "Connected Account"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-053",
+   "tc_id": "NR1L-UserProfiles-006",
+   "tc_title": "PU0585 shown on Get Started without vehicle connectivity",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "PU0585 shown on Get Started without vehicle connectivity",
+   "pre_conditions": "1. The vehicle is not equipped with connectivity",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Profile setup screen carrying the “Get Started” button\n2. Press “Get Started” and check that PU0585 is displayed and the Connected Account Login/Register screen is not displayed",
+   "expected_result": "1. The “Get Started” button is displayed\n2. PU0585 is displayed and the Connected Account Login/Register screen is not displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.4.1",
+   "priority": "P2",
+   "priority_basis": "無連網配置之分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

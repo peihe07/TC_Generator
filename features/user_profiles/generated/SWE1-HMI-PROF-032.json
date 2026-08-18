@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-032",
+ "outline": "5.9",
+ "batch": "pilot",
+ "test_set": "Profile List",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PRACC15.) Pushing the memory seat set/save hard or soft controls is not required to save any of the Driver Profile linked preferences. The Driver Profile Preferences will be saved locally to the vehicle automatically.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRACC15.) Pushing the memory seat set/save hard or soft controls is not required to save any of the Driver Profile linked preferences. The Driver Profile Preferences will be saved locally to the vehicle automatically.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.9（PRACC15）—— 儲存 Driver Profile linked preferences 不需按記憶座椅之 set／save 控制，且會自動存於車端。關鍵情境條件：其可驗形態為「不做那個動作也要存得住」，故以 ignition cycle 後讀回作為「已存於車端」之觀察點（Service B 群，R-U21）。為什麼這樣切：本 leaf 只斷言儲存不依賴該控制，記憶座椅位置本身之回復屬 3.5 之 PLP 項目與其對應 leaf，不在此測。",
+ "keywords": [
+  "memory seat",
+  "set",
+  "save",
+  "auto-save",
+  "ignition cycle"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-032",
+   "tc_id": "NR1L-UserProfiles-004",
+   "tc_title": "Preferences saved without pressing memory seat controls",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Preferences saved without pressing memory seat controls",
+   "pre_conditions": "1. A Driver Profile is active\n2. The vehicle is equipped with memory seat hard and soft controls",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate Driver Profile A\n2. Change a Profile-linked preference without pressing the memory seat set or save hard or soft control\n3. Switch the ignition off and on\n4. Read the changed preference and check that it retains the value set in step 2",
+   "expected_result": "1. Driver Profile A is active\n2. The preference accepts the new value and no memory seat set or save control is pressed\n3. The vehicle completes the ignition cycle\n4. The preference retains the value set in step 2",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.9; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.3; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.4; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_3.5",
+   "priority": "P0",
+   "priority_basis": "偏好之自動儲存 —— R-U5 核心五類之一",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

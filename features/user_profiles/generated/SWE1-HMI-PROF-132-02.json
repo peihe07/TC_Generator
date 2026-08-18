@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-132-02",
+ "outline": "13.2",
+ "batch": "pilot",
+ "test_set": "Valet Mode",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PVALSPK2.) The SPAAK user cannot exit Valet Mode from the head unit. Only the owner can deactivate Valet Mode remotely via app or website or other supported methods (not on the head unit). Any screens or popups that may allow a user to exit Valet Mode must be blocked (PU0934, etc).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When Valet Mode is active under the SPAAK scenario, only the vehicle owner can deactivate it. This deactivation must be performed remotely via an authorized app, website, or other supported remote methods, not on the head unit.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：13.2（PVALSPK2）—— SPAAK 情境下 SPAAK 使用者不得於主機退出 Valet Mode，只有車主得以 app／網站等遠端方式停用。關鍵情境條件：受測之核心為「在主機上嘗試退出」此一不被允許之操作（§12 首匹配 → 負向測試），故以嘗試被阻擋為主要觀察點。為什麼這樣切：條文之兩半（主機不得退出、車主得遠端停用）互為對照，若只驗前半則「只有車主可以」無從成立，故遠端停用列為同一 TC 之末步，而非另切一條（§5.7 之例外已於上繳具名）。刻意略過：非 SPAAK 情境下之一般 Valet Mode 退出屬 ch12 之 leaf。",
+ "keywords": [
+  "SPAAK",
+  "Valet Mode",
+  "head unit",
+  "remote deactivation",
+  "PU0934"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-132-02",
+   "tc_id": "NR1L-UserProfiles-016",
+   "tc_title": "SPAAK user blocked from exiting Valet Mode on the head unit",
+   "test_group": "User Profiles",
+   "test_set": "Valet Mode",
+   "test_item": "SPAAK user blocked from exiting Valet Mode on the head unit",
+   "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user and not the vehicle owner\n3. The owner has an authorized app or website session available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the head unit screens that offer a Valet Mode exit and attempt to exit Valet Mode\n2. Read the screen and check that the exit is blocked and Valet Mode is still active\n3. Deactivate Valet Mode remotely as the owner through the authorized app and check that Valet Mode is no longer active",
+   "expected_result": "1. Any screen or popup that would allow a Valet Mode exit is blocked (PU0934)\n2. Valet Mode is still active after the SPAAK user’s attempt\n3. Valet Mode is no longer active after the owner deactivates it remotely",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.2",
+   "priority": "P0",
+   "priority_basis": "Valet Mode 進出 —— R-U5 核心五類之一",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

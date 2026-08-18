@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-073-01",
+ "outline": "8.7",
+ "batch": "pilot",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a username is ~12 characters, and the keyboard will not allow typing more. The minimum number of characters is 1 and the Next button will not be available until one character is typed. Username can be alphanumeric with spaces (spaces count toward the character limit).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The maximum number of characters allowed for a username is 12. Once this limit is reached, the keyboard must actively block any further input and not allow typing more characters.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.7（NEWPR6）之 username 長度上限 —— 達上限後鍵盤不再接受輸入。關鍵情境條件：以 11／12／13 三讀構成邊界前後（§5.6），故取邊界值分析；spec 之「~12」為近似寫法，037 leaf 明寫 12，本 TC 取 12 並具名記於 remarks。為什麼這樣切：同節另有「最少 1 字元、未輸入前 Next 不可用」與「可含空白且空白計入長度」兩項，屬不同輸入條件，由 8.7 之 sibling leaf 承擔。",
+ "keywords": [
+  "username",
+  "12 characters",
+  "keyboard",
+  "maximum"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-073-01",
+   "tc_id": "NR1L-UserProfiles-009",
+   "tc_title": "Keyboard blocks input beyond 12 username characters",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Keyboard blocks input beyond 12 username characters",
+   "pre_conditions": "1. The Profile setup flow is open at Step 2 “Enter a username”",
+   "input_test_data": "Username input: 11 characters → 12 characters → one further character",
+   "test_procedure": "1. Type 11 characters into the username field and read the field\n2. Type the 12th character and read the field\n3. Type one further character and check that the username field still shows 12 characters",
+   "expected_result": "1. The username field shows the 11 characters typed\n2. The username field shows 12 characters\n3. The username field still shows 12 characters and the further character is not accepted",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7",
+   "priority": "P1",
+   "priority_basis": "username 長度上限邊界 —— R-U5 定邊界為 P1",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "spec 8.7 寫 “~12 characters”（約），037 leaf 寫 12 —— 本 TC 取 12（較窄之解讀，且 037 為單位權威）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

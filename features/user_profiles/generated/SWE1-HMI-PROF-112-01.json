@@ -1,0 +1,55 @@
+{
+ "parent": "SWE1-HMI-PROF-112-01",
+ "outline": "11.5",
+ "batch": "pilot",
+ "test_set": "Connected Account",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "CPA3.) If an App Store app is deleted, it would only be deleted for the user who has uninstalled it. If an App store app is updated, it would update for all users who have installed it locally. If an App Store app is installed it should only appear in the app tray for the local user that has installed it. Connected FCA Account Local Profile Personalization Presets, Menu Bar Order, App Drawer Favorites, and more App Store Download Marketplace Access to Marketplace ****Connected Navigation Personalized Favorites, Recents, and Predictive Navigation **Table CPA2.) Connected Account vs Local Profile Connected Profile App (See Connected Personal Account HMI) ****For China market only: do not show this content **R1 High Only: This table (Table CPA2) is not applicable. There will be no info button showed nextto the Connected Account button.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If an App Store app is deleted, it would only be deleted for the user who has uninstalled it.",
+ "must_carry_injected": [
+  {
+   "text": "Connected FCA Account | Local Profile | Personalization | Presets, Menu Bar Order, App Drawer Favorites | App Store Download | Marketplace | Connected Navigation | Personalized Favorites, Recents, Predictive Navigation",
+   "affected_field": "ER 列舉（CPA2 表之列項）",
+   "pdf_source": "PDF p17"
+  },
+  {
+   "text": "Connected Navigation Personalized Favorites, Recents, and Predictive Navigation",
+   "affected_field": "ER 列舉（同 11.5）",
+   "pdf_source": "PDF p17"
+  }
+ ],
+ "reasoning": "驗證目標：11.5（CPA3）第一句 —— App Store app 被刪除時只對執行刪除之使用者失效，其他使用者不受影響。關鍵情境條件：須跨兩個 profile 觀察同一個 app，故以「A 刪除 → 切至 B 讀回」之端到端流程驗之（§12 首匹配 → 情境／用例）。為什麼這樣切：同節之更新（對所有已安裝者生效）與安裝（只出現在安裝者之 app tray）為不同觸發，屬 11.5 之 sibling leaf，本 TC 不代測。刻意略過：補句表所載之 Table CPA2 列項（Connected Navigation 等）為 11.4 之表格內容，與本 leaf 之刪除行為無關，故未寫入 ER。",
+ "keywords": [
+  "App Store",
+  "delete",
+  "app tray",
+  "Connected Account",
+  "Driver Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-112-01",
+   "tc_id": "NR1L-UserProfiles-014",
+   "tc_title": "Deleted App Store app removed only for the uninstalling user",
+   "test_group": "User Profiles",
+   "test_set": "Connected Account",
+   "test_item": "Deleted App Store app removed only for the uninstalling user",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate Driver Profile A and record the App Store app shown in the app tray\n2. Delete the App Store app from Driver Profile A\n3. Activate Driver Profile B, open the app tray and check that the app recorded in step 1 is still present",
+   "expected_result": "1. The App Store app is recorded in Driver Profile A’s app tray\n2. The App Store app is removed from Driver Profile A’s app tray\n3. The App Store app is still present in Driver Profile B’s app tray",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.5",
+   "priority": "P1",
+   "priority_basis": "app 刪除之範圍；037 先驗 High",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}
