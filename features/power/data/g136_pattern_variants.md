@@ -1,5 +1,10 @@
 # G136 —— 字串樣式變體檢查（R-P201(c)）
 
+> ## ⚠ 本檔含人工撰寫之概括語句，引用前須逐句複核其現時真確性
+> **依 R-P230 擇 (b)** —— 本檔為**第三次**判為陳舊（27 → 30 → 31 包），其陳舊形態非數值過期，而係**總括語句對新增之腳本已為假**，逐位元組比對抓不到。
+> **禁止本檔被其他文件引用為證據**；其人工概括語句全數列於文末「§人工概括語句清單」供逐句複核。
+> 未擇 (a) 之理由：其判定欄（空白／大小寫／全半形）之依據為**逐檔讀碼**，非實測可導出 —— 強行自動化將以「有無正則」等表面特徵取代讀碼判斷，反使該欄失真。
+
 ## 1. `SWE-PM-014` 之獨立重掃（B4 明令）
 
 | leaf | 容忍空白之樣式命中 | 嚴格樣式命中 | 原文之逐字形態 |
@@ -32,7 +37,29 @@
 | `verify_reasoning.py` | 不適用 | 不適用 | 不適用 | 只量長度與非空，無字串樣式比對。 |
 | `verify_source_clause.py` | **已涵蓋** | 不適用 | **已涵蓋** | `normalize()` 摺連續空白並轉 NBSP / thin space；**大小寫刻意不正規化**（R-P125(a) 明令「不做大小寫正規化 —— 那些差異是真差異」）。 |
 
-**未列入判定之腳本（37）**：`assess_reasoning.py`、`assign_final_tc_id.py`、`audit_pattern_variants.py`、`build_anchor_attributes.py`、`build_arif_final_step.py`、`build_b1.py`、`build_b2.py`、`build_b3.py`、`build_b4_b5.py`、`build_b4_material.py`、`build_b4_signals.py`、`build_b5_material.py`、`build_blacklist.py`、`build_dangling.py`、`build_dangling_rulecheck.py`、`build_er_restatement.py`、`build_false_positive.py`、`build_final_step.py`、`build_layer3.py`、`build_ole_census.py`、`build_precond_verbs.py`、`build_residual_sample.py`、`build_swepm025_triggers.py`、`build_template_diff.py`、`build_testsets.py`、`build_vcvm.py`、`check_edit_integrity.py`、`dryrun_write_back.py`、`extract_textlayer.py`、`gen_batch04.py`、`gen_batch05.py`、`gen_batch06.py`、`verify_anchor_set.py`、`verify_gates.py`、`verify_gates_03.py`、`verify_layer3.py`、`verify_writeback_path.py`
+**未列入判定之腳本（42）**：`assess_reasoning.py`、`assign_final_tc_id.py`、`audit_design_method.py`、`audit_pattern_variants.py`、`backup_before_rewrite.py`、`build_anchor_attributes.py`、`build_arif_final_step.py`、`build_b1.py`、`build_b2.py`、`build_b3.py`、`build_b4_b5.py`、`build_b4_material.py`、`build_b4_signals.py`、`build_b5_material.py`、`build_blacklist.py`、`build_dangling.py`、`build_dangling_rulecheck.py`、`build_er_restatement.py`、`build_false_positive.py`、`build_final_step.py`、`build_layer3.py`、`build_ole_census.py`、`build_precond_verbs.py`、`build_residual_sample.py`、`build_review_sampling.py`、`build_swepm025_triggers.py`、`build_template_diff.py`、`build_testsets.py`、`build_vcvm.py`、`check_edit_integrity.py`、`classify_products.py`、`dryrun_write_back.py`、`extract_textlayer.py`、`gen_batch04.py`、`gen_batch05.py`、`gen_batch06.py`、`rejudge_design_method.py`、`verify_anchor_set.py`、`verify_gates.py`、`verify_gates_03.py`、`verify_layer3.py`、`verify_writeback_path.py`
 —— 皆為建表 / 產生器類（`build_*` / `gen_*` / `dryrun_*`），其字串比對僅用於自身之欄位鍵名，不涉規格原文之樣式匹配。
 
 > **本桶之總括語須逐包複查**（30 包教訓）：29 包新增之 `audit_precond_state.py` 確實比對 clause 原文，其落入本桶時該總括語即為假。現已補判並移出本桶。
+
+---
+
+## 人工概括語句清單（R-P230(b)）
+
+下列 **13** 句為人工撰寫之判定依據，**非自實測導出**，引用前須逐句複核：
+
+- **`audit_precond_state.py`**：`fold()` 摺 `_` 前後空白並將 `[\s_]+` 統一為單一空格、再 `casefold()` —— 空白與大小寫皆涵蓋（其判準即『字面正規化，非語義推定』）。全半形未處理；語料為英文規格，狀態值未見全形字元。
+- **`build_reconciliation.py`**：以 TSV 欄位值精確比對，無樣式匹配。
+- **`g113_buckets.py`**：`_STRIP_RES` 三式明訂大小寫敏感與否（27 包前已因 `Door` 內之 `or` 訂正過邊界）；`ILLUSTRATIVE_RE` 用 `re.I`。
+- **`gate_trigger_report.py`**：只以正則自各閘門腳本之**標準輸出**擷取數字，不比對規格原文。**惟其比對式與被擷取腳本之輸出格式耦合** —— 30 包 G137 改口徑後即失配，該回歸由 R-P220 之重跑比對當場揭出，已修。
+- **`lint_tcs.py`**：G82 於 27 包加 `_fold_ident()` 摺除識別子內之空白（R-P201(c)）；`ENV_STABILITY_RE` / `PRECOND_ACTION_RE` / `MISREAD_TERMS` 用 `re.I` 故大小寫已涵蓋，而 `ER_PROPER_RE` **刻意大小寫敏感**（其判準即為「大寫識別子」，不得放寬）；全半形未處理 —— 語料為英文規格，全形字元僅見於引號（`“”`），而引號不參與標的比對。
+- **`or_branch_coverage.py`**：`GLUED_OR_RE` 專為黏連（缺空白）而設；`OR_TOKEN_RE` 明列大小寫二式；`LEFT_STOP_RE` / `RIGHT_STOP_RE` 用 `re.I`。比對對象為連接詞，非全形。
+- **`renumber_tc_ids.py`**：只重寫 `tc_id`，無樣式匹配。
+- **`reverse_coverage.py`**：`normalize()` 轉 NBSP / thin space；`words()` 一律 `.lower()` 後詞幹化。
+- **`scan_clause_patterns.py`**：原 `APPLICABILITY` 為逐字比對而未摺空白，`Brand_Configuration_2` 無法命中原文之 `Brand_Configuration _2`。27 包加 `_fold()`（R-P201(c)）—— **修正方向為增加發現（對執行層不利），依 R-P187 自行修正並回報**：G132 之 leaf 數 **40 → 40 不變**（`SWE-PM-014` 原已由 `Jeep` / `LTM High` 命中），惟其命中詞由 2 增為 3。比對時 `.lower()` 故大小寫已涵蓋；全半形未處理。
+- **`verify_ledger_dup.py`**：所比對者為台帳之**編號**（`R-P\d+` / `A-PW\d+` / `DR-PW\d+` / 輪次），其形態由本專案自身產生且格式固定，無空白或全半形變體之虞；正則之字母部分為大寫字面，與編號慣例一致。
+- **`verify_multivalue_sets.py`**：`as_set()` 去空白並 `casefold()`（R-P173(a)）。全半形未處理。
+- **`verify_reasoning.py`**：只量長度與非空，無字串樣式比對。
+- **`verify_source_clause.py`**：`normalize()` 摺連續空白並轉 NBSP / thin space；**大小寫刻意不正規化**（R-P125(a) 明令「不做大小寫正規化 —— 那些差異是真差異」）。
+
+另有一句總括語（「未列入判定之腳本…皆為建表 / 產生器類」）已於 30 包加註「須逐包複查」—— **該句即三次陳舊之源**。

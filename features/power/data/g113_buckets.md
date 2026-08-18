@@ -43,7 +43,7 @@
 
 ## 本包裁為 `真缺口` 並已補 TC 者 —— 1 支
 
-- `SWE-PM-030` 組 1 支 2 —— `SWE-PM-030` 僅一條 TC（`NR1L-PowerManagement-104`），其前提為 `Auto_SwitchOn_Setting.Req reads "Active"` —— 即 OR 之**左支**。右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 無任何 TC 覆蓋。**此即「原文以 OR 並列而 TC 只取其一」之同型**，且係由 G113 於現況資料上前瞻攔下（承第八、第九例，為**第十例**）。依 R-P118(d) 裁為真缺口，**已補 `NR1L-PowerManagement-105`**（第三批 63 → 64；其後二條之臨時號順移）。
+- `SWE-PM-030` 組 1 支 2 —— `SWE-PM-030` 僅一條 TC（`NR1L-PowerManagement-104`），其前提為 `Auto_SwitchOn_Setting.Req reads "Active"` —— 即 OR 之**左支**。右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 無任何 TC 覆蓋。**此即「原文以 OR 並列而 TC 只取其一」之同型**，且係由 G113 於現況資料上前瞻攔下（承第八、第九例，為**第十例**）。依 R-P118(d) 裁為真缺口，**已補 `NR1L-PowerManagement-105`**（第三批 63 → 64；其後二條之臨時號順移）。**編號提醒（31 包，R-P225(c)）**：上開 `104` / `105` 為**當時**之臨時號；27 包全域重編後，該 leaf 之二條現為 `108` / `109`，而 `104` / `105` 現指 `SWE-PM-029` 之 TC。本敘述為當時之裁決紀錄，其編號引用已因重編而失效，於此標明。
 
 **補前分支總數 76、真缺口 1，真陽性率 1.3%**（23 包為 2 / 55 = 3.6%）。補後如上表。
 

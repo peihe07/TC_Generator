@@ -96,8 +96,8 @@ ER 行有而其對應 procedure 步驟無之實詞，共 **288** 個相異詞。
 | `temperature` | 19 |
 | `hi` | 18 |
 | `mod` | 18 |
-| `rear` | 17 |
 | `front` | 17 |
+| `rear` | 17 |
 | `mov` | 17 |
 | `remain` | 17 |
 | `comfort` | 17 |
