@@ -162,7 +162,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之左支 none"
    },
    "reasoning_note": "",
@@ -188,7 +188,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之右支 不受支援之值"
    },
    "reasoning_note": "",
@@ -236,7 +236,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗喚醒時之送值"
    },
    "reasoning_note": "",
@@ -262,7 +262,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗變更後之更新與時限"
    },
    "reasoning_note": "",
@@ -288,7 +288,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗一般品牌值之映射"
    },
    "reasoning_note": "",
@@ -314,7 +314,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Jeep 值之映射（與 R-P193 之品牌適用性相關）"
    },
    "reasoning_note": "",
@@ -340,7 +340,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗標為 DEFAULT 之值"
    },
    "reasoning_note": "",
@@ -366,7 +366,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗一般品牌值之映射"
    },
    "reasoning_note": "",
@@ -392,7 +392,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Jeep 值之映射"
    },
    "reasoning_note": "",
@@ -418,7 +418,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗標為 DEFAULT 之值"
    },
    "reasoning_note": "",
@@ -444,7 +444,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗自有 avatar 之品牌值"
    },
    "reasoning_note": "",
@@ -470,7 +470,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗標為 DEFAULT 之值"
    },
    "reasoning_note": "",
@@ -496,7 +496,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗映射至他品牌 avatar 之規則（本 leaf 獨有）"
    },
    "reasoning_note": "",
@@ -522,7 +522,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CUSW / Atlantis 路徑（本專案適用）"
    },
    "reasoning_note": "",
@@ -548,7 +548,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）"
    },
    "reasoning_note": "",
@@ -574,7 +574,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CUSW / Atlantis 路徑（本專案適用）"
    },
    "reasoning_note": "",
@@ -600,7 +600,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 PNET 路徑（非本專案架構，成條以保留追溯）"
    },
    "reasoning_note": "",
@@ -626,7 +626,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗喚醒時之送值（與 SWE-PM-080 重疊，見 reasoning）"
    },
    "reasoning_note": "",
@@ -652,7 +652,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗變更後之更新與時限（與 SWE-PM-080 重疊）"
    },
    "reasoning_note": "",
@@ -678,7 +678,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 IF 分支 M240"
    },
    "reasoning_note": "",
@@ -704,7 +704,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 ELSE 分支"
    },
    "reasoning_note": "",
@@ -752,7 +752,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Auto 跟隨日間值"
    },
    "reasoning_note": "",
@@ -778,7 +778,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Auto 跟隨夜間值"
    },
    "reasoning_note": "",
@@ -848,7 +848,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗季節界線一（12/21）"
    },
    "reasoning_note": "",
@@ -874,7 +874,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗季節界線二（3/20）"
    },
    "reasoning_note": "",
@@ -900,7 +900,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗季節界線三（6/21）"
    },
    "reasoning_note": "",
@@ -926,7 +926,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗季節界線四（9/23）"
    },
    "reasoning_note": "",
@@ -952,7 +952,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗有變更之後果"
    },
    "reasoning_note": "",
@@ -978,7 +978,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗無變更之後果"
    },
    "reasoning_note": "",

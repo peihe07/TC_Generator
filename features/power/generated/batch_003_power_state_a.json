@@ -182,7 +182,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 IDLE → Full-Operation 之 VR 觸發（短按）"
    },
    "reasoning_note": "",
@@ -208,7 +208,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 audio ＋ video 皆請求之分支"
    },
    "reasoning_note": "",
@@ -260,7 +260,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗僅請求 video 之分支"
    },
    "reasoning_note": "",
@@ -312,7 +312,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "branch",
+    "axis": "input_data",
     "delta": "本條驗長按之觸發（`051` 驗短按）——`4941376` 載二者皆為該定義所指"
    },
    "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。",
@@ -338,7 +338,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗電池回接後之使用者設定還原"
    },
    "reasoning_note": "",
@@ -364,7 +364,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗離開 INIT 後之起始狀態"
    },
    "reasoning_note": "",
@@ -390,7 +390,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Remote Start Active 之模式回報"
    },
    "reasoning_note": "",
@@ -416,7 +416,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"
    },
    "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Pre_Start` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
@@ -442,7 +442,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"
    },
    "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Cranking` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
@@ -468,7 +468,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗逗號列舉之點火工作條件 Ignition On Engine On（R-P199 補測）"
    },
    "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition On Engine On` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
@@ -494,7 +494,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Partial Operation 之各模組電源與音訊"
    },
    "reasoning_note": "",
@@ -520,7 +520,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 HMI 互動之限制與其例外"
    },
    "reasoning_note": "",
@@ -546,7 +546,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Remote Start 結束於點火關閉時之 RemStartFail 設定"
    },
    "reasoning_note": "",
@@ -572,7 +572,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗通話未啟用時之 RemStartFail 清除"
    },
    "reasoning_note": "",
@@ -624,7 +624,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Behaviour 1 之通話中分支"
    },
    "reasoning_note": "",
@@ -650,7 +650,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Behaviour 2 之 Jeep ＋ 駕駛門開啟分支"
    },
    "reasoning_note": "",
@@ -676,7 +676,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Behaviour 2 之 ELSE 分支"
    },
    "reasoning_note": "",
@@ -728,7 +728,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "branch",
+    "axis": "trigger_state",
     "delta": "本條驗 Behaviour 2 之 LTM High 形態（`066` 驗 SwitchOff_Timeout_Setting.Req 形態）"
    },
    "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。",
@@ -754,7 +754,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "trigger",
+    "axis": "input_data",
     "delta": "本條驗 `Ignition Pre Off` 之觸發（其對應條驗 `Ignition Off`）"
    },
    "reasoning_note": "**G113 之首次真實命中（23 包）**：`4941504` / `4941548` 皆載觸發為 「`Ignition Pre Off` **OR** `Ignition Off`」，而首次撰寫只取 `Ignition Off`。**此為「原文以 OR 並列而 TC 只取其一」之第八、第九例** —— 與 A-PW94 / A-PW87 / A-PW119 同型，**惟本次係由 G113 於現況資料上直接攔下，非事後由反向涵蓋抓到**。依 R-P161(c) 裁為真缺口並補本條。",
@@ -806,7 +806,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之按下 → Idle"
    },
    "reasoning_note": "",
@@ -858,7 +858,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於 Rear_View_Camera 存在而未啟動時之分支"
    },
    "reasoning_note": "",
@@ -928,7 +928,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Idle ＋ 點火關閉 → Standby"
    },
    "reasoning_note": "",
@@ -954,7 +954,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "trigger",
+    "axis": "input_data",
     "delta": "本條驗 `Ignition Pre Off` 之觸發（`073` 之對應條驗 `Ignition Off`）"
    },
    "reasoning_note": "**G113 之首次真實命中（23 包）**：`4941504` / `4941548` 皆載觸發為 「`Ignition Pre Off` **OR** `Ignition Off`」，而首次撰寫只取 `Ignition Off`。**此為「原文以 OR 並列而 TC 只取其一」之第八、第九例** —— 與 A-PW94 / A-PW87 / A-PW119 同型，**惟本次係由 G113 於現況資料上直接攔下，非事後由反向涵蓋抓到**。依 R-P161(c) 裁為真缺口並補本條。",
@@ -1032,7 +1032,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 於後視攝影機啟用時被忽略"
    },
    "reasoning_note": "",
@@ -1058,7 +1058,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 之 ELSE 分支"
    },
    "reasoning_note": "",
@@ -1084,7 +1084,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Idle ＋ 通話進入 → Full-Operation"
    },
    "reasoning_note": "",
@@ -1110,7 +1110,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗通話結束於 Phone Main Screen 之分支"
    },
    "reasoning_note": "",
@@ -1136,7 +1136,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗通話結束於其他畫面之分支"
    },
    "reasoning_note": "",
@@ -1276,7 +1276,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req popup 之接受分支"
    },
    "reasoning_note": "",
@@ -1302,7 +1302,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req popup 之拒絕分支"
    },
    "reasoning_note": "",
@@ -1354,7 +1354,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 通話中之 popup"
    },
    "reasoning_note": "",
@@ -1380,7 +1380,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之接受分支"
    },
    "reasoning_note": "",
@@ -1406,7 +1406,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 popup 之拒絕分支"
    },
    "reasoning_note": "",
@@ -1432,7 +1432,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ 無通話之直接轉換"
    },
    "reasoning_note": "",
@@ -1458,7 +1458,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Jeep 車門開啟 ＋ 前狀態 Full-Operation 之分支"
    },
    "reasoning_note": "",
@@ -1484,7 +1484,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗通話中之門開啟分支，**並承擔 OR 之右支 `STATUS_BH_BCM1.PsngrDoorSts`**（R-P202 —— 使該涵蓋自附帶轉為設計）"
    },
    "reasoning_note": "R-P202：本 leaf 之拆分軸為前狀態與通話狀態，而 `source_clause` 之車門 OR 有二支。**本條指定承擔 `PsngrDoorSts` 支**，`094` / `096` / `097` 承擔 `DriverDoorSts` 支。改寫本條時**須保留副駕駛門之輸入**，否則該支之涵蓋將無聲消失。",
@@ -1510,7 +1510,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗前狀態為 Standby 之分支"
    },
    "reasoning_note": "",
@@ -1536,7 +1536,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗守衛條件之否定側（非 Jeep）——（R-P198(b) 補測）"
    },
    "reasoning_note": "R-P198(b) 補測 —— `Brand_Configuration_2` 得逐車配置，故非 Jeep 為另一可發生情境。依 §7 為否定側；**ER 僅述「未發生該轉換」，未斷言其他行為**（§8.4.1）。",
@@ -1588,7 +1588,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗防盜失敗於 Partial Operation 之停留"
    },
    "reasoning_note": "",
@@ -1614,7 +1614,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗防盜成功後之請求復歸"
    },
    "reasoning_note": "",
@@ -1640,7 +1640,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Timeout1 之暫時取值與其復歸"
    },
    "reasoning_note": "",
@@ -1666,7 +1666,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗防盜成功後之狀態轉換"
    },
    "reasoning_note": "",
@@ -1692,7 +1692,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "branch",
+    "axis": "trigger_state",
     "delta": "本條驗 LTM High 形態之 Timeout1 取值（`100` 之對應條驗 SwitchOff_Timeout_Setting.Req 形態）"
    },
    "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。",
@@ -1718,7 +1718,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗本變體之請求復歸"
    },
    "reasoning_note": "",
@@ -1770,7 +1770,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Timeout1 取自 $PwrAccDelayAct$ 之分支"
    },
    "reasoning_note": "",
@@ -1796,7 +1796,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗本變體之狀態轉換"
    },
    "reasoning_note": "",
@@ -1822,7 +1822,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Auto_SwitchOn_Setting.Req 為 Active 時之 Splash Screen"
    },
    "reasoning_note": "",
@@ -1848,7 +1848,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之右支 Recall_Last ＋ VPLastStatus == On（104 驗左支 Active）"
    },
    "reasoning_note": "R-P118(d) 反向涵蓋裁決（G113 分桶，R-P171）—— `source_clause` 之 OR 右支 `Auto_SwitchOn_Setting.Req == Recall_Last AND VPLastStatus == On` 原無任何 TC 覆蓋，裁為真缺口並補此條。為 G113 前瞻捕獲之第十例。",

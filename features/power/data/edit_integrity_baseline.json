@@ -1,4 +1,11 @@
 {
+  "apply_axis_edits.py": [
+    "BASE",
+    "DATA",
+    "GEN",
+    "ROOT",
+    "main"
+  ],
   "apply_tier1_edits.py": [
     "BASE",
     "DATA",
@@ -41,6 +48,14 @@
     "main",
     "self_test",
     "sort_key"
+  ],
+  "audit_bare_word_predicates.py": [
+    "CORPUS_OF",
+    "DATA",
+    "ROOT",
+    "SCRIPTS",
+    "SEED",
+    "main"
   ],
   "audit_design_method.py": [
     "DATA",

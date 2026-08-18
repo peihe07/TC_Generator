@@ -26,4 +26,4 @@
 | tc | leaf | 命中之結構 | 現值 `design_method` |
 |---|---|---|---|
 | `…-008` | `SWE-PM-073` | `Stop the broadcast of the two Load Shed signals on the bus` | 基礎故障注入 (Fault Injection Lite) |
-| `…-011` | `SWE-PM-073` | `Stop the broadcast of the two Load Shed signals on the bus` | 功能測試 (Functional based ; no specific technique) |
+| `…-011` | `SWE-PM-073` | `Stop the broadcast of the two Load Shed signals on the bus` | 決策表 (Decision Table Testing) |

@@ -60,9 +60,17 @@ P0_RULES: list[tuple[str, re.Pattern]] = [
 ]
 
 # 裝飾性／個人化 —— §10.2 歸 P3。僅在無任何 P0 類別命中時作為提案依據。
+#
+# **v2 → v3 之訂正（R-P280(c)，41 包）**
+# v2 之 `\bbrand` 命中**參數名** `Brand_Configuration _2` ——
+# 該參數為品牌**組態值之來源**，其 TC 所驗者為組態之取值而非外觀。
+# 實測：僅因該參數名而命中者 **6 條**，其中 **3 條（`…-063` / `…-065` / `…-095`）
+# 之 `priority` 已於 38 包因此被改為 P3**。
+# v3 以否定環視排除該參數名；其餘詞不動。
 COSMETIC_RE = re.compile(
-    r"\blogo|brand|theme|font|icon|colou?r|wallpaper|skin|animation|"
-    r"splash|season|welcome (?:screen|image)|customi[sz]", re.I)
+    r"\blogo|\bbrand(?!_configuration)|\btheme\b|\bfont|\bicon|\bcolou?r|"
+    r"\bwallpaper|\bskin\b|\banimation|\bsplash|\bseason|"
+    r"\bwelcome (?:screen|image)|\bcustomi[sz]", re.I)
 
 
 BENCH_RE = re.compile(

@@ -83,7 +83,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 PROXI \"Switch_Off_Time\" = 20 分鐘時之可選集合與 Timeout1 結果"
    },
    "reasoning_note": "",
@@ -109,7 +109,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 PROXI \"Switch_Off_Time\" = 60 分鐘時之可選集合與 Timeout1 結果"
    },
    "reasoning_note": "",
@@ -135,7 +135,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 PROXI \"Switch_Off_Time\" = 180 分鐘時之可選集合與 Timeout1 結果"
    },
    "reasoning_note": "",
@@ -161,7 +161,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 LTM/ETM 型別：僅一個可設定參數"
    },
    "reasoning_note": "",
@@ -187,7 +187,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗其餘 Radio 型別：兩個可設定參數"
    },
    "reasoning_note": "",
@@ -265,7 +265,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Auto_SwitchOn_Setting.Req = \"Active\" 之選擇與其 Timeout1 條件"
    },
    "reasoning_note": "",
@@ -291,7 +291,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "boundary",
     "delta": "本條驗 Auto_SwitchOn_Setting.Req = \"Not_Active\" 之選擇與其 Timeout1 條件"
    },
    "reasoning_note": "",
@@ -317,7 +317,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Auto_SwitchOn_Setting.Req = \"Recall_Last\" 之選擇與其 Timeout1 條件"
    },
    "reasoning_note": "",
@@ -365,7 +365,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗啟動條件一：Timeout1 == 00 min 且點火轉為 Pre Off 或 Off"
    },
    "reasoning_note": "",
@@ -391,7 +391,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗啟動條件二：Timeout1 到期時通話仍為 Active"
    },
    "reasoning_note": "",
@@ -417,7 +417,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗還原音源分支"
    },
    "reasoning_note": "",
@@ -443,7 +443,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Timeout1 到期前仍可處理其他通話"
    },
    "reasoning_note": "",
@@ -469,7 +469,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Case 1 之 RemStartFail 為 True 之分支"
    },
    "reasoning_note": "",
@@ -495,7 +495,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話"
    },
    "reasoning_note": "",
@@ -521,7 +521,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Case 2 之進入：Timeout1 到期啟動 MaxCallTimeout 並續留 Timed"
    },
    "reasoning_note": "",
@@ -547,7 +547,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Case 2 之離開路徑：通話結束（不含 RemStartFail 處置）"
    },
    "reasoning_note": "",
@@ -573,7 +573,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Case 2 之離開路徑：MaxCallTimeout 到期（含 RemStartFail 處置）"
    },
    "reasoning_note": "",
@@ -599,7 +599,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Case 3（不含 RemStartFail 處置）"
    },
    "reasoning_note": "",
@@ -625,7 +625,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Case 3（含 RemStartFail 處置）"
    },
    "reasoning_note": "",
@@ -651,7 +651,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Case 4 之進入：Timeout1 == 00 min 且點火轉為 Off"
    },
    "reasoning_note": "",
@@ -677,7 +677,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Case 4 之離開路徑（`4941732` ＋ `4941735`，不含 RemStartFail 處置）"
    },
    "reasoning_note": "",
@@ -703,7 +703,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Case 4 之離開路徑（`4941736`，含 RemStartFail 處置）"
    },
    "reasoning_note": "",
@@ -729,7 +729,7 @@
    "estimated_test_time": "",
    "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
-    "axis": "trigger",
+    "axis": "input_data",
     "delta": "本條驗 Case 4 之 \"Ignition Pre Off\" 觸發"
    },
    "reasoning_note": "**R-P118 反向涵蓋盲測（18 包）**：`4941731` 載 Case 4 之觸發為 「the ignition working condition passes to \"Ignition Pre Off\" **OR** to \"Ignition Off\"」。首次撰寫時 `040` 僅取 \"Ignition Off\"，**\"Ignition Pre Off\" 之分支漏測**。透鏡 1 對該行為項判 overlap 0.62 為已覆蓋；**是透鏡 3 之殘差詞 `pre` 使其現形**。依 §5.7「不同觸發即拆分」與 R-P118(d) 裁為**真缺口**並補本條。**本項為 R-P128 之盲測結果：事前未知，由工具抓出。**",

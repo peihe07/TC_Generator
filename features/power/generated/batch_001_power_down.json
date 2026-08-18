@@ -298,7 +298,7 @@
    "functional_safety": "NA",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Load Shed 之回復分支：訊號廣播恢復後 Load Shed 動作結束"
    },
    "reasoning_note": "**R-P117(a)（16 包）**：`4942354` 載「the last values ... shall be used **until load shed signal broadcast resumes**」。`008` 僅測「不恢復 → 維持整個 ignition key cycle」，**未測 `until ... resumes` 之回復側**。對照 Battery Critical 有 `009`（進入）與 `010`（回復），Load Shed 原有進入（`007`）、故障（`008`）而**無回復**。本條補之。",
@@ -324,7 +324,7 @@
    "functional_safety": "NA",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗通話轉移分支（Load Shed 側）：進行中之非 Ecall/ACN 通話轉至 head set"
    },
    "reasoning_note": "**R-P117(b)（16 包）**：`4942354` 於 Load Shed 段載「The TLM shall transfer the call(not-Ecall/ACN call)  to the head set in case a continuing call is still active」，13 / 14 / 15 包之四條 TC **皆未測**。本條補之。",
@@ -350,7 +350,7 @@
    "functional_safety": "NA",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗通話轉移分支（Battery Critical 側）：進行中之非 Ecall/ACN 通話轉至 head set"
    },
    "reasoning_note": "**R-P117(b)（16 包）**：`4942354` 於 Battery Critical 段另載同一句通話轉移要求。**兩處各為獨立觸發**（Load Shed 訊號組 vs `Batt_ST_Crit`），依 §5.7「不同觸發即拆分」與 profile §4 拆為 `012` / `013` 兩條，非重複。",
@@ -402,7 +402,7 @@
    "functional_safety": "NA",
    "remarks": "DR-PW8 (High) —— `4942354` 未載 voltage out of range 之電壓門檻值；本條在取得該門檻前不可實際執行",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗回復條件之第一分支：voltage out of range（`010` 驗第二分支之 10 秒逾時）"
    },
    "reasoning_note": "**R-P117(c)（16 包）**：`4942354` 之回復條件為「until **either voltage out of range conditions are satisfied** or shall go back to normal behavior 10 seconds after ...」，`010` 僅測後者。本條補前者。\n**執行層須明報之限制**：該錨點**未載 voltage out of range 之電壓門檻值**，依 §8.4.1 不造值、依 R-P42 不得赴其他未被引用之錨點取值，故 procedure 以「套用該條件」表述而非給定電壓。**此條在取得門檻值前不可實際執行** —— 已於上繳包 §七提請分析層裁定是否開 DR。",
@@ -429,7 +429,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "branch",
+    "axis": "input_data",
     "delta": "本條驗音量未超過上限之負分支（Load Shed 側）：不送 AUD_LVL"
    },
    "split_index": 2,
@@ -455,7 +455,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "branch",
+    "axis": "trigger_state",
     "delta": "本條驗音量未超過上限之負分支（Battery Critical 側）：不送 AUD_LVL"
    },
    "split_index": 7,

@@ -231,7 +231,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 SOS call"
    },
    "reasoning_note": "",
@@ -257,7 +257,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Assist call"
    },
    "reasoning_note": "",
@@ -327,7 +327,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之左支 phone main screen"
    },
    "reasoning_note": "",
@@ -353,7 +353,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之右支 phone projection call UI"
    },
    "reasoning_note": "",
@@ -401,7 +401,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之 Radio 支"
    },
    "reasoning_note": "",
@@ -427,7 +427,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之 TBM 支"
    },
    "reasoning_note": "",
@@ -453,7 +453,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之 ROV 支"
    },
    "reasoning_note": "",
@@ -479,7 +479,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗條件一 —— 1 分鐘無互動"
    },
    "reasoning_note": "",
@@ -505,7 +505,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗條件二 —— pop-up 被關閉"
    },
    "reasoning_note": "",
@@ -557,7 +557,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗重置本身與 log 保存"
    },
    "reasoning_note": "",
@@ -583,7 +583,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗重置範圍涵蓋二個處理器"
    },
    "reasoning_note": "",
@@ -609,7 +609,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗韌體安裝中之例外"
    },
    "reasoning_note": "",
@@ -661,7 +661,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之 STANDBY MODE 支"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -687,7 +687,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之 PARTIAL OPERATION MODE 支"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -713,7 +713,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 $DriverDoorOnOffSts$ 之略過分支"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -739,7 +739,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗播放中之模式變更取消"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -765,7 +765,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 IGN_START 取消"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -791,7 +791,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之 TIMED MODE 支（R-P118(d) 反向涵蓋裁決補測）"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -817,7 +817,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗門開啟時之模式變更略過（R-P118(d) 反向涵蓋裁決補測）"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -843,7 +843,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗再播放之間隔規則"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -957,7 +957,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Once a Day 之當日首次"
    },
    "reasoning_note": "",
@@ -983,7 +983,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗「新的一天」之判定 —— 手動調整"
    },
    "reasoning_note": "",
@@ -1009,7 +1009,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗「新的一天」之判定 —— 跨越午夜（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1035,7 +1035,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗「新的一天」之判定 —— 時區／日光節約自動調整（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1083,7 +1083,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合一（Absent ＋ No Audio Brand）"
    },
    "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
@@ -1109,7 +1109,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合二（Absent ＋ Beats Brand White）"
    },
    "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
@@ -1135,7 +1135,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合三（Present ＋ No Audio Brand）"
    },
    "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
@@ -1161,7 +1161,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合四（Present ＋ Beats Brand White）"
    },
    "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-054` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-054` 承擔，**呈請裁定於 26 包**。",
@@ -1187,7 +1187,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "boundary",
     "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
    },
    "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。",
@@ -1213,7 +1213,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "boundary",
     "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
    },
    "reasoning_note": "**本 leaf 之 `source_anchor` 與 `SWE-PM-055` 完全相同**，`source_clause` 逐字一致。執行層**未合併、未省略**，依 037 之 leaf 母體逐一產出以維持追溯；是否應改依 §8.2.1 委由 `SWE-PM-055` 承擔，**呈請裁定於 26 包**。",
@@ -1239,7 +1239,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗音訊關閉與畫面限制"
    },
    "reasoning_note": "",
@@ -1265,7 +1265,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"
    },
    "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
@@ -1291,7 +1291,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Start（R-P199 補測）"
    },
    "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
@@ -1317,7 +1317,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"
    },
    "reasoning_note": "\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
@@ -1343,7 +1343,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 ICS 與 DTV 之可用性"
    },
    "reasoning_note": "",
@@ -1395,7 +1395,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗首次進入 Full Operation"
    },
    "reasoning_note": "",
@@ -1447,7 +1447,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗來源狀態 Standby"
    },
    "reasoning_note": "",
@@ -1473,7 +1473,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗來源狀態 Partial Operation"
    },
    "reasoning_note": "",
@@ -1499,7 +1499,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗通話類之暫時略過"
    },
    "reasoning_note": "",
@@ -1525,7 +1525,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗非通話類之暫時略過"
    },
    "reasoning_note": "",
@@ -1551,7 +1551,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 incoming call 支（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1577,7 +1577,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 outgoing call 支（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1603,7 +1603,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 climate pop-ups 支（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1629,7 +1629,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 SOS and Assist calls 支（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1655,7 +1655,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 FOTA pop ups 支（R-P118(d) 補測）"
    },
    "reasoning_note": "",
@@ -1681,7 +1681,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗延後補顯之義務"
    },
    "reasoning_note": "",
@@ -1795,7 +1795,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之左支 TBM Not Present"
    },
    "reasoning_note": "",
@@ -1821,7 +1821,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之右支 country 未標記"
    },
    "reasoning_note": "",
@@ -1847,7 +1847,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之左支 TBM Not Present"
    },
    "reasoning_note": "",
@@ -1873,7 +1873,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之右支 country 不需 SOS 或 Geolocation"
    },
    "reasoning_note": "",

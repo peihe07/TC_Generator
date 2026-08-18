@@ -248,18 +248,13 @@ TOKEN_RE = re.compile(r"\$?[A-Za-z][\w.\-]*\$?|\[\d+h\]|\d+")
 
 # 界線值（R-P250 先量再寫）。
 #
-# **不沿用 G6 之 `ROW6_RE`** —— v1 曾沿用（腳本首段原載「不另立」），
-# 實例驗證顯示其不可移轉：`ROW6_RE` 為 `design_method` 第 6 列而設，
-# 命中裸詞 `limit` / `maximum`，而本用途之輸入為**二條 TC 之 token 差**，
-# 其中 `limit` 多來自「the volume limit returns to its normal maximum」之偶然共現。
-# v1 之 7 條 boundary 提案中 **3 條為偽**（`…-008` / `…-011` / `…-015`，
-# token 差各 45 / 40 / 48 個，`limit` 與該差異無關），**4 條為真**
-# （`…-156` / `…-157` / `…-200` / `…-201`，token 差僅 7 個，
-#  即 `$VC_MODEL_YEAR$ equal to "2025"` vs `greater than "2025"`）。
-# v2 只取**顯式之比較形態**，語料實測其書寫為 `greater than` / `equal to` /
-# `other than` / `<>` / `==`，無 `>=` / `at least` / `exceed` 之用例。
+# **v2 → v3 之訂正（R-P280(c)，41 包）**
+# v2 之 `\bother than\b` 命中 `a value other than "00 min"` ——
+# 該措詞為 **§12 第 5 列之等價劃分**（`Input partitioned valid / invalid`），
+# 非界線值。37 包立本謂詞正是為修 `limit` 之同型缺陷，
+# 而 `other than` 為當時新引入之同型問題。v3 移除之。
 BOUNDARY_RE = re.compile(
-    r"\bgreater than\b|\bless than\b|\bother than\b|\bat least\b|"
+    r"\bgreater than\b|\bless than\b|\bat least\b|"
     r"\bat most\b|\bexceed\w*\b|<>|>=|<=", re.I)
 
 

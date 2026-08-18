@@ -203,7 +203,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之左支 Ignition Pre Off"
    },
    "reasoning_note": "",
@@ -229,7 +229,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之右支 Ignition Off"
    },
    "reasoning_note": "",
@@ -277,7 +277,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Behaviour 1（Active）"
    },
    "reasoning_note": "",
@@ -303,7 +303,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Behaviour 2（Not_Active）"
    },
    "reasoning_note": "",
@@ -329,7 +329,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Behaviour 3 之 VPLastStatus On 分支"
    },
    "reasoning_note": "",
@@ -355,7 +355,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 Behaviour 3 之 VPLastStatus Off 分支"
    },
    "reasoning_note": "",
@@ -425,7 +425,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 SNA 之等同處置"
    },
    "reasoning_note": "",
@@ -451,7 +451,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之左支 SwitchOff_Timeout_Setting.Req"
    },
    "reasoning_note": "",
@@ -503,7 +503,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Timed 狀態下之選單保證範圍"
    },
    "reasoning_note": "",
@@ -551,7 +551,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Network on 狀態之功能不可用"
    },
    "reasoning_note": "",
@@ -577,7 +577,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Network on 狀態之進入動作"
    },
    "reasoning_note": "",
@@ -603,7 +603,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Network off 狀態之功能不可用"
    },
    "reasoning_note": "",
@@ -629,7 +629,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Network off 狀態之進入動作"
    },
    "reasoning_note": "",
@@ -681,7 +681,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 except 分支 —— 需顯示 HMI 畫面時"
    },
    "reasoning_note": "",
@@ -707,7 +707,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Front_Panel_OnOff.Req ＋ OR 之左支 Standby"
    },
    "reasoning_note": "",
@@ -759,7 +759,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之左支 Standby"
    },
    "reasoning_note": "",
@@ -811,7 +811,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之左支 Standby"
    },
    "reasoning_note": "",
@@ -863,7 +863,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之左支 In_Progress"
    },
    "reasoning_note": "",
@@ -889,7 +889,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 OR 之右支 Not_Successfully"
    },
    "reasoning_note": "",
@@ -915,7 +915,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之左支 Standby"
    },
    "reasoning_note": "",
@@ -993,7 +993,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Behaviour 2（Not_Active）"
    },
    "reasoning_note": "",
@@ -1045,7 +1045,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Behaviour 3 之 VPLastStatus OFF 分支"
    },
    "reasoning_note": "",
@@ -1071,7 +1071,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Default 之出廠預設"
    },
    "reasoning_note": "",
@@ -1207,7 +1207,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合一（Absent ＋ No Audio Brand）"
    },
    "reasoning_note": "",
@@ -1233,7 +1233,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合二（Absent ＋ Beats Brand White）"
    },
    "reasoning_note": "",
@@ -1259,7 +1259,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合三（Present ＋ No Audio Brand）"
    },
    "reasoning_note": "",
@@ -1285,7 +1285,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗組合四（Present ＋ Beats Brand White）"
    },
    "reasoning_note": "",
@@ -1311,7 +1311,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "boundary",
     "delta": "本條驗 2025 年式之 $VC_SpecialPKG_IC$ 路徑"
    },
    "reasoning_note": "",
@@ -1337,7 +1337,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "boundary",
     "delta": "本條驗 2025 年式之後之 $SplashScreen_Type$ 路徑"
    },
    "reasoning_note": "",
@@ -1407,7 +1407,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 boot 已完成之分支"
    },
    "reasoning_note": "",
@@ -1433,7 +1433,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "input_data",
     "delta": "本條驗 boot 未結束之等待分支"
    },
    "reasoning_note": "",
