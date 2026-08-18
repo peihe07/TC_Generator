@@ -264,7 +264,10 @@ def run_corpus() -> int:
         return 0
     bad = [b for tc in tcs for b in gate_tc(tc)] + gate_corpus(tcs)
     print(f"掃 {len(recs)} 個 leaf 檔 / {len(tcs)} 條 TC")
-    print(f"tc_id 範圍 {tcs[0]['tc_id']} … {tcs[-1]['tc_id']}")
+    # **以號碼取最小最大，不取檔案順序** —— 檔案是依 req_id 排的，
+    # 其首尾不等於號碼之首尾（batch01 加入後 `132-02` 仍排在最後而其號為 016）。
+    ids = sorted(t["tc_id"] for t in tcs)
+    print(f"tc_id 範圍 {ids[0]} … {ids[-1]}（{len(ids)} 條）")
     print(f"design_method 分布：" + ", ".join(
         f"{m.split(' (')[0]}×{sum(1 for t in tcs if t['design_method'] == m)}"
         for m in sorted({t["design_method"] for t in tcs})))

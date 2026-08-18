@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-086",
+ "outline": "9.1.1",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "EDPR1.1) 8.4inch screen size will not show the username and avatar to the left of the Edit Profile List (8.4\" will show the username in the Edit Username line like “Edit username: [username]”).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR1.1) 8.4inch screen size will not show the username and avatar to the left of the Edit Profile List (8.4\" will show the username in the Edit Username line like “Edit username: [username]”).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.1.1（EDPR1.1）—— 8.4 吋螢幕不在清單左側顯示 username 與 avatar，改於 Edit Username 該行顯示。關鍵情境條件：螢幕尺寸為條件本身，列 pre-condition；兩個觀察點（左側不顯示／該行顯示）為同一條件之兩個結果，併為一條 ER。為什麼這樣切：其他尺寸之版面屬 9.1 之常態，本 leaf 只管 8.4 吋之差異。",
+ "keywords": [
+  "8.4 inch",
+  "username",
+  "avatar",
+  "Edit Profile List"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-086",
+   "tc_id": "NR1L-UserProfiles-018",
+   "tc_title": "Username and avatar hidden left of the 8.4-inch edit list",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Username and avatar hidden left of the 8.4-inch edit list",
+   "pre_conditions": "1. The vehicle has an 8.4-inch screen\n2. A Driver Profile with a username is active",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the screen and check that no username or avatar is shown left of the list",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. No username or avatar is shown to the left of the Edit Profile List, and the username appears in the Edit Username line as “Edit username: [username]”",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.1.1",
+   "priority": "P2",
+   "priority_basis": "8.4 吋版面之呈現差異",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

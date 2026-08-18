@@ -1,0 +1,54 @@
+{
+ "parent": "SWE1-HMI-PROF-085",
+ "outline": "9.1",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR1.) When on the “Edit Profile” tab, options pertaining to the active Profile will be listed in the order according to Table EDPR1. Tutorials will be a list item in the Edit Profile tab and there will be a circled number 1 next to Resume Tutorials. It will be removed as a line item once the user has completed setup assistant (See Tutorials HMI) Stellantis Connected Account will link to Connected Profile app, “More Settings” will link to “My Profile” Vehicle Settings, Tutorials will link to Tutorials (see Tutorials Logic and Flow).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR1.) When on the “Edit Profile” tab, options pertaining to the active Profile will be listed in the order according to Table EDPR1. Tutorials will be a list item in the Edit Profile tab. Connected Account will link to Connected Profile app, “More Settings” will link to “My Profile” Vehicle Settings, Tutorials will link to Tutorials (see Tutorials Logic and Flow). (image: %E5%9C%96%E7%89%87_1221906037.png)",
+ "must_carry_injected": [
+  {
+   "text": "there will be a circled number 1 next to Resume Tutorials. It will be removed as a list item once the user has completed setup assistant (See Tutorials HMI)",
+   "affected_field": "ER 列舉（Table EDPR1 之列與其標記）",
+   "pdf_source": "PDF p14"
+  },
+  {
+   "text": "“ Stellantis Account” “Memory Seat” (If applicable) “Welcome Pop Up” “Delete Profile” “What is linked to my Profile?”",
+   "affected_field": "ER 列舉（Table EDPR1 列項，歸 9.1）",
+   "pdf_source": "PDF p14"
+  }
+ ],
+ "reasoning": "驗證目標：9.1（EDPR1）—— Edit Profile 分頁之選項須依 Table EDPR1 之順序列出，且 Resume Tutorials 旁有圈號 1。關鍵情境條件：圈號 1 之顯示以「setup assistant 未完成」為前提，故列 pre-condition；列項字串取自補句表之 Table EDPR1（PDF p14），非自擬。為什麼這樣切：本 leaf 之單位為「順序」，各項之連結去向（Connected Account → app、More Settings → My Profile）屬 9.1 之其他斷言與 11.3.1／9.8 之 leaf，本 TC 不代測。刻意略過：**本 TC 以 R1 High 為條件**，故 label 用 Connected Account；非 R1 High 車上該項為 Stellantis Account，其對照未生成（取樣單位為 leaf）。",
+ "keywords": [
+  "Edit Profile",
+  "Table EDPR1",
+  "order",
+  "Resume Tutorials"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-085",
+   "tc_id": "NR1L-UserProfiles-017",
+   "tc_title": "Edit Profile tab lists options in Table EDPR1 order",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Edit Profile tab lists options in Table EDPR1 order",
+   "pre_conditions": "1. The vehicle is an R1 High variant\n2. A Driver Profile is active and setup assistant is not completed for it",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Profile section and select the “Edit Profile” tab\n2. Read the option list and check that the items appear in the Table EDPR1 order",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. The options are listed in the Table EDPR1 order: Resume Setup (only if not complete), Edit Name, Edit Avatar, Connected Account, Memory Seat (if applicable), Welcome Pop Up, Delete Profile, What is linked to my Profile?, Tutorials, More Settings; and a circled number 1 is shown next to Resume Tutorials",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.1",
+   "priority": "P2",
+   "priority_basis": "Edit Profile 清單之順序；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "R1 High：清單第四項之 label 依 spec 9.3.2 之變體覆寫，採 Connected Account（R-U35 (c)）。列項順序取自 must_carry 之 Table EDPR1（PDF p14）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

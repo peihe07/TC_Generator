@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-092",
+ "outline": "9.4",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR5.) Pressing anywhere on the avatar or anywhere on the “Change Avatar” line will initiate a screen that allows the user to choose a new Avatar (similar to popup during New Profile Setup",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR5.) Pressing anywhere on the avatar or anywhere on the “Change Avatar” line will initiate a screen that allows the user to choose a new Avatar (similar to popup during New Profile Setup",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.4（EDPR5）—— 按 avatar 或按「Change Avatar」該行皆開啟 avatar 選擇畫面。關鍵情境條件：條文明列兩個入口，兩者為**不同觸發同一結果**，故於一條 TC 內各驗一次（非拆兩條 —— 拆了會產生兩條除入口外全同之 TC）。為什麼這樣切：該畫面之內容屬 9.4.1、離開不存之行為屬 9.4.2。",
+ "keywords": [
+  "avatar",
+  "Change Avatar",
+  "selection screen"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-092",
+   "tc_id": "NR1L-UserProfiles-024",
+   "tc_title": "Avatar selection screen opens from avatar or Change Avatar",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Avatar selection screen opens from avatar or Change Avatar",
+   "pre_conditions": "1. A Driver Profile is active and the “Edit Profile” tab is displayed\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press anywhere on the avatar\n2. Read the screen and check that the avatar selection screen is displayed\n3. Return to the “Edit Profile” tab\n4. Press anywhere on the “Change Avatar” line and check that the same screen is displayed",
+   "expected_result": "1. The avatar is pressed\n2. The avatar selection screen is displayed\n3. The “Edit Profile” tab is displayed\n4. The avatar selection screen is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.4",
+   "priority": "P2",
+   "priority_basis": "avatar 選擇畫面之開啟",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

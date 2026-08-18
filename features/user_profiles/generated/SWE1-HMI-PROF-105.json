@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-105",
+ "outline": "9.9",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "EDPR10.) The Edit Profile tab will have a maximum of 6 lines of information per page.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR10.) The Edit Profile tab will have a maximum of 6 lines of information per page.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.9（EDPR10）—— Edit Profile 分頁每頁最多 6 行資訊。關鍵情境條件：須在選項最多之情況下才驗得到上限，故 pre-condition 要求各選用項目皆可用。為什麼這樣切：清單之順序屬 9.1，本 leaf 只管每頁行數之上限。",
+ "keywords": [
+  "Edit Profile",
+  "six lines",
+  "per page",
+  "maximum"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-105",
+   "tc_id": "NR1L-UserProfiles-036",
+   "tc_title": "Edit Profile tab shows at most six lines per page",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Edit Profile tab shows at most six lines per page",
+   "pre_conditions": "1. A Driver Profile is active with all optional items available\n2. The vehicle is stationary",
+   "input_test_data": "Line count per page: 6 (limit)",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Count the information lines shown and check that no more than six are on the page",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. At most six lines of information are shown on the page",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.9",
+   "priority": "P3",
+   "priority_basis": "單頁最多 6 行 —— 版面上限，失效僅影響該頁可讀性",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-095",
+ "outline": "9.5",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR6.) Swapping memory seat preference means the active Profile will be linked to that memory seat button/position until another change is made.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR6.) Swapping memory seat preference means the active Profile will be linked to that memory seat button/position until another change is made.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.5（EDPR6）—— 交換記憶座椅偏好後，現用 profile 連結至該座椅位置，直到下一次變更。關鍵情境條件：判準為連結狀態之轉換（§12 首匹配 → 狀態轉換），以步驟 1 之原連結為基準線（§5.6）。為什麼這樣切：本條為通則，9.5.1／9.5.2 為其依前置狀態分出之兩個分支，037 已為三者各切一 leaf，一葉一 TC（§8.2.1）。",
+ "keywords": [
+  "memory seat",
+  "swap",
+  "linked",
+  "active Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-095",
+   "tc_id": "NR1L-UserProfiles-027",
+   "tc_title": "Active Profile linked to the swapped memory seat position",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Active Profile linked to the swapped memory seat position",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Two Driver Profiles exist and Profile A is active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab and read the memory seat linked to Profile A\n2. Swap the memory seat preference to another position\n3. Read the memory seat status and check that Profile A is linked to the new position",
+   "expected_result": "1. The memory seat currently linked to Profile A is recorded\n2. The memory seat preference is swapped\n3. Profile A is linked to the newly selected memory seat position",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.5",
+   "priority": "P0",
+   "priority_basis": "記憶座椅連結＝PLP 3.5 之偏好；本條為其規則本身",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "sibling 軸（9.5.x 四條）：本條＝**交換之通則**；9.5.1＝前置**已**連結之分支；9.5.2＝前置**未**連結之分支；9.5.3＝「none」選項之可用性",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

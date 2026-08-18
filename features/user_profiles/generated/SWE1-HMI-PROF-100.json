@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-100",
+ "outline": "9.6.1",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR7.1) The Welcome Popup size setting will default on small. If turned off, do not show welcome popup for that Profile when it becomes active. The Large popup will be a full screen popup. See Welcome Screen section for more detail.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR7.1) The Welcome Popup size setting will default on small. If turned off, do not show welcome popup for that Profile when it becomes active. The Large popup will be a full screen popup. See Welcome Screen section for more detail.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.6.1（EDPR7.1）—— 尺寸設定預設為 small；設為 off 後該 profile 成為現用時不顯示 welcome popup。關鍵情境條件：預設值須在未被改過之 profile 上讀，故 pre-condition 明訂為新建且未調整過。為什麼這樣切：兩項為同一設定之兩個面向（預設值與關閉後之效果），且第二項須先讀第一項才有基準線。刻意略過：large 為全螢幕 popup 之呈現屬 7.2.1 之 leaf。",
+ "keywords": [
+  "Welcome Popup",
+  "default",
+  "small",
+  "off"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-100",
+   "tc_id": "NR1L-UserProfiles-032",
+   "tc_title": "Welcome popup size defaults to small and can be turned off",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Welcome popup size defaults to small and can be turned off",
+   "pre_conditions": "1. A newly created Driver Profile exists and has not had its Welcome Popup size changed\n2. The vehicle is stationary",
+   "input_test_data": "Welcome Popup size setting: default → Off",
+   "test_procedure": "1. Open the “Edit Profile” tab and read the Welcome Popup size setting\n2. Set the Welcome Popup size to Off\n3. Activate another Profile and then reactivate this Profile\n4. Read the screen and check that no welcome popup is shown",
+   "expected_result": "1. The Welcome Popup size setting reads Small\n2. The Welcome Popup size is set to Off\n3. The Profile becomes active again\n4. No welcome popup is shown for that Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.6.1",
+   "priority": "P2",
+   "priority_basis": "welcome popup 尺寸之預設值",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

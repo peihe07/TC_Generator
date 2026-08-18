@@ -37,6 +37,12 @@ REF_EXTRA = {
     # 9.3.2 之 "show the message specified above" 指 9.3.1 之 bonk 與訊息字串；
     # 該字串為本 TC 之 ER 內容，故其出處一併列入（§10.7）。
     "SWE1-HMI-PROF-091-01": ["9.3.1"],
+    # 作業 B 之發現（17 包）：8.4.1 只說「系統會儲存該 profile」，
+    # **沒說它會出現在 Profile List 裡**。本 TC 之 ER5 以「列於 Profile List」
+    # 作為「已儲存」之觀察點，而該行為出自 5.1.1
+    # （"When on the All Profiles tab, all available users will be shown"）。
+    # 依 F-1 之判準（驗證**或倚為 setup／觀察點**者須引用），補列 5.1.1。
+    "SWE1-HMI-PROF-070": ["5.1.1"],
     # F-1（16 包）：**已移除 `11.5`。**
     # 併列之原理由為「該表印在 p17，而 p17 也掛 11.5」—— 那是**頁面共置**，
     # 不是章節歸屬（§10.7）。Table CPA2 屬 11.4（CPA2 為其引用者與所有者），

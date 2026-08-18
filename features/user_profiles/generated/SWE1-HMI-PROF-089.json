@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-089",
+ "outline": "9.3",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR3.) While vehicle is in motion, the following will be greyed out and cannot be selected/completed: Deleting a Profile, editing username, editing avatar, Tutorials, Resume Setup, and viewing info of what is linked to a Profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR3.) While vehicle is in motion, the following will be greyed out and cannot be selected/completed: Deleting a Profile, editing username, editing avatar, Tutorials, Resume Setup, and viewing info of what is linked to a Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.3（EDPR3）—— 行車中六個項目變灰且不可選取。關鍵情境條件：判準為靜止→行進之狀態轉換（§12 首匹配 → 狀態轉換），故以步驟 1 之靜止狀態為基準線（§5.6）。為什麼這樣切：六個項目為同一觸發之同一結果，依 §5.7 併為一條 ER；選取時之 bonk 與訊息屬 9.3.1、進行中被中斷屬 9.3.2，兩者觸發不同。",
+ "keywords": [
+  "in motion",
+  "greyed out",
+  "Edit Profile",
+  "restricted items"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-089",
+   "tc_id": "NR1L-UserProfiles-021",
+   "tc_title": "Edit options greyed out while the vehicle is in motion",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Edit options greyed out while the vehicle is in motion",
+   "pre_conditions": "1. A Driver Profile is active and the “Edit Profile” tab is displayed\n2. The vehicle is stationary on a test track and can be brought into motion",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the option list and record which items are selectable\n2. Bring the vehicle into motion\n3. Read the option list and check that the restricted items are greyed out",
+   "expected_result": "1. The options recorded in step 1 are selectable while stationary\n2. The vehicle is in motion\n3. Deleting a Profile, editing username, editing avatar, Tutorials, Resume Setup, and viewing info of what is linked to a Profile are greyed out and cannot be selected",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3",
+   "priority": "P1",
+   "priority_basis": "行車中之限制分支 —— **rubric 無安全帶，見上繳 17 §3**",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

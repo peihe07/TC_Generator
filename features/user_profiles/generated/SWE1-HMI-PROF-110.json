@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-110",
+ "outline": "11.3.1",
+ "batch": "batch01",
+ "test_set": "Connected Account",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "CPA1.2) Pushing the Connected Account on the “Edit Profile” tab will bring the user to the Connected Account App that will allow user to connect to an online account, save and download from account, etc.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "CPA1.2) Pushing the Connected Account on the “Edit Profile” tab will bring the user to the Connected Account App that will allow user to connect to an online account, save and download from account, etc.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：11.3.1（CPA1.2）—— 按下 Connected Account 進入其 App。關鍵情境條件：需具連網能力之車輛，否則該項目不存在（11.3）。為什麼這樣切：該 App 內之連線／存取行為條文以 etc. 帶過，無可驗之明文，故 ER 只驗其開啟（§8.4.1 不造值）。",
+ "keywords": [
+  "Connected Account",
+  "app",
+  "Edit Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-110",
+   "tc_id": "NR1L-UserProfiles-041",
+   "tc_title": "Connected Account opens the Connected Account App",
+   "test_group": "User Profiles",
+   "test_set": "Connected Account",
+   "test_item": "Connected Account opens the Connected Account App",
+   "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A Driver Profile is active and the “Edit Profile” tab is displayed\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the Connected Account line item\n2. Read the screen and check that the Connected Account App is displayed",
+   "expected_result": "1. The Connected Account line item is pressed\n2. The Connected Account App is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.3.1",
+   "priority": "P2",
+   "priority_basis": "Connected Account 之導向",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

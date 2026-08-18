@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-108",
+ "outline": "10.3.1",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the info in the chart above, when applicable (i.e., if a vehicle does not have Navigation, do not show the Navigation examples). Edit Profile List Profile Info Page ****R1 High Only: for the \"Connected Account\" category title (if applicable) the Description is the following: \"Save your preferences to the cloud and access them from vehicle to vehicle.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the info in the chart above, when applicable (i.e., if a vehicle does not have Navigation, do not show the Navigation examples).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：10.3.1（PRINFO2.1）—— 資訊頁之引言字串與其後之適用範例。關鍵情境條件：條文明言「若車輛無 Navigation 則不顯示 Navigation 範例」，故 pre-condition 指定為有 Navigation 之車，使該範例確實可觀察。為什麼這樣切：R1 High 之 Connected Account 類別描述為變體覆寫，屬同節之另一斷言，未併入本 TC。刻意略過：無 Navigation 車輛之對照未生成 —— 取樣單位為 leaf（§8.4.2）。",
+ "keywords": [
+  "Driver Profile Info Page",
+  "intro text",
+  "examples",
+  "Navigation"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-108",
+   "tc_id": "NR1L-UserProfiles-039",
+   "tc_title": "Driver Profile info page shows the intro text and examples",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Driver Profile info page shows the intro text and examples",
+   "pre_conditions": "1. The vehicle is equipped with Navigation\n2. A Driver Profile is active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Driver Profile info page\n2. Read the page and check that the intro text and the applicable examples are shown",
+   "expected_result": "1. The Driver Profile Info Page is displayed\n2. The page reads “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the applicable examples, including the Navigation examples",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_10.3.1",
+   "priority": "P2",
+   "priority_basis": "linked-info 頁之內容（**037 先驗 Low，本判為 P2**）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "條文之「the info in the chart above」指**頁內之 chart**（R-U51 口徑，D-UP12-02），非 PLP 表；Navigation 之有無為條文明列之適用條件，故列 pre-condition",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

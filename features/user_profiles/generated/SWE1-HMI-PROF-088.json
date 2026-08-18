@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-088",
+ "outline": "9.2",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR2.) Don’t show the Connected Profile options/info or Stellantis Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Stellantis Connected Account button if the vehicle does not support the connected profile feature.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR2.) Don’t show the Connected Profile options/info or Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Connected Account button if the vehicle does not support the connected profile feature.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.2（EDPR2）—— 無 <Brand> app 之區域不顯示 Connected Profile 之選項／資訊與 Connected Account 按鈕。關鍵情境條件：條文有兩個獨立條件（區域無 app／車輛不支援），本 TC 取「區域」一側；車輛不支援一側之條件相同而觸發不同，由 11.3（CPA1）之 leaf 承擔（其文為 do not show if the vehicle does not support connectivity）。為什麼這樣切：兩個條件若併於一條 TC，失敗時分不出是哪一個條件沒生效。",
+ "keywords": [
+  "Connected Account",
+  "region",
+  "brand app",
+  "hidden"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-088",
+   "tc_id": "NR1L-UserProfiles-020",
+   "tc_title": "Connected Account hidden for unsupported regions",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Connected Account hidden for unsupported regions",
+   "pre_conditions": "1. The vehicle is in a region without the brand app\n2. A Driver Profile is active",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no Connected Account button or Connected Profile info is shown",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. No Connected Profile options or info and no Connected Account button are shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.2",
+   "priority": "P1",
+   "priority_basis": "區域／車型配置之非主路徑分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "R1 High：label 為 Connected Account（spec 本節寫 Stellantis Connected Account）—— R-U35 (c)",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

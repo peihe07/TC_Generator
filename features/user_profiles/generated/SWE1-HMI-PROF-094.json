@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-094",
+ "outline": "9.4.2",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR5.2) Exiting without saving will not result in an Avatar change",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR5.2) Exiting without saving will not result in an Avatar change",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.4.2（EDPR5.2）—— 未儲存即離開不得造成 avatar 變更。關鍵情境條件：須先在畫面上選了別的 avatar 才有「未存即離開」可言，故步驟 2 為必要之設置，非多餘。為什麼這樣切：儲存後之變更屬 9.4 之正向路徑，本 leaf 只管未儲存之路徑；失效之後果是使用者資料被意外變更，故判 P1 而非 P2。",
+ "keywords": [
+  "avatar",
+  "exit without saving",
+  "unchanged"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-094",
+   "tc_id": "NR1L-UserProfiles-026",
+   "tc_title": "Avatar unchanged when the screen is exited without saving",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Avatar unchanged when the screen is exited without saving",
+   "pre_conditions": "1. A Driver Profile with a selected avatar is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the avatar selection screen and record the current avatar\n2. Select a different avatar without saving\n3. Exit the screen without saving\n4. Read the “Edit Profile” tab and check that the avatar recorded in step 1 is still in use",
+   "expected_result": "1. The avatar selection screen is displayed and the current avatar is recorded\n2. The different avatar is selected on the screen\n3. The screen is exited without saving\n4. The avatar recorded in step 1 is still in use",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.4.2",
+   "priority": "P1",
+   "priority_basis": "未存即離開不得改動 avatar —— **失效即使用者資料被意外變更**",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

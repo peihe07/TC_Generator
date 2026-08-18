@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-099",
+ "outline": "9.6",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR7.) Change the memory seat position and then pushing save will update the seat position for whichever Profile is linked to that seat. If the memory seat that is being saved is not linked to the active profile, a popup message (PU0588) will come up when the memory seat is saved which will inform the user of which Profile the seat was saved to.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR7.) Change the memory seat position and then pushing save will update the seat position for whichever Profile is linked to that seat. If the memory seat that is being saved is not linked to the active profile, a popup message (PU0588) will come up when the memory seat is saved which will inform the user of which Profile the seat was saved to.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.6（EDPR7）—— 儲存座椅位置會更新**該座椅所連 profile** 之位置；若該座椅非現用 profile 所連，儲存時顯示 PU0588 告知存到誰。關鍵情境條件：pre-condition 令現用者為 A 而該座椅連 B，否則 PU0588 之觸發條件不成立。為什麼這樣切：兩項為同一觸發（按儲存）之兩個結果，依 §5.7 併為一條 TC。刻意略過：座椅連結之變更屬 9.5.x，本條之連結關係固定不動。",
+ "keywords": [
+  "memory seat",
+  "save",
+  "PU0588",
+  "linked Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-099",
+   "tc_id": "NR1L-UserProfiles-031",
+   "tc_title": "Saved seat position updates the Profile linked to that seat",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Saved seat position updates the Profile linked to that seat",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Profile A is active and Profile B is linked to memory seat 2\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Change the seat position\n2. Save the position to memory seat 2\n3. Read the popup and check that it names the Profile the seat was saved to",
+   "expected_result": "1. The seat position is changed\n2. The position is saved to memory seat 2 and the seat position stored for Profile B is updated\n3. PU0588 is displayed and informs the user that the seat was saved to Profile B",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.6",
+   "priority": "P0",
+   "priority_basis": "座椅位置之儲存與其歸屬 —— 偏好之儲存與回復",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-097",
+ "outline": "9.5.2",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR6.2) If the active Profile was not previously linked to any memory seat position, just take the newly selected memory seat position from the previous user and link it to the active user. The previously linked Profile will no longer be linked to any memory seat position.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR6.2) If the active Profile was not previously linked to any memory seat position, just take the newly selected memory seat position from the previous user and link it to the active user. The previously linked Profile will no longer be linked to any memory seat position.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.5.2（EDPR6.2）—— 現用 profile 原無連結時，直接接管該座椅，原持有者變為無連結。關鍵情境條件：pre-condition 明訂 Profile A 無連結 ——此即與 9.5.1 之分野；兩條之其餘設置刻意保持相同，使失敗時可歸因於前置狀態而非別的差異。為什麼這樣切：037 已為兩個前置狀態各切一 leaf。",
+ "keywords": [
+  "memory seat",
+  "unlink",
+  "not previously linked"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-097",
+   "tc_id": "NR1L-UserProfiles-029",
+   "tc_title": "Previous Profile unlinked when the active Profile had none",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Previous Profile unlinked when the active Profile had none",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Profile A is active and is not linked to any memory seat\n3. Profile B is linked to memory seat 2\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Select memory seat 2 for Profile A\n3. Read the memory seat status of both Profiles and check that Profile B is no longer linked",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. Memory seat 2 is selected for Profile A\n3. Profile A is linked to memory seat 2 and Profile B is not linked to any memory seat position",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.5.2",
+   "priority": "P1",
+   "priority_basis": "同上之分支（前置未連結）",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "sibling 軸：前置狀態＝active Profile **未**連結座椅（對照 9.5.1）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

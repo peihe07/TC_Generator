@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-102",
+ "outline": "9.7.1",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR8.1) After a Profile is deleted through the Edit Profile tab, they will be taken back to the All Profiles tab.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR8.1) After a Profile is deleted through the Edit Profile tab, they will be taken back to the All Profiles tab.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.7.1（EDPR8.1）—— 自 Edit Profile 分頁刪除 profile 後回到 All Profiles 分頁。關鍵情境條件：須先通過 9.7 之確認 popup 才會真的刪除，故確認列為步驟 2 而非略過。為什麼這樣切：哪一個 profile 成為現用屬 9.7.2，本條只管導覽落點。",
+ "keywords": [
+  "delete",
+  "All Profiles tab",
+  "navigation"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-102",
+   "tc_id": "NR1L-UserProfiles-034",
+   "tc_title": "All Profiles tab shown after a Profile is deleted",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "All Profiles tab shown after a Profile is deleted",
+   "pre_conditions": "1. Two Driver Profiles exist and Profile A is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab and delete Profile A\n2. Confirm the deletion in the verification popup\n3. Read the screen and check that the “All Profiles” tab is displayed",
+   "expected_result": "1. The deletion of Profile A is started\n2. The deletion is confirmed\n3. The “All Profiles” tab is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.7.1",
+   "priority": "P2",
+   "priority_basis": "刪除後之導覽落點",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-087",
+ "outline": "9.1.2",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR1.2) Memory seat status is not available if vehicle is not equipped with memory seats.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR1.2) Memory seat status is not available if vehicle is not equipped with memory seats.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.1.2（EDPR1.2）—— 未配備記憶座椅之車輛不顯示記憶座椅狀態。關鍵情境條件：車輛配置為條件本身，列 pre-condition。為什麼這樣切：已配備車輛之記憶座椅狀態與其操作屬 9.5.x 之 leaf，本 TC 只驗其不存在。",
+ "keywords": [
+  "memory seat",
+  "not equipped",
+  "Edit Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-087",
+   "tc_id": "NR1L-UserProfiles-019",
+   "tc_title": "Memory seat status hidden when seats are not equipped",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Memory seat status hidden when seats are not equipped",
+   "pre_conditions": "1. The vehicle is not equipped with memory seats\n2. A Driver Profile is active",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no memory seat status is shown",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. No memory seat status is available in the list",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.1.2",
+   "priority": "P2",
+   "priority_basis": "未配備時之呈現隱藏",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

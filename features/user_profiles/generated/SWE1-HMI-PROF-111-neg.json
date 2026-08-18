@@ -1,0 +1,55 @@
+{
+ "parent": "SWE1-HMI-PROF-111-neg",
+ "outline": "11.4",
+ "batch": "batch01",
+ "test_set": "Connected Account",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "CPA2.) [This whole note is not applicable for R1 H] Clicking on the info icon next to Connected Account in the Edit Profile tab will bring up the Local vs Connected Profile screen. It will be titled “What are the benefits of creating an Connected account?” and will show two columns labeled Connected account and Local Profile. Under Connected Account it will say “Synchronize your profile between multiple vehicles. The cloud will remember your preferences”. Under Local Profile it will say “Create a profile specific to this vehicle. The vehicle will remember your preferences”. See table CPA2 for list items.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "CPA2.) [This whole note is not applicable for R1H] Clicking on the info icon next to Connected Account in the Edit Profile tab will bring up the Local vs Connected Profile screen. It will be titled “What are the benefits of creating an Connected account?” and will show two columns labeled Connected account and Local Profile. Under Connected Account it will say “Synchronize your profile between multiple vehicles. The cloud will remember your preferences”. Under Local Profile it will say “Create a profile specific to this vehicle. The vehicle will remember your preferences”. See table CPA2 for list items. (image: %E5%9C%96%E7%89%87_1473800597.png) (image: %E5%9C%96%E7%89%87_397248475.png)",
+ "must_carry_injected": [
+  {
+   "text": "Table CPA2.) Connected Account vs Local Profile",
+   "affected_field": "ER 列舉（CPA2 表之身分）",
+   "pdf_source": "PDF p17"
+  },
+  {
+   "text": "Connected Navigation Personalized Favorites, Recents, and Predictive Navigation",
+   "affected_field": "ER 列舉（同 11.5）",
+   "pdf_source": "PDF p17"
+  }
+ ],
+ "reasoning": "驗證目標：11.4 之 R1 High 變體 —— 該表不適用，且 Connected Account 旁沒有資訊按鈕。關鍵情境條件：變體為條件本身（§8.7.3），列 pre-condition。為什麼這樣切：本條與 TC-013 構成 §7 之列舉配對 —— TC-013 驗「非 R1 High 有該畫面與其四列」，本條驗「R1 High 沒有入口」。**只有正向會使一個「永遠顯示該畫面」之實作通過**。刻意略過：R1 High 之其他變體差異（如 9.3.2 之 label 覆寫）屬各自之 leaf。",
+ "keywords": [
+  "R1 High",
+  "info button",
+  "Connected Account",
+  "not applicable"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-111",
+   "tc_id": "NR1L-UserProfiles-044",
+   "tc_title": "No info button next to Connected Account on R1 High",
+   "test_group": "User Profiles",
+   "test_set": "Connected Account",
+   "test_item": "No info button next to Connected Account on R1 High",
+   "pre_conditions": "1. The vehicle is an R1 High variant\n2. A Driver Profile is active and the “Edit Profile” tab is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the Connected Account line and check that no info button is shown next to it",
+   "expected_result": "1. The “Edit Profile” tab is displayed with the Connected Account line\n2. No info button is shown next to the Connected Account button, and the Local vs Connected Profile screen cannot be opened",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.4",
+   "priority": "P2",
+   "priority_basis": "R1 High 變體之呈現（資訊按鈕不存在）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "§7 之負向配對：正向為 NR1L-UserProfiles-013（非 R1 High）。依據為 Table CPA2 之表級註記「**R1 High Only: This table (Table CPA2) is not applicable. There will be no info button showed nextto the Connected Account button.」（PDF p17）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ],
+ "note": "§7 負向配對 —— 與 pilot 之 NR1L-UserProfiles-013 同一 leaf，**非新 leaf**；檔名加 `-neg` 以免覆寫該 leaf 之 pilot 產物"
+}

@@ -25,6 +25,7 @@
 | 13 | 2026-08-18 | **Pilot 生成 16 條 ＋ p17 ＋ 052f67d（同輪）** | [handoff/13_pilot_run.md](handoff/13_pilot_run.md) | [upstream/13_pilot_generated.md](upstream/13_pilot_generated.md) | —（本包無裁決條文，屬分析層自裁）| —（無新開）| **首次生成：`generated/` 16 檔 / 16 條 TC，`NR1L-UserProfiles-001…016`。lint 全綠：`lint_tcs`（本輪新建）語料 0 違規、self-test **28/28**；`lint_variant_labels` 反向 7/7、語料 0（並證其對 TC-011 確實生效，非空過）；`--selfcheck` 8/8。判準歧義 **6 次依門檻續行**並具名。發現 3 項缺陷：**`feature.yaml` 之 PU 清單為 xlsx 側（PU0609 誤報）**、9.8 之 PU0609 無 037 leaf、`variant_of()` 不處理否定。lint 判準改三次（G6／G2／G14），皆改判準不改案例。`052f67d` 其後提交 4 → **5**，時效性成立** |
 | 14＋15 | 2026-08-18 | **pilot 覆核之修正（D-1～D-5／S-1／N-1～N-3）＋ `052f67d` 處置** | [handoff/14_pilot_review.md](handoff/14_pilot_review.md)＋[15_commit_disposition.md](handoff/15_commit_disposition.md) | [upstream/14_pilot_fixes.md](upstream/14_pilot_fixes.md) | R-U55；**R-G12（全域，升 canon）** | **A-UP10 新開（ACCEPTED）** | **三項阻塞全清**：TC-002 priority P2→P0（連帶再改 2 條，分布 P0×6／P1×6／P2×4）、TC-004 指名 PLP 3.5 之記憶座椅項、TC-003／013 之 ER 展開為實際列項。D-4 補 G15 步驟長度閘：**紅 14 處**（非覆核所列之 3 處）→ 改寫 14 個步驟 → 綠；G9 隨 §6.1 子層改判準。D-5 popup_ids 20→21 並補 **G16 防再度分岔**。N-1 否定判讀已修（TC-013 不再誤判）、N-2 **PDF 複位揭出 `p17` 掛錯節** → 改掛 11.4＋11.5，「歸宿正確」納入自檢並以 `misplace` 證其會紅、N-3 取樣清單落 `data/pilot_sample.tsv`。lint 37/37、variant 9/9、selfcheck 8/8、語料 0 違規。**本輪未執行任何 git（連 status 都未跑）** |
 | 16 | 2026-08-18 | **pilot 覆核（二）：F-1～F-4 ＋ 第一批取樣清單** | [handoff/16_pilot_review2.md](handoff/16_pilot_review2.md) | [upstream/16_pilot_review2.md](upstream/16_pilot_review2.md) | —（本包無裁決條文）| —（無新開）| **F-1** TC-013 移除 11.5（頁面共置≠章節歸屬），全批引用複核：`REF_EXTRA` 2 條皆逐字出現於 ER，PLP `3.x` 併列 2 條採「條文對象讀」未改但**具名待裁**。**F-2 判讀成功** —— 關鍵不是抽圖而是**向量版面重繪**：Table CPA2 為 **4 列非 5 列**（「Connected Profile App」是註解框不是表列）、欄別全部判定、**中國市場排除為列級非表級**。14 輪之「永久限制」判定**撤回**。**F-3** P0 tie-break 記 D-UP16-01 並於 R-U5 末加註（條文未改）；**F-4** 記 D-UP16-02。lint 37/37、variant 9/9、selfcheck 8/8（三向 tamper 皆紅）、語料 0 違規。**第一批取樣：ch9→10→11 共 27 leaf ＋ PROF-111 之 R1 High 反面（28–34 條 TC），批次邊界落在 Editing 與 Connected Account 兩個 Test Set 之完成點**。未生成。**本輪未執行任何 git** |
+| 17 | 2026-08-18 | **ER 出處對照（55 句）＋ 第一批生成（28 條）＋ 版面判讀工具** | [handoff/17_batch01.md](handoff/17_batch01.md) | [upstream/17_er_provenance.md](upstream/17_er_provenance.md)＋[upstream/17_batch01.md](upstream/17_batch01.md) | —（本包無裁決條文）| —（無新開）| **B：55 句 ER 逐句對照** —— 逐字 9／改寫 20／推得 8／無出處 18（步驟回聲 14 ＋ **真缺口 4**）。四個真缺口集中兩形態：`ignition cycle`（其權威是 R-U21 非 spec）、**BVA 之界前基準線**（29 秒／第 9 次，spec 未述）。並挖出**反向引用問題**：TC-010 倚賴 5.1.1 卻未引用，已補。**A：J-1 代價句入 `DECISIONS` ＋ `framework` §4.1（覆蓋率不得以引用欄推定）；`render_spec_region.py` 落為工具，回歸 7/7，且發現欄別可由座標機器判定**（勾記為同一 PNG 置放 5 次）。**C：第一批 28 條（017–044），ch9→11 之 27 leaf ＋ PROF-111 負向配對。`lint_variant_labels` 擋下 2 條 —— 擋的是我自己的 `remarks` 寫了禁用字面值**，改案例後 44 條全綠。9.5.x 四條之 sibling 軸只差一個變數；ch10 三條先驗皆 Low 而判出 P2／P3 兩級。**本輪未執行任何 git** |
 
 ---
 
@@ -46,6 +47,39 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第十七輪已完成（2026-08-18）—— **第一批落地，語料 44 條**
+
+- **作業 B（主要產出）**：`17_er_provenance.md` —— pilot 16 條之 **55 句 ER 逐句對照**。
+  逐字引用 9／改寫自 20／由該句推得 8／無直接出處 18。
+  **無直接出處再分兩型**：步驟回聲 14（正常，不承載驗證）、**真缺口 4**。
+  四個真缺口集中於兩個形態：
+  1. **`ignition cycle`**（TC-004／TC-010）—— spec 從未提及；
+     「已儲存」是狀態不是事件，觀察方式由 **R-U21 指定，spec 沒有**。
+  2. **BVA 之界前基準線**（TC-008 之 29 秒、TC-015 之第 9 次）——
+     spec 只說「30 秒後清除」「第 10 次取消」，**沒說前一刻仍成立**。
+     這是判準問題不是單條 TC 之問題，已列兩案待裁。
+  另挖出**與 F-1 相反方向之引用問題**：TC-010 之 ER5 以「列於 Profile List」
+  為觀察點，該行為出自 **5.1.1 而該節未被引用** —— 已補列。
+- **作業 A**：J-1 之代價句入 `DECISIONS.md` D-UP17-01 **並寫進 `framework.md` §4.1**
+  （覆蓋率分子一律取實際被驗之節，不取引用欄）——
+  放在「135 與 133 不得互換」同一節，因為是同一種病的第二個病例。
+  `scripts/render_spec_region.py` 落為工具，**回歸 7/7**；
+  落工具時發現**欄別可機器判定**（勾記為同一張 61×64 PNG 置放 5 次，
+  中心座標落在哪一格即答案），16 輪之肉眼判讀逐格複驗相符。
+  建工具踩到三個坑，皆為判準錯：格線重複、勾記疊放、**表頭刪除線被當成列界**。
+- **作業 C**：第一批 **28 條 TC（017–044）**，ch9→10→11 之 27 leaf
+  ＋ `PROF-111` 之 R1 High 負向配對。語料合計 **44 條，違規 0**。
+  - **風險① 有擋下，而且擋的是我**：`lint_variant_labels` 對 TC-017／023 轉紅 ——
+    我在 `remarks` 寫「label 為 Connected Account（**非 Stellantis Account**）」，
+    而 `remarks` 是測試員看得到的 AH 欄。判真陽性，**改案例不改判準**。
+  - 風險② 9.5.x 四條之 sibling 軸：028 與 029 **只差一個變數**（前置是否已連結），
+    其餘設置刻意相同，使失敗可歸因。
+  - 風險③ ch10 三條先驗皆 Low，判出 **P2／P3 兩級**（038 為第二入口 → P3）。
+  - **T-1／T-2 於本批首次真正被注入**（`PROF-085` 之 9.1 ＋ p14 兩條 must_carry）。
+- **獨立判斷新增一項待裁**：**R-U5 之 rubric 沒有安全帶** ——
+  `PROF-089`（行車中限制）失效之後果既非「核心能力被繞過」也非「體驗降級」，
+  D-UP16-01 之兩分法接不住，本輪判 P1 是就近歸類而非判準給的答案。
 
 ### 第十六輪已完成（2026-08-18）—— **F-2 讀圖成功，第一批清單待覆核**
 

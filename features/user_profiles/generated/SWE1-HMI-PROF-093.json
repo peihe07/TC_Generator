@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-093",
+ "outline": "9.4.1",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "EDPR5.1) The screen will show the currently selected Avatar highlighted and provide the option to choose from all other available avatars",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR5.1) The screen will show the currently selected Avatar highlighted and provide the option to choose from all other available avatars",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.4.1（EDPR5.1）—— 選擇畫面須標示目前 avatar，並提供其餘可用 avatar。關鍵情境條件：pre-condition 要求該 profile 已有 avatar，否則「目前之 avatar」無從觀察。為什麼這樣切：畫面之開啟屬 9.4，本 leaf 只管其內容。",
+ "keywords": [
+  "avatar",
+  "highlighted",
+  "available avatars"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-093",
+   "tc_id": "NR1L-UserProfiles-025",
+   "tc_title": "Current avatar highlighted among the available avatars",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Current avatar highlighted among the available avatars",
+   "pre_conditions": "1. A Driver Profile with a selected avatar is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the avatar selection screen from the “Edit Profile” tab\n2. Read the screen and check that the current avatar is highlighted",
+   "expected_result": "1. The avatar selection screen is displayed\n2. The currently selected avatar is highlighted and all other available avatars are offered",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.4.1",
+   "priority": "P2",
+   "priority_basis": "avatar 畫面之呈現細節",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

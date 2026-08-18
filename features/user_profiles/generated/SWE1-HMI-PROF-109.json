@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-109",
+ "outline": "11.3",
+ "batch": "batch01",
+ "test_set": "Connected Account",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "CPA1.) The Connected Account line item will always be displayed on the “Edit Profile” tab if the vehicle is equipped with connectivity. Do not show if the vehicle does not support connectivity.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "CPA1.) The Connected Account line item will always be displayed on the “Edit Profile” tab if the vehicle is equipped with connectivity. Do not show if the vehicle does not support connectivity.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：11.3（CPA1）—— 具連網能力之車輛，Edit Profile 分頁一律顯示 Connected Account 項目。關鍵情境條件：車輛配置為條件本身，列 pre-condition。為什麼這樣切：條文另有「不支援則不顯示」之反面，其形態與 9.2 之區域／車型隱藏相同，由該 leaf 承擔，本條不重複。",
+ "keywords": [
+  "Connected Account",
+  "connectivity",
+  "Edit Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-109",
+   "tc_id": "NR1L-UserProfiles-040",
+   "tc_title": "Connected Account line shown when the vehicle has connectivity",
+   "test_group": "User Profiles",
+   "test_set": "Connected Account",
+   "test_item": "Connected Account line shown when the vehicle has connectivity",
+   "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A Driver Profile is active\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that the Connected Account line item is displayed",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. The Connected Account line item is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.3",
+   "priority": "P1",
+   "priority_basis": "連網配置之非主路徑分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "不支援連網之對照（條文第二句）屬同節之反面，其覆蓋由 9.2（EDPR2）之 leaf 承擔",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

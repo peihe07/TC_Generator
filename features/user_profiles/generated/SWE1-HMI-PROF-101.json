@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-101",
+ "outline": "9.7",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR8.) If the Delete Profile option is selected, a verification popup message will confirm the delete (previous to the memory seat selection confirmation).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR8.) If the Delete Profile option is selected, a verification popup message will confirm the delete (previous to the memory seat selection confirmation).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.7（EDPR8）—— 選擇刪除後、實際刪除前須有確認 popup。關鍵情境條件：ER 明寫「尚未刪除」—— 若只驗 popup 出現而不驗資料仍在，一個「先刪再問」之實作也會通過（§7 false pass）。為什麼這樣切：刪除後之導覽屬 9.7.1、刪除後之 active profile 屬 9.7.2；本條為資料遺失風險之防線本身，故判 P0。",
+ "keywords": [
+  "Delete Profile",
+  "verification popup",
+  "confirm"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-101",
+   "tc_id": "NR1L-UserProfiles-033",
+   "tc_title": "Verification popup shown before a Profile is deleted",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Verification popup shown before a Profile is deleted",
+   "pre_conditions": "1. Two Driver Profiles exist and Profile A is active\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab and select “Delete Profile”\n2. Read the screen and check that a verification popup is displayed before any deletion",
+   "expected_result": "1. “Delete Profile” is selected\n2. A verification popup asking to confirm the delete is displayed and the Profile is not yet deleted",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.7",
+   "priority": "P0",
+   "priority_basis": "刪除前之確認 —— **資料遺失風險之防線本身**",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "parent": "SWE1-HMI-PROF-112-02",
+ "outline": "11.5",
+ "batch": "batch01",
+ "test_set": "Connected Account",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "CPA3.) If an App Store app is deleted, it would only be deleted for the user who has uninstalled it. If an App store app is updated, it would update for all users who have installed it locally. If an App Store app is installed it should only appear in the app tray for the local user that has installed it. Connected FCA Account Local Profile Personalization Presets, Menu Bar Order, App Drawer Favorites, and more App Store Download Marketplace Access to Marketplace ****Connected Navigation Personalized Favorites, Recents, and Predictive Navigation **Table CPA2.) Connected Account vs Local Profile Connected Profile App (See Connected Personal Account HMI) ****For China market only: do not show this content **R1 High Only: This table (Table CPA2) is not applicable. There will be no info button showed nextto the Connected Account button.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If an App store app is updated, it would update for all users who have installed it locally.",
+ "must_carry_injected": [
+  {
+   "text": "Connected FCA Account | Local Profile | Personalization | Presets, Menu Bar Order, App Drawer Favorites | App Store Download | Marketplace | Connected Navigation | Personalized Favorites, Recents, Predictive Navigation",
+   "affected_field": "ER 列舉（CPA2 表之列項）",
+   "pdf_source": "PDF p17"
+  },
+  {
+   "text": "Connected Navigation Personalized Favorites, Recents, and Predictive Navigation",
+   "affected_field": "ER 列舉（同 11.5）",
+   "pdf_source": "PDF p17"
+  }
+ ],
+ "reasoning": "驗證目標：11.5（CPA3）第二句 —— app 更新對所有本機已安裝之使用者生效。關鍵情境條件：兩個 profile 皆須先裝有該 app，否則「對全部生效」無從觀察。為什麼這樣切：037 為 11.5 切出三個 leaf（刪除／更新／安裝），三者觸發不同，一葉一 TC（§8.2.1）；三條合起來即該列舉之完整覆蓋（§7）。",
+ "keywords": [
+  "App Store",
+  "update",
+  "all users",
+  "installed locally"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-112-02",
+   "tc_id": "NR1L-UserProfiles-042",
+   "tc_title": "App Store update applies to every user with it installed",
+   "test_group": "User Profiles",
+   "test_set": "Connected Account",
+   "test_item": "App Store update applies to every user with it installed",
+   "pre_conditions": "1. Two Driver Profiles exist, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles\n3. An update for that app is available",
+   "input_test_data": "NA",
+   "test_procedure": "1. Activate Driver Profile A and record the app version\n2. Update the app from Driver Profile A\n3. Activate Driver Profile B\n4. Read the app version and check that it matches the updated version",
+   "expected_result": "1. The app version in Driver Profile A is recorded\n2. The app is updated for Driver Profile A\n3. Driver Profile B is active\n4. The app in Driver Profile B is at the updated version",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.5",
+   "priority": "P1",
+   "priority_basis": "app 更新之範圍；跨使用者之分支",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "sibling 軸（11.5 三條）：刪除＝只對執行者（112-01）／更新＝對全部已安裝者（本條）／安裝＝只對安裝者（112-03）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

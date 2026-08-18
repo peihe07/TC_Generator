@@ -1,0 +1,36 @@
+# data/batch01_sample.tsv — 第一批正式批次之取樣清單（17 包 J-3 核可）
+#
+# 範圍：framework Layer 3 之 ch9 → ch10 → ch11，**27 leaf**（連續章節）。
+# 批界之理由：本批做完後 Editing（ch9+10，25 leaf）與 Connected Account
+# （ch11，6 leaf）兩個 Test Set 各自 100% 完成，不留零頭跨批。
+# 另含 SWE1-HMI-PROF-111 之 R1 High 反面（§7 負向配對）—— **非新 leaf**，
+# 是既有 leaf 之第二條 TC，故不列於本表之 27 列內。
+#
+req_id	section	test_set	sub_categorization	priority_prior_037	leaf_title
+SWE1-HMI-PROF-085	9.1	Editing	HMI	Medium	Edit Profile Tab Options List Order
+SWE1-HMI-PROF-086	9.1.1	Editing	HMI	Low	(8.4") Hide Username/Avatar Left of Edit List
+SWE1-HMI-PROF-087	9.1.2	Editing	HMI	High	Hide Memory Seat Status if Not Equipped,
+SWE1-HMI-PROF-088	9.2	Editing	HMI	High	Hide Connected Account for Unsupported Regions/Vehicles
+SWE1-HMI-PROF-089	9.3	Editing	HMI	High	Disable Edit Options While Vehicle in Motion
+SWE1-HMI-PROF-090	9.3.1	Editing	HMI	Medium	Bonk Tone & Message for Disabled Functions in Motion
+SWE1-HMI-PROF-091-02	9.3.2	Editing	HMI	Medium	Bonk Tone and Warning for Interrupted Task in Motion
+SWE1-HMI-PROF-092	9.4	Editing	HMI	Medium	Press Avatar or Change Avatar to Open Selection Screen
+SWE1-HMI-PROF-093	9.4.1	Editing	HMI	Low	Highlight Current Avatar and Show Available Options,
+SWE1-HMI-PROF-094	9.4.2	Editing	HMI	Medium	Exit without Saving Retains Avatar
+SWE1-HMI-PROF-095	9.5	Editing	HMI	High	Swap Seat Preference to Active Profile
+SWE1-HMI-PROF-096	9.5.1	Editing	HMI	High	Swap Seat Preference with Previous Profile
+SWE1-HMI-PROF-097	9.5.2	Editing	HMI	High	Take New Seat and Unlink Previous Profile
+SWE1-HMI-PROF-098	9.5.3	Editing	HMI	Medium	Disable "None" Option Until Profiles Exceed Seats
+SWE1-HMI-PROF-099	9.6	Editing	HMI	High	Save Seat Change and Prompt if Not Active Profile
+SWE1-HMI-PROF-100	9.6.1	Editing	HMI	Medium	Welcome Popup Size Default and Off Setting
+SWE1-HMI-PROF-101	9.7	Editing	HMI	High	Confirmation Popup Before Deleting Profile
+SWE1-HMI-PROF-102	9.7.1	Editing	HMI	Medium	Return to All Profiles Tab After Deletion
+SWE1-HMI-PROF-103	9.7.2	Editing	HMI	High	Activate User 1 or Last Profile After Deletion
+SWE1-HMI-PROF-105	9.9	Editing	HMI	Low	Max 6 Lines of Info on Edit Profile Tab
+SWE1-HMI-PROF-106	10.2	Editing	HMI	Low	Display Profile Linked Info Page
+SWE1-HMI-PROF-107	10.3	Editing	HMI	Low	Info Button on All Profiles Tab
+SWE1-HMI-PROF-108	10.3.1	Editing	HMI	Low	Driver Profile Linked Info Page Content
+SWE1-HMI-PROF-109	11.3	Connected Account	HMI	Medium	Show Connected Account if Equipped
+SWE1-HMI-PROF-110	11.3.1	Connected Account	HMI	Medium	Connected Account Links to Corresponding App
+SWE1-HMI-PROF-112-02	11.5	Connected Account	HMI	High	App Update Applies to All Local Users
+SWE1-HMI-PROF-112-03	11.5	Connected Account	HMI	High	App Install Only Shows for Local User

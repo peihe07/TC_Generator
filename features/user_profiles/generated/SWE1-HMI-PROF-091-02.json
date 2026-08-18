@@ -1,0 +1,49 @@
+{
+ "parent": "SWE1-HMI-PROF-091-02",
+ "outline": "9.3.2",
+ "batch": "batch01",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "EDPR3.2) If user is in the process of viewing/doing any of the above listed items, system should return to previous available page and play the bonk and show the message specified above. ****R1 High Only: \"Stellantis Account\" to be replaced with \"Connected Account\"",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When the system interrupts an active task and returns to the previous page due to the vehicle being in motion, it must concurrently play a \"bonk\" audio tone and display the specific warning message: “Function not available while vehicle in Motion.”.",
+ "must_carry_injected": [
+  {
+   "text": "****R1 High Only: \"Stellantis Account\" to be replaced with \"Connected Account\"",
+   "affected_field": "label 字面值（§8.7.3 variant）",
+   "pdf_source": "PDF p14"
+  }
+ ],
+ "reasoning": "驗證目標：9.3.2（EDPR3.2）之回饋部分 —— 進行中被中斷時播 bonk 並顯示訊息。關鍵情境條件：同 091-01 之狀態轉換（靜止→行進），差別在觀察點：091-01 觀察頁面返回，本條觀察音效與訊息。為什麼這樣切：037 為 9.3.2 切出兩個 leaf，一葉一 TC（§8.2.1）；訊息字串出自 9.3.1，故併列該節。",
+ "keywords": [
+  "bonk",
+  "message",
+  "interrupt",
+  "in motion"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-091-02",
+   "tc_id": "NR1L-UserProfiles-023",
+   "tc_title": "Bonk tone and message accompany the interruption in motion",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Bonk tone and message accompany the interruption in motion",
+   "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is stationary on a test track and can be brought into motion",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the bonk tone and the message are presented",
+   "expected_result": "1. The username editing page is displayed\n2. The vehicle is in motion and the task is interrupted\n3. A bonk tone is played and “Function not available while vehicle in Motion.” is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.1",
+   "priority": "P2",
+   "priority_basis": "同上；本條之單位為回饋本身",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "R1 High：label 依 9.3.2 之變體覆寫採 Connected Account（R-U35 (c)）。sibling 軸：本條驗**回饋**，091-01 驗**返回前一頁** —— 同一觸發之兩個結果，分屬兩個 037 leaf（§8.2.1）",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}
