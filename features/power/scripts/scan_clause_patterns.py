@@ -71,9 +71,19 @@ def enumerations(clause: str) -> list[str]:
     return hits
 
 
+def _fold(text: str) -> str:
+    """摺除識別子內之空白（R-P201(c)）—— `Brand_Configuration _2` ≡ `Brand_Configuration_2`。
+
+    27 包 G136 查出：本表原以逐字字串比對，`Brand_Configuration_2` 遂無法命中
+    原文之 `Brand_Configuration _2`，致 `SWE-PM-014` 於 G132 漏列。
+    **修正方向為增加發現（對執行層不利），依 R-P187 自行修正並回報**（見上繳 §四）。
+    """
+    return re.sub(r"\s*_\s*", "_", text)
+
+
 def applicability(clause: str) -> list[str]:
-    text = normalize(clause)
-    return [t for t in APPLICABILITY if t.lower() in text.lower()]
+    text = _fold(normalize(clause)).lower()
+    return [t for t in APPLICABILITY if _fold(t).lower() in text]
 
 
 def jaccard(a: set, b: set) -> float:

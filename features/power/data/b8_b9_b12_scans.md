@@ -23,7 +23,7 @@
 |---|---|---|
 | `SWE-PM-057` | 002 | `PROXI`、`LTM High` |
 | `SWE-PM-062` | 002 | `LTM High` |
-| `SWE-PM-014` | 003 | `Jeep`、`LTM High` |
+| `SWE-PM-014` | 003 | `Brand_Configuration_2`、`Jeep`、`LTM High` |
 | `SWE-PM-015` | 003 | `PROXI` |
 | `SWE-PM-016` | 003 | `PROXI` |
 | `SWE-PM-017` | 003 | `PROXI` |

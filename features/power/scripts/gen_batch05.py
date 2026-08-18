@@ -29,7 +29,7 @@ from lint_tcs import anchor_bodies  # noqa: E402
 SPEC = ("R1LR_Atl-H_25PI3.5_Activation and Configuration_"
         "CFTS_009_Wake-up and Power-up_SR26_20250909-1658")
 SIM = "A LIN and CAN simulation tool is connected"
-START_ID = 158
+START_ID = 162           # 27 包全域重編後之起號（`renumber_tc_ids.py`）
 BATCH = "batch_005_startup_display"
 
 REASONING = {
@@ -494,6 +494,30 @@ TCS: dict[str, list[tuple]] = {
          ["The TLM audio is OFF",
           "The TLM allows only Splash Screen visualization on its display"],
          "P0", "本條驗音訊關閉與畫面限制"),
+        ("Audio is off and only the Splash Screen is allowed in Ignition Pre_Start",
+         [SIM, "The TLM is in an Ignition Pre_Start working condition"],
+         "NA",
+         ["Bring the TLM to the status related to TLM audio is OFF",
+          "Read the audio path and the display to check what is allowed"],
+         ["The TLM audio is OFF",
+          "The TLM allows only Splash Screen visualization on its display"],
+         "P0", "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"),
+        ("Audio is off and only the Splash Screen is allowed in Ignition Start",
+         [SIM, "The TLM is in an Ignition Start working condition"],
+         "NA",
+         ["Bring the TLM to the status related to TLM audio is OFF",
+          "Read the audio path and the display to check what is allowed"],
+         ["The TLM audio is OFF",
+          "The TLM allows only Splash Screen visualization on its display"],
+         "P0", "本條驗逗號列舉之點火工作條件 Ignition Start（R-P199 補測）"),
+        ("Audio is off and only the Splash Screen is allowed in Ignition Cranking",
+         [SIM, "The TLM is in an Ignition Cranking working condition"],
+         "NA",
+         ["Bring the TLM to the status related to TLM audio is OFF",
+          "Read the audio path and the display to check what is allowed"],
+         ["The TLM audio is OFF",
+          "The TLM allows only Splash Screen visualization on its display"],
+         "P0", "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"),
         ("ICS stays available while DTV is off in this status",
          [SIM, "The TLM is in an Ignition On Engine On working condition"],
          "NA",

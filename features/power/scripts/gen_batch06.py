@@ -29,7 +29,7 @@ from lint_tcs import anchor_bodies  # noqa: E402
 SPEC = ("R1LR_Atl-H_25PI3.5_Activation and Configuration_"
         "CFTS_009_Wake-up and Power-up_SR26_20250909-1658")
 SIM = "A LIN and CAN simulation tool is connected"
-START_ID = 224
+START_ID = 231           # 27 包全域重編後之起號（`renumber_tc_ids.py`）
 BATCH = "batch_006_branding_theme"
 
 BRAND_SKIP = (

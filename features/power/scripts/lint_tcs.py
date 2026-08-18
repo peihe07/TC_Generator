@@ -219,6 +219,70 @@ ER_PROPER_RE = re.compile(
     r"\b(?:[A-Z][A-Za-z]*(?:_[A-Za-z0-9]+)+|[A-Z]{3,}(?:\.[A-Za-z0-9_]+)?|\d+)\b")
 # 非規格標的之常見誤命中（測試環境用語與本 TC 自身編號）
 ER_PROPER_SKIP = {"TLM", "NA", "AUD", "LVL", "ICS", "HVAC", "ACN", "CAN", "LIN"}
+# G135（R-P201(b)）：G82 所掃之欄位。三者皆得承載規格標的。
+G82_FIELDS = ("expected_result", "pre_conditions", "input_test_data")
+
+# ── G138 / R-P204：`pre_conditions` 之依據判準有別於 `expected_result` ──
+#
+# `expected_result` 為**判準**，其所斷言之每一事實皆須有本 leaf 之規格依據；
+# `pre_conditions` 為**設定**（§4.4 —— 起始狀態與環境）。
+# 指名本 leaf 未載之訊號，若僅用以描述**狀態**即為合法之環境設定（(a) 非越界）；
+# 若用以斷言**行為之發生、時序或結果**方為越界（(b)）。
+#
+# 故本閘對 `pre_conditions` **改以「該行是否斷言行為或時序」為判準**，
+# 而非「該行之標的是否見於 `source_clause`」。
+#
+# 行為／時序之標記 —— 逐字取自 §4.4 之 Forbidden 例與本語料中之實際措詞，
+# **非憑印象列舉**（R-P88 之要求）。
+PRECOND_BEHAVIOUR_RE = re.compile(
+    r"\bwithin\s+\d|\bafter\s+\d|\bfor\s+\d+\s*(?:ms|s|sec|second|minute|min|hour)|"
+    r"\b(?:completes?|completed|finishes?|starts?|started|begins?|occurs?|occurred|"
+    r"transitions?\s+to|passes?\s+to|changes?\s+to|is\s+sent|are\s+sent|"
+    r"has\s+been\s+processed|elapses?|expires?|times?\s+out)\b",
+    re.I,
+)
+
+# ── G139 / R-P205：`input_test_data` 之純數值 ──
+#
+# 該欄之數值多為**測試所選用之輸入**（注入筆數、間隔、起始音量），
+# 非規格主張，其未見於 `source_clause` 不構成越界（R-P205 追認）。
+#
+# **惟保留閾值之界線**：若該數值係**規格所定之閾值或參數值**，
+# 其未見於 `source_clause` 仍應觸發 —— 該情形為造值（§8.4.1）。
+#
+# **同一數字得為二者之一，端視上下文**（`20` 於 `20 events injected` 為測試選用，
+# 於 `Switch_Off_Time: 20 minutes` 為規格參數值）—— 純詞彙規則無法可靠區分。
+# 故採**保守之白名單**：僅當該數值之上下文逐字命中下列「測試選用量」之措詞時方排除；
+# **其餘一律觸發並入待裁類**（R-P205 明令「不能區分時寧可觸發」）。
+TEST_QUANTITY_RE = re.compile(
+    r"\b(?:events?|interval|intervals|volume\s+level|starting\s+volume|"
+    r"measurement\s+window|burst|iterations?|cycles?\s+of\s+injection)\b",
+    re.I,
+)
+# 規格參數之跡象 —— 命中者**不得排除**，縱使其上下文亦含測試選用量之措詞。
+SPEC_PARAM_RE = re.compile(r"[A-Za-z]\w*(?:_[A-Za-z0-9]+)+|PROXI|Timeout\w*|\$\w+\$")
+
+
+def _numeric_is_test_quantity(field: str, text: str, tok: str) -> bool:
+    """R-P205：該純數值是否為「測試選用之輸入」而得排除。"""
+    if field != "input_test_data" or not tok.isdigit():
+        return False
+    for line in text.split("\n"):
+        if tok not in line:
+            continue
+        # 同一行內若有規格參數之跡象 → 不排除（寧可觸發）
+        if SPEC_PARAM_RE.search(line):
+            return False
+        if TEST_QUANTITY_RE.search(line):
+            return True
+    return False
+# 識別子內之空白摺除（R-P201(c)）—— `Brand_Configuration _2` ≡ `Brand_Configuration_2`。
+# **僅摺 `_` 前後之空白**，不動其他文字。
+IDENT_SPACE_RE = re.compile(r"\s*_\s*")
+
+
+def _fold_ident(text: str) -> str:
+    return IDENT_SPACE_RE.sub("_", text)
 
 
 # G77 / §5.2B + §5.5（R-P101）：`test_procedure` 之末步須含驗證意圖措詞。
@@ -681,7 +745,9 @@ def run_all_gates(tcs: list[dict], blacklist: dict, fingerprints: dict,
         + check_feature_yaml_consistency()
         + check_workbook_columns()
     )
-    ADJUDICATE_RULES = {"R-P42(b)", "R-P96(a)", "R-P96(b)", "R-P142"}
+    ADJUDICATE_RULES = {"R-P42(b)", "R-P96(a)", "R-P96(b)", "R-P142",
+                        # G135（R-P201(b)）之新增二欄 —— 判準待校準（R-P187）
+                        "R-P109(擴充)"}
     blocking = [f for f in all_findings if f["rule"] not in ADJUDICATE_RULES]
     adjudicate = [f for f in all_findings if f["rule"] in ADJUDICATE_RULES]
     return blocking, adjudicate
@@ -833,23 +899,60 @@ def check_misread_terms(batch: dict) -> list[dict]:
 
 
 def check_er_clause_coverage(batch: dict) -> list[dict]:
-    """G82 / R-P109：ER 之專有標的須出現於該 leaf 之 `source_clause`。"""
+    """G82 / R-P109：TC 之專有標的須出現於該 leaf 之 `source_clause`。
+
+    **G135（R-P201(b)，27 包擴充）**：原僅掃 `expected_result` ——
+    依據越界之檢查漏了一整個欄位。26 包查 `SWE-PM-014` 時發現其
+    `pre_conditions` 引用之參數疑不在 `source_clause` 內（事後由 R-P201
+    訂正為掃描樣式未涵蓋空白變體），而**該疑點 G82 於原形態下永遠看不到**。
+
+    擴充至 `pre_conditions` 與 `input_test_data` ——
+    三個欄位皆得承載規格標的，越界之風險相同：
+      - `expected_result` 之越界 → 以本 leaf 未擁有之規則為判準
+      - `pre_conditions` 之越界 → 以本 leaf 未擁有之條件建構情境
+      - `input_test_data` 之越界 → 送入本 leaf 未載之訊號
+
+    **樣式須涵蓋空白變體**（R-P201(c)）：`Brand_Configuration _2` 與
+    `Brand_Configuration_2` 於 CFTS 原文中並存，以嚴格字串比對會二邊各掃各的
+    而互不相認。故比對前將 `_` 前後之空白摺除（**僅摺除識別子內之空白，
+    不改其他內容**）。
+    """
     findings = []
-    clause = {l.get("parent"): str(l.get("source_clause", "")) for l in batch.get("leaves", [])}
+    clause = {l.get("parent"): _fold_ident(str(l.get("source_clause", "")))
+              for l in batch.get("leaves", [])}
     for tc in batch.get("tcs", []):
         src = clause.get(tc.get("req_id"), "")
         tc_id = tc.get("tc_id") or "(無 id)"
-        er = "\n".join(re.sub(r"^\s*\d+\.\s*", "", ln)
-                       for ln in str(tc.get("expected_result", "")).split("\n"))
-        for tok in sorted(set(ER_PROPER_RE.findall(er))):
-            if tok in ER_PROPER_SKIP:
-                continue
-            if tok not in src:
-                findings.append({
-                    "rule": "R-P109", "tc_id": tc_id,
-                    "detail": f"ER 之標的 `{tok}` 未見於該 leaf 之 `source_clause` —— "
-                              f"截斷不得遮蔽 ER 所斷言之內容",
-                })
+        for field in G82_FIELDS:
+            raw = "\n".join(re.sub(r"^\s*\d+\.\s*", "", ln)
+                             for ln in str(tc.get(field, "")).split("\n"))
+            text = _fold_ident(raw)
+            if field == "pre_conditions":
+                # R-P204：僅當該行斷言**行為或時序**時方為越界；
+                # 純狀態陳述為合法之環境設定，不觸發。
+                behaviour_lines = [ln for ln in text.split("\n")
+                                   if PRECOND_BEHAVIOUR_RE.search(ln)]
+                if not behaviour_lines:
+                    continue
+                text = "\n".join(behaviour_lines)
+            for tok in sorted(set(ER_PROPER_RE.findall(text))):
+                if tok in ER_PROPER_SKIP:
+                    continue
+                if _numeric_is_test_quantity(field, raw, tok):
+                    continue
+                if tok not in src:
+                    # `expected_result` 維持**阻斷**（R-P109 之原行為）；
+                    # 新增之二欄列入**待人工裁決**（比照 R-P42(b) / G73 之先例）——
+                    # 其判準尚未校準，而校準之方向對執行層有利
+                    # （排除 `input_test_data` 之純數值會減少發現），
+                    # 依 **R-P187** 須由分析層裁定，執行層不得自行縮小。
+                    findings.append({
+                        "rule": "R-P109" if field == "expected_result"
+                                else "R-P109(擴充)",
+                        "tc_id": tc_id,
+                        "detail": f"`{field}` 之標的 `{tok}` 未見於該 leaf 之 "
+                                  f"`source_clause` —— 依據越界（§8.4.2）",
+                    })
     return findings
 
 
@@ -1018,14 +1121,25 @@ def load_batches(directory: Path) -> list[dict]:
             for p in sorted(directory.glob("*.json"))]
 
 
-def run_batch_gates(batches: list[dict]) -> list[dict]:
-    """批次層閘門：G79（R-P104）、G81（R-P107）、G82（R-P109）。"""
+# 批次層閘門之待人工裁決規則。**與 `run_all_gates` 之同名集合一致** ——
+# 27 包發現二處分流各自為政：`run_batch_gates` 之結果原直接併入阻斷類，
+# 致 `ADJUDICATE_RULES` 對批次層閘門完全無效（G135 之新增欄位首次暴露此事）。
+BATCH_ADJUDICATE_RULES = {"R-P109(擴充)"}
+
+
+def run_batch_gates(batches: list[dict]) -> tuple[list[dict], list[dict]]:
+    """批次層閘門：G79（R-P104）、G81（R-P107）、G82（R-P109 / G135）。
+
+    回傳 (阻斷類, 待人工裁決類) —— 與 `run_all_gates` 之介面一致。
+    """
     findings = []
     for b in batches:
         findings += check_source_clause(b)
         findings += check_misread_terms(b)
         findings += check_er_clause_coverage(b)
-    return findings
+    blocking = [f for f in findings if f["rule"] not in BATCH_ADJUDICATE_RULES]
+    adjudicate = [f for f in findings if f["rule"] in BATCH_ADJUDICATE_RULES]
+    return blocking, adjudicate
 
 
 def make_tc(n: int, leaf: str, test_set: str, **over) -> dict:
@@ -1537,6 +1651,129 @@ def self_test(blacklist: dict, fingerprints: dict) -> int:
         for f in yaml_findings[:3]:
             print(f"          → {f['rule']} {f['detail'][:88]}")
 
+
+    # ── G135 / R-P201(b)：G82 擴充至 `pre_conditions` 與 `input_test_data` ──
+    # **以合成批次為對照，不讀 generated/**（07 / 08 §I）。
+    g135_batch = {
+        "leaves": [{"parent": "SWE-PM-001",
+                    "source_clause": 'IF Brand_Configuration _2 == "Jeep" '
+                                     'THEN TLM sets TLM_Status.Info to "Standby"'}],
+        "tcs": [],
+    }
+
+    def g135(label, tc, want_fields):
+        nonlocal failures
+        # `make_tc` 之 `req_id` 帶 `-01` 後綴，須覆寫為 leaf 之 parent，
+        # 否則 leaf 對不上而 `source_clause` 取到空字串 —— 屆時每個標的都會觸發，
+        # fixture 看似「會 FAIL」而其實只是查無來源（27 包除錯時實際踩到）。
+        b = dict(g135_batch, tcs=[dict(make_tc(1, "SWE-PM-001", "Power State"),
+                                       req_id="SWE-PM-001", **tc)])
+        got = sorted({f["detail"].split("`")[1]
+                      for f in check_er_clause_coverage(b)})
+        ok = got == sorted(want_fields)
+        failures += not ok
+        print(f"  [{'PASS' if ok else '**FAIL**'}] G135 {label}")
+        print(f"          期望觸發欄位 {sorted(want_fields)}；實際 {got}")
+
+    print("\n  G135 —— G82 擴充之 fixture（R-P201(b)）\n")
+    g135("應通過 —— 三欄之標的皆見於 source_clause",
+         {"pre_conditions": '1. Brand_Configuration_2 reads "Jeep"',
+          "input_test_data": 'TLM_Status.Info: "Standby"',
+          "test_procedure": "1. Send the value listed in Input Test Data\n"
+                            "2. Read the state to check the transition",
+          "expected_result": '1. The value is accepted\n'
+                             '2. TLM_Status.Info reads "Standby"'}, [])
+    # **28 包依 R-P204 訂正本案之期望**：原以「純狀態前提」為越界，
+    # 而 R-P204 明訂 `pre_conditions` 之純狀態陳述為合法之環境設定（(a) 非越界）。
+    # 改以**斷言行為**之前提為對照，仍證明該欄確實被掃描。
+    g135("應 FAIL —— `pre_conditions` 斷言行為且其標的不在 source_clause（R-P204(b)）",
+         {"pre_conditions": '1. STATUS_BH_BCM1.DriverDoorSts passes to "Open"',
+          "input_test_data": "NA",
+          "test_procedure": "1. Bring the TLM to the state\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The state is reached\n2. The state is stable"},
+         ["pre_conditions"])
+    g135("應 FAIL —— `input_test_data` 引用 leaf 未擁有之訊號（擴充前看不到）",
+         {"pre_conditions": "1. The TLM is on the bench",
+          "input_test_data": 'Antitheft_Result.Info: "Successfully"',
+          "test_procedure": "1. Send the value listed in Input Test Data\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The value is accepted\n2. The state is stable"},
+         ["input_test_data"])
+    g135("應 FAIL —— 三欄同時越界（`pre_conditions` 依 R-P204(b) 之行為型）",
+         {"pre_conditions": '1. STATUS_BH_BCM1.PsngrDoorSts passes to "Open"',
+          "input_test_data": 'Phone_Call.Info: "Active"',
+          "test_procedure": "1. Send the value listed in Input Test Data\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The value is accepted\n"
+                             '2. Antitheft_Activation.Req reads "False"'},
+         ["expected_result", "input_test_data", "pre_conditions"])
+    g135("應通過 —— 帶空格之 `Brand_Configuration _2` 與無空格者視為同一（R-P201(c)）",
+         {"pre_conditions": '1. Brand_Configuration_2 reads "Jeep"',
+          "input_test_data": "NA",
+          "test_procedure": "1. Bring the TLM to the state\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The state is reached\n2. The state is stable"}, [])
+
+
+    # ── G138 / R-P204：`pre_conditions` 之 (a) 型不觸發、(b) 型觸發 ──
+    print("\n  G138 —— `pre_conditions` 依據判準（R-P204）\n")
+    g135("(a) 型應通過 —— 純狀態陳述，訊號名不在 source_clause",
+         {"pre_conditions": '1. TLM_Status.Info and $Telematic_Power$ read "Standby"',
+          "input_test_data": "NA",
+          "test_procedure": "1. Bring the TLM to the state\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The state is reached\n2. The state is stable"}, [])
+    g135("(a) 型應通過 —— 狀態以模式名表達",
+         {"pre_conditions": "1. The HU is in STANDBY MODE",
+          "input_test_data": "NA",
+          "test_procedure": "1. Bring the HU to the mode\n"
+                            "2. Read the mode to check the transition",
+          "expected_result": "1. The mode is reached\n2. The mode is stable"}, [])
+    g135("(b) 型應 FAIL —— 前提斷言時序（`within 5 seconds`）",
+         {"pre_conditions": "1. STATUS_BH_BCM1.DriverDoorSts completes within 5 seconds",
+          "input_test_data": "NA",
+          "test_procedure": "1. Bring the TLM to the state\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The state is reached\n2. The state is stable"},
+         ["pre_conditions"])
+    g135("(b) 型應 FAIL —— 前提斷言行為之發生（`passes to`）",
+         {"pre_conditions": '1. Phone_Call.Info passes to "Active" before the step',
+          "input_test_data": "NA",
+          "test_procedure": "1. Bring the TLM to the state\n"
+                            "2. Read the state to check the transition",
+          "expected_result": "1. The state is reached\n2. The state is stable"},
+         ["pre_conditions"])
+
+    # ── G139 / R-P205：`input_test_data` 之數值界線 ──
+    print("\n  G139 —— `input_test_data` 之數值界線（R-P205）\n")
+    g135("應通過 —— 測試選用之注入量（`20 events` / `100 ms intervals`）",
+         {"pre_conditions": "1. The TLM is on the bench",
+          "input_test_data": "Event burst: 20 events injected at 100 ms intervals",
+          "test_procedure": "1. Send the burst listed in Input Test Data\n"
+                            "2. Read the buffer to check the handling",
+          "expected_result": "1. The burst is accepted\n2. The buffer holds them"}, [])
+    g135("應通過 —— 測試選用之起始音量（`volume level: 25`）",
+         {"pre_conditions": "1. The TLM is on the bench",
+          "input_test_data": "Starting volume level: 25",
+          "test_procedure": "1. Set the level listed in Input Test Data\n"
+                            "2. Read the level to check the handling",
+          "expected_result": "1. The level is accepted\n2. The level is held"}, [])
+    g135("**應 FAIL —— 規格所定之閾值（`Switch_Off_Time: 20 minutes`）不得排除**",
+         {"pre_conditions": "1. The TLM is on the bench",
+          "input_test_data": "Switch_Off_Time: 20 minutes",
+          "test_procedure": "1. Set the value listed in Input Test Data\n"
+                            "2. Read the value to check the handling",
+          "expected_result": "1. The value is accepted\n2. The value is held"},
+         ["input_test_data"])
+    g135("**應 FAIL —— 數值與規格參數同行時不排除，縱使含測試量措詞**",
+         {"pre_conditions": "1. The TLM is on the bench",
+          "input_test_data": "Timeout1: 30 minutes, measurement window per events",
+          "test_procedure": "1. Set the value listed in Input Test Data\n"
+                            "2. Read the value to check the handling",
+          "expected_result": "1. The value is accepted\n2. The value is held"},
+         ["input_test_data"])
+
     print(f"\n  全部 {len(filled)} 個 TC fixture ＋ G46 皆如期："
           f"{'是' if failures == 0 else '否'}")
     return 1 if failures else 0
@@ -1561,7 +1798,9 @@ def main() -> None:
     tcs = load_tcs(GENERATED)
     blocking, adjudicate = run_all_gates(
         tcs, blacklist, fingerprints, load_leaf_testset(), load_037_priority())
-    blocking += run_batch_gates(load_batches(GENERATED))
+    _b, _a = run_batch_gates(load_batches(GENERATED))
+    blocking += _b
+    adjudicate += _a
 
     print(f"檢查 {len(tcs)} 個 TC")
     print(f"\n【阻斷類】{'PASS' if not blocking else f'**{len(blocking)} 項 FAIL**'}")

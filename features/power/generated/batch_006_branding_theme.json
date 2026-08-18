@@ -122,7 +122,7 @@
  "tcs": [
   {
    "req_id": "SWE-PM-077",
-   "tc_id": "NR1L-PowerManagement-224",
+   "tc_id": "NR1L-PowerManagement-231",
    "tc_title": "The special package value determines the theme used by the HU",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -148,7 +148,7 @@
   },
   {
    "req_id": "SWE-PM-078",
-   "tc_id": "NR1L-PowerManagement-225",
+   "tc_id": "NR1L-PowerManagement-232",
    "tc_title": "A none special package falls back to the brand default theme",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -174,7 +174,7 @@
   },
   {
    "req_id": "SWE-PM-078",
-   "tc_id": "NR1L-PowerManagement-226",
+   "tc_id": "NR1L-PowerManagement-233",
    "tc_title": "An unsupported special package falls back to the brand default theme",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -200,7 +200,7 @@
   },
   {
    "req_id": "SWE-PM-079",
-   "tc_id": "NR1L-PowerManagement-227",
+   "tc_id": "NR1L-PowerManagement-234",
    "tc_title": "An unsupported CAN value on a branded element uses the PDO default",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -226,7 +226,7 @@
   },
   {
    "req_id": "SWE-PM-080",
-   "tc_id": "NR1L-PowerManagement-228",
+   "tc_id": "NR1L-PowerManagement-235",
    "tc_title": "The theme special package value is sent while the CAN network is awake",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -252,7 +252,7 @@
   },
   {
    "req_id": "SWE-PM-080",
-   "tc_id": "NR1L-PowerManagement-229",
+   "tc_id": "NR1L-PowerManagement-236",
    "tc_title": "A theme change updates the sent value within the send window",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -278,7 +278,7 @@
   },
   {
    "req_id": "SWE-PM-081",
-   "tc_id": "NR1L-PowerManagement-230",
+   "tc_id": "NR1L-PowerManagement-237",
    "tc_title": "The Chrysler brand selects the Chrysler font",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -304,7 +304,7 @@
   },
   {
    "req_id": "SWE-PM-081",
-   "tc_id": "NR1L-PowerManagement-231",
+   "tc_id": "NR1L-PowerManagement-238",
    "tc_title": "The Jeep brand selects the Jeep font",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -330,7 +330,7 @@
   },
   {
    "req_id": "SWE-PM-081",
-   "tc_id": "NR1L-PowerManagement-232",
+   "tc_id": "NR1L-PowerManagement-239",
    "tc_title": "The Fiat brand selects the default Fiat font",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -356,7 +356,7 @@
   },
   {
    "req_id": "SWE-PM-082",
-   "tc_id": "NR1L-PowerManagement-233",
+   "tc_id": "NR1L-PowerManagement-240",
    "tc_title": "The Chrysler brand selects the Chrysler App icon",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -382,7 +382,7 @@
   },
   {
    "req_id": "SWE-PM-082",
-   "tc_id": "NR1L-PowerManagement-234",
+   "tc_id": "NR1L-PowerManagement-241",
    "tc_title": "The Jeep brand selects the Jeep App icon",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -408,7 +408,7 @@
   },
   {
    "req_id": "SWE-PM-082",
-   "tc_id": "NR1L-PowerManagement-235",
+   "tc_id": "NR1L-PowerManagement-242",
    "tc_title": "The Fiat brand selects the default Fiat App icon",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -434,7 +434,7 @@
   },
   {
    "req_id": "SWE-PM-083",
-   "tc_id": "NR1L-PowerManagement-236",
+   "tc_id": "NR1L-PowerManagement-243",
    "tc_title": "The Jeep brand offers the Jeep avatars in the profile screen",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -460,7 +460,7 @@
   },
   {
    "req_id": "SWE-PM-083",
-   "tc_id": "NR1L-PowerManagement-237",
+   "tc_id": "NR1L-PowerManagement-244",
    "tc_title": "The Fiat brand offers the default Fiat avatars",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -486,7 +486,7 @@
   },
   {
    "req_id": "SWE-PM-083",
-   "tc_id": "NR1L-PowerManagement-238",
+   "tc_id": "NR1L-PowerManagement-245",
    "tc_title": "The Abarth brand is mapped to the Fiat avatars",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -512,7 +512,7 @@
   },
   {
    "req_id": "SWE-PM-084",
-   "tc_id": "NR1L-PowerManagement-239",
+   "tc_id": "NR1L-PowerManagement-246",
    "tc_title": "The recirc icon follows the PROXI parameters on the Atlantis architecture",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -538,7 +538,7 @@
   },
   {
    "req_id": "SWE-PM-084",
-   "tc_id": "NR1L-PowerManagement-240",
+   "tc_id": "NR1L-PowerManagement-247",
    "tc_title": "The recirc icon follows the body style signal on the PowerNet architecture",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -564,7 +564,7 @@
   },
   {
    "req_id": "SWE-PM-085",
-   "tc_id": "NR1L-PowerManagement-241",
+   "tc_id": "NR1L-PowerManagement-248",
    "tc_title": "The settings seat graphic follows the PROXI parameters on the Atlantis architecture",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -590,7 +590,7 @@
   },
   {
    "req_id": "SWE-PM-085",
-   "tc_id": "NR1L-PowerManagement-242",
+   "tc_id": "NR1L-PowerManagement-249",
    "tc_title": "The settings seat graphic follows the body style signal on the PowerNet architecture",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -616,7 +616,7 @@
   },
   {
    "req_id": "SWE-PM-086",
-   "tc_id": "NR1L-PowerManagement-243",
+   "tc_id": "NR1L-PowerManagement-250",
    "tc_title": "The theme special package value is sent on this chapter while the network is awake",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -642,7 +642,7 @@
   },
   {
    "req_id": "SWE-PM-086",
-   "tc_id": "NR1L-PowerManagement-244",
+   "tc_id": "NR1L-PowerManagement-251",
    "tc_title": "A theme change on this chapter updates the sent value within the send window",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -668,7 +668,7 @@
   },
   {
    "req_id": "SWE-PM-087",
-   "tc_id": "NR1L-PowerManagement-245",
+   "tc_id": "NR1L-PowerManagement-252",
    "tc_title": "The M240 vehicle line uses the M240 seat graphics",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -694,7 +694,7 @@
   },
   {
    "req_id": "SWE-PM-087",
-   "tc_id": "NR1L-PowerManagement-246",
+   "tc_id": "NR1L-PowerManagement-253",
    "tc_title": "A non M240 vehicle line falls back to the brand seat graphic",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -720,7 +720,7 @@
   },
   {
    "req_id": "SWE-PM-088",
-   "tc_id": "NR1L-PowerManagement-247",
+   "tc_id": "NR1L-PowerManagement-254",
    "tc_title": "The performance gauges follow the vehicle line signal",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -746,7 +746,7 @@
   },
   {
    "req_id": "SWE-PM-090",
-   "tc_id": "NR1L-PowerManagement-248",
+   "tc_id": "NR1L-PowerManagement-255",
    "tc_title": "The auto theme mode follows the day night signal into the day theme",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -772,7 +772,7 @@
   },
   {
    "req_id": "SWE-PM-090",
-   "tc_id": "NR1L-PowerManagement-249",
+   "tc_id": "NR1L-PowerManagement-256",
    "tc_title": "The auto theme mode follows the day night signal into the night theme",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -798,7 +798,7 @@
   },
   {
    "req_id": "SWE-PM-091",
-   "tc_id": "NR1L-PowerManagement-250",
+   "tc_id": "NR1L-PowerManagement-257",
    "tc_title": "The day theme mode keeps the Day theme regardless of the day night signal",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -824,7 +824,7 @@
   },
   {
    "req_id": "SWE-PM-092",
-   "tc_id": "NR1L-PowerManagement-251",
+   "tc_id": "NR1L-PowerManagement-258",
    "tc_title": "The night theme mode keeps the Night theme regardless of the day night signal",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -850,7 +850,7 @@
   },
   {
    "req_id": "SWE-PM-096",
-   "tc_id": "NR1L-PowerManagement-252",
+   "tc_id": "NR1L-PowerManagement-259",
    "tc_title": "The season changes to Summer at the December date",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -876,7 +876,7 @@
   },
   {
    "req_id": "SWE-PM-096",
-   "tc_id": "NR1L-PowerManagement-253",
+   "tc_id": "NR1L-PowerManagement-260",
    "tc_title": "The season changes to Fall at the March date",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -902,7 +902,7 @@
   },
   {
    "req_id": "SWE-PM-096",
-   "tc_id": "NR1L-PowerManagement-254",
+   "tc_id": "NR1L-PowerManagement-261",
    "tc_title": "The season changes to Winter at the June date",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -928,7 +928,7 @@
   },
   {
    "req_id": "SWE-PM-096",
-   "tc_id": "NR1L-PowerManagement-255",
+   "tc_id": "NR1L-PowerManagement-262",
    "tc_title": "The season changes to Spring at the September date",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -954,7 +954,7 @@
   },
   {
    "req_id": "SWE-PM-096",
-   "tc_id": "NR1L-PowerManagement-256",
+   "tc_id": "NR1L-PowerManagement-263",
    "tc_title": "A season change plays the new season startup animation",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",
@@ -980,7 +980,7 @@
   },
   {
    "req_id": "SWE-PM-096",
-   "tc_id": "NR1L-PowerManagement-257",
+   "tc_id": "NR1L-PowerManagement-264",
    "tc_title": "No season change plays the normal brand based startup animation",
    "test_group": "Power Management",
    "test_set": "Branding and Theme",

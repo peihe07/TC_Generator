@@ -31,12 +31,22 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 GENERATED = ROOT / "features/power/generated"
 
-# 校準所得（`--calibrate`，實測）：批次一 ~ 三之最短 `reasoning` 為 **26 字**
-# （`SWE-PM-022`），向下取整至十位 → **20**。
-# **此門檻偏低，據實登記** —— 其只攔得住「根本沒寫」，攔不住「寫得太薄」；
-# 26 字之樣本本身即為薄弱之稽核軌跡，而該批已為分析層判為合格。
-# 提高門檻須先重評批次一 ~ 三之既有 `reasoning`，非本閘可單方為之。
-MIN_CHARS = 20
+# 校準（`--calibrate`，實測）—— **依 R-P182 並陳新舊值**：
+#
+# | 版 | 校準語料 | 最短 | 門檻 |
+# | 26 包 | 批次一 ~ 三（重評前）| 26 字（`SWE-PM-022`）| **20** |
+# | 27 包 | 批次一 ~ 三（依 R-P203 重評並補寫後）| 201 字（`SWE-PM-060`）| （見下）|
+# | 27 包（採用）| **全六批** | **131 字（`SWE-PM-094`）** | **130** |
+#
+# **未取 200 之理由**：批次一 ~ 三補寫後之最短為 201，惟批次四 ~ 六尚有
+# 131 / 169 / 177 / 181 / 184 字者。以 200 為門檻將迫使該等 `reasoning`
+# **為過門檻而加字** —— 該形態與 R-P203(c) 所禁之「為使門檻好看而改動」
+# 方向相反而性質相同（一個是刪、一個是灌水），皆使長度失去其代理意義。
+# 故以**全六批之實測最短**為校準基礎，取 130。
+#
+# **長度仍為弱代理，據實登記**：其只攔得住「根本沒寫」與「寫得極薄」。
+# §10.4 四項之實質涵蓋由 **G137**（`assess_reasoning.py`）判，非本閘。
+MIN_CHARS = 130
 
 
 def check(batch: dict) -> list[dict]:
@@ -61,14 +71,13 @@ def batches() -> list[dict]:
 def calibrate() -> int:
     lens = []
     for b in batches():
-        if not b.get("batch", "").startswith(("batch_001", "batch_002", "batch_003")):
-            continue
+        # 27 包起以**全六批**為校準語料（見 MIN_CHARS 之並陳表）。
         for leaf in b.get("leaves", []):
             t = str(leaf.get("reasoning", "")).strip()
             if t:
                 lens.append((len(t), b["batch"], leaf["parent"]))
     lens.sort()
-    print("  批次一 ~ 三之 `reasoning` 長度（合格樣本）：")
+    print("  全六批之 `reasoning` 長度（校準語料，27 包起）：")
     for n, batch, leaf in lens[:5]:
         print(f"    {n:4d} 字  {leaf}  ({batch})")
     print(f"  最短 {lens[0][0]} 字 → 門檻取向下取整至十位 = {lens[0][0] // 10 * 10}")

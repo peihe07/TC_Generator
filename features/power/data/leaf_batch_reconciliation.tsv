@@ -11,7 +11,7 @@ SWE-PM-009	Power State	未產出	0	DR-PW6	—
 SWE-PM-010	Power State	未產出	0	DR-PW11	—
 SWE-PM-011	Power State	003	6	—	—
 SWE-PM-012	Power State	003	2	—	—
-SWE-PM-013	Power State	003	3	—	—
+SWE-PM-013	Power State	003	6	—	—
 SWE-PM-014	Power State	003	9	—	—
 SWE-PM-015	Power State	003	4	—	—
 SWE-PM-016	Power State	003	1	—	—
@@ -24,7 +24,7 @@ SWE-PM-022	Power State	003	1	—	—
 SWE-PM-023	Power State	003	1	—	—
 SWE-PM-024	Power State	003	1	—	—
 SWE-PM-025	Power State	003	8	—	—
-SWE-PM-026	Power State	003	3	—	—
+SWE-PM-026	Power State	003	4	—	—
 SWE-PM-027	Power State	003	2	—	—
 SWE-PM-028	Power State	003	4	—	—
 SWE-PM-029	Power State	003	4	—	—
@@ -101,7 +101,7 @@ SWE-PM-099	Startup Display	005	4	—	—
 SWE-PM-100	Startup Display	005	1	—	—
 SWE-PM-101	Startup Display	005	4	—	—
 SWE-PM-102	Startup Display	005	2	—	—
-SWE-PM-103	Power State	005	2	—	—
+SWE-PM-103	Power State	005	5	—	—
 SWE-PM-104	Startup Display	005	5	—	—
 SWE-PM-105	Startup Display	005	8	—	—
 SWE-PM-106	Startup Display	005	1	—	—
