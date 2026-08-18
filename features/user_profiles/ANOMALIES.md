@@ -393,6 +393,31 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-UPnn]`.
 
 ---
 
+## N-XF02 — comfort 之 `feature.yaml` 宣告了交付件不帶的兩個值（跨 feature note，R-U30）
+
+**本項不是本 feature 之異常，是同一個形態在他 feature 之出現。**
+登記於此**而不寫入 comfort**（R-U24／R-U30 明文）—— 本輪對 comfort 為**唯讀**。
+
+**實測（42 輪讀 yaml，43 輪讀交付件；皆唯讀）**：
+
+| 項 | comfort `feature.yaml` | comfort 交付件（`…_20260817_rowsort.xlsx`，466 資料列）|
+|---|---|---|
+| `write_back.author_value` | `"PeiPYHsu"` | **AA 欄逐列為空** |
+| `write_back.tc_ref_id_value` | `"NEW"` | **O 欄逐列為空** |
+| T:Z 七個車型欄 | 未宣告 | **逐列為空**（DV 自帶 `allowBlank="1"`）|
+
+其 `scripts/write_back.py` 將 `O` 與 `AA` 列於 `NEVER_WRITE` ——
+**即該兩個 yaml 值沒有任何程式讀取它們**。
+
+**本 feature 之處置（G-C，43 包 §一）**：我方 yaml 已改為
+`{value, applied, why}` 之形，並以 WB-0 驗其一致。**comfort 之 yaml 不動。**
+
+**待 Comfort 下次開輪次一併清**（同 N-XF01 之處置形態）。
+**不建議追改其已交付之檔** —— 交付件那兩欄為空是與其程式一致的，
+不一致的是 yaml 之記載，而那不影響已交付之內容。
+
+---
+
 ## A-UP10 — `052f67d` 之 commit 歸屬不準（**ACCEPTED**，R-U55）
 
 **狀態：ACCEPTED，不是 RESOLVED。**

@@ -50,6 +50,7 @@
 | 40 | 2026-08-18 | **並行推進：第五批生成、DV gate、review pack 程式化** | [handoff/40_parallel.md](handoff/40_parallel.md) | [upstream/40_batch05_and_dvgate.md](upstream/40_batch05_and_dvgate.md)、[upstream/40_review_pack_24a.md](upstream/40_review_pack_24a.md)、[upstream/40_review_pack_24b.md](upstream/40_review_pack_24b.md) | —（本包無裁決條文） | **RD #8**（`5.13.2` 之 `PU0626` 與 `PU_0129` 是否同一個 —— 若為兩段確認則三條會假失敗，依 R-U57 不屬形式差異）| **第五批 22 條**（`135`–`156`，ch5 ALLPR 13 ＋ ch6 NOPR 9），leaf 覆蓋 **147 / 180**；額外造者 0（`041-04` 本身即 leaf，該措辭之誤已第二次出現）。**`046` 觸發 `audit_variant_pairs` 之 pending 絆線**（如設計），改判為具名不配，新增 `no-other-side-leaf` 述詞實測 base 側在 037 無 leaf。**系統性發現**：X-1 之觸發詞表只認 `select`，漏 `activate` —— 擴充後待判 6 → 22，**新增 16 處全在既有批次**，本批兩處已於生成時處理。**DV gate 立起並實跑**（`verify_dv_integrity.py`，6/6，三個注入向皆轉紅）——**A-UP09 之 R-U14 解除條件已成就**，惟不逕行改判（解除同時解除寫回封鎖）。新記兩事實：openpyxl 存回之 member 集合變動遠大於淨值 1（少 11 多 10）；`surgical_save` 之 `diff_cells` 對 TC 分頁逾 100 秒未完成。**review pack 改由 `build_review_pack.py` 產生**，不再手打轉錄。**本輪未執行任何 git** |
 | 41 | 2026-08-18 | **X-1 十六條修正、動詞詞表、第六批（全覆蓋）、寫回設計草案** | [handoff/41_batch06.md](handoff/41_batch06.md) | [upstream/41_batch06_and_writeback_design.md](upstream/41_batch06_and_writeback_design.md)、[upstream/41_review_pack_33a.md](upstream/41_review_pack_33a.md)、[upstream/41_review_pack_33b.md](upstream/41_review_pack_33b.md) | —（本包無裁決條文；**A-UP09 落槌 RESOLVED**，D-UP41-01 記入） | —（無新開） | **X-1 修正 20 條**（下放包點名 16 ＋ 另四條 pre-condition 早已明定 popup 開啟者），集中於 `popup_guard.py` 一張表，X-1 待判 22 → **0**。**順帶抓出 PU0588 兩處誤報**（`004` 明寫不按存取鍵、`130` 只涉一個 profile）——補其成立條件為「跨 profile」，並發現原 `TC-128` 案例是簡化形而把成立條件簡化掉了。**動詞同義表**（`data/verb_synonyms.tsv` 41 列 ＋ `audit_verbs.py` 三項閘）：VB-2 把「詞表說 activate 會觸發 PU0580」拿去問掃描本身；**本輪立刻抓到第六批之 `Continue` 未登記**。**RD #8 依 §四逕行修正**：五條之確認步驟改為「於每一個確認 popup PU0626/PU_0129 按 Yes」，三種讀法下皆不假失敗，驗證目標未變。**第六批 33 條**（`157`–`189`，ch7 10 ＋ ch8 23）—— **leaf 覆蓋 180 / 180，全覆蓋達成**；ch8 沿用同節多 leaf 併寫，由此看出 8.4 與 8.8.1 是同一句話之兩處出現、`073-03` 之空格必須放在第十二個位置。**寫回設計草案**（未執行）：欄位對映 16 寫／不寫逐欄具名、edits 直給不經 `diff_cells`、DV 三段接點，**五項未決**（T:Z 車型欄為唯一無安全預設者）。**本輪未執行任何 git** |
 | 42 | 2026-08-18 | **寫回程式、待判時效（G-A）、枚舉對照（G-B）、覆蓋率之讀法** | [handoff/42_writeback.md](handoff/42_writeback.md) | [upstream/42_writeback_impl.md](upstream/42_writeback_impl.md) | —（本包無裁決條文） | —（無新開；**未決 1 之提出屬 Pei**） | **未決 2–5 處置**：Q／AB 依 **Comfort 交付件實測**留空（非依其 yaml 宣告），輸出與台帳沿用 Comfort 形式（`output/` ＋ `DELIVERY.sha256`，**尚無 ENTRY**），換行 LF 並寫成 WB-6 之可測形式。**另發現 O／AA 兩欄同形**：`feature.yaml` 宣告 `NEW`／`PeiPYHsu` 而 Comfort 交付件實測為空，**兩 feature 皆然** —— 一併參數化預設不寫（署錯名不可補）。**`write_back.py`**：`build_edits` 直給 2646 格不經 `diff_cells`，六項寫回後檢查，**7/7 方向性案例**；`--write` 受未決 1 之閘拒絕且**無 `--force`**。**`row_order` 預設改為 `req_id`**（Comfort 96 §1 之 Pei 裁定），與我 41 輪草案不同，已具名待確認。**G-A**：43 條待判全數逐條判定並登記於 `data/pending_judgements.tsv`，判準之形改為「未結案之命中」，以 digest 守之（`audit_pending.py`，5/5）。**G-B**：`audit_enums.py`（7/7）＋ `data/enum_vocab.tsv` —— `STATE_VALUES` 對照取自 **spec 側**（候選 12 個），`UI_LOCATORS` 取自**語料側**（跨節 6 個）。**覆蓋率是分母的性質**寫入 profile §1 與 `framework.md` §4.2（含四處留白清單）。**本輪未生成、未改任何 TC；未產出任何交付件。本輪未執行任何 git** |
+| 43 | 2026-08-18 | **宣告與生效之分離（G-C）、掃描存活之讀法（G-D／G-E）、T:Z 實測、寫回實跑探針** | [handoff/43_yaml_and_dryrun.md](handoff/43_yaml_and_dryrun.md) | [upstream/43_yaml_and_writeback_dryrun.md](upstream/43_yaml_and_writeback_dryrun.md) | —（本包無裁決條文） | **N-XF02 跨 feature note 新開**（comfort 之 yaml 宣告交付件不帶之兩值；comfort 一個檔都沒動） | **更正一處**：我 41／42 輪稱「T:Z 不填則 WB-5 會紅」**兩層皆錯** —— WB-5 只驗 R／P 欄，且母本該區 DV 自帶 `allowBlank="1"`；42 輪自我測試之第 ① 案本就是綠的，**結論與自己跑過的測試相矛盾而未對起來**。**作業 4 實測**：Comfort 交付件 T:Z **466 資料列逐列為空**，其 `write_back.py` 之 `NEVER_WRITE` 明列該七欄 —— **留空既有先例亦有表單許可，未決 1 不再擋交付**。**G-C**：`feature.yaml` 之 `write_back` 改為 `{value, applied, why}`，`write_back.py` 只讀 `applied: true` 者，並新增 **WB-0** 由程式驗其一致（兩條方向性案例）。**G-D／G-E** 寫入 profile §7.1／§7.2；§5 更新（封鎖已解除、不得呼叫 `diff_cells`、列序 `req_id`）。**作業 5 實跑探針**（`--probe`，產物落 scratchpad、受「不得落 `output/`」之閘）：三段接點 —— 寫回前二閘違規 0、封裝 2646 格、寫回後六項全綠。`write_back.py` 自我測試 **10/10**。**本輪未生成、未改任何 TC；未產出交付件；未執行任何 git** |
 
 ---
 
@@ -71,6 +72,20 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第四十三輪已完成（2026-08-18）—— **宣告與生效之分離、寫回實跑探針**
+
+- **更正**：41／42 輪之「T:Z 不填則 WB-5 會紅」**兩層皆錯**（見上繳 §0.1）。
+  實測：Comfort 交付件之 T:Z **466 列逐列為空**，母本該區 DV 自帶
+  `allowBlank="1"`。**留空有先例亦有許可 —— 未決 1 不再擋交付。**
+- **G-C**：`feature.yaml` 之 `write_back` 改為 `{value, applied, why}`；
+  `write_back.py` 只讀 `applied: true` 者，並以 **WB-0** 驗其一致。
+  comfort 之同形現象登記為 **N-XF02**（唯讀，comfort 一個檔都沒動）。
+- **G-D／G-E** 寫入 profile §7.1／§7.2：待判抑制數為掃描存活之證據；
+  可測範圍已到底，55 條人讀為品質判斷之主要承擔者。
+- **寫回實跑探針**（`--probe`）：三段接點全綠，違規 0；
+  產物落 scratchpad，**不落 `output/`**（另有一道閘守之）。
+  `write_back.py` 自我測試 **10/10**。
 
 ### 第四十二輪已完成（2026-08-18）—— **寫回程式與兩項常規化**
 

@@ -95,8 +95,37 @@ done_region:
     note: "借用之任何字面值一律重新回溯本 feature spec，以 lint 規則強制（R-U6）"
 
 write_back:
-  author_value: "PeiPYHsu"
-  tc_ref_id_value: "NEW"
+  # ── G-C（43 包 §一）：**宣告與生效分開記。**
+  #
+  # 「一個沒有被任何程式讀取的設定值，會一直看起來像是決定過的。」
+  # 42 輪實測：Comfort 之 yaml 宣告了 author_value/tc_ref_id_value 兩個值，
+  # 而其交付件該兩欄**逐列為空**（466 列）。我方 yaml 沿用了同一寫法。
+  #
+  # 自本輪起，凡「值 + 是否生效」成對之項目一律寫成 `<name>:` 之子映射：
+  #   value    宣告之值（保留原記載，不刪 —— 它是一段有來歷的決定）
+  #   applied  **寫回程式是否真的寫它**。false 者該欄留空。
+  #   why      applied 之依據
+  # `scripts/write_back.py` 只讀 `applied: true` 者。
+  author_value:
+    value: "PeiPYHsu"
+    applied: false
+    why: "Comfort 交付件之 AA 欄實測為空（466 列）。且此為在交付件上以 Pei
+      之名署名 —— 留空可補，署錯名不可。得指示後改 applied 即生效。"
+  tc_ref_id_value:
+    value: "NEW"
+    applied: false
+    why: "Comfort 交付件之 O 欄實測為空（466 列），同上之同形。"
+  vehicle_columns:
+    value: null
+    applied: false
+    why: "未決 1。43 輪實測：Comfort 交付件之 T:Z 七欄**逐列為空**（466 列），
+      且母本該區之 DV 自帶 allowBlank=1 —— **留空為表單自身所允許**。
+      故留空有先例亦有依據；填值方須依據。"
+  row_order:
+    value: "req_id"
+    applied: true
+    why: "Comfort 96 §1（Pei 裁定）：列序依 leaf id 遞增。42 輪已具名此與
+      41 輪草案（tc_id 序）之偏離，待確認；抽為參數，改值不改程式。"
   fill_test_group_set: true      # R-U6：BLANK → Test Group／Test Set = FILL
   mode: "append_from_first_data_row"   # R-U6
   # R16/R18-3：母本不得覆寫；openpyxl save 全 repo 禁用。

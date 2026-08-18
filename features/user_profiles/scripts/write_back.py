@@ -77,6 +77,35 @@ OPTIONAL = {"O": "tc_ref_id_value", "AA": "author_value"}
 
 LEAF_KEY = re.compile(r"SWE1-HMI-PROF-(\d+)(?:-(\d+))?(?:-([a-z]+))?$")
 
+# `applied: false` 之項目所對應之欄 —— WB-0 據此驗「宣告未生效者確實沒被寫」
+APPLIED_COL = {"author_value": "AA", "tc_ref_id_value": "O"}
+
+
+def yaml_params() -> dict:
+    """自 `feature.yaml` 之 `write_back` 段取**生效中**之參數（G-C，43 包 §一）。
+
+    `<name>: {value, applied, why}` 之形；**只有 `applied: true` 者回傳其值**。
+    未採用者回 `None`，其宣告仍留在 yaml 內（它是一段有來歷的決定，不刪）。
+
+    **這是 G-C 之機械化**：42 輪之前，`author_value: "PeiPYHsu"` 躺在 yaml 裡
+    而沒有任何程式讀它 —— 它看起來像是決定過的。現在它被讀了，
+    且其「是否生效」是一個要填的欄位，不是一個沒人問的預設。
+    """
+    import yaml
+    d = yaml.safe_load((FEATURE / "feature.yaml").read_text(encoding="utf-8"))
+    wb = (d or {}).get("write_back", {})
+    out = {}
+    for k in ("author_value", "tc_ref_id_value", "vehicle_columns",
+              "row_order"):
+        v = wb.get(k)
+        if isinstance(v, dict):
+            out[k] = v.get("value") if v.get("applied") else None
+        else:
+            out[k] = v                       # 舊式純量，視為生效
+    if out.get("row_order") is None:
+        out["row_order"] = "req_id"
+    return out
+
 
 def sha256(p: Path) -> str:
     h = hashlib.sha256()
@@ -147,10 +176,32 @@ def splice(src: Path, out: Path, edits: dict) -> None:
 
 # ─────────────────────────────────────────────── 寫回後之檢查（六項）
 
-def verify(src: Path, out: Path, n_rows: int) -> list:
+def verify(src: Path, out: Path, n_rows: int, *, params=None) -> list:
     """違規清單（空 ＝ 綠）。**任一不綠即不留下檔案。**"""
     import zipfile
     bad = []
+
+    member = sheet_members(out)[SHEET]
+    with zipfile.ZipFile(out) as z:
+        xml = z.read(member).decode("utf-8")
+
+    # WB-0（G-C，43 包）—— `feature.yaml` 宣告 `applied: false` 之項，
+    # 其對應欄須**確實沒有被寫**。宣告與生效若分岔，這裡會叫。
+    #
+    # **以 XML 掃，不以 openpyxl 讀。** 首版用 `load_workbook(read_only=True)`
+    # 再逐格 `ws["AA10"]` —— read-only 之工作表不支援隨機存取，
+    # 十個方向性案例遂由數秒變成逾兩分鐘。**檢查沒錯，取值途徑錯了。**
+    params = yaml_params() if params is None else params
+    for key, col in APPLIED_COL.items():
+        if params.get(key) is not None:
+            continue
+        filled = [int(m.group(1)) for m in re.finditer(
+            rf'<c r="{col}(\d+)"[^/>]*>(?:(?!</c>).)*?<(?:v|is)\b', xml,
+            re.S) if FIRST_ROW <= int(m.group(1)) < FIRST_ROW + n_rows]
+        if filled:
+            bad.append(f"WB-0 `{key}` 於 feature.yaml 為 applied:false，"
+                       f"而 {col} 欄有 {len(filled)} 列被寫入（首列 "
+                       f"{min(filled)}）—— 宣告與生效分岔")
 
     # WB-1～WB-4 —— DV 完整性（`verify_dv_integrity` 之四項）
     bad += [f"WB-DV {x}" for x in DV.verify(src, out)]
@@ -158,10 +209,6 @@ def verify(src: Path, out: Path, n_rows: int) -> list:
     # WB-5 —— 每一寫入列須落在 R 欄 x14 DV 與 P 欄 DV 之涵蓋範圍內
     #         （Comfort write_back §3.3 之同型；**與 DV 完整性互補**：
     #          前者問「DV 還在嗎」，本項問「它蓋得到我寫的列嗎」）
-    member = sheet_members(out)[SHEET]
-    with zipfile.ZipFile(out) as z:
-        xml = z.read(member).decode("utf-8")
-
     def cover(sqrefs):
         rows = set()
         for sq in sqrefs:
@@ -212,7 +259,9 @@ def write(out: Path, *, vehicle_columns=None, **kw) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
     tmp = out.with_suffix(".tmp.xlsx")
     splice(SRC, tmp, edits)
-    bad = verify(SRC, tmp, len(tcs))
+    bad = verify(SRC, tmp, len(tcs),
+                 params={"author_value": kw.get("author_value"),
+                         "tc_ref_id_value": kw.get("tc_ref_id_value")})
     if bad:
         tmp.unlink()
         for b in bad:
@@ -220,6 +269,83 @@ def write(out: Path, *, vehicle_columns=None, **kw) -> Path:
         raise SystemExit(f"寫回後檢查 {len(bad)} 項不綠 —— **未留下檔案**")
     tmp.rename(out)
     return out
+
+
+# ─────────────────────────────────────────────── 實跑探針（43 包作業 5）
+
+def pre_gates() -> list:
+    """**寫回前之二閘**（41 輪設計草案 §5.4 之第一段）。
+
+    - `audit_assignment`：號碼指派表自生成器重算，與產物相符
+      —— **不符即代表產物與生成器分岔**，那種情形下寫回是把分岔封進交付件
+    - `lint_tcs`：P 欄值 ∈ DV、R 欄值 ∈ 下拉九條，及其餘 20 項
+    """
+    import audit_assignment as A
+    import lint_tcs as L
+    bad = []
+    bad += [f"assignment: {x}" for x in A.audit()]
+    tcs = [t for _d, t in L.corpus()] if hasattr(L, "corpus") else None
+    if tcs is None:
+        import json as _j
+        tcs = []
+        for q in sorted((FEATURE / "generated").glob("*.json")):
+            tcs += _j.loads(q.read_text(encoding="utf-8"))["tcs"]
+    for t in tcs:
+        bad += [f"lint: {x}" for x in L.gate_tc(t)]
+    bad += [f"lint: {x}" for x in L.gate_corpus(tcs)]
+    return bad
+
+
+def probe(out: Path, *, src: Path = None, row_order=None) -> int:
+    """**以 scratchpad 之母本複本實跑一次，三段接點逐段回報。**
+
+    與 `--write` 之別：**不落 `output/`、不入台帳、不視為交付件**。
+    故其不受未決 1 之閘拘束 —— 該閘守的是交付件，不是驗證。
+    """
+    if FEATURE / "output" in out.parents or out.parent == FEATURE / "output":
+        raise SystemExit("probe 之產物不得落 `output/` —— 那是產出物之位置，"
+                         "而 probe 不是產出物（43 包作業 5）")
+    prm = yaml_params()
+    src = src or SRC
+    ro = row_order or prm["row_order"]
+    tcs = records()
+
+    print("## 第一段 —— 寫回前之二閘\n")
+    g1 = pre_gates()
+    print(f"  audit_assignment ＋ lint_tcs：違規 {len(g1)}")
+    for x in g1[:5]:
+        print(f"    {x}")
+    if g1:
+        raise SystemExit("寫回前之閘不綠 —— 不進行寫回")
+
+    print(f"\n## 第二段 —— 封裝（`patch_sheet_xml`，不經 `diff_cells`）\n")
+    print(f"  來源 {src.name}")
+    print(f"  來源 SHA {'相符' if sha256(src) == SRC_SHA else '**不符**'}")
+    edits = build_edits(tcs, vehicle_columns=prm["vehicle_columns"],
+                        author_value=prm["author_value"],
+                        tc_ref_id_value=prm["tc_ref_id_value"],
+                        row_order=ro)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    splice(src, out, edits)
+    print(f"  {len(tcs)} 條 → row {FIRST_ROW}–{FIRST_ROW + len(tcs) - 1}；"
+          f"edits {len(edits)} 格；列序 {ro}")
+    print(f"  產物 {out}")
+
+    print(f"\n## 第三段 —— 寫回後之六項檢查\n")
+    bad = verify(src, out, len(tcs), params=prm)
+    names = ["WB-0 applied:false 之欄確實未寫",
+             "WB-DV DV-1 zip member 集合", "WB-DV DV-2 x14 節點數",
+             "WB-DV DV-3 xm:sqref 範圍", "WB-DV DV-4 legacy 節點數",
+             "WB-5 寫入列在 R／P 欄 DV 涵蓋內", "WB-6 儲存格內容無 CR"]
+    for n in names:
+        hit = [x for x in bad if x.split(" ")[0] in n or n.startswith(
+            " ".join(x.split(" ")[:2]))]
+        print(f"  {'**紅**' if hit else '綠'} — {n}")
+    print(f"\n違規 {len(bad)}")
+    for x in bad:
+        print(f"  {x}")
+    print(f"\n**本產物不落 `output/`、不入 `DELIVERY.sha256`、不視為交付件。**")
+    return 1 if bad else 0
 
 
 def dry_run(row_order="req_id") -> int:
@@ -321,6 +447,31 @@ def self_test() -> int:
     case("**護欄**：`row_order` 兩種皆為全排列（不重不漏）→ 綠",
          order_total, False)
 
+    # ⑧ WB-0（G-C）—— yaml 說 applied:false，而該欄被寫入
+    out8 = scratch / "probe_applied_split.xlsx"
+    splice(SRC, out8, build_edits(tcs, author_value="PeiPYHsu"))
+    case("**WB-0 注入：`author_value` 為 applied:false 而 AA 欄被寫 → 紅**",
+         lambda: verify(SRC, out8, len(tcs),
+                        params={"author_value": None,
+                                "tc_ref_id_value": None}), True,
+         "宣告與生效分岔即轉紅（G-C 之機械化）")
+
+    # ⑨ WB-0 之另一半 —— 宣告生效時，同一份產物須為綠
+    case("WB-0 護欄：`author_value` 改為 applied:true → 綠（同一份產物）",
+         lambda: verify(SRC, out8, len(tcs),
+                        params={"author_value": "PeiPYHsu",
+                                "tc_ref_id_value": None}), False)
+
+    # ⑩ probe 不得落 `output/`
+    def probe_refuses_output():
+        try:
+            probe(FEATURE / "output" / "must_not_exist.xlsx")
+        except SystemExit as e:
+            return [str(e).splitlines()[0]]
+        return []
+    case("**probe 之產物落 `output/` → 拒絕**", probe_refuses_output, True)
+    assert not (FEATURE / "output" / "must_not_exist.xlsx").exists()
+
     n = len(cases)
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
@@ -333,6 +484,9 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--probe", action="store_true",
+                    help="以 scratchpad 之複本實跑，不落 output/")
+    ap.add_argument("--src", default=None)
     ap.add_argument("--vehicle-columns", default=None,
                     help='JSON，如 \'{"T":"1","U":"0"}\'')
     ap.add_argument("--row-order", default="req_id",
@@ -341,6 +495,12 @@ if __name__ == "__main__":
     a = ap.parse_args()
     if a.self_test:
         sys.exit(self_test())
+    if a.probe:
+        if not a.out:
+            ap.error("--probe 須給 --out（scratchpad 之路徑）")
+        sys.exit(probe(Path(a.out),
+                       src=Path(a.src) if a.src else None,
+                       row_order=a.row_order))
     if not a.write:
         sys.exit(dry_run(a.row_order))
     vc = json.loads(a.vehicle_columns) if a.vehicle_columns else None
