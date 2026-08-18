@@ -33,6 +33,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPTS = Path(__file__).resolve().parent
+
+sys.path.insert(0, str(SCRIPTS))
+from protect_products import guard_write, log_baseline_reset, sha  # R-P233：基準之保護與重設紀錄
 DATA = ROOT / "features/power/data"
 BASELINE = DATA / "edit_integrity_baseline.json"
 
@@ -115,8 +118,13 @@ def self_test() -> int:
 def main() -> None:
     if "--update-baseline" in sys.argv:
         base = {n: symbols((SCRIPTS / n).read_text(encoding="utf-8")) for n in WATCHED}
+        # R-P233(b)(c)：基準之重設須帶明示參數，且留下重設紀錄
+        _before = sha(BASELINE)
+        guard_write(BASELINE)
         BASELINE.write_text(json.dumps(base, ensure_ascii=False, indent=2) + "\n",
                             encoding="utf-8")
+        log_baseline_reset(_before, sha(BASELINE),
+                           note="--update-baseline")
         print(f"baseline updated — {len(base)} files, "
               f"{sum(len(v) for v in base.values())} symbols")
         return

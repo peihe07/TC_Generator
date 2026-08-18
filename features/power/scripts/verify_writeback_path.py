@@ -36,6 +36,7 @@ SANDBOX = FEATURE / "sandbox"
 DATA = FEATURE / "data"
 
 sys.path.insert(0, str(ROOT / "backend"))
+from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from xlsx_surgical import StructureError, surgical_save, verify_structure  # noqa: E402
 from dryrun_write_back import (FIRST_DATA_ROW, HEADER_ROW,  # noqa: E402
@@ -315,7 +316,7 @@ def main() -> None:
     result = {"src_sha256_before": src_before, "src_sha256_after": sha256(src),
               "src_untouched": src_before == sha256(src),
               "g89": cases, "g90": boundary, "g95": struct, "tc_count": len(tcs)}
-    (DATA / "b2b3_writeback_path.json").write_text(
+    guard_write(DATA / "b2b3_writeback_path.json") or (DATA / "b2b3_writeback_path.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"來源未被觸碰：{result['src_untouched']}\n")

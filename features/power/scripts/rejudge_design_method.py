@@ -48,11 +48,31 @@ ROW1_RE = re.compile(r"attempt to|invalid|illegal|not allowed", re.I)
 # 第 2 列 Fault Injection：**注入之故障**。
 # `bus error` 不納入 —— 其於本語料皆為 `without a bus error` 之否定斷言（45 次）
 ROW2_RE = re.compile(r"disconnect|inject(?:ed|ion)? (?:a )?fault|fault injection", re.I)
-# 第 3 列 State Transition：狀態變更之措詞
-ROW3_RE = re.compile(r"passes to|transitions? (?:to|from|back to)|"
-                     r"enters? (?:low power|standby|sleep|idle)|"
-                     r"leaves? \w+ (?:state|mode)|switches? to|"
-                     r"is in [A-Z][\w -]* mode|starts from \w+ state", re.I)
+# **R-P232（33 包）**：`050` 之 `disconnect` 出自前提 `The battery is disconnected`，
+# 其所驗者為「重接後之還原與起始狀態」，**非斷電本身之反應** —— 故第 2 列不命中。
+# 判準立為通則：作為情境建構之前提者不適用第 2 列。
+# ── 第 3 列 State Transition ──
+#
+# **R-P231（33 包）：`ROW3_RE` 不放寬** —— 放寬使 174 條落回現值，
+# 而現值正是 95.8% 偏向之來源；該作法以判準遷就既有答案。
+# **改建對稱之正向謂詞 `POSITIVE_RE`**：命中者為第 3 列之**正向確認**，非默認。
+#
+# 詞彙**自本語料導出**（ER 全文之實測次數，33 包）：
+#   passes to 38、reaches 21、is in <X> state/mode 12、transitions to 6、
+#   leaves 6、switches to 4、transitions from 4、returns to 4、
+#   transition to 3、transitions back 2、goes to 2、enters 1、starts from 1
+#
+# `reaches`（21）**不納入** —— 其於本語料多為 `reaches its expiration`
+# （計時器到期）與 `reaches Timed mode`，前者非狀態轉換；
+# 為免以高頻詞灌入第 3 列，僅取其 `reaches <狀態名> mode/state` 之形態。
+POSITIVE_RE = re.compile(
+    r"passes to|passes in|transitions? (?:to|from|back to)|transition to|"
+    r"goes to|switches to|returns to \w+ (?:state|mode)|"
+    r"enters? (?:low power|standby|sleep|idle|timed|full)|"
+    r"leaves? \w+ (?:state|mode)|starts from \w+ state|"
+    r"is in [A-Za-z][\w -]*? (?:state|mode)|"
+    r"reaches [A-Za-z][\w -]*? (?:state|mode)", re.I)
+ROW3_RE = POSITIVE_RE          # 舊名保留，指向正向謂詞
 # 第 6 列 Boundary：界線值
 ROW6_RE = re.compile(r"after the date passes|boundary|the day before|"
                      r"limit(?:\b|±)|greater than", re.I)
@@ -65,6 +85,20 @@ COND_RE = re.compile(r"^\s*\d+\.", re.M)
 # 鍵：tc_id 末三碼。值：(裁定列, 裁定 method, 依據)
 # **本包不改值** —— 此為裁決紀錄，改值於 33 包。
 ADJUDICATION: dict[str, tuple[int | None, str, str]] = {
+ # 二矛盾之裁決（R-P231(d)，33 包）—— 正向謂詞與 G154 同時命中
+ "034x": (4, "Decision Table（維持 32 包之裁決）",
+          "**矛盾成因**：正向謂詞命中之 `transition to` 位於**否定句** "
+          "`no transition to …`；ER 另載 `remains in Timed state`。"
+          "**實質為不轉換**，32 包之第 4 列裁決正確"),
+ "071x": (9, "Functional Based（維持 32 包之裁決）",
+          "**矛盾成因**：正向謂詞命中之 `passes to` 其主語為**訊號值**"
+          "（`Rear_Camera_Enable.Info passes to \"False\"`）**而非狀態**；"
+          "ER1 載 `stays in Full-Operation state`。"
+          "**正向謂詞未區分狀態轉換與訊號值變化**，此為其已知限度"),
+ "050x": (3, "State Transition（維持現值）",
+          "依 **R-P232** 第 2 列不命中（斷電為情境建構），first-match 續判；"
+          "ER1 載 `The TLM **leaves INIT state** once the voltage is within its "
+          "thresholds` → 第 3 列正向命中。**32 包之待裁就此結案**"),
  # 8 條「相異」之裁決
  "010": (3, "State Transition（維持現值）",
          "**謂詞偽陽性** —— 命中之 `limit` 出自 `volume limit`（音量上限），"
@@ -106,19 +140,27 @@ def propose(tc: dict) -> tuple[int | None, str, str]:
     m = ROW1_RE.search(proc) or ROW1_RE.search(er)
     if m:
         return 1, "Negative / Invalid", m.group(0)
-    m = ROW2_RE.search(allt)
+    # 第 2 列（R-P232，33 包）：**其故障須為驗證之對象** ——
+    # 作為情境建構之前提者不適用（其故障不被觀察，僅用以建立起始條件）。
+    # 實作：故障詞須見於 `input_test_data` 或 `test_procedure`（即注入之刺激），
+    # **僅見於 `pre_conditions` 者不命中**。
+    m = ROW2_RE.search(f"{data}\n{proc}")
     if m:
         return 2, "Fault Injection", m.group(0)
-    # 第 3 列之前先判「明示不轉換」—— 其為第 3 列之否定證據
-    if NO_TRANSITION_RE.search(er) and not ROW3_RE.search(er):
-        return None, "（機械無法判定）", NO_TRANSITION_RE.search(er).group(0)
-    m = ROW3_RE.search(er)
-    if m:
-        return 3, "State Transition", m.group(0)
+    # 第 3 列：**正向確認**（R-P231(b)）。
+    # 「明示不轉換」與正向謂詞同時命中者 → **矛盾**，逐條人工裁決（R-P231(d)）。
+    neg = NO_TRANSITION_RE.search(er)
+    pos = POSITIVE_RE.search(er)
+    if neg and pos:
+        return -1, "**矛盾（正向與明示不轉換同時命中）**", f"{pos.group(0)} ／ {neg.group(0)}"
+    if pos:
+        return 3, "State Transition", pos.group(0)
     m = ROW6_RE.search(allt)
     if m:
         return 6, "Boundary Value Analysis", m.group(0)
-    return None, "（機械無法判定）", ""
+    # R-P231(c)：§12 為 first-match 且第 9 列為 catch-all ——
+    # **「機械無法判定」不應存在為一個結果類別**；其真正意義為「未命中任何前列，故落底」。
+    return 9, "Functional Based（落底）", "（未命中第 1–8 列）"
 
 
 def g154(tcs: list[dict]) -> list[dict]:

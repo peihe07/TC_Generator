@@ -23,6 +23,7 @@ DATA = ROOT / "features/power/data"
 GENERATED = ROOT / "features/power/generated"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
 from lint_tcs import anchor_bodies  # noqa: E402
 
 RANGE = [f"SWE-PM-{i:03d}" for i in range(33, 64)]
@@ -72,7 +73,7 @@ def main() -> None:
             out.append(f"- **文字層無內文之錨點：`{','.join(missing)}`** —— "
                        "依 R-P144(b) 須停並上繳，不得以殘缺原文成條\n")
         out.append(f"\n```\n{clause}\n```\n")
-    (DATA / "b4_material.md").write_text("".join(out), encoding="utf-8")
+    guard_write(DATA / "b4_material.md") or (DATA / "b4_material.md").write_text("".join(out), encoding="utf-8")
     print(f"wrote {(DATA / 'b4_material.md').relative_to(ROOT)}")
     print(f"  範圍 {len(RANGE)}、已產出 {len(RANGE)-len(todo)}、待產出 {len(todo)}")
     for leaf in todo:

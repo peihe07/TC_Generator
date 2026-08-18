@@ -5,11 +5,11 @@
 > (b) 非決定性：比對實質內容而非位元組
 > **(c) 時點相依：一律不得重跑** —— 其現時性由「產生時點 ＋ 其後之異動紀錄」判定
 
-## 計數（產物 68）
+## 計數（產物 69）
 
 | 類 | 數 |
 |---|---|
-| (a) 現況型 | **52** |
+| (a) 現況型 | **53** |
 | (b) 非決定性 | **4** |
 | **(c) 時點相依（不得重跑）** | **12** |
 
@@ -39,9 +39,9 @@
 | `b8_b9_b12_scans.md` | G131 之抽樣以 `random.Random(26)` 為之，其母體隨批次成長而變 |
 | `g150_design_method.md` | 抽樣以 `random.Random(31)` 為之，母體隨批次而變 |
 
-## (a) 現況型（52）
+## (a) 現況型（53）
 
-`b1_column_crosscheck.md`、`b1_dangling_refs.md`、`b1_swepm008.md`、`b1_tc_framework_sheet.md`、`b1_template_diff.md`、`b2_anchor_state.md`、`b2_cfts010_ole.md`、`b2_false_positive.md`、`b2_uncovered_chapters.md`、`b2_v2_uncovered_chapters.md`、`b3_anchor_attributes.md`、`b3_dangling_rule_check.md`、`b3_embedded_objects.md`、`b3_swepm025_triggers.md`、`b3_sys3_crosscheck.md`、`b4_089_row_material.md`、`b4_ee_architecture.md`、`b4_final_step.md`、`b4_precond_verbs.md`、`b4_signals_calibration.md`、`b4_swepm025_material.md`、`b5_arif_final_step.md`、`b5_column_entropy.md`、`g103_layer3.md`、`g113_buckets.md`、`g113_or_branch.md`、`g114_layer3_full.md`、`g117_multivalue_sets.md`、`g121_reconciliation.md`、`g136_pattern_variants.md`、`g137_reasoning_assessment.md`、`g142_precond_state.md`、`g145_gate_triggers.md`、`g155_design_method_rejudge.md`、`g156_product_classes.md`、`g28_vcvm_quality.md`、`g94_source_clause.md`、`g99_anchor_set.md`、`item_to_chapter.json`、`layer3_full.tsv`、`leaf_batch_reconciliation.tsv`、`leaf_main_chapter.json`、`leaf_testset.tsv`、`multi_chapter_leaves.md`、`reverse_coverage_001-power-down.md`、`reverse_coverage_002-timeout-settings.md`、`reverse_coverage_003-power-state-a.md`、`reverse_coverage_004-power-state-b.md`、`reverse_coverage_005-startup-display.md`、`sampling_for_review.md`、`sys3_chapters.md`、`unreferenced_anchors.tsv`
+`b1_column_crosscheck.md`、`b1_dangling_refs.md`、`b1_swepm008.md`、`b1_tc_framework_sheet.md`、`b1_template_diff.md`、`b2_anchor_state.md`、`b2_cfts010_ole.md`、`b2_false_positive.md`、`b2_uncovered_chapters.md`、`b2_v2_uncovered_chapters.md`、`b3_anchor_attributes.md`、`b3_dangling_rule_check.md`、`b3_embedded_objects.md`、`b3_swepm025_triggers.md`、`b3_sys3_crosscheck.md`、`b4_089_row_material.md`、`b4_ee_architecture.md`、`b4_final_step.md`、`b4_precond_verbs.md`、`b4_signals_calibration.md`、`b4_swepm025_material.md`、`b5_arif_final_step.md`、`b5_column_entropy.md`、`g103_layer3.md`、`g113_buckets.md`、`g113_or_branch.md`、`g114_layer3_full.md`、`g117_multivalue_sets.md`、`g121_reconciliation.md`、`g136_pattern_variants.md`、`g137_reasoning_assessment.md`、`g142_precond_state.md`、`g145_gate_triggers.md`、`g155_design_method_rejudge.md`、`g156_product_classes.md`、`g162_priority.md`、`g28_vcvm_quality.md`、`g94_source_clause.md`、`g99_anchor_set.md`、`item_to_chapter.json`、`layer3_full.tsv`、`leaf_batch_reconciliation.tsv`、`leaf_main_chapter.json`、`leaf_testset.tsv`、`multi_chapter_leaves.md`、`reverse_coverage_001-power-down.md`、`reverse_coverage_002-timeout-settings.md`、`reverse_coverage_003-power-state-a.md`、`reverse_coverage_004-power-state-b.md`、`reverse_coverage_005-startup-display.md`、`sampling_for_review.md`、`sys3_chapters.md`、`unreferenced_anchors.tsv`
 
 判類依據：語義為「現況為何」——其輸入為當下之 `generated/` 或素材，重跑並比對有效。
 

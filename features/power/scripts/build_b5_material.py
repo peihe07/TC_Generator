@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "features/power/data"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
 from lint_tcs import anchor_bodies  # noqa: E402
 
 RECON = DATA / "leaf_batch_reconciliation.tsv"
@@ -105,7 +106,7 @@ def main() -> None:
                    f"章節 {'、'.join(secs)}（item {len(anchors)}）\n\n"
                    f"- 錨點：`{','.join(present)}`\n\n```\n{clause}\n```\n")
 
-    (DATA / "b5_material.md").write_text("".join(out), encoding="utf-8")
+    guard_write(DATA / "b5_material.md") or (DATA / "b5_material.md").write_text("".join(out), encoding="utf-8")
     print(f"wrote {(DATA / 'b5_material.md').relative_to(ROOT)}")
     print(f"  納入 {len(include)} leaf、排除 {len(excluded)} leaf")
     print(f"  素材前置檢查：{'**' + str(len(blocked)) + ' leaf 受阻**' if blocked else '全數有內文'}")

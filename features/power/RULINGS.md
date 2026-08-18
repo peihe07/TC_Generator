@@ -6194,6 +6194,249 @@ P0 佔 **193 / 264 = 73.1%**；取樣 **211 / 264 = 79.9%**，實際節省 **20.
 另標明「未列入判定之腳本…皆為建表 / 產生器類」一句
 **即三次陳舊之源**（27 → 30 → 31 包），其已於 30 包加註「須逐包複查」。
 
+```
+[R-P231] `ROW3_RE` 不放寬；改建「明示有轉換」之正向謂詞。
+         32 §九第 1 項：執行層自陳
+         「放寬 `ROW3_RE` 會把大批『無法判定』變成『相符現值』，
+          **等於我用一個我自己寫的謂詞去證明我自己先前的指派是對的**」，
+         並將套用與否交由分析層。**該克制正確。**
+
+         **裁定：不放寬。** 放寬使 174 條落回現值，
+         而現值正是 95.8% 偏向之來源 —— 該作法以判準遷就既有答案。
+
+         **改以對稱之正向謂詞：**
+         （a）建 `明示有轉換` 詞彙表，**自本語料導出**
+              （比照 G154 之作法：`passes to` / `enters` / `transitions to` /
+                `goes to` / `is in … state` 之轉入形態等，實測為準）
+         （b）命中者 → §12 第 3 列**正向確認**，非默認
+         （c）**未命中且第 1、2、4–8 列皆不命中者 → 落至第 9 列
+              Functional Based** ——
+              §12 為 first-match 且第 9 列為 catch-all，
+              **「機械無法判定」不應存在為一個結果類別**；
+              其真正意義為「未命中任何前列，故落底」
+         （d）G154（明示不轉換）與本條之正向謂詞**互為對照** ——
+              二者同時命中者為矛盾，須逐條人工裁決並列出成因
+
+         此非放寬亦非收緊，係將「以現值為默認」改為「以文本為依據」。
+         裁決者 Pei，逐字依據：「先繼續做」。
+```
+**執行層回報：正向謂詞已建，「機械無法判定」歸零；矛盾 2 條已裁。**
+
+**（a）詞彙自語料導出**（ER 全文實測次數）：`passes to` 38、`reaches` 21、
+`is in <X> state/mode` 12、`transitions to` 6、`leaves` 6、`switches to` 4、
+`transitions from` 4、`returns to` 4、`transition to` 3、`transitions back` 2、
+`goes to` 2、`enters` 1、`starts from` 1。
+
+**`reaches`（21）未全數納入** —— 其於本語料多為 `reaches its expiration`
+（計時器到期，非狀態轉換），僅取 `reaches <狀態名> mode/state` 之形態，
+**免以高頻詞灌入第 3 列**。
+
+**（b）（c）全批重判（264 條）**：
+
+| 提案 | 條 |
+| 第 3 列 State Transition（**正向確認**）| **81** |
+| **第 9 列 Functional Based（落底）** | **173** |
+| 第 6 列 Boundary Value Analysis | 7 |
+| 第 1 列 Negative / Invalid | 1 |
+| 第 2 列 Fault Injection | **0**（依 R-P232）|
+| **矛盾** | **2** |
+
+**「機械無法判定」由 196 降為 0** —— 依本條 (c)，其真正意義為
+「未命中任何前列，故落底第 9 列」。
+
+**相符現值 81 / 264 = 30.7%**（32 包之 60 為舊謂詞所得，二數不可比）；
+**入人工裁決 183**。
+
+**（d）矛盾 2 條已逐條裁決，其成因皆為正向謂詞之限度**：
+
+| tc | 命中 | 成因 | 裁定 |
+| `034` | `transition to` ／ `remains in` | 正向詞位於**否定句** `no transition to …` | 第 4 列（維持 32 包裁決）|
+| `071` | `passes to` ／ `stays in` | 正向詞之主語為**訊號值**（`Rear_Camera_Enable.Info passes to "False"`）**而非狀態** | 第 9 列（維持 32 包裁決）|
+
+**二者皆為正向謂詞之已知限度** —— 其未區分「否定句中之轉換詞」與
+「訊號值之變化」。二例皆由 G154 之對照當場攔下，**該對照設計有效**。
+
+**本包未改任何 `design_method` 之值。**
+
+```
+[R-P232] `050` 裁定：情境建構之斷電非 §12 第 2 列之 fault injection。
+         32 §3.2：`050` 命中之 `disconnect` 出自前提
+         `The battery is disconnected`；§12 第 2 列逐字列 `disconnect`，
+         惟執行層指出「本條之斷電為情境建構而非注入故障」，
+         二讀皆有據而不自行決定。
+
+         **裁定：非 fault injection。**
+         判準：§12 第 2 列之 `Simulated fault` ——
+         **其故障須為驗證之對象**，即 TC 所觀察者為系統對該故障之反應。
+         作為情境建構之前提者不適用 ——
+         其故障不被觀察，僅用以建立待驗行為之起始條件。
+
+         `050` 所屬之 `SWE-PM-012` clause 為
+         「After a battery reconnection … it has to restore the last user
+          settings … setting TLM_Status.Info to "Sleep" first」——
+         **所驗者為重接後之還原與起始狀態，非斷電本身之反應**。
+         故第 2 列不命中，依 first-match 續判其後各列。
+
+         此判準立為通則，適用於全批之第 2 列判定。
+         裁決者 Pei，逐字依據：「先繼續做」。
+```
+**執行層回報：判準已實作為通則；`050` 依 first-match 續判為第 3 列，就此結案。**
+
+實作：第 2 列之故障詞須見於 `input_test_data` 或 `test_procedure`（即**注入之刺激**），
+**僅見於 `pre_conditions` 者不命中** —— 其故障不被觀察，僅用以建立起始條件。
+
+**`050`**：`disconnect` 出自前提 `The battery is disconnected` → 第 2 列不命中；
+續判第 3 列，ER1 逐字為
+`The TLM **leaves INIT state** once the voltage is within its thresholds`
+→ **正向命中，與現值（狀態轉換）相符**。32 包之待裁就此結案。
+
+**全批第 2 列命中數：1 → 0。** 即本語料中**無任何 TC 以故障為驗證對象** ——
+`基礎故障注入 (Fault Injection Lite)` 現值 1 條（`SWE-PM-073` 之 Battery Critical），
+其是否應維持，**依本條之判準應另查**（該條之 `Batt_ST_Crit` 為注入之刺激且被觀察，
+初判成立，惟未入本包之抽樣，據實標明）。
+
+```
+[R-P233] 不可再生產物須加寫入保護，並全掃同類。
+         32 §一與 §九第 3 項：`edit_integrity_baseline.json` 屬 (c) 型 ——
+         **其為 G108 之基準，重跑即等於重設基準，
+         其後任何損壞都不會被攔下，且不會有人發現**。
+         31 包之全掃未及於它，**係因其產生腳本不在當時之清單內
+         —— 是運氣不是流程**。
+         執行層自陳「同類之『一碰就失效』之物還有沒有，我沒有系統性地找過」。
+
+         處置：
+         （a）掃全部 `scripts/`，找出**會寫入 (c) 型產物**之腳本，
+              逐一列出「腳本 → 其所寫入之 (c) 型產物」
+         （b）為全部 (c) 型產物加**寫入保護** ——
+              其產生腳本執行前須檢查該產物是否已存在；
+              已存在者**拒寫並回報**，除非帶明示之覆寫參數
+         （c）`edit_integrity_baseline.json` 另加一層：
+              其重設須留下**重設紀錄**（時點、重設前後之雜湊），
+              使「基準何時被重設」可事後查核
+         （d）判準：凡「其價值來自記錄某一時點」者皆屬之 ——
+              baseline、before-snapshot、dry-run 結果、對照表
+         裁決者 Pei，逐字依據：「先繼續做」。
+```
+**執行層回報：保護已就位並先行；(c) 型 12 份全數受保護。**
+
+**（a）腳本 → (c) 型產物之對照**（掃全部 `scripts/`，區分讀／寫）：
+
+| 腳本 | 寫入之 (c) 型產物 |
+| `build_b4_material.py` | `b4_material.md` |
+| `build_b5_material.py` | `b5_material.md` |
+| `assign_final_tc_id.py` | `final_tc_id_map.tsv` |
+| `dryrun_write_back.py` | `b3_dryrun.json` |
+| `verify_writeback_path.py` | `b2b3_writeback_path.json` |
+| `check_edit_integrity.py --update-baseline` | `edit_integrity_baseline.json` |
+
+其餘提及 (c) 型產物者（`reverse_coverage.py` / `or_branch_coverage.py` /
+`build_er_restatement.py` / `build_final_step.py` / `classify_products.py` /
+`backup_before_rewrite.py`）**皆為讀取**，已逐一查證。
+
+**（b）寫入保護已實作**（`scripts/protect_products.py`）——
+已存在且未帶 `--overwrite-protected` 者**拒寫並回報**。
+**fixture 四案如期**：(c) 已存在無參數 → 拒寫；(c) 已存在帶參數 → 放行；
+(c) 不存在（首次產生）→ 放行；非 (c) 已存在 → 放行。
+**實測**：重跑 `build_b4_material.py` 遭拒，`b4_material.md` 維持 231 行未動。
+
+**（c）`edit_integrity_baseline.json` 之重設紀錄**已加 ——
+`--update-baseline` 現須先過 `guard_write`，且寫入後 append
+`data/edit_integrity_reset_log.tsv`（UTC 時點、重設前後之 SHA256、note）。
+實測：無 `--overwrite-protected` 之 `--update-baseline` **遭拒**。
+
+**（d）判準已套用**：「凡其價值來自記錄某一時點者」——
+baseline 1、before-snapshot 5、dry-run 結果 1、對照表 1、
+材料快照 2、狀態快照 1、寫回路徑 1 = **12 份**。
+
+**一項自造損壞之揭露**：套用保護時，執行層之自動插入將 import 誤置於
+`load_ok()` 函式體內，致 `check_edit_integrity.py` 語法錯誤。
+**依 R-P149（自造損壞不得以 git 修復）以逐處編輯還原**，未動 git；
+還原後 `ast.parse` 通過、G108 7 / 7。
+
+```
+[R-P234] 備份範圍擴及 `generated/` 與 `scripts/`。
+         32 §二：現行備份涵蓋 `data/` 68 檔，
+         未涵蓋 `generated/`（理由：皆經產生器且已入版控）
+         與 `scripts/`（理由：另由 G108 掌管）。
+
+         **二理由皆不足：**
+         （a）`generated/` 之 TC 內容為本 feature 之**主產出** ——
+              「已入版控」意味著損壞後須以 git 還原，
+              而 R-P228 正為使 git 不再是唯一退路而設
+         （b）`scripts/` 由 G108 掌管者為**語法與符號完整性**，
+              非其內容之正確性；G108 攔得住刪函式，
+              攔不住「改壞了但仍能載入」
+
+         處置：備份擴及 `generated/` 與 `scripts/`；
+         回報擴充後之檔數與備份耗時。
+         裁決者 Pei，逐字依據：「先繼續做」。
+```
+**執行層回報：已擴充，並回報檔數與耗時。**
+
+| 版 | 範圍 | 檔數 | 耗時 |
+| 32 包 | `data/` | 68 | — |
+| **33 包** | **`data/` ＋ `generated/` ＋ `scripts/`** | **131 → 133** | **0.05 – 0.08 秒** |
+
+**耗時可忽略** —— 32 包所持之二理由（「已入版控」「G108 掌管」）既被否決，
+而其成本亦不構成不做之理由。
+
+`--verify` / `--restore` 已同步支援三目錄之相對路徑。
+本包實測：改寫前備份 → 改寫後 `--verify` 得 **3 檔相異**
+（`g155` / `g156` / `rejudge_design_method.py`）—— **含 `scripts/` 之變更**，
+即擴充確實生效。
+
+```
+[R-P235] P0 佔 73.1% 之合理性須量測。
+         32 §A-PW169 / 31 §二：P0 佔全批 73.1%（193 / 264）。
+         §10.2 之 P0 定義為窄類：
+         「safety, boot/recovery, connection, audio output, eCall,
+          vehicle-critical CAN signal, data-loss risk」。
+         **近四分之三之 TC 落入該窄類，其合理性未經檢驗。**
+
+         此與 `design_method` 為同型風險：
+         一個由執行層逐條指派、無閘門驗其正確性、且高度集中於單一值之欄位。
+         R-P8 令 priority 依 TC 實際測項套 §10.2 判定 ——
+         而該判定之結果從未被複核。
+
+         處置：
+         （a）量 P0 之逐 Test Set 分布
+         （b）自 P0 抽樣（率 ≥ 16.7%，種子載明），
+              逐條對照 §10.2 之七個類別，回報其所屬類別與依據
+         （c）無法歸入任何類別者逐條列出
+         **本包不改任何 priority 值** —— 裁定於 34 包。
+         裁決者 Pei，逐字依據：「先繼續做」。
+```
+**執行層回報：已量測與對照；抽樣中 38.2% 無法歸類或依據薄弱。**
+
+**（a）P0 逐 Test Set 分布**：
+
+| Test Set | 條 | P0 | 佔比 |
+| Power State | 128 | 113 | **88.3%** |
+| Branding and Theme | 34 | 26 | **76.5%** |
+| Startup Display | 59 | 40 | 67.8% |
+| Timeout Settings | 26 | 11 | 42.3% |
+| **Power Down** | 17 | 3 | **17.6%** |
+
+全批 P0 **193 / 264 = 73.1%**；P1 63、P2 8、**P3 0**。
+
+**（b）抽樣 34 / 193 = 17.6%**（種子 `random.Random(33)`），逐條對照七類：
+**可歸類 21、無法歸類或依據薄弱 13 = 38.2%**。
+
+**（c）無法歸類者逐條**（8 條明確不屬七類）：
+`101` / `105`（Timeout1 自 PROXI 取值 —— 參數設定）、
+`154`（Sirius logo 呈現）、`237`（品牌字型）、`240` / `241`（品牌 App icon）、
+`257`（日間主題）、`259`（季節判定）—— **後六條皆屬 §10.2 之 P3
+「cosmetic detail / low-impact customization」**。
+
+另 5 條**依據薄弱**：`088`（拒絕 popup 後**維持** Timed，較近 P1）、
+`110` / `138` / `139`（後視**影像**輸出 —— §10.2 之 `audio output` 不含 video，
+七類無「影像輸出」）、`191`（開機**音效**，非音訊輸出功能）。
+
+**最集中之訊號**：**Branding and Theme 之抽樣 5 條全數無法歸類（5 / 5）** ——
+該 Test Set 之 26 條 P0（76.5%）幾乎確定應為 P3。
+
+**本包未改任何 `priority` 值。**
+
 ---
 
 ## 待裁

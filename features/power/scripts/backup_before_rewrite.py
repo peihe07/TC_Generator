@@ -17,7 +17,7 @@
 `sandbox/` 不入版控（其已存在於本 repo 且未被追蹤）。
 
 用法：
-    python features/power/scripts/backup_before_rewrite.py            # 備份 data/ 全部
+    python features/power/scripts/backup_before_rewrite.py            # 備份 data/ + generated/ + scripts/
     python features/power/scripts/backup_before_rewrite.py --verify <標籤>
     python features/power/scripts/backup_before_rewrite.py --restore <標籤> [檔名…]
     python features/power/scripts/backup_before_rewrite.py --list
@@ -36,6 +36,14 @@ POWER = ROOT / "features/power"
 DATA = POWER / "data"
 BACKUP = POWER / "sandbox" / "backup"
 
+# R-P234（33 包）：備份範圍擴及 `generated/` 與 `scripts/`。
+# 32 包所持之二理由已被否決 ——
+#   `generated/`：「已入版控」意味損壞後須以 git 還原，而 R-P228 正為使 git
+#                 不再是唯一退路而設；其 TC 內容為本 feature 之**主產出**
+#   `scripts/`  ：G108 掌管者為**語法與符號完整性**，非其內容之正確性 ——
+#                 「改壞了但仍能載入」G108 攔不住
+DIRS = ("data", "generated", "scripts")
+
 
 def sha(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -44,13 +52,18 @@ def sha(p: Path) -> str:
 def make(label: str | None = None) -> Path:
     label = label or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     dest = BACKUP / label
-    (dest / "data").mkdir(parents=True, exist_ok=True)
+    dest.mkdir(parents=True, exist_ok=True)
     rows = []
-    for p in sorted(DATA.iterdir()):
-        if not p.is_file():
+    for d in DIRS:
+        src_dir = POWER / d
+        if not src_dir.exists():
             continue
-        shutil.copy2(p, dest / "data" / p.name)
-        rows.append((f"data/{p.name}", sha(p), p.stat().st_size))
+        (dest / d).mkdir(parents=True, exist_ok=True)
+        for p in sorted(src_dir.iterdir()):
+            if not p.is_file() or p.name == "__pycache__":
+                continue
+            shutil.copy2(p, dest / d / p.name)
+            rows.append((f"{d}/{p.name}", sha(p), p.stat().st_size))
     (dest / "MANIFEST.tsv").write_text(
         "path\tsha256\tbytes\n" + "".join(f"{a}\t{b}\t{c}\n" for a, b, c in rows),
         encoding="utf-8")
@@ -76,14 +89,16 @@ def verify(label: str) -> int:
 
 def restore(label: str, names: list[str]) -> None:
     dest = BACKUP / label
-    todo = names or [p.name for p in (dest / "data").iterdir()]
-    for n in todo:
-        src = dest / "data" / n
+    todo = names or [f"{d}/{p.name}" for d in DIRS
+                     if (dest / d).exists() for p in (dest / d).iterdir()]
+    for rel in todo:
+        rel = rel if "/" in rel else f"data/{rel}"
+        src = dest / rel
         if not src.exists():
-            print(f"  **備份中無** {n}")
+            print(f"  **備份中無** {rel}")
             continue
-        shutil.copy2(src, DATA / n)
-        print(f"  還原 data/{n}")
+        shutil.copy2(src, POWER / rel)
+        print(f"  還原 {rel}")
 
 
 def main() -> None:

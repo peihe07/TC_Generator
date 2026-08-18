@@ -87,6 +87,7 @@ def write_rows(src: Path, out: Path, tcs: list[dict], cfg: dict,
                *, shift: int = 0, blank_b: bool = False) -> dict:
     """以 surgical_save 寫入。`shift` / `blank_b` 供「刻意寫錯」之失敗證明。"""
     sys.path.insert(0, str(ROOT / "backend"))
+from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
     from xlsx_surgical import col_to_idx, idx_to_col, surgical_save
 
     wb = openpyxl.load_workbook(src)
@@ -235,7 +236,7 @@ def main() -> None:
         },
         "tc_count": len(tcs),
     }
-    (DATA / "b3_dryrun.json").write_text(
+    guard_write(DATA / "b3_dryrun.json") or (DATA / "b3_dryrun.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"來源 {src.name}")

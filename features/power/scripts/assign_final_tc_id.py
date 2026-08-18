@@ -19,6 +19,7 @@ R-P113(c) 明訂最終指派於全部 114 leaf 產出完成後方為之（16 §I
 from __future__ import annotations
 
 import json
+from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
 import re
 import sys
 from pathlib import Path
@@ -131,6 +132,7 @@ def main() -> None:
         f"{r['row']}\t{r['final_tc_id']}\t{r['provisional_tc_id']}\t{r['req_id']}"
         f"\t{r['split_index']}\t{r['file']}\t{r['is_provisional']}\n" for r in rows)
     path = DATA / "final_tc_id_map.tsv"
+    guard_write(path)          # R-P233：(c) 型產物之寫入保護
     path.write_text(header + body, encoding="utf-8")
     print(f"wrote {path.relative_to(ROOT)} — {len(rows)} 列")
     print("**本表為預覽，未改寫任何批次 JSON**（R-P113(c)：最終指派於 114 leaf 完成後）")
