@@ -134,33 +134,46 @@ def fields(tc: dict) -> tuple[str, str, str, str]:
 
 
 def propose(tc: dict) -> tuple[int | None, str, str]:
-    """回傳（首個命中列, 該列之 method, 命中字串）；None 表機械無法判定。"""
+    """回傳（首個命中列, 該列之 method, 命中字串）。
+
+    §12 為 **first-match**：1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9。
+    R-P236：落底第 9 列之前，第 4、5、7、8 列須先判定。
+    """
     er, proc, data, pre = fields(tc)
     allt = f"{proc}\n{data}\n{er}"
     m = ROW1_RE.search(proc) or ROW1_RE.search(er)
     if m:
         return 1, "Negative / Invalid", m.group(0)
-    # 第 2 列（R-P232，33 包）：**其故障須為驗證之對象** ——
-    # 作為情境建構之前提者不適用（其故障不被觀察，僅用以建立起始條件）。
-    # 實作：故障詞須見於 `input_test_data` 或 `test_procedure`（即注入之刺激），
-    # **僅見於 `pre_conditions` 者不命中**。
+    # 第 2 列（R-P232）：故障須為驗證之對象 —— 僅見於 `pre_conditions` 者不命中。
     m = ROW2_RE.search(f"{data}\n{proc}")
     if m:
         return 2, "Fault Injection", m.group(0)
-    # 第 3 列：**正向確認**（R-P231(b)）。
-    # 「明示不轉換」與正向謂詞同時命中者 → **矛盾**，逐條人工裁決（R-P231(d)）。
+    # 第 3 列：正向確認（R-P231）；與 G154 同時命中者為矛盾。
     neg = NO_TRANSITION_RE.search(er)
     pos = POSITIVE_RE.search(er)
     if neg and pos:
         return -1, "**矛盾（正向與明示不轉換同時命中）**", f"{pos.group(0)} ／ {neg.group(0)}"
     if pos:
         return 3, "State Transition", pos.group(0)
+    # 第 4 列（R-P236(b)）：代理判準 —— 實質條件 ≥ 2。**僅為提案，須人工確認**。
+    k = substantive_conditions(pre)
+    if k >= 2:
+        return 4, "Decision Table（**代理判準之提案，須人工確認**）", f"實質條件 {k} 項"
+    # 第 5 列：輸入之等價類切分。
+    m = ROW5_RE.search(f"{data}\n{pre}")
+    if m:
+        return 5, "Equivalence Partitioning", m.group(0)
+    # 第 6 列：界線值。
     m = ROW6_RE.search(allt)
     if m:
         return 6, "Boundary Value Analysis", m.group(0)
-    # R-P231(c)：§12 為 first-match 且第 9 列為 catch-all ——
-    # **「機械無法判定」不應存在為一個結果類別**；其真正意義為「未命中任何前列，故落底」。
-    return 9, "Functional Based（落底）", "（未命中第 1–8 列）"
+    # 第 7 列：本語料無可靠謂詞（見 PRED 之註解），不設。
+    # 第 8 列：≥ 3 步；**跨功能與否須人工確認**。
+    if len(STEP_RE.findall(proc)) >= 3:
+        return 8, "Scenario / Use Case（**≥3 步，跨功能須人工確認**）", \
+               f"procedure {len(STEP_RE.findall(proc))} 步"
+    # 第 9 列 catch-all（R-P231(c)）：第 1–8 列皆未命中。
+    return 9, "Functional Based（落底）", "（第 1–8 列皆未命中）"
 
 
 def g154(tcs: list[dict]) -> list[dict]:
@@ -273,6 +286,50 @@ def main() -> None:
     print(f"  G155：相符 {same}、**相異 {diff}**、**機械無法判定 {undecided}** "
           f"→ 入人工裁決 **{diff + undecided}** / {len(tcs)}")
     print(f"  G154：**{len(hits154)} 條**明示不轉換而標為狀態轉換")
+
+
+# ── 第 4、5、7、8 列之謂詞（R-P236，34 包）──
+#
+# 33 包之「落底 173」語義被高估 —— 其真正意義為「第 1、2、3、6 列未命中」，
+# **非「第 1–8 列皆未命中」**。若逕作 Functional Based，
+# 將自「95.8% 偏向狀態轉換」翻為另一方向之一致偏向。
+#
+# 第 4 列 Decision Table（多條件 → 結果）——
+#   **代理判準**（R-P236(b)）：`pre_conditions` 之**實質**條件項數 ≥ 2
+#   （扣除 bench 環境列：模擬工具已連接、按鍵可用、裝置已配對等）。
+#   **代理判準不得凌駕實質判準（§5a）** —— 其結果僅為提案，須人工確認。
+#
+# 第 5 列 Equivalence Partitioning（輸入切分 valid / invalid）——
+#   語料實測：`other than` 27、`a value other` 22、`out of range` 1；
+#   `valid` / `invalid` / `partition` 皆 **0**。
+#   取「取一個非 X 之值」之形態，其為輸入之等價類切分。
+#
+# 第 7 列 Combinatorial（多參數組合）——
+#   語料實測：`combination` / `both` / `each of` 皆 **0**；`and` 306 次過泛不可用。
+#   **本語料無可靠之第 7 列謂詞**，故不設；其命中數為 0 係「無從判定」而非「已判無」，
+#   據實標明（見上繳 §二）。
+#
+# 第 8 列 Scenario / Use Case（end-to-end，≥ 3 features）——
+#   tie-break 逐字：「Scenario = ≥3 steps crossing features」。
+#   語料實測：procedure 3 步者 **16** 條、2 步者 248 條。
+#   取「procedure ≥ 3 步」為必要條件；**跨功能與否須人工確認**。
+BENCH_RE = re.compile(
+    r"simulation tool|bench|injection tool|is connected|is available|"
+    r"is paired|equipped|clock is set|carries the ex-factory", re.I)
+ROW5_RE = re.compile(r"a value other than|other than \"|out of range", re.I)
+STEP_RE = re.compile(r"^\s*\d+\.", re.M)
+
+
+def substantive_conditions(pre: str) -> int:
+    """`pre_conditions` 之實質條件項數（扣除 bench 環境列）。"""
+    n = 0
+    for ln in pre.split("\n"):
+        if not STEP_RE.match(ln):
+            continue
+        if BENCH_RE.search(ln):
+            continue
+        n += 1
+    return n
 
 
 if __name__ == "__main__":

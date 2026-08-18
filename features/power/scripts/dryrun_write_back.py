@@ -29,6 +29,7 @@ from pathlib import Path
 
 import openpyxl
 import yaml
+from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
 
 ROOT = Path(__file__).resolve().parents[3]
 FEATURE = ROOT / "features/power"
@@ -87,7 +88,6 @@ def write_rows(src: Path, out: Path, tcs: list[dict], cfg: dict,
                *, shift: int = 0, blank_b: bool = False) -> dict:
     """以 surgical_save 寫入。`shift` / `blank_b` 供「刻意寫錯」之失敗證明。"""
     sys.path.insert(0, str(ROOT / "backend"))
-from protect_products import guard_write  # R-P233：(c) 型產物之寫入保護
     from xlsx_surgical import col_to_idx, idx_to_col, surgical_save
 
     wb = openpyxl.load_workbook(src)

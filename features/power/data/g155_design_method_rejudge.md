@@ -90,186 +90,186 @@
 
 | tc_id | Test Set | 現值 | 提案列 | 提案 | 命中字串 | 狀態 |
 |---|---|---|---|---|---|---|
-| `001` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `002` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `003` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `004` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `005` | Power Down | 功能測試 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `006` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `007` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `008` | Power Down | 基礎故障注入 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `009` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
+| `001` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `002` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `003` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `004` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `005` | Power Down | 功能測試 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `006` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `007` | Power Down | 決策表 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `008` | Power Down | 基礎故障注入 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `009` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `010` | Power Down | 狀態轉換 | 6 | Boundary Value Analysis | `limit` | **相異 → 人工裁決** |
 | `011` | Power Down | 決策表 | 6 | Boundary Value Analysis | `limit` | **相異 → 人工裁決** |
-| `012` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `013` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `014` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `015` | Power Down | 決策表 | 6 | Boundary Value Analysis | `limit` | **相異 → 人工裁決** |
-| `016` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `017` | Power Down | 決策表 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `018` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `019` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `020` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `021` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `022` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `023` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
+| `012` | Power Down | 決策表 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `013` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `014` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `015` | Power Down | 決策表 | 5 | Equivalence Partitioning | `out of range` | **相異 → 人工裁決** |
+| `016` | Power Down | 決策表 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `017` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `018` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `019` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `020` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `021` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `022` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `023` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `024` | Timeout Settings | 狀態轉換 | 1 | Negative / Invalid | `Attempt to` | **相異 → 人工裁決** |
-| `025` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `026` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `027` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `028` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `029` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `030` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `031` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `032` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
+| `025` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `026` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `027` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `028` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `029` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `030` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `031` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 4 項` | **相異 → 人工裁決** |
+| `032` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
 | `034` | Timeout Settings | 狀態轉換 | -1 | **矛盾（正向與明示不轉換同時命中）** | `transition to ／ remains in` | **相異 → 人工裁決** |
-| `035` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `045` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `046` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `047` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `052` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `053` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `054` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `055` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `056` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `057` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `058` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `059` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `061` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `063` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `065` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `066` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
+| `035` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `045` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `046` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `047` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `052` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `053` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `054` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `055` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `056` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `057` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `058` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `059` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `061` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `063` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `065` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `066` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `071` | Power State | 狀態轉換 | -1 | **矛盾（正向與明示不轉換同時命中）** | `passes to ／ stays in` | **相異 → 人工裁決** |
-| `072` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `075` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `077` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `081` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `082` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `086` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `088` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `090` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `092` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `095` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `096` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `097` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `098` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `099` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `100` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `101` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `103` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `104` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `105` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `106` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `108` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `109` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `110` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `114` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `121` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `122` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `123` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `124` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `126` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `127` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `128` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `129` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `130` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `131` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `132` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `133` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `134` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `135` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `136` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `137` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `138` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `139` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `140` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `141` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `146` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `147` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `150` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `151` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `152` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `153` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `154` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `155` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `156` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `157` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `158` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `159` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `161` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `162` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `163` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `164` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `175` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `176` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `177` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `178` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `179` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `180` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `181` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `186` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `187` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `188` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `189` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `190` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `191` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `192` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `193` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `194` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `195` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `196` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `197` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `198` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `199` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `200` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `201` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `202` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `203` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `204` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `205` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `206` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `207` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `208` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `220` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `221` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `222` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `223` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `224` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `225` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `226` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `227` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `228` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `231` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `232` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `233` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `234` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `235` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `236` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `237` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `238` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `239` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `240` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `241` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `242` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `243` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `244` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `245` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `246` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `247` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `248` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `249` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `250` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `251` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `252` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `253` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `254` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `255` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `256` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `257` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `258` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
+| `072` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `075` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `077` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `081` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `082` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `086` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `088` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `090` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `092` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `095` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `096` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `097` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `098` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `099` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `100` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `101` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `103` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `104` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `105` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `106` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `108` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `109` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `110` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `114` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `121` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `122` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `123` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `124` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `126` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `127` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `128` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `129` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `130` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `131` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `132` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `133` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `134` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `135` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `136` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `137` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `138` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `139` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `140` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `141` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `146` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `147` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `150` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `151` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `152` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `153` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `154` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `155` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `156` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `157` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `158` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `159` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `161` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `162` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `163` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `164` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `175` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `176` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `177` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `178` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `179` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `180` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `181` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `186` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `187` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `188` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `189` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `190` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `191` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `192` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `193` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `194` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `195` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `196` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `197` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `198` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `199` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `200` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `201` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `202` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `203` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `204` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `205` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `206` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `207` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `208` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `220` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `221` | Startup Display | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `222` | Startup Display | 狀態轉換 | 5 | Equivalence Partitioning | `a value other than` | **相異 → 人工裁決** |
+| `223` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `224` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `225` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `226` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `227` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
+| `228` | Startup Display | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 4 項` | **相異 → 人工裁決** |
+| `231` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `232` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `233` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `234` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `235` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `236` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `237` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `238` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `239` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `240` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `241` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `242` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `243` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `244` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `245` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `246` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `247` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `248` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `249` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `250` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `251` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `252` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `253` | Branding and Theme | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
+| `254` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `255` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `256` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `257` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `258` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `259` | Branding and Theme | 狀態轉換 | 6 | Boundary Value Analysis | `boundary` | **相異 → 人工裁決** |
 | `260` | Branding and Theme | 狀態轉換 | 6 | Boundary Value Analysis | `boundary` | **相異 → 人工裁決** |
 | `261` | Branding and Theme | 狀態轉換 | 6 | Boundary Value Analysis | `boundary` | **相異 → 人工裁決** |
 | `262` | Branding and Theme | 狀態轉換 | 6 | Boundary Value Analysis | `boundary` | **相異 → 人工裁決** |
-| `263` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
-| `264` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（未命中第 1–8 列）` | **相異 → 人工裁決** |
+| `263` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `264` | Branding and Theme | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |

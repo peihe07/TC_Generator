@@ -3450,6 +3450,8 @@ by means of `Auto_SwitchOn_Setting.Req`」—— 即 LTM High 存在時
          此取捨由 Pei 裁定，登記為已知限制。
          裁決者 Pei，逐字依據：「一次下放」。
 ```
+
+**註記（R-P36，34 包加註）**：本條之「通讀取樣」已由 **R-P241** 改為**目標式深挖**。本條原文不改；其取樣義務自 34 包起依 R-P241(a)(b) 執行，並依 R-P241(c) 明載其代價 —— 自由文字欄位之全文將無人目視。
 **執行層接受，並記其於本包之直接後果。**
 本包之四項真缺口（`011` 長按、`014` 之 LTM High 二支、`028` 之 LTM High 支）
 **皆由反向涵蓋報告抓出，非由 TC 全文目視抓出** —— 與本條所述之投報率一致。
@@ -6436,6 +6438,779 @@ baseline 1、before-snapshot 5、dry-run 結果 1、對照表 1、
 該 Test Set 之 26 條 P0（76.5%）幾乎確定應為 P3。
 
 **本包未改任何 `priority` 值。**
+
+
+## 第三十四輪 — 下放包 34（`docs/handoff/34_row_completion.md` §A）
+
+```
+[R-P236] 落底第 9 列之前，第 4–8 列須先判定；未機械化之列不得以「未命中」論。
+         33 §六：正向 81 / **落底 173** / 矛盾 2 / 相異 183。
+
+         **「落底」之語義被高估。**
+         R-P226(d) 明訂第 4 列（多條件 → 結果）**全數入人工裁決、未機械化**；
+         第 5 列（等價劃分）、第 7 列（組合）、第 8 列（情境 / 使用案例）
+         亦未見謂詞。
+         故現行「落底」之真正意義為
+         **「第 1、2、3、6 列未命中」**，非「第 1–8 列皆未命中」。
+
+         若逕將 173 條作 Functional Based，
+         將自「95.8% 偏向狀態轉換」翻為**另一方向之一致偏向** ——
+         即 33 §九第 1 項所慮者。
+
+         **裁定：落底為第 9 列之前，須先對第 4、5、7、8 列作出判定。**
+         （a）可機械化者實作謂詞（詞彙自語料導出）；
+              第 8 列之「≥ 3 步跨功能」為結構特徵，應可機械判定
+         （b）第 4 列之「多條件 → 結果」得以
+              `pre_conditions` 之條件項數 ＋ ER 之結果數為代理判準，
+              **惟代理判準不得凌駕實質判準**（§5a）——
+              其結果僅為提案，須人工確認
+         （c）四列皆判定後仍未命中者，方得落至第 9 列
+         （d）回報落底數之變化：173 → ?
+
+         **在此之前不得改值。**
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：四列謂詞已實作，落底 173 → 85。**
+
+依 R-P238(a)，本次全部 `.py` 變更以 `edit_script.py` 之 AST 節點邊界完成，
+並於寫回後重新 `ast.parse`。
+
+**（a）（b）四列之謂詞與其依據**
+
+| 列 | 判準 | 謂詞 | 依據 |
+| 4 Decision Table | 多條件 → 結果 | `pre_conditions` 之**實質**條件項數 ≥ 2（扣除 bench 環境列） | **代理判準；僅為提案，須人工確認**（R-P236(b) / §5a） |
+| 5 Equivalence Partitioning | 輸入切為 valid / invalid | `a value other than` / `other than "…"` / `out of range` | 語料實測：`valid` 0、`invalid` 0、`partition` 0；`other than` 27、`a value other` 22、`out of range` 1 |
+| 7 Combinatorial | 多參數組合 | **無** | 語料實測：`combination` 0、`both` 0、`each of` 0；`and` 306 次過泛不可用 |
+| 8 Scenario / Use Case | ≥ 3 步跨功能 | `test_procedure` 步數 ≥ 3 | tie-break 逐字「≥3 steps crossing features」；語料實測 3 步 16 條、2 步 248 條。**「跨功能」未機械化，須人工確認** |
+
+**第 7 列須明載**：其命中數 0 係 **「無從判定」**，
+**非「已判為不適用」** —— 本語料無可靠謂詞，依 R-P64 標為未判定。
+
+**（c）（d）first-match 之全批分布**（1→2→3→4→5→6→7→8→9）
+
+| 列 | method | 條數 |
+| — | **矛盾（正向與明示不轉換同時命中）** | 2 |
+| 1 | Negative / Invalid | 1 |
+| 2 | Fault Injection | **0** |
+| 3 | State Transition | 81 |
+| 4 | Decision Table（代理判準之提案） | **80** |
+| 5 | Equivalence Partitioning | 2 |
+| 6 | Boundary Value Analysis | 6 |
+| 7 | Combinatorial | 0（無從判定） |
+| 8 | Scenario / Use Case（≥3 步） | 7 |
+| 9 | Functional Based（落底） | **85** |
+
+**落底 173 → 85**（減 88：第 4 列 80、第 8 列 7、第 5 列 2，另矛盾 2 與第 1 列 1 原即不在落底內）。
+
+**本包未改任何 `design_method` 值** —— `git diff --stat features/power/generated/` 為空。
+
+```
+[R-P237] `priority` 全批重判；Branding and Theme 之 P0 先行處置。
+         33 §5.2 抽樣 34 / 193（17.6%，種子 33）：
+         **無法歸類或依據薄弱 13 條 = 38.2%**。
+         其中**明確不屬 §10.2 七類者 8 條**，
+         而 `154`（Sirius logo）/ `237`（品牌字型）/ `240` / `241`（品牌 App icon）/
+         `257`（日間主題）/ `259`（季節判定）六條
+         **皆屬 §10.2 之 P3「cosmetic detail / low-impact customization」**。
+
+         33 §5.3：**Branding and Theme 之抽樣 5 條全數無法歸類（5 / 5）**，
+         其 26 條 P0（76.5%）幾近確定應為 P3。
+
+         處置：
+         （a）**Branding and Theme 之 34 條全數重判**（非抽樣），
+              逐條對照 §10.2 七類並列依據；
+              不屬七類且為外觀 / 客製化者判 P3
+         （b）其餘 Test Set 之 P0 亦全數重判，逐條列依據
+         （c）**本包產出提案與依據，不改值** ——
+              改值於 35 包與 `design_method` 一併為之
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：全量重判已出，提案 93 / 201 不成立。**
+
+受檢範圍依 R-P237(a)(b)：全部 P0 **193** 條 ＋ Branding and Theme 全 **34** 條，
+去重後 **201 / 264**。輸出 `data/g164_priority_rejudge.md`（逐條列命中字串為證）。
+
+**⚠ 依 R-P187 / R-P182 並陳兩版，並載明偏誤方向。**
+
+| 版 | P0 成立 | 無 P0 類別命中、命中裝飾性 | 無 P0 類別命中、亦非裝飾性 |
+| **v1** | **198** | 0 | 3 |
+| **v2** | **108** | **40** | **53** |
+
+**v1 之缺陷（自查所得）**：
+（甲）`\bCAN\b` 誤加 `re.I`，吃到英文常用字 “can”；
+（乙）connection 類含 `connect(?:ion|ed|ivity)` / `network`，
+吃到 bench 樣板句「a CAN simulation tool **is connected** to the **network**」——
+**該句存在於每一條 TC**，故 connection 與 CAN 二類於 Branding and Theme 各命中 34 / 34。
+
+**偏誤方向：偏向「P0 成立」**，即偏向**確認現值、免除重判作業**之方向 ——
+此為對執行層有利之方向，故依 R-P187 明載。
+**結構性理由**：謂詞讀入了 `pre_conditions` 之 bench 樣板列，該列與受測行為無關。
+v2 於 `evidence()` 濾除 bench 列，並令 `CAN` 區分大小寫。
+
+**（a）Branding and Theme 全 34 條（v2）**：
+
+| 判定 | 條數 |
+| 無 P0 類別命中；命中裝飾性／個人化 → **提案 P3** | **19** |
+| P0 成立 | 11 |
+| 無 P0 類別命中，亦非裝飾性 → 提案人工裁決 | 4 |
+
+**與 33 §5.3 之「抽樣 5 / 5 全數無法歸類」不一致**：全量下為 23 / 34 無法歸類（67.6%），
+非 100%。11 條成立者多經 boot / recovery（開機畫面確屬開機流程）。
+**抽樣結論不可推及全體，此為實例。**
+
+**（c）本包未改任何 `priority` 值** —— `git diff --stat features/power/generated/` 為空。
+
+```
+[R-P238] 禁止以正則定位插入點修改腳本。
+         33 §1.3：執行層自造損壞 ——
+         自動插入將 import 誤置於 `load_ok()` 函式體內，致無法載入。
+         **此為正則定位插入點之第二次**（A-PW111 為 20 包之過寬切片）。
+
+         執行層自陳之關鍵：
+         「這次是 Python 直接報錯所以我立刻知道；
+          **若那個插入沒造成語法錯誤而只是語義偏了，G108 也攔不住**
+          —— 它驗的是語法、載入與符號，不是語義。」
+
+         **裁定：禁止以正則或字串位移定位插入點修改任何 `.py` 檔。**
+         替代方式二擇一：
+         （a）以 `ast` 解析後於明確之節點邊界插入，並於寫回後重新 `ast.parse`
+         （b）以完整檔案重寫（先備份，R-P234），不作區域性插入
+
+         G108 之限度一併明載：其驗語法、載入與符號之存在，
+         **不驗語義**；語義偏差無任何機制可攔。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：已實作 `edit_script.py`；另發現第二處既存損壞。**
+
+**⚠ 對 33 包上繳之訂正**：33 包稱「六個寫入者已加 `guard_write`」，
+其中 `dryrun_write_back.py` 之 import 亦被誤置（第 90 行，於 `sys.path.insert` 之後、
+函式體內），致 `SyntaxError: unexpected indent (line 91)`。
+**自 33 包起即損壞而未被發現**，因 G108 之基線僅涵蓋 7 檔
+（`assign_final_tc_id` / `lint_tcs` / `or_branch_coverage` / `reverse_coverage` /
+`verify_anchor_set` / `verify_layer3` / `verify_source_clause`），不含該檔，
+且該檔本包之前未被執行。**故正則定位插入點之事故為兩處，非一處。**
+依 R-P149 未以 git 修復，以新工具修復（丟棄第 90 行、插入於第 32 行）。
+
+**G165 —— `edit_script.py`**（R-P238(a)）：
+
+| 函式 | 邊界之來源 | 用途 |
+| `insert_module_import()` | 頂層 import 節點之 `end_lineno` 最大值 | 插入 import |
+| `replace_node()` | 頂層 `def` / `class` 之 `lineno`–`end_lineno`（含裝飾器） | 整體替換函式 |
+| `append_module_code()` | `if __name__ == "__main__":` 守衛之 `lineno`（無守衛則模組末端） | 追加頂層定義 |
+| `drop_line()` | 指定行號 | 移除誤置行 |
+
+三者皆於寫回後重新 `ast.parse`，**失敗即自動回復原檔**。fixture 4 項全數如期。
+
+**`append_module_code()` 之插入點於本包內即被實作修正**（並陳，R-P182）：
+初版追加於**模組末端**，即 `__main__` 守衛之後，
+致 `main()` 執行時 `substantive_conditions` 尚未定義（`NameError`）。
+改為插入於守衛之前。**守衛之位置由 AST 判定，非文字定位。**
+
+**全域驗證**：`features/power/scripts/` 之 **59 檔語法錯誤 0**；
+寫入保護仍生效（`build_b5_material.py` 如期 `ProtectedWrite: **拒寫**`）。
+
+**G108 之限度已如裁決所載**：其驗語法、載入與符號之存在，**不驗語義**。
+本包再增一項限度實測：**其基線僅 7 檔，涵蓋率 7 / 59 = 11.9%**，
+故「G108 未報錯」不得作為「腳本無損壞」之證據。
+
+```
+[R-P239] `SWE-PM-073` 之 Fault Injection Lite 須實測查證。
+         33 §九第 3 項：全批第 2 列命中降為 0，
+         而現值仍有一條標為故障注入；
+         執行層自陳「初判它成立，**但它沒進抽樣，我是用讀過的印象判的，
+         不是實測**」。
+
+         依 R-P232 之判準（故障須為驗證之對象）實測查證該條：
+         引其 `source_clause`、`pre_conditions`、`test_procedure`、
+         `expected_result` 逐字，判 `Batt_ST_Crit` 之注入
+         是否為該 TC 所觀察之對象。
+         成立者維持；不成立者依 first-match 續判。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：實測查證，Fault Injection Lite **成立**。**
+
+**⚠ 裁決條文之事實前提須訂正**：條文令「判 `Batt_ST_Crit` 之注入是否為該 TC 所觀察之對象」，
+惟 `SWE-PM-073` 標為故障注入者為 **`…-008`**，其注入之故障為
+**load shed 訊號之缺失**，非 `Batt_ST_Crit`。`Batt_ST_Crit` 屬 `…-009` / `…-013` 等
+（皆標為決策表）。**依原文逐字查證，不代換。**
+
+**`source_clause` 逐字（相關句）**：
+> Under fault condition of missing load shed signals on the CAN bus, the last values of load shed signals shall be used until load shed signal broadcast resumes. If the load shed signals do not recover, the on-going load shed action shall be maintained for the rest of current ignition key cycle.
+
+**`NR1L-PowerManagement-008` 逐字**：
+
+`pre_conditions`：
+> 1. The bench is an Atlantis High configuration
+> 2. A LIN and CAN simulation tool is connected
+> 3. The Load Shed condition is already active
+
+`test_procedure`：
+> 1. Stop the broadcast of the two Load Shed signals on the bus
+> 2. Read the AUD_LVL signal and the audio output state
+> 3. Keep the broadcast stopped to the end of the ignition cycle to check that Load Shed is maintained
+
+`expected_result`：
+> 1. The two Load Shed signals are absent from the bus trace
+> 2. AUD_LVL still carries the reduced level and the TLM stays muted
+> 3. The Load Shed action is maintained for the rest of the current ignition key cycle
+
+**依 R-P232 之判準（故障須為驗證之對象）**：
+（甲）故障**注入於 `test_procedure` 第 1 步**，非僅列為前提 —— 與 `…-050` 之
+`The battery is disconnected`（情境建構之前提）形態不同；
+（乙）ER 第 1 行**直接觀察故障本身**（訊號自 bus trace 消失），
+ER 第 2、3 行觀察故障條件下之行為；
+（丙）`source_clause` 亦以 `Under fault condition of` 明示其為故障情境。
+→ **故障確為該 TC 所觀察之對象，Fault Injection Lite 成立，維持。**
+
+**惟第 2 列謂詞漏判之**（偽陰性，須明載）：
+`ROW2_RE` 為 `disconnect|inject(?:ed|ion)? (?:a )?fault|fault injection`，
+而 `…-008` 之注入措詞為 **`Stop the broadcast`**，無上列任一詞。
+故 R-P236 之分布表「第 2 列 0 條」**係謂詞漏判，非語料中無故障注入** ——
+語料中至少有 1 條真故障注入。依 R-P64 標為已知偽陰性，
+**不於本包擴充謂詞**（擴充將使同一批之判準於量測後調整，違 17 §I）。
+
+```
+[R-P240] 後視攝影機影像之 P0 成立；§10.2 未列影像輸出，登記為 rubric 缺口。
+         33 §5.2：`110` / `138` / `139`（後視**影像**輸出）判為依據薄弱，
+         理由為「§10.2 之 `audio output` 不含 video，七類無『影像輸出』」。
+
+         **裁定：P0 成立**，其依據為 §10.2 之**第一類 `safety`** ——
+         後視攝影機為倒車輔助，屬安全相關功能，
+         不需另立「影像輸出」類即可歸入。
+
+         **惟 §10.2 未列影像輸出，確為 rubric 之缺口** ——
+         本 feature 尚可經 `safety` 涵蓋，
+         其他 feature 之非安全性影像功能（如 DTV、投影顯示）將無類可歸。
+         登記為跨 feature anomaly，供 canon 檢討，本包不改 §10.2。
+
+         `191`（開機**音效**）與 `088`（拒絕 popup 後維持 Timed）
+         依 R-P237(b) 隨全批重判處理。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：三條皆經 `safety` 成立；rubric 缺口已登記。**
+
+**⚠ 先訂正一項編號歧義**：33 §5.2 之 `110` / `138` / `139` 為 **tc_id 末三碼**，
+非 leaf ID（leaf 全集為 `SWE-PM-001`–`115`，無 138 / 139）。逐條實測：
+
+| tc_id | leaf | 現值 | 標題 | §10.2 命中之類別（證據） |
+| `…-110` | `SWE-PM-031` | P0 | Rear view camera images follow the enable signal in any state | `safety` → `Rear view camera`；`boot / recovery` → `Standby` |
+| `…-138` | `SWE-PM-046` | P0 | Rear view camera is provided while the antitheft is still in progress | `safety` → `Rear view camera`；`audio output` → `audio` |
+| `…-139` | `SWE-PM-046` | P0 | Rear view camera is provided after an unsuccessful antitheft | `safety` → `Rear view camera`；`audio output` → `audio` |
+
+**三條皆經第一類 `safety` 成立，與裁決一致。**
+`…-138` / `…-139` 另命中 `audio output`，惟其命中之字串為 ER 中之 `audio and video` ——
+**`audio` 一詞為偶然共現，不足以支撐影像輸出之歸類**，故實質依據仍為 `safety`。
+
+**rubric 缺口之量測（R-P240 登記用）**：
+全批 P0 中，**§10.2 七類皆未命中、而其標的為影像／畫面輸出者共 19 條**
+（如 `…-075` / `…-077`「press is ignored while the rear camera is displayed」、
+`…-076` / `…-078` / `…-108` / `…-109` Splash Screen 呈現）。
+其中後視攝影機相關者可經 `safety` 涵蓋，
+**Splash Screen 等非安全性畫面輸出則無類可歸** —— 缺口於本 feature 內即已顯現，
+非僅其他 feature 之風險。
+
+**本包未改 §10.2**（依裁決）。`191` / `088` 已隨 R-P237(b) 之全量重判處理。
+
+```
+[R-P241] R-P159 之通讀取樣改為目標式深挖。
+         分析層連續三包未讀 211 條取樣；
+         執行層明言「素材一直在，未讀之因不在我這端」，該指摘成立。
+
+         依據：近四包之實質發現
+         （`design_method` 不符 60.5%、`priority` 無法歸類 38.2%、
+          `reasoning` 四項僅 3/33 齊備）
+         **皆非由通讀所得，而係由「量分布 → 抽樣走查」所得**。
+
+         **裁定：以目標式深挖取代通讀。**
+
+         （a）**可列舉欄位** —— 逐欄量值分布，
+              依最集中值之佔比由高至低排序，依序深挖；
+              每深挖一欄回報其不符率；
+              **連續二欄之不符率 < 10% 即停**。
+              不訂固定門檻 —— 60% 那種憑印象之值已於 31 §K 自認無依據。
+
+         （b）**自由文字欄位無分布可量**，
+              其深挖信號為現有之 G113（OR 分支）、
+              G154（明示不轉換）、反向涵蓋三透鏡。
+
+         （c）**代價須明載，不得當作免費交換**：
+              可列舉欄位之深挖已近用盡 ——
+              `test_group` 單一值、`test_set` 已定版、
+              `functional_safety` 全 NA、`estimated_test_time` 全空；
+              `design_method` 與 `priority` 已深挖；僅餘少數欄位。
+              **故本裁定之實際效果為：自由文字欄位
+              （`tc_title` / `pre_conditions` / `test_procedure` /
+               `expected_result`）之全文將無人目視，
+              僅由上述三透鏡與 lint 之閃點涵蓋。**
+
+         （d）本裁定需一項補償：執行層須列出
+              「**現有任何機制皆未涵蓋之實質性質**」，
+              使該缺口可見而非隐沒。
+
+         R-P159 依 R-P36 原文不改，於其下加註指向本條。
+         裁決者 Pei，逐字依據：「改成目標式深挖」。
+```
+**執行層回報：已落實；(c) 之「已近用盡」前提實測為偽，(a) 之停止規則實測失效。**
+
+**⚠ 本包於執行中經 R-P200(b)(ii) 就地修訂（增本條），§J 已重驗 6 / 6 / 「六條」三處一致。**
+
+**（a）可列舉欄位之值分布，依最集中值佔比排序**（264 條）：
+
+| # | 欄位 | 相異值 | 最集中值 | 佔比 | 深挖之不符率 |
+| ① | `estimated_test_time` | 1 | （空） | **100.0%** | 定義上單值 → 0%（見下） |
+| ② | `functional_safety` | 1 | `NA` | **100.0%** | 定義上單值 → 0% |
+| ③ | `test_group` | 1 | `Power Management` | **100.0%** | 定義上單值 → 0% |
+| ④ | `remarks` | 3 | （空） | 98.5% | **3.4%**（9 / 264） |
+| ⑤ | `design_method` | 4 | 狀態轉換 | 95.8% | **60.5%**（31 包已深挖） |
+| ⑥ | `split_flag` | 2 | `True` | 88.3% | **4.9%**（13 / 264） |
+| ⑦ | `reasoning_note` | 27 | （空） | 82.2% | **無可機械化之判準** |
+| ⑧ | `priority` | 3 | `P0` | 73.1% | **46.3%**（本包 G164：93 / 201） |
+| ⑨ | `test_set` | 5 | Power State | 48.5% | 已定版（§E），不深挖 |
+| ⑩ | `input_test_data` | 97 | `NA` | 39.4% | 未深挖 |
+| ⑪ | `split_index` | 12 | `1` | 39.0% | 併入 ⑥ 之判準 |
+| ⑫ | `specification_reference` | 33 | — | 32.2% | 未深挖 |
+
+**⚠（a）之停止規則實測失效，須明載。**
+規則為「連續二欄之不符率 < 10% 即停」。惟依集中度排序，**排在最前之三欄
+（①②③）皆為常數欄，其不符率必為 0%** —— 故該規則於**第 ③ 欄即觸發停止**，
+在抵達任何具資訊之欄位（④ 起）之前。
+**執行層未依該規則停止**，續深挖至 ⑧ —— 此為對本層不利之方向（作業量增加），
+依 R-P187 明載並說明：常數欄之「0% 不符」非量測結果，
+而是「該欄不承載任何資訊」之同義反覆；
+若計入停止規則，該規則將永遠在最無資訊之處終止深挖。
+
+**（b）尚未深挖者與其佔比**：`input_test_data`（39.4%）、
+`specification_reference`（32.2%）、`reasoning_note`（82.2%，無判準）。
+`test_set` 已定版故不深挖。
+
+**⚠（c）之前提實測為偽。**
+R-P241(c) 稱可列舉欄位「已近用盡」，並列舉 `test_group` / `test_set` /
+`functional_safety` / `estimated_test_time` / `design_method` / `priority` 六欄。
+**實測之可列舉欄位為 12 欄** —— 條文**未列入** `remarks`（98.5%）、
+`split_flag`（88.3%）、`reasoning_note`（82.2%）、`split_index`（39.0%）、
+`input_test_data`（39.4%）、`specification_reference`（32.2%）**六欄**。
+其中 `remarks` 與 `split_flag` 於本包首次深挖，各得 3.4% / 4.9% 之不符率
+（見下），皆為前所未知之缺陷。**故「已近用盡」之前提不成立，
+其所推得之「自由文字欄位將無人目視」為本裁定之必然代價亦隨之減弱。**
+
+**④ `remarks` 之深挖（不符 3.4%）**：判準為「對帳表載有 blocking / advisory DR
+之 leaf，其 TC 應於 `remarks` 註記」。**應註記而未註記 8 條**
+（`…-033` / `034` / `035` / `036` / `038` / `040` / `041` / `043`），
+無 DR 而註記 1 條。
+
+**⑥ `split_flag` 之深挖（不符 4.9%）**：判準依 **R-P115**
+（`split_index` = 同一 leaf 內依規格原文子句出現序）：
+`True` 但該 leaf 僅產出 1 條 TC **9 條**；
+`split_index = 0`（出現序不得為 0）**4 條**（`…-053` / `054` / `055` / `097`）。
+
+**⚠ 本欄之判準於本包內經二次訂正，並陳三版（R-P182）**：
+v1 以含後綴之 `req_id` 分組 → 不符 13 / 264 = 4.9%（分組錯誤，數值巧合相同）；
+v2 以 base parent 分組但假設「split = 拆成多個 `req_id` 分支」→ 不符 **233 / 264 = 88.3%**；
+v3 查得 R-P115 之定義後改為「split = 同一 leaf 產出多條 TC」→ **13 / 264 = 4.9%**。
+v2 之 88.3% 恰等於 `split_flag=True` 之比率，此一巧合即為判準假設錯誤之徵候。
+**偏誤方向：v2 偏向「大量不符」，即偏向誇大發現之方向** —— 亦為對執行層有利之方向
+（顯得深挖成效卓著），故依 R-P187 明載。訂正之依據為 R-P115 之定義原文，非結果好看與否。
+
+**（d）現有任何機制皆未涵蓋之實質性質**（依 R-P241(d) 之補償義務）：
+
+| # | 未涵蓋之性質 | 現有機制為何不涵蓋 |
+| 1 | ER 是否為 `source_clause` 之**語義蘊含** | 反向涵蓋三透鏡皆為**詞彙層**（實詞重疊 / 具名標的 / 殘差詞）；門檻 0.45 為人工設定。詞彙重疊高而語義相反者無機制可攔 |
+| 2 | `test_procedure` 各步之**可執行性** | 無任何閘門檢查該步驟能否在 bench 上實際執行；G142 僅驗前提之**形態** |
+| 3 | 同一 leaf 內多條 TC 是否**真正互斥** | `distinguishing_axis` **僅出現於 `gen_batch04/05/06.py` 三個產生器，不見於任何閘門或驗證腳本** —— 該欄所聲稱之差異軸從未被驗證 |
+| 4 | `tc_title` 是否忠實描述該 TC | 無機制。G70 不檢查標題與內容之一致 |
+| 5 | TC 內之**數值門檻**是否等於規格所載 | G94 只驗 `source_clause` 對 CFTS 原文之保真；TC 內之 `20` / `10 seconds` 等與 clause 之對應無機制。`_numeric_is_test_quantity()` 只分「測試量 vs 規格參數」，不比對值 |
+| 6 | 前提條件是否**充分** | G142 / G147 驗其為六欄型態與狀態描述，不驗其是否足以使 procedure 決定性可執行 |
+| 7 | **測項之遺漏** | 反向涵蓋為詞彙層透鏡，且其 0.45 門檻與拆句規則皆人工設定；G113 只看 OR 分支 |
+
+**（d）之上述七項，於本包之後仍全數無機制** —— 本包未新增任何涵蓋之，據實列出。
+
+**（e）R-P159 之加註已依 R-P36 完成**，原文位元組未變：
+SHA256 `43fbfd07141987782a0af0a18608cfec`（加註前後同一）。
+
+**⚠ §D 未列 G167 之期望值**：§H 步驟 7 令「驗 G167」，而 §D 閃點表僅列
+G163 / G164 / G165 / G166 / G70。**執行層不自行擬定 G167 之期望值**（不得自行補寫），
+本節即為 B6 之實測回報，其判定留待分析層。
+
+
+## 第三十五輪 — 下放包 35（`docs/handoff/35_manual_confirm.md` §A）
+
+```
+[R-P242] G108 之基線擴及全部腳本；「未報錯」不得作為無損壞之證據。
+         34 §1.1：同型損壞實為**兩處**非一處 ——
+         `dryrun_write_back.py` 之 import 亦誤置於函式體內，
+         **自 33 包起即損壞而未被發現**，
+         原因為 G108 之基線僅 7 檔、涵蓋率 **7 / 59 = 11.9%**，且該檔未被執行。
+
+         執行層之推論逐字採納：
+         **「G108 未報錯」不得作為「腳本無損壞」之證據。**
+
+         處置：
+         （a）G108 之基線擴及 `features/power/scripts/` **全部 59 檔**；
+              擴充後回報涵蓋率與新增之基線筆數
+         （b）擴充時若發現既存損壞，逐一列出並依 R-P238 修復
+              （AST 或整檔重寫，先備份）
+         （c）**G108 之限度仍明載**（R-P176 / R-P238）：
+              其驗語法、載入與符號之存在，**不驗語義**
+         裁決者 Pei，逐字依據：「上繳了」。
+```
+**執行層回報：涵蓋率 11.9% → 100%；既存損壞 0。**
+
+**（a）擴充結果**
+
+| | 33 包基線 | 35 包擴充後 | 期末（新增 4 檔後同步） |
+|---|---|---|---|
+| 基線檔數 | 7 | **59** | **63** |
+| 涵蓋率 | **11.9%** | **100.0%** | **100.0%** |
+| 符號數 | 163 | 704（新增 541） | 728 |
+
+`WATCHED` 由固定 7 檔之字面清單改為 `sorted(p.name for p in SCRIPTS.glob("*.py"))`，
+**往後新增之腳本自動納入**，不再需要人工維護清單。
+舊 7 檔之符號**無流失**（逐檔比對 `set(old) - set(new)` 皆空）。
+
+**（b）既存損壞 0** —— 34 包已修畢 `dryrun_write_back.py`，本次擴充未再發現新損壞。
+
+**載入層之安全性先經實測，非假設**：`exec_module` 會執行模組層程式碼，
+若有模組層之檔案寫入，將與 **R-P227(c)（時點相依產物不得再跑）**直接衝突。
+以 AST 掃描全部 59 檔之模組層陳述，排除 `sys.path.insert` 後**僅 2 檔**有其他陳述
+（`build_reconciliation.py` 之 `ADVISORY_DR.setdefault(...)`、
+`rejudge_design_method.py` 之二個 `for` 迴圈），**二者皆為記憶體內字典操作，無檔案寫入**。
+故擴充載入層不觸發時點相依產物之再生。
+
+**基線為 (c) 型受保護產物，重設程序如下**：
+`--update-baseline` 首次遭 `ProtectedWrite` **如期拒寫**；
+R-P242(a) 明令擴充構成 R-P233 之重設理由，
+惟**重寫將摧毀「33 包時點之 7 檔基線」此一紀錄**，
+故先另存 `data/edit_integrity_baseline_pre35.json` 保全該紀錄，
+再帶 `--overwrite-protected` 重設；二次重設皆入 `edit_integrity_reset_log.tsv`。
+
+**（c）G108 之限度仍明載**，本包另增二項實測限度：
+（甲）其驗語法、載入與符號之存在，**不驗語義**（R-P176 / R-P238）；
+（乙）**符號層僅對有基線之檔生效** —— 擴充前 52 檔無基線，
+`symbols_ok` 為 `None` 而仍計入「完整」，
+**故擴充當下之「59 / 59 完整」在更新基線前是虛的**，據實標明。
+
+```
+[R-P243] 第 4 列之 80 條須逐條人工確認；分析層抽樣複核。
+         34 §2.2：第 4 列命中 80 條係以**代理判準**
+         （`pre_conditions` 之實質條件項數 ≥ 2）所得之提案；
+         R-P236(b) 明訂代理判準不得凌駕實質判準，
+         G163 之期望值亦載「皆經人工確認」——**該確認未做**。
+         故第 4 列 80 條與落底 85 條**皆為暫定值**。
+
+         處置：
+         （a）執行層逐條確認：該 TC 之結果是否**確由二個以上條件共同決定**，
+              逐條列出其條件與依據；不成立者依 first-match 續判其後各列
+         （b）**分析層抽樣複核**（率 ≥ 16.7%，種子載明）——
+              依 R-P214，自實作、自回報之判準其結果須經第二方複核；
+              第 4 列之代理判準正屬此類
+         （c）確認完成前，第 4 列與落底之數字皆標「暫定」，
+              **不得作為改值之依據**
+         裁決者 Pei，逐字依據：「上繳了」。
+```
+**執行層回報：80 條逐條確認完成 —— 79 成立、1 不成立；落底 85 → 86。**
+
+輸出 `data/g170_row4_confirmation.md`（`confirm_row4.py`）。
+本檔**只蒐證不判定**，判定逐條由人工為之。三項證據：
+
+- **甲 規格層**：`source_clause` 中管轄該行為之條件子句數
+- **乙 姊妹層**：同 leaf 內「僅差一個實質前提而 ER 不同」之姊妹 TC ——
+  **決策表之結構特徵**（各列即條件組合之枚舉）；有姊妹者該條件確實**改變結果**
+- **丙 輸入層**：`input_test_data` 之獨立參數數
+
+**（a）證據交叉分布（80 條）**
+
+| 甲 ≥ 2 | 乙 有姊妹 | 條數 | 意義 |
+|---|---|---|---|
+| 是 | 是 | **27** | 規格為多條件結構，且該條件確實改變結果 |
+| 是 | 否 | **37** | 規格為多條件，惟未以姊妹枚舉 |
+| 否 | 是 | **4** | 規格僅一條件子句，惟姊妹顯示條件改變結果 |
+| 否 | 否 | **12** | 二證據皆無 —— 送人工逐條判偽陽性 |
+
+**⚠ 證據甲之謂詞於本包內經一次訂正，並陳兩版（R-P187 / R-P182）**：
+v1 之 `COND_RE` 未加 `re.I`，而語料之主要條件措詞為 **`IF`（全大寫，42 次）**
+與小寫 `if`（35）/ `when`（14）/ `while`（5）——
+v1 僅抓到首字大寫之 `If`（例如 `SWE-PM-044` 之 `IF … THENTLM` 完全落空）。
+**v1：二證據皆無者 37 / 80；v2：12 / 80。**
+**偏誤方向：膨脹「疑似偽陽性」** —— 即誇大本層之發現，
+且會把 TC 推回落底、抵銷 R-P236 之效果，屬對執行層有利之方向，依 R-P187 明載。
+結構性理由：規格以 `IF … THEN` 之全大寫形式書寫，**條件詞之大小寫與其是否為條件無關**。
+
+**12 條之逐條判定（實讀 clause 之 AND 鏈）**
+
+| tc | leaf | clause 之條件結構 | 判定 |
+|---|---|---|---|
+| `…-029` | `SWE-PM-064` | `Timeout1 == 00 min` AND `Phone_Call.Info == Active` AND Full-Operation AND ignition 切換 | **成立** |
+| `…-030` | `SWE-PM-064` | `Timeout1 <> 00 min` AND 到期 AND `Phone_Call.Info` 仍 Active | **成立** |
+| `…-031` | `SWE-PM-065` | `IF Timeout1 <> 00` AND `IF Phone_Call.Info` 於到期前轉 Not_Active | **成立** |
+| `…-032` | `SWE-PM-065` | 同上二條件 | **成立** |
+| `…-072` | `SWE-PM-017` | Full-Operation AND `Rear_View_Camera == Present` AND Rear Camera 轉 inactive；結果另依 `Audio_Data_Exchange.Info` 與 `Phone_Call.Info` | **成立**（最強） |
+| `…-082` | `SWE-PM-021` | Idle AND `Rear_View_Camera == Present` AND `Rear_Camera_Enable.Info` False→True | **成立** |
+| `…-110` | `SWE-PM-031` | `Rear_View_Camera == Present` AND 依 `Rear_Camera_Enable.Info` 之值顯示與否 | **成立** |
+| `…-109` | `SWE-PM-030` | `Auto_SwitchOn_Setting.Req == Recall_Last` AND `VPLastStatus == On`（OR 之第二分支） | **成立** |
+| `…-123` | `SWE-PM-039` | 「In the following Ignition Working Conditions」AND `LTM_OperationalModeSts.Info == SNA` | **成立（弱）** |
+| `…-130` | `SWE-PM-043` | Standby AND **except if** 需顯示 HMI 畫面 | **成立** |
+| `…-138` | `SWE-PM-046` | `Rear_View_Camera == Present` AND `Rear_Camera_Enable.Info == True` | **成立** |
+| `…-099` | `SWE-PM-027` | clause 僅 `IF Antitheft_Result.Info == "Not_Successfully"` —— **單一條件**；其前提「Partial Operation」「`Antitheft_Activation.Req` True」為**情境建構**，非共同決定結果者 | **不成立** |
+
+**`…-099` 依 first-match 續判**：第 5 列不命中、第 6 列不命中、第 7 列無謂詞、
+第 8 列 procedure 僅 2 步 → **落至第 9 列 Functional Based**。
+
+**（c）確認後之數字**：**第 4 列 80 → 79；落底 85 → 86。**
+
+**⚠ 證據甲之第二項限度（不予調整，17 §I）**：其只數條件子句之**起首詞**，
+**不數 AND 鏈** —— 故 `SWE-PM-021` 之「IF A AND B AND C」僅計為 1。
+此使 12 條之三角化偏保守（送更多條進人工），
+**惟人工判定為最終權威（R-P236(b)），故不影響結果**，僅影響分流。
+**判準已用於量測，本包不再回頭調整**。
+
+**（b）分析層抽樣複核尚未執行** —— 依 §K 第 2 項其時點為 36 包。
+故上列 79 / 86 仍為**執行層自判**，依 R-P214 尚未取得第二方複核，
+**不得作為改值之最終依據**。
+
+```
+[R-P244] 第 7 列之「無從判定」須以反向方式查；第 2 列之偽陰性為其實例。
+         34 §2.1：第 7 列（Combinatorial）無謂詞，
+         其命中 0 係**「無從判定」而非「已判為不適用」**；
+         語料實測 `combination` / `both` / `each of` 皆 0，`and` 過泛。
+
+         34 §九第 3 項指出：**第 2 列已證實發生同型事** ——
+         其謂詞偽陰性（故障注入之措詞為 `Stop the broadcast` 而非 `disconnect`），
+         即「語料中確有該類而措詞不同」。
+
+         處置：改以**反向方式**查第 7 列 ——
+         不自詞彙出發，而自**結構特徵**出發：
+         （a）找出 `input_test_data` 或 `pre_conditions` 中
+              **列有二個以上獨立參數且各有二個以上取值**者
+         （b）逐條人工判其是否為多參數組合測試
+         （c）回報命中數；若仍為 0，**須說明其為「已查而無」
+              而非「無從判定」**
+
+         同法回頭複驗第 2 列：找出 procedure 中含
+         「移除／中斷／停止某既有輸入」之結構者，逐條判其是否為故障注入。
+         裁決者 Pei，逐字依據：「上繳了」。
+```
+**執行層回報：第 7 列**非**「已查而無」—— 得候選 9 對；其 0 為 first-match 之序所致。**
+
+輸出 `data/g171_reverse_probe.md`（`reverse_probe_rows.py`）。
+
+**（a）（b）第 7 列之結構判準與結果**：同一 leaf 內存在二條 TC，
+其**二個以上**獨立參數同時取不同值（單一參數變動而其餘固定者為決策表之逐列，不計）。
+**得候選 9 對**：
+
+| leaf | TC 對 | 同時相異之參數 | 人工判定 |
+|---|---|---|---|
+| `SWE-PM-073` | `…-007`/`…-011`、`…-011`/`…-012`、`…-011`/`…-016` | `PN14_LS_Actv`、`PN14_LS_Lvl7` | **非組合** —— 二訊號恆同步變動，屬**單一邏輯條件之二個訊號** |
+| `SWE-PM-038` | `…-038`/`…-040`、`…-038`/`…-043`、`…-039`/`…-040`、`…-039`/`…-043` | `Timeout1`、`Phone_Call.Info` | **確為組合枚舉** |
+| `SWE-PM-014` | `…-064`/`…-065` | `Auto_SwitchOn_Setting.Req`、`Timeout1` | **確為組合枚舉** |
+| `SWE-PM-026` | `…-095`/`…-097` | `Brand_Configuration_2`、`PhoneCall.Info` | **確為組合枚舉** |
+
+**9 對中 6 對為真組合枚舉。**
+
+**（c）第 7 列之 0 既非「無從判定」，亦非「已查而無」——
+其為 first-match 之序所致，屬結構性結果。**
+上列候選 TC 於 first-match 下之落點實測：
+
+`…-038`/`…-039`/`…-040`/`…-043`/`…-064` → **第 3 列**（State Transition）；
+`…-065`/`…-095`/`…-097` → **第 4 列**（Decision Table）；
+`…-011` → 第 6 列；`…-007`/`…-016` → 第 8 列；`…-012` → 第 9 列。
+
+**無一條能抵達第 7 列** —— 因任何多參數組合測試必同時滿足
+第 4 列之「多條件 → 結果」，而第 4 列在序上先於第 7 列。
+**故於現行 §12 之 first-match 序下，第 7 列結構上不可能命中。**
+此非本語料之特性，而是 §12 序之特性，**須由分析層裁定**：
+（甲）接受第 7 列為死列，或（乙）調整 §12 之序或第 4 / 7 列之判準。
+**執行層不自行調整 §12。**
+
+**第 2 列之同法複驗**：結構判準為 `test_procedure` 含「移除／中斷／停止某既有輸入」。
+**得候選 2 條**：
+`…-008`（`Stop the broadcast of the two Load Shed signals on the bus`，
+現值即 Fault Injection Lite，34 包已依 R-P232 確認**成立**）；
+`…-011`（同一措詞，惟其步驟 2 隨即以復原值恢復廣播，
+**所驗者為復原而非故障本身** —— 依 R-P232 之「故障須為驗證之對象」**不成立**）。
+
+**結論**：第 2 列之真陽性僅 1 條，即現值已標者；**反向查未發現新的故障注入**。
+惟該查證確認了詞彙謂詞之盲區為真且有界（264 條中結構候選僅 2 條）。
+
+```
+[R-P245] `priority` 重判謂詞須以 fixture 驗證。
+         34 §九第 4 項：G164 之 v2 謂詞未經 fixture 驗證；
+         其 v1 之缺陷係由 Branding 之 34 / 34 異常比率**反推**而得，
+         **非由 fixture 攔下**。
+         依 R-P214，自設、自實作、自回報之判準其首次適用不足以證其正確。
+
+         處置：為 v2 建 fixture，至少涵蓋 §10.2 七類各一之正例，
+         及三個應判 P3 之負例（外觀 / 客製化 / 罕用情境）；
+         回報各案之期望與實測。
+         **fixture 不得取自本語料之既有 TC** ——
+         以既有 TC 為對照即以待驗對象驗判準（R-P159 之教訓）。
+         裁決者 Pei，逐字依據：「上繳了」。
+```
+**執行層回報：13 案 fixture 全數如期（13 / 13）。**
+
+`fixture_priority.py` —— **全部為自撰之虛構 TC，不取自 `features/power/generated/`**
+（R-P245 / §I）。題材取自一般車機領域，刻意不使用本語料之訊號名與措詞。
+
+| # | 案 | 期望 | 實測 |
+|---|---|---|---|
+| 1 | 正例 safety（`Collision detected disables the touch input`） | `safety` | 如期 |
+| 2 | 正例 boot / recovery（`Unit reboots after a watchdog reset`） | `boot / recovery` | 如期 |
+| 3 | 正例 connection（`Bluetooth handset reconnects…`） | `connection` | 如期 |
+| 4 | 正例 audio output（`Navigation prompt ducks the media volume`） | `audio output` | 如期 |
+| 5 | 正例 eCall（`eCall button places an emergency call`） | `eCall` | 如期 |
+| 6 | 正例 CAN 訊號（`STATUS_LIN.Batt_ST_Crit = [1h]`） | `vehicle-critical CAN signal` | 如期 |
+| 7 | 正例 data-loss（`Trip log survives an unexpected power cut`） | `data-loss risk` | 如期 |
+| 8 | 負例 外觀（`Marque logo is centred…`） | 無 P0 類別；裝飾性 | 如期 |
+| 9 | 負例 客製化（`User selects an alternative icon pack`） | 無 P0 類別；裝飾性 | 如期 |
+| 10 | 負例 罕用情境（`Seasonal greeting animation…`） | 無 P0 類別；裝飾性 | 如期 |
+| 11 | **對抗** bench 樣板句不得使 connection 命中 | 無 P0 類別 | 如期 |
+| 12 | **對抗** 英文字 “can” 不得使 CAN 命中 | 無 P0 類別 | 如期 |
+| 13 | **對抗** `audio and video` 之 audio 為偶然共現 | `audio output` | 如期 |
+
+第 11 / 12 案直接針對 v1 之二項已知缺陷，**其 PASS 即證 v2 確已修正該二項**。
+每一 fixture 之 `pre_conditions` 皆帶與本語料同形之 bench 樣板句，
+故第 11 / 12 案為真對抗，非空跑。
+
+**⚠ 本 fixture 之效力邊界，據實標明**：
+（甲）**第 13 案不是正確性測試，是回歸護欄** ——
+其期望值即為**現行行為**（34 §5.1 已判定該 `audio` 為偶然共現而不足以支撐歸類）；
+它防止該行為悄悄改變，**不證明該行為為對的**。
+（乙）依 **R-P214**，fixture 由執行層自撰、自定期望、自回報，
+**其全數 PASS 不足以證判準正確** ——
+其所證者為「判準對執行層所能想到之案例表現如預期」。
+v1 之缺陷正是執行層當初想不到的，故此一邊界為實質限制而非形式保留。
+
+```
+[R-P246] `remarks` 與 `split_flag` 二項缺陷併入 36 包改值。
+         34 §九第 5 項：本包新增之
+         `remarks` 缺陷（8 條 `…-033`/`034`/`035`/`036`/`038`/`040`/`041`/`043`
+          無 DR 而註記 1 條）與
+         `split_flag` 缺陷（`True` 而該 leaf 僅 1 條者 9 條；
+          `split_index = 0` 者 4 條）
+         **未取得明文裁定其一併處理，執行層標明遺漏風險。**
+
+         **裁定：一併納入 36 包之改值**，與 `design_method` / `priority` 同時為之。
+         本包**不改值**，僅備妥逐條清單與其建議值。
+
+         另追認 `split_flag` 判準之三版並陳（R-P182）及其偏誤方向之揭露 ——
+         **v2 之 88.3% 恰等於 `split_flag=True` 之比率，
+         該巧合即判準假設錯誤之徵候**；
+         執行層自陳其偏誤方向為「誇大深挖成效、對執行層有利」，
+         並依 R-P187 明載。**該揭露正確。**
+         裁決者 Pei，逐字依據：「上繳了」。
+```
+**執行層回報：逐條清單與建議值已備妥；本包不改值。**
+
+**（一）`remarks` —— 9 條**
+
+| tc | leaf | 現值 | 建議值 |
+|---|---|---|---|
+| `…-033` `…-034` `…-035` `…-036` `…-038` `…-040` `…-041` `…-043` | `SWE-PM-038` | （空） | 「DR-PW10 待範圍確認」 |
+| `…-015` | `SWE-PM-073` | 「DR-PW8 (High) —— `4942354` 未載 voltage out of range 之電壓門檻值…」 | **對帳表無對應之 DR 欄位 → 待人工確認保留或刪除** |
+
+⚠ `…-015` 之情形須指明：其 `remarks` 所載之 DR-PW8 **確為 live DR**，
+惟 `leaf_batch_reconciliation.tsv` 之 `SWE-PM-073` 列**未載該 DR** ——
+**不一致者可能是對帳表而非該 TC**。判定屬人工，執行層不擅改任一方。
+
+**（二）`split_flag` / `split_index` —— 13 條**
+
+| tc | leaf | 現值 | 建議值 |
+|---|---|---|---|
+| `…-028` | `SWE-PM-063` | `split_flag=True`，該 leaf 僅 1 條 | `split_flag=False`、`split_index=1` |
+| `…-071` | `SWE-PM-016` | 同上 | 同上 |
+| `…-072` | `SWE-PM-017` | 同上 | 同上 |
+| `…-082` | `SWE-PM-021` | 同上 | 同上 |
+| `…-083` | `SWE-PM-022` | 同上 | 同上 |
+| `…-084` | `SWE-PM-023` | 同上 | 同上 |
+| `…-085` | `SWE-PM-024` | 同上 | 同上 |
+| `…-110` | `SWE-PM-031` | 同上 | 同上 |
+| `…-111` | `SWE-PM-032` | 同上 | 同上 |
+| `…-053` `…-054` `…-055` | `SWE-PM-013` | `split_index=0`（leaf 共 6 條） | 依 R-P115 改為 1..6 之規格原文子句出現序 |
+| `…-097` | `SWE-PM-026` | `split_index=0`（leaf 共 4 條） | 依 R-P115 改為 1..4 之出現序 |
+
+**（三）追認之接受**：`split_flag` 判準三版並陳與偏誤方向之揭露經裁決確認為正確。
+本包再增一例同型揭露：**證據甲之 `COND_RE` 大小寫缺陷**（見 R-P243 之回報），
+其偏誤方向同為「誇大本層發現」。**同一形態於連續二包各出現一次**，
+執行層據實登記為 A-PW192，不主張其為偶發。
+
+```
+[R-P247] R-P241(d) 之七項未涵蓋性質：一項補閘，六項登記為永久限制。
+         34 §6.5 列出七項現有機制皆未涵蓋之實質性質。
+
+         **可機械化者僅第 3 項** ——
+         「同一 leaf 內多條 TC 是否真正互斥」；
+         其 `distinguishing_axis` **僅出現於三個產生器，
+         不見於任何閘門或驗證腳本**，而 §4.6 已定其契約
+         （`axis` ∈ 列舉值；`axis="none"` ⇔ `duplicate_of` 已設）。
+         補設 **G168**：驗全批之 `distinguishing_axis` 符 §4.6 之契約；
+         同一 leaf 內二條之 `delta` 逐字相同者觸發（疑未真正互斥）。
+         以 fixture 證明其會 FAIL。
+
+         **其餘六項登記為永久已知限制**（語義蘊含、步驟可執行性、
+         `tc_title` 之忠實性、數值門檻對規格之對應、前提之充分性、測項之遺漏）——
+         皆需語義判斷，現行工具無法機械化。
+
+         **且須寫入交付說明**：
+         交付時應載明「本批 TC 已驗證之性質」與「未驗證之性質」，
+         使收件方知其邊界，不得以「全數閘門 PASS」暗示已全面驗證。
+         裁決者 Pei，逐字依據：「上繳了」。
+```
+**執行層回報：G168 已建（fixture 6 案如期）；六項限制已登記並草擬交付說明。**
+
+### 一、G168 —— `distinguishing_axis` 契約（`verify_axis.py`）
+
+**⚠ 契約原文之缺口，先行回報**：條文稱「§4.6 已定其契約
+（`axis` ∈ 列舉值；`axis="none"` ⇔ `duplicate_of` 已設）」，
+惟 **`§4.6` 之原文於本庫查無**（`RULINGS.md` / `PLAYBOOK.md` / `DECISIONS.md` /
+`RUNBOOK.md` / `docs/INDEX.md` 逐一搜尋皆無），
+且 **`duplicate_of` 欄不存在於任何 TC**（264 條之鍵組合恆為 `{axis, delta}`）。
+故 **`axis` 之列舉值清單無從取得，執行層不自行擬定** ——
+比照 34 包對 G167 之處置（§K 已認該處置正確）。
+
+本閘就**可查證之結構**檢：
+
+| 項 | 判準 | 全批實測 |
+|---|---|---|
+| C1 | 鍵組合恰為 `{axis, delta}` | 0 違規 |
+| C2 | `axis` 非空字串 | 0 違規 |
+| C3 | `delta` 非空字串 | 0 違規 |
+| C4 | `axis == "none"` ⇒ `duplicate_of` 已設 | **語料中 `axis="none"` 為 0 條 → 本項現不觸發**；其正確性**未經本批語料檢驗**（fixture 已另證其會 FAIL） |
+| C5 | 同 leaf 內二條之 `delta` **逐字相同** | **觸發 1 組** |
+
+`axis` 之值分布（**非契約，僅實測**）：
+`behaviour` 245、`trigger_state` 6、`branch` 6、`timing` 3、`trigger` 3、`input_data` 1。
+
+**fixture 6 案全數如期**（含「應 FAIL C3 / C1 / C4」與「應觸發 C5」），
+**證明本閘確實會 FAIL**（R-P247 之要求）。
+
+**C5 之 1 組觸發，人工判定**：`SWE-PM-071` 之 `…-002` / `…-003`，
+`delta` 皆為「本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件」。
+逐條實讀：`…-002` 之 boot target 為 **Standby**、`…-003` 為 **Bench**，
+`test_procedure` / `expected_result` / `split_reason` **皆已區分**
+（`split_reason` 明載「轉入 Standby 與轉入 Bench 為兩個不同觸發」）。
+→ **二條確為真正互斥，非重複 TC；缺陷在 `delta` 欄本身沿用同一句樣板**。
+建議 36 包改寫該二條之 `delta` 使其區分。**本包不改值。**
+
+**故 C5 於本批之判定為：真陽性 1 組，惟其所指為文件缺陷而非 TC 重複。**
+
+### 二、六項永久已知限制（登記）
+
+| # | 未涵蓋之性質 | 為何無法機械化 |
+|---|---|---|
+| 1 | ER 是否為 `source_clause` 之**語義蘊含** | 需語義判斷；三透鏡皆詞彙層 |
+| 2 | `test_procedure` 各步之**可執行性** | 需對 bench 能力之實體知識 |
+| 3 | `tc_title` 是否**忠實**描述該 TC | 需語義判斷 |
+| 4 | TC 內**數值門檻**是否等於規格所載 | 需理解該數值在二處之語義角色 |
+| 5 | 前提條件是否**充分** | 需推論「執行此步驟還缺什麼」 |
+| 6 | **測項之遺漏** | 需知道規格**沒寫但應測**者 |
+
+R-P241(d) 之第 3 項（多條 TC 是否真正互斥）已由 G168 部分涵蓋 ——
+**「部分」須明載**：G168 只抓 `delta` **逐字相同**者，
+**措詞不同而語義相同者仍抓不到**，該部分仍屬語義判斷。
+
+### 三、交付說明之「已驗／未驗」草稿（B7）
+
+見上繳 §七。其首要原則為條文所定：
+**不得以「全數閘門 PASS」暗示已全面驗證。**
 
 ---
 

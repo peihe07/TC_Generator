@@ -39,9 +39,16 @@ from protect_products import guard_write, log_baseline_reset, sha  # R-P233：�
 DATA = ROOT / "features/power/data"
 BASELINE = DATA / "edit_integrity_baseline.json"
 
-WATCHED = ["lint_tcs.py", "reverse_coverage.py", "verify_source_clause.py",
-           "verify_anchor_set.py", "verify_layer3.py", "or_branch_coverage.py",
-           "assign_final_tc_id.py"]
+# R-P242(a)：基線擴及 `features/power/scripts/` **全部** `.py`。
+# 34 §1.1 之教訓 —— 舊 WATCHED 僅 7 檔（7 / 59 = 11.9%），
+# `dryrun_write_back.py` 之損壞自 33 包起潛伏兩包未被發現。
+# **「G108 未報錯」不得作為「腳本無損壞」之證據**（R-P242）。
+#
+# 載入層之安全性已以 AST 實測（35 包）：排除 `sys.path.insert` 後，
+# 59 檔中僅 2 檔有模組層陳述（`build_reconciliation.py` / `rejudge_design_method.py`），
+# 二者皆為記憶體內字典操作，**無檔案寫入** ——
+# 故 `exec_module` 不觸發 R-P227(c) 之時點相依產物再生。
+WATCHED = sorted(p.name for p in SCRIPTS.glob("*.py"))
 
 
 def symbols(source: str) -> list[str]:
