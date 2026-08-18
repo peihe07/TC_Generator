@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-047",
+ "outline": "6.2",
+ "batch": "batch05",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NOPR1.) At vehicle entry or initiation of a newly active Profile, there will be a Welcome popup. There will be prompts for the user to customize the default Profile(s) within the default Welcome Popup (see above).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR1.) At vehicle entry or initiation of a newly active Profile, there will be a Welcome popup. There will be prompts for the user to customize the default Profile(s) within the default Welcome Popup (see above). (image: %E5%9C%96%E7%89%87_1670526527.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.2（NOPR1）—— 入車或新 profile 啟用時顯示 Welcome popup，且其中含自訂預設 profile 之提示。關鍵情境條件：現用者須為**預設** profile ——自訂提示之對象即為預設 profile，自訂者身上不成立。為什麼這樣切：本 leaf 之單位為**提示之存在**；popup 之按鈕組成屬 6.3（`SWE1-HMI-PROF-049`），兩者同一個 popup 而斷言不同，依 037 之切法各自成條。",
+ "keywords": [
+  "Welcome popup",
+  "vehicle entry",
+  "customize",
+  "default Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-047",
+   "tc_id": "NR1L-UserProfiles-149",
+   "tc_title": "Welcome popup at vehicle entry prompts to customize",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Welcome popup at vehicle entry prompts to customize",
+   "pre_conditions": "1. Only the default Driver Profiles exist on the vehicle\n2. The Welcome popup setting is on for the active Profile\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Switch the ignition on and read the screen\n2. Read the popup and check the prompt to customize the Profile",
+   "expected_result": "1. A Welcome popup is displayed upon vehicle entry\n2. The popup prompts the user to customize the default Driver Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.2",
+   "priority": "P1",
+   "priority_basis": "入車之 Welcome popup 與自訂提示；ch6 之入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**條文列兩個觸發**（`At vehicle entry` 與 `initiation of a newly active Profile`）。本條取**入車**一側；**新啟用 profile 一側由 `SWE1-HMI-PROF-023`（`NR1L-UserProfiles-118`）承擔** —— 該 leaf 為 5.3.1 之「切換 profile 後顯示 welcome popup」。§7 之列舉配對於此以跨節委派完成，非漏測。自訂提示之**按下之後**屬 6.4（`SWE1-HMI-PROF-052`），本條只驗提示之存在。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

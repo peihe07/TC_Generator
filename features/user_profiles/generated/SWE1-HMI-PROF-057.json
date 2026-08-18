@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-057",
+ "outline": "7.1.1",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL1.1) If the active Profile has not completed the Tutorials, and has not chosen to exit Tutorials, show “welcome” popup PU0841. Pressing X will show popup PU0611 giving the option to remind me later or don’t show again.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL1.1) If the active Profile has not completed the Tutorials, and has not chosen to exit Tutorials, show “welcome” popup PU0841. Pressing X will show popup PU0611 giving the option to remind me later or don’t show again.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.1.1（PRWEL1.1）—— 未完成 Tutorials 之 profile 顯示 PU0841；按 X 則顯示 PU0611。關鍵情境條件：Tutorials 未完成**且**未選擇退出。為什麼這樣切：兩個 popup 為**同一條路徑之前後兩步**，依 §5.7 併為一條之兩個 ER 行；PU0611 之兩個選項之後果分屬 6.3.1／6.3.2，本條只驗其被提供。",
+ "keywords": [
+  "PU0841",
+  "PU0611",
+  "Tutorials",
+  "welcome popup"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-057",
+   "tc_id": "NR1L-UserProfiles-158",
+   "tc_title": "PU0841 shown when Tutorials are not complete",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "PU0841 shown when Tutorials are not complete",
+   "pre_conditions": "1. The active Driver Profile has not completed the Tutorials\n2. The active Driver Profile has not chosen to exit the Tutorials\n3. The Welcome popup setting is on for that Profile\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Switch the ignition on and read the popup shown\n2. Press X on the popup and read the popup shown",
+   "expected_result": "1. Welcome popup PU0841 is displayed\n2. Popup PU0611 is displayed, offering to remind me later or not show again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.1.1",
+   "priority": "P2",
+   "priority_basis": "未完成 Tutorials 時之 PU0841 與其 X 之後續",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**兩個 pre-condition 是條文之兩個合取條件** —— `has not completed` 與 `has not chosen to exit`；少任一個，PU0841 之適用條件即不成立，而本條會測到別的 popup。PU0841／PU0611 之**內文不寫**（R-U27 同型）：spec 只給 id 與其選項名稱，未給文字。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

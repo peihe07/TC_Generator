@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-040",
+ "outline": "5.13.1",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "ALLPR2.1) If all Profiles are cleared and the default Profiles are restored, return to default order",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR2.1) If all Profiles are cleared and the default Profiles are restored, return to default order",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.13.1（ALLPR2.1）—— 全部 profile 被清除且預設者回復後，回到預設順序。關鍵情境條件：須先存在自訂 profile 且其順序已偏離預設，否則「回到」無從觀察。為什麼這樣切：`design_method` 取情境／用例 ——本條走的是一條**跨節之流程**（5.13.2 之清除 → 5.13.1 之順序 →5.12.1 之順序內容），非單一功能點。",
+ "keywords": [
+  "clear",
+  "default order",
+  "restore",
+  "memory seat"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-040",
+   "tc_id": "NR1L-UserProfiles-139",
+   "tc_title": "Clearing all Profiles returns Defaults to default order",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Clearing all Profiles returns Defaults to default order",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Two custom Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Open the “All Profiles” tab and read the order of the default Profiles",
+   "expected_result": "1. The Clear Personal Data setting is selected\n2. All Profiles are cleared and the default Profiles are restored\n3. The default Profiles are ordered by their memory seat link, from the left",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12.1; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2",
+   "priority": "P2",
+   "priority_basis": "全清後回到預設順序；清除流程之後續狀態",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "ER3 之「default order」其內容不在 5.13.1（該節只寫`return to default order`），故**併列 5.12.1** 於引用欄，並將其內容（依記憶座椅連結）逐字寫入 ER —— 否則本條無從判定。PU0626 為 5.13.2 之確認 popup，本條之 procedure 須處理它，**故一併列 5.13.2**（X-1 之同型處置）。**PU0626 與 PU_0129 之關係條文未定**（RD #8）。**41 包 §四授權逕行修正**：步驟改為「於**每一個**確認 popup PU0626/PU_0129 按 Yes」—— 兩者若為同一個，該步驟即按一次；若為兩段確認，該步驟即按兩次。**兩種讀法下本條都不會假失敗**，且驗證目標未變（§四之界線）。清除後之**現用 profile 落點**屬 `SWE1-HMI-PROF-041-01`／`SWE1-HMI-PROF-041-02`，本條只驗**順序**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

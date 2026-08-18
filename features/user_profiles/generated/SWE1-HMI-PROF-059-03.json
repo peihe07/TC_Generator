@@ -35,7 +35,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**A-UP13 行為 3**：同行為 2，有專屬 leaf （`SWE1-HMI-PROF-059-03`）而尚未取樣，25 輪更正記載。**ER3 併驗「切換」與「新 popup」兩者** —— 只驗 popup 換了，一個顯示 B 之 popup 卻未真正切換之實作會通過。popup 之尺寸取決於 7.2／7.2.1 之條件，故 ER 寫 the applicable welcome popup，不指定大小。",
+   "remarks": "**A-UP13 行為 3**：同行為 2，有專屬 leaf （`SWE1-HMI-PROF-059-03`）而尚未取樣，25 輪更正記載。**ER3 併驗「切換」與「新 popup」兩者** —— 只驗 popup 換了，一個顯示 B 之 popup 卻未真正切換之實作會通過。popup 之尺寸取決於 7.2／7.2.1 之條件，故 ER 寫 the applicable welcome popup，不指定大小。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條之 ER3 所斷言者**就是**該 welcome popup（`the applicable welcome popup for it is displayed`）—— 標的而非干擾。",
    "split_flag": false,
    "split_reason": ""
   }

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-084",
+ "outline": "8.12",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR11.) In the New Profile setup Process, the back arrow will take the user to the previous step (if applicable) and store any selections for when they go to that step again (until canceled) Avatars/icons are placeholders for final graphics Enter/Edit Username Choose/Edit Avatar - 7 inch Choose/Edit Avatar - 8.4 10.1 10.25 12 inch Category Selection Screen - 7 inch",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR11.) In the New Profile setup Process, the back arrow will take the user to the previous step (if applicable) and store any selections for when they go to that step again (until canceled)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.12（NEWPR11）—— 設定流程中之返回鍵回到上一步，並保留已做之選擇。關鍵情境條件：上一步須已有輸入且已記錄。為什麼這樣切：`design_method` 取狀態轉換 ——`design_method` 取功能測試而非狀態轉換：所驗者為**值之保留**，畫面之來回不是系統狀態之遷移（K-4a）。",
+ "keywords": [
+  "back arrow",
+  "previous step",
+  "selections",
+  "retained"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-084",
+   "tc_id": "NR1L-UserProfiles-189",
+   "tc_title": "Back arrow returns to the previous step keeping selections",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Back arrow returns to the previous step keeping selections",
+   "pre_conditions": "1. A New Profile Setup is in progress at the username step\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Enter a username at the username step and record it\n2. Continue to the avatar step and choose an avatar\n3. Press the back arrow and read the username step\n4. Read the username field and check whether it matches step 1",
+   "expected_result": "1. The username is entered and recorded\n2. The avatar step is displayed and an avatar is chosen\n3. The username step is displayed again\n4. The username field holds the username recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.12",
+   "priority": "P2",
+   "priority_basis": "返回鍵之上一步與選擇之保留",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**輸入動作留在 procedure 而非 pre-condition**（W-1）：ER4 所斷言者正是該輸入之保留，若把它寫成 pre-condition 之完成式，「保留」與「一開始就在那裡」不可分辨。`(until canceled)` 之取消側未驗 —— 條文未說取消後選擇何時清除，依 §8.4.1 不推定。`(if applicable)` 為適用條件：第一步無前一步，故本條自第二步（username）發起。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

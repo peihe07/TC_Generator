@@ -96,7 +96,42 @@ def absence_only(tc: dict, literal: str) -> bool:
     return all(NEGATOR.search(seg) for seg in hits)
 
 
-PREDICATES = {"absence-only": absence_only}
+def no_other_side_leaf(tc: dict, literal: str, m: dict) -> bool:
+    """該 axis 之**另一側在 037 內無 leaf** —— 依 R-U56 不得造對造。
+
+    ## 為什麼需要第二個述詞
+
+    `absence-only` 之判準問的是「這一條驗的是不是缺席」——
+    它擋得住「宣稱不配而其實在驗字面值」，**擋不住「另一側根本造不出來」**。
+    6.1 之 axis 正是後者：R1 High 側有 leaf（`046`），
+    而 base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）
+    **只存在於 PDF p9 之流程圖，037 未產出 leaf**。
+
+    ## 述詞之可測形式
+
+    以 `other_side`（member 自帶之正則）掃 037 之 **180 條 leaf 之
+    description ＋ verification criteria**；**一條都掃不到才為真**。
+    自己那條 leaf 排除在外 —— 否則每個 axis 之述詞都會被自己說服。
+
+    ## 它對已配者為假（閘 4 之後半所要求者）
+
+    p14 之 axis 以 axis 級 `literal` 代入時，`Connected Account` 出現於
+    `SWE1-HMI-PROF-085`（9.1）之 description —— 述詞遂為**假**，
+    `017`／`074` 不能援引本理由。**這正是閘 4 要驗的性質。**
+    """
+    import build_batch_context as B
+    pat = re.compile(m.get("other_side", literal), re.I)
+    own = tc.get("req_id") if isinstance(tc, dict) else None
+    for rid, v in B.leaf_rows().items():
+        if rid == own:
+            continue
+        if pat.search((v.get("desc") or "") + " " + (v.get("vc") or "")):
+            return False
+    return True
+
+
+PREDICATES = {"absence-only": lambda tc, lit, m=None: absence_only(tc, lit),
+              "no-other-side-leaf": no_other_side_leaf}
 
 
 # ─────────────────────────────────────────────────────────── 登記表
@@ -147,16 +182,42 @@ AXES = [
         axis="p9 / 6.1 之 R1 High：CPA 不啟動",
         axis_key="r1h-cpa-6.1",
         literal=r"CPA|Connected Profile App|Tutorials",
-        members=[dict(tc="SWE1-HMI-PROF-046", side="R1 High", pending=True,
-                      why="6.1 之 leaf 尚未取樣（第三批）。**其變體覆寫已登記，"
-                          "生成時須連同對造一併造** —— 本欄即該提醒之載體")],
+        # **40 輪：`046` 已於第五批生成（`NR1L-UserProfiles-148`），
+        # `pending` 依閘 2′ 自動失效並轉紅 —— 絆線如設計般動作。**
+        # 改判結果：**具名不配**，理由為「另一側在 037 內無 leaf」。
+        members=[
+            dict(tc="NR1L-UserProfiles-148", side="R1 High",
+                 reason="no-other-side-leaf",
+                 # base 側＝流程圖之 `Is CPA present?` 為是時啟動 CPA 登入。
+                 # 以其**動作之肯定式**造正則。首版寫 `CPA .*launch`，
+                 # 命中了 `SWE1-HMI-PROF-065` 之 vc「the CPA launch screen
+                 # **should be skipped**」—— 那是同一個覆寫之 R1 High 側，
+                 # **不是 base 側**。述詞遂誤報為假（閘 4 首跑即抓出）。
+                 other_side=(r"Connected Personal Account login|CPA login|"
+                             r"begins? Connected Personal Account"),
+                 why="base 側（`Is CPA present?` 為是 → 啟動 Connected "
+                     "Personal Account 登入）**只見於 PDF p9 之流程圖，"
+                     "037 未產出 leaf**，依 R-U56 不造。"
+                     "**同一理由對 017／074／039／075／013／044 皆不成立**："
+                     "那些 axis 之另一側都有 leaf（如 `SWE1-HMI-PROF-085` "
+                     "之 9.1 即載 Connected Account 一列）"),
+        ],
     ),
     dict(
         axis="p12 / 8.1 之 R1 High：步驟 4 後直接進 Tutorials",
         axis_key="r1h-cpa-8.1",
         literal=r"CPA|Tutorials|preferences",
-        members=[dict(tc="SWE1-HMI-PROF-065", side="R1 High", pending=True,
-                      why="8.1 之 leaf 尚未取樣（第三批），同上")],
+        # **41 輪：`065` 已於第六批生成（`NR1L-UserProfiles-167`），
+        # `pending` 依閘 2′ 轉紅 —— 絆線第二次如設計般動作。**
+        members=[
+            dict(tc="NR1L-UserProfiles-167", side="R1 High",
+                 reason="no-other-side-leaf",
+                 other_side=(r"Connected Personal Account login|CPA login|"
+                             r"begins? Connected Personal Account"),
+                 why="base 側（`Is CPA present?` 為是 → 啟動 Connected "
+                     "Personal Account 登入）**只見於 PDF p12 之流程圖，"
+                     "037 未產出 leaf**，依 R-U56 不造 —— 同 `046` 之處置"),
+        ],
     ),
     dict(
         axis="p17 / Table CPA2 之 Connected Navigation 列",
@@ -239,13 +300,13 @@ def audit(tcs: dict) -> list:
                 if pred is None:
                     bad.append(f"V1-4: {tid} 之 reason `{m['reason']}` 無述詞實作")
                     continue
-                if not pred(tcs[tid], a["literal"]):
+                if not pred(tcs[tid], a["literal"], m):
                     bad.append(f"V1-4: {tid} 之理由 `{m['reason']}` 述詞不成立 "
                                f"—— 宣稱不配對造，但它並非該形態")
                 for other in a["members"]:
                     if "paired_with" not in other or other["tc"] not in tcs:
                         continue
-                    if pred(tcs[other["tc"]], a["literal"]):
+                    if pred(tcs[other["tc"]], a["literal"], other):
                         bad.append(
                             f"V1-4: {tid} 之理由 `{m['reason']}` **同樣適用於已配之 "
                             f"{other['tc']}** —— 該理由不成立"
@@ -323,15 +384,35 @@ def self_test() -> int:
             g["override_notes"] = orig
     case("spec 新增未登記之覆寫 axis → 紅", unregistered_note, True)
 
-    # 閘 2′ —— **第三批之絆線**（23 包 M-3）
+    # 閘 2′ —— **絆線**（23 包 M-3）
     # `pending` 之 leaf 一旦生成了 TC，該狀態即不再成立；
-    # 若無此檢查，那兩個 R1 High 覆寫會在第三批被寫成前提而無人測 ——
+    # 若無此檢查，那兩個 R1 High 覆寫會在其批被寫成前提而無人測 ——
     # **正是 `017`／`039`／`013` 當初的形狀**。
+    #
+    # **本案例之標的換過兩次。** 原為 `SWE1-HMI-PROF-046`（40 輪生成後改判），
+    # 再改為 `SWE1-HMI-PROF-065`（41 輪生成後亦改判）——
+    # **兩個 pending 都真的觸發過這條絆線，也都已結案，於是案例沒有標的了**。
+    #
+    # 拿一個真實 leaf 當標的，就得跟著批次搬家；搬到第三次時，
+    # 「案例還活著嗎」與「還有 pending 嗎」已經分不開。
+    # v3 改為**合成 axis**：測試自己造一個 pending 成員與其 TC，
+    # 於是本案例守的是**閘 2′ 這段程式**，而不是某一個尚未取樣之 leaf。
     def pending_leaf_now_generated():
-        fake = dict(next(iter(real.values())))
-        fake["req_id"] = "SWE1-HMI-PROF-046"
-        return audit({**real, "NR1L-UserProfiles-999": fake})
-    case("pending 之 leaf 已生成 TC（第三批之形狀）→ 紅",
+        g = globals()
+        orig = g["AXES"]
+        g["AXES"] = orig + [dict(
+            axis="（合成）某節之 R1 High 覆寫", axis_key="synthetic-pending",
+            literal=r"synthetic",
+            members=[dict(tc="SWE1-HMI-PROF-036", side="R1 High",
+                          pending=True, why="合成之 pending（自我測試用）")])]
+        try:
+            fake = dict(next(iter(real.values())))
+            fake["req_id"] = "SWE1-HMI-PROF-036"
+            return [b for b in audit({**real, "NR1L-UserProfiles-999": fake})
+                    if "V1-1" not in b]      # 合成 axis 不在 spec 之覆寫母體內
+        finally:
+            g["AXES"] = orig
+    case("pending 之 leaf 已生成 TC（絆線本身）→ 紅",
          pending_leaf_now_generated, True)
 
     # 綠向：pending leaf 確實在 037 之 180 母體內且尚無 TC

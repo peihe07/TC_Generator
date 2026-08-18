@@ -29,7 +29,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import build_batch_context as B                      # noqa: E402
+import build_batch_context as B
+import popup_guard                                  # noqa: E402                      # noqa: E402
 from gen_pilot import (steps, FUNCTIONAL, STATE, BVA, SCENARIO,   # noqa: E402
                        NEGATIVE)
 
@@ -956,7 +957,7 @@ def _rec(req_id, ctx, spec, refs, prio, why, n) -> dict:
         "split_flag": False,
         "split_reason": "",
     }
-    return {
+    rec = {
         "parent": req_id,
         "outline": ctx["section"],
         "batch": "batch01",
@@ -972,6 +973,11 @@ def _rec(req_id, ctx, spec, refs, prio, why, n) -> dict:
         "duplicate_of": "",
         "tcs": [tc],
     }
+    # X-1 之十六條修正（41 包 §三）。**放在 `_rec()` 而非各批之 `build()`**：
+    # batch01／03／04／05 全部經此，一處施加即全批一致；
+    # 新批若寫出同形態，只要在 `popup_guard.GUARDS` 加一列。
+    popup_guard.apply(rec)
+    return rec
 
 
 if __name__ == "__main__":

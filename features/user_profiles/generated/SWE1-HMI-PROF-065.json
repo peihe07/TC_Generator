@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-065",
+ "outline": "8.1",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen only. Therefore, after step 4, the system will follow the request for preferences and will begin Tutorials (refer to Tutorials L&F).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit Profile screen only. Therefore, after step 4, the system will follow the request for preferences and will begin Tutorials (refer to Tutorials L&F).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.1（NEWPR0）—— R1 High 上，第 4 步之後依偏好請求並進入 Tutorials，CPA 不啟動。關鍵情境條件：車型須為 R1 High。為什麼這樣切：`design_method` 取情境／用例 ——本條驗的是設定流程末段之**走向**，跨偏好選擇與 Tutorials 兩處。",
+ "keywords": [
+  "R1 High",
+  "Tutorials",
+  "CPA",
+  "New Profile Setup"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-065",
+   "tc_id": "NR1L-UserProfiles-167",
+   "tc_title": "R1 High begins Tutorials after the preferences step",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "R1 High begins Tutorials after the preferences step",
+   "pre_conditions": "1. The vehicle is an R1 High variant\n2. A New Profile Setup is in progress\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Complete the New Profile Setup up to step 4\n2. Read the screen and check that the preferences prompt is shown\n3. Choose to create from current preferences\n4. Read the screen shown after the preferences step",
+   "expected_result": "1. Step 4 of the New Profile Setup is completed\n2. The prompt to choose current or default preferences is displayed\n3. The choice is accepted\n4. Tutorials begin and no Connected Personal Account login is launched",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.1",
+   "priority": "P1",
+   "priority_basis": "R1 High 之流程分歧 —— 誤啟 CPA 即為錯誤變體行為",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**變體 axis `r1h-cpa-8.1`**：本條為 R1 High 側。base 側（`Is CPA present?` 為是 → 啟動 CPA 登入）**在 037 內無 leaf**，只見於 PDF p12 之流程圖，依 R-U56 不造；已於 `audit_variant_pairs.AXES` 由 `pending` 改為具名不配（述詞 `no-other-side-leaf` 實測）—— 同 `SWE1-HMI-PROF-046`。**ER4 之缺席斷言不可省**：只驗 Tutorials 有沒有開，一個**先開 CPA 再開 Tutorials** 之實作會通過（§8.3）。條文之 `accessible from the Edit Profile screen only` 一句，其正向屬 `SWE1-HMI-PROF-110`（11.3.1），本條不涵蓋其全稱反向。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

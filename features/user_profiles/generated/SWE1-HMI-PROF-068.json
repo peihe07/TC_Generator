@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-068",
+ "outline": "8.3.1",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR2.1) Pressing any other button (on main menu bar or status bar) while within the New Profile Setup will be treated the same as “Cancel” or “X” and give another popup asking if the user is sure they can to discard the New Profile setup.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR2.1) Pressing any other button (on main menu bar or status bar) while within the New Profile Setup will be treated the same as “Cancel” or “X” and give another popup asking if the user is sure they can to discard the New Profile setup.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.3.1（NEWPR2.1）—— 設定中按其他按鍵視同 Cancel／X，並出現確認丟棄之 popup。關鍵情境條件：設定須在進行中且已有輸入，否則「丟棄」無標的。為什麼這樣切：本 leaf 之單位為**該詢問之出現**。",
+ "keywords": [
+  "status bar",
+  "discard",
+  "New Profile Setup",
+  "cancel"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-068",
+   "tc_id": "NR1L-UserProfiles-170",
+   "tc_title": "Pressing another button during setup asks to discard",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Pressing another button during setup asks to discard",
+   "pre_conditions": "1. A New Profile Setup is in progress at the username step\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press a button on the status bar during the setup\n2. Read the screen and check which popup is displayed",
+   "expected_result": "1. The status bar button is pressed during the New Profile Setup\n2. A popup asking to confirm discarding the New Profile setup is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.3.1",
+   "priority": "P2",
+   "priority_basis": "設定中按他鍵視同取消並詢問；避免誤丟輸入",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**條文列兩處入口**（`main menu bar or status bar`）——本條取狀態列一側，**為抽樣**（§8.4.2）：主選單列一側之結果不由本條保證。取狀態列之理由：其於設定 popup 顯示期間仍可見（4.6），主選單列是否可見條文未述。**未驗「確認之後真的丟棄」** —— 條文只說「給另一個 popup 問」，丟棄之後果未述，依 §8.4.1 不推定。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

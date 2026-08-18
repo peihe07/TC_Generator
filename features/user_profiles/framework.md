@@ -156,7 +156,7 @@ PLP 各列之實際覆蓋深度另由 `DECISIONS.md` D-UP16-02（全稱命題以
 | 範圍 | 事由 | 條 |
 |---|---|---|
 | **spec `4.1.1`** 之 popup 引用 | DR #4：`PU1087`／`PU1088` 不在現有 Pop Up List | **R-U15** |
-| **寫回實作（Phase 6）** | A-UP09 之 x14 DV gate 未立且未實跑 | **R-U14** |
+| ~~**寫回實作（Phase 6）**~~ | ~~A-UP09 之 x14 DV gate 未立且未實跑~~ **41 輪解除**：`verify_dv_integrity.py` 已立並實跑（6/6，三注入向皆紅）| **R-U14** |
 
 **兩者皆不擋 Phase 1／framework。**
 
@@ -174,7 +174,7 @@ PLP 各列之實際覆蓋深度另由 `DECISIONS.md` D-UP16-02（全稱命題以
 | 4 | Table CPA2（PDF p17）／Table EDPR1（PDF p14）為 ER 列舉之來源，生成時回查 | R-U35 (d) |
 | 5 | **spec `4.1.1` 之 popup 內文不寫逐字 ER**（觸發、顯示與否、分支可驗）| R-U15／R-U27 |
 | 6 | `3.1`–`3.5`（PLP 表）僅作 `PROF-001-01` 之 in-scope 依據，**不另生成獨立 TC** | R-U22／R-U28 |
-| 7 | **寫回不得開工** —— A-UP09 之 x14 DV gate 未立且未實跑 | R-U14 |
+| 7 | ~~**寫回不得開工**~~ —— **41 輪解除**（A-UP09 RESOLVED）；**交付仍屬 Pei** | R-U14 |
 
 ## 7. 待覆核之處（本層不自裁）
 

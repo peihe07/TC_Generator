@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-072",
+ "outline": "8.6",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR5.) For connected vehicles, New Profile setup Step 1: create new or download existing",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR5.) For connected vehicles, New Profile setup Step 1: create new or download existing",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.6（NEWPR5）—— 連網車輛之設定第一步提供「建立新的或下載既有」兩個選項。關鍵情境條件：車輛須具連網能力。為什麼這樣切：本 leaf 之單位為**第一步之選項**。",
+ "keywords": [
+  "connected vehicle",
+  "create new",
+  "download existing",
+  "Step 1"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-072",
+   "tc_id": "NR1L-UserProfiles-174",
+   "tc_title": "Connected vehicles offer create new or download existing",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Connected vehicles offer create new or download existing",
+   "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A New Profile Setup is in progress at its first step\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the first step of the New Profile Setup\n2. Read the screen and check the options offered",
+   "expected_result": "1. The first step of the New Profile Setup is displayed\n2. The options to create new or to download an existing Profile are offered",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.6",
+   "priority": "P2",
+   "priority_basis": "連網車輛之第一步兩個選項",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**`For connected vehicles` 為適用條件**（§8.7.3）——以 pre-condition 固定為連網車輛。**非連網車輛之第一步條文未述**，依 §8.4.1 不推定，亦不列為覆蓋缺口（037 未為其切 leaf）。下載既有 profile **之後**之流程屬 8.7.1 之 Back 選項（`SWE1-HMI-PROF-074`），本條只驗選項之存在。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

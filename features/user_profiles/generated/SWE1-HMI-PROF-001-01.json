@@ -26,7 +26,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Profile-linked preferences stored and recalled per Driver Profile",
-   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The features carrying the preferences under test are available for the vehicle and the region",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The features carrying the preferences under test are available for the vehicle and the region\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preferences under test: Cluster Home screen (3.1), SiriusXM 360L Listener Profile (3.2), Nav Saved destinations (3.4)",
    "test_procedure": "1. Activate Driver Profile A\n2. Set the three preferences listed in Input Test Data to values different from their current ones\n3. Record the values set in step 2\n4. Activate Driver Profile B, then activate Driver Profile A again\n5. Read the three preferences and check that they match the values recorded in step 3",
    "expected_result": "1. Driver Profile A is active\n2. The three preferences accept the new values\n3. The values set in step 2 are recorded\n4. Driver Profile A is active again\n5. The three preferences match the values recorded in step 3",
@@ -36,7 +36,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗偏好之逐 profile 儲存與回復；welcome popup 與該斷言無關，但步驟 4 之連續兩次切換會各彈一次，遮住步驟 5 之讀值。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

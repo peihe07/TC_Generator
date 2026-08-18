@@ -46,6 +46,9 @@
 | 35 | 2026-08-18 | **X-1 跨節 popup、X-2 受檢畫面、review pack 拆檔** | [handoff/35_review_batch04.md](handoff/35_review_batch04.md) | [upstream/35_review_fixes4.md](upstream/35_review_fixes4.md)＋[upstream/35_review_pack_26a.md](upstream/35_review_pack_26a.md)＋[upstream/35_review_pack_26b.md](upstream/35_review_pack_26b.md) | —（本包無裁決條文）| —（無新開）| **X-1** `TC-128` 之步驟 2 正是 5.10.1 之觸發條件（**PU0588 會跳出來問**），原 procedure 未提它 —— **結果取決於測試者按了什麼**；加「選 No」並於 **ER2 併驗該 popup 出現**（否則「該詢問是否發生」未被斷言，而它正是 5.7 與 5.10.1 之接縫）。**全批自檢之 v1 得 60 處，等於沒有範圍** —— 多為主題重疊（`valet/mode/vehicle`）；v2 改**登記表式**（觸發動作 ＋ **成立條件**兩者皆命中），得 7 → 修正後 6，**逐條判無進一步缺陷**。**並立一條分類判準**：X-1 之真正判準不是「會不會跳 popup」，是「**跳出來之後測試者是否必須做一個會改變結果的決定**」—— PU0588 是決策型（必須處理），PU0580 是資訊型且 5 秒自行消失（不必）。**X-2** `TC-134` 步驟 2 之「outside」不是測試者能執行的位置，改為指名兩個受檢畫面並於 reasoning 具名其為**抽樣非窮舉**。**作業 3** review pack 拆為 `26a`（109–121）／`26b`（122–134）各 13 條。**本輪未執行任何 git** |
 | 36 | 2026-08-18 | **Y-1 全稱限制之反向、配對宣稱自檢、孤兒下放包之來歷** | [handoff/36_review_batch04b.md](handoff/36_review_batch04b.md) | [upstream/36_review_fixes5.md](upstream/36_review_fixes5.md) | —（本包無裁決條文）| —（無新開）| **Y-1 採 (a)**：`TC-117` 之 ER3 加 `the “Edit Profile” tab is not opened` —— 選取另一 profile 之兩個必然結果（切換／不進入編輯）**同一觸發**，依 §5.7 併於同一條；若採 (b)，其 procedure 會與 `TC-117` 逐字相同而只有 ER 不同，**那是把同一次操作寫成兩條**。`TC-121` 之 remarks 改指**ER 行號**。**配對宣稱全批自檢命中 18 處，指錯 2 處** —— `TC-096` 指 `104`（實為 4.6.3 之 `016`）、`TC-127` 指 `133`（實為 5.10.1 之 `034-03`），**兩處都是我在 tc_id 尚未指派時寫下的號碼，且兩處都通得過現有的閘**（D-1 只認「由…承擔」句型，D-2 只驗被指者存在）——**A-UP12 之同型**。落 **Y-1 掃描**：配對兩條須屬同一 leaf 群（可測之必要條件），跨群者列待判。**自檢副產品**：`TC-073` 仍寫「rubric 無安全帶」，**21 輪 K-1 改了 `089`／`116` 而漏了它**，判級不變、依據補正為 §10.2 safety。**作業 2**：`20_batch03.md` 為**一份未被執行之 20 輪下放包**（mtime 早 `20_batch01_review.md` 兩分鐘、其上繳標的不存在）；**五項作業中四項已由後續包以不同編號重新提出並完成**，唯一遺漏為 **J-15 作業 3**（11 輪盲區掃描 17 條之「結論／理由」複核）。**未刪除、未加註**（下放包屬分析層之物），處置建議三項。**本輪未執行任何寫入性 git** |
 | 37 | 2026-08-18 | **J-15 補做、號碼指派檢查、第四批收尾** | [handoff/37_j15_and_assignment.md](handoff/37_j15_and_assignment.md) | [upstream/37_j15_and_assignment.md](upstream/37_j15_and_assignment.md) | —（本包無裁決條文）| —（無新開）| **作業 1** J-15 作業 3 補做（36 輪查出之唯一遺漏）：11 輪盲區掃描 17 條之其餘 16 條逐條複核 —— **結論 16 條全部不變，理由更正五處**：`047`／`066` 指的是**圖**不是條文（`066` 同一句之 `not **pictured** here` 即證）、`090`／`091-01`／`091-02` 指的是 **9.3 自身之散文列舉**而非 Table EDPR1（那是 9.1 之選項順序表）、`108` 方向對但未複位（20 輪已精確化）。**並查證該錯誤理由未流入語料** —— `TC-022` 之 reasoning 寫的是「出自 9.3」，是對的；錯的只有 D-UP11-01 表裡三格。依 R-2 先例**加註不刪原表**。**作業 2** 立 `audit_assignment.py`：**號碼指派表自生成器重算，不讀 `generated/`**（A-1 為地基 —— 產物與生成器分岔則任何以產物為據之檢查都不可信），A-2 驗同句之 tc_id↔leaf、A-3 驗號碼存在。**首跑綠（0）**，並具名「0 之意義是修正生效，不是從來沒錯」；**盲區具名**：36 輪兩處正是「只寫號碼未附 leaf id」，A-2 擋不到，已納護欄。**作業 4** `TC-003` 維持現狀並於 remarks 具名核心斷言為「數目上限」；PU0580 四條 pre-condition 指定「已開啟」；**5.3.1 只有一個 leaf，其 `(if turned on)` 之關閉側依 R-U56 判 OUT-OF-SCOPE**。**本輪未執行任何 git** |
+| 38＋39 | 2026-08-18 | **Z-1（`TC-110`）、R-U56 全批自檢、R-U57 入庫、label 曝險掃描** | [handoff/38_batch05_sample.md](handoff/38_batch05_sample.md)、[handoff/39_rd_disposition.md](handoff/39_rd_disposition.md) | [upstream/39_rd_disposition.md](upstream/39_rd_disposition.md)（兩輪合併，已具名） | **R-U57**（RD v2 之答覆不回頭改已生成之 TC；免除者為字面形式之返工，**不含判定翻轉**） | —（無新開） | **Z-1**：`TC-110` 採 (a) —— `per Profile` 就寫在該 leaf 自己的 037 description 內，**原記 OUT-OF-SCOPE 係誤用**，補 ER4（B profile 之分頁不受 A 之操作影響）。**R-U56 全批自檢**：立 `z1_ru56_scope` 掃描，四處 R-U56 判定中**三處為誤用** —— `TC-110`、`TC-082`（改為委派 `SWE1-HMI-PROF-002-03`），**以及我自己 37 輪對 5.3.1 之 `(if turned on)` 之判定**（改列我方覆蓋不足）。**label 曝險掃描**：餘 55 leaf 命中 2 處（5.16／`045`、8.2／`066`），兩者皆為名詞用法。**第五批取樣清單**：13 條、額外造者 0。**本輪未執行任何 git** |
+| 40 | 2026-08-18 | **並行推進：第五批生成、DV gate、review pack 程式化** | [handoff/40_parallel.md](handoff/40_parallel.md) | [upstream/40_batch05_and_dvgate.md](upstream/40_batch05_and_dvgate.md)、[upstream/40_review_pack_24a.md](upstream/40_review_pack_24a.md)、[upstream/40_review_pack_24b.md](upstream/40_review_pack_24b.md) | —（本包無裁決條文） | **RD #8**（`5.13.2` 之 `PU0626` 與 `PU_0129` 是否同一個 —— 若為兩段確認則三條會假失敗，依 R-U57 不屬形式差異）| **第五批 22 條**（`135`–`156`，ch5 ALLPR 13 ＋ ch6 NOPR 9），leaf 覆蓋 **147 / 180**；額外造者 0（`041-04` 本身即 leaf，該措辭之誤已第二次出現）。**`046` 觸發 `audit_variant_pairs` 之 pending 絆線**（如設計），改判為具名不配，新增 `no-other-side-leaf` 述詞實測 base 側在 037 無 leaf。**系統性發現**：X-1 之觸發詞表只認 `select`，漏 `activate` —— 擴充後待判 6 → 22，**新增 16 處全在既有批次**，本批兩處已於生成時處理。**DV gate 立起並實跑**（`verify_dv_integrity.py`，6/6，三個注入向皆轉紅）——**A-UP09 之 R-U14 解除條件已成就**，惟不逕行改判（解除同時解除寫回封鎖）。新記兩事實：openpyxl 存回之 member 集合變動遠大於淨值 1（少 11 多 10）；`surgical_save` 之 `diff_cells` 對 TC 分頁逾 100 秒未完成。**review pack 改由 `build_review_pack.py` 產生**，不再手打轉錄。**本輪未執行任何 git** |
+| 41 | 2026-08-18 | **X-1 十六條修正、動詞詞表、第六批（全覆蓋）、寫回設計草案** | [handoff/41_batch06.md](handoff/41_batch06.md) | [upstream/41_batch06_and_writeback_design.md](upstream/41_batch06_and_writeback_design.md)、[upstream/41_review_pack_33a.md](upstream/41_review_pack_33a.md)、[upstream/41_review_pack_33b.md](upstream/41_review_pack_33b.md) | —（本包無裁決條文；**A-UP09 落槌 RESOLVED**，D-UP41-01 記入） | —（無新開） | **X-1 修正 20 條**（下放包點名 16 ＋ 另四條 pre-condition 早已明定 popup 開啟者），集中於 `popup_guard.py` 一張表，X-1 待判 22 → **0**。**順帶抓出 PU0588 兩處誤報**（`004` 明寫不按存取鍵、`130` 只涉一個 profile）——補其成立條件為「跨 profile」，並發現原 `TC-128` 案例是簡化形而把成立條件簡化掉了。**動詞同義表**（`data/verb_synonyms.tsv` 41 列 ＋ `audit_verbs.py` 三項閘）：VB-2 把「詞表說 activate 會觸發 PU0580」拿去問掃描本身；**本輪立刻抓到第六批之 `Continue` 未登記**。**RD #8 依 §四逕行修正**：五條之確認步驟改為「於每一個確認 popup PU0626/PU_0129 按 Yes」，三種讀法下皆不假失敗，驗證目標未變。**第六批 33 條**（`157`–`189`，ch7 10 ＋ ch8 23）—— **leaf 覆蓋 180 / 180，全覆蓋達成**；ch8 沿用同節多 leaf 併寫，由此看出 8.4 與 8.8.1 是同一句話之兩處出現、`073-03` 之空格必須放在第十二個位置。**寫回設計草案**（未執行）：欄位對映 16 寫／不寫逐欄具名、edits 直給不經 `diff_cells`、DV 三段接點，**五項未決**（T:Z 車型欄為唯一無安全預設者）。**本輪未執行任何 git** |
 
 ---
 
@@ -67,6 +70,36 @@
   `Outline Number` 169/169 一致。候選被引集合 135 條已落檔。
   spec 全文唯一 PU id **20 個**（與下放包相符）。
 - **workbook_state = BLANK**：獨立實測佐證 R-U6（A–AH 全欄非空格 0）。
+
+### 第四十一輪已完成（2026-08-18）—— **第六批：leaf 全覆蓋**
+
+- **第六批 33 條**（`NR1L-UserProfiles-157`–`189`）：ch7 `PRWEL` 10 leaf
+  ＋ ch8 `NEWPR` 23 leaf。語料 **189 條**，**leaf 覆蓋 180 / 180 —— 全覆蓋**。
+- **X-1 之 20 條修正落地**（`popup_guard.py` 一張表，15 條加 pre-condition、
+  5 條具名該 popup 為標的），X-1 待判 **22 → 0**；
+  順帶抓出 PU0588 之兩處誤報並補其成立條件。
+- **`audit_verbs.py`**（第 14 支閘）＋ `data/verb_synonyms.tsv`：
+  以動詞為觸發之掃描，其詞表須與掃描之正則對照。
+  **VB-2 之注入向即 40 輪之缺陷本身**（正則退回只認 `select` → 轉紅）。
+- **RD #8 依 41 包 §四逕行修正**，不待答覆；驗證目標未變。
+- **A-UP09 → RESOLVED**（41 包落槌），Phase 6 寫回實作得開工；
+  **交付仍屬 Pei**。D-UP41-01 記入 `DECISIONS.md`。
+- **寫回實作之設計草案已出（未執行）**：五項未決見上繳 §5.5。
+
+### 第四十輪已完成（2026-08-18）—— **第五批生成、DV gate、review pack 程式化**
+
+- **第五批 22 條**（`NR1L-UserProfiles-135`–`156`）：ch5 `ALLPR`（5.12–5.16）13 leaf
+  ＋ ch6 `NOPR`（6.1–6.6）9 leaf。**額外造者 0**。
+  語料 **156 條**，leaf 覆蓋 **147 / 180**，餘 33（ch7 10 ＋ ch8 23）＝ 第六批。
+- **`verify_dv_integrity.py` 立起並實跑**（R-U14 之解除條件）：
+  DV-1 zip member 集合／DV-2 x14 節點數／DV-3 `xm:sqref` 範圍／DV-4 legacy 節點數，
+  **6 / 6 方向性案例 PASS**，其中三個注入向皆轉紅。
+  **A-UP09 之解除條件已成就，狀態改判待落槌**（解除同時解除寫回封鎖）。
+- **系統性發現**：X-1 之觸發詞表只認 `select … Driver Profile`，
+  **漏 `activate`** —— 擴充後待判 6 → 22，新增 16 處全在既有批次。
+- **`build_review_pack.py`**：覆核用全文與 ER 出處對照改由程式產生，
+  不再手打轉錄（21／23／29／34／35 輪皆為手打）。
+- **RD #8 新開**：`5.13.2` 之 `PU0626` 與 `PU_0129` 是否同一個 popup。
 
 ### 第三十七輪已完成（2026-08-18）—— **J-15 補做與號碼指派檢查**
 
@@ -1279,9 +1312,9 @@
    並補 01 輪列為未實測之五項（header row 7、FROP 欄 182 列值、
    PROF-017／035 之 Out of scope 身分、Sub Categorization 與 Priority 分布）。
 3. Layer 2 定版後方可附 `docs/fw036/framework.md` Part（仍未附）。
-4. **建議立一道 gate 保住 R-G3** —— 現行防線是散文，而 A-UP09 自己說了
-   「靜態讀取驗不到只在寫入時才成立的性質」。Comfort `write_back` §3.3 之
-   `x14`／zip-member assertion 可直接借用。
+4. ~~**建議立一道 gate 保住 R-G3**~~ —— **40 輪已立並實跑**：
+   `scripts/verify_dv_integrity.py`（四項比對、6/6 方向性案例，
+   注入向確實轉紅）。**A-UP09 之 R-U14 解除條件已成就，待落槌。**
 
 ---
 

@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Changed preferences saved before the next Profile loads",
-   "pre_conditions": "1. Two Driver Profiles exist, each with a recorded value of the preference under test\n2. The two recorded values are different from each other",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a recorded value of the preference under test\n2. The two recorded values are different from each other\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preference under test: Cluster Home screen (3.1)",
    "test_procedure": "1. Activate Driver Profile A and change the preference to a new value, then record it\n2. Activate Driver Profile B and read the preference\n3. Activate Driver Profile A and check that the preference matches the value recorded in step 1",
    "expected_result": "1. Driver Profile A is active and the changed value is recorded\n2. Driver Profile B is active and its preference is its own value, not the value recorded in step 1\n3. Driver Profile A is active and the preference matches the value recorded in step 1",
@@ -35,7 +35,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 **ER2 是順序之判別點**：若儲存發生在 Profile B 載入**之後**，A 之變更會落到 B 上 —— ER2 即在排除該實作。ER3 單獨只能證「有存到」，證不了「存在載入之前」。",
+   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 **ER2 是順序之判別點**：若儲存發生在 Profile B 載入**之後**，A 之變更會落到 B 上 —— ER2 即在排除該實作。ER3 單獨只能證「有存到」，證不了「存在載入之前」。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗「載入前先存」之順序；popup 出現在載入之後，**若不關閉，步驟 2 之讀值須先關掉 popup 才做得到**。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

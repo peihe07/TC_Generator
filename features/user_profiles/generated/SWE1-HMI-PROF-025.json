@@ -35,7 +35,7 @@
    "design_method": "負向測試 (Negative / Invalid)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**ER3 併驗「最後作用中者為 B」** —— 只驗「C 之選取不被接受」，一個把選取吞掉卻仍切到 C 之實作會通過。三個 profile 為**測試設置**（J-12）：條文只寫 another profile，取三個是為使「載入中之目標」與「被擋之目標」為不同兩者。",
+   "remarks": "**ER3 併驗「最後作用中者為 B」** —— 只驗「C 之選取不被接受」，一個把選取吞掉卻仍切到 C 之實作會通過。三個 profile 為**測試設置**（J-12）：條文只寫 another profile，取三個是為使「載入中之目標」與「被擋之目標」為不同兩者。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：同上；本條步驟 2 之「載入中再選」發生在 popup 出現**之前**（5.3.1 之順序為載入訊息 → welcome popup），故不受其遮蔽。",
    "split_flag": false,
    "split_reason": ""
   }

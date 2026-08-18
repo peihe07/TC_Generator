@@ -34,6 +34,15 @@
   in-scope 依據，繼續併列）。
   **本條為 feature-level；升為全域須 Pei 另行一句**（R-U13，不自推）。
   條文逐字見 `features/user_profiles/RULINGS.md` R-U56。
+  **適用範圍之窄化（Z-1，38 輪）**：R-U56 只管「**037 未產出 leaf**」者。
+  若該行為寫在**某個已存在之 leaf 之 description 內**（即使是本 TC 自己的），
+  **那不是範圍外，是該 leaf 之斷言未被驗完**（§6）。
+  掃描：`audit_consistency.py` 之 **Z-1**。
+- **RD 答覆不回頭改已生成之 TC（R-U57，39 輪 Pei 裁定）[ADD]**：
+  RD #5／#6 之答覆**只及於其後生成者**；已生成者不返工。
+  **所免除者為字面形式之返工，不含判定翻轉** ——
+  若答覆顯示某條會**假失敗或假通過**，須具名上報再議，
+  **不得逕行套用本條**。條文逐字見 `RULINGS.md` R-U57。
 - `tc_id` 形態 `NR1L-UserProfiles-{NNN}`；Test Group 欄 = `User Profiles`（R-U1／R-U2）
 - **workbook_state = BLANK**（R-U6）；style authority = Home 之 done region
   （Arif 144 列），標 `cross-feature: style only`

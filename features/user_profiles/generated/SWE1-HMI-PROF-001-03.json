@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Unavailable features skipped when storing and recalling",
-   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. At least one preference in the PLP table belongs to a feature not available for this vehicle or region",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. At least one preference in the PLP table belongs to a feature not available for this vehicle or region\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preference under test: a PLP item whose feature is absent on this vehicle",
    "test_procedure": "1. Activate Driver Profile A and record the option list of profile-linked preferences\n2. Activate Driver Profile B, then activate Driver Profile A\n3. Read the option list and check that the unavailable item is neither stored nor recalled",
    "expected_result": "1. Driver Profile A is active and the option list is recorded\n2. Driver Profile A is active again\n3. The unavailable item is absent from the list and no error is raised for it",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 本條驗**略過**，故其受測列項為「該車不具備之功能」—— 其為配置相依，pre-condition 以能力而非以特定列項指定。",
+   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 本條驗**略過**，故其受測列項為「該車不具備之功能」—— 其為配置相依，pre-condition 以能力而非以特定列項指定。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗不可用項之略過，其判定在選項清單而非 popup。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

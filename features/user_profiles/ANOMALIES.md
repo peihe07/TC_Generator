@@ -249,7 +249,7 @@ Categorization 欄之逐列計數為單位 —— `functional_requirement_count 
 
 **附帶**：該節之範例程式碼為 `openpyxl` + `wb.save()`，與 A-UP09 直接衝突。
 
-## A-UP09 — openpyxl 存回會摧毀母本 R 欄 design_method 下拉（**PENDING**，解除條件見 R-U14）
+## A-UP09 — openpyxl 存回會摧毀母本 R 欄 design_method 下拉（**RESOLVED，41 輪 Pei／分析層落槌**）
 
 **實測（2026-08-17，scratchpad 複本，repo 外；母本與 `inputs/` 複本均未被寫入，
 母本 SHA `6372fb6b…` 前後一致）**：對母本複本執行
@@ -302,6 +302,68 @@ removed` 並丟棄之，存回時不再寫出。
   工作表數與順序、公式範圍、樣式，而非只涵蓋目前已想到的那幾項。
 
 ---
+
+### 40 輪 —— R-U14 之 gate 立起並實跑（`scripts/verify_dv_integrity.py`）
+
+**六個方向性案例全數 PASS**，其中三個為注入向：
+
+| 向 | 案例 | 結果 |
+|---|---|---|
+| 注入 | `openpyxl.load_workbook()` → `save()` | **紅**（DV-1／DV-2／DV-3 同時命中）|
+| 注入 | x14 節點保留而 `xm:sqref` 由 `R10:R1411` 縮為 `R10:R100` | **紅**（DV-3；**DV-2 全綠**）|
+| 注入 | 重封裝時掉了 `下拉選單` 之 `sheet9.xml` | **紅**（DV-1）|
+| 對照 | `xlsx_surgical` splice 一格（D12） | 綠 |
+| 範圍 | splice 30 列**含 R 欄 design_method** | 綠 |
+| 範圍 | `copy_unchanged` 逐位元組複本 | 綠 |
+
+**本輪之新實測 —— 原記載低估了損壞面**：
+
+原表記「zip members 48→47」。該**計數**正確，但**集合之變動遠大於淨值 1**：
+
+| | 內容 |
+|---|---|
+| 少 11 個 | `xl/calcChain.xml`、`xl/comments1.xml`、`xl/drawings/vmlDrawing1.vml`、`xl/media/image2.jpeg`、`xl/printerSettings/printerSettings1–5.bin`、`xl/sharedStrings.xml`、`xl/worksheets/_rels/sheet8.xml.rels` |
+| 多 10 個 | `xl/comments/comment1.xml`、`xl/drawings/commentsDrawing1.vml`、`xl/media/image2.png`、`xl/media/image3–9.jpeg` |
+
+即：**列印設定全失、共用字串表重寫、一張 jpeg 被轉成 png**。
+`48→47` 這個淨值讓它看起來像掉了一個部件，
+**實際上是整個封裝被重做了一遍**。原記載無誤，但其呈現形式使人低估之——
+這正是本閘第 1 項驗**集合**而非**計數**的理由。
+
+**第二個新事實（Phase 6 之效能事項，非缺陷）**：
+`xlsx_surgical.surgical_save()` 之 `diff_cells()` 對本母本之
+`Test Case Specification` 分頁（1411 × 34，B 欄 shared formula）
+**逾 100 秒未完成**（其餘八分頁各 < 0.1 秒）。
+封裝路徑（`patch_sheet_xml` ＋ 逐 member 複寫）為 0.04 秒。
+寫回實作若直接呼叫 `surgical_save()`，會卡在求變動格這一步 ——
+**與 DV 完整性無關，但會使寫回看起來像當掉**。
+
+**量測條件**：母本複本置於 scratchpad，`forms/` 之母本與 `inputs/` 複本
+**全程未被寫入**；母本 SHA `6372fb6b…` 於本輪前後一致（與 `FORMS.md` 記載相符）。
+
+**解除判定（執行層）**：R-U14 之解除條件逐字為「機器檢查存在且實跑」——
+**兩者皆已成立**，且非只貼綠：注入向確實轉紅。
+故就該條文之字面而言，**A-UP09 得解除 PENDING**。
+
+**惟本層不逕行改為 RESOLVED**，理由具名如下：
+解除同時解除「**本 feature 之寫回實作不得開工**」之封鎖，
+而 40 包 §不在授權範圍明文「**本包只做 gate，不做寫回**」。
+把封鎖之解除與封鎖之啟用者放在同一個人手上，是 R-U14 當初要避免的事。
+**故：條件成就已記於此，狀態改判待分析層／Pei 落槌。**
+
+### 41 輪 —— 落槌，RESOLVED
+
+41 包 §一逐字：「條件成就，本層落槌」，並確認
+「**執行層不逕行改判是對的** —— 把封鎖之解除與封鎖之啟用者放在同一個人手上，
+正是 R-U14 當初要避免的事」。
+
+**解除之範圍**：本 feature 之**寫回實作**得開工。
+**交付**（送客戶目錄）不在此列，仍屬 Pei。
+
+**本條轉 RESOLVED 之後，其實測記載全部保留** —— 包含 40 輪補記之
+「member 集合變動遠大於淨值 1」與 `surgical_save` 之效能事項。
+**`feature.yaml` 之 `write_back.forbid_openpyxl_save: true` 不因結案而移除**：
+缺陷本身沒有消失，消失的是「沒有機器檢查」這件事。
 
 ## Assumption markers
 

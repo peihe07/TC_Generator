@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-077",
+ "outline": "8.8.1",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR7.1) There will be at least 10 Avatars initially. As avatars are in use, they will not be shown as options for other users to choose.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR7.1) There will be at least 10 Avatars initially. As avatars are in use, they will not be shown as options for other users to choose.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.8.1（NEWPR7.1）—— 初始至少提供 10 個 avatar。關鍵情境條件：無 avatar 被其他 profile 佔用。為什麼這樣切：本 leaf 之單位為**數目下界**；隱藏規則已由 `SWE1-HMI-PROF-069-01`（8.4）承擔。**計數之範圍**：條文只說 `at least 10 Avatars initially`，未說是否須於同一畫面可見；本條計跨分類之總數，**一個把十個分散在三個分類之實作會通過** —— 此為條文之留白。",
+ "keywords": [
+  "ten avatars",
+  "initial",
+  "count",
+  "avatar selection"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-077",
+   "tc_id": "NR1L-UserProfiles-182",
+   "tc_title": "At least ten avatars are offered initially",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "At least ten avatars are offered initially",
+   "pre_conditions": "1. A New Profile Setup is at the avatar step\n2. No avatar is in use by another Driver Profile\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the avatar selection screen and count the avatars offered\n2. Read the count and check whether it reaches ten",
+   "expected_result": "1. The avatars offered are counted\n2. At least ten avatars are offered",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8.1",
+   "priority": "P1",
+   "priority_basis": "初始 avatar 數目下界；選擇池之充足性",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**pre-condition 指定「無 avatar 被佔用」** —— 否則「至少十個」與「原本十一個而被隱藏一個」不可分辨，本條會把一個數目不足之實作判成通過。**「使用中者不顯示」一側由 `SWE1-HMI-PROF-069-01`（8.4）承擔** ——8.8.1 之該句與 8.4 之過濾**是同一件事在兩節之兩次出現**，依 §8.2.1 不重複造。分類是否影響一次可見之數目，條文未述；本條之計數為**跨分類之總數**，已於 reasoning 具名。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

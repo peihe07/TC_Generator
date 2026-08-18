@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Preferences restored when activated by a memory seat button",
-   "pre_conditions": "1. Two Driver Profiles exist, each linked to a different memory seat button\n2. The two Profiles hold different values of the preference under test",
+   "pre_conditions": "1. Two Driver Profiles exist, each linked to a different memory seat button\n2. The two Profiles hold different values of the preference under test\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preference under test: Cluster Home screen (3.1)",
    "test_procedure": "1. Activate Driver Profile A and record the preference\n2. Select memory seat button 2, which is linked to Driver Profile B\n3. Read the preference and check that it matches Driver Profile B's own value",
    "expected_result": "1. Driver Profile A is active and its preference is recorded\n2. Driver Profile B is active\n3. The preference matches Driver Profile B's own value and differs from the value recorded in step 1",
@@ -35,7 +35,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "記憶座椅鍵之編號（2）為**測試設置**（J-12），非條文指定 ——4.3 只寫 through memory seat buttons。座椅與 profile 之連結規則屬 4.5.1／9.5.x，本條以其為前提。",
+   "remarks": "記憶座椅鍵之編號（2）為**測試設置**（J-12），非條文指定 ——4.3 只寫 through memory seat buttons。座椅與 profile 之連結規則屬 4.5.1／9.5.x，本條以其為前提。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：同上，觸發途徑為記憶座椅鍵。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

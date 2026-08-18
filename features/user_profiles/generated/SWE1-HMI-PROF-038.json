@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-038",
+ "outline": "5.12.2",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "ALLPR1.2) Editing memory seat preferences/links will not change the order of the Profiles",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR1.2) Editing memory seat preferences/links will not change the order of the Profiles",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.12.2（ALLPR1.2）—— 編輯記憶座椅連結不改變 profile 之順序。關鍵情境條件：須先**記錄**原順序，否則「未變」無對照。為什麼這樣切：本 leaf 之單位為**編輯後之不變性**。`design_method` 取功能測試而非狀態轉換：本條所驗者為一個狀態改變（座椅連結）之**旁效不發生**，受檢之順序本身並未遷移 —— 標狀態轉換會使該欄與斷言不符（K-4a）。",
+ "keywords": [
+  "memory seat link",
+  "order",
+  "unchanged",
+  "All Profiles"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-038",
+   "tc_id": "NR1L-UserProfiles-137",
+   "tc_title": "Editing a memory seat link leaves the order unchanged",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Editing a memory seat link leaves the order unchanged",
+   "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The vehicle is equipped with memory seats\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and record the order of the Profiles\n2. Open the “Edit Profile” tab of the second Profile\n3. Change the memory seat link of that Profile\n4. Open the “All Profiles” tab and compare the order with step 1",
+   "expected_result": "1. The order of the Profiles is recorded\n2. The “Edit Profile” tab of the second Profile is displayed\n3. The memory seat link of that Profile is changed\n4. The order of the Profiles is unchanged from the order recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12.2",
+   "priority": "P3",
+   "priority_basis": "編輯座椅連結後順序不變；罕觸發之呈現穩定性",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**取中間位置之 profile**：改第一個或最後一個時，「順序未變」與「往兩端移動被邊界擋住」不可分辨。三個 profile 為使中間位置存在（J-12 之測試設置）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

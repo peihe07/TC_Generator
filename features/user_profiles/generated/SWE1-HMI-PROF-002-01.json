@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Restore Settings to Default affects only the active Profile",
-   "pre_conditions": "1. Two Driver Profiles exist, each with a username and an avatar\n2. Both Profiles have at least one vehicle setting changed from its default",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a username and an avatar\n2. Both Profiles have at least one vehicle setting changed from its default\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A and record its setting, username and avatar\n2. Select “Restore Settings to Default” and confirm it\n3. Read Driver Profile A and check its setting, username and avatar\n4. Activate Driver Profile B and check that its setting is unchanged",
    "expected_result": "1. Driver Profile A is active and its values are recorded\n2. The restore completes for Driver Profile A\n3. The setting of Driver Profile A is back to default while its username and avatar are unchanged\n4. The setting of Driver Profile B is unchanged",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "條文有三個斷言：只回復現用 profile、不重設全部 profile、不刪 username 與 avatar —— **三者為同一操作之三個結果**，依 §5.7 併為一條 TC。步驟 4 之 Profile B 即「不重設全部」之觀察點。",
+   "remarks": "條文有三個斷言：只回復現用 profile、不重設全部 profile、不刪 username 與 avatar —— **三者為同一操作之三個結果**，依 §5.7 併為一條 TC。步驟 4 之 Profile B 即「不重設全部」之觀察點。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗回復預設之範圍（只及現用 profile）；步驟 4 之切換會彈 popup。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

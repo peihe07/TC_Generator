@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-051",
+ "outline": "6.3.2",
+ "batch": "batch05",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NOPR2.2) Selecting “Don’t Show me Again” will turn off the setting for the “Welcome” popup for that Profile (which could be any Default or customized Profile).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR2.2) Selecting “Don’t Show me Again” will turn off the setting for the “Welcome” popup for that Profile (which could be any Default or customized Profile).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.3.2（NOPR2.2）—— 選 Don’t Show me Again 關閉**該 profile** 之 Welcome popup 設定。關鍵情境條件：須有第二個 profile 且其設定為開啟，逐 profile 之範圍方可觀察。為什麼這樣切：`design_method` 取狀態轉換 ——本條驗的是一個**持久設定之翻轉**，其效力須跨一次 profile 切換仍成立。",
+ "keywords": [
+  "Don’t Show me Again",
+  "Welcome popup",
+  "setting",
+  "per Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-051",
+   "tc_id": "NR1L-UserProfiles-153",
+   "tc_title": "Don’t Show me Again turns the popup off for that Profile",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Don’t Show me Again turns the popup off for that Profile",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The Welcome popup setting is on for both Profiles\n3. The Welcome popup of Driver Profile A is displayed\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press X on the Welcome popup and read the popup shown\n2. Select Don’t Show me Again and read the Welcome popup setting\n3. Activate Driver Profile B and read the screen\n4. Activate Driver Profile A again and read the screen",
+   "expected_result": "1. A popup offering Remind me Later and Don’t Show me Again is displayed\n2. The Welcome popup setting of Driver Profile A is off\n3. Driver Profile B is active and its Welcome popup is displayed\n4. Driver Profile A is active and no Welcome popup is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3.2",
+   "priority": "P1",
+   "priority_basis": "Don’t Show me Again 關閉該 profile 之設定 —— **逐 profile 之範圍**",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 是逐 profile 之隔離**：條文寫的是`turn off the setting … for that Profile`；一個把該設定存成**全域**之實作，只驗 A 不再顯示會通過（§8.3；同 `SWE1-HMI-PROF-018-02` 之 Z-1 形狀）。**ER4 與 `050-01` 之 ER4 相反** —— 兩條之判別力互為對照：Remind me Later 再啟用時回來，Don’t Show me Again 不回來。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：步驟 3 切到 B 所觸發之 welcome popup **即 ER3 所斷言者**，非未處理之干擾。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

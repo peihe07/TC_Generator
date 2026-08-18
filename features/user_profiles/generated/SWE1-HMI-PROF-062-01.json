@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-062-01",
+ "outline": "7.4",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is in motion or after 30 seconds or if the user interacts with the screen (whichever comes first) and not return until that Profile gets reactivated.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The Welcome Popup (both Default and custom) must automatically clear as soon as the system detects that the vehicle is in motion.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.4（PRWEL4）之 motion 分支 —— 車輛開始移動時，welcome popup 自動清除。關鍵情境條件：popup 須在顯示中，且移動須發生在 30 秒逾時之前。為什麼這樣切：三個觸發互斥於歸因（`whichever comes first`），**不可併為一條** —— 併了就無從判定是哪一個造成清除。",
+ "keywords": [
+  "welcome popup",
+  "in motion",
+  "clear",
+  "PRWEL4"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-062-01",
+   "tc_id": "NR1L-UserProfiles-162",
+   "tc_title": "Welcome popup clears as soon as the vehicle moves",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Welcome popup clears as soon as the vehicle moves",
+   "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The vehicle is stationary\n3. The vehicle can be brought into motion on the test site",
+   "input_test_data": "NA",
+   "test_procedure": "1. Bring the vehicle into motion\n2. Read the screen and check whether the popup is displayed",
+   "expected_result": "1. The vehicle is in motion\n2. The welcome popup is cleared",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4",
+   "priority": "P0",
+   "priority_basis": "行車中 welcome popup 須自動清除 —— **遮蔽駕駛視野之防線本身**（§10.2 safety）",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**取 motion 一側而非 30 秒一側**：條文之三個清除觸發（motion／30 秒／互動）為 `whichever comes first`，故本條須在 30 秒**之內**使車輛移動，否則清除之原因不可歸屬。30 秒一側屬 `SWE1-HMI-PROF-062-02`（`NR1L-UserProfiles-008`），互動一側屬 `SWE1-HMI-PROF-062-03`。**判 P0**：行車中之畫面遮蔽屬 §10.2 之 safety 條件，與 `SWE1-HMI-PROF-029`／`031` 同類 —— 本條驗的是**防線成立本身**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-062-04",
+ "outline": "7.4",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is in motion or after 30 seconds or if the user interacts with the screen (whichever comes first) and not return until that Profile gets reactivated.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "Once the Welcome Popup is cleared (whether by vehicle motion, timeout, or screen interaction), it must NOT return to the screen for the duration of the current session. It will only return when that specific Profile gets reactivated (e.g., next key cycle or profile switch).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.4（PRWEL4）之後半 —— 清除後於本 session 內不返回，直到該 profile 再次被啟用。關鍵情境條件：須有第二個 profile，否則「再次啟用」這個唯一無歧義之解除條件造不出來。為什麼這樣切：`design_method` 取狀態轉換 ——清除建立一個壓抑狀態，再啟用解除之。",
+ "keywords": [
+  "welcome popup",
+  "session",
+  "reactivated",
+  "suppressed"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-062-04",
+   "tc_id": "NR1L-UserProfiles-164",
+   "tc_title": "Cleared welcome popup returns only on reactivation",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Cleared welcome popup returns only on reactivation",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The welcome popup of Driver Profile A is displayed\n3. The Welcome popup setting is on for both Profiles\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the screen to clear the welcome popup\n2. Open and close the Profile section, then read the screen\n3. Activate Driver Profile B, then activate Driver Profile A again\n4. Read the screen and check whether the popup is displayed",
+   "expected_result": "1. The welcome popup is cleared\n2. The welcome popup does not return during the current session\n3. Driver Profile A is active again\n4. The welcome popup of Driver Profile A is displayed again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4",
+   "priority": "P2",
+   "priority_basis": "清除後於本 session 內不再返回",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 與 ER4 缺一不可**：只驗 ER2 者，一個永不再顯示之實作會通過；只驗 ER4 者，一個每次回到主畫面就重彈之實作會通過。**盲區（R-G11）**：`for the duration of the current session` 之「session」條文未定義其邊界。步驟 2 以一次畫面往返代表之，**那是抽樣而非窮舉** —— 更長之 session 內是否返回，本條不保證。**X-1**：步驟 3 之切換會觸發 5.3.1 之 PU0580，而該 popup **即 ER3／ER4 所涉者** —— 標的而非干擾。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

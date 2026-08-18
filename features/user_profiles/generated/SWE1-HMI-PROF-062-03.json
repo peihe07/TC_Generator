@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-062-03",
+ "outline": "7.4",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL4.) The Welcome Popup (Default and custom) will clear when the vehicle is in motion or after 30 seconds or if the user interacts with the screen (whichever comes first) and not return until that Profile gets reactivated.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The Welcome Popup (both Default and custom) must clear immediately if the user interacts with the screen before the 30-second timeout or before the vehicle is in motion.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.4（PRWEL4）之互動分支 —— 使用者觸碰畫面即清除。關鍵情境條件：互動須明確早於 30 秒逾時，且車輛靜止。為什麼這樣切：同 `062-01` —— 三個觸發之歸因不可混。",
+ "keywords": [
+  "welcome popup",
+  "interaction",
+  "clear",
+  "timeout"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-062-03",
+   "tc_id": "NR1L-UserProfiles-163",
+   "tc_title": "Welcome popup clears immediately on screen interaction",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Welcome popup clears immediately on screen interaction",
+   "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The vehicle is stationary",
+   "input_test_data": "Screen pressed about five seconds after the popup appears, that is before the 30-second timeout",
+   "test_procedure": "1. Press the screen while the welcome popup is displayed\n2. Read the screen and check whether the popup is displayed",
+   "expected_result": "1. The screen is pressed while the welcome popup is displayed\n2. The welcome popup is cleared",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4",
+   "priority": "P2",
+   "priority_basis": "使用者互動時之立即清除",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**互動之時點寫在 `input_test_data`** —— 條文之三個觸發為`whichever comes first`，若互動發生在第 30 秒附近，清除之原因即不可歸屬。該時點為**測試方法所要求之值**（J-4），非條文之值，故不寫入 ER。車輛須靜止：否則 motion 分支（`SWE1-HMI-PROF-062-01`）會先於互動成立。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

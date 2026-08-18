@@ -122,30 +122,49 @@ TCS = {
     "SWE1-HMI-PROF-018-02": dict(
         title="Last used tab remembered per Profile across key cycles",
         design=STATE,
+        # **Z-1（38 包）—— 採 (a)**：`per Profile` **就寫在本 leaf 自己的 037
+        # description 內**，故非 R-U56 之範圍外，而是**本 leaf 之斷言未被驗完**（§6）。
+        # 原 ER 之壓力測試（§8.3）為否：一個把分頁存成**全域**（非逐 profile）
+        # 之實作，A 存 Edit Profile、key cycle 後回來仍是 Edit Profile，
+        # **與原 ER 完全相符** —— 照樣通過。
+        # 加步驟 4 與 ER4：切到 B，其分頁**不因 A 之操作而改變**。
         pre=steps("Two Driver Profiles exist on the vehicle",
+                  "The last used tab of Driver Profile B is the “All "
+                  "Profiles” tab",
                   "The vehicle is stationary"),
         data="NA",
         proc=steps("Activate Driver Profile A and open the “Edit Profile” tab",
                    "Switch the ignition off and then on again",
-                   "Press the Profile button and check that the “Edit Profile” tab is shown"),
+                   "Press the Profile button and read which tab is shown",
+                   "Activate Driver Profile B and check that the “All "
+                   "Profiles” tab is shown"),
         er=steps("Driver Profile A is active and the “Edit Profile” tab is "
                  "shown",
                  "The ignition is off and then on again with Driver Profile "
                  "A active",
-                 "The “Edit Profile” tab is shown"),
+                 "The “Edit Profile” tab is shown",
+                 "Driver Profile B is active and its “All Profiles” tab is "
+                 "shown, unchanged by the operations on Driver Profile A"),
         remarks="條文之 latch 有兩個範圍（`within and over key cycles`）與一個"
                 "**逐 profile** 之限定。本 TC 取**跨 key cycle** 一側 ——"
                 "其為兩者中較難成立者（同一 key cycle 內之保留為其必要條件）。"
-                "**逐 profile 之隔離未於本條驗**：另一 profile 之分頁是否互不影響，"
-                "條文有述而 037 未為其另切 leaf ——依 **R-U56** 為 OUT-OF-SCOPE，"
-                "不列缺口。",
+                "**逐 profile 之隔離由 ER4 承載**（38 包 Z-1 所補）："
+                "`per Profile` **就寫在本 leaf 自己的 037 description 內**，"
+                "**故非 R-U56 之範圍外** —— 原記為 OUT-OF-SCOPE 係誤用，"
+                "R-U56 之適用範圍是「spec 有內容而 **037 未產出 leaf**」。"
+                "pre-condition 固定 B 之上次分頁為 “All Profiles”，"
+                "使「未被 A 之操作改變」可觀察。",
         reasoning=(
             "驗證目標：5.1（PRACC7）之 latch —— 系統記住上次使用之分頁，"
             "跨 key cycle 仍然有效。"
             "關鍵情境條件：**須先離開預設分頁**（開 “Edit Profile”），"
             "否則 latch 與預設值之結果相同，無從分辨。"
             "為什麼這樣切：取跨 key cycle 一側；**若只驗同一 key cycle 內之保留，"
-            "一個把分頁存在揮發性記憶體之實作會通過**。"),
+            "一個把分頁存在揮發性記憶體之實作會通過**。"
+            "**逐 profile 之限定（Z-1，38 包）**：條文之 `per Profile` 與"
+            "`within and over key cycles` **為同一句之兩個修飾**，"
+            "故依 §5.7 併驗於本條而不另立 —— ER4 斷言 B 之分頁未受 A 之操作影響。"
+            "**不併驗則一個把分頁存成全域之實作會通過**（§8.3 之壓力測試）。"),
         kw=["latch", "last used tab", "key cycle", "per Profile"],
     ),
 

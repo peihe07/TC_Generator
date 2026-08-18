@@ -60,7 +60,9 @@ SENT = re.compile(r"[^。；\n]+")
 def assignment_table() -> dict:
     """`tc_id` → `req_id`，**自生成器之取樣清單與 `TC_START` 重算**。"""
     import gen_pilot, gen_batch01, gen_batch02          # noqa: E401
-    import gen_batch03, gen_batch04, gen_pairs          # noqa: E401
+    import gen_batch03, gen_batch04, gen_batch05        # noqa: E401
+    import gen_batch06                                 # noqa: E401
+    import gen_pairs                                   # noqa: E401
     t, n = {}, 1
     for rid in gen_pilot.SAMPLE_IDS:                    # pilot 自 1 起
         t[f"NR1L-UserProfiles-{n:03d}"] = rid
@@ -81,7 +83,7 @@ def assignment_table() -> dict:
     for item in gen_pairs.PAIRS:
         t[f"NR1L-UserProfiles-{n:03d}"] = item["req_id"]
         n += 1
-    for mod in (gen_batch03, gen_batch04):
+    for mod in (gen_batch03, gen_batch04, gen_batch05, gen_batch06):
         n = mod.TC_START
         for rid in mod.SAMPLE:
             t[f"NR1L-UserProfiles-{n:03d}"] = rid

@@ -27,7 +27,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import build_batch_context as B                      # noqa: E402
+import build_batch_context as B
+import popup_guard                                  # noqa: E402                      # noqa: E402
 
 FEATURE = Path(__file__).resolve().parent.parent
 OUT = FEATURE / "generated"
@@ -749,7 +750,7 @@ def build() -> list:
             "split_flag": False,
             "split_reason": "",
         }
-        out.append({
+        rec = {
             "parent": req_id,
             "outline": ctx["section"],
             "batch": "pilot",
@@ -764,7 +765,10 @@ def build() -> list:
             "keywords": spec["kw"],
             "duplicate_of": "",
             "tcs": [tc],
-        })
+        }
+        # X-1 之十六條修正（41 包 §三）—— 表在 `popup_guard.py`，此處只施加
+        popup_guard.apply(rec)
+        out.append(rec)
     return out
 
 

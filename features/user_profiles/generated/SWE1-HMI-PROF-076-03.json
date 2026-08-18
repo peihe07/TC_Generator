@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-076-03",
+ "outline": "8.8",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose a different avatar it will become highlighted instead. The selected avatar will show above the “Save & Continue” button on 8.4\" screens and larger and the selected avatar will show next to the save button on 7\" screens. Pushing the Save button will complete the Avatar selection.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "For vehicles equipped with 7\" screens, the currently selected avatar must be displayed next to the save button. Additionally, the text on this button must be labeled simply as “Save”. Pushing this button will complete the Avatar selection process.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.8（NEWPR7）—— 7 吋螢幕，選定之 avatar 顯示於儲存鍵**旁邊**，鍵上字樣為 “Save”。關鍵情境條件：螢幕尺寸為 7 吋。為什麼這樣切：同 `076-02`，兩者互為配對之另一側。",
+ "keywords": [
+  "7 inch",
+  "avatar",
+  "Save",
+  "next to"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-076-03",
+   "tc_id": "NR1L-UserProfiles-181",
+   "tc_title": "Avatar shown next to the Save button on 7 inch screens",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Avatar shown next to the Save button on 7 inch screens",
+   "pre_conditions": "1. The vehicle screen is 7 inches\n2. A New Profile Setup is at the avatar step\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Choose an avatar\n2. Read the screen and check the avatar position and the button text",
+   "expected_result": "1. The avatar is chosen\n2. The chosen avatar is shown next to the button and the button reads “Save”",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8",
+   "priority": "P2",
+   "priority_basis": "7 吋之 avatar 位置與按鈕字樣",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**與 `SWE1-HMI-PROF-076-02` 為 §7 之列舉配對**（見該條）。**ER2 之字樣斷言是本對之關鍵**：位置之「上方／旁邊」在 7 吋小螢幕上可能難以目視分辨，而字樣之 `Save` 與 `Save & Continue` 是二值的。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-069-02",
+ "outline": "8.4",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR3.) Choosing an avatar will only show available options. When selecting an avatar, a default choice will be highlighted (the next available default – not used by another user) so that the user does not need to make a choice before saving/completing setup. No two Profile’s can use the same Avatar.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When a user enters the avatar selection screen, the system must automatically highlight a default choice (which must be the next available default avatar not used by another user). This ensures the user does not have to explicitly tap/make a choice before saving or completing the setup.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.4（NEWPR3）—— 進入 avatar 選擇畫面時，系統自動 highlight 下一個未被使用之預設 avatar。關鍵情境條件：前段預設 avatar 須已被佔用，否則「下一個可用」與「第一個」不可分辨。為什麼這樣切：與 `069-01` 同節不同 leaf ——前者驗清單之內容，本條驗清單之初始選取狀態。",
+ "keywords": [
+  "avatar",
+  "highlighted",
+  "default",
+  "next available"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-069-02",
+   "tc_id": "NR1L-UserProfiles-172",
+   "tc_title": "Next available default avatar is highlighted automatically",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Next available default avatar is highlighted automatically",
+   "pre_conditions": "1. Two Driver Profiles exist, each using one of the first default avatars\n2. A New Profile Setup is in progress\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the avatar selection screen of the New Profile Setup\n2. Read the screen and check which avatar is highlighted",
+   "expected_result": "1. The avatar selection screen is displayed\n2. An avatar is highlighted without any choice being made, and it is the next available default avatar",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.4",
+   "priority": "P2",
+   "priority_basis": "預設 avatar 之自動 highlight",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 併驗兩件事** —— 「未做任何選擇即已有一個被 highlight」與「它是下一個可用之預設 avatar」。只驗前者，一個**永遠 highlight 第一個（含已被使用者）**之實作會通過；只驗後者則測不到「不必先選」這個條文之目的（`so that the user does not need to make a choice`）。pre-condition 令兩個 profile 各佔一個前段預設 avatar，**使「下一個可用」與「第一個」不是同一個**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

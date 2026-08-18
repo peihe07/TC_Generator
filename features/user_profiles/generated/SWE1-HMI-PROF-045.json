@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-045",
+ "outline": "5.16",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "ALLPR6.) A cloud icon will show next to the profile avatar on the All Profiles tab and Edit Profile tab if the profile is connected with an Connected account (See Connected Personal Account HMI).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR6.) A cloud icon will show next to the profile avatar on the All Profiles tab and Edit Profile tab if the profile is connected with an Connected account (See Connected Personal Account HMI).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.16（ALLPR6）—— 與 Connected 帳號連結之 profile，其 avatar 旁顯示 cloud icon。關鍵情境條件：須同時存在已連結與未連結之 profile。為什麼這樣切：條文之 `(See Connected Personal Account HMI)` 指向他文件之**帳號連結流程**，本條不涉其如何連上，只驗**連上之後之標示**。",
+ "keywords": [
+  "cloud icon",
+  "Connected account",
+  "All Profiles",
+  "Edit Profile"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-045",
+   "tc_id": "NR1L-UserProfiles-147",
+   "tc_title": "Cloud icon marks Profiles linked to a Connected account",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Cloud icon marks Profiles linked to a Connected account",
+   "pre_conditions": "1. The vehicle is equipped with connectivity\n2. Driver Profile A is connected with a Connected account\n3. Driver Profile B is not connected with a Connected account\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and read the avatars of both Profiles\n2. Open the “Edit Profile” tab of Driver Profile A and read its avatar",
+   "expected_result": "1. A cloud icon is next to the avatar of Driver Profile A and not next to Driver Profile B\n2. A cloud icon is next to the avatar on the “Edit Profile” tab",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.16",
+   "priority": "P2",
+   "priority_basis": "connected 帳號之 cloud icon 標示",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**B profile 為對照** —— 只驗 A 有 icon 時，一個「所有 profile 都掛 cloud icon」之實作會通過；條文之 `if the profile is connected` 是**條件**，其判別力全在未連結者身上。**兩個分頁併驗**：條文一句列出 All Profiles 與 Edit Profile 兩處，依 §5.7 併為一條之兩個 ER 行。**本條之 label 依 RD #5 之答覆可能調整**（39 包作業 2 之命中：本節寫 `Connected account`）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

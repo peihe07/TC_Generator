@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-037",
+ "outline": "5.12.1",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "ALLPR1.1) Default Profiles will be in order of memory seat link (Ex: mem seat 1 + Driver 1 will be the first Profile on the left)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR1.1) Default Profiles will be in order of memory seat link (Ex: mem seat 1 + Driver 1 will be the first Profile on the left)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.12.1（ALLPR1.1）—— 預設 profile 依其記憶座椅連結排序。關鍵情境條件：車輛須有記憶座椅，否則連結不存在。為什麼這樣切：本 leaf 之單位為**預設者彼此之順序**；新增者之落點屬 `SWE1-HMI-PROF-036`。**刻意略過**：排序依據之判別力見 remarks 之盲區聲明 ——以現有可造之設置無法將其與名稱排序區分開。",
+ "keywords": [
+  "default Profiles",
+  "memory seat",
+  "order",
+  "All Profiles"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-037",
+   "tc_id": "NR1L-UserProfiles-136",
+   "tc_title": "Default Profiles ordered by their memory seat link",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Default Profiles ordered by their memory seat link",
+   "pre_conditions": "1. The vehicle is equipped with memory seats\n2. Only the default Driver Profiles exist on the vehicle\n3. Driver 1 is linked to memory seat 1\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the default Profiles and check their order from the left",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. Driver 1, linked to memory seat 1, is the first Profile from the left",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12.1",
+   "priority": "P2",
+   "priority_basis": "預設 profile 依記憶座椅連結排序；呈現順序",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**盲區（R-G11）**：能分辨「依座椅連結排序」與「依名稱排序」之設置，須有一個座椅連結順序**不同於**名稱順序之車輛；而 5.12.2 已定編輯連結不改順序，**故該設置無法以編輯造出**，出廠即如此之車輛亦不在手上。本條遂只驗條文自己舉的例（`Ex: mem seat 1 + Driver 1`）——**一個依名稱排序之實作會通過本條**，此為已知且不可避免之限制。編號 1 出自條文之例，非測試設置。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

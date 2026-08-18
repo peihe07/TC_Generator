@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-039",
+ "outline": "5.13",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "ALLPR2.) If Default Profiles are restored (without clearing all Profiles) add restored Defaults to the right.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR2.) If Default Profiles are restored (without clearing all Profiles) add restored Defaults to the right.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.13（ALLPR2）—— 未清除全部 profile 而回復預設者時，回復之預設 profile 加在最右。關鍵情境條件：須有自訂 profile 留存，且**至少一個預設者不在**，回復方為可觀察之事件。為什麼這樣切：本 leaf 為「不清全部」之分支；「清全部」之分支屬 `SWE1-HMI-PROF-040`，兩者之結果相反，故不可併為一條。",
+ "keywords": [
+  "restore",
+  "default Profiles",
+  "right",
+  "order"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-039",
+   "tc_id": "NR1L-UserProfiles-138",
+   "tc_title": "Restored default Profiles are added to the right",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Restored default Profiles are added to the right",
+   "pre_conditions": "1. Two custom Driver Profiles exist on the vehicle\n2. Not all default Driver Profiles are present\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and record the order of the Profiles\n2. Restore the default Driver Profiles without clearing all Profiles\n3. Open the “All Profiles” tab and read where the restored Defaults are",
+   "expected_result": "1. The order of the Profiles is recorded\n2. The default Driver Profiles are restored and the custom Profiles remain\n3. The restored Defaults are to the right of the Profiles recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13",
+   "priority": "P2",
+   "priority_basis": "回復預設時新增者之落點；順序規則之分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 併驗「自訂 profile 仍在」** —— 條文之適用條件為`without clearing all Profiles`；若回復連帶清掉自訂者，本條所測之情境根本沒有發生，而只驗順序不會發現。回復預設之**入口**條文未載，依 §8.4.1 不自擬 ——執行時依實車之回復入口，其位置記於執行紀錄。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

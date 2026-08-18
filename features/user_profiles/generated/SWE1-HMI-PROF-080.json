@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-080",
+ "outline": "8.10",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR9.) When New Profile setup is complete, the screen will return to the “All Profiles” tab. The new Profile will be the active Profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR9.) When New Profile setup is complete, the screen will return to the “All Profiles” tab. The new Profile will be the active Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.10（NEWPR9）—— 設定完成後回到 “All Profiles” 分頁，且新 profile 成為現用者。關鍵情境條件：設定前之現用者須為另一個 profile。為什麼這樣切：本 leaf 之單位為**完成之後果**；編輯（非新增）之回程屬 `SWE1-HMI-PROF-081`，其結果不同。",
+ "keywords": [
+  "setup complete",
+  "All Profiles",
+  "active Profile",
+  "new"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-080",
+   "tc_id": "NR1L-UserProfiles-185",
+   "tc_title": "Setup completion returns to All Profiles with the new Profile",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Setup completion returns to All Profiles with the new Profile",
+   "pre_conditions": "1. A New Profile Setup is at its final step\n2. Driver Profile A is the active Profile\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Complete the New Profile Setup\n2. Read the screen and check the tab shown and the active Profile",
+   "expected_result": "1. The New Profile Setup is completed\n2. The “All Profiles” tab is shown and the new Profile is the active Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.10",
+   "priority": "P1",
+   "priority_basis": "設定完成後之去向與新 profile 之啟用",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 併驗畫面與現用者** —— 條文兩句（`return to the “All Profiles” tab`、`The new Profile will be the active Profile`）為同一個完成事件之兩個結果，§5.7 併驗。pre-condition 具名 A 為原現用者，**使「新 profile 成為現用者」是一次可觀察之改變**，而非恆真。狀態列圖示之更新屬 `SWE1-HMI-PROF-082`（8.10.2）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

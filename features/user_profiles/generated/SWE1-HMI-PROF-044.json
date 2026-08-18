@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-044",
+ "outline": "5.15.1",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "ALLPR5.1) If the username is too long to be displayed within the All Profiles username space, follow the Core HMI Logic and Flow truncation rules.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR5.1) If the username is too long to be displayed within the All Profiles username space, follow the Core HMI Logic and Flow truncation rules.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.15.1（ALLPR5.1）—— 過長之 username 依 Core HMI 之規則截斷。關鍵情境條件：username 須確實超出可顯示寬度，否則截斷不會發生而本條恆綠。為什麼這樣切：**可判定之部分只有「有沒有截斷」**；「截得對不對」之權威在外部文件，把它寫進 ER 等於把一個本文件無法判定之斷言偽裝成可判定。",
+ "keywords": [
+  "truncation",
+  "username",
+  "Core HMI",
+  "All Profiles"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-044",
+   "tc_id": "NR1L-UserProfiles-146",
+   "tc_title": "Long usernames are truncated on the All Profiles tab",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Long usernames are truncated on the All Profiles tab",
+   "pre_conditions": "1. A Driver Profile whose username exceeds the All Profiles username space exists\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read the displayed username and compare it with the stored username",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. The username is shown truncated, following the Core HMI Logic and Flow truncation rules",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.15.1",
+   "priority": "P3",
+   "priority_basis": "過長 username 之截斷；規則在外部文件",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**截斷規則不在本 spec** —— 5.15.1 只說「依 Core HMI Logic and Flow 之截斷規則」，該文件不在本 feature 之輸入內。依 §8.4.1 **不自擬規則**：ER 斷言「有截斷且依該文件」，**其逐條符合性須以該文件覆核**，本條不代為判定。此為**上游文件依賴**，已記於上繳之獨立判斷 ——與「037 未產出 leaf」之情形不同，不援引 R-U56。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

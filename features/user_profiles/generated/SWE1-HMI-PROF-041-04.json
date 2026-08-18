@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-041-04",
+ "outline": "5.13.2",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0626) will delete all profiles from the vehicle and restore the defaults. The new active profile will be associated with the current memory seat position (ex: if memory seat 2 is active, go to Driver 2 default profile). If there are no memory seats, Driver 1 should be the new active profile. PU1089 is displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129. PU1090 is displayed when data have been successfully cleared. PU1091 is displayed if HU or TBM do not confirm complete data clearing.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "If the Head Unit (HU) or Telematics Box Module (TBM) fails to confirm complete data clearing, the system must handle this exception by displaying the error/failure pop-up PU1091.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.13.2 —— HU 或 TBM 未回報完成時，顯示失敗 popup PU1091。關鍵情境條件：清除流程須**確實已開始**（故步驟 2 之 PU1089 為中途之錨點），否則「失敗」與「根本沒開始」不可分辨。為什麼這樣切：`design_method` 取基礎故障注入 ——本條之成立條件**無法以正常操作造出**，須主動使一個模組不回報；這是本批唯一之故障注入條。",
+ "keywords": [
+  "PU1091",
+  "TBM",
+  "failure",
+  "Clear Personal Data"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-041-04",
+   "tc_id": "NR1L-UserProfiles-143",
+   "tc_title": "PU1091 shown when clearing is not confirmed complete",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "PU1091 shown when clearing is not confirmed complete",
+   "pre_conditions": "1. Two custom Driver Profiles exist on the vehicle\n2. The vehicle is equipped with a Telematics Box Module\n3. The vehicle is stationary",
+   "input_test_data": "Fault injected: the Telematics Box Module withholds its completion report for the data clearing",
+   "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Suppress the completion report of the Telematics Box Module\n4. Read the screen and check which popup is displayed",
+   "expected_result": "1. The Clear Personal Data setting is selected\n2. PU1089 is displayed\n3. The Telematics Box Module does not report complete data clearing\n4. PU1091 is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2",
+   "priority": "P1",
+   "priority_basis": "清除未完成時之失敗告知 —— **缺此則使用者以為已清而實未清**",
+   "design_method": "基礎故障注入 (Fault Injection Lite)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**故障注入之對象為 TBM 之完成回報**，非 HU —— 條文寫的是`if HU or TBM do not confirm`，兩者為**析取**；注入其一即足以使該條件成立，**HU 側之注入本條不涵蓋**（其結果不由本條保證）。注入手段（拔線／模擬器／診斷指令）條文未載，依 §8.4.1 不自擬，執行時之手段記於執行紀錄。PU1091 之內文不寫（同 `041-03`）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

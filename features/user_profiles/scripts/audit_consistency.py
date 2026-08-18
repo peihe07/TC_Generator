@@ -415,9 +415,17 @@ def w1_perfect_pre(rows) -> list:
 # 兩者皆命中方列待判。登記表是人工的 —— **其盲區即未登記之 popup**（見下）。
 POPUP_TRIGGERS = [
     # (popup, 定義節, 觸發動作 regex（掃 procedure）, 成立條件 regex（掃 pre＋proc）, 說明)
+    # **成立條件補過一次（41 輪）。** v1 之 `cond` 為 None —— 於是任何
+    # 「存／座椅」同句之 procedure 都命中，`004`（5.9，其步驟明寫
+    # **不按**存取鍵）與 `130`（5.10，只涉一個 profile）遂自 35 輪起
+    # 待判六輪而無人能判成真 —— **那是誤報，不是待判**（R-G9）。
+    # PU0588 之條文（5.10.1）是**跨 profile 之詢問**：存到「非現用 profile
+    # 所連之座椅」才問。故其成立條件為 scope 內出現**兩個不同的 profile**。
     ("PU0588", {"5.10.1", "9.6"},
      r"\bsav\w+\b[^.\n]{0,60}\bmemory seat\b|\bmemory seat\b[^.\n]{0,40}\bsav\w+",
-     None, "存座椅位置到非現用 profile 所連之座椅"),
+     r"Driver Profile A[\s\S]*Driver Profile B|"
+     r"Driver Profile B[\s\S]*Driver Profile A",
+     "存座椅位置到非現用 profile 所連之座椅"),
     ("PU0584", {"5.2"}, r"\bcreate\b[^.\n]{0,60}\bProfile\b",
      r"\bfive\b|\bmaximum\b|\bmax\b", "已達 5 個上限時建立 profile"),
     ("PU0626", {"5.13.2"}, r"Clear Personal Data", None, "確認清除個人資料"),
@@ -428,7 +436,15 @@ POPUP_TRIGGERS = [
      "按已變灰之手套箱鎖按鈕"),
     ("PU0832", {"12.8.1"}, r"\benter\w*\b[^.\n]{0,30}Valet Mode|Valet Mode button",
      r"Glove Box", "具手套箱鎖之車輛進入 Valet 之提示"),
-    ("PU0580", {"5.3.1"}, r"\bselect\b[^.\n]{0,40}Driver Profile\b", None,
+    # **觸發動作擴過一次（40 輪）。** v1 只認 `select … Driver Profile`；
+    # 第五批之 `SWE1-HMI-PROF-050-01`／`-051` 寫的是
+    # `Activate Driver Profile B` —— **同一個動作、同一個 popup，
+    # 只因動詞不同而看不見**。這正是 X-1 本身要抓的形態，
+    # 卻被它自己的詞表擋在外面。
+    # 擴充後語料由 6 處增為 24 處待判，其中 16 處為既有批次之真陽性
+    # （逐條見上繳 40 §3.4）—— **不是誤報，是原本測不到**。
+    ("PU0580", {"5.3.1"},
+     r"\b(?:select|activate)\b[^.\n]{0,40}Driver Profile\b", None,
      "切換 profile 後之 welcome popup"),
     ("PU0934", {"13.2"}, r"exit Valet Mode|deactivation control", r"SPAAK",
      "SPAAK 情境下自主機嘗試退出"),
@@ -517,6 +533,59 @@ def y1_pair_claims(rows) -> list:
                         continue
                     if tgt_base != base:
                         hits.append((t["tc_id"], sec, snt[:60], tgt_base, base))
+    return hits
+
+
+# ── Z-1（38 包）—— R-U56 之 OUT-OF-SCOPE 判定，其標的是否真的沒有 leaf
+#
+# `TC-110` 記「逐 profile 之隔離……037 未為其另切 leaf ——依 R-U56 為
+# OUT-OF-SCOPE」，**而 `per Profile` 就寫在該 leaf 自己的 037 description 內**。
+#
+# **R-U56 之適用範圍是「spec 有內容而 037 未為其產出 leaf」。**
+# 此處 037 產出了 leaf，該 leaf 之描述本身即含該行為 ——
+# **那不是範圍外，是該 leaf 自己的斷言沒有被驗完**（§6）。
+#
+# > R-U56 是 Pei 裁的。**它若被用成「這句話我不驗」的通行證，
+# > 那是立條時適用範圍沒寫夠窄之代價**（38 包原話）——故本掃描全批跑。
+#
+# ## 判準：關鍵詞是否出現於任一 leaf 之 037 description
+#
+# 自宣稱句抽出其**英文關鍵詞**（≥4 字母，去停用詞），
+# 逐一比對 180 leaf 之 `desc` ＋ `vc`。**命中即 R-U56 可能不適用，列待判。**
+#
+# **這是screen，不是判決**：關鍵詞出現不代表該**行為**被斷言。
+# 例：RD #7（9.1.1 之另一側）之 `username and avatar` 出現在多個 leaf，
+# 但那些 leaf 講的是別的事，而「大螢幕顯示於清單左側」**未被任何 leaf 斷言** ——
+# 其 R-U56 判定仍成立。**故列待判由人判，不判紅。**
+RU56_CLAIM = re.compile(r"[^。；\n]*R-U56[^。；\n]*")
+RU56_SKIP = re.compile(r"不適用|係誤用|原記|非 R-U56")
+RU56_STOP = {"r-u56", "out-of-scope", "scope", "the", "and", "for", "that",
+             "this", "will", "with", "not", "its", "are", "was", "leaf",
+             "spec", "profile", "driver", "vehicle", "system", "user"}
+RU56_TERM = re.compile(r"[A-Za-z][A-Za-z0-9'’\-]{3,}")
+
+
+def z1_ru56_scope(rows) -> list:
+    import build_batch_context as _B
+    lr = _B.leaf_rows()
+    corpus_desc = {rid: ((v.get("desc") or "") + " " + (v.get("vc") or "")).lower()
+                   for rid, v in lr.items()}
+    hits = []
+    for sec, t in rows:
+        for fld, blob in (("reasoning", None), ("remarks", t.get("remarks"))):
+            pass
+        for fld, blob in (("remarks", t.get("remarks", "")),):
+            for m in RU56_CLAIM.finditer(str(blob or "")):
+                snt = " ".join(m.group(0).split())
+                if RU56_SKIP.search(snt):
+                    continue          # 該句自己就在說「不適用」或在記錄更正
+                kws = [w for w in RU56_TERM.findall(snt)
+                       if w.lower() not in RU56_STOP]
+                for rid, desc in corpus_desc.items():
+                    got = [k for k in kws if k.lower() in desc]
+                    if len(got) >= 2:
+                        hits.append((t["tc_id"], sec, rid, got[:4], snt[:70]))
+                        break
     return hits
 
 
@@ -675,6 +744,19 @@ SELF_CASES = [
          test_procedure="1. Open the tab\n2. Read the screen",
          input_test_data="NA"), True),
 
+    # ---- Z-1：R-U56 判定之標的是否真的沒有 leaf（38 包）
+    ("**TC-110 之原形**：稱 `per Profile` 無 leaf，而它在 `018-02` 之 description 內"
+     " → **須列入待判**", "z1",
+     _tc(remarks="逐 profile 之隔離（`per Profile`，`whichever tab was last "
+                 "used`）未於本條驗：037 未為其另切 leaf ——"
+                 "依 R-U56 為 OUT-OF-SCOPE，不列缺口"), True),
+    ("**護欄**：該句自陳「R-U56 不適用」→ **不得列入**（那是更正而非宣稱）", "z1",
+     _tc(remarks="注意：R-U56 不適用於本項 —— `per Profile`／"
+                 "`whichever tab was last used` 就寫在該 leaf 自己的 "
+                 "description 裡"), False),
+    ("**護欄**：無 R-U56 之 remarks → **不得列入**", "z1",
+     _tc(remarks="座椅鍵編號為測試設置（J-12）"), False),
+
     # ---- Y-1：§7 配對之宣稱（36 包）
     ("**TC-096 之原形**：反向宣稱指向他 leaf 群（`009` → `016`）→ **須列入待判**",
      "y1",
@@ -688,11 +770,18 @@ SELF_CASES = [
          remarks="座椅鍵編號為測試設置（J-12）"), False),
 
     # ---- X-1：跨節 popup 之未處理（35 包）
+    # **本案例補過一次（41 輪，隨 PU0588 之成立條件而改）。**
+    # 原案例之 `pre_conditions` 用預設值（只提 B），而 `TC-128` 之真實形態
+    # **pre-condition 明寫 A 為現用者、B 為連結者** —— 跨 profile 正是
+    # PU0588 之成立條件。原案例是該 TC 之**簡化形**，簡化把成立條件簡化掉了。
     ("**TC-128 之原形**：存座椅到他人所連之座椅而未提 PU0588 → **須列入待判**",
      "x1",
      _tc(specification_reference=(
              "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
              "(October_03_2023)_5.7"),
+         pre_conditions="1. Driver Profile A is active and has no memory seat "
+                        "linked\n2. A memory seat position is linked to "
+                        "Driver Profile B",
          test_procedure="1. Change the seat position\n2. Save the position to "
                         "the memory seat linked to Driver Profile B\n"
                         "3. Read the seat links and check"), True),
@@ -700,9 +789,33 @@ SELF_CASES = [
      _tc(specification_reference=(
              "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
              "(October_03_2023)_5.7"),
+         pre_conditions="1. Driver Profile A is active and has no memory seat "
+                        "linked\n2. A memory seat position is linked to "
+                        "Driver Profile B",
          test_procedure="1. Change the seat position\n2. Save the position to "
                         "the memory seat linked to Driver Profile B\n"
                         "3. Select No on PU0588\n4. Read the seat links"), False),
+    # **`TC-130` 之形（41 輪）**：只涉一個 profile —— 現用者即該座椅之連結者，
+    # PU0588 之成立條件不成立。**此案例守的是本輪剛補上的那個條件。**
+    ("**TC-130 之形**：只涉一個 profile 之存座椅 → **不得列入**", "x1",
+     _tc(specification_reference=(
+             "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+             "(October_03_2023)_5.10"),
+         pre_conditions="1. Driver Profile B is linked to a memory seat "
+                        "position\n2. Driver Profile B is the active Profile",
+         test_procedure="1. Change the seat position and record it\n"
+                        "2. Save the position to the memory seat linked to "
+                        "Driver Profile B\n3. Read the stored position and "
+                        "check"), False),
+    # **`TC-004` 之形（41 輪）**：procedure 明寫**不按**存取鍵。
+    ("**TC-004 之形**：明寫不按存取鍵 → **不得列入**", "x1",
+     _tc(specification_reference=(
+             "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+             "(October_03_2023)_5.9"),
+         pre_conditions="1. A Driver Profile is active",
+         test_procedure="1. Adjust the seat position\n"
+                        "2. Leave the memory seat set and save controls "
+                        "untouched\n3. Read the positions and check"), False),
     ("**護欄**：觸發條件不成立（未達上限而建立 profile）→ **不得列入**", "x1",
      _tc(specification_reference=(
              "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
@@ -808,7 +921,7 @@ SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
          "q1": q1_unquoted, "t1": t1_step_refs,
          "u2": u2_unused_record, "v1": v1_timing,
          "w1": w1_perfect_pre, "x1": x1_unhandled_popup,
-         "y1": y1_pair_claims}
+         "y1": y1_pair_claims, "z1": z1_ru56_scope}
 
 
 def self_test() -> int:
@@ -855,6 +968,13 @@ if __name__ == "__main__":
     print(f"\n## K-4a —— design_method ↔ 實際形態：{len(b)} 處待判\n")
     for tid, sec, key, want in b:
         print(f"  {tid} ({sec}) {key} —— 缺 {want}")
+
+    z1 = z1_ru56_scope(rows)
+    print(f"\n## Z-1 —— R-U56 之 OUT-OF-SCOPE 判定，其標的疑似有 leaf："
+          f"{len(z1)} 處待判\n")
+    for tid, sec, rid, got, snt in z1:
+        print(f"  {tid} ({sec}) 關鍵詞 {got} 出現於 {rid} 之 description")
+        print(f"       「{snt}」")
 
     y1 = y1_pair_claims(rows)
     print(f"\n## Y-1 —— §7 配對之宣稱指向他 leaf 群：{len(y1)} 處待判\n")

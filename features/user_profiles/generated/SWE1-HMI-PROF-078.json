@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-078",
+ "outline": "8.8.2",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR7.2) Avatars will be sorted into at least 3 categories. Pushing a category button will show the respective grouping of avatars. Categories apply to all screen sizes, 7\" will have a separate screen for category selection, an example is pictured above.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR7.2) Avatars will be sorted into at least 3 categories. Pushing a category button will show the respective grouping of avatars. Categories apply to all screen sizes, 7\" will have a separate screen for category selection, an example is pictured above.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.8.2（NEWPR7.2）—— avatar 至少分為 3 類，按下分類按鈕顯示該類之 avatar。關鍵情境條件：螢幕尺寸取 8.4 吋以上（分類與清單同畫面）。為什麼這樣切：數目與作用為同一句之兩個斷言，§5.7 併於一條。",
+ "keywords": [
+  "categories",
+  "avatar",
+  "three",
+  "category button"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-078",
+   "tc_id": "NR1L-UserProfiles-183",
+   "tc_title": "Avatars are sorted into at least three categories",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Avatars are sorted into at least three categories",
+   "pre_conditions": "1. A New Profile Setup is at the avatar step\n2. The vehicle screen is 8.4 inches or larger\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the avatar screen and count the category buttons\n2. Press one category button\n3. Read the list and check which avatars are shown",
+   "expected_result": "1. At least three category buttons are offered\n2. The category button is pressed\n3. Only the avatars of that category are shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8.2",
+   "priority": "P2",
+   "priority_basis": "avatar 之分類數與分類按鈕之作用",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 不可省** —— 只驗分類按鈕之數目，一個**按了沒反應**之實作會通過；條文明說`Pushing a category button will show the respective grouping`。**7 吋之獨立分類畫面未涵蓋**：條文寫 `7\" will have a separate screen for category selection`，而 037 未為其另切 leaf —— 本條取 8.4 吋以上一側，**為抽樣，7 吋之分類畫面不由本條保證**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-074",
+ "outline": "8.7.1",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR6.1) Options to “Save” (which takes user to Step 3 – if in New Profile Setup Process), Cancel (which prompts a confirmation popup), and Back (only available if there was a previous step for downloading a connected Profile)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR6.1) Options to “Save” (which takes user to Step 3 – if in New Profile Setup Process), Cancel (which prompts a confirmation popup), and Back (only available if there was a previous step for downloading a connected Profile)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.7.1（NEWPR6.1）—— username 步驟提供 Save／Cancel／Back 三個選項，Save 進到第 3 步，Cancel 出現確認 popup。關鍵情境條件：須有前一步（下載既有 profile），Back 方會出現。為什麼這樣切：三個選項為同一句之列舉，§7 要求皆走到；本條走 Save 與 Cancel 兩者之去向，Back 只驗其存在 ——**其去向即步驟 3 所走之回程**，重複驗證無新資訊。",
+ "keywords": [
+  "Save",
+  "Cancel",
+  "Back",
+  "username step"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-074",
+   "tc_id": "NR1L-UserProfiles-177",
+   "tc_title": "Save, Cancel and Back options on the username step",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Save, Cancel and Back options on the username step",
+   "pre_conditions": "1. The vehicle is equipped with connectivity\n2. A New Profile Setup is at the username step\n3. The setup was reached through the download step\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the screen and record the options offered\n2. Press Save and read the screen\n3. Return to the username step and press Cancel\n4. Read the screen and check which popup is displayed",
+   "expected_result": "1. Options to Save, Cancel and Back are offered\n2. Step 3 of the New Profile Setup is displayed\n3. Cancel is pressed\n4. A confirmation popup is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7.1",
+   "priority": "P2",
+   "priority_basis": "username 步驟之三個選項與其去向",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**pre-condition 之「經下載步驟而來」是 Back 之適用條件** —— 條文寫 `Back (only available if there was a previous step for downloading a connected Profile)`；不設此前提，ER1 之三個選項只會出現兩個，**而那不是缺陷**。**未驗「無前一步時 Back 不出現」** —— 那是同一句之反向，037 未為其切 leaf，依 R-U56 不造。Cancel 之確認 popup **按下之後**之後果屬 8.3.1（`SWE1-HMI-PROF-068`）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

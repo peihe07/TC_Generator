@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-069-01",
+ "outline": "8.4",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR3.) Choosing an avatar will only show available options. When selecting an avatar, a default choice will be highlighted (the next available default – not used by another user) so that the user does not need to make a choice before saving/completing setup. No two Profile’s can use the same Avatar.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "No two Profiles can use the same Avatar. When navigating to the avatar selection screen, the system must actively filter the list and only show available options that are not currently being used by any other existing Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.4（NEWPR3）—— avatar 清單只顯示未被使用者，兩個 profile 不得共用同一 avatar。關鍵情境條件：兩個 profile 之 avatar 須不同且已記錄，缺席斷言方有標的。為什麼這樣切：037 對 8.4 切兩個 leaf；本 leaf 為**過濾**，自動 highlight 屬 `SWE1-HMI-PROF-069-02`。",
+ "keywords": [
+  "avatar",
+  "filtered",
+  "in use",
+  "unique"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-069-01",
+   "tc_id": "NR1L-UserProfiles-171",
+   "tc_title": "Avatars already in use are filtered out of the list",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Avatars already in use are filtered out of the list",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a different avatar\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab and record the avatars of both Profiles\n2. Start a New Profile Setup and open the avatar selection screen\n3. Read the avatar list and check that the recorded avatars are absent",
+   "expected_result": "1. The avatars of both Profiles are recorded\n2. The avatar selection screen is displayed\n3. Neither avatar recorded in step 1 is offered in the list",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.4",
+   "priority": "P1",
+   "priority_basis": "avatar 不得重複 —— 清單須濾掉已用者",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 斷言「兩個都不在」而非「有一個不在」** —— 條文之 `No two Profiles can use the same Avatar` 是全稱；只檢一個，一個「只濾掉現用 profile 之 avatar」之實作會通過。**與 `SWE1-HMI-PROF-077`（8.8.1）之關係**：8.8.1 之 `As avatars are in use, they will not be shown` 與本 leaf 之過濾**是同一件事在兩節之兩次出現**；隱藏一側由本 leaf（`SWE1-HMI-PROF-069-01`）承擔，`SWE1-HMI-PROF-077` 只驗初始數目。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-036",
+ "outline": "5.12",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "ALLPR1.) Profile order will default based on the order in which the Profiles have been added (defaults to the left and new Profiles added to the right)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR1.) Profile order will default based on the order in which the Profiles have been added (defaults to the left and new Profiles added to the right)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.12（ALLPR1）—— profile 之預設順序依加入之先後，預設者在左、新增者依序往右。關鍵情境條件：起始須**只有預設 profile**，否則「預設者在左」之比較無基準。為什麼這樣切：本 leaf 之單位為**建立順序**；預設者彼此之順序屬 `SWE1-HMI-PROF-037`，編輯連結後之不變屬 `SWE1-HMI-PROF-038`。",
+ "keywords": [
+  "Profile order",
+  "creation",
+  "All Profiles",
+  "default"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-036",
+   "tc_id": "NR1L-UserProfiles-135",
+   "tc_title": "Profile order defaults to the order of creation",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Profile order defaults to the order of creation",
+   "pre_conditions": "1. Only the default Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Create a new Driver Profile named Alex\n2. Create a second new Driver Profile named Bea\n3. Open the “All Profiles” tab and read the order of the Profiles",
+   "expected_result": "1. Driver Profile Alex is created\n2. Driver Profile Bea is created\n3. The default Profiles are shown on the left, then Alex, then Bea on the right",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.12",
+   "priority": "P2",
+   "priority_basis": "All Profiles 之預設排序；清單之呈現順序",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**兩條新 profile 是必要的**：只造一條時，「新者在右」與「新者在最右」無從分辨，而一個把新 profile 插在最左之實作，單條測不出來。Alex／Bea 為測試設置（J-12）—— 條文未指定名稱。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

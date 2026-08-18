@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-058",
+ "outline": "7.2",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL2.) The small welcome popup will show the active (logged in) Profile username and avatar, with options to switch users, or close the popup.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL2.) The small welcome popup will show the active (logged in) Profile username and avatar, with options to switch users, or close the popup. (image: %E5%9C%96%E7%89%87_1746377947.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.2（PRWEL2）—— 小版 welcome popup 顯示現用 profile 之username 與 avatar，並提供切換使用者與關閉兩個選項。關鍵情境條件：該 profile 須有 username 與 avatar，否則「顯示了什麼」不可觀察。為什麼這樣切：四項內容為**同一畫面之並列斷言**，§5.7 併驗。",
+ "keywords": [
+  "small welcome popup",
+  "username",
+  "avatar",
+  "switch users"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-058",
+   "tc_id": "NR1L-UserProfiles-159",
+   "tc_title": "Small welcome popup shows username, avatar and options",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Small welcome popup shows username, avatar and options",
+   "pre_conditions": "1. The active Driver Profile has a username and an avatar\n2. The small welcome popup version applies to this vehicle\n3. The Welcome popup setting is on for that Profile\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Switch the ignition on and read the popup shown\n2. Read the popup and check the username, the avatar and the options",
+   "expected_result": "1. The small welcome popup is displayed\n2. The active Profile's username and avatar are shown with options to switch users or close the popup",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2",
+   "priority": "P2",
+   "priority_basis": "小版 welcome popup 之內容與兩個選項",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**「小版」與「大版」之選用條件條文未載** —— 7.2 與 7.2.1 各自描述其內容，未說何時用哪一個。依 §8.4.1 不推定，以 pre-condition 具名為本車適用小版，**該條件本身不由本條驗**。大版之內容屬 `SWE1-HMI-PROF-059-01`（`NR1L-UserProfiles-007`）。兩個選項**按下之後**之行為屬 7.3（`SWE1-HMI-PROF-061`）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

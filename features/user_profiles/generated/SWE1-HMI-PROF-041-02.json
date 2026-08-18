@@ -1,0 +1,42 @@
+{
+ "parent": "SWE1-HMI-PROF-041-02",
+ "outline": "5.13.2",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0626) will delete all profiles from the vehicle and restore the defaults. The new active profile will be associated with the current memory seat position (ex: if memory seat 2 is active, go to Driver 2 default profile). If there are no memory seats, Driver 1 should be the new active profile. PU1089 is displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129. PU1090 is displayed when data have been successfully cleared. PU1091 is displayed if HU or TBM do not confirm complete data clearing.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "When the “Clear Personal Data” setting is executed and confirmed on a vehicle without memory seats, the system must delete all custom profiles, restore the defaults, and the new active profile must default to \"Driver 1\".",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.13.2 —— 無記憶座椅之車輛，清除後之現用 profile 為 Driver 1。關鍵情境條件：車輛**無**記憶座椅 —— 這是本分支之成立條件本身。為什麼這樣切：與 `041-01` 同節不同分支；併為一條則兩個互斥之車型條件會落在同一個 pre-condition 內。",
+ "keywords": [
+  "Clear Personal Data",
+  "no memory seats",
+  "Driver 1"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-041-02",
+   "tc_id": "NR1L-UserProfiles-141",
+   "tc_title": "Active Profile defaults to Driver 1 without memory seats",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Active Profile defaults to Driver 1 without memory seats",
+   "pre_conditions": "1. The vehicle is not equipped with memory seats\n2. Two custom Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129\n3. Read the status bar and check which Driver Profile is active",
+   "expected_result": "1. The Clear Personal Data setting is selected\n2. The custom Profiles are deleted and the defaults are restored\n3. Driver 1 is the active Driver Profile",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2",
+   "priority": "P1",
+   "priority_basis": "無記憶座椅車型之落點；同上之另一分支",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "與 `SWE1-HMI-PROF-041-01` 之差別只在**車型**（有無記憶座椅），而該差別為**條文自己切出之兩個分支**，非我方之變體對造：兩者之預期結果不同，且各有 037 之 leaf。**PU0626 與 PU_0129 之關係條文未定**（RD #8）。**41 包 §四授權逕行修正**：步驟改為「於**每一個**確認 popup PU0626/PU_0129 按 Yes」—— 兩者若為同一個，該步驟即按一次；若為兩段確認，該步驟即按兩次。**兩種讀法下本條都不會假失敗**，且驗證目標未變（§四之界線）。編號 1 出自 5.13.2 之條文（`Driver 1 should be the new active profile`）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

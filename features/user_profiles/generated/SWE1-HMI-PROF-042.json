@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-042",
+ "outline": "5.14",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "ALLPR3.) Pressing and holding the Avatar of any Profile will allow for dragging and reordering the Profiles (and will not result in that Profile being activated)",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR3.) Pressing and holding the Avatar of any Profile will allow for dragging and reordering the Profiles (and will not res ult in that Profile being activated)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.14（ALLPR3）—— 長按 avatar 可拖曳重排，且該操作**不得**啟用被按之 profile。關鍵情境條件：被拖者非現用者，且順序須先記錄。為什麼這樣切：兩個斷言同屬一句，§5.7 併驗；**壓力測試（§8.3）**：一個「長按即啟用並且順便可拖」之實作，只驗拖曳者會通過 —— ER4 之後半即為擋它而設。",
+ "keywords": [
+  "long press",
+  "drag",
+  "reorder",
+  "not activated"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-042",
+   "tc_id": "NR1L-UserProfiles-144",
+   "tc_title": "Long press on an avatar drags and reorders Profiles",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Long press on an avatar drags and reorders Profiles",
+   "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The first Driver Profile from the left is the active one\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and record the order of the Profiles\n2. Press and hold the avatar of the second Profile\n3. Drag that avatar to the leftmost position and release it\n4. Read the tab and check the order and the active Profile",
+   "expected_result": "1. The order of the Profiles is recorded\n2. The avatar of the second Profile becomes draggable\n3. That Profile is placed leftmost and the others move right\n4. The order differs from the one recorded in step 1 and the active Profile is unchanged",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.14",
+   "priority": "P2",
+   "priority_basis": "長按拖曳重排，且不得啟用該 profile",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER4 併驗「未被啟用」** —— 條文之`(and will not result in that Profile being activated)` 與拖曳為**同一句之兩個斷言**，依 §5.7 併於本條；另立則兩條之 procedure 逐字相同，只 ER 差一行。**被拖者刻意取非現用之 profile**：若拖現用者，「未被啟用」恆真而無判別力。三個 profile 為使「其他人往右移」為可觀察之複數（J-12）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

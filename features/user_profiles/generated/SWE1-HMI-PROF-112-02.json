@@ -36,7 +36,7 @@
    "test_group": "User Profiles",
    "test_set": "Connected Account",
    "test_item": "App Store update applies to every user with it installed",
-   "pre_conditions": "1. Two Driver Profiles exist, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles\n3. An update for that app is available",
+   "pre_conditions": "1. Two Driver Profiles exist, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles\n3. An update for that app is available\n4. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A and record the app version\n2. Update the app from Driver Profile A\n3. Activate Driver Profile B\n4. Read the app version and check that it matches the updated version",
    "expected_result": "1. The app version in Driver Profile A is recorded\n2. The app is updated for Driver Profile A\n3. Driver Profile B is active\n4. The app in Driver Profile B is at the updated version",
@@ -46,7 +46,7 @@
    "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "sibling 軸（11.5 三條）：刪除＝只對執行者（112-01）／更新＝對全部已安裝者（本條）／安裝＝只對安裝者（112-03）",
+   "remarks": "sibling 軸（11.5 三條）：刪除＝只對執行者（112-01）／更新＝對全部已安裝者（本條）／安裝＝只對安裝者（112-03）**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗 app 更新之跨 profile 生效；判定在版本號。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

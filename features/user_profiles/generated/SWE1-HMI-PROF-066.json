@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-066",
+ "outline": "8.2",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR1.) See flow for setting up a New Profile above. Connecting an account or downloading an existing Connected account are not pictured here.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR1.) See flow for setting up a New Profile above. Connecting an account or downloading an existing Connected account are not pictured here. (image: %E5%9C%96%E7%89%87_1102096521.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.2（NEWPR1）—— New Profile Setup 之起始。關鍵情境條件：profile 數未達上限，否則新增入口會被隱藏（5.2，`SWE1-HMI-PROF-021-02`）。為什麼這樣切：本 leaf 之單位為**起始**；起始之後之每一步各有其 leaf。",
+ "keywords": [
+  "New Profile Setup",
+  "All Profiles",
+  "add",
+  "initiate"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-066",
+   "tc_id": "NR1L-UserProfiles-168",
+   "tc_title": "New Profile Setup starts from the All Profiles tab",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "New Profile Setup starts from the All Profiles tab",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab and press the option to add a new Profile\n2. Read the screen and check that the New Profile Setup started",
+   "expected_result": "1. The option to add a new Profile is pressed\n2. The first step of the New Profile Setup is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.2",
+   "priority": "P1",
+   "priority_basis": "New Profile Setup 之起始；ch8 之入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**8.2 之內容為對流程圖之指涉**（`See flow for setting up a New Profile above`）—— 圖之內容不逐字重述（§8.4.1）；各步驟之細節分屬 8.6–8.9，本條只驗**流程被起始**。條文另註 `Connecting an account or downloading an existing Connected account are not pictured here` —— 該句是說**圖上沒畫**，不是說該功能不存在；下載既有帳號一側屬 8.6（`SWE1-HMI-PROF-072`）。**本條之 label 依 RD #5 之答覆可能調整**（39 包作業 2 之命中：本節寫 `Connected account`）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

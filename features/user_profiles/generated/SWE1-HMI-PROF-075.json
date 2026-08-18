@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-075",
+ "outline": "8.7.2",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR6.2) The username can have numbers and/or letters, but no special characters.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR6.2) The username can have numbers and/or letters, but no special characters.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.7.2（NEWPR6.2）—— username 得為英數，不得含特殊字元。關鍵情境條件：同一次輸入中兼有合法與非法字元，使「擋的是特殊字元」而非「擋了全部」可分辨。為什麼這樣切：`design_method` 取負向測試 ——步驟 2 為對一個**不該生效之輸入**的嘗試。",
+ "keywords": [
+  "special characters",
+  "username",
+  "alphanumeric",
+  "blocked"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-075",
+   "tc_id": "NR1L-UserProfiles-178",
+   "tc_title": "Special characters are not accepted in a username",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Special characters are not accepted in a username",
+   "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
+   "input_test_data": "Characters typed: letters, digits, then a special character",
+   "test_procedure": "1. Type letters and digits into the username field\n2. Attempt to type a special character\n3. Read the field and check which characters are shown",
+   "expected_result": "1. The letters and digits are accepted\n2. The special character is not accepted\n3. Only the letters and digits typed in step 1 are shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7.2",
+   "priority": "P1",
+   "priority_basis": "特殊字元不得輸入 —— **輸入驗證之防線本身**",
+   "design_method": "負向測試 (Negative / Invalid)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER1 不可省** —— 只驗「特殊字元不被接受」，一個**什麼都不接受**之實作會通過（§8.3）。**ER3 斷言欄位之最終內容**：一個接受特殊字元卻不顯示之實作，只看 ER2 會通過而其儲存值已錯。條文未列舉何謂 special character，依 §8.4.1 不代其列舉；執行時所用之字元記於執行紀錄。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

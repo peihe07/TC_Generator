@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-054",
+ "outline": "6.5",
+ "batch": "batch05",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NOPR4.) Pressing “Switch Users” will take the user to the “All Profiles” tab in the Profile Section.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR4.) Pressing “Switch Users” will take the user to the “All Profiles” tab in the Profile Section.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.5（NOPR4）—— 按 Switch Users 進入 Profile 區之“All Profiles” 分頁。關鍵情境條件：上次分頁須**不是** “All Profiles”。為什麼這樣切：本 leaf 為單一導向斷言；切換 profile 之後續行為屬 5.3（`SWE1-HMI-PROF-022`），本條只到達分頁為止。",
+ "keywords": [
+  "Switch Users",
+  "All Profiles",
+  "Profile section",
+  "Welcome"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-054",
+   "tc_id": "NR1L-UserProfiles-155",
+   "tc_title": "Switch Users opens the All Profiles tab",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Switch Users opens the All Profiles tab",
+   "pre_conditions": "1. The Welcome popup with the Switch Users button is displayed\n2. The last used tab of the active Profile is the “Edit Profile” tab\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press Switch Users on the Welcome popup\n2. Read the screen and check which tab of the Profile section is shown",
+   "expected_result": "1. The Welcome popup is closed and the Profile section is opened\n2. The “All Profiles” tab is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.5",
+   "priority": "P1",
+   "priority_basis": "Switch Users 之導向",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**pre-condition 刻意把上次分頁設為 “Edit Profile”** ——否則 5.1 之 latch（上次分頁）與本條之「固定到 All Profiles」會給出相同結果，兩者不可分辨。此設置亦使本條與 `SWE1-HMI-PROF-055`（導向上次分頁）之判別力各自成立。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

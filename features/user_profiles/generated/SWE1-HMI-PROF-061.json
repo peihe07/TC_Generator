@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-061",
+ "outline": "7.3",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL3.) Pressing “Switch Users” on the Welcome popup will take the user to the All Profiles tab of the Profiles section. Pressing on the avatar of the text “Welcome [username]” will take the user to the last known tab in the Profile Section.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL3.) Pressing “Switch Users” on the Welcome popup will take the user to the All Profiles tab of the Profiles section. Pressing on the avatar of the text “Welcome [username]” will take the user to the last known tab in the Profile Section.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.3（PRWEL3）—— welcome popup 之兩個入口各自之去向。關鍵情境條件：上次分頁不得為 “All Profiles”。為什麼這樣切：兩個入口為同一句之列舉且去向不同，**併為一條方能在同一組前提下比較兩者**；分立則兩條之 pre-condition 相同而各驗一半。",
+ "keywords": [
+  "Switch Users",
+  "welcome popup",
+  "last known tab",
+  "avatar"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-061",
+   "tc_id": "NR1L-UserProfiles-161",
+   "tc_title": "Welcome popup links to All Profiles or the last known tab",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Welcome popup links to All Profiles or the last known tab",
+   "pre_conditions": "1. The welcome popup of the active Profile is displayed\n2. The last known tab of the active Profile is the “Edit Profile” tab\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press “Switch Users” on the welcome popup\n2. Read the screen and check which tab is shown\n3. Return to the welcome popup and press the “Welcome [username]” text\n4. Read the screen and check which tab is shown",
+   "expected_result": "1. The Profile section is opened\n2. The “All Profiles” tab is displayed\n3. The Profile section is opened again\n4. The “Edit Profile” tab, the last known tab, is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.3",
+   "priority": "P2",
+   "priority_basis": "welcome popup 之兩個導向入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**條文列兩個入口而其去向不同**（Switch Users → All Profiles；avatar 或 Welcome 文字 → 上次分頁），依 §7 兩者皆須走到。上次分頁固定為 “Edit Profile”，**使兩個去向可分辨** ——若上次分頁本就是 All Profiles，兩個入口之結果相同。方括號 `[username]` **逐字引自 7.3**（§11 之 profile-scoped 例外，D-UP22-01）。**與 `SWE1-HMI-PROF-054`／`-055`（6.5／6.6）之關係**：那兩條之 popup 為 ch6 之預設 Welcome popup，本條為 ch7 之welcome popup；037 各自切了 leaf，故各自成條（§8.2.1）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

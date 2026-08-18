@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-083",
+ "outline": "8.11",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR10.) If only the username or avatar are edited (initiated from the “Edit Profile” screen). Only show the relevant popup (ex: select edit Avatar, only give Avatar selection popup). In this case, the back arrow would be the same as canceling.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR10.) If only the username or avatar are edited (initiated from the “Edit Profile” screen). Only show the relevant popup (ex: select edit Avatar, only give Avatar selection popup). In this case, the back arrow would be the same as canceling.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.11（NEWPR10）—— 只編輯 username 或 avatar 時只顯示相關之 popup，且 back arrow 等同取消。關鍵情境條件：自 Edit Profile 畫面發起，而非自新增流程。為什麼這樣切：兩個斷言（只出現相關 popup／back 等同取消）為同一句之兩半，§5.7 併於一條。",
+ "keywords": [
+  "avatar",
+  "relevant popup",
+  "back arrow",
+  "cancel"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-083",
+   "tc_id": "NR1L-UserProfiles-188",
+   "tc_title": "Editing only the avatar shows only the avatar popup",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Editing only the avatar shows only the avatar popup",
+   "pre_conditions": "1. Driver Profile A is the active Profile with a username and an avatar\n2. The “Edit Profile” tab is open\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Select the option to edit the avatar\n2. Read the screen and check which popups are shown\n3. Press the back arrow and read the Profile",
+   "expected_result": "1. The avatar edit is started\n2. Only the avatar selection popup is shown and no username popup appears\n3. The edit is cancelled and the avatar is unchanged",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.11",
+   "priority": "P2",
+   "priority_basis": "只改 username 或 avatar 時之單一 popup",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER2 之缺席斷言是本條之判別力** —— 只驗「avatar popup 有出現」，一個把整段新增流程都跑一遍之實作會通過。**ER3 驗的是「back arrow 等同取消」**：條文之 `the back arrow would be the same as canceling` ——只驗畫面關閉不足，須斷言**值未被寫入**。條文列 username 與 avatar 兩個入口，本條取 avatar 一側（條文自己舉的例即為 avatar），**username 一側為同型**，其結果不由本條保證。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

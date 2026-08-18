@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Preferences restored when a Profile is chosen on the head unit",
-   "pre_conditions": "1. Two Driver Profiles exist, each with a different value of the preference under test\n2. The vehicle is stationary",
+   "pre_conditions": "1. Two Driver Profiles exist, each with a different value of the preference under test\n2. The vehicle is stationary\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preference under test: Cluster Home screen (3.1)",
    "test_procedure": "1. Activate Driver Profile A and record the preference\n2. Activate Driver Profile B from the “All Profiles” tab\n3. Read the preference and check that it matches Driver Profile B's own value",
    "expected_result": "1. Driver Profile A is active and its preference is recorded\n2. Driver Profile B is active\n3. The preference matches Driver Profile B's own value and differs from the value recorded in step 1",
@@ -35,7 +35,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "三條回復途徑（主機選取／記憶座椅鍵／key fob）為 037 之三個 leaf，分屬 `SWE1-HMI-PROF-004-02`／`-03`／`-04`；本條為**主機選取**一途。",
+   "remarks": "三條回復途徑（主機選取／記憶座椅鍵／key fob）為 037 之三個 leaf，分屬 `SWE1-HMI-PROF-004-02`／`-03`／`-04`；本條為**主機選取**一途。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗自畫面選取 profile 後之偏好回復 —— **切換正是本條之動作**，故 popup 必然出現；但所驗者為偏好值，非 popup。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

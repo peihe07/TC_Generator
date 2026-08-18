@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-073-03",
+ "outline": "8.7",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a username is ~12 characters, and the keyboard will not allow typing more. The minimum number of characters is 1 and the Next button will not be available until one character is typed. Username can be alphanumeric with spaces (spaces count toward the character limit).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The username can consist of alphanumeric characters and spaces. Spaces are considered valid characters and must count toward the 12-character maximum limit.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.7（NEWPR6）—— 空格為合法字元且計入 12 字元上限。關鍵情境條件：空格須落在使兩種實作分歧之位置（見 remarks）。為什麼這樣切：`design_method` 取邊界值分析 ——判定取決於第 12／13 個字元之接受與否。",
+ "keywords": [
+  "spaces",
+  "character limit",
+  "username",
+  "twelve"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-073-03",
+   "tc_id": "NR1L-UserProfiles-176",
+   "tc_title": "Spaces count toward the username character limit",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Spaces count toward the username character limit",
+   "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
+   "input_test_data": "Username length: 12 → 13 characters (eleven letters plus one space, then one more character)",
+   "test_procedure": "1. Type eleven letters and one space into the username field\n2. Read the field and record the characters accepted\n3. Type one more character and read the username field",
+   "expected_result": "1. The eleven letters and the space are accepted\n2. Twelve characters are shown in the username field\n3. The keyboard does not allow a thirteenth character in the field",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7",
+   "priority": "P2",
+   "priority_basis": "空格計入 12 字元上限",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**空格放在第十二個位置** —— 若放在中間，一個「不計空格」之實作仍會在第十二個字母處停下，與正確實作**在此設置下不可分辨**；放在最後才使兩者分歧：不計空格者會再接受一個字母。上限 12 出自 8.7 之條文；本條與 `SWE1-HMI-PROF-073-01`（`NR1L-UserProfiles-009`）**驗的是同一個上限之兩種輸入**（純字母／含空格）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

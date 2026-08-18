@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-041-03",
+ "outline": "5.13.2",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "ALLPR2.2) Using the “Clear Personal Data” setting (and confirming from popup PU0626) will delete all profiles from the vehicle and restore the defaults. The new active profile will be associated with the current memory seat position (ex: if memory seat 2 is active, go to Driver 2 default profile). If there are no memory seats, Driver 1 should be the new active profile. PU1089 is displayed when users confirm data clearing by pressing Yes/Ok in pop-up PU_0129. PU1090 is displayed when data have been successfully cleared. PU1091 is displayed if HU or TBM do not confirm complete data clearing.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "During the \"Clear Personal Data\" process, the system must display specific pop-ups to indicate progress and success. PU1089 must be displayed when the user confirms data clearing (pressing Yes/Ok on the confirmation prompt PU0626/PU_0129). Upon successful completion of data clearing, PU1090 must be displayed.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.13.2 —— 清除流程之進度 popup（PU1089）與完成 popup（PU1090）。關鍵情境條件：須有可清之自訂資料，否則「完成」之時點不可觀察。為什麼這樣切：本 leaf 之單位為**成功路徑之兩個 popup**；失敗路徑之 PU1091 屬 `SWE1-HMI-PROF-041-04`，其成立條件（HU／TBM 不回報完成）與本條互斥。",
+ "keywords": [
+  "PU1089",
+  "PU1090",
+  "Clear Personal Data",
+  "progress"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-041-03",
+   "tc_id": "NR1L-UserProfiles-142",
+   "tc_title": "PU1089 on confirmation and PU1090 on successful clearing",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "PU1089 on confirmation and PU1090 on successful clearing",
+   "pre_conditions": "1. Two custom Driver Profiles exist on the vehicle\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the settings and select Clear Personal Data\n2. Press Yes on each confirmation popup PU0626/PU_0129 and read the popup shown\n3. Wait until the clearing ends and read the popup shown",
+   "expected_result": "1. The Clear Personal Data setting is selected\n2. PU1089 is displayed\n3. PU1090 is displayed once the data have been cleared",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.13.2",
+   "priority": "P2",
+   "priority_basis": "清除流程之進度與完成 popup；流程可見性",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**PU1089／PU1090 之內文不寫**（R-U27 同型）—— spec 只給 id，未給文字；ER 只斷言其顯示與時機。**RD #8 —— 41 包 §四授權逕行修正**：5.13.2 之確認 popup 同時寫了 PU0626（`confirming from popup PU0626`）與 PU_0129（`pressing Yes/Ok in pop-up PU_0129`），**兩者之關係條文未定義**。本條之步驟 2 取 PU_0129 ——因條文把「按 Yes/Ok 觸發 PU1089」這件事綁在 PU_0129 上。**本條之步驟 2 改為「於每一個確認 popup PU0626/PU_0129 按 Yes」** ——兩者若為同一個即按一次，若為兩段確認即按兩次；**兩種讀法下皆不假失敗**。RD #8 仍照送（上游知情），但不作為修正之前提。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

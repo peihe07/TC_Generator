@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-063",
+ "outline": "7.4.1",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRWEL4.1) The 30 seconds should not include when the vehicle is in remote start.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL4.1) The 30 seconds should not include when the vehicle is in remote start.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.4.1（PRWEL4.1）—— 30 秒之計時不含遙控起動之時間。關鍵情境條件：popup 於遙控起動期間即已顯示。為什麼這樣切：`design_method` 取狀態轉換 ——本條之判定取決於**一次狀態離開**（退出遙控起動）之後計時才開始。",
+ "keywords": [
+  "remote start",
+  "30 seconds",
+  "timer",
+  "welcome popup"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-063",
+   "tc_id": "NR1L-UserProfiles-165",
+   "tc_title": "Remote start time does not count toward the 30 seconds",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Remote start time does not count toward the 30 seconds",
+   "pre_conditions": "1. The vehicle is in remote start\n2. The welcome popup of the active Profile is displayed\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Wait 30 seconds while the vehicle is in remote start\n2. Read the screen and check whether the popup is displayed\n3. Exit the remote start and wait 30 more seconds\n4. Read the screen and check whether the popup is displayed",
+   "expected_result": "1. The vehicle stays in remote start for 30 seconds\n2. The welcome popup is still displayed\n3. The remote start ends and 30 seconds pass\n4. The welcome popup is cleared",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4.1",
+   "priority": "P3",
+   "priority_basis": "遙控起動期間不計入 30 秒；計時之排除條件",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER4 不可省** —— 只驗 ER2（遙控起動期間不清除），一個**根本沒有 30 秒計時**之實作會通過；ER4 證明計時仍在，只是排除了遙控起動之時間。步驟 3 之後須全程無互動且車輛靜止，否則清除可歸因於另兩個觸發。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

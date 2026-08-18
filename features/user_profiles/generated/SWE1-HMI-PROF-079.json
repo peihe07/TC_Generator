@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-079",
+ "outline": "8.9",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR8.) The final step (for New Profile setup only) is prompting the user to choose to “Create from Current Preferences or Create from Default?”. If the user chooses to keep current preferences, carry-over all of the previously active Profile’s preferences and settings.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR8.) The final step (for New Profile setup only) is prompting the user to choose to “Create from Current Preferences or Create from Default?”. If the user chooses to keep current preferences, carry-over all of the previously active Profile’s preferences and settings.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.9（NEWPR8）—— 設定之最終步提示選擇沿用現有偏好或採用預設；選前者則沿用前一個現用 profile 之全部偏好與設定。關鍵情境條件：前一個現用 profile 之偏好須先記錄。為什麼這樣切：`design_method` 取情境／用例 ——本條跨設定流程之末段與新 profile 之初始狀態兩處。",
+ "keywords": [
+  "final step",
+  "current preferences",
+  "default",
+  "carry-over"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-079",
+   "tc_id": "NR1L-UserProfiles-184",
+   "tc_title": "Final setup step offers current or default preferences",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Final setup step offers current or default preferences",
+   "pre_conditions": "1. Driver Profile A is the active Profile and has known preferences\n2. A New Profile Setup is in progress\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record the preferences of Driver Profile A\n2. Complete the New Profile Setup up to its final step\n3. Read the prompt shown at the final step\n4. Choose to create from current preferences, then read the new Profile's preferences",
+   "expected_result": "1. The preferences of Driver Profile A are recorded\n2. The final step of the New Profile Setup is displayed\n3. The prompt reads “Create from Current Preferences or Create from Default?”\n4. The new Profile's preferences match those recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.9",
+   "priority": "P1",
+   "priority_basis": "最終步之偏好選擇與沿用；新 profile 之初始狀態",
+   "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER4 是條文後半之唯一可觀察形式** —— `carry-over all of the previously active Profile’s preferences`；只驗提示文字（ER3），一個顯示該提示卻兩個選項都給預設值之實作會通過。**未走 `Create from Default` 一側**：條文只說選了 current 會沿用，未說選了 default 會如何（`Default` 之內容未定義），依 §8.4.1 不推定。此提示為 **New Profile setup only**（條文明載），編輯既有 profile 時不出現 —— 該側屬 8.10.1／8.11。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

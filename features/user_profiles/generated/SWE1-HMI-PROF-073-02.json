@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-073-02",
+ "outline": "8.7",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR6.) Step 2: “Enter a username”. The Maximum number of characters for a username is ~12 characters, and the keyboard will not allow typing more. The minimum number of characters is 1 and the Next button will not be available until one character is typed. Username can be alphanumeric with spaces (spaces count toward the character limit).",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "The minimum number of characters for a username is 1. The \"Next\" button must remain disabled or unavailable as long as the input field is completely empty (0 characters), and must only become available once at least one character is typed.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.7（NEWPR6）—— username 之最小長度為 1，欄位為空時 Next 不可用。關鍵情境條件：起始須為完全空白之欄位。為什麼這樣切：`design_method` 取邊界值分析 ——判定完全取決於 0 與 1 這一個界。",
+ "keywords": [
+  "Next button",
+  "username",
+  "minimum",
+  "one character"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-073-02",
+   "tc_id": "NR1L-UserProfiles-175",
+   "tc_title": "Next button stays unavailable while the username is empty",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Next button stays unavailable while the username is empty",
+   "pre_conditions": "1. A New Profile Setup is at the username step\n2. The username field is empty\n3. The vehicle is stationary",
+   "input_test_data": "Username length: 0 → 1 characters",
+   "test_procedure": "1. Read the Next button while the username field is empty\n2. Type one character into the username field\n3. Read the Next button and check whether it is available",
+   "expected_result": "1. The Next button is not available\n2. One character is shown in the username field\n3. The Next button is available",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.7",
+   "priority": "P1",
+   "priority_basis": "username 下界 1 字元；Next 之啟用條件",
+   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**邊界對為 0 → 1**（§5.6 之界前／界上兩讀）：只讀界上（1 字元時可按），一個**永遠可按**之實作會通過。本 leaf 為下界；上界 12 字元屬 `SWE1-HMI-PROF-073-01`（`NR1L-UserProfiles-009`），空格計入屬 `SWE1-HMI-PROF-073-03` —— **三者為同一條條文之三個界**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

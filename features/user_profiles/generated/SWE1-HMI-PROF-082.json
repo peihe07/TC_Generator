@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-082",
+ "outline": "8.10.2",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NEWPR9.2) The icon in the status bar Profile button will update to match the new active Profile",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR9.2) The icon in the status bar Profile button will update to match the new active Profile",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.10.2（NEWPR9.2）—— 狀態列之 Profile 鍵圖示更新為新的現用 profile。關鍵情境條件：原現用者之圖示須先記錄，且兩者之 avatar 不同。為什麼這樣切：本 leaf 之單位為**圖示之更新**；分頁之去向屬 `SWE1-HMI-PROF-080`。",
+ "keywords": [
+  "status bar",
+  "icon",
+  "active Profile",
+  "update"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-082",
+   "tc_id": "NR1L-UserProfiles-187",
+   "tc_title": "Status bar icon updates to the new active Profile",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Status bar icon updates to the new active Profile",
+   "pre_conditions": "1. Two Driver Profiles exist with different avatars\n2. Driver Profile A is the active Profile\n3. A New Profile Setup is at its final step\n4. The Welcome popup setting is off for all Profiles\n5. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the status bar and record the Profile button icon\n2. Complete the New Profile Setup\n3. Read the status bar and check whether the icon changed",
+   "expected_result": "1. The Profile button icon is recorded\n2. The new Profile is created and becomes the active Profile\n3. The Profile button icon matches the new Profile and differs from the icon recorded in step 1",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.10.2",
+   "priority": "P1",
+   "priority_basis": "狀態列圖示隨新現用 profile 更新",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**與 `SWE1-HMI-PROF-013`（`NR1L-UserProfiles-101`，4.6）之分別**：那一條驗的是**切換 profile 時**圖示隨之改變，本條驗的是**新增完成時**。兩節各自明載，故各自成條（§8.2.1）。**X-1**：pre-condition 指定 Welcome popup 設定為關閉 ——新 profile 之啟用會觸發 7.1 之 welcome popup 而遮住狀態列，而本條之判定全在狀態列。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-067",
+ "outline": "8.3",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR2.) The Profile Setup processes is a series of popups. Specific popups can be found in the HMI Pop Up List.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR2.) The Profile Setup processes is a series of popups. Specific popups can be found in the HMI Pop Up List.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.3（NEWPR2）—— 設定流程以一連串 popup 呈現。關鍵情境條件：須自第一步走到最後一步，否則「每一步都是 popup」只驗了其中一步。為什麼這樣切：**可判定之部分只有「是不是 popup」** ——「是不是清單上的那一個 popup」之權威在外部文件。",
+ "keywords": [
+  "Profile Setup",
+  "popups",
+  "series",
+  "HMI Pop Up List"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-067",
+   "tc_id": "NR1L-UserProfiles-169",
+   "tc_title": "Profile Setup is presented as a series of popups",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Profile Setup is presented as a series of popups",
+   "pre_conditions": "1. A New Profile Setup is in progress at its first step\n2. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Complete each step of the New Profile Setup in turn\n2. Read each screen and check that every step is a popup",
+   "expected_result": "1. Each step of the New Profile Setup is completed\n2. Every step is presented as a popup",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.3",
+   "priority": "P2",
+   "priority_basis": "設定流程以 popup 串接之形態",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**具體之 popup id 不寫** —— 條文說 `Specific popups can be found in the HMI Pop Up List`，而該清單之逐步對映**不在本 feature 之輸入內**（`data/spec_popup_ids.tsv` 只記 id 與其出現節次，非流程對映）。依 §8.4.1 不自擬，ER 只驗**形態**。此為**上游文件依賴**，同 `SWE1-HMI-PROF-044` 之截斷規則 ——**不援引 R-U56**（本 leaf 存在，缺的是規則之權威文件）。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

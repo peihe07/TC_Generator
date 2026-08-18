@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-060",
+ "outline": "7.2.2",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRWEL2.2) Closing the popup will not have the prompts from the default Welcome popup for “Remind me Later” and “Don’t Show me Again”. Pressing X in the custom Welcome popup will be treated as “Remind me Later”.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL2.2) Closing the popup will not have the prompts from the default Welcome popup for “Remind me Later” and “Don’t Show me Again”. Pressing X in the custom Welcome popup will be treated as “Remind me Later”.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.2.2（PRWEL2.2）—— 自訂 welcome popup 之關閉不出現Remind me Later／Don’t Show me Again 之詢問，且按 X 視同前者。關鍵情境條件：popup 須為**自訂** profile 之 popup ——預設 profile 之 popup 行為在 6.3.1，兩者相反。為什麼這樣切：`design_method` 取狀態轉換 ——本條驗的是一個**壓抑狀態之建立與其於再啟用時之解除**。",
+ "keywords": [
+  "custom welcome popup",
+  "Remind me Later",
+  "close",
+  "X"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-060",
+   "tc_id": "NR1L-UserProfiles-160",
+   "tc_title": "Closing a custom welcome popup acts as Remind me Later",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Closing a custom welcome popup acts as Remind me Later",
+   "pre_conditions": "1. Two Driver Profiles exist and Driver Profile A is customized\n2. The custom welcome popup of Driver Profile A is displayed\n3. The Welcome popup setting is on for both Profiles\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press X on the custom welcome popup\n2. Read the screen and check which popups are displayed\n3. Activate Driver Profile B, then activate Driver Profile A again\n4. Read the screen and check whether the popup is displayed",
+   "expected_result": "1. The custom welcome popup is closed\n2. No popup offering Remind me Later or Don’t Show me Again is displayed\n3. Driver Profile A is active again\n4. The custom welcome popup of Driver Profile A is displayed again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.2",
+   "priority": "P3",
+   "priority_basis": "自訂 popup 關閉時不再詢問；罕見分支",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER4 是「視同 Remind me Later」之唯一可觀察形式** —— 6.3.1 定 Remind me Later 為「關到該 profile 下次被啟用」；只驗 ER1／ER2（關了、沒問），一個**永久關閉**之實作會通過（§8.3）。故步驟 3 切走再切回。**與 `SWE1-HMI-PROF-051`（Don’t Show me Again）之結果相反** ——那一條之同位置斷言為「不再顯示」。**X-1**：步驟 3 之切換會觸發 5.3.1 之 PU0580，而該 popup **即 ER3／ER4 所涉者** —— 標的而非干擾。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

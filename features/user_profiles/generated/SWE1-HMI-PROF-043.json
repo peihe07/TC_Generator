@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-043",
+ "outline": "5.15",
+ "batch": "batch05",
+ "test_set": "Profile List",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "ALLPR5.) Usernames displayed on the All Profiles tab should be center justified under the associated avatar and not overlap with other usernames.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "ALLPR5.) Usernames displayed on the All Profiles tab should be center justified under the associated avatar and not overlap with other usernames.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：5.15（ALLPR5）—— username 於 avatar 下置中，且不相互重疊。關鍵情境條件：多個 profile 且 username 長短不一。為什麼這樣切：置中與不重疊為**同一句之並列斷言**，§5.7 併為一條；但拆為兩個 ER 行，使失敗時可指出是哪一半。",
+ "keywords": [
+  "username",
+  "center justified",
+  "overlap",
+  "All Profiles"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-043",
+   "tc_id": "NR1L-UserProfiles-145",
+   "tc_title": "Usernames are center justified and do not overlap",
+   "test_group": "User Profiles",
+   "test_set": "Profile List",
+   "test_item": "Usernames are center justified and do not overlap",
+   "pre_conditions": "1. Three Driver Profiles exist on the vehicle\n2. The usernames of the three Profiles differ in length\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “All Profiles” tab\n2. Read each username and check its position under its avatar\n3. Read the usernames and check that none overlaps another",
+   "expected_result": "1. The “All Profiles” tab is displayed\n2. Each username is center justified under its associated avatar\n3. No username overlaps another username",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_5.15",
+   "priority": "P3",
+   "priority_basis": "username 之對齊與不重疊；純版面",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**username 長度刻意不同** —— 等長時，置中與靠左之版面在多數字型下差異極小，且重疊不會發生；長度不同才使兩個斷言各自可觀察。過長者之**截斷**屬 `SWE1-HMI-PROF-044`，本條不涉。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-081",
+ "outline": "8.10.1",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NEWPR9.1) Editing an existing Profile (from the Edit Profile screen) will return the user to the page of the “Edit Profile” tab they initiated the editing from.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR9.1) Editing an existing Profile (from the Edit Profile screen) will return the user to the page of the “Edit Profile” tab they initiated the editing from.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.10.1（NEWPR9.1）—— 自 Edit Profile 畫面發起之編輯，完成後回到發起之該頁。關鍵情境條件：發起頁須先記錄，否則「回到原頁」無對照。為什麼這樣切：本 leaf 為編輯路徑之回程。",
+ "keywords": [
+  "Edit Profile",
+  "return",
+  "originating page",
+  "editing"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-081",
+   "tc_id": "NR1L-UserProfiles-186",
+   "tc_title": "Editing returns to the originating Edit Profile page",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Editing returns to the originating Edit Profile page",
+   "pre_conditions": "1. Driver Profile A is the active Profile\n2. The “Edit Profile” tab is open at the page holding the username option\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Record which page of the “Edit Profile” tab is open\n2. Select the option to edit the username and complete the edit\n3. Read the screen and check which page is shown",
+   "expected_result": "1. The page of the “Edit Profile” tab is recorded\n2. The username edit is completed\n3. The page recorded in step 1 is shown again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.10.1",
+   "priority": "P2",
+   "priority_basis": "自 Edit Profile 起始之編輯，其返回頁",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**與 `SWE1-HMI-PROF-080` 之結果相反** —— 新增完成回 “All Profiles”，編輯完成回**發起編輯之該頁**；兩者同為「完成之後去哪」而條文分兩節，故各自成條。**ER3 以步驟 1 所記者為準而非寫死頁名** —— 條文說的是 `the page … they initiated the editing from`，寫死頁名等於把一個相對斷言改成絕對斷言。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

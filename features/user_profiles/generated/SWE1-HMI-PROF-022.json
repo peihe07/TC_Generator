@@ -35,7 +35,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**Y-1（36 包）**：ER3 併驗「Edit Profile 分頁未開啟」——該句承載 5.4 之 `Editing … is **only** available for the active Profile` 之反向。**選取非現用 profile 之兩個必然結果（切換發生／不進入編輯）為同一觸發，依 §5.7 併於本條。**條文之選取對象為 `Profile username **or** avatar` ——本 TC 取 username 一側；avatar 一側之觸發相同而**入口不同**，條文以 or 並列，**未另切 leaf**，故不另生成（§8.2.1）。**ER3 併驗「不再是步驟 1 所記者」** —— 只驗 B 被 highlight，一個把兩者都 highlight 之實作會通過。",
+   "remarks": "**Y-1（36 包）**：ER3 併驗「Edit Profile 分頁未開啟」——該句承載 5.4 之 `Editing … is **only** available for the active Profile` 之反向。**選取非現用 profile 之兩個必然結果（切換發生／不進入編輯）為同一觸發，依 §5.7 併於本條。**條文之選取對象為 `Profile username **or** avatar` ——本 TC 取 username 一側；avatar 一側之觸發相同而**入口不同**，條文以 or 並列，**未另切 leaf**，故不另生成（§8.2.1）。**ER3 併驗「不再是步驟 1 所記者」** —— 只驗 B 被 highlight，一個把兩者都 highlight 之實作會通過。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：pre-condition 已明定「B 之 welcome popup 為開啟」——**該 popup 為本條所預期之中間狀態**：條文（5.3.1）給它 5 秒，且 7.4 定其於使用者互動時即清除，故步驟 3 之讀取在其之後；ER3 所斷言之 highlight 與分頁狀態在 popup 之下方，不因其顯示而改變。",
    "split_flag": false,
    "split_reason": ""
   }

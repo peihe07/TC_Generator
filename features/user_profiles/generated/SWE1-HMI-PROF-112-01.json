@@ -37,7 +37,7 @@
    "test_group": "User Profiles",
    "test_set": "Connected Account",
    "test_item": "Deleted App Store app removed only for the uninstalling user",
-   "pre_conditions": "1. Two Driver Profiles exist on the vehicle, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle, each with its own Connected Account\n2. The same App Store app is installed locally for both Profiles\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile A\n2. Record the App Store app shown in the app tray\n3. Delete the App Store app from Driver Profile A\n4. Activate Driver Profile B\n5. Open the app tray and check that the app recorded in step 2 is still present",
    "expected_result": "1. Driver Profile A is active\n2. The App Store app is recorded in Driver Profile A’s app tray\n3. The App Store app is removed from Driver Profile A’s app tray\n4. Driver Profile B is active\n5. The App Store app is still present in Driver Profile B’s app tray",
@@ -47,7 +47,7 @@
    "design_method": "情境 / 用例 (Scenario / Use Case Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗 app 刪除之逐 profile 範圍；判定在 app tray。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

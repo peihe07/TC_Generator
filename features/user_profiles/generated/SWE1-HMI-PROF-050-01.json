@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-050-01",
+ "outline": "6.3.1",
+ "batch": "batch05",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NOPR2.1) Selecting “X” on the default Welcome popup will lead to another popup with options of “Remind me Later” and “Don’t Show me Again”. Selecting “Remind me Later” will close the popup until the next time that Profile is activated. Clicking outside the Welcome popup will close the popup without asking “Remind me Later” and “Don’t Show me Again”.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "Selecting “X” on the default Welcome popup will lead to another popup with options of “Remind me Later” and “Don’t Show me Again”. Selecting “Remind me Later” will close the popup until the next time that Profile is activated.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.3.1（NOPR2.1）—— 按 X 後之二次 popup，選 Remind me Later 關閉至該 profile 下次啟用。關鍵情境條件：須有第二個 profile，否則「切走再切回」這個唯一無歧義之 activation 造不出來。為什麼這樣切：`design_method` 取狀態轉換 ——本條驗的是一個**壓抑狀態之建立與其解除**，而解除之條件正是條文所定之 activation。",
+ "keywords": [
+  "Remind me Later",
+  "Welcome popup",
+  "close",
+  "activation"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-050-01",
+   "tc_id": "NR1L-UserProfiles-151",
+   "tc_title": "Remind me Later closes the popup until next activation",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Remind me Later closes the popup until next activation",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The Welcome popup setting is off for Driver Profile B\n3. The Welcome popup of Driver Profile A is displayed\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press X on the Welcome popup and read the popup shown\n2. Select Remind me Later on that popup\n3. Activate Driver Profile B\n4. Activate Driver Profile A again and read the screen",
+   "expected_result": "1. A popup offering Remind me Later and Don’t Show me Again is displayed\n2. The Welcome popup is closed\n3. Driver Profile B is active\n4. The Welcome popup of Driver Profile A is displayed again",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3.1",
+   "priority": "P2",
+   "priority_basis": "Remind me Later 之關閉範圍",
+   "design_method": "狀態轉換 (State Transition Testing)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER4 是本條之重點**：條文說的是「關到**該 profile 下次被啟用**為止」—— 只驗「按了會關」，一個永久關閉之實作會通過（§8.3）。**刻意不斷言 key cycle 內之顯示與否**：「key-on 是否算一次 activation」條文未定義，依 §8.4.1 保留歧義，不以本條推定。`Don’t Show me Again` 之後果屬 `SWE1-HMI-PROF-051`。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：步驟 3 切到 B 會顯示 B 之 welcome popup，故 pre-condition 指定 B 之 Welcome popup 設定為關閉 ——使步驟 4 所見之 popup 必屬 A，不會與 B 之 popup 混淆。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

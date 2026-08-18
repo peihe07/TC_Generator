@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-055",
+ "outline": "6.6",
+ "batch": "batch05",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "NOPR5.) Pressing the Avatar or “Welcome [username]” text will take the user to the last known tab in the Profile section.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR5.) Pressing the Avatar or “Welcome [username]” text will take the user to the last known tab in the Profile section.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.6（NOPR5）—— 按 Avatar 或 “Welcome [username]” 文字，進入 Profile 區之**上次分頁**。關鍵情境條件：上次分頁須**不是**預設分頁 “All Profiles”，否則與 5.1 之預設值不可分辨。為什麼這樣切：兩個入口為同一句之列舉，§7 要求皆走到；併為一條而非兩條，因其 ER 逐字相同、pre-condition 亦同 —— 分立只會產生一對雙胞胎。",
+ "keywords": [
+  "Avatar",
+  "Welcome text",
+  "last known tab",
+  "Profile section"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-055",
+   "tc_id": "NR1L-UserProfiles-156",
+   "tc_title": "Avatar and Welcome text open the last known tab",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Avatar and Welcome text open the last known tab",
+   "pre_conditions": "1. The Welcome popup of the active Profile is displayed\n2. The last known tab of the active Profile is the “Edit Profile” tab\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Press the Avatar on the Welcome popup\n2. Read the screen and check which tab is shown\n3. Return to the Welcome popup and press the “Welcome [username]” text\n4. Read the screen and check which tab is shown",
+   "expected_result": "1. The Profile section is opened\n2. The “Edit Profile” tab, the last known tab, is displayed\n3. The Profile section is opened again\n4. The “Edit Profile” tab, the last known tab, is displayed",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.6",
+   "priority": "P2",
+   "priority_basis": "Avatar 與 Welcome 文字之導向（上次分頁）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**條文列兩個入口**（Avatar 與 `Welcome [username]` 文字），依 §7 兩者皆須走到 —— 故本條四步而非兩步。方括號 `[username]` **逐字引自 6.6**（§11 之 profile-scoped 例外，D-UP22-01；G19 對照來源列驗證）。上次分頁固定為 “Edit Profile”，使本條與 `SWE1-HMI-PROF-054`（固定到 All Profiles）之結果相反而可分辨。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

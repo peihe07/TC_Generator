@@ -137,7 +137,8 @@ def _ref_allowlist() -> dict:
     """每個 req_id 之 `REF_EXTRA`：{req_id: [(節次, provides, 出處模組), …]}。"""
     mods = []
     for name in ("gen_pilot", "gen_batch01", "gen_batch02",
-                 "gen_batch03", "gen_batch04"):
+                 "gen_batch03", "gen_batch04", "gen_batch05",
+                 "gen_batch06"):
         try:
             mods.append((__import__(name), name + ".REF_EXTRA"))
         except ImportError:

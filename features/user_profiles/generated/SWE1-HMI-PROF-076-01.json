@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-076-01",
+ "outline": "8.8",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "NEWPR7.) Step 3: “Select an Avatar”. One will be highlighted, and if they choose a different avatar it will become highlighted instead. The selected avatar will show above the “Save & Continue” button on 8.4\" screens and larger and the selected avatar will show next to the save button on 7\" screens. Pushing the Save button will complete the Avatar selection.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "In Step 3 (\"Select an Avatar\") of the New Profile setup, one avatar will be highlighted by default. If the user chooses a different avatar, the highlight must dynamically move to the newly selected avatar instead.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.8（NEWPR7）—— 選了不同 avatar 時，highlight 隨之移動。關鍵情境條件：起始須已有一個被 highlight 者且已記錄。為什麼這樣切：037 對 8.8 切三個 leaf；本 leaf 為 highlight 之移動，兩個螢幕尺寸之版面屬 `SWE1-HMI-PROF-076-02`／`-03`。",
+ "keywords": [
+  "highlight",
+  "avatar",
+  "chosen",
+  "moves"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-076-01",
+   "tc_id": "NR1L-UserProfiles-179",
+   "tc_title": "Highlight moves to the newly chosen avatar",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "Highlight moves to the newly chosen avatar",
+   "pre_conditions": "1. A New Profile Setup is at the avatar step\n2. One avatar is highlighted by default\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Read the avatar screen and record which avatar is highlighted\n2. Choose a different avatar\n3. Read the screen and check which avatar is highlighted",
+   "expected_result": "1. The highlighted avatar is recorded\n2. A different avatar is chosen\n3. The chosen avatar is highlighted and the avatar recorded in step 1 is not",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.8",
+   "priority": "P3",
+   "priority_basis": "highlight 隨選取移動；呈現層",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 之後半不可省** —— 只驗「新選者被 highlight」，一個**兩個都 highlight** 之實作會通過（同 `NR1L-UserProfiles-117` 之形狀）。預設 highlight 之**選定規則**屬 `SWE1-HMI-PROF-069-02`（8.4），本條只以其為起點。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

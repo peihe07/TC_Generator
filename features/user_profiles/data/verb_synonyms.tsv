@@ -1,0 +1,55 @@
+# verb_synonyms.tsv — 41 包 §三之常規：以動詞為觸發條件之掃描，須有同義動詞對照表。
+#
+# 成因：X-1 之 PU0580 觸發只認 `select`，而第一批起就有四十處寫 `Activate`。
+# 十六條真陽性在四個批次裡躺了六輪，**而每一輪的閘都是全綠的**。
+# `--self-test` 驗的是「給它一條該紅的它會不會紅」，
+# 驗不到「它根本不看的那一類輸入」—— 那是 R-G11 之盲區聲明落在詞表上。
+#
+# 欄：
+#   verb     procedure 步驟之**首詞**（大小寫不敏感比對，此處記其語料中之形）
+#   group    同義組。同組之動詞在**觸發判定上等價**
+#   trigger  該組所餵之掃描與 popup id；`-` 表不觸發任何掃描
+#   probe    驗證用之探針句 —— 該掃描之 action 正則須對它成立
+#   note     為何歸此組
+verb	group	trigger	probe	note
+Activate	profile-switch	X-1:PU0580	1. Activate Driver Profile B	切換現用 profile —— 5.3.1 之 welcome popup 隨之出現
+Select	profile-switch	X-1:PU0580	1. Select Driver Profile B	同上；條文用語為 select
+Save	seat-save	X-1:PU0588	1. Save the position to the memory seat linked to Driver Profile B	存座椅位置；跨 profile 時 5.10.1 之 PU0588 出現
+Create	profile-create	X-1:PU0584	1. Create a new Driver Profile	建立 profile；達上限時 5.2 之 PU0584 出現
+Adjust	adjust	-	-	調整實體位置，不觸發 popup
+Attempt	attempt	-	-	負向嘗試；其結果由 ER 承載
+Bring	motion	-	-	使車輛進入行駛狀態
+Change	edit	-	-	改一個已存在之值
+Choose	edit	-	-	同 Change，用於選項
+Complete	flow	-	-	完成一段流程
+Confirm	confirm	-	-	於確認 popup 按下同意
+Continue	flow	-	-	於流程中前進到下一步
+Count	read	-	-	讀取之一種（計數）
+Customize	edit	-	-	客製化 profile
+Deactivate	mode	-	-	離開某模式
+Delete	delete	-	-	刪除
+Disconnect	fault	-	-	故障注入之一種
+Drag	gesture	-	-	拖曳手勢
+Enter	navigate	-	-	進入畫面或輸入
+Exit	mode	-	-	離開某模式
+Leave	negate	-	-	明寫**不做**某動作（其後接 untouched 之類）
+Link	edit	-	-	建立連結
+Open	navigate	-	-	開啟畫面
+Operate	operate	-	-	操作某控制
+Present	present	-	-	出示（key fob）
+Press	press	-	-	按下按鍵或畫面元件
+Read	read	-	-	讀取（§5.5 之查核擁有者）
+Reconnect	fault	-	-	故障注入之復原
+Record	read	-	-	記錄基準線（T-1 之對象）
+Restore	restore	-	-	回復預設
+Return	navigate	-	-	返回上一畫面
+Set	edit	-	-	設定一個值
+Start	flow	-	-	起始一段流程
+Suppress	fault	-	-	故障注入：抑制某回報
+Swap	edit	-	-	對調
+Switch	ignition	-	-	切換電門（**非 profile 切換**，故不與 profile-switch 同組）
+Trigger	fault	-	-	觸發某事件
+Type	navigate	-	-	鍵入
+Update	edit	-	-	更新
+Wait	wait	-	-	等待
+Withhold	fault	-	-	故障注入：不回報

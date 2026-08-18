@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Last known Profile loaded at the start of a key cycle",
-   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. No key fob associated with another Profile is present and no memory seat button is pressed at key-on",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. No key fob associated with another Profile is present and no memory seat button is pressed at key-on\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "NA",
    "test_procedure": "1. Activate Driver Profile B and record which Profile is active\n2. Switch the ignition off and then on again\n3. Read the active Profile and check that it matches the Profile recorded in step 1",
    "expected_result": "1. Driver Profile B is active and is recorded as the last known Profile\n2. The ignition is off and then on again\n3. Driver Profile B is active",
@@ -35,7 +35,7 @@
    "design_method": "狀態轉換 (State Transition Testing)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "pre-condition 明列「無 key fob 偵測、未按記憶座椅鍵」——**該二者為條文所載之覆寫條件**，不排除則本條測不到預設路徑。覆寫側分屬 `SWE1-HMI-PROF-006-02`／`SWE1-HMI-PROF-006-03`。",
+   "remarks": "pre-condition 明列「無 key fob 偵測、未按記憶座椅鍵」——**該二者為條文所載之覆寫條件**，不排除則本條測不到預設路徑。覆寫側分屬 `SWE1-HMI-PROF-006-02`／`SWE1-HMI-PROF-006-03`。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗 key cycle 起始所載入之 profile；key-on 之 welcome popup（7.1）與切換之 popup（5.3.1）皆會出現。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

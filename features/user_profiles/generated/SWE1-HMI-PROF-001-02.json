@@ -25,7 +25,7 @@
    "test_group": "User Profiles",
    "test_set": "Preference Storage",
    "test_item": "Stored preferences recalled when a Driver Profile is activated",
-   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The features carrying the preferences under test are available for the vehicle and the region",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The features carrying the preferences under test are available for the vehicle and the region\n3. The Welcome popup setting is off for both Driver Profiles",
    "input_test_data": "Preferences under test: Cluster Home screen (3.1), SiriusXM 360L Listener Profile (3.2)",
    "test_procedure": "1. Activate Driver Profile A and record the two preferences\n2. Activate Driver Profile B\n3. Activate Driver Profile A and check that the two preferences match the values recorded in step 1",
    "expected_result": "1. Driver Profile A is active and the two preference values are recorded\n2. Driver Profile B is active\n3. Driver Profile A is active and the two preferences match the values recorded in step 1",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 本 leaf 之單位為**啟用時之回復**；儲存側由 `SWE1-HMI-PROF-001-01` 承擔（pilot 之 TC-001）。",
+   "remarks": "引用欄併列 `3.1`–`3.5`（PLP 表，R-U22／R-U46）。**併列不等於該五列皆已被驗證** —— 覆蓋率不得以引用欄推定（J-1／D-UP17-01）；本 TC 實際受測之列項見 input_test_data。 本 leaf 之單位為**啟用時之回復**；儲存側由 `SWE1-HMI-PROF-001-01` 承擔（pilot 之 TC-001）。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：同上 —— 本條驗回復，popup 只會遮住步驟 3 之讀值。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }

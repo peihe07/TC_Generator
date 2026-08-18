@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**pre-condition 之「B 之上次分頁為 Edit Profile」是本條之關鍵** ——條文括號明言 `even if last known Profile tab was “Edit Profile” for newly active Profile`；不設此前提，本條與 latch（`SWE1-HMI-PROF-018-02`）之結果無從分辨。",
+   "remarks": "**pre-condition 之「B 之上次分頁為 Edit Profile」是本條之關鍵** ——條文括號明言 `even if last known Profile tab was “Edit Profile” for newly active Profile`；不設此前提，本條與 latch（`SWE1-HMI-PROF-018-02`）之結果無從分辨。**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：同 `SWE1-HMI-PROF-022` —— pre-condition 已明定其開啟；ER2 斷言之「分頁仍為 All Profiles」是 popup **下方**之畫面狀態。",
    "split_flag": false,
    "split_reason": ""
   }

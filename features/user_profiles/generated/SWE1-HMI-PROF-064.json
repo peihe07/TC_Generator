@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-064",
+ "outline": "7.5",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Medium",
+ "source_clause": "PRWEL5.) The Valet Mode welcome popup will have the same clear/timeout behavior as the other welcome popups. See Valet Mode section for additional information.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL5.) The Valet Mode welcome popup will have the same clear/timeout behavior as the other welcome popups. See Valet Mode section for additional information. (image: %E5%9C%96%E7%89%87_503778562.png)",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.5（PRWEL5）—— Valet Mode 之 welcome popup 具有與其他 welcome popup 相同之清除／逾時行為。關鍵情境條件：Valet Mode 須為作用中，且其 popup 在顯示中。為什麼這樣切：本 leaf 之單位為**同型性**；把三個觸發都走一遍等於把 7.4 重測一次，而 037 已為 7.4 切了獨立 leaf。",
+ "keywords": [
+  "Valet Mode",
+  "welcome popup",
+  "clear",
+  "same behavior"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-064",
+   "tc_id": "NR1L-UserProfiles-166",
+   "tc_title": "Valet Mode welcome popup clears like the other popups",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Valet Mode welcome popup clears like the other popups",
+   "pre_conditions": "1. Valet Mode is active on the vehicle\n2. The Valet Mode welcome popup is displayed\n3. The vehicle is stationary",
+   "input_test_data": "Screen pressed about five seconds after the popup appears",
+   "test_procedure": "1. Press the screen while the Valet Mode welcome popup is displayed\n2. Read the screen and check whether the popup is displayed",
+   "expected_result": "1. The screen is pressed while the popup is displayed\n2. The Valet Mode welcome popup is cleared",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.5",
+   "priority": "P2",
+   "priority_basis": "Valet Mode welcome popup 之清除行為同型",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**條文說的是「與其他 welcome popup 相同之清除／逾時行為」——即三個觸發**（motion／30 秒／互動）。本條取**互動**一側，**為抽樣而非窮舉**（§8.4.2）：另兩側之同型性不由本條保證。取互動一側之理由：三者中唯一**不需等待亦不需移動車輛**者，而 Valet Mode 下移動車輛另有 12.x 之限制介入。同型之三個觸發本身由 `SWE1-HMI-PROF-062-01`／`SWE1-HMI-PROF-062-03`／`SWE1-HMI-PROF-062-02` 各自驗證。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

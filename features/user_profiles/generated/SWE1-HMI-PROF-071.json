@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-071",
+ "outline": "8.5",
+ "batch": "batch06",
+ "test_set": "Setup Flow",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "NEWPR4.) The same username can be used for multiple Driver Profiles. Add New Continue Save & Continue Cancel/”X” Cancel/”X” Yes/Cancel No/Go Back No Yes Yes, Keep Changes Restore default preferences",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NEWPR4.) The same username can be used for multiple Driver Profiles.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：8.5（NEWPR4）—— 同一個 username 可用於多個 profile。關鍵情境條件：已存在一個使用該 username 之 profile。為什麼這樣切：本 leaf 為單一允許性斷言；username 之字元規則屬 8.7／8.7.2。",
+ "keywords": [
+  "username",
+  "same",
+  "multiple Profiles",
+  "allowed"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-071",
+   "tc_id": "NR1L-UserProfiles-173",
+   "tc_title": "The same username can be used by two Driver Profiles",
+   "test_group": "User Profiles",
+   "test_set": "Setup Flow",
+   "test_item": "The same username can be used by two Driver Profiles",
+   "pre_conditions": "1. Driver Profile A exists with the username Alex\n2. Two Driver Profiles exist on the vehicle\n3. The vehicle is stationary",
+   "input_test_data": "Username entered for the new Profile: Alex",
+   "test_procedure": "1. Start a New Profile Setup and enter the username Alex\n2. Complete the setup\n3. Open the “All Profiles” tab and read the usernames shown",
+   "expected_result": "1. The username Alex is accepted\n2. The new Driver Profile is saved\n3. Two Driver Profiles with the username Alex are shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_8.5",
+   "priority": "P3",
+   "priority_basis": "同名 username 之允許；罕用但明文",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**ER3 不可省** —— 只驗 ER1（輸入被接受），一個接受輸入卻在儲存時把第二個改名之實作會通過。Alex 為測試設置（J-12）：條文未指定名稱。**與 `SWE1-HMI-PROF-069-01` 之對比值得記**：avatar **不得**重複而 username **得**重複 ——兩者同在 ch8 而規則相反，故本條之 ER 須明說「兩個都在」。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

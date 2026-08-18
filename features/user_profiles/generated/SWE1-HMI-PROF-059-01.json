@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條之 ER1 所斷言者**就是**該 welcome popup（7.2.1 之大版）。5.3.1 之 PU0580 為「切換後之 welcome popup」，與本條步驟 1 啟用 A 後所顯示者為同一個 popup 之同一次顯示 ——**關掉它本條就沒有東西可驗**。",
    "split_flag": false,
    "split_reason": ""
   }

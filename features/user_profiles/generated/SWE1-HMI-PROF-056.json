@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-056",
+ "outline": "7.1",
+ "batch": "batch06",
+ "test_set": "Welcome Flow",
+ "sub_categorization": "Service",
+ "priority_prior_037": "High",
+ "source_clause": "PRWEL1.) Unless user has selected to turn off welcome popups, the Head Unit will display a “welcome” popup at ignition on and any time a Profile is activated.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRWEL1.) Unless user has selected to turn off welcome popups, the Head Unit will display a “welcome” popup at ignition on and any time a Profile is activated.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：7.1（PRWEL1）—— 除非使用者關閉，welcome popup 於電門開啟時與任何 profile 被啟用時顯示。關鍵情境條件：兩個 profile 之設定皆為開啟，否則第二個觸發無從觀察。為什麼這樣切：本 leaf 之單位為**顯示之觸發**；popup 之內容屬 7.2／7.2.1，其清除屬 7.4。",
+ "keywords": [
+  "welcome popup",
+  "ignition on",
+  "activated",
+  "PRWEL1"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-056",
+   "tc_id": "NR1L-UserProfiles-157",
+   "tc_title": "Welcome popup shown at ignition on and on activation",
+   "test_group": "User Profiles",
+   "test_set": "Welcome Flow",
+   "test_item": "Welcome popup shown at ignition on and on activation",
+   "pre_conditions": "1. Two Driver Profiles exist on the vehicle\n2. The Welcome popup setting is on for both Profiles\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Switch the ignition on and read the screen\n2. Activate Driver Profile B and read the screen",
+   "expected_result": "1. A welcome popup is displayed at ignition on\n2. A welcome popup is displayed for Driver Profile B",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.1",
+   "priority": "P1",
+   "priority_basis": "welcome popup 之兩個觸發；ch7 之入口條文",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**條文列兩個觸發**（`at ignition on` 與 `any time a Profile is activated`），依 §7 兩者皆須走到 —— 故本條兩步。`Unless user has selected to turn off welcome popups` 為適用條件（§8.7.3），以 pre-condition 固定為開啟；**關閉後不再顯示一側由 `SWE1-HMI-PROF-051`（6.3.2）承擔**。**X-1**：步驟 2 之切換所觸發者（5.3.1 之 PU0580）**即 ER2 所斷言者** —— 標的而非干擾。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

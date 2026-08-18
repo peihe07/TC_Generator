@@ -1,0 +1,43 @@
+{
+ "parent": "SWE1-HMI-PROF-049",
+ "outline": "6.3",
+ "batch": "batch05",
+ "test_set": "Defaults",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "NOPR2.) Until popups are turned off, there will be a popup upon vehicle entry to informed the user which Profile is in use, with a button to switch users, and, for default Profile(s), a button to “Get Started” to customize the active Profile.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "NOPR2.) Until popups are turned off, there will be a popup upon vehicle entry to informed the user which Profile is in use, with a button to switch users, and, for default Profile(s), a button to “Get Started” to customize the active Profile.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：6.3（NOPR2）—— Welcome popup 告知現用 profile，並提供 Switch Users 與（預設 profile 時）Get Started。關鍵情境條件：popup 設定須為開啟，且現用者為預設 profile。為什麼這樣切：三個內容項為**同一畫面之並列斷言**，§5.7 併驗；兩個按鈕**按下之後**之行為分屬 6.4／6.5，本條只驗其存在與 profile 名稱之正確。",
+ "keywords": [
+  "Welcome popup",
+  "Switch Users",
+  "Get Started",
+  "default"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-049",
+   "tc_id": "NR1L-UserProfiles-150",
+   "tc_title": "Welcome popup shows the Profile, Switch Users and Get Started",
+   "test_group": "User Profiles",
+   "test_set": "Defaults",
+   "test_item": "Welcome popup shows the Profile, Switch Users and Get Started",
+   "pre_conditions": "1. The active Driver Profile is a default Profile\n2. The Welcome popup setting is on for that Profile\n3. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Switch the ignition on and read the popup shown\n2. Read the popup and check the Profile name and the buttons offered",
+   "expected_result": "1. A Welcome popup is displayed upon vehicle entry\n2. The popup names the active Profile and offers Switch Users and Get Started",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_6.3",
+   "priority": "P1",
+   "priority_basis": "Welcome popup 之內容與兩個入口",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**Get Started 只在預設 profile 上出現**（條文之 `for default Profile(s)`）。本條取預設一側；**自訂 profile 一側之popup 組成屬 7.2（`SWE1-HMI-PROF-058`），於第六批生成** ——此處不宣稱其已被驗。`Until popups are turned off` 為適用條件（§8.7.3），以 pre-condition 固定為「開啟」；**關閉之後之行為屬 `SWE1-HMI-PROF-051`**。",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ]
+}

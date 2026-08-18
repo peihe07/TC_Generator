@@ -26,7 +26,7 @@
    "test_group": "User Profiles",
    "test_set": "Profile List",
    "test_item": "Preferences saved without pressing memory seat controls",
-   "pre_conditions": "1. A Driver Profile is active\n2. The vehicle is equipped with memory seat hard and soft controls",
+   "pre_conditions": "1. A Driver Profile is active\n2. The vehicle is equipped with memory seat hard and soft controls\n3. The Welcome popup setting is off for the active Driver Profile",
    "input_test_data": "Preference under test: Memory Profiles (Seats, mirrors, steering wheel) (3.5)",
    "test_procedure": "1. Activate Driver Profile A\n2. Adjust the seat, mirror and steering wheel positions\n3. Leave the memory seat set and save controls untouched\n4. Switch the ignition off and on\n5. Read the three positions and check that they match step 2",
    "expected_result": "1. Driver Profile A is active\n2. The seat, mirror and steering wheel positions are adjusted\n3. No memory seat set or save control is pressed\n4. The vehicle completes the ignition cycle\n5. The three positions match those set in step 2",
@@ -36,7 +36,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "**X-1（切換 profile 觸發 5.3.1 之 PU0580）**：本條驗未按記憶座椅鍵亦存得下位置；只涉一個 profile，但步驟 1 之啟用與步驟 4 之 key cycle 各會彈一次。故 pre-condition 指定 Welcome popup 設定為關閉 ——該設定之關閉途徑見 6.3.2（`SWE1-HMI-PROF-051`），**為合法之車輛狀態，非測試用旁路**。",
    "split_flag": false,
    "split_reason": ""
   }
