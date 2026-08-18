@@ -32,7 +32,7 @@
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_12.2",
    "priority": "P1",
    "priority_basis": "啟用入口之限制；非主路徑分支",
-   "design_method": "負向測試 (Negative / Invalid)",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
    "remarks": "",

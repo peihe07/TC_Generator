@@ -94,7 +94,17 @@ def read_table(page_no: int, box) -> dict:
         hs, vs = set(), set()
         for d in pg.get_drawings():
             r = d["rect"]
-            if not box_r.contains(fitz.Point(r.x0, r.y0)):
+            # **判準改過一次（R-U37）。**
+            # v1 要求線段之**起點**落在框內 —— 而表格外框之垂直線常起於
+            # 框線之上一點點（p16 之 PIP1 表：線起 y=59.7，框給 y=60）。
+            # 差 0.3pt 就整條被排除，結果是「垂直線 0 條」→ 欄數為 0 →
+            # **整張表讀不出來，而且看起來像「這張表沒有欄」。**
+            # v2：以**相交**判定（線段與框有重疊即納入）。
+            # **不可用 `Rect &` 或 `.intersects()`** —— 格線是**零寬（零高）**之
+            # 矩形，PyMuPDF 一律視其為 empty，兩者都會回 False。
+            # 以座標自行判重疊。
+            if not (r.x0 <= box_r.x1 and r.x1 >= box_r.x0
+                    and r.y0 <= box_r.y1 and r.y1 >= box_r.y0):
                 continue
             # **須橫跨（縱貫）表寬（表高）之過半** —— 只用「細長」認格線
             # 會把**表頭 `FCA` 之刪除線**（25pt 寬之填色矩形）當成一條列界，
@@ -161,11 +171,15 @@ def read_table(page_no: int, box) -> dict:
         title = [t for y, x, t in sorted(spans)
                  if band(y, hs) == r_i and band(x, vs) == 0]
         # 列標題取該列帶之**第一行**（其後為說明文字）
-        cells = []
+        cells, texts = [], []
         for c_i in range(1, n_cols):
             cells.append(any(band(mx, vs) == c_i and band(my, hs) == r_i
                              for mx, my in marks))
-        out_rows.append((title[0] if title else "?", cells))
+            # **文字表**（如 p16 之 PIP1）之格內無勾記，其內容在文字裡 ——
+            # 只回報「有無標記」會把整張文字表讀成一片 False。
+            texts.append(" ".join(t for y, x, t in sorted(spans)
+                                  if band(y, hs) == r_i and band(x, vs) == c_i))
+        out_rows.append((" ".join(title) if title else "?", cells, texts))
     return {"grid": {"rows": n_rows - 1, "cols": n_cols - 1},
             "col_labels": col_labels, "rows": out_rows,
             "h_edges": hs, "v_edges": vs, "marks": len(marks)}
@@ -191,7 +205,7 @@ def regression() -> int:
     print(f"  勾記置放數：{got['marks']}\n")
     chk("列數 × 欄數", got["grid"], CPA2_EXPECTED["grid"])
     chk("欄標題", got["col_labels"], CPA2_EXPECTED["col_labels"])
-    for (gt, gc), (et, ec) in zip(got["rows"], CPA2_EXPECTED["rows"]):
+    for (gt, gc, _tx), (et, ec) in zip(got["rows"], CPA2_EXPECTED["rows"]):
         chk(f"列「{et}」之欄別 {ec}", [gt.startswith(et[:12]), gc],
             [True, ec])
 
@@ -230,8 +244,9 @@ if __name__ == "__main__":
         print(f"格線：水平 {t['h_edges']}\n      垂直 {t['v_edges']}")
         print(f"勾記：{t['marks']} 處")
         print(f"欄：{t['col_labels']}")
-        for title, cells in t["rows"]:
-            print(f"  {title:<30}{cells}")
+        for title, cells, texts in t["rows"]:
+            body = " | ".join(x for x in texts if x)
+            print(f"  {title:<34}{cells} {body}")
         sys.exit(0)
     render(a.page, [float(x) for x in a.clip.split(",")] if a.clip else None,
            a.zoom, Path(a.out))

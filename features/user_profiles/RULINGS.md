@@ -80,6 +80,12 @@ R-U5  Priority（修訂版，取代 08-17 初版之「High→P1」預設帶）
         P3 — UI 強化、罕用情境
       037 之 High/Medium/Low 僅為先驗，衝突時以 TEST_CASE_PRIORITY.md
       為準；任何偏離須於 reasoning 具名依據。
+      —— 適用釐清（K-1，21 包核可；**條文本身未改**）：
+      本條所列五類為**例示，非窮盡** —— 不排除 canon §10.2 之其他
+      P0 條件（safety、vehicle-critical CAN signal、boot/recovery、
+      connection、audio output、data-loss risk）。
+      判別問法：該條失效時壞掉的是使用體驗，還是車輛或其資產之防線？
+      後者不需本條列它才成立。細則見 `DECISIONS.md` D-UP16-01 附二。
       —— 適用釐清（F-3，16 包核可；**條文本身未改**）：
       一條 TC 同時落在核心五類與「邊界／非主路徑」兩帶時，
       以失效後果決定 —— 核心能力失效或被繞過 → P0；

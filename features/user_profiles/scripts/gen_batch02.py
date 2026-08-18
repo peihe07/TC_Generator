@@ -47,7 +47,9 @@ PRIORITY = {
     "SWE1-HMI-PROF-113": ("P0", "Valet 進出時之偏好儲存與重設 —— 核心五類之二者交會"),
     "SWE1-HMI-PROF-114": ("P2", "狀態列之預設版面；呈現層"),
     "SWE1-HMI-PROF-115": ("P1", "啟用入口之限制；非主路徑分支"),
-    "SWE1-HMI-PROF-116": ("P1", "行車中之啟用限制分支（**rubric 無安全帶，見上繳 19 §7**）"),
+    # K-1：P1 → P0（21 包明列）。行車中不得啟用 = safety 防線本身。
+    "SWE1-HMI-PROF-116": ("P0", "行車中不得啟用 Valet Mode —— **防線成立本身**"
+                                "（§10.2 safety）"),
     "SWE1-HMI-PROF-117": ("P0", "啟用之 PIN —— Valet Mode 之防護本身"),
     "SWE1-HMI-PROF-118": ("P0", "停用之 PIN —— 同上"),
     "SWE1-HMI-PROF-119": ("P1", "斷電後之重設與 profile 接續；spec 明訂之行為，非漏洞"),
@@ -56,13 +58,18 @@ PRIORITY = {
     "SWE1-HMI-PROF-122": ("P2", "狀態列之 Valet 指示；呈現層"),
     "SWE1-HMI-PROF-123": ("P2", "Valet 中按 Profile 鍵之提示"),
     "SWE1-HMI-PROF-124": ("P0", "**Valet 下不得載入車主 profile** —— 失效即隔離被繞過"),
-    "SWE1-HMI-PROF-125-01": ("P1", "Valet 下之可用範圍限制（Device Manager）"),
-    "SWE1-HMI-PROF-125-02": ("P1", "Valet 下之功能停用（Projection／HFP／VR）"),
-    "SWE1-HMI-PROF-125-03": ("P1", "Valet 下之狀態列互動限制"),
+    # K-1：P1 → P0。Valet 之隔離即車主資產（配對裝置）之防線。
+    "SWE1-HMI-PROF-125-01": ("P0", "Device Manager 之鎖定 —— 車主資產之防線本身"),
+    "SWE1-HMI-PROF-125-02": ("P0", "Projection／HFP／VR 之停用 —— "
+                                   "阻擋 valet 使用者觸及車主之手機連線"),
+    "SWE1-HMI-PROF-125-03": ("P0", "狀態列互動之限制 —— 隔離之邊界本身"),
     "SWE1-HMI-PROF-125-04": ("P2", "不可互動項之變灰呈現"),
     "SWE1-HMI-PROF-126-01": ("P2", "手套箱鎖之進入提示（PU0832）"),
-    "SWE1-HMI-PROF-126-02": ("P2", "手套箱鎖按鈕之變灰"),
-    "SWE1-HMI-PROF-126-03": ("P2", "按下已變灰之手套箱鎖按鈕之提示（PU0833）"),
+    # K-1：P2 → P0。**變灰即該防線之執行手段** —— 未變灰則按下可解鎖手套箱。
+    # 對照：126-03（按下後之 PU0833）為回饋，改判 P1（其 ER1 併驗鎖定狀態未變）。
+    "SWE1-HMI-PROF-126-02": ("P0", "手套箱鎖按鈕之變灰 —— 實體資產之防線執行手段"),
+    "SWE1-HMI-PROF-126-03": ("P1", "按下已變灰之按鈕：其 ER1 併驗**鎖定狀態未變**"
+                                   "（防線）、ER2 為提示（回饋）—— 兩者各半，取中"),
     "SWE1-HMI-PROF-127": ("P1", "手套箱狀態之還原；退出後之狀態接續"),
     "SWE1-HMI-PROF-128-02": ("P0", "鎖定期間不得輸入 PIN —— 防暴力嘗試之機制本身"),
     "SWE1-HMI-PROF-128-03": ("P1", "鎖定屆滿後之可用性回復"),
@@ -133,7 +140,11 @@ TCS = {
 
     "SWE1-HMI-PROF-115": dict(
         title="Valet Mode activates only from the All Profiles tab",
-        design=NEGATIVE,
+        # K-4a（21 包）：原掛負向測試 —— 但本 TC **沒有非法操作**，
+        # 它做的是「到兩個地方看，那裡沒有該控制」。§12 之負向為
+        # `Invalid input / illegal op`，找不到一個東西不是非法操作。
+        # 首匹配落在「單一功能檢查 → 功能測試」。
+        design=FUNCTIONAL,
         pre=steps("Valet Mode is not active",
                   "The vehicle is stationary"),
         data="NA",

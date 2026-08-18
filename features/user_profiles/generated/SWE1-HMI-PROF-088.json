@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "EDPR2.) Don’t show the Connected Profile options/info or Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Connected Account button if the vehicle does not support the connected profile feature.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：9.2（EDPR2）—— 無 <Brand> app 之區域不顯示 Connected Profile 之選項／資訊與 Connected Account 按鈕。關鍵情境條件：條文有兩個獨立條件（區域無 app／車輛不支援），本 TC 取「區域」一側；車輛不支援一側之條件相同而觸發不同，由 11.3（CPA1）之 leaf 承擔（其文為 do not show if the vehicle does not support connectivity）。為什麼這樣切：兩個條件若併於一條 TC，失敗時分不出是哪一個條件沒生效。",
+ "reasoning": "驗證目標：9.2（EDPR2）—— 無 <Brand> app 之區域不顯示 Connected Profile 之選項／資訊與 Connected Account 按鈕。關鍵情境條件：條文有兩個獨立條件（區域無 app／車輛不支援該功能），本 TC 取「區域」一側；**車輛不支援一側由 NR1L-UserProfiles-077 承擔**（L-2，22 包）。為什麼這樣切：兩個條件若併於一條 TC，失敗時分不出是哪一個條件沒生效。**本句原委派 11.3（CPA1）之 leaf，該委派不成立** —— 11.3 之條件為 `equipped with connectivity`（硬體配置），本節條件 2 為 `does not support the connected profile feature`（功能支援），兩者非同一語意；9.2 自身把「區域無 app」與之並列，即證其不等價。**指錯承擔者比不指更糟：它讓覆蓋稽核看起來是滿的**（§8.2.1）。",
  "keywords": [
   "Connected Account",
   "region",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "label 逐字取自 9.2（`Stellantis Connected Account`）。**R1 High 之覆寫是否及於本節之 label 未定** —— 其標記在版面上為列級（Table EDPR1），見上繳 18 §2.3 之待裁項",
+   "remarks": "label 逐字取自 9.2。R1 High 車上該按鈕之 label 可能顯示為 Connected Account；**兩者指同一個按鈕**，本 TC 驗其**不顯示**，label 形式不影響判定（J-7）。該覆寫是否及於本節已列 RD 查詢（併 DR #3 送出）",
    "split_flag": false,
    "split_reason": ""
   }

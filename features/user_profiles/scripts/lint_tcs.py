@@ -200,6 +200,24 @@ UI_LOCATORS = {
 QUOTED_RE = re.compile(r"[“\"]([^”\"]{4,})[”\"]")
 
 
+# ── G19（§11 / L-1，22 包）—— 方括號 ─────────────────────────────
+#
+# canon §11 逐字：方括號 `[...]` 保留給該文件之 placeholder 語法與 sibling row
+# 標記，**不得出現在 TC 輸出欄位**；其 profile-scoped 例外為「逐字引自被引來源
+# 之 token 得保留原記法，**由 lint 對照來源列驗證，而非一律禁止**」。
+#
+# 故本閘**不是禁令，是對照**：每個方括號 token 須在該 TC 所引之節（或其
+# must_carry）之原文內逐字找得到。找不到者為自擬 —— 轉紅。
+#
+# **為什麼不做成純禁令**：9.1.1 之 spec 原文即為
+# `8.4" will show the username in the Edit Username line like
+#  “Edit username: [username]”` —— 純禁令會逼 ER 改寫 spec 之逐字內容
+# （§8.4.1 禁止），而純例外則等於開一個沒有邊界的口子。**對照是唯一兩者皆不犯的作法。**
+BRACKET_RE = re.compile(r"\[[^\]\n]{0,80}\]")
+BRACKET_FIELDS = ("tc_title", "test_item", "pre_conditions", "input_test_data",
+                  "test_procedure", "expected_result", "remarks")
+
+
 def _norm(t: str) -> str:
     return " ".join((t or "").split())
 
@@ -390,6 +408,15 @@ def gate_corpus(tcs: list) -> list:
         for sv in STATE_VALUES:
             if re.search(rf"\b{sv}\b", body) and sv.lower() not in pool_l:
                 out.append(f"G18 {tid}: ER 之狀態值 `{sv}` 溯不到被引之節")
+
+        # ── G19 —— 方括號須逐字溯得到來源（§11 之 profile-scoped 例外）
+        for f in BRACKET_FIELDS:
+            for tok in BRACKET_RE.findall(str(t.get(f, ""))):
+                if _norm(tok) in pool:
+                    continue
+                out.append(f"G19 {tid}: {f} 之方括號 `{tok[:40]}` "
+                           f"非逐字引自被引之節（{', '.join(cited)}）"
+                           f"—— §11 禁方括號，例外須對照來源（D-UP22-01）")
 
     # UI 定位詞之登記表自我查核 —— **這張表不得只是宣稱**
     for lit, sec in UI_LOCATORS.items():
@@ -703,6 +730,45 @@ def self_test() -> int:
                        expected_result="1. a\n2. The setting reads Small"),
                 False, "G18")
 
+    print("\n## G19 —— §11 方括號之對照（L-1，22 包）\n")
+
+    # **紅向之第一形狀：自擬之 UI 標籤**（§11 立意所指者）
+    corpus_case("G19 注入：procedure 以方括號標 UI 標籤（自擬）→ 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-086",
+                       specification_reference=f"{stem2}_9.1.1",
+                       test_procedure="1. Press [Media] on Menu Bar\n"
+                                      "2. Read the line and check the username"),
+                True, "G19")
+    # **綠向：TC-018 之實際形狀** —— 9.1.1 原文即含 `[username]`
+    corpus_case("G19 範圍：`[username]` 逐字引自 9.1.1 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-086",
+                       specification_reference=f"{stem2}_9.1.1",
+                       expected_result="1. a\n2. The username appears as "
+                                       "“Edit username: [username]”"),
+                False, "G19")
+    # **本組最關鍵的一條**：同一個 token、換一個被引之節即須紅 ——
+    # 證明它對照的是**來源**，不是一張 token 白名單。
+    # 若日後有人把本閘改成「`[username]` 一律放行」，紅向全過而**這條會倒**。
+    corpus_case("G19 注入：同一 token 但引 9.1（其原文無此 token）→ 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-085",
+                       specification_reference=f"{stem2}_9.1",
+                       expected_result="1. a\n2. The username appears as "
+                                       "“Edit username: [username]”"),
+                True, "G19")
+    # 紅向之第二形狀：§11 所保留之 placeholder 語法本身漏進輸出欄位
+    corpus_case("G19 注入：tc_title 含 §4.3 之 placeholder 語法 → 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-086",
+                       specification_reference=f"{stem2}_9.1.1",
+                       tc_title="[Outcome] when [trigger]"),
+                True, "G19")
+    # 綠向：spec 自身之方括號註記（11.4 之 `[This whole note ...]`）
+    corpus_case("G19 範圍：remarks 照錄 11.4 原文之方括號註記 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-111",
+                       specification_reference=f"{stem2}_11.4",
+                       remarks="條文首句為 [This whole note is not applicable "
+                               "for R1 H]，故本 TC 排除該變體"),
+                False, "G19")
+
     print("\n## 跨條之閘（G2 單調／G5 雷同）\n")
     for name, tcs, expect in [
         ("遞增且相異 → 綠",
@@ -739,7 +805,7 @@ def self_test() -> int:
         for b in bad:
             print(f"      └ {b}")
 
-    n = 1 + len(cases) + len(scope) + 22
+    n = 1 + len(cases) + len(scope) + 22 + 5   # +5：G19（L-1，22 包）
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

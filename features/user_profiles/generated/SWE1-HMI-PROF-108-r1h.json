@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-108-r1h",
+ "outline": "10.3.1",
+ "batch": "pairs22",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "Low",
+ "source_clause": "PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the info in the chart above, when applicable (i.e., if a vehicle does not have Navigation, do not show the Navigation examples). Edit Profile List Profile Info Page ****R1 High Only: for the \"Connected Account\" category title (if applicable) the Description is the following: \"Save your preferences to the cloud and access them from vehicle to vehicle.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "PRINFO2.1) The Driver Profile Info Page will read, “Your Driver Profile will remember your personal preferences for many of the features you use in your vehicle everyday. Below are some examples.” followed by the info in the chart above, when applicable (i.e., if a vehicle does not have Navigation, do not show the Navigation examples).",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：10.3.1（PRINFO2.1）之 **R1 High 變體** —— Table PIP1 之Connected Account 列，其 Description 在該變體上少了訂閱那一句。關鍵情境條件：變體為條件本身；Navigation 之有無沿用 TC-039 之前提，使兩條之其餘 14 列可逐列比對。為什麼這樣切：**TC-039 以「非 R1 High」為前提，該覆寫本身遂無人測** ——而它是一個**列級**覆寫（20 包 C-1 之連帶發現），不測則「R1 High 上仍顯示訂閱句」之實作會通過。刻意略過：其餘 14 列不重複斷言 —— 覆寫只及於該列，重複斷言會使兩條之失敗訊號分不開。",
+ "keywords": [
+  "R1 High",
+  "Table PIP1",
+  "Connected Account",
+  "row override"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-108",
+   "tc_id": "NR1L-UserProfiles-075",
+   "tc_title": "Driver Profile info page on R1 High omits subscription clause",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Driver Profile info page on R1 High omits subscription clause",
+   "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is equipped with Navigation\n3. A Driver Profile is active\n4. The vehicle is stationary",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the Driver Profile info page\n2. Read the Connected Account row and check that its description carries no subscription clause",
+   "expected_result": "1. The Driver Profile Info Page is displayed\n2. The Connected Account row reads Save your preferences to the cloud and access them from vehicle to vehicle, with no Uconnect.com subscription clause; the other rows of Table PIP1 are unchanged",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_10.3.1",
+   "priority": "P2",
+   "priority_basis": "linked-info 頁之內容（與 TC-039 同級）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**L-3 之對造**：正向為 NR1L-UserProfiles-039（非 R1 High，該列含「(with a Uconnect.com subscription)」）。依據為 PDF p16 之**列級**註記「****R1 High Only: for the \"Connected Account\" category title (if applicable) the Description is the following: \"Save your preferences to the cloud and access them from vehicle to vehicle.\"」。本條只驗該列之差異，其餘 14 列由 TC-039 承擔",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ],
+ "note": "22 包之對造／補洞 —— 與 `SWE1-HMI-PROF-108` 同一 leaf，**非新 leaf**；檔名加 `-r1h` 以免覆寫該 leaf 之既有產物"
+}

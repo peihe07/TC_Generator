@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "CPA1.) The Connected Account line item will always be displayed on the “Edit Profile” tab if the vehicle is equipped with connectivity. Do not show if the vehicle does not support connectivity.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：11.3（CPA1）—— 具連網能力之車輛，Edit Profile 分頁一律顯示 Connected Account 項目。關鍵情境條件：車輛配置為條件本身，列 pre-condition。為什麼這樣切：條文另有「不支援則不顯示」之反面，其形態與 9.2 之區域／車型隱藏相同，由該 leaf 承擔，本條不重複。",
+ "reasoning": "驗證目標：11.3（CPA1）—— 具連網能力之車輛，Edit Profile 分頁**一律顯示** Connected Account 項目 —— 該行為為**主要功能之呈現**，非分支（C-5：原述「非主路徑分支」與條文之 `will always be displayed` 不符；**判級 P1 不變**，其為主要功能之呈現而非核心五類）。關鍵情境條件：車輛配置為條件本身，列 pre-condition。**委派更正（L-2 之連帶，22 包）**：條文第二句「不支援連網則不顯示」原稱由 9.2 承擔，而 9.2 之 reasoning 同時稱其第二條件由本節承擔 ——**互指之委派，兩側皆空**。該句改由 NR1L-UserProfiles-078 承擔。為什麼這樣切：條文另有「不支援則不顯示」之反面 —— **該側之形態雖與 9.2 之區域／車型隱藏相似，其條件卻不同**（`connectivity` vs `the connected profile feature`），**故不可互相代測**；已另立 NR1L-UserProfiles-078 承擔。",
  "keywords": [
   "Connected Account",
   "connectivity",
@@ -30,11 +30,11 @@
    "expected_result": "1. The “Edit Profile” tab is displayed\n2. The Connected Account line item is displayed",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_11.3",
    "priority": "P1",
-   "priority_basis": "連網配置之非主路徑分支",
+   "priority_basis": "具連網車輛之主要功能呈現（C-5：非分支）",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "不支援連網之對照（條文第二句）屬同節之反面，其覆蓋由 9.2（EDPR2）之 leaf 承擔",
+   "remarks": "不支援連網之對照（條文第二句）由 NR1L-UserProfiles-078 承擔（L-2 之連帶發現，22 包）。**原記載為「由 9.2 之 leaf 承擔」，而 9.2 同時記載其第二條件「由 11.3 承擔」—— 兩條互指**，且雙方所指之條件並非同一件事，該側遂無人覆蓋",
    "split_flag": false,
    "split_reason": ""
   }

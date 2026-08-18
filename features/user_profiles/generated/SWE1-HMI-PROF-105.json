@@ -32,7 +32,7 @@
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.9",
    "priority": "P3",
    "priority_basis": "單頁最多 6 行 —— 版面上限，失效僅影響該頁可讀性",
-   "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
    "remarks": "",

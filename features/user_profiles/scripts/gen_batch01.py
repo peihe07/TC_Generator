@@ -59,7 +59,9 @@ PRIORITY = {
     "SWE1-HMI-PROF-086": ("P2", "8.4 吋版面之呈現差異"),
     "SWE1-HMI-PROF-087": ("P2", "未配備時之呈現隱藏"),
     "SWE1-HMI-PROF-088": ("P1", "區域／車型配置之非主路徑分支"),
-    "SWE1-HMI-PROF-089": ("P1", "行車中之限制分支 —— **rubric 無安全帶，見上繳 17 §3**"),
+    # K-1：P1 → P0。核心斷言為「六個項目**不可選取**」= 防線本身。
+    "SWE1-HMI-PROF-089": ("P0", "行車中受限項目不可選取 —— **防線成立本身**"
+                                "（§10.2 safety；D-UP16-01 附二）"),
     "SWE1-HMI-PROF-090": ("P2", "限制之回饋（音效與訊息）呈現"),
     "SWE1-HMI-PROF-091-02": ("P2", "同上；本條之單位為回饋本身"),
     "SWE1-HMI-PROF-092": ("P2", "avatar 選擇畫面之開啟"),
@@ -78,7 +80,7 @@ PRIORITY = {
     "SWE1-HMI-PROF-106": ("P2", "linked-info 頁之開啟（**037 先驗 Low，本判為 P2**）"),
     "SWE1-HMI-PROF-107": ("P3", "同一頁之**第二入口**；失效時仍可由 Edit Profile 進入"),
     "SWE1-HMI-PROF-108": ("P2", "linked-info 頁之內容（**037 先驗 Low，本判為 P2**）"),
-    "SWE1-HMI-PROF-109": ("P1", "連網配置之非主路徑分支"),
+    "SWE1-HMI-PROF-109": ("P1", "具連網車輛之主要功能呈現（C-5：非分支）"),
     "SWE1-HMI-PROF-110": ("P2", "Connected Account 之導向"),
     "SWE1-HMI-PROF-112-02": ("P1", "app 更新之範圍；跨使用者之分支"),
     "SWE1-HMI-PROF-112-03": ("P1", "app 安裝之範圍；跨使用者之分支"),
@@ -193,11 +195,15 @@ TCS = {
         reasoning=(
             "驗證目標：9.2（EDPR2）—— 無 <Brand> app 之區域不顯示 Connected "
             "Profile 之選項／資訊與 Connected Account 按鈕。"
-            "關鍵情境條件：條文有兩個獨立條件（區域無 app／車輛不支援），"
-            "本 TC 取「區域」一側；車輛不支援一側之條件相同而觸發不同，"
-            "由 11.3（CPA1）之 leaf 承擔（其文為 do not show if the vehicle does "
-            "not support connectivity）。"
-            "為什麼這樣切：兩個條件若併於一條 TC，失敗時分不出是哪一個條件沒生效。"),
+            "關鍵情境條件：條文有兩個獨立條件（區域無 app／車輛不支援該功能），"
+            "本 TC 取「區域」一側；"
+            "**車輛不支援一側由 NR1L-UserProfiles-077 承擔**（L-2，22 包）。"
+            "為什麼這樣切：兩個條件若併於一條 TC，失敗時分不出是哪一個條件沒生效。"
+            "**本句原委派 11.3（CPA1）之 leaf，該委派不成立** —— 11.3 之條件為 "
+            "`equipped with connectivity`（硬體配置），本節條件 2 為 "
+            "`does not support the connected profile feature`（功能支援），"
+            "兩者非同一語意；9.2 自身把「區域無 app」與之並列，即證其不等價。"
+            "**指錯承擔者比不指更糟：它讓覆蓋稽核看起來是滿的**（§8.2.1）。"),
         kw=["Connected Account", "region", "brand app", "hidden"],
     ),
 
@@ -605,7 +611,12 @@ TCS = {
 
     "SWE1-HMI-PROF-105": dict(
         title="Edit Profile tab shows at most six lines per page",
-        design=BVA,
+        # C-2（20 包）：原掛 BVA，但本 TC **無 limit±1，亦無界前基準線** ——
+        # 只驗「不超過六行」。§12 之 BVA 為 `Boundary (=limit, limit±1)`，
+        # 首匹配落在「單一功能檢查 → 功能測試」。
+        # 18 輪 §1 自陳「036 只驗上限，無界前基準線」而 design_method 仍掛 BVA，
+        # **兩處記載互相矛盾** —— 本輪以 design_method 從其實際形態。
+        design=FUNCTIONAL,
         pre=steps("A Driver Profile is active with all optional items "
                   "available",
                   "The vehicle is stationary"),
@@ -677,6 +688,7 @@ TCS = {
         title="Driver Profile info page shows the intro text and examples",
         design=FUNCTIONAL,
         pre=steps("The vehicle is equipped with Navigation",
+                  "The vehicle is not an R1 High variant",
                   "A Driver Profile is active",
                   "The vehicle is stationary"),
         data="NA",
@@ -687,17 +699,54 @@ TCS = {
                  "The page reads “Your Driver Profile will remember "
                  "your personal preferences for many of the features you use "
                  "in your vehicle everyday. Below are some examples.” "
-                 "followed by the applicable examples, including the "
-                 "Navigation examples"),
+                 "followed by the applicable rows of Table PIP1:\n"
+                 "   a. Screen Customization — Home Screen Customization\n"
+                 "   b. Screen Customization — Menu Bar Order\n"
+                 "   c. Screen Customization — Status Bar Customization\n"
+                 "   d. Apps — App Drawer Favorites\n"
+                 "   e. Apps — Recently Used Apps\n"
+                 "   f. Media — Your Presets\n"
+                 "   g. Media — Last Media Source\n"
+                 "   h. Media — Audio Settings\n"
+                 "   i. Rear Steering Wheel Controls — Audio Control "
+                 "Selections (shown only if the vehicle has rear steering "
+                 "wheel controls)\n"
+                 "   j. Navigation — Favorite Destinations (shown, as the "
+                 "vehicle has Navigation)\n"
+                 "   k. Navigation — Recent Destinations (shown, as the "
+                 "vehicle has Navigation)\n"
+                 "   l. Navigation — Nav Settings (shown, as the vehicle has "
+                 "Navigation)\n"
+                 "   m. Connected Account — Save your preferences to the "
+                 "cloud and access them from vehicle to vehicle (with a "
+                 "Uconnect.com subscription) (shown only if the vehicle "
+                 "supports a Connected Account)\n"
+                 "   n. Bluetooth — Favorite Devices\n"
+                 "   o. Electric Vehicle — Creep Selection"),
+        # K-2（21 包）：採 **(b) 逐列標適用條件**，不採 (a) 補 pre-condition。
+        # 理由：spec 自身即以 `(if applicable)` 逐列標之 —— (b) 貼近條文；
+        # (a) 會把「這台車有沒有該配備」寫成 TC 之前提，
+        # 使該 TC 只能在特定配備之車上跑，**縮小其適用範圍**。
         remarks="條文之「the info in the chart above」指**頁內之 chart**"
-                "（R-U51 口徑，D-UP12-02），非 PLP 表；"
-                "Navigation 之有無為條文明列之適用條件，故列 pre-condition",
+                "（R-U51 口徑，D-UP12-02），非 PLP 表 —— 該 chart 經複位"
+                "為 PDF p16 之 **Table PIP1「Profile Info Display Text」**，"
+                "15 列以 `render_spec_region.py --table` 機器讀出。"
+                "Navigation 之有無為條文明列之適用條件，故列 pre-condition。"
+                "R1 High 車上第 m 列之 Description 無 Uconnect.com 訂閱那一句"
+                "（p16 之 `****` 註記，**列級**）—— 本 TC 以非 R1 High 為前提。"
+                "**第 o 列（Electric Vehicle — Creep Selection）：spec **未**標 "
+                "`(if applicable)`，其在非電動車上是否顯示**條文未述** —— "
+                "依 §8.4.1 保留歧義，未於 ER 標其適用條件，"
+                "亦未推定其不顯示（K-2）",
         reasoning=(
             "驗證目標：10.3.1（PRINFO2.1）—— 資訊頁之引言字串與其後之適用範例。"
             "關鍵情境條件：條文明言「若車輛無 Navigation 則不顯示 Navigation 範例」，"
             "故 pre-condition 指定為有 Navigation 之車，使該範例確實可觀察。"
-            "為什麼這樣切：R1 High 之 Connected Account 類別描述為變體覆寫，"
-            "屬同節之另一斷言，未併入本 TC。"
+            "為什麼這樣切：R1 High 之 Connected Account 類別描述為**列級**變體覆寫"
+            "（p16 之 `****`），故以 pre-condition 排除該變體，使 15 列之預期成立。"
+            "**C-1（20 包）**：原 ER 以「applicable examples」指代 chart 內容 ——"
+            "同 D-3 之形狀。本輪以 `render_spec_region.py` 讀出 Table PIP1 之 15 列，"
+            "逐列補入 ER（§6.1 子層）。"
             "刻意略過：無 Navigation 車輛之對照未生成 —— 取樣單位為 leaf（§8.4.2）。"),
         kw=["Driver Profile Info Page", "intro text", "examples",
             "Navigation"],
@@ -715,14 +764,23 @@ TCS = {
                    "Account line item is displayed"),
         er=steps("The “Edit Profile” tab is displayed",
                  "The Connected Account line item is displayed"),
-        remarks="不支援連網之對照（條文第二句）屬同節之反面，"
-                "其覆蓋由 9.2（EDPR2）之 leaf 承擔",
+        remarks="不支援連網之對照（條文第二句）由 NR1L-UserProfiles-078 承擔"
+                "（L-2 之連帶發現，22 包）。**原記載為「由 9.2 之 leaf 承擔」，"
+                "而 9.2 同時記載其第二條件「由 11.3 承擔」—— 兩條互指**，"
+                "且雙方所指之條件並非同一件事，該側遂無人覆蓋",
         reasoning=(
             "驗證目標：11.3（CPA1）—— 具連網能力之車輛，Edit Profile 分頁"
-            "一律顯示 Connected Account 項目。"
+            "**一律顯示** Connected Account 項目 —— 該行為為**主要功能之呈現**，"
+            "非分支（C-5：原述「非主路徑分支」與條文之 `will always be displayed` 不符；"
+            "**判級 P1 不變**，其為主要功能之呈現而非核心五類）。"
             "關鍵情境條件：車輛配置為條件本身，列 pre-condition。"
-            "為什麼這樣切：條文另有「不支援則不顯示」之反面，"
-            "其形態與 9.2 之區域／車型隱藏相同，由該 leaf 承擔，本條不重複。"),
+            "**委派更正（L-2 之連帶，22 包）**：條文第二句「不支援連網則不顯示」"
+            "原稱由 9.2 承擔，而 9.2 之 reasoning 同時稱其第二條件由本節承擔 ——"
+            "**互指之委派，兩側皆空**。該句改由 NR1L-UserProfiles-078 承擔。"
+            "為什麼這樣切：條文另有「不支援則不顯示」之反面 —— "
+            "**該側之形態雖與 9.2 之區域／車型隱藏相似，其條件卻不同**"
+            "（`connectivity` vs `the connected profile feature`），"
+            "**故不可互相代測**；已另立 NR1L-UserProfiles-078 承擔。"),
         kw=["Connected Account", "connectivity", "Edit Profile"],
     ),
 
@@ -816,10 +874,14 @@ NEG_111 = dict(
     proc=steps("Open the “Edit Profile” tab",
                "Read the Connected Account line and check that no info "
                "button is shown next to it"),
+    # C-3（20 包）：後半原為 `the Local vs Connected Profile screen cannot be
+    # opened` —— **無按鈕時測試者能證的是「按鈕不在」，不是「該畫面開不起來」**。
+    # 改為可觀察之形式：不存在通往該畫面之入口。
     er=steps("The “Edit Profile” tab is displayed with the Connected "
              "Account line",
-             "No info button is shown next to the Connected Account button, "
-             "and the Local vs Connected Profile screen cannot be opened"),
+             "No info button is shown next to the Connected Account button "
+             "and no entry point to the Local vs Connected Profile screen is "
+             "present"),
     remarks="§7 之負向配對：正向為 NR1L-UserProfiles-013（非 R1 High）。"
             "依據為 Table CPA2 之表級註記「**R1 High Only: This table "
             "(Table CPA2) is not applicable. There will be no info button "

@@ -1,0 +1,44 @@
+{
+ "parent": "SWE1-HMI-PROF-088-nofeat",
+ "outline": "9.2",
+ "batch": "pairs22",
+ "test_set": "Editing",
+ "sub_categorization": "HMI",
+ "priority_prior_037": "High",
+ "source_clause": "EDPR2.) Don’t show the Connected Profile options/info or Stellantis Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Stellantis Connected Account button if the vehicle does not support the connected profile feature.",
+ "source_clause_origin": "outline_map.json::pdf_text",
+ "leaf_desc_037": "EDPR2.) Don’t show the Connected Profile options/info or Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Connected Account button if the vehicle does not support the connected profile feature.",
+ "must_carry_injected": [],
+ "reasoning": "驗證目標：9.2（EDPR2）之**第二個條件** —— 車輛不支援 connected profile 功能時，不顯示 Connected Profile 之選項／資訊與 Stellantis Connected Account 按鈕。關鍵情境條件：**pre-condition 明載「區域有 <Brand> app」** ——若不排除條件 1，兩個條件同時成立，失敗時分不出是哪一個沒生效（與 TC-020 之切法同一理由）。為什麼這樣切：**本條之存在理由是一個委派錯誤** ——TC-020 之 reasoning 原稱本側由 11.3（CPA1）承擔，而 11.3 之條件為 `equipped with connectivity`：連網能力是硬體配置，支援 connected profile 功能是功能授權，**9.2 自身把「區域無 app」與本條件並列，即證兩者不等價** ——若「不支援該功能」只等於「無連網」，條件 1 便無處安放。指錯承擔者比不指更糟：它讓覆蓋稽核看起來是滿的（§8.2.1）。刻意略過：兩個條件同時成立之情形不另生成 —— 其結果與各自單獨成立時相同，加測不增訊號。",
+ "keywords": [
+  "connected profile feature",
+  "unsupported",
+  "hidden",
+  "Connected Account"
+ ],
+ "duplicate_of": "",
+ "tcs": [
+  {
+   "req_id": "SWE1-HMI-PROF-088",
+   "tc_id": "NR1L-UserProfiles-077",
+   "tc_title": "Connected Account hidden when connected profile unsupported",
+   "test_group": "User Profiles",
+   "test_set": "Editing",
+   "test_item": "Connected Account hidden when connected profile unsupported",
+   "pre_conditions": "1. The vehicle does not support the connected profile feature\n2. The vehicle is in a region with the brand app\n3. A Driver Profile is active",
+   "input_test_data": "NA",
+   "test_procedure": "1. Open the “Edit Profile” tab\n2. Read the option list and check that no account button or Connected Profile info is shown",
+   "expected_result": "1. The “Edit Profile” tab is displayed\n2. No Connected Profile options or info and no Stellantis Connected Account button are shown",
+   "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.2",
+   "priority": "P1",
+   "priority_basis": "車輛不支援該功能之配置分支（與 TC-020 同級）",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "**L-2 之補洞**：9.2 有兩個獨立條件，TC-020 取「區域無 <Brand> app」一側，本條取「車輛不支援 connected profile feature」一側。**原 reasoning 將本側委派 11.3 之 leaf，該委派不成立** —— 11.3 之條件為 `equipped with connectivity`，與本側非同一語意（見上繳 22 §2）。pre-condition 明列「區域有 app」，使兩個條件不同時成立",
+   "split_flag": false,
+   "split_reason": ""
+  }
+ ],
+ "note": "22 包之對造／補洞 —— 與 `SWE1-HMI-PROF-088` 同一 leaf，**非新 leaf**；檔名加 `-nofeat` 以免覆寫該 leaf 之既有產物"
+}
