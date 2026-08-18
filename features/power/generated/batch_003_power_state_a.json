@@ -234,7 +234,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗僅請求 audio 之分支"
    },
    "reasoning_note": "",
@@ -286,7 +286,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗二者皆不請求之分支"
    },
    "reasoning_note": "",
@@ -420,7 +420,7 @@
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Pre_Start（R-P199 補測）"
    },
    "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Pre_Start` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
-   "split_index": 0
+   "split_index": 2
   },
   {
    "req_id": "SWE-PM-013",
@@ -446,7 +446,7 @@
     "delta": "本條驗逗號列舉之點火工作條件 Ignition Cranking（R-P199 補測）"
    },
    "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition Cranking` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
-   "split_index": 0
+   "split_index": 3
   },
   {
    "req_id": "SWE-PM-013",
@@ -472,7 +472,7 @@
     "delta": "本條驗逗號列舉之點火工作條件 Ignition On Engine On（R-P199 補測）"
    },
    "reasoning_note": "R-P199 補測 —— G131 測得本 leaf 之逗號列舉七項中，`Ignition On Engine On` 無 TC 覆蓋。R-P192 所推遲者為立閘門，非補測。\n**R-P207（28 包）**：本條所驗為**範圍主張** —— 規格列舉之該點火工作條件下該行為亦存在；**非驗其與他狀態間之行為差異**。故其 ER 與同組他條相同係屬正確，不得據此判為重複。",
-   "split_index": 0
+   "split_index": 4
   },
   {
    "req_id": "SWE-PM-013",
@@ -598,7 +598,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Behaviour 1 之無通話分支"
    },
    "reasoning_note": "",
@@ -702,7 +702,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "branch",
+    "axis": "trigger_state",
     "delta": "本條驗 Behaviour 1 之 LTM High 形態（`063` 驗 SwitchOff_Timeout_Setting.Req 形態）"
    },
    "reasoning_note": "**R-P118(d) 反向涵蓋裁決（22 包）**：原文以 OR 並列而首次撰寫只取其一 —— 與 A-PW94（`Ignition Pre Off` / `Ignition Off`）、A-PW87（`greater` 負分支）、R-P117(c)（`BODY OFF-TIMED`）同型。裁為**真缺口**並補本條。",
@@ -780,7 +780,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req 之按下 → Idle"
    },
    "reasoning_note": "",
@@ -832,7 +832,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req 於 Rear_View_Camera 存在而未啟動時之分支"
    },
    "reasoning_note": "",
@@ -878,7 +878,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗後視攝影機啟動時之停留與影像管理",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -904,7 +904,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗後視攝影機關閉後之音源回復",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -988,7 +988,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req 於後視攝影機啟用時被忽略"
    },
    "reasoning_note": "",
@@ -1014,7 +1014,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req 之 ELSE 分支"
    },
    "reasoning_note": "",
@@ -1164,7 +1164,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗 Idle 下後視攝影機啟用之停留與畫面限制",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -1190,7 +1190,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗物流模式進入",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -1216,7 +1216,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗 Timed ＋ 離開 Ignition Off → Full-Operation",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -1242,7 +1242,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗 Remote Start Not Active 下之 RemStartFail 清除",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -1274,7 +1274,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req ＋ 通話中之 popup"
    },
    "reasoning_note": "",
@@ -1287,9 +1287,9 @@
    "test_group": "Power Management",
    "test_set": "Power State",
    "test_item": "Accepting the Front_Panel_OnOff.Req popup passes the TLM to Standby",
-   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown",
+   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown after the Front_Panel_OnOff.Req press",
    "input_test_data": "NA",
-   "test_procedure": "1. Accept the popup as the user\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+   "test_procedure": "1. Accept the Front_Panel_OnOff.Req popup as the user\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
    "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
@@ -1313,9 +1313,9 @@
    "test_group": "Power Management",
    "test_set": "Power State",
    "test_item": "Declining the Front_Panel_OnOff.Req popup keeps the TLM in Timed",
-   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown",
+   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown after the Front_Panel_OnOff.Req press",
    "input_test_data": "NA",
-   "test_procedure": "1. Decline the popup as the user\n2. Read TLM_Status.Info to check that Timed state is kept",
+   "test_procedure": "1. Decline the Front_Panel_OnOff.Req popup as the user\n2. Read TLM_Status.Info to check that Timed state is kept",
    "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
@@ -1352,7 +1352,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 Front_Panel_OnOff.Req ＋ 無通話之直接轉換"
    },
    "reasoning_note": "",
@@ -1391,9 +1391,9 @@
    "test_group": "Power Management",
    "test_set": "Power State",
    "test_item": "Accepting the CLIMATIC_PANEL.Radio_Btn0 popup passes the TLM to Standby",
-   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown",
+   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown after the CLIMATIC_PANEL.Radio_Btn0 press",
    "input_test_data": "NA",
-   "test_procedure": "1. Accept the popup as the user\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
+   "test_procedure": "1. Accept the CLIMATIC_PANEL.Radio_Btn0 popup as the user\n2. Read TLM_Status.Info and $Telematic_Power$ to check the transition to Standby",
    "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info and $Telematic_Power$ read \"Standby\" and the TLM passes to Standby state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
@@ -1417,9 +1417,9 @@
    "test_group": "Power Management",
    "test_set": "Power State",
    "test_item": "Declining the CLIMATIC_PANEL.Radio_Btn0 popup keeps the TLM in Timed",
-   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown",
+   "pre_conditions": "1. A LIN and CAN simulation tool is connected\n2. TLM_Status.Info and $Telematic_Power$ read \"Timed\"\n3. The transfer popup is shown after the CLIMATIC_PANEL.Radio_Btn0 press",
    "input_test_data": "NA",
-   "test_procedure": "1. Decline the popup as the user\n2. Read TLM_Status.Info to check that Timed state is kept",
+   "test_procedure": "1. Decline the CLIMATIC_PANEL.Radio_Btn0 popup as the user\n2. Read TLM_Status.Info to check that Timed state is kept",
    "expected_result": "1. The TLM accepts the user answer\n2. TLM_Status.Info still reads \"Timed\" and the TLM stays in Timed state",
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
@@ -1564,7 +1564,7 @@
     "delta": "本條驗守衛條件之否定側（非 Jeep）——（R-P198(b) 補測）"
    },
    "reasoning_note": "R-P198(b) 補測 —— `Brand_Configuration_2` 得逐車配置，故非 Jeep 為另一可發生情境。依 §7 為否定側；**ER 僅述「未發生該轉換」，未斷言其他行為**（§8.4.1）。",
-   "split_index": 0
+   "split_index": 4
   },
   {
    "req_id": "SWE-PM-027",
@@ -1586,7 +1586,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗防盜失敗後之請求復歸與畫面時限"
    },
    "reasoning_note": "",
@@ -1768,7 +1768,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "timing",
     "delta": "本條驗 Timeout1 取自 Switch_Off_Time 之分支"
    },
    "reasoning_note": "",
@@ -1892,7 +1892,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗後視影像之顯示與狀態無關",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -1918,7 +1918,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.2.1.15",
    "priority": "P0",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗 Standby ＋ Remote Start → Partial Operation",
    "functional_safety": "NA",
    "estimated_test_time": "",

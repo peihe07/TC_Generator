@@ -46,7 +46,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "trigger_state",
+    "axis": "mode",
     "delta": "本條驗正常開機分支：未轉往 Standby / Bench 時，SplashScreen_Time 到期後顯示 splash"
    },
    "reasoning_note": "**時序需求之下界斷言（R-P102）**：`4942337` 原文僅載「After SplashScreen_Time / StandardScreen_Time 畫面顯示」，**未載在此之前不得顯示**。本 TC 之 ER 仍斷言「到期前不顯示」，其依據**不是規格明文禁止提早顯示**，而是**時序需求之可驗證性要求** —— 不設下界，該需求無法被證偽（T=0 即顯示亦會通過）。此為刻意選擇，非誤讀規格。ER 措詞僅描述觀察到之行為，未暗示規格明文禁止。",
@@ -72,8 +72,8 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "trigger_state",
-    "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件"
+    "axis": "mode",
+    "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件；本條之分支為：Standby"
    },
    "split_index": 2
   },
@@ -97,8 +97,8 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "trigger_state",
-    "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件"
+    "axis": "mode",
+    "delta": "本條驗抑制分支：轉往 Standby 或 Bench 時不得顯示 splash，與 -01 為互斥條件；本條之分支為：Bench"
    },
    "split_index": 3
   },
@@ -249,7 +249,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "trigger_state",
+    "axis": "mode",
     "delta": "本條驗 Battery Critical 之偵測與四項動作。BODY ON 與 BODY OFF-TIMED 共用同一控制實體，故合為一條之多列 ER"
    },
    "split_index": 6
@@ -376,7 +376,7 @@
    "functional_safety": "NA",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 mode 分支：Battery Critical 於 BODY OFF-TIMED 模式下之行為（`009` 為 BODY ON）"
    },
    "reasoning_note": "**R-P117(c)（16 包）**：`4942354` 載「While in BODY ON **or BODY OFF-TIMED** mode」，而 `009` 之 pre-condition 僅 `BODY ON`。依 §8.3「mode 為拆分軸」補 BODY OFF-TIMED 一條。",

@@ -213,7 +213,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗肯定分支：Full-Operation 下設定可用"
    },
    "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。",
@@ -239,7 +239,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗否定分支：非 Full-Operation 下設定不可用"
    },
    "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。",
@@ -337,7 +337,7 @@
    "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
    "priority": "P1",
    "design_method": "狀態轉換 (State Transition Testing)",
-   "split_flag": true,
+   "split_flag": false,
    "split_reason": "本條驗 Timed 狀態下通話功能可用（概括陳述之可觀察面）",
    "functional_safety": "NA",
    "estimated_test_time": "",
@@ -471,7 +471,7 @@
    "split_reason": "本條驗 Case 1 之 RemStartFail 為 True 之分支",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 1 之 RemStartFail 為 True 之分支"
@@ -497,7 +497,7 @@
    "split_reason": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 1 之 ELSE 分支：還原音源並續管理其他通話"
@@ -523,7 +523,7 @@
    "split_reason": "本條驗 Case 2 之進入：Timeout1 到期啟動 MaxCallTimeout 並續留 Timed",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 2 之進入：Timeout1 到期啟動 MaxCallTimeout 並續留 Timed"
@@ -549,7 +549,7 @@
    "split_reason": "本條驗 Case 2 之離開路徑：通話結束（不含 RemStartFail 處置）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 2 之離開路徑：通話結束（不含 RemStartFail 處置）"
@@ -601,7 +601,7 @@
    "split_reason": "本條驗 Case 3（不含 RemStartFail 處置）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 3（不含 RemStartFail 處置）"
@@ -653,7 +653,7 @@
    "split_reason": "本條驗 Case 4 之進入：Timeout1 == 00 min 且點火轉為 Off",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 4 之進入：Timeout1 == 00 min 且點火轉為 Off"
@@ -679,7 +679,7 @@
    "split_reason": "本條驗 Case 4 之離開路徑（`4941732` ＋ `4941735`，不含 RemStartFail 處置）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "behaviour",
     "delta": "本條驗 Case 4 之離開路徑（`4941732` ＋ `4941735`，不含 RemStartFail 處置）"
@@ -731,7 +731,7 @@
    "split_reason": "本條驗 Case 4 之另一觸發：點火轉為 \"Ignition Pre Off\"（`040` 驗 \"Ignition Off\"）",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "DR-PW10 待範圍確認",
    "distinguishing_axis": {
     "axis": "trigger",
     "delta": "本條驗 Case 4 之 \"Ignition Pre Off\" 觸發"

@@ -49,12 +49,20 @@ def check_one(tc: dict) -> list[str]:
         return [f"C1 `distinguishing_axis` 非物件（{type(d).__name__}）"]
     if set(d) != {"axis", "delta"}:
         bad.append(f"C1 鍵組合為 {sorted(d)}，應為 ['axis', 'delta']")
-    if not isinstance(d.get("axis"), str) or not d.get("axis", "").strip():
+    axis = d.get("axis")
+    if not isinstance(axis, str) or not axis.strip():
         bad.append("C2 `axis` 空或非字串")
+    elif axis not in AXIS_ENUM:
+        # C6（R-P248(a)）：六值列舉
+        bad.append(f"C6 `axis=\"{axis}\"` 不在 §4.6 之六值列舉內")
     if not isinstance(d.get("delta"), str) or not d.get("delta", "").strip():
         bad.append("C3 `delta` 空或非字串")
-    if d.get("axis") == "none" and not str(tc.get("duplicate_of", "")).strip():
+    dup = str(tc.get("duplicate_of", "")).strip()
+    # C4 / C7（R-P248(c)）：**雙向**契約
+    if axis == "none" and not dup:
         bad.append("C4 `axis=\"none\"` 而 `duplicate_of` 未設")
+    if dup and axis != "none":
+        bad.append(f"C7 `duplicate_of` 已設而 `axis=\"{axis}\"`，應為 \"none\"")
     return bad
 
 
@@ -99,14 +107,18 @@ def self_test() -> int:
                                     if axis is not None else None)
         return d
 
+    # ⚠ 二個「應 PASS」案原用 `axis="behaviour"`，於 C6（六值列舉，R-P248）
+    # 生效後即為非法 —— 36 包改用合法值 `trigger_state`。
+    # **此為 fixture 隨契約更新，非放寬判準**：C6 之新增使舊 fixture 失效，
+    # 該失效正是 C6 生效之證據（36 包實測：二案由 PASS 轉 FAIL）。
     case("應 PASS —— 二條 axis 相同而 delta 相異",
-         [t("X-001", "SWE-PM-900", "behaviour", "驗正向分支"),
-          t("X-002", "SWE-PM-900", "behaviour", "驗抑制分支")], 0, 0)
+         [t("X-001", "SWE-PM-900", "trigger_state", "驗正向分支"),
+          t("X-002", "SWE-PM-900", "trigger_state", "驗抑制分支")], 0, 0)
     case("應觸發 C5 —— 同 leaf 內 delta 逐字相同",
-         [t("X-001", "SWE-PM-900", "behaviour", "同一句話"),
-          t("X-002", "SWE-PM-900", "behaviour", "同一句話")], 0, 1)
+         [t("X-001", "SWE-PM-900", "trigger_state", "同一句話"),
+          t("X-002", "SWE-PM-900", "trigger_state", "同一句話")], 0, 1)
     case("應 FAIL C3 —— `delta` 為空",
-         [t("X-001", "SWE-PM-900", "behaviour", "")], 1, 0)
+         [t("X-001", "SWE-PM-900", "trigger_state", "")], 1, 0)
     case("應 FAIL C1 —— 欄位缺漏",
          [t("X-001", "SWE-PM-900", None, None)], 1, 0)
     case("應 FAIL C4 —— `axis=\"none\"` 而無 `duplicate_of`",
@@ -114,6 +126,18 @@ def self_test() -> int:
     case("應 PASS C4 —— `axis=\"none\"` 且 `duplicate_of` 已設",
          [t("X-001", "SWE-PM-900", "none", "與他條重複",
             duplicate_of="X-000")], 0, 0)
+    # ── C6 / C7（R-P248(a)(c)），36 包新增 ──
+    case("應 FAIL C6 —— `axis` 不在六值列舉內（`behaviour`）",
+         [t("X-001", "SWE-PM-900", "behaviour", "語料現行之值")], 1, 0)
+    case("應 FAIL C6 —— `trigger` 近於 `trigger_state` 而不相等",
+         [t("X-001", "SWE-PM-900", "trigger", "近似值亦非法")], 1, 0)
+    case("應 FAIL C7 —— `duplicate_of` 已設而 `axis` 非 `none`（**反向**）",
+         [t("X-001", "SWE-PM-900", "trigger_state", "有重複標記卻非 none",
+            duplicate_of="X-000")], 1, 0)
+    case("應 PASS —— 六值皆合法",
+         [t(f"X-{i:03d}", f"SWE-PM-9{i:02d}", a, f"軸 {a}")
+          for i, a in enumerate(("trigger_state", "input_data", "timing",
+                                 "boundary", "mode"), 1)], 0, 0)
     print(f"\n  G168 fixture 全數如期：{'是' if not failures else '否'}")
     return 1 if failures else 0
 
@@ -159,6 +183,12 @@ def main() -> None:
     for leaf, ids, delta in sorted(r["dup"]):
         print(f"   {leaf}  {[i[-3:] for i in ids]}  {delta[:70]}")
     raise SystemExit(1 if r["viol"] else 0)
+
+
+# §4.6 之列舉值 —— **R-P248 逐字**（分析層於 36 包提供原文）。
+# 09 包以降執行層無該原文可查，故 35 包之 G168 未設本項；
+# **當時之「結構違規 0」為對照表缺漏，非判定錯誤**（A-PW197 依 R-P248 結案）。
+AXIS_ENUM = ("trigger_state", "input_data", "timing", "boundary", "mode", "none")
 
 
 if __name__ == "__main__":

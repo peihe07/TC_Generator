@@ -489,7 +489,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗 OR 之右支 Auto_SwitchOn_Setting.Req for LTM High Radio"
    },
    "reasoning_note": "",
@@ -671,7 +671,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Standby 之背光關閉常態"
    },
    "reasoning_note": "",
@@ -749,7 +749,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Front_Panel_OnOff.Req ＋ OR 之右支 Sleep"
    },
    "reasoning_note": "",
@@ -801,7 +801,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 CLIMATIC_PANEL.Radio_Btn0 ＋ OR 之右支 Sleep"
    },
    "reasoning_note": "",
@@ -853,7 +853,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之右支 Sleep"
    },
    "reasoning_note": "",
@@ -957,7 +957,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之右支 Sleep"
    },
    "reasoning_note": "",
@@ -983,7 +983,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Behaviour 1（Active）"
    },
    "reasoning_note": "",
@@ -1035,7 +1035,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 Behaviour 3 之 VPLastStatus ON 分支"
    },
    "reasoning_note": "",

@@ -1,4 +1,13 @@
 {
+  "apply_tier1_edits.py": [
+    "BASE",
+    "DATA",
+    "GEN",
+    "ROOT",
+    "SWEPM025",
+    "load_dr",
+    "main"
+  ],
   "assess_reasoning.py": [
     "DATA",
     "EMPTY_3",
@@ -36,6 +45,15 @@
     "load",
     "main"
   ],
+  "audit_glued_or.py": [
+    "CI",
+    "DATA",
+    "INWORD",
+    "ROOT",
+    "SCRIPTS",
+    "analyse",
+    "main"
+  ],
   "audit_pattern_variants.py": [
     "DATA",
     "GENERATED",
@@ -67,6 +85,17 @@
     "ROOT",
     "SEED",
     "load",
+    "main"
+  ],
+  "audit_style_predicates.py": [
+    "DATA",
+    "ROOT",
+    "SCRIPTS",
+    "SKIP_MODULES",
+    "TC_FIELDS",
+    "collect",
+    "corpus",
+    "fold_space",
     "main"
   ],
   "backup_before_rewrite.py": [
@@ -301,6 +330,14 @@
     "ROOT",
     "SAMPLE_N",
     "SEED",
+    "main"
+  ],
+  "build_review_material_36.py": [
+    "DATA",
+    "REJECTED",
+    "ROOT",
+    "SEED",
+    "fence",
     "main"
   ],
   "build_review_sampling.py": [
@@ -641,6 +678,23 @@
     "self_test",
     "sha"
   ],
+  "rejudge_axis.py": [
+    "BOUNDARY_RE",
+    "DATA",
+    "FIELDS",
+    "MODE_RE",
+    "ROOT",
+    "TIMING_RE",
+    "TOKEN_RE",
+    "TRIGGER_RE",
+    "diff_text",
+    "load",
+    "main",
+    "norm",
+    "propose_axis",
+    "self_test",
+    "sig"
+  ],
   "rejudge_design_method.py": [
     "BENCH_RE",
     "COND_RE",
@@ -734,10 +788,20 @@
     "self_test"
   ],
   "verify_axis.py": [
+    "AXIS_ENUM",
     "BASE_RE",
     "DATA",
     "ROOT",
     "check_one",
+    "main",
+    "run",
+    "self_test"
+  ],
+  "verify_content_distinct.py": [
+    "BODY",
+    "DATA",
+    "ROOT",
+    "body_sig",
     "main",
     "run",
     "self_test"

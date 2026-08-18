@@ -130,8 +130,7 @@ def main() -> None:
         guard_write(BASELINE)
         BASELINE.write_text(json.dumps(base, ensure_ascii=False, indent=2) + "\n",
                             encoding="utf-8")
-        log_baseline_reset(_before, sha(BASELINE),
-                           note="--update-baseline")
+        log_baseline_reset(_before, sha(BASELINE), note="--update-baseline")
         print(f"baseline updated — {len(base)} files, "
               f"{sum(len(v) for v in base.values())} symbols")
         return
@@ -139,18 +138,29 @@ def main() -> None:
         raise SystemExit(self_test())
 
     base = json.loads(BASELINE.read_text(encoding="utf-8"))
-    bad = 0
+    bad = nobase = 0
     for n in WATCHED:
         path = SCRIPTS / n
         r = check(n, path.read_text(encoding="utf-8"), base)
         r["load"] = load_ok(path) if r["syntax"] else False
-        ok = r["syntax"] and r["load"] and r["symbols_ok"] is not False
-        bad += not ok
-        print(f"  [{'PASS' if ok else '**FAIL**'}] {n}  syntax={r['syntax']} "
+        # **R-P251(a)**：`symbols_ok` 為 `None`（無基線）者**不得計入完整**。
+        # 舊版之 `symbols_ok is not False` 使無基線者預設通過 ——
+        # 「一個檢查若在無資料時預設通過，其 PASS 不具意義」（R-P251(c)）。
+        if r["symbols_ok"] is None:
+            nobase += 1
+            state = "**無基線，未驗**"
+            ok = False
+        else:
+            ok = r["syntax"] and r["load"] and r["symbols_ok"]
+            state = "PASS" if ok else "**FAIL**"
+            bad += not ok
+        print(f"  [{state}] {n}  syntax={r['syntax']} "
               f"load={r['load']} symbols_ok={r['symbols_ok']}"
               + (f"  缺 {r['missing']}" if r["missing"] else ""))
-    print(f"\nG108：{len(WATCHED) - bad} / {len(WATCHED)} 完整")
-    raise SystemExit(1 if bad else 0)
+    full = len(WATCHED) - bad - nobase
+    print(f"\nG108 / G177：完整 {full} / {len(WATCHED)}；"
+          f"**FAIL {bad}**；**無基線未驗 {nobase}**")
+    raise SystemExit(1 if (bad or nobase) else 0)
 
 
 if __name__ == "__main__":

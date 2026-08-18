@@ -543,7 +543,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "trigger_state",
     "delta": "本條驗條件三 —— $ACCDlyAct$ 轉為 inactive"
    },
    "reasoning_note": "",
@@ -647,7 +647,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗 OR 之 SLEEP MODE 支"
    },
    "reasoning_note": "**本 leaf 之二錨點（`4941301` §1.3.5 / `4941941` §1.9.8）內文逐字相同，而屬性相異五欄**（ECU / EE Architecture / Model Year / Radio / State）——為 R-P136 所定之「屬性相異 → 停並上繳」形態。二者之 ECU 皆含 `LTM`、Radio 皆涵蓋本專案，故適用性未變，TC 照常產出；**是否為變體登載，呈請裁定於 26 包**。",
@@ -1401,7 +1401,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗首次進入 Timed"
    },
    "reasoning_note": "",
@@ -1453,7 +1453,7 @@
    "estimated_test_time": "",
    "remarks": "",
    "distinguishing_axis": {
-    "axis": "behaviour",
+    "axis": "mode",
     "delta": "本條驗來源狀態 Idle"
    },
    "reasoning_note": "",
