@@ -106,15 +106,25 @@ write_back:
 
 lint:
   design_method_source: "dropdown_sheet"   # exact-string vocabulary，9 條
-  # spec 全文唯一 PU id **20 個**，與下放包 01_intake.md 記載相符。
-  # 量測條件：掃描 data/outline_map.json 之 169 條 Description 欄全文
-  # （不含 Outline Number／ID 欄）；比對式 `PU[\s_]?(\d{3,4})`，
+  # spec 全文唯一 PU id **21 個**（D-5，14 包更新）。
+  # **量測條件（現行）**：掃描 data/outline_map.json 之 169 條 **pdf_text** 欄
+  # ——即 R-U25／R-U35 (a) 所定之判讀基準；比對式 `PU[\s_]?(\d{3,4})`，
   # 大小寫不敏感結果相同；正規化為 PU + 4 位零填補。
-  # 逐引用次數 22（PU0588、PU1088 各 2 次），逐唯一 id 20 —— 兩者單位不同。
-  # 逐 section 對映見 data/spec_popup_ids.tsv。
+  # 逐 section 對映見 data/spec_popup_ids.tsv（該表仍為 xlsx 側，待重建）。
+  #
+  # **原記載（02 輪至 13 輪）為 20 個，量測條件為 xlsx 側之 Description 欄**：
+  #   [PU0091, PU0118, PU0129, PU0394, PU0580, PU0584, PU0585, PU0588,
+  #    PU0611, PU0626, PU0832, PU0833, PU0841, PU0934, PU1087, PU1088,
+  #    PU1089, PU1090, PU1091, PU1573]
+  #   逐引用次數 22（PU0588、PU1088 各 2 次），逐唯一 id 20。
+  #   該數在其量測條件下為真，故保留為歷史記載（R-U11 之形式）。
+  # **差異只有一個：PU0609** —— 它落在 9.8 之掉句裡
+  # （data/xlsx_missing_clauses.tsv 之 must_carry），xlsx 側沒有那句話，
+  # 故 xlsx 側量不到它。**兩個數並存而無指引，就是 13 輪之狀態**；
+  # 依 R-U25「判讀基準為 PDF 側」，本欄改與基準一致。
   popup_ids: [PU0091, PU0118, PU0129, PU0394, PU0580, PU0584, PU0585, PU0588,
-              PU0611, PU0626, PU0832, PU0833, PU0841, PU0934, PU1087, PU1088,
-              PU1089, PU1090, PU1091, PU1573]
+              PU0609, PU0611, PU0626, PU0832, PU0833, PU0841, PU0934, PU1087,
+              PU1088, PU1089, PU1090, PU1091, PU1573]
   extra_rules: []
 
 recon_assertions:

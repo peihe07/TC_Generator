@@ -1,0 +1,25 @@
+# data/pilot_sample.tsv — pilot 批之取樣清單（R-U47 核可，16 leaf）
+#
+# N-3（14 包）：原本只存在於 `/tmp/sample.json` —— 一個用來證明生成前置
+# 成立的清單，其載體在系統暫存區。`/tmp` 一清，`--selfcheck` 就跑不起來。
+# 本檔為其版控載體；`gen_pilot.py` 之 SAMPLE_IDS 與本檔逐列比對，
+# `build_batch_context.py --selfcheck` 亦改讀本檔。
+#
+# 8 個 Test Set 各 2 個 leaf；R-G10 餘數 0（見上繳 10 §4.1）。
+req_id	section	test_set	sub_categorization	priority_prior_037	leaf_title	reason
+SWE1-HMI-PROF-001-01	4.1	Preference Storage	Service	High	Store Profile-Linked Preferences	Service B 群 ＋ PLP 引用（乙側命中）—— 一次覆兩項必含
+SWE1-HMI-PROF-002-03	4.1.1	Preference Storage	Service	Low	Popup for Unconfirmed Setting Restoration	spec 4.1.1 —— 驗 R-U27「可生成但不寫 popup 內文」（其內容即 PU1088）
+SWE1-HMI-PROF-021-01	5.2	Profile List	HMI	High	Max Five Driver Profiles Plus Valet Mode	上限 5 之邊界（BVA 候選），驗數字取自 pdf_text 而非推定
+SWE1-HMI-PROF-032	5.9	Profile List	Service	High	Auto-Save Preferences Without Seat Button Press	Service B 群 ＋ PLP 引用（甲∩乙皆命中）
+SWE1-HMI-PROF-048	6.2.1	Defaults	HMI	Medium	Create New Profile Without Customizing Default	ch6 一般行為條（不強制先客製化 default）
+SWE1-HMI-PROF-053	6.4.1	Defaults	HMI	Medium	Show PU0585 Without Connectivity	ch6 popup 條 —— 其 PU0585 於 xlsx 側有、PU0575/0576 為 pdf_only
+SWE1-HMI-PROF-059-01	7.2.1	Welcome Flow	HMI	Medium	Large Welcome Popup Must Display Active and Available Profiles	大型 welcome popup 之內容列舉
+SWE1-HMI-PROF-062-02	7.4	Welcome Flow	HMI	Medium	Auto-Clear Welcome Popup After 30 Seconds	30 秒逾時 —— 驗時間值取自條文
+SWE1-HMI-PROF-073-01	8.7	Setup Flow	HMI	High	Block Input at 12-Character Username Limit	username 12 字元上限之邊界
+SWE1-HMI-PROF-070	8.4.1	Setup Flow	Service	High	Save Profile After Entering Username and Avatar	Service B 群（輸入 → 儲存 → 讀回）
+SWE1-HMI-PROF-091-01	9.3.2	Editing	HMI	High	Interrupt Restricted Actions in Motion and Return	must_carry 9.3.2（R1 High label 覆寫）＋ 驗 lint_variant_labels
+SWE1-HMI-PROF-104	9.8	Editing	HMI	Medium	More Settings Button Links to My Profile	must_carry 9.8（掉句：PU0609 之整句條文）
+SWE1-HMI-PROF-111	11.4	Connected Account	HMI	Low	Local vs Connected Profile Info Page	must_carry 11.4（Table CPA2 之標題與列項）
+SWE1-HMI-PROF-112-01	11.5	Connected Account	HMI	High	App Deletion Only for Uninstalling User	ch11 App Store 行為
+SWE1-HMI-PROF-128-01	12.9	Valet Mode	HMI	High	Cancel and Lockout on 10th Incorrect PIN	10 次錯誤 ＋ 30 分鐘鎖定之邊界
+SWE1-HMI-PROF-132-02	13.2	Valet Mode	Service	High	(SPAAK) Only Owner Can Deactivate Remotely	Service B 群 ＋ SPAAK 變體（遠端解除）

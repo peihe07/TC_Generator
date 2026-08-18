@@ -37,6 +37,14 @@ REF_EXTRA = {
     # 9.3.2 之 "show the message specified above" 指 9.3.1 之 bonk 與訊息字串；
     # 該字串為本 TC 之 ER 內容，故其出處一併列入（§10.7）。
     "SWE1-HMI-PROF-091-01": ["9.3.1"],
+    # F-1（16 包）：**已移除 `11.5`。**
+    # 併列之原理由為「該表印在 p17，而 p17 也掛 11.5」—— 那是**頁面共置**，
+    # 不是章節歸屬（§10.7）。Table CPA2 屬 11.4（CPA2 為其引用者與所有者），
+    # 本 TC 一句都沒驗到 11.5（CPA3 之刪除／更新／安裝範圍）。
+    # must_carry 之 `p17 → ["11.4","11.5"]` 多節掛回**不動** —— 那管的是
+    # context 注入，與追溯欄是兩個不同的問題。
+    # D-3：PRACC7.2 之圖示與字串出自 5.1.2，本節（5.2）以註記號指之。
+    "SWE1-HMI-PROF-021-01": ["5.1.2"],
 }
 
 # 037 之先驗 Priority 與 R-U5 之對映（**逐條具名，不機械換算**）
@@ -45,11 +53,16 @@ REF_EXTRA = {
 #   其餘：邊界與分支 → P1／P2，依其對主功能之影響
 PRIORITY = {
     "SWE1-HMI-PROF-001-01": ("P0", "偏好之儲存與回復 —— R-U5 核心五類之一"),
-    "SWE1-HMI-PROF-002-03": ("P2", "回復預設之未確認分支；非主路徑，037 先驗 Low"),
+    # D-1：原判 P2（理由為「037 先驗 Low」）—— 以先驗覆蓋 rubric，方向與 R-U5 相反。
+    # 「Restore Settings to Default」即回復原廠，屬 R-U5 明列之**資料遺失風險項**。
+    "SWE1-HMI-PROF-002-03": ("P0", "回復原廠之分支 —— 資料遺失風險項"
+                                   "（R-U5／canon §10.2）；037 先驗 Low 不覆蓋 rubric"),
     "SWE1-HMI-PROF-021-01": ("P1", "profile 建立之上限邊界 —— R-U5 定邊界為 P1"),
     "SWE1-HMI-PROF-032": ("P0", "偏好之自動儲存 —— R-U5 核心五類之一"),
-    "SWE1-HMI-PROF-048": ("P2", "預設 profile 之存續條件；輔助行為"),
-    "SWE1-HMI-PROF-053": ("P2", "無連網配置之分支"),
+    # D-1 連帶複核：原理由亦為「037 先驗」形態，改依 rubric 判
+    "SWE1-HMI-PROF-048": ("P1", "建立新 profile 之次要性質（預設 profile 之存續）"
+                                "—— 主要功能之次要操作"),
+    "SWE1-HMI-PROF-053": ("P1", "setup flow 之非主路徑分支（無連網配置）"),
     "SWE1-HMI-PROF-059-01": ("P2", "welcome popup 之內容展示"),
     "SWE1-HMI-PROF-062-02": ("P2", "welcome popup 之逾時清除；輔助行為之邊界"),
     "SWE1-HMI-PROF-073-01": ("P1", "username 長度上限邊界 —— R-U5 定邊界為 P1"),
@@ -159,22 +172,26 @@ TCS = {
         design=BVA,
         pre=steps(
             "Four Driver Profiles exist on the vehicle",
-            "A Valet Mode Profile is present on the vehicle"),
+            "A Valet Mode Profile is present on the vehicle",
+            # PRACC7.2 自陳「This logic is not applicable for 7” screens」——
+            # 7 吋車上該圖示與字串本來就不存在，其「不存在」無從作為判準。
+            "The vehicle does not have a 7-inch screen"),
         data="Driver Profile count: 4 (below the maximum) → "
              "5 (at the maximum)",
         proc=steps(
             "Open the Profile List and read the Add New Profile button",
             "Create one more Driver Profile so that five Driver Profiles exist",
-            "Open the Profile List and check that the Add New Profile button "
-            "is not present and the maximum-reached text is displayed"),
+            "Open the Profile List and check that the Add New Profile "
+            "button is not present"),
         er=steps(
             "The Add New Profile button is present while four Driver Profiles "
             "exist",
             "The fifth Driver Profile is created",
-            "The Add New Profile button is not present, the icon and the "
-            "string described in note PRACC7.2 are not present, and "
-            "“Max Profiles reached. Delete to create a new one.” "
-            "(PU0584) is displayed"),
+            "The Add New Profile button is not present; the icon and the "
+            "string “This icon is associated to settings that are "
+            "specific to your profile and are not shared across the "
+            "vehicle” are not present; and “Max Profiles reached. "
+            "Delete to create a new one.” (PU0584) is displayed"),
         reasoning=(
             "驗證目標：5.2（PRACC8）之上限 —— 五個 Driver Profile 為邊界，"
             "達到時 Add New Profile 按鈕與 PRACC7.2 之圖示字串消失並改顯 PU0584。"
@@ -193,20 +210,20 @@ TCS = {
         pre=steps(
             "A Driver Profile is active",
             "The vehicle is equipped with memory seat hard and soft controls"),
-        data="NA",
+        data="Preference under test: Memory Profiles (Seats, mirrors, "
+             "steering wheel) (3.5)",
         proc=steps(
             "Activate Driver Profile A",
-            "Change a Profile-linked preference without pressing the memory "
-            "seat set or save hard or soft control",
+            "Adjust the seat, mirror and steering wheel positions",
+            "Leave the memory seat set and save controls untouched",
             "Switch the ignition off and on",
-            "Read the changed preference and check that it retains the value "
-            "set in step 2"),
+            "Read the three positions and check that they match step 2"),
         er=steps(
             "Driver Profile A is active",
-            "The preference accepts the new value and no memory seat set or "
-            "save control is pressed",
+            "The seat, mirror and steering wheel positions are adjusted",
+            "No memory seat set or save control is pressed",
             "The vehicle completes the ignition cycle",
-            "The preference retains the value set in step 2"),
+            "The three positions match those set in step 2"),
         reasoning=(
             "驗證目標：5.9（PRACC15）—— 儲存 Driver Profile linked preferences "
             "不需按記憶座椅之 set／save 控制，且會自動存於車端。"
@@ -282,8 +299,8 @@ TCS = {
         proc=steps(
             "Activate Driver Profile A so that the large welcome popup is "
             "displayed",
-            "Read the popup and check that Driver Profile A’s username "
-            "and avatar and the other available Profiles are displayed"),
+            "Read the popup and check that the active and the other "
+            "Profiles are listed"),
         er=steps(
             "The large welcome popup is displayed",
             "Driver Profile A’s username and avatar are displayed, and "
@@ -310,8 +327,7 @@ TCS = {
             "A Driver Profile carrying a Welcome Popup is available"),
         data="Elapsed time readings: 29 s, 30 s",
         proc=steps(
-            "Activate the Profile so that the Welcome Popup is displayed and "
-            "start a timer",
+            "Activate the Profile and start a timer",
             "Read the screen at 29 seconds without touching it",
             "Read the screen at 30 seconds and check that the Welcome Popup "
             "is cleared"),
@@ -368,14 +384,17 @@ TCS = {
         proc=steps(
             "Enter a username in the Profile setup flow",
             "Choose an avatar",
-            "Switch the ignition off and on, then open the Profile List and "
-            "check that the Profile carrying the username and avatar from "
-            "steps 1 and 2 is listed"),
+            "Switch the ignition off and on",
+            "Open the Profile List",
+            "Read the list and check that the Profile from steps 1 and 2 "
+            "is listed"),
         er=steps(
             "The username is accepted",
             "The avatar is selected",
-            "The Profile List lists the Profile with the username and avatar "
-            "entered in steps 1 and 2"),
+            "The vehicle completes the ignition cycle",
+            "The Profile List is displayed",
+            "The Profile carrying the username and avatar from steps 1 and 2 "
+            "is listed"),
         reasoning=(
             "驗證目標：8.4.1（NEWPR3.1）—— 輸入 username 並選定 avatar 後系統儲存該 profile。"
             "關鍵情境條件：「已儲存」之可觀察形態取 ignition cycle 後仍列於 Profile List"
@@ -397,8 +416,8 @@ TCS = {
         proc=steps(
             "Open the Edit Profile tab and start editing the Profile username",
             "Bring the vehicle into motion",
-            "Read the screen and check that the previous available page is "
-            "displayed with the bonk tone and the restriction message"),
+            "Read the screen and check that the previous available page "
+            "is displayed"),
         er=steps(
             "The username editing page is displayed",
             "The vehicle is in motion",
@@ -431,9 +450,8 @@ TCS = {
         proc=steps(
             "Open the Profile section and press the vehicle “More "
             "Settings” button",
-            "Read the displayed page and check that the “My Profile” "
-            "Settings section is displayed without a back button to the "
-            "Profile section"),
+            "Read the page and check that the “My Profile” Settings "
+            "section is displayed"),
         er=steps(
             "The “My Profile” Settings section is displayed",
             "No back button to the Profile section is present on the "
@@ -456,13 +474,17 @@ TCS = {
         design=FUNCTIONAL,
         pre=steps(
             "The vehicle is not an R1 High variant",
+            # F-2：讀圖後更正 —— `****For China market only: do not show this
+            # content` 之 `****` 標記掛在 **Connected Navigation 那一列**，
+            # 不是整張表。仍列為 pre-condition 是為使「四列俱全」之預期成立，
+            # **但其範圍是該列，不是該表**（見 remarks）。
             "The vehicle is not a China-market vehicle",
             "A Driver Profile is active and the Edit Profile tab is available"),
         data="NA",
         proc=steps(
             "Open the Edit Profile tab and read the Connected Account item",
-            "Select the info icon next to Connected Account and check that "
-            "the Local vs Connected Profile screen is displayed"),
+            "Select the info icon and check that the Local vs Connected "
+            "Profile screen is displayed"),
         er=steps(
             "An info icon is displayed next to Connected Account",
             "The screen titled “What are the benefits of creating an "
@@ -471,16 +493,30 @@ TCS = {
             "your profile between multiple vehicles. The cloud will remember "
             "your preferences” and “Create a profile specific to "
             "this vehicle. The vehicle will remember your preferences”, "
-            "and the list items of Table CPA2"),
-        remarks="標題之 “an Connected account” 為 spec 原文（含冠詞誤用）"
-                "，逐字照錄不修（§8.4.1）",
+            "and the four rows of Table CPA2 with their column marks:\n"
+            "   a. Personalization (Presets, Menu Bar Order, App Drawer "
+            "Favorites, and more) — marked under **both** Connected Account "
+            "and Local Profile\n"
+            "   b. App Store Download — marked under Connected Account only\n"
+            "   c. Marketplace (Access to Marketplace) — marked under "
+            "Connected Account only\n"
+            "   d. Connected Navigation (Personalized Favorites, Recents, "
+            "and Predictive Navigation) — marked under Connected Account "
+            "only"),
+        remarks="標題之 “an Connected account” 為 spec 原文（含冠詞誤用），"
+                "逐字照錄不修（§8.4.1）；spec 之示意圖仍寫舊名 "
+                "“FCA account”，字面值以條文為準（§8.7.3）。"
+                "中國市場之排除（****）掛在 Connected Navigation **該列**，"
+                "非整張表 —— 本 TC 以 pre-condition 排除中國車，"
+                "是為使四列俱全之預期成立",
         reasoning=(
             "驗證目標：11.4（CPA2）—— Edit Profile tab 之 Connected Account 旁"
             "資訊圖示開啟 Local vs Connected Profile 畫面，其標題、兩欄與各欄說明文字。"
             "關鍵情境條件：條文首句明載本註記不適用於 R1 High，"
             "另有星號註記載中國市場不顯示本內容，兩者皆列 pre-condition 之排除（§8.7.3）。"
-            "為什麼這樣切：Table CPA2 之列項為本畫面之內容來源（補句表 must_carry，PDF p17），"
-            "ER 以「Table CPA2 之列項」指之，不自行改寫其項目文字。"
+            "為什麼這樣切：Table CPA2 之列項與其欄別**取自 PDF p17 之表格本體**"
+            "（F-2 抽圖判讀，四列非五列 ——「Connected Profile App」是指向截圖之"
+            "註解框，不是表列），ER 逐列載明其屬 Connected Account 或 Local Profile。"
             "刻意略過：**R1 High 無此資訊按鈕之反面情形未生成** —— "
             "pilot 之取樣單位為 16 leaf，加測即擴張範圍（§8.4.2），已具名上報。"),
         kw=["info icon", "Connected Account", "Local Profile", "Table CPA2"],
@@ -495,15 +531,17 @@ TCS = {
             "The same App Store app is installed locally for both Profiles"),
         data="NA",
         proc=steps(
-            "Activate Driver Profile A and record the App Store app shown in "
-            "the app tray",
+            "Activate Driver Profile A",
+            "Record the App Store app shown in the app tray",
             "Delete the App Store app from Driver Profile A",
-            "Activate Driver Profile B, open the app tray and check that the "
-            "app recorded in step 1 is still present"),
+            "Activate Driver Profile B",
+            "Open the app tray and check that the app recorded in step 2 "
+            "is still present"),
         er=steps(
+            "Driver Profile A is active",
             "The App Store app is recorded in Driver Profile A’s app tray",
-            "The App Store app is removed from Driver Profile A’s app "
-            "tray",
+            "The App Store app is removed from Driver Profile A’s app tray",
+            "Driver Profile B is active",
             "The App Store app is still present in Driver Profile B’s "
             "app tray"),
         reasoning=(
@@ -527,17 +565,17 @@ TCS = {
             "No PIN lockout is in effect"),
         data="PIN attempts: 9 incorrect attempts → 10th incorrect attempt",
         proc=steps(
-            "Open the Valet Mode deactivation screen and enter an incorrect "
-            "4-digit PIN nine times",
+            "Open the Valet Mode deactivation screen",
+            "Enter an incorrect 4-digit PIN nine times",
             "Read the deactivation screen after the ninth attempt",
             "Enter an incorrect 4-digit PIN a tenth time and check that the "
             "deactivation is cancelled"),
         er=steps(
+            "The Valet Mode deactivation screen is displayed",
             "Each of the nine incorrect PIN entries is rejected",
-            "The deactivation screen still accepts a further PIN entry after "
-            "the ninth attempt",
-            "The deactivation is cancelled on the tenth incorrect attempt and "
-            "a further PIN entry is not accepted"),
+            "The deactivation screen still accepts a further PIN entry",
+            "The deactivation is cancelled on the tenth incorrect attempt "
+            "and a further PIN entry is not accepted"),
         remarks="條文之「30 分鐘後可再試」需 30 分鐘等待，本 TC 只驗第 10 次即"
                 "取消且當下不再受理，未驗 30 分鐘後之解鎖",
         reasoning=(
@@ -564,16 +602,16 @@ TCS = {
         proc=steps(
             "Open the head unit screens that offer a Valet Mode exit and "
             "attempt to exit Valet Mode",
-            "Read the screen and check that the exit is blocked and Valet "
-            "Mode is still active",
-            "Deactivate Valet Mode remotely as the owner through the "
-            "authorized app and check that Valet Mode is no longer active"),
+            "Read the screen and check that the exit is blocked",
+            "Deactivate Valet Mode remotely as the owner",
+            "Read the head unit and check that Valet Mode is no longer "
+            "active"),
         er=steps(
             "Any screen or popup that would allow a Valet Mode exit is "
             "blocked (PU0934)",
             "Valet Mode is still active after the SPAAK user’s attempt",
-            "Valet Mode is no longer active after the owner deactivates it "
-            "remotely"),
+            "The owner’s remote deactivation is accepted",
+            "Valet Mode is no longer active on the head unit"),
         reasoning=(
             "驗證目標：13.2（PVALSPK2）—— SPAAK 情境下 SPAAK 使用者不得於主機"
             "退出 Valet Mode，只有車主得以 app／網站等遠端方式停用。"
@@ -589,8 +627,23 @@ TCS = {
 }
 
 
+def sample_from_tsv() -> list:
+    """版控之取樣清單（N-3）。"""
+    return [ln.split("\t")[0] for ln in
+            (FEATURE / "data" / "pilot_sample.tsv")
+            .read_text(encoding="utf-8").splitlines()
+            if ln and not ln.startswith(("#", "req_id"))]
+
+
 def build() -> list:
     """依取樣順序組出 16 個 leaf 之產物。tc_id 依序指派（§10.3）。"""
+    # 兩份清單並存就會有一天不一致 —— 生成前先比對，不一致即停。
+    tsv = sample_from_tsv()
+    if tsv != SAMPLE_IDS:
+        raise SystemExit(f"取樣清單不一致：TSV {len(tsv)} 列 vs "
+                         f"SAMPLE_IDS {len(SAMPLE_IDS)} 條\n"
+                         f"  TSV 有而常數無：{[x for x in tsv if x not in SAMPLE_IDS]}\n"
+                         f"  常數有而 TSV 無：{[x for x in SAMPLE_IDS if x not in tsv]}")
     sample = SAMPLE_IDS
     rows = B.leaf_rows()
     out = []

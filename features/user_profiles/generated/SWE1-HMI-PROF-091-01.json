@@ -34,7 +34,7 @@
    "test_item": "Restricted Profile action interrupted when vehicle starts moving",
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is stationary on a test track and can be brought into motion",
    "input_test_data": "NA",
-   "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the previous available page is displayed with the bonk tone and the restriction message",
+   "test_procedure": "1. Open the Edit Profile tab and start editing the Profile username\n2. Bring the vehicle into motion\n3. Read the screen and check that the previous available page is displayed",
    "expected_result": "1. The username editing page is displayed\n2. The vehicle is in motion\n3. The previous available page is displayed, the bonk tone is played, and “Function not available while vehicle in Motion.” is displayed",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.2; Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.3.1",
    "priority": "P1",

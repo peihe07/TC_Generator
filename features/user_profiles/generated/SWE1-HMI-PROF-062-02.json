@@ -27,7 +27,7 @@
    "test_item": "Welcome popup clears 30 seconds after display",
    "pre_conditions": "1. The vehicle is stationary\n2. A Driver Profile carrying a Welcome Popup is available",
    "input_test_data": "Elapsed time readings: 29 s, 30 s",
-   "test_procedure": "1. Activate the Profile so that the Welcome Popup is displayed and start a timer\n2. Read the screen at 29 seconds without touching it\n3. Read the screen at 30 seconds and check that the Welcome Popup is cleared",
+   "test_procedure": "1. Activate the Profile and start a timer\n2. Read the screen at 29 seconds without touching it\n3. Read the screen at 30 seconds and check that the Welcome Popup is cleared",
    "expected_result": "1. The Welcome Popup is displayed and the timer is started\n2. The Welcome Popup is still displayed at 29 seconds\n3. The Welcome Popup is cleared at 30 seconds",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.4",
    "priority": "P2",

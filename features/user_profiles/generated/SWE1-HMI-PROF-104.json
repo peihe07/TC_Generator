@@ -33,7 +33,7 @@
    "test_item": "More Settings opens My Profile without a back button",
    "pre_conditions": "1. A Driver Profile is active\n2. The Profile section is reachable from the vehicle menu",
    "input_test_data": "NA",
-   "test_procedure": "1. Open the Profile section and press the vehicle “More Settings” button\n2. Read the displayed page and check that the “My Profile” Settings section is displayed without a back button to the Profile section",
+   "test_procedure": "1. Open the Profile section and press the vehicle “More Settings” button\n2. Read the page and check that the “My Profile” Settings section is displayed",
    "expected_result": "1. The “My Profile” Settings section is displayed\n2. No back button to the Profile section is present on the “My Profile” Settings section",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_9.8",
    "priority": "P2",

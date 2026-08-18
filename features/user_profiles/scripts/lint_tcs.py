@@ -22,6 +22,8 @@ feature-specific 白名單（`[BLOCKED-SPEC]` 標記、HVAC 之 tc_id 集合）�
 | G11 `specification_reference` 之 stem 與節次形態 | R-U1、canon §10.7 |
 | G12 `priority` ∈ {P0..P3} | 工作簿 DV（feature.yaml）|
 | G13 `test_group`／`test_set` 逐字 | R-U1、framework §2 |
+| G16 `feature.yaml` 之 popup_ids 與現測 `pdf_text` 一致 | D-5（14 包）|
+| G15 步驟長度：一般 ≤12 詞、最終步／intent 步 ≤18 詞 | canon §5.2 |
 | G14 PU id 須屬 spec 之 PU 全集（**現測 `pdf_text`**，21 個）| R-U35 (a)；feature.yaml 之 20 個為 xlsx 側，見 `known_pu()` |
 
 ## 範圍向（R-G9）
@@ -122,7 +124,15 @@ RULED_PU = {f"PU{int(x[2:]):04d}" for x in CFG["lint"]["popup_ids"]}
 
 
 def _lines(v: str) -> list:
-    return [x for x in str(v).splitlines() if x.strip()]
+    """**頂層**編號行。
+
+    **判準改過一次（R-U37）。** v1 取所有非空行 —— 但 canon §6.1 允許
+    ER 以 `a./b./c.` 子層列出列項（D-3 之 Table CPA2 即此形態），
+    於是「ER 行數」被子層灌大，G9 對一條正確的 TC 轉紅。
+    v2：只計頂層之 `N.` 行；縮排之子層不計。
+    """
+    return [x for x in str(v).splitlines()
+            if x.strip() and not x.startswith((" ", "\t"))]
 
 
 # --------------------------------------------------------------- 逐條之閘
@@ -166,6 +176,21 @@ def gate_tc(tc: dict) -> list:
     if len(proc) != len(er):
         out.append(f"G9 {tid}: 步驟 {len(proc)} 條 vs ER {len(er)} 條（§6）")
 
+    # G15 —— canon §5.2 之步驟長度（D-4）
+    #   A 一般 setup／transition 步：≤ 12 詞
+    #   B 最終步（§5.5 查核擁有者）：≤ 18 詞（含 action ＋ check target）
+    #   C §5.1 例外之 intent 步（帶 `to …` 目的子句）：≤ 18 詞
+    for i, ln in enumerate(proc, 1):
+        body = re.sub(r"^\s*\d+\.\s*", "", ln)
+        w = len(body.split())
+        is_final = (i == len(proc))
+        is_intent = bool(re.search(r"\bto\s+\w+", body)) and not is_final
+        cap = 18 if (is_final or is_intent) else 12
+        kind = "最終步" if is_final else ("intent 步" if is_intent else "一般步")
+        if w > cap:
+            out.append(f"G15 {tid}: 步驟 {i}（{kind}）{w} 詞 > {cap}（§5.2）"
+                       f" → {body[:50]}…")
+
     if tc.get("design_method") not in DESIGN_METHODS:
         out.append(f"G10 {tid}: design_method 非下拉選單九條之一")
 
@@ -208,6 +233,15 @@ def gate_corpus(tcs: list) -> list:
     expect = [f"{i:03d}" for i in range(1, len(tcs) + 1)]
     if seq != expect:
         out.append(f"G2: tc_id 未自 001 起連續 → 實得 {seq}")
+    # G16（D-5）—— `feature.yaml` 之定值與現測不得分岔。
+    # 13 輪之狀態是「lint 現測 21、yaml 記 20，兩個數並存而無指引」；
+    # D-5 已使其一致，**本閘防止它再度悄悄分岔**（分岔時無人會發現）。
+    if RULED_PU != KNOWN_PU:
+        out.append(f"G16: feature.yaml 之 popup_ids（{len(RULED_PU)}）與現測 "
+                   f"pdf_text（{len(KNOWN_PU)}）不符 —— "
+                   f"yaml 多：{sorted(RULED_PU - KNOWN_PU)}；"
+                   f"現測多：{sorted(KNOWN_PU - RULED_PU)}")
+
     seen = {}
     for t in tcs:
         key = str(t.get("tc_title", "")).lower().strip()
@@ -321,6 +355,14 @@ def self_test() -> int:
             specification_reference="SYS1_HMI_Personal_Account_R1L-R_4.1")),
         ("G12", "priority = High", _ok_tc(priority="High")),
         ("G13", "test_set 不在八組", _ok_tc(test_set="Profiles")),
+        ("G15", "一般步 13 詞（上限 12）", _ok_tc(
+            test_procedure="1. " + " ".join(["word"] * 13) +
+                           "\n2. Read the value and check that it matches",
+            expected_result="1. a\n2. b")),
+        ("G15", "最終步 19 詞（上限 18）", _ok_tc(
+            test_procedure="1. Activate Driver Profile A\n"
+                           "2. Read and check that " + " ".join(["w"] * 15),
+            expected_result="1. a\n2. b")),
         ("G14", "PU9999 不存在", _ok_tc(
             expected_result="1. Driver Profile A is active\n"
                             "2. PU9999 is displayed")),
@@ -346,11 +388,51 @@ def self_test() -> int:
         ("G14", "PU0584 為實測 20 個之一", _ok_tc(
             expected_result="1. Driver Profile A is active\n"
                             "2. PU0584 is displayed")),
+        # D-4 之明文要求：證明它對 12 詞之正常步驟不轉紅
+        ("G15", "一般步剛好 12 詞 → 綠", _ok_tc(
+            test_procedure="1. " + " ".join(["word"] * 12) +
+                           "\n2. Read the value and check that it matches",
+            expected_result="1. a\n2. b")),
+        ("G15", "最終步剛好 18 詞 → 綠", _ok_tc(
+            test_procedure="1. Activate Driver Profile A\n"
+                           "2. Read and check that " + " ".join(["w"] * 13),
+            expected_result="1. a\n2. b")),
+        ("G15", "intent 步帶 `to …` 得放寬至 18 詞 → 綠", _ok_tc(
+            test_procedure="1. Press and hold the top right and bottom left "
+                           "corners for five seconds to enter Dealer Mode\n"
+                           "2. Read the value and check that it matches",
+            expected_result="1. a\n2. b")),
+        ("G9", "ER 帶 a./b./c. 子層 → 綠（§6.1）", _ok_tc(
+            expected_result="1. Driver Profile A is active\n"
+                            "2. The screen lists:\n"
+                            "   a. Personalization\n"
+                            "   b. App Store Download")),
         ("G11", "spec_reference 併列 3.x", _ok_tc(
             specification_reference=f"{STEM}_4.1; {STEM}_3.1; {STEM}_3.5")),
     ]
     for gate, name, tc in scope:
         case(f"{gate} 範圍：{name}", tc, False, gate)
+
+    print("\n## G16 —— yaml 與現測之分岔（D-5）\n")
+    # 以 globals() 改寫，不用 `import lint_tcs` —— 本檔以 __main__ 執行時，
+    # 再 import 一次會得到**另一個 module 物件**，改到的不是同一個名字。
+    g = globals()
+    _orig = g["RULED_PU"]
+    for name, ruled, expect in [
+        ("yaml 與現測一致 → 綠", set(KNOWN_PU), False),
+        ("yaml 少一個（回到 13 輪之狀態）→ 紅",
+         set(KNOWN_PU) - {"PU0609"}, True),
+        ("yaml 多一個不存在者 → 紅", set(KNOWN_PU) | {"PU9999"}, True),
+    ]:
+        g["RULED_PU"] = ruled
+        bad = [b for b in gate_corpus([_ok_tc()]) if b.startswith("G16")]
+        good = bool(bad) == expect
+        ok &= good
+        print(f"  {'PASS' if good else '**FAIL**'} — {name}: "
+              f"{'紅' if bad else '綠'}")
+        for b in bad:
+            print(f"      └ {b}")
+    g["RULED_PU"] = _orig
 
     print("\n## 跨條之閘（G2 單調／G5 雷同）\n")
     for name, tcs, expect in [
@@ -388,7 +470,7 @@ def self_test() -> int:
         for b in bad:
             print(f"      └ {b}")
 
-    n = 1 + len(cases) + len(scope) + 5
+    n = 1 + len(cases) + len(scope) + 8
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

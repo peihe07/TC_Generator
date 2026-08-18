@@ -27,7 +27,7 @@
    "test_item": "Large welcome popup lists active and other Profiles",
    "pre_conditions": "1. Two Driver Profiles exist, each with a username, an avatar and a memory seat assignment\n2. Driver Profile A is the active Profile",
    "input_test_data": "NA",
-   "test_procedure": "1. Activate Driver Profile A so that the large welcome popup is displayed\n2. Read the popup and check that Driver Profile A’s username and avatar and the other available Profiles are displayed",
+   "test_procedure": "1. Activate Driver Profile A so that the large welcome popup is displayed\n2. Read the popup and check that the active and the other Profiles are listed",
    "expected_result": "1. The large welcome popup is displayed\n2. Driver Profile A’s username and avatar are displayed, and the other available Profile is displayed with its avatar, username and memory seat assignment",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_7.2.1",
    "priority": "P2",

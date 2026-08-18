@@ -3,6 +3,8 @@
 Register of ambiguities, spec gaps, and upstream inconsistencies.
 Marker format: `[A-UPnn]`。PENDING entries block their batch until a
 Pei ruling lands; RESOLVED entries record the ruling verbatim.
+**ACCEPTED**（15 輪起）：狀態**未改變**，是被裁定接受 ——
+與 RESOLVED 不同，後者指問題已消失。兩者不得互換使用。
 Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 A-UP01～A-UP03 由下放包 `docs/handoff/01_intake.md` §Anomalies 播種
@@ -326,3 +328,37 @@ None yet. Inline format in generated JSON reasoning: `[ASSUMPTION A-UPnn]`.
 
 **處置（R-U30）**：**延後，登記不動手。** comfort 已交付，實務上不會重跑；
 待 Comfort 下次開輪次一併清。**本 feature 不得寫入 comfort 任何檔** —— 已遵守。
+
+---
+
+## A-UP10 — `052f67d` 之 commit 歸屬不準（**ACCEPTED**，R-U55）
+
+**狀態：ACCEPTED，不是 RESOLVED。**
+問題未消失 —— 那個 commit 至今仍寫著 `feat(power)` 而承載 user_profiles
+之 8 檔。**是它被裁定接受，不是它被修好。**
+
+**事實**：`052f67d`（33 檔）之 message 為
+`feat(power): round 09 — three new gates, feature.yaml corrected, batch 1 held`，
+其中夾帶 user_profiles 之 8 檔（皆屬 03 輪）：
+`BASELINE.sha256`、`DECISIONS.md`、`RECON.md`、
+`data/recon_leaf_to_section.tsv`、`docs/INDEX.md`、
+`docs/handoff/03_recon_start.md`、`docs/upstream/03_recon.md`、`feature.yaml`。
+**內容完整無誤** —— 非「不該進版控之物進了版控」，是**歸屬不準**：
+以 `git log -- features/user_profiles/` 追 03 輪，會落在一個 power 的 commit 上。
+
+**成因**（power session 執行層自陳，逐字）：
+
+> 我執行 `git add features/power/`，但另一個 session 在此之前已經把他們的檔案
+> 放進 index 了，而 `git commit` 不帶 pathspec 就會提交整個 index。
+
+**第二次發生**（照錄，R-U55 明文要求）：前有 `645e55f` → `cc04aa1`
+之歷史重寫，該次把 power 之 round-07 檔案自樹上移除。
+**兩次皆非疏忽，是該作法本身會產生此結果**（R-G12 之立條理由）。
+
+**處置（R-U55）**：採案 1，不動歷史。裁定依據為本輪實測 ——
+該 commit **已推送**、其後已有 **5 個提交**；案 2／3 之收益為一句 message
+之歸屬，成本為 rebase 5 個提交 ＋ force push 一條已推送分支。
+
+**再犯之防線**：**R-G12**（git commit 一律帶 pathspec），已升全域並寫入
+`docs/fw036/FEATURE_ONBOARDING.md`。**本項不因該防線改記 RESOLVED** ——
+防線防的是下一次，不是這一次。

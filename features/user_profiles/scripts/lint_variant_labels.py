@@ -55,12 +55,27 @@ CHECKED_FIELDS = ("tc_title", "test_item", "pre_conditions",
                   "test_procedure", "expected_result", "remarks")
 
 
+# N-1（14 包）—— 否定之排除。
+#
+# v1 只認 `R1 High` 之出現，於是「the vehicle is **not** an R1 High variant」
+# 也被判為 R1 High。本批無害（該 TC 未含禁用字串），但它是**誤報源**，
+# 而誤報之規則終將被關掉（R-G9 之立條理由）。
+NEG_R1H = re.compile(r"\b(?:not|non|except|excluding)\s+(?:an?\s+)?"
+                     r"R1\s*High\b", re.I)
+POS_R1H = re.compile(r"\bR1\s*High\b", re.I)
+
+
 def variant_of(tc: dict) -> str:
-    """該 TC 適用之 variant。取 `variant` 欄；無則自文字推定。"""
+    """該 TC 適用之 variant。取 `variant` 欄；無則自文字推定。
+
+    推定時**先剔除否定式**：`not an R1 High variant` 說的是它不適用，
+    不是它適用。剔除後若仍有 `R1 High` 之出現才判為 R1 High。
+    """
     if tc.get("variant"):
         return tc["variant"]
     blob = " ".join(str(tc.get(f, "")) for f in CHECKED_FIELDS)
-    return "R1 High" if re.search(r"\bR1\s*High\b", blob) else ""
+    stripped = NEG_R1H.sub(" ", blob)
+    return "R1 High" if POS_R1H.search(stripped) else ""
 
 
 def check_tc(tc: dict) -> list:
@@ -122,6 +137,17 @@ def reverse_verify() -> int:
     }, expect_fail=True)
 
     print("\n## 範圍向 —— 不得誤報（規則之另一半）\n")
+    case("pre-condition 為「**not** an R1 High variant」→ 不得轉紅（N-1）", {
+        "tc_id": "SCOPE-003",
+        "pre_conditions": "1. The vehicle is not an R1 High variant",
+        "expected_result": "1. The Stellantis Account item is listed",
+    }, expect_fail=False)
+    case("否定與肯定並存（別條 TC 之情形）→ 仍判 R1 High → **須 FAIL**", {
+        "tc_id": "FAKE-004",
+        "pre_conditions": "1. The vehicle is not an R1 High variant",
+        "test_procedure": "1. Repeat the step on an R1 High vehicle",
+        "expected_result": "1. The Stellantis Account item is listed",
+    }, expect_fail=True)
     case("**R1 Low** ＋ 同一字串 → 不得轉紅（該車上 label 確為此）", {
         "tc_id": "SCOPE-001", "variant": "R1 Low",
         "expected_result": "1. The Stellantis Account item is listed",
@@ -131,7 +157,7 @@ def reverse_verify() -> int:
         "expected_result": "1. The Stellantis Account item is listed",
     }, expect_fail=False)
 
-    n = 7
+    n = 9
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

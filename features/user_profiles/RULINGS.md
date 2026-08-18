@@ -80,6 +80,11 @@ R-U5  Priority（修訂版，取代 08-17 初版之「High→P1」預設帶）
         P3 — UI 強化、罕用情境
       037 之 High/Medium/Low 僅為先驗，衝突時以 TEST_CASE_PRIORITY.md
       為準；任何偏離須於 reasoning 具名依據。
+      —— 適用釐清（F-3，16 包核可；**條文本身未改**）：
+      一條 TC 同時落在核心五類與「邊界／非主路徑」兩帶時，
+      以失效後果決定 —— 核心能力失效或被繞過 → P0；
+      輸入體驗或呈現降級 → P1。逐條依據與其盲區見
+      `DECISIONS.md` D-UP16-01。
 
 R-U6  workbook_state = BLANK
       style authority = Home 之 done region（Arif 之 144 列），
@@ -965,3 +970,49 @@ R-U54 052f67d 之三案 —— 重述後方能裁
   三案並非提於任何包之任何節次，而是提於 **power session 之聊天回覆**，
   從未落檔；故分析層之覆核記錄無此項，**與 R-U41 相符，非漏回應**。
   且該 commit **已推送**，選項之不可逆性因而改變。
+
+---
+
+## 第十五輪條文（15 下放包，Pei 2026-08-18 裁定，逐字）
+
+```text
+R-U55 052f67d —— 採案 1（留著），不動歷史
+      不執行 reset／rebase／force push。
+      log 歸屬不準之狀態予以接受並留檔：
+      以 `git log -- features/user_profiles/` 追 03 輪，
+      會落在 message 為 `feat(power): round 09 …` 之 052f67d 上；
+      該 commit 夾帶 user_profiles 之 8 檔（BASELINE.sha256、
+      DECISIONS.md、RECON.md、data/recon_leaf_to_section.tsv、
+      docs/INDEX.md、docs/handoff/03_recon_start.md、
+      docs/upstream/03_recon.md、feature.yaml），內容完整，
+      **非「不該進版控之物進了版控」，是歸屬不準**。
+      裁定依據：本輪實測該 commit 已推送、其後已有 5 個提交；
+      案 2／3 之收益為一句 message 之歸屬，
+      成本為 rebase 5 個提交 ＋ force push 一條已推送分支。
+      前例併記：本為第二次（前有 645e55f → cc04aa1）。
+```
+
+### 全域條文（R-G12，於本包首次落檔）
+
+```text
+R-G12 git commit 一律帶 pathspec（全域，Pei 2026-08-18 裁定升格）
+      所有 session、所有 feature 之執行層，準備 git commit 指令時
+      一律帶 pathspec：`git commit -- <pathspec>`；
+      **不得使用不帶 pathspec 之 `git commit`**。
+      理由：不帶 pathspec 之 commit 提交整個 index，
+      而 index 可能已含另一 session 置入之檔案。
+      052f67d 與 645e55f → cc04aa1 為同一成因之兩次發生 ——
+      **兩次皆非疏忽，是該作法本身會產生此結果。**
+      `git add` 亦同：一律帶明確路徑，不用 `git add .` 或 `git add -A`。
+      執行層仍只準備不執行（R-G5）。
+```
+
+**執行層回報（14＋15 輪，2026-08-18）**
+
+- **R-U55**：不動歷史。`ANOMALIES.md` 之對應項改記為 **ACCEPTED（非 RESOLVED）**
+  —— 狀態未改變，是被接受；「第二次發生」之事實已照錄。
+- **R-G12**：已寫入 `docs/fw036/FEATURE_ONBOARDING.md` 之**全域條文段**，
+  使其他 session 讀得到；**未寫入他 feature 之 `RULINGS.md`**
+  （R-U24／R-U30／R-U44 之界線不變）。
+  待執行之 git 指令清單已依本條全部重寫帶 pathspec，見上繳 14 §9。
+- **本輪未執行任何 git**（R-G5）。

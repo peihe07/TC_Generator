@@ -41,6 +41,10 @@ from pathlib import Path
 FEATURE = Path(__file__).resolve().parent.parent
 OUTLINE = FEATURE / "data" / "outline_map.json"
 MISSING = FEATURE / "data" / "xlsx_missing_clauses.tsv"
+SAMPLE_TSV = FEATURE / "data" / "pilot_sample.tsv"
+SPEC_PDF = (FEATURE.parent.parent / "spec-index" / "sources" /
+            "Personal Account HMI Logic and Flow R1L-R "
+            "(February 10 2023).pdf")
 A03 = FEATURE / "inputs" / ("FM-WI-FSM-037-A03-N1L-SWE1-PersonalAccount-"
                             "HMI-V0.1 STLA 報告.xlsx")
 
@@ -86,6 +90,17 @@ def _outline() -> dict:
     return d
 
 
+def _norm(t: str) -> str:
+    return " ".join((t or "").split())
+
+
+def _pdf_page_text(page_no: int) -> str:
+    """PDF 第 N 頁之文字層（1-based）—— 供 `p<N>` 之歸宿複位（N-2）。"""
+    import fitz
+    with fitz.open(SPEC_PDF) as doc:
+        return _norm(doc[page_no - 1].get_text())
+
+
 def spec_body(section: str) -> str:
     """**判讀基準 = `pdf_text`（R-U25／R-U35(a)）。**
 
@@ -122,9 +137,15 @@ def plp_scan_union() -> set:
 # 是因為它的說明文字**剛好**寫了「9.1 之列項順序」；`p17` 之說明是「同上」，
 # 於是它掛不回任何節，且無聲無息 —— 那是巧合，不是設計。
 # 人看的說明欄不該同時當機器用的外鍵。
+# **值改過一次（N-2，14 包）：p17 由單一節改為兩節。**
+# R-U49 裁 `p17 → 11.5` 為**實體位置**之判讀（該表印於 p17，與 CPA3＝11.5 同頁），
+# 而本輪對 PDF p17 複位後可見：該表之**引用者**是 CPA2＝11.4
+# （"See table CPA2 for list items"）。只掛 11.5 之結果是 ——
+# **需要那些列項的 TC（11.4）拿不到它們**，而拿到的 TC（11.5）不需要。
+# 故改為兩節皆掛：引用者與實體所在者各一。
 PAGE_TO_SECTION = {
-    "p14": "9.1",    # Table EDPR1 之列項
-    "p17": "11.5",   # Connected Navigation 之列項（同 11.5 之表）
+    "p14": ["9.1"],            # Table EDPR1 之列項；EDPR1 錨點即在 p14
+    "p17": ["11.4", "11.5"],   # 11.4 引用該表，表與 CPA3（11.5）同印於 p17
 }
 
 
@@ -141,7 +162,7 @@ def must_carry_for(section: str) -> list:
                 out.append(r)
             # `p<N>` 之條目其歸屬節次未逐一定位（07 輪），以顯式對照表掛回。
             elif r["outline"].startswith("p"):
-                if PAGE_TO_SECTION.get(r["outline"]) == section:
+                if section in PAGE_TO_SECTION.get(r["outline"], []):
                     out.append(r)
     return out
 
@@ -326,12 +347,28 @@ def selfcheck(sample_ids: list) -> int:
             homed[mc] = hosts
         else:
             orphan.append(mc)
-    chk("7. must_carry 七條**皆有歸宿**（非只驗已注入者是否正確）",
-        not orphan and len(all_mc) == 7,
+    # N-2（14 包）：**「有歸宿」不等於「歸宿正確」** —— p17 若誤填 9.1，
+    # 上面那個檢查仍會綠。故對每個 `p<N>` 之掛回節次做一次 **PDF 複位**：
+    # 該節之條文是否確實印在第 N 頁上。
+    misplaced, located = [], []
+    for page, secs in PAGE_TO_SECTION.items():
+        pg = _pdf_page_text(int(page[1:]))
+        for sec in secs:
+            frag = _norm(spec_body(sec))[:60]
+            if frag and frag in pg:
+                located.append(f"{page} → {sec}：該節條文確實印於 PDF {page} ✓")
+            else:
+                misplaced.append(f"{page} → {sec}：**PDF {page} 上找不到該節條文**")
+
+    chk("7. must_carry 七條**皆有歸宿**，且 `p<N>` 之歸宿經 PDF 複位",
+        not orphan and len(all_mc) == 7 and not misplaced,
         [f"must_carry 條目數 = {len(all_mc)}（須為 7）",
          *[f"    {mc} → 掛回 {homed[mc]}" for mc in all_mc if mc in homed],
          f"**無歸宿者 = {orphan}**（須為空）",
-         f"餘數：{len(homed)} 有歸宿 ＋ {len(orphan)} 無歸宿 = {len(all_mc)}"])
+         f"餘數：{len(homed)} 有歸宿 ＋ {len(orphan)} 無歸宿 = {len(all_mc)}",
+         "—— 歸宿正確性（PDF 複位，N-2）——",
+         *located,
+         f"**複位失敗 = {misplaced}**（須為空）"])
 
     # 8 —— `PLP_LEAVES_AUTO` 之可重算性（R-U52）
     #
@@ -360,19 +397,29 @@ if __name__ == "__main__":
     ap.add_argument("--selfcheck", action="store_true")
     # 對照向（R-G7／R-U52）：竄改 AUTO 集，第 8 項須紅。
     # **不是註解，是可重跑的一條指令。**
-    ap.add_argument("--selfcheck-tamper", choices=["drop", "add"],
-                    help="竄改 PLP_LEAVES_AUTO 以證明第 8 項會失敗")
+    ap.add_argument("--selfcheck-tamper",
+                    choices=["drop", "add", "misplace"],
+                    help="drop/add 竄改 PLP_LEAVES_AUTO（證第 8 項會失敗）；"
+                         "misplace 竄改 PAGE_TO_SECTION（證第 7 項之"
+                         "「歸宿正確」會失敗，N-2）")
     ap.add_argument("--leaf")
     a = ap.parse_args()
     if a.selfcheck_tamper == "drop":
         PLP_LEAVES_AUTO = PLP_LEAVES_AUTO - {"SWE1-HMI-PROF-012"}
     elif a.selfcheck_tamper == "add":
         PLP_LEAVES_AUTO = PLP_LEAVES_AUTO | {"SWE1-HMI-PROF-999"}
+    elif a.selfcheck_tamper == "misplace":
+        # p14 之列項改掛 11.5 —— 仍「有歸宿」，但歸宿錯。
+        # 舊版第 7 項對此會綠；加了 PDF 複位才紅。
+        PAGE_TO_SECTION["p14"] = ["11.5"]
     if a.leaf:
         rows = leaf_rows()
         print(json.dumps(assemble(a.leaf, rows[a.leaf]),
                          ensure_ascii=False, indent=1))
         sys.exit(0)
-    SAMPLE = [x["req_id"] for x in
-              json.loads(Path("/tmp/sample.json").read_text(encoding="utf-8"))]
+    # N-3（14 包）：取樣清單改讀版控之 `data/pilot_sample.tsv`。
+    # 原讀 `/tmp/sample.json` —— 證明生成前置成立的工具，其輸入卻在暫存區。
+    SAMPLE = [ln.split("\t")[0] for ln in
+              SAMPLE_TSV.read_text(encoding="utf-8").splitlines()
+              if ln and not ln.startswith(("#", "req_id"))]
     sys.exit(selfcheck(SAMPLE))
