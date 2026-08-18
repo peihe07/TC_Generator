@@ -1,7 +1,7 @@
 # G164 —— `priority` 全面重判提案（R-P237）
 
 > **本檔只出提案，不改任何 `priority` 值。**
-> 受檢範圍：全部 **P0 193 條** ＋ Branding and Theme 全 **34** 條，去重後 **201** 條 / 264。
+> 受檢範圍：全部 **P0 193 條** ＋ Branding and Theme 全 **34** 條，去重後 **180** 條 / 264。
 > 謂詞取自 §10.2 之字面 P0 類別，非自語料回推；命中字串逐條列出為證。
 > 代理判準不得凌駕實質判準（§5a）—— 最終判定屬人工。
 
@@ -11,7 +11,7 @@
 |---|---|
 | P0 成立 | **108** |
 | **無 P0 類別命中，亦非裝飾性** | **53** |
-| **無 P0 類別命中；命中裝飾性／個人化** | **40** |
+| **無 P0 類別命中；命中裝飾性／個人化** | **19** |
 
 ## 二、逐條
 
@@ -49,9 +49,7 @@
 | `060` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `061` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `062` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `063` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `064` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `065` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `066` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `067` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `068` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
@@ -59,10 +57,6 @@
 | `072` | 3_power_state_a | P0 | safety（安全） → `rear view camera`；audio output（音訊輸出） → `Audio` | P0 成立 | P0 |
 | `073` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Ignition off` | P0 成立 | P0 |
 | `074` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `075` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `076` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `077` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `078` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `079` | 3_power_state_a | P0 | connection（連線） → `CarPlay` | P0 成立 | P0 |
 | `080` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `081` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
@@ -70,16 +64,13 @@
 | `083` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `084` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Ignition Off` | P0 成立 | P0 |
 | `085` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Ignition Off` | P0 成立 | P0 |
-| `086` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `087` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `088` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `089` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `090` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `091` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `092` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `093` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `094` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `095` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `098` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `099` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `100` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
@@ -90,16 +81,11 @@
 | `105` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Ignition On` | P0 成立 | P0 |
 | `106` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Ignition On` | P0 成立 | P0 |
 | `107` | 3_power_state_a | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
-| `108` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `109` | 3_power_state_a | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `110` | 3_power_state_a | P0 | safety（安全） → `Rear view camera`；boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `111` | 3_power_state_a | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `112` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `113` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Ignition Off` | P0 成立 | P0 |
-| `114` | 4_power_state_b | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `115` | 4_power_state_b | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `116` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
-| `117` | 4_power_state_b | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `118` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `119` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `120` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
@@ -112,9 +98,7 @@
 | `129` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `130` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `132` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `133` | 4_power_state_b | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `134` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
-| `135` | 4_power_state_b | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `136` | 4_power_state_b | P0 | boot / recovery（開機與復原） → `Standby` | P0 成立 | P0 |
 | `137` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `138` | 4_power_state_b | P0 | safety（安全） → `Rear view camera`；audio output（音訊輸出） → `audio` | P0 成立 | P0 |
@@ -126,7 +110,6 @@
 | `147` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `149` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `150` | 4_power_state_b | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
-| `151` | 4_power_state_b | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `152` | 4_power_state_b | P0 | audio output（音訊輸出） → `audio` | P0 成立 | P0 |
 | `153` | 4_power_state_b | P0 | audio output（音訊輸出） → `Audio` | P0 成立 | P0 |
 | `154` | 4_power_state_b | P0 | audio output（音訊輸出） → `audio` | P0 成立 | P0 |
@@ -153,10 +136,7 @@
 | `180` | 5_startup_display | P0 | vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `Door_Ajar_Status` | P0 成立 | P0 |
 | `181` | 5_startup_display | P0 | boot / recovery（開機與復原） → `STANDBY` | P0 成立 | P0 |
 | `182` | 5_startup_display | P0 | boot / recovery（開機與復原） → `BODY ON` | P0 成立 | P0 |
-| `183` | 5_startup_display | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `184` | 5_startup_display | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `185` | 5_startup_display | P0 | boot / recovery（開機與復原） → `BODY ON`；vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `Door_Ajar_Status` | P0 成立 | P0 |
-| `188` | 5_startup_display | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `190` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup`；audio output（音訊輸出） → `sound` | P0 成立 | P0 |
 | `191` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup`；audio output（音訊輸出） → `sound` | P0 成立 | P0 |
 | `195` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup`；audio output（音訊輸出） → `sound` | P0 成立 | P0 |
@@ -177,41 +157,40 @@
 | `219` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup` | P0 成立 | P0 |
 | `220` | 5_startup_display | P0 | eCall → `SOS` | P0 成立 | P0 |
 | `221` | 5_startup_display | P0 | eCall → `SOS` | P0 成立 | P0 |
-| `222` | 5_startup_display | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `223` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup`；eCall → `SOS` | P0 成立 | P0 |
 | `224` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup` | P0 成立 | P0 |
 | `225` | 5_startup_display | P0 | boot / recovery（開機與復原） → `startup`；eCall → `SOS` | P0 成立 | P0 |
 | `228` | 5_startup_display | P0 | eCall → `SOS` | P0 成立 | P0 |
 | `229` | 5_startup_display | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `230` | 5_startup_display | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
-| `231` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `232` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `233` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `231` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `232` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `233` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `234` | 6_branding_theme | P0 | vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `CAN` | P0 成立 | P0 |
 | `235` | 6_branding_theme | P0 | vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `CAN` | P0 成立 | P0 |
 | `236` | 6_branding_theme | P1 | vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `CAN` | P0 成立 | P1（維持） |
-| `237` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `238` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `239` | 6_branding_theme | P1 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `240` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `241` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `242` | 6_branding_theme | P1 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `243` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `244` | 6_branding_theme | P1 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `245` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `246` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `247` | 6_branding_theme | P2 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `237` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `238` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `239` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `240` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `241` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `242` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `243` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `244` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `245` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `246` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `247` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `248` | 6_branding_theme | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `249` | 6_branding_theme | P2 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
 | `250` | 6_branding_theme | P1 | vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `CAN` | P0 成立 | P1（維持） |
 | `251` | 6_branding_theme | P1 | vehicle-critical CAN signal（車輛關鍵 CAN 訊號） → `CAN` | P0 成立 | P1（維持） |
 | `252` | 6_branding_theme | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
-| `253` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `253` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `254` | 6_branding_theme | P0 | （無） | **無 P0 類別命中，亦非裝飾性** | **提案人工裁決** |
-| `255` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `256` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `257` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
-| `258` | 6_branding_theme | P0 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `255` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `256` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `257` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
+| `258` | 6_branding_theme | P3 | （無） | **無 P0 類別命中；命中裝飾性／個人化** | **提案 P3** |
 | `259` | 6_branding_theme | P0 | boot / recovery（開機與復原） → `Ignition On` | P0 成立 | P0 |
 | `260` | 6_branding_theme | P0 | boot / recovery（開機與復原） → `Ignition On` | P0 成立 | P0 |
 | `261` | 6_branding_theme | P0 | boot / recovery（開機與復原） → `Ignition On` | P0 成立 | P0 |

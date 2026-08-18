@@ -41,24 +41,36 @@ DATA = ROOT / "features/power/data"
 BASE_RE = re.compile(r"(SWE-PM-\d+)")
 
 
-def check_one(tc: dict) -> list[str]:
-    """回傳該 TC 之結構違規清單（空 = 通過）。"""
+def check_one(tc: dict, n_siblings: int = 2) -> list[str]:
+    """回傳該 TC 之結構違規清單（空 = 通過）。
+
+    `n_siblings` = 該 TC 所屬 leaf 之 TC 數，供 C2 / C8 判斷。
+    """
     bad = []
     d = tc.get("distinguishing_axis")
+    # **C2 訂正（R-P265(b)，39 包）**：由「`axis` 須存在且非空」
+    # 改為「**若該欄存在則須非空且為六值之一**」——
+    # §10.1 明訂 `distinguishing_axis` 為 **optional**，
+    # §4.6 明訂其輸出時機為 **`## Sibling Rows` injection** 時；
+    # leaf 僅產出 1 條 TC 者無 sibling 可注入，該欄之輸出條件本即不成立。
+    if d is None:
+        # **C8（R-P265(c)）**：leaf 產出 ≥ 2 條 TC 者，該欄**必須存在** ——
+        # 以免省略被誤用於有 sibling 之情形。
+        if n_siblings >= 2:
+            return [f"C8 該 leaf 產出 {n_siblings} 條 TC 而 `distinguishing_axis` 缺漏"]
+        return []
     if not isinstance(d, dict):
         return [f"C1 `distinguishing_axis` 非物件（{type(d).__name__}）"]
     if set(d) != {"axis", "delta"}:
         bad.append(f"C1 鍵組合為 {sorted(d)}，應為 ['axis', 'delta']")
     axis = d.get("axis")
     if not isinstance(axis, str) or not axis.strip():
-        bad.append("C2 `axis` 空或非字串")
+        bad.append("C2 `axis` 存在而為空或非字串")
     elif axis not in AXIS_ENUM:
-        # C6（R-P248(a)）：六值列舉
         bad.append(f"C6 `axis=\"{axis}\"` 不在 §4.6 之六值列舉內")
     if not isinstance(d.get("delta"), str) or not d.get("delta", "").strip():
         bad.append("C3 `delta` 空或非字串")
     dup = str(tc.get("duplicate_of", "")).strip()
-    # C4 / C7（R-P248(c)）：**雙向**契約
     if axis == "none" and not dup:
         bad.append("C4 `axis=\"none\"` 而 `duplicate_of` 未設")
     if dup and axis != "none":
@@ -67,10 +79,11 @@ def check_one(tc: dict) -> list[str]:
 
 
 def run(tcs: list[dict]) -> dict:
-    viol = [(t["tc_id"], b) for t in tcs if (b := check_one(t))]
     by_leaf: dict[str, list[dict]] = {}
     for t in tcs:
         by_leaf.setdefault(BASE_RE.match(t["req_id"]).group(1), []).append(t)
+    viol = [(t["tc_id"], b) for t in tcs
+            if (b := check_one(t, len(by_leaf[BASE_RE.match(t["req_id"]).group(1)])))]
 
     dup = []
     for leaf, group in by_leaf.items():
@@ -119,8 +132,17 @@ def self_test() -> int:
           t("X-002", "SWE-PM-900", "trigger_state", "同一句話")], 0, 1)
     case("應 FAIL C3 —— `delta` 為空",
          [t("X-001", "SWE-PM-900", "trigger_state", "")], 1, 0)
-    case("應 FAIL C1 —— 欄位缺漏",
-         [t("X-001", "SWE-PM-900", None, None)], 1, 0)
+    # **C2 訂正後（R-P265(b)）**：單條 leaf 缺該欄**不再違規** ——
+    # §10.1 明訂其為 optional，§4.6 明訂其輸出時機為 sibling 注入時。
+    case("應 PASS —— 單條 leaf 省略該欄（C2 訂正之效果）",
+         [t("X-001", "SWE-PM-900", None, None)], 0, 0)
+    # **C8（R-P265(c)）**：≥ 2 條之 leaf 缺該欄則違規 —— 防止省略被誤用
+    case("應 FAIL C8 —— leaf 有 2 條 TC 而缺該欄",
+         [t("X-001", "SWE-PM-900", None, None),
+          t("X-002", "SWE-PM-900", "trigger_state", "另一分支")], 1, 0)
+    case("應 FAIL C1 —— 欄位存在而非物件",
+         [t("X-001", "SWE-PM-900", None, None),
+          t("X-002", "SWE-PM-900", "trigger_state", "另一分支")], 1, 0)
     case("應 FAIL C4 —— `axis=\"none\"` 而無 `duplicate_of`",
          [t("X-001", "SWE-PM-900", "none", "與他條重複")], 1, 0)
     case("應 PASS C4 —— `axis=\"none\"` 且 `duplicate_of` 已設",

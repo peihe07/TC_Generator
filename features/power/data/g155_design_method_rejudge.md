@@ -96,8 +96,8 @@
 | `004` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `005` | Power Down | 功能測試 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `006` | Power Down | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
-| `007` | Power Down | 決策表 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
-| `008` | Power Down | 基礎故障注入 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `007` | Power Down | 決策表 | 8 | Scenario / Use Case | `跨 3 個功能：ICS 模組、電源狀態、音訊輸出` | **相異 → 人工裁決** |
+| `008` | Power Down | 基礎故障注入 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `009` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `010` | Power Down | 狀態轉換 | 6 | Boundary Value Analysis | `limit` | **相異 → 人工裁決** |
 | `011` | Power Down | 決策表 | 6 | Boundary Value Analysis | `limit` | **相異 → 人工裁決** |
@@ -105,7 +105,7 @@
 | `013` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `014` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `015` | Power Down | 決策表 | 5 | Equivalence Partitioning | `out of range` | **相異 → 人工裁決** |
-| `016` | Power Down | 決策表 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `016` | Power Down | 決策表 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `017` | Power Down | 決策表 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `018` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `019` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
@@ -114,10 +114,10 @@
 | `022` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `023` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `024` | Timeout Settings | 狀態轉換 | 1 | Negative / Invalid | `Attempt to` | **相異 → 人工裁決** |
-| `025` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
-| `026` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
-| `027` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
-| `028` | Timeout Settings | 狀態轉換 | 8 | Scenario / Use Case（**≥3 步，跨功能須人工確認**） | `procedure 3 步` | **相異 → 人工裁決** |
+| `025` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `026` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `027` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `028` | Timeout Settings | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `029` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
 | `030` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 3 項` | **相異 → 人工裁決** |
 | `031` | Timeout Settings | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 4 項` | **相異 → 人工裁決** |
@@ -131,7 +131,7 @@
 | `053` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `054` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `055` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
-| `056` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
+| `056` | Power State | 狀態轉換 | 8 | Scenario / Use Case | `跨 3 個功能：ICS 模組、電源狀態、音訊輸出` | **相異 → 人工裁決** |
 | `057` | Power State | 狀態轉換 | 9 | Functional Based（落底） | `（第 1–8 列皆未命中）` | **相異 → 人工裁決** |
 | `058` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |
 | `059` | Power State | 狀態轉換 | 4 | Decision Table（**代理判準之提案，須人工確認**） | `實質條件 2 項` | **相異 → 人工裁決** |

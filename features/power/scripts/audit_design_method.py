@@ -169,7 +169,22 @@ def main() -> None:
                f"= {len(bad)/len(sampled)*100:.1f}%**\n\n"
                "| tc_id | Test Set | 現值 | §12 首個命中列 | 應為 | 相符 | 依據 |\n"
                "|---|---|---|---|---|---|---|\n")
+    # **R-P227 / R-P214（38 包）**：`WALK` 為 **32 包之人工走查結果**，
+    # 其母體為當時之 `design_method` 值。38 包第二級改值後母體改變，
+    # 抽樣會取到未走查之 TC —— **人工走查不可機械重生**，
+    # 故不補寫，改為明確標示並回報其數。
+    unwalked = [t for t in sampled if t["tc_id"][-3:] not in WALK]
+    if unwalked:
+        print(f"  **{len(unwalked)} / {len(sampled)} 條不在 32 包之人工走查表內** "
+              f"{[t['tc_id'][-3:] for t in unwalked]}")
+        print("  —— 母體因 38 包改值而變；人工走查不可機械重生（R-P214），本表之"
+              "「不符率」自此僅對其交集有效。")
     for t in sampled:
+        if t["tc_id"][-3:] not in WALK:
+            out.append(f"| `{t['tc_id'][-3:]}` | {t['test_set']} | "
+                       f"{t['design_method'].split(' (')[0]} | — | — | "
+                       f"**未走查** | 母體因 38 包改值而變（R-P227） |\n")
+            continue
         row, method, same, why = WALK[t["tc_id"][-3:]]
         out.append(f"| `{t['tc_id'][-3:]}` | {t['test_set']} | "
                    f"{t['design_method'].split(' (')[0]} | 第 **{row}** 列 | {method} | "

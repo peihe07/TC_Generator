@@ -43,9 +43,9 @@
 | `081` | `SWE-PM-020` | 2. TLM_Status.Info reads "Full-Operation" entered through a call；3. TLM_Display.GUI is on a scre | 5 | `…-080` | 1 |
 | `082` | `SWE-PM-021` | 2. TLM_Status.Info and $Telematic_Power$ read "Idle"；3. Rear_View_Camera reads "Present" | 1 | **無** | 1 |
 | `086` | `SWE-PM-025` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. Phone_Call.Info reads "Active" | 10 | `…-087` | 0 |
-| `088` | `SWE-PM-025` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. The transfer popup is shown | 10 | `…-086` | 0 |
+| `088` | `SWE-PM-025` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. The transfer popup is shown after the F | 10 | `…-086` | 0 |
 | `090` | `SWE-PM-025` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. Phone_Call.Info reads "Active" | 10 | `…-087` | 0 |
-| `092` | `SWE-PM-025` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. The transfer popup is shown | 10 | `…-086` | 0 |
+| `092` | `SWE-PM-025` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. The transfer popup is shown after the C | 10 | `…-086` | 0 |
 | `095` | `SWE-PM-026` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. Brand_Configuration_2 reads "Jeep" and  | 4 | `…-094` | 1 |
 | `096` | `SWE-PM-026` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. Brand_Configuration_2 reads "Jeep" and  | 4 | `…-094` | 1 |
 | `097` | `SWE-PM-026` | 2. TLM_Status.Info and $Telematic_Power$ read "Timed"；3. Brand_Configuration_2 reads a value oth | 4 | `…-094` | 1 |

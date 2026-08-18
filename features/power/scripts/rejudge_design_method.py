@@ -27,6 +27,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from count_features import features_of  # noqa: E402  R-P259：第 8 列之功能數謂詞
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "features/power/data"
@@ -73,9 +74,21 @@ POSITIVE_RE = re.compile(
     r"is in [A-Za-z][\w -]*? (?:state|mode)|"
     r"reaches [A-Za-z][\w -]*? (?:state|mode)", re.I)
 ROW3_RE = POSITIVE_RE          # 舊名保留，指向正向謂詞
-# 第 6 列 Boundary：界線值
+# 第 6 列 Boundary —— 條件欄逐字 `Boundary (=limit, limit±1)`
+#
+# **v1 → v2 之訂正（R-P266 / G185，39 包）**
+# v1 為 `limit(\b|±)`，其命中**裸詞 `limit`** —— 語料實測 3 條偽陽性
+# （`…-010` / `…-011` / `…-015` 之「Read the volume **limit**」，
+#  該 `limit` 為音量上限之名詞，非受測之界線值）。
+# **與 37 包 `rejudge_axis` 所修者為同一缺陷**，而本檔當時未同步訂正。
+# v2 移除裸詞 `limit`，只保留**顯式之界線形態**：
+# `boundary` / `after the date passes` / `the day before` / `greater than`
+# （語料實測：`boundary` 4 條為季節起始日之界線，`greater than` 為
+#  `$VC_MODEL_YEAR$ equal to "2025"` vs `greater than "2025"` 之界線比較）。
+# 條件欄之 `limit±1` 形態（`limit+1` / `limit-1` / `=limit`）於語料中 **0 次**，
+# 故不設其謂詞（R-P250：取不到已知應命中實例者不得使用）。
 ROW6_RE = re.compile(r"after the date passes|boundary|the day before|"
-                     r"limit(?:\b|±)|greater than", re.I)
+                     r"greater than|less than|at the limit", re.I)
 # 第 4 列之「多條件」—— **不機械判定**（R-P226(d)），僅計前提中之條件數供人參考
 COND_RE = re.compile(r"^\s*\d+\.", re.M)
 
@@ -138,6 +151,7 @@ def propose(tc: dict) -> tuple[int | None, str, str]:
 
     §12 為 **first-match**：1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9。
     R-P236：落底第 9 列之前，第 4、5、7、8 列須先判定。
+    R-P259：第 8 列改以**功能數**為判準（見下）。
     """
     er, proc, data, pre = fields(tc)
     allt = f"{proc}\n{data}\n{er}"
@@ -167,11 +181,12 @@ def propose(tc: dict) -> tuple[int | None, str, str]:
     m = ROW6_RE.search(allt)
     if m:
         return 6, "Boundary Value Analysis", m.group(0)
-    # 第 7 列：本語料無可靠謂詞（見 PRED 之註解），不設。
-    # 第 8 列：≥ 3 步；**跨功能與否須人工確認**。
-    if len(STEP_RE.findall(proc)) >= 3:
-        return 8, "Scenario / Use Case（**≥3 步，跨功能須人工確認**）", \
-               f"procedure {len(STEP_RE.findall(proc))} 步"
+    # 第 7 列：本語料無可靠謂詞（R-P249 裁為死列，係 first-match 序之結果）。
+    # 第 8 列（**R-P259 訂正**）：§12 該列之條件欄為 `End-to-end flow, ≥3 features`，
+    # 舊謂詞誤取其 tie-break 之「≥ 3 steps」——**只數步數不數功能**。
+    feats = features_of(proc)
+    if len(feats) >= 3:
+        return 8, "Scenario / Use Case", f"跨 {len(feats)} 個功能：{'、'.join(feats)}"
     # 第 9 列 catch-all（R-P231(c)）：第 1–8 列皆未命中。
     return 9, "Functional Based（落底）", "（第 1–8 列皆未命中）"
 

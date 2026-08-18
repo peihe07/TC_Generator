@@ -10,15 +10,13 @@
 
 | 項 | 組數 |
 |---|---|
-| 內文全同而 `tc_title` **相異** | **9** |
+| 內文全同而 `tc_title` **相異** | **7** |
 | 內文全同且 `tc_title` 亦同（真重複） | **6** |
 
 ## 二、逐組
 
 | TC | 同 leaf | `tc_title` |
 |---|---|---|
-| `…-087`、`…-091` | 是 | Accepting the CLIMATIC_PANEL.Radio_Btn0 popup passes the TLM to Standby<br>Accepting the Front_Panel_OnOff.Req popup passes the TLM to Standby |
-| `…-088`、`…-092` | 是 | Declining the CLIMATIC_PANEL.Radio_Btn0 popup keeps the TLM in Timed<br>Declining the Front_Panel_OnOff.Req popup keeps the TLM in Timed |
 | `…-100`、`…-104` | **否** | Antitheft success clears the activation request<br>Antitheft success clears the activation request on this variant |
 | `…-101`、`…-105` | **否** | Antitheft success with a zero timeout takes Timeout1 from PROXI<br>Timeout1 follows Switch_Off_Time when the setting is zero |
 | `…-102`、`…-107` | **否** | Antitheft success on this variant passes the TLM to Timed<br>Antitheft success passes the TLM to Timed state |

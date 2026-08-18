@@ -8,6 +8,13 @@
     "load_dr",
     "main"
   ],
+  "apply_tier2_edits.py": [
+    "DATA",
+    "GEN",
+    "ROOT",
+    "final_row",
+    "main"
+  ],
   "assess_reasoning.py": [
     "DATA",
     "EMPTY_3",
@@ -43,6 +50,11 @@
     "SEED",
     "THRESHOLD",
     "load",
+    "main"
+  ],
+  "audit_gate_representativeness.py": [
+    "DATA",
+    "ROOT",
     "main"
   ],
   "audit_glued_or.py": [
@@ -87,6 +99,22 @@
     "load",
     "main"
   ],
+  "audit_row4_sources.py": [
+    "DATA",
+    "PROC_COND_RE",
+    "ROOT",
+    "data_conditions",
+    "load",
+    "main",
+    "proc_conditions",
+    "total_conditions"
+  ],
+  "audit_row_predicates.py": [
+    "CANON",
+    "DATA",
+    "ROOT",
+    "main"
+  ],
   "audit_style_predicates.py": [
     "DATA",
     "ROOT",
@@ -129,6 +157,13 @@
     "PROBE",
     "ROOT",
     "SHEET",
+    "main"
+  ],
+  "build_axis_review_38.py": [
+    "DATA",
+    "GROUPS",
+    "ROOT",
+    "SEED",
     "main"
   ],
   "build_b1.py": [
@@ -420,6 +455,15 @@
     "main",
     "sibling",
     "substantive_lines"
+  ],
+  "count_features.py": [
+    "DATA",
+    "EXCLUDED",
+    "ROOT",
+    "features_of",
+    "load",
+    "main",
+    "self_test"
   ],
   "dryrun_write_back.py": [
     "BLANK_COLUMNS",
@@ -758,6 +802,13 @@
     "ROOT",
     "main",
     "params"
+  ],
+  "scan_clause_duplicates.py": [
+    "BODY",
+    "DATA",
+    "ROOT",
+    "main",
+    "norm"
   ],
   "scan_clause_patterns.py": [
     "APPLICABILITY",
