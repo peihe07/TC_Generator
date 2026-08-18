@@ -179,6 +179,13 @@
     "SHEET",
     "main"
   ],
+  "build_axis_moved_sample.py": [
+    "DATA",
+    "ROOT",
+    "SEED",
+    "fence",
+    "main"
+  ],
   "build_axis_review_38.py": [
     "DATA",
     "GROUPS",
@@ -493,6 +500,16 @@
     "main",
     "self_test"
   ],
+  "dryrun_full_write_back.py": [
+    "BLANK_LEAF",
+    "DATA",
+    "FEATURE",
+    "ROOT",
+    "SANDBOX",
+    "main",
+    "ordered_tcs",
+    "pane_and_widths"
+  ],
   "dryrun_write_back.py": [
     "BLANK_COLUMNS",
     "DATA",
@@ -772,6 +789,24 @@
     "propose_axis",
     "self_test",
     "sig"
+  ],
+  "rejudge_axis_positive.py": [
+    "BASE",
+    "BOUNDARY_RE",
+    "DATA",
+    "FIELDS",
+    "INPUT_DATA_RE",
+    "MODE_RE",
+    "OBSERVE_RE",
+    "ORDER",
+    "ROOT",
+    "TIMING_RE",
+    "TRIGGER_STATE_RE",
+    "diff_lines",
+    "main",
+    "norm",
+    "propose",
+    "self_test"
   ],
   "rejudge_design_method.py": [
     "BENCH_RE",

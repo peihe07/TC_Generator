@@ -63,12 +63,26 @@ def load_cfg() -> dict:
 
 
 def row_values(tc: dict, cfg: dict, row: int) -> dict[str, object]:
-    """回傳 {欄字母: 值}。B 欄為序號（Power 之範本無編號公式 —— R-P90）。"""
+    """回傳 {欄字母: 值}。B 欄為序號（Power 之範本無編號公式 —— R-P90）。
+
+    **R-P141 之留白列（42 包訂正）**：`SWE-PM-089` 之列
+    「僅填 `req_id`，其餘欄一律留白；B 欄序號照常計入」——
+    **B 欄為明示例外，`tc_ref_id` / `author` 則否**。
+    舊版對每一列無條件寫入該二常數，於留白列即違本條；
+    且 `author` 正是 `done_region.detection` 之偵測欄，
+    寫入之會使該列看似已處理。**全量 dry-run（G201）方查出此事**。
+    """
     cols = cfg["workbook"]["columns"]
     wb_cfg = cfg["write_back"]
+    blank_row = str(tc.get("req_id", "")) == "SWE-PM-089" and not tc.get("tc_id")
     out: dict[str, object] = {"B": row - HEADER_ROW}
     for key, letter in cols.items():
         if key in BLANK_COLUMNS:
+            continue
+        if blank_row:
+            # 僅 `req_id`；其餘（含 `tc_ref_id` / `author`）一律留白
+            if key == "req_id":
+                out[letter] = tc.get(FIELD_OF.get(key, "req_id"), "")
             continue
         if key == "tc_ref_id":
             out[letter] = wb_cfg["tc_ref_id_value"]
