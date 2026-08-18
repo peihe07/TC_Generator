@@ -174,7 +174,7 @@ IF`、`THEN TLM`、`THENTLM`、`USB`、`WHEN`
 
 | 桶 | 計數 | 例（前 12）|
 |---|---|---|
-| 已由他條涵蓋 | **17** | `call`(#1)、`dab`(#1)、`expiration`(#1)、`restore`(#1)、`tuner`(#1)、`expiration`(#6)、`maxcalltimeout`(#6)、`expiration`(#7)、`maxcalltimeout`(#7)、`expiration`(#8)、`expiration`(#9)、`pass`(#10) |
-| 候選（須人工判 措詞差異 / 真缺口） | **40** | `bt`(#1)、`else`(#1)、`entertainment`(#1)、`etc`(#1)、`example`(#1)、`featur`(#1)、`like`(#1)、`manag`(#1)、`minutesand`(#1)、`rather`(#1)、`usb`(#1)、`able`(#2) |
+| 已由他條涵蓋 | **18** | `call`(#1)、`dab`(#1)、`expiration`(#1)、`manag`(#1)、`restore`(#1)、`tuner`(#1)、`expiration`(#6)、`maxcalltimeout`(#6)、`expiration`(#7)、`maxcalltimeout`(#7)、`expiration`(#8)、`expiration`(#9) |
+| 候選（須人工判 措詞差異 / 真缺口） | **39** | `bt`(#1)、`else`(#1)、`entertainment`(#1)、`etc`(#1)、`example`(#1)、`featur`(#1)、`like`(#1)、`minutesand`(#1)、`rather`(#1)、`usb`(#1)、`able`(#2)、`manage`(#2) |
 
 **合計**：行為項 **39**，已覆蓋 **37**，無對應 **2**。

@@ -681,7 +681,7 @@ def run_all_gates(tcs: list[dict], blacklist: dict, fingerprints: dict,
         + check_feature_yaml_consistency()
         + check_workbook_columns()
     )
-    ADJUDICATE_RULES = {"R-P42(b)", "R-P96(a)", "R-P96(b)"}
+    ADJUDICATE_RULES = {"R-P42(b)", "R-P96(a)", "R-P96(b)", "R-P142"}
     blocking = [f for f in all_findings if f["rule"] not in ADJUDICATE_RULES]
     adjudicate = [f for f in all_findings if f["rule"] in ADJUDICATE_RULES]
     return blocking, adjudicate
@@ -734,17 +734,30 @@ def check_s6_er_restatement(tcs: list[dict]) -> list[dict]:
         if len(steps) != len(ers):
             continue
         for i, (p_line, e_line) in enumerate(zip(steps, ers), 1):
-            # R-P133（19 包）：末步之比對須先剝除 R-P101 所強制之驗證意圖子句。
-            # A-PW92 —— G77 要求末步指名所檢查者，ER 述及同一標的時其實詞
-            # 必然多已見於該步驟；**該重疊為 R-P101 之產物，非撰寫者之複述**。
-            # 剝除者恰為本專案自己強制加入之文字，故非放寬判準。
-            # 非末步之 ER 行不適用，仍以完整步驟比對。
-            cmp_line = p_line
+            # R-P142（20 包）：**末步 ER 行不再以 overlap 判定。**
+            # R-P133（19 包）曾令先剝除 R-P101 所強制之驗證意圖子句再計 overlap；
+            # 19 §六實測：剝除使 overlap 由 1.00 降至 0.80，**而判定 12 → 12，
+            # 無一條脫離** —— 即 overlap 對末步為**錯誤工具**，
+            # R-P133 後段已由 R-P142 撤回（剝除邏輯隨之移除）。
+            #
+            # 根因為 R-P96 之判準有誤：其載「若某 ER 行在『該步驟被執行』之外
+            # 不含任何額外資訊，即為複述」，**而回讀含有額外資訊 —— 即該值本身**。
+            # 新判準為**可證偽性**：該 ER 行能否在其 procedure 步驟成功執行之
+            # 情形下仍然失敗。`The elapsed time is recorded` 記了即成立 → 複述；
+            # `TLM_Status.Info reads "Standby"` 讀到他值即 fail → 非複述。
+            #
+            # **可證偽性無法機械化**，故末步一律入 R-P76 之待人工裁決類（永久）；
+            # 依 R-P142(d) 該裁決不得省略 ——「沉默不算裁決」（R-P118(e)）同樣適用。
+            # 非末步之 ER 行維持 overlap 判定不變（R-P142(c)）。
             if i == len(steps):
-                m = FINAL_STEP_INTENT_RE.search(p_line)
-                if m:
-                    cmp_line = p_line[:m.start()]
-            pw, ew = _er_words(cmp_line), _er_words(e_line)
+                findings.append({
+                    "rule": "R-P142", "tc_id": tc_id,
+                    "detail": f"末步 ER 第 {i} 行須以**可證偽性**人工裁決"
+                              f"（該行能否在其步驟成功執行時仍然失敗）："
+                              f"「{e_line.strip()[:56]}」",
+                })
+                continue
+            pw, ew = _er_words(p_line), _er_words(e_line)
             if not ew:
                 continue
             overlap = len(ew & pw) / len(ew)
@@ -1317,30 +1330,39 @@ def self_test(blacklist: dict, fingerprints: dict) -> int:
     print(f"          相等時 findings 0；B 欄全空時 findings "
           f"{len(check_b_column_numbering(10, 0))}")
 
-    # G73 / R-P96 —— ER 複述偵測。
-    # 依 G46 / G71 / G72 之既有慣例，**不併入 per-fixture 聚合** ——
-    # 多數既有 fixture 之 ER 為「The boot sequence starts」形態，
-    # 本閘依設計即應標記之，併入會使無關 fixture 全數變動。
+    # G73 / R-P96 ＋ R-P142 —— ER 複述偵測。
+    # 依 G46 / G71–G74 之既有慣例，**不併入 per-fixture 聚合**。
+    # **R-P142（20 包）改判準後，末步 ER 行一律入待裁類**，
+    # 故「應 PASS」之案改為「非末步 0 項 R-P96、末步 1 項 R-P142」。
     er_ok = [make_tc(1, "SWE-PM-071", "Power Down",
                      test_procedure="1. Start the suspend-resume boot sequence\n"
-                                    "2. Read the TLM display through SplashScreen_Time",
+                                    "2. Read the TLM display through SplashScreen_Time "
+                                    "to check that no splash screen is shown",
                      expected_result="1. The TLM display stays blank while the boot "
                                      "sequence runs\n"
                                      "2. No splash screen is shown through SplashScreen_Time")]
+    # 複述置於**非末步**（三步），使 overlap 判定仍適用
     er_bad = [make_tc(1, "SWE-PM-071", "Power Down",
                       test_procedure="1. Start the suspend-resume boot sequence\n"
-                                     "2. Record the elapsed time from boot start",
+                                     "2. Record the elapsed time from boot start\n"
+                                     "3. Read the TLM display to check that the splash "
+                                     "screen is loaded",
                       expected_result="1. The boot sequence starts\n"
-                                      "2. The elapsed time is recorded from boot start")]
-    for label, tcs_, want in [("應 PASS —— ER 皆為可觀察結果", er_ok, 0),
-                              ("應 FAIL —— ER 複述 procedure 動作", er_bad, 2)]:
+                                      "2. The elapsed time is recorded from boot start\n"
+                                      "3. The splash screen is loaded")]
+    for label, tcs_, want_rp96, want_rp142 in [
+            ("應 PASS —— 非末步無複述（末步依 R-P142 入待裁）", er_ok, 0, 1),
+            ("應 FAIL —— 非末步之 ER 複述 procedure 動作", er_bad, 2, 1)]:
         got = check_s6_er_restatement(tcs_)
-        ok = (len(got) == 0) if want == 0 else (len(got) >= want)
+        n96 = len([f for f in got if f["rule"].startswith("R-P96")])
+        n142 = len([f for f in got if f["rule"] == "R-P142"])
+        ok = (n96 == want_rp96 if want_rp96 == 0 else n96 >= want_rp96) and n142 == want_rp142
         failures += not ok
         print(f"\n  [{'PASS' if ok else '**FAIL**'}] G73 {label}")
-        print(f"          期望 {'0' if want == 0 else f'≥{want}'} 項；實際 {len(got)} 項")
+        print(f"          期望 R-P96 {'0' if want_rp96 == 0 else f'≥{want_rp96}'} 項、"
+              f"R-P142 {want_rp142} 項；實際 {n96} / {n142}")
         for f in got[:3]:
-            print(f"          → {f['rule']} {f['detail'][:84]}")
+            print(f"          → {f['rule']} {f['detail'][:76]}")
 
     # G74 / R-P97 —— 時間量測之 ER 不得寫數值相等
     t74_ok = [make_tc(1, "SWE-PM-071", "Power Down",

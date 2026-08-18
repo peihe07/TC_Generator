@@ -1,15 +1,15 @@
 # B5 —— 殘差詞「措詞差異」抽樣覆核（R-P138）
 
-> 母體：第二批之「措詞差異」桶，共 **120** 個（候選 125 － 依 R-P42 委由他節者 5）。
+> 母體：第二批之「措詞差異」桶，共 **119** 個（候選 124 － 依 R-P42 委由他節者 5）。
 > 抽樣：`random.seed(19)` ＋ `random.sample(母體, 20)`；**種子值 19（＝本包編號）載明於本檔與 `build_residual_sample.py`**，可重現。
-> 抽樣率 **16.7%**。**由分析層覆核。**
+> 抽樣率 **16.8%**。**由分析層覆核。**
 > 註：18 包所報之唯一真缺口（`pre`）已由 `043` 補測，故不再出現於本母體。
 
 | leaf | 行為項 | 殘差詞 | 最佳對應 | overlap | 判為措詞差異之理由 |
 |---|---|---|---|---|---|
 | `SWE-PM-038` | #1 | `like` | `033` | 0.61 | `like` —— 舉例連接詞 |
-| `SWE-PM-038` | #8 | `minutesand` | `033` | 0.69 | CFTS 原文之排版黏連（`minutes AND`），非語義單位 |
-| `SWE-PM-038` | #11 | `thi` | `034` | 0.60 | `this` 之詞幹，指示代名詞 |
+| `SWE-PM-038` | #8 | `pas` | `033` | 0.69 | `passes` 之詞幹 —— TC 以 `is in … state` 述同一轉換結果 |
+| `SWE-PM-038` | #12 | `maximum` | `033` | 0.80 | `at maximum until MaxCallTimeout expiration` —— 該上界由 `037` / `042` 之到期分支覆蓋 |
 | `SWE-PM-057` | #4 | `respectively` | `018` | 0.60 | 英文連接副詞，無獨立可觀察標的 |
 | `SWE-PM-057` | #7 | `user` | `018` | 0.67 | 規格以 `the user can select` 述主體，TC 之 procedure 以祈使句 `Select …` 述同一動作；主體詞於 TC 中不出現屬體例差異 |
 | `SWE-PM-057` | #8 | `equal` | `018` | 0.47 | 規格用 `is equal to`，TC 用 `reads` —— 同一斷言之不同措詞 |
@@ -32,7 +32,7 @@
 
 - `SWE-PM-038` #1（最佳對應 `033`，overlap 0.61）：Case 1:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info passes to "Not_Active" before "Timeout1” expiration THEN IF RemStartFail = ”True” TLM has to stop its active functi
 - `SWE-PM-038` #8（最佳對應 `033`，overlap 0.69）：Case 3:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info == "Not_Active" at Timeout1 expiration THENTLM has to set TLM_Status.Info to “Standby” value and to pass to Standby
-- `SWE-PM-038` #11（最佳對應 `034`，overlap 0.60）：In this case, TLM has to manage the phone call(s) and to stay in Timed state
+- `SWE-PM-038` #12（最佳對應 `033`，overlap 0.80）：until Phone_Call.Info passes to "Not_Active" value OR at maximum
 - `SWE-PM-057` #4（最佳對應 `018`，overlap 0.60）：so Timeout1 is equal to "00 min" OR "60 minutes" respectively
 - `SWE-PM-057` #7（最佳對應 `018`，overlap 0.67）：For the case of LTM High Radio not present, the user can select SwitchOff_Timeout_Setting.Req value equal to "00 minutes" OR equal to the value specified by PROXI paramet
 - `SWE-PM-057` #8（最佳對應 `018`，overlap 0.47）：For case of LTM High Radio present, see Auto_SwitchOn_Setting.Req management section Timeout1 parameter is equal to the value set by the user through SwitchOff_Timeout_Se
@@ -43,3 +43,53 @@
 - `SWE-PM-063` #1（最佳對應 `028`，overlap 0.32）：In Timed state, it is possible either to make and to receive one or more bluetooth phone calls according to following logics that depend on Timeout1 and on MaxCallTimeout
 - `SWE-PM-065` #1（最佳對應 `031`，overlap 0.46）：Case 1:IF Timeout1 <> 00 minutesAND IF Phone_Call.Info passes to "Not_Active" before "Timeout1” expiration THEN TLM has to restore the active source managed by TLM before
 - `SWE-PM-065` #2（最佳對應 `032`，overlap 0.36）：In this case, TLM is still able to manage other possible phone calls within Timeout1 expiration
+
+---
+
+## B4 —— 「已由他條涵蓋」桶之覆核（R-P145）
+
+該桶共 **21** 項，**全數列出（覆核率 100%，高於「措詞差異」桶之 16.8%）**。
+
+> 該桶雖為機械判定（該殘差詞見於同 leaf 之他條 TC），**其判定規則仍為執行層所訂** —— 故一併送覆核。
+
+| leaf | 行為項 | 殘差詞 | 最佳對應 | overlap | 見於同 leaf 之他條 |
+|---|---|---|---|---|---|
+| `SWE-PM-038` | #1 | `call` | `033` | 0.61 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #1 | `dab` | `033` | 0.61 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #1 | `expiration` | `033` | 0.61 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #1 | `manag` | `033` | 0.61 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #1 | `restore` | `033` | 0.61 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #1 | `tuner` | `033` | 0.61 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #6 | `expiration` | `033` | 0.82 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #6 | `maxcalltimeout` | `033` | 0.82 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #7 | `expiration` | `033` | 0.85 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #7 | `maxcalltimeout` | `033` | 0.85 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #8 | `expiration` | `033` | 0.69 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #9 | `expiration` | `033` | 0.73 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #10 | `pass` | `043` | 0.67 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #10 | `start` | `043` | 0.67 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #14 | `condition` | `033` | 0.60 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #14 | `previou` | `033` | 0.60 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #15 | `condition` | `033` | 0.67 | 同 leaf 共 11 條 |
+| `SWE-PM-038` | #15 | `previou` | `033` | 0.67 | 同 leaf 共 11 條 |
+| `SWE-PM-062` | #1 | `active` | `026` | 0.69 | 同 leaf 共 3 條 |
+| `SWE-PM-062` | #1 | `recall_last` | `026` | 0.69 | 同 leaf 共 3 條 |
+| `SWE-PM-065` | #1 | `manag` | `031` | 0.46 | 同 leaf 共 2 條 |
+
+---
+
+## B5 —— 信噪比：原值與黏連正規化後之值並存（R-P146）
+
+> **判準未改**（20 §I）—— 黏連僅另列一行，不自母體剔除，**不以任一值取代另一值**。
+
+| 口徑 | 分子（真缺口）| 分母（殘差詞）| 信噪比 |
+|---|---|---|---|
+| **原值**（19 包所報）| 1 | 145 | **0.7%** |
+| **黏連正規化後** | 1 | 138 | **0.7%** |
+
+被判為抽取層黏連之殘差詞（**7** 項，2 個相異詞）：
+
+`expirationthenat`、`minutesand`
+
+其原文形態取自 `source_clause` 中含內部大小寫轉折之詞（如 `00 minutesAND`、`expirationTHENat`、`THENTLM`）——
+係轉檔時空白遺失所致，**非語義單位**。

@@ -10,7 +10,7 @@
       "section": "1.6.2.1.17; 1.6.3.1.1; 1.8.1.1.1",
       "source_anchor": "4941692,4941693,4941695,4941706,4941707,4941708,4941814,4941815,4941817",
       "source_clause": "IF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\nIF \"Switch_Off_Time\" parameter  is set  to \"60 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"60 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"60 minutes\" respectively.\nIF \"Switch_Off_Time\" parameter  is set  to \"180 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"180 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"180 minutes\" respectively.\nFor the case of LTM High Radio not present, the user can select SwitchOff_Timeout_Setting.Req value equal to \"00 minutes\" OR equal to the value specified by PROXI parameter \"Switch_Off_Time\". For case of LTM High Radio present, see Auto_SwitchOn_Setting.Req management section\nTimeout1 parameter is equal to the value set by the user through SwitchOff_Timeout_Setting.Req.\nSo, user can set SwitchOff_Timeout_Setting.Req to \"00 minutes\" OR to \"20 minutes\" IF PROXI parameter \"Switch_Off_Time\" is equal to \"20 minutes\".\nIF \"Switch_Off_Time\" parameter  is set  to \"20 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"20 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"20 minutes\" respectively.\nIF \"Switch_Off_Time\" parameter  is set  to \"60 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"60 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"60 minutes\" respectively.\nIF \"Switch_Off_Time\" parameter  is set  to \"180 minutes\"  then the user can select SwitchOff_Timeout_Setting.Req to \"00 min\" OR to \"180 min\" in TLM menu; so Timeout1 is equal to \"00 min\" OR \"180 minutes\" respectively.",
-      "reasoning": "驗證目標：`Timeout1` 之可選值由 PROXI 參數 `Switch_Off_Time` 決定，使用者經 TLM menu 以 `SwitchOff_Timeout_Setting.Req` 於「00 min」與該 PROXI 值之間擇一。為什麼這樣切：三個 PROXI 值（20 / 60 / 180 分）為三組獨立之可選集合，依 §8.2.2 各拆一條；`4941814` / `4941815` / `4941817`（§1.8.1.1.1）與 `4941692` / `4941693` / `4941695`（§1.6.2.1.17）**逐字相同**，屬同一行為之重複登載，不另拆條。刻意略過：`4941706` 之「LTM High Radio present」分支明指另一節（Auto_SwitchOn_Setting.Req management），依 R-P42 不在本 leaf 之錨點範圍。　**R-P132(b) 歸屬檢驗（18 包）**：本 leaf 之九個錨點原文**全部**述及 `SwitchOff_Timeout_Setting.Req` 與 `Timeout1`，即 Timeout Settings 之核心對象；037 之 Requirement Title 雖為 `Proxi Parameter management`，其行為確屬 Timeout Settings。**R-P34 之歸屬經本批實際撰寫檢驗為正確，無須停並上繳。**"
+      "reasoning": "驗證目標：`Timeout1` 之可選值由 PROXI 參數 `Switch_Off_Time` 決定，使用者經 TLM menu 以 `SwitchOff_Timeout_Setting.Req` 於「00 min」與該 PROXI 值之間擇一。為什麼這樣切：三個 PROXI 值（20 / 60 / 180 分）為三組獨立之可選集合，依 §8.2.2 各拆一條；`4941814` / `4941815` / `4941817`（§1.8.1.1.1）與 `4941692` / `4941693` / `4941695`（§1.6.2.1.17）**逐字相同**，屬同一行為之重複登載，不另拆條。**§8.2.1 委出（R-P154 訂正，22 包）**：`4941706` 之「LTM High Radio present」分支不由本 leaf 測。**原 `reasoning` 以 R-P42 為依據係誤用** —— `4941706` **在**本 leaf 之 `source_anchor` 清單內，為被引用之錨點；R-P42 管「未被引用者不測」，不管「被引用者之某分支得不測」。正當依據為 **§8.2.1（行為由 sibling Req 承擔）**。\n**承接者已查得**：`4941706` 所指之「Auto_SwitchOn_Setting.Req management section」即 CFTS009 **§1.6.3.1.2**，其錨點為 **`4941710`**，屬 **`SWE-PM-062`**，由 **`NR1L-PowerManagement-025` / `026` / `027`** 承擔。\n**行為對應之依據**：`4941702` 載「For LTM/ETM, the user can set **one** parameter, by means of `Auto_SwitchOn_Setting.Req`」——即 LTM High 存在時 `SwitchOff_Timeout_Setting.Req` 不可選，`Timeout1` 改由 `Auto_SwitchOn_Setting.Req` 決定（`4941710` 之三值各附其 `Timeout1` 條件）。**故該分支確有承接者，非 coverage hole。**　**R-P132(b) 歸屬檢驗（18 包）**：本 leaf 之九個錨點原文**全部**述及 `SwitchOff_Timeout_Setting.Req` 與 `Timeout1`，即 Timeout Settings 之核心對象；037 之 Requirement Title 雖為 `Proxi Parameter management`，其行為確屬 Timeout Settings。**R-P34 之歸屬經本批實際撰寫檢驗為正確，無須停並上繳。**"
     },
     {
       "parent": "SWE-PM-060",
@@ -31,7 +31,7 @@
       "section": "1.6.3.1.2",
       "source_anchor": "4941710",
       "source_clause": "User can select Auto_SwitchOn_Setting.Req value equal to \"Active\" (If LTM High is present: \"Timeout1\" = \"00 minutes\");\"Not_Active (If LTM High is present:\"Timeout1\" <> \"00 minutes\");\"Recall_Last\" (If LTM High is present:\"Timeout1 = \"00 minutes\")",
-      "reasoning": "驗證目標：`Auto_SwitchOn_Setting.Req` 之三個可選值及其於 LTM High 存在時對 `Timeout1` 之條件。為什麼這樣切：三值為三個獨立之使用者選擇與其後果，依 §8.2.2 各拆一條。"
+      "reasoning": "驗證目標：`Auto_SwitchOn_Setting.Req` 之三個可選值及其於 LTM High 存在時對 `Timeout1` 之條件。為什麼這樣切：三值為三個獨立之使用者選擇與其後果，依 §8.2.2 各拆一條。　**R-P155 分支查證（22 包）**：`025` / `026` / `027` 之 pre_condition 皆為「An LTM High Radio is present」，即**僅測 LTM High 存在側**。**不存在側未補測，理由為規格未定義** —— `4941710` 之三個括號條件（`If LTM High is present: \"Timeout1\" = / <> \"00 minutes\"`）**僅就存在側給出 `Timeout1` 之結果**，對不存在側之 `Timeout1` 關係**一字未載**。依 §8.4.1 不得造值，故登記為「規格未定義，不補測」而非缺口。另記：不存在側之 `SwitchOff_Timeout_Setting.Req` 選擇由 `SWE-PM-057`（`018` / `019` / `020`）承擔，其 pre_condition 為「An LTM High Radio is absent」，二者互補。"
     },
     {
       "parent": "SWE-PM-063",
@@ -216,7 +216,7 @@
         "axis": "behaviour",
         "delta": "本條驗肯定分支：Full-Operation 下設定可用"
       },
-      "reasoning_note": "",
+      "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。",
       "split_index": 1
     },
     {
@@ -242,7 +242,7 @@
         "axis": "behaviour",
         "delta": "本條驗否定分支：非 Full-Operation 下設定不可用"
       },
-      "reasoning_note": "**§7 之獨立分支（18 包）**：`4941703` 逐字為「These settings could be only done in TLM Full-Operation Status」。僅驗肯定側時，「任何狀態皆可設定」之實作亦會通過 —— 否定側為該需求唯一可被證偽之處，故拆為獨立一條。",
+      "reasoning_note": "**R-P157(ii)（22 包）**：本條 ER1 述「timeout setting entry 之呈現／其控制項啟用與否」。`4941703` 僅載「These settings could be only done in TLM Full-Operation Status」，**未載該項於 HMI 上如何呈現**。該行為**僅描述觀察到之事實，不以之為 pass/fail 判準** ——本條之判準為 ER2（設定是否被接受／被拒），其依據即該錨點原文。",
       "split_index": 2
     },
     {
@@ -333,7 +333,7 @@
       "pre_conditions": "1. A paired bluetooth phone is available on the bench\n2. The TLM is in Timed state",
       "input_test_data": "NA",
       "test_procedure": "1. Place an outgoing bluetooth call from the paired phone through the TLM\n2. End that call and receive an incoming bluetooth call\n3. Read the call audio routing and the TLM state to check that both calls were served",
-      "expected_result": "1. The outgoing call is connected and its audio is routed through the TLM\n2. The incoming call is presented and can be answered\n3. Both calls were served and the TLM remains in Timed state",
+      "expected_result": "1. The outgoing call is connected\n2. The incoming call is presented and can be answered\n3. Both calls were served and the TLM remains in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -411,7 +411,7 @@
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. A DAB Tuner source was active before the call\n4. Phone_Call.Info is at \"Active\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before Timeout1 expires\n2. Read the active audio source and the TLM state to check that the previous source returned",
-      "expected_result": "1. The call is released and its audio is removed from the TLM output\n2. The DAB Tuner source is active again and the TLM remains in Timed state",
+      "expected_result": "1. Phone_Call.Info reads \"Not_Active\" before Timeout1 expires\n2. The DAB Tuner source is active again and the TLM remains in Timed state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P1",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -437,7 +437,7 @@
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. One call has already ended before Timeout1 expiry",
       "input_test_data": "NA",
       "test_procedure": "1. Place a second bluetooth call while Timeout1 is still running\n2. Read the call audio routing and the TLM state to check that the second call is served",
-      "expected_result": "1. The second call is connected and its audio is routed through the TLM\n2. The TLM remains in Timed state while the second call runs",
+      "expected_result": "1. The second call is connected and is managed by the TLM\n2. The TLM remains in Timed state while the second call runs",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P2",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -489,7 +489,7 @@
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. RemStartFail is at \"False\"\n4. A DAB Tuner source was active before the call",
       "input_test_data": "NA",
       "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before Timeout1 expires\n2. Place a further bluetooth call while Timeout1 is still running\n3. Read the active source and the TLM state to check the restore and the further call",
-      "expected_result": "1. The DAB Tuner source is active again and the TLM remains in Timed state\n2. The further call is connected and its audio is routed through the TLM\n3. The TLM stayed in Timed state throughout and no transition to Standby occurred",
+      "expected_result": "1. The DAB Tuner source is active again and the TLM remains in Timed state\n2. The further call is connected and is managed by the TLM\n3. The TLM stayed in Timed state throughout and no transition to Standby occurred",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -541,7 +541,7 @@
       "pre_conditions": "1. The TLM is in Timed state with MaxCallTimeout running\n2. Phone_Call.Info is at \"Active\"",
       "input_test_data": "NA",
       "test_procedure": "1. Set Phone_Call.Info to \"Not_Active\" before MaxCallTimeout expires\n2. Read TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. The call is released and its audio is removed from the TLM output\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "expected_result": "1. Phone_Call.Info reads \"Not_Active\" before MaxCallTimeout expires\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -567,7 +567,7 @@
       "pre_conditions": "1. The TLM is in Timed state with MaxCallTimeout running\n2. RemStartFail is at \"True\"\n3. Phone_Call.Info is at \"Active\"",
       "input_test_data": "NA",
       "test_procedure": "1. Let MaxCallTimeout run to its expiration while the call stays active\n2. Read RemStartFail, TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. The call is released at MaxCallTimeout expiration\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "expected_result": "1. MaxCallTimeout reaches its expiration while Phone_Call.Info is still \"Active\"\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -575,7 +575,7 @@
       "split_reason": "本條驗 Case 2 之離開路徑：MaxCallTimeout 到期（含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
       "distinguishing_axis": {
         "axis": "behaviour",
         "delta": "本條驗 Case 2 之離開路徑：MaxCallTimeout 到期（含 RemStartFail 處置）"
@@ -593,7 +593,7 @@
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. Phone_Call.Info is at \"Not_Active\"",
       "input_test_data": "NA",
       "test_procedure": "1. Let Timeout1 run to its expiration with no call active\n2. Read TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. No call is active when Timeout1 expires and MaxCallTimeout does not start\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "expected_result": "1. No call is active when Timeout1 expires\n2. TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -619,7 +619,7 @@
       "pre_conditions": "1. Timeout1 is at a value other than \"00 min\"\n2. The TLM is in Timed state\n3. RemStartFail is at \"True\"\n4. Phone_Call.Info is at \"Not_Active\"",
       "input_test_data": "NA",
       "test_procedure": "1. Let Timeout1 run to its expiration with no call active\n2. Read RemStartFail, TLM_Status.Info and the TLM state to check the transition to Standby",
-      "expected_result": "1. No call is active when Timeout1 expires and MaxCallTimeout does not start\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
+      "expected_result": "1. No call is active when Timeout1 expires\n2. RemStartFail reads \"False\", TLM_Status.Info reads \"Standby\" and the TLM is in Standby state",
       "specification_reference": "R1LR_Atl-H_25PI3.5_Activation and Configuration_CFTS_009_Wake-up and Power-up_SR26_20250909-1658_1.6.4.1",
       "priority": "P0",
       "design_method": "狀態轉換 (State Transition Testing)",
@@ -627,7 +627,7 @@
       "split_reason": "本條驗 Case 3（含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
       "distinguishing_axis": {
         "axis": "behaviour",
         "delta": "本條驗 Case 3（含 RemStartFail 處置）"
@@ -705,7 +705,7 @@
       "split_reason": "本條驗 Case 4 之離開路徑（`4941736`，含 RemStartFail 處置）",
       "functional_safety": "NA",
       "estimated_test_time": "",
-      "remarks": "",
+      "remarks": "DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review",
       "distinguishing_axis": {
         "axis": "behaviour",
         "delta": "本條驗 Case 4 之離開路徑（`4941736`，含 RemStartFail 處置）"

@@ -1462,6 +1462,12 @@ G59 雙向實測：有 profile → 0 findings；無 profile → 2 findings（訊
 五條已讀 TC 中五條將 procedure 動作複述為 ER。
 判讀價值之要求已由 R-P96 補足。原文保留。**
 
+**註記（R-P142，20 包）：本條之複述判準有誤 ——
+其載「若某 ER 行在『該步驟被執行』之外不含任何額外資訊，即為複述」，
+而**回讀含有額外資訊，即該值本身**（`TLM_Status.Info reads "Standby"`
+讀到他值即 fail）。判準已由 R-P142 改立為**可證偽性**；
+末步 ER 行自 20 包起不再以 overlap 判定，一律入待人工裁決類。原文保留。**
+
 ```
 [R-P88] **`pre_conditions` 不得含系統預設與環境穩定性前提（G64）。**
         `001` / `002` 之第 1 項「The TLM is powered from a stable supply」
@@ -2649,6 +2655,11 @@ lint `exit=0`；阻斷類 PASS；**待人工裁決類 12 項**（皆為 R-P96(a)
 **執行層依 R-P76 分流並逐項裁決（上繳 §六），未改動任一閘門、未改寫任一條 ER；
 二種讀法之歧異一併呈報，不代分析層裁定。**
 
+**註記（R-P142，20 包）：本條後段「剝除後若某條仍觸發，即為真複述」已撤回。
+剝除前 12、剝除後 12，無一條脫離 —— 主因非 check 子句而係回讀形態本身，
+即 overlap 對末步為錯誤工具。剝除邏輯已自 `check_s6_er_restatement` 移除，
+末步改以可證偽性人工裁決；19 §6.3 之十二條全數裁為偽陽性，ER 不改寫。原文保留。**
+
 ```
 [R-P134] 錨點清單完整性補閘（G99）。
          18 §七(乙)7：G94 比對 `source_clause` 與執行層所填之
@@ -2835,25 +2846,492 @@ fixture：完整清單→相等；次序不同→相等；**刻意刪一個錨�
 
 ---
 
+---
+
+## 第二十輪 — 下放包 20（`docs/handoff/20_falsifiability.md` §A）
+
+```
+[R-P142] R-P133 後段撤回；末步 ER 之複述判準改為可證偽性。
+         R-P133 後段載「剝除後若某條仍觸發，即為真複述」——
+         19 §六實測：剝除前 12、剝除後 12，無一條脫離。
+         執行層指出主因非 check 子句，而係「末步讀 X、
+         ER 述 X 之值」之回讀形態本身，該判讀正確。
+
+         根因為 R-P96 之判準有誤。R-P96 載
+         「若某 ER 行在『該步驟被執行』之外不含任何額外資訊，
+          即為複述」——
+         **回讀含有額外資訊，即該值本身。**
+
+         改立判準：某 ER 行是否為複述，取決於
+         **該行能否在其 procedure 步驟成功執行之情形下仍然失敗**。
+           `The elapsed time is recorded from boot start`
+             —— 記了即成立，不可能失敗 → 複述
+           `TLM_Status.Info reads "Standby"`
+             —— 讀到他值即 fail → 非複述
+
+         處置：
+         （a）19 §6.3 之十二條**全數裁為偽陽性**，ER 不改寫
+         （b）G73 對**末步 ER 行**不再以 overlap 判定，
+              一律列入 R-P76 之待人工裁決類，永久
+         （c）非末步之 ER 行維持 overlap 判定不變
+         （d）可證偽性無法機械化，故 (b) 之人工裁決不得省略；
+              「沉默不算裁決」（R-P118(e)）於此同樣適用
+
+         R-P96 / R-P133 依 R-P36 原文不改，各於其下加註指向本條。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：已全數落實。**
+（a）19 §6.3 之十二條**全數裁為偽陽性，ER 一字未改**。
+（b）`check_s6_er_restatement` 之末步分支已改 —— **不再計 overlap**，
+     一律以 `rule="R-P142"` 入 R-P76 之待人工裁決類；R-P133 之剝除邏輯隨之移除。
+（c）非末步之 ER 行維持 overlap 判定（`R-P96(a)` / `R-P96(b)`）不變。
+（d）詳附之 `detail` 逐條載明其須以**可證偽性**裁決，「沉默不算裁決」同樣適用。
+
+**改動後之 lint（43 條 TC）**：
+**阻斷類 PASS**；**待人工裁決類 44 項** ——
+其中 **43 項為 R-P142**（每條 TC 之末步 ER 行各一），
+**1 項為 R-P96(a)**（`028` 之**非末步**第 1 行，overlap 0.57）。
+該 1 項執行層裁為**偽陽性**：`The outgoing call is connected and its audio is
+routed through the TLM` 在「撥出動作成功執行」之情形下**仍可能失敗**（未接通、
+音訊未路由至 TLM），符可證偽性。
+
+R-P96 / R-P133 已各加註，**原文位元組未變**：
+R-P96 SHA256 `5bcbe45e…cb54`（1499 bytes）、R-P133 `fd3c7c25…5c30`（993 bytes），
+加註前後相同。
+
+G73 之 fixture 已隨判準改寫：複述案改置於**非末步**（三步 procedure），
+正常案之期望改為「非末步 R-P96 0 項、末步 R-P142 1 項」。二案皆如期。
+
+```
+[R-P143] R-P135 三對成對錨點之屬性值須全文上繳，裁定暫緩。
+         G100 實測三對屬性皆相異，差異欄位為
+         `Model Year` / `Radio` / `State`。
+
+         `Model Year` 與 `Radio` 相異屬變體登載，合併與否可議；
+         **`State` 相異性質不同** —— 該欄為 Polarion 之工作流狀態，
+         非需求屬性。若成對錨點中有一者之 `State` 非 Approved，
+         其是否在範圍內即成問題，而非合併與否之問題。
+
+         本包不裁合併，先取資料：
+         三對六個錨點之**全部屬性逐欄原值**（不摘要、不歸納），
+         特別標明各自之 `State` 值。
+         另回報：SYS2 匯出之收錄條件是否含 `State` 過濾
+         （其檔名為 `All_Accepted`，該詞是否即指 State = Accepted）。
+
+         裁定於 21 包，待資料齊備。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：六個錨點之全部屬性逐欄原值已附，`State` 已標明；`All_Accepted` 之查證結果為「否」。**
+輸出 `data/b2_anchor_state.md`，含各錨點之**標頭原字串逐字**（供覆核抽取是否完整）。
+
+`State` 實測：
+`4941727` **Under Review** / `4941728` **Under Review**（**該對之 State 相同**）；
+`4941729` **New** / `4941730` **Under Review**；
+`4941735` **New** / `4941736` **Under Review**。
+即三對中**僅二對之 `State` 相異**，第一對僅 `Model Year` 相異。
+
+**`All_Accepted` 是否即 State 過濾 —— 否，二者不是同一件事。**
+SYS2 匯出中**無 `[State:…]` 之對應欄**；其狀態欄為
+`SYS2 HARMAN Status`（第 15 欄）與 `SYS2 MD Status`（第 17 欄）。
+CFTS009 之 `HARMAN Status`：`Accepted` **168**、**`Need rework` 4**；
+CFTS010 皆 `Accepted`。
+**即檔名之 `All_Accepted` 於 CFTS009 並非字面為真。**
+該四列為 `Sys-RA-PM-0021` / `0291` / `0292` / `0293`；
+順帶查證其範圍：全 115 leaf 中僅 `SWE-PM-112` 引用其一（`0293`），
+**不落在已產出 TC 之 11 leaf 內**，不影響現有 43 條。
+
+**執行層未裁定合併或排除**（裁定於 21 包）。
+
+```
+[R-P144] layer3 之 token 層完整性補閘（G103）。
+         19 §八(甲)1：G99 驗 `source_anchor` 等於 layer3 之 `item_ids`，
+         而 layer3 本身之正確性係 03–06 包所驗，非本閘所驗。
+         **若某 leaf 之 `Source Requirement ID` 於 layer3 建表時
+         漏了一個 `Sys-RA-*` token，G94 全綠、G99 亦全綠，
+         而該錨點從頭到尾無人看過。**
+
+         G103：自 037 之 `Source Requirement ID` 欄**獨立重算**
+         錨點鏈（token → SYS2 → item id），與 `layer3_full.tsv`
+         之 `item_ids` 逐 leaf 比對。
+         （a）重算須以 §C 之四條正則獨立為之，
+              **不得讀取 layer3 之任何中間產物**
+         （b）不相等即 FAIL，列出兩側差集
+         （c）以刻意自 037 某列刪去一個 token 之 fixture 證明其會失敗
+
+         G94 驗「抄對了」、G99 驗「抄全了 layer3 所載者」、
+         G103 驗「layer3 載全了 037 所引者」——
+         三者齊備，反向涵蓋之地基方完整。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：G103 已實作，11 / 11 相等，fixture 四案如期 —— 且第四案當場暴露一個真漏洞。**
+`verify_layer3.py` 自 037 之 `Source Requirement ID` 欄獨立重算
+（token → SYS2 → item id），§C 正則於該檔**獨立宣告**，
+**未讀取 `item_to_chapter.json` / `leaf_main_chapter.json` 之任何內容**；
+`layer3_full.tsv` 僅作比對對象。
+
+**一項須明報者**：fixture 之第四案原寫為「多一個不存在之 token → 應 FAIL」，
+實測為**相等** —— 因不可解析之 token 不產生任何 item，集合自然相等。
+**那不是閘門瑕疵，是我的期望值寫錯**；但它暴露了一個真的漏洞：
+**037 若引用 SYS2 未載之 token，該錨點形同消失而閘門全綠。**
+已將 `unresolved` 併入判定（`ok = 集合相等 and not unresolved`），
+第四案改為「037 引用 SYS2 未載之 token（錨點形同消失）→ FAIL」，現如期。
+本包 11 leaf 之 unresolved 為 **0**。
+
+至此 **G94 驗「抄對了」、G99 驗「抄全了 layer3 所載者」、G103 驗「layer3 載全了 037 所引者」**。
+
+```
+[R-P145] 殘差詞抽樣須涵蓋「已由他條涵蓋」桶。
+         19 §八(甲)3：B5 之抽樣僅覆核「措詞差異」桶；
+         **若某真缺口被誤分進「已由他條涵蓋」桶，
+         它根本進不了抽樣母體。**
+         該桶雖為機械判定，其判定規則仍為執行層所訂。
+
+         自「已由他條涵蓋」桶抽樣覆核，抽樣率不低於「措詞差異」桶
+         （19 包為 16.7%）；桶內項數不足時全數列出。
+         種子沿用或另訂皆可，須載明。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：「已由他條涵蓋」桶共 20 項，全數列出，覆核率 100%。**
+高於「措詞差異」桶之 16.7%，符本條「不低於」之要求。
+該桶雖為機械判定（殘差詞見於同 leaf 之他條 TC），
+**其判定規則仍為執行層所訂**，故一併送覆核。
+輸出併於 `data/b5_residual_sample.md` §B4。
+
+```
+[R-P146] 抽取層黏連得另列正規化後之信噪比，原值並存。
+         19 §八(乙)6：`minutesand` / `thentlm` / `expirationthenat`
+         等係 CFTS 原文之排版黏連，非語義單位，
+         其拉高分母而拉低信噪比 —— 0.7% 有一部分係抽取層造成。
+         執行層未做黏連正規化，理由為「那會改動判準」，
+         該克制正確（17 §I 之教訓）。
+
+         處置：**判準不改**，但報告增列一行
+         「黏連正規化後之信噪比」，與原值並存，
+         並列出被判為黏連之 token 清單供覆核。
+         二值並陳，不以任一取代另一。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層回報：二值並存，且須明報 —— 正規化後之效果遠小於 19 包所述。**
+
+| 口徑 | 分子 | 分母 | 信噪比 |
+| 原值（19 包） | 1 | 145 | **0.7%** |
+| 黏連正規化後 | 1 | **138** | **0.7%** |
+
+**被判為黏連者僅 7 項（2 個相異詞：`minutesand`、`expirationthenat`），
+分母 145 → 138，比值不動。**
+
+**19 §八(乙)6 所稱「它們拉高分母，也就拉低了信噪比 —— 0.7% 有一部分是抽取層造成的」
+於實測下為誇大**：黏連確實存在，但其量不足以移動該比值。執行層更正此陳述。
+
+判準演進亦如實記錄（三版）：初版以「內部大小寫轉折」判定，
+**誤將 `MaxCallTimeout` 這類 CamelCase 參數名判為黏連**（虛報 23 項）；
+次版子字串精確化仍留 `maxcalltimeout`（10 項）；
+現版限定「內嵌全大寫連接詞（AND / THEN / OR / IF / WHEN / ELSE）」，得 7 項。
+**專案判準（透鏡 3 之殘差規則）未改**，改的僅為本報告之黏連辨識啟發式。
+
+```
+[R-P147] 編號一律先查後開，兩層適用。
+         19 §八(丙)7：執行層於裁決回報中先寫「已登記為 A-PW98」，
+         實際落號為 A-PW102，原因為「寫回報時尚未定案編號，憑推估先填」。
+         此與 16 包之編號衝突同型 —— **先寫號、後查號**。
+
+         通則：任一方於下放包、上繳包、裁決條文、anomaly 描述中
+         書寫任何 `A-PW` / `R-P` / `G` / `DR-PW` 編號前，
+         須先查該序列之現行最大號；未查者不得書寫具體編號，
+         應以「（待編號）」代之。
+         本條與 R-P64（量化修飾語須標實測或推測）同屬
+         「不得以推估冒充實測」之族。
+         裁決者 Pei，逐字依據：「上繳」。
+```
+**執行層接受，本包已依此執行。**
+§H 步驟 2 於任何編號書寫前先查得：
+**A-PW 最大 102、R-P 最大 141、DR-PW 最大 8、閘門最大 G102**，
+本包新號自 A-PW103 / R-P142 / G103 起。
+**本包未於任何處書寫未經查證之推估編號。**
+執行層另記：本條與 R-P64 同族之判斷正確 —— 二者皆為
+「不得以推估冒充實測」，19 包之 A-PW98 誤填即為推估冒充實測之一例。
+
+---
+
+---
+
+## 第二十二輪 — 下放包 22（`docs/handoff/22_batch3.md` §A）
+
+> **台帳缺口（執行層記）**：`R-P148` ~ `R-P152`（下放包 21）**未落檔** ——
+> `features/power/docs/handoff/21_need_rework.md` 存在而 `docs/upstream/21_need_rework.md` 不存在，
+> 即 **21 包未執行**。22 包 §前言載其「五條裁決維持有效」，
+> 惟其條文未經抄錄，本台帳自 `R-P147` 直接跳至 `R-P153`。
+> **執行層未代為抄錄**（未執行其 §H，抄錄將使未做之工作看似已做）；
+> 此處記明缺口，使其不致靜默。
+> **其中 R-P149 / R-P150 為對執行層之直接拘束，本包已遵行** —— 見上繳包 §八。
+
+```
+[R-P153] R-P143 裁定：三對成對錨點**不合併、不刪除**，
+         保留現有三條 TC，開 DR-PW10（Medium）。
+
+         20 §二實測之形態一致：含 `RemStartFail` 之一側
+         **全部帶 `Model Year: 2017` 且 `State: Under Review`**
+         （`4941728` / `4941730` / `4941736`）。
+
+         二項疑點：
+         （a）`Model Year: 2017` 出現於 25PI3.5 專案，需解釋
+         （b）`State: Under Review` 非最終狀態，
+              而 SYS2 匯出無 `State` 欄（20 §2.1 已證），
+              故本專案之範圍判定從未看過此欄
+
+         裁定理由：合併會使三條 TC 消失，
+         **而其問題是「適不適用」，非「重不重複」** ——
+         刪除等同替 RD 作範圍決定。
+         保留並標記，比照 R-P121 對 `015` 之處置：
+         待決狀態須於工作簿內可見。
+
+         處置：
+         （i）`037` / `039` / `042` 之 `remarks` 標明
+              「待範圍確認：來源錨點 Model Year 2017 / State Under Review」
+         （ii）開 DR-PW10，Urgency **Medium**（不阻斷撰寫，僅影響最終內容）
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層回報：已落實，DR-PW10 已開（Medium）。**
+`037` / `039` / `042` 之 `remarks` 現載
+「DR-PW10 (Medium) 待範圍確認：來源錨點 Model Year 2017 / State Under Review」，
+通過 G50 之 §11 規則（無句末句點、無方括號）。**三條 TC 未合併、未刪除。**
+
+```
+[R-P154] T13 —— `SWE-PM-057` 之委出須列 sibling Req ID，
+         且該委出可能無人承接。
+
+         其 `reasoning` 載：「刻意略過：`4941706` 之
+         『LTM High Radio present』分支明指另一節
+         （Auto_SwitchOn_Setting.Req management），依 R-P42
+         不在本 leaf 之錨點範圍。」
+
+         **兩項錯誤：**
+         （a）**R-P42 用錯** —— `4941706` **在** `source_anchor` 清單內，
+              為被引用之錨點。R-P42 管「未被引用者不測」，
+              不管「被引用者之某分支得不測」。
+              略過該分支之正當依據為 §8.2.1（行為由 sibling Req 承擔），
+              而 §8.2.1 **要求列出承擔之 sibling Req ID** ——
+              此即 R-P137 對 `SWE-PM-063` 之要求，同型問題未一併處置。
+         （b）**委出可能無人承接** —— 該分支所述為
+              「LTM High 存在時 `SwitchOff_Timeout_Setting.Req` 如何選」，
+              而 `SWE-PM-062`（`025`–`027`）之錨點 `4941710` 所述為
+              **`Auto_SwitchOn_Setting.Req` 之三個值**，非同一對象。
+              **規格叫人去看那一節，不等於那一節有對應之 leaf 在測它。**
+
+         處置：查 115 leaf 之全部錨點清單，找出承接該分支者。
+         （i）找到 → `reasoning` 補列該 leaf 與其 TC id
+         （ii）**找不到 → 真 coverage hole**，依 R-P118(d) 裁決；
+              若該行為在 115 母體內無 leaf 承接，開 DR
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層回報：承接者已查得 —— 非 coverage hole；R-P42 之誤用已訂正。**
+（a）**訂正**：`4941706` **在**本 leaf 之 `source_anchor` 清單內，
+     R-P42 不適用；正當依據為 **§8.2.1**。`reasoning` 已改寫。
+（b）**承接者**：`4941706` 所指之「Auto_SwitchOn_Setting.Req management section」
+     即 CFTS009 **§1.6.3.1.2**，錨點 **`4941710`**，屬 **`SWE-PM-062`**，
+     由 **`025` / `026` / `027`** 承擔。
+
+**查詢方法與涵蓋範圍**：以 `layer3_full.tsv` 之全 **114 leaf / 238 錨點**為母體
+（`SWE-PM-089` 依 R-P1 無錨點，故為 114 而非 115），
+取每一錨點之 CFTS 本文原文，以 `LTM\s*High` 搜尋，得 **8 個**命中錨點，
+逐一對其所屬 leaf 與章節列表判別。
+**行為對應之依據**：`4941702` 載「For LTM/ETM, the user can set **one** parameter,
+by means of `Auto_SwitchOn_Setting.Req`」—— 即 LTM High 存在時
+`SwitchOff_Timeout_Setting.Req` 不可選，`Timeout1` 改由 `Auto_SwitchOn_Setting.Req` 決定。
+**故該委出確有承接者。**
+
+```
+[R-P155] T14 —— `SWE-PM-062` 之 LTM High 條件須查證分支涵蓋。
+         `4941710` 之三個值各帶
+         `(If LTM High is present: "Timeout1" = / <> "00 minutes")`。
+         查 `025` / `026` / `027` 是否僅測 LTM High **存在**側。
+         若是，依 §8.3（mode 為拆分軸）判斷不存在側是否須補測；
+         若規格未定義不存在側之行為，登記為
+         「規格未定義，不補測」，不得造值（§8.4.1）。
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層回報：`025` / `026` / `027` 確僅測 LTM High 存在側；不存在側因規格未定義而不補測。**
+三條之 pre_condition 皆為「An LTM High Radio is present」。
+`4941710` 之三個括號條件（`If LTM High is present: "Timeout1" = / <> "00 minutes"`）
+**僅就存在側給出 `Timeout1` 之結果，對不存在側之 `Timeout1` 關係一字未載**。
+依 §8.4.1 不得造值，**登記為「規格未定義，不補測」**，已記入該 leaf 之 `reasoning`。
+另記：不存在側之 `SwitchOff_Timeout_Setting.Req` 選擇由 `SWE-PM-057`
+（`018` / `019` / `020`，pre_condition 為「An LTM High Radio is absent」）承擔，二者互補。
+
+```
+[R-P156] T15 —— `037` 之 ER1 斷言規格未載之事。
+         `037` ER1 載 `The call is released at MaxCallTimeout expiration`。
+         Case 2 原文僅載
+         `at MaxCallTimeout expiration, TLM sets TLM_Status.Info to
+          "Standby" and then it passes to Standby state` ——
+         **未載通話被釋放**。轉入 Standby 或致通話結束，然此為推論。
+
+         對照：`040` / `043` 之 ER1
+         `The active call is not dropped by the ignition change`
+         有原文支撐（`TLM has to manage the phone call(s) and to stay
+         in Timed state`），成立。
+
+         處置：`037` ER1 改為僅述有原文依據者；
+         **並逐條檢查全批 43 條之 ER，凡斷言通話狀態變化者
+         皆須指出其原文依據**，無依據者一併修正。
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層回報：全批 43 條已逐條檢查，六條修正。**
+以「ER 行同時含 `call` 與狀態動詞（released / dropped / connected / routed / …）」
+機械篩出 **12 行**，逐行對其 leaf 之 `source_clause` 查依據：
+
+| TC | 原 ER | 判定 | 處置 |
+| `037` | `The call is released at MaxCallTimeout expiration` | **無依據**（本條所指者，Case 2 原文僅載狀態轉換）| 改為 `MaxCallTimeout reaches its expiration while Phone_Call.Info is still "Active"` |
+| `036` / `031` | `The call is released and its audio is removed from the TLM output` | **無依據**（原文僅載 `Phone_Call.Info passes to "Not_Active"`）| 改為該訊號之回讀 |
+| `028` ER1 | `... and its audio is routed through the TLM` | 「connected」有依據（`make and receive`），**音訊路由無依據** | 刪去音訊路由 |
+| `032` / `034` | `... and its audio is routed through the TLM` | 同上（`still able to manage` 有依據）| 改為 `is managed by the TLM` |
+| `012` / `013` | `routed to the head set and is not dropped` | **有依據**（`transfer the call ... to the head set`、`a continuing call is still active`）| 不改 |
+| `040` / `043` | `The active call is not dropped by the ignition change` | **有依據**（本條明示成立）| 不改 |
+
+**六條修正、六條保留。未造任何值。**
+
+```
+[R-P157] T16 —— ER 之斷言不得以本 leaf 範圍外之錨點為依據。
+         `038` / `039` 之 ER1 載
+         `No call is active when Timeout1 expires and
+          MaxCallTimeout does not start`。
+         「MaxCallTimeout 不啟動」之依據為 `4941718`
+         （僅於 `Phone_Call.Info` 仍 Active 時啟動），
+         而 `4941718` 屬 **`SWE-PM-064`**，
+         不在 `SWE-PM-038` 之 `source_anchor` 清單內。
+
+         此與 T13 同類：**於 ER 中斷言，而其規格依據落於本 leaf 範圍外。**
+         §8.4.2 禁止測試當前 spec 未擁有者；
+         ER 之斷言同受此拘束 —— ER 即判準，判準之依據必須在範圍內。
+
+         處置：
+         （i）刪除該斷言，或
+         （ii）於 `reasoning` 明示其為 sibling Req 之行為、
+              本條僅描述觀察到之事實而不以之為 pass/fail 判準
+         二擇一，須附依據。
+         **並逐條檢查全批 43 條，凡 ER 斷言之依據落於本 leaf
+         `source_anchor` 外者，一併處置。**
+
+         此形態應可機械檢查：ER 之具名標的若不出現於本 leaf 之
+         `source_clause`，即為候選。評估其可行性；
+         可行者實作為 G109，不可行者明列理由。
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層回報：`038` / `039` 已依 (i) 刪除該斷言；另二條依 (ii) 記入 `reasoning_note`；G109 評估為不可行。**
+（i）`038` / `039` 之 ER1 由
+     `No call is active when Timeout1 expires and MaxCallTimeout does not start`
+     改為 `No call is active when Timeout1 expires` ——
+     「MaxCallTimeout 不啟動」之依據 `4941718` 屬 `SWE-PM-064`，已刪。
+（ii）`023` / `024` 之 ER1 述「timeout setting entry 之呈現／控制項啟用」，
+     而 `4941703` 未載 HMI 呈現方式；已於 `reasoning_note` 明示
+     **其僅描述觀察到之事實，不以之為 pass/fail 判準**，本條之判準為 ER2。
+
+**G109 可行性評估 —— 不可行，理由如下：**
+本條所提之機械判準為「ER 之具名標的若不出現於本 leaf 之 `source_clause`，即為候選」——
+**該判準即現行之 G82，而 G82 對全批實測為 0**。
+以 `038` 為例：`MaxCallTimeout` **確實出現**於其 `source_clause`（`4941726` 載之），
+故 G82 不會標記；真正越界者不是**標的**，而是**該標的之規則**
+（「僅於通話仍 Active 時啟動」）—— 該規則落在 `4941718`。
+**「標的在範圍內而其規則在範圍外」無法以 token 層比對辨識**，
+須理解該 ER 之斷言依據哪一條規則。**故 G109 不實作，明列理由。**
+
+```
+[R-P158] 節奏重整：剩餘 103 leaf 以四批完成。
+
+         現況：21 包往返、43 條 TC、11 / 114 leaf。
+         **產出端不慢** —— 第二批 8 leaf / 26 條一包完成。
+         慢在流程：至少八包為「發現一問題 → 出一包 → 修 → 再發現」
+         之單點循環；同一 ER 品質問題歷
+         R-P87 → R-P96 → R-P101 → R-P133 → R-P142 五包方定案。
+
+         批次規劃：
+         | 批 | Test Set | leaf |
+         | 3 | Power State（前半，依 SWE-PM ID 序前 32） | 32 |
+         | 4 | Power State（後半） | 31 |
+         | 5 | Startup Display | 24 |
+         | 6 | Branding and Theme | 16 |
+
+         每批之上繳須含：全部 leaf 之 `source_clause` ＋ `reasoning`、
+         反向涵蓋報告全文、`§D` 全表、以及分層取樣之 TC 全文
+         （每 leaf 至少一條 ＋ **全部 P0**）。
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層回報：第三批已產出，惟其範圍未能如本條所定 —— 32 leaf 中僅 22 leaf 可產。**
+兩項排除，皆有明確依據，非執行層之取捨：
+
+**（一）`SWE-PM-001`–`009`（9 leaf）—— DR-PW6 停。**
+該九 leaf 即 DR-PW6 所載之影響面（31 處懸空 `WrapperResource` 參照中，
+**落在被引用錨點下之 2 處皆位於 CFTS009 §1.6.2.1**，錨點 `4941354` / `4941355`，
+觸及 `SWE-PM-001`–`009`），其阻斷欄逐字為
+「§1.6.2.1 之 9 個 leaf 其 TC 之 `specification_reference` 無可引之規格文字」。
+本包實測確認該九 leaf 之錨點集合**全部包含章節 1.6.2.1**。
+於此撰寫 TC 將產出 R-P121 所指之「可撰寫而不可執行」類 —— **較缺一條 TC 危險**。
+另 `SWE-PM-003` 尚受 **DR-PW5（High，live）** 影響（Stolen Vehicle Mode 之涵蓋歸屬未定）。
+
+**（二）`SWE-PM-010`（1 leaf）—— G103 當場攔下。**
+見上繳包 §五之二。
+
+**故本批為 22 leaf / 61 條**，臨時 tc_id `044`–`104`。
+`specification_reference` **61 / 61 指向 CFTS009**。
+上繳依本條所列四項附之（全 leaf 之 `source_clause` ＋ `reasoning`、
+反向涵蓋報告全文、§D 全表、分層取樣之 TC 全文含全部 P0）。
+
+```
+[R-P159] 分析層覆核改為按例外，並明載其取捨。
+         前二批之覆核顯示投報率懸殊：
+         逐條讀 `033`–`043` 十一條僅多抓 T15 一項；
+         讀 8 個 leaf 之 `source_clause` 抓到 T13 / T14 / T16 三項。
+
+         往後分析層每批之覆核範圍：
+         （a）全部 leaf 之 `source_clause` 與 `reasoning` —— **全讀**
+         （b）反向涵蓋報告 —— **全讀**
+         （c）TC 全文 —— **分層取樣**（每 leaf 至少一條 ＋ 全部 P0）
+
+         **明載其代價**：非取樣之 TC 未經分析層目視，
+         其品質倚賴閘門與執行層自裁。
+         前二批已證閘門全綠不代表品質（A-PW64 / A-PW92 / T15），
+         **故本規則為速度與覆核深度之取捨，非品質改善**。
+         此取捨由 Pei 裁定，登記為已知限制。
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層接受，並記其於本包之直接後果。**
+本包之四項真缺口（`011` 長按、`014` 之 LTM High 二支、`028` 之 LTM High 支）
+**皆由反向涵蓋報告抓出，非由 TC 全文目視抓出** —— 與本條所述之投報率一致。
+**惟須明記其代價之具體形態**：本批 61 條中，
+依 (c) 之分層取樣（每 leaf 至少一條 ＋ 全部 P0）將涵蓋約 **55 條**，
+餘 6 條（P1 者）不經分析層目視。
+**該 6 條與 T15 同型之語義錯誤，將無人可及。**
+
+```
+[R-P160] 裁決改為累積式。
+         往後分析層之發現先累積，一批一次出條文，
+         不再一發現一包。
+         **例外**：若某發現會使該批之產出方向錯誤
+         （如 R-P125 之 `source_clause` 保真度、
+          R-P132 之第二批前置），仍即時下放。
+         判準：該發現若不即時處置，是否會導致已產出之內容須重作。
+         裁決者 Pei，逐字依據：「一次下放」。
+```
+**執行層接受。** 本包即為累積式之首次適用 ——
+第二批覆核之四項發現（T13 ~ T16）與節奏重整合為一包，未逐項下放。
+執行層另記：本包所產生之新發現（`4941984` 不存在、DR-PW6 阻斷九 leaf）
+**符合本條之例外判準**（若不即時處置將導致已產出之內容須重作），
+故已於本包即時停並上繳，未累積至下一包。
+
+---
+
 ## 待裁
 
-- **R-P135 之三對成對錨點 —— 屬性相異，已依 (b) 停並上繳（19 包 B3）。**
-  三對之 `Model Year` 皆相異，其中二對另有 `Radio` / `State` 相異。
-  **是否合併由 Pei 裁定**；若合併將減少三條（現為 `036`/`037`、`038`/`039`、`041`/`042`）。
-  **執行層未合併亦未拆分。**
-- **R-P133 之前提只成立一半**（19 包 B6）——
-  剝除 check 子句使 overlap 由 1.00 降至 0.80，**但十二條之判定無一改變**。
-  主因為「末步讀 X、ER 述 X 之值」之回讀形態本身，非 check 子句。
-  依本條後段該十二條應判真複述，**而執行層評估其與 A-PW62 之已交付慣例同型**；
-  二種讀法之歧異呈請裁定。
-- **R-P141 之落實**（`SWE-PM-089` 空白列）—— 排程於寫回包；
-  `assign_final_tc_id.py` 現以 `tcs` 為輸入，**不含無 TC 之 leaf**，須於當時補（A-PW98）。
-- **Q3 —— Final Step 措詞**（待 Pei）。
-- **DR-PW8（High）** —— `voltage out of range` 之門檻值；`015` 可撰寫而不可執行。
-- **起始列算錯之防護**（R-P129 / A-PW90）—— 排程於寫回包，須置於寫回路徑內。
-- **反向涵蓋為 per-leaf**（A-PW93）；**G95 凍結窗格類別永久未實測**（R-P139 / A-PW95）。
-- **G73 之型別**（R-P106（甲）4 登記不阻斷）、**G64 完備性不可驗**（A-PW63）。
-- **A-PW57：Comfort 之 `NEVER_WRITE` 與 `feature.yaml` 矛盾**（O 欄）。
-- **colorScale `H10:H145` 之語義未查**（R-P95 允許與寫回並行）。
-- **DR-PW1**（High）、**DR-PW5**（High）、**DR-PW8**（High）、
-  DR-PW3 / DR-PW6（Medium）、DR-PW7（Low）。
+- **`R-P148` ~ `R-P152` 未落檔** —— 21 包未執行（見第二十二輪之台帳缺口記）。
+- **DR-PW11（High，22 包新開）** —— `SWE-PM-010` 之錨點 `4941984` 不存在於 CFTS 本文；
+  該 leaf 已自第三批排除。**此為 R-P144 / G103 之首次真實命中。**
+- **DR-PW6 阻斷 `SWE-PM-001`–`009`（9 leaf）** —— 第三批因此僅產 22 / 32 leaf。
+  **第四批（Power State 後半）不受此影響，惟本項不解則該九 leaf 永遠無法產出。**
+- **DR-PW10（Medium）** —— 成對錨點之 `Model Year 2017` / `State Under Review`。
+- **G109 不可行**（R-P157 之評估）—— 「標的在範圍內而其規則在範圍外」無法以 token 層辨識。
+- **R-P159 之代價**：本批 6 條 P1 不經分析層目視，與 T15 同型之語義錯誤將無人可及。
+- **Q3 —— Final Step 措詞**（待 Pei）。**DR-PW8（High）** —— `voltage out of range` 門檻值。
+- **起始列算錯之防護**（R-P129）、**R-P141 之空白列**（A-PW102）—— 排程於寫回包。
+- **反向涵蓋為 per-leaf**（A-PW93）；**G95 凍結窗格類別永久未實測**（R-P139）。
+- **DR-PW1**（High）、**DR-PW5**（High）、**DR-PW8**（High）、**DR-PW11**（High）、
+  DR-PW3 / DR-PW6 / **DR-PW10**（Medium）、DR-PW7（Low）。
