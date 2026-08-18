@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "The large welcome popup must display the active (logged-in) Profile's username and avatar. Additionally, it must display a list of other available profiles, which must include their respective avatars, usernames, and memory seat assignments (if applicable).",
  "must_carry_injected": [],
- "reasoning": "驗證目標：7.2.1（PRWEL2.1）之大型 welcome popup 內容 —— 現用 profile 之 username 與 avatar，以及其他可用 profile 之 avatar、username 與記憶座椅指派。關鍵情境條件：記憶座椅指派為條件式（if applicable），故 pre-condition 明訂兩個 profile 皆有指派，使該欄位確實可觀察。為什麼這樣切：條文另有「More Options 進 Edit Profile tab」與「選了別的 profile 則顯示新的 welcome popup」兩項行為，屬不同觸發，依 §5.7 不併入本 TC，由 7.2 之 sibling leaf 承擔。",
+ "reasoning": "驗證目標：7.2.1（PRWEL2.1）之大型 welcome popup 內容 —— 現用 profile 之 username 與 avatar，以及其他可用 profile 之 avatar、username 與記憶座椅指派。關鍵情境條件：記憶座椅指派為條件式（if applicable），故 pre-condition 明訂兩個 profile 皆有指派，使該欄位確實可觀察。為什麼這樣切：條文另有「More Options 進 Edit Profile tab」與「選了別的 profile 則顯示新的 welcome popup」兩項行為，屬不同觸發，依 §5.7 不併入本 TC。**委派更正二次（A-UP13；23 包 M-2 掃出，25 包定其歸屬）**：兩項原稱「由 7.2 承擔」—— **該委派不成立**（7.2／PRWEL2 述的是**小型** welcome popup，其文無 `More Options`）。23 輪據此記為「兩項無人驗」，**該記載亦不準確** ——本節（7.2.1）之 leaf 有三：本 TC 為 `SWE1-HMI-PROF-059-01`，而兩項各有專屬 leaf：`SWE1-HMI-PROF-059-02`（More Options → Edit Profile tab）與 `SWE1-HMI-PROF-059-03`（切換 profile 後顯示新 welcome popup）承擔。**兩者尚未取樣**，故為 (b) 類之待兌現承諾，非覆蓋缺口。",
  "keywords": [
   "large welcome popup",
   "username",

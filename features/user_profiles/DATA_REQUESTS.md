@@ -15,7 +15,7 @@ Urgency 回報。
 | 1 | `FM-WI-FSM-037-A03 N1L SWE1 Personal Account HMI V0.1 STLA 報告.xlsx` | **MISSING** | 全部（180 母體之唯一來源）| **Phase 1 recon 完全停擺**；作業項 3 不可跑、作業項 4 之 135-id 命中不可驗、作業項 5 之 Layer 2 交集不可取 | A-UP04 | **BLOCKING（最高）** |
 | 2 | `HMI Pop Up List`（pattern：`Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023).xlsx` 或其 R1L-R 對應版）| **部分到齊 18/20**，見第 4 列 | spec 8.3 明文「Specific popups can be found in the HMI Pop Up List」；spec 全文另有 PU0585／PU0626／PU1573 等 PU id | Phase 3 profile 之 popup 詞彙表與 lint `popup_ids` 無來源；引用 PU 字面值之 TC 無法回溯 | A-UP06 | 高（Phase 3 前）|
 | 4 | **Pop Up List 中 `PU1087`／`PU1088` 兩列之 popup 內文**（非整份版本 —— **索取標的已於 06 輪依 R-U27 收窄**）| MISSING | `PROF-002-03`（`4.1.1`）| **不再擋章節**：spec PDF p6 已載該二 popup 之**觸發條件**，故觸發、顯示與否、流程分支皆可驗；**僅其 popup 內文之逐字 ER 不寫**（§8.4.1 不推定內容）| A-UP06 | **MEDIUM**（原 高；R-U27 降級）|
-| 3 | spec `3.1`–`3.5`（PLP1–PLP5）等 8 條之上游釐清 —— **性質已改為「上游覆蓋缺口」**（R-U28），非索取缺件 | 未送出 | 0（現況無 leaf 對應）| 不阻擋生成。`3.1`–`3.5` 有內容且可讀 → 依 R-U22 作 `PROF-001-01` 之 in-scope 依據；`10.1`／`11.1`／`11.2` 為變體覆寫條款且無 SWE 需求 → 列 RD-1 | A-UP02 | 中（RD-1，Tier 3 由 Pei 送出）|
+| 3 | spec `3.1`–`3.5`（PLP1–PLP5）等 8 條之上游釐清 | **CLOSED — OUT-OF-SCOPE (R-U56)** ｜**不送出** | 0（現況無 leaf 對應）| 不阻擋生成。**`3.1`–`3.5` 之使用不受本次關閉影響** —— 依 R-U22／R-U46 仍為 `PROF-001-01` 之 in-scope 依據，`specification_reference` 繼續併列 3.x；`10.1`／`11.1`／`11.2` 不生成 TC，狀態 **OUT-OF-SCOPE**（非缺口）| A-UP02（**OUT-OF-SCOPE，已裁；記載未關閉**）| — （不再送出）|
 
 ## 第 1 列之實測依據（2026-08-17）
 
@@ -98,6 +98,32 @@ A 欄非空 1341）。
 
 ---
 
+## DR #3 之關閉（26 輪，R-U56）—— **記載全數保留**
+
+> **狀態：CLOSED — OUT-OF-SCOPE (R-U56，Pei 2026-08-18 裁定)。不送出。**
+
+**關閉之理由（逐字取自 R-U56）**：
+「037 之 180 leaf 母體即本 feature 之驗證範圍上界。
+spec 有內容而 037 未為其產出 leaf 者，不生成 TC、不列覆蓋缺口、不向上游索取釐清。」
+
+**保留之實測記載**（以下皆為事實，不因關閉而失效）：
+
+| 項 | 記載 |
+|---|---|
+| `3.1`–`3.5` 之可讀性 | 05 輪自 PDF p5 抽出逐項清單，**內容存在且可讀** —— 故 A-UP02 非「內容不存在」 |
+| 形態比對 | 與 Comfort **R-C16** 同形（「spec 有而 SWE 未涵蓋」）|
+| 性質重估 | R-U28 曾將其由「索取缺件」改為「上游覆蓋缺口」—— **該重估之推理仍成立**，只是該類別現已裁為不屬我方範圍 |
+| `10.1`／`11.1`／`11.2` | 為變體覆寫條款且無 SWE 需求 |
+
+**明記：`3.1`–`3.5` 之使用不受本次關閉影響。**
+R-U22／R-U46 裁定其為 `PROF-001-01`（**SWE 有寫之 leaf**）之 in-scope 依據；
+`TC-001`／`TC-004` 之 `specification_reference` **繼續併列 `3.x`**，
+其代價聲明（D-UP17-01：覆蓋率不得以引用欄推定）亦繼續有效。
+
+**關閉的是「向上游索取」這件事，不是那些條文的可用性。** 兩者不同。
+
+---
+
 ## RD #5 —— R1 High 之 label 覆寫，其範圍是否及於全章（19 輪，J-7）
 
 **問題**：`****R1 High Only: "Stellantis Account" to be replaced with
@@ -122,4 +148,81 @@ PDF p14 之 Table EDPR1 中 `****“ Stellantis Account”` 那一列對應
 （現已用 Connected Account，屆時無須改）、以及 9.1／9.2 之 ER 逐字。
 
 **性質**：spec 之歧義，非我方判準問題（§8.4.1「ambiguous source → preserve
-ambiguity」）。**併 DR #3 之上游問題群送出。**
+ambiguity」）。
+
+**送出方式（26 輪，R-U56 之拆分）**：**獨立送出，不再併 DR #3**。
+DR #3 問的是「SWE **沒切**的東西怎麼辦」，已依 R-U56 關閉；
+本項問的是**已存在之 leaf**（`085`／`088`）其條文怎麼讀 —— **兩者不同類**。
+英文可寄版見 `docs/upstream/26_rd_queries.md`（Tier 3，由 Pei 寄出）。
+
+---
+
+## RD #6 —— 「有 app 之區域 × 不支援 connected profile 功能」之組合是否存在（23 輪，M-4）
+
+**問題**：`9.2`（EDPR2）有兩個獨立條件 ——
+
+1. `for regions without the <Brand> app`
+2. `if the vehicle does not support the connected profile feature`
+
+22 輪為條件 2 生成 `TC-077`。為使兩條件不同時成立（否則失敗時分不出是哪一個
+沒生效），其 pre-condition 加了 **「The vehicle is in a region with the brand app」**。
+
+**該前提是推得的，spec 未明言該組合存在。** 若實務上「不支援該功能」恆與
+「該區域無 app」同時發生，則 `TC-077` 之情境**在實車上造不出來**。
+
+**索取標的**：是否存在（或可佈署）「區域有 `<Brand>` app、而車輛本身不支援
+connected profile 功能」之車輛組合？若存在，其典型成因為何（trim／option
+package／telematics 訂閱狀態）？
+
+**不論答覆為何，`TC-077` 不刪** —— 條件 2 是條文寫的；
+**情境造不造得出來，與該條件該不該被測，是兩件事**（§8.4.1）。
+若答覆為「不存在」，則處置改為：於 `TC-077` 之 remarks 記載其為
+**不可佈署之條文條件**，並轉為上游澄清請求（該條件是否為贅語）。
+
+**性質**：spec 之情境可佈署性，非我方判準問題。
+
+**送出方式（26 輪，R-U56 之拆分）**：**獨立送出，不再併 DR #3**。
+本項之 leaf（`088`）存在、TC（`TC-077`）已生成，**答案會改變已生成之內容** ——
+與 DR #3／#7 之「該不該有 leaf」不同類。
+英文可寄版見 `docs/upstream/26_rd_queries.md`（Tier 3，由 Pei 寄出）。
+
+---
+
+## RD #7 —— `9.1.1` 之另一側無 leaf：大螢幕之 username／avatar 版面（23 輪，M-5）
+
+> **狀態：CLOSED — OUT-OF-SCOPE (R-U56，26 輪 Pei 裁定)。不送出。**
+> 以下**全部實測記載保留為歷史**，包含「037 在 8.8 對螢幕尺寸切兩個 leaf、
+> 在 9.1.1 只切一個」之佐證 —— **但不因其不一致而代其補**。
+> **037 之 180 leaf 母體即範圍上界；SWE 沒切的，我方不代其決定該不該有。**
+
+**問題**：`9.1.1`（EDPR1.1）逐字只述 8.4 吋螢幕之**差異側**：
+
+> `8.4inch screen size will not show the username and avatar to the left of
+> the Edit Profile List`
+
+其**另一側**（大於 8.4 吋之螢幕**會**在清單左側顯示 username 與 avatar）
+為該句之必然蘊含，**而 037 之 180 leaf 母體中無對應 leaf**
+（本輪以 `build_batch_context.leaf_rows()` 全量查證：`9.1.1` 僅
+`SWE1-HMI-PROF-086` 一個 leaf，其標題為 `(8.4") Hide Username/Avatar Left
+of Edit List`）。
+
+**037 自己在別處是分兩個 leaf 的** —— 這是本項之關鍵佐證：
+
+| 節 | leaf | 標題 |
+|---|---|---|
+| 8.8 | `SWE1-HMI-PROF-076-02` | `(8.4"+) Avatar Displayed Above Save & Continue Button` |
+| 8.8 | `SWE1-HMI-PROF-076-03` | `(7") Avatar Displayed Next to Save Button` |
+
+**同一份 037，對螢幕尺寸之兩側在 8.8 切了兩個 leaf，在 9.1.1 只切了一個。**
+故此非「037 之慣例如此」，而是**該節之覆蓋缺漏**。
+
+**索取標的**：`9.1.1` 之另一側是否應有 leaf（比照 `076-02`／`076-03` 之作法）？
+若應有而未有，其 leaf 母體 180 之數字是否須更新？
+
+**我方現況**：**不自行補 leaf**（母體為 037 之權威，§8.2）。
+本項不影響現行 78 條之任何判定，亦不列入覆蓋率分母之爭議 ——
+但**在 037 補齊之前，大螢幕之該版面無人驗**。
+
+**性質**：~~上游覆蓋缺口~~ → **OUT-OF-SCOPE（R-U56）**。~~併 DR #3 送出。~~
+**不送出。** 原判之形態比對（同 DR #3 之 `3.1`–`3.5`）仍然成立 ——
+只是那個形態本身現已裁為不屬我方範圍。

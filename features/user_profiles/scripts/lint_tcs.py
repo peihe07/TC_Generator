@@ -218,6 +218,27 @@ BRACKET_FIELDS = ("tc_title", "test_item", "pre_conditions", "input_test_data",
                   "test_procedure", "expected_result", "remarks")
 
 
+# ── G20（§C-2／P-3 之同形，25 包 A-2）—— remarks ↔ specification_reference
+#
+# **同一形狀已發生兩次**：
+#   C-2（20 包）：18 輪之文字說「無界前基準線」而 `design_method` 欄掛 BVA
+#   P-3（24 包）：`TC-072` 之 remarks 說「併列 12.3.1 與 12.6」而引用欄只有 12.3.1
+# 兩次都是**改了一處而未掃同一條的其他記載**，兩次都由人工覆核才發現。
+#
+# 判準：`remarks` 中以「併列／引用／列」語境出現之**節號**，
+# 須是 `specification_reference` 之子集；多出來者即紅。
+#
+# **只取「宣稱有引用」之語境**，不取所有節號 —— remarks 常需**說明某節為何
+# 不列**（`TC-072` 修正後即如此），那種提及不得轉紅，
+# 否則這條閘會逼人刪掉正確的說明。
+SEC_RE = re.compile(r"(?<![\d.])(\d+(?:\.\d+)*)(?![\d.])")
+# 宣稱引用之語境詞（其後或其前之節號視為「宣稱已列」）
+CITE_CLAIM = re.compile(
+    r"(併列|一併列|已列|列入引用|引用欄列|故列|列該|列於引用)")
+# 明說「不列」之語境 —— 其鄰近之節號**不算宣稱引用**
+NO_CITE = re.compile(r"(不列|未列|不另列|不併列|移出|屬多引|不登記)")
+
+
 def _norm(t: str) -> str:
     return " ".join((t or "").split())
 
@@ -417,6 +438,25 @@ def gate_corpus(tcs: list) -> list:
                 out.append(f"G19 {tid}: {f} 之方括號 `{tok[:40]}` "
                            f"非逐字引自被引之節（{', '.join(cited)}）"
                            f"—— §11 禁方括號，例外須對照來源（D-UP22-01）")
+
+        # ── G20 —— remarks 之「宣稱已引用」節號須在引用欄內
+        rem = str(t.get("remarks", ""))
+        if rem and CITE_CLAIM.search(rem):
+            cited_set = {c for c in cited if c}
+            for sm in SEC_RE.finditer(rem):
+                sec_no = sm.group(1)
+                if "." not in sec_no:
+                    continue              # 純整數多為條數／編號，非節號
+                # 該節號附近若有「不列」語境，視為說明而非宣稱
+                lo, hi = max(0, sm.start() - 60), min(len(rem), sm.end() + 60)
+                if NO_CITE.search(rem[lo:hi]):
+                    continue
+                if not CITE_CLAIM.search(rem[lo:hi]):
+                    continue              # 不在宣稱語境內
+                if sec_no not in cited_set:
+                    out.append(f"G20 {tid}: remarks 稱已列 `{sec_no}`，"
+                               f"而 specification_reference 為 "
+                               f"{sorted(cited_set)} —— 兩處記載不一致")
 
     # UI 定位詞之登記表自我查核 —— **這張表不得只是宣稱**
     for lit, sec in UI_LOCATORS.items():
@@ -769,6 +809,40 @@ def self_test() -> int:
                                "for R1 H]，故本 TC 排除該變體"),
                 False, "G19")
 
+    print("\n## G20 —— remarks ↔ specification_reference（A-2，25 包）\n")
+
+    # **紅向即 P-3 之原形**（`TC-072` 於 24 包修正前之 remarks）
+    corpus_case("G20 注入：remarks 稱「併列 12.3.1 與 12.6」而引用欄只有 12.3.1 → 紅",
+                _ok_tc(req_id="SWE1-HMI-PROF-134",
+                       specification_reference=f"{stem2}_14.1; {stem2}_12.3.1",
+                       expected_result="1. a\n2. b",
+                       remarks="複位後為 12.3.1（同一 PIN 退出）與 12.6"
+                               "（停用詢問），故併列該二節"),
+                True, "G20")
+    # **綠向即其修正後之形**：說明某節**為何不列** —— 不得轉紅，
+    # 否則這條閘會逼人刪掉正確的說明。
+    corpus_case("G20 範圍：remarks 說明 12.6 **不列**之理由 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-134",
+                       specification_reference=f"{stem2}_14.1; {stem2}_12.3.1",
+                       expected_result="1. a\n2. b",
+                       remarks="複位後為 12.3.1 與 12.6 兩處。引用欄不列 12.6："
+                               "其字面值不在本 TC 內，列之即屬多引"),
+                False, "G20")
+    # 綠向：宣稱併列，而引用欄確實含之
+    corpus_case("G20 範圍：宣稱併列且引用欄確實含該節 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-134",
+                       specification_reference=f"{stem2}_14.1; {stem2}_12.3.1",
+                       expected_result="1. a\n2. b",
+                       remarks="其指涉對象複位後為 12.3.1，故併列該節"),
+                False, "G20")
+    # 綠向：remarks 只是提到節號，無宣稱語境（多數 TC 之常態）
+    corpus_case("G20 範圍：remarks 提及節號但無「已引用」之宣稱 → 綠",
+                _ok_tc(req_id="SWE1-HMI-PROF-134",
+                       specification_reference=f"{stem2}_14.1",
+                       expected_result="1. a\n2. b",
+                       remarks="本節之行為與 12.6 之詢問 popup 屬不同觸發"),
+                False, "G20")
+
     print("\n## 跨條之閘（G2 單調／G5 雷同）\n")
     for name, tcs, expect in [
         ("遞增且相異 → 綠",
@@ -805,7 +879,7 @@ def self_test() -> int:
         for b in bad:
             print(f"      └ {b}")
 
-    n = 1 + len(cases) + len(scope) + 22 + 5   # +5：G19（L-1，22 包）
+    n = 1 + len(cases) + len(scope) + 22 + 5 + 4   # +5 G19（22 包）／+4 G20（25 包）
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "
           f"{'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1

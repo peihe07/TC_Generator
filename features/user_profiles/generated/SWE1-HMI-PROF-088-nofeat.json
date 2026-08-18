@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "EDPR2.) Don’t show the Connected Profile options/info or Connected Account button for regions without the <Brand> app. Do not show Connected Profile options/info or Connected Account button if the vehicle does not support the connected profile feature.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：9.2（EDPR2）之**第二個條件** —— 車輛不支援 connected profile 功能時，不顯示 Connected Profile 之選項／資訊與 Stellantis Connected Account 按鈕。關鍵情境條件：**pre-condition 明載「區域有 <Brand> app」** ——若不排除條件 1，兩個條件同時成立，失敗時分不出是哪一個沒生效（與 TC-020 之切法同一理由）。為什麼這樣切：**本條之存在理由是一個委派錯誤** ——TC-020 之 reasoning 原稱本側由 11.3（CPA1）承擔，而 11.3 之條件為 `equipped with connectivity`：連網能力是硬體配置，支援 connected profile 功能是功能授權，**9.2 自身把「區域無 app」與本條件並列，即證兩者不等價** ——若「不支援該功能」只等於「無連網」，條件 1 便無處安放。指錯承擔者比不指更糟：它讓覆蓋稽核看起來是滿的（§8.2.1）。刻意略過：兩個條件同時成立之情形不另生成 —— 其結果與各自單獨成立時相同，加測不增訊號。",
+ "reasoning": "驗證目標：9.2（EDPR2）之**第二個條件** —— 車輛不支援 connected profile 功能時，不顯示 Connected Profile 之選項／資訊與 Stellantis Connected Account 按鈕。關鍵情境條件：**pre-condition 明載「區域有 <Brand> app」** ——若不排除條件 1，兩個條件同時成立，失敗時分不出是哪一個沒生效（與 TC-020 之切法同一理由）。為什麼這樣切：**本條之存在理由是一個委派錯誤** ——TC-020 之 reasoning 原稱本側由 11.3（CPA1）承擔，而 11.3 之條件為 `equipped with connectivity`：連網能力是硬體配置，支援 connected profile 功能是功能授權，**9.2 自身把「區域無 app」與本條件並列，即證兩者不等價** ——若「不支援該功能」只等於「無連網」，條件 1 便無處安放。指錯承擔者比不指更糟：它讓覆蓋稽核看起來是滿的（§8.2.1）。刻意略過：兩個條件同時成立之情形不另生成 —— 其結果與各自單獨成立時相同，加測不增訊號。**來源標示（M-4）**：pre-condition 之「區域有 `<Brand>` app」為**推得**（隔離條件 1 之需要），非 spec 所載；其可造性已送 DR #3。",
  "keywords": [
   "connected profile feature",
   "unsupported",
@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "**L-2 之補洞**：9.2 有兩個獨立條件，TC-020 取「區域無 <Brand> app」一側，本條取「車輛不支援 connected profile feature」一側。**原 reasoning 將本側委派 11.3 之 leaf，該委派不成立** —— 11.3 之條件為 `equipped with connectivity`，與本側非同一語意（見上繳 22 §2）。pre-condition 明列「區域有 app」，使兩個條件不同時成立",
+   "remarks": "**L-2 之補洞**：9.2 有兩個獨立條件，TC-020 取「區域無 <Brand> app」一側，本條取「車輛不支援 connected profile feature」一側。**原 reasoning 將本側委派 11.3 之 leaf，該委派不成立** —— 11.3 之條件為 `equipped with connectivity`，與本側非同一語意（見上繳 22 §2）。pre-condition 明列「區域有 app」，使兩個條件不同時成立。**該前提為推得，非條文所載（M-4，23 包）**：spec 未明言「有 `<Brand>` app 之區域、而車輛不支援 connected profile 功能」此一組合存在。若該組合在實車上造不出來，本 TC 之情境即無法佈署 —— **但條件 2 是條文寫的，TC 不因情境難佈署而刪**（§8.4.1）。已併 DR #3 送 RD 查詢",
    "split_flag": false,
    "split_reason": ""
   }

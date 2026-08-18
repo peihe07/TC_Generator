@@ -45,9 +45,20 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import scan_override_notes as SCAN                    # noqa: E402
+
 FEATURE = Path(__file__).resolve().parent.parent
-NOTES_TSV = FEATURE / "data" / "pdf_starred_notes.tsv"
-OVERRIDE_KIND = "變體覆寫註記"
+
+# **母體換過一次（23 包 M-3）。**
+# v1 讀 `pdf_starred_notes.tsv` 之 `kind == 變體覆寫註記`，得 4 條。
+# 該欄是 07 輪**人工填**的，而它填錯了兩條：p9 之 `NOPR0.) R1 High` 與
+# p12 之 `NEWPR0.) R1 High Only: this passage is not meant to be implemented`
+# 被歸為「圖／表內標籤」—— 兩條**都有 `**`、都在 TSV 內**，
+# 卻因分類而不在母體裡。
+# **23 包要我擴掃 pattern；擴掃 pattern 救不到這兩條，重新判 kind 才救得到。**
+# v2 改自 `scan_override_notes.py` 之逐條判讀（覆寫／適用條件／狀態條件），
+# 母體現為 **6 個 axis**。
 
 
 # ─────────────────────────────────────────────── 述詞（reason 之可測形式）
@@ -95,7 +106,7 @@ PREDICATES = {"absence-only": absence_only}
 AXES = [
     dict(
         axis="p14 / Table EDPR1 之帳號 label",
-        note_key='R1 High Only: "Stellantis Account" to',
+        axis_key="p14-account-label",
         # 同一 axis 之兩側寫法不同 —— base 為 `Stellantis (Connected) Account`、
         # R1 High 為 `Connected Account`。**兩側都要涵蓋**，否則述詞比對不到。
         literal=r"Stellantis Connected Account|Stellantis Account|Connected Account",
@@ -115,7 +126,7 @@ AXES = [
     ),
     dict(
         axis="p16 / Table PIP1 之 Connected Account 列描述",
-        note_key='R1 High Only: for the "Connected Account" category title (if',
+        axis_key="p16-pip1-desc",
         literal=r"Save your preferences to the cloud",
         members=[
             dict(tc="NR1L-UserProfiles-039", side="base", paired_with="075"),
@@ -124,16 +135,32 @@ AXES = [
     ),
     dict(
         axis="p17 / Table CPA2 整張表之適用性",
-        note_key="R1 High Only: This table (Table CPA2) is not applicable. There will",
+        axis_key="p17-cpa2-table",
         literal=r"info icon|info button",
         members=[
             dict(tc="NR1L-UserProfiles-013", side="base", paired_with="044"),
             dict(tc="NR1L-UserProfiles-044", side="R1 High", paired_with="013"),
         ],
     ),
+    # ── M-3 掃出之兩個新 axis —— **其 leaf 尚未取樣，故非「不配」而是「未到」**
+    dict(
+        axis="p9 / 6.1 之 R1 High：CPA 不啟動",
+        axis_key="r1h-cpa-6.1",
+        literal=r"CPA|Connected Profile App|Tutorials",
+        members=[dict(tc="SWE1-HMI-PROF-046", side="R1 High", pending=True,
+                      why="6.1 之 leaf 尚未取樣（第三批）。**其變體覆寫已登記，"
+                          "生成時須連同對造一併造** —— 本欄即該提醒之載體")],
+    ),
+    dict(
+        axis="p12 / 8.1 之 R1 High：步驟 4 後直接進 Tutorials",
+        axis_key="r1h-cpa-8.1",
+        literal=r"CPA|Tutorials|preferences",
+        members=[dict(tc="SWE1-HMI-PROF-065", side="R1 High", pending=True,
+                      why="8.1 之 leaf 尚未取樣（第三批），同上")],
+    ),
     dict(
         axis="p17 / Table CPA2 之 Connected Navigation 列",
-        note_key="For China market only: do not show this content",
+        axis_key="p17-china-row",
         literal=r"Connected Navigation",
         members=[
             dict(tc="NR1L-UserProfiles-013", side="非中國", paired_with="076"),
@@ -141,6 +168,11 @@ AXES = [
         ],
     ),
 ]
+
+
+def LEAVES_() -> set:
+    import build_batch_context as B
+    return set(B.leaf_rows())
 
 
 def corpus() -> dict:
@@ -153,28 +185,46 @@ def corpus() -> dict:
 
 
 def override_notes() -> list:
-    rows = []
-    for ln in NOTES_TSV.read_text(encoding="utf-8").splitlines():
-        if not ln or ln.startswith("#") or ln.startswith("page\t"):
-            continue
-        parts = ln.split("\t")
-        if len(parts) >= 3 and parts[2] == OVERRIDE_KIND:
-            rows.append((parts[0], parts[1]))
+    """V-1 之母體 —— M-3 擴掃中判為「覆寫」者，去重至 axis 層級。"""
+    seen, rows = set(), []
+    for axis, sec, page in SCAN.override_axes():
+        if axis in seen:
+            continue                    # 同一覆寫之另一表達（如 p17 之兩句）
+        seen.add(axis)
+        rows.append((page, axis, sec))
     return rows
 
 
+LEAVES = None
+
+
 def audit(tcs: dict) -> list:
+    global LEAVES
+    if LEAVES is None:
+        LEAVES = LEAVES_()
     bad = []
 
-    # 閘 1 —— TSV 之每條覆寫註記都已登記
-    keys = [a["note_key"] for a in AXES]
-    for page, text in override_notes():
-        if not any(text.startswith(k) or k.startswith(text) for k in keys):
-            bad.append(f"V1-1: {page} 之覆寫註記未登記於 AXES → 「{text[:60]}」")
+    # 閘 1 —— 擴掃判為「覆寫」之每個 axis 都已登記
+    keys = {a["axis_key"] for a in AXES}
+    for page, axis, sec in override_notes():
+        if axis not in keys:
+            bad.append(f"V1-1: {page}（{sec}）之覆寫 axis `{axis}` 未登記於 AXES")
 
     for a in AXES:
         for m in a["members"]:
             tid = m["tc"]
+            # 閘 2′ —— `pending`：其 leaf 須在 037 之 180 母體內，且**尚無 TC**。
+            # 一旦該 leaf 生成了 TC，`pending` 即不再成立 —— 須改判為配對或具名不配。
+            # **這一項是為第三批留的絆線**：否則新批生成時，
+            # 這兩個覆寫會像 `017`／`039`／`013` 當初那樣被寫成前提而無人測。
+            if m.get("pending"):
+                if tid not in LEAVES:
+                    bad.append(f"V1-2: {a['axis']} 之 pending leaf {tid} "
+                               f"不在 037 之 180 母體內")
+                elif any(t.get("req_id") == tid for t in tcs.values()):
+                    bad.append(f"V1-3: {a['axis']} 之 {tid} 已生成 TC，"
+                               f"`pending` 不再成立 —— 須改判為配對或具名不配")
+                continue
             # 閘 2 —— 點名之 TC 須在語料內
             if tid not in tcs:
                 bad.append(f"V1-2: {a['axis']} 點名之 {tid} 不在語料內")
@@ -209,7 +259,10 @@ def report(tcs: dict) -> None:
     for a in AXES:
         print(f"### {a['axis']}")
         for m in a["members"]:
-            if "paired_with" in m:
+            if m.get("pending"):
+                print(f"  [未到] {m['tc']}（{m['side']}）—— leaf 尚未取樣，"
+                      f"第三批生成時須連同對造一併造")
+            elif "paired_with" in m:
                 print(f"  [配] {m['tc']}（{m['side']}）↔ …-{m['paired_with']}")
             else:
                 print(f"  [不配] {m['tc']}（{m['side']}）—— {m['reason']}："
@@ -263,12 +316,27 @@ def self_test() -> int:
     def unregistered_note():
         g = globals()
         orig = g["override_notes"]
-        g["override_notes"] = lambda: orig() + [("p99", "R1 Mid Only: fake note")]
+        g["override_notes"] = lambda: orig() + [("p99", "fake-axis", "9.9")]
         try:
             return audit(real)
         finally:
             g["override_notes"] = orig
-    case("spec 新增未登記之覆寫註記 → 紅", unregistered_note, True)
+    case("spec 新增未登記之覆寫 axis → 紅", unregistered_note, True)
+
+    # 閘 2′ —— **第三批之絆線**（23 包 M-3）
+    # `pending` 之 leaf 一旦生成了 TC，該狀態即不再成立；
+    # 若無此檢查，那兩個 R1 High 覆寫會在第三批被寫成前提而無人測 ——
+    # **正是 `017`／`039`／`013` 當初的形狀**。
+    def pending_leaf_now_generated():
+        fake = dict(next(iter(real.values())))
+        fake["req_id"] = "SWE1-HMI-PROF-046"
+        return audit({**real, "NR1L-UserProfiles-999": fake})
+    case("pending 之 leaf 已生成 TC（第三批之形狀）→ 紅",
+         pending_leaf_now_generated, True)
+
+    # 綠向：pending leaf 確實在 037 之 180 母體內且尚無 TC
+    case("pending 之兩個 leaf 皆在母體內且尚無 TC → 綠",
+         lambda: [b for b in audit(real) if b.startswith("V1-2")], False)
 
     n = len(cases)
     print(f"\n{n if ok else '<' + str(n)} / {n} directional cases "

@@ -1,0 +1,20 @@
+# override_notes_m3.tsv — 23 包 M-3：覆寫記法之母體擴掃（**不限 `**`**）
+#
+# 由 scripts/scan_override_notes.py 產生。**逐條判讀為人工**，
+# 三分法：覆寫／適用條件／狀態條件（詳見該檔 docstring）。
+# axis 欄非空者即 V-1（D-UP22-02）之母體成員。
+page	pattern	verdict	section	axis	note	text
+p7	instead	狀態條件	5.2		達 5 個 profile 上限時改顯示 PU0584 —— **條件為狀態非變體**；已由 TC-003 覆蓋	he string described in note PRACC7.2 will not be present either. A text will be displayed instead informing the
+p7	not applicable	適用條件	5.1.2		7 吋螢幕不適用 —— **未指定替代物**；037 之 leaf 標題已載 `Large Screens`	Profile tab and all the other tabs). This logic is not applicable for 7” screens.
+p9	Only:	覆寫	6.1	r1h-cpa-6.1	R1 High：CPA 不啟動、改自 Edit Profile 進入 —— **TSV 誤歸為「圖／表內標籤」**	Only: this passage is not
+p12	Only:	覆寫	8.1	r1h-cpa-8.1	R1 High：該段不實作、步驟 4 後直接進 Tutorials —— **TSV 誤歸為「圖／表內標籤」**	****NEWPR0.) R1 High Only: this passage is not meant to be implemented. CPA will not be launched and it will be accessible from the Edit
+p13	(if applicable)	適用條件	8.6		back arrow 之前一步「若有」	setup Process, the back arrow will take the user to the previous step (if applicable) and store any selections for when they go to that step again (until
+p13	instead	適用條件	8.8		選取行為之描述，非覆寫	One will be highlighted, and if they choose a different avatar it will become highlighted instead. The selected avatar will show above the “Save &
+p14	(if applicable)	適用條件	9.1		Table EDPR1 之列項適用條件	“Memory Seat” (If applicable)
+p14	Only:	覆寫	9.1	p14-account-label	帳號 label 之替代	****R1 High Only: "Stellantis Account" to
+p16	(if applicable)	適用條件	10.3.1		Table PIP1 之列項適用條件	(if applicable)
+p16	(if applicable)	適用條件	10.3.1		同上	Navigation (if applicable)
+p16	Only:	覆寫	10.3.1	p16-pip1-desc	Table PIP1 該列之 Description 替代	****R1 High Only: for the "Connected Account" category title (if
+p17	Only:	覆寫	11.4	p17-china-row	Connected Navigation 列不顯示	****For China market only: do not show this content
+p17	Only:	覆寫	11.4	p17-cpa2-table	整張表不適用	**R1 High Only: This table (Table CPA2) is not applicable. There will
+p17	not applicable	覆寫	11.4	p17-cpa2-table	與 `**R1 High Only: This table…` 同一覆寫之另一表達，**不另立 axis**	CPA2.) [This whole note is not applicable for R1 H] Clicking on the info icon next

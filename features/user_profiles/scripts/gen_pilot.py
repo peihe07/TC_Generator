@@ -143,7 +143,7 @@ TCS = {
             "為什麼這樣切：037 對 4.1 切出三個 leaf，本 leaf（-01）之單位為"
             "「儲存與回復」，一葉一 TC（§8.2.1），未合併未拆分。"
             "刻意略過：-02（啟用時回復）與 -03（不可用之項目跳過）之行為由"
-            "該二 sibling leaf 承擔，本 TC 不代測。"),
+            "`SWE1-HMI-PROF-001-02`／`SWE1-HMI-PROF-001-03` 兩 leaf 承擔，本 TC 不代測。"),
         kw=["Driver Profile", "profile-linked preferences", "PLP table",
             "store", "recall"],
     ),
@@ -280,8 +280,21 @@ TCS = {
             "關鍵情境條件：兩者為同一觸發（建立新 profile）之兩個結果，"
             "依 §5.7 併於一條 TC 之兩條 ER，不拆。"
             "為什麼這樣切：以步驟 1 之記錄作為基準線，步驟 3 比對其存續（§5.6）。"
-            "刻意略過：客製化或刪除後預設 profile 之消失，屬其反面條件，由 6.2 之"
-            "其他 leaf 承擔。"),
+            "**覆蓋缺口（A-UP13，23 包 M-2 掃出；25 包確認其歸屬）** ——"
+            "**注意：R-U56 不適用於本項**。R-U56 關的是「SWE 未切 leaf」者，"
+            "而本項之行為就寫在 `SWE1-HMI-PROF-048` **自己的 description 裡**"
+            "（該 leaf SWE 有切、已取樣），只是本 TC 未驗其後半 ——"
+            "**那是我方之覆蓋不足，不是範圍問題**。細節如下："
+            "客製化或刪除後預設 profile 之消失，原稱「由 6.2 之其他 leaf 承擔」"
+            "—— **該委派不成立**（6.2／NOPR1 只述 Welcome popup 與客製化提示）。"
+            "該行為出自**本 leaf 自己之 description**（6.2.1 之 `will remain on "
+            "the vehicle until a user customizes or deletes it`）之反面條件，"
+            "而 **6.2.1 僅此一個 leaf**（`SWE1-HMI-PROF-048`）——"
+            "**本 TC 只驗其前半（未客製化前仍在），後半無人驗**。"
+            "**不可誤委派予 `SWE1-HMI-PROF-007-02`（4.5）**："
+            "該 leaf 驗的是「客製化後刪除**全部** profile → Driver 1 **重建**」，"
+            "與本處之「客製化後該預設 profile **不再是預設**」是兩件事。"
+            "處置：於本 leaf 下補一條 TC（25 包 B 之附掛項）。"),
         kw=["default Profile", "Driver 1", "create", "customize"],
     ),
 
@@ -336,7 +349,16 @@ TCS = {
             "故 pre-condition 明訂兩個 profile 皆有指派，使該欄位確實可觀察。"
             "為什麼這樣切：條文另有「More Options 進 Edit Profile tab」與"
             "「選了別的 profile 則顯示新的 welcome popup」兩項行為，"
-            "屬不同觸發，依 §5.7 不併入本 TC，由 7.2 之 sibling leaf 承擔。"),
+            "屬不同觸發，依 §5.7 不併入本 TC。"
+            "**委派更正二次（A-UP13；23 包 M-2 掃出，25 包定其歸屬）**："
+            "兩項原稱「由 7.2 承擔」—— **該委派不成立**"
+            "（7.2／PRWEL2 述的是**小型** welcome popup，其文無 `More Options`）。"
+            "23 輪據此記為「兩項無人驗」，**該記載亦不準確** ——"
+            "本節（7.2.1）之 leaf 有三：本 TC 為 `SWE1-HMI-PROF-059-01`，"
+            "而兩項各有專屬 leaf：`SWE1-HMI-PROF-059-02`（More Options → "
+            "Edit Profile tab）與 `SWE1-HMI-PROF-059-03`（切換 profile 後顯示"
+            "新 welcome popup）承擔。"
+            "**兩者尚未取樣**，故為 (b) 類之待兌現承諾，非覆蓋缺口。"),
         kw=["large welcome popup", "username", "avatar",
             "memory seat assignment"],
     ),
@@ -396,7 +418,7 @@ TCS = {
             "關鍵情境條件：以 11／12／13 三讀構成邊界前後（§5.6），故取邊界值分析；"
             "spec 之「~12」為近似寫法，037 leaf 明寫 12，本 TC 取 12 並具名記於 remarks。"
             "為什麼這樣切：同節另有「最少 1 字元、未輸入前 Next 不可用」與"
-            "「可含空白且空白計入長度」兩項，屬不同輸入條件，由 8.7 之 sibling leaf 承擔。"),
+            "「可含空白且空白計入長度」兩項，屬不同輸入條件，由 `SWE1-HMI-PROF-073-02`／`SWE1-HMI-PROF-073-03`（8.7）承擔。"),
         kw=["username", "12 characters", "keyboard", "maximum"],
     ),
 
@@ -465,7 +487,7 @@ TCS = {
             "出自 9.3.1，條文以「the message specified above」指之，"
             "故 specification_reference 併列 9.3.1（§10.7），非自擬。"
             "刻意略過：9.3.1 之「行進中選取受限項目」為另一觸發（選取 vs 進行中），"
-            "由該 leaf 承擔；本 TC 之字面值依 R-U35 (c) 用 Connected Account。"),
+            "由 `SWE1-HMI-PROF-090`（9.3.1）承擔；本 TC 之字面值依 R-U35 (c) 用 Connected Account。"),
         kw=["vehicle in motion", "restricted items", "bonk", "Edit Profile",
             "Connected Account"],
     ),
@@ -487,7 +509,10 @@ TCS = {
             "No back button to the Profile section is present on the "
             "“My Profile” Settings section"),
         remarks="9.8 之 PU0609 句（設定變更時提示已對現用 profile 變更）"
-                "在 037 無對應 leaf —— 未納入本 TC，已列上繳 13 之覆蓋缺口",
+                "在 037 無對應 leaf —— **依 R-U56 為 OUT-OF-SCOPE**"
+                "（範圍上界為 037 之 180 leaf 母體）：不生成 TC、"
+                "**不列覆蓋缺口、不向上游索取**。其為 xlsx 側掉句之事實仍留檔"
+                "（補句表 must_carry；亦為 lint 之 PU 全集自檢案例）",
         reasoning=(
             "驗證目標：9.8（EDPR9）—— More Settings 直接連往 My Profile 設定區，"
             "且進入後不提供返回 Profile 區之返回鍵。"
@@ -495,7 +520,10 @@ TCS = {
             "為什麼這樣切：同節尚有一句「設定變更時以 popup 提示已對現用 profile 變更"
             "（PU0609）」—— 該句為 xlsx 側掉句（補句表 must_carry），"
             "其觸發為「變更設定」而非「按 More Settings」，屬不同觸發（§5.7），"
-            "且 037 未為其切出 leaf。本 TC 不代測，該缺口具名上報。"),
+            "且 **037 未為其切出 leaf**。"
+            "**依 R-U56（26 包，Pei 裁定）：SWE 有寫就有、沒寫就不理** ——"
+            "該句為 OUT-OF-SCOPE，**不列缺口、不上報**；本 TC 不代測。"
+            "（原述「該缺口具名上報」係 R-U56 之前之判讀，已改。）"),
         kw=["More Settings", "My Profile", "back button", "Settings section"],
     ),
 

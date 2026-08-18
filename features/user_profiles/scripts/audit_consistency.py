@@ -80,14 +80,25 @@ FORM_RULES = {
     # （TC-022 之 `Select the greyed-out “Delete Profile” item`、
     #  TC-057 之 `Select Device Manager`）—— 動作本身讀不出它非法，
     # **非法性顯示在 ER**（不被接受／被鎖住）。v2 兩邊都看。
-    "負向測試": ("無效輸入或非法操作（procedure 之嘗試，或 ER 明載其被擋）",
+    # **判準補過一次（R-U37，24 包 P-2 之連帶）。**
+    # v2 之 ER 側詞表要求 `is blocked` 之類的明說。24 包 P-2 把 TC-070 之 ER3
+    # 由全稱之 `any popup … is blocked` 收斂為 `the PU0934 exit popup is not
+    # shown` 之後，該條之 design_method（負向測試）遂轉紅 ——
+    # **而它仍然是負向測試**：其 procedure 步驟 1「Press the Valet Profile
+    # icon」正是對一個**不該生效之操作**的嘗試，ER1「does not open a
+    # deactivation flow」即該嘗試**無作用**。
+    # 漏的是「嘗試後無作用」這一種 ER 措辭，不是這條 TC 的方法判錯。
+    # v3 補之；**未放寬到一般之缺席斷言** —— `no X is shown` 仍不算，
+    # 否則 TC-047 那種「到兩個地方看，那裡沒有該控制」會被誤收為負向。
+    "負向測試": ("無效輸入或非法操作（procedure 之嘗試，或 ER 明載其被擋／無作用）",
                  lambda tc: bool(re.search(
                      r"\b(attempt|greyed|incorrect|differs|other than)\b",
                      tc["test_procedure"], re.I))
                  or bool(re.search(
                      r"\b(not accepted|does not respond|is blocked|"
                      r"locked out|cannot be opened|not available|"
-                     r"is not accessible)\b", tc["expected_result"], re.I))),
+                     r"is not accessible|does not open|does not initiate)\b",
+                     tc["expected_result"], re.I))),
     "情境 / 用例": ("≥3 步或跨 ≥3 功能",
                     lambda tc: len([x for x in tc["test_procedure"].splitlines()
                                     if x.strip()]) >= 3),
@@ -112,6 +123,55 @@ LOWER_BAND_WORDS = {
     "P2": re.compile(r"核心五類|防線本身|資料遺失風險"),
     "P3": re.compile(r"核心五類|防線本身|資料遺失風險|邊界"),
 }
+
+
+# ── Q-1（25 包）—— **反向**：逐字引自 spec 而**未**加引號者
+#
+# G18 查的是「引號內之字面值溯不溯得到源」；**它查不到「該加而未加」**。
+# 本掃描補其反向：ER 中**引號外**之連續 ≥7 詞若逐字見於被引之節，即列待判。
+#
+# ## 引號之適用界線（本輪立，25 包 Q-1）
+#
+# canon §11：顯示文字與指示值（非可點元素）比照 UI 標籤，用雙引號。
+# 惟語料中有兩種形態，**現行做法已一致，本輪只是把它寫下來**：
+#
+# | 形態 | 例 | 加引號？ |
+# |---|---|---|
+# | **散文中內嵌**之顯示文字 | `TC-075`「The row reads “…”」、`TC-055`、`TC-072` | **是** |
+# | **逐列轉錄**之表格內容 | `TC-039` 之 `a.`–`o.`、`TC-013` 之 `a.`–`d.` | 否 —— 列表形式本身即標示其為轉錄 |
+#
+# 故本掃描**排除子層列舉行**（`a.` / `b.` …）。
+# **盲區（R-G11）**：此界線是我讀語料歸納的，非 canon 明文。
+# 若分析層認為轉錄列亦須加引號，`TC-039`（15 列）與 `TC-013`（4 列）皆須改。
+QUOTE_SPAN = re.compile(r"[“\"]([^”\"]{3,})[”\"]")
+SUBLIST_LINE = re.compile(r"^\s+[a-z]\.\s")
+NGRAM = 7
+
+
+def q1_unquoted(rows) -> list:
+    import build_batch_context as _B
+    hits = []
+    for _sec, t in rows:
+        cited = [x.strip().replace(_B.SPEC_STEM + "_", "")
+                 for x in str(t.get("specification_reference", "")).split("; ")]
+        pool = " ".join((_B.spec_body(c) or "") for c in cited)
+        pool += " " + " ".join(x["text"] for x in _B.must_carry_for(cited[0]))
+        pool = " ".join(pool.split()).lower()
+        for line in str(t.get("expected_result", "")).splitlines():
+            if SUBLIST_LINE.match(line):
+                continue                      # 逐列轉錄，不適用（見上）
+            body = QUOTE_SPAN.sub(" ¶ ", line)
+            body = re.sub(r"^\s*\d+\.", " ", body)
+            words = re.findall(r"[A-Za-z0-9'’.\-]+", body)
+            for i in range(len(words) - NGRAM + 1):
+                g = " ".join(words[i:i + NGRAM]).lower()
+                if g in pool:
+                    hits.append((t["tc_id"], _sec, g))
+                    break
+            else:
+                continue
+            break
+    return hits
 
 
 def tcs() -> list:
@@ -181,6 +241,9 @@ def _tc(**kw) -> dict:
         "tc_id": "FAKE-000", "expected_result": "1. NA", "test_procedure": "1. NA",
         "input_test_data": "NA", "design_method": "功能測試 (Functional based ; no specific technique)",
         "priority": "P2", "priority_basis": "呈現層",
+        "specification_reference": (
+            "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_"
+            "(October_03_2023)_9.1.1"),
     }
     base.update(kw)
     return base
@@ -218,6 +281,18 @@ SELF_CASES = [
      _tc(design_method="負向測試 (Negative Testing)",
          test_procedure="1. Open the Profile section\n2. Read the option list",
          expected_result="1. The tab is displayed\n2. No Valet control is shown"), True),
+    ("**TC-070 之形狀**：嘗試後無作用（`does not open`）→ **須綠**（v2 誤判為紅）",
+     "k4a",
+     _tc(design_method="負向測試 (Negative Testing)",
+         test_procedure="1. Press the Valet Profile icon in the status bar\n"
+                        "2. Read the screen and check that no path exits",
+         expected_result="1. The Valet Profile icon does not open a "
+                         "deactivation flow\n2. Valet Mode is still active"), False),
+    ("**TC-047 之形狀**：純缺席斷言（`no X is shown`）→ **仍須紅**（判準未放寬到它）",
+     "k4a",
+     _tc(design_method="負向測試 (Negative Testing)",
+         test_procedure="1. Open the Profile section\n2. Read the option list",
+         expected_result="1. The tab is displayed\n2. No Valet control is shown"), True),
     ("**TC-022 之形狀**：非法性顯示在 **ER** 而非 procedure（v1 誤判為紅）→ **須綠**",
      "k4a",
      _tc(design_method="負向測試 (Negative Testing)",
@@ -238,6 +313,17 @@ SELF_CASES = [
          test_procedure="1. Open the tab\n2. Read the screen",
          input_test_data="NA"), True),
 
+    # ---- Q-1：引號外之逐字引用（25 包）
+    ("**TC-075 之原形**：散文中內嵌之逐字顯示文字**未**加引號 → **須紅**", "q1",
+     _tc(expected_result="1. The page is displayed\n2. The line reads 8.4inch "
+                         "screen size will not show the username and avatar"), True),
+    ("同句已加雙引號 → **須綠**", "q1",
+     _tc(expected_result="1. The page is displayed\n2. The line reads “8.4inch "
+                         "screen size will not show the username and avatar”"), False),
+    ("**TC-039／TC-013 之形態**：逐列轉錄之子層行不適用 → **須綠**", "q1",
+     _tc(expected_result="2. The rows are shown:\n   a. 8.4inch screen size "
+                         "will not show the username and avatar"), False),
+
     # ---- K-4b：priority ↔ priority_basis 之措辭（測**相斥**，非詞表命中）
     ("**C-5 之形狀**：P1 之 basis 寫「呈現層」→ **須紅**", "k4b",
      _tc(priority="P1", priority_basis="連網配置之呈現層細節"), True),
@@ -251,7 +337,8 @@ SELF_CASES = [
      _tc(priority="P2", priority_basis="變灰之外觀 —— 呈現層"), False),
 ]
 
-SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b}
+SCANS = {"k3": k3, "k3_plural": k3_plural, "k4a": k4a, "k4b": k4b,
+         "q1": q1_unquoted}
 
 
 def self_test() -> int:
@@ -298,6 +385,11 @@ if __name__ == "__main__":
     print(f"\n## K-4a —— design_method ↔ 實際形態：{len(b)} 處待判\n")
     for tid, sec, key, want in b:
         print(f"  {tid} ({sec}) {key} —— 缺 {want}")
+
+    q = q1_unquoted(rows)
+    print(f"\n## Q-1 —— 引號外之逐字引用（≥{NGRAM} 詞）：{len(q)} 處待判\n")
+    for tid, sec, g in q:
+        print(f"  {tid} ({sec}) 「{g[:70]}」")
 
     c = k4b(rows)
     print(f"\n## K-4b —— priority ↔ priority_basis 之措辭：{len(c)} 處待判\n")

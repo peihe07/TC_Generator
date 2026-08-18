@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "NOPR1.1) The user does not need to customize the Default Profile(s) before creating a different new Profile. Driver 1 and any other default Profiles will remain on the vehicle until a user customizes or deletes it.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：6.2.1（NOPR1.1）之兩項斷言 —— 建新 profile 不需先客製化預設 profile，且 Driver 1 與其他預設 profile 會留在車上直到被客製化或刪除。關鍵情境條件：兩者為同一觸發（建立新 profile）之兩個結果，依 §5.7 併於一條 TC 之兩條 ER，不拆。為什麼這樣切：以步驟 1 之記錄作為基準線，步驟 3 比對其存續（§5.6）。刻意略過：客製化或刪除後預設 profile 之消失，屬其反面條件，由 6.2 之其他 leaf 承擔。",
+ "reasoning": "驗證目標：6.2.1（NOPR1.1）之兩項斷言 —— 建新 profile 不需先客製化預設 profile，且 Driver 1 與其他預設 profile 會留在車上直到被客製化或刪除。關鍵情境條件：兩者為同一觸發（建立新 profile）之兩個結果，依 §5.7 併於一條 TC 之兩條 ER，不拆。為什麼這樣切：以步驟 1 之記錄作為基準線，步驟 3 比對其存續（§5.6）。**覆蓋缺口（A-UP13，23 包 M-2 掃出；25 包確認其歸屬）** ——**注意：R-U56 不適用於本項**。R-U56 關的是「SWE 未切 leaf」者，而本項之行為就寫在 `SWE1-HMI-PROF-048` **自己的 description 裡**（該 leaf SWE 有切、已取樣），只是本 TC 未驗其後半 ——**那是我方之覆蓋不足，不是範圍問題**。細節如下：客製化或刪除後預設 profile 之消失，原稱「由 6.2 之其他 leaf 承擔」—— **該委派不成立**（6.2／NOPR1 只述 Welcome popup 與客製化提示）。該行為出自**本 leaf 自己之 description**（6.2.1 之 `will remain on the vehicle until a user customizes or deletes it`）之反面條件，而 **6.2.1 僅此一個 leaf**（`SWE1-HMI-PROF-048`）——**本 TC 只驗其前半（未客製化前仍在），後半無人驗**。**不可誤委派予 `SWE1-HMI-PROF-007-02`（4.5）**：該 leaf 驗的是「客製化後刪除**全部** profile → Driver 1 **重建**」，與本處之「客製化後該預設 profile **不再是預設**」是兩件事。處置：於本 leaf 下補一條 TC（25 包 B 之附掛項）。",
  "keywords": [
   "default Profile",
   "Driver 1",

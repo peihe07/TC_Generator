@@ -15,7 +15,7 @@
    "pdf_source": "PDF p14"
   }
  ],
- "reasoning": "驗證目標：9.3.2（EDPR3.2）—— 使用者正在進行受限項目時車輛轉為行進，系統須返回前一個可用頁面並播 bonk 與顯示訊息。關鍵情境條件：受測之受限項目取「編輯 username」一項即足以觸發，其判準為車輛由靜止轉入行進之狀態轉換（§12 首匹配 → 狀態轉換）。為什麼這樣切：訊息字串「Function not available while vehicle in Motion.」出自 9.3.1，條文以「the message specified above」指之，故 specification_reference 併列 9.3.1（§10.7），非自擬。刻意略過：9.3.1 之「行進中選取受限項目」為另一觸發（選取 vs 進行中），由該 leaf 承擔；本 TC 之字面值依 R-U35 (c) 用 Connected Account。",
+ "reasoning": "驗證目標：9.3.2（EDPR3.2）—— 使用者正在進行受限項目時車輛轉為行進，系統須返回前一個可用頁面並播 bonk 與顯示訊息。關鍵情境條件：受測之受限項目取「編輯 username」一項即足以觸發，其判準為車輛由靜止轉入行進之狀態轉換（§12 首匹配 → 狀態轉換）。為什麼這樣切：訊息字串「Function not available while vehicle in Motion.」出自 9.3.1，條文以「the message specified above」指之，故 specification_reference 併列 9.3.1（§10.7），非自擬。刻意略過：9.3.1 之「行進中選取受限項目」為另一觸發（選取 vs 進行中），由 `SWE1-HMI-PROF-090`（9.3.1）承擔；本 TC 之字面值依 R-U35 (c) 用 Connected Account。",
  "keywords": [
   "vehicle in motion",
   "restricted items",

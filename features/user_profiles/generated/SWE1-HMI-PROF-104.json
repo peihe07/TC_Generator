@@ -15,7 +15,7 @@
    "pdf_source": "PDF p15"
   }
  ],
- "reasoning": "驗證目標：9.8（EDPR9）—— More Settings 直接連往 My Profile 設定區，且進入後不提供返回 Profile 區之返回鍵。關鍵情境條件：兩項為同一觸發之兩個結果，依 §5.7 併為一條 TC 之兩條 ER。為什麼這樣切：同節尚有一句「設定變更時以 popup 提示已對現用 profile 變更（PU0609）」—— 該句為 xlsx 側掉句（補句表 must_carry），其觸發為「變更設定」而非「按 More Settings」，屬不同觸發（§5.7），且 037 未為其切出 leaf。本 TC 不代測，該缺口具名上報。",
+ "reasoning": "驗證目標：9.8（EDPR9）—— More Settings 直接連往 My Profile 設定區，且進入後不提供返回 Profile 區之返回鍵。關鍵情境條件：兩項為同一觸發之兩個結果，依 §5.7 併為一條 TC 之兩條 ER。為什麼這樣切：同節尚有一句「設定變更時以 popup 提示已對現用 profile 變更（PU0609）」—— 該句為 xlsx 側掉句（補句表 must_carry），其觸發為「變更設定」而非「按 More Settings」，屬不同觸發（§5.7），且 **037 未為其切出 leaf**。**依 R-U56（26 包，Pei 裁定）：SWE 有寫就有、沒寫就不理** ——該句為 OUT-OF-SCOPE，**不列缺口、不上報**；本 TC 不代測。（原述「該缺口具名上報」係 R-U56 之前之判讀，已改。）",
  "keywords": [
   "More Settings",
   "My Profile",
@@ -41,7 +41,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "9.8 之 PU0609 句（設定變更時提示已對現用 profile 變更）在 037 無對應 leaf —— 未納入本 TC，已列上繳 13 之覆蓋缺口",
+   "remarks": "9.8 之 PU0609 句（設定變更時提示已對現用 profile 變更）在 037 無對應 leaf —— **依 R-U56 為 OUT-OF-SCOPE**（範圍上界為 037 之 180 leaf 母體）：不生成 TC、**不列覆蓋缺口、不向上游索取**。其為 xlsx 側掉句之事實仍留檔（補句表 must_carry；亦為 lint 之 PU 全集自檢案例）",
    "split_flag": false,
    "split_reason": ""
   }

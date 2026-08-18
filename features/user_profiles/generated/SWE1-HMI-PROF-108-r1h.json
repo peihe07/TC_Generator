@@ -28,7 +28,7 @@
    "pre_conditions": "1. The vehicle is an R1 High variant\n2. The vehicle is equipped with Navigation\n3. A Driver Profile is active\n4. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Open the Driver Profile info page\n2. Read the Connected Account row and check that its description carries no subscription clause",
-   "expected_result": "1. The Driver Profile Info Page is displayed\n2. The Connected Account row reads Save your preferences to the cloud and access them from vehicle to vehicle, with no Uconnect.com subscription clause; the other rows of Table PIP1 are unchanged",
+   "expected_result": "1. The Driver Profile Info Page is displayed\n2. The Connected Account row reads “Save your preferences to the cloud and access them from vehicle to vehicle.”, with no Uconnect.com subscription clause; the other rows of Table PIP1 are unchanged",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_10.3.1",
    "priority": "P2",
    "priority_basis": "linked-info 頁之內容（與 TC-039 同級）",

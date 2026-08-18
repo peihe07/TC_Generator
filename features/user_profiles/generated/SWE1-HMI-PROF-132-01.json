@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "When Valet Mode is activated via SPAAK, the SPAAK user must not be able to exit Valet Mode from the head unit. Any screens, buttons, or popups (such as PU0934) that normally allow a user to exit Valet Mode must be strictly blocked or suppressed on the head unit.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：13.2（PVALSPK2）之阻擋側 —— SPAAK 使用者無法自主機退出。關鍵情境條件：本條之單位是「**所有**主機路徑」，故步驟逐一走過狀態列圖示與 All Profiles 分頁兩個入口。為什麼這樣切：037 為 13.2 切出兩個 leaf —— 本條（阻擋）與 pilot 之 132-02（車主遠端停用）；一葉一 TC（§8.2.1）。刻意略過：**入口之窮舉不可能完備** —— 取兩個最可能者，已具名。",
+ "reasoning": "驗證目標：13.2（PVALSPK2）之阻擋側 —— SPAAK 使用者無法自主機退出。關鍵情境條件：本條之單位是「**所有**主機路徑」，故步驟逐一走過狀態列圖示與 All Profiles 分頁兩個入口。為什麼這樣切：037 為 13.2 切出兩個 leaf —— 本條（阻擋）與 pilot 之 132-02（車主遠端停用）；一葉一 TC（§8.2.1）。**ER3 之收斂（P-2，24 包）**：原 ER3 為 `any popup that would allow an exit is blocked` —— **全稱斷言，而 procedure 只走兩個入口**，測試者無從據以判定通過與否（§6）。現收斂為 spec 所點名之 `PU0934`（13.2 逐字：`must be blocked (PU0934, etc)`）。**「所有入口皆被阻擋」之全稱留在此處，不入 ER** —— 條文之 `etc` 本身即表示該集合未列盡，**spec 沒列盡的東西，ER 不可能驗得完**。刻意略過：**入口之窮舉不可能完備** —— 取兩個最可能者，已具名。",
  "keywords": [
   "SPAAK",
   "head unit",
@@ -29,7 +29,7 @@
    "pre_conditions": "1. Valet Mode is active under the SPAAK scenario\n2. The user at the head unit is the SPAAK user\n3. The vehicle is stationary",
    "input_test_data": "NA",
    "test_procedure": "1. Press the Valet Profile icon in the status bar\n2. Open the “All Profiles” tab and look for a deactivation control\n3. Read the screen and check that no head unit path exits Valet Mode",
-   "expected_result": "1. The Valet Profile icon does not open a deactivation flow\n2. No deactivation control is available on the “All Profiles” tab\n3. Valet Mode is still active and any popup that would allow an exit is blocked",
+   "expected_result": "1. The Valet Profile icon does not open a deactivation flow\n2. No deactivation control is available on the “All Profiles” tab\n3. Valet Mode is still active and the PU0934 exit popup is not shown",
    "specification_reference": "Personal_Account_HMI_Logic_and_Flow_R1_SR24_Post2A_CR24798_(October_03_2023)_13.2",
    "priority": "P0",
    "priority_basis": "SPAAK 下主機退出之全面阻擋 —— 隔離被繞過即失效",

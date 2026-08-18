@@ -109,11 +109,13 @@ PAIRS = [
             proc=steps("Open the Driver Profile info page",
                        "Read the Connected Account row and check that its "
                        "description carries no subscription clause"),
+            # Q-1（25 包）：內嵌之逐字顯示文字須加雙引號（§11）——
+            # 同批之 TC-055／TC-072 已加，本條漏加。
             er=steps("The Driver Profile Info Page is displayed",
-                     "The Connected Account row reads Save your preferences to "
-                     "the cloud and access them from vehicle to vehicle, with "
-                     "no Uconnect.com subscription clause; the other rows of "
-                     "Table PIP1 are unchanged"),
+                     "The Connected Account row reads “Save your preferences "
+                     "to the cloud and access them from vehicle to vehicle.”, "
+                     "with no Uconnect.com subscription clause; the other rows "
+                     "of Table PIP1 are unchanged"),
             remarks="**L-3 之對造**：正向為 NR1L-UserProfiles-039（非 R1 High，"
                     "該列含「(with a Uconnect.com subscription)」）。依據為 PDF p16 之"
                     "**列級**註記「****R1 High Only: for the \"Connected Account\" "
@@ -199,7 +201,12 @@ PAIRS = [
                     "feature」一側。**原 reasoning 將本側委派 11.3 之 leaf，"
                     "該委派不成立** —— 11.3 之條件為 `equipped with "
                     "connectivity`，與本側非同一語意（見上繳 22 §2）。"
-                    "pre-condition 明列「區域有 app」，使兩個條件不同時成立",
+                    "pre-condition 明列「區域有 app」，使兩個條件不同時成立。"
+                    "**該前提為推得，非條文所載（M-4，23 包）**：spec 未明言"
+                    "「有 `<Brand>` app 之區域、而車輛不支援 connected profile "
+                    "功能」此一組合存在。若該組合在實車上造不出來，本 TC 之情境"
+                    "即無法佈署 —— **但條件 2 是條文寫的，TC 不因情境難佈署而刪**"
+                    "（§8.4.1）。已併 DR #3 送 RD 查詢",
             reasoning=(
                 "驗證目標：9.2（EDPR2）之**第二個條件** —— 車輛不支援 connected "
                 "profile 功能時，不顯示 Connected Profile 之選項／資訊與 "
@@ -215,7 +222,9 @@ PAIRS = [
                 "若「不支援該功能」只等於「無連網」，條件 1 便無處安放。"
                 "指錯承擔者比不指更糟：它讓覆蓋稽核看起來是滿的（§8.2.1）。"
                 "刻意略過：兩個條件同時成立之情形不另生成 —— 其結果與各自單獨"
-                "成立時相同，加測不增訊號。"),
+                "成立時相同，加測不增訊號。"
+                "**來源標示（M-4）**：pre-condition 之「區域有 `<Brand>` app」"
+                "為**推得**（隔離條件 1 之需要），非 spec 所載；其可造性已送 DR #3。"),
             kw=["connected profile feature", "unsupported", "hidden",
                 "Connected Account"],
         ),

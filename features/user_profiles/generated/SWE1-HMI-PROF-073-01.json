@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "The maximum number of characters allowed for a username is 12. Once this limit is reached, the keyboard must actively block any further input and not allow typing more characters.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：8.7（NEWPR6）之 username 長度上限 —— 達上限後鍵盤不再接受輸入。關鍵情境條件：以 11／12／13 三讀構成邊界前後（§5.6），故取邊界值分析；spec 之「~12」為近似寫法，037 leaf 明寫 12，本 TC 取 12 並具名記於 remarks。為什麼這樣切：同節另有「最少 1 字元、未輸入前 Next 不可用」與「可含空白且空白計入長度」兩項，屬不同輸入條件，由 8.7 之 sibling leaf 承擔。",
+ "reasoning": "驗證目標：8.7（NEWPR6）之 username 長度上限 —— 達上限後鍵盤不再接受輸入。關鍵情境條件：以 11／12／13 三讀構成邊界前後（§5.6），故取邊界值分析；spec 之「~12」為近似寫法，037 leaf 明寫 12，本 TC 取 12 並具名記於 remarks。為什麼這樣切：同節另有「最少 1 字元、未輸入前 Next 不可用」與「可含空白且空白計入長度」兩項，屬不同輸入條件，由 `SWE1-HMI-PROF-073-02`／`SWE1-HMI-PROF-073-03`（8.7）承擔。",
  "keywords": [
   "username",
   "12 characters",

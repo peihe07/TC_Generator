@@ -398,14 +398,17 @@ Power profile §3.2（訊號值 `[1h]`／`[0h]`）。
 它守的是「對照的是來源，不是一張 token 白名單」。
 若日後有人把本閘改成「`[username]` 一律放行」，紅向仍全過而**那一條會倒**。
 
-### 記載限制（R-G11）
+### **本條已移入 profile 檔（23 輪 M-1）—— 權威載體變更**
 
-canon §11 之例外原文為「when the **feature profile** says so」，
-而本 feature **無 `docs/runtime/profiles/FW036_R1L_UserProfiles_Profile.md`**
-（他 feature 皆有）。本條遂落在 `DECISIONS.md` 而非 profile 檔。
-**兩者不同**：profile 檔為 canon 明指之載體，本檔為 feature 自裁之登記。
-是否補建該 profile 檔，待分析層裁示 —— 在此之前，
-**不得以本條聲稱「已依 canon §11 之形式立例外」**。
+22 輪立本條時具名之記載限制（canon §11 之例外原文為
+「when the **feature profile** says so」，而本 feature 無 profile 檔）
+**已於 23 輪解除**：
+
+> **權威載體：`docs/runtime/profiles/FW036_R1L_UserProfiles_Profile.md` §3.3。**
+
+本節之條文與理由留檔（不刪，R19-2 之同旨：已結輪次不回溯編輯），
+但**以 profile 檔為準**；兩者若日後分岔，以 profile 檔為權威。
+**自 23 輪起得聲稱本例外係依 canon §11 之形式所立。**
 
 ---
 
@@ -445,3 +448,69 @@ username 與 avatar 顯示於清單左側，現行語料**無人驗**）。
 閘逐條驗該述詞對不配者為真、**且對已配者為假**。
 `absence-only` 之述詞首跑即抓出兩處**述詞自身之錯**（見該檔 docstring）——
 **閘沒壞，是我寫的述詞壞了**，兩者輸出形狀相同，靠的是它同時驗兩個方向才分得開。
+
+---
+
+## D-UP24-01 — **description 為需求單位，title 為索引標籤**（P-4，24 包）
+
+### 判準
+
+> 037 之一個 leaf，其**需求內容以 `Description` 欄為準**；
+> `Title` 欄為人為擬定之索引標籤，**不是需求單位**。
+> 兩者衝突時以 Description 為準，且**衝突本身須登記**（A-UP11）。
+
+19 輪已依此生成 12.8／12.8.1 之七條，但當時只寫「§8.2 之單位權威，
+而單位之內容以其 Description 為準 —— 標題不是內容」，**未給證據**。
+24 包 P-4 把它升為阻塞第三批之前置，本輪補上證據。
+
+### 證據（180 leaf 全量實測）
+
+| # | 量測 | 結果 |
+|---|---|---|
+| 1 | Description 以 spec **條款編號**起首（`EDPR1.)`／`PVAL8.)` …）| **105 / 180** |
+| 2 | Title 以條款編號起首 | **0 / 180** |
+| 3 | Description 之前 60 字元**逐字**見於該節 `pdf_text` | **120 / 180** |
+| 4 | 對該節 `pdf_text` 之詞彙涵蓋率（平均）| Desc **0.859** vs Title **0.667** |
+| 5 | 逐 leaf 比較 | Desc 較高 **130** ／ Title 較高 29 ／ 平手 21 |
+
+**第 1、2 項是決定性的**：Description 常常**就是條文本身**（連條款編號一併帶入），
+Title 則從無一條如此 —— 兩者不是同一種東西。
+
+### **決定性論證：只有 Description 能分割條文**
+
+以 A-UP11 之現場（12.8 / PVAL8）驗之。該條文有六個斷言，
+四個 leaf 之 **Description 恰好無重疊、無缺漏地分割它**：
+
+| leaf | 其 Description 所取之斷言 |
+|---|---|
+| `125-01` | 只有 HVAC／Media 可用 ＋ Media 內 Device Manager 鎖住 |
+| `125-02` | Projection／native HFP 停用 ＋ VR 不啟用 ＋ 五個區域鎖住 |
+| `125-03` | 狀態列互動受限（僅 Valet Profile 與 HVAC 圖示例外）|
+| `125-04` | 所有不可互動項變灰 |
+
+**若改以 Title 為單位，同一組 leaf 會同時產生缺漏與重複**：
+
+- `125-03` 之 Title 為 `Glove Box Lock Prompt on Valet Mode Entry` ——
+  **PVAL8 通篇沒有手套箱**；該行為屬 12.8.1。
+  即 Title 所指之物**與該 leaf 自己的 `outline` 相衝**。
+- 於是 PVAL8 之「狀態列互動受限」**將無任何 leaf**，
+  而手套箱提示會**同時有兩個 leaf**（`125-03` 與 `126-01`）。
+
+**一個需求單位不可能指向不屬於自己章節的行為。** Title 會，Description 不會。
+
+### 連帶判定：`TC-057`～`TC-062` **不重生成**
+
+六條皆依 Description 生成，而 Description 即需求單位 ——
+**其驗證目標未錯置**。24 包 P-4 所慮之「驗的可能不是該 leaf 所指者」不成立。
+
+**其 TC 標題**由執行層依 Description 另擬（19 輪即如此），**未沿用 037 之錯位標題**，
+故亦無標題誤導之殘留。
+
+### 盲區（R-G11）
+
+1. **本判準不使 A-UP11 之錯位消失** —— 只是使它**不影響 TC 內容**。
+   任何以 037 `Title` 為索引找 leaf 的人，在 12.8／12.8.1 仍會找錯。
+   **A-UP11 因此降為記載瑕疵，但不關閉。**
+2. **29 個 leaf 之 Title 涵蓋率高於 Description** —— 多為 Description 係
+   split leaf 之改寫者（如 `001-01`）。本判準對它們仍成立
+   （改寫者仍是需求內容，Title 仍是標籤），**但第 3、4 項證據對它們較弱**。

@@ -35,7 +35,7 @@
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "條文之「the Exit Valet Mode process **above**」其指涉對象**不在 ch14**（ch14 僅 14.1／14.2，本節即首條）—— 複位後為 12.3.1（同一 PIN 退出）與 12.6（停用詢問），故併列該二節。見上繳 19 §4",
+   "remarks": "條文之「the Exit Valet Mode process **above**」其指涉對象**不在 ch14**（ch14 僅 14.1／14.2，本節即首條）—— 複位後為 **12.3.1**（同一 PIN 退出）與 **12.6**（停用詢問）兩處。**引用欄只列 12.3.1，不列 12.6（P-3，24 包）**：本 TC 之 procedure 只走 welcome popup 之「Exit Valet Mode」按鈕這一路，未走狀態列 Profile 鍵那一路，而 12.6 所述之詢問 popup 屬**後者** —— 其字面值不在本 TC 任何欄位內，依 J-10 之判準（登記之節其 `provides` 字面值須真的出現）列之即為**多引**。19 輪之 G17 首跑即以此擋下 12.6，**而 remarks 當時未同步改，遂與引用欄互相矛盾**。見上繳 19 §4",
    "split_flag": false,
    "split_reason": ""
   }

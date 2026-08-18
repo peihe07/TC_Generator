@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "EDPR6.1) If the active Profile was previously linked to any memory seat position, swap the active Profile’s previous seat preference with the other Profile that was previously linked to the active Profiles new seat preference.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：9.5.1（EDPR6.1）—— 現用 profile 原已連結座椅時，與新座椅之原持有者**互換**。關鍵情境條件：pre-condition 明訂兩個 profile 各有連結，否則「互換」無從成立 —— 這也是本條與 9.5.2 之唯一分野。為什麼這樣切：前置未連結之情形由 9.5.2 承擔，兩者之 pre-condition 互斥，不會重複覆蓋。**來源標示（J-12）**：`memory seat 1`／`2` 之編號為**測試設置** ——條文只說 `memory seat position`，編號是為使本 TC 可執行而設，**不承載驗證**（與 R-U21 指定之觀察點不同類）。",
+ "reasoning": "驗證目標：9.5.1（EDPR6.1）—— 現用 profile 原已連結座椅時，與新座椅之原持有者**互換**。關鍵情境條件：pre-condition 明訂兩個 profile 各有連結，否則「互換」無從成立 —— 這也是本條與 9.5.2 之唯一分野。為什麼這樣切：前置未連結之情形由 `SWE1-HMI-PROF-097`（9.5.2）承擔，兩者之 pre-condition 互斥，不會重複覆蓋。**來源標示（J-12）**：`memory seat 1`／`2` 之編號為**測試設置** ——條文只說 `memory seat position`，編號是為使本 TC 可執行而設，**不承載驗證**（與 R-U21 指定之觀察點不同類）。",
  "keywords": [
   "memory seat",
   "swap",

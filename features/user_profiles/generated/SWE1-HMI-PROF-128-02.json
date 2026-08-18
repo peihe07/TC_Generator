@@ -9,7 +9,7 @@
  "source_clause_origin": "outline_map.json::pdf_text",
  "leaf_desc_037": "Once the 10-attempt limit is reached, the system must strictly enforce a 30-minute lockout period. During this time, the user cannot attempt to enter a PIN to activate or deactivate Valet Mode.",
  "must_carry_injected": [],
- "reasoning": "驗證目標：12.9（PVAL9）之鎖定側 —— 10 次錯誤後之 30 分鐘內不受理 PIN。關鍵情境條件：本條刻意只驗「立刻再試不受理」，**不涉時間長度**，故無須等待 30 分鐘；長度之驗證由 128-03 承擔。為什麼這樣切：第 10 次取消本身屬 pilot 之 TC-015（12.9），本條為其後之狀態。",
+ "reasoning": "驗證目標：12.9（PVAL9）之鎖定側 —— 10 次錯誤後之 30 分鐘內不受理 PIN。關鍵情境條件：本條刻意只驗「立刻再試不受理」，**不涉時間長度**，故無須等待 30 分鐘；長度之驗證由 `SWE1-HMI-PROF-128-03`（12.9）承擔。為什麼這樣切：第 10 次取消本身屬 pilot 之 TC-015（12.9），本條為其後之狀態。",
  "keywords": [
   "lockout",
   "30 minutes",
