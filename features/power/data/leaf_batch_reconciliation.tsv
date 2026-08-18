@@ -1,0 +1,116 @@
+leaf	test_set	batch	tc_count	blocking_dr	advisory_dr
+SWE-PM-001	Power State	未產出	0	DR-PW6	—
+SWE-PM-002	Power State	未產出	0	DR-PW6	—
+SWE-PM-003	Power State	未產出	0	DR-PW6	DR-PW5
+SWE-PM-004	Power State	未產出	0	DR-PW6	—
+SWE-PM-005	Power State	未產出	0	DR-PW6	—
+SWE-PM-006	Power State	未產出	0	DR-PW6	—
+SWE-PM-007	Power State	未產出	0	DR-PW6	DR-PW7
+SWE-PM-008	Power State	未產出	0	DR-PW6,DR-PW11	DR-PW7
+SWE-PM-009	Power State	未產出	0	DR-PW6	—
+SWE-PM-010	Power State	未產出	0	DR-PW11	—
+SWE-PM-011	Power State	003	6	—	—
+SWE-PM-012	Power State	003	2	—	—
+SWE-PM-013	Power State	003	3	—	—
+SWE-PM-014	Power State	003	9	—	—
+SWE-PM-015	Power State	003	4	—	—
+SWE-PM-016	Power State	003	1	—	—
+SWE-PM-017	Power State	003	1	—	—
+SWE-PM-018	Power State	003	2	—	—
+SWE-PM-019	Power State	003	4	—	—
+SWE-PM-020	Power State	003	3	—	—
+SWE-PM-021	Power State	003	1	—	—
+SWE-PM-022	Power State	003	1	—	—
+SWE-PM-023	Power State	003	1	—	—
+SWE-PM-024	Power State	003	1	—	—
+SWE-PM-025	Power State	003	8	—	—
+SWE-PM-026	Power State	003	3	—	—
+SWE-PM-027	Power State	003	2	—	—
+SWE-PM-028	Power State	003	4	—	—
+SWE-PM-029	Power State	003	4	—	—
+SWE-PM-030	Power State	003	2	—	—
+SWE-PM-031	Power State	003	1	—	—
+SWE-PM-032	Power State	003	1	—	—
+SWE-PM-033	Power State	004	2	—	—
+SWE-PM-034	Power State	004	1	—	—
+SWE-PM-035	Power State	004	4	—	—
+SWE-PM-036	Power State	004	1	—	—
+SWE-PM-037	Power State	004	1	—	—
+SWE-PM-038	Timeout Settings	002	11	—	DR-PW10
+SWE-PM-039	Power State	004	4	—	—
+SWE-PM-040	Power State	004	1	—	—
+SWE-PM-041	Power State	004	2	—	—
+SWE-PM-042	Power State	004	2	—	—
+SWE-PM-043	Power State	004	2	—	—
+SWE-PM-044	Power State	004	4	—	—
+SWE-PM-045	Power State	004	2	—	—
+SWE-PM-046	Power State	004	2	—	—
+SWE-PM-047	Power State	004	2	—	—
+SWE-PM-048	Power State	004	5	—	—
+SWE-PM-049	Power State	004	1	—	—
+SWE-PM-050	Power State	004	1	—	—
+SWE-PM-051	Power State	004	1	—	—
+SWE-PM-052	Power State	004	1	—	—
+SWE-PM-053	Startup Display	004	1	—	—
+SWE-PM-054	Startup Display	004	4	—	—
+SWE-PM-055	Startup Display	004	2	—	—
+SWE-PM-056	Startup Display	004	1	—	—
+SWE-PM-057	Timeout Settings	002	3	—	—
+SWE-PM-058	Power State	004	1	—	—
+SWE-PM-059	Power State	004	2	—	—
+SWE-PM-060	Timeout Settings	002	2	—	—
+SWE-PM-061	Timeout Settings	002	2	—	—
+SWE-PM-062	Timeout Settings	002	3	—	—
+SWE-PM-063	Timeout Settings	002	1	—	—
+SWE-PM-064	Timeout Settings	002	2	—	—
+SWE-PM-065	Timeout Settings	002	2	—	—
+SWE-PM-066	Power State	005	2	—	—
+SWE-PM-067	Power State	005	1	—	—
+SWE-PM-068	Power State	005	1	—	—
+SWE-PM-069	Power State	005	2	—	—
+SWE-PM-070	Power State	005	1	—	—
+SWE-PM-071	Power Down	001	4	—	—
+SWE-PM-072	Power Down	001	2	—	—
+SWE-PM-073	Power Down	001	11	—	—
+SWE-PM-074	Startup Display	005	3	—	—
+SWE-PM-075	Startup Display	005	3	—	—
+SWE-PM-076	Power State	005	3	—	—
+SWE-PM-077	Branding and Theme	未產出	0	—	—
+SWE-PM-078	Branding and Theme	未產出	0	—	—
+SWE-PM-079	Branding and Theme	未產出	0	—	—
+SWE-PM-080	Branding and Theme	未產出	0	—	—
+SWE-PM-081	Branding and Theme	未產出	0	—	—
+SWE-PM-082	Branding and Theme	未產出	0	—	—
+SWE-PM-083	Branding and Theme	未產出	0	—	—
+SWE-PM-084	Branding and Theme	未產出	0	—	—
+SWE-PM-085	Branding and Theme	未產出	0	—	—
+SWE-PM-086	Branding and Theme	未產出	0	—	—
+SWE-PM-087	Branding and Theme	未產出	0	—	—
+SWE-PM-088	Branding and Theme	未產出	0	—	—
+SWE-PM-089	（留空 —— R-P141）	未產出	0	DR-PW1	—
+SWE-PM-090	Branding and Theme	未產出	0	—	—
+SWE-PM-091	Branding and Theme	未產出	0	—	—
+SWE-PM-092	Branding and Theme	未產出	0	—	—
+SWE-PM-093	Startup Display	005	9	—	—
+SWE-PM-094	Startup Display	005	1	—	—
+SWE-PM-095	Power State	005	1	—	—
+SWE-PM-096	Branding and Theme	未產出	0	—	—
+SWE-PM-097	Startup Display	005	1	—	—
+SWE-PM-098	Startup Display	005	1	—	—
+SWE-PM-099	Startup Display	005	4	—	—
+SWE-PM-100	Startup Display	005	1	—	—
+SWE-PM-101	Startup Display	005	4	—	—
+SWE-PM-102	Startup Display	005	2	—	—
+SWE-PM-103	Power State	005	2	—	—
+SWE-PM-104	Startup Display	005	5	—	—
+SWE-PM-105	Startup Display	005	8	—	—
+SWE-PM-106	Startup Display	005	1	—	—
+SWE-PM-107	Startup Display	005	1	—	—
+SWE-PM-108	Startup Display	005	1	—	—
+SWE-PM-109	Startup Display	005	1	—	—
+SWE-PM-110	Startup Display	005	2	—	—
+SWE-PM-111	Startup Display	005	2	—	—
+SWE-PM-112	Startup Display	未產出	0	—	DR-PW9
+SWE-PM-113	Startup Display	005	1	—	—
+SWE-PM-114	Power State	005	1	—	—
+SWE-PM-115	Power State	005	1	—	—

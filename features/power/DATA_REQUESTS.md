@@ -26,7 +26,10 @@ Urgency 回報。
 | DR-PW11 | **High（live）** | **`SWE-PM-010` 之被引用錨點 `4941984` 不存在於 CFTS 本文。** 037 之 `Source Requirement ID` 經 SYS2 解析得 8 個 item id，其中 `4941984` **於 CFTS009 / CFTS010 之文字層皆無內文段落、亦無所屬章節**（鄰近之 `4941983` / `4941985` 皆存在）。`layer3_full.tsv` 因其無法解析至章節而**靜默丟棄**該 item，致 `source_anchor` 僅 7 個。請上游確認：該 item 是否應存在於 CFTS009？或 SYS2 之對應有誤？ **（23 包 G114 全量掃描擴大）**：115 leaf 中不相等者共 **2** —— `SWE-PM-010` 缺 `4941984`、**`SWE-PM-008` 缺 `4941425` / `4941430` / `4941433`**；**四個 item 於兩份 CFTS 文字層皆無內文段落**。與 A-PW02 / DR-PW3（`4942087`）同型。 | **`SWE-PM-010` 與 `SWE-PM-008` 之 TC 全部**（其 `source_clause` 無法完整，反向涵蓋於原理上不成立）——二 leaf 皆已自第三批排除 | A-PW113、R-P144、**A-PW120** |
 | DR-PW9 | **High（live）** | **SYS2 CFTS009 匯出之 `HARMAN Status` 含 4 列 `Need rework`，而其檔名為 `All_Accepted` —— 檔名與內容不符。** 四列為 `Sys-RA-PM-0021` / `0291` / `0292` / `0293`。（a）該匯出之收錄條件究竟為何？`All_Accepted` 所指者為哪一欄？（b）037 引用其中之 `Sys-RA-PM-0293`（其 `HARMAN Status` 逐字為 `Need rework`、`MD Status` 為空），對應 `SWE-PM-112` —— 該 leaf 是否仍在範圍內？ | `SWE-PM-112` 之範圍歸屬。**不阻斷已產出之 33 leaf**（該四 token 皆不在其中）| A-PW110、R-P148 |
 
-**本表現存 live 項：DR-PW1（High）、DR-PW5（High）、DR-PW8（High）、**DR-PW9（High）**、**DR-PW11（High）**、DR-PW3（Medium）、DR-PW6（Medium）、**DR-PW10（Medium）**、DR-PW7（Low）。**
+| DR-PW12 | **Medium（live）** | **037 之五對 SWE leaf 引用完全相同之需求錨點 —— 是否為有意之相異需求？** `SWE-PM-097`≡`SWE-PM-056`（`4941680`）、`SWE-PM-101`≡`SWE-PM-054`（`4941673`–`4941676`）、`SWE-PM-102`≡`SWE-PM-055`（`4941678`）、`SWE-PM-114`≡`SWE-PM-068`（`4941876`）、`SWE-PM-115`≡`SWE-PM-070`（`4941878`）—— 五對之 `source_anchor` **完全相同**，`source_clause` 逐字一致。全量掃描：238 個被引用錨點中 **28 個被 >1 個 leaf 引用**。請上游確認：該五對是否為 037 之重複登載，抑或各自代表相異之 SW 需求？ | 五對之其中一側是否應改依 §8.2.1 委由對造承擔（將減少約 9 條 TC）。**不阻斷撰寫** —— 五個 leaf 之 TC 已產出並標記 | A-PW137 |
+
+**本表現存 live 項：DR-PW1（High）、DR-PW5（High）、DR-PW8（High）、**DR-PW9（High）**、**DR-PW11（High）**、DR-PW3（Medium）、DR-PW6（Medium）、**DR-PW10（Medium）**、**DR-PW12（Medium）**、DR-PW7（Low）。**
+25 包新增 **DR-PW12**（A-PW137 —— 五對 leaf 共用錨點）。
 22 包新增 **DR-PW10**（R-P153）與 **DR-PW11**（R-P144 之首次真實命中）。
 **`DR-PW9` 已於 23 包補執行 21 包時開立**（R-P164）。
 17 包新增 **DR-PW8**（R-P121）—— 首張因「TC 可撰寫而不可執行」而開之 DR。

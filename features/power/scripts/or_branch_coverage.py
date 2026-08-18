@@ -1,8 +1,9 @@
 """G113 —— OR 分支涵蓋（R-P161）。
 
-「原文以 `OR` 並列而 TC 只取其一」已重複**七次**
-（16 包 `BODY OFF-TIMED`、17 包 `greater`、18 包 `Ignition Pre Off`、22 包四項），
-**七次全靠反向涵蓋事後抓到，至今無閘門可攔**。
+「原文以 `OR` 並列而 TC 只取其一」已重複**五次**（R-P170 訂正 R-P161 之「七次」）
+（16 包 `BODY OFF-TIMED`、18 包 `Ignition Pre Off`、22 包 LTM High ×3），
+**五次全靠反向涵蓋事後抓到**；第八、第九例（`SWE-PM-014` / `SWE-PM-018`）
+則已由本閘於現況資料上前瞻攔下，另計。
 
 本閘之判準：
 
@@ -44,9 +45,29 @@ GLUED_OR_RE = re.compile(r"(?<=[a-z0-9\"'])(OR|NOR)(?=[A-Z(\"' ])")
 # 並列連接詞。`nor` 一併納入（R-P161 明列）。
 OR_TOKEN_RE = re.compile(r"\b(?:OR|or|NOR|nor)\b")
 # 分支之左右邊界：句末標點、分號、冒號、THEN/AND 之大寫連接詞
-# 分隔符不分大小寫 —— CFTS 原文之連接詞大小寫不一（`While` / `WHEN` / `THEN`）。
-# 此為**分隔符層**之處理，R-P161 明許（「`OR` 之大小寫、標點黏連須一併處理」）。
-_STOP = r"[.;:]|\b(?:THEN|AND|IF|WHEN|WHILE|UNLESS)\b"
+# 運算元定界之分隔符集合。
+#
+# **結構性依據（R-P169(a)：須寫成結構性依據，不得以「改後通過」為理由）**：
+# `OR` 之兩個運算元為**同一階層之並列成分**，其邊界應由
+#   （1）標點（`.` `;` `:`）—— 成分或句子之結束
+#   （2）**對等連接詞**（`AND`）與**後件標記**（`THEN`）—— 銜接同階層之另一成分
+# 界定。
+#
+# **`IF` / `WHEN` / `WHILE` / `UNLESS` 為從屬連接詞**（subordinator），
+# 其所引之子句**依附於它所修飾的那個成分**，**是該運算元的一部分**，
+# 而非把運算元與其 sibling 分開之界線。
+# `… "Active" (If LTM High is present: "Timeout1" = "00 minutes")` 即為適例 ——
+# 括號內之 `If` 子句限定 `"Active"` 這一支，屬該支之內容。
+# **將從屬連接詞當作對等成分之邊界，會把運算元截斷於其自身之限定語之前**，
+# 此為分詞器之錯誤分類，非門檻或判準問題（R-P169 之判別）。
+#
+# 故自邊界集合移除 `IF` / `WHEN` / `WHILE` / `UNLESS`，保留標點與 `AND` / `THEN`。
+# **OR 之辨識規則（`OR_TOKEN_RE`）未動**（R-P169(c)）。
+# **標點須為句讀而非識別子之一部分**（同屬 R-P169 之分詞器錯誤分類）：
+# `Auto_SwitchOn_Setting.Req` / `Phone_Call.Info` 之 `.` **夾在字元之間，
+# 是識別子之組成**，非成分邊界；句讀之 `.` 後必接空白或字串結尾。
+# 故標點僅在其後為空白或結尾時方視為分隔符。
+_STOP = r"[.;:](?=\s|$)|\b(?:THEN|AND)\b"
 LEFT_STOP_RE = re.compile(_STOP, re.I)
 RIGHT_STOP_RE = re.compile(_STOP, re.I)
 MIN_BRANCH_WORDS = 2
@@ -170,14 +191,32 @@ def render(res: dict, label: str) -> str:
     return "".join(out)
 
 
+# **G113 之驗證條件 —— 五項 OR 結構實例**（R-P170 訂正）。
+#
+# R-P161 原稱「已重複七次」，為錯誤歸納：下列 NOT_OR 之二項**根本不是 OR 結構**，
+# 不應由本閘捕獲，卻被寫入驗證條件，致驗證條件本身建立於錯誤前提上。
 KNOWN = [
     ("16 包 `BODY OFF-TIMED`（R-P117(c)）", "b1_before16.json", "SWE-PM-073", "off-tim"),
-    ("17 包 `greater` 負分支（A-PW87）", "b1_before17.json", "SWE-PM-073", "greater"),
     ("18 包 `Ignition Pre Off`（A-PW94）", "_batch2_pre043", "SWE-PM-038", "pre"),
-    ("22 包 VR 長按（A-PW119）", "_batch3_pre", "SWE-PM-011", "long"),
     ("22 包 Behaviour 1 之 LTM High（A-PW119）", "_batch3_pre", "SWE-PM-014", "ltm"),
     ("22 包 Behaviour 2 之 LTM High（A-PW119）", "_batch3_pre", "SWE-PM-014", "ltm"),
     ("22 包 `028` 之 LTM High（A-PW119）", "_batch3_pre", "SWE-PM-028", "ltm"),
+]
+
+# **未機械化之缺陷類**（R-P170）—— 不併入 G113，其捕獲仍賴反向涵蓋與人讀。
+# 二者之原文皆無並列連接詞 `OR`／`nor`，故本閘之辨識規則（OR_TOKEN_RE）
+# 依定義不可能命中；欲令其命中只能擴張辨識規則，而 R-P169(c) 明禁。
+NOT_OR = [
+    ("17 包 `greater` 負分支（A-PW87）", "條件並列",
+     '`and if the volume was greater …` —— 從屬條件句，非並列運算元'),
+    ("22 包 VR 長按（A-PW119）", "操作變體",
+     '`both short and long presses` —— `both … and` 之對等並列，非選言'),
+]
+
+# **前瞻捕獲**（R-P170）—— 由閘門於現況資料上攔下，非事後補救；另計，不入驗證條件。
+FORWARD = [
+    ("`SWE-PM-014`", "4941504", "`Ignition Pre Off` OR `Ignition Off`"),
+    ("`SWE-PM-018`", "4941548", "`Ignition Pre Off` OR `Ignition Off`"),
 ]
 
 
@@ -197,8 +236,8 @@ def _reconstruct(kind: str) -> dict:
 
 
 def self_test() -> int:
-    """R-P161(d) —— 以七項已知實例為對照，對修補前資料重跑。"""
-    print("  G113 驗證條件 —— 七項已知實例之重現\n")
+    """R-P170 訂正後之驗證條件 —— **五項 OR 結構實例全數重現**。"""
+    print("  G113 驗證條件（R-P170 訂正後）—— 五項 OR 結構實例之重現\n")
     cache: dict[str, dict] = {}
     ok = 0
     for label, src, leaf, marker in KNOWN:
@@ -213,8 +252,16 @@ def self_test() -> int:
         print(f"  [{'重現' if hit else '**未重現**'}] {label}")
         if hit:
             print(f"          分支「{hit[0]['text'][:64]}」 缺 {hit[0]['missing'][:5]}")
-    print(f"\n  七項中重現 **{ok} / 7**")
-    return 0 if ok else 1
+    print(f"\n  五項中重現 **{ok} / {len(KNOWN)}**"
+          f"{'' if ok == len(KNOWN) else '  —— **未達 R-P174(a) 之啟動條件**'}")
+
+    print("\n  未機械化之缺陷類（R-P170，不併入 G113、不計入驗證條件）：")
+    for label, kind, why in NOT_OR:
+        print(f"    - {label}：{kind} —— {why}")
+    print("\n  前瞻捕獲（另計）：")
+    for leaf, anchor, text in FORWARD:
+        print(f"    - {leaf} 錨點 {anchor}：{text}")
+    return 0 if ok == len(KNOWN) else 1
 
 
 def main() -> None:

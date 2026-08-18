@@ -33,6 +33,8 @@
 | 21 | 2026-08-18 | SYS2 `Need rework`、git 禁區釐清、切片規則擴充 | [handoff/21_need_rework.md](handoff/21_need_rework.md) | [upstream/21_need_rework.md](upstream/21_need_rework.md) | R-P148 ~ R-P152 | A-PW121 | **補執行於 23 包（R-P164）—— G107 UNCHANGED、G108 三案如期、DR-PW9 已開；台帳缺口已填，R-P1–R-P160 連續無缺** |
 | 22 | 2026-08-18 | 節奏重整、第二批發現與第三批啟動 | [handoff/22_batch3.md](handoff/22_batch3.md) | [upstream/22_batch3.md](upstream/22_batch3.md) | R-P153 ~ R-P160 | A-PW112 ~ A-PW119 | **PASS（範圍縮減）—— 第三批 22 / 32 leaf；**G103 首次真實命中**（`4941984` 不存在）；DR-PW6 阻斷九 leaf；盲測抓出 4 項事前未知缺口** |
 | 23 | 2026-08-18 | OR 分支閘門、台帳補洞與第四批 | [handoff/23_or_branch.md](handoff/23_or_branch.md) | [upstream/23_or_branch.md](upstream/23_or_branch.md) | R-P161 ~ R-P168 | A-PW120 ~ A-PW127 | **PASS（第四批未啟動）—— G113 七項驗證僅 2/7 而 §D 期望為全數重現；**G113 現況資料真實命中 2 項**；G114 全量掃出 4 個文字層不存在之 item** |
+| 24 | 2026-08-18 | G113 訂正、地基閘門時序與第四批 | [handoff/24_batch4.md](handoff/24_batch4.md) | [upstream/24_batch4.md](upstream/24_batch4.md) | R-P169 ~ R-P176 | A-PW128 ~ A-PW132 | **PASS（一項 MISMATCH）—— G113 五項 OR 實例 **5 / 5** 全數重現；分桶真陽性率 1.9%（前為 3.6%）並前瞻攔下**第十例**；`SWE-PM-025` 之 ECU 正規化後**仍相異**（真集合差 {ETM}），R-P167 不結案；**第四批 25 leaf / 50 條**（R-P174 載 31 leaf，**6 leaf 已於第二批產出** → G119 MISMATCH）|
+| 25 | 2026-08-18 | 批次定義訂正、全量對帳與第五批 | [handoff/25_batch5.md](handoff/25_batch5.md) | [upstream/25_batch5.md](upstream/25_batch5.md) | R-P177 ~ R-P182 | A-PW133 ~ A-PW138 | **PASS —— G121 全量對帳 115 / 115，五個 Test Set 全數相符；**R-P178 之推導 6 實測為 10**，根因即 R-P177 所禁者（同包內再犯）；`SWE-PM-025` 觸發訊號原文已上繳（僅第一對含訊號，二、三對逐字相同）；**第五批 29 leaf / 66 條**；G113 真缺口 6 → 2 → 0（補測 9 條）；新開 **DR-PW12**（五對 leaf 共用錨點）|
 
 ---
 
@@ -78,18 +80,29 @@ PASS：G0–G16、G13b、G18、G19、G20、**G21、G22、G23、G27**
 
 **無 MISMATCH。**
 
-### Phase 4 —— 兩批已產出（**11 leaf / 43 條**）
+### Phase 4 —— 五批已產出（**87 leaf / 223 條**）
 
 | 批 | Test Set | leaf | TC | 臨時 tc_id | CFTS |
 |---|---|---|---|---|---|
 | 1 | `Power Down` | 3 | **17** | 001–017 | 010 |
 | 2 | `Timeout Settings` | 8 | **26** | 018–043 | **009（首次）** |
+| 3 | `Power State` | 22 | **64** | 044–107 | 009 |
+| 4 | `Power State` / `Startup Display` | 25 | **50** | 108–157 | 009 |
+| 5 | `Startup Display` / `Power State` | 29 | **66** | 158–223 | 009 |
 
-§E 定版之 114 leaf 中已完成 **33**（第一批 3 ＋ 第二批 8 ＋ 第三批 22），餘 81。
-**其中 `SWE-PM-001`–`009` 受 DR-PW6 阻斷、`SWE-PM-010` 受 DR-PW11 阻斷** ——
-該十 leaf 於二 DR 獲解前無法產出。
-**第三批不啟動** —— 待分析層完成第二批 26 條之技術覆核（R-P140）；
-第二批在覆核前狀態為**暫定**。
+§E 定版之 114 leaf 中已完成 **87**，餘 27（＋ `SWE-PM-089` 留空）。
+
+**G121 全量對帳表（R-P178）已就位** —— `data/leaf_batch_reconciliation.tsv`，
+逐 leaf 載 Test Set / 批次 / TC 數 / 阻斷 DR。
+各 Test Set 合計 **63 / 24 / 16 / 8 / 3 = 114**，＋ 留空 = **115**，與 §E 定版相符。
+**往後任何批次之範圍一律自本表取 Test Set 成員清單，不得以 ID 區間表述**（R-P177）。
+
+**尚未產出之 27 leaf**：
+Branding and Theme **16 leaf 全數未產出**（無 DR 阻斷）；
+Power State 之 10 leaf 受阻斷（`SWE-PM-001`–`009` / DR-PW6、`SWE-PM-010` / DR-PW11）；
+`SWE-PM-112` 受 DR-PW9 影響其範圍歸屬，已自第五批排除。
+
+**第三、四、五批合計 180 條之內容分析層尚未覆核**（R-P159 之分層取樣未做，連續五包積欠）。
 
 ### 第一批 —— 首批已產出並已修正（**17 條**）
 
