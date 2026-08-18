@@ -26,6 +26,7 @@
 | 14 | 2026-08-17 | Final Step 驗證意圖與首批覆核收尾 | [handoff/14_final_step_intent.md](handoff/14_final_step_intent.md) | [upstream/14_final_step_intent.md](upstream/14_final_step_intent.md) | R-P101 ~ R-P106 | A-PW64 ~ A-PW68 | **PASS —— 十二步全完成；G77 修正前 9/10 FAIL；`006` 確係時序誤讀已改寫；`source_clause` 立為常規（G79）** |
 | 15 | 2026-08-17 | 首批覆核收尾與誤讀清除 | [handoff/15_batch1_closeout.md](handoff/15_batch1_closeout.md) | [upstream/15_batch1_closeout.md](upstream/15_batch1_closeout.md) | R-P107 ~ R-P112 | A-PW69 ~ A-PW74 | **PASS —— 十一步全完成；`006` 殘留實為四處（分析層指出一處）；刪除無據之順序斷言；`source_clause` 補為完整原文；Arif 素材備妥待 Pei 裁定 Q3** |
 | 16 | 2026-08-17 | 寫回排序規則與 dry-run | [handoff/16_write_order.md](handoff/16_write_order.md) | [upstream/16_write_order.md](upstream/16_write_order.md) | R-P113 ~ R-P117 | A-PW75 ~ A-PW79 | **PASS —— 九步全完成；dry-run 使 G66/G71/G72 升為「合成＋真實」；**DV 五條全數存活（含 x14）**；`SWE-PM-073` 補測五條（4→9）** |
+| 17 | 2026-08-18 | 反向涵蓋、寫回路徑閘門與第二批前置 | [handoff/17_reverse_coverage.md](handoff/17_reverse_coverage.md) | [upstream/17_reverse_coverage.md](upstream/17_reverse_coverage.md) | R-P118 ~ R-P124 | A-PW80 ~ A-PW88 | **PASS —— 十一步全完成；反向涵蓋三透鏡（透鏡 1 單獨僅重現 1/3 已知缺口）；G89/G90 刻意弄壞證明全數如期；三項前置全備，第二批可開始** |
 
 ---
 
@@ -71,12 +72,13 @@ PASS：G0–G16、G13b、G18、G19、G20、**G21、G22、G23、G27**
 
 **無 MISMATCH。**
 
-### Phase 4 —— 首批已產出並已修正（**15 條**）
+### Phase 4 —— 首批已產出並已修正（**17 條**）
 
 `features/power/generated/batch_001_power_down.json` —— **15 條 TC，3 個 leaf**
 （`SWE-PM-071/072/073`，Test Set `Power Down`），臨時 tc_id `001`–`015` 連號
 （**`tc_id_status: provisional`**，R-P113(b)）。
-16 包依 R-P117 補測五條（`011`–`015`），`SWE-PM-073` 由 4 增為 9。
+16 包依 R-P117 補測五條（`011`–`015`）、17 包依 R-P118(d) 再補二條（`016`/`017`）——
+`SWE-PM-073` 由 4 增為 **11**，**leaf 數始終為 3**。
 
 依 §8.2.2 拆分：071→**4**（F1 後 Standby / Bench 再拆）、072→2、073→4。
 priority **P0 ×3 / P1 ×5 / P2 ×2**（依測項內容判定，R-P8）。
@@ -148,6 +150,62 @@ Comfort **並未決定填車型欄**：其 profile §3.9 明訂「T–Z 一律�
 Power 原為八個 feature 中唯一無 profile 者（A-PW49）。
 G50 之方括號豁免已改為**引用 profile §3.1 / §3.2**，
 並以 `PROFILE_PATH.exists()` 為條件；G59 雙向實測。
+
+### 反向涵蓋 —— R-P118 已實作（報告 ＋ 人工裁決，非 pass/fail）
+
+**A-PW80**：G82 只問「ER 之標的在不在 `source_clause` 裡」，
+**不問「`source_clause` 裡有而 TC 裡沒有的是什麼」**。
+R-P117 之三項缺口於閘門覆蓋率 100% 之日依然零觸發 —— 覆蓋率與品質正交之**第三次**實證。
+
+`reverse_coverage.py` 設**三道透鏡**，其驗證條件之結果須明記：
+
+| R-P117 之缺口 | 透鏡 1（行為項 overlap）| 透鏡 2（具名標的）| 透鏡 3（逐項殘差詞）|
+|---|---|---|---|
+| Load Shed 回復分支 | **漏檢**（0.80）| —— | **捕獲** `resum` |
+| 通話轉移（兩處）| **捕獲**（0.40）| —— | 捕獲 |
+| BODY OFF-TIMED | **漏檢**（0.72）| **捕獲** | 捕獲 |
+| voltage out of range | **捕獲**（0.43）| —— | 捕獲 |
+
+**三項全數可重現，惟透鏡 1 單獨只重現其中一項**（A-PW86）。
+漏檢形態：**缺失部分只是一個詞時 overlap 仍很高** —— 為重疊率判準之結構性弱點，
+非門檻調得不對。**依 17 §I 未調整拆句規則或門檻**，改為加設透鏡 2 / 3；
+**透鏡 3 係於發現漏檢後才加，此順序已明載。**
+
+**透鏡 3 另使兩項新缺口現形**（A-PW87）：
+音訊類別範圍（裁為措詞不足，已於 `007`/`009`/`014` 之 ER 明列，未另拆條）；
+**`and if the volume was greater` 之負分支（裁為真缺口，補 `016`/`017`）**——
+透鏡 1 對該項判 overlap **0.86 已覆蓋**。
+
+三 leaf 行為項 **20**，已覆蓋 17，無對應 3，**已逐項裁決**（R-P118(e)：沉默不算裁決）。
+
+### 寫回路徑之閘門 —— G89 / G90（17 包）
+
+**A-PW81**：`surgical_save` 為唯一授權之寫回路徑，至 16 包止無任何閘門在驗它。
+
+| 閘 | 案例 | 實測 |
+|---|---|---|
+| **G89** | 位元組複製 | **不誤拋** |
+| | 刪一個 zip member | **拋** `zip member set changed` |
+| | 抹去一條 `dataValidation` | **拋** `data-validation counts changed` |
+| | 改動未寫入之 `xl/styles.xml` | **拋** `members differ that were not written` |
+| **G90** | 既有 5 列 80 格 | 快照**逐格相同** |
+| | 新列自 r15 起 | 改動之既有格 **0** |
+| | B 欄序號 | **1–22 連續** |
+| | 刻意自 r13 起（重疊）| 既有格被改動 **15** —— 確實可能失敗 |
+
+**A-PW82 之限制**：(d) 之偵測由腳本之快照比對得出；
+**`surgical_save` 自身不會因覆蓋既有列而拋錯** ——
+它只保證「除目標分頁外一切不變」，**append 起始列之正確性仍靠呼叫端**。
+
+### 第二批 —— `Timeout Settings`（8 leaf），三項前置全備可開始
+
+R-P124 之四項理由：次小批、**首次跨 CFTS009**、含 R-P34 之爭議 leaf `SWE-PM-057`、
+不觸及 DR-PW5 / DR-PW6。
+**R-P118 / R-P119 / R-P120 三項前置經 17 包實測全備 —— 第二批可以開始。**
+
+**執行層之保留**：R-P118 之產物是報告與人工裁決，不是閘門；
+其效力取決於**有人真的逐項讀並裁決**。首批 20 個行為項，第二批將數倍於此。
+**「沉默不算裁決」是紀律，不是機制。**
 
 ### 寫回排序 —— R-P113 已裁定（選項 B）
 
@@ -255,6 +313,9 @@ G73 之判準以 Comfort + Privacy 已交付件之 **1076 組 (procedure 步驟,
 | **G66 / G71 / G72** | **合成＋真實**（16 包 dry-run；A-PW76 已結）|
 | G85 | 合成（真實批次已跑但無斷言 —— 須待 114 leaf 完成）|
 | G86 / G87 | **真實**（dry-run）|
+| **G89 / G90** | **合成＋真實**（17 包刻意弄壞證明；A-PW81 / A-PW82 已結）|
+| G91 | 真實（對修補前資料重現三項已知缺口）—— **非 pass/fail，為報告 ＋ 人工裁決** |
+| G92 | **判準空洞** —— `remarks` 無任何格式閘門（A-PW88）|
 
 ### Q3 —— Final Step 措詞（15 包 B5 素材已備妥，**Pei 尚未裁定**）
 
@@ -296,9 +357,15 @@ R-P96 / R-P97（13 包）、R-P101 ~ R-P104（14 包）、R-P107 ~ R-P111（15 �
 寫回包設計提醒（非阻斷）：G66 迄今僅合成驗證；G67 未覆蓋之 2 項恰只能在寫回時補齊；
 Power 之 `NEVER_WRITE` 須與 `feature.yaml` 逐欄對讀，勿重蹈 Comfort O 欄之矛盾（A-PW57）。
 
-### DATA_REQUESTS（live 5 張，皆不阻斷首批）
+### DATA_REQUESTS（live **6** 張）
 
-DR-PW1（High）、DR-PW5（High）、DR-PW6（Medium）、DR-PW3（Medium）、DR-PW7（Low）。
+DR-PW1（High）、DR-PW5（High）、**DR-PW8（High，17 包新開）**、
+DR-PW6（Medium）、DR-PW3（Medium）、DR-PW7（Low）。
+
+**DR-PW8** —— `4942354` 未載 `voltage out of range` 之電壓門檻值。
+`015` 因此為**可撰寫而不可執行**之 TC（A-PW83），
+該狀態已於其 `remarks` 標明，使其於工作簿內可見而非僅存於 DR 檔。
+**此類 TC 較缺一條 TC 危險** —— 它使涵蓋率報表為真而測試無法執行。
 
 ### 11 包 8 項待裁 —— 12 包已結 6 項
 
@@ -331,6 +398,20 @@ DR-PW1（High）、DR-PW5（High）、DR-PW6（Medium）、DR-PW3（Medium）、
 R-P101（Final Step）、R-P105（`006`–`009` 覆核）、R-P106（其餘六項之處置：
 「對著閘門改」與「先看答案再定門檻」登記為**結構性限制，不另設機制**；
 G73 判準衝突登記不阻斷；G75 維持「不可驗」；G74 維持強度明載）。
+
+### 17 包新提之待驗（執行層獨立判斷，見 [upstream/17_reverse_coverage.md](upstream/17_reverse_coverage.md) §七）
+
+- **`016` / `017` 是執行層自己裁決、自己補的，無人覆核** ——
+  連分析層都尚未看過；裁決者與被裁決之工作出自同一人
+- **透鏡 3 之信噪比未量測** —— 本包列出數十個殘差詞，判定其中兩項為問題，
+  其餘「無妨」之理由未逐一寫下；第二批之量將大得多
+- **反向涵蓋建立在執行層所抄之 `source_clause` 上** ——
+  **若某條規格句根本沒被抄進去，反向涵蓋在原理上看不見它**（G79 不驗抄得對不對）
+- **G90 (d) 只證明「重疊會改動既有格」，未證明有東西會攔下它** ——
+  真實寫回若起始列算錯，`surgical_save` 會照寫不誤
+- **G92 實質未驗到東西** —— DR-PW8 之標記在工作簿內可見與否靠人看，不靠閘門
+- **G89 驗的是「會不會拋」，不是「拋得對不對」** ——
+  目標分頁內之 `<mergeCell>` / `<conditionalFormatting>` 若被改動，`verify_structure` 不會攔
 
 ### 15 包新提之待驗（執行層獨立判斷，見 [upstream/15_batch1_closeout.md](upstream/15_batch1_closeout.md) §七）
 

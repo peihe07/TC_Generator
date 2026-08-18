@@ -1,0 +1,75 @@
+{
+  "src_sha256_before": "ce93174794d0d43c03d25dcd577c2811b85a8ebb2fd754a5201e5d6979297eda",
+  "src_sha256_after": "ce93174794d0d43c03d25dcd577c2811b85a8ebb2fd754a5201e5d6979297eda",
+  "src_untouched": true,
+  "g89": [
+    {
+      "case": "正常：位元組複製（不得誤拋）",
+      "raised": false,
+      "msg": ""
+    },
+    {
+      "case": "弄壞 1：刪去一個 zip member（`xl/calcChain.xml` 或次末者）",
+      "raised": true,
+      "msg": "zip member set changed — lost ['xl/comments1.xml'], added []. The delivered file must carry every part the cus"
+    },
+    {
+      "case": "弄壞 2：抹去目標分頁之一條 `dataValidation`",
+      "raised": true,
+      "msg": "data-validation counts changed (classic, x14): {'xl/worksheets/sheet5.xml': ((1, 0), (0, 0))}. The dropdowns a"
+    },
+    {
+      "case": "弄壞 3：改動未被寫入之 `xl/styles.xml`",
+      "raised": true,
+      "msg": "members differ that were not written: ['xl/styles.xml']. Only the target sheets' XML may change"
+    }
+  ],
+  "g90": {
+    "existing_rows": 5,
+    "existing_cells": 80,
+    "before_hash": "2d2edfffb83f04f690a11397b3e666b3a3e57fc77713333a1b47aa8f40b4d496",
+    "after_hash": "2d2edfffb83f04f690a11397b3e666b3a3e57fc77713333a1b47aa8f40b4d496",
+    "a_existing_unchanged": true,
+    "b_new_start_row": 15,
+    "b_no_overwrite": true,
+    "c_b_sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "c_b_continuous": true,
+    "d_overlap_start_row": 13,
+    "d_overlap_detected": true,
+    "d_overlap_changed_cells": [
+      "AB13",
+      "AB14",
+      "D14",
+      "F13",
+      "F14",
+      "I13",
+      "I14",
+      "J14"
+    ],
+    "d_overlap_changed_count": 15
+  },
+  "tc_count": 17
+}
